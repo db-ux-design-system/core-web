@@ -277,6 +277,10 @@ See `docs/conventions.md` for the full convention.
 - **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
 - **Stencil warnings**: Component prop name conflicts are expected and documented
 
+### Type-incompatible duplicate dependencies
+
+Some packages (notably PostCSS) ship breaking `.d.ts` changes in patch releases, causing TypeScript build failures when pnpm resolves two different patches. See `docs/dependency-update-strategy.md` § "Resolving type-incompatible duplicate dependencies" for the diagnosis and fix pattern (catalog + override).
+
 ### Git hook issues
 
 **Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
@@ -324,9 +328,13 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
 
+### Fenced code blocks require a language
+
+Every fenced code block (` ``` `) **must** specify a language identifier (MD040). Use `text` for plain output, error messages, or terminal logs that have no specific syntax.
+
 ### Shift-left: HTML → CSS → JS
 
-Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See `docs/shift-left-web-development.md` for the full rationale and examples.
+Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
 
 ### Dependency pinning and package execution
 
@@ -344,14 +352,14 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 ### `bin` entries in package.json
 
-The `bin` field keys must be plain command names — **never include the `@` scope or `/`**. pnpms use the key as the symlink name in `node_modules/.bin/`, and `@` is not valid there.
+The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
 
 ```jsonc
-// ✅ Correct
+// ✅ Preferred — explicit, discoverable command name
 "bin": { "db-ux-agent-cli": "build/index.js" }
 "bin": { "db-ux-mcp-server": "./dist/index.js" }
 
-// ❌ Wrong — will not create a usable symlink
+// ⚠️ Avoid — relies on implicit basename normalization
 "bin": { "@db-ux/agent-cli": "build/index.js" }
 ```
 
