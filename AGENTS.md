@@ -198,8 +198,9 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 
 - **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
 - **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
-- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks::
     ```bash
+    pnpm --filter=@db-ux/core-components run generate:figma
     pnpm --filter=react-figma run test:update
     pnpm --filter=angular-figma run test:update
     pnpm --filter=vue-figma run test:update
@@ -349,6 +350,8 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 | `npx <bin>`       | May fetch latest from registry if not installed locally               | ❌ No   |
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
+
+**Dependabot grouping:** When adding related dependencies (same org, main package + plugins, or tightly coupled sets), add a `groups:` entry in `.github/dependabot.yml`. See `docs/dependency-update-strategy.md` § "Dependabot grouping" for details and examples.
 
 ### `bin` entries in package.json
 
