@@ -277,6 +277,10 @@ See `docs/conventions.md` for the full convention.
 - **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
 - **Stencil warnings**: Component prop name conflicts are expected and documented
 
+### Type-incompatible duplicate dependencies
+
+Some packages (notably PostCSS) ship breaking `.d.ts` changes in patch releases, causing TypeScript build failures when pnpm resolves two different patches. See `docs/dependency-update-strategy.md` § "Resolving type-incompatible duplicate dependencies" for the diagnosis and fix pattern (catalog + override).
+
 ### Git hook issues
 
 **Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
@@ -323,6 +327,10 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 ### Preserve comments during refactoring
 
 When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
+
+### Fenced code blocks require a language
+
+Every fenced code block (` ``` `) **must** specify a language identifier (MD040). Use `text` for plain output, error messages, or terminal logs that have no specific syntax.
 
 ### Shift-left: HTML → CSS → JS
 

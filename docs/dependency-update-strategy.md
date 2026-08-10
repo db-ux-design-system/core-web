@@ -118,3 +118,57 @@ groups:
 ```
 
 See the existing groups in that file for more examples (scoped orgs, main+plugins, framework sets).
+
+## Resolving type-incompatible duplicate dependencies (catalog + override)
+
+Some packages — notably PostCSS — ship breaking `.d.ts` changes in patch releases. Because pnpm's strict isolation gives each resolution its own physical copy under `.pnpm/`, TypeScript treats two patch versions (e.g. `8.5.25` and `8.5.26`) as fundamentally different types, causing compilation failures like:
+
+```text
+Type 'Node' from '.pnpm/postcss@8.5.25/...' is not assignable to type 'Node' from '.pnpm/postcss@8.5.26/...'
+```
+
+This happens when a workspace package pins one version (via exact `devDependencies`) while a transitive consumer (e.g. `stylelint` declaring `postcss: "^8.5.16"`) resolves to a different patch.
+
+### Diagnosis
+
+```bash
+pnpm why <package> --filter <failing-workspace-package>
+```
+
+If the output reports "Found 2 versions", the problem is confirmed.
+
+### Fix — catalog + override
+
+We use a **pnpm catalog** combined with an **override** to force the entire dependency graph onto a single version, defined in one place:
+
+```yaml
+# pnpm-workspace.yaml
+overrides:
+    postcss: "catalog:"
+
+catalog:
+    postcss: 8.5.26
+```
+
+Workspace packages reference the catalog in their `devDependencies`:
+
+```json
+"postcss": "catalog:"
+```
+
+### Why this approach
+
+- **Single source of truth:** bumping the version requires changing exactly one line (the catalog entry). The override, all workspace packages, and transitives follow automatically.
+- **Dependabot-compatible:** Dependabot supports pnpm catalogs since February 2025 and will open PRs updating the catalog entry directly.
+- **No preemptive use:** only apply this pattern when a build actually breaks with the dual-path type error. Most packages don't break type compatibility between patches, and unnecessary overrides constrain the resolver.
+
+### When this is NOT needed
+
+- **Peer dependencies** are not affected — they resolve from the consumer's context, so there's only one copy for type purposes.
+- **Runtime-only duplicates** (e.g. two copies of `chalk`) are harmless — they cost a few extra KB but don't cause type errors.
+
+### After applying the fix
+
+1. Run `pnpm install` to regenerate the lockfile.
+2. Delete stale `tsconfig.tsbuildinfo` files in the affected package.
+3. Verify with `pnpm --filter <package> run build`.
