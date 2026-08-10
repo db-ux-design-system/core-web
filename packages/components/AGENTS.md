@@ -300,3 +300,23 @@ Bump types:
 **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
 
 **Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
+
+## Playwright Component Testing: Callback Assertions
+
+Playwright CT marshals component callbacks between the browser (where the component executes) and Node (where the test asserts). `await locator.click()` resolves once the click action completes, but does **not** wait for the resulting callback to dispatch back to the Node process and mutate test-local variables.
+
+**Never assert a callback-mutated variable immediately after an action:**
+
+```tsx
+// ❌ Race condition — callback may not have dispatched yet
+await component.getByRole("button").click();
+expect(myVar).toEqual("expected");
+
+// ✅ Correct — polls until the value arrives or timeout expires
+await component.getByRole("button").click();
+await expect.poll(() => myVar).toEqual("expected");
+```
+
+`expect.poll` re-evaluates its function (~100 ms intervals, 5 s default timeout) until the assertion passes. Use it whenever a test asserts on a plain variable that is set inside a component callback (`onClose`, `onChange`, `onClick`, etc.).
+
+This applies to all framework outputs (React, Vue) that use Playwright CT for spec tests.
