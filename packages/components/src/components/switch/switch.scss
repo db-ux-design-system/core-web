@@ -126,7 +126,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: "•" / "";
+				content: "\2022" / "";
 			}
 		}
 

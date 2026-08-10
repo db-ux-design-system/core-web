@@ -78,20 +78,20 @@
     "update:icon-fonts": "pnpm run generate:icon-fonts && pnpm run generate:icon-types"
   },
   "dependencies": {
-    "@db-ux/db-theme": "5.9.1",
+    "@db-ux/db-theme": "6.0.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "3.10.0",
+    "@db-ux/db-theme-icons": "4.0.0",
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
     "@inquirer/prompts": "8.5.2",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
-    "npm-run-all2": "9.0.2",
-    "publint": "0.3.22",
-    "replace-in-file": "8.4.0",
+    "npm-run-all2": "9.0.3",
+    "publint": "0.3.23",
+    "replace-in-file": "9.0.0",
     "sassdoc": "2.7.4",
-    "tar": "7.5.21",
+    "tar": "7.5.22",
     "typedoc": "0.28.20",
     "typedoc-plugin-markdown": "4.12.0",
     "typedoc-plugin-merge-modules": "7.0.0",
