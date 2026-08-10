@@ -25,7 +25,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		_id: props.id || props.propOverrides?.id || 'db-drawer-' + uuid(),
+		_id: 'db-drawer-' + uuid(),
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -73,6 +73,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
+		state._id = props.id || props.propOverrides?.id || state._id;
 		state.handleDialogOpen();
 		state.initialized = true;
 	});
