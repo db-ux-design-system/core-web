@@ -539,11 +539,10 @@ These files **must be committed** — they are the baseline for CI.
 3. Interact with the button "Generate new token" in the section "Personal access tokens"
 4. Generate a personal access token with the following scopes:
 
-| Scope                      | Description                                         |
-| -------------------------- | --------------------------------------------------- |
-| `file_content:read`        | Read the contents of and render images from files   |
-| `file_code_connect:write`  | Write and change component code                     |
-| `file_dev_resources:write` | Create and modify dev resources in accessible files |
+| Scope                     | Description                                       |
+| ------------------------- | ------------------------------------------------- |
+| `file_content:read`       | Read the contents of and render images from files |
+| `file_code_connect:write` | Write and change component code                   |
 
 ![Generate access token](figma-generate-access-token.png)
 
