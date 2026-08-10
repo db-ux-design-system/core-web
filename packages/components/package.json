@@ -67,7 +67,7 @@
     "replace-in-file": "9.0.0",
     "sass": "1.102.0",
     "storybook": "10.5.7",
-    "tsx": "4.23.8",
+    "tsx": "4.23.9",
     "vitest": "4.1.10"
   },
   "publishConfig": {
