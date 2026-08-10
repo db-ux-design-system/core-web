@@ -39,7 +39,7 @@ Add the following to your MCP configuration file (`.kiro/settings/mcp.json` in t
 {
 	"mcpServers": {
 		"github": {
-			"command": "sh",
+			…
 			"args": [
 				"-c",
 				"GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token) npx --yes @modelcontextprotocol/server-github"
