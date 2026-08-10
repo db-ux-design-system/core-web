@@ -47,7 +47,12 @@ Add the following to your MCP configuration file (`.kiro/settings/mcp.json` in t
 {
 	"mcpServers": {
 		"github": {
-			…
+          "type": "http",
+          "url": "https://api.githubcopilot.com/mcp/",
+          "headers": {
+            "Authorization": "Bearer XXX"
+          },
+          "autoApprove": [...]
 		}
 	}
 }
