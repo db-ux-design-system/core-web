@@ -194,15 +194,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'tab-item',
 		overwrites: {
-			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
-		},
-		config: {
-			vue: {
-				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
-			}
+			react: [{ from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes' }]
 		}
 	},
 
@@ -210,7 +202,7 @@ export const getComponents = (): Component[] => [
 		name: 'tabs',
 		config: {
 			react: {
-				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+				propsPassingFilter: ['onIndexChange', 'onValueChange']
 			}
 		}
 	},
@@ -235,7 +227,7 @@ export const getComponents = (): Component[] => [
 		},
 		config: {
 			react: {
-				propsPassingFilter: ['onToggle']
+				propsPassingFilter: ['onToggle', 'defaultOpen']
 			}
 		}
 	},
@@ -363,6 +355,14 @@ export const getComponents = (): Component[] => [
 				propsPassingFilter: ['onClose']
 			}
 		}
+	},
+
+	{
+		name: 'drawer-header'
+	},
+
+	{
+		name: 'drawer-footer'
 	},
 
 	{

@@ -24,6 +24,6 @@ export const COMPONENT_NOT_FOUND_MSG = (name: string) =>
 	`Error: Component '${name}' is not available in the DB UX Design System. Please check your spelling or use the 'list_components' tool to see all valid components.`;
 
 /** Creates a standard MCP error ToolResult with the given message. */
-export function err(text: string): ToolResult {
+export function error(text: string): ToolResult {
 	return { content: [{ type: 'text', text }], isError: true };
 }

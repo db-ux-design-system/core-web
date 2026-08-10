@@ -15,7 +15,7 @@ import useQuery from './hooks/use-query';
 import Navigation from './navigation';
 import Page from './page/page';
 
-const App = () => {
+export default function App() {
 	const {
 		density,
 		setDensity,
@@ -111,6 +111,4 @@ const App = () => {
 			</DBShellContent>
 		</DBShell>
 	);
-};
-
-export default App;
+}

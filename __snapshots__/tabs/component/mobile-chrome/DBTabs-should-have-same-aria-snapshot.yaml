@@ -1,8 +1,5 @@
 - tablist:
   - tab "Test 1" [selected]
-  - text: Test 1
   - tab "Test 2"
-  - text: Test 2
   - tab "Test 3"
-  - text: Test 3
 - tabpanel "Test 1": TestPanel 1

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { getAllNavigationItems } from '../../data/routes';
 import DefaultPage from '../default-page';
 
-const CardNavigation = () => {
+export default function CardNavigation() {
 	const router = useRouter();
 
 	const navigationItemParent = getAllNavigationItems().find(
@@ -32,6 +32,4 @@ const CardNavigation = () => {
 			)}
 		</DefaultPage>
 	);
-};
-
-export default CardNavigation;
+}

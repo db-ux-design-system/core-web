@@ -15,6 +15,11 @@ export const useLayout = () => {
 	const settings = ref<any>(defaultSettings);
 	const page = ref();
 	const fullscreen = ref();
+	const drawerOpen = ref(false);
+
+	const toggleDrawer = (isOpen: boolean) => {
+		drawerOpen.value = isOpen;
+	};
 	// TODO: Remove shell state and `showcases/vue-showcase/src/page` folder after v6.0.0
 	const shell = ref<boolean>(true);
 

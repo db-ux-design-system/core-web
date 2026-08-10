@@ -30,7 +30,7 @@ describe('build-gh-page', () => {
 			result = error instanceof Error ? error.message : String(error);
 		}
 
-		expect(result.toString().trim()).toEqual(
+		expect(result.trim()).toEqual(
 			"Command failed: node github/get-release.ts\nYour tag has to start with 'v'"
 		);
 	});
@@ -47,7 +47,7 @@ describe('build-gh-page', () => {
 			result = error instanceof Error ? error.message : String(error);
 		}
 
-		expect(result.toString().trim()).toEqual(
+		expect(result.trim()).toEqual(
 			'Command failed: node github/get-release.ts\nDependabot has no permission to publish!'
 		);
 	});

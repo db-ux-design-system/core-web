@@ -21,8 +21,8 @@ export type StackAlignmentType = (typeof StackAlignmentList)[number];
 export const StackJustifyContentList = [
 	'space-between',
 	'start',
-	'end',
-	'center'
+	'center',
+	'end'
 ] as const;
 export type StackJustifyContentType = (typeof StackJustifyContentList)[number];
 

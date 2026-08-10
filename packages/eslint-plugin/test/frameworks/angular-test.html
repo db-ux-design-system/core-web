@@ -15,8 +15,39 @@
 	<db-notification [closeable]="true">Test</db-notification>
 	<db-notification [closeable]="false">Test</db-notification>
 	<db-notification>Test</db-notification>
-	<db-drawer></db-drawer>
+	<db-drawer-header>Test</db-drawer-header>
 	<db-custom-select [label]="'Select'"></db-custom-select>
+
+	<!-- db-ux/drawer-header-required -->
+	<db-drawer>Content without header</db-drawer>
+
+	<!-- db-ux/sub-component-required-parent -->
+	<db-drawer-header>Outside drawer</db-drawer-header>
+	<db-drawer-footer>Outside drawer</db-drawer-footer>
+	<db-navigation-item>Outside navigation</db-navigation-item>
+	<db-tab-list><db-tab-item>Outside tabs</db-tab-item></db-tab-list>
+	<db-tab-panel>Outside tabs</db-tab-panel>
+	<db-table-head
+		><db-table-row
+			><db-table-header-cell>H</db-table-header-cell></db-table-row
+		></db-table-head
+	>
+	<db-table-body
+		><db-table-row
+			><db-table-data-cell>D</db-table-data-cell></db-table-row
+		></db-table-body
+	>
+	<db-table-footer
+		><db-table-row
+			><db-table-data-cell>F</db-table-data-cell></db-table-row
+		></db-table-footer
+	>
+	<db-table-row
+		><db-table-data-cell>Outside section</db-table-data-cell></db-table-row
+	>
+	<db-table-header-cell>Outside row</db-table-header-cell>
+	<db-table-data-cell>Outside row</db-table-data-cell>
+	<db-table-caption>Outside table</db-table-caption>
 
 	<!-- db-ux/button-no-text-requires-tooltip -->
 	<db-button type="submit" noText icon="search">Test</db-button>

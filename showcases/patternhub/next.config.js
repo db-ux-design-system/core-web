@@ -38,6 +38,12 @@ const withExtensionAlias = (mdxWebpack) => (webpackConfig, options) => {
 const config = {
 	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
+	sassOptions: {
+		// Prevent sass from emitting @charset "UTF-8". PostCSS 8.5.24+
+		// preserves BOMs, and cssnano's normalizeCharset converts @charset
+		// to a BOM — which corrupts selectors when CSS files are concatenated.
+		charset: false
+	},
 	transpilePackages: ['../react-showcase/', '@db-ux'],
 	...mdxConfig,
 	webpack: withExtensionAlias(mdxConfig.webpack),

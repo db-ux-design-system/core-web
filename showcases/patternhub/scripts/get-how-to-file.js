@@ -9,7 +9,7 @@ const docs = ['Accessibility', 'HTML', 'Angular', 'React', 'Vue'];
  @param displayName {string}
  @returns {string}
  */
-const getHowToFile = (componentName, displayName) => {
+export default function getHowToFile(componentName, displayName) {
 	let imports = '';
 	let components = '';
 
@@ -31,6 +31,4 @@ ${components}
 
 export default ({ children }) => <DefaultPage>{children}</DefaultPage>;
 	`;
-};
-
-export default getHowToFile;
+}

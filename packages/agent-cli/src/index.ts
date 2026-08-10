@@ -9,15 +9,11 @@ export const action = async (rootPath = '.') => {
 	);
 	const hasAmazonQ = existsSync(join(rootPath, '.amazonq', 'rules'));
 
-	if (!hasCopilot && !hasAmazonQ) {
+	if (hasCopilot || (!hasCopilot && !hasAmazonQ)) {
 		generateCopilot(rootPath);
-		generateAmazonQ(rootPath);
-	} else if (hasCopilot && hasAmazonQ) {
-		generateCopilot(rootPath);
-		generateAmazonQ(rootPath);
-	} else if (hasCopilot) {
-		generateCopilot(rootPath);
-	} else {
+	}
+
+	if (hasAmazonQ || (!hasCopilot && !hasAmazonQ)) {
 		generateAmazonQ(rootPath);
 	}
 };

@@ -208,6 +208,8 @@ Use these markers to indicate priority:
 
 ### Example Comments
 
+<!-- jscpd:ignore-start -->
+
 ```markdown
 🔴 [blocking] This could cause a race condition when multiple users update simultaneously.
 Consider wrapping this in a transaction or using optimistic locking.
@@ -223,3 +225,5 @@ from `@db-ux/core-components`.
 
 🎉 [praise] Great use of discriminated unions here — makes the type narrowing very clean.
 ```
+
+<!-- jscpd:ignore-end -->

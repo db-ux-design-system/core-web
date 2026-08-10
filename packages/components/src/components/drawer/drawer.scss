@@ -8,7 +8,10 @@
 
 %container-size-horizontal {
 	inline-size: calc(
-		100lvw - var(--db-drawer-container-backdrop-spacing, 0px)
+		var(--db-drawer-inline-size) - var(
+				--db-drawer-container-backdrop-spacing,
+				0px
+			)
 	);
 	min-inline-size: var(--db-drawer-min-width, auto);
 	max-inline-size: var(
@@ -31,7 +34,12 @@
 }
 
 %container-size-vertical {
-	block-size: calc(100lvh - var(--db-drawer-container-backdrop-spacing, 0px));
+	block-size: calc(
+		var(--db-drawer-block-size) - var(
+				--db-drawer-container-backdrop-spacing,
+				0px
+			)
+	);
 	min-block-size: var(--db-drawer-min-height, auto);
 	max-block-size: var(
 		--db-drawer-max-height,
@@ -39,16 +47,18 @@
 	);
 
 	&[data-container-size="small"] {
-		--db-drawer-max-height-vertical: 33lvh;
+		--db-drawer-max-height-vertical: calc(var(--db-drawer-block-size) / 3);
 	}
 
 	&[data-container-size="medium"] {
-		--db-drawer-max-height-vertical: 50lvh;
+		--db-drawer-max-height-vertical: calc(var(--db-drawer-block-size) / 2);
 	}
 
 	&:not([data-container-size]),
 	&[data-container-size="large"] {
-		--db-drawer-max-height-vertical: 67lvh;
+		--db-drawer-max-height-vertical: calc(
+			(var(--db-drawer-block-size) / 3) * 2
+		);
 	}
 }
 
@@ -56,7 +66,6 @@
 	@extend %container-size-horizontal;
 
 	transform: translateX(-110%);
-
 	inset-inline: 0 auto;
 
 	&[data-rounded="true"] {
@@ -69,7 +78,6 @@
 	@extend %container-size-horizontal;
 
 	transform: translateX(110%);
-
 	inset-inline: auto 0;
 
 	&[data-rounded="true"] {
@@ -82,7 +90,6 @@
 	@extend %container-size-vertical;
 
 	transform: translateY(110%);
-
 	inset: auto 0 0;
 
 	&[data-rounded="true"] {
@@ -95,7 +102,6 @@
 	@extend %container-size-vertical;
 
 	transform: translateY(-110%);
-
 	inset: 0 0 auto;
 
 	&[data-rounded="true"] {
@@ -126,7 +132,7 @@
 
 	position: fixed;
 	inset: 0;
-	
+
 	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
 	// can control hiding instead. Only needed when motion is enabled —
@@ -201,8 +207,8 @@
 			[main] 1fr
 			[footer] auto;
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		inline-size: 100lvw;
-		block-size: 100lvh;
+		inline-size: var(--db-drawer-inline-size);
+		block-size: var(--db-drawer-block-size);
 		position: fixed;
 		box-shadow: variables.$db-elevation-md;
 
@@ -222,11 +228,11 @@
 
 			&:not([data-direction]),
 			&[data-direction="to-left"] {
-				border-inline-end: component.$component-border;
+				border-inline-start: component.$component-border;
 			}
 
 			&[data-direction="to-right"] {
-				border-inline-start: component.$component-border;
+				border-inline-end: component.$component-border;
 			}
 
 			&[data-direction="up"] {
@@ -295,12 +301,23 @@
 	}
 
 	&[data-position="absolute"] {
+		--db-drawer-inline-size: 100%;
+		--db-drawer-block-size: 100%;
+
 		position: absolute;
 		z-index: 3;
-		inset: 0;
-		block-size: 100%;
-		inline-size: 100%;
 		background-color: transparent;
+		inline-size: var(--db-drawer-inline-size);
+		block-size: var(--db-drawer-block-size);
+		overflow: clip;
+
+		// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+		// stylelint-disable-next-line declaration-no-important
+		@media (prefers-reduced-motion: no-preference) {
+			display: flex !important;
+		}
+
+		// END: allow-discrete ponyfill
 
 		&[open] {
 			display: flex;

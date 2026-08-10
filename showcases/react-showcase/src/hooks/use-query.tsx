@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { defaultSettings } from '../../../settings';
 import useUniversalSearchParameters from './use-universal-search-parameters';
 
-const useQuery = (redirectURLSearchParameters = true) => {
+const useQuery = (shouldRedirectURLSearchParameters = true) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
 
@@ -27,30 +27,32 @@ const useQuery = (redirectURLSearchParameters = true) => {
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
-			if (value) {
-				if (key === DENSITY_CONST && density !== value) {
-					setDensity(value);
-				}
+			if (!value) {
+				continue;
+			}
 
-				if (key === COLOR_CONST && color !== value) {
-					setColor(value);
-				}
+			if (key === DENSITY_CONST && density !== value) {
+				setDensity(value);
+			}
 
-				if (key === 'page' && page !== value.toLowerCase()) {
-					setPage(value.toLowerCase());
-				}
+			if (key === COLOR_CONST && color !== value) {
+				setColor(value);
+			}
 
-				if (key === 'shell' && shell !== (value === 'true')) {
+			if (key === 'page' && page !== value.toLowerCase()) {
+				setPage(value.toLowerCase());
+			}
+
+			if (key === 'shell' && shell !== (value === 'true')) {
 					setShell(value === 'true');
 				}
 
 				if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
-					setFullscreen(value === 'true');
+				setFullscreen(value === 'true');
 				}
 
 				if (key === 'settings' && JSON.stringify(settings) !== value) {
 					setSettings(JSON.parse(value));
-				}
 			}
 		}
 
@@ -78,7 +80,7 @@ const useQuery = (redirectURLSearchParameters = true) => {
 				nextQuery.fullscreen = 'true';
 			}
 
-			if (redirectURLSearchParameters) {
+			if (shouldRedirectURLSearchParameters) {
 				setSearchParameters(nextQuery);
 			}
 		}

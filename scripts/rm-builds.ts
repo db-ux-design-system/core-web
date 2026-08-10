@@ -1,9 +1,9 @@
+import { glob, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { rimraf } from 'rimraf';
 
 const root = resolve(import.meta.dirname, '..');
 
-const paths = [
+const patterns = [
 	// Package builds
 	'packages/components/build',
 	'packages/foundations/build',
@@ -28,6 +28,13 @@ const paths = [
 	'showcases/patternhub/components/src/**/*.tsx',
 	// Playwright
 	'output/react/playwright'
-].map((p) => resolve(root, p));
+];
 
-await rimraf(paths, { glob: true });
+const resolved = await Promise.all(
+	patterns.map(async (p) => Array.fromAsync(glob(resolve(root, p))))
+);
+const entries = resolved.flat();
+
+await Promise.all(
+	entries.map(async (entry) => rm(entry, { recursive: true, force: true }))
+);

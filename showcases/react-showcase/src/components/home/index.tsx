@@ -9,10 +9,9 @@ import FormSelects from '../form/select';
 import FormSwitches from '../form/switch';
 import FormTextareas from '../form/textarea';
 
-const Home = () => {
-	const id = useId();
+export default function Home() {
 	return (
-		<DBTabs id={id} name={id} data-testid="tabs">
+		<DBTabs data-testid="tabs">
 			<DBTabList>
 				<DBTabItem>All</DBTabItem>
 				<DBTabItem data-testid="tab-inputs">Input</DBTabItem>
@@ -51,6 +50,4 @@ const Home = () => {
 			</DBTabPanel>
 		</DBTabs>
 	);
-};
-
-export default Home;
+}

@@ -37,10 +37,26 @@ export const COMPONENTS: Record<string, string> = {
 	DBLink: 'DBLink',
 	DBNotification: 'DBNotification',
 	DBDrawer: 'DBDrawer',
-	DBControlPanelMobile: 'DBControlPanelMobile',
-	DBControlPanelNavigationItem: 'DBControlPanelNavigationItem',
+	DBDrawerHeader: 'DBDrawerHeader',
+	DBDrawerFooter: 'DBDrawerFooter',
+	DBHeader: 'DBHeader',
+	DBNavigation: 'DBNavigation',
+	DBNavigationItem: 'DBNavigationItem',
+	DBTabs: 'DBTabs',
+	DBTabList: 'DBTabList',
+	DBTabItem: 'DBTabItem',
+	DBTabPanel: 'DBTabPanel',
+	DBTable: 'DBTable',
+	DBTableHead: 'DBTableHead',
+	DBTableBody: 'DBTableBody',
+	DBTableFooter: 'DBTableFooter',
+	DBTableRow: 'DBTableRow',
+	DBTableHeaderCell: 'DBTableHeaderCell',
+	DBTableDataCell: 'DBTableDataCell',
+	DBTableCaption: 'DBTableCaption',
 	DBTag: 'DBTag',
-	DBTabItem: 'DBTabItem'
+	DBControlPanelMobile: 'DBControlPanelMobile',
+	DBControlPanelNavigationItem: 'DBControlPanelNavigationItem'
 };
 
 export const MESSAGES = {
@@ -98,7 +114,11 @@ export const MESSAGES = {
 	TOOLTIP_NO_INTERACTIVE:
 		'DBTooltip must not contain interactive elements. Use DBPopover for interactive content',
 	TOOLTIP_REQUIRES_INTERACTIVE:
-		'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility'
+		'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility',
+	DRAWER_HEADER_REQUIRED:
+		'{{component}} must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)',
+	SUB_COMPONENT_REQUIRED_PARENT:
+		'{{component}} must be used inside {{parent}}{{slot}}'
 };
 
 export const MESSAGE_IDS = {
@@ -129,5 +149,7 @@ export const MESSAGE_IDS = {
 	CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL: 'missingBurgerMenuLabel',
 	ICON_PREFER_ATTRIBUTE: 'preferAttribute',
 	TOOLTIP_NO_INTERACTIVE: 'noInteractive',
-	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive'
+	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive',
+	DRAWER_HEADER_REQUIRED: 'drawerHeaderRequired',
+	SUB_COMPONENT_REQUIRED_PARENT: 'subComponentRequiredParent'
 };

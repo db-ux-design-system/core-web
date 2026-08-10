@@ -3,6 +3,7 @@ import {
 	DBButton,
 	DBCheckbox,
 	DBDrawer,
+	DBDrawerHeader,
 	DBInfotext,
 	DBInput,
 	DBRadio,
@@ -222,8 +223,10 @@ const reset = () => {
 			</p>
 			<DBButton @click="drawerOpen = true">Open Drawer</DBButton>
 			<DBDrawer :open="drawerOpen" @close="drawerOpen = false">
-				<template #drawer-header>Drawer Header</template>
-				<DBInfotext style="margin: 100px; display: flex">
+				<template v-slot:header
+					><DBDrawerHeader>Drawer Header</DBDrawerHeader></template
+				>
+				<DBInfotext>
 					Test: Mouse down here, drag to backdrop, release. Drawer
 					should stay open.
 				</DBInfotext>

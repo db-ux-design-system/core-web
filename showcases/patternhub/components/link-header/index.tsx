@@ -1,7 +1,7 @@
 import { DBIcon } from '@components';
 import Link from 'next/link';
 
-const LinkHeader = ({ id }) => {
+export default function LinkHeader({ id }) {
 	if (id) {
 		return (
 			<Link className="header-link" href={`?current=${id}`}>
@@ -12,6 +12,4 @@ const LinkHeader = ({ id }) => {
 	}
 
 	return null;
-};
-
-export default LinkHeader;
+}

@@ -1,6 +1,5 @@
 import {
 	onMount,
-	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -11,7 +10,6 @@ import {
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
-	delay,
 	getBoolean,
 	getBooleanAsString,
 	isKeyboardEvent
@@ -24,11 +22,9 @@ useDefaultProps<DBDrawerProps>({});
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
-	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
 		backdropPointerDown: false,
-		_closeTimeoutId: undefined as number | undefined,
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -45,24 +41,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 			state.backdropPointerDown =
 				(event?.target as any)?.nodeName === 'DIALOG';
 		},
-		/**
-		 * Handles close events from multiple sources:
-		 * - Escape key
-		 * - Backdrop click (when backdrop is enabled)
-		 * - Any element inside the drawer with `[data-action="close"]` attribute
-		 *   (e.g. the close button rendered by `DBDrawerHeader`)
-		 * - Direct forceClose calls
-		 *
-		 * CONTRACT: The `DBDrawerHeader` component must render its close button
-		 * with `data-action="close"` for this detection to work.
-		 */
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClose: (
 			event?:
 				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void,
-			forceClose?: boolean
+				| void
 		) => {
 			if (!event) return;
 
@@ -75,14 +59,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 					}
 				}
 			} else {
-				if (forceClose) {
-					event.stopPropagation();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-
 				const isBackdrop =
 					(event.target as any)?.nodeName === 'DIALOG' &&
 					event.type === 'click' &&
@@ -95,6 +71,10 @@ export default function DBDrawer(props: DBDrawerProps) {
 				);
 
 				if (isBackdrop || isCloseButton) {
+					if (isCloseButton) {
+						event.stopPropagation();
+					}
+
 					if (props.onClose) {
 						props.onClose(event);
 					}
@@ -133,26 +113,20 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
+			let parent = refElement.parentElement;
+			// Skip host elements with display:contents (Angular/Stencil)
+			// which do not create a containing block.
+			if (parent && getComputedStyle(parent).display === 'contents') {
+				parent = parent.parentElement;
+			}
 			if (parent) {
-				parent.style.position = 'relative';
+				const pos = getComputedStyle(parent).position;
+				if (pos === 'static') {
+					parent.style.position = 'relative';
+				}
 			}
 		}
 	}, [_ref, state.initialized, props.position]);
-
-	onUnMount(() => {
-		// Cancel any pending close timeout to prevent stale references
-		if (state._closeTimeoutId !== undefined) {
-			clearTimeout(state._closeTimeoutId);
-		}
-		if (_ref && props.position === 'absolute') {
-			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
-			if (parent) {
-				parent.style.position = '';
-			}
-		}
-	});
 
 	return (
 		<dialog
@@ -167,7 +141,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-direction={props.direction}
 			data-variant={props.variant}>
 			<article
-				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}
 				data-show-spacing={getBooleanAsString(

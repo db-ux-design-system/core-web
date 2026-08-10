@@ -172,15 +172,19 @@ export async function buildTokens(): Promise<void> {
 		const densityOverrides: Record<string, string> = {};
 
 		for (const [prop, entries] of Object.entries(props)) {
-			const themeEntry = entries.find((e) => e.source === 'theme');
+			const themeEntry = entries.find(
+				(entry) => entry.source === 'theme'
+			);
 			if (themeEntry) {
 				flatTokens[cat][prop] = themeEntry.value;
 			}
 
-			for (const e of entries.filter((e) => e.source === 'density')) {
+			for (const entry of entries.filter(
+				(entry) => entry.source === 'density'
+			)) {
 				densityOverrides[prop] = densityOverrides[prop]
-					? `${densityOverrides[prop]} | ${e.value}`
-					: e.value;
+					? `${densityOverrides[prop]} | ${entry.value}`
+					: entry.value;
 			}
 		}
 

@@ -7,7 +7,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_BURGER_MENU } from '../../shared/constants';
+import {
+	DEFAULT_BURGER_MENU,
+	DEFAULT_CLOSE_BUTTON
+} from '../../shared/constants';
 import { addAttributeToChildren, cls, getBoolean } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
@@ -18,7 +21,9 @@ import { DBHeaderProps, DBHeaderState } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBHeaderProps>({});
+useDefaultProps<DBHeaderProps>({
+	closeButtonText: DEFAULT_CLOSE_BUTTON
+});
 
 /**
  * @deprecated Use DBControlPanelDesktop/Mobile instead
