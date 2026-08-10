@@ -37,3 +37,5 @@
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
   - 'button "Open: With slots"'
+  - link "Events"
+  - button "Open Drawer"
