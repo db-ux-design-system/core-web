@@ -1,5 +1,4 @@
 import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@components';
-import { useId } from 'react';
 import FormComponent from '../form';
 import FormCheckboxes from '../form/checkbox';
 import FormCustomSelects from '../form/custom-select';

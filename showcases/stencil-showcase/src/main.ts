@@ -27,14 +27,14 @@ render();
 
 // Re-render on hashchange to switch between shell and page modes
 globalThis.addEventListener('hashchange', () => {
-	const currentShell = getShellState();
+	const isCurrentShell = getShellState();
 	const hasShellElement = document.querySelector('db-shell');
 	const hasPageElement = document.querySelector('db-page');
 
 	// Only re-render if the shell state changed
-	if (currentShell && !hasShellElement) {
+	if (isCurrentShell && !hasShellElement) {
 		render();
-	} else if (!currentShell && !hasPageElement) {
+	} else if (!isCurrentShell && !hasPageElement) {
 		render();
 	}
 });
