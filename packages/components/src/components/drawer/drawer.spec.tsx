@@ -72,7 +72,7 @@ const testAction = () => {
 		const testSpan = component.getByTestId('test');
 		await expect(testSpan).toBeVisible();
 		await component.getByRole('button').click();
-		expect(test).toEqual('close');
+		await expect.poll(() => test).toEqual('close');
 	});
 };
 
