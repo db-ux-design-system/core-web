@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-DMQN_gVd.js";e();
