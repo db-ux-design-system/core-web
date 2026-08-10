@@ -4,10 +4,10 @@ Aufklappbarer Container, der die Optionsliste und optional ein Suchfeld anzeigt 
 
 ## Regeln
 
-1. Dropdown-Width passend zur Länge der List Items wählen.
-2. Placement so wählen, dass wichtige Informationen nicht verdeckt werden.
-3. „Select All" nur bei Multiple = True anbieten.
-4. Suchfunktion bei langen Listen anbieten. No Results oder Loading wird als Zustand kommuniziert.
+1. `width` nach der Länge der [Custom Select List Items](../custom-select-list-item/guidelines.md) wählen: `full`, wenn das Dropdown die Breite des Form Fields übernehmen soll, `auto` bei kurzen Optionen, die nicht umbrechen dürfen, `fixed` als Standard, wenn lange Labels umbrechen dürfen.
+2. `placement` so wählen, dass wichtige Informationen nicht verdeckt werden. Das Property liegt auf der Elternkomponente `custom-select`.
+3. `showSelectAll` nur anzeigen, wenn `multiple` aktiv ist.
+4. **sollte** Suchfunktion (`showSearch`) bei langen Listen anbieten. Zustände `showNoResults` und `showLoading` bei entsprechender Datenlage anzeigen.
 
 ## Zusätzliche Informationen
 

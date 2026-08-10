@@ -12,11 +12,11 @@ Das adaptive Farbsystem stellt kontextabhängige Farben bereit, die sich basiere
 
 ### Adaptiv (Color Collection)
 
-Wenn `db-adaptive/origin/default` auf ein Element angewendet wird, hängt die aufgelöste Farbe von der aktiven Variante ab. Innerhalb eines `data-variant="brand"`-Containers wird es die Brand-Farbe. Innerhalb von `data-variant="successful"` wird es die Successful-Farbe.
+Wenn `db-adaptive/origin/default` auf ein Element angewendet wird, hängt die aufgelöste Farbe von der aktiven Variante ab. Innerhalb eines `data-variant="brand"`-Containers löst der Token zur Brand-Farbe auf, innerhalb von `data-variant="successful"` zur Successful-Farbe.
 
 ### Absolut (Mode Collection)
 
-Wenn `db-brand/origin/default` angewendet wird, ist es **immer** die Brand-Farbe des aktiven Themes, unabhängig davon welcher Variant-Kontext auf dem Eltern-Element aktiv ist. Verwenden wenn eine explizite Farbe benötigt wird, die sich nicht ändern soll.
+Wenn `db-brand/origin/default` angewendet wird, löst der Token **immer** zur Brand-Farbe des aktiven Themes auf, unabhängig davon, welcher Variant-Kontext auf dem Eltern-Element aktiv ist. Verwenden, wenn eine explizite Farbe benötigt wird, die sich nicht ändern soll.
 
 ## Aktivierung
 

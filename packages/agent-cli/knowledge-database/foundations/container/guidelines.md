@@ -1,6 +1,6 @@
 # Container
 
-Größen für Layout-Container und übergeordnete Inhaltsbereiche.
+Breiten für begrenzte Inhaltsflächen wie Overlays, Panels und Textspalten.
 
 ## Regeln
 

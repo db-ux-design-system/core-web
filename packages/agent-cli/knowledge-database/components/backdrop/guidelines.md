@@ -9,4 +9,4 @@ Overlay-Ebene hinter modale Inhalte zur Fokussierung und Interaktionsblockierung
 
 ## Zusätzliche Informationen
 
-- Blockiert Interaktion mit dem Hintergrund. Klick auf den Backdrop kann das Overlay schließen (optional). Fokus bleibt innerhalb des Overlays.
+- Blockiert Interaktion mit dem Hintergrund. Klick auf den Backdrop kann das Overlay schließen. Fokus bleibt innerhalb des Overlays.

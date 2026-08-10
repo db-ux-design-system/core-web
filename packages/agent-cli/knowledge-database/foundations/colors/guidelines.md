@@ -1,6 +1,6 @@
 # Colors
 
-Adaptive Farb-Tokens für konsistent aufgebaute Paletten, mit Background- und Content-Farben, die Barrierefreiheit durch definierte Kontrastverhältnisse sicherstellen.
+Adaptive Farb-Tokens für konsistent aufgebaute Paletten. Background- und Content-Farben sind so aufeinander abgestimmt, dass sie durch definierte Kontrastverhältnisse Barrierefreiheit sicherstellen.
 
 ## Regeln
 

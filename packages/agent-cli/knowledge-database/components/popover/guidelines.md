@@ -6,7 +6,7 @@ Schwebendes Overlay für kontextbezogene Inhalte, ausgelöst durch Nutzer:innen-
 
 1. Für interaktive oder zusammengesetzte Inhalte an einem Trigger verwenden, für reine Text-Erklärungen stattdessen [Tooltip](../tooltip/guidelines.md).
 2. Inhalt auf ein Thema begrenzen, keine großen oder scrolllastigen Inhalte.
-3. `placement` beim Standardwert `bottom` belassen, sofern kein Grund dagegen spricht.
+3. **sollte** `placement` beim Standardwert `bottom` belassen, sofern kein Grund dagegen spricht.
 
 ## Zusätzliche Informationen
 

@@ -10,4 +10,4 @@ Gruppiert zusammengehörige Inhalte auf einer abgegrenzten Fläche für visuelle
 4. Ganze Card nur dann klickbar machen, wenn genau ein Navigationsziel besteht und kein weiteres Steuerelement nötig ist.
 5. Klickbare Cards enthalten keine verschachtelten interaktiven Elemente.
 6. Titel, Inhalte und Aktionen über alle Cards eines Grids konsistent ausrichten.
-7. Card-Inhalt oben ausrichten. Ausnahme: die abschließende Aktion darf bottom-aligned stehen.
+7. Card-Inhalt oben ausrichten. Die abschließende Aktion **kann** stattdessen bottom-aligned stehen.

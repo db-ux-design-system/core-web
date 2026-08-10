@@ -8,4 +8,4 @@ Erfasst kurze, einzeilige Texteingaben in Formularen und Dialogen.
 2. Immer ein sichtbares, kurzes Label direkt dem Feld zuordnen. Ein Platzhalter ist kein Label-Ersatz.
 3. Platzhalter nur für ein Beispielformat nutzen (z. B. „`name@firma.de`"), nie für Pflichthinweise oder Anforderungen.
 4. Kurze Hilfsmeldung für Format-Hinweise, explizite Fehlermeldung bei ungültiger Eingabe.
-5. Feldbreite an der erwartbaren Eingabelänge oder am Grid orientieren.
+5. **sollte** Feldbreite an der erwartbaren Eingabelänge oder am Grid orientieren.

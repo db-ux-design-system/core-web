@@ -4,7 +4,7 @@ Einzelner klickbarer Tab innerhalb der Tab List — zeigt ein Label und optional
 
 ## Regeln
 
-1. Labels kurz und beschreibend formulieren.
+1. **sollte** Labels kurz und beschreibend formulieren.
 2. Slot gezielt nutzen, keine komplexen Inhalte im Tab selbst platzieren.
 3. Jedes Tab Item muss genau einem Tab Panel zugeordnet sein.
 

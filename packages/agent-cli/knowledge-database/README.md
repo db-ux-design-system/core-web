@@ -16,6 +16,29 @@ knowledge-database/
   TODO.md                  Offene Punkte
 ```
 
+## Aufbau der Markdown-Dateien
+
+Gilt für alle `guidelines.md` sowie die Dateien unter `foundations/_principles/`:
+
+1. **H1** — Anzeigename, entspricht `name` aus der `meta.json`.
+2. **Beschreibungszeile** — die erste nicht-leere Zeile nach dem H1 ist die Beschreibung. Sie ist verbindlicher Teil des Schemas und wird von Generatoren an dieser Position erwartet. Deshalb steht dort nie ein Abschnitt, eine Liste oder ein Kommentar, und die Beschreibung wird nicht als Feld in der `meta.json` geführt.
+3. **Abschnitte** — je nach Genre, siehe unten.
+
+### Genres
+
+Die Wissensbasis kennt zwei Genres mit unterschiedlichen Pflichtabschnitten. Welches Genre gilt, ist am Feld `type` der `meta.json` bzw. an der Ablage erkennbar:
+
+| Genre                               | Ablage                                                                         | Pflichtabschnitte                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| **Regelwerk**                       | `components/`, `lab-components/`, `icons/`, Token-Kategorien in `foundations/` | `## Regeln`, optional `## Zusätzliche Informationen`                  |
+| **Systemkonzept / internes System** | `foundations/_principles/`, `foundations/icon-font-size/`                      | freies Schema — erklärende Abschnitte je nach Thema, kein `## Regeln` |
+
+Regelwerke werden zu Do's und Don'ts verarbeitet und müssen sich deshalb auf `## Regeln` verlassen können. Systemkonzepte beschreiben, wie Tokens zusammenwirken, und enthalten bewusst keine Handlungsanweisungen — ein Generator darf sie nicht als Regelquelle behandeln.
+
+### Noch nicht ausgearbeitete Guidelines
+
+Solange für eine Komponente keine Regeln festgelegt sind, trägt ihre `meta.json` das Feld `guidelines: "pending"` und der offene Punkt steht in `TODO.md`. Die `guidelines.md` bleibt in diesem Fall leer. Generatoren überspringen diese Ordner, statt aus einer leeren Datei ein fehlendes Schema abzuleiten.
+
 ## Foundations
 
 Jeder Ordner enthält eine `meta.json` mit den allgemeinen Informationen. Der fachliche Inhalt liegt je nach Kategorie in einer `tokens.json` und/oder als Markdown-Datei (`guidelines.md`).
@@ -79,12 +102,32 @@ Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 
 Ein Generator, der `## Regeln` zu Do's und Don'ts verarbeitet, darf `## Zusätzliche Informationen` nicht als Anweisung interpretieren.
 
+### Normativität von Regeln
+
+Jede Regel unter `## Regeln` ist **verbindlich (MUSS)**, sofern sie keinen abweichenden Marker trägt. Abweichungen werden am Satzanfang ausgezeichnet:
+
+| Marker          | Bedeutung                                                                                                               |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| _(kein Marker)_ | MUSS — verbindlich. Betrifft Barrierefreiheit, Token-Nutzung, semantische Korrektheit und Abgrenzung von Komponenten    |
+| `**sollte**`    | Empfehlung. Abweichung ist im begründeten Einzelfall zulässig, typischerweise bei Gestaltung, Textstil und Proportionen |
+| `**kann**`      | Echte Option ohne Vorgabe                                                                                               |
+
+Trägt eine Regel mehrere Aussagen, gilt der Marker nur für den Satz, an dem er steht. Der Rest der Regel bleibt verbindlich.
+
+Ein Generator kann daraus gewichtete Do's und Don'ts ableiten: unmarkierte Regeln als harte Anforderung, `**sollte**` als Empfehlung, `**kann**` als Hinweis auf Gestaltungsspielraum.
+
 ### Verweise in `guidelines.md`
 
 - **Andere Komponenten** werden als relativer Markdown-Link auf deren Guideline gesetzt: `[Checkbox](../checkbox/guidelines.md)`. Der Anzeigename entspricht `name` aus der `meta.json`, die ID ist aus dem Pfad ableitbar. Selbstverweise innerhalb der eigenen Guideline werden nicht verlinkt.
 - **Lab-Komponenten** werden ebenfalls verlinkt, aber zusätzlich als solche gekennzeichnet, weil sie keinen stabilen API-Vertrag haben.
 - **Dateien** (z. B. Principles) werden genauso verlinkt: `[Adaptive Density](../_principles/adaptive-density.md)`.
 - **Kein Gedankenstrich in `## Regeln`.** Verbote als „nicht"/„nie" im Satz, Alternativen mit „stattdessen", Begründungen als eigener Satz, Aufzählungen nach Doppelpunkt. Trägt die zweite Hälfte eine eigenständige Aussage, wird sie eine eigene Regel.
+
+### Schreibweise von Begriffen
+
+- **Token-Kategorien, Properties und Property-Werte** werden mit ihrem kanonischen Namen in Backticks referenziert: `` `sizing` ``-Tokens, `` `placement` ``, `` `selectedType` `` auf `tag`. Der Name muss exakt dem Eintrag in `tokens.json` bzw. `properties.json` entsprechen, damit Term-Matching greift.
+- **Alles andere** sind deutsche Komposita und werden gekoppelt geschrieben: Viewport-Größen, Code-Mapping, Icon-Größe, Mindest-Trefferzone.
+- **Englische Mehrwortbegriffe ohne Bindestrich sind nicht zulässig** („Sizing Tokens", „Icon Size", „Label Variant"). Dieselbe Entität wird sonst in zwei Schreibweisen nicht als dieselbe erkannt.
 
 ### Sub-Components
 

@@ -4,7 +4,7 @@ Visuelle Symbole zur Unterstützung von Text, Navigation und Aktionen. Im Code �
 
 ## Regeln
 
-1. Bei Icon-Text-Kombinationen die Icon Size an die Line Height des Texts angleichen.
+1. Bei Icon-Text-Kombinationen die Icon-Größe an die Zeilenhöhe des Texts angleichen.
 
 ## Verfügbare Icon-Namen
 
