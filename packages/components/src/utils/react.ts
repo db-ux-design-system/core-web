@@ -45,6 +45,7 @@ const reactHtmlAttributes = [
 	'ping'
 ];
 
+/** @public */
 export const filterPassingProps = (
 	props: any,
 	propsPassingFilter: string[]
@@ -65,6 +66,7 @@ export const filterPassingProps = (
 			return { ...obj, [key]: props[key] };
 		}, {});
 
+/** @public */
 export const getRootProps = (
 	props: any,
 	rooProps: string[]
@@ -85,6 +87,8 @@ export const getRootProps = (
  *
  * The returned object has a stable `.current` setter so it can be used
  * directly as a ref without causing re-invocation on every render.
+ *
+ * @public
  */
 export const mergeRefs = <T>(
 	internalRef: { current: T | null },
@@ -105,6 +109,7 @@ export const mergeRefs = <T>(
 	};
 };
 
+/** @public */
 export default {
 	getRootProps,
 	filterPassingProps,
