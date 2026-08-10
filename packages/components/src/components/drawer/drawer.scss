@@ -55,9 +55,7 @@
 %direction-from-left-to-right {
 	@extend %container-size-horizontal;
 
-	&:not([data-transition="open"]) {
-		transform: translateX(-110%);
-	}
+	transform: translateX(-110%);
 
 	inset-inline: 0 auto;
 
@@ -70,9 +68,7 @@
 %direction-from-right-to-left {
 	@extend %container-size-horizontal;
 
-	&:not([data-transition="open"]) {
-		transform: translateX(110%);
-	}
+	transform: translateX(110%);
 
 	inset-inline: auto 0;
 
@@ -85,9 +81,7 @@
 %direction-from-bottom-to-top {
 	@extend %container-size-vertical;
 
-	&:not([data-transition="open"]) {
-		transform: translateY(110%);
-	}
+	transform: translateY(110%);
 
 	inset: auto 0 0;
 
@@ -100,9 +94,7 @@
 %direction-from-top-to-bottom {
 	@extend %container-size-vertical;
 
-	&:not([data-transition="open"]) {
-		transform: translateY(-110%);
-	}
+	transform: translateY(-110%);
 
 	inset: 0 0 auto;
 
@@ -129,16 +121,79 @@
 }
 
 .db-drawer {
+	--db-drawer-inline-size: 100lvw;
+	--db-drawer-block-size: 100lvh;
+
+	position: fixed;
+	inset: 0;
+	
+	// BEGIN: allow-discrete ponyfill — Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
+	// can control hiding instead. Only needed when motion is enabled —
+	// with reduced motion, the UA's instant display:none is correct.
+	@media (prefers-reduced-motion: no-preference) {
+		// stylelint-disable-next-line declaration-no-important
+		display: block !important;
+
+		&[open] {
+			visibility: visible;
+		}
+
+		&:not([open]) {
+			visibility: hidden;
+			transition:
+				visibility 0s #{variables.$db-transition-duration-extra-slow},
+				overlay #{variables.$db-transition-duration-extra-slow}
+					allow-discrete;
+		}
+
+		// ::backdrop disappears instantly on close since the dialog leaves the
+		// top layer immediately. Use ::before with a delayed visibility instead,
+		// and hide the native ::backdrop to prevent double-darkening.
+		@supports not (overlay: auto) {
+			&:not([data-backdrop="none"], [data-position="absolute"]) {
+				&::backdrop {
+					background-color: transparent;
+				}
+
+				&::before {
+					content: "";
+					position: fixed;
+					inset: 0;
+				}
+
+				// stylelint-disable-next-line a11y/media-prefers-reduced-motion -- This is even already encapsulated in a necessary media query on line 140
+				&:not([open])::before {
+					visibility: hidden;
+					transition: visibility 0s
+						#{variables.$db-transition-duration-extra-slow};
+				}
+
+				&:not([data-backdrop="invisible"]) {
+					&::before {
+						background-color: dialog-init.$backdrop-color-strong;
+					}
+				}
+
+				&[data-backdrop="weak"]::before {
+					background-color: dialog-init.$backdrop-color-weak;
+				}
+			}
+		}
+	}
+
+	// END: allow-discrete ponyfill
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition:
+			display #{variables.$db-transition-duration-extra-slow}
+				allow-discrete,
+			overlay #{variables.$db-transition-duration-extra-slow}
+				allow-discrete;
+	}
+
 	.db-drawer-container {
 		@extend %drawer-safe-area;
-
-		// Close delay: 0s by default (reduced motion), set to transition duration
-		// when motion is allowed. Read by JS to schedule dialog.close().
-		--db-drawer-close-delay: 0;
-
-		@media (prefers-reduced-motion: no-preference) {
-			--db-drawer-close-delay: #{variables.$db-transition-duration-slow};
-		}
 
 		display: grid;
 		grid-template-rows:
@@ -211,6 +266,34 @@
 		}
 	}
 
+	// Shared open state: reset transform and define entry animation.
+	&[open] {
+		.db-drawer-container {
+			transform: none;
+		}
+
+		@starting-style {
+			.db-drawer-container {
+				&:not([data-direction]),
+				&[data-direction="to-left"] {
+					transform: translateX(110%);
+				}
+
+				&[data-direction="to-right"] {
+					transform: translateX(-110%);
+				}
+
+				&[data-direction="up"] {
+					transform: translateY(110%);
+				}
+
+				&[data-direction="down"] {
+					transform: translateY(-110%);
+				}
+			}
+		}
+	}
+
 	&[data-position="absolute"] {
 		position: absolute;
 		z-index: 3;
@@ -242,21 +325,6 @@
 
 		.db-drawer-container {
 			position: relative;
-		}
-	}
-
-	&[open] {
-		.db-drawer-container {
-			&[data-transition="open"] {
-				transform: none;
-			}
-
-			&[data-transition="close"] {
-				@media (prefers-reduced-motion: no-preference) {
-					transition: transform var(--db-drawer-close-delay)
-						#{variables.$db-transition-timing-emotional};
-				}
-			}
 		}
 	}
 }
