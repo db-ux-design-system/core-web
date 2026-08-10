@@ -128,16 +128,18 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			@media (forced-colors: active) {
 			}
 		}
-@media (forced-colors: active) {
-&::after{
-border-radius: $variables.db-border-radius-full;
-}
 
-&::before{
+		@media (forced-colors: active) {
+			&::after {
+				border-radius: $variables.db-border-radius-full;
+			}
+
+			&::before {
 				border-style: solid;
 				border-width: calc(0.5lh - var(--db-border-width-3xs) * 2);
-				}
-				}
+			}
+		}
+
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
