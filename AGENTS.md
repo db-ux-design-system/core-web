@@ -350,6 +350,8 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
 
+**Dependabot grouping:** When adding related dependencies (same org, main package + plugins, or tightly coupled sets), add a `groups:` entry in `.github/dependabot.yml`. See `docs/dependency-update-strategy.md` § "Dependabot grouping" for details and examples.
+
 ### `bin` entries in package.json
 
 The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
