@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BGkTiegr.js";e();
