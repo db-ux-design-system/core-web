@@ -143,6 +143,9 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	aspect-ratio: 1;
 	flex-shrink: 0;
 
+	// We need to overwrite this property to prevent an icon underline
+	text-underline-position: auto;
+
 	@include icon-content($default-icon-content); // TODO: ONLY FOR data-icon
 
 	// Hiding icon from screenreaders

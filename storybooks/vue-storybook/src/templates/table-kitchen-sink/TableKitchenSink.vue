@@ -2,16 +2,9 @@
 import { DBLink, DBStack } from "@components";
 import {
 	type ColumnFiltersState,
-	getCoreRowModel,
-	getFacetedMinMaxValues,
-	getFacetedRowModel,
-	getFacetedUniqueValues,
-	getFilteredRowModel,
-	getGroupedRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
 	type GroupingState,
-	useVueTable
+	stockFeatures,
+	useTable
 } from "@tanstack/vue-table";
 import { ref, watch } from "vue";
 import ActionButtons from "./components/ActionButtons.vue";
@@ -30,26 +23,19 @@ const data = ref(makeData(1000));
 const columnVisibility = ref({});
 const grouping = ref<GroupingState>([]);
 const rowSelection = ref({});
-const columnPinning = ref({});
+const columnPinning = ref({ start: [] as string[], end: [] as string[] });
 const columnFilters = ref<ColumnFiltersState>([]);
 const globalFilter = ref("");
 
 const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper().value;
 
-const table = useVueTable({
+const table = useTable({
+	features: stockFeatures,
 	get data() {
 		return data.value;
 	},
 	columns,
 	defaultColumn,
-	getCoreRowModel: getCoreRowModel(),
-	getFilteredRowModel: getFilteredRowModel(),
-	getPaginationRowModel: getPaginationRowModel(),
-	getSortedRowModel: getSortedRowModel(),
-	getGroupedRowModel: getGroupedRowModel(),
-	getFacetedRowModel: getFacetedRowModel(),
-	getFacetedUniqueValues: getFacetedUniqueValues(),
-	getFacetedMinMaxValues: getFacetedMinMaxValues(),
 	onColumnFiltersChange: (updater) => {
 		columnFilters.value =
 			typeof updater === "function"
@@ -113,6 +99,7 @@ const table = useVueTable({
 	},
 	initialState: {
 		pagination: {
+			pageIndex: 0,
 			pageSize: 5
 		}
 	},
@@ -122,10 +109,10 @@ const table = useVueTable({
 });
 
 watch(
-	() => table.getState().columnFilters[0]?.id,
+	() => table.store.state.columnFilters[0]?.id,
 	(newId) => {
 		if (newId === "fullName") {
-			if (table.getState().sorting[0]?.id !== "fullName") {
+			if (table.store.state.sorting[0]?.id !== "fullName") {
 				table.setSorting([{ id: "fullName", desc: false }]);
 			}
 		}
@@ -169,8 +156,8 @@ watch(
 			:hasPreviousPage="table.getCanPreviousPage()"
 			:nextPage="table.nextPage"
 			:pageCount="table.getPageCount()"
-			:pageIndex="table.getState().pagination.pageIndex"
-			:pageSize="table.getState().pagination.pageSize"
+			:pageIndex="table.store.state.pagination.pageIndex"
+			:pageSize="table.store.state.pagination.pageSize"
 			:previousPage="table.previousPage"
 			:setPageIndex="table.setPageIndex"
 			:setPageSize="table.setPageSize"

@@ -10,7 +10,6 @@ import {
 import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
 import {
 	cls,
-	delay,
 	getBoolean,
 	getBooleanAsString,
 	isKeyboardEvent
@@ -23,7 +22,6 @@ useDefaultProps<DBDrawerProps>({});
 
 export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
-	const dialogContainerRef = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
 		backdropPointerDown: false,
@@ -88,51 +86,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (_ref) {
-				const dialogOpen = getBoolean(props.open, 'open');
-				if (dialogOpen && !_ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).removeAttribute(
-							'data-transition'
-						);
-					}
-					if (state.isNotModal()) {
-						_ref.show();
-					} else {
-						_ref.showModal();
-					}
-					void delay(() => {
-						if (dialogContainerRef) {
-							(dialogContainerRef as HTMLDivElement).dataset[
-								'transition'
-							] = 'open';
-						}
-					}, 1);
-				}
-				if (!dialogOpen && _ref.open) {
-					if (dialogContainerRef) {
-						(dialogContainerRef as HTMLDivElement).dataset[
-							'transition'
-						] = 'close';
-					}
+			if (!_ref) return;
 
-					let closeDelay = 401;
-					if (dialogContainerRef) {
-						const durationStr = getComputedStyle(
-							dialogContainerRef as HTMLDivElement
-						)
-							.getPropertyValue('--db-drawer-close-delay')
-							.trim();
-						const seconds = parseFloat(durationStr);
-						if (seconds > 0) {
-							closeDelay = seconds * 1000 + 1;
-						}
-					}
-
-					void delay(() => {
-						_ref?.close();
-					}, closeDelay);
+			const dialogOpen = getBoolean(props.open, 'open');
+			if (dialogOpen && !_ref.open) {
+				if (state.isNotModal()) {
+					_ref.show();
+				} else {
+					_ref.showModal();
 				}
+			} else if (!dialogOpen && _ref.open) {
+				_ref.close();
 			}
 		}
 	});
@@ -149,9 +113,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 	onUpdate(() => {
 		if (_ref && state.initialized && props.position === 'absolute') {
 			const refElement = _ref as HTMLDialogElement;
-			const parent = refElement.parentElement;
+			let parent = refElement.parentElement;
+			// Skip host elements with display:contents (Angular/Stencil)
+			// which do not create a containing block.
+			if (parent && getComputedStyle(parent).display === 'contents') {
+				parent = parent.parentElement;
+			}
 			if (parent) {
-				parent.style.position = 'relative';
+				const pos = getComputedStyle(parent).position;
+				if (pos === 'static') {
+					parent.style.position = 'relative';
+				}
 			}
 		}
 	}, [_ref, state.initialized, props.position]);
@@ -169,7 +141,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			data-direction={props.direction}
 			data-variant={props.variant}>
 			<article
-				ref={dialogContainerRef}
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}
 				data-show-spacing={getBooleanAsString(

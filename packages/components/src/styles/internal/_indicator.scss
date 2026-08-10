@@ -49,7 +49,13 @@ $indicator-background: linear-gradient(
 		content: "";
 		position: absolute;
 		border-radius: variables.$db-border-radius-xs;
-		background: $indicator-background;
+		background-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+
+		@container style(--db-pride-red) or style(--db-pride-orange) or
+	style(--db-pride-yellow) or style(--db-pride-green) or
+	style(--db-pride-blue) or style(--db-pride-violet) {
+			background-image: $indicator-background;
+		}
 
 		@media (prefers-reduced-motion: no-preference) {
 			transition:
