@@ -1,4 +1,5 @@
 ---
+"@db-ux/core-foundations": patch
 "@db-ux/core-components": patch
 ---
 
