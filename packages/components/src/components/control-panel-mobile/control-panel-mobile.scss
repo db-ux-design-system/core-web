@@ -85,14 +85,11 @@
 					@include helpers.divider("top");
 				}
 
-				/* jscpd:ignore-end */
-
 				.db-control-panel-navigation {
 					/* stylelint-disable-next-line db-ux/use-spacings */
 					padding: variables.$db-spacing-fixed-xs
 						component.$drawer-content-padding-inline;
 
-					/* jscpd:ignore-start */
 					> menu {
 						@include navigation-item.direct-navigation-items {
 							@extend %indicator;

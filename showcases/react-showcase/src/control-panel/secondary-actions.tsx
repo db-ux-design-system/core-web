@@ -5,7 +5,7 @@ import {
 } from '@components';
 import useQuery from '../hooks/use-query';
 
-const SecondaryActions = () => {
+export default function SecondaryActions() {
 	const { shell, setShell } = useQuery();
 
 	return (
@@ -25,6 +25,4 @@ const SecondaryActions = () => {
 			</DBButton>
 		</DBControlPanelSecondaryActions>
 	);
-};
-
-export default SecondaryActions;
+}
