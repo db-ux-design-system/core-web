@@ -1,0 +1,61 @@
+import{n as e}from"./iframe-CMklDE6y.js";import{n as t,t as n}from"./infotext-D_zMfAei.js";import{n as r,t as i}from"./table-RUOxZm5f.js";import{a,t as o}from"./data-CA6wTzZB.js";import{n as s}from"./rolldown-runtime-DkW27tQK.js";var c,l,u,d,f,p,m,h;function g(){return(g=s((()=>{t(),r(),a(),c=e(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBTable/Divider`,component:i,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{id:{control:`text`},caption:{control:`text`},captionPlain:{control:`text`},data:{control:`object`},divider:{control:`select`,options:[`none`,`both`,`horizontal`,`vertical`]},showCaption:{control:`boolean`},size:{control:`select`,options:[`x-small`,`small`,`medium`,`large`]},variant:{control:`select`,options:[`flat`,`zebra`,`spaced`]},mobileVariant:{control:`select`,options:[`table`,`list`]},stickyHeader:{control:`select`,options:[`none`,`both`,`horizontal`,`vertical`]},columnSizes:{control:`object`}}},d={args:{divider:`none`,captionPlain:`None`,data:o},render:e=>(0,c.jsxs)(`div`,{style:{minInlineSize:`300px`,display:`flex`,flexDirection:`column`,alignItems:`center`,gap:`var(--db-spacing-fixed-md)`},children:[(0,c.jsx)(n,{semantic:`informational`,size:`small`,icon:`none`,children:`None`}),(0,c.jsx)(i,{...e})]})},f={args:{divider:`both`,captionPlain:`Both`,data:o},render:e=>(0,c.jsxs)(`div`,{style:{minInlineSize:`300px`,display:`flex`,flexDirection:`column`,alignItems:`center`,gap:`var(--db-spacing-fixed-md)`},children:[(0,c.jsx)(n,{semantic:`informational`,size:`small`,icon:`none`,children:`Both`}),(0,c.jsx)(i,{...e})]})},p={args:{divider:`horizontal`,captionPlain:`(Default) Horizontal`,data:o},render:e=>(0,c.jsxs)(`div`,{style:{minInlineSize:`300px`,display:`flex`,flexDirection:`column`,alignItems:`center`,gap:`var(--db-spacing-fixed-md)`},children:[(0,c.jsx)(n,{semantic:`informational`,size:`small`,icon:`none`,children:`(Default) Horizontal`}),(0,c.jsx)(i,{...e})]})},m={args:{divider:`vertical`,captionPlain:`Vertical`,data:o},render:e=>(0,c.jsxs)(`div`,{style:{minInlineSize:`300px`,display:`flex`,flexDirection:`column`,alignItems:`center`,gap:`var(--db-spacing-fixed-md)`},children:[(0,c.jsx)(n,{semantic:`informational`,size:`small`,icon:`none`,children:`Vertical`}),(0,c.jsx)(i,{...e})]})},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "divider": "none",
+    "captionPlain": "None",
+    "data": defaultTable
+  },
+  render: (properties: any) => <div style={{
+    minInlineSize: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 'var(--db-spacing-fixed-md)'
+  }}><DBInfotext semantic="informational" size="small" icon="none">
+                    None
+                </DBInfotext><DBTable {...properties} /></div>
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "divider": "both",
+    "captionPlain": "Both",
+    "data": defaultTable
+  },
+  render: (properties: any) => <div style={{
+    minInlineSize: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 'var(--db-spacing-fixed-md)'
+  }}><DBInfotext semantic="informational" size="small" icon="none">
+                    Both
+                </DBInfotext><DBTable {...properties} /></div>
+}`,...f.parameters?.docs?.source}}},p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`{
+  args: {
+    "divider": "horizontal",
+    "captionPlain": "(Default) Horizontal",
+    "data": defaultTable
+  },
+  render: (properties: any) => <div style={{
+    minInlineSize: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 'var(--db-spacing-fixed-md)'
+  }}><DBInfotext semantic="informational" size="small" icon="none">
+                    (Default) Horizontal
+                </DBInfotext><DBTable {...properties} /></div>
+}`,...p.parameters?.docs?.source}}},m.parameters={...m.parameters,docs:{...m.parameters?.docs,source:{originalSource:`{
+  args: {
+    "divider": "vertical",
+    "captionPlain": "Vertical",
+    "data": defaultTable
+  },
+  render: (properties: any) => <div style={{
+    minInlineSize: '300px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 'var(--db-spacing-fixed-md)'
+  }}><DBInfotext semantic="informational" size="small" icon="none">
+                    Vertical
+                </DBInfotext><DBTable {...properties} /></div>
+}`,...m.parameters?.docs?.source}}},h=[`None`,`Both`,`DefaultHorizontal`,`Vertical`]})))()}g();export{f as Both,p as DefaultHorizontal,d as None,m as Vertical,h as __namedExportsOrder,u as default};
