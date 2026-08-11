@@ -76,8 +76,8 @@ Provide an issue number and the workflow will:
 2. **Check for duplicates** — Searches open/closed issues and PRs for related work
 3. **Validate template completeness** — Checks required fields are filled (reproduction case, expected behaviour, etc.)
 4. **Determine community feedback** — Adds a label if the author is not a team member
-5. **Estimate priority & effort** — Assigns priority (Urgent/High/Medium/Low) and effort (High/Medium/Low)
-6. **Set issue type** — Assigns Bug, Task, or Story based on content
+5. **Estimate priority & effort** — Assigns priority (Urgent/High/Medium/Low) and effort (High/Medium/Low), but only if the GitHub MCP server exposes the issue-field tools (`remote_mcp_issue_fields` feature flag). Otherwise the estimates are only recorded in the summary comment and triage continues.
+6. **Set issue type** — Assigns Bug, Task, or Story based on content, but only if no type is set yet **and** completeness is ⚠️ Partial or ✅ Complete. Incomplete reports are left untyped to avoid locking in a wrong guess.
 7. **Apply labels** — Adds relevant area, technology, and process labels
 8. **Post AI summary comment** — Structured comment with completeness rating, related issues, suggested solution, and workaround
 9. **Handle missing info** — If incomplete, requests clarification from the author
