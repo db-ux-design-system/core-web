@@ -3,6 +3,7 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
+	GeneralEvent,
 	GlobalProps,
 	GlobalState,
 	InitializedState
@@ -103,8 +104,8 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
-	handleClick: (event: ClickEvent<HTMLDialogElement>) => void;
-	handleCancel: (event: any) => void;
+	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
+	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
 	isNotModal: () => boolean;
 	_setClosedByFallback: () => void;
 };

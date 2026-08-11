@@ -7,7 +7,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ClickEvent } from '../../shared/model';
+import { ClickEvent, GeneralEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -34,7 +34,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
-		handleClick: (event: ClickEvent<HTMLDialogElement>) => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
 			if (!event || supportsCommandFor()) return;
 
 			if (
@@ -60,7 +61,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleCancel: (event: any) => {
+		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
 			if (props.onCancel) {
 				props.onCancel(event);
 			}
