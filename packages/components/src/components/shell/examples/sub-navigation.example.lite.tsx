@@ -19,7 +19,7 @@ useMetadata({
 	storybookTitle: 'Sub Navigation',
 	storybookNames: [
 		'Top + Sub Top',
-		'Top + Sub Left Popover',
+		'Top + Sub Left Drilldown',
 		'Top + Sub Left Tree',
 		'Left + Sub Top'
 	],
@@ -260,7 +260,9 @@ export default function ShellSubNavigation() {
 						</DBControlPanelNavigation>
 					</DBControlPanelMobile>
 					<DBShellSubNavigation aria-label="shell-top-sub-left-sub">
-						<DBControlPanelNavigation aria-label="shell-top-sub-left-sub">
+						<DBControlPanelNavigation
+							aria-label="shell-top-sub-left-sub"
+							variant="drilldown">
 							<DBControlPanelNavigationItemGroup text="Group 1">
 								<DBControlPanelNavigationItem>
 									<a href="#" aria-current="page">

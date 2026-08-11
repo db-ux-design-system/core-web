@@ -48,7 +48,7 @@ export default function DBControlPanelNavigation(
 			if (state._shellDesktopPositionTop) {
 				state._variant = 'popover';
 			} else {
-				if (props.variant === 'popover') {
+				if (props.variant === 'popover' || !props.variant) {
 					state._variant = 'drilldown';
 				} else {
 					state._variant = props.variant;
