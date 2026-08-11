@@ -55,7 +55,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 					_ref.showModal();
 				}
 			} else if (!dialogOpen && _ref.open) {
-				_ref.requestClose();
+				_ref.close();
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
