@@ -34,14 +34,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
+		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			if (!event || supportsCommandFor()) return;
+			const button = (event?.target as HTMLElement)?.closest?.(
+				'[command="request-close"]'
+			);
+			if (!button) return;
 
+			const target = button.getAttribute('commandfor');
 			if (
-				(event.target as HTMLElement)?.closest?.(
-					'[command="request-close"]'
-				)
+				!supportsCommandFor() ||
+				!target ||
+				!document.getElementById(target)
 			) {
 				(_ref as HTMLDialogElement).requestClose();
 			}
@@ -82,7 +87,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
-		state._id = props.id || props.propOverrides?.id || state._id;
 		state._setClosedByFallback();
 		state.handleDialogOpen();
 		state.initialized = true;
@@ -112,7 +116,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={state._id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
 			class="db-drawer"
 			onCancel={(event: Event) => state.handleCancel(event)}
