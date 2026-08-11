@@ -47,11 +47,11 @@
   },
   "devDependencies": {
     "@db-ux/db-theme": "6.0.0",
-    "@types/node": "26.1.2",
+    "@types/node": "26.2.0",
     "cpr": "3.0.1",
     "npm-run-all2": "9.0.3",
     "typescript": "5.9.3",
-    "vite": "8.2.0",
+    "vite": "8.2.1",
     "vitest": "4.1.10"
   },
   "publishConfig": {
