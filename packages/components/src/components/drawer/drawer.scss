@@ -306,16 +306,21 @@
 	// `data-closedby="not-supported"` is set by the component's JS feature
 	// detection, since `closedby` cannot be feature-detected in CSS.
 	// TODO: Remove after `closedby` is evergreen regarding our browserlist
-	&[data-closedby="not-supported"]:not(
-			[data-backdrop="none"],
-			[data-position="absolute"]
-		) {
+	&[data-closedby="not-supported"]:not([data-backdrop="none"]) {
 		[command="request-close"]::after {
 			content: "";
 			position: fixed;
 			inset: 0;
 			z-index: -1;
 			cursor: default;
+		}
+
+		// Absolute drawers are bounded by their parent element, not the viewport.
+		// The pseudo's containing block is `.db-drawer-container`, so oversize it
+		// and let the dialog's own `overflow: clip` trim it to the dialog box.
+		&[data-position="absolute"] [command="request-close"]::after {
+			position: absolute;
+			inset: -100vmax;
 		}
 	}
 
