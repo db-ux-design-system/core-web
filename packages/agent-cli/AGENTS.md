@@ -9,7 +9,7 @@ This package has two responsibilities:
 
 - **ESM only** (`"type": "module"`)
 - CLI entry point: `src/cli.ts`, built to `build/index.js` via `esbuild.js`
-- Published as a binary: `npx @db-ux/agent-cli`
+- Published as a binary named **`db-ux-agent-cli`** (`npx @db-ux/agent-cli` or `pnpm exec db-ux-agent-cli`). The `bin` key must stay a plain command name — `@` and `/` are invalid in `node_modules/.bin/` symlinks.
 - Only `db-ux-consumer-powers` is published (included in `files`). `db-ux-maintainer-powers` is for internal DB UX maintainers and not distributed.
 
 ## Scripts

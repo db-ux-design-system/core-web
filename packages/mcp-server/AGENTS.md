@@ -2,6 +2,7 @@
 
 When working on the `@db-ux/mcp-server` package, these rules are **mandatory**:
 
+- **Binary name**: The published executable is **`db-ux-mcp-server`** (`npx @db-ux/mcp-server` or `pnpm exec db-ux-mcp-server`). The `bin` key must stay a plain command name — `@` and `/` are invalid in `node_modules/.bin/` symlinks.
 - **ESM only**: The package is `"type": "module"`. **NEVER use `require()`** — use `import` (top-level or dynamic `await import()`). Using `require()` will crash at runtime.
 - **No NPM lifecycle hooks**: `prebuild`/`preinstall` hooks are disabled in this monorepo. Chain build steps with `&&` in the `"build"` script (e.g. `"build": "node scripts/prebuild.ts && node esbuild.js"`).
 - **Build scripts**: Build scripts currently run TypeScript helpers via `tsx` (e.g. `scripts/prebuild.ts`). Keep this `AGENTS.md` and `package.json` aligned if the build tooling changes.
