@@ -12,6 +12,7 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
+	supportsClosedBy,
 	supportsCommandFor,
 	uuid
 } from '../../utils';
@@ -69,11 +70,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (props.onClose) {
 				props.onClose(event);
 			}
+		},
+		// Marks the dialog for the CSS backdrop-click fallback, which extends the close button's hit area. Supporting browsers stay clean.
+		// TODO: Remove after `closedby` is evergreen regarding our browserlist
+		_setClosedByFallback: () => {
+			if (_ref && !supportsClosedBy()) {
+				(_ref as HTMLDialogElement).dataset.closedby = 'not-supported';
+			}
 		}
 	});
 
 	onMount(() => {
 		state._id = props.id || props.propOverrides?.id || state._id;
+		state._setClosedByFallback();
 		state.handleDialogOpen();
 		state.initialized = true;
 	});
