@@ -28,10 +28,8 @@ Gilt für alle `guidelines.md` sowie die Dateien unter `foundations/_principles/
 
 Die Wissensbasis kennt zwei Genres mit unterschiedlichen Pflichtabschnitten. Welches Genre gilt, ist am Feld `type` der `meta.json` bzw. an der Ablage erkennbar:
 
-| Genre                               | Ablage                                                                         | Pflichtabschnitte                                                     |
-| ----------------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| **Regelwerk**                       | `components/`, `lab-components/`, `icons/`, Token-Kategorien in `foundations/` | `## Regeln`, optional `## Zusätzliche Informationen`                  |
-| **Systemkonzept / internes System** | `foundations/_principles/`, `foundations/icon-font-size/`                      | freies Schema — erklärende Abschnitte je nach Thema, kein `## Regeln` |
+- **Regelwerk** — Ablage: `components/`, `lab-components/`, `icons/`, Token-Kategorien in `foundations/`. Pflichtabschnitte: `## Regeln`, optional `## Zusätzliche Informationen`.
+- **Systemkonzept / internes System** — Ablage: `foundations/_principles/`, `foundations/icon-font-size/`. Freies Schema — erklärende Abschnitte je nach Thema, kein `## Regeln`.
 
 Regelwerke werden zu Do's und Don'ts verarbeitet und müssen sich deshalb auf `## Regeln` verlassen können. Systemkonzepte beschreiben, wie Tokens zusammenwirken, und enthalten bewusst keine Handlungsanweisungen — ein Generator darf sie nicht als Regelquelle behandeln.
 
@@ -90,10 +88,29 @@ Icon-System des Design Systems:
 
 Veröffentlichte Core-Komponenten mit stabilem API-Vertrag. Pro Komponente:
 
-- `meta.json` — Allgemeine Informationen (ID, Name, Typ, Status, Owner, Version). Optional `deprecation: "planned"` plus `note`, wenn eine Komponente mittelfristig abgelöst wird — dieser Hinweis gehört in die `meta.json` und nicht in die `guidelines.md`, damit er maschinell auswertbar bleibt.
-- `figma.json` — Figma Library-Referenz, Component Sets, Node IDs
-- `properties.json` — Figma Properties, Code Connect Properties, Code Properties
-- `guidelines.md` — Nutzungsrichtlinien, Do's and Don'ts
+- `meta.json` — Allgemeine Informationen (ID, Name, Typ, Status, Owner, Version). Quelle: manuell.
+- `figma.json` — Figma Library-Referenz, Component Sets, Node IDs. Quelle: Figma API.
+- `properties.json` — Figma Properties, Code Connect Properties, Code Properties. Quelle: Figma + Code.
+- `guidelines.md` — Nutzungsrichtlinien — normative Regeln für Agents und Generatoren. Quelle: manuell (Authoring).
+- `documentation.json` — Platform-Dokumentation — zweisprachige Texte für die Doku-Website. Quelle: generiert aus `guidelines.md`.
+
+### Zusammenhang der Dateien
+
+```text
+guidelines.md          ← Autoriert (Regeln, kompakt, deutsch)
+       │
+       ▼
+documentation.json     ← Generiert (DE + EN, expandiert, Content Tone)
+       │
+       ▼
+Platform MDX           ← Sync (db-ux-design-system.github.io)
+```
+
+- `guidelines.md` ist die **Single Source of Truth** für den fachlichen Inhalt. Hier werden Regeln geschrieben und gepflegt.
+- `documentation.json` wird aus `guidelines.md` **generiert** und enthält die ausformulierten Texte für die Platform-Dokumentation in DE und EN. Die Tonalität folgt dem Content Styleguide (siehe „Generierung der documentation.json").
+- Die **Platform MDX-Dateien** im Repo `db-ux-design-system.github.io` werden perspektivisch aus `documentation.json` gesynct.
+
+`meta.json` kann optional `deprecation: "planned"` plus `note` enthalten, wenn eine Komponente mittelfristig abgelöst wird — dieser Hinweis gehört in die `meta.json` und nicht in die `guidelines.md`, damit er maschinell auswertbar bleibt.
 
 ### Abschnitte in `guidelines.md`
 
@@ -106,11 +123,9 @@ Ein Generator, der `## Regeln` zu Do's und Don'ts verarbeitet, darf `## Zusätzl
 
 Jede Regel unter `## Regeln` ist **verbindlich (MUSS)**, sofern sie keinen abweichenden Marker trägt. Abweichungen werden am Satzanfang ausgezeichnet:
 
-| Marker          | Bedeutung                                                                                                               |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| _(kein Marker)_ | MUSS — verbindlich. Betrifft Barrierefreiheit, Token-Nutzung, semantische Korrektheit und Abgrenzung von Komponenten    |
-| `**sollte**`    | Empfehlung. Abweichung ist im begründeten Einzelfall zulässig, typischerweise bei Gestaltung, Textstil und Proportionen |
-| `**kann**`      | Echte Option ohne Vorgabe                                                                                               |
+- _(kein Marker)_ — MUSS — verbindlich. Betrifft Barrierefreiheit, Token-Nutzung, semantische Korrektheit und Abgrenzung von Komponenten.
+- `**sollte**` — Empfehlung. Abweichung ist im begründeten Einzelfall zulässig, typischerweise bei Gestaltung, Textstil und Proportionen.
+- `**kann**` — Echte Option ohne Vorgabe.
 
 Trägt eine Regel mehrere Aussagen, gilt der Marker nur für den Satz, an dem er steht. Der Rest der Regel bleibt verbindlich.
 
@@ -129,39 +144,50 @@ Ein Generator kann daraus gewichtete Do's und Don'ts ableiten: unmarkierte Regel
 - **Alles andere** sind deutsche Komposita und werden gekoppelt geschrieben: Viewport-Größen, Code-Mapping, Icon-Größe, Mindest-Trefferzone.
 - **Englische Mehrwortbegriffe ohne Bindestrich sind nicht zulässig** („Sizing Tokens", „Icon Size", „Label Variant"). Dieselbe Entität wird sonst in zwei Schreibweisen nicht als dieselbe erkannt.
 
-### Sub-Components
+### Generierung der `documentation.json`
 
-In Figma sind Sub-Components am Präfix `↳` im Namen des Component Sets erkennbar und liegen zusätzlich in einer eigenen Sub-Component-Section auf der Komponentenseite.
+`documentation.json` wird aus `guidelines.md` generiert und folgt dem Content Styleguide des Platform-Repos (`db-ux-design-system.github.io/.kiro/steering/content-tone.md`).
 
-Sub-Components liegen als Unterordner der Elternkomponente und haben dieselbe Dateistruktur. Ihre `meta.json` referenziert die Elternkomponente über das Feld `parent`, die `figma.json` der Elternkomponente listet sie über `subComponents` auf. Das `componentSets`-Array der Elternkomponente enthält ausschließlich deren eigene Sets — `↳`-Sets stehen nie darin.
+#### Eingabe
 
-Varianten desselben Sub-Components (z. B. Größen oder Stile, die in Figma als separate Component Sets modelliert sind) werden in **einem** Ordner zusammengefasst und dort als mehrere Einträge in `componentSets` geführt.
+- `guidelines.md` — Beschreibungszeile und `## Regeln` als fachliche Basis
+- `figma.json` — `figmaFileKey` wird von dort übernommen
+- `meta.json` — Komponenten-Name und -ID
+- Markdown-Links in den Regeln — werden zu `related`-Einträgen
 
-Maßgeblich ist die fachliche Struktur, nicht die Figma-Modellierung: Was in Figma aus Design-Gründen in mehrere Component Sets aufgeteilt ist, bleibt in der Wissensbasis ein Sub-Component.
+#### Mapping-Regeln
 
-### Hilfskomponenten
+- Beschreibungszeile (nach H1) → `description` — umformuliert nach Content Tone (vollständiger Satz mit Subjekt)
+- Beschreibungszeile (gekürzt) → `shortDescription` — einzeilige Kurzversion
+- Aus Beschreibung abgeleitet → `useCases` — 3 Bullet Points, was die Komponente ermöglicht
+- Jede Regel unter `## Regeln` → ein Eintrag in `guidelines[]`
+- Markdown-Links auf andere Komponenten → `related[]`-Einträge
 
-Reine Figma-Hilfskomponenten (Präfix `🛟`) sind kein Teil der Design-System-API. Sie werden in der `figma.json` der Elternkomponente unter `helperComponents` geführt und erhalten keinen eigenen Ordner.
+#### Guideline-Expansion (pro Regel)
 
-## Lab-Components
+Jede Regel wird zu einem Guideline-Objekt expandiert:
 
-Komponenten im Status **Concept** oder **Pre-Release**. Gleiche Dateistruktur wie Components, aber:
+- `id` — aus dem Thema der Regel (kebab-case)
+- `headline` — kurze, sprechende Überschrift für die Regel (DE + EN)
+- `text` — die Regel als natürlicher Satz im Dokumentations-Ton, ergänzt um Kontext aus der Regel selbst (DE + EN)
+- `do.description` — positiv formuliert: was zu tun ist. Imperativ. (DE + EN)
+- `dont.description` — beginnt mit Verb + „nicht" (DE) bzw. „Don't..." (EN). Enthält immer die Konsequenz.
+- `do.figmaNodeId` — wird nach Erstellung der Figma-Visuals nachgetragen
+- `dont.figmaNodeId` — wird nach Erstellung der Figma-Visuals nachgetragen
 
-- Sind als Konzept-Komponenten in Figma vorhanden und existieren noch nicht im Code.
-- `properties.json` enthält nur `figmaProperties` (Code-Properties noch nicht definiert)
-- `guidelines.md` enthält die Beschreibung der Komponente, aber noch keine Regeln
-- Kein stabiler API-Vertrag — Breaking Changes jederzeit möglich
+#### Content Tone (Documentation Area)
 
-Property-Namen werden 1:1 aus der Figma-Library übernommen. Die endgültige Benennung erfolgt erst mit dem Übertrag nach Core (Beta) in Abstimmung mit Dev — bis dahin ist die Abweichung zur Core-Namenskonvention beabsichtigt.
+- Faktenbasiert, direkt, kein Wort zu viel
+- Eine Idee pro Satz, aktiv statt passiv
+- DE Guideline-Texte: Imperativ oder klares Subjekt, nie nackte Infinitivkonstruktionen
+- DE Do: Imperativ, Verb vorn
+- DE Dont: Imperativ, Verb vorn, „nicht" nach dem Objekt (nie mit „Nicht..." starten)
+- EN Do: Positiv formuliert
+- EN Dont: Beginnt mit „Don't..."
+- Jedes Dont enthält das Warum oder die Konsequenz
 
-## Arbeitsnotizen
+#### Was nicht aus `guidelines.md` generiert wird
 
-`guidelines.md`-Dateien enthalten keine internen Kommentare (`<!-- TODO -->`, `<!-- NOTE -->`). Offene Punkte gehören nach `TODO.md`, Abweichungen zwischen Figma und Code nach `inconsistencies.md`, verarbeitungsrelevante Statusinformationen in die jeweilige `meta.json`.
-
-## Figma Libraries
-
-`figma-libraries.json` listet alle referenzierten Figma-Libraries mit:
-
-- Library-Name
-- File Key (für API-Zugriff)
-- Library Key (für Variable-Lookups)
+- `figmaFileKey` — aus `figma.json`
+- `figmaNodeId` — Figma-Visuals müssen erst erstellt werden, Node-IDs werden nachgetragen
+- `faq` — wird manuell befüllt (Support, häufige Rückfragen)

@@ -1,0 +1,194 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zu den alten Doku-Texten gehören und aktualisiert werden müssen.",
+	"component": "button",
+	"figmaFileKey": "7ZUEgSRPJtyT8FKRT97Dzq",
+	"description": {
+		"de": "Buttons lösen Aktionen aus und bestätigen Entscheidungen. Sie leiten Nutzer:innen durch wichtige Aufgaben und Abläufe.",
+		"en": "Buttons initiate actions and confirm decisions. Use them to guide users through key tasks and flows."
+	},
+	"shortDescription": {
+		"de": "Löst Aktionen aus und bestätigt Entscheidungen, um Nutzer:innen durch Aufgaben zu leiten.",
+		"en": "Initiates actions and confirms decisions to guide users through key tasks."
+	},
+	"useCases": {
+		"de": [
+			"Eine Aktion auslösen (z. B. Senden, Speichern, Löschen)",
+			"Signalisieren, dass eine Interaktion oder Bestätigung erwartet wird",
+			"Eine primäre oder sekundäre Aktion hervorheben"
+		],
+		"en": [
+			"Trigger an action (e.g., Send, Save, Delete)",
+			"Indicate that interaction or confirmation is expected",
+			"Highlight a primary or secondary action"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "hierarchy-primary-cta",
+			"headline": {
+				"de": "Hierarchie und primärer CTA",
+				"en": "Hierarchy and primary CTA"
+			},
+			"text": {
+				"de": "Setze pro Viewport nur einen Brand-Button als stärksten CTA ein. Sekundäre Aktionen erhalten eine schwächere Variante, damit Nutzer:innen sofort erkennen, welche Aktion am wichtigsten ist.",
+				"en": "Use only one Brand Button per viewport as the strongest CTA. Give secondary actions a weaker variant so users can immediately identify the most important action."
+			},
+			"do": {
+				"figmaNodeId": "3-852",
+				"description": {
+					"de": "Verwende einen primären Button für die Hauptaktion. Platziere sekundäre Aktionen daneben mit geringerer Betonung.",
+					"en": "Use one primary button to highlight the main action. Place secondary actions next to it with lower emphasis."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-863",
+				"description": {
+					"de": "Setze nicht zwei primäre Buttons nebeneinander oder im selben Viewport ein. Konkurrierende CTAs erschweren die Entscheidung.",
+					"en": "Don't place two primary buttons next to each other or in the same viewport. Competing CTAs make it harder to decide what to do."
+				}
+			}
+		},
+		{
+			"id": "labels",
+			"headline": {
+				"de": "Labels",
+				"en": "Labels"
+			},
+			"text": {
+				"de": "Halte Labels kurz, einzeilig und aktionsbeschreibend. Verwende konkrete Verben wie \"Speichern\" statt generischer Begriffe wie \"Daten\".",
+				"en": "Keep labels short, single-line, and action-oriented. Use specific verbs like \"Save\" instead of generic terms like \"Data\"."
+			},
+			"do": {
+				"figmaNodeId": "3-1125",
+				"description": {
+					"de": "Verwende knappe, einzeilige Labels mit klarem Aktionsbezug.",
+					"en": "Use concise, single-line labels with a clear action reference."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-1137",
+				"description": {
+					"de": "Verwende keine generischen oder mehrzeiligen Labels. Sie erschweren das Scannen und verzögern Entscheidungen.",
+					"en": "Don't use generic or multi-line labels. They slow down scanning and delay decisions."
+				}
+			}
+		},
+		{
+			"id": "icons",
+			"headline": {
+				"de": "Icons",
+				"en": "Icons"
+			},
+			"text": {
+				"de": "Verwende maximal ein Icon pro Button. Icon-Only-Buttons benötigen immer einen Tooltip und ein aria-label, damit sie barrierefrei bleiben.",
+				"en": "Use at most one icon per button. Icon-only buttons always need a tooltip and an aria-label to remain accessible."
+			},
+			"do": {
+				"figmaNodeId": "3-1152",
+				"description": {
+					"de": "Verwende ein klares Icon mit Hover-Tooltip für Icon-Only-Buttons.",
+					"en": "Use a clear icon with a hover tooltip for icon-only buttons."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-1460",
+				"description": {
+					"de": "Platziere nicht zwei Icons in einem Button. Mehrere Icons konkurrieren um Aufmerksamkeit und verwässern die Aussage.",
+					"en": "Don't place two icons inside one button. Multiple icons compete for attention and dilute the message."
+				}
+			}
+		},
+		{
+			"id": "layout-responsive",
+			"headline": {
+				"de": "Layout und Ausrichtung",
+				"en": "Layout and alignment"
+			},
+			"text": {
+				"de": "Richte zusammengehörige Buttons horizontal nebeneinander aus, wenn der Platz ausreicht. Nutze vertikales Stacking nur bei schmalen Viewports.",
+				"en": "Align related buttons horizontally when space allows. Use vertical stacking only on narrow viewports."
+			},
+			"do": {
+				"figmaNodeId": "3-1594",
+				"description": {
+					"de": "Ordne Buttons nebeneinander an, wenn ausreichend horizontaler Platz vorhanden ist.",
+					"en": "Align buttons side by side when there is enough horizontal space."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-3298",
+				"description": {
+					"de": "Staple Buttons nicht vertikal, wenn horizontaler Platz vorhanden ist. Vertikale Anordnung signalisiert eine Rangfolge, die oft nicht beabsichtigt ist.",
+					"en": "Don't stack buttons vertically when horizontal space exists. Vertical arrangement implies a hierarchy that is often unintended."
+				}
+			}
+		},
+		{
+			"id": "button-vs-link",
+			"headline": {
+				"de": "Button vs. Link",
+				"en": "Button vs. Link"
+			},
+			"text": {
+				"de": "Verwende Buttons für Aktionen, die den Zustand ändern. Verwende Links für Navigation zu anderen Seiten oder Ansichten.",
+				"en": "Use buttons for actions that change state. Use links for navigation to other pages or views."
+			},
+			"do": {
+				"figmaNodeId": "3-3649",
+				"description": {
+					"de": "Verwende einen Button für zustandsändernde Aktionen und einen Link für die Navigation zu einer anderen Seite.",
+					"en": "Use a button for state-changing actions and a link for navigating to another page."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-3823",
+				"description": {
+					"de": "Verwende keinen Button für Seitennavigation. Nutzer:innen erwarten bei Buttons eine Zustandsänderung, kein Seitenwechsel.",
+					"en": "Don't use a button for page navigation. Users expect state changes from buttons, not page transitions."
+				}
+			}
+		},
+		{
+			"id": "accessibility",
+			"headline": {
+				"de": "Barrierefreiheit",
+				"en": "Accessibility"
+			},
+			"text": {
+				"de": "Stelle eine Mindest-Trefferzone von 24x24 px sicher. Benachbarte interaktive Elemente dürfen diesen Bereich nicht überlappen.",
+				"en": "Ensure a minimum target area of 24x24 px. Adjacent interactive elements must not overlap this area."
+			},
+			"do": {
+				"figmaNodeId": "3-3342",
+				"description": {
+					"de": "Stelle einen klickbaren Bereich von mindestens 24x24 px durch umgebenden Abstand sicher.",
+					"en": "Provide a clickable area of at least 24x24 px via surrounding spacing."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-3600",
+				"description": {
+					"de": "Platziere benachbarte Steuerelemente nicht im erforderlichen 24x24 px Bereich. Überlappende Trefferzonen verursachen Fehleingaben.",
+					"en": "Don't let adjacent controls intrude into the required 24x24 px area. Overlapping targets cause accidental taps."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "link",
+			"description": {
+				"de": "Navigation zwischen Seiten und externen Ressourcen.",
+				"en": "Learn about links for navigation between pages and external resources."
+			}
+		},
+		{
+			"component": "tooltip",
+			"description": {
+				"de": "Kontextuelle Hinweistexte, die bei Hover oder Fokus erscheinen.",
+				"en": "Contextual hint texts that appear on hover or focus."
+			}
+		}
+	]
+}
