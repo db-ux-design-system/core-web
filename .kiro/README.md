@@ -62,7 +62,7 @@ Add the following to your **user-level** config at `~/.kiro/settings/mcp.json` (
 
 ##### Required PAT scopes
 
-Create a [GitHub Personal Access Token](https://github.com/settings/personal-access-tokens/new) with the permissions you want to grant your AI tools. Refer to the [GitHub MCP Server documentation](https://github.com/github/github-mcp-server#readme) for details on recommended scopes.
+Create a [GitHub Personal Access Token](https://github.com/settings/personal-access-tokens/new) with the permissions you want to grant your AI tools. Refer to the [GitHub MCP Server documentation](https://github.com/github/github-mcp-server#environment-variables-recommended) for details on recommended scopes.
 
 ### How the Triage Works
 
