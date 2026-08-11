@@ -3,7 +3,6 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
-	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
 	InitializedState
@@ -100,10 +99,7 @@ export type DBDrawerDefaultProps = {
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
 	CancelEventProps &
-	CloseEventProps<
-		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-		| GeneralKeyboardEvent<HTMLDialogElement>
-	>;
+	CloseEventProps<Event>;
 
 export type DBDrawerDefaultState = {
 	handleDialogOpen: () => void;
@@ -114,8 +110,5 @@ export type DBDrawerDefaultState = {
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &
-	CloseEventState<
-		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-		| GeneralKeyboardEvent<HTMLDialogElement>
-	> &
+	CloseEventState<Event> &
 	InitializedState;
