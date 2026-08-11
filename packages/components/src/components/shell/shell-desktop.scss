@@ -34,6 +34,10 @@
 				@include shell-sub-navigation.sub-navigation-top;
 			}
 
+			.db-control-panel-navigation {
+				--db-control-panel-navigation-desktop-position-top: 1;
+			}
+
 			// Sub-navigation: left
 			&[data-sub-navigation-desktop-position="left"] {
 				grid-template:
@@ -51,6 +55,23 @@
 				}
 
 				@include shell-sub-navigation.sub-navigation-left;
+
+				#{string.unquote(custom-elements.$shell-sub-navigation)} {
+					.db-control-panel-navigation {
+						--db-control-panel-navigation-desktop-position-top: 0;
+
+						&[data-variant="drilldown"] {
+							.db-control-panel-navigation-item-group {
+								position: static;
+							}
+
+							.db-control-panel-navigation-item-group-menu {
+								position: absolute;
+								inset: 0;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -76,6 +97,12 @@
 		}
 
 		@include shell-sub-navigation.sub-navigation-top;
+
+		#{string.unquote(custom-elements.$shell-sub-navigation)} {
+			.db-control-panel-navigation {
+				--db-control-panel-navigation-desktop-position-top: 1;
+			}
+		}
 	}
 }
 

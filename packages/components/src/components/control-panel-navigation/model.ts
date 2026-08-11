@@ -4,6 +4,7 @@ import {
 	GlobalState,
 	InitializedState,
 	NavigationItemGroupVariant,
+	NavigationItemGroupVariantType,
 	OverflowScrollButtonProps,
 	OverflowScrollButtonState
 } from '../../shared/model';
@@ -25,9 +26,12 @@ export type DBControlPanelNavigationProps =
 
 export type DBControlPanelNavigationDefaultState = {
 	onScroll: () => void;
-	_shellMobile?: boolean;
-	_shellDesktopPosition?: string | null;
+	_variant?: NavigationItemGroupVariantType;
+	_isMobile?: boolean;
+	_isShellSubNavigationMobile?: boolean;
+	_shellDesktopPositionTop?: boolean;
 	_handleSubNavigation: () => void;
+	_handleVariant: () => void;
 	_handleTreeKeyDown: (event: any) => void;
 	_handleTreeKeys: (event: any) => void;
 	_handlePopoverKeys: (event: any) => void;
@@ -36,7 +40,6 @@ export type DBControlPanelNavigationDefaultState = {
 	_resizeObserverCallbackId?: string;
 	_singleBehaviorObserver?: MutationObserver;
 	_attachSingleBehaviorObserver: () => void;
-	_setShellMobile: () => void;
 };
 
 export type DBControlPanelNavigationState =

@@ -304,11 +304,17 @@ const getAncestorHasCorrectedPlacement = (
 	return null;
 };
 
-export const handleFixedPopover = (
-	element: HTMLElement,
-	parent: HTMLElement,
-	placement?: string
-) => {
+export const handleFixedPopover = ({
+	element,
+	parent,
+	placement,
+	forceAbsolute
+}: {
+	element: HTMLElement;
+	parent: HTMLElement;
+	placement?: string;
+	forceAbsolute?: boolean;
+}) => {
 	if (!element || !parent) return;
 	const parentComputedStyles = getComputedStyle(parent);
 	const parentHasFloatingPosition = ['absolute', 'fixed'].includes(
@@ -426,6 +432,28 @@ export const handleFixedPopover = (
 	element.style.insetBlock = '';
 	element.style.insetInline = '';
 
+	if (forceAbsolute) {
+		if (
+			correctedPlacement.startsWith('top') ||
+			correctedPlacement.startsWith('bottom')
+		) {
+			left = 0;
+			right = 0;
+			bottom = height;
+			top = height;
+		}
+
+		if (
+			correctedPlacement.startsWith('right') ||
+			correctedPlacement.startsWith('left')
+		) {
+			top = 0;
+			bottom = 0;
+			right = width;
+			left = width;
+		}
+	}
+
 	if (correctedPlacement === 'right' || correctedPlacement === 'left') {
 		// center horizontally
 		element.style.insetBlockStart = `${top + height / 2}px`;
@@ -494,7 +522,7 @@ export const handleFixedPopover = (
 		element.style.maxBlockSize = '';
 	}
 
-	element.style.position = 'fixed';
+	element.style.position = forceAbsolute ? 'absolute' : 'fixed';
 	element.dataset['correctedPlacement'] = correctedPlacement;
 
 	// Set data-outside-vy / data-outside-vx for CSS-based flipping

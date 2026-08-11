@@ -259,6 +259,14 @@
 		display: none;
 	}
 
+	.db-header-secondary-action {
+		margin-block: auto;
+	}
+
+	.db-drawer-footer {
+		block-size: component.$min-mobile-header-height;
+	}
+
 	// When footer is hidden (empty secondaryAction), content needs safe-area spacing
 	&:has(.db-drawer-footer:has(.db-header-secondary-action:empty)) {
 		.db-drawer-content {

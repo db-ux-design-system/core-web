@@ -266,6 +266,11 @@ export type PopoverProps = {
 	 * Use fixed with for default max-width
 	 */
 	width?: PopoverWidthType;
+
+	/**
+	 * If the floating element is inside a fixed container we might need to force absolute position
+	 */
+	forceAbsolute?: boolean | string;
 };
 
 export type NameProps = {
@@ -841,7 +846,11 @@ export type SidebarState = {
 	getToggleButtonText: () => string;
 };
 
-export const NavigationItemGroupVariantList = ['popover', 'tree'] as const;
+export const NavigationItemGroupVariantList = [
+	'popover',
+	'tree',
+	'drilldown'
+] as const;
 export type NavigationItemGroupVariantType =
 	(typeof NavigationItemGroupVariantList)[number];
 

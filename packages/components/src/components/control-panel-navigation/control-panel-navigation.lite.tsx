@@ -36,16 +36,24 @@ export default function DBControlPanelNavigation(
 	const state = useStore<DBControlPanelNavigationState>({
 		showScrollLeft: false,
 		showScrollRight: false,
-		_shellMobile: false,
-		_shellDesktopPosition: undefined,
+		_variant: undefined,
+		_isMobile: false,
+		_isSubNavigationMobile: false,
+		_shellDesktopPositionTop: false,
+		_isShellSubNavigationMobile: undefined,
 		initialized: false,
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
-		_setShellMobile: () => {
-			state._shellMobile = hasCssFlag(
-				_ref,
-				'--db-control-panel-sub-navigation-mobile'
-			);
+		_handleVariant() {
+			if (state._shellDesktopPositionTop) {
+				state._variant = 'popover';
+			} else {
+				if (props.variant === 'popover') {
+					state._variant = 'drilldown';
+				} else {
+					state._variant = props.variant;
+				}
+			}
 		},
 		_attachSingleBehaviorObserver() {
 			if (!menuRef) return;
@@ -162,15 +170,16 @@ export default function DBControlPanelNavigation(
 			handleSubNavigationPosition(
 				menuRef,
 				0,
-				state._shellDesktopPosition === 'top'
+				state._shellDesktopPositionTop
 			);
 		},
 		_handleTreeKeyDown(event: any) {
 			if (!menuRef) return;
 
-			if (props.variant === 'tree') {
+			if (state._variant === 'tree') {
 				state._handleTreeKeys(event);
-			} else if (props.variant === 'popover') {
+			} else {
+				// TODO: Is this fine for drilldown desktop?
 				state._handlePopoverKeys(event);
 			}
 		},
@@ -225,7 +234,7 @@ export default function DBControlPanelNavigation(
 
 			// Top level is horizontal only when shell position is top
 			const isHorizontal =
-				isTopLevel && state._shellDesktopPosition === 'top';
+				isTopLevel && state._isShellSubNavigationMobile === 'top';
 
 			// Get sibling items at the current level
 			const container = isTopLevel ? menuElement : parentGroupMenu;
@@ -479,14 +488,19 @@ export default function DBControlPanelNavigation(
 
 	onUpdate(() => {
 		if (_ref && state.initialized) {
-			state._shellDesktopPosition = hasCssFlag(
+			state._shellDesktopPositionTop = hasCssFlag(
 				_ref,
-				'--db-control-panel-navigation-horizontal'
-			)
-				? 'top'
-				: 'left';
+				'--db-control-panel-navigation-desktop-position-top'
+			);
+			state._isMobile = hasCssFlag(
+				_ref,
+				'--db-control-panel-navigation-mobile'
+			);
 
-			state._setShellMobile();
+			state._isShellSubNavigationMobile = hasCssFlag(
+				_ref,
+				'--db-control-panel-sub-navigation-mobile'
+			);
 		}
 	}, [_ref, state.initialized]);
 
@@ -495,11 +509,10 @@ export default function DBControlPanelNavigation(
 			const menuElement = menuRef as HTMLElement;
 
 			if (
-				!props.variant ||
-				props.variant === 'popover' ||
-				state._shellMobile
+				state._variant !== 'tree' ||
+				state._isShellSubNavigationMobile
 			) {
-				// Clean up tree roles if switching from tree to popover
+				// Clean up tree roles if switching from tree to popover/drilldown
 				for (const menu of Array.from(
 					menuElement.querySelectorAll(
 						'.db-control-panel-navigation-item-group-menu[role="group"]'
@@ -577,14 +590,18 @@ export default function DBControlPanelNavigation(
 		}
 	}, [
 		menuRef,
-		props.variant,
-		state._shellDesktopPosition,
-		state._shellMobile,
+		state._variant,
+		state._isShellSubNavigationMobile,
+		state._isSubNavigationMobile,
 		props.behavior
 	]);
 
 	onUpdate(() => {
-		if (state._shellDesktopPosition) {
+		state._handleVariant();
+	}, [props.variant, state._isMobile, state._shellDesktopPositionTop]);
+
+	onUpdate(() => {
+		if (state._isShellSubNavigationMobile) {
 			state._handleSubNavigation();
 			state.evaluateScrollButtons(menuRef);
 
@@ -597,16 +614,17 @@ export default function DBControlPanelNavigation(
 					new ResizeObserverListener().observe(menuRef, () => {
 						state.evaluateScrollButtons(menuRef);
 						state._handleSubNavigation();
+						state._handleVariant();
 					});
 			}
 		}
-	}, [menuRef, state._shellDesktopPosition]);
+	}, [menuRef, state._isShellSubNavigationMobile]);
 
 	return (
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			data-variant={props.variant}
+			data-variant={state._variant}
 			data-behavior={props.behavior}
 			data-show-tree-line={getBooleanAsString(
 				props.showTreeLine ?? 'true',
@@ -625,7 +643,7 @@ export default function DBControlPanelNavigation(
 				</DBButton>
 			</Show>
 			<menu
-				role={props.variant === 'tree' ? 'tree' : undefined}
+				role={state._variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
 				onScroll={() => state.onScroll()}
 				onKeyDown={(event: any) => state._handleTreeKeyDown(event)}>

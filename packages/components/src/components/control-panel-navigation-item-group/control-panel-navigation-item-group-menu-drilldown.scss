@@ -1,0 +1,69 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/navigation-item";
+@use "control-panel-navigation-item-group-menu-non-tree";
+
+// This is the height from the Brand section and Collapse section
+$drilldown-inset: calc(
+	#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-sm} * 2
+);
+
+%db-control-panel-navigation-item-group-menu-drilldown {
+	--db-control-panel-navigation-item-group-menu-drilldown: 1;
+
+	@extend %db-control-panel-navigation-item-group-menu-non-tree;
+
+	/* jscpd:ignore-start */
+
+	// Mobile
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		padding: variables.$db-spacing-fixed-xs
+			component.$drawer-content-padding-inline;
+		inline-size: var(--db-drawer-width-horizontal, 100%);
+		max-inline-size: var(
+			--db-drawer-max-width,
+			var(--db-drawer-max-width-horizontal)
+		);
+		position: fixed;
+		overflow: hidden auto;
+		inset-inline-end: 0;
+		inset-block: calc(
+				#{component.$min-mobile-header-height} +
+					env(safe-area-inset-top)
+			)
+			calc(
+				#{component.$min-mobile-header-height} +
+					env(safe-area-inset-bottom)
+			);
+	}
+
+	/* jscpd:ignore-end */
+
+	// Desktop
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		inset-inline-start: 0;
+		overflow: hidden auto;
+		inline-size: calc(
+			var(
+					--db-control-panel-desktop-inline-size,
+					#{variables.$db-container-xs}
+				) -
+				#{variables.$db-border-width-3xs} * 2
+		); // Remove the border from fixed menu
+
+		padding: variables.$db-spacing-fixed-sm;
+		position: fixed;
+		inset-block: $drilldown-inset;
+	}
+}

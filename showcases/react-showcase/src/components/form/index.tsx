@@ -330,7 +330,7 @@ const FormComponent = () => {
 					}}>
 					TabsTest
 				</DBButton>
-				<DBTabs id={tabsId} name={tabsId}>
+				<DBTabs id={tabsId}>
 					<DBTabList>
 						<DBTabItem>Test 1</DBTabItem>
 						<DBTabItem>Test 2</DBTabItem>
@@ -341,10 +341,7 @@ const FormComponent = () => {
 					{tabsTest && <DBTabPanel>Tab Panel 3</DBTabPanel>}
 				</DBTabs>
 
-				<DBTabs
-					id={tabsVerticalId}
-					name={tabsVerticalId}
-					orientation="vertical">
+				<DBTabs id={tabsVerticalId} orientation="vertical">
 					<DBTabList>
 						<DBTabItem icon="x_placeholder">
 							Airplane Button

@@ -282,14 +282,14 @@ export const handleSubNavigationPosition = (
 		if (subNavigation && button) {
 			/*
 			 * This is set via css inside:
-			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover.scss`.
-			 * We don't need to calculate the position of the menu as a popover.
+			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown.scss`.
+			 * We don't need to calculate the position of the menu as a drilldown.
 			 */
-			const isMobile = hasCssFlag(
+			const isDrilldown = hasCssFlag(
 				subNavigation,
-				'--db-control-panel-navigation-item-group-menu-mobile'
+				'--db-control-panel-navigation-item-group-menu-drilldown'
 			);
-			if (isMobile) {
+			if (isDrilldown) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
 				continue;
@@ -300,10 +300,18 @@ export const handleSubNavigationPosition = (
 			if (resolvedLevel === 0) {
 				if (vertical) {
 					// Sub-Navigation should be opened vertical (top position, level 0)
-					handleFixedPopover(subNavigation, button, 'bottom-start');
+					handleFixedPopover({
+						element: subNavigation,
+						parent: button,
+						placement: 'bottom-start'
+					});
 					subNavigation.dataset['open'] = 'vertical';
 				} else {
-					handleFixedPopover(subNavigation, button, 'right-start');
+					handleFixedPopover({
+						element: subNavigation,
+						parent: button,
+						placement: 'right-start'
+					});
 					subNavigation.dataset['open'] = 'horizontal';
 				}
 			}

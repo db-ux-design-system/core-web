@@ -45,7 +45,7 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_attributeObserver?: MutationObserver;
 	_role?: string;
 	_popoverListenersAttached: boolean;
-	_isMobile: boolean;
+	_isDrilldown: boolean;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button

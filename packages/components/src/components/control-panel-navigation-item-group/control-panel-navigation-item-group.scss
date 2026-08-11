@@ -48,11 +48,20 @@
 }
 
 .db-control-panel-navigation-item-group-back-button {
-	display: flex;
+	display: grid;
 	font-weight: normal;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-xs;
 	margin-block-end: variables.$db-spacing-fixed-xs;
+	gap: variables.$db-spacing-fixed-xs;
+	grid-template-columns: variables.$db-sizing-md 1fr variables.$db-sizing-md;
+	place-items: center;
+
+	span {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 
 	@include helpers.divider("bottom");
 }

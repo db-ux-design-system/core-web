@@ -66,7 +66,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
-						handleFixedPopover(_ref, parent);
+						handleFixedPopover({
+							element: _ref,
+							parent,
+							forceAbsolute: props.forceAbsolute
+						});
 					}
 				}, 1);
 			}

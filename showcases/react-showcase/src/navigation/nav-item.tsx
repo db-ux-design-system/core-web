@@ -33,7 +33,6 @@ const NavItem = ({ navItem }: { navItem: NavigationItem }) => {
 			<DBControlPanelNavigationItemGroup
 				tooltip={navItem.label}
 				text={navItem.label}
-				backButtonText={`Back to ${navItem.label}`}
 				menuId={menuId}>
 				{navItem.subNavigation
 					.map((subItem: NavigationItem) => ({

@@ -27,6 +27,7 @@ import {
 } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	DBControlPanelNavigationItemGroupProps,
 	DBControlPanelNavigationItemGroupState
@@ -50,7 +51,7 @@ export default function DBControlPanelNavigationItemGroup(
 		autoClose: false,
 		hasPopup: false,
 		initialized: false,
-		_isMobile: false,
+		_isDrilldown: false,
 		_role: undefined,
 		_attributeObserver: undefined,
 		_itemGroupMenuId:
@@ -291,19 +292,19 @@ export default function DBControlPanelNavigationItemGroup(
 			);
 
 			if (_menuRef) {
-				state._isMobile = hasCssFlag(
+				state._isDrilldown = hasCssFlag(
 					_menuRef,
-					'--db-control-panel-navigation-item-group-menu-mobile'
+					'--db-control-panel-navigation-item-group-menu-drilldown'
 				);
 			}
 		}
 	}, [_ref, state.initialized]);
 
-	// When a sub-navigation is expanded in mobile mode, mark sibling
+	// When a sub-navigation is expanded in drilldown mode, mark sibling
 	// navigation items as inert so screenreader/keyboard focus cannot
 	// escape the visible overlay (resolves #5883).
 	onUpdate(() => {
-		if (state._isMobile && state.isSubNavigationExpanded) {
+		if (state._isDrilldown && state.isSubNavigationExpanded) {
 			state._setSiblingsInert(true);
 
 			// Move focus to the first navigation item link inside the sub-menu
@@ -318,7 +319,7 @@ export default function DBControlPanelNavigationItemGroup(
 		} else {
 			state._setSiblingsInert(false);
 		}
-	}, [state._isMobile, state.isSubNavigationExpanded]);
+	}, [state._isDrilldown, state.isSubNavigationExpanded]);
 
 	onUpdate(() => {
 		if (_ref && _buttonRef && _menuRef && state.hasPopup) {
@@ -417,11 +418,16 @@ export default function DBControlPanelNavigationItemGroup(
 						id={props.backButtonId}
 						icon="arrow_left"
 						variant="ghost"
+						noText
 						onClick={(event: ClickEvent<HTMLButtonElement>) =>
 							state.handleBackClick(event)
 						}>
 						{props.backButtonText ?? DEFAULT_BACK}
+						<DBTooltip forceAbsolute placement="bottom-start">
+							{props.backButtonText ?? DEFAULT_BACK}
+						</DBTooltip>
 					</DBButton>
+					<span>{props.text}</span>
 				</li>
 				{props.children}
 			</menu>
