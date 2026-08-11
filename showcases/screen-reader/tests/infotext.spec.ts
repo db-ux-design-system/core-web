@@ -1,4 +1,4 @@
-import { getTest, testDefault } from '../default';
+import { getTest, isWin, testDefault } from '../default';
 
 const test = getTest();
 
@@ -8,15 +8,15 @@ test.describe('DBInfotext', () => {
 		title: 'default',
 		description: 'should not mention icon (next())',
 		url: './#/04/infotext?page=density',
-		async testFn(voiceOver, nvda) {
-			if (nvda) {
+		async testFn(screenReader) {
+			if (isWin()) {
 				/* We don't have a focusable element, so we are initially on the browser (i) button */
-				await nvda.press('Shift+Tab'); // Jump into the website -> infotext "Functional"
-				await nvda?.clearSpokenPhraseLog();
-				await nvda?.next(); // Reading all infotext together
-			} else if (voiceOver) {
-				await voiceOver?.previous(); // Infotext "Functional"
-				await voiceOver?.next(); // Infotext "(Default) Regular"
+				await screenReader.press('Shift+Tab'); // Jump into the website -> infotext "Functional"
+				await screenReader.clearSpokenPhraseLog();
+				await screenReader.next(); // Reading all infotext together
+			} else {
+				await screenReader.previous(); // Infotext "Functional"
+				await screenReader.next(); // Infotext "(Default) Regular"
 			}
 		}
 	});

@@ -13,6 +13,9 @@ pnpm-debug.log
 .env
 **/*/.env
 
+# TypeScript
+*.tsbuildinfo
+
 # vim files
 *.swp
 *.swo
