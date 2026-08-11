@@ -51,7 +51,7 @@ afterEach(() => {
 });
 
 describe('addValuePropertyInterceptor', () => {
-	it('resynchronizes the value attribute between date/time type changes', () => {
+	it('resynchronizes the value marker between date/time type changes', () => {
 		vi.stubGlobal(
 			'MutationObserver',
 			class {
@@ -71,7 +71,8 @@ describe('addValuePropertyInterceptor', () => {
 		);
 		input.value = '2025-01-15';
 
-		expect(input.getAttribute('value')).toBe('2025-01-15');
+		expect(input.getAttribute('data-has-value')).toBe('true');
+		expect(input.hasAttribute('value')).toBe(false);
 
 		input.type = 'time';
 		notifyMutation?.(
@@ -80,7 +81,7 @@ describe('addValuePropertyInterceptor', () => {
 		);
 
 		expect(input.value).toBe('');
-		expect(input.hasAttribute('value')).toBe(false);
+		expect(input.hasAttribute('data-has-value')).toBe(false);
 		controller.abort();
 	});
 });

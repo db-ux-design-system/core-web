@@ -82,7 +82,8 @@ $db-min-inline-size: var(
 				[type="time"]
 			):not(
 				:user-valid,
-				/* we need to set those values, as the element might have an empty HTML value attribute */
+				[data-has-value="true"],
+				/* The HTML value attribute can be empty while the DOM value property is set. */
 				[value*="1"],
 				[value*="2"],
 				[value*="3"],

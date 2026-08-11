@@ -132,12 +132,15 @@ const dateTimeInputTypeList: string[] = [
 	'week'
 ];
 
+const valueMarkerAttribute = 'data-has-value';
+const interceptedValueProperties = new WeakSet<HTMLInputElement>();
+
 /**
  * Intercepts programmatic `.value` property assignments on an input element
- * (e.g. from react-hook-form or Angular form controls) and mirrors the
- * value onto the HTML `value` attribute. This allows CSS to detect values
- * set via the DOM property — which do not update the attribute — using
- * existing attribute selectors like `[value*="1"]` etc.
+ * (e.g. from react-hook-form or Angular form controls) and mirrors whether the
+ * sanitized DOM value is empty onto a data attribute used by the placeholder
+ * styling. The native `value` attribute remains unchanged because it also
+ * defines the input's default value and native form reset behavior.
  *
  * The interceptor observes the element's `type` attribute: it activates
  * when the type is (or becomes) a date/time type, and deactivates when
@@ -150,67 +153,78 @@ export const addValuePropertyInterceptor = (
 	element: HTMLInputElement,
 	signal: AbortSignal
 ): void => {
-	if (!element) {
+	if (!element || signal.aborted || interceptedValueProperties.has(element)) {
 		return;
 	}
 
+	const ownDescriptor = Object.getOwnPropertyDescriptor(element, 'value');
 	const prototype = Object.getPrototypeOf(element);
-	const descriptor = Object.getOwnPropertyDescriptor(prototype, 'value');
-	if (!descriptor || !descriptor.set) {
+	const prototypeDescriptor = Object.getOwnPropertyDescriptor(
+		prototype,
+		'value'
+	);
+	const descriptor = ownDescriptor ?? prototypeDescriptor;
+	if (
+		!descriptor?.get ||
+		!descriptor.set ||
+		(ownDescriptor && !ownDescriptor.configurable)
+	) {
 		return;
 	}
 
+	interceptedValueProperties.add(element);
 	const originalSet = descriptor.set;
 	let interceptorActive = false;
 
-	// Sync the value attribute from native user interactions (e.g. date picker)
-	// and after date/time type changes that may sanitize the current value.
-	const syncAttribute = () => {
-		if (!interceptorActive) return;
-		if (element.value) {
-			element.setAttribute('value', element.value);
+	const updateValueMarker = (input: HTMLInputElement): void => {
+		if (input.value) {
+			input.setAttribute(valueMarkerAttribute, 'true');
 		} else {
-			element.removeAttribute('value');
+			input.removeAttribute(valueMarkerAttribute);
+		}
+	};
+	const syncValueMarker = (): void => {
+		if (interceptorActive) {
+			updateValueMarker(element);
 		}
 	};
 
-	element.addEventListener('input', syncAttribute, { signal });
-	element.addEventListener('change', syncAttribute, { signal });
+	element.addEventListener('input', syncValueMarker, { signal });
+	element.addEventListener('change', syncValueMarker, { signal });
 
-	const activateInterceptor = () => {
+	const restoreValueDescriptor = (): void => {
+		if (ownDescriptor) {
+			Object.defineProperty(element, 'value', ownDescriptor);
+		} else {
+			delete (element as any).value;
+		}
+	};
+
+	const activateInterceptor = (): void => {
 		if (!interceptorActive) {
 			interceptorActive = true;
 			Object.defineProperty(element, 'value', {
 				configurable: true,
+				enumerable: descriptor.enumerable,
 				get: descriptor.get,
 				set(newValue: string) {
 					originalSet.call(this, newValue);
-					// Read the actual DOM value after the native setter,
-					// which may sanitize invalid date/time strings to "".
-					const actualValue = (this as HTMLInputElement).value;
-					if (actualValue) {
-						(this as HTMLInputElement).setAttribute(
-							'value',
-							actualValue
-						);
-					} else {
-						(this as HTMLInputElement).removeAttribute('value');
-					}
+					// Read the sanitized DOM value through the original getter.
+					updateValueMarker(this as HTMLInputElement);
 				}
 			});
 		}
 
-		// Always resynchronize because switching between supported types can
-		// cause the browser to sanitize an existing value.
-		syncAttribute();
+		// Switching between supported types can sanitize an existing value.
+		syncValueMarker();
 	};
 
-	const deactivateInterceptor = () => {
-		if (!interceptorActive) {
-			return;
+	const deactivateInterceptor = (): void => {
+		if (interceptorActive) {
+			interceptorActive = false;
+			restoreValueDescriptor();
 		}
-		interceptorActive = false;
-		delete (element as any).value;
+		element.removeAttribute(valueMarkerAttribute);
 	};
 
 	const observer = new MutationObserver((mutations) => {
@@ -230,17 +244,16 @@ export const addValuePropertyInterceptor = (
 		attributeFilter: ['type']
 	});
 
-	// Activate immediately if the current type matches
 	if (dateTimeInputTypeList.includes(element.type)) {
 		activateInterceptor();
 	}
 
-	// Clean up on abort
 	signal.addEventListener(
 		'abort',
 		() => {
 			observer.disconnect();
 			deactivateInterceptor();
+			interceptedValueProperties.delete(element);
 		},
 		{ once: true }
 	);

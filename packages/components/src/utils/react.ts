@@ -100,6 +100,7 @@ export const mergeRefs = <T>(
 	externalRef: RefCallback<T> | { current: T | null } | null
 ): { current: T | null } => {
 	let currentInstance = internalRef.current;
+	let instanceAssigned = false;
 	let callbackAttached = false;
 	let callbackCleanup: RefCleanup | undefined;
 
@@ -117,10 +118,11 @@ export const mergeRefs = <T>(
 
 	return {
 		set current(instance: T | null) {
-			if (currentInstance === instance) {
+			if (instanceAssigned && currentInstance === instance) {
 				return;
 			}
 
+			instanceAssigned = true;
 			if (callbackAttached) {
 				clearCallbackRef();
 			}
