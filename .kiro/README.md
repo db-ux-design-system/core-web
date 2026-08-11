@@ -95,5 +95,5 @@ Ask Kiro to "triage all new issues" and it will:
 
 - **Never closes issues** — Only triages and annotates; humans decide on resolution
 - **Conservative priority** — When unsure, defaults to Medium
-- **Respects existing labels** — Only adds labels, never removes ones already present
+- **Respects existing labels** — Only adds labels, with one exception: `⏳waiting-for-info` is removed when a previously incomplete issue is re-triaged as ✅ Complete or ⚠️ Partial (the author supplied the missing details). All other existing labels are preserved.
 - **Re-triages on author response** — Issues marked `⏳waiting-for-info` are re-processed once the author provides missing details
