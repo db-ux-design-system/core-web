@@ -81,7 +81,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 		// TODO: Remove after `closedby` is evergreen regarding our browserlist
 		_setClosedByFallback: () => {
 			if (_ref && !supportsClosedBy()) {
-				(_ref as HTMLDialogElement).dataset.closedby = 'not-supported';
+				(_ref as HTMLDialogElement).dataset['closedby'] =
+					'not-supported';
 			}
 		}
 	});
