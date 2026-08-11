@@ -19,7 +19,7 @@ const startProgram = (
 };
 
 startProgram(
-	'@db-ux/agent-cli',
+	'db-ux-agent-cli',
 	'CLI for DB UX Design System generate AI agent instructions',
 	action
 );
