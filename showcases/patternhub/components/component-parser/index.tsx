@@ -10,6 +10,7 @@ import {
 	DBCustomSelect,
 	DBDivider,
 	DBHeader,
+	DBHeading,
 	DBIcon,
 	DBInfotext,
 	DBInput,
@@ -370,6 +371,14 @@ const ComponentSwitch = ({
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'heading') {
+		return (
+			<DBHeading className={className} {...props}>
+				{resolvedContent}
+			</DBHeading>
 		);
 	}
 

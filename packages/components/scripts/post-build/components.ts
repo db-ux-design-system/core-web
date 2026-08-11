@@ -30,6 +30,10 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'heading'
+	},
+
+	{
 		name: 'table-data-cell'
 	},
 

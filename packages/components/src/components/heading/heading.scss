@@ -1,0 +1,58 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+
+.db-heading {
+	margin-block: 0;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	overflow-wrap: anywhere;
+	text-align: start;
+	text-wrap: balance;
+
+	&:not([data-size]):is(h1) {
+		@extend %db-overwrite-headline-size-xl;
+	}
+
+	&:not([data-size]):is(h2) {
+		@extend %db-overwrite-headline-size-lg;
+	}
+
+	&:not([data-size]):is(h3) {
+		@extend %db-overwrite-headline-size-md;
+	}
+
+	&:not([data-size]):is(h4) {
+		@extend %db-overwrite-headline-size-sm;
+	}
+
+	&:not([data-size]):is(h5) {
+		@extend %db-overwrite-headline-size-xs;
+	}
+
+	&:not([data-size]):is(h6) {
+		@extend %db-overwrite-headline-size-2xs;
+	}
+
+	@each $size in fonts.$font-sizes {
+		&[data-size="#{$size}"] {
+			@extend %db-overwrite-headline-size-#{$size};
+		}
+	}
+
+	&[data-font-weight="light"]:is(h1, h2, h3, h4, h5, h6) {
+		font-weight: 300;
+	}
+
+	&[data-alignment="center"] {
+		text-align: center;
+	}
+
+	&[data-alignment="end"] {
+		text-align: end;
+	}
+
+	&[data-paragraph-spacing="true"] {
+		/* Spacing intentionally follows the computed heading line height. */
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		margin-block-end: 1lh;
+	}
+}

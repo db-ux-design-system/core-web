@@ -3,6 +3,7 @@ const defineOptionsPlugin = require('../plugins/vue/define-options.cjs');
 const useIdPlugin = require('../plugins/useId.cjs');
 const slotsPlugin = require('../plugins/vue/slots.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
+const headingAttributePassingPlugin = require('../plugins/heading-attribute-passing.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToVueOptions}
@@ -15,6 +16,7 @@ module.exports = {
 		onClickPlugin,
 		defineOptionsPlugin,
 		slotsPlugin,
-		esmExtensionsPlugin
+		esmExtensionsPlugin,
+		headingAttributePassingPlugin
 	]
 };

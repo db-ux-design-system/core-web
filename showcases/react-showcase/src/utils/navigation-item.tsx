@@ -1,3 +1,5 @@
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
+
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 
 import Home from '../components/home';
@@ -47,6 +49,8 @@ export const getSortedNavigationItems = (
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{ path: 'heading', label: 'Heading', component: <HeadingShowcase /> },
+
 	{
 		path: '06',
 		label: '06 Feedback',

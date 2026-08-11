@@ -1,3 +1,5 @@
+import { HeadingComponent } from '../components/heading.component';
+
 import { TableComponent } from '../components/table.component';
 
 import { Routes } from '@angular/router';
@@ -46,6 +48,8 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
+	{ path: 'heading', label: 'Heading', component: HeadingComponent },
+
 	{
 		path: '06',
 		label: '06 Feedback',

@@ -1,3 +1,5 @@
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase.vue';
+
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
@@ -46,6 +48,12 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const navigationItems: NavItem[] = [
+	{
+		path: '/heading',
+		label: 'Heading',
+		component: markRaw(HeadingShowcase)
+	},
+
 	{
 		path: '/06',
 		label: '06 Feedback',

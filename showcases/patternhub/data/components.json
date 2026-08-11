@@ -24,6 +24,10 @@
 		"name": "data-display",
 		"subNavigation": [
 			{
+				"label": "DBHeading",
+				"name": "heading"
+			},
+			{
 				"label": "DBBrand",
 				"name": "brand"
 			},
