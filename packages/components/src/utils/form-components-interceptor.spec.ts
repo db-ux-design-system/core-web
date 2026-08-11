@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { addValuePropertyInterceptor } from './form-components';
+import { mergeRefs } from './react';
 
 let notifyMutation: MutationCallback | undefined;
 
@@ -81,6 +82,89 @@ describe('addValuePropertyInterceptor', () => {
 		);
 
 		expect(input.value).toBe('');
+		expect(input.hasAttribute('data-has-value')).toBe(false);
+		controller.abort();
+	});
+
+	it('supports programmatic date values assigned by replaced callback refs', () => {
+		let observerCount = 0;
+		vi.stubGlobal(
+			'MutationObserver',
+			class {
+				constructor(callback: MutationCallback) {
+					notifyMutation = callback;
+				}
+
+				observe() {
+					observerCount++;
+				}
+
+				disconnect() {}
+			}
+		);
+		const input = new MockInput();
+		const prototypeDescriptor = Object.getOwnPropertyDescriptor(
+			MockInput.prototype,
+			'value'
+		);
+		expect(prototypeDescriptor?.get).toBeTypeOf('function');
+		expect(prototypeDescriptor?.set).toBeTypeOf('function');
+		const frameworkDescriptor: PropertyDescriptor = {
+			configurable: true,
+			enumerable: true,
+			get: prototypeDescriptor?.get,
+			set: prototypeDescriptor?.set
+		};
+		Object.defineProperty(input, 'value', frameworkDescriptor);
+
+		const calls: string[] = [];
+		const internalRef: { current: MockInput | null } = { current: input };
+		const firstRef = mergeRefs(internalRef, (element) => {
+			if (element) {
+				calls.push('first');
+				element.value = '2025-01-15';
+			}
+		});
+		firstRef.current = input;
+
+		const controller = new AbortController();
+		addValuePropertyInterceptor(
+			input as unknown as HTMLInputElement,
+			controller.signal
+		);
+		addValuePropertyInterceptor(
+			input as unknown as HTMLInputElement,
+			controller.signal
+		);
+
+		expect(observerCount).toBe(1);
+		expect(calls).toEqual(['first']);
+		expect(input.value).toBe('2025-01-15');
+		expect(input.getAttribute('data-has-value')).toBe('true');
+		expect(input.hasAttribute('value')).toBe(false);
+
+		const secondRef = mergeRefs(internalRef, (element) => {
+			if (element) {
+				calls.push('second');
+				element.value = '2025-02-16';
+			}
+		});
+		secondRef.current = input;
+
+		expect(calls).toEqual(['first', 'second']);
+		expect(input.value).toBe('2025-02-16');
+		expect(input.getAttribute('data-has-value')).toBe('true');
+		expect(input.hasAttribute('value')).toBe(false);
+
+		input.type = 'text';
+		notifyMutation?.(
+			[{ attributeName: 'type' } as MutationRecord],
+			{} as MutationObserver
+		);
+
+		expect(Object.getOwnPropertyDescriptor(input, 'value')).toEqual(
+			frameworkDescriptor
+		);
 		expect(input.hasAttribute('data-has-value')).toBe(false);
 		controller.abort();
 	});
