@@ -179,7 +179,7 @@ export const getComponents = (): Component[] => [
 		},
 		config: {
 			react: {
-				propsPassingFilter: ['onToggle']
+				propsPassingFilter: ['onToggle', 'defaultOpen']
 			}
 		}
 	},

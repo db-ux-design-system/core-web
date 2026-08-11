@@ -118,5 +118,9 @@
 			"entry": ["test/**/*.{ts,tsx,js}"],
 			"ignoreDependencies": ["@db-ux/react-core-components"]
 		}
-	}
+	},
+
+	// Due to a potential bug in `pnpm audit --fix=update`, `catalog:` references in `package.json` files would get replaced by their actual version at the moment
+	// TODO: remove the following knip ignore after this bug has been solved and we could've reintroduced `catalog:` references in our `package.json` files
+	"exclude": ["catalog"]
 }

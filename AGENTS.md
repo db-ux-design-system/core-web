@@ -108,16 +108,22 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 > **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
-| Folder                      | Packages to include                                                                                                                                                                                 |
-| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src`   | `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS), `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/foundations/scss` | `@db-ux/core-foundations`                                                                                                                                                                           |
+| Folder                                                                                           | Packages to include                                                                                                                             |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src` — **only styling** (SCSS/CSS)                                          | `@db-ux/core-components`                                                                                                                        |
+| `packages/components/src` — **component logic or templates** (model.ts, Mitosis component files) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| `packages/components/src` — **both**                                                             | All five packages above                                                                                                                         |
+| `packages/foundations/scss`                                                                      | `@db-ux/core-foundations`                                                                                                                       |
+
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages only when shared code (components, `model.ts`, shared utils) or styling is changed.
 
 Use the following bump types for changeset entries:
 
 - **`patch`** — for bug fixes
 - **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
 - **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
+
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
 
 ### How to Add a Changeset
 
@@ -192,8 +198,9 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 
 - **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
 - **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
-- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks::
     ```bash
+    pnpm --filter=@db-ux/core-components run generate:figma
     pnpm --filter=react-figma run test:update
     pnpm --filter=angular-figma run test:update
     pnpm --filter=vue-figma run test:update
@@ -271,6 +278,10 @@ See `docs/conventions.md` for the full convention.
 - **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
 - **Stencil warnings**: Component prop name conflicts are expected and documented
 
+### Type-incompatible duplicate dependencies
+
+Some packages (notably PostCSS) ship breaking `.d.ts` changes in patch releases, causing TypeScript build failures when pnpm resolves two different patches. See `docs/dependency-update-strategy.md` § "Resolving type-incompatible duplicate dependencies" for the diagnosis and fix pattern (catalog + override).
+
 ### Git hook issues
 
 **Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
@@ -314,6 +325,31 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ## General code styles and approaches
 
+### Preserve comments during refactoring
+
+When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
+
+### Fenced code blocks require a language
+
+Every fenced code block (` ``` `) **must** specify a language identifier (MD040). Use `text` for plain output, error messages, or terminal logs that have no specific syntax.
+
+### Shift-left: HTML → CSS → JS
+
+Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
+
+### No literal non-ASCII characters in SCSS
+
+Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.
+
+**Rules:**
+
+- **Never use literal non-ASCII characters in `.scss` files** — not in values, not in comments, nowhere.
+- In comments, use ASCII alternatives (e.g. `->` instead of `→`).
+- In CSS values, use hex escape sequences (e.g. `"\2022"` for `•`, `"\a0"` for non-breaking space).
+- If the value must remain unresolved by Sass (Sass resolves `"\2022"` back to a literal `•` during compilation), place it in a **plain `.css` file** that is `@import`-ed or `@use`-ed — Sass passes plain CSS through without interpreting escape sequences.
+
+See [`packages/foundations/scss/defaults/non-ascii-tokens.css`](packages/foundations/scss/defaults/non-ascii-tokens.css) for the canonical example and [PR #7526](https://github.com/db-ux-design-system/core-web/pull/7526) for background.
+
 ### Dependency pinning and package execution
 
 All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for supply-chain security, reproducibility, and deterministic builds. See `docs/dependency-update-strategy.md` for the full rationale.
@@ -327,6 +363,33 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 | `npx <bin>`       | May fetch latest from registry if not installed locally               | ❌ No   |
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
+
+**Dependabot grouping:** When adding related dependencies (same org, main package + plugins, or tightly coupled sets), add a `groups:` entry in `.github/dependabot.yml`. See `docs/dependency-update-strategy.md` § "Dependabot grouping" for details and examples.
+
+### `bin` entries in package.json
+
+The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
+
+```jsonc
+// ✅ Preferred — explicit, discoverable command name
+"bin": { "db-ux-agent-cli": "build/index.js" }
+"bin": { "db-ux-mcp-server": "./dist/index.js" }
+
+// ⚠️ Avoid — relies on implicit basename normalization
+"bin": { "@db-ux/agent-cli": "build/index.js" }
+```
+
+### TypeScript execution
+
+Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
+
+```bash
+# ✅ Preferred
+node scripts/my-script.ts
+
+# ❌ Avoid
+pnpm exec tsx scripts/my-script.ts
+```
 
 ### GitHub Actions / Pipelines
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DBCard, DBCustomSelect, DBStack } from '@components';
-import type { Table } from '@tanstack/angular-table';
+import type { StockFeatures, Table } from '@tanstack/angular-table';
 import { DebouncedInputComponent } from './debounced-input.component';
 
 @Component({
@@ -28,21 +28,21 @@ import { DebouncedInputComponent } from './debounced-input.component';
 	`
 })
 export class TableControlsComponent {
-	@Input() table!: Table<any>;
+	@Input() table!: Table<StockFeatures, any>;
 	@Input() globalFilter = '';
 	@Output() globalFilterChange = new EventEmitter<string>();
 
 	get visibleColumns() {
 		return this.table
 			.getAllLeafColumns()
-			.filter(({ getIsVisible }) => getIsVisible())
-			.map(({ id }) => id);
+			.filter((column) => column.getIsVisible())
+			.map((column) => column.id);
 	}
 
 	get columnOptions() {
 		return this.table
 			.getAllLeafColumns()
-			.map(({ id }) => ({ id, value: id }));
+			.map((column) => ({ id: column.id, value: column.id }));
 	}
 
 	handleGlobalFilterChange(value: string | number) {
@@ -51,8 +51,8 @@ export class TableControlsComponent {
 
 	handleColumnSelection(values: string[] | void) {
 		if (!values) return;
-		this.table.getAllLeafColumns().forEach(({ id, toggleVisibility }) => {
-			toggleVisibility(values.includes(id));
+		this.table.getAllLeafColumns().forEach((column) => {
+			column.toggleVisibility(values.includes(column.id));
 		});
 	}
 }

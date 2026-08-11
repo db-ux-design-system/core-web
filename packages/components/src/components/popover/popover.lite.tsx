@@ -28,6 +28,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
 		handleEscape: (event: any) => {
+			if (!_ref) return;
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
 				for (const child of Array.from(_ref.children)) {
@@ -41,7 +42,9 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
-					handleFixedPopover(article, _ref);
+					if (_ref) {
+						handleFixedPopover(article, _ref);
+					}
 				}, 1);
 			}
 		},

@@ -1,12 +1,17 @@
 <script setup lang="ts" generic="T extends RowData">
 import { DBButton, DBPopover, DBStack, DBTooltip } from "@components";
-import type { Column, RowData, Table } from "@tanstack/vue-table";
+import type {
+	Column,
+	RowData,
+	StockFeatures,
+	Table
+} from "@tanstack/vue-table";
 import { computed } from "vue";
 import DebouncedInput from "./DebouncedInput.vue";
 
 interface Props {
-	column: Column<T, unknown>;
-	table: Table<T>;
+	column: Column<StockFeatures, T, unknown>;
+	table: Table<StockFeatures, T>;
 }
 
 const props = defineProps<Props>();

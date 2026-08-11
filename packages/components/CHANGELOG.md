@@ -1,5 +1,45 @@
 # @db-ux/core-components
 
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+### Patch Changes
+
+- refactor(drawer): further simplified transition implementation - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+### Minor Changes
+
+- refactor(drawer): replace JS transition workaround with CSS native functionality - [see commit 9370d63](https://github.com/db-ux-design-system/core-web/commit/9370d638176cf270e5700094c2a544d712c7413b)
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- refactor(Indicator in Tabs & Navigation): switched from `background` to `background-color` CSS property (mainly for Tailwind compatibility) - [see commit 1b3081c](https://github.com/db-ux-design-system/core-web/commit/1b3081c757d81ed80a080be99694bda2cf9968ed)
+
+- fix(tabs): indicator position slightly off - [see commit 1d58254](https://github.com/db-ux-design-system/core-web/commit/1d58254c6f1f7f106ae6682e721f784d3a69cf1e)
+
+## 5.0.2
+
+### Patch Changes
+
+- fix(links): removing icon underline at 110% zoom level - [see commit dc5a0de](https://github.com/db-ux-design-system/core-web/commit/dc5a0de4067468f858a7b22e53c5565c14688949)
+
+- refactor: prevent placeholder from being hidden when select is opened - [see commit 1421a4f](https://github.com/db-ux-design-system/core-web/commit/1421a4fb9ed5fe7307960fba00e5932f3971665a)
+
 ## 5.0.1
 
 ### Patch Changes
