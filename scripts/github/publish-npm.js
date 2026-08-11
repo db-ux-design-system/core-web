@@ -14,18 +14,20 @@ let isPreRelease = process.env.PRE_RELEASE === 'true';
 const IS_CI = process.env.CI === 'true';
 const isDryRunOnly = process.env.DRY_RUN_ONLY === 'true';
 
+// The local fallbacks below must never apply in CI: a dry-run that silently rehearses
+// 0.0.0-local on the `next` tag would not exercise the real version or channel.
 if (!VALID_SEMVER_VERSION) {
-	if (IS_CI && !isDryRunOnly) {
+	if (IS_CI) {
 		console.error('Version is missing!');
 		process.exit(1);
 	}
 
 	process.env.VALID_SEMVER_VERSION = '0.0.0-local';
-	console.warn('⚠️ No version set, using 0.0.0-local for local/dry-run');
+	console.warn('⚠️ No version set, using 0.0.0-local for local run');
 }
 
 if (!IS_RELEASE && !isPreRelease) {
-	if (IS_CI && !isDryRunOnly) {
+	if (IS_CI) {
 		console.error(
 			'RELEASE and PRE_RELEASE are false, there should be an error in the pipeline!'
 		);
@@ -33,7 +35,7 @@ if (!IS_RELEASE && !isPreRelease) {
 	}
 
 	console.warn(
-		'⚠️ No RELEASE/PRE_RELEASE set, defaulting to PRE_RELEASE=true for local/dry-run'
+		'⚠️ No RELEASE/PRE_RELEASE set, defaulting to PRE_RELEASE=true for local run'
 	);
 	process.env.PRE_RELEASE = 'true';
 }

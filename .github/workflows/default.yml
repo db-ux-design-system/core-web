@@ -627,10 +627,12 @@ jobs:
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, build-outputs]
     secrets: inherit
+    # The release outputs are release-event-only, so the dry-run uses the preflight
+    # version/channel to rehearse the actual prospective release.
     with:
-      release: ${{ needs.init.outputs.release }}
-      preRelease: ${{ needs.init.outputs.preRelease }}
-      version: ${{ needs.init.outputs.version }}
+      release: ${{ needs.init.outputs.preflightRelease }}
+      preRelease: ${{ needs.init.outputs.preflightPreRelease }}
+      version: ${{ needs.init.outputs.preflightVersion }}
 
   publishpackages:
     if: ${{ !cancelled() && github.event_name == 'release' && needs.checks-done.result == 'success' }}
