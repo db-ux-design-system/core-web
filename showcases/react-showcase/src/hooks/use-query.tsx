@@ -44,15 +44,15 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 			}
 
 			if (key === 'shell' && shell !== (value === 'true')) {
-					setShell(value === 'true');
-				}
+				setShell(value === 'true');
+			}
 
-				if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
+			if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
 				setFullscreen(value === 'true');
-				}
+			}
 
-				if (key === 'settings' && JSON.stringify(settings) !== value) {
-					setSettings(JSON.parse(value));
+			if (key === 'settings' && JSON.stringify(settings) !== value) {
+				setSettings(JSON.parse(value));
 			}
 		}
 

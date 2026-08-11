@@ -946,7 +946,7 @@ export const TestComponent = () => {
 
 			{/* db-ux/prefer-icon-attribute */}
 			<DBButton type="submit" icon="search">
-				
+
 			</DBButton>
 
 			{/* db-ux/select-requires-options */}
@@ -1443,7 +1443,7 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 
 		<!-- db-ux/prefer-icon-attribute -->
 		<DBButton type="submit" icon="search">
-			
+
 		</DBButton>
 
 		<!-- db-ux/select-requires-options -->
