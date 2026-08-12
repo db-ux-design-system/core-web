@@ -261,12 +261,14 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 ### Theme, Assets & Init
 
 ```css
+@layer db-ux;
+
 /* The theme contains all prop required for components like spacings, colors, etc. You can replace it with your own theme. */
-@import "@db-ux/core-foundations/build/styles/theme/relative.css";
+@import "@db-ux/core-foundations/build/styles/theme/relative.css" layer(db-ux);
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own fonts. */
-@import "@db-ux/core-foundations/build/styles/fonts/relative.css";
+@import "@db-ux/core-foundations/build/styles/fonts/relative.css" layer(db-ux);
 /* The icon include uses default icons based on your bundling paths (relative, absolute, webpack, rollup). You can replace it with your own icons. */
-@import "@db-ux/core-foundations/build/styles/icons/relative.css";
+@import "@db-ux/core-foundations/build/styles/icons/relative.css" layer(db-ux);
 ```
 
 #### Optimize index
@@ -274,18 +276,26 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 You are able to optimize the initial settings as well:
 
 ```css
+@layer db-ux;
+
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-required.css"
+	layer(db-ux);
 /* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
-@import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-root.css"
+	layer(db-ux);
 /* Adds font-sizes & line-heights to headlines and paragraph tags. You probably need this, but you might strip some styles if you don't need the range of h1-h6. */
-@import "@db-ux/core-foundations/build/styles/defaults/default-fonts.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-fonts.css"
+	layer(db-ux);
 /* Adds "[data-icon]" and other icon related styles. If you don't need icons in your application you could skip this. */
-@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-icons.css"
+	layer(db-ux);
 /* Adds "[data-elevation]" and other icon related styles. If you don't need elevation in your application you could skip this. */
-@import "@db-ux/core-foundations/build/styles/defaults/default-elevation.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-elevation.css"
+	layer(db-ux);
 /* Adds defaults for `blockquote`, `code` and `pre`. If you don't need them in your application you could skip this. */
-@import "@db-ux/core-foundations/build/styles/defaults/default-code.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-code.css"
+	layer(db-ux);
 ```
 
 ## Font Preloading

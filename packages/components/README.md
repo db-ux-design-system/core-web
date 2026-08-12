@@ -62,6 +62,20 @@ Import the styles in your main `.css` file.
 @import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 ```
 
+### Combining with third-party component libraries
+
+<!-- cspell:ignore primeng -->
+
+The bundled foundation styles include global normalization rules. Keep DB UX in a named cascade layer so those rules don't override component libraries such as PrimeNG. Declare the layer order before any imports; layers listed later have higher priority for normal declarations:
+
+```css
+@layer db-ux, primeng;
+
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+```
+
+If the third-party library uses unlayered styles, those styles automatically take priority over the layered DB UX defaults. Import DB UX through a CSS entry file instead of importing its styles directly from JavaScript, because JavaScript imports cannot assign a cascade layer.
+
 > **Vite 8 Note:** Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `vite.config.ts` like this:
 
 ```ts
@@ -106,24 +120,29 @@ If you only need some of the components or some features from [`@db-ux/core-foun
 In the case you want to include only some components, and you could do it like this:
 
 ```css
+@layer db-ux;
+
 /* The theme contains all props required for components like spacings, colors, ... */
-@import "@db-ux/core-foundations/build/styles/bundle.css";
+@import "@db-ux/core-foundations/build/styles/bundle.css" layer(db-ux);
 /* The font include uses default font families based on your bundling paths (relative, absolute, webpack, rollup) */
-@import "@db-ux/core-foundations/build/styles/fonts/rollup.css";
+@import "@db-ux/core-foundations/build/styles/fonts/rollup.css" layer(db-ux);
 /* The required styles will normalize css and add focus and default font to body */
-@import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-required.css"
+	layer(db-ux);
 /* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
-@import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
+@import "@db-ux/core-foundations/build/styles/defaults/default-root.css"
+	layer(db-ux);
 
 /* Optional: Add animations / transitions for components */
-@import "@db-ux/core-components/build/styles/component-animations.css";
+@import "@db-ux/core-components/build/styles/component-animations.css"
+	layer(db-ux);
 
 /* Optional: Add data-icon/data-icon-trailing to global attributes to enable icons for components */
-@import "@db-ux/core-foundations/build/styles/icons/rollup.css";
+@import "@db-ux/core-foundations/build/styles/icons/rollup.css" layer(db-ux);
 
 /* Optional: Add components */
-@import "@db-ux/core-components/build/components/button/button.css";
-@import "@db-ux/core-components/build/components/input/input.css";
+@import "@db-ux/core-components/build/components/button/button.css" layer(db-ux);
+@import "@db-ux/core-components/build/components/input/input.css" layer(db-ux);
 ```
 
 ## Deutsche Bahn brand
