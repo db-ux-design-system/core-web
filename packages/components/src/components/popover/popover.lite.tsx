@@ -232,7 +232,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	onUpdate(() => {
 		if (getBoolean(props.open, 'open')) {
 			state.handleEnter(undefined, true);
-		} else if (props.open !== undefined) {
+		} else {
 			state.handleLeave(undefined, true);
 		}
 	}, [props.open]);
