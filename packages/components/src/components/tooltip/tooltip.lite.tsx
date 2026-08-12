@@ -11,6 +11,7 @@ import {
 import { ClickEvent } from '../../shared/model';
 import {
 	cls,
+	getBoolean,
 	getBooleanAsString,
 	delay as utilsDelay,
 	uuid
@@ -69,7 +70,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 						handleFixedPopover({
 							element: _ref,
 							parent,
-							forceAbsolute: props.forceAbsolute
+							forceAbsolute: getBoolean(props.forceAbsolute)
 						});
 					}
 				}, 1);

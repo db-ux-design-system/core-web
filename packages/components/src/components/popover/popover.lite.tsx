@@ -8,7 +8,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	delay as utilsDelay
+} from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
@@ -46,7 +51,7 @@ export default function DBPopover(props: DBPopoverProps) {
 						handleFixedPopover({
 							element: article,
 							parent: _ref,
-							forceAbsolute: props.forceAbsolute
+							forceAbsolute: getBoolean(props.forceAbsolute)
 						});
 					}
 				}, 1);

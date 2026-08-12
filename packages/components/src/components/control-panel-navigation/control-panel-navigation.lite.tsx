@@ -38,7 +38,6 @@ export default function DBControlPanelNavigation(
 		showScrollRight: false,
 		_variant: undefined,
 		_isMobile: false,
-		_isSubNavigationMobile: false,
 		_shellDesktopPositionTop: false,
 		_isShellSubNavigationMobile: undefined,
 		initialized: false,
@@ -233,8 +232,7 @@ export default function DBControlPanelNavigation(
 			const isTopLevel = !parentGroupMenu;
 
 			// Top level is horizontal only when shell position is top
-			const isHorizontal =
-				isTopLevel && state._isShellSubNavigationMobile === 'top';
+			const isHorizontal = isTopLevel && state._shellDesktopPositionTop;
 
 			// Get sibling items at the current level
 			const container = isTopLevel ? menuElement : parentGroupMenu;
@@ -592,7 +590,7 @@ export default function DBControlPanelNavigation(
 		menuRef,
 		state._variant,
 		state._isShellSubNavigationMobile,
-		state._isSubNavigationMobile,
+		state._shellDesktopPositionTop,
 		props.behavior
 	]);
 
