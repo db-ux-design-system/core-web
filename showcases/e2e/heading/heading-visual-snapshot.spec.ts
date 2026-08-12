@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
-const path = 'heading';
+const path = '04/heading';
 test.describe('DBHeading', () => {
 	getDefaultScreenshotTest({ path });
 });

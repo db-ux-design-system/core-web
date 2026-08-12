@@ -3,7 +3,7 @@ import { runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBHeading', () => {
-	runAxeCoreTest({ path: 'heading' });
-	runAxeCoreTest({ path: 'heading', color: lvl3 });
-	runAxeCoreTest({ path: 'heading', density: 'functional' });
+	runAxeCoreTest({ path: '04/heading' });
+	runAxeCoreTest({ path: '04/heading', color: lvl3 });
+	runAxeCoreTest({ path: '04/heading', density: 'functional' });
 });

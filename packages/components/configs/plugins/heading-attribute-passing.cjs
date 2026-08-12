@@ -1,25 +1,6 @@
+const ROOT_PROPS = require('./react/root-props.cjs');
+
 const HEADING_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-const ROOT_PROPS = [
-	'data-icon-variant',
-	'data-icon-variant-before',
-	'data-icon-variant-after',
-	'data-icon-weight',
-	'data-icon-weight-before',
-	'data-icon-weight-after',
-	'data-interactive',
-	'data-force-mobile',
-	'data-color',
-	'data-container-color',
-	'data-bg-color',
-	'data-on-bg-color',
-	'data-color-scheme',
-	'data-font-size',
-	'data-headline-size',
-	'data-divider',
-	'data-focus',
-	'data-font',
-	'data-density'
-];
 
 const fail = (target, message) => {
 	throw new Error(
@@ -80,20 +61,42 @@ const transformReact = (code) => {
 
 const transformVue = (code) => {
 	const roots = getOpeningTags(code, 'vue');
-	return roots.reduce((changedCode, [tag, openingTag]) => {
+	let changedCode = roots.reduce((changedCode, [tag, openingTag]) => {
 		const refIndent = openingTag.match(/\n(\s*)ref="_ref"/)?.[1];
-		if (refIndent === undefined || !openingTag.includes('\n')) {
+		const classBinding = openingTag.match(/:class="([^"]*className[^"]*)"/);
+		if (
+			refIndent === undefined ||
+			!openingTag.includes('\n') ||
+			classBinding?.length !== 2
+		) {
 			fail('vue', `unexpected ${tag} root attributes`);
 		}
-		const replacement = replaceMarker(
+		let replacement = replaceMarker(
 			openingTag,
 			'ref="_ref"',
 			`ref="_ref"\n${refIndent}v-bind="$attrs"`,
 			'vue',
 			tag
 		);
+		replacement = replacement.replace(
+			classBinding[0],
+			`:class="${classBinding[1].replace(
+				'className',
+				"props['class' + 'Name'] ?? props.class"
+			)}"`
+		);
 		return changedCode.replace(openingTag, replacement);
 	}, code);
+
+	const propsDeclaration = 'const props = defineProps<DBHeadingProps>();';
+	if (changedCode.split(propsDeclaration).length !== 2) {
+		fail('vue', 'expected the DBHeading props declaration exactly once');
+	}
+	changedCode = changedCode.replace(
+		propsDeclaration,
+		'const props = withDefaults(defineProps<DBHeadingProps>(), { paragraphSpacing: undefined });'
+	);
+	return changedCode;
 };
 
 const transformHeadingAttributePassing = (code, target, componentName) => {

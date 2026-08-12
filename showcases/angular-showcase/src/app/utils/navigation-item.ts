@@ -48,8 +48,6 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
-	{ path: 'heading', label: 'Heading', component: HeadingComponent },
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -84,6 +82,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '04/heading',
+				label: 'Heading',
+				component: HeadingComponent
+			},
 			{ path: '04/icon', label: 'Icon', component: IconShowcase },
 			{
 				path: '04/brand',

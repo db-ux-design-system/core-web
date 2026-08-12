@@ -49,8 +49,6 @@ export const getSortedNavigationItems = (
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-	{ path: 'heading', label: 'Heading', component: <HeadingShowcase /> },
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -85,6 +83,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: 'heading',
+				label: 'Heading',
+				component: <HeadingShowcase />
+			},
 			{
 				path: 'brand',
 				label: 'Brand',

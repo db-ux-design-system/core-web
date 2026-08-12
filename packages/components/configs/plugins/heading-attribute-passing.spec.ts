@@ -20,12 +20,15 @@ function DBHeading() {
 
 const vueRoot = (tag: string) => `<${tag}
     ref="_ref"
-    :class="headingClass"
+    :class="cls('db-heading', className)"
   >${tag}</${tag}>`;
 
 const vueHeading = `<template>
   ${['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(vueRoot).join('\n  ')}
-</template>`;
+</template>
+<script setup lang="ts">
+const props = defineProps<DBHeadingProps>();
+</script>`;
 
 describe('heading attribute passing', () => {
 	it('adds React pass-through helpers to h2-h6 and leaves h1 to post-build', () => {
@@ -42,7 +45,7 @@ describe('heading attribute passing', () => {
 		);
 	});
 
-	it('binds attrs explicitly to every Vue heading root', () => {
+	it('binds attrs and resolves both Vue class props on every heading root', () => {
 		const result = transformHeadingAttributePassing(
 			vueHeading,
 			'vue',
@@ -50,6 +53,12 @@ describe('heading attribute passing', () => {
 		);
 
 		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(6);
+		expect(
+			result.match(/props\['class' \+ 'Name'\] \?\? props\.class/g)
+		).toHaveLength(6);
+		expect(result).toContain(
+			'withDefaults(defineProps<DBHeadingProps>(), { paragraphSpacing: undefined })'
+		);
 	});
 
 	it('does not change other components', () => {

@@ -38,7 +38,7 @@ const transformHeadingAs = (code, componentName) => {
 		.replace(templateMatch[0], transformedTemplate)
 		.replace(
 			PROXY_ANCHOR,
-			`  protected readonly headingAs = () => this.as();\n${PROXY_ANCHOR}`
+			`  protected readonly headingAs = () => {\n    try {\n      return this.as();\n    } catch {\n      return undefined;\n    }\n  };\n${PROXY_ANCHOR}`
 		)
 		.replace(INPUT_DECLARATION, REQUIRED_INPUT_DECLARATION);
 };

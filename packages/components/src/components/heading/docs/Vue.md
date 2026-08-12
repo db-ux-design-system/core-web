@@ -42,15 +42,15 @@ Omitted or false `paragraphSpacing` adds no margin. True adds exactly `1lh` at b
 
 ### Slots, attributes and accessibility
 
-The default slot is the main heading content. Named `#startSlot` and `#endSlot` slots render before and after it and must contain phrasing content only. Text in all three areas contributes to the accessible heading name. Mark decorative adornments with `aria-hidden="true"`; avoid interactive controls inside headings unless accessibility is reviewed specifically.
+The default slot is the main heading content. Named `#start-slot` and `#end-slot` slots render before and after it and must contain phrasing content only. Text in all three areas contributes to the accessible heading name. Mark decorative adornments with `aria-hidden="true"`; avoid interactive controls inside headings unless accessibility is reviewed specifically.
 
 ```vue
 <DBHeading as="h2" id="account-heading" data-track-id="account">
-	<template #startSlot>
+	<template #start-slot>
 		<span aria-hidden="true">[</span>
 	</template>
 	Account
-	<template #endSlot>
+	<template #end-slot>
 		<span aria-hidden="true">]</span>
 	</template>
 </DBHeading>

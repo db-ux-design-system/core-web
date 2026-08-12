@@ -257,6 +257,7 @@ const testAttributesAndContent = () => {
 			const component = await mount(
 				<DBHeading
 					as={level}
+					className={`custom-${level}`}
 					aria-label={`Accessible ${level}`}
 					data-forwarded={level}
 					title={`Title ${level}`}
@@ -264,6 +265,7 @@ const testAttributesAndContent = () => {
 					Level {index + 1}
 				</DBHeading>
 			);
+			await expect(component).toHaveClass(new RegExp(`custom-${level}`));
 			await expect(component).toHaveAttribute(
 				'aria-label',
 				`Accessible ${level}`
@@ -273,6 +275,16 @@ const testAttributesAndContent = () => {
 			await expect(component).toHaveCSS('text-transform', 'uppercase');
 		});
 	}
+
+	// VUE: test('forwards the class alias', async ({ mount }) => {
+	// VUE: 	const component = await mount(
+	// VUE: 		<DBHeading as="h6" class="class-alias">
+	// VUE: 			Class alias
+	// VUE: 		</DBHeading>
+	// VUE: 	);
+	// VUE: 	await expect(component).toHaveClass(/db-heading/);
+	// VUE: 	await expect(component).toHaveClass(/class-alias/);
+	// VUE: });
 
 	test('renders inline children as phrasing content', async ({ mount }) => {
 		const component = await mount(

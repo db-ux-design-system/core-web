@@ -21,9 +21,9 @@ describe('transformHeadingAs', () => {
 		const result = transformHeadingAs(generatedHeading, 'DBHeading');
 
 		expect(result.match(/headingAs\(\)/g)).toHaveLength(10);
-		expect(result).toContain(
-			'protected readonly headingAs = () => this.as();'
-		);
+		expect(result).toContain('protected readonly headingAs = () => {');
+		expect(result).toContain('return this.as();');
+		expect(result).toContain('return undefined;');
 		expect(result).toContain(
 			'as: InputSignal<DBHeadingProps["as"]> = input.required<DBHeadingProps["as"]>();'
 		);

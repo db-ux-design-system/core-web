@@ -6,6 +6,52 @@ const {
 	blockToVue
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
 const prettier = require('@prettier/sync');
+
+const RESERVED_IDENTIFIERS = new Set([
+	'await',
+	'break',
+	'case',
+	'class',
+	'const',
+	'default',
+	'delete',
+	'do',
+	'else',
+	'export',
+	'extends',
+	'false',
+	'finally',
+	'for',
+	'function',
+	'if',
+	'import',
+	'in',
+	'instanceof',
+	'let',
+	'new',
+	'null',
+	'return',
+	'super',
+	'switch',
+	'this',
+	'throw',
+	'true',
+	'try',
+	'typeof',
+	'var',
+	'void',
+	'while',
+	'with',
+	'yield'
+]);
+
+const toStoryExportName = (name) => {
+	const identifier = name.replace(/[^a-zA-Z0-9_$]/g, '') || 'Story';
+	return /^[a-zA-Z_$]/.test(identifier) &&
+		!RESERVED_IDENTIFIERS.has(identifier)
+		? identifier
+		: `_${identifier}`;
+};
 /**
  * Recursively finds a component by name in the node tree
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to search
@@ -200,9 +246,7 @@ const getStories = ({
 	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 	let exampleNames;
 	if (meta?.useMetadata?.storybookNames) {
-		exampleNames = meta.useMetadata.storybookNames.map((name) =>
-			name.replace(/[^a-zA-Z0-9]/g, '')
-		);
+		exampleNames = meta.useMetadata.storybookNames.map(toStoryExportName);
 	}
 
 	let overwritesArgs = {};
@@ -409,4 +453,4 @@ const getStories = ({
 		.join('\n');
 };
 
-module.exports = { getStories };
+module.exports = { getStories, toStoryExportName };

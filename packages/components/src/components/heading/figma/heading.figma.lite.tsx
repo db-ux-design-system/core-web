@@ -1,4 +1,4 @@
-import { useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBHeading from '../heading.lite';
 import { FigmaHeadingProps, headings } from './heading.figma';
 
@@ -14,8 +14,8 @@ export default function HeadingFigmaLite(props: FigmaHeadingProps) {
 			fontWeight={props.fontWeight}
 			alignment={props.alignment}
 			paragraphSpacing={props.paragraphSpacing}
-			startSlot={props.startSlot}
-			endSlot={props.endSlot}>
+			startSlot={<Fragment>{props.startSlot}</Fragment>}
+			endSlot={<Fragment>{props.endSlot}</Fragment>}>
 			{props.text}
 		</DBHeading>
 	);
