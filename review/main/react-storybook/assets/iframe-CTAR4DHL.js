@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-WSB_ygWY.js";e();
