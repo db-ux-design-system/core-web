@@ -11,12 +11,15 @@ const reactRoot = (tag: string) => `<${tag}
       className={headingClass}
     >${tag}</${tag}>`;
 
-const reactHeading = `
-function DBHeading() {
+const reactHeading = `import * as React from "react";
+import { useRef } from "react";
+function DBHeading(props: DBHeadingProps) {
+  const _ref = useRef<HTMLHeadingElement | any>(null);
   return <>
     ${['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(reactRoot).join('\n    ')}
   </>;
-}`;
+}
+export default DBHeading;`;
 
 const vueRoot = (tag: string) => `<${tag}
     ref="_ref"
@@ -31,17 +34,19 @@ const props = defineProps<DBHeadingProps>();
 </script>`;
 
 describe('heading attribute passing', () => {
-	it('adds React pass-through helpers to h2-h6 and leaves h1 to post-build', () => {
+	it('fully generates the React wrapper and every root without post-build', () => {
 		const result = transformHeadingAttributePassing(
 			reactHeading,
 			'react',
 			'DBHeading'
 		);
 
-		expect(result.match(/filterPassingProps/g)).toHaveLength(5);
-		expect(result.match(/getRootProps/g)).toHaveLength(5);
-		expect(result.match(/<h1\b[\s\S]*?>/)?.[0]).not.toContain(
-			'filterPassingProps'
+		expect(result.match(/\.\.\.filterPassingProps/g)).toHaveLength(6);
+		expect(result.match(/\.\.\.getRootProps/g)).toHaveLength(6);
+		expect(result).toContain('function DBHeadingFn(');
+		expect(result).toContain('const DBHeading = forwardRef<');
+		expect(result).toContain(
+			'import { filterPassingProps, getRootProps } from "../../utils/react";'
 		);
 	});
 

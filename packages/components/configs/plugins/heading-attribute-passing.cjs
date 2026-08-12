@@ -37,8 +37,26 @@ const transformReact = (code) => {
 		}
 	}
 
+	const reactImport = 'import * as React from "react";';
+	const hooksImport = 'import { useRef } from "react";';
+	const functionDeclaration = 'function DBHeading(props: DBHeadingProps) {';
+	const refDeclaration =
+		'const _ref = useRef<HTMLHeadingElement | any>(null);';
+	const defaultExport = 'export default DBHeading;';
+	for (const marker of [
+		reactImport,
+		hooksImport,
+		functionDeclaration,
+		refDeclaration,
+		defaultExport
+	]) {
+		if (code.split(marker).length !== 2) {
+			fail('react', `expected exactly one ${marker}`);
+		}
+	}
+
 	const rootProps = JSON.stringify(ROOT_PROPS);
-	return roots.slice(1).reduce((changedCode, [tag, openingTag]) => {
+	let changedCode = roots.reduce((result, [tag, openingTag]) => {
 		const refIndent = openingTag.match(/\n(\s*)ref=\{_ref\}/)[1];
 		const classIndent = openingTag.match(/\n(\s*)className=/)[1];
 		let replacement = replaceMarker(
@@ -55,8 +73,35 @@ const transformReact = (code) => {
 			'react',
 			tag
 		);
-		return changedCode.replace(openingTag, replacement);
+		return result.replace(openingTag, replacement);
 	}, code);
+
+	changedCode = changedCode
+		.replace(
+			reactImport,
+			`${reactImport}\nimport { filterPassingProps, getRootProps } from "../../utils/react";`
+		)
+		.replace(
+			hooksImport,
+			'import { useRef, forwardRef, HTMLAttributes } from "react";'
+		)
+		.replace(
+			functionDeclaration,
+			'function DBHeadingFn(props: Omit<HTMLAttributes<HTMLHeadingElement | any>, keyof DBHeadingProps> & DBHeadingProps, component: any) {'
+		)
+		.replace(
+			refDeclaration,
+			'const _ref = component || useRef<HTMLHeadingElement | any>(component);'
+		)
+		.replace(
+			defaultExport,
+			`const DBHeading = forwardRef<
+HTMLHeadingElement | any, Omit<HTMLAttributes<HTMLHeadingElement | any>,
+keyof DBHeadingProps> & DBHeadingProps
+>(DBHeadingFn);
+export default DBHeading;`
+		);
+	return changedCode;
 };
 
 const transformVue = (code) => {
@@ -92,11 +137,10 @@ const transformVue = (code) => {
 	if (changedCode.split(propsDeclaration).length !== 2) {
 		fail('vue', 'expected the DBHeading props declaration exactly once');
 	}
-	changedCode = changedCode.replace(
+	return changedCode.replace(
 		propsDeclaration,
 		'const props = withDefaults(defineProps<DBHeadingProps>(), { paragraphSpacing: undefined });'
 	);
-	return changedCode;
 };
 
 const transformHeadingAttributePassing = (code, target, componentName) => {
@@ -106,8 +150,38 @@ const transformHeadingAttributePassing = (code, target, componentName) => {
 	fail(target, 'unsupported target');
 };
 
+const copyHeadingSpec = (targetContext, files) => {
+	if (!files || !['react', 'vue'].includes(targetContext.target)) return;
+	const fs = require('node:fs');
+	const path = require('node:path');
+	const headingFile = files.componentFiles.find((file) =>
+		/components\/heading\/heading\.(tsx|vue)$/.test(file.outputFilePath)
+	);
+	if (!headingFile)
+		fail(targetContext.target, 'generated heading file not found');
+
+	const sourceFile = path.resolve(
+		__dirname,
+		'../../src/components/heading/heading.spec.tsx'
+	);
+	const targetFile = path.resolve(
+		headingFile.outputDir,
+		path.dirname(headingFile.outputFilePath),
+		'heading.spec.tsx'
+	);
+	let source = fs.readFileSync(sourceFile, 'utf-8');
+	if (targetContext.target === 'vue') {
+		source = source
+			.replace(/\{\/\*/g, '')
+			.replace(/\*\/}/g, '')
+			.replace(/\/\/ VUE:/g, '');
+	}
+	fs.writeFileSync(targetFile, source, 'utf-8');
+};
+
 /** @type {import('@builder.io/mitosis').MitosisPlugin} */
 module.exports = () => ({
+	name: 'heading-attribute-passing',
 	code: {
 		post: (code, json) =>
 			transformHeadingAttributePassing(
@@ -115,8 +189,10 @@ module.exports = () => ({
 				json.pluginData.target,
 				json.name
 			)
-	}
+	},
+	build: { post: copyHeadingSpec }
 });
 
 module.exports.transformHeadingAttributePassing =
 	transformHeadingAttributePassing;
+module.exports.copyHeadingSpec = copyHeadingSpec;

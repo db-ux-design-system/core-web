@@ -52,6 +52,13 @@ const transformAngular = (code) => {
 	return changed;
 };
 
+const STENCIL_SLOT_DOCS = `/**
+ * @slot children - This is a default/unnamed slot
+ * @slot startSlot - Content rendered before the heading text
+ * @slot endSlot - Content rendered after the heading text
+ */
+`;
+
 const transformStencil = (code) => {
 	let changed = replaceOnce(
 		code,
@@ -72,7 +79,18 @@ const transformStencil = (code) => {
 		'stencil'
 	);
 	changed = replaceOnce(changed, '@Prop() as:', '@Prop() as!:', 'stencil');
-	return changed;
+	changed = replaceOnce(
+		changed,
+		'@Prop() className:',
+		'@Prop({ attribute: "classname" }) className:',
+		'stencil'
+	);
+	return replaceOnce(
+		changed,
+		'@Component({',
+		`${STENCIL_SLOT_DOCS}@Component({`,
+		'stencil'
+	);
 };
 
 const transformHeadingDynamicRoot = (code, target, componentName) => {
@@ -82,12 +100,46 @@ const transformHeadingDynamicRoot = (code, target, componentName) => {
 	fail(target, 'unsupported target');
 };
 
+const normalizeHeadingIndex = (targetContext, files) => {
+	if (!files || !['angular', 'stencil'].includes(targetContext.target))
+		return;
+	const fs = require('node:fs');
+	const path = require('node:path');
+	const indexFile = files.nonComponentFiles.find((file) =>
+		/components\/heading\/index\.ts$/.test(file.outputFilePath)
+	);
+	if (!indexFile)
+		fail(targetContext.target, 'generated heading index not found');
+
+	const filePath = path.resolve(
+		indexFile.outputDir,
+		indexFile.outputFilePath
+	);
+	if (targetContext.target === 'stencil') {
+		fs.writeFileSync(
+			filePath,
+			"import { DBHeading } from './heading.js';\n\nexport default DBHeading;",
+			'utf-8'
+		);
+		return;
+	}
+
+	const source = fs.readFileSync(filePath, 'utf-8');
+	if (source.split('default as ').length !== 2) {
+		fail('angular', 'expected one default heading index export');
+	}
+	fs.writeFileSync(filePath, source.replace('default as ', ''), 'utf-8');
+};
+
 /** @type {import('@builder.io/mitosis').MitosisPlugin} */
 module.exports = () => ({
+	name: 'heading-dynamic-root',
 	code: {
 		post: (code, json) =>
 			transformHeadingDynamicRoot(code, json.pluginData.target, json.name)
-	}
+	},
+	build: { post: normalizeHeadingIndex }
 });
 
 module.exports.transformHeadingDynamicRoot = transformHeadingDynamicRoot;
+module.exports.normalizeHeadingIndex = normalizeHeadingIndex;

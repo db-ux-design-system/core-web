@@ -9,9 +9,11 @@ const angular = `class DBHeading {
   setupObserver() { this.enableAttributePassing(element, "db-heading"); }
   ngAfterViewInit() {}
 }`;
-const stencil = `class DBHeading {
+const stencil = `@Component({ tag: "db-heading" })
+class DBHeading {
 private _ref!: HTMLHeadingElement | any;
   @Prop() as: DBHeadingProps["as"];
+  @Prop() className: DBHeadingProps["className"];
   setupObserver() { this.enableAttributePassing(element, "db-heading"); }
   componentDidLoad() {}
   render() { return <h1 ref={(el: any) => { this._ref = el; }} />; }
@@ -41,6 +43,11 @@ describe('DBHeading dynamic root', () => {
 		);
 		expect(result).toContain('componentDidRender()');
 		expect(result).toContain('@Prop() as!:');
+		expect(result).toContain(
+			'@Prop({ attribute: "classname" }) className:'
+		);
+		expect(result).toContain('@slot startSlot');
+		expect(result).toContain('@slot endSlot');
 	});
 
 	it('does not affect other components', () => {
