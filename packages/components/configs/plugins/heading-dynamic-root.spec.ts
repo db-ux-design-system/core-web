@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
-const { transformHeadingDynamicRoot } = require('./heading-dynamic-root.cjs');
+const {
+	normalizeHeadingIndex,
+	transformHeadingDynamicRoot
+} = require('./heading-dynamic-root.cjs');
 
 const angular = `class DBHeading {
   _ref = viewChild<ElementRef>("_ref");
@@ -54,5 +57,38 @@ describe('DBHeading dynamic root', () => {
 		expect(transformHeadingDynamicRoot(angular, 'angular', 'DBText')).toBe(
 			angular
 		);
+	});
+
+	it('skips index normalization when no regular Heading is generated', () => {
+		expect(() =>
+			normalizeHeadingIndex(
+				{ target: 'angular' },
+				{
+					componentFiles: [
+						{
+							outputFilePath:
+								'components/heading/figma/heading.figma.batch.ts'
+						}
+					],
+					nonComponentFiles: []
+				}
+			)
+		).not.toThrow();
+	});
+
+	it('requires an index when a regular Heading is generated', () => {
+		expect(() =>
+			normalizeHeadingIndex(
+				{ target: 'angular' },
+				{
+					componentFiles: [
+						{
+							outputFilePath: 'components/heading/heading.ts'
+						}
+					],
+					nonComponentFiles: []
+				}
+			)
+		).toThrow('generated heading index not found');
 	});
 });

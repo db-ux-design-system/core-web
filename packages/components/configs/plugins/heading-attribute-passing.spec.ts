@@ -85,3 +85,30 @@ describe('heading attribute passing', () => {
 		).toThrow(`DBHeading ${target} attribute-passing transform failed`);
 	});
 });
+
+describe('heading spec copy', () => {
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
+	const { copyHeadingSpec } = require('./heading-attribute-passing.cjs');
+
+	it('skips spec copying when only a Figma Heading is generated', () => {
+		expect(() =>
+			copyHeadingSpec(
+				{ target: 'react' },
+				{
+					componentFiles: [
+						{
+							outputFilePath:
+								'components/heading/figma/heading.figma.batch.ts'
+						}
+					]
+				}
+			)
+		).not.toThrow();
+	});
+
+	it('requires a regular Heading file outside Figma generation', () => {
+		expect(() =>
+			copyHeadingSpec({ target: 'react' }, { componentFiles: [] })
+		).toThrow('generated heading file not found');
+	});
+});

@@ -108,8 +108,15 @@ const normalizeHeadingIndex = (targetContext, files) => {
 	const indexFile = files.nonComponentFiles.find((file) =>
 		/components\/heading\/index\.ts$/.test(file.outputFilePath)
 	);
-	if (!indexFile)
+	if (!indexFile) {
+		const hasFigmaHeading = files.componentFiles.some((file) =>
+			/components\/heading\/figma\/heading\.figma\.batch\.ts$/.test(
+				file.outputFilePath
+			)
+		);
+		if (hasFigmaHeading) return;
 		fail(targetContext.target, 'generated heading index not found');
+	}
 
 	const filePath = path.resolve(
 		indexFile.outputDir,
