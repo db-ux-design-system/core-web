@@ -349,13 +349,14 @@
     - button "Action"
   - text: New
   - navigation "shell-slots-left-tree":
-    - tree "shell-slots-left-tree":
+    - list:
       - listitem:
-        - treeitem "Inbox"
+        - link "Inbox"
         - text: "2"
-      - treeitem "Tasks 2"
       - listitem:
-        - treeitem "Dashboard"
+        - button "Tasks 2"
+      - listitem:
+        - link "Dashboard"
   - link "Imprint"
   - link "Help"
   - button "Search"
@@ -366,12 +367,15 @@
     - button "Action"
   - link "Tree Navigation"
   - navigation "shell-tree-nav-single":
-    - tree "shell-tree-nav-single":
-      - treeitem "Category A"
-      - treeitem "Category B"
-      - treeitem "Category C"
+    - list:
       - listitem:
-        - treeitem "Simple Item"
+        - button "Category A"
+      - listitem:
+        - button "Category B"
+      - listitem:
+        - button "Category C"
+      - listitem:
+        - link "Simple Item"
   - link "Imprint"
   - link "Help"
   - button "Search"
@@ -381,12 +385,15 @@
     - paragraph: Tree Navigation - Single Behavior (only one group open at a time)
     - button "Action"
   - navigation "shell-tree-nav-multiple":
-    - tree "shell-tree-nav-multiple":
-      - treeitem "Category A"
-      - treeitem "Category B"
-      - treeitem "Category C"
+    - list:
       - listitem:
-        - treeitem "Simple Item"
+        - button "Category A"
+      - listitem:
+        - button "Category B"
+      - listitem:
+        - button "Category C"
+      - listitem:
+        - link "Simple Item"
   - link "Imprint"
   - link "Help"
   - button "Search"
