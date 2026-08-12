@@ -172,7 +172,9 @@ async function applyOneEdit(frame, e) {
 				lg: 'lg',
 				xl: 'xl',
 				'2xl': '2xl',
-				'3xl': '3xl'
+				'3xl': '3xl',
+				// "auto" = SPACE_BETWEEN (distribute children to both ends).
+				auto: 'auto'
 			};
 			setVariant(cont, 'Gap', GAP[e.gap] ?? e.gap);
 			return { op: e.op, ok: true };
@@ -377,43 +379,32 @@ async function applyEdits(spec) {
 /* =============================================================================
  * PLAN SCHEMA (what the model produces — JSON only)
  * -----------------------------------------------------------------------------
- * {
- *   "screen": "DS KPI Dashboard",
- *   "targetNodeId": "177:1091",          // optional: page/frame to render on
- *   "width": 1440,                        // optional (default 1440)
- *   "screenGap": 200,                     // optional (default 200). Horizontal gutter (px) to
- *                                         // the rightmost existing frame when this screen is
- *                                         // an ADDITIONAL screen on the same page.
- *   "replace": false,                     // optional. A screen with the SAME `screen` name
- *                                         // already on the page → renderPlan REFUSES (use
- *                                         // applyEdits to edit in place). A DIFFERENTLY-named
- *                                         // screen is allowed and placed to the RIGHT of the
- *                                         // existing frames (multi-screen site on one page).
- *                                         // replace:true removes the matching/only frame first
- *                                         // for a deliberate rebuild (no duplicate pile-up).
- *   "layout": [                           // ordered top-level children of the root
- *     { "type": "Header", "appName": "Design System KPIs" },
- *     { "type": "Section", "fills": "color.background.canvas", "children": [
- *         { "type": "ContainerVertical", "gap": "sm", "children": [
- *             { "type": "Heading", "as": "h2", "content": "…", "fills": "color.text.strong" }
- *         ]}
- *     ]},
- *     { "type": "Section", "fills": "color.background.surface", "children": [
- *         { "type": "Grid", "children": [ { "type": "Card", "props": {"elevationLevel":"1"},
- *             "children": [ { "type": "ContainerVertical", "gap": "(Def) md", "children": [
- *                 { "type": "Tag", "props": {"icon":false,"emphasis":"weak","behavior":"static"},
- *                   "label": "48 Stable", "semantic": "Successful" },
- *                 { "type": "ContainerVertical", "gap": "2xs", "children": [
- *                     { "type": "Heading", "as": "h5", "content": "Komponenten", "fills": "color.text.strong" },
- *                     { "type": "Heading", "as": "h3", "content": "89%",         "fills": "color.text.strong" },
- *                     { "type": "Body",    "size": "Small", "content": "Adoption Rate","fills": "color.text.weak" }
- *                 ]}
- *             ]}]
- *         }]}
- *     ]}
- *   ],
- *   "variables": ["color.background.canvas", "color.text.strong", "space.md"]
- * }
+ * TOP-LEVEL KEYS (semantics only — this runtime intentionally ships NO concrete
+ * composition/spacing example, so nothing here can drift or be copied as a template.
+ * Actual block/section structure AND spacing come from the page-type catalogs in
+ * registries/<pageType>/*.json, the single source of truth):
+ *
+ *   screen        REQUIRED string. Frame name (used for de-dupe / applyEdits lookup).
+ *   targetNodeId  optional. Page/frame id to render onto (else the current page).
+ *   width         optional. Root width in px (default 1440; MODULE default 1024).
+ *   module        optional. TRUE → render a STANDALONE MODULE (a single reusable
+ *                 block/section on its own): no Header required, no page-zebra check,
+ *                 default width = 1024 content column. `layout` = just the module.
+ *   screenGap     optional (default 200). Horizontal gutter (px) to the rightmost
+ *                 existing frame when this is an ADDITIONAL screen on the same page.
+ *   replace       optional. SAFE + IDEMPOTENT rebuild of THIS screen: removes ONLY the frame
+ *                 whose name matches `screen` (re-render replaces its own twin in place, reusing
+ *                 its position); if none matches it places a NEW frame to the right. NEVER wipes
+ *                 other frames. Pass it on EVERY call of a multi-frame batch — safe either way.
+ *                 (Without `replace`, a same-named frame makes renderPlan REFUSE and steer you to
+ *                 applyEdits; differently-named frames are always placed to the right.)
+ *   replaceAll    optional. Deliberate PAGE WIPE — removes EVERY frame on the target page first
+ *                 (reusing the first frame's position). Rare; use only to rebuild a page from
+ *                 scratch. For normal re-renders use `replace`.
+ *   layout        REQUIRED array. Ordered top-level nodes — the Header first, then the
+ *                 Sections. Each node's shape is documented under NODE FIELDS below;
+ *                 compositions/spacing are drawn from the registries, not hardcoded here.
+ *   variables     optional array of token names referenced by the plan.
  *
  * NODE FIELDS
  *   type      Layout/base: Header|Section|Grid|ContainerVertical|ContainerHorizontal|
@@ -444,10 +435,26 @@ async function applyEdits(spec) {
  *   text      { fieldName: value } — sets multiple named TEXT props (e.g. Notification
  *             { headline, description }). label sets the single primary TEXT prop.
  *   applyProps { "Property Name": value } — set ANY component property on the live instance.
- *             TEXT → string, VARIANT → string, BOOLEAN → boolean, INSTANCE_SWAP → key string.
- *             Keys matched by normalized-name substring (case-insensitive, emoji stripped).
- *             Example: { "Label": "E-Mail", "Show Required Asterisk": true, "Size": "small" }
- *   fillWidth force the instance to FILL its container width (default on for form fields)
+ *             TEXT → string, VARIANT → string, BOOLEAN → boolean, INSTANCE_SWAP → icon NAME
+ *             (resolved via ICON_KEYS, e.g. "calendar") or a raw component/set key. Instance
+ *             swaps are applied via a size-matched swapComponent so they never drop sibling
+ *             props. Keys matched by normalized-name substring (case-insensitive, emoji
+ *             stripped). Example: { "Label": "E-Mail", "Show Required Asterisk": true, "Size": "small" }
+ *   iconLeading / iconTrailing  Button: first-class leading/trailing icon. Value = a DB Theme
+ *             icon NAME (e.g. "calendar", "person", "round_trip") or a raw key. Enables the
+ *             "Show Icon <side>" boolean and swaps the ACTIVE (size-correct) icon slot — no
+ *             need to guess "Icon Leading Medium" vs "…Small". PREFER this over applyProps for
+ *             button icons. A text+icon Button that is a secondary/tertiary action should use
+ *             variant:"ghost" + Size "small" (24px — matches a `medium` Radio/Checkbox row).
+ *   fillWidth force the instance to FILL its container width (default on for form fields).
+ *             On a Button it stretches the button to the container width (label centers) —
+ *             use for the PRIMARY action in a fixed-width action column (e.g. "Weiter").
+ *   Divider   Horizontal rule filling the container width by default. orientation:"vertical"
+ *             → the Vertical variant, stretched to FILL the parent height (hug width): a
+ *             full-bleed separator between two columns in a ContainerHorizontal (e.g. an
+ *             info panel ↔ a price/action panel). For full-bleed, keep the Card/Section
+ *             padding off and pad each column instead. Optional `emphasis` sets the Emphasis
+ *             variant.
  *   fillHeight Container: FILL the grid row height and vertically center its content
  *             (Align "left"/"center") — use for the text block beside an Image.
  *             Card: stretch the card to the grid row height instead of hugging (used
@@ -496,11 +503,46 @@ async function applyEdits(spec) {
  *   titleStyle / descriptionStyle  Section: override the heading/description text style
  *               (e.g. titleStyle "headline.lg" for the top/hero section)
  *   label     visible label for Tag/Button/Badge (set via TEXT component property)
- *   semantic  Tag/Badge state: Successful|Informational|Warning|Critical|Neutral|…
+ *   semantic  UNIVERSAL color mode — works on ANY node that carries an adaptive token:
+ *             Heading|Body (text), Icon, Section|Card|ContainerVertical|ContainerHorizontal
+ *             (surfaces), and Tag|Badge|Notification (state, via Semantic variant or mode).
+ *             Values: Successful|Informational|Warning|Critical|Neutral|Brand|Green|Blue|… .
+ *             It sets the adaptive MODE on the node so its bound token — and every adaptive
+ *             token in its subtree — resolves in that palette (NOT a fixed color, never a
+ *             recolored fill). Two axes of coloring:
+ *               • MODE = the hue family (semantic).
+ *               • EMPHASIS = the brightness, chosen via the bound TOKEN. Foreground hue is
+ *                 only visible at a LOWER emphasis: color.text.muted (emphasis-80, AA-safe for
+ *                 text) or color.icon (emphasis-70, icons only). emphasis-100
+ *                 (color.text.strong) stays near-BLACK in every mode.
+ *             Foreground e.g.: { type:"Body", content:"13:13", fills:"color.text.muted",
+ *               semantic:"Successful" } → green on-time time.
+ *             Surface e.g.:    { type:"Section", fills:"color.background.surface",
+ *               semantic:"Warning" } → warning-tinted panel; on-bg text on it contrasts.
  *   style     Text: a registered text-style name (headline.lg, body, …)
  *   content   Text content
- *   fills     color token name (Section bg / Text color)
- *   align,gap,padding   Container variant axes (gap uses "(Def) md" for md)
+ *   fills     color token name. Section/Card/Container bg surface OR Heading/Body text color.
+ *             On a Container it paints the frame (a colored bar/panel, e.g. a dark line bar);
+ *             pair with `radius` (a DB radius token) for rounded surfaces. Combine with
+ *             `semantic` to tint the surface via the adaptive mode.
+ *   padding   Container inner padding variant (e.g. "sm", "(Def) None").
+ *   opacity   Container node opacity 0..1 (e.g. 0.4 for a "disabled"/upcoming look). Dims the
+ *             whole container AND its children; applied after the internal wash-out reset.
+ *   gap       Container item spacing variant ("(Def) md" for md). gap: "auto" = SPACE_BETWEEN —
+ *             the container distributes its children to both ends (the DB-native way to
+ *             space-between; `spread: true` is sugar that sets it).
+ *   align     Container Align variant — a 3×3 grid, format "<vertical>-<horizontal>":
+ *               top-left | top-center | top-right
+ *               left     | center     | right        (middle ROW = vertically centered)
+ *               bottom-left | bottom-center | bottom-right
+ *             The CROSS axis depends on the container direction:
+ *               • ContainerHorizontal → the VERTICAL part aligns items of DIFFERENT HEIGHT
+ *                 (icon+text, title+chevron, input+button). Default "top-left" top-aligns them;
+ *                 use "left" (vertical-center, keep left packing) or "center" to VERTICALLY
+ *                 center them. (The horizontal part is packing; irrelevant when the row hugs.)
+ *               • ContainerVertical → the HORIZONTAL part aligns children of different width;
+ *                 "center"/"top-center" centers them horizontally (e.g. a centered link/CTA).
+ *             Rule of thumb: mixed-height horizontal row → "left"/"center"; otherwise "top-left".
  *   spacing   Card: inner padding VARIANT ("small"|"medium"|"large"|"none" or the exact
  *             Figma label). Keep it in sync with the content block's gap (a block with a
  *             uniform `lg` gap sits in a Card with `spacing: "large"`).

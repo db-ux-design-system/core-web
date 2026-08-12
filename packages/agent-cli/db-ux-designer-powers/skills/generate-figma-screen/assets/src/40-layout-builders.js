@@ -2,6 +2,10 @@ async function buildSection(node) {
 	const inst = await createLibraryInstance('Section'); // library Section (Beta)
 	hugVertical(inst); // sections ALWAYS hug (binding)
 	if (node.fills) await bindFill(inst, node.fills); // configure BEFORE children
+	// Semantic tint: set the adaptive MODE on the section so its bound bg/fills token (and
+	// every adaptive token in its subtree) resolves in that palette (e.g. Successful → a
+	// green-tinted surface, with on-bg text contrasting automatically). See applySemantic.
+	if (node.semantic) await setSemantic(inst, node.semantic);
 	// Content max-width (e.g. "Small (768)" for landing pages). Set BEFORE the slot is
 	// fetched — setProperties regenerates the instance's internal node ids.
 	if (node.contentWidth) {
@@ -137,15 +141,21 @@ const CONTAINER_GAP_LABELS = {
 	lg: 'lg',
 	xl: 'xl',
 	'2xl': '2xl',
-	'3xl': '3xl'
+	'3xl': '3xl',
+	// "auto" = SPACE_BETWEEN: the container distributes its children to both ends
+	// (this is the component's native Gap variant, NOT a manual slot override).
+	auto: 'auto'
 };
 function buildContainer(node, direction) {
 	const name =
 		direction === 'horizontal'
 			? 'ContainerHorizontal'
 			: 'ContainerVertical';
-	const gap = node.gap
-		? (CONTAINER_GAP_LABELS[node.gap] ?? node.gap)
+	// A `spread` row IS a container with Gap "auto" (SPACE_BETWEEN) — set it via the native
+	// Gap variant rather than overriding the slot. An explicit `gap: "auto"` works too.
+	const gapToken = node.spread ? 'auto' : node.gap;
+	const gap = gapToken
+		? (CONTAINER_GAP_LABELS[gapToken] ?? gapToken)
 		: '(Def) md';
 	const inst = createLocalInstance(name, {
 		Align: node.align ?? 'top-left',
@@ -164,6 +174,13 @@ function buildContainer(node, direction) {
 			} catch {}
 		}
 	}
+	// Optional node-level opacity (e.g. a "disabled" look at 0.4). Applied AFTER the
+	// wash-out reset above so the caller's value wins. Dims the whole container + children.
+	if (typeof node.opacity === 'number') {
+		try {
+			inst.opacity = node.opacity;
+		} catch {}
+	}
 	hugVertical(inst);
 	return inst;
 }
@@ -173,6 +190,9 @@ async function buildCard(node) {
 		node.props ?? { elevationLevel: '1' }
 	);
 	hugVertical(inst); // card hugs content (no overflow)
+	if (node.fills) await bindFill(inst, node.fills); // optional surface tint
+	// Semantic tint: adaptive MODE on the card → bound bg/fills token + subtree recolor.
+	if (node.semantic) await setSemantic(inst, node.semantic);
 	// Inner padding via the Card's `Spacing` VARIANT. Accepts a friendly value
 	// ("small"|"medium"|"large"|"none") or the exact Figma label. Keep it in sync with the
 	// content block's gap (a block with gap `lg` sits in a card with `Spacing: lg`).
@@ -270,6 +290,148 @@ async function buildHeader(node) {
 		}
 	}
 	if (node.applyProps) await applyProps(inst, node.applyProps);
+	return inst;
+}
+
+/* Tabs (Beta) — a COMPOSITE: a Tab List whose Children slot holds Tab Item subcomponents
+ * (each an ✏️ Label + a 🔀 Active variant) plus a single (active) Tab Panel whose Children
+ * slot holds the panel content. This dedicated builder drives all three so a plan never has
+ * to reach into the subcomponents:
+ *   props    { orientation:"horizontal"|"vertical", tabItemWidth:"auto"|"full",
+ *              alignment:"start"|"center"|"right" } → the internal Tabs variant.
+ *   tabs     [{ label, active? }] → sets each Tab Item's label + marks ONE active (the first
+ *            with active:true, else index 0). The runtime CLONES the last Tab Item when more
+ *            tabs are requested than the variant ships, and REMOVES trailing ones for fewer
+ *            (never below 1). The active tab draws its own underline indicator (Active=True).
+ *   content  a plan node (or array) rendered into the single visible Tab Panel — i.e. the
+ *            body shown under the active tab. Only the active panel exists in the variant, so
+ *            a static mockup shows exactly the active tab's content.
+ * Never fake tabs from Buttons/Tags — this is the real DB Tabs component. */
+const TAB_ORIENT = { horizontal: '(Def) Horizontal', vertical: 'Vertical' };
+const TAB_WIDTH = { auto: '(Def) Auto', full: 'Full' };
+const TAB_ALIGN = {
+	start: '(Def) Start',
+	left: '(Def) Start',
+	center: 'Center',
+	right: 'Right'
+};
+async function buildTabs(node) {
+	const entry = COMPONENTS['Tabs'];
+	if (!entry) stop('Tabs is not registered in the runtime component map.');
+	const set = await importSet(entry.variants[0].key);
+	const inst = (
+		set.type === 'COMPONENT_SET'
+			? (set.defaultVariant ?? set.children[0])
+			: set
+	).createInstance();
+	const p = node.props || {};
+	if (p.orientation)
+		setVariant(
+			inst,
+			'Orientation',
+			TAB_ORIENT[String(p.orientation).toLowerCase()] ?? p.orientation
+		);
+	if (p.tabItemWidth)
+		setVariant(
+			inst,
+			'Tab Item Width',
+			TAB_WIDTH[String(p.tabItemWidth).toLowerCase()] ?? p.tabItemWidth
+		);
+	if (p.alignment)
+		setVariant(
+			inst,
+			'Tab Item Alignment',
+			TAB_ALIGN[String(p.alignment).toLowerCase()] ?? p.alignment
+		);
+	await ensureFonts();
+	await loadInstanceFonts(inst);
+
+	const tabs =
+		Array.isArray(node.tabs) && node.tabs.length
+			? node.tabs
+			: [{ label: 'Tab 1' }, { label: 'Tab 2' }, { label: 'Tab 3' }];
+	// Re-find Tab Items fresh each time (setProperties/clone/remove regenerate node ids).
+	const findItems = () =>
+		safe(
+			() =>
+				inst.findAll(
+					(n) => n.type === 'INSTANCE' && /tab item/i.test(n.name)
+				),
+			[]
+		);
+	// Match the Tab Item count to the requested tab count: clone the last for MORE, remove
+	// the last for FEWER (never below 1 — the slot requires at least one child).
+	let items = findItems();
+	let guard = 0;
+	while (items.length < tabs.length && items.length > 0 && guard++ < 12) {
+		const last = items[items.length - 1];
+		try {
+			const clone = last.clone();
+			last.parent.appendChild(clone);
+		} catch {
+			break;
+		}
+		items = findItems();
+	}
+	guard = 0;
+	while (items.length > tabs.length && items.length > 1 && guard++ < 12) {
+		try {
+			items[items.length - 1].remove();
+		} catch {
+			break;
+		}
+		items = findItems();
+	}
+	// Active tab: the first with active:true, else the first tab.
+	let activeIdx = tabs.findIndex((t) => t && t.active);
+	if (activeIdx < 0) activeIdx = 0;
+	// Label + active per item, re-resolving the item before each write.
+	for (let i = 0; i < tabs.length; i++) {
+		const cur = findItems()[i];
+		if (!cur) break;
+		const cp = cur.componentProperties || {};
+		const labelKey = Object.keys(cp).find(
+			(k) => cp[k] && cp[k].type === 'TEXT'
+		);
+		const activeKey = Object.keys(cp).find(
+			(k) => cp[k] && cp[k].type === 'VARIANT' && /active/i.test(k)
+		);
+		const props = {};
+		if (labelKey)
+			props[labelKey] = String(tabs[i].label ?? 'Tab ' + (i + 1));
+		if (activeKey) props[activeKey] = i === activeIdx ? 'True' : 'False';
+		if (Object.keys(props).length) {
+			try {
+				cur.setProperties(props);
+			} catch {}
+		}
+	}
+	// Fill the single (active) Tab Panel with the active tab's body content.
+	if (node.content) {
+		const panel = safe(
+			() =>
+				inst.findOne(
+					(n) => n.type === 'INSTANCE' && /tab panel/i.test(n.name)
+				),
+			null
+		);
+		if (panel) {
+			const slot =
+				safe(
+					() =>
+						panel.findOne(
+							(n) => n.type === 'SLOT' && /children/i.test(n.name)
+						),
+					null
+				) || safe(() => panel.findOne((n) => n.type === 'SLOT'), null);
+			if (slot) {
+				const kids = Array.isArray(node.content)
+					? node.content
+					: [node.content];
+				for (const ch of kids) await renderNode(ch, slot);
+			}
+		}
+	}
 	return inst;
 }
 

@@ -108,6 +108,11 @@ async function buildHeadingComponent(node) {
 		);
 	if (node.content != null) setInstanceLabel(inst, node.content);
 	if (node.fills) await bindInnerTextFill(inst, node.fills);
+	// Semantic coloring via the adaptive MODE (not a fixed color): recolors the bound text
+	// fill to the semantic palette (e.g. "Successful" → green). Applied AFTER the fill is
+	// bound so the variable resolves in the new mode. See buildBodyComponent for the emphasis
+	// caveat (emphasis-100 stays near-black in color modes).
+	if (node.semantic) await setSemantic(inst, node.semantic);
 	return inst;
 }
 /* Text (Concept): Size=Small|(Def) Medium|Large|xLarge|2xLarge|3xLarge, Text Align. */
@@ -127,8 +132,34 @@ async function buildBodyComponent(node) {
 			TEXT_ALIGN_LABELS[String(node.align).toLowerCase()] ?? node.align
 		);
 	if (node.content != null) setInstanceLabel(inst, node.content);
+	// Bold body: the Text (Concept) component has NO weight variant, so a bold body is
+	// achieved by applying the registered bold text style (small → body.sm.bold, otherwise
+	// body.bold) to the inner text node. This keeps it a registered DB style (no raw font).
+	// Used e.g. for a Topline (Small + Bold + emphasis-100).
+	if (node.bold || node.weight === 'bold')
+		await applyBodyBold(inst, node.size);
 	if (node.fills) await bindInnerTextFill(inst, node.fills);
+	// Semantic coloring via the adaptive MODE (not a fixed color): recolors the bound text
+	// fill to the semantic palette (e.g. "Successful" → green, on-time times). Applied AFTER
+	// the fill is bound so the variable resolves in the chosen mode.
+	// EMPHASIS CAVEAT: on-bg/basic/emphasis-100 (color.text.strong) resolves near-BLACK even
+	// in a color mode. For a VISIBLE colored text use a lower-emphasis fill —
+	// color.text.muted (emphasis-80) is the AA-safe choice (e.g. green punctuality times);
+	// emphasis-70 (color.icon) is brighter but reserved for icons, not text.
+	if (node.semantic) await setSemantic(inst, node.semantic);
 	return inst;
+}
+async function applyBodyBold(inst, size) {
+	const key = /small/i.test(String(size || ''))
+		? TEXT_STYLE_KEYS['body.sm.bold']
+		: TEXT_STYLE_KEYS['body.bold'];
+	if (!key) return;
+	try {
+		const txt = inst.findOne((n) => n.type === 'TEXT');
+		if (!txt) return;
+		const style = await figma.importStyleByKeyAsync(key);
+		await txt.setTextStyleIdAsync(style.id);
+	} catch {}
 }
 /* Transparent placeholder image asset used by the DB example modules — Figma renders it as
  * the checkerboard "no image inserted yet" state. It is a document-global image hash, valid
@@ -245,10 +276,21 @@ function setInstanceFields(inst, fields) {
 async function applyProps(inst, map) {
 	if (!map || typeof map !== 'object') return;
 	const cp = inst.componentProperties ?? {};
+	const cpKeys = Object.keys(cp);
+	// Match on the property's NAME PART (before the "#id" suffix), preferring an EXACT
+	// normalized match, then a name-prefix, then the legacy full-key substring. This stops
+	// "Label" from greedily matching "Show Label" (both contain "label") — a real DB form
+	// field has BOTH "✏️ Label" (TEXT) and "👁️ Show Label" (BOOLEAN), so a substring match
+	// would set the wrong one and leave the visible label untouched.
+	const namePart = (k) => normName(String(k).split('#')[0]);
 	const textVarProps = {};
+	const swaps = []; // [propKey, componentOrSetKeyString] — applied AFTER the batch
 	for (const [want, val] of Object.entries(map)) {
 		const norm = normName(want);
-		const key = Object.keys(cp).find((k) => normName(k).includes(norm));
+		const key =
+			cpKeys.find((k) => namePart(k) === norm) ||
+			cpKeys.find((k) => namePart(k).startsWith(norm)) ||
+			cpKeys.find((k) => normName(k).includes(norm));
 		if (!key) continue; // unknown key — skip silently (never throw for optional overrides)
 		const type = cp[key]?.type;
 		if (type === 'TEXT' || type === 'VARIANT') {
@@ -256,24 +298,156 @@ async function applyProps(inst, map) {
 		} else if (type === 'BOOLEAN') {
 			textVarProps[key] = val === true || val === 'true';
 		} else if (type === 'INSTANCE_SWAP') {
-			// val = a component key string; import and swap
-			try {
-				const set = await figma.importComponentSetByKeyAsync(
-					String(val)
-				);
-				const comp =
-					set.type === 'COMPONENT_SET'
-						? (set.defaultVariant ?? set.children[0])
-						: set;
-				textVarProps[key] = { type: 'COMPONENT', key: comp.key };
-			} catch {
-				// If the key is invalid, skip (don't break the whole render)
-			}
+			// Defer instance swaps: batching them into setProperties can throw and
+			// drop the OTHER props (e.g. a "Show Icon" boolean) with them. Apply
+			// them separately below via applyInstanceSwap (robust: string-key route
+			// with a size-matched swapComponent fallback). `val` may be a raw
+			// component/component_set key OR a DB Theme icon name (resolved here).
+			swaps.push([key, iconKeyByName(String(val)) || String(val)]);
 		}
 	}
 	if (Object.keys(textVarProps).length) {
 		try {
-			inst.setProperties(textVarProps);
+			inst.setProperties(textVarProps); // boolean/text/variant first (e.g. Show Icon Leading)
+		} catch {}
+	}
+	for (const [propKey, keyVal] of swaps) {
+		await applyInstanceSwap(inst, propKey, keyVal);
+	}
+}
+/* applyInstanceSwap — set ONE instance-swap property robustly.
+ *
+ * The Figma API's setProperties route for INSTANCE_SWAP is brittle: passing an
+ * object ({type:'COMPONENT',key}) is rejected, and even a bare component-key
+ * string is refused for library icon component_sets ("incompatible with component
+ * property type"). The reliable path is to locate the CHILD instance node the
+ * swap property drives (via componentPropertyReferences.mainComponent) and call
+ * swapComponent() on it. `keyVal` may be a COMPONENT key or a COMPONENT_SET key;
+ * for a set we pick the size variant matching the icon currently in that slot so
+ * a "Medium" button keeps its icon size (and a "Small" button its smaller one). */
+async function applyInstanceSwap(inst, propKey, keyVal) {
+	// The child instance whose main component is bound to this swap property AND is
+	// currently visible (the active size variant — e.g. "Icon Leading Medium" when
+	// the button Size is Medium; the hidden "Small" one is skipped).
+	const child = safe(
+		() =>
+			inst.findOne(
+				(n) =>
+					n.type === 'INSTANCE' &&
+					n.visible &&
+					safe(
+						() => n.componentPropertyReferences?.mainComponent,
+						null
+					) === propKey
+			),
+		null
+	);
+	// Resolve the target: a component directly, else a set → size-matched variant.
+	let target = null;
+	try {
+		target = await figma.importComponentByKeyAsync(keyVal);
+	} catch {}
+	if (!target) {
+		let set = null;
+		try {
+			set = await figma.importComponentSetByKeyAsync(keyVal);
+		} catch {}
+		if (set) {
+			let curName = '';
+			if (child) {
+				const cur = await safe(
+					() => child.getMainComponentAsync(),
+					null
+				);
+				curName = cur ? cur.name : '';
+			}
+			const pick =
+				(set.children || []).find((c) => c.name === curName) ||
+				(set.children || []).find((c) => /size=24/i.test(c.name)) ||
+				set.defaultVariant ||
+				(set.children || [])[0];
+			if (pick) {
+				try {
+					target = await figma.importComponentByKeyAsync(pick.key);
+				} catch {}
+			}
+		}
+	}
+	if (!target) return;
+	// Route 1: property key string (works for most non-icon swaps).
+	try {
+		inst.setProperties({ [propKey]: target.key });
+		return;
+	} catch {}
+	// Route 2: swap the child instance node directly (library icons need this).
+	if (child) {
+		try {
+			child.swapComponent(target);
+		} catch {}
+	}
+}
+/* setButtonIcon — first-class leading/trailing icon for a Button (`side` =
+ * 'leading' | 'trailing'). Enables the "Show Icon <side>" boolean, then swaps the
+ * ACTIVE (visible, size-correct) icon child to the requested DB Theme icon —
+ * resolved by NAME via ICON_KEYS (e.g. "calendar") or a raw component/set key.
+ * Auto-targets whichever swap slot matches the button's current Size (Medium vs
+ * Small), so callers never guess "Icon Leading Medium" vs "…Small". Call AFTER
+ * applyProps so the Size variant is already applied. */
+async function setButtonIcon(inst, ref, side) {
+	if (!ref) return;
+	const cp = inst.componentProperties || {};
+	const showKey = Object.keys(cp).find((k) =>
+		new RegExp('show icon ' + side, 'i').test(k)
+	);
+	if (showKey) {
+		try {
+			inst.setProperties({ [showKey]: true });
+		} catch {}
+	}
+	const key = iconKeyByName(String(ref)) || String(ref);
+	const re = new RegExp('icon ' + side, 'i');
+	const child = safe(
+		() =>
+			inst.findOne(
+				(n) =>
+					n.type === 'INSTANCE' &&
+					n.visible &&
+					re.test(
+						safe(
+							() => n.componentPropertyReferences?.mainComponent,
+							''
+						) || ''
+					)
+			),
+		null
+	);
+	if (!child) return;
+	let target = null;
+	let set = null;
+	try {
+		set = await figma.importComponentSetByKeyAsync(key);
+	} catch {}
+	if (set) {
+		const cur = await safe(() => child.getMainComponentAsync(), null);
+		const curName = cur ? cur.name : '';
+		const pick =
+			(set.children || []).find((c) => c.name === curName) ||
+			(set.children || []).find((c) => /size=24/i.test(c.name)) ||
+			set.defaultVariant ||
+			(set.children || [])[0];
+		if (pick) {
+			try {
+				target = await figma.importComponentByKeyAsync(pick.key);
+			} catch {}
+		}
+	} else {
+		try {
+			target = await figma.importComponentByKeyAsync(key);
+		} catch {}
+	}
+	if (target) {
+		try {
+			child.swapComponent(target);
 		} catch {}
 	}
 }

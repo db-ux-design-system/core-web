@@ -108,7 +108,18 @@ const normName = (s) =>
  * VARIANT option available on a property — tolerant of the "(Def)" prefix, which differs
  * per component (Section's default Spacing is "(Def) Medium", Card's is "(Def) Small").
  * A hardcoded label map is wrong for one of them; matching the real variantOptions is not.
- * Falls back to the raw value if nothing matches. */
+ * GOTCHA: imported LIBRARY instances (e.g. Card) do NOT expose `variantOptions` — the list
+ * comes back empty, so we cannot match against the real options. Returning the raw lower-
+ * case value then silently no-ops in setProperties (Figma needs the exact-cased label like
+ * "Large", not "large") and the instance keeps its default (the "card padding = Small" bug).
+ * When no options are available we therefore title-case the friendly value so it matches the
+ * canonical Figma label. */
+function titleCaseLabel(want) {
+	return String(want)
+		.split(/\s+/)
+		.map((w) => (w ? w.charAt(0).toUpperCase() + w.slice(1) : w))
+		.join(' ');
+}
 function resolveVariantLabel(prop, want) {
 	const opts = (prop && prop.variantOptions) || [];
 	const target = normName(want);
@@ -116,7 +127,8 @@ function resolveVariantLabel(prop, want) {
 	return (
 		opts.find((o) => strip(o) === target) ||
 		opts.find((o) => normName(o) === target) ||
-		want
+		// No variantOptions (library instance): title-case so the exact-cased label matches.
+		(opts.length === 0 ? titleCaseLabel(want) : want)
 	);
 }
 
@@ -212,6 +224,26 @@ function fillWidth(node) {
 function hugWidth(node) {
 	try {
 		node.layoutSizingHorizontal = 'HUG';
+	} catch {}
+}
+/* Hug a TEXT-carrying COMPONENT (Heading/Body) down to its glyph width. Setting HUG on the
+ * instance alone is NOT enough: the concept Heading is a vertical auto-layout frame whose inner
+ * TEXT node defaults to FILL (layoutGrow 1, textAutoResize HEIGHT), so the frame keeps a large
+ * width (~736) and a "hug" column built around it collapses its fill-sibling and overlaps. The
+ * inner text must ALSO be set to HUG for the instance to shrink to the text. Call this together
+ * with hugWidth() whenever a Heading/Body should be content-tight (e.g. inside a hug row/column).
+ * Only touches inner TEXT nodes, so it is safe to call on any instance (no-op without text). */
+function hugTextWidth(node) {
+	try {
+		const texts =
+			typeof node.findAll === 'function'
+				? node.findAll((n) => n.type === 'TEXT')
+				: [];
+		for (const t of texts) {
+			try {
+				t.layoutSizingHorizontal = 'HUG';
+			} catch {}
+		}
 	} catch {}
 }
 function fillHeight(node) {

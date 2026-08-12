@@ -1,0 +1,803 @@
+{
+	"_meta": {
+		"schema": "db-ux/example/v1",
+		"pageType": "dashboard",
+		"origin": "guideline-authored",
+		"purpose": "Canonical BENTO dashboard (R=md, dense). ONE canvas work Section holding: header row (h1 + description + primary actions, fill-left/hug-right) → inline critical alert → KPI grid (4 stat cards) → bento row A (66-33: region breakdown list-panel + compact chart-panel) → bento row B (50-50: incidents list-panel + activity list-panel). DENSITY/STYLE REFERENCE ONLY.",
+		"designNotes": "A dashboard is a GRID of self-titled panels on ONE background, NOT a stack of full-width titled zebra sections. Every panel is an elevation-1 Card that owns its own h4 title; no per-panel h2 headers, no zebra. KPIs on top; heterogeneous panels side by side via column splits; charts compact in the narrow column; dense data as list panels; alerts inline under the header.",
+		"spacingModel": "R = md. Grouped stacks = sm (R−1); tight inline pairs = xs (R−2); card padding / header→content = md; panels & rows = lg. Section spacing 'small', full width, single canvas.",
+		"colorModel": "emphasis-100 for headings AND values; labels Small+Bold+muted; meta muted; delta/trend tinted via semantic; trend Icon fills color.icon (emphasis-70)."
+	},
+	"screen": "DB UX Dashboard",
+	"width": 1440,
+	"variables": [
+		"color.background.canvas",
+		"color.text.strong",
+		"color.text.muted",
+		"color.icon"
+	],
+	"layout": [
+		{
+			"type": "Header",
+			"appName": "Betriebszentrale",
+			"navItems": ["Übersicht", "Verbindungen", "Störungen", "Berichte"]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.canvas",
+			"contentWidth": "(Def) Full",
+			"spacing": "small",
+			"gap": "lg",
+			"children": [
+				{
+					"type": "ContainerHorizontal",
+					"align": "top-left",
+					"children": [
+						{
+							"type": "ContainerVertical",
+							"gap": "sm",
+							"align": "left",
+							"children": [
+								{
+									"type": "Heading",
+									"as": "h1",
+									"content": "Betriebs-Dashboard",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Body",
+									"size": "(Def) Medium",
+									"content": "Live-Kennzahlen und Meldungen im Streckennetz.",
+									"fills": "color.text.muted"
+								}
+							]
+						},
+						{
+							"type": "ContainerHorizontal",
+							"gap": "sm",
+							"align": "left",
+							"hugWidth": true,
+							"children": [
+								{
+									"type": "Button",
+									"props": {
+										"variant": "brand",
+										"iconOnly": false
+									},
+									"label": "Exportieren"
+								},
+								{
+									"type": "Button",
+									"props": {
+										"variant": "outlined",
+										"iconOnly": false
+									},
+									"label": "Zeitraum"
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Notification",
+					"props": { "placement": "standalone", "media": "icon" },
+					"semantic": "Critical",
+					"text": {
+						"headline": "Signalstörung Hannover Hbf",
+						"text": "Auswirkungen auf den Fernverkehr Nord. Ein Krisenteam ist informiert."
+					}
+				},
+				{
+					"type": "Grid",
+					"gridGap": "lg",
+					"children": [
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"bold": true,
+											"content": "Pünktlichkeit",
+											"fills": "color.text.muted"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "94,2 %",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"align": "left",
+											"hugWidth": true,
+											"children": [
+												{
+													"type": "Icon",
+													"name": "arrow_up_right",
+													"size": 20,
+													"fills": "color.icon",
+													"semantic": "Successful"
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "+1,8 %",
+													"fills": "color.text.muted",
+													"semantic": "Successful",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"bold": true,
+											"content": "Aktive Fahrten",
+											"fills": "color.text.muted"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "1.284",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"align": "left",
+											"hugWidth": true,
+											"children": [
+												{
+													"type": "Icon",
+													"name": "arrow_up_right",
+													"size": 20,
+													"fills": "color.icon",
+													"semantic": "Successful"
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "+42",
+													"fills": "color.text.muted",
+													"semantic": "Successful",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"bold": true,
+											"content": "Störungen",
+											"fills": "color.text.muted"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "7",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"align": "left",
+											"hugWidth": true,
+											"children": [
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "−3 ggü. Vortag",
+													"fills": "color.text.muted",
+													"semantic": "Successful",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "sm",
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"bold": true,
+											"content": "Auslastung",
+											"fills": "color.text.muted"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "68 %",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "ContainerHorizontal",
+											"gap": "xs",
+											"align": "left",
+											"hugWidth": true,
+											"children": [
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "−2,1 %",
+													"fills": "color.text.muted",
+													"semantic": "Critical",
+													"hugWidth": true
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Grid",
+					"gridLayout": "66-33",
+					"gridGap": "lg",
+					"children": [
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "md",
+									"align": "left",
+									"children": [
+										{
+											"type": "ContainerVertical",
+											"gap": "sm",
+											"align": "left",
+											"children": [
+												{
+													"type": "Heading",
+													"as": "h4",
+													"content": "Pünktlichkeit nach Region",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "Aktueller Stand je Region.",
+													"fills": "color.text.muted"
+												}
+											]
+										},
+										{
+											"type": "ContainerVertical",
+											"gap": "md",
+											"align": "left",
+											"children": [
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "Nord",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "Hamburg · Hannover · Bremen",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "91,4 %",
+																	"fills": "color.text.strong",
+																	"hugWidth": true
+																},
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "−1,2 %",
+																	"semantic": "Critical"
+																}
+															]
+														}
+													]
+												},
+												{ "type": "Divider" },
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "West",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "Köln · Düsseldorf · Dortmund",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "95,8 %",
+																	"fills": "color.text.strong",
+																	"hugWidth": true
+																},
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "+2,1 %",
+																	"semantic": "Successful"
+																}
+															]
+														}
+													]
+												},
+												{ "type": "Divider" },
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "Süd",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "München · Stuttgart · Nürnberg",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "96,3 %",
+																	"fills": "color.text.strong",
+																	"hugWidth": true
+																},
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "+0,7 %",
+																	"semantic": "Successful"
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "md",
+									"align": "left",
+									"children": [
+										{
+											"type": "ContainerVertical",
+											"gap": "sm",
+											"align": "left",
+											"children": [
+												{
+													"type": "Heading",
+													"as": "h4",
+													"content": "Verkehrsmittel-Mix",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "Letzte 24 Stunden",
+													"fills": "color.text.muted"
+												}
+											]
+										},
+										{
+											"type": "Image",
+											"ratio": "16:9",
+											"radius": "radius.md",
+											"label": "Verteilung nach Verkehrsmittel"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"type": "Grid",
+					"gridLayout": "50-50",
+					"gridGap": "lg",
+					"children": [
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "md",
+									"align": "left",
+									"children": [
+										{
+											"type": "ContainerVertical",
+											"gap": "sm",
+											"align": "left",
+											"children": [
+												{
+													"type": "Heading",
+													"as": "h4",
+													"content": "Aktuelle Meldungen",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "Offene Störungen und Hinweise.",
+													"fills": "color.text.muted"
+												}
+											]
+										},
+										{
+											"type": "ContainerVertical",
+											"gap": "md",
+											"align": "left",
+											"children": [
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "Signalstörung Hannover Hbf",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "Seit 08:14 · Region Nord",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "Kritisch",
+																	"semantic": "Critical"
+																},
+																{
+																	"type": "Link",
+																	"props": {
+																		"target": "internal",
+																		"brand": false
+																	},
+																	"label": "Details"
+																}
+															]
+														}
+													]
+												},
+												{ "type": "Divider" },
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "Bauarbeiten Köln–Aachen",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "Geplant bis 14:00 · Region West",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "Hinweis",
+																	"semantic": "Warning"
+																},
+																{
+																	"type": "Link",
+																	"props": {
+																		"target": "internal",
+																		"brand": false
+																	},
+																	"label": "Details"
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "medium",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "md",
+									"align": "left",
+									"children": [
+										{
+											"type": "ContainerVertical",
+											"gap": "sm",
+											"align": "left",
+											"children": [
+												{
+													"type": "Heading",
+													"as": "h4",
+													"content": "Letzte Aktivität",
+													"fills": "color.text.strong"
+												},
+												{
+													"type": "Body",
+													"size": "Small",
+													"content": "Automatische Systemereignisse.",
+													"fills": "color.text.muted"
+												}
+											]
+										},
+										{
+											"type": "ContainerVertical",
+											"gap": "md",
+											"align": "left",
+											"children": [
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "Fahrplan aktualisiert",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "07:52 · Automatischer Import",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "Erledigt",
+																	"semantic": "Successful"
+																}
+															]
+														}
+													]
+												},
+												{ "type": "Divider" },
+												{
+													"type": "ContainerHorizontal",
+													"spread": true,
+													"align": "left",
+													"children": [
+														{
+															"type": "ContainerVertical",
+															"gap": "sm",
+															"align": "left",
+															"children": [
+																{
+																	"type": "Body",
+																	"size": "(Def) Medium",
+																	"bold": true,
+																	"content": "Prognose neu berechnet",
+																	"fills": "color.text.strong"
+																},
+																{
+																	"type": "Body",
+																	"size": "Small",
+																	"content": "07:30 · Modell v2.4",
+																	"fills": "color.text.muted"
+																}
+															]
+														},
+														{
+															"type": "ContainerHorizontal",
+															"gap": "sm",
+															"align": "left",
+															"hugWidth": true,
+															"children": [
+																{
+																	"type": "Badge",
+																	"props": {
+																		"content": "text"
+																	},
+																	"label": "Erledigt",
+																	"semantic": "Successful"
+																}
+															]
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

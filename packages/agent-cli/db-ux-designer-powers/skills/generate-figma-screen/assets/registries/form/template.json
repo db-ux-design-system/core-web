@@ -1,0 +1,49 @@
+{
+	"_meta": {
+		"schema": "db-ux/template/v1",
+		"pageType": "form",
+		"origin": "guideline-authored",
+		"purpose": "Page template for a data-entry FORM (application, registration, booking details, contact, settings). A form is NOT a stack of full-width titled zebra sections (content page) and NOT a bento grid of panels (dashboard) — it is ONE narrow, centered single column: a form title on top, a vertical stack of titled FIELDSET groups, and a closing ACTION row (submit + cancel). Compose by mapping each group of related inputs to a fieldset and ordering them by the task flow — NOT by copying examples.json. examples.json is a density/style reference only.",
+		"principles": "Consolidated human-readable design principles live in context/general/layout-type-guidelines/form.md (the SOURCE OF TRUTH for design intent). This registry is the same rules made machine-consumable — keep both in sync.",
+		"spacingModel": "A form has NO fixed R — it INHERITS R from the product it lives in: content/website product → R = lg; application/dashboard product → R = md; dense data application → R = sm. See form/blocks.json → _meta.spacingModel for the full derivation + the per-product resolution table."
+	},
+	"contentWidth": "Small (768)",
+	"sectionSpacing": "medium",
+	"background": "single (color.background.canvas) — NO zebra alternation. A form is ONE focused column, not alternating sections. Optionally wrap the fields in ONE elevation-1 Card (gemeinsame Region) for short forms; long multi-fieldset forms stay plain with space (and optional Dividers) between fieldsets.",
+	"order": ["intro", "fieldsets", "actions"],
+	"structure": "Header (DB app header) → ONE Section (canvas, contentWidth 'Small (768)', spacing = the product's section spacing, titleAs 'h1', title = form name, optional short description) whose children — stacked at the R+2 gap (xl at the md reference) — are: (1) an optional form-level Infotext/Notification (e.g. 'Pflichtfelder sind mit * markiert'), (2) one or more titled FIELDSET groups, (3) the closing ACTION row. All gaps below are shown at the R = md reference; shift them per the product's R (see spacingModel).",
+	"slots": {
+		"intro": {
+			"required": true,
+			"position": "first",
+			"allow": ["form.intro"],
+			"note": "The form header IS the Section's own title (h1) + optional one-line description. An optional form-level Infotext ('Pflichtfelder …') or a Notification (context/error summary) may lead the content. Exactly one intro."
+		},
+		"fieldsets": {
+			"required": true,
+			"position": "middle",
+			"repeatable": true,
+			"minSections": 1,
+			"maxSections": 6,
+			"allow": ["form.fieldset"],
+			"note": "1–6 titled groups of related fields. Each fieldset = a Heading (h2) + optional description + its stacked fields (Input/Select/Textarea/choice-group/consent). Group fields by task meaning (Persönliche Daten, Reisedaten, Kontakt …), never one giant ungrouped list. A short form MAY be a single fieldset (then the h2 can be dropped and the Section h1 carries it)."
+		},
+		"actions": {
+			"required": true,
+			"position": "last",
+			"allow": ["form.actions"],
+			"note": "Exactly one closing action row: the primary submit (Brand, ≤1 per page) plus an optional secondary (ghost/outlined) cancel/back. Never a Brand button per fieldset."
+		}
+	},
+	"rules": [
+		"Header is always the first child (logo = home; no 'Startseite' nav item).",
+		"ONE narrow centered column: contentWidth 'Small (768)', single background, NO zebra. A form is not a content page and not a dashboard.",
+		"Label-above fields: form fields use the label-ABOVE variant (label: 'above'), NOT floating. Floating is for compact action/filter rows (dashboard), not for a stacked data-entry form (screen-guidelines.md → Komponentengrößen).",
+		"Group into fieldsets: related fields sit together under a fieldset Heading (h2). Heading hierarchy: form title h1 → fieldset h2 → inner label/choice-group h3.",
+		"Fields fill the column: every field is fillWidth within the 768 column; do not hand-size field widths. Two SHORT related fields (Vorname/Nachname, PLZ/Ort) MAY share a row via a 50-50 Grid (form.field-row).",
+		"Mark required fields: set applyProps { 'Show Required Asterisk': true } on required Input/Select/Textarea; state the convention once via a form-level Infotext.",
+		"Action hierarchy: the form submit is the page's single primary action (Brand); the secondary (Abbrechen/Zurück) is ghost or outlined. No mid-form Brand buttons, no closing marketing CTA.",
+		"Errors/context are inline Notifications: a form- or fieldset-level error summary is a Notification placed at the top of the intro or the affected fieldset, never its own section.",
+		"Spacing: a form inherits R from its product (content/website → lg, application/dashboard → md, dense data app → sm). Ladder (R-relative): fields to each other within a fieldset = R; fieldset title↔description, field↔helper Infotext, choice-group options = R−1; a fieldset's title-block → its fields = R+1; fieldset ↔ fieldset and section header → content = R+2. Resolve R−n/R+n to concrete gap tokens per the table in blocks.json → _meta.spacingModel."
+	]
+}

@@ -1,0 +1,255 @@
+{
+	"_meta": {
+		"schema": "db-ux/blocks/v1",
+		"pageType": "form",
+		"origin": "guideline-authored",
+		"purpose": "Atomic form blocks, authored to encode the DB UX layout guidelines directly (Spacing-Hierarchie, Gruppierung, Gestaltgesetze) for a focused single-column data-entry form. The recurring unit is a FIELD (a label-above control: Input / Select / Textarea) and a FIELDSET (a titled group of fields). Choice questions are RADIO/CHECKBOX groups; settings are SWITCH rows; agreements are CONSENT checkboxes. form/block-patterns.json composes these into intro / fieldset / actions.",
+		"vocabulary": "Content-element names follow layout-guidelines.md → Contentarten: Headline/Title (fieldset heading), Label (a field's label), Meta/helper (a field's Infotext hint). Use these terms — do NOT invent synonyms.",
+		"spacingModel": "A form has NO fixed base spacing of its own — it INHERITS R from the PRODUCT it lives in (a form is part of a product, and the product sets the density). ANCHORS: a form in a content/website product (public, e.g. bahn.de) inherits that product's R = lg (airy, comfortable, like contentpage); a form in an application / dashboard product (operational, internal) inherits R = md (compact, like dashboard); a very dense data-entry application inherits R = sm. LADDER (R-relative, applied identically at every R): (1) fields to each other WITHIN a fieldset, and card inner padding = R; (2) GROUPED bits — a fieldset title↔description, a field↔its helper Infotext, the options within one radio/checkbox group = R−1; (3) a fieldset's TITLE-BLOCK → its fields region = R+1; (4) fieldset ↔ fieldset, and the section header → the fieldset stack = R+2. RESOLUTION (token per role × product R): content/website product → R lg (grouped md, title→fields xl, groups/header 2xl); application/dashboard product → R md (grouped sm, title→fields lg, groups/header xl); dense data app → R sm (grouped xs, title→fields md, groups/header lg). The block fragments below are written at the R = md (application) REFERENCE; when the form's product is a content/website (R = lg) or a dense app (R = sm), substitute EVERY gap by the same role via this table BEFORE rendering. A field's OWN label↔control spacing is component-internal (the Input/Select renders it) and is NEVER set here. Never go tighter than R−1 for a grouped set (R−2 = the smallest step, reserved for a rare tight inline pair; the scale bottoms out at 2xs, already a valid container gap).",
+		"colorModel": "Text emphasis follows screen-guidelines.md → Typografie: emphasis-100 (color.text.strong) is the DEFAULT — the fieldset Heading AND a radio/checkbox group's question label. A field's own label is rendered by the component. A helper Infotext / meta hint = color.text.muted (80). A form-level hint uses the Infotext component; an error/context summary uses a Notification tinted via semantic. Never Bold + muted.",
+		"authoringRule": "Components (`type`/`props`) MUST resolve in components.json and tokens in tokens.json — structure/spacing come from the guidelines, components/tokens are never invented. A new block is allowed when existing ones do not cover the need, as long as it follows the spacingModel and resolves against the live registries.",
+		"componentNotes": "Field label on Input/Select/Textarea: the label is HIDDEN by default (the '👁️ Show Label' boolean is false), so a label-above field MUST set BOTH applyProps { 'Show Label': true, 'Label': '<text>' } — setting only 'Label' leaves the label invisible. Required: add applyProps { 'Show Required Asterisk': true }; a non-required field sets it false (the default may show the asterisk). Checkbox/Radio/Switch option text: set via the `label` field (their single primary TEXT prop; no Show Label toggle). VARIANT CONSTRAINTS (components.json): Input/Select support label 'above'|'floating' — forms use 'above'; Textarea ships ONLY { label:'above', state:'filled' } (no empty variant — use it as-is, do not approximate); Switch ships ONLY { labelPosition:'trailing', width:'full', size:'small' } or { labelPosition:'leading', width:'full', size:'medium' } — and like Radio/Checkbox it also needs fillWidth:true on the node (the 'full' variant alone still hugs to ~115px and wraps the label); Checkbox/Radio use { size:'medium'|'small', width:'auto'|'full' } — a full-width stacked option uses width:'full' AND fillWidth:true on the node (the 'full' variant alone still lets the instance HUG to ~84px, wrapping the label character-by-character; fillWidth stretches the instance so the label gets the column width).",
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment. The agent expands $ref when authoring the Composition Plan — the render runtime never sees $ref."
+	},
+	"blocks": {
+		"form.text-field": {
+			"origin": "guideline-authored",
+			"purpose": "A single label-above text Input filling the form column. Add applyProps 'Show Required Asterisk' for required fields. For a format hint or error, group it with a helper Infotext at sm (R−1) inside a ContainerVertical; a bare field needs no wrapper.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "Input",
+				"props": { "label": "above", "state": "empty" },
+				"applyProps": {
+					"Show Label": true,
+					"Label": "<Field label>",
+					"Show Required Asterisk": false
+				},
+				"fillWidth": true
+			}
+		},
+		"form.select-field": {
+			"origin": "guideline-authored",
+			"purpose": "A single label-above Select filling the form column — one value from a closed list. Prefer over a radio-group when the list is long or secondary.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "Select",
+				"props": { "label": "above", "state": "empty" },
+				"applyProps": {
+					"Show Label": true,
+					"Label": "<Field label>",
+					"Show Required Asterisk": false
+				},
+				"fillWidth": true
+			}
+		},
+		"form.textarea-field": {
+			"origin": "guideline-authored",
+			"purpose": "A multi-line label-above Textarea filling the form column. NOTE: the DB Textarea ships ONLY the 'Label Above – Filled' variant (components.json), so it always renders in the filled style — set the Label and use it as-is; do NOT approximate an empty state or fake another variant.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "Textarea",
+				"props": { "label": "above", "state": "filled" },
+				"applyProps": { "Show Label": true, "Label": "<Field label>" },
+				"fillWidth": true
+			}
+		},
+		"form.field-row": {
+			"origin": "guideline-authored",
+			"purpose": "Two SHORT related fields side by side (Vorname/Nachname, PLZ/Ort). A 50-50 Grid so both share the column width equally (layout-guidelines.md → aligned equal columns use a Grid, not hug/fill). Only for genuinely short peers — never a long field or a field+button.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "md",
+				"children": [
+					{
+						"type": "Input",
+						"props": { "label": "above", "state": "empty" },
+						"applyProps": {
+							"Show Label": true,
+							"Label": "<Left field>"
+						},
+						"fillWidth": true
+					},
+					{
+						"type": "Input",
+						"props": { "label": "above", "state": "empty" },
+						"applyProps": {
+							"Show Label": true,
+							"Label": "<Right field>"
+						},
+						"fillWidth": true
+					}
+				]
+			}
+		},
+		"form.radio-group": {
+			"origin": "guideline-authored",
+			"purpose": "A single-choice question: a group label (Body bold, emphasis-100) above 2–5 stacked full-width Radios. The label↔options and the options among themselves are a grouped same-question set at sm (R−1). Exactly one option may be preselected via applyProps { 'Checked': 'True' }.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "sm",
+				"align": "left",
+				"children": [
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"bold": true,
+						"content": "<Question label>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Radio",
+						"props": { "size": "medium", "width": "full" },
+						"label": "<Option 1>",
+						"fillWidth": true
+					},
+					{
+						"type": "Radio",
+						"props": { "size": "medium", "width": "full" },
+						"label": "<Option 2>",
+						"fillWidth": true
+					},
+					{
+						"type": "Radio",
+						"props": { "size": "medium", "width": "full" },
+						"label": "<Option 3?>",
+						"fillWidth": true
+					}
+				]
+			}
+		},
+		"form.checkbox-group": {
+			"origin": "guideline-authored",
+			"purpose": "A multi-select question: a group label (Body bold, emphasis-100) above independent full-width Checkboxes. Same sm (R−1) grouping as the radio-group.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "sm",
+				"align": "left",
+				"children": [
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"bold": true,
+						"content": "<Question label>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Checkbox",
+						"props": { "size": "medium", "width": "full" },
+						"label": "<Option 1>",
+						"fillWidth": true
+					},
+					{
+						"type": "Checkbox",
+						"props": { "size": "medium", "width": "full" },
+						"label": "<Option 2>",
+						"fillWidth": true
+					}
+				]
+			}
+		},
+		"form.switch-row": {
+			"origin": "guideline-authored",
+			"purpose": "A single on/off setting as a full-width Switch (trailing label, small — the only trailing variant in components.json). One setting per row; stack several at md (fields to each other) inside a fieldset.",
+			"usedIn": "form.fieldset",
+			"plan": {
+				"type": "Switch",
+				"props": {
+					"labelPosition": "trailing",
+					"width": "full",
+					"size": "small"
+				},
+				"label": "<Setting label>",
+				"fillWidth": true
+			}
+		},
+		"form.consent": {
+			"origin": "guideline-authored",
+			"purpose": "A required agreement as a single full-width Checkbox whose label references the terms. Place near the end, before the action row. Keep the interactive element single (Checkbox) — if the terms need a link, the label wording carries it (a clickable-card-style nested Link inside the checkbox is not built here).",
+			"usedIn": "form.fieldset, before form.actions",
+			"plan": {
+				"type": "Checkbox",
+				"props": { "size": "medium", "width": "full" },
+				"label": "<Ich akzeptiere die AGB und die Datenschutzerklärung.>",
+				"fillWidth": true
+			}
+		},
+		"form.info": {
+			"origin": "guideline-authored",
+			"purpose": "A form-level hint (neutral) as an Infotext, OR an error/context summary as a Notification. The Infotext carries a short convention line ('Pflichtfelder sind mit * markiert'); the Notification (tinted via semantic) summarizes errors/important context. Placed at the top of the intro or the affected fieldset — never as its own section. Notification text props are `headline` + `text` (NOT description).",
+			"usedIn": "form.intro, form.fieldset",
+			"plan": {
+				"type": "Infotext",
+				"props": { "width": "full" },
+				"label": "<Pflichtfelder sind mit * markiert.>"
+			}
+		},
+		"form.fieldset": {
+			"origin": "guideline-authored",
+			"purpose": "A titled group of related fields: a title-block (Heading h2 + optional description at sm, R−1) above a fields region (ContainerVertical, gap md — fields to each other). The title-block → fields gap is lg (R+1). This is the core repeatable form group; stack several at xl (fieldset ↔ fieldset).",
+			"usedIn": "form.body",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"align": "left",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "sm",
+						"align": "left",
+						"children": [
+							{
+								"type": "Heading",
+								"as": "h2",
+								"content": "<Fieldset title>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Body",
+								"size": "(Def) Medium",
+								"content": "<Fieldset description?>",
+								"fills": "color.text.muted"
+							}
+						]
+					},
+					{
+						"type": "ContainerVertical",
+						"gap": "md",
+						"align": "left",
+						"children": [
+							{ "$ref": "form.text-field" },
+							{ "$ref": "form.text-field" }
+						]
+					}
+				]
+			}
+		},
+		"form.actions": {
+			"origin": "guideline-authored",
+			"purpose": "The closing action row: the primary submit (Brand, ≤1 per page) plus an optional secondary (ghost/outlined) cancel/back. A hug ContainerHorizontal (buttons size to their labels) as a same-kind action group at sm (R−2 relative to a content page; here sm keeps the pair tight). Brand primary first, secondary after.",
+			"usedIn": "form.body (last)",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"align": "left",
+				"hugWidth": true,
+				"children": [
+					{
+						"type": "Button",
+						"props": { "variant": "brand", "iconOnly": false },
+						"label": "<Absenden>"
+					},
+					{
+						"type": "Button",
+						"props": { "variant": "ghost", "iconOnly": false },
+						"label": "<Abbrechen?>"
+					}
+				]
+			}
+		}
+	}
+}

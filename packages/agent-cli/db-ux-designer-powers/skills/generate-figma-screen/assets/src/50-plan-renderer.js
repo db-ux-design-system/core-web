@@ -10,15 +10,19 @@ async function renderNode(node, parent) {
 		case 'Heading': {
 			const h = await buildHeadingComponent(node);
 			parent.appendChild(h);
-			if (node.hugWidth) hugWidth(h);
-			else fillWidth(h);
+			if (node.hugWidth) {
+				hugWidth(h);
+				hugTextWidth(h); // Heading only shrinks if its inner TEXT also hugs
+			} else fillWidth(h);
 			return h;
 		}
 		case 'Body': {
 			const b = await buildBodyComponent(node);
 			parent.appendChild(b);
-			if (node.hugWidth) hugWidth(b);
-			else fillWidth(b);
+			if (node.hugWidth) {
+				hugWidth(b);
+				hugTextWidth(b);
+			} else fillWidth(b);
 			return b;
 		}
 		case 'Header': {
@@ -28,9 +32,27 @@ async function renderNode(node, parent) {
 			return h;
 		}
 		case 'Divider': {
+			// The Divider component carries a `Variant` axis (Horizontal | Vertical) and an
+			// `Emphasis` axis. Default is a HORIZONTAL rule that FILLS its container width.
+			// `orientation: "vertical"` selects the Vertical variant and stretches it to FILL
+			// the parent's HEIGHT (hug width) — a full-bleed panel separator between two
+			// columns in a horizontal container (e.g. journey ↔ price/action panel). For a
+			// full-bleed divider the surrounding Card/Section padding must be off (handled by
+			// per-column padding), so the rule touches both edges.
 			const d = await createLibraryInstance('Divider');
 			parent.appendChild(d);
-			fillWidth(d);
+			if (node.orientation === 'vertical') {
+				setVariant(d, 'Variant', 'Vertical');
+				try {
+					d.layoutSizingHorizontal = 'HUG';
+				} catch {}
+				try {
+					d.layoutSizingVertical = 'FILL';
+				} catch {}
+			} else {
+				fillWidth(d);
+			}
+			if (node.emphasis) setVariant(d, 'Emphasis', node.emphasis);
 			return d;
 		}
 		case 'Button': {
@@ -41,7 +63,18 @@ async function renderNode(node, parent) {
 			await ensureFonts();
 			if (node.label) setInstanceLabel(b, node.label);
 			if (node.applyProps) await applyProps(b, node.applyProps);
+			// First-class icons: `iconLeading`/`iconTrailing` accept a DB Theme icon
+			// name (e.g. "calendar") or a raw key. Applied AFTER applyProps so the
+			// active icon slot follows the button Size (e.g. Small → smaller icon).
+			if (node.iconLeading)
+				await setButtonIcon(b, node.iconLeading, 'leading');
+			if (node.iconTrailing)
+				await setButtonIcon(b, node.iconTrailing, 'trailing');
 			parent.appendChild(b);
+			// A Button HUGS its label by default. `fillWidth: true` stretches it to the
+			// container width (label centers) — use for the PRIMARY action in a fixed-width
+			// action column (e.g. a "Weiter" button spanning the price/action panel).
+			if (node.fillWidth) fillWidth(b);
 			return b;
 		}
 		case 'Tag': {
@@ -88,11 +121,12 @@ async function renderNode(node, parent) {
 					node.align === 'center' || node.align === 'top-center';
 				const cAlign = centered ? 'center' : undefined;
 				const tAlign = centered ? 'center' : undefined;
-				// Title↔description sit in ONE header group with a small gap ("xs", NOT "2xs" —
-				// 2xs reads as cramped/broken). Override with node.headerGap only if needed.
+				// Title↔description are the elements of ONE content block (the section header),
+				// so they sit at R (lg) per the Spacing-Hierarchie (layout-guidelines.md).
+				// Override with node.headerGap only if needed.
 				const heading = {
 					type: 'ContainerVertical',
-					gap: node.headerGap ?? 'xs',
+					gap: node.headerGap ?? 'lg',
 					align: cAlign,
 					children: []
 				};
@@ -109,21 +143,74 @@ async function renderNode(node, parent) {
 						type: 'Body',
 						size: node.descriptionSize ?? '(Def) Medium',
 						content: node.description,
-						fills: 'color.text.weak',
+						// Standard body text is emphasis-100 (screen-guidelines.md → Typografie:
+						// "100 ist Standard; 90/80 nur für bewusst abgeschwächten Text"). Hierarchy
+						// to the title comes from weight/size, not a muted color.
+						fills: node.descriptionFill ?? 'color.text.strong',
 						align: tAlign
 					});
+				// Section header → content region sits one step above the content-block gap
+				// (blocks-to-each-other = R+1 = xl → header = R+2 = 2xl), staying the largest
+				// separation inside the section (Gesetz der Nähe). Centered hero / closing-CTA
+				// sections are a single centered message (title + subline + action), NOT a
+				// header+content split, so they stay tight (lg). Override per-section with node.gap.
+				// In a centered section (hero / closing CTA) the text must read centered too:
+				// direct Heading/Body children (e.g. a hero subline) inherit center text-align
+				// unless they set their own `align`. Cloned so the source plan is never mutated.
+				const kids = (node.children ?? []).map((ch) =>
+					centered &&
+					ch &&
+					(ch.type === 'Heading' || ch.type === 'Body') &&
+					ch.align == null
+						? { ...ch, align: 'center' }
+						: ch
+				);
 				const outer = {
 					type: 'ContainerVertical',
-					gap: node.gap ?? 'lg',
+					gap: node.gap ?? (centered ? 'lg' : '2xl'),
 					align: cAlign,
-					children: [heading, ...(node.children ?? [])]
+					children: [heading, ...kids]
 				};
 				const slot = freshSlot(s, 'Children');
 				await renderNode(outer, slot);
 			} else {
-				await renderChildrenIntoSlot(s, 'Children', node.children);
+				// No header — but the Section's own "Children" slot does NOT apply the plan
+				// `gap` (its internal itemSpacing is ~0), so direct children would touch (e.g.
+				// a hero Image sitting flush on the card below it, or a summary Card flush on a
+				// following hint). Wrap the children in a ContainerVertical that carries the
+				// gap so an untitled Section separates its content blocks just like a titled
+				// one. Default xl = content-blocks-to-each-other (R+1); override via node.gap.
+				const centered =
+					node.align === 'center' || node.align === 'top-center';
+				const cAlign = centered ? 'center' : undefined;
+				const kids = (node.children ?? []).map((ch) =>
+					centered &&
+					ch &&
+					(ch.type === 'Heading' || ch.type === 'Body') &&
+					ch.align == null
+						? { ...ch, align: 'center' }
+						: ch
+				);
+				const wrap = {
+					type: 'ContainerVertical',
+					gap: node.gap ?? 'xl',
+					align: cAlign,
+					children: kids
+				};
+				const slot = freshSlot(s, 'Children');
+				await renderNode(wrap, slot);
 			}
 			return s;
+		}
+		case 'Tabs': {
+			// DB Tabs (Beta) composite — see buildTabs. props → variant, tabs[] → Tab Item
+			// labels + active, content → the active Tab Panel body. Fills width by default
+			// (a tabbed panel spans its container); pass hugWidth for an auto-width tab strip.
+			const t = await buildTabs(node);
+			parent.appendChild(t);
+			if (node.hugWidth) hugWidth(t);
+			else fillWidth(t);
+			return t;
 		}
 		case 'Card': {
 			const c = await buildCard(node);
@@ -144,6 +231,12 @@ async function renderNode(node, parent) {
 		case 'ContainerVertical': {
 			const c = buildContainer(node, 'vertical');
 			parent.appendChild(c);
+			// Optional surface: bind a fill (a colored bar/panel) + radius, and/or a semantic
+			// MODE that recolors the container's bound token + its subtree. Lets a colored
+			// surface be pure-plan (no custom edit) — e.g. a dark line bar or a tinted panel.
+			if (node.fills) await bindFill(c, node.fills);
+			if (node.radius) await bindRadius(c, node.radius);
+			if (node.semantic) await setSemantic(c, node.semantic);
 			if (node.hugWidth) hugWidth(c);
 			else fillWidth(c);
 			// When a vertical container FILLs the row height (e.g. the trailing action column
@@ -164,6 +257,9 @@ async function renderNode(node, parent) {
 		case 'ContainerHorizontal': {
 			const c = buildContainer(node, 'horizontal');
 			parent.appendChild(c);
+			if (node.fills) await bindFill(c, node.fills);
+			if (node.radius) await bindRadius(c, node.radius);
+			if (node.semantic) await setSemantic(c, node.semantic);
 			if (node.hugWidth) hugWidth(c);
 			else fillWidth(c);
 			if (node.fillHeight) {
@@ -175,16 +271,16 @@ async function renderNode(node, parent) {
 			await renderChildrenIntoSlot(c, 'Slot', node.children);
 			// GESTALT / full-width rows: `spread` makes the row use the FULL card width and
 			// pushes the two ends apart (info left, status/action right) instead of packing
-			// everything to the left (which leaves dead whitespace and cramps long text into a
-			// narrow column). The row's Slot is stretched to FILL + SPACE_BETWEEN; pair with a
-			// trailing child marked `hugWidth` so only the leading block grows. Re-fetch the
-			// slot fresh (ids regenerate on mutation).
+			// everything to the left. The DB-native mechanism is the container's Gap "auto"
+			// variant (SPACE_BETWEEN) — already applied in buildContainer when node.spread is
+			// set. Here we only stretch the Slot to FILL so the row spans the full width for
+			// the distribution to have room; pair with a trailing child marked `hugWidth` so
+			// only the leading block grows. Re-fetch the slot fresh (ids regenerate on mutation).
 			if (node.spread) {
 				try {
 					const sl = freshSlot(c, 'Slot');
 					sl.layoutSizingHorizontal = 'FILL';
 					sl.primaryAxisSizingMode = 'FIXED';
-					sl.primaryAxisAlignItems = 'SPACE_BETWEEN';
 				} catch {}
 			} else if (!node.hugWidth) {
 				// The container fills its parent width, but the local ContainerHorizontal's
@@ -208,7 +304,16 @@ async function renderNode(node, parent) {
 			// Column count comes from an explicit `gridLayout` ("50-50" | "33-66" | "66-33" | "320-auto" | ...)
 			// or is derived from the child count; >4 children default to a 4-column wrap.
 			const kids = node.children ?? [];
-			const gap = node.gridGap ?? '(Def) md';
+			// Normalize the gap token to the Grid's Gap VARIANT label — the "md" step is
+			// labelled "(Def) md" on the component (like containers). Without this, gridGap:"md"
+			// fails the {Layout, Gap} variant match in createLocalInstance and silently falls
+			// back to children[0] = the default "(Def) 33-33-33" (3 columns), leaving an empty
+			// trailing slot rendered as a pink image placeholder. Maps md → "(Def) md"; other
+			// tokens (sm/lg/xl/2xl/…) pass through unchanged.
+			const gap =
+				CONTAINER_GAP_LABELS[node.gridGap] ??
+				node.gridGap ??
+				'(Def) md';
 			const byCount = {
 				1: '100',
 				2: '50-50',
@@ -307,6 +412,42 @@ async function renderNode(node, parent) {
 					setVariant(inst, 'Size', String(node.size));
 				} catch {}
 			}
+			// Color: an icon only shows a hue at emphasis-70 (color.icon). At emphasis-100 —
+			// the DB Theme icon default — it stays near-BLACK in EVERY semantic mode, so
+			// setting a mode alone does nothing (screen-guidelines.md → Farbe: "70 nur für
+			// Icons"; layout-guidelines.md → Einfärben). To tint an icon we therefore (1) bind
+			// its glyph fill to the emphasis-70 token, then (2) set the semantic MODE.
+			// `fills` overrides the token explicitly; when only `semantic` is given we auto-drop
+			// to color.icon so the tint is actually visible instead of silently black.
+			const iconTint =
+				node.fills || (node.semantic ? 'color.icon' : null);
+			if (iconTint) {
+				const v = await importVar(iconTint);
+				const paint = figma.variables.setBoundVariableForPaint(
+					figma.util.solidPaint('#000000'),
+					'color',
+					v
+				);
+				// Recolor the glyph's fill layer(s) — the inner vector / masked color
+				// rectangle — NOT the instance frame itself (setting the frame fill would add
+				// a colored background box behind the icon).
+				const glyphs = safe(
+					() =>
+						inst.findAll(
+							(n) => Array.isArray(n.fills) && n.fills.length > 0
+						),
+					[]
+				);
+				for (const g of glyphs) {
+					try {
+						g.fills = [paint];
+					} catch {}
+				}
+			}
+			// Semantic tint: recolors the bound emphasis-70 token to the mode's palette
+			// (e.g. Successful → green, Critical → red). Applied AFTER the emphasis bind so
+			// the mode has a 70-emphasis token to act on.
+			if (node.semantic) await setSemantic(inst, node.semantic);
 			hugWidth(inst);
 			hugHeight(inst);
 			return inst;
@@ -467,14 +608,13 @@ async function renderPlan(plan) {
 		}
 	}
 
-	// GUARD — guard against a DUPLICATE of the SAME screen, but allow ADDITIONAL
-	// (differently-named) screens to be placed side by side on the same page.
-	//  • Same-named frame already present → likely a re-render: STOP and steer to
-	//    applyEdits (in-place edit) or `replace: true` (deliberate rebuild).
-	//  • Only other, differently-named frames present → this is a NEW screen of a
-	//    multi-screen site: fall through and let createScreenRoot place it to the
-	//    RIGHT of the existing frames (gutter via plan.screenGap, default 200px).
-	// `replace: true` still removes the matching (or only) frame and reuses its slot.
+	// GUARD — never DUPLICATE the same screen; place ADDITIONAL (differently-named) screens
+	// side by side. `replace` is SAFE + IDEMPOTENT: it removes ONLY the frame(s) whose name
+	// matches `screen` (a re-render replaces its own twin in place, reusing its position); if
+	// NONE match it places a NEW frame to the right — it NEVER wipes other frames. So you can
+	// pass `replace: true` on EVERY call of a multi-frame batch: first render places new,
+	// re-render replaces in place, no "only the last frame survived" footgun and no
+	// "replace-only-the-first" dance. Use `replaceAll: true` ONLY for a deliberate PAGE WIPE.
 	let reusePos = plan.reuse;
 	const pageFrames = (figma.currentPage.children ?? []).filter(
 		(n) => safe(() => n.type, '') === 'FRAME'
@@ -484,8 +624,7 @@ async function renderPlan(plan) {
 		const named = pageFrames.filter(
 			(f) => safe(() => f.name, '') === wantName
 		);
-		if (plan.replace) {
-			const victims = named.length ? named : pageFrames;
+		const removeFrames = (victims) => {
 			if (victims[0] && !reusePos)
 				reusePos = {
 					x: safe(() => victims[0].x, 0),
@@ -496,27 +635,109 @@ async function renderPlan(plan) {
 					f.remove();
 				} catch {}
 			}
+		};
+		if (plan.replaceAll) {
+			removeFrames(pageFrames); // deliberate PAGE WIPE (rare)
+		} else if (plan.replace) {
+			if (named.length) removeFrames(named); // replace own twin; none → place as new
 		} else if (named.length) {
 			stop(
 				`A frame named "${wantName}" already exists on page "${safe(
 					() => figma.currentPage.name,
 					'?'
-				)}". Do NOT create a duplicate — use applyEdits to patch it in place, or pass { replace: true } for a deliberate rebuild. (Additional, differently-named screens ARE allowed and get placed to the right automatically.)`
+				)}". Do NOT create a duplicate — use applyEdits to patch it in place, pass { replace: true } to rebuild THIS frame (safe: replaces only the same-named frame), or { replaceAll: true } to wipe the page. (Additional, differently-named screens ARE allowed and get placed to the right automatically.)`
 			);
 		}
-		// else: only differently-named frames exist → additional screen, placed to the right.
 	}
 
+	// OVERLAY mode (modal): a screen-sized frame with a Backdrop (Beta) filling it and the
+	// dialog surface CENTERED on top. Used for a modal/dialog — the backdrop provides the
+	// focus/separation, so the dialog Card is a LOW elevation (level 1), not a heavy shadow.
+	// The frame is fixed W×H (default 1440×1024); the backdrop is an ABSOLUTE, screen-filling
+	// child (ignored by the centering auto-layout); the single dialog surface in `layout` is a
+	// normal auto-layout child, centered both axes, resized to a fixed `cardWidth` (default 520).
+	if (plan.overlay) {
+		const W = plan.width ?? 1440;
+		const H = plan.height ?? 1024;
+		const CW = plan.cardWidth ?? 520;
+		const page = figma.currentPage;
+		const root = figma.createFrame();
+		root.name = plan.screen ?? 'Modal';
+		root.resize(W, H);
+		root.layoutMode = 'VERTICAL';
+		root.primaryAxisSizingMode = 'FIXED';
+		root.counterAxisSizingMode = 'FIXED';
+		root.primaryAxisAlignItems = 'CENTER'; // vertical center
+		root.counterAxisAlignItems = 'CENTER'; // horizontal center
+		root.clipsContent = true;
+		root.fills = [];
+		page.appendChild(root);
+		if (reusePos && typeof reusePos.x === 'number') {
+			root.x = reusePos.x;
+			root.y = reusePos.y;
+		} else {
+			let maxRight = 0,
+				has = false;
+			for (const n of page.children) {
+				if (
+					n !== root &&
+					typeof n.x === 'number' &&
+					typeof n.width === 'number'
+				) {
+					maxRight = Math.max(maxRight, n.x + n.width);
+					has = true;
+				}
+			}
+			const gutter =
+				typeof plan.screenGap === 'number' && plan.screenGap >= 0
+					? plan.screenGap
+					: 200;
+			root.x = has ? maxRight + gutter : 0;
+			root.y = 0;
+		}
+		// Backdrop: an absolute, screen-filling layer behind the dialog.
+		try {
+			const bd = await createLibraryInstance('Backdrop', {});
+			root.appendChild(bd);
+			try {
+				bd.layoutPositioning = 'ABSOLUTE';
+			} catch {}
+			try {
+				bd.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
+			} catch {}
+			try {
+				bd.x = 0;
+				bd.y = 0;
+				bd.resize(W, H);
+			} catch {}
+		} catch {}
+		// Dialog surface: centered auto-layout child at a fixed card width (hug height).
+		let surface = null;
+		for (const node of plan.layout) surface = await renderNode(node, root);
+		if (surface)
+			try {
+				surface.layoutSizingHorizontal = 'FIXED';
+				surface.resize(CW, surface.height);
+			} catch {}
+		const auditO = await auditTree(root, { module: true });
+		return { root, rootId: root.id, audit: auditO };
+	}
+
+	// MODULE mode: render a single reusable block/section on its own (no Header, no page
+	// zebra) — e.g. a search module, a card, one section — for building a component/module
+	// library instead of a whole screen. Default width is the medium content column (1024)
+	// rather than a full 1440 page, so a module frame is sized like the block it holds.
+	const isModule = !!plan.module;
 	const root = createScreenRoot(
-		plan.screen ?? 'Screen',
-		plan.width,
+		plan.screen ?? (isModule ? 'Module' : 'Screen'),
+		plan.width ?? (isModule ? 1024 : undefined),
 		reusePos,
 		plan.screenGap
 	);
 	for (const node of plan.layout) await renderNode(node, root);
 	hugHeight(root); // final: root hugs total content height
 
-	const audit = await auditTree(root);
+	const audit = await auditTree(root, { module: isModule });
 	return { root, rootId: root.id, audit };
 }
 

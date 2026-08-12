@@ -1,0 +1,480 @@
+{
+	"_meta": {
+		"schema": "db-ux/example/v1",
+		"pageType": "contentpage",
+		"origin": "guideline-authored",
+		"purpose": "Canonical reference composition for a content page, authored to demonstrate the DB UX layout guidelines with the R=lg spacing model. Structure: hero (centered heading + optional subline + Brand/Filled group) → media-text rows (alternating) → image-teaser feature grid → card-teaser grid → wide highlight card → closing CTA. DENSITY/STYLE REFERENCE ONLY — compose real pages by SELECTING sections via sections.json and drawing patterns from block-patterns.json / blocks.json, not by copying this skeleton.",
+		"spacingModel": "R = lg. Elements in a block, a VERTICAL Visual→content, card padding and section title↔description = lg; content blocks to each other (horizontal AND vertical) = xl; section header → content = 2xl. EXCEPTION: a HORIZONTAL Visual→text (media-text row's 50-50 grid) = xl. A vertical image-teaser is a single flat lg block (image stacked as a normal element).",
+		"colorModel": "emphasis-100 (color.text.strong) is the default for headings AND body/description copy; a Topline is Small + Bold + emphasis-100; only Meta uses color.text.muted (80). See blocks.json → _meta.colorModel.",
+		"conventions": "Concept Heading/Body (never raw Text). Centered contentWidth 'Medium (1024)'. Hero = centered Heading + optional subline + button group (Brand primary + optional Filled secondary); centered sections auto-center their text children. Teaser = Topline? + Heading + description + optional Tag+meta + Link, one flat block at R (lg). Feature/teaser grids use image-top teasers (flat lg) or card teasers; grid gap = xl (content blocks). Media-text rows alternate image side; 50-50 grid, gridGap xl (horizontal visual→text exception); stacked rows at xl; text column fillHeight, inner gap lg. Closing CTA = centered Heading + a single Brand Button. Zebra: canvas → surface. Section title = h2; teaser/media-text headings = h3, compact card titles = h4. Header shows app name + other pages (no 'Startseite'); meta-nav + action icons off."
+	},
+	"screen": "DB UX Contentpage",
+	"width": 1440,
+	"variables": [
+		"color.background.canvas",
+		"color.background.surface",
+		"color.text.strong",
+		"color.text.muted"
+	],
+	"layout": [
+		{
+			"type": "Header",
+			"appName": "DB UX Design System",
+			"navItems": ["Übersicht", "Komponenten", "Tokens", "Support"]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.canvas",
+			"contentWidth": "Medium (1024)",
+			"align": "center",
+			"titleAs": "h1",
+			"title": "Design once. Ship everywhere.",
+			"children": [
+				{
+					"type": "Body",
+					"size": "Large",
+					"content": "Ein durchgängiges Design System – von den Tokens bis zum fertigen Screen.",
+					"fills": "color.text.strong"
+				},
+				{
+					"type": "ContainerHorizontal",
+					"gap": "sm",
+					"hugWidth": true,
+					"children": [
+						{
+							"type": "Button",
+							"props": { "variant": "brand", "iconOnly": false },
+							"label": "Loslegen"
+						},
+						{
+							"type": "Button",
+							"props": { "variant": "filled", "iconOnly": false },
+							"label": "Komponenten ansehen"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.surface",
+			"contentWidth": "Medium (1024)",
+			"title": "Vom Token bis zum Screen",
+			"description": "Ein durchgängiges System – von den Grundlagen bis zur fertigen Oberfläche.",
+			"headerGap": "lg",
+			"gap": "2xl",
+			"children": [
+				{
+					"type": "ContainerVertical",
+					"gap": "xl",
+					"children": [
+						{
+							"type": "Grid",
+							"gridLayout": "50-50",
+							"gridGap": "xl",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "lg",
+									"fillHeight": true,
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"bold": true,
+											"content": "Grundlagen",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "Design Tokens als Fundament",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Farben, Abstände und Typografie zentral definiert und überall konsistent angewendet.",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Link",
+											"props": {
+												"target": "internal",
+												"brand": false
+											},
+											"label": "Tokens ansehen"
+										}
+									]
+								},
+								{
+									"type": "Image",
+									"ratio": "16:9",
+									"radius": "radius.md",
+									"label": "Token-Übersicht"
+								}
+							]
+						},
+						{
+							"type": "Grid",
+							"gridLayout": "50-50",
+							"gridGap": "xl",
+							"children": [
+								{
+									"type": "Image",
+									"ratio": "16:9",
+									"radius": "radius.md",
+									"label": "Komponenten-Bibliothek"
+								},
+								{
+									"type": "ContainerVertical",
+									"gap": "lg",
+									"fillHeight": true,
+									"align": "left",
+									"children": [
+										{
+											"type": "Body",
+											"size": "Small",
+											"bold": true,
+											"content": "Bausteine",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "Komponenten für jedes Framework",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Dieselbe API und dasselbe Verhalten – egal ob Angular, React, Vue oder Web Components.",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Link",
+											"props": {
+												"target": "internal",
+												"brand": false
+											},
+											"label": "Komponenten öffnen"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.canvas",
+			"contentWidth": "Medium (1024)",
+			"title": "Warum DB UX?",
+			"description": "Alles, was Teams für konsistente Produkte brauchen.",
+			"headerGap": "lg",
+			"gap": "2xl",
+			"children": [
+				{
+					"type": "Grid",
+					"gridGap": "xl",
+					"children": [
+						{
+							"type": "ContainerVertical",
+							"gap": "lg",
+							"align": "left",
+							"children": [
+								{
+									"type": "Image",
+									"ratio": "16:9",
+									"radius": "radius.md",
+									"label": "Framework-Logos"
+								},
+								{
+									"type": "Heading",
+									"as": "h3",
+									"content": "Framework-agnostisch",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Body",
+									"size": "(Def) Medium",
+									"content": "Angular, React, Vue und Web Components aus einer Quelle.",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Link",
+									"props": {
+										"target": "internal",
+										"brand": false
+									},
+									"label": "Mehr erfahren"
+								}
+							]
+						},
+						{
+							"type": "ContainerVertical",
+							"gap": "lg",
+							"align": "left",
+							"children": [
+								{
+									"type": "Image",
+									"ratio": "16:9",
+									"radius": "radius.md",
+									"label": "Design Tokens"
+								},
+								{
+									"type": "Heading",
+									"as": "h3",
+									"content": "Token-basiert",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Body",
+									"size": "(Def) Medium",
+									"content": "Design Tokens für Farben, Abstände und Typografie.",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Link",
+									"props": {
+										"target": "internal",
+										"brand": false
+									},
+									"label": "Mehr erfahren"
+								}
+							]
+						},
+						{
+							"type": "ContainerVertical",
+							"gap": "lg",
+							"align": "left",
+							"children": [
+								{
+									"type": "Image",
+									"ratio": "16:9",
+									"radius": "radius.md",
+									"label": "Barrierefreiheit"
+								},
+								{
+									"type": "Heading",
+									"as": "h3",
+									"content": "Barrierefrei",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Body",
+									"size": "(Def) Medium",
+									"content": "WCAG-konforme Komponenten out of the box.",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Link",
+									"props": {
+										"target": "internal",
+										"brand": false
+									},
+									"label": "Mehr erfahren"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.surface",
+			"contentWidth": "Medium (1024)",
+			"title": "Ressourcen",
+			"description": "Alles zum Loslegen und Vertiefen.",
+			"headerGap": "lg",
+			"gap": "2xl",
+			"children": [
+				{
+					"type": "Grid",
+					"gridGap": "xl",
+					"children": [
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "large",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "lg",
+									"align": "left",
+									"children": [
+										{
+											"type": "Heading",
+											"as": "h4",
+											"content": "Erste Schritte",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Installation, Setup und dein erster Screen.",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Link",
+											"props": {
+												"target": "internal",
+												"brand": false
+											},
+											"label": "Guide öffnen"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "large",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "lg",
+									"align": "left",
+									"children": [
+										{
+											"type": "Heading",
+											"as": "h4",
+											"content": "Komponenten-Doku",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Props, Varianten und Beispiele je Komponente.",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Link",
+											"props": {
+												"target": "internal",
+												"brand": false
+											},
+											"label": "Zur Doku"
+										}
+									]
+								}
+							]
+						},
+						{
+							"type": "Card",
+							"props": { "elevationLevel": "1" },
+							"spacing": "large",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "lg",
+									"align": "left",
+									"children": [
+										{
+											"type": "Heading",
+											"as": "h4",
+											"content": "Support",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Fragen, Feedback und Kontakt zum Team.",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Link",
+											"props": {
+												"target": "internal",
+												"brand": false
+											},
+											"label": "Kontakt"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.canvas",
+			"contentWidth": "Medium (1024)",
+			"title": "Im Fokus",
+			"description": "Ein Blick auf ein aktuelles Highlight.",
+			"headerGap": "lg",
+			"gap": "2xl",
+			"children": [
+				{
+					"type": "Card",
+					"props": { "elevationLevel": "1" },
+					"spacing": "large",
+					"children": [
+						{
+							"type": "Grid",
+							"gridLayout": "50-50",
+							"gridGap": "xl",
+							"children": [
+								{
+									"type": "ContainerVertical",
+									"gap": "lg",
+									"fillHeight": true,
+									"align": "left",
+									"children": [
+										{
+											"type": "Heading",
+											"as": "h3",
+											"content": "Neu: Dark Mode für alle Komponenten",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Body",
+											"size": "(Def) Medium",
+											"content": "Adaptive Farb-Modi ohne zusätzlichen Aufwand – automatisch über die Design Tokens.",
+											"fills": "color.text.strong"
+										},
+										{
+											"type": "Link",
+											"props": {
+												"target": "internal",
+												"brand": false
+											},
+											"label": "Zum Release"
+										}
+									]
+								},
+								{
+									"type": "Image",
+									"ratio": "16:9",
+									"radius": "radius.md",
+									"label": "Dark Mode Vorschau"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Section",
+			"fills": "color.background.surface",
+			"contentWidth": "Medium (1024)",
+			"align": "center",
+			"title": "Bereit für konsistente Produkte?",
+			"children": [
+				{
+					"type": "Button",
+					"props": { "variant": "brand", "iconOnly": false },
+					"label": "Dokumentation öffnen"
+				}
+			]
+		}
+	]
+}

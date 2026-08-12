@@ -1,0 +1,101 @@
+{
+	"_meta": {
+		"schema": "db-ux/example/v1",
+		"pageType": "modal",
+		"origin": "guideline-authored",
+		"purpose": "Canonical CONFIRMATION dialog (R = md reference), delivered via the runtime OVERLAY MODE: a screen-sized frame (1440×1024) with a Backdrop (Beta) filling it and a Card (elevation 1) centered on top (cardWidth 520). The Card holds a header (h2 title + one-line description), a body (a leading Notification tinted Critical WITHOUT a close X + a short question), and a right-aligned action row (ghost 'Abbrechen' + Brand 'Endgültig löschen'). DENSITY/STYLE REFERENCE ONLY — do not copy as a skeleton.",
+		"designNotes": "A modal is a backdrop overlay, NOT a page: no Header, no zebra, no bento. The Backdrop provides separation, so the dialog Card is elevation 1 (NOT 3 — Level 3 only piles on shadow). All primary copy — title, description AND body message — is color.text.strong (emphasis-100), NOT muted: in a dialog the text IS the primary content. ≤1 Brand action; no danger button variant exists, so a destructive confirm is Brand + severe wording ('Endgültig löschen') with a leading Notification (semantic Critical, closeable:false — no X inside the dialog). The action row is RIGHT-ALIGNED (align 'right'), secondary (ghost) first → primary (Brand) rightmost, as is conventional for dialogs. The runtime overlay mode adds the Backdrop and centers the Card; the plan `layout` is just the Card.",
+		"spacingModel": "A modal inherits R from its product (content/website → lg, application/dashboard → md, dense data app → sm) and skews compact. This example is at the R = md REFERENCE, and (per layout-guidelines.md) the Card inner padding and the regions-to-each-other use the SAME step R: Card padding = md (16) AND the three regions (header/body/footer) to each other = md (16) — they match, so nothing is spaced further from itself than from the card edge. Grouped bits (title↔description, footer button pair) = sm (R−1, 12); elements within a region (Notification↔question) = md (R). Substitute every gap per modal/blocks.json → _meta.spacingModel when the product differs.",
+		"colorModel": "emphasis-100 (color.text.strong) for ALL primary copy — the dialog title, the description AND the body message/question (the message is primary content, not a muted caption). emphasis-80 (color.text.muted) only for rare secondary helper/meta text. The Notification is tinted via semantic 'Critical' and closeable:false; the Card surface (elevation 1) is NOT recolored; the Backdrop provides the dim."
+	},
+	"screen": "DB UX Dialog — Löschen bestätigen",
+	"overlay": true,
+	"width": 1440,
+	"height": 1024,
+	"cardWidth": 520,
+	"variables": ["color.text.strong", "color.text.muted"],
+	"layout": [
+		{
+			"type": "Card",
+			"props": { "elevationLevel": "1" },
+			"spacing": "medium",
+			"children": [
+				{
+					"type": "ContainerVertical",
+					"gap": "md",
+					"align": "left",
+					"children": [
+						{
+							"type": "ContainerVertical",
+							"gap": "sm",
+							"align": "left",
+							"children": [
+								{
+									"type": "Heading",
+									"as": "h2",
+									"content": "Verbindung löschen",
+									"fills": "color.text.strong"
+								},
+								{
+									"type": "Body",
+									"size": "(Def) Medium",
+									"content": "Diese gespeicherte Verbindung wird aus Ihrem Konto entfernt.",
+									"fills": "color.text.strong"
+								}
+							]
+						},
+						{
+							"type": "ContainerVertical",
+							"gap": "md",
+							"align": "left",
+							"children": [
+								{
+									"type": "Notification",
+									"props": {
+										"placement": "standalone",
+										"media": "icon"
+									},
+									"semantic": "Critical",
+									"applyProps": { "Closeable": false },
+									"text": {
+										"headline": "Aktion nicht umkehrbar",
+										"text": "Diese Aktion kann nicht rückgängig gemacht werden."
+									}
+								},
+								{
+									"type": "Body",
+									"size": "(Def) Medium",
+									"content": "Möchten Sie die Verbindung Berlin Hbf → München Hbf wirklich endgültig löschen?",
+									"fills": "color.text.strong"
+								}
+							]
+						},
+						{
+							"type": "ContainerHorizontal",
+							"gap": "sm",
+							"align": "right",
+							"children": [
+								{
+									"type": "Button",
+									"props": {
+										"variant": "ghost",
+										"iconOnly": false
+									},
+									"label": "Abbrechen"
+								},
+								{
+									"type": "Button",
+									"props": {
+										"variant": "brand",
+										"iconOnly": false
+									},
+									"label": "Endgültig löschen"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

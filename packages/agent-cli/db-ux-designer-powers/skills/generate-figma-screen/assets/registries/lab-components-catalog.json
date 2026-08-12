@@ -1,0 +1,908 @@
+{
+	"_meta": {
+		"source": "knowledge-database/lab-components/",
+		"generatedAt": "2026-08-03",
+		"note": "Concept/pre-release components. Use only when concept_components is enabled."
+	},
+	"components": {
+		"breadcrumb": {
+			"name": "breadcrumb",
+			"maturity": "Concept",
+			"id": "breadcrumb",
+			"displayName": "Breadcrumb",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Small",
+						"Medium"
+					],
+					"figmaPropName": "Size"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"breadcrumb-item"
+			]
+		},
+		"button-group": {
+			"name": "button-group",
+			"maturity": "Concept",
+			"id": "button-group",
+			"displayName": "ButtonGroup",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "variant",
+					"type": "enum",
+					"values": [
+						"(Def) Outlined",
+						"Filled"
+					],
+					"figmaPropName": "Variant"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "width",
+					"type": "enum",
+					"values": [
+						"(Def) Auto",
+						"Full"
+					],
+					"figmaPropName": "Width"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"button-group-item"
+			]
+		},
+		"calendar": {
+			"name": "calendar",
+			"maturity": "Concept",
+			"id": "calendar",
+			"displayName": "Calendar",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "variant",
+					"type": "enum",
+					"values": [
+						"(Def) Days",
+						"Years",
+						"Months"
+					],
+					"figmaPropName": "Variant"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"calendar-header",
+				"calendar-item",
+				"calendar-views"
+			]
+		},
+		"container": {
+			"name": "container",
+			"maturity": "Concept",
+			"id": "container",
+			"displayName": "Container",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "slot",
+					"type": "slot",
+					"figmaPropName": "Slot"
+				},
+				{
+					"name": "align",
+					"type": "enum",
+					"values": [
+						"bottom-center",
+						"bottom-left",
+						"center",
+						"top-right",
+						"top-left",
+						"top-center",
+						"left",
+						"bottom-right",
+						"right"
+					],
+					"figmaPropName": "Align"
+				},
+				{
+					"name": "gap",
+					"type": "enum",
+					"values": [
+						"(Def) md",
+						"3xs",
+						"2xs",
+						"xs",
+						"sm",
+						"lg",
+						"xl",
+						"2xl",
+						"3xl",
+						"None",
+						"auto"
+					],
+					"figmaPropName": "Gap"
+				},
+				{
+					"name": "direction",
+					"type": "enum",
+					"values": [
+						"(Def) Vertical",
+						"Horizontal"
+					],
+					"figmaPropName": "Direction"
+				},
+				{
+					"name": "padding",
+					"type": "enum",
+					"values": [
+						"(Def) None",
+						"3xs",
+						"2xs",
+						"xs",
+						"sm",
+						"md",
+						"lg",
+						"xl",
+						"2xl",
+						"3xl"
+					],
+					"figmaPropName": "Padding"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"dialog": {
+			"name": "dialog",
+			"maturity": "Concept",
+			"id": "dialog",
+			"displayName": "Dialog",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "backdrop",
+					"type": "boolean",
+					"default": true,
+					"figmaPropName": "Backdrop"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"dialog-footer",
+				"dialog-header"
+			]
+		},
+		"dynamic-button": {
+			"name": "dynamic-button",
+			"maturity": "Concept",
+			"id": "dynamic-button",
+			"displayName": "DynamicButton",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "state",
+					"type": "enum",
+					"values": [
+						"A",
+						"B"
+					],
+					"figmaPropName": "State"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"footer": {
+			"name": "footer",
+			"maturity": "Concept",
+			"id": "footer",
+			"displayName": "Footer",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "showCopyright",
+					"type": "boolean",
+					"default": true,
+					"figmaPropName": "Show Copyright"
+				},
+				{
+					"name": "copyright",
+					"type": "string",
+					"default": "© Deutsche Bahn AG",
+					"figmaPropName": "✏️ Copyright"
+				},
+				{
+					"name": "showMain",
+					"type": "boolean",
+					"default": true,
+					"figmaPropName": "Show Main"
+				},
+				{
+					"name": "showMeta",
+					"type": "boolean",
+					"default": true,
+					"figmaPropName": "Show Meta"
+				},
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "meta.Children",
+					"type": "slot",
+					"figmaPropName": "Meta.Children"
+				},
+				{
+					"name": "contentWidth",
+					"type": "enum",
+					"values": [
+						"Full",
+						"Large 1440",
+						"Medium 1024",
+						"Small 768"
+					],
+					"figmaPropName": "Content Width"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"grid": {
+			"name": "grid",
+			"maturity": "Concept",
+			"id": "grid",
+			"displayName": "Grid",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "gap",
+					"type": "enum",
+					"values": [
+						"(Def) md",
+						"None",
+						"3xs",
+						"2xs",
+						"xs",
+						"sm",
+						"lg",
+						"xl",
+						"2xl",
+						"3xl"
+					],
+					"figmaPropName": "Gap"
+				},
+				{
+					"name": "layout",
+					"type": "enum",
+					"values": [
+						"(Def) 33-33-33",
+						"100",
+						"50-50",
+						"25-25-25-25",
+						"33-66",
+						"66-33",
+						"25-75",
+						"75-25",
+						"320-auto"
+					],
+					"figmaPropName": "Layout"
+				},
+				{
+					"name": "fill",
+					"type": "enum",
+					"values": [
+						"false",
+						"true"
+					],
+					"figmaPropName": "fill"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"heading": {
+			"name": "heading",
+			"maturity": "Concept",
+			"id": "heading",
+			"displayName": "Heading",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "text",
+					"type": "string",
+					"default": "Heading",
+					"figmaPropName": "✏️ Text"
+				},
+				{
+					"name": "paragraphSpacing",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "Paragraph Spacing"
+				},
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "start",
+					"type": "slot",
+					"figmaPropName": "Start"
+				},
+				{
+					"name": "showStartSlot",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "🎨 Show Start Slot"
+				},
+				{
+					"name": "showChildrenSlot",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "🎨 Show Children Slot"
+				},
+				{
+					"name": "as",
+					"type": "enum",
+					"values": [
+						"h1",
+						"h2",
+						"h3",
+						"h4",
+						"h5",
+						"h6"
+					],
+					"figmaPropName": "As"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Default Mapping",
+						"3xLarge",
+						"2xLarge",
+						"xLarge",
+						"Large",
+						"Medium",
+						"Small",
+						"xSmall",
+						"2xSmall",
+						"3xSmall"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "fontWeight",
+					"type": "enum",
+					"values": [
+						"(Def) Black",
+						"Light"
+					],
+					"figmaPropName": "Font Weight"
+				},
+				{
+					"name": "textAlign",
+					"type": "enum",
+					"values": [
+						"(Def) Left",
+						"Center",
+						"Right"
+					],
+					"figmaPropName": "Text Align"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"list": {
+			"name": "list",
+			"maturity": "Concept",
+			"id": "list",
+			"displayName": "List",
+			"status": "concept",
+			"since": null,
+			"properties": [],
+			"hasGuidelines": true,
+			"subComponents": [
+				"list-divider",
+				"list-item",
+				"list-teaser-item",
+				"list-title",
+				"list-vertical-item"
+			]
+		},
+		"loading-indicator": {
+			"name": "loading-indicator",
+			"maturity": "Concept",
+			"id": "loading-indicator",
+			"displayName": "LoadingIndicator",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "label",
+					"type": "string",
+					"default": "Label",
+					"figmaPropName": "✏️ Label"
+				},
+				{
+					"name": "showLabel",
+					"type": "boolean",
+					"default": true,
+					"figmaPropName": "Show Label"
+				},
+				{
+					"name": "orientation",
+					"type": "enum",
+					"values": [
+						"(Def) Vertical",
+						"Horizontal"
+					],
+					"figmaPropName": "Orientation"
+				},
+				{
+					"name": "state",
+					"type": "enum",
+					"values": [
+						"(Def) Active",
+						"(Def) Inactive",
+						"Successful",
+						"Critical"
+					],
+					"figmaPropName": "State"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small",
+						"Large"
+					],
+					"figmaPropName": "Size"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"loading-indicator-bar",
+				"loading-indicator-circle"
+			]
+		},
+		"pagination": {
+			"name": "pagination",
+			"maturity": "Concept",
+			"id": "pagination",
+			"displayName": "Pagination",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "position",
+					"type": "enum",
+					"values": [
+						"(Def) Start",
+						"Center",
+						"End"
+					],
+					"figmaPropName": "🎨 Position"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"pagination-item",
+				"pagination-truncation-item"
+			]
+		},
+		"pulse": {
+			"name": "pulse",
+			"maturity": "Concept",
+			"id": "pulse",
+			"displayName": "Pulse",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "spacingMultiline",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "Spacing multiline"
+				},
+				{
+					"name": "as",
+					"type": "enum",
+					"values": [
+						"h1",
+						"h2",
+						"h3",
+						"h4",
+						"h5",
+						"h6"
+					],
+					"figmaPropName": "As"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Default Mapping",
+						"3xLarge",
+						"2xLarge",
+						"xLarge",
+						"Large",
+						"Medium",
+						"Small",
+						"xSmall",
+						"2xSmall",
+						"3xs"
+					],
+					"figmaPropName": "Size"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"segmented-button": {
+			"name": "segmented-button",
+			"maturity": "Concept",
+			"id": "segmented-button",
+			"displayName": "SegmentedButton",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "variant",
+					"type": "enum",
+					"values": [
+						"(Def) White",
+						"Grey"
+					],
+					"figmaPropName": "Variant"
+				}
+			],
+			"hasGuidelines": true,
+			"subComponents": [
+				"segmented-button-item"
+			]
+		},
+		"split-button": {
+			"name": "split-button",
+			"maturity": "Concept",
+			"id": "split-button",
+			"displayName": "SplitButton",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "open",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "Open"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "variant",
+					"type": "enum",
+					"values": [
+						"(Def) Outlined",
+						"Filled",
+						"Brand"
+					],
+					"figmaPropName": "Variant"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"text": {
+			"name": "text",
+			"maturity": "Concept",
+			"id": "text",
+			"displayName": "Text",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "text",
+					"type": "string",
+					"default": "Text",
+					"figmaPropName": "✏️ Text"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small",
+						"3xLarge",
+						"2xLarge",
+						"xLarge",
+						"Large",
+						"xSmall",
+						"2xSmall",
+						"3xSmall"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "textAlign",
+					"type": "enum",
+					"values": [
+						"(Def) Left",
+						"Center",
+						"Right"
+					],
+					"figmaPropName": "Text Align"
+				},
+				{
+					"name": "maxWidth",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small",
+						"Large",
+						"None"
+					],
+					"figmaPropName": "Max Width"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"toggle-button": {
+			"name": "toggle-button",
+			"maturity": "Concept",
+			"id": "toggle-button",
+			"displayName": "ToggleButton",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "showIconLeading",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "Show Icon Leading"
+				},
+				{
+					"name": "text",
+					"type": "string",
+					"default": "Text",
+					"figmaPropName": "✏️ Text"
+				},
+				{
+					"name": "iconLeadingMedium",
+					"type": "any",
+					"figmaPropName": "🔄 Icon Leading Medium"
+				},
+				{
+					"name": "iconLeadingSmall",
+					"type": "any",
+					"figmaPropName": "🔄 Icon Leading Small"
+				},
+				{
+					"name": "showIconTrailing",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "Show Icon Trailing"
+				},
+				{
+					"name": "iconTrailingMedium",
+					"type": "any",
+					"figmaPropName": "🔄 Icon Trailing Medium"
+				},
+				{
+					"name": "iconTrailingSmall",
+					"type": "any",
+					"figmaPropName": "🔄 Icon Trailing Small"
+				},
+				{
+					"name": "children",
+					"type": "slot",
+					"figmaPropName": "Children"
+				},
+				{
+					"name": "showChildrenSlot",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "🎨 Show Children Slot"
+				},
+				{
+					"name": "checked",
+					"type": "enum",
+					"values": [
+						"False",
+						"True"
+					],
+					"figmaPropName": "Checked"
+				},
+				{
+					"name": "variant",
+					"type": "enum",
+					"values": [
+						"Ghost",
+						"Filled",
+						"Outlined"
+					],
+					"figmaPropName": "Variant"
+				},
+				{
+					"name": "interactionState",
+					"type": "enum",
+					"values": [
+						"(Def) Enabled",
+						"Hovered",
+						"Pressed",
+						"Focused",
+						"None"
+					],
+					"figmaPropName": "🎨 Interaction State"
+				},
+				{
+					"name": "disabled",
+					"type": "enum",
+					"values": [
+						"False",
+						"True"
+					],
+					"figmaPropName": "Disabled"
+				},
+				{
+					"name": "size",
+					"type": "enum",
+					"values": [
+						"(Def) Medium",
+						"Small"
+					],
+					"figmaPropName": "Size"
+				},
+				{
+					"name": "width",
+					"type": "enum",
+					"values": [
+						"(Def) Auto",
+						"Full"
+					],
+					"figmaPropName": "Width"
+				},
+				{
+					"name": "noText",
+					"type": "enum",
+					"values": [
+						"False",
+						"True"
+					],
+					"figmaPropName": "No Text"
+				}
+			],
+			"hasGuidelines": true
+		},
+		"upload": {
+			"name": "upload",
+			"maturity": "Concept",
+			"id": "upload",
+			"displayName": "Upload",
+			"status": "concept",
+			"since": null,
+			"properties": [
+				{
+					"name": "endSlot",
+					"type": "slot",
+					"figmaPropName": "End Slot"
+				},
+				{
+					"name": "showEndSlot",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "🎨 Show End Slot"
+				},
+				{
+					"name": "startSlot",
+					"type": "slot",
+					"figmaPropName": "Start Slot"
+				},
+				{
+					"name": "showStartSlot",
+					"type": "boolean",
+					"default": false,
+					"figmaPropName": "🎨 Show Start Slot"
+				},
+				{
+					"name": "showButton",
+					"type": "boolean",
+					"default": true,
+					"figmaPropName": "Show Button"
+				},
+				{
+					"name": "text",
+					"type": "string",
+					"default": "Label",
+					"figmaPropName": "Text"
+				},
+				{
+					"name": "interactionStates",
+					"type": "enum",
+					"values": [
+						"(Def) Enabled",
+						"Hovered",
+						"Pressed",
+						"Focused"
+					],
+					"figmaPropName": "🎨 Interaction States"
+				},
+				{
+					"name": "direction",
+					"type": "enum",
+					"values": [
+						"(Def) Vertical",
+						"Horizontal"
+					],
+					"figmaPropName": "Direction"
+				}
+			],
+			"hasGuidelines": true
+		}
+	}
+}

@@ -1,2 +1,2 @@
-figma.root.setSharedPluginData("dbuxRuntime","meta","{\"count\":6,\"sha\":\"d8cd68aaa708\",\"chunk\":7000,\"bytes\":39574}");
+figma.root.setSharedPluginData("dbuxRuntime","meta","{\"count\":7,\"sha\":\"0da6ee130220\",\"chunk\":7000,\"bytes\":47016}");
 return figma.root.getSharedPluginData("dbuxRuntime","meta");

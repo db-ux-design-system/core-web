@@ -1,0 +1,196 @@
+{
+	"_meta": {
+		"schema": "db-ux/blocks/v1",
+		"pageType": "contentpage",
+		"origin": "guideline-authored",
+		"purpose": "Atomic content-page blocks, authored to encode the DB UX layout guidelines directly (Spacing-Hierarchie, Gruppierung, Gestaltgesetze) rather than mirroring a possibly-outdated Figma capture. The recurring content unit is a TEASER (optional topline + heading + description + optional Tag+meta + Link); it appears alone, inside a Card, led by an Image (top), or beside an Image (media-text row). contentpage/block-patterns.json composes these into section-level patterns.",
+		"vocabulary": "Content-element names follow layout-guidelines.md → Contentarten: Topline/Category/Label (short text ABOVE the headline, gives context/category), Headline, Subline, Body/Description, Meta/Subtext (date/author/status). Use these terms — do NOT use synonyms like 'kicker' or 'eyebrow' for a Topline.",
+		"spacingModel": "Base regular spacing R = lg. SPACING LADDER: (1) grouped same-kind micro-items (Tag+meta in a row, hero button group) = R−2 (sm); (2) elements within ONE content block — INCLUDING a VERTICAL (stacked) Visual→content, the section title↔description block, and card inner padding = R (lg); (3) content blocks to each other, BOTH horizontal and vertical = R+1 (xl); (4) section header block → its content region = R+2 (2xl). EXCEPTION: a HORIZONTAL Visual→content (image beside text, e.g. a media-text row's 50-50 grid) uses R+1 (xl) — a sideways visual needs one step more separation than stacked elements. So a VERTICAL image-teaser is a single flat block at R (lg) with the image as just another element; a HORIZONTAL media-text row separates image and text at R+1 (xl). R−1 (md) is reserved for a tighter label bound to a primary element and is used sparingly.",
+		"colorModel": "Text emphasis follows screen-guidelines.md → Typografie: emphasis-100 (color.text.strong) is the DEFAULT for content text — headings AND body/description copy. A TOPLINE is Body size Small + BOLD + emphasis-100 (bold pairs with strong color per 'Bold mit starker Farbe (100)'); it reads as a label via weight/size, not a muted color. The ONLY deliberately de-emphasized text is Meta/caption = color.text.muted (80). color.text.weak (90) is reserved for rare, intentional de-emphasis and is NOT a default. Note: a Topline that names a CATEGORY may instead be rendered as a Tag (layout-guidelines.md → 'Topline als Kategorie kann als Tag dargestellt werden').",
+		"authoringRule": "Components (`type`/`props`) MUST resolve in components.json and tokens in tokens.json — structure/spacing come from the guidelines, components/tokens are never invented. A new block is allowed when existing ones do not cover the need, as long as it follows the spacingModel and resolves against the live registries.",
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment. The agent expands $ref when authoring the Composition Plan — the render runtime never sees $ref."
+	},
+	"blocks": {
+		"contentpage.teaser": {
+			"origin": "guideline-authored",
+			"purpose": "The core content-page teaser text block: an optional Topline (Small, bold, category/label), a Heading, a description, an optional Tag + meta row, and a single navigation Link. Reused inside cards, image teasers and media-text rows. All direct elements share ONE gap (R = lg) — one flat content block, no nested tighter subgroups (layout-guidelines.md → Gruppierung). The Tag+meta row is a same-kind horizontal group and is tightened internally (xs).",
+			"usedIn": "contentpage.teaser-card, contentpage.image-teaser, contentpage.media-text-block",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"align": "left",
+				"children": [
+					{
+						"type": "Body",
+						"size": "Small",
+						"bold": true,
+						"content": "<Topline?>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Heading",
+						"as": "h3",
+						"content": "<Title>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Description>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "ContainerHorizontal",
+						"gap": "xs",
+						"children": [
+							{
+								"type": "Tag",
+								"props": {
+									"icon": false,
+									"emphasis": "weak",
+									"behavior": "static"
+								},
+								"label": "<Tag?>",
+								"hugWidth": true
+							},
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Meta?>",
+								"fills": "color.text.muted",
+								"hugWidth": true
+							}
+						]
+					},
+					{
+						"type": "Link",
+						"props": { "target": "internal", "brand": false },
+						"label": "<Mehr erfahren?>"
+					}
+				]
+			}
+		},
+		"contentpage.teaser-card": {
+			"origin": "guideline-authored",
+			"purpose": "A teaser wrapped in an elevation-1 Card: compact Heading (h4) + description + Link. Used in a card grid. Card inner padding = R (Spacing 'large' ≈ lg); the flat teaser text inside also uses R (lg). TOP-aligned; auto equal-height in a grid.",
+			"usedIn": "contentpage.feature-grid",
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "large",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "lg",
+						"align": "left",
+						"children": [
+							{
+								"type": "Heading",
+								"as": "h4",
+								"content": "<Title>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Body",
+								"size": "(Def) Medium",
+								"content": "<Description>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Link",
+								"props": {
+									"target": "internal",
+									"brand": false
+								},
+								"label": "<Mehr erfahren?>"
+							}
+						]
+					}
+				]
+			}
+		},
+		"contentpage.image-teaser": {
+			"origin": "guideline-authored",
+			"purpose": "A teaser led by an Image on top, followed by heading + description + Link. Used in a teaser/feature grid. VERTICAL layout: the Visual→content is R (lg), the same as elements-to-each-other — so this is ONE flat block at R (lg) with the image as just another stacked element. (Contrast media-text-block, where the image sits HORIZONTALLY beside the text at R+1.)",
+			"usedIn": "contentpage.feature-grid",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"align": "left",
+				"children": [
+					{
+						"type": "Image",
+						"ratio": "16:9",
+						"radius": "radius.md",
+						"label": "<Alt/label>"
+					},
+					{
+						"type": "Heading",
+						"as": "h3",
+						"content": "<Title>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Description>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Link",
+						"props": { "target": "internal", "brand": false },
+						"label": "<Mehr erfahren?>"
+					}
+				]
+			}
+		},
+		"contentpage.media-text-block": {
+			"origin": "guideline-authored",
+			"purpose": "The text column of a media-text row: optional Topline, a Heading, a description, and a single Link. Vertically centered against the image (fillHeight). The image is a SEPARATE grid cell placed HORIZONTALLY beside this block, so the Visual→text separation is the row's grid gap R+1 (xl, the horizontal exception); inside this flat block the elements use R (lg).",
+			"usedIn": "contentpage.media-text-row",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"fillHeight": true,
+				"align": "left",
+				"children": [
+					{
+						"type": "Body",
+						"size": "Small",
+						"bold": true,
+						"content": "<Topline?>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Heading",
+						"as": "h3",
+						"content": "<Title>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Description>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Link",
+						"props": { "target": "internal", "brand": false },
+						"label": "<Link?>"
+					}
+				]
+			}
+		},
+		"contentpage.image": {
+			"origin": "guideline-authored",
+			"purpose": "A single image using a design-system ratio (never a free pixel height) with a bound radius token.",
+			"plan": {
+				"type": "Image",
+				"ratio": "<1:1|3:4|16:9>",
+				"radius": "radius.md",
+				"label": "<Alt/label>"
+			}
+		}
+	}
+}

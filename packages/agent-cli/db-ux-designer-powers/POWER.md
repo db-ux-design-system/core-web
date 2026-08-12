@@ -26,10 +26,11 @@ The `context/` folder provides design knowledge at two levels:
 
 ### General (universal UI principles)
 
-| File                                   | Content                                                       |
-| -------------------------------------- | ------------------------------------------------------------- |
-| `context/general/design-laws.md`       | Gestalt laws (proximity, similarity, closure, common region)  |
-| `context/general/layout-guidelines.md` | Content types, grouping, spacing hierarchy, layout primitives |
+| File                                      | Content                                                                                                 |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `context/general/design-laws.md`          | Gestalt laws (proximity, similarity, closure, common region)                                            |
+| `context/general/layout-guidelines.md`    | Content types, grouping, spacing hierarchy, layout primitives                                           |
+| `context/general/layout-type-guidelines/` | Consolidated design principles PER layout type (e.g. `dashboard.md`); loaded for the detected page type |
 
 ### Design System (DB UX v3 specific)
 
@@ -45,12 +46,12 @@ Live under `skills/generate-figma-screen/assets/registries/`:
 - **`tokens.json`** — colors, spacing, radius, text styles (bound to Figma Variables/Styles).
 - **`components.json`** — official DB components with variant axes/values.
 - **`icons.json`** — icon name → DB Theme Icons component key.
-- **Per page type** (`dashboard/`, `landingpage/`):
+- **Per page type** (`dashboard/`, `contentpage/`, `form/`, `process/`, `modal/`):
     - `sections.json` — content→section selection table.
     - `template.json` — section order + required/optional/forbidden.
     - `blocks.json` — atomic block fragments.
-    - `block-patterns.json` — section-level patterns (landingpage).
-    - `example.json` / `examples.json` — density/style reference (not a skeleton).
+    - `block-patterns.json` — section-level patterns.
+    - `examples.json` — density/style reference (not a skeleton).
 
 ## Runtime Architecture
 

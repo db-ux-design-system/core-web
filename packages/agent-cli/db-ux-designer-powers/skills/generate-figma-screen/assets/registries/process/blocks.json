@@ -1,0 +1,251 @@
+{
+	"_meta": {
+		"schema": "db-ux/blocks/v1",
+		"pageType": "process",
+		"origin": "guideline-authored",
+		"purpose": "Atomic process/wizard blocks. A process is a SEQUENCE of static step frames; the recurring units are a PROGRESS indicator (stepper or ProgressBar), a STEP HEADER (title + description), STEP CONTENT (reused FORM fieldsets/fields), a STEP NAV row (Back/Next), a SUMMARY ROW (label + value + Ändern) for a review step, and a CONFIRMATION block for the final frame. process/block-patterns.json composes these into a step body and a confirmation screen.",
+		"vocabulary": "Content-element names follow layout-guidelines.md → Contentarten: Headline/Title (step title), Meta/caption ('Schritt X von Y', step labels), Label + value (summary rows). Use these terms.",
+		"spacingModel": "A process inherits R from its PRODUCT — same rule as a form (content/website → R = lg, application/dashboard → R = md, dense data app → R = sm). LADDER (R-relative): (1) elements in a block; card padding = R; (2) grouped bits — step-header title↔description, summary label↔value, stepper marker↔label, progress caption↔bar = R−1; (3) a header/title-block → its content region = R+1; (4) progress / step / nav blocks to each other, and the section header → content = R+2. RESOLUTION (token per role × product R): content/website (R lg) → R lg, R−1 md, R+1 xl, R+2 2xl; application/dashboard (R md) → R md, R−1 sm, R+1 lg, R+2 xl; dense app (R sm) → R sm, R−1 xs, R+1 md, R+2 lg. The fragments below are written at the R = md REFERENCE; substitute every gap by its role when the product's R differs.",
+		"colorModel": "emphasis-100 (color.text.strong) for the step title AND the ACTIVE step's label/summary values; color.text.muted for captions, done/upcoming step labels, and summary labels. Stepper marker state via Badge semantic: done = Successful, active = Informational (or brand), upcoming = Neutral. Confirmation success icon binds color.icon + semantic Successful.",
+		"componentNote": "NO Stepper component exists in the DB UX Stable/Beta set — process.stepper is a guideline-authored COMPOSITION from resolved components (Badge markers + Body labels). It is TEMPORARY: replace with a real Stepper once it ships. The ProgressBar is a Concept component (requires Concept opt-in); its Value stops are 25/50/75% samples — pick the nearest to Schritt/steps and phrase the caption to match. Field blocks in a step are REUSED from form/blocks.json (label-above, applyProps { Show Label:true, Label, Show Required Asterisk }, fillWidth).",
+		"authoringRule": "Components (`type`/`props`) MUST resolve in components.json and tokens in tokens.json — structure/spacing come from the guidelines; components/tokens are never invented. A composed block (stepper) is allowed when no component covers the need, as long as its parts resolve against the live registries.",
+		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
+		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment. Form field blocks are expanded from form/blocks.json. The agent expands $ref when authoring the plan — the runtime never sees $ref."
+	},
+	"blocks": {
+		"process.step-marker": {
+			"origin": "guideline-authored",
+			"purpose": "One item in the composed stepper: a Badge marker + a short label, vertically centered (marker↔label grouped at R−1 = sm). The marker encodes the step STATE with THREE plans: (a) DONE (planDone) = Badge content:'icon' (Size Small) with a CHECK icon (applyProps { 'Icon Small': 'check' }) + semantic 'Successful' — a green check, no number — and a muted label, full opacity; (b) ACTIVE (planActive) = Badge content:'text' Size Medium with the step number in the DEFAULT ADAPTIVE semantic (an outlined dark circle — NOT Informational/blue) + a strong bold label, full opacity; (c) UPCOMING (planUpcoming) = the SAME adaptive Size-Medium number badge + label, but the WHOLE marker is DISABLED via opacity: 0.4. SIZE MATCHING: an icon Badge at Size Small ≈ a text Badge at Size Medium, so the DONE check stays Small while the ACTIVE/UPCOMING number badges use Size Medium and all markers line up. DISABLED = opacity 0.4 on the marker container (dims badge + label together); do not muted-dim on top of it (opacity carries the disabled look).",
+			"usedIn": "process.stepper",
+			"planActive": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"align": "left",
+				"hugWidth": true,
+				"children": [
+					{
+						"type": "Badge",
+						"props": { "content": "text" },
+						"label": "<n>",
+						"applyProps": { "Size": "Medium" }
+					},
+					{
+						"type": "Body",
+						"size": "Small",
+						"bold": true,
+						"content": "<Step label>",
+						"fills": "color.text.strong",
+						"hugWidth": true
+					}
+				]
+			},
+			"planUpcoming": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"align": "left",
+				"hugWidth": true,
+				"opacity": 0.4,
+				"children": [
+					{
+						"type": "Badge",
+						"props": { "content": "text" },
+						"label": "<n>",
+						"applyProps": { "Size": "Medium" }
+					},
+					{
+						"type": "Body",
+						"size": "Small",
+						"content": "<Step label>",
+						"fills": "color.text.strong",
+						"hugWidth": true
+					}
+				]
+			},
+			"planDone": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"align": "left",
+				"hugWidth": true,
+				"children": [
+					{
+						"type": "Badge",
+						"props": { "content": "icon" },
+						"semantic": "Successful",
+						"applyProps": { "Icon Small": "check" }
+					},
+					{
+						"type": "Body",
+						"size": "Small",
+						"content": "<Step label>",
+						"fills": "color.text.muted",
+						"hugWidth": true
+					}
+				]
+			}
+		},
+		"process.stepper": {
+			"origin": "guideline-authored",
+			"purpose": "The composed step indicator: a full-width spread row of step markers, evenly distributed. Earlier steps DONE (green check badge, Successful); the CURRENT step ACTIVE (adaptive outlined number badge + strong bold label, full opacity); later steps UPCOMING (same adaptive number badge + label, whole marker DISABLED at opacity 0.4). NO Stepper component exists — this is a temporary composition of Badge + Body. Connector lines are omitted (no robust connector primitive); spacing conveys the sequence.",
+			"usedIn": "process.step-body (top)",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"spread": true,
+				"align": "left",
+				"children": [
+					{ "$ref": "process.step-marker" },
+					{ "$ref": "process.step-marker" },
+					{ "$ref": "process.step-marker" },
+					{ "$ref": "process.step-marker" }
+				]
+			}
+		},
+		"process.progress": {
+			"origin": "guideline-authored",
+			"purpose": "The lighter/linear progress alternative: a 'Schritt X von Y' caption above a ProgressBar (Concept). Caption↔bar grouped at R−1 (sm). Pick the bar's Value stop (25/50/75%) nearest the step fraction and match the caption.",
+			"usedIn": "process.step-body (top, alternative to stepper)",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "sm",
+				"align": "left",
+				"children": [
+					{
+						"type": "Body",
+						"size": "Small",
+						"bold": true,
+						"content": "<Schritt X von Y>",
+						"fills": "color.text.muted"
+					},
+					{
+						"type": "ProgressBar",
+						"applyProps": { "Value": "<25%|50%|75%>" },
+						"fillWidth": true
+					}
+				]
+			}
+		},
+		"process.step-header": {
+			"origin": "guideline-authored",
+			"purpose": "The current step's title + optional one-line description. Title is the frame's h1; title↔description grouped at R−1 (sm).",
+			"usedIn": "process.step-body",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "sm",
+				"align": "left",
+				"children": [
+					{
+						"type": "Heading",
+						"as": "h1",
+						"content": "<Step title>",
+						"fills": "color.text.strong"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Step description?>",
+						"fills": "color.text.muted"
+					}
+				]
+			}
+		},
+		"process.step-nav": {
+			"origin": "guideline-authored",
+			"purpose": "The step-navigation row: a secondary 'Zurück' (ghost, left) and a primary 'Weiter' (Brand, right), spread to the column edges. Drop 'Zurück' on the first step (then a single right-aligned 'Weiter'). The last input step's primary is the commit action (e.g. 'Zahlungspflichtig buchen'). ≤1 Brand per frame.",
+			"usedIn": "process.step-body (bottom)",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"spread": true,
+				"align": "left",
+				"children": [
+					{
+						"type": "Button",
+						"props": { "variant": "ghost", "iconOnly": false },
+						"label": "<Zurück>",
+						"hugWidth": true
+					},
+					{
+						"type": "Button",
+						"props": { "variant": "brand", "iconOnly": false },
+						"label": "<Weiter>",
+						"hugWidth": true
+					}
+				]
+			}
+		},
+		"process.summary-row": {
+			"origin": "guideline-authored",
+			"purpose": "One reviewed value in a review step: a label + its entered value on the left, an 'Ändern' Link on the right, spread across the width. Label↔value is a tight stacked pair (2xs); rows are separated by Dividers in the summary block.",
+			"usedIn": "process.summary",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"spread": true,
+				"align": "left",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "2xs",
+						"align": "left",
+						"children": [
+							{
+								"type": "Body",
+								"size": "Small",
+								"content": "<Label>",
+								"fills": "color.text.muted"
+							},
+							{
+								"type": "Body",
+								"size": "(Def) Medium",
+								"bold": true,
+								"content": "<Value>",
+								"fills": "color.text.strong"
+							}
+						]
+					},
+					{
+						"type": "Link",
+						"props": { "target": "internal", "brand": false },
+						"label": "Ändern",
+						"hugWidth": true
+					}
+				]
+			}
+		},
+		"process.confirmation": {
+			"origin": "guideline-authored",
+			"purpose": "The final success frame content: a centered Successful-tinted icon, a Heading, a short confirmation text (booking ref etc.), and a single primary action. No stepper/nav. Centered column.",
+			"usedIn": "process.confirmation-screen",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "lg",
+				"align": "center",
+				"children": [
+					{
+						"type": "Icon",
+						"name": "check_circle",
+						"size": 48,
+						"fills": "color.icon",
+						"semantic": "Successful"
+					},
+					{
+						"type": "Heading",
+						"as": "h1",
+						"content": "<Confirmation title>",
+						"fills": "color.text.strong",
+						"align": "center"
+					},
+					{
+						"type": "Body",
+						"size": "(Def) Medium",
+						"content": "<Confirmation text + reference>",
+						"fills": "color.text.strong",
+						"align": "center"
+					},
+					{
+						"type": "Button",
+						"props": { "variant": "brand", "iconOnly": false },
+						"label": "<Primary action>"
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,4 +1,9 @@
-async function auditTree(root) {
+async function auditTree(root, opts) {
+	// opts.module = true → audit a STANDALONE MODULE (a single block/section rendered on
+	// its own, not a full page). Structural checks (collapsed layout, fixed section, content
+	// overflow) still run; the SCREEN-level checks (must start with a Header, zebra level-1
+	// on the topmost section) are skipped — a module is not a page and owns neither.
+	const module = !!(opts && opts.module);
 	const violations = [];
 	const LAYOUT_RE = /Section|Grid|Container/i;
 	const push = (node, type, message) =>
@@ -78,7 +83,7 @@ async function auditTree(root) {
 			safe(() => n.type, '') === 'INSTANCE' &&
 			/Section/i.test(safe(() => n.name, ''))
 	);
-	if (sections.length) {
+	if (sections.length && !module) {
 		const firstIsHeader =
 			kids[0] &&
 			safe(() => kids[0].type, '') === 'INSTANCE' &&
@@ -134,8 +139,8 @@ async function auditTree(root) {
  *       { op: "setContainerGap", anchorText: "Schnellzugriff", gap: "xs" },
  *       { op: "setSectionFill", anchorText: "Schnellzugriff", token: "color.background.elevated" },
  *       { op: "remove", find: "Fundservice" },              // removes the nearest Card
- *       { op: "appendLike", find: "Servicezeiten", node: {  // render a new sibling block
- *           type: "Card", props: { elevationLevel: "1" }, spacing: "medium", children: [ ... ] } }
+ *       { op: "appendLike", find: "Servicezeiten", node: { …a plan node; its shape follows
+ *           the PLAN SCHEMA NODE FIELDS, structure/spacing come from the registries } }
  *     ]
  *   });
  *   return JSON.stringify(res);

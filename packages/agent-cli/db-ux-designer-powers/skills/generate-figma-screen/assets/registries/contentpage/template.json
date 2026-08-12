@@ -1,0 +1,48 @@
+{
+	"_meta": {
+		"schema": "db-ux/template/v1",
+		"pageType": "contentpage",
+		"origin": "guideline-authored",
+		"purpose": "Page template for a content page: which section patterns are required / optional / forbidden, and the order rules. Compose a page by SELECTING sections per content (see sections.json → whenToUse) and ordering them per this template — NOT by copying examples.json. examples.json is only a density/style reference.",
+		"spacingModel": "R = lg (content pages are airier than dashboards). See contentpage/blocks.json → _meta.spacingModel for the full derivation."
+	},
+	"contentWidth": "Medium (1024)",
+	"order": ["hero", "body", "cta"],
+	"slots": {
+		"hero": {
+			"required": true,
+			"position": "first",
+			"allow": ["contentpage.hero"],
+			"note": "Exactly one hero, always the first section after the Header."
+		},
+		"body": {
+			"required": true,
+			"position": "middle",
+			"repeatable": true,
+			"minSections": 2,
+			"maxSections": 5,
+			"allow": [
+				"contentpage.feature-grid",
+				"contentpage.media-text-rows",
+				"contentpage.highlight",
+				"contentpage.card-grid"
+			],
+			"note": "Choose 2–5 body sections by mapping each content group to the best-fit pattern via sections.json → whenToUse. Do NOT reuse the same pattern for every group when the content types differ."
+		},
+		"cta": {
+			"required": true,
+			"position": "last",
+			"allow": ["contentpage.cta-centered"],
+			"note": "Exactly one closing CTA, always the last section."
+		}
+	},
+	"rules": [
+		"Header is always the first child (logo = home; no 'Startseite' nav item).",
+		"Zebra backgrounds: hero on color.background.canvas, then alternate surface/canvas across sections.",
+		"One consistent centered contentWidth for the whole page.",
+		"Action hierarchy: the hero owns the page's primary action (Brand, may add a Filled secondary); the closing CTA is Brand; body sections use Links, never a Brand button per card.",
+		"Avoid a mono-layout: if the body has heterogeneous content (e.g. a benefit story AND a set of options), use different patterns for them (e.g. media-text-rows + card-grid), not the same grid twice.",
+		"Every body section MUST carry a title (h2); inner headings are h3/h4.",
+		"Spacing ladder (R = lg): elements in a block, a VERTICAL Visual→content, section-title↔description, card padding = R (lg); content blocks to each other (horizontal and vertical) = R+1 (xl); section-header→content = R+2 (2xl). EXCEPTION: a HORIZONTAL Visual→content (image beside text) = R+1 (xl). Titled content Sections set headerGap 'lg' + gap '2xl'. See blocks.json → _meta.spacingModel."
+	]
+}
