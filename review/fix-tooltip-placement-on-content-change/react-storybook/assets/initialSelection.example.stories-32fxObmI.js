@@ -1,0 +1,21 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{n,t as r}from"./infotext-6b-qo0AN.js";import{i,n as a,r as o,t as s}from"./tab-list-CqwM2y_8.js";import{i as c,n as l,r as u,t as d}from"./tabs-BLPZZhsz.js";var f,p,m,h,g,_;function v(){return(v=e((()=>{n(),i(),a(),c(),l(),f=t(),{fn:p}=__STORYBOOK_MODULE_TEST__,m={title:`Components/DBTabs/Initial Selection`,component:d,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:p(),onTabSelect:p()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},tabItemWidth:{control:`select`,options:[`full`,`auto`]},tabItemAlignment:{control:`select`,options:[`start`,`center`,`end`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},label:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onTabSelect:{action:`onTabSelect`}}},h={args:{id:`initial-selection`,label:`initial-selection`,initialSelectedIndex:2,children:(0,f.jsxs)(f.Fragment,{children:[(0,f.jsxs)(s,{children:[(0,f.jsx)(o,{children:`Overview`}),(0,f.jsx)(o,{children:`Details`}),(0,f.jsx)(o,{children:`Settings`})]}),(0,f.jsx)(u,{children:`Overview content`}),(0,f.jsx)(u,{children:`Details content`}),(0,f.jsx)(u,{children:`Settings content`})]})},render:e=>(0,f.jsxs)(`div`,{className:`fit-content-container`,children:[(0,f.jsx)(r,{icon:`none`,size:`small`,semantic:`informational`,children:`3rd tab pre-selected via initialSelectedIndex (also supports deep linking via URL hash, e.g. #initial-selection-tab-1):`}),(0,f.jsx)(d,{...e})]})},g={args:{label:`value-selection`,initialSelectedIndex:1,children:(0,f.jsxs)(f.Fragment,{children:[(0,f.jsxs)(s,{children:[(0,f.jsx)(o,{value:`overview`,children:`Overview`}),(0,f.jsx)(o,{value:`details`,children:`Details`}),(0,f.jsx)(o,{value:`settings`,children:`Settings`})]}),(0,f.jsx)(u,{children:`Overview content`}),(0,f.jsx)(u,{children:`Details content`}),(0,f.jsx)(u,{children:`Settings content`})]})},render:e=>(0,f.jsxs)(`div`,{className:`fit-content-container`,children:[(0,f.jsx)(r,{icon:`none`,size:`small`,semantic:`informational`,children:`2nd tab pre-selected with value props and 'onValueChange':`}),(0,f.jsx)(d,{...e})]})},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  args: {
+    "id": "initial-selection",
+    "label": "initial-selection",
+    "initialSelectedIndex": 2,
+    "children": <><DBTabList><DBTabItem>Overview</DBTabItem><DBTabItem>Details</DBTabItem><DBTabItem>Settings</DBTabItem></DBTabList><DBTabPanel>Overview content</DBTabPanel><DBTabPanel>Details content</DBTabPanel><DBTabPanel>Settings content</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    3rd tab pre-selected via initialSelectedIndex (also supports
+                    deep linking via URL hash, e.g. #initial-selection-tab-1):
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "value-selection",
+    "initialSelectedIndex": 1,
+    "children": <><DBTabList><DBTabItem value="overview">Overview</DBTabItem><DBTabItem value="details">Details</DBTabItem><DBTabItem value="settings">Settings</DBTabItem></DBTabList><DBTabPanel>Overview content</DBTabPanel><DBTabPanel>Details content</DBTabPanel><DBTabPanel>Settings content</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    2nd tab pre-selected with value props and 'onValueChange':
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...g.parameters?.docs?.source}}},_=[`PreselectedviainitialSelectedIndex`,`Preselectedwithvalueprops`]})))()}v();export{h as PreselectedviainitialSelectedIndex,g as Preselectedwithvalueprops,_ as __namedExportsOrder,m as default};
