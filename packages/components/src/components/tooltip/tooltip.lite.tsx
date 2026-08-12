@@ -34,7 +34,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
 		_selfResizeObserverCallbackId: undefined,
-		_isRepositioning: false,
+		_lastPlacedSize: undefined,
 		_attachedParent: undefined,
 		_attachedId: undefined,
 		_activeTriggerCount: 0,
@@ -68,13 +68,15 @@ export default function DBTooltip(props: DBTooltipProps) {
 				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
-						// Guard to prevent resize feedback loop: the
-						// placement code may constrain the tooltip size
-						// (e.g. maxBlockSize for outsideYBoth), which would
-						// re-trigger the self ResizeObserver.
-						state._isRepositioning = true;
 						handleFixedPopover(_ref, parent);
-						state._isRepositioning = false;
+						// Record the size after placement so the self
+						// ResizeObserver can distinguish placement-induced
+						// resizes from genuine content changes.
+						const rect = _ref.getBoundingClientRect();
+						state._lastPlacedSize = {
+							width: Math.round(rect.width),
+							height: Math.round(rect.height)
+						};
 					}
 				}, 1);
 			}
@@ -143,12 +145,18 @@ export default function DBTooltip(props: DBTooltipProps) {
 				// (e.g. toggling between "Expand"/"Collapse") trigger
 				// repositioning and arrow recalculation.
 				state._selfResizeObserverCallbackId =
-					new ResizeObserverListener().observe(_ref, () => {
-						// Skip if the resize was caused by our own
-						// placement logic (e.g. maxBlockSize constraint)
-						if (!state._isRepositioning) {
-							state.handleAutoPlacement(parent);
+					new ResizeObserverListener().observe(_ref, (entry) => {
+						// Skip if the new size matches what our placement
+						// code just set — this prevents an infinite loop
+						// when placement constrains the tooltip (e.g.
+						// maxBlockSize on mobile viewports).
+						const w = Math.round(entry.contentRect.width);
+						const h = Math.round(entry.contentRect.height);
+						const last = state._lastPlacedSize;
+						if (last && last.width === w && last.height === h) {
+							return;
 						}
+						state.handleAutoPlacement(parent);
 					});
 				const observeTarget = state.getParent();
 				if (observeTarget) {
