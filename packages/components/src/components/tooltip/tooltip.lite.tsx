@@ -145,13 +145,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 				// (e.g. toggling between "Expand"/"Collapse") trigger
 				// repositioning and arrow recalculation.
 				state._selfResizeObserverCallbackId =
-					new ResizeObserverListener().observe(_ref, (entry) => {
+					new ResizeObserverListener().observe(_ref, () => {
 						// Skip if the new size matches what our placement
 						// code just set — this prevents an infinite loop
 						// when placement constrains the tooltip (e.g.
 						// maxBlockSize on mobile viewports).
-						const w = Math.round(entry.contentRect.width);
-						const h = Math.round(entry.contentRect.height);
+						// Use getBoundingClientRect (border box) for both
+						// recording and comparison to avoid a mismatch with
+						// entry.contentRect (content box) on padded elements.
+						const rect = _ref.getBoundingClientRect();
+						const w = Math.round(rect.width);
+						const h = Math.round(rect.height);
 						const last = state._lastPlacedSize;
 						if (last && last.width === w && last.height === h) {
 							return;
