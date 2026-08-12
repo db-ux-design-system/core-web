@@ -119,7 +119,7 @@
   - text: (Default) No validation
   - status
   - text: Label
-  - combobox "Label":
+  - combobox "Label" [invalid]:
     - option [selected]
     - option "Option 1"
     - option "Option 2"
@@ -265,7 +265,7 @@
     - option "Option 2"
   - status
   - text: Label
-  - combobox "Label":
+  - combobox "Label" [invalid]:
     - option [selected]
     - option "Option 1"
     - option "Option 2"
