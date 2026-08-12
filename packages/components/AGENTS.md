@@ -281,6 +281,6 @@ Changes in `packages/components/src` require a changeset. Which packages to list
 
 Only these package-specific details are added on top:
 
-- **Mapping a `.lite.tsx` diff to the table rows:** markup inside the returned JSX counts as **template**; `state`, event handlers, `onUpdate`/`onMount` and anything in `model.ts` count as **logic or properties**.
+- **Mapping a `.lite.tsx` diff to the table rows:** `state`, event handlers, `onUpdate`/`onMount`, anything in `model.ts` and any JSX edit a consumer can observe count as **logic, properties or consumer-visible markup**; a JSX edit that leaves behavior, properties, visual result and accessibility tree untouched counts as **template**.
 - **Framework-specific code** (`src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`, `scripts/post-build/*`) affects only the matching framework package — list just that one.
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
