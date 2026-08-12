@@ -108,16 +108,20 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 > **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
-| Folder                                                                                           | Packages to include                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src` — **only styling** (SCSS/CSS)                                          | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                            |
-| `packages/components/src` — **component logic or templates** (model.ts, Mitosis component files) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                            |
-| `packages/components/src` — **both**                                                             | All five packages above                                                                                                                                                    |
-| `packages/foundations/scss`                                                                      | `@db-ux/core-foundations`, `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
+| Folder                                                                                                                        | Packages to include                                                                                                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src` — **only styling** (SCSS/CSS)                                                                       | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                            |
+| `packages/components/src` — **only the template** (inner HTML in a Mitosis component file, no behavior or prop change)        | `@db-ux/core-components`                                                                                                                                                   |
+| `packages/components/src` — **component logic or properties** (`model.ts`, state/handlers/effects in Mitosis component files) | `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                                                      |
+| `packages/foundations/scss`                                                                                                   | `@db-ux/core-foundations`, `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
 
-**Styling-only changes must include the JS framework packages too.** The framework packages (`ngx-`, `react-`, `wc-`, `v-`) ship the `@db-ux/core-components` styles as a dependency. Consumers who only reference a framework package never read the `@db-ux/core-components` or `@db-ux/core-foundations` changelog, so a styling or token change that is only listed there stays invisible to them. Always add the framework packages so the change shows up in the changelog they actually read.
+If a change falls into several rows (e.g. styling plus logic), use the union of their packages.
 
-**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages when shared code (components, `model.ts`, shared utils), styling (SCSS/CSS), or design tokens are changed.
+**Styling and token changes must include the JS framework packages.** The framework packages (`ngx-`, `react-`, `wc-`, `v-`) ship the `@db-ux/core-components` and `@db-ux/core-foundations` styles as a dependency. Consumers who only reference a framework package never read the CSS packages' changelogs, so a styling or token change listed only there stays invisible to them. Always add the framework packages so the change shows up in the changelog they actually read.
+
+**Template-only changes stay on `@db-ux/core-components`.** The inner markup is an implementation detail that the framework component abstracts away: nothing changes for a developer using `<DBButton>`. Only add the framework packages when the change is observable from the outside — different behavior (logic) or a different API (`model.ts`). If the markup change _is_ consumer-visible (DOM structure others target with custom CSS, tests, or query selectors), treat it like a logic change and include the framework packages.
+
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set per row. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package.
 
 Use the following bump types for changeset entries:
 
@@ -401,7 +405,7 @@ pnpm exec tsx scripts/my-script.ts
 ## Additional Resources
 
 - `packages/agent-cli/AGENTS.md` — CLI tool for generating AI agent instructions
-- `packages/components/AGENTS.md` — component authoring, Mitosis, changeset rules
+- `packages/components/AGENTS.md` — component authoring, Mitosis, package-specific changeset notes
 - `packages/foundations/AGENTS.md` — design tokens, assets, SCSS structure
 - `packages/postcss-plugin/AGENTS.md` — PostCSS flatten plugin
 - `packages/stylelint/AGENTS.md` — Stylelint plugin rules
@@ -410,6 +414,8 @@ pnpm exec tsx scripts/my-script.ts
 - `packages/mcp-server/AGENTS.md` — MCP server development
 
 **Keep package-level `AGENTS.md` files up to date.** When making changes inside a `packages/*` folder that affect architecture, structure, workflows, or conventions (e.g. adding a new plugin system, deprecating a pattern, introducing a new shared abstraction), update the corresponding `AGENTS.md` in that package as part of the same commit.
+
+**Do not duplicate this file in package-level `AGENTS.md`.** This root file is read for every task, so repo-wide rules (changesets, commit and PR workflow, code style) belong here only. A package `AGENTS.md` covers what is specific to that package and links back here for the shared rules — duplicated rules drift apart and then contradict each other.
 
 ## Kiro Steering Files
 

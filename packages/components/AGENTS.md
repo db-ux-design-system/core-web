@@ -277,28 +277,10 @@ Alternatively, consider naming the prop without the `default` prefix (e.g. `init
 
 ## Changeset Rules
 
-Changes in `packages/components/src` require a changeset. Which packages to include depends on **what** changed:
+Changes in `packages/components/src` require a changeset. Which packages to list, which bump type to pick, and all exceptions (code-style-only changes, internal `_`-prefixed state properties) are defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets). That file always applies — do not duplicate its rules here.
 
-| What changed                                                                      | Packages to include                                                                                                                             |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| **Component logic or templates** (model.ts, component files processed by Mitosis) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| **Both**                                                                          | All five packages                                                                                                                               |
+Only these package-specific details are added on top:
 
-**Styling-only changes must include the JS framework packages too.** The framework packages ship the `@db-ux/core-components` styles as a dependency. Consumers who only reference a framework package never read the `@db-ux/core-components` changelog, so a styling change listed only there stays invisible to them.
-
-**Scope the packages to what is actually affected:**
-
-- Changes in shared code (components, `model.ts`, shared utils) → all framework packages
-- Changes in framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`) → only the affected framework package
-- Changes in styling (SCSS/CSS) or HTML (template within the components) → `@db-ux/core-components` + all framework packages
-
-Bump types:
-
-- `patch` — bug fix
-- `minor` — new feature or example, or any prop added in `model.ts`
-- `major` — any prop in `model.ts` removed, renamed, or retyped
-
-**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
-
-**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
+- **Mapping a `.lite.tsx` diff to the table rows:** markup inside the returned JSX counts as **template**; `state`, event handlers, `onUpdate`/`onMount` and anything in `model.ts` count as **logic or properties**.
+- **Framework-specific code** (`src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`, `scripts/post-build/*`) affects only the matching framework package — list just that one.
+- **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.

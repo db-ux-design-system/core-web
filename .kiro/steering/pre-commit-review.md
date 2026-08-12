@@ -65,8 +65,9 @@ If a changeset is required (changes in `packages/components/src` or `packages/fo
     - `@db-ux/wc-core-components`
     - `@db-ux/v-core-components`
 - **Styling-only changes need the JS framework packages too.** The framework packages ship the component/foundation styles transitively, and their consumers never read the `@db-ux/core-components` or `@db-ux/core-foundations` changelog. A changeset listing only the CSS packages is incomplete.
+- **Template-only changes need `@db-ux/core-components` only.** If the diff just reshapes the inner markup without touching behavior or `model.ts`, the framework packages are not relevant — the template is abstracted by the framework component. Include them only if the markup change is observable from the outside (DOM structure consumers target with custom CSS, tests, or selectors), or if logic/props changed as well.
 - **Validate the bump level against the diff** — presence alone is not enough; an invalid `patch`/`minor` can publish a breaking change under a non-major version. For each affected package, confirm the declared bump matches the actual change:
-    - **`major`** — a breaking change. Per `packages/components/AGENTS.md`, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
+    - **`major`** — a breaking change. Per the repo-root `AGENTS.md` § Changesets, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
     - **`minor`** — a new, backwards-compatible feature, e.g. of a prop is added in any `model.ts`
     - **`patch`** — a backwards-compatible bug fix
 - If the diff warrants a `major` bump but the changeset declares `patch`/`minor` (or vice versa), fix the changeset before committing.
