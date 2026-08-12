@@ -1,0 +1,59 @@
+{
+	"component": "shell-content",
+	"properties": [
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "startSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Start Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 End Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showStartSlot",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Start Slot"
+			}
+		},
+		{
+			"name": "showEndSlot",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show End Slot"
+			}
+		},
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": ["auto", "fixed"],
+			"default": "auto",
+			"code": null,
+			"design": {
+				"name": "🔀 Variant",
+				"values": ["(Def) Auto", "Fixed"]
+			}
+		}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"id": "control-panel-meta",
+	"name": "Control Panel Meta",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "control-panel"
+}

@@ -1,0 +1,9 @@
+{
+	"id": "shell-content",
+	"name": "Shell Content",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "shell"
+}

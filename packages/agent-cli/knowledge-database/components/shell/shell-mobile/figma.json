@@ -1,0 +1,24 @@
+{
+	"component": "shell-mobile",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "Shell → Mobile - (Def) 375x812 (Beta)",
+			"nodeId": "35867:46499",
+			"type": "COMPONENT_SET",
+			"key": "7af0bffb23c18b00cde8dc60922a66953b32ddee"
+		},
+		{
+			"name": "Shell → Mobile - 320x568 (Beta)",
+			"nodeId": "37178:47277",
+			"type": "COMPONENT_SET",
+			"key": "ee19984fc8aa153b152b7b2a04a8b83e09054e89"
+		},
+		{
+			"name": "Shell → Mobile - 768x1024 (Beta)",
+			"nodeId": "37178:47747",
+			"type": "COMPONENT_SET",
+			"key": "236e27cb519e0573264c964d33d2451afdb3fd7e"
+		}
+	]
+}

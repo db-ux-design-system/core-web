@@ -1,0 +1,215 @@
+{
+	"component": "control-panel-navigation-item",
+	"properties": [
+		{
+			"name": "text",
+			"type": "text",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group",
+					"flat-icon-desktop",
+					"flat-icon-no-text-desktop",
+					"flat-icon-mobile",
+					"flat-icon-no-text-mobile"
+				]
+			}
+		},
+		{
+			"name": "icon",
+			"type": "instanceSwap",
+			"code": null,
+			"design": {
+				"name": "🔄 Icon",
+				"type": "slot",
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"flat-icon-desktop",
+					"flat-icon-no-text-desktop",
+					"flat-icon-mobile",
+					"flat-icon-no-text-mobile"
+				]
+			}
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Icon",
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group"
+				]
+			}
+		},
+		{
+			"name": "showIndicator",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Indicator (only Lvl1)",
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group"
+				]
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 End Slot",
+				"type": "slot",
+				"componentSet": [
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group"
+				],
+				"note": "Absent on all Popover sets, horizontal and vertical."
+			}
+		},
+		{
+			"name": "showEndSlot",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show End Slot",
+				"componentSet": [
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group"
+				],
+				"note": "Absent on all Popover sets, horizontal and vertical."
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"componentSet": ["tree-group"]
+			}
+		},
+		{
+			"name": "expanded",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Expanded",
+				"componentSet": [
+					"popover-group",
+					"popover-group-desktop-vertical",
+					"tree-group"
+				],
+				"note": "A boolean in popover-group and a variant in tree-group, because Tree switches its icon between the two states. In popover-group-desktop-vertical it is also a boolean, but with the 👁️ prefix instead of 🔀. Absent in drill-down-group, where the expanded state is handled by the parent CP Navigation Drill Down instead."
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": ["enabled", "hovered", "pressed", "focused", "none"],
+			"default": "enabled",
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				],
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group",
+					"flat-icon-desktop",
+					"flat-icon-no-text-desktop",
+					"flat-icon-mobile",
+					"flat-icon-no-text-mobile"
+				]
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Disabled",
+				"values": ["False", "True"],
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group",
+					"flat-icon-desktop",
+					"flat-icon-no-text-desktop",
+					"flat-icon-mobile",
+					"flat-icon-no-text-mobile"
+				]
+			}
+		},
+		{
+			"name": "active",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Active",
+				"values": ["False", "True"],
+				"componentSet": [
+					"popover",
+					"popover-group",
+					"popover-desktop-vertical",
+					"popover-group-desktop-vertical",
+					"drill-down",
+					"drill-down-group",
+					"tree",
+					"tree-group",
+					"flat-icon-desktop",
+					"flat-icon-no-text-desktop",
+					"flat-icon-mobile",
+					"flat-icon-no-text-mobile"
+				]
+			}
+		}
+	]
+}

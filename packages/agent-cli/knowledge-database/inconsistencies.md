@@ -2,6 +2,17 @@
 
 Tracking von Unterschieden zwischen Figma und Code sowie bekannte Gaps.
 
+## Abgrenzung
+
+Hierher gehören ausschließlich Abweichungen zwischen Figma und Code sowie offene Befunde. Drei Arten von Wissen werden regelmäßig fälschlich hier abgelegt:
+
+- **Verhalten und Property-Fläche einer Komponente** — gehört in die jeweilige `guidelines.md`. Auch fehlende Properties gehören dorthin, weil Konsumenten sie kennen müssen. Wer in Figma einen Toggle sucht und ihn nicht findet, braucht die Information in der Doku, nicht in einer internen Notiz.
+- **Modellierungsentscheidungen der Figma-Library** — gehören in das Steering `design-library.md` der Design Power des Core Teams. Sie betreffen fast immer mehrere Komponenten und werden unter einer Komponentenüberschrift wiederholt als Befund aufgeworfen.
+- **Was nach einem Figma-Release zu verifizieren ist** — gehört in die `TODO.md`.
+- **Noch nicht geklärte Beobachtungen aus dem Auslesen der Figma-Library** — gehören in die [figma-findings.md](figma-findings.md) und wandern erst nach der Klärung an ihren Zielort.
+
+Die Leitfrage: **Weichen Figma und Code voneinander ab?** Nur dann ist es ein Eintrag in dieser Datei.
+
 ## Figma-only tokens (no CSS custom property equivalent)
 
 ### Opacity

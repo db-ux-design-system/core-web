@@ -1,0 +1,108 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "shell-desktop",
+	"figmaFileKey": "RcpbbqfJwjNRlOwPhAX1im",
+	"description": {
+		"de": "Die Komponente Shell Desktop stellt die äußerste Layout-Struktur für Desktop-Webanwendungen bereit.",
+		"en": "The Shell Desktop component provides the outermost layout structure for desktop web applications."
+	},
+	"shortDescription": {
+		"de": "Äußerste Layout-Struktur für Desktop-Webanwendungen.",
+		"en": "Outermost layout structure for desktop web applications."
+	},
+	"useCases": {
+		"de": [
+			"Eine Desktop-Anwendung mit dauerhaftem Control Panel und scrollbarem Inhaltsbereich rahmen",
+			"Das Control Panel horizontal (Top) oder als vertikale Sidebar (Left) positionieren",
+			"Eine Ebene der Sub Navigation für Bereiche ergänzen, die Unterseiten brauchen"
+		],
+		"en": [
+			"Frame a desktop app with a persistent Control Panel and a scrollable content area",
+			"Position the Control Panel horizontally (Top) or as a vertical sidebar (Left)",
+			"Add a Sub Navigation level for sections that need sub-pages"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "control-panel-position",
+			"headline": {
+				"de": "Position des Control Panels",
+				"en": "Control Panel Position"
+			},
+			"text": {
+				"de": "Wähle die Position des Control Panels nach der Navigationskomplexität. Top eignet sich für einfache Anwendungen, Left für Anwendungen mit vielen Navigation Items oder tiefen Strukturen.",
+				"en": "Choose the Control Panel position based on navigation complexity. Top works for simple apps; Left suits applications with many Navigation Items or deep structures."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Verwende die Position Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene.",
+					"en": "Use the Top position for applications with few top-level Navigation Items."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Die Position Left mit nur 2–3 Navigation Items belegt Platz, ohne strukturellen Mehrwert zu bieten. Prüfe stattdessen Top.",
+					"en": "The Left position with only 2–3 Navigation Items takes up space without adding structural benefit. Consider Top instead."
+				}
+			}
+		},
+		{
+			"id": "sub-navigation-placement",
+			"headline": {
+				"de": "Platzierung der Sub Navigation",
+				"en": "Sub Navigation Placement"
+			},
+			"text": {
+				"de": "Wähle eine Position der Sub Navigation, die zu deiner Informationsarchitektur passt, und halte sie über alle Seiten deiner Anwendung konsistent.",
+				"en": "Choose a Sub Navigation position that fits your information architecture and keep it consistent across all pages of your application."
+			},
+			"do": {
+				"figmaNodeId": "3-1110",
+				"description": {
+					"de": "Verwende Sub Navigation Left für Seiten mit vielen Navigation Items auf Unterebene, die von einer dauerhaften vertikalen Übersicht profitieren.",
+					"en": "Use Sub Navigation Left for pages with many sub-level Navigation Items that benefit from a persistent vertical overview."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-1112",
+				"description": {
+					"de": "Wechsle die Position der Sub Navigation nicht beim Navigieren zwischen Bereichen der obersten Ebene. Nutzer:innen erwarten ein stabiles Navigations-Layout.",
+					"en": "Do not switch Sub Navigation position when navigating between top-level sections. Users expect the navigation layout to stay stable."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "shell-mobile",
+			"description": {
+				"de": "Shell Mobile mit responsiven Navigationsmustern für kleine Bildschirme.",
+				"en": "Shell Mobile with responsive navigation patterns for small screens."
+			}
+		},
+		{
+			"component": "control-panel-desktop",
+			"description": {
+				"de": "Das Control Panel, das Shell Desktop enthält.",
+				"en": "The Control Panel hosted by Shell Desktop."
+			}
+		},
+		{
+			"component": "shell-sub-navigation",
+			"description": {
+				"de": "Sekundäre Navigation innerhalb der Shell für die Struktur auf Unterebene.",
+				"en": "Secondary navigation within the Shell for sub-level page structure."
+			}
+		},
+		{
+			"component": "shell-content",
+			"description": {
+				"de": "Der scrollbare Inhaltsbereich der Shell mit slot-basiertem Layout.",
+				"en": "The scrollable content area of the Shell with slot-based layout."
+			}
+		}
+	]
+}

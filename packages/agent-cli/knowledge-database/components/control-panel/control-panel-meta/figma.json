@@ -1,0 +1,18 @@
+{
+	"component": "control-panel-meta",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ CP Meta → Horizontal (Beta)",
+			"nodeId": "35867:43537",
+			"type": "COMPONENT",
+			"key": "6770923a6696c1ba79a8913d45f6c8fe76336499"
+		},
+		{
+			"name": "↳ CP Meta → Vertical (Beta)",
+			"nodeId": "35867:43539",
+			"type": "COMPONENT",
+			"key": "29200c7520655049a5704d643da7a0e855d1e9c1"
+		}
+	]
+}

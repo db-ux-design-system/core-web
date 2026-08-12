@@ -1,0 +1,144 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "control-panel-brand",
+	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
+	"description": {
+		"de": "Die Subkomponente CP Brand zeigt die Marke oder das Logo der Anwendung innerhalb des Control Panels an.",
+		"en": "The CP Brand subcomponent displays the application brand or logo within the Control Panel."
+	},
+	"shortDescription": {
+		"de": "Zeigt die Marke oder das Logo der Anwendung im Control Panel an.",
+		"en": "Displays the application brand or logo within the Control Panel."
+	},
+	"useCases": {
+		"de": [
+			"Die Identität der Anwendung an einer festen Stelle in der Navigation verankern",
+			"Bei begrenztem Platz zwischen vollem Logo und kompakter Bildmarke wechseln",
+			"Eigene Brand-Inhalte ergänzen (z. B. Logo plus Wortmarke), wenn ein reines Logo nicht ausreicht"
+		],
+		"en": [
+			"Anchor the application's identity at a consistent spot in the navigation",
+			"Adapt between full logo and a compact mark when space is limited",
+			"Add custom brand content (e.g. logo plus wordmark) where a plain logo is not enough"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "custom-brand-override",
+			"headline": {
+				"de": "Eigene Brand überschreiben",
+				"en": "Custom Brand Override"
+			},
+			"text": {
+				"de": "Die Variante Custom erlaubt es, über den Children-Slot eine eigene Brand bzw. ein eigenes Logo zu platzieren. Die Variante Short wird vom System gesteuert und zeigt in beengten Kontexten die kompakte Standard-Bildmarke.",
+				"en": "The Custom variant allows placing your own brand/logo via the Children slot. The Short variant is system-controlled and shows the default compact brand mark in constrained contexts."
+			},
+			"do": {
+				"figmaNodeId": "4185-2",
+				"description": {
+					"de": "Überschreibe die Variante Custom mit dem Logo deiner Anwendung für ausgeklappte Zustände des Control Panels (Top, Left ausgeklappt, Mobile Top).",
+					"en": "Override the Custom variant with your application logo for expanded Control Panel states (Top, Left expanded, Mobile Top)."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4185-4",
+				"description": {
+					"de": "Versuche nicht, die Variante Short zu überschreiben. Sie wird in den Positionen Left eingeklappt und Mobile Bottom automatisch angewendet und ist nicht konfigurierbar.",
+					"en": "Do not attempt to override the Short variant. It is automatically applied in collapsed Left and Mobile Bottom positions and is not user-configurable."
+				}
+			}
+		},
+		{
+			"id": "logo-addition",
+			"headline": {
+				"de": "Logozusatz",
+				"en": "Logo Addition"
+			},
+			"text": {
+				"de": "Der Anwendungsname neben dem Logo muss ein offizieller Logozusatz sein, der als freigegebenes SVG (vektorisierte Pfade) über das Marketingportal angefordert wird. Das sichert Markenkonsistenz bei Schrift, Abständen und Darstellung.",
+				"en": "The application name next to the logo must be an official logo addition provided as an approved SVG (vectorized paths), requested via the marketing portal. This ensures brand consistency in font, spacing, and rendering."
+			},
+			"do": {
+				"figmaNodeId": "4252-87",
+				"description": {
+					"de": "Verwende ein freigegebenes SVG, in dem Logo und Textzusatz ein einzelnes vektorisiertes Asset bilden.",
+					"en": "Use an approved SVG where logo and text addition form a single vectorized asset."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4252-97",
+				"description": {
+					"de": "Kombiniere das Standard-Logo nicht mit einem eigenen Textelement. Eigener Text weicht bei Schrift, Abständen und Darstellung von der Marke ab.",
+					"en": "Do not combine the default logo with your own text element. Custom text deviates from the brand in font, spacing, and rendering."
+				}
+			}
+		},
+		{
+			"id": "brand-with-flat-icon",
+			"headline": {
+				"de": "Brand mit Flat Icon",
+				"en": "Brand with Flat Icon"
+			},
+			"text": {
+				"de": "Das Control Panel in Flat Icon hat keinen eigenen Brand-Bereich. Wenn die Marke sichtbar sein muss, platziere das Logo stattdessen im Bereich Shell Content.",
+				"en": "The Flat Icon Control Panel has no dedicated Brand area. If brand visibility is required, place the logo in the Shell Content area instead."
+			},
+			"do": {
+				"figmaNodeId": "4185-6",
+				"description": {
+					"de": "Platziere Brand bzw. Logo im Bereich Shell Content (z. B. als Header), wenn du Flat Icon verwendest und Markenpräsenz brauchst.",
+					"en": "Place the brand/logo in the Shell Content area (e.g. as a header) when using Flat Icon and brand presence is needed."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4185-8",
+				"description": {
+					"de": "Platziere Brand bzw. Logo nicht als Flat Icon Navigation Item. Flat Icon ist ausschließlich für Navigationsziele vorgesehen.",
+					"en": "Do not place a brand/logo as a Flat Icon Navigation Item. Flat Icon is reserved for navigation destinations only."
+				}
+			}
+		},
+		{
+			"id": "brand-slot-content",
+			"headline": {
+				"de": "Inhalt des Brand-Slots",
+				"en": "Brand Slot Content"
+			},
+			"text": {
+				"de": "Der Brand-Slot dient der Identifikation und dem Kontext. Platziere dort keine interaktiven Elemente – Aktionen und Eingaben gehören in Primary Actions oder Secondary Actions.",
+				"en": "The Brand slot is for identification and context. Do not place interactive elements in it – actions and inputs belong in Primary Actions or Secondary Actions."
+			},
+			"do": {
+				"figmaNodeId": "4185-10",
+				"description": {
+					"de": "Verwende den Brand-Slot für ergänzenden Kontext wie eine Umgebungs-Badge (z. B. Staging, Beta) neben dem Logo.",
+					"en": "Use the Brand slot for supplementary context like an environment badge (e.g. Staging, Beta) alongside the logo."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4185-12",
+				"description": {
+					"de": "Platziere keine interaktiven Elemente wie Suchfelder oder Aktions-Buttons im Brand-Slot. Nutze stattdessen Primary Actions oder Secondary Actions.",
+					"en": "Do not place interactive elements like search fields or action buttons in the Brand slot. Use Primary Actions or Secondary Actions instead."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "control-panel-desktop",
+			"description": {
+				"de": "Übergeordnete Desktop-Komponente, die Brand im Start-Container enthält.",
+				"en": "Desktop parent hosting the Brand in the Start Container."
+			}
+		},
+		{
+			"component": "control-panel-mobile",
+			"description": {
+				"de": "Übergeordnete Mobile-Komponente, in der Brand in der Navigationsleiste erscheint.",
+				"en": "Mobile parent where Brand appears in the navigation bar."
+			}
+		}
+	]
+}

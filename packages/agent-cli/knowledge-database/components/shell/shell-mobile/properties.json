@@ -1,0 +1,61 @@
+{
+	"component": "shell-mobile",
+	"properties": [
+		{
+			"name": "showSubNavigation",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Sub Navigation",
+				"componentSet": ["375x812", "320x568", "768x1024"],
+				"note": "In shell-desktop the equivalent property is a variant axis with the values False and True."
+			}
+		},
+		{
+			"name": "showDrawer",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Drawer",
+				"componentSet": ["375x812", "320x568", "768x1024"],
+				"note": "Mobile only. Navigation level two and deeper can only be shown in the Drawer, desktop has no equivalent."
+			}
+		},
+		{
+			"name": "controlPanel",
+			"type": "instanceSwap",
+			"code": null,
+			"design": {
+				"name": "🔄 CP Navigation",
+				"type": "slot",
+				"componentSet": ["375x812", "320x568", "768x1024"],
+				"note": "New since the last read. Default resolves to CP → Drill Down - Mobile - Bottom (Beta). Flat Icon is now selected through this swap instead of a dedicated position value."
+			}
+		},
+		{
+			"name": "controlPanelMobilePosition",
+			"type": "enum",
+			"values": ["top", "bottom"],
+			"default": "top",
+			"code": null,
+			"design": {
+				"name": "🔀 Control Panel Mobile Position",
+				"values": ["(Def) Top", "Bottom"],
+				"componentSet": ["375x812", "320x568", "768x1024"],
+				"note": "Bottom - Flat Icon was removed from this axis. Flat Icon is now reached via the new 🔄 CP Navigation instance swap instead of a position value."
+			}
+		},
+		{
+			"name": "subNavigationPosition",
+			"type": "enum",
+			"values": ["top", "bottom"],
+			"default": "top",
+			"code": null,
+			"design": {
+				"name": "🔀 Sub Navigation Mobile Position",
+				"values": ["(Def) Top", "Bottom"],
+				"componentSet": ["375x812", "320x568", "768x1024"]
+			}
+		}
+	]
+}

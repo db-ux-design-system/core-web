@@ -1,0 +1,12 @@
+{
+	"component": "control-panel-secondary-actions",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ CP Secondary Actions (Beta)",
+			"nodeId": "35867:43535",
+			"type": "COMPONENT",
+			"key": "2685802204e56f96163c08ab3142502f91dfadbf"
+		}
+	]
+}

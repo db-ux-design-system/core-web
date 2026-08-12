@@ -1,0 +1,115 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "shell-sub-navigation",
+	"figmaFileKey": "RcpbbqfJwjNRlOwPhAX1im",
+	"description": {
+		"de": "Die Shell Sub Navigation stellt eine sekundäre Navigationsebene innerhalb der Shell bereit. Sie unterstützt horizontale (Top) und vertikale (Left) Ausrichtung.",
+		"en": "The Shell Sub Navigation provides a secondary navigation level within the Shell. It supports horizontal (Top) and vertical (Left) orientations."
+	},
+	"shortDescription": {
+		"de": "Sekundäre Navigationsebene innerhalb der Shell.",
+		"en": "Secondary navigation level within the Shell."
+	},
+	"useCases": {
+		"de": [
+			"Zwischen den Unterseiten eines Bereichs wechseln",
+			"Die Bereichsnavigation neben der Hauptnavigation des Control Panels sichtbar halten",
+			"Inhaltsfläche zurückgewinnen, indem die Sidebar bei Nichtbedarf eingeklappt wird"
+		],
+		"en": [
+			"Move between the sub-pages of one section",
+			"Keep section navigation visible alongside the main Control Panel navigation",
+			"Reclaim content space by collapsing the sidebar when it is not needed"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "horizontal-overflow",
+			"headline": {
+				"de": "Horizontaler Overflow",
+				"en": "Horizontal Overflow"
+			},
+			"text": {
+				"de": "Die horizontale Sub Navigation hat begrenzten Platz. Zu viele Navigation Items erfordern Scrollen, was die Auffindbarkeit verringert – besonders auf Mobile, wo keine Scroll-Indikatoren angezeigt werden.",
+				"en": "The horizontal Sub Navigation has limited space. Too many Navigation Items require scrolling which reduces discoverability – especially on mobile where no scroll indicators are shown."
+			},
+			"do": {
+				"figmaNodeId": "4093-8",
+				"description": {
+					"de": "Halte die Anzahl der Navigation Items in der horizontalen Sub Navigation überschaubar, damit alle Ziele ohne Scrollen sichtbar bleiben.",
+					"en": "Keep the number of Navigation Items in the horizontal Sub Navigation manageable so all destinations remain visible without scrolling."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4093-11",
+				"description": {
+					"de": "Überlade die horizontale Sub Navigation nicht mit zu vielen Navigation Items. Ausgiebiges Scrollen verringert die Auffindbarkeit, besonders auf Mobile, wo verborgene Navigation Items keinen visuellen Hinweis haben.",
+					"en": "Do not overload the horizontal Sub Navigation with too many Navigation Items. Excessive scrolling reduces discoverability, especially on mobile where hidden Navigation Items have no visual indicator."
+				}
+			}
+		},
+		{
+			"id": "mobile-single-level",
+			"headline": {
+				"de": "Mobile: eine Ebene",
+				"en": "Mobile: Single Level"
+			},
+			"text": {
+				"de": "Die mobile Sub Navigation unterstützt nur eine flache Navigationsebene. Verschachtelte Gruppen werden nicht dargestellt.",
+				"en": "The mobile Sub Navigation supports only one flat navigation level. Nested groups are not rendered."
+			},
+			"do": {
+				"figmaNodeId": "4049-3",
+				"description": {
+					"de": "Verwende in der mobilen Sub Navigation eine einzige Ebene von Navigation Items mit klaren, kurzen Labels.",
+					"en": "Use a single level of Navigation Items in the mobile Sub Navigation with clear, short labels."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4049-4",
+				"description": {
+					"de": "Verwende in der mobilen Sub Navigation keine verschachtelten Navigationsebenen. Es wird nur eine flache Ebene unterstützt – Navigation Item Groups sind auf Mobile verborgen.",
+					"en": "Do not use nested navigation levels in the mobile Sub Navigation. Only one flat level is supported – Navigation Item Groups are hidden on mobile."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "shell-desktop",
+			"description": {
+				"de": "Shell Desktop, die die Sub Navigation enthält.",
+				"en": "Shell Desktop, which hosts the Sub Navigation."
+			}
+		},
+		{
+			"component": "shell-mobile",
+			"description": {
+				"de": "Shell Mobile, in der die Sub Navigation als horizontale Leiste erscheint.",
+				"en": "Shell Mobile, where Sub Navigation appears as a horizontal bar."
+			}
+		},
+		{
+			"component": "control-panel-navigation",
+			"description": {
+				"de": "Die Hauptnavigationsebene, die die Sub Navigation ergänzt.",
+				"en": "The main navigation level that Sub Navigation complements."
+			}
+		},
+		{
+			"component": "shell-content",
+			"description": {
+				"de": "Der Inhaltsbereich, neben dem die Sub Navigation liegt.",
+				"en": "The content area that Sub Navigation sits alongside."
+			}
+		},
+		{
+			"component": "navigation",
+			"description": {
+				"de": "Die zugrunde liegende Navigations-Komponente, die in der Sub Navigation verwendet wird.",
+				"en": "The underlying navigation component used within Sub Navigation."
+			}
+		}
+	]
+}

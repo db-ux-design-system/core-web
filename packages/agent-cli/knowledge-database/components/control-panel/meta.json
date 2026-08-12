@@ -1,0 +1,9 @@
+{
+	"id": "control-panel",
+	"name": "Control Panel",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"guidelines": "delegated"
+}

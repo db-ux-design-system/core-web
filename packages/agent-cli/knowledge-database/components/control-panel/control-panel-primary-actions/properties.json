@@ -1,0 +1,14 @@
+{
+	"component": "control-panel-primary-actions",
+	"properties": [
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		}
+	]
+}

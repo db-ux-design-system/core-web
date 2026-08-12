@@ -1,0 +1,12 @@
+{
+	"component": "shell",
+	"figmaFileKey": null,
+	"description": {
+		"de": "Die Shell kombiniert Control Panel, Inhaltsbereich und Sub Navigation zu einer konsistenten Seitenstruktur.",
+		"en": "The Shell combines Control Panel, content area, and Sub Navigation into a consistent page structure."
+	},
+	"shortDescription": {
+		"de": "Anwendungsrahmen, der Control Panel, Inhaltsbereich und Sub Navigation verbindet.",
+		"en": "Application frame combining Control Panel, content area, and Sub Navigation."
+	}
+}

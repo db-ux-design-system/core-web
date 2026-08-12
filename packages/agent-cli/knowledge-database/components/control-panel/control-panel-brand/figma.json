@@ -1,0 +1,24 @@
+{
+	"component": "control-panel-brand",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ CP Brand → (Def) Custom (Beta)",
+			"nodeId": "38590:6462",
+			"type": "COMPONENT_SET",
+			"key": "a4c0bf5a01a39b9564382dc8091b6483f95d7ab2"
+		},
+		{
+			"name": "↳ CP Brand → Logozusatz (Beta)",
+			"nodeId": "35867:43542",
+			"type": "COMPONENT",
+			"key": "686e19c5524c705f0c220a5913db295394465b21"
+		},
+		{
+			"name": "↳ CP Brand → Short (Beta)",
+			"nodeId": "35867:43547",
+			"type": "COMPONENT",
+			"key": "15e8613e04dd85b742bdbf0cad81f2d8bd23d44f"
+		}
+	]
+}

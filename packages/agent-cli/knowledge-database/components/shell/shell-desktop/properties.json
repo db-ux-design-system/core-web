@@ -1,0 +1,50 @@
+{
+	"component": "shell-desktop",
+	"properties": [
+		{
+			"name": "controlPanelDesktopPosition",
+			"type": "enum",
+			"values": ["top", "left"],
+			"default": "top",
+			"code": null,
+			"design": {
+				"name": "🔀 Control Panel Desktop Position",
+				"values": ["(Def) Top", "Left"],
+				"componentSet": ["1440x1024", "1024x768", "1920x1080"]
+			}
+		},
+		{
+			"name": "showSubNavigation",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Sub Navigation",
+				"componentSet": ["1440x1024", "1024x768", "1920x1080"]
+			}
+		},
+		{
+			"name": "controlPanel",
+			"type": "instanceSwap",
+			"code": null,
+			"design": {
+				"name": "🔄 CP Navigation",
+				"type": "slot",
+				"componentSet": ["1440x1024", "1024x768", "1920x1080"],
+				"note": "Swaps the whole Control Panel instance embedded in Shell Desktop, choosing between Top, Drill Down Left, Tree Left and Flat Icon Desktop. Default resolves to CP → (Def) Drill Down - Desktop - Left (Beta), Expanded=True."
+			}
+		},
+		{
+			"name": "subNavigationDesktopPosition",
+			"type": "enum",
+			"values": ["top", "left"],
+			"default": "top",
+			"code": null,
+			"design": {
+				"name": "🔀 Sub Navigation Desktop Position",
+				"values": ["(Def) Top", "Left"],
+				"componentSet": ["1440x1024", "1024x768", "1920x1080"],
+				"note": "In shell-mobile the equivalent property is named 🔀 Sub Navigation Mobile Position and offers Top and Bottom instead of Top and Left."
+			}
+		}
+	]
+}

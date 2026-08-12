@@ -1,0 +1,84 @@
+{
+	"component": "control-panel-desktop",
+	"properties": [
+		{
+			"name": "showPrimaryActions",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Primary Actions",
+				"componentSet": ["top", "drill-down-left", "tree-left"],
+				"note": "On flat-icon-desktop this is a separate property instance with a different key (👁️ Show Primary Actions#36190:1)."
+			}
+		},
+		{
+			"name": "showSecondaryActions",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Secondary Actions",
+				"componentSet": ["top", "drill-down-left", "tree-left"],
+				"note": "On flat-icon-desktop this is a separate property instance with a different key (👁️ Show Secondary Actions#36190:2)."
+			}
+		},
+		{
+			"name": "showMetaNavigation",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Meta Navigation",
+				"componentSet": ["top", "drill-down-left", "tree-left"],
+				"note": "On flat-icon-desktop this is a separate property instance with a different key (👁️ Show Meta Navigation#36190:3)."
+			}
+		},
+		{
+			"name": "showNavigation",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Navigation",
+				"componentSet": ["top", "drill-down-left", "tree-left"],
+				"note": "On flat-icon-desktop this is a separate property instance with a different key (👁️ Show Navigation#5584:5)."
+			}
+		},
+		{
+			"name": "width",
+			"type": "enum",
+			"values": ["full", "small", "medium", "large"],
+			"default": "full",
+			"code": null,
+			"design": {
+				"name": "🔀 Width",
+				"componentSet": ["top"],
+				"values": ["(Def) Full", "Small", "Medium", "Large"]
+			}
+		},
+		{
+			"name": "expanded",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Expanded",
+				"componentSet": ["drill-down-left", "tree-left"],
+				"values": ["True", "False"],
+				"note": "Absent on flat-icon-desktop, which has no collapsed state."
+			}
+		},
+		{
+			"name": "brandInstance",
+			"type": "instanceSwap",
+			"code": null,
+			"design": {
+				"name": "🔄 CP Brand",
+				"type": "slot",
+				"componentSet": [
+					"top",
+					"drill-down-left",
+					"tree-left",
+					"flat-icon-desktop"
+				],
+				"note": "Separate property instance per component set, keys differ (#38590:4 on top, #38759:4 on drill-down-left and tree-left, #38759:11 on flat-icon-desktop)."
+			}
+		}
+	]
+}

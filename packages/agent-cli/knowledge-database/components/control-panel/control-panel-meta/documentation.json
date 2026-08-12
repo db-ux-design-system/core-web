@@ -1,0 +1,69 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "control-panel-meta",
+	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
+	"description": {
+		"de": "Die Subkomponente CP Meta bietet innerhalb des Control Panels einen flexiblen Bereich für ergänzende, global relevante Inhalte.",
+		"en": "The CP Meta subcomponent provides a flexible area within the Control Panel for supplementary, globally relevant content."
+	},
+	"shortDescription": {
+		"de": "Bereich für ergänzende, global relevante Inhalte im Control Panel.",
+		"en": "Area for supplementary, globally relevant content within the Control Panel."
+	},
+	"useCases": {
+		"de": [
+			"Meta-Navigationslinks, Umgebungsanzeigen oder rechtliche Verweise aufnehmen",
+			"Den Bereich leicht halten, damit er nicht mit der primären Navigation konkurriert",
+			"Für Inhalte nutzen, die überall gelten, nicht für seitenspezifische Informationen"
+		],
+		"en": [
+			"Hold meta navigation links, environment indicators, or legal references",
+			"Keep it lightweight so it does not compete with the primary navigation",
+			"Use it for content that applies everywhere, not per-page information"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "content-type",
+			"headline": {
+				"de": "Art des Inhalts",
+				"en": "Content Type"
+			},
+			"text": {
+				"de": "Verwende Meta für ergänzende, niedrig priorisierte Inhalte, die global gelten – etwa Meta-Navigationslinks, Umgebungs-Labels oder rechtliche Verweise. Halte den Bereich leicht, damit er nicht mit der Hauptnavigation konkurriert.",
+				"en": "Use Meta for supplementary, low-priority content that applies globally – such as meta navigation links, environment labels, or legal references. Keep it lightweight to not compete with the main navigation."
+			},
+			"do": {
+				"figmaNodeId": "4358-2",
+				"description": {
+					"de": "Verwende Meta für ergänzende Inhalte wie Meta-Navigationslinks, Umgebungsanzeigen oder rechtliche Verweise.",
+					"en": "Use Meta for supplementary content like meta navigation links, environment indicators, or legal references."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4358-4",
+				"description": {
+					"de": "Platziere keine primären Navigation Items oder hoch priorisierten Aktionen in Meta. Der Bereich ist ergänzenden Inhalten vorbehalten, die die übrigen Bereiche des Control Panels flankieren.",
+					"en": "Do not place primary Navigation Items or high-priority actions in Meta. It is reserved for supplementary content that complements the main Control Panel areas."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "control-panel-desktop",
+			"description": {
+				"de": "Übergeordnete Desktop-Komponente, in der Meta in den Positionen Top und Left erscheint.",
+				"en": "Desktop parent where Meta appears in Top and Left positions."
+			}
+		},
+		{
+			"component": "control-panel-mobile",
+			"description": {
+				"de": "Übergeordnete Mobile-Komponente, in der Meta im Drawer erscheint (nur Ebene 1).",
+				"en": "Mobile parent where Meta appears in the Drawer (Level 1 only)."
+			}
+		}
+	]
+}

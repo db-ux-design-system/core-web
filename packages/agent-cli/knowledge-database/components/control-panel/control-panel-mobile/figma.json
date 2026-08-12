@@ -1,0 +1,24 @@
+{
+	"component": "control-panel-mobile",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "CP → (Def) Drill Down - Mobile - Top (Beta)",
+			"nodeId": "35867:43422",
+			"type": "COMPONENT",
+			"key": "4bb35e7c1e19b2f36a84af5ea7d2cf88da97bcb6"
+		},
+		{
+			"name": "CP → Drill Down - Mobile - Bottom (Beta)",
+			"nodeId": "35867:43431",
+			"type": "COMPONENT",
+			"key": "f2c42a5928c196750d019ff031cf9c9dc3b4b428"
+		},
+		{
+			"name": "CP → Flat Icon - Mobile (Beta)",
+			"nodeId": "35867:43439",
+			"type": "COMPONENT",
+			"key": "a7d7c970021f40677a15d93289cf84f82351af38"
+		}
+	]
+}

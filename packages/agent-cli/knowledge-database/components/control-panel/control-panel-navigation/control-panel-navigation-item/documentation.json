@@ -1,0 +1,76 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "control-panel-navigation-item",
+	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
+	"description": {
+		"de": "Das CP Navigation Item ist das einzelne Navigation Item innerhalb der Navigations-Container des Control Panels. Navigation Item Group ist als Gruppierungs-Variante für Navigation Items mit Unternavigation enthalten.",
+		"en": "The CP Navigation Item is the individual navigation entry within Control Panel navigation containers. Navigation Item Group is included as a grouping variant for Navigation Items with sub-navigation."
+	},
+	"shortDescription": {
+		"de": "Einzelnes Navigation Item innerhalb der Control Panel Navigation.",
+		"en": "Individual navigation entry within the Control Panel navigation."
+	},
+	"useCases": {
+		"de": [
+			"Nutzer:innen auf eine bestimmte Seite oder Ansicht verlinken",
+			"Anzeigen, ob ein Navigation Item die aktuelle, aktive Position ist",
+			"Icon und Label nutzen, damit Ziele leicht zu erfassen sind"
+		],
+		"en": [
+			"Link users to a specific page or view",
+			"Show whether a Navigation Item is the current, active location",
+			"Use an icon and label to make destinations easy to scan"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "icon-consistency-per-level",
+			"headline": {
+				"de": "Icon-Konsistenz pro Ebene",
+				"en": "Icon Consistency per Level"
+			},
+			"text": {
+				"de": "Navigation Items im Tree erlauben es, den Standard-Marker der Baumlinie durch ein eigenes Icon zu ersetzen (nur Navigation Items – Navigation Item Groups behalten immer das Chevron zum Auf- und Zuklappen). Halte Icons innerhalb einer Ebene konsistent: Entweder erhalten alle benachbarten Navigation Items einer Ebene ein eigenes Icon oder keines. Zwischen den Ebenen darf es Unterschiede geben.",
+				"en": "Tree Navigation Items allow overriding the default tree-line marker with a custom icon (Navigation Items only – Navigation Item Groups always keep the expand/collapse chevron). Keep icons consistent within a level: either all sibling Navigation Items on a level get a custom icon or none. Levels may differ from each other."
+			},
+			"do": {
+				"figmaNodeId": "4547-6",
+				"description": {
+					"de": "Setze eigene Icons innerhalb einer Ebene konsistent ein – entweder erhalten alle benachbarten Navigation Items ein eigenes Icon oder keines. Zwischen den Ebenen darf es Unterschiede geben.",
+					"en": "Apply custom icons consistently within a level – either all sibling Navigation Items get a custom icon or none. Levels may differ from each other."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4547-8",
+				"description": {
+					"de": "Mische innerhalb derselben Ebene keine eigenen Icons und Standard-Marker. Ein einzelner Kreis zwischen eigenen Icons wirkt wie ein Versehen und erschwert das Erfassen.",
+					"en": "Do not mix custom icons and default markers within the same level. A single circle among custom icons looks like an oversight and breaks scannability."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "control-panel-navigation",
+			"description": {
+				"de": "Übergeordnete Navigations-Container (Popover, Tree, Flat Icon), die die Navigation Items enthalten.",
+				"en": "Parent navigation containers (Popover, Tree, Flat Icon) hosting the Navigation Items."
+			}
+		},
+		{
+			"component": "control-panel-desktop",
+			"description": {
+				"de": "Control Panel Desktop, in dem Navigation Items erscheinen.",
+				"en": "Desktop Control Panel where Navigation Items appear."
+			}
+		},
+		{
+			"component": "control-panel-mobile",
+			"description": {
+				"de": "Control Panel Mobile, in dem Navigation Items in Drill Down und Flat Icon erscheinen.",
+				"en": "Control Panel Mobile, where Drill Down and Flat Icon Navigation Items appear."
+			}
+		}
+	]
+}

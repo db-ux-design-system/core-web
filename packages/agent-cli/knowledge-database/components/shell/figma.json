@@ -1,0 +1,90 @@
+{
+	"component": "shell",
+	"library": "core-components",
+	"pageId": "35867:42853",
+	"pageName": "Shell (Beta)",
+	"componentSets": [
+		{
+			"name": "shell-desktop",
+			"componentSets": [
+				{
+					"name": "Shell → Desktop - (Def) 1440x1024 (Beta)",
+					"nodeId": "35867:46431",
+					"type": "COMPONENT_SET",
+					"key": "3f60df483e78662ab7e6b9000fb7e0d452e6cb6f"
+				},
+				{
+					"name": "Shell → Desktop - 1024x768 (Beta)",
+					"nodeId": "37178:48053",
+					"type": "COMPONENT_SET",
+					"key": "8857c1968e84bf459aa1793b0b96072021b46e42"
+				},
+				{
+					"name": "Shell → Desktop - 1920x1080 (Beta)",
+					"nodeId": "37178:48357",
+					"type": "COMPONENT_SET",
+					"key": "216603044dd02ad1e055efe1b912c20ac48b5cd0"
+				}
+			]
+		},
+		{
+			"name": "shell-mobile",
+			"componentSets": [
+				{
+					"name": "Shell → Mobile - (Def) 375x812 (Beta)",
+					"nodeId": "35867:46499",
+					"type": "COMPONENT_SET",
+					"key": "7af0bffb23c18b00cde8dc60922a66953b32ddee"
+				},
+				{
+					"name": "Shell → Mobile - 320x568 (Beta)",
+					"nodeId": "37178:47277",
+					"type": "COMPONENT_SET",
+					"key": "ee19984fc8aa153b152b7b2a04a8b83e09054e89"
+				},
+				{
+					"name": "Shell → Mobile - 768x1024 (Beta)",
+					"nodeId": "37178:47747",
+					"type": "COMPONENT_SET",
+					"key": "236e27cb519e0573264c964d33d2451afdb3fd7e"
+				}
+			]
+		}
+	],
+	"subComponents": [
+		{
+			"name": "shell-content",
+			"componentSets": [
+				{
+					"name": "↳ Shell Content",
+					"nodeId": "35867:46567",
+					"type": "COMPONENT_SET",
+					"key": "a06574eb75feb605036b7e63800b2a077f66735f"
+				}
+			]
+		},
+		{
+			"name": "shell-sub-navigation",
+			"componentSets": [
+				{
+					"name": "↳ Shell Sub Navigation → Desktop - Top (Beta)",
+					"nodeId": "35867:46528",
+					"type": "COMPONENT",
+					"key": "1adfd730fcdc60ca166cb6f25683961c62a5104d"
+				},
+				{
+					"name": "↳ 🔄 Shell Sub Navigation → Desktop - Left (Beta)",
+					"nodeId": "35867:46534",
+					"type": "COMPONENT_SET",
+					"key": "d89730b5ba5ccf2d3346330944ddf3110abad634"
+				},
+				{
+					"name": "↳ Shell Sub Navigation → Mobile (Beta)",
+					"nodeId": "36734:26505",
+					"type": "COMPONENT",
+					"key": "628ff210bc9cf1447f6fdbbb9f0122e394eb1ee2"
+				}
+			]
+		}
+	]
+}

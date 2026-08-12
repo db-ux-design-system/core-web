@@ -1,0 +1,46 @@
+{
+	"component": "control-panel-brand",
+	"properties": [
+		{
+			"name": "logo",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Logo",
+				"type": "slot",
+				"componentSet": ["logozusatz"]
+			}
+		},
+		{
+			"name": "text",
+			"type": "enum",
+			"values": ["no-text", "single-line", "double-line"],
+			"default": "no-text",
+			"code": null,
+			"design": {
+				"name": "🔀 Text",
+				"values": ["(Def) No Text", "Single Line", "Double Line"],
+				"componentSet": ["custom"]
+			}
+		},
+		{
+			"name": "showEndSlot",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show End Slot",
+				"componentSet": ["custom", "logozusatz"]
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 End Slot",
+				"type": "slot",
+				"componentSet": ["custom", "logozusatz"]
+			}
+		}
+	]
+}

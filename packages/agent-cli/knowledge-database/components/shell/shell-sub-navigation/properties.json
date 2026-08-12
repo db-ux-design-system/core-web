@@ -1,0 +1,28 @@
+{
+	"component": "shell-sub-navigation",
+	"properties": [
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": ["drill-down", "tree"],
+			"default": "drill-down",
+			"code": null,
+			"design": {
+				"name": "🔀 Variant",
+				"values": ["(Def) Drill Down", "Tree"],
+				"componentSet": ["desktop-vertical"],
+				"note": "Only the Desktop - Vertical set is a component set with variants. The Popover variant described in the guidelines is not part of this axis; it only exists internally as a CP Navigation → Popover instance inside the Desktop - Horizontal component."
+			}
+		},
+		{
+			"name": "expanded",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 Expanded",
+				"values": ["False", "True"],
+				"componentSet": ["desktop-vertical"]
+			}
+		}
+	]
+}

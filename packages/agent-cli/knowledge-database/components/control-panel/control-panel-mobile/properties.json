@@ -1,0 +1,23 @@
+{
+	"component": "control-panel-mobile",
+	"properties": [
+		{
+			"name": "showPrimaryActions",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Primary Actions",
+				"componentSet": ["drill-down-top", "drill-down-bottom"]
+			}
+		},
+		{
+			"name": "showDivider",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Divider",
+				"componentSet": ["drill-down-top"]
+			}
+		}
+	]
+}

@@ -12,6 +12,7 @@ knowledge-database/
   icons/                   Icon-System (Namen, Guidelines)
   figma-libraries.json     Übersicht der Figma-Libraries mit File Keys
   inconsistencies.md       Tracking von Abweichungen zwischen Figma und Code
+  figma-findings.md        Beobachtungen aus dem Auslesen der Figma-Library
   requirements.md          Anforderungsdokument an die Knowledge Base
   writing-conventions.md   Schreib- und Formulierungskonventionen
   TODO.md                  Offene Punkte
@@ -21,7 +22,10 @@ knowledge-database/
 
 - **`guidelines.md`** — Was die Komponente kann und nicht kann. Doku-relevant.
 - **`inconsistencies.md`** — Abweichungen zwischen Figma und Code, offene Befunde. Nicht doku-relevant.
+- **`figma-findings.md`** — Beobachtungen aus dem Auslesen der Figma-Library, die noch keinen Zielort haben. Arbeitsliste zum Durchgehen mit Design, ausdrücklich kein Doku-Inhalt. Jeder Punkt wird nach der Klärung an seinen Zielort verschoben und dort gelöscht.
 - **`writing-conventions.md`** — Schreibweisen, Normativität, Tonalität in der Wissensbasis.
+
+Beobachtungen aus Figma dürfen nicht in die `guidelines.md` einfließen, solange sie nicht fachlich bestätigt und in der Doku verankert sind. Die `guidelines.md` speist sich aus dem Doku-Inhalt, nicht aus der Figma-Struktur.
 
 **Konventionen der Figma-Library** stehen nicht in dieser Wissensbasis, sondern in der Design Power des Core Teams (Steering `design-library.md`). Dort ist geregelt, wie Komponenten benannt und strukturiert werden, welche Emoji-Präfixe Properties tragen, wie Slots und Variantenmatrizen aufgebaut sind. Die Wissensbasis beschreibt den **Inhalt** des Design Systems, die Power beschreibt **wie die Figma-Library gebaut ist**. Beides doppelt zu pflegen führt zu Divergenz.
 
@@ -140,6 +144,7 @@ Solange eine Komponente noch keinen Code hat, bleibt das Feld deshalb überall l
 Hat eine Komponente mehrere Component Sets mit unterschiedlichen Property-Flächen (z. B. Control Panel Desktop mit Top und Left), trägt jede Property im `design`-Objekt zusätzlich ein `componentSet`-Array mit den Sets, in denen sie vorkommt. Die Bezeichner sind kurze Kleinschreibungen der Variante (`top`, `left`, `flat-icon-desktop`).
 
 Ohne dieses Feld wäre bei flacher Ablage nicht erkennbar, welche Property zu welchem Set gehört. Kommt dieselbe logische Property in mehreren Sets unter **abweichendem Figma-Namen** vor, wird sie in getrennte Einträge aufgeteilt und über `note` aufeinander verwiesen — ein Generator würde die Namen sonst als zwei verschiedene Properties behandeln.
+
 - `properties.json` — Figma Properties, Code Connect Properties, Code Properties. Quelle: Figma + Code.
 - `guidelines.md` — Nutzungsrichtlinien — normative Regeln für Agents und Generatoren. Quelle: manuell (Authoring).
 - `documentation.json` — Platform-Dokumentation — zweisprachige Texte für die Doku-Website. Quelle: generiert aus `guidelines.md`.
@@ -226,8 +231,11 @@ Jede Regel wird zu einem Guideline-Objekt expandiert:
 - `text` — die Regel als natürlicher Satz im Dokumentations-Ton, ergänzt um Kontext aus der Regel selbst (DE + EN)
 - `do.description` — positiv formuliert: was zu tun ist. Imperativ. (DE + EN)
 - `dont.description` — beginnt mit Verb + „nicht" (DE) bzw. „Don't..." (EN). Enthält immer die Konsequenz.
+- `caution.description` — statt `dont` bei einer Regel mit `**sollte**`. Die abgemilderte Form: keine harte Untersagung, sondern ein Hinweis auf die Folgen mit einer Empfehlung. (DE + EN)
 - `do.figmaNodeId` — wird nach Erstellung der Figma-Visuals nachgetragen
-- `dont.figmaNodeId` — wird nach Erstellung der Figma-Visuals nachgetragen
+- `dont.figmaNodeId` bzw. `caution.figmaNodeId` — wird nach Erstellung der Figma-Visuals nachgetragen
+
+Eine Regel trägt entweder `dont` oder `caution`, nicht beides. `**sollte**` im Regeltext und `caution` im Eintrag sind zwei Darstellungen derselben Normativität — wer eine Regel ohne `dont` findet, muss `caution` prüfen, bevor er sie für nicht normativ hält.
 
 #### Content Tone (Documentation Area)
 

@@ -1,0 +1,78 @@
+{
+	"component": "control-panel-navigation",
+	"properties": [
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"componentSet": [
+					"popover",
+					"tree",
+					"flat-icon-desktop",
+					"flat-icon-mobile",
+					"drill-down"
+				]
+			}
+		},
+		{
+			"name": "childrenNoText",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children No Text",
+				"type": "slot",
+				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+			}
+		},
+		{
+			"name": "childrenLevel2",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children Level 2",
+				"type": "slot",
+				"componentSet": ["drill-down"]
+			}
+		},
+		{
+			"name": "noText",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 No Text",
+				"values": ["False", "True"],
+				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+			}
+		},
+		{
+			"name": "showOverflowButtonLeft",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Overflow Button Left",
+				"componentSet": ["popover"]
+			}
+		},
+		{
+			"name": "showOverflowButtonRight",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Overflow Button Right",
+				"componentSet": ["popover"]
+			}
+		},
+		{
+			"name": "showLevel2Plus",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Level 2+",
+				"componentSet": ["drill-down"]
+			}
+		}
+	]
+}

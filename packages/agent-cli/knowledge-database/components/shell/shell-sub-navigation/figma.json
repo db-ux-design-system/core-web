@@ -1,0 +1,24 @@
+{
+	"component": "shell-sub-navigation",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ Shell Sub Navigation → Desktop - Top (Beta)",
+			"nodeId": "35867:46528",
+			"type": "COMPONENT",
+			"key": "1adfd730fcdc60ca166cb6f25683961c62a5104d"
+		},
+		{
+			"name": "↳ 🔄 Shell Sub Navigation → Desktop - Left (Beta)",
+			"nodeId": "35867:46534",
+			"type": "COMPONENT_SET",
+			"key": "d89730b5ba5ccf2d3346330944ddf3110abad634"
+		},
+		{
+			"name": "↳ Shell Sub Navigation → Mobile (Beta)",
+			"nodeId": "36734:26505",
+			"type": "COMPONENT",
+			"key": "628ff210bc9cf1447f6fdbbb9f0122e394eb1ee2"
+		}
+	]
+}

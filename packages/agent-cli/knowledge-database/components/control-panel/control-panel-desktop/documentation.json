@@ -1,0 +1,90 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "control-panel-desktop",
+	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
+	"description": {
+		"de": "Das Control Panel Desktop ist die primäre Navigationsleiste für Desktop-Anwendungen innerhalb der Shell. Es bietet zwei Positions-Varianten: Top (horizontal) und Left (vertikale Sidebar).",
+		"en": "The Control Panel Desktop is the primary navigation bar for desktop applications within the Shell. It provides two position variants: Top (horizontal) and Left (vertical sidebar)."
+	},
+	"shortDescription": {
+		"de": "Primäre Navigationsleiste für Desktop-Anwendungen mit den Positionen Top und Left.",
+		"en": "Primary navigation bar for desktop applications with Top and Left positions."
+	},
+	"useCases": {
+		"de": [
+			"Desktop-Nutzer:innen einen dauerhaften Einstieg in die Hauptbereiche der Anwendung geben",
+			"Brand, Navigation und globale Aktionen in einem konsistenten Rahmen zusammenführen",
+			"Sowohl inhaltsorientierte Anwendungen (Top) als auch navigationslastige Anwendungen (Left) unterstützen"
+		],
+		"en": [
+			"Give desktop users a persistent entry point to the app's main sections",
+			"Combine brand, navigation, and global actions in one consistent frame",
+			"Support both content-focused apps (Top) and navigation-heavy apps (Left)"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "position-top-vs-left",
+			"headline": {
+				"de": "Position (Top vs. Left)",
+				"en": "Position (Top vs. Left)"
+			},
+			"text": {
+				"de": "Wähle die Position des Control Panels nach der Navigationskomplexität deiner Anwendung. Top eignet sich für Anwendungen mit wenigen Navigation Items auf oberster Ebene, Left für Anwendungen mit vielen Navigation Items oder tiefen Hierarchien.",
+				"en": "Choose the Control Panel position based on your application's navigation complexity. Top works for apps with few top-level Navigation Items; Left suits applications with many Navigation Items or deep hierarchies."
+			},
+			"do": {
+				"figmaNodeId": "4042-2",
+				"description": {
+					"de": "Verwende Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene, die bequem in eine horizontale Leiste passen.",
+					"en": "Use Top for applications with a small number of top-level Navigation Items that fit comfortably in a horizontal bar."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4042-4",
+				"description": {
+					"de": "Die Position Left mit nur 2–3 Navigation Items belegt Platz, ohne strukturellen Mehrwert zu bieten. Prüfe stattdessen Top.",
+					"en": "The Left position with only 2–3 Navigation Items takes up space without adding structural benefit. Consider Top instead."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "control-panel-mobile",
+			"description": {
+				"de": "Mobile Variante mit den Positionen Top, Bottom und Flat Icon.",
+				"en": "Mobile variant with Top, Bottom, and Flat Icon positions."
+			}
+		},
+		{
+			"component": "shell-desktop",
+			"description": {
+				"de": "Das Layout der Shell Desktop, das das Control Panel enthält.",
+				"en": "The desktop Shell layout that hosts the Control Panel."
+			}
+		},
+		{
+			"component": "shell-sub-navigation",
+			"description": {
+				"de": "Sekundäre Navigation, die das Control Panel ergänzt.",
+				"en": "Secondary navigation that complements the Control Panel."
+			}
+		},
+		{
+			"component": "control-panel-navigation",
+			"description": {
+				"de": "Navigations-Container (Popover, Tree, Flat Icon) innerhalb des Control Panels.",
+				"en": "Navigation containers (Popover, Tree, Flat Icon) within the Control Panel."
+			}
+		},
+		{
+			"component": "control-panel-navigation-item",
+			"description": {
+				"de": "Navigation Items und Navigation Item Groups innerhalb der Control Panel Navigation.",
+				"en": "Navigation Items and Navigation Item Groups within the Control Panel Navigation."
+			}
+		}
+	]
+}

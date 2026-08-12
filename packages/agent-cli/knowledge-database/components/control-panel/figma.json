@@ -1,0 +1,179 @@
+{
+	"component": "control-panel",
+	"library": "core-components",
+	"pageId": "35867:53937",
+	"pageName": "Control Panel (Beta)",
+	"componentSets": [
+		{
+			"name": "control-panel-desktop",
+			"componentSets": [
+				{
+					"name": "CP → (Def) Top - Desktop (Beta)",
+					"nodeId": "35867:43253",
+					"type": "COMPONENT_SET",
+					"key": "4bf38f60d6d3a121823929acd4cf80fa7a4b3116"
+				},
+				{
+					"name": "CP → (Def) Drill Down - Desktop - Left (Beta)",
+					"nodeId": "35867:43330",
+					"type": "COMPONENT_SET",
+					"key": "d297d1278a90193659e0fe5dcfdfc2ba310a9a77"
+				},
+				{
+					"name": "CP → Tree - Desktop - Left (Beta)",
+					"nodeId": "38794:101184",
+					"type": "COMPONENT_SET",
+					"key": "b13bb60fb7a46cffb88a499f8c7003e752a1ac4c"
+				},
+				{
+					"name": "CP → Flat Icon - Desktop (Beta)",
+					"nodeId": "38794:101238",
+					"type": "COMPONENT",
+					"key": "7cbe4154cc016522588909590901c46296b3b5b0"
+				}
+			]
+		},
+		{
+			"name": "control-panel-mobile",
+			"componentSets": [
+				{
+					"name": "CP → (Def) Drill Down - Mobile - Top (Beta)",
+					"nodeId": "35867:43422",
+					"type": "COMPONENT",
+					"key": "4bb35e7c1e19b2f36a84af5ea7d2cf88da97bcb6"
+				},
+				{
+					"name": "CP → Drill Down - Mobile - Bottom (Beta)",
+					"nodeId": "35867:43431",
+					"type": "COMPONENT",
+					"key": "f2c42a5928c196750d019ff031cf9c9dc3b4b428"
+				},
+				{
+					"name": "CP → Flat Icon - Mobile (Beta)",
+					"nodeId": "35867:43439",
+					"type": "COMPONENT",
+					"key": "a7d7c970021f40677a15d93289cf84f82351af38"
+				}
+			]
+		}
+	],
+	"subComponents": [
+		{
+			"name": "control-panel-brand",
+			"componentSets": [
+				{
+					"name": "↳ CP Brand → (Def) Custom (Beta)",
+					"nodeId": "38590:6462",
+					"type": "COMPONENT_SET",
+					"key": "a4c0bf5a01a39b9564382dc8091b6483f95d7ab2"
+				},
+				{
+					"name": "↳ CP Brand → Logozusatz (Beta)",
+					"nodeId": "35867:43542",
+					"type": "COMPONENT",
+					"key": "686e19c5524c705f0c220a5913db295394465b21"
+				},
+				{
+					"name": "↳ CP Brand → Short (Beta)",
+					"nodeId": "35867:43547",
+					"type": "COMPONENT",
+					"key": "15e8613e04dd85b742bdbf0cad81f2d8bd23d44f"
+				}
+			]
+		},
+		{
+			"name": "control-panel-navigation",
+			"componentSets": [
+				{
+					"name": "↳ CP Navigation → Popover (Beta)",
+					"nodeId": "35867:45887",
+					"type": "COMPONENT",
+					"key": "4eca7062c54638fafc0d4ac075df5ba34365910e"
+				},
+				{
+					"name": "↳ CP Navigation → Tree (Beta)",
+					"nodeId": "35867:45895",
+					"type": "COMPONENT",
+					"key": "3d21cfdfe5f914004fb6c3f09bd851917f8ae673"
+				},
+				{
+					"name": "↳ CP Navigation → Flat Icon - Desktop (Beta)",
+					"nodeId": "35867:45901",
+					"type": "COMPONENT_SET",
+					"key": "d44643c1af7b82245e7f9fc3205ee452fedb74df"
+				},
+				{
+					"name": "↳ CP Navigation → Flat Icon - Mobile (Beta)",
+					"nodeId": "35867:45912",
+					"type": "COMPONENT_SET",
+					"key": "bff6646542163e5c265c2e23e4e5e82b837a5c82"
+				},
+				{
+					"name": "↳ CP Navigation → Drill Down (Beta)",
+					"nodeId": "35867:45871",
+					"type": "COMPONENT",
+					"key": "25fc2af51190907256b507af8497355e05be52a2"
+				}
+			]
+		},
+		{
+			"name": "control-panel-primary-actions",
+			"componentSets": [
+				{
+					"name": "↳ CP Primary Actions (Beta)",
+					"nodeId": "35867:43533",
+					"type": "COMPONENT",
+					"key": "3416fa824f47bc51151b0251779879459cff5685"
+				}
+			]
+		},
+		{
+			"name": "control-panel-secondary-actions",
+			"componentSets": [
+				{
+					"name": "↳ CP Secondary Actions (Beta)",
+					"nodeId": "35867:43535",
+					"type": "COMPONENT",
+					"key": "2685802204e56f96163c08ab3142502f91dfadbf"
+				}
+			]
+		},
+		{
+			"name": "control-panel-meta",
+			"componentSets": [
+				{
+					"name": "↳ CP Meta → Horizontal (Beta)",
+					"nodeId": "35867:43537",
+					"type": "COMPONENT",
+					"key": "6770923a6696c1ba79a8913d45f6c8fe76336499"
+				},
+				{
+					"name": "↳ CP Meta → Vertical (Beta)",
+					"nodeId": "35867:43539",
+					"type": "COMPONENT",
+					"key": "29200c7520655049a5704d643da7a0e855d1e9c1"
+				}
+			]
+		}
+	],
+	"helperComponents": [
+		{
+			"name": "🛟 CP Navigation Item - Popover",
+			"nodeId": "35867:45824",
+			"type": "COMPONENT",
+			"key": "9a8eed837a9d21f9df611011f86c7b6bd54c5925"
+		},
+		{
+			"name": "🛟 🔄 CP Drawer - Right (Beta)",
+			"nodeId": "35867:43466",
+			"type": "COMPONENT_SET",
+			"key": "aef5c4399deabaa3f5aa19b0f6dfd608049933dd"
+		},
+		{
+			"name": "🛟 🔄 CP → Drawer - Bottom (Beta)",
+			"nodeId": "35867:43498",
+			"type": "COMPONENT_SET",
+			"key": "dea7fd6d926ce063ef55f0f6081191000ce217b4"
+		}
+	]
+}

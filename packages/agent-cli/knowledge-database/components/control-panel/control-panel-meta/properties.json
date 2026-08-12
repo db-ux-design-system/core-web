@@ -1,0 +1,15 @@
+{
+	"component": "control-panel-meta",
+	"properties": [
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"componentSet": ["horizontal", "vertical"]
+			}
+		}
+	]
+}

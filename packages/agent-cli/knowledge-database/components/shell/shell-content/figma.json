@@ -1,0 +1,12 @@
+{
+	"component": "shell-content",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ Shell Content",
+			"nodeId": "35867:46567",
+			"type": "COMPONENT_SET",
+			"key": "a06574eb75feb605036b7e63800b2a077f66735f"
+		}
+	]
+}

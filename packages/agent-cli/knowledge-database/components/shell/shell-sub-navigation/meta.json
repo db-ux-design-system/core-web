@@ -1,0 +1,9 @@
+{
+	"id": "shell-sub-navigation",
+	"name": "Shell Sub Navigation",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "shell"
+}

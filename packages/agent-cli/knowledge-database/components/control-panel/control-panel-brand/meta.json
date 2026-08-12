@@ -1,0 +1,9 @@
+{
+	"id": "control-panel-brand",
+	"name": "Control Panel Brand",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "control-panel"
+}

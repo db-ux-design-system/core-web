@@ -1,0 +1,9 @@
+{
+	"id": "shell-mobile",
+	"name": "Shell Mobile",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "shell"
+}

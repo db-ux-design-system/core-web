@@ -1,0 +1,12 @@
+{
+	"component": "control-panel",
+	"figmaFileKey": null,
+	"description": {
+		"de": "Das Control Panel kombiniert Brand, Navigation und Aktionsbereiche zu einer konfigurierbaren Toolbar.",
+		"en": "The Control Panel combines brand, navigation, and action areas into a configurable toolbar."
+	},
+	"shortDescription": {
+		"de": "Konfigurierbare Toolbar mit Brand, Navigation und Aktionsbereichen.",
+		"en": "Configurable toolbar combining brand, navigation, and action areas."
+	}
+}

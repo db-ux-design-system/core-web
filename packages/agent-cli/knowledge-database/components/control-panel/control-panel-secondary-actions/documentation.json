@@ -1,0 +1,126 @@
+{
+	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"component": "control-panel-secondary-actions",
+	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
+	"description": {
+		"de": "Die Subkomponente CP Secondary Actions ist ein Slot für sekundäre Aktions-Buttons am Ende des Control Panels.",
+		"en": "The CP Secondary Actions subcomponent is a slot for secondary action buttons at the end of the Control Panel."
+	},
+	"shortDescription": {
+		"de": "Slot für sekundäre Aktions-Buttons am Ende des Control Panels.",
+		"en": "Slot for supporting utility actions at the end of the Control Panel."
+	},
+	"useCases": {
+		"de": [
+			"Unterstützende Utility-Aktionen wie Nutzerprofil, Einstellungen oder Hilfe aufnehmen",
+			"Diese von der primären Navigation und den primären Aktionen getrennt halten",
+			"Für Aktionen nutzen, die Nutzer:innen gelegentlich statt ständig aufrufen"
+		],
+		"en": [
+			"Hold supporting utility actions like user profile, settings, or help",
+			"Keep them separated from the primary navigation and actions",
+			"Use it for actions users reach occasionally rather than constantly"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "action-type",
+			"headline": {
+				"de": "Art der Aktion",
+				"en": "Action Type"
+			},
+			"text": {
+				"de": "Secondary Actions nehmen unterstützende Utility-Aktionen auf, die auf allen Seiten relevant sind, aber nicht zur primären Aufgabe der Nutzer:innen gehören. Halte sie visuell der Navigation und den Primary Actions untergeordnet.",
+				"en": "Secondary Actions hold supporting utility actions that are relevant across all pages but are not the user's primary task. Keep them visually subordinate to the navigation and Primary Actions."
+			},
+			"do": {
+				"figmaNodeId": "4354-2",
+				"description": {
+					"de": "Platziere Utility-Aktionen (z. B. Nutzerprofil, Einstellungen, Hilfe), die Nutzer:innen gelegentlich brauchen.",
+					"en": "Place utility actions (e.g. user profile, settings, help) that users may need occasionally."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4354-4",
+				"description": {
+					"de": "Platziere häufig genutzte Aktionen (z. B. Suche, Benachrichtigungen) nicht in Secondary Actions. Diese gehören in Primary Actions, wo sie sofort sichtbar sind.",
+					"en": "Do not place frequently used actions (e.g. search, notifications) in Secondary Actions. These belong in Primary Actions where they are immediately visible."
+				}
+			}
+		},
+		{
+			"id": "count",
+			"headline": {
+				"de": "Anzahl",
+				"en": "Count"
+			},
+			"text": {
+				"de": "Halte Secondary Actions minimal. Zu viele Icons am Ende des Control Panels erzeugen visuelles Rauschen und konkurrieren mit der Navigation.",
+				"en": "Keep Secondary Actions minimal. Too many icons at the end of the Control Panel create visual noise and compete with the navigation."
+			},
+			"do": {
+				"figmaNodeId": "4354-6",
+				"description": {
+					"de": "Verwende 1–3 Utility-Aktionen, die Nutzer:innen unterstützen, ohne die Navigationsleiste zu überfrachten.",
+					"en": "Use 1–3 utility actions that support the user without cluttering the navigation bar."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4354-8",
+				"description": {
+					"de": "Überlade Secondary Actions nicht mit zu vielen Icons. Ein überfüllter Endbereich lässt das Control Panel schwer und unfokussiert wirken.",
+					"en": "Do not overload Secondary Actions with too many icons. A crowded end area makes the Control Panel feel heavy and unfocused."
+				}
+			}
+		},
+		{
+			"id": "flat-icon-limitation",
+			"headline": {
+				"de": "Einschränkung bei Flat Icon",
+				"en": "Flat Icon Limitation"
+			},
+			"text": {
+				"de": "Das Control Panel in Flat Icon unterstützt keine Secondary Actions. Utility-Aktionen wie Profil oder Einstellungen sollten als Flat Icon Navigation Items platziert oder auf eine eigene Seite verschoben werden.",
+				"en": "The Flat Icon Control Panel does not support Secondary Actions. Utility actions like profile or settings should be placed as Flat Icon Navigation Items or moved into a dedicated page."
+			},
+			"do": {
+				"figmaNodeId": "4354-10",
+				"description": {
+					"de": "Verwende das Control Panel in Position Top oder Bottom, wenn sekundäre Utility-Aktionen einen eigenen, von der Navigation getrennten Slot brauchen.",
+					"en": "Use Top or Bottom Control Panel when secondary utility actions need a dedicated slot separated from navigation."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4354-12",
+				"description": {
+					"de": "Mische Utility-Aktionen in Flat Icon nicht mit Navigationszielen. Konto oder Einstellungen können ein Navigation Item sein, aber kein Aktions-Button.",
+					"en": "Do not mix utility actions with navigation destinations in Flat Icon. Account or Settings can be a Navigation Item, but not an action button."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "control-panel-primary-actions",
+			"description": {
+				"de": "Slot für primäre Aktionen mit hoher Priorität und häufiger Nutzung.",
+				"en": "Primary actions slot for high-priority, high-frequency actions."
+			}
+		},
+		{
+			"component": "control-panel-desktop",
+			"description": {
+				"de": "Übergeordnete Desktop-Komponente, die Secondary Actions am Ende enthält.",
+				"en": "Desktop parent hosting Secondary Actions at the end."
+			}
+		},
+		{
+			"component": "control-panel-mobile",
+			"description": {
+				"de": "Übergeordnete Mobile-Komponente, in der Secondary Actions über den Drawer erreichbar sind.",
+				"en": "Mobile parent where Secondary Actions are accessible via the Drawer."
+			}
+		}
+	]
+}

@@ -1,0 +1,24 @@
+{
+	"component": "shell-desktop",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "Shell → Desktop - (Def) 1440x1024 (Beta)",
+			"nodeId": "35867:46431",
+			"type": "COMPONENT_SET",
+			"key": "3f60df483e78662ab7e6b9000fb7e0d452e6cb6f"
+		},
+		{
+			"name": "Shell → Desktop - 1024x768 (Beta)",
+			"nodeId": "37178:48053",
+			"type": "COMPONENT_SET",
+			"key": "8857c1968e84bf459aa1793b0b96072021b46e42"
+		},
+		{
+			"name": "Shell → Desktop - 1920x1080 (Beta)",
+			"nodeId": "37178:48357",
+			"type": "COMPONENT_SET",
+			"key": "216603044dd02ad1e055efe1b912c20ac48b5cd0"
+		}
+	]
+}

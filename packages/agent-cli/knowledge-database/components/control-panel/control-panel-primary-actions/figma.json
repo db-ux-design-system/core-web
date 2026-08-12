@@ -1,0 +1,12 @@
+{
+	"component": "control-panel-primary-actions",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ CP Primary Actions (Beta)",
+			"nodeId": "35867:43533",
+			"type": "COMPONENT",
+			"key": "3416fa824f47bc51151b0251779879459cff5685"
+		}
+	]
+}

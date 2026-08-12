@@ -1,0 +1,9 @@
+{
+	"id": "control-panel-navigation-item",
+	"name": "Control Panel Navigation Item",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "control-panel-navigation"
+}
