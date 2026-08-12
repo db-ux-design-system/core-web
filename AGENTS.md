@@ -123,7 +123,7 @@ If a change falls into several rows (e.g. styling plus logic), use the union of 
 
 All these packages are versioned as a `fixed` group (see `.changeset/config.json`), so they are released together regardless — leaving one out of a changeset never withholds the change from anyone, it only decides which changelog carries the summary.
 
-**Scope the packages to what is actually affected.** The table above lists the _maximum_ set per row. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package.
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set per row. If a change only touches code that a single target consumes (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only that framework package. Shared build code counts for every target it feeds, even when the change inside it was written for one of them — list all framework packages whose output changes.
 
 Use the following bump types for changeset entries:
 
