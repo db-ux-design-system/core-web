@@ -82,8 +82,12 @@ const gotoPage = async (
 	await setScrollViewport(page, fixedHeight)();
 };
 
-const shouldSkip = (skip?: SkipType): boolean => {
+const shouldSkip = (project: FullProject, skip?: SkipType): boolean => {
 	if (skip) {
+		if (skip.project?.(project)) {
+			return true;
+		}
+
 		const { showcase } = process.env;
 		if (skip.angular && isAngular('angular')) {
 			return true;
@@ -110,7 +114,7 @@ export const getDefaultScreenshotTest = ({
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if (shouldSkip(skip)) {
+		if (shouldSkip(project, skip)) {
 			test.skip();
 		}
 
