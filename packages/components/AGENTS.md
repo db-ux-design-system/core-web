@@ -281,9 +281,11 @@ Changes in `packages/components/src` require a changeset. Which packages to incl
 
 | What changed                                                                      | Packages to include                                                                                                                             |
 | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`                                                                                                                        |
+| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
 | **Component logic or templates** (model.ts, component files processed by Mitosis) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
 | **Both**                                                                          | All five packages                                                                                                                               |
+
+**Styling-only changes must include the JS framework packages too.** The framework packages ship the `@db-ux/core-components` styles as a dependency. Consumers who only reference a framework package never read the `@db-ux/core-components` changelog, so a styling change listed only there stays invisible to them.
 
 **Scope the packages to what is actually affected:**
 

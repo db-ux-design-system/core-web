@@ -38,7 +38,9 @@ build/          # Compiled output — never commit
 
 ## Changeset Rules
 
-Changes in `packages/foundations/scss` require a changeset for `@db-ux/core-foundations`.
+Changes in `packages/foundations/scss` require a changeset for `@db-ux/core-foundations` **plus** the packages that ship these styles downstream: `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`.
+
+> **Why the JS packages too?** Consumers who only reference a framework package (React, Angular, Vue, Web Components) never read the `@db-ux/core-foundations` changelog, even though they get its styles transitively. Listing the framework packages makes token and styling changes visible in the changelog they actually read.
 
 - `patch` — bug fix
 - `minor` — new token or feature
