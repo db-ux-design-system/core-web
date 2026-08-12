@@ -13,6 +13,7 @@ const density = 'regular';
 export type SkipType = {
 	angular?: boolean;
 	stencil?: boolean;
+	project?: (project: FullProject) => boolean;
 };
 
 export type DefaultTestType = {
@@ -311,6 +312,11 @@ export const runAriaSnapshotTest = ({
 
 				if (line.includes('- link')) {
 					line = line.replace(':', '');
+				}
+
+				if (line.includes(' [invalid]')) {
+					// Some frameworks add additional [invalid]
+					line = line.replace(' [invalid]', '');
 				}
 
 				return line;
