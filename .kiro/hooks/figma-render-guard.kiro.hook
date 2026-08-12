@@ -1,7 +1,7 @@
 {
-  "enabled": true,
+  "enabled": false,
   "name": "Figma renderPlan Guard",
-  "description": "Before a use_figma call, if it contains renderPlan(, require confirming the target page has no existing screen frame; otherwise use applyEdits (or replace:true for a deliberate rebuild).",
+  "description": "Before a use_figma call containing renderPlan(, ensure it is not a re-render of an already-existing screen with the SAME name; additional differently-named screens are allowed and placed to the right on the same page.",
   "version": "1",
   "when": {
     "type": "preToolUse",
@@ -11,6 +11,6 @@
   },
   "then": {
     "type": "askAgent",
-    "prompt": "You are about to run a use_figma write. If the code contains `renderPlan(`, STOP and verify this is NOT an edit to an already-rendered screen: first check the target page with figma/get_metadata. If a screen frame already exists there, do NOT re-render — use `applyEdits` to patch that existing frame in place. Only use `renderPlan` for a first-time creation, or for a deliberate full rebuild by passing `replace: true` (which removes the existing frame instead of creating a duplicate). If the code uses `applyEdits`, store-bootstrap chunks, or the loader only, proceed."
+    "prompt": "You are about to run a use_figma write. If the code contains `renderPlan(`, STOP and verify this is NOT a re-render of an already-rendered screen: check the target page with figma/get_metadata. If a frame with the SAME `screen` name already exists there, do NOT re-render — use `applyEdits` to patch that existing frame in place, or pass `replace: true` for a deliberate rebuild (removes the matching frame instead of duplicating it). An ADDITIONAL screen with a DIFFERENT name is allowed: renderPlan places it to the right of the existing frames on the same page (gutter via `screenGap`, default 200px) — do NOT create a new Figma page for it. If the code uses `applyEdits`, store-bootstrap chunks, or the loader only, proceed."
   }
 }

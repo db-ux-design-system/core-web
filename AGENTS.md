@@ -325,7 +325,8 @@ Manual-inclusion steering files for specialized workflows. Activate in Kiro chat
 | `#code-review`       | `.kiro/steering/code-review.md`       | Perform a PR code review using GitHub MCP tools (checkout branch, gather context, review, submit feedback) |
 | `#pre-commit-review` | `.kiro/steering/pre-commit-review.md` | Self-review checklist before committing and pushing to a new branch                                        |
 | `#issue-triage`      | `.kiro/steering/issue-triage.md`      | Triage issues: validate template, label, set priority/effort, post AI summary, batch-process new issues    |
-| `#generate-figma-screen` | `.kiro/steering/generate-figma-screen.md` | Generate a DB UX Design System v3-compliant Figma screen via the hardened render runtime (plan → `renderPlan`) |
+
+> **Note:** Figma screen generation (DB UX v3-compliant screens via the hardened render runtime, plan → `renderPlan`) is no longer a steering file. It lives in the **`db-ux-designer-powers`** bundle as the `generate-figma-screen` skill (`packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/SKILL.md`) and is triggered through the power (e.g. a prompt starting with `DB Designer:`), not via `#generate-figma-screen`.
 
 ---
 

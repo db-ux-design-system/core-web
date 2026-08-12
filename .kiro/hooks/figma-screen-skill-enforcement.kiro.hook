@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "name": "Figma Screen – Skill Enforcement",
   "description": "Before any Figma write (use_figma) call, verifies the agent is following the generate-figma-screen skill: Composition Plan authored, db-figma-runtime.min.js pasted verbatim, renderPlan called. Blocks hand-written imperative Figma node code.",
   "version": "1",
