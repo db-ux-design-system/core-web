@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BNDkolh7.js";e();
