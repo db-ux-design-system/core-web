@@ -8,7 +8,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	delay as utilsDelay
+} from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
@@ -53,8 +58,8 @@ export default function DBPopover(props: DBPopoverProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		handleEnter(): void {
-			if (props.open !== undefined) {
+		handleEnter(_parent?: HTMLElement, manualOpen?: boolean): void {
+			if (!manualOpen && props.open !== undefined) {
 				return;
 			}
 
@@ -104,14 +109,15 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleLeave: (event?: any) => {
-			if (props.open !== undefined) {
+		handleLeave: (event?: any, manualOpen?: boolean) => {
+			if (!manualOpen && props.open !== undefined) {
 				return;
 			}
 
 			const element = event?.target as HTMLElement;
 			const parent = element?.parentNode;
 			if (
+				manualOpen ||
 				!parent ||
 				(element.parentNode.querySelector(':focus') !== element &&
 					element.parentNode.querySelector(':focus-within') !==
@@ -216,7 +222,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				// otherwise it follows internal hover/focus state
 				const expanded =
 					props.open !== undefined
-						? Boolean(props.open)
+						? Boolean(getBoolean(props.open, 'open'))
 						: Boolean(state.isExpanded);
 				child.ariaExpanded = expanded.toString();
 			}
@@ -224,8 +230,10 @@ export default function DBPopover(props: DBPopoverProps) {
 	}, [_ref, state.isExpanded, props.open]);
 
 	onUpdate(() => {
-		if (props.open) {
-			state.handleAutoPlacement();
+		if (getBoolean(props.open, 'open')) {
+			state.handleEnter(undefined, true);
+		} else if (props.open !== undefined) {
+			state.handleLeave(undefined, true);
 		}
 	}, [props.open]);
 
