@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-heading/_next/static/css/7c43ed75ef3b686d.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-heading/_next/static/css/7c43ed75ef3b686d.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-heading/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-heading/_next/static/chunks/webpack-ed22403373713e4b.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/main-3d3e7e2c607e4231.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/pages/_app-77554a8ca0179ae4.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/pages/components/data-display/heading/docs/Angular-60c9ef7ebb1ca9bc.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/61T1XuLbW7qSXm-hYfQbq/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/61T1XuLbW7qSXm-hYfQbq/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<blockquote>
+<p><strong>Beta:</strong> <code>DBHeading</code> is available as a beta component. Its API and visual design may change before the stable release.</p>
+</blockquote>
+<p>For installation and configuration, see <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components"><code>@db-ux/ngx-core-components</code></a>.</p>
+<h3 id="load-the-component">Load the component<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/Angular?current=load-the-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-the-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">import { Component } from &quot;@angular/core&quot;;
+import { DBHeading } from &quot;@db-ux/ngx-core-components&quot;;
+
+@Component({
+	selector: &quot;app-example&quot;,
+	imports: [DBHeading],
+	standalone: true,
+	templateUrl: &quot;./example.component.html&quot;
+})
+export class ExampleComponent {}
+</code></pre>
+<h3 id="semantics-and-visual-size">Semantics and visual size<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/Angular?current=semantics-and-visual-size"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>semantics-and-visual-size<!-- --> anchor link</a></h3>
+<p><code>as</code> is required and renders exactly one native <code>h1</code> through <code>h6</code>. Choose the level from the document hierarchy, never from the desired appearance. <code>size</code> changes only the visual headline size and never the accessible heading level. Without <code>size</code>, the mapping is <code>h1</code>/<code>xl</code>, <code>h2</code>/<code>lg</code>, <code>h3</code>/<code>md</code>, <code>h4</code>/<code>sm</code>, <code>h5</code>/<code>xs</code>, and <code>h6</code>/<code>2xs</code>.</p>
+<pre><code class="language-html">&lt;db-heading as=&quot;h6&quot; size=&quot;2xl&quot;&gt;
+	A level-six heading displayed at 2xl
+&lt;/db-heading&gt;
+</code></pre>
+<p>All visual sizes (<code>3xl</code> through <code>3xs</code>) work with every semantic level. <code>fontWeight</code> accepts <code>black</code> (default) and <code>light</code>.</p>
+<h3 id="alignment-density-and-spacing">Alignment, density and spacing<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/Angular?current=alignment-density-and-spacing"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>alignment-density-and-spacing<!-- --> anchor link</a></h3>
+<p><code>alignment=&quot;start&quot;</code> is the default. Logical <code>start</code> and <code>end</code> follow RTL writing direction; <code>center</code> remains centered. Density tokens make the headline typography responsive. Long headings use <code>text-wrap: balance</code> and safe wrapping.</p>
+<p>Omitted or false <code>paragraphSpacing</code> adds no margin. True adds exactly <code>1lh</code> at block-end only.</p>
+<pre><code class="language-html">&lt;db-heading
+	as=&quot;h2&quot;
+	alignment=&quot;end&quot;
+	fontWeight=&quot;light&quot;
+	[paragraphSpacing]=&quot;true&quot;
+	data-density=&quot;expressive&quot;
+&gt;
+	Responsive heading
+&lt;/db-heading&gt;
+</code></pre>
+<h3 id="slots-attributes-and-accessibility">Slots, attributes and accessibility<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/Angular?current=slots-attributes-and-accessibility"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>slots-attributes-and-accessibility<!-- --> anchor link</a></h3>
+<p>Default content is the main heading content. Add phrasing content with <code>start-slot</code> and <code>end-slot</code>; it is rendered before and after the default content. Text in all three areas contributes to the accessible heading name. Mark decorative adornments with <code>aria-hidden=&quot;true&quot;</code>; avoid interactive controls inside headings unless accessibility is reviewed specifically.</p>
+<pre><code class="language-html">&lt;db-heading as=&quot;h2&quot; id=&quot;account-heading&quot; data-track-id=&quot;account&quot;&gt;
+	&lt;span start-slot aria-hidden=&quot;true&quot;&gt;[&lt;/span&gt;
+	Account
+	&lt;span end-slot aria-hidden=&quot;true&quot;&gt;]&lt;/span&gt;
+&lt;/db-heading&gt;
+</code></pre>
+<p>Standard <code>aria-*</code>, <code>data-*</code>, class, style, and id attributes are forwarded to the active native heading. Changing <code>size</code> never changes its semantic or ARIA level.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/heading/docs/Angular","query":{},"buildId":"61T1XuLbW7qSXm-hYfQbq","assetPrefix":"/core-web/review/feat-heading","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
