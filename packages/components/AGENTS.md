@@ -196,6 +196,12 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     }
     ```
 
+## Published Style Entry Points
+
+- `src/styles/bundle.scss` is the existing unlayered bundle; keep its cascade behavior backward-compatible.
+- `src/styles/layered.scss` is the opt-in entry point for third-party integrations. It imports the bundle into the low-priority `db-ux` cascade layer and is published as `build/styles/layered.css`.
+- Use the layered entry in new consumer guidance and browser integration tests. Register any multi-library layer order before a stylesheet creates one of those layers.
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:

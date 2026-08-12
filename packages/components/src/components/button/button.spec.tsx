@@ -2,6 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBButton } from './index';
+// cspell:ignore primeng
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
@@ -73,6 +74,46 @@ const testA11y = () => {
 	});
 };
 
+const testCascadeLayers = () => {
+	test('should let a later third-party layer override DB UX styles', async ({
+		mount,
+		page
+	}) => {
+		await page.addStyleTag({
+			content: `
+				@layer primeng {
+					button[data-third-party-layered] {
+						color: rgb(1 2 3);
+					}
+				}
+			`
+		});
+		const component = await mount(
+			<DBButton data-third-party-layered="true">Test</DBButton>
+		);
+
+		const color = await component.evaluate(
+			(element) => getComputedStyle(element).color
+		);
+		expect(color).toBe('rgb(1, 2, 3)');
+	});
+
+	test('should let unlayered third-party styles override DB UX styles', async ({
+		mount,
+		page
+	}) => {
+		await page.addStyleTag({
+			content: 'button { color: rgb(4 5 6); }'
+		});
+		const component = await mount(<DBButton>Test</DBButton>);
+
+		const color = await component.evaluate(
+			(element) => getComputedStyle(element).color
+		);
+		expect(color).toBe('rgb(4, 5, 6)');
+	});
+};
+
 const testAction = () => {
 	test(`should open alert`, async ({ mount, page }) => {
 		let test = '';
@@ -109,5 +150,6 @@ test.describe('DBButton', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testButton();
 	testA11y();
+	testCascadeLayers();
 	testAction();
 });

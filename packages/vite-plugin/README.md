@@ -32,6 +32,25 @@ Then import the plugin in your CSS file:
 
 The plugin handles theme detection, component CSS, and foundation styles automatically.
 
+### Combining with third-party component libraries
+
+<!-- cspell:ignore primeng -->
+
+The plugin places DB UX styles in the `db-ux` cascade layer. For PrimeNG 17, or newer PrimeNG configurations with `cssLayer` enabled, add the library layer after `db-ux` so its normal declarations take priority:
+
+```js
+// vite.config.ts
+export default defineConfig({
+	plugins: [
+		dbUxPlugin({
+			additionalLayers: { after: ["primeng"] }
+		})
+	]
+});
+```
+
+This generates the order before the DB UX imports. Ensure it is the first declaration that creates either layer; alternatively, configure PrimeNG's own layer `order` to include `db-ux, primeng`. If PrimeNG uses a custom layer name, replace `primeng` with that name. When PrimeNG's `cssLayer` option is disabled, its unlayered styles already take priority over DB UX.
+
 #### Migration
 
 If you're currently using the manual CSS layer imports, you can replace them with the plugin's single import:

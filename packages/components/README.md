@@ -50,7 +50,7 @@ Import the styles in `css`. Based on your technology the file names could be dif
 
 ### Import
 
-Import the styles in your main `.css` file.
+Import the styles in your main `.css` file. The opt-in `layered.css` entry point keeps the complete DB UX bundle in the `db-ux` cascade layer without changing the priority of the existing entry points.
 
 ```css
 /* index.css */
@@ -59,22 +59,30 @@ Import the styles in your main `.css` file.
 @import "@db-ux/core-foundations/build/styles/theme/rollup.css"
 	layer(whitelabel-theme);
 
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "@db-ux/core-components/build/styles/layered.css";
 ```
 
 ### Combining with third-party component libraries
 
 <!-- cspell:ignore primeng -->
 
-The bundled foundation styles include global normalization rules. Keep DB UX in a named cascade layer so those rules don't override component libraries such as PrimeNG. Declare the layer order before any imports; layers listed later have higher priority for normal declarations:
+The bundled foundation styles include global normalization rules. Keep DB UX in a named cascade layer so those rules don't override component libraries such as PrimeNG. Register the complete layer order in the first stylesheet loaded by the application, before any stylesheet creates one of these layers. Layers listed later have higher priority for normal declarations:
 
 ```css
 @layer db-ux, primeng;
 
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "@db-ux/core-components/build/styles/layered.css";
 ```
 
-If the third-party library uses unlayered styles, those styles automatically take priority over the layered DB UX defaults. Import DB UX through a CSS entry file instead of importing its styles directly from JavaScript, because JavaScript imports cannot assign a cascade layer.
+PrimeNG 17 creates the `primeng` layer by default. In versions where PrimeNG's `cssLayer` option is disabled, its unlayered styles automatically take priority over the layered DB UX defaults. If `cssLayer` is enabled with a custom name, use that name instead of `primeng` in the order declaration. The layer order is reversed for `!important` declarations.
+
+JavaScript cannot assign a layer to an arbitrary CSS import, but it can import the pre-layered entry point directly:
+
+```js
+import "@db-ux/core-components/build/styles/layered.css";
+```
+
+Use a global CSS entry file instead when you need to register an explicit order for multiple named layers.
 
 > **Vite 8 Note:** Starting with Vite 8, the default CSS minifier was changed to [LightningCSS](https://lightningcss.dev/), which provides buggy transformations for modern CSS features used by the DB UX Design System (e.g. `light-dark()` CSS function). We might provide a specific configuration necessary to mitigate those problems in the near future. To keep CSS output stable in the meantime, configure `vite.config.ts` like this:
 

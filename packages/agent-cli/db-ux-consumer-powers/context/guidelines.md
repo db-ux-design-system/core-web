@@ -65,16 +65,15 @@ If you are building a website or application **for Deutsche Bahn (DB)**, you mus
 ```css
 @layer db-theme, db-ux;
 @import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "@db-ux/core-components/build/styles/layered.css";
 ```
 
 ### White-label / custom theme (no DB Theme)
 
-For non-DB applications, import only the component styles. The default theme or a custom theme from the Theme Builder is used automatically:
+For non-DB applications, import only the pre-layered component styles. The default theme or a custom theme from the Theme Builder is used automatically:
 
 ```css
-@layer db-ux;
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "@db-ux/core-components/build/styles/layered.css";
 ```
 
 For JavaScript framework-specific component imports:

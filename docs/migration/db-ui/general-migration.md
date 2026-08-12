@@ -28,29 +28,31 @@ Replace all inline `style` attributes, as they bypass theming, density, and dark
 
 ## Required CSS Imports & Token Architecture
 
-v3 uses a layered CSS architecture. All four imports are required in this exact order:
+v3 uses a layered CSS architecture. Put the CSS dependencies in one global entry file so the imports share the `db-ux` cascade layer:
 
-```tsx
-// main.tsx — order matters!
-import "@db-ux/core-foundations/build/styles/theme/rollup.css"; // Layer 1: Palette tokens (@property definitions, e.g. #16181b)
-import "@db-ux/core-foundations/build/styles/bundle.css"; // Layer 2: Semantic tokens (light-dark mappings on :root)
-import "@db-ux/core-foundations/build/styles/icons/rollup.css"; // Layer 3: Icon fonts (@font-face declarations)
-import "@db-ux/core-components/build/styles/rollup.css"; // Layer 4: Component styling
+```css
+/* db-ux.css */
+@layer db-ux;
+
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);
+@import "@db-ux/core-foundations/build/styles/icons/rollup.css" layer(db-ux);
+@import "@db-ux/core-components/build/styles/layered.css";
 ```
 
-**Layer 1 – Palette tokens:** Defines raw color values as CSS `@property` registrations. These are the primitive building blocks (hex values, numeric scales).
+Import that entry once from the application entry point:
 
-**Layer 2 – Semantic tokens:** Maps palette tokens to semantic meanings using `light-dark()` on `:root`. Provides spacing, typography, elevation, and color intent tokens.
+```tsx
+// main.tsx
+import "./db-ux.css";
+```
 
-**Layer 3 – Icon fonts:** Registers `@font-face` declarations for the icon font. Without this, icon names render as plain text instead of symbols.
+The component entry includes the semantic foundation defaults and component styles. The separate theme import defines palette tokens, while the icon import registers the icon font. Keeping DB UX in a named layer allows unlayered third-party styles, or named layers declared after `db-ux`, to override its global defaults.
 
-**Layer 4 – Component styling:** The actual component CSS rules. Depends on all three foundation layers above.
+Missing an import causes specific failures:
 
-Missing any layer causes specific failures:
-
-- No Layer 1/2 → components render without colors/spacing (broken layout)
-- No Layer 3 → icons display as text strings
-- No Layer 4 → components have no styling at all
+- No theme import -> components render without colors/spacing (broken layout)
+- No icon import -> icons display as text strings
+- No component import -> components have no styling at all
 
 ## Spacing
 

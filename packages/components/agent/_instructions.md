@@ -14,9 +14,17 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 
 **CSS**
 
+Use the pre-layered entry point so DB UX global defaults don't override unlayered third-party component styles:
+
 ```css
-// index.css
-@import "@db-ux/core-components/build/styles/rollup.css";
+/* index.css */
+@import "@db-ux/core-components/build/styles/layered.css";
 ```
 
-> **Note:** Create a new `.css` file if not present to include the styles
+You can import this entry from JavaScript as well:
+
+```js
+import "@db-ux/core-components/build/styles/layered.css";
+```
+
+> **Note:** Create a global `.css` entry file when multiple named layers need an explicit order. Its `@layer` order declaration must load before any stylesheet creates those layers.
