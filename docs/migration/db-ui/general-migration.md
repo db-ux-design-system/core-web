@@ -28,14 +28,14 @@ Replace all inline `style` attributes, as they bypass theming, density, and dark
 
 ## Required CSS Imports & Token Architecture
 
-v3 uses a layered CSS architecture. Put the CSS dependencies in one global entry file so the imports share the `db-ux` cascade layer:
+v3 uses a layered CSS architecture. Put the CSS dependencies in one global entry file and register their layer order before either layer is created:
 
 ```css
 /* db-ux.css */
-@layer db-ux;
+@layer whitelabel-theme, db-ux;
 
-@import "@db-ux/core-foundations/build/styles/theme/rollup.css" layer(db-ux);
-@import "@db-ux/core-foundations/build/styles/icons/rollup.css" layer(db-ux);
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 @import "@db-ux/core-components/build/styles/layered.css";
 ```
 
@@ -46,12 +46,11 @@ Import that entry once from the application entry point:
 import "./db-ux.css";
 ```
 
-The component entry includes the semantic foundation defaults and component styles. The separate theme import defines palette tokens, while the icon import registers the icon font. Keeping DB UX in a named layer allows unlayered third-party styles, or named layers declared after `db-ux`, to override its global defaults.
+The component entry includes the semantic foundation defaults and component styles. The separate theme import defines palette tokens and provides the default fonts and icons. Keeping DB UX in a named layer allows unlayered third-party styles, or named layers declared after `db-ux`, to override its global defaults.
 
 Missing an import causes specific failures:
 
-- No theme import -> components render without colors/spacing (broken layout)
-- No icon import -> icons display as text strings
+- No theme import -> components render without colors/spacing, fonts, or icons
 - No component import -> components have no styling at all
 
 ## Spacing

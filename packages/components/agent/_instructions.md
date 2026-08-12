@@ -10,20 +10,25 @@ Import the styles in `scss` or `css`. Based on your technology the file names co
 - `webpack`: asset path point to `~@db-ux/core-foundations/assets`
 - `rollup`: asset path point to `@db-ux/core-foundations/assets`
 
-**Important**: These bundled files automatically include **all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations)** (design tokens, colors, fonts, etc.) **and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss)** - everything you need in one import!
+**Important**: The component bundle includes the semantic foundation defaults and all component styles. A separate theme entry provides the palette tokens, fonts, and icons.
 
 **CSS**
 
-Use the pre-layered entry point so DB UX global defaults don't override unlayered third-party component styles:
+Import the theme and the pre-layered component entry so DB UX global defaults don't override unlayered third-party component styles:
 
 ```css
 /* index.css */
+@layer whitelabel-theme, db-ux;
+
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 @import "@db-ux/core-components/build/styles/layered.css";
 ```
 
-You can import this entry from JavaScript as well:
+You can import both entries from JavaScript as well:
 
 ```js
+import "@db-ux/core-foundations/build/styles/theme/rollup.css";
 import "@db-ux/core-components/build/styles/layered.css";
 ```
 

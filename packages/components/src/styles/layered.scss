@@ -1,3 +1,2 @@
 /* Opt-in entry point that keeps all DB UX styles in a low-priority layer. */
-@layer db-ux;
 @import "./bundle.css" layer(db-ux);

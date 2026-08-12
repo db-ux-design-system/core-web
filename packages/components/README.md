@@ -46,7 +46,7 @@ Import the styles in `css`. Based on your technology the file names could be dif
 - `webpack`: asset path point to `~@db-ux/core-foundations/assets`
 - `rollup`: asset path point to `@db-ux/core-foundations/assets`
 
-**Important**: These bundled files automatically include **all dependencies from [foundations](https://www.npmjs.com/package/@db-ux/core-foundations)** (design tokens, colors, fonts, etc.) **and all [components](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/src/styles/db-ux-components.scss)** - everything you need in one import!
+**Important**: The component bundle includes the semantic foundation defaults and all component styles. Import a separate theme entry for palette tokens, fonts, and icons, as shown below.
 
 ### Import
 
@@ -64,21 +64,22 @@ Import the styles in your main `.css` file. The opt-in `layered.css` entry point
 
 ### Combining with third-party component libraries
 
-<!-- cspell:ignore primeng -->
-
 The bundled foundation styles include global normalization rules. Keep DB UX in a named cascade layer so those rules don't override component libraries such as PrimeNG. Register the complete layer order in the first stylesheet loaded by the application, before any stylesheet creates one of these layers. Layers listed later have higher priority for normal declarations:
 
 ```css
-@layer db-ux, primeng;
+@layer whitelabel-theme, db-ux, primeng;
 
+@import "@db-ux/core-foundations/build/styles/theme/rollup.css"
+	layer(whitelabel-theme);
 @import "@db-ux/core-components/build/styles/layered.css";
 ```
 
 PrimeNG 17 creates the `primeng` layer by default. In versions where PrimeNG's `cssLayer` option is disabled, its unlayered styles automatically take priority over the layered DB UX defaults. If `cssLayer` is enabled with a custom name, use that name instead of `primeng` in the order declaration. The layer order is reversed for `!important` declarations.
 
-JavaScript cannot assign a layer to an arbitrary CSS import, but it can import the pre-layered entry point directly:
+JavaScript cannot assign a layer to an arbitrary CSS import, but it can import the pre-layered entry point directly. Import the theme first so its palette tokens, fonts, and icons are available:
 
 ```js
+import "@db-ux/core-foundations/build/styles/theme/rollup.css";
 import "@db-ux/core-components/build/styles/layered.css";
 ```
 

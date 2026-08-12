@@ -47,8 +47,6 @@ build/         # Compiled output — never commit
 
 ## Important Notes
 
-<!-- cspell:ignore primeng -->
-
 - **Plugin order matters with Tailwind**: `dbUxPlugin()` must come **before** `tailwindcss()` in `vite.config.ts`
 - **Third-party layers**: Put library layers that should override DB UX in `additionalLayers.after` (for example `primeng`). The generated order must load before any stylesheet creates those layers.
 - **CSS must be imported via JS/TS** (`import "./styles.css"` in `main.ts`), not via `<link>` tags — static link tags bypass Vite's module graph and the plugin won't transform them

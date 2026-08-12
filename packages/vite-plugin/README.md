@@ -34,8 +34,6 @@ The plugin handles theme detection, component CSS, and foundation styles automat
 
 ### Combining with third-party component libraries
 
-<!-- cspell:ignore primeng -->
-
 The plugin places DB UX styles in the `db-ux` cascade layer. For PrimeNG 17, or newer PrimeNG configurations with `cssLayer` enabled, add the library layer after `db-ux` so its normal declarations take priority:
 
 ```js

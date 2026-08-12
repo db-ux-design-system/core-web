@@ -1,5 +1,5 @@
 ---
-"@db-ux/core-components": patch
+"@db-ux/core-components": minor
 ---
 
-fix: add a layered CSS entry point for third-party integrations
+feat: add an opt-in layered CSS entry point for third-party integrations
