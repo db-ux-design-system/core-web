@@ -20,8 +20,8 @@
     "@db-ux/db-theme-icons": "4.0.0",
     "@db-ux/react-core-components": "workspace:*",
     "@faker-js/faker": "10.5.0",
-    "@tanstack/match-sorter-utils": "9.1.0",
-    "@tanstack/react-table": "9.1.0",
+    "@tanstack/match-sorter-utils": "9.1.1",
+    "@tanstack/react-table": "9.1.1",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
