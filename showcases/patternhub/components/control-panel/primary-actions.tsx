@@ -2,10 +2,10 @@ import { DBControlPanelPrimaryActions, DBSwitch, DBTooltip } from '@components';
 
 export default function PrimaryActions({
 	mode,
-	setColorMode
+	toggleColorMode
 }: {
 	mode: boolean;
-	setColorMode: (isDark: boolean) => void;
+	toggleColorMode: () => void;
 }) {
 	return (
 		<DBControlPanelPrimaryActions>
@@ -16,7 +16,7 @@ export default function PrimaryActions({
 				iconTrailing="moon"
 				showLabel={false}
 				onChange={() => {
-					setColorMode(!mode);
+					toggleColorMode();
 				}}>
 				<DBTooltip>Switch color scheme (light/dark)</DBTooltip>
 				Switch color scheme (light/dark)

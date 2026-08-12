@@ -192,7 +192,7 @@ const DefaultPage = ({
 						primaryActions={
 							<PrimaryActions
 								mode={mode}
-								setColorMode={setColorMode}
+								toggleColorMode={toggleColorMode}
 							/>
 						}
 						secondaryActions={<SecondaryActions />}>
@@ -207,7 +207,7 @@ const DefaultPage = ({
 						primaryActions={
 							<PrimaryActions
 								mode={mode}
-								setColorMode={setColorMode}
+								toggleColorMode={toggleColorMode}
 							/>
 						}
 						secondaryActions={<SecondaryActions />}>
