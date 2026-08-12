@@ -7,12 +7,14 @@
 @use "../../styles/dialog-init";
 
 %container-size-horizontal {
-	inline-size: calc(
+	--db-drawer-width-horizontal: calc(
 		var(--db-drawer-inline-size) - var(
 				--db-drawer-container-backdrop-spacing,
 				0px
 			)
 	);
+
+	inline-size: var(--db-drawer-width-horizontal);
 	min-inline-size: var(--db-drawer-min-width, auto);
 	max-inline-size: var(
 		--db-drawer-max-width,
