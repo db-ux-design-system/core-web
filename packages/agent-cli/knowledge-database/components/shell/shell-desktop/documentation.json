@@ -1,62 +1,62 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
+	"_comment": "Generiert aus guidelines.md. Die Doku-Seiten in Figma existieren, die Container von consistent-sub-navigation-position sind noch leer und müssen mit Visuals gefüllt werden.",
 	"component": "shell-desktop",
 	"figmaFileKey": "RcpbbqfJwjNRlOwPhAX1im",
 	"description": {
-		"de": "Die Komponente Shell Desktop stellt die äußerste Layout-Struktur für Desktop-Webanwendungen bereit.",
-		"en": "The Shell Desktop component provides the outermost layout structure for desktop web applications."
+		"de": "Die Komponente Shell Desktop stellt die äußere Layout-Struktur für Desktop-Webanwendungen bereit. Sie hält das Control Panel dauerhaft sichtbar und scrollt nur den Inhaltsbereich.",
+		"en": "The Shell Desktop component provides the outer layout structure for desktop web applications. It keeps the Control Panel permanently visible and scrolls the content area only."
 	},
 	"shortDescription": {
-		"de": "Äußerste Layout-Struktur für Desktop-Webanwendungen.",
-		"en": "Outermost layout structure for desktop web applications."
+		"de": "Äußere Layout-Struktur für Desktop-Webanwendungen mit dauerhaftem Control Panel.",
+		"en": "Outer layout structure for desktop web applications with a persistent Control Panel."
 	},
 	"useCases": {
 		"de": [
-			"Eine Desktop-Anwendung mit dauerhaftem Control Panel und scrollbarem Inhaltsbereich rahmen",
-			"Das Control Panel horizontal (Top) oder als vertikale Sidebar (Left) positionieren",
-			"Eine Ebene der Sub Navigation für Bereiche ergänzen, die Unterseiten brauchen"
+			"Layout einer Desktop-Anwendung aufbauen: nur der Inhaltsbereich scrollt",
+			"Control Panel oben oder links positionieren",
+			"Sub Navigation für Unterseiten ergänzen"
 		],
 		"en": [
-			"Frame a desktop app with a persistent Control Panel and a scrollable content area",
-			"Position the Control Panel horizontally (Top) or as a vertical sidebar (Left)",
-			"Add a Sub Navigation level for sections that need sub-pages"
+			"Set up a desktop application layout: only the content area scrolls",
+			"Position the Control Panel at the top or on the left",
+			"Add Sub Navigation for sub-pages"
 		]
 	},
 	"guidelines": [
 		{
 			"id": "control-panel-position",
 			"headline": {
-				"de": "Position des Control Panels",
+				"de": "Control Panel Position",
 				"en": "Control Panel Position"
 			},
 			"text": {
-				"de": "Wähle die Position des Control Panels nach der Navigationskomplexität. Top eignet sich für einfache Anwendungen, Left für Anwendungen mit vielen Navigation Items oder tiefen Strukturen.",
-				"en": "Choose the Control Panel position based on navigation complexity. Top works for simple apps; Left suits applications with many Navigation Items or deep structures."
+				"de": "Wähle die Position des Control Panels nach der Navigationskomplexität. Top eignet sich, wenn alle Navigation Items auf oberster Ebene in eine horizontale Leiste passen. Setze Left ab vier Navigation Items ein.",
+				"en": "Choose the Control Panel position based on navigation complexity. Top is suitable when all top-level Navigation Items fit into a horizontal bar. Use Left from four Navigation Items onwards."
 			},
 			"do": {
 				"figmaNodeId": "1-1132",
 				"description": {
-					"de": "Verwende die Position Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene.",
-					"en": "Use the Top position for applications with few top-level Navigation Items."
+					"de": "Verwende Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene, die in eine horizontale Leiste passen.",
+					"en": "Use Top for applications with few top-level Navigation Items that fit into a horizontal bar."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "1-1133",
 				"description": {
-					"de": "Die Position Left mit nur 2–3 Navigation Items belegt Platz, ohne strukturellen Mehrwert zu bieten. Prüfe stattdessen Top.",
-					"en": "The Left position with only 2–3 Navigation Items takes up space without adding structural benefit. Consider Top instead."
+					"de": "Prüfe bei zwei oder drei Navigation Items zuerst Top. Left belegt dauerhaft Platz, ohne die Struktur verständlicher zu machen.",
+					"en": "With two or three Navigation Items, check Top first. Left permanently takes up space without making the structure easier to understand."
 				}
 			}
 		},
 		{
-			"id": "sub-navigation-placement",
+			"id": "sub-navigation-position",
 			"headline": {
-				"de": "Platzierung der Sub Navigation",
-				"en": "Sub Navigation Placement"
+				"de": "Sub Navigation Position",
+				"en": "Sub Navigation Position"
 			},
 			"text": {
-				"de": "Wähle eine Position der Sub Navigation, die zu deiner Informationsarchitektur passt, und halte sie über alle Seiten deiner Anwendung konsistent.",
-				"en": "Choose a Sub Navigation position that fits your information architecture and keep it consistent across all pages of your application."
+				"de": "Wähle die Position der Sub Navigation passend zur Informationsarchitektur. Left gibt vielen Navigation Items auf Unterebene eine dauerhafte vertikale Übersicht.",
+				"en": "Choose the Sub Navigation position to match your information architecture. Left gives many sub-level Navigation Items a persistent vertical overview."
 			},
 			"do": {
 				"figmaNodeId": "3-1110",
@@ -68,21 +68,39 @@
 			"dont": {
 				"figmaNodeId": "3-1112",
 				"description": {
-					"de": "Wechsle die Position der Sub Navigation nicht beim Navigieren zwischen Bereichen der obersten Ebene. Nutzer:innen erwarten ein stabiles Navigations-Layout.",
-					"en": "Do not switch Sub Navigation position when navigating between top-level sections. Users expect the navigation layout to stay stable."
+					"de": "Verwende Sub Navigation Top nicht, wenn die Unterebene viele Navigation Items enthält. Der horizontale Platz reicht dann nicht aus und Items werden abgeschnitten.",
+					"en": "Don't use Sub Navigation Top when the sub level contains many Navigation Items. There is not enough horizontal space and items get cut off."
+				}
+			}
+		},
+		{
+			"id": "consistent-sub-navigation-position",
+			"headline": {
+				"de": "Konsistente Position",
+				"en": "Consistent Position"
+			},
+			"text": {
+				"de": "Halte die Position der Sub Navigation über alle Hauptbereiche der Anwendung gleich. Nutzer:innen erwarten ein stabiles Navigations-Layout.",
+				"en": "Keep the Sub Navigation position the same across all main sections of the application. Users expect the navigation layout to stay stable."
+			},
+			"do": {
+				"figmaNodeId": "4277-3",
+				"description": {
+					"de": "Behalte die einmal gewählte Position der Sub Navigation in allen Hauptbereichen bei.",
+					"en": "Keep the chosen Sub Navigation position in every main section."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4277-5",
+				"description": {
+					"de": "Wechsle die Position der Sub Navigation nicht, wenn Nutzer:innen zwischen Hauptbereichen navigieren. Sie müssen sich sonst bei jedem Wechsel neu orientieren.",
+					"en": "Don't switch the Sub Navigation position when users navigate between main sections. Otherwise they have to re-orient at every change."
 				}
 			}
 		}
 	],
 	"faq": [],
 	"related": [
-		{
-			"component": "shell-mobile",
-			"description": {
-				"de": "Shell Mobile mit responsiven Navigationsmustern für kleine Bildschirme.",
-				"en": "Shell Mobile with responsive navigation patterns for small screens."
-			}
-		},
 		{
 			"component": "control-panel-desktop",
 			"description": {
@@ -95,13 +113,6 @@
 			"description": {
 				"de": "Sekundäre Navigation innerhalb der Shell für die Struktur auf Unterebene.",
 				"en": "Secondary navigation within the Shell for sub-level page structure."
-			}
-		},
-		{
-			"component": "shell-content",
-			"description": {
-				"de": "Der scrollbare Inhaltsbereich der Shell mit slot-basiertem Layout.",
-				"en": "The scrollable content area of the Shell with slot-based layout."
 			}
 		}
 	]

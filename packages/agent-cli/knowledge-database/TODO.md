@@ -118,3 +118,11 @@ Der Guideline-Review vom 2026-08-11 hat alle zwölf Dateien inhaltlich überarbe
 - `control-panel-brand` Regel zur Bold-Hierarchie bei ein- oder zweizeiligem Text ist neu und hat keine Entsprechung auf der aktuellen Doku-Seite. Es fehlen `figmaNodeId`-Verweise für Do und Dont, bis es dafür Visuals in der Doku gibt.
 - Als Example-Kandidaten markiert: Control-Panel-Position oben/unten bei Shell Mobile, Slide-Button-Einklappen bei Control Panel Desktop, Text-Ausblenden über separate Flat-Icon-Varianten bei Control Panel Navigation. Beim Generieren prüfen, ob dafür ein Example-Visual sinnvoll erstellt wird.
 - `control-panel-navigation-item` hat zwei neue Regeln erhalten (Flat-Icon-Text-Anforderung, Indicator nur auf erster Ebene), die vorher als nicht normative Zusatzinformation geführt wurden.
+
+## Platform-Repo
+
+### 16. Tonalitätsregeln aus `_platform-steering/` zurückspielen
+
+Der Ordner [`_platform-steering/`](_platform-steering/README.md) enthält eine temporäre Arbeitskopie der Steering-Dateien aus `db-ux-design-system.github.io`. Lücken, die beim Generieren der `documentation.json` auffallen, werden dort ergänzt und gesammelt in das Platform-Repo integriert, statt pro Fund zwischen den Repos zu wechseln.
+
+Offene Änderungen und das Vorgehen beim Zurückspielen stehen im README des Ordners. Nach der Integration entfällt der Ordner samt den beiden Einträgen in `.prettierignore` und `.markdownlintignore`, und der Verweis in `writing-conventions.md` richtet sich wieder auf das Platform-Repo.

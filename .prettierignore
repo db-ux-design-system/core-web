@@ -21,3 +21,6 @@ showcases/patternhub/testing-table.ts
 packages/mcp-server/assets/**
 package-lock.json
 *.d.ts
+packages/agent-cli/knowledge-database/_platform-steering/content-tone.md
+packages/agent-cli/knowledge-database/_platform-steering/content-formatting.md
+packages/agent-cli/knowledge-database/_platform-steering/content-tone/

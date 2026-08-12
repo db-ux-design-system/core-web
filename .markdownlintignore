@@ -19,3 +19,6 @@ docs/migration/db-ui/icon-migration.md
 **/playwright-report/**
 **/test-results/**
 scripts/public/**
+packages/agent-cli/knowledge-database/_platform-steering/content-tone.md
+packages/agent-cli/knowledge-database/_platform-steering/content-formatting.md
+packages/agent-cli/knowledge-database/_platform-steering/content-tone/**

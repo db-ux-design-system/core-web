@@ -227,7 +227,7 @@ Siehe [writing-conventions.md](writing-conventions.md#schreibweise-von-begriffen
 Jede Regel wird zu einem Guideline-Objekt expandiert:
 
 - `id` — aus dem Thema der Regel (kebab-case)
-- `headline` — kurze, sprechende Überschrift für die Regel (DE + EN)
+- `headline` — kurze, sprechende Überschrift für die Regel (DE + EN). Sie erscheint im Inhaltsverzeichnis der Doku-Seite und muss deshalb so kurz wie möglich sein, siehe [writing-conventions.md](writing-conventions.md#headlines)
 - `text` — die Regel als natürlicher Satz im Dokumentations-Ton, ergänzt um Kontext aus der Regel selbst (DE + EN)
 - `do.description` — positiv formuliert: was zu tun ist. Imperativ. (DE + EN)
 - `dont.description` — beginnt mit Verb + „nicht" (DE) bzw. „Don't..." (EN). Enthält immer die Konsequenz.

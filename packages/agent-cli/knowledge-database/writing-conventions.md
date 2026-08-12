@@ -98,11 +98,43 @@ Die Markierung steht am Zeilenende, nicht am Satzanfang wie die Normativitäts-M
 
 Die generierten Doku-Texte folgen dem Content Styleguide des Platform-Repos (`db-ux-design-system.github.io/.kiro/steering/content-tone.md`, Area: Documentation).
 
+Solange der Ordner [`_platform-steering/`](_platform-steering/README.md) existiert, gilt die Arbeitskopie darin als aktuelle Fassung. Neue Tonalitätsregeln werden dort ergänzt und gesammelt in das Platform-Repo zurückgespielt, nicht hier dupliziert. Dieser Abschnitt bleibt eine Kurzfassung für den Generierungsschritt.
+
 ### Allgemein
 
 - Faktenbasiert, direkt, kein Wort zu viel
 - Eine Idee pro Satz, aktiv statt passiv
 - DE Guideline-Texte: Imperativ oder klares Subjekt, nie nackte Infinitivkonstruktionen
+- Kein umgangssprachliches oder wertendes Register. Das Kriterium benennen statt es zu bewerten: nicht „lohnt sich", „bequem", „macht Sinn"
+
+### `useCases`
+
+Der Satzbau der deutschen Bullets ist festgelegt, weil zwei Anforderungen gegeneinander stehen: Die Einträge nennen **Möglichkeiten**, dürfen also nicht auffordern, und in einer Liste liest man die **linken Wortanfänge**, das unterscheidende Wort muss deshalb vorn stehen. Beides erfüllt nur ein artikelloser Infinitiv.
+
+1. **Infinitiv**, kein Imperativ und kein Nominalstil. Der Imperativ wäre erweiterungsfester, ist aber eine Aufforderung: bei drei Einträgen wählt man einen aus, statt alle drei auszuführen. Zusätzlich wäre er nicht mehr von den Do-Texten zu unterscheiden, die tatsächlich auffordern. Der Nominalstil („Positionierung des Control Panels") löst die Verbstellung, verliert aber die Handlung, die hier der Inhalt ist.
+2. **Kein Artikel am Anfang.** Der Schlüsselbegriff steht auf Position 1, nicht „Das", „Eine", „Die", und auch kein Oberbegriff davor: „Sub Navigation für Unterseiten ergänzen", nicht „Ebene der Sub Navigation für Unterseiten ergänzen". Der Vorlauf vor dem Verb umfasst höchstens zwei Satzglieder, also ein Objekt und eine Näherbestimmung. Gezählt werden Satzglieder, nicht Wörter, weil Komponentennamen wie Control Panel oder Sub Navigation aus mehreren Wörtern bestehen und trotzdem ein Begriff sind.
+3. **Bedingung oder Konsequenz nie in den Vorlauf**, sondern nach Doppelpunkt als Hauptsatz. Dort steht das finite Verb wieder an Position 2 und die Verbalklammer bleibt kurz.
+
+```text
+Control Panel oben oder links positionieren
+Sub Navigation für Unterseiten ergänzen
+Layout einer Desktop-Anwendung aufbauen: nur der Inhaltsbereich scrollt
+```
+
+Die Verb-Letztstellung bleibt als bewusst akzeptierte Schwäche. Sie ist im Deutschen nativ und trägt bei kurzem Vorlauf problemlos; sie kippt erst, wenn sich Attribute davor stapeln. Genau das verhindern Punkt 2 und 3.
+
+Weitere Anforderungen:
+
+- Ein Gedanke pro Bullet. Jedes Bullet ist selbsttragend und verweist nicht mit „Diese", „Dabei" oder „Dafür" auf das vorherige
+- Nicht wiederholen, was schon in `description` steht
+- Keinen Relativsatz an ein Bezugswort hängen, das durch ein Genitivattribut davon getrennt ist. Im Englischen steht das Kopfnomen als Kompositum direkt vor dem Relativsatz, im Deutschen nicht, dadurch kippt der Bezug: „Layout einer Desktop-Anwendung, in dem …" liest sich zuerst als Bezug auf die Anwendung. Auch hier gilt Punkt 3
+
+### Headlines
+
+- So kurz wie möglich. Die Headline erscheint im Inhaltsverzeichnis der Doku-Seite und wird dort bei zu großer Länge abgeschnitten
+- Nur der Kern der Regel, ohne Artikel und Präposition: „Control Panel Position" statt „Position des Control Panels"
+- Den Komponentennamen nicht wiederholen, wenn er schon auf der Seite steht. „Sub Navigation Position" ist auf der Seite Shell Desktop eindeutig
+- Kein Regel-Vokabular in der Headline („Regel", „Guideline", „Hinweis zu")
 
 ### Do-Texte
 
@@ -112,5 +144,6 @@ Die generierten Doku-Texte folgen dem Content Styleguide des Platform-Repos (`db
 ### Dont-Texte
 
 - DE: Imperativ, Verb vorn, „nicht" nach dem Objekt (nie mit „Nicht..." starten)
+- Zwischen Objekt und „nicht" steht nichts. Eine Bedingung dort lässt das „nicht" mitten im Satz hängen und macht den Bezug unklar. Die Bedingung kommt als `wenn`-Satz danach, die Begründung als eigener Satz
 - EN: Beginnt mit „Don't..."
 - Jedes Dont enthält das Warum oder die Konsequenz
