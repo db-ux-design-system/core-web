@@ -54,6 +54,10 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 		},
 		handleEnter(): void {
+			if (props.open !== undefined) {
+				return;
+			}
+
 			state.isExpanded = true;
 
 			// Clean up any existing observers to prevent leaks from repeated enter
@@ -101,6 +105,10 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleLeave: (event?: any) => {
+			if (props.open !== undefined) {
+				return;
+			}
+
 			const element = event?.target as HTMLElement;
 			const parent = element?.parentNode;
 			if (
@@ -204,10 +212,22 @@ export default function DBPopover(props: DBPopoverProps) {
 		if (_ref) {
 			const child = state.getTrigger();
 			if (child) {
-				child.ariaExpanded = Boolean(state.isExpanded).toString();
+				// In controlled mode (open prop set), aria-expanded follows open;
+				// otherwise it follows internal hover/focus state
+				const expanded =
+					props.open !== undefined
+						? Boolean(props.open)
+						: Boolean(state.isExpanded);
+				child.ariaExpanded = expanded.toString();
 			}
 		}
-	}, [_ref, state.isExpanded]);
+	}, [_ref, state.isExpanded, props.open]);
+
+	onUpdate(() => {
+		if (props.open) {
+			state.handleAutoPlacement();
+		}
+	}, [props.open]);
 
 	// jscpd:ignore-end
 
