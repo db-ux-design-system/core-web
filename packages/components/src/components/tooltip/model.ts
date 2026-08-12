@@ -42,6 +42,7 @@ export type DBTooltipDefaultState = {
 	_attachedParent?: HTMLElement;
 	_attachedId?: string;
 	_activeTriggerCount?: number;
+	_selfResizeObserverCallbackId?: string;
 	_boundListeners?: {
 		parent: HTMLElement;
 		type: string;

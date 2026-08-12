@@ -33,6 +33,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_documentScrollListenerCallbackId: undefined,
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
+		_selfResizeObserverCallbackId: undefined,
 		_attachedParent: undefined,
 		_attachedId: undefined,
 		_activeTriggerCount: 0,
@@ -101,6 +102,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._resizeObserverCallbackId = undefined;
 			}
 
+			if (state._selfResizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._selfResizeObserverCallbackId!
+				);
+				state._selfResizeObserverCallbackId = undefined;
+			}
+
 			if (state._intersectionObserverCallbackId) {
 				new IntersectionObserverListener().unobserve(
 					state._intersectionObserverCallbackId!
@@ -123,6 +131,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 					new ResizeObserverListener().observe(
 						document.documentElement,
 						() => state.handleAutoPlacement(parent)
+					);
+				// Observe the tooltip element itself so that content changes
+				// (e.g. toggling between "Expand"/"Collapse") trigger
+				// repositioning and arrow recalculation.
+				state._selfResizeObserverCallbackId =
+					new ResizeObserverListener().observe(_ref, () =>
+						state.handleAutoPlacement(parent)
 					);
 				const observeTarget = state.getParent();
 				if (observeTarget) {
@@ -157,6 +172,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 					state._resizeObserverCallbackId!
 				);
 				state._resizeObserverCallbackId = undefined;
+			}
+
+			if (state._selfResizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._selfResizeObserverCallbackId!
+				);
+				state._selfResizeObserverCallbackId = undefined;
 			}
 
 			if (state._intersectionObserverCallbackId) {
