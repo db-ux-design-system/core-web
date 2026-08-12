@@ -1,0 +1,41 @@
+- main:
+  - heading "DBHeading" [level=1]
+  - link "Semantic Levels"
+  - heading "h1 maps to xl" [level=1]
+  - heading "h2 maps to lg" [level=2]
+  - heading "h3 maps to md" [level=3]
+  - heading "h4 maps to sm" [level=4]
+  - heading "h5 maps to xs" [level=5]
+  - heading "h6 maps to 2xs" [level=6]
+  - link "Visual Sizes"
+  - heading "3xl" [level=2]
+  - heading "2xl" [level=2]
+  - heading "xl" [level=2]
+  - heading "lg" [level=2]
+  - heading "md" [level=2]
+  - heading "sm" [level=2]
+  - heading "xs" [level=2]
+  - heading "2xs" [level=2]
+  - heading "3xs" [level=2]
+  - link "Semantic And Visual Decoupling"
+  - heading "Semantic h6, visual 2xl" [level=6]
+  - heading "Semantic h2, visual 3xs" [level=2]
+  - link "Font Weight"
+  - heading "(Default) Black" [level=2]
+  - heading "Light" [level=2]
+  - link "Alignment"
+  - heading "(Default) Start" [level=2]
+  - heading "Center" [level=2]
+  - heading "End" [level=2]
+  - link "Paragraph Spacing"
+  - 'heading "Omitted: no margin" [level=2]'
+  - 'heading "False: no margin" [level=2]'
+  - 'heading "True: 1lh block-end" [level=2]'
+  - link "Density"
+  - heading "Functional" [level=2]
+  - heading "(Default) Regular" [level=2]
+  - heading "Expressive" [level=2]
+  - link "Attribute Forwarding"
+  - heading "Forwarded accessible name" [level=2]: Forwarded attributes
+  - link "Slots And Accessibility"
+  - heading "Accessible heading name" [level=2]
