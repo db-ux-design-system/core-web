@@ -77,7 +77,7 @@
   - switch "(Default) No validation"
   - text: (Default) No validation
   - status
-  - switch "Invalid"
+  - switch "Invalid" [invalid]
   - text: Invalid Invalid Message
   - status
   - switch "Valid" [checked]
