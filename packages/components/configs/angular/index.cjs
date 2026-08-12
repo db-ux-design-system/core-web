@@ -5,6 +5,7 @@ const angularSlotsPlugin = require('../plugins/angular/slots.cjs');
 const classNamePlugin = require('../plugins/angular/className.cjs');
 const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
 const headingAsPlugin = require('../plugins/angular/heading-as.cjs');
+const headingContentProjectionPlugin = require('../plugins/angular/heading-content-projection.cjs');
 const routerLinkPlugin = require('../plugins/angular/router-link.cjs');
 const signalFormsPlugin = require('../plugins/angular/signal-forms.cjs');
 
@@ -25,6 +26,7 @@ module.exports = {
 		onClickPlugin,
 		angularPlugin,
 		headingAsPlugin,
+		headingContentProjectionPlugin,
 		headingDynamicRootPlugin,
 		routerLinkPlugin,
 		signalFormsPlugin

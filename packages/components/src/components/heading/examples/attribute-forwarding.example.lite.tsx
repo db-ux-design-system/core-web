@@ -14,7 +14,7 @@ export default function HeadingAttributeForwarding() {
 			<DBHeading
 				as="h2"
 				id="forwarded-heading"
-				className="forwarded-heading-class"
+				class="forwarded-heading-class"
 				aria-label="Forwarded accessible name"
 				data-example="heading"
 				title="Forwarded title"

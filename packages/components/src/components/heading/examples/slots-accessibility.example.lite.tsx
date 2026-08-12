@@ -8,6 +8,8 @@ useMetadata({
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
+// The heading text is wrapped in an element so template-based frameworks strip
+// the surrounding newline whitespace, matching the JSX output exactly.
 export default function HeadingSlotsAccessibility() {
 	return (
 		<Fragment>
@@ -15,7 +17,7 @@ export default function HeadingSlotsAccessibility() {
 				as="h2"
 				startSlot={<span aria-hidden="true">[</span>}
 				endSlot={<span aria-hidden="true">]</span>}>
-				Accessible heading name
+				<span>Accessible heading name</span>
 			</DBHeading>
 		</Fragment>
 	);
