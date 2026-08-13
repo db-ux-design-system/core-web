@@ -12,31 +12,23 @@ export default function NavigationItemExpanded() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem>
-					<a href="#">(Default) False</a>
-				</DBNavigationItem>
+				<DBNavigationItem text="(Default) False"></DBNavigationItem>
 			</ul>
 			<ul>
 				<DBNavigationItem
+					text="True"
 					subNavigation={
 						<>
 							<DBNavigationItem
+								text="Also a navigation item with longer label"
 								subNavigation={
 									<>
-										<DBNavigationItem>
-											<a href="#">Navigation-Item 2</a>
-										</DBNavigationItem>
+										<DBNavigationItem text="Navigation-Item 2"></DBNavigationItem>
 									</>
-								}>
-								Also a navigation item with longer label
-							</DBNavigationItem>
-							<DBNavigationItem>
-								<a href="#">Navigation-Item 1</a>
-							</DBNavigationItem>
+								}></DBNavigationItem>
+							<DBNavigationItem text="Navigation-Item 1"></DBNavigationItem>
 						</>
-					}>
-					True
-				</DBNavigationItem>
+					}></DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

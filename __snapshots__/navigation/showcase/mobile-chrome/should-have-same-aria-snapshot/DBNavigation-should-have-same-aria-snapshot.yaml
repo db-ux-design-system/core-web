@@ -6,25 +6,19 @@
     - list:
       - listitem:
         - button "Navi-Item 1"
-      - listitem:
-        - link "Navi-Item 2"
-      - listitem:
-        - link "Navi-Item 3" [disabled]
+      - listitem: Navi-Item 2
+      - listitem: Navi-Item 3
   - text: (Default) Regular
   - navigation "(Default) Regular":
     - list:
       - listitem:
         - button "Navi-Item 1"
-      - listitem:
-        - link "Navi-Item 2"
-      - listitem:
-        - link "Navi-Item 3" [disabled]
+      - listitem: Navi-Item 2
+      - listitem: Navi-Item 3
   - text: Expressive
   - navigation "Expressive":
     - list:
       - listitem:
         - button "Navi-Item 1"
-      - listitem:
-        - link "Navi-Item 2"
-      - listitem:
-        - link "Navi-Item 3" [disabled]
+      - listitem: Navi-Item 2
+      - listitem: Navi-Item 3
