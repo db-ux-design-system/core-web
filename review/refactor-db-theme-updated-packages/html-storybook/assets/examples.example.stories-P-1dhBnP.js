@@ -1,0 +1,17 @@
+import{n as e}from"./iframe-D_uHWBD2.js";import{n as t,t as n}from"./infotext-B2gq65Ge.js";import{i as r,n as i,r as a,t as o}from"./tab-list-aOLlzaus.js";import{i as s,n as c,r as l,t as u}from"./tabs-DaUrl3-C.js";import{n as d}from"./rolldown-runtime-DkW27tQK.js";var f,p,m,h,g,_;function v(){return(v=d((()=>{t(),r(),i(),s(),c(),f=e(),{fn:p}=__STORYBOOK_MODULE_TEST__,m={title:`Components/DBTabs/Examples`,component:u,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:p(),onTabSelect:p()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},tabItemWidth:{control:`select`,options:[`full`,`auto`]},tabItemAlignment:{control:`select`,options:[`start`,`center`,`end`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},label:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onTabSelect:{action:`onTabSelect`}}},h={args:{initialSelectedIndex:1,children:(0,f.jsxs)(f.Fragment,{children:[(0,f.jsxs)(o,{children:[(0,f.jsx)(a,{children:`Test 1`}),(0,f.jsx)(a,{children:`Test 2`}),(0,f.jsx)(a,{children:`Test 3`})]}),(0,f.jsx)(l,{children:`Tab Panel 1`}),(0,f.jsx)(l,{children:`Tab Panel 2`}),(0,f.jsx)(l,{children:`Tab Panel 3`})]})},render:e=>(0,f.jsxs)(`div`,{className:`fit-content-container`,children:[(0,f.jsx)(n,{icon:`none`,size:`small`,semantic:`informational`,children:`2nd tab selected:`}),(0,f.jsx)(u,{...e})]})},g={args:{initialSelectedMode:`manually`,children:(0,f.jsxs)(f.Fragment,{children:[(0,f.jsxs)(o,{children:[(0,f.jsx)(a,{children:`Test 1`}),(0,f.jsx)(a,{children:`Test 2`}),(0,f.jsx)(a,{children:`Test 3`})]}),(0,f.jsx)(l,{children:`Tab Panel 1`}),(0,f.jsx)(l,{children:`Tab Panel 2`}),(0,f.jsx)(l,{children:`Tab Panel 3`})]})},render:e=>(0,f.jsxs)(`div`,{className:`fit-content-container`,children:[(0,f.jsx)(n,{icon:`none`,size:`small`,semantic:`informational`,children:`nothing selected:`}),(0,f.jsx)(u,{...e})]})},h.parameters={...h.parameters,docs:{...h.parameters?.docs,source:{originalSource:`{
+  args: {
+    "initialSelectedIndex": 1,
+    "children": <><DBTabList><DBTabItem>Test 1</DBTabItem><DBTabItem>Test 2</DBTabItem><DBTabItem>Test 3</DBTabItem></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    2nd tab selected:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...h.parameters?.docs?.source}}},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  args: {
+    "initialSelectedMode": "manually",
+    "children": <><DBTabList><DBTabItem>Test 1</DBTabItem><DBTabItem>Test 2</DBTabItem><DBTabItem>Test 3</DBTabItem></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    nothing selected:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...g.parameters?.docs?.source}}},_=[`SecondTestselected`,`nothingselected`]})))()}v();export{h as SecondTestselected,_ as __namedExportsOrder,m as default,g as nothingselected};
