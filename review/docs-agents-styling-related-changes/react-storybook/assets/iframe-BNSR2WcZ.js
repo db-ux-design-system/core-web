@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-CPNo1Ha4.js";e();
