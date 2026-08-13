@@ -36,14 +36,14 @@ importers:
         specifier: workspace:*
         version: link:packages/stylelint
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       '@double-great/stylelint-a11y':
         specifier: 3.5.1
         version: 3.5.1(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
@@ -238,8 +238,8 @@ importers:
         specifier: 21.2.19
         version: 21.2.19(@angular/common@21.2.19(@angular/core@21.2.19(@angular/compiler@21.2.19)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.19(@angular/compiler@21.2.19)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.19(@angular/animations@21.2.18(@angular/core@21.2.19(@angular/compiler@21.2.19)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.19(@angular/core@21.2.19(@angular/compiler@21.2.19)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.19(@angular/compiler@21.2.19)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@types/node':
         specifier: 26.2.0
         version: 26.2.0
@@ -551,8 +551,8 @@ importers:
         version: 4.4.3
     devDependencies:
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       cpr:
         specifier: 3.0.1
         version: 3.0.1
@@ -628,8 +628,8 @@ importers:
         version: 3.3.3
     devDependencies:
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@types/node':
         specifier: 26.2.0
         version: 26.2.0
@@ -652,14 +652,14 @@ importers:
   scripts:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       postcss-scss:
         specifier: 4.0.9
         version: 4.0.9(postcss@8.5.26)
@@ -734,14 +734,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       rxjs:
         specifier: 7.8.2
         version: 7.8.2
@@ -819,14 +819,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       express:
         specifier: 5.2.1
         version: 5.2.1(supports-color@10.2.2)
@@ -874,14 +874,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       next:
         specifier: 16.3.0
         version: 16.3.0(@babel/core@7.29.7(supports-color@10.2.2))(@playwright/test@1.60.0)(@types/node@26.2.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.102.0)
@@ -920,14 +920,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       nuxt:
         specifier: 4.5.2
         version: 4.5.2(9fee6135d3f70a7af52c39fb709c766c)
@@ -947,14 +947,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       dompurify:
         specifier: 3.4.13
         version: 3.4.13
@@ -1047,14 +1047,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       next:
         specifier: 16.3.0
         version: 16.3.0(@babel/core@7.29.7(supports-color@10.2.2))(@playwright/test@1.60.0)(@types/node@26.2.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.102.0)
@@ -1105,14 +1105,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       '@db-ux/wc-core-components':
         specifier: workspace:*
         version: link:../../output/stencil
@@ -1142,14 +1142,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       vue:
         specifier: 3.5.41
         version: 3.5.41(typescript@5.9.3)
@@ -1185,14 +1185,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       '@db-ux/react-core-components':
         specifier: workspace:*
         version: link:../../output/react
@@ -1279,14 +1279,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       '@db-ux/ngx-core-components':
         specifier: workspace:*
         version: link:../../output/angular
@@ -1343,14 +1343,14 @@ importers:
   storybooks/html-storybook:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -1410,14 +1410,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       '@db-ux/react-core-components':
         specifier: workspace:*
         version: link:../../output/react
@@ -1486,14 +1486,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 6.0.0
-        version: 6.0.0
+        specifier: 6.1.0
+        version: 6.1.0
       '@db-ux/db-theme-fonts':
         specifier: 2.0.5
         version: 2.0.5
       '@db-ux/db-theme-icons':
-        specifier: 4.0.0
-        version: 4.0.0
+        specifier: 4.1.0
+        version: 4.1.0
       '@db-ux/v-core-components':
         specifier: workspace:*
         version: link:../../output/vue
@@ -3087,14 +3087,14 @@ packages:
   '@db-ux/db-theme-fonts@2.0.5':
     resolution: {integrity: sha512-wtYxHGApW6tmjt/dOoNQL0MzlQ6w6YLHy0fIBQm3Ao6gQJ4DbTpInArzQI1/ctYm/nhCBwvPUIe14vhxqmnz4Q==}
 
-  '@db-ux/db-theme-icons@4.0.0':
-    resolution: {integrity: sha512-RNvzLMJSp+vISuhNp3hirW5SyxmmV3yF/ocKcbh5q4d300MF80afhiVogrTo6y5Vh/jNYPG74Byr4V1wjEIHqA==}
+  '@db-ux/db-theme-icons@4.1.0':
+    resolution: {integrity: sha512-3N4fiBOvjIdUIcrbUIWkefhVDC3fnjmNO4xw9CoaAh4OPxSbXmB9ffdKB74rat7N4AOYeKS2avHZhRi5F8CO4g==}
 
   '@db-ux/db-theme-illustrative-icons@3.3.1':
     resolution: {integrity: sha512-pMpNIqp5EzxxMrSPe7NzA//P1uyaZ1dfZMFar2u7tWBhvCXzNSQ/fdrgNaLRLzlXQtARVzihfzxyqAI+v+vqvg==}
 
-  '@db-ux/db-theme@6.0.0':
-    resolution: {integrity: sha512-P/wAv1sJ6n0nAbdPGVP7Fl7MvaChpsHfjKP2CYSWjYvrkUq6X2On+AAhHh87RYuhnTluMI16gdYAN03BfUqSJA==}
+  '@db-ux/db-theme@6.1.0':
+    resolution: {integrity: sha512-Tt3UiAIZOpfPQJ6n2bRA8DPUfdzQdhf88IoaMPxpC1eqfX8QXi+M+HxsixDTRknrzHGBqMKr64izUMkwwlShOA==}
 
   '@db-ux/icon-font-tools@0.3.6':
     resolution: {integrity: sha512-JvQqwJ8x6afUdw8pvsjUp64m5jcabbZXny0MNU7J20obOzPfGBFEewJfg5baNhqycTkdAyj8RhShNE4CNu14gg==}
@@ -19743,14 +19743,14 @@ snapshots:
 
   '@db-ux/db-theme-fonts@2.0.5': {}
 
-  '@db-ux/db-theme-icons@4.0.0': {}
+  '@db-ux/db-theme-icons@4.1.0': {}
 
   '@db-ux/db-theme-illustrative-icons@3.3.1': {}
 
-  '@db-ux/db-theme@6.0.0':
+  '@db-ux/db-theme@6.1.0':
     dependencies:
       '@db-ux/db-theme-fonts': 2.0.5
-      '@db-ux/db-theme-icons': 4.0.0
+      '@db-ux/db-theme-icons': 4.1.0
       '@db-ux/db-theme-illustrative-icons': 3.3.1
 
   '@db-ux/icon-font-tools@0.3.6(@types/node@26.2.0)(chokidar@3.6.0)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2)(typescript@5.9.3)':
