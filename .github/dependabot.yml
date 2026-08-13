@@ -51,7 +51,6 @@ updates:
         update-types: ["version-update:semver-minor"]
       # DB theme packages are handled by Renovate (see .github/renovate.json)
       - dependency-name: "@db-ux/db-theme*"
-      - dependency-name: "@db-ux/db-bahn-theme*"
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437

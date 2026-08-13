@@ -19,12 +19,7 @@
 		},
 		{
 			"description": "DB theme packages, kept in one PR so assets stay in sync. Mostly triggered manually.",
-			"matchPackageNames": [
-				"@db-ux/db-theme",
-				"@db-ux/db-theme-*",
-				"@db-ux/db-bahn-theme",
-				"@db-ux/db-bahn-theme-*"
-			],
+			"matchPackageNames": ["@db-ux/db-theme", "@db-ux/db-theme-*"],
 			"enabled": true,
 			"groupName": "DB theme"
 		}
