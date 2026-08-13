@@ -125,7 +125,7 @@
     "xo": "4.0.0"
   },
   "validate-branch-name": {
-    "pattern": "((copilot/)|(dependabot-)|(renovate-)|((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
+    "pattern": "((copilot/)|(dependabot|renovate)\\-|((test|feat|fix|chore|docs|refactor|style|ci|perf|alert|[0-9]+)\\-[a-zA-Z0-9\\-]+)$)",
     "errorMsg": "There is something wrong with your branch name. You should rename your branch to a valid name and try again. See the Pattern below."
   }
 }
