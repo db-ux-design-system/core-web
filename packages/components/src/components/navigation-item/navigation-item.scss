@@ -166,10 +166,10 @@
 	}
 }
 
-@mixin sub-navigation-mobile() {
+@mixin sub-navigation-item-mobile() {
 	padding: variables.$db-spacing-fixed-xs
 		component.$drawer-content-padding-inline;
-	inline-size: 100%;
+	inline-size: var(--db-drawer-width-horizontal, 100%);
 	max-inline-size: var(
 		--db-drawer-max-width,
 		var(--db-drawer-max-width-horizontal)
@@ -186,8 +186,6 @@
 }
 
 .db-sub-navigation {
-	@extend %component-border;
-
 	margin: 0;
 
 	@include helpers.display(flex);
@@ -198,16 +196,12 @@
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
-		@include sub-navigation-mobile;
+		@include sub-navigation-item-mobile;
 	}
 
 	@include screen-sizes.screen("md") {
-		.db-mobile-navigation-back {
-			@include helpers.display(none);
-		}
-	}
-
-	@include screen-sizes.screen("md") {
+		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+		border: component.$component-border;
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
@@ -215,6 +209,10 @@
 		min-inline-size: variables.$db-container-xs;
 		inset-block-start: calc(100% + #{variables.$db-spacing-fixed-md});
 		transition: visibility 1ms linear; // workaround to enable focus with keyboard
+
+		.db-mobile-navigation-back {
+			@include helpers.display(none);
+		}
 
 		&[data-outside-vx="true"] {
 			transform: translateX(-100%);

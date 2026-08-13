@@ -28,8 +28,8 @@
     "@db-ux/db-theme-icons": "4.0.0",
     "@db-ux/ngx-core-components": "workspace:*",
     "@faker-js/faker": "10.5.0",
-    "@tanstack/angular-table": "8.21.4",
-    "@tanstack/match-sorter-utils": "8.19.4",
+    "@tanstack/angular-table": "9.1.2",
+    "@tanstack/match-sorter-utils": "9.1.2",
     "rxjs": "7.8.2",
     "tslib": "2.8.1",
     "zone.js": "0.15.1"
@@ -42,7 +42,7 @@
     "@compodoc/compodoc": "2.0.0",
     "@storybook/addon-docs": "10.5.7",
     "@storybook/angular": "10.5.7",
-    "@types/node": "26.1.2",
+    "@types/node": "26.2.0",
     "eslint-plugin-storybook": "10.5.7",
     "storybook": "10.5.7"
   }
