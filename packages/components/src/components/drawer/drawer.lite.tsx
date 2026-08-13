@@ -7,12 +7,14 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
+import { ClickEvent, GeneralEvent } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
-	isKeyboardEvent
+	supportsClosedBy,
+	supportsCommandFor,
+	uuid
 } from '../../utils';
 import { DBDrawerProps, DBDrawerState } from './model';
 
@@ -24,7 +26,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		backdropPointerDown: false,
+		_id: 'db-drawer-' + uuid(),
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -32,57 +34,21 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
+		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleBackdropPointerDown: (event: any) => {
-			// Remember whether the pointer interaction started on the backdrop
-			// (the DIALOG element itself) so we only close on a real backdrop
-			// click and not when a drag started inside the content and ended
-			// on the backdrop.
-			state.backdropPointerDown =
-				(event?.target as any)?.nodeName === 'DIALOG';
-		},
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (
-			event?:
-				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void
-		) => {
-			if (!event) return;
+		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
+			const button = (event?.target as HTMLElement)?.closest?.(
+				'[command="request-close"]'
+			);
+			if (!button) return;
 
-			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
-				if (event.key === 'Escape') {
-					event.preventDefault();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-			} else {
-				const isBackdrop =
-					(event.target as any)?.nodeName === 'DIALOG' &&
-					event.type === 'click' &&
-					props.backdrop !== 'none' &&
-					state.backdropPointerDown;
-				const isCloseButton = Boolean(
-					(event.target as HTMLElement)?.closest?.(
-						'[data-action="close"]'
-					)
-				);
-
-				if (isBackdrop || isCloseButton) {
-					if (isCloseButton) {
-						event.stopPropagation();
-					}
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-
-				// Reset after handling the click so the next interaction
-				// starts from a clean state.
-				state.backdropPointerDown = false;
+			const target = button.getAttribute('commandfor');
+			if (
+				!supportsCommandFor() ||
+				!target ||
+				!document.querySelector('dialog#' + target)
+			) {
+				(_ref as HTMLDialogElement).requestClose();
 			}
 		},
 		handleDialogOpen: () => {
@@ -98,10 +64,31 @@ export default function DBDrawer(props: DBDrawerProps) {
 			} else if (!dialogOpen && _ref.open) {
 				_ref.close();
 			}
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
+			if (props.onCancel) {
+				props.onCancel(event);
+			}
+		},
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleClose: (event?: any) => {
+			if (props.onClose) {
+				props.onClose(event);
+			}
+		},
+		// Marks the dialog for the CSS backdrop-click fallback, which extends the close button's hit area. Supporting browsers stay clean.
+		// TODO: Remove after `closedby` is evergreen regarding our browserlist
+		_setClosedByFallback: () => {
+			if (_ref && !supportsClosedBy()) {
+				(_ref as HTMLDialogElement).dataset['closedby'] =
+					'not-supported';
+			}
 		}
 	});
 
 	onMount(() => {
+		state._setClosedByFallback();
 		state.handleDialogOpen();
 		state.initialized = true;
 	});
@@ -130,16 +117,17 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
 			class="db-drawer"
-			onClick={(event) => state.handleClose(event)}
-			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
-			onKeyDown={(event) => state.handleClose(event)}
+			onCancel={(event: Event) => state.handleCancel(event)}
+			onClick={(event) => state.handleClick(event)}
+			onClose={(event) => state.handleClose(event)}
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			closedby={props.backdrop === 'none' ? 'closerequest' : 'any'}>
 			<article
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}

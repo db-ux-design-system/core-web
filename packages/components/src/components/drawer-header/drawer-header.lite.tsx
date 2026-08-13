@@ -26,10 +26,13 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 
 	const state = useStore<DBDrawerHeaderState>({
 		_headingId: 'db-drawer-header-heading-' + uuid(),
-		setAriaLabelledBy() {
+		_dialogId: '',
+		// Links the heading to the dialog and captures its id as the close button's command target.
+		_resolveDialog() {
 			if (_ref) {
 				const dialog = (_ref as HTMLElement).closest('dialog');
 				if (dialog) {
+					state._dialogId = dialog.id;
 					dialog.setAttribute('aria-labelledby', state._headingId);
 				}
 			}
@@ -48,7 +51,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	});
 
 	onMount(() => {
-		state.setAriaLabelledBy();
+		state._resolveDialog();
 	});
 
 	onUnMount(() => {
@@ -68,7 +71,8 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			</header>
 			<Slot name="endSlot" />
 			<DBButton
-				data-action="close"
+				commandfor={state._dialogId}
+				command="request-close"
 				id={props.closeButtonId}
 				icon="cross"
 				variant="ghost"
