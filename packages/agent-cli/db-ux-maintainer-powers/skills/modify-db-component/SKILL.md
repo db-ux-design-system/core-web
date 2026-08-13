@@ -180,10 +180,16 @@ Showcase files in `showcases/` are generated from these and must not be edited m
     This MUST succeed.
 
 2. **Create changeset:**
+
     ```bash
     pnpm changeset
     ```
-    Select `@db-ux/core-components` **and** all four JavaScript framework output packages — always all five, whether SCSS, `model.ts` or the template changed. `@db-ux/core-components` publishes only CSS, but its consumers hand-write the component HTML, so template changes concern them too.
+
+    Which packages to select depends only on **which targets the changed files feed**, never on the kind of change:
+    - **Shared component code** (`*.scss`, `model.ts`, `*.lite.tsx`) → all five: `@db-ux/core-components` **and** the four framework output packages. This holds for a template-only edit as well: `@db-ux/core-components` publishes CSS only, but its consumers hand-write the component HTML, so changed markup concerns them too.
+    - **Code only one target consumes** (`src/utils/react.ts`, `configs/plugins/<framework>/`, `scripts/post-build/angular.ts` / `react.ts` / `vue.ts` / `stencil.ts`) → only that one framework package.
+    - **Shared build code** (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) → every framework package whose output changes; check `git diff output/` after `pnpm run build-outputs` instead of assuming one target.
+
     Bump type:
     - `patch` for bug fixes.
     - `minor` for new features (new variant, new prop).

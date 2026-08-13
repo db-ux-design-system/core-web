@@ -331,7 +331,7 @@ Create `agent/{component_slug}.agent.lite.tsx` with usage examples.
    `bash
 pnpm changeset
 `
-   Select `@db-ux/core-components` **and** all four JavaScript framework output packages (`@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`) — always all five, whether SCSS, `model.ts` or the template changed. `@db-ux/core-components` publishes only CSS, but its consumers hand-write the component HTML, so template changes concern them too. Bump: `minor`.
+   Select `@db-ux/core-components` **and** all four JavaScript framework output packages (`@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`) — a new component is shared code (`*.scss`, `model.ts`, `*.lite.tsx`), so all five are always required, and the single-framework exception for target-specific files does not apply here. `@db-ux/core-components` publishes only CSS, but its consumers hand-write the component HTML, so the template concerns them too. Bump: `minor`.
    As a changeset message, describe why we made a change and what changes to the developers. In most cases, we don't need to describe what we have changed internally, as the users are most curious about what changes for them.
 
 ## Output Checklist

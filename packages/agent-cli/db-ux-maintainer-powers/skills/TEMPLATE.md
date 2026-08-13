@@ -88,7 +88,9 @@ on_error:
     pnpm changeset
     ```
 
-    - Select all five packages (`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`) for any change under `src/` — SCSS, `model.ts` or template alike.
+    - Shared component code (`*.scss`, `model.ts`, `*.lite.tsx`): select all five packages (`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`) — SCSS, properties or template alike.
+    - Code only one target consumes (`src/utils/react.ts`, `configs/plugins/<framework>/`, `scripts/post-build/<framework>.ts`): select only that framework package.
+    - Shared build code (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`): select every framework package whose output changes.
     - Use `minor` for new features/components, `patch` for bug fixes, `major` for breaking changes.
 
 ## Output Checklist
