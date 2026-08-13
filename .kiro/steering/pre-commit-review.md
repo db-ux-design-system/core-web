@@ -52,11 +52,11 @@ Verify each item:
 
 - [ ] Commit message follows conventional commits format (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`)
 - [ ] If architecture, structure, or conventions changed inside a `packages/*` folder, the corresponding `AGENTS.md` has been updated
-- [ ] Changeset added if changes affect `packages/components/src` or `packages/foundations/scss`
+- [ ] Changeset added if consumer-facing changes affect `packages/components/src` or `packages/foundations/scss` (not for test-, showcase- or code-style-only diffs)
 
 #### Changeset Validation
 
-If a changeset is required (changes in `packages/components/src` or `packages/foundations/scss`):
+If a changeset is required (consumer-facing changes in `packages/components/src` or `packages/foundations/scss`):
 
 - For changes to **shared** component code in `packages/components/src` (SCSS, `model.ts`, `.lite.tsx`), verify the changeset frontmatter includes **all five** required packages:
     - `@db-ux/core-components`

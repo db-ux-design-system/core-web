@@ -277,7 +277,7 @@ Alternatively, consider naming the prop without the `default` prefix (e.g. `init
 
 ## Changeset Rules
 
-Changes in `packages/components/src` require a changeset. Which packages to list, which bump type to pick, and all exceptions (code-style-only changes, internal `_`-prefixed state properties) are defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets). That file always applies — do not duplicate its rules here.
+Consumer-facing changes in `packages/components/src` require a changeset. Which packages to list, which bump type to pick, and all exceptions (code-style-only changes, test/showcase-only changes, internal `_`-prefixed state properties) are defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets). That file always applies — do not duplicate its rules here.
 
 Only these package-specific details are added on top:
 

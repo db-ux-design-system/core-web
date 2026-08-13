@@ -38,7 +38,7 @@ build/          # Compiled output — never commit
 
 ## Changeset Rules
 
-Changes in `packages/foundations/scss` require a changeset. Which packages to list and when no changeset is needed is defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets) — that file always applies, so the rules are not repeated here.
+Consumer-facing changes in `packages/foundations/scss` require a changeset. Which packages to list and when no changeset is needed is defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets) — that file always applies, so the rules are not repeated here.
 
 Token-specific bump types:
 

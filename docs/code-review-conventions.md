@@ -13,7 +13,7 @@ Based on the DB UX Design System conventions:
 - **TypeScript** — No `any` types, proper type narrowing, follow existing project patterns (type aliases for component props)
 - **Changesets** — Were changes made in `packages/components/src` or `packages/foundations/scss`? A changeset should be present with all required packages listed (see the repo-root `AGENTS.md` § Changesets for the package table).
 
-> **Known false positive — do not raise it.** For any change under `packages/components/src`, all five packages belong in the changeset, including `@db-ux/core-components` for a pure `.lite.tsx` template change. Do not argue from the `files` array in `packages/components/package.json` that the CSS package is unaffected because it ships no templates: its consumers integrate the components as plain HTML they write themselves, copied from the Patternhub examples and the Storybook "view code" output, so drifted markup hits them hardest — nothing in their build warns them. Shipped artifacts are not the criterion; "who needs to know" is.
+> **Known false positive — do not raise it.** A consumer-facing change to shared component code needs all five packages, `@db-ux/core-components` included, even for a template-only edit: it ships CSS only, but its consumers hand-write the component HTML. Judge by who needs to know, not by the `files` array in `package.json`.
 
 ## Mitosis & Component Architecture
 
@@ -101,7 +101,7 @@ If the PR touches component source files (`.lite.tsx`, `model.ts`, SCSS, tests):
 ### Documentation & Changesets
 
 - [ ] PR title follows conventional commits (`feat:`, `fix:`, `chore:`)
-- [ ] Changeset added if `packages/components/src` or `packages/foundations/scss` changed
+- [ ] Changeset added if `packages/components/src` or `packages/foundations/scss` changed in a consumer-facing way (not for test-, showcase-, code-style- or dependency-update-only diffs)
 - [ ] `AGENTS.md` updated if architecture/conventions changed in a package
 
 ### Framework Coverage

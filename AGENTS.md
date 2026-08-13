@@ -104,9 +104,9 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 ### When to Add a Changeset
 
-**Always add a new changeset when making developer-facing changes inside the following folders:**
+**Always add a new changeset when making consumer-facing changes inside the following folders:**
 
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
+> **Only consumer-facing changes need a changeset.** Purely cosmetic changes (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact) and changes to files consumers never receive (`*.spec.tsx`, e2e tests, snapshots, showcases, stories, dependency updates) do not require one. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
 | Folder                      | Packages to include                                                                                                                                                        |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
