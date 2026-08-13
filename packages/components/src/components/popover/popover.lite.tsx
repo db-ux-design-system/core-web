@@ -59,7 +59,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 		},
 		handleEnter(_parent?: HTMLElement, manualOpen?: boolean): void {
-			if (!manualOpen && props.open !== undefined) {
+			if (!manualOpen && props.open != null) {
 				return;
 			}
 
@@ -110,7 +110,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleLeave: (event?: any, manualOpen?: boolean) => {
-			if (!manualOpen && props.open !== undefined) {
+			if (!manualOpen && props.open != null) {
 				return;
 			}
 
@@ -221,7 +221,7 @@ export default function DBPopover(props: DBPopoverProps) {
 				// In controlled mode (open prop set), aria-expanded follows open;
 				// otherwise it follows internal hover/focus state
 				const expanded =
-					props.open !== undefined
+					props.open != null
 						? Boolean(getBoolean(props.open, 'open'))
 						: Boolean(state.isExpanded);
 				child.ariaExpanded = expanded.toString();
@@ -232,7 +232,7 @@ export default function DBPopover(props: DBPopoverProps) {
 	onUpdate(() => {
 		if (getBoolean(props.open, 'open')) {
 			state.handleEnter(undefined, true);
-		} else {
+		} else if (props.open != null) {
 			state.handleLeave(undefined, true);
 		}
 	}, [props.open]);
