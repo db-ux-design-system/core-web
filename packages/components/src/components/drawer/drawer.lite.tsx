@@ -46,7 +46,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (
 				!supportsCommandFor() ||
 				!target ||
-				!document.getElementById(target)
+				!document.querySelector('dialog#' + target)
 			) {
 				(_ref as HTMLDialogElement).requestClose();
 			}
