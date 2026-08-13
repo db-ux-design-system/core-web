@@ -281,5 +281,17 @@ Consumer-facing changes in `packages/components/src` require a changeset. Which 
 
 Only these package-specific details are added on top:
 
-- **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Check which outputs the change actually reaches (a `git diff` of `output/` after `pnpm run build-outputs` shows it) and list every framework package among them — never assume a single matching target.
+- **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Never assume a single matching target: verify which outputs the change actually reaches and list every framework package among them.
+
+    `output/**/src` is git-ignored (see `.gitignore`), so `git diff output/` proves nothing. Compare against a preserved baseline instead — build with your change reverted, keep a copy, then rebuild and diff:
+
+    ```bash
+    git stash push -- packages/components/scripts packages/components/configs
+    pnpm run build-outputs
+    for t in angular react vue stencil; do rsync -a --delete "output/$t/src/" "/tmp/output-baseline/$t/"; done
+    git stash pop
+    pnpm run build-outputs
+    for t in angular react vue stencil; do git diff --no-index --stat "/tmp/output-baseline/$t" "output/$t/src"; done
+    ```
+
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
