@@ -30,5 +30,5 @@ export const translations: Record<string, string[]> = {
 	],
 	'out of list': ['Liste Ende'],
 	'navigation landmark': ['Navigation Sprungmarke'],
-	'banner landmark': ['Banner Sprungmarke']
+	'navigation landmark': ['Navigation Sprungmarke']
 };
