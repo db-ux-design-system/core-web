@@ -17,7 +17,7 @@ export const designSystems = [
 		name: 'SNCF Design System',
 		url: 'https://gitlab.com/SNCF/wcs',
 		componentUrl:
-			'https://wcs.dev.sncf/?path=/docs/components-accordion--documentation'
+			'https://designmetier-bootstrap.sncf.fr/docs/4.3/components/alerts/'
 	},
 	{
 		name: 'IBM Carbon',
@@ -48,8 +48,7 @@ export const designSystems = [
 	{
 		name: 'Shopify Polaris',
 		url: 'https://github.com/Shopify/polaris',
-		componentUrl:
-			'https://shopify.dev/docs/api/app-home-ui-extension/latest/web-components/'
+		componentUrl: 'https://polaris.shopify.com/components/'
 	},
 	{
 		name: 'Atlassian Design System',
@@ -81,11 +80,6 @@ export const designSystems = [
 		name: 'Bootstrap',
 		url: 'https://github.com/twbs/bootstrap',
 		componentUrl: 'https://getbootstrap.com/docs/4.3/components/alerts/'
-	},
-	{
-		name: 'KoliBri',
-		url: 'https://github.com/public-ui/kolibri',
-		componentUrl: 'https://public-ui.github.io/docs/components'
 	}
 ].toSorted((a, b) => {
 	const nameA = a.name.toUpperCase(); // ignore upper and lowercase
