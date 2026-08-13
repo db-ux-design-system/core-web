@@ -1,5 +1,11 @@
 # @db-ux/core-foundations
 
+## 5.1.4
+
+### Patch Changes
+
+- fix: prevent Sass from emitting `@charset` in published SCSS output for non-ASCII characters, which causes problems e.g. in Next.js - [see commit cefb202](https://github.com/db-ux-design-system/core-web/commit/cefb20259dc650d478e9a58f67e4f46051ee46e3)
+
 ## 5.1.3
 
 _version bump_
