@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-BNM15ita.js";e();
