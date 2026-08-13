@@ -59,10 +59,6 @@ So place the hop so it crosses into the landmark from outside it (e.g. from the 
 
 Spoken phrases are the wrong tool for a plain "is this element exposed as role X" check. Use the aria snapshot tests (`*-aria-snapshot.spec.ts`, see `showcases/playwright.aria-snapshots.ts`) for that; they capture the accessibility tree directly. Keep the screen reader tests for what only a screen reader shows: wording, order, and announced state.
 
-### Headings currently have no target
-
-No component renders `h1`-`h6` or `role="heading"`. What the components call a headline is rendered as `<summary>` text (`DBAccordionItem`) or as a `<header>` inside a sectioning element (`DBNotification`, `DBDrawerHeader`), so `nextHeading()` finds nothing and would run to the end of the document. The heading methods become relevant as soon as a component gains real heading semantics, e.g. through a headline level property.
-
 ## Gotchas
 
 - Local: Don't switch in between your windows while testing, it will capture only your current screen
