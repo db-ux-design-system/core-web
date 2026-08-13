@@ -98,6 +98,10 @@ cd showcases/angular-showcase && pnpm run test:ui
 
 **Do NOT run `pnpm run regenerate:screenshots` locally.** Snapshots are generated automatically in CI/CD.
 
+### Screen Reader Testing
+
+Screen reader tests (NVDA, VoiceOver) live in `showcases/screen-reader/`. When testing a component that renders **landmarks**, **headings** or **links**, do not only step through it with `next()` / `previous()` — also use Guidepup's quick navigation methods (`nextLandmark()`, `nextHeading()`, `nextLink()` and their `previous*()` counterparts) so the test confirms the semantics, not just the wording. See [the screen reader README](showcases/screen-reader/README.md) for the command mapping per screen reader and the pitfalls (a landmark is only named when the cursor enters it from outside; use aria snapshots for plain role assertions).
+
 ## Changesets
 
 This repository uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.

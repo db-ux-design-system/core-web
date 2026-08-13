@@ -26,6 +26,40 @@ npm run test-sr:macos --workspace=react-showcase -- --ui
 npm run test-sr:windows --workspace=react-showcase -- --ui
 ```
 
+## Navigation commands: don't only step with `next()`
+
+If a component renders **landmarks** (`<header>`, `<nav>`, `<main>`), **headings** (`h1`-`h6`, `role="heading"`) or **links**, a test that only walks element by element (`next()` / `previous()`) verifies what gets announced, but not that the element is exposed with the right semantics. Guidepup also offers quick navigation, mirroring what screen reader users actually do:
+
+| Method                        | NVDA      | VoiceOver                                     |
+| ----------------------------- | --------- | --------------------------------------------- |
+| `nextHeading([options])`      | `H`       | `VO-Command-H`                                |
+| `previousHeading([options])`  | `Shift-H` | `VO-Command-Shift-H`                          |
+| `nextLink([options])`         | `K`       | `VO-Command-L`                                |
+| `previousLink([options])`     | `Shift-K` | `VO-Command-Shift-L`                          |
+| `nextLandmark([options])`     | `D`       | `VO-Command-N` (next auto web spot)           |
+| `previousLandmark([options])` | `Shift-D` | `VO-Command-Shift-N` (previous auto web spot) |
+
+Prefer these for the structural hops and keep `next()` for the element level announcements you actually want to assert. A landmark hop is also reader independent, so it avoids the diverging step counts that `next()` produces (VoiceOver stops at "list end" / "navigation end" boundaries, NVDA folds them into one phrase).
+
+### Only entering a landmark names it
+
+A screen reader names the landmark type when the cursor **enters** it from outside. Hopping while already inside the landmark just moves to its start and announces the element found there, which does **not** prove the role:
+
+```text
+"Functional, navigation landmark, list, with 2 items, ..."   <- role confirmed
+"Imprint, same page, link"                                   <- only a position, role unproven
+```
+
+So place the hop so it crosses into the landmark from outside it (e.g. from the preceding sibling, or from the previous component instance on the example page). If a snapshot entry does not contain the landmark type, it does not assert the landmark, and a regression to `<main>` or a named region would pass unnoticed.
+
+### Assert roles with aria snapshots instead
+
+Spoken phrases are the wrong tool for a plain "is this element exposed as role X" check. Use the aria snapshot tests (`*-aria-snapshot.spec.ts`, see `showcases/playwright.aria-snapshots.ts`) for that; they capture the accessibility tree directly. Keep the screen reader tests for what only a screen reader shows: wording, order, and announced state.
+
+### Headings currently have no target
+
+No component renders `h1`-`h6` or `role="heading"`. What the components call a headline is rendered as `<summary>` text (`DBAccordionItem`) or as a `<header>` inside a sectioning element (`DBNotification`, `DBDrawerHeader`), so `nextHeading()` finds nothing and would run to the end of the document. The heading methods become relevant as soon as a component gains real heading semantics, e.g. through a headline level property.
+
 ## Gotchas
 
 - Local: Don't switch in between your windows while testing, it will capture only your current screen
