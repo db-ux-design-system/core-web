@@ -18,10 +18,18 @@
 			"enabled": true
 		},
 		{
-			"description": "DB theme packages, kept in one PR so assets stay in sync. Mostly triggered manually.",
+			"description": "pnpm patch releases merge unattended: Renovate turns on GitHub's auto-merge, the pipeline supplies the approving review. Minor and major bumps get no auto-merge and therefore wait for a human.",
+			"matchDepTypes": ["packageManager"],
+			"matchPackageNames": ["pnpm"],
+			"matchUpdateTypes": ["patch"],
+			"automerge": true
+		},
+		{
+			"description": "DB theme packages, kept in one PR so assets stay in sync. Mostly triggered manually. No automerge: theme bumps change visual snapshots, and that diff needs human eyes.",
 			"matchPackageNames": ["@db-ux/db-theme", "@db-ux/db-theme-*"],
 			"enabled": true,
-			"groupName": "DB theme"
+			"groupName": "DB theme",
+			"automerge": true
 		}
 	]
 }
