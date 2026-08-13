@@ -177,12 +177,18 @@ Workspace packages reference the catalog in their `devDependencies`:
 
 Dependabot handles everything **except** two cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)):
 
-| Covered by Renovate                            | Why not Dependabot                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                  |
-| `@db-ux/db-theme*`                             | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixture, which is outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
+| Covered by Renovate                            | Why not Dependabot                                                                                                                                                                                                                                                                        |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                    |
+| `@db-ux/db-theme*`                             | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixtures, which are outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
 
 The latter is ignored in `.github/dependabot.yml` so the two bots never open competing PRs (`pnpm` version isn't even supported by `dependabot`). Everything else is disabled in the Renovate config (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
+
+### `ignorePaths` has to be spelled out
+
+`config:recommended` includes the `:ignoreModulesAndTests` preset, whose `ignorePaths` cover `**/test/**` and `**/__fixtures__/**`. That would hide exactly the manifests we added Renovate for: `packages/vite-plugin/test/fixtures/react-app` and `.../vue-app`. The config therefore restates the list without those two entries, so the fixtures' `package.json` **and** their `package-lock.json` join the grouped theme PR. `node_modules`, `vendor`, `examples` and the remaining test folders stay ignored.
+
+Watch out for one consequence: the fixtures are plain npm projects with `file:` links into the monorepo, so Renovate updates each `package-lock.json` by running npm there. If that ever fails, Renovate notes the artifact error in the PR body instead of silently skipping the file.
 
 ### Scheduling
 

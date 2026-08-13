@@ -6,6 +6,13 @@
 	"branchPrefix": "renovate-",
 	"branchNameStrict": true,
 	"enabledManagers": ["npm"],
+	"ignorePaths": [
+		"**/node_modules/**",
+		"**/vendor/**",
+		"**/examples/**",
+		"**/__tests__/**",
+		"**/tests/**"
+	],
 	"packageRules": [
 		{
 			"description": "Dependabot owns everything except the exceptions below.",
