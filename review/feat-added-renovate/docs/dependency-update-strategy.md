@@ -2,30 +2,9 @@
 
 This document explains the rationale behind our Dependabot configuration and GitHub Actions pinning strategy. The decision for Dependabot itself is documented in the [Dependency automation ADR](adr/adr-03-dependency-automation.md).
 
-## Renovate for pnpm and the DB theme packages
-
-Dependabot handles everything **except** two cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)):
-
-| Covered by Renovate                            | Why not Dependabot                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                  |
-| `@db-ux/db-theme*`, `@db-ux/db-bahn-theme*`    | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixture, which is outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
-
-The latter is ignored in `.github/dependabot.yml` so the two bots never open competing PRs (`pnpm` version isn't even supported by `dependabot`). Everything else is disabled in the Renovate config (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
-
-### Scheduling
-
-The workflow runs daily at **22:30 Europe/Berlin**, ahead of the Dependabot window at 23:00, so a pnpm lands first and Dependabot's PRs are rebased onto it instead of the other way around. It can also be started manually via _Run workflow_ (`workflow_dispatch`). GitHub cron expressions are UTC-only, so the workflow triggers at both possible offsets (20:30 and 21:30 UTC) and Renovate's own `schedule` — evaluated in `Europe/Berlin` — discards the run that is not 22:30 local time. A manual run bypasses that gate through `RENOVATE_FORCE`.
-
-### Branches, commits and PRs
-
-- Branches use the `renovate-` prefix (never `renovate/`) because slashes break our preview URLs. The prefix is part of the `validate-branch-name` pattern in `package.json`.
-- Renovate authenticates through the same GitHub App as our other automation (`AUTO_MERGE_CLIENT_ID` / `AUTO_MERGE_PRIVATE_KEY`) instead of `GITHUB_TOKEN`, otherwise the pipeline would not run on the created PRs.
-- Renovate PRs are **not** auto-approved or auto-merged — the Dependabot automation in `.github/workflows/99-auto-handle-dependabot.yml` only reacts to the `dependabot[bot]` actor.
-
 ## Auto-merge for all Dependabot PRs
 
-All Dependabot PRs have auto-merge enabled (via `.github/workflows/99-auto-handle-dependabot.yml`). Auto-merge only triggers once all required status checks **and** the required approval pass — so a human reviewer still gates every merge.
+All Dependabot PRs have auto-merge enabled (via the `dependabot` job in `.github/workflows/99-auto-handle-bot-prs.yml`). Auto-merge only triggers once all required status checks **and** the required approval pass — so a human reviewer still gates every merge.
 
 ### Only patch updates are auto-approved
 
@@ -193,3 +172,52 @@ Workspace packages reference the catalog in their `devDependencies`:
 1. Run `pnpm install` to regenerate the lockfile.
 2. Delete stale `tsconfig.tsbuildinfo` files in the affected package.
 3. Verify with `pnpm --filter <package> run build`.
+
+## Renovate for pnpm and the DB theme packages
+
+Dependabot handles everything **except** two cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)):
+
+| Covered by Renovate                            | Why not Dependabot                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                  |
+| `@db-ux/db-theme*`                             | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixture, which is outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
+
+The latter is ignored in `.github/dependabot.yml` so the two bots never open competing PRs (`pnpm` version isn't even supported by `dependabot`). Everything else is disabled in the Renovate config (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
+
+### Scheduling
+
+The workflow runs daily at **22:30 Europe/Berlin**, ahead of the Dependabot window at 23:00, so a pnpm lands first and Dependabot's PRs are rebased onto it instead of the other way around. It can also be started manually via _Run workflow_ (`workflow_dispatch`). GitHub cron expressions are UTC-only, so the workflow triggers at both possible offsets (20:30 and 21:30 UTC) and Renovate's own `schedule` — evaluated in `Europe/Berlin` — turns the out-of-window invocation into a no-op.
+
+That second part needs one non-default option: `schedule` on its own only gates **branch creation**, while `updateNotScheduled` defaults to `true`, which lets an out-of-window run rebase existing Renovate branches and retrigger their pipelines at the wrong hour. The config therefore sets `"updateNotScheduled": false`. A manual run bypasses the whole gate through `RENOVATE_FORCE`.
+
+### Branches, commits and PRs
+
+- Branches use the `renovate-` prefix (never `renovate/`) because slashes break our preview URLs. The prefix is part of the `validate-branch-name` pattern in `package.json`.
+- Renovate authenticates through the same GitHub App as our other automation (`AUTO_MERGE_CLIENT_ID` / `AUTO_MERGE_PRIVATE_KEY`) instead of `GITHUB_TOKEN`, otherwise the pipeline would not run on the created PRs.
+- The approving review for auto-merge comes from the `renovate` job in [`.github/workflows/99-auto-handle-bot-prs.yml`](../.github/workflows/99-auto-handle-bot-prs.yml), next to the Dependabot job — see below.
+
+### Auto-merge: pnpm patch releases only
+
+The work is split between the two sides along a security boundary:
+
+| Side                         | Decides                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------- |
+| `.github/renovate.json`      | **which** updates may merge unattended — `automerge: true` scoped to pnpm `patch`            |
+| `99-auto-handle-bot-prs.yml` | **whether** the required approving review is granted — only for a pure `packageManager` diff |
+
+Renovate switches on GitHub's native auto-merge for the PRs matching its rule, so the patch/minor/major differentiation lives in the Renovate config where it belongs. Auto-merge alone can never merge anything: it waits for all required status checks **and** the required approval.
+
+That approval is the actual gate, which is why the workflow does not take anybody's word for what a PR contains. Labels, PR titles, branch names and even "auto-merge is enabled" can all be set by anyone with write access — approving on such a signal would hand out a bypass of the review requirement. Instead the job compares base and head:
+
+```bash
+[[ "$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")" == "package.json" ]] &&
+  diff -q <(git show "$BASE_SHA:package.json" | jq -S "del(.packageManager)") \
+          <(git show "$HEAD_SHA:package.json" | jq -S "del(.packageManager)")
+```
+
+`package.json` must be the only changed file, and removing `packageManager` from both sides must leave two identical files. A pnpm bump is the only thing that passes; a `scripts` entry or a lockfile edit smuggled alongside it does not. No version parsing is needed here, because a pnpm minor or major bump that gets pre-approved simply has no auto-merge and still waits for a human. The check fails closed and keeps the job green, so a PR that does not qualify (theme updates, pnpm minor/major) shows no red X.
+
+Two details worth knowing:
+
+- **Renovate cannot approve its own PR.** GitHub forbids approving a pull request you opened, and Renovate has no self-approval for the GitHub platform. The workflow reviews with `GITHUB_TOKEN`, i.e. as `github-actions[bot]`, which is a different identity than the App that opened the PR — the same mechanism the Dependabot job uses. If branch protection ever requires a review from `CODEOWNERS`, a bot review no longer satisfies it and these PRs will stall one approval short.
+- **The theme packages are excluded on purpose**, on both sides: no `automerge` in the Renovate rule, and their diff never passes the approval check. A theme bump changes colors, icons and fonts, so it lands in the visual snapshots and triggers the `regenerate-snapshots*` jobs. What needs reviewing there is the image diff, which no status check can judge. pnpm is the opposite case: install, build, outputs, showcases and E2E all run on the new pnpm binary before the merge, so a broken release cannot slip through unnoticed.
