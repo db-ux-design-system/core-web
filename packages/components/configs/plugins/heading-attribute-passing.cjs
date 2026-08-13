@@ -159,12 +159,12 @@ const copyHeadingSpec = (targetContext, files) => {
 		/components\/heading\/heading\.(tsx|vue)$/.test(file.outputFilePath)
 	);
 	if (!headingFile) {
-		const hasFigmaHeading = files.componentFiles.some((file) =>
-			/components\/heading\/figma\/heading\.figma\.batch\.ts$/.test(
+		const hasHeadingBatch = files.componentFiles.some((file) =>
+			/components\/heading\/(?:figma\/heading\.figma\.batch|examples\/.+\.stories)\.(?:ts|tsx)$/.test(
 				file.outputFilePath
 			)
 		);
-		if (hasFigmaHeading) return;
+		if (hasHeadingBatch) return;
 		fail(targetContext.target, 'generated heading file not found');
 	}
 

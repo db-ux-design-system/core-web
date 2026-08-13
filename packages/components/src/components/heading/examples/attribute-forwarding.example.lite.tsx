@@ -3,8 +3,8 @@ import DBHeading from '../heading.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
-	storybookTitle: 'Attribute forwarding',
-	storybookNames: ['Native heading attributes'],
+	storybookTitle: 'Forwarded native heading attributes',
+	storybookNames: ['ID, class, ARIA, data and style'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
@@ -15,11 +15,10 @@ export default function HeadingAttributeForwarding() {
 				as="h2"
 				id="forwarded-heading"
 				class="forwarded-heading-class"
-				aria-label="Forwarded accessible name"
+				aria-label="ID, class, ARIA, data and style forwarded to h2"
 				data-example="heading"
-				title="Forwarded title"
 				style={{ textTransform: 'uppercase' }}>
-				Forwarded attributes
+				ID, class, ARIA, data and style forwarded to h2
 			</DBHeading>
 		</Fragment>
 	);

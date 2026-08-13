@@ -3,8 +3,8 @@ import DBHeading from '../heading.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
-	storybookTitle: 'Slots and accessibility',
-	storybookNames: ['Decorative start and end slots'],
+	storybookTitle: 'Decorative slots hidden from screen readers',
+	storybookNames: ['Decorative slots hidden from screen readers'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
@@ -15,9 +15,9 @@ export default function HeadingSlotsAccessibility() {
 		<Fragment>
 			<DBHeading
 				as="h2"
-				startSlot={<span aria-hidden="true">[</span>}
-				endSlot={<span aria-hidden="true">]</span>}>
-				<span>Accessible heading name</span>
+				startSlot={<span aria-hidden="true">★ </span>}
+				endSlot={<span aria-hidden="true"> ★</span>}>
+				<span>Current disruptions</span>
 			</DBHeading>
 		</Fragment>
 	);

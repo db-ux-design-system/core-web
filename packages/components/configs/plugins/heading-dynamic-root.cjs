@@ -117,12 +117,12 @@ const normalizeHeadingIndex = (targetContext, files) => {
 		/components\/heading\/index\.ts$/.test(file.outputFilePath)
 	);
 	if (!indexFile) {
-		const hasFigmaHeading = files.componentFiles.some((file) =>
-			/components\/heading\/figma\/heading\.figma\.batch\.ts$/.test(
+		const hasHeadingBatch = files.componentFiles.some((file) =>
+			/components\/heading\/(?:figma\/heading\.figma\.batch|examples\/.+\.stories)\.(?:ts|tsx)$/.test(
 				file.outputFilePath
 			)
 		);
-		if (hasFigmaHeading) return;
+		if (hasHeadingBatch) return;
 		fail(targetContext.target, 'generated heading index not found');
 	}
 
