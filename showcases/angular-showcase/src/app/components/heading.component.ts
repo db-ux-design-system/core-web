@@ -9,13 +9,14 @@ import { HeadingShowcase } from '@components/components/heading/showcase/heading
 		<div id="heading-dynamic-root-fixture" hidden>
 			<db-heading
 				[as]="dynamicLevel()"
+				[className]="dynamicClassName()"
 				aria-label="Dynamic accessible name"
-				class="dynamic-heading-class"
+				class="dynamic-forwarded-class"
 				data-forwarded="before-switch"
 				style="text-transform: uppercase">
 				Dynamic heading
 			</db-heading>
-			<button type="button" (click)="dynamicLevel.set('h6')">
+			<button type="button" (click)="switchHeading()">
 				Switch heading level
 			</button>
 		</div>
@@ -25,4 +26,10 @@ import { HeadingShowcase } from '@components/components/heading/showcase/heading
 })
 export class HeadingComponent {
 	protected readonly dynamicLevel = signal<'h1' | 'h6'>('h1');
+	protected readonly dynamicClassName = signal('dynamic-heading-before');
+
+	protected switchHeading(): void {
+		this.dynamicLevel.set('h6');
+		this.dynamicClassName.set('dynamic-heading-after');
+	}
 }

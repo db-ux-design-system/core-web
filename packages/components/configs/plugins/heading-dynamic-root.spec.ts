@@ -53,6 +53,22 @@ describe('DBHeading dynamic root', () => {
 		expect(result).toContain('@slot endSlot');
 	});
 
+	it('preserves only forwarded classes when the native root changes', () => {
+		const result = transformHeadingDynamicRoot(
+			stencil,
+			'stencil',
+			'DBHeading'
+		);
+		expect(result).toContain(
+			'private activeHeadingOwnClasses = new Set<string>();'
+		);
+		expect(result).toContain(
+			'if (!this.activeHeadingOwnClasses.has(className))'
+		);
+		expect(result).toContain('this.activeHeadingOwnClasses = ownClasses;');
+		expect(result).not.toContain('const classes = new Set([');
+	});
+
 	it('does not affect other components', () => {
 		expect(transformHeadingDynamicRoot(angular, 'angular', 'DBText')).toBe(
 			angular

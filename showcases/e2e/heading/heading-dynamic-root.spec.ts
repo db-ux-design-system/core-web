@@ -24,8 +24,9 @@ test.describe('DBHeading dynamic root', () => {
 				fixtureElement.innerHTML = `
 					<db-heading
 						as="h1"
+						classname="dynamic-heading-before"
 						aria-label="Dynamic accessible name"
-						class="dynamic-heading-class"
+						class="dynamic-forwarded-class"
 						data-forwarded="before-switch"
 						style="text-transform: uppercase">
 						Dynamic heading
@@ -39,6 +40,7 @@ test.describe('DBHeading dynamic root', () => {
 
 		const host = fixture.locator('db-heading');
 		await expect(host.locator('h1')).toHaveCount(1);
+		await expect(host.locator('h1')).toHaveClass(/dynamic-heading-before/);
 
 		if (isAngular(showcase)) {
 			await fixture.locator('button').evaluate((button) => {
@@ -46,6 +48,7 @@ test.describe('DBHeading dynamic root', () => {
 			});
 		} else {
 			await host.evaluate((element) => {
+				element.setAttribute('classname', 'dynamic-heading-after');
 				(element as HTMLElement & { as: string }).as = 'h6';
 			});
 		}
@@ -60,7 +63,9 @@ test.describe('DBHeading dynamic root', () => {
 			'data-forwarded',
 			'before-switch'
 		);
-		await expect(heading).toHaveClass(/dynamic-heading-class/);
+		await expect(heading).toHaveClass(/dynamic-forwarded-class/);
+		await expect(heading).toHaveClass(/dynamic-heading-after/);
+		await expect(heading).not.toHaveClass(/dynamic-heading-before/);
 		await expect(heading).toHaveAttribute(
 			'style',
 			/text-transform:\s*uppercase/

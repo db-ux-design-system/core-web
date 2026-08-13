@@ -12,20 +12,28 @@ const fail = (target, message) => {
 	);
 };
 
-const COPY_METHOD = `  private copyHeadingAttributes(from: HTMLElement | null, to: HTMLElement | null) {
-    if (!from || !to || from === to) return;
-    for (const attr of Array.from(from.attributes)) {
-      if (
-        attr.name === "style" ||
-        attr.name.startsWith("aria-") ||
-        (attr.name.startsWith("data-") && !${JSON.stringify(OWN_DATA_ATTRIBUTES)}.includes(attr.name))
-      ) {
-        to.setAttribute(attr.name, attr.value);
-      } else if (attr.name === "class") {
-        const classes = new Set([...(to.getAttribute("class") ?? "").split(/\\s+/), ...attr.value.split(/\\s+/)]);
-        to.setAttribute("class", [...classes].filter(Boolean).join(" "));
+const COPY_METHOD = `  private activeHeadingOwnClasses = new Set<string>();
+  private copyHeadingAttributes(from: HTMLElement | null, to: HTMLElement | null) {
+    if (!to || from === to) return;
+    const ownClasses = new Set(Array.from(to.classList));
+    if (from) {
+      for (const attr of Array.from(from.attributes)) {
+        if (
+          attr.name === "style" ||
+          attr.name.startsWith("aria-") ||
+          (attr.name.startsWith("data-") && !${JSON.stringify(OWN_DATA_ATTRIBUTES)}.includes(attr.name))
+        ) {
+          to.setAttribute(attr.name, attr.value);
+        } else if (attr.name === "class") {
+          for (const className of Array.from(from.classList)) {
+            if (!this.activeHeadingOwnClasses.has(className)) {
+              to.classList.add(className);
+            }
+          }
+        }
       }
     }
+    this.activeHeadingOwnClasses = ownClasses;
   }
 `;
 
