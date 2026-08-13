@@ -43,6 +43,19 @@ const SLOT_TYPES = new Set([
 	'nestedInstancesToArray'
 ]);
 
+const extractVueTemplate = (code) => {
+	const openingTag = '<template>';
+	const closingTag = '</template>';
+	const start = code.indexOf(openingTag);
+	const end = code.lastIndexOf(closingTag);
+	if (start === -1 || end <= start) {
+		throw new Error(
+			'[figma plugin] Expected one outer Vue template wrapper'
+		);
+	}
+	return code.slice(start + openingTag.length, end).trim();
+};
+
 const getInstanceCall = (figmaProperty, propName) => {
 	const { type, key, value } = figmaProperty;
 
@@ -618,7 +631,9 @@ module.exports = () => ({
 			}
 
 			let example;
-			if (target === 'react' && !code.includes('return (')) {
+			if (target === 'vue') {
+				example = extractVueTemplate(code);
+			} else if (target === 'react' && !code.includes('return (')) {
 				const match = code.match(
 					/return\s+(<[\s\S]*?>(?:[\s\S]*?<\/[^>]+>)?)\s*;/
 				);
@@ -732,3 +747,5 @@ module.exports = () => ({
 		}
 	}
 });
+
+module.exports.extractVueTemplate = extractVueTemplate;
