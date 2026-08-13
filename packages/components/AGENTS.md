@@ -281,11 +281,7 @@ Changes in `packages/components/src` require a changeset. Which packages to list
 
 Only these package-specific details are added on top:
 
-- **Shared component code goes to all five packages** — SCSS, `model.ts` and `.lite.tsx` (template as well as logic), no matter which of them changed. There is nothing to weigh up.
-- **`@db-ux/core-components` is included for template changes too.** Yes, that package publishes only `build/` (compiled CSS/SCSS) — `.lite.tsx` is filtered out of the copy, and the Mitosis implementations go to the four framework targets. The markup is still part of its contract: its consumers integrate our components as **plain HTML they write themselves**, taken from the Patternhub examples and the "view code" output of our Storybook stories (both generated from the same `.lite.tsx`), and documented in [`docs/creating-custom-components.md`](docs/creating-custom-components.md).
 
-    If the generated markup changes, their hand-written HTML is out of date — and nothing in their build tells them, which makes them the group that needs the changelog entry most. **Never drop `@db-ux/core-components` from a changeset by reasoning about the `files` array in `package.json`; shipped artifacts are not the criterion here.**
 
-- **Framework-specific code** — a file that only one target consumes (`src/utils/react.ts`, `configs/plugins/<framework>/`, and the per-target post-build files `scripts/post-build/angular.ts`, `react.ts`, `vue.ts`, `stencil.ts`) affects only that framework package. List just that one.
 - **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Check which outputs the change actually reaches (a `git diff` of `output/` after `pnpm run build-outputs` shows it) and list every framework package among them — never assume a single matching target.
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
