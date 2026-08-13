@@ -1,0 +1,32 @@
+{
+	"extends": ["config:recommended", ":disableDependencyDashboard"],
+	"timezone": "Europe/Berlin",
+	"schedule": ["* 22 * * *"],
+	"branchPrefix": "renovate-",
+	"branchNameStrict": true,
+	"enabledManagers": ["npm"],
+	"packageRules": [
+		{
+			"description": "Dependabot owns everything except the exceptions below.",
+			"matchPackageNames": ["*"],
+			"enabled": false
+		},
+		{
+			"description": "pnpm itself, including the integrity hash in packageManager.",
+			"matchDepTypes": ["packageManager"],
+			"matchPackageNames": ["pnpm"],
+			"enabled": true
+		},
+		{
+			"description": "DB theme packages, kept in one PR so assets stay in sync.",
+			"matchPackageNames": [
+				"@db-ux/db-theme",
+				"@db-ux/db-theme-*",
+				"@db-ux/db-bahn-theme",
+				"@db-ux/db-bahn-theme-*"
+			],
+			"enabled": true,
+			"groupName": "DB theme"
+		}
+	]
+}

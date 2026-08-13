@@ -1,0 +1,52 @@
+---
+# Renovate (self-hosted)
+#
+# Covers the two things Dependabot cannot handle for us:
+#   1. pnpm itself (the `packageManager` field including its integrity hash)
+#   2. the `@db-ux/db-theme*` / `@db-ux/db-bahn-theme*` packages (manually
+#      triggered, w/o the need to check for all other dependencies)
+# Everything else stays with Dependabot, see `.github/dependabot.yml`.
+# Scope and grouping live in `.github/renovate.json`.
+#
+# Schedule: daily 22:30 Europe/Berlin, i.e. ahead of the Dependabot window at
+# 23:00. GitHub cron only knows UTC, so both possible offsets are triggered and
+# Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`) discards
+# the run that is not 22:30 local time.
+# A manual `workflow_dispatch` run drops that gate via `RENOVATE_FORCE`.
+
+name: Renovate
+
+on:
+  schedule:
+    - cron: "30 20 * * *" # 22:30 Berlin during CEST (UTC+2)
+    - cron: "30 21 * * *" # 22:30 Berlin during CET (UTC+1)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-24.04
+    steps:
+      # The GitHub App token (instead of GITHUB_TOKEN) makes sure the pipeline
+      # runs on the created pull requests.
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🤖 Self-hosted Renovate
+        uses: renovatebot/github-action@e09d604f8f803bb527bd8321ed5be06c460b8682 # v46.2.2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          # Commit through the GitHub API so commits are signed by the app
+          RENOVATE_PLATFORM_COMMIT: "enabled"
+          RENOVATE_GIT_AUTHOR:
+            "${{ steps.generate-token.outputs.app-slug }}[bot]
+            <${{ steps.generate-token.outputs.app-slug }}[bot]@users.noreply.github.com>"
+          RENOVATE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '{"schedule":null}' || '{}' }}

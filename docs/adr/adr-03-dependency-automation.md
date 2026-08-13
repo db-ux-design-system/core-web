@@ -6,6 +6,8 @@ To reduce the amount of time spent updating dependencies we want to use an autom
 
 We pick [dependabot](https://github.com/dependabot) because it is the default for open-source GitHub projects.
 
+**Amendment:** Dependabot remains the primary tool. A narrowly scoped, self-hosted [Renovate](https://github.com/renovatebot/renovate) run was added for the gaps Dependabot does not cover: the `packageManager` (pnpm) version and the `@db-ux/db-theme*` / `@db-ux/db-bahn-theme*` packages (manually triggered, without the need to check for all other dependencies). See [Dependency Update Strategy](../dependency-update-strategy.md#renovate-for-pnpm-and-the-db-theme-packages).
+
 ## Problem description and context
 
 If dependencies are not updated automatically, packages can outdated and provide security issues for consumers.
