@@ -58,14 +58,14 @@ Verify each item:
 
 If a changeset is required (changes in `packages/components/src` or `packages/foundations/scss`):
 
-- For `packages/components/src` changes, verify the changeset frontmatter includes **up to five** required packages:
+- For `packages/components/src` changes, verify the changeset frontmatter includes **all five** required packages:
     - `@db-ux/core-components`
     - `@db-ux/ngx-core-components`
     - `@db-ux/react-core-components`
     - `@db-ux/wc-core-components`
     - `@db-ux/v-core-components`
-- **Styling-only changes need the JS framework packages too.** The framework packages ship the component/foundation styles transitively, and their consumers probably never read the `@db-ux/core-components` or `@db-ux/core-foundations` changelog. A changeset listing only the CSS packages is incomplete.
-- **Markup changes follow what a consumer can observe.** A markup diff that changes accessibility semantics, the visual result, or DOM structure consumers target with custom CSS, tests or selectors belongs to the logic row and needs the framework packages. A restructuring that keeps all of these identical needs `@db-ux/core-components` only — the template is abstracted by the framework component.
+- **The list does not depend on the kind of change.** Styling, template, logic or properties — for shared component code all five are required. A changeset that leaves some of them out is incomplete, also for a pure SCSS or markup change: consumers of a framework package do not read the CSS packages' changelogs, and a markup restructuring can break their custom styling (e.g. a `label + input` selector once the `<input>` moves inside the `<label>`).
+- **It does depend on which targets a file feeds.** A change confined to code that only one target consumes (`src/utils/react.ts`, `configs/plugins/react/`, `scripts/post-build/react.ts`) belongs to that framework package alone — the four frameworks are not interchangeable. Shared build code (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) counts for every target it feeds.
 - **Validate the bump level against the diff** — presence alone is not enough; an invalid `patch`/`minor` can publish a breaking change under a non-major version. For each affected package, confirm the declared bump matches the actual change:
     - **`major`** — a breaking change. Per the repo-root `AGENTS.md` § Changesets, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
     - **`minor`** — a new, backwards-compatible feature, e.g. of a prop is added in any `model.ts`
@@ -161,7 +161,7 @@ pnpm run build-outputs # ~2min — framework outputs build
 ## Common Pre-Commit Mistakes
 
 - Forgetting to add a changeset for component/foundation changes
-- Changeset missing required packages (component changes need all 5 framework packages)
+- Changeset missing required packages (any change in `packages/components/src` needs all 5 packages, styling and markup included)
 - Leaving `console.log` or debug statements
 - Committing generated `output/` files that should only change via `.lite.tsx`
 - Branch names with `/` (breaks CI preview URLs)

@@ -281,7 +281,7 @@ Changes in `packages/components/src` require a changeset. Which packages to list
 
 Only these package-specific details are added on top:
 
-- **Mapping a `.lite.tsx` diff to the table rows:** `state`, event handlers, `onUpdate`/`onMount`, anything in `model.ts` and any JSX edit a consumer can observe count as **logic, properties or consumer-visible markup**; a JSX edit that leaves behavior, properties, visual result and accessibility tree untouched counts as **template**.
+- **Shared component code goes to all five packages** — SCSS, `model.ts` and `.lite.tsx` (template as well as logic), no matter which of them changed. There is nothing to weigh up.
 - **Framework-specific code** — a file that only one target consumes (`src/utils/react.ts`, `configs/plugins/<framework>/`, and the per-target post-build files `scripts/post-build/angular.ts`, `react.ts`, `vue.ts`, `stencil.ts`) affects only that framework package. List just that one.
 - **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Check which outputs the change actually reaches (a `git diff` of `output/` after `pnpm run build-outputs` shows it) and list every framework package among them — never assume a single matching target.
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
