@@ -6,7 +6,7 @@ For installation and configuration of the CSS, see [`@db-ux/core-components`](ht
 
 ### Native HTML and CSS class
 
-Use the `db-heading` class on a native heading. Choose the element from the document hierarchy, not from its appearance. Omitting `data-size` applies the default mapping: `h1`/`xl`, `h2`/`lg`, `h3`/`md`, `h4`/`sm`, `h5`/`xs`, and `h6`/`2xs`.
+Use the `db-heading` class on a native heading. Choose the element from the document hierarchy, not from its appearance. Omitting `data-size` applies the default mapping: `<h1>`/`xl`, `<h2>`/`lg`, `<h3>`/`md`, `<h4>`/`sm`, `<h5>`/`xs`, and `<h6>`/`2xs`.
 
 ```html
 <h1 class="db-heading">A level-one heading with the default xl size</h1>
