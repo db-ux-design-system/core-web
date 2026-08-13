@@ -63,21 +63,21 @@ Everything below is a decision the research surfaced but cannot answer on its ow
 #### Concept
 
 - **Do we need the component at all?** A centred dialog next to the existing `DBDrawer`, or is a placement variant of the drawer sufficient? Everything else depends on this answer.
-  - Yes. Both components slightly differ and after some time and further feedback from the community on functionality, it might even be an option to refactor `drawer` to use `dialog` internally, but today is too early to make an educated decision on this. What we should do in the meantime is even already reusing functionality and styling out of the drawer in an generalized space for both components.
+    - Yes. Both components slightly differ and after some time and further feedback from the community on functionality, it might even be an option to refactor `drawer` to use `dialog` internally, but today is too early to make an educated decision on this. What we should do in the meantime is even already reusing functionality and styling out of the drawer in an generalized space for both components.
 - **Do we need a page-covering variant** (like SBB's `sbb-overlay`) in addition to a centred box, or does `DBDrawer` with `containerSize="full"` already cover that use case?
 - **Dismiss rules**: may a dialog be closed by clicking the backdrop, or must the user pick an explicit action? Per use case or one system-wide default? (Lyne makes it configurable, Carbon and MongoDB always close, Shopify closes only via buttons.)
-  - We'll make it configurable as well, adapted from `drawer`. We'll only skip the `backdrop=invisible` option.
+    - We'll make it configurable as well, adapted from `drawer`. We'll only skip the `backdrop=invisible` option.
 - **Opinionated confirm/alert flavour or free-form container?** Mistica ships only `alert`/`confirm`, MongoDB ships a dedicated `confirmation-modal`, everyone else takes arbitrary content. This decides whether we need `role="alertdialog"` support.
-  - The developers would most likely be able to set this attribute on their own already, but it wouldn't have any visual effect. We'd postponed it from the first phase.
+    - The developers would most likely be able to set this attribute on their own already, but it wouldn't have any visual effect. We'd postponed it from the first phase.
 - **Nesting**: Shopify and KoliBri explicitly forbid stacked dialogs, the APG example demonstrates them. Do we forbid, discourage or support them?
-  - Undecided in the very beginning.
+    - Undecided in the very beginning.
 - **Non-modal dialogs**: do we expose `show()` (page stays interactive) as a supported use case, or modal only?
-  - We'll make it configurable as well, adapted from `drawer`.
+    - We'll make it configurable as well, adapted from `drawer`.
 - **Is a visible heading mandatory?** The APG requires an accessible name; KoliBri makes `_label` required. Do we enforce a heading, or allow a visually hidden label?
 - **Is a visible close button mandatory?** The APG strongly recommends one; Scale and Washington Post make it optional. SNCF shows how that goes wrong: `showCloseButton="false"` also disables Escape, leaving no keyboard way out.
-  - We won't enforce it, it's a slot available to provide contents in.
+    - We won't enforce it, it's a slot available to provide contents in.
 - **Content rules for destructive actions**: verb labels instead of "OK"/"Yes", consequences spelled out in the body, and which button gets initial focus (the APG suggests the least destructive one).
-  - This wouldn't be part of the first round of the component implementation.
+    - This wouldn't be part of the first round of the component implementation.
 - **Do complex forms belong in a dialog** or on their own page? KoliBri advises against them, Shopify explicitly supports data entry.
 
 #### Design
@@ -85,35 +85,35 @@ Everything below is a decision the research surfaced but cannot answer on its ow
 - **Size scale**: reuse `DrawerContainerSizeList` (`small`/`medium`/`large`/`full`), invent a dialog-specific scale (Shopify has five steps), or allow a free-form width (KoliBri)?
 - **Narrow-viewport behaviour**: does the dialog go full-screen on small screens (Carbon, KoliBri, Primer's `position-narrow`), and at which breakpoint?
 - **Backdrop**: which strengths do we offer and what is the default? The drawer already has `strong`/`weak`/`invisible`/`none` — SBB additionally distinguishes semi-transparent (keeps orientation) from fully covering.
-  - it will be the two (`strong` and `weak`) by `drawer`
-  - it will be the two (`strong` and `weak`) by `drawer`
+    - it will be the two (`strong` and `weak`) by `drawer`
+    - it will be the two (`strong` and `weak`) by `drawer`
 - **Placement**: centred only (Shopify cannot be repositioned) or also top/bottom aligned (Primer's `align`)?
-  - Keep it simple at the beginning and wait for other use cases by the community.
+    - Keep it simple at the beginning and wait for other use cases by the community.
 - **Motion**: enter/exit animation and the reduced-motion variant, including whether the existing drawer animation is reused.
-  - Keep it simple at the beginning and wait for other use cases by the community.
+    - Keep it simple at the beginning and wait for other use cases by the community.
 - **Footer actions**: order of primary/secondary, wrapping vs. inline on narrow screens (GitLab exposes `keepActionsInline`), and whether a tertiary/cancel slot is needed.
-  - we'll expose a footer / end slot that the users could fill with a dialog-footer component.
+    - we'll expose a footer / end slot that the users could fill with a dialog-footer component.
 - **Edge-to-edge content**: do we need a "no padding" escape hatch for images, tables or maps (Shopify's `padding="none"`)?
 - **Visual base**: does the dialog reuse `DBCard` styling (KoliBri's `_variant="card"`) or bring its own container, corner radius and elevation?
-  - As the DBDialogs styling is adapted / inherited from DBCard, we'll adapt/reference it, but won't use a DBCard exactly as an inner element or even replacement for a DBDialog/`dialog` to keep it flexible.
+    - As the DBDialogs styling is adapted / inherited from DBCard, we'll adapt/reference it, but won't use a DBCard exactly as an inner element or even replacement for a DBDialog/`dialog` to keep it flexible.
 
 #### Business engineering
 
 - **Open/close contract**: declarative `open` prop, imperative `showModal()`/`close()`, or invoker commands (`command`/`commandfor`, which `DBButton` already supports)? Shopify went command-first. Which of these do we support and document?
-  - We're leaving the 90s behind and will even also go for Invoker Commands, with a simple polyfill for the close button, as we do it in the drawer refactoring.
+    - We're leaving the 90s behind and will even also go for Invoker Commands, with a simple polyfill for the close button, as we do it in the drawer refactoring.
 - **Events**: which events do we emit and which are cancelable? Lyne and Shopify both offer before/after pairs; our drawer currently has `close` and `cancel`.
-  - We'll adapt [`close`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event) and [`cancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event) from the drawer, as those are Web Standards and most flexible already.
+    - We'll adapt [`close`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/close_event) and [`cancel`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event) from the drawer, as those are Web Standards and most flexible already.
 - **Return values**: do we expose a result on close (native `returnValue`, Lyne's `assignDialogResult`) so callers can distinguish confirm from cancel?
-  - both buttons could be fully controlled by the developers, so these decisions are on them. We'll only suggest to choose techniques like e.g. [`formmethod=dialog`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#formmethod)
+    - both buttons could be fully controlled by the developers, so these decisions are on them. We'll only suggest to choose techniques like e.g. [`formmethod=dialog`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button#formmethod)
 - **Forms**: is `<form method="dialog">` supported, and how do submit and validation interact with closing?
-  - as we're using the Web Standards, it actually is. We won't expect fully controlled even only, but provide the possibility for synchronization, and that for the `dialog` would emit the regular `close` and `cancel` events. Those will be emitted by the `dialog` natively.
+    - as we're using the Web Standards, it actually is. We won't expect fully controlled even only, but provide the possibility for synchronization, and that for the `dialog` would emit the regular `close` and `cancel` events. Those will be emitted by the `dialog` natively.
 - **Framework parity**: identical behaviour across Angular, React, Vue and Web Components, plus SSR (no `HTMLDialogElement` on the server) and the `display:contents` host quirk we already work around in the drawer.
 - **Stacking and top layer**: interaction with tooltip, popover and `DBCustomSelect` — we already carry a documented focus workaround for `<dialog>` and the top layer in `custom-select.lite.tsx`.
-  - replacing existing implementations by Popover API etc. in the future has a huge potential to overcome these limitations. But these won't be part of this change.
+    - replacing existing implementations by Popover API etc. in the future has a huge potential to overcome these limitations. But these won't be part of this change.
 - **Ponyfill lifetime**: who owns removing the `closedby` fallback once it is evergreen for our [Browserslist](../../.browserslistrc) (there is already a `TODO` in `drawer.scss`)?
-  - we'll remove it centrally as soon as our browser list would be fulfilled. We'll communicate this and let the developers decide on appropriate action (either ignore it, because they didn't need to support these browsers anyway anymore, or they will get a mitigation path)
+    - we'll remove it centrally as soon as our browser list would be fulfilled. We'll communicate this and let the developers decide on appropriate action (either ignore it, because they didn't need to support these browsers anyway anymore, or they will get a mitigation path)
 - **Migration**: is there an existing modal in consuming apps or an older DB UX version to migrate from, and does that need a migration guide plus a `major` changeset?
-  - yes, but that's business as usual for us.
+    - yes, but that's business as usual for us.
 
 ### Links
 
