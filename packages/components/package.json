@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "5.1.3",
+  "version": "5.1.4",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System (Version 3)",
   "repository": {
@@ -20,7 +20,7 @@
     "build-components": "pnpm run build:mitosis && pnpm run build-components:post && pnpm run build-components:docs",
     "build-components:docs": "pnpm --filter @db-ux/wc-core-components run build:cem",
     "build-components:post": "tsx scripts/post-build/index.ts",
-    "build-style:01_sass": "sass src:build --no-source-map --no-charset --load-path=node_modules",
+    "build-style:01_sass": "sass src:build --no-source-map --load-path=node_modules",
     "build-style:02_postcss": "postcss build/**/*.css --replace",
     "build:mitosis": "mitosis build --config configs/mitosis.config.cjs",
     "compile:angular": "mitosis build --config configs/angular/mitosis.config.cjs && tsx scripts/exec/angular.ts && cpr ../../output/tmp/angular/src ../../output/angular/src --overwrite",
@@ -36,7 +36,7 @@
     "copy:readme": "cpr README.md ../../build-outputs/components/README.md --overwrite",
     "dev:angular": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"npm run compile:angular\"",
     "dev:react": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"pnpm run compile:react\"",
-    "dev:scss": "sass src:build --load-path=node_modules --no-charset --watch --source-map",
+    "dev:scss": "sass src:build --load-path=node_modules --watch --source-map",
     "dev:stencil": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"pnpm run compile:stencil\"",
     "dev:vue": "nodemon --watch src --watch scripts --watch configs --ext tsx,ts,cjs --exec \"pnpm run compile:vue\"",
     "generate:agent": "mitosis build --config=configs/mitosis.agent.config.cjs",
@@ -67,7 +67,7 @@
     "replace-in-file": "9.0.0",
     "sass": "1.102.0",
     "storybook": "10.5.7",
-    "tsx": "4.23.10",
+    "tsx": "4.23.11",
     "vitest": "4.1.10"
   },
   "publishConfig": {
