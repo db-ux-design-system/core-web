@@ -4,8 +4,12 @@
 .db-icon {
 	@include icons.is-icon-text-replace;
 
-	/* Safari needs inline-block for icon alignment. */
+	/* Safari hack */
 	@supports (-webkit-hyphens: none) {
 		@include helpers.display(inline-block);
+
+		&::before {
+			block-size: auto;
+		}
 	}
 }
