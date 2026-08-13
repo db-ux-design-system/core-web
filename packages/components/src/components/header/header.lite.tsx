@@ -55,7 +55,7 @@ export default function DBHeader(props: DBHeaderProps) {
 
 	// Adds/updates this attribute on all children to enable all styling which would have
 	// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device.
-	// Headers which never got forced stay untouched, so we don't stamp "false" onto every child.
+	// Headers which never got forced stay untouched, so we do not stamp "false" onto every child.
 	onUpdate(() => {
 		const forceMobile = Boolean(
 			getBoolean(props.forceMobile, 'forceMobile')
