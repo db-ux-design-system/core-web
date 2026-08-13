@@ -281,7 +281,5 @@ Changes in `packages/components/src` require a changeset. Which packages to list
 
 Only these package-specific details are added on top:
 
-
-
 - **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Check which outputs the change actually reaches (a `git diff` of `output/` after `pnpm run build-outputs` shows it) and list every framework package among them — never assume a single matching target.
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
