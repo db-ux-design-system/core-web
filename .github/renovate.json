@@ -18,7 +18,7 @@
 			"enabled": true
 		},
 		{
-			"description": "DB theme packages, kept in one PR so assets stay in sync.",
+			"description": "DB theme packages, kept in one PR so assets stay in sync. Mostly triggered manually.",
 			"matchPackageNames": [
 				"@db-ux/db-theme",
 				"@db-ux/db-theme-*",

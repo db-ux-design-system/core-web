@@ -11,11 +11,11 @@ Dependabot handles everything **except** two cases, which are covered by a self-
 | `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                  |
 | `@db-ux/db-theme*`, `@db-ux/db-bahn-theme*`    | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixture, which is outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
 
-Both are ignored in `.github/dependabot.yml` so the two bots never open competing PRs. Everything else is disabled in the Renovate config (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
+The latter is ignored in `.github/dependabot.yml` so the two bots never open competing PRs (`pnpm` version isn't even supported by `dependabot`). Everything else is disabled in the Renovate config (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
 
 ### Scheduling
 
-The workflow runs daily at **22:30 Europe/Berlin**, ahead of the Dependabot window at 23:00, so a pnpm or theme bump lands first and Dependabot's PRs are rebased onto it instead of the other way around. It can also be started manually via _Run workflow_ (`workflow_dispatch`). GitHub cron expressions are UTC-only, so the workflow triggers at both possible offsets (20:30 and 21:30 UTC) and Renovate's own `schedule` — evaluated in `Europe/Berlin` — discards the run that is not 22:30 local time. A manual run bypasses that gate through `RENOVATE_FORCE`.
+The workflow runs daily at **22:30 Europe/Berlin**, ahead of the Dependabot window at 23:00, so a pnpm lands first and Dependabot's PRs are rebased onto it instead of the other way around. It can also be started manually via _Run workflow_ (`workflow_dispatch`). GitHub cron expressions are UTC-only, so the workflow triggers at both possible offsets (20:30 and 21:30 UTC) and Renovate's own `schedule` — evaluated in `Europe/Berlin` — discards the run that is not 22:30 local time. A manual run bypasses that gate through `RENOVATE_FORCE`.
 
 ### Branches, commits and PRs
 
