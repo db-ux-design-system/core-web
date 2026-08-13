@@ -34,6 +34,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_documentScrollListenerCallbackId: undefined,
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
+		_selfResizeObserverCallbackId: undefined,
+		_lastPlacedSize: undefined,
 		_attachedParent: undefined,
 		_attachedId: undefined,
 		_activeTriggerCount: 0,
@@ -72,6 +74,14 @@ export default function DBTooltip(props: DBTooltipProps) {
 							parent,
 							forceAbsolute: getBoolean(props.forceAbsolute)
 						});
+						// Record the size after placement so the self
+						// ResizeObserver can distinguish placement-induced
+						// resizes from genuine content changes.
+						const rect = _ref.getBoundingClientRect();
+						state._lastPlacedSize = {
+							width: Math.round(rect.width),
+							height: Math.round(rect.height)
+						};
 					}
 				}, 1);
 			}
@@ -106,6 +116,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 				state._resizeObserverCallbackId = undefined;
 			}
 
+			if (state._selfResizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._selfResizeObserverCallbackId!
+				);
+				state._selfResizeObserverCallbackId = undefined;
+			}
+
 			if (state._intersectionObserverCallbackId) {
 				new IntersectionObserverListener().unobserve(
 					state._intersectionObserverCallbackId!
@@ -129,6 +146,27 @@ export default function DBTooltip(props: DBTooltipProps) {
 						document.documentElement,
 						() => state.handleAutoPlacement(parent)
 					);
+				// Observe the tooltip element itself so that content changes
+				// (e.g. toggling between "Expand"/"Collapse") trigger
+				// repositioning and arrow recalculation.
+				state._selfResizeObserverCallbackId =
+					new ResizeObserverListener().observe(_ref, () => {
+						// Skip if the new size matches what our placement
+						// code just set — this prevents an infinite loop
+						// when placement constrains the tooltip (e.g.
+						// maxBlockSize on mobile viewports).
+						// Use getBoundingClientRect (border box) for both
+						// recording and comparison to avoid a mismatch with
+						// entry.contentRect (content box) on padded elements.
+						const rect = _ref.getBoundingClientRect();
+						const w = Math.round(rect.width);
+						const h = Math.round(rect.height);
+						const last = state._lastPlacedSize;
+						if (last && last.width === w && last.height === h) {
+							return;
+						}
+						state.handleAutoPlacement(parent);
+					});
 				const observeTarget = state.getParent();
 				if (observeTarget) {
 					state._intersectionObserverCallbackId =
@@ -162,6 +200,13 @@ export default function DBTooltip(props: DBTooltipProps) {
 					state._resizeObserverCallbackId!
 				);
 				state._resizeObserverCallbackId = undefined;
+			}
+
+			if (state._selfResizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._selfResizeObserverCallbackId!
+				);
+				state._selfResizeObserverCallbackId = undefined;
 			}
 
 			if (state._intersectionObserverCallbackId) {

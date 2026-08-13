@@ -14,6 +14,7 @@ const density = 'regular';
 export type SkipType = {
 	angular?: boolean;
 	stencil?: boolean;
+	project?: (project: FullProject) => boolean;
 };
 
 export type DefaultTestType = {
@@ -80,8 +81,12 @@ const gotoPage = async (
 	await setScrollViewport(page, fixedHeight)();
 };
 
-const shouldSkip = (skip?: SkipType): boolean => {
+const shouldSkip = (project: FullProject, skip?: SkipType): boolean => {
 	if (skip) {
+		if (skip.project?.(project)) {
+			return true;
+		}
+
 		const { showcase } = process.env;
 		if (skip.angular && isAngular('angular')) {
 			return true;
@@ -108,7 +113,7 @@ export const getDefaultScreenshotTest = ({
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if (shouldSkip(skip)) {
+		if (shouldSkip(project, skip)) {
 			test.skip();
 		}
 
@@ -314,6 +319,11 @@ export const runAriaSnapshotTest = ({
 
 				if (line.includes('- link')) {
 					line = line.replace(':', '');
+				}
+
+				if (line.includes(' [invalid]')) {
+					// Some frameworks add additional [invalid]
+					line = line.replace(' [invalid]', '');
 				}
 
 				return line;
