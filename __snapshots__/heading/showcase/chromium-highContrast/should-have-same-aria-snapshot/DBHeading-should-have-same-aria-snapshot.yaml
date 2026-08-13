@@ -29,13 +29,17 @@
   - heading "End" [level=2]
   - link "Paragraph Spacing"
   - 'heading "Omitted: no margin" [level=2]'
-  - 'heading "False: no margin" [level=2]'
   - 'heading "True: 1lh block-end" [level=2]'
+  - 'heading "False: no margin" [level=2]'
   - link "Density"
   - heading "Functional" [level=2]
   - heading "(Default) Regular" [level=2]
   - heading "Expressive" [level=2]
-  - link "Attribute Forwarding"
-  - heading "Forwarded accessible name" [level=2]: Forwarded attributes
-  - link "Slots And Accessibility"
-  - heading "Accessible heading name" [level=2]
+  - link "Forwarded ID, Class, ARIA, Data And Style"
+  - heading "ID, class, ARIA, data and style forwarded to h2" [level=2]
+  - link "Permalink"
+  - heading "Installation" [level=2]:
+    - text: Installation
+    - link "Direct link to Installation"
+  - link "Decorative Slots Hidden From Screen Readers"
+  - heading "Current disruptions" [level=2]
