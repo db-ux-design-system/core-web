@@ -46,7 +46,7 @@
   "devDependencies": {
     "@db-ux/db-theme-icons": "4.0.0",
     "cpr": "3.0.1",
-    "esbuild": "0.28.1",
+    "esbuild": "0.28.2",
     "npm-run-all2": "9.0.3",
     "tsx": "4.23.11",
     "typescript": "5.9.3",
