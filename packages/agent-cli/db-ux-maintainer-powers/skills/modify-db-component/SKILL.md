@@ -183,7 +183,7 @@ Showcase files in `showcases/` are generated from these and must not be edited m
     ```bash
     pnpm changeset
     ```
-    Select `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all JavaScript framework output packages.
+    Select `@db-ux/core-components` **and** all four JavaScript framework output packages — always all five, whether SCSS, `model.ts` or the template changed. `@db-ux/core-components` publishes only CSS, but its consumers hand-write the component HTML, so template changes concern them too.
     Bump type:
     - `patch` for bug fixes.
     - `minor` for new features (new variant, new prop).
@@ -206,13 +206,14 @@ Showcase files in `showcases/` are generated from these and must not be edited m
 
 ## Red Flags
 
-| Thought                            | Response                                    |
-| ---------------------------------- | ------------------------------------------- |
-| "Edit React output directly"       | STOP. `.lite.tsx` ONLY.                     |
-| "Hardcoded color for this variant" | STOP. Use `var(--db-*)`.                    |
-| "Tests can wait"                   | STOP. Update tests FIRST. TDD is mandatory. |
-| "I know the token name"            | STOP. ALWAYS query MCP.                     |
-| "Removing this prop is fine"       | STOP. Breaking change. Confirm with user.   |
-| "Skip showcase update"             | STOP. New visual feature = showcase update. |
-| "Skip changeset"                   | STOP. Governance requires it.               |
-| "build-outputs is optional"        | STOP. It is mandatory.                      |
+| Thought                                            | Response                                                            |
+| -------------------------------------------------- | ------------------------------------------------------------------- |
+| "Edit React output directly"                       | STOP. `.lite.tsx` ONLY.                                             |
+| "Hardcoded color for this variant"                 | STOP. Use `var(--db-*)`.                                            |
+| "Tests can wait"                                   | STOP. Update tests FIRST. TDD is mandatory.                         |
+| "I know the token name"                            | STOP. ALWAYS query MCP.                                             |
+| "Removing this prop is fine"                       | STOP. Breaking change. Confirm with user.                           |
+| "Skip showcase update"                             | STOP. New visual feature = showcase update.                         |
+| "Skip changeset"                                   | STOP. Governance requires it.                                       |
+| "core-components ships no templates, leave it out" | STOP. Its consumers hand-write the HTML. All five packages, always. |
+| "build-outputs is optional"                        | STOP. It is mandatory.                                              |

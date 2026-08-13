@@ -88,7 +88,7 @@ on_error:
     pnpm changeset
     ```
 
-    - Select all affected packages (`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`).
+    - Select all five packages (`@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`) for any change under `src/` — SCSS, `model.ts` or template alike.
     - Use `minor` for new features/components, `patch` for bug fixes, `major` for breaking changes.
 
 ## Output Checklist

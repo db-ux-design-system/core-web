@@ -331,7 +331,7 @@ Create `agent/{component_slug}.agent.lite.tsx` with usage examples.
    `bash
 pnpm changeset
 `
-   Select `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all JavaScript framework output packages (`@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`). Bump: `minor`.
+   Select `@db-ux/core-components` **and** all four JavaScript framework output packages (`@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`) — always all five, whether SCSS, `model.ts` or the template changed. `@db-ux/core-components` publishes only CSS, but its consumers hand-write the component HTML, so template changes concern them too. Bump: `minor`.
    As a changeset message, describe why we made a change and what changes to the developers. In most cases, we don't need to describe what we have changed internally, as the users are most curious about what changes for them.
 
 ## Output Checklist
@@ -351,16 +351,17 @@ pnpm changeset
 
 ## Red Flags
 
-| Thought                      | Response                                      |
-| ---------------------------- | --------------------------------------------- |
-| "Figma link is missing"      | STOP. ABORT. Demand URL.                      |
-| "I'll write tests later"     | STOP. Step 1 is FIRST.                        |
-| "I don't need model.ts"      | STOP. Every component gets typed props.       |
-| "A quick hardcoded color"    | STOP. Use SCSS variables (`variables.$db-*`). |
-| "I'll skip MCP query"        | STOP. Step 0 is mandatory.                    |
-| "Icon is probably 'close'"   | STOP. Call `list_icons`.                      |
-| "Edit React output directly" | STOP. `.lite.tsx` ONLY.                       |
-| "I'll use px"                | STOP. Use tokens.                             |
-| "Export from .lite"          | STOP. No `.lite` suffix.                      |
-| "Skip changeset"             | STOP. Governance requires it.                 |
-| "build-outputs is optional"  | STOP. It is mandatory.                        |
+| Thought                                            | Response                                                            |
+| -------------------------------------------------- | ------------------------------------------------------------------- |
+| "Figma link is missing"                            | STOP. ABORT. Demand URL.                                            |
+| "I'll write tests later"                           | STOP. Step 1 is FIRST.                                              |
+| "I don't need model.ts"                            | STOP. Every component gets typed props.                             |
+| "A quick hardcoded color"                          | STOP. Use SCSS variables (`variables.$db-*`).                       |
+| "I'll skip MCP query"                              | STOP. Step 0 is mandatory.                                          |
+| "Icon is probably 'close'"                         | STOP. Call `list_icons`.                                            |
+| "Edit React output directly"                       | STOP. `.lite.tsx` ONLY.                                             |
+| "I'll use px"                                      | STOP. Use tokens.                                                   |
+| "Export from .lite"                                | STOP. No `.lite` suffix.                                            |
+| "Skip changeset"                                   | STOP. Governance requires it.                                       |
+| "core-components ships no templates, leave it out" | STOP. Its consumers hand-write the HTML. All five packages, always. |
+| "build-outputs is optional"                        | STOP. It is mandatory.                                              |
