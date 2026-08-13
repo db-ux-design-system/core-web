@@ -1,8 +1,12 @@
+import { mkdirSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-// The plugin is CommonJS; import its named export for unit testing.
+// The plugin is CommonJS; import its named exports for unit testing.
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const {
+	copyHeadingSpec,
 	transformHeadingAttributePassing
 } = require('./heading-attribute-passing.cjs');
 
@@ -46,6 +50,11 @@ describe('heading attribute passing', () => {
 		expect(result).toContain('function DBHeadingFn(');
 		expect(result).toContain('const DBHeading = forwardRef<');
 		expect(result).toContain(
+			`  const internalRef = useRef<HTMLHeadingElement | any>(null);
+  const _ref = component || internalRef;`
+		);
+		expect(result).not.toContain('component || useRef');
+		expect(result).toContain(
 			'import { filterPassingProps, getRootProps } from "../../utils/react";'
 		);
 	});
@@ -87,8 +96,33 @@ describe('heading attribute passing', () => {
 });
 
 describe('heading spec copy', () => {
-	// eslint-disable-next-line @typescript-eslint/no-require-imports
-	const { copyHeadingSpec } = require('./heading-attribute-passing.cjs');
+	it('rewrites copied Vue specs to use Vue component testing', () => {
+		const outputDir = mkdtempSync(join(tmpdir(), 'heading-vue-spec-'));
+		mkdirSync(join(outputDir, 'components/heading'), { recursive: true });
+
+		try {
+			copyHeadingSpec(
+				{ target: 'vue' },
+				{
+					componentFiles: [
+						{
+							outputDir,
+							outputFilePath: 'components/heading/heading.vue'
+						}
+					]
+				}
+			);
+			const result = readFileSync(
+				join(outputDir, 'components/heading/heading.spec.tsx'),
+				'utf-8'
+			);
+			expect(result).toContain('@playwright/experimental-ct-vue');
+			expect(result).not.toContain('@playwright/experimental-ct-react');
+			expect(result).not.toContain('// VUE:');
+		} finally {
+			rmSync(outputDir, { recursive: true, force: true });
+		}
+	});
 
 	it('skips spec copying when only a Figma Heading is generated', () => {
 		expect(() =>

@@ -91,7 +91,8 @@ const transformReact = (code) => {
 		)
 		.replace(
 			refDeclaration,
-			'const _ref = component || useRef<HTMLHeadingElement | any>(component);'
+			`const internalRef = useRef<HTMLHeadingElement | any>(null);
+  const _ref = component || internalRef;`
 		)
 		.replace(
 			defaultExport,
@@ -178,7 +179,12 @@ const copyHeadingSpec = (targetContext, files) => {
 	);
 	let source = fs.readFileSync(sourceFile, 'utf-8');
 	if (targetContext.target === 'vue') {
+		const reactCtImport = '@playwright/experimental-ct-react';
+		if (source.split(reactCtImport).length !== 2) {
+			fail('vue', `expected exactly one ${reactCtImport} import`);
+		}
 		source = source
+			.replace(reactCtImport, '@playwright/experimental-ct-vue')
 			.replace(/\{\/\*/g, '')
 			.replace(/\*\/}/g, '')
 			.replace(/\/\/ VUE:/g, '');
