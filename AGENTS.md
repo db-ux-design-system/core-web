@@ -100,7 +100,7 @@ cd showcases/angular-showcase && pnpm run test:ui
 
 ### Screen Reader Testing
 
-Screen reader tests (NVDA, VoiceOver) live in `showcases/screen-reader/`. See [the screen reader README](showcases/screen-reader/README.md) for the command mapping per screen reader and the pitfalls (a landmark is only named when the cursor enters it from outside; use aria snapshots for plain role assertions).
+Screen reader tests (NVDA, VoiceOver) live in `showcases/screen-reader/`. See [the screen reader README](showcases/screen-reader/README.md) for the command mapping per screen reader and the pitfalls: a landmark is only named when the cursor enters it from outside, `nextLandmark()` / `previousLandmark()` drive VoiceOver's auto web spots so the destination has to be verified per reader before a hop is shared between both branches, and plain role assertions belong in the aria snapshot tests.
 
 ## Changesets
 

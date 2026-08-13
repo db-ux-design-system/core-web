@@ -39,7 +39,10 @@ If a component renders **landmarks** (`<header>`, `<nav>`, `<main>`), **headings
 | `nextLandmark([options])`     | `D`       | `VO-Command-N` (next auto web spot)           |
 | `previousLandmark([options])` | `Shift-D` | `VO-Command-Shift-N` (previous auto web spot) |
 
-Prefer these for the structural hops and keep `next()` for the element level announcements you actually want to assert. A landmark hop is also reader independent, so it avoids the diverging step counts that `next()` produces (VoiceOver stops at "list end" / "navigation end" boundaries, NVDA folds them into one phrase).
+Prefer these for the structural hops and keep `next()` for the element level announcements you actually want to assert. It saves the long `next()` chains whose step counts diverge per reader anyway (VoiceOver stops at "list end" / "navigation end" boundaries, NVDA folds them into one phrase).
+
+**A shared hop does not guarantee a shared destination.** The heading and link methods map to both readers' native quick navigation, so they line up. `nextLandmark()` / `previousLandmark()` do not: on VoiceOver they drive auto web spots, a heuristic superset of landmarks.
+If the page has an auto web spot that is not a landmark, one hop stops on a different element than NVDA's `D`, and a shared assertion then snapshots unrelated content. So verify the VoiceOver destination separately before sharing a landmark hop between both branches (run the macOS test and read its snapshot), and keep the reader-specific branches when they diverge.
 
 ### Only entering a landmark names it
 
