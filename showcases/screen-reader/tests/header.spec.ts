@@ -7,7 +7,7 @@ test.describe('DBHeader', () => {
 		test,
 		title: 'default',
 		description:
-			'should have links, an inline text, a navigation with a list and links, buttons (next())',
+			'should have links, an inline text, a navigation with a list and links, buttons (next()) inside a navigation and a banner landmark (previousLandmark())',
 		url: './#/01/header?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
@@ -35,6 +35,20 @@ test.describe('DBHeader', () => {
 				await voiceOver?.next(); // Button "Notification"
 				await voiceOver?.next(); // Button "Help"
 			}
+
+			/*
+			 * The walk above ends on the last action button, which sits behind the
+			 * navigation inside the header. Hopping backwards through the landmarks
+			 * from there confirms that the `<nav>` is exposed as a named navigation
+			 * landmark and that the `<header>` wrapping it is exposed as a banner.
+			 *
+			 * NVDA maps this to landmark quick navigation ("Shift+D"), VoiceOver to
+			 * its auto web spots ("VO-Command-Shift-N") - the latter is a heuristic
+			 * superset of landmarks, so the macOS output may contain further spots.
+			 */
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.previousLandmark(); // Navigation landmark "Functional"
+			await screenReader?.previousLandmark(); // Banner landmark of the first DBHeader
 		}
 	});
 });
