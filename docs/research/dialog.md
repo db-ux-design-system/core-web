@@ -86,6 +86,7 @@ Everything below is a decision the research surfaced but cannot answer on its ow
 - **Narrow-viewport behaviour**: does the dialog go full-screen on small screens (Carbon, KoliBri, Primer's `position-narrow`), and at which breakpoint?
 - **Backdrop**: which strengths do we offer and what is the default? The drawer already has `strong`/`weak`/`invisible`/`none` — SBB additionally distinguishes semi-transparent (keeps orientation) from fully covering.
   - it will be the two (`strong` and `weak`) by `drawer`
+  - it will be the two (`strong` and `weak`) by `drawer`
 - **Placement**: centred only (Shopify cannot be repositioned) or also top/bottom aligned (Primer's `align`)?
   - Keep it simple at the beginning and wait for other use cases by the community.
 - **Motion**: enter/exit animation and the reduced-motion variant, including whether the existing drawer animation is reused.
