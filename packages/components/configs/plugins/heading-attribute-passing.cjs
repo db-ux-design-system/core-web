@@ -124,6 +124,11 @@ const transformVue = (code) => {
 			'vue',
 			tag
 		);
+		// Vue consumers use `class`, React consumers use `className`, so both
+		// have to be honoured. `'class' + 'Name'` keeps the literal `className`
+		// out of the emitted source: Mitosis' Vue generator rewrites every
+		// standalone `className` occurrence to `class`, which would otherwise
+		// collapse this expression into `props.class ?? props.class`.
 		replacement = replacement.replace(
 			classBinding[0],
 			`:class="${classBinding[1].replace(

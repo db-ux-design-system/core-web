@@ -4,6 +4,9 @@
 .db-heading {
 	margin-block: 0;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+	/* Headings are often long single words (compound nouns, URLs) in narrow
+	 * containers, so break anywhere instead of overflowing the layout. */
 	overflow-wrap: anywhere;
 	text-align: start;
 	text-wrap: balance;
@@ -38,6 +41,9 @@
 		}
 	}
 
+	/* The extended headline placeholders apply the `font` shorthand, which also
+	 * resets `font-weight`. `:is(h1, ..., h6)` adds the one element-level
+	 * specificity point needed to win against those `[data-size]` rules. */
 	&[data-font-weight="light"]:is(h1, h2, h3, h4, h5, h6) {
 		font-weight: 300;
 	}

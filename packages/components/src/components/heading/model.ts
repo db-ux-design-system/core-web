@@ -51,24 +51,15 @@ export type DBHeadingDefaultProps = {
 	fontWeight?: HeadingFontWeightType;
 	/** Adds exactly `1lh` of margin at block-end when enabled. */
 	paragraphSpacing?: boolean | string;
-	/**
-	 * Main heading content. Use phrasing content only; this content defines the
-	 * accessible heading name together with non-decorative slot content.
-	 */
-	children?: any;
-	/**
-	 * Optional phrasing content rendered before `children`. Hide decorative
-	 * content from assistive technology with `aria-hidden="true"`.
-	 */
-	startSlot?: any;
-	/**
-	 * Optional phrasing content rendered after `children`. Hide decorative
-	 * content from assistive technology with `aria-hidden="true"`.
-	 */
-	endSlot?: any;
 };
 
-/** @public */
+/**
+ * `children`, `startSlot` and `endSlot` must contain phrasing content only.
+ * Their text contributes to the accessible heading name, so decorative
+ * adornments have to be hidden with `aria-hidden="true"`.
+ *
+ * @public
+ */
 export type DBHeadingProps = DBHeadingDefaultProps &
 	GlobalProps &
 	AlignmentProps &

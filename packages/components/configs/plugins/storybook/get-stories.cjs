@@ -7,16 +7,22 @@ const {
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
 const prettier = require('@prettier/sync');
 
+// Reserved words plus the identifiers reserved in strict mode, which modules
+// always are. A story export name matching any of them would not parse.
 const RESERVED_IDENTIFIERS = new Set([
 	'await',
 	'break',
 	'case',
+	'catch',
 	'class',
 	'const',
+	'continue',
+	'debugger',
 	'default',
 	'delete',
 	'do',
 	'else',
+	'enum',
 	'export',
 	'extends',
 	'false',
@@ -24,13 +30,20 @@ const RESERVED_IDENTIFIERS = new Set([
 	'for',
 	'function',
 	'if',
+	'implements',
 	'import',
 	'in',
 	'instanceof',
+	'interface',
 	'let',
 	'new',
 	'null',
+	'package',
+	'private',
+	'protected',
+	'public',
 	'return',
+	'static',
 	'super',
 	'switch',
 	'this',

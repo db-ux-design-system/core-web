@@ -49,7 +49,7 @@ const headingProps: Record<string, FigmaProp> = {
 	paragraphSpacing: { type: 'boolean', key: 'Paragraph Spacing' },
 	text: { type: 'textContent', key: 'Text' },
 	startSlot: { type: 'children', key: 'Start slot' },
-	endSlot: { type: 'children', key: 'Children' }
+	endSlot: { type: 'children', key: 'End slot' }
 };
 
 export const headings: FigmaCodeConnect = {
