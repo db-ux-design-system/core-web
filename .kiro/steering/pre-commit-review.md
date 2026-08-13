@@ -58,7 +58,7 @@ Verify each item:
 
 If a changeset is required (changes in `packages/components/src` or `packages/foundations/scss`):
 
-- For `packages/components/src` changes, verify the changeset frontmatter includes **all five** required packages:
+- For changes to **shared** component code in `packages/components/src` (SCSS, `model.ts`, `.lite.tsx`), verify the changeset frontmatter includes **all five** required packages:
     - `@db-ux/core-components`
     - `@db-ux/ngx-core-components`
     - `@db-ux/react-core-components`
@@ -162,7 +162,7 @@ pnpm run build-outputs # ~2min — framework outputs build
 ## Common Pre-Commit Mistakes
 
 - Forgetting to add a changeset for component/foundation changes
-- Changeset missing required packages (any change in `packages/components/src` needs all 5 packages, styling and markup included)
+- Changeset missing required packages (shared component code — SCSS, `model.ts`, `.lite.tsx` — needs all 5 packages, styling and markup included; only files a single target consumes, e.g. `src/utils/react.ts`, are scoped to that one framework package)
 - Leaving `console.log` or debug statements
 - Committing generated `output/` files that should only change via `.lite.tsx`
 - Branch names with `/` (breaks CI preview URLs)
