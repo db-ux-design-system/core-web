@@ -10,8 +10,11 @@
 #
 # Schedule: daily 22:30 Europe/Berlin, i.e. ahead of the Dependabot window at
 # 23:00. GitHub cron only knows UTC, so both possible offsets are triggered and
-# Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`) discards
-# the run that is not 22:30 local time.
+# Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`) makes the
+# out-of-window invocation a no-op: it gates branch creation, and because
+# `updateNotScheduled` is set to false it also gates updates of existing
+# branches -- without that option the second run would still rebase open
+# Renovate branches and retrigger their pipelines at the wrong hour.
 # A manual `workflow_dispatch` run drops that gate via `RENOVATE_FORCE`.
 
 name: Renovate
