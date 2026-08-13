@@ -11,7 +11,9 @@ Based on the DB UX Design System conventions:
 - **Cross-Framework** — If component changes: do they work across React, Angular, Vue, Web Components?
 - **CSS/SCSS** — No `!important` abuse, proper use of CSS custom properties, no hardcoded colors/spacing
 - **TypeScript** — No `any` types, proper type narrowing, follow existing project patterns (type aliases for component props)
-- **Changesets** — Were changes made in `packages/components/src` or `packages/foundations/scss`? A changeset should be present with all required packages listed.
+- **Changesets** — Were changes made in `packages/components/src` or `packages/foundations/scss`? A changeset should be present with all required packages listed (see the repo-root `AGENTS.md` § Changesets for the package table).
+
+> **Known false positive — do not raise it.** For any change under `packages/components/src`, all five packages belong in the changeset, including `@db-ux/core-components` for a pure `.lite.tsx` template change. Do not argue from the `files` array in `packages/components/package.json` that the CSS package is unaffected because it ships no templates: its consumers integrate the components as plain HTML they write themselves, copied from the Patternhub examples and the Storybook "view code" output, so drifted markup hits them hardest — nothing in their build warns them. Shipped artifacts are not the criterion; "who needs to know" is.
 
 ## Mitosis & Component Architecture
 
