@@ -229,7 +229,15 @@ export default function DBPopover(props: DBPopoverProps) {
 		}
 	}, [_ref, state.isExpanded, props.open]);
 
+	// Controlled open state handler.
+	// Transitioning from controlled (open={true|false}) to uncontrolled
+	// (open={undefined|null}) at runtime is not supported. Components should
+	// be either always controlled or always uncontrolled.
 	onUpdate(() => {
+		if (props.open == null) {
+			return;
+		}
+
 		if (getBoolean(props.open, 'open')) {
 			state.handleEnter(undefined, true);
 		} else {
