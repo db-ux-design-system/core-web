@@ -36,6 +36,7 @@
 			"matchPackageNames": ["@db-ux/db-theme", "@db-ux/db-theme-*"],
 			"enabled": true,
 			"groupName": "DB theme",
+			"automerge": true,
 			"separateMajorMinor": false,
 			"minimumReleaseAge": null
 		}
