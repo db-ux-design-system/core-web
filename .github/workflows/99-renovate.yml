@@ -48,8 +48,11 @@ jobs:
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           # Commit through the GitHub API so commits are signed by the app
-          RENOVATE_PLATFORM_COMMIT: "enabled"
-          RENOVATE_GIT_AUTHOR:
-            "${{ steps.generate-token.outputs.app-slug }}[bot]
-            <${{ steps.generate-token.outputs.app-slug }}[bot]@users.noreply.github.com>"
+          RENOVATE_PLATFORM_COMMIT: 'enabled'
+          RENOVATE_GIT_AUTHOR: '${{ steps.generate-token.outputs.app-slug }}[bot]
+            <${{ steps.generate-token.outputs.app-slug }}[bot]@users.noreply.github.com>'
+          # Together with RENOVATE_GIT_AUTHOR this skips the GraphQL `viewer`
+          # lookup during platform init, whose transient failures abort the
+          # whole run with "Initialization error: Authentication failure".
+          RENOVATE_USERNAME: '${{ steps.generate-token.outputs.app-slug }}[bot]'
           RENOVATE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '{"schedule":null}' || '{}' }}
