@@ -2,7 +2,6 @@
 	"extends": ["config:recommended", ":disableDependencyDashboard"],
 	"timezone": "Europe/Berlin",
 	"schedule": ["* 22 * * *"],
-	"updateNotScheduled": false,
 	"branchPrefix": "renovate-",
 	"branchNameStrict": true,
 	"enabledManagers": ["npm"],
