@@ -22,8 +22,6 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 	position: absolute;
 	inline-size: variables.$db-container-xs;
 	gap: variables.$db-spacing-fixed-xs;
-
-	// TODO: This causes some flash for angular navigation item group
 	transition: visibility 1ms linear; // workaround to enable focus with keyboard
 
 	.db-control-panel-navigation-item-group-back-button {

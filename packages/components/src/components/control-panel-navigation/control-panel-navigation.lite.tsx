@@ -43,6 +43,22 @@ export default function DBControlPanelNavigation(
 		initialized: false,
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
+		_handleCSSFlags() {
+			state._shellDesktopPositionTop = hasCssFlag(
+				_ref,
+				'--db-control-panel-navigation-desktop-position-top'
+			);
+			state._isMobile = hasCssFlag(
+				_ref,
+				'--db-control-panel-navigation-mobile'
+			);
+
+			state._isShellSubNavigationMobile = hasCssFlag(
+				_ref,
+				'--db-control-panel-sub-navigation-mobile'
+			);
+		},
+
 		_handleVariant() {
 			if (state._shellDesktopPositionTop) {
 				state._variant = 'popover';
@@ -141,7 +157,7 @@ export default function DBControlPanelNavigation(
 			state._singleBehaviorObserver = observer;
 		},
 		evaluateScrollButtons(tList: Element) {
-			if (!tList) return;
+			if (!tList && !state._shellDesktopPositionTop) return;
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
 
@@ -172,7 +188,7 @@ export default function DBControlPanelNavigation(
 				state._shellDesktopPositionTop
 			);
 		},
-		_handleTreeKeyDown(event: any) {
+		_handleKeyDown(event: any) {
 			if (!menuRef) return;
 
 			if (state._variant === 'tree') {
@@ -222,8 +238,6 @@ export default function DBControlPanelNavigation(
 			if (!activeElement) return;
 
 			const key = event.key;
-			const ITEM_SELECTOR =
-				':scope > .db-control-panel-navigation-item > a, :scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button, :scope > db-control-panel-navigation-item > .db-control-panel-navigation-item > a, :scope > db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button';
 
 			// Determine if we are at the top level or inside a sub-menu
 			const parentGroupMenu = activeElement.closest(
@@ -234,11 +248,24 @@ export default function DBControlPanelNavigation(
 			// Top level is horizontal only when shell position is top
 			const isHorizontal = isTopLevel && state._shellDesktopPositionTop;
 
-			// Get sibling items at the current level
+			// Get sibling items at the current level.
+			// Use querySelectorAll for the interactive elements and filter
+			// to only those whose closest group-menu matches the current
+			// container (to exclude items in nested sub-menus).
 			const container = isTopLevel ? menuElement : parentGroupMenu;
-			const items: HTMLElement[] = Array.from(
-				container!.querySelectorAll(ITEM_SELECTOR)
+			const INTERACTIVE_SELECTOR =
+				'.db-control-panel-navigation-item > a, .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button';
+			const allItems: HTMLElement[] = Array.from(
+				container!.querySelectorAll(INTERACTIVE_SELECTOR)
 			);
+			// Filter to only direct-level items: their closest group-menu
+			// must be the same as our container (or null for top-level).
+			const items = allItems.filter((item) => {
+				const itemGroupMenu = item.closest(
+					'.db-control-panel-navigation-item-group-menu'
+				);
+				return itemGroupMenu === (isTopLevel ? null : parentGroupMenu);
+			});
 			const currentIndex = items.indexOf(activeElement);
 
 			// Determine navigation keys based on orientation
@@ -326,7 +353,7 @@ export default function DBControlPanelNavigation(
 					);
 					if (subMenu) {
 						const firstItem = subMenu.querySelector(
-							ITEM_SELECTOR
+							INTERACTIVE_SELECTOR
 						) as HTMLElement | null;
 						if (firstItem) {
 							firstItem.focus();
@@ -485,22 +512,12 @@ export default function DBControlPanelNavigation(
 	});
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
-			state._shellDesktopPositionTop = hasCssFlag(
-				_ref,
-				'--db-control-panel-navigation-desktop-position-top'
-			);
-			state._isMobile = hasCssFlag(
-				_ref,
-				'--db-control-panel-navigation-mobile'
-			);
-
-			state._isShellSubNavigationMobile = hasCssFlag(
-				_ref,
-				'--db-control-panel-sub-navigation-mobile'
-			);
+		if (_ref && menuRef && state.initialized) {
+			state._handleCSSFlags();
+			state._handleVariant();
+			state._handleSubNavigation();
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, menuRef, state.initialized]);
 
 	onUpdate(() => {
 		if (menuRef) {
@@ -537,8 +554,6 @@ export default function DBControlPanelNavigation(
 						interactive.removeAttribute('tabindex');
 					}
 				}
-
-				state._handleSubNavigation();
 			} else if (props.variant === 'tree') {
 				for (const menu of Array.from(
 					menuElement.querySelectorAll(
@@ -585,6 +600,8 @@ export default function DBControlPanelNavigation(
 					state._attachSingleBehaviorObserver();
 				}
 			}
+
+			state._handleSubNavigation();
 		}
 	}, [
 		menuRef,
@@ -596,11 +613,10 @@ export default function DBControlPanelNavigation(
 
 	onUpdate(() => {
 		state._handleVariant();
-	}, [props.variant, state._isMobile, state._shellDesktopPositionTop]);
+	}, [props.variant]);
 
 	onUpdate(() => {
-		if (state._isShellSubNavigationMobile) {
-			state._handleSubNavigation();
+		if (menuRef) {
 			state.evaluateScrollButtons(menuRef);
 
 			// Re-evaluate scroll buttons and re-position the sub-navigation on
@@ -610,13 +626,14 @@ export default function DBControlPanelNavigation(
 			if (!state._resizeObserverCallbackId) {
 				state._resizeObserverCallbackId =
 					new ResizeObserverListener().observe(menuRef, () => {
+						state._handleCSSFlags();
+						state._handleVariant();
 						state.evaluateScrollButtons(menuRef);
 						state._handleSubNavigation();
-						state._handleVariant();
 					});
 			}
 		}
-	}, [menuRef, state._isShellSubNavigationMobile]);
+	}, [menuRef]);
 
 	return (
 		<nav
@@ -644,7 +661,7 @@ export default function DBControlPanelNavigation(
 				role={state._variant === 'tree' ? 'tree' : undefined}
 				ref={menuRef}
 				onScroll={() => state.onScroll()}
-				onKeyDown={(event: any) => state._handleTreeKeyDown(event)}>
+				onKeyDown={(event: any) => state._handleKeyDown(event)}>
 				{props.children}
 			</menu>
 			<Show when={state.showScrollRight}>

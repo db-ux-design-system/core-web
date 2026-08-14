@@ -34,8 +34,8 @@ body:has(.db-shell[data-fonts-loaded="true"]) {
 .db-shell {
 	@extend %fade-in-loading-fonts;
 
-	block-size: 100lvh;
-	inline-size: 100lvw;
+	block-size: 100dvh;
+	inline-size: 100dvw;
 	display: grid;
 
 	&[data-control-panel-desktop-position="left"] {

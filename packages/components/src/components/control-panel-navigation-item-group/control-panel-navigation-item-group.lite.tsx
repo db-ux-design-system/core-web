@@ -46,10 +46,9 @@ export default function DBControlPanelNavigationItemGroup(
 	const _buttonRef = useRef<HTMLButtonElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBControlPanelNavigationItemGroupState>({
-		hasSubNavigation: true,
 		isSubNavigationExpanded: false,
 		autoClose: false,
-		hasPopup: false,
+		_isPopover: false,
 		initialized: false,
 		_isDrilldown: false,
 		_role: undefined,
@@ -60,12 +59,32 @@ export default function DBControlPanelNavigationItemGroup(
 		_resizeObserverCallbackId: undefined,
 		_popoverListenersAttached: false,
 		navigationItemSafeTriangle: undefined,
+		_getDrilldownFlag() {
+			return hasCssFlag(
+				_menuRef,
+				'--db-control-panel-navigation-item-group-menu-drilldown'
+			);
+		},
+		_getPopoverFlag() {
+			return hasCssFlag(
+				_menuRef,
+				'--db-control-panel-navigation-item-group-menu-popover'
+			);
+		},
+		_handleSubNavigation() {
+			handleSubNavigationPosition(_menuRef);
+		},
+		_handleCSSFlags() {
+			if (!_menuRef) return;
+			state._isPopover = state._getPopoverFlag();
+			state._isDrilldown = state._getDrilldownFlag();
+		},
 		_handleFocusIn: () => {
-			if (!state.hasPopup) return;
+			if (!state._isPopover) return;
 			state.isSubNavigationExpanded = true;
 		},
 		_handleFocusOut: (event: any) => {
-			if (!state.hasPopup) return;
+			if (!state._isPopover || !event) return;
 			const relatedTarget = event.relatedTarget as HTMLElement | null;
 			if (
 				!relatedTarget ||
@@ -75,39 +94,44 @@ export default function DBControlPanelNavigationItemGroup(
 			}
 		},
 		_handleMouseEnter: () => {
-			if (!state.hasPopup) return;
-			if (_menuRef) {
-				handleSubNavigationPosition(_menuRef);
-				// Compute a precise pixel-based transform to keep the
-				// menu within the viewport (replaces the CSS -200% shift).
-				adjustNestedSubNavigationPosition(_menuRef);
-				// Check if the menu overflows the viewport and set
-				// data-outside-vy / data-outside-vx for CSS flipping.
-				// visibility:hidden elements report correct layout via
-				// getBoundingClientRect, so we can measure immediately.
-				handleDataOutside(_menuRef);
-			}
+			if (!state._isPopover) return;
 			state.isSubNavigationExpanded = true;
+			// Compute a precise pixel-based transform to keep the
+			// menu within the viewport (replaces the CSS -200% shift).
+			adjustNestedSubNavigationPosition(_menuRef);
+			// Check if the menu overflows the viewport and set
+			// data-outside-vy / data-outside-vx for CSS flipping.
+			// visibility:hidden elements report correct layout via
+			// getBoundingClientRect, so we can measure immediately.
+			handleDataOutside(_menuRef);
 		},
 		_handleMouseLeave: () => {
-			if (!state.hasPopup) return;
+			if (!state._isPopover) return;
 			state.isSubNavigationExpanded = false;
 		},
 		_setSiblingsInert: (inert: boolean) => {
 			if (!_ref || !_menuRef) return;
 
-			// 1. Mark sibling <li> elements within the parent <menu> as inert
-			const parentMenu = (_ref as HTMLElement).parentElement;
-			if (parentMenu) {
-				const siblings = parentMenu.children;
+			// 1. Mark sibling items within the closest parent <menu> as inert.
+			// In frameworks like Angular and Stencil, custom element hosts
+			// wrap the <li>, so parentElement is the host, not the <menu>.
+			// Walk up to the nearest ancestor <menu> and mark its children.
+			const closestMenu = (_ref as HTMLElement).closest('menu');
+			if (closestMenu) {
+				const siblings = closestMenu.children;
 				for (let i = 0; i < siblings.length; i++) {
 					const sibling = siblings[i] as HTMLElement;
-					if (sibling !== (_ref as HTMLElement)) {
-						if (inert) {
-							sibling.setAttribute('inert', '');
-						} else {
-							sibling.removeAttribute('inert');
-						}
+					// Skip the element that contains our _ref
+					if (
+						sibling === (_ref as HTMLElement) ||
+						sibling.contains(_ref as HTMLElement)
+					) {
+						continue;
+					}
+					if (inert) {
+						sibling.setAttribute('inert', '');
+					} else {
+						sibling.removeAttribute('inert');
 					}
 				}
 			}
@@ -128,38 +152,54 @@ export default function DBControlPanelNavigationItemGroup(
 				'.db-control-panel-mobile-drawer-scroll-container'
 			);
 			if (scrollContainer) {
-				const navAncestor = (_ref as HTMLElement).closest(
-					'.db-control-panel-navigation'
-				);
 				const children = scrollContainer.children;
 				for (let i = 0; i < children.length; i++) {
 					const child = children[i] as HTMLElement;
-					if (child !== navAncestor) {
-						if (inert) {
-							child.setAttribute('inert', '');
-						} else {
-							child.removeAttribute('inert');
-						}
+					// Skip the child that contains our _ref (the navigation)
+					if (child.contains(_ref as HTMLElement)) {
+						continue;
+					}
+					if (inert) {
+						child.setAttribute('inert', '');
+					} else {
+						child.removeAttribute('inert');
 					}
 				}
 			}
 		},
+		_boundMouseEnter: undefined,
+		_boundMouseLeave: undefined,
+		_boundFocusIn: undefined,
+		_boundFocusOut: undefined,
 		_attachPopoverListeners: () => {
 			if (state._popoverListenersAttached || !_ref) return;
 
-			_ref.addEventListener('mouseenter', state._handleMouseEnter);
-			_ref.addEventListener('mouseleave', state._handleMouseLeave);
-			_ref.addEventListener('focusin', state._handleFocusIn);
-			_ref.addEventListener('focusout', state._handleFocusOut);
+			state._boundMouseEnter = () => {
+				state._handleMouseEnter();
+			};
+			state._boundMouseLeave = () => {
+				state._handleMouseLeave();
+			};
+			state._boundFocusIn = () => {
+				state._handleFocusIn();
+			};
+			state._boundFocusOut = (event: any) => {
+				state._handleFocusOut(event);
+			};
+
+			_ref.addEventListener('mouseenter', state._boundMouseEnter);
+			_ref.addEventListener('mouseleave', state._boundMouseLeave);
+			_ref.addEventListener('focusin', state._boundFocusIn);
+			_ref.addEventListener('focusout', state._boundFocusOut);
 			state._popoverListenersAttached = true;
 		},
 		_detachPopoverListeners: () => {
 			if (!state._popoverListenersAttached || !_ref) return;
 
-			_ref.removeEventListener('mouseenter', state._handleMouseEnter);
-			_ref.removeEventListener('mouseleave', state._handleMouseLeave);
-			_ref.removeEventListener('focusin', state._handleFocusIn);
-			_ref.removeEventListener('focusout', state._handleFocusOut);
+			_ref.removeEventListener('mouseenter', state._boundMouseEnter!);
+			_ref.removeEventListener('mouseleave', state._boundMouseLeave!);
+			_ref.removeEventListener('focusin', state._boundFocusIn!);
+			_ref.removeEventListener('focusout', state._boundFocusOut!);
 
 			state.isSubNavigationExpanded = false;
 			state._popoverListenersAttached = false;
@@ -183,8 +223,8 @@ export default function DBControlPanelNavigationItemGroup(
 			}
 		},
 		onScroll: () => {
-			if (state.hasPopup && _menuRef) {
-				handleSubNavigationPosition(_menuRef);
+			if (state._isPopover && _menuRef) {
+				state._handleSubNavigation();
 			}
 		},
 		handleNavigationItemClick: (event: any) => {
@@ -199,7 +239,7 @@ export default function DBControlPanelNavigationItemGroup(
 			}, 300);
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
-			if (!state.hasPopup) {
+			if (!state._isPopover) {
 				state.isSubNavigationExpanded = !state.isSubNavigationExpanded;
 			}
 
@@ -233,6 +273,7 @@ export default function DBControlPanelNavigationItemGroup(
 
 	onMount(() => {
 		state.initialized = true;
+		state._handleCSSFlags();
 	});
 
 	// Observe role attribute set imperatively by the parent navigation
@@ -283,28 +324,16 @@ export default function DBControlPanelNavigationItemGroup(
 	}, [props.expanded]);
 
 	onUpdate(() => {
-		if (_ref && state.initialized) {
-			state.initialized = false;
-
-			state.hasPopup = hasCssFlag(
-				_ref,
-				'--db-control-panel-navigation-item-group-menu-popover'
-			);
-
-			if (_menuRef) {
-				state._isDrilldown = hasCssFlag(
-					_menuRef,
-					'--db-control-panel-navigation-item-group-menu-drilldown'
-				);
-			}
+		if (_ref && _menuRef && state.initialized) {
+			state._handleCSSFlags();
 		}
-	}, [_ref, state.initialized]);
+	}, [_ref, _menuRef, state.initialized]);
 
 	// When a sub-navigation is expanded in drilldown mode, mark sibling
 	// navigation items as inert so screenreader/keyboard focus cannot
 	// escape the visible overlay (resolves #5883).
 	onUpdate(() => {
-		if (state._isDrilldown && state.isSubNavigationExpanded) {
+		if (state._getDrilldownFlag() && state.isSubNavigationExpanded) {
 			state._setSiblingsInert(true);
 
 			// Move focus to the first navigation item link inside the sub-menu
@@ -319,10 +348,12 @@ export default function DBControlPanelNavigationItemGroup(
 		} else {
 			state._setSiblingsInert(false);
 		}
-	}, [state._isDrilldown, state.isSubNavigationExpanded]);
+
+		state._handleSubNavigation();
+	}, [state.isSubNavigationExpanded]);
 
 	onUpdate(() => {
-		if (_ref && _buttonRef && _menuRef && state.hasPopup) {
+		if (_ref && _buttonRef && _menuRef && state._isPopover) {
 			if (!state.navigationItemSafeTriangle) {
 				state.navigationItemSafeTriangle =
 					new NavigationItemSafeTriangle(_ref, _menuRef);
@@ -351,17 +382,17 @@ export default function DBControlPanelNavigationItemGroup(
 						document.documentElement,
 						() => {
 							if (_menuRef) {
-								handleSubNavigationPosition(_menuRef);
+								state._handleSubNavigation();
 							}
 						}
 					);
 			}
 		}
 
-		if (!state.hasPopup) {
+		if (!state._isPopover) {
 			state._teardownPopover();
 		}
-	}, [_ref, _menuRef, _buttonRef, state.hasPopup]);
+	}, [_ref, _menuRef, _buttonRef, state._isPopover]);
 
 	return (
 		<li
@@ -388,7 +419,7 @@ export default function DBControlPanelNavigationItemGroup(
 				ref={_buttonRef}
 				type="button"
 				aria-haspopup={getBooleanAsString(
-					state.hasPopup ? true : undefined
+					state._isPopover ? true : undefined
 				)}
 				aria-controls={props.menuId ?? state._itemGroupMenuId}
 				aria-expanded={getBooleanAsString(
@@ -409,6 +440,7 @@ export default function DBControlPanelNavigationItemGroup(
 			<menu
 				ref={_menuRef}
 				class="db-control-panel-navigation-item-group-menu"
+				data-initialized={getBooleanAsString(state.initialized)}
 				data-force-close={getBooleanAsString(state.autoClose)}
 				id={props.menuId ?? state._itemGroupMenuId}
 				onScroll={() => state.onScroll()}

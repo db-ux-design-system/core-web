@@ -6,6 +6,7 @@ import {
 	DBControlPanelPrimaryActions,
 	DBDivider,
 	DBDrawer,
+	DBDrawerHeader,
 	DBSelect,
 	DBTooltip,
 	DENSITIES,
@@ -29,7 +30,8 @@ import {
 		DBSelect,
 		ReactiveFormsModule,
 		DBTooltip,
-		DBDivider
+		DBDivider,
+		DBDrawerHeader
 	],
 	templateUrl: './primary-actions.component.html'
 })

@@ -10,11 +10,15 @@ import {
 import NavItem from './nav-item';
 
 const Navigation = ({
-	variant
+	variant,
+	label
 }: {
 	variant?: NavigationItemGroupVariantType;
+	label: string;
 }) => (
-	<DBControlPanelNavigation variant={variant} aria-label="main navigation">
+	<DBControlPanelNavigation
+		variant={variant}
+		aria-label={`main navigation ${label}`}>
 		{getSortedNavigationItems(NAVIGATION_ITEMS).map(
 			(navItem: NavigationItem) => (
 				<NavItem

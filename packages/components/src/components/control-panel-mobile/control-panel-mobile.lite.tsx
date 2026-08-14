@@ -65,7 +65,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			<Slot name="skipNavigation" />
 			<DBDrawer
 				header={<DBDrawerHeader text={props.drawerHeaderText} />}
-				className="db-control-panel-mobile-drawer"
+				class="db-control-panel-mobile-drawer"
 				rounded
 				open={state.open}
 				onClose={(event) => state.handleClose(event)}

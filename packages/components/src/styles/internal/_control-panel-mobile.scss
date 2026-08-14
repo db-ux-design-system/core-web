@@ -77,30 +77,28 @@
 
 	// Override drawer to use direction-up settings
 	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
-		--db-drawer-max-height: 67lvh;
+		--db-drawer-max-height: 67dvh;
 
 		> .db-drawer-container {
 			@extend %direction-from-bottom-to-top;
 
 			border-block-start: component.$component-border;
 			border-inline-end: 0; // revert the default setting
-			inline-size: 100lvw;
-			max-inline-size: 100lvw;
+			inline-size: 100dvw;
+			max-inline-size: 100dvw;
+		}
+
+		// Override drilldown bottom mobile navigation, second level
+		.db-control-panel-navigation[data-variant="drilldown"] {
+			.db-control-panel-navigation-item-group-menu {
+				inline-size: var(--db-drawer-inline-size);
+				max-inline-size: var(--db-drawer-inline-size);
+			}
 		}
 
 		&[open] {
 			.db-drawer-container {
-				@media screen and (prefers-reduced-motion: no-preference) {
-					animation: show-bottom-to-top
-						#{variables.$db-transition-straight-show};
-				}
-
-				&[hidden] {
-					@media screen and (prefers-reduced-motion: no-preference) {
-						animation: hide-bottom-to-top
-							#{variables.$db-transition-straight-hide};
-					}
-				}
+				transform: translateY(0);
 			}
 		}
 	}

@@ -76,7 +76,7 @@ const testHover = () => {
 		});
 		const component = await mount(comp);
 		await expect(component.getByTestId('sub1')).toBeHidden();
-		await component.getByTestId('test1').getByRole('button').hover();
+		await component.getByTestId('test1').getByRole('button').click();
 		await expect(component.getByTestId('sub1')).toBeVisible();
 	});
 };

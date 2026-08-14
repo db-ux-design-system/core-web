@@ -1,9 +1,6 @@
 <db-control-panel-primary-actions #metaRef>
-	<db-drawer
-		(close)="open.set(false)"
-		[open]="open()"
-		drawerHeaderPlain="Settings"
-	>
+	<db-drawer (close)="open.set(false)" [open]="open()">
+		<db-drawer-header header>Settings</db-drawer-header>
 		<db-select
 			(change)="onChange('density', $event)"
 			[value]="density()"

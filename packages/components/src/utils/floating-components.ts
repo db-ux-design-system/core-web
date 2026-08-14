@@ -543,7 +543,9 @@ export interface DBDataOutsidePair {
 	vy?: 'top' | 'bottom';
 }
 
-export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
+export const handleDataOutside = (el: HTMLElement) => {
+	if (!el) return;
+
 	const { outTop, outBottom, outLeft, outRight } = isInView(el);
 	let dataOutsidePair: DBDataOutsidePair = {};
 
@@ -562,8 +564,6 @@ export const handleDataOutside = (el: HTMLElement): DBDataOutsidePair => {
 	} else {
 		delete el.dataset['outsideVx'];
 	}
-
-	return dataOutsidePair;
 };
 
 const isInView = (el: HTMLElement) => {

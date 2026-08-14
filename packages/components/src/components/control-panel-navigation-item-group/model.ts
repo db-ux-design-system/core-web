@@ -45,13 +45,18 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_attributeObserver?: MutationObserver;
 	_role?: string;
 	_popoverListenersAttached: boolean;
-	_isDrilldown: boolean;
+	_boundMouseEnter?: () => void;
+	_boundMouseLeave?: () => void;
+	_boundFocusIn?: () => void;
+	_boundFocusOut?: (event: any) => void;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button
 	 */
-	hasSubNavigation?: boolean;
-	hasPopup?: boolean;
+	_isDrilldown: boolean;
+	_isPopover: boolean;
+	_getPopoverFlag: () => boolean;
+	_getDrilldownFlag: () => boolean;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
 	onScroll: () => void;
@@ -60,11 +65,13 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_attachPopoverListeners: () => void;
 	_detachPopoverListeners: () => void;
 	_teardownPopover: () => void;
+	_handleCSSFlags: () => void;
 	_handleFocusIn: () => void;
 	_handleFocusOut: (event: any) => void;
 	_handleMouseEnter: () => void;
 	_handleMouseLeave: () => void;
 	_setSiblingsInert: (inert: boolean) => void;
+	_handleSubNavigation: () => void;
 };
 
 export type DBControlPanelNavigationItemGroupState =

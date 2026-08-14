@@ -46,27 +46,44 @@ export default function CardWrapperShowcase(props: Props) {
 	}
 
 	onMount(() => {
-		if (typeof window !== 'undefined' && localStorage) {
-			window.addEventListener('popstate', handleHrefUpdateEvent);
-			window.addEventListener('hashchange', handleHrefUpdateEvent);
-			window.addEventListener(
-				'db-ux-framework-change',
-				handleHrefUpdateEvent
-			);
+		useTarget({
+			react: () => {
+				if (typeof window !== 'undefined' && localStorage) {
+					window.addEventListener('popstate', handleHrefUpdateEvent);
+					window.addEventListener(
+						'hashchange',
+						handleHrefUpdateEvent
+					);
+					window.addEventListener(
+						'db-ux-framework-change',
+						handleHrefUpdateEvent
+					);
 
-			updateHref();
-		}
+					updateHref();
+				}
+			}
+		});
 	});
 
 	onUnMount(() => {
-		if (typeof window !== 'undefined') {
-			window.removeEventListener('popstate', handleHrefUpdateEvent);
-			window.removeEventListener('hashchange', handleHrefUpdateEvent);
-			window.removeEventListener(
-				'db-ux-framework-change',
-				handleHrefUpdateEvent
-			);
-		}
+		useTarget({
+			react: () => {
+				if (typeof window !== 'undefined') {
+					window.removeEventListener(
+						'popstate',
+						handleHrefUpdateEvent
+					);
+					window.removeEventListener(
+						'hashchange',
+						handleHrefUpdateEvent
+					);
+					window.removeEventListener(
+						'db-ux-framework-change',
+						handleHrefUpdateEvent
+					);
+				}
+			}
+		});
 	});
 
 	return (

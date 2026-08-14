@@ -75,7 +75,10 @@ export default function App() {
 				}
 				secondaryActions={<SecondaryActions />}
 				meta={<MetaNavigation />}>
-				<Navigation variant={settings.navigationMobileVariant} />
+				<Navigation
+					label="mobile"
+					variant={settings.navigationMobileVariant}
+				/>
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
 				skipNavigation={
@@ -96,7 +99,10 @@ export default function App() {
 					/>
 				}
 				secondaryActions={<SecondaryActions />}>
-				<Navigation variant={settings.navigationDesktopVariant} />
+				<Navigation
+					label="desktop"
+					variant={settings.navigationDesktopVariant}
+				/>
 			</DBControlPanelDesktop>
 			<DBShellContent data-density={density} className={`db-${color}`}>
 				<Outlet />

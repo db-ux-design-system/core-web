@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
 
 .db-drawer-header {
 	display: flex;
@@ -13,5 +14,16 @@
 	.db-drawer-header-container {
 		font-weight: bold;
 		margin-inline-end: auto;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			@extend %db-overwrite-headline-size-3xs;
+
+			margin: 0;
+		}
 	}
 }

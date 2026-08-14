@@ -241,10 +241,10 @@ function renderSettingsControls(): string {
 
 function renderPrimaryActions(): string {
 	return `
-		<db-control-panel-primary-actions>
+		<db-control-panel-primary-actions slot="primaryActions">
 			<db-drawer
 				class="js-settings-drawer"
-				direction="left"
+				direction="to-left"
 				rounded="true"
 			>
 				<db-drawer-header slot="header" text="Settings"></db-drawer-header>
@@ -264,7 +264,7 @@ function renderPrimaryActions(): string {
 
 function renderMetaNavigation(): string {
 	return `
-		<db-control-panel-meta class="meta-workaround">
+		<db-control-panel-meta slot="meta" class="meta-workaround">
 			<db-link size="small" href="#">Link 1</db-link>
 			<db-link size="small" href="#">Link 2</db-link>
 			<db-link size="small" href="#">Link 3</db-link>
@@ -273,7 +273,7 @@ function renderMetaNavigation(): string {
 
 function renderSecondaryActions(): string {
 	return `
-		<db-control-panel-secondary-actions>
+		<db-control-panel-secondary-actions slot="secondaryActions">
 			<db-switch class="js-shell-toggle" checked="true">Shell</db-switch>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Notification</db-button>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Help</db-button>
@@ -411,10 +411,10 @@ function initSettingsControls(): void {
 
 		const drawer = toggle
 			.closest('db-control-panel-primary-actions')
-			?.querySelector<OpenElement>('.js-settings-drawer');
+			?.querySelector<HTMLDialogElement>('.js-settings-drawer');
 
 		if (drawer) {
-			drawer.open = true;
+			drawer.showModal();
 		}
 	});
 

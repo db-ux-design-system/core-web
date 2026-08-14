@@ -90,6 +90,7 @@ export const delay = (fn: () => void, ms: number) =>
  */
 export const hasCssFlag = (element: Element, property: string): boolean =>
 	typeof window !== 'undefined' &&
+	element instanceof Element &&
 	getComputedStyle(element).getPropertyValue(property).trim() === '1';
 
 /**

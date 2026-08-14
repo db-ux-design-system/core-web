@@ -4,6 +4,7 @@ import {
 	DBControlPanelPrimaryActions,
 	DBDivider,
 	DBDrawer,
+	DBDrawerHeader,
 	DBSelect,
 	DBTooltip,
 	DENSITIES,
@@ -30,11 +31,10 @@ const open = ref(false);
 
 <template>
 	<DBControlPanelPrimaryActions>
-		<DBDrawer
-			drawer-header-plain="Settings"
-			:open="open"
-			@close="() => (open = false)"
-		>
+		<DBDrawer :open="open" @close="() => (open = false)"
+			><template v-slot:header>
+				<DBDrawerHeader>Settings</DBDrawerHeader></template
+			>
 			<DBSelect
 				label="Density"
 				variant="floating"

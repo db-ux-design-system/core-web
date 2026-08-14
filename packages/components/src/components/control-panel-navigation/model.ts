@@ -30,9 +30,10 @@ export type DBControlPanelNavigationDefaultState = {
 	_isMobile?: boolean;
 	_isShellSubNavigationMobile?: boolean;
 	_shellDesktopPositionTop?: boolean;
+	_handleCSSFlags: () => void;
 	_handleSubNavigation: () => void;
 	_handleVariant: () => void;
-	_handleTreeKeyDown: (event: any) => void;
+	_handleKeyDown: (event: any) => void;
 	_handleTreeKeys: (event: any) => void;
 	_handlePopoverKeys: (event: any) => void;
 	_focusParentGroupButton: (activeElement: HTMLElement) => boolean;
