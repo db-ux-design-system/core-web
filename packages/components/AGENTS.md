@@ -281,19 +281,11 @@ Consumer-facing changes in `packages/components/src` require a changeset. Which 
 
 Only these package-specific details are added on top:
 
-- **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Never assume a single matching target: verify which outputs the change actually reaches and list every framework package among them.
+- **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
+    - `components.ts` keys every entry by target: a changed `overwrites.angular` / `config.react` block hits that target only, an `overwrites.global` entry hits all four.
+    - `index.ts`, `copy-files.ts`, `frameworks.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
+    - For a changed shared helper, grep its callers: whichever of `angular.ts`, `react.ts`, `vue.ts`, `stencil.ts` reaches it defines the list.
 
-    `output/**/src` is git-ignored (see `.gitignore`), so `git diff output/` proves nothing. Compare against a preserved baseline instead — generate with your change reverted, keep a copy, then regenerate and diff:
-
-    ```bash
-    git stash push -- packages/components/scripts packages/components/configs
-    pnpm run build
-    for t in angular react vue stencil; do rsync -a --delete "output/$t/src/" "/tmp/output-baseline/$t/"; done
-    git stash pop
-    pnpm run build
-    for t in angular react vue stencil; do git diff --no-index --stat "/tmp/output-baseline/$t" "output/$t/src"; done
-    ```
-
-    It must be `pnpm run build` (or, faster, `pnpm --filter @db-ux/core-components run build-components`): that chain runs `build:mitosis` and the post-build scripts, which are what write `output/*/src`. `pnpm run build-outputs` only copies and compiles the already generated sources, so it can never surface a generation difference.
+    Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
 
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
