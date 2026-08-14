@@ -58,9 +58,10 @@ test.describe('DBDrawer Safe Area Insets', () => {
 			await page.goto(`./#/${path}?density=${density}&color=${lvl1}`, {
 				waitUntil: 'domcontentloaded'
 			});
-			await page.evaluate(async () =>
-				// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
-				document.fonts.ready
+			await page.evaluate(
+				async () =>
+					// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
+					document.fonts.ready
 			);
 			await waitForDBPage(page);
 
