@@ -37,7 +37,8 @@
 			"enabled": true,
 			"groupName": "DB theme",
 			"automerge": true,
-			"separateMajorMinor": false
+			"separateMajorMinor": false,
+			"minimumReleaseAge": null
 		}
 	]
 }
