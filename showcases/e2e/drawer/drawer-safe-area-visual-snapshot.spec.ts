@@ -75,7 +75,7 @@ const openDrawerByDirection = async (page: Page, buttonIndex: number) => {
 	await page.waitForTimeout(800);
 
 	// Inject filler content so scrolling behavior is visible
-	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
+
 	await page.evaluate(() => {
 		const content = document.querySelector(
 			'.db-drawer[open] .db-drawer-content'
