@@ -112,17 +112,50 @@
 	}
 }
 
+// Safe Area Inset Handling (PWA / Mobile)
+// =========================================
+// On devices with viewport-fit=cover, env(safe-area-inset-*) provides the
+// inset values for notch, home indicator, etc.
+// ---
+// The drawer uses CSS custom properties so the behavior can be simulated
+// on desktop for debugging without a real device or iOS Simulator.
+// ---
+// Direction behavior:
+//   to-left / to-right (default):
+//     - Padding top (header) + bottom (footer/content) for safe areas
+//     - No margin
+//   up (drawer opens from bottom):
+//     - Padding bottom (footer/content) for home indicator
+//     - Margin block-start (top) to keep content below notch/status bar
+//     - No top padding in header (--db-drawer-safe-area-inset-top: 0px)
+//   down (drawer opens from top):
+//     - Padding top (header) for notch
+//     - Margin block-end (bottom) to keep content above home indicator
+//     - No bottom padding in footer/content (--db-drawer-safe-area-inset-bottom: 0px)
+// ---
+// Debugging in the browser (DevTools or <style> block):
+//   .db-drawer-container {
+//     --db-drawer-safe-area-inset-top: 47px;
+//     --db-drawer-safe-area-inset-bottom: 34px;
+//     --db-drawer-safe-area-margin-block-start: 47px;  (only for direction="up")
+//     --db-drawer-safe-area-margin-block-end: 34px;    (only for direction="down")
+//   }
 %drawer-safe-area {
+	--db-drawer-safe-area-inset-top: env(safe-area-inset-top, 0px);
+	--db-drawer-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+
 	&:not(:has(.db-drawer-footer)) {
 		> .db-drawer-content {
-			margin-block-end: env(safe-area-inset-bottom);
+			// stylelint-disable-next-line db-ux/use-spacings -- safe-area env value, not a static spacing
+			margin-block-end: var(--db-drawer-safe-area-inset-bottom);
 		}
 	}
 
 	&:has(.db-drawer-footer) {
 		.db-drawer-footer {
 			padding-block-end: calc(
-				#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-bottom)
+				#{variables.$db-spacing-fixed-xs} +
+					var(--db-drawer-safe-area-inset-bottom)
 			);
 		}
 	}
@@ -267,10 +300,24 @@
 
 		&[data-direction="up"] {
 			@extend %direction-from-bottom-to-top;
+
+			--db-drawer-safe-area-inset-top: 0px;
+
+			margin-block-start: var(
+				--db-drawer-safe-area-margin-block-start,
+				env(safe-area-inset-top, 0)
+			);
 		}
 
 		&[data-direction="down"] {
 			@extend %direction-from-top-to-bottom;
+
+			--db-drawer-safe-area-inset-bottom: 0px;
+
+			margin-block-end: var(
+				--db-drawer-safe-area-margin-block-end,
+				env(safe-area-inset-bottom, 0)
+			);
 		}
 	}
 
