@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",
-    "@stencil/core": "4.43.5",
+    "@stencil/core": "4.44.0",
     "@types/node": "26.2.0",
     "cem-plugin-expanded-types": "1.4.0",
     "cpr": "3.0.1",
