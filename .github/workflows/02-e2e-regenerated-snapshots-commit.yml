@@ -23,7 +23,13 @@ on:
 jobs:
   commit-showcases:
     name: 🆙 Commit regenerated snapshots
-    if: (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) && !contains(github.actor,'[bot]')
+    # Same reasoning as the regenerate jobs in `default.yml`: Dependabot runs
+    # cannot push (read-only token, no secrets), while Renovate PRs come from
+    # our own GitHub App and need the regenerated snapshots committed so the
+    # visual diff of a DB theme bump becomes reviewable.
+    if: |
+      (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) &&
+      (!contains(github.actor,'[bot]') || startsWith(github.head_ref,'renovate-'))
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       contents: write
