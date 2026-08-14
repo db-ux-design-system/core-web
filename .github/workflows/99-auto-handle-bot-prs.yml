@@ -12,9 +12,9 @@
 #     on trust in metadata: labels, PR titles, branch names and "auto-merge is
 #     enabled" can all be set by anybody with write access. So the review is
 #     granted based on the diff, and only for the one change that is safe by
-#     construction: nothing but the `packageManager` field of the root
-#     package.json. Which of those PRs may then merge unattended (patch, not
-#     minor or major) is Renovate's decision.
+#     construction: a forward pnpm patch bump in the `packageManager` field of
+#     the root package.json, integrity hash included, and nothing else.
+#     Whether such a PR then merges unattended is still Renovate's decision.
 #
 # In both cases auto-merge still waits for all required status checks, and the
 # approving review is submitted by `github-actions[bot]` -- a different identity
@@ -39,7 +39,7 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: ✔ Approve a PR
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
@@ -78,20 +78,40 @@ jobs:
       # Fails closed: everything but a pure `packageManager` change leaves
       # `verified` false, so the PR waits for a human instead of turning the
       # pipeline red.
-      - name: 🔍 Verify the PR changes nothing but packageManager
+      #
+      # Anybody with write access can push to a `renovate-` branch without
+      # changing the PR author, so the new value is checked too, not just that
+      # no other field moved: both sides must be a fully pinned pnpm release
+      # (version plus sha512 integrity hash) and the bump must go forward
+      # within the same major.minor. That rules out a downgrade to an older
+      # pnpm, a dropped integrity hash and an arbitrary hand-written value --
+      # all of which would otherwise pass the checks and merge on this review.
+      - name: 🔍 Verify the PR is a patch-only pnpm bump
         id: verify
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           verified=false
+          old=$(git show "$BASE_SHA:package.json" | jq -r ".packageManager")
+          new=$(git show "$HEAD_SHA:package.json" | jq -r ".packageManager")
+          re='^pnpm@([0-9]+)\.([0-9]+)\.([0-9]+)\+sha512\.[0-9a-f]{128}$'
+
           if [[ "$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")" == "package.json" ]] &&
             diff -q \
               <(git show "$BASE_SHA:package.json" | jq -S "del(.packageManager)") \
-              <(git show "$HEAD_SHA:package.json" | jq -S "del(.packageManager)"); then
-            verified=true
+              <(git show "$HEAD_SHA:package.json" | jq -S "del(.packageManager)") &&
+            [[ "$old" =~ $re ]]; then
+            old_minor="${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+            old_patch="${BASH_REMATCH[3]}"
+            if [[ "$new" =~ $re ]] &&
+              [[ "${BASH_REMATCH[1]}.${BASH_REMATCH[2]}" == "$old_minor" ]] &&
+              ((10#${BASH_REMATCH[3]} > 10#$old_patch)); then
+              verified=true
+            fi
           fi
-          echo "packageManager-only change: $verified"
+          echo "$old -> $new"
+          echo "patch-only pnpm bump: $verified"
           echo "verified=$verified" >> $GITHUB_OUTPUT
 
       - name: ✔ Approve a PR
