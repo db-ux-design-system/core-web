@@ -90,8 +90,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(@types/eslint@9.6.1)(@typescript-eslint/utils@8.67.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(eslint-import-resolver-node@0.3.10(supports-color@10.2.2))(eslint-plugin-import@2.32.0)(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)
       eslint-plugin-package-json:
-        specifier: 1.7.0
-        version: 1.7.0(@eslint/json@2.0.1)(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
+        specifier: 1.7.1
+        version: 1.7.1(@eslint/json@2.0.1)(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -9718,8 +9718,8 @@ packages:
       typescript:
         optional: true
 
-  eslint-plugin-package-json@1.7.0:
-    resolution: {integrity: sha512-6kc/2obmBs1JZ2/m65iZjDWFxC4n0OVDKTEhsnWCE6syL5qAJb0rzQtYFNaSmFe9hUWqhaTpr2+OnHQlU1X5kQ==}
+  eslint-plugin-package-json@1.7.1:
+    resolution: {integrity: sha512-nlIlX7thB20+uExdYL0QGAmyjHXI+AgIAWpwTs45be4XkJFaOGjSrShxw42b51aUHWGtNrA+eLSkeA1RYm+ugA==}
     engines: {node: ^22.22.2 || >=24.15.0}
     peerDependencies:
       '@eslint/json': '>=1.0.0'
@@ -26863,7 +26863,7 @@ snapshots:
       ts-declaration-location: 1.0.7(typescript@5.9.3)
       typescript: 6.0.3
 
-  eslint-plugin-package-json@1.7.0(@eslint/json@2.0.1)(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2)):
+  eslint-plugin-package-json@1.7.1(@eslint/json@2.0.1)(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2)):
     dependencies:
       '@altano/repository-tools': 2.0.5
       '@types/estree': 1.0.9
