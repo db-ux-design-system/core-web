@@ -13,6 +13,8 @@ Hierher gehören ausschließlich Abweichungen zwischen Figma und Code sowie offe
 
 Die Leitfrage: **Weichen Figma und Code voneinander ab?** Nur dann ist es ein Eintrag in dieser Datei.
 
+Ein anderer Weg zum gleichen Ergebnis ist keine Abweichung. Entscheidend ist, ob das erreichbare Ergebnis unterschiedlich ist oder ob sich aus Figma etwas ableiten lässt, das im Code nicht existiert. Ein Rückstand im Code, der noch aufgeholt wird, ist ebenfalls keine Abweichung.
+
 ## Figma-only tokens (no CSS custom property equivalent)
 
 ### Opacity

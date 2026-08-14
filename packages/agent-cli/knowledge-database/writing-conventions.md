@@ -30,7 +30,9 @@ Deutsche Komposita nie mit Bindestrich an einen gespacten Namen hängen: „Eben
 
 ### Slot-Namen
 
-Slot-Namen werden wie Komponentennamen mit Leerzeichen geschrieben: Start Slot, End Slot, Children Slot, Logo Slot, Brand Slot, usw. Der Name des Children Slots ist „Children".
+Slot-Namen werden wie Komponentennamen mit Leerzeichen geschrieben: Start Slot, End Slot, Logo Slot, Brand Slot, usw. „Slot" ist dabei Teil des Namens und wird mitgeschrieben.
+
+Ausnahme: Der Default-Slot heißt in Design und Code nur „Children", nicht „Children Slot". „Slot" ist hier kein Teil des Namens, sondern nur eine Kategorie-Bezeichnung wie bei den übrigen Slots — deshalb bleibt es beim kanonischen Namen „Children" ohne den Zusatz.
 
 ### Technische Begriffe
 
@@ -59,6 +61,8 @@ Englische Mehrwortbegriffe ohne Bindestrich sind nicht zulässig, sofern sie nic
 - Mehrere unabhängige Punkte in getrennte Regeln aufteilen.
 - Varianten, Positionen, Ausnahmen und Konsequenzen nicht in einer Regel sammeln, wenn sie eigene Entscheidungen darstellen.
 - Eine Begründung nur dann im selben Satz behalten, wenn sie für das Verständnis oder die Konsequenz der Regel notwendig ist.
+- Steuert eine Begründung keine Entscheidung, gehört sie nicht in die Regel, sondern nach `## Zusätzliche Informationen`. Sie entfällt ganz, wenn ihre Konsequenz dort schon als Handlungsoption steht.
+- Bei einer Unmöglichkeit („können nicht eingesetzt werden") entfällt die Anforderung, dass jedes Dont ein Warum trägt. Wo nichts zu entscheiden ist, hat die Ursache keine steuernde Funktion.
 
 ### `## Regeln`
 
@@ -92,7 +96,7 @@ Erfüllt ein Punkt unter `## Zusätzliche Informationen` alle drei Kriterien fü
 - Das Control Panel kann oben oder unten positioniert werden. Die Wahl ist keine Regel, sondern eine Gestaltungsoption. _(Example-Kandidat)_
 ```
 
-Die Markierung steht am Zeilenende, nicht am Satzanfang wie die Normativitäts-Marker (`**sollte**`, `**kann**`), weil sie eine andere Achse betrifft: Normativitäts-Marker beschreiben die Verbindlichkeit einer Regel, `_(Example-Kandidat)_` markiert eine spätere Generierungsentscheidung für `documentation.json`. Die Markierung kommt ausschließlich unter `## Zusätzliche Informationen` vor, nie unter `## Regeln` — Regeln werden immer zu Do/Don't, nie zu Examples.
+Die Markierung steht am Zeilenende, nicht am Satzanfang wie die Normativitäts-Marker (`**sollte**`, `**kann**`), weil sie eine andere Achse betrifft: Normativitäts-Marker beschreiben die Verbindlichkeit einer Regel, `_(Example-Kandidat)_` markiert eine spätere Generierungsentscheidung für `documentation.json` und wird dort zu einem Eintrag in `examples[]`. Die Markierung kommt ausschließlich unter `## Zusätzliche Informationen` vor, nie unter `## Regeln` — Regeln werden immer zu Do/Don't, nie zu Examples.
 
 ## Content Tone für `documentation.json`
 

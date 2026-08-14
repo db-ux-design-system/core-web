@@ -220,6 +220,7 @@ Siehe [writing-conventions.md](writing-conventions.md#schreibweise-von-begriffen
 - Beschreibungszeile (gekürzt) → `shortDescription` — einzeilige Kurzversion
 - Aus Beschreibung abgeleitet → `useCases` — 3 Bullet Points, was die Komponente ermöglicht
 - Jede Regel unter `## Regeln` → ein Eintrag in `guidelines[]`
+- Jeder unter `## Zusätzliche Informationen` markierte `_(Example-Kandidat)_` → ein Eintrag in `examples[]`, sofern die zugehörigen Figma-Visuals existieren
 - Markdown-Links auf andere Komponenten → `related[]`-Einträge
 
 #### Guideline-Expansion (pro Regel)
@@ -237,9 +238,20 @@ Jede Regel wird zu einem Guideline-Objekt expandiert:
 
 Eine Regel trägt entweder `dont` oder `caution`, nicht beides. `**sollte**` im Regeltext und `caution` im Eintrag sind zwei Darstellungen derselben Normativität — wer eine Regel ohne `dont` findet, muss `caution` prüfen, bevor er sie für nicht normativ hält.
 
-#### Content Tone (Documentation Area)
+#### Example-Expansion (pro markiertem Kandidaten)
 
-Siehe [writing-conventions.md](writing-conventions.md#content-tone-für-documentationjson).
+Jeder mit `_(Example-Kandidat)_` markierte Punkt unter `## Zusätzliche Informationen` wird zu einem Objekt in `examples[]` expandiert. Ein Example-Thema kann mehrere visuelle Varianten enthalten:
+
+- `id` — aus dem Thema des Example-Kandidaten (kebab-case)
+- `headline` — kurze Überschrift des Example-Themas (DE + EN)
+- `text` — kurze Einordnung des Gestaltungsspielraums (DE + EN)
+- `items[]` — eine Variante pro Figma-Visual
+- `items[].id` — aus der Variante (kebab-case)
+- `items[].headline` — Bezeichnung der Variante (DE + EN)
+- `items[].description` — Caption als kurze Anweisung (DE + EN)
+- `items[].figmaNodeId` — Node-ID der zugehörigen Example-Seite
+
+Nicht markierte Aussagen unter `## Zusätzliche Informationen` werden nicht in `examples[]` übernommen. Ein Example ohne eigenständigen visuellen Erkenntniswert wird ebenfalls nicht erzeugt.
 
 #### Was nicht aus `guidelines.md` generiert wird
 
