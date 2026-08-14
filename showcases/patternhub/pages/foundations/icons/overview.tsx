@@ -1,6 +1,6 @@
 import DefaultPage from '../../../components/default-page';
 
-const IconOverview = () => (
+export const IconOverview = () => (
 	<DefaultPage>
 		<h1>Icon overview</h1>
 		<p>
@@ -10,5 +10,3 @@ const IconOverview = () => (
 		</p>
 	</DefaultPage>
 );
-
-export default IconOverview;
