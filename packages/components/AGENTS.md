@@ -283,15 +283,17 @@ Only these package-specific details are added on top:
 
 - **Shared build code** — `scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts` and `configs/mitosis.config.cjs` run for every target, even when an individual rewrite inside them is written for a single one. Never assume a single matching target: verify which outputs the change actually reaches and list every framework package among them.
 
-    `output/**/src` is git-ignored (see `.gitignore`), so `git diff output/` proves nothing. Compare against a preserved baseline instead — build with your change reverted, keep a copy, then rebuild and diff:
+    `output/**/src` is git-ignored (see `.gitignore`), so `git diff output/` proves nothing. Compare against a preserved baseline instead — generate with your change reverted, keep a copy, then regenerate and diff:
 
     ```bash
     git stash push -- packages/components/scripts packages/components/configs
-    pnpm run build-outputs
+    pnpm run build
     for t in angular react vue stencil; do rsync -a --delete "output/$t/src/" "/tmp/output-baseline/$t/"; done
     git stash pop
-    pnpm run build-outputs
+    pnpm run build
     for t in angular react vue stencil; do git diff --no-index --stat "/tmp/output-baseline/$t" "output/$t/src"; done
     ```
+
+    It must be `pnpm run build` (or, faster, `pnpm --filter @db-ux/core-components run build-components`): that chain runs `build:mitosis` and the post-build scripts, which are what write `output/*/src`. `pnpm run build-outputs` only copies and compiles the already generated sources, so it can never surface a generation difference.
 
 - **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
