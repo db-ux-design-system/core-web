@@ -188,7 +188,7 @@ Showcase files in `showcases/` are generated from these and must not be edited m
     Which packages to select depends only on **which targets the changed files feed**, never on the kind of change:
     - **Shared component code** (`*.scss`, `model.ts`, `*.lite.tsx`) → all five: `@db-ux/core-components` **and** the four framework output packages. This holds for a template-only edit as well: `@db-ux/core-components` publishes CSS only, but its consumers hand-write the component HTML, so changed markup concerns them too.
     - **Code only one target consumes** (`src/utils/react.ts`, `configs/plugins/<framework>/`, `scripts/post-build/angular.ts` / `react.ts` / `vue.ts` / `stencil.ts`) → only that one framework package.
-    - **Shared build code** (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) → read the targets off the diff: entries in `components.ts` are keyed by target (`overwrites.angular`, `config.react`, `overwrites.global` = all four), the orchestrating files cover all four. See `packages/components/AGENTS.md` § Changeset Rules.
+    - **Shared build code** (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) → read the targets off the diff: entries in `components.ts` are keyed by target (`overwrites.angular`, `config.react`, `overwrites.global` = all four), `index.ts` and `mitosis.config.cjs` cover all four, and a target-gated file like `copy-files.ts` covers only the targets it gates on. See `packages/components/AGENTS.md` § Changeset Rules.
 
     Bump type:
     - `patch` for bug fixes.

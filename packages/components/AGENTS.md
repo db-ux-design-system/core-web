@@ -283,7 +283,8 @@ Only these package-specific details are added on top:
 
 - **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
     - `components.ts` keys every entry by target: a changed `overwrites.angular` / `config.react` block hits that target only, an `overwrites.global` entry hits all four.
-    - `index.ts`, `copy-files.ts`, `frameworks.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
+    - `index.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
+    - `copy-files.ts` (and `frameworks.ts`, which only that file imports) copies spec and Playwright files, gated on `react`/`vue`. Those files are never published, so such a change usually needs no changeset at all; if it does become consumer-facing, it is React and Vue.
     - For a changed shared helper, grep its callers: whichever of `angular.ts`, `react.ts`, `vue.ts`, `stencil.ts` reaches it defines the list.
 
     Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
