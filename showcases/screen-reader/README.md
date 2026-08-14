@@ -28,7 +28,7 @@ npm run test-sr:windows --workspace=react-showcase -- --ui
 
 ## Navigation commands: don't only step with `next()`
 
-If a component renders **landmarks** (`<header>`, `<nav>`, `<main>`), **headings** (`h1`-`h6`, `role="heading"`) or **links**, a test that only walks element by element (`next()` / `previous()`) verifies what gets announced, but not that the element is exposed with the right semantics. Guidepup also offers quick navigation, mirroring what screen reader users actually do:
+If a component renders **landmarks** (`<nav>`, `<main>`, or a top level `<header>` as banner), **headings** (`h1`-`h6`, `role="heading"`) or **links**, a test that only walks element by element (`next()` / `previous()`) verifies what gets announced, but not that the element is exposed with the right semantics. Guidepup also offers quick navigation, mirroring what screen reader users actually do:
 
 | Method                        | NVDA      | VoiceOver                                     |
 | ----------------------------- | --------- | --------------------------------------------- |
@@ -43,6 +43,12 @@ Prefer these for the structural hops and keep `next()` for the element level ann
 
 **A shared hop does not guarantee a shared destination.** The heading and link methods map to both readers' native quick navigation, so they line up. `nextLandmark()` / `previousLandmark()` do not: on VoiceOver they drive auto web spots, a heuristic superset of landmarks.
 If the page has an auto web spot that is not a landmark, one hop stops on a different element than NVDA's `D`, and a shared assertion then snapshots unrelated content. So verify the VoiceOver destination separately before sharing a landmark hop between both branches (run the macOS test and read its snapshot), and keep the reader-specific branches when they diverge.
+
+### A `<header>` is only a landmark at top level
+
+`<header>` maps to the banner role **only** when it is not nested inside `<main>`, `<article>`, `<aside>`, `<nav>` or `<section>`. Nested ones expose no landmark at all, so a landmark hop will never find them - this applies to `DBNotification` and `DBDrawerHeader`, and to `DBHeader` itself depending on where it is used.
+
+The same component can therefore differ per test route: the screen reader tests use the `?page=` routes, which render the example without the `DBPage` wrapper, so `DBHeader` sits at top level and is a banner. The aria snapshot tests use the wrapped route and scope the snapshot to `main` (see `runAriaSnapshotTest` in `showcases/e2e/default.ts`), which is why the committed `DBHeader` aria snapshot contains `navigation "Functional"` but no banner. Check the actual nesting on the route your test loads before expecting a landmark.
 
 ### Only entering a landmark names it
 
