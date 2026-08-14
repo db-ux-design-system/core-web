@@ -3,20 +3,20 @@ import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
-	storybookTitle: 'Paragraph spacing',
+	storybookTitle: 'Decorative children hidden from screen readers',
 	storybookComponentName: 'DBHeadingH2',
-	storybookNames: ['Omitted', 'True: 1lh block-end', 'False'],
+	storybookNames: ['Decorative children hidden from screen readers'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
-export default function HeadingParagraphSpacing() {
+export default function HeadingChildrenAccessibility() {
 	return (
 		<Fragment>
-			<DBHeadingH2>Omitted: no margin</DBHeadingH2>
-			<DBHeadingH2 paragraphSpacing={true}>
-				True: 1lh block-end
+			<DBHeadingH2>
+				<span aria-hidden="true">★ </span>
+				<span>Current disruptions</span>
+				<span aria-hidden="true"> ★</span>
 			</DBHeadingH2>
-			<DBHeadingH2 paragraphSpacing={false}>False: no margin</DBHeadingH2>
 		</Fragment>
 	);
 }

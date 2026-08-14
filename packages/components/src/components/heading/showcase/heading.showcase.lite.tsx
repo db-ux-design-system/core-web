@@ -5,18 +5,18 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import HeadingAlignment from '../examples/alignment.example.lite';
 import HeadingAsSize from '../examples/as-size.example.lite';
 import HeadingAttributeForwarding from '../examples/attribute-forwarding.example.lite';
+import HeadingChildrenAccessibility from '../examples/children-accessibility.example.lite';
 import HeadingDensity from '../examples/density.example.lite';
 import HeadingFontWeight from '../examples/font-weight.example.lite';
 import HeadingParagraphSpacing from '../examples/paragraph-spacing.example.lite';
 import HeadingPermalink from '../examples/permalink.example.lite';
 import HeadingSemanticLevels from '../examples/semantic-levels.example.lite';
 import HeadingSizes from '../examples/sizes.example.lite';
-import HeadingSlotsAccessibility from '../examples/slots-accessibility.example.lite';
 
 export default function HeadingShowcase(props: PatternhubProps) {
 	return (
 		<ContainerWrapperShowcase
-			title="DBHeading"
+			title="Static Heading Components"
 			isPatternhub={props.isPatternhub}>
 			<div class="heading-showcase">
 				<LinkWrapperShowcase exampleName="Semantic Levels">
@@ -64,9 +64,9 @@ export default function HeadingShowcase(props: PatternhubProps) {
 						<HeadingPermalink />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Decorative Slots Hidden From Screen Readers">
+				<LinkWrapperShowcase exampleName="Decorative Children Hidden From Screen Readers">
 					<CardWrapperShowcase>
-						<HeadingSlotsAccessibility />
+						<HeadingChildrenAccessibility />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 			</div>

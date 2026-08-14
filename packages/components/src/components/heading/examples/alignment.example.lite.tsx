@@ -1,9 +1,10 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBHeading from '../heading.lite';
+import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
 	storybookTitle: 'Logical alignment',
+	storybookComponentName: 'DBHeadingH2',
 	storybookNames: ['(Default) Start', 'Center', 'End'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -11,15 +12,9 @@ useMetadata({
 export default function HeadingAlignment() {
 	return (
 		<Fragment>
-			<DBHeading as="h2" alignment="start">
-				(Default) Start
-			</DBHeading>
-			<DBHeading as="h2" alignment="center">
-				Center
-			</DBHeading>
-			<DBHeading as="h2" alignment="end">
-				End
-			</DBHeading>
+			<DBHeadingH2 alignment="start">(Default) Start</DBHeadingH2>
+			<DBHeadingH2 alignment="center">Center</DBHeadingH2>
+			<DBHeadingH2 alignment="end">End</DBHeadingH2>
 		</Fragment>
 	);
 }

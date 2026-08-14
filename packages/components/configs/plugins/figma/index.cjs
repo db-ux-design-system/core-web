@@ -513,6 +513,7 @@ module.exports = () => ({
 
 			const figmaProps = figmaMeta.props || {};
 			const target = json.pluginData?.target;
+			const attrBindingsByComponent = new Map();
 
 			// FIX: always recurse into children even when node has no bindings
 			const walkNode = (node) => {
@@ -548,6 +549,10 @@ module.exports = () => ({
 
 						const fProp = figmaProps[match[1]];
 						if (!fProp || SLOT_TYPES.has(fProp.type)) continue;
+						if (!attrBindingsByComponent.has(node.name)) {
+							attrBindingsByComponent.set(node.name, new Set());
+						}
+						attrBindingsByComponent.get(node.name).add(match[1]);
 						delete node.bindings[bindingKey];
 					}
 				}
@@ -590,7 +595,11 @@ module.exports = () => ({
 
 			json.children.forEach(walkNode);
 
-			if (target) buildTemplate(json, target);
+			if (target) {
+				buildTemplate(json, target);
+				json.meta.useMetadata.figma._precomputed.attrBindingsByComponent =
+					attrBindingsByComponent;
+			}
 
 			return json;
 		}
@@ -609,6 +618,7 @@ module.exports = () => ({
 			const {
 				allDeclarations,
 				importStatement,
+				attrBindingsByComponent,
 				attrPropEntries,
 				validationMessageEntries,
 				conditionalPropEntries,
@@ -678,20 +688,48 @@ module.exports = () => ({
 					.join(token);
 			}
 
-			// Inject all conditional variables after the opening tag
+			// Inject generated prop fragments into their component opening tags.
 			const allInjectedEntries = [
 				...attrPropEntries,
 				...validationMessageEntries,
 				...conditionalPropEntries,
 				...nestedInstancesToArrayEntries
 			];
-			if (allInjectedEntries.length > 0) {
+			if (attrBindingsByComponent?.size > 1) {
+				const dashCase = (value) =>
+					value
+						.replace(
+							/[A-Z]/g,
+							(match, index) =>
+								(index > 0 ? '-' : '') + match.toLowerCase()
+						)
+						.replace(/([a-z])([0-9])/g, '$1-$2');
+				for (const [
+					componentName,
+					propNames
+				] of attrBindingsByComponent) {
+					const tagName =
+						target === 'angular'
+							? `db-${dashCase(componentName.replace(/^DB/, ''))}`
+							: componentName;
+					const combined = [...propNames]
+						.map((propName) => '${' + propName + '}')
+						.join('');
+					exampleWithProps = exampleWithProps.replace(
+						new RegExp(`(<${tagName})([\\s>])`, 'g'),
+						'$1' + combined + '$2'
+					);
+				}
+			} else if (allInjectedEntries.length > 0) {
 				const combined = allInjectedEntries
 					.map(([propName]) => '${' + propName + '}')
 					.join('');
 				exampleWithProps = exampleWithProps
-					.replace(/(<[A-Z][a-zA-Z]*)([\s>])/, '$1' + combined + '$2')
-					.replace(/(<db-[a-z-]*)([\s>])/, '$1' + combined + '$2');
+					.replace(
+						/(<[A-Z][a-zA-Z0-9]*)([\s>])/,
+						'$1' + combined + '$2'
+					)
+					.replace(/(<db-[a-z0-9-]*)([\s>])/, '$1' + combined + '$2');
 			}
 
 			const componentId = (json.name || 'component')

@@ -55,6 +55,14 @@ scripts/
 └── post-build/                     # ⚠️ DEPRECATED — see note below
 ```
 
+## Heading component family
+
+`src/components/heading/` intentionally contains six Mitosis component files,
+`heading-h1.lite.tsx` through `heading-h6.lite.tsx`. They form one documented
+component family with shared models, styles, examples, tests, and showcase.
+Each component has one fixed native heading root and must remain free of
+runtime tag switching and named heading slots.
+
 ## Examples (`src/components/**/examples/`)
 
 Examples are the **single source of truth** for component usage. They are used to generate:

@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: add beta Heading component
+feat: add beta static Heading components

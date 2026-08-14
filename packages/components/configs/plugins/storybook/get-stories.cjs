@@ -273,8 +273,11 @@ const getStories = ({
 			const exampleName =
 				(exampleNames && exampleNames[index]) || `${name}${index}`;
 			let args = [];
+			const storyComponentName =
+				meta?.useMetadata?.storybookComponentNames?.[index] ??
+				componentName;
 
-			const foundComponent = findComponent(example, componentName);
+			const foundComponent = findComponent(example, storyComponentName);
 
 			if (!foundComponent) {
 				throw Error(`something is wrong with: ${name}`);

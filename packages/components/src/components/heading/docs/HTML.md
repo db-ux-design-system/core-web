@@ -1,48 +1,38 @@
 ## HTML
 
-> **Beta:** `DBHeading` is available as a beta component. Its API and visual design may change before the stable release.
+> **Beta:** The Heading components are available as beta components. Their API and visual design may change before the stable release.
 
-For installation and configuration of the CSS, see [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components). For the custom element, see [`@db-ux/wc-core-components`](https://www.npmjs.com/package/@db-ux/wc-core-components).
+For CSS installation, see [`@db-ux/core-components`](https://www.npmjs.com/package/@db-ux/core-components). For custom elements, see [`@db-ux/wc-core-components`](https://www.npmjs.com/package/@db-ux/wc-core-components).
 
 ### Native HTML and CSS class
 
-Use the `db-heading` class on a native heading. Choose the element from the document hierarchy, not from its appearance. Omitting `data-size` applies the default mapping: `<h1>`/`xl`, `<h2>`/`lg`, `<h3>`/`md`, `<h4>`/`sm`, `<h5>`/`xs`, and `<h6>`/`2xs`.
+Use `db-heading` on a native heading and choose the element from the document hierarchy. Omitting `data-size` maps `h1` to `xl`, `h2` to `lg`, `h3` to `md`, `h4` to `sm`, `h5` to `xs`, and `h6` to `2xs`.
 
 ```html
 <h1 class="db-heading">A level-one heading with the default xl size</h1>
 <h6 class="db-heading" data-size="2xl">A level-six heading displayed at 2xl</h6>
 ```
 
-`data-size` changes only visual size; it never changes the accessible heading level. It accepts `3xl`, `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`, and `3xs`. Use `data-font-weight="light"` for light weight; black is the default. Use logical `data-alignment="start|center|end"` so start and end adapt to RTL.
+`data-size` changes only visual size. Use `data-font-weight="light"`, logical `data-alignment="start|center|end"`, and `data-paragraph-spacing="true"` as needed. Density tokens provide responsive typography.
 
-`data-paragraph-spacing="true"` adds exactly `1lh` at block-end. Omit it or set it to `false` for no margin. Existing density tokens provide responsive typography, while long headings use `text-wrap: balance` and safe wrapping.
+### Web Components
 
-```html
-<h2
-	class="db-heading"
-	data-font-weight="light"
-	data-alignment="end"
-	data-paragraph-spacing="true"
-	data-density="expressive"
->
-	Responsive heading
-</h2>
-```
-
-### Web Component
-
-The Web Component uses required `as` for explicit semantics. Untyped usage defensively falls back to `h1` when `as` is missing or invalid.
+Choose `db-heading-h-1` through `db-heading-h-6` from the document hierarchy.
 
 ```html
-<db-heading as="h6" size="2xl" paragraph-spacing>
-	<span slot="startSlot" aria-hidden="true">[</span>
+<db-heading-h-6 size="2xl" paragraph-spacing>
 	A level-six heading displayed at 2xl
-	<span slot="endSlot" aria-hidden="true">]</span>
-</db-heading>
+</db-heading-h-6>
 ```
 
 ### Content and accessibility
 
-The heading text and start/end content must be HTML phrasing content. Textual slot content contributes to the accessible heading name; mark decorative content with `aria-hidden="true"`. Avoid buttons, links, and other interactive controls inside headings unless the interaction receives a dedicated accessibility review.
+Heading children must be phrasing content and define the accessible heading name. Keep decorative content in the normal child order and mark it with `aria-hidden="true"`. Avoid interactive controls unless the interaction receives a dedicated accessibility review.
 
-Native headings accept standard HTML attributes directly. On `db-heading`, `aria-*`, `data-*`, class, style, and id attributes are forwarded to the active native heading. Visual size never changes the semantic or ARIA heading level.
+```html
+<db-heading-h-2 id="account-heading">
+	<span aria-hidden="true">[</span>Account<span aria-hidden="true">]</span>
+</db-heading-h-2>
+```
+
+Native headings accept standard attributes directly. Custom-element `aria-*`, `data-*`, class, style, and id attributes are forwarded to the native heading.

@@ -4,7 +4,7 @@ const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
 const focusgroupPlugin = require('../plugins/stencil/focusgroup.cjs');
-const headingDynamicRootPlugin = require('../plugins/heading-dynamic-root.cjs');
+const headingIndexPlugin = require('../plugins/heading-index.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToStencilOptions}
@@ -22,6 +22,6 @@ module.exports = {
 		onClickPlugin,
 		esmExtensionsPlugin,
 		focusgroupPlugin,
-		headingDynamicRootPlugin
+		headingIndexPlugin
 	]
 };

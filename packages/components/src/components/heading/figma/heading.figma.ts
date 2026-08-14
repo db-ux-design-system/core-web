@@ -1,21 +1,16 @@
 import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
-import type { DBHeadingProps } from '../model';
+import type { DBHeadingBaseProps } from '../model';
 
 export type FigmaHeadingProps = Pick<
-	DBHeadingProps,
-	| 'as'
-	| 'size'
-	| 'fontWeight'
-	| 'alignment'
-	| 'paragraphSpacing'
-	| 'startSlot'
-	| 'endSlot'
+	DBHeadingBaseProps,
+	'size' | 'fontWeight' | 'alignment' | 'paragraphSpacing'
 > & {
+	level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	text?: string;
 };
 
 const headingProps: Record<string, FigmaProp> = {
-	as: {
+	level: {
 		type: 'enum',
 		key: 'As',
 		value: { h1: 'h1', h2: 'h2', h3: 'h3', h4: 'h4', h5: 'h5', h6: 'h6' }
@@ -47,9 +42,7 @@ const headingProps: Record<string, FigmaProp> = {
 		value: { Left: 'start', Center: 'center', Right: 'end' }
 	},
 	paragraphSpacing: { type: 'boolean', key: 'Paragraph Spacing' },
-	text: { type: 'textContent', key: 'Text' },
-	startSlot: { type: 'children', key: 'Start slot' },
-	endSlot: { type: 'children', key: 'End slot' }
+	text: { type: 'textContent', key: 'Text' }
 };
 
 export const headings: FigmaCodeConnect = {

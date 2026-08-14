@@ -10,7 +10,12 @@ import {
 	DBCustomSelect,
 	DBDivider,
 	DBHeader,
-	DBHeading,
+	DBHeadingH1,
+	DBHeadingH2,
+	DBHeadingH3,
+	DBHeadingH4,
+	DBHeadingH5,
+	DBHeadingH6,
 	DBIcon,
 	DBInfotext,
 	DBInput,
@@ -374,11 +379,20 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'heading') {
+	if (type.startsWith('heading-h')) {
+		const headingComponents: Record<string, any> = {
+			'heading-h1': DBHeadingH1,
+			'heading-h2': DBHeadingH2,
+			'heading-h3': DBHeadingH3,
+			'heading-h4': DBHeadingH4,
+			'heading-h5': DBHeadingH5,
+			'heading-h6': DBHeadingH6
+		};
+		const Heading = headingComponents[type];
 		return (
-			<DBHeading className={className} {...props}>
+			<Heading className={className} {...props}>
 				{resolvedContent}
-			</DBHeading>
+			</Heading>
 		);
 	}
 

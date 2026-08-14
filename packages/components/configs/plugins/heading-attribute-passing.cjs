@@ -1,82 +1,68 @@
 const ROOT_PROPS = require('./react/root-props.cjs');
 
-const HEADING_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const getHeading = (componentName) => {
+	const match = /^DBHeadingH([1-6])$/.exec(componentName);
+	return match
+		? { tag: `h${match[1]}`, propsType: `${componentName}Props` }
+		: undefined;
+};
 
-const fail = (target, message) => {
+const fail = (componentName, target, message) => {
 	throw new Error(
-		`DBHeading ${target} attribute-passing transform failed: ${message}`
+		`${componentName} ${target} attribute-passing transform failed: ${message}`
 	);
 };
 
-const getOpeningTags = (code, target) =>
-	HEADING_TAGS.map((tag) => {
-		const openingTags = code.match(
-			new RegExp(`<${tag}\\b[\\s\\S]*?>`, 'g')
-		);
-		const closingTags = code.match(new RegExp(`</${tag}>`, 'g'));
-		if (openingTags?.length !== 1 || closingTags?.length !== 1) {
-			fail(target, `expected exactly one ${tag} root`);
-		}
-		return [tag, openingTags[0]];
-	});
-
-const replaceMarker = (openingTag, marker, replacement, target, tag) => {
-	if (openingTag.split(marker).length !== 2) {
-		fail(target, `expected exactly one ${marker} on ${tag}`);
+const getOpeningTag = (code, tag, componentName, target) => {
+	const openingTags = code.match(new RegExp(`<${tag}\\b[\\s\\S]*?>`, 'g'));
+	const closingTags = code.match(new RegExp(`</${tag}>`, 'g'));
+	if (openingTags?.length !== 1 || closingTags?.length !== 1) {
+		fail(componentName, target, `expected exactly one ${tag} root`);
 	}
-	return openingTag.replace(marker, replacement);
+	return openingTags[0];
 };
 
-const transformReact = (code) => {
-	const roots = getOpeningTags(code, 'react');
-	for (const [tag, openingTag] of roots) {
-		const refIndent = openingTag.match(/\n(\s*)ref=\{_ref\}/)?.[1];
-		const classIndent = openingTag.match(/\n(\s*)className=/)?.[1];
-		if (refIndent === undefined || classIndent === undefined) {
-			fail('react', `unexpected ${tag} root attributes`);
-		}
+const replaceMarker = (value, marker, replacement, componentName, target) => {
+	if (value.split(marker).length !== 2) {
+		fail(componentName, target, `expected exactly one ${marker}`);
+	}
+	return value.replace(marker, replacement);
+};
+
+const transformReact = (code, componentName, heading) => {
+	const openingTag = getOpeningTag(code, heading.tag, componentName, 'react');
+	const refIndent = openingTag.match(/\n(\s*)ref=\{_ref\}/)?.[1];
+	const classIndent = openingTag.match(/\n(\s*)className=/)?.[1];
+	if (refIndent === undefined || classIndent === undefined) {
+		fail(
+			componentName,
+			'react',
+			`unexpected ${heading.tag} root attributes`
+		);
 	}
 
 	const reactImport = 'import * as React from "react";';
 	const hooksImport = 'import { useRef } from "react";';
-	const functionDeclaration = 'function DBHeading(props: DBHeadingProps) {';
+	const functionDeclaration = `function ${componentName}(props: ${heading.propsType}) {`;
 	const refDeclaration =
 		'const _ref = useRef<HTMLHeadingElement | any>(null);';
-	const defaultExport = 'export default DBHeading;';
-	for (const marker of [
-		reactImport,
-		hooksImport,
-		functionDeclaration,
-		refDeclaration,
-		defaultExport
-	]) {
-		if (code.split(marker).length !== 2) {
-			fail('react', `expected exactly one ${marker}`);
-		}
-	}
-
-	const rootProps = JSON.stringify(ROOT_PROPS);
-	let changedCode = roots.reduce((result, [tag, openingTag]) => {
-		const refIndent = openingTag.match(/\n(\s*)ref=\{_ref\}/)[1];
-		const classIndent = openingTag.match(/\n(\s*)className=/)[1];
-		let replacement = replaceMarker(
-			openingTag,
-			'ref={_ref}',
-			`ref={_ref}\n${refIndent}{...filterPassingProps(props,${rootProps})}`,
-			'react',
-			tag
-		);
-		replacement = replaceMarker(
-			replacement,
-			'className=',
-			`{...getRootProps(props,${rootProps})}\n${classIndent}className=`,
-			'react',
-			tag
-		);
-		return result.replace(openingTag, replacement);
-	}, code);
-
-	changedCode = changedCode
+	const defaultExport = `export default ${componentName};`;
+	let changed = replaceMarker(
+		openingTag,
+		'ref={_ref}',
+		`ref={_ref}\n${refIndent}{...filterPassingProps(props,${JSON.stringify(ROOT_PROPS)})}`,
+		componentName,
+		'react'
+	);
+	changed = replaceMarker(
+		changed,
+		'className=',
+		`{...getRootProps(props,${JSON.stringify(ROOT_PROPS)})}\n${classIndent}className=`,
+		componentName,
+		'react'
+	);
+	return code
+		.replace(openingTag, changed)
 		.replace(
 			reactImport,
 			`${reactImport}\nimport { filterPassingProps, getRootProps } from "../../utils/react";`
@@ -87,73 +73,54 @@ const transformReact = (code) => {
 		)
 		.replace(
 			functionDeclaration,
-			'function DBHeadingFn(props: Omit<HTMLAttributes<HTMLHeadingElement | any>, keyof DBHeadingProps> & DBHeadingProps, component: any) {'
+			`function ${componentName}Fn(props: Omit<HTMLAttributes<HTMLHeadingElement | any>, keyof ${heading.propsType}> & ${heading.propsType}, component: any) {`
 		)
 		.replace(
 			refDeclaration,
-			`const internalRef = useRef<HTMLHeadingElement | any>(null);
-  const _ref = component || internalRef;`
+			`const internalRef = useRef<HTMLHeadingElement | any>(null);\n  const _ref = component || internalRef;`
 		)
 		.replace(
 			defaultExport,
-			`const DBHeading = forwardRef<
-HTMLHeadingElement | any, Omit<HTMLAttributes<HTMLHeadingElement | any>,
-keyof DBHeadingProps> & DBHeadingProps
->(DBHeadingFn);
-export default DBHeading;`
+			`const ${componentName} = forwardRef<\nHTMLHeadingElement | any, Omit<HTMLAttributes<HTMLHeadingElement | any>,\nkeyof ${heading.propsType}> & ${heading.propsType}\n>(${componentName}Fn);\nexport default ${componentName};`
 		);
-	return changedCode;
 };
 
-const transformVue = (code) => {
-	const roots = getOpeningTags(code, 'vue');
-	let changedCode = roots.reduce((changedCode, [tag, openingTag]) => {
-		const refIndent = openingTag.match(/\n(\s*)ref="_ref"/)?.[1];
-		const classBinding = openingTag.match(/:class="([^"]*className[^"]*)"/);
-		if (
-			refIndent === undefined ||
-			!openingTag.includes('\n') ||
-			classBinding?.length !== 2
-		) {
-			fail('vue', `unexpected ${tag} root attributes`);
-		}
-		let replacement = replaceMarker(
-			openingTag,
-			'ref="_ref"',
-			`ref="_ref"\n${refIndent}v-bind="$attrs"`,
-			'vue',
-			tag
-		);
-		// Vue consumers use `class`, React consumers use `className`, so both
-		// have to be honoured. `'class' + 'Name'` keeps the literal `className`
-		// out of the emitted source: Mitosis' Vue generator rewrites every
-		// standalone `className` occurrence to `class`, which would otherwise
-		// collapse this expression into `props.class ?? props.class`.
-		replacement = replacement.replace(
-			classBinding[0],
-			`:class="${classBinding[1].replace(
-				'className',
-				"props['class' + 'Name'] ?? props.class"
-			)}"`
-		);
-		return changedCode.replace(openingTag, replacement);
-	}, code);
-
-	const propsDeclaration = 'const props = defineProps<DBHeadingProps>();';
-	if (changedCode.split(propsDeclaration).length !== 2) {
-		fail('vue', 'expected the DBHeading props declaration exactly once');
+const transformVue = (code, componentName, heading) => {
+	const openingTag = getOpeningTag(code, heading.tag, componentName, 'vue');
+	const refIndent = openingTag.match(/\n(\s*)ref="_ref"/)?.[1];
+	const classBinding = openingTag.match(/:class="([^"]*className[^"]*)"/);
+	if (refIndent === undefined || classBinding?.length !== 2) {
+		fail(componentName, 'vue', `unexpected ${heading.tag} root attributes`);
 	}
-	return changedCode.replace(
+	let changed = replaceMarker(
+		openingTag,
+		'ref="_ref"',
+		`ref="_ref"\n${refIndent}v-bind="$attrs"`,
+		componentName,
+		'vue'
+	);
+	// Vue consumers use `class`, React consumers use `className`, so both
+	// aliases must be honoured without exposing a literal that Mitosis rewrites.
+	changed = changed.replace(
+		classBinding[0],
+		`:class="${classBinding[1].replace('className', "props['class' + 'Name'] ?? props.class")}"`
+	);
+	const propsDeclaration = `const props = defineProps<${heading.propsType}>();`;
+	return replaceMarker(
+		code.replace(openingTag, changed),
 		propsDeclaration,
-		'const props = withDefaults(defineProps<DBHeadingProps>(), { paragraphSpacing: undefined });'
+		`const props = withDefaults(defineProps<${heading.propsType}>(), { paragraphSpacing: undefined });`,
+		componentName,
+		'vue'
 	);
 };
 
 const transformHeadingAttributePassing = (code, target, componentName) => {
-	if (componentName !== 'DBHeading') return code;
-	if (target === 'react') return transformReact(code);
-	if (target === 'vue') return transformVue(code);
-	fail(target, 'unsupported target');
+	const heading = getHeading(componentName);
+	if (!heading) return code;
+	if (target === 'react') return transformReact(code, componentName, heading);
+	if (target === 'vue') return transformVue(code, componentName, heading);
+	fail(componentName, target, 'unsupported target');
 };
 
 const copyHeadingSpec = (targetContext, files) => {
@@ -161,7 +128,7 @@ const copyHeadingSpec = (targetContext, files) => {
 	const fs = require('node:fs');
 	const path = require('node:path');
 	const headingFile = files.componentFiles.find((file) =>
-		/components\/heading\/heading\.(tsx|vue)$/.test(file.outputFilePath)
+		/components\/heading\/heading-h1\.(tsx|vue)$/.test(file.outputFilePath)
 	);
 	if (!headingFile) {
 		const hasHeadingBatch = files.componentFiles.some((file) =>
@@ -170,9 +137,12 @@ const copyHeadingSpec = (targetContext, files) => {
 			)
 		);
 		if (hasHeadingBatch) return;
-		fail(targetContext.target, 'generated heading file not found');
+		fail(
+			'DBHeading',
+			targetContext.target,
+			'generated heading-h1 file not found'
+		);
 	}
-
 	const sourceFile = path.resolve(
 		__dirname,
 		'../../src/components/heading/heading.spec.tsx'
@@ -186,7 +156,11 @@ const copyHeadingSpec = (targetContext, files) => {
 	if (targetContext.target === 'vue') {
 		const reactCtImport = '@playwright/experimental-ct-react';
 		if (source.split(reactCtImport).length !== 2) {
-			fail('vue', `expected exactly one ${reactCtImport} import`);
+			fail(
+				'DBHeading',
+				'vue',
+				`expected exactly one ${reactCtImport} import`
+			);
 		}
 		source = source
 			.replace(reactCtImport, '@playwright/experimental-ct-vue')
@@ -211,6 +185,6 @@ module.exports = () => ({
 	build: { post: copyHeadingSpec }
 });
 
+module.exports.copyHeadingSpec = copyHeadingSpec;
 module.exports.transformHeadingAttributePassing =
 	transformHeadingAttributePassing;
-module.exports.copyHeadingSpec = copyHeadingSpec;

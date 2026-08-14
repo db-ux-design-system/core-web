@@ -7,7 +7,7 @@ import { lvl3 } from '../fixtures/variants';
 // document-wide heading order cannot increase by one on this page.
 const axeDisableRules = ['heading-order'];
 
-test.describe('DBHeading', () => {
+test.describe('Static Heading components', () => {
 	runAxeCoreTest({ path: '04/heading', axeDisableRules });
 	runAxeCoreTest({ path: '04/heading', color: lvl3, axeDisableRules });
 	runAxeCoreTest({

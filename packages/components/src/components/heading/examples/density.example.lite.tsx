@@ -1,9 +1,10 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBHeading from '../heading.lite';
+import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
+	storybookComponentName: 'DBHeadingH2',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -11,15 +12,9 @@ useMetadata({
 export default function HeadingDensity() {
 	return (
 		<Fragment>
-			<DBHeading as="h2" data-density="functional">
-				Functional
-			</DBHeading>
-			<DBHeading as="h2" data-density="regular">
-				(Default) Regular
-			</DBHeading>
-			<DBHeading as="h2" data-density="expressive">
-				Expressive
-			</DBHeading>
+			<DBHeadingH2 data-density="functional">Functional</DBHeadingH2>
+			<DBHeadingH2 data-density="regular">(Default) Regular</DBHeadingH2>
+			<DBHeadingH2 data-density="expressive">Expressive</DBHeadingH2>
 		</Fragment>
 	);
 }

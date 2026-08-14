@@ -1,9 +1,10 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBHeading from '../heading.lite';
+import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
 	storybookTitle: 'Visual sizes',
+	storybookComponentName: 'DBHeadingH2',
 	storybookNames: ['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -11,33 +12,15 @@ useMetadata({
 export default function HeadingSizes() {
 	return (
 		<Fragment>
-			<DBHeading as="h2" size="3xl">
-				3xl
-			</DBHeading>
-			<DBHeading as="h2" size="2xl">
-				2xl
-			</DBHeading>
-			<DBHeading as="h2" size="xl">
-				xl
-			</DBHeading>
-			<DBHeading as="h2" size="lg">
-				lg
-			</DBHeading>
-			<DBHeading as="h2" size="md">
-				md
-			</DBHeading>
-			<DBHeading as="h2" size="sm">
-				sm
-			</DBHeading>
-			<DBHeading as="h2" size="xs">
-				xs
-			</DBHeading>
-			<DBHeading as="h2" size="2xs">
-				2xs
-			</DBHeading>
-			<DBHeading as="h2" size="3xs">
-				3xs
-			</DBHeading>
+			<DBHeadingH2 size="3xl">3xl</DBHeadingH2>
+			<DBHeadingH2 size="2xl">2xl</DBHeadingH2>
+			<DBHeadingH2 size="xl">xl</DBHeadingH2>
+			<DBHeadingH2 size="lg">lg</DBHeadingH2>
+			<DBHeadingH2 size="md">md</DBHeadingH2>
+			<DBHeadingH2 size="sm">sm</DBHeadingH2>
+			<DBHeadingH2 size="xs">xs</DBHeadingH2>
+			<DBHeadingH2 size="2xs">2xs</DBHeadingH2>
+			<DBHeadingH2 size="3xs">3xs</DBHeadingH2>
 		</Fragment>
 	);
 }

@@ -1,9 +1,10 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBHeading from '../heading.lite';
+import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
 	storybookTitle: 'Font weight',
+	storybookComponentName: 'DBHeadingH2',
 	storybookNames: ['(Default) Black', 'Light'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -11,12 +12,8 @@ useMetadata({
 export default function HeadingFontWeight() {
 	return (
 		<Fragment>
-			<DBHeading as="h2" fontWeight="black">
-				(Default) Black
-			</DBHeading>
-			<DBHeading as="h2" fontWeight="light">
-				Light
-			</DBHeading>
+			<DBHeadingH2 fontWeight="black">(Default) Black</DBHeadingH2>
+			<DBHeadingH2 fontWeight="light">Light</DBHeadingH2>
 		</Fragment>
 	);
 }

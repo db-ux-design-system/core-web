@@ -7,21 +7,21 @@ const { extractVueTemplate } = require('./index.cjs');
 describe('Figma Vue template extraction', () => {
 	it('keeps nested slot templates inside the outer template', () => {
 		const result = extractVueTemplate(`<template>
-	<DBHeading>
+	<DBTabItem>
 		<template v-slot:start-slot><span>Start</span></template>
-		Heading
+		Tab
 		<template v-slot:end-slot><span>End</span></template>
-	</DBHeading>
+	</DBTabItem>
 </template>
 <script setup lang="ts"></script>`);
 
 		expect(result).toContain('<template v-slot:start-slot>');
 		expect(result).toContain('<template v-slot:end-slot>');
-		expect(result).toContain('</DBHeading>');
+		expect(result).toContain('</DBTabItem>');
 	});
 
 	it('fails fast without a complete outer template', () => {
-		expect(() => extractVueTemplate('<template><DBHeading />')).toThrow(
+		expect(() => extractVueTemplate('<template><DBTabItem />')).toThrow(
 			'Expected one outer Vue template wrapper'
 		);
 	});

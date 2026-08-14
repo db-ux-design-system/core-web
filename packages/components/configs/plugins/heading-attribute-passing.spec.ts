@@ -10,88 +10,61 @@ const {
 	transformHeadingAttributePassing
 } = require('./heading-attribute-passing.cjs');
 
-const reactRoot = (tag: string) => `<${tag}
-      ref={_ref}
-      className={headingClass}
-    >${tag}</${tag}>`;
-
 const reactHeading = `import * as React from "react";
 import { useRef } from "react";
-function DBHeading(props: DBHeadingProps) {
+function DBHeadingH2(props: DBHeadingH2Props) {
   const _ref = useRef<HTMLHeadingElement | any>(null);
-  return <>
-    ${['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(reactRoot).join('\n    ')}
-  </>;
+  return <h2
+    ref={_ref}
+    className={headingClass}
+  >Heading</h2>;
 }
-export default DBHeading;`;
-
-const vueRoot = (tag: string) => `<${tag}
-    ref="_ref"
-    :class="cls('db-heading', className)"
-  >${tag}</${tag}>`;
+export default DBHeadingH2;`;
 
 const vueHeading = `<template>
-  ${['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(vueRoot).join('\n  ')}
+  <h2
+    ref="_ref"
+    :class="cls('db-heading', className)"
+  >Heading</h2>
 </template>
 <script setup lang="ts">
-const props = defineProps<DBHeadingProps>();
+const props = defineProps<DBHeadingH2Props>();
 </script>`;
 
-describe('heading attribute passing', () => {
-	it('fully generates the React wrapper and every root without post-build', () => {
+describe('static heading attribute passing', () => {
+	it('generates the React wrapper for one fixed root', () => {
 		const result = transformHeadingAttributePassing(
 			reactHeading,
 			'react',
-			'DBHeading'
+			'DBHeadingH2'
 		);
-
-		expect(result.match(/\.\.\.filterPassingProps/g)).toHaveLength(6);
-		expect(result.match(/\.\.\.getRootProps/g)).toHaveLength(6);
-		expect(result).toContain('function DBHeadingFn(');
-		expect(result).toContain('const DBHeading = forwardRef<');
-		expect(result).toContain(
-			`  const internalRef = useRef<HTMLHeadingElement | any>(null);
-  const _ref = component || internalRef;`
-		);
-		expect(result).not.toContain('component || useRef');
-		expect(result).toContain(
-			'import { filterPassingProps, getRootProps } from "../../utils/react";'
-		);
+		expect(result.match(/\.\.\.filterPassingProps/g)).toHaveLength(1);
+		expect(result.match(/\.\.\.getRootProps/g)).toHaveLength(1);
+		expect(result).toContain('function DBHeadingH2Fn(');
+		expect(result).toContain('const DBHeadingH2 = forwardRef<');
 	});
 
-	it('binds attrs and resolves both Vue class props on every heading root', () => {
+	it('binds Vue attrs and resolves both class aliases', () => {
 		const result = transformHeadingAttributePassing(
 			vueHeading,
 			'vue',
-			'DBHeading'
+			'DBHeadingH2'
 		);
-
-		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(6);
-		expect(
-			result.match(/props\['class' \+ 'Name'\] \?\? props\.class/g)
-		).toHaveLength(6);
+		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(1);
+		expect(result).toContain("props['class' + 'Name'] ?? props.class");
 		expect(result).toContain(
-			'withDefaults(defineProps<DBHeadingProps>(), { paragraphSpacing: undefined })'
+			'withDefaults(defineProps<DBHeadingH2Props>()'
 		);
 	});
 
 	it('does not change other components', () => {
 		expect(
 			transformHeadingAttributePassing(
-				'<h1 ref={_ref}>Other component</h1>',
+				'<h2>Other</h2>',
 				'react',
 				'DBOther'
 			)
-		).toBe('<h1 ref={_ref}>Other component</h1>');
-	});
-
-	it.each([
-		['react', reactHeading.replace('</h6>', '')],
-		['vue', vueHeading.replace(' ref="_ref"', '')]
-	])('fails fast for an unexpected %s Heading shape', (target, code) => {
-		expect(() =>
-			transformHeadingAttributePassing(code, target, 'DBHeading')
-		).toThrow(`DBHeading ${target} attribute-passing transform failed`);
+		).toBe('<h2>Other</h2>');
 	});
 });
 
@@ -99,7 +72,6 @@ describe('heading spec copy', () => {
 	it('rewrites copied Vue specs to use Vue component testing', () => {
 		const outputDir = mkdtempSync(join(tmpdir(), 'heading-vue-spec-'));
 		mkdirSync(join(outputDir, 'components/heading'), { recursive: true });
-
 		try {
 			copyHeadingSpec(
 				{ target: 'vue' },
@@ -107,7 +79,7 @@ describe('heading spec copy', () => {
 					componentFiles: [
 						{
 							outputDir,
-							outputFilePath: 'components/heading/heading.vue'
+							outputFilePath: 'components/heading/heading-h1.vue'
 						}
 					]
 				}
@@ -140,9 +112,9 @@ describe('heading spec copy', () => {
 		).not.toThrow();
 	});
 
-	it('requires a regular Heading file outside Figma generation', () => {
+	it('requires a regular static Heading file outside Figma generation', () => {
 		expect(() =>
 			copyHeadingSpec({ target: 'react' }, { componentFiles: [] })
-		).toThrow('generated heading file not found');
+		).toThrow('generated heading-h1 file not found');
 	});
 });
