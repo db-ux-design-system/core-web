@@ -75,19 +75,19 @@ const openDrawerByDirection = async (page: Page, buttonIndex: number) => {
 	await page.waitForTimeout(800);
 
 	// Inject filler content so scrolling behavior is visible
-	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
-	await page.evaluate(() => {
-		const content = document.querySelector(
-			'.db-drawer[open] .db-drawer-content'
+	const docHandle = await page.evaluateHandle('document');
+	await page.evaluate((doc) => {
+		const content = doc.querySelector<HTMLElement>(
+			':scope .db-drawer[open] .db-drawer-content'
 		);
 
 		if (content) {
-			const filler = document.createElement('div');
+			const filler = doc.createElement('div');
 			filler.style.display = 'flex';
 			filler.style.flexDirection = 'column';
 			filler.style.gap = '0.125rem';
 			for (let i = 1; i <= 30; i++) {
-				const p = document.createElement('p');
+				const p = doc.createElement('p');
 				p.style.margin = '0';
 				p.textContent = `Content line ${i} - demonstrates scroll within safe area boundaries`;
 				filler.append(p);
@@ -95,12 +95,18 @@ const openDrawerByDirection = async (page: Page, buttonIndex: number) => {
 
 			content.append(filler);
 		}
-	});
+	}, docHandle);
+	await docHandle.dispose();
 };
 
 const closeDrawer = async (page: Page) => {
 	await page.keyboard.press('Escape');
 	await page.waitForTimeout(800);
+};
+
+const waitForFonts = async (page: Page) => {
+	const fontsHandle = await page.evaluateHandle('document.fonts.ready');
+	await fontsHandle.dispose();
 };
 
 test.describe('DBDrawer Safe Area Insets', () => {
@@ -111,12 +117,11 @@ test.describe('DBDrawer Safe Area Insets', () => {
 			await page.goto(`./#/${path}?density=${density}&color=${lvl1}`, {
 				waitUntil: 'domcontentloaded'
 			});
-			// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
-			await page.evaluate(async () => document.fonts.ready);
+			await waitForFonts(page);
 			await waitForDBPage(page);
 
 			await page.addStyleTag({ content: safeAreaStyles });
-			// Portrait viewport
+			// Portrait viewport (iPhone 14 Pro)
 			await page.setViewportSize({ width: 393, height: 852 });
 
 			await openDrawerByDirection(page, buttonIndex);
@@ -139,12 +144,11 @@ test.describe('DBDrawer Safe Area Insets (landscape)', () => {
 			await page.goto(`./#/${path}?density=${density}&color=${lvl1}`, {
 				waitUntil: 'domcontentloaded'
 			});
-			// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
-			await page.evaluate(async () => document.fonts.ready);
+			await waitForFonts(page);
 			await waitForDBPage(page);
 
 			await page.addStyleTag({ content: safeAreaStyles });
-			// Landscape viewport
+			// Landscape viewport (iPhone 14 Pro rotated)
 			await page.setViewportSize({ width: 852, height: 393 });
 
 			await openDrawerByDirection(page, buttonIndex);
