@@ -38,13 +38,13 @@ build/          # Compiled output — never commit
 
 ## Changeset Rules
 
-Changes in `packages/foundations/scss` require a changeset for `@db-ux/core-foundations`.
+Consumer-facing changes in `packages/foundations/scss` require a changeset. Which packages to list and when no changeset is needed is defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets) — that file always applies, so the rules are not repeated here.
+
+Token-specific bump types:
 
 - `patch` — bug fix
 - `minor` — new token or feature
 - `major` — removed or renamed token (breaking for consumers)
-
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, variable renaming without API impact), it does not require a changeset. Changesets are only necessary when the change affects token values, styling output, public APIs, or behavior visible to consumers.
 
 ## Important Notes
 
