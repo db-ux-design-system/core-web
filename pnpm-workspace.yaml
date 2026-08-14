@@ -55,6 +55,7 @@ minimumReleaseAgeExclude:
   - undici@6.28.0 || 7.29.0
   - fast-uri@3.1.5
   - image-size@2.0.3
+  - nanoid@3.3.18
 
 overrides:
   # PostCSS patch releases ship type-incompatible .d.ts files; pnpm isolates
