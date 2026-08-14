@@ -301,9 +301,10 @@
 			@extend %direction-from-bottom-to-top;
 
 			--db-drawer-safe-area-inset-top: 0px;
+
 			margin-block-start: var(
 				--db-drawer-safe-area-margin-block-start,
-				env(safe-area-inset-top, 0px)
+				env(safe-area-inset-top, 0)
 			);
 		}
 
@@ -311,9 +312,10 @@
 			@extend %direction-from-top-to-bottom;
 
 			--db-drawer-safe-area-inset-bottom: 0px;
+
 			margin-block-end: var(
 				--db-drawer-safe-area-margin-block-end,
-				env(safe-area-inset-bottom, 0px)
+				env(safe-area-inset-bottom, 0)
 			);
 		}
 	}
