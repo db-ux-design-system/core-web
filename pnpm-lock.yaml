@@ -1231,8 +1231,8 @@ importers:
         specifier: 10.5.7
         version: 10.5.7(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(storybook@10.5.7(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.9.0
-        version: 17.9.0
+        specifier: 17.11.0
+        version: 17.11.0
       storybook:
         specifier: 10.5.7
         version: 10.5.7(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -1386,8 +1386,8 @@ importers:
         specifier: 10.5.7
         version: 10.5.7(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(storybook@10.5.7(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.9.0
-        version: 17.9.0
+        specifier: 17.11.0
+        version: 17.11.0
       prettier:
         specifier: 3.9.6
         version: 3.9.6
@@ -1465,8 +1465,8 @@ importers:
         specifier: 10.5.7
         version: 10.5.7(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(storybook@10.5.7(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.9.0
-        version: 17.9.0
+        specifier: 17.11.0
+        version: 17.11.0
       storybook:
         specifier: 10.5.7
         version: 10.5.7(@types/react@19.2.18)(prettier@3.9.6)(react@19.2.8)
@@ -10449,8 +10449,8 @@ packages:
     resolution: {integrity: sha512-ob/2LcVVaVGCYN+r14cnwnoDPUufjiYgSqRhiFD0Q1iI4Odora5RE8Iv1D24hAz5oMophRGkGz+yuvQmmUMnMw==}
     engines: {node: '>=18'}
 
-  globals@17.9.0:
-    resolution: {integrity: sha512-m/MvAW61QVU5VDNF1Vj8axt016h8w7L5TU1e9zlab7XIttAT2YAlCwl75K1fOqvMM9apmD7lbCIRhpfkhmxhCg==}
+  globals@17.11.0:
+    resolution: {integrity: sha512-Z2I8hM+PbJDXQDq3Icgpzv+mPdwr68iZUU9d5WW4FuXfDUQfkZaZuvjMv42/5crNyw154+9+VWXbYrUgDXbxNw==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -26484,7 +26484,7 @@ snapshots:
       eslint-plugin-prettier: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
       eslint-plugin-regexp: 3.1.1(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-unicorn: 71.1.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
-      globals: 17.9.0
+      globals: 17.11.0
       typescript-eslint: 8.67.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
     optionalDependencies:
       prettier: 3.9.6
@@ -26519,7 +26519,7 @@ snapshots:
       eslint-plugin-prettier: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.6)
       eslint-plugin-regexp: 3.1.1(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-unicorn: 73.0.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))
-      globals: 17.9.0
+      globals: 17.11.0
       typescript-eslint: 8.66.0(eslint@10.8.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
     optionalDependencies:
       prettier: 3.9.6
@@ -26929,7 +26929,7 @@ snapshots:
       detect-indent: 7.0.2
       eslint: 10.8.1(jiti@2.7.0)(supports-color@10.2.2)
       find-up-simple: 1.0.1
-      globals: 17.9.0
+      globals: 17.11.0
       indent-string: 5.0.0
       is-builtin-module: 5.0.0
       is-identifier: 1.1.0
@@ -26952,7 +26952,7 @@ snapshots:
       entities: 4.5.0
       eslint: 10.8.1(jiti@2.7.0)(supports-color@10.2.2)
       find-up-simple: 1.0.1
-      globals: 17.9.0
+      globals: 17.11.0
       indent-string: 5.0.0
       is-builtin-module: 5.0.0
       is-identifier: 1.1.0
@@ -27847,7 +27847,7 @@ snapshots:
 
   globals@16.4.0: {}
 
-  globals@17.9.0: {}
+  globals@17.11.0: {}
 
   globalthis@1.0.4:
     dependencies:
