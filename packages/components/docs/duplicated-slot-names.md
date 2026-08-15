@@ -4,7 +4,9 @@
 
 The failure mode is silent: no build error, no runtime warning, content simply renders in the wrong place. It surfaced once as a 44px layout shift on every page of the stencil showcase, visible only as a ~6% pixel diff in the visual regression tests.
 
-The same applies to the default slot: `props.children` rendered twice fills only one position in the web component output.
+The default slot has the same one-position limit, but not the same resolution history: `props.children` rendered twice fills only the **first** position, in 4.43.5 and 4.44.0 alike (verified with a minimal non-shadow component and on `DBHeader`, where the desktop navigation keeps all items and the drawer navigation stays empty). The last-wins change applies to named slots only. So a duplicated default slot does not break the visible position — it just means the second position can never be filled. `DBHeader` renders `props.children` in the header bar and in the drawer for that reason, and the drawer navigation is empty in `@db-ux/wc-core-components`.
+
+Renaming a duplicated default slot is possible but is a different kind of change: the Stencil generator emits `<slot></slot>` for a `this.children` text binding ([`generators/stencil/blocks.js`](https://github.com/BuilderIO/mitosis/blob/main/packages/core/src/generators/stencil/blocks.ts)), so the plugin would have to replace that node with a named `Slot` node rather than rename a property. And filling a second navigation position means slotting the whole navigation twice, with duplicate `db-navigation-item` ids and the sub-navigation behaviour wired up twice — decide that with design input rather than as a build-level rename.
 
 ## The fix pattern (`configs/plugins/stencil/slot-names.cjs`)
 
