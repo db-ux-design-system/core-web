@@ -9,4 +9,5 @@ A slotted element exists at exactly one position in the DOM, so only one of the 
 filled, and which one was up to the compiler. The drawer slots are now named separately for the web
 component output: `metaNavigation` and `secondaryAction` keep filling the header bar, and the drawer
 positions can be filled via `mobileMetaNavigation` and `mobileSecondaryAction` — which previously
-was not possible at all.
+was not possible at all. Both new slots are documented in `custom-elements.json`, `web-types.json`
+and the VS Code custom data, so editor autocompletion knows them.

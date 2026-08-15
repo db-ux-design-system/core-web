@@ -1,3 +1,6 @@
+const fs = require('node:fs');
+const path = require('node:path');
+
 /**
  * Renames a duplicated named slot for the Stencil output, so that every rendered
  * position gets its own slot name.
@@ -12,19 +15,31 @@
  * Each rule renames only the occurrence below a structural anchor, so the other
  * occurrences of the same name stay untouched.
  *
- * @type {Record<string, {slot: string, to: string, withinClass?: string, withinComponent?: string}[]>}
+ * `description` is added to the stencil output's `model.ts` as a member of the
+ * component's props type. The custom elements manifest resolves a slot's
+ * description from the member of that type with the same name (see
+ * `output/stencil/scripts/packageLinkPhase.js`), so without it the published
+ * manifest, `web-types.json` and VS Code data would document the new slot with a
+ * `TODO` placeholder. The member is types-only: stencil props come from the
+ * generated `@Prop()` declarations, so this adds no attribute to the element.
+ *
+ * @type {Record<string, {slot: string, to: string, description: string, withinClass?: string, withinComponent?: string}[]>}
  */
 const SLOT_RENAMES = {
 	DBHeader: [
 		{
 			slot: 'metaNavigation',
 			to: 'mobileMetaNavigation',
-			withinClass: 'db-header-drawer-navigation'
+			withinClass: 'db-header-drawer-navigation',
+			description:
+				'Slot to pass in a meta navigation for the drawer, shown below the navigation.\nOnly rendered below the `md` breakpoint, or when `forceMobile` is set.\n\nThe header bar has its own `metaNavigation` slot, because a slotted element\nexists at exactly one position in the DOM.'
 		},
 		{
 			slot: 'secondaryAction',
 			to: 'mobileSecondaryAction',
-			withinComponent: 'DBDrawerFooter'
+			withinComponent: 'DBDrawerFooter',
+			description:
+				'Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as\nsecondary action for the drawer, shown at the bottom. Only rendered below the `md`\nbreakpoint, or when `forceMobile` is set.\n\nThe header bar has its own `secondaryAction` slot, because a slotted element\nexists at exactly one position in the DOM.'
 		}
 	]
 };
@@ -86,6 +101,52 @@ const renameSlots = (node, rule, anchored = false) => {
 };
 
 /**
+ * Adds the renamed slots as documented members of the component's props type in
+ * the stencil output, so the custom elements manifest can resolve a description
+ * for them.
+ *
+ * @param outputDir {string} absolute path to the stencil output root
+ * @param componentName {string} the Mitosis component name, e.g. `DBHeader`
+ * @param rules {{to: string, description: string}[]}
+ * @returns {boolean} `true` if the members were written
+ */
+const documentRenamedSlots = (outputDir, componentName, rules) => {
+	const folder = componentName
+		.replace(/^DB/, '')
+		.replace(/([A-Z])/g, (match, char, index) =>
+			index === 0 ? char.toLowerCase() : `-${char.toLowerCase()}`
+		);
+	const file = path.resolve(outputDir, 'src/components', folder, 'model.ts');
+	if (!fs.existsSync(file)) {
+		console.warn(
+			`[stencil-slot-names] "${file}" not found — skipping slot documentation`
+		);
+		return false;
+	}
+
+	const anchor = `export type ${componentName}DefaultProps = {`;
+	const content = fs.readFileSync(file, 'utf-8');
+	if (!content.includes(anchor)) {
+		throw new Error(
+			`[stencil-slot-names] Could not find "${anchor}" in ${file}. Update documentRenamedSlots() in configs/plugins/stencil/slot-names.cjs.`
+		);
+	}
+
+	const members = rules
+		.map(
+			(rule) =>
+				`\n\t/**\n${rule.description
+					.split('\n')
+					.map((line) => `\t * ${line}`.trimEnd())
+					.join('\n')}\n\t */\n\t${rule.to}?: any;`
+		)
+		.join('');
+
+	fs.writeFileSync(file, content.replace(anchor, anchor + members), 'utf-8');
+	return true;
+};
+
+/**
  * Mitosis plugin that applies the configured slot renames to the Stencil output.
  *
  * Registered for the Stencil target only (see `configs/stencil/index.cjs`).
@@ -94,6 +155,20 @@ const renameSlots = (node, rule, anchored = false) => {
  */
 module.exports = () => ({
 	name: 'stencil-slot-names',
+	build: {
+		post: (targetContext, files) => {
+			if (!files) return;
+
+			const anyFile =
+				(files.nonComponentFiles || [])[0] ||
+				(files.componentFiles || [])[0];
+			if (!anyFile) return;
+
+			for (const [componentName, rules] of Object.entries(SLOT_RENAMES)) {
+				documentRenamedSlots(anyFile.outputDir, componentName, rules);
+			}
+		}
+	},
 	json: {
 		post: (json) => {
 			const rules = SLOT_RENAMES[json.name];

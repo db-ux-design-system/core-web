@@ -136,6 +136,7 @@ Anchor each rule (`withinClass` or `withinComponent`) on something that only exi
 Rules when applying this:
 
 - Do **not** add such transformations to `scripts/post-build/` — that pipeline is deprecated (see below). A Mitosis plugin also runs before generation, so the renamed slots reach the generated `@slot` docs, the CEM, `web-types.json` and the VS Code data automatically.
+- Always give the rule a `description`. The manifest resolves a slot's description from the member of `<Component>Props` with the same name (`output/stencil/scripts/packageLinkPhase.js`), so the plugin adds the renamed slot as a documented member of the props type in the **stencil output's** `model.ts`. Without it the slot ships with a `TODO: Add description for …` placeholder in the published manifest — which is what the older `navigation-item` `expandButton` rename still does, since it is not documented at all there.
 - Document the web-component-only slot in the `model.ts` JSDoc of the original prop, so consumers of every package learn about the difference. Do not add a prop for it — that would surface it in the React, Vue and Angular types.
 - Add a placement assertion so a broken anchor is caught in the browser too — see `showcases/e2e/header/header-aria-snapshot.spec.ts`, which runs for every showcase including stencil.
 - Changeset scope: only `@db-ux/wc-core-components`, `minor` (a new slot, nothing removed).

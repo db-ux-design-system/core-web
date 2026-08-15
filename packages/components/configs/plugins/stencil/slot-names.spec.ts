@@ -1,3 +1,6 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 // The plugin is CommonJS; import the factory for unit testing.
@@ -89,6 +92,30 @@ describe('stencil-slot-names', () => {
 		slotNamesPlugin().json.post(json);
 
 		expect(slotNames(json as any)).toEqual(['metaNavigation']);
+	});
+
+	it('documents the renamed slots in the output model, so the manifest can resolve a description', () => {
+		const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), 'slot-names-'));
+		const modelDir = path.join(outputDir, 'src/components/header');
+		fs.mkdirSync(modelDir, { recursive: true });
+		fs.writeFileSync(
+			path.join(modelDir, 'model.ts'),
+			'export type DBHeaderDefaultProps = {\n\tmetaNavigation?: any;\n};\n'
+		);
+
+		slotNamesPlugin().build.post(
+			{},
+			{ nonComponentFiles: [{ outputDir }] }
+		);
+
+		const model = fs.readFileSync(path.join(modelDir, 'model.ts'), 'utf-8');
+		expect(model).toContain('mobileMetaNavigation?: any;');
+		expect(model).toContain('mobileSecondaryAction?: any;');
+		expect(model).toContain('shown below the navigation');
+		// the original members must survive
+		expect(model).toContain('metaNavigation?: any;');
+
+		fs.rmSync(outputDir, { recursive: true, force: true });
 	});
 
 	it('throws when an anchor no longer matches, instead of skipping silently', () => {
