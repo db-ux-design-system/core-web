@@ -74,15 +74,17 @@ export default (tmp?: boolean) => {
 		const indexFile = `../../${outputFolder}/stencil/src/components/${componentName}/index.ts`;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 
-		replaceInFileSync({
-			files: [file],
-			processor: (input: string) => changeFile(upperComponentName, input)
-		});
-
 		const replacements: Overwrite[] = [
 			{ from: /(?<!\w)for={/g, to: 'htmlFor={' }
 		];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
+		// Runs before `changeFile`, so slots that are renamed for the stencil output
+		// (see `overwrites.stencil`) end up in the generated `@slot` documentation.
 		runReplacements(replacements, component, 'stencil', file);
+
+		replaceInFileSync({
+			files: [file],
+			processor: (input: string) => changeFile(upperComponentName, input)
+		});
 	}
 };

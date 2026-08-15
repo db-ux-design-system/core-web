@@ -386,6 +386,27 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'header',
+		overwrites: {
+			stencil: [
+				/* `metaNavigation` and `secondaryAction` are rendered twice: in the header bar
+					and inside the drawer. A slotted element exists at exactly one position in the
+					DOM, so web components can fill only one of the two named slots — which one is
+					up to the compiler. The drawer therefore gets its own slot names here, so both
+					positions can be filled independently and neither depends on slot resolution
+					order. React, Vue and Angular can render the same content twice and keep using
+					`metaNavigation` / `secondaryAction` for both positions.
+					The anchors are the drawer-only containers, so the header bar slots above them
+					are never matched. */
+				{
+					from: /(db-header-drawer-navigation[\s\S]*?<slot name=")metaNavigation(">)/,
+					to: '$1mobileMetaNavigation$2'
+				},
+				{
+					from: /(db-drawer-footer[\s\S]*?<slot name=")secondaryAction(">)/,
+					to: '$1mobileSecondaryAction$2'
+				}
+			]
+		},
 		config: {
 			angular: {
 				directives: [
