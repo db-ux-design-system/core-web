@@ -8,7 +8,7 @@ The same applies to the default slot: `props.children` rendered twice fills only
 
 ## The fix pattern (`configs/plugins/stencil/slot-names.cjs`)
 
-Give each position its own slot name **for the stencil output only**, by adding a rule to the `stencil-slot-names` Mitosis plugin. The shared `.lite.tsx` and the React/Vue/Angular APIs stay unchanged (no breaking change) while the web component gains an independently fillable position.
+Give each position its own slot name – if it can't be unique, differentiate **for the stencil output only** by adding a rule to the `stencil-slot-names` Mitosis plugin. The shared `.lite.tsx` and the React/Vue/Angular APIs stay unchanged while the web component gains an independently fillable position.
 
 `DBHeader` renders `metaNavigation` and `secondaryAction` in the header bar and again inside the drawer, so the drawer occurrences are renamed:
 
