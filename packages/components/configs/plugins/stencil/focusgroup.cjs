@@ -3,24 +3,23 @@ const path = require('node:path');
 
 /**
  * Type augmentation that extends Stencil's JSXBase.HTMLAttributes with the
- * `focusgroupstart` HTML attribute for declarative keyboard navigation.
+ * `focusgroup` HTML attribute for declarative keyboard navigation.
  *
- * Stencil ships `focusgroup` itself since v4.44.0, but not `focusgroupstart`,
- * so the generated tab-item component would otherwise get a type error. The
- * augmentation is type-only, so it adds no runtime code to the published bundle.
+ * Stencil's type definitions do not ship this attribute yet, so the generated
+ * tab-list component would otherwise get a type error. The augmentation is
+ * type-only, so it adds no runtime code to the published bundle.
  *
  * TODO: This augmentation can be removed once Stencil's type definitions
- * natively support the focusgroupstart attribute.
+ * natively support the focusgroup attribute.
  *
  * @see https://developer.chrome.com/blog/focusgroup-rfc
  */
 const DECLARATION = `/**
- * Type augmentation for the focusgroupstart HTML attribute
+ * Type augmentation for the focusgroup HTML attribute
  * https://developer.chrome.com/blog/focusgroup-rfc
  *
- * Extends Stencil's HTMLAttributes to include the \`focusgroupstart\` attribute
- * for declarative arrow-key navigation in composite widgets (tablists, toolbars,
- * etc.). \`focusgroup\` itself is shipped by Stencil since v4.44.0.
+ * Extends Stencil's HTMLAttributes to include the \`focusgroup\` attribute for
+ * declarative arrow-key navigation in composite widgets (tablists, toolbars, etc.).
  *
  * TODO: This augmentation can be removed once Stencil's type definitions
  * natively support this attribute.
@@ -30,6 +29,7 @@ import { JSXBase } from "@stencil/core/internal";
 declare module "@stencil/core/internal" {
 	namespace JSXBase {
 		interface HTMLAttributes<T = HTMLElement> {
+			focusgroup?: string;
 			focusgroupstart?: string;
 		}
 	}
