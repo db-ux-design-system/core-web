@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-GiSYco23.js";e();
