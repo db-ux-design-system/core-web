@@ -40,10 +40,10 @@
     "@angular/cli": "21.2.21",
     "@angular/compiler-cli": "21.2.20",
     "@compodoc/compodoc": "2.0.0",
-    "@storybook/addon-docs": "10.5.7",
-    "@storybook/angular": "10.5.7",
+    "@storybook/addon-docs": "10.5.8",
+    "@storybook/angular": "10.5.8",
     "@types/node": "26.2.0",
-    "eslint-plugin-storybook": "10.5.7",
-    "storybook": "10.5.7"
+    "eslint-plugin-storybook": "10.5.8",
+    "storybook": "10.5.8"
   }
 }
