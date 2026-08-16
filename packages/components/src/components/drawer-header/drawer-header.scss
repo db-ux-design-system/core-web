@@ -7,7 +7,7 @@
 	align-items: center;
 	padding: calc(
 			#{variables.$db-spacing-fixed-xs} +
-				var(--db-drawer-safe-area-inset-top)
+				var(--db-drawer-safe-area-inset-top, 0px)
 		)
 		variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-xs;
 

@@ -27,15 +27,16 @@ const safeAreaStyles = `
 		font-weight: bold;
 		letter-spacing: 1px;
 		text-transform: uppercase;
-		color: rgba(0, 0, 0, 0.5);
+		color: rgba(0, 0, 0, 0.7);
 		background: repeating-linear-gradient(
 			-45deg,
-			rgba(255, 200, 0, 0.25),
-			rgba(255, 200, 0, 0.25) 4px,
-			rgba(255, 200, 0, 0.1) 4px,
-			rgba(255, 200, 0, 0.1) 8px
+			rgba(255, 200, 0, 0.4),
+			rgba(255, 200, 0, 0.4) 4px,
+			rgba(255, 200, 0, 0.2) 4px,
+			rgba(255, 200, 0, 0.2) 8px
 		);
 		pointer-events: none;
+		forced-color-adjust: none;
 	}
 
 	.db-drawer[open]::before {
