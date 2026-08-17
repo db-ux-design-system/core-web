@@ -56,7 +56,9 @@ const directions = [
 	{ name: 'to-left', buttonIndex: 0 },
 	{ name: 'to-right', buttonIndex: 1 },
 	{ name: 'up', buttonIndex: 2 },
-	{ name: 'down', buttonIndex: 3 }
+	{ name: 'down', buttonIndex: 3 },
+	{ name: 'up-full', buttonIndex: 4 },
+	{ name: 'down-full', buttonIndex: 5 }
 ] as const;
 
 const openDrawerByDirection = async (page: Page, buttonIndex: number) => {
@@ -64,12 +66,14 @@ const openDrawerByDirection = async (page: Page, buttonIndex: number) => {
 		'Open: (Default) To-Left',
 		'Open: To-Right',
 		'Open: Up',
-		'Open: Down'
+		'Open: Down',
+		'Open: Up (Full)',
+		'Open: Down (Full)'
 	];
 
 	await page
 		.locator('main')
-		.getByRole('button', { name: buttonTexts[buttonIndex] })
+		.getByRole('button', { name: buttonTexts[buttonIndex], exact: true })
 		.click();
 
 	// Wait for drawer animation to complete
