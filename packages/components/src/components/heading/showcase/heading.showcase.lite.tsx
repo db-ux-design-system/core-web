@@ -16,7 +16,7 @@ import HeadingSizes from '../examples/sizes.example.lite';
 export default function HeadingShowcase(props: PatternhubProps) {
 	return (
 		<ContainerWrapperShowcase
-			title="Static Heading Components"
+			title="Heading"
 			isPatternhub={props.isPatternhub}>
 			<div class="heading-showcase">
 				<LinkWrapperShowcase exampleName="Semantic Levels">
