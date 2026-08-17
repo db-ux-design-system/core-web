@@ -73,6 +73,11 @@ const keyVariants: any = (
 	</div>
 );
 
+const readFontSize = async (component: any) =>
+	component.evaluate(
+		(element: HTMLElement) => getComputedStyle(element).fontSize
+	);
+
 const readLogicalMargins = async (component: any) =>
 	component.evaluate((element: HTMLElement) => {
 		const style = getComputedStyle(element);
@@ -133,6 +138,25 @@ test.describe('Static Heading components', () => {
 		expect(
 			await component.evaluate((element) => element.tagName.toLowerCase())
 		).toBe('h6');
+	});
+
+	test('resolves the default size mapping to real typography', async ({
+		mount
+	}) => {
+		// The `data-size` assertions above only prove prop plumbing. This checks
+		// that omitting `size` actually applies the mapped headline size.
+		const defaultH1 = await mount(<DBHeadingH1>Default h1</DBHeadingH1>);
+		const h1FontSize = await readFontSize(defaultH1);
+		await defaultH1.unmount();
+
+		const explicitXl = await mount(
+			<DBHeadingH2 size="xl">Explicit xl</DBHeadingH2>
+		);
+		expect(await readFontSize(explicitXl)).toBe(h1FontSize);
+		await explicitXl.unmount();
+
+		const defaultH2 = await mount(<DBHeadingH2>Default h2</DBHeadingH2>);
+		expect(await readFontSize(defaultH2)).not.toBe(h1FontSize);
 	});
 
 	for (const size of sizes) {
@@ -405,6 +429,49 @@ test.describe('DBCustomHeading', () => {
 			</DBCustomHeading>
 		);
 		await expect(component).toHaveAttribute('aria-level', '2');
+	});
+
+	test('keeps the heading role when a consumer passes a conflicting role', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomHeading semanticLevel={3} role="presentation">
+				Still a heading
+			</DBCustomHeading>
+		);
+		await expect(component).toHaveAttribute('role', 'heading');
+		await expect(component).toHaveAttribute('aria-level', '3');
+	});
+
+	test('falls back to level 2 when an untyped consumer omits the semantic level', async ({
+		mount
+	}) => {
+		// `semanticLevel` is required in TypeScript. Plain HTML and Web Component
+		// usage is not type-checked, so every target must degrade to level 2
+		// instead of failing to render.
+		const UntypedCustomHeading = DBCustomHeading as any;
+		const component = await mount(
+			<UntypedCustomHeading>No level given</UntypedCustomHeading>
+		);
+		await expect(component).toHaveAttribute('role', 'heading');
+		await expect(component).toHaveAttribute('aria-level', '2');
+	});
+
+	test('maps the semantic level to the same default size as the native heading', async ({
+		mount
+	}) => {
+		// Verifies the `[role="heading"][aria-level="1"]` style selector, which is
+		// otherwise only covered by a screenshot.
+		const nativeH1 = await mount(<DBHeadingH1>Native</DBHeadingH1>);
+		const nativeFontSize = await readFontSize(nativeH1);
+		await nativeH1.unmount();
+
+		const customLevel1 = await mount(
+			<DBCustomHeading semanticLevel={1}>
+				<span>Custom</span>
+			</DBCustomHeading>
+		);
+		expect(await readFontSize(customLevel1)).toBe(nativeFontSize);
 	});
 
 	test('renders arbitrary children inline with one accessible name', async ({

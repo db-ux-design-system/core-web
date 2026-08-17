@@ -44,7 +44,13 @@ export type DBHeadingBaseProps = DBHeadingBaseDefaultProps &
 
 /** @public */
 export type DBCustomHeadingDefaultProps = DBHeadingBaseDefaultProps & {
-	/** Defines the heading level exposed to assistive technologies. */
+	/**
+	 * Defines the heading level exposed to assistive technologies.
+	 *
+	 * Note: the Web Component metadata publishes this as `string`, because the
+	 * custom-elements analyzer cannot serialize numeric literal unions. The
+	 * accepted values are `1` to `6`.
+	 */
 	semanticLevel: HeadingSemanticLevelType;
 };
 /** @public */
@@ -54,32 +60,32 @@ export type DBCustomHeadingProps = DBCustomHeadingDefaultProps &
 
 /** @public */
 export type DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps;
-/** @public */ export type DBHeadingH1Props = DBHeadingH1DefaultProps &
+/** @public */ export type DBHeadingH1Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
 export type DBHeadingH2DefaultProps = DBHeadingBaseDefaultProps;
-/** @public */ export type DBHeadingH2Props = DBHeadingH2DefaultProps &
+/** @public */ export type DBHeadingH2Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
 export type DBHeadingH3DefaultProps = DBHeadingBaseDefaultProps;
-/** @public */ export type DBHeadingH3Props = DBHeadingH3DefaultProps &
+/** @public */ export type DBHeadingH3Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
 export type DBHeadingH4DefaultProps = DBHeadingBaseDefaultProps;
-/** @public */ export type DBHeadingH4Props = DBHeadingH4DefaultProps &
+/** @public */ export type DBHeadingH4Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
 export type DBHeadingH5DefaultProps = DBHeadingBaseDefaultProps;
-/** @public */ export type DBHeadingH5Props = DBHeadingH5DefaultProps &
+/** @public */ export type DBHeadingH5Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
 export type DBHeadingH6DefaultProps = DBHeadingBaseDefaultProps;
-/** @public */ export type DBHeadingH6Props = DBHeadingH6DefaultProps &
+/** @public */ export type DBHeadingH6Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 

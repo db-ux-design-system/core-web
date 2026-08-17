@@ -35,11 +35,11 @@ Heading children must be phrasing content and define the accessible heading name
 </db-heading-h-2>
 ```
 
-Native headings accept standard attributes directly. Custom-element `aria-*`, `data-*`, class, style, and id attributes are forwarded to the native heading.
+Native headings accept standard attributes directly. On the custom elements, `aria-*`, `data-*`, `class`, and `style` are forwarded from the host to the native heading. `id` is a component property, not a forwarded attribute, and is rendered on the native heading.
 
 ### Custom heading content
 
-Prefer native headings whenever possible. Use `db-custom-heading` when arbitrary children require an ARIA-based heading container. `semantic-level` is required, maps to `aria-level`, and determines the default visual size.
+Prefer native headings whenever possible. Use `db-custom-heading` when arbitrary children require an ARIA-based heading container. `semantic-level` is required, maps to `aria-level`, and determines the default visual size. Because plain HTML is not type-checked, a missing `semantic-level` falls back to `aria-level="2"` rather than breaking the page — always set it explicitly to match the document hierarchy.
 
 ```html
 <db-custom-heading semantic-level="2" size="xl">

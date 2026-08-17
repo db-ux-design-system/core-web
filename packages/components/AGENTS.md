@@ -75,6 +75,38 @@ fallthrough overrides them after rendering), and angular plus stencil remove
 both attributes from the custom-element host before forwarding the remaining
 attributes.
 
+### `semanticLevel` is required at compile time and forgiving at runtime
+
+`semanticLevel` is non-optional in `DBCustomHeadingProps`, so every typed
+consumer gets a compile-time error. At runtime all four targets must fall back to
+`aria-level="2"` via the `?? 2` in `custom-heading.lite.tsx`, because plain HTML
+and Web Component usage is not type-checked and a missing level must not break
+the page.
+
+**Do not enforce the prop per framework.** Angular's `input.required` turns the
+same omission into an NG0950 runtime error while react, vue and stencil resolve to
+level 2 — the identical markup then behaves differently per target. No other
+generated component in this repository uses `input.required`.
+
+The Stencil definite-assignment assertion (`semanticLevel!`) is the one exception
+and must stay: it is purely type-level, makes `semanticLevel` the only
+non-optional member of `JSX.DbCustomHeading`, and leaves the runtime fallback
+reachable. `showcases/stencil-showcase/src/heading.type-test.ts` guards this.
+
+Note that the custom-elements analyzer cannot serialize numeric literal unions,
+so `semantic-level` is published as `string` in `custom-elements.json` and
+`web-types.json` even though the accepted values are `1` to `6`. Heading is
+currently the only component with a numeric literal union prop.
+
+### Props types must intersect the shared base directly
+
+Per-component props must be declared as
+`DBHeadingBaseDefaultProps & GlobalProps & AlignmentProps`, not via a bare alias
+hop such as `DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps`. The
+custom-elements analyzer stops resolving at the second alias hop, which publishes
+every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
+the real union and JSDoc.
+
 ## Examples (`src/components/**/examples/`)
 
 Examples are the **single source of truth** for component usage. They are used to generate:

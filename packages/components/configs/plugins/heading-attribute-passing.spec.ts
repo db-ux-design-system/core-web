@@ -86,7 +86,7 @@ describe('static heading attribute passing', () => {
 			'DBHeadingH2'
 		);
 		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(1);
-		expect(result).toContain("props['class' + 'Name'] ?? props.class");
+		expect(result).toContain('props.className ?? props.class');
 		expect(result).toContain(
 			'withDefaults(defineProps<DBHeadingH2Props>()'
 		);
@@ -108,19 +108,22 @@ describe('static heading attribute passing', () => {
 		);
 	});
 
-	it('requires the Angular semanticLevel input and removes host semantics', () => {
+	it('removes host semantics for Angular and keeps semanticLevel optional at runtime', () => {
 		const result = transformHeadingAttributePassing(
 			angularCustomHeading,
 			'angular',
 			'DBCustomHeading'
 		);
-		expect(result).toContain(
-			'input.required<DBCustomHeadingProps["semanticLevel"]>()'
-		);
 		expect(result).toContain('parent.removeAttribute("role")');
 		expect(result).toContain('parent.removeAttribute("aria-level")');
 		expect(result).toContain(
 			"attr.name !== 'data-density' && attr.name !== 'aria-level' &&"
+		);
+		// A required input would throw NG0950 in Angular while every other target
+		// falls back to level 2, so the runtime behaviour must stay uniform.
+		expect(result).not.toContain('input.required');
+		expect(result).toContain(
+			'input<DBCustomHeadingProps["semanticLevel"]>()'
 		);
 	});
 
@@ -130,6 +133,8 @@ describe('static heading attribute passing', () => {
 			'stencil',
 			'DBCustomHeading'
 		);
+		// Type-level only: keeps the `?? 2` runtime fallback reachable while making
+		// `semanticLevel` the one required member of `JSX.DbCustomHeading`.
 		expect(result).toContain(
 			'@Prop() semanticLevel!: DBCustomHeadingProps["semanticLevel"]'
 		);

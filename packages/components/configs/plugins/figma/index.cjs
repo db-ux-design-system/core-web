@@ -696,6 +696,22 @@ module.exports = () => ({
 				...nestedInstancesToArrayEntries
 			];
 			if (attrBindingsByComponent?.size > 1) {
+				// This branch injects per component tag, which only covers the
+				// attribute props collected in `attrBindingsByComponent`. The other
+				// entry kinds have no per-component handling at all and would be
+				// dropped silently, so fail fast instead of generating an
+				// incomplete Code Connect snippet.
+				const unsupported = [
+					...validationMessageEntries,
+					...conditionalPropEntries,
+					...nestedInstancesToArrayEntries
+				].map(([propName]) => propName);
+				if (unsupported.length > 0) {
+					throw new Error(
+						`[figma plugin] ${json.name}: ${unsupported.join(', ')} cannot be injected into a multi-component example. Extend the per-component injection before using these prop types here.`
+					);
+				}
+
 				const dashCase = (value) =>
 					value
 						.replace(

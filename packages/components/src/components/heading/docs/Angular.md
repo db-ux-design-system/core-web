@@ -31,7 +31,7 @@ Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never fr
 
 ### Content, attributes and accessibility
 
-Default content must be phrasing content and defines the accessible heading name. Mark decorative children with `aria-hidden="true"`. Standard `aria-*`, `data-*`, class, style, and id attributes are forwarded to the native heading.
+Default content must be phrasing content and defines the accessible heading name. Mark decorative children with `aria-hidden="true"`. Standard `aria-*`, `data-*`, `class`, and `style` attributes are forwarded from the host element to the native heading. `id` is a regular input, not a forwarded attribute, and is rendered on the native heading.
 
 ```html
 <db-heading-h-2 id="account-heading" data-track-id="account">

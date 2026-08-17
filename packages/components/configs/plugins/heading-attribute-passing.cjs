@@ -132,10 +132,12 @@ const transformVue = (code, componentName, heading) => {
 		);
 	}
 	// Vue consumers use `class`, React consumers use `className`, so both
-	// aliases must be honoured without exposing a literal that Mitosis rewrites.
+	// aliases are honoured. Heading is not part of the deprecated post-build
+	// registry, so the plain `className` literal is safe here: nothing rewrites
+	// it to `props.class` afterwards.
 	changed = changed.replace(
 		classBinding[0],
-		`:class="${classBinding[1].replace('className', "props['class' + 'Name'] ?? props.class")}"`
+		`:class="${classBinding[1].replace('className', 'props.className ?? props.class')}"`
 	);
 	const propsDeclaration = `const props = defineProps<${heading.propsType}>();`;
 	let changedCode = replaceMarker(
@@ -192,18 +194,26 @@ const transformCustomHeadingAttributePassing = (
 	return changedCode;
 };
 
-const transformAngular = (code, componentName) => {
-	if (componentName !== 'DBCustomHeading') return code;
-	const semanticLevelInput = 'input<DBCustomHeadingProps["semanticLevel"]>()';
-	return replaceMarker(
-		transformCustomHeadingAttributePassing(code, componentName, 'angular'),
-		semanticLevelInput,
-		'input.required<DBCustomHeadingProps["semanticLevel"]>()',
-		componentName,
-		'angular'
-	);
-};
+/*
+ * `semanticLevel` must be required at compile time and forgiving at runtime, so
+ * that untyped consumers (plain HTML, Web Components) still get a usable heading
+ * via the `?? 2` fallback instead of a broken page.
+ *
+ * Angular is therefore NOT switched to `input.required`: that turns a missing
+ * value into an NG0950 runtime error, while react, vue and stencil resolve to
+ * level 2. No other generated component in this repository uses `input.required`
+ * either. Angular consumers keep the compile-time requirement through
+ * `DBCustomHeadingProps`.
+ */
+const transformAngular = (code, componentName) =>
+	transformCustomHeadingAttributePassing(code, componentName, 'angular');
 
+/*
+ * Stencil is different: the definite-assignment assertion is purely type-level.
+ * It makes `semanticLevel` the only non-optional member of `JSX.DbCustomHeading`
+ * and leaves the runtime fallback intact, which is exactly the intended
+ * contract. See `showcases/stencil-showcase/src/heading.type-test.ts`.
+ */
 const transformStencil = (code, componentName) => {
 	if (componentName !== 'DBCustomHeading') return code;
 	return replaceMarker(
