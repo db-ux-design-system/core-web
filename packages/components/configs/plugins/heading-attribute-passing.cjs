@@ -195,18 +195,31 @@ const transformCustomHeadingAttributePassing = (
 };
 
 /*
- * `semanticLevel` must be required at compile time and forgiving at runtime, so
- * that untyped consumers (plain HTML, Web Components) still get a usable heading
- * via the `?? 2` fallback instead of a broken page.
+ * `semanticLevel` is required in `DBCustomHeadingProps`, so every target enforces
+ * it as strictly as its framework allows, and the `?? 2` fallback in the
+ * component only covers untyped runtime usage (plain HTML, Web Components).
  *
- * Angular is therefore NOT switched to `input.required`: that turns a missing
- * value into an NG0950 runtime error, while react, vue and stencil resolve to
- * level 2. No other generated component in this repository uses `input.required`
- * either. Angular consumers keep the compile-time requirement through
- * `DBCustomHeadingProps`.
+ * For Angular that means `input.required`, for two reasons:
+ *  - It makes the template type checker reject `<db-custom-heading>` without
+ *    `[semanticLevel]` (NG8008). Plain `input()` would silently accept it and
+ *    render an `aria-level="2"` heading, which is the wrong level far more often
+ *    than not.
+ *  - Mitosis emits the annotation `InputSignal<DBCustomHeadingProps["semanticLevel"]>`
+ *    from the prop type. Because that type excludes `undefined`, plain
+ *    `input<T>()` returns `InputSignal<T | undefined>` and fails to compile under
+ *    the `strict: true` config of `output/angular`.
  */
-const transformAngular = (code, componentName) =>
-	transformCustomHeadingAttributePassing(code, componentName, 'angular');
+const transformAngular = (code, componentName) => {
+	if (componentName !== 'DBCustomHeading') return code;
+	const semanticLevelInput = 'input<DBCustomHeadingProps["semanticLevel"]>()';
+	return replaceMarker(
+		transformCustomHeadingAttributePassing(code, componentName, 'angular'),
+		semanticLevelInput,
+		'input.required<DBCustomHeadingProps["semanticLevel"]>()',
+		componentName,
+		'angular'
+	);
+};
 
 /*
  * Stencil is different: the definite-assignment assertion is purely type-level.

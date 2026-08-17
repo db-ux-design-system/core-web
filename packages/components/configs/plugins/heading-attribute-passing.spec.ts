@@ -108,22 +108,22 @@ describe('static heading attribute passing', () => {
 		);
 	});
 
-	it('removes host semantics for Angular and keeps semanticLevel optional at runtime', () => {
+	it('requires the Angular semanticLevel input and removes host semantics', () => {
 		const result = transformHeadingAttributePassing(
 			angularCustomHeading,
 			'angular',
 			'DBCustomHeading'
 		);
+		// Required for the template type check (NG8008) and because the annotation
+		// Mitosis emits excludes `undefined`, which plain `input()` cannot satisfy
+		// under the strict config of `output/angular`.
+		expect(result).toContain(
+			'input.required<DBCustomHeadingProps["semanticLevel"]>()'
+		);
 		expect(result).toContain('parent.removeAttribute("role")');
 		expect(result).toContain('parent.removeAttribute("aria-level")');
 		expect(result).toContain(
 			"attr.name !== 'data-density' && attr.name !== 'aria-level' &&"
-		);
-		// A required input would throw NG0950 in Angular while every other target
-		// falls back to level 2, so the runtime behaviour must stay uniform.
-		expect(result).not.toContain('input.required');
-		expect(result).toContain(
-			'input<DBCustomHeadingProps["semanticLevel"]>()'
 		);
 	});
 

@@ -75,23 +75,34 @@ fallthrough overrides them after rendering), and angular plus stencil remove
 both attributes from the custom-element host before forwarding the remaining
 attributes.
 
-### `semanticLevel` is required at compile time and forgiving at runtime
+### `semanticLevel` is required per target, with a fallback only for untyped usage
 
-`semanticLevel` is non-optional in `DBCustomHeadingProps`, so every typed
-consumer gets a compile-time error. At runtime all four targets must fall back to
-`aria-level="2"` via the `?? 2` in `custom-heading.lite.tsx`, because plain HTML
-and Web Component usage is not type-checked and a missing level must not break
-the page.
+`semanticLevel` is non-optional in `DBCustomHeadingProps`. Every target must
+enforce that as strictly as its framework allows, because a wrong heading level is
+an accessibility defect that is invisible in the rendered page. The `?? 2` in
+`custom-heading.lite.tsx` is **only** the safety net for usage that cannot be type
+checked at all — plain HTML and Web Components — so that a missing level degrades
+instead of breaking the page.
 
-**Do not enforce the prop per framework.** Angular's `input.required` turns the
-same omission into an NG0950 runtime error while react, vue and stencil resolve to
-level 2 — the identical markup then behaves differently per target. No other
-generated component in this repository uses `input.required`.
+Two generator transforms in `configs/plugins/heading-attribute-passing.cjs`
+implement this and must not be removed:
 
-The Stencil definite-assignment assertion (`semanticLevel!`) is the one exception
-and must stay: it is purely type-level, makes `semanticLevel` the only
-non-optional member of `JSX.DbCustomHeading`, and leaves the runtime fallback
-reachable. `showcases/stencil-showcase/src/heading.type-test.ts` guards this.
+- **Angular: `input.required`.** It makes the template type checker reject
+  `<db-custom-heading>` without `[semanticLevel]` (NG8008). Plain `input()` would
+  accept it silently. It is also required to compile: Mitosis emits the annotation
+  `InputSignal<DBCustomHeadingProps["semanticLevel"]>` from the prop type, and
+  because that type excludes `undefined`, plain `input<T>()` returns
+  `InputSignal<T | undefined>` and fails under the `strict: true` config of
+  `output/angular`. Removing it breaks `build-outputs:ngx-core-components` with
+  TS2322.
+- **Stencil: `semanticLevel!`.** Purely type-level. It makes `semanticLevel` the
+  only non-optional member of `JSX.DbCustomHeading` while leaving the runtime
+  fallback reachable. `showcases/stencil-showcase/src/heading.type-test.ts`
+  guards this.
+
+Angular therefore fails earlier than the other targets for the same omission.
+That asymmetry is intentional: it is the strictest enforcement each framework
+offers, not an inconsistency to be levelled out.
 
 Note that the custom-elements analyzer cannot serialize numeric literal unions,
 so `semantic-level` is published as `string` in `custom-elements.json` and
