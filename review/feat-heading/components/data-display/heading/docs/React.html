@@ -1,42 +1,45 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-heading/_next/static/css/b7e6a828c15b8600.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-heading/_next/static/css/b7e6a828c15b8600.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-heading/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-heading/_next/static/chunks/webpack-ed22403373713e4b.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/main-24562692f7d44ef8.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/pages/_app-0f1b097a0835416b.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/pages/components/data-display/heading/docs/React-f772bd81eaf0ead8.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/mDmQ4iOpNJkWYJPKzrCfd/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/mDmQ4iOpNJkWYJPKzrCfd/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-heading/_next/static/css/d4befccb7453540a.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-heading/_next/static/css/d4befccb7453540a.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-heading/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-heading/_next/static/chunks/webpack-ed22403373713e4b.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/main-24562692f7d44ef8.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/pages/_app-0f1b097a0835416b.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/chunks/pages/components/data-display/heading/docs/React-5d0e31d3652c8d53.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/CjLfOyvofFxqFnRkjI3SJ/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-heading/_next/static/CjLfOyvofFxqFnRkjI3SJ/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
 <blockquote>
-<p><strong>Beta:</strong> <code>DBHeading</code> is available as a beta component. Its API and visual design may change before the stable release.</p>
+<p><strong>Beta:</strong> The Heading components are available as beta components. Their API and visual design may change before the stable release.</p>
 </blockquote>
 <p>For installation and configuration, see <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components"><code>@db-ux/react-core-components</code></a>.</p>
 <h3 id="semantics-and-visual-size">Semantics and visual size<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=semantics-and-visual-size"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>semantics-and-visual-size<!-- --> anchor link</a></h3>
-<p><code>as</code> is required and renders exactly one native <code>h1</code> through <code>h6</code>. Choose the level from the document hierarchy, never from the desired appearance. <code>size</code> changes only the visual headline size and does not change the accessible heading level. If <code>size</code> is omitted, the mapping is <code>h1</code>/<code>xl</code>, <code>h2</code>/<code>lg</code>, <code>h3</code>/<code>md</code>, <code>h4</code>/<code>sm</code>, <code>h5</code>/<code>xs</code>, and <code>h6</code>/<code>2xs</code>.</p>
-<pre><code class="language-tsx">import { DBHeading } from &quot;@db-ux/react-core-components&quot;;
+<p>Choose <code>DBHeadingH1</code> through <code>DBHeadingH6</code> from the document hierarchy, never from the desired appearance. <code>size</code> changes only the visual headline size. Without <code>size</code>, the mapping is <code>h1</code>/<code>xl</code>, <code>h2</code>/<code>lg</code>, <code>h3</code>/<code>md</code>, <code>h4</code>/<code>sm</code>, <code>h5</code>/<code>xs</code>, and <code>h6</code>/<code>2xs</code>.</p>
+<pre><code class="language-tsx">import { DBHeadingH6 } from &quot;@db-ux/react-core-components&quot;;
 
 export const ArticleHeading = () =&gt; (
-	&lt;DBHeading as=&quot;h6&quot; size=&quot;2xl&quot;&gt;
-		A level-six heading displayed at 2xl
-	&lt;/DBHeading&gt;
+	&lt;DBHeadingH6 size=&quot;2xl&quot;&gt;A level-six heading displayed at 2xl&lt;/DBHeadingH6&gt;
 );
 </code></pre>
-<p>All visual sizes (<code>3xl</code>, <code>2xl</code>, <code>xl</code>, <code>lg</code>, <code>md</code>, <code>sm</code>, <code>xs</code>, <code>2xs</code>, <code>3xs</code>) are valid with every semantic level. <code>fontWeight</code> accepts <code>black</code> (default) and <code>light</code>.</p>
-<h3 id="alignment-density-and-spacing">Alignment, density and spacing<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=alignment-density-and-spacing"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>alignment-density-and-spacing<!-- --> anchor link</a></h3>
-<p><code>alignment=&quot;start&quot;</code> is the default. <code>start</code> and <code>end</code> are logical values and therefore follow the writing direction in RTL layouts; <code>center</code> remains centered. Existing density tokens provide responsive typography automatically. Long headings use <code>text-wrap: balance</code> and safe wrapping.</p>
-<p><code>paragraphSpacing</code> is opt-in: omitted or <code>false</code> keeps every margin at zero, while <code>true</code> adds exactly <code>1lh</code> at block-end only.</p>
-<pre><code class="language-tsx">&lt;DBHeading
-	as=&quot;h2&quot;
+<p>All visual sizes (<code>3xl</code> through <code>3xs</code>) work with every semantic level. <code>fontWeight</code> accepts <code>black</code> (default) and <code>light</code>. Logical <code>alignment</code> values follow the writing direction. <code>paragraphSpacing</code> adds exactly <code>1lh</code> at block-end when enabled. Density tokens provide responsive typography.</p>
+<pre><code class="language-tsx">&lt;DBHeadingH2
 	alignment=&quot;end&quot;
 	fontWeight=&quot;light&quot;
 	paragraphSpacing
 	data-density=&quot;expressive&quot;
 &gt;
 	Responsive heading
-&lt;/DBHeading&gt;
+&lt;/DBHeadingH2&gt;
 </code></pre>
-<h3 id="slots-attributes-and-accessibility">Slots, attributes and accessibility<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=slots-attributes-and-accessibility"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>slots-attributes-and-accessibility<!-- --> anchor link</a></h3>
-<p><code>children</code> is the main heading content. <code>startSlot</code> and <code>endSlot</code> render before and after it and must contain phrasing content only. Text in any of these areas contributes to the accessible heading name. Mark decorative adornments with <code>aria-hidden=&quot;true&quot;</code>; avoid interactive controls inside headings unless the interaction receives a dedicated accessibility review.</p>
-<pre><code class="language-tsx">&lt;DBHeading
-	as=&quot;h2&quot;
-	id=&quot;account-heading&quot;
-	data-track-id=&quot;account&quot;
-	startSlot={&lt;span aria-hidden=&quot;true&quot;&gt;[&lt;/span&gt;}
-	endSlot={&lt;span aria-hidden=&quot;true&quot;&gt;]&lt;/span&gt;}
-&gt;
-	Account
-&lt;/DBHeading&gt;
+<h3 id="content-attributes-and-accessibility">Content, attributes and accessibility<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=content-attributes-and-accessibility"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>content-attributes-and-accessibility<!-- --> anchor link</a></h3>
+<p>Children must be phrasing content and define the accessible heading name. Keep decorative children in their intended order and mark them with <code>aria-hidden=&quot;true&quot;</code>. Avoid interactive controls inside headings unless the interaction receives a dedicated accessibility review.</p>
+<pre><code class="language-tsx">&lt;DBHeadingH2 id=&quot;account-heading&quot; data-track-id=&quot;account&quot;&gt;
+	&lt;span aria-hidden=&quot;true&quot;&gt;[&lt;/span&gt;Account&lt;span aria-hidden=&quot;true&quot;&gt;]&lt;/span&gt;
+&lt;/DBHeadingH2&gt;
 </code></pre>
-<p>Native <code>aria-*</code>, <code>data-*</code>, <code>title</code>, <code>style</code>, <code>className</code>, and <code>id</code> attributes are forwarded to the active native heading. Changing <code>size</code> never changes its semantic or ARIA level.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/heading/docs/React","query":{},"buildId":"mDmQ4iOpNJkWYJPKzrCfd","assetPrefix":"/core-web/review/feat-heading","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+<p>Native <code>aria-*</code>, <code>data-*</code>, <code>title</code>, <code>style</code>, <code>className</code>, and <code>id</code> attributes are forwarded to the native heading.</p>
+<h3 id="custom-heading-content">Custom heading content<a class="header-link" href="/core-web/review/feat-heading/components/data-display/heading/docs/React?current=custom-heading-content"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>custom-heading-content<!-- --> anchor link</a></h3>
+<p>Prefer the native Heading components whenever possible. Use <code>DBCustomHeading</code> when the heading must contain arbitrary children that cannot be phrasing content. It always renders a <code>div</code> with <code>role=&quot;heading&quot;</code>; the required <code>semanticLevel</code> sets <code>aria-level</code> and determines the default visual size. An explicit <code>size</code> changes only the appearance.</p>
+<pre><code class="language-tsx">import { DBCustomHeading } from &quot;@db-ux/react-core-components&quot;;
+
+export const CustomArticleHeading = () =&gt; (
+	&lt;DBCustomHeading semanticLevel={2} size=&quot;xl&quot;&gt;
+		&lt;span aria-hidden=&quot;true&quot;&gt;[&lt;/span&gt;
+		&lt;div&gt;Arbitrary custom content&lt;/div&gt;
+		&lt;strong&gt; inside one accessible heading&lt;/strong&gt;
+		&lt;span aria-hidden=&quot;true&quot;&gt;]&lt;/span&gt;
+	&lt;/DBCustomHeading&gt;
+);
+</code></pre>
+<p>The children must together describe one concise heading. Do not nest another native heading or an element with <code>role=&quot;heading&quot;</code>, because that would expose duplicate heading semantics. Decorative children need <code>aria-hidden=&quot;true&quot;</code>; child components with their own typography may intentionally override inherited Heading styles.</p>
+<p><code>role</code> and <code>aria-level</code> are always derived from the component, so a manually passed <code>aria-level</code> is ignored. Change <code>semanticLevel</code> to change the exposed level.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/heading/docs/React","query":{},"buildId":"CjLfOyvofFxqFnRkjI3SJ","assetPrefix":"/core-web/review/feat-heading","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
