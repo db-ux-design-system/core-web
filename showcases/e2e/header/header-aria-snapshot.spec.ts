@@ -3,18 +3,16 @@ import { isStencil, runAriaSnapshotTest } from '../default.ts';
 
 const path = '01/header';
 test.describe('DBHeader', () => {
-	test.describe('aria snapshot', () => {
-		if (isStencil(process.env.showcase)) {
-			test.skip();
-		}
-
+	// Registered conditionally instead of via `test.skip()` in a nested describe,
+	// so the test title — and with it the committed snapshot path — stays stable.
+	if (!isStencil(process.env.showcase)) {
 		runAriaSnapshotTest({ path });
-	});
+	}
 
 	// Runs for every showcase, including stencil: a slotted element exists at
 	// exactly one position in the DOM, so the web component build fills the
 	// desktop `metaNavigation` slot while the drawer uses its own
-	// `mobileMetaNavigation` slot (see `overwrites.stencil` for the header).
+	// `mobileMetaNavigation` slot (see `configs/plugins/stencil/slot-names.cjs`).
 	// Regressions move the meta navigation into the closed drawer, which shifts
 	// every page's layout and would otherwise only surface as a pixel diff.
 	test('renders meta navigation in the header bar, not inside the drawer', async ({
