@@ -142,7 +142,7 @@ During code review, **do not flag empty `DefaultProps`/`DefaultState` types as d
 7. Edit the `.scss` for style changes
 8. Add or update examples in `src/components/[name]/examples/`
 9. Run `pnpm run build` to verify
-10. Add a changeset for `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all framework output packages
+10. Add a changeset for `@db-ux/core-components` **and** all four framework output packages — always all five, whether SCSS, `model.ts` or the template changed (see Changeset Rules below)
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
@@ -285,26 +285,16 @@ Alternatively, consider naming the prop without the `default` prefix (e.g. `init
 
 ## Changeset Rules
 
-Changes in `packages/components/src` require a changeset. Which packages to include depends on **what** changed:
+Consumer-facing changes in `packages/components/src` require a changeset. Which packages to list, which bump type to pick, and all exceptions (code-style-only changes, test/showcase-only changes, internal `_`-prefixed state properties) are defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets). That file always applies — do not duplicate its rules here.
 
-| What changed                                                                      | Packages to include                                                                                                                             |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`                                                                                                                        |
-| **Component logic or templates** (model.ts, component files processed by Mitosis) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| **Both**                                                                          | All five packages                                                                                                                               |
+Only these package-specific details are added on top:
 
-**Scope the packages to what is actually affected:**
+- **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
+    - `components.ts` keys every entry by target: a changed `overwrites.angular` / `config.react` block hits that target only, an `overwrites.global` entry hits all four.
+    - `index.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
+    - `copy-files.ts` (and `frameworks.ts`, which only that file imports) copies spec and Playwright files, gated on `react`/`vue`. Those files are never published, so such a change usually needs no changeset at all; if it does become consumer-facing, it is React and Vue.
+    - For a changed shared helper, grep its callers: whichever of `angular.ts`, `react.ts`, `vue.ts`, `stencil.ts` reaches it defines the list.
 
-- Changes in shared code (components, `model.ts`, shared utils) → all framework packages
-- Changes in framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`) → only the affected framework package
-- Changes in styling (SCSS/CSS) or HTML (template within the components) → `@db-ux/core-components` + all framework packages
+    Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
 
-Bump types:
-
-- `patch` — bug fix
-- `minor` — new feature or example, or any prop added in `model.ts`
-- `major` — any prop in `model.ts` removed, renamed, or retyped
-
-**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
-
-**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
+- **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
