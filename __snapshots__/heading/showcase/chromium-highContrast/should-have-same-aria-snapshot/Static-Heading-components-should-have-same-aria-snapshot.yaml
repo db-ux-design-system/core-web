@@ -1,5 +1,5 @@
 - main:
-  - heading "Static Heading Components" [level=1]
+  - heading "Heading" [level=1]
   - link "Semantic Levels"
   - heading "h1 maps to xl" [level=1]
   - heading "h2 maps to lg" [level=2]
