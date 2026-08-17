@@ -1,0 +1,12 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{i as n,n as r,r as i,t as a}from"./heading-h2-BQI7zgPp.js";var o,s,c,l,u,d;function f(){return(f=e((()=>{n(),r(),o=t(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBHeadingH2/Accessible children`,component:a,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`3xl`,`2xl`,`xl`,`lg`,`md`,`sm`,`xs`,`2xs`,`3xs`]},fontWeight:{control:`select`,options:[`black`,`light`]},alignment:{control:`select`,options:[`start`,`center`,`end`]},paragraphSpacing:{control:`boolean`},children:{control:`text`},className:{control:`text`},id:{control:`text`}}},l={args:{children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(`span`,{"aria-hidden":`true`,children:`★ `}),(0,o.jsx)(`span`,{children:`Current disruptions`}),(0,o.jsx)(`span`,{"aria-hidden":`true`,children:` ★`})]})},render:e=>(0,o.jsx)(a,{...e})},u={args:{semanticLevel:2,children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(`span`,{"aria-hidden":`true`,children:`★ `}),(0,o.jsx)(`div`,{className:`heading-inline-child`,children:`Custom content container`}),(0,o.jsx)(`strong`,{children:` with arbitrary children`}),(0,o.jsx)(`span`,{"aria-hidden":`true`,children:` ★`})]})},render:e=>(0,o.jsx)(i,{...e})},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "children": <><span aria-hidden="true">★ </span><span>Current disruptions</span><span aria-hidden="true"> ★</span></>
+  },
+  render: (properties: any) => <DBHeadingH2 {...properties} />
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "semanticLevel": 2,
+    "children": <><span aria-hidden="true">★ </span><div className="heading-inline-child">Custom content container</div><strong> with arbitrary children</strong><span aria-hidden="true"> ★</span></>
+  },
+  render: (properties: any) => <DBCustomHeading {...properties} />
+}`,...u.parameters?.docs?.source}}},d=[`NativeDecorativechildrenhiddenfromscreenreaders`,`CustomArbitrarychildrenwithoneaccessiblename`]})))()}f();export{u as CustomArbitrarychildrenwithoneaccessiblename,l as NativeDecorativechildrenhiddenfromscreenreaders,d as __namedExportsOrder,c as default};
