@@ -56,7 +56,20 @@
 	display: block;
 }
 
-.variants-list div[role] > div:not([class^="db-"], [data-area]),
+/*
+ Lets a Heading example keep a non-phrasing child inline without an inline
+ `style` attribute. A multi-line style object makes Prettier break the opening
+ tag in the generated Vue SFC and Angular template, which puts the text on its
+ own line; both compilers then keep it as a leading and trailing space while JSX
+ trims it, so the element renders wider in Vue and Angular than in React.
+*/
+.heading-inline-child {
+	display: inline;
+}
+
+.variants-list
+	div[role]
+	> div:not([class^="db-"], [data-area], .heading-inline-child),
 .variants-list > div:not([class^="db-"]) {
 	align-items: center;
 	display: flex;

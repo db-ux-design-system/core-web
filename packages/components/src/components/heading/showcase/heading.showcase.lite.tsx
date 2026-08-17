@@ -9,7 +9,8 @@ import HeadingChildrenAccessibility from '../examples/children-accessibility.exa
 import HeadingDensity from '../examples/density.example.lite';
 import HeadingFontWeight from '../examples/font-weight.example.lite';
 import HeadingParagraphSpacing from '../examples/paragraph-spacing.example.lite';
-import HeadingPermalink from '../examples/permalink.example.lite';
+// The permalink example is kept but hidden from the showcases for now.
+// import HeadingPermalink from '../examples/permalink.example.lite';
 import HeadingSemanticLevels from '../examples/semantic-levels.example.lite';
 import HeadingSizes from '../examples/sizes.example.lite';
 
@@ -59,11 +60,13 @@ export default function HeadingShowcase(props: PatternhubProps) {
 						<HeadingAttributeForwarding />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
+				{/* Hidden from the showcases for now, the example itself is kept.
 				<LinkWrapperShowcase exampleName="Permalink">
 					<CardWrapperShowcase>
 						<HeadingPermalink />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
+				*/}
 				<LinkWrapperShowcase exampleName="Decorative Children Hidden From Screen Readers">
 					<CardWrapperShowcase>
 						<HeadingChildrenAccessibility />

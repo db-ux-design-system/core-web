@@ -31,7 +31,7 @@ export default function HeadingPermalink() {
 				id="custom-installation"
 				class="heading-permalink"
 				aria-label="Custom installation">
-				<div style={{ display: 'inline' }}>Custom installation</div>
+				<span>Custom installation</span>
 				<a
 					class="db-link heading-permalink-link"
 					href="#custom-installation"

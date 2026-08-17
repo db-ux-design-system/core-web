@@ -24,9 +24,7 @@ export default function HeadingChildrenAccessibility() {
 			</DBHeadingH2>
 			<DBCustomHeading semanticLevel={2}>
 				<span aria-hidden="true">★ </span>
-				<div style={{ display: 'inline' }}>
-					Custom content container
-				</div>
+				<div class="heading-inline-child">Custom content container</div>
 				<strong> with arbitrary children</strong>
 				<span aria-hidden="true"> ★</span>
 			</DBCustomHeading>

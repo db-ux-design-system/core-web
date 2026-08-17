@@ -7,7 +7,14 @@ const vue = require('./vue/index.cjs');
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
-	files: ['**/*.example.lite.tsx', '**/examples/data.ts', '**/model.ts'],
+	files: [
+		'**/*.example.lite.tsx',
+		// The permalink example is kept but currently hidden from the showcases,
+		// so it must not show up in Storybook either.
+		'!**/heading/examples/permalink.example.lite.tsx',
+		'**/examples/data.ts',
+		'**/model.ts'
+	],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
 	getTargetPath: ({ target }) => {
