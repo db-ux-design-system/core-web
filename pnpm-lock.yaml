@@ -108,8 +108,8 @@ importers:
         specifier: 0.49.1
         version: 0.49.1(supports-color@10.2.2)
       npm-package-json-lint:
-        specifier: 10.5.0
-        version: 10.5.0(supports-color@10.2.2)
+        specifier: 10.5.1
+        version: 10.5.1(supports-color@10.2.2)
       npm-run-all2:
         specifier: 9.0.3
         version: 9.0.3
@@ -7564,11 +7564,6 @@ packages:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
 
-  ajv-errors@3.0.0:
-    resolution: {integrity: sha512-V3wD15YHfHz6y0KdhYFjyy9vWtEVALT9UrxfN3zqlI6dMioHnJrqOYfyPKol3oqrnCM9uwkcdCwkJ0WUcbLMTQ==}
-    peerDependencies:
-      ajv: ^8.0.1
-
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
     peerDependencies:
@@ -12684,8 +12679,8 @@ packages:
     resolution: {integrity: sha512-69XQh3k+dtGa1p+7RaR57IuG3rCko96xr/nUfN4yDYBXbTYICiWcOpsFKLN2GtGE9cyIljE+f1exnaYt9MvM+Q==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
-  npm-package-json-lint@10.5.0:
-    resolution: {integrity: sha512-eVz3lgFTs2gc6wrSxlnWIop1TH3WURTFFrX4enUAtn4Zqqc5xtT/ANIwBbMC+Pc+tVig8uay9S660wx93dQiug==}
+  npm-package-json-lint@10.5.1:
+    resolution: {integrity: sha512-KvphpY9PVN8Le6spIXH9LXdSPPiaeG6HBk/PRCmtOn8vY/gsnUpXCfFBZBRUpPMVjv7dsfCU2jOPao4ao3Z2Hg==}
     engines: {node: '>=22.0.0', npm: '>=10.0.0'}
     hasBin: true
 
@@ -24101,10 +24096,6 @@ snapshots:
 
   agent-base@7.1.4: {}
 
-  ajv-errors@3.0.0(ajv@8.20.0):
-    dependencies:
-      ajv: 8.20.0
-
   ajv-formats@2.1.1(ajv@8.20.0):
     optionalDependencies:
       ajv: 8.20.0
@@ -30664,10 +30655,8 @@ snapshots:
       semver: 7.8.5
       validate-npm-package-name: 8.0.0
 
-  npm-package-json-lint@10.5.0(supports-color@10.2.2):
+  npm-package-json-lint@10.5.1(supports-color@10.2.2):
     dependencies:
-      ajv: 8.20.0
-      ajv-errors: 3.0.0(ajv@8.20.0)
       chalk: 4.1.2
       cosmiconfig: 10.0.0
       debug: 4.4.3(supports-color@10.2.2)
