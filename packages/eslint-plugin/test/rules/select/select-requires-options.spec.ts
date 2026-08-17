@@ -54,6 +54,12 @@ describe('select-requires-options', () => {
 			},
 			{
 				code: '<db-select label="Country" [options]="options"></db-select>'
+			},
+			{
+				code: '<db-select label="Something">@for (opt of ["a", "b"]; track opt) { <option [value]="opt">{{ opt }}</option> }</db-select>'
+			},
+			{
+				code: '<db-select label="Something">@if (showOptions) { <option value="x">X</option> }</db-select>'
 			}
 		],
 		invalid: [
