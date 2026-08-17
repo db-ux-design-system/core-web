@@ -78,8 +78,8 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "4.12.1",
-    "@changesets/cli": "2.31.1",
-    "@changesets/types": "6.1.0",
+    "@changesets/cli": "3.0.0",
+    "@changesets/types": "7.0.0",
     "@commitlint/cli": "21.2.2",
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-eslint-plugin": "workspace:*",
