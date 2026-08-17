@@ -8,11 +8,11 @@ For installation and configuration, see [`@db-ux/ngx-core-components`](https://w
 
 ```ts
 import { Component } from "@angular/core";
-import { DBHeadingH2 } from "@db-ux/ngx-core-components";
+import { DBCustomHeading, DBHeadingH2 } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-example",
-	imports: [DBHeadingH2],
+	imports: [DBCustomHeading, DBHeadingH2],
 	standalone: true,
 	templateUrl: "./example.component.html"
 })
@@ -38,3 +38,20 @@ Default content must be phrasing content and defines the accessible heading name
 	<span aria-hidden="true">[</span>Account<span aria-hidden="true">]</span>
 </db-heading-h-2>
 ```
+
+### Custom heading content
+
+Prefer the native components whenever possible. `DBCustomHeading` accepts arbitrary children and renders a fixed `div` with `role="heading"`. Its required `semanticLevel` sets `aria-level` and the default visual size.
+
+```html
+<db-custom-heading [semanticLevel]="2" size="xl">
+	<span aria-hidden="true">[</span>
+	<div>Arbitrary custom content</div>
+	<strong> inside one accessible heading</strong>
+	<span aria-hidden="true">]</span>
+</db-custom-heading>
+```
+
+The children must form one concise accessible heading. Do not nest a native heading or another `role="heading"`. Mark decorative content with `aria-hidden="true"`; child components may intentionally override inherited Heading typography.
+
+`role` and `aria-level` are always derived from the component, so a manually passed `aria-level` is ignored. Change `semanticLevel` to change the exposed level.

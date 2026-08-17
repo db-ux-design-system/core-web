@@ -40,3 +40,26 @@ The default content must be phrasing content and defines the accessible heading 
 	<span aria-hidden="true">[</span>Account<span aria-hidden="true">]</span>
 </DBHeadingH2>
 ```
+
+### Custom heading content
+
+Prefer the native components whenever possible. `DBCustomHeading` accepts arbitrary children and renders a fixed `div` with `role="heading"`. Its required `semanticLevel` sets `aria-level` and the default visual size.
+
+```vue
+<script setup lang="ts">
+import { DBCustomHeading } from "@db-ux/v-core-components";
+</script>
+
+<template>
+	<DBCustomHeading :semantic-level="2" size="xl">
+		<span aria-hidden="true">[</span>
+		<div>Arbitrary custom content</div>
+		<strong> inside one accessible heading</strong>
+		<span aria-hidden="true">]</span>
+	</DBCustomHeading>
+</template>
+```
+
+The children must form one concise accessible heading. Do not nest a native heading or another `role="heading"`. Mark decorative content with `aria-hidden="true"`; child components may intentionally override inherited Heading typography.
+
+`role` and `aria-level` are always derived from the component, so a manually passed `aria-level` is ignored. Change `semanticLevel` to change the exposed level.

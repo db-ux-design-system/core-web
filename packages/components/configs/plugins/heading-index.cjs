@@ -23,15 +23,16 @@ const normalizeHeadingIndex = (targetContext, files) => {
 		indexFile.outputFilePath
 	);
 	const source = fs.readFileSync(filePath, 'utf-8');
-	const matches = source.match(/default as DBHeadingH[1-6]/g) ?? [];
-	if (matches.length !== 6) {
+	const matches =
+		source.match(/default as (?:DBCustomHeading|DBHeadingH[1-6])/g) ?? [];
+	if (matches.length !== 7) {
 		throw new Error(
-			`Static Heading index transform failed: expected 6 exports, found ${matches.length}`
+			`Heading index transform failed: expected 7 exports, found ${matches.length}`
 		);
 	}
 	fs.writeFileSync(
 		filePath,
-		source.replace(/default as (DBHeadingH[1-6])/g, '$1'),
+		source.replace(/default as (DBCustomHeading|DBHeadingH[1-6])/g, '$1'),
 		'utf-8'
 	);
 };

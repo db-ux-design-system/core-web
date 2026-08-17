@@ -57,11 +57,23 @@ scripts/
 
 ## Heading component family
 
-`src/components/heading/` intentionally contains six Mitosis component files,
-`heading-h1.lite.tsx` through `heading-h6.lite.tsx`. They form one documented
-component family with shared models, styles, examples, tests, and showcase.
-Each component has one fixed native heading root and must remain free of
-runtime tag switching and named heading slots.
+`src/components/heading/` contains six native Mitosis components,
+`heading-h1.lite.tsx` through `heading-h6.lite.tsx`, plus
+`custom-heading.lite.tsx`. They form one documented component family with
+shared models, styles, examples, tests, and showcase. The six native components
+have fixed matching heading roots. `DBCustomHeading` has a fixed `div` root with
+`role="heading"` and a required `semanticLevel` that sets `aria-level`. All
+Heading components must remain free of runtime tag switching and named heading
+slots.
+
+`role` and `aria-level` on `DBCustomHeading` must stay derived from the component
+in every framework, so consumers cannot expose a level that contradicts
+`semanticLevel`. `configs/plugins/heading-attribute-passing.cjs` enforces this per
+target: react excludes both from `filterPassingProps`, vue binds `$attrs` before
+them and sets `inheritAttrs: false` (otherwise Vue's automatic attribute
+fallthrough overrides them after rendering), and angular plus stencil remove
+both attributes from the custom-element host before forwarding the remaining
+attributes.
 
 ## Examples (`src/components/**/examples/`)
 

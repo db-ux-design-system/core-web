@@ -22,6 +22,11 @@ export type HeadingSizeType = (typeof HeadingSizeList)[number];
 export const HeadingFontWeightList = ['black', 'light'] as const;
 /** @public */
 export type HeadingFontWeightType = (typeof HeadingFontWeightList)[number];
+/** @public */
+export const HeadingSemanticLevelList = [1, 2, 3, 4, 5, 6] as const;
+/** @public */
+export type HeadingSemanticLevelType =
+	(typeof HeadingSemanticLevelList)[number];
 
 /** @public */
 export type DBHeadingBaseDefaultProps = {
@@ -38,60 +43,48 @@ export type DBHeadingBaseProps = DBHeadingBaseDefaultProps &
 	AlignmentProps;
 
 /** @public */
-export type DBHeadingH1DefaultProps = {
-	size?: HeadingSizeType;
-	fontWeight?: HeadingFontWeightType;
-	paragraphSpacing?: boolean | string;
+export type DBCustomHeadingDefaultProps = DBHeadingBaseDefaultProps & {
+	/** Defines the heading level exposed to assistive technologies. */
+	semanticLevel: HeadingSemanticLevelType;
 };
+/** @public */
+export type DBCustomHeadingProps = DBCustomHeadingDefaultProps &
+	GlobalProps &
+	AlignmentProps;
+
+/** @public */
+export type DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH1Props = DBHeadingH1DefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
-export type DBHeadingH2DefaultProps = {
-	size?: HeadingSizeType;
-	fontWeight?: HeadingFontWeightType;
-	paragraphSpacing?: boolean | string;
-};
+export type DBHeadingH2DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH2Props = DBHeadingH2DefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
-export type DBHeadingH3DefaultProps = {
-	size?: HeadingSizeType;
-	fontWeight?: HeadingFontWeightType;
-	paragraphSpacing?: boolean | string;
-};
+export type DBHeadingH3DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH3Props = DBHeadingH3DefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
-export type DBHeadingH4DefaultProps = {
-	size?: HeadingSizeType;
-	fontWeight?: HeadingFontWeightType;
-	paragraphSpacing?: boolean | string;
-};
+export type DBHeadingH4DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH4Props = DBHeadingH4DefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
-export type DBHeadingH5DefaultProps = {
-	size?: HeadingSizeType;
-	fontWeight?: HeadingFontWeightType;
-	paragraphSpacing?: boolean | string;
-};
+export type DBHeadingH5DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH5Props = DBHeadingH5DefaultProps &
 	GlobalProps &
 	AlignmentProps;
 /** @public */
-export type DBHeadingH6DefaultProps = {
-	size?: HeadingSizeType;
-	fontWeight?: HeadingFontWeightType;
-	paragraphSpacing?: boolean | string;
-};
+export type DBHeadingH6DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH6Props = DBHeadingH6DefaultProps &
 	GlobalProps &
 	AlignmentProps;
 
+export type DBCustomHeadingDefaultState = {};
+export type DBCustomHeadingState = DBCustomHeadingDefaultState & GlobalState;
 export type DBHeadingH1DefaultState = {};
 export type DBHeadingH1State = DBHeadingH1DefaultState & GlobalState;
 export type DBHeadingH2DefaultState = {};

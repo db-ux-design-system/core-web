@@ -36,3 +36,28 @@ Heading children must be phrasing content and define the accessible heading name
 ```
 
 Native headings accept standard attributes directly. Custom-element `aria-*`, `data-*`, class, style, and id attributes are forwarded to the native heading.
+
+### Custom heading content
+
+Prefer native headings whenever possible. Use `db-custom-heading` when arbitrary children require an ARIA-based heading container. `semantic-level` is required, maps to `aria-level`, and determines the default visual size.
+
+```html
+<db-custom-heading semantic-level="2" size="xl">
+	<span aria-hidden="true">[</span>
+	<div>Arbitrary custom content</div>
+	<strong> inside one accessible heading</strong>
+	<span aria-hidden="true">]</span>
+</db-custom-heading>
+```
+
+The equivalent CSS-only markup uses a fixed role and level:
+
+```html
+<div class="db-heading" role="heading" aria-level="2">
+	<div>Arbitrary custom content</div>
+</div>
+```
+
+The children must form one concise accessible heading. Do not nest a native heading or another element with `role="heading"`. Decorative children need `aria-hidden="true"`; child components may intentionally override inherited Heading typography.
+
+`role` and `aria-level` are always derived from the component, so an `aria-level` attribute set on `db-custom-heading` is ignored. Change `semantic-level` to change the exposed level.

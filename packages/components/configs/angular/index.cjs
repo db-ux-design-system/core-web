@@ -1,5 +1,6 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
 const angularPlugin = require('../plugins/angular/index.cjs');
+const headingAttributePassingPlugin = require('../plugins/heading-attribute-passing.cjs');
 const headingIndexPlugin = require('../plugins/heading-index.cjs');
 const angularSlotsPlugin = require('../plugins/angular/slots.cjs');
 const classNamePlugin = require('../plugins/angular/className.cjs');
@@ -23,6 +24,7 @@ module.exports = {
 		classNamePlugin,
 		onClickPlugin,
 		angularPlugin,
+		headingAttributePassingPlugin,
 		headingIndexPlugin,
 		routerLinkPlugin,
 		signalFormsPlugin

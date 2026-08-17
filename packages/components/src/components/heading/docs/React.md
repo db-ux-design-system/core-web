@@ -40,3 +40,24 @@ Children must be phrasing content and define the accessible heading name. Keep d
 ```
 
 Native `aria-*`, `data-*`, `title`, `style`, `className`, and `id` attributes are forwarded to the native heading.
+
+### Custom heading content
+
+Prefer the native Heading components whenever possible. Use `DBCustomHeading` when the heading must contain arbitrary children that cannot be phrasing content. It always renders a `div` with `role="heading"`; the required `semanticLevel` sets `aria-level` and determines the default visual size. An explicit `size` changes only the appearance.
+
+```tsx
+import { DBCustomHeading } from "@db-ux/react-core-components";
+
+export const CustomArticleHeading = () => (
+	<DBCustomHeading semanticLevel={2} size="xl">
+		<span aria-hidden="true">[</span>
+		<div>Arbitrary custom content</div>
+		<strong> inside one accessible heading</strong>
+		<span aria-hidden="true">]</span>
+	</DBCustomHeading>
+);
+```
+
+The children must together describe one concise heading. Do not nest another native heading or an element with `role="heading"`, because that would expose duplicate heading semantics. Decorative children need `aria-hidden="true"`; child components with their own typography may intentionally override inherited Heading styles.
+
+`role` and `aria-level` are always derived from the component, so a manually passed `aria-level` is ignored. Change `semanticLevel` to change the exposed level.

@@ -1,3 +1,4 @@
+export { default as DBCustomHeading } from './custom-heading';
 export { default as DBHeadingH1 } from './heading-h1';
 export { default as DBHeadingH2 } from './heading-h2';
 export { default as DBHeadingH3 } from './heading-h3';

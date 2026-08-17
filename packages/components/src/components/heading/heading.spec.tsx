@@ -2,6 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
 import {
+	DBCustomHeading,
 	DBHeadingH1,
 	DBHeadingH2,
 	DBHeadingH3,
@@ -20,6 +21,7 @@ const headings = [
 	['h5', DBHeadingH5],
 	['h6', DBHeadingH6]
 ] as const;
+const semanticLevels = [1, 2, 3, 4, 5, 6] as const;
 const sizes = [
 	'3xl',
 	'2xl',
@@ -42,6 +44,17 @@ const semanticHeadings: any = (
 		<DBHeadingH4>Level 4</DBHeadingH4>
 		<DBHeadingH5>Level 5</DBHeadingH5>
 		<DBHeadingH6>Level 6</DBHeadingH6>
+	</div>
+);
+
+const customSemanticHeadings: any = (
+	<div>
+		<DBCustomHeading semanticLevel={1}>Custom level 1</DBCustomHeading>
+		<DBCustomHeading semanticLevel={2}>Custom level 2</DBCustomHeading>
+		<DBCustomHeading semanticLevel={3}>Custom level 3</DBCustomHeading>
+		<DBCustomHeading semanticLevel={4}>Custom level 4</DBCustomHeading>
+		<DBCustomHeading semanticLevel={5}>Custom level 5</DBCustomHeading>
+		<DBCustomHeading semanticLevel={6}>Custom level 6</DBCustomHeading>
 	</div>
 );
 
@@ -250,5 +263,191 @@ test.describe('Static Heading components', () => {
 	test('matches the key variant screenshot', async ({ mount }) => {
 		const component = await mount(keyVariants);
 		await expect(component).toHaveScreenshot('key-variants.png');
+	});
+});
+
+test.describe('DBCustomHeading', () => {
+	test.use({ viewport: DEFAULT_VIEWPORT });
+
+	test('renders an ARIA heading instead of a native heading', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomHeading semanticLevel={2}>ARIA heading</DBCustomHeading>
+		);
+		expect(
+			await component.evaluate((element) => element.tagName.toLowerCase())
+		).toBe('div');
+		await expect(component).toHaveAttribute('role', 'heading');
+		await expect(component).toHaveClass(/db-heading/);
+		expect(await component.locator('h1, h2, h3, h4, h5, h6').count()).toBe(
+			0
+		);
+	});
+
+	for (const semanticLevel of semanticLevels) {
+		test(`exposes semantic level ${semanticLevel} as aria-level`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBCustomHeading semanticLevel={semanticLevel}>
+					Level {semanticLevel}
+				</DBCustomHeading>
+			);
+			await expect(component).toHaveAttribute(
+				'aria-level',
+				String(semanticLevel)
+			);
+			await expect(component).not.toHaveAttribute('data-size');
+		});
+	}
+
+	test('keeps the semantic level when the visual size differs', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomHeading semanticLevel={6} size="2xl">
+				Oversized level 6
+			</DBCustomHeading>
+		);
+		await expect(component).toHaveAttribute('aria-level', '6');
+		await expect(component).toHaveAttribute('data-size', '2xl');
+	});
+
+	for (const weight of weights) {
+		test(`supports font weight ${weight}`, async ({ mount }) => {
+			const component = await mount(
+				<DBCustomHeading semanticLevel={2} fontWeight={weight}>
+					{weight}
+				</DBCustomHeading>
+			);
+			await expect(component).toHaveAttribute('data-font-weight', weight);
+			if (weight === 'light')
+				await expect(component).toHaveCSS('font-weight', '300');
+		});
+	}
+
+	for (const alignment of alignments) {
+		test(`supports logical alignment ${alignment}`, async ({ mount }) => {
+			const component = await mount(
+				<DBCustomHeading semanticLevel={2} alignment={alignment}>
+					{alignment}
+				</DBCustomHeading>
+			);
+			await expect(component).toHaveCSS('text-align', alignment);
+		});
+	}
+
+	test('supports paragraph spacing states', async ({ mount }) => {
+		const omitted = await mount(
+			<DBCustomHeading semanticLevel={2}>Omitted</DBCustomHeading>
+		);
+		await expect(omitted).not.toHaveAttribute('data-paragraph-spacing');
+		expect(await readLogicalMargins(omitted)).toMatchObject({
+			blockStart: '0px',
+			blockEnd: '0px'
+		});
+		await omitted.unmount();
+
+		const disabled = await mount(
+			<DBCustomHeading semanticLevel={2} paragraphSpacing={false}>
+				False
+			</DBCustomHeading>
+		);
+		await expect(disabled).toHaveAttribute(
+			'data-paragraph-spacing',
+			'false'
+		);
+		expect(await readLogicalMargins(disabled)).toMatchObject({
+			blockStart: '0px',
+			blockEnd: '0px'
+		});
+		await disabled.unmount();
+
+		const enabled = await mount(
+			<DBCustomHeading semanticLevel={2} paragraphSpacing>
+				True
+			</DBCustomHeading>
+		);
+		const margins = await readLogicalMargins(enabled);
+		expect(Number.parseFloat(margins.blockEnd)).toBeCloseTo(
+			Number.parseFloat(margins.lineHeight),
+			2
+		);
+	});
+
+	test('forwards native attributes and resolves ids', async ({ mount }) => {
+		const component = await mount(
+			<DBCustomHeading
+				semanticLevel={3}
+				className="custom-aria-heading"
+				id="direct-id"
+				propOverrides={{ id: 'override-id' }}
+				data-forwarded="custom"
+				title="Custom title"
+				style={{ textTransform: 'uppercase' }}>
+				Forwarded
+			</DBCustomHeading>
+		);
+		await expect(component).toHaveClass(/custom-aria-heading/);
+		await expect(component).toHaveAttribute('id', 'direct-id');
+		await expect(component).toHaveAttribute('data-forwarded', 'custom');
+		await expect(component).toHaveAttribute('title', 'Custom title');
+		await expect(component).toHaveCSS('text-transform', 'uppercase');
+	});
+
+	test('keeps aria-level in sync with the semantic level', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomHeading semanticLevel={2} aria-level={4}>
+				Level stays at two
+			</DBCustomHeading>
+		);
+		await expect(component).toHaveAttribute('aria-level', '2');
+	});
+
+	test('renders arbitrary children inline with one accessible name', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomHeading semanticLevel={2}>
+				<span aria-hidden="true">Start</span>
+				<div style={{ display: 'inline' }}>Main content</div>
+				<strong> and more</strong>
+				<span aria-hidden="true">End</span>
+			</DBCustomHeading>
+		);
+		await expect(component).toHaveText(
+			/Start\s*Main content\s*and more\s*End/
+		);
+		await expect(component).toHaveAccessibleName('Main content and more');
+	});
+
+	test('has the expected custom ARIA heading-level snapshot', async ({
+		mount
+	}, testInfo) => {
+		const component = await mount(customSemanticHeadings);
+		expect(await component.ariaSnapshot()).toMatchSnapshot(
+			`${testInfo.testId}.yaml`
+		);
+	});
+
+	test('has no Axe violations', async ({ page, mount }) => {
+		await mount(customSemanticHeadings);
+		const results = await new AxeBuilder({ page })
+			.include('.db-heading')
+			.analyze();
+		expect(results.violations).toEqual([]);
+	});
+
+	test('matches the custom heading screenshot', async ({ mount }) => {
+		const component = await mount(
+			<DBCustomHeading semanticLevel={3} size="xl" fontWeight="light">
+				<span aria-hidden="true">Start </span>
+				<div style={{ display: 'inline' }}>Custom heading</div>
+			</DBCustomHeading>
+		);
+		await expect(component).toHaveScreenshot('custom-heading.png');
 	});
 });

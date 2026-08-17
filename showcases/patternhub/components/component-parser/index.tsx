@@ -7,6 +7,7 @@ import {
 	DBCard,
 	DBCheckbox,
 	DBCustomButton,
+	DBCustomHeading,
 	DBCustomSelect,
 	DBDivider,
 	DBHeader,
@@ -379,16 +380,24 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type.startsWith('heading-h')) {
-		const headingComponents: Record<string, any> = {
-			'heading-h1': DBHeadingH1,
-			'heading-h2': DBHeadingH2,
-			'heading-h3': DBHeadingH3,
-			'heading-h4': DBHeadingH4,
-			'heading-h5': DBHeadingH5,
-			'heading-h6': DBHeadingH6
-		};
-		const Heading = headingComponents[type];
+	if (type === 'custom-heading') {
+		return (
+			<DBCustomHeading className={className} {...props}>
+				{resolvedContent}
+			</DBCustomHeading>
+		);
+	}
+
+	const headingComponents: Record<string, any> = {
+		'heading-h1': DBHeadingH1,
+		'heading-h2': DBHeadingH2,
+		'heading-h3': DBHeadingH3,
+		'heading-h4': DBHeadingH4,
+		'heading-h5': DBHeadingH5,
+		'heading-h6': DBHeadingH6
+	};
+	const Heading = type ? headingComponents[type] : undefined;
+	if (Heading) {
 		return (
 			<Heading className={className} {...props}>
 				{resolvedContent}

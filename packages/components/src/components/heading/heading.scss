@@ -11,27 +11,27 @@
 	text-align: start;
 	text-wrap: balance;
 
-	&:not([data-size]):is(h1) {
+	&:not([data-size]):where(h1, [role="heading"][aria-level="1"]) {
 		@extend %db-overwrite-headline-size-xl;
 	}
 
-	&:not([data-size]):is(h2) {
+	&:not([data-size]):where(h2, [role="heading"][aria-level="2"]) {
 		@extend %db-overwrite-headline-size-lg;
 	}
 
-	&:not([data-size]):is(h3) {
+	&:not([data-size]):where(h3, [role="heading"][aria-level="3"]) {
 		@extend %db-overwrite-headline-size-md;
 	}
 
-	&:not([data-size]):is(h4) {
+	&:not([data-size]):where(h4, [role="heading"][aria-level="4"]) {
 		@extend %db-overwrite-headline-size-sm;
 	}
 
-	&:not([data-size]):is(h5) {
+	&:not([data-size]):where(h5, [role="heading"][aria-level="5"]) {
 		@extend %db-overwrite-headline-size-xs;
 	}
 
-	&:not([data-size]):is(h6) {
+	&:not([data-size]):where(h6, [role="heading"][aria-level="6"]) {
 		@extend %db-overwrite-headline-size-2xs;
 	}
 
@@ -42,9 +42,10 @@
 	}
 
 	/* The extended headline placeholders apply the `font` shorthand, which also
-	 * resets `font-weight`. `:is(h1, ..., h6)` adds the one element-level
-	 * specificity point needed to win against those `[data-size]` rules. */
-	&[data-font-weight="light"]:is(h1, h2, h3, h4, h5, h6) {
+	 * resets `font-weight`. The default mapping above uses `:where(...)` so that
+	 * native and ARIA headings stay at the same specificity as this override,
+	 * which therefore wins by source order for every heading size. */
+	&[data-font-weight="light"] {
 		font-weight: 300;
 	}
 
