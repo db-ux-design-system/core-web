@@ -34250,7 +34250,15 @@ var resetAllMocksLoader = ({ parameters: parameters2 }) => {
             currentFocus = newFocus;
           },
           get() {
-            return this.ownerDocument?.defaultView ? focusingElements.has(this) ? originalFocus : (focusingElements.add(this), setTimeout(() => focusingElements.delete(this), 0), currentFocus) : noopFocus;
+            if (this === HTMLElement.prototype)
+              return currentFocus;
+            let browsingContext;
+            try {
+              browsingContext = this.ownerDocument?.defaultView;
+            } catch {
+              return currentFocus;
+            }
+            return browsingContext ? focusingElements.has(this) ? originalFocus : (focusingElements.add(this), setTimeout(() => focusingElements.delete(this), 0), currentFocus) : noopFocus;
           }
         }
       }), patchedFocus = !0;
