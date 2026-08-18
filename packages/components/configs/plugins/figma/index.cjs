@@ -207,7 +207,8 @@ const isStringType = (fProp) => {
 		return true;
 	if (fProp.type === 'enum') {
 		const vals = Object.values(fProp.value || {});
-		if (vals.every((v) => typeof v === 'boolean')) return false;
+		if (vals.every((v) => typeof v === 'boolean' || typeof v === 'number'))
+			return false;
 		if (vals.every((v) => v instanceof Object && v.type === 'instance'))
 			return false;
 		if (vals.every((v) => v instanceof Object && v.type === 'iconSwap'))
@@ -351,7 +352,7 @@ const buildTemplate = (json, target) => {
 			);
 			const ccMappedValue =
 				fProp.type === 'enum' || fProp.type === 'boolean'
-					? `((v) => { const s = String(v); return ((${ccValueMapSerialized} as Record<string, unknown>)[s] ?? (${ccValueMapSerialized} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | boolean | undefined; })(${ccRawValue})`
+					? `((v) => { const s = String(v); return ((${ccValueMapSerialized} as Record<string, unknown>)[s] ?? (${ccValueMapSerialized} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | number | boolean | undefined; })(${ccRawValue})`
 					: `${ccRawValue} as string | undefined`;
 			return [
 				...(fProp.layer
@@ -513,7 +514,6 @@ module.exports = () => ({
 
 			const figmaProps = figmaMeta.props || {};
 			const target = json.pluginData?.target;
-			const attrBindingsByComponent = new Map();
 
 			// FIX: always recurse into children even when node has no bindings
 			const walkNode = (node) => {
@@ -549,10 +549,6 @@ module.exports = () => ({
 
 						const fProp = figmaProps[match[1]];
 						if (!fProp || SLOT_TYPES.has(fProp.type)) continue;
-						if (!attrBindingsByComponent.has(node.name)) {
-							attrBindingsByComponent.set(node.name, new Set());
-						}
-						attrBindingsByComponent.get(node.name).add(match[1]);
 						delete node.bindings[bindingKey];
 					}
 				}
@@ -595,11 +591,7 @@ module.exports = () => ({
 
 			json.children.forEach(walkNode);
 
-			if (target) {
-				buildTemplate(json, target);
-				json.meta.useMetadata.figma._precomputed.attrBindingsByComponent =
-					attrBindingsByComponent;
-			}
+			if (target) buildTemplate(json, target);
 
 			return json;
 		}
@@ -618,7 +610,6 @@ module.exports = () => ({
 			const {
 				allDeclarations,
 				importStatement,
-				attrBindingsByComponent,
 				attrPropEntries,
 				validationMessageEntries,
 				conditionalPropEntries,
@@ -695,48 +686,7 @@ module.exports = () => ({
 				...conditionalPropEntries,
 				...nestedInstancesToArrayEntries
 			];
-			if (attrBindingsByComponent?.size > 1) {
-				// This branch injects per component tag, which only covers the
-				// attribute props collected in `attrBindingsByComponent`. The other
-				// entry kinds have no per-component handling at all and would be
-				// dropped silently, so fail fast instead of generating an
-				// incomplete Code Connect snippet.
-				const unsupported = [
-					...validationMessageEntries,
-					...conditionalPropEntries,
-					...nestedInstancesToArrayEntries
-				].map(([propName]) => propName);
-				if (unsupported.length > 0) {
-					throw new Error(
-						`[figma plugin] ${json.name}: ${unsupported.join(', ')} cannot be injected into a multi-component example. Extend the per-component injection before using these prop types here.`
-					);
-				}
-
-				const dashCase = (value) =>
-					value
-						.replace(
-							/[A-Z]/g,
-							(match, index) =>
-								(index > 0 ? '-' : '') + match.toLowerCase()
-						)
-						.replace(/([a-z])([0-9])/g, '$1-$2');
-				for (const [
-					componentName,
-					propNames
-				] of attrBindingsByComponent) {
-					const tagName =
-						target === 'angular'
-							? `db-${dashCase(componentName.replace(/^DB/, ''))}`
-							: componentName;
-					const combined = [...propNames]
-						.map((propName) => '${' + propName + '}')
-						.join('');
-					exampleWithProps = exampleWithProps.replace(
-						new RegExp(`(<${tagName})([\\s>])`, 'g'),
-						'$1' + combined + '$2'
-					);
-				}
-			} else if (allInjectedEntries.length > 0) {
+			if (allInjectedEntries.length > 0) {
 				const combined = allInjectedEntries
 					.map(([propName]) => '${' + propName + '}')
 					.join('');

@@ -257,7 +257,7 @@ const copyHeadingSpec = (targetContext, files) => {
 	);
 	if (!headingFile) {
 		const hasHeadingBatch = files.componentFiles.some((file) =>
-			/components\/heading\/(?:figma\/heading\.figma\.batch|examples\/.+\.stories)\.(?:ts|tsx)$/.test(
+			/components\/heading\/(?:figma\/.+\.figma\.batch|examples\/.+\.stories)\.(?:ts|tsx)$/.test(
 				file.outputFilePath
 			)
 		);

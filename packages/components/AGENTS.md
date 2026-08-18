@@ -139,6 +139,8 @@ Each component can have a `figma/` folder with Figma Code Connect definitions. T
 
 - Edit only the source files in `src/components/[name]/figma/`
 - Never edit files in `figma-code-connect/` directly — they are generated
+- **One code component per `*.figma.lite.tsx` file.** The plugin injects every prop fragment into the first opening tag, so a template that renders several components (e.g. via `Show`) would emit all branches verbatim and hand designers a snippet they have to edit by hand. When one Figma component set maps to a different code component per variant, add one file per variant group with its own `useMetadata({ figma: … })` and its own `FigmaCodeConnect` export — see `heading/figma/` (seven sets) and `tag/figma/` (three).
+- Enum props may map to numbers (`{ '1': 1 }`). Numeric and boolean maps are emitted as bound values (`prop={1}` / `[prop]="1"` / `:prop="1"`), string maps as attributes.
 
 ## ESM Import Extensions (`configs/plugins/esm-extensions.cjs`)
 
