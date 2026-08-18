@@ -13,6 +13,7 @@ $z-index-popover: 70;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	visibility: hidden;
 	max-block-size: 100vh;
+	gap: variables.$db-spacing-fixed-xs;
 
 	&:empty {
 		display: none;
