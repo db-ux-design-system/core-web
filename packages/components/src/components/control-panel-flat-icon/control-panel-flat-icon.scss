@@ -128,14 +128,17 @@
 				max-inline-size: variables.$db-container-md;
 
 				.db-control-panel-navigation-item {
-					a {
+					flex-direction: column;
+
+					.db-control-panel-navigation-item-end-slot-container {
 						position: relative;
+						display: flex;
 
 						@include indicator.set-indicator-horizontal;
 					}
 
 					@include navigation-item.active-navigation-item {
-						a {
+						.db-control-panel-navigation-item-end-slot-container {
 							@include indicator.show-indicator-horizontal;
 						}
 					}
@@ -152,11 +155,15 @@
 						--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
 					}
 
+					.db-control-panel-navigation-item-end-slot-container,
+					a {
+						inline-size: variables.$db-sizing-md;
+					}
+
 					a {
 						@include helpers.a11y-visually-hidden-text;
 
 						padding: 0;
-						inline-size: variables.$db-sizing-md;
 					}
 
 					.db-tooltip {
@@ -176,11 +183,15 @@
 					--db-icon-passing-inset-block-start: 0;
 				}
 
+				.db-control-panel-navigation-item-end-slot-container,
+				a {
+					inline-size: variables.$db-sizing-lg;
+				}
+
 				a {
 					padding-inline-end: variables.$db-spacing-fixed-3xs;
 					// stylelint-disable-next-line db-ux/use-spacings
 					padding-block: var(--nav-icon-size) 0;
-					inline-size: variables.$db-sizing-lg;
 					justify-content: center;
 					overflow: hidden;
 					text-overflow: ellipsis;
@@ -219,6 +230,10 @@
 	.db-control-panel-navigation-item {
 		justify-content: center;
 		align-items: center;
+
+		.db-control-panel-navigation-item-end-slot-container {
+			@extend %indicator;
+		}
 
 		a {
 			@extend %db-overwrite-font-size-3xs;

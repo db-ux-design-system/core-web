@@ -6,6 +6,7 @@
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/component";
 
 .db-shell-sub-navigation {
 	grid-area: sub-navigation;
@@ -65,7 +66,9 @@
 
 		.db-control-panel-navigation {
 			max-inline-size: screen-sizes.$db-breakpoint-xs;
-			padding: variables.$db-spacing-fixed-md;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding: variables.$db-spacing-fixed-sm
+			component.$drawer-content-padding-inline;
 		}
 
 		/* jscpd:ignore-start */

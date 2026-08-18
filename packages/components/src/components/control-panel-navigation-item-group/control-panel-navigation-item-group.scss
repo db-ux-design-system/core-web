@@ -10,8 +10,14 @@
 .db-control-panel-navigation-item-group {
 	@extend %navigation-item;
 
-	&:has(> .db-control-panel-navigation-item-group-menu:hover),
-	&:has(> .db-control-panel-navigation-item-group-menu:focus) {
+	&:has(> .db-control-panel-navigation-item-group-menu:hover):not(
+			:has(
+				> .db-control-panel-navigation-item-group-menu:has(
+						button:hover,
+						a:hover
+					)
+			)
+		) {
 		> .db-control-panel-navigation-item-group-expand-button {
 			// If we hover on the triangle we should still show hover color of the item
 			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
@@ -54,14 +60,16 @@
 }
 
 .db-control-panel-navigation-item-group-back-button {
-	display: grid;
-	font-weight: normal;
+	display: flex;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-xs;
 	margin-block-end: variables.$db-spacing-fixed-xs;
-	gap: variables.$db-spacing-fixed-xs;
-	grid-template-columns: variables.$db-sizing-md 1fr variables.$db-sizing-md;
-	place-items: center;
+
+	@include helpers.divider("bottom");
+
+	> button {
+		font-weight: normal;
+	}
 
 	span {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;

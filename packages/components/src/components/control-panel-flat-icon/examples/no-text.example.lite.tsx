@@ -10,6 +10,7 @@ useMetadata({
 	storybookArgTypes: StorybookControlPanelFlatIconArgTypes
 });
 
+
 export default function ControlPanelFlatIconNoText() {
 	return (
 		<Fragment>
@@ -23,7 +24,9 @@ export default function ControlPanelFlatIconNoText() {
 							default: {}
 						})}
 						aria-label="(Default) With Text">
-						<DBControlPanelNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							active>
 							<a href="#">(Default) With Text</a>
 						</DBControlPanelNavigationItem>
 						<DBControlPanelNavigationItem icon="x_placeholder">
@@ -45,7 +48,9 @@ export default function ControlPanelFlatIconNoText() {
 							default: {}
 						})}
 						aria-label="No Text">
-						<DBControlPanelNavigationItem icon="x_placeholder">
+						<DBControlPanelNavigationItem
+							icon="x_placeholder"
+							active>
 							<a href="#">No Text</a>
 						</DBControlPanelNavigationItem>
 						<DBControlPanelNavigationItem icon="x_placeholder">

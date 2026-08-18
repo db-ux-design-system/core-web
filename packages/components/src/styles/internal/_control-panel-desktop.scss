@@ -375,6 +375,9 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		.db-control-panel-meta {
 			margin-block-start: auto;
 			flex-flow: column nowrap;
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding: variables.$db-spacing-fixed-xs
+				component.$drawer-content-padding-inline;
 
 			@include helpers.divider("top");
 		}

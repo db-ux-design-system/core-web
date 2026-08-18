@@ -95,10 +95,12 @@ export default function ShellFlatIcon() {
 								default: {}
 							})}
 							aria-label="Flat Icon With Text Sub Nav">
-							<DBControlPanelNavigationItem icon="house" active>
+							<DBControlPanelNavigationItem icon="house">
 								<a href="#">Home</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem icon="magnifying_glass">
+							<DBControlPanelNavigationItem
+								icon="magnifying_glass"
+								active>
 								<a href="#">Search Full</a>
 							</DBControlPanelNavigationItem>
 							<DBControlPanelNavigationItem icon="person">
