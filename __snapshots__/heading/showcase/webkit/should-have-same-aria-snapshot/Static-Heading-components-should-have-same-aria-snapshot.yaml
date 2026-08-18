@@ -7,12 +7,6 @@
   - heading "h4 maps to sm" [level=4]
   - heading "h5 maps to xs" [level=5]
   - heading "h6 maps to 2xs" [level=6]
-  - heading "Custom level 1 maps to xl" [level=1]
-  - heading "Custom level 2 maps to lg" [level=2]
-  - heading "Custom level 3 maps to md" [level=3]
-  - heading "Custom level 4 maps to sm" [level=4]
-  - heading "Custom level 5 maps to xs" [level=5]
-  - heading "Custom level 6 maps to 2xs" [level=6]
   - link "Visual Sizes"
   - heading "3xl" [level=2]
   - heading "2xl" [level=2]
@@ -23,50 +17,34 @@
   - heading "xs" [level=2]
   - heading "2xs" [level=2]
   - heading "3xs" [level=2]
-  - heading "Custom 3xl" [level=2]
-  - heading "Custom 2xl" [level=2]
-  - heading "Custom xl" [level=2]
-  - heading "Custom lg" [level=2]
-  - heading "Custom md" [level=2]
-  - heading "Custom sm" [level=2]
-  - heading "Custom xs" [level=2]
-  - heading "Custom 2xs" [level=2]
-  - heading "Custom 3xs" [level=2]
   - link "Semantic And Visual Decoupling"
   - heading "Semantic h6, visual 2xl" [level=6]
   - heading "Semantic h2, visual 3xs" [level=2]
-  - heading "Custom semantic level 3, visual 3xl" [level=3]
   - link "Font Weight"
   - heading "(Default) Black" [level=2]
   - heading "Light" [level=2]
-  - 'heading "Custom: (Default) Black" [level=2]'
-  - 'heading "Custom: Light" [level=2]'
   - link "Alignment"
   - heading "(Default) Start" [level=2]
   - heading "Center" [level=2]
   - heading "End" [level=2]
-  - 'heading "Custom: Start" [level=2]'
-  - 'heading "Custom: Center" [level=2]'
-  - 'heading "Custom: End" [level=2]'
+  - 'heading "Row: (Default) Start" [level=2]'
+  - text: sibling
+  - 'heading "Row: Center" [level=2]'
+  - text: sibling
+  - 'heading "Row: End" [level=2]'
+  - text: sibling
   - link "Paragraph Spacing"
   - 'heading "Omitted: no margin" [level=2]'
   - 'heading "True: 1lh block-end" [level=2]'
   - 'heading "False: no margin" [level=2]'
-  - 'heading "Custom omitted: no margin" [level=2]'
-  - 'heading "Custom true: 1lh block-end" [level=2]'
-  - 'heading "Custom false: no margin" [level=2]'
   - link "Density"
   - heading "Functional" [level=2]
   - heading "(Default) Regular" [level=2]
   - heading "Expressive" [level=2]
-  - 'heading "Custom: Functional" [level=2]'
-  - 'heading "Custom: (Default) Regular" [level=2]'
-  - 'heading "Custom: Expressive" [level=2]'
   - link "Forwarded ID, Class, ARIA, Data And Style"
   - heading "ID, class, ARIA, data and style forwarded to h2" [level=2]
-  - heading "ID, class, ARIA, data and style forwarded to custom heading" [level=2]: ID, class, ARIA, data and style on a custom heading
+  - heading "ID, class, data and style on the wrapper" [level=2]
   - link "Decorative Children Hidden From Screen Readers"
   - heading "Current disruptions" [level=2]
-  - heading "Custom content container with arbitrary children" [level=2]:
-    - text: Custom content container
-    - strong: with arbitrary children
+  - heading "Current disruptions" [level=2]
+  - text: 3 active
