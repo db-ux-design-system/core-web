@@ -82,8 +82,9 @@ Die Reihenfolge unter `## Regeln` wird beim Generieren zur Reihenfolge in `guide
 
 1. **Abhängigkeit.** Eine Regel, die einen Begriff aus einer anderen Regel voraussetzt, steht dahinter. Begriffe aus der Beschreibungszeile gelten als bekannt und begründen keine Abhängigkeit.
 2. **Verwandtes zusammen.** Regeln zum selben Gegenstand — Text, Zustand, Logo, Slot — stehen benachbart, ohne fremde Regel dazwischen. Dieses Kriterium schlägt das nächste: ein Detail bleibt bei seinem Gegenstand, statt ans Ende zu wandern.
-3. **Entscheidungsreihenfolge zwischen den Gegenständen.** Was gehört hinein, dann welche Variante oder Position, dann wie viel, dann was die gewählte Variante einschränkt, dann Zustände, dann Darstellungsdetails. Das ist die Reihenfolge, in der die Komponente aufgebaut wird.
-4. **Normativität ist kein Kriterium.** `**sollte**`-Regeln werden nicht gruppiert. Sonst trennt die Sortierung zusammengehörige Regeln, bei denen eine Empfehlung und eine Vorgabe denselben Gegenstand betreffen.
+3. **Regelfall vor Sonderfall.** Zuerst die Regeln zum Regelfall: die Default-Variante und Fälle, die alle Varianten betreffen. Danach die Sonderfälle, also Varianten und Positionen, die nur einzelne Produkte oder Kontexte betreffen. Häufigkeit rangiert vor der Art der Regel — eine Regel zum Default-Fall steht auch dann vorn, wenn sie nur ein Darstellungsdetail betrifft.
+4. **Entscheidungsreihenfolge innerhalb einer Gruppe.** Was gehört hinein, dann welche Variante oder Position, dann wie viel, dann was die gewählte Variante einschränkt, dann Zustände, dann Darstellungsdetails. Das ist die Reihenfolge, in der die Komponente aufgebaut wird.
+5. **Normativität ist kein Kriterium.** `**sollte**`-Regeln werden nicht gruppiert. Sonst trennt die Sortierung zusammengehörige Regeln, bei denen eine Empfehlung und eine Vorgabe denselben Gegenstand betreffen.
 
 ### `## Zusätzliche Informationen`
 
