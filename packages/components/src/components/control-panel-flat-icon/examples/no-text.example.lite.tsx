@@ -10,7 +10,6 @@ useMetadata({
 	storybookArgTypes: StorybookControlPanelFlatIconArgTypes
 });
 
-
 export default function ControlPanelFlatIconNoText() {
 	return (
 		<Fragment>

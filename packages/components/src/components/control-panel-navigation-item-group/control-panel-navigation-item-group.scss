@@ -17,6 +17,14 @@
 						a:hover
 					)
 			)
+		),
+	&:has(> .db-control-panel-navigation-item-group-menu:focus):not(
+			:has(
+				> .db-control-panel-navigation-item-group-menu:has(
+						button:focus,
+						a:focus
+					)
+			)
 		) {
 		> .db-control-panel-navigation-item-group-expand-button {
 			// If we hover on the triangle we should still show hover color of the item
