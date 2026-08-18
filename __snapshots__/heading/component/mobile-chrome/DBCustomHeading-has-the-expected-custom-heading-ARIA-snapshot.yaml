@@ -1,0 +1,6 @@
+- heading "Component heading" [level=2]
+- link "Direct link":
+  - /url: "#component-heading"
+- heading "Plain nested heading" [level=3]
+- link "Direct link":
+  - /url: "#plain-nested-heading"
