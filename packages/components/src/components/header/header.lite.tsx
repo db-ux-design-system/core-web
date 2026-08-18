@@ -117,7 +117,7 @@ export default function DBHeader(props: DBHeaderProps) {
 					</div>
 				</div>
 			</DBDrawer>
-			
+
 			<div class="db-header-meta-navigation">
 				<Slot name="metaNavigation" />
 			</div>
