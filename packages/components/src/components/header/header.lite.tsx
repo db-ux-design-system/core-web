@@ -85,35 +85,6 @@ export default function DBHeader(props: DBHeaderProps) {
 				getBoolean(props.forceMobile, 'forceMobile') &&
 				!state.forcedToMobile
 			}>
-			<div class="db-header-meta-navigation">
-				<Slot name="metaNavigation" />
-			</div>
-			<div class="db-header-navigation-bar">
-				<div class="db-header-brand-container">
-					<Slot name="brand" />
-				</div>
-				<div class="db-header-navigation-container">
-					<div class="db-header-navigation">{props.children}</div>
-					<div class="db-header-primary-action">
-						<Slot name="primaryAction" />
-					</div>
-				</div>
-				<div class="db-header-action-container">
-					<div class="db-header-burger-menu-container">
-						<DBButton
-							icon="menu"
-							noText
-							variant="ghost"
-							onClick={() => state.handleToggle()}>
-							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
-						</DBButton>
-					</div>
-					<div class="db-header-secondary-action">
-						<Slot name="secondaryAction" />
-					</div>
-				</div>
-			</div>
-
 			<DBDrawer
 				header={
 					<DBDrawerHeader
@@ -146,6 +117,35 @@ export default function DBHeader(props: DBHeaderProps) {
 					</div>
 				</div>
 			</DBDrawer>
+			
+			<div class="db-header-meta-navigation">
+				<Slot name="metaNavigation" />
+			</div>
+			<div class="db-header-navigation-bar">
+				<div class="db-header-brand-container">
+					<Slot name="brand" />
+				</div>
+				<div class="db-header-navigation-container">
+					<div class="db-header-navigation">{props.children}</div>
+					<div class="db-header-primary-action">
+						<Slot name="primaryAction" />
+					</div>
+				</div>
+				<div class="db-header-action-container">
+					<div class="db-header-burger-menu-container">
+						<DBButton
+							icon="menu"
+							noText
+							variant="ghost"
+							onClick={() => state.handleToggle()}>
+							{props.burgerMenuLabel ?? DEFAULT_BURGER_MENU}
+						</DBButton>
+					</div>
+					<div class="db-header-secondary-action">
+						<Slot name="secondaryAction" />
+					</div>
+				</div>
+			</div>
 		</header>
 	);
 }
