@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-refactor(`DBHeader`): we needed to restructure the inner HTML of this component
+refactor(`DBHeader`): restructured the inner HTML of this component
