@@ -30,6 +30,7 @@ export type DBControlPanelNavigationDefaultState = {
 	_isMobile?: boolean;
 	_isShellSubNavigationMobile?: boolean;
 	_shellDesktopPositionTop?: boolean;
+	_getDesktopPositionTopFlag: () => boolean;
 	_handleCSSFlags: () => void;
 	_handleSubNavigation: () => void;
 	_handleVariant: () => void;

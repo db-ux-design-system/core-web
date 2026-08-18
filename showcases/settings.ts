@@ -6,14 +6,14 @@ export type DefaultSettings = {
 	subNavigation: 'true' | 'false';
 	subNavigationVariant: 'tree' | 'popover' | 'drilldown';
 	navigationDesktopVariant: 'tree' | 'popover' | 'drilldown';
-	navigationMobileVariant: 'tree' | 'popover';
+	navigationMobileVariant: 'tree' | 'drilldown';
 };
 
 export const defaultSettingsMapping = {
 	controlPanelDesktopPosition: ['top', 'left'],
 	navigationDesktopVariant: ['tree', 'popover', 'drilldown'],
 	controlPanelMobilePosition: ['bottom', 'top'],
-	navigationMobileVariant: ['tree', 'popover'],
+	navigationMobileVariant: ['tree', 'drilldown'],
 	subNavigation: ['true', 'false'],
 	subNavigationDesktopPosition: ['top', 'left'],
 	subNavigationMobilePosition: ['top', 'bottom', 'none'],
@@ -21,7 +21,7 @@ export const defaultSettingsMapping = {
 };
 
 export const defaultSettings: DefaultSettings = {
-	navigationMobileVariant: 'popover',
+	navigationMobileVariant: 'drilldown',
 	subNavigation: 'false',
 	subNavigationDesktopPosition: 'top',
 	subNavigationMobilePosition: 'none',

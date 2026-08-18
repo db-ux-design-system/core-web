@@ -12,9 +12,7 @@
 	#{string.unquote(custom-elements.$shell-sub-navigation)} {
 		@include helpers.divider("bottom");
 
-		padding-block-start: calc(
-			#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-top)
-		);
+		padding-block-start: env(safe-area-inset-top);
 	}
 }
 
@@ -69,10 +67,7 @@
 					#{string.unquote(custom-elements.$shell-sub-navigation)} {
 						@include helpers.divider("top");
 
-						padding-block-end: calc(
-							#{variables.$db-spacing-fixed-xs} +
-								env(safe-area-inset-bottom)
-						);
+						padding-block-end: env(safe-area-inset-bottom);
 					}
 				}
 			}

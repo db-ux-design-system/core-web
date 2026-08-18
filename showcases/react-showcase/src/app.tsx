@@ -53,7 +53,7 @@ export default function App() {
 			<DBShellSubNavigation>
 				<Navigation
 					variant={settings.subNavigationVariant}
-					aria-label="sub navigation"
+					label="sub navigation"
 				/>
 			</DBShellSubNavigation>
 			<DBControlPanelMobile

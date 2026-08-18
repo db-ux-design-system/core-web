@@ -43,11 +43,14 @@ export default function DBControlPanelNavigation(
 		initialized: false,
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
-		_handleCSSFlags() {
-			state._shellDesktopPositionTop = hasCssFlag(
+		_getDesktopPositionTopFlag() {
+			return hasCssFlag(
 				_ref,
 				'--db-control-panel-navigation-desktop-position-top'
 			);
+		},
+		_handleCSSFlags() {
+			state._shellDesktopPositionTop = state._getDesktopPositionTopFlag();
 			state._isMobile = hasCssFlag(
 				_ref,
 				'--db-control-panel-navigation-mobile'
@@ -60,7 +63,7 @@ export default function DBControlPanelNavigation(
 		},
 
 		_handleVariant() {
-			if (state._shellDesktopPositionTop) {
+			if (state._getDesktopPositionTopFlag()) {
 				state._variant = 'popover';
 			} else {
 				if (props.variant === 'popover' || !props.variant) {
@@ -127,12 +130,7 @@ export default function DBControlPanelNavigation(
 									} else {
 										siblingHtml.dataset['isCollapsing'] =
 											'true';
-										siblingHtml.dispatchEvent(
-											new MouseEvent('click', {
-												bubbles: false,
-												cancelable: true
-											})
-										);
+										siblingHtml.click();
 									}
 								}
 							}
@@ -157,7 +155,7 @@ export default function DBControlPanelNavigation(
 			state._singleBehaviorObserver = observer;
 		},
 		evaluateScrollButtons(tList: Element) {
-			if (!tList && !state._shellDesktopPositionTop) return;
+			if (!tList && !state._getDesktopPositionTopFlag()) return;
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
 
@@ -185,7 +183,7 @@ export default function DBControlPanelNavigation(
 			handleSubNavigationPosition(
 				menuRef,
 				0,
-				state._shellDesktopPositionTop
+				state._getDesktopPositionTopFlag()
 			);
 		},
 		_handleKeyDown(event: any) {
@@ -246,7 +244,8 @@ export default function DBControlPanelNavigation(
 			const isTopLevel = !parentGroupMenu;
 
 			// Top level is horizontal only when shell position is top
-			const isHorizontal = isTopLevel && state._shellDesktopPositionTop;
+			const isHorizontal =
+				isTopLevel && state._getDesktopPositionTopFlag();
 
 			// Get sibling items at the current level.
 			// Use querySelectorAll for the interactive elements and filter

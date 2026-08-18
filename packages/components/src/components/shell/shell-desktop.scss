@@ -34,8 +34,10 @@
 				@include shell-sub-navigation.sub-navigation-top;
 			}
 
-			.db-control-panel-navigation {
-				--db-control-panel-navigation-desktop-position-top: 1;
+			#{string.unquote(custom-elements.$control-panel-desktop)} {
+				.db-control-panel-navigation {
+					--db-control-panel-navigation-desktop-position-top: 1;
+				}
 			}
 
 			// Sub-navigation: left

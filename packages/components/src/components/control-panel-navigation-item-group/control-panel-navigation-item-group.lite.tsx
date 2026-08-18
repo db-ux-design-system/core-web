@@ -243,6 +243,20 @@ export default function DBControlPanelNavigationItemGroup(
 				state.isSubNavigationExpanded = !state.isSubNavigationExpanded;
 			}
 
+			// When triggered programmatically by the single-behavior observer,
+			// clean up the collapsing marker and stop bubbling so parent
+			// handlers (e.g. control-panel-mobile) are not triggered.
+			if (
+				_buttonRef &&
+				(_buttonRef as HTMLElement).dataset['isCollapsing'] === 'true'
+			) {
+				(_buttonRef as HTMLElement).removeAttribute(
+					'data-is-collapsing'
+				);
+				event.stopPropagation();
+				return;
+			}
+
 			if (props.onClick) {
 				// Prevent click from bubbling to the control-panel-mobile
 				// handleNavigationItemClick which would close the drawer.
