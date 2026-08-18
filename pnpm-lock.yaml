@@ -108,8 +108,8 @@ importers:
         specifier: 0.49.1
         version: 0.49.1(supports-color@10.2.2)
       npm-package-json-lint:
-        specifier: 10.5.1
-        version: 10.5.1(supports-color@10.2.2)
+        specifier: 11.0.0
+        version: 11.0.0(supports-color@10.2.2)
       npm-run-all2:
         specifier: 9.0.3
         version: 9.0.3
@@ -12679,8 +12679,8 @@ packages:
     resolution: {integrity: sha512-69XQh3k+dtGa1p+7RaR57IuG3rCko96xr/nUfN4yDYBXbTYICiWcOpsFKLN2GtGE9cyIljE+f1exnaYt9MvM+Q==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
-  npm-package-json-lint@10.5.1:
-    resolution: {integrity: sha512-KvphpY9PVN8Le6spIXH9LXdSPPiaeG6HBk/PRCmtOn8vY/gsnUpXCfFBZBRUpPMVjv7dsfCU2jOPao4ao3Z2Hg==}
+  npm-package-json-lint@11.0.0:
+    resolution: {integrity: sha512-XOFaxHM+TB9tK51Uj609kA1iA87cJe/VNCv/5INLCDbM///KpZpIai+t9LRRyOzvkd62j0JEWKSJeDUlzOSG6Q==}
     engines: {node: '>=22.0.0', npm: '>=10.0.0'}
     hasBin: true
 
@@ -30655,7 +30655,7 @@ snapshots:
       semver: 7.8.5
       validate-npm-package-name: 8.0.0
 
-  npm-package-json-lint@10.5.1(supports-color@10.2.2):
+  npm-package-json-lint@11.0.0(supports-color@10.2.2):
     dependencies:
       chalk: 4.1.2
       cosmiconfig: 10.0.0
