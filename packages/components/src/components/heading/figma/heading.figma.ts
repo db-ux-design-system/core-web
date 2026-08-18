@@ -8,10 +8,7 @@ export type FigmaHeadingProps = Pick<
 	text?: string;
 };
 
-export type FigmaCustomHeadingProps = Pick<
-	FigmaHeadingProps,
-	'alignment' | 'text'
->;
+export type FigmaCustomHeadingProps = FigmaHeadingProps;
 
 const sizeProp: FigmaProp = {
 	type: 'enum',
@@ -59,16 +56,14 @@ const headingProps: Record<string, FigmaProp> = {
 };
 
 /*
- * DBCustomHeading is a layout wrapper, so only the properties it actually owns
- * are mapped. The generator resolves Figma values for root-level props only, so
- * mapping `Size`, `Font Weight` or `Show Paragraph Spacing` here would emit
- * literal `props.size` into the snippet instead of the selected value — those
- * belong to the nested heading's own component set.
+ * DBCustomHeading mirrors the Heading styling API, so it maps the same
+ * properties. They all sit on the wrapper root, which is what the generator can
+ * resolve — the nested `h2` only carries the text content.
  */
-const customHeadingProps: Record<string, FigmaProp> = {
-	alignment: alignmentProp,
-	text: textProp
-};
+// Spread instead of a plain alias: the `useMetadata` resolver does not follow a
+// chained identifier reference, which would silently skip the prop injection and
+// leave literal `props.size` in the generated snippet.
+const customHeadingProps: Record<string, FigmaProp> = { ...headingProps };
 
 export const headingH1: FigmaCodeConnect = {
 	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=38971:560'],

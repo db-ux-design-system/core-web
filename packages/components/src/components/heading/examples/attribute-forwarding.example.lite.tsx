@@ -30,9 +30,7 @@ export default function HeadingAttributeForwarding() {
 				class="forwarded-custom-heading-class"
 				data-example="custom-heading"
 				style={{ textTransform: 'uppercase' }}>
-				<DBHeadingH2>
-					ID, class, data and style on the wrapper
-				</DBHeadingH2>
+				<h2>ID, class, data and style on the wrapper</h2>
 			</DBCustomHeading>
 		</Fragment>
 	);

@@ -1,4 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBBadge from '../../badge/badge.lite';
 import DBCustomHeading from '../custom-heading.lite';
 import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
@@ -23,8 +24,10 @@ export default function HeadingChildrenAccessibility() {
 				<span aria-hidden="true"> *</span>
 			</DBHeadingH2>
 			<DBCustomHeading>
-				<DBHeadingH2>Current disruptions</DBHeadingH2>
-				<span>3 active</span>
+				<h2>Current disruptions</h2>
+				<DBBadge semantic="critical" emphasis="strong">
+					3
+				</DBBadge>
 			</DBCustomHeading>
 		</Fragment>
 	);

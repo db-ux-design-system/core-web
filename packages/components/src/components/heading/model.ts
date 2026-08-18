@@ -38,15 +38,16 @@ export type DBHeadingBaseProps = DBHeadingBaseDefaultProps &
 	AlignmentProps;
 
 /**
- * Layout wrapper for a native heading plus sibling content. It carries no
- * typography properties of its own — those belong on the nested heading, which
- * keeps one source of truth per property.
+ * Styling wrapper for a consumer-authored native heading plus optional sibling
+ * content. Mirrors the Heading styling API the same way `DBCustomButton` mirrors
+ * `DBButton`: the wrapper carries the styling properties, the nested native
+ * element carries the native attributes.
  *
  * @public
  */
-export type DBCustomHeadingDefaultProps = {};
+export type DBCustomHeadingDefaultProps = DBHeadingBaseDefaultProps;
 /** @public */
-export type DBCustomHeadingProps = DBCustomHeadingDefaultProps &
+export type DBCustomHeadingProps = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 

@@ -32,16 +32,13 @@ export default function HeadingAlignment() {
 			<DBHeadingH2 alignment="center">Center</DBHeadingH2>
 			<DBHeadingH2 alignment="end">End</DBHeadingH2>
 			<DBCustomHeading alignment="start">
-				<DBHeadingH2>Row: (Default) Start</DBHeadingH2>
-				<span>sibling</span>
+				<h2>Row: (Default) Start</h2>
 			</DBCustomHeading>
 			<DBCustomHeading alignment="center">
-				<DBHeadingH2>Row: Center</DBHeadingH2>
-				<span>sibling</span>
+				<h2>Row: Center</h2>
 			</DBCustomHeading>
 			<DBCustomHeading alignment="end">
-				<DBHeadingH2>Row: End</DBHeadingH2>
-				<span>sibling</span>
+				<h2>Row: End</h2>
 			</DBCustomHeading>
 		</Fragment>
 	);

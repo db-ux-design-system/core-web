@@ -39,10 +39,12 @@ Native headings accept standard attributes directly. On the custom elements, `ar
 
 ### Heading with sibling content
 
-`db-custom-heading` is a layout wrapper for a native heading plus sibling content, for example a permalink button. It has no heading semantics of its own: put a native `h1`-`h6` inside and the wrapper applies the matching default heading styles, so a bare heading needs no `db-heading` class.
+`db-custom-heading` is the styling wrapper for a heading you write yourself, optionally next to sibling content such as a permalink button. It relates to the Heading components the same way `db-custom-button` relates to `db-button`: it has no semantics of its own, you bring the native element, and the wrapper applies the styling.
+
+Put a plain `h1`-`h6` inside. It needs no `db-heading` class, the wrapper styles it:
 
 ```html
-<db-custom-heading>
+<db-custom-heading size="xl" font-weight="light">
 	<h2 id="installation">Installation</h2>
 	<div
 		class="db-custom-button"
@@ -58,7 +60,7 @@ Native headings accept standard attributes directly. On the custom elements, `ar
 The equivalent CSS-only markup:
 
 ```html
-<div class="db-custom-heading">
+<div class="db-custom-heading" data-size="xl" data-font-weight="light">
 	<h2 id="installation">Installation</h2>
 	<a href="#installation">Direct link to Installation</a>
 </div>
@@ -66,15 +68,6 @@ The equivalent CSS-only markup:
 
 Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
 
-The wrapper carries no typography properties. Everything that deviates from the default is set on the nested heading, which keeps one source of truth per property:
+`size`, `font-weight` and `paragraph-spacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text.
 
-```html
-<db-custom-heading>
-	<h2 class="db-heading" data-size="xl" data-font-weight="light">
-		Installation
-	</h2>
-	<a href="#installation">Direct link</a>
-</db-custom-heading>
-```
-
-`alignment` on the wrapper aligns the items in the row. Text alignment inside the heading stays with the nested heading's own `data-alignment`.
+A nested heading that already carries `db-heading`, for example a Heading component, keeps its own typography and ignores the wrapper's styling attributes. Use one or the other, not both.

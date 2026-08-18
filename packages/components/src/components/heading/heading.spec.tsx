@@ -49,12 +49,12 @@ const semanticHeadings: any = (
 const customHeadingRows: any = (
 	<div>
 		<DBCustomHeading>
-			<DBHeadingH2>Component heading</DBHeadingH2>
-			<a href="#component-heading">Direct link</a>
+			<h2 id="default-row">Default row</h2>
+			<a href="#default-row">Direct link</a>
 		</DBCustomHeading>
-		<DBCustomHeading>
-			<h3>Plain nested heading</h3>
-			<a href="#plain-nested-heading">Direct link</a>
+		<DBCustomHeading size="3xs" fontWeight="light">
+			<h3 id="styled-row">Styled row</h3>
+			<a href="#styled-row">Direct link</a>
 		</DBCustomHeading>
 	</div>
 );
@@ -355,40 +355,97 @@ test.describe('DBCustomHeading', () => {
 		});
 	});
 
-	test('lets the nested heading own its typography', async ({ mount }) => {
-		// The wrapper carries no size of its own, so an explicit `data-size` on
-		// the nested heading has to win over the wrapper's default mapping.
-		const component = await mount(
-			<DBCustomHeading>
-				<DBHeadingH2 size="3xs" fontWeight="light">
-					Nested
-				</DBHeadingH2>
-			</DBCustomHeading>
-		);
-		const nested = component.locator('h2');
-		await expect(nested).toHaveAttribute('data-size', '3xs');
-		await expect(nested).toHaveCSS('font-weight', '300');
-		const nestedFontSize = await readFontSize(nested);
-		await component.unmount();
-
-		const defaultSized = await mount(<DBHeadingH2>Default</DBHeadingH2>);
-		expect(nestedFontSize).not.toBe(await readFontSize(defaultSized));
-	});
-
-	test('keeps the nested paragraph spacing on the heading line height', async ({
+	test('applies the wrapper size to a plain nested heading', async ({
 		mount
 	}) => {
-		// `1lh` has to resolve from the heading's own font, which is why the
-		// wrapper does not carry `paragraphSpacing` itself.
+		// The wrapper mirrors the Heading styling API, so `size` on the wrapper has
+		// to override the default level mapping of the nested heading.
+		const reference = await mount(
+			<DBHeadingH2 size="3xl">Ref</DBHeadingH2>
+		);
+		const referenceFontSize = await readFontSize(reference);
+		await reference.unmount();
+
 		const component = await mount(
-			<DBCustomHeading>
-				<DBHeadingH2 paragraphSpacing>Nested</DBHeadingH2>
+			<DBCustomHeading size="3xl">
+				<h2>Nested</h2>
 			</DBCustomHeading>
 		);
-		const margins = await readLogicalMargins(component.locator('h2'));
-		expect(Number.parseFloat(margins.blockEnd)).toBeCloseTo(
-			Number.parseFloat(margins.lineHeight),
+		await expect(component).toHaveAttribute('data-size', '3xl');
+		expect(await readFontSize(component.locator('h2'))).toBe(
+			referenceFontSize
+		);
+	});
+
+	for (const weight of weights) {
+		test(`applies the wrapper font weight ${weight} to a plain nested heading`, async ({
+			mount
+		}) => {
+			const component = await mount(
+				<DBCustomHeading fontWeight={weight}>
+					<h2>{weight}</h2>
+				</DBCustomHeading>
+			);
+			await expect(component).toHaveAttribute('data-font-weight', weight);
+			if (weight === 'light') {
+				await expect(component.locator('h2')).toHaveCSS(
+					'font-weight',
+					'300'
+				);
+			}
+		});
+	}
+
+	test('resolves paragraph spacing from the heading line height', async ({
+		mount
+	}) => {
+		// The wrapper carries the headline font as well, so `1lh` on the wrapper
+		// resolves from the heading typography and not from the surrounding body
+		// text.
+		const omitted = await mount(
+			<DBCustomHeading>
+				<h2>Omitted</h2>
+			</DBCustomHeading>
+		);
+		await expect(omitted).not.toHaveAttribute('data-paragraph-spacing');
+		expect(await readLogicalMargins(omitted)).toMatchObject({
+			blockEnd: '0px'
+		});
+		await omitted.unmount();
+
+		const enabled = await mount(
+			<DBCustomHeading paragraphSpacing>
+				<h2>Enabled</h2>
+			</DBCustomHeading>
+		);
+		const wrapperMargins = await readLogicalMargins(enabled);
+		const headingMargins = await readLogicalMargins(enabled.locator('h2'));
+		expect(Number.parseFloat(wrapperMargins.blockEnd)).toBeCloseTo(
+			Number.parseFloat(wrapperMargins.lineHeight),
 			2
+		);
+		// Proves the headline font landed on the wrapper, not just on the heading.
+		expect(wrapperMargins.lineHeight).toBe(headingMargins.lineHeight);
+	});
+
+	test('leaves a nested Heading component in charge of its own typography', async ({
+		mount
+	}) => {
+		// The child selectors exclude `.db-heading`, so a Heading component inside
+		// the wrapper never fights the wrapper's attributes.
+		const reference = await mount(
+			<DBHeadingH2 size="3xs">Ref</DBHeadingH2>
+		);
+		const referenceFontSize = await readFontSize(reference);
+		await reference.unmount();
+
+		const component = await mount(
+			<DBCustomHeading size="3xl">
+				<DBHeadingH2 size="3xs">Nested</DBHeadingH2>
+			</DBCustomHeading>
+		);
+		expect(await readFontSize(component.locator('h2'))).toBe(
+			referenceFontSize
 		);
 	});
 
@@ -422,14 +479,20 @@ test.describe('DBCustomHeading', () => {
 				'data-alignment',
 				alignment
 			);
-			const expected = {
+			const expectedJustify = {
 				start: 'normal',
 				center: 'center',
 				end: 'flex-end'
 			};
 			await expect(component).toHaveCSS(
 				'justify-content',
-				expected[alignment]
+				expectedJustify[alignment]
+			);
+			// `%heading-base` sets `text-align: start` on the nested heading, so the
+			// wrapper alignment has to be repeated there instead of inherited.
+			await expect(component.locator('h2')).toHaveCSS(
+				'text-align',
+				alignment
 			);
 		});
 	}

@@ -64,15 +64,21 @@ shared models, styles, examples, tests, and showcase. The six native components
 have fixed matching heading roots. All Heading components must remain free of
 runtime tag switching and named heading slots.
 
-### `DBCustomHeading` is a layout wrapper, not a heading
+### `DBCustomHeading` is a styling wrapper, not a heading
 
-Like every other `DBCustom*` component in this package, `DBCustomHeading` brings
-styling and layout only — the consumer brings the semantics. It renders a plain
-`div.db-custom-heading` that lays out a nested native heading next to sibling
-content, typically a permalink button:
+`DBCustomHeading` follows the same contract as every other `DBCustom*` component
+in this package: it mirrors the styling API of its regular counterpart and lets
+the consumer bring the semantics. Compare `DBCustomButton`, which mirrors
+`DBButton`'s styling props (`variant`, `size`, `icon*`, `width`, `noText`, `wrap`)
+and drops only the ones belonging to the native `<button>` (`type`, `disabled`,
+`form`, `name`, `value`, `command*`, click events, `text`).
+
+Applied to Heading: `size`, `fontWeight`, `paragraphSpacing` and `alignment` are
+styling and therefore live on the wrapper; `id` and everything else native lives
+on the heading the consumer writes.
 
 ```html
-<div class="db-custom-heading">
+<div class="db-custom-heading" data-size="xl">
 	<h2 id="installation">Installation</h2>
 	<a href="#installation">Direct link</a>
 </div>
@@ -84,22 +90,34 @@ which forced interactive sibling content into the heading's accessible name
 to keep the derived semantics from being overridden. Keeping the heading native
 removes both problems.
 
-Two rules follow from this and should not be traded away:
+Three implementation details in `heading.scss` that should not be traded away:
 
-- **The wrapper owns no typography properties.** `size`, `fontWeight` and
-  `paragraphSpacing` live on the nested heading only. Duplicating them on the
-  wrapper would create two places to set the same thing with the wrapper
-  silently winning on specificity. It also keeps `1lh` for `paragraphSpacing`
-  resolving against the heading's own line height instead of the flex
-  container's inherited one.
-- **`alignment` on the wrapper is `justify-content`, not `text-align`.** The
-  wrapper aligns the items in the row; text alignment inside the heading stays
-  with the nested heading's own `data-alignment`.
+- **The child selectors exclude `.db-heading`.** A nested Heading component keeps
+  its own typography instead of fighting the wrapper's attributes, so the two
+  models never produce an ambiguous result.
+- **The size lands on the wrapper as well as on the child.** The wrapper needs it
+  so `1lh` for `data-paragraph-spacing` resolves from the heading typography
+  rather than the surrounding body text; the child needs it explicitly because
+  the user-agent styles for `h1`-`h6` override inheritance. Without an explicit
+  `data-size` the wrapper picks the level default via `:has(:where(h1))` etc.
+- **`data-alignment` sets `justify-content` on the wrapper and repeats
+  `text-align` on the child.** `%heading-base` sets an explicit
+  `text-align: start` on the child, which would otherwise block inheritance.
 
-`heading.scss` applies the default level-to-size mapping to a direct child
-`h1`-`h6` so a bare heading needs no `db-heading` class, and sets
-`display: contents` on nested `db-heading-h-*` hosts so the Angular and Stencil
-output lays out identically without the optional `wc-workarounds.scss` import.
+The level-to-size mapping comes from `fonts.$headlines` in
+`@db-ux/core-foundations`, shared with the foundations'
+`defaults/default-fonts.scss` so the two cannot drift apart.
+
+### `useMetadata({ figma })` props must not be a chained identifier alias
+
+The `useMetadata` hook is parsed with JSON5, and the resolver does not follow a
+chained identifier reference. `const customHeadingProps = headingProps;` makes
+the whole `figma` metadata unresolvable, which **silently** skips the prop
+injection and leaves literal `props.size` in the generated Code Connect snippet
+instead of the selected Figma value. Use a spread (`{ ...headingProps }`) to
+reuse a map, and member access (`headingProps.alignment`) fails outright with
+`JSON5: invalid character`. After changing a `*.figma.ts` map, always check the
+regenerated snapshot for `props.` occurrences.
 
 ### Props types must intersect the shared base directly
 

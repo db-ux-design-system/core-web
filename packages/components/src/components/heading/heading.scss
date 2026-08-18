@@ -3,24 +3,25 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
 
-/* Default visual size per semantic level. This intentionally repeats the
- * `h1`-`h6` mapping from the foundations' `defaults/default-fonts.scss`, because
- * that file is an opt-in import consumers may strip while the component styles
- * have to work standalone, and because `%db-overwrite-headline-size-*` also sets
- * the icon custom properties on the element itself instead of only on
- * `::before`/`::after`. */
-$level-sizes: (
-	1: "xl",
-	2: "lg",
-	3: "md",
-	4: "sm",
-	5: "xs",
-	6: "2xs"
+/* `fonts.$headlines` is the shared level-to-size mapping, also used by the
+ * foundations' `defaults/default-fonts.scss`. Repeating the mapping here is
+ * intentional: that file is an opt-in import consumers may strip while the
+ * component styles have to work standalone, and `%db-overwrite-headline-size-*`
+ * additionally sets the icon custom properties on the element itself instead of
+ * only on `::before`/`::after`. */
+
+/* The direct children `.db-custom-heading` styles: a plain native heading. One
+ * that already carries `.db-heading` is excluded, so a Heading component inside
+ * the wrapper keeps its own typography instead of fighting the wrapper's
+ * attributes. */
+$nested-heading: ":where(h1, h2, h3, h4, h5, h6):not(.db-heading)";
+$logical-alignments: (
+	"center": center,
+	"end": end
 );
 
 /* Shared by `.db-heading` and by a plain native heading nested in
- * `.db-custom-heading`, which the wrapper styles so consumers can drop in a
- * bare `h1`-`h6`. */
+ * `.db-custom-heading`. */
 %heading-base {
 	margin-block: 0;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -32,11 +33,37 @@ $level-sizes: (
 	text-wrap: balance;
 }
 
+@mixin paragraph-spacing {
+	&[data-paragraph-spacing="true"] {
+		/* Spacing intentionally follows the computed heading line height. */
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		margin-block-end: 1lh;
+	}
+}
+
+/* `$child` additionally applies the alignment to a nested heading, which is
+ * required because `%heading-base` sets an explicit `text-align: start` there
+ * that would otherwise block inheritance. */
+@mixin text-alignments($child: null) {
+	@each $alignment, $value in $logical-alignments {
+		@if $child {
+			&[data-alignment="#{$alignment}"],
+			&[data-alignment="#{$alignment}"] > #{$child} {
+				text-align: $value;
+			}
+		} @else {
+			&[data-alignment="#{$alignment}"] {
+				text-align: $value;
+			}
+		}
+	}
+}
+
 .db-heading {
 	@extend %heading-base;
 
-	@each $level, $size in $level-sizes {
-		&:not([data-size]):where(h#{$level}) {
+	@each $tag, $size in fonts.$headlines {
+		&:not([data-size]):where(#{$tag}) {
 			@extend %db-overwrite-headline-size-#{$size};
 		}
 	}
@@ -55,59 +82,49 @@ $level-sizes: (
 		font-weight: 300;
 	}
 
-	&[data-alignment="center"] {
-		text-align: center;
-	}
-
-	&[data-alignment="end"] {
-		text-align: end;
-	}
-
-	&[data-paragraph-spacing="true"] {
-		/* Spacing intentionally follows the computed heading line height. */
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		margin-block-end: 1lh;
-	}
+	@include text-alignments;
+	@include paragraph-spacing;
 }
 
-/* Layout wrapper for a native heading plus sibling content, for example a
- * permalink button. It owns the layout only and deliberately has no typography
- * properties of its own: a nested bare `h1`-`h6` receives the default heading
- * styles, and every deviation is set on that heading via `.db-heading`, so each
- * property has exactly one source of truth. */
+/* Styling wrapper for a consumer-authored native heading plus optional sibling
+ * content, for example a permalink button. It mirrors the Heading styling API
+ * the same way `.db-custom-button` mirrors `.db-button`: the wrapper carries the
+ * styling attributes and applies them to a plain nested `h1`-`h6`. */
 .db-custom-heading {
 	@include helpers.display(flex);
 
 	align-items: center;
 	gap: variables.$db-spacing-fixed-sm;
 
-	> :where(h1, h2, h3, h4, h5, h6) {
+	> #{$nested-heading} {
 		@extend %heading-base;
 	}
 
-	@each $level, $size in $level-sizes {
-		> :where(h#{$level}) {
+	/* The size lands on the wrapper as well, so `1lh` for
+	 * `data-paragraph-spacing` resolves from the heading typography instead of
+	 * the surrounding body text. The nested heading needs it explicitly too,
+	 * because the user-agent styles for `h1`-`h6` override inheritance. */
+	@each $tag, $size in fonts.$headlines {
+		&:not([data-size]):has(:where(#{$tag})),
+		&:not([data-size]) > :where(#{$tag}):not(.db-heading) {
 			@extend %db-overwrite-headline-size-#{$size};
 		}
 	}
 
-	/* Angular and Stencil render the nested heading inside its custom-element
-	 * host, which would otherwise become the flex item. `wc-workarounds.scss`
-	 * already sets `display: contents` on every host, but it is an optional
-	 * import, so the heading hosts are covered here as well. */
-	> :where(
-		db-heading-h-1,
-		db-heading-h-2,
-		db-heading-h-3,
-		db-heading-h-4,
-		db-heading-h-5,
-		db-heading-h-6
-	) {
-		display: contents;
+	@each $size in fonts.$font-sizes {
+		&[data-size="#{$size}"],
+		&[data-size="#{$size}"] > #{$nested-heading} {
+			@extend %db-overwrite-headline-size-#{$size};
+		}
 	}
 
-	/* Aligns the items in the row. Text alignment inside the heading itself stays
-	 * with the nested heading's own `data-alignment`. */
+	&[data-font-weight="light"],
+	&[data-font-weight="light"] > #{$nested-heading} {
+		font-weight: 300;
+	}
+
+	/* `justify-content` aligns the items in the row, `text-align` the text within
+	 * the heading itself. */
 	&[data-alignment="center"] {
 		justify-content: center;
 	}
@@ -115,4 +132,7 @@ $level-sizes: (
 	&[data-alignment="end"] {
 		justify-content: flex-end;
 	}
+
+	@include text-alignments($nested-heading);
+	@include paragraph-spacing;
 }
