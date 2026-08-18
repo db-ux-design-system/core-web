@@ -7,7 +7,7 @@ test.describe('DBHeader', () => {
 		test,
 		title: 'default',
 		description:
-			'should have links, an inline text, a navigation with a list and links, buttons (next())',
+			'should have links, an inline text, a navigation with a list and links, buttons (next()) inside a navigation landmark (previousLandmark()) with links reachable by quick navigation (previousLink())',
 		url: './#/05/header?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
@@ -35,6 +35,32 @@ test.describe('DBHeader', () => {
 				await voiceOver?.next(); // Button "Notification"
 				await voiceOver?.next(); // Button "Help"
 			}
+
+			/*
+			 * The walk above ends on the last action button, which sits behind the
+			 * navigation inside the header. Hopping backwards through the landmarks
+			 * from there confirms that the `<nav>` is exposed as a named navigation
+			 * landmark.
+			 *
+			 * NVDA maps this to landmark quick navigation ("Shift-D"), VoiceOver to
+			 * its auto web spots ("VO-Command-Shift-N") - the latter is a heuristic
+			 * superset of landmarks, so the macOS output may contain further spots.
+			 */
+			const screenReader = voiceOver ?? nvda;
+			await screenReader?.previousLandmark(); // Navigation landmark "Functional"
+
+			/*
+			 * The landmark hop leaves the cursor on the first navigation link, so the
+			 * previous link is the second meta navigation link. This confirms the
+			 * links are discoverable through link quick navigation ("Shift-K" for
+			 * NVDA, "VO-Command-Shift-L" for VoiceOver) and not just by stepping.
+			 *
+			 * Unlike the landmark hop above, both readers use their native link
+			 * command here, so the destination matches - as long as the preceding
+			 * landmark hop left them at the same position, which needs a macOS run
+			 * to confirm.
+			 */
+			await screenReader?.previousLink(); // Link "Help"
 		}
 	});
 });

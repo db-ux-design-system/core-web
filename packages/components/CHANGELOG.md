@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 5.1.5
+
+### Patch Changes
+
+- fix: handle `env(safe-area-inset-*)` correctly for drawer `direction="up"` and `direction="down"` - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+
 ## 5.1.4
 
 ### Patch Changes
