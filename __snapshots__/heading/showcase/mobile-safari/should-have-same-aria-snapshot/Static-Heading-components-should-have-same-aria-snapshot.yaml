@@ -17,26 +17,29 @@
   - heading "xs" [level=2]
   - heading "2xs" [level=2]
   - heading "3xs" [level=2]
+  - 'heading "Wrapper: 3xl" [level=2]'
+  - 'heading "Wrapper: 3xs" [level=2]'
   - link "Semantic And Visual Decoupling"
   - heading "Semantic h6, visual 2xl" [level=6]
   - heading "Semantic h2, visual 3xs" [level=2]
   - link "Font Weight"
   - heading "(Default) Black" [level=2]
   - heading "Light" [level=2]
+  - 'heading "Wrapper: (Default) Black" [level=2]'
+  - 'heading "Wrapper: Light" [level=2]'
   - link "Alignment"
   - heading "(Default) Start" [level=2]
   - heading "Center" [level=2]
   - heading "End" [level=2]
   - 'heading "Row: (Default) Start" [level=2]'
-  - text: sibling
   - 'heading "Row: Center" [level=2]'
-  - text: sibling
   - 'heading "Row: End" [level=2]'
-  - text: sibling
   - link "Paragraph Spacing"
   - 'heading "Omitted: no margin" [level=2]'
   - 'heading "True: 1lh block-end" [level=2]'
   - 'heading "False: no margin" [level=2]'
+  - 'heading "Wrapper omitted: no margin" [level=2]'
+  - 'heading "Wrapper true: 1lh block-end" [level=2]'
   - link "Density"
   - heading "Functional" [level=2]
   - heading "(Default) Regular" [level=2]
@@ -47,4 +50,4 @@
   - link "Decorative Children Hidden From Screen Readers"
   - heading "Current disruptions" [level=2]
   - heading "Current disruptions" [level=2]
-  - text: 3 active
+  - text: "3"
