@@ -102,7 +102,7 @@ Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
 ## One Slot Name = One Position (web components)
 
-**Try not to render the same `<Slot name="…" />` (same name) twice in a component.** Web components can fill only one of them, and which one is compiler-defined — the failure is silent and layout-breaking. Duplicated positions need a stencil-only rename via the `stencil-slot-names` plugin (`configs/plugins/stencil/slot-names.cjs`), as done for `DBHeader`. See [Duplicated slot names](docs/duplicated-slot-names.md) before adding or changing a slot that appears more than once.
+**Do not to render the same `<Slot name="…" />` (same name) twice in a component.** Web components can fill only one of them, and which one is compiler-defined — the failure is silent and layout-breaking. Duplicated positions need a stencil-only rename via the `stencil-slot-names` plugin (`configs/plugins/stencil/slot-names.cjs`), as done for `DBHeader`. See [Duplicated slot names](docs/duplicated-slot-names.md) before adding or changing a slot that appears more than once.
 
 ## Storybook Generation
 

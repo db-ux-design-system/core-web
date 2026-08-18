@@ -18,10 +18,6 @@ export type DBHeaderDefaultProps = {
 	 * Slot to pass in a meta navigation.
 	 * - Desktop: Above the regular header
 	 * - Mobile: Inside the drawer
-	 *
-	 * Web components only: a slotted element exists at exactly one position in
-	 * the DOM, so this slot fills the desktop position and the drawer has its
-	 * own `mobileMetaNavigation` slot.
 	 */
 	metaNavigation?: any;
 	/**
@@ -34,10 +30,6 @@ export type DBHeaderDefaultProps = {
 	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
 	 * - Desktop: Shown separated by divider at the end of the header
 	 * - Mobile: Shown inside the drawer at the bottom.
-	 *
-	 * Web components only: a slotted element exists at exactly one position in
-	 * the DOM, so this slot fills the desktop position and the drawer footer has
-	 * its own `mobileSecondaryAction` slot.
 	 */
 	secondaryAction?: any;
 

@@ -1,7 +1,6 @@
 const onClickPlugin = require('../plugins/on-click.cjs');
 const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
 const slotsPlugin = require('../plugins/stencil/slots.cjs');
-const slotNamesPlugin = require('../plugins/stencil/slot-names.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
 const focusgroupPlugin = require('../plugins/stencil/focusgroup.cjs');
@@ -19,7 +18,6 @@ module.exports = {
 		stencilPlugin,
 		attributePassingPlugin,
 		slotsPlugin,
-		slotNamesPlugin,
 		onClickPlugin,
 		esmExtensionsPlugin,
 		focusgroupPlugin
