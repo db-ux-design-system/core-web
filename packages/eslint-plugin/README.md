@@ -650,6 +650,51 @@ Ensures DBDrawer has a DBDrawerHeader for accessibility. The header provides the
 <DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template>Content</DBDrawer>
 ```
 
+### `custom-heading-single-heading`
+
+Ensures DBCustomHeading wraps exactly one heading. The component only provides the layout for a heading plus sibling content and has no heading semantics of its own, so without a nested `h1`-`h6` (or `DBHeadingH1`-`DBHeadingH6`) nothing is exposed as a heading. More than one heading in a single wrapper breaks the document outline.
+
+Children that cannot be resolved statically (JSX expressions, `<slot>`, `<ng-content>`) suppress the missing-heading report.
+
+**❌ Invalid:**
+
+```jsx
+// React
+<DBCustomHeading>Installation</DBCustomHeading>
+<DBCustomHeading><span>Installation</span></DBCustomHeading>
+<DBCustomHeading><h2>One</h2><h3>Two</h3></DBCustomHeading>
+
+// Angular
+<db-custom-heading>Installation</db-custom-heading>
+<db-custom-heading><db-heading-h-2>One</db-heading-h-2><h3>Two</h3></db-custom-heading>
+
+// Vue
+<DBCustomHeading>Installation</DBCustomHeading>
+<DBCustomHeading><h2>One</h2><DBHeadingH3>Two</DBHeadingH3></DBCustomHeading>
+```
+
+**✅ Valid:**
+
+```jsx
+// React
+<DBCustomHeading><h2>Installation</h2></DBCustomHeading>
+<DBCustomHeading>
+	<DBHeadingH2 id="installation">Installation</DBHeadingH2>
+	<DBCustomButton variant="ghost" icon="link_chain" noText>
+		<a href="#installation">Direct link to Installation</a>
+	</DBCustomButton>
+</DBCustomHeading>
+<DBCustomHeading>{children}</DBCustomHeading>
+
+// Angular
+<db-custom-heading><h2>Installation</h2></db-custom-heading>
+<db-custom-heading><db-heading-h-2 *ngIf="visible">Installation</db-heading-h-2></db-custom-heading>
+
+// Vue
+<DBCustomHeading><DBHeadingH2 id="installation">Installation</DBHeadingH2><a href="#installation">Direct link</a></DBCustomHeading>
+<DBCustomHeading><slot /></DBCustomHeading>
+```
+
 ### `sub-component-required-parent`
 
 Ensures sub-components are used inside their required parent component and slot.

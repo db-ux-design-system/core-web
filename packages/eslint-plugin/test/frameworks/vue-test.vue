@@ -102,6 +102,13 @@
 		<!-- db-ux/tag-removable-remove-button-required -->
 		<DBTag behavior="removable"></DBTag>
 
+		<!-- db-ux/custom-heading-single-heading -->
+		<DBCustomHeading>Installation</DBCustomHeading>
+		<DBCustomHeading>
+			<h2>One</h2>
+			<h3>Two</h3>
+		</DBCustomHeading>
+
 		<!-- db-ux/tooltip-requires-interactive-parent -->
 		<div>
 			<DBTooltip>Tooltip without interactive parent</DBTooltip>
@@ -115,6 +122,7 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBCustomHeading,
 	DBCustomSelect,
 	DBDrawer,
 	DBDrawerFooter,

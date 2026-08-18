@@ -107,6 +107,25 @@ if (parent.type === 'Element' && isDBComponent(parent, COMPONENTS.DBAccordion)) 
 if ((parent.type === 'Element' || parent.type === 'Element$1') && isDBComponent(parent, COMPONENTS.DBAccordion)) {
 ```
 
+### Angular wraps structural directives in a `Template` node
+
+`<h2 *ngIf="x">` parses as `Template[name=h2] > Element[name=h2]`, i.e. the name
+is repeated on the wrapper. Any rule that **counts** matching children must
+therefore only count real element types (`JSXElement`, `VElement`, `Element`,
+`Element$1`) and treat `Template`, `Template$1`, `Content` and `Content$1` as
+recursion-only, otherwise every structural directive doubles the count. `Content`
+is the node for `<ng-content>` and is not an `Element` at all, so a rule that
+only looks at `Element` will miss it.
+
+See `src/rules/heading/custom-heading-single-heading.ts` for the pattern.
+
+### `isDBComponent` does not match digit-suffixed component names
+
+`getAngularComponentName` derives the kebab name from camelCase boundaries only,
+so `DBHeadingH1` becomes `db-heading-h1` while the generated custom element is
+`db-heading-h-1`. For components whose name ends in a digit, match against an
+explicit name list instead of relying on `isDBComponent`.
+
 ### Child Element Checks
 
 ```typescript
