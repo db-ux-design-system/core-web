@@ -52,6 +52,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 				<Navigation
 					variant={settings.subNavigationVariant}
 					aria-label="sub navigation"
+					label="sub"
 				/>
 			</DBShellSubNavigation>
 			<DBControlPanelMobile
@@ -70,7 +71,10 @@ const App = ({ Component, pageProps }: AppProps) => {
 				}
 				secondaryActions={<SecondaryActions />}
 				meta={<MetaNavigation />}>
-				<Navigation variant={settings.navigationMobileVariant} />
+				<Navigation
+					variant={settings.navigationMobileVariant}
+					label="mobile"
+				/>
 			</DBControlPanelMobile>
 			<DBControlPanelDesktop
 				id={controlPanelDesktopId}
@@ -87,7 +91,10 @@ const App = ({ Component, pageProps }: AppProps) => {
 					/>
 				}
 				secondaryActions={<SecondaryActions />}>
-				<Navigation variant={settings.navigationDesktopVariant} />
+				<Navigation
+					variant={settings.navigationDesktopVariant}
+					label="desktop"
+				/>
 			</DBControlPanelDesktop>
 			<DBShellContent data-density={density} className={`db-${color}`}>
 				<Component {...pageProps} />
