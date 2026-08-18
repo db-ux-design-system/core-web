@@ -39,19 +39,19 @@ Default content must be phrasing content and defines the accessible heading name
 </db-heading-h-2>
 ```
 
-### Custom heading content
+### Heading with sibling content
 
-Prefer the native components whenever possible. `DBCustomHeading` accepts arbitrary children and renders a fixed `div` with `role="heading"`. Its required `semanticLevel` sets `aria-level` and the default visual size.
+`DBCustomHeading` is a layout wrapper for a native heading plus sibling content, for example a permalink button. It renders a plain `div` with no heading semantics of its own. Nest a Heading component or a bare `h1`-`h6` inside; the wrapper applies the matching default heading styles either way.
 
 ```html
-<db-custom-heading [semanticLevel]="2" size="xl">
-	<span aria-hidden="true">[</span>
-	<div>Arbitrary custom content</div>
-	<strong> inside one accessible heading</strong>
-	<span aria-hidden="true">]</span>
+<db-custom-heading>
+	<db-heading-h-2 id="installation">Installation</db-heading-h-2>
+	<db-custom-button variant="ghost" icon="link_chain" [noText]="true">
+		<a href="#installation">Direct link to Installation</a>
+	</db-custom-button>
 </db-custom-heading>
 ```
 
-The children must form one concise accessible heading. Do not nest a native heading or another `role="heading"`. Mark decorative content with `aria-hidden="true"`; child components may intentionally override inherited Heading typography.
+Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
 
-`role` and `aria-level` are always derived from the component, so a manually passed `aria-level` is ignored. Change `semanticLevel` to change the exposed level.
+The wrapper carries no typography properties: `size`, `fontWeight` and `paragraphSpacing` belong on the nested heading, which keeps one source of truth per property. `alignment` on the wrapper aligns the items in the row; text alignment inside the heading stays with the nested heading's own `alignment`.

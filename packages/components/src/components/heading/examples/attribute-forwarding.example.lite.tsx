@@ -9,7 +9,7 @@ useMetadata({
 	storybookComponentNames: ['DBHeadingH2', 'DBCustomHeading'],
 	storybookNames: [
 		'Native: ID, class, ARIA, data and style',
-		'Custom: ID, class, ARIA, data and style'
+		'Wrapper: ID, class, data and style'
 	],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -26,13 +26,13 @@ export default function HeadingAttributeForwarding() {
 				ID, class, ARIA, data and style forwarded to h2
 			</DBHeadingH2>
 			<DBCustomHeading
-				semanticLevel={2}
 				id="forwarded-custom-heading"
 				class="forwarded-custom-heading-class"
-				aria-label="ID, class, ARIA, data and style forwarded to custom heading"
 				data-example="custom-heading"
 				style={{ textTransform: 'uppercase' }}>
-				<span>ID, class, ARIA, data and style on a custom heading</span>
+				<DBHeadingH2>
+					ID, class, data and style on the wrapper
+				</DBHeadingH2>
 			</DBCustomHeading>
 		</Fragment>
 	);

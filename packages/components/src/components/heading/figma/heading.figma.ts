@@ -1,5 +1,5 @@
 import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
-import type { DBCustomHeadingProps, DBHeadingBaseProps } from '../model';
+import type { DBHeadingBaseProps } from '../model';
 
 export type FigmaHeadingProps = Pick<
 	DBHeadingBaseProps,
@@ -8,8 +8,10 @@ export type FigmaHeadingProps = Pick<
 	text?: string;
 };
 
-export type FigmaCustomHeadingProps = FigmaHeadingProps &
-	Pick<DBCustomHeadingProps, 'semanticLevel'>;
+export type FigmaCustomHeadingProps = Pick<
+	FigmaHeadingProps,
+	'alignment' | 'text'
+>;
 
 const sizeProp: FigmaProp = {
 	type: 'enum',
@@ -36,6 +38,14 @@ const sizeProp: FigmaProp = {
 	}
 };
 
+const alignmentProp: FigmaProp = {
+	type: 'enum',
+	key: 'Alignment',
+	value: { '(Def) Left': 'start', Center: 'center', Right: 'end' }
+};
+
+const textProp: FigmaProp = { type: 'textContent', key: 'Text' };
+
 const headingProps: Record<string, FigmaProp> = {
 	size: sizeProp,
 	fontWeight: {
@@ -43,22 +53,21 @@ const headingProps: Record<string, FigmaProp> = {
 		key: 'Font Weight',
 		value: { '(Def) Black': 'black', Light: 'light' }
 	},
-	alignment: {
-		type: 'enum',
-		key: 'Alignment',
-		value: { '(Def) Left': 'start', Center: 'center', Right: 'end' }
-	},
+	alignment: alignmentProp,
 	paragraphSpacing: { type: 'boolean', key: 'Show Paragraph Spacing' },
-	text: { type: 'textContent', key: 'Text' }
+	text: textProp
 };
 
+/*
+ * DBCustomHeading is a layout wrapper, so only the properties it actually owns
+ * are mapped. The generator resolves Figma values for root-level props only, so
+ * mapping `Size`, `Font Weight` or `Show Paragraph Spacing` here would emit
+ * literal `props.size` into the snippet instead of the selected value — those
+ * belong to the nested heading's own component set.
+ */
 const customHeadingProps: Record<string, FigmaProp> = {
-	semanticLevel: {
-		type: 'enum',
-		key: 'Semantic Level',
-		value: { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6 }
-	},
-	...headingProps
+	alignment: alignmentProp,
+	text: textProp
 };
 
 export const headingH1: FigmaCodeConnect = {

@@ -9,7 +9,7 @@ useMetadata({
 	storybookComponentNames: ['DBHeadingH2', 'DBCustomHeading'],
 	storybookNames: [
 		'Native: Decorative children hidden from screen readers',
-		'Custom: Arbitrary children with one accessible name'
+		'Wrapper: Sibling content outside the accessible name'
 	],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -18,15 +18,13 @@ export default function HeadingChildrenAccessibility() {
 	return (
 		<Fragment>
 			<DBHeadingH2>
-				<span aria-hidden="true">★ </span>
+				<span aria-hidden="true">* </span>
 				<span>Current disruptions</span>
-				<span aria-hidden="true"> ★</span>
+				<span aria-hidden="true"> *</span>
 			</DBHeadingH2>
-			<DBCustomHeading semanticLevel={2}>
-				<span aria-hidden="true">★ </span>
-				<div class="heading-inline-child">Custom content container</div>
-				<strong> with arbitrary children</strong>
-				<span aria-hidden="true"> ★</span>
+			<DBCustomHeading>
+				<DBHeadingH2>Current disruptions</DBHeadingH2>
+				<span>3 active</span>
 			</DBCustomHeading>
 		</Fragment>
 	);

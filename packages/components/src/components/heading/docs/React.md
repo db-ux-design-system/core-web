@@ -41,23 +41,29 @@ Children must be phrasing content and define the accessible heading name. Keep d
 
 Native `aria-*`, `data-*`, `title`, `style`, `className`, and `id` attributes are forwarded to the native heading.
 
-### Custom heading content
+### Heading with sibling content
 
-Prefer the native Heading components whenever possible. Use `DBCustomHeading` when the heading must contain arbitrary children that cannot be phrasing content. It always renders a `div` with `role="heading"`; the required `semanticLevel` sets `aria-level` and determines the default visual size. An explicit `size` changes only the appearance.
+`DBCustomHeading` is a layout wrapper for a native heading plus sibling content, for example a permalink button. It renders a plain `div` with no heading semantics of its own. Nest a Heading component or a bare `h1`-`h6` inside; the wrapper applies the matching default heading styles either way.
 
 ```tsx
-import { DBCustomHeading } from "@db-ux/react-core-components";
+import {
+	DBCustomButton,
+	DBCustomHeading,
+	DBHeadingH2
+} from "@db-ux/react-core-components";
 
-export const CustomArticleHeading = () => (
-	<DBCustomHeading semanticLevel={2} size="xl">
-		<span aria-hidden="true">[</span>
-		<div>Arbitrary custom content</div>
-		<strong> inside one accessible heading</strong>
-		<span aria-hidden="true">]</span>
+export const SectionHeading = () => (
+	<DBCustomHeading>
+		<DBHeadingH2 id="installation">Installation</DBHeadingH2>
+		<DBCustomButton variant="ghost" icon="link_chain" noText>
+			<a href="#installation">Direct link to Installation</a>
+		</DBCustomButton>
 	</DBCustomHeading>
 );
 ```
 
-The children must together describe one concise heading. Do not nest another native heading or an element with `role="heading"`, because that would expose duplicate heading semantics. Decorative children need `aria-hidden="true"`; child components with their own typography may intentionally override inherited Heading styles.
+Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
 
-`role` and `aria-level` are always derived from the component, so a manually passed `aria-level` is ignored. Change `semanticLevel` to change the exposed level.
+The wrapper carries no typography properties: `size`, `fontWeight` and `paragraphSpacing` belong on the nested heading, which keeps one source of truth per property. `alignment` on the wrapper aligns the items in the row; text alignment inside the heading stays with the nested heading's own `alignment`.
+
+`id`, `className`, `data-*`, `title` and `style` are forwarded to the wrapper `div`.

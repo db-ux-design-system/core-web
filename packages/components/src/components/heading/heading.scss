@@ -1,7 +1,27 @@
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
 
-.db-heading {
+/* Default visual size per semantic level. This intentionally repeats the
+ * `h1`-`h6` mapping from the foundations' `defaults/default-fonts.scss`, because
+ * that file is an opt-in import consumers may strip while the component styles
+ * have to work standalone, and because `%db-overwrite-headline-size-*` also sets
+ * the icon custom properties on the element itself instead of only on
+ * `::before`/`::after`. */
+$level-sizes: (
+	1: "xl",
+	2: "lg",
+	3: "md",
+	4: "sm",
+	5: "xs",
+	6: "2xs"
+);
+
+/* Shared by `.db-heading` and by a plain native heading nested in
+ * `.db-custom-heading`, which the wrapper styles so consumers can drop in a
+ * bare `h1`-`h6`. */
+%heading-base {
 	margin-block: 0;
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
@@ -10,29 +30,15 @@
 	overflow-wrap: anywhere;
 	text-align: start;
 	text-wrap: balance;
+}
 
-	&:not([data-size]):where(h1, [role="heading"][aria-level="1"]) {
-		@extend %db-overwrite-headline-size-xl;
-	}
+.db-heading {
+	@extend %heading-base;
 
-	&:not([data-size]):where(h2, [role="heading"][aria-level="2"]) {
-		@extend %db-overwrite-headline-size-lg;
-	}
-
-	&:not([data-size]):where(h3, [role="heading"][aria-level="3"]) {
-		@extend %db-overwrite-headline-size-md;
-	}
-
-	&:not([data-size]):where(h4, [role="heading"][aria-level="4"]) {
-		@extend %db-overwrite-headline-size-sm;
-	}
-
-	&:not([data-size]):where(h5, [role="heading"][aria-level="5"]) {
-		@extend %db-overwrite-headline-size-xs;
-	}
-
-	&:not([data-size]):where(h6, [role="heading"][aria-level="6"]) {
-		@extend %db-overwrite-headline-size-2xs;
+	@each $level, $size in $level-sizes {
+		&:not([data-size]):where(h#{$level}) {
+			@extend %db-overwrite-headline-size-#{$size};
+		}
 	}
 
 	@each $size in fonts.$font-sizes {
@@ -43,8 +49,8 @@
 
 	/* The extended headline placeholders apply the `font` shorthand, which also
 	 * resets `font-weight`. The default mapping above uses `:where(...)` so that
-	 * native and ARIA headings stay at the same specificity as this override,
-	 * which therefore wins by source order for every heading size. */
+	 * it stays at the same specificity as this override, which therefore wins by
+	 * source order for every heading size. */
 	&[data-font-weight="light"] {
 		font-weight: 300;
 	}
@@ -61,5 +67,52 @@
 		/* Spacing intentionally follows the computed heading line height. */
 		/* stylelint-disable-next-line db-ux/use-spacings */
 		margin-block-end: 1lh;
+	}
+}
+
+/* Layout wrapper for a native heading plus sibling content, for example a
+ * permalink button. It owns the layout only and deliberately has no typography
+ * properties of its own: a nested bare `h1`-`h6` receives the default heading
+ * styles, and every deviation is set on that heading via `.db-heading`, so each
+ * property has exactly one source of truth. */
+.db-custom-heading {
+	@include helpers.display(flex);
+
+	align-items: center;
+	gap: variables.$db-spacing-fixed-sm;
+
+	> :where(h1, h2, h3, h4, h5, h6) {
+		@extend %heading-base;
+	}
+
+	@each $level, $size in $level-sizes {
+		> :where(h#{$level}) {
+			@extend %db-overwrite-headline-size-#{$size};
+		}
+	}
+
+	/* Angular and Stencil render the nested heading inside its custom-element
+	 * host, which would otherwise become the flex item. `wc-workarounds.scss`
+	 * already sets `display: contents` on every host, but it is an optional
+	 * import, so the heading hosts are covered here as well. */
+	> :where(
+		db-heading-h-1,
+		db-heading-h-2,
+		db-heading-h-3,
+		db-heading-h-4,
+		db-heading-h-5,
+		db-heading-h-6
+	) {
+		display: contents;
+	}
+
+	/* Aligns the items in the row. Text alignment inside the heading itself stays
+	 * with the nested heading's own `data-alignment`. */
+	&[data-alignment="center"] {
+		justify-content: center;
+	}
+
+	&[data-alignment="end"] {
+		justify-content: flex-end;
 	}
 }

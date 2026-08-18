@@ -41,25 +41,29 @@ The default content must be phrasing content and defines the accessible heading 
 </DBHeadingH2>
 ```
 
-### Custom heading content
+### Heading with sibling content
 
-Prefer the native components whenever possible. `DBCustomHeading` accepts arbitrary children and renders a fixed `div` with `role="heading"`. Its required `semanticLevel` sets `aria-level` and the default visual size.
+`DBCustomHeading` is a layout wrapper for a native heading plus sibling content, for example a permalink button. It renders a plain `div` with no heading semantics of its own. Nest a Heading component or a bare `h1`-`h6` inside; the wrapper applies the matching default heading styles either way.
 
 ```vue
 <script setup lang="ts">
-import { DBCustomHeading } from "@db-ux/v-core-components";
+import {
+	DBCustomButton,
+	DBCustomHeading,
+	DBHeadingH2
+} from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBCustomHeading :semantic-level="2" size="xl">
-		<span aria-hidden="true">[</span>
-		<div>Arbitrary custom content</div>
-		<strong> inside one accessible heading</strong>
-		<span aria-hidden="true">]</span>
+	<DBCustomHeading>
+		<DBHeadingH2 id="installation">Installation</DBHeadingH2>
+		<DBCustomButton variant="ghost" icon="link_chain" :no-text="true">
+			<a href="#installation">Direct link to Installation</a>
+		</DBCustomButton>
 	</DBCustomHeading>
 </template>
 ```
 
-The children must form one concise accessible heading. Do not nest a native heading or another `role="heading"`. Mark decorative content with `aria-hidden="true"`; child components may intentionally override inherited Heading typography.
+Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
 
-`role` and `aria-level` are always derived from the component, so a manually passed `aria-level` is ignored. Change `semanticLevel` to change the exposed level.
+The wrapper carries no typography properties: `size`, `fontWeight` and `paragraphSpacing` belong on the nested heading, which keeps one source of truth per property. `alignment` on the wrapper aligns the items in the row; text alignment inside the heading stays with the nested heading's own `alignment`.

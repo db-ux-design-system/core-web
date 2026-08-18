@@ -31,19 +31,21 @@ const vueHeading = `<template>
 const props = defineProps<DBHeadingH2Props>();
 </script>`;
 
-const attributePassingGuard = `      if (element && parent) {
-      const attributes = Array.from(parent.attributes);
-      if (
-        attr && attr.name !== 'data-density' &&
-        (attr.name.startsWith("data-") || attr.name.startsWith("aria-"))
-      ) {`;
+const reactCustomHeading = `import * as React from "react";
+import { useRef } from "react";
+function DBCustomHeading(props: DBCustomHeadingProps) {
+  const _ref = useRef<HTMLDivElement | any>(null);
+  return <div
+    ref={_ref}
+    className={headingClass}
+  >{props.children}</div>;
+}
+export default DBCustomHeading;`;
 
 const vueCustomHeading = `<template>
   <div
     ref="_ref"
-    role="heading"
-    :class="cls('db-heading', className)"
-    :aria-level="semanticLevel ?? 2"
+    :class="cls('db-custom-heading', className)"
   ><slot /></div>
 </template>
 <script setup lang="ts">
@@ -54,17 +56,7 @@ const props = defineProps<DBCustomHeadingProps>();
 </script>`;
 
 const angularCustomHeading = `@Component({ selector: "db-custom-heading" })
-export class DBCustomHeading {
-  semanticLevel: InputSignal<DBCustomHeadingProps["semanticLevel"]> =
-    input<DBCustomHeadingProps["semanticLevel"]>();
-${attributePassingGuard}
-}`;
-
-const stencilCustomHeading = `@Component({ tag: "db-custom-heading" })
-export class DBCustomHeading {
-  @Prop() semanticLevel: DBCustomHeadingProps["semanticLevel"];
-${attributePassingGuard}
-}`;
+export class DBCustomHeading {}`;
 
 describe('static heading attribute passing', () => {
 	it('generates the React wrapper for one fixed root', () => {
@@ -92,67 +84,51 @@ describe('static heading attribute passing', () => {
 		);
 	});
 
-	it('opts out of Vue attribute fallthrough so aria-level stays derived', () => {
+	it('wraps the custom heading div in the same React forwardRef', () => {
+		const result = transformHeadingAttributePassing(
+			reactCustomHeading,
+			'react',
+			'DBCustomHeading'
+		);
+		expect(result).toContain('function DBCustomHeadingFn(');
+		expect(result).toContain('const DBCustomHeading = forwardRef<');
+		expect(result).toContain('HTMLDivElement');
+		// The wrapper derives no semantics, so nothing is excluded from passing.
+		expect(result).not.toContain('role');
+		expect(result).not.toContain('aria-level');
+	});
+
+	it('binds Vue attrs for the custom heading without opting out of fallthrough', () => {
 		const result = transformHeadingAttributePassing(
 			vueCustomHeading,
 			'vue',
 			'DBCustomHeading'
 		);
-		expect(result).toContain('inheritAttrs: false');
-		// `$attrs` must be bound before `role`, so the derived semantics win.
-		expect(result.indexOf('v-bind="$attrs"')).toBeLessThan(
-			result.indexOf('role="heading"')
-		);
-		expect(result.indexOf('role="heading"')).toBeLessThan(
-			result.indexOf(':aria-level=')
-		);
+		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(1);
+		expect(result).toContain('props.className ?? props.class');
+		// No derived `role`/`aria-level` to protect, so Vue's automatic attribute
+		// fallthrough stays enabled and `paragraphSpacing` does not exist here.
+		expect(result).not.toContain('inheritAttrs: false');
+		expect(result).not.toContain('withDefaults(');
 	});
 
-	it('requires the Angular semanticLevel input and removes host semantics', () => {
-		const result = transformHeadingAttributePassing(
-			angularCustomHeading,
-			'angular',
-			'DBCustomHeading'
-		);
-		// Required for the template type check (NG8008) and because the annotation
-		// Mitosis emits excludes `undefined`, which plain `input()` cannot satisfy
-		// under the strict config of `output/angular`.
-		expect(result).toContain(
-			'input.required<DBCustomHeadingProps["semanticLevel"]>()'
-		);
-		expect(result).toContain('parent.removeAttribute("role")');
-		expect(result).toContain('parent.removeAttribute("aria-level")');
-		expect(result).toContain(
-			"attr.name !== 'data-density' && attr.name !== 'aria-level' &&"
-		);
-	});
-
-	it('requires the Stencil semanticLevel prop and removes host semantics', () => {
-		const result = transformHeadingAttributePassing(
-			stencilCustomHeading,
-			'stencil',
-			'DBCustomHeading'
-		);
-		// Type-level only: keeps the `?? 2` runtime fallback reachable while making
-		// `semanticLevel` the one required member of `JSX.DbCustomHeading`.
-		expect(result).toContain(
-			'@Prop() semanticLevel!: DBCustomHeadingProps["semanticLevel"]'
-		);
-		expect(result).toContain('parent.removeAttribute("role")');
-		expect(result).toContain('parent.removeAttribute("aria-level")');
-		expect(result).toContain(
-			"attr.name !== 'data-density' && attr.name !== 'aria-level' &&"
-		);
-	});
-
-	it('keeps forwarding aria-level for native headings', () => {
-		expect(
-			transformHeadingAttributePassing(
-				stencilCustomHeading,
-				'stencil',
-				'DBHeadingH2'
-			)
-		).toBe(stencilCustomHeading);
+	it('leaves Angular and Stencil output untouched', () => {
+		for (const target of ['angular', 'stencil'] as const) {
+			expect(
+				transformHeadingAttributePassing(
+					angularCustomHeading,
+					target,
+					'DBCustomHeading'
+				)
+			).toBe(angularCustomHeading);
+			expect(
+				transformHeadingAttributePassing(
+					angularCustomHeading,
+					target,
+					'DBHeadingH2'
+				)
+			).toBe(angularCustomHeading);
+		}
 	});
 
 	it('does not change other components', () => {

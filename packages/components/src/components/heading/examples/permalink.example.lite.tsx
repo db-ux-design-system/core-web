@@ -1,44 +1,28 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { useMetadata } from '@builder.io/mitosis';
+import DBCustomButton from '../../custom-button/custom-button.lite';
 import DBCustomHeading from '../custom-heading.lite';
 import DBHeadingH2 from '../heading-h2.lite';
 import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
 	storybookTitle: 'Permalink',
-	storybookComponentName: 'DBHeadingH2',
-	storybookComponentNames: ['DBHeadingH2', 'DBCustomHeading'],
-	storybookNames: ['Native anchor link', 'Custom anchor link'],
+	storybookComponentName: 'DBCustomHeading',
+	storybookComponentNames: ['DBCustomHeading'],
+	storybookNames: ['Heading with a permalink button'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
 export default function HeadingPermalink() {
 	return (
-		<Fragment>
-			<DBHeadingH2
-				id="installation"
-				class="heading-permalink"
-				aria-label="Installation">
-				<span>Installation</span>
-				<a
-					class="db-link heading-permalink-link"
-					href="#installation"
-					aria-label="Direct link to Installation">
-					<span aria-hidden="true">#</span>
-				</a>
-			</DBHeadingH2>
-			<DBCustomHeading
-				semanticLevel={2}
-				id="custom-installation"
-				class="heading-permalink"
-				aria-label="Custom installation">
-				<span>Custom installation</span>
-				<a
-					class="db-link heading-permalink-link"
-					href="#custom-installation"
-					aria-label="Direct link to Custom installation">
-					<span aria-hidden="true">#</span>
-				</a>
-			</DBCustomHeading>
-		</Fragment>
+		<DBCustomHeading class="heading-permalink">
+			<DBHeadingH2 id="installation">Installation</DBHeadingH2>
+			<DBCustomButton
+				class="heading-permalink-link"
+				variant="ghost"
+				icon="link_chain"
+				noText={true}>
+				<a href="#installation">Direct link to Installation</a>
+			</DBCustomButton>
+		</DBCustomHeading>
 	);
 }

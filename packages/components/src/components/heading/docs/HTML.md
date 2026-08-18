@@ -37,27 +37,44 @@ Heading children must be phrasing content and define the accessible heading name
 
 Native headings accept standard attributes directly. On the custom elements, `aria-*`, `data-*`, `class`, and `style` are forwarded from the host to the native heading. `id` is a component property, not a forwarded attribute, and is rendered on the native heading.
 
-### Custom heading content
+### Heading with sibling content
 
-Prefer native headings whenever possible. Use `db-custom-heading` when arbitrary children require an ARIA-based heading container. `semantic-level` is required, maps to `aria-level`, and determines the default visual size. Because plain HTML is not type-checked, a missing `semantic-level` falls back to `aria-level="2"` rather than breaking the page — always set it explicitly to match the document hierarchy.
+`db-custom-heading` is a layout wrapper for a native heading plus sibling content, for example a permalink button. It has no heading semantics of its own: put a native `h1`-`h6` inside and the wrapper applies the matching default heading styles, so a bare heading needs no `db-heading` class.
 
 ```html
-<db-custom-heading semantic-level="2" size="xl">
-	<span aria-hidden="true">[</span>
-	<div>Arbitrary custom content</div>
-	<strong> inside one accessible heading</strong>
-	<span aria-hidden="true">]</span>
+<db-custom-heading>
+	<h2 id="installation">Installation</h2>
+	<div
+		class="db-custom-button"
+		data-variant="ghost"
+		data-no-text="true"
+		data-icon="link_chain"
+	>
+		<a href="#installation">Direct link to Installation</a>
+	</div>
 </db-custom-heading>
 ```
 
-The equivalent CSS-only markup uses a fixed role and level:
+The equivalent CSS-only markup:
 
 ```html
-<div class="db-heading" role="heading" aria-level="2">
-	<div>Arbitrary custom content</div>
+<div class="db-custom-heading">
+	<h2 id="installation">Installation</h2>
+	<a href="#installation">Direct link to Installation</a>
 </div>
 ```
 
-The children must form one concise accessible heading. Do not nest a native heading or another element with `role="heading"`. Decorative children need `aria-hidden="true"`; child components may intentionally override inherited Heading typography.
+Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
 
-`role` and `aria-level` are always derived from the component, so an `aria-level` attribute set on `db-custom-heading` is ignored. Change `semantic-level` to change the exposed level.
+The wrapper carries no typography properties. Everything that deviates from the default is set on the nested heading, which keeps one source of truth per property:
+
+```html
+<db-custom-heading>
+	<h2 class="db-heading" data-size="xl" data-font-weight="light">
+		Installation
+	</h2>
+	<a href="#installation">Direct link</a>
+</db-custom-heading>
+```
+
+`alignment` on the wrapper aligns the items in the row. Text alignment inside the heading stays with the nested heading's own `data-alignment`.

@@ -57,14 +57,10 @@ const transformReact = (code, componentName, heading) => {
 	const functionDeclaration = `function ${componentName}(props: ${heading.propsType}) {`;
 	const refDeclaration = `const _ref = useRef<${heading.elementType} | any>(null);`;
 	const defaultExport = `export default ${componentName};`;
-	const passingPropsFilter =
-		componentName === 'DBCustomHeading'
-			? [...ROOT_PROPS, 'role', 'aria-level']
-			: ROOT_PROPS;
 	let changed = replaceMarker(
 		openingTag,
 		'ref={_ref}',
-		`ref={_ref}\n${refIndent}{...filterPassingProps(props,${JSON.stringify(passingPropsFilter)})}`,
+		`ref={_ref}\n${refIndent}{...filterPassingProps(props,${JSON.stringify(ROOT_PROPS)})}`,
 		componentName,
 		'react'
 	);
@@ -106,143 +102,44 @@ const transformVue = (code, componentName, heading) => {
 	if (refIndent === undefined || classBinding?.length !== 2) {
 		fail(componentName, 'vue', `unexpected ${heading.tag} root attributes`);
 	}
-	let changed = replaceMarker(
+	const changed = replaceMarker(
 		openingTag,
 		'ref="_ref"',
 		`ref="_ref"\n${refIndent}v-bind="$attrs"`,
 		componentName,
 		'vue'
 	);
-	if (componentName === 'DBCustomHeading') {
-		// `role` and `aria-level` must be applied after `$attrs` so the derived
-		// heading semantics win over anything a consumer passes in.
-		changed = replaceMarker(
-			changed,
-			`\n${refIndent}role="heading"`,
-			'',
-			componentName,
-			'vue'
-		);
-		changed = replaceMarker(
-			changed,
-			'v-bind="$attrs"',
-			`v-bind="$attrs"\n${refIndent}role="heading"`,
-			componentName,
-			'vue'
-		);
-	}
 	// Vue consumers use `class`, React consumers use `className`, so both
 	// aliases are honoured. Heading is not part of the deprecated post-build
 	// registry, so the plain `className` literal is safe here: nothing rewrites
 	// it to `props.class` afterwards.
-	changed = changed.replace(
+	const withClassAlias = changed.replace(
 		classBinding[0],
 		`:class="${classBinding[1].replace('className', 'props.className ?? props.class')}"`
 	);
+	if (componentName === 'DBCustomHeading') {
+		// DBCustomHeading has no boolean prop that needs an explicit `undefined`
+		// default, so the props declaration stays as generated.
+		return code.replace(openingTag, withClassAlias);
+	}
 	const propsDeclaration = `const props = defineProps<${heading.propsType}>();`;
-	let changedCode = replaceMarker(
-		code.replace(openingTag, changed),
+	return replaceMarker(
+		code.replace(openingTag, withClassAlias),
 		propsDeclaration,
 		`const props = withDefaults(defineProps<${heading.propsType}>(), { paragraphSpacing: undefined });`,
 		componentName,
 		'vue'
-	);
-	if (componentName === 'DBCustomHeading') {
-		// Vue applies automatic attribute fallthrough after rendering, which would
-		// override the derived `role` and `aria-level` again. The template already
-		// binds `$attrs` explicitly, so opting out keeps every other attribute
-		// while the heading semantics stay in the component's hands.
-		changedCode = replaceMarker(
-			changedCode,
-			'defineOptions({\n  name: "DBCustomHeading",\n});',
-			'defineOptions({\n  name: "DBCustomHeading",\n  inheritAttrs: false,\n});',
-			componentName,
-			'vue'
-		);
-	}
-	return changedCode;
-};
-
-/**
- * Angular and stencil forward every `aria-*` attribute from the custom element
- * host to the inner element. For `DBCustomHeading`, consumer-provided `role`
- * and `aria-level` would otherwise leave contradictory heading semantics on
- * the host. Remove both before forwarding the remaining attributes.
- */
-const transformCustomHeadingAttributePassing = (
-	code,
-	componentName,
-	target
-) => {
-	if (componentName !== 'DBCustomHeading') return code;
-	let changedCode = replaceMarker(
-		code,
-		'if (element && parent) {',
-		`if (element && parent) {
-      parent.removeAttribute("role");
-      parent.removeAttribute("aria-level");`,
-		componentName,
-		target
-	);
-	changedCode = replaceMarker(
-		changedCode,
-		"attr && attr.name !== 'data-density' &&",
-		"attr && attr.name !== 'data-density' && attr.name !== 'aria-level' &&",
-		componentName,
-		target
-	);
-	return changedCode;
-};
-
-/*
- * `semanticLevel` is required in `DBCustomHeadingProps`, so every target enforces
- * it as strictly as its framework allows, and the `?? 2` fallback in the
- * component only covers untyped runtime usage (plain HTML, Web Components).
- *
- * For Angular that means `input.required`, for two reasons:
- *  - It makes the template type checker reject `<db-custom-heading>` without
- *    `[semanticLevel]` (NG8008). Plain `input()` would silently accept it and
- *    render an `aria-level="2"` heading, which is the wrong level far more often
- *    than not.
- *  - Mitosis emits the annotation `InputSignal<DBCustomHeadingProps["semanticLevel"]>`
- *    from the prop type. Because that type excludes `undefined`, plain
- *    `input<T>()` returns `InputSignal<T | undefined>` and fails to compile under
- *    the `strict: true` config of `output/angular`.
- */
-const transformAngular = (code, componentName) => {
-	if (componentName !== 'DBCustomHeading') return code;
-	const semanticLevelInput = 'input<DBCustomHeadingProps["semanticLevel"]>()';
-	return replaceMarker(
-		transformCustomHeadingAttributePassing(code, componentName, 'angular'),
-		semanticLevelInput,
-		'input.required<DBCustomHeadingProps["semanticLevel"]>()',
-		componentName,
-		'angular'
-	);
-};
-
-/*
- * Stencil is different: the definite-assignment assertion is purely type-level.
- * It makes `semanticLevel` the only non-optional member of `JSX.DbCustomHeading`
- * and leaves the runtime fallback intact, which is exactly the intended
- * contract. See `showcases/stencil-showcase/src/heading.type-test.ts`.
- */
-const transformStencil = (code, componentName) => {
-	if (componentName !== 'DBCustomHeading') return code;
-	return replaceMarker(
-		transformCustomHeadingAttributePassing(code, componentName, 'stencil'),
-		'@Prop() semanticLevel: DBCustomHeadingProps["semanticLevel"];',
-		'@Prop() semanticLevel!: DBCustomHeadingProps["semanticLevel"];',
-		componentName,
-		'stencil'
 	);
 };
 
 const transformHeadingAttributePassing = (code, target, componentName) => {
 	const heading = getHeading(componentName);
 	if (!heading) return code;
-	if (target === 'angular') return transformAngular(code, componentName);
-	if (target === 'stencil') return transformStencil(code, componentName);
+	// Angular and stencil need no heading-specific transform: every Heading
+	// component forwards `data-*` and `aria-*` from the custom-element host with
+	// the generic attribute passing, and none of them derives semantics of its
+	// own that a consumer attribute could contradict.
+	if (['angular', 'stencil'].includes(target)) return code;
 	if (target === 'react') return transformReact(code, componentName, heading);
 	if (target === 'vue') return transformVue(code, componentName, heading);
 	fail(componentName, target, 'unsupported target');

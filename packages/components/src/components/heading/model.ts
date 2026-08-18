@@ -22,11 +22,6 @@ export type HeadingSizeType = (typeof HeadingSizeList)[number];
 export const HeadingFontWeightList = ['black', 'light'] as const;
 /** @public */
 export type HeadingFontWeightType = (typeof HeadingFontWeightList)[number];
-/** @public */
-export const HeadingSemanticLevelList = [1, 2, 3, 4, 5, 6] as const;
-/** @public */
-export type HeadingSemanticLevelType =
-	(typeof HeadingSemanticLevelList)[number];
 
 /** @public */
 export type DBHeadingBaseDefaultProps = {
@@ -42,17 +37,14 @@ export type DBHeadingBaseProps = DBHeadingBaseDefaultProps &
 	GlobalProps &
 	AlignmentProps;
 
-/** @public */
-export type DBCustomHeadingDefaultProps = DBHeadingBaseDefaultProps & {
-	/**
-	 * Defines the heading level exposed to assistive technologies.
-	 *
-	 * Note: the Web Component metadata publishes this as `string`, because the
-	 * custom-elements analyzer cannot serialize numeric literal unions. The
-	 * accepted values are `1` to `6`.
-	 */
-	semanticLevel: HeadingSemanticLevelType;
-};
+/**
+ * Layout wrapper for a native heading plus sibling content. It carries no
+ * typography properties of its own — those belong on the nested heading, which
+ * keeps one source of truth per property.
+ *
+ * @public
+ */
+export type DBCustomHeadingDefaultProps = {};
 /** @public */
 export type DBCustomHeadingProps = DBCustomHeadingDefaultProps &
 	GlobalProps &

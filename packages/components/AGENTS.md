@@ -61,53 +61,45 @@ scripts/
 `heading-h1.lite.tsx` through `heading-h6.lite.tsx`, plus
 `custom-heading.lite.tsx`. They form one documented component family with
 shared models, styles, examples, tests, and showcase. The six native components
-have fixed matching heading roots. `DBCustomHeading` has a fixed `div` root with
-`role="heading"` and a required `semanticLevel` that sets `aria-level`. All
-Heading components must remain free of runtime tag switching and named heading
-slots.
+have fixed matching heading roots. All Heading components must remain free of
+runtime tag switching and named heading slots.
 
-`role` and `aria-level` on `DBCustomHeading` must stay derived from the component
-in every framework, so consumers cannot expose a level that contradicts
-`semanticLevel`. `configs/plugins/heading-attribute-passing.cjs` enforces this per
-target: react excludes both from `filterPassingProps`, vue binds `$attrs` before
-them and sets `inheritAttrs: false` (otherwise Vue's automatic attribute
-fallthrough overrides them after rendering), and angular plus stencil remove
-both attributes from the custom-element host before forwarding the remaining
-attributes.
+### `DBCustomHeading` is a layout wrapper, not a heading
 
-### `semanticLevel` is required per target, with a fallback only for untyped usage
+Like every other `DBCustom*` component in this package, `DBCustomHeading` brings
+styling and layout only — the consumer brings the semantics. It renders a plain
+`div.db-custom-heading` that lays out a nested native heading next to sibling
+content, typically a permalink button:
 
-`semanticLevel` is non-optional in `DBCustomHeadingProps`. Every target must
-enforce that as strictly as its framework allows, because a wrong heading level is
-an accessibility defect that is invisible in the rendered page. The `?? 2` in
-`custom-heading.lite.tsx` is **only** the safety net for usage that cannot be type
-checked at all — plain HTML and Web Components — so that a missing level degrades
-instead of breaking the page.
+```html
+<div class="db-custom-heading">
+	<h2 id="installation">Installation</h2>
+	<a href="#installation">Direct link</a>
+</div>
+```
 
-Two generator transforms in `configs/plugins/heading-attribute-passing.cjs`
-implement this and must not be removed:
+It must **not** set `role="heading"` or `aria-level`. An earlier iteration did,
+which forced interactive sibling content into the heading's accessible name
+(`"Installation link Direct link"`) and required per-target generator transforms
+to keep the derived semantics from being overridden. Keeping the heading native
+removes both problems.
 
-- **Angular: `input.required`.** It makes the template type checker reject
-  `<db-custom-heading>` without `[semanticLevel]` (NG8008). Plain `input()` would
-  accept it silently. It is also required to compile: Mitosis emits the annotation
-  `InputSignal<DBCustomHeadingProps["semanticLevel"]>` from the prop type, and
-  because that type excludes `undefined`, plain `input<T>()` returns
-  `InputSignal<T | undefined>` and fails under the `strict: true` config of
-  `output/angular`. Removing it breaks `build-outputs:ngx-core-components` with
-  TS2322.
-- **Stencil: `semanticLevel!`.** Purely type-level. It makes `semanticLevel` the
-  only non-optional member of `JSX.DbCustomHeading` while leaving the runtime
-  fallback reachable. `showcases/stencil-showcase/src/heading.type-test.ts`
-  guards this.
+Two rules follow from this and should not be traded away:
 
-Angular therefore fails earlier than the other targets for the same omission.
-That asymmetry is intentional: it is the strictest enforcement each framework
-offers, not an inconsistency to be levelled out.
+- **The wrapper owns no typography properties.** `size`, `fontWeight` and
+  `paragraphSpacing` live on the nested heading only. Duplicating them on the
+  wrapper would create two places to set the same thing with the wrapper
+  silently winning on specificity. It also keeps `1lh` for `paragraphSpacing`
+  resolving against the heading's own line height instead of the flex
+  container's inherited one.
+- **`alignment` on the wrapper is `justify-content`, not `text-align`.** The
+  wrapper aligns the items in the row; text alignment inside the heading stays
+  with the nested heading's own `data-alignment`.
 
-Note that the custom-elements analyzer cannot serialize numeric literal unions,
-so `semantic-level` is published as `string` in `custom-elements.json` and
-`web-types.json` even though the accepted values are `1` to `6`. Heading is
-currently the only component with a numeric literal union prop.
+`heading.scss` applies the default level-to-size mapping to a direct child
+`h1`-`h6` so a bare heading needs no `db-heading` class, and sets
+`display: contents` on nested `db-heading-h-*` hosts so the Angular and Stencil
+output lays out identically without the optional `wc-workarounds.scss` import.
 
 ### Props types must intersect the shared base directly
 
