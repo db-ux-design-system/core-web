@@ -1,0 +1,90 @@
+{
+	"component": "heading-h1-h6",
+	"note": "Sechs einzelne Figma-Komponenten (Heading H1–H6). Properties sind bei allen identisch, nur der Default-Wert von Size unterscheidet sich pro Stufe.",
+	"properties": [
+		{
+			"name": "size",
+			"type": "enum",
+			"values": [
+				"3xl",
+				"2xl",
+				"xl",
+				"lg",
+				"md",
+				"sm",
+				"xs",
+				"2xs",
+				"3xs"
+			],
+			"default": "pro Stufe: H1=xl, H2=lg, H3=md, H4=sm, H5=xs, H6=2xs",
+			"code": null,
+			"design": {
+				"name": "🔀 Size",
+				"values": [
+					"(Def) xl [H1]",
+					"(Def) lg [H2]",
+					"(Def) md [H3]",
+					"(Def) sm [H4]",
+					"(Def) xs [H5]",
+					"(Def) 2xs [H6]",
+					"3xl",
+					"2xl",
+					"xl",
+					"lg",
+					"md",
+					"sm",
+					"xs",
+					"2xs",
+					"3xs"
+				],
+				"note": "Jede Heading-Stufe hat einen eigenen Default-Wert für Size. Die (Def)-Werte spiegeln das Default Mapping."
+			}
+		},
+		{
+			"name": "fontWeight",
+			"type": "enum",
+			"values": [
+				"Black",
+				"Light"
+			],
+			"default": "Black",
+			"code": null,
+			"design": {
+				"name": "🔀 Font Weight",
+				"values": [
+					"(Def) Black",
+					"Light"
+				]
+			}
+		},
+		{
+			"name": "alignment",
+			"type": "enum",
+			"values": [
+				"Left",
+				"Right",
+				"Center"
+			],
+			"default": "Left",
+			"code": null,
+			"design": {
+				"name": "🔀 Alignment",
+				"values": [
+					"(Def) Left",
+					"Right",
+					"Center"
+				]
+			}
+		},
+		{
+			"name": "paragraphSpacing",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "Paragraph Spacing",
+				"note": "Erzeugt einen Abstand von 1lh unterhalb der Heading."
+			}
+		}
+	]
+}

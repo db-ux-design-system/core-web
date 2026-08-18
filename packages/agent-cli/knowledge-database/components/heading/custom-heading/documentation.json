@@ -1,0 +1,186 @@
+{
+	"component": "custom-heading",
+	"figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB",
+	"description": {
+		"de": "Custom Heading ist eine Heading-Variante mit Children Slot für zusätzlichen Content wie Verlinkungen, Badges oder andere interaktive Elemente innerhalb der Überschrift.",
+		"en": "Custom Heading is a heading variant with a children slot for additional content like links, badges, or other interactive elements within the heading."
+	},
+	"shortDescription": {
+		"de": "Heading-Variante mit Slot für interaktive Inhalte wie Links oder Badges.",
+		"en": "Heading variant with a slot for interactive content like links or badges."
+	},
+	"useCases": {
+		"de": [
+			"Verlinkungen innerhalb einer Überschrift platzieren (z. B. Anchor-Links, externe Referenzen)",
+			"Badges oder Status-Indikatoren neben dem Heading-Text anzeigen",
+			"Interaktive Inline-Elemente in eine Heading einbetten, ohne die semantische Struktur zu brechen"
+		],
+		"en": [
+			"Place links within a heading (e.g., anchor links, external references)",
+			"Display badges or status indicators alongside heading text",
+			"Embed interactive inline elements in a heading without breaking semantic structure"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "when-to-use",
+			"headline": {
+				"de": "Einsatz von Custom Heading",
+				"en": "When to use Custom Heading"
+			},
+			"text": {
+				"de": "Verwende Custom Heading nur, wenn interaktive oder nicht-textliche Inhalte innerhalb der Heading benötigt werden. Für reine Textheadings ist Heading H1–H6 die richtige Wahl.",
+				"en": "Use Custom Heading only when interactive or non-text content is needed inside the heading. For plain text headings, Heading H1–H6 is the right choice."
+			},
+			"do": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Verwende Custom Heading, wenn Links, Icons oder Badges Teil der Heading sind.",
+					"en": "Use Custom Heading when links, icons, or badges are part of the heading."
+				}
+			},
+			"dont": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Verwende Custom Heading nicht für reine Textheadings. Heading H1–H6 ist dafür vorgesehen und einfacher in der Handhabung.",
+					"en": "Don't use Custom Heading for plain text headings. Heading H1–H6 is designed for that and simpler to use."
+				}
+			}
+		},
+		{
+			"id": "no-skipping-levels",
+			"headline": {
+				"de": "Semantic Level nicht überspringen",
+				"en": "No skipping semantic levels"
+			},
+			"text": {
+				"de": "Halte die Reihenfolge der Semantic Levels ein (1 → 2 → 3). Übersprungene Ebenen erzeugen eine unvollständige Outline und erschweren die Navigation mit Assistenztechnologien.",
+				"en": "Maintain the order of semantic levels (1 → 2 → 3). Skipped levels create an incomplete outline and hinder navigation with assistive technologies."
+			},
+			"do": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Baue die Heading-Hierarchie lückenlos auf: Level 1, dann Level 2, dann Level 3.",
+					"en": "Build the heading hierarchy without gaps: Level 1, then Level 2, then Level 3."
+				}
+			},
+			"dont": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Springe nicht von Level 1 direkt auf Level 3. Die fehlende Ebene erzeugt eine unvollständige Outline für Screenreader.",
+					"en": "Don't jump from Level 1 directly to Level 3. The missing level creates an incomplete outline for screen readers."
+				}
+			}
+		},
+		{
+			"id": "single-level-1",
+			"headline": {
+				"de": "Ein Level 1 pro Seite",
+				"en": "One Level 1 per page"
+			},
+			"text": {
+				"de": "Verwende pro Seite genau ein Semantic Level 1 als oberste Ebene der Dokumentstruktur. Mehrere Level 1 brechen die Hierarchie und erschweren die Screenreader-Navigation.",
+				"en": "Use exactly one Semantic Level 1 per page as the top level of the document structure. Multiple Level 1 elements break the hierarchy and impair screen reader navigation."
+			},
+			"do": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Setze genau ein Semantic Level 1 als Seitenüberschrift ein.",
+					"en": "Use exactly one Semantic Level 1 as the page title."
+				}
+			},
+			"dont": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Verwende nicht mehrere Semantic Level 1 auf derselben Seite. Screenreader verlieren die Orientierung in der Dokumentstruktur.",
+					"en": "Don't use multiple Semantic Level 1 on the same page. Screen readers lose orientation in the document structure."
+				}
+			}
+		},
+		{
+			"id": "visual-hierarchy-size",
+			"headline": {
+				"de": "Visuelle Hierarchie bei Size",
+				"en": "Visual hierarchy with size"
+			},
+			"text": {
+				"de": "Behalte bei abweichender Size die visuelle Hierarchie bei. Jede Stufe muss gleich groß oder kleiner als die vorherige sein.",
+				"en": "When overriding size, maintain the visual hierarchy. Each level must be equal to or smaller than the previous one."
+			},
+			"do": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Stelle sicher, dass höhere Levels visuell größer oder gleich groß wie niedrigere Levels bleiben.",
+					"en": "Ensure higher levels remain visually larger than or equal to lower levels."
+				}
+			},
+			"caution": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Eine invertierte Größenreihenfolge widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur.",
+					"en": "An inverted size order contradicts reading expectations and makes it harder to grasp page structure."
+				}
+			}
+		},
+		{
+			"id": "limit-interactive-elements",
+			"headline": {
+				"de": "Interaktive Elemente begrenzen",
+				"en": "Limit interactive elements"
+			},
+			"text": {
+				"de": "Beschränke interaktive Elemente innerhalb der Heading auf das Nötigste. Zu viele Aktionen lenken vom Inhalt ab und erschweren die Übersicht.",
+				"en": "Limit interactive elements within the heading to what is necessary. Too many actions distract from the content and reduce clarity."
+			},
+			"do": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Platziere nur die nötigsten interaktiven Elemente (z. B. einen Link) im Children Slot.",
+					"en": "Place only the most necessary interactive elements (e.g., a single link) in the children slot."
+				}
+			},
+			"caution": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Zu viele Aktionen in einer Heading lenken vom eigentlichen Inhalt ab und machen die Überschrift unübersichtlich.",
+					"en": "Too many actions in a heading distract from the actual content and make the heading cluttered."
+				}
+			}
+		},
+		{
+			"id": "paragraph-spacing",
+			"headline": {
+				"de": "Paragraph Spacing",
+				"en": "Paragraph spacing"
+			},
+			"text": {
+				"de": "Aktiviere Paragraph Spacing, wenn auf die Heading direkt Fließtext oder eine weitere Heading folgt. Der Abstand von 1lh wahrt den vertikalen Rhythmus.",
+				"en": "Enable paragraph spacing when body text or another heading directly follows. The 1lh spacing maintains vertical rhythm."
+			},
+			"do": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Aktiviere Paragraph Spacing bei Headings, denen Fließtext oder eine weitere Heading folgt.",
+					"en": "Enable paragraph spacing on headings followed by body text or another heading."
+				}
+			},
+			"caution": {
+				"figmaNodeId": null,
+				"description": {
+					"de": "Ohne Paragraph Spacing kann der Abstand zwischen Heading und Folgeinhalt zu gering wirken und den Lesefluss stören.",
+					"en": "Without paragraph spacing, the gap between heading and following content may feel too tight, disrupting reading flow."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "heading-h1-h6",
+			"description": {
+				"de": "Standard-Heading für reine Textüberschriften ohne interaktive Elemente.",
+				"en": "Standard heading for plain text headings without interactive elements."
+			}
+		}
+	]
+}

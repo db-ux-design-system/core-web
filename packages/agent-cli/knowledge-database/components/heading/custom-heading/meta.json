@@ -1,0 +1,8 @@
+{
+	"id": "custom-heading",
+	"name": "Custom Heading",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": null
+}

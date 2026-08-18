@@ -1,0 +1,45 @@
+{
+	"component": "heading-h1-h6",
+	"library": "core-components",
+	"figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB",
+	"note": "Sechs einzelne Komponenten in Figma (Heading H1–H6), in der Dokumentation zusammengefasst. Figma-Inhalte aktuell noch im Branch.",
+	"branchUrl": "https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB/branch/QRzyslOdfoypR3N2vHMVAJ/DB-UX-DS---Core-Components?m=auto&node-id=38761-4785&t=A2aYoQRRjISavHDp-1",
+	"componentSets": [
+		{
+			"name": "Heading H1",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H2",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H3",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H4",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H5",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H6",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		}
+	]
+}

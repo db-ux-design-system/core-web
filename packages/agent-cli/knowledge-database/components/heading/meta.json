@@ -1,0 +1,9 @@
+{
+	"id": "heading",
+	"name": "Heading",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": null,
+	"guidelines": "delegated"
+}
