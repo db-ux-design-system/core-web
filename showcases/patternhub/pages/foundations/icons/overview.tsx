@@ -5,8 +5,12 @@ export default function IconOverview() {
 		<DefaultPage>
 			<h1>Icon overview</h1>
 			<p>
-				Please use the [icon
-				overview](https://design-system.deutschebahn.com/documentation/icons/)
+				Please use the{' '}
+				<a
+					href="https://design-system.deutschebahn.com/documentation/icons/"
+					target="_blank">
+					icon overview (opens in a new tab)
+				</a>{' '}
 				within our main documentation.
 			</p>
 		</DefaultPage>
