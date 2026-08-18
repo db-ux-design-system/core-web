@@ -1,0 +1,11 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{n,t as r}from"./custom-heading-RJtwD0dQ.js";import{n as i,t as a}from"./heading-h2-COaSxALl.js";var o,s,c,l,u,d;function f(){return(f=e((()=>{n(),i(),o=t(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBHeadingH2/Accessible children`,component:a,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`3xl`,`2xl`,`xl`,`lg`,`md`,`sm`,`xs`,`2xs`,`3xs`]},fontWeight:{control:`select`,options:[`black`,`light`]},alignment:{control:`select`,options:[`start`,`center`,`end`]},paragraphSpacing:{control:`boolean`},children:{control:`text`},className:{control:`text`},id:{control:`text`}}},l={args:{children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(`span`,{"aria-hidden":`true`,children:`* `}),(0,o.jsx)(`span`,{children:`Current disruptions`}),(0,o.jsx)(`span`,{"aria-hidden":`true`,children:` *`})]})},render:e=>(0,o.jsx)(a,{...e})},u={args:{children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(a,{children:`Current disruptions`}),(0,o.jsx)(`span`,{children:`3 active`})]})},render:e=>(0,o.jsx)(r,{...e})},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "children": <><span aria-hidden="true">* </span><span>Current disruptions</span><span aria-hidden="true"> *</span></>
+  },
+  render: (properties: any) => <DBHeadingH2 {...properties} />
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "children": <><DBHeadingH2>Current disruptions</DBHeadingH2><span>3 active</span></>
+  },
+  render: (properties: any) => <DBCustomHeading {...properties} />
+}`,...u.parameters?.docs?.source}}},d=[`NativeDecorativechildrenhiddenfromscreenreaders`,`WrapperSiblingcontentoutsidetheaccessiblename`]})))()}f();export{l as NativeDecorativechildrenhiddenfromscreenreaders,u as WrapperSiblingcontentoutsidetheaccessiblename,d as __namedExportsOrder,c as default};
