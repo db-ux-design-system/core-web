@@ -83,7 +83,9 @@
 			[control-panel] min-content
 			[shell-content] 1fr;
 
-		&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
+		&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}):not(
+				[data-show-sub-navigation="false"]
+			) {
 			grid-template-areas:
 				"control-panel sub-navigation"
 				"control-panel shell-content";
