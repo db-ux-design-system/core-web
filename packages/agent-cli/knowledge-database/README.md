@@ -52,9 +52,10 @@ Eine leere `## Regeln`-Sektion ist mehrdeutig. Damit Generatoren nicht raten mü
 
 - **Feld fehlt** — Regeln sind ausgearbeitet und stehen unter `## Regeln`.
 - **`guidelines: "pending"`** — Regeln noch nicht festgelegt. Die `guidelines.md` bleibt leer, der offene Punkt steht in `TODO.md`. Generatoren überspringen diese Ordner, statt aus einer leeren Datei ein fehlendes Schema abzuleiten.
-- **`guidelines: "delegated"`** — Regeln liegen bewusst auf der Unterebene. Betrifft Elternkomponenten mit mehreren Hauptkomponenten (z. B. Shell, Control Panel), deren Regeln sich vollständig aus den Varianten ergeben. Die `guidelines.md` enthält unter `## Regeln` einen Satz mit Links auf die zuständigen Dateien.
+- **`guidelines: "delegated"`** — Regeln liegen bewusst in einer anderen Datei. Zwei Ausprägungen: bei Elternkomponenten mit mehreren Hauptkomponenten (z. B. Shell, Control Panel) liegen sie auf der Unterebene, bei einzelnen Komponenten können sie in einer anderen Komponente liegen — etwa bei Control Panel Desktop, dessen Positionswahl in Shell Desktop geregelt ist. Die `guidelines.md` enthält unter `## Regeln` einen Satz mit Links auf die zuständigen Dateien.
+- **`guidelines: "none"`** — die Komponente hat endgültig keine normativen Regeln, sondern ausschließlich Zusatzinformationen und Examples. Unterscheidet sich von `pending`: dort ist die Festlegung offen, hier ist sie getroffen. Die `guidelines.md` enthält unter `## Regeln` den Satz „Für diese Komponente gibt es keine normativen Regeln."
 
-Der Zeiger bei `delegated` listet **alle direkten Kinder** — Hauptkomponenten und Unterkomponenten. Die Hauptkomponenten allein reichen nicht, weil sie nicht auf die Unterkomponenten weiterverlinken: ein Agent, der nur den Hauptkomponenten folgt, würde die Regeln der Unterkomponenten nie erreichen. Die Unterscheidung zwischen beiden bleibt im Satz sichtbar, analog zur Trennung von `componentSets` und `subComponents` in der `figma.json`. Tiefer verschachtelte Ordner werden nicht aufgeführt, ihre Zuordnung steht in der `figma.json` der jeweiligen Elternkomponente.
+Der Zeiger bei `delegated` listet bei Elternkomponenten **alle direkten Kinder** — Hauptkomponenten und Unterkomponenten. Die Hauptkomponenten allein reichen nicht, weil sie nicht auf die Unterkomponenten weiterverlinken: ein Agent, der nur den Hauptkomponenten folgt, würde die Regeln der Unterkomponenten nie erreichen. Die Unterscheidung zwischen beiden bleibt im Satz sichtbar, analog zur Trennung von `componentSets` und `subComponents` in der `figma.json`. Tiefer verschachtelte Ordner werden nicht aufgeführt, ihre Zuordnung steht in der `figma.json` der jeweiligen Elternkomponente.
 
 ## Foundations
 
@@ -198,6 +199,7 @@ Siehe [writing-conventions.md](writing-conventions.md#normativität-von-regeln).
 - **Lab-Komponenten** werden ebenfalls verlinkt, aber zusätzlich als solche gekennzeichnet, weil sie keinen stabilen API-Vertrag haben.
 - **Dateien** (z. B. Principles) werden genauso verlinkt: `[Adaptive Density](../_principles/adaptive-density.md)`.
 - **Kein Gedankenstrich in `## Regeln`.** Siehe [writing-conventions.md](writing-conventions.md#formulierung-in--regeln).
+- **Ein Verweis ohne eigene Aussage** steht unter `## Zusätzliche Informationen`, nicht unter `## Regeln`. Dort würde ein Generator ihn zu einem Do/Don't-Paar verarbeiten, das es nicht gibt. Ausnahme sind Dateien mit `guidelines: "delegated"`, deren Regel-Sektion ausschließlich aus dem Zeiger besteht — das Feld sagt dem Generator, sie nicht als Regelquelle zu lesen.
 
 ### Schreibweise von Begriffen
 
@@ -222,6 +224,18 @@ Siehe [writing-conventions.md](writing-conventions.md#schreibweise-von-begriffen
 - Jede Regel unter `## Regeln` → ein Eintrag in `guidelines[]`
 - Jeder unter `## Zusätzliche Informationen` markierte `_(Example-Kandidat)_` → ein Eintrag in `examples[]`, sofern die zugehörigen Figma-Visuals existieren
 - Markdown-Links auf andere Komponenten → `related[]`-Einträge
+
+#### `related[]` nennt nur die Komponente
+
+Ein `related`-Eintrag besteht ausschließlich aus `component`. Der Anzeigetext wird nicht in der Datei geführt, sondern beim Befüllen der Platform-MDX aus der `shortDescription` der genannten Komponente aufgelöst.
+
+```json
+"related": [{ "component": "shell-desktop" }]
+```
+
+Damit existiert jede Beschreibung genau einmal, in der `documentation.json` der Komponente, die sie beschreibt. Frei formulierte Verweistexte driften, sobald sich die Zielkomponente ändert, und niemand zieht sie nach.
+
+Trägt ein Verweis Beziehungswissen, das über die `shortDescription` des Ziels hinausgeht — etwa in welcher Position oder Ebene eine Subkomponente erscheint —, gehört diese Aussage in die `guidelines.md` der Komponente, nicht in einen Verweistext.
 
 #### Guideline-Expansion (pro Regel)
 

@@ -76,6 +76,15 @@ Regeln sind handlungsorientiert und müssen sich als Do, Don't oder bei `**sollt
 
 Eine Regel besteht immer aus Do **und** Don't (oder Caution). Ein Do ohne zugehöriges Don't ist keine Regel, sondern ein Example: Es zeigt einen gültigen Fall, ohne einen ungültigen davon abzugrenzen. Lässt sich zu einem Do kein eigenständiges Don't formulieren, das mehr ist als die reine Negation derselben Aussage, gehört der Inhalt nicht unter `## Regeln`.
 
+#### Reihenfolge der Regeln
+
+Die Reihenfolge unter `## Regeln` wird beim Generieren zur Reihenfolge in `guidelines[]` und damit zum Inhaltsverzeichnis der Doku-Seite. Sie folgt vier Kriterien in dieser Priorität:
+
+1. **Abhängigkeit.** Eine Regel, die einen Begriff aus einer anderen Regel voraussetzt, steht dahinter. Begriffe aus der Beschreibungszeile gelten als bekannt und begründen keine Abhängigkeit.
+2. **Verwandtes zusammen.** Regeln zum selben Gegenstand — Text, Zustand, Logo, Slot — stehen benachbart, ohne fremde Regel dazwischen. Dieses Kriterium schlägt das nächste: ein Detail bleibt bei seinem Gegenstand, statt ans Ende zu wandern.
+3. **Entscheidungsreihenfolge zwischen den Gegenständen.** Was gehört hinein, dann welche Variante oder Position, dann wie viel, dann was die gewählte Variante einschränkt, dann Zustände, dann Darstellungsdetails. Das ist die Reihenfolge, in der die Komponente aufgebaut wird.
+4. **Normativität ist kein Kriterium.** `**sollte**`-Regeln werden nicht gruppiert. Sonst trennt die Sortierung zusammengehörige Regeln, bei denen eine Empfehlung und eine Vorgabe denselben Gegenstand betreffen.
+
 ### `## Zusätzliche Informationen`
 
 Eine Aussage gehört unter `## Zusätzliche Informationen`, wenn sie das dokumentierte Verhalten der Komponente beschreibt, aber keine Handlung vorgibt. Dazu gehören zum Beispiel:
@@ -90,11 +99,17 @@ Zusätzliche Informationen werden nicht automatisch als Examples veröffentlicht
 
 #### Example-Kandidaten markieren
 
-Erfüllt ein Punkt unter `## Zusätzliche Informationen` alle drei Kriterien für ein Example (neue, nicht redundante Information; echter Gestaltungsspielraum statt reiner Struktur-/Property-Fakt; visuell sinnvoll darstellbar), wird er am Zeilenende mit `_(Example-Kandidat)_` markiert:
+Erfüllt ein Punkt unter `## Zusätzliche Informationen` alle vier Kriterien für ein Example (neue, nicht redundante Information; echter Gestaltungsspielraum statt reiner Struktur-/Property-Fakt; visuell sinnvoll darstellbar; nicht schon durch das Do-, Dont- oder Caution-Visual einer Regel abgedeckt), wird er am Zeilenende mit `_(Example-Kandidat)_` markiert:
 
 ```markdown
 - Das Control Panel kann oben oder unten positioniert werden. Die Wahl ist keine Regel, sondern eine Gestaltungsoption. _(Example-Kandidat)_
 ```
+
+Markierte Punkte stehen an erster Stelle unter `## Zusätzliche Informationen`, vor den unmarkierten und ohne unmarkierte dazwischen. Damit ist beim Lesen der Datei sofort sichtbar, was zu einem Example wird, und die Reihenfolge in `examples[]` bleibt beim Generieren stabil.
+
+Das vierte Kriterium ist das am leichtesten zu übersehende, weil es nicht am Text hängt, sondern am Bild: jede Regel erhält über `do.figmaNodeId` und `dont.figmaNodeId` beziehungsweise `caution.figmaNodeId` ohnehin Visuals. Zeigt ein Example dasselbe Motiv wie eines davon, entsteht dasselbe Bild zweimal — auch dann, wenn der Text nicht redundant ist. Der Redundanztest allein genügt also nicht.
+
+Das Kriterium gilt innerhalb einer Komponente. Zwei Komponenten dürfen dasselbe Visual führen, wenn die Aussage für beide gilt: jede Datei wird einzeln gelesen, und beim Generieren verweisen beide `examples[]`-Einträge auf denselben Figma-Node.
 
 Die Markierung steht am Zeilenende, nicht am Satzanfang wie die Normativitäts-Marker (`**sollte**`, `**kann**`), weil sie eine andere Achse betrifft: Normativitäts-Marker beschreiben die Verbindlichkeit einer Regel, `_(Example-Kandidat)_` markiert eine spätere Generierungsentscheidung für `documentation.json` und wird dort zu einem Eintrag in `examples[]`. Die Markierung kommt ausschließlich unter `## Zusätzliche Informationen` vor, nie unter `## Regeln` — Regeln werden immer zu Do/Don't, nie zu Examples.
 
