@@ -43,19 +43,6 @@ const SLOT_TYPES = new Set([
 	'nestedInstancesToArray'
 ]);
 
-const extractVueTemplate = (code) => {
-	const openingTag = '<template>';
-	const closingTag = '</template>';
-	const start = code.indexOf(openingTag);
-	const end = code.lastIndexOf(closingTag);
-	if (start === -1 || end <= start) {
-		throw new Error(
-			'[figma plugin] Expected one outer Vue template wrapper'
-		);
-	}
-	return code.slice(start + openingTag.length, end).trim();
-};
-
 const getInstanceCall = (figmaProperty, propName) => {
 	const { type, key, value } = figmaProperty;
 
@@ -207,8 +194,7 @@ const isStringType = (fProp) => {
 		return true;
 	if (fProp.type === 'enum') {
 		const vals = Object.values(fProp.value || {});
-		if (vals.every((v) => typeof v === 'boolean' || typeof v === 'number'))
-			return false;
+		if (vals.every((v) => typeof v === 'boolean')) return false;
 		if (vals.every((v) => v instanceof Object && v.type === 'instance'))
 			return false;
 		if (vals.every((v) => v instanceof Object && v.type === 'iconSwap'))
@@ -352,7 +338,7 @@ const buildTemplate = (json, target) => {
 			);
 			const ccMappedValue =
 				fProp.type === 'enum' || fProp.type === 'boolean'
-					? `((v) => { const s = String(v); return ((${ccValueMapSerialized} as Record<string, unknown>)[s] ?? (${ccValueMapSerialized} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | number | boolean | undefined; })(${ccRawValue})`
+					? `((v) => { const s = String(v); return ((${ccValueMapSerialized} as Record<string, unknown>)[s] ?? (${ccValueMapSerialized} as Record<string, unknown>)[s.charAt(0).toUpperCase() + s.slice(1)]) as string | boolean | undefined; })(${ccRawValue})`
 					: `${ccRawValue} as string | undefined`;
 			return [
 				...(fProp.layer
@@ -632,9 +618,7 @@ module.exports = () => ({
 			}
 
 			let example;
-			if (target === 'vue') {
-				example = extractVueTemplate(code);
-			} else if (target === 'react' && !code.includes('return (')) {
+			if (target === 'react' && !code.includes('return (')) {
 				const match = code.match(
 					/return\s+(<[\s\S]*?>(?:[\s\S]*?<\/[^>]+>)?)\s*;/
 				);
@@ -751,5 +735,3 @@ module.exports = () => ({
 		}
 	}
 });
-
-module.exports.extractVueTemplate = extractVueTemplate;

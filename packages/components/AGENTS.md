@@ -64,6 +64,51 @@ shared models, styles, examples, tests, and showcase. The six native components
 have fixed matching heading roots. All Heading components must remain free of
 runtime tag switching and named heading slots.
 
+### One folder, seven registry entries
+
+Every other component owns its folder, which is why `scripts/post-build/` can
+resolve them as `components/${name}/${name}.ext`. The Heading family shares a
+single folder, so that lookup misses it. Two optional fields on the registry
+entry bridge the gap and are set for all seven Heading components in
+`scripts/post-build/components.ts`:
+
+- **`folder`** — the shared `heading` directory.
+- **`spec`** — the shared `heading.spec.tsx`, declared on exactly one entry
+  because one spec covers all seven components.
+
+With those, Heading uses the same pipeline as every other component: the React
+`forwardRef` and root props, the Angular and Stencil barrel rewrite, and the spec
+copy including the `// VUE:` marker stripping in `copy-files.ts`. Do not
+reintroduce Heading-specific plugins for any of that.
+
+The one genuine difference is the Vue class alias, declared as an overwrite on
+each entry:
+
+```ts
+overwrites: {
+	vue: [{ from: "props.class", to: "props.className ?? props.class" }];
+}
+```
+
+It runs after the built-in `className` to `props.class` rewrite and is required
+because the shared spec runs against both the React and the Vue output and
+asserts the React `className` API. Removing it fails six
+`forwards native attributes` tests plus `composes class` on Vue.
+
+### Component names with a digit
+
+`DBHeadingH1` is the first component whose name ends in a digit, which two
+generators had to learn:
+
+- `configs/plugins/attribute-passing/index.cjs` derives the custom-element tag
+  from the component name. Without the digit boundary in its `dashCase` it
+  produces `db-heading-h1` while the element is `db-heading-h-1`, so the
+  MutationObserver never finds the host and attribute passing silently stops
+  working for the six native Heading components.
+- `configs/plugins/figma/index.cjs` injects the generated prop fragments after the
+  opening tag. Without digits in its tag regexes it matches `<DBHeadingH` and
+  inserts them in the wrong place, which breaks all three Code Connect snapshots.
+
 ### `DBCustomHeading` is a styling wrapper, not a heading
 
 `DBCustomHeading` follows the same contract as every other `DBCustom*` component
@@ -336,6 +381,14 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
 - Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
+
+> Exception: registering a component in `components.ts` is not new logic, it is
+> configuration for transformations that already exist. When a component would
+> otherwise need a private copy of those transformations as a plugin, prefer the
+> registry entry — the Heading family reduced roughly 450 lines of duplicated
+> plugin code to about 30 lines of configuration that way. Migrate the
+> transformations themselves out of this folder, not individual components into
+> parallel implementations.
 
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
