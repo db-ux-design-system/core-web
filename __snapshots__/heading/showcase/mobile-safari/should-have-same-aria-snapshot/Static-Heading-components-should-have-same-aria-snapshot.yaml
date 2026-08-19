@@ -1,5 +1,5 @@
 - main:
-  - heading "Heading" [level=1]
+  - heading "DBHeading" [level=1]
   - link "Semantic Levels"
   - heading "h1 maps to xl" [level=1]
   - heading "h2 maps to lg" [level=2]
@@ -47,7 +47,10 @@
   - link "Forwarded ID, Class, ARIA, Data And Style"
   - heading "ID, class, ARIA, data and style forwarded to h2" [level=2]
   - heading "ID, class, data and style on the wrapper" [level=2]
-  - link "Decorative Children Hidden From Screen Readers"
+  - link "Permalink"
+  - heading "Installation" [level=2]
+  - link "Direct link to Installation"
+  - link "Accessible Children"
   - heading "Current disruptions" [level=2]
   - heading "Current disruptions" [level=2]
   - text: "3"
