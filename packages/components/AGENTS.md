@@ -124,14 +124,14 @@ on the heading the consumer writes.
 
 ```html
 <div class="db-custom-heading" data-size="xl">
-	<h2 id="installation">Installation</h2>
-	<a href="#installation">Direct link</a>
+	<h2>Installation</h2>
+	<button type="button">More options</button>
 </div>
 ```
 
 It must **not** set `role="heading"` or `aria-level`. An earlier iteration did,
 which forced interactive sibling content into the heading's accessible name
-(`"Installation link Direct link"`) and required per-target generator transforms
+(`"Installation More options"`) and required per-target generator transforms
 to keep the derived semantics from being overridden. Keeping the heading native
 removes both problems.
 

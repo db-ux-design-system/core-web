@@ -43,19 +43,17 @@ The default content must be phrasing content and defines the accessible heading 
 
 ### Heading with sibling content
 
-`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to sibling content such as a permalink button. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
 
 ```vue
 <script setup lang="ts">
-import { DBCustomButton, DBCustomHeading } from "@db-ux/v-core-components";
+import { DBButton, DBCustomHeading } from "@db-ux/v-core-components";
 </script>
 
 <template>
 	<DBCustomHeading size="xl" font-weight="light">
-		<h2 id="installation">Installation</h2>
-		<DBCustomButton variant="ghost" icon="link_chain" :no-text="true">
-			<a href="#installation">Direct link to Installation</a>
-		</DBCustomButton>
+		<h2>Installation</h2>
+		<DBButton variant="ghost">More options</DBButton>
 	</DBCustomHeading>
 </template>
 ```

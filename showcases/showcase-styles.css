@@ -104,22 +104,6 @@
 	font-weight: 700;
 }
 
-.heading-permalink {
-	scroll-margin-block-start: var(--db-spacing-fixed-md);
-}
-
-/* Spacing and colors come from the ghost DBCustomButton and the
-   db-custom-heading gap; only the hover reveal is showcase specific. */
-@media (hover: hover) and (pointer: fine) {
-	.heading-permalink-link {
-		opacity: 0;
-	}
-
-	.heading-permalink:is(:hover, :focus-within) .heading-permalink-link {
-		opacity: 1;
-	}
-}
-
 /**
  component container styles
 **/

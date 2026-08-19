@@ -679,10 +679,8 @@ Children that cannot be resolved statically (JSX expressions, `<slot>`, `<ng-con
 // React
 <DBCustomHeading><h2>Installation</h2></DBCustomHeading>
 <DBCustomHeading>
-	<DBHeadingH2 id="installation">Installation</DBHeadingH2>
-	<DBCustomButton variant="ghost" icon="link_chain" noText>
-		<a href="#installation">Direct link to Installation</a>
-	</DBCustomButton>
+	<DBHeadingH2>Installation</DBHeadingH2>
+	<button type="button">More options</button>
 </DBCustomHeading>
 <DBCustomHeading>{children}</DBCustomHeading>
 
@@ -691,7 +689,7 @@ Children that cannot be resolved statically (JSX expressions, `<slot>`, `<ng-con
 <db-custom-heading><db-heading-h-2 *ngIf="visible">Installation</db-heading-h-2></db-custom-heading>
 
 // Vue
-<DBCustomHeading><DBHeadingH2 id="installation">Installation</DBHeadingH2><a href="#installation">Direct link</a></DBCustomHeading>
+<DBCustomHeading><DBHeadingH2>Installation</DBHeadingH2><button type="button">More options</button></DBCustomHeading>
 <DBCustomHeading><slot /></DBCustomHeading>
 ```
 

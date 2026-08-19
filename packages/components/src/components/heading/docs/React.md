@@ -43,17 +43,15 @@ Native `aria-*`, `data-*`, `title`, `style`, `className`, and `id` attributes ar
 
 ### Heading with sibling content
 
-`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to sibling content such as a permalink button. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
 
 ```tsx
-import { DBCustomButton, DBCustomHeading } from "@db-ux/react-core-components";
+import { DBButton, DBCustomHeading } from "@db-ux/react-core-components";
 
 export const SectionHeading = () => (
 	<DBCustomHeading size="xl" fontWeight="light">
-		<h2 id="installation">Installation</h2>
-		<DBCustomButton variant="ghost" icon="link_chain" noText>
-			<a href="#installation">Direct link to Installation</a>
-		</DBCustomButton>
+		<h2>Installation</h2>
+		<DBButton variant="ghost">More options</DBButton>
 	</DBCustomHeading>
 );
 ```

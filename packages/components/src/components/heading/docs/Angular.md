@@ -41,14 +41,12 @@ Default content must be phrasing content and defines the accessible heading name
 
 ### Heading with sibling content
 
-`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to sibling content such as a permalink button. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
 
 ```html
 <db-custom-heading size="xl" font-weight="light">
-	<h2 id="installation">Installation</h2>
-	<db-custom-button variant="ghost" icon="link_chain" [noText]="true">
-		<a href="#installation">Direct link to Installation</a>
-	</db-custom-button>
+	<h2>Installation</h2>
+	<db-button variant="ghost">More options</db-button>
 </db-custom-heading>
 ```
 

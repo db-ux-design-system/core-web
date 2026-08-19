@@ -39,21 +39,14 @@ Native headings accept standard attributes directly. On the custom elements, `ar
 
 ### Heading with sibling content
 
-`db-custom-heading` is the styling wrapper for a heading you write yourself, optionally next to sibling content such as a permalink button. It relates to the Heading components the same way `db-custom-button` relates to `db-button`: it has no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`db-custom-heading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `db-custom-button` relates to `db-button`: it has no semantics of its own, you bring the native element, and the wrapper applies the styling.
 
 Put a plain `h1`-`h6` inside. It needs no `db-heading` class, the wrapper styles it:
 
 ```html
 <db-custom-heading size="xl" font-weight="light">
-	<h2 id="installation">Installation</h2>
-	<div
-		class="db-custom-button"
-		data-variant="ghost"
-		data-no-text="true"
-		data-icon="link_chain"
-	>
-		<a href="#installation">Direct link to Installation</a>
-	</div>
+	<h2>Installation</h2>
+	<db-button variant="ghost">More options</db-button>
 </db-custom-heading>
 ```
 
@@ -61,15 +54,10 @@ The equivalent CSS-only markup:
 
 ```html
 <div class="db-custom-heading" data-size="xl" data-font-weight="light">
-	<h2 id="installation">Installation</h2>
-	<div
-		class="db-custom-button"
-		data-variant="ghost"
-		data-no-text="true"
-		data-icon="link_chain"
-	>
-		<a href="#installation">Direct link to Installation</a>
-	</div>
+	<h2>Installation</h2>
+	<button class="db-button" data-variant="ghost" type="button">
+		More options
+	</button>
 </div>
 ```
 

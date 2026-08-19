@@ -1,6 +1,4 @@
 - heading "Default row" [level=2]
-- link "Direct link":
-  - /url: "#default-row"
+- button "More options"
 - heading "Styled row" [level=3]
-- link "Direct link":
-  - /url: "#styled-row"
+- button "More options"

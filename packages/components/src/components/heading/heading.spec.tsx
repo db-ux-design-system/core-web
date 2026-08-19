@@ -49,12 +49,12 @@ const semanticHeadings: any = (
 const customHeadingRows: any = (
 	<div>
 		<DBCustomHeading>
-			<h2 id="default-row">Default row</h2>
-			<a href="#default-row">Direct link</a>
+			<h2>Default row</h2>
+			<button type="button">More options</button>
 		</DBCustomHeading>
 		<DBCustomHeading size="3xs" fontWeight="light">
-			<h3 id="styled-row">Styled row</h3>
-			<a href="#styled-row">Direct link</a>
+			<h3>Styled row</h3>
+			<button type="button">More options</button>
 		</DBCustomHeading>
 	</div>
 );
@@ -320,18 +320,18 @@ test.describe('DBCustomHeading', () => {
 		const component = await mount(
 			<DBCustomHeading>
 				<h2>Nested heading</h2>
-				<a href="#nested-heading">Direct link</a>
+				<button type="button">More options</button>
 			</DBCustomHeading>
 		);
 		await expect(component).toHaveCSS('display', 'flex');
 		await expect(component).toHaveCSS('align-items', 'center');
-		const [headingBox, linkBox] = await Promise.all([
+		const [headingBox, actionBox] = await Promise.all([
 			component.locator('h2').boundingBox(),
-			component.locator('a').boundingBox()
+			component.locator('button').boundingBox()
 		]);
-		// Same row, link after the heading.
-		expect(linkBox!.x).toBeGreaterThan(headingBox!.x);
-		expect(linkBox!.y).toBeLessThan(headingBox!.y + headingBox!.height);
+		// Same row, action after the heading.
+		expect(actionBox!.x).toBeGreaterThan(headingBox!.x);
+		expect(actionBox!.y).toBeLessThan(headingBox!.y + headingBox!.height);
 	});
 
 	test('styles a plain nested heading like the native component', async ({
@@ -498,14 +498,14 @@ test.describe('DBCustomHeading', () => {
 		const component = await mount(
 			<DBCustomHeading>
 				<h2>Installation</h2>
-				<a href="#installation">Direct link to Installation</a>
+				<button type="button">More options</button>
 			</DBCustomHeading>
 		);
 		await expect(component.locator('h2')).toHaveAccessibleName(
 			'Installation'
 		);
-		await expect(component.locator('a')).toHaveAccessibleName(
-			'Direct link to Installation'
+		await expect(component.locator('button')).toHaveAccessibleName(
+			'More options'
 		);
 	});
 

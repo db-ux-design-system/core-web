@@ -38,7 +38,7 @@ describe('custom-heading-single-heading', () => {
 				code: '<DBCustomHeading><DBHeadingH2>Installation</DBHeadingH2></DBCustomHeading>'
 			},
 			{
-				code: '<DBCustomHeading><DBHeadingH2 id="installation">Installation</DBHeadingH2><a href="#installation">Direct link</a></DBCustomHeading>'
+				code: '<DBCustomHeading><DBHeadingH2>Installation</DBHeadingH2><button type="button">More options</button></DBCustomHeading>'
 			},
 			{
 				code: '<DBCustomHeading><div><h3>Wrapped</h3></div></DBCustomHeading>'
@@ -99,7 +99,7 @@ describe('custom-heading-single-heading', () => {
 				code: '<template><DBCustomHeading><h2>Installation</h2></DBCustomHeading></template>'
 			},
 			{
-				code: '<template><DBCustomHeading><DBHeadingH2 id="installation">Installation</DBHeadingH2><a href="#installation">Direct link</a></DBCustomHeading></template>'
+				code: '<template><DBCustomHeading><DBHeadingH2>Installation</DBHeadingH2><button type="button">More options</button></DBCustomHeading></template>'
 			},
 			{
 				code: '<template><DBCustomHeading><slot /></DBCustomHeading></template>'
@@ -133,7 +133,7 @@ describe('custom-heading-single-heading', () => {
 				code: '<db-custom-heading><h2>Installation</h2></db-custom-heading>'
 			},
 			{
-				code: '<db-custom-heading><db-heading-h-2 id="installation">Installation</db-heading-h-2><a href="#installation">Direct link</a></db-custom-heading>'
+				code: '<db-custom-heading><db-heading-h-2>Installation</db-heading-h-2><button type="button">More options</button></db-custom-heading>'
 			},
 			{
 				code: '<db-custom-heading><ng-content></ng-content></db-custom-heading>'

@@ -91,7 +91,7 @@ $logical-alignments: (
 }
 
 /* Styling wrapper for a consumer-authored native heading plus optional sibling
- * content, for example a permalink button. It mirrors the Heading styling API
+ * content. It mirrors the Heading styling API
  * the same way `.db-custom-button` mirrors `.db-button`: the wrapper carries the
  * styling attributes and applies them to a plain nested `h1`-`h6`. */
 .db-custom-heading {
