@@ -45,10 +45,6 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_attributeObserver?: MutationObserver;
 	_role?: string;
 	_popoverListenersAttached: boolean;
-	_boundMouseEnter?: () => void;
-	_boundMouseLeave?: () => void;
-	_boundFocusIn?: () => void;
-	_boundFocusOut?: (event: any) => void;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button

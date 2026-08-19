@@ -167,39 +167,50 @@ export default function DBControlPanelNavigationItemGroup(
 				}
 			}
 		},
-		_boundMouseEnter: undefined,
-		_boundMouseLeave: undefined,
-		_boundFocusIn: undefined,
-		_boundFocusOut: undefined,
 		_attachPopoverListeners: () => {
 			if (state._popoverListenersAttached || !_ref) return;
 
-			state._boundMouseEnter = () => {
+			const mouseEnter = () => {
 				state._handleMouseEnter();
 			};
-			state._boundMouseLeave = () => {
+			const mouseLeave = () => {
 				state._handleMouseLeave();
 			};
-			state._boundFocusIn = () => {
+			const focusIn = () => {
 				state._handleFocusIn();
 			};
-			state._boundFocusOut = (event: any) => {
+			const focusOut = (event: any) => {
 				state._handleFocusOut(event);
 			};
 
-			_ref.addEventListener('mouseenter', state._boundMouseEnter);
-			_ref.addEventListener('mouseleave', state._boundMouseLeave);
-			_ref.addEventListener('focusin', state._boundFocusIn);
-			_ref.addEventListener('focusout', state._boundFocusOut);
+			// Store listener references on the DOM element to avoid
+			// framework-specific state issues (React useState interprets
+			// function values as updater functions, triggering the handler
+			// immediately instead of storing it).
+			(_ref as any).__popoverListeners = {
+				mouseEnter,
+				mouseLeave,
+				focusIn,
+				focusOut
+			};
+
+			_ref.addEventListener('mouseenter', mouseEnter);
+			_ref.addEventListener('mouseleave', mouseLeave);
+			_ref.addEventListener('focusin', focusIn);
+			_ref.addEventListener('focusout', focusOut);
 			state._popoverListenersAttached = true;
 		},
 		_detachPopoverListeners: () => {
 			if (!state._popoverListenersAttached || !_ref) return;
 
-			_ref.removeEventListener('mouseenter', state._boundMouseEnter!);
-			_ref.removeEventListener('mouseleave', state._boundMouseLeave!);
-			_ref.removeEventListener('focusin', state._boundFocusIn!);
-			_ref.removeEventListener('focusout', state._boundFocusOut!);
+			const listeners = (_ref as any).__popoverListeners;
+			if (listeners) {
+				_ref.removeEventListener('mouseenter', listeners.mouseEnter);
+				_ref.removeEventListener('mouseleave', listeners.mouseLeave);
+				_ref.removeEventListener('focusin', listeners.focusIn);
+				_ref.removeEventListener('focusout', listeners.focusOut);
+				(_ref as any).__popoverListeners = undefined;
+			}
 
 			state.isSubNavigationExpanded = false;
 			state._popoverListenersAttached = false;
@@ -288,6 +299,9 @@ export default function DBControlPanelNavigationItemGroup(
 	onMount(() => {
 		state.initialized = true;
 		state._handleCSSFlags();
+		requestAnimationFrame(() => {
+			state._handleCSSFlags();
+		});
 	});
 
 	// Observe role attribute set imperatively by the parent navigation
