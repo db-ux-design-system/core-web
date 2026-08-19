@@ -167,8 +167,9 @@ export default (tmp?: boolean) => {
 	for (const component of components) {
 		const componentName = component.name;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
-		const file = `../../${outputFolder}/angular/src/components/${componentName}/${componentName}.ts`;
-		const indexFile = `../../${outputFolder}/angular/src/components/${componentName}/index.ts`;
+		const componentFolder = component.folder ?? componentName;
+		const file = `../../${outputFolder}/angular/src/components/${componentFolder}/${componentName}.ts`;
+		const indexFile = `../../${outputFolder}/angular/src/components/${componentFolder}/index.ts`;
 
 		replaceInFileSync({
 			files: indexFile,

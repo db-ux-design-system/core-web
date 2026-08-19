@@ -80,7 +80,8 @@ export default (tmp?: boolean) => {
 				component.name
 			);
 
-			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${component.name}/${component.name}.tsx`;
+			const componentFolder = component.folder ?? component.name;
+			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${componentFolder}/${component.name}.tsx`;
 
 			const tsxFileContent = readFileSync(tsxFile).toString('utf-8');
 			const htmlElements = tsxFileContent.match('(?<=useRef<)(.*?)(?=>)');
