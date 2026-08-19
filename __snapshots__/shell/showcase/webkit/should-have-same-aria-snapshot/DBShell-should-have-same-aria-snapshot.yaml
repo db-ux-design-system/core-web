@@ -195,7 +195,7 @@
     - navigation "shell-top-sub-top-sub":
       - list:
         - listitem:
-          - button "Group 1"
+          - button "Group 1" [expanded]
         - listitem:
           - link "Sub-Item 3"
         - listitem:
@@ -244,6 +244,11 @@
     - navigation "shell-top-sub-left-tree-sub":
       - tree "shell-top-sub-left-tree-sub":
         - treeitem "Group 1"
+        - group:
+          - listitem:
+            - treeitem "Sub-Item 1"
+          - listitem:
+            - treeitem "Sub-Item 2"
         - listitem:
           - treeitem "Sub-Item 3"
         - listitem:
@@ -269,7 +274,7 @@
     - navigation "shell-left-sub-top-sub":
       - list:
         - listitem:
-          - button "Group 1"
+          - button "Group 1" [expanded]
         - listitem:
           - link "Sub-Item 3"
         - listitem:
@@ -283,9 +288,9 @@
   - navigation "shell-deep-nav-top":
     - list:
       - listitem:
-        - button "Level 1a"
+        - button "Level 1a" [expanded]
       - listitem:
-        - button "Level 1b"
+        - button "Level 1b" [expanded]
       - listitem:
         - link "Simple Item"
   - link "Imprint"
@@ -319,7 +324,7 @@
         - link "Inbox"
         - text: LABEL SHOULD BE SET 3
       - listitem:
-        - button "Tasks LABEL SHOULD BE SET 2"
+        - button "Tasks LABEL SHOULD BE SET 2" [expanded]
       - listitem:
         - link "Dashboard"
   - link "Imprint"
@@ -349,14 +354,18 @@
     - button "Action"
   - text: New
   - navigation "shell-slots-left-tree":
-    - list:
+    - tree "shell-slots-left-tree":
       - listitem:
-        - link "Inbox"
+        - treeitem "Inbox"
         - text: "2"
+      - treeitem "Tasks 2"
+      - group:
+        - listitem:
+          - treeitem "Open Tasks"
+        - listitem:
+          - treeitem "Completed"
       - listitem:
-        - button "Tasks 2"
-      - listitem:
-        - link "Dashboard"
+        - treeitem "Dashboard"
   - link "Imprint"
   - link "Help"
   - button "Search"
@@ -367,15 +376,29 @@
     - button "Action"
   - link "Tree Navigation"
   - navigation "shell-tree-nav-single":
-    - list:
+    - tree "shell-tree-nav-single":
+      - treeitem "Category A"
+      - group:
+        - listitem:
+          - treeitem "Item A1"
+        - listitem:
+          - treeitem "Item A2"
+        - listitem:
+          - treeitem "Item A3"
+      - treeitem "Category B"
+      - group:
+        - listitem:
+          - treeitem "Item B1"
+        - listitem:
+          - treeitem "Item B2"
+      - treeitem "Category C"
+      - group:
+        - listitem:
+          - treeitem "Item C1"
+        - listitem:
+          - treeitem "Item C2"
       - listitem:
-        - button "Category A"
-      - listitem:
-        - button "Category B"
-      - listitem:
-        - button "Category C"
-      - listitem:
-        - link "Simple Item"
+        - treeitem "Simple Item"
   - link "Imprint"
   - link "Help"
   - button "Search"
@@ -385,15 +408,29 @@
     - paragraph: Tree Navigation - Single Behavior (only one group open at a time)
     - button "Action"
   - navigation "shell-tree-nav-multiple":
-    - list:
+    - tree "shell-tree-nav-multiple":
+      - treeitem "Category A"
+      - group:
+        - listitem:
+          - treeitem "Item A1"
+        - listitem:
+          - treeitem "Item A2"
+        - listitem:
+          - treeitem "Item A3"
+      - treeitem "Category B"
+      - group:
+        - listitem:
+          - treeitem "Item B1"
+        - listitem:
+          - treeitem "Item B2"
+      - treeitem "Category C"
+      - group:
+        - listitem:
+          - treeitem "Item C1"
+        - listitem:
+          - treeitem "Item C2"
       - listitem:
-        - button "Category A"
-      - listitem:
-        - button "Category B"
-      - listitem:
-        - button "Category C"
-      - listitem:
-        - link "Simple Item"
+        - treeitem "Simple Item"
   - link "Imprint"
   - link "Help"
   - button "Search"
