@@ -5,7 +5,8 @@
 		"schema": "Keyed by CANONICAL component (docs/code identity). Figma splits a component into multiple component_sets for performance only; those live under figmaSets with their exact Figma name + key + axes. The agent reasons in canonical name + props; axes resolve to the right figma set key.",
 		"resolution": "1) find canonical component by name. 2) match desired props against figmaSets[*].axes. 3) importComponentSetByKeyAsync(key). 4) pick variant child + createInstance(). If no axes match, STOP and report.",
 		"naming": "❌ = deprecated, ↳ / 🛟 = helper/subcomponent (only inside parent), (Beta)/(Concept) = maturity.",
-		"coreLab": "Concept components in db-lab-component-registry.json (require user confirmation).",
+		"coreLab": "Concept components live under conceptComponents (typography + the Grid/Container layout primitives, resolved from the 'DB UX - 🧪 Core Lab' library) and in lab-components-catalog.json. Anything beyond the four baseline entries requires user confirmation.",
+		"noLocalComponents": "HARD RULE: every instance is imported from a published library (Core Components, Core Lab, DB Theme Icons). Local components inside the working Figma file MUST NOT be used — there is no local fallback and no name-based page scan.",
 		"lastKeyVerification": "2026-07-24 — all non-deprecated figmaSets keys import-tested against the live library (83/83 resolve). Note: Figma component keys can drift WITHIN a version name on re-publish (e.g. Drawer was refreshed here), so re-verify per-key — the version string alone is not a reliable freshness signal.",
 		"keyRefresh": "To refresh: for each component, pull the current component_set key from the canonical libraryKey (search_design_system scoped, or import-test existing keys) and update figmaSets. The core build stays pinned to these committed keys (deterministic, no Figma dependency at build time)."
 	},
@@ -666,12 +667,11 @@
 			"codeName": "popover",
 			"maturity": "Stable",
 			"required": false,
-			"note": "Only a deprecated set is currently available in Figma.",
+			"note": "The live Popover is the surface INSIDE the Core Lab Dialog (see conceptComponents.Dialog.subComponents.Popover) and carries the header/body/footer slots. Do not instantiate it standalone for a modal — render the Dialog. The former registry entry pointed at a deprecated set with a stale key.",
 			"figmaSets": {
-				"❌ Popover (Deprecated)": {
-					"key": "b504b478399850f2987dcdaf4dec5aa73b0845b8",
-					"axes": {},
-					"deprecated": true
+				"Popover": {
+					"key": "de21520fe2e956e6724399eaba75e7ab6c718f18",
+					"axes": {}
 				}
 			}
 		},
@@ -680,7 +680,7 @@
 			"maturity": "Beta",
 			"required": true,
 			"contentSlot": "Children",
-			"note": "Library Section (Beta). Local layout-primitive variant also exists (see localLayoutPrimitives).",
+			"note": "Library Section (Beta) from Core Components. Always instantiated from the library — never from a local component in the working file.",
 			"figmaSets": {
 				"Section (Beta)": {
 					"key": "55ce6d2d8deba893cfdfdd49e826a52673cf06da",
@@ -691,7 +691,9 @@
 	},
 
 	"conceptComponents": {
-		"_note": "Core Lab (Concept 🧪) typography components. REQUIRE Concept opt-in. The DB UX examples author all headings and body copy with these, so PREFER them over raw styled text. The runtime exposes them as plan node types `Heading` and `Body`.",
+		"_note": "Core Lab (Concept 🧪) components — typography (Heading/Text) AND the layout primitives (Grid/Container). ALWAYS resolved from the Core Lab LIBRARY via importComponentSetByKeyAsync(setKey); NEVER from a local component inside the working Figma file. The DB UX examples author all headings and body copy with these, so PREFER them over raw styled text. The runtime exposes them as plan node types `Heading`, `Body`, `Grid`, `ContainerVertical` and `ContainerHorizontal`. Because typography and layout are unavoidable on every screen, these four are BASELINE and do not trigger the `concept_components` opt-in; any OTHER Concept component still does.",
+		"_libraryKey": "lk-a3cdd1c1a84ac1722095a8f87e0eb9024968bbed54bad4e33e4cc6acf87f32d71601e76e89105f41d369b93c165f3c09fd9eac224a596525c901f611ac834d99",
+		"_libraryName": "DB UX - 🧪 Core Lab",
 		"Heading": {
 			"codeName": "heading",
 			"maturity": "Concept",
@@ -724,26 +726,113 @@
 				"Max Width": ["(Def) Medium"]
 			},
 			"note": "Body/caption/description copy. Small = caption/card body; (Def) Medium = section description; Large = hero subline. Color binds separately via a color token."
-		}
-	},
-
-	"localLayoutPrimitives": {
-		"_note": "Local components on the 'Components' page (not external library). Resolve via figma.root findOne by id.",
-		"Section": {
-			"localComponentSetId": "17:59",
-			"contentSlot": "Children"
 		},
 		"Grid": {
-			"localComponentSetId": "23:4017",
-			"slots": ["Slot-1", "Slot-2", "Slot-3", "Slot-4"]
+			"codeName": "grid",
+			"maturity": "Concept",
+			"planNodeType": "Grid",
+			"figmaName": "🧪 Grid",
+			"setKey": "e95db6c020f107e240fc5c96811971d91d165c52",
+			"slots": ["Slot-1", "Slot-2", "Slot-3", "Slot-4"],
+			"axes": {
+				"Gap": [
+					"(Def) md",
+					"None",
+					"3xs",
+					"2xs",
+					"xs",
+					"sm",
+					"lg",
+					"xl",
+					"2xl",
+					"3xl"
+				],
+				"Layout": [
+					"(Def) 33-33-33",
+					"100",
+					"50-50",
+					"25-25-25-25",
+					"33-66",
+					"66-33",
+					"25-75",
+					"75-25",
+					"320-auto"
+				],
+				"Height": ["Auto", "100%"]
+			},
+			"note": "Column raster. The variant's Layout axis determines the slot count (Slot-1..Slot-4) — a Grid MUST NOT get more children than its layout has columns. Gap IS a variant here (unlike Container), so pass the exact label ('(Def) md' for the md step). There is no five-column variant; for an arbitrary number of equal columns use a ContainerHorizontal of fill-width ContainerVerticals."
 		},
-		"ContainerVertical": {
-			"localComponentSetId": "29:3988",
-			"slot": "Slot"
+		"Dialog": {
+			"codeName": "dialog",
+			"maturity": "Concept",
+			"planNodeType": "Dialog",
+			"figmaName": "🧪 Dialog (Concept)",
+			"setKey": "63f75b2dd03d11dca1d7ec2d565414c9e887e86f",
+			"contentSlot": "📦 Children",
+			"axes": { "Backdrop": ["true", "false"] },
+			"subComponents": {
+				"Popover": {
+					"setKey": "de21520fe2e956e6724399eaba75e7ab6c718f18",
+					"axes": {
+						"🔀 Spacing": ["(Def) Small", "Medium", "Large", "None"]
+					},
+					"slots": ["📦 Start Slot", "📦 Children", "📦 End Slot"]
+				},
+				"Dialog Header": {
+					"setKey": "f4de6daa957fb4c9927c042823d5c2c0a26f15fb"
+				},
+				"Dialog Footer": {
+					"setKey": "1a0a4a72b794b2c0893a1349e09f678b9a1de1f6"
+				}
+			},
+			"note": "The ONLY correct way to render a modal. The Dialog ships its own Backdrop plus a Popover whose three slots carry header, body and footer. NEVER rebuild it from a frame + absolute Backdrop + centered Card. GOTCHA: the Dialog Header has its own slot named \"Children\" that precedes the Popover's \"📦 Children\" in document order, so the body slot must be resolved as the Popover's DIRECT child."
 		},
-		"ContainerHorizontal": {
-			"localComponentSetId": "29:3989",
-			"slot": "Slot"
+		"Pagination": {
+			"codeName": "pagination",
+			"maturity": "Concept",
+			"planNodeType": "Pagination",
+			"figmaName": "🧪 Pagination (Concept)",
+			"setKey": "4250e42fdf76630aed82c76a07a943a1f62f0778",
+			"contentSlot": "Children",
+			"axes": {
+				"Size": ["(Def) Medium", "Small"],
+				"🎨 Position": ["(Def) Start", "Center", "End"]
+			},
+			"note": "Page navigation under a table or list. The Children slot holds the page items; the runtime renders the variant's default item set. Used by the dashboard Table block."
+		},
+		"ProgressBar": {
+			"codeName": "progress",
+			"maturity": "Concept",
+			"planNodeType": "ProgressBar",
+			"figmaName": "🛟 LoadingIndicator -> BAR Progress (Concept)",
+			"setKey": "dbdf96386e77cbff84e337fe02a4f63b18f37b1b",
+			"axes": { "🎨 Value": ["25%", "50%", "75%"] },
+			"note": "Determinate bar progress. IMPORTANT: the component ships ONLY the three discrete steps 25%, 50% and 75% — there is no continuous value. A plan must pass value 25, 50 or 75; any other number has no variant and is a hard stop (never approximate by drawing a rectangle)."
+		},
+		"Container": {
+			"codeName": "container",
+			"maturity": "Concept",
+			"planNodeType": ["ContainerVertical", "ContainerHorizontal"],
+			"figmaName": "🧪 Container",
+			"setKey": "000823b4d354ab68f34f1186a9ecabe1282755e5",
+			"slot": "Slot",
+			"axes": {
+				"Direction": ["(Def) Column", "Row"],
+				"Padding": [
+					"(Def) None",
+					"3xs",
+					"2xs",
+					"xs",
+					"sm",
+					"md",
+					"lg",
+					"xl",
+					"2xl",
+					"3xl"
+				],
+				"Min-Height": ["(Def) None", "xs", "sm", "md", "lg", "xl"]
+			},
+			"note": "ONE component set for BOTH stack directions: Direction '(Def) Column' = plan node ContainerVertical, 'Row' = ContainerHorizontal. IMPORTANT: gap and alignment are NOT variants on this set (unlike the retired local primitives). The runtime binds the inner Slot's itemSpacing to a space.* variable and sets the Slot's axis alignment, so the plan-facing `gap` / `align` / `spread` fields keep working unchanged."
 		}
 	},
 
@@ -751,9 +840,9 @@
 		"_note": "Code-catalog families with no standalone Core Components set found. Resolve via search before use; never approximate.",
 		"table": "No Table / Table Row / Table Cell set surfaced in Core Components or Core Lab.",
 		"brand": "DB Brand/logo mark not found as a Core Components set; likely a brand asset library.",
-		"page": "No Page wrapper set; use layout primitives.",
+		"page": "No Page wrapper set; use the Core Lab layout primitives (Grid / Container).",
 		"tabs": "Concept only (Core Lab) — requires confirmation.",
-		"stack": "Use local ContainerVertical / ContainerHorizontal primitives.",
+		"stack": "Use the Core Lab Container (conceptComponents.Container) — Direction '(Def) Column' or 'Row'.",
 		"icon": "Functional icons: 'DB Theme Icons' library. Illustrative: 'DB Theme Illustrative Icons'."
 	}
 }

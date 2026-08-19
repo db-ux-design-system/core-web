@@ -20,6 +20,20 @@ Equips AI agents to produce DB UX Design System v3-compliant Figma screens.
 
 - **generate-figma-screen** — Generates Figma screens from a prompt via a validated Composition Plan and a hardened render runtime. See `skills/generate-figma-screen/SKILL.md`.
 
+## Page-type registries
+
+A page-type catalog is exactly **three** files: `blocks.json` (atomic fragments), `patterns.json` (complete modules, each carrying its own `intent` / `whenToUse` / `level` / `cardinality` / `alternatives`) and `template.json` (the page grammar: `order`, `slots`, `rules`). Selection metadata lives on the pattern, so a pattern cannot be unreachable from a separate index; reachability runs `template.slots[*].allow → patterns → $ref → blocks`.
+
+The shape is enforced, not documented: run
+
+```bash
+pnpm --dir packages/agent-cli run registry:validate
+```
+
+It checks every page type against the schema — required `_meta`, field whitelists, `order`/`slots` consistency, resolvable `$ref`s, no cycles, no unreachable fragments — and against the global registries: every `type` in `components.json`, every `props` combination against a non-deprecated `figmaSet`'s variant axes, every token in `tokens.json`, every icon in `icons.json`, `gridLayout` against the nine live Grid layouts with its slot count, and the narrow `ChartBar` / `ProgressBar` / `Pagination` / `Image` contracts.
+
+Exit code 1 means a registry violates the contract. It runs in CI (`01-validate.yml`); do not treat it as optional.
+
 ## Context Files
 
 The `context/` folder provides design knowledge at two levels:
@@ -34,10 +48,11 @@ The `context/` folder provides design knowledge at two levels:
 
 ### Design System (DB UX v3 specific)
 
-| File                                          | Content                                                        |
-| --------------------------------------------- | -------------------------------------------------------------- |
-| `context/design-system/screen-guidelines.md`  | Screen composition, visual rules, action hierarchy, validation |
-| `context/design-system/component-guidelines/` | Do/Don't per component (button, card, section, header, …)      |
+| File                                              | Content                                                                     |
+| ------------------------------------------------- | --------------------------------------------------------------------------- |
+| `context/design-system/screen-guidelines.md`      | Screen composition, visual rules, action hierarchy, validation              |
+| `context/design-system/component-construction.md` | How a compliant component is BUILT: anatomy, sizes, content height, nesting |
+| `context/design-system/component-guidelines/`     | Do/Don't per component (button, card, section, header, …)                   |
 
 ## Registries (machine-readable)
 
@@ -61,23 +76,39 @@ The render runtime lives under `skills/generate-figma-screen/assets/`:
 - **Build**: `node build-runtime.cjs` concatenates + minifies into `db-figma-runtime.min.js` and regenerates bootstrap snippets.
 - **Registry maps**: `build-registry-maps.cjs` generates key maps from `registries/*.json` and injects them at build time.
 - **Single bundle**: ONE file (`db-figma-runtime.min.js`) provides both `renderPlan` and `applyEdits`.
+- **Open requirement — incremental transfer.** Because the store is one blob sliced at fixed
+  offsets, the re-bootstrap cost scales with an edit's POSITION rather than its size (a change in
+  `10-figma-helpers`, or to the registry maps in chunk `c0`, invalidates all 10 chunks). Specified
+  in `skills/generate-figma-screen/requirements/incremental-runtime-transfer.md`.
+- **Bootstrap needs a large model.** The runtime is stored once per Figma file as 10 verbatim
+  chunks (~64 KB). Reproducing them byte-for-byte is the one step a smaller model cannot do
+  reliably — so `bootstrap/check.js` returns a `gate` telling the agent to stop and ask the user
+  to switch to a large model (e.g. Claude Opus 5), and `bootstrap/store-meta.js` refuses to mark
+  a runtime "ready" unless every chunk matches its length AND its content checksum. `check.js`
+  re-verifies those checksums on every render, so a store that was altered after a bootstrap is
+  reported instead of trusted — the `sha` is a label, not a digest. Rendering and editing
+  afterwards work with any model.
 
 ## MCP Servers
 
-| Server                              | Purpose                                                        |
-| ----------------------------------- | -------------------------------------------------------------- |
-| `db-ux` (`@db-ux/mcp-server`)       | Live component, token, icon verification                       |
-| `figma` (Figma Dev Mode MCP, local) | Renders Composition Plan into Figma (`use_figma`) + inspection |
+| Server                        | Purpose                                                        |
+| ----------------------------- | -------------------------------------------------------------- |
+| `db-ux` (`@db-ux/mcp-server`) | Live component, token, icon verification                       |
+| `figma` (Figma remote MCP)    | Renders Composition Plan into Figma (`use_figma`) + inspection |
 
-> The `figma` server requires the Figma desktop app with Dev Mode MCP enabled.
-> The bundled `mcp.json` points at `http://127.0.0.1:3845/mcp`.
+> The bundled `mcp.json` points at Figma's remote MCP, `https://mcp.figma.com/mcp` (HTTP;
+> authenticate via Figma's OAuth flow on first use). No Figma desktop app and no local MCP
+> server are involved — do not configure or call a local/desktop endpoint.
 
 ## Hard Rules (always active)
 
 1. **No imperative Figma code.** Every screen goes through `renderPlan` — never `createFrame`/`createInstance`/`appendChild` directly.
 2. **No workspace output.** Output is a Figma frame, never HTML/CSS/JSX files.
 3. **No raw text nodes.** ALL text via Heading/Body components — never `figma.createText()`.
-4. **Batch runtime changes.** A re-bootstrap is expensive (~37 KB). Collect all fixes, then ONE build + ONE re-bootstrap.
+4. **Batch runtime changes.** A re-bootstrap is expensive (~64 KB as 10 chunks + meta). Collect all fixes, then ONE build + ONE re-bootstrap.
+5. **Never improvise a bootstrap.** If a chunk cannot be emitted verbatim, STOP and ask the user
+   to switch to a large model. Never shorten/merge/repair chunks, never write the `meta` record by
+   hand, never substitute hand-written Figma node code.
 
 ## Agent Rules Generation
 

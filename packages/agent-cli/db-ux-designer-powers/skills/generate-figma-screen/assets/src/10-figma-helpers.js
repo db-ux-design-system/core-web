@@ -58,26 +58,16 @@ const FILL_DEFAULT = new Set([
 	'Accordion'
 ]);
 
-// Local layout primitives. Resolved PORTABLY: matched by NAME (normalized, so emoji /
-// slashes / spacing don't matter), with the original file's node id only as a fast hint.
-// `idHint` makes it instant in the source file; `match` makes it work in ANY file that
-// has the DB UX layout primitives — so the runtime is not bound to one Figma file.
-const LOCAL = {
-	Grid: {
-		idHint: '23:4017',
-		match: 'grid',
-		slots: ['Slot-1', 'Slot-2', 'Slot-3', 'Slot-4']
-	},
-	ContainerVertical: {
-		idHint: '29:3988',
-		match: 'containervertical',
-		slot: 'Slot'
-	},
-	ContainerHorizontal: {
-		idHint: '29:3989',
-		match: 'containerhorizontal',
-		slot: 'Slot'
-	}
+// Layout primitives (Grid / Container) are Core Lab LIBRARY components, imported by key from
+// CONCEPT_KEYS — exactly like the Heading/Body typography. There is deliberately NO local
+// component path: no `figma.root` page scan, no node-id hint, no name matching. A screen is
+// composed exclusively from published library components, so the output is identical in every
+// file that has the DB UX libraries added and never picks up a stray look-alike in the file.
+// Direction labels for the single Core Lab `Container` set (one set serves both stack
+// directions; the retired local primitives were two separate components).
+const CONTAINER_DIRECTION = {
+	vertical: '(Def) Column',
+	horizontal: 'Row'
 };
 
 /* -----------------------------------------------------------------------------
@@ -183,6 +173,36 @@ async function bindRadius(node, tokenName) {
 	}
 }
 
+/* Is this node inside a Card surface? Drives the Image radius default: an image sitting ON the
+ * page gets the 8px token, an image INSIDE a card is flush (0) because the card already owns the
+ * rounded corner — a rounded image inside a rounded card reads as a double border. */
+function insideCard(startNode) {
+	let n = startNode;
+	while (n) {
+		if (
+			safe(() => n.type, '') === 'INSTANCE' &&
+			/card/i.test(safe(() => n.name, ''))
+		)
+			return true;
+		n = safe(() => n.parent, null);
+	}
+	return false;
+}
+
+/* Bind an auto-layout node's GAP to a DB spacing token (never a raw pixel number).
+ * The Core Lab `Container` set has no Gap VARIANT — spacing is a bound `itemSpacing`
+ * variable on its inner Slot — so this is how a plan `gap` token becomes a real DB
+ * spacing value. Returns false when the binding could not be applied. */
+async function bindItemSpacing(node, tokenName) {
+	const v = await importVar(tokenName);
+	try {
+		node.setBoundVariable('itemSpacing', v);
+		return true;
+	} catch {
+		return false;
+	}
+}
+
 /* GOTCHA 2: NEVER cache a SLOT reference across a mutation of its owner instance.
  * setProperties(...) / node.fills = ... regenerate the instance's internal node ids,
  * so a previously fetched slot throws "Node with id ... not found" on appendChild.
@@ -246,10 +266,41 @@ function hugTextWidth(node) {
 		}
 	} catch {}
 }
+/* Can this node be stretched vertically, or would FILL COLLAPSE it?
+ * -----------------------------------------------------------------------------
+ * Figma does NOT reject `layoutSizingVertical = "FILL"` on the MAIN axis of a
+ * HUGGING parent — it silently gives the child a height of ~0 while the parent
+ * keeps hugging the remaining children. The child's content then spills OUT of
+ * its 1px box and overlaps whatever sits above it (this is exactly how a bar
+ * graph ended up drawn across its own card title). Because every fill/hug write
+ * is wrapped in try/catch, that damage is invisible at write time — so the guard
+ * has to be a precondition, not an error handler.
+ * Rules:
+ *   parent VERTICAL   → vertical is the MAIN axis: only fillable once the parent
+ *                       itself has a resolved height (primaryAxisSizingMode FIXED,
+ *                       i.e. the parent is FIXED or FILL — not HUG).
+ *   parent HORIZONTAL → vertical is the CROSS axis: stretching to the tallest
+ *                       sibling is always valid, even while the parent hugs.
+ *   parent GRID       → the cell owns the height; stretching is valid.
+ *   no auto-layout    → FILL is meaningless. */
+function canFillVertical(node) {
+	const parent = safe(() => node.parent, null);
+	if (!parent) return false;
+	const mode = String(safe(() => parent.layoutMode, 'NONE'));
+	if (mode === 'HORIZONTAL' || mode === 'GRID') return true;
+	if (mode !== 'VERTICAL') return false;
+	return safe(() => parent.primaryAxisSizingMode, 'AUTO') === 'FIXED';
+}
+/* Stretch a node to its parent's height. Returns whether the stretch actually happened, so
+ * callers that build a fill CHAIN (outside-in) can stop instead of collapsing the subtree. */
 function fillHeight(node) {
+	if (!canFillVertical(node)) return false;
 	try {
 		node.layoutSizingVertical = 'FILL';
-	} catch {}
+		return true;
+	} catch {
+		return false;
+	}
 }
 function hugHeight(node) {
 	try {
@@ -259,6 +310,30 @@ function hugHeight(node) {
 			node.primaryAxisSizingMode = 'AUTO';
 		} catch {}
 	}
+}
+/* Pin an auto-layout node's content to the END of its MAIN axis (a vertical stack: bottom).
+ * Used to seat a chart column's bar + caption on the panel floor. */
+function alignMainEnd(node) {
+	try {
+		node.primaryAxisAlignItems = 'MAX';
+	} catch {}
+}
+/* Pin an auto-layout node's content to the END of its CROSS axis (a horizontal row: bottom).
+ * Used to put every chart column of a row on ONE baseline. */
+function alignCrossEnd(node) {
+	try {
+		node.counterAxisAlignItems = 'MAX';
+	} catch {}
+}
+/* Is this node the LAST visible child of its parent? Slots are skipped by callers: a SLOT sits
+ * among the owning component's internal slots (a Card has "Start Slot"/"Children"/"End Slot"),
+ * so its position says nothing about the CONTENT order. */
+function isLastVisibleChild(node) {
+	const parent = safe(() => node.parent, null);
+	const kids = (safe(() => parent && parent.children, []) ?? []).filter((c) =>
+		safe(() => c.visible, true)
+	);
+	return kids.length === 0 || kids[kids.length - 1] === node;
 }
 
 /* A DB Card's root auto-layout ships with `primaryAxisAlignItems = SPACE_BETWEEN`

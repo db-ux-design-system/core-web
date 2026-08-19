@@ -1,48 +1,51 @@
 {
 	"_meta": {
-		"schema": "db-ux/template/v1",
+		"schema": "db-ux/template/v2",
 		"pageType": "contentpage",
-		"origin": "guideline-authored",
-		"purpose": "Page template for a content page: which section patterns are required / optional / forbidden, and the order rules. Compose a page by SELECTING sections per content (see sections.json → whenToUse) and ordering them per this template — NOT by copying examples.json. examples.json is only a density/style reference.",
-		"spacingModel": "R = lg (content pages are airier than dashboards). See contentpage/blocks.json → _meta.spacingModel for the full derivation."
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Contentpage / Blocks\" (node 1710:3371).",
+		"purpose": "Page grammar for a contentpage: one hero, a repeatable body of content modules, one closing CTA."
 	},
+	"delivery": "page",
 	"contentWidth": "Medium (1024)",
 	"order": ["hero", "body", "cta"],
 	"slots": {
 		"hero": {
 			"required": true,
 			"position": "first",
-			"allow": ["contentpage.hero"],
-			"note": "Exactly one hero, always the first section after the Header."
+			"allow": ["contentpage.home-hero", "contentpage.subpage-hero"],
+			"note": "Exactly one hero, directly after the Header. Centered for a top-level entry, left-aligned for a subpage."
 		},
 		"body": {
 			"required": true,
 			"position": "middle",
 			"repeatable": true,
-			"minSections": 2,
+			"minSections": 1,
 			"maxSections": 5,
 			"allow": [
-				"contentpage.feature-grid",
-				"contentpage.media-text-rows",
-				"contentpage.highlight",
-				"contentpage.card-grid"
+				"contentpage.content-section",
+				"contentpage.card-section",
+				"contentpage.visual-section",
+				"contentpage.article-section",
+				"contentpage.banner-section"
 			],
-			"note": "Choose 2–5 body sections by mapping each content group to the best-fit pattern via sections.json → whenToUse. Do NOT reuse the same pattern for every group when the content types differ."
+			"note": "One section per content group. Mix the module types — a page of identical sections is a mono-layout and fails the composition rules."
 		},
 		"cta": {
 			"required": true,
 			"position": "last",
-			"allow": ["contentpage.cta-centered"],
-			"note": "Exactly one closing CTA, always the last section."
+			"allow": ["contentpage.cta-card"],
+			"note": "Exactly one closing CTA card as the final section."
 		}
 	},
 	"rules": [
-		"Header is always the first child (logo = home; no 'Startseite' nav item).",
-		"Zebra backgrounds: hero on color.background.canvas, then alternate surface/canvas across sections.",
-		"One consistent centered contentWidth for the whole page.",
-		"Action hierarchy: the hero owns the page's primary action (Brand, may add a Filled secondary); the closing CTA is Brand; body sections use Links, never a Brand button per card.",
-		"Avoid a mono-layout: if the body has heterogeneous content (e.g. a benefit story AND a set of options), use different patterns for them (e.g. media-text-rows + card-grid), not the same grid twice.",
-		"Every body section MUST carry a title (h2); inner headings are h3/h4.",
-		"Spacing ladder (R = lg): elements in a block, a VERTICAL Visual→content, section-title↔description, card padding = R (lg); content blocks to each other (horizontal and vertical) = R+1 (xl); section-header→content = R+2 (2xl). EXCEPTION: a HORIZONTAL Visual→content (image beside text) = R+1 (xl). Titled content Sections set headerGap 'lg' + gap '2xl'. See blocks.json → _meta.spacingModel."
+		"One consistent centered Medium (1024) content width for every section.",
+		"Home Page Hero for a centered top-level entry, Subpage Hero for a left-aligned subordinate page.",
+		"Heterogeneous content needs different module types; do not repeat one section shape for everything.",
+		"Content rows alternate: text-left then image-left, so the rhythm reads deliberate rather than accidental.",
+		"ONE primary action per page, offered twice: the hero and the closing CTA carry the SAME Brand action with the SAME label — once at the entry, once at the exit. The rule counts distinct goals, not button instances, so this is compliant. Two DIFFERENT Brand actions on one page are not.",
+		"The secondary action must also match between hero and CTA, or be omitted in both. Two different secondaries turn one offer into two competing ones.",
+		"Everything else is Filled or a Link. Navigation is always a Link, never a button.",
+		"Zebra background levels are optional and chosen intentionally; do not alternate section backgrounds by default.",
+		"Every Image ships EMPTY on Fill with a registered ratio. Use imageHash only for an asset the user already placed in the Figma file; there is no src option."
 	]
 }

@@ -129,11 +129,25 @@ async function fillGridRow(g, rowKids, node) {
 			}
 		}
 	}
+	/* Unused cells: an EMPTY component SLOT is not invisible — Figma paints it as a magenta
+	 * placeholder box, which then ships in the render (a 3-column filter row fed two children
+	 * showed a pink rectangle where the third column would be). Hiding the leftover cells keeps
+	 * the COLUMN GEOMETRY intact — deliberate "two thirds" rows and the short last row of a
+	 * wrapped grid stay aligned with the rows above — while nothing is drawn. */
+	const trailing = gridCells(g);
+	for (let i = rendered.length; i < trailing.length; i++) {
+		try {
+			trailing[i].visible = false;
+		} catch {}
+	}
 }
-// Friendly gap tokens -> exact local-variant labels. Only `md` differs from its token
-// (the variant is labelled "(Def) md"); passing the bare "md" misses the variant and the
-// container silently falls back to the first (tiny) gap — the "no gap in card" bug.
-const CONTAINER_GAP_LABELS = {
+/* Friendly gap tokens -> the Grid's exact Gap VARIANT labels. The Core Lab Grid DOES carry a
+ * Gap axis; only the `md` step is labelled "(Def) md", and passing a bare "md" misses the
+ * variant match, so the Grid silently falls back to the default variant (3 columns) and leaves
+ * empty trailing slots. */
+const GRID_GAP_LABELS = {
+	none: 'None',
+	'3xs': '3xs',
 	'2xs': '2xs',
 	xs: 'xs',
 	sm: 'sm',
@@ -141,29 +155,165 @@ const CONTAINER_GAP_LABELS = {
 	lg: 'lg',
 	xl: 'xl',
 	'2xl': '2xl',
-	'3xl': '3xl',
-	// "auto" = SPACE_BETWEEN: the container distributes its children to both ends
-	// (this is the component's native Gap variant, NOT a manual slot override).
-	auto: 'auto'
+	'3xl': '3xl'
 };
-function buildContainer(node, direction) {
-	const name =
-		direction === 'horizontal'
-			? 'ContainerHorizontal'
-			: 'ContainerVertical';
-	// A `spread` row IS a container with Gap "auto" (SPACE_BETWEEN) — set it via the native
-	// Gap variant rather than overriding the slot. An explicit `gap: "auto"` works too.
-	const gapToken = node.spread ? 'auto' : node.gap;
-	const gap = gapToken
-		? (CONTAINER_GAP_LABELS[gapToken] ?? gapToken)
-		: '(Def) md';
-	const inst = createLocalInstance(name, {
-		Align: node.align ?? 'top-left',
-		Gap: gap,
-		Padding: node.padding ?? '(Def) None'
+/* Friendly gap tokens -> DB spacing VARIABLE names. Unlike the Grid (and unlike the retired
+ * local primitives), the Core Lab `Container` has NO Gap variant — its spacing is a bound
+ * `itemSpacing` variable on the inner Slot. So a plan `gap` becomes a real DB spacing token
+ * binding, never a raw pixel value. "auto" is not a spacing value at all: it means
+ * SPACE_BETWEEN (children pushed to both ends) and is handled separately. */
+const CONTAINER_GAP_TOKENS = {
+	none: 'space.none',
+	'3xs': 'space.3xs',
+	'2xs': 'space.2xs',
+	xs: 'space.xs',
+	sm: 'space.sm',
+	md: 'space.md',
+	lg: 'space.lg',
+	xl: 'space.xl',
+	'2xl': 'space.2xl',
+	'3xl': 'space.3xl'
+};
+// Friendly padding value -> the Container's exact Padding VARIANT label.
+const CONTAINER_PADDING_LABELS = { none: '(Def) None' };
+/* The plan's 3x3 `align` grid, resolved to Figma axis alignment. Format is
+ * "<vertical>-<horizontal>" ("top-left", "bottom-right", …); the bare forms "left" /
+ * "center" / "right" mean vertically centered. Applied to the container's inner Slot,
+ * since the Core Lab Container carries no Align variant. */
+const ALIGN_V = { top: 'MIN', center: 'CENTER', bottom: 'MAX' };
+const ALIGN_H = { left: 'MIN', center: 'CENTER', right: 'MAX' };
+function parseAlign(align) {
+	const parts = String(align ?? 'top-left')
+		.toLowerCase()
+		.split('-');
+	if (parts.length === 2 && ALIGN_V[parts[0]] && ALIGN_H[parts[1]])
+		return { v: ALIGN_V[parts[0]], h: ALIGN_H[parts[1]] };
+	if (ALIGN_H[parts[0]]) return { v: 'CENTER', h: ALIGN_H[parts[0]] };
+	return { v: 'MIN', h: 'MIN' };
+}
+/* Gap + alignment live on the Container's inner Slot (the set exposes neither as a variant).
+ * `spread` — or an explicit gap "auto" — distributes children to both ends (SPACE_BETWEEN);
+ * every other gap binds the Slot's itemSpacing to the matching DB spacing variable. */
+async function configureContainerSlot(inst, node, direction) {
+	const slot = safe(() => freshSlot(inst, 'Slot'), null);
+	if (!slot) return;
+	const horizontal = direction === 'horizontal';
+	const { v, h } = parseAlign(node.align);
+	const spread = node.spread === true || node.gap === 'auto';
+	try {
+		slot.primaryAxisAlignItems = spread
+			? 'SPACE_BETWEEN'
+			: horizontal
+				? h
+				: v;
+	} catch {}
+	try {
+		slot.counterAxisAlignItems = horizontal ? v : h;
+	} catch {}
+	if (spread) return;
+	const gap = node.gap ?? 'md';
+	const token = CONTAINER_GAP_TOKENS[gap];
+	if (!token)
+		stop(
+			`Unknown container gap "${gap}". Use one of: ${Object.keys(
+				CONTAINER_GAP_TOKENS
+			).join(', ')} — or "auto" for SPACE_BETWEEN.`
+		);
+	await bindItemSpacing(slot, token);
+}
+/* Does this PLAN child take the full width by default, i.e. does the row DISTRIBUTE space? */
+const PLAN_FILLS_BY_DEFAULT = new Set([
+	'Heading',
+	'Body',
+	'ContainerVertical',
+	'ContainerHorizontal',
+	'Grid',
+	'Card',
+	'Section',
+	'Tabs',
+	'Divider',
+	'ProgressBar',
+	'Image',
+	'Header'
+]);
+function planChildFills(kid) {
+	if (!kid) return false;
+	if (kid.fillWidth === true) return true;
+	if (kid.hugWidth === true) return false;
+	return PLAN_FILLS_BY_DEFAULT.has(kid.type) || FILL_DEFAULT.has(kid.type);
+}
+/* Is the LEADING text of a ContainerHorizontal a LABEL that must hug its glyphs?
+ * -----------------------------------------------------------------------------
+ * The Concept Heading/Text default to FILL width. In a COLUMN that is right; in a ROW it means
+ * the text eats all remaining space and shoves every following sibling to the far right — an
+ * "Aktive Filter" label rendered 512px wide with its Tags floating half a panel away instead of
+ * sitting one gap behind it. A label and the things it introduces belong together (Gesetz der
+ * Nähe), so the label hugs and the row packs tight.
+ * Deliberately NARROW, because a filling text in a row is often exactly right:
+ *   - `spread` rows (SPACE_BETWEEN) let the leading block grow so the trailing one sits flush
+ *     right — never touched.
+ *   - a DATA ROW builds its columns from filling text cells (dashboard.list-row); the equal
+ *     widths ARE the column alignment. So the rule only applies when EVERY other child hugs.
+ *   - a lone text keeps filling, so its own `align` (center/right) still works.
+ * Only the FIRST child qualifies (that is what a label is); `fillWidth: true` opts out.
+ * Returns indices into `node.children` so the caller can map them onto the rendered nodes. */
+function rowTextHugIndices(node) {
+	const kids = (node && node.children) ?? [];
+	const spread = node.spread === true || node.gap === 'auto';
+	if (spread || kids.length < 2) return [];
+	const label = kids[0];
+	if (!label || (label.type !== 'Heading' && label.type !== 'Body'))
+		return [];
+	if (label.fillWidth === true) return [];
+	for (let i = 1; i < kids.length; i++)
+		if (planChildFills(kids[i])) return [];
+	return [0];
+}
+/* Is this ContainerHorizontal a DATA ROW — a table/list row whose children are COLUMNS?
+ * Signal: two or more direct text children, which is also why rowTextHugIndices leaves it be. */
+function isDataRow(node) {
+	const kids = (node && node.children) ?? [];
+	if (node.spread === true || node.gap === 'auto') return false;
+	let texts = 0;
+	for (const kid of kids)
+		if (kid && (kid.type === 'Heading' || kid.type === 'Body')) texts++;
+	return texts >= 2;
+}
+/* EVERY cell of a data row fills, so the header row and the rows under it share ONE column grid.
+ * -----------------------------------------------------------------------------
+ * A table only reads as a table while a value sits under its own header. The defect this
+ * prevents: a leading `Checkbox` (or any component that hugs by default used as the first column)
+ * keeps its LABEL width, so the header columns start at different x than the row columns — the
+ * header "Auswahl" at 90px above "ICE 101 Hamburg–Berlin" at 199px, and every column behind it
+ * drifts by a different amount because each row's checkbox label has its own length. In the
+ * canonical DB table block every cell of every row is one equal fill column, the checkbox cell
+ * included. `hugWidth: true` on a cell opts out.
+ * Returns indices into `node.children`. */
+function rowCellFillIndices(node) {
+	if (!isDataRow(node)) return [];
+	const kids = node.children ?? [];
+	const indices = [];
+	for (let i = 0; i < kids.length; i++) {
+		const kid = kids[i];
+		if (!kid || kid.hugWidth === true) continue;
+		indices.push(i);
+	}
+	return indices;
+}
+/* Build a stack. ONE Core Lab `Container` set serves both directions via its Direction axis
+ * ("(Def) Column" / "Row"); the plan keeps the two node types ContainerVertical /
+ * ContainerHorizontal. Nothing here touches local components. */
+async function buildContainer(node, direction) {
+	const inst = await createConceptInstance('Container', {
+		Direction:
+			CONTAINER_DIRECTION[direction] ?? CONTAINER_DIRECTION.vertical,
+		Padding:
+			CONTAINER_PADDING_LABELS[node.padding] ??
+			node.padding ??
+			'(Def) None'
 	});
-	// Some local container variants ship with a de-emphasized (0.2 opacity) Slot; force
-	// the instance and its slots back to fully opaque so content never renders washed out.
+	// Some container variants ship with a de-emphasized (0.2 opacity) Slot; force the
+	// instance and its slots back to fully opaque so content never renders washed out.
 	try {
 		inst.opacity = 1;
 	} catch {}
@@ -174,6 +324,7 @@ function buildContainer(node, direction) {
 			} catch {}
 		}
 	}
+	await configureContainerSlot(inst, node, direction);
 	// Optional node-level opacity (e.g. a "disabled" look at 0.4). Applied AFTER the
 	// wash-out reset above so the caller's value wins. Dims the whole container + children.
 	if (typeof node.opacity === 'number') {
@@ -431,6 +582,139 @@ async function buildTabs(node) {
 				for (const ch of kids) await renderNode(ch, slot);
 			}
 		}
+	}
+	return inst;
+}
+
+/* Dialog (Concept) — a COMPOSITE, and the ONLY correct way to render a modal. It ships its own
+ * Backdrop plus a Popover whose three slots carry the regions:
+ *   📦 Start Slot  -> ↳ Dialog Header  (headline text + close icon button)
+ *   📦 Children    -> the dialog body  (rendered from node.children)
+ *   📦 End Slot    -> ↳ Dialog Footer  (secondary + primary Button)
+ * Never rebuild this from a frame + absolute Backdrop + centered Card: that was the old
+ * `overlay` approach and it fakes a component that exists.
+ *
+ * GOTCHA: the Dialog Header has its OWN slot literally named "Children", and it sits BEFORE
+ * the Popover's own "📦 Children" in document order — so a findOne-based slot lookup grabs the
+ * wrong one. Always resolve the Popover's DIRECT child slot. */
+const DIALOG_SPACING = {
+	none: 'None',
+	small: '(Def) Small',
+	medium: 'Medium',
+	large: 'Large'
+};
+function directSlot(owner, match) {
+	const slot = (owner.children ?? []).find(
+		(c) => c.type === 'SLOT' && normName(c.name).includes(normName(match))
+	);
+	if (!slot)
+		stop(
+			`No direct SLOT matching "${match}" on "${safe(() => owner.name, '?')}".`
+		);
+	return slot;
+}
+function setBooleanProp(inst, re, value) {
+	const cp = inst.componentProperties ?? {};
+	const key = Object.keys(cp).find(
+		(k) => cp[k]?.type === 'BOOLEAN' && re.test(k)
+	);
+	if (key) {
+		try {
+			inst.setProperties({ [key]: value });
+		} catch {}
+	}
+}
+async function buildDialog(node) {
+	const inst = await createConceptInstance('Dialog', {});
+	/* GOTCHA 2 bites HARD here: every setProperties on the Dialog OR on the Popover regenerates
+	 * the subtree's internal node ids, so a Popover reference cached across two writes is already
+	 * dead ("Node with id ... not found" on the next property read). Re-resolve before EACH write. */
+	const freshPopover = () => {
+		const p = safe(
+			() =>
+				inst.findOne(
+					(n) => n.type === 'INSTANCE' && /popover/i.test(n.name)
+				),
+			null
+		);
+		if (!p) stop('Dialog instance has no Popover — the component changed.');
+		return p;
+	};
+	// The Backdrop belongs to the component; only switch it off when explicitly asked.
+	setBooleanProp(inst, /backdrop/i, node.backdrop !== false);
+	if (node.spacing) {
+		const label = DIALOG_SPACING[node.spacing] ?? node.spacing;
+		try {
+			setVariant(freshPopover(), 'Spacing', label);
+		} catch {}
+	}
+	// A region without content is switched OFF rather than rendered empty.
+	setBooleanProp(freshPopover(), /show start slot/i, node.title != null);
+	setBooleanProp(freshPopover(), /show end slot/i, node.actions != null);
+	await ensureFonts();
+	await loadInstanceFonts(inst);
+	// Headline
+	if (node.title != null) {
+		const header = safe(
+			() =>
+				inst.findOne(
+					(n) =>
+						n.type === 'INSTANCE' && /dialog header/i.test(n.name)
+				),
+			null
+		);
+		if (header) setInstanceLabel(header, String(node.title));
+	}
+	/* Footer actions. Same stale-node trap one level deeper: setting the label on the FIRST
+	 * button regenerates the ids of its siblings, so a second reference captured from the same
+	 * findAll is already dead. Re-resolve the button for every write. */
+	if (node.actions) {
+		const findButton = (re) =>
+			safe(() => {
+				const footer = inst.findOne(
+					(n) =>
+						n.type === 'INSTANCE' && /dialog footer/i.test(n.name)
+				);
+				if (!footer) return null;
+				return (
+					footer
+						.findAll(
+							(n) =>
+								n.type === 'INSTANCE' && /^button/i.test(n.name)
+						)
+						.find((b) => re.test(b.name)) ?? null
+				);
+			}, null);
+		if (node.actions.secondary == null) {
+			const secondary = findButton(/ghost/i);
+			if (secondary) {
+				try {
+					secondary.visible = false;
+				} catch {}
+			}
+		} else {
+			const secondary = findButton(/ghost/i);
+			if (secondary)
+				setInstanceLabel(secondary, String(node.actions.secondary));
+		}
+		if (node.actions.primary != null) {
+			const primary = findButton(/brand/i);
+			if (primary)
+				setInstanceLabel(primary, String(node.actions.primary));
+		}
+	}
+
+	// Body: the Popover's OWN Children slot (see the gotcha above), re-resolved per child.
+	for (const child of node.children ?? []) {
+		const pop = safe(
+			() =>
+				inst.findOne(
+					(n) => n.type === 'INSTANCE' && /popover/i.test(n.name)
+				),
+			null
+		);
+		if (!pop) break;
+		await renderNode(child, directSlot(pop, 'Children'));
 	}
 	return inst;
 }

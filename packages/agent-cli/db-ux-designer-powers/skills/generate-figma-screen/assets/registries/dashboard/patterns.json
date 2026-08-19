@@ -1,0 +1,287 @@
+{
+	"_meta": {
+		"schema": "db-ux/patterns/v1",
+		"pageType": "dashboard",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Dashboard / Blocks\" (node 1670:9205).",
+		"purpose": "Complete dashboard modules. Each pattern carries its own selection metadata (intent / whenToUse / cardinality / alternatives) — there is no separate sections file.",
+		"levels": "level \"section\" is placeable directly by a template slot; level \"module\" is embeddable inside another pattern and is reached via $ref. NOTE for dashboards: a \"section\"-level pattern is a ROW inside the page's single Section — it does NOT bring its own Section wrapper (see template.json → pageTypeSpecific.frame). That is what produces the bento look."
+	},
+	"patterns": {
+		"dashboard.page-header": {
+			"source": "1670:9249 Page Header",
+			"purpose": "Header row with the page title and the page-level action row.",
+			"level": "section",
+			"intent": "Name the view and expose the actions that apply to the whole page.",
+			"whenToUse": "Always, exactly once, as the first row inside the Section.",
+			"cardinality": "1",
+			"plan": { "$ref": "dashboard.page-title" }
+		},
+		"dashboard.kpi-row": {
+			"source": "1670:9253 Info Cards",
+			"purpose": "Three KPI cards in one row.",
+			"level": "section",
+			"intent": "Show the headline figures of the view at a glance.",
+			"whenToUse": "The request names measurable values — counts, rates, totals, statuses. Use three cards; for four use the 25-25-25-25 grid, never more in one row.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "(Def) 33-33-33",
+				"gridGap": "md",
+				"children": [
+					{ "$ref": "dashboard.kpi-card" },
+					{ "$ref": "dashboard.kpi-card" },
+					{ "$ref": "dashboard.kpi-card" }
+				]
+			}
+		},
+		"dashboard.goal-row": {
+			"source": "1670:9237 Goal Card",
+			"purpose": "Two goal cards with determinate progress.",
+			"level": "section",
+			"intent": "Show progress towards defined targets.",
+			"whenToUse": "The content is a target with a completion share and a deadline. Note the progress component only offers 25, 50 and 75 percent.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "md",
+				"children": [
+					{ "$ref": "dashboard.goal-card" },
+					{ "$ref": "dashboard.goal-card" }
+				]
+			}
+		},
+		"dashboard.filterbar": {
+			"source": "1670:9244 Filterbar",
+			"purpose": "Search field on the left, filter and sort selects on the right.",
+			"level": "module",
+			"intent": "Narrow the data set below.",
+			"whenToUse": "The view shows a list or table the user must search, filter or sort. Uses the 33-33-33 grid with an empty middle column, exactly as captured. The search field carries the magnifier as a LEADING icon — that is what marks it as search rather than a plain text field.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "(Def) 33-33-33",
+				"gridGap": "md",
+				"children": [
+					{
+						"type": "Input",
+						"props": { "label": "floating", "state": "empty" },
+						"text": { "label": "<Search>" },
+						"iconLeading": "magnifying_glass"
+					},
+					{
+						"type": "ContainerHorizontal",
+						"gap": "md",
+						"align": "left",
+						"children": [
+							{
+								"type": "Select",
+								"props": {
+									"label": "floating",
+									"state": "selected"
+								},
+								"text": {
+									"label": "<Filter>",
+									"value": "<Selected value>"
+								}
+							},
+							{
+								"type": "Select",
+								"props": {
+									"label": "floating",
+									"state": "selected"
+								},
+								"text": {
+									"label": "<Sorting>",
+									"value": "<Selected order>"
+								}
+							}
+						]
+					}
+				]
+			}
+		},
+		"dashboard.filter-tags": {
+			"source": "1799:3643 Filter Tags",
+			"purpose": "Row of removable tags representing the active filters.",
+			"level": "module",
+			"intent": "Make the currently applied filters visible and removable.",
+			"whenToUse": "Filters are applied and the user must see and undo them. ALWAYS Tag (removable), never Badge — a Badge is a non-interactive status label. Emphasis is WEAK: the tags report the current state, they do not compete with the page actions; a strong tag row reads like a set of buttons.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"align": "left",
+				"children": [
+					{
+						"type": "Body",
+						"size": "Small",
+						"content": "<Active filters>",
+						"fills": "color.text.muted",
+						"hugWidth": true
+					},
+					{
+						"type": "Tag",
+						"props": {
+							"icon": false,
+							"emphasis": "weak",
+							"behavior": "removable"
+						},
+						"label": "<Filter>",
+						"hugWidth": true
+					},
+					{
+						"type": "Tag",
+						"props": {
+							"icon": false,
+							"emphasis": "weak",
+							"behavior": "removable"
+						},
+						"label": "<Filter>",
+						"hugWidth": true
+					}
+				]
+			}
+		},
+		"dashboard.controls": {
+			"source": "1670:9244 Filterbar + 1799:3643 Filter Tags",
+			"purpose": "Row combining the filter bar with the active-filter tags.",
+			"level": "section",
+			"intent": "Give the user control over the data set below.",
+			"whenToUse": "A table or list panel follows and the user must narrow it down.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "sm",
+				"align": "left",
+				"children": [
+					{ "$ref": "dashboard.filterbar" },
+					{ "$ref": "dashboard.filter-tags" }
+				]
+			}
+		},
+		"dashboard.table": {
+			"source": "1670:9227 Table",
+			"purpose": "Self-titled panel with a header row, divider-separated selectable rows and pagination below.",
+			"level": "section",
+			"intent": "Show a selectable, paginated record set with aligned columns.",
+			"whenToUse": "The content is a record set the user selects, compares column by column or pages through. Use this instead of forcing a multi-column Grid.",
+			"cardinality": "0..n",
+			"alternatives": ["dashboard.list-panel"],
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "md",
+				"align": "left",
+				"children": [
+					{
+						"type": "Card",
+						"props": { "elevationLevel": "1" },
+						"spacing": "none",
+						"children": [
+							{ "$ref": "dashboard.panel-title-row" },
+							{ "$ref": "dashboard.table-header-row" },
+							{ "$ref": "dashboard.row-divider" },
+							{ "$ref": "dashboard.table-row" },
+							{ "$ref": "dashboard.row-divider" },
+							{ "$ref": "dashboard.table-row" },
+							{ "$ref": "dashboard.row-divider" },
+							{ "$ref": "dashboard.table-row" }
+						]
+					},
+					{
+						"type": "Pagination",
+						"size": "small",
+						"align": "center"
+					}
+				]
+			}
+		},
+		"dashboard.list-panel": {
+			"source": "1670:9241 Content Card - Filled",
+			"purpose": "Self-titled panel with a heading pair and divider-separated data rows, no selection.",
+			"level": "section",
+			"intent": "Show a read-only list of records under a titled surface.",
+			"whenToUse": "A record set the user only reads and follows through a link — no selection, no pagination. Use dashboard.table when rows must be selectable.",
+			"cardinality": "0..n",
+			"alternatives": ["dashboard.table"],
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "small",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "sm",
+						"align": "left",
+						"children": [
+							{ "$ref": "dashboard.card-title" },
+							{ "$ref": "dashboard.list-row" },
+							{ "$ref": "dashboard.row-divider" },
+							{ "$ref": "dashboard.list-row" },
+							{ "$ref": "dashboard.row-divider" },
+							{ "$ref": "dashboard.list-row-stacked" }
+						]
+					}
+				]
+			}
+		},
+		"dashboard.chart-card": {
+			"source": "1710:3211 Content Card - Bar Graph",
+			"purpose": "Self-titled panel with a heading pair and a full-width row of chart bars with captions.",
+			"level": "module",
+			"intent": "Compare a handful of values visually.",
+			"whenToUse": "Three to six comparable values where the shape matters more than the exact number. The bar row spans the FULL panel width — every bar fills its column, never a fixed bar width.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "small",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "sm",
+						"align": "left",
+						"children": [
+							{ "$ref": "dashboard.card-title" },
+							{ "$ref": "dashboard.chart-bar-row" }
+						]
+					}
+				]
+			}
+		},
+		"dashboard.charts": {
+			"source": "1710:3211 + 1670:11412 chart cards",
+			"purpose": "Two chart panels side by side.",
+			"level": "section",
+			"intent": "Put two comparable distributions next to each other.",
+			"whenToUse": "The request asks for trends or distributions and two charts answer it. One chart alone belongs in a bento row beside another panel.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "md",
+				"children": [
+					{ "$ref": "dashboard.chart-card" },
+					{ "$ref": "dashboard.chart-card" }
+				]
+			}
+		},
+		"dashboard.bento-row": {
+			"source": "1670:9239 Content Card + 1710:3211 Content Card - Bar Graph",
+			"purpose": "Asymmetric row pairing a wide panel with a narrow one.",
+			"level": "section",
+			"intent": "Combine content of unequal weight in one row.",
+			"whenToUse": "Two panels belong together but are not equivalent — e.g. a chart beside a goal card. This is the bento model; prefer it over repeating identical rows.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "66-33",
+				"gridGap": "md",
+				"children": [
+					{ "$ref": "dashboard.chart-card" },
+					{ "$ref": "dashboard.goal-card" }
+				]
+			}
+		}
+	}
+}

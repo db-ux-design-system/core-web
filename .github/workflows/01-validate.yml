@@ -42,6 +42,15 @@ jobs:
       - name: 🏗️ Pre-build nuxt-showcase (nuxt:prepare)
         run: pnpm --filter nuxt-showcase run nuxt:prepare
 
+      - name: 🗂️ Validate designer page-type registries
+        run: pnpm --filter @db-ux/agent-cli run registry:validate
+
+      # The unit tests load the BUILT Figma runtime and Figma is bootstrapped from the generated
+      # bootstrap/ snippets, so an unbuilt edit to assets/src/ would pass every test while the fix
+      # never reaches a rendered screen. Fail instead.
+      - name: 🧱 Check designer Figma runtime is built from src
+        run: pnpm --filter @db-ux/agent-cli run runtime:check
+
       - name: 🚀 Run validation orchestrator
         id: orchestrator
         run: |

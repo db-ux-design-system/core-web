@@ -67,10 +67,15 @@ async function renderNode(node, parent) {
 			// name (e.g. "calendar") or a raw key. Applied AFTER applyProps so the
 			// active icon slot follows the button Size (e.g. Small → smaller icon).
 			if (node.iconLeading)
-				await setButtonIcon(b, node.iconLeading, 'leading');
+				await setComponentIcon(b, node.iconLeading, 'leading');
 			if (node.iconTrailing)
-				await setButtonIcon(b, node.iconTrailing, 'trailing');
+				await setComponentIcon(b, node.iconTrailing, 'trailing');
 			parent.appendChild(b);
+			if (Number.isFinite(node.rotation)) {
+				try {
+					b.rotation = node.rotation;
+				} catch {}
+			}
 			// A Button HUGS its label by default. `fillWidth: true` stretches it to the
 			// container width (label centers) — use for the PRIMARY action in a fixed-width
 			// action column (e.g. a "Weiter" button spanning the price/action panel).
@@ -229,7 +234,7 @@ async function renderNode(node, parent) {
 			return c;
 		}
 		case 'ContainerVertical': {
-			const c = buildContainer(node, 'vertical');
+			const c = await buildContainer(node, 'vertical');
 			parent.appendChild(c);
 			// Optional surface: bind a fill (a colored bar/panel) + radius, and/or a semantic
 			// MODE that recolors the container's bound token + its subtree. Lets a colored
@@ -246,16 +251,23 @@ async function renderNode(node, parent) {
 			// (text top-left, action bottom-right).
 			if (node.fillHeight) {
 				fillHeight(c);
+				// Main-axis distribution lives on the inner Slot (the Core Lab Container has
+				// no Align variant), so justify must be written there — not on the instance.
+				// An explicit `justify` wins; otherwise KEEP what `align` already wrote to the
+				// slot (a chart column's "bottom-center" must stay MAX, not be centered), and
+				// only fall back to CENTER when the plan gave neither.
 				const JUSTIFY = { start: 'MIN', center: 'CENTER', end: 'MAX' };
 				try {
-					c.primaryAxisAlignItems = JUSTIFY[node.justify] ?? 'CENTER';
+					freshSlot(c, 'Slot').primaryAxisAlignItems =
+						JUSTIFY[node.justify] ??
+						(node.align ? parseAlign(node.align).v : 'CENTER');
 				} catch {}
 			}
 			await renderChildrenIntoSlot(c, 'Slot', node.children);
 			return c;
 		}
 		case 'ContainerHorizontal': {
-			const c = buildContainer(node, 'horizontal');
+			const c = await buildContainer(node, 'horizontal');
 			parent.appendChild(c);
 			if (node.fills) await bindFill(c, node.fills);
 			if (node.radius) await bindRadius(c, node.radius);
@@ -264,15 +276,39 @@ async function renderNode(node, parent) {
 			else fillWidth(c);
 			if (node.fillHeight) {
 				fillHeight(c);
+				// Cross-axis alignment also belongs on the inner Slot (see ContainerVertical).
+				// Respect an explicit `align`: a chart bar row is "bottom-left" and must stay
+				// bottom-aligned when it fills the panel height — centering it would lift the
+				// bars off their baseline. Only an align-less row falls back to CENTER.
 				try {
-					c.counterAxisAlignItems = 'CENTER';
+					freshSlot(c, 'Slot').counterAxisAlignItems = node.align
+						? parseAlign(node.align).v
+						: 'CENTER';
 				} catch {}
 			}
-			await renderChildrenIntoSlot(c, 'Slot', node.children);
+			const rowKids = await renderChildrenIntoSlot(
+				c,
+				'Slot',
+				node.children
+			);
+			// A LEADING LABEL in a left-packed row hugs its glyphs, so what follows sits one gap
+			// behind it instead of at the far right (see rowTextHugIndices).
+			for (const i of rowTextHugIndices(node)) {
+				const inst = rowKids[i];
+				if (!inst) continue;
+				hugWidth(inst);
+				hugTextWidth(inst); // the instance only shrinks if its inner TEXT hugs too
+			}
+			// A DATA ROW's cells all fill, so header and body share one column grid
+			// (see rowCellFillIndices).
+			for (const i of rowCellFillIndices(node)) {
+				const inst = rowKids[i];
+				if (inst) fillWidth(inst);
+			}
 			// GESTALT / full-width rows: `spread` makes the row use the FULL card width and
 			// pushes the two ends apart (info left, status/action right) instead of packing
-			// everything to the left. The DB-native mechanism is the container's Gap "auto"
-			// variant (SPACE_BETWEEN) — already applied in buildContainer when node.spread is
+			// everything to the left. The mechanism is SPACE_BETWEEN on the container's inner
+			// Slot — already applied in buildContainer when node.spread is
 			// set. Here we only stretch the Slot to FILL so the row spans the full width for
 			// the distribution to have room; pair with a trailing child marked `hugWidth` so
 			// only the leading block grows. Re-fetch the slot fresh (ids regenerate on mutation).
@@ -283,7 +319,7 @@ async function renderNode(node, parent) {
 					sl.primaryAxisSizingMode = 'FIXED';
 				} catch {}
 			} else if (!node.hugWidth) {
-				// The container fills its parent width, but the local ContainerHorizontal's
+				// The container fills its parent width, but the Container's
 				// inner Slot defaults to HUG — so a FILL child (e.g. a text column beside a
 				// fixed-width thumbnail) can't expand and its content wraps. Stretch the Slot
 				// to FILL + FIXED (normal left packing) so FILL children take the remaining
@@ -305,15 +341,13 @@ async function renderNode(node, parent) {
 			// or is derived from the child count; >4 children default to a 4-column wrap.
 			const kids = node.children ?? [];
 			// Normalize the gap token to the Grid's Gap VARIANT label — the "md" step is
-			// labelled "(Def) md" on the component (like containers). Without this, gridGap:"md"
-			// fails the {Layout, Gap} variant match in createLocalInstance and silently falls
-			// back to children[0] = the default "(Def) 33-33-33" (3 columns), leaving an empty
-			// trailing slot rendered as a pink image placeholder. Maps md → "(Def) md"; other
-			// tokens (sm/lg/xl/2xl/…) pass through unchanged.
+			// labelled "(Def) md" on the component. Without this, gridGap:"md" fails the
+			// {Layout, Gap} variant match in createConceptInstance and silently falls back to
+			// the default variant "(Def) 33-33-33" (3 columns), leaving an empty trailing slot
+			// rendered as a pink image placeholder. Maps md → "(Def) md"; other tokens
+			// (sm/lg/xl/2xl/…) pass through unchanged.
 			const gap =
-				CONTAINER_GAP_LABELS[node.gridGap] ??
-				node.gridGap ??
-				'(Def) md';
+				GRID_GAP_LABELS[node.gridGap] ?? node.gridGap ?? '(Def) md';
 			const byCount = {
 				1: '100',
 				2: '50-50',
@@ -333,7 +367,7 @@ async function renderNode(node, parent) {
 			}
 			// Single row: one Grid instance (unchanged for <= cols children).
 			if (kids.length <= cols) {
-				const g = createLocalInstance('Grid', {
+				const g = await createConceptInstance('Grid', {
 					Layout: layout,
 					Gap: gap
 				});
@@ -348,7 +382,7 @@ async function renderNode(node, parent) {
 				/^\(Def\)\s*/,
 				''
 			);
-			const rows = buildContainer(
+			const rows = await buildContainer(
 				{ gap: rowGap, align: node.align ?? 'top-left' },
 				'vertical'
 			);
@@ -357,7 +391,7 @@ async function renderNode(node, parent) {
 			for (let i = 0; i < kids.length; i += cols) {
 				const rowKids = kids.slice(i, i + cols);
 				const slot = freshSlot(rows, 'Slot');
-				const g = createLocalInstance('Grid', {
+				const g = await createConceptInstance('Grid', {
 					Layout: layout,
 					Gap: gap
 				});
@@ -452,12 +486,108 @@ async function renderNode(node, parent) {
 			hugHeight(inst);
 			return inst;
 		}
+		case 'ChartBar': {
+			// Narrow visualization primitive for the rectangle bars captured in the canonical
+			// dashboard catalog. It is deliberately not a generic shape API: dimensions,
+			// variable-bound fill, radius and opacity are the complete supported contract.
+			const bar = figma.createRectangle();
+			bar.name = node.label || 'Chart bar';
+			const width =
+				typeof node.width === 'number' && node.width > 0
+					? node.width
+					: 100;
+			bar.resize(width, node.height);
+			await bindFill(bar, node.fills);
+			const radius = node.radius ?? 'radius.sm';
+			if (radius !== 'none') await bindRadius(bar, radius);
+			if (typeof node.opacity === 'number') bar.opacity = node.opacity;
+			parent.appendChild(bar);
+			if (node.fillWidth) fillWidth(bar);
+			else {
+				try {
+					bar.layoutSizingHorizontal = 'FIXED';
+				} catch {}
+			}
+			try {
+				bar.layoutSizingVertical = 'FIXED';
+			} catch {}
+			return bar;
+		}
+		case 'ProgressBar': {
+			// Determinate bar progress = the REAL Core Lab component, not drawn geometry.
+			// It ships only three discrete steps (25% / 50% / 75%), so an arbitrary percentage
+			// has no variant. Per the no-approximation rule we STOP instead of snapping
+			// silently or falling back to hand-drawn rectangles.
+			const STEPS = { 25: '25%', 50: '50%', 75: '75%' };
+			const label = STEPS[node.value];
+			if (!label)
+				stop(
+					`ProgressBar value ${JSON.stringify(node.value)} has no variant. The DB progress component offers only 25, 50 and 75. Pick one of those, or use a different indicator.`
+				);
+			const p = await createConceptInstance('ProgressBar', {
+				'🎨 Value': label
+			});
+			parent.appendChild(p);
+			fillWidth(p);
+			if (node.semantic) await setSemantic(p, node.semantic);
+			return p;
+		}
+		case 'Dialog': {
+			// The real Core Lab Dialog: it brings its own Backdrop and the Popover regions.
+			// This replaces the old hand-built overlay (frame + absolute Backdrop + Card).
+			const d = await buildDialog(node);
+			parent.appendChild(d);
+			hugWidth(d);
+			hugHeight(d);
+			return d;
+		}
+		case 'Pagination': {
+			// Page navigation under a table/list. The variant ships its own item set; the plan
+			// only chooses size and alignment.
+			const pg = await createConceptInstance('Pagination', {
+				Size: node.size === 'medium' ? '(Def) Medium' : 'Small'
+			});
+			parent.appendChild(pg);
+			hugWidth(pg);
+			/* Placement. The Pagination HUGS its item strip — that is how the canonical DB table
+			 * block ships it — so `align` cannot come from the 🎨 Position VARIANT: that only
+			 * moves the items INSIDE an already full-width strip and does nothing to a hugging
+			 * instance (which is why a "center" request rendered flush left). Under a table the
+			 * strip is centered by aligning THIS child on its column's cross axis, exactly like
+			 * the reference block (counterAxisAlignItems CENTER around a hugging pagination). */
+			// CENTERED is the DB pattern for page navigation under a panel (that is how the
+			// canonical table block ships it), so it is the default rather than something the
+			// plan has to remember; "start" / "end" stay explicit opt-outs.
+			const PLACE = {
+				center: 'CENTER',
+				end: 'MAX',
+				right: 'MAX',
+				start: null,
+				left: null
+			};
+			const place = PLACE[String(node.align ?? 'center').toLowerCase()];
+			if (place) {
+				// Per-child override first. Some instance children silently ignore layoutAlign
+				// (the write neither throws nor sticks), so verify and otherwise align the whole
+				// COLUMN — which is how the reference block ships it: the Card above fills the
+				// width and is unaffected, the hugging pagination centers.
+				try {
+					pg.layoutAlign = place;
+				} catch {}
+				if (safe(() => pg.layoutAlign, 'INHERIT') !== place) {
+					try {
+						parent.counterAxisAlignItems = place;
+					} catch {}
+				}
+			}
+			return pg;
+		}
 		case 'Image': {
 			// Image node = a rectangle carrying an IMAGE paint (like a real Figma image).
 			// The image ALWAYS uses a design-system aspect ratio (1:1 | 3:4 | 16:9): the width
 			// fills its container and the height derives from the ratio — never a free pixel height.
-			// Fill precedence: node.src (real image via URL) → node.imageHash → the DB transparent
-			// placeholder image (checkerboard, the designer default) → neutral gray as last resort.
+			// Fill: node.imageHash when the user supplied an asset that lives in the file,
+			// otherwise an EMPTY Figma image on Fill — the default for a generated layout.
 			const r = figma.createRectangle();
 			r.name = node.label || 'Image';
 			const factor = IMAGE_RATIOS[node.ratio] ?? IMAGE_RATIOS['16:9'];
@@ -470,9 +600,16 @@ async function renderNode(node, parent) {
 			const baseW = fixedW || 800;
 			r.resize(baseW, Math.round(baseW * factor));
 			await applyImageFill(r, node);
-			// Rounded corners bind to a DB radius token (never a raw number). Default radius.lg;
-			// pass radius:"none" to disable, or a token like "radius.md".
-			const rad = node.radius === undefined ? 'radius.lg' : node.radius;
+			/* Rounded corners bind to a DB radius token (never a raw number). The DEFAULT depends
+			 * on the surface: an image on the page gets radius.sm (8px); an image inside a Card is
+			 * flush (0), because the Card already owns the rounded corner and nesting two radii
+			 * reads as a double border. Override explicitly with `radius` when a block needs it. */
+			const rad =
+				node.radius === undefined
+					? insideCard(parent)
+						? 'none'
+						: 'radius.sm'
+					: node.radius;
 			if (rad && rad !== 'none') {
 				if (typeof rad === 'number') r.cornerRadius = rad;
 				else await bindRadius(r, rad);
@@ -521,6 +658,13 @@ async function renderNode(node, parent) {
 				if (node.text) setInstanceFields(inst, node.text);
 				if (node.semantic) await setSemantic(inst, node.semantic);
 				if (node.applyProps) await applyProps(inst, node.applyProps);
+				// Icons are first-class on EVERY component that has an icon slot, not just on
+				// Button — a search Input carries the magnifier the same way. Applied after
+				// applyProps so the Size variant is settled and the right slot is picked.
+				if (node.iconLeading)
+					await setComponentIcon(inst, node.iconLeading, 'leading');
+				if (node.iconTrailing)
+					await setComponentIcon(inst, node.iconTrailing, 'trailing');
 				parent.appendChild(inst);
 				if (node.fillWidth ?? FILL_DEFAULT.has(node.type))
 					fillWidth(inst);
@@ -532,12 +676,16 @@ async function renderNode(node, parent) {
 }
 
 /* Render an array of children into an owner instance's slot, re-resolving the
- * slot BEFORE EACH append (never cache across the loop). */
+ * slot BEFORE EACH append (never cache across the loop). Returns the rendered nodes,
+ * index-aligned with `children`, so a caller can post-process a child it knows the plan
+ * intent of (e.g. hug the label of a left-packed row). */
 async function renderChildrenIntoSlot(ownerInstance, slotName, children) {
+	const rendered = [];
 	for (const childNode of children ?? []) {
 		const slot = freshSlot(ownerInstance, slotName); // fresh every iteration
-		await renderNode(childNode, slot);
+		rendered.push(await renderNode(childNode, slot));
 	}
+	return rendered;
 }
 
 /* -----------------------------------------------------------------------------
@@ -575,6 +723,119 @@ function createScreenRoot(name, width, reuse, gap) {
 	}
 	root.primaryAxisSizingMode = 'AUTO'; // AUTO LAST (do not resize after this)
 	return root;
+}
+
+/* -----------------------------------------------------------------------------
+ * anchorChartsToCardBottom — make EVERY rendered bar graph sit on one baseline
+ * at the floor of its panel, independently of what the plan happened to say.
+ * -----------------------------------------------------------------------------
+ * A bar chart is read by comparing bar BOTTOMS, so two things must always hold:
+ *   1. the bars of a row share ONE bottom edge, and
+ *   2. the chart block GROWS into the height its card actually has, instead of
+ *      hugging its content and leaving dead space under the graph.
+ * (2) can never come out of the plan alone: `buildContainer` calls hugVertical,
+ * so every Container hugs, while a bento card is STRETCHED to the tallest panel
+ * of its row (see the equal-heights pass). The chart then floats at the top of a
+ * taller card. This pass runs after the tree is built and repairs both, which is
+ * what makes the canonical chart render correct every time instead of depending
+ * on the model getting fillHeight/align right.
+ * Every write is guarded: where a chart cannot grow (a hugging card, or content
+ * following the graph inside the card) it simply keeps its natural height.
+ * -------------------------------------------------------------------------- */
+function anchorChartsToCardBottom(root) {
+	const typeOf = (n) => safe(() => n.type, '');
+	const isCard = (n) =>
+		typeOf(n) === 'INSTANCE' &&
+		/(^|\W)card(\W|$)/i.test(safe(() => n.name, ''));
+
+	const bars = [];
+	(function collect(n) {
+		if (
+			typeOf(n) === 'RECTANGLE' &&
+			/chart bar/i.test(safe(() => n.name, ''))
+		)
+			bars.push(n);
+		for (const c of safe(() => n.children, []) ?? []) collect(c);
+	})(root);
+	if (!bars.length) return 0;
+
+	// A bar normally sits in a column Container (bar + caption) inside the row's Slot; a bar
+	// dropped straight into the row (no caption) has no column wrapper.
+	const columns = [];
+	const rowSlots = [];
+	for (const bar of bars) {
+		const slot = safe(() => bar.parent, null);
+		const owner = slot && safe(() => slot.parent, null);
+		const above = owner && safe(() => owner.parent, null);
+		const inColumn =
+			typeOf(owner) === 'INSTANCE' && typeOf(above) === 'SLOT';
+		if (inColumn) {
+			alignMainEnd(slot); // bar + caption sit at the BOTTOM of their column
+			if (!columns.includes(owner)) columns.push(owner);
+		}
+		const rowSlot = inColumn ? above : slot;
+		if (rowSlot && !rowSlots.includes(rowSlot)) rowSlots.push(rowSlot);
+	}
+
+	for (const rowSlot of rowSlots) {
+		alignCrossEnd(rowSlot); // every column of the row on ONE baseline
+
+		// Grow the block into the card OUTSIDE-IN: a child can only FILL once its parent has a
+		// height to fill, so the chain is applied from the card's content slot down to the row.
+		const chain = [];
+		let n = safe(() => rowSlot.parent, null); // the row Container itself
+		let card = null;
+		while (n && n !== root) {
+			if (isCard(n)) {
+				card = n;
+				break;
+			}
+			// Content AFTER the graph inside the card (a footer link, a legend, a second row)
+			// means the graph does not own the card floor — leave that chart hugging. Slots are
+			// exempt: their siblings are the owning component's internal slots, not content.
+			if (typeOf(n) !== 'SLOT' && !isLastVisibleChild(n)) break;
+			chain.push(n);
+			n = safe(() => n.parent, null);
+		}
+		if (!card) continue;
+		// A chart can only GROW into a card that actually HAS spare height — i.e. a card the
+		// equal-heights pass STRETCHED to the tallest panel of its row (FIXED/FILL height). A
+		// HUGGING card is already exactly as tall as its content, so there is nothing to grow
+		// into, and forcing the chain would DESTROY the panel: FILL on the MAIN axis of a
+		// hugging parent collapses the child to ~0px, after which the bars spill out of their
+		// 1px box and are drawn across the card title (see canFillVertical).
+		if (safe(() => card.layoutSizingVertical, 'HUG') === 'HUG') continue;
+		// Outside-in: a child can only FILL once its parent owns a height. If one step cannot
+		// stretch, every step below it would collapse instead of grow — so stop right there and
+		// leave the rest of the block hugging its content.
+		let grown = true;
+		for (let i = chain.length - 1; i >= 0 && grown; i--)
+			grown = fillHeight(chain[i]);
+		if (grown) fillHeight(rowSlot);
+	}
+	/* Columns: stretch them ONLY when the row itself owns a height (it was grown into a stretched
+	 * card above). Vertical is the row's CROSS axis, so Figma accepts the stretch either way —
+	 * but if EVERY column of a HUGGING row stretches, no child contributes an intrinsic height
+	 * any more, the row hugs to a meaningless leftover value, and the tallest bars spill out of
+	 * it (drawn straight over the panel title). A hugging row needs no stretching at all: its
+	 * counterAxisAlignItems = MAX already seats every column on ONE baseline. */
+	for (const col of columns) {
+		const rowSlot = safe(() => col.parent, null);
+		const rowHugs =
+			safe(() => rowSlot && rowSlot.layoutSizingVertical, 'HUG') ===
+			'HUG';
+		if (rowHugs) {
+			hugHeight(col);
+			try {
+				hugHeight(freshSlot(col, 'Slot'));
+			} catch {}
+		} else if (fillHeight(col)) {
+			try {
+				fillHeight(freshSlot(col, 'Slot'));
+			} catch {}
+		}
+	}
+	return bars.length;
 }
 
 /* -----------------------------------------------------------------------------
@@ -650,78 +911,14 @@ async function renderPlan(plan) {
 		}
 	}
 
-	// OVERLAY mode (modal): a screen-sized frame with a Backdrop (Beta) filling it and the
-	// dialog surface CENTERED on top. Used for a modal/dialog — the backdrop provides the
-	// focus/separation, so the dialog Card is a LOW elevation (level 1), not a heavy shadow.
-	// The frame is fixed W×H (default 1440×1024); the backdrop is an ABSOLUTE, screen-filling
-	// child (ignored by the centering auto-layout); the single dialog surface in `layout` is a
-	// normal auto-layout child, centered both axes, resized to a fixed `cardWidth` (default 520).
-	if (plan.overlay) {
-		const W = plan.width ?? 1440;
-		const H = plan.height ?? 1024;
-		const CW = plan.cardWidth ?? 520;
-		const page = figma.currentPage;
-		const root = figma.createFrame();
-		root.name = plan.screen ?? 'Modal';
-		root.resize(W, H);
-		root.layoutMode = 'VERTICAL';
-		root.primaryAxisSizingMode = 'FIXED';
-		root.counterAxisSizingMode = 'FIXED';
-		root.primaryAxisAlignItems = 'CENTER'; // vertical center
-		root.counterAxisAlignItems = 'CENTER'; // horizontal center
-		root.clipsContent = true;
-		root.fills = [];
-		page.appendChild(root);
-		if (reusePos && typeof reusePos.x === 'number') {
-			root.x = reusePos.x;
-			root.y = reusePos.y;
-		} else {
-			let maxRight = 0,
-				has = false;
-			for (const n of page.children) {
-				if (
-					n !== root &&
-					typeof n.x === 'number' &&
-					typeof n.width === 'number'
-				) {
-					maxRight = Math.max(maxRight, n.x + n.width);
-					has = true;
-				}
-			}
-			const gutter =
-				typeof plan.screenGap === 'number' && plan.screenGap >= 0
-					? plan.screenGap
-					: 200;
-			root.x = has ? maxRight + gutter : 0;
-			root.y = 0;
-		}
-		// Backdrop: an absolute, screen-filling layer behind the dialog.
-		try {
-			const bd = await createLibraryInstance('Backdrop', {});
-			root.appendChild(bd);
-			try {
-				bd.layoutPositioning = 'ABSOLUTE';
-			} catch {}
-			try {
-				bd.constraints = { horizontal: 'STRETCH', vertical: 'STRETCH' };
-			} catch {}
-			try {
-				bd.x = 0;
-				bd.y = 0;
-				bd.resize(W, H);
-			} catch {}
-		} catch {}
-		// Dialog surface: centered auto-layout child at a fixed card width (hug height).
-		let surface = null;
-		for (const node of plan.layout) surface = await renderNode(node, root);
-		if (surface)
-			try {
-				surface.layoutSizingHorizontal = 'FIXED';
-				surface.resize(CW, surface.height);
-			} catch {}
-		const auditO = await auditTree(root, { module: true });
-		return { root, rootId: root.id, audit: auditO };
-	}
+	// A modal is NOT a hand-built overlay any more. The old `plan.overlay` mode created a frame,
+	// placed an absolute Backdrop and centred a Card — i.e. it rebuilt a component that exists.
+	// Render the real Core Lab Dialog instead: `{ module: true, width: 1440, height: 1024,
+	// layout: [{ type: "Dialog", ... }] }`. The Dialog brings its own Backdrop.
+	if (plan.overlay)
+		stop(
+			'`plan.overlay` was removed. Render a modal as a module frame whose single layout node is { type: "Dialog", title, children, actions } — the Dialog component supplies the Backdrop.'
+		);
 
 	// MODULE mode: render a single reusable block/section on its own (no Header, no page
 	// zebra) — e.g. a search module, a card, one section — for building a component/module
@@ -736,8 +933,14 @@ async function renderPlan(plan) {
 	);
 	for (const node of plan.layout) await renderNode(node, root);
 	hugHeight(root); // final: root hugs total content height
+	// Charts LAST: card heights are final only after the equal-heights pass, and the block has
+	// to be measured against the height its card really got (see anchorChartsToCardBottom).
+	anchorChartsToCardBottom(root);
 
-	const audit = await auditTree(root, { module: isModule });
+	const audit = await auditTree(root, {
+		module: isModule,
+		pageType: plan.pageType
+	});
 	return { root, rootId: root.id, audit };
 }
 

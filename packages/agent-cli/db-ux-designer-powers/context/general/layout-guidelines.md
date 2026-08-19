@@ -1,6 +1,14 @@
 # Layout Guidelines – Contentarten, Gruppierung & Anordnung
 
-> Beschreibt die Bausteine von Inhalten (Contentarten), wie sie zu sinnvollen Gruppen zusammengefasst werden und nach welchen Regeln Gruppen und Elemente angeordnet werden.
+> **Regel-Ownership:** Diese Datei ist die normative Quelle für Contentarten, Gruppierung,
+> Spacing und räumliche Anordnung. Sie beschreibt die Layout-Komposition zwischen Elementen,
+> Gruppen, Blocks und Components — nicht die semantische Bedeutung oder den visuellen Zustand
+> einzelner DB-UX-Komponenten. Diese Regeln gelten framework-agnostisch für alle Screen-Typen.
+>
+> **Abgrenzung zu `screen-guidelines.md`:** Diese Datei beantwortet, **wie Inhalte strukturiert
+> und angeordnet** werden. `screen-guidelines.md` beantwortet dagegen, **was Komponenten
+> bedeuten**, wann Tag/Badge/Notification verwendet werden und welche visuelle Darstellung
+> beziehungsweise welcher Zustand dafür gilt.
 
 ## Contentarten (Elemente)
 
@@ -69,6 +77,10 @@ für die Innereien einer in sich geschlossenen Component.
 Components gilt die R-Hierarchie. Die Component ist eine Black Box — man misst ihren Innenraum
 nicht gegen R.
 
+Wie dieser Innenraum aufgebaut ist (Anatomie, Content Height, Ableitung der internen Abstände,
+Größenstufen, Nesting), definiert
+`../design-system/component-construction.md`.
+
 ### Prüf-Checkliste (Spacing reviewen)
 
 1. **Grenzen markieren:** Identifiziere zuerst alle in sich geschlossenen Components/Items im
@@ -93,6 +105,12 @@ nicht gegen R.
 - Bild-Text-Reihe: der Text wird vertikal zum Bild zentriert
 
 ## Layout-Primitive: ContainerHorizontal vs. Grid
+
+> Beide Primitive sind **Library-Komponenten aus 🧪 Core Lab** (`Container` mit `Direction`
+> Column/Row, `Grid`). Es gibt keine lokalen Layout-Komponenten mehr: alles wird per Key aus der
+> Library instanziiert. `gap`, `align` und `spread` bleiben als Plan-Felder unverändert — beim
+> `Container` setzt die Runtime sie am inneren Slot (gebundener `space.*`-Token bzw.
+> Achsen-Ausrichtung), weil dieses Set keine Gap-/Align-Variante hat.
 
 - **ContainerHorizontal (mit Gap)** — Einzelne Reihe weniger Elemente, Breite inhaltsgetrieben (hug) oder ein Element füllt den Rest (fill). Keine spaltenweise Ausrichtung über mehrere Reihen nötig. Beispiele: Icon + Text, Tag-Reihe, Badge + Meta, Button-Gruppe, Spread-Reihe, **Suchfeld-Reihe (Input(s) + Button)**.
 - **Grid** — Spalten bilden ein gemeinsames Raster: proportionale Splits (`50-50`, `33-66`, `33-33-33`), feste Medienspalte (`320-auto`), mehrere Items teilen dieselben Spaltenbreiten, responsives Spaltensystem.
@@ -135,6 +153,14 @@ Infospalte).
 **Für ausgerichtete, gleich breite Spalten** (z. B. Abfahrt/Ankunft in Verbindungsergebnissen)
 NICHT hug/fill mischen, sondern ein **Grid** verwenden (`50-50`) — dann teilen sich die Spalten
 die Breite unabhängig von der Textlänge.
+
+**Text in einer links gepackten Reihe huggt.** `Heading`/`Body` füllen standardmäßig die Breite —
+in einer Spalte richtig, in einer **Reihe** falsch: der Text frisst den Restplatz und schiebt alle
+folgenden Geschwister an den rechten Rand, statt sie eine Gap dahinter sitzen zu lassen. Ein Label
+und das, was es einführt (z. B. „Aktive Filter" + seine Tags), gehören nach dem **Gesetz der Nähe**
+zusammen. Die Runtime setzt Textkinder einer mehrgliedrigen `ContainerHorizontal` deshalb
+automatisch auf hug; verteilt wird nur in der **Spread-Reihe**, wo der führende Block bewusst
+wächst. `fillWidth: true` ist die ausdrückliche Ausnahme.
 
 **Heading huggt nicht — in Hug-Spalten Body verwenden:** Eine `Heading`-Komponente schrumpft
 in einem hug-Kontext NICHT auf ihre Glyphen (sie behält eine große Eigenbreite und bläht damit
@@ -189,12 +215,12 @@ Farbe entsteht NICHT durch ein fixes Farbtoken oder einen überschriebenen Fill,
 
 **Merksatz:** Einfärben = passendes adaptives Token binden → (bei Vordergrund) Helligkeit/Emphasis runter → Mode setzen.
 
-## Alignment im Container (Align-Variante)
+## Alignment im Container (`align`)
 
-Die `Align`-Variante von `ContainerHorizontal`/`ContainerVertical` ist ein **3×3-Raster** im
+Das Plan-Feld `align` von `ContainerHorizontal`/`ContainerVertical` ist ein **3×3-Raster** im
 Format `"<vertikal>-<horizontal>"`:
 
-```
+```text
 top-left     | top-center     | top-right
 left         | center         | right        ← mittlere Reihe = vertikal zentriert
 bottom-left  | bottom-center  | bottom-right

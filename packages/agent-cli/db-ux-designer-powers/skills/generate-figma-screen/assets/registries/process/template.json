@@ -1,52 +1,40 @@
 {
 	"_meta": {
-		"schema": "db-ux/template/v1",
+		"schema": "db-ux/template/v2",
 		"pageType": "process",
-		"origin": "guideline-authored",
-		"purpose": "Page template for a multi-step PROCESS / wizard (booking, registration, application, checkout). A process is delivered as a SEQUENCE of static step frames — ONE frame per step + a final confirmation frame (NO prototyping / no click-through wiring, per SKILL.md). Each step frame is a focused single column: a progress indicator on top, the current step's content (usually a form fieldset), and a step-navigation row (Back / Next). Compose by splitting the task into ordered steps and rendering each as its own frame; the last frame is a success confirmation. examples.json is a density/style reference only.",
-		"principles": "Consolidated human-readable design principles live in context/general/layout-type-guidelines/process.md (the SOURCE OF TRUTH for design intent). This registry is the same rules made machine-consumable — keep both in sync.",
-		"spacingModel": "A process inherits R from its product (content/website → lg, application/dashboard → md, dense data app → sm) — same rule as a form. See process/blocks.json → _meta.spacingModel for the full derivation + resolution table.",
-		"componentGap": "There is NO Stepper component in the DB UX Stable/Beta set. The step indicator is a guideline-authored BLOCK composed from resolved components (Badge markers + Body labels) OR the Concept ProgressBar + a 'Schritt X von Y' caption. Marked origin 'guideline-authored' and TEMPORARY — replace with a real Stepper component once it ships."
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Process / Blocks\" (node 1328:2829), reference composition \"Process Screen\" (1716:21814).",
+		"purpose": "Page grammar for ONE step of a multi-step flow: progress indicator, the step itself, the Back/Next row."
 	},
-	"contentWidth": "Small (768)",
-	"sectionSpacing": "medium",
-	"background": "single (color.background.canvas) — NO zebra. A process is ONE focused column, like a form.",
-	"delivery": "ONE frame per step (module:false full screens WITH the Header shell), placed side by side on the page in step order. The final frame is the confirmation. Do NOT wire prototype interactions between frames.",
+	"delivery": "page",
+	"contentWidth": "Medium (1024)",
 	"order": ["progress", "step", "nav"],
-	"structure": "Per step frame: Header (DB app header) → ONE Section (canvas, contentWidth 'Small (768)', spacing 'medium') whose children — stacked at the R+2 gap — are: (1) the PROGRESS indicator (stepper or ProgressBar + 'Schritt X von Y'), (2) the STEP HEADER (Heading = step title + optional description), (3) the STEP CONTENT (a form fieldset / summary rows — reuse the form blocks), (4) the STEP NAV row (Back + Next). The confirmation frame replaces (2)-(4) with a success confirmation block.",
 	"slots": {
 		"progress": {
 			"required": true,
 			"position": "first",
-			"allow": ["process.stepper", "process.progress"],
-			"note": "One progress indicator at the top of every step frame, showing the current step. A composed stepper (numbered Badge markers + labels, current step highlighted) OR a ProgressBar + 'Schritt X von Y' caption. On the confirmation frame it may show all steps complete or be dropped."
+			"allow": ["process.stepper-section", "process.progress-section"],
+			"note": "Exactly one progress indicator, directly after the Header. Stepper when the steps have meaningful names, progress bar otherwise."
 		},
 		"step": {
 			"required": true,
 			"position": "middle",
-			"allow": [
-				"process.step-body",
-				"process.summary",
-				"process.confirmation"
-			],
-			"note": "The current step's header (h1/h2 title + optional description) + content. Input steps reuse form fieldsets/fields (form blocks). A review step uses summary rows (label + value + 'Ändern' link). The final frame uses the confirmation block."
+			"allow": ["process.step", "process.confirmation"],
+			"note": "The current step. On the last frame use the confirmation instead."
 		},
 		"nav": {
-			"required": true,
+			"required": false,
 			"position": "last",
-			"allow": ["process.step-nav"],
-			"note": "A step-navigation row: a secondary 'Zurück' (ghost/outlined, left) and a primary 'Weiter' (Brand, right), spread to the column edges. The last input step's primary is the commit action (e.g. 'Zahlungspflichtig buchen'). The confirmation frame has a single primary action instead (no Back/Next)."
+			"allow": ["process.navigation-section"],
+			"note": "Back/Next for every step frame. Omit on the confirmation frame — it carries its own single action."
 		}
 	},
 	"rules": [
-		"Header is always the first child of every step frame (logo = home; no 'Startseite' nav item).",
-		"ONE step per frame, rendered as SEPARATE static frames in step order — NO prototype wiring (SKILL.md → NO PROTOTYPING). The final frame is the confirmation.",
-		"ONE narrow centered column: contentWidth 'Small (768)', single background, NO zebra.",
-		"Every step frame shows the progress indicator with the CURRENT step highlighted (step N active; earlier steps done; later steps upcoming).",
-		"Step content reuses the FORM blocks: input steps are form fieldsets/fields (label-above, Show Label true, fillWidth). Do not reinvent fields.",
-		"Action hierarchy: exactly ONE primary (Brand) action per frame — the 'Weiter' / commit / confirmation action; 'Zurück' is ghost/outlined. No extra Brand buttons.",
-		"Heading hierarchy: step title h1 (or h2 if the progress row carries the page identity), summary/section sub-labels h3/Body-bold.",
-		"The step indicator is a guideline-authored composition (no Stepper component exists) — mark origin 'guideline-authored'; components/tokens still resolve in the registries.",
-		"Spacing: a process inherits R from its product (content/website → lg, application/dashboard → md, dense data app → sm). Ladder (R-relative): elements in a block = R; grouped bits (step-header title↔caption, summary label↔value) = R−1; title-block → content = R+1; progress/step/nav blocks to each other and section header → content = R+2. Resolve per the table in blocks.json → _meta.spacingModel."
+		"ONE rendered frame per step. A flow of four steps is four separate frames, each a complete screen with progress, step and nav.",
+		"Prototyping is out of scope: deliver static frames and say so. Never wire reactions or flow starting points between them.",
+		"Exactly one Brand action per frame — Next on a step, the follow-up action on the confirmation. Back is ghost.",
+		"The confirmation frame replaces the step and drops the Back/Next row.",
+		"The progress indicator is identical on every frame of the flow except for its state; do not switch between stepper and progress bar mid-flow.",
+		"Determinate progress uses the real DB progress component, which offers only 25, 50 and 75 percent. Any other value is a hard stop.",
+		"Input controls inside a step reuse the form page-type blocks; do not invent new field fragments here."
 	]
 }

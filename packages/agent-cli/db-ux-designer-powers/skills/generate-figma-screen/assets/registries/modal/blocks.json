@@ -1,124 +1,67 @@
 {
 	"_meta": {
-		"schema": "db-ux/blocks/v1",
+		"schema": "db-ux/blocks/v2",
 		"pageType": "modal",
-		"origin": "guideline-authored",
-		"purpose": "Atomic MODAL / DIALOG blocks, authored to encode the DB UX layout guidelines for a focused backdrop overlay. The overlay = a screen-filling Backdrop (Beta) with a single dialog surface (a Card, elevation 1) centered on top. The dialog holds a HEADER (title + optional description), a BODY (a short message OR a few grouped fields reused from form/blocks.json), and a closing ACTION row. modal/block-patterns.json composes these into the dialog; the runtime's overlay mode adds the Backdrop + centering. Input-field blocks are NOT redefined here — they are reused verbatim from form/blocks.json via $ref.",
-		"vocabulary": "Content-element names follow layout-guidelines.md → Contentarten: Headline/Title (dialog title), Subline/Description (the one-liner under it), Text/Body (the message), Label (a field's label). Use these terms — do NOT invent synonyms.",
-		"rendering": "The modal overlay is rendered by the runtime's OVERLAY MODE: set `overlay: true` on the plan → a fixed screen-sized frame (default 1440×1024) with a `Backdrop` (Beta) filling it and the dialog `Card` centered at `cardWidth` (default 520). The Backdrop + centering are added by the runtime; the plan's `layout` is just the dialog Card. The SIDE-SHEET variant (Drawer) is deferred — the runtime does not yet fill the Drawer slot (see modal/template.json → _meta.rendering). Backdrop/open-close behavior is out of scope (static frame only).",
-		"spacingModel": "A modal has NO fixed base spacing of its own — it INHERITS R from the PRODUCT it lives in and skews COMPACT. ANCHORS: content/website product → R = lg; application/dashboard product → R = md; dense data-entry application → R = sm. KEY RULE (per layout-guidelines.md → Spacing-Hierarchie): INSIDE a single card the inner PADDING and the elements-to-each-other are BOTH R — they MATCH. The R+1 step is ONLY for separate cards/sections on a page, NEVER for regions inside one surface. So for the dialog: (1) Card inner padding = R; (2) the three regions (header / body / footer) to each other = R (SAME as the padding — do NOT use R+1, that leaves the content spaced further from itself than from the card edge); (3) elements within a region (message paragraphs, fields) = R; (4) GROUPED bits — title↔description, field↔helper, choice-group options, the footer button pair = R−1. RESOLUTION: content/website → R lg (padding lg, regions lg, grouped md); application/dashboard → R md (padding md=16, regions md=16, grouped sm=12); dense data app → R sm (padding sm, regions sm, grouped xs). Fragments below are the R = md (application) REFERENCE (padding md, regions md, grouped sm); substitute EVERY gap by role when the product differs. A field's OWN label↔control spacing is component-internal and is NEVER set here.",
-		"colorModel": "Text emphasis follows screen-guidelines.md → Typografie: emphasis-100 (color.text.strong) is the DEFAULT and applies to ALL of the dialog's primary copy — the title, the one-line description, AND the body message/question — because in a dialog that text IS the primary content, not a de-emphasized caption. emphasis-80 (color.text.muted) is ONLY for genuinely secondary helper/meta text (rare in a dialog); do NOT mute the description or the message. Never Bold + muted. The Card surface (elevation 1) is NOT recolored — a semantic tint belongs on a leading Notification (text props `headline` + `text`, tinted via `semantic`, set `closeable: false` so the dialog has no inner X). The Backdrop provides the dim.",
-		"authoringRule": "Components (`type`/`props`) MUST resolve in components.json and tokens in tokens.json — structure/spacing come from the guidelines, components/tokens are never invented. A new block is allowed when existing ones do not cover the need, as long as it follows the spacingModel and resolves against the live registries.",
-		"placeholderConvention": "<...> = fill with real content; optional trailing '?' means the node may be dropped when empty. A '<a|b|c>' placeholder is a closed choice.",
-		"refConvention": "{ \"$ref\": \"block.id\" } expands to that block's `plan` fragment. modal blocks reference their own ids AND form.* ids (input fields reused verbatim from form/blocks.json, which the agent has loaded). The agent expands $ref when authoring the Composition Plan — the render runtime never sees $ref."
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Modal / Blocks\" (node 1345:1368), block \"Modal / Dialog\" (1369:1124).",
+		"purpose": "Body fragments for the dialog. The dialog shell itself is the Dialog component and lives in patterns.json.",
+		"spacingModel": "The Popover owns the spacing between header, body and footer via its Spacing variant. Inside the body, blocks sit at gap md. Do not add an extra wrapper just to create spacing.",
+		"shellModel": "Header, body and footer are the Dialog's three Popover slots, not hand-built rows. A region without content is switched off, never rendered empty.",
+		"textFields": "A `text` field MUST be named after the component's own TEXT property — a Notification carries \"Headline\" and \"Text\", a form control \"Label\" and \"Placeholder\". A field that matches nothing is a hard stop at render time, because the component would otherwise ship the library's default copy (\"Headline\") as if it were product copy.",
+		"placeholders": "<Angle brackets> mark content the agent MUST replace. <Trailing?> marks an optional node: drop it when no content applies, never render it empty."
 	},
 	"blocks": {
-		"modal.header": {
-			"origin": "guideline-authored",
-			"purpose": "The dialog header: a title (Heading h2, color.text.strong) + an optional one-line description (Body medium, color.text.strong — primary copy, NOT muted), grouped at sm (R−1). No close X here — dialogs dismiss via the footer action row.",
-			"usedIn": "modal.dialog",
+		"modal.question": {
+			"source": "1369:1124 Modal / Dialog (body text)",
+			"purpose": "The dialog's question or statement as a single body paragraph.",
 			"plan": {
-				"type": "ContainerVertical",
-				"gap": "sm",
-				"align": "left",
-				"children": [
-					{
-						"type": "Heading",
-						"as": "h2",
-						"content": "<Dialog title>",
-						"fills": "color.text.strong"
-					},
-					{
-						"type": "Body",
-						"size": "(Def) Medium",
-						"content": "<One-line description?>",
-						"fills": "color.text.strong"
-					}
-				]
+				"type": "Body",
+				"size": "(Def) Medium",
+				"content": "<Question>",
+				"fills": "color.text.strong"
 			}
 		},
-		"modal.body-text": {
-			"origin": "guideline-authored",
-			"purpose": "The message body of a confirmation / acknowledge dialog: 1–2 short Body paragraphs (color.text.strong — the message is primary copy, NOT muted), optionally led by a Notification (tinted via semantic — Critical for a destructive confirm, Successful/Informational for a status). The Notification is set `closeable: false` (no X inside the dialog). Keep it to a sentence or two; a long body means it is a form/ screen. The Notification is OPTIONAL — drop it for a plain question.",
-			"usedIn": "modal.dialog",
+		"modal.consequence": {
+			"source": "1369:1124 Modal / Dialog (notification)",
+			"purpose": "Inline notification spelling out an irreversible or risky consequence.",
+			"plan": {
+				"type": "Notification",
+				"props": { "placement": "standalone", "media": "icon" },
+				"semantic": "<Critical|Warning|Informational>",
+				"text": {
+					"headline": "<Consequence headline>",
+					"text": "<Consequence detail>"
+				}
+			}
+		},
+		"modal.body": {
+			"source": "1369:1124 Modal / Dialog (Popover Children)",
+			"purpose": "Dialog body: the question with an optional consequence notification.",
 			"plan": {
 				"type": "ContainerVertical",
 				"gap": "md",
 				"align": "left",
 				"children": [
+					{ "$ref": "modal.question" },
+					{ "$ref": "modal.consequence" }
+				]
+			}
+		},
+		"modal.field-body": {
+			"source": "1369:1124 Modal / Dialog (Popover Children) + form catalog fields",
+			"purpose": "Dialog body for a short input task: a lead-in line and one or two fields.",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "md",
+				"align": "left",
+				"children": [
+					{ "$ref": "modal.question" },
 					{
-						"type": "Notification",
-						"props": { "placement": "standalone", "media": "icon" },
-						"semantic": "Critical",
-						"applyProps": { "Closeable": false },
+						"type": "Input",
+						"props": { "label": "above", "state": "empty" },
 						"text": {
-							"headline": "<Warnung-Titel?>",
-							"text": "<Diese Aktion kann nicht rückgängig gemacht werden.?>"
+							"label": "<Field label>",
+							"placeholder": "<Placeholder>"
 						}
-					},
-					{
-						"type": "Body",
-						"size": "(Def) Medium",
-						"content": "<Möchten Sie … wirklich löschen?>",
-						"fills": "color.text.strong"
-					}
-				]
-			}
-		},
-		"modal.body-fields": {
-			"origin": "guideline-authored",
-			"purpose": "The short input area of an input dialog: a few label-above, fillWidth fields reused VERBATIM from form/blocks.json (form.text-field / form.select-field / form.field-row / form.radio-group / form.checkbox-group), stacked at md (fields to each other). Do NOT add a form h1/h2 — the dialog title carries it. If it grows past a small fieldset → it is a form/ screen, not a modal.",
-			"usedIn": "modal.dialog",
-			"plan": {
-				"type": "ContainerVertical",
-				"gap": "md",
-				"align": "left",
-				"children": [
-					{ "$ref": "form.text-field" },
-					{ "$ref": "form.text-field" }
-				]
-			}
-		},
-		"modal.actions": {
-			"origin": "guideline-authored",
-			"purpose": "The closing action row, RIGHT-ALIGNED as is conventional for dialogs: a ContainerHorizontal (align 'right', fills the card width) with the secondary (ghost/outlined) FIRST and the primary (Brand, ≤1 per surface) RIGHTMOST. An acknowledge/info dialog drops the secondary (a single Brand action). No danger variant — a destructive confirm keeps Brand + severe wording.",
-			"usedIn": "modal.dialog (last)",
-			"plan": {
-				"type": "ContainerHorizontal",
-				"gap": "sm",
-				"align": "right",
-				"children": [
-					{
-						"type": "Button",
-						"props": { "variant": "ghost", "iconOnly": false },
-						"label": "<Abbrechen?>"
-					},
-					{
-						"type": "Button",
-						"props": { "variant": "brand", "iconOnly": false },
-						"label": "<Bestätigen>"
-					}
-				]
-			}
-		},
-		"modal.dialog": {
-			"origin": "guideline-authored",
-			"purpose": "The full dialog surface: a Card (elevationLevel '1', spacing 'medium') whose single content column (ContainerVertical, gap md = R — the SAME step as the Card padding, so the regions are not spaced further from themselves than from the card edge) holds the header, the body (text OR fields), and the right-aligned action row. Delivered via the runtime OVERLAY MODE (`overlay: true`, `cardWidth` ~400 confirmation/acknowledge, ~520 standard, ~640 form dialog) — the runtime adds the screen-filling Backdrop and centers this Card. Swap the body $ref for modal.body-text (confirm/acknowledge) or modal.body-fields (input).",
-			"usedIn": "modal (overlay layout)",
-			"plan": {
-				"type": "Card",
-				"props": { "elevationLevel": "1" },
-				"spacing": "medium",
-				"children": [
-					{
-						"type": "ContainerVertical",
-						"gap": "md",
-						"align": "left",
-						"children": [
-							{ "$ref": "modal.header" },
-							{ "$ref": "modal.body-text" },
-							{ "$ref": "modal.actions" }
-						]
 					}
 				]
 			}

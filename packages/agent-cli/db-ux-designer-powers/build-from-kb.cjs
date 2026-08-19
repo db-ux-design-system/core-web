@@ -15,7 +15,7 @@
 //   4. registries/components.json     (FULL generation from KB figma.json + properties.json)
 //
 // Components registry: KB provides keys, properties and figma sets. Hand-curated fields
-// (note, required, forbiddenFallback, deprecated sets, conceptComponents, localLayoutPrimitives)
+// (note, required, forbiddenFallback, deprecated sets, conceptComponents)
 // are preserved from the existing registry when not present in KB.
 //
 // USAGE:
@@ -372,7 +372,6 @@ function buildComponentsRegistry() {
 				_meta: {},
 				components: {},
 				conceptComponents: {},
-				localLayoutPrimitives: {},
 				unresolved: {}
 			};
 
@@ -489,7 +488,6 @@ function buildComponentsRegistry() {
 		},
 		components,
 		conceptComponents: current.conceptComponents || {},
-		localLayoutPrimitives: current.localLayoutPrimitives || {},
 		unresolved: current.unresolved || {}
 	};
 

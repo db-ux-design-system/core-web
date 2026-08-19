@@ -1,45 +1,35 @@
 {
 	"_meta": {
-		"schema": "db-ux/template/v1",
+		"schema": "db-ux/template/v2",
 		"pageType": "modal",
-		"origin": "guideline-authored",
-		"purpose": "Template for a MODAL / DIALOG — a focused backdrop overlay that interrupts the current screen for ONE short, self-contained task (confirm/cancel, acknowledge a message, or a short form). A modal is NOT a full page: no Header shell, no zebra sections, no bento grid. It is a screen-filling Backdrop with a single dialog surface (a Card, elevation 1) centered on top — a title, a compact body (a short message OR a few grouped fields), and a closing right-aligned ACTION row. Compose the dialog Card by mapping the task to a body kind (message / fields) and adding the action row — NOT by copying examples.json.",
-		"principles": "Consolidated human-readable design principles live in context/general/layout-type-guidelines/modal.md (the SOURCE OF TRUTH for design intent, incl. the WHEN-to-use decision). This registry is the same rules made machine-consumable — keep both in sync.",
-		"whenToUse": "Choose modal/ ONLY when the task is short, SELF-CONTAINED and must BLOCK the underlying screen (a backdrop dims it; completed without needing the page behind it), and is triggered FROM another screen. Tie-breakers: a full data-entry screen the user navigates TO → form/; a multi-step Back/Next flow → process/; a whole informational page → contentpage/; an operational overview → dashboard/; a non-blocking inline message → a Notification inside the relevant type, never a modal. Rule of thumb: continue only by dealing with it first, over in one short interaction → modal; a place they go to and work in → a full page type.",
-		"rendering": "The DB modal is composed of two real components: a Backdrop (Beta) — a screen-filling dimmed layer — and a Card (elevation 1) centered on top. The runtime's OVERLAY MODE renders this: set `overlay: true` on the plan → a fixed screen-sized frame (default 1440×1024) with the Backdrop filling it and the Card centered at `cardWidth`. Backdrop is registered in components.json (key f06a3f1f284a1279f96dc2f1e7e6f8b2431ec7a2). SIDE-SHEET variant (Drawer) is DEFERRED: the runtime does not yet compose children into the Drawer slot (add a Drawer case to src/50-plan-renderer.js mirroring the overlay/Card path once needed). Backdrop click-outside / focus-trap / open-close are runtime/prototype behavior and OUT OF SCOPE for now (SKILL.md → NO PROTOTYPING): deliver the static overlay only.",
-		"spacingModel": "A modal has NO fixed R — it INHERITS R from its product (content/website → R = lg; application/dashboard → R = md; dense data app → R = sm) and skews COMPACT. See modal/blocks.json → _meta.spacingModel for the full derivation + per-product resolution table."
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Modal / Blocks\" (node 1345:1368), block \"Modal / Dialog\" (1369:1124).",
+		"purpose": "Delivery grammar for a dialog: one Dialog node on a screen-sized module frame. The component supplies the Backdrop."
 	},
-	"delivery": "The runtime OVERLAY MODE (`overlay: true`) — a screen-sized frame (default width 1440, height 1024) with a Backdrop (Beta) filling it and the dialog Card centered at `cardWidth` — regardless of whether the prompt says 'dialog', 'modal', 'screen' or 'example'. NO Header shell, NO page-zebra check. Size the dialog via `cardWidth`: confirmation/acknowledge (message only) ~400; standard ~520; form dialog (a small fieldset) ~640. Never wider than ~640 — beyond a small fieldset it is a form/ screen. Multiple states (empty vs error) are SEPARATE overlay frames placed side by side. The dimmed backdrop is rendered; its open/close interaction is out of scope (static frame only).",
-	"surface": "A Card (elevationLevel '1' — the Backdrop provides the separation, so NOT Level 3), spacing 'medium', centered on the Backdrop, whose single content column (ContainerVertical, gap md = R — the SAME step as the Card padding, per layout-guidelines.md; do NOT use R+1 inside a single card) holds the three regions in order.",
-	"order": ["header", "body", "actions"],
-	"structure": "OVERLAY frame (`overlay: true`, width×height per delivery) → Backdrop (Beta, screen-filling, added by the runtime) + ONE centered Card (props elevationLevel '1', spacing 'medium', cardWidth per delivery) → ONE content ContainerVertical (gap md = R, matching the Card padding) whose children are: (1) the HEADER (Heading h2 title + optional one-line description, grouped at sm = R−1), (2) the BODY (a short message = 1–2 Body paragraphs, with an optional leading Notification set closeable:false, OR a few grouped fields reused from form/blocks.json), (3) the closing ACTION row (right-aligned; secondary ghost/outlined first, primary Brand rightmost). All gaps are the R = md reference — shift per the product's R (see spacingModel). The plan `layout` is just the Card; the runtime adds the Backdrop and centering.",
+	"delivery": "overlay",
+	"order": ["dialog"],
 	"slots": {
-		"header": {
+		"dialog": {
 			"required": true,
 			"position": "first",
-			"allow": ["modal.header"],
-			"note": "The dialog title (Heading h2, color.text.strong) + an optional one-line description (Body, color.text.strong — primary copy, NOT muted), grouped at sm (R−1). Exactly one. No close X here — dialogs dismiss via the footer action row."
-		},
-		"body": {
-			"required": true,
-			"position": "middle",
-			"allow": ["modal.body-text", "modal.body-fields"],
-			"note": "The task content. A CONFIRM/ACKNOWLEDGE dialog uses modal.body-text (1–2 Body paragraphs, color.text.strong — the message is primary copy, NOT muted; an optional leading Notification tinted Critical/Warning, set closeable:false so there is no X inside the dialog). An INPUT dialog uses modal.body-fields (a few label-above, fillWidth fields reused verbatim from form/blocks.json). Keep it short — a long form belongs on a form/ screen."
-		},
-		"actions": {
-			"required": true,
-			"position": "last",
-			"allow": ["modal.actions"],
-			"note": "Exactly one closing action row, RIGHT-ALIGNED (ContainerHorizontal, align 'right'): the secondary (ghost/outlined) FIRST, the primary (Brand) RIGHTMOST — dialog convention. ≤1 Brand action per surface. An acknowledge/info dialog has a SINGLE Brand action and no secondary."
+			"allow": ["modal.confirm", "modal.acknowledge", "modal.input"],
+			"note": "Exactly one Dialog. Pick confirm for an irreversible action, acknowledge when there is nothing to decide, input for a one or two field task."
+		}
+	},
+	"pageTypeSpecific": {
+		"frame": {
+			"module": true,
+			"width": 1440,
+			"height": 1024,
+			"note": "The dialog is delivered as a screen-sized module frame so the Backdrop reads as an overlay over a viewport. No Header shell, no page sections."
 		}
 	},
 	"rules": [
-		"A modal is delivered via the runtime OVERLAY MODE (`overlay: true`): a screen-sized Backdrop with the dialog Card centered on top. NO Header, NO zebra. Never wrap it in a Header/page shell.",
-		"The dialog surface is a Card with elevationLevel '1' (the Backdrop provides separation — do NOT use Level 3), sized narrow via `cardWidth` (~400 / ~520 / ~640); never wider than ~640 (beyond a small fieldset → form/).",
-		"Three regions in order: header (title h2 + optional description) → body (message OR grouped fields) → right-aligned action row. Regions to each other = R (md=16 at the application reference), the SAME step as the Card padding — NOT R+1 (that would space the content further from itself than from the card edge; the R+1 step is only for separate cards on a page).",
-		"Body reuses the FORM blocks for input dialogs (label-above, Show Label true, fillWidth). Message dialogs use Body paragraphs in color.text.strong (emphasis-100 — the message is primary copy, NOT muted); a leading Notification is set closeable:false (no X inside the dialog).",
-		"Action hierarchy: ≤1 Brand per surface — the primary confirm/submit; the secondary is ghost/outlined. RIGHT-ALIGNED (align 'right'), secondary first, Brand rightmost. An acknowledge dialog has a single Brand action, no secondary. No danger button variant exists — a destructive confirm uses Brand + severe wording (+ optional leading Notification, semantic Critical); never recolor a button.",
-		"The surface is a Card on the default adaptive background — do NOT recolor it. The Backdrop provides the dim (never fake it with a recolored rectangle). Semantic tint belongs on a leading Notification, not the dialog surface.",
-		"Spacing: a modal inherits R from its product (content/website → lg, application/dashboard → md, dense data app → sm) and skews compact. Ladder (R-relative): Card padding = R AND the three regions to each other = R (they MATCH — inside a single card padding and elements share the step R; the R+1 step is only for separate cards on a page); elements within a region (message paragraphs, fields) = R; grouped bits (title↔description, field↔helper, choice options, the footer button pair) = R−1. Resolve per the table in modal/blocks.json → _meta.spacingModel."
+		"A modal is the Dialog component. It ships its own Backdrop and its Popover carries the header, body and footer slots — never rebuild it from a frame, an absolute Backdrop and a centered Card.",
+		"A region without content is switched off via the Popover's Show Start/End Slot booleans, never rendered empty.",
+		"The primary button names the action it performs. Avoid a bare OK when a verb is possible.",
+		"Exactly one Brand action per dialog. The secondary action is ghost, and it is omitted entirely when there is nothing to cancel.",
+		"Keep it to one short interaction. A longer task belongs on a form or process page, not in a dialog.",
+		"The dimmed backdrop is rendered as a static state. Open and close behaviour is out of scope — no prototyping.",
+		"Spacing between header, body and footer comes from the Popover's Spacing variant, not from an extra wrapper container."
 	]
 }

@@ -16,7 +16,10 @@ background — matching reference product dashboards (light canvas, white cards 
 
 - **Header shell** (DB `Header`) first — logo = home, no "Startseite" nav item.
 - **One working `Section`** (canvas, `contentWidth: "(Def) Full"`, `spacing: "small"`, NO section
-  title), whose children — stacked at gap `lg` — are:
+  title) — the canonical DB dashboards are exactly `[Header, Section]`. Every row below lives
+  INSIDE that one Section; a second Section turns the bento into a content-page stack, which the
+  audit rejects as `dashboard-multi-section` (set `plan.pageType = "dashboard"` so it runs). Its
+  children — stacked in one `ContainerVertical` at gap `md` — are:
     1. **Header row** — page title (`h1`) + optional one-line description on the left (fills),
        primary actions on the right (hug). Fill-left / hug-right, NOT a spread row (a Heading does
        not hug).
@@ -38,7 +41,7 @@ hierarchy: page `h1` (header) → panel `h4` → inner `h5`.
 ## 5. Bento rows: column splits
 
 - Pick the split by panel importance: `66-33` / `33-66` (wide primary + narrow secondary),
-  `50-50` (equal peers), `(Def) 33-33-33` (three equal peers). Grid gap `lg`.
+  `50-50` (equal peers), `(Def) 33-33-33` (three equal peers). Grid gap `md`.
 - The runtime auto-equalizes panel heights within a row, so the bento aligns.
 - Don't force everything full-width; heterogeneous panels sit side by side.
 
@@ -49,6 +52,25 @@ hierarchy: page `h1` (header) → panel `h4` → inner `h5`.
 - **Charts are optional and secondary.** A chart Image lives in a self-titled panel and belongs in
   the NARROW column (e.g. the `33` side) so it stays compact. A big 16:9 image filling a wide card
   reads like content-page media.
+- **A graph ALWAYS spans the full width available to it.** A `ChartBar` bar row fills the panel and
+  each bar column fills its share, so the bars distribute across the whole card — only the bar
+  HEIGHT encodes the value. Fixed bar widths leave the panel half empty and read as a broken
+  visual; the audit reports `chart-fixed-width`.
+- **A graph sits on ONE baseline at the FLOOR of its panel.** Bars are compared by their bottom
+  edge, so the row is `align: "bottom-left"`, each column `align: "bottom-center"`, and both carry
+  `fillHeight: true` — the block then grows into the height the card actually got (a bento card is
+  stretched to the tallest panel of its row) instead of floating under the title with dead space
+  below. Never fake the baseline with per-column `paddingTop`. The audit reports `chart-baseline`
+  for staggered bar bottoms and `chart-not-bottom-anchored` for empty space under the graph; the
+  runtime re-seats every graph after each render and edit, so a compliant chart needs no manual
+  nudging.
+- **`fillHeight` cannot CREATE height.** It only ever distributes height that a parent already has.
+  Inside a panel that hugs its content there is nothing to grow into, so the runtime keeps the block
+  hugging — a graph reaches the card floor there anyway, because the card is exactly as tall as its
+  content. Do NOT try to force extra height by stretching more levels: a main-axis fill inside a
+  hugging parent collapses the box to ~0px and the bars are then painted over the panel title (the
+  audit reports `collapsed-fill-height`). If a panel needs to be taller, that comes from its ROW
+  (the equal-heights pass of a bento grid), never from the block inside it.
 - **Image-ratio caveat:** the image system only offers `1:1 / 3:4 / 16:9` (no flat sparkline), so a
   chart Image is inherently tall. When a compact view matters, use a **data-list** panel (rows of
   label + value + trend Badge) instead of a chart.
@@ -63,6 +85,20 @@ smallest fitting element — `Body` for text, a `Badge` (tinted via `semantic`) 
 `Link` for a row action; numeric/value columns are right-aligned (`align: "right"`). Rows are
 separated by `Divider`s. Do NOT fake a table from free-form frames, and prefer `list-panel` for
 ≤2-value records — reserve the table for real multi-column data.
+
+**Every cell of every row is one equal FILL column — the header row and the leading `Checkbox` cell
+included.** A table reads as a table only while a value sits under its own header, and a single
+hugging cell shifts everything behind it by its own label length: a `Checkbox` labelled "Auswahl"
+in the header and "ICE 101 Hamburg–Berlin" in the row puts the two column grids ~110px apart. So the
+header row carries exactly as many cells as the data rows, and each cell fills. The runtime enforces
+it for any row with two or more text cells; the audit reports `table-columns-misaligned` when the
+left edges drift. The **pagination** below the panel is centered (`align: "center"`) — it hugs its
+item strip and is centered on its column's cross axis, as in the reference block.
+
+Leaving a Grid column EMPTY is legitimate — it is how a row keeps its content at two thirds of the
+width, and how the short last row of a wrapped grid stays aligned with the rows above. The runtime
+hides those leftover cells, because an empty component slot is not invisible on canvas: Figma paints
+it as a magenta placeholder box that would ship in the render.
 
 ## 6b. Toolbars & the view-switch
 
@@ -114,19 +150,24 @@ button hugs), never a Grid.
 Panel/row actions are Links (or a ghost secondary), never a Brand button per card/row. No closing
 marketing CTA (that is a content-page pattern).
 
-## 10. Spacing (R = md)
+## 10. Spacing (R = sm)
 
-Dashboards are denser than content pages (which use R = lg). Ladder derived from R = `md`:
+Dashboards are denser than content pages (which use R = lg). The ladder is MEASURED from the
+canonical catalog cards (`1670:9253`, `1670:9239`, `1710:3211`): a `Card` with spacing `small`
+has **12px padding and a 12px content gap**, and cards sit **16px** apart. So R = `sm`:
 
-| Step | Token | Used for                                                                                         |
-| ---- | ----- | ------------------------------------------------------------------------------------------------ |
-| R    | `md`  | elements in a block; card inner padding; header→content within a panel                           |
-| R−1  | `sm`  | grouped elements that belong together (label+value+delta, panel title+meta, row title+meta)      |
-| R−2  | `xs`  | tight inline pairs / same-kind micro-groups (delta icon+value, value+trend badge, status+action) |
-| R+1  | `lg`  | panels & rows to each other (grid gaps, stacked rows)                                            |
-| R+2  | `xl`  | a titled section header → its content (rarely needed in bento)                                   |
+| Step | Token | Used for                                                                              |
+| ---- | ----- | ------------------------------------------------------------------------------------- |
+| R    | `sm`  | elements in a card; matches the `small` card's 12px padding                           |
+| R−1  | `xs`  | grouped elements that belong together (label+badge, panel title+meta, row title+meta) |
+| R−2  | `2xs` | tight inline pairs / same-kind micro-groups (delta icon+value, value+trend badge)     |
+| R+1  | `md`  | panels & rows to each other (grid gaps, the stacked rows inside the Section)          |
 
-Never tighter than `xs` inside a card (a grouped metric is `sm`, never `2xs`).
+**The content gap must never exceed the card's own padding.** A 16px (`md`) gap inside a 12px
+(`small`) card pushes the rows further apart than they sit from the card edge, so the card reads
+as broken apart — the audit reports `gap-exceeds-card-padding`. Pair them: `small` (12px) with
+gap `sm`, `medium` (16px) with gap `md`. A full-bleed panel (`spacing: "none"`) is the one
+exception: it delegates padding to its rows so dividers reach both edges.
 
 ## 11. Color / emphasis
 

@@ -8,7 +8,11 @@ const xoConfig = [
 			'**/*.vue',
 			// We don't need to check for stories - they will be generated
 			'storybooks/*/src/**',
-			'scripts/check-docs.js'
+			'scripts/check-docs.js',
+			// Generated + size-critical Figma render runtime: pasted verbatim into use_figma
+			// (50 000-char cap), so it must stay minified. Regenerate via build-runtime.cjs.
+			'packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/db-figma-runtime.min.js',
+			'packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/bootstrap/**'
 		]
 	},
 	{

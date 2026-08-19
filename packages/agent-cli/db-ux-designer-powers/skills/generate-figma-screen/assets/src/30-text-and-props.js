@@ -161,39 +161,68 @@ async function applyBodyBold(inst, size) {
 		await txt.setTextStyleIdAsync(style.id);
 	} catch {}
 }
-/* Transparent placeholder image asset used by the DB example modules — Figma renders it as
- * the checkerboard "no image inserted yet" state. It is a document-global image hash, valid
- * for this file. Override per-node with `imageHash`, or pass a real `src` URL. */
+/* EMPTY IMAGE = the intended default for a generated layout.
+ * A generated screen ships an EMPTY Figma image; the designer drops the real asset in. A real
+ * image is used ONLY when the user explicitly provided one that already lives in the file
+ * (`imageHash`). NOTE: `figma.createImageAsync` (load from a URL) is NOT available in this
+ * sandbox, so there is no `src` option.
+ *
+ * Figma refuses an IMAGE paint without a hash, so "empty" needs a real asset — and it must be
+ * VISIBLE. A fully transparent asset is NOT: Figma treats the fill as filled and the node renders
+ * white, which is indistinguishable from an empty surface. So we paint the DB placeholder pattern:
+ *   1) the DB placeholder asset if this file has it (the convention in the DB design files), or
+ *   2) a 16x16 checkerboard created here from bytes — portable to any file.
+ * The checkerboard is TILEd so the squares keep their size on any node; stretching a 16px pattern
+ * with FILL would turn it into four giant blocks. A REAL asset always uses FILL. */
 const DB_PLACEHOLDER_IMAGE_HASH = 'ece298d0ec2c16f10310d45724b276a6035cb503';
-async function applyImageFill(rect, node) {
-	// 1) Real image from a URL.
-	if (node.src) {
-		try {
-			const img = await figma.createImageAsync(node.src);
-			rect.fills = [
-				{
-					type: 'IMAGE',
-					scaleMode: node.scaleMode || 'FILL',
-					imageHash: img.hash
-				}
-			];
-			return;
-		} catch {}
+const CHECKERBOARD_PNG_BASE64 =
+	'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAH0lEQVR42mP4jwO8ePUWK2IY1UATDbgkcBk0qoEmGgAybN4fyQQhnwAAAABJRU5ErkJggg==';
+let _emptyPaint = null;
+function emptyImagePaint() {
+	if (_emptyPaint) return _emptyPaint;
+	// 1) The DB placeholder asset, when the target file already contains it.
+	if (
+		safe(
+			() => Boolean(figma.getImageByHash(DB_PLACEHOLDER_IMAGE_HASH)),
+			false
+		)
+	) {
+		_emptyPaint = {
+			type: 'IMAGE',
+			scaleMode: 'FILL',
+			imageHash: DB_PLACEHOLDER_IMAGE_HASH
+		};
+		return _emptyPaint;
 	}
-	// 2) Explicit hash or the DB transparent placeholder (the Figma default fallback look).
+
+	// 2) Portable fallback: create the checkerboard in THIS file and tile it.
+	const bytes = Uint8Array.from(atob(CHECKERBOARD_PNG_BASE64), (c) =>
+		c.charCodeAt(0)
+	);
+	_emptyPaint = {
+		type: 'IMAGE',
+		scaleMode: 'TILE',
+		scalingFactor: 1,
+		imageHash: figma.createImage(bytes).hash
+	};
+	return _emptyPaint;
+}
+async function applyImageFill(rect, node) {
 	try {
 		rect.fills = [
-			{
-				type: 'IMAGE',
-				scaleMode: node.scaleMode || 'FILL',
-				scalingFactor: 0.5,
-				imageHash: node.imageHash || DB_PLACEHOLDER_IMAGE_HASH
-			}
+			node.imageHash
+				? {
+						type: 'IMAGE',
+						scaleMode: node.scaleMode || 'FILL',
+						imageHash: node.imageHash
+					}
+				: emptyImagePaint()
 		];
-		return;
-	} catch {}
-	// 3) Last resort: neutral gray (hash unresolvable, e.g. a different file).
-	rect.fills = [{ type: 'SOLID', color: { r: 0.898, g: 0.906, b: 0.918 } }];
+	} catch (err) {
+		stop(
+			`Image fill failed (${(err && err.message) || err}). Provide an "imageHash" of an asset that exists in this file.`
+		);
+	}
 }
 
 /* -----------------------------------------------------------------------------
@@ -218,18 +247,31 @@ const FIELD_ALIASES = {
 	value: /text|value|input/i,
 	input: /text|value|input/i,
 	placeholder: /text|value|input/i,
-	label: /label/i,
-	title: /label|title|headline/i
+	// A component's "primary line" is called Label on a form control but Headline on a
+	// Notification, and a plan legitimately says `label` for both. Without the headline
+	// fallback the field matched nothing on a Notification and the write was skipped, which
+	// left the library default "Headline" on canvas.
+	label: /label|headline|title/i,
+	title: /label|title|headline/i,
+	headline: /headline|title|label/i,
+	description: /description|text|body/i
 };
 /* Set multiple named TEXT properties on an instance, e.g. { headline:"…", description:"…" }
  * or { label:"…", value:"…" } for form controls. Each field matches a TEXT component-property
- * first by normalized-name substring, then by a friendly alias regex; each prop is used once. */
+ * first by normalized-name substring, then by a friendly alias regex; each prop is used once.
+ *
+ * A field that matches NOTHING is a hard STOP, never a silent skip. Skipping looks harmless
+ * (the props write still succeeds) but is not: every DB component ships its slots pre-filled
+ * with the library's own copy, so an unmapped field does not render empty — it renders
+ * "Headline" / "Text" / "Label". Failing here reports the wrong field name while the plan can
+ * still be fixed, instead of shipping placeholder copy that reads as real content. */
 function setInstanceFields(inst, fields) {
 	if (!fields) return;
 	const cp = inst.componentProperties ?? {};
 	const textKeys = Object.keys(cp).filter((k) => cp[k]?.type === 'TEXT');
 	const props = {};
 	const used = new Set();
+	const unmatched = [];
 	for (const [want, val] of Object.entries(fields)) {
 		let k = textKeys.find(
 			(k) => !used.has(k) && normName(k).includes(normName(want))
@@ -241,8 +283,21 @@ function setInstanceFields(inst, fields) {
 		if (k) {
 			props[k] = String(val);
 			used.add(k);
-		}
+		} else unmatched.push(want);
 	}
+	if (unmatched.length)
+		stop(
+			`Text field${unmatched.length > 1 ? 's' : ''} ${unmatched
+				.map((f) => `"${f}"`)
+				.join(', ')} did not match any TEXT property on "${safe(
+				() => inst.name,
+				'?'
+			)}". Available: ${
+				textKeys.length
+					? textKeys.map((k) => `"${k}"`).join(', ')
+					: 'none'
+			}. Rename the field in the plan to the component's own property (e.g. a Notification carries "Headline" + "Text", not "label"/"value") — an unmatched field would leave the library's default placeholder copy on canvas.`
+		);
 	if (Object.keys(props).length) {
 		try {
 			inst.setProperties(props);
@@ -293,8 +348,22 @@ async function applyProps(inst, map) {
 			cpKeys.find((k) => normName(k).includes(norm));
 		if (!key) continue; // unknown key — skip silently (never throw for optional overrides)
 		const type = cp[key]?.type;
-		if (type === 'TEXT' || type === 'VARIANT') {
+		if (type === 'TEXT') {
 			textVarProps[key] = String(val);
+		} else if (type === 'VARIANT') {
+			// A VARIANT takes an exact LABEL, and the DB components spell their toggles
+			// "True"/"False" and prefix a default with "(Def) ". A raw `String(val)` therefore
+			// produces "true" or "small", `setProperties` rejects the whole batch, and the
+			// silent catch below drops every OTHER prop with it — that is how a search Input
+			// kept "Show Icon Leading = False" despite the plan asking for the icon. Resolve
+			// booleans and loose casing to the component's own option list first.
+			const want =
+				typeof val === 'boolean'
+					? val
+						? 'True'
+						: 'False'
+					: String(val);
+			textVarProps[key] = resolveVariantLabel(cp[key], want);
 		} else if (type === 'BOOLEAN') {
 			textVarProps[key] = val === true || val === 'true';
 		} else if (type === 'INSTANCE_SWAP') {
@@ -386,65 +455,94 @@ async function applyInstanceSwap(inst, propKey, keyVal) {
 		} catch {}
 	}
 }
-/* setButtonIcon — first-class leading/trailing icon for a Button (`side` =
- * 'leading' | 'trailing'). Enables the "Show Icon <side>" boolean, then swaps the
- * ACTIVE (visible, size-correct) icon child to the requested DB Theme icon —
- * resolved by NAME via ICON_KEYS (e.g. "calendar") or a raw component/set key.
- * Auto-targets whichever swap slot matches the button's current Size (Medium vs
- * Small), so callers never guess "Icon Leading Medium" vs "…Small". Call AFTER
+/* findIconSwapSlot — locate the child instance a button's icon swap property drives.
+ * A TEXT button names its slots "Icon Leading <size>" / "Icon Trailing <size>", so the
+ * side-specific match is the normal path. An ICON-ONLY button has no sides and no "Show Icon"
+ * boolean at all — its single slot is just "Icon <size>" (e.g. "🔄 Icon Medium#491:241"). Without
+ * the second lookup the side regex found nothing, the swap was skipped, and the button shipped
+ * the library's unresolved "<Icon>" placeholder: a visibly empty ✕ box. Excluding
+ * leading/trailing keeps a text button from matching the wrong side. */
+function findIconSwapSlot(inst, side) {
+	const refOf = (n) =>
+		safe(() => n.componentPropertyReferences?.mainComponent, '') || '';
+	const slotFor = (test) =>
+		safe(
+			() =>
+				inst.findOne(
+					(n) => n.type === 'INSTANCE' && n.visible && test(refOf(n))
+				),
+			null
+		);
+	const sideRe = new RegExp('icon ' + side, 'i');
+	return (
+		slotFor((r) => sideRe.test(r)) ||
+		slotFor((r) => /icon/i.test(r) && !/leading|trailing/i.test(r))
+	);
+}
+
+/* resolveIconTarget — import the COMPONENT to swap an icon slot to. `key` may be a single
+ * component key or a component_set key; for a set we pick the size variant matching the icon
+ * currently in the slot, so a "Medium" button keeps its icon size (and a "Small" button its
+ * smaller one). Returns null when nothing could be imported — the caller then leaves the slot
+ * untouched rather than breaking the instance. */
+async function resolveIconTarget(key, child) {
+	let set = null;
+	try {
+		set = await figma.importComponentSetByKeyAsync(key);
+	} catch {}
+	if (!set) {
+		try {
+			return await figma.importComponentByKeyAsync(key);
+		} catch {
+			return null;
+		}
+	}
+
+	const cur = await safe(() => child.getMainComponentAsync(), null);
+	const curName = cur ? cur.name : '';
+	const kids = set.children || [];
+	const pick =
+		kids.find((c) => c.name === curName) ||
+		kids.find((c) => /size=24/i.test(c.name)) ||
+		set.defaultVariant ||
+		kids[0];
+	if (!pick) return null;
+	try {
+		return await figma.importComponentByKeyAsync(pick.key);
+	} catch {
+		return null;
+	}
+}
+
+/* setComponentIcon — first-class leading/trailing icon for ANY component that has an icon slot
+ * (`side` = 'leading' | 'trailing'): Button, but equally Input (the magnifier of a search field),
+ * Select, Link, Tag. Turns the "Show Icon <side>" toggle on — a BOOLEAN on a Button, a VARIANT
+ * on a form field, both handled — then swaps the ACTIVE (visible, size-correct) icon child to the
+ * requested DB Theme icon, resolved by NAME via ICON_KEYS (e.g. "magnifying_glass") or a raw
+ * component/set key. Auto-targets whichever swap slot matches the component's current Size
+ * (Medium vs Small), so callers never guess "Icon Leading Medium" vs "…Small". Call AFTER
  * applyProps so the Size variant is already applied. */
-async function setButtonIcon(inst, ref, side) {
+async function setComponentIcon(inst, ref, side) {
 	if (!ref) return;
 	const cp = inst.componentProperties || {};
 	const showKey = Object.keys(cp).find((k) =>
 		new RegExp('show icon ' + side, 'i').test(k)
 	);
 	if (showKey) {
+		// The toggle is a BOOLEAN on a Button but a VARIANT ("True"/"False") on a form field
+		// like Input — passing `true` to the variant throws and the icon never appears.
+		const value =
+			cp[showKey].type === 'VARIANT'
+				? resolveVariantLabel(cp[showKey], 'True')
+				: true;
 		try {
-			inst.setProperties({ [showKey]: true });
+			inst.setProperties({ [showKey]: value });
 		} catch {}
 	}
 	const key = iconKeyByName(String(ref)) || String(ref);
-	const re = new RegExp('icon ' + side, 'i');
-	const child = safe(
-		() =>
-			inst.findOne(
-				(n) =>
-					n.type === 'INSTANCE' &&
-					n.visible &&
-					re.test(
-						safe(
-							() => n.componentPropertyReferences?.mainComponent,
-							''
-						) || ''
-					)
-			),
-		null
-	);
+	const child = findIconSwapSlot(inst, side);
 	if (!child) return;
-	let target = null;
-	let set = null;
-	try {
-		set = await figma.importComponentSetByKeyAsync(key);
-	} catch {}
-	if (set) {
-		const cur = await safe(() => child.getMainComponentAsync(), null);
-		const curName = cur ? cur.name : '';
-		const pick =
-			(set.children || []).find((c) => c.name === curName) ||
-			(set.children || []).find((c) => /size=24/i.test(c.name)) ||
-			set.defaultVariant ||
-			(set.children || [])[0];
-		if (pick) {
-			try {
-				target = await figma.importComponentByKeyAsync(pick.key);
-			} catch {}
-		}
-	} else {
-		try {
-			target = await figma.importComponentByKeyAsync(key);
-		} catch {}
-	}
+	const target = await resolveIconTarget(key, child);
 	if (target) {
 		try {
 			child.swapComponent(target);

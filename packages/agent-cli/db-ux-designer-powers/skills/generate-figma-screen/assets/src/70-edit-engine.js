@@ -78,8 +78,11 @@ function findScreenFrame(spec) {
 		`Screen frame "${spec.screen ?? spec.rootId}" not found for editing. Check the exact frame name.`
 	);
 }
+/* Matches a rendered layout container. Instances of the Core Lab set are named "🧪 Container";
+ * the legacy patterns stay in the alternation so an OLD frame (rendered before the switch to
+ * library-only primitives) can still be edited in place. */
 const CONTAINER_RE =
-	/container ?\/ ?vertical|container ?\/ ?horizontal|containervertical|containerhorizontal/i;
+	/container|container ?\/ ?vertical|container ?\/ ?horizontal|containervertical|containerhorizontal/i;
 async function applyOneEdit(frame, e) {
 	switch (e.op) {
 		case 'setText': {
@@ -164,20 +167,45 @@ async function applyOneEdit(frame, e) {
 					: null;
 			if (!cont)
 				return { op: e.op, ok: false, error: 'container not found' };
-			const GAP = {
-				'2xs': '2xs',
-				xs: 'xs',
-				sm: 'sm',
-				md: '(Def) md',
-				lg: 'lg',
-				xl: 'xl',
-				'2xl': '2xl',
-				'3xl': '3xl',
-				// "auto" = SPACE_BETWEEN (distribute children to both ends).
-				auto: 'auto'
-			};
-			setVariant(cont, 'Gap', GAP[e.gap] ?? e.gap);
-			return { op: e.op, ok: true };
+			// The Core Lab Container has no Gap VARIANT — spacing is a bound itemSpacing
+			// variable on its inner Slot, and "auto" means SPACE_BETWEEN. (A Grid still
+			// carries a real Gap axis, so a Grid target keeps using setVariant.)
+			if (/grid/i.test(safe(() => cont.name, ''))) {
+				setVariant(cont, 'Gap', GRID_GAP_LABELS[e.gap] ?? e.gap);
+				return { op: e.op, ok: true };
+			}
+			const slot = safe(() => freshSlot(cont, 'Slot'), null);
+			if (!slot)
+				return {
+					op: e.op,
+					ok: false,
+					error: 'container has no Slot to space'
+				};
+			if (e.gap === 'auto') {
+				try {
+					slot.primaryAxisAlignItems = 'SPACE_BETWEEN';
+				} catch (err) {
+					return { op: e.op, ok: false, error: String(err) };
+				}
+				return { op: e.op, ok: true };
+			}
+			const token = CONTAINER_GAP_TOKENS[e.gap];
+			if (!token)
+				return {
+					op: e.op,
+					ok: false,
+					error: `unknown gap "${e.gap}" — use ${Object.keys(
+						CONTAINER_GAP_TOKENS
+					).join('|')} or "auto"`
+				};
+			const bound = await bindItemSpacing(slot, token);
+			return bound
+				? { op: e.op, ok: true }
+				: {
+						op: e.op,
+						ok: false,
+						error: `could not bind itemSpacing to ${token}`
+					};
 		}
 		case 'setSectionFill': {
 			const t = findTextNode(frame, e.anchorText, e.mode);
@@ -207,7 +235,7 @@ async function applyOneEdit(frame, e) {
 			const node = t
 				? e.scope
 					? nearestAncestor(t, new RegExp(e.scope, 'i'))
-					: nearestAncestor(t, /Card|Container ?\/ ?Horizontal/i)
+					: nearestAncestor(t, /Card|Container/i)
 				: e.name
 					? findByName(frame, e.name)
 					: null;
@@ -236,7 +264,7 @@ async function applyOneEdit(frame, e) {
 				};
 			const sibling = e.scope
 				? nearestAncestor(t, new RegExp(e.scope, 'i'))
-				: nearestAncestor(t, /Card|Container ?\/ ?Horizontal/i);
+				: nearestAncestor(t, /Card|Container/i);
 			if (!sibling || !sibling.parent)
 				return {
 					op: e.op,
@@ -314,14 +342,28 @@ const EDIT_API = {
 	// sizing helpers
 	fillWidth,
 	hugWidth,
+	hugTextWidth,
+	// Which text children of a horizontal row must hug so following siblings stay one gap behind,
+	// and which cells of a data row must fill so header and body share one column grid.
+	rowTextHugIndices,
+	rowCellFillIndices,
+	// fillHeight is GUARDED: it refuses to stretch a node whose parent hugs on that axis (which
+	// would collapse it to 0px) and returns whether the stretch happened. canFillVertical is the
+	// same predicate, exposed so a fallback edit can check before it writes.
 	fillHeight,
+	canFillVertical,
 	hugHeight,
 	hugVertical,
+	alignMainEnd,
+	alignCrossEnd,
+	// charts: re-seat every bar graph on one baseline at its card floor
+	anchorChartsToCardBottom,
 	// build compliant content (Heading/Body via renderNode — raw styled text is not allowed)
 	renderNode,
 	importSet,
 	createLibraryInstance,
-	createLocalInstance,
+	createConceptInstance,
+	bindItemSpacing,
 	// selectors / traversal
 	findByName,
 	findTextNode,
@@ -372,6 +414,12 @@ async function applyEdits(spec) {
 	try {
 		hugHeight(frame);
 	} catch {}
+	// Re-seat every graph on its baseline / the card floor. An edit can change what a card
+	// contains (and therefore its height), so the same guarantee renderPlan gives must hold
+	// after a patch — otherwise a chart silently drifts off the floor on the next edit.
+	try {
+		anchorChartsToCardBottom(frame);
+	} catch {}
 	const audit = await auditTree(frame);
 	return { rootId: frame.id, results, audit };
 }
@@ -401,6 +449,10 @@ async function applyEdits(spec) {
  *   replaceAll    optional. Deliberate PAGE WIPE — removes EVERY frame on the target page first
  *                 (reusing the first frame's position). Rare; use only to rebuild a page from
  *                 scratch. For normal re-renders use `replace`.
+ *   pageType      the detected page type ("dashboard" | "contentpage" | "form" | "process" |
+ *                 "modal"). Always set it: it switches on the page-type-specific audit checks
+ *                 (e.g. a dashboard must be ONE Section — the bento work area — so a stack of
+ *                 titled sections is reported as `dashboard-multi-section`).
  *   layout        REQUIRED array. Ordered top-level nodes — the Header first, then the
  *                 Sections. Each node's shape is documented under NODE FIELDS below;
  *                 compositions/spacing are drawn from the registries, not hardcoded here.
@@ -460,6 +512,10 @@ async function applyEdits(spec) {
  *             Card: stretch the card to the grid row height instead of hugging (used
  *             outside grids). Inside a Cards-only Grid you do NOT need this — the runtime
  *             AUTO-EQUALIZES card heights (see `equalHeights`).
+ *             It is a REQUEST, not a command: a node can only stretch into a parent that
+ *             owns a height. Asked for inside a HUGGING vertical parent it is ignored (the
+ *             node keeps hugging) instead of collapsing to 0px and overflowing — so it is
+ *             always safe to set, and never a way to force extra height.
  *   justify   ContainerVertical + fillHeight: where content sits on the vertical axis —
  *             "start" (top) | "center" (default) | "end" (bottom). Use `fillHeight:true`
  *             + `justify:"end"` for a content card's trailing action column so the action
@@ -474,6 +530,22 @@ async function applyEdits(spec) {
  *             child (badge/tag column) with `hugWidth: true` so only the leading block grows.
  *   hugWidth  Text/Container: opt out of the default horizontal FILL and only take the
  *             width the content needs (e.g. the trailing badge column in a `spread` row).
+ *             Heading/Body inside a multi-child ContainerHorizontal hug ALREADY — a filling
+ *             label would shove its siblings to the far right instead of letting them sit one
+ *             gap behind it (e.g. "Aktive Filter" + its Tags), so the flag is redundant there.
+ *   fillWidth Heading/Body: force the horizontal FILL back ON inside such a row — the leading
+ *             text block of a `spread` row fills anyway, so this is only for the rare
+ *             left-packed row whose text must claim the remaining width.
+ *             Any component: take the full container width instead of hugging (e.g. the leading
+ *             Checkbox cell of a table row, which must be one column like every other cell).
+ *             In a DATA ROW (a row with 2+ text cells) every cell fills automatically, so each
+ *             value stays under its header; `hugWidth: true` opts a single cell out.
+ *   iconLeading / iconTrailing
+ *             Any component with an icon slot — Button, but equally Input (the magnifier of a
+ *             search field), Select, Link, Tag. Takes a DB Theme icon NAME from the icon registry
+ *             (e.g. "magnifying_glass", "calendar") or a raw key. Turns the component's
+ *             "Show Icon <side>" toggle on and swaps the size-correct slot, so an icon never
+ *             ships as the unresolved "<Icon>" placeholder.
  *   Icon      A real DB Theme Icon component instance (functional icon). Use for
  *             `visual: "icon"`. NEVER an image rectangle. The size is INTRINSIC to the
  *             component's `Size` variant — the instance HUGS both width and height and is
@@ -486,13 +558,14 @@ async function applyEdits(spec) {
  *             imageWidth OPTIONAL fixed pixel width for a small thumbnail (e.g. beside text
  *                        in a ContainerHorizontal). Height derives from the ratio. Omit to
  *                        FILL the container width (the default, e.g. inside a Grid cell).
- *             src        real image URL (optional; loaded via createImageAsync)
- *             imageHash  explicit Figma image hash (optional)
+ *             imageHash  Figma image hash of an asset ALREADY IN THE FILE (optional). Use only
+ *                        when the user explicitly provided the asset. NOTE: there is no `src`
+ *                        option — figma.createImageAsync does not exist in this sandbox.
  *             scaleMode  "FILL" (default) | "FIT" | "TILE" | "CROP"
  *             radius     DB radius TOKEN name ("radius.md" | "radius.lg" | ...,
  *                        default "radius.lg") or "none". NEVER a raw pixel number.
- *             Fill precedence: src → imageHash → DB transparent placeholder
- *             (checkerboard, the designer default) → neutral gray as a last resort.
+ *             Fill: `imageHash` when the user supplied an asset, otherwise an EMPTY Figma
+ *             image on Fill — the intended default for a generated layout.
  *   gridGap   Grid gap token: "(Def) md" (default) | "xl" | "2xl" etc.
  *             Media/Text rows on landing pages use "xl".
  *   gridLayout Grid column split: defaults to the child count (2->"50-50",

@@ -12,8 +12,9 @@
  *  paint, slots re-fetched fresh, tokens validated — so fallbacks stay compliant.)
  */
 const _m = JSON.parse(figma.root.getSharedPluginData("dbuxRuntime", "meta") || "{}");
-if (!_m.count) throw new Error("[STOP] runtime not bootstrapped in this file — run bootstrap/store-*.js then store-meta.js first");
+if (!_m.count) throw new Error("[STOP] runtime not bootstrapped in this file — run bootstrap/check.js, then follow its gate. If you cannot reproduce each chunk byte-for-byte, STOP NOW, change nothing, and tell the user: Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln (z. B. Claude Opus 5) und den Auftrag erneut senden. The bootstrap is needed once per Figma file; afterwards every model can render. Never shorten, merge, split, guess or hand-repair a chunk, never write the meta record yourself, and never fall back to hand-written Figma node code.");
 let _src = "";
 for (let i = 0; i < _m.count; i++) _src += figma.root.getSharedPluginData("dbuxRuntime", "c" + i);
+if (_src.length !== _m.bytes) throw new Error("[STOP] stored runtime is corrupt (" + _src.length + " of " + _m.bytes + " chars) — do NOT patch chunks or hand-roll a renderer. Clear the dbuxRuntime data and re-bootstrap (SKILL.md 4a-recovery). If you cannot reproduce each chunk byte-for-byte, STOP NOW, change nothing, and tell the user: Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln (z. B. Claude Opus 5) und den Auftrag erneut senden. The bootstrap is needed once per Figma file; afterwards every model can render. Never shorten, merge, split, guess or hand-repair a chunk, never write the meta record yourself, and never fall back to hand-written Figma node code.");
 const _api = new Function(_src + ";return {renderPlan,applyEdits,renderNode,api:EDIT_API};")();
 const renderPlan = _api.renderPlan, applyEdits = _api.applyEdits, api = _api.api;

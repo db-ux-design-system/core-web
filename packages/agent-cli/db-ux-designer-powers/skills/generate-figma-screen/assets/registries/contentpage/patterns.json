@@ -1,0 +1,365 @@
+{
+	"_meta": {
+		"schema": "db-ux/patterns/v1",
+		"pageType": "contentpage",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Contentpage / Blocks\" (node 1710:3371).",
+		"purpose": "Complete contentpage modules. Each pattern carries its own selection metadata (intent / whenToUse / cardinality / alternatives) — there is no separate sections file.",
+		"levels": "level \"section\" brings its own Section wrapper and is placed by a template slot. level \"module\" is embeddable inside another pattern and is reached via $ref."
+	},
+	"patterns": {
+		"contentpage.home-hero": {
+			"source": "1715:15657 Home Page Hero Section",
+			"purpose": "Centered entry section: h1, large subline, action row.",
+			"level": "section",
+			"intent": "Open the page with the main promise and the primary action.",
+			"whenToUse": "The page is a top-level entry point (home, campaign, product landing) and the message should be centered. Its Brand action is the page's single primary action and MUST repeat verbatim in the closing CTA.",
+			"cardinality": "1",
+			"alternatives": ["contentpage.subpage-hero"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"align": "center",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "lg",
+						"align": "center",
+						"children": [
+							{
+								"type": "Heading",
+								"as": "h1",
+								"content": "<Headline>",
+								"fills": "color.text.strong",
+								"align": "center"
+							},
+							{
+								"type": "Body",
+								"size": "Large",
+								"content": "<Description>",
+								"fills": "color.text.strong",
+								"align": "center"
+							},
+							{ "$ref": "contentpage.action-row" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.subpage-hero": {
+			"source": "1715:15660 Subpage Hero Section",
+			"purpose": "Left-aligned entry section: h1, large subline, action row.",
+			"level": "section",
+			"intent": "Open a subordinate page with its title and the primary action.",
+			"whenToUse": "The page sits below a top-level entry (a detail, topic or service page) and reads left-aligned like the body content that follows. Its Brand action is the page's single primary action and MUST repeat verbatim in the closing CTA.",
+			"cardinality": "1",
+			"alternatives": ["contentpage.home-hero"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "lg",
+						"align": "left",
+						"children": [
+							{
+								"type": "Heading",
+								"as": "h1",
+								"content": "<Headline>",
+								"fills": "color.text.strong"
+							},
+							{
+								"type": "Body",
+								"size": "Large",
+								"content": "<Description>",
+								"fills": "color.text.strong"
+							},
+							{ "$ref": "contentpage.action-row" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.content-row": {
+			"source": "1715:16473 Grid Content",
+			"purpose": "One 50-50 media/text row, text on the left.",
+			"level": "module",
+			"intent": "Explain one point with a supporting image beside it.",
+			"whenToUse": "A single narrative step inside a content section. Alternate with the flipped variant across consecutive rows.",
+			"cardinality": "0..n",
+			"alternatives": ["contentpage.content-row-flip"],
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "2xl",
+				"children": [
+					{ "$ref": "contentpage.content-teaser" },
+					{ "$ref": "contentpage.image" }
+				]
+			}
+		},
+		"contentpage.content-row-flip": {
+			"source": "1715:16474 Grid Content - Flip",
+			"purpose": "One 50-50 media/text row, image on the left.",
+			"level": "module",
+			"intent": "Explain one point with a supporting image beside it, mirrored.",
+			"whenToUse": "The alternating counterpart of contentpage.content-row; use for every second row so the rhythm reads deliberate.",
+			"cardinality": "0..n",
+			"alternatives": ["contentpage.content-row"],
+			"plan": {
+				"type": "Grid",
+				"gridLayout": "50-50",
+				"gridGap": "2xl",
+				"children": [
+					{ "$ref": "contentpage.image" },
+					{ "$ref": "contentpage.content-teaser" }
+				]
+			}
+		},
+		"contentpage.content-section": {
+			"source": "1715:15658 Content Section",
+			"purpose": "Section title followed by alternating 50-50 media/text rows.",
+			"level": "section",
+			"intent": "Explain a topic through a sequence of related content points.",
+			"whenToUse": "The content is a narrative, a product explanation or two to three related points that each deserve an image.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{ "$ref": "contentpage.section-title" },
+					{ "$ref": "contentpage.content-row" },
+					{ "$ref": "contentpage.content-row-flip" },
+					{ "$ref": "contentpage.content-row" }
+				]
+			}
+		},
+		"contentpage.card-section": {
+			"source": "1715:15659 Card Section",
+			"purpose": "Section title followed by three equal text-first cards.",
+			"level": "section",
+			"intent": "Present three equivalent options side by side.",
+			"whenToUse": "Three equal resources, topics, services or choices, none of which needs an image. Never use it for heterogeneous content.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.surface",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{ "$ref": "contentpage.section-title" },
+					{
+						"type": "Grid",
+						"gridLayout": "(Def) 33-33-33",
+						"gridGap": "lg",
+						"children": [
+							{ "$ref": "contentpage.card-teaser" },
+							{ "$ref": "contentpage.card-teaser" },
+							{ "$ref": "contentpage.card-teaser" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.visual-section": {
+			"source": "1720:21990 Content - Visual + 1715:15659 Card Section (grid)",
+			"purpose": "Section title followed by three image-led teasers.",
+			"level": "section",
+			"intent": "Offer three equivalent options that each need an image.",
+			"whenToUse": "Three equal topics, destinations or offers where the picture carries the message. Use card-section instead when the items are text-only.",
+			"cardinality": "0..n",
+			"alternatives": ["contentpage.visual-card-section"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{ "$ref": "contentpage.section-title" },
+					{
+						"type": "Grid",
+						"gridLayout": "(Def) 33-33-33",
+						"gridGap": "lg",
+						"children": [
+							{ "$ref": "contentpage.visual-teaser" },
+							{ "$ref": "contentpage.visual-teaser" },
+							{ "$ref": "contentpage.visual-teaser" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.visual-card-section": {
+			"source": "1720:21994 Content - Visual - Card + 1715:15659 Card Section (grid)",
+			"purpose": "Section title followed by three image-led teasers on card surfaces.",
+			"level": "section",
+			"intent": "Offer three equivalent image-led options that should read as distinct surfaces.",
+			"whenToUse": "Like visual-section, but the items need to sit on their own elevated surface — e.g. against a tinted section background.",
+			"cardinality": "0..n",
+			"alternatives": ["contentpage.visual-section"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.surface",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{ "$ref": "contentpage.section-title" },
+					{
+						"type": "Grid",
+						"gridLayout": "(Def) 33-33-33",
+						"gridGap": "lg",
+						"children": [
+							{ "$ref": "contentpage.visual-card-teaser" },
+							{ "$ref": "contentpage.visual-card-teaser" },
+							{ "$ref": "contentpage.visual-card-teaser" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.article-section": {
+			"source": "1720:21992 Article + 1715:15659 Card Section (grid)",
+			"purpose": "Section title followed by three article teasers with image, category and meta.",
+			"level": "section",
+			"intent": "Offer a set of editorial articles or news entries.",
+			"whenToUse": "The content is dated, authored editorial material — news, blog posts, press. Use card-section instead when the items are non-editorial options.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{ "$ref": "contentpage.section-title" },
+					{
+						"type": "Grid",
+						"gridLayout": "(Def) 33-33-33",
+						"gridGap": "lg",
+						"children": [
+							{ "$ref": "contentpage.article-teaser" },
+							{ "$ref": "contentpage.article-teaser" },
+							{ "$ref": "contentpage.article-teaser" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.content-banner": {
+			"source": "1715:16475 Conent Banner",
+			"purpose": "Elevation-1 card with a 50-50 text/image split, text on the left.",
+			"level": "module",
+			"intent": "Highlight one featured item inside a surface.",
+			"whenToUse": "A single announcement, promotion or featured topic that should stand out from the surrounding body copy.",
+			"cardinality": "0..n",
+			"alternatives": ["contentpage.content-banner-flip"],
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "none",
+				"children": [
+					{
+						"type": "Grid",
+						"gridLayout": "50-50",
+						"gridGap": "lg",
+						"children": [
+							{
+								"type": "ContainerVertical",
+								"gap": "lg",
+								"align": "left",
+								"padding": "lg",
+								"children": [
+									{ "$ref": "contentpage.content-teaser" }
+								]
+							},
+							{ "$ref": "contentpage.image" }
+						]
+					}
+				]
+			}
+		},
+		"contentpage.content-banner-flip": {
+			"source": "1715:16476 Conent Banner - Flip",
+			"purpose": "Elevation-1 card with a 50-50 image/text split, image on the left.",
+			"level": "module",
+			"intent": "Highlight one featured item inside a surface, mirrored.",
+			"whenToUse": "The alternating counterpart of contentpage.content-banner when two banners follow each other.",
+			"cardinality": "0..n",
+			"alternatives": ["contentpage.content-banner"],
+			"plan": {
+				"type": "Card",
+				"props": { "elevationLevel": "1" },
+				"spacing": "none",
+				"children": [
+					{
+						"type": "Grid",
+						"gridLayout": "50-50",
+						"gridGap": "lg",
+						"children": [
+							{ "$ref": "contentpage.image" },
+							{
+								"type": "ContainerVertical",
+								"gap": "lg",
+								"align": "left",
+								"padding": "lg",
+								"children": [
+									{ "$ref": "contentpage.content-teaser" }
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		"contentpage.banner-section": {
+			"source": "1715:16475 Conent Banner (placed in a Section)",
+			"purpose": "Section wrapper around one content banner.",
+			"level": "section",
+			"intent": "Give a single featured item its own place in the page flow.",
+			"whenToUse": "One item deserves more weight than a card in a row, but does not carry a whole section of its own content.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [{ "$ref": "contentpage.content-banner" }]
+			}
+		},
+		"contentpage.cta-card": {
+			"source": "1715:16268 CTA Card",
+			"purpose": "Closing card with a centered h2 and the action row.",
+			"level": "section",
+			"intent": "Close the page with the same conversion action the hero opened with.",
+			"whenToUse": "Always, exactly once, as the final section. It repeats the hero's action with IDENTICAL labels — the same offer at the exit, not a second one.",
+			"cardinality": "1",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [
+					{
+						"type": "Card",
+						"props": { "elevationLevel": "1" },
+						"spacing": "none",
+						"children": [
+							{
+								"type": "ContainerVertical",
+								"gap": "lg",
+								"align": "center",
+								"padding": "2xl",
+								"children": [
+									{
+										"type": "Heading",
+										"as": "h2",
+										"content": "<Closing headline>",
+										"fills": "color.text.strong",
+										"align": "center"
+									},
+									{ "$ref": "contentpage.action-row" }
+								]
+							}
+						]
+					}
+				]
+			}
+		}
+	}
+}

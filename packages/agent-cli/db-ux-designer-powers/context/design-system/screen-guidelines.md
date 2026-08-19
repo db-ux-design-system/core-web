@@ -3,6 +3,13 @@
 > Design-Prinzipien für DB-UX-Screens: wie Elemente aussehen und wie ein Screen strukturiert
 > wird. Framework-agnostisch — die technische Umsetzung (Runtime, Registries, Composition-
 > Workflow, Validierung) steht in `skills/generate-figma-screen/SKILL.md`.
+>
+> **Abgrenzung zu `layout-guidelines.md`:** Diese Datei beantwortet, **was** ein UI-Element
+> semantisch bedeutet, **welche Komponente** dafür verwendet wird und wie ihr visueller Zustand
+> aussieht. `layout-guidelines.md` beantwortet dagegen, **wie Inhalte gruppiert und räumlich
+> angeordnet** werden. Wenn die Layout-Guidelines zur Darstellung einer Contentart eine
+> Komponente nennen (z. B. Topline als Tag oder Meta als Badge), beschreibt das die Rolle im
+> Inhaltsmodell — die Semantik und Verwendung der Komponente selbst bleibt hier definiert.
 
 ## Komponenten
 
@@ -12,10 +19,15 @@
 - Jeder Screen beginnt mit dem DB-Header; Logo/App-Name IST der Home-Link (kein „Startseite"-Punkt).
 - Meta-Navigation und Header-Aktionsicons nur zeigen, wenn eine echte Aktion existiert — nie
   leere Platzhalter.
+- **Aktive Filter werden als Tags dargestellt, nie als Badges.** Tags repräsentieren entfernbare
+  oder interaktive Filterzustände; Badges sind für nicht-interaktive Status-, Prioritäts- oder
+  Kennzeichnungsinformationen innerhalb von Inhalten. Für Filter-Chips immer die offizielle
+  `Tag`-Komponente verwenden und die aktive Filterauswahl nachvollziehbar sowie entfernbar
+  machen.
 
 ## Farbe
 
-- Große Flächen nur in Hintergrund-Level 1–3; Zebra: oberste Fläche Level 1, dann abwechselnd.
+- Große Flächen nur in Hintergrund-Level 1–3. Zebra-Flächen sind optional und werden nur bewusst eingesetzt, um inhaltlich unterschiedliche Bereiche klar zu gruppieren; sie sind kein Standard für jeden Screen.
 - Brand-/Akzentfarbe nur für Text, Icon oder Border — nie als Fläche.
 - Text-Emphasis: 100 ist Standard; 90/80 nur für bewusst abgeschwächten Text; 70 nur für Icons.
 
@@ -27,6 +39,12 @@
   — nie zwei gleich große Headlines in einer Section.
 - Gewicht und Farb-Emphasis stimmen überein: Bold mit starker Farbe (100); abgeschwächte Farbe
   mit Regular. Meta/Caption = Regular + gedämpft. Nie Bold + gedämpft.
+- **Keine Versalien (Capslock).** Texte stehen in normaler Schreibweise — Toplines, Kategorien,
+  Labels, Meta und Component-Beschriftungen (Tag, Badge, Button, Link) eingeschlossen. Eine
+  Topline wird über Größe, Gewicht und Farb-Emphasis abgesetzt, nie über Großschreibung. Das
+  gilt für den Textinhalt selbst („ORIENTIERUNG" → „Orientierung") genauso wie für erzwungenes
+  Uppercase (Figma `Text Case`, CSS `text-transform`). Ausnahme: Eigennamen und etablierte
+  Abkürzungen (DB, ICE, AGB).
 
 ## Spacing
 
@@ -105,3 +123,8 @@ Die Art der Aktion ergibt sich aus ihrer Bedeutung — nie frei gewählt:
   Höhe ergibt sich daraus — keine freien Pixelhöhen.
 - Icons sind echte DB-Icon-Komponenten (nie Emoji, Bild-Rechteck oder umgefärbte Form); die
   Größe ist über die Größenstufe intrinsisch bestimmt.
+- **Ein Icon-Only-Button braucht zwingend ein Icon.** Ohne gesetztes Icon bleibt der
+  Platzhalter der Library stehen und rendert als leeres ✕-Kästchen. Ist für die Aktion kein
+  passendes, verifiziertes Icon vorhanden, wird die Aktion als Button MIT Label gesetzt oder
+  weggelassen — nie als leerer Icon-Button. Dasselbe gilt für jedes Icon-Slot: nur verifizierte
+  DB-Theme-Icon-Namen verwenden.

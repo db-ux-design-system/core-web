@@ -27,6 +27,9 @@
     "copy-output:powers": "cpr db-ux-consumer-powers ../../build-outputs/agent-cli/db-ux-consumer-powers --overwrite",
     "copy-output:powers-designer": "cpr db-ux-designer-powers ../../build-outputs/agent-cli/db-ux-designer-powers --overwrite",
     "copy-output:readme": "cpr README.md ../../build-outputs/agent-cli/README.md --overwrite",
+    "registry:validate": "node db-ux-designer-powers/skills/generate-figma-screen/assets/validate-registries.cjs",
+    "runtime:build": "node db-ux-designer-powers/skills/generate-figma-screen/assets/build-runtime.cjs",
+    "runtime:check": "node db-ux-designer-powers/skills/generate-figma-screen/assets/build-runtime.cjs --check",
     "test": "vitest run --config vitest.config.ts",
     "test:cli": "tsx src/cli.ts --help",
     "test:update": "vitest run --config vitest.config.ts --update"

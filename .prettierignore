@@ -19,5 +19,11 @@ showcases/patternhub/pages/components/**
 showcases/patternhub/generated.js
 showcases/patternhub/testing-table.ts
 packages/mcp-server/assets/**
+# Generated + size-critical: the Figma render runtime must stay minified (it is pasted
+# verbatim into use_figma, which caps `code` at 50 000 chars). Formatting it inflates it
+# past that limit and corrupts the bootstrap chunks. Regenerate via
+# assets/build-runtime.cjs instead of editing/formatting these files.
+packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/db-figma-runtime.min.js
+packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/bootstrap/**
 package-lock.json
 *.d.ts

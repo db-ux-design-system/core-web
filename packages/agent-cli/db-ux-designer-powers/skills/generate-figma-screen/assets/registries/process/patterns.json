@@ -1,0 +1,94 @@
+{
+	"_meta": {
+		"schema": "db-ux/patterns/v1",
+		"pageType": "process",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Process / Blocks\" (node 1328:2829), reference composition \"Process Screen\" (1716:21814).",
+		"purpose": "Complete modules of a multi-step flow. Each pattern carries its own selection metadata (intent / whenToUse / cardinality / alternatives) — there is no separate sections file.",
+		"levels": "level \"section\" brings its own Section wrapper and is placed by a template slot. level \"module\" is embeddable inside another pattern and is reached via $ref."
+	},
+	"patterns": {
+		"process.stepper-section": {
+			"source": "1716:21814 Process Screen (first section)",
+			"purpose": "Section holding the horizontal stepper.",
+			"level": "section",
+			"intent": "Show where the user is in the flow and which steps are done.",
+			"whenToUse": "The flow has named steps the user should recognize. Prefer this over the bare progress bar whenever the steps have meaningful titles.",
+			"cardinality": "1",
+			"alternatives": ["process.progress-section"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [{ "$ref": "process.stepper" }]
+			}
+		},
+		"process.progress-section": {
+			"source": "1716:21082 Progess",
+			"purpose": "Section holding a step counter and a determinate progress bar.",
+			"level": "section",
+			"intent": "Show how far the user has come without naming the steps.",
+			"whenToUse": "The flow has many steps, or the step names carry no meaning for the user. Note the progress component offers only 25, 50 and 75 percent.",
+			"cardinality": "1",
+			"alternatives": ["process.stepper-section"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [{ "$ref": "process.progress" }]
+			}
+		},
+		"process.step": {
+			"source": "1716:21814 Process Screen (content section)",
+			"purpose": "The current step: heading pair above the step's own content.",
+			"level": "section",
+			"intent": "Ask for exactly what this step needs.",
+			"whenToUse": "Every step frame has one of these. Fill the content column with the fields, options or summary this step is about — reuse the form page-type blocks for input controls.",
+			"cardinality": "1",
+			"alternatives": ["process.confirmation"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"spacing": "none",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "xl",
+						"align": "left",
+						"children": [{ "$ref": "process.step-title" }]
+					}
+				]
+			}
+		},
+		"process.confirmation": {
+			"source": "1716:21929 Success Content",
+			"purpose": "Closing confirmation screen with a success message and one action.",
+			"level": "section",
+			"intent": "Confirm that the flow completed and offer the single follow-up action.",
+			"whenToUse": "The last frame of the flow, instead of a step. It carries no Back/Next row — its own Brand button is the only action.",
+			"cardinality": "0..1",
+			"alternatives": ["process.step"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"align": "center",
+				"children": [{ "$ref": "process.success" }]
+			}
+		},
+		"process.navigation-section": {
+			"source": "1716:21930 Navigation",
+			"purpose": "Section holding the Back/Next row.",
+			"level": "section",
+			"intent": "Let the user move one step back or forward.",
+			"whenToUse": "Every step frame except the confirmation. Back is ghost, Next is the frame's single Brand action.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [{ "$ref": "process.navigation" }]
+			}
+		}
+	}
+}

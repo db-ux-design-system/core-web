@@ -1,0 +1,151 @@
+{
+	"_meta": {
+		"schema": "db-ux/patterns/v1",
+		"pageType": "form",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Form / Blocks\" (node 1307:2208).",
+		"purpose": "Complete form modules. Each pattern carries its own selection metadata (intent / whenToUse / cardinality / alternatives) — there is no separate sections file.",
+		"levels": "level \"section\" brings its own Section wrapper and is placed by a template slot. level \"module\" is embeddable inside another pattern and is reached via $ref."
+	},
+	"patterns": {
+		"form.intro": {
+			"source": "1716:20419 Section Title",
+			"purpose": "Form entry: h2 title, optional description and the required-field convention.",
+			"level": "section",
+			"intent": "Name the form and state its conventions once.",
+			"whenToUse": "Always, exactly once, as the first section after the Header. The h1-level title of the page lives here.",
+			"cardinality": "1",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Small (768)",
+				"children": [
+					{
+						"type": "ContainerVertical",
+						"gap": "xl",
+						"align": "left",
+						"children": [
+							{ "$ref": "form.section-title" },
+							{ "$ref": "form.required-note" }
+						]
+					}
+				]
+			}
+		},
+		"form.text-fieldset": {
+			"source": "1716:20437 Inputs - Mixed",
+			"purpose": "Fieldset of text fields, including one paired row.",
+			"level": "module",
+			"intent": "Collect a group of related text values.",
+			"whenToUse": "The content is names, addresses, numbers or references. Pair two fields in a row only when they belong together.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "md",
+				"align": "left",
+				"children": [
+					{ "$ref": "form.field-row" },
+					{ "$ref": "form.text-field" },
+					{ "$ref": "form.select-field" }
+				]
+			}
+		},
+		"form.choice-fieldset": {
+			"source": "1716:20582 Checkbox Group + 1716:20773 Radio Group",
+			"purpose": "Fieldset of choice controls: a radio group and a checkbox group.",
+			"level": "module",
+			"intent": "Collect choices from a fixed set of options.",
+			"whenToUse": "The content is a decision among few visible options. Radio for exactly one, checkboxes for several, a Select instead when the list is long.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "xl",
+				"align": "left",
+				"children": [
+					{ "$ref": "form.radio-group" },
+					{ "$ref": "form.checkbox-group" }
+				]
+			}
+		},
+		"form.freetext-fieldset": {
+			"source": "1716:20855 Text Area",
+			"purpose": "Fieldset for free-form input with an optional consent checkbox.",
+			"level": "module",
+			"intent": "Collect a longer message and an accompanying confirmation.",
+			"whenToUse": "The content is a comment, a message or a description that does not fit one line.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "xl",
+				"align": "left",
+				"children": [
+					{ "$ref": "form.textarea-field" },
+					{ "$ref": "form.checkbox-field" }
+				]
+			}
+		},
+		"form.fields": {
+			"source": "1716:20435 Inputs + 1716:20437 Inputs - Mixed",
+			"purpose": "Titled section holding one or more fieldsets.",
+			"level": "section",
+			"intent": "Group the form's questions into one titled step.",
+			"whenToUse": "One section per thematic group of questions. Split into several sections rather than stacking twenty unlabelled fields.",
+			"cardinality": "1..n",
+			"alternatives": ["form.choices"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Small (768)",
+				"title": "<Group title>",
+				"titleAs": "h2",
+				"children": [{ "$ref": "form.text-fieldset" }]
+			}
+		},
+		"form.choices": {
+			"source": "1716:20773 Radio Group + 1716:20582 Checkbox Group",
+			"purpose": "Titled section holding choice controls.",
+			"level": "section",
+			"intent": "Group the form's decisions into one titled step.",
+			"whenToUse": "The group is about selecting options rather than entering values.",
+			"cardinality": "0..n",
+			"alternatives": ["form.fields"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Small (768)",
+				"title": "<Group title>",
+				"titleAs": "h2",
+				"children": [{ "$ref": "form.choice-fieldset" }]
+			}
+		},
+		"form.message": {
+			"source": "1716:20855 Text Area",
+			"purpose": "Titled section for a free-form message plus consent.",
+			"level": "section",
+			"intent": "Let the user write a longer message and confirm something.",
+			"whenToUse": "Contact and feedback forms, or any step whose main input is prose.",
+			"cardinality": "0..n",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Small (768)",
+				"title": "<Group title>",
+				"titleAs": "h2",
+				"children": [{ "$ref": "form.freetext-fieldset" }]
+			}
+		},
+		"form.submit": {
+			"source": "1716:20580 Actions",
+			"purpose": "Closing section with the submit action row.",
+			"level": "section",
+			"intent": "Let the user submit, or step back.",
+			"whenToUse": "Always, exactly once, as the final section. The Brand button here is the page's single primary action.",
+			"cardinality": "1",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Small (768)",
+				"children": [{ "$ref": "form.actions" }]
+			}
+		}
+	}
+}

@@ -1,0 +1,65 @@
+{
+	"_meta": {
+		"schema": "db-ux/patterns/v1",
+		"pageType": "modal",
+		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Modal / Blocks\" (node 1345:1368), block \"Modal / Dialog\" (1369:1124).",
+		"purpose": "Complete dialogs. Every pattern is a Dialog node — the component brings its own Backdrop and the Popover regions.",
+		"levels": "level \"section\" is the top-level placeable dialog. level \"module\" is embeddable inside another pattern and is reached via $ref."
+	},
+	"patterns": {
+		"modal.confirm": {
+			"source": "1369:1124 Modal / Dialog",
+			"purpose": "Destructive confirmation: question, consequence notification, cancel plus confirm.",
+			"level": "section",
+			"intent": "Make the user confirm an action that cannot be undone.",
+			"whenToUse": "The action deletes, cancels or otherwise cannot be reverted. The primary button names the action (\"Endgültig löschen\"), never a bare \"OK\".",
+			"cardinality": "1",
+			"alternatives": ["modal.acknowledge", "modal.input"],
+			"plan": {
+				"type": "Dialog",
+				"title": "<Dialog title>",
+				"spacing": "small",
+				"children": [{ "$ref": "modal.body" }],
+				"actions": {
+					"secondary": "<Abbrechen>",
+					"primary": "<Confirm action>"
+				}
+			}
+		},
+		"modal.acknowledge": {
+			"source": "1369:1124 Modal / Dialog (without the secondary action)",
+			"purpose": "Acknowledgement: a statement the user only confirms.",
+			"level": "section",
+			"intent": "Inform the user about something they must acknowledge before continuing.",
+			"whenToUse": "There is nothing to decide — only one way out. Drop the secondary action entirely rather than offering a pointless \"Abbrechen\".",
+			"cardinality": "1",
+			"alternatives": ["modal.confirm", "modal.input"],
+			"plan": {
+				"type": "Dialog",
+				"title": "<Dialog title>",
+				"spacing": "small",
+				"children": [{ "$ref": "modal.question" }],
+				"actions": { "primary": "<OK>" }
+			}
+		},
+		"modal.input": {
+			"source": "1369:1124 Modal / Dialog + form catalog fields",
+			"purpose": "Short input task inside a dialog: lead-in, one or two fields, cancel plus save.",
+			"level": "section",
+			"intent": "Collect one or two values without leaving the current screen.",
+			"whenToUse": "A tiny form that belongs to the current context — rename, add a note, pick a date. Anything longer belongs on a form page, not in a dialog.",
+			"cardinality": "1",
+			"alternatives": ["modal.confirm", "modal.acknowledge"],
+			"plan": {
+				"type": "Dialog",
+				"title": "<Dialog title>",
+				"spacing": "small",
+				"children": [{ "$ref": "modal.field-body" }],
+				"actions": {
+					"secondary": "<Abbrechen>",
+					"primary": "<Speichern>"
+				}
+			}
+		}
+	}
+}

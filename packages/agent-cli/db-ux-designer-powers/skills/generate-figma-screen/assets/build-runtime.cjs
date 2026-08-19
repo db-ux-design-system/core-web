@@ -47,6 +47,36 @@ const fs = require('fs');
 const path = require('path');
 const { injectMaps } = require('./build-registry-maps.cjs');
 
+/* -----------------------------------------------------------------------------
+ * --check mode (CI guard).
+ * -----------------------------------------------------------------------------
+ * The unit tests load the BUILT bundle, and Figma is bootstrapped from the
+ * generated bootstrap/ snippets — so an edit to src/ that was never rebuilt
+ * passes every test while the fix never reaches a rendered screen. `--check`
+ * runs the identical pipeline, writes NOTHING, and fails when what is on disk
+ * differs from what src/ + the registries produce. Wired into CI next to the
+ * registry contract check.
+ * Every generated file therefore goes through `emit()` instead of writeFileSync.
+ * -------------------------------------------------------------------------- */
+const CHECK_ONLY = process.argv.includes('--check');
+const emitted = new Map(); // absolute path -> content
+const drift = [];
+function emit(filePath, content) {
+	emitted.set(filePath, content);
+	if (!CHECK_ONLY) {
+		fs.mkdirSync(path.dirname(filePath), { recursive: true });
+		fs.writeFileSync(filePath, content);
+		return;
+	}
+	const rel = path.relative(__dirname, filePath);
+	if (!fs.existsSync(filePath)) {
+		drift.push(`${rel} is MISSING`);
+		return;
+	}
+	if (fs.readFileSync(filePath, 'utf8') !== content)
+		drift.push(`${rel} is STALE`);
+}
+
 // Preferred minifier: esbuild (optional). Resolve lazily so a standalone run
 // without node_modules cleanly falls back to the tokenizer below.
 let esbuild = null;
@@ -223,13 +253,77 @@ function stripComments(src) {
  * bootstrap is detectable (no meta => not ready). A short sha lets the agent
  * detect a stale/old runtime in a file and re-bootstrap only when needed.
  *
+ * Integrity is checked on BOTH sides: store-meta.js refuses to write the record
+ * unless every chunk matches its length AND its content checksum, and check.js
+ * re-verifies those checksums before reporting `ready`. The sha alone cannot do
+ * this — it is a label store-meta.js writes, not a digest of what is stored.
+ *
  * Generated files (assets/bootstrap/):
  *   store-<i>.js  paste-ready: writes chunk i into shared plugin data
- *   store-meta.js paste-ready: writes {count, sha, ...} (run AFTER all chunks)
- *   check.js      paste-ready: returns stored meta (compare .sha to manifest)
+ *   store-meta.js paste-ready: verifies all chunks, then writes {count, sha, ...}
+ *   check.js      paste-ready: verifies the store by content; returns ready + gate
  *   render.js     paste-ready loader; append the PLAN + renderPlan(PLAN) call
  *   manifest.json machine-readable {namespace, version_sha, chunkCount, ...}
  * -------------------------------------------------------------------------- */
+/* MODEL CAPABILITY GATE — embedded verbatim into the generated check.js /
+ * store-meta.js / render.js messages, so the warning reaches the agent exactly
+ * where it is about to go wrong (in the tool result), not only in SKILL.md.
+ * WHY: the bootstrap requires emitting ~7 000 characters of minified JS
+ * byte-for-byte, eight times. Smaller models truncate, paraphrase or "repair"
+ * chunks and then improvise imperative Figma code — which damages the file.
+ * Bootstrapping is a one-time-per-file job, so handing it to a large model is
+ * cheap; every later render works with any model.
+ * MUST stay a single line of plain text with no double quotes and no backslashes:
+ * it is interpolated into double-quoted JS string literals. */
+const MODEL_GATE_JS =
+	'If you cannot reproduce each chunk byte-for-byte, STOP NOW, change nothing, and tell the user: ' +
+	'Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln (z. B. Claude Opus 5) und den Auftrag erneut senden. ' +
+	'The bootstrap is needed once per Figma file; afterwards every model can render. ' +
+	'Never shorten, merge, split, guess or hand-repair a chunk, never write the meta record yourself, ' +
+	'and never fall back to hand-written Figma node code.';
+
+/* Per-chunk content checksum (FNV-1a over UTF-16 code units, 8 hex chars).
+ * WHY NOT sha256: the same function has to run inside the use_figma sandbox,
+ * which has no crypto API (verified: no fetch/XHR/TextDecoder either). FNV-1a
+ * needs only charCodeAt + Math.imul, both available there, and it is not a
+ * security boundary — it guards against a model substituting characters, not
+ * against an attacker. 8 hex chars keep the snippets small.
+ * WHY AT ALL: length alone cannot see a SAME-LENGTH substitution, and that is
+ * exactly how models corrupt a chunk — a \\uXXXX escape emitted as the literal
+ * character, a straight quote turned typographic, a minified !0 "fixed" to !1.
+ * Such a chunk passes a length gate, meta gets written, check.js reports
+ * ready:true, and the damage only surfaces as odd renders much later.
+ * MUST stay byte-identical to the copy generated into the snippets below. */
+function fnv1a(s) {
+	let v = 0x81_1c_9d_c5;
+	for (let i = 0; i < s.length; i++) {
+		v ^= s.charCodeAt(i);
+		v = Math.imul(v, 0x01_00_01_93) >>> 0;
+	}
+	return v.toString(16).padStart(8, '0');
+}
+
+/* The in-sandbox twin of fnv1a(), as a one-line arrow for the generated
+ * snippets. Kept next to the original so the two cannot drift apart
+ * unnoticed; verifyChecksumTwin() below proves they agree on every build. */
+const FNV_JS =
+	'const _h=s=>{let v=0x811c9dc5;for(let i=0;i<s.length;i++){v^=s.charCodeAt(i);' +
+	'v=Math.imul(v,0x01000193)>>>0}return v.toString(16).padStart(8,"0")};';
+
+/* Guard: the generated one-liner must compute exactly what the build computed.
+ * If someone edits one copy and not the other, fail the build here rather than
+ * ship snippets that reject every correctly pasted chunk. */
+function verifyChecksumTwin(samples) {
+	// eslint-disable-next-line no-new-func
+	const twin = new Function(`${FNV_JS}return _h;`)();
+	for (const s of samples)
+		if (twin(s) !== fnv1a(s))
+			throw new Error(
+				'build-runtime: FNV_JS and fnv1a() disagree — the generated checksum ' +
+					'twin drifted from the build-side function. Fix both copies.'
+			);
+}
+
 function buildBootstrap(runtimeMin) {
 	const NS = 'dbuxRuntime';
 	const CHUNK = 7000; // raw chars/chunk; keeps each store snippet well under budget
@@ -242,12 +336,20 @@ function buildBootstrap(runtimeMin) {
 	const chunks = [];
 	for (let i = 0; i < runtimeMin.length; i += CHUNK)
 		chunks.push(runtimeMin.slice(i, i + CHUNK));
+	const sums = chunks.map((c) => fnv1a(c));
+	verifyChecksumTwin(chunks);
+	const sumsJs = JSON.stringify(sums);
 
 	const dir = path.join(__dirname, 'bootstrap');
-	fs.mkdirSync(dir, { recursive: true });
-	// Remove stale chunk snippets from a previous (possibly larger) build.
-	for (const f of fs.readdirSync(dir)) {
-		if (/^store-\d+\.js$/.test(f)) fs.unlinkSync(path.join(dir, f));
+	if (!CHECK_ONLY) fs.mkdirSync(dir, { recursive: true });
+	// Chunk snippets from a previous (possibly LARGER) build must not linger: in write mode they
+	// are removed, in --check mode a leftover counts as drift like any other.
+	for (const f of fs.existsSync(dir) ? fs.readdirSync(dir) : []) {
+		const match = /^store-(\d+)\.js$/.exec(f);
+		if (!match) continue;
+		if (!CHECK_ONLY) fs.unlinkSync(path.join(dir, f));
+		else if (Number(match[1]) >= chunks.length)
+			drift.push(`bootstrap/${f} is LEFTOVER from a larger build`);
 	}
 
 	const q = JSON.stringify(NS);
@@ -257,27 +359,70 @@ function buildBootstrap(runtimeMin) {
 		const body =
 			`figma.root.setSharedPluginData(${q},"c${i}",${JSON.stringify(c)});\n` +
 			`return "c${i}:"+figma.root.getSharedPluginData(${q},"c${i}").length;\n`;
-		fs.writeFileSync(path.join(dir, `store-${i}.js`), body);
+		emit(path.join(dir, `store-${i}.js`), body);
 	});
 
 	// Meta record — write LAST during bootstrap so a partial run has no meta.
+	// INTEGRITY-GATED: the snippet verifies every chunk's exact length AND its
+	// content checksum first, and REFUSES to write meta when anything is off.
+	// Without meta the stored chunks are inert (the loader stops), so a
+	// half-finished, truncated or silently altered bootstrap can never be
+	// mistaken for a working runtime — it fails loudly, naming the exact chunk
+	// to re-paste, instead of producing weird render errors later.
+	// The checksum is what catches a SAME-LENGTH substitution; see fnv1a() above
+	// for why a length gate alone is not enough. See MODEL_GATE below.
 	const meta = {
 		count: chunks.length,
 		sha,
 		chunk: CHUNK,
 		bytes: runtimeMin.length
 	};
-	fs.writeFileSync(
+	emit(
 		path.join(dir, 'store-meta.js'),
-		`figma.root.setSharedPluginData(${q},"meta",${JSON.stringify(
-			JSON.stringify(meta)
-		)});\n` + `return figma.root.getSharedPluginData(${q},"meta");\n`
+		`/* DB UX runtime meta — run AFTER store-0.js .. store-${chunks.length - 1}.js.\n` +
+			` * Verifies every chunk (length + content checksum) and writes the "ready"\n` +
+			` * record ONLY if all of them are intact. */\n` +
+			`const NS=${q},COUNT=${chunks.length},CHUNK=${CHUNK},BYTES=${runtimeMin.length};\n` +
+			`const SUM=${sumsJs};\n` +
+			`${FNV_JS}\n` +
+			`const bad=[];let total=0;\n` +
+			`for(let i=0;i<COUNT;i++){const s=figma.root.getSharedPluginData(NS,"c"+i),len=s.length;\n` +
+			`const want=i<COUNT-1?CHUNK:BYTES-CHUNK*(COUNT-1);total+=len;\n` +
+			`if(len!==want){bad.push("c"+i+" is "+len+" chars, expected "+want);continue}\n` +
+			`const got=_h(s);\n` +
+			`if(got!==SUM[i])bad.push("c"+i+" has the right length but WRONG CONTENT (checksum "+got+", expected "+SUM[i]+") — one or more characters were altered, typically a \\\\uXXXX escape emitted as the literal character, a straight quote turned typographic, or a minified !0/!1 boolean changed");}\n` +
+			`if(bad.length||total!==BYTES)throw new Error("[STOP] Bootstrap incomplete or corrupt — meta was NOT written, so the stored chunks stay inert and nothing in this file is broken. "+(bad.join("; ")||("total "+total+" != "+BYTES))+". Re-paste EXACTLY the listed store-<i>.js file(s) VERBATIM, then run this snippet again. ${MODEL_GATE_JS}");\n` +
+			`figma.root.setSharedPluginData(NS,"meta",${JSON.stringify(
+				JSON.stringify(meta)
+			)});\n` +
+			`return figma.root.getSharedPluginData(NS,"meta");\n`
 	);
 
-	// Check snippet: returns stored meta so the agent can decide bootstrap-needed.
-	fs.writeFileSync(
+	// Check snippet + MODEL CAPABILITY GATE. Self-contained: it knows the expected
+	// sha/size/checksums, so it decides `ready` itself (no manifest comparison to
+	// get wrong) and verifies the stored chunks by CONTENT, not just by length and
+	// the sha. That matters because the sha in the meta record is a version LABEL
+	// written by store-meta.js, never derived from what is actually stored — so a
+	// store that was altered after (or during) a bootstrap could claim to be
+	// current. With per-chunk checksums such a file reports ready:false and gets
+	// re-bootstrapped instead of rendering from subtly wrong code. Cost is one
+	// pass over ~63 KB inside the sandbox: no measurable overhead, zero model
+	// output tokens. When a bootstrap IS needed, the returned `gate` string tells
+	// the agent to stop and hand over to a large model rather than improvise.
+	emit(
 		path.join(dir, 'check.js'),
-		`return figma.root.getSharedPluginData(${q},"meta")||"{}";\n`
+		`/* DB UX runtime check + model gate. ready:true → paste render.js and render.\n` +
+			` * ready:false → BOOTSTRAP REQUIRED: follow \`gate\` EXACTLY, do not improvise. */\n` +
+			`const NS=${q},SHA=${JSON.stringify(sha)},COUNT=${chunks.length},BYTES=${runtimeMin.length};\n` +
+			`const SUM=${sumsJs};\n` +
+			`${FNV_JS}\n` +
+			`const m=JSON.parse(figma.root.getSharedPluginData(NS,"meta")||"{}");\n` +
+			`let stored=0;const bad=[];\n` +
+			`for(let i=0;i<(m.count||0);i++){const s=figma.root.getSharedPluginData(NS,"c"+i);stored+=s.length;\n` +
+			`if(i<COUNT&&_h(s)!==SUM[i])bad.push("c"+i);}\n` +
+			`const ready=m.sha===SHA&&m.count===COUNT&&stored===BYTES&&bad.length===0;\n` +
+			`return JSON.stringify({ready,storedSha:m.sha||null,expectedSha:SHA,storedBytes:stored,expectedBytes:BYTES,chunks:COUNT,corruptChunks:bad,\n` +
+			`gate:ready?"OK — runtime is current. Do NOT bootstrap. Paste bootstrap/render.js plus the plan.":(bad.length?"CORRUPT STORE — chunk(s) "+bad.join(", ")+" have the right length but altered content, so the stored runtime is NOT the built one. Do NOT patch chunks and do NOT hand-roll a renderer: re-paste those store-<i>.js file(s) VERBATIM and run store-meta.js again. ":"")+"BOOTSTRAP REQUIRED — "+COUNT+" chunks of up to "+${CHUNK}+" chars must be pasted VERBATIM (~"+BYTES+" chars total). ${MODEL_GATE_JS}"});\n`
 	);
 
 	// Render loader: reconstruct the API from the store; agent appends the PLAN.
@@ -296,14 +441,15 @@ function buildBootstrap(runtimeMin) {
 		` *  paint, slots re-fetched fresh, tokens validated — so fallbacks stay compliant.)\n` +
 		` */\n` +
 		`const _m = JSON.parse(figma.root.getSharedPluginData(${q}, "meta") || "{}");\n` +
-		`if (!_m.count) throw new Error("[STOP] runtime not bootstrapped in this file — run bootstrap/store-*.js then store-meta.js first");\n` +
+		`if (!_m.count) throw new Error("[STOP] runtime not bootstrapped in this file — run bootstrap/check.js, then follow its gate. ${MODEL_GATE_JS}");\n` +
 		`let _src = "";\n` +
 		`for (let i = 0; i < _m.count; i++) _src += figma.root.getSharedPluginData(${q}, "c" + i);\n` +
+		`if (_src.length !== _m.bytes) throw new Error("[STOP] stored runtime is corrupt (" + _src.length + " of " + _m.bytes + " chars) — do NOT patch chunks or hand-roll a renderer. Clear the dbuxRuntime data and re-bootstrap (SKILL.md 4a-recovery). ${MODEL_GATE_JS}");\n` +
 		`const _api = new Function(_src + ";return {renderPlan,applyEdits,renderNode,api:EDIT_API};")();\n` +
 		`const renderPlan = _api.renderPlan, applyEdits = _api.applyEdits, api = _api.api;\n`;
-	fs.writeFileSync(path.join(dir, 'render.js'), loader);
+	emit(path.join(dir, 'render.js'), loader);
 
-	fs.writeFileSync(
+	emit(
 		path.join(dir, 'manifest.json'),
 		JSON.stringify(
 			{
@@ -311,15 +457,75 @@ function buildBootstrap(runtimeMin) {
 				version_sha: sha,
 				chunkCount: chunks.length,
 				chunkSize: CHUNK,
-				runtimeBytes: runtimeMin.length
+				runtimeBytes: runtimeMin.length,
+				// FNV-1a per chunk, same order as store-<i>.js. store-meta.js and
+				// check.js embed these; listed here so tooling can verify a store
+				// without parsing the snippets.
+				chunkChecksums: sums,
+				// Bootstrapping means re-emitting the chunks verbatim — a job only a
+				// large model does reliably. check.js enforces this at runtime.
+				bootstrapRequiresLargeModel: true,
+				modelGate: MODEL_GATE_JS
 			},
 			null,
 			2
 		) + '\n'
 	);
 	console.log(
-		`Wrote bootstrap/ (${chunks.length} store snippets + loader, sha ${sha}).`
+		`${CHECK_ONLY ? 'Checked' : 'Wrote'} bootstrap/ (${chunks.length} store snippets + loader, sha ${sha}).`
 	);
+	checkDocDrift(chunks.length, CHUNK, runtimeMin.length);
+}
+
+/* Doc-drift guard. SKILL.md's model-capability gate (4a-gate) and POWER.md quote
+ * the CONCRETE chunk count and the last chunk's exact length, because concrete
+ * numbers are what stop an agent from improvising a bootstrap. Those numbers move
+ * whenever the runtime grows past a chunk boundary, so warn instead of silently
+ * leaving stale guidance behind. NOTICE only — never fails the build. */
+function checkDocDrift(chunkCount, chunkSize, bytes) {
+	const last = bytes - chunkSize * (chunkCount - 1);
+	// A figure may be written 2277 / 2 277 / 2.277 / 2,277 in prose.
+	const numRe = (n) =>
+		new RegExp(
+			`\\b${String(n).replace(/\B(?=(\d{3})+$)/g, '[ .,\\u00a0]?')}\\b`
+		);
+	const countRe = new RegExp(`\\b${chunkCount}\\s+chunks\\b`, 'i');
+	const stale = [];
+	const check = (rel, tests) => {
+		const p = path.join(__dirname, rel);
+		if (!fs.existsSync(p)) return;
+		const md = fs.readFileSync(p, 'utf8');
+		const name = path.basename(p);
+		for (const [ok, what] of tests(md))
+			if (!ok) stale.push(`${name}: ${what}`);
+	};
+	check('../SKILL.md', (md) => [
+		[
+			countRe.test(md),
+			`no "${chunkCount} chunks" statement — update 4a-gate + the COST RULE`
+		],
+		[
+			md.includes(`store-${chunkCount - 1}.js`),
+			`highest chunk file referenced is not store-${chunkCount - 1}.js`
+		],
+		[numRe(chunkSize).test(md), `chunk size ${chunkSize} not mentioned`],
+		[
+			numRe(last).test(md),
+			`last-chunk length ${last} not mentioned (4a-gate step 2)`
+		]
+	]);
+	check('../../../POWER.md', (md) => [
+		[
+			countRe.test(md),
+			`no "${chunkCount} chunks" statement in Runtime Architecture`
+		]
+	]);
+	if (stale.length)
+		console.log(
+			`NOTICE: bootstrap docs may be stale — now ${chunkCount} chunks, ` +
+				`${chunkSize} chars each, last ${last}, total ${bytes}:\n  - ` +
+				stale.join('\n  - ')
+		);
 }
 
 const BUNDLES = [
@@ -408,36 +614,64 @@ for (const b of BUNDLES) {
 		continue;
 	}
 
-	fs.writeFileSync(path.join(__dirname, b.out), out);
+	emit(path.join(__dirname, b.out), out);
 	const bytes = Buffer.byteLength(out, 'utf8');
 	const saved = Buffer.byteLength(src, 'utf8') - bytes;
 	console.log(
-		`Wrote ${b.out} (${bytes} bytes, -${saved} vs source, limit 50000).`
+		`${CHECK_ONLY ? 'Checked' : 'Wrote'} ${b.out} (${bytes} bytes, -${saved} vs source).`
 	);
-	if (bytes > 50000) {
-		console.error(
-			`ERROR: ${b.out} exceeds the 50000-char use_figma limit.`
+	/* The 50 000-char `use_figma` cap only constrains the SINGLE-PASTE path, which needs the
+	 * runtime AND a Composition Plan in one call. The runtime passed that budget long ago, so
+	 * the supported path is the store-once bootstrap below: it writes the runtime into the
+	 * document in ~7 kB chunks and every later render pastes a ~0.5 kB loader plus the plan.
+	 * Exceeding the cap is therefore a NOTICE, not a build failure — but it does mean the
+	 * verbatim-paste fallback is unavailable, so say so plainly. */
+	if (bytes > 50000)
+		console.log(
+			`NOTICE: ${b.out} is ${bytes - 50000} chars over the 50000-char use_figma cap. ` +
+				`The single-paste fallback is NOT available; render via the store-once bootstrap.`
 		);
-		failed = true;
-	}
+	else if (bytes > 44000)
+		console.log(
+			`NOTICE: only ${50000 - bytes} chars headroom under the use_figma cap — too little for a real plan. Use the store-once bootstrap.`
+		);
 }
 // Generate the store-once bootstrap assets from the FULL runtime build so they
 // never drift from db-figma-runtime.min.js.
 if (!failed) {
 	const fullMinPath = path.join(__dirname, 'db-figma-runtime.min.js');
-	if (fs.existsSync(fullMinPath)) {
+	// Always the FRESHLY built bundle, never what happens to be on disk — otherwise --check would
+	// compare the bootstrap snippets against a stale runtime and call the pair consistent.
+	const fullMin = emitted.get(fullMinPath);
+	if (fullMin) {
 		try {
-			buildBootstrap(fs.readFileSync(fullMinPath, 'utf8'));
+			buildBootstrap(fullMin);
 		} catch (err) {
 			console.error('ERROR: bootstrap generation failed:', err.message);
 			failed = true;
 		}
 	} else {
 		console.error(
-			'ERROR: db-figma-runtime.min.js not found; cannot build bootstrap.'
+			'ERROR: db-figma-runtime.min.js was not produced; cannot build bootstrap.'
 		);
 		failed = true;
 	}
+}
+
+if (CHECK_ONLY) {
+	if (drift.length) {
+		console.error(
+			`\n❌ The committed runtime does not match assets/src/ + the registries:\n  - ${drift.join(
+				'\n  - '
+			)}\n\nThe unit tests load the BUILT bundle and Figma is bootstrapped from bootstrap/, so an ` +
+				`unbuilt source edit passes every test while the fix never reaches a rendered screen.\n` +
+				`Run: node ${path.relative(process.cwd(), __filename)}\n`
+		);
+		process.exit(1);
+	}
+	console.log(
+		`✅ Runtime and bootstrap assets are in sync with src/ (${emitted.size} generated files checked).`
+	);
 }
 
 if (failed) process.exit(1);
