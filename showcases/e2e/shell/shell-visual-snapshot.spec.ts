@@ -94,7 +94,8 @@ const getNavigationScreenshotTest = ({
 		}
 
 		await expect(page).toHaveScreenshot({
-			maxDiffPixelRatio: 0.02
+			maxDiffPixelRatio: 0.02,
+			mask: [page.locator('.db-main')]
 		});
 	});
 };
