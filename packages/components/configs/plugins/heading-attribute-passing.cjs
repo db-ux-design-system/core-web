@@ -117,11 +117,10 @@ const transformVue = (code, componentName, heading) => {
 		classBinding[0],
 		`:class="${classBinding[1].replace('className', 'props.className ?? props.class')}"`
 	);
-	if (componentName === 'DBCustomHeading') {
-		// DBCustomHeading has no boolean prop that needs an explicit `undefined`
-		// default, so the props declaration stays as generated.
-		return code.replace(openingTag, withClassAlias);
-	}
+	// Every Heading component, the wrapper included, exposes `paragraphSpacing`.
+	// Vue resolves an unset `boolean | string` prop to `false` instead of
+	// `undefined`, which would render `data-paragraph-spacing="false"` even when
+	// the consumer never set it.
 	const propsDeclaration = `const props = defineProps<${heading.propsType}>();`;
 	return replaceMarker(
 		code.replace(openingTag, withClassAlias),

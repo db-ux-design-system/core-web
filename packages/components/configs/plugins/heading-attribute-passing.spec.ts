@@ -46,6 +46,7 @@ const vueCustomHeading = `<template>
   <div
     ref="_ref"
     :class="cls('db-custom-heading', className)"
+    :data-paragraph-spacing="getBooleanAsString(paragraphSpacing, 'paragraphSpacing')"
   ><slot /></div>
 </template>
 <script setup lang="ts">
@@ -107,9 +108,14 @@ describe('static heading attribute passing', () => {
 		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(1);
 		expect(result).toContain('props.className ?? props.class');
 		// No derived `role`/`aria-level` to protect, so Vue's automatic attribute
-		// fallthrough stays enabled and `paragraphSpacing` does not exist here.
+		// fallthrough stays enabled.
 		expect(result).not.toContain('inheritAttrs: false');
-		expect(result).not.toContain('withDefaults(');
+		// The wrapper exposes `paragraphSpacing` too, so it needs the same explicit
+		// `undefined` default as the static headings. Without it Vue resolves the
+		// unset prop to `false` and renders `data-paragraph-spacing="false"`.
+		expect(result).toContain(
+			'withDefaults(defineProps<DBCustomHeadingProps>(), { paragraphSpacing: undefined })'
+		);
 	});
 
 	it('leaves Angular and Stencil output untouched', () => {
