@@ -12,7 +12,7 @@ import {
 	DEFAULT_SCROLL_LEFT,
 	DEFAULT_SCROLL_RIGHT
 } from '../../shared/constants';
-import { cls, getBooleanAsString, hasCssFlag } from '../../utils';
+import { cls, delay, getBooleanAsString, hasCssFlag } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
@@ -616,7 +616,9 @@ export default function DBControlPanelNavigation(
 
 	onUpdate(() => {
 		if (menuRef) {
-			state.evaluateScrollButtons(menuRef);
+			void delay(() => {
+				state.evaluateScrollButtons(menuRef);
+			}, 100);
 
 			// Re-evaluate scroll buttons and re-position the sub-navigation on
 			// container resize (e.g. orientation change). A container-specific
