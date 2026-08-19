@@ -60,8 +60,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0(supports-color@10.2.2)
       '@guidepup/setup':
-        specifier: 0.24.1
-        version: 0.24.1(supports-color@10.2.2)
+        specifier: 0.24.2
+        version: 0.24.2(supports-color@10.2.2)
       '@playwright/experimental-ct-core':
         specifier: 1.62.1
         version: 1.62.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.8.1(supports-color@10.2.2))(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0)
@@ -3757,8 +3757,8 @@ packages:
   '@guidepup/record@0.1.0':
     resolution: {integrity: sha512-jtSqZ0CZVdWzWIbLWHYoUi1IbNJVKns20oEYzwcTftw8rY5RXsK1OTXaXFx9Gup5mnmYaFLnON8WwTS+4DYwrQ==}
 
-  '@guidepup/setup@0.24.1':
-    resolution: {integrity: sha512-HMkSn/Pf0i2f9z/XicA4GlU9Gs2clnwD7Cvn+uBuIpxALdj+QA0UWQF+smOnUj3p5YP+baRCAxPxT3wp2UEb5w==}
+  '@guidepup/setup@0.24.2':
+    resolution: {integrity: sha512-x/dTGefCa/skF9JzLoDputLbzYBWXDm5YtY5l+HzXFvd60WqOjeXHH197sy9ISHIKEYFpy2X7+CvPgv7BXjPIg==}
     hasBin: true
 
   '@harperfast/extended-iterable@1.0.3':
@@ -15614,10 +15614,6 @@ packages:
     resolution: {integrity: sha512-HvltHd7avK13QIw/oLe4qoOLyoVSoafqJ2jYOrtMRBkbYT31eiBQ8O0ehRKZiEZCMEyLFQNIADpgCWC5fALvYQ==}
     engines: {node: '>=22.19.0'}
 
-  undici@8.9.0:
-    resolution: {integrity: sha512-aWZpUj7XoGonMClx4gdDRfgBjqeA+F473aDmROQQbM9n6PRfK/u1q/a0X4wMTgcHfT8H6fpbt98PFuDUwFg2YA==}
-    engines: {node: '>=22.19.0'}
-
   unenv@2.0.0-rc.24:
     resolution: {integrity: sha512-i7qRCmY42zmCwnYlh9H2SvLEypEFGye5iRmEMKjcGi7zk9UquigRjFtTLz0TYqr0ZGLZhaMHl/foy1bZR+Cwlw==}
 
@@ -19902,12 +19898,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/setup@0.24.1(supports-color@10.2.2)':
+  '@guidepup/setup@0.24.2(supports-color@10.2.2)':
     dependencies:
       chalk: 4.1.2
       commander: 15.0.0
       semver: 7.8.5
-      undici: 8.9.0
+      undici: 8.10.0
       unzipper: 0.12.5
     optionalDependencies:
       '@guidepup/record': 0.1.0(supports-color@10.2.2)
@@ -34275,8 +34271,6 @@ snapshots:
   undici@7.29.0: {}
 
   undici@8.10.0: {}
-
-  undici@8.9.0: {}
 
   unenv@2.0.0-rc.24:
     dependencies:
