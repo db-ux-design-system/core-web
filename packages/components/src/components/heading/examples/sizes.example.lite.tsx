@@ -19,16 +19,18 @@ useMetadata({
 		'DBCustomHeading',
 		'DBCustomHeading'
 	],
+	// Prefixed on purpose: a name starting with a digit is not a valid JavaScript
+	// identifier and could not be used as a Storybook story export.
 	storybookNames: [
-		'3xl',
-		'2xl',
-		'xl',
-		'lg',
-		'md',
-		'sm',
-		'xs',
-		'2xs',
-		'3xs',
+		'Size 3xl',
+		'Size 2xl',
+		'Size xl',
+		'Size lg',
+		'Size md',
+		'Size sm',
+		'Size xs',
+		'Size 2xs',
+		'Size 3xs',
 		'Wrapper: 3xl',
 		'Wrapper: 3xs'
 	],
