@@ -24,7 +24,7 @@
 		"name": "data-display",
 		"subNavigation": [
 			{
-				"label": "Heading",
+				"label": "DBHeading",
 				"name": "heading",
 				"elements": [
 					"db-heading-h-1",

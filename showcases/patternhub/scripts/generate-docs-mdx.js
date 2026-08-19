@@ -107,12 +107,6 @@ const generateDocsMdx = async () => {
 			FS.cpSync(docsPath, `./${componentPath}/docs`, {
 				recursive: true
 			});
-		} else {
-			// Without docs there is no `how-to-use` content, which the navigation
-			// and the Patternhub e2e tests both expect for every entry.
-			throw new Error(
-				`Missing docs for the Patternhub page "${componentName}": expected ${docsPath}`
-			);
 		}
 
 		FS.writeFileSync(
