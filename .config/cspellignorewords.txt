@@ -251,4 +251,3 @@ ponyfill
 ponyfills
 descope
 pnpms
-stenciljs
