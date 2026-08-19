@@ -5,10 +5,29 @@ import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
-const rootProps: string[] = require('../../configs/plugins/react/root-props.cjs');
+// Foundation attributes stay on the generated component root instead of being
+// forwarded as arbitrary custom data attributes.
+const rootProps = [
+	'data-icon-variant',
+	'data-icon-variant-before',
+	'data-icon-variant-after',
+	'data-icon-weight',
+	'data-icon-weight-before',
+	'data-icon-weight-after',
+	'data-interactive',
+	'data-force-mobile',
+	'data-color',
+	'data-container-color',
+	'data-bg-color',
+	'data-on-bg-color',
+	'data-color-scheme',
+	'data-font-size',
+	'data-headline-size',
+	'data-divider',
+	'data-focus',
+	'data-font',
+	'data-density'
+];
 
 const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/shared/model.ts`;

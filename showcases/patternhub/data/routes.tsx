@@ -40,12 +40,6 @@ export type NavigationItem = {
 	path?: string;
 	component?: ReactElement;
 	isHiddenInMenu?: boolean;
-	/**
-	 * Custom elements documented by this page. Only needed for component
-	 * families whose element names differ from the navigation entry name,
-	 * e.g. `heading` documenting `db-heading-h-1` up to `db-custom-heading`.
-	 */
-	elements?: string[];
 	subNavigation?: NavigationItem[];
 };
 
