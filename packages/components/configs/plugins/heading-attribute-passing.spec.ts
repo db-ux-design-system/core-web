@@ -78,11 +78,12 @@ describe('static heading attribute passing', () => {
 			'vue',
 			'DBHeadingH2'
 		);
-		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(1);
 		expect(result).toContain('props.className ?? props.class');
-		expect(result).toContain(
-			'withDefaults(defineProps<DBHeadingH2Props>()'
-		);
+		// Vue forwards undeclared attributes to a single root by itself, and
+		// `useDefaultProps` yields the `withDefaults(...)` declaration natively, so
+		// the plugin must add neither.
+		expect(result).not.toContain('$attrs');
+		expect(result).not.toContain('withDefaults(');
 	});
 
 	it('wraps the custom heading div in the same React forwardRef', () => {
@@ -105,36 +106,37 @@ describe('static heading attribute passing', () => {
 			'vue',
 			'DBCustomHeading'
 		);
-		expect(result.match(/v-bind="\$attrs"/g)).toHaveLength(1);
 		expect(result).toContain('props.className ?? props.class');
 		// No derived `role`/`aria-level` to protect, so Vue's automatic attribute
-		// fallthrough stays enabled.
+		// fallthrough stays enabled and needs no explicit binding.
 		expect(result).not.toContain('inheritAttrs: false');
-		// The wrapper exposes `paragraphSpacing` too, so it needs the same explicit
-		// `undefined` default as the static headings. Without it Vue resolves the
-		// unset prop to `false` and renders `data-paragraph-spacing="false"`.
-		expect(result).toContain(
-			'withDefaults(defineProps<DBCustomHeadingProps>(), { paragraphSpacing: undefined })'
-		);
+		expect(result).not.toContain('$attrs');
+		expect(result).not.toContain('withDefaults(');
 	});
 
-	it('leaves Angular and Stencil output untouched', () => {
+	it('is react and vue only', () => {
+		// Angular and stencil forward `data-*` and `aria-*` from the custom-element
+		// host through the generic `attribute-passing` plugin, so this plugin is not
+		// registered for them and rejects those targets instead of silently
+		// returning unchanged code.
 		for (const target of ['angular', 'stencil'] as const) {
-			expect(
+			expect(() =>
 				transformHeadingAttributePassing(
 					angularCustomHeading,
 					target,
 					'DBCustomHeading'
 				)
-			).toBe(angularCustomHeading);
-			expect(
-				transformHeadingAttributePassing(
-					angularCustomHeading,
-					target,
-					'DBHeadingH2'
-				)
-			).toBe(angularCustomHeading);
+			).toThrow('unsupported target');
 		}
+		// Components outside the Heading family are never touched, whatever the
+		// target.
+		expect(
+			transformHeadingAttributePassing(
+				angularCustomHeading,
+				'angular',
+				'DBOther'
+			)
+		).toBe(angularCustomHeading);
 	});
 
 	it('does not change other components', () => {

@@ -95,50 +95,39 @@ const transformReact = (code, componentName, heading) => {
 		);
 };
 
+/*
+ * Only the `class` alias is left here. Two things this deliberately does not do:
+ *  - No `v-bind="$attrs"`. With a single root element and `inheritAttrs` at its
+ *    default, Vue already forwards every undeclared attribute, so an explicit
+ *    binding is redundant.
+ *  - No `withDefaults(...)`. `useDefaultProps` in the lite components makes
+ *    Mitosis emit that declaration natively, the same way every other component
+ *    gets it.
+ */
 const transformVue = (code, componentName, heading) => {
 	const openingTag = getOpeningTag(code, heading.tag, componentName, 'vue');
-	const refIndent = openingTag.match(/\n(\s*)ref="_ref"/)?.[1];
 	const classBinding = openingTag.match(/:class="([^"]*className[^"]*)"/);
-	if (refIndent === undefined || classBinding?.length !== 2) {
+	if (classBinding?.length !== 2) {
 		fail(componentName, 'vue', `unexpected ${heading.tag} root attributes`);
 	}
-	const changed = replaceMarker(
-		openingTag,
-		'ref="_ref"',
-		`ref="_ref"\n${refIndent}v-bind="$attrs"`,
-		componentName,
-		'vue'
-	);
 	// Vue consumers use `class`, React consumers use `className`, so both
 	// aliases are honoured. Heading is not part of the deprecated post-build
 	// registry, so the plain `className` literal is safe here: nothing rewrites
 	// it to `props.class` afterwards.
-	const withClassAlias = changed.replace(
+	const withClassAlias = openingTag.replace(
 		classBinding[0],
 		`:class="${classBinding[1].replace('className', 'props.className ?? props.class')}"`
 	);
-	// Every Heading component, the wrapper included, exposes `paragraphSpacing`.
-	// Vue resolves an unset `boolean | string` prop to `false` instead of
-	// `undefined`, which would render `data-paragraph-spacing="false"` even when
-	// the consumer never set it.
-	const propsDeclaration = `const props = defineProps<${heading.propsType}>();`;
-	return replaceMarker(
-		code.replace(openingTag, withClassAlias),
-		propsDeclaration,
-		`const props = withDefaults(defineProps<${heading.propsType}>(), { paragraphSpacing: undefined });`,
-		componentName,
-		'vue'
-	);
+	return code.replace(openingTag, withClassAlias);
 };
 
 const transformHeadingAttributePassing = (code, target, componentName) => {
 	const heading = getHeading(componentName);
 	if (!heading) return code;
-	// Angular and stencil need no heading-specific transform: every Heading
-	// component forwards `data-*` and `aria-*` from the custom-element host with
-	// the generic attribute passing, and none of them derives semantics of its
-	// own that a consumer attribute could contradict.
-	if (['angular', 'stencil'].includes(target)) return code;
+	// Only registered for react and vue. Angular and stencil need no
+	// heading-specific transform: they forward `data-*` and `aria-*` from the
+	// custom-element host through the generic `attribute-passing` plugin, and no
+	// Heading component derives semantics a consumer attribute could contradict.
 	if (target === 'react') return transformReact(code, componentName, heading);
 	if (target === 'vue') return transformVue(code, componentName, heading);
 	fail(componentName, target, 'unsupported target');

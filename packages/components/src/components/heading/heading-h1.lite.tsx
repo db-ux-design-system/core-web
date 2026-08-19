@@ -1,8 +1,10 @@
-import { useMetadata, useRef } from '@builder.io/mitosis';
+import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
 import { DBHeadingH1Props } from './model';
 
 useMetadata({});
+
+useDefaultProps<DBHeadingH1Props>({});
 
 export default function DBHeadingH1(props: DBHeadingH1Props) {
 	const _ref = useRef<HTMLHeadingElement | any>(null);
