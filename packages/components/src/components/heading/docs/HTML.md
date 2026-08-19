@@ -62,7 +62,14 @@ The equivalent CSS-only markup:
 ```html
 <div class="db-custom-heading" data-size="xl" data-font-weight="light">
 	<h2 id="installation">Installation</h2>
-	<a href="#installation">Direct link to Installation</a>
+	<div
+		class="db-custom-button"
+		data-variant="ghost"
+		data-no-text="true"
+		data-icon="link_chain"
+	>
+		<a href="#installation">Direct link to Installation</a>
+	</div>
 </div>
 ```
 
