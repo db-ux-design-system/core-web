@@ -449,6 +449,49 @@ test.describe('DBCustomHeading', () => {
 		);
 	});
 
+	test('styles a heading nested below an intermediate element', async ({
+		mount
+	}) => {
+		// Angular and Stencil render a heading inside its custom-element host, and
+		// a consumer component such as `<my-super-heading>` does the same. Those
+		// hosts only become flex items through `display: contents` and are never a
+		// DOM child of the wrapper, so the wrapper must not use a child selector.
+		const explicitReference = await mount(
+			<DBHeadingH2 size="3xl">Ref</DBHeadingH2>
+		);
+		const explicitFontSize = await readFontSize(explicitReference);
+		await explicitReference.unmount();
+
+		const explicit = await mount(
+			<DBCustomHeading size="3xl">
+				<div style={{ display: 'contents' }}>
+					<h2>Below a host</h2>
+				</div>
+			</DBCustomHeading>
+		);
+		expect(await readFontSize(explicit.locator('h2'))).toBe(
+			explicitFontSize
+		);
+		await explicit.unmount();
+
+		// The default level mapping goes through `:has()`, which also has to reach
+		// past the intermediate element.
+		const defaultReference = await mount(<DBHeadingH2>Ref</DBHeadingH2>);
+		const defaultFontSize = await readFontSize(defaultReference);
+		await defaultReference.unmount();
+
+		const defaulted = await mount(
+			<DBCustomHeading>
+				<div style={{ display: 'contents' }}>
+					<h2>Below a host</h2>
+				</div>
+			</DBCustomHeading>
+		);
+		expect(await readFontSize(defaulted.locator('h2'))).toBe(
+			defaultFontSize
+		);
+	});
+
 	test('keeps sibling content out of the accessible heading name', async ({
 		mount
 	}) => {

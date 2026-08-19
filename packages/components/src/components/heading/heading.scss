@@ -3,16 +3,14 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
 
-/* `fonts.$headlines` is the shared level-to-size mapping, also used by the
- * foundations' `defaults/default-fonts.scss`. Repeating the mapping here is
- * intentional: that file is an opt-in import consumers may strip while the
- * component styles have to work standalone, and `%db-overwrite-headline-size-*`
- * additionally sets the icon custom properties on the element itself instead of
- * only on `::before`/`::after`. */
-
-/* The direct children `.db-custom-heading` styles: a plain native heading. One
- * that already carries `.db-heading` is excluded, so a Heading component inside
- * the wrapper keeps its own typography instead of fighting the wrapper's
+/* The nested heading `.db-custom-heading` styles. Deliberately a descendant and
+ * not a child selector: in the Angular and Stencil output a heading can sit
+ * inside a custom-element host, either one of ours or a consumer component such
+ * as `<my-super-heading>`, which only becomes a flex item through
+ * `display: contents` and is never a DOM child of the wrapper.
+ *
+ * One that already carries `.db-heading` is excluded, so a Heading component
+ * inside the wrapper keeps its own typography instead of fighting the wrapper's
  * attributes. */
 $nested-heading: ":where(h1, h2, h3, h4, h5, h6):not(.db-heading)";
 $logical-alignments: (
@@ -41,18 +39,18 @@ $logical-alignments: (
 	}
 }
 
-/* `$child` additionally applies the alignment to a nested heading, which is
+/* `$nested` additionally applies the alignment to a nested heading, which is
  * required because `%heading-base` sets an explicit `text-align: start` there
  * that would otherwise block inheritance. */
-@mixin text-alignments($child: null) {
+@mixin text-alignments($nested: null) {
 	@each $alignment, $value in $logical-alignments {
-		@if $child {
-			&[data-alignment="#{$alignment}"],
-			&[data-alignment="#{$alignment}"] > #{$child} {
-				text-align: $value;
-			}
-		} @else {
-			&[data-alignment="#{$alignment}"] {
+		&[data-alignment="#{$alignment}"] {
+			@if $nested {
+				&,
+				#{$nested} {
+					text-align: $value;
+				}
+			} @else {
 				text-align: $value;
 			}
 		}
@@ -62,6 +60,12 @@ $logical-alignments: (
 .db-heading {
 	@extend %heading-base;
 
+	/* Emits the level-to-size mapping again even though the foundations'
+	 * `defaults/default-fonts.scss` already styles bare `h1`-`h6`: that file is an
+	 * opt-in import consumers may strip while the component styles have to work
+	 * standalone, and `%db-overwrite-headline-size-*` additionally sets the icon
+	 * custom properties on the element itself instead of only on
+	 * `::before`/`::after`. `fonts.$headlines` is the mapping both share. */
 	@each $tag, $size in fonts.$headlines {
 		&:not([data-size]):where(#{$tag}) {
 			@extend %db-overwrite-headline-size-#{$size};
@@ -96,31 +100,44 @@ $logical-alignments: (
 	align-items: center;
 	gap: variables.$db-spacing-fixed-sm;
 
-	> #{$nested-heading} {
+	#{$nested-heading} {
 		@extend %heading-base;
 	}
 
 	/* The size lands on the wrapper as well, so `1lh` for
 	 * `data-paragraph-spacing` resolves from the heading typography instead of
 	 * the surrounding body text. The nested heading needs it explicitly too,
-	 * because the user-agent styles for `h1`-`h6` override inheritance. */
-	@each $tag, $size in fonts.$headlines {
-		&:not([data-size]):has(:where(#{$tag})),
-		&:not([data-size]) > :where(#{$tag}):not(.db-heading) {
-			@extend %db-overwrite-headline-size-#{$size};
+	 * because the user-agent styles for `h1`-`h6` override inheritance.
+	 *
+	 * The tag inside `:has()` must stay wrapped in `:where()` to keep this rule at
+	 * zero extra specificity. A bare `:has(h2)` adds one, which makes the `font`
+	 * shorthand of the size beat the `font-weight` override further down and
+	 * silently ignore `data-font-weight="light"`. */
+	&:not([data-size]) {
+		@each $tag, $size in fonts.$headlines {
+			&:has(:where(#{$tag})) {
+				&,
+				:where(#{$tag}):not(.db-heading) {
+					@extend %db-overwrite-headline-size-#{$size};
+				}
+			}
 		}
 	}
 
 	@each $size in fonts.$font-sizes {
-		&[data-size="#{$size}"],
-		&[data-size="#{$size}"] > #{$nested-heading} {
-			@extend %db-overwrite-headline-size-#{$size};
+		&[data-size="#{$size}"] {
+			&,
+			#{$nested-heading} {
+				@extend %db-overwrite-headline-size-#{$size};
+			}
 		}
 	}
 
-	&[data-font-weight="light"],
-	&[data-font-weight="light"] > #{$nested-heading} {
-		font-weight: 300;
+	&[data-font-weight="light"] {
+		&,
+		#{$nested-heading} {
+			font-weight: 300;
+		}
 	}
 
 	/* `justify-content` aligns the items in the row, `text-align` the text within
