@@ -85,7 +85,7 @@ const getNavigationScreenshotTest = ({
 
 		// Expand navigation or sub-navigation
 		// Skip expansion when sub-navigation is collapsed (items not visible)
-		if (!collapseSubNavigation) {
+		if (!collapseSubNavigation && !collapseDesktopPanel) {
 			if (expandSubNavigation) {
 				await expandFirstSubNavigationGroup(page, isMobile);
 			} else {
