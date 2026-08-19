@@ -1,9 +1,5 @@
 ---
-"@db-ux/core-components": patch
-"@db-ux/ngx-core-components": patch
-"@db-ux/react-core-components": patch
 "@db-ux/wc-core-components": patch
-"@db-ux/v-core-components": patch
 ---
 
-refactor(`DBHeader`): restructured the inner HTML of this component
+refactor(`DBHeader`): removed DBDrawer, which doesn't get rendered anyhow (we're currently preparing a solution by the new DBShell component)
