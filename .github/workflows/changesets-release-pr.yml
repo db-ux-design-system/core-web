@@ -48,16 +48,16 @@ jobs:
         if: github.event_name == 'push'
         uses: changesets/action@22ccf9aa43179fe9e27dc62e575971d28cce197c # v2.0.0
         with:
-          commit: "chore(release): version packages"
-          title: "chore(release): version packages"
-          version: pnpm run ci:version
-          prDraft: always
+          github-token: ${{ steps.generate-token.outputs.token }}
+          commit-message: "chore(release): version packages"
+          pr-title: "chore(release): version packages"
+          version-script: pnpm run ci:version
+          pr-draft: always
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           HUSKY: 0 # Disable Husky hooks in CI
 
       - name: 🆙 Publish
-        if: steps.changesets.outputs.hasChangesets != 'true'
+        if: steps.changesets.outputs.has-changesets != 'true'
         run: |
           pnpm --silent tsx scripts/github/changesets/publish.ts
         env:
