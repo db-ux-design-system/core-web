@@ -1,7 +1,0 @@
-# One slot name = one position (web components)
-
-**Do not to render the same `<Slot name="…" />` (same name) twice in a component.** React, Vue and Angular render slot content once per site, so a duplicated slot appears twice in the DOM. Web components cannot do that: slotted content is a single real DOM node, so it exists at exactly one position. Which of the duplicated slots receives it is decided by the compiler — the DOM standard assigns a slottable to the _first_ matching slot in tree order, but Stencil has changed this in a minor release before ([stenciljs/core#6815](https://github.com/stenciljs/core/pull/6815) flipped it to last-wins in 4.44.0).
-
-The failure mode is silent: no build error, no runtime warning, content simply renders in the wrong place. It surfaced once as a 44px layout shift on every page of the stencil showcase, visible only as a ~6% pixel diff in the visual regression tests.
-
-The default slot has the same one-position limit, but not the same resolution history: `props.children` rendered twice fills only the **first** position, in 4.43.5 and 4.44.0 alike (verified with a minimal non-shadow component and on `DBHeader`, where the desktop navigation keeps all items and the drawer navigation stays empty). The last-wins change applies to named slots only. So a duplicated default slot does not break the visible position — it just means the second position can never be filled. `DBHeader` renders `props.children` in the header bar and in the drawer for that reason, and the drawer navigation is empty in `@db-ux/wc-core-components`.
