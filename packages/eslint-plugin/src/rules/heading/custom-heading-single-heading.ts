@@ -21,8 +21,9 @@ const HEADING_COMPONENTS = new Set(
 );
 
 /**
- * Elements whose content cannot be resolved statically. Their presence only
- * suppresses the "missing heading" report, never the "multiple headings" one.
+ * Elements whose rendered content cannot be resolved statically. Their presence
+ * only suppresses the "missing heading" report, never the "multiple headings"
+ * one.
  */
 const DYNAMIC_ELEMENTS = new Set([
 	'slot',
@@ -73,6 +74,32 @@ function getElementName(node: any): string | undefined {
 	return undefined;
 }
 
+/**
+ * Consumer components can render the required native heading, but their output
+ * is not part of the current template AST. Treat them like slots and other
+ * dynamic content instead of reporting a definite missing heading.
+ */
+function isUnresolvedComponent(node: any, name?: string): boolean {
+	if (!ELEMENT_TYPES.has(node.type)) {
+		return false;
+	}
+
+	if (node.type === 'JSXElement') {
+		const identifier = node.openingElement?.name;
+		return (
+			identifier?.type !== 'JSXIdentifier' ||
+			(/^[A-Z]/.test(identifier.name) &&
+				!identifier.name.startsWith('DB'))
+		);
+	}
+
+	return (
+		name !== undefined &&
+		((/^[A-Z]/.test(name) && !name.startsWith('DB')) ||
+			(name.includes('-') && !name.startsWith('db-')))
+	);
+}
+
 function isHeading(name: string): boolean {
 	return NATIVE_HEADINGS.has(name) || HEADING_COMPONENTS.has(name);
 }
@@ -106,7 +133,10 @@ function hasDynamicChildren(node: any): boolean {
 		}
 
 		const name = getElementName(child);
-		if (name !== undefined && DYNAMIC_ELEMENTS.has(name)) {
+		if (
+			(name !== undefined && DYNAMIC_ELEMENTS.has(name)) ||
+			isUnresolvedComponent(child, name)
+		) {
 			return true;
 		}
 
