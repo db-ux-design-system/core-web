@@ -195,7 +195,7 @@
     - navigation "shell-top-sub-top-sub":
       - list:
         - listitem:
-          - button "Group 1" [expanded]
+          - button "Group 1"
         - listitem:
           - link "Sub-Item 3"
         - listitem:
@@ -274,7 +274,7 @@
     - navigation "shell-left-sub-top-sub":
       - list:
         - listitem:
-          - button "Group 1" [expanded]
+          - button "Group 1"
         - listitem:
           - link "Sub-Item 3"
         - listitem:
@@ -288,9 +288,9 @@
   - navigation "shell-deep-nav-top":
     - list:
       - listitem:
-        - button "Level 1a" [expanded]
+        - button "Level 1a"
       - listitem:
-        - button "Level 1b" [expanded]
+        - button "Level 1b"
       - listitem:
         - link "Simple Item"
   - link "Imprint"
@@ -324,7 +324,7 @@
         - link "Inbox"
         - text: LABEL SHOULD BE SET 3
       - listitem:
-        - button "Tasks LABEL SHOULD BE SET 2" [expanded]
+        - button "Tasks LABEL SHOULD BE SET 2"
       - listitem:
         - link "Dashboard"
   - link "Imprint"
