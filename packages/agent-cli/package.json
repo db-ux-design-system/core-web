@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/agent-cli",
-  "version": "5.1.1",
+  "version": "5.1.5",
   "type": "module",
   "description": "CLI for DB UX Design System generate AI agent instructions",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "license": "Apache-2.0",
   "bin": {
-    "@db-ux/agent-cli": "build/index.js"
+    "agent-cli": "build/index.js"
   },
   "main": "build/index.js",
   "files": [
@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "cpr": "3.0.1",
-    "esbuild": "0.28.1",
-    "npm-run-all2": "9.0.2",
-    "tsx": "4.23.1",
+    "esbuild": "0.28.2",
+    "npm-run-all2": "9.0.3",
+    "tsx": "4.23.12",
     "vitest": "4.1.10"
   },
   "publishConfig": {

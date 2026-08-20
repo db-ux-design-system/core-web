@@ -98,24 +98,34 @@ cd showcases/angular-showcase && pnpm run test:ui
 
 **Do NOT run `pnpm run regenerate:screenshots` locally.** Snapshots are generated automatically in CI/CD.
 
+### Screen Reader Testing
+
+Screen reader tests (NVDA, VoiceOver) live in `showcases/screen-reader/`. See [the screen reader README](showcases/screen-reader/README.md) for the command mapping per screen reader and the pitfalls: a landmark is only named when the cursor enters it from outside, `nextLandmark()` / `previousLandmark()` drive VoiceOver's auto web spots so the destination has to be verified per reader before a hop is shared between both branches, and plain role assertions belong in the aria snapshot tests.
+
 ## Changesets
 
 This repository uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
 
 ### When to Add a Changeset
 
-**Always add a new changeset when making developer-facing changes inside the following folders:**
+**Always add a new changeset when making consumer-facing changes inside the following folders:**
 
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
+> **Only consumer-facing changes need a changeset.** Purely cosmetic changes (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact) and changes to files consumers never receive (`*.spec.tsx`, e2e tests, snapshots, showcases, stories, dependency updates) do not require one. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
-| Folder                                                                                           | Packages to include                                                                                                                             |
-| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src` — **only styling** (SCSS/CSS)                                          | `@db-ux/core-components`                                                                                                                        |
-| `packages/components/src` — **component logic or templates** (model.ts, Mitosis component files) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/components/src` — **both**                                                             | All five packages above                                                                                                                         |
-| `packages/foundations/scss`                                                                      | `@db-ux/core-foundations`                                                                                                                       |
+| Folder                      | Packages to include                                                                                                                                                        |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src`   | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                            |
+| `packages/foundations/scss` | `@db-ux/core-foundations`, `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
 
-**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages only when shared code (components, `model.ts`, shared utils) or styling is changed.
+**Never differentiate by kind of change.** Styling, template, logic or properties — shared component code is always listed for the whole row. Do not weigh up whether a change is "visible enough" for a framework consumer.
+
+Two reasons: the framework packages ship the `@db-ux/core-components` and `@db-ux/core-foundations` styles as a dependency, so consumers who reference only a framework package never read the CSS packages' changelogs. And there is no reliable "internal only" markup change — someone styling `db-input` with `label + input` is broken the moment the `<input>` moves inside the `<label>`, so an Angular user needs that entry as much as a CSS user does. Informing everyone costs one extra changelog line; guessing wrong costs a consumer a silent breakage.
+
+**A package's published artifacts are not the criterion.** `@db-ux/core-components` ships compiled CSS only, no templates — and is still listed for template changes, because its consumers write the component HTML themselves (copied from the Patternhub examples and the "view code" output of our Storybook stories) and have nothing in their build that would flag drifted markup. Judge by "who needs to know", not by which files land in the tarball.
+
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set per row, because the four JS frameworks are not interchangeable. If a change only touches code that a single target consumes (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `scripts/post-build/react.ts`), include only that framework package. Shared build code counts for every target it feeds, even when the change inside it was written for one of them (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) — list all framework packages whose output changes. See `packages/components/AGENTS.md` for the file-by-file breakdown.
+
+So the only thing that narrows the list is **which targets a file feeds**, never what kind of change it is.
 
 Use the following bump types for changeset entries:
 
@@ -198,8 +208,9 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 
 - **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
 - **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
-- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files:
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks::
     ```bash
+    pnpm --filter=@db-ux/core-components run generate:figma
     pnpm --filter=react-figma run test:update
     pnpm --filter=angular-figma run test:update
     pnpm --filter=vue-figma run test:update
@@ -277,6 +288,10 @@ See `docs/conventions.md` for the full convention.
 - **Nuxt-related linting failures**: May fail if Nuxt showcase hasn't been run yet (requires `showcases/nuxt-showcase/.nuxt/tsconfig.json` to be generated)
 - **Stencil warnings**: Component prop name conflicts are expected and documented
 
+### Type-incompatible duplicate dependencies
+
+Some packages (notably PostCSS) ship breaking `.d.ts` changes in patch releases, causing TypeScript build failures when pnpm resolves two different patches. See `docs/dependency-update-strategy.md` § "Resolving type-incompatible duplicate dependencies" for the diagnosis and fix pattern (catalog + override).
+
 ### Git hook issues
 
 **Husky blocking git commit**: To prevent Husky blocking commits due to missing `COMMIT_MAIL` within `.env` file, just add `--no-verify` to your `git commit` command:
@@ -320,9 +335,30 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 ## General code styles and approaches
 
+### Preserve comments during refactoring
+
+When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
+
+### Fenced code blocks require a language
+
+Every fenced code block (` ``` `) **must** specify a language identifier (MD040). Use `text` for plain output, error messages, or terminal logs that have no specific syntax.
+
 ### Shift-left: HTML → CSS → JS
 
-Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See `docs/shift-left-web-development.md` for the full rationale and examples.
+Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
+
+### No literal non-ASCII characters in SCSS
+
+Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.
+
+**Rules:**
+
+- **Never use literal non-ASCII characters in `.scss` files** — not in values, not in comments, nowhere.
+- In comments, use ASCII alternatives (e.g. `->` instead of `→`).
+- In CSS values, use hex escape sequences (e.g. `"\2022"` for `•`, `"\a0"` for non-breaking space).
+- If the value must remain unresolved by Sass (Sass resolves `"\2022"` back to a literal `•` during compilation), place it in a **plain `.css` file** that is `@import`-ed or `@use`-ed — Sass passes plain CSS through without interpreting escape sequences.
+
+See [`packages/foundations/scss/defaults/non-ascii-tokens.css`](packages/foundations/scss/defaults/non-ascii-tokens.css) for the canonical example and [PR #7526](https://github.com/db-ux-design-system/core-web/pull/7526) for background.
 
 ### Dependency pinning and package execution
 
@@ -337,6 +373,21 @@ All npm dependencies are pinned to **exact versions** (no `^` or `~` ranges) for
 | `npx <bin>`       | May fetch latest from registry if not installed locally               | ❌ No   |
 
 `pnpm dlx` and `npx` bypass the lockfile and execute unreviewed code from the registry, defeating the purpose of pinning.
+
+**Dependabot grouping:** When adding related dependencies (same org, main package + plugins, or tightly coupled sets), add a `groups:` entry in `.github/dependabot.yml`. See `docs/dependency-update-strategy.md` § "Dependabot grouping" for details and examples.
+
+### `bin` entries in package.json
+
+The `bin` field keys should be explicit, plain command names — **prefer a short, unambiguous name over a scoped key like `@db-ux/...`**. While npm and pnpm will normalize a scoped key to its basename (e.g. `@db-ux/agent-cli` → `agent-cli`) when creating the symlink in `node_modules/.bin/`, relying on this implicit normalization makes the intended executable name less obvious and harder to discover. Use an explicit key so the command name is clear from reading `package.json` alone.
+
+```jsonc
+// ✅ Preferred — explicit, discoverable command name
+"bin": { "db-ux-agent-cli": "build/index.js" }
+"bin": { "db-ux-mcp-server": "./dist/index.js" }
+
+// ⚠️ Avoid — relies on implicit basename normalization
+"bin": { "@db-ux/agent-cli": "build/index.js" }
+```
 
 ### TypeScript execution
 
@@ -358,7 +409,7 @@ pnpm exec tsx scripts/my-script.ts
 ## Additional Resources
 
 - `packages/agent-cli/AGENTS.md` — CLI tool for generating AI agent instructions
-- `packages/components/AGENTS.md` — component authoring, Mitosis, changeset rules
+- `packages/components/AGENTS.md` — component authoring, Mitosis, package-specific changeset notes
 - `packages/foundations/AGENTS.md` — design tokens, assets, SCSS structure
 - `packages/postcss-plugin/AGENTS.md` — PostCSS flatten plugin
 - `packages/stylelint/AGENTS.md` — Stylelint plugin rules
@@ -367,6 +418,8 @@ pnpm exec tsx scripts/my-script.ts
 - `packages/mcp-server/AGENTS.md` — MCP server development
 
 **Keep package-level `AGENTS.md` files up to date.** When making changes inside a `packages/*` folder that affect architecture, structure, workflows, or conventions (e.g. adding a new plugin system, deprecating a pattern, introducing a new shared abstraction), update the corresponding `AGENTS.md` in that package as part of the same commit.
+
+**Do not duplicate this file in package-level `AGENTS.md`.** This root file is read for every task, so repo-wide rules (changesets, commit and PR workflow, code style) belong here only. A package `AGENTS.md` covers what is specific to that package and links back here for the shared rules — duplicated rules drift apart and then contradict each other.
 
 ## Kiro Steering Files
 

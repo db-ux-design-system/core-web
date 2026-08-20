@@ -7,12 +7,14 @@
 @use "../../styles/dialog-init";
 
 %container-size-horizontal {
-	inline-size: calc(
+	--db-drawer-width-horizontal: calc(
 		var(--db-drawer-inline-size) - var(
 				--db-drawer-container-backdrop-spacing,
 				0px
 			)
 	);
+
+	inline-size: var(--db-drawer-width-horizontal);
 	min-inline-size: var(--db-drawer-min-width, auto);
 	max-inline-size: var(
 		--db-drawer-max-width,
@@ -110,36 +112,120 @@
 	}
 }
 
+// Safe Area Inset Handling (PWA / Mobile)
+// =========================================
+// On devices with viewport-fit=cover, env(safe-area-inset-*) provides the
+// inset values for notch, home indicator, etc.
+// ---
+// The drawer uses CSS custom properties so the behavior can be simulated
+// on desktop for debugging without a real device or iOS Simulator.
+// ---
+// Direction behavior:
+//   to-left / to-right (default):
+//     - Padding top (header) + bottom (footer/content) for safe areas
+//   up (drawer opens from bottom):
+//     - Padding bottom (footer/content) for home indicator
+//     - No top padding in header (--db-drawer-safe-area-inset-top: 0px)
+//   down (drawer opens from top):
+//     - Padding top (header) for notch
+//     - No bottom padding in footer/content (--db-drawer-safe-area-inset-bottom: 0px)
+// ---
+// Debugging in the browser (DevTools or <style> block):
+//   .db-drawer-container {
+//     --db-drawer-safe-area-inset-top: 47px;
+//     --db-drawer-safe-area-inset-bottom: 34px;
+//   }
 %drawer-safe-area {
+	--db-drawer-safe-area-inset-top: env(safe-area-inset-top, 0px);
+	--db-drawer-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+
 	&:not(:has(.db-drawer-footer)) {
 		> .db-drawer-content {
-			margin-block-end: env(safe-area-inset-bottom);
+			// stylelint-disable-next-line db-ux/use-spacings -- safe-area env value, not a static spacing
+			margin-block-end: var(--db-drawer-safe-area-inset-bottom);
 		}
 	}
 
 	&:has(.db-drawer-footer) {
 		.db-drawer-footer {
 			padding-block-end: calc(
-				#{variables.$db-spacing-fixed-xs} + env(safe-area-inset-bottom)
+				#{variables.$db-spacing-fixed-xs} +
+					var(--db-drawer-safe-area-inset-bottom)
 			);
 		}
 	}
 }
 
 .db-drawer {
-	--db-drawer-inline-size: 100lvw;
-	--db-drawer-block-size: 100lvh;
-	--db-transition-duration: 0ms;
+	--db-drawer-inline-size: 100dvw;
+	--db-drawer-block-size: 100dvh;
 
 	position: fixed;
 	inset: 0;
 
+	// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
+	// can control hiding instead. Only needed when motion is enabled -
+	// with reduced motion, the UA's instant display:none is correct.
 	@media (prefers-reduced-motion: no-preference) {
-		--db-transition-duration: #{variables.$db-transition-duration-extra-slow};
+		// stylelint-disable-next-line declaration-no-important
+		display: block !important;
 
+		&[open] {
+			visibility: visible;
+		}
+
+		&:not([open]) {
+			visibility: hidden;
+			transition:
+				visibility 0s #{variables.$db-transition-duration-extra-slow},
+				overlay #{variables.$db-transition-duration-extra-slow}
+					allow-discrete;
+		}
+
+		// ::backdrop disappears instantly on close since the dialog leaves the
+		// top layer immediately. Use ::before with a delayed visibility instead,
+		// and hide the native ::backdrop to prevent double-darkening.
+		@supports not (overlay: auto) {
+			&:not([data-backdrop="none"], [data-position="absolute"]) {
+				&::backdrop {
+					background-color: transparent;
+				}
+
+				&::before {
+					content: "";
+					position: fixed;
+					inset: 0;
+				}
+
+				// stylelint-disable-next-line a11y/media-prefers-reduced-motion -- This is even already encapsulated in a necessary media query on line 140
+				&:not([open])::before {
+					visibility: hidden;
+					transition: visibility 0s
+						#{variables.$db-transition-duration-extra-slow};
+				}
+
+				&:not([data-backdrop="invisible"]) {
+					&::before {
+						background-color: dialog-init.$backdrop-color-strong;
+					}
+				}
+
+				&[data-backdrop="weak"]::before {
+					background-color: dialog-init.$backdrop-color-weak;
+				}
+			}
+		}
+	}
+
+	// END: allow-discrete ponyfill
+
+	@media (prefers-reduced-motion: no-preference) {
 		transition:
-			display var(--db-transition-duration) allow-discrete,
-			overlay var(--db-transition-duration) allow-discrete;
+			display #{variables.$db-transition-duration-extra-slow}
+				allow-discrete,
+			overlay #{variables.$db-transition-duration-extra-slow}
+				allow-discrete;
 	}
 
 	.db-drawer-container {
@@ -209,22 +295,21 @@
 
 		&[data-direction="up"] {
 			@extend %direction-from-bottom-to-top;
+
+			--db-drawer-safe-area-inset-top: 0px;
 		}
 
 		&[data-direction="down"] {
 			@extend %direction-from-top-to-bottom;
+
+			--db-drawer-safe-area-inset-bottom: 0px;
 		}
 	}
 
 	// Shared open state: reset transform and define entry animation.
-	// data-closing-allow-discrete-ponyfill reverts the transform while still [open] to trigger
-	// the exit animation in browsers without allow-discrete for display.
 	&[open] {
-		// TODO: Remove this selector part after Firefox has fixed `transition-behaviour: allow-discrete` support for `display` property: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
-		&:not([data-closing-allow-discrete-ponyfill]) {
-			.db-drawer-container {
-				transform: none;
-			}
+		.db-drawer-container {
+			transform: none;
 		}
 
 		@starting-style {
@@ -260,12 +345,16 @@
 		block-size: var(--db-drawer-block-size);
 		overflow: clip;
 
-		&[open] {
-			display: flex;
+		// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
+		// stylelint-disable-next-line declaration-no-important
+		@media (prefers-reduced-motion: no-preference) {
+			display: flex !important;
 		}
 
-		.db-drawer-container {
-			position: relative;
+		// END: allow-discrete ponyfill
+
+		&[open] {
+			display: flex;
 		}
 
 		&:not([data-direction]),
@@ -283,6 +372,10 @@
 		&[data-direction="to-left"],
 		&[data-direction="up"] {
 			align-items: flex-end;
+		}
+
+		.db-drawer-container {
+			position: relative;
 		}
 	}
 }

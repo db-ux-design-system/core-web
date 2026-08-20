@@ -15,28 +15,28 @@
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
-    "@db-ux/db-theme": "6.0.0",
+    "@db-ux/db-theme": "6.1.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "4.0.0",
+    "@db-ux/db-theme-icons": "4.1.0",
     "@db-ux/v-core-components": "workspace:*",
-    "@faker-js/faker": "10.5.0",
-    "@tanstack/match-sorter-utils": "8.19.4",
-    "@tanstack/vue-table": "8.21.3",
-    "vue": "3.5.40"
+    "@faker-js/faker": "10.6.0",
+    "@tanstack/match-sorter-utils": "9.1.2",
+    "@tanstack/vue-table": "9.1.2",
+    "vue": "3.5.41"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "5.2.1",
-    "@storybook/addon-a11y": "10.5.5",
-    "@storybook/addon-docs": "10.5.5",
-    "@storybook/addon-vitest": "10.5.5",
-    "@storybook/vue3-vite": "10.5.5",
+    "@chromatic-com/storybook": "5.3.0",
+    "@storybook/addon-a11y": "10.5.8",
+    "@storybook/addon-docs": "10.5.8",
+    "@storybook/addon-vitest": "10.5.8",
+    "@storybook/vue3-vite": "10.5.8",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/tsconfig": "0.9.1",
     "cross-env": "10.1.0",
-    "eslint-plugin-storybook": "10.5.5",
-    "storybook": "10.5.5",
+    "eslint-plugin-storybook": "10.5.8",
+    "storybook": "10.5.8",
     "typescript": "~5.9.3",
-    "vite": "8.1.5",
-    "vue-tsc": "3.3.8"
+    "vite": "8.2.1",
+    "vue-tsc": "3.3.10"
   }
 }
