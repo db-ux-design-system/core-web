@@ -24,7 +24,7 @@ $drilldown-inset: calc(
 			max: "sm"
 		)
 	) {
-		padding: variables.$db-spacing-fixed-xs
+		padding: variables.$db-spacing-fixed-2xs
 			component.$drawer-content-padding-inline;
 		inline-size: var(--db-drawer-width-horizontal, 100%);
 		max-inline-size: var(
