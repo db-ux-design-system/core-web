@@ -35,8 +35,9 @@ const testComponent = () => {
 
 	test('should open', async ({ mount }) => {
 		const component = await mount(comp);
+		await expect(component.getByRole('article')).not.toBeVisible();
 		await component.getByTestId('button').focus();
-		await expect(component.getByTestId('popover')).toBeVisible();
+		await expect(component.getByRole('article')).toBeVisible();
 	});
 
 	test('after open should match screenshot', async ({ mount }) => {
@@ -68,8 +69,59 @@ const testA11y = () => {
 	});
 };
 
+const testControlledMode = () => {
+	test('should toggle open state programmatically via external button', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(
+			<div className="padding-box">
+				<DBButton
+					data-testid="toggle"
+					onClick={() => {
+						const article = page.locator('article');
+						// We wait till db-page fully loaded
+						article.evaluate((element) => {
+							element.setAttribute('data-open', 'true');
+						});
+					}}>
+					Toggle
+				</DBButton>
+				<DBPopover
+					open={false}
+					animation="disabled"
+					data-testid="popover"
+					trigger={<DBButton data-testid="button">Button</DBButton>}>
+					{/*<template v-slot:trigger>
+				<DBButton data-testid="button">Button</DBButton>
+			</template>*/}
+					Test
+				</DBPopover>
+			</div>
+		);
+
+		const innerButton = component.getByTestId('button');
+		const popover = component.getByRole('article');
+
+		// Initially closed: aria-expanded=false, popover hidden
+		await expect(innerButton).toHaveAttribute('aria-expanded', 'false');
+		await expect(popover).not.toBeVisible();
+
+		// Hover/focus should not open in controlled mode
+		await innerButton.hover();
+		await expect(popover).not.toBeVisible();
+		await innerButton.focus();
+		await expect(popover).not.toBeVisible();
+
+		// Click toggle button to open
+		await component.getByTestId('toggle').click();
+		await expect(popover).toBeVisible();
+	});
+};
+
 test.describe('DBPopover', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
+	testControlledMode();
 });
