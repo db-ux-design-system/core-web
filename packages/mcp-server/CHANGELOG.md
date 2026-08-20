@@ -1,5 +1,13 @@
 # @db-ux/mcp-server
 
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
 ## 5.1.3
 
 ### Patch Changes
