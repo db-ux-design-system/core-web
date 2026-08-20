@@ -58,7 +58,7 @@ export default function HeadingShowcase(props: PatternhubProps) {
 						<HeadingAttributeForwarding />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Accessible Children">
+				<LinkWrapperShowcase exampleName="Heading With Additional Content">
 					<CardWrapperShowcase>
 						<HeadingChildrenAccessibility />
 					</CardWrapperShowcase>
