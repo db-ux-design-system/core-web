@@ -33,14 +33,14 @@
 				"en": "Use exactly one H1 per page as the top level of the document structure. Multiple H1 elements break the hierarchy and impair screen reader navigation."
 			},
 			"do": {
-				"figmaNodeId": null,
+				"figmaNodeId": "4002:5",
 				"description": {
 					"de": "Setze genau ein H1 als Seitenüberschrift ein und verwende H2–H6 für Unterabschnitte.",
 					"en": "Use exactly one H1 as the page title and H2–H6 for subsections."
 				}
 			},
 			"dont": {
-				"figmaNodeId": null,
+				"figmaNodeId": "4002:7",
 				"description": {
 					"de": "Verwende nicht mehrere H1 auf derselben Seite. Screenreader verlieren die Orientierung in der Dokumentstruktur.",
 					"en": "Don't use multiple H1 on the same page. Screen readers lose orientation in the document structure."
@@ -58,14 +58,14 @@
 				"en": "Maintain heading order (H1 → H2 → H3). Skipped levels create an incomplete outline and hinder navigation with assistive technologies."
 			},
 			"do": {
-				"figmaNodeId": null,
+				"figmaNodeId": "4002:9",
 				"description": {
 					"de": "Baue die Heading-Hierarchie lückenlos auf: H1, dann H2, dann H3.",
 					"en": "Build the heading hierarchy without gaps: H1, then H2, then H3."
 				}
 			},
 			"dont": {
-				"figmaNodeId": null,
+				"figmaNodeId": "4002:11",
 				"description": {
 					"de": "Springe nicht von H1 direkt auf H3. Die fehlende Ebene erzeugt eine unvollständige Outline für Screenreader.",
 					"en": "Don't jump from H1 directly to H3. The missing level creates an incomplete outline for screen readers."
@@ -83,67 +83,17 @@
 				"en": "When overriding size, maintain the visual hierarchy from H1 to H6. Each level must be equal to or smaller than the previous one."
 			},
 			"do": {
-				"figmaNodeId": null,
+				"figmaNodeId": "4002:13",
 				"description": {
 					"de": "Stelle sicher, dass H1 visuell größer oder gleich groß wie H2 bleibt, auch bei überschriebener Size.",
 					"en": "Ensure H1 remains visually larger than or equal to H2, even when overriding size."
 				}
 			},
 			"caution": {
-				"figmaNodeId": null,
+				"figmaNodeId": "4002:15",
 				"description": {
 					"de": "Eine invertierte Größenreihenfolge (H2 größer als H1) widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur.",
 					"en": "An inverted size order (H2 larger than H1) contradicts reading expectations and makes it harder to grasp page structure."
-				}
-			}
-		},
-		{
-			"id": "heading-vs-custom-heading",
-			"headline": {
-				"de": "Heading vs. Custom Heading",
-				"en": "Heading vs. Custom Heading"
-			},
-			"text": {
-				"de": "Verwende Heading H1–H6 für reine Textheadings. Sobald zusätzlicher Content wie Links, Icons oder Badges innerhalb der Heading benötigt wird, setze Custom Heading ein.",
-				"en": "Use Heading H1–H6 for plain text headings. As soon as additional content like links, icons, or badges is needed within the heading, use Custom Heading instead."
-			},
-			"do": {
-				"figmaNodeId": null,
-				"description": {
-					"de": "Verwende Heading H1–H6 für Überschriften, die nur aus Text bestehen.",
-					"en": "Use Heading H1–H6 for headings that consist only of text."
-				}
-			},
-			"dont": {
-				"figmaNodeId": null,
-				"description": {
-					"de": "Platziere nicht interaktive Elemente in Heading H1–H6. Nutze dafür Custom Heading mit dem Children Slot.",
-					"en": "Don't place interactive elements in Heading H1–H6. Use Custom Heading with the Children slot instead."
-				}
-			}
-		},
-		{
-			"id": "paragraph-spacing",
-			"headline": {
-				"de": "Paragraph Spacing",
-				"en": "Paragraph spacing"
-			},
-			"text": {
-				"de": "Aktiviere Paragraph Spacing, wenn auf die Heading direkt Fließtext oder eine weitere Heading folgt. Der Abstand von 1lh wahrt den vertikalen Rhythmus.",
-				"en": "Enable paragraph spacing when body text or another heading directly follows. The 1lh spacing maintains vertical rhythm."
-			},
-			"do": {
-				"figmaNodeId": null,
-				"description": {
-					"de": "Aktiviere Paragraph Spacing bei Headings, denen Fließtext oder eine weitere Heading folgt.",
-					"en": "Enable paragraph spacing on headings followed by body text or another heading."
-				}
-			},
-			"caution": {
-				"figmaNodeId": null,
-				"description": {
-					"de": "Ohne Paragraph Spacing kann der Abstand zwischen Heading und Folgeinhalt zu gering wirken und den Lesefluss stören.",
-					"en": "Without paragraph spacing, the gap between heading and following content may feel too tight, disrupting reading flow."
 				}
 			}
 		}

@@ -7,8 +7,6 @@ Sechs semantische Heading-Stufen zur Strukturierung von Inhalten. Rendert reinen
 1. Pro Seite genau ein `h1` verwenden. Mehrere `h1` brechen die Dokumenthierarchie für Screenreader.
 2. Heading-Level nicht überspringen (`h1` → `h2` → `h3`). Eine übersprungene Ebene erzeugt eine unvollständige Outline und erschwert die Navigation mit Assistenztechnologien.
 3. **sollte** Bei abweichender `size` die visuelle Hierarchie von H1 bis H6 beibehalten (jede Stufe gleich groß oder kleiner als die vorherige). Eine invertierte Größenreihenfolge widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur.
-4. Heading H1–H6 für reine Textheadings verwenden. Sobald zusätzlicher Content (Links, Icons, Badges) innerhalb der Heading benötigt wird, stattdessen [Custom Heading](../custom-heading/guidelines.md) einsetzen.
-5. **sollte** `paragraphSpacing` aktivieren, wenn auf die Heading direkt Fließtext oder eine weitere Heading folgt, damit der vertikale Rhythmus gewahrt bleibt.
 
 ## Zusätzliche Informationen
 

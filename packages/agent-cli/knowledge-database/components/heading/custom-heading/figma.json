@@ -2,7 +2,7 @@
 	"component": "custom-heading",
 	"library": "core-components",
 	"figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB",
-	"note": "Figma-Inhalte aktuell noch im Branch. Link muss nach Merge und Release aktualisiert werden.",
+	"note": "Figma-Inhalte aktuell noch im Branch 'QRzyslOdfoypR3N2vHMVAJ'. Link muss nach Merge und Release aktualisiert werden. Custom Heading ist ein reiner Slot-Container, in Figma mit Heading H1–H6 vorbefüllt.",
 	"branchUrl": "https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB/branch/QRzyslOdfoypR3N2vHMVAJ/DB-UX-DS---Core-Components?m=auto&node-id=38761-4785&t=A2aYoQRRjISavHDp-1",
 	"componentSets": [
 		{

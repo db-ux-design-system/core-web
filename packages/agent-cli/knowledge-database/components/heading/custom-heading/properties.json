@@ -1,97 +1,7 @@
 {
 	"component": "custom-heading",
+	"note": "Custom Heading ist ein reiner Slot-Container. Die Heading-Properties (Size, Font Weight, Alignment) werden über die eingesetzte Heading H1–H6 Instanz gesteuert, nicht auf Custom Heading selbst.",
 	"properties": [
-		{
-			"name": "semanticLevel",
-			"type": "enum",
-			"values": [
-				"1",
-				"2",
-				"3",
-				"4",
-				"5",
-				"6"
-			],
-			"code": null,
-			"design": {
-				"name": "🔀 Semantic Level",
-				"values": [
-					"1",
-					"2",
-					"3",
-					"4",
-					"5",
-					"6"
-				]
-			}
-		},
-		{
-			"name": "size",
-			"type": "enum",
-			"values": [
-				"3xl",
-				"2xl",
-				"xl",
-				"lg",
-				"md",
-				"sm",
-				"xs",
-				"2xs",
-				"3xs"
-			],
-			"code": null,
-			"design": {
-				"name": "🔀 Size",
-				"values": [
-					"3xl",
-					"2xl",
-					"xl",
-					"lg",
-					"md",
-					"sm",
-					"xs",
-					"2xs",
-					"3xs"
-				],
-				"note": "Custom Heading hat kein stufenspezifisches Default Mapping. Size muss immer explizit gesetzt werden."
-			}
-		},
-		{
-			"name": "fontWeight",
-			"type": "enum",
-			"values": [
-				"Black",
-				"Light"
-			],
-			"default": "Black",
-			"code": null,
-			"design": {
-				"name": "🔀 Font Weight",
-				"values": [
-					"(Def) Black",
-					"Light"
-				]
-			}
-		},
-		{
-			"name": "alignment",
-			"type": "enum",
-			"values": [
-				"Left",
-				"Right",
-				"Center"
-			],
-			"default": "Left",
-			"code": null,
-			"design": {
-				"name": "🔀 Alignment",
-				"values": [
-					"(Def) Left",
-					"Right",
-					"Center"
-				]
-			}
-		},
 		{
 			"name": "children",
 			"type": "slot",
@@ -99,7 +9,7 @@
 			"design": {
 				"name": "📦 Children",
 				"type": "slot",
-				"note": "Slot für zusätzlichen Content wie Verlinkungen oder andere interaktive Elemente innerhalb der Heading."
+				"note": "Muss mindestens eine Heading H1–H6 Instanz enthalten. Zusätzlich können beliebige weitere Elemente (Links, Badges, Icons) platziert werden. In Figma ist der Slot zur leichteren Verwendung mit Heading H1–H6 vorbefüllt."
 			}
 		},
 		{
@@ -109,7 +19,7 @@
 			"code": null,
 			"design": {
 				"name": "Paragraph Spacing",
-				"note": "Erzeugt einen Abstand von 1lh unterhalb der Heading."
+				"note": "Erzeugt einen Abstand von 1lh unterhalb der Custom Heading."
 			}
 		}
 	]
