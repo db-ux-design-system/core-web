@@ -884,8 +884,8 @@ export type DocumentScrollState = {
 export type PopoverState = {
 	handleEscape: (event: any) => void;
 	handleAutoPlacement: (parent?: HTMLElement) => void;
-	handleEnter: (parent?: HTMLElement) => void;
-	handleLeave: (event?: any) => void;
+	handleEnter: (parent?: HTMLElement, manualOpen?: boolean) => void;
+	handleLeave: (event?: any, manualOpen?: boolean) => void;
 } & DocumentScrollState;
 
 // TODO: Remove this after we migrate to one-platform

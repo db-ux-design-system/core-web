@@ -449,6 +449,14 @@ export const getComponents = (): Component[] => [
 			react: {
 				propsPassingFilter: ['onToggle']
 			}
+		},
+		overwrites: {
+			stencil: [
+				{
+					from: new RegExp('<db-drawer[\\s\\S]*?</db-drawer>'),
+					to: ''
+				}
+			]
 		}
 	},
 	{
