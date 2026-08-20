@@ -33,7 +33,7 @@ export const designSystems = [
 		name: 'Porsche Design System',
 		url: 'https://github.com/porsche-design-system/porsche-design-system',
 		componentUrl:
-			'https://designsystem.porsche.com/v4/components/introduction'
+			'https://designsystem.porsche.com/v3/components/introduction'
 	},
 	{
 		name: 'Washington Post Design System',
