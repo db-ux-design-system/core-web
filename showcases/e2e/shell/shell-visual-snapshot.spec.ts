@@ -110,9 +110,10 @@ const expandFirstNavigationGroup = async (
 ): Promise<void> => {
 	if (isMobile) {
 		// Open the mobile drawer first
-		const burgerButton = page.locator(
-			'.db-control-panel-mobile > .db-button'
-		);
+		// Use the specific button class instead of `.db-control-panel-mobile > .db-button`
+		// because in Angular/Stencil the button is wrapped in a <db-button> custom element,
+		// making `.db-button` a grandchild rather than a direct child.
+		const burgerButton = page.locator('.db-control-panel-mobile-button');
 		await burgerButton.click();
 		// Wait for the drawer open animation
 		await page.waitForTimeout(1000);
@@ -153,9 +154,9 @@ const expandFirstSubNavigationGroup = async (
 ): Promise<void> => {
 	if (isMobile) {
 		// Open the mobile drawer first
-		const burgerButton = page.locator(
-			'.db-control-panel-mobile > .db-button'
-		);
+		// Use the specific button class instead of `.db-control-panel-mobile > .db-button`
+		// because in Angular/Stencil the button is wrapped in a <db-button> custom element.
+		const burgerButton = page.locator('.db-control-panel-mobile-button');
 		await burgerButton.click();
 		// Wait for the drawer open animation
 		await page.waitForTimeout(1000);
