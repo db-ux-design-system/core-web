@@ -25,6 +25,9 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
+			// For Angular: getAttributeValue returns true for both valueless
+			// static attributes AND dynamic bindings ([backButtonText]="expr").
+			// Only reject undefined/empty — dynamic bindings are valid.
 			if (backButtonText === undefined || backButtonText === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
@@ -57,7 +60,11 @@ export default {
 				'backButtonText'
 			);
 
-			if (backButtonText === undefined || backButtonText === '') {
+			if (
+				backButtonText === undefined ||
+				backButtonText === '' ||
+				backButtonText === true
+			) {
 				context.report({
 					node: openingElement,
 					messageId:

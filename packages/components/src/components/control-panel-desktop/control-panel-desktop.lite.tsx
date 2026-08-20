@@ -63,6 +63,11 @@ export default function DBControlPanelDesktop(
 				props.id ??
 				props.propOverrides?.id ??
 				`db-control-panel-desktop-${uuid()}`;
+		},
+		syncExpanded: () => {
+			if (props.expanded !== undefined) {
+				state._open = getBoolean(props.expanded, 'expanded') ?? true;
+			}
 		}
 	});
 
@@ -70,6 +75,7 @@ export default function DBControlPanelDesktop(
 
 	onInit(() => {
 		state.resetIds();
+		state.syncExpanded();
 	});
 
 	onUpdate(() => {
@@ -77,9 +83,7 @@ export default function DBControlPanelDesktop(
 	}, [props.id, props.propOverrides]);
 
 	onUpdate(() => {
-		if (props.expanded !== undefined) {
-			state._open = getBoolean(props.expanded, 'expanded') ?? true;
-		}
+		state.syncExpanded();
 	}, [props.expanded]);
 
 	return (

@@ -596,7 +596,14 @@ export default function DBControlPanelNavigation(
 				// For behavior="single", attach a mutation observer to collapse
 				// sibling groups when one is expanded
 				if (props.behavior === 'single') {
+					// Disconnect any existing observer before attaching a new one
+					state._singleBehaviorObserver?.disconnect();
+					state._singleBehaviorObserver = undefined;
 					state._attachSingleBehaviorObserver();
+				} else {
+					// Disconnect observer when behavior is not 'single'
+					state._singleBehaviorObserver?.disconnect();
+					state._singleBehaviorObserver = undefined;
 				}
 			}
 

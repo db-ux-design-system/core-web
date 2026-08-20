@@ -8,6 +8,7 @@ import {
 	DBControlPanelMobile,
 	DBControlPanelNavigation,
 	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup,
 	DBCustomButton,
 	DBCustomSelect,
 	DBDivider,
@@ -233,6 +234,14 @@ const ComponentSwitch = ({
 			<DBControlPanelNavigationItem className={className} {...props}>
 				{resolvedContent}
 			</DBControlPanelNavigationItem>
+		);
+	}
+
+	if (type === 'navigation-item-group') {
+		return (
+			<DBControlPanelNavigationItemGroup className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelNavigationItemGroup>
 		);
 	}
 

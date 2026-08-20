@@ -19,7 +19,9 @@ export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	OrientationProps &
 	SidebarProps;
 
-export type DBControlPanelDesktopDefaultState = {};
+export type DBControlPanelDesktopDefaultState = {
+	syncExpanded: () => void;
+};
 
 export type DBControlPanelDesktopState = DBControlPanelDesktopDefaultState &
 	GlobalState &
