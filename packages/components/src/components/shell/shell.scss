@@ -37,6 +37,7 @@ body:has(.db-shell[data-fonts-loaded="true"]) {
 	block-size: 100dvh;
 	inline-size: 100dvw;
 	display: grid;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
 	&[data-control-panel-desktop-position="left"] {
 		#{string.unquote(custom-elements.$control-panel-desktop)} {

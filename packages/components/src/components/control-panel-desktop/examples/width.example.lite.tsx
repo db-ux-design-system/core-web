@@ -1,13 +1,22 @@
 import { Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
 import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.lite';
+import DBControlPanelMeta from '../../control-panel-meta/control-panel-meta.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
+import DBLink from '../../link/link.lite';
 import DBControlPanelDesktop from '../control-panel-desktop.lite';
 import { StorybookControlPanelDesktopArgTypes } from './_control-panel-desktop.arg.types';
 
 useMetadata({
 	storybookTitle: 'Width',
-	storybookNames: ['Full', 'Medium', 'Large'],
+	storybookNames: [
+		'Full',
+		'Medium',
+		'Large',
+		'Full with Meta',
+		'Medium with Meta',
+		'Large with Meta'
+	],
 	storybookArgTypes: StorybookControlPanelDesktopArgTypes
 });
 
@@ -64,6 +73,80 @@ export default function ControlPanelDesktopWidth() {
 							default: {}
 						})}
 						aria-label="Large">
+						<DBControlPanelNavigationItem icon="x_placeholder">
+							<a href="#">Large</a>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
+				</DBControlPanelDesktop>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBControlPanelDesktop
+					orientation="horizontal"
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
+					meta={
+						<DBControlPanelMeta>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</DBControlPanelMeta>
+					}>
+					<DBControlPanelNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="Full with Meta">
+						<DBControlPanelNavigationItem icon="x_placeholder">
+							<a href="#">Full</a>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
+				</DBControlPanelDesktop>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBControlPanelDesktop
+					orientation="horizontal"
+					width="medium"
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
+					meta={
+						<DBControlPanelMeta>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</DBControlPanelMeta>
+					}>
+					<DBControlPanelNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="Medium with Meta">
+						<DBControlPanelNavigationItem icon="x_placeholder">
+							<a href="#">Medium</a>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigation>
+				</DBControlPanelDesktop>
+			</div>
+			<div style={{ width: '100%', display: 'block' }}>
+				<DBControlPanelDesktop
+					orientation="horizontal"
+					width="large"
+					brand={<DBControlPanelBrand data-logo="db-systel" />}
+					meta={
+						<DBControlPanelMeta>
+							<DBLink href="#">Imprint</DBLink>
+							<DBLink href="#">Help</DBLink>
+						</DBControlPanelMeta>
+					}>
+					<DBControlPanelNavigation
+						{...useTarget({
+							angular: {
+								'data-x': 'workaround-angular'
+							},
+							default: {}
+						})}
+						aria-label="Large with Meta">
 						<DBControlPanelNavigationItem icon="x_placeholder">
 							<a href="#">Large</a>
 						</DBControlPanelNavigationItem>

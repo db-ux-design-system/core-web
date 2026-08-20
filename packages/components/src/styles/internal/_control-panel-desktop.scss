@@ -219,6 +219,18 @@ $control-panel-desktop-vertical-padding-inline: calc(
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
 
+	&:not(:not([data-width]), [data-width="full"]) {
+		border-end-end-radius: variables.$db-border-radius-xs;
+		border-end-start-radius: variables.$db-border-radius-xs;
+		border-inline: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	}
+
+	.db-control-panel-meta {
+		border-block-end: variables.$db-border-width-3xs solid
+			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	}
+
 	.db-control-panel-navigation {
 		--db-overflow-scroll-button-inset-block: #{$control-panel-desktop-horizontal-padding-block};
 		--db-overflow-scroll-button-inset-inline-start: calc(
