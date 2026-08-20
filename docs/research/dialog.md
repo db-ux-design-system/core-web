@@ -102,7 +102,7 @@ Everything below is a decision the research surfaced but cannot answer on its ow
 - **Footer actions**: order of primary/secondary, wrapping vs. inline on narrow screens (GitLab exposes `keepActionsInline`), and whether a tertiary/cancel slot is needed.
     - we'll expose a footer / end slot that the users could fill with a dialog-footer component.
 - **Edge-to-edge content**: do we need a "no padding" escape hatch for images, tables or maps (Shopify's `padding="none"`)?
-    - horizontal sizes will be adapted from drawer (`"small" | "medium" | "large" | "full"`). But we won't have a full width dialog (`drawer`: `showSpacing=false`)
+    - deactivating the inner padding might be an interesting idea for a refactoring later on, that we should implement on request by our users. It won't be part of phase 1.
 - **Visual base**: does the dialog reuse `DBCard` styling (KoliBri's `_variant="card"`) or bring its own container, corner radius and elevation?
     - As the DBDialogs styling is adapted / inherited from DBCard, we'll adapt/reference it, but won't use a DBCard exactly as an inner element or even replacement for a DBDialog/`dialog` to keep it flexible.
 
