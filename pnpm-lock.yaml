@@ -51,17 +51,17 @@ importers:
         specifier: 1.5.3
         version: 1.5.3(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.33.0
-        version: 0.33.0
+        specifier: 0.33.1
+        version: 0.33.1
       '@guidepup/playwright':
-        specifier: 0.19.0
-        version: 0.19.0(@guidepup/guidepup@0.33.0)(@playwright/test@1.62.1)
+        specifier: 0.19.1
+        version: 0.19.1(@guidepup/guidepup@0.33.1)(@playwright/test@1.62.1)
       '@guidepup/record':
         specifier: 0.1.0
         version: 0.1.0(supports-color@10.2.2)
       '@guidepup/setup':
-        specifier: 0.24.2
-        version: 0.24.2(supports-color@10.2.2)
+        specifier: 0.24.6
+        version: 0.24.6(supports-color@10.2.2)
       '@playwright/experimental-ct-core':
         specifier: 1.62.1
         version: 1.62.1(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.8.1(supports-color@10.2.2))(sass@1.102.0)(terser@5.49.2)(tsx@4.23.12)(yaml@2.9.0)
@@ -3745,11 +3745,11 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.33.0':
-    resolution: {integrity: sha512-CNFMsUtalwr9varDvevUwv8vKs3VWDshsMehlUGuEkxE4BiQ+Dlz2j0A1LSvPcdIN40oNi98sx4sXHygjdfR3g==}
+  '@guidepup/guidepup@0.33.1':
+    resolution: {integrity: sha512-G7kvFCVsllnJdE+UXROgN33aWnXQ3Cg/og6iuAl9bVAPs0PhDUDWFAZVdXbTvBYHsoH9KzDuMdUnIq7G5EhXyg==}
 
-  '@guidepup/playwright@0.19.0':
-    resolution: {integrity: sha512-Wc6BRnssvU8XHFOLNsNZsTcIjmLHCJjeeP88lNryTBmsbi+vxrhHe+YeL8p+uMNm7cCnW5dkTHMr2dbFqPDjhw==}
+  '@guidepup/playwright@0.19.1':
+    resolution: {integrity: sha512-d0FMH6LFbRbV71l2NGzv2gqV3vQbHDfTVctXsKm6d1ZahpS2/Ozq1WCEoZ7QTAR6iuNzwy03tZfvyijGH+zUDw==}
     peerDependencies:
       '@guidepup/guidepup': '>=0.33.0'
       '@playwright/test': ^1.57.0
@@ -3757,8 +3757,8 @@ packages:
   '@guidepup/record@0.1.0':
     resolution: {integrity: sha512-jtSqZ0CZVdWzWIbLWHYoUi1IbNJVKns20oEYzwcTftw8rY5RXsK1OTXaXFx9Gup5mnmYaFLnON8WwTS+4DYwrQ==}
 
-  '@guidepup/setup@0.24.2':
-    resolution: {integrity: sha512-x/dTGefCa/skF9JzLoDputLbzYBWXDm5YtY5l+HzXFvd60WqOjeXHH197sy9ISHIKEYFpy2X7+CvPgv7BXjPIg==}
+  '@guidepup/setup@0.24.6':
+    resolution: {integrity: sha512-Oxcb0aXTVhl0iXYYuecUjTU4Bt0P7+qsOktcLNSnhwdynBYesUofTfk9QdboOhqLmg5wesw4qE3hXDHCgCz5OA==}
     hasBin: true
 
   '@harperfast/extended-iterable@1.0.3':
@@ -7434,6 +7434,10 @@ packages:
     resolution: {integrity: sha512-A9gOqLdi6cV4ibazAjcQufGj0B1y/vDqYrcuP6d/6x8P27gRS8643Dj9o1dEKtB6O7fwxb2FgBmJS2mX7gpvdw==}
     engines: {node: '>=14.6'}
     deprecated: this version has critical issues, please update to the latest version
+
+  '@xmldom/xmldom@0.9.11':
+    resolution: {integrity: sha512-tW8bcK3hsG0/uqSnNz6TK4BkcuZSezoU7DlnYssILmZDktPnSHHuDJJFM0AJv+13gz2r0iGdrj6qqKeUnxXEDg==}
+    engines: {node: '>=14.6'}
 
   '@xn-sakina/rml-darwin-arm64@2.8.0':
     resolution: {integrity: sha512-B8XpWn/t3vALCePi8DnbHQWVQnmKybwPIKbfzL1L75w2V/ELXn0OguFayujf2eZdmCIBPC+Drqxztn6fDV08Ww==}
@@ -19883,13 +19887,13 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.33.0':
+  '@guidepup/guidepup@0.33.1':
     dependencies:
       plist: 4.0.0
 
-  '@guidepup/playwright@0.19.0(@guidepup/guidepup@0.33.0)(@playwright/test@1.62.1)':
+  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.33.1)(@playwright/test@1.62.1)':
     dependencies:
-      '@guidepup/guidepup': 0.33.0
+      '@guidepup/guidepup': 0.33.1
       '@playwright/test': 1.62.1
 
   '@guidepup/record@0.1.0(supports-color@10.2.2)':
@@ -19898,7 +19902,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/setup@0.24.2(supports-color@10.2.2)':
+  '@guidepup/setup@0.24.6(supports-color@10.2.2)':
     dependencies:
       chalk: 4.1.2
       commander: 15.0.0
@@ -24008,6 +24012,8 @@ snapshots:
   '@webcontainer/env@1.1.1': {}
 
   '@xmldom/xmldom@0.9.10': {}
+
+  '@xmldom/xmldom@0.9.11': {}
 
   '@xn-sakina/rml-darwin-arm64@2.8.0':
     optional: true
@@ -31502,7 +31508,7 @@ snapshots:
 
   plist@4.0.0:
     dependencies:
-      '@xmldom/xmldom': 0.9.10
+      '@xmldom/xmldom': 0.9.11
       xmlbuilder: 15.1.1
 
   plur@5.1.0:
