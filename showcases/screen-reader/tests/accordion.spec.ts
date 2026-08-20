@@ -28,13 +28,17 @@ test.describe('DBAccordion', () => {
 		title: 'default',
 		description: 'should open first item (next)',
 		url: './#/04/accordion?page=behavior',
-		async testFn(voiceOver, nvda) {
+		async testFn(voiceOver, nvda, page) {
 			const screenReader = voiceOver ?? nvda;
 			await screenReader?.clearSpokenPhraseLog();
 			await screenReader?.next(); // Focus: "item 1"
 			await screenReader?.next(); // Focus: "item 2"
 			await screenReader?.previous(); // Focus: "item 1"
-			await screenReader?.act(); // Interact: "item 1"
+			await screenReader?.act(); // Interact: "item 1" -> expand
+
+			// Wait for VoiceOver to process the accordion expansion
+			await page?.waitForTimeout(500);
+
 			await screenReader?.next(); // Focus: "content 1"
 			await screenReader?.next(); // Focus: "item 2"
 		},
