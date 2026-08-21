@@ -62,7 +62,7 @@
     "lint:jscpd": "jscpd . --exit-code 1 --config .config/.jscpd.json",
     "lint:knip": "knip --config .config/knip.jsonc",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
-    "lint:package-json": "npmPkgJsonLint packages/*/package.json --configFile .config/.npmpackagejsonlintrc.json",
+    "lint:package-json": "npmPkgJsonLint ./packages ./output --configFile .config/.npmpackagejsonlintrc.json",
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
