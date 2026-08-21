@@ -1,0 +1,238 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/form-components";
+@use "../../styles/internal/icon-passing";
+@use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover";
+@use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-tree";
+@use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown";
+
+%drilldown-navigation {
+	.db-control-panel-navigation-item-group-expand-button {
+		// show/hide sub-navigation by click
+		&[aria-expanded="true"] {
+			~ .db-control-panel-navigation-item-group-menu {
+				visibility: visible;
+				transform: translateX(0%);
+
+				@media (prefers-reduced-motion: no-preference) {
+					transition:
+						visibility 0ms linear 0ms,
+						transform
+							#{variables.$db-transition-duration-extra-slow}
+							#{variables.$db-transition-timing-emotional};
+				}
+
+				.db-control-panel-navigation-item-group-menu {
+					inset-block: 0;
+				}
+			}
+		}
+
+		&:not(&[aria-expanded="true"]) {
+			~ .db-control-panel-navigation-item-group-menu {
+				// Mobile Sliding
+				@include screen-sizes.screen-min-max(
+					(
+						max: "sm"
+					)
+				) {
+					transform: translateX(110%);
+				}
+
+				// Desktop Sliding
+				@include screen-sizes.screen-min-max(
+					(
+						min: "sm"
+					)
+				) {
+					transform: translateX(-110%);
+				}
+			}
+
+			@media (prefers-reduced-motion: no-preference) {
+				~ .db-control-panel-navigation-item-group-menu {
+					transition:
+						visibility 0ms linear 410ms,
+						transform #{variables.$db-transition-duration-slow}
+							#{variables.$db-transition-timing-emotional}; // hide animation is 0.4s
+				}
+			}
+		}
+
+		.db-control-panel-navigation-item-group-expand-button-end-slot-container {
+			// default icon for navigation
+			@include icons.set-icon("chevron_right", "after");
+		}
+	}
+
+	.db-control-panel-navigation-item-group-menu {
+		@extend %db-control-panel-navigation-item-group-menu-drilldown;
+	}
+}
+
+%popover-navigation {
+	.db-control-panel-navigation-item-group-expand-button {
+		&:is(:hover, :focus-visible):not(
+				:has(
+					~ .db-control-panel-navigation-item-group-menu[data-force-close="true"]
+				)
+			) {
+			~ .db-control-panel-navigation-item-group-menu {
+				visibility: visible;
+			}
+		}
+
+		.db-control-panel-navigation-item-group-expand-button-end-slot-container {
+			// default icon for navigation
+			@include icons.set-icon("chevron_down", "after");
+		}
+	}
+
+	.db-control-panel-navigation-item-group-menu {
+		@extend %db-control-panel-navigation-item-group-menu-popover;
+	}
+}
+
+%non-tree-navigation {
+	.db-control-panel-navigation-item {
+		@include icon-passing.icon-passing;
+	}
+
+	.db-control-panel-navigation-item-group {
+		@include icon-passing.icon-passing(
+			variables.$db-spacing-fixed-sm,
+			variables.$db-spacing-fixed-xs
+		);
+	}
+}
+
+%tree-navigation {
+	.db-control-panel-navigation-item {
+		&:not([data-icon]) {
+			&::before {
+				content: none;
+			}
+
+			a {
+				@include icons.set-icon("circle_small");
+			}
+		}
+
+		&[data-icon] {
+			@include icon-passing.icon-passing;
+		}
+	}
+
+	a,
+	button {
+		justify-content: flex-start;
+	}
+
+	.db-control-panel-navigation-item-group {
+		display: flex;
+		flex-direction: column;
+
+		&::before {
+			content: none;
+		}
+
+		.db-control-panel-navigation-item-group-expand-button {
+			@include icons.set-icon("chevron_right");
+
+			&[aria-expanded="true"] {
+				&::before {
+					transform: rotate(90deg);
+					pointer-events: none;
+
+					@media screen and (prefers-reduced-motion: no-preference) {
+						transition: form-components.$dropdown-icon-transition;
+					}
+				}
+
+				~ .db-control-panel-navigation-item-group-menu {
+					visibility: visible;
+					block-size: auto;
+					/* stylelint-disable-next-line declaration-property-value-no-unknown,db-ux/use-sizing */
+					block-size: calc-size(auto, size);
+				}
+
+				+ .db-control-panel-navigation-item-group-menu {
+					padding-block: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+
+		.db-control-panel-navigation-item-group-menu {
+			@extend %db-control-panel-navigation-item-group-menu-tree;
+		}
+	}
+
+	&[data-show-tree-line="true"] {
+		.db-control-panel-navigation-item-group {
+			.db-control-panel-navigation-item-group-menu {
+				@include helpers.divider("left");
+
+				&::before {
+					inset-inline-start: 1lh;
+					inset-block: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+	}
+}
+
+.db-control-panel-navigation {
+	inline-size: 100%;
+	position: relative;
+
+	@include screen-sizes.screen("md") {
+		inline-size: auto;
+	}
+
+	> menu {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+		margin: 0;
+		gap: variables.$db-spacing-fixed-xs;
+	}
+
+	&:not([data-variant="tree"]) {
+		@extend %non-tree-navigation;
+
+		// MOBILE Sliding
+		@include screen-sizes.screen-min-max(
+			(
+				max: "sm"
+			)
+		) {
+			--db-control-panel-navigation-mobile: 1;
+
+			.db-control-panel-navigation-item-group-expand-button {
+				/* Remove the highlight here because we have an overlay for sub-navigations */
+				-webkit-tap-highlight-color: transparent;
+			}
+		}
+	}
+
+	&[data-variant="popover"] {
+		@extend %popover-navigation;
+	}
+
+	&[data-variant="drilldown"] {
+		@extend %drilldown-navigation;
+	}
+
+	&[data-variant="tree"] {
+		@extend %tree-navigation;
+	}
+
+	.overflow-scroll-left-button,
+	.overflow-scroll-right-button {
+		// We hide the overflow buttons, only showing them in horizontal desktop
+		display: none;
+	}
+}

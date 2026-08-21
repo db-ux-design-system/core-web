@@ -104,6 +104,7 @@ export type DBDrawerDefaultState = {
 	isNotModal: () => boolean;
 	handleBackdropPointerDown: (event: any) => void;
 	backdropPointerDown: boolean;
+	_closeTimeoutId?: number;
 };
 
 export type DBDrawerState = DBDrawerDefaultState &

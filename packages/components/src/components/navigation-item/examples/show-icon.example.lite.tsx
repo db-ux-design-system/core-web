@@ -12,16 +12,14 @@ export default function NavigationItemShowIcon() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem
-					icon="x_placeholder"
-					showIcon={false}
-					text="(Default) False"></DBNavigationItem>
+				<DBNavigationItem icon="x_placeholder" showIcon={false}>
+					<a href="#">(Default) False</a>
+				</DBNavigationItem>
 			</ul>
 			<ul>
-				<DBNavigationItem
-					icon="x_placeholder"
-					showIcon={true}
-					text="True"></DBNavigationItem>
+				<DBNavigationItem icon="x_placeholder" showIcon={true}>
+					<a href="#">True</a>
+				</DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

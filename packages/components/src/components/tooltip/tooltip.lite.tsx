@@ -11,6 +11,7 @@ import {
 import { ClickEvent } from '../../shared/model';
 import {
 	cls,
+	getBoolean,
 	getBooleanAsString,
 	delay as utilsDelay,
 	uuid
@@ -68,7 +69,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
-						handleFixedPopover(_ref, parent);
+						handleFixedPopover({
+							element: _ref,
+							parent,
+							forceAbsolute: getBoolean(props.forceAbsolute)
+						});
 						// Record the size after placement so the self
 						// ResizeObserver can distinguish placement-induced
 						// resizes from genuine content changes.

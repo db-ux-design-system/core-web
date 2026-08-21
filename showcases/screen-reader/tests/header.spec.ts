@@ -8,7 +8,7 @@ test.describe('DBHeader', () => {
 		title: 'default',
 		description:
 			'should have links, an inline text, a navigation with a list and links, buttons (next()) inside a navigation landmark (previousLandmark()) with links reachable by quick navigation (previousLink())',
-		url: './#/01/header?page=density',
+		url: './#/05/header?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.previous(); // Link "Imprint"

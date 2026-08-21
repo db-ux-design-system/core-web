@@ -69,7 +69,7 @@
 
 - always provide `burgerMenuLabel` attribute for accessibility
 
-## `DBNavigationItem` or `db-navigation-item`
+## `DBControlPanelNavigationItem` or `db-control-panel-navigation-item`
 
 - always provide `backButtonText` attribute for accessibility
 - must have children content (text or child elements)
@@ -81,7 +81,7 @@
 ## `DBTooltip` or `db-tooltip`
 
 - must not contain interactive elements (buttons, links, inputs, etc.) — use `DBPopover` for interactive content
-- must be a child of an interactive element (`button`, `a`, `DBButton`, `DBLink`, `DBNavigationItem`, `DBTabItem`, `input`, `select`, `textarea`, etc.) for accessibility
+- must be a child of an interactive element (`button`, `a`, `DBButton`, `DBLink`, `DBControlPanelNavigationItem`, `DBTabItem`, `input`, `select`, `textarea`, etc.) for accessibility
 
 ## `DBIcon` or `db-icon`
 
@@ -92,6 +92,6 @@
 - always provide a `label` attribute for accessibility (for `DBCheckbox`, `DBRadio`, `DBSwitch` children text content also counts as label)
 - when using validation attributes (`required`, `minLength`, `maxLength`, `min`, `max`, `pattern`), always provide an `invalidMessage` attribute for better UX (exception: `DBRadio` with `required` does not need `invalidMessage`)
 
-## Content components (`DBButton`, `DBLink`, `DBBadge`, `DBIcon`, `DBInfotext`, `DBNavigationItem`, `DBNotification`, `DBAccordionItem`)
+## Content components (`DBButton`, `DBLink`, `DBBadge`, `DBIcon`, `DBInfotext`, `DBControlPanelNavigationItem`, `DBNotification`, `DBAccordionItem`)
 
 - must have either a `text` property or children content — never leave them empty

@@ -1,24 +1,25 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { form } from '@angular/forms/signals';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
-	COLOR,
 	COLOR_CONST,
-	COLORS,
-	DBBrand,
-	DBButton,
-	DBHeader,
-	DBNavigation,
-	DBPage,
-	DENSITIES,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBControlPanelNavigation,
+	DBShell,
+	DBShellContent,
+	DBShellSubNavigation,
 	DENSITY,
 	DENSITY_CONST,
-	MetaNavigationDirective,
-	NavigationDirective,
-	SecondaryActionDirective
+	SEMANTIC
 } from '@components';
+import { defaultSettings, DefaultSettings } from '../../../settings';
+import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
+import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
+import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
-import { SettingsSelectComponent } from './settings-select/settings-select.component';
+import { PageComponent } from './page/page.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -28,18 +29,22 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
+	schemas: [],
 	imports: [
+		FormsModule,
 		RouterOutlet,
+		MetaNavigationComponent,
+		PrimaryActionsComponent,
+		SecondaryActionsComponent,
 		NavItemComponent,
-		DBPage,
-		DBHeader,
-		DBBrand,
-		DBNavigation,
-		DBButton,
-		SecondaryActionDirective,
-		NavigationDirective,
-		MetaNavigationDirective,
-		SettingsSelectComponent
+		PageComponent,
+		DBShell,
+		DBShellContent,
+		DBControlPanelBrand,
+		DBControlPanelDesktop,
+		DBControlPanelMobile,
+		DBControlPanelNavigation,
+		DBShellSubNavigation
 	],
 	templateUrl: './app.component.html'
 })
@@ -47,38 +52,25 @@ export class AppComponent implements OnInit {
 	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
-	densities = DENSITIES;
-	colors = COLORS;
-
-	settingsModel = signal({
-		density: DENSITY.REGULAR,
-		color: COLOR.NEUTRAL_BG_LEVEL_1
-	});
-
-	settingsForm = form(this.settingsModel);
+	density = DENSITY.REGULAR;
+	color = SEMANTIC.NEUTRAL;
+	settings: DefaultSettings = defaultSettings;
 
 	page?: string;
 	fullscreen = false;
+	// TODO: Remove shell state and `showcases/angular-showcase/src/app/page` folder after v6.0.0
+	shell = true;
 
-	constructor(
-		private readonly router: Router,
-		private readonly route: ActivatedRoute
-	) {}
+	constructor(private readonly route: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
 			if (parameters[DENSITY_CONST]) {
-				this.settingsModel.update((m) => ({
-					...m,
-					density: parameters[DENSITY_CONST]
-				}));
+				this.density = parameters[DENSITY_CONST];
 			}
 
 			if (parameters[COLOR_CONST]) {
-				this.settingsModel.update((m) => ({
-					...m,
-					color: parameters[COLOR_CONST]
-				}));
+				this.color = parameters[COLOR_CONST];
 			}
 
 			if (parameters['page']) {
@@ -88,26 +80,23 @@ export class AppComponent implements OnInit {
 			if (parameters['fullscreen']) {
 				this.fullscreen = parameters['fullscreen'];
 			}
+
+			if (parameters['shell'] !== undefined) {
+				this.shell = parameters['shell'] === 'true';
+			}
+
+			if (
+				parameters['settings'] &&
+				JSON.stringify(this.settings) !== parameters['settings']
+			) {
+				this.settings = JSON.parse(parameters['settings']);
+			}
 		});
 	}
 
-	getChangeableClasses = () => {
-		const density = this.settingsForm.density().value();
-		const color = this.settingsForm.color().value();
-		return `db-density-${density} db-${color}`;
-	};
+	getChangeableClasses = () =>
+		`db-density-${this.density} db-color-${this.color}`;
 
-	onChange = async (_value: unknown) => {
-		const density = this.settingsForm.density().value();
-		const color = this.settingsForm.color().value();
-		await this.router.navigate([], {
-			relativeTo: this.route,
-			queryParams: { density, color },
-			queryParamsHandling: 'merge'
-		});
-	};
-
-	toggleDrawer = (open: boolean | void) => {
-		this.drawerOpen = Boolean(open);
-	};
+	getFullscreenClasses = () =>
+		`fullscreen-container ${this.getChangeableClasses()}`;
 }

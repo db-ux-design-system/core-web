@@ -36,7 +36,8 @@ export class SignalFormsInputComponent {
 		ReactiveFormsModule,
 		SignalFormsInputComponent
 	],
-	templateUrl: './inputs.component.html'
+	templateUrl: './inputs.component.html',
+	schemas: []
 })
 export class InputsComponent {
 	plain = 'test1';

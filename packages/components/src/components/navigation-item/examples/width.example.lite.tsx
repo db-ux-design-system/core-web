@@ -12,10 +12,14 @@ export default function NavigationItemWidth() {
 	return (
 		<Fragment>
 			<ul style={{ width: '400px' }}>
-				<DBNavigationItem text="(Default) Auto"></DBNavigationItem>
+				<DBNavigationItem>
+					<a href="#">(Default) Auto</a>
+				</DBNavigationItem>
 			</ul>
 			<ul style={{ width: '400px' }}>
-				<DBNavigationItem width="full" text="Full"></DBNavigationItem>
+				<DBNavigationItem width="full">
+					<a href="#">Full</a>
+				</DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

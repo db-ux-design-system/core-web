@@ -20,6 +20,7 @@
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
 	}
 
+	/* jscpd:ignore-start */
 	&[data-width="small"] {
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-sm;
@@ -34,6 +35,8 @@
 		margin-inline: auto;
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
+
+	/* jscpd:ignore-end */
 
 	.db-link {
 		@include helpers.display(inline-block);
@@ -254,6 +257,14 @@
 
 	.db-drawer-footer:has(.db-header-secondary-action:empty) {
 		display: none;
+	}
+
+	.db-header-secondary-action {
+		margin-block: auto;
+	}
+
+	.db-drawer-footer {
+		block-size: component.$min-mobile-header-height;
 	}
 
 	// When footer is hidden (empty secondaryAction), content needs safe-area spacing

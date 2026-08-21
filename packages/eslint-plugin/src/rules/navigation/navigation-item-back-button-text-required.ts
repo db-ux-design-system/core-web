@@ -1,4 +1,4 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -6,12 +6,14 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
+const TARGET_COMPONENT = 'DBControlPanelNavigationItemGroup';
+
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
 			description:
-				'Ensure DBNavigationItem has backButtonText for accessibility',
+				'Ensure DBControlPanelNavigationItemGroup has backButtonText for accessibility',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
@@ -23,6 +25,9 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
+			// For Angular: getAttributeValue returns true for both valueless
+			// static attributes AND dynamic bindings ([backButtonText]="expr").
+			// Only reject undefined/empty — dynamic bindings are valid.
 			if (backButtonText === undefined || backButtonText === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
@@ -37,16 +42,16 @@ export default {
 
 		const angularVisitors = createAngularVisitors(
 			context,
-			COMPONENTS.DBNavigationItem,
+			TARGET_COMPONENT,
 			angularHandler
 		);
 		if (angularVisitors) {
 			return angularVisitors;
 		}
 
-		const checkNavigationItem = (node: any) => {
+		const checkNavigationItemGroup = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem)) {
+			if (!isDBComponent(openingElement, TARGET_COMPONENT)) {
 				return;
 			}
 
@@ -55,7 +60,11 @@ export default {
 				'backButtonText'
 			);
 
-			if (backButtonText === undefined || backButtonText === '') {
+			if (
+				backButtonText === undefined ||
+				backButtonText === '' ||
+				backButtonText === true
+			) {
 				context.report({
 					node: openingElement,
 					messageId:
@@ -66,8 +75,11 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkNavigationItem, Element: checkNavigationItem },
-			{ JSXElement: checkNavigationItem }
+			{
+				VElement: checkNavigationItemGroup,
+				Element: checkNavigationItemGroup
+			},
+			{ JSXElement: checkNavigationItemGroup }
 		);
 	}
 };

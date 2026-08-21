@@ -11,6 +11,9 @@ useMetadata({});
 
 useDefaultProps<DBNavigationProps>({});
 
+/**
+ * @deprecated Use DBControlPanelNavigation instead
+ */
 export default function DBNavigation(props: DBNavigationProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start

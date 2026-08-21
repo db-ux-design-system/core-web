@@ -18,6 +18,14 @@
 	}
 }
 
+/* stylelint-disable selector-max-id */
+body:has(.db-page),
+#root:has(.db-page),
+#app:has(.db-page) {
+	block-size: inherit;
+}
+/* stylelint-enable selector-max-id */
+
 .db-page {
 	@media screen {
 		opacity: 0;

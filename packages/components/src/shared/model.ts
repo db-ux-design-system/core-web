@@ -136,6 +136,14 @@ export type MarginProps = {
 	margin?: MarginType;
 };
 
+export const ShellControlPanelDesktopPosition = ['top', 'left'] as const;
+export type ShellControlPanelDesktopPositionType =
+	(typeof ShellControlPanelDesktopPosition)[number];
+
+export const ShellControlPanelMobilePosition = ['top', 'bottom'] as const;
+export type ShellControlPanelMobilePositionType =
+	(typeof ShellControlPanelMobilePosition)[number];
+
 export const PlacementHorizontalList = [
 	'left',
 	'right',
@@ -258,6 +266,11 @@ export type PopoverProps = {
 	 * Use fixed with for default max-width
 	 */
 	width?: PopoverWidthType;
+
+	/**
+	 * If the floating element is inside a fixed container we might need to force absolute position
+	 */
+	forceAbsolute?: boolean | string;
 };
 
 export type NameProps = {
@@ -741,11 +754,33 @@ export type NavigationBackButtonProps = {
 	backButtonText?: string;
 };
 
-export type AriaControlsProps = {
+export type ControlPanelProps = {
 	/**
-	 * Pass `aria-controls` to inner element
+	 * Slot to pass in the DBControlPanelBrand component
 	 */
-	controls?: string;
+	brand?: any;
+	/**
+	 * Slot to pass in a meta navigation.
+	 * Desktop: Above the regular control-panel-desktop
+	 * Mobile: Inside the drawer
+	 */
+	meta?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
+	 * Desktop: Shown next to the main-navigation
+	 * Mobile: Shown next to the control-panel-brand
+	 */
+	primaryActions?: any;
+	/**
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Desktop: Shown separated by divider at the end of the control-panel-desktop
+	 * Mobile: Shown inside the drawer at the bottom.
+	 */
+	secondaryActions?: any;
+	/**
+	 * Slot to pass an anchor or link to skip the navigation and jump to main content.
+	 */
+	skipNavigation?: any;
 };
 
 export type NoTextProps = {
@@ -758,6 +793,85 @@ export type NoTextProps = {
 export type ValueLabelType = {
 	value: string;
 	label?: string;
+};
+
+export type OverflowScrollButtonProps = {
+	/**
+	 * Change amount of scroll distance when clicking on an overflow scroll arrow button.
+	 */
+	arrowScrollDistance?: number | string;
+
+	/**
+	 * Set the text for the scroll left button
+	 */
+	scrollLeftText?: string;
+
+	/**
+	 * Set the text for the scroll right button
+	 */
+	scrollRightText?: string;
+};
+
+export type OverflowScrollButtonState = {
+	scroll: (left?: boolean) => void;
+	showScrollLeft?: boolean;
+	showScrollRight?: boolean;
+	evaluateScrollButtons: (tabList: Element) => void;
+};
+
+export type SidebarProps = {
+	/**
+	 * Set the expanded/collapsed state initially for the left sidebar
+	 */
+	expanded?: boolean | string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button
+	 */
+	expandButtonTooltip?: string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
+	 */
+	expandButtonTooltipFn?: (open: boolean) => string;
+
+	/**
+	 * Set the tooltip for the expand/collapse button based on the state. (only react|vue)
+	 */
+	onExpandButtonTooltipFn?: (open: boolean) => string;
+};
+
+export type SidebarState = {
+	_open: boolean;
+	getToggleButtonText: () => string;
+};
+
+export const NavigationItemGroupVariantList = [
+	'popover',
+	'tree',
+	'drilldown'
+] as const;
+export type NavigationItemGroupVariantType =
+	(typeof NavigationItemGroupVariantList)[number];
+
+export type NavigationItemGroupVariant = {
+	/**
+	 * Selects the navigation interaction model: `popover` shows sub-items
+	 * in a flyout menu, `tree` shows a collapsible tree structure.
+	 * Note: This selects an interaction model, not just a visual variant.
+	 */
+	variant?: NavigationItemGroupVariantType;
+};
+
+export const CollapsibleBehaviorList = ['single', 'multiple'] as const;
+export type CollapsibleBehaviorType = (typeof CollapsibleBehaviorList)[number];
+
+export type CollapsibleBehaviorProps = {
+	/**
+	 * To allow multiple items open at the same time or only 1 item
+	 * @default 'multiple'
+	 */
+	behavior?: CollapsibleBehaviorType;
 };
 
 export type DocumentScrollState = {

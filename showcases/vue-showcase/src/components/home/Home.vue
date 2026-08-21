@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-	DBTabItem,
-	DBTabList,
-	DBTabPanel,
-	DBTabs
-} from "../../../../../output/vue/src";
+import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from "@components";
 import Checkboxes from "../form/Checkboxes.vue";
 import CustomSelects from "../form/Custom-Selects.vue";
 import Form from "../form/Form.vue";

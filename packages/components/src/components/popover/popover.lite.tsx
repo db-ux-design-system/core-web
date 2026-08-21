@@ -48,7 +48,11 @@ export default function DBPopover(props: DBPopoverProps) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
 					if (_ref) {
-						handleFixedPopover(article, _ref);
+						handleFixedPopover({
+							element: article,
+							parent: _ref,
+							forceAbsolute: getBoolean(props.forceAbsolute)
+						});
 					}
 				}, 1);
 			}

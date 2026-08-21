@@ -1,0 +1,37 @@
+import {
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
+import { MAIN_CONTENT_ID } from '../../shared/constants';
+import { cls } from '../../utils';
+import { DBShellContentProps } from './model';
+
+useMetadata({});
+
+useDefaultProps<DBShellContentProps>({
+	variant: 'auto'
+});
+
+export default function DBShellContent(props: DBShellContentProps) {
+	// This is used as forwardRef
+	const _ref = useRef<HTMLDivElement | any>(null);
+
+	return (
+		<div
+			ref={_ref}
+			id={props.id ?? props.propOverrides?.id}
+			class={cls('db-shell-content', props.className)}
+			data-variant={props.variant}>
+			<Slot name="startSlot" />
+			<main
+				id={props.mainId ?? MAIN_CONTENT_ID}
+				class={cls('db-main', props.mainClass)}
+				aria-label={props.mainLabel}>
+				{props.children}
+			</main>
+			<Slot name="endSlot" />
+		</div>
+	);
+}

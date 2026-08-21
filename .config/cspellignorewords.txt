@@ -230,8 +230,11 @@ fbca
 unreviewed
 notext
 prebundle
+notext
+treeitems
 knip
 checkin
+commitlintrc
 focusgroup
 unprovide
 tablists
@@ -252,3 +255,4 @@ ponyfills
 descope
 pnpms
 drilldown
+Drilldown
