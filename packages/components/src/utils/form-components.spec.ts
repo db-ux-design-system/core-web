@@ -129,7 +129,7 @@ describe('handleFrameworkEventAngular', () => {
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 
-	it('skips propagateChange and writeValue for a date input with unparsable entry (badInput)', () => {
+	it('propagates the empty value but skips writeValue for a date input with unparsable entry (badInput)', () => {
 		const component = {
 			propagateChange: vi.fn(),
 			writeValue: vi.fn()
@@ -140,7 +140,9 @@ describe('handleFrameworkEventAngular', () => {
 			target: { type: 'date', value: '', validity: { badInput: true } }
 		};
 		handleFrameworkEventAngular(component, event, 'value', '0020-02-29');
-		expect(component.propagateChange).not.toHaveBeenCalled();
+		// the model must not keep the stale valid date ...
+		expect(component.propagateChange).toHaveBeenCalledWith('');
+		// ... but writing '' back would clear the native date editor
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 
