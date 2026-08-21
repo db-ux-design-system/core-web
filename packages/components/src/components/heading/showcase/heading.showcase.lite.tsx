@@ -18,7 +18,7 @@ export default function HeadingShowcase(props: PatternhubProps) {
 			title="DBHeading"
 			isPatternhub={props.isPatternhub}>
 			<div class="heading-showcase">
-				<LinkWrapperShowcase exampleName="Semantic Levels">
+				<LinkWrapperShowcase exampleName="Semantic Levels And Default Mapping">
 					<CardWrapperShowcase>
 						<HeadingSemanticLevels />
 					</CardWrapperShowcase>
@@ -38,7 +38,7 @@ export default function HeadingShowcase(props: PatternhubProps) {
 						<HeadingFontWeight />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Alignment">
+				<LinkWrapperShowcase exampleName="Logical Alignment">
 					<CardWrapperShowcase>
 						<HeadingAlignment />
 					</CardWrapperShowcase>
@@ -53,7 +53,7 @@ export default function HeadingShowcase(props: PatternhubProps) {
 						<HeadingDensity />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Forwarded ID, Class, ARIA, Data And Style">
+				<LinkWrapperShowcase exampleName="Forwarded Heading Attributes">
 					<CardWrapperShowcase>
 						<HeadingAttributeForwarding />
 					</CardWrapperShowcase>

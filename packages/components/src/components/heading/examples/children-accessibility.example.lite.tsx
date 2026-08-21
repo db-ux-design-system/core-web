@@ -7,7 +7,7 @@ useMetadata({
 	storybookTitle: 'Heading with additional content',
 	storybookComponentName: 'DBCustomHeading',
 	storybookComponentNames: ['DBCustomHeading'],
-	storybookNames: ['Wrapper: Sibling content outside the accessible name'],
+	storybookNames: ['Sibling content outside the accessible name'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
