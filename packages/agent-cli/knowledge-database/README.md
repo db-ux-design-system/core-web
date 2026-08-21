@@ -209,6 +209,12 @@ Siehe [writing-conventions.md](writing-conventions.md#schreibweise-von-begriffen
 
 `documentation.json` wird aus `guidelines.md` generiert und folgt dem Content Styleguide des Platform-Repos (`db-ux-design-system.github.io/.kiro/steering/content-tone.md`).
 
+#### `guidelines.md` und `documentation.json` bleiben deckungsgleich
+
+Jede Regel unter `## Regeln` hat genau einen Eintrag in `guidelines[]`, in derselben Reihenfolge. Jeder mit `_(Example-Kandidat)_` markierte Punkt hat genau einen Eintrag in `examples[]`, ebenfalls in derselben Reihenfolge. Es gibt keine Guideline ohne Regel und keine Regel ohne Guideline.
+
+Wird eine Regel geändert, verschoben, zusammengelegt oder gestrichen, wird die `documentation.json` im selben Zug nachgezogen. Wandert eine Regel in eine andere Komponente, verschwindet ihre Guideline hier und entsteht dort — sonst dokumentieren zwei Komponenten dieselbe Vorgabe.
+
 #### Eingabe
 
 - `guidelines.md` — Beschreibungszeile und `## Regeln` als fachliche Basis
@@ -254,7 +260,11 @@ Eine Regel trägt entweder `dont` oder `caution`, nicht beides. `**sollte**` im 
 
 #### Example-Expansion (pro markiertem Kandidaten)
 
-Jeder mit `_(Example-Kandidat)_` markierte Punkt unter `## Zusätzliche Informationen` wird zu einem Objekt in `examples[]` expandiert. Ein Example-Thema kann mehrere visuelle Varianten enthalten:
+Jeder mit `_(Example-Kandidat)_` markierte Punkt unter `## Zusätzliche Informationen` wird zu einem Objekt in `examples[]` expandiert.
+
+Ein Example stellt nie richtig gegen falsch. Die Gegenüberstellung gehört zu den Regeln, die immer ein Do und ein Dont oder eine Caution tragen. Jedes Item eines Examples zeigt eine gültige Umsetzung, und ein einzelnes Item ist der Normalfall. Mehrere Items nur dann, wenn jedes eine eigene gültige Option zeigt — etwa Control Panel oben und unten. Ist ein Item die Gegenprobe zu einem anderen, gehört die Aussage unter `## Regeln` und nicht in ein Example.
+
+Felder eines Example-Objekts:
 
 - `id` — aus dem Thema des Example-Kandidaten (kebab-case)
 - `headline` — kurze Überschrift des Example-Themas (DE + EN)
@@ -270,5 +280,5 @@ Nicht markierte Aussagen unter `## Zusätzliche Informationen` werden nicht in `
 #### Was nicht aus `guidelines.md` generiert wird
 
 - `figmaFileKey` — aus `figma.json`
-- `figmaNodeId` — Figma-Visuals müssen erst erstellt werden, Node-IDs werden nachgetragen
+- `figmaNodeId` — Figma-Visuals müssen erst erstellt werden, Node-IDs werden nachgetragen. Immer als String in Anführungszeichen (`"4185-10"`), sonst liest JSON den Bindestrich als Minuszeichen und die Datei ist ungültig. Bis das Visual existiert steht `null`
 - `faq` — wird manuell befüllt (Support, häufige Rückfragen)
