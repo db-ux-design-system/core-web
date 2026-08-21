@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: move select placeholder text to `::before` pseudo-element to avoid axe-core false positive
+fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive
