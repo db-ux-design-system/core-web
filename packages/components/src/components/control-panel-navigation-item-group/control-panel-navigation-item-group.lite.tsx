@@ -368,12 +368,10 @@ export default function DBControlPanelNavigationItemGroup(
 		if (state._getDrilldownFlag() && state.isSubNavigationExpanded) {
 			state._setSiblingsInert(true);
 
-			// Move focus to the first navigation item link inside the sub-menu.
-			// Second selector arm: WC (Stencil) host wrapper pattern.
-			// No `:scope >` on the custom element tag — it already scopes itself.
+			// Move focus to the first navigation item link inside the sub-menu
 			if (_menuRef) {
 				const firstLink = (_menuRef as HTMLElement).querySelector(
-					':scope > .db-control-panel-navigation-item a, :scope > db-control-panel-navigation-item > .db-control-panel-navigation-item a'
+					'.db-control-panel-navigation-item a'
 				) as HTMLElement | null;
 				if (firstLink) {
 					firstLink.focus();
