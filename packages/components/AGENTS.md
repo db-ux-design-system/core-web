@@ -140,7 +140,7 @@ removes both problems.
 `startSlot` and `endSlot` (the shared `StartSlotProps` and `EndSlotProps`, as used
 by `DBDrawerHeader` and `DBTabItem`) render before and after the default content.
 That split is what keeps the accessible name clean: the same content nested
-*inside* the heading would be part of its name and would hide an interactive
+_inside_ the heading would be part of its name and would hide an interactive
 control behind it.
 
 The slots are deliberately **not** wrapped in an element. The wrapper is already a

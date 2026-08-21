@@ -396,8 +396,7 @@ test.describe('DBCustomHeading', () => {
 		await withoutSlots.unmount();
 
 		const withStartSlot = await mount(
-			<DBCustomHeading
-				startSlot={<span data-testid="start">Start</span>}>
+			<DBCustomHeading startSlot={<span data-testid="start">Start</span>}>
 				{/*<template v-slot:start-slot>
 					<span data-testid="start">Start</span>
 				</template>*/}
