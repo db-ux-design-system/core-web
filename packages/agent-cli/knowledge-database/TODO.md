@@ -117,19 +117,7 @@ Bei Shell Content sind beim Review am 2026-08-14 Code-Aspekte aufgefallen, die i
 - Pro Seite darf nur ein Shell Content existieren, sonst entstehen doppelte IDs und der Skip-Navigation-Link bricht. In Figma ist das nicht modellierbar, es ist also keine Design-Regel, sondern gehört als Note an `mainId`.
 - Children rendert innerhalb von `<main>`, Start Slot und End Slot liegen außerhalb. Daraus folgt Regel 3 der `guidelines.md`. Die Aussage steht bewusst nicht im `design`-Objekt, weil sie die Code-Struktur beschreibt, und gehört beim Handoff in den `code`-Teil, sofern sie dort nötig ist.
 
-### 15. Visuals und Metadaten der Shell- und Control-Panel-Dokumentation finalisieren
-
-Alle zwölf `documentation.json` wurden aus den überarbeiteten `guidelines.md` neu aufgebaut. Jede Regel entspricht genau einem Eintrag in `guidelines[]` mit `text`, `do` und `dont` bzw. `caution`; jeder Example-Kandidat entspricht genau einem Eintrag in `examples[]`. Der Sync wird mit `scripts/check-guidelines-sync.mjs` geprüft.
-
-Vor der Übernahme in die Platform bleiben folgende Punkte offen:
-
-- Für die neue Bold-Hierarchie-Regel bei `control-panel-brand` fehlen `figmaNodeId`-Verweise für Do und Dont, bis passende Visuals in der Doku existieren.
-- Die Example-Kandidaten fachlich gegen das vierte Kriterium in [writing-conventions.md](writing-conventions.md#example-kandidaten-markieren) prüfen: Ein Example entfällt, wenn das Do-, Dont- oder Caution-Visual einer Regel dasselbe Motiv zeigt. Das betrifft insbesondere den Footer-Punkt bei Shell Content, der dasselbe Thema wie Regel 1 dort trägt.
-- Die README nennt `figma.json` als Quelle für `figmaFileKey`. Bei Shell und Control Panel steht dort nur `library`; die Keys der beiden Doku-Files (`RcpbbqfJwjNRlOwPhAX1im` und `pElrqVUyojrzYzSagyJPS6`) stehen in [components/documentation-checklist.md](components/documentation-checklist.md). Entweder die README korrigieren oder den Key in die `figma.json` aufnehmen.
-- Bei `control-panel-mobile` ist die alte Guideline „Einsatz von Flat Icon" (Do `4172-6`, Dont `4172-8`) entfallen: Die Variantenwahl liegt jetzt bei `control-panel-navigation`, die Aussage zu abgeschnittenen Labels deckt `control-panel-navigation-item` ab. Die Density-Visuals `4172-2` und `4172-4` zeigen noch die alte Begründung über Touch-Ziele und sind vor der Übernahme zu prüfen.
-- Die bisherige Doku-Seite von `control-panel-desktop` trägt zwei Blöcke, die nicht übernommen wurden: die Guideline zur Positionswahl (Do `4042-2`, Caution `4042-4`), die jetzt bei `shell-desktop` mit eigenen Visuals liegt, und das Example „Navigation Variant (Left)" (`4584-14`, `4585-18`, `4042-6`, `4042-8`), das Popover als Left-Variante führt und die Tiefe zum Auswahlkriterium macht. Beides widerspricht den überarbeiteten Guidelines. Falls die vier Varianten-Visuals weiterverwendet werden, gehören sie thematisch zu `control-panel-navigation` und müssen dort neu hergeleitet werden.
-
-### 16. Unquantifizierte Mengenwörter in Shell- und Control-Panel-Regeln
+### 15. Unquantifizierte Mengenwörter in Shell- und Control-Panel-Regeln
 
 Mehrere Regeln steuern eine Mengenentscheidung über ein Wort statt über einen Wert. Damit ist die Grenze unbestimmt und beim Generieren der `documentation.json` müsste für das `dont` eine Zahl erfunden werden. Jeweils beim Bearbeiten der Datei entscheiden, ob ein Wert festgelegt wird oder ob ein anderes Kriterium die Menge ersetzt.
 
@@ -143,7 +131,7 @@ Mehrere Regeln steuern eine Mengenentscheidung über ein Wort statt über einen 
 
 Shell Desktop ist erledigt: dort stehen jetzt vier Navigation Items für Control Panel Left und sechs für Sub Navigation Left. `control-panel-primary-actions` und `control-panel-secondary-actions` quantifizieren bereits („ein bis zwei", „eine bis drei"), `control-panel-navigation` Regel 3 ebenfalls („vier oder mehr Ebenen"). Die Uneinheitlichkeit betrifft also einzelne Regeln, nicht die Praxis insgesamt.
 
-### 17. Control Panel Desktop: Kriterien für `width` bei Top
+### 16. Control Panel Desktop: Kriterien für `width` bei Top
 
 `components/control-panel/control-panel-desktop/properties.json` führt `🔀 Width` am Top-Set mit `(Def) Full`, `Small`, `Medium` und `Large`. Zu den vier Werten gibt es in keiner Shell- oder Control-Panel-Guideline ein Auswahlkriterium.
 
@@ -153,13 +141,13 @@ Das Auswahlkriterium ist die Breite der Section im Inhaltsbereich: das Control P
 
 ## Platform-Repo
 
-### 18. Tonalitätsregeln aus `_platform-steering/` zurückspielen
+### 17. Tonalitätsregeln aus `_platform-steering/` zurückspielen
 
 Der Ordner [`_platform-steering/`](_platform-steering/README.md) enthält eine temporäre Arbeitskopie der Steering-Dateien aus `db-ux-design-system.github.io`. Lücken, die beim Generieren der `documentation.json` auffallen, werden dort ergänzt und gesammelt in das Platform-Repo integriert, statt pro Fund zwischen den Repos zu wechseln.
 
 Offene Änderungen und das Vorgehen beim Zurückspielen stehen im README des Ordners. Nach der Integration entfällt der Ordner samt den beiden Einträgen in `.prettierignore` und `.markdownlintignore`, und der Verweis in `writing-conventions.md` richtet sich wieder auf das Platform-Repo.
 
-### 19. Accessibility als eigener Bereich in der Komponenten-Doku
+### 18. Accessibility als eigener Bereich in der Komponenten-Doku
 
 Barrierefreiheits-Anforderungen lassen sich oft nicht als Do-Dont-Paar im Layout zeigen, weil sie an Werten hängen, die im Screenshot nicht sichtbar sind. Dafür braucht die Komponenten-Doku einen eigenen Bereich neben Guidelines und Examples, dessen Einträge ohne Visual funktionieren.
 
@@ -167,7 +155,7 @@ Bis dahin bleibt eine Anforderung dieser Art aus den Guidelines heraus. Betroffe
 
 Beim Aufbau des Bereichs diese Regel als ersten Eintrag übernehmen und prüfen, welche weiteren Komponenten Anforderungen tragen, die aus demselben Grund bisher fehlen.
 
-### 20. Figma-Learn-Einträge und Verweise darauf
+### 19. Figma-Learn-Einträge und Verweise darauf
 
 Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Komponenten-Doku, sondern nach Figma Learn. Die Komponentenseite verweist dann darauf, statt den Inhalt zu wiederholen.
 
