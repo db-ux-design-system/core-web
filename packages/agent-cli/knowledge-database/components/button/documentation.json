@@ -177,18 +177,10 @@
 	"faq": [],
 	"related": [
 		{
-			"component": "link",
-			"description": {
-				"de": "Navigation zwischen Seiten und externen Ressourcen.",
-				"en": "Learn about links for navigation between pages and external resources."
-			}
+			"component": "link"
 		},
 		{
-			"component": "tooltip",
-			"description": {
-				"de": "Kontextuelle Hinweistexte, die bei Hover oder Fokus erscheinen.",
-				"en": "Contextual hint texts that appear on hover or focus."
-			}
+			"component": "tooltip"
 		}
 	]
 }
