@@ -107,6 +107,8 @@ export default function DBControlPanelNavigation(
 								'menu, .db-control-panel-navigation-item-group-menu'
 							) ?? parentGroup?.parentElement;
 						if (parentContainer) {
+							// Second selector arm: WC (Stencil) host wrapper pattern.
+							// No `:scope >` on the custom element tag — it already scopes itself.
 							const siblingButtons =
 								parentContainer.querySelectorAll(
 									':scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button, ' +
@@ -382,17 +384,29 @@ export default function DBControlPanelNavigation(
 
 			// Only navigate visible treeitems: skip those inside collapsed groups
 			const visibleTreeItems = allTreeItems.filter((item) => {
-				const groupMenu = item.closest(
+				// Walk all ancestor group menus and verify each one is expanded
+				let current: Element | null = item.closest(
 					'.db-control-panel-navigation-item-group-menu'
 				);
-				if (!groupMenu) return true;
-				const group = groupMenu.closest(
-					'.db-control-panel-navigation-item-group'
-				);
-				const expandButton = group?.querySelector(
-					':scope > .db-control-panel-navigation-item-group-expand-button'
-				);
-				return expandButton?.getAttribute('aria-expanded') === 'true';
+				while (current) {
+					const group = current.closest(
+						'.db-control-panel-navigation-item-group'
+					);
+					const expandButton = group?.querySelector(
+						':scope > .db-control-panel-navigation-item-group-expand-button'
+					);
+					if (
+						expandButton?.getAttribute('aria-expanded') !== 'true'
+					) {
+						return false;
+					}
+					// Move to the next ancestor group menu (if any)
+					const parentGroup = group?.parentElement?.closest(
+						'.db-control-panel-navigation-item-group-menu'
+					);
+					current = parentGroup ?? null;
+				}
+				return true;
 			});
 
 			if (visibleTreeItems.length === 0) return;

@@ -40,6 +40,7 @@ const recommended = {
 		'db-ux/form-label-required': 'error',
 		'db-ux/form-validation-message-required': 'warn',
 		'db-ux/control-panel-mobile-burger-menu-label-required': 'error',
+		'db-ux/header-burger-menu-label-required': 'error',
 		'db-ux/input-file-type-validation': 'error',
 		'db-ux/input-type-required': 'warn',
 		'db-ux/link-external-security': 'warn',

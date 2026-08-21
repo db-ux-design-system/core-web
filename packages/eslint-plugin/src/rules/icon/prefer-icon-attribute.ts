@@ -14,6 +14,7 @@ const COMPONENTS_WITH_ICON_ATTR = [
 	'DBInfotext',
 	'DBLink',
 	'DBControlPanelNavigationItem',
+	'DBNavigationItem',
 	'DBNotification',
 	'DBSelect',
 	'DBSwitch',

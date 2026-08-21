@@ -323,6 +323,7 @@ export class NavigationComponent {}
 import { Component } from "@angular/core";
 import {
 	DBShell, // previously: DBPage
+	DBShellContent, // new
 	DBControlPanelDesktop, // previously: DBHeader
 	DBControlPanelMobile, // previously: DBHeader
 	DBControlPanelBrand // previously: DBBrand
@@ -340,6 +341,7 @@ import { NavigationComponent } from "./navigation.component";
 	selector: "app-root",
 	imports: [
 		DBShell,
+		DBShellContent,
 		DBControlPanelDesktop,
 		DBControlPanelMobile,
 		DBControlPanelBrand,
@@ -355,7 +357,7 @@ import { NavigationComponent } from "./navigation.component";
 				<db-control-panel-brand brand
 					>My Awesome App</db-control-panel-brand
 				>
-				<app-meta-navigation meta-navigation></app-meta-navigation>
+				<app-meta-navigation meta></app-meta-navigation>
 				<app-primary-actions primary-actions></app-primary-actions>
 				<app-secondary-actions
 					secondary-actions
@@ -366,7 +368,7 @@ import { NavigationComponent } from "./navigation.component";
 				<db-control-panel-brand brand
 					>My Awesome App</db-control-panel-brand
 				>
-				<app-meta-navigation meta-navigation></app-meta-navigation>
+				<app-meta-navigation meta></app-meta-navigation>
 				<app-primary-actions primary-actions></app-primary-actions>
 				<app-secondary-actions
 					secondary-actions

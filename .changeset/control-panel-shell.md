@@ -1,16 +1,20 @@
 ---
-"@db-ux/core-components": major
-"@db-ux/ngx-core-components": major
-"@db-ux/react-core-components": major
-"@db-ux/wc-core-components": major
-"@db-ux/v-core-components": major
+"@db-ux/core-components": minor
+"@db-ux/ngx-core-components": minor
+"@db-ux/react-core-components": minor
+"@db-ux/wc-core-components": minor
+"@db-ux/v-core-components": minor
 ---
 
-refactor: multiple components with breaking changes
+feat: introduce control-panel shell architecture (deprecates DBPage, DBHeader, DBBrand, DBNavigation, DBNavigationItem)
 
-- `DBPage` becomes `DBShell`
-- `DBHeader` becomes `DBControlPanelDesktop` and `DBControlPanelMobile`
-- `DBBrand` becomes `DBControlPanelBrand`
-- `subNavigation` slot of `NavigationItem` is removed, use `NavigationItemGroup` instead
-- `DBControlPanelFlatIconNavigation` becomes `DBControlPanelFlatIcon`
-- `metaNavigation` slot/prop of `DBControlPanelDesktop` and `DBControlPanelMobile` is renamed to `meta`
+- New `DBShell` component (deprecates `DBPage`)
+- New `DBControlPanelDesktop` and `DBControlPanelMobile` (deprecates `DBHeader`)
+- New `DBControlPanelBrand` (deprecates `DBBrand`)
+- New `DBControlPanelNavigation` (deprecates `DBNavigation`)
+- New `DBControlPanelNavigationItem` (deprecates `DBNavigationItem`)
+- New `DBControlPanelNavigationItemGroup` for sub-navigation
+- New `DBShellContent` component for main content area
+- New `DBShellSubNavigation` for secondary navigation panels
+- New `DBControlPanelMeta`, `DBControlPanelPrimaryActions`, `DBControlPanelSecondaryActions` slot components
+- New `DBControlPanelFlatIcon` for collapsed icon-only navigation

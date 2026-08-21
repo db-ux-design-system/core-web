@@ -5,6 +5,8 @@ import {
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
 	DBControlPanelMobile,
 	DBControlPanelNavigation,
 	DBControlPanelNavigationItem,
@@ -370,6 +372,22 @@ const ComponentSwitch = ({
 			<DBControlPanelMobile className={className} {...props}>
 				{resolvedContent}
 			</DBControlPanelMobile>
+		);
+	}
+
+	if (type === 'brand') {
+		return (
+			<DBControlPanelBrand className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelBrand>
+		);
+	}
+
+	if (type === 'header') {
+		return (
+			<DBControlPanelDesktop className={className} {...props}>
+				{resolvedContent}
+			</DBControlPanelDesktop>
 		);
 	}
 

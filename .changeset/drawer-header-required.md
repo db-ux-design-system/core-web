@@ -1,13 +1,12 @@
 ---
-"@db-ux/core-components": major
-"@db-ux/ngx-core-components": major
-"@db-ux/react-core-components": major
-"@db-ux/wc-core-components": major
-"@db-ux/v-core-components": major
+"@db-ux/core-components": minor
+"@db-ux/ngx-core-components": minor
+"@db-ux/react-core-components": minor
+"@db-ux/wc-core-components": minor
+"@db-ux/v-core-components": minor
 ---
 
-refactor: require `DBDrawerHeader` in `header` slot, remove `spacing` property, and change default `direction` to `left` for `DBDrawer`
+feat: `DBDrawer` now supports a `DBDrawerHeader` in the `header` slot for accessible close button and dialog labeling
 
-- The `DBDrawer` component now requires a `DBDrawerHeader` component to be passed in the `header` slot.
-- The `spacing` property has been removed from `DBDrawer`.
-- The default `direction` has changed from `right` to `left`.
+- New `DBDrawerHeader` component provides the close button and sets `aria-labelledby` on the dialog when `text` prop is used
+- The `width` property has been renamed to `containerSize`

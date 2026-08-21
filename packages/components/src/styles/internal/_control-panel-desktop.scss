@@ -15,8 +15,11 @@ $control-panel-desktop-horizontal-padding-block: calc(
 );
 $control-panel-desktop-horizontal-padding-inline: #{variables.$db-spacing-fixed-sm};
 $control-panel-desktop-vertical-padding-block: #{variables.$db-spacing-fixed-sm};
-$control-panel-desktop-vertical-padding-inline: calc(
+$control-panel-desktop-vertical-padding-inline-start: calc(
 	#{variables.$db-spacing-fixed-sm} + env(safe-area-inset-left)
+);
+$control-panel-desktop-vertical-padding-inline-end: calc(
+	#{variables.$db-spacing-fixed-sm} + env(safe-area-inset-right)
 );
 
 @mixin horizontal-navigation($scroll-buttons: true) {
@@ -135,7 +138,8 @@ $control-panel-desktop-vertical-padding-inline: calc(
 
 	> menu {
 		flex-direction: column;
-		padding-inline: $control-panel-desktop-vertical-padding-inline;
+		padding-inline-start: $control-panel-desktop-vertical-padding-inline-start;
+		padding-inline-end: $control-panel-desktop-vertical-padding-inline-end;
 
 		.db-control-panel-navigation-item-group,
 		.db-control-panel-navigation-item {
@@ -361,14 +365,16 @@ $control-panel-desktop-vertical-padding-inline: calc(
 	.db-control-panel-primary-actions,
 	.db-control-panel-secondary-actions,
 	> .db-control-panel-desktop-button {
-		padding: $control-panel-desktop-vertical-padding-block
-			$control-panel-desktop-vertical-padding-inline;
+		padding-block: $control-panel-desktop-vertical-padding-block;
+		padding-inline-start: $control-panel-desktop-vertical-padding-inline-start;
+		padding-inline-end: $control-panel-desktop-vertical-padding-inline-end;
 	}
 
 	.db-control-panel-desktop-brand-container {
 		inline-size: 100%;
-		padding: $control-panel-desktop-vertical-padding-block
-			$control-panel-desktop-vertical-padding-inline;
+		padding-block: $control-panel-desktop-vertical-padding-block;
+		padding-inline-start: $control-panel-desktop-vertical-padding-inline-start;
+		padding-inline-end: $control-panel-desktop-vertical-padding-inline-end;
 
 		@include helpers.divider("bottom", "after");
 

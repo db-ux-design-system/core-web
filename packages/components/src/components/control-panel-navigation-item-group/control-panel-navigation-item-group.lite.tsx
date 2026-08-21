@@ -289,8 +289,12 @@ export default function DBControlPanelNavigationItemGroup(
 		},
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
+				event?.stopPropagation();
 				state.forceClose();
-				_buttonRef.blur();
+				// Return focus to expand button instead of blurring
+				if (_buttonRef) {
+					(_buttonRef as HTMLElement).focus();
+				}
 			}
 		}
 	});
@@ -364,10 +368,12 @@ export default function DBControlPanelNavigationItemGroup(
 		if (state._getDrilldownFlag() && state.isSubNavigationExpanded) {
 			state._setSiblingsInert(true);
 
-			// Move focus to the first navigation item link inside the sub-menu
+			// Move focus to the first navigation item link inside the sub-menu.
+			// Second selector arm: WC (Stencil) host wrapper pattern.
+			// No `:scope >` on the custom element tag — it already scopes itself.
 			if (_menuRef) {
 				const firstLink = (_menuRef as HTMLElement).querySelector(
-					'.db-control-panel-navigation-item a'
+					':scope > .db-control-panel-navigation-item a, :scope > db-control-panel-navigation-item > .db-control-panel-navigation-item a'
 				) as HTMLElement | null;
 				if (firstLink) {
 					firstLink.focus();

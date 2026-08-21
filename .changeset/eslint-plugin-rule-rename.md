@@ -1,5 +1,7 @@
 ---
-"@db-ux/core-eslint-plugin": major
+"@db-ux/core-eslint-plugin": minor
 ---
 
-refactor: rename `header-burger-menu-label-required` rule to `control-panel-mobile-burger-menu-label-required`
+feat: add `control-panel-mobile-burger-menu-label-required` rule to recommended preset, replacing `header-burger-menu-label-required` for the new control-panel architecture
+
+The legacy `header-burger-menu-label-required` rule remains available for consumers still using `DBHeader`.

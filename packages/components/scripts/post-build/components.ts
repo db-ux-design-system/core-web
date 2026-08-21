@@ -50,7 +50,12 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'shell-sub-navigation'
+		name: 'shell-sub-navigation',
+		config: {
+			react: {
+				propsPassingFilter: ['onExpandButtonTooltipFn']
+			}
+		}
 	},
 
 	{
@@ -466,7 +471,12 @@ export const getComponents = (): Component[] => [
 		name: 'shell'
 	},
 	{
-		name: 'control-panel-desktop'
+		name: 'control-panel-desktop',
+		config: {
+			react: {
+				propsPassingFilter: ['onExpandButtonTooltipFn']
+			}
+		}
 	},
 	{
 		name: 'control-panel-brand'

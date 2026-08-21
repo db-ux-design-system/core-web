@@ -268,6 +268,10 @@ export const handleSubNavigationPosition = (
 	// Guard against deeply nested or accidentally cyclic markup
 	if (resolvedLevel >= MAX_SUB_NAVIGATION_DEPTH) return;
 
+	// The second selector arm handles the Web Components (Stencil) output where
+	// a host element <db-control-panel-navigation-item-group> wraps the inner
+	// .db-control-panel-navigation-item-group div. No `:scope >` needed there
+	// because referencing the custom element tag already scopes it sufficiently.
 	const navItems = element.querySelectorAll(
 		':scope > .db-control-panel-navigation-item-group, db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'
 	);

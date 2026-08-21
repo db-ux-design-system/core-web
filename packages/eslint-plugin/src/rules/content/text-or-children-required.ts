@@ -14,6 +14,7 @@ const COMPONENTS_REQUIRING_CONTENT = [
 	'DBIcon',
 	'DBInfotext',
 	'DBControlPanelNavigationItem',
+	'DBNavigationItem',
 	'DBNotification'
 ];
 
