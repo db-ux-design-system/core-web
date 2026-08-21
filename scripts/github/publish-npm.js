@@ -12,7 +12,10 @@ const { VALID_SEMVER_VERSION } = process.env;
 const IS_RELEASE = process.env.RELEASE === 'true';
 let isPreRelease = process.env.PRE_RELEASE === 'true';
 const IS_CI = process.env.CI === 'true';
+const isDryRunOnly = process.env.DRY_RUN_ONLY === 'true';
 
+// The local fallbacks below must never apply in CI: a dry-run that silently rehearses
+// 0.0.0-local on the `next` tag would not exercise the real version or channel.
 if (!VALID_SEMVER_VERSION) {
 	if (IS_CI) {
 		console.error('Version is missing!');
@@ -124,8 +127,16 @@ execSync('pnpm config set @db-ux:registry https://registry.npmjs.org/', {
 });
 console.log('🔑 Using trusted publishing for NPM');
 
-// Only run provenance (real publish) in CI, locally only dry-run
-for (const step of IS_CI ? ['dry-run', 'provenance'] : ['dry-run']) {
+// Dry-run only: validate publish without provenance (changeset PR / push to main)
+// Real release (CI): dry-run first, then provenance
+// Local: dry-run only
+const publishSteps = isDryRunOnly
+	? ['dry-run']
+	: IS_CI
+		? ['dry-run', 'provenance']
+		: ['dry-run'];
+
+for (const step of publishSteps) {
 	for (const { dir, name: PACKAGE } of packages) {
 		console.log(`⤴ (${step}) Publish ${PACKAGE} with tag ${TAG} to NPM`);
 		try {
