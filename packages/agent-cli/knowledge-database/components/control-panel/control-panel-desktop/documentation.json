@@ -1,90 +1,64 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-desktop",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Das Control Panel Desktop ist die primäre Navigationsleiste für Desktop-Anwendungen innerhalb der Shell. Es bietet zwei Positions-Varianten: Top (horizontal) und Left (vertikale Sidebar).",
-		"en": "The Control Panel Desktop is the primary navigation bar for desktop applications within the Shell. It provides two position variants: Top (horizontal) and Left (vertical sidebar)."
+		"de": "Das Control Panel Desktop stellt die primäre Navigationsleiste für Desktop-Anwendungen innerhalb der Shell bereit. Es steht in zwei Positionen zur Verfügung: Top als horizontale Leiste und Left als vertikale Sidebar. Die Wahl zwischen beiden Positionen ist bei Shell Desktop geregelt.",
+		"en": "The Control Panel Desktop provides the primary navigation bar for desktop applications within the Shell. It is available in two positions: Top as a horizontal bar and Left as a vertical sidebar. Choosing between the two positions is covered by Shell Desktop."
 	},
 	"shortDescription": {
-		"de": "Primäre Navigationsleiste für Desktop-Anwendungen mit den Positionen Top und Left.",
-		"en": "Primary navigation bar for desktop applications with Top and Left positions."
+		"de": "Primäre Navigationsleiste für Desktop-Anwendungen in den Positionen Top und Left.",
+		"en": "Primary navigation bar for desktop applications in the Top and Left positions."
 	},
 	"useCases": {
 		"de": [
-			"Desktop-Nutzer:innen einen dauerhaften Einstieg in die Hauptbereiche der Anwendung geben",
-			"Brand, Navigation und globale Aktionen in einem konsistenten Rahmen zusammenführen",
-			"Sowohl inhaltsorientierte Anwendungen (Top) als auch navigationslastige Anwendungen (Left) unterstützen"
+			"Logo, Navigation und globale Aktionen in einem dauerhaft sichtbaren Rahmen bündeln",
+			"Das Control Panel oben als horizontale Leiste oder links als vertikale Sidebar positionieren",
+			"Das Control Panel Left einklappen, um dem Seitencontent mehr Breite zu geben"
 		],
 		"en": [
-			"Give desktop users a persistent entry point to the app's main sections",
-			"Combine brand, navigation, and global actions in one consistent frame",
-			"Support both content-focused apps (Top) and navigation-heavy apps (Left)"
+			"Combine logo, navigation, and global actions in one permanently visible frame",
+			"Position the Control Panel at the top as a horizontal bar or on the left as a vertical sidebar",
+			"Collapse the Control Panel Left to give the page content more width"
 		]
 	},
-	"guidelines": [
+	"guidelines": [],
+	"examples": [
 		{
-			"id": "position-top-vs-left",
+			"id": "collapse-left",
 			"headline": {
-				"de": "Position (Top vs. Left)",
-				"en": "Position (Top vs. Left)"
+				"de": "Left einklappen",
+				"en": "Collapsing Left"
 			},
 			"text": {
-				"de": "Wähle die Position des Control Panels nach der Navigationskomplexität deiner Anwendung. Top eignet sich für Anwendungen mit wenigen Navigation Items auf oberster Ebene, Left für Anwendungen mit vielen Navigation Items oder tiefen Hierarchien.",
-				"en": "Choose the Control Panel position based on your application's navigation complexity. Top works for apps with few top-level Navigation Items; Left suits applications with many Navigation Items or deep hierarchies."
+				"de": "Das Control Panel Left lässt sich in den Varianten Drill Down und Tree einklappen und ist initial immer ausgeklappt. Im eingeklappten Zustand bleiben nur Brand und der Button zum Ausklappen sichtbar. In der Variante Flat Icon ist kein Einklappen möglich, da sie bereits die minimale Breite hat.",
+				"en": "The Control Panel Left can be collapsed in the Drill Down and Tree variants and always starts out expanded. In the collapsed state, only the Brand and the button to expand it remain visible. The Flat Icon variant cannot be collapsed because it is already at its minimum width."
 			},
-			"do": {
-				"figmaNodeId": "4042-2",
-				"description": {
-					"de": "Verwende Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene, die bequem in eine horizontale Leiste passen.",
-					"en": "Use Top for applications with a small number of top-level Navigation Items that fit comfortably in a horizontal bar."
+			"items": [
+				{
+					"id": "collapsed",
+					"headline": {
+						"de": "Eingeklappter Zustand",
+						"en": "Collapsed State"
+					},
+					"figmaNodeId": "4042-10",
+					"description": {
+						"de": "Klappe das Control Panel Left ein, um dem Seitencontent mehr Breite zu geben. Brand und der Button zum Ausklappen bleiben sichtbar.",
+						"en": "Collapse the Control Panel Left to give the page content more width. The Brand and the button to expand it remain visible."
+					}
 				}
-			},
-			"caution": {
-				"figmaNodeId": "4042-4",
-				"description": {
-					"de": "Die Position Left mit nur 2–3 Navigation Items belegt Platz, ohne strukturellen Mehrwert zu bieten. Prüfe stattdessen Top.",
-					"en": "The Left position with only 2–3 Navigation Items takes up space without adding structural benefit. Consider Top instead."
-				}
-			}
+			]
 		}
 	],
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Mobile Variante mit den Positionen Top, Bottom und Flat Icon.",
-				"en": "Mobile variant with Top, Bottom, and Flat Icon positions."
-			}
+			"component": "shell-desktop"
 		},
 		{
-			"component": "shell-desktop",
-			"description": {
-				"de": "Das Layout der Shell Desktop, das das Control Panel enthält.",
-				"en": "The desktop Shell layout that hosts the Control Panel."
-			}
+			"component": "control-panel-mobile"
 		},
 		{
-			"component": "shell-sub-navigation",
-			"description": {
-				"de": "Sekundäre Navigation, die das Control Panel ergänzt.",
-				"en": "Secondary navigation that complements the Control Panel."
-			}
-		},
-		{
-			"component": "control-panel-navigation",
-			"description": {
-				"de": "Navigations-Container (Popover, Tree, Flat Icon) innerhalb des Control Panels.",
-				"en": "Navigation containers (Popover, Tree, Flat Icon) within the Control Panel."
-			}
-		},
-		{
-			"component": "control-panel-navigation-item",
-			"description": {
-				"de": "Navigation Items und Navigation Item Groups innerhalb der Control Panel Navigation.",
-				"en": "Navigation Items and Navigation Item Groups within the Control Panel Navigation."
-			}
+			"component": "control-panel-navigation"
 		}
 	]
 }

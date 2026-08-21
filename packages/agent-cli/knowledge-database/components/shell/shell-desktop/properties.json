@@ -30,7 +30,7 @@
 				"name": "🔄 CP Navigation",
 				"type": "slot",
 				"componentSet": ["1440x1024", "1024x768", "1920x1080"],
-				"note": "Swaps the whole Control Panel instance embedded in Shell Desktop, choosing between Top, Drill Down Left, Tree Left and Flat Icon Desktop. Default resolves to CP → (Def) Drill Down - Desktop - Left (Beta), Expanded=True."
+				"note": "Design-only, no code counterpart is planned, same rationale as controlPanelNavigation in shell-mobile. Swaps the whole Control Panel instance embedded in Shell Desktop, choosing between Top, Drill Down Left, Tree Left and Flat Icon Desktop. Default resolves to CP → (Def) Drill Down - Desktop - Left (Beta), Expanded=True."
 			}
 		},
 		{

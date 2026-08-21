@@ -1,15 +1,13 @@
 # Control Panel Mobile
 
-Primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell. Unterstützt drei Positionsvarianten und nutzt einen Drawer für erweiterten Navigationszugang.
+Primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell. Unterstützt zwei Positionsvarianten und nutzt einen Drawer für erweiterten Navigationszugang.
 
 ## Regeln
 
-1. Regular Density beibehalten, Functional oder Expressive Density nicht auf das mobile Control Panel anwenden, da Touch-Targets auf mobilen Geräten ausreichende Größe für zuverlässige Fingerinteraktion benötigen.
-2. Für Flat Icon siehe [Shell Mobile](../../shell/shell-mobile/guidelines.md).
-3. Bei Flat Icon keine langen Labels verwenden, da abgeschnittene Labels verhindern, dass Nutzer:innen Ziele ohne den vollständigen Text unterscheiden können.
+1. Die Density von Control Panel Mobile nicht überschreiben, die Komponente ist auf Regular ausgelegt und setzt den Wert selbst.
 
 ## Zusätzliche Informationen
 
-- Die Positionswahl wird in [Shell Mobile](../../shell/shell-mobile/guidelines.md) geregelt.
-- Show Divider steuert einen vertikalen Divider neben dem Burger-Icon.
-- Die Primary Action liegt auf Mobile innerhalb der Navigation, nicht in einem eigenen Bereich.
+- Auf der ersten Ebene liegen Brand, Primary Actions und der Menu-Button. Navigation, Meta und Secondary Actions liegen im Drawer. _(Example-Kandidat)_
+- Die Positionswahl wird in [Shell Mobile](../../shell/shell-mobile/guidelines.md) geregelt, Flat Icon in der [Control Panel Navigation](../control-panel-navigation/guidelines.md).
+- Neben dem Menu-Button erscheint automatisch ein Divider, sobald Primary Actions eingeblendet sind.

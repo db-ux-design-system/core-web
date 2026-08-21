@@ -1,50 +1,149 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-navigation-item",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Das CP Navigation Item ist das einzelne Navigation Item innerhalb der Navigations-Container des Control Panels. Navigation Item Group ist als Gruppierungs-Variante für Navigation Items mit Unternavigation enthalten.",
-		"en": "The CP Navigation Item is the individual navigation entry within Control Panel navigation containers. Navigation Item Group is included as a grouping variant for Navigation Items with sub-navigation."
+		"de": "Control Panel Navigation Item ist das einzelne Navigation Item innerhalb der Control Panel Navigation. Für Unternavigation stehen Navigation Item Groups zur Verfügung.",
+		"en": "Control Panel Navigation Item is the individual navigation entry within the Control Panel Navigation. Navigation Item Groups are available for sub-navigation."
 	},
 	"shortDescription": {
 		"de": "Einzelnes Navigation Item innerhalb der Control Panel Navigation.",
-		"en": "Individual navigation entry within the Control Panel navigation."
+		"en": "Individual navigation entry within the Control Panel Navigation."
 	},
 	"useCases": {
 		"de": [
-			"Nutzer:innen auf eine bestimmte Seite oder Ansicht verlinken",
-			"Anzeigen, ob ein Navigation Item die aktuelle, aktive Position ist",
-			"Icon und Label nutzen, damit Ziele leicht zu erfassen sind"
+			"Ein Navigationsziel innerhalb der Control Panel Navigation anbieten",
+			"Den aktuellen Pfad über Active nachvollziehbar machen",
+			"Unternavigation über Navigation Item Groups gruppieren"
 		],
 		"en": [
-			"Link users to a specific page or view",
-			"Show whether a Navigation Item is the current, active location",
-			"Use an icon and label to make destinations easy to scan"
+			"Offer a navigation destination within the Control Panel Navigation",
+			"Make the current path traceable through Active",
+			"Group sub-navigation through Navigation Item Groups"
 		]
 	},
 	"guidelines": [
 		{
-			"id": "icon-consistency-per-level",
+			"id": "active-path",
 			"headline": {
-				"de": "Icon-Konsistenz pro Ebene",
-				"en": "Icon Consistency per Level"
+				"de": "Aktiver Pfad",
+				"en": "Active Path"
 			},
 			"text": {
-				"de": "Navigation Items im Tree erlauben es, den Standard-Marker der Baumlinie durch ein eigenes Icon zu ersetzen (nur Navigation Items – Navigation Item Groups behalten immer das Chevron zum Auf- und Zuklappen). Halte Icons innerhalb einer Ebene konsistent: Entweder erhalten alle benachbarten Navigation Items einer Ebene ein eigenes Icon oder keines. Zwischen den Ebenen darf es Unterschiede geben.",
-				"en": "Tree Navigation Items allow overriding the default tree-line marker with a custom icon (Navigation Items only – Navigation Item Groups always keep the expand/collapse chevron). Keep icons consistent within a level: either all sibling Navigation Items on a level get a custom icon or none. Levels may differ from each other."
+				"de": "Active markiert den aktuellen Pfad, nicht nur das Ziel. Alle Navigation Items von der ersten Ebene bis zum aktuellen Ziel tragen Active.",
+				"en": "Active marks the current path, not just the destination. Every Navigation Item from the first level down to the current destination is set to Active."
+			},
+			"do": {
+				"figmaNodeId": "4808-64",
+				"description": {
+					"de": "Setze Active auf allen Navigation Items des aktuellen Pfads, von der ersten Ebene bis zum aktuellen Ziel.",
+					"en": "Set Active on all Navigation Items of the current path, from the first level down to the current destination."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4808-71",
+				"description": {
+					"de": "Setze Active nicht nur auf dem aktuellen Ziel. Ohne die übergeordneten Navigation Items ist der Pfad nicht nachvollziehbar.",
+					"en": "Don't set Active on the current destination only. Without the parent Navigation Items, the path is not traceable."
+				}
+			}
+		},
+		{
+			"id": "indicator-level",
+			"headline": {
+				"de": "Indicator",
+				"en": "Indicator"
+			},
+			"text": {
+				"de": "Der Indicator ergänzt Active auf der ersten Navigationsebene. Auf tieferen Ebenen steht er nicht zur Verfügung.",
+				"en": "The Indicator complements Active on the first navigation level. It is not available on deeper levels."
+			},
+			"do": {
+				"figmaNodeId": "4808-83",
+				"description": {
+					"de": "Verwende den Indicator nur auf der ersten Navigationsebene, dort zusätzlich zu Active.",
+					"en": "Only use the Indicator on the first navigation level, in addition to Active there."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4808-77",
+				"description": {
+					"de": "Platziere den Indicator nicht auf tieferen Ebenen. Dev unterstützt das nicht.",
+					"en": "Don't place the Indicator on deeper levels. Dev does not support it."
+				}
+			}
+		},
+		{
+			"id": "label-length",
+			"headline": {
+				"de": "Label-Länge",
+				"en": "Label Length"
+			},
+			"text": {
+				"de": "Kurze Labels lassen sich beim Überfliegen der Navigation schnell erfassen. Lange Labels verändern zusätzlich das Layout, je Variante unterschiedlich: in Drill Down und Tree werden sie mehrzeilig, in Popover wächst das Navigation Item mit, in Flat Icon werden sie abgeschnitten.",
+				"en": "Short labels are quick to grasp when scanning the navigation. Long labels also change the layout, differently per variant: in Drill Down and Tree they wrap to several lines, in Popover the Navigation Item grows with them, in Flat Icon they are truncated."
+			},
+			"do": {
+				"figmaNodeId": "id=4808-87",
+				"description": {
+					"de": "Halte Labels kurz.",
+					"en": "Keep labels short."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4810-97",
+				"description": {
+					"de": "Kürze lange Labels, um die Lesbarkeit zu erhöhen.",
+					"en": "Shorten long labels to improve readability."
+				}
+			}
+		},
+		{
+			"id": "tooltip-label-match",
+			"headline": {
+				"de": "Tooltip und Label",
+				"en": "Tooltip and Label"
+			},
+			"text": {
+				"de": "Der Tooltip erscheint bei Interaktion mit dem Navigation Item und nennt dasselbe Ziel wie das Label.",
+				"en": "The tooltip appears on interaction with the Navigation Item and names the same destination as the label."
+			},
+			"do": {
+				"figmaNodeId": "4812-122",
+				"description": {
+					"de": "Halte Tooltip-Text und Label-Text identisch.",
+					"en": "Keep the tooltip text and the label text identical."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4812-130",
+				"description": {
+					"de": "Lasse im Tooltip keinen anderen Text stehen als im Label, sonst trägt ein Ziel zwei Namen.",
+					"en": "Don't leave a text in the tooltip that differs from the label, otherwise one destination has two names."
+				}
+			}
+		},
+		{
+			"id": "tree-icon-consistency",
+			"headline": {
+				"de": "Icons im Tree",
+				"en": "Icons in Tree"
+			},
+			"text": {
+				"de": "In Tree tragen Navigation Items standardmäßig einen kleinen Kreis, der sich durch ein eigenes Icon ersetzen lässt. Innerhalb einer Ebene gilt die Wahl für alle Navigation Items gleichermaßen.",
+				"en": "In Tree, Navigation Items show a small circle by default, which can be replaced with a custom icon. Within one level, that choice applies to all Navigation Items alike."
 			},
 			"do": {
 				"figmaNodeId": "4547-6",
 				"description": {
-					"de": "Setze eigene Icons innerhalb einer Ebene konsistent ein – entweder erhalten alle benachbarten Navigation Items ein eigenes Icon oder keines. Zwischen den Ebenen darf es Unterschiede geben.",
-					"en": "Apply custom icons consistently within a level – either all sibling Navigation Items get a custom icon or none. Levels may differ from each other."
+					"de": "Setze eigene Icons innerhalb einer Ebene konsistent ein: entweder alle Navigation Items einer Ebene oder keines.",
+					"en": "Apply custom icons consistently within a level: either all Navigation Items on a level or none."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4547-8",
 				"description": {
-					"de": "Mische innerhalb derselben Ebene keine eigenen Icons und Standard-Marker. Ein einzelner Kreis zwischen eigenen Icons wirkt wie ein Versehen und erschwert das Erfassen.",
-					"en": "Do not mix custom icons and default markers within the same level. A single circle among custom icons looks like an oversight and breaks scannability."
+					"de": "Mische innerhalb einer Ebene keine eigenen Icons mit dem Standard-Kreis-Icon. Ein einzelner Kreis zwischen eigenen Icons wirkt wie ein Versehen.",
+					"en": "Don't mix custom icons with the default circle icon within one level. A single circle among custom icons looks like an oversight."
 				}
 			}
 		}
@@ -52,25 +151,13 @@
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-navigation",
-			"description": {
-				"de": "Übergeordnete Navigations-Container (Popover, Tree, Flat Icon), die die Navigation Items enthalten.",
-				"en": "Parent navigation containers (Popover, Tree, Flat Icon) hosting the Navigation Items."
-			}
+			"component": "control-panel-navigation"
 		},
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Control Panel Desktop, in dem Navigation Items erscheinen.",
-				"en": "Desktop Control Panel where Navigation Items appear."
-			}
+			"component": "control-panel-desktop"
 		},
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Control Panel Mobile, in dem Navigation Items in Drill Down und Flat Icon erscheinen.",
-				"en": "Control Panel Mobile, where Drill Down and Flat Icon Navigation Items appear."
-			}
+			"component": "control-panel-mobile"
 		}
 	]
 }

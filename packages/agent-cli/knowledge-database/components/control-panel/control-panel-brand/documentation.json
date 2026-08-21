@@ -1,50 +1,99 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-brand",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Die Subkomponente CP Brand zeigt die Marke oder das Logo der Anwendung innerhalb des Control Panels an.",
-		"en": "The CP Brand subcomponent displays the application brand or logo within the Control Panel."
+		"de": "Control Panel Brand zeigt das Logo und einen optionalen Anwendungsnamen innerhalb des Control Panels an. Im Design stehen die drei Varianten Custom, Logozusatz und Short zur Verfügung.",
+		"en": "Control Panel Brand displays the logo and an optional application name within the Control Panel. The design provides three variants: Custom, Logozusatz, and Short."
 	},
 	"shortDescription": {
-		"de": "Zeigt die Marke oder das Logo der Anwendung im Control Panel an.",
-		"en": "Displays the application brand or logo within the Control Panel."
+		"de": "Logo und optionaler Anwendungsname im Control Panel.",
+		"en": "Logo and optional application name within the Control Panel."
 	},
 	"useCases": {
 		"de": [
-			"Die Identität der Anwendung an einer festen Stelle in der Navigation verankern",
-			"Bei begrenztem Platz zwischen vollem Logo und kompakter Bildmarke wechseln",
-			"Eigene Brand-Inhalte ergänzen (z. B. Logo plus Wortmarke), wenn ein reines Logo nicht ausreicht"
+			"Das Logo der Anwendung im Control Panel anzeigen",
+			"Einen optionalen Anwendungsnamen ein- oder zweizeilig ergänzen",
+			"Umgebungs-Informationen im End Slot unterbringen"
 		],
 		"en": [
-			"Anchor the application's identity at a consistent spot in the navigation",
-			"Adapt between full logo and a compact mark when space is limited",
-			"Add custom brand content (e.g. logo plus wordmark) where a plain logo is not enough"
+			"Display the application's logo within the Control Panel",
+			"Add an optional application name in one or two lines",
+			"Hold environment information in the End slot"
 		]
 	},
 	"guidelines": [
 		{
-			"id": "custom-brand-override",
+			"id": "end-slot",
 			"headline": {
-				"de": "Eigene Brand überschreiben",
-				"en": "Custom Brand Override"
+				"de": "End Slot",
+				"en": "End Slot"
 			},
 			"text": {
-				"de": "Die Variante Custom erlaubt es, über den Children-Slot eine eigene Brand bzw. ein eigenes Logo zu platzieren. Die Variante Short wird vom System gesteuert und zeigt in beengten Kontexten die kompakte Standard-Bildmarke.",
-				"en": "The Custom variant allows placing your own brand/logo via the Children slot. The Short variant is system-controlled and shows the default compact brand mark in constrained contexts."
+				"de": "Alle Varianten außer Short haben einen End Slot. Er ist für Umgebungs-Informationen vorgesehen.",
+				"en": "All variants except Short have an End slot. It is intended for environment information."
+			},
+			"do": {
+				"figmaNodeId": "4185-10",
+				"description": {
+					"de": "Platziere im End Slot ausschließlich Umgebungs-Informationen.",
+					"en": "Only place environment information in the End slot."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4185-12",
+				"description": {
+					"de": "Platziere im End Slot keinen Anwendungsnamen und keine interaktiven Elemente. Aktionen gehören in Primary Actions oder Secondary Actions.",
+					"en": "Don't place an application name or interactive elements in the End slot. Actions belong in Primary Actions or Secondary Actions."
+				}
+			}
+		},
+		{
+			"id": "text-hierarchy",
+			"headline": {
+				"de": "Texthierarchie",
+				"en": "Text Hierarchy"
+			},
+			"text": {
+				"de": "Standardmäßig sind beide Textteile Regular. Zeigt der Text eine Hierarchie, wird ausschließlich der erste Teil bold gesetzt.",
+				"en": "By default, both text parts are Regular. If the text shows a hierarchy, only the first part is set to bold."
+			},
+			"do": {
+				"figmaNodeId": "4782-8",
+				"description": {
+					"de": "Setze bei einer gewünschten Hierarchie nur den ersten Textteil bold.",
+					"en": "For a desired hierarchy, set only the first text part to bold."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4782-18",
+				"description": {
+					"de": "Setze nicht den zweiten Textteil bold und nicht beide. Bold auf dem zweiten Teil kehrt die Hierarchie um, bold auf beiden hebt sie auf.",
+					"en": "Don't set the second text part to bold, and don't set both. Bold on the second part inverts the hierarchy, bold on both cancels it."
+				}
+			}
+		},
+		{
+			"id": "short-default-logo",
+			"headline": {
+				"de": "Standard-Logo in Short",
+				"en": "Default Logo in Short"
+			},
+			"text": {
+				"de": "Die Variante Short zeigt das Standard-Logo. Sie erscheint in den eingeklappten Left-Varianten und bei Control Panel Bottom.",
+				"en": "The Short variant shows the default logo. It appears in the collapsed Left variants and with Control Panel Bottom."
 			},
 			"do": {
 				"figmaNodeId": "4185-2",
 				"description": {
-					"de": "Überschreibe die Variante Custom mit dem Logo deiner Anwendung für ausgeklappte Zustände des Control Panels (Top, Left ausgeklappt, Mobile Top).",
-					"en": "Override the Custom variant with your application logo for expanded Control Panel states (Top, Left expanded, Mobile Top)."
+					"de": "Belasse in der Variante Short das Standard-Logo.",
+					"en": "Keep the default logo in the Short variant."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4185-4",
 				"description": {
-					"de": "Versuche nicht, die Variante Short zu überschreiben. Sie wird in den Positionen Left eingeklappt und Mobile Bottom automatisch angewendet und ist nicht konfigurierbar.",
-					"en": "Do not attempt to override the Short variant. It is automatically applied in collapsed Left and Mobile Bottom positions and is not user-configurable."
+					"de": "Überschreibe das Standard-Logo in Short nicht. Die Positionen dieser Variante bieten keinen Platz für einen Logozusatz oder einen Anwendungsnamen.",
+					"en": "Don't override the default logo in Short. The positions of this variant offer no room for a logo addition or an application name."
 				}
 			}
 		},
@@ -55,71 +104,46 @@
 				"en": "Logo Addition"
 			},
 			"text": {
-				"de": "Der Anwendungsname neben dem Logo muss ein offizieller Logozusatz sein, der als freigegebenes SVG (vektorisierte Pfade) über das Marketingportal angefordert wird. Das sichert Markenkonsistenz bei Schrift, Abständen und Darstellung.",
-				"en": "The application name next to the logo must be an official logo addition provided as an approved SVG (vectorized paths), requested via the marketing portal. This ensures brand consistency in font, spacing, and rendering."
+				"de": "Der Logo Slot der Variante Logozusatz nimmt ausschließlich das freigegebene SVG aus dem Marketingportal auf.",
+				"en": "The Logo slot of the Logozusatz variant only takes the approved SVG from the marketing portal."
 			},
 			"do": {
 				"figmaNodeId": "4252-87",
 				"description": {
-					"de": "Verwende ein freigegebenes SVG, in dem Logo und Textzusatz ein einzelnes vektorisiertes Asset bilden.",
-					"en": "Use an approved SVG where logo and text addition form a single vectorized asset."
+					"de": "Setze im Logo Slot der Variante Logozusatz ausschließlich das freigegebene SVG aus dem Marketingportal ein.",
+					"en": "In the Logo slot of the Logozusatz variant, only use the approved SVG from the marketing portal."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4252-97",
 				"description": {
-					"de": "Kombiniere das Standard-Logo nicht mit einem eigenen Textelement. Eigener Text weicht bei Schrift, Abständen und Darstellung von der Marke ab.",
-					"en": "Do not combine the default logo with your own text element. Custom text deviates from the brand in font, spacing, and rendering."
+					"de": "Baue den Logozusatz nicht als eigenen Text nach. Nur das freigegebene SVG entspricht der Marken-Vorgabe.",
+					"en": "Don't recreate the logo addition as your own text. Only the approved SVG matches the brand specification."
 				}
 			}
 		},
 		{
-			"id": "brand-with-flat-icon",
+			"id": "flat-icon-logo",
 			"headline": {
-				"de": "Brand mit Flat Icon",
-				"en": "Brand with Flat Icon"
+				"de": "Logo bei Flat Icon",
+				"en": "Logo with Flat Icon"
 			},
 			"text": {
-				"de": "Das Control Panel in Flat Icon hat keinen eigenen Brand-Bereich. Wenn die Marke sichtbar sein muss, platziere das Logo stattdessen im Bereich Shell Content.",
-				"en": "The Flat Icon Control Panel has no dedicated Brand area. If brand visibility is required, place the logo in the Shell Content area instead."
+				"de": "Die Flat Icon Navigation auf Mobile hat keinen Bereich für Brand. Das Logo wird dann im Shell Content platziert.",
+				"en": "The Flat Icon Navigation on mobile has no area for Brand. The logo is then placed in the Shell Content."
 			},
 			"do": {
 				"figmaNodeId": "4185-6",
 				"description": {
-					"de": "Platziere Brand bzw. Logo im Bereich Shell Content (z. B. als Header), wenn du Flat Icon verwendest und Markenpräsenz brauchst.",
-					"en": "Place the brand/logo in the Shell Content area (e.g. as a header) when using Flat Icon and brand presence is needed."
+					"de": "Platziere das Logo bei Flat Icon auf Mobile im Shell Content.",
+					"en": "With Flat Icon on mobile, place the logo in the Shell Content."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4185-8",
 				"description": {
-					"de": "Platziere Brand bzw. Logo nicht als Flat Icon Navigation Item. Flat Icon ist ausschließlich für Navigationsziele vorgesehen.",
-					"en": "Do not place a brand/logo as a Flat Icon Navigation Item. Flat Icon is reserved for navigation destinations only."
-				}
-			}
-		},
-		{
-			"id": "brand-slot-content",
-			"headline": {
-				"de": "Inhalt des Brand-Slots",
-				"en": "Brand Slot Content"
-			},
-			"text": {
-				"de": "Der Brand-Slot dient der Identifikation und dem Kontext. Platziere dort keine interaktiven Elemente – Aktionen und Eingaben gehören in Primary Actions oder Secondary Actions.",
-				"en": "The Brand slot is for identification and context. Do not place interactive elements in it – actions and inputs belong in Primary Actions or Secondary Actions."
-			},
-			"do": {
-				"figmaNodeId": "4185-10",
-				"description": {
-					"de": "Verwende den Brand-Slot für ergänzenden Kontext wie eine Umgebungs-Badge (z. B. Staging, Beta) neben dem Logo.",
-					"en": "Use the Brand slot for supplementary context like an environment badge (e.g. Staging, Beta) alongside the logo."
-				}
-			},
-			"dont": {
-				"figmaNodeId": "4185-12",
-				"description": {
-					"de": "Platziere keine interaktiven Elemente wie Suchfelder oder Aktions-Buttons im Brand-Slot. Nutze stattdessen Primary Actions oder Secondary Actions.",
-					"en": "Do not place interactive elements like search fields or action buttons in the Brand slot. Use Primary Actions or Secondary Actions instead."
+					"de": "Platziere das Logo nicht im Slot der Flat Icon Navigation. Der Slot nimmt ausschließlich Navigationsziele auf.",
+					"en": "Don't place the logo in the Flat Icon Navigation slot. The slot only takes navigation destinations."
 				}
 			}
 		}
@@ -127,18 +151,19 @@
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Übergeordnete Desktop-Komponente, die Brand im Start-Container enthält.",
-				"en": "Desktop parent hosting the Brand in the Start Container."
-			}
+			"component": "shell-content"
 		},
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Übergeordnete Mobile-Komponente, in der Brand in der Navigationsleiste erscheint.",
-				"en": "Mobile parent where Brand appears in the navigation bar."
-			}
+			"component": "control-panel-primary-actions"
+		},
+		{
+			"component": "control-panel-secondary-actions"
+		},
+		{
+			"component": "control-panel-desktop"
+		},
+		{
+			"component": "control-panel-mobile"
 		}
 	]
 }

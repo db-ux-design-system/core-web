@@ -1,25 +1,24 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-meta",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Die Subkomponente CP Meta bietet innerhalb des Control Panels einen flexiblen Bereich für ergänzende, global relevante Inhalte.",
-		"en": "The CP Meta subcomponent provides a flexible area within the Control Panel for supplementary, globally relevant content."
+		"de": "Control Panel Meta ist der Bereich im Control Panel für ergänzende Inhalte mit niedriger Priorität.",
+		"en": "Control Panel Meta is the area within the Control Panel for supplementary content with low priority."
 	},
 	"shortDescription": {
-		"de": "Bereich für ergänzende, global relevante Inhalte im Control Panel.",
-		"en": "Area for supplementary, globally relevant content within the Control Panel."
+		"de": "Bereich im Control Panel für ergänzende Inhalte mit niedriger Priorität.",
+		"en": "Area within the Control Panel for supplementary content with low priority."
 	},
 	"useCases": {
 		"de": [
-			"Meta-Navigationslinks, Umgebungsanzeigen oder rechtliche Verweise aufnehmen",
-			"Den Bereich leicht halten, damit er nicht mit der primären Navigation konkurriert",
-			"Für Inhalte nutzen, die überall gelten, nicht für seitenspezifische Informationen"
+			"Meta-Navigationslinks im Control Panel unterbringen",
+			"Rechtliche Hinweise global erreichbar halten",
+			"Ergänzende Inhalte von der primären Navigation trennen"
 		],
 		"en": [
-			"Hold meta navigation links, environment indicators, or legal references",
-			"Keep it lightweight so it does not compete with the primary navigation",
-			"Use it for content that applies everywhere, not per-page information"
+			"Hold meta navigation links within the Control Panel",
+			"Keep legal references reachable globally",
+			"Separate supplementary content from the primary navigation"
 		]
 	},
 	"guidelines": [
@@ -30,40 +29,77 @@
 				"en": "Content Type"
 			},
 			"text": {
-				"de": "Verwende Meta für ergänzende, niedrig priorisierte Inhalte, die global gelten – etwa Meta-Navigationslinks, Umgebungs-Labels oder rechtliche Verweise. Halte den Bereich leicht, damit er nicht mit der Hauptnavigation konkurriert.",
-				"en": "Use Meta for supplementary, low-priority content that applies globally – such as meta navigation links, environment labels, or legal references. Keep it lightweight to not compete with the main navigation."
+				"de": "Meta nimmt global gültige Inhalte mit niedriger Priorität auf, etwa Meta-Navigationslinks und rechtliche Hinweise.",
+				"en": "Meta holds globally valid content with low priority, such as meta navigation links and legal references."
 			},
 			"do": {
 				"figmaNodeId": "4358-2",
 				"description": {
-					"de": "Verwende Meta für ergänzende Inhalte wie Meta-Navigationslinks, Umgebungsanzeigen oder rechtliche Verweise.",
-					"en": "Use Meta for supplementary content like meta navigation links, environment indicators, or legal references."
+					"de": "Verwende Meta für global gültige Inhalte mit niedriger Priorität.",
+					"en": "Use Meta for globally valid content with low priority."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4358-4",
 				"description": {
-					"de": "Platziere keine primären Navigation Items oder hoch priorisierten Aktionen in Meta. Der Bereich ist ergänzenden Inhalten vorbehalten, die die übrigen Bereiche des Control Panels flankieren.",
-					"en": "Do not place primary Navigation Items or high-priority actions in Meta. It is reserved for supplementary content that complements the main Control Panel areas."
+					"de": "Platziere keine primären Navigation Items und keine hochpriorisierten Aktionen in Meta. Sie gehören in die Control Panel Navigation und in die Primary Actions.",
+					"en": "Don't place primary Navigation Items or high-priority actions in Meta. They belong in the Control Panel Navigation and in the Primary Actions."
 				}
 			}
+		}
+	],
+	"examples": [
+		{
+			"id": "meta-position",
+			"headline": {
+				"de": "Position von Meta",
+				"en": "Meta Position"
+			},
+			"text": {
+				"de": "Die Position von Meta unterscheidet sich je Variante: bei Top über der Navigation, bei Left und im mobilen Drawer über den Primary Actions und Secondary Actions.",
+				"en": "The position of Meta differs per variant: with Top above the navigation, with Left and in the mobile Drawer above the Primary Actions and Secondary Actions."
+			},
+			"items": [
+				{
+					"id": "top",
+					"headline": {
+						"de": "Top",
+						"en": "Top"
+					},
+					"figmaNodeId": "4795-88",
+					"description": {
+						"de": "Bei Top liegt Meta über der Navigation.",
+						"en": "With Top, Meta sits above the navigation."
+					}
+				},
+				{
+					"id": "left-and-drawer",
+					"headline": {
+						"de": "Left und Drawer",
+						"en": "Left and Drawer"
+					},
+					"figmaNodeId": "4795-100",
+					"description": {
+						"de": "Bei Left und im mobilen Drawer liegt Meta über den Primary Actions und Secondary Actions.",
+						"en": "With Left and in the mobile Drawer, Meta sits above the Primary Actions and Secondary Actions."
+					}
+				}
+			]
 		}
 	],
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Übergeordnete Desktop-Komponente, in der Meta in den Positionen Top und Left erscheint.",
-				"en": "Desktop parent where Meta appears in Top and Left positions."
-			}
+			"component": "control-panel-navigation"
 		},
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Übergeordnete Mobile-Komponente, in der Meta im Drawer erscheint (nur Ebene 1).",
-				"en": "Mobile parent where Meta appears in the Drawer (Level 1 only)."
-			}
+			"component": "control-panel-primary-actions"
+		},
+		{
+			"component": "control-panel-desktop"
+		},
+		{
+			"component": "control-panel-mobile"
 		}
 	]
 }

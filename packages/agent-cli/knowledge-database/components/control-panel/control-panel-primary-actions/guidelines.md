@@ -1,9 +1,13 @@
 # Control Panel Primary Actions
 
-Slot für primäre Aktions-Buttons innerhalb des Control Panels.
+Bereich im Control Panel für häufig genutzte globale Aktionen.
 
 ## Regeln
 
-1. **sollte** Primary Actions minimal halten und nur ein bis zwei fokussierte globale Aktionen wie Suche platzieren, die Nutzer:innen auf jeder Seite benötigen. Sie nicht mit zu vielen Buttons überladen, da zu viele Aktionen die Priorität verwässern und das Control Panel überfrachten.
-2. Nur globale Aktionen verwenden, die unabhängig von der aktuellen Seite relevant sind. Keine inhaltsspezifischen Aktionen wie Speichern in Primary Actions platzieren, diese gehören auf die Seitenebene, nicht in die globale Navigationsleiste.
-3. Bei Flat Icon stattdessen Top oder Bottom verwenden, wenn primäre Aktionen direkt in der Navigationsleiste erreichbar sein müssen. Keine Aktionen wie Suche als Flat Icon Navigation Item platzieren, Flat Icon ist ausschließlich für Navigationsziele reserviert.
+1. Nur globale Aktionen wie Suche verwenden, die unabhängig von der aktuellen Seite relevant sind. Inhaltsspezifische Aktionen wie Speichern nicht in Primary Actions platzieren, sie gehören auf die Seitenebene.
+2. **sollte** höchstens zwei Aktionen platzieren, mehr verwässert die Priorität.
+3. Flat Icon nicht verwenden, wenn Primary Actions benötigt werden, die Variante hat dafür keinen Bereich.
+
+## Zusätzliche Informationen
+
+- Auf Desktop sind Primary und Secondary Actions gleichzeitig sichtbar. Auf Mobile trennt sie der Drawer: Primary Actions liegen auf der ersten Ebene, [Secondary Actions](../control-panel-secondary-actions/guidelines.md) darin und damit einen Interaktionsschritt entfernt. Welche Aktionen wo liegen, kann sich je Device unterscheiden. _(Example-Kandidat)_

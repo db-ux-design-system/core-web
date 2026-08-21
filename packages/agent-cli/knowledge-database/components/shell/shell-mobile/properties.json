@@ -18,18 +18,20 @@
 			"design": {
 				"name": "👁️ Show Drawer",
 				"componentSet": ["375x812", "320x568", "768x1024"],
-				"note": "Mobile only. Navigation level two and deeper can only be shown in the Drawer, desktop has no equivalent."
+				"note": "Mobile only. Navigation level two and deeper can only be shown in the Drawer, desktop has no equivalent. Not offered on CP Navigation=Flat Icon, that variant contains no Drawer."
 			}
 		},
 		{
-			"name": "controlPanel",
-			"type": "instanceSwap",
+			"name": "controlPanelNavigation",
+			"type": "enum",
+			"values": ["drawer", "flat-icon"],
+			"default": "drawer",
 			"code": null,
 			"design": {
-				"name": "🔄 CP Navigation",
-				"type": "slot",
+				"name": "🔀 CP Navigation",
+				"values": ["(Def) Drawer", "Flat Icon"],
 				"componentSet": ["375x812", "320x568", "768x1024"],
-				"note": "New since the last read. Default resolves to CP → Drill Down - Mobile - Bottom (Beta). Flat Icon is now selected through this swap instead of a dedicated position value."
+				"note": "Design-only, no code counterpart is planned. The property exists to keep the Figma component usable and error-resistant, and because the Drawer is inserted in the Shell instead of the navigation. Code reaches the same result through a different implementation, so this is not a Figma-versus-code deviation. Flat Icon only exists in combination with Control Panel Mobile Position=Bottom and Sub Navigation Mobile Position=(Def) Top."
 			}
 		},
 		{
@@ -41,8 +43,7 @@
 			"design": {
 				"name": "🔀 Control Panel Mobile Position",
 				"values": ["(Def) Top", "Bottom"],
-				"componentSet": ["375x812", "320x568", "768x1024"],
-				"note": "Bottom - Flat Icon was removed from this axis. Flat Icon is now reached via the new 🔄 CP Navigation instance swap instead of a position value."
+				"componentSet": ["375x812", "320x568", "768x1024"]
 			}
 		},
 		{
@@ -54,7 +55,8 @@
 			"design": {
 				"name": "🔀 Sub Navigation Mobile Position",
 				"values": ["(Def) Top", "Bottom"],
-				"componentSet": ["375x812", "320x568", "768x1024"]
+				"componentSet": ["375x812", "320x568", "768x1024"],
+				"note": "Bottom only exists in combination with Control Panel Mobile Position=(Def) Top."
 			}
 		}
 	]

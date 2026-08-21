@@ -1,25 +1,24 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-mobile",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Das Control Panel Mobile stellt die primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell bereit. Es unterstützt drei Positions-Varianten und nutzt einen Drawer für den Zugriff auf die ausgeklappte Navigation.",
-		"en": "The Control Panel Mobile provides the primary navigation bar for mobile applications within the Shell. It supports three position variants and uses a Drawer for expanded navigation access."
+		"de": "Das Control Panel Mobile stellt die primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell bereit. Es steht in den Positionen Top und Bottom zur Verfügung und öffnet die vollständige Navigation in einem Drawer. Die Positionswahl ist bei Shell Mobile geregelt, die Wahl der Navigationsvariante bei der Control Panel Navigation.",
+		"en": "The Control Panel Mobile provides the primary navigation bar for mobile applications within the Shell. It is available in the Top and Bottom positions and opens the full navigation in a Drawer. Choosing the position is covered by Shell Mobile, choosing the navigation variant by the Control Panel Navigation."
 	},
 	"shortDescription": {
-		"de": "Primäre Navigationsleiste für mobile Anwendungen mit Drawer-Zugang.",
-		"en": "Primary navigation bar for mobile applications with Drawer access."
+		"de": "Primäre Navigationsleiste für mobile Anwendungen mit Drawer für die vollständige Navigation.",
+		"en": "Primary navigation bar for mobile applications with a Drawer for the full navigation."
 	},
 	"useCases": {
 		"de": [
-			"Mobilen Nutzer:innen auf kleinen Bildschirmen Zugriff auf die Hauptbereiche der Anwendung geben",
-			"Navigation und wichtige Aktionen in Daumenreichweite halten",
-			"Das Navigationsmuster zum App-Typ passend wählen, von inhaltsorientiert bis app-artig"
+			"Logo, Primary Actions und den Zugang zur Navigation in einer mobilen Leiste bündeln",
+			"Die vollständige Navigation im Drawer öffnen, statt sie dauerhaft anzuzeigen",
+			"Die Leiste oben oder unten am Bildschirmrand positionieren"
 		],
 		"en": [
-			"Give mobile users access to the app's main sections on small screens",
-			"Keep navigation and key actions within thumb reach",
-			"Match the navigation pattern to the app type, from content-focused to app-like experiences"
+			"Combine logo, primary actions, and access to the navigation in one mobile bar",
+			"Open the full navigation in a Drawer instead of showing it permanently",
+			"Position the bar at the top or bottom edge of the screen"
 		]
 	},
 	"guidelines": [
@@ -30,86 +29,74 @@
 				"en": "Density"
 			},
 			"text": {
-				"de": "Das mobile Control Panel unterstützt ausschließlich die Density Regular. Touch-Ziele brauchen auf mobilen Geräten eine ausreichende Größe für zuverlässige Bedienung mit dem Finger.",
-				"en": "The mobile Control Panel only supports Regular density. Touch targets need sufficient size for reliable finger interaction on mobile devices."
+				"de": "Control Panel Mobile ist auf die Density Regular ausgelegt und setzt den Wert selbst. Eine abweichende Density von außen zu setzen ist nicht vorgesehen.",
+				"en": "Control Panel Mobile is designed for Regular density and sets the value itself. Setting a different density from the outside is not intended."
 			},
 			"do": {
 				"figmaNodeId": "4172-2",
 				"description": {
-					"de": "Verwende die Density Regular für das mobile Control Panel, damit Touch-Ziele komfortabel bedienbar bleiben.",
-					"en": "Use Regular density for the mobile Control Panel to ensure comfortable touch targets."
+					"de": "Übernimm die Density Regular, die Control Panel Mobile selbst setzt.",
+					"en": "Keep the Regular density that Control Panel Mobile sets itself."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4172-4",
 				"description": {
-					"de": "Wende die Density Functional oder Expressive nicht auf das mobile Control Panel an. Auf Mobile wird nur Regular unterstützt.",
-					"en": "Do not apply Functional or Expressive density to the mobile Control Panel. Only Regular is supported on mobile."
+					"de": "Überschreibe die Density von Control Panel Mobile nicht. Die Komponente ist auf Regular ausgelegt, ein abweichender Wert führt zu einer Darstellung, die so nicht vorgesehen ist.",
+					"en": "Don't override the density of Control Panel Mobile. The component is designed for Regular, and a different value results in a presentation that is not intended."
 				}
 			}
-		},
+		}
+	],
+	"examples": [
 		{
-			"id": "flat-icon-usage",
+			"id": "first-level-and-drawer",
 			"headline": {
-				"de": "Einsatz von Flat Icon",
-				"en": "Flat Icon Usage"
+				"de": "Erste Ebene und Drawer",
+				"en": "First Level and Drawer"
 			},
 			"text": {
-				"de": "Flat Icon zeigt die Ziele ausschließlich als Icons. Es eignet sich am besten für Anwendungen mit wenigen, gleich wichtigen Zielen auf oberster Ebene. Der Zugriff erfolgt sofort, ohne einen Drawer zu öffnen, die Kapazität ist jedoch begrenzt.",
-				"en": "Flat Icon shows the destinations as icons only. It works best for apps with a small set of equally important top-level destinations, providing instant access without opening a Drawer, but has limited capacity."
+				"de": "Auf der ersten Ebene liegen Brand, Primary Actions und der Menu-Button. Navigation, Meta und Secondary Actions liegen im Drawer. Neben dem Menu-Button erscheint automatisch ein Divider, sobald Primary Actions eingeblendet sind.",
+				"en": "The first level holds the Brand, Primary Actions, and the menu button. Navigation, Meta, and Secondary Actions sit in the Drawer. A divider appears next to the menu button automatically as soon as Primary Actions are shown."
 			},
-			"do": {
-				"figmaNodeId": "4172-6",
-				"description": {
-					"de": "Verwende Flat Icon, wenn die Anwendung 2–6 gleichwertige Hauptbereiche hat, zwischen denen Nutzer:innen häufig wechseln.",
-					"en": "Use Flat Icon when the application has 2–6 equally weighted top-level sections that users switch between frequently."
+			"items": [
+				{
+					"id": "first-level",
+					"headline": {
+						"de": "Erste Ebene",
+						"en": "First Level"
+					},
+					"figmaNodeId": "4748-6",
+					"description": {
+						"de": "Ohne Öffnen des Drawers erreichbar. Befülle hier die Slots für Brand und Primary Actions.",
+						"en": "Reachable without opening the Drawer. Fill the Brand and Primary Actions slots here."
+					}
+				},
+				{
+					"id": "drawer",
+					"headline": {
+						"de": "Drawer",
+						"en": "Drawer"
+					},
+					"figmaNodeId": "4748-16",
+					"description": {
+						"de": "Öffnet über den Menu-Button. Befülle hier die Slots für Navigation, Meta und Secondary Actions.",
+						"en": "Opens via the menu button. Fill the Navigation, Meta, and Secondary Actions slots here."
+					}
 				}
-			},
-			"dont": {
-				"figmaNodeId": "4172-8",
-				"description": {
-					"de": "Verwende Flat Icon nicht mit zu langen Labels. Die Labels werden abgeschnitten und Nutzer:innen können die Ziele nicht unterscheiden, ohne den vollständigen Text zu lesen.",
-					"en": "Do not use Flat Icon with labels that are too long. Labels get truncated and users cannot distinguish destinations without reading the full text."
-				}
-			}
+			]
 		}
 	],
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Desktop-Variante mit den Positionen Top und Left.",
-				"en": "Desktop variant with Top and Left positions."
-			}
+			"component": "shell-mobile"
 		},
 		{
-			"component": "shell-mobile",
-			"description": {
-				"de": "Das mobile Layout der Shell, das das Control Panel enthält.",
-				"en": "The mobile Shell layout that hosts the Control Panel."
-			}
+			"component": "control-panel-desktop"
 		},
 		{
-			"component": "control-panel-navigation",
-			"description": {
-				"de": "Navigations-Container, die innerhalb des Drawers verwendet werden.",
-				"en": "Navigation containers used within the Drawer."
-			}
-		},
-		{
-			"component": "control-panel-navigation-item",
-			"description": {
-				"de": "Navigation Items, die innerhalb der Drawer-Navigation verwendet werden.",
-				"en": "Navigation Items used within the Drawer navigation."
-			}
-		},
-		{
-			"component": "control-panel-brand",
-			"description": {
-				"de": "Brand- bzw. Logo-Subkomponente innerhalb des mobilen Control Panels.",
-				"en": "Brand/logo subcomponent within the mobile Control Panel."
-			}
+			"component": "control-panel-navigation"
 		}
 	]
 }

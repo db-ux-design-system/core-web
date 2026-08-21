@@ -1,13 +1,17 @@
 # Shell Sub Navigation
 
-Sekundäre Navigationsebene innerhalb der Shell. Unterstützt horizontale (Top) und vertikale (Left) Ausrichtung.
+Untergeordnete Navigation innerhalb der Shell, die zu einem Control Panel Navigation Item gehört. Unterstützt horizontale und vertikale Ausrichtung.
 
 ## Regeln
 
-1. Anzahl der Navigation Items in der horizontalen Sub Navigation überschaubar halten, damit alle Ziele ohne Scrollen sichtbar bleiben. Sie nicht mit zu vielen Navigation Items überladen, da übermäßiges Scrollen die Auffindbarkeit reduziert, besonders auf Mobile, wo ausgeblendete Navigation Items keinen visuellen Indikator haben.
-2. In der mobilen Sub Navigation eine einzelne Ebene von Navigation Items mit klaren, kurzen Labels verwenden. Keine verschachtelten Navigationsebenen einsetzen, nur eine flache Ebene wird unterstützt, Navigation Item Groups werden auf Mobile ausgeblendet.
+1. Auf Mobile eine flache Ebene von [Navigation Items](../../control-panel/control-panel-navigation/control-panel-navigation-item/guidelines.md) verwenden, Navigation Item Groups können dort nicht eingesetzt werden.
+2. **sollte** in der mobilen Sub Navigation höchstens fünf Navigation Items einsetzen, bei mehr geht beim Scrollen der Überblick verloren.
 
 ## Zusätzliche Informationen
 
-- Left bietet Drill Down und Tree. Popover steht dort nicht zur Verfügung.
-- Top öffnet Unterebenen als Popover.
+- Auf Desktop lässt sich Sub Navigation Left einklappen und ist initial immer ausgeklappt. Im eingeklappten Zustand bleibt nur der Button zum Ausklappen sichtbar. _(Example-Kandidat)_
+- Die Sub Navigation enthält eine [Control Panel Navigation](../../control-panel/control-panel-navigation/guidelines.md) und nimmt darin Navigation Items auf.
+- Auf Mobile fehlen die Overflow-Chevrons, die Zeile lässt sich aber wischen.
+- Auf Desktop entscheidet die Anzahl der Navigation Items über die Position, siehe [Shell Desktop](../shell-desktop/guidelines.md).
+- Auf Desktop bietet Sub Navigation Left Drill Down und Tree, Popover steht dort nicht zur Verfügung.
+- Auf Desktop öffnet Sub Navigation Top Unterebenen als Popover.

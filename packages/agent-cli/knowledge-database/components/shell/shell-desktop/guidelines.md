@@ -4,10 +4,12 @@
 
 ## Regeln
 
-1. Position des [Control Panels](../../control-panel/control-panel-desktop/guidelines.md) anhand der Navigationskomplexität wählen: Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene, die bequem in eine horizontale Leiste passen. **sollte** Left erst ab vier Navigation Items einsetzen, da es bei zwei oder drei Items Platz belegt, ohne strukturellen Nutzen zu bieten.
-2. Position der [Sub Navigation](../shell-sub-navigation/guidelines.md) passend zur Informationsarchitektur wählen: Sub Navigation Left für Seiten mit vielen Navigation Items auf Unterebene verwenden, die von einer persistenten vertikalen Übersicht profitieren.
-3. Die Position der Sub Navigation nicht beim Navigieren zwischen Hauptbereichen wechseln, da Nutzer:innen ein stabiles Navigationslayout erwarten.
+1. **sollte** [Control Panel](../../control-panel/control-panel-desktop/guidelines.md) Left ab vier Navigation Items auf oberster Ebene einsetzen, darunter belegt Left Platz ohne strukturellen Nutzen.
+2. **sollte** [Sub Navigation](../shell-sub-navigation/guidelines.md) Left ab sechs Navigation Items auf Unterebene einsetzen, darunter genügt Top.
+3. Position der Sub Navigation beim Navigieren zwischen Hauptbereichen nicht wechseln, Nutzer:innen erwarten ein stabiles Navigationslayout.
 
 ## Zusätzliche Informationen
 
-- Control Panel Left und Sub Navigation Left sind nicht kombinierbar. Zwei vertikale Leisten nebeneinander gibt es nicht.
+- Beide Positionen werden unabhängig voneinander gewählt. Liegt die Komplexität erst auf Unterebene, ergibt das Control Panel Top mit Sub Navigation Left.
+- Die Schwellwerte für Left unterscheiden sich, weil in der Zeile des Control Panels zusätzlich [Brand](../../control-panel/control-panel-brand/guidelines.md) und je nach Aufbau [Primary Actions](../../control-panel/control-panel-primary-actions/guidelines.md) und [Secondary Actions](../../control-panel/control-panel-secondary-actions/guidelines.md) liegen. Die Sub Navigation Top hat die volle Breite.
+- Control Panel Left und Sub Navigation Left sind nicht kombinierbar. Zwei vertikale Sidebars nebeneinander gibt es nicht.

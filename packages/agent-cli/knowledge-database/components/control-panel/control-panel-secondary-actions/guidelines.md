@@ -1,9 +1,15 @@
 # Control Panel Secondary Actions
 
-Slot für sekundäre Aktions-Buttons am Ende des Control Panels.
+Bereich im Control Panel für unterstützende globale Aktionen.
 
 ## Regeln
 
-1. Nur unterstützende Utility-Aktionen platzieren, die seitenübergreifend relevant, aber nicht die Hauptaufgabe der Nutzer:innen sind, etwa Nutzerprofil, Einstellungen oder Hilfe. Keine häufig genutzten Aktionen wie Suche oder Benachrichtigungen in Secondary Actions platzieren, diese gehören in [Primary Actions](../control-panel-primary-actions/guidelines.md), wo sie sofort sichtbar sind.
-2. **sollte** auf eine bis drei Utility-Aktionen beschränken, die Nutzer:innen unterstützen, ohne die Navigationsleiste zu überfrachten. Secondary Actions nicht mit zu vielen Icons überladen, da ein überfüllter Endbereich das Control Panel schwer und unfokussiert wirken lässt.
-3. Bei Flat Icon stattdessen Top oder Bottom verwenden, wenn sekundäre Utility-Aktionen einen eigenen, von der Navigation getrennten Slot benötigen. In Flat Icon keine Utility-Aktionen mit Navigationszielen mischen, Konto oder Einstellungen können ein Navigation Item sein, aber kein Aktions-Button.
+1. Auf Desktop Secondary Actions nur einsetzen, wenn [Primary Actions](../control-panel-primary-actions/guidelines.md) befüllt sind. Ohne Primary Actions alle Aktionen dort platzieren, sonst trennt der Divider einen leeren Bereich ab.
+2. Werden beide Bereiche genutzt, nur Utility-Aktionen platzieren, die seitenübergreifend relevant, aber nicht die Hauptaufgabe sind, etwa Nutzerprofil, Einstellungen oder Hilfe. Häufig genutzte Aktionen wie Suche nicht hier platzieren, sie gehören in Primary Actions.
+3. **sollte** höchstens drei Aktionen platzieren, mehr überfrachtet das Control Panel.
+4. Flat Icon nicht verwenden, wenn Secondary Actions benötigt werden, die Variante hat dafür keinen Bereich.
+
+## Zusätzliche Informationen
+
+- Auf Mobile liegen Secondary Actions im Drawer, erreichbar erst nach dem Öffnen, siehe [Primary Actions](../control-panel-primary-actions/guidelines.md). _(Example-Kandidat)_
+- Auf Desktop liegen Primary und Secondary Actions nebeneinander, getrennt durch einen Divider, der mit den Secondary Actions erscheint.

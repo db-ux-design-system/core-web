@@ -1,126 +1,142 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "shell-content",
 	"figmaFileKey": "RcpbbqfJwjNRlOwPhAX1im",
 	"description": {
-		"de": "Die Subkomponente Shell Content ist der scrollbare Hauptinhaltsbereich der Shell.",
-		"en": "The Shell Content subcomponent is the scrollable main content area of the Shell."
+		"de": "Die Komponente Shell Content bildet den scrollbaren Hauptinhaltsbereich der Shell und gliedert ihn in Start Slot, Children und End Slot.",
+		"en": "The Shell Content component forms the scrollable main content area of the Shell and divides it into a Start Slot, Children, and End Slot."
 	},
 	"shortDescription": {
-		"de": "Scrollbarer Hauptinhaltsbereich der Shell.",
-		"en": "Scrollable main content area of the Shell."
+		"de": "Scrollbarer Hauptinhaltsbereich der Shell mit Slot-basiertem Layout.",
+		"en": "Scrollable main content area of the Shell with a slot-based layout."
 	},
 	"useCases": {
 		"de": [
-			"Den scrollbaren Hauptinhalt einer Seite innerhalb der Shell anzeigen",
-			"Systembenachrichtigungen über dem Inhalt fixieren, wenn sie sichtbar bleiben müssen",
-			"Einen Footer oder dauerhaften CTA am unteren Rand erreichbar halten, während der Inhalt scrollt"
+			"Inhalt über Start Slot, Children und End Slot gliedern",
+			"Mit Fixed Start Slot und End Slot beim Scrollen sichtbar halten",
+			"Mit Auto den gesamten Bereich einschließlich der Slots scrollen"
 		],
 		"en": [
-			"Show the main, scrollable content of a page within the Shell",
-			"Keep system notifications pinned above the content when they must stay visible",
-			"Keep a Footer or persistent CTA reachable at the bottom while the content scrolls"
+			"Divide content across the Start Slot, Children, and End Slot",
+			"Use Fixed to keep the Start Slot and End Slot visible while scrolling",
+			"Use Auto to scroll the entire area including the slots"
 		]
 	},
 	"guidelines": [
 		{
-			"id": "variant-auto-vs-fixed",
+			"id": "scroll-behavior",
 			"headline": {
-				"de": "Variante (Auto vs. Fixed)",
-				"en": "Variant (Auto vs. Fixed)"
+				"de": "Scroll-Verhalten",
+				"en": "Scroll Behavior"
 			},
 			"text": {
-				"de": "Verwende Auto, wenn der gesamte Inhaltsbereich (Start Slot, Children Slot und End Slot) gemeinsam scrollen soll. Verwende Fixed, wenn Start Slot oder End Slot dauerhaft sichtbar bleiben müssen und nur der Children Slot scrollt.",
-				"en": "Use Auto when the entire content area (Start Slot, Children Slot and End Slot) should scroll together. Use Fixed when the Start Slot or End Slot must remain persistently visible while only the Children Slot scrolls."
+				"de": "Fixed hält Start Slot und End Slot beim Scrollen sichtbar. Auto scrollt den gesamten Bereich einschließlich der Slots.",
+				"en": "Fixed keeps the Start Slot and End Slot visible while scrolling. Auto scrolls the entire area including the slots."
 			},
 			"do": {
 				"figmaNodeId": "4079-3",
 				"description": {
-					"de": "Verwende Fixed, wenn angedockte Benachrichtigungen oder ein dauerhafter Footer beim Scrollen sichtbar bleiben müssen.",
-					"en": "Use Fixed when docked notifications or a persistent Footer must stay visible while scrolling."
+					"de": "Verwende Fixed, wenn Start Slot oder End Slot beim Scrollen sichtbar bleiben sollen.",
+					"en": "Use Fixed when the Start Slot or End Slot should stay visible while scrolling."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4079-4",
 				"description": {
-					"de": "Überfülle Start Slot und End Slot in Fixed nicht. Große Slots schrumpfen den scrollbaren Children Slot auf eine unbrauchbare Größe.",
-					"en": "Do not overfill the Start Slot or End Slot in Fixed. Large slots shrink the Children Slot scroll area to an unusable size."
+					"de": "Verwende Auto nicht, wenn Start Slot oder End Slot sichtbar bleiben sollen. Sie scrollen mit dem übrigen Bereich aus dem Viewport.",
+					"en": "Don't use Auto when the Start Slot or End Slot should stay visible. They scroll out of the viewport along with the rest of the area."
 				}
 			}
 		},
 		{
-			"id": "start-slot",
+			"id": "main-content-placement",
 			"headline": {
-				"de": "Start Slot",
-				"en": "Start Slot"
+				"de": "Ort des Hauptinhalts",
+				"en": "Main Content Placement"
 			},
 			"text": {
-				"de": "Der Start Slot ist für dauerhafte UI-Elemente auf Systemebene gedacht, etwa angedockte Benachrichtigungen, die über dem Hauptinhalt sichtbar bleiben müssen.",
-				"en": "The Start Slot is intended for persistent, system-level UI elements such as docked notifications that must remain visible above the main content."
+				"de": "Der Hauptinhalt gehört in Children. Mit Fixed bleibt Inhalt in Start Slot und End Slot dauerhaft stehen, statt mitzuscrollen.",
+				"en": "The main content belongs in Children. With Fixed, content in the Start Slot and End Slot stays in place instead of scrolling along."
 			},
 			"do": {
 				"figmaNodeId": "4079-6",
 				"description": {
-					"de": "Platziere angedockte Benachrichtigungen oder System-Banner im Start Slot.",
-					"en": "Place docked notifications or system banners in the Start Slot."
+					"de": "Lege den Hauptinhalt in Children ab.",
+					"en": "Place the main content in Children."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4079-7",
 				"description": {
-					"de": "Platziere keinen regulären Seiteninhalt im Start Slot. Er ist dauerhaften UI-Elementen vorbehalten.",
-					"en": "Do not place regular page content in the Start Slot. It is reserved for persistent UI elements."
+					"de": "Lege den Hauptinhalt nicht in Start Slot oder End Slot ab. Mit Fixed bleibt er dort dauerhaft stehen, statt mitzuscrollen.",
+					"en": "Don't place the main content in the Start Slot or End Slot. With Fixed it stays in place there instead of scrolling along."
 				}
 			}
 		},
 		{
-			"id": "end-slot",
+			"id": "slot-size-in-fixed",
 			"headline": {
-				"de": "End Slot",
-				"en": "End Slot"
+				"de": "Slot-Größe in Fixed",
+				"en": "Slot Size in Fixed"
 			},
 			"text": {
-				"de": "Der End Slot bleibt am unteren Rand des Inhaltsbereichs. Ein Footer mit rechtlichen Links kann in Auto mit dem Inhalt scrollen. Wichtige Elemente wie ein primärer CTA müssen Fixed nutzen, sonst scrollen sie aus dem Blickfeld und werden unerreichbar.",
-				"en": "The End Slot stays at the bottom of the content area. A Footer with legal links can scroll with the content in Auto. Important elements like a primary CTA must use Fixed, otherwise they scroll out of view and become unreachable."
+				"de": "Start Slot und End Slot belegen in Fixed dauerhaft Platz und verkleinern den scrollbaren Bereich für Children.",
+				"en": "In Fixed, the Start Slot and End Slot permanently take up space and reduce the scrollable area for Children."
 			},
 			"do": {
-				"figmaNodeId": "4079-9",
+				"figmaNodeId": "4298-13",
 				"description": {
-					"de": "Halte einen dauerhaften CTA im End Slot sichtbar, indem du die Variante Fixed verwendest.",
-					"en": "Keep a persistent CTA in the End Slot visible by using the Fixed variant."
+					"de": "Halte Start Slot und End Slot in Fixed kompakt.",
+					"en": "Keep the Start Slot and End Slot compact in Fixed."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4079-10",
+				"figmaNodeId": "4298-16",
 				"description": {
-					"de": "Platziere wichtige Aktionen nicht in einem End Slot mit Auto. Sie scrollen aus dem Blickfeld, bevor Nutzer:innen sie erreichen.",
-					"en": "Do not place important actions in an Auto End Slot. They scroll out of view before users reach them."
+					"de": "Überfülle Start Slot und End Slot in Fixed nicht. Zu große Slots lassen den scrollbaren Bereich für Children auf eine unbrauchbare Größe schrumpfen.",
+					"en": "Don't overfill the Start Slot and End Slot in Fixed. Slots that are too large shrink the scrollable area for Children to an unusable size."
 				}
 			}
 		}
 	],
-	"faq": [],
-	"related": [
+	"examples": [
 		{
-			"component": "shell-desktop",
-			"description": {
-				"de": "Shell Desktop, die den Content-Bereich enthält.",
-				"en": "Shell Desktop, which contains the Content area."
-			}
-		},
-		{
-			"component": "shell-mobile",
-			"description": {
-				"de": "Shell Mobile, die den Content-Bereich enthält.",
-				"en": "Shell Mobile, which contains the Content area."
-			}
-		},
-		{
-			"component": "shell-sub-navigation",
-			"description": {
-				"de": "Sekundäre Navigation, die neben dem Content-Bereich liegt.",
-				"en": "Secondary navigation that sits alongside the Content area."
-			}
+			"id": "end-slot-content",
+			"headline": {
+				"de": "Inhalt im End Slot",
+				"en": "End Slot Content"
+			},
+			"text": {
+				"de": "Was im End Slot liegt, entscheidet über das Scroll-Verhalten: ein Footer mit rechtlichen Links kann mit Auto mitscrollen, ein primärer CTA braucht Fixed.",
+				"en": "What sits in the End Slot determines the scroll behavior: a footer with legal links can scroll along with Auto, a primary CTA needs Fixed."
+			},
+			"items": [
+				{
+					"id": "footer",
+					"headline": {
+						"de": "Footer",
+						"en": "Footer"
+					},
+					"figmaNodeId": "4301-131",
+					"description": {
+						"de": "Lasse einen Footer mit rechtlichen Links im End Slot mit Auto mitscrollen.",
+						"en": "Let a footer with legal links scroll along in the End Slot with Auto."
+					}
+				},
+				{
+					"id": "primary-cta",
+					"headline": {
+						"de": "Primärer CTA",
+						"en": "Primary CTA"
+					},
+					"figmaNodeId": "4079-9",
+					"description": {
+						"de": "Verwende Fixed, wenn im End Slot ein primärer CTA dauerhaft sichtbar bleiben soll.",
+						"en": "Use Fixed when a primary CTA in the End Slot should stay visible at all times."
+					}
+				}
+			]
 		}
-	]
+	],
+	"faq": [],
+	"related": []
 }

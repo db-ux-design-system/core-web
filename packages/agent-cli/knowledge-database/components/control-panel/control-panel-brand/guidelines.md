@@ -1,12 +1,17 @@
 # Control Panel Brand
 
-Zeigt die Marke oder das Logo der Anwendung innerhalb des Control Panels an.
+Zeigt das Logo und einen optionalen Anwendungsnamen innerhalb des Control Panels an.
 
 ## Regeln
 
-1. Custom mit Standard-Logo für ausgeklappte Zustände verwenden (Top, Left ausgeklappt, Mobile Top), Short für eingeklappte Zustände (Collapsed Left, Mobile Bottom) nicht überschreiben.
-2. **kann** bei Custom optional ein- oder zweizeiliger Text für den Applikationsnamen ergänzt werden.
-3. Für den Logozusatz das freigegebene SVG aus dem Marketingportal als vektorisiertes Asset im Logo Slot verwenden, keinen eigenen Text neben dem Standard-Logo ergänzen.
-4. Brand oder Logo bei Flat Icon im Bereich [Shell Content](../../shell/shell-content/guidelines.md) platzieren, nicht als Flat Icon Navigation Item.
-5. Den End Slot für ergänzenden Kontext wie eine Umgebungs-Badge verwenden und interaktive Elemente stattdessen in [Primary Actions](../control-panel-primary-actions/guidelines.md) oder [Secondary Actions](../control-panel-secondary-actions/guidelines.md) platzieren.
-6. **kann** nur der erste Textteil bei ein- oder zweizeiligem Text in Bold gesetzt werden.
+1. Im End Slot nur Umgebungs-Informationen platzieren, keinen Anwendungsnamen und keine interaktiven Elemente, die gehören in [Primary Actions](../control-panel-primary-actions/guidelines.md) oder [Secondary Actions](../control-panel-secondary-actions/guidelines.md).
+2. Bei hierarchisch aufgeteiltem Text nur den ersten Textteil bold setzen, nicht den zweiten und nicht beide.
+3. In Short das Standard-Logo nicht überschreiben, die Positionen dieser Variante bieten keinen Platz für Logozusatz oder Anwendungsnamen.
+4. Im Logo Slot der Variante für den offiziellen Logozusatz ausschließlich das freigegebene SVG aus dem Marketingportal einsetzen, keine eigenen Texte.
+5. Bei Flat Icon auf Mobile das Logo im Bereich [Shell Content](../../shell/shell-content/guidelines.md) platzieren, nicht im Slot der Flat Icon Navigation.
+
+## Zusätzliche Informationen
+
+- Brand hat im Design drei Varianten: Custom, Logozusatz und Short. In den eingeklappten Left-Varianten und bei Control Panel Bottom wird immer Short angezeigt.
+- Der Anwendungsname ist optional und ein- oder zweizeilig. Standardmäßig sind beide Textteile Regular.
+- Einen End Slot haben alle Varianten außer Short.

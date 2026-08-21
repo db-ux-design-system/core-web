@@ -91,8 +91,12 @@ Die `figma.json` und `properties.json` beider Komponenten sind am 2026-08-11 aus
 Nach dem Merge und Release prüfen:
 
 - Node IDs und Component-Set-Namen unverändert
-- `key`-Felder wurden am 2026-08-11 nachträglich per Inventur ergänzt und gegen einen zweiten unabhängigen Read verifiziert. Nach dem Release trotzdem gegenprüfen, ob sie noch stimmen
+- `key`-Felder wurden am 2026-08-11 nachträglich per Inventur ergänzt und gegen einen zweiten unabhängigen Read verifiziert; die drei am 2026-08-14 ergänzten Komponenten wurden ebenfalls vervollständigt. Nach dem Release trotzdem gegenprüfen, ob sie noch stimmen
 - Property-Keys unverändert
+
+Vorgehen: als Diff, nicht als Inventur. Nach dem Publish einmal alle publizierten Komponenten aus dem Main-File lesen und gegen die `figma.json` abgleichen — Name, Node ID und `key` je Eintrag. Das beantwortet empirisch, was sich beim Merge und Publish ändert, und deckt alle Fälle gleich ab: bleiben die Keys stabil, ist der Diff leer, werden sie neu vergeben, sieht man es vollständig. Ob bestehende Keys einen Branch-Merge und einen Publish überleben, ist vorab nicht belegbar, deshalb wird es nicht vorausgesetzt.
+
+Shell und Control Panel sind noch nicht mit Code Connect verknüpft. Ein Key-Wechsel bricht damit aktuell keine Mappings, das Zeitfenster für den Abgleich ist also unkritisch.
 
 Der Auslesestand ist bewusst nicht als Kommentarfeld in den Datendateien vermerkt, weil er ein temporärer Zustand ist.
 
@@ -107,22 +111,67 @@ Sobald die `model.ts` existiert:
 - Figma-only Properties behalten weiterhin keine Description
 - Abweichungen zwischen Figma-Property-Namen und Code-Prop-Namen in `inconsistencies.md` nachtragen
 
-### 15. `documentation.json` von Shell und Control Panel neu erzeugen
+Bei Shell Content sind beim Review am 2026-08-14 Code-Aspekte aufgefallen, die in Figma keine Entsprechung haben und deshalb noch nicht in der `properties.json` stehen. Quelle war der WIP-Branch `feat-shell`, beim Handoff gegenprüfen:
 
-Der ursprüngliche Bootstrap-Fehler ist behoben: alle zwölf `guidelines.md` sind mit den `documentation.json` aus dem Platform-Branch `feat(documentation)--component-documentation-shell-controlpanel` abgeglichen, jede Regel entspricht jetzt genau einem Eintrag in `guidelines[]` mit `text`, `do` und `dont` bzw. `caution`.
+- `mainId`, `mainClass`, `mainLabel` fehlen als Properties. `mainId` ist das Ziel des Skip-Navigation-Links der Shell.
+- Pro Seite darf nur ein Shell Content existieren, sonst entstehen doppelte IDs und der Skip-Navigation-Link bricht. In Figma ist das nicht modellierbar, es ist also keine Design-Regel, sondern gehört als Note an `mainId`.
+- Children rendert innerhalb von `<main>`, Start Slot und End Slot liegen außerhalb. Daraus folgt Regel 3 der `guidelines.md`. Die Aussage steht bewusst nicht im `design`-Objekt, weil sie die Code-Struktur beschreibt, und gehört beim Handoff in den `code`-Teil, sofern sie dort nötig ist.
 
-Bis die Guidelines final mit Design abgestimmt sind, gilt für Shell und Control Panel: `documentation.json` wird ignoriert und nicht mitgepflegt. Erst nach der Finalisierung wird sie für alle zwölf Komponenten aus der jeweiligen `guidelines.md` neu generiert, siehe README-Abschnitt „Generierung der documentation.json".
+### 15. Visuals und Metadaten der Shell- und Control-Panel-Dokumentation finalisieren
 
-Der Guideline-Review vom 2026-08-11 hat alle zwölf Dateien inhaltlich überarbeitet: Regeln auf je eine Entscheidung mit vollständigem Do+Don't- bzw. Do+Caution-Paar gekürzt, redundante Aussagen zwischen Regeln und Zusätzlichen Informationen sowie zwischen Dateien entfernt, Cross-File-Dubletten durch Verweise ersetzt (Control Panel Desktop verweist für die Positionswahl auf Shell Desktop, Control Panel Mobile und Shell Mobile für Flat Icon aufeinander) und Example-Kandidaten unter `## Zusätzliche Informationen` mit `_(Example-Kandidat)_` markiert. Beim Neuerzeugen zu berücksichtigen:
+Alle zwölf `documentation.json` wurden aus den überarbeiteten `guidelines.md` neu aufgebaut. Jede Regel entspricht genau einem Eintrag in `guidelines[]` mit `text`, `do` und `dont` bzw. `caution`; jeder Example-Kandidat entspricht genau einem Eintrag in `examples[]`. Der Sync wird mit `scripts/check-guidelines-sync.mjs` geprüft.
 
-- `control-panel-brand` Regel zur Bold-Hierarchie bei ein- oder zweizeiligem Text ist neu und hat keine Entsprechung auf der aktuellen Doku-Seite. Es fehlen `figmaNodeId`-Verweise für Do und Dont, bis es dafür Visuals in der Doku gibt.
-- Als Example-Kandidaten markiert: Control-Panel-Position oben/unten bei Shell Mobile, Slide-Button-Einklappen bei Control Panel Desktop, Text-Ausblenden über separate Flat-Icon-Varianten bei Control Panel Navigation. Beim Generieren prüfen, ob dafür ein Example-Visual sinnvoll erstellt wird.
-- `control-panel-navigation-item` hat zwei neue Regeln erhalten (Flat-Icon-Text-Anforderung, Indicator nur auf erster Ebene), die vorher als nicht normative Zusatzinformation geführt wurden.
+Vor der Übernahme in die Platform bleiben folgende Punkte offen:
+
+- Für die neue Bold-Hierarchie-Regel bei `control-panel-brand` fehlen `figmaNodeId`-Verweise für Do und Dont, bis passende Visuals in der Doku existieren.
+- Die Example-Kandidaten fachlich gegen das vierte Kriterium in [writing-conventions.md](writing-conventions.md#example-kandidaten-markieren) prüfen: Ein Example entfällt, wenn das Do-, Dont- oder Caution-Visual einer Regel dasselbe Motiv zeigt. Das betrifft insbesondere den Footer-Punkt bei Shell Content, der dasselbe Thema wie Regel 1 dort trägt.
+- Die README nennt `figma.json` als Quelle für `figmaFileKey`. Bei Shell und Control Panel steht dort nur `library`; die Keys der beiden Doku-Files (`RcpbbqfJwjNRlOwPhAX1im` und `pElrqVUyojrzYzSagyJPS6`) stehen in [components/documentation-checklist.md](components/documentation-checklist.md). Entweder die README korrigieren oder den Key in die `figma.json` aufnehmen.
+- Bei `control-panel-mobile` ist die alte Guideline „Einsatz von Flat Icon" (Do `4172-6`, Dont `4172-8`) entfallen: Die Variantenwahl liegt jetzt bei `control-panel-navigation`, die Aussage zu abgeschnittenen Labels deckt `control-panel-navigation-item` ab. Die Density-Visuals `4172-2` und `4172-4` zeigen noch die alte Begründung über Touch-Ziele und sind vor der Übernahme zu prüfen.
+- Die bisherige Doku-Seite von `control-panel-desktop` trägt zwei Blöcke, die nicht übernommen wurden: die Guideline zur Positionswahl (Do `4042-2`, Caution `4042-4`), die jetzt bei `shell-desktop` mit eigenen Visuals liegt, und das Example „Navigation Variant (Left)" (`4584-14`, `4585-18`, `4042-6`, `4042-8`), das Popover als Left-Variante führt und die Tiefe zum Auswahlkriterium macht. Beides widerspricht den überarbeiteten Guidelines. Falls die vier Varianten-Visuals weiterverwendet werden, gehören sie thematisch zu `control-panel-navigation` und müssen dort neu hergeleitet werden.
+
+### 16. Unquantifizierte Mengenwörter in Shell- und Control-Panel-Regeln
+
+Mehrere Regeln steuern eine Mengenentscheidung über ein Wort statt über einen Wert. Damit ist die Grenze unbestimmt und beim Generieren der `documentation.json` müsste für das `dont` eine Zahl erfunden werden. Jeweils beim Bearbeiten der Datei entscheiden, ob ein Wert festgelegt wird oder ob ein anderes Kriterium die Menge ersetzt.
+
+| Datei                                                             | Regel | Begriffe                                    |
+| ----------------------------------------------------------------- | ----- | ------------------------------------------- |
+| `components/shell/shell-sub-navigation/guidelines.md`             | 1     | überschaubar, zu viele, übermäßig           |
+| `components/shell/shell-content/guidelines.md`                    | 2     | kompakt, überfüllen, zu große, unbrauchbare |
+| `components/control-panel/control-panel-navigation/guidelines.md` | 1     | angemessen, zu viele                        |
+| `components/control-panel/control-panel-navigation/guidelines.md` | 2     | viele Navigation Items                      |
+| `components/control-panel/control-panel-navigation/guidelines.md` | 5     | zu vielen                                   |
+
+Shell Desktop ist erledigt: dort stehen jetzt vier Navigation Items für Control Panel Left und sechs für Sub Navigation Left. `control-panel-primary-actions` und `control-panel-secondary-actions` quantifizieren bereits („ein bis zwei", „eine bis drei"), `control-panel-navigation` Regel 3 ebenfalls („vier oder mehr Ebenen"). Die Uneinheitlichkeit betrifft also einzelne Regeln, nicht die Praxis insgesamt.
+
+### 17. Control Panel Desktop: Kriterien für `width` bei Top
+
+`components/control-panel/control-panel-desktop/properties.json` führt `🔀 Width` am Top-Set mit `(Def) Full`, `Small`, `Medium` und `Large`. Zu den vier Werten gibt es in keiner Shell- oder Control-Panel-Guideline ein Auswahlkriterium.
+
+Mit Dev zu klären, was die Werte bewirken und wann welcher zu wählen ist. Danach entscheiden, ob daraus eine Regel wird oder eine Zusatzinformation. Vergleichbare Lage wie bei Punkt 4 zu den `width`-Optionen der Section.
+
+Das Auswahlkriterium ist die Breite der Section im Inhaltsbereich: das Control Panel Top wird passend dazu gewählt, damit Navigation und Inhalt auf derselben Kante liegen. Sobald die Zuordnung der vier Werte zu den Section-Breiten geklärt ist, wird daraus eine Regel mit Do und Dont — der Fehlerfall ist gut zeigbar, nämlich ein Control Panel, dessen Kante gegen die Section versetzt ist.
 
 ## Platform-Repo
 
-### 16. Tonalitätsregeln aus `_platform-steering/` zurückspielen
+### 18. Tonalitätsregeln aus `_platform-steering/` zurückspielen
 
 Der Ordner [`_platform-steering/`](_platform-steering/README.md) enthält eine temporäre Arbeitskopie der Steering-Dateien aus `db-ux-design-system.github.io`. Lücken, die beim Generieren der `documentation.json` auffallen, werden dort ergänzt und gesammelt in das Platform-Repo integriert, statt pro Fund zwischen den Repos zu wechseln.
 
 Offene Änderungen und das Vorgehen beim Zurückspielen stehen im README des Ordners. Nach der Integration entfällt der Ordner samt den beiden Einträgen in `.prettierignore` und `.markdownlintignore`, und der Verweis in `writing-conventions.md` richtet sich wieder auf das Platform-Repo.
+
+### 19. Accessibility als eigener Bereich in der Komponenten-Doku
+
+Barrierefreiheits-Anforderungen lassen sich oft nicht als Do-Dont-Paar im Layout zeigen, weil sie an Werten hängen, die im Screenshot nicht sichtbar sind. Dafür braucht die Komponenten-Doku einen eigenen Bereich neben Guidelines und Examples, dessen Einträge ohne Visual funktionieren.
+
+Bis dahin bleibt eine Anforderung dieser Art aus den Guidelines heraus. Betroffen ist bei `control-panel-navigation-item` die Regel, für jedes Flat Icon Navigation Item einen beschreibenden Text anzugeben: er dient zugleich als zugängliches Label, und bei ausgeblendetem Label identifiziert der Tooltip den Eintrag als Einziges. Ein Dont-Visual dazu ist in Figma nicht darstellbar, weil der Tooltip bei Hover immer eingeblendet wird — zeigen ließe sich nur das Property-Panel, und das ist Werkzeugwissen und für Entwickler:innen ohne Entsprechung.
+
+Beim Aufbau des Bereichs diese Regel als ersten Eintrag übernehmen und prüfen, welche weiteren Komponenten Anforderungen tragen, die aus demselben Grund bisher fehlen.
+
+### 20. Figma-Learn-Einträge und Verweise darauf
+
+Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Komponenten-Doku, sondern nach Figma Learn. Die Komponentenseite verweist dann darauf, statt den Inhalt zu wiederholen.
+
+- **End Slot des Navigation Items.** Wofür der End Slot gedacht ist, steht bisher nirgends — anders als bei `control-panel-brand`, wo eine Regel den End Slot auf Umgebungs-Informationen begrenzt. Das Floating Item wird in Figma Learn dokumentiert und von der Seite `control-panel-navigation-item` verlinkt. Bis dahin bleibt in der `guidelines.md` nur der Verfügbarkeitsfakt, dass Popover-Items keinen End Slot haben und Tree- und Drill-Down-Items einen.
+- **Manuell zu setzende Texte.** In Figma müssen Texte wie das Label des CP Back Buttons oder der Anwendungsname in CP Brand von Hand gesetzt werden, in Dev entstehen sie automatisch. Gleicher Output, anderer Weg — deshalb keine Inkonsistenz im Sinne von `inconsistencies.md`, aber erklärungsbedürftig für Designer:innen.
+
+Beim Anlegen der Learn-Einträge prüfen, welche weiteren Aussagen aus den Guidelines dorthin gehören, statt in `## Zusätzliche Informationen` zu stehen.

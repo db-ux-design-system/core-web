@@ -1,5 +1,4 @@
 {
-	"_comment": "Generiert aus guidelines.md. Die Doku-Seiten in Figma existieren, die Container von consistent-sub-navigation-position sind noch leer und müssen mit Visuals gefüllt werden.",
 	"component": "shell-desktop",
 	"figmaFileKey": "RcpbbqfJwjNRlOwPhAX1im",
 	"description": {
@@ -30,21 +29,21 @@
 				"en": "Control Panel Position"
 			},
 			"text": {
-				"de": "Wähle die Position des Control Panels nach der Navigationskomplexität. Top eignet sich, wenn alle Navigation Items auf oberster Ebene in eine horizontale Leiste passen. Setze Left ab vier Navigation Items ein.",
-				"en": "Choose the Control Panel position based on navigation complexity. Top is suitable when all top-level Navigation Items fit into a horizontal bar. Use Left from four Navigation Items onwards."
+				"de": "Die Anzahl der Navigation Items auf oberster Ebene entscheidet über die Position des Control Panels. Ab vier Items gibt Left ihnen eine dauerhafte vertikale Übersicht.",
+				"en": "The number of top-level Navigation Items determines the Control Panel position. From four items onwards, Left gives them a persistent vertical overview."
 			},
 			"do": {
 				"figmaNodeId": "1-1132",
 				"description": {
-					"de": "Verwende Top für Anwendungen mit wenigen Navigation Items auf oberster Ebene, die in eine horizontale Leiste passen.",
-					"en": "Use Top for applications with few top-level Navigation Items that fit into a horizontal bar."
+					"de": "Setze Control Panel Left ab vier Navigation Items auf oberster Ebene ein.",
+					"en": "Use Control Panel Left from four top-level Navigation Items onwards."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "1-1133",
 				"description": {
-					"de": "Prüfe bei zwei oder drei Navigation Items zuerst Top. Left belegt dauerhaft Platz, ohne die Struktur verständlicher zu machen.",
-					"en": "With two or three Navigation Items, check Top first. Left permanently takes up space without making the structure easier to understand."
+					"de": "Unter vier Navigation Items belegt Left Platz ohne strukturellen Nutzen. Prüfe in diesem Fall Top.",
+					"en": "Below four Navigation Items, Left takes up space without any structural benefit. Consider Top in that case."
 				}
 			}
 		},
@@ -55,21 +54,21 @@
 				"en": "Sub Navigation Position"
 			},
 			"text": {
-				"de": "Wähle die Position der Sub Navigation passend zur Informationsarchitektur. Left gibt vielen Navigation Items auf Unterebene eine dauerhafte vertikale Übersicht.",
-				"en": "Choose the Sub Navigation position to match your information architecture. Left gives many sub-level Navigation Items a persistent vertical overview."
+				"de": "Die Anzahl der Navigation Items auf Unterebene entscheidet über die Position der Sub Navigation. Ab sechs Items hält Left sie dauerhaft im Blick.",
+				"en": "The number of sub-level Navigation Items determines the Sub Navigation position. From six items onwards, Left keeps them permanently in view."
 			},
 			"do": {
 				"figmaNodeId": "3-1110",
 				"description": {
-					"de": "Verwende Sub Navigation Left für Seiten mit vielen Navigation Items auf Unterebene, die von einer dauerhaften vertikalen Übersicht profitieren.",
-					"en": "Use Sub Navigation Left for pages with many sub-level Navigation Items that benefit from a persistent vertical overview."
+					"de": "Setze Sub Navigation Left ab sechs Navigation Items auf Unterebene ein.",
+					"en": "Use Sub Navigation Left from six sub-level Navigation Items onwards."
 				}
 			},
-			"dont": {
+			"caution": {
 				"figmaNodeId": "3-1112",
 				"description": {
-					"de": "Verwende Sub Navigation Top nicht, wenn die Unterebene viele Navigation Items enthält. Der horizontale Platz reicht dann nicht aus und Items werden abgeschnitten.",
-					"en": "Don't use Sub Navigation Top when the sub level contains many Navigation Items. There is not enough horizontal space and items get cut off."
+					"de": "Unter sechs Navigation Items genügt Sub Navigation Top. Left belegt dann Breite, die dem Seitencontent fehlt.",
+					"en": "Below six Navigation Items, Sub Navigation Top is sufficient. Left then takes up width that the page content lacks."
 				}
 			}
 		},
@@ -80,8 +79,8 @@
 				"en": "Consistent Position"
 			},
 			"text": {
-				"de": "Halte die Position der Sub Navigation über alle Hauptbereiche der Anwendung gleich. Nutzer:innen erwarten ein stabiles Navigations-Layout.",
-				"en": "Keep the Sub Navigation position the same across all main sections of the application. Users expect the navigation layout to stay stable."
+				"de": "Die Position der Sub Navigation bleibt über alle Hauptbereiche der Anwendung gleich. Nutzer:innen erwarten ein stabiles Navigationslayout.",
+				"en": "The Sub Navigation position stays the same across all main sections of the application. Users expect a stable navigation layout."
 			},
 			"do": {
 				"figmaNodeId": "4277-3",
@@ -102,18 +101,19 @@
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Das Control Panel, das Shell Desktop enthält.",
-				"en": "The Control Panel hosted by Shell Desktop."
-			}
+			"component": "control-panel-desktop"
 		},
 		{
-			"component": "shell-sub-navigation",
-			"description": {
-				"de": "Sekundäre Navigation innerhalb der Shell für die Struktur auf Unterebene.",
-				"en": "Secondary navigation within the Shell for sub-level page structure."
-			}
+			"component": "shell-sub-navigation"
+		},
+		{
+			"component": "control-panel-brand"
+		},
+		{
+			"component": "control-panel-primary-actions"
+		},
+		{
+			"component": "control-panel-secondary-actions"
 		}
 	]
 }

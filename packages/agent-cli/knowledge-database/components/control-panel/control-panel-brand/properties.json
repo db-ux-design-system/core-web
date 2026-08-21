@@ -24,6 +24,28 @@
 			}
 		},
 		{
+			"name": "children",
+			"type": "string",
+			"code": null,
+			"design": {
+				"name": "Children",
+				"type": "text",
+				"componentSet": ["custom"],
+				"note": "Füllt den Textknoten „Name“, sichtbar in Single Line und Double Line."
+			}
+		},
+		{
+			"name": "secondLine",
+			"type": "string",
+			"code": null,
+			"design": {
+				"name": "Second Line",
+				"type": "text",
+				"componentSet": ["custom"],
+				"note": "Füllt den Textknoten „2nd Line“, sichtbar nur in Double Line."
+			}
+		},
+		{
 			"name": "showEndSlot",
 			"type": "boolean",
 			"code": null,

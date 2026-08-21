@@ -1,17 +1,22 @@
 # Control Panel Navigation
 
-Navigations-Container innerhalb des Control Panels. Enthält Navigation Items und unterstützt verschiedene Varianten für unterschiedliche Inhaltsstrukturen und Positionen des Control Panels.
+Navigations-Container innerhalb des Control Panels und der Shell Sub Navigation. Enthält Navigation Items in den Varianten Popover, Tree, Drill Down und Flat Icon.
 
 ## Regeln
 
-1. Die Anzahl der Navigation Items auf oberster Ebene in der horizontalen Popover-Navigation (Desktop Top) angemessen halten. Nicht zu viele Navigation Items platzieren, da Scroll-Chevrons zwar unterstützt sind, verborgene Navigation Items dahinter aber leicht übersehen werden.
-2. Drill Down verwenden, wenn die Navigation viele Navigation Items bei flacher Struktur (ein bis zwei Ebenen) hat, damit jede Ansicht fokussiert und überschaubar bleibt. Tree nicht für Navigationen mit vielen Items, aber nur ein bis zwei Ebenen Tiefe verwenden, eine lange flache Liste in Tree bietet gegenüber Drill Down keinen strukturellen Vorteil.
-3. Tree verwenden, wenn die Navigation vier oder mehr Ebenen hat, damit die vollständige Hierarchie sichtbar und jede Ebene direkt erreichbar bleibt. Drill Down nicht für Navigationen mit vier oder mehr Ebenen verwenden, da Nutzer:innen ihre Position in der Hierarchie verlieren, wenn sie nur eine Ebene zur Zeit sehen.
-4. In der Flat Icon Navigation eine fokussierte Auswahl gleichwertiger Ziele auf oberster Ebene verwenden. Sie auf Desktop nicht mit zu vielen Navigation Items überladen, eine lange Icon-Liste ohne klare Priorität widerspricht dem Zweck des schnellen Zugriffs.
+1. Navigation Items nur für Navigationsziele verwenden. Aktionen wie Suche nicht als Navigation Item platzieren.
+2. **sollte** Drill Down ab acht Navigation Items je Ebene verwenden, es zeigt eine Ebene auf einmal und bleibt auch bei vielen Einträgen übersichtlich.
+3. **sollte** Tree bis sieben Navigation Items je Ebene verwenden, dort bleibt die vollständige Hierarchie sichtbar.
+4. Flat Icon nur für gleichwertige Ziele auf oberster Ebene einsetzen. Flat Icon nicht einsetzen, wenn ein Ziel dominiert, es gewichtet alle Ziele gleich.
+5. **sollte** in Flat Icon auf Desktop höchstens zehn Navigation Items einsetzen, optimal bis zu sieben, längere Icon-Listen widersprechen dem schnellen Zugriff.
 
 ## Zusätzliche Informationen
 
-- Popover ist die Navigation von Desktop Top. In Desktop Left steht sie nicht zur Verfügung.
-- Im Drawer auf Mobile stehen Drill Down und Tree zur Verfügung, ausgewählt nach denselben Tiefenkriterien wie auf Desktop.
+- In der Flat Icon Navigation lässt sich das Label ausblenden, sodass nur das Icon sichtbar bleibt. _(Example-Kandidat)_
+- Auf Desktop lässt sich die Popover-Navigation über Overflow-Chevrons scrollen, wenn nicht alle Navigation Items in die verfügbare Breite passen. Die dahinter liegenden Navigation Items werden leicht übersehen. _(Example-Kandidat)_
+- Aktionen und Navigationsziele können denselben Namen tragen: Konto oder Einstellungen dürfen als Navigation Item auftreten, nicht aber als Aktions-Button in der Navigation.
+- Popover ist die Navigation von Desktop Top, in Desktop Left steht sie nicht zur Verfügung. In der mobilen [Sub Navigation](../../shell/shell-sub-navigation/guidelines.md) wird sie horizontal und ohne zweite Ebene verwendet.
+- Auf Desktop entscheidet die Anzahl der Navigation Items auf oberster Ebene über die Position des Control Panels, siehe [Shell Desktop](../../shell/shell-desktop/guidelines.md).
+- Im Drawer auf Mobile stehen Drill Down und Tree zur Verfügung, ausgewählt nach denselben Kriterien wie auf Desktop.
+- Mit jeder weiteren Ebene steigt in beiden Varianten die Zahl der Klicks bis zum Ziel. Dazu nimmt in Tree die Einrückung zu, während Drill Down weiter nur eine Ebene zeigt. Die Tiefe wirkt sich damit auf beide Varianten aus und entscheidet nicht zwischen ihnen.
 - Der Flat Icon Slot ist auf Mobile technisch begrenzt: zwei bis vier Items mit Text, zwei bis sechs Items ohne Text.
-- Den Text ausblenden lässt sich ausschließlich über separate Varianten in der Flat Icon Navigation (mit und ohne Text). Popover, Tree und Drill Down zeigen ihn immer, es gibt kein Property dafür. _(Example-Kandidat)_

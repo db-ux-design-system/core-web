@@ -1,108 +1,142 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "shell-mobile",
 	"figmaFileKey": "RcpbbqfJwjNRlOwPhAX1im",
 	"description": {
-		"de": "Die Komponente Shell Mobile stellt die äußerste Layout-Struktur für mobile Webanwendungen bereit. Sie unterstützt verschiedene Positionen des Control Panels und nutzt einen Drawer als standardmäßige Hauptnavigation.",
-		"en": "The Shell Mobile component provides the outermost layout structure for mobile web applications. It supports different Control Panel positions and uses a Drawer as the default main navigation."
+		"de": "Die Komponente Shell Mobile stellt die äußere Layout-Struktur für mobile Webanwendungen bereit. Sie unterstützt verschiedene Positionen des Control Panels und nutzt standardmäßig einen Drawer als Hauptnavigation.",
+		"en": "The Shell Mobile component provides the outer layout structure for mobile web applications. It supports different Control Panel positions and uses a Drawer as the default main navigation."
 	},
 	"shortDescription": {
-		"de": "Äußerste Layout-Struktur für mobile Webanwendungen mit Drawer als Hauptnavigation.",
-		"en": "Outermost layout structure for mobile web applications with a Drawer as main navigation."
+		"de": "Äußere Layout-Struktur für mobile Webanwendungen mit Drawer als Hauptnavigation.",
+		"en": "Outer layout structure for mobile web applications with a Drawer as main navigation."
 	},
 	"useCases": {
 		"de": [
-			"Eine mobile Anwendung mit kompaktem Control Panel und scrollbarem Inhaltsbereich rahmen",
-			"Das Control Panel am oberen Rand (Top), am unteren Rand (Bottom) oder als Flat Icon positionieren",
-			"Die standardmäßige Hauptnavigation über einen Drawer zugänglich machen, der über das Burger-Menü geöffnet wird"
+			"Layout einer mobilen Anwendung aufbauen",
+			"Control Panel oben oder unten positionieren",
+			"Hauptnavigation über einen Drawer zugänglich machen"
 		],
 		"en": [
-			"Frame a mobile app with a compact Control Panel and a scrollable content area",
-			"Position the Control Panel at the Top, at the Bottom, or as Flat Icon",
-			"Reveal the default main navigation through a Drawer opened from the burger menu"
+			"Set up a mobile application layout",
+			"Position the Control Panel at the top or at the bottom",
+			"Make main navigation accessible through a Drawer"
 		]
 	},
 	"guidelines": [
 		{
-			"id": "responsive-differences",
+			"id": "navigation-structure",
 			"headline": {
-				"de": "Unterschiede im Responsive-Verhalten",
-				"en": "Responsive Differences"
+				"de": "Navigationsstruktur",
+				"en": "Navigation Structure"
 			},
 			"text": {
-				"de": "Die mobile Shell darf von ihrem Desktop-Gegenstück abweichen. Passe die Navigationsstruktur an die mobilen Rahmenbedingungen an, statt Desktop 1:1 zu spiegeln.",
-				"en": "The mobile Shell can differ from its desktop counterpart. Adapt navigation structure to mobile constraints rather than mirroring desktop 1:1."
+				"de": "Auf Mobile trägt die Sub Navigation nur eine flache Ebene. Hat die Sub Navigation auf Desktop mehr als eine Ebene, wird die Navigation für Mobile umstrukturiert.",
+				"en": "On mobile, the Sub Navigation only supports a single flat level. If the Sub Navigation has more than one level on desktop, the navigation is restructured for mobile."
 			},
 			"do": {
 				"figmaNodeId": "3-1118",
 				"description": {
-					"de": "Vereinfache die Navigation für Mobile, indem du die Tiefe reduzierst und Inhalte bei Bedarf anders gruppierst.",
-					"en": "Simplify navigation for mobile by reducing depth and grouping content differently if needed."
+					"de": "Strukturiere die Navigation für Mobile um, wenn die Sub Navigation auf Desktop mehr als eine Ebene hat.",
+					"en": "Restructure the navigation for mobile when the Sub Navigation has more than one level on desktop."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "3-1119",
 				"description": {
-					"de": "Spiegle die vollständige Desktop-Navigationshierarchie nicht auf Mobile, wenn daraus zu viele Ebenen oder zu kleine Touch-Ziele entstehen.",
-					"en": "Do not mirror the full desktop navigation hierarchy on mobile when it results in too many levels or small touch targets."
+					"de": "Spiegle eine mehrstufige Sub Navigation nicht auf Mobile. Dort ist nur eine flache Ebene möglich.",
+					"en": "Don't mirror a multi-level Sub Navigation on mobile. Only a single flat level is possible there."
 				}
 			}
-		},
+		}
+	],
+	"examples": [
 		{
-			"id": "flat-icon-navigation",
+			"id": "device-differences",
 			"headline": {
-				"de": "Flat Icon Navigation",
-				"en": "Flat Icon Navigation"
+				"de": "Unterschied zwischen Desktop und Mobile",
+				"en": "Desktop and Mobile Differences"
 			},
 			"text": {
-				"de": "Flat Icon zeigt die Ziele als Icons am unteren Rand. Es eignet sich am besten für Anwendungen mit wenigen, gleich wichtigen Zielen auf oberster Ebene. Der Zugriff erfolgt sofort, ohne ein Menü zu öffnen, die Kapazität ist jedoch begrenzt.",
-				"en": "Flat Icon shows the destinations as icons along the bottom edge. It works best for apps with a small set of equally important top-level destinations, providing instant access without opening a menu, but has limited capacity."
+				"de": "Shell Mobile und Shell Desktop können unterschiedlich aufgebaut sein. Die Navigationsstruktur muss auf beiden Devices nicht identisch sein, sie kann je Device angepasst werden.",
+				"en": "Shell Mobile and Shell Desktop can be built differently. The navigation structure does not have to be identical on both devices, it can be adapted per device."
 			},
-			"do": {
-				"figmaNodeId": "3-1122",
-				"description": {
-					"de": "Verwende Flat Icon, wenn die Anwendung 2–6 gleichwertige Hauptbereiche hat, zwischen denen Nutzer:innen häufig wechseln.",
-					"en": "Use Flat Icon when the application has 2–6 equally weighted top-level sections that users switch between frequently."
+			"items": [
+				{
+					"id": "desktop",
+					"headline": {
+						"de": "Desktop",
+						"en": "Desktop"
+					},
+					"figmaNodeId": "4330-140",
+					"description": {
+						"de": "Nutze auf Desktop die Struktur, die dort den besten Überblick gibt.",
+						"en": "On desktop, use the structure that gives the best overview there."
+					}
+				},
+				{
+					"id": "mobile",
+					"headline": {
+						"de": "Mobile",
+						"en": "Mobile"
+					},
+					"figmaNodeId": "4330-144",
+					"description": {
+						"de": "Passe die Struktur auf Mobile an, statt die Desktop-Hierarchie zu übernehmen.",
+						"en": "Adapt the structure on mobile instead of carrying over the desktop hierarchy."
+					}
 				}
+			]
+		},
+		{
+			"id": "control-panel-position",
+			"headline": {
+				"de": "Control Panel Position",
+				"en": "Control Panel Position"
 			},
-			"dont": {
-				"figmaNodeId": "3-1123",
-				"description": {
-					"de": "Platziere keine primären oder sekundären Aktionen in der Flat Icon Navigation. Sie ist ausschließlich für Navigationsziele vorgesehen.",
-					"en": "Do not place primary or secondary actions in the Flat Icon Navigation. It is reserved for navigation destinations only."
+			"text": {
+				"de": "Das Control Panel kann oben oder unten positioniert werden. Beide Positionen sind gültige Gestaltungsoptionen.",
+				"en": "The Control Panel can be positioned at the top or bottom. Both positions are valid design options."
+			},
+			"items": [
+				{
+					"id": "top",
+					"headline": {
+						"de": "Oben",
+						"en": "Top"
+					},
+					"figmaNodeId": "3-1116",
+					"description": {
+						"de": "Positioniere das Control Panel oben.",
+						"en": "Position the Control Panel at the top."
+					}
+				},
+				{
+					"id": "bottom",
+					"headline": {
+						"de": "Unten",
+						"en": "Bottom"
+					},
+					"figmaNodeId": "3-1117",
+					"description": {
+						"de": "Positioniere das Control Panel unten.",
+						"en": "Position the Control Panel at the bottom."
+					}
 				}
-			}
+			]
 		}
 	],
 	"faq": [],
 	"related": [
 		{
-			"component": "shell-desktop",
-			"description": {
-				"de": "Shell Desktop mit dauerhafter Navigation für größere Bildschirme.",
-				"en": "Shell Desktop with persistent navigation for larger screens."
-			}
+			"component": "shell-desktop"
 		},
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Das Control Panel, das Shell Mobile enthält.",
-				"en": "The Control Panel hosted by Shell Mobile."
-			}
+			"component": "shell-sub-navigation"
 		},
 		{
-			"component": "shell-sub-navigation",
-			"description": {
-				"de": "Sekundäre Navigation innerhalb der Shell für die Struktur auf Unterebene.",
-				"en": "Secondary navigation within the Shell for sub-level page structure."
-			}
+			"component": "control-panel-navigation"
 		},
 		{
-			"component": "shell-content",
-			"description": {
-				"de": "Der scrollbare Inhaltsbereich innerhalb von Shell Mobile.",
-				"en": "The scrollable content area within Shell Mobile."
-			}
+			"component": "drawer"
 		}
 	]
 }

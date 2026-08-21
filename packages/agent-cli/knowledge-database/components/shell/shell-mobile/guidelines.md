@@ -4,11 +4,14 @@
 
 ## Regeln
 
-1. Navigation für Mobile an mobile Rahmenbedingungen anpassen statt sie 1:1 vom Desktop zu spiegeln: Tiefe reduzieren und Inhalte bei Bedarf anders gruppieren. Die vollständige Desktop-Navigationshierarchie nicht auf Mobile spiegeln, wenn dabei zu viele Ebenen oder zu kleine Trefferzonen entstehen.
-2. Flat Icon nur für gleichwertige Hauptbereiche einsetzen. Nicht einsetzen, wenn ein Bereich dominiert, da Flat Icon allen Zielen gleiches visuelles Gewicht gibt.
+1. Navigation für Mobile umstrukturieren, wenn die [Sub Navigation](../shell-sub-navigation/guidelines.md) auf Desktop mehr als eine Ebene hat. Eine mehrstufige Sub Navigation nicht auf Mobile spiegeln, dort ist nur eine flache Ebene möglich.
 
 ## Zusätzliche Informationen
 
-- Das Control Panel kann oben oder unten positioniert werden. Die Wahl ist keine Regel, sondern eine Gestaltungsoption. _(Example-Kandidat)_
-- Flat Icon kann ausschließlich unten positioniert werden.
-- Navigationsebene 2 und tiefer ist auf Mobile nur im [Drawer](../../drawer/guidelines.md) darstellbar. Auf Desktop gibt es dafür keine Entsprechung.
+- Shell Mobile und [Shell Desktop](../shell-desktop/guidelines.md) können unterschiedlich aufgebaut sein. Die Navigationsstruktur muss auf beiden Devices nicht identisch sein, sie kann je Device angepasst werden. _(Example-Kandidat)_
+- Das Control Panel kann oben oder unten positioniert werden. _(Example-Kandidat)_
+- Für eine mehrstufige Desktop-Navigation gibt es auf Mobile zwei Wege: eine flache [Sub Navigation](../shell-sub-navigation/guidelines.md) mit einer Ebene, oder alles in die Hauptnavigation verlagern, wo Drill Down und Tree tiefere Ebenen tragen.
+- Control Panel unten und Sub Navigation unten sind nicht kombinierbar.
+- [Flat Icon](../../control-panel/control-panel-navigation/guidelines.md) existiert ausschließlich mit Control Panel unten.
+- Ebene 3 und tiefer ist auf Mobile nur im [Drawer](../../drawer/guidelines.md) darstellbar.
+- Mit Flat Icon sind Ebene 3 und tiefer nicht darstellbar, Ebene 2 nur über die Sub Navigation.

@@ -1,158 +1,221 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-navigation",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Die Subkomponente CP Navigation ist der Navigations-Container innerhalb des Control Panels. Sie enthält Navigation Items und unterstützt verschiedene Varianten für unterschiedliche Inhaltsstrukturen und Positionen des Control Panels.",
-		"en": "The CP Navigation subcomponent is the navigation container within the Control Panel. It holds Navigation Items and supports different variants suited to different content structures and Control Panel positions."
+		"de": "Control Panel Navigation ist der Navigations-Container innerhalb des Control Panels und der Shell Sub Navigation. Sie nimmt Navigation Items auf und steht in den Varianten Popover, Tree, Drill Down und Flat Icon zur Verfügung.",
+		"en": "Control Panel Navigation is the navigation container within the Control Panel and the Shell Sub Navigation. It holds Navigation Items and is available in the Popover, Tree, Drill Down, and Flat Icon variants."
 	},
 	"shortDescription": {
-		"de": "Navigations-Container innerhalb des Control Panels mit mehreren Varianten.",
-		"en": "Navigation container within the Control Panel with multiple variants."
+		"de": "Navigations-Container mit den Varianten Popover, Tree, Drill Down und Flat Icon.",
+		"en": "Navigation container with the Popover, Tree, Drill Down, and Flat Icon variants."
 	},
 	"useCases": {
 		"de": [
-			"Die Ziele einer Anwendung in eine durchsuchbare Struktur bringen",
-			"Ein Muster wählen, das zur Struktur passt: flache Listen, tiefe Trees, schrittweises Drill Down oder wenige Icon-Ziele",
-			"Die aktuelle Position klar erkennbar halten, während Nutzer:innen sich durch die Hierarchie bewegen"
+			"Navigationsziele in der Variante darstellen, die zur Struktur passt",
+			"Tiefere Ebenen über Popover, Tree oder Drill Down erschließen",
+			"Flat Icon für eine flache Hierarchie einsetzen, in der die Icons im Vordergrund stehen"
 		],
 		"en": [
-			"Organize an application's destinations into a browsable structure",
-			"Choose a pattern that fits the structure: flat lists, deep trees, step-by-step drill-down, or a few icon destinations",
-			"Keep the current location clear as users move through the hierarchy"
+			"Present navigation destinations in the variant that fits the structure",
+			"Open up deeper levels through Popover, Tree, or Drill Down",
+			"Use Flat Icon for a flat hierarchy in which the icons are visually dominant"
 		]
 	},
 	"guidelines": [
 		{
-			"id": "popover-horizontal-overflow",
+			"id": "navigation-destinations-only",
 			"headline": {
-				"de": "Horizontaler Overflow bei Popover",
-				"en": "Popover Horizontal Overflow"
+				"de": "Nur Navigationsziele",
+				"en": "Navigation Destinations Only"
 			},
 			"text": {
-				"de": "Die horizontale Popover-Navigation in Desktop Top hat begrenzten Platz. Zu viele Navigation Items erfordern Scroll-Chevrons, die verborgene Navigation Items schlechter auffindbar machen.",
-				"en": "The horizontal Popover navigation in Desktop Top has limited space. Too many Navigation Items require scroll chevrons, which reduces the discoverability of the hidden ones."
+				"de": "Die Navigation nimmt ausschließlich Navigationsziele auf. Aktionen gehören in Primary Actions oder Secondary Actions.",
+				"en": "The navigation only holds navigation destinations. Actions belong in Primary Actions or Secondary Actions."
 			},
 			"do": {
-				"figmaNodeId": "4390-2",
+				"figmaNodeId": "4798-2",
 				"description": {
-					"de": "Halte die Anzahl der Navigation Items auf oberster Ebene in Desktop Top angemessen. Scroll-Chevrons werden unterstützt, verringern aber die Auffindbarkeit verborgener Navigation Items.",
-					"en": "Keep the number of top-level Navigation Items in Desktop Top reasonable. Scroll chevrons are supported but reduce the discoverability of hidden ones."
+					"de": "Verwende Navigation Items ausschließlich für Navigationsziele.",
+					"en": "Only use Navigation Items for navigation destinations."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4390-4",
+				"figmaNodeId": "4798-6",
 				"description": {
-					"de": "Platziere nicht zu viele Navigation Items in der horizontalen Popover-Navigation. Navigation Items hinter Scroll-Chevrons werden von Nutzer:innen leicht übersehen.",
-					"en": "Do not place too many Navigation Items in the horizontal Popover navigation. Navigation Items hidden behind scroll chevrons are easily overlooked by users."
+					"de": "Platziere Aktionen wie Suche nicht als Navigation Item. Ein Navigation Item kündigt einen Seitenwechsel an, eine Aktion löst etwas aus.",
+					"en": "Don't place actions such as search as a Navigation Item. A Navigation Item announces a page change, an action triggers something."
 				}
 			}
 		},
 		{
-			"id": "tree-item-overload",
+			"id": "drill-down-item-count",
 			"headline": {
-				"de": "Zu viele Navigation Items im Tree",
-				"en": "Tree Item Overload"
+				"de": "Drill Down bei vielen Einträgen",
+				"en": "Drill Down for Many Entries"
 			},
 			"text": {
-				"de": "Die Tree-Navigation ist für komplexe hierarchische Strukturen gedacht. Wenn die Navigation viele Navigation Items, aber eine flache oder geringe Tiefe hat, ist Drill Down wirksamer, weil es eine Ebene zur Zeit zeigt und Nutzer:innen nicht mit einer langen ausgeklappten Liste überfordert.",
-				"en": "Tree navigation is designed for complex hierarchical structures. When the navigation has many Navigation Items but a flat or shallow structure, Drill Down is more effective because it shows one level at a time and avoids overwhelming the user with a long expanded list."
-			},
-			"do": {
-				"figmaNodeId": "4390-6",
-				"description": {
-					"de": "Verwende Drill Down, wenn die Navigation viele Navigation Items bei flacher Struktur (1–2 Ebenen) hat. So bleibt jede Ansicht fokussiert und überschaubar.",
-					"en": "Use Drill Down when the navigation has many Navigation Items with a shallow structure (1–2 levels). It keeps each view focused and scannable."
-				}
-			},
-			"dont": {
-				"figmaNodeId": "4390-8",
-				"description": {
-					"de": "Verwende Tree nicht für Navigationen mit vielen Navigation Items, aber nur 1–2 Ebenen Tiefe. Eine lange flache Liste im Tree bietet gegenüber Drill Down keinen strukturellen Vorteil.",
-					"en": "Do not use Tree for navigation with many Navigation Items but only 1–2 levels of depth. A long flat list in Tree provides no structural benefit over Drill Down."
-				}
-			}
-		},
-		{
-			"id": "drill-down-depth-limit",
-			"headline": {
-				"de": "Tiefenlimit bei Drill Down",
-				"en": "Drill Down Depth Limit"
-			},
-			"text": {
-				"de": "Drill Down zeigt eine Ebene zur Zeit mit einem Zurück-Button-Muster. Ab 4 Ebenen verlieren Nutzer:innen die Orientierung, weil sie die vollständige Hierarchie nicht sehen. Tree hält alle Ebenen sichtbar und eignet sich besser für tief verschachtelte Strukturen.",
-				"en": "Drill Down shows one level at a time with a back-button pattern. With 4 or more levels, users lose orientation because they cannot see the full hierarchy. Tree keeps all levels visible and is better suited for deeply nested structures."
+				"de": "Die Anzahl der Navigation Items je Ebene entscheidet zwischen Drill Down und Tree. Drill Down zeigt eine Ebene auf einmal und bleibt dadurch auch bei vielen Einträgen übersichtlich.",
+				"en": "The number of Navigation Items per level decides between Drill Down and Tree. Drill Down shows one level at a time and therefore stays clear even with many entries."
 			},
 			"do": {
 				"figmaNodeId": "4390-10",
 				"description": {
-					"de": "Verwende Tree, wenn die Navigation 4 oder mehr Ebenen hat. So bleibt die vollständige Hierarchie sichtbar und jede Ebene direkt erreichbar.",
-					"en": "Use Tree when the navigation has 4 or more levels. It keeps the full hierarchy visible and allows direct access to any level."
+					"de": "Verwende Drill Down ab acht Navigation Items je Ebene.",
+					"en": "Use Drill Down from eight Navigation Items per level onwards."
 				}
 			},
-			"dont": {
+			"caution": {
 				"figmaNodeId": "4390-12",
 				"description": {
-					"de": "Verwende Drill Down nicht für Navigationen mit 4 oder mehr Ebenen. Nutzer:innen verlieren ihre Position in der Hierarchie, wenn sie nur eine Ebene zur Zeit sehen.",
-					"en": "Do not use Drill Down for navigation with 4 or more levels. Users lose their position in the hierarchy when they can only see one level at a time."
+					"de": "Bei wenigen Einträgen je Ebene zeigt Drill Down weiter nur eine Ebene: die Übersicht über die Hierarchie fehlt, obwohl der Platz für sie reicht. Prüfe in diesem Fall Tree.",
+					"en": "With few entries per level, Drill Down still shows only one level: the overview of the hierarchy is missing even though there is space for it. Consider Tree in that case."
 				}
 			}
 		},
 		{
-			"id": "flat-icon-capacity",
+			"id": "tree-item-count",
 			"headline": {
-				"de": "Kapazität von Flat Icon",
-				"en": "Flat Icon Capacity"
+				"de": "Tree bei wenigen Einträgen",
+				"en": "Tree for Few Entries"
 			},
 			"text": {
-				"de": "Halte die Anzahl der Flat Icon Navigation Items überschaubar. Auf Mobile ist der Slot technisch begrenzt (2–4 mit Text, 2–6 ohne Text). Auf Desktop gibt es keine harte Grenze, zu viele Navigation Items verringern jedoch die Klarheit.",
-				"en": "Keep the number of Flat Icon Navigation Items manageable. On Mobile, the slot is technically limited (2–4 with text, 2–6 without text). On Desktop there is no hard limit, but too many Navigation Items reduce clarity."
+				"de": "Tree hält die vollständige Hierarchie sichtbar. Bis sieben Navigation Items je Ebene bleibt sie überschaubar.",
+				"en": "Tree keeps the full hierarchy visible. Up to seven Navigation Items per level, it stays manageable."
+			},
+			"do": {
+				"figmaNodeId": "4390-6",
+				"description": {
+					"de": "Verwende Tree bis sieben Navigation Items je Ebene.",
+					"en": "Use Tree for up to seven Navigation Items per level."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4390-8",
+				"description": {
+					"de": "Über sieben Einträgen je Ebene verliert Tree seinen Vorteil, die vollständige Hierarchie sichtbar zu halten.",
+					"en": "Above seven entries per level, Tree loses its advantage of keeping the full hierarchy visible."
+				}
+			}
+		},
+		{
+			"id": "flat-icon-usage",
+			"headline": {
+				"de": "Einsatz von Flat Icon",
+				"en": "Flat Icon Usage"
+			},
+			"text": {
+				"de": "Flat Icon stellt alle Ziele mit demselben Gewicht dar. Die Variante eignet sich deshalb nur für gleichwertige Ziele auf oberster Ebene.",
+				"en": "Flat Icon presents all destinations with the same weight. The variant is therefore only suited to equally weighted destinations at the top level."
+			},
+			"do": {
+				"figmaNodeId": "4799-40",
+				"description": {
+					"de": "Setze Flat Icon für gleichwertige Ziele auf oberster Ebene ein.",
+					"en": "Use Flat Icon for equally weighted destinations at the top level."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4799-44",
+				"description": {
+					"de": "Setze Flat Icon nicht ein, wenn ein Ziel über den anderen steht. Untergeordnete Ziele stehen sonst gleichrangig neben ihrem übergeordneten, und die Struktur ist nicht mehr erkennbar.",
+					"en": "Don't use Flat Icon when one destination sits above the others. Otherwise sub-destinations appear next to their parent as equals, and the structure is no longer recognizable."
+				}
+			}
+		},
+		{
+			"id": "flat-icon-item-count",
+			"headline": {
+				"de": "Anzahl in Flat Icon",
+				"en": "Items in Flat Icon"
+			},
+			"text": {
+				"de": "Flat Icon ist auf schnellen Zugriff ausgelegt. Auf Desktop trägt die Variante höchstens zehn Navigation Items, optimal bis zu sieben.",
+				"en": "Flat Icon is designed for quick access. On desktop, the variant holds no more than ten Navigation Items, ideally seven."
 			},
 			"do": {
 				"figmaNodeId": "4390-14",
 				"description": {
-					"de": "Verwende in der Flat Icon Navigation eine fokussierte Auswahl gleichwertiger Ziele auf oberster Ebene.",
-					"en": "Use a focused set of equally weighted top-level destinations in Flat Icon navigation."
+					"de": "Setze in Flat Icon auf Desktop höchstens zehn Navigation Items ein, optimal bis zu sieben.",
+					"en": "In Flat Icon on desktop, use at most ten Navigation Items, ideally up to seven."
 				}
 			},
-			"dont": {
+			"caution": {
 				"figmaNodeId": "4390-16",
 				"description": {
-					"de": "Überlade Flat Icon auf Desktop nicht mit zu vielen Navigation Items. Eine lange Icon-Liste ohne klare Priorität widerspricht dem Zweck des schnellen Zugriffs.",
-					"en": "Do not overload the Desktop Flat Icon sidebar with too many Navigation Items. A long list of icons without clear priority defeats the purpose of quick access."
+					"de": "Längere Icon-Listen widersprechen dem schnellen Zugriff, für den Flat Icon gedacht ist. Reduziere die Anzahl der Ziele.",
+					"en": "Longer icon lists work against the quick access Flat Icon is meant for. Reduce the number of destinations."
 				}
 			}
+		}
+	],
+	"examples": [
+		{
+			"id": "hide-text",
+			"headline": {
+				"de": "Label ausblenden",
+				"en": "Hiding the Label"
+			},
+			"text": {
+				"de": "In der Flat Icon Navigation lässt sich das Label ausblenden, sodass nur das Icon sichtbar bleibt.",
+				"en": "In the Flat Icon Navigation, the label can be hidden so that only the icon remains visible."
+			},
+			"items": [
+				{
+					"id": "without-label",
+					"headline": {
+						"de": "Ohne Label",
+						"en": "Without Label"
+					},
+					"figmaNodeId": "4804-32",
+					"description": {
+						"de": "Blende das Label auf Mobile aus, wenn mehr als vier Ziele in die Leiste passen müssen. Ohne Label nimmt sie bis zu sechs Items auf.",
+						"en": "On mobile, hide the label when more than four destinations need to fit into the bar. Without labels the bar holds up to six items."
+					}
+				}
+			]
+		},
+		{
+			"id": "popover-overflow",
+			"headline": {
+				"de": "Overflow bei Popover",
+				"en": "Popover Overflow"
+			},
+			"text": {
+				"de": "Auf Desktop lässt sich die Popover-Navigation über Overflow-Chevrons scrollen, wenn nicht alle Navigation Items in die verfügbare Breite passen.",
+				"en": "On desktop, the Popover navigation can be scrolled via overflow chevrons when not all Navigation Items fit into the available width."
+			},
+			"items": [
+				{
+					"id": "overflow",
+					"headline": {
+						"de": "Overflow mit Chevrons",
+						"en": "Overflow with Chevrons"
+					},
+					"figmaNodeId": "4806-49",
+					"description": {
+						"de": "Passen nicht alle Navigation Items in die Breite, erscheinen Overflow-Chevrons und die dahinter liegenden Ziele sind nicht sichtbar.",
+						"en": "When not all Navigation Items fit the width, overflow chevrons appear and the destinations behind them are not visible."
+					}
+				}
+			]
 		}
 	],
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-navigation-item",
-			"description": {
-				"de": "Navigation Items und Navigation Item Groups innerhalb der Navigations-Container.",
-				"en": "Navigation Items and Navigation Item Groups used within the navigation containers."
-			}
+			"component": "control-panel-navigation-item"
 		},
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Übergeordnete Desktop-Komponente mit den Positionen Top und Left für Navigation.",
-				"en": "Desktop parent providing Top and Left positions for Navigation."
-			}
+			"component": "control-panel-desktop"
 		},
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Übergeordnete Mobile-Komponente, in der die Drill Down Navigation im Drawer erscheint.",
-				"en": "Mobile parent where the Drill Down Navigation appears in the Drawer."
-			}
+			"component": "control-panel-mobile"
 		},
 		{
-			"component": "shell-sub-navigation",
-			"description": {
-				"de": "Sekundäre Navigationsebene, die die Control Panel Navigation ergänzt.",
-				"en": "Secondary navigation level that complements the Control Panel Navigation."
-			}
+			"component": "shell-sub-navigation"
+		},
+		{
+			"component": "shell-desktop"
 		}
 	]
 }

@@ -1,53 +1,27 @@
 {
-	"_comment": "Die figmaNodeIds verweisen auf Visuals, die noch zum aktuellen Doku-Stand gehören und ggf. aktualisiert werden müssen.",
 	"component": "control-panel-primary-actions",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Die Subkomponente CP Primary Actions ist ein Slot für primäre Aktions-Buttons innerhalb des Control Panels.",
-		"en": "The CP Primary Actions subcomponent is a slot for primary action buttons within the Control Panel."
+		"de": "Control Panel Primary Actions ist der Bereich im Control Panel für häufig genutzte globale Aktionen.",
+		"en": "Control Panel Primary Actions is the area within the Control Panel for frequently used global actions."
 	},
 	"shortDescription": {
-		"de": "Slot für primäre Aktions-Buttons im Control Panel.",
-		"en": "Slot for primary action buttons within the Control Panel."
+		"de": "Bereich im Control Panel für häufig genutzte globale Aktionen.",
+		"en": "Area within the Control Panel for frequently used global actions."
 	},
 	"useCases": {
 		"de": [
-			"Hoch priorisierte, globale Aktionen wie Suche oder Benachrichtigungen aufnehmen",
-			"Diese direkt erreichbar halten, ohne ein Menü zu öffnen",
-			"Die Anzahl klein halten, damit die Leiste fokussiert bleibt"
+			"Eine Suche auf jeder Seite erreichbar halten",
+			"Häufig genutzte globale Aktionen ohne Umweg anbieten",
+			"Globale von seitenspezifischen Aktionen trennen"
 		],
 		"en": [
-			"Hold high-priority, global actions such as search or notifications",
-			"Keep them directly accessible without opening a menu",
-			"Limit the count to a small set so the bar stays focused"
+			"Keep a search reachable on every page",
+			"Offer frequently used global actions without a detour",
+			"Separate global from page-specific actions"
 		]
 	},
 	"guidelines": [
-		{
-			"id": "count",
-			"headline": {
-				"de": "Anzahl",
-				"en": "Count"
-			},
-			"text": {
-				"de": "Halte Primary Actions minimal. Platziere dort nur 1–3 häufig genutzte Aktionen, die Nutzer:innen auf jeder Seite brauchen.",
-				"en": "Keep Primary Actions minimal. Only place 1–3 high-frequency actions that users need on every page."
-			},
-			"do": {
-				"figmaNodeId": "4338-2",
-				"description": {
-					"de": "Verwende 1–2 fokussierte globale Aktionen wie Suche, die Nutzer:innen auf jeder Seite brauchen.",
-					"en": "Use 1–2 focused global actions like Search that users need on every page."
-				}
-			},
-			"dont": {
-				"figmaNodeId": "4338-4",
-				"description": {
-					"de": "Überlade Primary Actions nicht mit zu vielen Buttons. Zu viele Aktionen verwässern die Priorität und überfrachten das Control Panel.",
-					"en": "Do not overload Primary Actions with too many buttons. Too many actions dilute priority and clutter the Control Panel."
-				}
-			}
-		},
 		{
 			"id": "action-type",
 			"headline": {
@@ -55,21 +29,46 @@
 				"en": "Action Type"
 			},
 			"text": {
-				"de": "Primary Actions sollten nur globale Aktionen enthalten, die für jede Seite gelten – keine inhaltsbezogenen Aktionen, die auf die Seite selbst gehören.",
-				"en": "Primary Actions should only contain global actions that apply to every page – not content-specific actions that belong on the page itself."
+				"de": "Primary Actions nehmen globale Aktionen auf, die unabhängig von der aktuellen Seite relevant sind, etwa eine Suche.",
+				"en": "Primary Actions hold global actions that are relevant regardless of the current page, such as a search."
 			},
 			"do": {
 				"figmaNodeId": "4338-6",
 				"description": {
-					"de": "Verwende globale Aktionen wie Suche, die unabhängig von der aktuellen Seite relevant sind.",
-					"en": "Use global actions like Search that are relevant regardless of which page the user is on."
+					"de": "Verwende nur globale Aktionen wie Suche, die unabhängig von der aktuellen Seite relevant sind.",
+					"en": "Only use global actions such as search that are relevant regardless of the current page."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4338-8",
 				"description": {
-					"de": "Platziere inhaltsbezogene Aktionen wie Speichern nicht in Primary Actions. Diese gehören auf Seitenebene, nicht in die globale Navigationsleiste.",
-					"en": "Do not place content-specific actions like Save in Primary Actions. These belong on the page level, not in the global navigation bar."
+					"de": "Platziere inhaltsspezifische Aktionen nicht in Primary Actions. Sie gehören auf die Seitenebene.",
+					"en": "Don't place content-specific actions in Primary Actions. They belong at page level."
+				}
+			}
+		},
+		{
+			"id": "count",
+			"headline": {
+				"de": "Anzahl",
+				"en": "Count"
+			},
+			"text": {
+				"de": "Primary Actions wirken über ihre Priorität. Je mehr Aktionen dort liegen, desto weniger hebt sich eine einzelne hervor.",
+				"en": "Primary Actions work through their priority. The more actions sit there, the less a single one stands out."
+			},
+			"do": {
+				"figmaNodeId": "4338-2",
+				"description": {
+					"de": "Platziere höchstens zwei Aktionen in Primary Actions.",
+					"en": "Place at most two actions in Primary Actions."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4338-4",
+				"description": {
+					"de": "Mehr als zwei Aktionen verwässern die Priorität. Verschiebe unterstützende Aktionen in die Secondary Actions.",
+					"en": "More than two actions dilute the priority. Move supporting actions to the Secondary Actions."
 				}
 			}
 		},
@@ -80,47 +79,74 @@
 				"en": "Flat Icon Limitation"
 			},
 			"text": {
-				"de": "Das Control Panel in Flat Icon unterstützt keine Primary Actions. Wenn deine Anwendung dauerhaft sichtbare primäre Aktionen braucht, verwende stattdessen die Position Top oder Bottom.",
-				"en": "The Flat Icon Control Panel does not support Primary Actions. If your application requires always-visible primary actions, use Top or Bottom position instead."
+				"de": "Die Variante Flat Icon hat keinen Bereich für Primary Actions.",
+				"en": "The Flat Icon variant has no area for Primary Actions."
 			},
 			"do": {
 				"figmaNodeId": "4338-10",
 				"description": {
-					"de": "Verwende das Control Panel in Position Top oder Bottom, wenn primäre Aktionen direkt in der Navigationsleiste erreichbar sein müssen.",
-					"en": "Use Top or Bottom Control Panel when primary actions need to be directly accessible in the navigation bar."
+					"de": "Wähle eine Variante mit Bereich für Primary Actions, wenn du globale Aktionen brauchst.",
+					"en": "Choose a variant with an area for Primary Actions when you need global actions."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4338-12",
 				"description": {
-					"de": "Platziere Aktionen wie Suche nicht als Flat Icon Navigation Items. Flat Icon ist für Navigationsziele reserviert – nutze Top oder Bottom, wenn du Aktionen brauchst.",
-					"en": "Do not place actions like Search as Flat Icon Navigation Items. Flat Icon is reserved for navigation destinations – use Top or Bottom if actions are needed."
+					"de": "Verwende Flat Icon nicht, wenn Primary Actions benötigt werden. Die Variante hat dafür keinen Bereich.",
+					"en": "Don't use Flat Icon when Primary Actions are needed. The variant has no area for them."
 				}
 			}
+		}
+	],
+	"examples": [
+		{
+			"id": "desktop-and-mobile",
+			"headline": {
+				"de": "Aufteilung auf Desktop und Mobile",
+				"en": "Split on Desktop and Mobile"
+			},
+			"text": {
+				"de": "Auf Desktop sind Primary und Secondary Actions gleichzeitig sichtbar. Auf Mobile trennt sie der Drawer: Primary Actions liegen auf der ersten Ebene, Secondary Actions darin. Welche Aktionen wo liegen, kann sich je Device unterscheiden.",
+				"en": "On desktop, Primary and Secondary Actions are visible at the same time. On mobile the Drawer separates them: Primary Actions sit on the first level, Secondary Actions inside it. Which actions sit where can differ per device."
+			},
+			"items": [
+				{
+					"id": "desktop",
+					"headline": {
+						"de": "Desktop",
+						"en": "Desktop"
+					},
+					"figmaNodeId": "4812-1247",
+					"description": {
+						"de": "Auf Desktop liegen Primary und Secondary Actions nebeneinander und sind gleichzeitig sichtbar.",
+						"en": "On desktop, Primary and Secondary Actions sit next to each other and are visible at the same time."
+					}
+				},
+				{
+					"id": "mobile",
+					"headline": {
+						"de": "Mobile",
+						"en": "Mobile"
+					},
+					"figmaNodeId": "4814-1263",
+					"description": {
+						"de": "Lege auf Mobile die häufig genutzte Aktion in die Primary Actions, damit sie ohne Öffnen des Drawers erreichbar bleibt.",
+						"en": "On mobile, put the frequently used action into the Primary Actions so it stays reachable without opening the Drawer."
+					}
+				}
+			]
 		}
 	],
 	"faq": [],
 	"related": [
 		{
-			"component": "control-panel-secondary-actions",
-			"description": {
-				"de": "Slot für sekundäre Aktionen am Ende des Control Panels.",
-				"en": "Secondary actions slot at the end of the Control Panel."
-			}
+			"component": "control-panel-secondary-actions"
 		},
 		{
-			"component": "control-panel-desktop",
-			"description": {
-				"de": "Übergeordnete Desktop-Komponente, die Primary Actions enthält.",
-				"en": "Desktop parent hosting Primary Actions."
-			}
+			"component": "control-panel-desktop"
 		},
 		{
-			"component": "control-panel-mobile",
-			"description": {
-				"de": "Übergeordnete Mobile-Komponente, in der Primary Actions in den Positionen Top und Bottom erscheinen.",
-				"en": "Mobile parent where Primary Actions appear in Top and Bottom positions."
-			}
+			"component": "control-panel-mobile"
 		}
 	]
 }
