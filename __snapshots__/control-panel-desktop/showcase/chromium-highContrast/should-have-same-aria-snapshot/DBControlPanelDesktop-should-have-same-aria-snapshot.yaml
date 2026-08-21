@@ -49,6 +49,24 @@
     - list:
       - listitem:
         - link "Large"
+  - navigation "Full with Meta":
+    - list:
+      - listitem:
+        - link "Full"
+  - link "Imprint"
+  - link "Help"
+  - navigation "Medium with Meta":
+    - list:
+      - listitem:
+        - link "Medium"
+  - link "Imprint"
+  - link "Help"
+  - navigation "Large with Meta":
+    - list:
+      - listitem:
+        - link "Large"
+  - link "Imprint"
+  - link "Help"
   - link "Orientation"
   - navigation "(Default) Horizontal":
     - list:
