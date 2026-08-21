@@ -38,6 +38,8 @@
   - link "Forwarded Heading Attributes"
   - heading "ID, class, ARIA, data and style forwarded to h2" [level=2]
   - heading "ID, class, data and style on the wrapper" [level=2]
-  - link "Heading With Additional Content"
+  - link "Start And End Slot"
   - heading "Current disruptions" [level=2]
   - text: "3"
+  - heading "Installation" [level=2]
+  - button "More options"
