@@ -49,6 +49,10 @@ export const handleFrameworkEventAngular = (
 		// it sets `element.value = ''`, which clears the native date editor and
 		// destroys everything the user typed so far.
 		component.propagateChange(value);
+		// Signal Forms communicates through the model signal, not through the
+		// legacy CVA callback, so update it too - `writeValue` would have done
+		// this before writing to the element.
+		component[modelValue]?.set?.(value);
 		return;
 	}
 
