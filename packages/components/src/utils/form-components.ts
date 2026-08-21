@@ -21,7 +21,7 @@ export const handleFrameworkEventAngular = (
 		// Skip until the entry is parsable again.
 		return;
 	}
-	
+
 	if (
 		!value &&
 		value !== '' &&

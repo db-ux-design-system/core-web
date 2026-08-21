@@ -157,7 +157,7 @@ describe('handleFrameworkEventAngular', () => {
 		expect(component.propagateChange).toHaveBeenCalledWith('');
 		expect(component.writeValue).toHaveBeenCalledWith('');
 	});
-	
+
 	it('calls propagateChange and writeValue for text input type', () => {
 		const component = {
 			propagateChange: vi.fn(),
