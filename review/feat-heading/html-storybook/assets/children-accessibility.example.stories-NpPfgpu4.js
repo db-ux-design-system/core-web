@@ -1,0 +1,8 @@
+import{n as e}from"./iframe-CND6RJga.js";import{n as t,t as n}from"./badge-BEuEeMIG.js";import{n as r,t as i}from"./custom-heading-TLViNoaw.js";import{n as a}from"./rolldown-runtime-DkW27tQK.js";var o,s,c,l,u;function d(){return(d=a((()=>{t(),r(),o=e(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBCustomHeading/Heading with additional content`,component:i,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`3xl`,`2xl`,`xl`,`lg`,`md`,`sm`,`xs`,`2xs`,`3xs`]},fontWeight:{control:`select`,options:[`black`,`light`]},alignment:{control:`select`,options:[`start`,`center`,`end`]},paragraphSpacing:{control:`boolean`},children:{control:`text`},className:{control:`text`},id:{control:`text`}}},l={args:{children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(`h2`,{children:`Current disruptions`}),(0,o.jsx)(n,{semantic:`critical`,emphasis:`strong`,children:`3`})]})},render:e=>(0,o.jsx)(i,{...e})},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "children": <><h2>Current disruptions</h2><DBBadge semantic="critical" emphasis="strong">
+                    3
+                </DBBadge></>
+  },
+  render: (properties: any) => <DBCustomHeading {...properties} />
+}`,...l.parameters?.docs?.source}}},u=[`Siblingcontentoutsidetheaccessiblename`]})))()}d();export{l as Siblingcontentoutsidetheaccessiblename,u as __namedExportsOrder,c as default};
