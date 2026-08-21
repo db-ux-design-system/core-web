@@ -1,24 +1,24 @@
 {
-	"component": "heading-h1-h6",
+	"component": "heading",
 	"figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB",
 	"description": {
-		"de": "Heading H1–H6 strukturiert Inhalte mit sechs semantischen Stufen. Jede Stufe rendert reinen Text ohne interaktive Elemente und bildet eine klare Dokumenthierarchie.",
-		"en": "Heading H1–H6 structures content with six semantic levels. Each level renders plain text without interactive elements, forming a clear document hierarchy."
+		"de": "Heading strukturiert Inhalte mit sechs semantischen Stufen (H1–H6). Custom Heading ergänzt Start und End Slot für zusätzliche Elemente wie Links oder Badges neben dem Text.",
+		"en": "Heading structures content with six semantic levels (H1–H6). Custom Heading adds start and end slots for additional elements like links or badges alongside the text."
 	},
 	"shortDescription": {
-		"de": "Strukturiert Inhalte mit sechs semantischen Heading-Stufen für eine klare Dokumenthierarchie.",
-		"en": "Structures content with six semantic heading levels for a clear document hierarchy."
+		"de": "Strukturiert Inhalte mit sechs semantischen Heading-Stufen, optional mit Slots für zusätzliche Elemente.",
+		"en": "Structures content with six semantic heading levels, optionally with slots for additional elements."
 	},
 	"useCases": {
 		"de": [
 			"Seiteninhalt in logische Abschnitte mit eindeutiger Hierarchie gliedern",
 			"Screenreader-Navigation über die Dokumentstruktur ermöglichen",
-			"Visuelle Typografie-Hierarchie unabhängig von der semantischen Stufe anpassen"
+			"Verlinkungen oder Badges neben einer Überschrift platzieren (Custom Heading)"
 		],
 		"en": [
 			"Divide page content into logical sections with a clear hierarchy",
 			"Enable screen reader navigation through document structure",
-			"Adjust visual typographic hierarchy independently from semantic level"
+			"Place links or badges alongside a heading (Custom Heading)"
 		]
 	},
 	"guidelines": [
@@ -33,14 +33,14 @@
 				"en": "Use exactly one H1 per page as the top level of the document structure. Multiple H1 elements break the hierarchy and impair screen reader navigation."
 			},
 			"do": {
-				"figmaNodeId": "4002:5",
+				"figmaNodeId": "4117:2",
 				"description": {
 					"de": "Setze genau ein H1 als Seitenüberschrift ein und verwende H2–H6 für Unterabschnitte.",
 					"en": "Use exactly one H1 as the page title and H2–H6 for subsections."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4002:7",
+				"figmaNodeId": "4117:4",
 				"description": {
 					"de": "Verwende nicht mehrere H1 auf derselben Seite. Screenreader verlieren die Orientierung in der Dokumentstruktur.",
 					"en": "Don't use multiple H1 on the same page. Screen readers lose orientation in the document structure."
@@ -58,14 +58,14 @@
 				"en": "Maintain heading order (H1 → H2 → H3). Skipped levels create an incomplete outline and hinder navigation with assistive technologies."
 			},
 			"do": {
-				"figmaNodeId": "4002:9",
+				"figmaNodeId": "4117:6",
 				"description": {
 					"de": "Baue die Heading-Hierarchie lückenlos auf: H1, dann H2, dann H3.",
 					"en": "Build the heading hierarchy without gaps: H1, then H2, then H3."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4002:11",
+				"figmaNodeId": "4117:8",
 				"description": {
 					"de": "Springe nicht von H1 direkt auf H3. Die fehlende Ebene erzeugt eine unvollständige Outline für Screenreader.",
 					"en": "Don't jump from H1 directly to H3. The missing level creates an incomplete outline for screen readers."
@@ -83,29 +83,71 @@
 				"en": "When overriding size, maintain the visual hierarchy from H1 to H6. Each level must be equal to or smaller than the previous one."
 			},
 			"do": {
-				"figmaNodeId": "4002:13",
+				"figmaNodeId": "4117:10",
 				"description": {
 					"de": "Stelle sicher, dass H1 visuell größer oder gleich groß wie H2 bleibt, auch bei überschriebener Size.",
 					"en": "Ensure H1 remains visually larger than or equal to H2, even when overriding size."
 				}
 			},
 			"caution": {
-				"figmaNodeId": "4002:15",
+				"figmaNodeId": "4117:12",
 				"description": {
 					"de": "Eine invertierte Größenreihenfolge (H2 größer als H1) widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur.",
 					"en": "An inverted size order (H2 larger than H1) contradicts reading expectations and makes it harder to grasp page structure."
 				}
 			}
+		},
+		{
+			"id": "when-to-use-custom-heading",
+			"headline": {
+				"de": "Custom Heading vs. Heading H1–H6",
+				"en": "Custom Heading vs. Heading H1–H6"
+			},
+			"text": {
+				"de": "Verwende Custom Heading nur, wenn neben dem Heading-Text zusätzliche Elemente im Start oder End Slot benötigt werden. Für reine Textheadings ist Heading H1–H6 die richtige Wahl.",
+				"en": "Use Custom Heading only when additional elements are needed in the start or end slot alongside the heading text. For plain text headings, Heading H1–H6 is the right choice."
+			},
+			"do": {
+				"figmaNodeId": "4117:14",
+				"description": {
+					"de": "Verwende Custom Heading, wenn Links, Icons oder Badges neben dem Heading-Text stehen sollen.",
+					"en": "Use Custom Heading when links, icons, or badges need to appear alongside the heading text."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4117:16",
+				"description": {
+					"de": "Verwende Custom Heading nicht für reine Textheadings. Heading H1–H6 ist dafür vorgesehen und einfacher in der Handhabung.",
+					"en": "Don't use Custom Heading for plain text headings. Heading H1–H6 is designed for that and simpler to use."
+				}
+			}
+		},
+		{
+			"id": "limit-slot-elements",
+			"headline": {
+				"de": "Slot-Elemente begrenzen",
+				"en": "Limit slot elements"
+			},
+			"text": {
+				"de": "Beschränke zusätzliche Elemente in den Slots auf das Nötigste. Zu viele Aktionen lenken vom Inhalt ab und erschweren die Übersicht.",
+				"en": "Limit additional elements in the slots to what is necessary. Too many actions distract from the content and reduce clarity."
+			},
+			"do": {
+				"figmaNodeId": "4117:18",
+				"description": {
+					"de": "Platziere nur die nötigsten Elemente (z. B. einen Link oder ein Badge) in den Slots.",
+					"en": "Place only the most necessary elements (e.g., a single link or badge) in the slots."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4117:20",
+				"description": {
+					"de": "Zu viele Aktionen neben einer Heading lenken vom eigentlichen Inhalt ab und machen den Bereich unübersichtlich.",
+					"en": "Too many actions alongside a heading distract from the actual content and make the area cluttered."
+				}
+			}
 		}
 	],
 	"faq": [],
-	"related": [
-		{
-			"component": "custom-heading",
-			"description": {
-				"de": "Heading-Variante mit Slot für interaktive Inhalte wie Links oder Badges.",
-				"en": "Heading variant with a slot for interactive content like links or badges."
-			}
-		}
-	]
+	"related": []
 }

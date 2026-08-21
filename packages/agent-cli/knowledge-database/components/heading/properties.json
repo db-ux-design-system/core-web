@@ -1,6 +1,6 @@
 {
-	"component": "heading-h1-h6",
-	"note": "Sechs einzelne Figma-Komponenten (Heading H1–H6). Properties sind bei allen identisch, nur der Default-Wert von Size unterscheidet sich pro Stufe.",
+	"component": "heading",
+	"note": "Heading H1–H6 und Custom Heading teilen sich dieselben Properties. Custom Heading ergänzt zusätzlich einen Start und End Slot.",
 	"properties": [
 		{
 			"name": "size",
@@ -37,43 +37,29 @@
 					"2xs",
 					"3xs"
 				],
-				"note": "Jede Heading-Stufe hat einen eigenen Default-Wert für Size. Die (Def)-Werte spiegeln das Default Mapping."
+				"note": "Jede Heading-Stufe hat einen eigenen Default-Wert für Size."
 			}
 		},
 		{
 			"name": "fontWeight",
 			"type": "enum",
-			"values": [
-				"Black",
-				"Light"
-			],
+			"values": ["Black", "Light"],
 			"default": "Black",
 			"code": null,
 			"design": {
 				"name": "🔀 Font Weight",
-				"values": [
-					"(Def) Black",
-					"Light"
-				]
+				"values": ["(Def) Black", "Light"]
 			}
 		},
 		{
 			"name": "alignment",
 			"type": "enum",
-			"values": [
-				"Left",
-				"Right",
-				"Center"
-			],
+			"values": ["Left", "Right", "Center"],
 			"default": "Left",
 			"code": null,
 			"design": {
 				"name": "🔀 Alignment",
-				"values": [
-					"(Def) Left",
-					"Right",
-					"Center"
-				]
+				"values": ["(Def) Left", "Right", "Center"]
 			}
 		},
 		{
@@ -84,6 +70,28 @@
 			"design": {
 				"name": "Paragraph Spacing",
 				"note": "Erzeugt einen Abstand von 1lh unterhalb der Heading."
+			}
+		},
+		{
+			"name": "startSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Start",
+				"type": "slot",
+				"note": "Nur bei Custom Heading. Slot für Content vor dem Heading-Text (z. B. ein Icon).",
+				"componentSet": ["custom-heading"]
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 End",
+				"type": "slot",
+				"note": "Nur bei Custom Heading. Slot für Content nach dem Heading-Text (z. B. Links, Badges).",
+				"componentSet": ["custom-heading"]
 			}
 		}
 	]

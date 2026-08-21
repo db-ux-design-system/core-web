@@ -3,12 +3,42 @@
 	"library": "core-components",
 	"figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB",
 	"pageId": "38761:4785",
-	"pageName": "Heading",
-	"note": "Figma-Inhalte befinden sich aktuell noch im Branch 'QRzyslOdfoypR3N2vHMVAJ'. Link muss nach Merge und Release aktualisiert werden.",
-	"branchUrl": "https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB/branch/QRzyslOdfoypR3N2vHMVAJ/DB-UX-DS---Core-Components?m=auto&node-id=38761-4785&t=A2aYoQRRjISavHDp-1",
+	"pageName": "Heading (Beta)",
+	"note": "Figma-Inhalte aktuell noch im Branch 'QRzyslOdfoypR3N2vHMVAJ'. Link muss nach Merge und Release aktualisiert werden.",
+	"branchUrl": "https://www.figma.com/design/mlJ6R0GkfR15a93KSlqXtB/branch/QRzyslOdfoypR3N2vHMVAJ/DB-UX-DS---Core-Components?m=auto&node-id=38761-4785&t=XN5O9O8DSvTZ6gaE-1",
 	"componentSets": [
 		{
-			"name": "Heading H1–H6",
+			"name": "Heading H1",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H2",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H3",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H4",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H5",
+			"nodeId": null,
+			"type": "COMPONENT",
+			"key": null
+		},
+		{
+			"name": "Heading H6",
 			"nodeId": null,
 			"type": "COMPONENT",
 			"key": null
