@@ -5,7 +5,6 @@
 @use "../helpers";
 @use "../fonts";
 @use "../screen-sizes";
-@use "../theme/default-images";
 @use "non-ascii-tokens.css";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
@@ -14,7 +13,6 @@
 :root,
 :host {
 	@extend %db-font-size-md;
-	@include default-images.get-images;
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
