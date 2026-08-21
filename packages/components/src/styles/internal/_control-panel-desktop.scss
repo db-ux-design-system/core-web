@@ -138,8 +138,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 	> menu {
 		flex-direction: column;
-		padding-inline-start: $control-panel-desktop-vertical-padding-inline-start;
-		padding-inline-end: $control-panel-desktop-vertical-padding-inline-end;
+		padding-inline: $control-panel-desktop-vertical-padding-inline-start
+			$control-panel-desktop-vertical-padding-inline-end;
 
 		.db-control-panel-navigation-item-group,
 		.db-control-panel-navigation-item {
@@ -366,15 +366,15 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 	.db-control-panel-secondary-actions,
 	> .db-control-panel-desktop-button {
 		padding-block: $control-panel-desktop-vertical-padding-block;
-		padding-inline-start: $control-panel-desktop-vertical-padding-inline-start;
-		padding-inline-end: $control-panel-desktop-vertical-padding-inline-end;
+		padding-inline: $control-panel-desktop-vertical-padding-inline-start
+			$control-panel-desktop-vertical-padding-inline-end;
 	}
 
 	.db-control-panel-desktop-brand-container {
 		inline-size: 100%;
 		padding-block: $control-panel-desktop-vertical-padding-block;
-		padding-inline-start: $control-panel-desktop-vertical-padding-inline-start;
-		padding-inline-end: $control-panel-desktop-vertical-padding-inline-end;
+		padding-inline: $control-panel-desktop-vertical-padding-inline-start
+			$control-panel-desktop-vertical-padding-inline-end;
 
 		@include helpers.divider("bottom", "after");
 
