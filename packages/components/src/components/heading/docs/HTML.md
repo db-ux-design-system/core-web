@@ -39,18 +39,20 @@ Native headings accept standard attributes directly. On the custom elements, `ar
 
 ### Heading with sibling content
 
-`db-custom-heading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `db-custom-button` relates to `db-button`: it has no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`db-custom-heading` is the styling wrapper for a heading you write yourself, optionally next to sibling content. It relates to the Heading components the same way `db-custom-button` relates to `db-button`: it has no semantics of its own, you bring the native element, and the wrapper applies the styling.
 
-Put a plain `h1`-`h6` inside. It needs no `db-heading` class, the wrapper styles it:
+Put a plain `h1`-`h6` in the default slot. It needs no `db-heading` class, the wrapper styles it. Content that belongs next to the heading goes into the `startSlot` and `endSlot`:
 
 ```html
 <db-custom-heading size="xl" font-weight="light">
 	<h2>Installation</h2>
-	<db-button variant="ghost">More options</db-button>
+	<db-button slot="endSlot" variant="ghost">More options</db-button>
 </db-custom-heading>
 ```
 
-The equivalent CSS-only markup:
+Note the casing: the Web Component slot names are `startSlot` and `endSlot`, while the Angular and Vue outputs use `start-slot` and `end-slot`.
+
+The equivalent CSS-only markup has no slots. Write the elements in the order you want them, the wrapper lays them out as a row:
 
 ```html
 <div class="db-custom-heading" data-size="xl" data-font-weight="light">
@@ -61,8 +63,8 @@ The equivalent CSS-only markup:
 </div>
 ```
 
-Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
+Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.
 
-`size`, `font-weight` and `paragraph-spacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text.
+`size`, `font-weight` and `paragraph-spacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text. An unused slot adds no spacing.
 
 A nested heading that already carries `db-heading`, for example a Heading component, keeps its own typography and ignores the wrapper's styling attributes. Use one or the other, not both.

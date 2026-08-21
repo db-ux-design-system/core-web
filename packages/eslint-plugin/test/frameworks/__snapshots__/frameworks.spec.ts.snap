@@ -374,9 +374,19 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
+    "endColumn": 22,
+    "endLine": 106,
+    "line": 103,
+    "message": "db-custom-heading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
+    "messageId": "multipleHeadings",
+    "ruleId": "db-ux/custom-heading-single-heading",
+    "severity": 2,
+  },
+  {
+    "column": 2,
     "endColumn": 44,
-    "endLine": 105,
-    "line": 105,
+    "endLine": 109,
+    "line": 109,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -385,8 +395,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 40,
-    "endLine": 108,
-    "line": 108,
+    "endLine": 112,
+    "line": 112,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -395,8 +405,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 3,
     "endColumn": 62,
-    "endLine": 112,
-    "line": 112,
+    "endLine": 116,
+    "line": 116,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -507,6 +517,10 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	<db-custom-heading>
 		<h2>One</h2>
 		<h3>Two</h3>
+	</db-custom-heading>
+	<db-custom-heading>
+		<h2>One</h2>
+		<h3 end-slot>Two</h3>
 	</db-custom-heading>
 
 	<!-- db-ux/select-requires-options -->
@@ -867,9 +881,19 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
+    "endColumn": 44,
+    "endLine": 134,
+    "line": 134,
+    "message": "DBCustomHeading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
+    "messageId": "multipleHeadings",
+    "ruleId": "db-ux/custom-heading-single-heading",
+    "severity": 2,
+  },
+  {
+    "column": 4,
     "endColumn": 42,
-    "endLine": 136,
-    "line": 136,
+    "endLine": 139,
+    "line": 139,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -878,8 +902,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 29,
-    "endLine": 141,
-    "line": 141,
+    "endLine": 144,
+    "line": 144,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -888,8 +912,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 32,
-    "endLine": 144,
-    "line": 144,
+    "endLine": 147,
+    "line": 147,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -898,8 +922,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 5,
     "endColumn": 16,
-    "endLine": 148,
-    "line": 148,
+    "endLine": 151,
+    "line": 151,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -1041,6 +1065,9 @@ export const TestComponent = () => {
 			<DBCustomHeading>
 				<h2>One</h2>
 				<h3>Two</h3>
+			</DBCustomHeading>
+			<DBCustomHeading endSlot={<h3>Two</h3>}>
+				<h2>One</h2>
 			</DBCustomHeading>
 
 			{/* db-ux/prefer-icon-attribute */}
@@ -1474,10 +1501,20 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
     "severity": 2,
   },
   {
+    "column": 3,
+    "endColumn": 21,
+    "endLine": 114,
+    "line": 111,
+    "message": "DBCustomHeading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
+    "messageId": "multipleHeadings",
+    "ruleId": "db-ux/custom-heading-single-heading",
+    "severity": 2,
+  },
+  {
     "column": 4,
     "endColumn": 61,
-    "endLine": 114,
-    "line": 114,
+    "endLine": 118,
+    "line": 118,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -1596,6 +1633,10 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		<DBCustomHeading>
 			<h2>One</h2>
 			<h3>Two</h3>
+		</DBCustomHeading>
+		<DBCustomHeading>
+			<h2>One</h2>
+			<template #end-slot><h3>Two</h3></template>
 		</DBCustomHeading>
 
 		<!-- db-ux/tooltip-requires-interactive-parent -->

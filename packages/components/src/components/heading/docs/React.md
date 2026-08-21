@@ -43,22 +43,27 @@ Native `aria-*`, `data-*`, `title`, `style`, `className`, and `id` attributes ar
 
 ### Heading with sibling content
 
-`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to sibling content. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+
+The children are the heading. Content that belongs next to it goes into `startSlot` or `endSlot`, which render before and after the children:
 
 ```tsx
 import { DBButton, DBCustomHeading } from "@db-ux/react-core-components";
 
 export const SectionHeading = () => (
-	<DBCustomHeading size="xl" fontWeight="light">
+	<DBCustomHeading
+		size="xl"
+		fontWeight="light"
+		endSlot={<DBButton variant="ghost">More options</DBButton>}
+	>
 		<h2>Installation</h2>
-		<DBButton variant="ghost">More options</DBButton>
 	</DBCustomHeading>
 );
 ```
 
-The nested heading needs no class of its own, the wrapper styles it. Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
+The nested heading needs no class of its own, the wrapper styles it. Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.
 
-`size`, `fontWeight` and `paragraphSpacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text.
+`size`, `fontWeight` and `paragraphSpacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text. An unused slot adds no spacing.
 
 A nested heading that already carries the `db-heading` class, for example a Heading component, keeps its own typography and ignores the wrapper's properties. Use one or the other, not both.
 

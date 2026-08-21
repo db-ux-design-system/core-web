@@ -135,6 +135,29 @@ which forced interactive sibling content into the heading's accessible name
 to keep the derived semantics from being overridden. Keeping the heading native
 removes both problems.
 
+#### The default content is the heading, the slots are its siblings
+
+`startSlot` and `endSlot` (the shared `StartSlotProps` and `EndSlotProps`, as used
+by `DBDrawerHeader` and `DBTabItem`) render before and after the default content.
+That split is what keeps the accessible name clean: the same content nested
+*inside* the heading would be part of its name and would hide an interactive
+control behind it.
+
+The slots are deliberately **not** wrapped in an element. The wrapper is already a
+flex row with `gap`, so projected content becomes a flex item directly and an
+unused slot contributes no box and therefore no gap. A wrapper element would also
+behave inconsistently against the `display: contents` custom-element hosts in the
+Angular and Stencil output.
+
+The CSS-only variant has no slot concept — there, plain DOM order is the
+equivalent, which is why `heading.scss` needs nothing for the slots.
+
+`custom-heading-single-heading` in `@db-ux/core-eslint-plugin` counts the slot
+content too, because it renders inside the wrapper. In React that content is a
+JSX attribute rather than a child, so the rule inspects the `startSlot` and
+`endSlot` attribute values in addition to the child walk; Vue and Angular project
+slot content as a real child and are covered by the walk alone.
+
 Three implementation details in `heading.scss` that should not be traded away:
 
 - **The child selectors exclude `.db-heading`.** A nested Heading component keeps

@@ -1,7 +1,9 @@
 import type {
 	AlignmentProps,
+	EndSlotProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	StartSlotProps
 } from '../../shared/model';
 
 /** @public */
@@ -43,13 +45,19 @@ export type DBHeadingBaseProps = DBHeadingBaseDefaultProps &
  * `DBButton`: the wrapper carries the styling properties, the nested native
  * element carries the native attributes.
  *
+ * The default slot takes the native heading, `startSlot` and `endSlot` take the
+ * content around it. Because that content is a sibling of the heading instead of
+ * one of its children, it stays out of the accessible heading name.
+ *
  * @public
  */
 export type DBCustomHeadingDefaultProps = DBHeadingBaseDefaultProps;
 /** @public */
 export type DBCustomHeadingProps = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	StartSlotProps &
+	EndSlotProps;
 
 /** @public */
 export type DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps;

@@ -130,6 +130,9 @@ export const TestComponent = () => {
 				<h2>One</h2>
 				<h3>Two</h3>
 			</DBCustomHeading>
+			<DBCustomHeading endSlot={<h3>Two</h3>}>
+				<h2>One</h2>
+			</DBCustomHeading>
 
 			{/* db-ux/prefer-icon-attribute */}
 			<DBButton type="submit">

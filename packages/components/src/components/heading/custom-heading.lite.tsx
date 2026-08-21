@@ -1,4 +1,9 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import {
+	Slot,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
 import { DBCustomHeadingProps } from './model';
 
@@ -21,7 +26,12 @@ export default function DBCustomHeading(props: DBCustomHeadingProps) {
 				props.paragraphSpacing,
 				'paragraphSpacing'
 			)}>
+			{/* The slots are deliberately not wrapped in an element: the wrapper is
+			 * already a flex row with `gap`, so projected content becomes a flex item
+			 * directly and an empty slot contributes no box and therefore no gap. */}
+			<Slot name="startSlot" />
 			{props.children}
+			<Slot name="endSlot" />
 		</div>
 	);
 }

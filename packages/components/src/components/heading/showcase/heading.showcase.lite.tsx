@@ -5,12 +5,12 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import HeadingAlignment from '../examples/alignment.example.lite';
 import HeadingAsSize from '../examples/as-size.example.lite';
 import HeadingAttributeForwarding from '../examples/attribute-forwarding.example.lite';
-import HeadingChildrenAccessibility from '../examples/children-accessibility.example.lite';
 import HeadingDensity from '../examples/density.example.lite';
 import HeadingFontWeight from '../examples/font-weight.example.lite';
 import HeadingParagraphSpacing from '../examples/paragraph-spacing.example.lite';
 import HeadingSemanticLevels from '../examples/semantic-levels.example.lite';
 import HeadingSizes from '../examples/sizes.example.lite';
+import HeadingSlots from '../examples/slots.example.lite';
 
 export default function HeadingShowcase(props: PatternhubProps) {
 	return (
@@ -58,9 +58,9 @@ export default function HeadingShowcase(props: PatternhubProps) {
 						<HeadingAttributeForwarding />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Heading With Additional Content">
+				<LinkWrapperShowcase exampleName="Start And End Slot">
 					<CardWrapperShowcase>
-						<HeadingChildrenAccessibility />
+						<HeadingSlots />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 			</div>

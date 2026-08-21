@@ -46,15 +46,30 @@ const semanticHeadings: any = (
 	</div>
 );
 
+// The Vue output declares named slots, so every slot assertion passes the React
+// prop and the equivalent `template v-slot` markup. `copy-files.ts` strips the
+// `{/*` and `*/}` markers for the Vue spec, which activates the template there
+// while React keeps reading it as a JSX comment.
 const customHeadingRows: any = (
 	<div>
-		<DBCustomHeading>
+		<DBCustomHeading endSlot={<button type="button">More options</button>}>
+			{/*<template v-slot:end-slot>
+				<button type="button">More options</button>
+			</template>*/}
 			<h2>Default row</h2>
-			<button type="button">More options</button>
 		</DBCustomHeading>
-		<DBCustomHeading size="3xs" fontWeight="light">
+		<DBCustomHeading
+			size="3xs"
+			fontWeight="light"
+			startSlot={<span aria-hidden="true">*</span>}
+			endSlot={<button type="button">More options</button>}>
+			{/*<template v-slot:start-slot>
+				<span aria-hidden="true">*</span>
+			</template>
+			<template v-slot:end-slot>
+				<button type="button">More options</button>
+			</template>*/}
 			<h3>Styled row</h3>
-			<button type="button">More options</button>
 		</DBCustomHeading>
 	</div>
 );
@@ -314,13 +329,16 @@ test.describe('DBCustomHeading', () => {
 		);
 	});
 
-	test('lays the heading and its siblings out in a row', async ({
+	test('lays the heading and its end slot out in a row', async ({
 		mount
 	}) => {
 		const component = await mount(
-			<DBCustomHeading>
+			<DBCustomHeading
+				endSlot={<button type="button">More options</button>}>
+				{/*<template v-slot:end-slot>
+					<button type="button">More options</button>
+				</template>*/}
 				<h2>Nested heading</h2>
-				<button type="button">More options</button>
 			</DBCustomHeading>
 		);
 		await expect(component).toHaveCSS('display', 'flex');
@@ -332,6 +350,65 @@ test.describe('DBCustomHeading', () => {
 		// Same row, action after the heading.
 		expect(actionBox!.x).toBeGreaterThan(headingBox!.x);
 		expect(actionBox!.y).toBeLessThan(headingBox!.y + headingBox!.height);
+	});
+
+	test('renders the start slot before and the end slot after the heading', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBCustomHeading
+				startSlot={<span data-testid="start">Start</span>}
+				endSlot={<span data-testid="end">End</span>}>
+				{/*<template v-slot:start-slot>
+					<span data-testid="start">Start</span>
+				</template>
+				<template v-slot:end-slot>
+					<span data-testid="end">End</span>
+				</template>*/}
+				<h2>Between the slots</h2>
+			</DBCustomHeading>
+		);
+		// Document order, which is what assistive technology follows.
+		await expect(component).toHaveText(/Start\s*Between the slots\s*End/);
+		const [startBox, headingBox, endBox] = await Promise.all([
+			component.getByTestId('start').boundingBox(),
+			component.locator('h2').boundingBox(),
+			component.getByTestId('end').boundingBox()
+		]);
+		expect(startBox!.x).toBeLessThan(headingBox!.x);
+		expect(endBox!.x).toBeGreaterThan(headingBox!.x);
+	});
+
+	test('adds no gap for a slot that stays empty', async ({ mount }) => {
+		// The slots are not wrapped in an element, so an unused slot contributes no
+		// flex item and therefore no `gap`. Measured as the offset of the heading
+		// from the wrapper's content edge.
+		const withoutSlots = await mount(
+			<DBCustomHeading>
+				<h2>Nested heading</h2>
+			</DBCustomHeading>
+		);
+		const [emptyWrapperBox, flushHeadingBox] = await Promise.all([
+			withoutSlots.boundingBox(),
+			withoutSlots.locator('h2').boundingBox()
+		]);
+		expect(flushHeadingBox!.x).toBe(emptyWrapperBox!.x);
+		await withoutSlots.unmount();
+
+		const withStartSlot = await mount(
+			<DBCustomHeading
+				startSlot={<span data-testid="start">Start</span>}>
+				{/*<template v-slot:start-slot>
+					<span data-testid="start">Start</span>
+				</template>*/}
+				<h2>Nested heading</h2>
+			</DBCustomHeading>
+		);
+		const [filledWrapperBox, shiftedHeadingBox] = await Promise.all([
+			withStartSlot.boundingBox(),
+			withStartSlot.locator('h2').boundingBox()
+		]);
+		expect(shiftedHeadingBox!.x).toBeGreaterThan(filledWrapperBox!.x);
 	});
 
 	test('styles a plain nested heading like the native component', async ({
@@ -492,13 +569,23 @@ test.describe('DBCustomHeading', () => {
 		);
 	});
 
-	test('keeps sibling content out of the accessible heading name', async ({
+	test('keeps slot content out of the accessible heading name', async ({
 		mount
 	}) => {
+		// This is the reason the slots exist: the content sits next to the heading
+		// instead of inside it, so it neither pollutes the accessible name nor
+		// hides an interactive control behind it.
 		const component = await mount(
-			<DBCustomHeading>
+			<DBCustomHeading
+				startSlot={<span>Section</span>}
+				endSlot={<button type="button">More options</button>}>
+				{/*<template v-slot:start-slot>
+					<span>Section</span>
+				</template>
+				<template v-slot:end-slot>
+					<button type="button">More options</button>
+				</template>*/}
 				<h2>Installation</h2>
-				<button type="button">More options</button>
 			</DBCustomHeading>
 		);
 		await expect(component.locator('h2')).toHaveAccessibleName(
@@ -507,6 +594,7 @@ test.describe('DBCustomHeading', () => {
 		await expect(component.locator('button')).toHaveAccessibleName(
 			'More options'
 		);
+		expect(await component.locator('h2 button').count()).toBe(0);
 	});
 
 	for (const alignment of alignments) {

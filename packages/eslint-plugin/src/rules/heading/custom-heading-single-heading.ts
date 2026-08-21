@@ -42,6 +42,21 @@ const ELEMENT_TYPES = new Set([
 	'Element$1'
 ]);
 
+/** Slots whose content renders inside the wrapper next to the default content. */
+const SLOT_ATTRIBUTES = new Set(['startSlot', 'endSlot']);
+
+/**
+ * Expression kinds whose elements are part of this AST. Everything else, such as
+ * an identifier or a conditional, resolves at runtime and only suppresses the
+ * "missing heading" report.
+ */
+const STATIC_EXPRESSION_TYPES = new Set([
+	'JSXElement',
+	'JSXFragment',
+	'Literal',
+	'JSXEmptyExpression'
+]);
+
 /**
  * Angular wraps structural directives in a `Template` node that repeats the
  * element name (`<h2 *ngIf>` becomes `Template[h2] > Element[h2]`), so these
@@ -104,9 +119,42 @@ function isHeading(name: string): boolean {
 	return NATIVE_HEADINGS.has(name) || HEADING_COMPONENTS.has(name);
 }
 
+/**
+ * React passes slot content as a JSX attribute, so `endSlot={<h2 />}` never shows
+ * up in `node.children` even though it renders inside the wrapper. Vue and
+ * Angular project their slot content as a real child, which the child walk
+ * already covers.
+ */
+function getSlotValues(node: any): any[] {
+	const openingElement = node.openingElement ?? node;
+	if (openingElement?.type !== 'JSXOpeningElement') {
+		return [];
+	}
+
+	return (openingElement.attributes ?? [])
+		.filter(
+			(attribute: any) =>
+				attribute.type === 'JSXAttribute' &&
+				SLOT_ATTRIBUTES.has(attribute.name?.name)
+		)
+		.map((attribute: any) => attribute.value)
+		.filter(Boolean);
+}
+
+/** Everything rendered inside the node: its children plus its slot values. */
+function getContent(node: any): any[] {
+	return [...(node.children ?? []), ...getSlotValues(node)];
+}
+
+/** Unwraps `{…}` so a slot value and an inlined child expression look alike. */
+function unwrapExpression(node: any): any {
+	return node.type === 'JSXExpressionContainer' ? node.expression : node;
+}
+
 function countHeadings(node: any): number {
 	let count = 0;
-	for (const child of node.children ?? []) {
+	for (const content of getContent(node)) {
+		const child = unwrapExpression(content);
 		const name = getElementName(child);
 		if (
 			name !== undefined &&
@@ -122,26 +170,27 @@ function countHeadings(node: any): number {
 	return count;
 }
 
+function isDynamicContent(content: any): boolean {
+	if (content.type === 'JSXExpressionContainer') {
+		return (
+			!STATIC_EXPRESSION_TYPES.has(content.expression?.type) ||
+			isDynamicContent(content.expression)
+		);
+	}
+
+	const name = getElementName(content);
+	if (
+		(name !== undefined && DYNAMIC_ELEMENTS.has(name)) ||
+		isUnresolvedComponent(content, name)
+	) {
+		return true;
+	}
+
+	return content.children ? hasDynamicChildren(content) : false;
+}
+
 function hasDynamicChildren(node: any): boolean {
-	return (node.children ?? []).some((child: any) => {
-		if (child.type === 'JSXExpressionContainer') {
-			const expressionType = child.expression?.type;
-			return (
-				expressionType !== 'JSXEmptyExpression' &&
-				expressionType !== 'Literal'
-			);
-		}
-
-		const name = getElementName(child);
-		if (
-			(name !== undefined && DYNAMIC_ELEMENTS.has(name)) ||
-			isUnresolvedComponent(child, name)
-		) {
-			return true;
-		}
-
-		return child.children ? hasDynamicChildren(child) : false;
-	});
+	return getContent(node).some(isDynamicContent);
 }
 
 export default {

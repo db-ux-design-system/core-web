@@ -108,6 +108,10 @@
 			<h2>One</h2>
 			<h3>Two</h3>
 		</DBCustomHeading>
+		<DBCustomHeading>
+			<h2>One</h2>
+			<template #end-slot><h3>Two</h3></template>
+		</DBCustomHeading>
 
 		<!-- db-ux/tooltip-requires-interactive-parent -->
 		<div>

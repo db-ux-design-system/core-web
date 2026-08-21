@@ -41,17 +41,19 @@ Default content must be phrasing content and defines the accessible heading name
 
 ### Heading with sibling content
 
-`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to a sibling action. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+`DBCustomHeading` is the styling wrapper for a heading you write yourself, optionally next to sibling content. It relates to the Heading components the same way `DBCustomButton` relates to `DBButton`: it renders a plain `div` with no semantics of its own, you bring the native element, and the wrapper applies the styling.
+
+The default content is the heading. Content that belongs next to it is projected through the `start-slot` and `end-slot` attributes and renders before and after the default content:
 
 ```html
 <db-custom-heading size="xl" font-weight="light">
 	<h2>Installation</h2>
-	<db-button variant="ghost">More options</db-button>
+	<db-button end-slot variant="ghost">More options</db-button>
 </db-custom-heading>
 ```
 
-The nested heading needs no class of its own, the wrapper styles it. Because the sibling content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive siblings are separately reachable.
+The nested heading needs no class of its own, the wrapper styles it. Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.
 
-`size`, `fontWeight` and `paragraphSpacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text.
+`size`, `fontWeight` and `paragraphSpacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text. An unused slot adds no spacing.
 
 A nested heading that already carries the `db-heading` class, for example a Heading component, keeps its own typography and ignores the wrapper's inputs. Use one or the other, not both.

@@ -59,6 +59,12 @@ const headingProps: Record<string, FigmaProp> = {
  * DBCustomHeading mirrors the Heading styling API, so it maps the same
  * properties. They all sit on the wrapper root, which is what the generator can
  * resolve — the nested `h2` only carries the text content.
+ *
+ * `startSlot` and `endSlot` are deliberately not mapped: a `children` prop needs
+ * the Figma property key of the slot to call `getSlot()` on, and the Figma library
+ * for Heading is still being restructured. A guessed key produces a connection
+ * that silently resolves to nothing in Figma, so the slots stay out until the
+ * keys are final.
  */
 // Spread instead of a plain alias: the `useMetadata` resolver does not follow a
 // chained identifier reference, which would silently skip the prop injection and

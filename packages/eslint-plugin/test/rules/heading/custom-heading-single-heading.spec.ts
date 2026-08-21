@@ -43,11 +43,25 @@ describe('custom-heading-single-heading', () => {
 			{
 				code: '<DBCustomHeading><div><h3>Wrapped</h3></div></DBCustomHeading>'
 			},
+			// Slot content is a sibling of the heading, not a second heading.
+			{
+				code: '<DBCustomHeading endSlot={<DBBadge>3</DBBadge>}><h2>Installation</h2></DBCustomHeading>'
+			},
+			{
+				code: '<DBCustomHeading startSlot={<DBIcon icon="x_placeholder" />} endSlot={<button type="button">More options</button>}><h2>Installation</h2></DBCustomHeading>'
+			},
+			// The heading may live in a slot: it still renders inside the wrapper.
+			{
+				code: '<DBCustomHeading endSlot={<h2>Installation</h2>} />'
+			},
 			// Dynamic children cannot be resolved statically.
 			{ code: '<DBCustomHeading>{children}</DBCustomHeading>' },
 			{
 				code: '<DBCustomHeading>{items.map((item) => <h2 key={item.id}>{item.title}</h2>)}</DBCustomHeading>'
 			},
+			// A slot value that resolves at runtime may contain the heading.
+			{ code: '<DBCustomHeading endSlot={slotContent} />' },
+			{ code: '<DBCustomHeading startSlot={<MyHeading />} />' },
 			// Other components are untouched.
 			{
 				code: '<DBCustomButton><button type="button">Go</button></DBCustomButton>'
@@ -89,6 +103,35 @@ describe('custom-heading-single-heading', () => {
 						data: { component: 'DBCustomHeading', count: '2' }
 					}
 				]
+			},
+			// A slot must not add a second heading.
+			{
+				code: '<DBCustomHeading endSlot={<h3>Two</h3>}><h2>One</h2></DBCustomHeading>',
+				errors: [
+					{
+						messageId: 'multipleHeadings',
+						data: { component: 'DBCustomHeading', count: '2' }
+					}
+				]
+			},
+			{
+				code: '<DBCustomHeading startSlot={<DBHeadingH3>One</DBHeadingH3>} endSlot={<h4>Two</h4>} />',
+				errors: [
+					{
+						messageId: 'multipleHeadings',
+						data: { component: 'DBCustomHeading', count: '2' }
+					}
+				]
+			},
+			// Static slot content without a heading anywhere is still a definite miss.
+			{
+				code: '<DBCustomHeading endSlot={<DBBadge>3</DBBadge>}><span>Installation</span></DBCustomHeading>',
+				errors: [
+					{
+						messageId: 'missingHeading',
+						data: { component: 'DBCustomHeading' }
+					}
+				]
 			}
 		]
 	});
@@ -103,6 +146,10 @@ describe('custom-heading-single-heading', () => {
 			},
 			{
 				code: '<template><DBCustomHeading><slot /></DBCustomHeading></template>'
+			},
+			// Named slots are projected as regular children in Vue.
+			{
+				code: '<template><DBCustomHeading><h2>Installation</h2><template #end-slot><DBBadge>3</DBBadge></template></DBCustomHeading></template>'
 			}
 		],
 		invalid: [
@@ -117,6 +164,15 @@ describe('custom-heading-single-heading', () => {
 			},
 			{
 				code: '<template><DBCustomHeading><h2>One</h2><DBHeadingH3>Two</DBHeadingH3></DBCustomHeading></template>',
+				errors: [
+					{
+						messageId: 'multipleHeadings',
+						data: { component: 'DBCustomHeading', count: '2' }
+					}
+				]
+			},
+			{
+				code: '<template><DBCustomHeading><h2>One</h2><template #end-slot><h3>Two</h3></template></DBCustomHeading></template>',
 				errors: [
 					{
 						messageId: 'multipleHeadings',
@@ -145,6 +201,10 @@ describe('custom-heading-single-heading', () => {
 			},
 			{
 				code: '<db-custom-heading><db-heading-h-2 *ngIf="visible">Installation</db-heading-h-2></db-custom-heading>'
+			},
+			// Slot content is projected by attribute and stays a regular child.
+			{
+				code: '<db-custom-heading><h2>Installation</h2><db-badge end-slot>3</db-badge></db-custom-heading>'
 			}
 		],
 		invalid: [
@@ -159,6 +219,15 @@ describe('custom-heading-single-heading', () => {
 			},
 			{
 				code: '<db-custom-heading><db-heading-h-2>One</db-heading-h-2><h3>Two</h3></db-custom-heading>',
+				errors: [
+					{
+						messageId: 'multipleHeadings',
+						data: { component: 'db-custom-heading', count: '2' }
+					}
+				]
+			},
+			{
+				code: '<db-custom-heading><h2>One</h2><h3 end-slot>Two</h3></db-custom-heading>',
 				errors: [
 					{
 						messageId: 'multipleHeadings',
