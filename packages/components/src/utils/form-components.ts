@@ -12,6 +12,16 @@ export const handleFrameworkEventAngular = (
 	const value = event.target[modelValue];
 	const type = event.target?.type;
 
+	if (event.target?.validity?.badInput) {
+		// The browser cannot parse what is currently in the field (e.g. a
+		// partially typed or non-existing date like `29.02.0202`, or `1e` in a
+		// number field), so `value` reads as an empty string. Writing that back
+		// via `writeValue` would set `element.value = ''`, which clears the
+		// native editor and destroys everything the user typed so far.
+		// Skip until the entry is parsable again.
+		return;
+	}
+	
 	if (
 		!value &&
 		value !== '' &&
