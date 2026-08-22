@@ -96,8 +96,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       jscpd:
-        specifier: 5.0.15
-        version: 5.0.15
+        specifier: 5.0.16
+        version: 5.0.16
       knip:
         specifier: 6.32.2
         version: 6.32.2
@@ -677,8 +677,8 @@ importers:
         specifier: 9.0.3
         version: 9.0.3
       publint:
-        specifier: 0.3.23
-        version: 0.3.23
+        specifier: 0.3.24
+        version: 0.3.24
       replace-in-file:
         specifier: 9.0.0
         version: 9.0.0
@@ -956,8 +956,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       dompurify:
-        specifier: 3.4.13
-        version: 3.4.13
+        specifier: 3.4.14
+        version: 3.4.14
       highlight.js:
         specifier: 11.12.0
         version: 11.12.0
@@ -5648,8 +5648,8 @@ packages:
     peerDependencies:
       prettier: '*'
 
-  '@publint/pack@0.1.6':
-    resolution: {integrity: sha512-3uVNyGcVplhPZSLVyeIpL7+cIRn1YCSNHLG/rUIlBQMVH8YuN9++YF+5+UDIIO9RW98dujiUoTltO7RDB5bFJA==}
+  '@publint/pack@0.1.7':
+    resolution: {integrity: sha512-4EDEmvxWtgsCnnVeBvtFIFZtUhPPt1+bA9JrSwU4Sa//6oKtzCSlGGXYJr44OD9aGISymbieJ4mCKHUygUDU+g==}
     engines: {node: '>=18'}
 
   '@resvg/resvg-js-android-arm-eabi@2.6.2':
@@ -9181,8 +9181,8 @@ packages:
   domino@2.1.7:
     resolution: {integrity: sha512-3rcXhx0ixJV2nj8J0tljzejTF73A35LVVdnTQu79UAqTBFEgYPMgGtykMuu/BDqaOZphATku1ddRUn/RtqUHYQ==}
 
-  dompurify@3.4.13:
-    resolution: {integrity: sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==}
+  dompurify@3.4.14:
+    resolution: {integrity: sha512-dVoH9z+MY+C9IilgGCk3YfFqjLi3fChm2OiKJMzh6axrJ5qwxqWaZamgmHrpv22CN/KdbZJuGEGgfQoL00LTdg==}
 
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
@@ -11342,41 +11342,41 @@ packages:
     resolution: {integrity: sha512-n+mUVyUX5bVv7G/G2zyIHOhdxfuU1dY2NOFzTQUWiMUbFss8b57NFlgCCaggU78wSw5KVS9cllzeLyzyR+n5nw==}
     hasBin: true
 
-  jscpd-darwin-arm64@5.0.15:
-    resolution: {integrity: sha512-7UIRxKkvqN7bVIl2nXYsTOs7a2M6Y1Ll58KehquQbI6gUC3I7AAd/vz2HNWIdo+f5lJB0tiN1E9B/i6CUM4WHQ==}
+  jscpd-darwin-arm64@5.0.16:
+    resolution: {integrity: sha512-Tu6OAg3Rp6m7LCZqOtPViJxYGTKXTLrI/xMyjEKe79N9L7GpbI3XhgotGDpoE+PjLRbgJgGhRKbkKK18FPySmQ==}
     cpu: [arm64]
     os: [darwin]
 
-  jscpd-darwin-x64@5.0.15:
-    resolution: {integrity: sha512-ifknlGR2xW9yZ5BCeUBkBOrOFBAFMQmugpzFnx1y8/BDve0pyBLjxIOVnN/bqeqLDV+sd/zxkx5Gf/xD9UlRKA==}
+  jscpd-darwin-x64@5.0.16:
+    resolution: {integrity: sha512-3btQ1aG8K7+9rvJjyaRJRcSBD0DvHgZOUVlecjnyO99FYzMvdFREq67UIl5CAXFeYf5EY8TSorCMZQxL6TBD0w==}
     cpu: [x64]
     os: [darwin]
 
-  jscpd-linux-arm64-gnu@5.0.15:
-    resolution: {integrity: sha512-JrlE0Nk2NRt9EmGD+5ZjMI0il5t/zxj3uwcintnugJumRmbKy2ncr2MALJLeulUTHLT7uYMEveLK2b79DLtDAQ==}
+  jscpd-linux-arm64-gnu@5.0.16:
+    resolution: {integrity: sha512-L1F9CNHxRPqGJCKgGRA4gtZcESACFkS2lgfPgWn9fG+4CkiewLcYyy/oxrafJJL1/PPTQ24sbLuzPaKUxJuvuw==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  jscpd-linux-x64-gnu@5.0.15:
-    resolution: {integrity: sha512-Hb37UrME4X3tAyw4EYNTuSOeet0uq2UYwyeWUphdjTY8Z9GB4qzniDyCClvNjzAbz9EZ47LXHYvZSP6hlzhgIw==}
+  jscpd-linux-x64-gnu@5.0.16:
+    resolution: {integrity: sha512-BruP+sAr0+6QsEQZvOkgcS+xR23y4s1hLA0xfkcO1zFFXdnmQdJ4w23/U8VlPwqO2dFRaAEseYEXjHs5oQQGFw==}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  jscpd-linux-x64-musl@5.0.15:
-    resolution: {integrity: sha512-dFHCSfL+h3irvmkRCn8MojdA5R1NuUPswVUrr3vrCI+3v5VjBBrERWfq1rpnFdKOgK7T/4Fvkj4L04vnWPTRiQ==}
+  jscpd-linux-x64-musl@5.0.16:
+    resolution: {integrity: sha512-T36RtMnF695Y1/T3cLEhgvspHdKoiF+oxK/lklGJWriLieImZolSOjGXsecW2bp7MNMMGlqLLRzr2RNgnwy+Hg==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  jscpd-windows-x64-msvc@5.0.15:
-    resolution: {integrity: sha512-OJ5F5qePxS9EVyw5pdCOAAR7SRm02LJyCMAHXB5bSUfo4mOZrEKkhgO+EUHgK4p7Blpovw9acpgf1/R2o1Z4Ig==}
+  jscpd-windows-x64-msvc@5.0.16:
+    resolution: {integrity: sha512-BcrY18r6uje+TjgBKdFZJz6qfAAh9QT24KZYZk+jk6tuIKOYIm6oRMeQEu3Tzr/len9ZethN2h1bKmv+EfHcGw==}
     cpu: [x64]
     os: [win32]
 
-  jscpd@5.0.15:
-    resolution: {integrity: sha512-PJF3ALlPVJGiMoCtSHg6Ln3/dnRVd27sD/UTUv62MAS5I0jdhvqI0x0p8D1LP8xJ35GLTgHzCMSQvjoa/JNZkg==}
+  jscpd@5.0.16:
+    resolution: {integrity: sha512-TiQ4zKtKeldep6UswXFHjVCDhVdLBaJyQcZjhCSzVOmKpT6HBj0jUZiphP1vK1X3VSSuzwcfifJVNpsOIiwRCg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -13675,8 +13675,8 @@ packages:
   pstree.remy@1.1.8:
     resolution: {integrity: sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==}
 
-  publint@0.3.23:
-    resolution: {integrity: sha512-5MQipUPcB7MWw84zLUkHrg/H/UBtk3LL+A0GngTTBSsiNJLQurMUaSIRG3edlOrRz4UFe0AOKK9TZdIWviV+jQ==}
+  publint@0.3.24:
+    resolution: {integrity: sha512-9zS56KrKBoqi5Qt8h92uMP8TTM9AYZSgnmCo4u2priMqkOZvQnTsziZ2p5LJ2ywbYkAjoCDp2jda9u4cgFefIw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -21967,7 +21967,7 @@ snapshots:
       make-synchronized: 0.8.0
       prettier: 3.9.6
 
-  '@publint/pack@0.1.6':
+  '@publint/pack@0.1.7':
     dependencies:
       tinyexec: 1.3.0
 
@@ -22966,7 +22966,7 @@ snapshots:
 
   '@types/dompurify@3.2.0':
     dependencies:
-      dompurify: 3.4.13
+      dompurify: 3.4.14
 
   '@types/eslint-scope@3.7.7':
     dependencies:
@@ -25879,7 +25879,7 @@ snapshots:
 
   domino@2.1.7: {}
 
-  dompurify@3.4.13:
+  dompurify@3.4.14:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -28780,32 +28780,32 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  jscpd-darwin-arm64@5.0.15:
+  jscpd-darwin-arm64@5.0.16:
     optional: true
 
-  jscpd-darwin-x64@5.0.15:
+  jscpd-darwin-x64@5.0.16:
     optional: true
 
-  jscpd-linux-arm64-gnu@5.0.15:
+  jscpd-linux-arm64-gnu@5.0.16:
     optional: true
 
-  jscpd-linux-x64-gnu@5.0.15:
+  jscpd-linux-x64-gnu@5.0.16:
     optional: true
 
-  jscpd-linux-x64-musl@5.0.15:
+  jscpd-linux-x64-musl@5.0.16:
     optional: true
 
-  jscpd-windows-x64-msvc@5.0.15:
+  jscpd-windows-x64-msvc@5.0.16:
     optional: true
 
-  jscpd@5.0.15:
+  jscpd@5.0.16:
     optionalDependencies:
-      jscpd-darwin-arm64: 5.0.15
-      jscpd-darwin-x64: 5.0.15
-      jscpd-linux-arm64-gnu: 5.0.15
-      jscpd-linux-x64-gnu: 5.0.15
-      jscpd-linux-x64-musl: 5.0.15
-      jscpd-windows-x64-msvc: 5.0.15
+      jscpd-darwin-arm64: 5.0.16
+      jscpd-darwin-x64: 5.0.16
+      jscpd-linux-arm64-gnu: 5.0.16
+      jscpd-linux-x64-gnu: 5.0.16
+      jscpd-linux-x64-musl: 5.0.16
+      jscpd-windows-x64-msvc: 5.0.16
 
   jsdoc-type-pratt-parser@7.2.0: {}
 
@@ -31910,9 +31910,9 @@ snapshots:
 
   pstree.remy@1.1.8: {}
 
-  publint@0.3.23:
+  publint@0.3.24:
     dependencies:
-      '@publint/pack': 0.1.6
+      '@publint/pack': 0.1.7
       package-manager-detector: 1.8.0
       picocolors: 1.1.1
       sade: 1.8.1
