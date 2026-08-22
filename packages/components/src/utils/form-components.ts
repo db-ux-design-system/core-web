@@ -40,6 +40,22 @@ export const handleFrameworkEventAngular = (
 			return;
 		}
 	}
+	if (event.target?.validity?.badInput) {
+		// The browser cannot parse what is currently in the field (e.g. a
+		// partially typed or non-existing date like `29.02.0202`), so `value`
+		// reads as an empty string. Propagate that to the model - otherwise the
+		// form control would keep the last valid date and submit a stale value
+		// while the field visibly holds an invalid one. But skip `writeValue`:
+		// it sets `element.value = ''`, which clears the native date editor and
+		// destroys everything the user typed so far.
+		component.propagateChange(value);
+		// Signal Forms communicates through the model signal, not through the
+		// legacy CVA callback, so update it too - `writeValue` would have done
+		// this before writing to the element.
+		component[modelValue]?.set?.(value);
+		return;
+	}
+
 	component.propagateChange(value);
 	component.writeValue(value);
 };
