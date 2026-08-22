@@ -45,8 +45,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       '@double-great/stylelint-a11y':
-        specifier: 3.5.1
-        version: 3.5.1(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        specifier: 3.5.2
+        version: 3.5.2(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
       '@figma/code-connect':
         specifier: 1.5.3
         version: 1.5.3(supports-color@10.2.2)
@@ -3116,8 +3116,8 @@ packages:
     resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
     engines: {node: '>=14.17.0'}
 
-  '@double-great/stylelint-a11y@3.5.1':
-    resolution: {integrity: sha512-DNOxsyT1O49B1lpzdQ3LCWStdt5WAwfvU/2dUZ4W6SUaaicFr09YqiixZ2/btInzw3chACw61IfVJJOZ3WJA+w==}
+  '@double-great/stylelint-a11y@3.5.2':
+    resolution: {integrity: sha512-tzCK6ItlIiUJwGnATxO54ELtSaQwiMtghhIy6G5umOsp6wTPyMfTUKXt9g/TIGO2+APG1NM4V/V3aiG5W6R8Rw==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       stylelint: '>=16.0.0'
@@ -7438,6 +7438,7 @@ packages:
   '@xmldom/xmldom@0.9.11':
     resolution: {integrity: sha512-tW8bcK3hsG0/uqSnNz6TK4BkcuZSezoU7DlnYssILmZDktPnSHHuDJJFM0AJv+13gz2r0iGdrj6qqKeUnxXEDg==}
     engines: {node: '>=14.6'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xn-sakina/rml-darwin-arm64@2.8.0':
     resolution: {integrity: sha512-B8XpWn/t3vALCePi8DnbHQWVQnmKybwPIKbfzL1L75w2V/ELXn0OguFayujf2eZdmCIBPC+Drqxztn6fDV08Ww==}
@@ -19383,7 +19384,7 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@double-great/stylelint-a11y@3.5.1(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))':
+  '@double-great/stylelint-a11y@3.5.2(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))':
     dependencies:
       postcss: 8.5.26
       stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
