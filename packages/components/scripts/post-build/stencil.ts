@@ -70,8 +70,8 @@ export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const file = `../../${outputFolder}/stencil/src/components/${componentName}/${componentName}.tsx`;
-		const indexFile = `../../${outputFolder}/stencil/src/components/${componentName}/index.ts`;
+		const file = `../../${outputFolder}/stencil/src/components/${component.folder ?? componentName}/${componentName}.tsx`;
+		const indexFile = `../../${outputFolder}/stencil/src/components/${component.folder ?? componentName}/index.ts`;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 
 		replaceInFileSync({

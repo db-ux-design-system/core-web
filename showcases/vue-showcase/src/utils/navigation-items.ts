@@ -1,3 +1,5 @@
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase.vue';
+
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
@@ -84,6 +86,11 @@ export const navigationItems: NavItem[] = [
 		path: '/04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '/04/heading',
+				label: 'Heading',
+				component: markRaw(HeadingShowcase)
+			},
 			{
 				path: '/04/brand',
 				label: 'Brand',

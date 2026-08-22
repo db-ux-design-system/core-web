@@ -55,6 +55,147 @@ scripts/
 └── post-build/                     # ⚠️ DEPRECATED — see note below
 ```
 
+## Heading component family
+
+`src/components/heading/` contains six native Mitosis components,
+`heading-h1.lite.tsx` through `heading-h6.lite.tsx`, plus
+`custom-heading.lite.tsx`. They form one documented component family with
+shared models, styles, examples, tests, and showcase. The six native components
+have fixed matching heading roots. All Heading components must remain free of
+runtime tag switching and named heading slots.
+
+### One folder, seven registry entries
+
+Every other component owns its folder, which is why `scripts/post-build/` can
+resolve them as `components/${name}/${name}.ext`. The Heading family shares a
+single folder, so that lookup misses it. Two optional fields on the registry
+entry bridge the gap and are set for all seven Heading components in
+`scripts/post-build/components.ts`:
+
+- **`folder`** — the shared `heading` directory.
+- **`spec`** — the shared `heading.spec.tsx`, declared on exactly one entry
+  because one spec covers all seven components.
+
+With those, Heading uses the same pipeline as every other component: the React
+`forwardRef` and root props, the Angular and Stencil barrel rewrite, and the spec
+copy including the `// VUE:` marker stripping in `copy-files.ts`. Do not
+reintroduce Heading-specific plugins for any of that.
+
+The one genuine difference is the Vue class alias, declared as an overwrite on
+each entry:
+
+```ts
+overwrites: {
+	vue: [{ from: "props.class", to: "props.className ?? props.class" }];
+}
+```
+
+It runs after the built-in `className` to `props.class` rewrite and is required
+because the shared spec runs against both the React and the Vue output and
+asserts the React `className` API. Removing it fails six
+`forwards native attributes` tests plus `composes class` on Vue.
+
+### Component names with a digit
+
+`DBHeadingH1` is the first component whose name ends in a digit, which two
+generators had to learn:
+
+- `configs/plugins/attribute-passing/index.cjs` derives the custom-element tag
+  from the component name. Without the digit boundary in its `dashCase` it
+  produces `db-heading-h1` while the element is `db-heading-h-1`, so the
+  MutationObserver never finds the host and attribute passing silently stops
+  working for the six native Heading components.
+- `configs/plugins/figma/index.cjs` injects the generated prop fragments after the
+  opening tag. Without digits in its tag regexes it matches `<DBHeadingH` and
+  inserts them in the wrong place, which breaks all three Code Connect snapshots.
+
+### `DBCustomHeading` is a styling wrapper, not a heading
+
+`DBCustomHeading` follows the same contract as every other `DBCustom*` component
+in this package: it mirrors the styling API of its regular counterpart and lets
+the consumer bring the semantics. Compare `DBCustomButton`, which mirrors
+`DBButton`'s styling props (`variant`, `size`, `icon*`, `width`, `noText`, `wrap`)
+and drops only the ones belonging to the native `<button>` (`type`, `disabled`,
+`form`, `name`, `value`, `command*`, click events, `text`).
+
+Applied to Heading: `size`, `fontWeight`, `paragraphSpacing` and `alignment` are
+styling and therefore live on the wrapper; `id` and everything else native lives
+on the heading the consumer writes.
+
+```html
+<div class="db-custom-heading" data-size="xl">
+	<h2>Installation</h2>
+	<button type="button">More options</button>
+</div>
+```
+
+It must **not** set `role="heading"` or `aria-level`. An earlier iteration did,
+which forced interactive sibling content into the heading's accessible name
+(`"Installation More options"`) and required per-target generator transforms
+to keep the derived semantics from being overridden. Keeping the heading native
+removes both problems.
+
+#### The default content is the heading, the slots are its siblings
+
+`startSlot` and `endSlot` (the shared `StartSlotProps` and `EndSlotProps`, as used
+by `DBDrawerHeader` and `DBTabItem`) render before and after the default content.
+That split is what keeps the accessible name clean: the same content nested
+_inside_ the heading would be part of its name and would hide an interactive
+control behind it.
+
+The slots are deliberately **not** wrapped in an element. The wrapper is already a
+flex row with `gap`, so projected content becomes a flex item directly and an
+unused slot contributes no box and therefore no gap. A wrapper element would also
+behave inconsistently against the `display: contents` custom-element hosts in the
+Angular and Stencil output.
+
+The CSS-only variant has no slot concept — there, plain DOM order is the
+equivalent, which is why `heading.scss` needs nothing for the slots.
+
+`custom-heading-single-heading` in `@db-ux/core-eslint-plugin` counts the slot
+content too, because it renders inside the wrapper. In React that content is a
+JSX attribute rather than a child, so the rule inspects the `startSlot` and
+`endSlot` attribute values in addition to the child walk; Vue and Angular project
+slot content as a real child and are covered by the walk alone.
+
+Three implementation details in `heading.scss` that should not be traded away:
+
+- **The child selectors exclude `.db-heading`.** A nested Heading component keeps
+  its own typography instead of fighting the wrapper's attributes, so the two
+  models never produce an ambiguous result.
+- **The size lands on the wrapper as well as on the child.** The wrapper needs it
+  so `1lh` for `data-paragraph-spacing` resolves from the heading typography
+  rather than the surrounding body text; the child needs it explicitly because
+  the user-agent styles for `h1`-`h6` override inheritance. Without an explicit
+  `data-size` the wrapper picks the level default via `:has(:where(h1))` etc.
+- **`data-alignment` sets `justify-content` on the wrapper and repeats
+  `text-align` on the child.** `%heading-base` sets an explicit
+  `text-align: start` on the child, which would otherwise block inheritance.
+
+The level-to-size mapping comes from `fonts.$headlines` in
+`@db-ux/core-foundations`, shared with the foundations'
+`defaults/default-fonts.scss` so the two cannot drift apart.
+
+### `useMetadata({ figma })` props must not be a chained identifier alias
+
+The `useMetadata` hook is parsed with JSON5, and the resolver does not follow a
+chained identifier reference. `const customHeadingProps = headingProps;` makes
+the whole `figma` metadata unresolvable, which **silently** skips the prop
+injection and leaves literal `props.size` in the generated Code Connect snippet
+instead of the selected Figma value. Use a spread (`{ ...headingProps }`) to
+reuse a map, and member access (`headingProps.alignment`) fails outright with
+`JSON5: invalid character`. After changing a `*.figma.ts` map, always check the
+regenerated snapshot for `props.` occurrences.
+
+### Props types must intersect the shared base directly
+
+Per-component props must be declared as
+`DBHeadingBaseDefaultProps & GlobalProps & AlignmentProps`, not via a bare alias
+hop such as `DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps`. The
+custom-elements analyzer stops resolving at the second alias hop, which publishes
+every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
+the real union and JSDoc.
+
 ## Examples (`src/components/**/examples/`)
 
 Examples are the **single source of truth** for component usage. They are used to generate:
@@ -76,6 +217,8 @@ Each component can have a `figma/` folder with Figma Code Connect definitions. T
 
 - Edit only the source files in `src/components/[name]/figma/`
 - Never edit files in `figma-code-connect/` directly — they are generated
+- **One code component per `*.figma.lite.tsx` file.** The plugin injects every prop fragment into the first opening tag, so a template that renders several components (e.g. via `Show`) would emit all branches verbatim and hand designers a snippet they have to edit by hand. When one Figma component set maps to a different code component per variant, add one file per variant group with its own `useMetadata({ figma: … })` and its own `FigmaCodeConnect` export — see `heading/figma/` (seven sets) and `tag/figma/` (three).
+- Enum props may map to numbers (`{ '1': 1 }`). Numeric and boolean maps are emitted as bound values (`prop={1}` / `[prop]="1"` / `:prop="1"`), string maps as attributes.
 
 ## ESM Import Extensions (`configs/plugins/esm-extensions.cjs`)
 
@@ -261,6 +404,14 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
 - Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
+
+> Exception: registering a component in `components.ts` is not new logic, it is
+> configuration for transformations that already exist. When a component would
+> otherwise need a private copy of those transformations as a plugin, prefer the
+> registry entry — the Heading family reduced roughly 450 lines of duplicated
+> plugin code to about 30 lines of configuration that way. Migrate the
+> transformations themselves out of this folder, not individual components into
+> parallel implementations.
 
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 

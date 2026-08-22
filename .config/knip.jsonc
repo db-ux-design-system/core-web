@@ -9,7 +9,9 @@
 	"ignoreIssues": {
 		"packages/components/src/components/select/figma/select.figma.ts": [
 			"duplicates"
-		]
+		],
+		// Mitosis resolves the six imports without extensions to sibling *.lite.tsx files.
+		"packages/components/src/components/heading/index.ts": ["unresolved"]
 	},
 
 	// These workspaces are generated or framework-specific and produce false positives

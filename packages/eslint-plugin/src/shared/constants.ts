@@ -38,6 +38,7 @@ export const COMPONENTS: Record<string, string> = {
 	DBDrawer: 'DBDrawer',
 	DBDrawerHeader: 'DBDrawerHeader',
 	DBDrawerFooter: 'DBDrawerFooter',
+	DBCustomHeading: 'DBCustomHeading',
 	DBHeader: 'DBHeader',
 	DBNavigation: 'DBNavigation',
 	DBNavigationItem: 'DBNavigationItem',
@@ -115,7 +116,11 @@ export const MESSAGES = {
 	DRAWER_HEADER_REQUIRED:
 		'{{component}} must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)',
 	SUB_COMPONENT_REQUIRED_PARENT:
-		'{{component}} must be used inside {{parent}}{{slot}}'
+		'{{component}} must be used inside {{parent}}{{slot}}',
+	CUSTOM_HEADING_MISSING_HEADING:
+		'{{component}} must contain one heading (h1-h6 or DBHeadingH1-DBHeadingH6). It only provides layout and has no heading semantics of its own',
+	CUSTOM_HEADING_MULTIPLE_HEADINGS:
+		'{{component}} must contain only one heading, found {{count}}. Multiple headings inside one wrapper break the document outline'
 };
 
 export const MESSAGE_IDS = {
@@ -148,5 +153,7 @@ export const MESSAGE_IDS = {
 	TOOLTIP_NO_INTERACTIVE: 'noInteractive',
 	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive',
 	DRAWER_HEADER_REQUIRED: 'drawerHeaderRequired',
-	SUB_COMPONENT_REQUIRED_PARENT: 'subComponentRequiredParent'
+	SUB_COMPONENT_REQUIRED_PARENT: 'subComponentRequiredParent',
+	CUSTOM_HEADING_MISSING_HEADING: 'missingHeading',
+	CUSTOM_HEADING_MULTIPLE_HEADINGS: 'multipleHeadings'
 };

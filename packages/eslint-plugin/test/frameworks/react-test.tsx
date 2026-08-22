@@ -3,6 +3,7 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBCustomHeading,
 	DBCustomSelect,
 	DBDrawer,
 	DBDrawerFooter,
@@ -122,6 +123,16 @@ export const TestComponent = () => {
 					<DBAccordion></DBAccordion>
 				</DBAccordionItem>
 			</DBAccordion>
+
+			{/* db-ux/custom-heading-single-heading */}
+			<DBCustomHeading>Installation</DBCustomHeading>
+			<DBCustomHeading>
+				<h2>One</h2>
+				<h3>Two</h3>
+			</DBCustomHeading>
+			<DBCustomHeading endSlot={<h3>Two</h3>}>
+				<h2>One</h2>
+			</DBCustomHeading>
 
 			{/* db-ux/prefer-icon-attribute */}
 			<DBButton type="submit">

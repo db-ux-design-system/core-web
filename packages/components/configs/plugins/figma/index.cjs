@@ -663,7 +663,7 @@ module.exports = () => ({
 					.join(token);
 			}
 
-			// Inject all conditional variables after the opening tag
+			// Inject generated prop fragments into their component opening tags.
 			const allInjectedEntries = [
 				...attrPropEntries,
 				...validationMessageEntries,
@@ -675,8 +675,11 @@ module.exports = () => ({
 					.map(([propName]) => '${' + propName + '}')
 					.join('');
 				exampleWithProps = exampleWithProps
-					.replace(/(<[A-Z][a-zA-Z]*)([\s>])/, '$1' + combined + '$2')
-					.replace(/(<db-[a-z-]*)([\s>])/, '$1' + combined + '$2');
+					.replace(
+						/(<[A-Z][a-zA-Z0-9]*)([\s>])/,
+						'$1' + combined + '$2'
+					)
+					.replace(/(<db-[a-z0-9-]*)([\s>])/, '$1' + combined + '$2');
 			}
 
 			const componentId = (json.name || 'component')

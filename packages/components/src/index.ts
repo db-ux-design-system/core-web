@@ -34,6 +34,8 @@ export * from './components/drawer-header/model';
 export * from './components/drawer/model';
 export * from './components/header';
 export * from './components/header/model';
+export * from './components/heading';
+export * from './components/heading/model';
 export * from './components/icon';
 export * from './components/icon/model';
 export * from './components/infotext';

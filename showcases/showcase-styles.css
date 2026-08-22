@@ -47,6 +47,15 @@
 	gap: var(--db-spacing-fixed-md);
 }
 
+.heading-showcase {
+	display: contents;
+}
+
+.heading-showcase .variants-list,
+.heading-showcase .variants-list > div:not([class^="db-"], [data-area]) {
+	display: block;
+}
+
 .variants-list div[role] > div:not([class^="db-"], [data-area]),
 .variants-list > div:not([class^="db-"]) {
 	align-items: center;
