@@ -1,5 +1,17 @@
 # @db-ux/core-components
 
+## 5.1.6
+
+### Patch Changes
+
+- fix: multiple issues for DBPopover - [see commit a1a575c](https://github.com/db-ux-design-system/core-web/commit/a1a575c893d0b54aff6bddcb56719e4f8c40197d):
+
+        - DBPopover hides when moving mouse too slow
+        - DBPopover changes aria-expanded independently of open state
+        - DBPopover - wrong content position on programatic "open" prop
+
+- fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive - [see commit 5f1584d](https://github.com/db-ux-design-system/core-web/commit/5f1584d2488115ef9418ca24b8e04f7bddbca803)
+
 ## 5.1.5
 
 ### Patch Changes
