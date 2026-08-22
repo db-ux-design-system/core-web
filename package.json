@@ -88,7 +88,7 @@
     "@db-ux/db-theme": "6.1.0",
     "@db-ux/db-theme-fonts": "2.0.5",
     "@db-ux/db-theme-icons": "4.1.0",
-    "@double-great/stylelint-a11y": "3.5.1",
+    "@double-great/stylelint-a11y": "3.5.2",
     "@figma/code-connect": "1.5.3",
     "@guidepup/guidepup": "0.33.2",
     "@guidepup/playwright": "0.19.1",
