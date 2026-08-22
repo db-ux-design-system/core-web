@@ -1,5 +1,19 @@
 # @db-ux/wc-core-components
 
+## 5.1.6
+
+### Patch Changes
+
+- fix: multiple issues for DBPopover - [see commit a1a575c](https://github.com/db-ux-design-system/core-web/commit/a1a575c893d0b54aff6bddcb56719e4f8c40197d):
+
+        - DBPopover hides when moving mouse too slow
+        - DBPopover changes aria-expanded independently of open state
+        - DBPopover - wrong content position on programatic "open" prop
+
+- refactor(`DBHeader`): removed DBDrawer, which doesn't get rendered anyhow (we're currently preparing a solution by the new DBShell component) - [see commit 563c816](https://github.com/db-ux-design-system/core-web/commit/563c816171643abfd7ccdd54dba75b7c78ee3429)
+- refactor(stencil): rely on Stencil's native `focusgroup` JSX type, only augment `focusgroupstart` - [see commit 563c816](https://github.com/db-ux-design-system/core-web/commit/563c816171643abfd7ccdd54dba75b7c78ee3429)
+- fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive - [see commit 5f1584d](https://github.com/db-ux-design-system/core-web/commit/5f1584d2488115ef9418ca24b8e04f7bddbca803)
+
 ## 5.1.5
 
 ### Patch Changes
