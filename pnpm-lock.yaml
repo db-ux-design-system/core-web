@@ -1294,8 +1294,8 @@ importers:
         specifier: 10.6.0
         version: 10.6.0
       '@tanstack/angular-table':
-        specifier: 9.1.3
-        version: 9.1.3(@angular/common@21.2.20(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))
+        specifier: 9.2.1
+        version: 9.2.1(@angular/common@21.2.20(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))
       '@tanstack/match-sorter-utils':
         specifier: 9.1.2
         version: 9.1.2
@@ -6597,8 +6597,8 @@ packages:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
 
-  '@tanstack/angular-table@9.1.3':
-    resolution: {integrity: sha512-AiqwoZj8rZdRIluaOAiSqSo0RrwxLLqEhIRuCTihJlgptNJoTD2zxVRAm3zHwXsuOesU2yLUhJ6lDBAv0dKBgA==}
+  '@tanstack/angular-table@9.2.1':
+    resolution: {integrity: sha512-zAl5Ht6+Ay811NjN4oGEe5CvaGzLnjsk7UbOJGKt4EyIBU+s9vZTgcMYeW7qMZd8Jc2Iz5ndCr8wvFCepzU1FQ==}
     engines: {node: '>=20'}
     peerDependencies:
       '@angular/core': '>=19'
@@ -22789,7 +22789,7 @@ snapshots:
       '@angular/core': 21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1)
       '@tanstack/store': 0.11.1
 
-  '@tanstack/angular-table@9.1.3(@angular/common@21.2.20(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@tanstack/angular-table@9.2.1(@angular/common@21.2.20(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/core': 21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1)
       '@tanstack/angular-store': 0.11.1(@angular/common@21.2.20(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.20(@angular/compiler@21.2.20)(rxjs@7.8.2)(zone.js@0.15.1))
