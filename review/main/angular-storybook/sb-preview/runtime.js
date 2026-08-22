@@ -37717,12 +37717,15 @@ var VALIDATION_REGEXP = /^[a-zA-Z0-9 _-]*$/, NUMBER_REGEXP = /^-?[0-9]+(\.[0-9]+
 };
 
 // src/preview-api/modules/preview-web/UrlStore.ts
-var { history, document: document4 } = scope;
+var { history, document: document4 } = scope, PATH_REGEX = /^\/(story|docs)\/(.+)/;
 function pathToId(path) {
-  let match = (path || "").match(/^\/story\/(.+)/);
+  let match = (path || "").match(PATH_REGEX);
   if (!match)
-    throw new Error(`Invalid path '${path}',  must start with '/story/'`);
-  return match[1];
+    throw new Error(`Invalid path '${path}',  must start with '/story/' or '/docs/'`);
+  return match[2];
+}
+function pathToViewMode(path) {
+  return (path || "").match(PATH_REGEX)?.[1];
 }
 var getQueryString = ({
   selection,
@@ -37752,12 +37755,12 @@ var getQueryString = ({
   }
 }, getSelectionSpecifierFromPath = () => {
   if (typeof document4 < "u") {
-    let queryStr = document4.location.search.slice(1), query = parse2(queryStr), args = typeof query.args == "string" ? parseArgsParam(query.args) : void 0, globals = typeof query.globals == "string" ? parseArgsParam(query.globals) : void 0, viewMode = getFirstString(query.viewMode);
+    let queryStr = document4.location.search.slice(1), query = parse2(queryStr), args = typeof query.args == "string" ? parseArgsParam(query.args) : void 0, globals = typeof query.globals == "string" ? parseArgsParam(query.globals) : void 0, path = getFirstString(query.path), viewMode = getFirstString(query.viewMode);
     if (typeof viewMode != "string" || !viewMode)
-      viewMode = "story";
+      viewMode = path && pathToViewMode(path) || "story";
     else if (!viewMode.match(/docs|story/))
       return null;
-    let path = getFirstString(query.path), storyId = path ? pathToId(path) : getFirstString(query.id);
+    let storyId = path ? pathToId(path) : getFirstString(query.id);
     if (storyId)
       return { storySpecifier: storyId, args, globals, viewMode };
   }
