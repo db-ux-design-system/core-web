@@ -87,7 +87,7 @@
     "@db-ux/core-stylelint": "workspace:*",
     "@db-ux/db-theme": "6.2.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "4.1.0",
+    "@db-ux/db-theme-icons": "4.2.0",
     "@double-great/stylelint-a11y": "3.5.2",
     "@figma/code-connect": "1.5.3",
     "@guidepup/guidepup": "0.33.2",
