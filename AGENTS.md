@@ -98,24 +98,34 @@ cd showcases/angular-showcase && pnpm run test:ui
 
 **Do NOT run `pnpm run regenerate:screenshots` locally.** Snapshots are generated automatically in CI/CD.
 
+### Screen Reader Testing
+
+Screen reader tests (NVDA, VoiceOver) live in `showcases/screen-reader/`. See [the screen reader README](showcases/screen-reader/README.md) for the command mapping per screen reader and the pitfalls: a landmark is only named when the cursor enters it from outside, `nextLandmark()` / `previousLandmark()` drive VoiceOver's auto web spots so the destination has to be verified per reader before a hop is shared between both branches, and plain role assertions belong in the aria snapshot tests.
+
 ## Changesets
 
 This repository uses [Changesets](https://github.com/changesets/changesets) to manage versioning and changelogs.
 
 ### When to Add a Changeset
 
-**Always add a new changeset when making developer-facing changes inside the following folders:**
+**Always add a new changeset when making consumer-facing changes inside the following folders:**
 
-> **No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
+> **Only consumer-facing changes need a changeset.** Purely cosmetic changes (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact) and changes to files consumers never receive (`*.spec.tsx`, e2e tests, snapshots, showcases, stories, dependency updates) do not require one. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, behavior, or any other aspect that is visible to consumers of the packages.
 
-| Folder                                                                                           | Packages to include                                                                                                                             |
-| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `packages/components/src` — **only styling** (SCSS/CSS)                                          | `@db-ux/core-components`                                                                                                                        |
-| `packages/components/src` — **component logic or templates** (model.ts, Mitosis component files) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| `packages/components/src` — **both**                                                             | All five packages above                                                                                                                         |
-| `packages/foundations/scss`                                                                      | `@db-ux/core-foundations`                                                                                                                       |
+| Folder                      | Packages to include                                                                                                                                                        |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/components/src`   | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components`                            |
+| `packages/foundations/scss` | `@db-ux/core-foundations`, `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
 
-**Scope the packages to what is actually affected.** The table above lists the _maximum_ set. If a change only touches framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`), include only the affected framework package. Include all framework packages only when shared code (components, `model.ts`, shared utils) or styling is changed.
+**Never differentiate by kind of change.** Styling, template, logic or properties — shared component code is always listed for the whole row. Do not weigh up whether a change is "visible enough" for a framework consumer.
+
+Two reasons: the framework packages ship the `@db-ux/core-components` and `@db-ux/core-foundations` styles as a dependency, so consumers who reference only a framework package never read the CSS packages' changelogs. And there is no reliable "internal only" markup change — someone styling `db-input` with `label + input` is broken the moment the `<input>` moves inside the `<label>`, so an Angular user needs that entry as much as a CSS user does. Informing everyone costs one extra changelog line; guessing wrong costs a consumer a silent breakage.
+
+**A package's published artifacts are not the criterion.** `@db-ux/core-components` ships compiled CSS only, no templates — and is still listed for template changes, because its consumers write the component HTML themselves (copied from the Patternhub examples and the "view code" output of our Storybook stories) and have nothing in their build that would flag drifted markup. Judge by "who needs to know", not by which files land in the tarball.
+
+**Scope the packages to what is actually affected.** The table above lists the _maximum_ set per row, because the four JS frameworks are not interchangeable. If a change only touches code that a single target consumes (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `scripts/post-build/react.ts`), include only that framework package. Shared build code counts for every target it feeds, even when the change inside it was written for one of them (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) — list all framework packages whose output changes. See `packages/components/AGENTS.md` for the file-by-file breakdown.
+
+So the only thing that narrows the list is **which targets a file feeds**, never what kind of change it is.
 
 Use the following bump types for changeset entries:
 
@@ -399,7 +409,7 @@ pnpm exec tsx scripts/my-script.ts
 ## Additional Resources
 
 - `packages/agent-cli/AGENTS.md` — CLI tool for generating AI agent instructions
-- `packages/components/AGENTS.md` — component authoring, Mitosis, changeset rules
+- `packages/components/AGENTS.md` — component authoring, Mitosis, package-specific changeset notes
 - `packages/foundations/AGENTS.md` — design tokens, assets, SCSS structure
 - `packages/postcss-plugin/AGENTS.md` — PostCSS flatten plugin
 - `packages/stylelint/AGENTS.md` — Stylelint plugin rules
@@ -408,6 +418,8 @@ pnpm exec tsx scripts/my-script.ts
 - `packages/mcp-server/AGENTS.md` — MCP server development
 
 **Keep package-level `AGENTS.md` files up to date.** When making changes inside a `packages/*` folder that affect architecture, structure, workflows, or conventions (e.g. adding a new plugin system, deprecating a pattern, introducing a new shared abstraction), update the corresponding `AGENTS.md` in that package as part of the same commit.
+
+**Do not duplicate this file in package-level `AGENTS.md`.** This root file is read for every task, so repo-wide rules (changesets, commit and PR workflow, code style) belong here only. A package `AGENTS.md` covers what is specific to that package and links back here for the shared rules — duplicated rules drift apart and then contradict each other.
 
 ## Kiro Steering Files
 

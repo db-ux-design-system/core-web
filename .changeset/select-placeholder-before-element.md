@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: allow auto-width tab items to fit their complete content
+fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive

@@ -53,17 +53,25 @@ export default function DBHeader(props: DBHeaderProps) {
 		state.initialized = true;
 	});
 
+	// Adds/updates this attribute on all children to enable all styling which would have
+	// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device.
+	// Headers which never got forced stay untouched, so we do not stamp "false" onto every child.
 	onUpdate(() => {
-		if (state.initialized && _ref && props.forceMobile) {
-			// Adds this attribute to the header to enable all styling which would have
-			// @media screen and (min-width: $db-screens-m) to show mobile navigation on a desktop device
+		const forceMobile = Boolean(
+			getBoolean(props.forceMobile, 'forceMobile')
+		);
+		if (
+			state.initialized &&
+			_ref &&
+			(forceMobile || state.forcedToMobile)
+		) {
 			addAttributeToChildren(_ref, {
 				key: 'data-force-mobile',
-				value: 'true'
+				value: String(forceMobile)
 			});
-			state.forcedToMobile = true;
+			state.forcedToMobile = forceMobile;
 		}
-	}, [state.initialized, _ref]);
+	}, [state.initialized, _ref, props.forceMobile]);
 
 	// jscpd:ignore-end
 
@@ -73,7 +81,10 @@ export default function DBHeader(props: DBHeaderProps) {
 			class={cls('db-header', props.className)}
 			id={props.id ?? props.propOverrides?.id}
 			data-width={props.width}
-			data-on-forcing-mobile={props.forceMobile && !state.forcedToMobile}>
+			data-on-forcing-mobile={
+				getBoolean(props.forceMobile, 'forceMobile') &&
+				!state.forcedToMobile
+			}>
 			<div class="db-header-meta-navigation">
 				<Slot name="metaNavigation" />
 			</div>
