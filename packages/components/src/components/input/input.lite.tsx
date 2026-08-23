@@ -333,6 +333,11 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
+				// IMPORTANT: the `??` order matters for the badInput guard.
+				// `handleFrameworkEventAngular` sets the model to `undefined` while
+				// the entry is unparsable, so that this binding falls through to
+				// `state._value` (the last parsable display value) instead of
+				// writing '' to the native date editor.
 				value={props.value ?? state._value ?? ''}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
