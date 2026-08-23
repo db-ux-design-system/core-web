@@ -50,9 +50,12 @@ export const handleFrameworkEventAngular = (
 		// destroys everything the user typed so far.
 		component.propagateChange(value);
 		// Signal Forms communicates through the model signal, not through the
-		// legacy CVA callback, so update it too - `writeValue` would have done
-		// this before writing to the element.
-		component[modelValue]?.set?.(value);
+		// legacy CVA callback, so report "empty" there too. It has to be
+		// `undefined` rather than `''`: the element renders from
+		// `value() ?? _value() ?? ''`, so only a nullish model lets that binding
+		// fall back to the last parsable display value instead of writing '' to
+		// the element. Both count as empty for validators.
+		component[modelValue]?.set?.(undefined);
 		return;
 	}
 

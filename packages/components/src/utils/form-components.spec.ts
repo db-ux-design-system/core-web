@@ -132,7 +132,9 @@ describe('handleFrameworkEventAngular', () => {
 	it('propagates the empty value but skips writeValue for a date input with unparsable entry (badInput)', () => {
 		const component = {
 			propagateChange: vi.fn(),
-			writeValue: vi.fn()
+			writeValue: vi.fn(),
+			// Signal Forms reads the model signal, not the CVA callback
+			value: { set: vi.fn() }
 		};
 		// user typed `29.02.0202` - not an existing date, so `value` reads as ''
 		const event = {
@@ -140,9 +142,12 @@ describe('handleFrameworkEventAngular', () => {
 			target: { type: 'date', value: '', validity: { badInput: true } }
 		};
 		handleFrameworkEventAngular(component, event, 'value', '0020-02-29');
-		// the model must not keep the stale valid date ...
+		// neither form API may keep the stale valid date ...
 		expect(component.propagateChange).toHaveBeenCalledWith('');
-		// ... but writing '' back would clear the native date editor
+		// ... and the model has to go nullish, so that the element's
+		// `value() ?? _value() ?? ''` binding falls back to the display value
+		// instead of writing '' to the native date editor
+		expect(component.value.set).toHaveBeenCalledWith(undefined);
 		expect(component.writeValue).not.toHaveBeenCalled();
 	});
 

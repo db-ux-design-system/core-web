@@ -247,7 +247,23 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		// `state._value` is the display value the native input renders from (see
+		// the `value` binding below). While the browser cannot parse the current
+		// entry (`validity.badInput`, e.g. a half-typed date), keep the last
+		// parsable value here: `handleInput` reports an empty value to the form
+		// model in that case, and mirroring it into the display value would make
+		// Angular write '' to the element, which clears the native date editor
+		// and destroys everything the user typed.
+		// Note that Chrome keeps `badInput` true for a keyboard-emptied date
+		// field as well (it reports the editor as incomplete), so this also
+		// holds while the user has cleared the field.
+		// ponytail: a programmatic value change while `badInput` is true does
+		// not reach the element in the one case where the new value equals the
+		// preserved display value - the binding then sees no change. Upgrade
+		// path: sync `_value` on a `badInput` -> false transition too.
+		if (!_ref?.validity?.badInput) {
+			state._value = props.value;
+		}
 	}, [props.value]);
 
 	onUpdate(() => {
