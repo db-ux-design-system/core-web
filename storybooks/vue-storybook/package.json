@@ -17,7 +17,7 @@
     "@db-ux/core-components": "workspace:*",
     "@db-ux/db-theme": "6.2.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "4.1.0",
+    "@db-ux/db-theme-icons": "4.2.0",
     "@db-ux/v-core-components": "workspace:*",
     "@faker-js/faker": "10.6.0",
     "@tanstack/match-sorter-utils": "9.1.2",
@@ -37,6 +37,6 @@
     "storybook": "10.5.10",
     "typescript": "~5.9.3",
     "vite": "8.2.2",
-    "vue-tsc": "3.3.10"
+    "vue-tsc": "3.3.11"
   }
 }
