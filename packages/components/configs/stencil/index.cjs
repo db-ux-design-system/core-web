@@ -4,7 +4,6 @@ const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
 const focusgroupPlugin = require('../plugins/stencil/focusgroup.cjs');
-const closedbyPlugin = require('../plugins/stencil/closedby.cjs');
 const requestClosePlugin = require('../plugins/stencil/request-close.cjs');
 
 /**
@@ -23,7 +22,6 @@ module.exports = {
 		onClickPlugin,
 		esmExtensionsPlugin,
 		focusgroupPlugin,
-		closedbyPlugin,
 		requestClosePlugin
 	]
 };
