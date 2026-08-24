@@ -4,10 +4,11 @@ import { expect, test } from '@playwright/experimental-ct-react';
 import { DBControlPanelNavigationItemGroup } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
 
 const comp: any = (
-	<menu>
+	<DBControlPanelNavigation>
 		<DBControlPanelNavigationItemGroup text="More">
 			<DBControlPanelNavigationItem>
 				<a href="#">Test1</a>
@@ -19,7 +20,7 @@ const comp: any = (
 				<a href="#">Test3</a>
 			</DBControlPanelNavigationItem>
 		</DBControlPanelNavigationItemGroup>
-	</menu>
+	</DBControlPanelNavigation>
 );
 
 const testComponent = () => {
