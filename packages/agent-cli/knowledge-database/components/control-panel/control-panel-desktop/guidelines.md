@@ -8,5 +8,4 @@ Die Regeln zur Positionswahl liegen in [Shell Desktop](../../shell/shell-desktop
 
 ## Zusätzliche Informationen
 
-- Das Control Panel Left lässt sich in den Varianten Drill Down und Tree einklappen und ist initial immer ausgeklappt. Im eingeklappten Zustand bleiben nur Brand und der Button zum Ausklappen sichtbar. _(Example-Kandidat)_
-- In der Variante Flat Icon ist kein Einklappen möglich, da sie bereits die minimale Breite hat.
+- Auf Desktop können Nutzer:innen das Control Panel Left in den Varianten Drill Down und Tree einklappen; initial ist es immer ausgeklappt. Im eingeklappten Zustand bleiben nur Brand und der Button zum Ausklappen sichtbar. _(Example-Kandidat)_

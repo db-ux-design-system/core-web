@@ -1,0 +1,9 @@
+{
+	"id": "control-panel-flat-icon",
+	"name": "Control Panel Flat Icon",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": "v1.0.0",
+	"parent": "control-panel"
+}

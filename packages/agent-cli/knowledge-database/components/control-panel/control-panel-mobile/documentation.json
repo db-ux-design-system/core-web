@@ -2,8 +2,8 @@
 	"component": "control-panel-mobile",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Das Control Panel Mobile stellt die primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell bereit. Es steht in den Positionen Top und Bottom zur Verfügung und öffnet die vollständige Navigation in einem Drawer. Die Positionswahl ist bei Shell Mobile geregelt, die Wahl der Navigationsvariante bei der Control Panel Navigation.",
-		"en": "The Control Panel Mobile provides the primary navigation bar for mobile applications within the Shell. It is available in the Top and Bottom positions and opens the full navigation in a Drawer. Choosing the position is covered by Shell Mobile, choosing the navigation variant by the Control Panel Navigation."
+		"de": "Das Control Panel Mobile stellt die primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell bereit. Es steht in den Positionen Top und Bottom zur Verfügung und öffnet die vollständige Navigation in einem Drawer. Die Positionswahl ist bei Shell Mobile geregelt, die Wahl der Navigationsvariante bei der Control Panel Navigation; Flat Icon ist als eigene Control-Panel-Variante dokumentiert.",
+		"en": "The Control Panel Mobile provides the primary navigation bar for mobile applications within the Shell. It is available in the Top and Bottom positions and opens the full navigation in a Drawer. Choosing the position is covered by Shell Mobile, choosing the navigation variant by the Control Panel Navigation; Flat Icon is documented as a separate Control Panel variant."
 	},
 	"shortDescription": {
 		"de": "Primäre Navigationsleiste für mobile Anwendungen mit Drawer für die vollständige Navigation.",

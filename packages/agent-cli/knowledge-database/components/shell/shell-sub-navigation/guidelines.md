@@ -9,7 +9,7 @@ Untergeordnete Navigation innerhalb der Shell, die zu einem Control Panel Naviga
 
 ## Zusätzliche Informationen
 
-- Auf Desktop lässt sich Sub Navigation Left einklappen und ist initial immer ausgeklappt. Im eingeklappten Zustand bleibt nur der Button zum Ausklappen sichtbar. _(Example-Kandidat)_
+- Auf Desktop können Nutzer:innen Sub Navigation Left einklappen; initial ist sie immer ausgeklappt. Im eingeklappten Zustand bleibt nur der Button zum Ausklappen sichtbar. _(Example-Kandidat)_
 - Die Sub Navigation enthält eine [Control Panel Navigation](../../control-panel/control-panel-navigation/guidelines.md) und nimmt darin Navigation Items auf.
 - Auf Mobile fehlen die Overflow-Chevrons, die Zeile lässt sich aber wischen.
 - Auf Desktop entscheidet die Anzahl der Navigation Items über die Position, siehe [Shell Desktop](../shell-desktop/guidelines.md).

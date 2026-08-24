@@ -12,7 +12,7 @@ Einzelnes Navigation Item innerhalb der Control Panel Navigation. Für Unternavi
 
 ## Zusätzliche Informationen
 
-- Lange Labels wirken sich je Variante unterschiedlich aus: in Drill Down und Tree werden sie mehrzeilig, in Popover wächst das Navigation Item auf die Länge des Labels, in Flat Icon werden sie mit Auslassungspunkten abgeschnitten.
+- Lange Labels wirken sich je Variante unterschiedlich aus: in Drill Down und Tree werden sie mehrzeilig, in Popover wächst das Navigation Item auf die Länge des Labels.
 - Der Tooltip erscheint bei Interaktion mit dem Navigation Item.
 - In Tree tragen Navigation Items standardmäßig einen kleinen Kreis, der sich durch ein eigenes Icon ersetzen lässt. Navigation Item Groups tragen immer den Chevron, er lässt sich nicht ersetzen.
 - Popover-Items haben keinen End Slot, weder horizontal noch vertikal. Tree- und Drill-Down-Items haben ihn.

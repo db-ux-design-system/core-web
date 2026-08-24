@@ -15,11 +15,7 @@
 					"drill-down",
 					"drill-down-group",
 					"tree",
-					"tree-group",
-					"flat-icon-desktop",
-					"flat-icon-no-text-desktop",
-					"flat-icon-mobile",
-					"flat-icon-no-text-mobile"
+					"tree-group"
 				]
 			}
 		},
@@ -37,11 +33,7 @@
 					"popover-group-desktop-vertical",
 					"drill-down",
 					"drill-down-group",
-					"tree",
-					"flat-icon-desktop",
-					"flat-icon-no-text-desktop",
-					"flat-icon-mobile",
-					"flat-icon-no-text-mobile"
+					"tree"
 				]
 			}
 		},
@@ -157,11 +149,7 @@
 					"drill-down",
 					"drill-down-group",
 					"tree",
-					"tree-group",
-					"flat-icon-desktop",
-					"flat-icon-no-text-desktop",
-					"flat-icon-mobile",
-					"flat-icon-no-text-mobile"
+					"tree-group"
 				]
 			}
 		},
@@ -180,11 +168,7 @@
 					"drill-down",
 					"drill-down-group",
 					"tree",
-					"tree-group",
-					"flat-icon-desktop",
-					"flat-icon-no-text-desktop",
-					"flat-icon-mobile",
-					"flat-icon-no-text-mobile"
+					"tree-group"
 				]
 			}
 		},
@@ -203,11 +187,7 @@
 					"drill-down",
 					"drill-down-group",
 					"tree",
-					"tree-group",
-					"flat-icon-desktop",
-					"flat-icon-no-text-desktop",
-					"flat-icon-mobile",
-					"flat-icon-no-text-mobile"
+					"tree-group"
 				]
 			}
 		}

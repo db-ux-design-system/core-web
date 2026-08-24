@@ -77,12 +77,12 @@
 		{
 			"id": "collapse-left",
 			"headline": {
-				"de": "Left einklappen",
-				"en": "Collapsing Left"
+				"de": "Einklappbare Left-Navigation",
+				"en": "Collapsible Left Navigation"
 			},
 			"text": {
-				"de": "Auf Desktop lässt sich Sub Navigation Left einklappen und ist initial immer ausgeklappt. Im eingeklappten Zustand bleibt nur der Button zum Ausklappen sichtbar.",
-				"en": "On desktop, Sub Navigation Left can be collapsed and always starts out expanded. In the collapsed state, only the button to expand it remains visible."
+				"de": "Auf Desktop können Nutzer:innen Sub Navigation Left einklappen; initial ist sie immer ausgeklappt. Im eingeklappten Zustand bleibt nur der Button zum Ausklappen sichtbar.",
+				"en": "On desktop, users can collapse Sub Navigation Left; it always starts expanded. In the collapsed state, only the button to expand it remains visible."
 			},
 			"items": [
 				{
@@ -93,8 +93,8 @@
 					},
 					"figmaNodeId": "4331-158",
 					"description": {
-						"de": "Klappe Sub Navigation Left ein, um dem Seitencontent mehr Breite zu geben.",
-						"en": "Collapse Sub Navigation Left to give the page content more width."
+						"de": "Nutzer:innen können Sub Navigation Left einklappen, um dem Seiteninhalt mehr Breite zu geben.",
+						"en": "Users can collapse Sub Navigation Left to give the page content more width."
 					}
 				}
 			]

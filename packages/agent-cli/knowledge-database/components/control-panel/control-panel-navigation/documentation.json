@@ -2,23 +2,21 @@
 	"component": "control-panel-navigation",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Control Panel Navigation ist der Navigations-Container innerhalb des Control Panels und der Shell Sub Navigation. Sie nimmt Navigation Items auf und steht in den Varianten Popover, Tree, Drill Down und Flat Icon zur Verfügung.",
-		"en": "Control Panel Navigation is the navigation container within the Control Panel and the Shell Sub Navigation. It holds Navigation Items and is available in the Popover, Tree, Drill Down, and Flat Icon variants."
+		"de": "Control Panel Navigation ist der Navigations-Container innerhalb des Control Panels und der Shell Sub Navigation. Sie nimmt Navigation Items auf und steht in den Varianten Popover, Tree und Drill Down zur Verfügung.",
+		"en": "Control Panel Navigation is the navigation container within the Control Panel and the Shell Sub Navigation. It holds Navigation Items and is available in the Popover, Tree, and Drill Down variants."
 	},
 	"shortDescription": {
-		"de": "Navigations-Container mit den Varianten Popover, Tree, Drill Down und Flat Icon.",
-		"en": "Navigation container with the Popover, Tree, Drill Down, and Flat Icon variants."
+		"de": "Navigations-Container mit den Varianten Popover, Tree und Drill Down.",
+		"en": "Navigation container with the Popover, Tree, and Drill Down variants."
 	},
 	"useCases": {
 		"de": [
 			"Navigationsziele in der Variante darstellen, die zur Struktur passt",
-			"Tiefere Ebenen über Popover, Tree oder Drill Down erschließen",
-			"Flat Icon für eine flache Hierarchie einsetzen, in der die Icons im Vordergrund stehen"
+			"Tiefere Ebenen über Popover, Tree oder Drill Down erschließen"
 		],
 		"en": [
 			"Present navigation destinations in the variant that fits the structure",
-			"Open up deeper levels through Popover, Tree, or Drill Down",
-			"Use Flat Icon for a flat hierarchy in which the icons are visually dominant"
+			"Open up deeper levels through Popover, Tree, or Drill Down"
 		]
 	},
 	"guidelines": [
@@ -96,84 +94,9 @@
 					"en": "Above seven entries per level, Tree loses its advantage of keeping the full hierarchy visible."
 				}
 			}
-		},
-		{
-			"id": "flat-icon-usage",
-			"headline": {
-				"de": "Einsatz von Flat Icon",
-				"en": "Flat Icon Usage"
-			},
-			"text": {
-				"de": "Flat Icon stellt alle Ziele mit demselben Gewicht dar. Die Variante eignet sich deshalb nur für gleichwertige Ziele auf oberster Ebene.",
-				"en": "Flat Icon presents all destinations with the same weight. The variant is therefore only suited to equally weighted destinations at the top level."
-			},
-			"do": {
-				"figmaNodeId": "4799-40",
-				"description": {
-					"de": "Setze Flat Icon für gleichwertige Ziele auf oberster Ebene ein.",
-					"en": "Use Flat Icon for equally weighted destinations at the top level."
-				}
-			},
-			"dont": {
-				"figmaNodeId": "4799-44",
-				"description": {
-					"de": "Setze Flat Icon nicht ein, wenn ein Ziel über den anderen steht. Untergeordnete Ziele stehen sonst gleichrangig neben ihrem übergeordneten, und die Struktur ist nicht mehr erkennbar.",
-					"en": "Don't use Flat Icon when one destination sits above the others. Otherwise sub-destinations appear next to their parent as equals, and the structure is no longer recognizable."
-				}
-			}
-		},
-		{
-			"id": "flat-icon-item-count",
-			"headline": {
-				"de": "Anzahl in Flat Icon",
-				"en": "Items in Flat Icon"
-			},
-			"text": {
-				"de": "Flat Icon ist auf schnellen Zugriff ausgelegt. Auf Desktop trägt die Variante höchstens zehn Navigation Items, optimal bis zu sieben.",
-				"en": "Flat Icon is designed for quick access. On desktop, the variant holds no more than ten Navigation Items, ideally seven."
-			},
-			"do": {
-				"figmaNodeId": "4390-14",
-				"description": {
-					"de": "Setze in Flat Icon auf Desktop höchstens zehn Navigation Items ein, optimal bis zu sieben.",
-					"en": "In Flat Icon on desktop, use at most ten Navigation Items, ideally up to seven."
-				}
-			},
-			"caution": {
-				"figmaNodeId": "4390-16",
-				"description": {
-					"de": "Längere Icon-Listen widersprechen dem schnellen Zugriff, für den Flat Icon gedacht ist. Reduziere die Anzahl der Ziele.",
-					"en": "Longer icon lists work against the quick access Flat Icon is meant for. Reduce the number of destinations."
-				}
-			}
 		}
 	],
 	"examples": [
-		{
-			"id": "hide-text",
-			"headline": {
-				"de": "Label ausblenden",
-				"en": "Hiding the Label"
-			},
-			"text": {
-				"de": "In der Flat Icon Navigation lässt sich das Label ausblenden, sodass nur das Icon sichtbar bleibt.",
-				"en": "In the Flat Icon Navigation, the label can be hidden so that only the icon remains visible."
-			},
-			"items": [
-				{
-					"id": "without-label",
-					"headline": {
-						"de": "Ohne Label",
-						"en": "Without Label"
-					},
-					"figmaNodeId": "4804-32",
-					"description": {
-						"de": "Blende das Label auf Mobile aus, wenn mehr als vier Ziele in die Leiste passen müssen. Ohne Label nimmt sie bis zu sechs Items auf.",
-						"en": "On mobile, hide the label when more than four destinations need to fit into the bar. Without labels the bar holds up to six items."
-					}
-				}
-			]
-		},
 		{
 			"id": "popover-overflow",
 			"headline": {

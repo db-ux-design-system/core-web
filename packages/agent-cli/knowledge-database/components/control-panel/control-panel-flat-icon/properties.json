@@ -1,0 +1,35 @@
+{
+	"component": "control-panel-flat-icon",
+	"properties": [
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+			}
+		},
+		{
+			"name": "childrenNoText",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children No Text",
+				"type": "slot",
+				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+			}
+		},
+		{
+			"name": "noText",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "🔀 No Text",
+				"values": ["False", "True"],
+				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+			}
+		}
+	]
+}

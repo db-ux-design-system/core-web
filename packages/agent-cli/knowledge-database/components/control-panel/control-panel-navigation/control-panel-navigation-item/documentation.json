@@ -79,8 +79,8 @@
 				"en": "Label Length"
 			},
 			"text": {
-				"de": "Kurze Labels lassen sich beim Überfliegen der Navigation schnell erfassen. Lange Labels verändern zusätzlich das Layout, je Variante unterschiedlich: in Drill Down und Tree werden sie mehrzeilig, in Popover wächst das Navigation Item mit, in Flat Icon werden sie abgeschnitten.",
-				"en": "Short labels are quick to grasp when scanning the navigation. Long labels also change the layout, differently per variant: in Drill Down and Tree they wrap to several lines, in Popover the Navigation Item grows with them, in Flat Icon they are truncated."
+				"de": "Kurze Labels lassen sich beim Überfliegen der Navigation schnell erfassen. Lange Labels verändern zusätzlich das Layout, je Variante unterschiedlich: in Drill Down und Tree werden sie mehrzeilig, in Popover wächst das Navigation Item mit.",
+				"en": "Short labels are quick to grasp when scanning the navigation. Long labels also change the layout, differently per variant: in Drill Down and Tree they wrap to several lines, in Popover the Navigation Item grows with them."
 			},
 			"do": {
 				"figmaNodeId": "id=4808-87",

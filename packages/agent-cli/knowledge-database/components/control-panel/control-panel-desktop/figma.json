@@ -20,13 +20,6 @@
 			"type": "COMPONENT_SET",
 			"key": "b13bb60fb7a46cffb88a499f8c7003e752a1ac4c",
 			"note": "Split out from CP → Drill Down - Desktop - Left, which previously carried the Tree variant. Reached in Shell Desktop via the 🔄 CP Navigation instance swap, not by direct placement."
-		},
-		{
-			"name": "CP → Flat Icon - Desktop (Beta)",
-			"nodeId": "38794:101238",
-			"type": "COMPONENT",
-			"key": "7cbe4154cc016522588909590901c46296b3b5b0",
-			"note": "Split out from CP → Drill Down - Desktop - Left, which previously carried the Flat Icon variant. Reached in Shell Desktop via the 🔄 CP Navigation instance swap, not by direct placement."
 		}
 	]
 }

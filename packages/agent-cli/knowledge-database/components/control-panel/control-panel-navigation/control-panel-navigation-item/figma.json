@@ -49,30 +49,6 @@
 			"nodeId": "35867:44589",
 			"type": "COMPONENT_SET",
 			"key": "5ecb46781542e5890cb3ee11e63dd8f9942ab01a"
-		},
-		{
-			"name": "↳ CP Navigation Item → Flat Icon - Desktop (Beta)",
-			"nodeId": "35867:59032",
-			"type": "COMPONENT_SET",
-			"key": "1973de68d37ed60a4d23eb18511e2b86feab0616"
-		},
-		{
-			"name": "↳ CP Navigation Item → Flat Icon - No Text - Desktop (Beta)",
-			"nodeId": "35867:45326",
-			"type": "COMPONENT_SET",
-			"key": "f4e27442917dc53f9ce0238b23c6ae3be81b58ce"
-		},
-		{
-			"name": "↳ CP Navigation Item → Flat Icon - Mobile (Beta)",
-			"nodeId": "35867:45498",
-			"type": "COMPONENT_SET",
-			"key": "3978fa908241586e9b65d523a88ca7c7aa818e85"
-		},
-		{
-			"name": "↳ CP Navigation Item → Flat Icon - No Text - Mobile (Beta)",
-			"nodeId": "35867:45646",
-			"type": "COMPONENT_SET",
-			"key": "0b1e3e1b7b9bcc6a1095ca061acbe3ea11fc0872"
 		}
 	]
 }

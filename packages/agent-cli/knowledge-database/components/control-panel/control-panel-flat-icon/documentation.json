@@ -1,0 +1,118 @@
+{
+	"component": "control-panel-flat-icon",
+	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
+	"description": {
+		"de": "Das Control Panel Flat Icon stellt gleichwertige Navigationsziele auf oberster Ebene in einer flachen Icon-Navigation dar. Es steht für Desktop und Mobile zur Verfügung und ist auf schnellen Zugriff ausgelegt.",
+		"en": "The Control Panel Flat Icon presents equally weighted top-level navigation destinations in a flat icon navigation. It is available for desktop and mobile and is designed for quick access."
+	},
+	"shortDescription": {
+		"de": "Flache Icon-Navigation für gleichwertige Ziele auf oberster Ebene.",
+		"en": "Flat icon navigation for equally weighted top-level destinations."
+	},
+	"useCases": {
+		"de": [
+			"Gleichwertige Ziele auf oberster Ebene anbieten",
+			"Eine flache Hierarchie mit visuell dominanten Icons darstellen",
+			"Schnellen Zugriff auf bis zu zehn Ziele auf Desktop und sechs auf Mobile ermöglichen"
+		],
+		"en": [
+			"Offer equally weighted destinations at the top level",
+			"Present a flat hierarchy with visually dominant icons",
+			"Enable quick access to up to ten destinations on desktop and six on mobile"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "flat-icon-usage",
+			"headline": {
+				"de": "Einsatz von Flat Icon",
+				"en": "Flat Icon Usage"
+			},
+			"text": {
+				"de": "Flat Icon stellt alle Ziele mit demselben Gewicht dar. Die Variante eignet sich deshalb nur für gleichwertige Ziele auf oberster Ebene.",
+				"en": "Flat Icon presents all destinations with the same weight. The variant is therefore only suited to equally weighted destinations at the top level."
+			},
+			"do": {
+				"figmaNodeId": "4799-40",
+				"description": {
+					"de": "Setze Flat Icon für gleichwertige Ziele auf oberster Ebene ein.",
+					"en": "Use Flat Icon for equally weighted destinations at the top level."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4799-44",
+				"description": {
+					"de": "Setze Flat Icon nicht ein, wenn ein Ziel über den anderen steht. Untergeordnete Ziele stehen sonst gleichrangig neben ihrem übergeordneten, und die Struktur ist nicht mehr erkennbar.",
+					"en": "Don't use Flat Icon when one destination sits above the others. Otherwise sub-destinations appear next to their parent as equals, and the structure is no longer recognizable."
+				}
+			}
+		},
+		{
+			"id": "flat-icon-item-count",
+			"headline": {
+				"de": "Anzahl in Flat Icon",
+				"en": "Items in Flat Icon"
+			},
+			"text": {
+				"de": "Flat Icon ist auf schnellen Zugriff ausgelegt. Auf Desktop trägt die Variante höchstens zehn Navigation Items, optimal bis zu sieben.",
+				"en": "Flat Icon is designed for quick access. On desktop, the variant holds no more than ten Navigation Items, ideally seven."
+			},
+			"do": {
+				"figmaNodeId": "4390-14",
+				"description": {
+					"de": "Setze in Flat Icon auf Desktop höchstens zehn Navigation Items ein, optimal bis zu sieben.",
+					"en": "In Flat Icon on desktop, use at most ten Navigation Items, ideally up to seven."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4390-16",
+				"description": {
+					"de": "Längere Icon-Listen widersprechen dem schnellen Zugriff, für den Flat Icon gedacht ist. Reduziere die Anzahl der Ziele.",
+					"en": "Longer icon lists work against the quick access Flat Icon is meant for. Reduce the number of destinations."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "hide-text",
+			"headline": {
+				"de": "Label ausblenden",
+				"en": "Hiding the Label"
+			},
+			"text": {
+				"de": "In Flat Icon lässt sich das Label ausblenden, sodass nur das Icon sichtbar bleibt.",
+				"en": "In Flat Icon, the label can be hidden so that only the icon remains visible."
+			},
+			"items": [
+				{
+					"id": "without-label",
+					"headline": {
+						"de": "Ohne Label",
+						"en": "Without Label"
+					},
+					"figmaNodeId": "4804-32",
+					"description": {
+						"de": "Blende das Label auf Mobile aus, wenn mehr als vier Ziele in die Leiste passen müssen. Ohne Label nimmt sie bis zu sechs Items auf.",
+						"en": "On mobile, hide the label when more than four destinations need to fit into the bar. Without labels the bar holds up to six items."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "control-panel-navigation"
+		},
+		{
+			"component": "control-panel-desktop"
+		},
+		{
+			"component": "control-panel-mobile"
+		},
+		{
+			"component": "control-panel-navigation-item"
+		}
+	]
+}

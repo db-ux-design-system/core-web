@@ -8,23 +8,7 @@
 			"design": {
 				"name": "📦 Children",
 				"type": "slot",
-				"componentSet": [
-					"popover",
-					"tree",
-					"flat-icon-desktop",
-					"flat-icon-mobile",
-					"drill-down"
-				]
-			}
-		},
-		{
-			"name": "childrenNoText",
-			"type": "slot",
-			"code": null,
-			"design": {
-				"name": "📦 Children No Text",
-				"type": "slot",
-				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+				"componentSet": ["popover", "tree", "drill-down"]
 			}
 		},
 		{
@@ -35,16 +19,6 @@
 				"name": "📦 Children Level 2",
 				"type": "slot",
 				"componentSet": ["drill-down"]
-			}
-		},
-		{
-			"name": "noText",
-			"type": "boolean",
-			"code": null,
-			"design": {
-				"name": "🔀 No Text",
-				"values": ["False", "True"],
-				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
 			}
 		},
 		{

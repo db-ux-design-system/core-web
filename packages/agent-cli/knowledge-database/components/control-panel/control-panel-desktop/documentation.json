@@ -13,12 +13,12 @@
 		"de": [
 			"Logo, Navigation und globale Aktionen in einem dauerhaft sichtbaren Rahmen bündeln",
 			"Das Control Panel oben als horizontale Leiste oder links als vertikale Sidebar positionieren",
-			"Das Control Panel Left einklappen, um dem Seitencontent mehr Breite zu geben"
+			"Nutzer:innen können das Control Panel Left einklappen und so dem Seiteninhalt mehr Breite geben"
 		],
 		"en": [
 			"Combine logo, navigation, and global actions in one permanently visible frame",
 			"Position the Control Panel at the top as a horizontal bar or on the left as a vertical sidebar",
-			"Collapse the Control Panel Left to give the page content more width"
+			"Users can collapse the Control Panel Left to give the page content more width"
 		]
 	},
 	"guidelines": [],
@@ -26,12 +26,12 @@
 		{
 			"id": "collapse-left",
 			"headline": {
-				"de": "Left einklappen",
-				"en": "Collapsing Left"
+				"de": "Einklappbares Control Panel Left",
+				"en": "Collapsible Control Panel Left"
 			},
 			"text": {
-				"de": "Das Control Panel Left lässt sich in den Varianten Drill Down und Tree einklappen und ist initial immer ausgeklappt. Im eingeklappten Zustand bleiben nur Brand und der Button zum Ausklappen sichtbar. In der Variante Flat Icon ist kein Einklappen möglich, da sie bereits die minimale Breite hat.",
-				"en": "The Control Panel Left can be collapsed in the Drill Down and Tree variants and always starts out expanded. In the collapsed state, only the Brand and the button to expand it remain visible. The Flat Icon variant cannot be collapsed because it is already at its minimum width."
+				"de": "Auf Desktop können Nutzer:innen das Control Panel Left in den Varianten Drill Down und Tree einklappen; initial ist es immer ausgeklappt. Im eingeklappten Zustand bleiben nur Brand und der Button zum Ausklappen sichtbar.",
+				"en": "On desktop, users can collapse the Control Panel Left in the Drill Down and Tree variants; it always starts expanded. In the collapsed state, only the Brand and the button to expand it remain visible."
 			},
 			"items": [
 				{
@@ -42,8 +42,8 @@
 					},
 					"figmaNodeId": "4042-10",
 					"description": {
-						"de": "Klappe das Control Panel Left ein, um dem Seitencontent mehr Breite zu geben. Brand und der Button zum Ausklappen bleiben sichtbar.",
-						"en": "Collapse the Control Panel Left to give the page content more width. The Brand and the button to expand it remain visible."
+						"de": "Nutzer:innen können das Control Panel Left einklappen, um dem Seiteninhalt mehr Breite zu geben. Brand und der Button zum Ausklappen bleiben sichtbar.",
+						"en": "Users can collapse the Control Panel Left to give the page content more width. The Brand and the button to expand it remain visible."
 					}
 				}
 			]
