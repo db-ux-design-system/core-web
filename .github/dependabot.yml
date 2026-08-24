@@ -101,6 +101,8 @@ updates:
         patterns:
           - "vitest"
           - "@vitest*"
+          # property-based testing, runs inside the vitest suites
+          - "fast-check"
       # Development tools
       typescript:
         patterns:
