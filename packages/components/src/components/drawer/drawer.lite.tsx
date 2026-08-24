@@ -8,14 +8,14 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { ClickEvent, GeneralEvent } from '../../shared/model';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { syncDialogOpenState } from '../../utils/dialog';
+// BEGIN: dialog ponyfill
 import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	supportsClosedBy,
-	supportsCommandFor,
-	uuid
-} from '../../utils';
+	markClosedByFallback,
+	requestCloseFallback
+} from '../../utils/dialog-ponyfill';
+// END: dialog ponyfill
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -34,36 +34,20 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
+		// BEGIN: dialog ponyfill
 		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
+		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			const button = (event?.target as HTMLElement)?.closest?.(
-				'[command="request-close"]'
-			);
-			if (!button) return;
-
-			const target = button.getAttribute('commandfor');
-			if (
-				!supportsCommandFor() ||
-				!target ||
-				!document.querySelector('dialog#' + target)
-			) {
-				(_ref as HTMLDialogElement).requestClose();
-			}
+			requestCloseFallback(event, _ref);
 		},
+		// END: dialog ponyfill
 		handleDialogOpen: () => {
-			if (!_ref) return;
-
-			const dialogOpen = getBoolean(props.open, 'open');
-			if (dialogOpen && !_ref.open) {
-				if (state.isNotModal()) {
-					_ref.show();
-				} else {
-					_ref.showModal();
-				}
-			} else if (!dialogOpen && _ref.open) {
-				_ref.close();
-			}
+			syncDialogOpenState(
+				_ref,
+				getBoolean(props.open, 'open'),
+				state.isNotModal()
+			);
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
@@ -76,19 +60,13 @@ export default function DBDrawer(props: DBDrawerProps) {
 			if (props.onClose) {
 				props.onClose(event);
 			}
-		},
-		// Marks the dialog for the CSS backdrop-click fallback, which extends the close button's hit area. Supporting browsers stay clean.
-		// TODO: Remove after `closedby` is evergreen regarding our browserlist
-		_setClosedByFallback: () => {
-			if (_ref && !supportsClosedBy()) {
-				(_ref as HTMLDialogElement).dataset['closedby'] =
-					'not-supported';
-			}
 		}
 	});
 
 	onMount(() => {
-		state._setClosedByFallback();
+		// BEGIN: dialog ponyfill
+		markClosedByFallback(_ref);
+		// END: dialog ponyfill
 		state.handleDialogOpen();
 		state.initialized = true;
 	});

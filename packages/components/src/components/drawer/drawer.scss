@@ -4,6 +4,8 @@
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
+@use "../../styles/internal/dialog-components";
+@use "../../styles/internal/dialog-ponyfill";
 @use "../../styles/dialog-init";
 
 %container-size-horizontal {
@@ -15,24 +17,8 @@
 	);
 
 	inline-size: var(--db-drawer-width-horizontal);
-	min-inline-size: var(--db-drawer-min-width, auto);
-	max-inline-size: var(
-		--db-drawer-max-width,
-		var(--db-drawer-max-width-horizontal)
-	);
 
-	&:not([data-container-size]),
-	&[data-container-size="small"] {
-		--db-drawer-max-width-horizontal: #{variables.$db-container-xs};
-	}
-
-	&[data-container-size="medium"] {
-		--db-drawer-max-width-horizontal: #{variables.$db-container-lg};
-	}
-
-	&[data-container-size="large"] {
-		--db-drawer-max-width-horizontal: #{variables.$db-container-3xl};
-	}
+	@include dialog-components.container-size-inline("drawer", "small");
 }
 
 %container-size-vertical {
@@ -112,50 +98,6 @@
 	}
 }
 
-// Safe Area Inset Handling (PWA / Mobile)
-// =========================================
-// On devices with viewport-fit=cover, env(safe-area-inset-*) provides the
-// inset values for notch, home indicator, etc.
-// ---
-// The drawer uses CSS custom properties so the behavior can be simulated
-// on desktop for debugging without a real device or iOS Simulator.
-// ---
-// Direction behavior:
-//   to-left / to-right (default):
-//     - Padding top (header) + bottom (footer/content) for safe areas
-//   up (drawer opens from bottom):
-//     - Padding bottom (footer/content) for home indicator
-//     - No top padding in header (--db-drawer-safe-area-inset-top: 0px)
-//   down (drawer opens from top):
-//     - Padding top (header) for notch
-//     - No bottom padding in footer/content (--db-drawer-safe-area-inset-bottom: 0px)
-// ---
-// Debugging in the browser (DevTools or <style> block):
-//   .db-drawer-container {
-//     --db-drawer-safe-area-inset-top: 47px;
-//     --db-drawer-safe-area-inset-bottom: 34px;
-//   }
-%drawer-safe-area {
-	--db-drawer-safe-area-inset-top: env(safe-area-inset-top, 0px);
-	--db-drawer-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-
-	&:not(:has(.db-drawer-footer)) {
-		> .db-drawer-content {
-			// stylelint-disable-next-line db-ux/use-spacings -- safe-area env value, not a static spacing
-			margin-block-end: var(--db-drawer-safe-area-inset-bottom);
-		}
-	}
-
-	&:has(.db-drawer-footer) {
-		.db-drawer-footer {
-			padding-block-end: calc(
-				#{variables.$db-spacing-fixed-xs} +
-					var(--db-drawer-safe-area-inset-bottom)
-			);
-		}
-	}
-}
-
 .db-drawer {
 	--db-drawer-inline-size: 100dvw;
 	--db-drawer-block-size: 100dvh;
@@ -229,27 +171,16 @@
 	}
 
 	.db-drawer-container {
-		@extend %drawer-safe-area;
+		@include dialog-components.container-layout;
 
-		display: grid;
-		grid-template-rows:
-			[header] auto
-			[main] 1fr
-			[footer] auto;
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
 		position: fixed;
-		box-shadow: variables.$db-elevation-md;
+
+		@include dialog-components.safe-area("drawer");
 
 		> .db-drawer-content {
-			overflow-y: auto;
-			overscroll-behavior: contain;
-			padding: var(
-				--db-drawer-content-padding,
-				variables.$db-spacing-fixed-xs
-					component.$drawer-content-padding-inline
-			);
+			@include dialog-components.content("drawer");
 		}
 
 		&[data-show-spacing="true"] {
@@ -272,10 +203,6 @@
 			&[data-direction="down"] {
 				border-block-end: component.$component-border;
 			}
-		}
-
-		&[data-rounded="true"] {
-			box-shadow: variables.$db-elevation-md;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
@@ -334,29 +261,7 @@
 		}
 	}
 
-	// Backdrop click fallback: In browsers that don't support closedby,
-	// extend the close button's hit area to cover the full viewport.
-	// This makes clicking the "backdrop" area trigger the close button.
-	// `data-closedby="not-supported"` is set by the component's JS feature
-	// detection, since `closedby` cannot be feature-detected in CSS.
-	// TODO: Remove after `closedby` is evergreen regarding our browserlist
-	&[data-closedby="not-supported"]:not([data-backdrop="none"]) {
-		[command="request-close"]::after {
-			content: "";
-			position: fixed;
-			inset: 0;
-			z-index: -1;
-			cursor: default;
-		}
-
-		// Absolute drawers are bounded by their parent element, not the viewport.
-		// The pseudo's containing block is `.db-drawer-container`, so oversize it
-		// and let the dialog's own `overflow: clip` trim it to the dialog box.
-		&[data-position="absolute"] [command="request-close"]::after {
-			position: absolute;
-			inset: -100vmax;
-		}
-	}
+	@include dialog-ponyfill.backdrop-click-hit-area($absolute-variant: true);
 
 	&[data-position="absolute"] {
 		--db-drawer-inline-size: 100%;

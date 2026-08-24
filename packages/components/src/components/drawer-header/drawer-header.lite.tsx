@@ -10,6 +10,12 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
+import {
+	getClosestDialogId,
+	removeDialogAriaLabelledBy,
+	resolveClosestDialog,
+	setDialogAriaLabelledBy
+} from '../../utils/dialog';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBDrawerHeaderProps, DBDrawerHeaderState } from './model';
@@ -29,24 +35,17 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		_dialogId: '',
 		// Links the heading to the dialog and captures its id as the close button's command target.
 		_resolveDialog() {
-			if (_ref) {
-				const dialog = (_ref as HTMLElement).closest('dialog');
-				if (dialog) {
-					state._dialogId = dialog.id;
-					dialog.setAttribute('aria-labelledby', state._headingId);
-				}
-			}
+			state._dialogId = getClosestDialogId(_ref) ?? '';
+			setDialogAriaLabelledBy(
+				resolveClosestDialog(_ref),
+				state._headingId
+			);
 		},
 		removeAriaLabelledBy() {
-			if (_ref) {
-				const dialog = (_ref as HTMLElement).closest('dialog');
-				if (
-					dialog &&
-					dialog.getAttribute('aria-labelledby') === state._headingId
-				) {
-					dialog.removeAttribute('aria-labelledby');
-				}
-			}
+			removeDialogAriaLabelledBy(
+				resolveClosestDialog(_ref),
+				state._headingId
+			);
 		}
 	});
 

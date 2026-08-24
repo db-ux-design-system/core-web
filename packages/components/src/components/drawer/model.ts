@@ -107,7 +107,6 @@ export type DBDrawerDefaultState = {
 	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
 	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
 	isNotModal: () => boolean;
-	_setClosedByFallback: () => void;
 };
 
 export type DBDrawerState = DBDrawerDefaultState &
