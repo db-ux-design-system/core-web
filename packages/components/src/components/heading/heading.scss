@@ -104,10 +104,12 @@ $logical-alignments: (
 		@extend %heading-base;
 	}
 
-	/* The size lands on the wrapper as well, so `1lh` for
+	/* The headline font lands on the wrapper as well, so `1lh` for
 	 * `data-paragraph-spacing` resolves from the heading typography instead of
-	 * the surrounding body text. The nested heading needs it explicitly too,
-	 * because the user-agent styles for `h1`-`h6` override inheritance.
+	 * the surrounding body text. Only the font shorthand is applied there: the
+	 * full headline override also sets icon custom properties, which would leak
+	 * into sibling slot components. The nested heading still needs the full
+	 * override because the user-agent styles for `h1`-`h6` block inheritance.
 	 *
 	 * The tag inside `:has()` must stay wrapped in `:where()` to keep this rule at
 	 * zero extra specificity. A bare `:has(h2)` adds one, which makes the `font`
@@ -116,7 +118,8 @@ $logical-alignments: (
 	&:not([data-size]) {
 		@each $tag, $size in fonts.$headlines {
 			&:has(:where(#{$tag})) {
-				&,
+				@include fonts.set-headline-size($size);
+
 				:where(#{$tag}):not(.db-heading) {
 					@extend %db-overwrite-headline-size-#{$size};
 				}
@@ -126,7 +129,8 @@ $logical-alignments: (
 
 	@each $size in fonts.$font-sizes {
 		&[data-size="#{$size}"] {
-			&,
+			@include fonts.set-headline-size($size);
+
 			#{$nested-heading} {
 				@extend %db-overwrite-headline-size-#{$size};
 			}

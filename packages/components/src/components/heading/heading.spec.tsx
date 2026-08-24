@@ -1,6 +1,9 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+import { DBBadge } from '../badge';
+import { DBCustomButton } from '../custom-button';
+import { DBIcon } from '../icon';
 import {
 	DBCustomHeading,
 	DBHeadingH1,
@@ -357,6 +360,121 @@ test.describe('DBCustomHeading', () => {
 		// Same row, action after the heading.
 		expect(actionBox!.x).toBeGreaterThan(headingBox!.x);
 		expect(actionBox!.y).toBeLessThan(headingBox!.y + headingBox!.height);
+	});
+
+	test('keeps nested DB components at their standalone visual size', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<div>
+				<div>
+					<DBIcon data-testid="reference-icon" icon="x_placeholder" />
+					<DBBadge
+						data-testid="reference-badge"
+						semantic="critical"
+						emphasis="strong">
+						3
+					</DBBadge>
+					<DBCustomButton
+						data-testid="reference-button"
+						variant="ghost"
+						icon="more_vertical"
+						noText={true}>
+						<button type="button">More options</button>
+					</DBCustomButton>
+				</div>
+				<DBCustomHeading
+					startSlot={
+						<DBIcon
+							data-testid="nested-icon"
+							icon="x_placeholder"
+						/>
+					}>
+					{/*<template v-slot:start-slot>
+						<DBIcon data-testid="nested-icon" icon="x_placeholder" />
+					</template>*/}
+					<h2>Icon heading</h2>
+				</DBCustomHeading>
+				<DBCustomHeading
+					endSlot={
+						<DBBadge
+							data-testid="nested-badge"
+							semantic="critical"
+							emphasis="strong">
+							3
+						</DBBadge>
+					}>
+					{/*<template v-slot:end-slot>
+						<DBBadge
+							data-testid="nested-badge"
+							semantic="critical"
+							emphasis="strong">
+							3
+						</DBBadge>
+					</template>*/}
+					<h2>Badge heading</h2>
+				</DBCustomHeading>
+				<DBCustomHeading
+					endSlot={
+						<DBCustomButton
+							data-testid="nested-button"
+							variant="ghost"
+							icon="more_vertical"
+							noText={true}>
+							<button type="button">More options</button>
+						</DBCustomButton>
+					}>
+					{/*<template v-slot:end-slot>
+						<DBCustomButton
+							data-testid="nested-button"
+							variant="ghost"
+							icon="more_vertical"
+							noText={true}>
+							<button type="button">More options</button>
+						</DBCustomButton>
+					</template>*/}
+					<h2>Button heading</h2>
+				</DBCustomHeading>
+			</div>
+		);
+
+		const [
+			referenceIconSize,
+			nestedIconSize,
+			referenceBadgeSize,
+			nestedBadgeSize,
+			referenceButtonSize,
+			nestedButtonSize
+		] = await Promise.all([
+			component
+				.getByTestId('reference-icon')
+				.evaluate(
+					(element) => getComputedStyle(element, '::before').fontSize
+				),
+			component
+				.getByTestId('nested-icon')
+				.evaluate(
+					(element) => getComputedStyle(element, '::before').fontSize
+				),
+			component
+				.getByTestId('reference-badge')
+				.evaluate((element) => getComputedStyle(element).fontSize),
+			component
+				.getByTestId('nested-badge')
+				.evaluate((element) => getComputedStyle(element).fontSize),
+			component
+				.getByTestId('reference-button')
+				.locator('button')
+				.evaluate((element) => getComputedStyle(element).fontSize),
+			component
+				.getByTestId('nested-button')
+				.locator('button')
+				.evaluate((element) => getComputedStyle(element).fontSize)
+		]);
+
+		expect(nestedIconSize).toBe(referenceIconSize);
+		expect(nestedBadgeSize).toBe(referenceBadgeSize);
+		expect(nestedButtonSize).toBe(referenceButtonSize);
 	});
 
 	test('renders the start slot before and the end slot after the heading', async ({

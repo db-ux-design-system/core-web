@@ -163,11 +163,15 @@ Three implementation details in `heading.scss` that should not be traded away:
 - **The child selectors exclude `.db-heading`.** A nested Heading component keeps
   its own typography instead of fighting the wrapper's attributes, so the two
   models never produce an ambiguous result.
-- **The size lands on the wrapper as well as on the child.** The wrapper needs it
-  so `1lh` for `data-paragraph-spacing` resolves from the heading typography
-  rather than the surrounding body text; the child needs it explicitly because
-  the user-agent styles for `h1`-`h6` override inheritance. Without an explicit
-  `data-size` the wrapper picks the level default via `:has(:where(h1))` etc.
+- **Only the headline font shorthand lands on the wrapper.** The wrapper needs
+  the matching line height so `1lh` for `data-paragraph-spacing` resolves from
+  the heading typography rather than the surrounding body text. Use
+  `fonts.set-headline-size` there; the full `%db-overwrite-headline-size-*`
+  placeholder additionally sets icon custom properties and must stay on the
+  nested heading, otherwise those properties leak into sibling slot components.
+  The nested heading also needs the full override because user-agent styles for
+  `h1`-`h6` block font inheritance. Without an explicit `data-size`, the wrapper
+  picks the level default via `:has(:where(h1))` etc.
 - **`data-alignment` sets `justify-content` on the wrapper and repeats
   `text-align` on the child.** `%heading-base` sets an explicit
   `text-align: start` on the child, which would otherwise block inheritance.
@@ -412,7 +416,7 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 > plugin code to about 30 lines of configuration that way. Migrate the
 > transformations themselves out of this folder, not individual components into
 > parallel implementations.
-
+>
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
 ### React `propsPassingFilter` and `default*` props
