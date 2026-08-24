@@ -71,7 +71,8 @@
 		"**/examples/**/*.example.lite.tsx",
 		"**/figma/**/*.figma.lite.tsx",
 		"**/figma/**/*.figma.ts",
-		"**/packages/eslint-plugin/src/rules/**"
+		"**/packages/eslint-plugin/src/rules/**",
+		"**/db-ux-designer-powers/skills/generate-figma-screen/assets/registries/**"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true,

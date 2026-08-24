@@ -12,7 +12,16 @@ const xoConfig = [
 			// Generated + size-critical Figma render runtime: pasted verbatim into use_figma
 			// (50 000-char cap), so it must stay minified. Regenerate via build-runtime.cjs.
 			'packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/db-figma-runtime.min.js',
-			'packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/bootstrap/**'
+			'packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/bootstrap/**',
+			// The runtime SOURCE modules are concatenated into one script by build-runtime.cjs and
+			// share their globals across files, so linting them standalone is meaningless (447
+			// no-undef, 48 no-unused-vars) — and its autofix is destructive: `parent.appendChild()`
+			// is the FIGMA PLUGIN API, not the DOM, so `unicorn/prefer-dom-node-append` would
+			// rewrite 27 call sites into `.append()` and break every render. They are validated
+			// through `node assets/build-runtime.cjs` (parse + public-name guard) and the unit
+			// tests, which is what packages/agent-cli/AGENTS.md prescribes. The build scripts next
+			// to them (*.cjs) are ordinary Node modules and stay linted.
+			'packages/agent-cli/db-ux-designer-powers/skills/generate-figma-screen/assets/src/**'
 		]
 	},
 	{
@@ -180,6 +189,29 @@ const xoConfig = [
 		files: ['./packages/stylelint/**'],
 		rules: {
 			'@typescript-eslint/naming-convention': 0 // UPPER_CASE constants
+		}
+	},
+	{
+		// Build scripts of the designer power. Unlike the runtime source (ignored above) these are
+		// ordinary Node modules and stay linted — only the patterns that are load-bearing here
+		// are switched off.
+		files: [
+			'./packages/agent-cli/db-ux-designer-powers/**/*.cjs',
+			'./packages/agent-cli/db-ux-designer-powers/build-from-kb.cjs'
+		],
+		rules: {
+			// FNV-1a is bitwise by definition (^=, >>>, Math.imul). It is not a security boundary;
+			// see build-runtime.cjs for why sha256 is not an option (the twin must run in the
+			// use_figma sandbox, which has no crypto API).
+			'no-bitwise': 0,
+			// String#charCodeAt is REQUIRED, not a legacy habit: the in-sandbox checksum twin uses
+			// it and verifyChecksumTwin() fails the build if the two implementations disagree.
+			// Switching one side to codePointAt would break every bootstrap.
+			'unicorn/prefer-code-point': 0,
+			// The manifest.json contract is machine-readable; `version_sha` is its field name.
+			camelcase: 0,
+			// Buffer is a Node global here (byte-length measurement against the use_figma cap).
+			'n/prefer-global/buffer': 0
 		}
 	}
 ];

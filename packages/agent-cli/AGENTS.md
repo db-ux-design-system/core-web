@@ -110,9 +110,28 @@ A page-type catalog under `generate-figma-screen/assets/registries/<pageType>/` 
   heading and no content column. Rules that must hold on the RENDERED result belong in the audit
   (`src/60-compliance-audit.js`), because they then also cover a freely composed screen; see the
   `process` checks and their tests in `test/db-ux-designer-powers/figma-runtime-process.spec.ts`.
+- **An audit check only measures the layout the runtime OWNS.** Our layout is always a SLOT inside a
+  Container/Grid/Card/Section instance, so `ownedLayout()` resolves the nearest enclosing INSTANCE
+  and answers it; a library component's internal rows, gaps, cell widths and icon placeholders are
+  its own design decision and nothing in a plan can change them. Every check that forgot this scope
+  reported `valid: false` on compliant screens — a Notification's 16px internal gap inside a 12px
+  card, a component's inner row compared against the table it sat in, the blank `<Icon>` that a
+  resolved DB Theme glyph carries inside itself. A check that fires on correct output is worse than
+  no check: it teaches people to ignore the audit. Pair every new check with a fixture for the
+  defect it must catch AND one for the library internal it must ignore
+  (`test/db-ux-designer-powers/figma-runtime-audit-scope.spec.ts`).
 - **A missing icon is a registry gap, never a reason to drop the element.** `registries/icons.json` is a hand-curated subset of DB Theme Icons, so an unregistered glyph used to push authors into omitting the icon — and with it the state the icon encoded. Resolve the key once (`search_design_system` for the hyphenated name, library `DB UX DS v3 - DB Theme Icons`, take the `component_set` key), add it to `icons.json`, rebuild. The validator's error message names this path.
 - An `Image` in a fragment is EMPTY by contract: a generated layout ships an empty Figma image on Fill. Use `imageHash` only for an asset the user already placed in the file; there is no `src` (`figma.createImageAsync` does not exist in the `use_figma` sandbox).
-- Runtime files under `generate-figma-screen/assets/src/` are concatenated modules with shared globals. Do not lint or diagnose them standalone; validate them through `node assets/build-runtime.cjs`.
+- Runtime files under `generate-figma-screen/assets/src/` are concatenated modules with shared
+  globals. Do not lint or diagnose them standalone; validate them through
+  `node assets/build-runtime.cjs`. This is now ENFORCED in `xo.config.js`, and not only to spare
+  447 `no-undef` findings: the orchestrator runs `xo --fix` and auto-commits, and
+  `unicorn/prefer-dom-node-append` would rewrite `parent.appendChild()` — the FIGMA PLUGIN API,
+  not the DOM — into `.append()`, breaking every render in a bot commit. The `*.cjs` build and
+  validate scripts beside them are ordinary Node modules and stay linted; where an intentional
+  pattern trips a rule, disable it AT THE SITE with the reason (`new Function` as the build's parse
+  gate, the `[...reachable]` snapshot in `validate-registries.cjs`) so the next autofix cannot
+  silently "correct" it.
 - **A test that targets one powers bundle lives in `test/<bundle-folder>/`**, mirroring the bundle's directory name (e.g. `test/db-ux-designer-powers/`). Two constraints force this and the subfolder is what keeps ownership visible: `vitest.config.ts` only collects `test/**`, and `package.json` `files` ships `db-ux-designer-powers` wholesale — a spec placed inside the bundle would be published to npm.
 - The generated `db-figma-runtime.min.js` and `bootstrap/*` are excluded from Prettier and xo on purpose — formatting them breaks the chunked bootstrap. Regenerate, never edit.
 - Bootstrap integrity is checked by CONTENT, not by length. `build-runtime.cjs` emits an FNV-1a per chunk into `store-meta.js` and `check.js`; the sandbox has no crypto API, hence FNV-1a and not sha256. The `sha` in the `meta` record is a version label written by `store-meta.js` and is never derived from what is stored — do not treat it as an integrity check. If you touch the checksum helper, change BOTH copies (`fnv1a()` and `FNV_JS`): `verifyChecksumTwin()` fails the build when they disagree.

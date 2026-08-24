@@ -2,6 +2,12 @@ import { defineConfig } from 'cspell';
 
 export default defineConfig({
 	version: '0.2',
+	// The DB UX guidelines and the designer power's context are authored in GERMAN, so an
+	// English-only checker reported ~4 000 ordinary words ("nicht", "werden", "Regeln") as typos.
+	// A check that fires on correct content gets ignored, and ignoring the paths instead would take
+	// the runtime source with it — including the audit's violation messages, which are the one
+	// place a typo actually costs something. So the checker learns German.
+	import: ['@cspell/dict-de-de/cspell-ext.json'],
 	ignorePaths: [
 		'*.lock',
 		'pnpm-lock.yaml',
@@ -24,6 +30,12 @@ export default defineConfig({
 		'*.ttf',
 		'*.eot',
 		'**/build-*/**',
+		// Generated: the minified Figma runtime and its chunked bootstrap snippets. Already
+		// excluded from Prettier and xo because formatting them breaks the bootstrap. Spell-checking
+		// a minified chunk is meaningless — it reports split suffixes from identifiers that exist
+		// in no source file.
+		'**/generate-figma-screen/assets/db-figma-runtime.min.js',
+		'**/generate-figma-screen/assets/bootstrap/**',
 		'**/test-results/**',
 		'**/results/**',
 		'./showcases/screen-reader/translations.ts',
@@ -55,6 +67,9 @@ export default defineConfig({
 	],
 	dictionaries: [
 		'custom-words',
+		// Listed explicitly rather than via `language: 'en,de'` so German is checked in EVERY file
+		// type, independent of locale resolution — the German copy sits in .md, .ts and .js alike.
+		'de-de',
 		'typescript',
 		'css',
 		'vue',
