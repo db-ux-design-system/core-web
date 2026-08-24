@@ -10,6 +10,7 @@ import { CardShowcase } from '@components/components/card/showcase/card.showcase
 import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
 import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
+import { DialogShowcase } from '@components/components/dialog/showcase/dialog.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
 import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
 import { HeaderShowcase } from '@components/components/header/showcase/header.showcase';
