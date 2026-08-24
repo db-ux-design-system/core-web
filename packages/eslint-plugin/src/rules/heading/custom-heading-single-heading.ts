@@ -2,6 +2,7 @@ import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
+	getAngularComponentName,
 	isDBComponent
 } from '../../shared/utils.js';
 
@@ -20,6 +21,14 @@ const HEADING_COMPONENTS = new Set(
 	])
 );
 
+const KNOWN_COMPONENTS = new Set([
+	...Object.values(COMPONENTS).flatMap((component) => [
+		component,
+		getAngularComponentName(component)
+	]),
+	...HEADING_COMPONENTS
+]);
+
 /**
  * Elements whose rendered content cannot be resolved statically. Their presence
  * only suppresses the "missing heading" report, never the "multiple headings"
@@ -27,12 +36,13 @@ const HEADING_COMPONENTS = new Set(
  */
 const DYNAMIC_ELEMENTS = new Set([
 	'slot',
-	'template',
 	'component',
 	'ng-content',
-	'ng-container',
 	'ng-template'
 ]);
+
+/** Framework elements whose rendered children are represented in the current AST. */
+const STATIC_FRAMEWORK_ELEMENTS = new Set(['ng-container']);
 
 /** Node types that represent a real element. Vue sometimes falls back to `Element`. */
 const ELEMENT_TYPES = new Set([
@@ -101,17 +111,21 @@ function isUnresolvedComponent(node: any, name?: string): boolean {
 
 	if (node.type === 'JSXElement') {
 		const identifier = node.openingElement?.name;
+		if (identifier?.type !== 'JSXIdentifier') {
+			return true;
+		}
+
 		return (
-			identifier?.type !== 'JSXIdentifier' ||
-			(/^[A-Z]/.test(identifier.name) &&
-				!identifier.name.startsWith('DB'))
+			(/^[A-Z]/.test(identifier.name) || identifier.name.includes('-')) &&
+			!KNOWN_COMPONENTS.has(identifier.name)
 		);
 	}
 
 	return (
 		name !== undefined &&
-		((/^[A-Z]/.test(name) && !name.startsWith('DB')) ||
-			(name.includes('-') && !name.startsWith('db-')))
+		(/^[A-Z]/.test(name) || name.includes('-')) &&
+		!KNOWN_COMPONENTS.has(name) &&
+		!STATIC_FRAMEWORK_ELEMENTS.has(name)
 	);
 }
 

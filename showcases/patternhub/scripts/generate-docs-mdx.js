@@ -81,6 +81,20 @@ const generateDocsMdx = async () => {
 	}
 
 	for (const { group, component, elements: pageElements } of pages.values()) {
+		const elementOrder = new Map(
+			(component.elements ?? []).map((element, index) => [element, index])
+		);
+		const orderedPageElements =
+			elementOrder.size > 0
+				? pageElements.toSorted(
+						(a, b) =>
+							(elementOrder.get(a.name) ??
+								Number.MAX_SAFE_INTEGER) -
+							(elementOrder.get(b.name) ??
+								Number.MAX_SAFE_INTEGER)
+					)
+				: pageElements;
+
 		// The navigation entry name is also the folder name in
 		// `packages/components/src/components`, which is where the docs live.
 		const componentName = component.name;
@@ -99,7 +113,7 @@ const generateDocsMdx = async () => {
 
 		FS.writeFileSync(
 			`${componentPath}/properties.mdx`,
-			getPropertiesFile(pageElements, displayName)
+			getPropertiesFile(orderedPageElements, displayName)
 		);
 
 		const docsPath = `./../../packages/components/src/components/${componentName}/docs`;
