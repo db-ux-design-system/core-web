@@ -2,6 +2,7 @@ const onClickPlugin = require('../plugins/on-click.cjs');
 const angularPlugin = require('../plugins/angular/index.cjs');
 const angularSlotsPlugin = require('../plugins/angular/slots.cjs');
 const classNamePlugin = require('../plugins/angular/className.cjs');
+const dialogElementRefPlugin = require('../plugins/angular/dialog-element-ref.cjs');
 const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs');
 const routerLinkPlugin = require('../plugins/angular/router-link.cjs');
 const signalFormsPlugin = require('../plugins/angular/signal-forms.cjs');
@@ -23,6 +24,7 @@ module.exports = {
 		onClickPlugin,
 		angularPlugin,
 		routerLinkPlugin,
-		signalFormsPlugin
+		signalFormsPlugin,
+		dialogElementRefPlugin
 	]
 };

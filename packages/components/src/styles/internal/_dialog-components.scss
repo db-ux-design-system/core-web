@@ -1,0 +1,165 @@
+@use "sass:map";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "component";
+
+$container-size-scale: (
+	"small": variables.$db-container-xs,
+	"medium": variables.$db-container-lg,
+	"large": variables.$db-container-3xl
+);
+
+// Grid shell shared by the drawer container element and the dialog element itself.
+// Emits no positioning and no sizing, so it stays usable for both element types.
+@mixin container-layout() {
+	display: grid;
+	grid-template-rows:
+		[header] auto
+		[main] 1fr
+		[footer] auto;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	box-shadow: variables.$db-elevation-md;
+}
+
+// Scrollable middle row. $prefix composes the overridable padding custom property,
+// e.g. "drawer" -> --db-drawer-content-padding.
+@mixin content($prefix) {
+	@if not $prefix {
+		@error "content() requires a $prefix argument";
+	}
+
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: var(
+		--db-#{$prefix}-content-padding,
+		#{variables.$db-spacing-fixed-xs}
+			#{component.$drawer-content-padding-inline}
+	);
+}
+
+// Divider, padding, gap and heading-container styling for header and footer rows.
+// $part is "header" or "footer", $prefix is "drawer" or "dialog".
+// The header uses a CSS custom property for the safe-area inset so that:
+//   - direction-specific zeroing is possible (e.g. drawer opening from bottom)
+//   - debugging on desktop is possible without a real device
+@mixin header-footer($part, $prefix) {
+	@if not $prefix {
+		@error "header-footer() requires a $prefix argument";
+	}
+
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+
+	@if $part == "header" {
+		align-items: center;
+		padding: calc(
+				#{variables.$db-spacing-fixed-xs} +
+					var(--db-#{$prefix}-safe-area-inset-top, 0px)
+			)
+			variables.$db-spacing-fixed-sm
+			variables.$db-spacing-fixed-xs;
+
+		@include helpers.divider("bottom");
+
+		.db-#{$prefix}-header-container {
+			font-weight: bold;
+			margin-inline-end: auto;
+		}
+	} @else if $part == "footer" {
+		flex-direction: column;
+		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+
+		@include helpers.divider("top");
+	} @else {
+		@error "header-footer() expects $part to be \"header\" or \"footer\"";
+	}
+}
+
+// Horizontal Container_Size scale.
+// $prefix         composes the custom property names, e.g. --db-dialog-max-width
+// $fallback-size  Container_Size applied when data-container-size is absent
+// $viewport-clamp optional upper bound, wrapped into min() with the scale value
+@mixin container-size-inline($prefix, $fallback-size, $viewport-clamp: null) {
+	@if not $prefix {
+		@error "container-size-inline() requires a $prefix argument";
+	}
+
+	@if not $fallback-size {
+		@error "container-size-inline() requires a $fallback-size argument";
+	}
+
+	@if not map.has-key($container-size-scale, $fallback-size) {
+		@error "container-size-inline() got an unknown $fallback-size";
+	}
+
+	$fallback-value: map.get($container-size-scale, $fallback-size);
+	$max-width: var(
+		--db-#{$prefix}-max-width,
+		var(--db-#{$prefix}-max-width-horizontal, #{$fallback-value})
+	);
+
+	// The sizing values are consumer overrides that resolve to the
+	// Container_Size custom properties below, so no sizing token fits here
+	// stylelint-disable-next-line db-ux/use-sizing
+	min-inline-size: var(--db-#{$prefix}-min-width, auto);
+
+	@if $viewport-clamp {
+		// stylelint-disable-next-line db-ux/use-sizing
+		max-inline-size: min(#{$max-width}, #{$viewport-clamp});
+	} @else {
+		// stylelint-disable-next-line db-ux/use-sizing
+		max-inline-size: $max-width;
+	}
+
+	@each $name, $value in $container-size-scale {
+		@if $name == $fallback-size {
+			&:not([data-container-size]),
+			&[data-container-size="#{$name}"] {
+				--db-#{$prefix}-max-width-horizontal: #{$value};
+			}
+		} @else {
+			&[data-container-size="#{$name}"] {
+				--db-#{$prefix}-max-width-horizontal: #{$value};
+			}
+		}
+	}
+
+	&[data-container-size="full"] {
+		--db-#{$prefix}-max-width-horizontal: var(--db-#{$prefix}-inline-size);
+	}
+}
+
+// Safe Area Inset Handling (PWA / Mobile)
+// On devices with viewport-fit=cover, env(safe-area-inset-*) provides the
+// inset values for notch, home indicator, etc.
+// The drawer/dialog uses CSS custom properties so the behavior can be simulated
+// on desktop for debugging without a real device or iOS Simulator.
+// Direction behavior (drawer-specific, set in drawer.scss):
+//   to-left / to-right (default): both top and bottom safe areas
+//   up (opens from bottom): no top padding (--db-<prefix>-safe-area-inset-top: 0px)
+//   down (opens from top): no bottom padding (--db-<prefix>-safe-area-inset-bottom: 0px)
+@mixin safe-area($prefix) {
+	@if not $prefix {
+		@error "safe-area() requires a $prefix argument";
+	}
+
+	--db-#{$prefix}-safe-area-inset-top: env(safe-area-inset-top, 0px);
+	--db-#{$prefix}-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+
+	&:not(:has(.db-#{$prefix}-footer)) {
+		> .db-#{$prefix}-content {
+			// stylelint-disable-next-line db-ux/use-spacings -- safe-area env value, not a static spacing
+			margin-block-end: var(--db-#{$prefix}-safe-area-inset-bottom);
+		}
+	}
+
+	&:has(.db-#{$prefix}-footer) {
+		.db-#{$prefix}-footer {
+			padding-block-end: calc(
+				#{variables.$db-spacing-fixed-xs} +
+					var(--db-#{$prefix}-safe-area-inset-bottom)
+			);
+		}
+	}
+}

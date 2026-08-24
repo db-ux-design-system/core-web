@@ -161,6 +161,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		subNavigation: getSortedNavigationItems([
 			{ path: '01/stack', label: 'Stack', component: StackShowcase },
 			{ path: '01/card', label: 'Card', component: CardShowcase },
+			{ path: '01/dialog', label: 'Dialog', component: DialogShowcase },
 			{ path: '01/drawer', label: 'Drawer', component: DrawerShowcase },
 			{
 				path: '01/divider',

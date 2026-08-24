@@ -30,6 +30,29 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'dialog-footer'
+	},
+
+	{
+		name: 'dialog-header'
+	},
+
+	{
+		name: 'dialog',
+		config: {
+			react: {
+				/* Keeps the consumer callbacks out of the `filterPassingProps`
+				 * DOM spread, same configuration key the `drawer` entry uses.
+				 * This cannot move into a Mitosis plugin yet: the spread itself
+				 * is injected by `scripts/post-build/react.ts` after every
+				 * plugin hook has run. The Angular element ref type, in
+				 * contrast, is a plugin: `configs/plugins/angular/dialog-element-ref.cjs`. */
+				propsPassingFilter: ['onClose', 'onCancel']
+			}
+		}
+	},
+
+	{
 		name: 'table-data-cell'
 	},
 

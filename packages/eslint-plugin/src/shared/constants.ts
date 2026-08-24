@@ -38,6 +38,9 @@ export const COMPONENTS: Record<string, string> = {
 	DBDrawer: 'DBDrawer',
 	DBDrawerHeader: 'DBDrawerHeader',
 	DBDrawerFooter: 'DBDrawerFooter',
+	DBDialog: 'DBDialog',
+	DBDialogHeader: 'DBDialogHeader',
+	DBDialogFooter: 'DBDialogFooter',
 	DBHeader: 'DBHeader',
 	DBNavigation: 'DBNavigation',
 	DBNavigationItem: 'DBNavigationItem',
@@ -114,6 +117,8 @@ export const MESSAGES = {
 		'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility',
 	DRAWER_HEADER_REQUIRED:
 		'{{component}} must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)',
+	DIALOG_HEADER_REQUIRED:
+		'{{component}} must have a DBDialogHeader in its header slot for accessibility (provides close button and aria-labelledby)',
 	SUB_COMPONENT_REQUIRED_PARENT:
 		'{{component}} must be used inside {{parent}}{{slot}}'
 };
@@ -148,5 +153,6 @@ export const MESSAGE_IDS = {
 	TOOLTIP_NO_INTERACTIVE: 'noInteractive',
 	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive',
 	DRAWER_HEADER_REQUIRED: 'drawerHeaderRequired',
+	DIALOG_HEADER_REQUIRED: 'dialogHeaderRequired',
 	SUB_COMPONENT_REQUIRED_PARENT: 'subComponentRequiredParent'
 };

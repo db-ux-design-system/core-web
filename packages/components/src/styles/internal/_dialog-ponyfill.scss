@@ -1,0 +1,34 @@
+// Ponyfill stylesheet for a gap that .browserslistrc does not cover yet:
+// missing `closedby` attribute on `<dialog>`:
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby
+// Support matrix: packages/foundations/docs/BrowserSupport.md
+// Delete this file, packages/components/src/utils/dialog-ponyfill.ts and the
+// `@use` plus `@include` lines in dialog.scss and drawer.scss once every target
+// in .browserslistrc supports `closedby` (currently blocked by Firefox ESR).
+
+// Backdrop click fallback: In browsers that don't support closedby,
+// extend the close button's hit area to cover the full viewport.
+// This makes clicking the "backdrop" area trigger the close button.
+// `data-closedby="not-supported"` is set by the component's JS feature
+// detection, since `closedby` cannot be feature-detected in CSS.
+@mixin backdrop-click-hit-area($absolute-variant: false) {
+	&[data-closedby="not-supported"]:not([data-backdrop="none"]) {
+		[command="request-close"]::after {
+			content: "";
+			position: fixed;
+			inset: 0;
+			z-index: -1;
+			cursor: default;
+		}
+
+		@if $absolute-variant {
+			// Absolute drawers are bounded by their parent element, not the viewport.
+			// The pseudo's containing block is `.db-drawer-container`, so oversize it
+			// and let the dialog's own `overflow: clip` trim it to the dialog box.
+			&[data-position="absolute"] [command="request-close"]::after {
+				position: absolute;
+				inset: -100vmax;
+			}
+		}
+	}
+}

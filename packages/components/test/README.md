@@ -2,6 +2,9 @@
 
 1. Edit a test file inside `src/components/xxx/xxx.spec.tsx` (after the build from 2. you can edit it also in `output/react/src/components/xxx/xxx.spec.tsx` directly and copy it back to skip 2.)
 2. Call `npm run build`, this generates `react` and `vue` tests inside `output/react/src/components/xxx/xxx.spec.tsx`/`output/vue/vue3/src/components/xxx/xxx.spec.tsx`
+
+> Every `*.spec.tsx` inside `src/components/xxx/` is copied and transformed, not only `xxx.spec.tsx`. A component may therefore split its tests over several spec files (e.g. `dialog.spec.tsx` and `dialog-layout.spec.tsx`), and each of them keeps its file name in the framework outputs.
+
 3. Run the playwright test with your IDE or via [console](https://playwright.dev/docs/running-tests) or with the ui:
 
 ```shell

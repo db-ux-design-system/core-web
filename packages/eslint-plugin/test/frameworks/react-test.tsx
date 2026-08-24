@@ -48,14 +48,29 @@ export const TestComponent = () => {
 			<DBNotification closeable={false}>Test</DBNotification>
 			<DBNotification>Test</DBNotification>
 			<DBDrawerHeader>Test</DBDrawerHeader>
+			<DBDialogHeader>Test</DBDialogHeader>
 			<DBCustomSelect label="Select"></DBCustomSelect>
 
 			{/* db-ux/drawer-header-required */}
 			<DBDrawer>Content without header</DBDrawer>
 
+			{/* db-ux/dialog-header-required */}
+			<DBDialog>Content without header</DBDialog>
+			<DBDialog
+				header={
+					<DBDialogHeader closeButtonText="Close">
+						Title
+					</DBDialogHeader>
+				}
+				footer={<DBDialogFooter>Actions</DBDialogFooter>}>
+				Valid dialog
+			</DBDialog>
+
 			{/* db-ux/sub-component-required-parent */}
 			<DBDrawerHeader>Outside drawer</DBDrawerHeader>
 			<DBDrawerFooter>Outside drawer</DBDrawerFooter>
+			<DBDialogHeader>Outside dialog</DBDialogHeader>
+			<DBDialogFooter>Outside dialog</DBDialogFooter>
 			<DBNavigationItem>Outside navigation</DBNavigationItem>
 			<DBTabList>
 				<DBTabItem>Outside tabs</DBTabItem>
