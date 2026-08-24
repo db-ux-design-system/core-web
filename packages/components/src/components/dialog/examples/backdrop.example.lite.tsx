@@ -33,7 +33,9 @@ export default function DialogBackdrop() {
 							(Default) Strong
 						</DBDialogHeader>
 					}>
-					(Default) Strong
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -51,7 +53,9 @@ export default function DialogBackdrop() {
 							Weak
 						</DBDialogHeader>
 					}>
-					Weak
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -69,7 +73,9 @@ export default function DialogBackdrop() {
 							No Backdrop
 						</DBDialogHeader>
 					}>
-					No Backdrop
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 		</Fragment>
