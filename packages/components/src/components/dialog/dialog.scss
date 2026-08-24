@@ -1,0 +1,55 @@
+@use "../../styles/internal/component";
+@use "../../styles/internal/dialog-components";
+@use "../../styles/internal/dialog-ponyfill";
+
+.db-dialog {
+	--db-dialog-inline-size: 100lvw;
+	--db-dialog-block-size: 100lvh;
+
+	// We're using 40px instead of a token here on purpose: the inset has to stay
+	// constant across all densities, which no sizing token can express
+	/* stylelint-disable-next-line db-ux/use-sizing */
+	--db-dialog-viewport-inset: 40px;
+
+	@extend %default-card;
+	@include dialog-components.container-size-inline(
+		"dialog",
+		"medium",
+		calc(var(--db-dialog-inline-size) - 2 * var(--db-dialog-viewport-inset))
+	);
+	@include dialog-components.safe-area("dialog");
+	@include dialog-ponyfill.backdrop-click-hit-area;
+
+	// dialog-init.scss resets `margin: 0` on every dialog for the drawer.
+	// `revert` restores the user agent `margin: auto` that centres the box.
+	/* stylelint-disable-next-line db-ux/use-spacings */
+	margin: revert;
+	max-block-size: calc(
+		var(--db-dialog-block-size) - 2 * var(--db-dialog-viewport-inset)
+	);
+
+	// The content row owns the scrolling, so clip the box to the card radius
+	// instead of letting the dialog element scroll itself.
+	overflow: clip;
+
+	// Scoped to the open state so the user agent rule
+	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.
+	&[open] {
+		@include dialog-components.container-layout;
+	}
+
+	> .db-dialog-content {
+		@include dialog-components.content("dialog");
+	}
+}
+
+// Specificity note: dialog-init.scss applies `position: fixed; inset: 0` to
+// `dialog:not([data-position="absolute"])[data-backdrop]` -> (0,2,1).
+// Three class/attribute selectors -> (0,3,0) win without `!important`.
+// `revert` hands positioning back to the user agent, which places a modal
+// dialog with `position: fixed`, `inset: 0` and `margin: auto`, so the box
+// is content sized, centred, and the remaining area stays a clickable backdrop.
+.db-dialog[open]:not([data-backdrop="none"]) {
+	position: revert;
+	inset: revert;
+}

@@ -587,15 +587,18 @@ Ensures components with close buttons have appropriate text attributes for acces
 // React
 <DBNotification closeable>Message</DBNotification>
 <DBDrawerHeader>Title</DBDrawerHeader>
+<DBDialogHeader>Title</DBDialogHeader>
 <DBCustomSelect label="Select" />
 
 // Angular
 <db-notification closeable>Message</db-notification>
 <db-drawer-header>Title</db-drawer-header>
+<db-dialog-header>Title</db-dialog-header>
 
 // Vue
 <DBCustomSelect label="Select" />
 <DBDrawerHeader>Title</DBDrawerHeader>
+<DBDialogHeader>Title</DBDialogHeader>
 ```
 
 **✅ Valid:**
@@ -604,15 +607,18 @@ Ensures components with close buttons have appropriate text attributes for acces
 // React
 <DBNotification closeButtonText="Close">Message</DBNotification>
 <DBDrawerHeader closeButtonText="Close drawer">Title</DBDrawerHeader>
+<DBDialogHeader closeButtonText="Close dialog">Title</DBDialogHeader>
 <DBCustomSelect mobileCloseButtonText="Close" label="Select" />
 
 // Angular
 <db-notification closeButtonText="Close">Message</db-notification>
 <db-drawer-header [closeButtonText]="closeText">Title</db-drawer-header>
+<db-dialog-header closeButtonText="Close dialog">Title</db-dialog-header>
 
 // Vue
 <DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />
 <DBDrawerHeader :closeButtonText="closeText">Title</DBDrawerHeader>
+<DBDialogHeader :closeButtonText="closeText">Title</DBDialogHeader>
 ```
 
 ### `drawer-header-required`
@@ -650,6 +656,41 @@ Ensures DBDrawer has a DBDrawerHeader for accessibility. The header provides the
 <DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template>Content</DBDrawer>
 ```
 
+### `dialog-header-required`
+
+Ensures DBDialog has a DBDialogHeader in its `header` slot for accessibility. The header provides the close button and `aria-labelledby` for the dialog.
+
+**❌ Invalid:**
+
+```jsx
+// React
+<DBDialog>Content</DBDialog>
+<DBDialog open={true}>Content</DBDialog>
+
+// Angular - missing `header` attribute for slot projection
+<db-dialog><db-dialog-header>Title</db-dialog-header>Content</db-dialog>
+<db-dialog>Content</db-dialog>
+
+// Vue - missing named slot
+<DBDialog><DBDialogHeader>Title</DBDialogHeader>Content</DBDialog>
+<DBDialog>Content</DBDialog>
+```
+
+**✅ Valid:**
+
+```jsx
+// React
+<DBDialog header={<DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>}>Content</DBDialog>
+
+// Angular - uses `header` attribute for ng-content projection
+<db-dialog><db-dialog-header header closeButtonText="Close">Title</db-dialog-header>Content</db-dialog>
+<db-dialog><ng-container header><db-dialog-header closeButtonText="Close">Title</db-dialog-header></ng-container>Content</db-dialog>
+
+// Vue - uses named slot
+<DBDialog><template v-slot:header><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></template>Content</DBDialog>
+<DBDialog><template #header><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></template>Content</DBDialog>
+```
+
 ### `sub-component-required-parent`
 
 Ensures sub-components are used inside their required parent component and slot.
@@ -660,6 +701,8 @@ Ensures sub-components are used inside their required parent component and slot.
 | ----------------- | --------------- | -------------- |
 | `DBDrawerHeader`  | `DBDrawer`      | `header`       |
 | `DBDrawerFooter`  | `DBDrawer`      | `footer`       |
+| `DBDialogHeader`  | `DBDialog`      | `header`       |
+| `DBDialogFooter`  | `DBDialog`      | `footer`       |
 | `DBAccordionItem` | `DBAccordion`   | (direct child) |
 
 **❌ Invalid:**
@@ -667,15 +710,18 @@ Ensures sub-components are used inside their required parent component and slot.
 ```jsx
 // React
 <div><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></div>
+<div><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></div>
 <div><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></div>
 
 // Angular - missing slot attribute or wrong parent
 <div><db-drawer-header closeButtonText="Close">Title</db-drawer-header></div>
 <db-drawer><db-drawer-header closeButtonText="Close">Title</db-drawer-header></db-drawer>
+<db-dialog><db-dialog-header closeButtonText="Close">Title</db-dialog-header></db-dialog>
 
 // Vue - missing named slot or wrong parent
 <div><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></div>
 <DBDrawer><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></DBDrawer>
+<DBDialog><DBDialogFooter>Actions</DBDialogFooter></DBDialog>
 ```
 
 **✅ Valid:**
@@ -683,15 +729,20 @@ Ensures sub-components are used inside their required parent component and slot.
 ```jsx
 // React
 <DBDrawer header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}>Content</DBDrawer>
+<DBDialog header={<DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>}>Content</DBDialog>
 <DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 
 // Angular - with slot attribute
 <db-drawer><db-drawer-header header closeButtonText="Close">Title</db-drawer-header></db-drawer>
 <db-drawer><ng-container header><db-drawer-header closeButtonText="Close">Title</db-drawer-header></ng-container></db-drawer>
+<db-dialog><db-dialog-header header closeButtonText="Close">Title</db-dialog-header></db-dialog>
+<db-dialog><db-dialog-footer footer>Actions</db-dialog-footer></db-dialog>
 <db-accordion><db-accordion-item headlinePlain="Test">Content</db-accordion-item></db-accordion>
 
 // Vue - with named slot
 <DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template></DBDrawer>
+<DBDialog><template #header><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></template></DBDialog>
+<DBDialog><template #footer><DBDialogFooter>Actions</DBDialogFooter></template></DBDialog>
 <DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 ```
 

@@ -22,6 +22,8 @@ const SUB_COMPONENT_CONFIG: Record<
 > = {
 	DBDrawerHeader: { parents: [{ name: 'DBDrawer', slot: 'header' }] },
 	DBDrawerFooter: { parents: [{ name: 'DBDrawer', slot: 'footer' }] },
+	DBDialogHeader: { parents: [{ name: 'DBDialog', slot: 'header' }] },
+	DBDialogFooter: { parents: [{ name: 'DBDialog', slot: 'footer' }] },
 	DBAccordionItem: { parents: [{ name: 'DBAccordion', slot: undefined }] },
 	DBNavigationItem: {
 		parents: [

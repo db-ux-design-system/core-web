@@ -135,6 +135,10 @@
 				"name": "card"
 			},
 			{
+				"label": "DBDialog",
+				"name": "dialog"
+			},
+			{
 				"label": "DBDivider",
 				"name": "divider"
 			},

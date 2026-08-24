@@ -1,0 +1,5 @@
+@use "../../styles/internal/dialog-components";
+
+.db-dialog-footer {
+	@include dialog-components.header-footer("footer", "dialog");
+}

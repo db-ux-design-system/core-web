@@ -7,6 +7,7 @@ import CardShowcase from '@components/components/card/showcase/card.showcase.vue
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
+import DialogShowcase from '@components/components/dialog/showcase/dialog.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase.vue';
@@ -208,6 +209,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/card',
 				label: 'Card',
 				component: markRaw(CardShowcase)
+			},
+			{
+				path: '/01/dialog',
+				label: 'Dialog',
+				component: markRaw(DialogShowcase)
 			},
 			{
 				path: '/01/drawer',

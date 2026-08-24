@@ -7,6 +7,7 @@ import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
+import DialogShowcase from '@components/components/dialog/showcase/dialog.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase';
@@ -43,7 +44,6 @@ export type NavigationItem = {
 
 const nameComponentMap = {
 	accordion: <AccordionShowcase isPatternhub />,
-
 	'accordion-item': <AccordionItemShowcase isPatternhub />,
 	badge: <BadgeShowcase isPatternhub />,
 	brand: <BrandShowcase isPatternhub />,
@@ -52,6 +52,7 @@ const nameComponentMap = {
 	checkbox: <CheckboxShowcase isPatternhub />,
 	'custom-button': <CustomButtonShowcase isPatternhub />,
 	'custom-select': <CustomSelectShowcase isPatternhub />,
+	dialog: <DialogShowcase isPatternhub />,
 	divider: <DividerShowcase isPatternhub />,
 	drawer: <DrawerShowcase isPatternhub />,
 	header: <HeaderShowcase isPatternhub />,
