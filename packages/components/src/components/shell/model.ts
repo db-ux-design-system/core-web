@@ -47,6 +47,10 @@ export type DBShellProps = DBShellDefaultProps & GlobalProps;
 
 export type DBShellDefaultState = {
 	fontsLoaded?: boolean;
+	_controlPanelDesktopPosition?: ShellControlPanelDesktopPositionType;
+	_controlPanelMobilePosition?: ShellControlPanelMobilePositionType;
+	_subNavigationDesktopPosition?: ShellControlPanelDesktopPositionType;
+	_subNavigationMobilePosition?: ShellSubNavigationMobilePositionType;
 };
 
 export type DBShellState = DBShellDefaultState & GlobalState;

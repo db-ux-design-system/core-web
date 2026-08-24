@@ -302,10 +302,6 @@ export default function DBControlPanelNavigationItemGroup(
 
 	onMount(() => {
 		state.initialized = true;
-		state._handleCSSFlags();
-		requestAnimationFrame(() => {
-			state._handleCSSFlags();
-		});
 	});
 
 	// Observe role attribute set imperatively by the parent navigation

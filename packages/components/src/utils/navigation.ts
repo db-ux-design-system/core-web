@@ -296,6 +296,7 @@ export const handleSubNavigationPosition = (
 			if (isDrilldown) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
+				subNavigation.style.position = '';
 				continue;
 			}
 

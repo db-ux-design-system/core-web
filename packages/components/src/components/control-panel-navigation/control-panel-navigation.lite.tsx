@@ -112,7 +112,7 @@ export default function DBControlPanelNavigation(
 							const siblingButtons =
 								parentContainer.querySelectorAll(
 									':scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button, ' +
-										':scope > db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
+										'db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
 								);
 							isProcessing = true;
 							for (const sibling of Array.from(siblingButtons)) {
@@ -526,9 +526,26 @@ export default function DBControlPanelNavigation(
 
 	onUpdate(() => {
 		if (_ref && menuRef && state.initialized) {
-			state._handleCSSFlags();
-			state._handleVariant();
-			state._handleSubNavigation();
+			void delay(() => {
+				state._handleCSSFlags();
+				state._handleVariant();
+				state._handleSubNavigation();
+
+				state.evaluateScrollButtons(menuRef);
+				// Re-evaluate scroll buttons and re-position the sub-navigation on
+				// container resize (e.g. orientation change). A container-specific
+				// ResizeObserver provides more accurate detection than global
+				// window resize events.
+				if (!state._resizeObserverCallbackId) {
+					state._resizeObserverCallbackId =
+						new ResizeObserverListener().observe(menuRef, () => {
+							state._handleCSSFlags();
+							state._handleVariant();
+							state.evaluateScrollButtons(menuRef);
+							state._handleSubNavigation();
+						});
+				}
+			}, 100);
 		}
 	}, [_ref, menuRef, state.initialized]);
 
@@ -610,6 +627,9 @@ export default function DBControlPanelNavigation(
 				// For behavior="single", attach a mutation observer to collapse
 				// sibling groups when one is expanded
 				if (props.behavior === 'single') {
+					// Disconnect any existing observer before attaching a new one
+					state._singleBehaviorObserver?.disconnect();
+					state._singleBehaviorObserver = undefined;
 					state._attachSingleBehaviorObserver();
 				} else {
 					// Disconnect observer when behavior is not 'single'
@@ -629,30 +649,10 @@ export default function DBControlPanelNavigation(
 	]);
 
 	onUpdate(() => {
-		state._handleVariant();
-	}, [props.variant]);
-
-	onUpdate(() => {
-		if (menuRef) {
-			void delay(() => {
-				state.evaluateScrollButtons(menuRef);
-			}, 100);
-
-			// Re-evaluate scroll buttons and re-position the sub-navigation on
-			// container resize (e.g. orientation change). A container-specific
-			// ResizeObserver provides more accurate detection than global
-			// window resize events.
-			if (!state._resizeObserverCallbackId) {
-				state._resizeObserverCallbackId =
-					new ResizeObserverListener().observe(menuRef, () => {
-						state._handleCSSFlags();
-						state._handleVariant();
-						state.evaluateScrollButtons(menuRef);
-						state._handleSubNavigation();
-					});
-			}
+		if (props.variant) {
+			state._handleVariant();
 		}
-	}, [menuRef]);
+	}, [props.variant]);
 
 	return (
 		<nav

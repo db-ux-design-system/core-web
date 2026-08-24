@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUpdate,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -15,7 +16,11 @@ export default function DBShell(props: DBShellProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBShellState>({
-		fontsLoaded: false
+		fontsLoaded: false,
+		_controlPanelDesktopPosition: undefined,
+		_controlPanelMobilePosition: undefined,
+		_subNavigationDesktopPosition: undefined,
+		_subNavigationMobilePosition: undefined
 	});
 
 	onMount(() => {
@@ -37,22 +42,42 @@ export default function DBShell(props: DBShellProps) {
 
 	// jscpd:ignore-end
 
+	onUpdate(() => {
+		state._controlPanelDesktopPosition =
+			props.controlPanelDesktopPosition ?? 'top';
+	}, [props.controlPanelDesktopPosition]);
+
+	onUpdate(() => {
+		state._controlPanelMobilePosition =
+			props.controlPanelMobilePosition ?? 'top';
+	}, [props.controlPanelMobilePosition]);
+
+	onUpdate(() => {
+		state._subNavigationDesktopPosition =
+			props.subNavigationDesktopPosition ?? 'top';
+	}, [props.subNavigationDesktopPosition]);
+
+	onUpdate(() => {
+		state._subNavigationMobilePosition =
+			props.subNavigationMobilePosition ?? 'top';
+	}, [props.subNavigationMobilePosition]);
+
 	return (
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-shell', props.className)}
 			data-control-panel-desktop-position={
-				props.controlPanelDesktopPosition ?? 'top'
+				state._controlPanelDesktopPosition
 			}
 			data-control-panel-mobile-position={
-				props.controlPanelMobilePosition ?? 'top'
+				state._controlPanelMobilePosition
 			}
 			data-sub-navigation-desktop-position={
-				props.subNavigationDesktopPosition ?? 'top'
+				state._subNavigationDesktopPosition
 			}
 			data-sub-navigation-mobile-position={
-				props.subNavigationMobilePosition ?? 'top'
+				state._subNavigationMobilePosition
 			}
 			data-show-sub-navigation={getBooleanAsString(
 				props.showSubNavigation,
