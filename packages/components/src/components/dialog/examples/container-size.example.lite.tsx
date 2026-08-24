@@ -33,7 +33,9 @@ export default function DialogContainerSize() {
 							Small
 						</DBDialogHeader>
 					}>
-					Small
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -51,7 +53,9 @@ export default function DialogContainerSize() {
 							(Default) Medium
 						</DBDialogHeader>
 					}>
-					(Default) Medium
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -69,7 +73,9 @@ export default function DialogContainerSize() {
 							Large
 						</DBDialogHeader>
 					}>
-					Large
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -87,7 +93,9 @@ export default function DialogContainerSize() {
 							Full
 						</DBDialogHeader>
 					}>
-					Full
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 		</Fragment>

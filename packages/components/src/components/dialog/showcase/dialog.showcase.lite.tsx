@@ -6,7 +6,6 @@ import DialogBackdrop from '../examples/backdrop.example.lite';
 import DialogContainerSize from '../examples/container-size.example.lite';
 import DialogDensity from '../examples/density.example.lite';
 import DialogEvents from '../examples/events.example.lite';
-import DialogHeader from '../examples/header.example.lite';
 
 export default function DialogShowcase(props: PatternhubProps) {
 	return (
@@ -28,9 +27,9 @@ export default function DialogShowcase(props: PatternhubProps) {
 					<DialogBackdrop />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Header">
+			<LinkWrapperShowcase exampleName="Areas">
 				<CardWrapperShowcase>
-					<DialogHeader />
+					<DialogAreas />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Events">

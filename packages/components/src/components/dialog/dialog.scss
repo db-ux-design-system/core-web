@@ -20,6 +20,13 @@
 	@include dialog-components.safe-area("dialog");
 	@include dialog-ponyfill.backdrop-click-hit-area;
 
+	// The dialog should fill its container-size width, not shrink to content.
+	// The UA stylesheet sets `width: fit-content`; this overrides it so the
+	// dialog always occupies the full max-inline-size (capped by the viewport).
+	// stylelint-disable-next-line db-ux/use-sizing
+	// TODO: align this behaviour with Design
+	inline-size: 100%;
+
 	// dialog-init.scss resets `margin: 0` on every dialog for the drawer.
 	// `revert` restores the user agent `margin: auto` that centres the box.
 	/* stylelint-disable-next-line db-ux/use-spacings */

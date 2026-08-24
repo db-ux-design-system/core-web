@@ -8,7 +8,7 @@ import DBDialog from '../dialog.lite';
 import { StorybookDialogArgTypes } from './_dialog.arg.types';
 
 useMetadata({
-	storybookTitle: 'Header',
+	storybookTitle: 'Areas',
 	storybookNames: [
 		'With text prop',
 		'With start slot',
@@ -21,7 +21,7 @@ useMetadata({
 	}
 });
 
-export default function DialogHeader() {
+export default function DialogAreas() {
 	const [openIndex, setOpenIndex] = useState<number>(-1);
 
 	return (
@@ -41,7 +41,9 @@ export default function DialogHeader() {
 							closeButtonText="Close"
 						/>
 					}>
-					Content
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -60,7 +62,9 @@ export default function DialogHeader() {
 							With start slot
 						</DBDialogHeader>
 					}>
-					Content
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -79,7 +83,9 @@ export default function DialogHeader() {
 							With end slot
 						</DBDialogHeader>
 					}>
-					Content
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div>
@@ -110,7 +116,9 @@ export default function DialogHeader() {
 							</DBButton>
 						</DBDialogFooter>
 					}>
-					Content
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 		</Fragment>

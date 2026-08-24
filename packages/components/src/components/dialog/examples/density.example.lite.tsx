@@ -32,7 +32,9 @@ export default function DialogDensity() {
 							Functional
 						</DBDialogHeader>
 					}>
-					Functional
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div data-density="regular">
@@ -49,7 +51,9 @@ export default function DialogDensity() {
 							(Default) Regular
 						</DBDialogHeader>
 					}>
-					(Default) Regular
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 			<div data-density="expressive">
@@ -66,7 +70,9 @@ export default function DialogDensity() {
 							Expressive
 						</DBDialogHeader>
 					}>
-					Expressive
+					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+					diam nonumy eirmod tempor invidunt ut labore et dolore magna
+					aliquyam erat, sed diam voluptua.
 				</DBDialog>
 			</div>
 		</Fragment>
