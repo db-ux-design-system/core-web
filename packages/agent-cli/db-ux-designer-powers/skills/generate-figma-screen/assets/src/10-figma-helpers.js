@@ -47,12 +47,19 @@ const TEXT_ALIGN_LABELS = {
 	right: 'Right'
 };
 
-// Library components rendered as leaf instances that should FILL their container width
-// by default (form fields, notifications, etc.). Buttons/Tags/Badges hug and are excluded.
+/* Library components rendered as leaf instances that FILL their container width by default
+ * (form fields, notifications, …). Buttons/Tags/Badges hug and are excluded.
+ *
+ * This list is a FALLBACK, not the primary mechanism: a component with a `width` axis
+ * ("auto"/"full") already declares its sizing through the chosen variant, and anything left
+ * undecided is prevented from staying FIXED. See applyLeafWidth — that ordering is what keeps a
+ * component nobody thought of (a `Radio` kept the library's 84px and wrapped its label into six
+ * one-word lines) from shipping with a fixed width again. */
 const FILL_DEFAULT = new Set([
 	'Input',
 	'Textarea',
 	'Select',
+	'CustomSelect',
 	'Notification',
 	'Infotext',
 	'Accordion'

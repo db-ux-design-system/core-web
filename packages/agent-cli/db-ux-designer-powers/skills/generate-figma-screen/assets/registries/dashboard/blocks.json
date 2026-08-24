@@ -49,12 +49,12 @@
 			}
 		},
 		"dashboard.badge-cell": {
-			"source": "1670:9229 List Item (status column)",
-			"purpose": "Status column: a semantic Badge that keeps its column width.",
+			"source": "1670:9229 List Item (status column), alignment per the optimized template 1670:9241",
+			"purpose": "Status column: a semantic Badge that keeps its column width and sits at the END of its column. RIGHT-aligned on purpose — a Badge left-aligned inside a fill column appears to float in the middle of the row, which is the single most common list defect.",
 			"plan": {
 				"type": "ContainerVertical",
 				"gap": "none",
-				"align": "left",
+				"align": "right",
 				"children": [
 					{
 						"type": "Badge",
@@ -85,12 +85,11 @@
 		},
 		"dashboard.list-row": {
 			"source": "1670:9229 List Item",
-			"purpose": "Data row: equal text columns, a status badge and a trailing link.",
+			"purpose": "Data row of a LIST panel: equal text columns, a right-aligned status badge and a trailing link. Carries NO padding — it lives in a Card with spacing \"small\", which already provides the 12px inset. Adding row padding on top produces a doubled indentation; only the full-bleed table card (spacing \"none\") delegates padding to its rows.",
 			"plan": {
 				"type": "ContainerHorizontal",
 				"gap": "sm",
 				"align": "left",
-				"padding": "sm",
 				"children": [
 					{ "$ref": "dashboard.text-cell" },
 					{ "$ref": "dashboard.text-cell" },
@@ -102,12 +101,11 @@
 		},
 		"dashboard.list-row-stacked": {
 			"source": "1670:9231 List Item - 2 Rows",
-			"purpose": "Data row whose leading column stacks a name over a secondary line.",
+			"purpose": "LIST row whose leading column stacks a name over a secondary line — the shape only a list may use. A stacked cell in a panel that also has a column header is the list/table mix-up; then every value needs its own column instead. Carries no padding (see dashboard.list-row).",
 			"plan": {
 				"type": "ContainerHorizontal",
 				"gap": "sm",
 				"align": "left",
-				"padding": "sm",
 				"children": [
 					{
 						"type": "ContainerVertical",

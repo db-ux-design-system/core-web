@@ -29,6 +29,18 @@ function nearestInstanceFrom(node) {
 	while (n && safe(() => n.type, '') !== 'INSTANCE') n = n.parent;
 	return n || null;
 }
+/* The shared SELECTOR contract of the generic ops (`setVisible`, `custom`): a `name` matches a
+ * node by name, a `find` matches a visible TEXT, and an optional `scope` widens a text hit to the
+ * nearest ancestor whose name matches it (that is how "hide the card around this label" works).
+ * Ops with their own resolution rule keep it — `setVariant` widens to the nearest INSTANCE, not to
+ * a named ancestor — so this helper deliberately covers only the generic pair. */
+function resolveEditTarget(frame, e) {
+	const byName = e.name ? findByName(frame, e.name) : null;
+	if (byName || !e.find) return byName;
+	const t = findTextNode(frame, e.find, e.mode);
+	if (!t) return null;
+	return e.scope ? nearestAncestor(t, new RegExp(e.scope, 'i')) : t;
+}
 async function loadFontForTextNode(t) {
 	await ensureFonts();
 	let fn = null;
@@ -98,15 +110,7 @@ async function applyOneEdit(frame, e) {
 			return { op: e.op, ok: true };
 		}
 		case 'setVisible': {
-			let node = e.name ? findByName(frame, e.name) : null;
-			if (!node && e.find) {
-				const t = findTextNode(frame, e.find, e.mode);
-				node = t
-					? e.scope
-						? nearestAncestor(t, new RegExp(e.scope, 'i'))
-						: t
-					: null;
-			}
+			const node = resolveEditTarget(frame, e);
 			if (!node)
 				return { op: e.op, ok: false, error: 'target not found' };
 			try {
@@ -288,15 +292,7 @@ async function applyOneEdit(frame, e) {
 					ok: false,
 					error: 'custom edit needs an `apply(node, api, frame)` function'
 				};
-			let node = e.name ? findByName(frame, e.name) : null;
-			if (!node && e.find) {
-				const t = findTextNode(frame, e.find, e.mode);
-				node = t
-					? e.scope
-						? nearestAncestor(t, new RegExp(e.scope, 'i'))
-						: t
-					: null;
-			}
+			let node = resolveEditTarget(frame, e);
 			if (!node && (e.name || e.find))
 				return { op: e.op, ok: false, error: 'target not found' };
 			node = node || frame; // no selector → operate on the whole frame
@@ -347,6 +343,14 @@ const EDIT_API = {
 	// and which cells of a data row must fill so header and body share one column grid.
 	rowTextHugIndices,
 	rowCellFillIndices,
+	// Which Heading/Body children must hug because their CONTAINER hugs (a text left untouched
+	// carries its ~500px max width, so the hugging box silently becomes ~512px), and where the
+	// single child of a `spread` row belongs (one action goes right, a lone title stays left).
+	hugContainerTextIndices,
+	spreadSingleChildAlign,
+	// Size a leaf instance HUG or FILL — never FIXED. The variant's own `width` axis decides when
+	// the plan does not; a leftover FIXED width falls back to HUG (a fixed box wraps its label).
+	applyLeafWidth,
 	// fillHeight is GUARDED: it refuses to stretch a node whose parent hugs on that axis (which
 	// would collapse it to 0px) and returns whether the stretch happened. canFillVertical is the
 	// same predicate, exposed so a fallback edit can check before it writes.
@@ -372,6 +376,10 @@ const EDIT_API = {
 	loadFontForTextNode,
 	// validation + utils
 	auditTree,
+	// STATIC plan validation (no Figma access) — the same function `renderPlan`
+	// runs first and the `plan:lint` CLI runs in Node. Exposed so a fallback can
+	// pre-check a hand-built plan and so the unit tests can drive it directly.
+	validatePlanStatic,
 	normName,
 	stop,
 	safe

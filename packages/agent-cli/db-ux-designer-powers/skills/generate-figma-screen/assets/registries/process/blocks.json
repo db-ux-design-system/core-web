@@ -4,8 +4,8 @@
 		"pageType": "process",
 		"source": "Figma file uI6oKmJ0qDhsEuE0nFah2W, catalog page \"Process / Blocks\" (node 1328:2829).",
 		"purpose": "Atomic fragments of a multi-step flow, captured 1:1 from the catalog block frames. patterns.json composes them via $ref.",
-		"spacingModel": "Stepper items sit at gap md in one row. A step's heading pair is one block at lg. The step content column separates its blocks at xl. The nav row is hug at gap md.",
-		"stateModel": "One rendered frame = ONE step. A completed stepper item carries the check icon, a pending one is the bare label. Prototyping is out of scope: deliver each step as its own static frame.",
+		"spacingModel": "The stepper row and the nav row both SPAN the content column and push their ends apart (spread) — measured on the templates: the stepper's four items sit at 0/310/619/940 of 1024 (gaps 230) and the nav's Ghost/Brand buttons at 0 and 941. Neither row is hug and neither is packed left; a fixed gap is a capture error. A step's heading pair is one block at lg. The step content column separates its blocks at xl.",
+		"stateModel": "One rendered frame = ONE step. The stepper distinguishes THREE item states, per template 1716:21928: DONE carries the `check` icon plus the label, ACTIVE carries the `pen` icon plus the label in strong text, and PENDING is a muted label PREFIXED WITH ITS STEP NUMBER (\"3. Fahrbereitschaft\"). Exactly one item is active — the step the frame shows. Never render every item in the pending shape: without an icon the row reads as plain text and the stepper is not recognizable as progress. Prototyping is out of scope: deliver each step as its own static frame.",
 		"placeholders": "<Angle brackets> mark content the agent MUST replace. <Trailing?> marks an optional node: drop it when no content applies, never render it empty."
 	},
 	"blocks": {
@@ -29,9 +29,29 @@
 				]
 			}
 		},
+		"process.stepper-step-active": {
+			"source": "1716:21928 Stepper (active item)",
+			"purpose": "The step the frame currently shows: pen icon plus the step name in strong text. Exactly one stepper item uses this shape.",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"gap": "sm",
+				"align": "left",
+				"hugWidth": true,
+				"children": [
+					{ "type": "Icon", "name": "pen", "size": 16 },
+					{
+						"type": "Body",
+						"size": "Small",
+						"content": "<Step name>",
+						"fills": "color.text.strong",
+						"hugWidth": true
+					}
+				]
+			}
+		},
 		"process.stepper-step": {
 			"source": "1716:21928 Stepper (pending item)",
-			"purpose": "Pending or current stepper item: the step name alone.",
+			"purpose": "Pending stepper item: the step NUMBER plus the step name, muted and without an icon. The number is what distinguishes a not-yet-reached step from the active one.",
 			"plan": {
 				"type": "ContainerVertical",
 				"gap": "none",
@@ -41,7 +61,7 @@
 					{
 						"type": "Body",
 						"size": "Small",
-						"content": "<Step name>",
+						"content": "<3. Step name>",
 						"fills": "color.text.muted",
 						"hugWidth": true
 					}
@@ -50,14 +70,14 @@
 		},
 		"process.stepper": {
 			"source": "1716:21928 Stepper",
-			"purpose": "Horizontal stepper: completed steps first, then the remaining ones.",
+			"purpose": "Horizontal stepper spanning the content column: completed steps, then the ACTIVE step, then the numbered pending ones. The row is spread — the items mark progress across the full width, so the template distributes them edge to edge (0/310/619/940 of 1024) instead of packing them left at a fixed gap.",
 			"plan": {
 				"type": "ContainerHorizontal",
-				"gap": "md",
+				"spread": true,
 				"align": "left",
 				"children": [
 					{ "$ref": "process.stepper-step-done" },
-					{ "$ref": "process.stepper-step-done" },
+					{ "$ref": "process.stepper-step-active" },
 					{ "$ref": "process.stepper-step" },
 					{ "$ref": "process.stepper-step" }
 				]
@@ -104,14 +124,28 @@
 				]
 			}
 		},
-		"process.navigation": {
-			"source": "1716:21930 Navigation",
-			"purpose": "Step navigation: Back as ghost, Next as the Brand action.",
+		"process.navigation-first": {
+			"source": "1716:21930 Navigation (first-step variant: Back dropped)",
+			"purpose": "Step navigation for the FIRST step, where there is nothing to go back to: a single right-aligned Brand action. Deliberately NOT `spread: true` — SPACE_BETWEEN needs two ends, and with one child Figma parks it flush LEFT with the whole content column empty to its right. One action belongs right.",
 			"plan": {
 				"type": "ContainerHorizontal",
-				"gap": "md",
+				"align": "right",
+				"children": [
+					{
+						"type": "Button",
+						"props": { "variant": "brand", "iconOnly": false },
+						"label": "<Weiter>"
+					}
+				]
+			}
+		},
+		"process.navigation": {
+			"source": "1716:21930 Navigation",
+			"purpose": "Step navigation SPANNING the content column: Back as ghost on the left edge, Next as the Brand action on the right edge. The template pushes them apart (buttons at 0 and 941 of 1024) — a hug row that packs both buttons together on the left is a capture error. On the FIRST step, where `Zurück` is dropped, use process.navigation-first instead: a single action is right-aligned, not spread.",
+			"plan": {
+				"type": "ContainerHorizontal",
+				"spread": true,
 				"align": "left",
-				"hugWidth": true,
 				"children": [
 					{
 						"type": "Button",

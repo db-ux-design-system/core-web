@@ -81,13 +81,29 @@
 			"purpose": "Section holding the Back/Next row.",
 			"level": "section",
 			"intent": "Let the user move one step back or forward.",
-			"whenToUse": "Every step frame except the confirmation. Back is ghost, Next is the frame's single Brand action.",
+			"whenToUse": "Every step frame that HAS a previous step. Back is ghost, Next is the frame's single Brand action. On the first step use process.navigation-first-section instead.",
 			"cardinality": "0..1",
+			"alternatives": ["process.navigation-first-section"],
 			"plan": {
 				"type": "Section",
 				"fills": "color.background.canvas",
 				"contentWidth": "Medium (1024)",
 				"children": [{ "$ref": "process.navigation" }]
+			}
+		},
+		"process.navigation-first-section": {
+			"source": "1716:21930 Navigation (first-step variant)",
+			"purpose": "Section holding the first step's single, right-aligned Next action.",
+			"level": "section",
+			"intent": "Move forward from the first step, where there is nothing to go back to.",
+			"whenToUse": "The FIRST step frame of a flow. `Zurück` is dropped, so the row holds ONE action — and a single action is right-aligned, never spread (spread with one child renders it flush left).",
+			"cardinality": "0..1",
+			"alternatives": ["process.navigation-section"],
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Medium (1024)",
+				"children": [{ "$ref": "process.navigation-first" }]
 			}
 		}
 	}

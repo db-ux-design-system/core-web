@@ -117,6 +117,22 @@
 				"children": [{ "$ref": "form.choice-fieldset" }]
 			}
 		},
+		"form.attachments": {
+			"source": "guideline-authored — no Upload component exists in the design system; composed from official components (see design-system/screen-guidelines.md → Datei-Upload).",
+			"purpose": "Titled section for attaching files: previews, add action, limits, accepted formats.",
+			"level": "section",
+			"intent": "Let the user attach files to the form or step.",
+			"whenToUse": "The form or a process step collects photos, documents or other files. There is NO Upload component in the design system, so this composes one from official components — never rebuild a drop zone from a dashed rectangle. Optional by nature: state the limits (count, size) and the accepted formats.",
+			"cardinality": "0..1",
+			"plan": {
+				"type": "Section",
+				"fills": "color.background.canvas",
+				"contentWidth": "Small (768)",
+				"title": "<Group title>",
+				"titleAs": "h2",
+				"children": [{ "$ref": "form.upload-field" }]
+			}
+		},
 		"form.message": {
 			"source": "1716:20855 Text Area",
 			"purpose": "Titled section for a free-form message plus consent.",

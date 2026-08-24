@@ -397,14 +397,16 @@ function validateNode(node, location, globals, errors) {
 			`${location}.type: unknown component or primitive "${node.type}".`
 		);
 	validateComponentProps(node, location, globals, errors);
-	if (node.type === 'Image') validateImage(node, location, globals, errors);
-	else if (node.type === 'Grid') validateGrid(node, location, errors);
-	else if (node.type === 'ChartBar')
-		validateChartBar(node, location, globals, errors);
-	else if (node.type === 'ProgressBar')
-		validateProgressBar(node, location, errors);
-	else if (node.type === 'Pagination')
-		validatePagination(node, location, errors);
+	// Node types with their own capability rules. Everything else is covered by the generic
+	// prop/token/icon checks below.
+	const TYPE_VALIDATORS = {
+		Image: () => validateImage(node, location, globals, errors),
+		Grid: () => validateGrid(node, location, errors),
+		ChartBar: () => validateChartBar(node, location, globals, errors),
+		ProgressBar: () => validateProgressBar(node, location, errors),
+		Pagination: () => validatePagination(node, location, errors)
+	};
+	TYPE_VALIDATORS[node.type]?.();
 	if (
 		typeof node.fills === 'string' &&
 		!isPlaceholder(node.fills) &&
@@ -439,7 +441,9 @@ function validateNode(node, location, globals, errors) {
 function readCatalog(pageType, errors) {
 	const directory = path.join(REGISTRY_ROOT, pageType);
 	const entries = fs.readdirSync(directory, { withFileTypes: true });
-	const names = entries.filter((e) => e.isFile()).map((e) => e.name);
+	const names = entries
+		.filter((entry) => entry.isFile())
+		.map((entry) => entry.name);
 	for (const missing of REQUIRED_FILES.filter((n) => !names.includes(n)))
 		errors.push(`${missing}: missing (the three-file shape is mandatory).`);
 	for (const extra of names.filter((n) => !REQUIRED_FILES.includes(n)))
@@ -532,16 +536,17 @@ function validatePatternSelection(patterns, errors) {
 				`${at}.cardinality: must be one of ${[...CARDINALITIES].join(', ')}.`
 			);
 		if (entry.alternatives !== undefined) {
-			if (!Array.isArray(entry.alternatives))
-				errors.push(
-					`${at}.alternatives: must be an array of pattern ids.`
-				);
-			else
+			if (Array.isArray(entry.alternatives)) {
 				for (const alternative of entry.alternatives)
 					if (!Object.hasOwn(patterns, alternative))
 						errors.push(
 							`${at}.alternatives: unknown pattern "${alternative}".`
 						);
+			} else {
+				errors.push(
+					`${at}.alternatives: must be an array of pattern ids.`
+				);
+			}
 		}
 	}
 }
@@ -562,20 +567,20 @@ function validateTemplate(template, patterns, errors) {
 			'template.json.rules: required non-empty array of constraints.'
 		);
 	const slots = isObject(template.slots) ? template.slots : null;
-	if (!slots) {
+	if (slots === null) {
 		errors.push('template.json.slots: required object.');
 		return;
 	}
 
-	if (!Array.isArray(template.order)) {
-		errors.push('template.json.order: required array of slot names.');
-	} else {
+	if (Array.isArray(template.order)) {
 		for (const name of template.order)
 			if (!Object.hasOwn(slots, name))
 				errors.push(`template.json.order: unknown slot "${name}".`);
 		for (const name of Object.keys(slots))
 			if (!template.order.includes(name))
 				errors.push(`template.json.slots.${name}: missing from order.`);
+	} else {
+		errors.push('template.json.order: required array of slot names.');
 	}
 
 	for (const [name, slot] of Object.entries(slots)) {
@@ -626,7 +631,7 @@ function validateTemplate(template, patterns, errors) {
  * A pattern may $ref patterns and blocks; a block may only $ref blocks. Cross-
  * page-type refs are allowed (a shared block), and are resolved by namespace.
  * -------------------------------------------------------------------------- */
-function buildResolver(pageType, blocks, patterns, errors) {
+function buildResolver(pageType, blocks, patterns) {
 	const cache = new Map();
 	const externals = (namespace) => {
 		if (namespace === pageType) return { blocks, patterns };
@@ -704,7 +709,7 @@ function walkPlan(value, location, context) {
 
 function analyzeGraph(template, blocks, patterns, globals, pageType, errors) {
 	const graph = new Map();
-	const resolve = buildResolver(pageType, blocks, patterns, errors);
+	const resolve = buildResolver(pageType, blocks, patterns);
 	for (const [id, entry] of Object.entries(blocks)) {
 		const owner = `block:${id}`;
 		graph.set(owner, new Set());
@@ -774,6 +779,9 @@ function analyzeGraph(template, blocks, patterns, globals, pageType, errors) {
 	let grew = true;
 	while (grew) {
 		grew = false;
+		// The spread is NOT redundant: mark() adds to `reachable` inside this loop, so iterating
+		// the live Set would mutate it while walking it. This is a snapshot per fixpoint round.
+		// eslint-disable-next-line unicorn/no-useless-spread
 		for (const node of [...reachable]) {
 			if (!node.startsWith('pattern:')) continue;
 			const id = node.slice('pattern:'.length);
@@ -861,7 +869,7 @@ function main() {
 	const pageTypes = only ? [only] : listPageTypes();
 	if (only && !fs.existsSync(path.join(REGISTRY_ROOT, only)))
 		fail(`Unknown page type "${only}".`);
-	const reports = pageTypes.map(validatePageType);
+	const reports = pageTypes.map((pageType) => validatePageType(pageType));
 	const ok = reports.every((report) => report.ok);
 	if (json) {
 		process.stdout.write(`${JSON.stringify({ ok, reports }, null, 2)}\n`);

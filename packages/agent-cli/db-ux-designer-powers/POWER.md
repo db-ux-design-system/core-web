@@ -75,13 +75,48 @@ The render runtime lives under `skills/generate-figma-screen/assets/`:
 - **Source**: split into modules under `src/` (`10-figma-helpers` → `70-edit-engine`).
 - **Build**: `node build-runtime.cjs` concatenates + minifies into `db-figma-runtime.min.js` and regenerates bootstrap snippets.
 - **Registry maps**: `build-registry-maps.cjs` generates key maps from `registries/*.json` and injects them at build time.
+
+### Generated vs. hand-maintained — what a KB regeneration overwrites
+
+`build-from-kb.cjs` derives Power artifacts from the Knowledge Database
+(`packages/agent-cli/knowledge-database/`, the single source of truth). It writes exactly these, and
+**editing them by hand is pointless — the next run overwrites the edit**:
+
+| Path                                              | Generated from                      |
+| ------------------------------------------------- | ----------------------------------- |
+| `context/design-system/component-guidelines/*.md` | KB `components/*/guidelines.md`     |
+| `registries/tokens.json`                          | KB `foundations/*/tokens.json`      |
+| `registries/icons.json`                           | KB `icons/` (names; keys curated)   |
+| `registries/components.json`                      | KB `figma.json` + `properties.json` |
+
+`components.json` is regenerated in FULL. It keeps a few hand-curated fields — `labelNodePath`,
+`note`, `forbiddenFallback`, deprecated sets, hand-written axes and `conceptComponents` — but that
+is an explicit ALLOWLIST: anything outside it is dropped silently, with no error. So skill-owned
+data must not live there. Render-time capability limits (e.g. how many entries the Navigation can
+show) belong in the hand-maintained **`registries/component-constraints.json`**, which no generator
+writes; unit tests assert both that the limit is there and that it is NOT in `components.json`.
+
+Everything else under `context/` and `registries/` is hand-maintained and not touched by the
+generator today: the page-type catalogs, `layout-guidelines.md`, `layout-type-guidelines/*`,
+`design-laws.md` and `screen-guidelines.md`.
+
 - **Single bundle**: ONE file (`db-figma-runtime.min.js`) provides both `renderPlan` and `applyEdits`.
+- **Static plan validation**: `src/45-plan-validation.js` is pure (no `figma`) and checks a
+  Composition Plan against the registries. `renderPlan` runs it first, and
+  `pnpm --filter @db-ux/agent-cli run plan:lint <plan-file>` runs the SAME function in Node — so
+  an unknown node type, a `text` string instead of a field map, an unregistered token/icon or an
+  over-long navigation is reported BEFORE any model output is spent on a render call. Rules that
+  need the rendered tree stay in the audit.
 - **Open requirement — incremental transfer.** Because the store is one blob sliced at fixed
   offsets, the re-bootstrap cost scales with an edit's POSITION rather than its size (a change in
-  `10-figma-helpers`, or to the registry maps in chunk `c0`, invalidates all 10 chunks). Specified
+  `10-figma-helpers`, or to the registry maps in chunk `c0`, invalidates all 5 chunks). Specified
   in `skills/generate-figma-screen/requirements/incremental-runtime-transfer.md`.
-- **Bootstrap needs a large model.** The runtime is stored once per Figma file as 10 verbatim
-  chunks (~64 KB). Reproducing them byte-for-byte is the one step a smaller model cannot do
+- **Bootstrap needs a large model.** The runtime is stored once per Figma file as 5 verbatim
+  chunks (~81 KB). The chunk SIZE is derived — the build picks the fewest chunks that stay inside a
+  safe per-message budget and spreads the runtime evenly, so exact lengths live in
+  `bootstrap/manifest.json`. Neither the 50 000-char `use_figma` cap nor Figma's 100 kB per-entry
+  limit binds at that size; the constraint is that one chunk must be reproduced verbatim in ONE
+  message. Reproducing them byte-for-byte is the one step a smaller model cannot do
   reliably — so `bootstrap/check.js` returns a `gate` telling the agent to stop and ask the user
   to switch to a large model (e.g. Claude Opus 5), and `bootstrap/store-meta.js` refuses to mark
   a runtime "ready" unless every chunk matches its length AND its content checksum. `check.js`
@@ -105,7 +140,7 @@ The render runtime lives under `skills/generate-figma-screen/assets/`:
 1. **No imperative Figma code.** Every screen goes through `renderPlan` — never `createFrame`/`createInstance`/`appendChild` directly.
 2. **No workspace output.** Output is a Figma frame, never HTML/CSS/JSX files.
 3. **No raw text nodes.** ALL text via Heading/Body components — never `figma.createText()`.
-4. **Batch runtime changes.** A re-bootstrap is expensive (~64 KB as 10 chunks + meta). Collect all fixes, then ONE build + ONE re-bootstrap.
+4. **Batch runtime changes.** A re-bootstrap is expensive (~74 KB as 5 chunks + meta). Collect all fixes, then ONE build + ONE re-bootstrap.
 5. **Never improvise a bootstrap.** If a chunk cannot be emitted verbatim, STOP and ask the user
    to switch to a large model. Never shorten/merge/repair chunks, never write the `meta` record by
    hand, never substitute hand-written Figma node code.

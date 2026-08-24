@@ -27,6 +27,7 @@
     "copy-output:powers": "cpr db-ux-consumer-powers ../../build-outputs/agent-cli/db-ux-consumer-powers --overwrite",
     "copy-output:powers-designer": "cpr db-ux-designer-powers ../../build-outputs/agent-cli/db-ux-designer-powers --overwrite",
     "copy-output:readme": "cpr README.md ../../build-outputs/agent-cli/README.md --overwrite",
+    "plan:lint": "node db-ux-designer-powers/skills/generate-figma-screen/assets/validate-plan.cjs",
     "registry:validate": "node db-ux-designer-powers/skills/generate-figma-screen/assets/validate-registries.cjs",
     "runtime:build": "node db-ux-designer-powers/skills/generate-figma-screen/assets/build-runtime.cjs",
     "runtime:check": "node db-ux-designer-powers/skills/generate-figma-screen/assets/build-runtime.cjs --check",

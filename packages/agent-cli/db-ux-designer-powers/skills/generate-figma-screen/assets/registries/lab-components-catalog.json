@@ -21,17 +21,12 @@
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Small",
-						"Medium"
-					],
+					"values": ["(Def) Small", "Medium"],
 					"figmaPropName": "Size"
 				}
 			],
 			"hasGuidelines": true,
-			"subComponents": [
-				"breadcrumb-item"
-			]
+			"subComponents": ["breadcrumb-item"]
 		},
 		"button-group": {
 			"name": "button-group",
@@ -49,35 +44,24 @@
 				{
 					"name": "variant",
 					"type": "enum",
-					"values": [
-						"(Def) Outlined",
-						"Filled"
-					],
+					"values": ["(Def) Outlined", "Filled"],
 					"figmaPropName": "Variant"
 				},
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small"
-					],
+					"values": ["(Def) Medium", "Small"],
 					"figmaPropName": "Size"
 				},
 				{
 					"name": "width",
 					"type": "enum",
-					"values": [
-						"(Def) Auto",
-						"Full"
-					],
+					"values": ["(Def) Auto", "Full"],
 					"figmaPropName": "Width"
 				}
 			],
 			"hasGuidelines": true,
-			"subComponents": [
-				"button-group-item"
-			]
+			"subComponents": ["button-group-item"]
 		},
 		"calendar": {
 			"name": "calendar",
@@ -90,11 +74,7 @@
 				{
 					"name": "variant",
 					"type": "enum",
-					"values": [
-						"(Def) Days",
-						"Years",
-						"Months"
-					],
+					"values": ["(Def) Days", "Years", "Months"],
 					"figmaPropName": "Variant"
 				}
 			],
@@ -155,10 +135,7 @@
 				{
 					"name": "direction",
 					"type": "enum",
-					"values": [
-						"(Def) Vertical",
-						"Horizontal"
-					],
+					"values": ["(Def) Vertical", "Horizontal"],
 					"figmaPropName": "Direction"
 				},
 				{
@@ -197,10 +174,7 @@
 				}
 			],
 			"hasGuidelines": true,
-			"subComponents": [
-				"dialog-footer",
-				"dialog-header"
-			]
+			"subComponents": ["dialog-footer", "dialog-header"]
 		},
 		"dynamic-button": {
 			"name": "dynamic-button",
@@ -213,10 +187,7 @@
 				{
 					"name": "state",
 					"type": "enum",
-					"values": [
-						"A",
-						"B"
-					],
+					"values": ["A", "B"],
 					"figmaPropName": "State"
 				}
 			],
@@ -322,10 +293,7 @@
 				{
 					"name": "fill",
 					"type": "enum",
-					"values": [
-						"false",
-						"true"
-					],
+					"values": ["false", "true"],
 					"figmaPropName": "fill"
 				}
 			],
@@ -376,14 +344,7 @@
 				{
 					"name": "as",
 					"type": "enum",
-					"values": [
-						"h1",
-						"h2",
-						"h3",
-						"h4",
-						"h5",
-						"h6"
-					],
+					"values": ["h1", "h2", "h3", "h4", "h5", "h6"],
 					"figmaPropName": "As"
 				},
 				{
@@ -406,20 +367,13 @@
 				{
 					"name": "fontWeight",
 					"type": "enum",
-					"values": [
-						"(Def) Black",
-						"Light"
-					],
+					"values": ["(Def) Black", "Light"],
 					"figmaPropName": "Font Weight"
 				},
 				{
 					"name": "textAlign",
 					"type": "enum",
-					"values": [
-						"(Def) Left",
-						"Center",
-						"Right"
-					],
+					"values": ["(Def) Left", "Center", "Right"],
 					"figmaPropName": "Text Align"
 				}
 			],
@@ -465,10 +419,7 @@
 				{
 					"name": "orientation",
 					"type": "enum",
-					"values": [
-						"(Def) Vertical",
-						"Horizontal"
-					],
+					"values": ["(Def) Vertical", "Horizontal"],
 					"figmaPropName": "Orientation"
 				},
 				{
@@ -485,11 +436,7 @@
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small",
-						"Large"
-					],
+					"values": ["(Def) Medium", "Small", "Large"],
 					"figmaPropName": "Size"
 				}
 			],
@@ -515,28 +462,18 @@
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small"
-					],
+					"values": ["(Def) Medium", "Small"],
 					"figmaPropName": "Size"
 				},
 				{
 					"name": "position",
 					"type": "enum",
-					"values": [
-						"(Def) Start",
-						"Center",
-						"End"
-					],
+					"values": ["(Def) Start", "Center", "End"],
 					"figmaPropName": "🎨 Position"
 				}
 			],
 			"hasGuidelines": true,
-			"subComponents": [
-				"pagination-item",
-				"pagination-truncation-item"
-			]
+			"subComponents": ["pagination-item", "pagination-truncation-item"]
 		},
 		"pulse": {
 			"name": "pulse",
@@ -555,14 +492,7 @@
 				{
 					"name": "as",
 					"type": "enum",
-					"values": [
-						"h1",
-						"h2",
-						"h3",
-						"h4",
-						"h5",
-						"h6"
-					],
+					"values": ["h1", "h2", "h3", "h4", "h5", "h6"],
 					"figmaPropName": "As"
 				},
 				{
@@ -601,26 +531,18 @@
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small"
-					],
+					"values": ["(Def) Medium", "Small"],
 					"figmaPropName": "Size"
 				},
 				{
 					"name": "variant",
 					"type": "enum",
-					"values": [
-						"(Def) White",
-						"Grey"
-					],
+					"values": ["(Def) White", "Grey"],
 					"figmaPropName": "Variant"
 				}
 			],
 			"hasGuidelines": true,
-			"subComponents": [
-				"segmented-button-item"
-			]
+			"subComponents": ["segmented-button-item"]
 		},
 		"split-button": {
 			"name": "split-button",
@@ -639,20 +561,13 @@
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small"
-					],
+					"values": ["(Def) Medium", "Small"],
 					"figmaPropName": "Size"
 				},
 				{
 					"name": "variant",
 					"type": "enum",
-					"values": [
-						"(Def) Outlined",
-						"Filled",
-						"Brand"
-					],
+					"values": ["(Def) Outlined", "Filled", "Brand"],
 					"figmaPropName": "Variant"
 				}
 			],
@@ -691,22 +606,13 @@
 				{
 					"name": "textAlign",
 					"type": "enum",
-					"values": [
-						"(Def) Left",
-						"Center",
-						"Right"
-					],
+					"values": ["(Def) Left", "Center", "Right"],
 					"figmaPropName": "Text Align"
 				},
 				{
 					"name": "maxWidth",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small",
-						"Large",
-						"None"
-					],
+					"values": ["(Def) Medium", "Small", "Large", "None"],
 					"figmaPropName": "Max Width"
 				}
 			],
@@ -772,20 +678,13 @@
 				{
 					"name": "checked",
 					"type": "enum",
-					"values": [
-						"False",
-						"True"
-					],
+					"values": ["False", "True"],
 					"figmaPropName": "Checked"
 				},
 				{
 					"name": "variant",
 					"type": "enum",
-					"values": [
-						"Ghost",
-						"Filled",
-						"Outlined"
-					],
+					"values": ["Ghost", "Filled", "Outlined"],
 					"figmaPropName": "Variant"
 				},
 				{
@@ -803,37 +702,25 @@
 				{
 					"name": "disabled",
 					"type": "enum",
-					"values": [
-						"False",
-						"True"
-					],
+					"values": ["False", "True"],
 					"figmaPropName": "Disabled"
 				},
 				{
 					"name": "size",
 					"type": "enum",
-					"values": [
-						"(Def) Medium",
-						"Small"
-					],
+					"values": ["(Def) Medium", "Small"],
 					"figmaPropName": "Size"
 				},
 				{
 					"name": "width",
 					"type": "enum",
-					"values": [
-						"(Def) Auto",
-						"Full"
-					],
+					"values": ["(Def) Auto", "Full"],
 					"figmaPropName": "Width"
 				},
 				{
 					"name": "noText",
 					"type": "enum",
-					"values": [
-						"False",
-						"True"
-					],
+					"values": ["False", "True"],
 					"figmaPropName": "No Text"
 				}
 			],
@@ -895,10 +782,7 @@
 				{
 					"name": "direction",
 					"type": "enum",
-					"values": [
-						"(Def) Vertical",
-						"Horizontal"
-					],
+					"values": ["(Def) Vertical", "Horizontal"],
 					"figmaPropName": "Direction"
 				}
 			],

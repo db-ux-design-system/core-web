@@ -25,6 +25,14 @@ async function importSet(key) {
 	_setCache[key] = set;
 	return set;
 }
+/* Some published entries are a single COMPONENT rather than a COMPONENT_SET (a Core Lab
+ * component with no variants). They need the other import call — see createConceptInstance. */
+async function importComponent(key) {
+	if (_setCache[key]) return _setCache[key];
+	const comp = await figma.importComponentByKeyAsync(key);
+	_setCache[key] = comp;
+	return comp;
+}
 
 async function createLibraryInstance(componentName, props = {}) {
 	const set = await importSet(resolveKey(componentName, props));
@@ -48,7 +56,13 @@ async function createConceptInstance(name, variantMatch = {}) {
 				CONCEPT_KEYS
 			).join(', ')}.`
 		);
-	const set = await importSet(key);
+	/* A variant-LESS Core Lab entry is a plain COMPONENT, not a COMPONENT_SET (e.g. `List`).
+	 * importComponentSetByKeyAsync then reports the key as "not found", which reads exactly like
+	 * a stale key — so honour the registry's `nodeType` instead of guessing from the failure. */
+	const set =
+		CONCEPT_NODE_TYPES[name] === 'COMPONENT'
+			? await importComponent(key)
+			: await importSet(key);
 	const children = set.type === 'COMPONENT_SET' ? set.children : [set];
 	const entries = Object.entries(variantMatch);
 	const variant = entries.length

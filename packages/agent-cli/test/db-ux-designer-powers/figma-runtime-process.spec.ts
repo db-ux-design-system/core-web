@@ -128,6 +128,31 @@ const input = (): MockNode =>
 		name: 'Input → (Def) Label Above - (Def) Empty'
 	});
 
+/**
+ * A summary panel: a Card of label/value rows — what a pure REVIEW step shows instead of asking
+ * for input. Scoped to rows inside a Card so the stepper and the Back/Next row can never be
+ * mistaken for a summary.
+ */
+const summaryCard = (rows: [string, string][]): MockNode =>
+	node({ type: 'INSTANCE', name: 'Card', paddingTop: 12 }, [
+		node(
+			{ type: 'SLOT', name: '📦 Children' },
+			rows.map(([label, value]) =>
+				container(
+					{ layoutMode: 'HORIZONTAL', primaryAxisAlignItems: 'MIN' },
+					[
+						node({
+							type: 'TEXT',
+							name: 'Body',
+							characters: label
+						}),
+						node({ type: 'TEXT', name: 'Body', characters: value })
+					]
+				)
+			)
+		)
+	]);
+
 const frame = (sections: MockNode[]): MockNode =>
 	node({ type: 'FRAME', name: 'Example Process – Schritt 1' }, [
 		node({ type: 'INSTANCE', name: 'Header → Desktop (Beta)' }),
@@ -174,6 +199,59 @@ describe('process step layout audit', () => {
 	it('reports a step that asks the user for nothing', async () => {
 		const found = await types(
 			frame([stepperSection(true), stepSection([]), navSection(true)])
+		);
+		expect(found).toContain('process-step-without-content');
+	});
+
+	/**
+	 * `🧪 Upload` IS the control of an upload step — the real file-upload component, a drop area
+	 * with its own label and button. It was reported as an empty shell only because every Concept
+	 * component is prefixed with its maturity emoji, so a name matched from the START never hit
+	 * `Upload`.
+	 */
+	it('accepts a step whose only control is the Upload component', async () => {
+		const found = await types(
+			frame([
+				stepperSection(true),
+				stepSection([node({ type: 'INSTANCE', name: '🧪 Upload' })]),
+				navSection(true)
+			])
+		);
+		expect(found).toEqual([]);
+	});
+
+	/**
+	 * A pure review step asks for nothing BY DESIGN — it shows the summary it reviews. Demanding
+	 * an input control there was a false alarm on a correct screen.
+	 */
+	it('accepts a pure review step that shows the summary it reviews', async () => {
+		const found = await types(
+			frame([
+				stepperSection(true),
+				stepSection([
+					summaryCard([
+						['Fahrzeug', 'ICE 101'],
+						['Standort', 'Hamburg-Altona'],
+						['Termin', '14.09.2026']
+					])
+				]),
+				navSection(true)
+			])
+		);
+		expect(found).toEqual([]);
+	});
+
+	/**
+	 * The threshold matters: a single stray text row must not excuse a genuinely empty step, or
+	 * the check would be trivially satisfied by the step's own description.
+	 */
+	it('still reports a step whose panel holds one lone row', async () => {
+		const found = await types(
+			frame([
+				stepperSection(true),
+				stepSection([summaryCard([['Fahrzeug', 'ICE 101']])]),
+				navSection(true)
+			])
 		);
 		expect(found).toContain('process-step-without-content');
 	});

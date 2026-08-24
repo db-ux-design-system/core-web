@@ -19,13 +19,112 @@ async function auditTree(root, opts) {
 		}
 	};
 
+	/* SCOPE — is this layout box one the RUNTIME owns, or a library component's internals?
+	 * -----------------------------------------------------------------------------
+	 * Our layout is always a SLOT inside a Container/Grid/Card/Section instance, so the NEAREST
+	 * enclosing INSTANCE answers the question. A library component's inner rows, gaps and cell
+	 * widths are its own design decision and are not ours to police — the measured checks that
+	 * forgot this scope reported on perfectly clean screens: a Notification's 16px internal gap
+	 * inside a 12px card (`gap-exceeds-card-padding`, 30+ hits on two screens), and a component's
+	 * inner three-child row compared against the table it happened to sit in
+	 * (`table-columns-misaligned`). A check that fires on correct output is worse than no check:
+	 * it teaches people to ignore the audit. */
+	const OUR_LAYOUT_RE = /Container|Grid|Card|Section/i;
+	const ownedLayout = (node) => {
+		let current = safe(() => node.parent, null);
+		for (
+			let depth = 0;
+			current && current !== root && depth < 100;
+			depth++
+		) {
+			if (safe(() => current.type, '') === 'INSTANCE')
+				return OUR_LAYOUT_RE.test(String(safe(() => current.name, '')));
+			current = safe(() => current.parent, null);
+		}
+		return true; // no enclosing instance at all — a frame-level box, ours by definition
+	};
+
+	/* ROW GEOMETRY — detect a horizontal row and its distribution from MEASURED boxes instead of
+	 * from `layoutMode` / `primaryAxisAlignItems`.
+	 *
+	 * WHY: those properties are not reliably readable on the instance-internal SLOT nodes that
+	 * every row actually lives in. A check gated on `layoutMode === 'HORIZONTAL'` therefore
+	 * returns early and reports NOTHING — the row is never even considered. That is how a
+	 * left-packed stepper, a left-packed Back/Next row and a table whose header had a different
+	 * column count than its data rows all shipped with a clean audit. Geometry is always
+	 * readable, so the checks below cannot be silently skipped any more. */
+	const visibleBoxes = (node) =>
+		(safe(() => node.children, []) ?? [])
+			.filter((c) => safe(() => c.visible, true))
+			.map((c) => ({
+				node: c,
+				box: safe(() => c.absoluteBoundingBox, null)
+			}))
+			.filter((c) => c.box && c.box.width > 0.5 && c.box.height > 0.5)
+			.sort((a, b) => a.box.x - b.box.x);
+
+	/* A row: the node DECLARES a horizontal layout, or its children measurably form one. The
+	 * declared property stays the PRIMARY signal — it is precise wherever it is readable.
+	 * Geometry is the ADDITIONAL path, so a node whose layout properties cannot be read is still
+	 * considered instead of dropping out of every row check unnoticed. */
+	const isRow = (node) => {
+		if (safe(() => node.layoutMode, '') === 'HORIZONTAL') return true;
+		const kids = visibleBoxes(node);
+		if (kids.length < 2) return false;
+		const first = kids[0].box;
+		const last = kids[kids.length - 1].box;
+		if (last.x <= first.x + first.width - 1) return false;
+		return kids.every(
+			(k) =>
+				Math.abs(k.box.y - first.y) <
+				Math.max(k.box.height, first.height) + 2
+		);
+	};
+
+	/* Distribution: a SPREAD row starts flush at its container's left edge, ends flush at the
+	 * right edge and carries at least one large inner gap. Measured on the catalog templates —
+	 * the stepper's four items sit at 0/310/619/940 of 1024 and the Back/Next buttons at 0 and
+	 * 941 — so the same numbers a designer sees are what the audit reads. */
+	const rowDistribution = (node) => {
+		const declared =
+			safe(() => node.primaryAxisAlignItems, '') === 'SPACE_BETWEEN';
+		const cb = safe(() => node.absoluteBoundingBox, null);
+		const kids = visibleBoxes(node);
+		// No measurable geometry: fall back to what the node declares, never to "looks fine".
+		if (!cb || kids.length < 2)
+			return { measured: false, spread: declared };
+		const first = kids[0].box;
+		const last = kids[kids.length - 1].box;
+		const leftGap = first.x - cb.x;
+		const rightGap = cb.x + cb.width - (last.x + last.width);
+		let maxGap = 0;
+		for (let i = 1; i < kids.length; i++) {
+			const gap =
+				kids[i].box.x - (kids[i - 1].box.x + kids[i - 1].box.width);
+			if (gap > maxGap) maxGap = gap;
+		}
+		/* FLUSH means "ends exactly at the edge" — the absolute distance, not just "not past it".
+		 * A one-sided `gap <= 2` would accept a NEGATIVE gap, i.e. content running BEYOND the
+		 * container (an overflowing left-packed row), and mistake it for a distributed one. */
+		const flush = (gap) => Math.abs(gap) <= 2;
+		return {
+			measured: true,
+			leftGap,
+			rightGap,
+			maxGap,
+			width: cb.width,
+			spread:
+				declared || (flush(leftGap) && flush(rightGap) && maxGap > 24)
+		};
+	};
+
 	// Outermost instances (not nested inside another instance) — checked below against the
 	// library-only rule. Nested instances belong to their parent component, so testing the
 	// outer ones is both sufficient and cheap.
 	const rootInstances = [];
 
 	// CASING — DB UX sets no product copy in ALL CAPS. A Topline/category/label is
-	// differentiated by size, weight and color emphasis, never by capitalisation. Both causes
+	// differentiated by size, weight and color emphasis, never by capitalization. Both causes
 	// of the same on-canvas defect are caught:
 	//   1. the PLAN wrote the content in caps ("ORIENTIERUNG" instead of "Orientierung"), and
 	//   2. a forced Figma text case (UPPER / SMALL CAPS) on the text node or its style.
@@ -132,18 +231,94 @@ async function auditTree(root, opts) {
 	const processNavRows = [];
 	const processItemRows = [];
 	let processHasField = false;
+	let processSummaryRows = 0;
+	/* Upload is on this list because it IS the step's control: `🧪 Upload` (Core Lab, Concept) is
+	 * the real file-upload component — a drop area with its own label and button — so an upload
+	 * step asks the user for exactly one thing and is complete without any Input. It was reported
+	 * as an empty shell purely because the name is matched from the START and every Concept
+	 * component is prefixed with its maturity emoji, so `^Upload` never matched `🧪 Upload`. The leading
+	 * non-letter run is therefore stripped before matching, which fixes the whole class rather
+	 * than this one component. */
 	const FIELD_RE =
-		/^(Input|Textarea|Checkbox|Radio|Select|Switch|Datepicker|Timepicker|Fileupload)/i;
+		/^(Input|Textarea|Checkbox|Radio|Select|Switch|Datepicker|Timepicker|Fileupload|Upload)/i;
+	const fieldName = (name) =>
+		String(name)
+			.trim()
+			.replace(/^[^\p{L}]+/u, '');
+	const hasVisibleText = (node) => {
+		let found = false;
+		(function rec(n) {
+			if (found) return;
+			if (!safe(() => n.visible, true)) return;
+			if (
+				safe(() => n.type, '') === 'TEXT' &&
+				String(safe(() => n.characters, '') ?? '').trim()
+			) {
+				found = true;
+				return;
+			}
+			for (const c of safe(() => n.children, []) ?? []) rec(c);
+		})(node);
+		return found;
+	};
+	const CONTROL_RE = /^(Button|Link|Tab|Pagination|Accordion)/i;
+	const hasControl = (node) => {
+		let found = false;
+		(function rec(n) {
+			if (found) return;
+			const nm = fieldName(safe(() => n.name, ''));
+			if (
+				safe(() => n.type, '') === 'INSTANCE' &&
+				(CONTROL_RE.test(nm) || FIELD_RE.test(nm))
+			) {
+				found = true;
+				return;
+			}
+			for (const c of safe(() => n.children, []) ?? []) rec(c);
+		})(node);
+		return found;
+	};
 	const auditProcessCollect = (node, name, type) => {
 		if (String((opts && opts.pageType) || '') !== 'process') return;
-		if (type === 'INSTANCE' && FIELD_RE.test(String(name).trim()))
+		if (type === 'INSTANCE' && FIELD_RE.test(fieldName(name)))
 			processHasField = true;
 		if (type !== 'SLOT') return;
-		if (safe(() => node.layoutMode, '') !== 'HORIZONTAL') return;
+		if (!isRow(node)) return;
 
-		const kids = safe(() => node.children, []) ?? [];
-		const spread =
-			safe(() => node.primaryAxisAlignItems, '') === 'SPACE_BETWEEN';
+		/* A pure REVIEW step asks for nothing BY DESIGN — it shows the summary it reviews, and
+		 * demanding an input control there is a false alarm. That summary is label/value rows
+		 * inside a panel: two or more of them, each carrying text in every cell and no control.
+		 * Scoped to rows inside a Card so the stepper (Containers in a Section) and the Back/Next
+		 * row can never be mistaken for it, and two rows are required so a single stray text row
+		 * does not excuse a genuinely empty step. */
+		if (ownedLayout(node)) {
+			let card = safe(() => node.parent, null);
+			while (
+				card &&
+				card !== root &&
+				!(
+					safe(() => card.type, '') === 'INSTANCE' &&
+					/(^|\W)card(\W|$)/i.test(safe(() => card.name, ''))
+				)
+			)
+				card = safe(() => card.parent, null);
+			const cells = (safe(() => node.children, []) ?? []).filter((c) =>
+				safe(() => c.visible, true)
+			);
+			if (
+				card &&
+				card !== root &&
+				cells.length >= 2 &&
+				cells.every((c) => hasVisibleText(c)) &&
+				!cells.some((c) => hasControl(c))
+			)
+				processSummaryRows++;
+		}
+
+		const kids = (safe(() => node.children, []) ?? []).filter((c) =>
+			safe(() => c.visible, true)
+		);
+		const spread = rowDistribution(node).spread;
 		const named = (n) => safe(() => n.name, '');
 		const isInstance = (n) => safe(() => n.type, '') === 'INSTANCE';
 		// The Back/Next row: the one action row that pairs a ghost with a brand Button. The
@@ -158,10 +333,14 @@ async function auditTree(root, opts) {
 			buttons.some((b) => /brand/i.test(named(b)))
 		)
 			processNavRows.push({ name, spread });
-		// The stepper: three or more step items side by side, each a Container of icon + label.
-		// A vertical progress bar section (the registered alternative) has no horizontal row of
-		// containers, so it is not matched.
-		else if (
+		/* The stepper: three or more step items side by side, each a Container.
+		 *
+		 * It used to additionally require every item to be an "icon + label" pair — but per the
+		 * catalog template (1716:21928) only the DONE and the ACTIVE step carry an icon, and the
+		 * PENDING steps are a numbered label alone. On the first step of a flow that means AT
+		 * MOST ONE item has an icon, so the old condition could essentially never match and the
+		 * spread violation was never reported. Container siblings plus the row geometry are
+		 * enough; a vertical progress-bar section has no horizontal row and is not matched. */ else if (
 			kids.length >= 3 &&
 			kids.every((c) => isInstance(c) && /Container/i.test(named(c)))
 		)
@@ -186,11 +365,18 @@ async function auditTree(root, opts) {
 					'The stepper items are packed to the left instead of being distributed across the content column. Give the stepper ContainerHorizontal `spread: true` — the steps mark progress along the full width, so a fixed gap leaves the later steps floating in dead space.'
 				);
 		// A step frame is identified by its navigation row; the confirmation frame has none.
-		if (!module && processNavRows.length && !processHasField)
+		// A pure review step has no control but shows the summary it reviews (processSummaryRows),
+		// which counts as content just like an input does.
+		if (
+			!module &&
+			processNavRows.length &&
+			!processHasField &&
+			processSummaryRows < 2
+		)
 			push(
 				safe(() => root.name, 'screen'),
 				'process-step-without-content',
-				'This step has a heading and a Back/Next row but no input control, so it asks the user for nothing. Fill the step content column from the form page-type blocks (form.field-row, form.text-field, form.checkbox-field …). If the step is deliberately a pure review step, give it the summary content it reviews.'
+				'This step has a heading and a Back/Next row but neither an input control nor a summary, so it asks the user for nothing and shows nothing. Fill the step content column from the form page-type blocks (form.field-row, form.text-field, form.checkbox-field, form.upload-field …). If the step is deliberately a pure review step, give it the label/value summary rows it reviews.'
 			);
 	};
 
@@ -200,10 +386,37 @@ async function auditTree(root, opts) {
 	// screen ships a visibly empty ✕ box. This is how an icon-only Button lost its icon: it has
 	// no "Show Icon Leading" boolean and its slot is "Icon <size>", so a side-specific lookup
 	// silently found nothing. Rendering an icon-less icon Button is never valid output.
+	//
+	// EXEMPTION — a RESOLVED icon carries the placeholder in its own internals. The DB Theme icon
+	// components are themselves built around an "<Icon>" node, so "<IconClose>" (the close action
+	// the Notification component ships with) legitimately nests a blank "<Icon>" below itself.
+	// That node is library-internal: nothing in a plan can set it, and reporting it made three
+	// correct screens read as invalid. A resolved icon is recognizable by its name — it carries a
+	// glyph, so it is "<Icon…>" and never bare "<Icon>". Only a placeholder with NO resolved icon
+	// above it is the real unset slot.
+	const RESOLVED_ICON_RE = /^<icon[^>]+>$/i;
+	const insideResolvedIcon = (node) => {
+		let current = safe(() => node.parent, null);
+		for (
+			let depth = 0;
+			current && current !== root && depth < 100;
+			depth++
+		) {
+			if (
+				RESOLVED_ICON_RE.test(
+					String(safe(() => current.name, '')).trim()
+				)
+			)
+				return true;
+			current = safe(() => current.parent, null);
+		}
+		return false;
+	};
 	const auditIconPlaceholder = (node, name, type) => {
 		if (type !== 'INSTANCE') return;
 		if (!/^<icon>$/i.test(String(name).trim())) return;
 		if (!safe(() => node.visible, true)) return;
+		if (insideResolvedIcon(node)) return;
 
 		push(
 			name,
@@ -344,6 +557,10 @@ async function auditTree(root, opts) {
 		const gap = safe(() => node.itemSpacing, 0);
 		if (!Number.isFinite(gap) || gap <= 0) return;
 		if (!safe(() => node.layoutMode, '')) return;
+		// Only OUR layout boxes. A library component's internal gap is its own business — see
+		// ownedLayout(); measuring those turned every Notification/Tag/Tab inside a 12px card
+		// into a violation.
+		if (!ownedLayout(node)) return;
 
 		let card = safe(() => node.parent, null);
 		while (
@@ -402,7 +619,6 @@ async function auditTree(root, opts) {
 	 * instances plus the screen frames) — a library component's internals legitimately overflow
 	 * (focus rings, decorative helpers) and are not ours to police. Absolutely positioned children
 	 * are exempt by definition, and a 1px tolerance absorbs layout rounding. */
-	const OUR_LAYOUT_RE = /Container|Grid|Card|Section/i;
 	const auditContentOverflow = (node, name, type) => {
 		const ours =
 			type === 'SLOT' ||
@@ -442,6 +658,145 @@ async function auditTree(root, opts) {
 		);
 	};
 
+	/* HUG PARENT WITH A FILLING CHILD — the DECLARED cause behind a whole overflow class.
+	 * -----------------------------------------------------------------------------
+	 * WHY THIS EXISTS NEXT TO auditContentOverflow: that check measures the SYMPTOM, and geometry
+	 * is not reliable at render time. A stepper shipped `valid: true` while its five items summed
+	 * to 2 588px inside a 1 024px column — at audit time the row still hugged its content, so
+	 * nothing stuck out yet; the column width settled only afterwards. Re-running the same audit
+	 * on the delivered frame reported the overflow immediately. A geometric net therefore cannot
+	 * be the only one: this check reads what the nodes DECLARE, which is stable during the run.
+	 *
+	 * The contradiction: a parent that HUGS asks its child for a width, while a child set to FILL
+	 * asks its parent — so Figma falls back to the child's intrinsic size. For a Concept
+	 * Heading/Text that intrinsic size is its ~500px `Max Width`, NOT its glyphs. The hugging box
+	 * then reports HUG at 512px and looks correct on the node while breaking the row it sits in.
+	 * A text in a hugging container must hug its glyphs (see hugContainerTextIndices). */
+	const auditHugParentFillingChild = (node, name, type) => {
+		const ours =
+			type === 'SLOT' ||
+			(type === 'INSTANCE' && OUR_LAYOUT_RE.test(String(name)));
+		if (!ours) return;
+		if (!safe(() => node.visible, true)) return;
+		if (safe(() => node.layoutSizingHorizontal, '') !== 'HUG') return;
+		for (const child of safe(() => node.children, []) ?? []) {
+			if (!safe(() => child.visible, true)) continue;
+			if (safe(() => child.layoutPositioning, 'AUTO') === 'ABSOLUTE')
+				continue;
+			if (safe(() => child.layoutSizingHorizontal, '') !== 'FILL')
+				continue;
+			push(
+				name,
+				'hug-parent-filling-child',
+				`"${safe(() => child.name, '(unnamed)')}" is set to FILL inside "${name}", which HUGS — so Figma uses the child's intrinsic width instead. For a Heading/Body that is its ~500px max width, not its glyphs, so the hugging box silently becomes ~512px wide and breaks the row around it. Let the child hug (a text in a hugging container hugs its glyphs), or make this container fill.`
+			);
+			return; // one finding per container is enough to act on
+		}
+	};
+
+	/* A GRAPH THAT DOES NOT USE ITS HEIGHT — the counterpart to chart-not-bottom-anchored.
+	 * -----------------------------------------------------------------------------
+	 * Bottom-anchoring only guarantees WHERE the graph sits, not that it uses the panel. Bar
+	 * heights come from the plan as pixels, and the plan cannot know how tall a bento card ends
+	 * up — so a stretched card turned its extra height into dead space ABOVE the bars while they
+	 * stayed at their authored 56/72/88px, using well under half the panel. The runtime now
+	 * rescales the bars of a row onto the available height (ratios preserved); this reports what
+	 * is left. Measured, so — like every geometric check — it is most reliable when re-run on a
+	 * delivered frame. */
+	const auditChartHeightUsage = (node, name, type) => {
+		if (type !== 'SLOT') return;
+		if (safe(() => node.layoutMode, '') !== 'HORIZONTAL') return;
+		const rowBox = safe(() => node.absoluteBoundingBox, null);
+		if (!rowBox || !(rowBox.height > 0)) return;
+		let tallest = 0;
+		let found = false;
+		(function scan(n, depth) {
+			if (depth > 3) return;
+			for (const c of safe(() => n.children, []) ?? []) {
+				if (!safe(() => c.visible, true)) continue;
+				if (
+					safe(() => c.type, '') === 'RECTANGLE' &&
+					/chart bar/i.test(safe(() => c.name, ''))
+				) {
+					found = true;
+					const h = safe(
+						() =>
+							c.absoluteBoundingBox &&
+							c.absoluteBoundingBox.height,
+						0
+					);
+					if (h > tallest) tallest = h;
+				}
+				scan(c, depth + 1);
+			}
+		})(node, 0);
+		if (!found || !(tallest > 0)) return;
+		// The captions under the bars legitimately take space; only a large remainder is a defect.
+		const unused = rowBox.height - tallest;
+		if (unused <= 48) return;
+		push(
+			name,
+			'chart-height-unused',
+			`The tallest bar is ${Math.round(tallest)}px in a ${Math.round(rowBox.height)}px row, so the graph leaves ~${Math.round(unused)}px unused above it and reads as a small chart in a large panel. Bar heights are RELATIVE: the runtime scales them onto the available height (see scaleChartBarsToAvailableHeight) — if this fires, the row did not own a height to distribute (a hugging card) or the bars could not be resized.`
+		);
+	};
+
+	/* A FIXED WIDTH ON A TEXT-BEARING INSTANCE — the third member of this defect family.
+	 * -----------------------------------------------------------------------------
+	 * There are no free pixel widths: a width comes from the chain of hug/fill modes
+	 * (layout-guidelines.md -> Breiten-Sizing). But an instance dropped into an auto-layout parent
+	 * keeps Figma's default FIXED unless something sizes it, and a FIXED box does not grow with its
+	 * label — the text wraps inside it. Measured: a `Radio` kept the library's 84px and rendered
+	 * its label as six one-word lines, 144px tall.
+	 *
+	 * Why it is scoped this way:
+	 *   - only PLAN-created instances (not nested inside another instance): a library component's
+	 *     internals use fixed boxes legitimately and are not ours to police.
+	 *   - only instances that CONTAIN TEXT: that is where a fixed width does the damage. An Icon is
+	 *     intrinsically sized and carries no text, so it is exempt without needing a name list.
+	 * Declared state, so — unlike the measured overflow check — it is reliable during a render. */
+	const auditFixedWidthInstance = (node, name, type, insideInstance) => {
+		if (type !== 'INSTANCE' || insideInstance) return;
+		if (!safe(() => node.visible, true)) return;
+		if (safe(() => node.layoutSizingHorizontal, '') !== 'FIXED') return;
+		const hasText = safe(
+			() => !!node.findOne((n) => n.type === 'TEXT'),
+			false
+		);
+		if (!hasText) return;
+		push(
+			name,
+			'fixed-width-instance',
+			`"${name}" has a FIXED width (${Math.round(safe(() => node.width, 0))}px) instead of hug or fill, so its label cannot grow with the text and wraps INSIDE the box — typically into one word per line. Size it from the chain: give the plan node \`fillWidth: true\` / \`hugWidth: true\`, or pick the variant whose \`width\` axis says it ("full" fills, "auto" hugs). There are no free pixel widths.`
+		);
+	};
+
+	/* A SINGLE ACTION IN A SPREAD ROW — declared, not measured.
+	 * -----------------------------------------------------------------------------
+	 * SPACE_BETWEEN needs two ends. With one child Figma parks it at the START, so a step frame
+	 * whose `Zurück` was dropped renders its only action flush LEFT with the whole content column
+	 * empty to its right (measured: Slot FILL + SPACE_BETWEEN 1 024px, one Brand Button at x = 0).
+	 * A single action is right-aligned — see screen-guidelines.md -> Aktionen. */
+	const auditSingleActionRow = (node, name, type) => {
+		if (type !== 'SLOT') return;
+		if (!safe(() => node.visible, true)) return;
+		if (safe(() => node.layoutMode, '') !== 'HORIZONTAL') return;
+		if (safe(() => node.primaryAxisAlignItems, '') !== 'SPACE_BETWEEN')
+			return;
+		const kids = (safe(() => node.children, []) ?? []).filter((c) =>
+			safe(() => c.visible, true)
+		);
+		if (kids.length !== 1) return;
+		const only = kids[0];
+		if (safe(() => only.type, '') !== 'INSTANCE') return;
+		if (!/^Button/i.test(String(safe(() => only.name, '')))) return;
+		push(
+			name,
+			'single-action-not-right',
+			`"${name}" distributes its children (SPACE_BETWEEN) but holds a SINGLE action, so Figma places it flush LEFT with the rest of the row empty. One action is right-aligned: give the row \`align: "right"\` instead of \`spread: true\` (e.g. the first step of a process, where "Zurück" is dropped and only "Weiter" remains).`
+		);
+	};
+
 	/* EMPTY GRID CELL — an unused component slot is NOT invisible: Figma paints it as a magenta
 	 * placeholder that ships in the render. Leaving a column empty is legitimate (that is how a
 	 * row keeps its content at two thirds, and how the short last row of a wrapped grid stays
@@ -476,6 +831,30 @@ async function auditTree(root, opts) {
 			'filter-tag-emphasis',
 			'An active-filter Tag uses STRONG emphasis. Removable filter tags report state, they are not actions — use `emphasis: "weak"` so they do not compete with the page actions.'
 		);
+	};
+
+	/* NESTED CARD — a panel is ONE elevated surface. Wrapping Cards in another Card doubles the
+	 * border and the elevation and reads as a frame inside a frame; the bento model says a group
+	 * of KPI cards gets a TITLED AREA above them, not a card around them. Only the outermost card
+	 * of a chain is reported, so one violation per defect. */
+	const auditNestedCard = (node, name, type) => {
+		if (type !== 'INSTANCE') return;
+		if (!/(^|\W)card(\W|$)/i.test(String(name))) return;
+		let p = safe(() => node.parent, null);
+		while (p && p !== root) {
+			if (
+				safe(() => p.type, '') === 'INSTANCE' &&
+				/(^|\W)card(\W|$)/i.test(safe(() => p.name, ''))
+			) {
+				push(
+					name,
+					'nested-card',
+					`"${name}" is a Card inside the Card "${safe(() => p.name, 'Card')}" — two elevated surfaces stacked, so the panel gets a doubled border and elevation. Give the inner cards a titled AREA instead: a ContainerVertical with the h4 title above the cards, no outer Card.`
+				);
+				return;
+			}
+			p = safe(() => p.parent, null);
+		}
 	};
 
 	/* TABLE COLUMNS — a table only reads as a table while every value sits UNDER its own header.
@@ -514,6 +893,40 @@ async function auditTree(root, opts) {
 				if (cells.length < 3) continue;
 				if (!groups.has(cells.length)) groups.set(cells.length, []);
 				groups.get(cells.length).push(cells);
+			}
+
+			/* HEADER ARITY — the drift check below only ever compares rows that already have the
+			 * SAME cell count, so the worst table defect of all slipped through: a header row
+			 * with a different number of columns than its data rows. Grouped by count, such a
+			 * header lands alone in its own group and is skipped, and the data rows align neatly
+			 * among themselves — clean audit, unusable table (a 5-column header over 3-cell rows
+			 * left "Standort" and "Nächste Wartung" without any values beneath them).
+			 *
+			 * So compare the FIRST row of the panel against the dominant shape of the rows below
+			 * it. A mismatch means the panel mixes the two patterns: either it is a TABLE and
+			 * every value needs its own column, or it is a LIST and must not carry a header. */
+			const counted = slots
+				.map((slot) => cellsOf(slot).length)
+				.filter((n) => n >= 2);
+			if (counted.length >= 3) {
+				const headerCount = counted[0];
+				const bodyCounts = counted.slice(1);
+				const tally = new Map();
+				for (const n of bodyCounts)
+					tally.set(n, (tally.get(n) ?? 0) + 1);
+				let dominant = bodyCounts[0];
+				let best = 0;
+				for (const [n, c] of tally)
+					if (c > best) {
+						best = c;
+						dominant = n;
+					}
+				if (best >= 2 && dominant !== headerCount)
+					push(
+						safe(() => card.name, 'Card'),
+						'table-header-arity',
+						`The header row of this panel has ${headerCount} cells but its ${best} data rows have ${dominant}, so the values do not sit under their headers. Decide which pattern the panel is: a TABLE gives EVERY value its own equal fill column (no stacked name+meta cell) and its header carries exactly as many cells as a data row — a LIST may stack the leading cell and right-align status/action, but then it must NOT show column headers at all.`
+					);
 			}
 			for (const [count, rows] of groups) {
 				if (rows.length < 2) continue;
@@ -608,16 +1021,25 @@ async function auditTree(root, opts) {
 		auditGapVsPadding(node, name);
 		auditCollapsedFill(node, name);
 		auditContentOverflow(node, name, type);
+		// Declared-state nets next to the measured one: geometry is not settled during a render
+		// (see auditHugParentFillingChild), so these two catch the cause, not the symptom.
+		auditHugParentFillingChild(node, name, type);
+		auditSingleActionRow(node, name, type);
+		auditFixedWidthInstance(node, name, type, insideInstance);
+		auditChartHeightUsage(node, name, type);
 		auditEmptyGridCell(node, name, type);
 		auditFilterTagEmphasis(node, name, type);
+		auditNestedCard(node, name, type);
 		auditProcessCollect(node, name, type);
 		// Collect the horizontal content slots — candidate table rows for auditTableColumns.
-		if (
-			type === 'SLOT' &&
-			safe(() => node.layoutMode, '') === 'HORIZONTAL' &&
-			safe(() => node.primaryAxisAlignItems, '') !== 'SPACE_BETWEEN'
-		)
-			rowSlots.push(node);
+		// Only OUR rows: a library component's internal row is not a table row of ours, and
+		// comparing its cell edges against the panel's columns reported drift on correct tables
+		// (see ownedLayout()).
+		if (type === 'SLOT' && ownedLayout(node) && isRow(node)) {
+			// A deliberately spread row (title left / actions right) distributes its children by
+			// design, so its cell edges must not be compared against a table's columns.
+			if (!rowDistribution(node).spread) rowSlots.push(node);
+		}
 
 		for (const c of safe(() => node.children, []) ?? [])
 			walk(c, insideInstance || type === 'INSTANCE');

@@ -1,3 +1,33 @@
+/* The optional SURFACE of a layout container, shared by ContainerVertical and ContainerHorizontal:
+ * a bound fill (a colored bar or tinted panel) plus a radius, and/or a semantic MODE that recolors
+ * the container's bound token AND its whole subtree. Having it here keeps a colored surface
+ * pure-plan — no `custom` edit needed. Width closes the chain: a container FILLs its parent unless
+ * the plan says `hugWidth`, because there are no free pixel widths. */
+async function applyContainerSurface(c, node) {
+	if (node.fills) await bindFill(c, node.fills);
+	if (node.radius) await bindRadius(c, node.radius);
+	if (node.semantic) await setSemantic(c, node.semantic);
+	if (node.hugWidth) hugWidth(c);
+	else fillWidth(c);
+}
+
+/* The CONTENT of a leaf instance, shared by the Concept path and the generic COMPONENTS path:
+ * copy, semantic state, extra variant props and icons. Kept in one place because the two paths
+ * must not drift — an icon that works on a Concept component has to work on a Core one too.
+ * Icons come LAST so they are applied after applyProps has settled the Size variant, which is
+ * what decides the icon slot. Callers own where the instance is appended, so the write order of
+ * each path stays exactly as it was. */
+async function applyLeafFields(inst, node) {
+	if (node.label) setInstanceLabel(inst, node.label);
+	if (node.text) setInstanceFields(inst, node.text);
+	if (node.semantic) await setSemantic(inst, node.semantic);
+	if (node.applyProps) await applyProps(inst, node.applyProps);
+	if (node.iconLeading)
+		await setComponentIcon(inst, node.iconLeading, 'leading');
+	if (node.iconTrailing)
+		await setComponentIcon(inst, node.iconTrailing, 'trailing');
+}
+
 async function renderNode(node, parent) {
 	switch (node.type) {
 		case 'Text':
@@ -236,14 +266,7 @@ async function renderNode(node, parent) {
 		case 'ContainerVertical': {
 			const c = await buildContainer(node, 'vertical');
 			parent.appendChild(c);
-			// Optional surface: bind a fill (a colored bar/panel) + radius, and/or a semantic
-			// MODE that recolors the container's bound token + its subtree. Lets a colored
-			// surface be pure-plan (no custom edit) — e.g. a dark line bar or a tinted panel.
-			if (node.fills) await bindFill(c, node.fills);
-			if (node.radius) await bindRadius(c, node.radius);
-			if (node.semantic) await setSemantic(c, node.semantic);
-			if (node.hugWidth) hugWidth(c);
-			else fillWidth(c);
+			await applyContainerSurface(c, node);
 			// When a vertical container FILLs the row height (e.g. the trailing action column
 			// of a content card), `justify` controls where its content sits on the main axis:
 			// "start" (top) | "center" (default) | "end" (bottom). Use "end" to pin an action
@@ -263,17 +286,26 @@ async function renderNode(node, parent) {
 						(node.align ? parseAlign(node.align).v : 'CENTER');
 				} catch {}
 			}
-			await renderChildrenIntoSlot(c, 'Slot', node.children);
+			const colKids = await renderChildrenIntoSlot(
+				c,
+				'Slot',
+				node.children
+			);
+			// A HUGGING column hugs its widest child, and an untouched Heading/Body measures
+			// ~500px regardless of its glyphs — so a hug column of one Body is 500px wide.
+			// Same phantom width as in a hugging row; see hugContainerTextIndices.
+			for (const i of hugContainerTextIndices(node)) {
+				const inst = colKids[i];
+				if (!inst) continue;
+				hugWidth(inst);
+				hugTextWidth(inst);
+			}
 			return c;
 		}
 		case 'ContainerHorizontal': {
 			const c = await buildContainer(node, 'horizontal');
 			parent.appendChild(c);
-			if (node.fills) await bindFill(c, node.fills);
-			if (node.radius) await bindRadius(c, node.radius);
-			if (node.semantic) await setSemantic(c, node.semantic);
-			if (node.hugWidth) hugWidth(c);
-			else fillWidth(c);
+			await applyContainerSurface(c, node);
 			if (node.fillHeight) {
 				fillHeight(c);
 				// Cross-axis alignment also belongs on the inner Slot (see ContainerVertical).
@@ -312,11 +344,24 @@ async function renderNode(node, parent) {
 			// set. Here we only stretch the Slot to FILL so the row spans the full width for
 			// the distribution to have room; pair with a trailing child marked `hugWidth` so
 			// only the leading block grows. Re-fetch the slot fresh (ids regenerate on mutation).
+			// A HUGGING row must hug its GLYPHS, not the Heading/Body phantom max width
+			// (~500px). See hugContainerTextIndices — this is what made five stepper items
+			// sum to 2 588px inside a 1 024px column.
+			for (const i of hugContainerTextIndices(node)) {
+				const inst = rowKids[i];
+				if (!inst) continue;
+				hugWidth(inst);
+				hugTextWidth(inst);
+			}
 			if (node.spread) {
 				try {
 					const sl = freshSlot(c, 'Slot');
 					sl.layoutSizingHorizontal = 'FILL';
 					sl.primaryAxisSizingMode = 'FIXED';
+					// SPACE_BETWEEN has no second end to push against when only ONE child is
+					// left, so Figma parks it at the START. A single ACTION belongs right.
+					const single = spreadSingleChildAlign(node);
+					if (single) sl.primaryAxisAlignItems = single;
 				} catch {}
 			} else if (!node.hugWidth) {
 				// The container fills its parent width, but the Container's
@@ -541,6 +586,43 @@ async function renderNode(node, parent) {
 			hugHeight(d);
 			return d;
 		}
+		case 'Upload': {
+			/* The REAL Core Lab upload component: a drop area carrying a label, a Filled button
+			 * and two optional slots. Concept maturity, so it needs the concept_components
+			 * opt-in — but it exists, and an upload composed from an Image grid plus a Button (or
+			 * worse, a dashed rectangle) is therefore never correct.
+			 * `label` -> the "Text" prop; `children` -> the End Slot (previews, counters below
+			 * the drop area), whose 🎨 Show End Slot boolean the runtime flips so the slot is
+			 * actually visible; `startChildren` -> the Start Slot the same way. */
+			const up = await createConceptInstance('Upload', {
+				Direction:
+					node.direction === 'horizontal'
+						? 'Horizontal'
+						: '(Def) Vertical'
+			});
+			parent.appendChild(up);
+			await ensureFonts();
+			await loadInstanceFonts(up);
+			if (node.hugWidth) hugWidth(up);
+			else fillWidth(up);
+			if (node.label) setInstanceLabel(up, node.label);
+			if (node.text) setInstanceFields(up, node.text);
+			if (node.showButton === false)
+				await applyProps(up, { 'Show Button': false });
+			if (node.semantic) await setSemantic(up, node.semantic);
+			// A slot stays hidden behind its own boolean, so filling it without flipping that
+			// boolean renders nothing — the defect an Image-grid workaround was built around.
+			for (const [field, slot, toggle] of [
+				['startChildren', 'Start Slot', '🎨 Show Start Slot'],
+				['children', 'End Slot', '🎨 Show End Slot']
+			]) {
+				const kids = node[field];
+				if (!Array.isArray(kids) || kids.length === 0) continue;
+				await applyProps(up, { [toggle]: true });
+				await renderChildrenIntoSlot(up, slot, kids);
+			}
+			return up;
+		}
 		case 'Pagination': {
 			// Page navigation under a table/list. The variant ships its own item set; the plan
 			// only chooses size and alignment.
@@ -644,6 +726,43 @@ async function renderNode(node, parent) {
 			return r;
 		}
 		default: {
+			/* Generic CONCEPT path: any Core Lab component registered in conceptComponents is
+			 * renderable by its plan node type — no bespoke `case` needed.
+			 *
+			 * WHY: `conceptComponents` used to be hand-curated, so only the handful with a
+			 * bespoke case existed at all. Registering the rest from the Knowledge Database
+			 * would have been pointless without this path: 11 components would have had keys
+			 * and still been unusable, which is how an upload got rebuilt from an Image grid
+			 * while `🧪 Upload` sat in the library. Components with special composition rules
+			 * (Grid, Container, Dialog, Pagination, ProgressBar, Upload) keep their own case
+			 * above and never reach this branch. */
+			const conceptName = CONCEPT_PLAN_TYPES[node.type];
+			if (conceptName && !COMPONENTS[node.type]) {
+				const inst = await createConceptInstance(
+					conceptName,
+					node.props ?? {}
+				);
+				await ensureFonts();
+				await loadInstanceFonts(inst);
+				parent.appendChild(inst);
+				await applyLeafFields(inst, node);
+				if (node.fills) await bindFill(inst, node.fills);
+				if (node.radius) await bindRadius(inst, node.radius);
+				// Children go into the slot the registry names (contentSlot / slot).
+				const slotName =
+					CONCEPT_SLOTS[conceptName] ??
+					(Array.isArray(node.children) && node.children.length
+						? 'Children'
+						: null);
+				if (
+					slotName &&
+					Array.isArray(node.children) &&
+					node.children.length
+				)
+					await renderChildrenIntoSlot(inst, slotName, node.children);
+				applyLeafWidth(inst, node);
+				return inst;
+			}
 			// Generic path: ANY component registered in COMPONENTS is renderable as a leaf
 			// instance by using its canonical name as the node type. props -> variant axes,
 			// label -> primary TEXT, text {name:value} -> named TEXT props, semantic -> state.
@@ -654,20 +773,14 @@ async function renderNode(node, parent) {
 				);
 				await ensureFonts();
 				await loadInstanceFonts(inst);
-				if (node.label) setInstanceLabel(inst, node.label);
-				if (node.text) setInstanceFields(inst, node.text);
-				if (node.semantic) await setSemantic(inst, node.semantic);
-				if (node.applyProps) await applyProps(inst, node.applyProps);
 				// Icons are first-class on EVERY component that has an icon slot, not just on
-				// Button — a search Input carries the magnifier the same way. Applied after
-				// applyProps so the Size variant is settled and the right slot is picked.
-				if (node.iconLeading)
-					await setComponentIcon(inst, node.iconLeading, 'leading');
-				if (node.iconTrailing)
-					await setComponentIcon(inst, node.iconTrailing, 'trailing');
+				// Button — a search Input carries the magnifier the same way (applyLeafFields).
+				await applyLeafFields(inst, node);
 				parent.appendChild(inst);
-				if (node.fillWidth ?? FILL_DEFAULT.has(node.type))
-					fillWidth(inst);
+				// HUG or FILL, never FIXED — the variant's own `width` axis decides when the
+				// plan does not, and a leftover FIXED width falls back to HUG. See
+				// applyLeafWidth: a FIXED box wraps its label character by character.
+				applyLeafWidth(inst, node);
 				return inst;
 			}
 			stop(`Unknown plan node type "${node.type}".`);
@@ -809,9 +922,66 @@ function anchorChartsToCardBottom(root) {
 		// stretch, every step below it would collapse instead of grow — so stop right there and
 		// leave the rest of the block hugging its content.
 		let grown = true;
-		for (let i = chain.length - 1; i >= 0 && grown; i--)
+		for (let i = chain.length - 1; i >= 0 && grown; i--) {
 			grown = fillHeight(chain[i]);
+			if (grown) continue;
+			/* ESCALATE ONCE. `canFillVertical` refuses when the parent is a HUGGING vertical
+			 * container — correctly, because filling the main axis of a hugging parent collapses
+			 * the child. But a component's internal content SLOT can be the blocker even though
+			 * the CARD above it already owns a fixed height. Make that parent's height explicit
+			 * and retry; if it still refuses, stop as before. */
+			const parent = safe(() => chain[i].parent, null);
+			if (!parent) break;
+			try {
+				parent.primaryAxisSizingMode = 'FIXED';
+			} catch {}
+			grown = fillHeight(chain[i]);
+		}
 		if (grown) fillHeight(rowSlot);
+
+		/* VERIFY, then fall back to DISTRIBUTION instead of stretching.
+		 *
+		 * Stretching is a chain of preconditions and any link may refuse, so "we applied FILL"
+		 * is not the same as "the graph reaches the floor" — a dashboard shipped 82px of dead
+		 * space under a bar graph with a clean render for exactly that reason. So measure the
+		 * result, and if the block still falls short, use the mechanism the DB Card already
+		 * provides: its root auto-layout ships `SPACE_BETWEEN` so trailing content sticks to the
+		 * bottom. On a container that holds the panel title AND the graph, SPACE_BETWEEN pushes
+		 * the graph onto the floor and needs no stretching at all — it only needs the parent to
+		 * have a height, which a stretched card has by definition. */
+		const lowestEdge = (n) => {
+			let low = null;
+			(function rec(x) {
+				if (!safe(() => x.visible, true)) return;
+				const box = safe(() => x.absoluteBoundingBox, null);
+				if (box && box.height > 0.1) {
+					const edge = box.y + box.height;
+					if (low === null || edge > low) low = edge;
+				}
+				for (const c of safe(() => x.children, []) ?? []) rec(c);
+			})(n);
+			return low;
+		};
+		const cardBox = safe(() => card.absoluteBoundingBox, null);
+		const blockBottom = lowestEdge(rowSlot);
+		if (!cardBox || blockBottom === null) continue;
+		const floor =
+			cardBox.y +
+			cardBox.height -
+			(safe(() => card.paddingBottom, 0) ?? 0);
+		if (floor - blockBottom <= 4) continue;
+		for (const n of chain) {
+			const kids = (safe(() => n.children, []) ?? []).filter((c) =>
+				safe(() => c.visible, true)
+			);
+			// Two or more content blocks: the surplus belongs BETWEEN them, so the title stays
+			// at the top while the graph moves to the floor.
+			if (kids.length >= 2) {
+				try {
+					n.primaryAxisAlignItems = 'SPACE_BETWEEN';
+				} catch {}
+			}
+		}
 	}
 	/* Columns: stretch them ONLY when the row itself owns a height (it was grown into a stretched
 	 * card above). Vertical is the row's CROSS axis, so Figma accepts the stretch either way —
@@ -835,15 +1005,136 @@ function anchorChartsToCardBottom(root) {
 			} catch {}
 		}
 	}
+	scaleChartBarsToAvailableHeight(rowSlots, bars);
 	return bars.length;
+}
+
+/* -----------------------------------------------------------------------------
+ * scaleChartBarsToAvailableHeight — a graph USES the height it was given.
+ * -----------------------------------------------------------------------------
+ * Anchoring the block to the card floor is only half the job. The bar heights come
+ * from the PLAN as pixel values, and the plan cannot know how tall the card will
+ * end up: a bento card is stretched to the tallest panel of its row, so the extra
+ * height turned into DEAD SPACE ABOVE the bars while they stayed at their authored
+ * 56/72/88px. The graph sat correctly on the floor and still used well under half
+ * the panel.
+ *
+ * A plan therefore states RELATIVE values, and the runtime maps them onto the
+ * height that is actually available:
+ *   scale = availableBarHeight / tallestBar, applied to EVERY bar of the row.
+ * Because one factor is applied to all of them, the ratios — the data — are
+ * preserved exactly; only the scale changes. Scaling works in BOTH directions, so
+ * a bar taller than its panel is brought back inside instead of overflowing.
+ *
+ * Only rows that actually OWN a height are touched (a hugging row is already
+ * exactly as tall as its content, so there is nothing to distribute), and the
+ * caption under a bar keeps its space. Guarded throughout: where a size cannot be
+ * read or written, the bar simply keeps its authored height.
+ * -------------------------------------------------------------------------- */
+function scaleChartBarsToAvailableHeight(rowSlots, bars) {
+	const heightOf = (n) => {
+		const box = safe(() => n.absoluteBoundingBox, null);
+		return box && box.height > 0 ? box.height : safe(() => n.height, 0);
+	};
+	for (const rowSlot of rowSlots) {
+		if (safe(() => rowSlot.layoutSizingVertical, 'HUG') === 'HUG') continue;
+		const rowHeight = heightOf(rowSlot);
+		if (!(rowHeight > 0)) continue;
+
+		const rowBars = bars.filter((bar) => {
+			let n = safe(() => bar.parent, null);
+			for (let i = 0; i < 3 && n; i++) {
+				if (n === rowSlot) return true;
+				n = safe(() => n.parent, null);
+			}
+			return false;
+		});
+		if (!rowBars.length) continue;
+
+		/* What the bars may occupy: the row height minus the tallest column's non-bar content
+		 * (the caption plus the column gap). Measured per column, because a caption may wrap to
+		 * two lines and that column then constrains the whole row. */
+		let reserved = 0;
+		for (const bar of rowBars) {
+			const slot = safe(() => bar.parent, null);
+			if (!slot) continue;
+			const gap = safe(() => slot.itemSpacing, 0) ?? 0;
+			let others = 0;
+			for (const sibling of safe(() => slot.children, []) ?? []) {
+				if (sibling === bar) continue;
+				if (!safe(() => sibling.visible, true)) continue;
+				others += heightOf(sibling);
+			}
+			const need = others + (others > 0 ? gap : 0);
+			if (need > reserved) reserved = need;
+		}
+		const available = rowHeight - reserved;
+		if (!(available > 8)) continue;
+
+		let tallest = 0;
+		for (const bar of rowBars) {
+			const h = heightOf(bar);
+			if (h > tallest) tallest = h;
+		}
+		if (!(tallest > 0)) continue;
+		// Ignore rounding-level differences; only rescale when it visibly matters.
+		if (Math.abs(available - tallest) <= 4) continue;
+
+		const scale = available / tallest;
+		for (const bar of rowBars) {
+			const current = heightOf(bar);
+			if (!(current > 0)) continue;
+			const target = Math.max(1, Math.round(current * scale));
+			// resize() writes BOTH dimensions, which would turn a fill-width bar into a fixed
+			// one — so restore the horizontal mode afterwards (a bar always spans its column).
+			const wasFill =
+				safe(() => bar.layoutSizingHorizontal, '') === 'FILL';
+			try {
+				bar.resize(
+					Math.max(
+						1,
+						safe(() => bar.width, 1)
+					),
+					target
+				);
+			} catch {}
+			if (wasFill)
+				try {
+					bar.layoutSizingHorizontal = 'FILL';
+				} catch {}
+		}
+	}
 }
 
 /* -----------------------------------------------------------------------------
  * renderPlan — the ONE entry point. Model calls this and returns res.audit.
  * -------------------------------------------------------------------------- */
 async function renderPlan(plan) {
-	if (!plan || !Array.isArray(plan.layout))
-		stop('Plan must have a `layout` array.');
+	/* STATIC validation FIRST — before a single node is created. Reports EVERY
+	 * plan-level defect at once (unknown type, `text` string instead of a field
+	 * map, unregistered token/icon, over-long navigation, …) instead of stopping
+	 * at the first one halfway through a render. Same function the `plan:lint`
+	 * CLI runs in Node, so a plan that passes locally passes here too.
+	 * See src/45-plan-validation.js for why static and audit checks are split. */
+	const pre = validatePlanStatic(plan, {
+		COMPONENTS,
+		CONCEPT_PLAN_TYPES,
+		VAR_KEYS,
+		RADIUS_KEYS,
+		ICON_KEYS,
+		IMAGE_RATIOS,
+		GRID_LAYOUTS,
+		PROGRESS_VALUES,
+		NAV_MAX_ITEMS
+	});
+	if (!pre.valid)
+		stop(
+			`Plan is invalid (${pre.errors.length} problem${
+				pre.errors.length > 1 ? 's' : ''
+			}) — fix the PLAN, never the rendered tree:\n  - ${pre.errors.join(
+				'\n  - '
+			)}\nRun \`pnpm --filter @db-ux/agent-cli run plan:lint <plan-file>\` to get these findings BEFORE the render call.`
+		);
 	await ensureFonts();
 
 	// Navigate to the target node's page if provided.

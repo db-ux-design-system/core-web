@@ -74,12 +74,28 @@ function buildMaps(registriesDir) {
 		IMAGE_RATIOS[k] = v.heightPerWidth;
 	}
 
+	/* Core Lab. Besides the key the runtime needs two more things per entry:
+	 *   - nodeType, because a variant-less entry is a COMPONENT and needs the other import call;
+	 *   - the plan node type, so ANY registered concept component is renderable by name instead
+	 *     of requiring a bespoke `case` in renderNode (which is why 11 of them were unusable).
+	 * An entry without an explicit planNodeType is addressed by its registry name. */
 	const CONCEPT_KEYS = {};
+	const CONCEPT_NODE_TYPES = {};
+	const CONCEPT_PLAN_TYPES = {};
+	const CONCEPT_SLOTS = {};
 	for (const [name, def] of Object.entries(
 		components.conceptComponents || {}
 	)) {
 		if (name.startsWith('_')) continue;
+		if (!def.setKey) continue; // Several sets and none chosen → not addressable yet
 		CONCEPT_KEYS[name] = def.setKey;
+		if (def.nodeType) CONCEPT_NODE_TYPES[name] = def.nodeType;
+		const slot = def.contentSlot || def.slot;
+		if (slot) CONCEPT_SLOTS[name] = slot;
+		const planTypes = Array.isArray(def.planNodeType)
+			? def.planNodeType
+			: [def.planNodeType || name];
+		for (const planType of planTypes) CONCEPT_PLAN_TYPES[planType] = name;
 	}
 
 	const ICON_KEYS = { ...icons.icons };
@@ -87,15 +103,42 @@ function buildMaps(registriesDir) {
 
 	const COMPONENTS = buildComponentsMap(components.components || {});
 
+	/* Constraint data for the STATIC plan validation (src/45-plan-validation.js).
+	 * Derived from the registries so the linter, the runtime and the library stay
+	 * on one source of truth — a hand-copied list here would drift the moment a
+	 * variant is added. */
+	const concept = components.conceptComponents || {};
+	const GRID_LAYOUTS = [...(((concept.Grid || {}).axes || {}).Layout || [])];
+	// The progress component ships only discrete variant stops ("25%" → 25).
+	const PROGRESS_VALUES = (
+		((concept.ProgressBar || {}).axes || {})['🎨 Value'] || []
+	)
+		.map((label) => Number(String(label).replace('%', '')))
+		.filter((n) => Number.isFinite(n));
+	/* Render-time capability limits come from the SKILL-OWNED constraints file, never from
+	 * components.json: that one is fully regenerated from the Knowledge Database, and its
+	 * preserved hand-curated fields are an explicit allowlist — a limit stored there would be
+	 * dropped silently on the next regeneration and the check depending on it would just stop
+	 * firing. See registries/component-constraints.json → _meta.whyASeparateFile. */
+	const constraints = loadJson(registriesDir, 'component-constraints.json');
+	const NAV_MAX_ITEMS =
+		((constraints.constraints || {}).Navigation || {}).maxItems ?? null;
+
 	return {
 		VAR_KEYS,
 		RADIUS_KEYS,
 		TEXT_STYLE_KEYS,
 		IMAGE_RATIOS,
 		CONCEPT_KEYS,
+		CONCEPT_NODE_TYPES,
+		CONCEPT_PLAN_TYPES,
+		CONCEPT_SLOTS,
 		ICON_KEYS,
 		ICON_KEY,
-		COMPONENTS
+		COMPONENTS,
+		GRID_LAYOUTS,
+		PROGRESS_VALUES,
+		NAV_MAX_ITEMS
 	};
 }
 
@@ -109,10 +152,16 @@ function emitMapsSource(registriesDir) {
 		`const RADIUS_KEYS = ${j(m.RADIUS_KEYS)};\n` +
 		`const TEXT_STYLE_KEYS = ${j(m.TEXT_STYLE_KEYS)};\n` +
 		`const CONCEPT_KEYS = ${j(m.CONCEPT_KEYS)};\n` +
+		`const CONCEPT_NODE_TYPES = ${j(m.CONCEPT_NODE_TYPES)};\n` +
+		`const CONCEPT_PLAN_TYPES = ${j(m.CONCEPT_PLAN_TYPES)};\n` +
+		`const CONCEPT_SLOTS = ${j(m.CONCEPT_SLOTS)};\n` +
 		`const ICON_KEY = ${j(m.ICON_KEY)};\n` +
 		`const ICON_KEYS = ${j(m.ICON_KEYS)};\n` +
 		`const IMAGE_RATIOS = ${j(m.IMAGE_RATIOS)};\n` +
-		`const COMPONENTS = ${j(m.COMPONENTS)};\n`
+		`const COMPONENTS = ${j(m.COMPONENTS)};\n` +
+		`const GRID_LAYOUTS = ${j(m.GRID_LAYOUTS)};\n` +
+		`const PROGRESS_VALUES = ${j(m.PROGRESS_VALUES)};\n` +
+		`const NAV_MAX_ITEMS = ${j(m.NAV_MAX_ITEMS)};\n`
 	);
 }
 

@@ -21,8 +21,13 @@
 			"repeatable": true,
 			"minSections": 1,
 			"maxSections": 5,
-			"allow": ["form.fields", "form.choices", "form.message"],
-			"note": "One titled section per thematic group of questions. Never stack unlabelled fields into one long column."
+			"allow": [
+				"form.fields",
+				"form.choices",
+				"form.message",
+				"form.attachments"
+			],
+			"note": "One titled section per thematic group of questions. Never stack unlabelled fields into one long column. File attachments use form.attachments — the design system has no Upload component, so that section composes one from official components."
 		},
 		"submit": {
 			"required": true,

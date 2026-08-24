@@ -57,6 +57,58 @@
 				]
 			}
 		},
+		"form.upload-field": {
+			"source": "🧪 Upload (Core Lab, Concept) — the REAL upload component.",
+			"purpose": "File upload built on the official Upload component: a drop area with its own label and Filled button. Its End Slot carries the previews and the limit counter, so the whole control is ONE component instead of an Image grid plus a loose Button — and never a dashed rectangle. Upload is Concept, so it needs the concept_components opt-in. Previews are EMPTY Images at a registered ratio (the designer drops the assets in); the counter states the limits the process defines.",
+			"plan": {
+				"type": "ContainerVertical",
+				"gap": "md",
+				"align": "left",
+				"children": [
+					{
+						"type": "Upload",
+						"label": "<Dateien hier ablegen oder auswählen>",
+						"children": [
+							{
+								"type": "ContainerVertical",
+								"gap": "sm",
+								"align": "left",
+								"children": [
+									{
+										"type": "ContainerHorizontal",
+										"gap": "md",
+										"align": "left",
+										"children": [
+											{
+												"type": "Image",
+												"ratio": "1:1",
+												"label": "<Preview 1?>"
+											},
+											{
+												"type": "Image",
+												"ratio": "1:1",
+												"label": "<Preview 2?>"
+											}
+										]
+									},
+									{
+										"type": "Body",
+										"size": "Small",
+										"content": "<0 von 5 Dateien · maximal 10 MB je Datei>",
+										"fills": "color.text.muted"
+									}
+								]
+							}
+						]
+					},
+					{
+						"type": "Infotext",
+						"label": "<Akzeptierte Formate: JPG, PNG oder PDF>",
+						"semantic": "Informational"
+					}
+				]
+			}
+		},
 		"form.textarea-field": {
 			"source": "1716:20855 Text Area",
 			"purpose": "Multi-line text field for free-form input.",

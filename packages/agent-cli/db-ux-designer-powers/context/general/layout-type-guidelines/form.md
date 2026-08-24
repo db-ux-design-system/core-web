@@ -68,7 +68,9 @@ the field with a helper `Infotext` at `sm` (R−1) inside a `ContainerVertical`.
 
 A form- or fieldset-level error/context summary is a `Notification` (tinted via `semantic`:
 Critical / Warning / Informational) placed at the top of the intro or the affected fieldset — never
-its own section. Its text props are `headline` (title) + `text` (body), NOT `description`.
+its own section. Its title and body go into the plan's FIELD MAP,
+`text: { headline: …, description: … }` — never as top-level fields and never as a `text` string
+(see `SKILL.md` → _Text fields must be named after the component's own TEXT property_).
 
 ## 9. Action hierarchy
 

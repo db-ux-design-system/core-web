@@ -10,7 +10,6 @@
 		"lastKeyVerification": "2026-07-24 — all non-deprecated figmaSets keys import-tested against the live library (83/83 resolve). Note: Figma component keys can drift WITHIN a version name on re-publish (e.g. Drawer was refreshed here), so re-verify per-key — the version string alone is not a reliable freshness signal.",
 		"keyRefresh": "To refresh: for each component, pull the current component_set key from the canonical libraryKey (search_design_system scoped, or import-test existing keys) and update figmaSets. The core build stays pinned to these committed keys (deterministic, no Figma dependency at build time)."
 	},
-
 	"components": {
 		"Button": {
 			"codeName": "button",
@@ -21,35 +20,59 @@
 			"figmaSets": {
 				"Button → Brand": {
 					"key": "bcd676a2ab5beb47eef54a9f36d74d91f2aa4a20",
-					"axes": { "variant": "brand", "iconOnly": false }
+					"axes": {
+						"variant": "brand",
+						"iconOnly": false
+					}
 				},
 				"Button → Filled": {
 					"key": "324c20d16cf7f1a285279547f4d9ca1407df39ed",
-					"axes": { "variant": "filled", "iconOnly": false }
+					"axes": {
+						"variant": "filled",
+						"iconOnly": false
+					}
 				},
 				"Button → (Def) Outlined": {
 					"key": "8c488eae78e6f082da0be2571ba7a0dd26caf962",
-					"axes": { "variant": "outlined", "iconOnly": false }
+					"axes": {
+						"variant": "outlined",
+						"iconOnly": false
+					}
 				},
 				"Button → Ghost": {
 					"key": "46f934fb9da2c1bcfc1d357cf04694b888400c19",
-					"axes": { "variant": "ghost", "iconOnly": false }
+					"axes": {
+						"variant": "ghost",
+						"iconOnly": false
+					}
 				},
 				"Icon Button → Brand": {
 					"key": "d3d9596ab2f065b22e89fbfbc0163f51967d5eff",
-					"axes": { "variant": "brand", "iconOnly": true }
+					"axes": {
+						"variant": "brand",
+						"iconOnly": true
+					}
 				},
 				"Icon Button → Filled": {
 					"key": "890bbab6c64b4357b781cfee90ac524c7337c0f3",
-					"axes": { "variant": "filled", "iconOnly": true }
+					"axes": {
+						"variant": "filled",
+						"iconOnly": true
+					}
 				},
 				"Icon Button → (Def) Outlined": {
 					"key": "92bbe193756813cbe30f9b8448043016318ff097",
-					"axes": { "variant": "outlined", "iconOnly": true }
+					"axes": {
+						"variant": "outlined",
+						"iconOnly": true
+					}
 				},
 				"Icon Button → Ghost": {
 					"key": "647b29562542c1141dd918ce1f0095157db64459",
-					"axes": { "variant": "ghost", "iconOnly": true }
+					"axes": {
+						"variant": "ghost",
+						"iconOnly": true
+					}
 				}
 			},
 			"forbiddenFallback": "Never recreate or recolor a Button. No fake white/inverted variants."
@@ -63,35 +86,46 @@
 			"figmaSets": {
 				"Card → (Def) Level 1 (Beta)": {
 					"key": "ac60c14fe38796f4d53e293d9b8cc813a9079193",
-					"axes": { "elevationLevel": "1" }
+					"axes": {
+						"elevationLevel": "1"
+					}
 				},
 				"Card → Level 2 (Beta)": {
 					"key": "245f3f9d7c51155844b58acfd939a21a473aefce",
-					"axes": { "elevationLevel": "2" }
+					"axes": {
+						"elevationLevel": "2"
+					}
 				},
 				"Card → Level 3 (Beta)": {
 					"key": "f5ac595ff7bbc6ae121b29dbc5f45246fcc8d3c9",
-					"axes": { "elevationLevel": "3" }
+					"axes": {
+						"elevationLevel": "3"
+					}
 				},
 				"❌ Card → (Def) Level 1 (Deprecated)": {
 					"key": "752f46efea6fac9957607dd5726a3bc9f7a12952",
-					"axes": { "elevationLevel": "1" },
+					"axes": {
+						"elevationLevel": "1"
+					},
 					"deprecated": true
 				},
 				"❌ Card → Level 2 (Deprecated)": {
 					"key": "dc15fd32983de6a773dbcba6c6000b3dab25aee8",
-					"axes": { "elevationLevel": "2" },
+					"axes": {
+						"elevationLevel": "2"
+					},
 					"deprecated": true
 				},
 				"❌ Card → Level 3 (Deprecated)": {
 					"key": "afea88eec3a56713d81e497d7a8dae54ab28ede8",
-					"axes": { "elevationLevel": "3" },
+					"axes": {
+						"elevationLevel": "3"
+					},
 					"deprecated": true
 				}
 			},
 			"forbiddenFallback": "Never recreate a Card with a custom frame. Use the 'Children' slot."
 		},
-
 		"Tag": {
 			"codeName": "tag",
 			"maturity": "Beta",
@@ -221,19 +255,24 @@
 			"figmaSets": {
 				"Badge → (Def) Text": {
 					"key": "022c804cdaa04f2468bfa0ce0cdff649abe3ac57",
-					"axes": { "content": "text" }
+					"axes": {
+						"content": "text"
+					}
 				},
 				"Badge → Dot": {
 					"key": "6f45aa090ea8728319522ea7c916d150dde2ad71",
-					"axes": { "content": "dot" }
+					"axes": {
+						"content": "dot"
+					}
 				},
 				"Badge → Icon": {
 					"key": "85c9797ce5f015696239c6fd7e267a1b61005dea",
-					"axes": { "content": "icon" }
+					"axes": {
+						"content": "icon"
+					}
 				}
 			}
 		},
-
 		"Input": {
 			"codeName": "input",
 			"maturity": "Stable",
@@ -242,27 +281,45 @@
 			"figmaSets": {
 				"Input → (Def) Label Above - (Def) Empty": {
 					"key": "08ffb65e50921a3c1cd9a9bf7fa48135fc97430a",
-					"axes": { "label": "above", "state": "empty" }
+					"axes": {
+						"label": "above",
+						"state": "empty"
+					}
 				},
 				"Input → (Def) Label Above - Filled": {
 					"key": "01229bdc8f305c4cc10adfce424481364463e3a0",
-					"axes": { "label": "above", "state": "filled" }
+					"axes": {
+						"label": "above",
+						"state": "filled"
+					}
 				},
 				"Input → (Def) Label Above - Active": {
 					"key": "8696ab641dc40085ae634633ab47463d17b06f99",
-					"axes": { "label": "above", "state": "active" }
+					"axes": {
+						"label": "above",
+						"state": "active"
+					}
 				},
 				"Input → Floating Label - (Def) Empty": {
 					"key": "db70f90473d860893d4378ca27a65b65918e3894",
-					"axes": { "label": "floating", "state": "empty" }
+					"axes": {
+						"label": "floating",
+						"state": "empty"
+					}
 				},
 				"Input → Floating Label - Filled": {
 					"key": "6c3b2901a87c442c36d2faf0521ea23f82db7bd9",
-					"axes": { "label": "floating", "state": "filled" }
+					"axes": {
+						"label": "floating",
+						"state": "filled"
+					}
 				},
 				"Input → Floating Label - Active": {
 					"key": "4a7e873a8a2215584cd595fbd9b3eda9c38d8c94",
-					"axes": { "label": "floating", "state": "active" }
+					"axes": {
+						"label": "floating",
+						"state": "active"
+					}
 				}
 			}
 		},
@@ -273,7 +330,10 @@
 			"figmaSets": {
 				"Textarea → Label Above - Filled": {
 					"key": "9e875608630b9479ae55561311b9f000e2ae9a87",
-					"axes": { "label": "above", "state": "filled" }
+					"axes": {
+						"label": "above",
+						"state": "filled"
+					}
 				}
 			}
 		},
@@ -284,19 +344,31 @@
 			"figmaSets": {
 				"Checkbox → (Def) Medium - (Def) Auto Width": {
 					"key": "f55dbce9bf3ba1650ca8ac5b44c76b84378d15ca",
-					"axes": { "size": "medium", "width": "auto" }
+					"axes": {
+						"size": "medium",
+						"width": "auto"
+					}
 				},
 				"Checkbox → Small - (Def) Auto Width": {
 					"key": "08080b223a829e943bbe42682d249ccfaeda252a",
-					"axes": { "size": "small", "width": "auto" }
+					"axes": {
+						"size": "small",
+						"width": "auto"
+					}
 				},
 				"Checkbox → (Def) Medium - Full Width": {
 					"key": "04364aeaaf01abe73f7286b1a4ea2b024f79f7fb",
-					"axes": { "size": "medium", "width": "full" }
+					"axes": {
+						"size": "medium",
+						"width": "full"
+					}
 				},
 				"Checkbox → Small - Full Width": {
 					"key": "b206fe4be942442945b40ac8d6f9e82c8afc7f1e",
-					"axes": { "size": "small", "width": "full" }
+					"axes": {
+						"size": "small",
+						"width": "full"
+					}
 				}
 			}
 		},
@@ -307,19 +379,31 @@
 			"figmaSets": {
 				"Radio → (Def) Medium - (Def) Auto Width": {
 					"key": "06d45155016e374aee5782a33c994922c87ede24",
-					"axes": { "size": "medium", "width": "auto" }
+					"axes": {
+						"size": "medium",
+						"width": "auto"
+					}
 				},
 				"Radio → Small - (Def) Auto Width": {
 					"key": "096d5459aed351b10f24079134ebf443cf03da19",
-					"axes": { "size": "small", "width": "auto" }
+					"axes": {
+						"size": "small",
+						"width": "auto"
+					}
 				},
 				"Radio → (Def) Medium - Full Width": {
 					"key": "2cc01a4da359b8d324080ad78c155e7d2e869874",
-					"axes": { "size": "medium", "width": "full" }
+					"axes": {
+						"size": "medium",
+						"width": "full"
+					}
 				},
 				"Radio → Small - Full Width": {
 					"key": "b8c8cc9190b2de7c12ff3130506d51f046cbd7c9",
-					"axes": { "size": "small", "width": "full" }
+					"axes": {
+						"size": "small",
+						"width": "full"
+					}
 				}
 			}
 		},
@@ -353,19 +437,31 @@
 			"figmaSets": {
 				"Select → (Def) Label Above - (Def) Empty": {
 					"key": "c68719e1c018e149324b1b99f70085305b1e1eb8",
-					"axes": { "label": "above", "state": "empty" }
+					"axes": {
+						"label": "above",
+						"state": "empty"
+					}
 				},
 				"Select → (Def) Label Above - Selected": {
 					"key": "6dc8c2e6686d7b90e6c3db8fd49d63b182b4ee46",
-					"axes": { "label": "above", "state": "selected" }
+					"axes": {
+						"label": "above",
+						"state": "selected"
+					}
 				},
 				"Select → Floating Label - (Def) Empty": {
 					"key": "aff8a7d7435948ef3b312f198ed8f2130caebab0",
-					"axes": { "label": "floating", "state": "empty" }
+					"axes": {
+						"label": "floating",
+						"state": "empty"
+					}
 				},
 				"Select → Floating Label - Selected": {
 					"key": "a017ac6759ac04fcf3b0103766ea823ad6220f67",
-					"axes": { "label": "floating", "state": "selected" }
+					"axes": {
+						"label": "floating",
+						"state": "selected"
+					}
 				}
 			}
 		},
@@ -376,11 +472,15 @@
 			"figmaSets": {
 				"Infotext - (Def) Auto Width": {
 					"key": "072e65767d05b99f91d63f489ef0c28620b002ca",
-					"axes": { "width": "auto" }
+					"axes": {
+						"width": "auto"
+					}
 				},
 				"Infotext - Full Width": {
 					"key": "af81be60e9498309b5fcf195fa6731d6381b82f0",
-					"axes": { "width": "full" }
+					"axes": {
+						"width": "full"
+					}
 				}
 			}
 		},
@@ -391,23 +491,34 @@
 			"figmaSets": {
 				"Link → (Def) Internal": {
 					"key": "d516c148ca0b438df205de010c206584b4a3a8be",
-					"axes": { "target": "internal", "brand": false }
+					"axes": {
+						"target": "internal",
+						"brand": false
+					}
 				},
 				"Link → External": {
 					"key": "392ec8286886c8ceb051b689c3ed8e68f35c1c3a",
-					"axes": { "target": "external", "brand": false }
+					"axes": {
+						"target": "external",
+						"brand": false
+					}
 				},
 				"Link → (Def) Internal - Brand": {
 					"key": "991b35aca7658dc3837705718549e95501c5812f",
-					"axes": { "target": "internal", "brand": true }
+					"axes": {
+						"target": "internal",
+						"brand": true
+					}
 				},
 				"Link → External - Brand": {
 					"key": "be74885f007bdaaacbd026592725f8ce8b6cc715",
-					"axes": { "target": "external", "brand": true }
+					"axes": {
+						"target": "external",
+						"brand": true
+					}
 				}
 			}
 		},
-
 		"CustomSelect": {
 			"codeName": "custom-select",
 			"maturity": "Beta",
@@ -448,7 +559,9 @@
 				},
 				"CustomSelect → Mobile (Beta)": {
 					"key": "b6fec1571f3c9f14e7d6ddb7f0ae26f06aacfcd2",
-					"axes": { "device": "mobile" }
+					"axes": {
+						"device": "mobile"
+					}
 				}
 			},
 			"helperSets": {
@@ -474,27 +587,45 @@
 			"figmaSets": {
 				"Notification → (Def) Docked - (Def) Icon": {
 					"key": "0b8195110baab8ec2bde79769a21728fe5fe0ace",
-					"axes": { "placement": "docked", "media": "icon" }
+					"axes": {
+						"placement": "docked",
+						"media": "icon"
+					}
 				},
 				"Notification → (Def) Docked - Image": {
 					"key": "e1162439b4fcea78e74f0fab350556ea64a40806",
-					"axes": { "placement": "docked", "media": "image" }
+					"axes": {
+						"placement": "docked",
+						"media": "image"
+					}
 				},
 				"Notification → Standalone - (Def) Icon": {
 					"key": "21d0406331e71a91bdea08bc2ff312290748be5a",
-					"axes": { "placement": "standalone", "media": "icon" }
+					"axes": {
+						"placement": "standalone",
+						"media": "icon"
+					}
 				},
 				"Notification → Standalone - Image": {
 					"key": "04ffed0aab92a88eb3ece16f40ce499df2d705b4",
-					"axes": { "placement": "standalone", "media": "image" }
+					"axes": {
+						"placement": "standalone",
+						"media": "image"
+					}
 				},
 				"Notification → Overlay - (Def) Icon": {
 					"key": "106477a728f386c6266693059f0b8cecc960042d",
-					"axes": { "placement": "overlay", "media": "icon" }
+					"axes": {
+						"placement": "overlay",
+						"media": "icon"
+					}
 				},
 				"Notification → Overlay - Image": {
 					"key": "abb0a0df1e439b23dcffe568851b4e4fa1ea95c0",
-					"axes": { "placement": "overlay", "media": "image" }
+					"axes": {
+						"placement": "overlay",
+						"media": "image"
+					}
 				}
 			}
 		},
@@ -505,16 +636,19 @@
 			"figmaSets": {
 				"Header → Desktop (Beta)": {
 					"key": "df5e3e03d7d2814f87f867bb632348b4af673e59",
-					"axes": { "device": "desktop" }
+					"axes": {
+						"device": "desktop"
+					}
 				},
 				"Header → Mobile (Beta)": {
 					"key": "16733f0cd068c631552b3820614d80ccb66631b3",
-					"axes": { "device": "mobile" }
+					"axes": {
+						"device": "mobile"
+					}
 				}
 			},
 			"forbiddenFallback": "Never recreate a Header / top nav bar from frames + text + logo."
 		},
-
 		"Navigation": {
 			"codeName": "navigation",
 			"maturity": "Beta",
@@ -522,14 +656,17 @@
 			"figmaSets": {
 				"Navigation → Desktop (Beta)": {
 					"key": "117fcc8e53e9d76450c0f584b3d35722c1a83f6d",
-					"axes": { "device": "desktop" }
+					"axes": {
+						"device": "desktop"
+					}
 				}
 			},
 			"helperSets": {
 				"🛟 Navigation LIST → Horizontal - AutoWidth (Beta)": "27d541f022e56db371c521294fed97c99fec0edd",
 				"🛟 Navigation LIST → Vertical - FullWidth": "0d0ab32331cb79951fd7dc261fffb7ed08078cea"
 			},
-			"forbiddenFallback": "Never recreate Navigation from frames + text."
+			"forbiddenFallback": "Never recreate Navigation from frames + text.",
+			"note": "How many top-level entries the desktop Navigation can show is a RENDER limit, not part of the component identity, and this file is regenerated from the Knowledge Database — so it lives in the skill-owned registries/component-constraints.json (Navigation.maxItems) where a regeneration cannot drop it."
 		},
 		"NavigationItem": {
 			"codeName": "navigation-item",
@@ -539,19 +676,31 @@
 			"figmaSets": {
 				"↳ NAVIGATION ITEM → (Def) Horizontal - (Def) Auto Width (Beta)": {
 					"key": "5edf1c7bbf95fe6ae7643b5fb9e17ec760b631ba",
-					"axes": { "orientation": "horizontal", "width": "auto" }
+					"axes": {
+						"orientation": "horizontal",
+						"width": "auto"
+					}
 				},
 				"↳ NAVIGATION ITEM → Horizontal - Full Width (Beta)": {
 					"key": "338feb96205e0c746ae3b0f5ba010f40b8695411",
-					"axes": { "orientation": "horizontal", "width": "full" }
+					"axes": {
+						"orientation": "horizontal",
+						"width": "full"
+					}
 				},
 				"↳ NAVIGATION ITEM → Vertical - AutoWidth (Beta)": {
 					"key": "00985b32bfcaa6c651c240460948aad290041b27",
-					"axes": { "orientation": "vertical", "width": "auto" }
+					"axes": {
+						"orientation": "vertical",
+						"width": "auto"
+					}
 				},
 				"↳ NAVIGATION ITEM → Vertical - (Def) Full Width (Beta)": {
 					"key": "e16c30e7327415ae9dfe15e4384b7c2666e111cb",
-					"axes": { "orientation": "vertical", "width": "full" }
+					"axes": {
+						"orientation": "vertical",
+						"width": "full"
+					}
 				}
 			}
 		},
@@ -564,43 +713,61 @@
 			"figmaSets": {
 				"Drawer → (Def) Right": {
 					"key": "c1f44d84df351c41342b844f6de85bbd1332c692",
-					"axes": { "side": "right" }
+					"axes": {
+						"side": "right"
+					}
 				},
 				"Drawer → Left": {
 					"key": "6174042aef4e81ce5e7205dcda13b837c3a923f1",
-					"axes": { "side": "left" }
+					"axes": {
+						"side": "left"
+					}
 				},
 				"Drawer → Bottom": {
 					"key": "36c1837e68765ae78bf4c2333b82f1f356cfdeb6",
-					"axes": { "side": "bottom" }
+					"axes": {
+						"side": "bottom"
+					}
 				},
 				"Drawer → Top": {
 					"key": "7ade5c65edd826c2e7ade934135ce18c7a9d176e",
-					"axes": { "side": "top" }
+					"axes": {
+						"side": "top"
+					}
 				},
 				"❌ Drawer → (Def) Right (Deprecated)": {
 					"key": "e0b1436276d012f8641a79d96e6357281ee4a4ec",
-					"axes": { "side": "right" },
+					"axes": {
+						"side": "right"
+					},
 					"deprecated": true
 				},
 				"❌ Drawer → Left (Deprecated)": {
 					"key": "a9bb7805dfcffb279832a583e22febc8a59cfcfd",
-					"axes": { "side": "left" },
+					"axes": {
+						"side": "left"
+					},
 					"deprecated": true
 				},
 				"❌ Drawer → Top (Deprecated)": {
 					"key": "5741f0189c62d664a7fe383049dbd1bf905a16bc",
-					"axes": { "side": "top" },
+					"axes": {
+						"side": "top"
+					},
 					"deprecated": true
 				},
 				"❌ Drawer → Bottom (Deprecated)": {
 					"key": "af4fc28e589c602335e7f965e5c0cd11e378edb3",
-					"axes": { "side": "bottom" },
+					"axes": {
+						"side": "bottom"
+					},
 					"deprecated": true
 				},
 				"❌ Drawer → Full (Deprecated)": {
 					"key": "4d9a307c0cce8780452eec178a27f7770a193410",
-					"axes": { "side": "full" },
+					"axes": {
+						"side": "full"
+					},
 					"deprecated": true
 				}
 			},
@@ -644,11 +811,15 @@
 			"figmaSets": {
 				"Tooltip → Left (Beta)": {
 					"key": "313242eddbd58b864208a63edaad666ecdb7e17f",
-					"axes": { "position": "left" }
+					"axes": {
+						"position": "left"
+					}
 				},
 				"Tooltip → Top (Beta)": {
 					"key": "b9ee3b09d239c9820e55808401291abfce4801bf",
-					"axes": { "position": "top" }
+					"axes": {
+						"position": "top"
+					}
 				}
 			}
 		},
@@ -689,43 +860,110 @@
 			}
 		}
 	},
-
 	"conceptComponents": {
 		"_note": "Core Lab (Concept 🧪) components — typography (Heading/Text) AND the layout primitives (Grid/Container). ALWAYS resolved from the Core Lab LIBRARY via importComponentSetByKeyAsync(setKey); NEVER from a local component inside the working Figma file. The DB UX examples author all headings and body copy with these, so PREFER them over raw styled text. The runtime exposes them as plan node types `Heading`, `Body`, `Grid`, `ContainerVertical` and `ContainerHorizontal`. Because typography and layout are unavoidable on every screen, these four are BASELINE and do not trigger the `concept_components` opt-in; any OTHER Concept component still does.",
 		"_libraryKey": "lk-a3cdd1c1a84ac1722095a8f87e0eb9024968bbed54bad4e33e4cc6acf87f32d71601e76e89105f41d369b93c165f3c09fd9eac224a596525c901f611ac834d99",
 		"_libraryName": "DB UX - 🧪 Core Lab",
-		"Heading": {
-			"codeName": "heading",
+		"Breadcrumb": {
+			"codeName": "breadcrumb",
 			"maturity": "Concept",
-			"planNodeType": "Heading",
-			"setKey": "016cad8991d12925c1364c07b90aa58559225743",
-			"textProp": "✏️ Text",
+			"figmaName": "🧪 Breadcrumb (Concept)",
+			"setKey": "66e9b0a0d8cb866c6485c116f81f3ee3e32ae270",
 			"axes": {
-				"As": ["h1", "h2", "h3", "h4", "h5", "h6"],
-				"Font Weight": ["(Def) Black", "Light"],
-				"Text Align": ["(Def) Left", "Right", "Center"]
+				"Size": ["(Def) Small", "Medium"]
 			},
-			"note": "`As` sets the heading level; size follows the default mapping (h1 largest). Prefix/Component are locked (💻). Use h1 hero, h2 section titles, h4 card titles."
+			"slots": ["Children"],
+			"subComponents": ["breadcrumb-item"]
 		},
-		"Text": {
-			"codeName": "text",
+		"ButtonGroup": {
+			"codeName": "button-group",
 			"maturity": "Concept",
-			"planNodeType": "Body",
-			"setKey": "c1ad46c72344cc70ea88a9fca7da7da8f0915feb",
-			"textProp": "✏️ Text",
+			"figmaName": "🧪 ButtonGroup (Concept)",
+			"setKey": "8df399b2c8d8d567debff73e79d8757686328782",
 			"axes": {
-				"Size": [
-					"Small",
-					"(Def) Medium",
-					"Large",
-					"xLarge",
-					"2xLarge",
-					"3xLarge"
-				],
-				"Text Align": ["(Def) Left", "Right", "Center"],
-				"Max Width": ["(Def) Medium"]
+				"Variant": ["(Def) Outlined", "Filled"],
+				"Size": ["(Def) Medium", "Small"],
+				"Width": ["(Def) Auto", "Full"]
 			},
-			"note": "Body/caption/description copy. Small = caption/card body; (Def) Medium = section description; Large = hero subline. Color binds separately via a color token."
+			"slots": ["Children"],
+			"subComponents": ["button-group-item"]
+		},
+		"Calendar": {
+			"codeName": "calendar",
+			"maturity": "Concept",
+			"figmaName": "🧪 Calender (Concept)",
+			"setKey": "3cad3e510204bf9ac1646bd04336a43e58c9115c",
+			"axes": {
+				"Variant": ["(Def) Days", "Years", "Months"]
+			},
+			"subComponents": [
+				"calendar-item",
+				"calendar-header",
+				"calendar-views"
+			]
+		},
+		"Container": {
+			"codeName": "container",
+			"maturity": "Concept",
+			"planNodeType": ["ContainerVertical", "ContainerHorizontal"],
+			"figmaName": "🧪 Container",
+			"setKey": "000823b4d354ab68f34f1186a9ecabe1282755e5",
+			"slot": "Slot",
+			"axes": {
+				"Direction": ["(Def) Column", "Row"],
+				"Padding": [
+					"(Def) None",
+					"3xs",
+					"2xs",
+					"xs",
+					"sm",
+					"md",
+					"lg",
+					"xl",
+					"2xl",
+					"3xl"
+				],
+				"Min-Height": ["(Def) None", "xs", "sm", "md", "lg", "xl"]
+			},
+			"slots": ["Slot"],
+			"note": "ONE component set for BOTH stack directions: Direction '(Def) Column' = plan node ContainerVertical, 'Row' = ContainerHorizontal. IMPORTANT: gap and alignment are NOT variants on this set (unlike the retired local primitives). The runtime binds the inner Slot's itemSpacing to a space.* variable and sets the Slot's axis alignment, so the plan-facing `gap` / `align` / `spread` fields keep working unchanged."
+		},
+		"Dialog": {
+			"codeName": "dialog",
+			"maturity": "Concept",
+			"planNodeType": "Dialog",
+			"figmaName": "🧪 Dialog (Concept)",
+			"setKey": "63f75b2dd03d11dca1d7ec2d565414c9e887e86f",
+			"contentSlot": "📦 Children",
+			"axes": {
+				"Backdrop": ["true", "false"]
+			},
+			"subComponents": ["dialog-header", "dialog-footer"],
+			"note": "The ONLY correct way to render a modal. The Dialog ships its own Backdrop plus a Popover whose three slots carry header, body and footer. NEVER rebuild it from a frame + absolute Backdrop + centered Card. GOTCHA: the Dialog Header has its own slot named \"Children\" that precedes the Popover's \"📦 Children\" in document order, so the body slot must be resolved as the Popover's DIRECT child."
+		},
+		"DynamicButton": {
+			"codeName": "dynamic-button",
+			"maturity": "Concept",
+			"figmaName": "🧪 DynamicButton",
+			"setKey": "3db11ea2de186577c341e8576168ac1b84992846",
+			"axes": {
+				"State": ["A", "B"]
+			}
+		},
+		"Footer": {
+			"codeName": "footer",
+			"maturity": "Concept",
+			"figmaName": "🧪 Footer (Concept)",
+			"setKey": "dc7812c73faf3fd88229df445f1f0d3ea12d7cd1",
+			"axes": {
+				"Content Width": [
+					"Full",
+					"Large 1440",
+					"Medium 1024",
+					"Small 768"
+				]
+			},
+			"slots": ["Children", "Meta.Children"]
 		},
 		"Grid": {
 			"codeName": "grid",
@@ -733,7 +971,6 @@
 			"planNodeType": "Grid",
 			"figmaName": "🧪 Grid",
 			"setKey": "e95db6c020f107e240fc5c96811971d91d165c52",
-			"slots": ["Slot-1", "Slot-2", "Slot-3", "Slot-4"],
 			"axes": {
 				"Gap": [
 					"(Def) md",
@@ -762,30 +999,52 @@
 			},
 			"note": "Column raster. The variant's Layout axis determines the slot count (Slot-1..Slot-4) — a Grid MUST NOT get more children than its layout has columns. Gap IS a variant here (unlike Container), so pass the exact label ('(Def) md' for the md step). There is no five-column variant; for an arbitrary number of equal columns use a ContainerHorizontal of fill-width ContainerVerticals."
 		},
-		"Dialog": {
-			"codeName": "dialog",
+		"List": {
+			"codeName": "list",
 			"maturity": "Concept",
-			"planNodeType": "Dialog",
-			"figmaName": "🧪 Dialog (Concept)",
-			"setKey": "63f75b2dd03d11dca1d7ec2d565414c9e887e86f",
-			"contentSlot": "📦 Children",
-			"axes": { "Backdrop": ["true", "false"] },
-			"subComponents": {
-				"Popover": {
-					"setKey": "de21520fe2e956e6724399eaba75e7ab6c718f18",
-					"axes": {
-						"🔀 Spacing": ["(Def) Small", "Medium", "Large", "None"]
-					},
-					"slots": ["📦 Start Slot", "📦 Children", "📦 End Slot"]
+			"figmaName": "🧪 List (Concept)",
+			"setKey": "f8f416d417d4561bcde4eae3b01c265875a98d78",
+			"nodeType": "COMPONENT",
+			"subComponents": [
+				"list-title",
+				"list-item",
+				"list-teaser-item",
+				"list-vertical-item",
+				"list-divider"
+			]
+		},
+		"LoadingIndicator": {
+			"codeName": "loading-indicator",
+			"maturity": "Concept",
+			"figmaSets": {
+				"🧪 LoadingIndicator -> (Def) Indeterminate - Circular (Concept)": {
+					"key": "507d1d7021e747a18e318b40531f69e2f4d1af21"
 				},
-				"Dialog Header": {
-					"setKey": "f4de6daa957fb4c9927c042823d5c2c0a26f15fb"
+				"🧪 LoadingIndicator -> Determinate - Circular (Concept)": {
+					"key": "dbde0e52c83ce5bde77f7f1bc6f92bba5457b02c"
 				},
-				"Dialog Footer": {
-					"setKey": "1a0a4a72b794b2c0893a1349e09f678b9a1de1f6"
+				"🧪 LoadingIndicator -> (Def) Indeterminate - Bar (Concept)": {
+					"key": "2186cd6ef2b551c35093230189fb20406c4a1075"
+				},
+				"🧪 LoadingIndicator -> Determinate - Bar (Concept)": {
+					"key": "c6b8faf27ac0fbd20131c1dad7630f491182f43d"
 				}
 			},
-			"note": "The ONLY correct way to render a modal. The Dialog ships its own Backdrop plus a Popover whose three slots carry header, body and footer. NEVER rebuild it from a frame + absolute Backdrop + centered Card. GOTCHA: the Dialog Header has its own slot named \"Children\" that precedes the Popover's \"📦 Children\" in document order, so the body slot must be resolved as the Popover's DIRECT child."
+			"axes": {
+				"Orientation": ["(Def) Vertical", "Horizontal"],
+				"State": [
+					"(Def) Active",
+					"(Def) Inactive",
+					"Successful",
+					"Critical"
+				],
+				"Size": ["(Def) Medium", "Small", "Large"]
+			},
+			"axesUnverified": true,
+			"subComponents": [
+				"loading-indicator-circle",
+				"loading-indicator-bar"
+			]
 		},
 		"Pagination": {
 			"codeName": "pagination",
@@ -798,7 +1057,129 @@
 				"Size": ["(Def) Medium", "Small"],
 				"🎨 Position": ["(Def) Start", "Center", "End"]
 			},
+			"slots": ["Children"],
+			"subComponents": ["pagination-item", "pagination-truncation-item"],
 			"note": "Page navigation under a table or list. The Children slot holds the page items; the runtime renders the variant's default item set. Used by the dashboard Table block."
+		},
+		"Pulse": {
+			"codeName": "pulse",
+			"maturity": "Concept",
+			"figmaName": "🧪 Pulse (Concept)",
+			"setKey": "bf60b35bbadabdb06284d5447b88a6dd38d706ac",
+			"axes": {
+				"As": ["h1", "h2", "h3", "h4", "h5", "h6"],
+				"Size": [
+					"(Def) Default Mapping",
+					"3xLarge",
+					"2xLarge",
+					"xLarge",
+					"Large",
+					"Medium",
+					"Small",
+					"xSmall",
+					"2xSmall",
+					"3xs"
+				]
+			}
+		},
+		"SegmentedButton": {
+			"codeName": "segmented-button",
+			"maturity": "Concept",
+			"figmaName": "🧪 SegmentedButton (Concept)",
+			"setKey": "e31329bf1b0589c31d7b9ff38a4ab7503e73ff27",
+			"axes": {
+				"Size": ["(Def) Medium", "Small"],
+				"Variant": ["(Def) White", "Grey"]
+			},
+			"slots": ["Children"],
+			"subComponents": ["segmented-button-item"]
+		},
+		"SplitButton": {
+			"codeName": "split-button",
+			"maturity": "Concept",
+			"figmaName": "🧪 Split Button (Concept)",
+			"setKey": "0e74b33f62c230543e3da881e1d0ed4a129a9596",
+			"axes": {
+				"Size": ["(Def) Medium", "Small"],
+				"Variant": ["Filled", "Brand", "(Def) Outlined"]
+			}
+		},
+		"Text": {
+			"codeName": "text",
+			"maturity": "Concept",
+			"planNodeType": "Body",
+			"figmaName": "🧪 Text (Concept)",
+			"setKey": "c1ad46c72344cc70ea88a9fca7da7da8f0915feb",
+			"textProp": "✏️ Text",
+			"axes": {
+				"Size": [
+					"Small",
+					"(Def) Medium",
+					"Large",
+					"xLarge",
+					"2xLarge",
+					"3xLarge"
+				],
+				"Text Align": ["(Def) Left", "Right", "Center"],
+				"Max Width": ["(Def) Medium"]
+			},
+			"note": "Body/caption/description copy. Small = caption/card body; (Def) Medium = section description; Large = hero subline. Color binds separately via a color token."
+		},
+		"ToggleButton": {
+			"codeName": "toggle-button",
+			"maturity": "Concept",
+			"figmaName": "🧪 ToggleButton",
+			"setKey": "14cad63b3f67108d20ef39b7763da760e652c5fc",
+			"axes": {
+				"Checked": ["False", "True"],
+				"Variant": ["Ghost", "Filled", "Outlined"],
+				"🎨 Interaction State": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				],
+				"Disabled": ["False", "True"],
+				"Size": ["(Def) Medium", "Small"],
+				"Width": ["(Def) Auto", "Full"],
+				"No Text": ["False", "True"]
+			},
+			"slots": ["Children"]
+		},
+		"Upload": {
+			"codeName": "upload",
+			"maturity": "Concept",
+			"planNodeType": "Upload",
+			"figmaName": "🧪 Upload",
+			"setKey": "d51e2221a3c15c37dbbf7e16af20d5f0429ba96b",
+			"textProp": "Text",
+			"contentSlot": "End Slot",
+			"axes": {
+				"🎨 Interaction States": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused"
+				],
+				"Direction": ["(Def) Vertical", "Horizontal"]
+			},
+			"slots": ["End Slot", "Start Slot"],
+			"note": "The REAL file-upload component — a drop area with a label, a Filled button and two slots (Start Slot / End Slot, each gated by its own 🎨 Show … boolean). It is Concept, so it needs the concept_components opt-in; it is NOT one of the four baseline entries. Use it instead of composing an upload from an Image grid plus a Button, and never rebuild a drop zone from a dashed rectangle. `children` render into the End Slot (previews//counters below the drop area) and the runtime flips the corresponding show boolean.",
+			"forbiddenFallback": "Never recreate an upload/drop zone from a frame with a dashed border, and do not substitute an Image grid + Button while this component is available."
+		},
+		"Heading": {
+			"codeName": "heading",
+			"maturity": "Concept",
+			"planNodeType": "Heading",
+			"setKey": "016cad8991d12925c1364c07b90aa58559225743",
+			"textProp": "✏️ Text",
+			"axes": {
+				"As": ["h1", "h2", "h3", "h4", "h5", "h6"],
+				"Font Weight": ["(Def) Black", "Light"],
+				"Text Align": ["(Def) Left", "Right", "Center"]
+			},
+			"note": "`As` sets the heading level; size follows the default mapping (h1 largest). Prefix/Component are locked (💻). Use h1 hero, h2 section titles, h4 card titles."
 		},
 		"ProgressBar": {
 			"codeName": "progress",
@@ -806,36 +1187,12 @@
 			"planNodeType": "ProgressBar",
 			"figmaName": "🛟 LoadingIndicator -> BAR Progress (Concept)",
 			"setKey": "dbdf96386e77cbff84e337fe02a4f63b18f37b1b",
-			"axes": { "🎨 Value": ["25%", "50%", "75%"] },
-			"note": "Determinate bar progress. IMPORTANT: the component ships ONLY the three discrete steps 25%, 50% and 75% — there is no continuous value. A plan must pass value 25, 50 or 75; any other number has no variant and is a hard stop (never approximate by drawing a rectangle)."
-		},
-		"Container": {
-			"codeName": "container",
-			"maturity": "Concept",
-			"planNodeType": ["ContainerVertical", "ContainerHorizontal"],
-			"figmaName": "🧪 Container",
-			"setKey": "000823b4d354ab68f34f1186a9ecabe1282755e5",
-			"slot": "Slot",
 			"axes": {
-				"Direction": ["(Def) Column", "Row"],
-				"Padding": [
-					"(Def) None",
-					"3xs",
-					"2xs",
-					"xs",
-					"sm",
-					"md",
-					"lg",
-					"xl",
-					"2xl",
-					"3xl"
-				],
-				"Min-Height": ["(Def) None", "xs", "sm", "md", "lg", "xl"]
+				"🎨 Value": ["25%", "50%", "75%"]
 			},
-			"note": "ONE component set for BOTH stack directions: Direction '(Def) Column' = plan node ContainerVertical, 'Row' = ContainerHorizontal. IMPORTANT: gap and alignment are NOT variants on this set (unlike the retired local primitives). The runtime binds the inner Slot's itemSpacing to a space.* variable and sets the Slot's axis alignment, so the plan-facing `gap` / `align` / `spread` fields keep working unchanged."
+			"note": "Determinate bar progress. IMPORTANT: the component ships ONLY the three discrete steps 25%, 50% and 75% — there is no continuous value. A plan must pass value 25, 50 or 75; any other number has no variant and is a hard stop (never approximate by drawing a rectangle)."
 		}
 	},
-
 	"unresolved": {
 		"_note": "Code-catalog families with no standalone Core Components set found. Resolve via search before use; never approximate.",
 		"table": "No Table / Table Row / Table Cell set surfaced in Core Components or Core Lab.",

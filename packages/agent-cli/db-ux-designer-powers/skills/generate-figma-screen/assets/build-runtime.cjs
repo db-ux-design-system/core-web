@@ -43,8 +43,8 @@
  * USAGE (run whenever either source changes):  node build-runtime.cjs
  * Note: the repo is "type":"module", so this build uses .cjs to run as CommonJS.
  * ========================================================================== */
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
 const { injectMaps } = require('./build-registry-maps.cjs');
 
 /* -----------------------------------------------------------------------------
@@ -59,7 +59,7 @@ const { injectMaps } = require('./build-registry-maps.cjs');
  * Every generated file therefore goes through `emit()` instead of writeFileSync.
  * -------------------------------------------------------------------------- */
 const CHECK_ONLY = process.argv.includes('--check');
-const emitted = new Map(); // absolute path -> content
+const emitted = new Map(); // Absolute path -> content
 const drift = [];
 function emit(filePath, content) {
 	emitted.set(filePath, content);
@@ -68,11 +68,13 @@ function emit(filePath, content) {
 		fs.writeFileSync(filePath, content);
 		return;
 	}
+
 	const rel = path.relative(__dirname, filePath);
 	if (!fs.existsSync(filePath)) {
 		drift.push(`${rel} is MISSING`);
 		return;
 	}
+
 	if (fs.readFileSync(filePath, 'utf8') !== content)
 		drift.push(`${rel} is STALE`);
 }
@@ -83,7 +85,7 @@ let esbuild = null;
 try {
 	esbuild = require('esbuild');
 } catch {
-	/* fall back to tokenizer */
+	/* Fall back to tokenizer */
 }
 
 /**
@@ -132,7 +134,7 @@ function stripComments(src) {
 	let out = '';
 	let i = 0;
 	const n = src.length;
-	let prevSig = '';
+	let previousSig = '';
 	while (i < n) {
 		const c = src[i];
 		const c2 = src[i + 1];
@@ -141,12 +143,14 @@ function stripComments(src) {
 			while (i < n && src[i] !== '\n') i++;
 			continue;
 		}
+
 		if (c === '/' && c2 === '*') {
 			i += 2;
 			while (i < n && !(src[i] === '*' && src[i + 1] === '/')) i++;
 			i += 2;
 			continue;
 		}
+
 		if (c === "'" || c === '"') {
 			const q = c;
 			out += c;
@@ -158,15 +162,19 @@ function stripComments(src) {
 					i += 2;
 					continue;
 				}
+
 				if (src[i] === q) {
 					i++;
 					break;
 				}
+
 				i++;
 			}
-			prevSig = q;
+
+			previousSig = q;
 			continue;
 		}
+
 		if (c === '`') {
 			out += c;
 			i++;
@@ -176,20 +184,24 @@ function stripComments(src) {
 					i += 2;
 					continue;
 				}
+
 				if (src[i] === '`') {
 					out += src[i];
 					i++;
 					break;
 				}
+
 				out += src[i];
 				i++;
 			}
-			prevSig = '`';
+
+			previousSig = '`';
 			continue;
 		}
+
 		if (c === '/') {
 			const isRegex =
-				REGEX_PRECEDERS.has(prevSig) ||
+				REGEX_PRECEDERS.has(previousSig) ||
 				KW_BEFORE_REGEX.test(out.slice(-12));
 			if (isRegex) {
 				out += c;
@@ -203,34 +215,40 @@ function stripComments(src) {
 						i += 2;
 						continue;
 					}
+
 					if (ch === '[') inClass = true;
 					else if (ch === ']') inClass = false;
 					else if (ch === '/' && !inClass) {
 						i++;
 						break;
 					}
+
 					i++;
 				}
+
 				while (i < n && /[a-z]/i.test(src[i])) {
 					out += src[i];
 					i++;
 				}
-				prevSig = '/';
+
+				previousSig = '/';
 				continue;
 			}
 		}
+
 		out += c;
-		if (!/\s/.test(c)) prevSig = c;
+		if (!/\s/.test(c)) previousSig = c;
 		i++;
 	}
+
 	// Strip LEADING + trailing indentation (JS ignores it) and collapse blank lines.
 	return (
 		out
 			.split('\n')
 			.map((l) => l.replace(/^[ \t]+/, '').replace(/\s+$/, ''))
-			.filter((l, idx, arr) => !(l === '' && arr[idx - 1] === ''))
+			.filter((l, idx, array) => !(l === '' && array[idx - 1] === ''))
 			.join('\n')
-			.replace(/\n{2,}/g, '\n')
+			.replaceAll(/\n{2,}/g, '\n')
 			.trim() + '\n'
 	);
 }
@@ -300,6 +318,7 @@ function fnv1a(s) {
 		v ^= s.charCodeAt(i);
 		v = Math.imul(v, 0x01_00_01_93) >>> 0;
 	}
+
 	return v.toString(16).padStart(8, '0');
 }
 
@@ -314,6 +333,8 @@ const FNV_JS =
  * If someone edits one copy and not the other, fail the build here rather than
  * ship snippets that reject every correctly pasted chunk. */
 function verifyChecksumTwin(samples) {
+	// Deliberate: the point of this guard is to execute the STRING that ships in the snippets, so
+	// evaluating it is the check itself, not a shortcut around one.
 	// eslint-disable-next-line no-new-func
 	const twin = new Function(`${FNV_JS}return _h;`)();
 	for (const s of samples)
@@ -326,8 +347,32 @@ function verifyChecksumTwin(samples) {
 
 function buildBootstrap(runtimeMin) {
 	const NS = 'dbuxRuntime';
-	const CHUNK = 7000; // raw chars/chunk; keeps each store snippet well under budget
-	const crypto = require('crypto');
+	/* Chunk size is DERIVED, not fixed: pick the fewest chunks whose size still fits
+	 * comfortably in one model message, then spread the runtime evenly over them.
+	 *
+	 * NEITHER hard limit binds here, both measured:
+	 *   - `use_figma` caps `code` at 50 000 chars. A snippet is the chunk plus ~120
+	 *     chars of boilerplate, and JSON escaping adds only ~3.2% (the minified
+	 *     runtime is pure ASCII — esbuild already emitted non-ASCII as \uXXXX), so
+	 *     even ~46 000 raw would fit in ONE call.
+	 *   - Figma allows 100 kB per shared-plugin-data ENTRY (namespace+key+value),
+	 *     enforced since plugin API update 109 — far above any chunk size here.
+	 * The BINDING constraint is the MODEL: each chunk must be reproduced verbatim in
+	 * ONE message, so the size trades round trips against truncation risk. Total
+	 * output is the same either way; only the per-call boilerplate and the number of
+	 * calls change, while a single altered character invalidates a whole chunk.
+	 *
+	 * MAX_CHUNK is that per-message budget (~20 000 chars ≈ 6 000-8 000 tokens of
+	 * minified JS). Deriving the count from it beats a hard-coded size for two
+	 * reasons: a fixed 16 000 turned an 82 589-byte runtime into 6 chunks whose LAST
+	 * one held 2 589 chars — a whole extra verbatim round trip for 3% of the payload —
+	 * and every growth spurt past a multiple flipped the count, which invalidates the
+	 * bootstrap and every concrete number in the docs. Evenly sized chunks also fail
+	 * more predictably: no outlier chunk that is 6× the others. */
+	const MAX_CHUNK = 20_000;
+	const chunkCount = Math.max(1, Math.ceil(runtimeMin.length / MAX_CHUNK));
+	const CHUNK = Math.ceil(runtimeMin.length / chunkCount);
+	const crypto = require('node:crypto');
 	const sha = crypto
 		.createHash('sha256')
 		.update(runtimeMin)
@@ -355,12 +400,12 @@ function buildBootstrap(runtimeMin) {
 	const q = JSON.stringify(NS);
 	// One paste-ready snippet per chunk. Each returns the stored length so the
 	// agent can integrity-check the write against manifest.json.
-	chunks.forEach((c, i) => {
+	for (const [i, c] of chunks.entries()) {
 		const body =
 			`figma.root.setSharedPluginData(${q},"c${i}",${JSON.stringify(c)});\n` +
 			`return "c${i}:"+figma.root.getSharedPluginData(${q},"c${i}").length;\n`;
 		emit(path.join(dir, `store-${i}.js`), body);
-	});
+	}
 
 	// Meta record — write LAST during bootstrap so a partial run has no meta.
 	// INTEGRITY-GATED: the snippet verifies every chunk's exact length AND its
@@ -477,19 +522,19 @@ function buildBootstrap(runtimeMin) {
 	checkDocDrift(chunks.length, CHUNK, runtimeMin.length);
 }
 
-/* Doc-drift guard. SKILL.md's model-capability gate (4a-gate) and POWER.md quote
- * the CONCRETE chunk count and the last chunk's exact length, because concrete
- * numbers are what stop an agent from improvising a bootstrap. Those numbers move
- * whenever the runtime grows past a chunk boundary, so warn instead of silently
- * leaving stale guidance behind. NOTICE only — never fails the build. */
+/* Doc-drift guard. SKILL.md's model-capability gate (4a-gate) and POWER.md quote the CONCRETE
+ * chunk COUNT and the highest store file, because concrete numbers are what stop an agent from
+ * improvising a bootstrap.
+ *
+ * Deliberately NOT checked any more: the exact chunk size and last-chunk length. Since the size is
+ * DERIVED from the runtime length (see buildBootstrap), both change on almost every build, so
+ * requiring them in prose produced a doc edit per build — pure noise that trains people to ignore
+ * this notice. They are verified where it matters anyway: store-meta.js checks every chunk's exact
+ * length AND checksum, and manifest.json carries the numbers machine-readably. The COUNT still
+ * matters to the agent (how many verbatim calls, which files), so it stays.
+ * NOTICE only — never fails the build. */
 function checkDocDrift(chunkCount, chunkSize, bytes) {
-	const last = bytes - chunkSize * (chunkCount - 1);
-	// A figure may be written 2277 / 2 277 / 2.277 / 2,277 in prose.
-	const numRe = (n) =>
-		new RegExp(
-			`\\b${String(n).replace(/\B(?=(\d{3})+$)/g, '[ .,\\u00a0]?')}\\b`
-		);
-	const countRe = new RegExp(`\\b${chunkCount}\\s+chunks\\b`, 'i');
+	const countRe = new RegExp(String.raw`\b${chunkCount}\s+chunks\b`, 'i');
 	const stale = [];
 	const check = (rel, tests) => {
 		const p = path.join(__dirname, rel);
@@ -499,6 +544,7 @@ function checkDocDrift(chunkCount, chunkSize, bytes) {
 		for (const [ok, what] of tests(md))
 			if (!ok) stale.push(`${name}: ${what}`);
 	};
+
 	check('../SKILL.md', (md) => [
 		[
 			countRe.test(md),
@@ -507,11 +553,6 @@ function checkDocDrift(chunkCount, chunkSize, bytes) {
 		[
 			md.includes(`store-${chunkCount - 1}.js`),
 			`highest chunk file referenced is not store-${chunkCount - 1}.js`
-		],
-		[numRe(chunkSize).test(md), `chunk size ${chunkSize} not mentioned`],
-		[
-			numRe(last).test(md),
-			`last-chunk length ${last} not mentioned (4a-gate step 2)`
 		]
 	]);
 	check('../../../POWER.md', (md) => [
@@ -520,10 +561,10 @@ function checkDocDrift(chunkCount, chunkSize, bytes) {
 			`no "${chunkCount} chunks" statement in Runtime Architecture`
 		]
 	]);
-	if (stale.length)
+	if (stale.length > 0)
 		console.log(
 			`NOTICE: bootstrap docs may be stale — now ${chunkCount} chunks, ` +
-				`${chunkSize} chars each, last ${last}, total ${bytes}:\n  - ` +
+				`${chunkSize} chars each, total ${bytes}:\n  - ` +
 				stale.join('\n  - ')
 		);
 }
@@ -556,6 +597,7 @@ function readBundleSource(b) {
 			.map((f) => fs.readFileSync(path.join(dir, f), 'utf8'))
 			.join('\n\n');
 	}
+
 	return fs.readFileSync(path.join(__dirname, b.src), 'utf8');
 }
 
@@ -569,16 +611,20 @@ for (const b of BUNDLES) {
 	let src;
 	try {
 		src = readBundleSource(b);
-	} catch (err) {
-		console.error(`SKIP: ${b.out} — ${err.message}`);
+	} catch (error) {
+		console.error(`SKIP: ${b.out} — ${error.message}`);
 		failed = true;
 		continue;
 	}
+
 	if (b.injectMaps) {
 		try {
 			src = injectMaps(src, path.join(__dirname, 'registries'));
-		} catch (err) {
-			console.error(`ERROR: ${b.out} map injection failed:`, err.message);
+		} catch (error) {
+			console.error(
+				`ERROR: ${b.out} map injection failed:`,
+				error.message
+			);
 			failed = true;
 			continue;
 		}
@@ -587,26 +633,28 @@ for (const b of BUNDLES) {
 	let out;
 	try {
 		out = esbuild ? minifyWithEsbuild(src) : stripComments(src);
-	} catch (err) {
-		console.error(`ERROR: ${b.out} minify failed:`, err.message);
+	} catch (error) {
+		console.error(`ERROR: ${b.out} minify failed:`, error.message);
 		failed = true;
 		continue;
 	}
 
-	// Syntax-validate without executing (no figma calls run at define time).
+	// Syntax-validate without executing (no figma calls run at define time). This is the build's
+	// only parse gate for the generated bundle, hence the deliberate constructor call.
 	try {
+		// eslint-disable-next-line no-new, no-new-func
 		new Function(out);
-	} catch (err) {
-		console.error(`ERROR: ${b.out} failed to parse:`, err.message);
+	} catch (error) {
+		console.error(`ERROR: ${b.out} failed to parse:`, error.message);
 		failed = true;
 		continue;
 	}
 
 	// Guard: the public entry points must not have been mangled away.
 	const missing = b.mustExport.filter(
-		(name) => !new RegExp(`\\b${name}\\b`).test(out)
+		(name) => !new RegExp(String.raw`\b${name}\b`).test(out)
 	);
-	if (missing.length) {
+	if (missing.length > 0) {
 		console.error(
 			`ERROR: ${b.out} is missing public name(s): ${missing.join(', ')}`
 		);
@@ -626,16 +674,17 @@ for (const b of BUNDLES) {
 	 * document in ~7 kB chunks and every later render pastes a ~0.5 kB loader plus the plan.
 	 * Exceeding the cap is therefore a NOTICE, not a build failure — but it does mean the
 	 * verbatim-paste fallback is unavailable, so say so plainly. */
-	if (bytes > 50000)
+	if (bytes > 50_000)
 		console.log(
-			`NOTICE: ${b.out} is ${bytes - 50000} chars over the 50000-char use_figma cap. ` +
+			`NOTICE: ${b.out} is ${bytes - 50_000} chars over the 50000-char use_figma cap. ` +
 				`The single-paste fallback is NOT available; render via the store-once bootstrap.`
 		);
-	else if (bytes > 44000)
+	else if (bytes > 44_000)
 		console.log(
-			`NOTICE: only ${50000 - bytes} chars headroom under the use_figma cap — too little for a real plan. Use the store-once bootstrap.`
+			`NOTICE: only ${50_000 - bytes} chars headroom under the use_figma cap — too little for a real plan. Use the store-once bootstrap.`
 		);
 }
+
 // Generate the store-once bootstrap assets from the FULL runtime build so they
 // never drift from db-figma-runtime.min.js.
 if (!failed) {
@@ -646,8 +695,8 @@ if (!failed) {
 	if (fullMin) {
 		try {
 			buildBootstrap(fullMin);
-		} catch (err) {
-			console.error('ERROR: bootstrap generation failed:', err.message);
+		} catch (error) {
+			console.error('ERROR: bootstrap generation failed:', error.message);
 			failed = true;
 		}
 	} else {
@@ -659,7 +708,7 @@ if (!failed) {
 }
 
 if (CHECK_ONLY) {
-	if (drift.length) {
+	if (drift.length > 0) {
 		console.error(
 			`\n❌ The committed runtime does not match assets/src/ + the registries:\n  - ${drift.join(
 				'\n  - '
@@ -669,6 +718,7 @@ if (CHECK_ONLY) {
 		);
 		process.exit(1);
 	}
+
 	console.log(
 		`✅ Runtime and bootstrap assets are in sync with src/ (${emitted.size} generated files checked).`
 	);

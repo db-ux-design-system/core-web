@@ -9,13 +9,19 @@
 
 ## Problem
 
-A re-bootstrap costs the agent ~66 KB of verbatim model output and needs a large model (4a-gate).
-Today that price is paid in full for changes that are objectively tiny, because the stored runtime
-is ONE concatenated blob sliced at fixed 7 000-byte offsets: any change in LENGTH shifts every
-byte after it, so all following chunks differ even where no logic changed.
+A re-bootstrap costs the agent the whole minified runtime as verbatim model output and needs a large
+model (4a-gate). Today that price is paid in full for changes that are objectively tiny, because
+the stored runtime is ONE concatenated blob sliced at FIXED offsets (`CHUNK` in
+`build-runtime.cjs`): any change in LENGTH shifts every byte after it, so all following chunks
+differ even where no logic changed.
 
-The cost therefore scales with the POSITION of a change, not its size (measured against
-`db-figma-runtime.min.js`, sha `bdace0b962c9`, 65 801 bytes / 10 chunks):
+The cost therefore scales with the POSITION of a change, not its size.
+
+> **The table below is a SNAPSHOT** taken against `db-figma-runtime.min.js` at sha `bdace0b962c9`
+> (65 801 bytes, chunk size 7 000 → 10 chunks). Both have moved since (the chunk size is now
+> 16 000, so the same bundle spans fewer, larger chunks), and the ratios shift with every build.
+> Re-measure before using absolute numbers — the POINT of the table is the position-dependency,
+> which a larger chunk size reduces in count but does not remove.
 
 | Module                  | Minified | Chunks invalidated by an edit |
 | ----------------------- | -------- | ----------------------------- |
@@ -55,7 +61,7 @@ return the precise set to re-paste:
 
 - Re-pasting only `staleChunks` + `store-meta.js` MUST leave the store verified
   (`store-meta.js` already re-checks all lengths AND checksums, so a missed chunk still fails
-  loudly — the optimisation cannot silently corrupt the store).
+  loudly — the optimization cannot silently corrupt the store).
 - The 4a-gate stays in force for the chunks that ARE transferred.
 - Independent of R2 and worth doing first: it is a change to one snippet plus SKILL.md Phase 4a.
 
@@ -69,7 +75,8 @@ Replace fixed-offset slicing of one blob with one record per unit of change:
 - one **data** record for the injected registry maps (`COMPONENTS`, `ICON_KEYS`, `CONCEPT_KEYS`,
   `TEXT_STYLE_KEYS`, `IMAGE_RATIOS`, token/style keys),
 - one **code** record per source module (`10-…` … `70-…`), sub-chunked only where a module
-  exceeds the 7 000-char record cap, with boundaries local to that module.
+  exceeds the record cap (the configured `CHUNK`, see `build-runtime.cjs`), with boundaries local
+  to that module.
 
 The loader concatenates data + modules in filename order and hands the result to `new Function`
 exactly as today, so everything stays in ONE lexical scope and runtime behaviour is unchanged.

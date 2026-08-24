@@ -24,8 +24,11 @@
 		"nav": {
 			"required": false,
 			"position": "last",
-			"allow": ["process.navigation-section"],
-			"note": "Back/Next for every step frame. Omit on the confirmation frame — it carries its own single action."
+			"allow": [
+				"process.navigation-section",
+				"process.navigation-first-section"
+			],
+			"note": "Back/Next for every step frame. The FIRST step has nothing to go back to, so it uses process.navigation-first-section: a SINGLE right-aligned action, not a spread row. Omit the slot entirely on the confirmation frame — it carries its own single action."
 		}
 	},
 	"rules": [
@@ -34,6 +37,7 @@
 		"Exactly one Brand action per frame — Next on a step, the follow-up action on the confirmation. Back is ghost.",
 		"The confirmation frame replaces the step and drops the Back/Next row.",
 		"The progress indicator is identical on every frame of the flow except for its state; do not switch between stepper and progress bar mid-flow.",
+		"A row with a SINGLE action is right-aligned (align: \"right\"), never `spread: true` — spread distributes two ends, and with one child it renders flush left. This is the first step, whose `Zurück` is dropped.",
 		"Determinate progress uses the real DB progress component, which offers only 25, 50 and 75 percent. Any other value is a hard stop.",
 		"Input controls inside a step reuse the form page-type blocks; do not invent new field fragments here."
 	]

@@ -33,6 +33,10 @@ inputs:
       required: false
       description: "Allow Concept components (Core Lab, not in code). Default false. If needed, ask once before using."
 
+# Every `context:` path below is relative to the POWER root (db-ux-designer-powers/), every
+# `asset:` path to THIS skill directory (db-ux-designer-powers/skills/generate-figma-screen/).
+# Resolving an asset against the power root is why a read of `assets/bootstrap/manifest.json`
+# comes back "file not found".
 requires:
     - context: context/design-system/screen-guidelines.md
       autoLoad: true
@@ -55,6 +59,10 @@ requires:
     - asset: assets/bootstrap/store-meta.js
     - asset: assets/registries/tokens.json
     - asset: assets/registries/components.json
+    # Render limits the Figma libraries do not expose as data (skill-owned, NOT generated).
+    - asset: assets/registries/component-constraints.json
+    # The COMPLETE Core Lab catalog. Load it before claiming a component does not exist.
+    - asset: assets/registries/lab-components-catalog.json
     # Icon name → DB Theme Icons key (comfort layer for { type:"Icon", name:"..." }).
     - asset: assets/registries/icons.json
     # Content-driven selection layer (per page type): map content → section → order.
@@ -75,6 +83,9 @@ requires:
     - asset: assets/registries/modal/patterns.json
     - asset: assets/registries/modal/blocks.json
     - asset: assets/validate-registries.cjs
+    # Static plan lint — the mechanical Phase 3 gate, run BEFORE any use_figma call.
+    - asset: assets/validate-plan.cjs
+    - asset: assets/src/45-plan-validation.js
 
 tools:
     - db-ux/list_components
@@ -101,6 +112,9 @@ on_error:
         - fallback: "If a required component/variant/token/style is missing, STOP and report. Never approximate."
 ---
 
+<!-- markdownlint-disable MD013 MD046 -->
+<!-- Exact executable snippets intentionally use fenced blocks and may exceed the prose line limit. -->
+
 # Generate Figma Screen (DB UX)
 
 ## Rule ownership and change routing
@@ -126,6 +140,17 @@ first, then add only the minimum enforcement/check reference required by the Ski
 > The only permitted output is a rendered frame in the Figma file via `use_figma` + `renderPlan`.
 > The agent NEVER writes imperative Figma node code — every screen goes through `renderPlan`.
 >
+> **NEVER claim a component does not exist without checking BOTH registries.**
+> `components.json` holds Core Components under `components` and Core Lab under
+> `conceptComponents`; `lab-components-catalog.json` lists the COMPLETE Core Lab set including
+> entries that carry no Figma key yet. Checking only one of them is how an upload was declared
+> "not in the design system" and rebuilt from an Image grid plus a Button while `🧪 Upload` sat in
+> Core Lab with a valid key — and how a segmented control got assembled from Tag pairs while
+> `SegmentedButton` existed. If a name is in the catalog but has no key in `conceptComponents`,
+> resolve the key ONCE via `search_design_system` scoped to the Core Lab library key and register
+> it; do not approximate and do not conclude it is missing. Only when neither registry nor the live
+> library has it is it genuinely absent — then STOP and report the gap.
+>
 > **LIBRARY COMPONENTS ONLY — NEVER a local component from the working file.**
 > Every instance comes from a published DB UX library: **Core Components** (Button, Card,
 > Section, Input, …), **Core Lab** (`Heading`, `Body`, and the layout primitives `Grid` /
@@ -139,7 +164,7 @@ first, then add only the minimum enforcement/check reference required by the Ski
 > components, but — like `Heading` / `Body` — they are BASELINE (no screen can be composed
 > without typography and layout), so they do **not** trigger the `{concept_components}` opt-in.
 > Any other Concept component still does.
-
+>
 > **NO PROTOTYPING FOR NOW.** Do NOT wire prototype interactions — no `setReactionsAsync`, no
 > `reactions`, no `flowStartingPoints`, no navigate/on-click flows between frames. Deliver the
 > STATIC frames only. When a request asks to connect frames / build a clickable prototype,
@@ -160,7 +185,7 @@ modules under `assets/src/`, concatenated + minified into `assets/db-figma-runti
 3. `{figma_target}` is a Figma URL with a `node-id`. If not → STOP and ask.
 4. The `db-ux` MCP server is connected (live component/token/icon verification).
 5. The target file already carries the render runtime, OR you can transfer it verbatim. The
-   one-time transfer (10 chunks, ~64 KB, byte-for-byte) needs a large model — if that is not you,
+   one-time transfer (5 chunks, ~74 KB, byte-for-byte) needs a large model — if that is not you,
    stop before touching the file and ask the user to switch models. See Phase 4a-gate; the check
    snippet in Phase 4a tells you which case you are in.
 
@@ -169,6 +194,10 @@ modules under `assets/src/`, concatenated + minified into `assets/db-figma-runti
 ### Phase 1 — Resolve target & scope
 
 1. Extract `fileKey` and `node-id` from `{figma_target}`. No `node-id` → STOP, ask.
+   **An EMPTY target page needs no inspection.** `get_metadata` already tells you (a canvas with
+   width/height 0 and no children); `get_design_context` then fails with "nothing selected" and
+   `get_screenshot` returns a 1×1 px image. Skip both and go to Phase 2 — call them only for a
+   page that actually holds frames you must match.
 2. If a Concept component is needed and `{concept_components}` is not enabled → ask once.
    Exception: the four BASELINE Core Lab entries (`Heading`, `Body`, `Grid`, `Container`) are
    always allowed — every screen needs typography and layout (see the library-only rule above).
@@ -423,6 +452,32 @@ from the page-type registries (structure/spacing live there — never hardcode c
 
 **Text fields must be named after the component's own TEXT property — mandatory:**
 
+- **FIELD SHAPE first — `text` is a MAP of properties, `label` is a single string.** This is the
+  canonical form, and the easiest to get wrong because both spellings look plausible:
+
+    ```jsonc
+    // RIGHT — a component with several text slots
+    {
+      "type": "Notification",
+      "props": { "placement": "standalone", "media": "icon" },
+      "semantic": "Warning",
+      "text": {
+        "headline": "4 Vorgänge benötigen Aufmerksamkeit",
+        "description": "Eine Wartung ist überfällig."
+      }
+    }
+    // RIGHT — a component with ONE visible label
+    { "type": "Button", "props": { "variant": "brand" }, "label": "Schaden melden" }
+    // WRONG — top-level `headline` is never read, and a `text` STRING is not a field map
+    { "type": "Notification", "headline": "…", "text": "…" }
+    ```
+
+    Both `headline` and `description` DO resolve to the component's real property through the
+    runtime's field aliases; what fails is putting them at TOP level or passing `text` as a
+    string. A string used to be enumerated character by character, so the error reported the
+    character indices ("0", "4", "5", …) as field names. `plan:lint` and the runtime now both
+    reject it and name the field map.
+
 - Every DB component ships its text slots **pre-filled with the library's own copy** ("Headline",
   "Text", "Label", "Link"). So a `text` field that does not resolve to a real TEXT property does
   NOT render an empty line — it renders that default, which reads like product copy and passes a
@@ -499,7 +554,7 @@ from the page-type registries (structure/spacing live there — never hardcode c
   applies to plain `Body`/`Heading` text AND to component labels (`Tag`, `Badge`, `Button`,
   `Link`) — a Tag does not upper-case its label, so caps in a Tag come from the plan and stay on
   canvas. A Topline is differentiated by size, weight and color emphasis (`Body` Small + bold +
-  `color.text.muted`), never by capitalisation. Established acronyms (DB, ICE, AGB) are fine.
+  `color.text.muted`), never by capitalization. Established acronyms (DB, ICE, AGB) are fine.
 - Do not force casing through Figma's `Text Case` either (no `applyProps` setting UPPER or SMALL
   CAPS). The audit reports `uppercase-text` for both causes; fix the PLAN content and re-render
   instead of patching the rendered text node.
@@ -519,6 +574,25 @@ true` (propose a new page-type catalog / report the exact registry gap).
 
 Self-check before rendering:
 
+0. **RUN THE LINTER — the mechanical gate, before any `use_figma` call.** Write the plan into a
+   scratch file that exports it (`module.exports = { PLAN }` as `.cjs`, or `export const PLAN` as
+   `.mjs`) and run:
+
+    ```shell
+    # keep scratch plans out of the repo: .cache/ is gitignored
+    pnpm --filter @db-ux/agent-cli run plan:lint ../../.cache/plans/dashboard.cjs
+    ```
+
+    It is free, instant and local, and it catches the whole class of defects that used to surface
+    only from the Figma sandbox: a JS syntax error in the payload (reported with file and line,
+    instead of a bare `SyntaxError: expecting ']'`), a node without `type` (the classic ES6
+    shorthand `{ myBlock }`), a `text` string instead of a field map, an unregistered token / icon
+    / image ratio / Grid layout, `props` that match no variant, a mistyped `pageType`, and more
+    `navItems` than the Navigation can show. `renderPlan` runs the SAME function
+    (`assets/src/45-plan-validation.js`) and refuses a plan that fails here — so linting first
+    costs nothing and saves a full round trip. Checks that need the rendered tree (geometry,
+    zebra, chart baselines, leftover placeholder copy) stay in the render audit, step 4.
+
 1. **Registry resolution** (hard stop — report the exact gap, never approximate): every
    component + variant resolves in `components.json`; every color/spacing/radius token + text
    style in `tokens.json`. Blocks/patterns are PREFERABLY reused from the page type's
@@ -532,6 +606,33 @@ Self-check before rendering:
    mono-layout for heterogeneous content; any new block/pattern follows the page type's
    `_meta.spacingModel` and is marked `origin: "guideline-authored"` (no free approximation —
    structure/spacing from the guidelines, components/tokens from the registries).
+   2a. **Decision preflight** — answer these EXPLICITLY before rendering. Each one is a defect class
+   that shipped with a clean audit because it was never decided, only assumed:
+
+- **List or table?** For every data panel, state which one it is (see `layout-guidelines.md` →
+  _Liste oder Tabelle_). A TABLE needs a header row with exactly as many equal fill cells as its
+  data rows and gives EVERY value its own column. A LIST may stack the leading cell and
+  right-aligns status/action, but carries NO column headers. Never mix the two, and never declare
+  a column you do not fill in every row.
+- **Row padding belongs to the panel.** Card `spacing: "none"` → rows carry `padding: "sm"`.
+  Card `spacing: "small"` → rows carry NO padding (otherwise the insets add up to a doubled
+  indentation).
+- **Navigation fits the IA.** Count the top-level areas against what the Header can show
+  (`components.json` → `Navigation.maxItems`; `plan:lint` counts it for you). If there are more,
+  reconcile the IA (sub-navigation, a tab inside a page, an overflow) and SAY SO — both the linter
+  and the runtime hard-stop rather than dropping an entry silently, because a lost nav item makes
+  a page unreachable while looking perfectly fine. Decide this BEFORE authoring the plan: a
+  seven-area IA discovered at render time means rewriting the navigation of every frame.
+- **Distribution comes from the template, not from habit.** A row the catalog distributes edge to
+  edge needs `spread: true` (the stepper and the Back/Next row do; a form's action row does not).
+  When in doubt, measure the template node: first child flush left, last child flush right.
+- **Bento rows are paired by content volume.** Panels in one row should have comparable content;
+  the shorter card is stretched to the taller one, and a large height difference becomes visible
+  dead space. Only a chart grows into that space — a list stays top-aligned.
+- **Which states does the request name?** Loading, empty, active filters, no results, error,
+  success, validation errors, unsaved changes. You need not draw every one, but decide which
+  belong in scope and deliver those; do not silently deliver none.
+
 3. **Visual rules** — per `screen-guidelines.md`: action hierarchy (≤1 brand button/page; equal
    items share one kind; clickable card has ≤1 interactive element); typography ALL via
    Heading/Body (no raw text), weight/color agree, no ALL-CAPS copy (see the casing constraint
@@ -547,7 +648,7 @@ Self-check before rendering:
 Two paths. **Prefer store-once** (keeps render calls tiny).
 
 > **COST RULE — bootstrap ONLY when a render/edit is actively requested.** A re-bootstrap emits
-> ~64 KB (10 chunks + meta) of model output and is the single most expensive action in this skill.
+> ~74 KB (5 chunks + meta) of model output and is the single most expensive action in this skill.
 > Trigger the check→bootstrap flow ONLY as part of fulfilling a real request to build, render,
 > edit, or update a screen/module in Figma. NEVER re-bootstrap just because the runtime SOURCE
 > changed in a dev/iteration turn (fixing `assets/src/*`, rebuilding `db-figma-runtime.min.js`):
@@ -558,8 +659,8 @@ Two paths. **Prefer store-once** (keeps render calls tiny).
 
 #### 4a-gate. MODEL CAPABILITY GATE — read before bootstrapping
 
-> **Bootstrapping is a verbatim-copy job, not a coding job.** It means emitting the 10 files
-> `assets/bootstrap/store-0.js` … `store-9.js` — each up to 7 000 characters of minified JS —
+> **Bootstrapping is a verbatim-copy job, not a coding job.** It means emitting the 5 files
+> `assets/bootstrap/store-0.js` … `store-4.js` — each ~17 000 characters of minified JS —
 > **byte-for-byte**, one per `use_figma` call. Nothing may be shortened, merged, split,
 > re-indented, re-quoted, summarised or "fixed". A model that cannot hold that much exact text
 > will truncate or paraphrase a chunk, then try to compensate with hand-written Figma node code,
@@ -571,8 +672,8 @@ Two paths. **Prefer store-once** (keeps render calls tiny).
 > ```text
 > Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln.
 >
-> Dieses Figma-File hat noch keine (aktuelle) DB-UX-Runtime. Sie muss einmalig in 10 Chunks
-> à 7.000 Zeichen zeichengenau übertragen werden (~64 KB). Kleinere Modelle kürzen dabei
+> Dieses Figma-File hat noch keine (aktuelle) DB-UX-Runtime. Sie muss einmalig in 5 Chunks
+> à ~17.000 Zeichen zeichengenau übertragen werden (~81 KB). Kleinere Modelle kürzen dabei
 > Chunks und hinterlassen eine kaputte Runtime, deshalb breche ich hier ab — ich habe nichts
 > verändert.
 >
@@ -607,7 +708,14 @@ Two paths. **Prefer store-once** (keeps render calls tiny).
 > bootstrap is always safe. ONLY step 2, the verbatim store loop, is gated on a large model.
 
 1. **Check**: paste `assets/bootstrap/check.js`. It reports `{ ready, storedSha, expectedSha, storedBytes, expectedBytes, corruptChunks, gate }` — it compares against the expected sha, the stored byte count AND each chunk's content checksum itself, so no manual manifest comparison is needed. `ready: true` → skip to step 4 (the store is already verified; step 3 belongs to a fresh bootstrap). `ready: false` → the `gate` string states the bootstrap contract; obey 4a-gate above. A non-empty `corruptChunks` means the store was altered, not merely stale: re-paste exactly those `store-<i>.js` files and re-run `store-meta.js`.
-2. **Bootstrap if needed** (stale/missing/corrupt): paste each `assets/bootstrap/store-<i>.js` in its own `use_figma` call — verbatim, all 10 — then `assets/bootstrap/store-meta.js` LAST. Each `store-<i>.js` returns `c<i>:<length>`; that length must equal 7 000 (2 801 for the last chunk). If one differs, re-paste that file before continuing. `store-meta.js` then re-checks lengths AND checksums, so a chunk that came out the right length but altered is still caught there.
+2. **Bootstrap if needed** (stale/missing/corrupt): paste each
+   `assets/bootstrap/store-<i>.js` listed in `bootstrap/manifest.json` in its own `use_figma`
+   call — verbatim, all **5** — then `assets/bootstrap/store-meta.js` LAST. Each
+   `store-<i>.js` returns `c<i>:<length>`; that length must match `chunkSize` in
+   `bootstrap/manifest.json` (the last chunk is the remainder; the chunk size is DERIVED from the
+   runtime length, so read it there instead of assuming a fixed number). If one differs, re-paste
+   that file before continuing. `store-meta.js` then re-checks lengths AND checksums, so a chunk
+   that came out the right length but altered is still caught there.
 3. **Verify the store actually parses** — do this once, right after `store-meta.js`, before any plan. `check.js` and `store-meta.js` prove the stored bytes are correct; neither proves the reassembled source is loadable. Paste `assets/bootstrap/render.js` and return the entry points instead of rendering:
     ```js
     return JSON.stringify({
@@ -636,7 +744,7 @@ on `figma.root`; clear that data and bootstrap it again from the current workspa
 2. In one `use_figma` call, clear `dbuxRuntime/meta` and every `dbuxRuntime/c<i>` key for
    `i = 0 .. chunkCount - 1` by setting each value to an empty string:
     ```js
-    const chunkCount = 10; // replace with manifest.json's chunkCount
+    const chunkCount = 5; // replace with manifest.json's chunkCount
     for (const key of [
     	"meta",
     	...Array.from({ length: chunkCount }, (_, i) => `c${i}`)
@@ -668,8 +776,8 @@ Only after this clean re-bootstrap fails again should the agent stop and report 
 - **Runtime source**: split into modules under `assets/src/` (`10-figma-helpers` → `70-edit-engine`). Key maps are generated from registries and injected at the `@db-maps-inject` marker in `10-figma-helpers.js`.
 - **Editing the runtime**: change the relevant module under `assets/src/`, then regenerate with `pnpm --filter @db-ux/agent-cli run runtime:build`. Never edit `db-figma-runtime.min.js` or `assets/bootstrap/*` by hand.
 - **Rebuild is enforced**: `runtime:check` (CI, next to the registry contract check) runs the same pipeline, writes nothing and fails when the committed bundle or a bootstrap snippet differs from `src/`. Without it an unbuilt source edit would pass every unit test — the tests load the BUILT bundle — while the fix never reaches a rendered screen.
-- **Batch runtime changes**: a re-bootstrap is EXPENSIVE (~64 KB as 10 chunks + meta) and needs a large model (4a-gate). Collect ALL planned fixes, then ONE build. Do NOT re-bootstrap after each source edit — only when the NEXT real render/edit runs (see the COST RULE above). Never rebuild per micro-fix.
-- **Known limitation — the transfer cost scales with an edit's POSITION, not its size.** The store is one blob sliced at fixed 7 000-byte offsets, so a length change shifts every following chunk: an edit in `10-figma-helpers` (3.9 KB) invalidates all 10 chunks, and the injected registry maps all sit in `c0` — so adding one icon forces a full re-transfer. Batching (above) is the mitigation available TODAY. The structural fix is specified in `requirements/incremental-runtime-transfer.md` (stale-chunk reporting, per-module records, policy-as-data); read it only when working on the transfer mechanism itself.
+- **Batch runtime changes**: a re-bootstrap is EXPENSIVE (~74 KB as 5 chunks + meta) and needs a large model (4a-gate). Collect ALL planned fixes, then ONE build. Do NOT re-bootstrap after each source edit — only when the NEXT real render/edit runs (see the COST RULE above). Never rebuild per micro-fix.
+- **Known limitation — the transfer cost scales with an edit's POSITION, not its size.** The store is one blob sliced at fixed 16 000-byte offsets, so a length change shifts every following chunk: an edit in `10-figma-helpers` (3.9 KB) invalidates all 5 chunks, and the injected registry maps all sit in `c0` — so adding one icon forces a full re-transfer. Batching (above) is the mitigation available TODAY. The structural fix is specified in `requirements/incremental-runtime-transfer.md` (stale-chunk reporting, per-module records, policy-as-data); read it only when working on the transfer mechanism itself.
 
 ### Phase 5 — Audit, fix, report
 

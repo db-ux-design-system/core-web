@@ -129,8 +129,15 @@ Blocks muss über ALLE Ebenen konsistent sein — von der äußersten Gruppe bis
 
 - Ein **inhaltsbreiter Block** (Zeiten-/Preis-Block, Button, Tag, Chip, Badge, Icon) muss auf
   jeder Ebene huggen — Zeile UND Spalten UND die Text-Komponenten darin. Nur dann sitzt er
-  glyphen-eng. Text-Komponenten (Heading/Body) huggen ebenfalls auf die Glyphen, wenn sie auf
-  hug stehen — sie haben keine erzwungene Box-Breite.
+  glyphen-eng.
+- **Ein Text huggt nicht von sich aus.** `Heading`/`Body` sind Core-Lab-Komponenten mit einer
+  `Max Width` und stehen per Default auf fill — ihre Eigenbreite ist damit **~500 px, unabhängig
+  von den Glyphen**. Ein hug-Container mit einem unangetasteten Text huggt deshalb diesen Geist
+  und meldet trotzdem „HUG": am Knoten sieht alles richtig aus, die Box ist aber ~512 px breit.
+  Gemessener Schaden: fünf Stepper-Items à 512–540 px summierten sich auf 2.588 px in einer
+  1.024-px-Spalte und wurden außerhalb des Frames gezeichnet. Die Runtime huggt Textkinder eines
+  hug-Containers deshalb ausdrücklich mit (Zeile **und** Spalte); `fillWidth: true` ist die
+  bewusste Ausnahme.
 - Ein **füllender Block** (Card, Input/Select, Section, Absatztext, volle Ergebniszeile) füllt
   durchgängig bis zum Text.
 
@@ -150,6 +157,16 @@ Spread lösen, sondern per **fill-links / hug-rechts** (linke Spalte fill, recht
 `hugWidth`); Spread nur für eine einzelne, flache Zeile (z. B. Start ↔ Ziel innerhalb der
 Infospalte).
 
+**Keine fixe Breite — auch nicht als Default.** Eine Instanz, die in ein Auto-Layout gelegt wird,
+behält in Figma `FIXED`, solange sie niemand dimensioniert. Eine fixe Box wächst nicht mit ihrem
+Label: der Text bricht INNERHALB der Box um, im Extremfall wortweise. Gemessener Schaden: ein
+`Radio` blieb auf der Eigenbreite der Library (84 px) und setzte „Fahrzeug ist weiterhin
+fahrbereit" als sechs einwortige Zeilen über 144 px Höhe. Die Breite kommt daher immer aus der
+hug/fill-Kette, und zwar in dieser Reihenfolge: explizit im Plan (`hugWidth`/`fillWidth`) → über
+die **Variantenachse** `width` der Komponente (`full` = fill, `auto` = hug, die Variante sagt es
+also schon) → Default für Formularfelder → sonst hug. `FIXED` ist nie eine gültige Endlage; das
+Audit meldet es als `fixed-width-instance`.
+
 **Für ausgerichtete, gleich breite Spalten** (z. B. Abfahrt/Ankunft in Verbindungsergebnissen)
 NICHT hug/fill mischen, sondern ein **Grid** verwenden (`50-50`) — dann teilen sich die Spalten
 die Breite unabhängig von der Textlänge.
@@ -165,10 +182,12 @@ wächst. `fillWidth: true` ist die ausdrückliche Ausnahme.
 **Heading huggt nicht — in Hug-Spalten Body verwenden:** Eine `Heading`-Komponente schrumpft
 in einem hug-Kontext NICHT auf ihre Glyphen (sie behält eine große Eigenbreite und bläht damit
 eine hug-Spalte auf die volle Breite auf — typischer Kollaps: die fill-Nachbarspalte schrumpft
-auf ~0, Text überlappt). `Body` huggt dagegen sauber auf den Text. Daher: prominenten,
-inhaltsbreiten Text in einer hug-Spalte (z. B. Preis „ab 79,99 €" in der rechten Aktionsspalte
-einer Ergebniszeile) als **Body (bold, größere Size)** setzen, NICHT als Heading. Heading nur in
-fill-Kontexten (Section-/Card-Titel, Hero) verwenden, wo die volle Breite ohnehin gewollt ist.
+auf ~0, Text überlappt). `Body` lässt sich dagegen zuverlässig auf den Text huggen — aber erst,
+wenn es aktiv gehuggt WIRD (siehe oben: ohne das trägt auch `Body` seine ~500-px-Max-Width).
+Daher: prominenten, inhaltsbreiten Text in einer hug-Spalte (z. B. Preis „ab 79,99 €" in der
+rechten Aktionsspalte einer Ergebniszeile) als **Body (bold, größere Size)** setzen, NICHT als
+Heading. Heading nur in fill-Kontexten (Section-/Card-Titel, Hero) verwenden, wo die volle Breite
+ohnehin gewollt ist.
 
 ## Muster: Card mit Info- + Aktions-Panel (full-bleed Divider)
 
@@ -249,3 +268,75 @@ entscheidende):
   Row auf `left`/`center` (Chevron mittig zum Titel).
 - Mittiges Element (Link/Button) in einer vertikalen Spalte → `center`.
 - Sonst Default `top-left`.
+
+## Liste oder Tabelle — erst entscheiden, dann bauen
+
+Ein Datenbereich ist **entweder** eine Liste **oder** eine Tabelle. Die häufigste Fehlerquelle
+ist die Mischform: ein Tabellenkopf über Zeilen, die im Listenstil gebaut sind. Dann stehen
+Werte nicht unter ihren Spaltentiteln, und einzelne Spalten bleiben leer.
+
+### Entscheidung
+
+| Frage                           | Liste                 | Tabelle                        |
+| ------------------------------- | --------------------- | ------------------------------ |
+| Wie liest der Nutzer?           | Datensatz als Einheit | Werte spaltenweise vergleichen |
+| Sind die Werte gleichartig?     | nein, gemischt        | ja, pro Spalte ein Typ         |
+| Braucht es Auswahl/Paginierung? | nein                  | häufig ja                      |
+| Anzahl Werte pro Datensatz      | 1–2 plus Status       | 3–6 vergleichbare              |
+
+Im Zweifel Liste. Eine Tabelle ist nur dann richtig, wenn der Spaltenvergleich der eigentliche
+Zweck ist.
+
+### Aufbau einer Liste
+
+- **Kein Spaltenkopf.** Ein Kopf verspricht Spalten, die eine Liste nicht einhält.
+- Führende Zelle darf **stapeln**: Name in `color.text.strong`, Meta darunter in
+  `color.text.muted`. Das ist der Vorteil der Liste.
+- **Status und Aktion stehen am Zeilenende und sind rechtsbündig.** Ein Badge in einer
+  linksbündigen Füllspalte „schwebt“ sonst in der Zeilenmitte — der häufigste optische Defekt.
+- Zeilen durch `Divider` mit `emphasis: "weak"` trennen, nicht durch zusätzlichen Abstand.
+- Keine Auswahl, keine Paginierung.
+
+### Aufbau einer Tabelle
+
+- **Spaltenkopf ist Pflicht** und hat **genau so viele Zellen wie jede Datenzeile**.
+- **Jeder Wert bekommt seine eigene Spalte.** Kein Stapeln — ein Kilometerstand ist eine Spalte,
+  nicht die zweite Zeile der Namenszelle.
+- Jede Zelle **füllt** ihre Spalte (`fillWidth`), auch die Kopfzelle und eine führende Checkbox.
+  Eine hugende Zelle verschiebt alles hinter sich um ihre eigene Labelbreite.
+- Numerische Spalten rechtsbündig, Status als Badge in eigener Spalte.
+- Jede deklarierte Spalte **muss in jeder Zeile einen Wert haben**. Eine Kopfspalte ohne Werte
+  ist ein Fehler, nicht ein Platzhalter.
+
+### Padding gehört zum Panel, nicht zur Zeile
+
+Sonst addieren sich Kartenpadding und Zeilenpadding zu einer doppelten Einrückung:
+
+- Karte `spacing: "none"` (full-bleed, Divider laufen bis zur Kante) → **Zeilen tragen
+  `padding: "sm"`**.
+- Karte `spacing: "small"` (12px Innenabstand) → **Zeilen tragen kein eigenes Padding**; der
+  vertikale Rhythmus kommt aus dem `gap` des umgebenden Containers.
+
+## Verhalten bei gestreckter Card (Bento-Gleichhöhe)
+
+In einer Bento-Zeile werden kürzere Karten auf die Höhe der höchsten gestreckt. Was der Inhalt
+dann tut, ist **pro Inhaltstyp festgelegt** und nicht dem Zufall überlassen:
+
+| Inhalt                 | Verhalten in der gestreckten Karte                           |
+| ---------------------- | ------------------------------------------------------------ |
+| Diagramm (`ChartBar`)  | wächst mit und sitzt auf dem **Kartenboden** — eine Baseline |
+| Liste / Tabellenzeilen | bleiben **oben**, Restraum unten bleibt leer                 |
+| KPI / Einzelwert       | bleibt **oben**                                              |
+| Fließtext              | bleibt **oben**                                              |
+
+Zwei Konsequenzen:
+
+1. **Höhe muss durchgereicht werden.** `fillHeight` verteilt nur Höhe, die der Elternknoten
+   schon besitzt. Wird eine Karte gestreckt, ihr innerer Content-Slot bleibt aber hugend, kann
+   das Diagramm nicht nach unten wachsen — es entsteht toter Raum unter den Balken, obwohl der
+   Plan korrekt ist. Die Kette Karte → Content-Slot → Container → Diagrammreihe muss von außen
+   nach innen gestreckt werden.
+2. **Große Leerräume sind ein Kompositionsfehler, kein Streckungsfehler.** Wenn eine Karte 150px
+   Leerraum bekommt, ist die Zeile falsch gepaart. Panels einer Bento-Zeile sollen **ähnliches
+   Inhaltsvolumen** haben (vergleichbare Zeilenanzahl). Eine Liste mit vier Zeilen neben einer
+   Liste mit einer Zeile ist keine Bento-Zeile, sondern zwei Bereiche, die getrennt gehören.

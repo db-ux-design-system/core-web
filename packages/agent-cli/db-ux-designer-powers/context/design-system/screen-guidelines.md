@@ -25,6 +25,45 @@
   `Tag`-Komponente verwenden und die aktive Filterauswahl nachvollziehbar sowie entfernbar
   machen.
 
+### Position von Notifications
+
+- **Default: eine Notification steht ÜBER dem Inhalt, auf den sie sich bezieht** — also zwischen
+  Headline und Content. Ein Hinweis ist eine Voraussetzung für das Lesen oder Handeln und wird
+  daher zuerst gelesen. Steht er am Ende eines Blocks, findet man ihn erst, nachdem man den
+  Inhalt bereits durchgearbeitet — oder die Aktion schon ausgelöst — hat.
+- Bezugsgröße bestimmt die Ebene: gilt der Hinweis für die ganze Seite oder Section, steht er
+  unter deren Headline; gilt er für ein einzelnes Feld oder Panel, steht er direkt über diesem.
+- Was legitim VOR der Notification stehen darf, ergibt sich aus dem Bezug: die Page-Header-Zeile
+  eines Dashboards, der Erfolgs-Icon-Block einer Bestätigung oder die Filterleiste, die ein
+  Leerergebnis erklärt, gehören alle über den Hinweis. Deshalb ist die Regel ein **Default mit
+  Urteilsvermögen**, keine mechanische Sortierung — ein Versuch, Notifications automatisch nach
+  oben zu schieben, hat genau diese drei Fälle verschlechtert.
+- Ausnahme sind **viewport-bezogene** Hinweise: `docked` (globaler Alert unter dem Header) und
+  `overlay` (Snackbar/Toast) folgen ihrer eigenen Platzierung und sind von der Regel ausgenommen.
+- Der Plan-Linter prüft den eindeutigen Verstoß: eine `standalone`-Notification als **letztes**
+  Element ihres Containers, unter dem Inhalt, auf den sie sich bezieht.
+
+### Datei-Upload — die Upload-Komponente verwenden
+
+Für Datei-Uploads gibt es eine echte Komponente: **`🧪 Upload`** in Core Lab (Concept). Sie bringt
+den Ablagebereich, ein eigenes Label, einen gefüllten Button und zwei Slots (`Start Slot` /
+`End Slot`) mit. Sie ist deshalb die richtige Wahl — nicht ein aus `Image`-Raster plus losem
+`Button` zusammengesetzter Ersatz und erst recht kein nachgebautes Rechteck mit gestricheltem Rand.
+
+- Plan-Node `Upload`; `label` setzt den Text im Ablagebereich, `direction` wählt vertikal
+  (Default) oder horizontal.
+- Vorschauen, Zähler und Limits gehören in den `End Slot` (Plan-Feld `children`), zusätzlicher
+  Inhalt oberhalb in den `Start Slot` (`startChildren`). Beide Slots hängen an einem eigenen
+  `🎨 Show …`-Boolean — die Runtime schaltet es mit, sonst bliebe der gefüllte Slot unsichtbar.
+- Akzeptierte Formate als `Infotext` unter der Komponente.
+
+Registriert als Block `form.upload-field` und Pattern `form.attachments`.
+
+**Wichtig:** `Upload` ist eine Concept-Komponente und gehört **nicht** zu den vier Baseline-Einträgen
+(Heading, Body, Grid, Container). Ihr Einsatz erfordert daher das `concept_components`-Opt-in —
+einmal nachfragen. Wird das Opt-in nicht gegeben, ist die Aufgabe zu benennen und nicht durch einen
+nachgebauten Upload zu ersetzen.
+
 ## Farbe
 
 - Große Flächen nur in Hintergrund-Level 1–3. Zebra-Flächen sind optional und werden nur bewusst eingesetzt, um inhaltlich unterschiedliche Bereiche klar zu gruppieren; sie sind kein Standard für jeden Screen.
@@ -94,16 +133,36 @@ Höhen-Referenz:
 
 ## Aktionen (Hierarchie)
 
-Die Art der Aktion ergibt sich aus ihrer Bedeutung — nie frei gewählt:
+Die Art der Aktion ergibt sich aus ihrer Bedeutung — nie frei gewählt. Buttons verwenden die
+Property `Action Hierarchy` mit genau diesen Werten:
 
-- Wichtigste Seitenaktion → Primär/Brand — max. einmal pro Screen, nie pro Card.
-- Mehrere gleichwertige Items → alle dieselbe Aktionsart (gefüllt oder Link).
-- Navigierend / informativ → Link („Mehr erfahren", „Details").
-- Mehrere Aktionen am selben Objekt → Gruppe: max. eine primäre + sekundäre (ghost).
-- Reine Anzeige → keine Aktion.
+- **Default** — reguläre, auch allein verwendbare Aktion. Das ist der Default-Wert.
+- **Primary** — wichtigste Vorwärts- oder Commit-Aktion. Sparsam verwenden: maximal einmal pro
+  Screen und höchstens einmal innerhalb einer Aktionsgruppe.
+- **Alternative** — untergeordnete Begleitaktion. Sie darf nie allein stehen, sondern ergänzt eine
+  stärkere Aktion, beispielsweise „Zurück“ zu „Weiter“ oder „Abbrechen“ zu „Speichern“.
 
-- Eine einzelne Aktion ist gefüllt (Hero/CTA: Brand). Ein einzelner schwacher Button
-  (ghost/outlined) ist verboten — nur als sekundäre Aktion neben einem stärkeren gültig.
+Weitere Regeln:
+
+- Mehrere gleichwertige Aktionen verwenden alle `Default` oder werden als Links dargestellt.
+- Navigierende oder informative Aktionen verwenden einen Link („Mehr erfahren“, „Details“).
+- Eine einzelne Aktion ist `Default` oder — nur bei eindeutig höchster Priorität — `Primary`.
+  `Alternative` ist als Einzelaktion verboten.
+- `Danger` beziehungsweise `Critical` ist vorerst kein Bestandteil der Button-Hierarchie und darf
+  nicht durch eine frei gewählte Farbe nachgebildet werden.
+- Reine Anzeige erhält keine Aktion.
+
+### Ausrichtung von Aktionszeilen
+
+- **Bleibt nur EINE Aktion übrig, steht sie rechts** (`align: "right"`). Das gilt überall, wo eine
+  Aktionszeile die Inhaltsspalte füllt — typisch der erste Schritt eines Prozesses, in dem
+  „Zurück" entfällt.
+- Zwei Aktionen an den Enden einer Zeile (Zurück links, Weiter rechts) werden mit `spread: true`
+  verteilt. **`spread` braucht zwei Enden:** bei nur einem Kind setzt Figma es an den ANFANG, die
+  Aktion landet also links und die restliche Zeile bleibt leer. Eine Einzelaktion wird daher nie
+  über `spread` gelöst, sondern über `align: "right"`.
+- Gilt nur für AKTIONEN. Fällt in einer verteilten Zeile die Aktion weg und nur ein Titel bleibt
+  übrig, bleibt dieser links — ein nach rechts geschobener Seitentitel ist ein schlimmerer Fehler.
 
 ## Klickbare Cards
 

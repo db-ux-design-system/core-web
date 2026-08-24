@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// build-from-kb.cjs - Generate Power registries & context from the Knowledge Database.
+// Build-from-kb.cjs - Generate Power registries & context from the Knowledge Database.
 //
 // SINGLE SOURCE OF TRUTH: packages/agent-cli/knowledge-database/
 // Files in this Power are DERIVED — never edit them directly.
@@ -61,6 +61,7 @@ function writeOutput(filePath, content) {
 		);
 		return;
 	}
+
 	fs.mkdirSync(path.dirname(filePath), { recursive: true });
 	fs.writeFileSync(filePath, content);
 }
@@ -107,7 +108,9 @@ function buildTokensRegistry() {
 		return;
 	}
 
-	// Load current registry to preserve entries we cannot generate (e.g. imageRatios, textStyles)
+	// Load the current registry to preserve entries the Knowledge Database cannot generate yet
+	// (for example image ratios and live Figma variable keys). Text styles are intentionally
+	// never preserved: typography is variable-bound and rendered by Text/Heading components.
 	const currentTokensPath = path.join(REGISTRIES, 'tokens.json');
 	const current = fs.existsSync(currentTokensPath)
 		? loadJson(currentTokensPath)
@@ -179,9 +182,9 @@ function buildTokensRegistry() {
 			variableCount++;
 		}
 
-		// Brand colors (if present)
-		const brand = colors.tokens?.brand || colors.tokens?.palette || {};
-		// (brand tokens need a different structure — handle if present in KB)
+		// Brand colors are NOT emitted yet: `colors.tokens.brand` / `.palette` use a different
+		// shape than the semantic tokens above, so they need their own mapping before they can
+		// become plan-usable variables.
 	}
 
 	// --- Spacing ---
@@ -222,41 +225,9 @@ function buildTokensRegistry() {
 		}
 	}
 
-	// --- Typography (text styles) ---
-	const typoPath = path.join(foundationsDir, 'typography', 'tokens.json');
-	const textStyles = { ...(current.textStyles || {}) };
-	let styleCount = 0;
-
-	if (fs.existsSync(typoPath)) {
-		const typo = loadJson(typoPath);
-
-		// The KB has body.{size}.figmaStyles.{weight} and headline.{size}.figmaStyles.{weight}
-		// The Power uses curated semantic names that map to specific size+weight combos via
-		// "Code Mapping" paths in Figma. These are complementary, not duplicates.
-
-		const bodyTokens = typo.tokens?.body || {};
-		const headlineTokens = typo.tokens?.headline || {};
-
-		const kbStyleKeys = new Set();
-		for (const sizeTokens of Object.values(bodyTokens)) {
-			for (const key of Object.values(sizeTokens.figmaStyles || {})) {
-				kbStyleKeys.add(key);
-			}
-		}
-		for (const sizeTokens of Object.values(headlineTokens)) {
-			for (const key of Object.values(sizeTokens.figmaStyles || {})) {
-				kbStyleKeys.add(key);
-			}
-		}
-
-		console.log(
-			`  \u2139 KB has ${kbStyleKeys.size} raw typography style keys (body+headline x size x weight).`
-		);
-		console.log(
-			`  \u2139 Power textStyles use ${Object.keys(current.textStyles || {}).length} "Code Mapping" styles (different layer).`
-		);
-		styleCount = Object.keys(current.textStyles || {}).length;
-	}
+	// Typography is represented exclusively by variables. Figma text styles are deliberately
+	// absent: functional components bind Theme/Size/Emphasis directly, and all content text is
+	// rendered by the Text or Heading component.
 
 	// Build output: KB wins for any duplicate key, preserve non-KB entries as supplement
 	const mergedVariables = { ...variables }; // KB is the base (always wins)
@@ -267,6 +238,7 @@ function buildTokensRegistry() {
 			preserved++;
 		}
 	}
+
 	if (preserved > 0) {
 		console.log(
 			`  Preserved ${preserved} non-KB variables from existing registry.`
@@ -284,7 +256,6 @@ function buildTokensRegistry() {
 			sourceMeta: current._meta?.sourceMeta || {}
 		},
 		variables: mergedVariables,
-		textStyles,
 		imageRatios: current.imageRatios || {}
 	};
 
@@ -294,7 +265,7 @@ function buildTokensRegistry() {
 	);
 
 	console.log(
-		`  Generated tokens.json: ${Object.keys(mergedVariables).length} variables (${variableCount} from KB, ${preserved} preserved), ${styleCount} textStyles.`
+		`  Generated tokens.json: ${Object.keys(mergedVariables).length} variables (${variableCount} from KB, ${preserved} preserved).`
 	);
 }
 
@@ -456,6 +427,7 @@ function buildComponentsRegistry() {
 			if (setDef.deprecated && !entry.figmaSets[setName]) {
 				entry.figmaSets[setName] = setDef;
 			}
+
 			// Preserve hand-curated axes when auto-derivation yields empty
 			if (
 				!setDef.deprecated &&
@@ -482,12 +454,14 @@ function buildComponentsRegistry() {
 
 	const output = {
 		_meta: {
-			...(current._meta || {}),
+			...current._meta,
 			generatedFrom: 'knowledge-database',
 			generatedAt: new Date().toISOString().slice(0, 10)
 		},
 		components,
-		conceptComponents: current.conceptComponents || {},
+		conceptComponents: buildConceptComponents(
+			current.conceptComponents || {}
+		),
 		unresolved: current.unresolved || {}
 	};
 
@@ -501,6 +475,167 @@ function buildComponentsRegistry() {
 	);
 }
 
+/* --- conceptComponents (Core Lab) — generated, no longer hand-curated ---------
+ *
+ * WHY THIS EXISTS: `conceptComponents` used to be passed through verbatim
+ * (`conceptComponents: current.conceptComponents`), so Core Lab never came from the KB even though
+ * the KB carries a full `lab-components/<name>/figma.json` WITH the component-set key for every
+ * one of them. The result was a hand-curated subset — 6 of 17 registered — which the skill read as
+ * the complete truth. Consequences were not academic: an upload was declared "not available in the
+ * design system" and rebuilt from an Image grid plus a Button while `🧪 Upload` existed with a key
+ * in the KB, and the dashboard guidelines describe a segmented control built from Tag pairs and a
+ * list built from Containers while `segmented-button` and `list` exist too.
+ *
+ * THE SPLIT (same contract as registries/component-constraints.json):
+ *   - IDENTITY comes from the KB: setKey, figmaName, maturity, slots, subComponents. Nobody should
+ *     hand-maintain a Figma key that the KB already knows.
+ *   - The SKILL MAPPING stays hand-curated and is preserved: `planNodeType` (the runtime's plan
+ *     node name), `textProp`, `contentSlot`/`slot`, `note`, `forbiddenFallback`, `baseline`. The KB
+ *     does not know how this renderer names things, and it should not.
+ *
+ * AXES ARE THE EXCEPTION, and this is not a matter of taste — it was measured. The KB's Core Lab
+ * axes currently disagree with the library our keys resolve to:
+ *   Container  KB "Direction: (Def) Vertical | Horizontal"  vs. live "(Def) Column | Row"
+ *   Grid       KB drops "Height: Auto | 100%" and adds "fill"
+ *   Dialog     KB has no axes at all, losing "Backdrop"
+ *   Container  KB lists Gap/Align as VARIANTS, which this set does not have
+ * `createConceptInstance` matches variants by EXACT axis label, so adopting those would break every
+ * container, grid and dialog render. Hand-verified axes therefore WIN; the KB only fills in axes for
+ * a component that has none yet, and such an entry is marked `axesUnverified` so nobody trusts it
+ * before checking the live set (assets/verify-registry-keys.cjs, or one importComponentSetByKeyAsync
+ * read). Drop the flag once verified.
+ * An entry the KB has no folder for (e.g. `Heading`, which has no figma.json there) is PRESERVED
+ * unchanged, and a hand-picked `setKey` wins over a KB set only when the KB offers several and the
+ * mapping already chose one (e.g. ProgressBar → one specific LoadingIndicator set).
+ */
+function buildConceptComponents(existing) {
+	const labDir = path.join(KB_PATH, 'lab-components');
+	if (!fs.existsSync(labDir)) {
+		console.log('  conceptComponents: SKIP (no lab-components/ in KB)');
+		return existing;
+	}
+
+	// Preserved meta keys and every entry whose codeName the KB does not cover.
+	const out = {};
+	for (const [key, def] of Object.entries(existing))
+		if (key.startsWith('_')) out[key] = def;
+
+	const byCodeName = new Map();
+	for (const [name, def] of Object.entries(existing)) {
+		if (name.startsWith('_')) continue;
+		byCodeName.set(def.codeName || name.toLowerCase(), { name, def });
+	}
+
+	const pascal = (s) =>
+		s
+			.split('-')
+			.map((p) => p.charAt(0).toUpperCase() + p.slice(1))
+			.join('');
+
+	let generated = 0;
+	let preserved = 0;
+	const covered = new Set();
+
+	for (const comp of listDirs(labDir)) {
+		const figmaPath = path.join(labDir, comp, 'figma.json');
+		if (!fs.existsSync(figmaPath)) continue; // No Figma anchor → nothing to resolve
+		const figma = loadJson(figmaPath);
+		const sets = (figma.componentSets || []).filter((s) => s.key);
+		if (sets.length === 0) continue;
+
+		const metaPath = path.join(labDir, comp, 'meta.json');
+		const propsPath = path.join(labDir, comp, 'properties.json');
+		const meta = fs.existsSync(metaPath) ? loadJson(metaPath) : {};
+		const properties = fs.existsSync(propsPath)
+			? loadJson(propsPath).properties || []
+			: [];
+
+		const prior = byCodeName.get(comp);
+		const name = prior ? prior.name : pascal(comp);
+		const hand = prior ? prior.def : {};
+		covered.add(name);
+
+		// Variant axes: the enum properties, keyed by their Figma property name.
+		const axes = {};
+		for (const p of properties) {
+			if (p.type !== 'enum') continue;
+			const axisName = p.design?.name || p.name;
+			const values = p.design?.values || p.values;
+			if (axisName && Array.isArray(values) && values.length > 0)
+				axes[axisName] = values;
+		}
+
+		// Slots the component exposes, by their Figma names.
+		const slots = properties
+			.filter((p) => p.type === 'slot')
+			.map((p) => p.design?.name || p.name);
+
+		/* Which set to point at. One set → unambiguous. Several (LoadingIndicator ships four) →
+		 * keep the set the mapping already chose, because the plan node refers to that one
+		 * specific variant family; otherwise expose them all and let the mapping decide later. */
+		const chosen =
+			sets.length === 1
+				? sets[0]
+				: sets.find((s) => s.key === hand.setKey) || null;
+
+		out[name] = {
+			codeName: comp,
+			maturity: meta.status === 'concept' ? 'Concept' : 'Pre-Release',
+			...(hand.planNodeType && { planNodeType: hand.planNodeType }),
+			...(chosen && { figmaName: chosen.name, setKey: chosen.key }),
+			/* COMPONENT vs COMPONENT_SET decides the IMPORT: a variant-less component
+			 * (Core Lab `List`) must be imported with importComponentByKeyAsync, and
+			 * importComponentSetByKeyAsync reports the key as "not found" for it — which
+			 * reads like a stale key and cost a round of chasing one. The KB records the
+			 * distinction; carry it so the runtime picks the right call. */
+			...(chosen &&
+				chosen.type === 'COMPONENT' && { nodeType: 'COMPONENT' }),
+			...(!chosen && {
+				figmaSets: Object.fromEntries(
+					sets.map((s) => [s.name, { key: s.key }])
+				)
+			}),
+			...(hand.textProp && { textProp: hand.textProp }),
+			...(hand.contentSlot && { contentSlot: hand.contentSlot }),
+			...(hand.slot && { slot: hand.slot }),
+			/* Hand-VERIFIED axes win over the KB (see the AXES note above). The
+			 * `axesUnverified` flag must be STICKY: without carrying it over, the
+			 * generator reads its OWN previous output as "hand-curated" on the next
+			 * run and the warning silently disappears — the KB values would then look
+			 * verified simply because they had been written once. */
+			...(hand.axes && !hand.axesUnverified
+				? { axes: hand.axes }
+				: Object.keys(axes).length > 0
+					? { axes, axesUnverified: true }
+					: hand.axes
+						? { axes: hand.axes, axesUnverified: true }
+						: {}),
+			...(slots.length > 0 && { slots }),
+			...(hand.baseline !== undefined && { baseline: hand.baseline }),
+			...((figma.subComponents || hand.subComponents) && {
+				subComponents: figma.subComponents || hand.subComponents
+			}),
+			...(hand.note && { note: hand.note }),
+			...(hand.forbiddenFallback && {
+				forbiddenFallback: hand.forbiddenFallback
+			})
+		};
+		generated++;
+	}
+
+	// Entries the KB cannot describe (no folder / no figma.json) stay exactly as they are.
+	for (const [name, def] of Object.entries(existing)) {
+		if (name.startsWith('_') || covered.has(name)) continue;
+		out[name] = def;
+		preserved++;
+	}
+
+	console.log(
+		`  conceptComponents: ${generated} generated from KB lab-components, ${preserved} preserved (no KB Figma data).`
+	);
+	return out;
+}
+
 // Derive axes from a component set name by matching properties with codeConnect
 function deriveAxes(setName, codeConnectProps, allProperties) {
 	const axes = {};
@@ -508,11 +643,11 @@ function deriveAxes(setName, codeConnectProps, allProperties) {
 	// Set name pattern: "ComponentName → VariantValue" or "ComponentName → (Def) VariantValue (Beta)"
 	// Extract the suffix after " → " (or the full name if no arrow)
 	const arrowIdx = setName.indexOf(' \u2192 ');
-	const suffix = arrowIdx !== -1 ? setName.slice(arrowIdx + 3) : setName;
+	const suffix = arrowIdx === -1 ? setName : setName.slice(arrowIdx + 3);
 	// Clean: strip "(Def) " prefix and trailing "(Beta)"/"(Deprecated)"
 	const cleanSuffix = suffix
 		.replace(/^\(Def\)\s*/, '')
-		.replace(/\s*\((Beta|Deprecated|Concept)\)$/i, '')
+		.replace(/\s*\((beta|deprecated|concept)\)$/i, '')
 		.trim()
 		.toLowerCase();
 
@@ -520,15 +655,15 @@ function deriveAxes(setName, codeConnectProps, allProperties) {
 		const propValues = prop.design?.values || prop.values || [];
 		const codeValues = prop.values || [];
 
-		for (let i = 0; i < propValues.length; i++) {
-			const designVal = propValues[i]
+		for (const propValue of propValues) {
+			const designValue = propValue
 				.replace(/^\(Def\)\s*/, '')
-				.replace(/\s*\((Beta|Deprecated|Concept)\)$/i, '')
+				.replace(/\s*\((beta|deprecated|concept)\)$/i, '')
 				.trim();
 
 			// Match: exact suffix match OR suffix contains the value (e.g. "Level 1" contains "1")
 			// OR value is contained in suffix (e.g. "desktop" in "Desktop")
-			const designLower = designVal.toLowerCase();
+			const designLower = designValue.toLowerCase();
 			const match =
 				designLower === cleanSuffix ||
 				cleanSuffix === designLower ||
@@ -538,21 +673,21 @@ function deriveAxes(setName, codeConnectProps, allProperties) {
 			if (match) {
 				const codeProp = prop.code?.prop || prop.name;
 				// Use the code-level value (lowercase) if available
-				const codeVal =
+				const codeValue =
 					codeValues.find((v) => v.toLowerCase() === designLower) ||
 					designLower;
-				axes[codeProp] = codeVal;
+				axes[codeProp] = codeValue;
 				break;
 			}
 		}
 	}
 
 	// Special case: "Icon Button" prefix → iconOnly=true (maps noText codeConnect prop)
-	const prefix = arrowIdx !== -1 ? setName.slice(0, arrowIdx) : setName;
+	const prefix = arrowIdx === -1 ? setName : setName.slice(0, arrowIdx);
 	if (prefix.startsWith('Icon Button') || prefix.startsWith('Icon ')) {
 		const hasNoTextProp = allProperties.find((p) => p.name === 'noText');
 		if (hasNoTextProp) {
-			axes['iconOnly'] = true;
+			axes.iconOnly = true;
 		}
 	}
 

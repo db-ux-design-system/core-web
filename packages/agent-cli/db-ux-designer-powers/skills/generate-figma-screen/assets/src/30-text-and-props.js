@@ -267,6 +267,17 @@ const FIELD_ALIASES = {
  * still be fixed, instead of shipping placeholder copy that reads as real content. */
 function setInstanceFields(inst, fields) {
 	if (!fields) return;
+	/* `fields` is a MAP of TEXT property -> value. A STRING here is a plan bug
+	 * (`text: "…"` instead of `text: { headline: "…" }`), and without this guard
+	 * Object.entries() below enumerated the string CHARACTER BY CHARACTER: the
+	 * error then listed the character indices "0", "4", "5", … as field names and
+	 * hid the actual mistake. Name the real cause instead. */
+	if (typeof fields !== 'object' || Array.isArray(fields))
+		stop(
+			`\`text\` must be a field map like text: { headline: "…", text: "…" }, got ${
+				Array.isArray(fields) ? 'an array' : typeof fields
+			} on "${safe(() => inst.name, '?')}". For a single visible label use \`label\`.`
+		);
 	const cp = inst.componentProperties ?? {};
 	const textKeys = Object.keys(cp).filter((k) => cp[k]?.type === 'TEXT');
 	const props = {};

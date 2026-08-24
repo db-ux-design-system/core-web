@@ -25,7 +25,7 @@ whether the task is a short, **blocking, self-contained** interlude on top of th
 3. It is triggered **from within another screen** (a button/action opens it), not reached by
    navigation.
 
-Typical triggers in a prompt: "Dialog", "Modal", "Pop-up", "Bestätigung(sdialog)", "confirm/cancel",
+Typical triggers in a prompt: "Dialog", "Modal", "Pop-up", "Bestätigung", "Bestätigungsdialog", "confirm/cancel",
 "möchten Sie wirklich …", "löschen bestätigen", "einladen"/"hinzufügen (als Overlay)", "Drawer",
 "Side-Sheet", "acknowledge / OK-Hinweis".
 

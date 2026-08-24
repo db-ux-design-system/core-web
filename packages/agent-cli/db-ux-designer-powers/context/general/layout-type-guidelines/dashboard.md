@@ -77,6 +77,13 @@ hierarchy: page `h1` (header) → panel `h4` → inner `h5`.
 
 ## 6a. Tables: a column-aligned Grid, not a Table component
 
+> **Core Lab has a `List` component** (Concept, plus the sub-components List ITEM / TITLE /
+> DIVIDER / TEASERITEM / VERTICAL ITEM). It is registered as the plan node `List`, but note it is a
+> plain COMPONENT without variants and its rows are separate sub-component sets, so a row list built
+> from it is a COMPOSITE — the container patterns below remain the supported way to build a data
+> row today. Prefer `List` once a composite block for it exists; do not treat "no Table component"
+> as "no list component either".
+
 There is **no Table component** in the Stable/Beta set (only a Concept). Express a genuinely
 multi-column table (3–6 columns, several rows) as a **`table-panel`**: a self-titled Card whose
 content is a header-label Grid + `Divider`, then data rows that are each a `Grid` using the **same
@@ -105,11 +112,16 @@ it as a magenta placeholder box that would ship in the render.
 A **`toolbar`** (data-toolbar) controls the region below it: a leading search `Input` (fills), an
 optional scope `Select`, a **view-switch**, and an optional trailing primary action. Same rules as
 the filter bar — form fields use the **floating-label** variant so their height matches the button
-and tags. The view-switch is a **segmented control** built from a hug pair of `Tag`s with
-`behavior: "interactive-toggle"` — active view = `emphasis: "strong"` + `applyProps { "Checked":
-"True" }`, inactive = `emphasis: "weak"` + `Checked` False. Use the Tag toolbar for a tight 2-way
-switch; use full **Tabs** (§6c) when the views deserve named tabs. Place a toolbar as the lead of
-the panel it controls (usually a `table-panel`), never on its own.
+and tags. Place a toolbar as the lead of the panel it controls (usually a `table-panel`), never on
+its own.
+
+The view-switch is the real **`SegmentedButton`** (Core Lab, Concept — needs the
+`concept_components` opt-in), axes `Size` and `Variant: (Def) White | Grey`, its items in the
+`Children` slot. This guideline previously described a segmented control assembled from a hug pair
+of `Tag`s with `behavior: "interactive-toggle"` — that was a workaround written while
+`conceptComponents` was hand-curated and the component looked unavailable. It is not: use the
+component. A Tag pair remains correct only for a filter-style toggle that is NOT a view switch. Use
+full **Tabs** (§6c) when the views deserve named tabs.
 
 ## 6c. Tabs: switch views inside one panel
 
@@ -132,9 +144,12 @@ real percentage and phrase the Value + caption to match, so the bar and the numb
 ## 7. Alerts are inline elements, not sections
 
 An operational `Notification` is INLINE — place it under the header row, or as the lead of the
-panel it relates to. Never render a lone Notification as its own bare section. Its text props are
-`headline` (title) and `text` (body) — NOT `description` (which does not map). And note: a single
-library component on its own is NOT a "block/module" — modules are composed units.
+panel it relates to. Never render a lone Notification as its own bare section. Its title and body
+go into the plan's FIELD MAP, `text: { headline: …, description: … }` — never as top-level
+`headline`/`text` fields, and never as a `text` string. See `SKILL.md` → _Text fields must be named
+after the component's own TEXT property_ for the canonical form; that is the single normative place
+for field shape. And note: a single library component on its own is NOT a "block/module" — modules
+are composed units.
 
 ## 8. Action / filter rows: floating-label fields
 

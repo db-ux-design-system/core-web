@@ -1,3 +1,21 @@
+/* Inner spacing via the component's own `Spacing` VARIANT — shared by Section and Card, the two
+ * surfaces that own padding. Accepts a friendly value ("small"|"medium"|"large"|"none") or the
+ * exact Figma label, and is resolved against the axis's real options so a renamed label
+ * ("(Def) Medium") still matches. MUST run BEFORE a slot is fetched: setProperties regenerates the
+ * instance's internal node ids, so a slot read earlier goes stale. */
+function applySpacingVariant(inst, spacing) {
+	if (!spacing) return;
+	const cp = inst.componentProperties ?? {};
+	const sk = Object.keys(cp).find(
+		(k) =>
+			k === 'Spacing' || (cp[k]?.type === 'VARIANT' && /spacing/i.test(k))
+	);
+	if (!sk) return;
+	const label = resolveVariantLabel(cp[sk], spacing);
+	try {
+		inst.setProperties({ [sk]: label });
+	} catch {}
+}
 async function buildSection(node) {
 	const inst = await createLibraryInstance('Section'); // library Section (Beta)
 	hugVertical(inst); // sections ALWAYS hug (binding)
@@ -22,23 +40,8 @@ async function buildSection(node) {
 	}
 	// Section inner spacing (padding-block + header gap). DASHBOARDS / operational B2B
 	// screens use "Small" for a denser, more scannable layout; the DB default is
-	// "(Def) Medium" (marketing / landing pages). Accepts a friendly value
-	// ("small"|"medium"|"large"|"none") or the exact Figma label; matched to the Spacing
-	// variant. Set BEFORE the slot is fetched (setProperties regenerates internal ids).
-	if (node.spacing) {
-		const cp = inst.componentProperties ?? {};
-		const sk = Object.keys(cp).find(
-			(k) =>
-				k === 'Spacing' ||
-				(cp[k]?.type === 'VARIANT' && /spacing/i.test(k))
-		);
-		if (sk) {
-			const label = resolveVariantLabel(cp[sk], node.spacing);
-			try {
-				inst.setProperties({ [sk]: label });
-			} catch {}
-		}
-	}
+	// "(Def) Medium" (marketing / landing pages).
+	applySpacingVariant(inst, node.spacing);
 	return inst;
 }
 /* A grid instance carries an internal ".⚙️ Code Connect" helper whose id regenerates on
@@ -269,6 +272,116 @@ function rowTextHugIndices(node) {
 		if (planChildFills(kids[i])) return [];
 	return [0];
 }
+/* A HUGGING container must not hug a 500px GHOST.
+ * -----------------------------------------------------------------------------
+ * The Concept Heading/Text carry a `Max Width` and default to FILL, so a Heading/Body left
+ * untouched measures ~500px REGARDLESS of its glyphs. A container set to hug then hugs that
+ * phantom width instead of its content — and reports `HUG`, so nothing looks wrong on the node.
+ *
+ * Measured failure this prevents: each stepper item ({ hugWidth: true }, Icon + Body) rendered
+ * 512-540px wide, so five items summed to 2 588px inside a 1 024px column. The row itself was
+ * correct (FILL + SPACE_BETWEEN, 1 024px); the ITEMS were the problem, and the overflow was
+ * painted outside the frame. rowTextHugIndices could not catch it: it only looks at kids[0] and
+ * bails when that is not a text — in a stepper item kids[0] is the Icon.
+ *
+ * Rule: when a container hugs on the main axis, every DIRECT Heading/Body child hugs its text.
+ * That is what "hug" means for a text — take the width of the glyphs. `fillWidth: true` opts out
+ * (an explicit request for the text to claim width). Applies to rows AND columns: a hugging
+ * column of a lone Body has exactly the same phantom width.
+ * Returns indices into `node.children`. */
+function hugContainerTextIndices(node) {
+	if (!node || node.hugWidth !== true) return [];
+	const kids = node.children ?? [];
+	const indices = [];
+	for (let i = 0; i < kids.length; i++) {
+		const kid = kids[i];
+		if (!kid || (kid.type !== 'Heading' && kid.type !== 'Body')) continue;
+		if (kid.fillWidth === true) continue;
+		indices.push(i);
+	}
+	return indices;
+}
+/* Where does the ONE child of a `spread` row belong?
+ * -----------------------------------------------------------------------------
+ * SPACE_BETWEEN needs two ends to push apart. With a single child Figma places it at the START,
+ * so a step frame whose `Zurück` was dropped renders its only action flush LEFT — the measured
+ * defect: nav Slot FILL + SPACE_BETWEEN, 1 024px, one Brand Button at x = 0.
+ *
+ * The intent depends on WHAT is left over, so this is decided semantically rather than by
+ * flipping every one-child row:
+ *   - the survivor is an ACTION (a Button, or a hug group of Buttons) -> MAX. A single action is
+ *     right-aligned; that is where the eye already is after Back/Next rows.
+ *   - anything else -> MIN. A page-header row whose action row was dropped keeps its Heading at
+ *     the left; pushing a title to the right would be a different, worse bug.
+ * Returns 'MAX' | 'MIN' | null (null = leave the row alone). */
+function spreadSingleChildAlign(node) {
+	const spread = node.spread === true || node.gap === 'auto';
+	if (!spread) return null;
+	const kids = (node.children ?? []).filter((k) => k != null);
+	if (kids.length !== 1) return null;
+	const isAction = (kid) => {
+		if (!kid) return false;
+		if (kid.type === 'Button') return true;
+		// A hug row/column of actions counts as one action group.
+		if (
+			kid.type === 'ContainerHorizontal' ||
+			kid.type === 'ContainerVertical'
+		) {
+			const inner = (kid.children ?? []).filter((k) => k != null);
+			return inner.length > 0 && inner.every(isAction);
+		}
+		return false;
+	};
+	return isAction(kids[0]) ? 'MAX' : 'MIN';
+}
+/* EVERY leaf instance ends up HUG or FILL — never FIXED.
+ * -----------------------------------------------------------------------------
+ * A width comes from the chain of hug/fill modes, never from a pixel value (see
+ * layout-guidelines.md -> Breiten-Sizing). But an instance dropped into an auto-layout parent
+ * keeps Figma's default `FIXED` unless something sets it, and a FIXED box does not grow with its
+ * label — the text wraps INSIDE it, character by character.
+ *
+ * Measured failure: a `Radio` is not in FILL_DEFAULT, so nothing sized it. It kept the library's
+ * own 84px and rendered "Fahrzeug ist weiterhin fahrbereit" as "Fahrz / eug ist / weiter / hin /
+ * fahrbe / reit" — 144px tall. Adding one component to a list would have fixed that ONE case;
+ * cspell:ignore Fahrz fahrbe — the quoted fragments ARE the defect, not typos.
+ * the point here is that no component can end up FIXED again.
+ *
+ * Order of decision, first match wins:
+ *   1. the plan says so explicitly (`hugWidth` / `fillWidth`),
+ *   2. the chosen VARIANT says so — a component with a `width` axis has already declared the
+ *      intent ("full" -> fill, "auto" -> hug). The registry is the source of truth, so this needs
+ *      no per-component list and stays correct when a component gains that axis,
+ *   3. FILL_DEFAULT (form fields, notifications, … that span their column),
+ *   4. otherwise: leave the library default, but NEVER a FIXED width — fall back to HUG so the
+ *      box grows with its content instead of wrapping it.
+ * Returns the applied mode for logging/tests: 'fill' | 'hug' | 'library'. */
+function applyLeafWidth(inst, node) {
+	const props = (node && node.props) ?? {};
+	const axisWidth = props.width;
+	let mode = null;
+	if (node && node.hugWidth === true) mode = 'hug';
+	else if (node && node.fillWidth === true) mode = 'fill';
+	else if (axisWidth === 'full') mode = 'fill';
+	else if (axisWidth === 'auto') mode = 'hug';
+	else if (node && FILL_DEFAULT.has(node.type)) mode = 'fill';
+
+	if (mode === 'fill') {
+		fillWidth(inst);
+		return 'fill';
+	}
+	if (mode === 'hug') {
+		hugWidth(inst);
+		return 'hug';
+	}
+	/* No declared intent: keep whatever the library ships — unless that is a FIXED width, which
+	 * is never the intent and is what squeezes a label into a column of single syllables. */
+	if (safe(() => inst.layoutSizingHorizontal, '') === 'FIXED') {
+		hugWidth(inst);
+		return 'hug';
+	}
+	return 'library';
+}
 /* Is this ContainerHorizontal a DATA ROW — a table/list row whose children are COLUMNS?
  * Signal: two or more direct text children, which is also why rowTextHugIndices leaves it be. */
 function isDataRow(node) {
@@ -344,23 +457,10 @@ async function buildCard(node) {
 	if (node.fills) await bindFill(inst, node.fills); // optional surface tint
 	// Semantic tint: adaptive MODE on the card → bound bg/fills token + subtree recolor.
 	if (node.semantic) await setSemantic(inst, node.semantic);
-	// Inner padding via the Card's `Spacing` VARIANT. Accepts a friendly value
-	// ("small"|"medium"|"large"|"none") or the exact Figma label. Keep it in sync with the
-	// content block's gap (a block with gap `lg` sits in a card with `Spacing: lg`).
-	if (node.spacing) {
-		const cp = inst.componentProperties ?? {};
-		const sk = Object.keys(cp).find(
-			(k) =>
-				k === 'Spacing' ||
-				(cp[k]?.type === 'VARIANT' && /spacing/i.test(k))
-		);
-		if (sk) {
-			const label = resolveVariantLabel(cp[sk], node.spacing);
-			try {
-				inst.setProperties({ [sk]: label });
-			} catch {}
-		}
-	}
+	// Inner padding via the Card's `Spacing` VARIANT. Keep it in sync with the content block's
+	// gap (a block with gap `lg` sits in a card with `Spacing: lg`), and never let the gap
+	// exceed it — see the audit's gap-exceeds-card-padding.
+	applySpacingVariant(inst, node.spacing);
 	return inst;
 }
 async function buildHeader(node) {
@@ -414,6 +514,35 @@ async function buildHeader(node) {
 			null
 		);
 		if (nav) {
+			/* The Navigation LIST carries an `Amount` variant (1x … 10x) that controls how many
+			 * Navigation Item instances it ships. The default is 5x, so a site with more
+			 * top-level pages used to lose the extras SILENTLY — the nav simply showed the
+			 * first five and the remaining page was unreachable, with a clean audit. Raise the
+			 * Amount to the requested count first, then verify. */
+			if (items.length > 1) {
+				const list = safe(
+					() =>
+						nav.findAll(
+							(n) =>
+								n.type === 'INSTANCE' &&
+								/navigation list/i.test(n.name)
+						)[0],
+					null
+				);
+				if (list) {
+					const lcp = safe(() => list.componentProperties, {}) ?? {};
+					const amountKey = Object.keys(lcp).find((k) =>
+						/^amount/i.test(k)
+					);
+					if (amountKey) {
+						try {
+							list.setProperties({
+								[amountKey]: `${items.length}x`
+							});
+						} catch {}
+					}
+				}
+			}
 			const navItemNodes =
 				safe(
 					() =>
@@ -424,6 +553,14 @@ async function buildHeader(node) {
 						),
 					[]
 				) ?? [];
+			/* HARD STOP instead of silent truncation. Dropping a navigation entry breaks the
+			 * information architecture of the whole screen set (the page exists but cannot be
+			 * reached), and it is invisible in the rendered frame — exactly the class of defect
+			 * that must never pass quietly. */
+			if (navItemNodes.length < items.length)
+				stop(
+					`Header navItems: ${items.length} items requested but the Navigation can only show ${navItemNodes.length}. Do NOT let entries disappear silently — reduce the top-level areas to ${navItemNodes.length} (move the rest into a sub-navigation, a tab inside a page, or an overflow) and state the change, or raise the Navigation LIST "Amount" variant if the library offers a higher step.`
+				);
 			for (let i = 0; i < navItemNodes.length; i++) {
 				const it = navItemNodes[i];
 				if (i < items.length) {
