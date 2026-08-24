@@ -3,7 +3,8 @@ import type {
 	EndSlotProps,
 	GlobalProps,
 	GlobalState,
-	StartSlotProps
+	StartSlotProps,
+	TextProps
 } from '../../shared/model';
 
 /** @public */
@@ -63,32 +64,38 @@ export type DBCustomHeadingProps = DBHeadingBaseDefaultProps &
 export type DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH1Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	TextProps;
 /** @public */
 export type DBHeadingH2DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH2Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	TextProps;
 /** @public */
 export type DBHeadingH3DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH3Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	TextProps;
 /** @public */
 export type DBHeadingH4DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH4Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	TextProps;
 /** @public */
 export type DBHeadingH5DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH5Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	TextProps;
 /** @public */
 export type DBHeadingH6DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH6Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps;
+	AlignmentProps &
+	TextProps;
 
 export type DBCustomHeadingDefaultState = {};
 export type DBCustomHeadingState = DBCustomHeadingDefaultState & GlobalState;

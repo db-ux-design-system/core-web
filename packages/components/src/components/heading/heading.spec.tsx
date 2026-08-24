@@ -122,6 +122,13 @@ test.describe('Static Heading components', () => {
 			).toBe(0);
 		});
 
+		test(`renders text prop in ${level}`, async ({ mount }) => {
+			const text = `Text ${level}`;
+			const component = await mount(<Heading text={text} />);
+			await expect(component).toHaveText(text);
+			await expect(component).toHaveAccessibleName(text);
+		});
+
 		test(`forwards native attributes to ${level}`, async ({ mount }) => {
 			const component = await mount(
 				<Heading

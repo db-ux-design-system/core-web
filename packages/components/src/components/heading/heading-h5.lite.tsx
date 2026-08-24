@@ -1,4 +1,9 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
 import { cls, getBooleanAsString } from '../../utils';
 import { DBHeadingH5Props } from './model';
 
@@ -21,6 +26,7 @@ export default function DBHeadingH5(props: DBHeadingH5Props) {
 				props.paragraphSpacing,
 				'paragraphSpacing'
 			)}>
+			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</h5>
 	);
