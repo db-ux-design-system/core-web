@@ -8,7 +8,7 @@ import DBDialog from '../dialog.lite';
 import { StorybookDialogArgTypes } from './_dialog.arg.types';
 
 useMetadata({
-	storybookTitle: 'Header',
+	storybookTitle: 'Areas',
 	storybookNames: [
 		'With text prop',
 		'With start slot',
@@ -21,7 +21,7 @@ useMetadata({
 	}
 });
 
-export default function DialogHeader() {
+export default function DialogAreas() {
 	const [openIndex, setOpenIndex] = useState<number>(-1);
 
 	return (
