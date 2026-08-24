@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import DialogAreas from '../examples/areas.example.lite';
 import DialogBackdrop from '../examples/backdrop.example.lite';
 import DialogContainerSize from '../examples/container-size.example.lite';
 import DialogDensity from '../examples/density.example.lite';
