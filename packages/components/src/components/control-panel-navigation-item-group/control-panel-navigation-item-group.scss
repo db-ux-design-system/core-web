@@ -32,10 +32,12 @@
 		}
 	}
 
-	.db-control-panel-navigation-item-group-menu:not(
-		[data-initialized="true"]
-	) {
-		display: none;
+	.db-control-panel-navigation-item-group-menu {
+		visibility: hidden;
+
+		&:not([data-initialized="true"]) {
+			display: none;
+		}
 	}
 
 	.db-control-panel-navigation-item-group-expand-button {

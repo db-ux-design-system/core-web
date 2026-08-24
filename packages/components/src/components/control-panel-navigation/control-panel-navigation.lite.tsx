@@ -157,7 +157,11 @@ export default function DBControlPanelNavigation(
 			state._singleBehaviorObserver = observer;
 		},
 		evaluateScrollButtons(tList: Element) {
-			if (!tList && !state._getDesktopPositionTopFlag()) return;
+			if (!tList && !state._getDesktopPositionTopFlag()) {
+				state.showScrollLeft = false;
+				state.showScrollRight = false;
+				return;
+			}
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
 
@@ -527,24 +531,27 @@ export default function DBControlPanelNavigation(
 	onUpdate(() => {
 		if (_ref && menuRef && state.initialized) {
 			void delay(() => {
-				state._handleCSSFlags();
-				state._handleVariant();
-				state._handleSubNavigation();
-
-				state.evaluateScrollButtons(menuRef);
-				// Re-evaluate scroll buttons and re-position the sub-navigation on
-				// container resize (e.g. orientation change). A container-specific
-				// ResizeObserver provides more accurate detection than global
-				// window resize events.
-				if (!state._resizeObserverCallbackId) {
-					state._resizeObserverCallbackId =
-						new ResizeObserverListener().observe(menuRef, () => {
-							state._handleCSSFlags();
-							state._handleVariant();
-							state.evaluateScrollButtons(menuRef);
-							state._handleSubNavigation();
-						});
-				}
+				requestAnimationFrame(() => {
+					state._handleCSSFlags();
+					state._handleVariant();
+					state._handleSubNavigation();
+					// Re-evaluate scroll buttons and re-position the sub-navigation on
+					// container resize (e.g. orientation change). A container-specific
+					// ResizeObserver provides more accurate detection than global
+					// window resize events.
+					if (!state._resizeObserverCallbackId) {
+						state._resizeObserverCallbackId =
+							new ResizeObserverListener().observe(
+								menuRef,
+								() => {
+									state._handleCSSFlags();
+									state._handleVariant();
+									state.evaluateScrollButtons(menuRef);
+									state._handleSubNavigation();
+								}
+							);
+					}
+				});
 			}, 100);
 		}
 	}, [_ref, menuRef, state.initialized]);

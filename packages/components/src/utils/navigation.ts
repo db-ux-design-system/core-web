@@ -287,13 +287,13 @@ export const handleSubNavigationPosition = (
 			/*
 			 * This is set via css inside:
 			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown.scss`.
-			 * We don't need to calculate the position of the menu as a drilldown.
+			 * We don't need to calculate the position of the menu for non popover menus.
 			 */
-			const isDrilldown = hasCssFlag(
+			const isPopover = hasCssFlag(
 				subNavigation,
-				'--db-control-panel-navigation-item-group-menu-drilldown'
+				'--db-control-panel-navigation-item-group-menu-popover'
 			);
-			if (isDrilldown) {
+			if (!isPopover) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
 				subNavigation.style.position = '';
