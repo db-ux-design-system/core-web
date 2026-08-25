@@ -24,8 +24,9 @@ const stubCommandForSupport = (supported: boolean): void => {
 
 type DialogStub = HTMLDialogElement & { _calls: string[] };
 
-const createDialogStub = (): DialogStub =>
+const createDialogStub = (id = 'test-dialog'): DialogStub =>
 	({
+		id,
 		dataset: {},
 		_calls: [],
 		requestClose(this: DialogStub) {
@@ -35,12 +36,17 @@ const createDialogStub = (): DialogStub =>
 
 const createClickEvent = (
 	commandfor?: string | null,
-	withButton = true
+	withButton = true,
+	closestDialog?: DialogStub
 ): unknown => ({
 	target: {
 		closest: (selector: string) =>
 			withButton && selector === '[command="request-close"]'
-				? { getAttribute: () => commandfor ?? null }
+				? {
+						getAttribute: () => commandfor ?? null,
+						closest: (s: string) =>
+							s === 'dialog' ? (closestDialog ?? null) : null
+					}
 				: null
 	}
 });
@@ -111,25 +117,32 @@ describe('requestCloseFallback', () => {
 		stubCommandForSupport(false);
 		const { requestCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(createClickEvent('my-dialog'), dialog);
+		requestCloseFallback(
+			createClickEvent('test-dialog', true, dialog),
+			dialog
+		);
 		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
-	it('closes the dialog when the command target does not resolve', async () => {
+	it('closes the dialog when commandfor is out of sync with the dialog id', async () => {
 		stubCommandForSupport(true);
-		vi.stubGlobal('document', { querySelector: () => null });
 		const { requestCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(createClickEvent('gone'), dialog);
+		requestCloseFallback(
+			createClickEvent('stale-id', true, dialog),
+			dialog
+		);
 		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
-	it('stays out of the way with native support and a resolving target', async () => {
+	it('stays out of the way with native support and matching commandfor', async () => {
 		stubCommandForSupport(true);
-		vi.stubGlobal('document', { querySelector: () => createDialogStub() });
 		const { requestCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(createClickEvent('my-dialog'), dialog);
+		requestCloseFallback(
+			createClickEvent('test-dialog', true, dialog),
+			dialog
+		);
 		expect(dialog._calls).toEqual([]);
 	});
 
@@ -139,79 +152,75 @@ describe('requestCloseFallback', () => {
 		requestCloseFallback(createClickEvent(undefined, false), dialog);
 		expect(dialog._calls).toEqual([]);
 		expect(() =>
-			requestCloseFallback(createClickEvent('my-dialog'), undefined)
+			requestCloseFallback(createClickEvent('test-dialog'), undefined)
 		).not.toThrow();
 		expect(() => requestCloseFallback({}, dialog)).not.toThrow();
+	});
+
+	it('ignores clicks from a nested dialog close button', async () => {
+		stubCommandForSupport(false);
+		const { requestCloseFallback } = await loadPonyfill();
+		const outerDialog = createDialogStub('outer');
+		const innerDialog = createDialogStub('inner');
+		// Button's closest dialog is the inner one, but we pass the outer dialog
+		requestCloseFallback(
+			createClickEvent('inner', true, innerDialog),
+			outerDialog
+		);
+		expect(outerDialog._calls).toEqual([]);
 	});
 });
 
 // Feature: dialog-component, Property 21: The `request-close` fallback fires exactly when the native path cannot work
 describe('Property 21: the request-close fallback fires exactly when the native path cannot work', () => {
-	it('calls requestClose only for a request-close click whose native path cannot work, resolving the target once', async () => {
+	it('calls requestClose only when the button belongs to this dialog and the native path cannot work', async () => {
 		await fc.assert(
 			fc.asyncProperty(
 				fc.boolean(), // Invoker Commands support
-				fc.oneof(
-					fc.constant(undefined),
-					fc.constant(null),
-					fc.constant(''),
-					fc.string({ minLength: 1 })
-				), // commandfor value
-				fc.boolean(), // referenced dialog present in the document
+				fc.constantFrom('matching', 'stale', 'empty'), // commandfor state
 				fc.boolean(), // click originated inside a request-close element
+				fc.boolean(), // button belongs to this dialog (closest check)
 				fc.boolean(), // dialog element resolved
 				async (
 					supported,
-					commandfor,
-					targetPresent,
+					commandforState,
 					clickInside,
+					belongsToThis,
 					dialogResolved
 				) => {
 					stubCommandForSupport(supported);
 
-					let querySelectorCalls = 0;
-					vi.stubGlobal('document', {
-						querySelector: () => {
-							querySelectorCalls++;
-							return targetPresent ? createDialogStub() : null;
-						}
-					});
-
 					const { requestCloseFallback } = await loadPonyfill();
 
-					let getAttributeCalls = 0;
-					const event = {
-						target: {
-							closest: (selector: string) =>
-								clickInside &&
-								selector === '[command="request-close"]'
-									? {
-											getAttribute: () => {
-												getAttributeCalls++;
-												return commandfor ?? null;
-											}
-										}
-									: null
-						}
-					};
-
 					const dialog = dialogResolved
-						? createDialogStub()
+						? createDialogStub('my-dialog')
 						: undefined;
+					const otherDialog = createDialogStub('other-dialog');
+
+					const commandfor =
+						commandforState === 'matching'
+							? 'my-dialog'
+							: commandforState === 'stale'
+								? 'stale-id'
+								: '';
+
+					const closestDialog = belongsToThis ? dialog : otherDialog;
+
+					const event = createClickEvent(
+						commandfor || null,
+						clickInside,
+						closestDialog as DialogStub | undefined
+					);
 
 					requestCloseFallback(event, dialog);
 
+					const reached =
+						clickInside && dialogResolved && belongsToThis;
 					const nativePathWorks =
-						supported && Boolean(commandfor) && targetPresent;
-					const reached = clickInside && dialogResolved;
+						supported && commandfor === dialog?.id;
 
 					expect(dialog?._calls ?? []).toEqual(
 						reached && !nativePathWorks ? ['requestClose'] : []
-					);
-					// resolved once per click, never retried
-					expect(getAttributeCalls).toBe(reached ? 1 : 0);
-					expect(querySelectorCalls).toBe(
-						reached && supported && Boolean(commandfor) ? 1 : 0
 					);
 				}
 			),
