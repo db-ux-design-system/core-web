@@ -1,3 +1,4 @@
+// TODO: Could get removed as soon as StencilJS updated their TypeScript dependency to at least version 5.9.2 (most likely not before Stencil v5)
 const fs = require('node:fs');
 const path = require('node:path');
 
