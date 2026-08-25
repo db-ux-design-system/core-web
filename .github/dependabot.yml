@@ -136,6 +136,9 @@ updates:
       tanstack:
         patterns:
           - "@tanstack/*"
+      changesets:
+        patterns:
+          - "@changesets/*"
       # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:

@@ -252,3 +252,4 @@ ponyfills
 descope
 pnpms
 renovatebot
+drilldown
