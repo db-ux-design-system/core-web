@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-dialog/_next/static/css/59510a75c6dcea8b.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-dialog/_next/static/css/59510a75c6dcea8b.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-dialog/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-dialog/_next/static/chunks/webpack-b50a6d3641f0fbfd.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/main-0974ce39de8f190b.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/_app-ce62951574f13651.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/7516-b87e166adff3281d.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/components/layout/dialog/docs/HTML-246b06483824fe7e.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/ZygE3NDybc87S48uccGx2/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/ZygE3NDybc87S48uccGx2/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
+<h3 id="general">General<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
+<p>The dialog is a native <code>&lt;dialog&gt;</code> element. It centres itself, sizes to its content and is capped by
+<code>data-container-size</code> (<code>small</code>, <code>medium</code>, <code>large</code>, <code>full</code>, defaults to <code>medium</code>).</p>
+<p>You are able to overwrite the resulting <code>max-inline-size</code> with the <code>--db-dialog-max-width:</code> CSS variable.</p>
+<p>A fixed inset of <code>40px</code> is kept between every dialog edge and the corresponding viewport edge, at every container size
+including <code>full</code>, so that a clickable backdrop area always remains. Overwrite it with the
+<code>--db-dialog-viewport-inset:</code> CSS variable, e.g. <code>--db-dialog-viewport-inset: 0px;</code> for an edge-to-edge dialog.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<p>Use <a target="_blank" referrerPolicy="no-referrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API">Invoker Commands</a> (<code>command</code> and
+<code>commandfor</code> HTML attributes) to declaratively connect buttons with the <code>&lt;dialog&gt;</code> element via its <code>id</code>. Supported
+built-in commands for <code>&lt;dialog&gt;</code> are <code>show-modal</code>, <code>close</code> and <code>request-close</code>.</p>
+<p>Prefer <code>request-close</code> for close buttons: it fires a <code>cancel</code> event before closing, so you can veto the close with
+<code>event.preventDefault()</code>. <code>close</code> dismisses the dialog immediately without that opportunity.</p>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+...
+&lt;body&gt;
+	&lt;button class=&quot;db-button&quot; command=&quot;show-modal&quot; commandfor=&quot;my-dialog&quot;&gt;
+		Open dialog
+	&lt;/button&gt;
+	&lt;dialog
+		id=&quot;my-dialog&quot;
+		class=&quot;db-dialog&quot;
+		data-backdrop=&quot;strong&quot;
+		data-container-size=&quot;medium&quot;
+		closedby=&quot;any&quot;
+		aria-labelledby=&quot;my-dialog-heading&quot;
+	&gt;
+		&lt;div class=&quot;db-dialog-header&quot;&gt;
+			&lt;header id=&quot;my-dialog-heading&quot; class=&quot;db-dialog-header-container&quot;&gt;
+				&lt;h2&gt;Dialog title&lt;/h2&gt;
+			&lt;/header&gt;
+			&lt;button
+				class=&quot;db-button is-icon-text-replace&quot;
+				data-icon=&quot;cross&quot;
+				data-variant=&quot;ghost&quot;
+				type=&quot;button&quot;
+				command=&quot;request-close&quot;
+				commandfor=&quot;my-dialog&quot;
+			&gt;
+				Close
+			&lt;/button&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;db-dialog-content&quot;&gt;My dialog content&lt;/div&gt;
+		&lt;footer class=&quot;db-dialog-footer&quot;&gt;
+			&lt;button
+				class=&quot;db-button&quot;
+				data-variant=&quot;brand&quot;
+				command=&quot;close&quot;
+				commandfor=&quot;my-dialog&quot;
+			&gt;
+				Confirm
+			&lt;/button&gt;
+		&lt;/footer&gt;
+	&lt;/dialog&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Set <code>data-backdrop=&quot;none&quot;</code> and <code>closedby=&quot;closerequest&quot;</code> together to get a non-modal dialog: no dimmed backdrop, no
+focus trap, and clicks outside the dialog leave it open.</p>
+<h3 id="return-a-value">Return a value<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=return-a-value"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>return-a-value<!-- --> anchor link</a></h3>
+<p>A submit control with <code>formmethod=&quot;dialog&quot;</code> closes the dialog on submission and writes its <code>value</code> into
+<code>dialog.returnValue</code>, so you do not need any close handling of your own. A <code>&lt;form method=&quot;dialog&quot;&gt;</code> does the same for
+all of its submit buttons.</p>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;dialog id=&quot;my-dialog&quot; class=&quot;db-dialog&quot;&gt;
+	&lt;div class=&quot;db-dialog-content&quot;&gt;Delete this entry?&lt;/div&gt;
+	&lt;footer class=&quot;db-dialog-footer&quot;&gt;
+		&lt;form&gt;
+			&lt;button class=&quot;db-button&quot; formmethod=&quot;dialog&quot; value=&quot;cancel&quot;&gt;
+				Cancel
+			&lt;/button&gt;
+			&lt;button
+				class=&quot;db-button&quot;
+				data-variant=&quot;brand&quot;
+				formmethod=&quot;dialog&quot;
+				value=&quot;confirm&quot;
+			&gt;
+				Confirm
+			&lt;/button&gt;
+		&lt;/form&gt;
+	&lt;/footer&gt;
+&lt;/dialog&gt;
+
+&lt;script&gt;
+	const dialog = document.getElementById(&quot;my-dialog&quot;);
+	dialog?.addEventListener(&quot;close&quot;, () =&gt; {
+		console.log(dialog.returnValue); // &quot;cancel&quot; or &quot;confirm&quot;
+	});
+&lt;/script&gt;
+</code></pre>
+<h3 id="top-layer-limitation">Top-layer limitation<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=top-layer-limitation"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>top-layer-limitation<!-- --> anchor link</a></h3>
+<p>A modal <code>&lt;dialog&gt;</code> is rendered in the browser top layer. Elements inside the dialog that create a top layer of their
+own or that rely on the stacking context of the page do not escape the dialog box. This affects the tooltip, the
+popover and <code>DBCustomSelect</code>: their overlays are clipped at the dialog edges or stack below the dialog instead of
+above it. No workaround ships in this phase, so avoid these components close to the dialog edges, or keep their
+content inside the scrollable <code>db-dialog-content</code> area.</p>
+<h3 id="migration-from-a-hand-written-modal">Migration from a hand-written modal<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=migration-from-a-hand-written-modal"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>migration-from-a-hand-written-modal<!-- --> anchor link</a></h3>
+<p>One row per public property and per slot of the dialog, against the construct a hand-written modal needs and against
+the <code>DBDrawer</code> equivalent:</p>
+<table class="static-table"><thead><tr><th>Dialog (HTML)</th><th>Hand-written modal</th><th><code>DBDrawer</code></th></tr></thead><tbody><tr><td><code>open</code> attribute</td><td><code>showModal()</code> / <code>show()</code> / <code>close()</code> calls plus your own state flag</td><td><code>open</code></td></tr><tr><td><code>data-backdrop=&quot;strong | weak&quot;</code></td><td>overlay element with a dim colour, <code>z-index</code> and scroll locking</td><td><code>data-backdrop</code>, same values</td></tr><tr><td><code>data-backdrop=&quot;none&quot;</code></td><td><code>show()</code> instead of <code>showModal()</code>, no overlay element</td><td><code>data-backdrop=&quot;none&quot;</code></td></tr><tr><td><code>data-container-size</code></td><td>media queries and <code>max-width</code> values per breakpoint</td><td><code>data-container-size</code></td></tr><tr><td><code>closedby=&quot;any&quot;</code></td><td>click listener on the overlay comparing <code>event.target</code></td><td><code>closedby=&quot;any&quot;</code></td></tr><tr><td><code>closedby=&quot;closerequest&quot;</code></td><td><code>keydown</code> listener for Escape</td><td><code>closedby=&quot;closerequest&quot;</code></td></tr><tr><td><code>close</code> event</td><td>your own callback after every close path</td><td><code>close</code> event</td></tr><tr><td><code>cancel</code> event</td><td>Escape handler that can be vetoed</td><td><code>cancel</code> event</td></tr><tr><td><code>.db-dialog-header</code> (header slot)</td><td>heading markup plus a close button plus <code>aria-labelledby</code> wiring by hand</td><td><code>.db-drawer-header</code></td></tr><tr><td><code>.db-dialog-footer</code> (footer slot)</td><td>action row with its own divider, padding and gap</td><td><code>.db-drawer-footer</code></td></tr><tr><td><code>.db-dialog-content</code></td><td>scroll container with <code>overflow: auto</code> and <code>overscroll-behavior</code></td><td><code>.db-drawer-content</code></td></tr><tr><td><code>class</code>, <code>id</code>, <code>data-*</code>, <code>aria-*</code></td><td>same attributes on your own root element</td><td>same</td></tr></tbody></table>
+<p>The drawer properties <code>direction</code>, <code>position</code>, <code>rounded</code>, <code>showSpacing</code> and <code>variant</code> as well as
+<code>data-backdrop=&quot;invisible&quot;</code> have no dialog equivalent: the dialog is always centred, always rounded, always spaced by
+the viewport inset, and non-modal usage is covered by <code>data-backdrop=&quot;none&quot;</code>.</p>
+<p>Before, a hand-written modal:</p>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;div class=&quot;my-modal-overlay&quot; hidden&gt;
+	&lt;div class=&quot;my-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;t&quot;&gt;
+		&lt;h2 id=&quot;t&quot;&gt;Dialog title&lt;/h2&gt;
+		&lt;button type=&quot;button&quot; class=&quot;my-modal-close&quot;&gt;Close&lt;/button&gt;
+		&lt;div class=&quot;my-modal-content&quot;&gt;My dialog content&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	const overlay = document.querySelector(&quot;.my-modal-overlay&quot;);
+	document.querySelector(&quot;.my-modal-open&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+		overlay.hidden = false;
+		document.body.style.overflow = &quot;hidden&quot;;
+	});
+	document.querySelector(&quot;.my-modal-close&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+		overlay.hidden = true;
+		document.body.style.overflow = &quot;&quot;;
+	});
+	document.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+		if (event.key === &quot;Escape&quot;) {
+			overlay.hidden = true;
+		}
+	});
+&lt;/script&gt;
+</code></pre>
+<p>After, with the dialog:</p>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;button class=&quot;db-button&quot; command=&quot;show-modal&quot; commandfor=&quot;my-dialog&quot;&gt;
+	Open dialog
+&lt;/button&gt;
+&lt;dialog
+	id=&quot;my-dialog&quot;
+	class=&quot;db-dialog&quot;
+	data-backdrop=&quot;strong&quot;
+	closedby=&quot;any&quot;
+	aria-labelledby=&quot;my-dialog-heading&quot;
+&gt;
+	&lt;div class=&quot;db-dialog-header&quot;&gt;
+		&lt;header id=&quot;my-dialog-heading&quot; class=&quot;db-dialog-header-container&quot;&gt;
+			&lt;h2&gt;Dialog title&lt;/h2&gt;
+		&lt;/header&gt;
+		&lt;button
+			class=&quot;db-button is-icon-text-replace&quot;
+			data-icon=&quot;cross&quot;
+			data-variant=&quot;ghost&quot;
+			type=&quot;button&quot;
+			command=&quot;request-close&quot;
+			commandfor=&quot;my-dialog&quot;
+		&gt;
+			Close
+		&lt;/button&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;db-dialog-content&quot;&gt;My dialog content&lt;/div&gt;
+&lt;/dialog&gt;
+</code></pre>
+<p>Focus trap, scroll locking, backdrop dismissal, Escape handling and the <code>close</code> and <code>cancel</code> events come from the
+platform, so the script goes away entirely.</p>
+<h3 id="ponyfill">Ponyfill<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=ponyfill"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>ponyfill<!-- --> anchor link</a></h3>
+<p>Two fallbacks ship for browser features that our <a target="_blank" referrerPolicy="no-referrer" href="https://browsersl.ist">Browserslist</a> targets do not fully cover yet
+(currently blocked by Firefox ESR). Both live in dedicated files so they can be deleted in one step.</p>
+<table class="static-table"><thead><tr><th>File</th><th>Missing feature</th><th>Deleted when</th><th>Behaviour without native support</th></tr></thead><tbody><tr><td><code>utils/dialog-ponyfill.ts</code></td><td><code>closedby</code> attribute and Invoker Commands</td><td>every Browserslist target supports both features</td><td><code>data-closedby=&quot;not-supported&quot;</code> is set on the dialog, and a click on a <code>command=&quot;request-close&quot;</code> button calls <code>requestClose()</code> on the dialog itself</td></tr><tr><td><code>styles/internal/_dialog-ponyfill.scss</code></td><td><code>closedby</code> attribute</td><td>every Browserslist target supports <code>closedby</code></td><td>the close button gets a hit area covering the area outside the dialog box, so clicking the backdrop still closes the dialog</td></tr></tbody></table>
+<p>In plain HTML you wire these fallbacks yourself. Feature-detect Invoker Commands and fall back to event handlers:</p>
+<pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;script&gt;
+	/*
+	 * Feature detection for Invoker Commands:
+	 * If the browser does not support the `command` and `commandfor`
+	 * HTML attributes, we fall back to JavaScript event handlers.
+	 */
+	if (
+		!(&quot;command&quot; in HTMLButtonElement.prototype) ||
+		!(&quot;commandFor&quot; in HTMLButtonElement.prototype)
+	) {
+		const dialog = document.getElementById(&quot;my-dialog&quot;);
+		document
+			.querySelector(&#x27;[commandfor=&quot;my-dialog&quot;][command=&quot;show-modal&quot;]&#x27;)
+			?.addEventListener(&quot;click&quot;, () =&gt; {
+				dialog?.showModal?.();
+			});
+		document
+			.querySelector(&#x27;[commandfor=&quot;my-dialog&quot;][command=&quot;request-close&quot;]&#x27;)
+			?.addEventListener(&quot;click&quot;, () =&gt; {
+				dialog?.requestClose?.();
+			});
+	}
+&lt;/script&gt;
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/dialog/docs/HTML","query":{},"buildId":"ZygE3NDybc87S48uccGx2","assetPrefix":"/core-web/review/feat-dialog","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
