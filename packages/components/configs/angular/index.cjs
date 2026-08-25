@@ -23,7 +23,6 @@ module.exports = {
 		onClickPlugin,
 		angularPlugin,
 		routerLinkPlugin,
-		signalFormsPlugin,
-		dialogElementRefPlugin
+		signalFormsPlugin
 	]
 };
