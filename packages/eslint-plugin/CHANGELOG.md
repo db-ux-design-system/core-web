@@ -1,5 +1,9 @@
 # @db-ux/core-eslint-plugin
 
+## 5.1.6
+
+_version bump_
+
 ## 5.1.5
 
 _version bump_
