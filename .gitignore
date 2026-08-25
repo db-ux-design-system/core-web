@@ -24,7 +24,6 @@ packages/components/src/**/*.css
 packages/components/src/**/*.css.map
 
 /output/**/src
-!output/stencil/src/request-close.d.ts
 /output/**/dist
 /output/**/playwright*
 /output/**/test-results
