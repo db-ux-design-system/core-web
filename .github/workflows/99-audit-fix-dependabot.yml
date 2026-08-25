@@ -34,7 +34,7 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: 📦 Run corepack to update pnpm
-        run: pnpm self-update
+        run: corepack use pnpm@latest
 
       - name: 🔒 Run pnpm audit --fix=update
         run: pnpm audit --fix=update || true
