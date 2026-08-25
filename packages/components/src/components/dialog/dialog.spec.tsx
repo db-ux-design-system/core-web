@@ -767,12 +767,14 @@ const testProperty14 = () => {
 				await expect.poll(() => isOpen(component)).toEqual(false);
 
 				const expectedCancel = trigger.expectsCancel ? ['cancel'] : [];
-				expect(
-					await page.evaluate(() => (window as any).__dialogEvents)
-				).toEqual([
-					...expectedCancel.map((type) => `${type}:true`),
-					'close:true'
-				]);
+				await expect
+					.poll(() =>
+						page.evaluate(() => (window as any).__dialogEvents)
+					)
+					.toEqual([
+						...expectedCancel.map((type) => `${type}:true`),
+						'close:true'
+					]);
 
 				// Requirements 5.1, 5.2, 5.4, 5.7: each present callback fires
 				// exactly once for the triggers that produce its event, and the

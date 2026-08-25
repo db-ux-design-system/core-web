@@ -14,6 +14,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		children: sortNavItems([
 			{ path: '01/stack', label: 'Stack' },
 			{ path: '01/card', label: 'Card' },
+			{ path: '01/dialog', label: 'Dialog' },
 			{ path: '01/drawer', label: 'Drawer' },
 			{ path: '01/divider', label: 'Divider' },
 			{ path: '01/popover', label: 'Popover' },

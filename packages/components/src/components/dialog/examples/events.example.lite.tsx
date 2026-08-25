@@ -42,10 +42,16 @@ export default function DialogEvents() {
 							Events Test
 						</DBDialogHeader>
 					}>
-					Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-					diam nonumy eirmod tempor invidunt ut labore et dolore magna
-					aliquyam erat, sed diam voluptua. Press ESC or click
-					backdrop to test events.
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
 				</DBDialog>
 			</div>
 		</Fragment>
