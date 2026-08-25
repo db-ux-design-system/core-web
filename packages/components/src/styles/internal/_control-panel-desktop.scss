@@ -23,8 +23,6 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 );
 
 @mixin horizontal-navigation($scroll-buttons: true) {
-	--db-control-panel-navigation-desktop-position-top: 1;
-
 	@if $scroll-buttons {
 		@include scrollbar.set-overflow-scroll-buttons;
 

@@ -8,8 +8,6 @@
 $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 
 %db-control-panel-navigation-item-group-menu-popover {
-	--db-control-panel-navigation-item-group-menu-popover: 1;
-
 	@extend %db-control-panel-navigation-item-group-menu-non-tree;
 
 	inset-inline-start: 0;

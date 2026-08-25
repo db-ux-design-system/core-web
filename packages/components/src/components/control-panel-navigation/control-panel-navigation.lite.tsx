@@ -12,7 +12,8 @@ import {
 	DEFAULT_SCROLL_LEFT,
 	DEFAULT_SCROLL_RIGHT
 } from '../../shared/constants';
-import { cls, delay, getBooleanAsString, hasCssFlag } from '../../utils';
+import { NavigationItemGroupVariantType } from '../../shared/model';
+import { cls, delay, getBooleanAsString } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
@@ -37,43 +38,174 @@ export default function DBControlPanelNavigation(
 		showScrollLeft: false,
 		showScrollRight: false,
 		_variant: undefined,
-		_isMobile: false,
-		_shellDesktopPositionTop: false,
-		_isShellSubNavigationMobile: undefined,
 		initialized: false,
 		_resizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
-		_getDesktopPositionTopFlag() {
-			return hasCssFlag(
-				_ref,
-				'--db-control-panel-navigation-desktop-position-top'
-			);
-		},
-		_handleCSSFlags() {
-			state._shellDesktopPositionTop = state._getDesktopPositionTopFlag();
-			state._isMobile = hasCssFlag(
-				_ref,
-				'--db-control-panel-navigation-mobile'
-			);
+		_shellObserver: undefined,
+		_handleVariantArias: (variant) => {
+			if (menuRef) {
+				const menuElement = menuRef as HTMLElement;
 
-			state._isShellSubNavigationMobile = hasCssFlag(
-				_ref,
-				'--db-control-panel-sub-navigation-mobile'
-			);
-		},
+				if (variant !== 'tree') {
+					// Clean up tree roles if switching from tree to popover/drilldown
+					for (const menu of Array.from(
+						menuElement.querySelectorAll(
+							'.db-control-panel-navigation-item-group-menu[role="group"]'
+						)
+					)) {
+						(menu as HTMLElement).removeAttribute('role');
+					}
 
-		_handleVariant() {
-			if (state._getDesktopPositionTopFlag()) {
-				state._variant = 'popover';
-			} else {
-				if (props.variant === 'popover' || !props.variant) {
-					state._variant = 'drilldown';
-				} else {
-					state._variant = props.variant;
+					// Remove forwarded aria-label and role from the <menu> when not in tree variant
+					menuElement.removeAttribute('aria-label');
+					menuElement.removeAttribute('role');
+
+					for (const navItem of Array.from(
+						menuElement.querySelectorAll(
+							'.db-control-panel-navigation-item[role="none"], .db-control-panel-navigation-item-group[role="none"]'
+						)
+					)) {
+						navItem.removeAttribute('role');
+						const interactive = navItem.querySelector(
+							'[role="treeitem"]'
+						) as HTMLElement | null;
+						if (interactive) {
+							interactive.removeAttribute('role');
+							interactive.removeAttribute('tabindex');
+						}
+					}
+				} else if (variant === 'tree') {
+					for (const menu of Array.from(
+						menuElement.querySelectorAll(
+							'.db-control-panel-navigation-item-group-menu'
+						)
+					)) {
+						(menu as HTMLElement).style.position = '';
+						(menu as HTMLElement).setAttribute('role', 'group');
+					}
+
+					// Forward aria-label from the <nav> to the <menu role="tree">
+					const navAriaLabel = (_ref as HTMLElement)?.getAttribute(
+						'aria-label'
+					);
+					if (navAriaLabel) {
+						menuElement.setAttribute('aria-label', navAriaLabel);
+					}
+
+					const allTreeItems: HTMLElement[] = [];
+					for (const navItem of Array.from(
+						menuElement.querySelectorAll(
+							'.db-control-panel-navigation-item, .db-control-panel-navigation-item-group'
+						)
+					)) {
+						navItem.setAttribute('role', 'none');
+						const interactive = navItem.querySelector(
+							'a, button'
+						) as HTMLElement | null;
+						if (interactive) {
+							interactive.setAttribute('role', 'treeitem');
+							interactive.setAttribute('tabindex', '-1');
+							allTreeItems.push(interactive);
+						}
+					}
+
+					// First visible treeitem gets tabindex="0" for initial focus
+					if (allTreeItems.length > 0) {
+						allTreeItems[0].setAttribute('tabindex', '0');
+					}
+
+					// For behavior="single", attach a mutation observer to collapse
+					// sibling groups when one is expanded
+					if (props.behavior === 'single') {
+						state._attachSingleBehaviorObserver();
+					} else {
+						// Disconnect observer when behavior is not 'single'
+						state._disconnectSingleBehaviorObserver();
+					}
 				}
 			}
 		},
+		_isShellDesktopPositionTop: () => {
+			if (!_ref) return false;
+			const element = _ref as HTMLElement;
+			const shell = element.closest('.db-shell');
+			const shellSubNavigation = element.closest(
+				'.db-shell-sub-navigation'
+			);
+			const mobileControlPanel = element.closest(
+				'.db-control-panel-mobile'
+			);
+			const flatIconControlPanel = element.closest(
+				'.db-control-panel-flat-icon'
+			);
+			const isSubNavigationPositionTop =
+				shell?.getAttribute('data-sub-navigation-desktop-position') ===
+				'top';
+			const isMainNavigationPositionTop =
+				shell?.getAttribute('data-control-panel-desktop-position') ===
+				'top';
+			const isMainNavigationPositionLeft =
+				shell?.getAttribute('data-control-panel-desktop-position') ===
+				'left';
+
+			return (
+				!mobileControlPanel &&
+				!flatIconControlPanel &&
+				((shellSubNavigation &&
+					(isSubNavigationPositionTop ||
+						isMainNavigationPositionLeft)) ||
+					(!shellSubNavigation && isMainNavigationPositionTop))
+			);
+		},
+		_update() {
+			if (!_ref) return;
+			const shellDesktopPositionTop = state._isShellDesktopPositionTop();
+
+			let mVariant: NavigationItemGroupVariantType | undefined;
+			if (shellDesktopPositionTop) {
+				mVariant = 'popover';
+			} else {
+				if (props.variant === 'popover' || !props.variant) {
+					mVariant = 'drilldown';
+				} else {
+					mVariant = props.variant;
+				}
+			}
+
+			// Only update state and DOM when variant actually changed
+			if (state._variant !== mVariant) {
+				state._variant = mVariant;
+				state._handleVariantArias(mVariant);
+			}
+
+			// Scroll buttons and sub-nav position are cheap, always refresh
+			if (mVariant === 'popover') {
+				void delay(() => {
+					state.evaluateScrollButtons(menuRef);
+				}, 500);
+			} else {
+				state.showScrollLeft = false;
+				state.showScrollRight = false;
+			}
+			handleSubNavigationPosition({
+				element: menuRef,
+				level: 0,
+				vertical: shellDesktopPositionTop,
+				isPopover: mVariant === 'popover'
+			});
+		},
 		_attachSingleBehaviorObserver() {
+			// Disconnect any existing observer stored on the DOM element
+			// to avoid Angular signal tracking issues in effects.
+			if (menuRef) {
+				const prev = (menuRef as any).__singleBehaviorObserver as
+					MutationObserver | undefined;
+				if (prev) {
+					prev.disconnect();
+					(menuRef as any).__singleBehaviorObserver = undefined;
+				}
+			}
+
 			if (!menuRef) return;
 
 			let isProcessing = false;
@@ -155,13 +287,22 @@ export default function DBControlPanelNavigation(
 			}
 
 			state._singleBehaviorObserver = observer;
+			(menuRef as any).__singleBehaviorObserver = observer;
+		},
+		_disconnectSingleBehaviorObserver() {
+			// Reads from the DOM element instead of state to avoid
+			// Angular signal tracking issues in effects.
+			if (menuRef) {
+				const prev = (menuRef as any).__singleBehaviorObserver as
+					MutationObserver | undefined;
+				if (prev) {
+					prev.disconnect();
+					(menuRef as any).__singleBehaviorObserver = undefined;
+				}
+			}
+			state._singleBehaviorObserver = undefined;
 		},
 		evaluateScrollButtons(tList: Element) {
-			if (!tList && !state._getDesktopPositionTopFlag()) {
-				state.showScrollLeft = false;
-				state.showScrollRight = false;
-				return;
-			}
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
 			const scrollLeft = Math.ceil(tList.scrollLeft);
 
@@ -182,15 +323,15 @@ export default function DBControlPanelNavigation(
 			});
 		},
 		onScroll() {
-			state.evaluateScrollButtons(menuRef);
-			state._handleSubNavigation();
-		},
-		_handleSubNavigation() {
-			handleSubNavigationPosition(
-				menuRef,
-				0,
-				state._getDesktopPositionTopFlag()
-			);
+			if (state._variant === 'popover') {
+				state.evaluateScrollButtons(menuRef);
+			}
+			handleSubNavigationPosition({
+				element: menuRef,
+				level: 0,
+				vertical: state._isShellDesktopPositionTop(),
+				isPopover: state._variant === 'popover'
+			});
 		},
 		_handleKeyDown(event: any) {
 			if (!menuRef) return;
@@ -251,7 +392,7 @@ export default function DBControlPanelNavigation(
 
 			// Top level is horizontal only when shell position is top
 			const isHorizontal =
-				isTopLevel && state._getDesktopPositionTopFlag();
+				isTopLevel && state._isShellDesktopPositionTop();
 
 			// Get sibling items at the current level.
 			// Use querySelectorAll for the interactive elements and filter
@@ -524,142 +665,51 @@ export default function DBControlPanelNavigation(
 			state._resizeObserverCallbackId = undefined;
 		}
 
-		state._singleBehaviorObserver?.disconnect();
-		state._singleBehaviorObserver = undefined;
+		state._disconnectSingleBehaviorObserver();
+
+		state._shellObserver?.disconnect();
+		state._shellObserver = undefined;
 	});
 
+	// After init, find the closest DBShell and observe its
+	// data-control-panel-desktop-position attribute to derive state
+	// without relying on CSS flags (avoids framework race conditions).
 	onUpdate(() => {
 		if (_ref && menuRef && state.initialized) {
-			void delay(() => {
-				requestAnimationFrame(() => {
-					state._handleCSSFlags();
-					state._handleVariant();
-					state._handleSubNavigation();
-					// Re-evaluate scroll buttons and re-position the sub-navigation on
-					// container resize (e.g. orientation change). A container-specific
-					// ResizeObserver provides more accurate detection than global
-					// window resize events.
-					if (!state._resizeObserverCallbackId) {
-						state._resizeObserverCallbackId =
-							new ResizeObserverListener().observe(
-								menuRef,
-								() => {
-									state._handleCSSFlags();
-									state._handleVariant();
-									state.evaluateScrollButtons(menuRef);
-									state._handleSubNavigation();
-								}
-							);
-					}
-				});
-			}, 100);
+			requestAnimationFrame(() => {
+				state._update();
+
+				// Set up ResizeObserver for scroll buttons and sub-nav positioning
+				if (!state._resizeObserverCallbackId) {
+					state._resizeObserverCallbackId =
+						new ResizeObserverListener().observe(menuRef, () => {
+							state._update();
+						});
+				}
+			});
+
+			// Observe the closest shell element for attribute changes
+			if (!state._shellObserver) {
+				const shell = (_ref as HTMLElement).closest('.db-shell');
+				if (shell) {
+					const observer = new MutationObserver(() => {
+						state._update();
+					});
+					observer.observe(shell, {
+						attributes: true,
+						attributeFilter: ['data-control-panel-desktop-position']
+					});
+					state._shellObserver = observer;
+				}
+			}
 		}
 	}, [_ref, menuRef, state.initialized]);
 
 	onUpdate(() => {
-		if (menuRef) {
-			const menuElement = menuRef as HTMLElement;
-
-			if (
-				state._variant !== 'tree' ||
-				state._isShellSubNavigationMobile
-			) {
-				// Clean up tree roles if switching from tree to popover/drilldown
-				for (const menu of Array.from(
-					menuElement.querySelectorAll(
-						'.db-control-panel-navigation-item-group-menu[role="group"]'
-					)
-				)) {
-					(menu as HTMLElement).removeAttribute('role');
-				}
-
-				// Remove forwarded aria-label and role from the <menu> when not in tree variant
-				menuElement.removeAttribute('aria-label');
-				menuElement.removeAttribute('role');
-
-				for (const navItem of Array.from(
-					menuElement.querySelectorAll(
-						'.db-control-panel-navigation-item[role="none"], .db-control-panel-navigation-item-group[role="none"]'
-					)
-				)) {
-					navItem.removeAttribute('role');
-					const interactive = navItem.querySelector(
-						'[role="treeitem"]'
-					) as HTMLElement | null;
-					if (interactive) {
-						interactive.removeAttribute('role');
-						interactive.removeAttribute('tabindex');
-					}
-				}
-			} else if (props.variant === 'tree') {
-				for (const menu of Array.from(
-					menuElement.querySelectorAll(
-						'.db-control-panel-navigation-item-group-menu'
-					)
-				)) {
-					(menu as HTMLElement).style.position = '';
-					(menu as HTMLElement).setAttribute('role', 'group');
-				}
-
-				// Forward aria-label from the <nav> to the <menu role="tree">
-				const navAriaLabel = (_ref as HTMLElement)?.getAttribute(
-					'aria-label'
-				);
-				if (navAriaLabel) {
-					menuElement.setAttribute('aria-label', navAriaLabel);
-				}
-
-				const allTreeItems: HTMLElement[] = [];
-				for (const navItem of Array.from(
-					menuElement.querySelectorAll(
-						'.db-control-panel-navigation-item, .db-control-panel-navigation-item-group'
-					)
-				)) {
-					navItem.setAttribute('role', 'none');
-					const interactive = navItem.querySelector(
-						'a, button'
-					) as HTMLElement | null;
-					if (interactive) {
-						interactive.setAttribute('role', 'treeitem');
-						interactive.setAttribute('tabindex', '-1');
-						allTreeItems.push(interactive);
-					}
-				}
-
-				// First visible treeitem gets tabindex="0" for initial focus
-				if (allTreeItems.length > 0) {
-					allTreeItems[0].setAttribute('tabindex', '0');
-				}
-
-				// For behavior="single", attach a mutation observer to collapse
-				// sibling groups when one is expanded
-				if (props.behavior === 'single') {
-					// Disconnect any existing observer before attaching a new one
-					state._singleBehaviorObserver?.disconnect();
-					state._singleBehaviorObserver = undefined;
-					state._attachSingleBehaviorObserver();
-				} else {
-					// Disconnect observer when behavior is not 'single'
-					state._singleBehaviorObserver?.disconnect();
-					state._singleBehaviorObserver = undefined;
-				}
-			}
-
-			state._handleSubNavigation();
-		}
-	}, [
-		menuRef,
-		state._variant,
-		state._isShellSubNavigationMobile,
-		state._shellDesktopPositionTop,
-		props.behavior
-	]);
-
-	onUpdate(() => {
 		if (props.variant) {
-			state._handleVariant();
+			state._update();
 		}
-	}, [props.variant]);
+	}, [props.variant, props.behavior]);
 
 	return (
 		<nav

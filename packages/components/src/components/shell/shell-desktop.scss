@@ -54,8 +54,6 @@
 
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
 					.db-control-panel-navigation {
-						--db-control-panel-navigation-desktop-position-top: 0;
-
 						&[data-variant="drilldown"] {
 							.db-control-panel-navigation-item-group {
 								position: static;

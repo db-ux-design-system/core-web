@@ -28,9 +28,4 @@
 	.db-control-panel-navigation-item-group-back-button {
 		display: none;
 	}
-
-	// Mobile
-	@include screen-sizes.screen("md", "max") {
-		--db-control-panel-navigation-item-group-menu-mobile: 1;
-	}
 }

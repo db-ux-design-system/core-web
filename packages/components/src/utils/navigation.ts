@@ -1,5 +1,4 @@
 import { handleFixedPopover } from './floating-components';
-import { hasCssFlag } from './index';
 
 /**
  * Adjusts a sub-navigation's position so it stays within the viewport.
@@ -252,11 +251,17 @@ export class NavigationItemSafeTriangle {
 
 const MAX_SUB_NAVIGATION_DEPTH = 10;
 
-export const handleSubNavigationPosition = (
-	element: HTMLElement,
-	level?: number,
-	vertical: boolean = false
-) => {
+export const handleSubNavigationPosition = ({
+	element,
+	level,
+	isPopover = false,
+	vertical = false
+}: {
+	element: HTMLElement;
+	level?: number;
+	vertical?: boolean;
+	isPopover?: boolean;
+}) => {
 	if (!element) return;
 
 	// If no level provided, read it from the element's data-level attribute
@@ -289,10 +294,6 @@ export const handleSubNavigationPosition = (
 			 * `packages/components/src/components/control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown.scss`.
 			 * We don't need to calculate the position of the menu for non popover menus.
 			 */
-			const isPopover = hasCssFlag(
-				subNavigation,
-				'--db-control-panel-navigation-item-group-menu-popover'
-			);
 			if (!isPopover) {
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
@@ -321,7 +322,10 @@ export const handleSubNavigationPosition = (
 				}
 			}
 
-			handleSubNavigationPosition(subNavigation, resolvedLevel + 1);
+			handleSubNavigationPosition({
+				element: subNavigation,
+				level: resolvedLevel + 1
+			});
 		}
 	}
 };

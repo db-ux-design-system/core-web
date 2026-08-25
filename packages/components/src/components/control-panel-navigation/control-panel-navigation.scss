@@ -209,8 +209,6 @@
 				max: "sm"
 			)
 		) {
-			--db-control-panel-navigation-mobile: 1;
-
 			.db-control-panel-navigation-item-group-expand-button {
 				/* Remove the highlight here because we have an overlay for sub-navigations */
 				-webkit-tap-highlight-color: transparent;

@@ -5,7 +5,7 @@
 	display: flex;
 	flex-flow: row wrap;
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
+	padding: variables.$db-spacing-fixed-sm;
 	gap: variables.$db-spacing-fixed-md;
 	grid-area: meta;
 

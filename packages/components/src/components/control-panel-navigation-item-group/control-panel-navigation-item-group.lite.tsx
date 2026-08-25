@@ -9,15 +9,8 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_BACK } from '../../shared/constants';
-import { ClickEvent } from '../../shared/model';
-import {
-	cls,
-	delay,
-	getBoolean,
-	getBooleanAsString,
-	hasCssFlag,
-	uuid
-} from '../../utils';
+import { ClickEvent, NavigationItemGroupVariantType } from '../../shared/model';
+import { cls, delay, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { handleDataOutside } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
 import {
@@ -25,7 +18,6 @@ import {
 	handleSubNavigationPosition,
 	NavigationItemSafeTriangle
 } from '../../utils/navigation';
-import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
@@ -48,43 +40,63 @@ export default function DBControlPanelNavigationItemGroup(
 	const state = useStore<DBControlPanelNavigationItemGroupState>({
 		isSubNavigationExpanded: false,
 		autoClose: false,
-		_isPopover: false,
+		_variant: undefined,
 		initialized: false,
-		_isDrilldown: false,
 		_role: undefined,
 		_attributeObserver: undefined,
+		_variantObserver: undefined,
 		_itemGroupMenuId:
 			'db-control-panel-navigation-item-group-menu-' + uuid(),
 		_intersectionObserverCallbackId: undefined,
-		_resizeObserverCallbackId: undefined,
 		_popoverListenersAttached: false,
 		navigationItemSafeTriangle: undefined,
-		_getDrilldownFlag() {
-			return hasCssFlag(
-				_menuRef,
-				'--db-control-panel-navigation-item-group-menu-drilldown'
+		_update() {
+			if (!_ref) return;
+			const nav = (_ref as HTMLElement).closest(
+				'.db-control-panel-navigation'
 			);
-		},
-		_getPopoverFlag() {
-			return hasCssFlag(
-				_menuRef,
-				'--db-control-panel-navigation-item-group-menu-popover'
-			);
-		},
-		_handleSubNavigation() {
-			handleSubNavigationPosition(_menuRef);
-		},
-		_handleCSSFlags() {
-			if (!_menuRef) return;
-			state._isPopover = state._getPopoverFlag();
-			state._isDrilldown = state._getDrilldownFlag();
+			if (!nav || !nav.hasAttribute('data-variant')) return;
+			const variantValue = nav.getAttribute(
+				'data-variant'
+			) as NavigationItemGroupVariantType;
+
+			const isPopover = variantValue === 'popover';
+			const isDrilldown = variantValue === 'drilldown';
+
+			// When a sub-navigation is expanded in drilldown mode, mark sibling
+			// navigation items as inert so screenreader/keyboard focus cannot
+			// escape the visible overlay (resolves #5883).
+			if (isDrilldown && state.isSubNavigationExpanded) {
+				state._setSiblingsInert(true);
+
+				// Move focus to the first navigation item link inside the sub-menu
+				if (_menuRef) {
+					const firstLink = (_menuRef as HTMLElement).querySelector(
+						'.db-control-panel-navigation-item a'
+					) as HTMLElement | null;
+					if (firstLink) {
+						firstLink.focus();
+					}
+				}
+			} else {
+				state._setSiblingsInert(false);
+			}
+
+			handleSubNavigationPosition({ element: _menuRef, isPopover });
+			if (state._variant === variantValue) return;
+			state._variant = variantValue;
+
+			if (isPopover) {
+				state._enablePopover();
+			} else {
+				state._teardownPopover();
+			}
 		},
 		_handleFocusIn: () => {
-			if (!state._isPopover) return;
 			state.isSubNavigationExpanded = true;
 		},
 		_handleFocusOut: (event: any) => {
-			if (!state._isPopover || !event) return;
+			if (!event) return;
 			const relatedTarget = event.relatedTarget as HTMLElement | null;
 			if (
 				!relatedTarget ||
@@ -94,7 +106,6 @@ export default function DBControlPanelNavigationItemGroup(
 			}
 		},
 		_handleMouseEnter: () => {
-			if (!state._isPopover) return;
 			state.isSubNavigationExpanded = true;
 			// Compute a precise pixel-based transform to keep the
 			// menu within the viewport (replaces the CSS -200% shift).
@@ -106,7 +117,6 @@ export default function DBControlPanelNavigationItemGroup(
 			handleDataOutside(_menuRef);
 		},
 		_handleMouseLeave: () => {
-			if (!state._isPopover) return;
 			state.isSubNavigationExpanded = false;
 		},
 		_setSiblingsInert: (inert: boolean) => {
@@ -167,8 +177,25 @@ export default function DBControlPanelNavigationItemGroup(
 				}
 			}
 		},
-		_attachPopoverListeners: () => {
+		_enablePopover: () => {
 			if (state._popoverListenersAttached || !_ref) return;
+
+			if (!state.navigationItemSafeTriangle) {
+				state.navigationItemSafeTriangle =
+					new NavigationItemSafeTriangle(_ref, _menuRef);
+			}
+
+			if (!state._intersectionObserverCallbackId) {
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						_buttonRef,
+						(entry) => {
+							if (!entry.isIntersecting) {
+								state.forceClose();
+							}
+						}
+					);
+			}
 
 			const mouseEnter = () => {
 				state._handleMouseEnter();
@@ -200,7 +227,7 @@ export default function DBControlPanelNavigationItemGroup(
 			_ref.addEventListener('focusout', focusOut);
 			state._popoverListenersAttached = true;
 		},
-		_detachPopoverListeners: () => {
+		_teardownPopover: () => {
 			if (!state._popoverListenersAttached || !_ref) return;
 
 			const listeners = (_ref as any).__popoverListeners;
@@ -214,9 +241,6 @@ export default function DBControlPanelNavigationItemGroup(
 
 			state.isSubNavigationExpanded = false;
 			state._popoverListenersAttached = false;
-		},
-		_teardownPopover: () => {
-			state._detachPopoverListeners();
 			state.navigationItemSafeTriangle = undefined;
 
 			if (state._intersectionObserverCallbackId) {
@@ -225,17 +249,10 @@ export default function DBControlPanelNavigationItemGroup(
 				);
 				state._intersectionObserverCallbackId = undefined;
 			}
-
-			if (state._resizeObserverCallbackId) {
-				new ResizeObserverListener().unobserve(
-					state._resizeObserverCallbackId!
-				);
-				state._resizeObserverCallbackId = undefined;
-			}
 		},
 		onScroll: () => {
-			if (state._isPopover && _menuRef) {
-				state._handleSubNavigation();
+			if (_menuRef) {
+				state._update();
 			}
 		},
 		handleNavigationItemClick: (event: any) => {
@@ -250,7 +267,7 @@ export default function DBControlPanelNavigationItemGroup(
 			}, 300);
 		},
 		handleClick: (event: ClickEvent<HTMLButtonElement> | any) => {
-			if (!state._isPopover) {
+			if (state._variant !== 'popover') {
 				state.isSubNavigationExpanded = !state.isSubNavigationExpanded;
 			}
 
@@ -340,6 +357,9 @@ export default function DBControlPanelNavigationItemGroup(
 
 		state._attributeObserver?.disconnect();
 		state._attributeObserver = undefined;
+
+		state._variantObserver?.disconnect();
+		state._variantObserver = undefined;
 	});
 
 	onUpdate(() => {
@@ -351,76 +371,40 @@ export default function DBControlPanelNavigationItemGroup(
 		}
 	}, [props.expanded]);
 
+	// After init, find the closest DBControlPanelNavigation and observe
+	// its data-variant attribute to derive popover/drilldown state
+	// without relying on CSS flags (avoids framework race conditions).
 	onUpdate(() => {
 		if (_ref && _menuRef && state.initialized) {
-			state._handleCSSFlags();
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					state._update();
+				});
+			});
+
+			// Observe data-variant changes on the closest navigation
+			// so we react when the variant is set/changed at runtime.
+			if (!state._variantObserver) {
+				const navElement = (_ref as HTMLElement).closest(
+					'.db-control-panel-navigation'
+				);
+				if (navElement) {
+					const observer = new MutationObserver(() => {
+						state._update();
+					});
+					observer.observe(navElement, {
+						attributes: true,
+						attributeFilter: ['data-variant']
+					});
+					state._variantObserver = observer;
+				}
+			}
 		}
 	}, [_ref, _menuRef, state.initialized]);
 
-	// When a sub-navigation is expanded in drilldown mode, mark sibling
-	// navigation items as inert so screenreader/keyboard focus cannot
-	// escape the visible overlay (resolves #5883).
 	onUpdate(() => {
-		if (state._getDrilldownFlag() && state.isSubNavigationExpanded) {
-			state._setSiblingsInert(true);
-
-			// Move focus to the first navigation item link inside the sub-menu
-			if (_menuRef) {
-				const firstLink = (_menuRef as HTMLElement).querySelector(
-					'.db-control-panel-navigation-item a'
-				) as HTMLElement | null;
-				if (firstLink) {
-					firstLink.focus();
-				}
-			}
-		} else {
-			state._setSiblingsInert(false);
-		}
-
-		state._handleSubNavigation();
+		state._update();
 	}, [state.isSubNavigationExpanded]);
-
-	onUpdate(() => {
-		if (_ref && _buttonRef && _menuRef && state._isPopover) {
-			if (!state.navigationItemSafeTriangle) {
-				state.navigationItemSafeTriangle =
-					new NavigationItemSafeTriangle(_ref, _menuRef);
-			}
-
-			state._attachPopoverListeners();
-
-			if (!state._intersectionObserverCallbackId) {
-				state._intersectionObserverCallbackId =
-					new IntersectionObserverListener().observe(
-						_buttonRef,
-						(entry) => {
-							if (!entry.isIntersecting) {
-								state.forceClose();
-							}
-						}
-					);
-			}
-
-			// Re-position the sub-navigation popover on viewport resize
-			// (e.g. orientation change), because placement depends on the
-			// viewport dimensions.
-			if (!state._resizeObserverCallbackId) {
-				state._resizeObserverCallbackId =
-					new ResizeObserverListener().observe(
-						document.documentElement,
-						() => {
-							if (_menuRef) {
-								state._handleSubNavigation();
-							}
-						}
-					);
-			}
-		}
-
-		if (!state._isPopover) {
-			state._teardownPopover();
-		}
-	}, [_ref, _menuRef, _buttonRef, state._isPopover]);
 
 	return (
 		<li
@@ -447,7 +431,7 @@ export default function DBControlPanelNavigationItemGroup(
 				ref={_buttonRef}
 				type="button"
 				aria-haspopup={getBooleanAsString(
-					state._isPopover ? true : undefined
+					state._variant === 'popover' ? true : undefined
 				)}
 				aria-controls={props.menuId ?? state._itemGroupMenuId}
 				aria-expanded={getBooleanAsString(

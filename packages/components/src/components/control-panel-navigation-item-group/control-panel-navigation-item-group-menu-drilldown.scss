@@ -12,8 +12,6 @@ $drilldown-inset: calc(
 );
 
 %db-control-panel-navigation-item-group-menu-drilldown {
-	--db-control-panel-navigation-item-group-menu-drilldown: 1;
-
 	@extend %db-control-panel-navigation-item-group-menu-non-tree;
 
 	/* jscpd:ignore-start */

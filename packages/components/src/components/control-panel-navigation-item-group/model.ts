@@ -9,6 +9,7 @@ import {
 	InitializedState,
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
+	NavigationItemGroupVariantType,
 	ShowIconProps
 } from '../../shared/model';
 import { NavigationItemSafeTriangle } from '../../utils/navigation';
@@ -41,33 +42,28 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	isSubNavigationExpanded: boolean;
 	_itemGroupMenuId: string;
 	_intersectionObserverCallbackId?: string;
-	_resizeObserverCallbackId?: string;
 	_attributeObserver?: MutationObserver;
+	_variantObserver?: MutationObserver;
 	_role?: string;
 	_popoverListenersAttached: boolean;
 
 	/**
 	 * Internal state property to show/hide sub-navigation button
 	 */
-	_isDrilldown: boolean;
-	_isPopover: boolean;
-	_getPopoverFlag: () => boolean;
-	_getDrilldownFlag: () => boolean;
+	_variant?: NavigationItemGroupVariantType;
 	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
 	autoClose?: boolean;
 	onScroll: () => void;
 	handleEscape: (event: any) => void;
 	forceClose: () => void;
-	_attachPopoverListeners: () => void;
-	_detachPopoverListeners: () => void;
+	_enablePopover: () => void;
 	_teardownPopover: () => void;
-	_handleCSSFlags: () => void;
+	_update: () => void;
 	_handleFocusIn: () => void;
 	_handleFocusOut: (event: any) => void;
 	_handleMouseEnter: () => void;
 	_handleMouseLeave: () => void;
 	_setSiblingsInert: (inert: boolean) => void;
-	_handleSubNavigation: () => void;
 };
 
 export type DBControlPanelNavigationItemGroupState =

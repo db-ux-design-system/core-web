@@ -27,13 +27,8 @@ export type DBControlPanelNavigationProps =
 export type DBControlPanelNavigationDefaultState = {
 	onScroll: () => void;
 	_variant?: NavigationItemGroupVariantType;
-	_isMobile?: boolean;
-	_isShellSubNavigationMobile?: boolean;
-	_shellDesktopPositionTop?: boolean;
-	_getDesktopPositionTopFlag: () => boolean;
-	_handleCSSFlags: () => void;
-	_handleSubNavigation: () => void;
-	_handleVariant: () => void;
+	_isShellDesktopPositionTop: () => boolean;
+	_handleVariantArias: (variant?: NavigationItemGroupVariantType) => void;
 	_handleKeyDown: (event: any) => void;
 	_handleTreeKeys: (event: any) => void;
 	_handlePopoverKeys: (event: any) => void;
@@ -41,7 +36,10 @@ export type DBControlPanelNavigationDefaultState = {
 	_closeSubMenuAndReturnToParent: (parentGroupMenu: Element) => void;
 	_resizeObserverCallbackId?: string;
 	_singleBehaviorObserver?: MutationObserver;
+	_shellObserver?: MutationObserver;
 	_attachSingleBehaviorObserver: () => void;
+	_disconnectSingleBehaviorObserver: () => void;
+	_update: () => void;
 };
 
 export type DBControlPanelNavigationState =
