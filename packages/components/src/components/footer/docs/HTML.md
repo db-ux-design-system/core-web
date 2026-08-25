@@ -1,83 +1,42 @@
 ## HTML
 
-For general installation and configuration take a look at the [components](https://www.npmjs.com/package/@db-ux/core-components) package.
+For installation and configuration, see [components](https://www.npmjs.com/package/@db-ux/core-components).
 
-### Use component
+Place the native footer markup inside a `.db-page[data-variant="fixed"]`. Consumer-provided navigation remains semantic and independently labelled.
 
 ```html index.html
-<!-- index.html -->
-...
-<body>
-	<footer class="db-footer">
-		<section class="db-footer-main">
+<div class="db-page" data-variant="fixed">
+	<main>Page content</main>
+	<footer class="db-footer" data-width="medium">
+		<div class="db-footer-main">
 			<div class="db-footer-content-container">
-				<div class="db-footer-main-inner">
+				<nav aria-label="Footer navigation">
 					<ul>
-						<li>
-							<a class="db-link" href="#">About Us</a>
-						</li>
-						<li>
-							<a class="db-link" href="#">Contact</a>
-						</li>
-						<li>
-							<a class="db-link" href="#">Careers</a>
-						</li>
+						<li><a class="db-link" href="/about">About us</a></li>
+						<li><a class="db-link" href="/contact">Contact</a></li>
 					</ul>
-				</div>
+				</nav>
 			</div>
-		</section>
-
-		<section class="db-footer-meta">
+		</div>
+		<div class="db-footer-meta">
 			<div class="db-footer-content-container">
 				<div class="db-footer-meta-inner">
 					<p class="db-footer-copyright">© Deutsche Bahn AG</p>
-					<ul>
-						<li>
-							<a class="db-link" href="#">Privacy Policy</a>
-						</li>
-						<li>
-							<a class="db-link" href="#">Terms of Service</a>
-						</li>
-						<li>
-							<a class="db-link" href="#">Imprint</a>
-						</li>
-					</ul>
+					<nav aria-label="Legal navigation">
+						<ul>
+							<li>
+								<a class="db-link" href="/privacy">Privacy</a>
+							</li>
+							<li>
+								<a class="db-link" href="/imprint">Imprint</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
-		</section>
+		</div>
 	</footer>
-</body>
+</div>
 ```
 
-- Remove the `db-footer-main` section to hide the main area.
-- Remove the `db-footer-meta` section to hide the meta area.
-- Remove the `db-footer-copyright` paragraph to hide the copyright line.
-
-### Width
-
-Use the `data-width` attribute to control the max-width of the footer content. Supported values: `full`, `medium`, `large`, `small`.
-
-```html index.html
-<!-- index.html -->
-...
-<body>
-	<footer class="db-footer" data-width="full">
-		<section class="db-footer-main">
-			<div class="db-footer-content-container">
-				<div class="db-footer-main-inner">
-					<div>Footer Navigation</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="db-footer-meta">
-			<div class="db-footer-content-container">
-				<div class="db-footer-meta-inner">
-					<p class="db-footer-copyright">© Deutsche Bahn AG</p>
-					<div>Legal Links</div>
-				</div>
-			</div>
-		</section>
-	</footer>
-</body>
-```
+Remove the corresponding visual wrapper to omit the main or meta area, and remove `.db-footer-copyright` to omit the copyright. `data-width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The native `<footer>` and both visual areas always remain full width.

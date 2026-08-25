@@ -1,51 +1,47 @@
 ## Migration
 
-### Migrating from v2 to v3
+DBFooter is a new, component-driven wrapper for replacing custom footer implementations. Use it inside `DBPage variant="fixed"` and provide semantic navigation in the slots. It deliberately does not collapse links into a mobile accordion, so links remain available to assistive technologies and browser search.
 
-The Footer component is new in v3. If you previously used custom footer implementations, consider migrating to the new DBFooter component for consistency.
+### Key features
 
-#### Key features
+- Default slot for flexible main content and a named `meta` slot
+- Optional built-in copyright text
+- `showMain`, `showMeta`, and `showCopyright` visibility properties
+- Static inner content widths: `full`, `large`, `medium`, and `small`
+- Full-width outer footer and visual areas
 
-- Standardized footer layout with main and meta sections
-- Built-in copyright text support
-- Responsive width variants (full, small, medium, large)
-- Consistent styling with the DB UX Design System
+### Example
 
-#### Example migration
-
-**Before (custom implementation):**
-
-```html
-<footer class="custom-footer">
-	<div class="footer-content">
-		<!-- Custom footer content -->
-	</div>
-	<div class="footer-legal">
-		<p>© Deutsche Bahn AG</p>
-		<!-- Legal links -->
-	</div>
-</footer>
+```tsx
+<DBPage variant="fixed">
+	<main>Page content</main>
+	<DBFooter
+		width="medium"
+		meta={
+			<nav aria-label="Legal navigation">
+				<ul>
+					<li>
+						<a href="/privacy">Privacy</a>
+					</li>
+					<li>
+						<a href="/imprint">Imprint</a>
+					</li>
+				</ul>
+			</nav>
+		}
+	>
+		<nav aria-label="Footer navigation">
+			<ul>
+				<li>
+					<a href="/about">About us</a>
+				</li>
+				<li>
+					<a href="/contact">Contact</a>
+				</li>
+			</ul>
+		</nav>
+	</DBFooter>
+</DBPage>
 ```
 
-**After (DBFooter component):**
-
-```html
-<footer class="db-footer">
-	<section class="db-footer-main">
-		<div class="db-footer-content-container">
-			<div class="db-footer-main-inner">
-				<div>Footer Navigation</div>
-			</div>
-		</div>
-	</section>
-	<section class="db-footer-meta">
-		<div class="db-footer-content-container">
-			<div class="db-footer-meta-inner">
-				<p class="db-footer-copyright">© Deutsche Bahn AG</p>
-				<a class="db-link" href="#">Privacy</a>
-				<a class="db-link" href="#">Imprint</a>
-			</div>
-		</div>
-	</section>
-</footer>
-```
+The `width` value only constrains and centres the inner content. It does not make the footer itself narrower and is not a responsive breakpoint switch.

@@ -7,37 +7,37 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
 	<DBFooter
-		main={<div>Footer Navigation Content</div>}
-		meta={<div>Legal Links</div>}
-	/>
-);
-
-const compNoCopyright: any = (
-	<DBFooter
-		showCopyright={false}
-		main={<div>Footer Content</div>}
-		meta={<div>Links</div>}
-	/>
-);
-
-const compOnlyMeta: any = (
-	<DBFooter showMain={false} meta={<div>Meta Links Only</div>} />
-);
-
-const compWithWidth: any = (
-	<DBFooter
-		width="full"
-		main={<div>Full Width Content</div>}
-		meta={<div>Meta Links</div>}
-	/>
-);
-
-const compWithClassName: any = (
-	<DBFooter
-		className="custom-footer"
-		main={<div>Custom Footer</div>}
-		meta={<div>Meta</div>}
-	/>
+		meta={
+			<nav aria-label="Legal navigation">
+				<ul>
+					<li>
+						<a href="#privacy">Privacy</a>
+					</li>
+					<li>
+						<a href="#imprint">Imprint</a>
+					</li>
+				</ul>
+			</nav>
+		}>
+		{/*<template v-slot:meta>
+			<nav aria-label="Legal navigation">
+				<ul>
+					<li><a href="#privacy">Privacy</a></li>
+					<li><a href="#imprint">Imprint</a></li>
+				</ul>
+			</nav>
+		</template>*/}
+		<nav aria-label="Footer navigation">
+			<ul>
+				<li>
+					<a href="#about">About us</a>
+				</li>
+				<li>
+					<a href="#contact">Contact</a>
+				</li>
+			</ul>
+		</nav>
+	</DBFooter>
 );
 
 const testComponent = () => {
@@ -46,30 +46,111 @@ const testComponent = () => {
 		await expect(component).toHaveScreenshot();
 	});
 
-	test('should match screenshot without copyright', async ({ mount }) => {
-		const component = await mount(compNoCopyright);
-		await expect(component).toHaveScreenshot();
-	});
+	for (const width of ['full', 'large', 'medium', 'small'] as const) {
+		test(`should constrain only inner content for width=${width}`, async ({
+			mount,
+			page
+		}) => {
+			await page.setViewportSize({ width: 1600, height: 900 });
+			const component = await mount(
+				<DBFooter width={width}>Content</DBFooter>
+			);
+			await expect(component).toHaveAttribute('data-width', width);
+			const footerWidth = await component.evaluate(
+				(element) => element.getBoundingClientRect().width
+			);
+			for (const area of ['.db-footer-main', '.db-footer-meta']) {
+				expect(
+					await component
+						.locator(area)
+						.evaluate(
+							(element) => element.getBoundingClientRect().width
+						)
+				).toBe(footerWidth);
+			}
+		});
+	}
 
-	test('should match screenshot with only meta section', async ({
+	test('should hide each optional part for boolean values', async ({
 		mount
 	}) => {
-		const component = await mount(compOnlyMeta);
-		await expect(component).toHaveScreenshot();
+		const component = await mount(
+			<DBFooter showMain={false} showCopyright={false}>
+				Content
+			</DBFooter>
+		);
+		await expect(component.locator('.db-footer-main')).toHaveCount(0);
+		await expect(component.locator('.db-footer-meta')).toHaveCount(1);
+		await expect(component.locator('.db-footer-copyright')).toHaveCount(0);
+		await component.unmount();
+
+		const withoutMeta = await mount(
+			<DBFooter showMeta={false}>Content</DBFooter>
+		);
+		await expect(withoutMeta.locator('.db-footer-meta')).toHaveCount(0);
 	});
 
-	test('should match screenshot with full width', async ({ mount }) => {
-		const component = await mount(compWithWidth);
-		await expect(component).toHaveScreenshot();
+	test('should hide each optional part for boolean strings', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBFooter showMain="false" showCopyright="false">
+				Content
+			</DBFooter>
+		);
+		await expect(component.locator('.db-footer-main')).toHaveCount(0);
+		await expect(component.locator('.db-footer-copyright')).toHaveCount(0);
+		await component.unmount();
+
+		const withoutMeta = await mount(
+			<DBFooter showMeta="false">Content</DBFooter>
+		);
+		await expect(withoutMeta.locator('.db-footer-meta')).toHaveCount(0);
 	});
 
-	test('should match screenshot with custom className', async ({ mount }) => {
-		const component = await mount(compWithClassName);
-		await expect(component).toHaveScreenshot();
+	test('should use id and propOverrides.id fallback', async ({ mount }) => {
+		const withId = await mount(
+			<DBFooter id="footer-id" propOverrides={{ id: 'fallback-id' }}>
+				Content
+			</DBFooter>
+		);
+		await expect(withId).toHaveAttribute('id', 'footer-id');
+		await withId.unmount();
+
+		const withFallback = await mount(
+			<DBFooter propOverrides={{ id: 'fallback-id' }}>Content</DBFooter>
+		);
+		await expect(withFallback).toHaveAttribute('id', 'fallback-id');
+	});
+
+	test('should add a custom class', async ({ mount }) => {
+		const component = await mount(
+			<DBFooter className="custom-footer" class="custom-footer">
+				Content
+			</DBFooter>
+		);
+		await expect(component).toHaveClass(/custom-footer/);
+	});
+
+	test('should wrap without horizontal overflow at a narrow viewport', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({ width: 320, height: 640 });
+		const component = await mount(comp);
+		expect(
+			await component.evaluate(
+				(element) => element.scrollWidth <= element.clientWidth
+			)
+		).toBe(true);
 	});
 };
-
 const testA11y = () => {
+	test('should remain a contentinfo landmark', async ({ mount, page }) => {
+		await mount(comp);
+		await expect(page.getByRole('contentinfo')).toHaveCount(1);
+	});
+
 	test('should have same aria-snapshot', async ({ mount }, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();

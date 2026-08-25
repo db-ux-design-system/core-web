@@ -1,149 +1,43 @@
 ## React
 
-For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
+For installation and configuration, see [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components).
 
-### Use component
-
-#### Simple
+Use `DBFooter` inside `DBPage variant="fixed"`. The default `children` slot is the main area; `meta` contains legal and other meta content. Add semantic, uniquely labelled navigation and lists as needed.
 
 ```tsx App.tsx
-// App.tsx
-import { DBFooter } from "@db-ux/react-core-components";
+import { DBFooter, DBLink, DBPage } from "@db-ux/react-core-components";
 
-const App = () => (
-	<DBFooter
-		main={<div>Footer Navigation</div>}
-		meta={<div>Legal Links</div>}
-	/>
+export const App = () => (
+	<DBPage variant="fixed">
+		<main>Page content</main>
+		<DBFooter
+			width="medium"
+			meta={
+				<nav aria-label="Legal navigation">
+					<ul>
+						<li>
+							<DBLink href="/privacy">Privacy</DBLink>
+						</li>
+						<li>
+							<DBLink href="/imprint">Imprint</DBLink>
+						</li>
+					</ul>
+				</nav>
+			}
+		>
+			<nav aria-label="Footer navigation">
+				<ul>
+					<li>
+						<DBLink href="/about">About us</DBLink>
+					</li>
+					<li>
+						<DBLink href="/contact">Contact</DBLink>
+					</li>
+				</ul>
+			</nav>
+		</DBFooter>
+	</DBPage>
 );
-
-export default App;
 ```
 
-#### With custom content
-
-```tsx App.tsx
-// App.tsx
-import { DBFooter, DBLink } from "@db-ux/react-core-components";
-
-const App = () => (
-	<DBFooter
-		main={
-			<ul>
-				<li>
-					<DBLink href="#">About Us</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Contact</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Careers</DBLink>
-				</li>
-			</ul>
-		}
-		meta={
-			<ul>
-				<li>
-					<DBLink href="#">Privacy Policy</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Terms of Service</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Imprint</DBLink>
-				</li>
-			</ul>
-		}
-	/>
-);
-
-export default App;
-```
-
-#### Without copyright
-
-```tsx App.tsx
-// App.tsx
-import { DBFooter, DBLink } from "@db-ux/react-core-components";
-
-const App = () => (
-	<DBFooter
-		showCopyright={false}
-		main={<div>Footer Content</div>}
-		meta={
-			<>
-				<DBLink href="#">Privacy</DBLink>
-				<DBLink href="#">Legal</DBLink>
-			</>
-		}
-	/>
-);
-
-export default App;
-```
-
-#### Only meta section
-
-```tsx App.tsx
-// App.tsx
-import { DBFooter, DBLink } from "@db-ux/react-core-components";
-
-const App = () => (
-	<DBFooter
-		showMain={false}
-		meta={
-			<>
-				<DBLink href="#">Privacy</DBLink>
-				<DBLink href="#">Imprint</DBLink>
-			</>
-		}
-	/>
-);
-
-export default App;
-```
-
-#### Only main section
-
-```tsx App.tsx
-// App.tsx
-import { DBFooter, DBLink } from "@db-ux/react-core-components";
-
-const App = () => (
-	<DBFooter
-		showMeta={false}
-		main={
-			<ul>
-				<li>
-					<DBLink href="#">About Us</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Contact</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Careers</DBLink>
-				</li>
-			</ul>
-		}
-	/>
-);
-
-export default App;
-```
-
-#### Width
-
-```tsx App.tsx
-// App.tsx
-import { DBFooter, DBLink } from "@db-ux/react-core-components";
-
-const App = () => (
-	<DBFooter
-		width="full"
-		main={<div>Footer Navigation</div>}
-		meta={<div>Legal Links</div>}
-	/>
-);
-
-export default App;
-```
+`showMain`, `showMeta`, and `showCopyright` default to `true`. Use `id` and `className` for root attributes. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.

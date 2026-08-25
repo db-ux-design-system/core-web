@@ -1,15 +1,12 @@
-import { ContainerWidthProps, GlobalProps } from '../../shared/model';
+import {
+	ContainerWidthProps,
+	GlobalProps,
+	GlobalState
+} from '../../shared/model';
 
 export type DBFooterDefaultProps = {
 	/**
-	 * Slot for the main footer content.
-	 * Typically used for navigation links, footer columns, etc.
-	 */
-	main?: any;
-
-	/**
-	 * Slot for the meta footer content.
-	 * Typically used for copyright information, legal links, etc.
+	 * Slot for legal and other meta content.
 	 */
 	meta?: any;
 
@@ -19,12 +16,12 @@ export type DBFooterDefaultProps = {
 	showCopyright?: boolean | string;
 
 	/**
-	 * Shows or hides the main footer section.
+	 * Shows or hides the main footer area containing the default slot.
 	 */
 	showMain?: boolean | string;
 
 	/**
-	 * Shows or hides the meta footer section.
+	 * Shows or hides the meta footer area.
 	 */
 	showMeta?: boolean | string;
 };
@@ -32,3 +29,6 @@ export type DBFooterDefaultProps = {
 export type DBFooterProps = DBFooterDefaultProps &
 	GlobalProps &
 	ContainerWidthProps;
+
+export type DBFooterDefaultState = {};
+export type DBFooterState = DBFooterDefaultState & GlobalState;

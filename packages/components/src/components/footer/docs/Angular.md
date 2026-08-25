@@ -1,165 +1,37 @@
 ## Angular
 
-For general installation and configuration take a look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
+For installation and configuration, see [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components).
 
-### Use component
-
-#### Simple
+Use `DBFooter` inside `DBPage variant="fixed"`. Unmarked content is projected into the main area; add the `meta` attribute to legal and other meta content.
 
 ```ts app.component.ts
-// app.component.ts
 import { Component } from "@angular/core";
-import { DBFooter } from "@db-ux/ngx-core-components";
+import { DBFooter, DBLink, DBPage } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-root",
-	imports: [DBFooter],
+	imports: [DBFooter, DBLink, DBPage],
 	template: `
-		<db-footer>
-			<div main>Footer Navigation</div>
-			<div meta>Legal Links</div>
-		</db-footer>
+		<db-page variant="fixed">
+			<main>Page content</main>
+			<db-footer width="medium">
+				<nav aria-label="Footer navigation">
+					<ul>
+						<li><db-link href="/about">About us</db-link></li>
+						<li><db-link href="/contact">Contact</db-link></li>
+					</ul>
+				</nav>
+				<nav meta aria-label="Legal navigation">
+					<ul>
+						<li><db-link href="/privacy">Privacy</db-link></li>
+						<li><db-link href="/imprint">Imprint</db-link></li>
+					</ul>
+				</nav>
+			</db-footer>
+		</db-page>
 	`
 })
 export class AppComponent {}
 ```
 
-#### With custom content
-
-```ts app.component.ts
-// app.component.ts
-import { Component } from "@angular/core";
-import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
-
-@Component({
-	selector: "app-root",
-	imports: [DBFooter, DBLink],
-	template: `
-		<db-footer>
-			<div main>
-				<ul>
-					<li>
-						<db-link href="#">About Us</db-link>
-					</li>
-					<li>
-						<db-link href="#">Contact</db-link>
-					</li>
-					<li>
-						<db-link href="#">Careers</db-link>
-					</li>
-				</ul>
-			</div>
-			<div meta>
-				<ul>
-					<li>
-						<db-link href="#">Privacy Policy</db-link>
-					</li>
-					<li>
-						<db-link href="#">Terms of Service</db-link>
-					</li>
-					<li>
-						<db-link href="#">Imprint</db-link>
-					</li>
-				</ul>
-			</div>
-		</db-footer>
-	`
-})
-export class AppComponent {}
-```
-
-#### Without copyright
-
-```ts app.component.ts
-// app.component.ts
-import { Component } from "@angular/core";
-import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
-
-@Component({
-	selector: "app-root",
-	imports: [DBFooter, DBLink],
-	template: `
-		<db-footer [showCopyright]="false">
-			<div main>Footer Content</div>
-			<div meta>
-				<db-link href="#">Privacy</db-link>
-				<db-link href="#">Legal</db-link>
-			</div>
-		</db-footer>
-	`
-})
-export class AppComponent {}
-```
-
-#### Only meta section
-
-```ts app.component.ts
-// app.component.ts
-import { Component } from "@angular/core";
-import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
-
-@Component({
-	selector: "app-root",
-	imports: [DBFooter, DBLink],
-	template: `
-		<db-footer [showMain]="false">
-			<div meta>
-				<db-link href="#">Privacy</db-link>
-				<db-link href="#">Imprint</db-link>
-			</div>
-		</db-footer>
-	`
-})
-export class AppComponent {}
-```
-
-#### Only main section
-
-```ts app.component.ts
-// app.component.ts
-import { Component } from "@angular/core";
-import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
-
-@Component({
-	selector: "app-root",
-	imports: [DBFooter, DBLink],
-	template: `
-		<db-footer [showMeta]="false">
-			<div main>
-				<ul>
-					<li>
-						<db-link href="#">About Us</db-link>
-					</li>
-					<li>
-						<db-link href="#">Contact</db-link>
-					</li>
-					<li>
-						<db-link href="#">Careers</db-link>
-					</li>
-				</ul>
-			</div>
-		</db-footer>
-	`
-})
-export class AppComponent {}
-```
-
-#### Width
-
-```ts app.component.ts
-// app.component.ts
-import { Component } from "@angular/core";
-import { DBFooter, DBLink } from "@db-ux/ngx-core-components";
-
-@Component({
-	selector: "app-root",
-	imports: [DBFooter, DBLink],
-	template: `
-		<db-footer width="full">
-			<div main>Footer Navigation</div>
-			<div meta>Legal Links</div>
-		</db-footer>
-	`
-})
-export class AppComponent {}
-```
+`showMain`, `showMeta`, and `showCopyright` default to `true` and accept Angular property bindings, for example `[showMain]="false"`. Use `id` and `class` for root attributes. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.

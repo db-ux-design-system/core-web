@@ -6,22 +6,34 @@
 		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<footer class="db-footer">
-			<section class="db-footer-main">
+		<footer class="db-footer" data-width="medium">
+			<div class="db-footer-main">
 				<div class="db-footer-content-container">
-					<div class="db-footer-main-inner">
-						<div>Footer Main Content</div>
-					</div>
+					<nav aria-label="Footer navigation">
+						<ul>
+							<li>
+								<a class="db-link" href="#services">Services</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
-			</section>
-			<section class="db-footer-meta">
+			</div>
+			<div class="db-footer-meta">
 				<div class="db-footer-content-container">
 					<div class="db-footer-meta-inner">
 						<p class="db-footer-copyright">© Deutsche Bahn AG</p>
-						<div>Meta Content</div>
+						<nav aria-label="Legal navigation">
+							<ul>
+								<li>
+									<a class="db-link" href="#imprint"
+										>Imprint</a
+									>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
-			</section>
+			</div>
 		</footer>
 	</body>
 </html>

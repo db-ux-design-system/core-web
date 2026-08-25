@@ -1,131 +1,35 @@
 ## Vue
 
-For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
+For installation and configuration, see [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components).
 
-### Use component
-
-#### Simple
+Use `DBFooter` inside `DBPage variant="fixed"`. The default slot is the main area; the named `meta` slot contains legal and other meta content.
 
 ```vue App.vue
 <script setup lang="ts">
-import { DBFooter } from "@db-ux/v-core-components";
+import { DBFooter, DBLink, DBPage } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBFooter>
-		<template #main>
-			<div>Footer Navigation</div>
-		</template>
-		<template #meta>
-			<div>Legal Links</div>
-		</template>
-	</DBFooter>
+	<DBPage variant="fixed">
+		<main>Page content</main>
+		<DBFooter width="medium">
+			<nav aria-label="Footer navigation">
+				<ul>
+					<li><DBLink href="/about">About us</DBLink></li>
+					<li><DBLink href="/contact">Contact</DBLink></li>
+				</ul>
+			</nav>
+			<template #meta>
+				<nav aria-label="Legal navigation">
+					<ul>
+						<li><DBLink href="/privacy">Privacy</DBLink></li>
+						<li><DBLink href="/imprint">Imprint</DBLink></li>
+					</ul>
+				</nav>
+			</template>
+		</DBFooter>
+	</DBPage>
 </template>
 ```
 
-#### With custom content
-
-```vue App.vue
-<script setup lang="ts">
-import { DBFooter, DBLink } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBFooter>
-		<template #main>
-			<div>
-				<DBLink href="#">About Us</DBLink>
-				<DBLink href="#">Contact</DBLink>
-				<DBLink href="#">Careers</DBLink>
-			</div>
-		</template>
-		<template #meta>
-			<DBLink href="#">Privacy Policy</DBLink>
-			<DBLink href="#">Terms of Service</DBLink>
-			<DBLink href="#">Imprint</DBLink>
-		</template>
-	</DBFooter>
-</template>
-```
-
-#### Without copyright
-
-```vue App.vue
-<script setup lang="ts">
-import { DBFooter, DBLink } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBFooter :showCopyright="false">
-		<template #main>
-			<div>Footer Content</div>
-		</template>
-		<template #meta>
-			<DBLink href="#">Privacy</DBLink>
-			<DBLink href="#">Legal</DBLink>
-		</template>
-	</DBFooter>
-</template>
-```
-
-#### Only meta section
-
-```vue App.vue
-<script setup lang="ts">
-import { DBFooter, DBLink } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBFooter :showMain="false">
-		<template #meta>
-			<DBLink href="#">Privacy</DBLink>
-			<DBLink href="#">Imprint</DBLink>
-		</template>
-	</DBFooter>
-</template>
-```
-
-#### Only main section
-
-```vue App.vue
-<script setup lang="ts">
-import { DBFooter, DBLink } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBFooter :showMeta="false">
-		<template #main>
-			<ul>
-				<li>
-					<DBLink href="#">About Us</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Contact</DBLink>
-				</li>
-				<li>
-					<DBLink href="#">Careers</DBLink>
-				</li>
-			</ul>
-		</template>
-	</DBFooter>
-</template>
-```
-
-#### Width
-
-```vue App.vue
-<script setup lang="ts">
-import { DBFooter } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBFooter width="full">
-		<template #main>
-			<div>Footer Navigation</div>
-		</template>
-		<template #meta>
-			<div>Legal Links</div>
-		</template>
-	</DBFooter>
-</template>
-```
+`showMain`, `showMeta`, and `showCopyright` default to `true`; bind booleans with `:showMain="false"`. Use `id` and `class` for root attributes. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.

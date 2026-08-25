@@ -16,26 +16,24 @@ useDefaultProps<DBFooterProps>({
 
 export default function DBFooter(props: DBFooterProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(null);
+	const _ref = useRef<HTMLElement | null>(null);
 
 	return (
 		<footer
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-footer', props.className)}
 			data-width={props.width}>
 			{getBoolean(props.showMain, 'showMain') && (
-				<section class="db-footer-main">
+				<div class="db-footer-main">
 					<div class="db-footer-content-container">
-						<div class="db-footer-main-inner">
-							<Slot name="main" />
-						</div>
+						{props.children}
 					</div>
-				</section>
+				</div>
 			)}
 
 			{getBoolean(props.showMeta, 'showMeta') && (
-				<section class="db-footer-meta">
+				<div class="db-footer-meta">
 					<div class="db-footer-content-container">
 						<div class="db-footer-meta-inner">
 							{getBoolean(
@@ -49,7 +47,7 @@ export default function DBFooter(props: DBFooterProps) {
 							<Slot name="meta" />
 						</div>
 					</div>
-				</section>
+				</div>
 			)}
 		</footer>
 	);

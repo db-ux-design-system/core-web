@@ -12,76 +12,56 @@ export default function FooterShowMain() {
 	return (
 		<div
 			style={{
-				display: 'flex',
-				flexDirection: 'column',
+				display: 'grid',
 				gap: 'var(--db-spacing-fixed-sm)',
-				width: '100%',
-				padding: 'var(--db-spacing-fixed-sm)'
+				width: '100%'
 			}}>
-			<div style={{ width: '100%' }}>
-				<DBFooter
-					showMain
-					main={
-						<div style={{ width: '100%', textAlign: 'left' }}>
-							showMain=true
-						</div>
-					}
-					meta={
-						<ul
-							style={{
-								display: 'flex',
-								justifyContent: 'flex-end',
-								gap: 'var(--db-spacing-fixed-sm)',
-								listStyle: 'none',
-								margin: '0',
-								padding: '0'
-							}}>
+			<DBFooter
+				showMain
+				meta={
+					<nav aria-label="Legal navigation">
+						<ul>
 							<li>
-								<a className="db-link" href="#">
-									Contact
+								<a className="db-link" href="#privacy">
+									Privacy
 								</a>
 							</li>
+						</ul>
+					</nav>
+				}>
+				<nav aria-label="Footer navigation">
+					<ul>
+						<li>
+							<a className="db-link" href="#services">
+								Services
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</DBFooter>
+			<DBFooter
+				showMain={false}
+				meta={
+					<nav aria-label="Legal navigation">
+						<ul>
 							<li>
-								<a className="db-link" href="#">
+								<a className="db-link" href="#imprint">
 									Imprint
 								</a>
 							</li>
 						</ul>
-					}
-				/>
-			</div>
-			<div style={{ width: '100%' }}>
-				<DBFooter
-					showMain={false}
-					main={
-						<div style={{ width: '100%', textAlign: 'left' }}>
-							showMain=false
-						</div>
-					}
-					meta={
-						<ul
-							style={{
-								display: 'flex',
-								justifyContent: 'flex-end',
-								gap: 'var(--db-spacing-fixed-sm)',
-								listStyle: 'none',
-								margin: '0',
-								padding: '0'
-							}}>
-							<li>
-								<a className="db-link" href="#">
-									Contact
-								</a>
-							</li>
-							<li>
-								<a className="db-link" href="#">
-									Imprint
-								</a>
-							</li>
-						</ul>
-					}
-				/>
-			</div>
+					</nav>
+				}>
+				<nav aria-label="Footer navigation">
+					<ul>
+						<li>
+							<a className="db-link" href="#contact">
+								Contact
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</DBFooter>
 		</div>
 	);
 }
