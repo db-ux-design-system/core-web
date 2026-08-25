@@ -76,12 +76,16 @@ export const requestCloseFallback = (
 	);
 	if (!button) return;
 
+	// Only act when the button belongs to this dialog. This prevents clicks
+	// bubbling from a nested dialog's close button from closing an outer one.
+	if (button.closest('dialog') !== dialog) return;
+
 	const target = button.getAttribute('commandfor');
-	if (
-		!supportsCommandFor() ||
-		!target ||
-		!document.querySelector('dialog#' + target)
-	) {
+
+	// Fire the fallback when native Invoker Commands are unsupported, or when
+	// the commandfor attribute is out of sync with the closest dialog's id
+	// (e.g. the id was generated after commandfor was set).
+	if (!supportsCommandFor() || target !== dialog.id) {
 		dialog.requestClose();
 	}
 };
