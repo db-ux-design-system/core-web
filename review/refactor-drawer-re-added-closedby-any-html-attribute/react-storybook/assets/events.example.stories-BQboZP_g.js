@@ -1,0 +1,12 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{i as n,n as r,r as i,t as a}from"./dialog-header-WagU9o4F.js";var o,s,c,l,u;function d(){return(d=e((()=>{r(),n(),o=t(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBDialog/Events`,component:i,parameters:{layout:`centered`},tags:[`autodocs`],args:{onClose:s(),onCancel:s()},argTypes:{open:{control:`boolean`},backdrop:{control:`select`,options:[`none`,`strong`,`weak`]},containerSize:{control:`select`,options:[`small`,`medium`,`large`,`full`]},header:{control:`text`},footer:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`},onClose:{action:`onClose`},onCancel:{action:`onCancel`}}},l={args:{open:!1,onClose:s(),onCancel:s(),header:(0,o.jsx)(a,{closeButtonText:`Close`,children:`Events Test`}),children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`}),(0,o.jsx)(`p`,{children:`Lorem ipsum dolor sit amet.`})]})},render:e=>(0,o.jsxs)(`div`,{children:[`Open DBDialog by switching open property`,(0,o.jsx)(i,{...e})]})},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "open": false,
+    "onClose": fn(),
+    "onCancel": fn(),
+    "header": <DBDialogHeader closeButtonText="Close">
+                            Events Test
+                        </DBDialogHeader>,
+    "children": <><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p></>
+  },
+  render: (properties: any) => <div>Open DBDialog by switching open property<DBDialog {...properties} /></div>
+}`,...l.parameters?.docs?.source}}},u=[`CloseandCancel`]})))()}d();export{l as CloseandCancel,u as __namedExportsOrder,c as default};
