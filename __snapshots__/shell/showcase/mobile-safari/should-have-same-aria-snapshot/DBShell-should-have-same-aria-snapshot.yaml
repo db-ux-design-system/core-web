@@ -156,13 +156,13 @@
   - button "Open navigation menu"
   - complementary "shell-top-sub-left-tree-sub":
     - navigation "shell-top-sub-left-tree-sub":
-      - list:
+      - tree "shell-top-sub-left-tree-sub":
         - listitem:
-          - link "Sub-Item 3"
+          - treeitem "Sub-Item 3"
         - listitem:
-          - link "Sub-Item 4"
+          - treeitem "Sub-Item 4"
         - listitem:
-          - link "Sub-Item 5"
+          - treeitem "Sub-Item 5"
   - main "shell-top-sub-left-tree":
     - paragraph: Top + Sub Left Tree content
     - button "Action"
