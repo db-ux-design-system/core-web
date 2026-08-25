@@ -23,7 +23,6 @@ ctags.tmp
 packages/components/src/**/*.css
 packages/components/src/**/*.css.map
 
-/output/**/src
 /output/**/dist
 /output/**/playwright*
 /output/**/test-results

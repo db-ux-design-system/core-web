@@ -3,7 +3,6 @@ const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs')
 const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
-const requestClosePlugin = require('../plugins/stencil/request-close.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToStencilOptions}
@@ -19,7 +18,6 @@ module.exports = {
 		attributePassingPlugin,
 		slotsPlugin,
 		onClickPlugin,
-		esmExtensionsPlugin,
-		requestClosePlugin
+		esmExtensionsPlugin
 	]
 };
