@@ -14200,6 +14200,18 @@ function toStartCaseStr(str2) {
   return str2.replace(/_/g, " ").replace(/-/g, " ").replace(/\./g, " ").replace(/([^\n])([A-Z])([a-z])/g, (str22, $1, $2, $3) => `${$1} ${$2}${$3}`).replace(/([a-z])([A-Z])/g, (str22, $1, $2) => `${$1} ${$2}`).replace(/([a-z])([0-9])/gi, (str22, $1, $2) => `${$1} ${$2}`).replace(/([0-9])([a-z])/gi, (str22, $1, $2) => `${$1} ${$2}`).replace(/(\s|^)(\w)/g, (str22, $1, $2) => `${$1}${$2.toUpperCase()}`).replace(/ +/g, " ").trim();
 }
 
+// src/csf/export-story.ts
+function matches(storyKey, arrayOrRegex) {
+  return Array.isArray(arrayOrRegex) ? arrayOrRegex.includes(storyKey) : storyKey.match(arrayOrRegex);
+}
+var storyNameFromExport = (key) => toStartCaseStr(key);
+function isExportStory(key, { includeStories, excludeStories }) {
+  return (
+    // Babel's CommonJS interop adds __esModule; it is not a CSF story export.
+    key !== "__esModule" && (!includeStories || matches(key, includeStories)) && (!excludeStories || !matches(key, excludeStories))
+  );
+}
+
 // src/csf/includeConditionalArg.ts
 var import_tiny_isequal = __toESM(require_tiny_isequal(), 1), count = (vals) => vals.map((v3) => typeof v3 < "u").filter(Boolean).length, testValue = (cond, value) => {
   let { exists, eq: eq4, neq, truthy } = cond;
@@ -21414,7 +21426,7 @@ ${context.utils.RECEIVED_COLOR(
   ].join(`
 `);
 }
-function matches(textToMatch, matcher) {
+function matches2(textToMatch, matcher) {
   return matcher instanceof RegExp ? matcher.test(textToMatch) : textToMatch.includes(String(matcher));
 }
 function deprecate2(name, replacementText) {
@@ -21596,7 +21608,7 @@ function toHaveTextContent(node, checkWith, options = { normalizeWhitespace: !0 
   checkNode(node, toHaveTextContent, this);
   let textContent = options.normalizeWhitespace ? normalize(node.textContent) : node.textContent.replace(/\u00a0/g, " "), checkingWithEmptyString = textContent !== "" && checkWith === "";
   return {
-    pass: !checkingWithEmptyString && matches(textContent, checkWith),
+    pass: !checkingWithEmptyString && matches2(textContent, checkWith),
     message: () => {
       let to = this.isNot ? "not to" : "to";
       return getMessage3(
@@ -25483,7 +25495,7 @@ function fuzzyMatches(textToMatch, node, matcher, normalizer) {
   let normalizedText = normalizer(textToMatch);
   return typeof matcher == "string" || typeof matcher == "number" ? normalizedText.toLowerCase().includes(matcher.toString().toLowerCase()) : typeof matcher == "function" ? matcher(normalizedText, node) : matchRegExp(matcher, normalizedText);
 }
-function matches2(textToMatch, node, matcher, normalizer) {
+function matches3(textToMatch, node, matcher, normalizer) {
   if (typeof textToMatch != "string")
     return !1;
   assertNotNullOrUndefined(matcher);
@@ -25897,7 +25909,7 @@ function queryAllByAttribute(attribute, container, text, _temp) {
     collapseWhitespace,
     trim,
     normalizer
-  } = _temp === void 0 ? {} : _temp, matcher = exact ? matches2 : fuzzyMatches, matchNormalizer = makeNormalizer({
+  } = _temp === void 0 ? {} : _temp, matcher = exact ? matches3 : fuzzyMatches, matchNormalizer = makeNormalizer({
     collapseWhitespace,
     trim,
     normalizer
@@ -26017,7 +26029,7 @@ var queryAllLabelsByText = function(container, text, _temp) {
     trim,
     collapseWhitespace,
     normalizer
-  } = _temp === void 0 ? {} : _temp, matcher = exact ? matches2 : fuzzyMatches, matchNormalizer = makeNormalizer({
+  } = _temp === void 0 ? {} : _temp, matcher = exact ? matches3 : fuzzyMatches, matchNormalizer = makeNormalizer({
     collapseWhitespace,
     trim,
     normalizer
@@ -26043,7 +26055,7 @@ var queryAllLabelsByText = function(container, text, _temp) {
     normalizer
   } = _temp2 === void 0 ? {} : _temp2;
   checkContainerType(container);
-  let matcher = exact ? matches2 : fuzzyMatches, matchNormalizer = makeNormalizer({
+  let matcher = exact ? matches3 : fuzzyMatches, matchNormalizer = makeNormalizer({
     collapseWhitespace,
     trim,
     normalizer
@@ -26102,7 +26114,7 @@ var getMultipleError$7 = (c3, text) => "Found multiple elements with the text of
     normalizer
   } = _temp === void 0 ? {} : _temp;
   checkContainerType(container);
-  let matcher = exact ? matches2 : fuzzyMatches, matchNormalizer = makeNormalizer({
+  let matcher = exact ? matches3 : fuzzyMatches, matchNormalizer = makeNormalizer({
     collapseWhitespace,
     trim,
     normalizer
@@ -26129,7 +26141,7 @@ var getMultipleError$7 = (c3, text) => "Found multiple elements with the text of
     normalizer
   } = _temp === void 0 ? {} : _temp;
   checkContainerType(container);
-  let matcher = exact ? matches2 : fuzzyMatches, matchNormalizer = makeNormalizer({
+  let matcher = exact ? matches3 : fuzzyMatches, matchNormalizer = makeNormalizer({
     collapseWhitespace,
     trim,
     normalizer
@@ -26148,7 +26160,7 @@ var getMultipleError$7 = (c3, text) => "Found multiple elements with the text of
     normalizer
   } = _temp === void 0 ? {} : _temp;
   checkContainerType(container);
-  let matcher = exact ? matches2 : fuzzyMatches, matchNormalizer = makeNormalizer({
+  let matcher = exact ? matches3 : fuzzyMatches, matchNormalizer = makeNormalizer({
     collapseWhitespace,
     trim,
     normalizer
@@ -26261,14 +26273,14 @@ var getMultipleError$7 = (c3, text) => "Found multiple elements with the text of
       let valueMatches = !0;
       if (valueNow !== void 0 && valueMatches && (valueMatches = valueNow === computeAriaValueNow(element)), valueMax !== void 0 && valueMatches && (valueMatches = valueMax === computeAriaValueMax(element)), valueMin !== void 0 && valueMatches && (valueMatches = valueMin === computeAriaValueMin(element)), valueText !== void 0) {
         var _computeAriaValueText;
-        valueMatches && (valueMatches = matches2((_computeAriaValueText = computeAriaValueText(element)) != null ? _computeAriaValueText : null, element, valueText, (text) => text));
+        valueMatches && (valueMatches = matches3((_computeAriaValueText = computeAriaValueText(element)) != null ? _computeAriaValueText : null, element, valueText, (text) => text));
       }
       return valueMatches;
     }
     return !0;
-  }).filter((element) => name === void 0 ? !0 : matches2(computeAccessibleName2(element, {
+  }).filter((element) => name === void 0 ? !0 : matches3(computeAccessibleName2(element, {
     computedStyleSupportsPseudoElements: getConfig2().computedStyleSupportsPseudoElements
-  }), element, name, (text) => text)).filter((element) => description === void 0 ? !0 : matches2(computeAccessibleDescription2(element, {
+  }), element, name, (text) => text)).filter((element) => description === void 0 ? !0 : matches3(computeAccessibleDescription2(element, {
     computedStyleSupportsPseudoElements: getConfig2().computedStyleSupportsPseudoElements
   }), element, description, (text) => text)).filter((element) => hidden === !1 ? isInaccessible(element, {
     isSubtreeInaccessible: cachedIsSubtreeInaccessible
@@ -33957,7 +33969,7 @@ function getService(serviceId) {
 }
 
 // src/shared/open-service/static-fetch.ts
-var STATIC_SERVICES_PREFIX = "/services/";
+var STATIC_SERVICES_PREFIX = "./services/";
 function shouldUseBrowserStaticLoader() {
   return globalThis.CONFIG_TYPE === "PRODUCTION";
 }
@@ -34250,7 +34262,15 @@ var resetAllMocksLoader = ({ parameters: parameters2 }) => {
             currentFocus = newFocus;
           },
           get() {
-            return this.ownerDocument?.defaultView ? focusingElements.has(this) ? originalFocus : (focusingElements.add(this), setTimeout(() => focusingElements.delete(this), 0), currentFocus) : noopFocus;
+            if (this === HTMLElement.prototype)
+              return currentFocus;
+            let browsingContext;
+            try {
+              browsingContext = this.ownerDocument?.defaultView;
+            } catch {
+              return currentFocus;
+            }
+            return browsingContext ? focusingElements.has(this) ? originalFocus : (focusingElements.add(this), setTimeout(() => focusingElements.delete(this), 0), currentFocus) : noopFocus;
           }
         }
       }), patchedFocus = !0;
@@ -34328,16 +34348,7 @@ var sanitize = (string2) => string2.toLowerCase().replace(/[ ’–—―′¿'`
   if (sanitized === "")
     throw new Error(`Invalid ${part} '${string2}', must include alphanumeric characters`);
   return sanitized;
-}, toId = (kind, name) => `${sanitizeSafe(kind, "kind")}${name ? `--${sanitizeSafe(name, "name")}` : ""}`, toTestId = (parentId, testName2) => `${parentId}:${sanitizeSafe(testName2, "test")}`, storyNameFromExport = (key) => toStartCaseStr(key);
-function matches3(storyKey, arrayOrRegex) {
-  return Array.isArray(arrayOrRegex) ? arrayOrRegex.includes(storyKey) : storyKey.match(arrayOrRegex);
-}
-function isExportStory(key, { includeStories, excludeStories }) {
-  return (
-    // https://babeljs.io/docs/en/babel-plugin-transform-modules-commonjs
-    key !== "__esModule" && (!includeStories || matches3(key, includeStories)) && (!excludeStories || !matches3(key, excludeStories))
-  );
-}
+}, toId = (kind, name) => `${sanitizeSafe(kind, "kind")}${name ? `--${sanitizeSafe(name, "name")}` : ""}`, toTestId = (parentId, testName2) => `${parentId}:${sanitizeSafe(testName2, "test")}`;
 var combineTags = (...tags) => {
   let result = tags.reduce((acc, tag) => (tag.startsWith("!") ? acc.delete(tag.slice(1)) : acc.add(tag), acc), /* @__PURE__ */ new Set());
   return Array.from(result);
@@ -37709,12 +37720,15 @@ var VALIDATION_REGEXP = /^[a-zA-Z0-9 _-]*$/, NUMBER_REGEXP = /^-?[0-9]+(\.[0-9]+
 };
 
 // src/preview-api/modules/preview-web/UrlStore.ts
-var { history, document: document4 } = scope;
+var { history, document: document4 } = scope, PATH_REGEX = /^\/(story|docs)\/(.+)/;
 function pathToId(path) {
-  let match = (path || "").match(/^\/story\/(.+)/);
+  let match = (path || "").match(PATH_REGEX);
   if (!match)
-    throw new Error(`Invalid path '${path}',  must start with '/story/'`);
-  return match[1];
+    throw new Error(`Invalid path '${path}',  must start with '/story/' or '/docs/'`);
+  return match[2];
+}
+function pathToViewMode(path) {
+  return (path || "").match(PATH_REGEX)?.[1];
 }
 var getQueryString = ({
   selection,
@@ -37744,12 +37758,12 @@ var getQueryString = ({
   }
 }, getSelectionSpecifierFromPath = () => {
   if (typeof document4 < "u") {
-    let queryStr = document4.location.search.slice(1), query = parse2(queryStr), args = typeof query.args == "string" ? parseArgsParam(query.args) : void 0, globals = typeof query.globals == "string" ? parseArgsParam(query.globals) : void 0, viewMode = getFirstString(query.viewMode);
+    let queryStr = document4.location.search.slice(1), query = parse2(queryStr), args = typeof query.args == "string" ? parseArgsParam(query.args) : void 0, globals = typeof query.globals == "string" ? parseArgsParam(query.globals) : void 0, path = getFirstString(query.path), viewMode = getFirstString(query.viewMode);
     if (typeof viewMode != "string" || !viewMode)
-      viewMode = "story";
+      viewMode = path && pathToViewMode(path) || "story";
     else if (!viewMode.match(/docs|story/))
       return null;
-    let path = getFirstString(query.path), storyId = path ? pathToId(path) : getFirstString(query.id);
+    let storyId = path ? pathToId(path) : getFirstString(query.id);
     if (storyId)
       return { storySpecifier: storyId, args, globals, viewMode };
   }
@@ -38088,7 +38102,7 @@ async function maybeSetupPreviewNavigator() {
   if (url.searchParams.get("navigator") !== "true" || globalThis.__STORYBOOK_PREVIEW_NAVIGATOR__)
     return;
   globalThis.__STORYBOOK_PREVIEW_NAVIGATOR__ = !0;
-  let index2 = await (await fetch("/index.json")).json(), currentEntryId = url.searchParams.get("id");
+  let index2 = await (await fetch("./index.json")).json(), currentEntryId = url.searchParams.get("id");
   if (!currentEntryId) {
     let firstEntry = Object.values(index2.entries)[0];
     firstEntry && (url.searchParams.set("id", firstEntry.id), url.searchParams.set("viewMode", firstEntry.type), window.location.href = url.toString());
