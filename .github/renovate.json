@@ -43,7 +43,8 @@
 		{
 			"description": "Node itself",
 			"matchManagers": ["nvm"],
-			"matchPackageNames": ["node"]
+			"matchPackageNames": ["node"],
+			"enabled": true
 		}
 	]
 }
