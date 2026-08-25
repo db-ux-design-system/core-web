@@ -6,7 +6,7 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: add beta static and custom Heading components
+feat: add static and custom Heading components (beta)
 
 `DBCustomHeading` takes the native heading as its default content and offers a
 `startSlot` and an `endSlot` for the content next to it, so that content stays out
