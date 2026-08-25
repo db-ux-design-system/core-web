@@ -1,5 +1,5 @@
 import fc from 'fast-check';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
 	getClosestDialogId,
 	removeDialogAriaLabelledBy,
@@ -159,25 +159,28 @@ describe('setDialogAriaLabelledBy', () => {
 
 describe('removeDialogAriaLabelledBy', () => {
 	it('removes the attribute while it equals the heading id', () => {
-		const dialog = createDialogStub();
+		const dialog = createDialogStub({ id: 'my-dialog' });
 		setDialogAriaLabelledBy(dialog, 'heading-1');
-		removeDialogAriaLabelledBy(dialog, 'heading-1');
+		vi.stubGlobal('document', { getElementById: () => dialog });
+		removeDialogAriaLabelledBy('my-dialog', 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+		vi.unstubAllGlobals();
 	});
 
 	it('leaves a foreign or absent value untouched', () => {
-		const dialog = createDialogStub();
+		const dialog = createDialogStub({ id: 'my-dialog' });
 		setDialogAriaLabelledBy(dialog, 'foreign-id');
-		removeDialogAriaLabelledBy(dialog, 'heading-1');
+		vi.stubGlobal('document', { getElementById: () => dialog });
+		removeDialogAriaLabelledBy('my-dialog', 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
+		vi.unstubAllGlobals();
 
-		const empty = createDialogStub();
-		expect(() =>
-			removeDialogAriaLabelledBy(empty, 'heading-1')
-		).not.toThrow();
-		expect(empty._attributes).toEqual({});
+		expect(() => removeDialogAriaLabelledBy('', 'heading-1')).not.toThrow();
 		expect(() =>
 			removeDialogAriaLabelledBy(undefined, 'heading-1')
+		).not.toThrow();
+		expect(() =>
+			removeDialogAriaLabelledBy(null, 'heading-1')
 		).not.toThrow();
 	});
 });
@@ -338,7 +341,7 @@ describe('Property 18: the aria-labelledby round trip leaves foreign values unto
 					removesOwn,
 					foreignId
 				) => {
-					const dialog = createDialogStub();
+					const dialog = createDialogStub({ id: 'prop18-dialog' });
 					if (preExisting !== undefined) {
 						dialog.setAttribute('aria-labelledby', preExisting);
 					}
@@ -358,9 +361,13 @@ describe('Property 18: the aria-labelledby round trip leaves foreign values unto
 					const currentValue = foreignWrite ?? headingId;
 					const removeId = removesOwn ? headingId : foreignId;
 
+					vi.stubGlobal('document', {
+						getElementById: () => dialog
+					});
 					expect(() =>
-						removeDialogAriaLabelledBy(dialog, removeId)
+						removeDialogAriaLabelledBy('prop18-dialog', removeId)
 					).not.toThrow();
+					vi.unstubAllGlobals();
 
 					expect(dialog.getAttribute('aria-labelledby')).toBe(
 						currentValue === removeId ? null : currentValue
