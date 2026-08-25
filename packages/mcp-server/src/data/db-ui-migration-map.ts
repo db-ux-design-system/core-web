@@ -1,43 +1,43 @@
 /**
- * Type-safe migration mappings — Single Source of Truth.
- *
- * Generated from the Markdown migration guides
- * (component-migration.md, color-migration.md, icon-migration.md).
- *
- * DO NOT EDIT MANUALLY. Re-generate when the source .md files change.
+ Type-safe migration mappings — Single Source of Truth.
+
+ Generated from the Markdown migration guides
+ (component-migration.md, color-migration.md, icon-migration.md).
+
+ DO NOT EDIT MANUALLY. Re-generate when the source .md files change.
  */
 
 // ---------------------------------------------------------------------------
-// Interfaces
+// Types
 // ---------------------------------------------------------------------------
 
-/** Maps a v2 CSS class (cmp-*, elm-*, rea-*) to its v3 CSS class (db-*). */
-export interface ComponentMigrationEntry {
+/** @public Maps a v2 CSS class (cmp-*, elm-*, rea-*) to its v3 CSS class (db-*). */
+export type ComponentMigrationEntry = {
 	readonly old: string;
 	readonly new: string;
-}
+};
 
-/** Maps a legacy db-color-* token to its v3 background and foreground tokens. */
-export interface ColorMigrationEntry {
+/** @public Maps a legacy db-color-* token to its v3 background and foreground tokens. */
+export type ColorMigrationEntry = {
 	readonly old: string;
 	readonly bg: string;
 	readonly fg: string;
-}
+};
 
-/** Maps a legacy icon name to its v3 replacement. */
-export interface IconMigrationEntry {
+/** @public Maps a legacy icon name to its v3 replacement. */
+export type IconMigrationEntry = {
 	readonly old: string;
 	readonly new: string;
-}
+};
 
-export interface MigrationData {
+export type MigrationData = {
 	readonly components: Record<string, string>;
 	readonly colors: Record<
 		string,
 		{ readonly bg: string; readonly fg: string }
 	>;
 	readonly icons: Record<string, string>;
-}
+};
 
 // ---------------------------------------------------------------------------
 // Data
@@ -807,7 +807,8 @@ export const migrationData: MigrationData = {
 		regioguide: 'regio_guide',
 		reservation: 'reservation',
 		'standing-room': 'standing_room',
-		// cSpell:ignore steppless
+		// Legacy typo 'steppless-entry' preserved for backward compatibility
+		// cspell:ignore steppless
 		'steppless-entry': 'stepless_entry',
 		'support-dog': 'support_dog',
 		breakfast: 'breakfast',

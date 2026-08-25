@@ -1,7 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 
-export const setScrollViewport = (page: Page, fixedHeight?: number) => {
-	return async () => {
+export const setScrollViewport =
+	(page: Page, fixedHeight?: number) => async () => {
 		// Fixed header height instead of dynamic fetching via scrollHeight,
 		// because scrollHeight includes hidden sub-navigation items whose
 		// height grows with each new component added to the navigation,
@@ -13,6 +13,7 @@ export const setScrollViewport = (page: Page, fixedHeight?: number) => {
 		);
 
 		const width = page.viewportSize()?.width ?? 0;
+		// eslint-disable-next-line @stylistic/no-mixed-operators
 		const height = fixedHeight ?? headerHeight + mainHeight;
 
 		await page.setViewportSize({
@@ -22,4 +23,3 @@ export const setScrollViewport = (page: Page, fixedHeight?: number) => {
 
 		expect(page.viewportSize()?.height).toEqual(height);
 	};
-};

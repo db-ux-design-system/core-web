@@ -1,5 +1,5 @@
 const { targetMapping } = require('./target-mapping.cjs');
-const { resolveImports } = require('./resolve-imports.cjs');
+const { resolveImports, resolveDataImports } = require('./resolve-imports.cjs');
 const { getMetaObject } = require('./get-meta-object.cjs');
 const { getStories } = require('./get-stories.cjs');
 const { toPascalCase } = require('../utils.cjs');
@@ -23,6 +23,7 @@ module.exports = () => ({
 				`DB${toPascalCase(componentNameLowercase)}`;
 
 			const { allImports } = resolveImports(imports);
+			const dataImports = resolveDataImports(imports);
 
 			if (target === 'angular') {
 				// TODO: Remove the this when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
@@ -63,6 +64,7 @@ module.exports = () => ({
 					? `import { argsToTemplate, moduleMetadata, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
 					: '',
 				`import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`,
+				dataImports,
 				"import { fn } from 'storybook/test';",
 				getMetaObject({
 					target,

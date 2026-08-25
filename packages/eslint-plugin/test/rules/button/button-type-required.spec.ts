@@ -47,6 +47,11 @@ describe('button-type-required', () => {
 				code: '<DBButton icon="save">Save</DBButton>',
 				errors: [{ messageId: 'missingType' }],
 				output: '<DBButton icon="save" type="submit">Save</DBButton>'
+			},
+			{
+				code: '<DBButton commandfor="dialog">Toggle</DBButton>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<DBButton commandfor="dialog" type="button">Toggle</DBButton>'
 			}
 		]
 	});
@@ -65,6 +70,11 @@ describe('button-type-required', () => {
 				code: '<db-button>Save</db-button>',
 				errors: [{ messageId: 'missingType' }],
 				output: '<db-button type="submit">Save</db-button>'
+			},
+			{
+				code: '<db-button commandfor="dialog">Toggle</db-button>',
+				errors: [{ messageId: 'missingType' }],
+				output: '<db-button commandfor="dialog" type="button">Toggle</db-button>'
 			}
 		]
 	});

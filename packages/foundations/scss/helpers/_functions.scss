@@ -11,45 +11,25 @@
 }
 
 $cursor-pointer: var(--db-overwrite-cursor, pointer);
+$disabled-state: ':disabled,[aria-disabled="true"],[tabindex="-1"],:has(:disabled)';
 
-@mixin cursor-pointer() {
-	cursor: $cursor-pointer;
-	@content;
-
-	&:is(textarea),
-	&:is(input) {
-		cursor: initial;
-	}
-
-	&:is(input[type="checkbox"]),
-	&:is(input[type="radio"]:not(:checked)) {
-		cursor: pointer;
+@mixin not-disabled() {
+	&:not(#{$disabled-state}) {
+		@content;
 	}
 }
 
-@mixin hover() {
+@mixin hover($cursor: pointer) {
 	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
-	&:hover:not(
-			:disabled,
-			[aria-disabled="true"],
-			[tabindex="-1"],
-			:has(:disabled)
-		) {
-		@include cursor-pointer {
-			@content;
-		}
+	&:hover {
+		cursor: var(--db-overwrite-cursor, #{$cursor});
+		@content;
 	}
 }
 
 @mixin active() {
-	&:active:not(
-			:disabled,
-			[aria-disabled="true"],
-			[tabindex="-1"],
-			:has(:disabled)
-		) {
-		@include cursor-pointer {
-			@content;
-		}
+	&:active {
+		cursor: $cursor-pointer;
+		@content;
 	}
 }

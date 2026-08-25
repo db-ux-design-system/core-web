@@ -82,7 +82,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						state._invalidMessage || DEFAULT_INVALID_MESSAGE;
-					delay(() => {
+					void delay(() => {
 						state._voiceOverFallback = '';
 					}, 1000);
 				}
@@ -97,7 +97,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => {
+					void delay(() => {
 						state._voiceOverFallback = '';
 					}, 1000);
 				}
@@ -231,7 +231,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	return (
 		<div
-			data-visual-aid={getBooleanAsString(props.visualAid)}
+			data-visual-aid={getBooleanAsString(props.visualAid, 'visualAid')}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-variant={props.variant}

@@ -1,5 +1,113 @@
 # @db-ux/core-foundations
 
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: prevent Sass from emitting `@charset` in published SCSS output for non-ASCII characters, which causes problems e.g. in Next.js - [see commit cefb202](https://github.com/db-ux-design-system/core-web/commit/cefb20259dc650d478e9a58f67e4f46051ee46e3)
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
+## 5.0.2
+
+_version bump_
+
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+### Patch Changes
+
+- refactor: we're not assigning our CSS Custom Properties to the `:host` selector anymore, but only `:root`, which even also covers `:host`, as the ShadowRoot boundary doesn't block the CSS cascade. - [see commit b6f0600](https://github.com/db-ux-design-system/core-web/commit/b6f06000c5f23ba10c324f93faae8fb7cc4fe33d)
+
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: allow overriding font-weight on `text-body-*` / `text-head-*` Tailwind utilities - [see commit 771da1a](https://github.com/db-ux-design-system/core-web/commit/771da1aead25ba11a3aff37b7a578edeecf54605):
+
+    - The typography utilities applied the `font` shorthand, which reset `font-weight` to its initial value and made utilities like `font-bold` ineffective. The utilities now re-apply `font-weight` via Tailwind's `--tw-font-weight` variable, keeping the token's natural weight as the default while allowing independent overrides.
+
+## 4.13.0
+
+### Patch Changes
+
+- fix: add missing `@property --db-screen-lg` - [see commit 43c450e](https://github.com/db-ux-design-system/core-web/commit/43c450e0a731b85f59ae22efd029ceb435bdeca4)
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+## 4.10.2
+
+### Patch Changes
+
+- refactor: replaced external fallback icon font as inline base64 to ensure it loads with CSS even when the font file cannot be fetched, preventing layout shifts. - [see commit 8a6b622](https://github.com/db-ux-design-system/core-web/commit/8a6b622179dfd3fc61cecd149cd3b61a40147f92)
+
+- fix: ensure that the icon fallback is displayed as a rectangle - [see commit 6ebc636](https://github.com/db-ux-design-system/core-web/commit/6ebc6361f06fbb44476435b1f011def97318d586)
+
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+_version bump_
+
 ## 4.9.1
 
 ### Patch Changes

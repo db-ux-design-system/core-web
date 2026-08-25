@@ -1,5 +1,0 @@
-{
-	"plugins": {
-		"@db-ux/core-postcss-plugin": {}
-	}
-}

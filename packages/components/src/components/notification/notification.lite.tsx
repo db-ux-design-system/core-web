@@ -56,7 +56,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			data-icon={
 				getBoolean(props.showIcon) !== false ? props.icon : undefined
 			}
-			data-show-icon={getBooleanAsString(props.showIcon)}
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-link-variant={props.linkVariant}>
 			<Slot name="image" />
 			<Show when={stringPropVisible(props.headline, props.showHeadline)}>

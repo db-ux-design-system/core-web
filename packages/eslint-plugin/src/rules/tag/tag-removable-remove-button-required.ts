@@ -22,11 +22,13 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const behavior = getAttributeValue(node, 'behavior');
-			if (behavior !== 'removable') return;
+			if (behavior !== 'removable') {
+				return;
+			}
 
 			const removeButton = getAttributeValue(node, 'removeButton');
 
-			if (removeButton === null || removeButton === '') {
+			if (removeButton === undefined || removeButton === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -42,21 +44,27 @@ export default {
 			COMPONENTS.DBTag,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkTag = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBTag)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBTag)) {
+				return;
+			}
 
 			const behavior = getAttributeValue(openingElement, 'behavior');
-			if (behavior !== 'removable') return;
+			if (behavior !== 'removable') {
+				return;
+			}
 
 			const removeButton = getAttributeValue(
 				openingElement,
 				'removeButton'
 			);
 
-			if (removeButton === null || removeButton === '') {
+			if (removeButton === undefined || removeButton === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TAG_REMOVABLE_REMOVE_BUTTON_REQUIRED

@@ -1,4 +1,4 @@
-import { type ToolResult, err } from '../utils';
+import { type ToolResult, error } from '../utils';
 import { getManifest } from '../utils/manifest';
 
 export async function handleListMigrationGuides(): Promise<ToolResult> {
@@ -25,9 +25,10 @@ export async function handleGetMigrationGuide({
 	const manifest = await getManifest();
 	const guide = manifest.migrationGuides[guideName];
 	if (!guide) {
-		return err(
+		return error(
 			`Error: Migration guide '${guideName}' not found. Use list_migration_guides to see available guides.`
 		);
 	}
+
 	return { content: [{ type: 'text', text: guide }] };
 }

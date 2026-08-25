@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Show,
 	useDefaultProps,
@@ -7,7 +8,6 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { ClickEvent } from '../../shared/model';
 import {
 	cls,
@@ -17,6 +17,8 @@ import {
 } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBTooltipProps, DBTooltipState } from './model';
 
 useMetadata({});
@@ -26,10 +28,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBTooltipState>({
-		_id: DEFAULT_ID,
+		_id: undefined,
 		initialized: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
+		_selfResizeObserverCallbackId: undefined,
+		_lastPlacedSize: undefined,
+		_attachedParent: undefined,
+		_attachedId: undefined,
+		_activeTriggerCount: 0,
+		_boundListeners: [],
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -59,11 +68,15 @@ export default function DBTooltip(props: DBTooltipProps) {
 				void utilsDelay(() => {
 					// Due to race conditions we need to check for _ref again
 					if (_ref) {
-						handleFixedPopover(
-							_ref,
-							parent,
-							(props.placement as unknown as string) ?? 'bottom'
-						);
+						handleFixedPopover(_ref, parent);
+						// Record the size after placement so the self
+						// ResizeObserver can distinguish placement-induced
+						// resizes from genuine content changes.
+						const rect = _ref.getBoundingClientRect();
+						state._lastPlacedSize = {
+							width: Math.round(rect.width),
+							height: Math.round(rect.height)
+						};
 					}
 				}, 1);
 			}
@@ -74,25 +87,175 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 		},
 		handleLeave(): void {
+			// Multiple triggers (hover + focus) can be active at once. Only tear
+			// down the shared scroll callback/observer once the last one leaves.
+			state._activeTriggerCount = Math.max(
+				(state._activeTriggerCount ?? 0) - 1,
+				0
+			);
+			if ((state._activeTriggerCount ?? 0) > 0) {
+				return;
+			}
+
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
 				);
+				state._documentScrollListenerCallbackId = undefined;
 			}
 
-			state._observer?.unobserve(state.getParent());
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+
+			if (state._selfResizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._selfResizeObserverCallbackId!
+				);
+				state._selfResizeObserverCallbackId = undefined;
+			}
+
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
 		},
 		handleEnter(parent?: HTMLElement): void {
-			state._documentScrollListenerCallbackId =
-				new DocumentScrollListener().addCallback((event) =>
-					state.handleDocumentScroll(event, parent)
-				);
+			if (!_ref) return;
+			// Register the shared scroll callback only for the first active
+			// trigger; a second enter (e.g. focusin after mouseenter) must not
+			// orphan the first callback.
+			state._activeTriggerCount = (state._activeTriggerCount ?? 0) + 1;
+			if (state._activeTriggerCount === 1) {
+				state._documentScrollListenerCallbackId =
+					new DocumentScrollListener().addCallback((event) =>
+						state.handleDocumentScroll(event, parent)
+					);
+				state._resizeObserverCallbackId =
+					new ResizeObserverListener().observe(
+						document.documentElement,
+						() => state.handleAutoPlacement(parent)
+					);
+				// Observe the tooltip element itself so that content changes
+				// (e.g. toggling between "Expand"/"Collapse") trigger
+				// repositioning and arrow recalculation.
+				state._selfResizeObserverCallbackId =
+					new ResizeObserverListener().observe(_ref, () => {
+						// Skip if the new size matches what our placement
+						// code just set — this prevents an infinite loop
+						// when placement constrains the tooltip (e.g.
+						// maxBlockSize on mobile viewports).
+						// Use getBoundingClientRect (border box) for both
+						// recording and comparison to avoid a mismatch with
+						// entry.contentRect (content box) on padded elements.
+						const rect = _ref.getBoundingClientRect();
+						const w = Math.round(rect.width);
+						const h = Math.round(rect.height);
+						const last = state._lastPlacedSize;
+						if (last && last.width === w && last.height === h) {
+							return;
+						}
+						state.handleAutoPlacement(parent);
+					});
+				const observeTarget = state.getParent();
+				if (observeTarget) {
+					state._intersectionObserverCallbackId =
+						new IntersectionObserverListener().observe(
+							observeTarget,
+							(entry) => {
+								if (!entry.isIntersecting) {
+									state.handleEscape(false);
+								}
+							}
+						);
+				}
+			}
 			state.handleAutoPlacement(parent);
-			state._observer?.observe(state.getParent());
 		},
 		resetIds: () => {
 			state._id =
 				props.id ?? props.propOverrides?.id ?? 'tooltip-' + uuid();
+		},
+
+		// Detaches all listeners/observers added by this tooltip. Used by onUnMount to avoid stale closures firing after the tooltip is gone.
+		_detachListeners: () => {
+			const callbackId = state._documentScrollListenerCallbackId;
+			if (callbackId) {
+				new DocumentScrollListener().removeCallback(callbackId);
+				state._documentScrollListenerCallbackId = undefined;
+			}
+
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+
+			if (state._selfResizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._selfResizeObserverCallbackId!
+				);
+				state._selfResizeObserverCallbackId = undefined;
+			}
+
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
+
+			state._activeTriggerCount = 0;
+
+			const bound = state._boundListeners ?? [];
+			bound.forEach((entry) => {
+				entry.parent.removeEventListener(entry.type, entry.fn);
+			});
+			state._boundListeners = [];
+
+			// Remove attributes this tooltip set on its parent, but only while
+			// they still belong to this tooltip (avoid clobbering another one).
+			const parent = state._attachedParent;
+			if (parent) {
+				const attachedId = state._attachedId ?? state._id;
+				// Only remove data-has-tooltip when no other .db-tooltip
+				// siblings remain inside the same parent.
+				const remainingTooltips =
+					parent.querySelectorAll('.db-tooltip');
+				const otherTooltipsExist = Array.from(remainingTooltips).some(
+					(el) => el !== _ref
+				);
+				if (
+					parent.dataset['hasTooltip'] === 'true' &&
+					!otherTooltipsExist
+				) {
+					delete parent.dataset['hasTooltip'];
+				}
+				if (parent.getAttribute('aria-labelledby') === attachedId) {
+					parent.removeAttribute('aria-labelledby');
+				}
+				// Remove only the tooltip ID from aria-describedby,
+				// preserving any other consumer-provided IDs.
+				const describedBy =
+					parent.getAttribute('aria-describedby') || '';
+				const remaining = describedBy
+					.split(' ')
+					.filter((id: string) => id !== '' && id !== attachedId)
+					.join(' ');
+				if (remaining) {
+					parent.setAttribute('aria-describedby', remaining);
+				} else if (describedBy) {
+					parent.removeAttribute('aria-describedby');
+				}
+				state._attachedParent = undefined;
+				state._attachedId = undefined;
+			}
 		}
 	});
 
@@ -112,43 +275,57 @@ export default function DBTooltip(props: DBTooltipProps) {
 			const parent = state.getParent();
 			if (parent) {
 				state.handleAutoPlacement(parent);
-				['mouseenter', 'focusin'].forEach((event) => {
-					parent.addEventListener(event, () =>
-						state.handleEnter(parent)
-					);
-				});
-				parent.addEventListener('keydown', (event) =>
-					state.handleEscape(event)
-				);
-				['mouseleave', 'focusout'].forEach((event) => {
-					parent.addEventListener(event, () => state.handleLeave());
-				});
+
+				const enterListener = () => state.handleEnter(parent);
+				const leaveListener = () => state.handleLeave();
+				const keyDownListener = (event: any) =>
+					state.handleEscape(event);
+
+				parent.addEventListener('mouseenter', enterListener);
+				parent.addEventListener('focusin', enterListener);
+				parent.addEventListener('keydown', keyDownListener);
+				parent.addEventListener('mouseleave', leaveListener);
+				parent.addEventListener('focusout', leaveListener);
+
+				state._boundListeners = [
+					...(state._boundListeners ?? []),
+					{ parent, type: 'mouseenter', fn: enterListener },
+					{ parent, type: 'focusin', fn: enterListener },
+					{ parent, type: 'keydown', fn: keyDownListener },
+					{ parent, type: 'mouseleave', fn: leaveListener },
+					{ parent, type: 'focusout', fn: leaveListener }
+				];
+
 				parent.dataset['hasTooltip'] = 'true';
 
 				if (props.variant === 'label') {
 					parent.setAttribute('aria-labelledby', state._id);
 				} else {
-					parent.setAttribute('aria-describedby', state._id);
-				}
-			}
-
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
-				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(
-						({ target }) => target === state.getParent()
-					);
-					if (entry && !entry.isIntersecting) {
-						state.handleEscape(false);
+					// Append tooltip ID to existing aria-describedby to
+					// preserve any consumer-provided description IDs.
+					const existing =
+						parent.getAttribute('aria-describedby') || '';
+					const ids = existing
+						.split(' ')
+						.filter((id: string) => id !== '');
+					if (!ids.includes(state._id)) {
+						ids.push(state._id);
 					}
-				});
+					parent.setAttribute('aria-describedby', ids.join(' '));
+				}
+
+				state._attachedParent = parent;
+				state._attachedId = state._id;
 			}
 
 			state.initialized = false;
 		}
 	}, [_ref, state.initialized, state._id]);
+
+	// Remove parent listeners/observers on unmount so stale closures do not fire after the tooltip is gone.
+	onUnMount(() => {
+		state._detachListeners();
+	});
 
 	// jscpd:ignore-end
 
@@ -161,11 +338,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-emphasis={props.emphasis}
-			data-wrap={getBooleanAsString(props.wrap)}
-			data-animation={getBooleanAsString(props.animation ?? true)}
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			data-animation={getBooleanAsString(
+				props.animation ?? true,
+				'animation'
+			)}
 			data-delay={props.delay}
 			data-width={props.width}
-			data-show-arrow={getBooleanAsString(props.showArrow ?? true)}
+			data-show-arrow={getBooleanAsString(
+				props.showArrow ?? true,
+				'showArrow'
+			)}
 			data-placement={props.placement}
 			// TODO: clarify this attribute and we need to set it statically
 			data-gap="true"

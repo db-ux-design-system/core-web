@@ -30,6 +30,38 @@ export type Component = {
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'table-data-cell'
+	},
+
+	{
+		name: 'table-header-cell'
+	},
+
+	{
+		name: 'table-row'
+	},
+
+	{
+		name: 'table-footer'
+	},
+
+	{
+		name: 'table-body'
+	},
+
+	{
+		name: 'table-head'
+	},
+
+	{
+		name: 'table-caption'
+	},
+
+	{
+		name: 'table'
+	},
+
+	{
 		name: 'custom-button'
 	},
 
@@ -114,15 +146,7 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'tab-item',
 		overwrites: {
-			react: [{ from: /HTMLAttributes/g, to: 'InputHTMLAttributes' }]
-		},
-		config: {
-			vue: {
-				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
-			}
+			react: [{ from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes' }]
 		}
 	},
 
@@ -130,7 +154,7 @@ export const getComponents = (): Component[] => [
 		name: 'tabs',
 		config: {
 			react: {
-				propsPassingFilter: ['onTabSelect', 'onIndexChange']
+				propsPassingFilter: ['onIndexChange', 'onValueChange']
 			}
 		}
 	},
@@ -155,7 +179,7 @@ export const getComponents = (): Component[] => [
 		},
 		config: {
 			react: {
-				propsPassingFilter: ['onToggle']
+				propsPassingFilter: ['onToggle', 'defaultOpen']
 			}
 		}
 	},
@@ -218,6 +242,16 @@ export const getComponents = (): Component[] => [
 					from: 'onMouseMove={(event)',
 					to: 'onMouseMove={(event: any)'
 				}
+			],
+			stencil: [
+				{
+					from: '<slot>',
+					/* This is a workaround for stencil.
+						At the moment the navigation is broken in stencil and will be fixed in the db-shell.
+						Until then we need to add a named slot for the button, because web-components allow only one default slot.
+					*/
+					to: '<slot name="expandButton">'
+				}
 			]
 		},
 		config: {
@@ -267,6 +301,14 @@ export const getComponents = (): Component[] => [
 				propsPassingFilter: ['onClose']
 			}
 		}
+	},
+
+	{
+		name: 'drawer-header'
+	},
+
+	{
+		name: 'drawer-footer'
 	},
 
 	{
@@ -363,6 +405,14 @@ export const getComponents = (): Component[] => [
 			react: {
 				propsPassingFilter: ['onToggle']
 			}
+		},
+		overwrites: {
+			stencil: [
+				{
+					from: new RegExp('<db-drawer[\\s\\S]*?</db-drawer>'),
+					to: ''
+				}
+			]
 		}
 	},
 	{

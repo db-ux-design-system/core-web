@@ -1,5 +1,6 @@
 /* This file was generated */
 export type BaseIconTypes =
+	| 'arrows_vertical'
 	| 'arrow_down'
 	| 'arrow_left'
 	| 'arrow_right'
@@ -35,6 +36,7 @@ export type BaseIconTypes =
 	| 'menu'
 	| 'minus'
 	| 'moon'
+	| 'more_vertical'
 	| 'plus'
 	| 'resize_handle_corner'
 	| 'sun'

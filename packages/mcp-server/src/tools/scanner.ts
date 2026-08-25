@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { migrationData } from '../data/db-ui-migration-map';
-import { type ToolResult, err, MAX_JSON_OUTPUT, truncate } from '../utils';
+import { type ToolResult, error, MAX_JSON_OUTPUT, truncate } from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
 const MAX_SCAN_SIZE = 5 * 1024 * 1024;
@@ -11,19 +11,19 @@ const MAX_SCAN_SIZE = 5 * 1024 * 1024;
 // Types
 // ---------------------------------------------------------------------------
 
-interface ScanFinding {
+type ScanFinding = {
 	line: number;
 	type: 'component' | 'color' | 'icon' | 'import';
 	found: string;
 	context: string;
 	suggestion?: string;
-}
+};
 
 // ---------------------------------------------------------------------------
 // Regex Patterns
 //
-// ⚠️ These regexps use the /g flag and MUST only be used with
-// String.prototype.matchAll() — NEVER with regex.exec() or regex.test().
+// These regexps use the /g flag and MUST only be used with
+// String.prototype.matchAll() - NEVER with regex.exec() or regex.test().
 // matchAll() internally clones the regex, so shared lastIndex state is safe.
 // Using .exec() or .test() on module-level /g regexps causes subtle bugs
 // because lastIndex persists across calls.
@@ -59,14 +59,14 @@ const V2_PACKAGE_MAP: Record<string, string> = {
 // ---------------------------------------------------------------------------
 
 /**
- * Scans a single line for all v2 migration patterns.
- * Returns findings with deterministic suggestions from the migration data.
+ Scans a single line for all v2 migration patterns.
+ Returns findings with deterministic suggestions from the migration data.
  */
 function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const findings: ScanFinding[] = [];
-	const ctx = line.length > 120 ? line.substring(0, 120) + '…' : line;
+	const ctx = line.length > 120 ? line.slice(0, 120) + '...' : line;
 
-	// --- v2 CSS classes (cmp-*, elm-*, rea-*) ---
+	// --- V2 CSS classes (cmp-*, elm-*, rea-*) ---
 	for (const match of line.matchAll(RE_V2_CSS_CLASS)) {
 		const old = match[1];
 		const finding: ScanFinding = {
@@ -79,20 +79,22 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		if (replacement) {
 			finding.suggestion = replacement;
 		}
+
 		findings.push(finding);
 	}
 
-	// --- v2 Web Components (<db-*>) ---
+	// --- V2 Web Components (<db-*>) ---
 	for (const match of line.matchAll(RE_V2_WEB_COMPONENT)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
 			type: 'component',
 			found: `<${old}>`,
-			context: ctx.trim()
+			context: ctx.trim(),
+			// V2 <db-*> maps to v3 <db-*> - flag for API review
+			suggestion: `${old} (v3) - review changed props/API`
 		};
-		// v2 <db-*> maps to v3 <db-*> — flag for API review
-		finding.suggestion = `${old} (v3) — review changed props/API`;
+
 		findings.push(finding);
 	}
 
@@ -109,6 +111,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		if (replacement) {
 			finding.suggestion = `BG: ${replacement.bg}${replacement.fg ? `, FG: ${replacement.fg}` : ''}`;
 		}
+
 		findings.push(finding);
 	}
 
@@ -128,7 +131,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		}
 	}
 
-	// --- v2 npm package imports (@db-ui/*) ---
+	// --- V2 npm package imports (@db-ui/*) ---
 	for (const match of line.matchAll(RE_V2_IMPORT)) {
 		const old = match[1];
 		findings.push({
@@ -148,15 +151,15 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 // ---------------------------------------------------------------------------
 
 /**
- * Analyzes a file for DB UI v2 patterns that need migration to DB UX v3.
- *
- * Deterministically scans for:
- * - v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*)
- * - v2 color tokens (db-color-*)
- * - v2 icon names (cross-referenced against the icon migration data)
- *
- * Returns a JSON report with line numbers, findings, and migration suggestions
- * resolved from the statically imported db-ui-migration-map.ts — no LLM guessing needed.
+ Analyzes a file for DB UI v2 patterns that need migration to DB UX v3.
+
+ Deterministically scans for:
+ - v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*)
+ - v2 color tokens (db-color-*)
+ - v2 icon names (cross-referenced against the icon migration data)
+
+ Returns a JSON report with line numbers, findings, and migration suggestions
+ resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.
  */
 export async function handleScanV2Migration({
 	filePath
@@ -167,28 +170,29 @@ export async function handleScanV2Migration({
 	const cwd = resolve(process.cwd()).replaceAll('\\', '/');
 	const absolutePath = resolve(cwd, filePath).replaceAll('\\', '/');
 
-	// 🔒 Path traversal protection: file must be within cwd()
+	// Path traversal protection: file must be within cwd()
 	if (!absolutePath.startsWith(cwd + '/')) {
-		return err(
+		return error(
 			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
 		);
 	}
 
 	if (!existsSync(absolutePath)) {
-		return err(
+		return error(
 			`Error: File not found: '${absolutePath}'. Provide an absolute path or a path relative to your workspace root.`
 		);
 	}
 
-	// 🔒 File size guard: reject files larger than 5 MB
+	// File size guard: reject files larger than 5 MB
 	const stats = await stat(absolutePath);
 	if (!stats.isFile()) {
-		return err(
+		return error(
 			`Error: Expected a file, but '${absolutePath}' is a directory.`
 		);
 	}
+
 	if (stats.size > MAX_SCAN_SIZE) {
-		return err(
+		return error(
 			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
 		);
 	}
@@ -196,17 +200,18 @@ export async function handleScanV2Migration({
 	// Read and scan
 	const content = await readFile(absolutePath, 'utf-8');
 
-	// 🔒 Binary file guard: reject files containing NUL bytes
-	if (content.substring(0, 8192).includes('\0')) {
-		return err(
+	// Binary file guard: reject files containing NUL bytes
+	if (content.slice(0, 8192).includes('\0')) {
+		return error(
 			'Error: File appears to be binary. Only text files can be scanned.'
 		);
 	}
+
 	const lines = content.split('\n');
 	const findings: ScanFinding[] = [];
 
-	for (let i = 0; i < lines.length; i++) {
-		findings.push(...scanLine(lines[i], i + 1));
+	for (const [i, line] of lines.entries()) {
+		findings.push(...scanLine(line, i + 1));
 	}
 
 	if (findings.length === 0) {
@@ -224,6 +229,7 @@ export async function handleScanV2Migration({
 	const componentCount = findings.filter(
 		(f) => f.type === 'component'
 	).length;
+
 	const colorCount = findings.filter((f) => f.type === 'color').length;
 	const iconCount = findings.filter((f) => f.type === 'icon').length;
 	const importCount = findings.filter((f) => f.type === 'import').length;

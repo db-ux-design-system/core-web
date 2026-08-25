@@ -23,6 +23,12 @@
 		"useDefineForClassFields": false,
 		"lib": ["ES2023", "dom"],
 		"paths": {
+			// Angular 21: @angular/forms/signals is an experimental sub-entry that TypeScript
+			// can't resolve via standard moduleResolution:"node". This maps to the types export.
+			// Remove when Angular 22 (stable Signal Forms) is the minimum version.
+			"@angular/forms/signals": [
+				"node_modules/@angular/forms/types/signals"
+			],
 			"@angular/*": ["node_modules/@angular/*"],
 			"@components": ["../../output/angular/src"],
 			"@components/src/*": ["../../output/angular/src/*"],

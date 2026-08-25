@@ -1,5 +1,5 @@
-import { writeFile } from 'fs/promises';
-import { resolve } from 'path';
+import { writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import type { Plugin } from 'vite';
 import {
 	detectColors,
@@ -23,12 +23,12 @@ const DEFAULT_FOUNDATIONS = [
 ] as const;
 
 /**
- * Create the DB UX Vite plugin.
- * Returns two plugins: a pre-transform plugin for CSS generation and
- * a post-build plugin for optimizing the final CSS bundle.
- *
- * During dev, all available styles are included for instant HMR.
- * During build, only detected styles are included and unused ones are stripped.
+ Create the DB UX Vite plugin.
+ Returns two plugins: a pre-transform plugin for CSS generation and
+ a post-build plugin for optimizing the final CSS bundle.
+
+ During dev, all available styles are included for instant HMR.
+ During build, only detected styles are included and unused ones are stripped.
  */
 export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 	const { optimize = true, debug = false } = config;
@@ -48,8 +48,8 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 	let detectedDensities = new Set<string>();
 	let detectedFontSizes = new Set<string>();
 	let hasDetected = false;
-	let detectionPromise: Promise<void> | null = null;
-	let cssModuleId: string | null = null;
+	let detectionPromise: Promise<void> | undefined;
+	let cssModuleId: string | undefined;
 	let hasTailwind = false;
 	let root = process.cwd();
 	let isBuild = false;
@@ -96,7 +96,9 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 		},
 
 		async transform(code, id) {
-			if (!id.endsWith('.css')) return;
+			if (!id.endsWith('.css')) {
+				return;
+			}
 
 			const hasImport =
 				code.includes('@import "@db-ux/core-vite-plugin/index.css"') ||
@@ -145,17 +147,17 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 					root,
 					include: {
 						components: isBuild
-							? Array.from(detectedComponents)
-							: Array.from(discovered.components),
+							? [...detectedComponents]
+							: [...discovered.components],
 						foundations: include.foundations || [],
 						colors: isBuild
-							? (Array.from(detectedColors) as ColorScheme[])
+							? ([...detectedColors] as ColorScheme[])
 							: (discovered.colors as ColorScheme[]),
 						densities: isBuild
-							? (Array.from(detectedDensities) as Density[])
+							? ([...detectedDensities] as Density[])
 							: (discovered.densities as Density[]),
 						fontSizes: isBuild
-							? (Array.from(detectedFontSizes) as FontSize[])
+							? ([...detectedFontSizes] as FontSize[])
 							: (discovered.fontSizes as FontSize[])
 					},
 					exclude,
@@ -177,7 +179,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 					);
 				}
 
-				code = code.replace(
+				code = code.replaceAll(
 					/@import ["']@db-ux\/core-vite-plugin\/index\.css["'];?/g,
 					css
 				);
@@ -193,10 +195,10 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 					reportPath,
 					JSON.stringify(
 						{
-							components: Array.from(detectedComponents).sort(),
-							colors: Array.from(detectedColors).sort(),
-							densities: Array.from(detectedDensities).sort(),
-							fontSizes: Array.from(detectedFontSizes).sort(),
+							components: [...detectedComponents].sort(),
+							colors: [...detectedColors].sort(),
+							densities: [...detectedDensities].sort(),
+							fontSizes: [...detectedFontSizes].sort(),
 							generatedImports
 						},
 						null,
@@ -213,7 +215,9 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 		enforce: 'post',
 
 		generateBundle(_options, bundle) {
-			if (!optimize || !hasDetected) return;
+			if (!optimize || !hasDetected) {
+				return;
+			}
 
 			const { colors, densities, fontSizes } = discoverAll(root);
 			const optimizerContext: OptimizerContext = {
@@ -222,7 +226,7 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 				allFontSizes: fontSizes
 			};
 
-			for (const [, asset] of Object.entries(bundle)) {
+			for (const asset of Object.values(bundle)) {
 				if (
 					asset.type === 'asset' &&
 					typeof asset.fileName === 'string' &&
@@ -244,4 +248,4 @@ export default function dbUxPlugin(config: PluginConfig = {}): any[] {
 	return [mainPlugin, optimizerPlugin];
 }
 
-export type { PluginConfig };
+export { type PluginConfig } from './types.js';

@@ -23,7 +23,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
-			if (backButtonText === null || backButtonText === '') {
+			if (backButtonText === undefined || backButtonText === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -40,19 +40,22 @@ export default {
 			COMPONENTS.DBNavigationItem,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkNavigationItem = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem))
+			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem)) {
 				return;
+			}
 
 			const backButtonText = getAttributeValue(
 				openingElement,
 				'backButtonText'
 			);
 
-			if (backButtonText === null || backButtonText === '') {
+			if (backButtonText === undefined || backButtonText === '') {
 				context.report({
 					node: openingElement,
 					messageId:

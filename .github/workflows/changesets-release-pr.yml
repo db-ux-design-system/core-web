@@ -27,7 +27,7 @@ jobs:
     steps:
       # Work on the main branch that was just pushed
       - name: ⏬ Checkout main
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: 🔄 Init Node & PNPM cache
         uses: ./.github/actions/pnpm-cache
@@ -37,26 +37,27 @@ jobs:
 
       - name: 🧬 Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
 
       # Let changesets open/update the "Version Packages" PR, commit bumped versions and create GitHub Releases/tags
       - name: 🧩 Changesets Action
         id: changesets
         if: github.event_name == 'push'
-        uses: changesets/action@v1.8.0
+        uses: changesets/action@198f833dd7d863100ea6e28967bc9a9fdefadb0a # v2.1.0
         with:
-          commit: "chore(release): version packages"
-          title: "chore(release): version packages"
-          version: pnpm run ci:version
+          github-token: ${{ steps.generate-token.outputs.token }}
+          commit-message: "chore(release): version packages"
+          pr-title: "chore(release): version packages"
+          version-script: pnpm run ci:version
+          pr-draft: always
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           HUSKY: 0 # Disable Husky hooks in CI
 
       - name: 🆙 Publish
-        if: steps.changesets.outputs.hasChangesets != 'true'
+        if: steps.changesets.outputs.has-changesets != 'true'
         run: |
           pnpm --silent tsx scripts/github/changesets/publish.ts
         env:

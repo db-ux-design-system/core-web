@@ -1,7 +1,7 @@
 import { globSync } from 'glob';
 
 /**
- * Find all CHANGELOG.md files in the repo, excluding node_modules, using glob.
+ Find all CHANGELOG.md files in the repo, excluding node_modules, using glob.
  */
 export function findChangelogFiles(
 	repoRoot: string,
@@ -18,8 +18,8 @@ export function findChangelogFiles(
 }
 
 /**
- * Extracts the first changelog section (from the first '##' header to the next '##' or end of file).
- * This is useful for extracting the latest release notes, regardless of version string.
+ Extracts the first changelog section (from the first '##' header to the next '##' or end of file).
+ This is useful for extracting the latest release notes, regardless of version string.
  */
 export function extractChangelogForVersion(changelog: string): string {
 	// Find the index of the first '##' header

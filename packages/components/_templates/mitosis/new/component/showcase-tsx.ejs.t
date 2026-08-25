@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= name %>/showcase/<%= name %>.showcase.lite.tsx
+to: "<%= subComponent ? null : `src/components/${name}/showcase/${name}.showcase.lite.tsx` %>"
 ---
 import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';

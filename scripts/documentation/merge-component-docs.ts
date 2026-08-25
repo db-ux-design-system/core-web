@@ -27,9 +27,9 @@ const includeSet = new Set(
 );
 
 /**
- * Converts a string to PascalCase.
- * @param {string} string_ - The string to convert.
- * @returns {string} - The converted PascalCase string.
+ Converts a string to PascalCase.
+ @param string_ - The string to convert.
+ @returns - The converted PascalCase string.
  */
 function toPascalCase(string_: string): string {
 	return string_
@@ -44,9 +44,9 @@ function toPascalCase(string_: string): string {
 }
 
 /**
- * Groups files by their directory names.
- * @param {string[]} files - An array of file paths to group.
- * @returns {Object} - An object where keys are directory names and values are arrays of file paths.
+ Groups files by their directory names.
+ @param files - An array of file paths to group.
+ @returns - An object where keys are directory names and values are arrays of file paths.
  */
 function getGroupedFiles(files: string[]): Record<string, string[]> {
 	const groupedFiles: Record<string, string[]> = {};

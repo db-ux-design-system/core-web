@@ -82,7 +82,7 @@ export default function DBSelect(props: DBSelectProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -93,7 +93,7 @@ export default function DBSelect(props: DBSelectProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -299,7 +299,7 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
@@ -311,7 +311,7 @@ export default function DBSelect(props: DBSelectProps) {
 				name={props.name}
 				size={props.size}
 				value={props.value ?? state._value ?? ''}
-				autocomplete={props.autocomplete}
+				autocomplete={props.autoComplete ?? props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
@@ -336,7 +336,8 @@ export default function DBSelect(props: DBSelectProps) {
 						class="placeholder"
 						value=""
 						data-show-empty-option={getBooleanAsString(
-							state.shouldShowEmptyOption()
+							state.shouldShowEmptyOption(),
+							'showEmptyOption'
 						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
@@ -405,9 +406,10 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<Show when={props.placeholder}>
-				<span class="db-select-placeholder" id={state._placeholderId}>
-					{props.placeholder}
-				</span>
+				<span
+					class="db-select-placeholder"
+					data-placeholder={props.placeholder}
+					id={state._placeholderId}></span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext

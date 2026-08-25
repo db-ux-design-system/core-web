@@ -24,6 +24,7 @@ import SelectShowcase from '@components/components/select/showcase/select.showca
 import StackShowcase from '@components/components/stack/showcase/stack.showcase';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase';
+import TableShowcase from '@components/components/table/showcase/table.showcase';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
@@ -67,6 +68,7 @@ const nameComponentMap = {
 	stack: <StackShowcase isPatternhub />,
 	switch: <SwitchShowcase isPatternhub />,
 	'tab-item': <TabItemShowcase isPatternhub />,
+	table: <TableShowcase isPatternhub />,
 	tabs: <TabsShowcase isPatternhub />,
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
@@ -76,21 +78,16 @@ const nameComponentMap = {
 
 const addComponentsToNavigationItems = (
 	navigationItems: NavigationItem[]
-): NavigationItem[] => {
-	return navigationItems.map((navigationItem) => {
-		return {
-			...navigationItem,
-			subNavigation: navigationItem.subNavigation?.map((subNavItem) => {
-				return {
-					...subNavItem,
-					component: subNavItem.name
-						? nameComponentMap[subNavItem.name]
-						: undefined
-				};
-			})
-		};
-	});
-};
+): NavigationItem[] =>
+	navigationItems.map((navigationItem) => ({
+		...navigationItem,
+		subNavigation: navigationItem.subNavigation?.map((subNavItem) => ({
+			...subNavItem,
+			component: subNavItem.name
+				? nameComponentMap[subNavItem.name]
+				: undefined
+		}))
+	}));
 
 export const componentChildren: NavigationItem[] =
 	addComponentsToNavigationItems(Components);
@@ -289,8 +286,5 @@ export const getBreadcrumb = (path: string) => {
 		.toSorted((a, b) => (a.path?.length ?? 0) - (b.path?.length ?? 0));
 };
 
-export const getAllComponentGroupNames = (): string[] => {
-	return componentChildren
-		.filter(({ name }) => Boolean(name))
-		.map(({ name }) => name!);
-};
+export const getAllComponentGroupNames = (): string[] =>
+	componentChildren.filter(({ name }) => name).map(({ name }) => name!);

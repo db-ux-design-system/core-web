@@ -47,9 +47,8 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) => {
 		const phraseParts = phrase.split('. ');
 		let result = phraseParts
-			.filter(
-				(sPhrase) =>
-					!standardPhrases.some((string) => sPhrase.includes(string))
+			.filter((sPhrase) =>
+				standardPhrases.every((string) => !sPhrase.includes(string))
 			)
 			.map((part, index) => {
 				// There is an issue with macOS duplicating some parts, we remove the duplicates here
@@ -85,7 +84,9 @@ export const generateSnapshot = async (
 	retry?: number,
 	phraseLogConvertFn?: (phraseLog: string[]) => string[]
 ) => {
-	if (!screenReader) return;
+	if (!screenReader) {
+		return;
+	}
 
 	let phraseLog: string[] = await screenReader.spokenPhraseLog();
 
@@ -109,8 +110,6 @@ export const generateSnapshot = async (
 
 	expect(snapshot).toMatchSnapshot();
 };
-
-export const STABILIZATION_DELAY = 1000;
 
 const SWITCH_APPLICATION = {
 	keyCode: [WindowsKeyCodes.Escape],
@@ -175,7 +174,6 @@ export const runTest = async ({
 		waitUntil: 'networkidle'
 	});
 	const pageTitle = await page.title();
-	await page.waitForTimeout(500);
 
 	let recorder: (() => void) | undefined;
 
@@ -186,21 +184,21 @@ export const runTest = async ({
 
 	const screenRecorder: VoiceOverPlaywright | NVDAPlaywright | undefined =
 		nvda ?? voiceOver;
-	if (!screenRecorder) return;
+	if (!screenRecorder) {
+		return;
+	}
 
 	/**
-	 * In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
-	 * Therefore, we need to move back with the cursor to the start and delete the logs before starting.
-	 * In windows:Chrome the cursor is on the middle element.
-	 * Therefore, we need to move back and delete the logs, and then start everything.
+	 In macOS:Webkit the [automaticallySpeakWebPage](https://github.com/guidepup/guidepup/blob/main/src/macOS/VoiceOver/configureSettings.ts#L58) is active.
+	 Therefore, we need to move back with the cursor to the start and delete the logs before starting.
+	 In windows:Chrome the cursor is on the middle element.
+	 Therefore, we need to move back and delete the logs, and then start everything.
 	 */
 
 	await (nvda
 		? // TODO: We can revert this after https://github.com/guidepup/guidepup-playwright/pull/32 is released
 			nvdaNavigateToWebContent(nvda, pageTitle)
 		: screenRecorder.navigateToWebContent());
-
-	await page.waitForTimeout(500);
 
 	await testFn?.(voiceOver, nvda, page);
 	await postTestFn?.(voiceOver, nvda, retry);
@@ -222,6 +220,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 	};
 
 	if (isWin()) {
+		test.use({ nvdaStartOptions: { capture: true } });
 		test?.(title, async ({ page, nvda }, { retry }) => {
 			await runTest({
 				...testType,
@@ -231,6 +230,7 @@ export const testDefault = (defaultTestType: DefaultTestType) => {
 			});
 		});
 	} else {
+		test.use({ voiceOverStartOptions: { capture: true } });
 		test?.(title, async ({ page, voiceOver }, { retry }) => {
 			await runTest({
 				...testType,

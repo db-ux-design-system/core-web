@@ -1,5 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, signal } from '@angular/core';
+import { form } from '@angular/forms/signals';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import {
 	COLOR,
@@ -10,16 +10,15 @@ import {
 	DBHeader,
 	DBNavigation,
 	DBPage,
-	DBSelect,
 	DENSITIES,
 	DENSITY,
 	DENSITY_CONST,
 	MetaNavigationDirective,
 	NavigationDirective,
 	SecondaryActionDirective
-} from '../../../../output/angular/src';
-import { environment } from '../environments/environment';
+} from '@components';
 import { NavItemComponent } from './nav-item/nav-item.component';
+import { SettingsSelectComponent } from './settings-select/settings-select.component';
 import {
 	getSortedNavigationItems,
 	NAVIGATION_ITEMS,
@@ -29,45 +28,34 @@ import {
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : [],
-	imports: environment.webComponents
-		? [
-				FormsModule,
-				RouterOutlet,
-				NavItemComponent,
-				DBPage,
-				DBHeader,
-				DBNavigation,
-				SecondaryActionDirective,
-				NavigationDirective,
-				MetaNavigationDirective
-			]
-		: [
-				FormsModule,
-				RouterOutlet,
-				NavItemComponent,
-				DBPage,
-				DBHeader,
-				DBBrand,
-				DBNavigation,
-				DBSelect,
-				DBButton,
-				SecondaryActionDirective,
-				NavigationDirective,
-				MetaNavigationDirective
-			],
+	imports: [
+		RouterOutlet,
+		NavItemComponent,
+		DBPage,
+		DBHeader,
+		DBBrand,
+		DBNavigation,
+		DBButton,
+		SecondaryActionDirective,
+		NavigationDirective,
+		MetaNavigationDirective,
+		SettingsSelectComponent
+	],
 	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-	isWebComponents = environment.webComponents;
 	drawerOpen = false;
 	navigationItems: NavItem[] = getSortedNavigationItems(NAVIGATION_ITEMS);
 
 	densities = DENSITIES;
 	colors = COLORS;
 
-	density = DENSITY.REGULAR;
-	color = COLOR.NEUTRAL_BG_LEVEL_1;
+	settingsModel = signal({
+		density: DENSITY.REGULAR,
+		color: COLOR.NEUTRAL_BG_LEVEL_1
+	});
+
+	settingsForm = form(this.settingsModel);
 
 	page?: string;
 	fullscreen = false;
@@ -80,11 +68,17 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {
 		this.route.queryParams.subscribe((parameters) => {
 			if (parameters[DENSITY_CONST]) {
-				this.density = parameters[DENSITY_CONST];
+				this.settingsModel.update((m) => ({
+					...m,
+					density: parameters[DENSITY_CONST]
+				}));
 			}
 
 			if (parameters[COLOR_CONST]) {
-				this.color = parameters[COLOR_CONST];
+				this.settingsModel.update((m) => ({
+					...m,
+					color: parameters[COLOR_CONST]
+				}));
 			}
 
 			if (parameters['page']) {
@@ -98,13 +92,17 @@ export class AppComponent implements OnInit {
 	}
 
 	getChangeableClasses = () => {
-		return `db-density-${this.density} db-${this.color}`;
+		const density = this.settingsForm.density().value();
+		const color = this.settingsForm.color().value();
+		return `db-density-${density} db-${color}`;
 	};
 
 	onChange = async (_value: unknown) => {
+		const density = this.settingsForm.density().value();
+		const color = this.settingsForm.color().value();
 		await this.router.navigate([], {
 			relativeTo: this.route,
-			queryParams: { density: this.density, color: this.color },
+			queryParams: { density, color },
 			queryParamsHandling: 'merge'
 		});
 	};

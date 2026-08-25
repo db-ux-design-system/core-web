@@ -1,22 +1,30 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBCustomSelect } from '../../../../../../../output/angular/src';
-import { environment } from '../../../../environments/environment';
+import { form, FormField } from '@angular/forms/signals';
+import { DBCustomSelect } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-custom-selects',
 	standalone: true,
-	imports: environment.webComponents
-		? [WrapperComponent, FormsModule, ReactiveFormsModule]
-		: [WrapperComponent, DBCustomSelect, FormsModule, ReactiveFormsModule],
-	templateUrl: './custom-selects.component.html',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	imports: [
+		WrapperComponent,
+		DBCustomSelect,
+		FormsModule,
+		ReactiveFormsModule,
+		FormField
+	],
+	// NO_ERRORS_SCHEMA required for Angular 21 [formField] directive template type-checking.
+	// Remove when Angular 22 is the minimum supported version.
+	schemas: [NO_ERRORS_SCHEMA],
+	templateUrl: './custom-selects.component.html'
 })
 export class CustomSelectsComponent {
 	plain = ['combobox-2'];
 	ngModel = ['combobox-2'];
 	formControl: FormControl = new FormControl(['combobox-2']);
+	signalModel = signal({ values: ['combobox-2'] });
+	signalForm = form(this.signalModel);
 
 	options = [
 		{ value: 'combobox-0', id: 'combobox-0' },

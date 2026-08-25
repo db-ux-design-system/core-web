@@ -1,5 +1,17 @@
 [
 	{
+		"name": "arrows_vertical.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "arrow-down-up"
+	},
+	{
+		"name": "more_vertical.svg",
+		"type": "lucide",
+		"licence": "https://lucide.dev/license#lucide-license",
+		"origin": "ellipsis-vertical"
+	},
+	{
 		"name": "arrow_down.svg",
 		"type": "lucide",
 		"licence": "https://lucide.dev/license#lucide-license",

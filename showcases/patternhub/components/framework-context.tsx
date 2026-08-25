@@ -20,7 +20,7 @@ const FrameworkContext = createContext<FrameworkContextType | undefined>(
 const frameworkKey = 'db-ux-framework';
 
 /**
- * Provides access to the currently selected framework and related helpers.
+ Provides access to the currently selected framework and related helpers.
  */
 export const useFramework = () => {
 	const context = useContext(FrameworkContext);
@@ -32,7 +32,7 @@ export const useFramework = () => {
 };
 
 /**
- * Stores the selected framework in URL/localStorage and keeps consumers in sync.
+ Stores the selected framework in URL/localStorage and keeps consumers in sync.
  */
 export const FrameworkProvider = ({ children }: { children: ReactNode }) => {
 	const [framework, setFrameworkState] =

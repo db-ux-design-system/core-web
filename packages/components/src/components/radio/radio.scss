@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 
+// jscpd:ignore-start
 @mixin get-radio-validity-colors($variant: "successful") {
 	--db-check-element-border-color: var(
 		--db-#{$variant}-on-bg-basic-emphasis-70-default
@@ -26,6 +27,8 @@
 		--db-#{$variant}-bg-basic-transparent-full-pressed
 	);
 }
+
+// jscpd:ignore-end
 
 .db-radio {
 	@include form-components.set-default-check-element;

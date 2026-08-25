@@ -7,21 +7,24 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
-function getTextContent(node: any): string | null {
+function getTextContent(node: any): string | undefined {
 	if (node.children) {
 		for (const child of node.children) {
 			if (child.type === 'JSXText') {
 				return child.value.trim();
 			}
+
 			if (child.type === 'Text') {
-				return child.value?.trim() || null;
+				return child.value?.trim() || undefined;
 			}
+
 			if (child.type === 'VText') {
-				return child.value?.trim() || null;
+				return child.value?.trim() || undefined;
 			}
 		}
 	}
-	return null;
+
+	return undefined;
 }
 
 export default {
@@ -42,7 +45,9 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const placement = getAttributeValue(node, 'placement');
-			if (!placement || placement === 'inline') return;
+			if (!placement || placement === 'inline') {
+				return;
+			}
 
 			const text = getAttributeValue(node, 'text');
 			const children = getTextContent(node);
@@ -70,7 +75,9 @@ export default {
 							node,
 							` label="${content || 'Badge'}"`
 						);
-						if (!fixData) return null;
+						if (!fixData) {
+							return null;
+						}
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
 							fixData.attributeText
@@ -85,14 +92,20 @@ export default {
 			COMPONENTS.DBBadge,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkBadge = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBBadge)) {
+				return;
+			}
 
 			const placement = getAttributeValue(openingElement, 'placement');
-			if (!placement || placement === 'inline') return;
+			if (!placement || placement === 'inline') {
+				return;
+			}
 
 			const text = getAttributeValue(openingElement, 'text');
 			const children = getTextContent(node);
@@ -135,9 +148,7 @@ export default {
 								);
 								if (!label) {
 									const lastAttr =
-										openingElement.attributes[
-											openingElement.attributes.length - 1
-										];
+										openingElement.attributes.at(-1);
 									const insertPos = lastAttr
 										? lastAttr.range[1]
 										: openingElement.name.range[1];

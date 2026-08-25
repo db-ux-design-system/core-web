@@ -1,5 +1,6 @@
 /* This file was generated */
 export const ALL_ICONS: string[] = [
+	'arrows_vertical',
 	'arrow_down',
 	'arrow_left',
 	'arrow_right',
@@ -35,6 +36,7 @@ export const ALL_ICONS: string[] = [
 	'menu',
 	'minus',
 	'moon',
+	'more_vertical',
 	'plus',
 	'resize_handle_corner',
 	'sun',

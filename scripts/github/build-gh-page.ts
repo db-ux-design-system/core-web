@@ -4,16 +4,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { extract } from 'tar';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const buildGHPage = async () => {
-	/* eslint-disable @typescript-eslint/naming-convention */
 	const { NAME } = process.env;
 	const { OWNER_NAME } = process.env;
 	const { REPO_NAME } = process.env;
 	const OUT_DIR: string = process.env.OUT_DIR ?? 'out';
-	const RELEASE: boolean = process.env.RELEASE === 'true';
-	const PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
-	/* eslint-enable @typescript-eslint/naming-convention */
+	const IS_RELEASE: boolean = process.env.RELEASE === 'true';
+	const IS_PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
 
 	if (!NAME) {
 		console.error('Error: Missing NAME variable');
@@ -40,19 +37,19 @@ const buildGHPage = async () => {
 	console.log('📦 Unpack Tar');
 	await extract({
 		file: 'gh-pages.tar.gz',
-		// eslint-disable-next-line @typescript-eslint/naming-convention
+
 		C: 'public',
 		strip: 1
 	});
 
-	if (RELEASE) {
+	if (IS_RELEASE) {
 		console.log('🔃 Create redirect');
 		const redirectContent = `<meta http-equiv="refresh" content="0; URL=https://${OWNER_NAME}.github.io/${REPO_NAME}/version/latest" />`;
 		fs.writeFileSync(path.join('public', 'index.html'), redirectContent);
 	}
 
 	console.log('👣 Move out dir');
-	if (PRE_RELEASE || RELEASE) {
+	if (IS_PRE_RELEASE || IS_RELEASE) {
 		const versionDir = path.join('public', 'version');
 		if (!fs.existsSync(versionDir)) {
 			console.log('Make dir ./public/version');
@@ -65,7 +62,7 @@ const buildGHPage = async () => {
 			fs.rmSync(nameDir, { recursive: true });
 		}
 
-		if (RELEASE) {
+		if (IS_RELEASE) {
 			const latestDir = path.join(versionDir, 'latest');
 			if (fs.existsSync(latestDir)) {
 				console.log('Remove dir ./public/version/latest');
@@ -97,4 +94,5 @@ const buildGHPage = async () => {
 	}
 };
 
+// eslint-disable-next-line unicorn/prefer-top-level-await
 void buildGHPage();

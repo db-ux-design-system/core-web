@@ -329,7 +329,7 @@ Otherwise, if the font is not initially required but would be requested later or
 
 ## Migration
 
-We provide a [CLI tool](https://github.com/db-ux-design-system/core-web/blob/main/packages/migration/README.md) to auto migrate your source code.
+For migration guidance between versions, see the [migration docs](https://github.com/db-ux-design-system/core-web/tree/main/docs/migration/).
 
 ## Deutsche Bahn brand
 
@@ -346,7 +346,7 @@ Contributions are very welcome, please refer to the [contribution guide](https:/
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
+community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/.github/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

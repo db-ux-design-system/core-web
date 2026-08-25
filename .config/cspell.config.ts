@@ -8,6 +8,7 @@ export default defineConfig({
 		'pnpm-workspace.yaml',
 		'node_modules',
 		'.git',
+		'.gitignore',
 		'__snapshots__',
 		'dist',
 		'build',
@@ -27,6 +28,7 @@ export default defineConfig({
 		'**/results/**',
 		'./showcases/screen-reader/translations.ts',
 		'storybooks/_storybook/src/welcome.mdx',
+		'storybooks/**/*.ts',
 		'playwright-report/**',
 		'showcases/shared/*.json',
 		'**/*.example.lite.tsx',
@@ -36,7 +38,6 @@ export default defineConfig({
 		'**/test/**',
 		'**/__tests__/**',
 		'**/public/**',
-		'packages/migration/src/migration/color-q32024.ts',
 		'packages/mcp-server/docs/migration/db-ui-icon-migration.md',
 		'packages/mcp-server/docs/migration/db-ui-color-migration.md',
 		'output/**',
@@ -49,7 +50,8 @@ export default defineConfig({
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
 		'showcases/patternhub/pages/foundations/densities/examples.tsx',
-		'showcases/angular-showcase/src/app/components/form/form.component.ts'
+		'showcases/angular-showcase/src/app/components/form/form.component.ts',
+		'.vscode/*.json'
 	],
 	dictionaries: [
 		'custom-words',

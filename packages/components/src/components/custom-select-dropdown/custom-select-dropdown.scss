@@ -12,8 +12,8 @@
 	z-index: 32;
 	box-shadow: variables.$db-elevation-md;
 	min-inline-size: variables.$db-sizing-xl;
-	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
-	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
+	max-inline-size: calc(100dvw - 2 * #{variables.$db-spacing-fixed-sm});
+	max-block-size: calc(100dvh - 2 * #{variables.$db-spacing-fixed-sm});
 
 	&:not([data-width]),
 	&[data-width="fixed"] {
@@ -22,6 +22,15 @@
 			--db-custom-select-dropdown-fixed-inline-size,
 			#{variables.$db-sizing-3xl}
 		);
+	}
+
+	&[data-width="auto"] {
+		inline-size: max-content;
+
+		// Auto width grows to the longest option, so labels must not wrap.
+		.db-custom-select-list-item-label {
+			white-space: nowrap;
+		}
 	}
 
 	&[data-width="full"] {

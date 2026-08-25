@@ -1,0 +1,31 @@
+{
+	"mcpServers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["--yes", "@db-ux/mcp-server"],
+			"tools": [
+				"list_components",
+				"get_component_props",
+				"get_component_details",
+				"get_example_code",
+				"get_design_tokens",
+				"list_design_token_categories",
+				"list_icons",
+				"docs_search",
+				"list_migration_guides",
+				"get_migration_guide",
+				"scan_v2_migration",
+				"list_visuals",
+				"get_visual_reference"
+			]
+		},
+		"figma": {
+			"command": "npx",
+			"args": ["-y", "figma-developer-mcp", "--stdio"],
+			"env": {
+				"FIGMA_API_KEY": "${FIGMA_API_KEY}"
+			},
+			"tools": ["get_figma_data", "download_figma_images"]
+		}
+	}
+}

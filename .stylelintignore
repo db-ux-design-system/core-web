@@ -1,5 +1,6 @@
 assets/fonts/**/sources
 **/node_modules/**
+scripts/
 build/
 build-outputs/
 build-showcases/

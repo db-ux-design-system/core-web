@@ -1,6 +1,5 @@
 import { generateIconFonts } from '@db-ux/icon-font-tools';
 import { promises as fs } from 'node:fs';
-import { rename } from 'node:fs/promises';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -16,10 +15,6 @@ const fallbackIconsDir = path.resolve(__dirname, '../../assets/fallback-icons');
 const fallbackFontSource = path.resolve(
 	__dirname,
 	'../../assets/fallback-icons/fonts/all/icon-font-fallback.woff2'
-);
-const fallbackFontDestination = path.resolve(
-	__dirname,
-	'../../assets/icons/fonts/fallback/icon-font-fallback.woff2'
 );
 
 const run = async () => {
@@ -46,9 +41,6 @@ const run = async () => {
 		withSizes: false,
 		debug: true
 	});
-
-	await fs.mkdir(path.dirname(fallbackFontDestination), { recursive: true });
-	await rename(fallbackFontSource, fallbackFontDestination);
 };
 
 void run();

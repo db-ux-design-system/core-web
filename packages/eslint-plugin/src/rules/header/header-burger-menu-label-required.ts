@@ -22,7 +22,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const burgerMenuLabel = getAttributeValue(node, 'burgerMenuLabel');
-			if (burgerMenuLabel === null || burgerMenuLabel === '') {
+			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -38,18 +38,22 @@ export default {
 			COMPONENTS.DBHeader,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkHeader = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBHeader)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBHeader)) {
+				return;
+			}
 
 			const burgerMenuLabel = getAttributeValue(
 				openingElement,
 				'burgerMenuLabel'
 			);
 
-			if (burgerMenuLabel === null || burgerMenuLabel === '') {
+			if (burgerMenuLabel === undefined || burgerMenuLabel === '') {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.HEADER_MISSING_BURGER_MENU_LABEL

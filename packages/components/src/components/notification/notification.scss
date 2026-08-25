@@ -147,8 +147,6 @@
 	// Icon grid positioning
 	&[data-icon]::before,
 	&::before {
-		--db-icon-margin-end: 0;
-
 		@include icons.to-filled-icon;
 
 		grid-area: icon;

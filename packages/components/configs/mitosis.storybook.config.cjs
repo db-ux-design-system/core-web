@@ -7,7 +7,7 @@ const vue = require('./vue/index.cjs');
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
-	files: ['**/*.example.lite.tsx'],
+	files: ['**/*.example.lite.tsx', '**/examples/data.ts', '**/model.ts'],
 	targets: ['angular', 'react', 'vue'],
 	dest: '../../storybooks',
 	getTargetPath: ({ target }) => {

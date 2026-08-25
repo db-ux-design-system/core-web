@@ -1,5 +1,193 @@
 # @db-ux/wc-core-components
 
+## 5.1.5
+
+### Patch Changes
+
+- fix: handle `env(safe-area-inset-*)` correctly for drawer `direction="up"` and `direction="down"` - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+- fix(`DBHeader`): react to `forceMobile` changes after the initial render - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: use `dvh`/`dvw` instead of `lvh`/`lvw` for correct mobile viewport sizing in drawer - [see commit 630593c](https://github.com/db-ux-design-system/core-web/commit/630593c9c2a222d117b0644bb03d0dea5e194eea)
+
+- fix: re-run tooltip auto-placement when content changes - [see commit 32d9b9a](https://github.com/db-ux-design-system/core-web/commit/32d9b9a364cc525e3818c26b3c0eae1a05f2b550)
+
+- fix: allow auto-width tab items to fit their complete content - [see commit 7e4ae9a](https://github.com/db-ux-design-system/core-web/commit/7e4ae9adf2bd7dd1c00f03eac3a87c904bde75e7)
+
+- fix: layout issue with sub-navigation-item inside the mobile drawer - [see commit bc079f0](https://github.com/db-ux-design-system/core-web/commit/bc079f055c02532334af4aaa295d08d104f92456)
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+### Patch Changes
+
+- refactor(drawer): further simplified transition implementation - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+### Minor Changes
+
+- feat: accept `autoComplete` (camelCase) as alias for `autocomplete` on form components - [see commit 6ac2c72](https://github.com/db-ux-design-system/core-web/commit/6ac2c722ea1a3d992218f78c4881b30c2c8c65cf)
+
+- refactor(drawer): replace JS transition workaround with CSS native functionality - [see commit 9370d63](https://github.com/db-ux-design-system/core-web/commit/9370d638176cf270e5700094c2a544d712c7413b)
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- fix(Header): missing close-button default label in drawer - [see commit ad24b1c](https://github.com/db-ux-design-system/core-web/commit/ad24b1cc24b0e34617941d874059cd69eb289d70)
+
+- fix: safe-guarding the access to `ref` in several components - [see commit 7b0e6da](https://github.com/db-ux-design-system/core-web/commit/7b0e6dac904748d7c61bc064963ab729a1c3c5b4)
+
+## 5.0.2
+
+### Patch Changes
+
+- fix(links): removing icon underline at 110% zoom level - [see commit dc5a0de](https://github.com/db-ux-design-system/core-web/commit/dc5a0de4067468f858a7b22e53c5565c14688949)
+
+- refactor: prevent placeholder from being hidden when select is opened - [see commit 1421a4f](https://github.com/db-ux-design-system/core-web/commit/1421a4fb9ed5fe7307960fba00e5932f3971665a)
+
+- fix(Angular & Stencil): attributePassing skips attributes - [see commit 90aa1ed](https://github.com/db-ux-design-system/core-web/commit/90aa1ed9cfc2daafc0bd4d199cb43a02784e7a60)
+
+## 5.0.1
+
+### Patch Changes
+
+- fix: drawer close handling by removing timeout state management - [see commit 45d93f0](https://github.com/db-ux-design-system/core-web/commit/45d93f010bf0caece669f96c6f00d288ebdf5363)
+
+- fix(select): icon overlapping the floating label - [see commit 9dff6ed](https://github.com/db-ux-design-system/core-web/commit/9dff6ed85fa5e2f6aebd89b3b2662e3a017b196e)
+
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: DBDrawer with breaking changes - [see commit 9189f6c](https://github.com/db-ux-design-system/core-web/commit/9189f6c24cd3a64f072c2f60f8c8127d1ed68c55):
+
+        - The `DBDrawer` component now requires a `DBDrawerHeader` component to be passed in the `header` slot.
+        - The `spacing` property has been removed from `DBDrawer`.
+        - The default `direction` has changed from `right` to `to-left`.
+        - The `width` property has been renamed to `containerSize`.
+        - The `direction` values have been renamed from `right`/`left` to `to-left`/`to-right`.
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+- refactor: rework DBTabs and DBTabItem - [see commit c50e522](https://github.com/db-ux-design-system/core-web/commit/c50e5221a4c6f3357ff52451291bdc5772267178):
+
+        - **Breaking:** DBTabItem now renders a native `button` (`role="tab"`) instead of a radio `input`.
+        - **Breaking:** Removed `checked`, `noText` and `name` from DBTabItem.
+        - **Breaking:** Renamed DBTabs props `onTabSelect` → `onIndexChange`, `alignment` → `tabItemAlignment`, `width` → `tabItemWidth`.
+        - **Breaking:** Deep linking derives the tab id from the `id` prop instead of `label`.
+        - Added truncation tooltip for overflowing tab labels and fixed vertical layout, trailing icon and tooltip placement.
+
+### Patch Changes
+
+- fix: remove dead `z-index` and `position: relative` from table-row interactive children - [see commit 7edb77b](https://github.com/db-ux-design-system/core-web/commit/7edb77bb9f90d4a79f238ebab362074d12f02f0f)
+
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: correct accordion variant backgrounds to match design (divider is transparent, card is level-1 including the open content area) - [see commit b611b84](https://github.com/db-ux-design-system/core-web/commit/b611b845e6aded8f50dd07f3727ebf5fdf902b69)
+
+- fix: use inline-flex with align-items center for link components to vertically center text with fixed height across densities - [see commit 5ebdef8](https://github.com/db-ux-design-system/core-web/commit/5ebdef89b14d56d901630aa61e098213704ba603)
+
+- fix: `key` special attributes need to be unique - [see commit 63eb9d5](https://github.com/db-ux-design-system/core-web/commit/63eb9d596e83f196ca00aee1de26a5a2e33b4864)
+
+## 4.13.0
+
+### Minor Changes
+
+- feat: enable Invoker Commands (`command`- and `commandfor`-HTML-attributes) for DBButton - [see commit 00f50c3](https://github.com/db-ux-design-system/core-web/commit/00f50c3fc4508e62f2e30589c00148c54e2fc852)
+
+## 4.12.1
+
+### Patch Changes
+
+- fix(custom-select): dropdown with `dropdownWidth="auto"` now correctly sizes to content width and respects the trigger minimum width. Long option labels no longer get truncated: `auto` keeps them on a single line (dropdown grows to the longest option), while `fixed` and `full` wrap long labels onto new lines. - [see commit 68dedc3](https://github.com/db-ux-design-system/core-web/commit/68dedc33c324b48339d5bb73a85fdff3045ed059)
+
+- fix(drawer): prevent backdrop drag-close when selection starts inside content - [see commit b53ff8a](https://github.com/db-ux-design-system/core-web/commit/b53ff8a4f0a5350c5be41fad072e14797676bba7)
+
+## 4.12.0
+
+### Minor Changes
+
+- feat: emit spec-compliant ESM with explicit import extensions - [see commit 73808d6](https://github.com/db-ux-design-system/core-web/commit/73808d6ec80085451d72e5ad73eb154198a60558):
+
+    - The generated React, Vue and Web Component outputs now produce standards-compliant
+    - ESM: every relative import/export carries an explicit `.js` / `/index.js` (or `.vue`)
+    - extension, added during Mitosis generation. This resolves `ERR_UNSUPPORTED_DIR_IMPORT`
+    - in strict ESM environments such as Node.js native ESM and Vitest 4.
+    - The React output additionally compiles with `module`/`moduleResolution: "node16"`
+    - (plus `jsx: "react-jsx"` and `target: "es2022"`), so missing extensions are caught at
+    - compile time. As a result the emitted React JS uses the `react/jsx-runtime` transform
+    - and es2022 syntax (React 19 compatible).
+
+## 4.11.1
+
+### Patch Changes
+
+- fix: resolve attribute passing issues for custom components by adding a MutationObserver to reactively forward attributes from parent to child in Angular and Stencil targets, and improve handling of style, `data-`, and `aria-` attributes - [see commit 8de7430](https://github.com/db-ux-design-system/core-web/commit/8de7430b6045bf0571d300c45717a8162fc4ae25)
+
+- fix: remove `readonly` attribute on `DBInput` and `DBTextarea` when `readOnly`/`readonly` is `false` - [see commit 312ad4c](https://github.com/db-ux-design-system/core-web/commit/312ad4c7582b7315042b23a7cc8b485889ba6fd8):
+
+    - Passing `readOnly={false}` (e.g. via Angular's `formField` directive) previously rendered `readonly="false"` into the DOM. Since `readonly` is a boolean HTML attribute, its mere presence made the field read-only. The binding now resolves to `undefined` when not read-only, so the attribute is omitted entirely.
+
+- fix(tooltip): clean up parent listeners and observers on unmount - [see commit b050660](https://github.com/db-ux-design-system/core-web/commit/b050660b3b8cc9f0fde2a9d96dfbd6c0f02cc24f)
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+### Patch Changes
+
+- fix: Add missing `propertyName` parameter to all `getBooleanAsString` calls across components for consistent string-based boolean parsing. - [see commit 6c11be5](https://github.com/db-ux-design-system/core-web/commit/6c11be54397c425607103f44b987b752efffb6d5)
+
+- fix: Remove unwanted whitespace characters from rendered output to prevent layout shifts - [see commit a0f23a4](https://github.com/db-ux-design-system/core-web/commit/a0f23a4a3e715414de3d045b59b88dc3ac28d5e7)
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+### Patch Changes
+
+- refactor: enhanced imports matrix and adjusted import path for `defineCustomElements` example in `README` - [see commit da9e96a](https://github.com/db-ux-design-system/core-web/commit/da9e96a2e8044c6586da206f39b8a9746fd05ab8)
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+### Minor Changes
+
+- feat(`DBAccordionItem`): add `open` prop to control the expanded state of an accordion item programmatically. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
+
+- refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
+
+- feat: add bundled output (`bundle/`) so the web-components package can be consumed directly via a single script import without a bundler. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
+
 ## 4.9.1
 
 ### Patch Changes
@@ -206,8 +394,7 @@ _version bump_
 - fix(form elements): `valid` background- and border-colors - [see commit 8f07e55](https://github.com/db-ux-design-system/core-web/commit/8f07e55f2155fcb619198857397ce354f90c4803)
 
 - fix: set DBTabItem internal state `_selected` correctly - [see commit f7625cb](https://github.com/db-ux-design-system/core-web/commit/f7625cbd9d64513527e826c9d2c1ef42b2734a4b):
-
-                  - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
+    - Now also sets aria-selected=true|false correctly which improves screen reader behaviour
 
 ## 4.2.1
 

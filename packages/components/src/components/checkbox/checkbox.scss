@@ -9,8 +9,6 @@
 %center-icon {
 	&:not([data-show-icon-leading="false"]) {
 		&::before {
-			--db-icon-margin-end: 0;
-
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
@@ -35,6 +33,7 @@
 		@include form-components.get-state("active");
 	}
 
+	// jscpd:ignore-start
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
 			@include form-components.get-validity-color-checkbox("valid");
@@ -45,6 +44,8 @@
 		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
+	// jscpd:ignore-end
+
 	input {
 		@include helpers.display(flex);
 
@@ -54,6 +55,8 @@
 
 		&:checked {
 			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+
+			// jscpd:ignore-start
 			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
@@ -64,6 +67,8 @@
 			--db-adaptive-bg-basic-transparent-full-pressed: var(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
+
+			// jscpd:ignore-end
 
 			@extend %center-icon;
 

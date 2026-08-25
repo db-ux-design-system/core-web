@@ -1,5 +1,87 @@
 # @db-ux/mcp-server
 
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
+## 5.1.3
+
+### Patch Changes
+
+- fix: remove invalid `@` org scope from `bin` entries in `package.json` - [see commit ff8de1f](https://github.com/db-ux-design-system/core-web/commit/ff8de1ffa813c0f92b9ee78c5920b1b81371c468)
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
+## 5.0.2
+
+_version bump_
+
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+_version bump_
+
+## 4.14.0
+
+_version bump_
+
+## 4.13.0
+
+_version bump_
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+_version bump_
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
 ## 4.9.1
 
 _version bump_

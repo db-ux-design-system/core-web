@@ -2,7 +2,7 @@ import { DBCustomSelect } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
-const FormCustomSelects = () => {
+export default function FormCustomSelects() {
 	const [controlled, setControlled] = useState(['combobox-2']);
 	const [uncontrolled, setUncontrolled] = useState(['combobox-2']);
 
@@ -32,6 +32,4 @@ const FormCustomSelects = () => {
 			/>
 		</FormWrapper>
 	);
-};
-
-export default FormCustomSelects;
+}

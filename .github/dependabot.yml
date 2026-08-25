@@ -2,7 +2,9 @@
 version: 2
 updates:
   - package-ecosystem: "github-actions"
-    directory: "/"
+    directories:
+      - "/"
+      - "/.github/actions/*"
     schedule:
       interval: "daily"
       time: "23:00"
@@ -11,6 +13,10 @@ updates:
       separator: "-"
     cooldown:
       default-days: 7
+    groups:
+      codeql:
+        patterns:
+          - "github/codeql-action/*"
 
   # Daily: Check minor and patch updates
   - package-ecosystem: "npm"
@@ -101,10 +107,6 @@ updates:
           - "typescript"
           - "tsx"
           - "tslib"
-      # Commitlint
-      commitlint:
-        patterns:
-          - "@commitlint*"
       # Other grouped dependencies
       builder.io:
         patterns:
@@ -129,6 +131,12 @@ updates:
           - "@next*"
           - "eslint-config-next"
           - "next"
+      tanstack:
+        patterns:
+          - "@tanstack/*"
+      changesets:
+        patterns:
+          - "@changesets/*"
       # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:

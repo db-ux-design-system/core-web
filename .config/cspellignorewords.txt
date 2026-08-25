@@ -1,7 +1,18 @@
-moz
-webkit
+# (User)names
+mfranzke
+michaelmkraus
+nmerget
 merget
 franzke
+bruno-sch
+# GitHub Project IDs
+PVTSSF
+ADOC
+# Labels
+communityfeedback
+# further words
+moz
+webkit
 cicd
 Patternhub
 Textlink
@@ -85,6 +96,7 @@ nord
 angulars
 occaecati
 ngmodel
+formgroup
 johndoe
 COMMITISH
 licence
@@ -131,6 +143,7 @@ dbheader
 subnavigation
 mypath
 subnavigation
+icontrailing
 icononly
 autodocs
 amazonq
@@ -142,10 +155,12 @@ publishpackages
 turbopack
 lightningcss
 cooldown
+rowspan
 TSES
 trufflesecurity
 elif
 chromedriver
+Movistar
 Cheatsheet
 frontmatter
 businessunit
@@ -198,8 +213,42 @@ Categorises
 categorise
 optimised
 optimise
+ghsas
+rrrm
+GHSA
 browserslistrc
-# Usernames
-mfranzke
-michaelmkraus
-nmerget
+subcomponent
+worktree
+unpushed
+refspec
+PRRT
+triaging
+automations
+Untriaged
+untriaged
+fbca
+unreviewed
+notext
+prebundle
+knip
+checkin
+focusgroup
+unprovide
+tablists
+focusgroupstart
+commandfor
+popovertarget
+popovertargetaction
+interestfor
+styleable
+pasteable
+inspectable
+reimplementations
+prioritise
+nghost
+Ponyfill
+ponyfill
+ponyfills
+descope
+pnpms
+drilldown

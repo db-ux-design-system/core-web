@@ -1,12 +1,15 @@
 const ignoreFolders = [
 	'node_modules/**/*',
 	'build/**/*',
+	'**/build/**/*',
 	'.config/**/*',
 	'public/**/*',
 	'out/**/*',
 	'helpers/**/*',
 	'dist/**/*',
-	'packages/**/*',
+	'**/dist/**/*',
+	'packages/components/**/*',
+	'packages/foundations/**/*',
 	'showcases/patternhub/pages/components/**/*',
 	'showcases/nuxt-showcase/**/*',
 	'showcases/next-showcase/**/*',
@@ -18,7 +21,9 @@ const ignoreFolders = [
 	'**/playwright.*.ts',
 	'figma-code-connect',
 	'playwright-report/**/*',
-	'storybooks/**/.storybook/**/*'
+	'storybooks/**/.storybook/**/*',
+	'storybooks/**/vite.config.ts',
+	'**/vitest.config.ts'
 ];
 
 export default ignoreFolders;

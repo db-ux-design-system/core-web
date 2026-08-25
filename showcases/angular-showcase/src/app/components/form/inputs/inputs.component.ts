@@ -1,24 +1,53 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, input, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBInput } from '../../../../../../../output/angular/src';
-import { environment } from '../../../../environments/environment';
+import { form, FormField } from '@angular/forms/signals';
+import { DBInput } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
+
+/**
+ * Isolated component for [formField] binding on DBInput.
+ * NO_ERRORS_SCHEMA is scoped here so it does not suppress
+ * template type-checking in the parent InputsComponent.
+ * Remove when Angular 22 resolves the [formField] type conflict.
+ */
+@Component({
+	selector: 'app-signal-forms-input',
+	standalone: true,
+	imports: [DBInput, FormField],
+	schemas: [NO_ERRORS_SCHEMA],
+	template: `<db-input
+		label="signalForms"
+		placeholder="Placeholder"
+		message="Description"
+		icon="x_placeholder"
+		[formField]="formField()" />`
+})
+export class SignalFormsInputComponent {
+	formField = input.required<any>();
+}
 
 @Component({
 	selector: 'app-inputs',
 	standalone: true,
-	imports: environment.webComponents
-		? [WrapperComponent, FormsModule, ReactiveFormsModule]
-		: [WrapperComponent, DBInput, FormsModule, ReactiveFormsModule],
-	templateUrl: './inputs.component.html',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	imports: [
+		WrapperComponent,
+		DBInput,
+		FormsModule,
+		ReactiveFormsModule,
+		SignalFormsInputComponent
+	],
+	templateUrl: './inputs.component.html'
 })
 export class InputsComponent {
 	plain = 'test1';
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
+	signalModel = signal({ value: 'test4' });
+	signalForm = form(this.signalModel);
 	public handlePlainChange(event: Event | void) {
-		if (!event) return;
+		if (!event) {
+			return;
+		}
 		this.plain = (event.target as HTMLInputElement).value;
 	}
 }

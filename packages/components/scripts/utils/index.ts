@@ -21,8 +21,10 @@ export const runReplacements = (
 		replacements = [...replacements, ...component.overwrites.global];
 	}
 
+	// Trailing-comma cleanup is best-effort and should not cause errors
+	const trailingCommaPattern = ',\n' + ',';
 	replacements.push({
-		from: ',\n' + ',',
+		from: trailingCommaPattern,
 		to: ','
 	});
 

@@ -5,7 +5,7 @@ import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
 
-const App = () => {
+export default function App() {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
 
@@ -74,6 +74,4 @@ const App = () => {
 			</div>
 		</DBPage>
 	);
-};
-
-export default App;
+}

@@ -47,18 +47,16 @@ Those are the files you might want to change:
 You have two options:
 
 - **Recommended (Project-level):** Create a `.vscode/mcp.json` file in your project root. This allows you to share the MCP config with your team via Git.
-- **Alternative (User-level):** Add the entry to your global `settings.json`.
+- **Alternative (User-level):** Add the entry to your global `settings.json` underneath `mcp` object.
 
 > **Note:** If both exist, the `.vscode/mcp.json` file takes precedence.
 
 ```json
 {
-	"mcp": {
-		"servers": {
-			"db-ux": {
-				"command": "npx",
-				"args": ["--yes", "@db-ux/mcp-server"]
-			}
+	"servers": {
+		"db-ux": {
+			"command": "npx",
+			"args": ["--yes", "@db-ux/mcp-server"]
 		}
 	}
 }
@@ -291,8 +289,7 @@ manifest.json
             ├── react{}              — { "variant.example.tsx": "<source>" }
             ├── angular{}            — { "variant.example.ts":  "<source>" }
             ├── vue{}                — { "variant.example.vue": "<source>" }
-            ├── web-components{}     — { "variant.example.ts":  "<source>" }
-            └── html{}               — { "index.html": "<source>" }
+            └── web-components{}     — { "variant.example.ts":  "<source>" }
 ```
 
 This manifest is bundled into the final `index.js` by esbuild, producing a **~775 KB standalone executable** that carries all component knowledge inside it.

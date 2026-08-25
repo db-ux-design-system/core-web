@@ -46,7 +46,12 @@ export type DBHeaderDefaultProps = {
 	forceMobile?: boolean | string;
 
 	/**
-	 * This attribute sets the label for the burger menu button for mobile headers.
+	 * Text to pass in a headline for the drawer header.
+	 */
+	drawerHeaderText?: string;
+
+	/**
+	 * Sets the accessible label for the burger menu button of the mobile control panel.
 	 */
 	burgerMenuLabel?: string;
 };

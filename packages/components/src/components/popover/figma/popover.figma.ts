@@ -28,7 +28,10 @@ const popoverProps: Record<string, FigmaProp> = {
 			None: 'none'
 		}
 	},
-	_children: { type: 'nestedConnectedInstances' },
+	_children: {
+		type: 'children',
+		key: 'Children'
+	},
 	animation: { type: 'boolean', key: 'Animation' },
 	delay: {
 		type: 'enum',

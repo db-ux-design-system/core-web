@@ -126,11 +126,29 @@ In case that you're building a website or application for Deutsche Bahn, you'll 
 
 ## Usage
 
-The components work in any HTML context. Register them once at your app entry point:
+This package provides two output variants:
+
+### Default (requires `@stencil/core` as peer dependency)
+
+The default entry point uses Stencil's lazy-loading loader. `@stencil/core` must be installed separately.
+
+```shell
+npm i @stencil/core
+```
 
 ```js
 // main.js
 import { defineCustomElements } from "@db-ux/wc-core-components";
+defineCustomElements();
+```
+
+### Bundle (no external dependencies)
+
+The bundle entry point is fully self-contained — `@stencil/core` is bundled in and does not need to be installed separately.
+
+```js
+// main.js
+import { defineCustomElements } from "@db-ux/wc-core-components/bundle/index.js";
 defineCustomElements();
 ```
 
@@ -212,7 +230,7 @@ Contributions are very welcome, please refer to the [contribution guide](https:/
 ## Code of conduct
 
 We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/core-web/blob/main/CODE-OF-CONDUCT.md).
+community a harassment-free experience for everyone – have a look at our [Contributor Covenant Code of Conduct](https://github.com/db-ux-design-system/.github/blob/main/CODE-OF-CONDUCT.md).
 
 ## License
 

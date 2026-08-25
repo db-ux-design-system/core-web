@@ -1,26 +1,31 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DBRadio } from '../../../../../../../output/angular/src';
-import { environment } from '../../../../environments/environment';
+import { DBRadio } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
 @Component({
 	selector: 'app-radios',
 	standalone: true,
-	imports: [
-		environment.webComponents
-			? [WrapperComponent, FormsModule, ReactiveFormsModule]
-			: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule]
-	],
-	templateUrl: './radios.component.html',
-	schemas: environment.webComponents ? [CUSTOM_ELEMENTS_SCHEMA] : []
+	imports: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule],
+	templateUrl: './radios.component.html'
 })
 export class RadiosComponent {
 	plain = '';
 	ngModel = '';
 	formControl: FormControl = new FormControl('');
+	signalFormsValue = signal('');
 	public handlePlainChange(event: Event | void) {
-		if (!event) return;
+		if (!event) {
+			return;
+		}
 		this.plain = (event.target as HTMLInputElement).value;
+	}
+
+	public handleSignalFormsChange(event: Event | void) {
+		if (!event) {
+			return;
+		}
+
+		this.signalFormsValue.set((event.target as HTMLInputElement).value);
 	}
 }

@@ -585,16 +585,17 @@ Ensures components with close buttons have appropriate text attributes for acces
 
 ```jsx
 // React
-<DBNotification>Message</DBNotification>
-<DBDrawer>Content</DBDrawer>
+<DBNotification closeable>Message</DBNotification>
+<DBDrawerHeader>Title</DBDrawerHeader>
 <DBCustomSelect label="Select" />
 
 // Angular
-<db-notification>Message</db-notification>
-<db-drawer>Content</db-drawer>
+<db-notification closeable>Message</db-notification>
+<db-drawer-header>Title</db-drawer-header>
 
 // Vue
 <DBCustomSelect label="Select" />
+<DBDrawerHeader>Title</DBDrawerHeader>
 ```
 
 **✅ Valid:**
@@ -602,15 +603,96 @@ Ensures components with close buttons have appropriate text attributes for acces
 ```jsx
 // React
 <DBNotification closeButtonText="Close">Message</DBNotification>
-<DBDrawer closeButtonText="Close drawer">Content</DBDrawer>
+<DBDrawerHeader closeButtonText="Close drawer">Title</DBDrawerHeader>
 <DBCustomSelect mobileCloseButtonText="Close" label="Select" />
 
 // Angular
 <db-notification closeButtonText="Close">Message</db-notification>
-<db-drawer [closeButtonText]="closeText">Content</db-drawer>
+<db-drawer-header [closeButtonText]="closeText">Title</db-drawer-header>
 
 // Vue
 <DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />
+<DBDrawerHeader :closeButtonText="closeText">Title</DBDrawerHeader>
+```
+
+### `drawer-header-required`
+
+Ensures DBDrawer has a DBDrawerHeader for accessibility. The header provides the close button and `aria-labelledby` for the dialog.
+
+**❌ Invalid:**
+
+```jsx
+// React
+<DBDrawer>Content</DBDrawer>
+<DBDrawer open={true}>Content</DBDrawer>
+
+// Angular - missing `header` attribute for slot projection
+<db-drawer><db-drawer-header>Title</db-drawer-header>Content</db-drawer>
+<db-drawer>Content</db-drawer>
+
+// Vue - missing named slot
+<DBDrawer><DBDrawerHeader>Title</DBDrawerHeader>Content</DBDrawer>
+<DBDrawer>Content</DBDrawer>
+```
+
+**✅ Valid:**
+
+```jsx
+// React
+<DBDrawer header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}>Content</DBDrawer>
+
+// Angular - uses `header` attribute for ng-content projection
+<db-drawer><db-drawer-header header closeButtonText="Close">Title</db-drawer-header>Content</db-drawer>
+<db-drawer><ng-container header><db-drawer-header closeButtonText="Close">Title</db-drawer-header></ng-container>Content</db-drawer>
+
+// Vue - uses named slot
+<DBDrawer><template v-slot:header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template>Content</DBDrawer>
+<DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template>Content</DBDrawer>
+```
+
+### `sub-component-required-parent`
+
+Ensures sub-components are used inside their required parent component and slot.
+
+**Configured relationships:**
+
+| Sub-component     | Required parent | Required slot  |
+| ----------------- | --------------- | -------------- |
+| `DBDrawerHeader`  | `DBDrawer`      | `header`       |
+| `DBDrawerFooter`  | `DBDrawer`      | `footer`       |
+| `DBAccordionItem` | `DBAccordion`   | (direct child) |
+
+**❌ Invalid:**
+
+```jsx
+// React
+<div><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></div>
+<div><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></div>
+
+// Angular - missing slot attribute or wrong parent
+<div><db-drawer-header closeButtonText="Close">Title</db-drawer-header></div>
+<db-drawer><db-drawer-header closeButtonText="Close">Title</db-drawer-header></db-drawer>
+
+// Vue - missing named slot or wrong parent
+<div><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></div>
+<DBDrawer><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></DBDrawer>
+```
+
+**✅ Valid:**
+
+```jsx
+// React
+<DBDrawer header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}>Content</DBDrawer>
+<DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
+
+// Angular - with slot attribute
+<db-drawer><db-drawer-header header closeButtonText="Close">Title</db-drawer-header></db-drawer>
+<db-drawer><ng-container header><db-drawer-header closeButtonText="Close">Title</db-drawer-header></ng-container></db-drawer>
+<db-accordion><db-accordion-item headlinePlain="Test">Content</db-accordion-item></db-accordion>
+
+// Vue - with named slot
+<DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template></DBDrawer>
+<DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 ```
 
 ### `header-burger-menu-label-required`

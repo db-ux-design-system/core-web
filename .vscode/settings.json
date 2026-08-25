@@ -4,5 +4,6 @@
 	"editor.formatOnSave": true,
 	"files.associations": {
 		".env.template": "dotenv"
-	}
+	},
+	"typescript.autoClosingTags": false
 }

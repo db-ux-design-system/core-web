@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: `/react-showcase/`,
+	base: '/react-showcase/',
 	plugins: [react()],
 	build: {
 		outDir: '../../build-showcases/react-showcase',
