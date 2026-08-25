@@ -8,7 +8,7 @@ DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, compon
 
 ### Required Prerequisites
 
-- **Node.js 24**: Check `.nvmrc` file. Use `node --version` to verify current version.
+- **Node.js 26**: Check `.nvmrc` file. Use `node --version` to verify current version.
 - **pnpm**: Package manager for dependency management and build scripts.
 
 ### Bootstrap and Setup
@@ -326,7 +326,7 @@ If possible, start by writing a test that you could use to verify your solution,
 
 ### Debugging Build Issues
 
-1. **Check Node.js version**: Must be v24 (see `.nvmrc`)
+1. **Check Node.js version**: Must be v26 (see `.nvmrc`)
 2. **Clean rebuild**: `pnpm run clean && pnpm run build`
 3. **Check dependencies**: `pnpm install --ignore-scripts`
 4. **Isolate issue**: Build individual packages using workspace commands
@@ -391,7 +391,7 @@ The `bin` field keys should be explicit, plain command names — **prefer a shor
 
 ### TypeScript execution
 
-Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
+Node.js 26 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
 
 ```bash
 # ✅ Preferred
