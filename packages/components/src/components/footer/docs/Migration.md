@@ -13,34 +13,38 @@ DBFooter is a new, component-driven wrapper for replacing custom footer implemen
 ### Example
 
 ```tsx
-<DBPage variant="fixed">
-	<main>Page content</main>
-	<DBFooter
-		width="medium"
-		meta={
-			<nav aria-label="Legal navigation">
+<DBPage
+	variant="fixed"
+	footer={
+		<DBFooter
+			width="medium"
+			meta={
+				<nav aria-label="Legal navigation">
+					<ul>
+						<li>
+							<a href="/privacy">Privacy</a>
+						</li>
+						<li>
+							<a href="/imprint">Imprint</a>
+						</li>
+					</ul>
+				</nav>
+			}
+		>
+			<nav aria-label="Footer navigation">
 				<ul>
 					<li>
-						<a href="/privacy">Privacy</a>
+						<a href="/about">About us</a>
 					</li>
 					<li>
-						<a href="/imprint">Imprint</a>
+						<a href="/contact">Contact</a>
 					</li>
 				</ul>
 			</nav>
-		}
-	>
-		<nav aria-label="Footer navigation">
-			<ul>
-				<li>
-					<a href="/about">About us</a>
-				</li>
-				<li>
-					<a href="/contact">Contact</a>
-				</li>
-			</ul>
-		</nav>
-	</DBFooter>
+		</DBFooter>
+	}
+>
+	Page content
 </DBPage>
 ```
 

@@ -13,8 +13,8 @@ import { DBFooter, DBLink, DBPage } from "@db-ux/ngx-core-components";
 	imports: [DBFooter, DBLink, DBPage],
 	template: `
 		<db-page variant="fixed">
-			<main>Page content</main>
-			<db-footer width="medium">
+			Page content
+			<db-footer footer width="medium">
 				<nav aria-label="Footer navigation">
 					<ul>
 						<li><db-link href="/about">About us</db-link></li>

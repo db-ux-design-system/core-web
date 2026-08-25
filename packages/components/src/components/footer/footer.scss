@@ -5,6 +5,7 @@
 
 .db-footer {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	flex-direction: column;
 	inline-size: 100%;
 
 	.db-footer-main,

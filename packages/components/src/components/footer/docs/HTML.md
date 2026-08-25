@@ -6,7 +6,7 @@ Place the native footer markup inside a `.db-page[data-variant="fixed"]`. Consum
 
 ```html index.html
 <div class="db-page" data-variant="fixed">
-	<main>Page content</main>
+	<main class="db-main">Page content</main>
 	<footer class="db-footer" data-width="medium">
 		<div class="db-footer-main">
 			<div class="db-footer-content-container">
