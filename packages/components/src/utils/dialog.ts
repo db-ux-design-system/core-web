@@ -58,12 +58,16 @@ export const setDialogAriaLabelledBy = (
 /**
  * @public
  * Removes `aria-labelledby` from a `<dialog>` element, but only while its current
- * value equals the given heading id.
+ * value equals the given heading id. Accepts the dialog's id rather than the element
+ * itself, so cleanup works even when the header is already detached from the DOM
+ * (e.g. during React effect cleanup).
  */
 export const removeDialogAriaLabelledBy = (
-	dialog: HTMLDialogElement | undefined | null,
+	dialogId: string | undefined | null,
 	headingId: string
 ): void => {
+	if (!dialogId) return;
+	const dialog = document.getElementById(dialogId);
 	if (dialog?.getAttribute('aria-labelledby') === headingId) {
 		dialog.removeAttribute('aria-labelledby');
 	}

@@ -65,7 +65,7 @@ export default function DialogAreas() {
 					header={
 						<DBDialogHeader
 							closeButtonText="Close"
-							startSlot={<DBIcon icon="account" />}>
+							startSlot={<DBIcon icon="person" />}>
 							With start slot
 						</DBDialogHeader>
 					}>

@@ -42,10 +42,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			);
 		},
 		removeAriaLabelledBy() {
-			removeDialogAriaLabelledBy(
-				resolveClosestDialog(_ref),
-				state._headingId
-			);
+			removeDialogAriaLabelledBy(state._dialogId, state._headingId);
 		}
 	});
 

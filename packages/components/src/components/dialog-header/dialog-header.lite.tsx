@@ -43,10 +43,7 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 			);
 		},
 		removeAriaLabelledBy() {
-			removeDialogAriaLabelledBy(
-				resolveClosestDialog(_ref),
-				state._headingId
-			);
+			removeDialogAriaLabelledBy(state._dialogId, state._headingId);
 		}
 	});
 
