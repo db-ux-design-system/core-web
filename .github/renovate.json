@@ -4,7 +4,7 @@
 	"schedule": ["* 22 * * *"],
 	"branchPrefix": "renovate-",
 	"branchNameStrict": true,
-	"enabledManagers": ["npm"],
+	"enabledManagers": ["npm", "nvm"],
 	"ignorePaths": [
 		"**/node_modules/**",
 		"**/vendor/**",
@@ -39,6 +39,11 @@
 			"automerge": true,
 			"separateMajorMinor": false,
 			"minimumReleaseAge": null
+		},
+		{
+			"description": "Node itself",
+			"matchManagers": ["nvm"],
+			"matchPackageNames": ["node"]
 		}
 	]
 }
