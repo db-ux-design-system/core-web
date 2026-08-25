@@ -38,49 +38,49 @@
       - listitem:
         - link "Legal"
   - link "Show Copyright"
-  - navigation "Footer navigation":
+  - navigation "Show copyright enabled footer navigation":
     - list:
       - listitem:
         - link "Services"
   - paragraph: © Deutsche Bahn AG
-  - navigation "Legal navigation":
+  - navigation "Show copyright enabled legal navigation":
     - list:
       - listitem:
         - link "Privacy"
-  - navigation "Footer navigation":
+  - navigation "Show copyright disabled footer navigation":
     - list:
       - listitem:
         - link "Contact"
-  - navigation "Legal navigation":
+  - navigation "Show copyright disabled legal navigation":
     - list:
       - listitem:
         - link "Imprint"
   - link "Show Main"
-  - navigation "Footer navigation":
+  - navigation "Show main enabled footer navigation":
     - list:
       - listitem:
         - link "Services"
   - paragraph: © Deutsche Bahn AG
-  - navigation "Legal navigation":
+  - navigation "Show main enabled legal navigation":
     - list:
       - listitem:
         - link "Privacy"
   - paragraph: © Deutsche Bahn AG
-  - navigation "Legal navigation":
+  - navigation "Show main disabled legal navigation":
     - list:
       - listitem:
         - link "Imprint"
   - link "Show Meta"
-  - navigation "Footer navigation":
+  - navigation "Show meta enabled footer navigation":
     - list:
       - listitem:
         - link "Services"
   - paragraph: © Deutsche Bahn AG
-  - navigation "Legal navigation":
+  - navigation "Show meta enabled legal navigation":
     - list:
       - listitem:
         - link "Privacy"
-  - navigation "Footer navigation":
+  - navigation "Show meta disabled footer navigation":
     - list:
       - listitem:
         - link "Contact"
