@@ -27,7 +27,7 @@ updates:
       time: "23:00"
       timezone: "Europe/Berlin"
     cooldown:
-      default-days: 3
+      default-days: 1
     ignore:
       # angular: we update the major version manually
       - dependency-name: "@angular*"
