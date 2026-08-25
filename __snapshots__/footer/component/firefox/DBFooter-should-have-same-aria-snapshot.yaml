@@ -1,4 +1,18 @@
 - contentinfo:
-  - text: Footer Navigation Content
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "About us":
+          - /url: "#about"
+      - listitem:
+        - link "Contact":
+          - /url: "#contact"
   - paragraph: © Deutsche Bahn AG
-  - text: Legal Links
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy":
+          - /url: "#privacy"
+      - listitem:
+        - link "Imprint":
+          - /url: "#imprint"
