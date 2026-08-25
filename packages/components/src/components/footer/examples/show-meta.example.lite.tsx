@@ -19,7 +19,7 @@ export default function FooterShowMeta() {
 			<DBFooter
 				showMeta
 				meta={
-					<nav aria-label="Legal navigation">
+					<nav aria-label="Show meta enabled legal navigation">
 						<ul>
 							<li>
 								<a className="db-link" href="#privacy">
@@ -29,7 +29,7 @@ export default function FooterShowMeta() {
 						</ul>
 					</nav>
 				}>
-				<nav aria-label="Footer navigation">
+				<nav aria-label="Show meta enabled footer navigation">
 					<ul>
 						<li>
 							<a className="db-link" href="#services">
@@ -40,7 +40,7 @@ export default function FooterShowMeta() {
 				</nav>
 			</DBFooter>
 			<DBFooter showMeta={false}>
-				<nav aria-label="Footer navigation">
+				<nav aria-label="Show meta disabled footer navigation">
 					<ul>
 						<li>
 							<a className="db-link" href="#contact">

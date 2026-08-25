@@ -19,7 +19,7 @@ export default function FooterShowCopyright() {
 			<DBFooter
 				showCopyright
 				meta={
-					<nav aria-label="Legal navigation">
+					<nav aria-label="Show copyright enabled legal navigation">
 						<ul>
 							<li>
 								<a className="db-link" href="#privacy">
@@ -29,7 +29,7 @@ export default function FooterShowCopyright() {
 						</ul>
 					</nav>
 				}>
-				<nav aria-label="Footer navigation">
+				<nav aria-label="Show copyright enabled footer navigation">
 					<ul>
 						<li>
 							<a className="db-link" href="#services">
@@ -42,7 +42,7 @@ export default function FooterShowCopyright() {
 			<DBFooter
 				showCopyright={false}
 				meta={
-					<nav aria-label="Legal navigation">
+					<nav aria-label="Show copyright disabled legal navigation">
 						<ul>
 							<li>
 								<a className="db-link" href="#imprint">
@@ -52,7 +52,7 @@ export default function FooterShowCopyright() {
 						</ul>
 					</nav>
 				}>
-				<nav aria-label="Footer navigation">
+				<nav aria-label="Show copyright disabled footer navigation">
 					<ul>
 						<li>
 							<a className="db-link" href="#contact">

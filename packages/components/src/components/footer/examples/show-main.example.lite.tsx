@@ -19,7 +19,7 @@ export default function FooterShowMain() {
 			<DBFooter
 				showMain
 				meta={
-					<nav aria-label="Legal navigation">
+					<nav aria-label="Show main enabled legal navigation">
 						<ul>
 							<li>
 								<a className="db-link" href="#privacy">
@@ -29,7 +29,7 @@ export default function FooterShowMain() {
 						</ul>
 					</nav>
 				}>
-				<nav aria-label="Footer navigation">
+				<nav aria-label="Show main enabled footer navigation">
 					<ul>
 						<li>
 							<a className="db-link" href="#services">
@@ -42,7 +42,7 @@ export default function FooterShowMain() {
 			<DBFooter
 				showMain={false}
 				meta={
-					<nav aria-label="Legal navigation">
+					<nav aria-label="Show main disabled legal navigation">
 						<ul>
 							<li>
 								<a className="db-link" href="#imprint">
@@ -52,7 +52,7 @@ export default function FooterShowMain() {
 						</ul>
 					</nav>
 				}>
-				<nav aria-label="Footer navigation">
+				<nav aria-label="Show main disabled footer navigation">
 					<ul>
 						<li>
 							<a className="db-link" href="#contact">
