@@ -1,0 +1,86 @@
+- main:
+  - heading "DBFooter" [level=1]
+  - link "Width"
+  - navigation "Full footer navigation":
+    - list:
+      - listitem:
+        - link "Full"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Full legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - navigation "Large footer navigation":
+    - list:
+      - listitem:
+        - link "Large"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Large legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - navigation "Medium footer navigation":
+    - list:
+      - listitem:
+        - link "Medium"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Medium legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - navigation "Small footer navigation":
+    - list:
+      - listitem:
+        - link "Small"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Small legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - link "Show Copyright"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Contact"
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Imprint"
+  - link "Show Main"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Imprint"
+  - link "Show Meta"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Contact"
