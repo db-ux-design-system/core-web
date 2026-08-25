@@ -175,10 +175,11 @@ Workspace packages reference the catalog in their `devDependencies`:
 
 ## Renovate for pnpm and the DB theme packages
 
-Dependabot handles everything **except** two cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)):
+Dependabot handles everything **except** three cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)):
 
 | Covered by Renovate                            | Why not Dependabot                                                                                                                                                                                                                                                                        |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.nvmrc` (Node version) | Dependabot does not update the Node version, so the Node version used both locally and in CI isn't controlled at all (besides Major level)                                                                                                                                                    |
 | `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                    |
 | `@db-ux/db-theme*`                             | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixtures, which are outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
 
