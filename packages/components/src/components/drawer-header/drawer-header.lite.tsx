@@ -10,6 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
+import { removeDialogAriaLabelledBy } from '../../utils/dialog';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBDrawerHeaderProps, DBDrawerHeaderState } from './model';
@@ -35,15 +36,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			}
 		},
 		removeAriaLabelledBy() {
-			if (_ref) {
-				const dialog = (_ref as HTMLElement).closest('dialog');
-				if (
-					dialog &&
-					dialog.getAttribute('aria-labelledby') === state._headingId
-				) {
-					dialog.removeAttribute('aria-labelledby');
-				}
-			}
+			removeDialogAriaLabelledBy(state._dialogId, state._headingId);
 		}
 	});
 
