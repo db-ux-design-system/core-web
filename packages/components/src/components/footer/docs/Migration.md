@@ -1,12 +1,12 @@
 ## Migration
 
-DBFooter is a new, component-driven wrapper for replacing custom footer implementations. Use it inside `DBPage variant="fixed"` and provide semantic navigation in the slots. It deliberately does not collapse links into a mobile accordion, so links remain available to assistive technologies and browser search.
+DBFooter is a new composable wrapper for replacing custom footer implementations. Use it inside `DBPage variant="fixed"` and place `DBFooterContent` and `DBFooterMeta` inside it as needed. It deliberately does not collapse links into a mobile accordion, so links remain available to assistive technologies and browser search.
 
 ### Key features
 
-- Default slot for flexible main content and a named `meta` slot
-- Optional built-in copyright text
-- `showMain`, `showMeta`, and `showCopyright` visibility properties
+- Explicit `DBFooterContent` and `DBFooterMeta` visual areas
+- Optional copyright text through `DBFooterMeta copyright`
+- Areas are omitted by leaving out their subcomponent
 - Static inner content widths: `full`, `large`, `medium`, and `small`
 - Full-width outer footer and visual areas
 
@@ -16,9 +16,20 @@ DBFooter is a new, component-driven wrapper for replacing custom footer implemen
 <DBPage
 	variant="fixed"
 	footer={
-		<DBFooter
-			width="medium"
-			meta={
+		<DBFooter width="medium">
+			<DBFooterContent>
+				<nav aria-label="Footer navigation">
+					<ul>
+						<li>
+							<a href="/about">About us</a>
+						</li>
+						<li>
+							<a href="/contact">Contact</a>
+						</li>
+					</ul>
+				</nav>
+			</DBFooterContent>
+			<DBFooterMeta copyright="© Example Company">
 				<nav aria-label="Legal navigation">
 					<ul>
 						<li>
@@ -29,18 +40,7 @@ DBFooter is a new, component-driven wrapper for replacing custom footer implemen
 						</li>
 					</ul>
 				</nav>
-			}
-		>
-			<nav aria-label="Footer navigation">
-				<ul>
-					<li>
-						<a href="/about">About us</a>
-					</li>
-					<li>
-						<a href="/contact">Contact</a>
-					</li>
-				</ul>
-			</nav>
+			</DBFooterMeta>
 		</DBFooter>
 	}
 >

@@ -2,26 +2,38 @@
 
 For installation and configuration, see [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components).
 
-Use `DBFooter` inside `DBPage variant="fixed"`. The default slot is the main area; the named `meta` slot contains legal and other meta content.
+Compose `DBFooterContent` and `DBFooterMeta` inside `DBFooter`. Omit either subcomponent when that visual area is not needed. Copyright is opt-in through `DBFooterMeta`.
 
 ```vue App.vue
 <script setup lang="ts">
-import { DBFooter, DBLink, DBPage } from "@db-ux/v-core-components";
+import {
+	DBFooter,
+	DBFooterContent,
+	DBFooterMeta,
+	DBLink,
+	DBPage
+} from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBPage variant="fixed">
-		Page content
+	<DBPage variant="fixed"
+		>Page content
 		<template #footer>
 			<DBFooter width="medium">
-				<nav aria-label="Footer navigation">
-					<ul>
-						<li><DBLink wrap href="/about">About us</DBLink></li>
-						<li><DBLink wrap href="/contact">Contact</DBLink></li>
-					</ul>
-				</nav>
-				<template #meta>
-					<nav aria-label="Legal navigation">
+				<DBFooterContent
+					><nav aria-label="Footer navigation">
+						<ul>
+							<li>
+								<DBLink wrap href="/about">About us</DBLink>
+							</li>
+							<li>
+								<DBLink wrap href="/contact">Contact</DBLink>
+							</li>
+						</ul>
+					</nav></DBFooterContent
+				>
+				<DBFooterMeta copyright="© Example Company"
+					><nav aria-label="Legal navigation">
 						<ul>
 							<li>
 								<DBLink wrap href="/privacy">Privacy</DBLink>
@@ -30,12 +42,12 @@ import { DBFooter, DBLink, DBPage } from "@db-ux/v-core-components";
 								<DBLink wrap href="/imprint">Imprint</DBLink>
 							</li>
 						</ul>
-					</nav>
-				</template>
+					</nav></DBFooterMeta
+				>
 			</DBFooter>
 		</template>
 	</DBPage>
 </template>
 ```
 
-`showMain`, `showMeta`, and `showCopyright` default to `true`; bind booleans with `:showMain="false"`. Use `id` and `class` for root attributes. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.
+Use `id` and `class` on each component as needed. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.

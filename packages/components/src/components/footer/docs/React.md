@@ -2,18 +2,39 @@
 
 For installation and configuration, see [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components).
 
-Use `DBFooter` inside `DBPage variant="fixed"`. The default `children` slot is the main area; `meta` contains legal and other meta content. Add semantic, uniquely labelled navigation and lists as needed.
+Compose `DBFooterContent` and `DBFooterMeta` inside `DBFooter`. Omit either subcomponent when that visual area is not needed. Copyright is opt-in through `DBFooterMeta`.
 
 ```tsx App.tsx
-import { DBFooter, DBLink, DBPage } from "@db-ux/react-core-components";
+import {
+	DBFooter,
+	DBFooterContent,
+	DBFooterMeta,
+	DBLink,
+	DBPage
+} from "@db-ux/react-core-components";
 
 export const App = () => (
 	<DBPage
 		variant="fixed"
 		footer={
-			<DBFooter
-				width="medium"
-				meta={
+			<DBFooter width="medium">
+				<DBFooterContent>
+					<nav aria-label="Footer navigation">
+						<ul>
+							<li>
+								<DBLink wrap href="/about">
+									About us
+								</DBLink>
+							</li>
+							<li>
+								<DBLink wrap href="/contact">
+									Contact
+								</DBLink>
+							</li>
+						</ul>
+					</nav>
+				</DBFooterContent>
+				<DBFooterMeta copyright="© Example Company">
 					<nav aria-label="Legal navigation">
 						<ul>
 							<li>
@@ -28,22 +49,7 @@ export const App = () => (
 							</li>
 						</ul>
 					</nav>
-				}
-			>
-				<nav aria-label="Footer navigation">
-					<ul>
-						<li>
-							<DBLink wrap href="/about">
-								About us
-							</DBLink>
-						</li>
-						<li>
-							<DBLink wrap href="/contact">
-								Contact
-							</DBLink>
-						</li>
-					</ul>
-				</nav>
+				</DBFooterMeta>
 			</DBFooter>
 		}
 	>
@@ -52,4 +58,4 @@ export const App = () => (
 );
 ```
 
-`showMain`, `showMeta`, and `showCopyright` default to `true`. Use `id` and `className` for root attributes. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.
+Use `id` and `className` on each component as needed. `width` accepts `full`, `large`, `medium`, or `small`; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.
