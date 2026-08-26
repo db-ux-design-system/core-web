@@ -158,6 +158,8 @@ The changeset description **must** follow the same conventional prefix style use
 - `refactor:` — code restructuring without behavior change
 - `docs:` — documentation changes
 
+Adding the component (or some other phrase) as context (in brackets in between the prefix and the double colon) helps users easier to quickly skim through our information and it's clusters.
+
 **Examples:**
 
 ```markdown
@@ -165,7 +167,7 @@ The changeset description **must** follow the same conventional prefix style use
 "@db-ux/core-components": minor
 ---
 
-feat: add `size` property to DBButton component
+feat(DBButton): add `size` property
 ```
 
 ```markdown
