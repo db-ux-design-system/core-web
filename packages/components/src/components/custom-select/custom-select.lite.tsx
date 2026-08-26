@@ -133,7 +133,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		_searchValue: undefined,
+		_searchValue: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -858,7 +858,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
-		state._searchValue = props.searchValue;
+		state._searchValue = props.searchValue ?? '';
 		if (props.searchValue) {
 			const sValue = props.searchValue!; // <- workaround for Angular
 			state.handleSearch(sValue);
