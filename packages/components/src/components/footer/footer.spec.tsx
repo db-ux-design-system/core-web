@@ -1,14 +1,28 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+import { DBFooterContent } from '../footer-content';
+import { DBFooterMeta } from '../footer-meta';
 import { DBLink } from '../link';
 import { DBFooter } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
 const comp: any = (
-	<DBFooter
-		meta={
+	<DBFooter>
+		<DBFooterContent>
+			<nav aria-label="Footer navigation">
+				<ul>
+					<li>
+						<a href="#about">About us</a>
+					</li>
+					<li>
+						<a href="#contact">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</DBFooterContent>
+		<DBFooterMeta copyright="© Example Company">
 			<nav aria-label="Legal navigation">
 				<ul>
 					<li>
@@ -19,25 +33,7 @@ const comp: any = (
 					</li>
 				</ul>
 			</nav>
-		}>
-		{/*<template v-slot:meta>
-			<nav aria-label="Legal navigation">
-				<ul>
-					<li><a href="#privacy">Privacy</a></li>
-					<li><a href="#imprint">Imprint</a></li>
-				</ul>
-			</nav>
-		</template>*/}
-		<nav aria-label="Footer navigation">
-			<ul>
-				<li>
-					<a href="#about">About us</a>
-				</li>
-				<li>
-					<a href="#contact">Contact</a>
-				</li>
-			</ul>
-		</nav>
+		</DBFooterMeta>
 	</DBFooter>
 );
 
@@ -60,13 +56,16 @@ const testComponent = () => {
 		}) => {
 			await page.setViewportSize({ width: 1600, height: 900 });
 			const component = await mount(
-				<DBFooter width={width}>Content</DBFooter>
+				<DBFooter width={width}>
+					<DBFooterContent>Content</DBFooterContent>
+					<DBFooterMeta>Meta</DBFooterMeta>
+				</DBFooter>
 			);
 			await expect(component).toHaveAttribute('data-width', width);
 			const footerWidth = await component.evaluate(
 				(element) => element.getBoundingClientRect().width
 			);
-			for (const area of ['.db-footer-main', '.db-footer-meta']) {
+			for (const area of ['.db-footer-content', '.db-footer-meta']) {
 				const areaLocator = component.locator(area);
 				const areaWidth = await areaLocator.evaluate(
 					(element) => element.getBoundingClientRect().width
@@ -107,84 +106,92 @@ const testComponent = () => {
 		const pageComponent = await mount(
 			<div className="db-page" data-variant="fixed">
 				<main className="db-main">Page content</main>
-				<DBFooter>Footer content</DBFooter>
+				<DBFooter>
+					<DBFooterContent>Footer content</DBFooterContent>
+					<DBFooterMeta>Meta content</DBFooterMeta>
+				</DBFooter>
 			</div>
 		);
 		const footer = pageComponent.locator('.db-footer');
 		await expect(footer).toHaveCSS('flex-direction', 'column');
 
 		const layout = await footer.evaluate((element) => {
-			const main = element.querySelector('.db-footer-main');
+			const content = element.querySelector('.db-footer-content');
 			const meta = element.querySelector('.db-footer-meta');
-			if (!main || !meta) {
-				return undefined;
-			}
+			if (!content || !meta) return undefined;
 
 			const footerRect = element.getBoundingClientRect();
-			const mainRect = main.getBoundingClientRect();
+			const contentRect = content.getBoundingClientRect();
 			const metaRect = meta.getBoundingClientRect();
 			return {
 				footerWidth: footerRect.width,
-				mainWidth: mainRect.width,
+				contentWidth: contentRect.width,
 				metaWidth: metaRect.width,
-				mainBottom: mainRect.bottom,
+				contentBottom: contentRect.bottom,
 				metaTop: metaRect.top
 			};
 		});
 		expect(layout).toBeDefined();
-		expect(layout?.mainWidth).toBeCloseTo(layout?.footerWidth ?? 0, 1);
+		expect(layout?.contentWidth).toBeCloseTo(layout?.footerWidth ?? 0, 1);
 		expect(layout?.metaWidth).toBeCloseTo(layout?.footerWidth ?? 0, 1);
-		expect(layout?.metaTop).toBeGreaterThanOrEqual(layout?.mainBottom ?? 0);
+		expect(layout?.metaTop).toBeGreaterThanOrEqual(
+			layout?.contentBottom ?? 0
+		);
 	});
 
-	test('should hide each optional part for boolean values', async ({
-		mount
-	}) => {
-		const component = await mount(
-			<DBFooter showMain={false} showCopyright={false}>
-				Content
+	test('should render only explicitly composed areas', async ({ mount }) => {
+		const contentOnly = await mount(
+			<DBFooter>
+				<DBFooterContent>Content</DBFooterContent>
 			</DBFooter>
 		);
-		await expect(component.locator('.db-footer-main')).toHaveCount(0);
-		await expect(component.locator('.db-footer-meta')).toHaveCount(1);
-		await expect(component.locator('.db-footer-copyright')).toHaveCount(0);
-		await component.unmount();
+		await expect(contentOnly.locator('.db-footer-content')).toHaveCount(1);
+		await expect(contentOnly.locator('.db-footer-meta')).toHaveCount(0);
+		await contentOnly.unmount();
 
-		const withoutMeta = await mount(
-			<DBFooter showMeta={false}>Content</DBFooter>
+		const metaOnly = await mount(
+			<DBFooter>
+				<DBFooterMeta>Meta</DBFooterMeta>
+			</DBFooter>
 		);
-		await expect(withoutMeta.locator('.db-footer-meta')).toHaveCount(0);
+		await expect(metaOnly.locator('.db-footer-content')).toHaveCount(0);
+		await expect(metaOnly.locator('.db-footer-meta')).toHaveCount(1);
 	});
 
-	test('should hide each optional part for boolean strings', async ({
-		mount
-	}) => {
-		const component = await mount(
-			<DBFooter showMain="false" showCopyright="false">
-				Content
+	test('should render copyright only when provided', async ({ mount }) => {
+		const withoutCopyright = await mount(
+			<DBFooter>
+				<DBFooterMeta>Meta</DBFooterMeta>
 			</DBFooter>
 		);
-		await expect(component.locator('.db-footer-main')).toHaveCount(0);
-		await expect(component.locator('.db-footer-copyright')).toHaveCount(0);
-		await component.unmount();
+		await expect(
+			withoutCopyright.locator('.db-footer-copyright')
+		).toHaveCount(0);
+		await withoutCopyright.unmount();
 
-		const withoutMeta = await mount(
-			<DBFooter showMeta="false">Content</DBFooter>
+		const withCopyright = await mount(
+			<DBFooter>
+				<DBFooterMeta copyright="© Example Company">Meta</DBFooterMeta>
+			</DBFooter>
 		);
-		await expect(withoutMeta.locator('.db-footer-meta')).toHaveCount(0);
+		await expect(withCopyright.locator('.db-footer-copyright')).toHaveText(
+			'© Example Company'
+		);
 	});
 
 	test('should use id and propOverrides.id fallback', async ({ mount }) => {
 		const withId = await mount(
 			<DBFooter id="footer-id" propOverrides={{ id: 'fallback-id' }}>
-				Content
+				<DBFooterContent>Content</DBFooterContent>
 			</DBFooter>
 		);
 		await expect(withId).toHaveAttribute('id', 'footer-id');
 		await withId.unmount();
 
 		const withFallback = await mount(
-			<DBFooter propOverrides={{ id: 'fallback-id' }}>Content</DBFooter>
+			<DBFooter propOverrides={{ id: 'fallback-id' }}>
+				<DBFooterContent>Content</DBFooterContent>
+			</DBFooter>
 		);
 		await expect(withFallback).toHaveAttribute('id', 'fallback-id');
 	});
@@ -192,7 +199,7 @@ const testComponent = () => {
 	test('should add a custom class', async ({ mount }) => {
 		const component = await mount(
 			<DBFooter className="custom-footer" class="custom-footer">
-				Content
+				<DBFooterContent>Content</DBFooterContent>
 			</DBFooter>
 		);
 		await expect(component).toHaveClass(/custom-footer/);
@@ -204,8 +211,19 @@ const testComponent = () => {
 	}) => {
 		await page.setViewportSize({ width: 320, height: 640 });
 		const component = await mount(
-			<DBFooter
-				meta={
+			<DBFooter>
+				<DBFooterContent>
+					<nav aria-label="Footer navigation">
+						<ul>
+							<li>
+								<DBLink wrap href="#services">
+									Services for passengers and commuters
+								</DBLink>
+							</li>
+						</ul>
+					</nav>
+				</DBFooterContent>
+				<DBFooterMeta>
 					<nav aria-label="Legal navigation">
 						<ul>
 							<li>
@@ -225,37 +243,7 @@ const testComponent = () => {
 							</li>
 						</ul>
 					</nav>
-				}>
-				{/*<template v-slot:meta>
-					<nav aria-label="Legal navigation">
-						<ul>
-							<li>
-								<DBLink wrap href="#passenger-rights">
-									Passenger rights and conditions of carriage
-								</DBLink>
-							</li>
-							<li>
-								<DBLink wrap href="#privacy">
-									Privacy policy and accessibility statement
-								</DBLink>
-							</li>
-							<li>
-								<DBLink wrap href="#imprint">
-									Imprint and legal information
-								</DBLink>
-							</li>
-						</ul>
-					</nav>
-				</template>*/}
-				<nav aria-label="Footer navigation">
-					<ul>
-						<li>
-							<DBLink wrap href="#services">
-								Services for passengers and commuters
-							</DBLink>
-						</li>
-					</ul>
-				</nav>
+				</DBFooterMeta>
 			</DBFooter>
 		);
 		expect(
@@ -284,6 +272,7 @@ const testComponent = () => {
 		expect(legalNavigationHeight).toBeGreaterThan(firstLegalLinkHeight * 2);
 	});
 };
+
 const testA11y = () => {
 	test('should remain a contentinfo landmark', async ({ mount, page }) => {
 		await mount(comp);

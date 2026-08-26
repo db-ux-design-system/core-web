@@ -7,7 +7,7 @@
       - listitem:
         - link "Contact":
           - /url: "#contact"
-  - paragraph: © Deutsche Bahn AG
+  - paragraph: © Example Company
   - navigation "Legal navigation":
     - list:
       - listitem:

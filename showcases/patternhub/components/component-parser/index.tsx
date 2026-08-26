@@ -9,6 +9,8 @@ import {
 	DBCustomButton,
 	DBCustomSelect,
 	DBDivider,
+	DBFooterContent,
+	DBFooterMeta,
 	DBHeader,
 	DBIcon,
 	DBInfotext,
@@ -370,6 +372,22 @@ const ComponentSwitch = ({
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'footer-content') {
+		return (
+			<DBFooterContent className={className} {...props}>
+				{resolvedContent}
+			</DBFooterContent>
+		);
+	}
+
+	if (type === 'footer-meta') {
+		return (
+			<DBFooterMeta className={className} {...props}>
+				{resolvedContent}
+			</DBFooterMeta>
 		);
 	}
 

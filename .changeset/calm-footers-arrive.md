@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: add the DBFooter component
+feat: add the composable DBFooter, DBFooterContent, and DBFooterMeta components

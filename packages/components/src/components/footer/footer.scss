@@ -1,30 +1,8 @@
-@use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/colors";
 
 .db-footer {
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	flex-direction: column;
 	inline-size: 100%;
-
-	.db-footer-main,
-	.db-footer-meta {
-		border-block-start: variables.$db-border-width-3xs solid
-			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-		inline-size: 100%;
-	}
-
-	.db-footer-main {
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		padding: variables.$db-spacing-fixed-lg;
-	}
-
-	.db-footer-meta {
-		background-color: colors.$db-adaptive-bg-basic-level-2-default;
-		padding-block: variables.$db-spacing-fixed-xs;
-		padding-inline: variables.$db-spacing-fixed-lg;
-	}
 
 	.db-footer-content-container {
 		inline-size: 100%;
@@ -42,28 +20,5 @@
 
 	&[data-width="large"] .db-footer-content-container {
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
-	}
-
-	.db-footer-meta-inner {
-		@include helpers.display(flex);
-
-		align-items: center;
-		flex-wrap: wrap;
-		gap: variables.$db-spacing-fixed-lg;
-		min-inline-size: 0;
-	}
-
-	.db-footer-meta-inner > :not(.db-footer-copyright) {
-		flex: 1 1 auto;
-		max-inline-size: 100%;
-		min-inline-size: 0;
-	}
-
-	.db-footer-copyright {
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font: var(--db-type-body-sm);
-		margin: 0;
-		max-inline-size: 100%;
-		overflow-wrap: anywhere;
 	}
 }
