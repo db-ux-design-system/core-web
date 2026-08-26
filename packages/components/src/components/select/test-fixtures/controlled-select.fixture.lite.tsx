@@ -1,7 +1,8 @@
-import { For, Fragment, useStore } from '@builder.io/mitosis';
+import { For, useRef, useStore } from '@builder.io/mitosis';
 import DBSelect from '../select.lite';
 
 export default function ControlledSelectHarness() {
+	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore({
 		values: {} as Record<string, string>,
 		scenarios: [
@@ -36,7 +37,7 @@ export default function ControlledSelectHarness() {
 	});
 
 	return (
-		<Fragment>
+		<div ref={_ref}>
 			<For each={state.scenarios}>
 				{(scenario) => (
 					<section data-testid={`scenario-${scenario.id}`}>
@@ -59,6 +60,6 @@ export default function ControlledSelectHarness() {
 					</section>
 				)}
 			</For>
-		</Fragment>
+		</div>
 	);
 }
