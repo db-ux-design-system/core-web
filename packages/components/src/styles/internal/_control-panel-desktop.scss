@@ -199,6 +199,11 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		&::before {
 			inset-block: #{$control-panel-desktop-horizontal-padding-block};
 		}
+
+		.overflow-scroll-left-button,
+		.overflow-scroll-right-button {
+			display: flex;
+		}
 	}
 
 	&[data-width="small"] {
