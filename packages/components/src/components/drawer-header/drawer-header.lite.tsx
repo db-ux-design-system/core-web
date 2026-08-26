@@ -10,7 +10,12 @@ import {
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
-import { removeDialogAriaLabelledBy } from '../../utils/dialog';
+import {
+	getClosestDialogId,
+	removeDialogAriaLabelledBy,
+	resolveClosestDialog,
+	setDialogAriaLabelledBy
+} from '../../utils/dialog';
 import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBDrawerHeaderProps, DBDrawerHeaderState } from './model';
@@ -27,13 +32,14 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 
 	const state = useStore<DBDrawerHeaderState>({
 		_headingId: 'db-drawer-header-heading-' + uuid(),
-		setAriaLabelledBy() {
-			if (_ref) {
-				const dialog = (_ref as HTMLElement).closest('dialog');
-				if (dialog) {
-					dialog.setAttribute('aria-labelledby', state._headingId);
-				}
-			}
+		_dialogId: '',
+		// Links the heading to the dialog
+		_resolveDialog() {
+			state._dialogId = getClosestDialogId(_ref) ?? '';
+			setDialogAriaLabelledBy(
+				resolveClosestDialog(_ref),
+				state._headingId
+			);
 		},
 		removeAriaLabelledBy() {
 			removeDialogAriaLabelledBy(state._dialogId, state._headingId);
@@ -41,7 +47,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	});
 
 	onMount(() => {
-		state.setAriaLabelledBy();
+		state._resolveDialog();
 	});
 
 	onUnMount(() => {
