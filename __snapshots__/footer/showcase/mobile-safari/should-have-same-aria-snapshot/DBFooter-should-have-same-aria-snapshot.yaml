@@ -1,86 +1,67 @@
 - main:
   - heading "DBFooter" [level=1]
+  - link "Composition"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph: © Example Company
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy"
+  - link "Optional Areas"
+  - navigation "Content-only footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph:
+    - text: "Customer service:"
+    - link "Contact us"
+  - link "Copyright"
+  - paragraph: © Example Company
+  - navigation "Legal navigation with copyright":
+    - list:
+      - listitem:
+        - link "Privacy"
+  - navigation "Legal navigation without copyright":
+    - list:
+      - listitem:
+        - link "Imprint"
   - link "Width"
+  - text: Full inner content width
   - navigation "Full footer navigation":
     - list:
       - listitem:
         - link "Full"
-  - paragraph: © Deutsche Bahn AG
   - navigation "Full legal navigation":
     - list:
       - listitem:
         - link "Legal"
+  - text: Large inner content width
   - navigation "Large footer navigation":
     - list:
       - listitem:
         - link "Large"
-  - paragraph: © Deutsche Bahn AG
   - navigation "Large legal navigation":
     - list:
       - listitem:
         - link "Legal"
+  - text: Medium inner content width
   - navigation "Medium footer navigation":
     - list:
       - listitem:
         - link "Medium"
-  - paragraph: © Deutsche Bahn AG
   - navigation "Medium legal navigation":
     - list:
       - listitem:
         - link "Legal"
+  - text: Small inner content width
   - navigation "Small footer navigation":
     - list:
       - listitem:
         - link "Small"
-  - paragraph: © Deutsche Bahn AG
   - navigation "Small legal navigation":
     - list:
       - listitem:
         - link "Legal"
-  - link "Show Copyright"
-  - navigation "Show copyright enabled footer navigation":
-    - list:
-      - listitem:
-        - link "Services"
-  - paragraph: © Deutsche Bahn AG
-  - navigation "Show copyright enabled legal navigation":
-    - list:
-      - listitem:
-        - link "Privacy"
-  - navigation "Show copyright disabled footer navigation":
-    - list:
-      - listitem:
-        - link "Contact"
-  - navigation "Show copyright disabled legal navigation":
-    - list:
-      - listitem:
-        - link "Imprint"
-  - link "Show Main"
-  - navigation "Show main enabled footer navigation":
-    - list:
-      - listitem:
-        - link "Services"
-  - paragraph: © Deutsche Bahn AG
-  - navigation "Show main enabled legal navigation":
-    - list:
-      - listitem:
-        - link "Privacy"
-  - paragraph: © Deutsche Bahn AG
-  - navigation "Show main disabled legal navigation":
-    - list:
-      - listitem:
-        - link "Imprint"
-  - link "Show Meta"
-  - navigation "Show meta enabled footer navigation":
-    - list:
-      - listitem:
-        - link "Services"
-  - paragraph: © Deutsche Bahn AG
-  - navigation "Show meta enabled legal navigation":
-    - list:
-      - listitem:
-        - link "Privacy"
-  - navigation "Show meta disabled footer navigation":
-    - list:
-      - listitem:
-        - link "Contact"
