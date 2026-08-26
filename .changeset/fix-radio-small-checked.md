@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: radio checked state barely visible at size="small" with density="functional"
+fix(radio): checked state barely visible at `size="small"` with `density="functional"`
