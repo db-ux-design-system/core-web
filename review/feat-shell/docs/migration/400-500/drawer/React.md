@@ -1,15 +1,15 @@
 # Migration DBDrawer
 
-## Breaking Changes
+## Breaking changes
 
-| Change                      | Before                       | After                                               |
-| --------------------------- | ---------------------------- | --------------------------------------------------- |
-| `header` slot now required  | Optional, no header needed   | Must pass `<DBDrawerHeader>` in the `header` slot   |
-| `spacing` property removed  | `<DBDrawer spacing="small">` | Remove `spacing` prop (no longer supported)         |
-| Default `direction` changed | `right`                      | `left`                                              |
-| `width` renamed             | `<DBDrawer width="full">`    | `<DBDrawer containerSize="full">`                   |
-| New `showSpacing` property  | N/A                          | `<DBDrawer showSpacing={false}>` to disable         |
-| New `containerSize` options | `width`: `full`, `auto`      | `containerSize`: `small`, `medium`, `large`, `full` |
+| Change                             | Before                       | After                                                                  |
+| ---------------------------------- | ---------------------------- | ---------------------------------------------------------------------- |
+| `header` slot now required         | Optional, no header needed   | Must pass `<DBDrawerHeader>` in the `header` slot                      |
+| `spacing` property removed         | `<DBDrawer spacing="small">` | Remove `spacing` prop (no longer supported)                            |
+| `direction` values renamed         | `right`, `left`              | `to-left`, `to-right`                                                  |
+| `width` renamed to `containerSize` | `<DBDrawer width="full">`    | `<DBDrawer containerSize="full" showSpacing={false}>` (see note below) |
+| New `showSpacing` property         | N/A                          | `<DBDrawer showSpacing={false}>` to disable                            |
+| New `containerSize` options        | `width`: `full`, `auto`      | `containerSize`: `small`, `medium`, `large`, `full`                    |
 
 ## Required `DBDrawerHeader`
 
@@ -52,7 +52,7 @@ const App = () => {
 			<DBDrawer
 				open={open}
 				onClose={() => setOpen(false)}
-				slotHeader={<DBDrawerHeader>My Title</DBDrawerHeader>}
+				header={<DBDrawerHeader>My Title</DBDrawerHeader>}
 			>
 				Drawer content
 			</DBDrawer>
@@ -61,7 +61,7 @@ const App = () => {
 };
 ```
 
-## Removed `spacing` Property
+## Removed `spacing` property
 
 The `spacing` property has been removed from `DBDrawer`. Remove any usage of this prop.
 
@@ -79,23 +79,23 @@ The `spacing` property has been removed from `DBDrawer`. Remove any usage of thi
 <DBDrawer
 	open={open}
 	onClose={() => setOpen(false)}
-	slotHeader={<DBDrawerHeader>Title</DBDrawerHeader>}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
 >
 	Content
 </DBDrawer>
 ```
 
-## Default `direction` Changed
+## `direction` values renamed
 
-The default direction has changed from `right` to `left`. If you relied on the default `right` behavior, you now need to set `direction="right"` explicitly.
+The direction values have been renamed from `right`/`left` to `to-left`/`to-right`. The default behavior (opening from the right side) is unchanged — it now corresponds to `to-left` (slides from the right screen border to the left).
 
 ### Before
 
 ```tsx
 {
-	/* Previously opened from the right by default */
+	/* Explicit right direction (or omitted, since right was the default) */
 }
-<DBDrawer open={open} onClose={() => setOpen(false)}>
+<DBDrawer direction="right" open={open} onClose={() => setOpen(false)}>
 	Content
 </DBDrawer>;
 ```
@@ -104,16 +104,22 @@ The default direction has changed from `right` to `left`. If you relied on the d
 
 ```tsx
 {
-	/* Now opens from the left by default — add direction="right" to keep old behavior */
+	/* "to-left" is the new default — no need to set it explicitly unless you had "left" before */
 }
-<DBDrawer direction="right" open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>;
 ```
 
-## `width` Renamed to `containerSize`
+## `width` renamed to `containerSize`
 
 The `width` property has been replaced by `containerSize` with new size options: `small` (default on desktop), `medium`, `large`, and `full`.
+
+> **Important:** If you previously used `width="full"`, you must also set `showSpacing={false}` to preserve the old full-viewport behavior. Without it, the drawer retains a small gap from the screen edge due to the default backdrop spacing.
 
 ### Before
 
@@ -126,12 +132,18 @@ The `width` property has been replaced by `containerSize` with new size options:
 ### After
 
 ```tsx
-<DBDrawer containerSize="full" open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	containerSize="full"
+	showSpacing={false}
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>
 ```
 
-## New `showSpacing` Property
+## New `showSpacing` property
 
 The `showSpacing` property controls the spacing between the screen edge and the drawer content. It defaults to `true`. Set `showSpacing={false}` to remove the spacing.
 
@@ -139,14 +151,23 @@ The `showSpacing` property controls the spacing between the screen edge and the 
 {
 	/* Default: with spacing */
 }
-<DBDrawer open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>;
 
 {
 	/* Without spacing */
 }
-<DBDrawer showSpacing={false} open={open} onClose={() => setOpen(false)}>
+<DBDrawer
+	showSpacing={false}
+	open={open}
+	onClose={() => setOpen(false)}
+	header={<DBDrawerHeader>Title</DBDrawerHeader>}
+>
 	Content
 </DBDrawer>;
 ```
