@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BY-Md8A4.js";e();
