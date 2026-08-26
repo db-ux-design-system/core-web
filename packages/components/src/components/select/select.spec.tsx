@@ -1,7 +1,9 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
-import ControlledSelectHarness from './test-fixtures/controlled-select.example';
+// VUE: /*
+import ControlledSelectHarness from './test-fixtures/controlled-select.fixture';
+// VUE: */
 
 import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
