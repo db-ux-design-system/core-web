@@ -53,7 +53,7 @@
     "@db-ux/icon-font-tools": "0.3.6",
     "@playwright/test": "1.62.1",
     "cpr": "3.0.1",
-    "cssnano": "8.0.7",
+    "cssnano": "8.0.8",
     "glob": "13.0.6",
     "nodemon": "3.1.14",
     "postcss": "8.5.26",
