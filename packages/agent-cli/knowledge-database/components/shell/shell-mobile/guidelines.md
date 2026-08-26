@@ -15,3 +15,18 @@
 - [Flat Icon](../../control-panel/control-panel-navigation/guidelines.md) existiert ausschließlich mit Control Panel unten.
 - Ebene 3 und tiefer ist auf Mobile nur im [Drawer](../../drawer/guidelines.md) darstellbar.
 - Mit Flat Icon sind Ebene 3 und tiefer nicht darstellbar, Ebene 2 nur über die Sub Navigation.
+- **Mögliche Kombinationen von Control Panel und Sub Navigation:**
+    - Control Panel: Mobile; Control Panel Position: Top; Control Panel Navigation: Drawer; Drawer Navigation Variant: Drill Down; Sub Navigation: None.
+    - Control Panel: Mobile; Control Panel Position: Top; Control Panel Navigation: Drawer; Drawer Navigation Variant: Drill Down; Sub Navigation Position: Top (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Top; Control Panel Navigation: Drawer; Drawer Navigation Variant: Drill Down; Sub Navigation Position: Bottom (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Top; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation: None.
+    - Control Panel: Mobile; Control Panel Position: Top; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation Position: Top (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Top; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation Position: Bottom (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Drill Down; Sub Navigation: None.
+    - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Drill Down; Sub Navigation Position: Top (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Drill Down; Sub Navigation Position: Bottom (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation: None.
+    - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation Position: Top (1 Level).
+    - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation Position: Bottom (1 Level).
+    - Control Panel: Mobile; Control Panel Navigation: Flat Icon; Sub Navigation: None.
+    - Control Panel: Mobile; Control Panel Navigation: Flat Icon; Sub Navigation Position: Top (1 Level).
