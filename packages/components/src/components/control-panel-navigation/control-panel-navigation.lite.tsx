@@ -184,12 +184,18 @@ export default function DBControlPanelNavigation(
 			if (state._variant !== mVariant) {
 				state._variant = mVariant;
 				state._handleVariantArias(mVariant);
+			} else if (mVariant === 'tree') {
+				// Re-run ARIA setup for tree variant when behavior changes
+				// or new children are rendered
+				state._handleVariantArias(mVariant);
 			}
 
 			// Scroll buttons and sub-nav position are cheap, always refresh
 			if (mVariant === 'popover') {
 				void delay(() => {
-					state.evaluateScrollButtons(menuRef);
+					if (menuRef) {
+						state.evaluateScrollButtons(menuRef);
+					}
 				}, 500);
 			} else {
 				state.showScrollLeft = false;

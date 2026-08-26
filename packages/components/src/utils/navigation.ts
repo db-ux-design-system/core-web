@@ -75,7 +75,11 @@ export type TriangleData = {
 
 export const isEventTargetNavigationItem = (event: unknown): boolean => {
 	const { target } = event as { target: HTMLElement };
-	return Boolean(target?.closest('.db-control-panel-navigation-item'));
+	return Boolean(
+		target?.closest(
+			'.db-control-panel-navigation-item, .db-navigation-item'
+		)
+	);
 };
 
 export class NavigationItemSafeTriangle {

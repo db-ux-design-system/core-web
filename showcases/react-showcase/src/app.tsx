@@ -104,7 +104,9 @@ export default function App() {
 					variant={settings.navigationDesktopVariant}
 				/>
 			</DBControlPanelDesktop>
-			<DBShellContent data-density={density} className={`db-${color}`}>
+			<DBShellContent
+				data-density={density}
+				className={`db-color-${color}`}>
 				<Outlet />
 			</DBShellContent>
 		</DBShell>

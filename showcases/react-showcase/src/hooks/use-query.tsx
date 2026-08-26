@@ -19,11 +19,16 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 	const [shell, setShell] = useState<boolean>(true);
 	const [searchRead, setSearchRead] = useState(false);
 
-	const [settings, setSettings] = useState(
-		searchParameters.has('settings')
-			? JSON.parse(searchParameters.get('settings')!)
-			: defaultSettings
-	);
+	const [settings, setSettings] = useState(() => {
+		if (searchParameters.has('settings')) {
+			try {
+				return JSON.parse(searchParameters.get('settings')!);
+			} catch {
+				return defaultSettings;
+			}
+		}
+		return defaultSettings;
+	});
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
@@ -52,7 +57,11 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 			}
 
 			if (key === 'settings' && JSON.stringify(settings) !== value) {
-				setSettings(JSON.parse(value));
+				try {
+					setSettings(JSON.parse(value));
+				} catch {
+					// Ignore malformed settings JSON in URL
+				}
 			}
 		}
 

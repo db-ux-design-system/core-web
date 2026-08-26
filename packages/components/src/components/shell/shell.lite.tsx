@@ -1,4 +1,5 @@
 import {
+	onInit,
 	onMount,
 	onUpdate,
 	useDefaultProps,
@@ -41,6 +42,17 @@ export default function DBShell(props: DBShellProps) {
 	});
 
 	// jscpd:ignore-end
+
+	onInit(() => {
+		state._controlPanelDesktopPosition =
+			props.controlPanelDesktopPosition ?? 'top';
+		state._controlPanelMobilePosition =
+			props.controlPanelMobilePosition ?? 'top';
+		state._subNavigationDesktopPosition =
+			props.subNavigationDesktopPosition ?? 'top';
+		state._subNavigationMobilePosition =
+			props.subNavigationMobilePosition ?? 'top';
+	});
 
 	onUpdate(() => {
 		state._controlPanelDesktopPosition =

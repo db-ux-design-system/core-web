@@ -100,7 +100,11 @@ export const useLayout = () => {
 				query.settings &&
 				JSON.stringify(settings.value) !== query.settings
 			) {
-				settings.value = JSON.parse(query.settings);
+				try {
+					settings.value = JSON.parse(query.settings);
+				} catch {
+					// Ignore malformed settings JSON in URL
+				}
 			}
 		},
 		{ immediate: true }
