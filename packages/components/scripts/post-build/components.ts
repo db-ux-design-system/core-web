@@ -101,7 +101,8 @@ export const getComponents = (): Component[] => [
 				propsPassingFilter: [
 					'onOptionSelected',
 					'onAmountChange',
-					'onDropdownToggle'
+					'onDropdownToggle',
+					'onSearch'
 				],
 				containsFragmentMap: true
 			}

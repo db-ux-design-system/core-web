@@ -1,0 +1,8 @@
+---
+"@db-ux/ngx-core-components": patch
+"@db-ux/react-core-components": patch
+"@db-ux/wc-core-components": patch
+"@db-ux/v-core-components": patch
+---
+
+fix(DBCustomSelect): initialize search value as empty string instead of undefined
