@@ -1,6 +1,10 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+// VUE: /*
+import ControlledResetFixture from './test-fixtures/controlled-reset.fixture';
+// VUE: */
+
 import { DBCustomSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -537,6 +541,75 @@ const testValuesReset = () => {
 		// Verify selection is cleared
 		await expect(resetSummary).not.toContainText('Option 1');
 		await expect(resetSummary).toContainText('');
+	});
+
+	test('should synchronize controlled values and options on the same instance', async ({
+		mount
+	}, testInfo) => {
+		test.skip(
+			!testInfo.config.rootDir.includes('/output/react/'),
+			'React-specific controlled component regression test'
+		);
+
+		const component = await mount(<ControlledResetFixture />);
+		const summary = component.locator('summary');
+		const tags = component.locator('.db-tag');
+		const optionInputs = component.locator(
+			'.db-custom-select-list-item input[value]'
+		);
+		const optionSelectedCalls = component.getByTestId(
+			'option-selected-calls'
+		);
+
+		await expect(summary).toContainText('Initial one');
+		await expect(tags).toHaveCount(1);
+		await expect(optionInputs).toHaveCount(2);
+		await expect(
+			component
+				.locator('.db-custom-select-list-item')
+				.filter({ hasText: 'Initial one' })
+		).toHaveCount(1);
+		await expect(
+			component.locator('input[value="initial-1"]')
+		).toBeChecked();
+
+		await component.getByTestId('update').click();
+		await expect(summary).toContainText('Updated two');
+		await expect(summary).not.toContainText('Initial one');
+		await expect(tags).toHaveCount(1);
+		await expect(tags).toContainText('Updated two');
+		await expect(optionInputs).toHaveCount(2);
+		await expect(
+			component.locator('input[value="updated-2"]')
+		).toBeChecked();
+		await expect(component.locator('input[value="initial-1"]')).toHaveCount(
+			0
+		);
+
+		await component.getByTestId('reset-both').click();
+		await expect(summary).not.toContainText('Updated two');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(0);
+		await expect(optionSelectedCalls).toHaveText('0');
+
+		await component.getByTestId('reset-values-null').click();
+		await expect(summary).not.toContainText('Initial one');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(2);
+		await expect(
+			component.locator('input[value="initial-1"]')
+		).not.toBeChecked();
+		await expect(optionSelectedCalls).toHaveText('0');
+
+		await component.getByTestId('update').click();
+		await component.getByTestId('reset-values-undefined').click();
+		await expect(summary).not.toContainText('Updated two');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(2);
+		await expect(
+			component.locator('input[value="initial-1"]')
+		).not.toBeChecked();
+		await expect(optionSelectedCalls).toHaveText('0');
 	});
 };
 
