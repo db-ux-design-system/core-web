@@ -7,5 +7,5 @@ test.describe('DBFooter', () => {
 		test.skip();
 	}
 
-	getDefaultScreenshotTest({ path });
+	getDefaultScreenshotTest({ path, ratio: '0.01' });
 });

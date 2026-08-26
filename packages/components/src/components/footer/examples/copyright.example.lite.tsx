@@ -18,7 +18,7 @@ export default function FooterCopyright() {
 				gap: 'var(--db-spacing-fixed-sm)',
 				width: '100%'
 			}}>
-			<DBFooter aria-label="Footer with copyright">
+			<DBFooter>
 				<DBFooterMeta copyright="© Example Company">
 					<nav aria-label="Legal navigation with copyright">
 						<ul>
@@ -31,7 +31,7 @@ export default function FooterCopyright() {
 					</nav>
 				</DBFooterMeta>
 			</DBFooter>
-			<DBFooter aria-label="Footer without copyright">
+			<DBFooter>
 				<DBFooterMeta>
 					<nav aria-label="Legal navigation without copyright">
 						<ul>

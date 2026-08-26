@@ -19,7 +19,7 @@ export default function FooterWidth() {
 				gap: 'var(--db-spacing-fixed-sm)',
 				width: '100%'
 			}}>
-			<DBFooter width="full" aria-label="Full width footer">
+			<DBFooter width="full">
 				<DBFooterContent>
 					<span
 						class="dummy-component"
@@ -48,7 +48,7 @@ export default function FooterWidth() {
 					</nav>
 				</DBFooterMeta>
 			</DBFooter>
-			<DBFooter width="large" aria-label="Large width footer">
+			<DBFooter width="large">
 				<DBFooterContent>
 					<span
 						class="dummy-component"
@@ -77,7 +77,7 @@ export default function FooterWidth() {
 					</nav>
 				</DBFooterMeta>
 			</DBFooter>
-			<DBFooter width="medium" aria-label="Medium width footer">
+			<DBFooter width="medium">
 				<DBFooterContent>
 					<span
 						class="dummy-component"
@@ -106,7 +106,7 @@ export default function FooterWidth() {
 					</nav>
 				</DBFooterMeta>
 			</DBFooter>
-			<DBFooter width="small" aria-label="Small width footer">
+			<DBFooter width="small">
 				<DBFooterContent>
 					<span
 						class="dummy-component"

@@ -19,7 +19,7 @@ export default function FooterOptionalAreas() {
 				gap: 'var(--db-spacing-fixed-sm)',
 				width: '100%'
 			}}>
-			<DBFooter aria-label="Content-only footer">
+			<DBFooter>
 				<DBFooterContent>
 					<nav aria-label="Content-only footer navigation">
 						<ul>
@@ -32,7 +32,7 @@ export default function FooterOptionalAreas() {
 					</nav>
 				</DBFooterContent>
 			</DBFooter>
-			<DBFooter aria-label="Meta-only footer">
+			<DBFooter>
 				<DBFooterMeta>
 					<p>
 						Customer service:{' '}
