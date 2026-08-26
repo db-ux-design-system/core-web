@@ -13,7 +13,7 @@ import {
 	DEFAULT_SCROLL_RIGHT
 } from '../../shared/constants';
 import { NavigationItemGroupVariantType } from '../../shared/model';
-import { cls, delay, getBooleanAsString } from '../../utils';
+import { cls, delay, getBooleanAsString, hasCssFlag } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
@@ -147,14 +147,22 @@ export default function DBControlPanelNavigation(
 			const isMainNavigationPositionLeft =
 				shell?.getAttribute('data-control-panel-desktop-position') ===
 				'left';
+			const isSubNavigationMobile = hasCssFlag(
+				element,
+				'--db-control-panel-sub-navigation-mobile'
+			);
+
+			const isPopoverSubNavigation =
+				shellSubNavigation &&
+				(isSubNavigationPositionTop ||
+					isMainNavigationPositionLeft ||
+					isSubNavigationMobile);
 
 			return (
-				!mobileControlPanel &&
-				!flatIconControlPanel &&
-				((shellSubNavigation &&
-					(isSubNavigationPositionTop ||
-						isMainNavigationPositionLeft)) ||
-					(!shellSubNavigation && isMainNavigationPositionTop))
+				(!mobileControlPanel &&
+					!flatIconControlPanel &&
+					isPopoverSubNavigation) ||
+				(!shellSubNavigation && isMainNavigationPositionTop)
 			);
 		},
 		_update() {

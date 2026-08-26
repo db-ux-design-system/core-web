@@ -78,7 +78,9 @@
 				.db-control-panel-meta {
 					/* stylelint-disable-next-line db-ux/use-spacings */
 					padding: variables.$db-spacing-fixed-xs
-						component.$drawer-content-padding-inline;
+						#{component.get-safe-area-horizontal-padding(
+							variables.$db-spacing-fixed-lg
+						)};
 					margin-block-start: auto;
 					flex-flow: column nowrap;
 
