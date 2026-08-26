@@ -9,7 +9,11 @@
   - navigation "Legal navigation":
     - list:
       - listitem:
-        - link "Privacy"
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Accessibility"
   - link "Optional Areas"
   - navigation "Content-only footer navigation":
     - list:
@@ -23,11 +27,15 @@
   - navigation "Legal navigation with copyright":
     - list:
       - listitem:
-        - link "Privacy"
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
   - navigation "Legal navigation without copyright":
     - list:
       - listitem:
-        - link "Imprint"
+        - link "Terms and conditions"
+      - listitem:
+        - link "Accessibility"
   - link "Width"
   - text: Full inner content width
   - navigation "Full footer navigation":
