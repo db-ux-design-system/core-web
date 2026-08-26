@@ -2,7 +2,7 @@
 
 For installation and configuration, see [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components).
 
-Compose `DBFooterContent` and `DBFooterMeta` inside `DBFooter`. Omit either subcomponent when that visual area is not needed. Copyright is opt-in through `DBFooterMeta`.
+Compose `DBFooterContent` and `DBFooterMeta` inside `DBFooter`. `DBFooterMeta` is semantically neutral and accepts navigation, contact information, or other secondary content. It does not create a navigation landmark, so wrap navigational content in a labelled `nav`. Omit either subcomponent when that visual area is not needed. Copyright is opt-in through `DBFooterMeta`.
 
 ```ts app.component.ts
 import { Component } from "@angular/core";

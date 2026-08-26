@@ -1,6 +1,6 @@
 ## HTML
 
-Use `.db-footer-meta` as the secondary visual area inside a native `.db-footer`. Copyright text is optional.
+Use `.db-footer-meta` as the secondary visual area inside a native `.db-footer`. The wrapper is semantically neutral and does not create a navigation landmark. Wrap navigational content in a labelled `nav`, or provide other suitable secondary content such as contact information. Copyright text is optional.
 
 ```html index.html
 <footer class="db-footer">

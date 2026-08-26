@@ -2,7 +2,7 @@
 
 For installation and configuration, see [components](https://www.npmjs.com/package/@db-ux/core-components).
 
-Compose the visual content and meta wrappers inside a native footer. Omit either wrapper when that area is not needed, and add copyright text only when required.
+Compose the visual content and meta wrappers inside a native footer. The meta wrapper is semantically neutral and accepts navigation, contact information, or other secondary content. It does not create a navigation landmark, so wrap navigational content in a labelled `nav`. Omit either wrapper when that area is not needed, and add copyright text only when required.
 
 ```html index.html
 <div class="db-page" data-variant="fixed">

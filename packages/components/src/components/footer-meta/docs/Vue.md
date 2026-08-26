@@ -1,6 +1,6 @@
 ## Vue
 
-`DBFooterMeta` provides the secondary visual area inside `DBFooter`. Its `copyright` text is optional.
+`DBFooterMeta` provides the secondary visual area inside `DBFooter`. It is semantically neutral and does not create a navigation landmark. Wrap navigational content in a labelled `nav`, or provide other suitable secondary content such as contact information. Its `copyright` text is optional.
 
 ```vue App.vue
 <script setup lang="ts">
