@@ -307,11 +307,14 @@ export default function DBControlPanelNavigationItemGroup(
 		handleEscape: (event: any) => {
 			if (!event || event.key === 'Escape') {
 				event?.stopPropagation();
+				state.isSubNavigationExpanded = false;
 				state.forceClose();
-				// Return focus to expand button instead of blurring
-				if (_buttonRef) {
-					(_buttonRef as HTMLElement).focus();
-				}
+				// Return focus to expand button after the inert attribute is removed
+				void delay(() => {
+					if (_buttonRef) {
+						(_buttonRef as HTMLElement).focus();
+					}
+				}, 1);
 			}
 		}
 	});
