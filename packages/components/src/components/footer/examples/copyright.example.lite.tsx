@@ -1,5 +1,6 @@
 import { useMetadata } from '@builder.io/mitosis';
 import DBFooterMeta from '../../footer-meta/footer-meta.lite';
+import DBLink from '../../link/link.lite';
 import DBFooter from '../footer.lite';
 import { StorybookFooterArgTypes } from './_footer.arg.types';
 
@@ -22,9 +23,9 @@ export default function FooterCopyright() {
 					<nav aria-label="Legal navigation with copyright">
 						<ul>
 							<li>
-								<a className="db-link" href="#privacy">
+								<DBLink wrap={true} href="#privacy">
 									Privacy
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -35,9 +36,9 @@ export default function FooterCopyright() {
 					<nav aria-label="Legal navigation without copyright">
 						<ul>
 							<li>
-								<a className="db-link" href="#imprint">
+								<DBLink wrap={true} href="#imprint">
 									Imprint
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>

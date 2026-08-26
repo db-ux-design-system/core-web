@@ -1,6 +1,7 @@
 import { useMetadata } from '@builder.io/mitosis';
 import DBFooterContent from '../../footer-content/footer-content.lite';
 import DBFooterMeta from '../../footer-meta/footer-meta.lite';
+import DBLink from '../../link/link.lite';
 import DBFooter from '../footer.lite';
 import { StorybookFooterArgTypes } from './_footer.arg.types';
 
@@ -20,12 +21,17 @@ export default function FooterWidth() {
 			}}>
 			<DBFooter width="full" aria-label="Full width footer">
 				<DBFooterContent>
+					<span
+						class="dummy-component"
+						style={{ inlineSize: '100%' }}>
+						Full inner content width
+					</span>
 					<nav aria-label="Full footer navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#full">
+								<DBLink wrap={true} href="#full">
 									Full
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -34,9 +40,9 @@ export default function FooterWidth() {
 					<nav aria-label="Full legal navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#full-legal">
+								<DBLink wrap={true} href="#full-legal">
 									Legal
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -44,12 +50,17 @@ export default function FooterWidth() {
 			</DBFooter>
 			<DBFooter width="large" aria-label="Large width footer">
 				<DBFooterContent>
+					<span
+						class="dummy-component"
+						style={{ inlineSize: '100%' }}>
+						Large inner content width
+					</span>
 					<nav aria-label="Large footer navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#large">
+								<DBLink wrap={true} href="#large">
 									Large
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -58,9 +69,9 @@ export default function FooterWidth() {
 					<nav aria-label="Large legal navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#large-legal">
+								<DBLink wrap={true} href="#large-legal">
 									Legal
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -68,12 +79,17 @@ export default function FooterWidth() {
 			</DBFooter>
 			<DBFooter width="medium" aria-label="Medium width footer">
 				<DBFooterContent>
+					<span
+						class="dummy-component"
+						style={{ inlineSize: '100%' }}>
+						Medium inner content width
+					</span>
 					<nav aria-label="Medium footer navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#medium">
+								<DBLink wrap={true} href="#medium">
 									Medium
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -82,9 +98,9 @@ export default function FooterWidth() {
 					<nav aria-label="Medium legal navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#medium-legal">
+								<DBLink wrap={true} href="#medium-legal">
 									Legal
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -92,12 +108,17 @@ export default function FooterWidth() {
 			</DBFooter>
 			<DBFooter width="small" aria-label="Small width footer">
 				<DBFooterContent>
+					<span
+						class="dummy-component"
+						style={{ inlineSize: '100%' }}>
+						Small inner content width
+					</span>
 					<nav aria-label="Small footer navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#small">
+								<DBLink wrap={true} href="#small">
 									Small
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -106,9 +127,9 @@ export default function FooterWidth() {
 					<nav aria-label="Small legal navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#small-legal">
+								<DBLink wrap={true} href="#small-legal">
 									Legal
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>

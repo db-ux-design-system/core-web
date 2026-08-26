@@ -1,6 +1,7 @@
 import { useMetadata } from '@builder.io/mitosis';
 import DBFooterContent from '../../footer-content/footer-content.lite';
 import DBFooterMeta from '../../footer-meta/footer-meta.lite';
+import DBLink from '../../link/link.lite';
 import DBFooter from '../footer.lite';
 import { StorybookFooterArgTypes } from './_footer.arg.types';
 
@@ -23,9 +24,9 @@ export default function FooterOptionalAreas() {
 					<nav aria-label="Content-only footer navigation">
 						<ul>
 							<li>
-								<a className="db-link" href="#services">
+								<DBLink wrap={true} href="#services">
 									Services
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -33,15 +34,12 @@ export default function FooterOptionalAreas() {
 			</DBFooter>
 			<DBFooter aria-label="Meta-only footer">
 				<DBFooterMeta>
-					<nav aria-label="Meta-only legal navigation">
-						<ul>
-							<li>
-								<a className="db-link" href="#imprint">
-									Imprint
-								</a>
-							</li>
-						</ul>
-					</nav>
+					<p>
+						Customer service:{' '}
+						<DBLink wrap={true} href="#contact">
+							Contact us
+						</DBLink>
+					</p>
 				</DBFooterMeta>
 			</DBFooter>
 		</div>
