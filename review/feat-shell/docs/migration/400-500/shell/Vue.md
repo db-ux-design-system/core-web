@@ -237,7 +237,6 @@ import PrimaryActions from "./PrimaryActions.vue";
 import SecondaryActions from "./SecondaryActions.vue";
 import {
 	DBShell, // previously: DBPage
-	DBShellContent, // new
 	DBControlPanelDesktop, // previously: DBHeader
 	DBControlPanelMobile, // previously: DBHeader
 	DBControlPanelBrand // previously: DBBrand
@@ -263,7 +262,7 @@ const toggleDrawer = (open: boolean) => {
 			<template v-slot:secondary-actions>
 				<SecondaryActions />
 			</template>
-			<template v-slot:meta>
+			<template v-slot:meta-navigation>
 				<MetaNavigation />
 			</template>
 
@@ -279,7 +278,7 @@ const toggleDrawer = (open: boolean) => {
 			<template v-slot:secondary-actions>
 				<SecondaryActions />
 			</template>
-			<template v-slot:meta>
+			<template v-slot:meta-navigation>
 				<MetaNavigation />
 			</template>
 			<Navigation />
