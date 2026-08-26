@@ -14,6 +14,7 @@ useMetadata({
 export default function FooterWidth() {
 	return (
 		<div
+			class="footer-width-example"
 			style={{
 				display: 'grid',
 				gap: 'var(--db-spacing-fixed-sm)',

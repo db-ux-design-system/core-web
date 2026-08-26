@@ -431,6 +431,22 @@ h6 {
 	);
 	position: relative;
 
+	&:has(.footer-width-example) {
+		align-items: flex-start;
+		overflow-inline: auto;
+
+		.variants-list {
+			justify-content: flex-start;
+		}
+
+		.footer-width-example {
+			min-inline-size: calc(
+				#{screen-sizes.$db-breakpoint-lg} + 2 *
+					#{variables.$db-spacing-fixed-xl}
+			);
+		}
+	}
+
 	.code-details {
 		@include display.display(flex);
 
