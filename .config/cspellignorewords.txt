@@ -255,5 +255,6 @@ ponyfills
 browserlist
 descope
 pnpms
+renovatebot
 drilldown
 synchronisation
