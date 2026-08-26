@@ -289,4 +289,4 @@ Only these package-specific details are added on top:
 
     Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
 
-- **New or changed examples** (`src/components/*/examples/`) are a `minor` bump.
+- **Examples do not determine bump type** — changes in `src/components/*/examples/` do not inherently require a `minor` bump. The bump type is determined by the underlying change the example demonstrates (e.g. a bug fix with a new regression example is still `patch`; an example for a newly added prop is `minor` because the prop itself is the feature).

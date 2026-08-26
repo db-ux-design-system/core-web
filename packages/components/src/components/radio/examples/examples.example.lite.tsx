@@ -17,7 +17,7 @@ useMetadata({
 
 export default function RadioExamples() {
 	return (
-		<div role="radiogroup" aria-label="Examples">
+		<div>
 			<DBRadio
 				data-density="functional"
 				size="small"
