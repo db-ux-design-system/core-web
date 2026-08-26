@@ -27,10 +27,37 @@ export default function FooterComposition() {
 				</DBFooterContent>
 				<DBFooterMeta copyright="© Example Company">
 					<nav aria-label="Legal navigation">
-						<ul>
+						<ul
+							style={{
+								display: 'flex',
+								flexWrap: 'wrap',
+								gap: 'var(--db-spacing-fixed-md)',
+								listStyleType: '""',
+								margin: '0',
+								padding: '0'
+							}}>
 							<li>
-								<DBLink wrap={true} href="#privacy">
-									Privacy
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#privacy">
+									Privacy policy
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#imprint">
+									Imprint
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#accessibility">
+									Accessibility
 								</DBLink>
 							</li>
 						</ul>

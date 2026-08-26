@@ -34,9 +34,13 @@ export default function FooterOptionalAreas() {
 			</DBFooter>
 			<DBFooter>
 				<DBFooterMeta>
-					<p>
+					<p
+						style={{
+							font: 'var(--db-type-body-sm)',
+							margin: '0'
+						}}>
 						Customer service:{' '}
-						<DBLink wrap={true} href="#contact">
+						<DBLink variant="inline" size="small" href="#contact">
 							Contact us
 						</DBLink>
 					</p>

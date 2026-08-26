@@ -21,10 +21,29 @@ export default function FooterCopyright() {
 			<DBFooter>
 				<DBFooterMeta copyright="© Example Company">
 					<nav aria-label="Legal navigation with copyright">
-						<ul>
+						<ul
+							style={{
+								display: 'flex',
+								flexWrap: 'wrap',
+								gap: 'var(--db-spacing-fixed-md)',
+								listStyleType: '""',
+								margin: '0',
+								padding: '0'
+							}}>
 							<li>
-								<DBLink wrap={true} href="#privacy">
-									Privacy
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#privacy">
+									Privacy policy
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#imprint">
+									Imprint
 								</DBLink>
 							</li>
 						</ul>
@@ -34,10 +53,29 @@ export default function FooterCopyright() {
 			<DBFooter>
 				<DBFooterMeta>
 					<nav aria-label="Legal navigation without copyright">
-						<ul>
+						<ul
+							style={{
+								display: 'flex',
+								flexWrap: 'wrap',
+								gap: 'var(--db-spacing-fixed-md)',
+								listStyleType: '""',
+								margin: '0',
+								padding: '0'
+							}}>
 							<li>
-								<DBLink wrap={true} href="#imprint">
-									Imprint
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#terms">
+									Terms and conditions
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#accessibility">
+									Accessibility
 								</DBLink>
 							</li>
 						</ul>
