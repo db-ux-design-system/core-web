@@ -17,14 +17,14 @@ import { DBFooter, DBLink, DBPage } from "@db-ux/ngx-core-components";
 			<db-footer footer width="medium">
 				<nav aria-label="Footer navigation">
 					<ul>
-						<li><db-link href="/about">About us</db-link></li>
-						<li><db-link href="/contact">Contact</db-link></li>
+						<li><db-link wrap href="/about">About us</db-link></li>
+						<li><db-link wrap href="/contact">Contact</db-link></li>
 					</ul>
 				</nav>
 				<nav meta aria-label="Legal navigation">
 					<ul>
-						<li><db-link href="/privacy">Privacy</db-link></li>
-						<li><db-link href="/imprint">Imprint</db-link></li>
+						<li><db-link wrap href="/privacy">Privacy</db-link></li>
+						<li><db-link wrap href="/imprint">Imprint</db-link></li>
 					</ul>
 				</nav>
 			</db-footer>

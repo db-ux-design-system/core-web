@@ -12,8 +12,16 @@ Place the native footer markup inside a `.db-page[data-variant="fixed"]`. Consum
 			<div class="db-footer-content-container">
 				<nav aria-label="Footer navigation">
 					<ul>
-						<li><a class="db-link" href="/about">About us</a></li>
-						<li><a class="db-link" href="/contact">Contact</a></li>
+						<li>
+							<a class="db-link" data-wrap="true" href="/about"
+								>About us</a
+							>
+						</li>
+						<li>
+							<a class="db-link" data-wrap="true" href="/contact"
+								>Contact</a
+							>
+						</li>
 					</ul>
 				</nav>
 			</div>
@@ -25,10 +33,20 @@ Place the native footer markup inside a `.db-page[data-variant="fixed"]`. Consum
 					<nav aria-label="Legal navigation">
 						<ul>
 							<li>
-								<a class="db-link" href="/privacy">Privacy</a>
+								<a
+									class="db-link"
+									data-wrap="true"
+									href="/privacy"
+									>Privacy</a
+								>
 							</li>
 							<li>
-								<a class="db-link" href="/imprint">Imprint</a>
+								<a
+									class="db-link"
+									data-wrap="true"
+									href="/imprint"
+									>Imprint</a
+								>
 							</li>
 						</ul>
 					</nav>

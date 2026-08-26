@@ -17,10 +17,14 @@ export const App = () => (
 					<nav aria-label="Legal navigation">
 						<ul>
 							<li>
-								<DBLink href="/privacy">Privacy</DBLink>
+								<DBLink wrap href="/privacy">
+									Privacy
+								</DBLink>
 							</li>
 							<li>
-								<DBLink href="/imprint">Imprint</DBLink>
+								<DBLink wrap href="/imprint">
+									Imprint
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -29,10 +33,14 @@ export const App = () => (
 				<nav aria-label="Footer navigation">
 					<ul>
 						<li>
-							<DBLink href="/about">About us</DBLink>
+							<DBLink wrap href="/about">
+								About us
+							</DBLink>
 						</li>
 						<li>
-							<DBLink href="/contact">Contact</DBLink>
+							<DBLink wrap href="/contact">
+								Contact
+							</DBLink>
 						</li>
 					</ul>
 				</nav>

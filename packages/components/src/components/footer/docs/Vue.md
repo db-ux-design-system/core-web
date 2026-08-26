@@ -16,15 +16,19 @@ import { DBFooter, DBLink, DBPage } from "@db-ux/v-core-components";
 			<DBFooter width="medium">
 				<nav aria-label="Footer navigation">
 					<ul>
-						<li><DBLink href="/about">About us</DBLink></li>
-						<li><DBLink href="/contact">Contact</DBLink></li>
+						<li><DBLink wrap href="/about">About us</DBLink></li>
+						<li><DBLink wrap href="/contact">Contact</DBLink></li>
 					</ul>
 				</nav>
 				<template #meta>
 					<nav aria-label="Legal navigation">
 						<ul>
-							<li><DBLink href="/privacy">Privacy</DBLink></li>
-							<li><DBLink href="/imprint">Imprint</DBLink></li>
+							<li>
+								<DBLink wrap href="/privacy">Privacy</DBLink>
+							</li>
+							<li>
+								<DBLink wrap href="/imprint">Imprint</DBLink>
+							</li>
 						</ul>
 					</nav>
 				</template>

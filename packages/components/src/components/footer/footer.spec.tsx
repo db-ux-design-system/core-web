@@ -1,6 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+import { DBLink } from '../link';
 import { DBFooter } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -197,7 +198,7 @@ const testComponent = () => {
 		await expect(component).toHaveClass(/custom-footer/);
 	});
 
-	test('should wrap realistic content without horizontal overflow', async ({
+	test('should wrap DBLink labels without horizontal overflow', async ({
 		mount,
 		page
 	}) => {
@@ -208,19 +209,19 @@ const testComponent = () => {
 					<nav aria-label="Legal navigation">
 						<ul>
 							<li>
-								<a href="#passenger-rights">
+								<DBLink wrap href="#passenger-rights">
 									Passenger rights and conditions of carriage
-								</a>
+								</DBLink>
 							</li>
 							<li>
-								<a href="#privacy">
+								<DBLink wrap href="#privacy">
 									Privacy policy and accessibility statement
-								</a>
+								</DBLink>
 							</li>
 							<li>
-								<a href="#imprint">
+								<DBLink wrap href="#imprint">
 									Imprint and legal information
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -229,19 +230,19 @@ const testComponent = () => {
 					<nav aria-label="Legal navigation">
 						<ul>
 							<li>
-								<a href="#passenger-rights">
+								<DBLink wrap href="#passenger-rights">
 									Passenger rights and conditions of carriage
-								</a>
+								</DBLink>
 							</li>
 							<li>
-								<a href="#privacy">
+								<DBLink wrap href="#privacy">
 									Privacy policy and accessibility statement
-								</a>
+								</DBLink>
 							</li>
 							<li>
-								<a href="#imprint">
+								<DBLink wrap href="#imprint">
 									Imprint and legal information
-								</a>
+								</DBLink>
 							</li>
 						</ul>
 					</nav>
@@ -249,9 +250,9 @@ const testComponent = () => {
 				<nav aria-label="Footer navigation">
 					<ul>
 						<li>
-							<a href="#services">
+							<DBLink wrap href="#services">
 								Services for passengers and commuters
-							</a>
+							</DBLink>
 						</li>
 					</ul>
 				</nav>
