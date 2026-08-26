@@ -73,9 +73,14 @@ $stack-gaps: (
 
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-start;
-	block-size: 100%;
-	inline-size: 100%;
-	overflow: auto;
+
+	&:is([data-width="full"], :not([data-width])) {
+		inline-size: 100%;
+	}
+
+	&:not([data-wrap="true"]) {
+		overflow: auto;
+	}
 
 	&:is([data-direction="column"], :not([data-direction])) {
 		flex-direction: column;

@@ -1,7 +1,8 @@
 import type {
 	GapSpacingProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	WidthProps
 } from '../../shared/model';
 
 export const StackVariantList = ['simple', 'divider'] as const;
@@ -49,7 +50,10 @@ export type DBStackDefaultProps = {
 	justifyContent?: StackJustifyContentType;
 };
 
-export type DBStackProps = DBStackDefaultProps & GlobalProps & GapSpacingProps;
+export type DBStackProps = DBStackDefaultProps &
+	GlobalProps &
+	GapSpacingProps &
+	WidthProps;
 
 export type DBStackDefaultState = {};
 
