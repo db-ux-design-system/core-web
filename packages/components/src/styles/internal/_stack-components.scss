@@ -101,6 +101,11 @@ $stack-gaps: (
 
 	&[data-wrap="true"] {
 		flex-wrap: wrap;
+
+		// Column wrap requires explicit block-size to function correctly
+		&:not([data-direction="row"]) {
+			block-size: 100%;
+		}
 	}
 
 	@include get-stack-alignments;

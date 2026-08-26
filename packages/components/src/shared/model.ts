@@ -237,7 +237,7 @@ export type HeightProps = {
 	/**
 	 * Height of the component. Auto height based on children size, full height based on parent elements height.
 	 */
-	height?: HeightType | string;
+	height?: HeightType;
 };
 
 export const MaxWidthList = ['full', 'medium', 'large', 'small'] as const;
