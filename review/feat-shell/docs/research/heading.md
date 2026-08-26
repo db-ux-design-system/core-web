@@ -27,7 +27,7 @@
 ### Questions for dev
 
 - How to handle DB Pulse??
-    - We handle this inside the `@db-ux/db-theme` package
+    - ~~We handle this inside the `@db-ux/db-theme` package~~ We don't need to handle this anymore
 - Shall we add auto-spacing as dev property (h1+h2, add margin)??
     - We won't do this for now
 

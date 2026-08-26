@@ -121,7 +121,8 @@ import {
 	DBLink,
 	DBControlPanelNavigation,
 	DBControlPanelNavigationItem,
-	DBControlPanelNavigationItemGroup // new
+	DBControlPanelNavigationItemGroup, // new
+	DBButton
 } from "@db-ux/react-core-components";
 
 // No need for own drawer state
@@ -191,7 +192,7 @@ const App = () => (
 	<DBShell fadeIn>
 		<DBControlPanelDesktop
 			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
-			metaNavigation={<MetaNavigation />}
+			meta={<MetaNavigation />}
 			primaryActions={<PrimaryActions />}
 			secondaryActions={<SecondaryActions />}
 		>
@@ -200,7 +201,7 @@ const App = () => (
 		<DBControlPanelMobile
 			drawerHeaderText="My Awesome App"
 			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
-			metaNavigation={<MetaNavigation />}
+			meta={<MetaNavigation />}
 			primaryActions={<PrimaryActions />}
 			secondaryActions={<SecondaryActions />}
 		>
