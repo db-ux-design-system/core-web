@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BopFOMdr.js";e();
