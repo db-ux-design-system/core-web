@@ -22,5 +22,5 @@
     - Control Panel: Desktop; Control Panel Position: Left; Control Panel Navigation: Tree; Sub Navigation: None.
     - Control Panel: Desktop; Control Panel Position: Left; Control Panel Navigation: Drill Down; Sub Navigation Position: Top; Sub Navigation Variant: Popover.
     - Control Panel: Desktop; Control Panel Position: Left; Control Panel Navigation: Tree; Sub Navigation Position: Top; Sub Navigation Variant: Popover.
-    - Control Panel: Desktop; Control Panel Navigation: Flat Icon; Sub Navigation: None.
-    - Control Panel: Desktop; Control Panel Navigation: Flat Icon; Sub Navigation Position: Top; Sub Navigation Variant: Popover.
+    - Control Panel: Flat Icon; Sub Navigation: None.
+    - Control Panel: Flat Icon; Sub Navigation Position: Top; Sub Navigation Variant: Popover.

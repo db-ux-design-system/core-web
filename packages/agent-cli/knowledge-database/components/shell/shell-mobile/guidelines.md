@@ -28,5 +28,5 @@
     - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation: None.
     - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation Position: Top (1 Level).
     - Control Panel: Mobile; Control Panel Position: Bottom; Control Panel Navigation: Drawer; Drawer Navigation Variant: Tree; Sub Navigation Position: Bottom (1 Level).
-    - Control Panel: Mobile; Control Panel Navigation: Flat Icon; Sub Navigation: None.
-    - Control Panel: Mobile; Control Panel Navigation: Flat Icon; Sub Navigation Position: Top (1 Level).
+    - Control Panel: Flat Icon; Sub Navigation: None.
+    - Control Panel: Flat Icon; Sub Navigation Position: Top (1 Level).
