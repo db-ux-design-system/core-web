@@ -35,9 +35,13 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 				angular: () => undefined,
 				stencil: () => undefined,
 				default: () => {
-					if (props.onExpandButtonTooltipFn) {
+					// Vue strips "on" prefix, so consumers use :expand-button-tooltip-fn
+					const tooltipFn =
+						props.onExpandButtonTooltipFn ??
+						props.expandButtonTooltipFn;
+					if (tooltipFn) {
 						const open = state._open;
-						return props.onExpandButtonTooltipFn(open);
+						return tooltipFn(open);
 					}
 				}
 			});

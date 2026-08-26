@@ -6,7 +6,10 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
-const TARGET_COMPONENT = 'DBControlPanelNavigationItemGroup';
+const TARGET_COMPONENTS = [
+	'DBControlPanelNavigationItemGroup',
+	'DBNavigationItem'
+];
 
 export default {
 	meta: {
@@ -40,18 +43,28 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(
-			context,
-			TARGET_COMPONENT,
-			angularHandler
-		);
-		if (angularVisitors) {
+		const angularVisitors: any = {};
+		for (const comp of TARGET_COMPONENTS) {
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
+		}
+
+		if (Object.keys(angularVisitors).length > 0) {
 			return angularVisitors;
 		}
 
 		const checkNavigationItemGroup = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, TARGET_COMPONENT)) {
+			const isTarget = TARGET_COMPONENTS.some((comp) =>
+				isDBComponent(openingElement, comp)
+			);
+			if (!isTarget) {
 				return;
 			}
 

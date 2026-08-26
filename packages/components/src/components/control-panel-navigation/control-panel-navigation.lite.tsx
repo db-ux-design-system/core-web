@@ -492,10 +492,12 @@ export default function DBControlPanelNavigation(
 					'.db-control-panel-navigation-item-group'
 				);
 				if (group) {
-					event.preventDefault();
 					const expandButton = group.querySelector(
 						':scope > .db-control-panel-navigation-item-group-expand-button'
 					) as HTMLElement | null;
+					// Only open submenu when focus is on the expand button itself
+					if (expandButton !== activeElement) return;
+					event.preventDefault();
 					if (
 						expandButton &&
 						expandButton.getAttribute('aria-expanded') !== 'true'

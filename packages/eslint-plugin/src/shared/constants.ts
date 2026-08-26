@@ -16,6 +16,7 @@ export const INTERACTIVE_ELEMENTS = [
 	'DBSwitch',
 	'DBControlPanelNavigationItem',
 	'DBControlPanelNavigationItemGroup',
+	'DBNavigationItem',
 	'DBTabItem',
 	'DBTag'
 ];

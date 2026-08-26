@@ -26,6 +26,9 @@ describe('navigation-item-back-button-text-required', () => {
 			},
 			{
 				code: '<DBControlPanelNavigationItemGroup backButtonText="Go back">Item</DBControlPanelNavigationItemGroup>'
+			},
+			{
+				code: '<DBNavigationItem backButtonText="Back">Item</DBNavigationItem>'
 			}
 		],
 		invalid: [
@@ -35,6 +38,10 @@ describe('navigation-item-back-button-text-required', () => {
 			},
 			{
 				code: '<DBControlPanelNavigationItemGroup icon="home">Item</DBControlPanelNavigationItemGroup>',
+				errors: [{ messageId: 'missingBackButtonText' }]
+			},
+			{
+				code: '<DBNavigationItem>Item</DBNavigationItem>',
 				errors: [{ messageId: 'missingBackButtonText' }]
 			}
 		]
