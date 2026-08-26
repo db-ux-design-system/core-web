@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat: add `width` property to DBStack and remove default `block-size: 100%`
+feat(DBStack): add `width` property and remove default `block-size: 100%`
