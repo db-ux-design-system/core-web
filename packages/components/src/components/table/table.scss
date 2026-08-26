@@ -226,6 +226,7 @@
 			position: sticky;
 			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
 			z-index: 4;
+
 			// Background needed so underlying elements don't show through when scrolling
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		}
