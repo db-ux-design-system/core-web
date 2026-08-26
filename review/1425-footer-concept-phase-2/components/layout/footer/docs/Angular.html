@@ -1,32 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/2c70e6f01c39bc7e.css" as="style"/><link rel="stylesheet" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/2c70e6f01c39bc7e.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/webpack-32ed6523929dfec6.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/main-f9d5c56ae1402e8d.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/_app-2a44d452fd6fddba.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/components/layout/footer/docs/Angular-6ac75eb06245982f.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/Ctvyxy8MU1qhPwqzUakbW/_buildManifest.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/Ctvyxy8MU1qhPwqzUakbW/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/24de770c43b3ca1b.css" as="style"/><link rel="stylesheet" href="/core-web/review/1425-footer-concept-phase-2/_next/static/css/24de770c43b3ca1b.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/webpack-32ed6523929dfec6.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/main-f9d5c56ae1402e8d.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/_app-2a44d452fd6fddba.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/chunks/pages/components/layout/footer/docs/Angular-c24de13f9fce7a05.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/ItE0ypJCJ6R43EPqrnk--/_buildManifest.js" defer=""></script><script src="/core-web/review/1425-footer-concept-phase-2/_next/static/ItE0ypJCJ6R43EPqrnk--/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/1425-footer-concept-phase-2/components/layout/footer/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
 <p>For installation and configuration, see <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a>.</p>
-<p>Use <code>DBFooter</code> inside <code>DBPage variant=&quot;fixed&quot;</code>. Unmarked content is projected into the main area; add the <code>meta</code> attribute to legal and other meta content.</p>
+<p>Compose <code>DBFooterContent</code> and <code>DBFooterMeta</code> inside <code>DBFooter</code>. <code>DBFooterMeta</code> is semantically neutral and accepts navigation, contact information, or other secondary content. It does not create a navigation landmark, so wrap navigational content in a labelled <code>nav</code>. Omit either subcomponent when that visual area is not needed. Copyright is opt-in through <code>DBFooterMeta</code>.</p>
 <pre><code class="language-ts">import { Component } from &quot;@angular/core&quot;;
-import { DBFooter, DBLink, DBPage } from &quot;@db-ux/ngx-core-components&quot;;
+import {
+	DBFooter,
+	DBFooterContent,
+	DBFooterMeta,
+	DBLink,
+	DBPage
+} from &quot;@db-ux/ngx-core-components&quot;;
 
 @Component({
 	selector: &quot;app-root&quot;,
-	imports: [DBFooter, DBLink, DBPage],
-	template: `
-		&lt;db-page variant=&quot;fixed&quot;&gt;
-			Page content
-			&lt;db-footer footer width=&quot;medium&quot;&gt;
-				&lt;nav aria-label=&quot;Footer navigation&quot;&gt;
+	imports: [DBFooter, DBFooterContent, DBFooterMeta, DBLink, DBPage],
+	template: ` &lt;db-page variant=&quot;fixed&quot;
+		&gt;Page content
+		&lt;db-footer footer width=&quot;medium&quot;&gt;
+			&lt;db-footer-content
+				&gt;&lt;nav aria-label=&quot;Footer navigation&quot;&gt;
 					&lt;ul&gt;
-						&lt;li&gt;&lt;db-link href=&quot;/about&quot;&gt;About us&lt;/db-link&gt;&lt;/li&gt;
-						&lt;li&gt;&lt;db-link href=&quot;/contact&quot;&gt;Contact&lt;/db-link&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;db-link wrap href=&quot;/about&quot;&gt;About us&lt;/db-link&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;db-link wrap href=&quot;/contact&quot;&gt;Contact&lt;/db-link&gt;&lt;/li&gt;
 					&lt;/ul&gt;
-				&lt;/nav&gt;
-				&lt;nav meta aria-label=&quot;Legal navigation&quot;&gt;
+				&lt;/nav&gt;&lt;/db-footer-content
+			&gt;
+			&lt;db-footer-meta copyright=&quot;© Example Company&quot;
+				&gt;&lt;nav aria-label=&quot;Legal navigation&quot;&gt;
 					&lt;ul&gt;
-						&lt;li&gt;&lt;db-link href=&quot;/privacy&quot;&gt;Privacy&lt;/db-link&gt;&lt;/li&gt;
-						&lt;li&gt;&lt;db-link href=&quot;/imprint&quot;&gt;Imprint&lt;/db-link&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;db-link wrap href=&quot;/privacy&quot;&gt;Privacy&lt;/db-link&gt;&lt;/li&gt;
+						&lt;li&gt;&lt;db-link wrap href=&quot;/imprint&quot;&gt;Imprint&lt;/db-link&gt;&lt;/li&gt;
 					&lt;/ul&gt;
-				&lt;/nav&gt;
-			&lt;/db-footer&gt;
-		&lt;/db-page&gt;
-	`
+				&lt;/nav&gt;&lt;/db-footer-meta
+			&gt;
+		&lt;/db-footer&gt;
+	&lt;/db-page&gt;`
 })
 export class AppComponent {}
 </code></pre>
-<p><code>showMain</code>, <code>showMeta</code>, and <code>showCopyright</code> default to <code>true</code> and accept Angular property bindings, for example <code>[showMain]=&quot;false&quot;</code>. Use <code>id</code> and <code>class</code> for root attributes. <code>width</code> accepts <code>full</code>, <code>large</code>, <code>medium</code>, or <code>small</code>; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/Angular","query":{},"buildId":"Ctvyxy8MU1qhPwqzUakbW","assetPrefix":"/core-web/review/1425-footer-concept-phase-2","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+<p>Use <code>id</code> and <code>class</code> on each component as needed. <code>width</code> accepts <code>full</code>, <code>large</code>, <code>medium</code>, or <code>small</code>; it limits only the centred inner content to the available width, 1440 px, 1024 px, or 768 px respectively. The footer and both visual areas always remain full width.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/Angular","query":{},"buildId":"ItE0ypJCJ6R43EPqrnk--","assetPrefix":"/core-web/review/1425-footer-concept-phase-2","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
