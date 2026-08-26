@@ -50,7 +50,7 @@ export default function DrawerHeader() {
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
-							startSlot={<DBIcon icon="account" />}>
+							startSlot={<DBIcon icon="person" />}>
 							With start slot
 						</DBDrawerHeader>
 					}>

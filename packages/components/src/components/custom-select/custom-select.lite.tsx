@@ -1265,13 +1265,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</DBTooltip>
 				</DBButton>
 			</Show>
-
 			<span
+				data-placeholder={props.placeholder ?? props.label}
 				class="db-custom-select-placeholder"
 				aria-hidden="true"
-				id={state._placeholderId}>
-				{props.placeholder ?? props.label}
-			</span>
+				id={state._placeholderId}></span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
