@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: remove unwanted white background on table wrapper for `variant="spaced"`
+fix(table): remove unwanted white background on component wrapper for `variant="spaced"`
