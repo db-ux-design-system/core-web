@@ -2,6 +2,7 @@ import type {
 	GapSpacingProps,
 	GlobalProps,
 	GlobalState,
+	HeightProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -53,7 +54,8 @@ export type DBStackDefaultProps = {
 export type DBStackProps = DBStackDefaultProps &
 	GlobalProps &
 	GapSpacingProps &
-	WidthProps;
+	WidthProps &
+	HeightProps;
 
 export type DBStackDefaultState = {};
 

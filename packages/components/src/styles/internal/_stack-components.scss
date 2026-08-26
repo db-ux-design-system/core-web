@@ -78,6 +78,10 @@ $stack-gaps: (
 		inline-size: 100%;
 	}
 
+	&[data-height="full"] {
+		block-size: 100%;
+	}
+
 	&:not([data-wrap="true"]) {
 		overflow: auto;
 	}

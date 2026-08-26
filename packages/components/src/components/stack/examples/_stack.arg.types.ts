@@ -19,6 +19,8 @@ export const StorybookStackArgTypes: Record<string, InputType> = {
 	},
 	direction: { control: 'select', options: ['row', 'column'] },
 	wrap: { control: 'boolean' },
+	width: { control: 'select', options: ['full', 'auto'] },
+	height: { control: 'select', options: ['full', 'auto'] },
 	alignment: {
 		control: 'select',
 		options: ['stretch', 'start', 'end', 'center']
