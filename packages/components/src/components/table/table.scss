@@ -132,7 +132,10 @@
 
 		tr {
 			&:not([data-sub-header-emphasis]) {
-				@extend %transparent-border;
+				@extend %default-card;
+
+				background-color: transparent;
+				border-color: transparent;
 			}
 
 			&[data-sub-header-emphasis] {
@@ -147,6 +150,7 @@
 	&[data-variant="flat"],
 	&[data-variant="zebra"] {
 		table {
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			border-inline: component.$component-border;
 		}
 
@@ -183,6 +187,7 @@
 				--db-table-cell-span: 1;
 				--db-table-grid-template-columns: repeat(1, 1fr);
 
+				background-color: transparent;
 				border-color: transparent;
 			}
 
@@ -247,7 +252,6 @@
 	@extend %sticky-header;
 
 	container-type: inline-size;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	inline-size: 100%;
 	// stylelint-disable-next-line db-ux/use-spacings
 	padding: variables.$db-border-width-xs; // offset for focus
