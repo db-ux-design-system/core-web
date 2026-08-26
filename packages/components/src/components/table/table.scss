@@ -226,7 +226,14 @@
 			position: sticky;
 			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
 			z-index: 4;
+			// Background needed so underlying elements don't show through when scrolling
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		}
+
+		&[data-variant="spaced"] {
+			thead {
+				border-radius: variables.$db-border-radius-sm;
+			}
 		}
 	}
 
@@ -242,6 +249,16 @@
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 		}
+
+		&[data-variant="spaced"] {
+			tfoot,
+			tbody {
+				th {
+					border-start-start-radius: variables.$db-border-radius-sm;
+					border-end-start-radius: variables.$db-border-radius-sm;
+				}
+			}
+		}
 	}
 }
 
@@ -253,6 +270,7 @@
 
 	container-type: inline-size;
 	inline-size: 100%;
+	max-block-size: 100%;
 	// stylelint-disable-next-line db-ux/use-spacings
 	padding: variables.$db-border-width-xs; // offset for focus
 
