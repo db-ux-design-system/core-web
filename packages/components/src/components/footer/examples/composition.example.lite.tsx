@@ -1,4 +1,4 @@
-import { useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBFooterContent from '../../footer-content/footer-content.lite';
 import DBFooterMeta from '../../footer-meta/footer-meta.lite';
 import DBLink from '../../link/link.lite';
@@ -12,29 +12,31 @@ useMetadata({
 
 export default function FooterComposition() {
 	return (
-		<DBFooter width="medium">
-			<DBFooterContent>
-				<nav aria-label="Footer navigation">
-					<ul>
-						<li>
-							<DBLink wrap={true} href="#services">
-								Services
-							</DBLink>
-						</li>
-					</ul>
-				</nav>
-			</DBFooterContent>
-			<DBFooterMeta copyright="© Example Company">
-				<nav aria-label="Legal navigation">
-					<ul>
-						<li>
-							<DBLink wrap={true} href="#privacy">
-								Privacy
-							</DBLink>
-						</li>
-					</ul>
-				</nav>
-			</DBFooterMeta>
-		</DBFooter>
+		<Fragment>
+			<DBFooter width="medium">
+				<DBFooterContent>
+					<nav aria-label="Footer navigation">
+						<ul>
+							<li>
+								<DBLink wrap={true} href="#services">
+									Services
+								</DBLink>
+							</li>
+						</ul>
+					</nav>
+				</DBFooterContent>
+				<DBFooterMeta copyright="© Example Company">
+					<nav aria-label="Legal navigation">
+						<ul>
+							<li>
+								<DBLink wrap={true} href="#privacy">
+									Privacy
+								</DBLink>
+							</li>
+						</ul>
+					</nav>
+				</DBFooterMeta>
+			</DBFooter>
+		</Fragment>
 	);
 }
