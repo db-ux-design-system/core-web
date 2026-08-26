@@ -5,7 +5,7 @@ import type { TSESTree } from '@typescript-eslint/utils';
  * (JSX: attr={expr}, Vue: :attr="expr"). Distinguishes from valueless
  * boolean attributes which return literal `true`.
  */
-export const DYNAMIC_EXPRESSION = '__DYNAMIC__';
+const DYNAMIC_EXPRESSION = '__DYNAMIC__';
 
 type VElement = {
 	type: 'VElement';
