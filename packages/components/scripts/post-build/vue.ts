@@ -14,9 +14,17 @@ export default (tmp?: boolean) => {
 	});
 	for (const component of components) {
 		const componentName = component.name;
-		const vueFile = `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.vue`;
+		const componentFolder = component.folder ?? componentName;
+		const vueFile = `../../${outputFolder}/vue/src/components/${componentFolder}/${componentName}.vue`;
 
 		try {
+			// Rewire imports in Playwright component tests
+			replaceInFileSync({
+				files: `../../${outputFolder}/vue/src/components/${componentFolder}/${component.spec ?? componentName}.spec.tsx`,
+				from: `react`,
+				to: `vue`
+			});
+
 			/* Imports in the Playwright component tests are rewired in
 			 * `copy-files.ts`, where every `*.spec.tsx` of a component is copied. */
 			const replacements: Overwrite[] = [

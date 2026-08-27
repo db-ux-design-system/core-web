@@ -1,3 +1,5 @@
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
+
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 
 import Home from '../components/home';
@@ -82,6 +84,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: 'heading',
+				label: 'Heading',
+				component: <HeadingShowcase />
+			},
 			{
 				path: 'brand',
 				label: 'Brand',

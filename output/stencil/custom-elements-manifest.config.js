@@ -5,6 +5,19 @@ import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 
 const outdir = './dist';
 
+const HEADING_TAGS = new Set([
+	'db-heading-h-1',
+	'db-heading-h-2',
+	'db-heading-h-3',
+	'db-heading-h-4',
+	'db-heading-h-5',
+	'db-heading-h-6',
+	'db-custom-heading'
+]);
+
+const getDocumentationPath = (tag) =>
+	HEADING_TAGS.has(tag) ? 'data-display/heading' : tag.replace('db-', '');
+
 const vsCodeOptions = {
 	outdir,
 	cssFileName: null
@@ -15,7 +28,7 @@ const intellijOptions = {
 	excludeCss: true,
 	referenceTemplate: (name, tag) => ({
 		name: 'Documentation',
-		url: `https://design-system.deutschebahn.com/core-web/review/main/components/${tag.replace('db-', '')}/properties`
+		url: `https://design-system.deutschebahn.com/core-web/review/main/components/${getDocumentationPath(tag)}/properties`
 	})
 };
 
