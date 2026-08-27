@@ -1,5 +1,16 @@
 # @db-ux/core-foundations
 
+## 5.2.0
+
+### Minor Changes
+
+- refactor(SASS): expose the headline level mapping as `fonts.$headlines` - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - The default visual size per semantic level moves from
+    - `defaults/default-fonts.scss` into the new non-emitting partial
+    - `fonts/_headline-levels.scss`, so `defaults/default-fonts.scss` and the Heading
+    - component styles share one source of truth. The emitted CSS is unchanged.
+
 ## 5.1.6
 
 _version bump_
