@@ -158,7 +158,7 @@ The changeset description **must** follow the same conventional prefix style use
 - `refactor:` — code restructuring without behavior change
 - `docs:` — documentation changes
 
-Adding the componentname (or some other phrase in case of a differently scoped PR) as context (in brackets after the prefix) helps users easier to quickly skim through our information and it's clusters.
+Adding the component name (or an alternative phrase in the case of a differently scoped PR) as context in brackets after the prefix helps users to quickly skim through our information and its clusters.
 
 **Examples:**
 
