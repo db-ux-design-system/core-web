@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
 // VUE: /*
-import ControlledSelectHarness from './test-fixtures/controlled-select.fixture';
+import SelectControlled from './examples/controlled.example';
 // VUE: */
 
 import { DBSelect } from './index';
@@ -80,56 +80,44 @@ const testAction = () => {
 		);
 
 		const scenarios = [
+			{ label: 'Required', readout: 'Required', emptyOptionHidden: true },
 			{
-				id: 'required-default',
-				required: true,
-				expectedShowEmptyOption: 'false'
+				label: 'With empty option',
+				readout: 'With empty option',
+				emptyOptionHidden: false
 			},
 			{
-				id: 'required-show-empty',
-				required: true,
-				showEmptyOption: true,
-				expectedShowEmptyOption: 'true'
+				label: 'Optional',
+				readout: 'Optional',
+				emptyOptionHidden: false
 			},
-			{
-				id: 'optional-default',
-				required: false,
-				expectedShowEmptyOption: 'true'
-			},
-			{
-				id: 'required-floating',
-				required: true,
-				variant: 'floating',
-				expectedShowEmptyOption: 'false'
-			}
+			{ label: 'Floating', readout: 'Floating', emptyOptionHidden: true }
 		];
 
-		const component = await mount(<ControlledSelectHarness />);
+		const component = await mount(<SelectControlled />);
 
-		for (const { id, expectedShowEmptyOption } of scenarios) {
-			const scenario = component.getByTestId(`scenario-${id}`);
-			const select = scenario.getByRole('combobox');
-			const controlledValue = scenario.getByTestId('controlled-value');
+		for (const { label, readout, emptyOptionHidden } of scenarios) {
+			const select = component.getByRole('combobox', { name: label });
 			const emptyOption = select.locator('option[value=""]');
 
 			await expect(select).toHaveValue('');
 			await expect(emptyOption).toHaveJSProperty(
 				'hidden',
-				expectedShowEmptyOption === 'false'
+				emptyOptionHidden
 			);
+			await expect(component.getByText(`${readout}: none`)).toBeVisible();
 
-			for (const [value, label] of [
-				['first', 'First option'],
-				['second', 'Second option']
-			]) {
+			for (const value of ['Option 1', 'Option 2']) {
 				await select.selectOption(value);
-				await expect(controlledValue).toHaveText(value);
 				await expect(select).toHaveValue(value);
 				await expect(select.locator('option:checked')).toHaveText(
-					label
+					value
 				);
+				await expect(
+					component.getByText(`${readout}: ${value}`)
+				).toBeVisible();
 				expect(await select.ariaSnapshot()).toContain(
-					`option "${label}" [selected]`
+					`option "${value}" [selected]`
 				);
 			}
 		}
