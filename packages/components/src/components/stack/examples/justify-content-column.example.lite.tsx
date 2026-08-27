@@ -31,6 +31,7 @@ export default function StackJustifyContentColumn() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					justifyContent="start">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
@@ -60,6 +61,7 @@ export default function StackJustifyContentColumn() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					justifyContent="center">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
@@ -89,6 +91,7 @@ export default function StackJustifyContentColumn() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					justifyContent="end">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
@@ -118,6 +121,7 @@ export default function StackJustifyContentColumn() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					justifyContent="space-between">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
