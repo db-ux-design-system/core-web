@@ -69,7 +69,6 @@ export const adjustNestedSubNavigationPosition = (
 		translateY = viewportMargin - measuredRect.top;
 	}
 
-
 	// Always set inline transform to prevent any CSS fallback
 	element.style.transform = `translate(0px, ${translateY}px)`;
 };
