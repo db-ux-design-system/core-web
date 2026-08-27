@@ -174,4 +174,5 @@ export const MESSAGE_IDS = {
 	DIALOG_HEADER_REQUIRED: 'dialogHeaderRequired',
 	SUB_COMPONENT_REQUIRED_PARENT: 'subComponentRequiredParent',
 	CUSTOM_HEADING_MISSING_HEADING: 'missingHeading',
+	CUSTOM_HEADING_MULTIPLE_HEADINGS: 'multipleHeadings'
 };
