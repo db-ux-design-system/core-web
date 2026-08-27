@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat(DBStack): add `width` and `height` properties with `auto`/`full` options
+feat(DBStack): add `width` and `height` properties to control sizing (`full` default, `auto` for content-based)

@@ -78,8 +78,16 @@ $stack-gaps: (
 		inline-size: 100%;
 	}
 
-	&[data-height="full"] {
+	&[data-width="auto"] {
+		inline-size: fit-content;
+	}
+
+	&:is([data-height="full"], :not([data-height])) {
 		block-size: 100%;
+	}
+
+	&[data-height="auto"] {
+		block-size: auto;
 	}
 
 	&:not([data-wrap="true"]) {
@@ -103,7 +111,7 @@ $stack-gaps: (
 		flex-wrap: wrap;
 
 		// Column wrap requires explicit block-size to function correctly
-		&:not([data-direction="row"]) {
+		&:not([data-direction="row"]):not([data-height="auto"]) {
 			block-size: 100%;
 		}
 	}
