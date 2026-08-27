@@ -706,7 +706,6 @@ Content that cannot be resolved statically (JSX expressions, `<slot>`, `<ng-cont
 <DBCustomHeading><slot /></DBCustomHeading>
 ```
 
-
 ### `dialog-header-required`
 
 Ensures DBDialog has a DBDialogHeader in its `header` slot for accessibility. The header provides the close button and `aria-labelledby` for the dialog.
