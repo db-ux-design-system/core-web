@@ -94,9 +94,29 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
-    "endColumn": 58,
+    "endColumn": 43,
     "endLine": 19,
     "line": 19,
+    "message": "db-dialog-header must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 43,
+    "endLine": 19,
+    "line": 19,
+    "message": "db-dialog-header must be used inside db-dialog (in slot "header")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 58,
+    "endLine": 20,
+    "line": 20,
     "message": "db-custom-select must have mobileCloseButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "ruleId": "db-ux/close-button-text-required",
@@ -105,8 +125,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 47,
-    "endLine": 22,
-    "line": 22,
+    "endLine": 23,
+    "line": 23,
     "message": "db-drawer must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)",
     "messageId": "drawerHeaderRequired",
     "ruleId": "db-ux/drawer-header-required",
@@ -114,9 +134,19 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
+    "endColumn": 47,
+    "endLine": 26,
+    "line": 26,
+    "message": "db-dialog must have a DBDialogHeader in its header slot for accessibility (provides close button and aria-labelledby)",
+    "messageId": "dialogHeaderRequired",
+    "ruleId": "db-ux/dialog-header-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
     "endColumn": 53,
-    "endLine": 25,
-    "line": 25,
+    "endLine": 36,
+    "line": 36,
     "message": "db-drawer-header must have closeButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "ruleId": "db-ux/close-button-text-required",
@@ -125,8 +155,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 53,
-    "endLine": 25,
-    "line": 25,
+    "endLine": 36,
+    "line": 36,
     "message": "db-drawer-header must be used inside db-drawer (in slot "header")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -135,8 +165,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 53,
-    "endLine": 26,
-    "line": 26,
+    "endLine": 37,
+    "line": 37,
     "message": "db-drawer-footer must be used inside db-drawer (in slot "footer")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -144,9 +174,39 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   },
   {
     "column": 2,
+    "endColumn": 53,
+    "endLine": 38,
+    "line": 38,
+    "message": "db-dialog-header must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 53,
+    "endLine": 38,
+    "line": 38,
+    "message": "db-dialog-header must be used inside db-dialog (in slot "header")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 2,
+    "endColumn": 53,
+    "endLine": 39,
+    "line": 39,
+    "message": "db-dialog-footer must be used inside db-dialog (in slot "footer")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 2,
     "endColumn": 61,
-    "endLine": 27,
-    "line": 27,
+    "endLine": 40,
+    "line": 40,
     "message": "db-navigation-item must be used inside db-navigation or db-navigation-item (in slot "subNavigation") or db-header",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -155,8 +215,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 61,
-    "endLine": 27,
-    "line": 27,
+    "endLine": 40,
+    "line": 40,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -165,8 +225,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 68,
-    "endLine": 28,
-    "line": 28,
+    "endLine": 41,
+    "line": 41,
     "message": "db-tab-list must be used inside db-tabs",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -175,8 +235,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 43,
-    "endLine": 29,
-    "line": 29,
+    "endLine": 42,
+    "line": 42,
     "message": "db-tab-panel must be used inside db-tabs",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -185,8 +245,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 3,
-    "endLine": 34,
-    "line": 30,
+    "endLine": 47,
+    "line": 43,
     "message": "db-table-head must be used inside db-table",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -195,8 +255,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 3,
-    "endLine": 39,
-    "line": 35,
+    "endLine": 52,
+    "line": 48,
     "message": "db-table-body must be used inside db-table",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -205,8 +265,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 3,
-    "endLine": 44,
-    "line": 40,
+    "endLine": 57,
+    "line": 53,
     "message": "db-table-footer must be used inside db-table",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -215,8 +275,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 3,
-    "endLine": 47,
-    "line": 45,
+    "endLine": 60,
+    "line": 58,
     "message": "db-table-row must be used inside db-table-head or db-table-body or db-table-footer",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -225,8 +285,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 58,
-    "endLine": 48,
-    "line": 48,
+    "endLine": 61,
+    "line": 61,
     "message": "db-table-header-cell must be used inside db-table-row",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -235,8 +295,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 54,
-    "endLine": 49,
-    "line": 49,
+    "endLine": 62,
+    "line": 62,
     "message": "db-table-data-cell must be used inside db-table-row",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -245,8 +305,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 52,
-    "endLine": 50,
-    "line": 50,
+    "endLine": 63,
+    "line": 63,
     "message": "db-table-caption must be used inside db-table (in slot "caption")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -255,8 +315,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 35,
-    "endLine": 61,
-    "line": 61,
+    "endLine": 74,
+    "line": 74,
     "message": "db-input must have a label attribute for accessibility",
     "messageId": "missingLabel",
     "ruleId": "db-ux/form-label-required",
@@ -265,8 +325,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 62,
-    "endLine": 64,
-    "line": 64,
+    "endLine": 77,
+    "line": 77,
     "message": "db-input with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
     "messageId": "missingInvalidMessage",
     "ruleId": "db-ux/form-validation-message-required",
@@ -275,8 +335,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 25,
-    "endLine": 67,
-    "line": 67,
+    "endLine": 80,
+    "line": 80,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/header-burger-menu-label-required",
@@ -285,8 +345,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 23,
-    "endLine": 78,
-    "line": 76,
+    "endLine": 91,
+    "line": 89,
     "message": "db-navigation-item must be used inside db-navigation or db-navigation-item (in slot "subNavigation") or db-header",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -295,8 +355,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 23,
-    "endLine": 78,
-    "line": 76,
+    "endLine": 91,
+    "line": 89,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -305,8 +365,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 15,
-    "endLine": 83,
-    "line": 81,
+    "endLine": 96,
+    "line": 94,
     "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
     "messageId": "noInteractive",
     "ruleId": "db-ux/no-interactive-tooltip-content",
@@ -315,8 +375,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 15,
-    "endLine": 83,
-    "line": 81,
+    "endLine": 96,
+    "line": 94,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -325,8 +385,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 4,
     "endColumn": 33,
-    "endLine": 88,
-    "line": 88,
+    "endLine": 101,
+    "line": 101,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "ruleId": "db-ux/no-nested-accordion",
@@ -335,8 +395,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 3,
     "endColumn": 36,
-    "endLine": 94,
-    "line": 94,
+    "endLine": 107,
+    "line": 107,
     "message": "Use icon attribute instead of DBIcon child in db-button",
     "messageId": "preferAttribute",
     "ruleId": "db-ux/prefer-icon-attribute",
@@ -345,8 +405,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 3,
     "endColumn": 36,
-    "endLine": 94,
-    "line": 94,
+    "endLine": 107,
+    "line": 107,
     "message": "db-icon must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -355,8 +415,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 53,
-    "endLine": 98,
-    "line": 98,
+    "endLine": 111,
+    "line": 111,
     "message": "db-custom-heading must contain one heading (h1-h6 or DBHeadingH1-DBHeadingH6). It only provides layout and has no heading semantics of its own",
     "messageId": "missingHeading",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -365,8 +425,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 22,
-    "endLine": 102,
-    "line": 99,
+    "endLine": 115,
+    "line": 112,
     "message": "db-custom-heading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
     "messageId": "multipleHeadings",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -375,8 +435,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 22,
-    "endLine": 106,
-    "line": 103,
+    "endLine": 119,
+    "line": 116,
     "message": "db-custom-heading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
     "messageId": "multipleHeadings",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -385,8 +445,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 44,
-    "endLine": 109,
-    "line": 109,
+    "endLine": 122,
+    "line": 122,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -395,8 +455,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 2,
     "endColumn": 40,
-    "endLine": 112,
-    "line": 112,
+    "endLine": 125,
+    "line": 125,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -405,8 +465,8 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
   {
     "column": 3,
     "endColumn": 62,
-    "endLine": 116,
-    "line": 116,
+    "endLine": 129,
+    "line": 129,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -434,14 +494,27 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
 	<db-notification [closeable]="false">Test</db-notification>
 	<db-notification>Test</db-notification>
 	<db-drawer-header>Test</db-drawer-header>
+	<db-dialog-header>Test</db-dialog-header>
 	<db-custom-select [label]="'Select'"></db-custom-select>
 
 	<!-- db-ux/drawer-header-required -->
 	<db-drawer>Content without header</db-drawer>
 
+	<!-- db-ux/dialog-header-required -->
+	<db-dialog>Content without header</db-dialog>
+	<db-dialog>
+		<db-dialog-header header close-button-text="Close"
+			>Title</db-dialog-header
+		>
+		Valid dialog
+		<db-dialog-footer footer>Actions</db-dialog-footer>
+	</db-dialog>
+
 	<!-- db-ux/sub-component-required-parent -->
 	<db-drawer-header>Outside drawer</db-drawer-header>
 	<db-drawer-footer>Outside drawer</db-drawer-footer>
+	<db-dialog-header>Outside dialog</db-dialog-header>
+	<db-dialog-footer>Outside dialog</db-dialog-footer>
 	<db-navigation-item>Outside navigation</db-navigation-item>
 	<db-tab-list><db-tab-item>Outside tabs</db-tab-item></db-tab-list>
 	<db-tab-panel>Outside tabs</db-tab-panel>
@@ -611,9 +684,29 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
-    "endColumn": 35,
+    "endColumn": 20,
     "endLine": 52,
     "line": 52,
+    "message": "DBDialogHeader must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 4,
+    "endColumn": 20,
+    "endLine": 52,
+    "line": 52,
+    "message": "DBDialogHeader must be used inside DBDialog (in slot "header")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 4,
+    "endColumn": 35,
+    "endLine": 53,
+    "line": 53,
     "message": "DBCustomSelect must have mobileCloseButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "ruleId": "db-ux/close-button-text-required",
@@ -622,8 +715,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 14,
-    "endLine": 55,
-    "line": 55,
+    "endLine": 56,
+    "line": 56,
     "message": "DBDrawer must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)",
     "messageId": "drawerHeaderRequired",
     "ruleId": "db-ux/drawer-header-required",
@@ -631,9 +724,19 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
+    "endColumn": 14,
+    "endLine": 59,
+    "line": 59,
+    "message": "DBDialog must have a DBDialogHeader in its header slot for accessibility (provides close button and aria-labelledby)",
+    "messageId": "dialogHeaderRequired",
+    "ruleId": "db-ux/dialog-header-required",
+    "severity": 2,
+  },
+  {
+    "column": 4,
     "endColumn": 20,
-    "endLine": 58,
-    "line": 58,
+    "endLine": 71,
+    "line": 71,
     "message": "DBDrawerHeader must have closeButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "ruleId": "db-ux/close-button-text-required",
@@ -642,8 +745,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 20,
-    "endLine": 58,
-    "line": 58,
+    "endLine": 71,
+    "line": 71,
     "message": "DBDrawerHeader must be used inside DBDrawer (in slot "header")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -652,8 +755,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 20,
-    "endLine": 59,
-    "line": 59,
+    "endLine": 72,
+    "line": 72,
     "message": "DBDrawerFooter must be used inside DBDrawer (in slot "footer")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -661,9 +764,39 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   },
   {
     "column": 4,
+    "endColumn": 20,
+    "endLine": 73,
+    "line": 73,
+    "message": "DBDialogHeader must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 4,
+    "endColumn": 20,
+    "endLine": 73,
+    "line": 73,
+    "message": "DBDialogHeader must be used inside DBDialog (in slot "header")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 4,
+    "endColumn": 20,
+    "endLine": 74,
+    "line": 74,
+    "message": "DBDialogFooter must be used inside DBDialog (in slot "footer")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 4,
     "endColumn": 22,
-    "endLine": 60,
-    "line": 60,
+    "endLine": 75,
+    "line": 75,
     "message": "DBNavigationItem must be used inside DBNavigation or DBNavigationItem (in slot "subNavigation") or DBHeader",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -672,8 +805,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 22,
-    "endLine": 60,
-    "line": 60,
+    "endLine": 75,
+    "line": 75,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -682,8 +815,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 61,
-    "line": 61,
+    "endLine": 76,
+    "line": 76,
     "message": "DBTabList must be used inside DBTabs",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -692,8 +825,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 16,
-    "endLine": 64,
-    "line": 64,
+    "endLine": 79,
+    "line": 79,
     "message": "DBTabPanel must be used inside DBTabs",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -702,8 +835,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 17,
-    "endLine": 65,
-    "line": 65,
+    "endLine": 80,
+    "line": 80,
     "message": "DBTableHead must be used inside DBTable",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -712,8 +845,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 17,
-    "endLine": 70,
-    "line": 70,
+    "endLine": 85,
+    "line": 85,
     "message": "DBTableBody must be used inside DBTable",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -722,8 +855,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 19,
-    "endLine": 75,
-    "line": 75,
+    "endLine": 90,
+    "line": 90,
     "message": "DBTableFooter must be used inside DBTable",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -732,8 +865,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 16,
-    "endLine": 80,
-    "line": 80,
+    "endLine": 95,
+    "line": 95,
     "message": "DBTableRow must be used inside DBTableHead or DBTableBody or DBTableFooter",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -742,8 +875,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 23,
-    "endLine": 83,
-    "line": 83,
+    "endLine": 98,
+    "line": 98,
     "message": "DBTableHeaderCell must be used inside DBTableRow",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -752,8 +885,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 21,
-    "endLine": 84,
-    "line": 84,
+    "endLine": 99,
+    "line": 99,
     "message": "DBTableDataCell must be used inside DBTableRow",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -762,8 +895,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 20,
-    "endLine": 85,
-    "line": 85,
+    "endLine": 100,
+    "line": 100,
     "message": "DBTableCaption must be used inside DBTable (in slot "caption")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -772,8 +905,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 27,
-    "endLine": 96,
-    "line": 96,
+    "endLine": 111,
+    "line": 111,
     "message": "DBInput must have a label attribute for accessibility",
     "messageId": "missingLabel",
     "ruleId": "db-ux/form-label-required",
@@ -782,8 +915,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 50,
-    "endLine": 99,
-    "line": 99,
+    "endLine": 114,
+    "line": 114,
     "message": "DBInput with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
     "messageId": "missingInvalidMessage",
     "ruleId": "db-ux/form-validation-message-required",
@@ -792,8 +925,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 14,
-    "endLine": 102,
-    "line": 102,
+    "endLine": 117,
+    "line": 117,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/header-burger-menu-label-required",
@@ -802,8 +935,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 40,
-    "endLine": 114,
-    "line": 113,
+    "endLine": 129,
+    "line": 128,
     "message": "DBNavigationItem must be used inside DBNavigation or DBNavigationItem (in slot "subNavigation") or DBHeader",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -812,8 +945,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 40,
-    "endLine": 114,
-    "line": 113,
+    "endLine": 129,
+    "line": 128,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -822,8 +955,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 40,
-    "endLine": 114,
-    "line": 113,
+    "endLine": 129,
+    "line": 128,
     "message": "DBNavigationItem must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -832,8 +965,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 117,
-    "line": 117,
+    "endLine": 132,
+    "line": 132,
     "message": "DBTooltip must not contain interactive elements. Use DBPopover for interactive content",
     "messageId": "noInteractive",
     "ruleId": "db-ux/no-interactive-tooltip-content",
@@ -842,8 +975,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 15,
-    "endLine": 117,
-    "line": 117,
+    "endLine": 132,
+    "line": 132,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -852,8 +985,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 6,
     "endColumn": 19,
-    "endLine": 124,
-    "line": 124,
+    "endLine": 139,
+    "line": 139,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "ruleId": "db-ux/no-nested-accordion",
@@ -862,8 +995,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 21,
-    "endLine": 129,
-    "line": 129,
+    "endLine": 144,
+    "line": 144,
     "message": "DBCustomHeading must contain one heading (h1-h6 or DBHeadingH1-DBHeadingH6). It only provides layout and has no heading semantics of its own",
     "messageId": "missingHeading",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -872,8 +1005,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 21,
-    "endLine": 130,
-    "line": 130,
+    "endLine": 145,
+    "line": 145,
     "message": "DBCustomHeading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
     "messageId": "multipleHeadings",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -882,8 +1015,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 44,
-    "endLine": 134,
-    "line": 134,
+    "endLine": 149,
+    "line": 149,
     "message": "DBCustomHeading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
     "messageId": "multipleHeadings",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -892,8 +1025,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 42,
-    "endLine": 139,
-    "line": 139,
+    "endLine": 154,
+    "line": 154,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -902,8 +1035,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 29,
-    "endLine": 144,
-    "line": 144,
+    "endLine": 159,
+    "line": 159,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -912,8 +1045,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 4,
     "endColumn": 32,
-    "endLine": 147,
-    "line": 147,
+    "endLine": 162,
+    "line": 162,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -922,8 +1055,8 @@ exports[`Framework ESLint Integration > should lint React test file > react-erro
   {
     "column": 5,
     "endColumn": 16,
-    "endLine": 151,
-    "line": 151,
+    "endLine": 166,
+    "line": 166,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -984,14 +1117,29 @@ export const TestComponent = () => {
 			<DBNotification closeable={false}>Test</DBNotification>
 			<DBNotification>Test</DBNotification>
 			<DBDrawerHeader>Test</DBDrawerHeader>
+			<DBDialogHeader>Test</DBDialogHeader>
 			<DBCustomSelect label="Select"></DBCustomSelect>
 
 			{/* db-ux/drawer-header-required */}
 			<DBDrawer>Content without header</DBDrawer>
 
+			{/* db-ux/dialog-header-required */}
+			<DBDialog>Content without header</DBDialog>
+			<DBDialog
+				header={
+					<DBDialogHeader closeButtonText="Close">
+						Title
+					</DBDialogHeader>
+				}
+				footer={<DBDialogFooter>Actions</DBDialogFooter>}>
+				Valid dialog
+			</DBDialog>
+
 			{/* db-ux/sub-component-required-parent */}
 			<DBDrawerHeader>Outside drawer</DBDrawerHeader>
 			<DBDrawerFooter>Outside drawer</DBDrawerFooter>
+			<DBDialogHeader>Outside dialog</DBDialogHeader>
+			<DBDialogFooter>Outside dialog</DBDialogFooter>
 			<DBNavigationItem>Outside navigation</DBNavigationItem>
 			<DBTabList>
 				<DBTabItem>Outside tabs</DBTabItem>
@@ -1185,9 +1333,29 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
-    "endColumn": 51,
+    "endColumn": 40,
     "endLine": 20,
     "line": 20,
+    "message": "DBDialogHeader must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 40,
+    "endLine": 20,
+    "line": 20,
+    "message": "DBDialogHeader must be used inside DBDialog (in slot "header")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 51,
+    "endLine": 21,
+    "line": 21,
     "message": "DBCustomSelect must have mobileCloseButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "ruleId": "db-ux/close-button-text-required",
@@ -1196,8 +1364,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 46,
-    "endLine": 23,
-    "line": 23,
+    "endLine": 24,
+    "line": 24,
     "message": "DBDrawer must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)",
     "messageId": "drawerHeaderRequired",
     "ruleId": "db-ux/drawer-header-required",
@@ -1205,9 +1373,19 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
+    "endColumn": 46,
+    "endLine": 27,
+    "line": 27,
+    "message": "DBDialog must have a DBDialogHeader in its header slot for accessibility (provides close button and aria-labelledby)",
+    "messageId": "dialogHeaderRequired",
+    "ruleId": "db-ux/dialog-header-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
     "endColumn": 50,
-    "endLine": 26,
-    "line": 26,
+    "endLine": 41,
+    "line": 41,
     "message": "DBDrawerHeader must have closeButtonText attribute for accessibility",
     "messageId": "missingCloseButtonText",
     "ruleId": "db-ux/close-button-text-required",
@@ -1216,8 +1394,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 50,
-    "endLine": 26,
-    "line": 26,
+    "endLine": 41,
+    "line": 41,
     "message": "DBDrawerHeader must be used inside DBDrawer (in slot "header")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1226,8 +1404,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 50,
-    "endLine": 27,
-    "line": 27,
+    "endLine": 42,
+    "line": 42,
     "message": "DBDrawerFooter must be used inside DBDrawer (in slot "footer")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1235,9 +1413,39 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   },
   {
     "column": 3,
+    "endColumn": 50,
+    "endLine": 43,
+    "line": 43,
+    "message": "DBDialogHeader must have closeButtonText attribute for accessibility",
+    "messageId": "missingCloseButtonText",
+    "ruleId": "db-ux/close-button-text-required",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 50,
+    "endLine": 43,
+    "line": 43,
+    "message": "DBDialogHeader must be used inside DBDialog (in slot "header")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 3,
+    "endColumn": 50,
+    "endLine": 44,
+    "line": 44,
+    "message": "DBDialogFooter must be used inside DBDialog (in slot "footer")",
+    "messageId": "subComponentRequiredParent",
+    "ruleId": "db-ux/sub-component-required-parent",
+    "severity": 2,
+  },
+  {
+    "column": 3,
     "endColumn": 58,
-    "endLine": 28,
-    "line": 28,
+    "endLine": 45,
+    "line": 45,
     "message": "DBNavigationItem must be used inside DBNavigation or DBNavigationItem (in slot "subNavigation") or DBHeader",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1246,8 +1454,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 58,
-    "endLine": 28,
-    "line": 28,
+    "endLine": 45,
+    "line": 45,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -1256,8 +1464,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 61,
-    "endLine": 29,
-    "line": 29,
+    "endLine": 46,
+    "line": 46,
     "message": "DBTabList must be used inside DBTabs",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1266,8 +1474,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 40,
-    "endLine": 30,
-    "line": 30,
+    "endLine": 47,
+    "line": 47,
     "message": "DBTabPanel must be used inside DBTabs",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1276,8 +1484,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 4,
-    "endLine": 35,
-    "line": 31,
+    "endLine": 52,
+    "line": 48,
     "message": "DBTableHead must be used inside DBTable",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1286,8 +1494,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 4,
-    "endLine": 40,
-    "line": 36,
+    "endLine": 57,
+    "line": 53,
     "message": "DBTableBody must be used inside DBTable",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1296,8 +1504,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 4,
-    "endLine": 45,
-    "line": 41,
+    "endLine": 62,
+    "line": 58,
     "message": "DBTableFooter must be used inside DBTable",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1306,8 +1514,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 4,
-    "endLine": 48,
-    "line": 46,
+    "endLine": 65,
+    "line": 63,
     "message": "DBTableRow must be used inside DBTableHead or DBTableBody or DBTableFooter",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1316,8 +1524,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 53,
-    "endLine": 49,
-    "line": 49,
+    "endLine": 66,
+    "line": 66,
     "message": "DBTableHeaderCell must be used inside DBTableRow",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1326,8 +1534,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 49,
-    "endLine": 50,
-    "line": 50,
+    "endLine": 67,
+    "line": 67,
     "message": "DBTableDataCell must be used inside DBTableRow",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1336,8 +1544,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 49,
-    "endLine": 51,
-    "line": 51,
+    "endLine": 68,
+    "line": 68,
     "message": "DBTableCaption must be used inside DBTable (in slot "caption")",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1346,8 +1554,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 59,
-    "endLine": 54,
-    "line": 54,
+    "endLine": 71,
+    "line": 71,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -1356,8 +1564,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 26,
-    "endLine": 61,
-    "line": 61,
+    "endLine": 78,
+    "line": 78,
     "message": "DBInput must have a label attribute for accessibility",
     "messageId": "missingLabel",
     "ruleId": "db-ux/form-label-required",
@@ -1366,8 +1574,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 49,
-    "endLine": 64,
-    "line": 64,
+    "endLine": 81,
+    "line": 81,
     "message": "DBInput with required will use default browser validation message. Consider adding invalidMessage attribute for better UX",
     "messageId": "missingInvalidMessage",
     "ruleId": "db-ux/form-validation-message-required",
@@ -1376,8 +1584,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 24,
-    "endLine": 67,
-    "line": 67,
+    "endLine": 84,
+    "line": 84,
     "message": "DBHeader must have burgerMenuLabel attribute for accessibility",
     "messageId": "missingBurgerMenuLabel",
     "ruleId": "db-ux/header-burger-menu-label-required",
@@ -1386,15 +1594,15 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 4,
-    "endLine": 75,
+    "endLine": 92,
     "fix": {
       "range": [
-        2577,
-        2577,
+        3167,
+        3167,
       ],
       "text": " referrerPolicy="no-referrer"",
     },
-    "line": 73,
+    "line": 90,
     "message": "DBLink with content="external" should have referrerPolicy attribute",
     "messageId": "missingReferrerPolicy",
     "ruleId": "db-ux/link-external-security",
@@ -1403,8 +1611,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 22,
-    "endLine": 80,
-    "line": 78,
+    "endLine": 97,
+    "line": 95,
     "message": "DBNavigationItem must be used inside DBNavigation or DBNavigationItem (in slot "subNavigation") or DBHeader",
     "messageId": "subComponentRequiredParent",
     "ruleId": "db-ux/sub-component-required-parent",
@@ -1413,8 +1621,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 22,
-    "endLine": 80,
-    "line": 78,
+    "endLine": 97,
+    "line": 95,
     "message": "DBNavigationItem must have backButtonText attribute for accessibility",
     "messageId": "missingBackButtonText",
     "ruleId": "db-ux/navigation-item-back-button-text-required",
@@ -1423,8 +1631,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 15,
-    "endLine": 85,
-    "line": 83,
+    "endLine": 102,
+    "line": 100,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -1433,8 +1641,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 4,
     "endColumn": 22,
-    "endLine": 91,
-    "line": 89,
+    "endLine": 108,
+    "line": 106,
     "message": "DBAccordionItem must have either headline or headlinePlain attribute",
     "messageId": "headlineRequired",
     "ruleId": "db-ux/accordion-item-headline-required",
@@ -1443,8 +1651,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 5,
     "endColumn": 32,
-    "endLine": 90,
-    "line": 90,
+    "endLine": 107,
+    "line": 107,
     "message": "DBAccordion must not be nested inside another DBAccordion as it confuses users",
     "messageId": "noNested",
     "ruleId": "db-ux/no-nested-accordion",
@@ -1453,8 +1661,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 14,
-    "endLine": 97,
-    "line": 95,
+    "endLine": 114,
+    "line": 112,
     "message": "DBButton must have either a text property or children content",
     "messageId": "missingContent",
     "ruleId": "db-ux/text-or-children-required",
@@ -1463,8 +1671,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 39,
-    "endLine": 100,
-    "line": 100,
+    "endLine": 117,
+    "line": 117,
     "message": "DBSelect must have either an options property or <option> children",
     "messageId": "missingOptions",
     "ruleId": "db-ux/select-requires-options",
@@ -1473,8 +1681,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 39,
-    "endLine": 103,
-    "line": 103,
+    "endLine": 120,
+    "line": 120,
     "message": "DBTag with behavior="removable" must have removeButton attribute for accessibility",
     "messageId": "missingRemoveButton",
     "ruleId": "db-ux/tag-removable-remove-button-required",
@@ -1483,8 +1691,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 50,
-    "endLine": 106,
-    "line": 106,
+    "endLine": 123,
+    "line": 123,
     "message": "DBCustomHeading must contain one heading (h1-h6 or DBHeadingH1-DBHeadingH6). It only provides layout and has no heading semantics of its own",
     "messageId": "missingHeading",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -1493,8 +1701,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 21,
-    "endLine": 110,
-    "line": 107,
+    "endLine": 127,
+    "line": 124,
     "message": "DBCustomHeading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
     "messageId": "multipleHeadings",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -1503,8 +1711,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 3,
     "endColumn": 21,
-    "endLine": 114,
-    "line": 111,
+    "endLine": 131,
+    "line": 128,
     "message": "DBCustomHeading must contain only one heading, found 2. Multiple headings inside one wrapper break the document outline",
     "messageId": "multipleHeadings",
     "ruleId": "db-ux/custom-heading-single-heading",
@@ -1513,8 +1721,8 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-errors 1
   {
     "column": 4,
     "endColumn": 61,
-    "endLine": 118,
-    "line": 118,
+    "endLine": 135,
+    "line": 135,
     "message": "DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility",
     "messageId": "requiresInteractive",
     "ruleId": "db-ux/tooltip-requires-interactive-parent",
@@ -1543,14 +1751,31 @@ exports[`Framework ESLint Integration > should lint Vue test file > vue-fixed 1`
 		<DBNotification :closeable="false">Test</DBNotification>
 		<DBNotification>Test</DBNotification>
 		<DBDrawerHeader>Test</DBDrawerHeader>
+		<DBDialogHeader>Test</DBDialogHeader>
 		<DBCustomSelect label="Select"></DBCustomSelect>
 
 		<!-- db-ux/drawer-header-required -->
 		<DBDrawer>Content without header</DBDrawer>
 
+		<!-- db-ux/dialog-header-required -->
+		<DBDialog>Content without header</DBDialog>
+		<DBDialog>
+			<template #header>
+				<!-- kebab-case attribute: a static camelCase attribute is
+				lowercased by vue-eslint-parser and therefore not resolvable -->
+				<DBDialogHeader close-button-text="Close">Title</DBDialogHeader>
+			</template>
+			Valid dialog
+			<template #footer>
+				<DBDialogFooter>Actions</DBDialogFooter>
+			</template>
+		</DBDialog>
+
 		<!-- db-ux/sub-component-required-parent -->
 		<DBDrawerHeader>Outside drawer</DBDrawerHeader>
 		<DBDrawerFooter>Outside drawer</DBDrawerFooter>
+		<DBDialogHeader>Outside dialog</DBDialogHeader>
+		<DBDialogFooter>Outside dialog</DBDialogFooter>
 		<DBNavigationItem>Outside navigation</DBNavigationItem>
 		<DBTabList><DBTabItem>Outside tabs</DBTabItem></DBTabList>
 		<DBTabPanel>Outside tabs</DBTabPanel>
@@ -1654,6 +1879,9 @@ import {
 	DBButton,
 	DBCustomHeading,
 	DBCustomSelect,
+	DBDialog,
+	DBDialogFooter,
+	DBDialogHeader,
 	DBDrawer,
 	DBDrawerFooter,
 	DBDrawerHeader,
