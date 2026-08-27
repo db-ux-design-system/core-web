@@ -71,31 +71,6 @@
 					"en": "Below six Navigation Items, Sub Navigation Top is sufficient. Left then takes up width that the page content lacks."
 				}
 			}
-		},
-		{
-			"id": "consistent-sub-navigation-position",
-			"headline": {
-				"de": "Konsistente Position",
-				"en": "Consistent Position"
-			},
-			"text": {
-				"de": "Die Position der Sub Navigation bleibt über alle Hauptbereiche der Anwendung gleich. Nutzer:innen erwarten ein stabiles Navigationslayout.",
-				"en": "The Sub Navigation position stays the same across all main sections of the application. Users expect a stable navigation layout."
-			},
-			"do": {
-				"figmaNodeId": "4277-3",
-				"description": {
-					"de": "Behalte die einmal gewählte Position der Sub Navigation in allen Hauptbereichen bei.",
-					"en": "Keep the chosen Sub Navigation position in every main section."
-				}
-			},
-			"dont": {
-				"figmaNodeId": "4277-5",
-				"description": {
-					"de": "Wechsle die Position der Sub Navigation nicht, wenn Nutzer:innen zwischen Hauptbereichen navigieren. Sie müssen sich sonst bei jedem Wechsel neu orientieren.",
-					"en": "Don't switch the Sub Navigation position when users navigate between main sections. Otherwise they have to re-orient at every change."
-				}
-			}
 		}
 	],
 	"faq": [],

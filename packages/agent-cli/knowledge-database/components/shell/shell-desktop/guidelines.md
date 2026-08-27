@@ -6,7 +6,6 @@
 
 1. **sollte** [Control Panel](../../control-panel/control-panel-desktop/guidelines.md) Left ab vier Navigation Items auf oberster Ebene einsetzen, darunter belegt Left Platz ohne strukturellen Nutzen.
 2. **sollte** [Sub Navigation](../shell-sub-navigation/guidelines.md) Left ab sechs Navigation Items auf Unterebene einsetzen, darunter genügt Top.
-3. Position der Sub Navigation beim Navigieren zwischen Hauptbereichen nicht wechseln, Nutzer:innen erwarten ein stabiles Navigationslayout.
 
 ## Zusätzliche Informationen
 
