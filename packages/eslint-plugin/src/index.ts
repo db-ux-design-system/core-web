@@ -12,6 +12,7 @@ import drawerHeaderRequired from './rules/drawer/drawer-header-required.js';
 import formLabelRequired from './rules/form/form-label-required.js';
 import formValidationMessageRequired from './rules/form/form-validation-message-required.js';
 import headerBurgerMenuLabelRequired from './rules/header/header-burger-menu-label-required.js';
+import customHeadingSingleHeading from './rules/heading/custom-heading-single-heading.js';
 import preferIconAttribute from './rules/icon/prefer-icon-attribute.js';
 import inputFileTypeValidation from './rules/input/input-file-type-validation.js';
 import inputTypeRequired from './rules/input/input-type-required.js';
@@ -33,6 +34,7 @@ const recommended = {
 		'db-ux/button-single-icon-attribute': 'error',
 		'db-ux/button-type-required': 'error',
 		'db-ux/close-button-text-required': 'error',
+		'db-ux/custom-heading-single-heading': 'error',
 		'db-ux/drawer-header-required': 'error',
 		'db-ux/sub-component-required-parent': 'error',
 		'db-ux/custom-select-tags-remove-text-required': 'error',
@@ -77,6 +79,7 @@ const plugin = {
 		'custom-select-tags-remove-text-required':
 			customSelectTagsRemoveTextRequired,
 		'close-button-text-required': closeButtonTextRequired,
+		'custom-heading-single-heading': customHeadingSingleHeading,
 		'drawer-header-required': drawerHeaderRequired,
 		'sub-component-required-parent': subComponentRequiredParent,
 		'header-burger-menu-label-required': headerBurgerMenuLabelRequired,
