@@ -375,9 +375,15 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
+  # Bot PRs are excluded because Dependabot runs get a read-only token and no
+  # secrets, so the follow-up commit could never be pushed. Renovate PRs are
+  # created by our own GitHub App and do have those secrets -- and DB theme
+  # bumps are exactly the case where the regenerated screenshots are the thing
+  # a reviewer needs to look at, so they must not stay red.
   regenerate-snapshots:
     if: |
-      github.event_name == 'pull_request' && !cancelled() && !contains(github.actor,'[bot]') && (
+      github.event_name == 'pull_request' && !cancelled() &&
+      (!contains(github.actor,'[bot]') || startsWith(github.head_ref,'renovate-')) && (
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
