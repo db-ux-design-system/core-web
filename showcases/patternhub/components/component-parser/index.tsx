@@ -383,7 +383,6 @@ const ComponentSwitch = ({
 		);
 	}
 
-
 	if (type === 'dialog') {
 		return (
 			<DBDialog className={className} {...props}>
@@ -405,6 +404,7 @@ const ComponentSwitch = ({
 			<DBDialogFooter className={className} {...props}>
 				{resolvedContent}
 			</DBDialogFooter>
+		);
 	}
 
 	if (type === 'custom-heading') {
