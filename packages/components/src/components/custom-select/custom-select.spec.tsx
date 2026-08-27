@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
 // VUE: /*
-import ControlledResetFixture from './test-fixtures/controlled-reset.fixture';
+import CustomSelectControlled from './examples/controlled.example';
 // VUE: */
 
 import { DBCustomSelect } from './index';
@@ -551,65 +551,64 @@ const testValuesReset = () => {
 			'React-specific controlled component regression test'
 		);
 
-		const component = await mount(<ControlledResetFixture />);
+		const component = await mount(<CustomSelectControlled />);
 		const summary = component.locator('summary');
 		const tags = component.locator('.db-tag');
 		const optionInputs = component.locator(
 			'.db-custom-select-list-item input[value]'
 		);
-		const optionSelectedCalls = component.getByTestId(
-			'option-selected-calls'
-		);
+		const loadOtherOptions = component.getByRole('button', {
+			name: 'Load other options'
+		});
+		const clearOptionsAndSelection = component.getByRole('button', {
+			name: 'Clear options and selection'
+		});
+		const restoreOptions = component.getByRole('button', {
+			name: 'Restore options without selection'
+		});
+		// The example only counts user selections, so it stays at 0 while the
+		// controlled props are synchronized.
+		const selectionReadout = component.getByText('Selections by user: 0');
 
-		await expect(summary).toContainText('Initial one');
+		await expect(summary).toContainText('Germany');
 		await expect(tags).toHaveCount(1);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(
 			component
 				.locator('.db-custom-select-list-item')
-				.filter({ hasText: 'Initial one' })
+				.filter({ hasText: 'Germany' })
 		).toHaveCount(1);
-		await expect(
-			component.locator('input[value="initial-1"]')
-		).toBeChecked();
+		await expect(component.locator('input[value="de"]')).toBeChecked();
 
-		await component.getByTestId('update').click();
-		await expect(summary).toContainText('Updated two');
-		await expect(summary).not.toContainText('Initial one');
+		await loadOtherOptions.click();
+		await expect(summary).toContainText('Switzerland');
+		await expect(summary).not.toContainText('Germany');
 		await expect(tags).toHaveCount(1);
-		await expect(tags).toContainText('Updated two');
+		await expect(tags).toContainText('Switzerland');
 		await expect(optionInputs).toHaveCount(2);
-		await expect(
-			component.locator('input[value="updated-2"]')
-		).toBeChecked();
-		await expect(component.locator('input[value="initial-1"]')).toHaveCount(
-			0
-		);
+		await expect(component.locator('input[value="ch"]')).toBeChecked();
+		await expect(component.locator('input[value="de"]')).toHaveCount(0);
 
-		await component.getByTestId('reset-both').click();
-		await expect(summary).not.toContainText('Updated two');
+		await clearOptionsAndSelection.click();
+		await expect(summary).not.toContainText('Switzerland');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(0);
-		await expect(optionSelectedCalls).toHaveText('0');
+		await expect(selectionReadout).toBeVisible();
 
-		await component.getByTestId('reset-values-null').click();
-		await expect(summary).not.toContainText('Initial one');
+		await restoreOptions.click();
+		await expect(summary).not.toContainText('Germany');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
-		await expect(
-			component.locator('input[value="initial-1"]')
-		).not.toBeChecked();
-		await expect(optionSelectedCalls).toHaveText('0');
+		await expect(component.locator('input[value="de"]')).not.toBeChecked();
+		await expect(selectionReadout).toBeVisible();
 
-		await component.getByTestId('update').click();
-		await component.getByTestId('reset-values-undefined').click();
-		await expect(summary).not.toContainText('Updated two');
+		await loadOtherOptions.click();
+		await restoreOptions.click();
+		await expect(summary).not.toContainText('Switzerland');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
-		await expect(
-			component.locator('input[value="initial-1"]')
-		).not.toBeChecked();
-		await expect(optionSelectedCalls).toHaveText('0');
+		await expect(component.locator('input[value="de"]')).not.toBeChecked();
+		await expect(selectionReadout).toBeVisible();
 	});
 };
 
