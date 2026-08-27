@@ -35,7 +35,9 @@ import ControlPanelBrandShowcase from '@components/components/control-panel-bran
 import ControlPanelDesktopShowcase from '@components/components/control-panel-desktop/showcase/control-panel-desktop.showcase';
 import ControlPanelFlatIconShowcase from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -48,6 +50,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	heading: <HeadingShowcase isPatternhub />,
+
 	accordion: <AccordionShowcase isPatternhub />,
 
 	'control-panel-brand': <ControlPanelBrandShowcase isPatternhub />,
