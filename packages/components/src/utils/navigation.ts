@@ -139,6 +139,11 @@ export class NavigationItemSafeTriangle {
 			'--db-control-panel-navigation-item-inline-size',
 			`${parentElementWidth}px`
 		);
+		// Write legacy name for DBNavigationItem consumers
+		this.element?.style.setProperty(
+			'--db-navigation-item-inline-size',
+			`${parentElementWidth}px`
+		);
 
 		this.initialized = true;
 	}
@@ -262,6 +267,11 @@ export class NavigationItemSafeTriangle {
 
 		this.element.style.setProperty(
 			'--db-control-panel-navigation-item-clip-path',
+			`polygon(${coordinates})`
+		);
+		// Write legacy name for DBNavigationItem consumers
+		this.element.style.setProperty(
+			'--db-navigation-item-clip-path',
 			`polygon(${coordinates})`
 		);
 	}

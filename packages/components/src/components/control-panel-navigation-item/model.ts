@@ -1,4 +1,5 @@
 import type {
+	ActiveProps,
 	DisabledProps,
 	EndSlotProps,
 	GlobalProps,
@@ -11,16 +12,12 @@ import type {
 
 export type DBControlPanelNavigationItemDefaultProps = {
 	/**
-	 * Alternative indicator for active navigation item (bold font). In contrast to the use of aria-current="page" on the contained anchor, this does not guarantee correct a11y.
-	 */
-	active?: boolean;
-
-	/**
 	 * If you use DBShell with controlPanelDesktopPosition="left" or DBControlPanelFlatIcon
 	 * you need to add a tooltip for collapsed navigation
 	 */
 	tooltip?: string;
-} & EndSlotProps &
+} & ActiveProps &
+	EndSlotProps &
 	TextProps;
 
 export type DBControlPanelNavigationItemProps =

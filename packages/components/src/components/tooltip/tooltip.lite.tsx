@@ -72,7 +72,10 @@ export default function DBTooltip(props: DBTooltipProps) {
 						handleFixedPopover({
 							element: _ref,
 							parent,
-							forceAbsolute: getBoolean(props.forceAbsolute)
+							forceAbsolute: getBoolean(
+								props.forceAbsolute,
+								'forceAbsolute'
+							)
 						});
 						// Record the size after placement so the self
 						// ResizeObserver can distinguish placement-induced

@@ -12,7 +12,9 @@ export type DBShellSubNavigationProps = DBShellSubNavigationDefaultProps &
 	GlobalProps &
 	SidebarProps;
 
-export type DBShellSubNavigationDefaultState = {};
+export type DBShellSubNavigationDefaultState = {
+	syncExpanded: () => void;
+};
 
 export type DBShellSubNavigationState = DBShellSubNavigationDefaultState &
 	GlobalState &

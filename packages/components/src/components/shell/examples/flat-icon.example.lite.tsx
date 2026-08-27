@@ -113,10 +113,10 @@ export default function ShellFlatIcon() {
 							<DBControlPanelNavigationItem active>
 								<a href="#">Test 1</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem active>
+							<DBControlPanelNavigationItem>
 								<a href="#">Test 2</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem active>
+							<DBControlPanelNavigationItem>
 								<a href="#">Test 3</a>
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>
@@ -158,10 +158,10 @@ export default function ShellFlatIcon() {
 							<DBControlPanelNavigationItem active>
 								<a href="#">Test 1</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem active>
+							<DBControlPanelNavigationItem>
 								<a href="#">Test 2</a>
 							</DBControlPanelNavigationItem>
-							<DBControlPanelNavigationItem active>
+							<DBControlPanelNavigationItem>
 								<a href="#">Test 3</a>
 							</DBControlPanelNavigationItem>
 						</DBControlPanelNavigation>

@@ -51,7 +51,10 @@ export default function DBPopover(props: DBPopoverProps) {
 						handleFixedPopover({
 							element: article,
 							parent: _ref,
-							forceAbsolute: getBoolean(props.forceAbsolute)
+							forceAbsolute: getBoolean(
+								props.forceAbsolute,
+								'forceAbsolute'
+							)
 						});
 					}
 				}, 1);

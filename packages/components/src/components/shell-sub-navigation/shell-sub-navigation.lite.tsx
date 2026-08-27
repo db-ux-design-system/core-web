@@ -1,5 +1,6 @@
 import {
 	onInit,
+	onUpdate,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -49,15 +50,22 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 			return (
 				fnOutput() ?? (state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND)
 			);
+		},
+		syncExpanded: () => {
+			if (props.expanded !== undefined) {
+				state._open = getBoolean(props.expanded, 'expanded') ?? true;
+			}
 		}
 	});
 	// jscpd:ignore-end
 
 	onInit(() => {
-		if (props.expanded !== undefined) {
-			state._open = getBoolean(props.expanded, 'expanded') ?? true;
-		}
+		state.syncExpanded();
 	});
+
+	onUpdate(() => {
+		state.syncExpanded();
+	}, [props.expanded]);
 
 	return (
 		<aside
