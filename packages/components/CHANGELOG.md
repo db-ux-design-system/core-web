@@ -1,5 +1,19 @@
 # @db-ux/core-components
 
+## 5.2.0
+
+### Minor Changes
+
+- feat: add static and custom Heading components (beta) - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - `DBCustomHeading` takes the native heading as its default content and offers a
+    - `startSlot` and an `endSlot` for the content next to it, so that content stays out
+    - of the accessible heading name.
+
+### Patch Changes
+
+- fix: preserve component sizing inside custom headings - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+
 ## 5.1.6
 
 ### Patch Changes

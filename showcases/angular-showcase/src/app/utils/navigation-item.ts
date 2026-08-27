@@ -13,6 +13,7 @@ import { CustomSelectShowcase } from '@components/components/custom-select/showc
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
 import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
 import { HeaderShowcase } from '@components/components/header/showcase/header.showcase';
+import { HeadingShowcase } from '@components/components/heading/showcase/heading.showcase';
 import { IconShowcase } from '@components/components/icon/showcase/icon.showcase';
 import { InfotextShowcase } from '@components/components/infotext/showcase/infotext.showcase';
 import { InputShowcase } from '@components/components/input/showcase/input.showcase';
@@ -80,6 +81,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '04',
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '04/heading',
+				label: 'Heading',
+				component: HeadingShowcase
+			},
 			{ path: '04/icon', label: 'Icon', component: IconShowcase },
 			{
 				path: '04/brand',
