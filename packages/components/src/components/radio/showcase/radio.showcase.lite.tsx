@@ -42,11 +42,6 @@ export default function RadioShowcase(props: PatternhubProps) {
 					<RadioSize />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Examples">
-				<CardWrapperShowcase>
-					<RadioExamples />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Required">
 				<CardWrapperShowcase>
 					<RadioRequired />
@@ -60,6 +55,11 @@ export default function RadioShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Show Required Asterisk">
 				<CardWrapperShowcase>
 					<RadioShowRequiredAsterisk />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Examples">
+				<CardWrapperShowcase>
+					<RadioExamples />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
