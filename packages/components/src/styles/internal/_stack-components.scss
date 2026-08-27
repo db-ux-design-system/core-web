@@ -111,7 +111,7 @@ $stack-gaps: (
 		flex-wrap: wrap;
 
 		// Column wrap requires explicit block-size to function correctly
-		&:not([data-direction="row"]):not([data-height="auto"]) {
+		&:not([data-direction="row"], [data-height="auto"]) {
 			block-size: 100%;
 		}
 	}
