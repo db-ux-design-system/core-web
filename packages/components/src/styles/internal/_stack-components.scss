@@ -90,9 +90,7 @@ $stack-gaps: (
 		block-size: auto;
 	}
 
-	&:not([data-wrap="true"]) {
-		overflow: auto;
-	}
+	overflow: auto;
 
 	&:is([data-direction="column"], :not([data-direction])) {
 		flex-direction: column;
