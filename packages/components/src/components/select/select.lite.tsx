@@ -46,7 +46,9 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value'],
+		// `hidden` needs the native property binding: [attr.hidden]="false"
+		// would still hide the empty option.
+		nativeAttributes: ['disabled', 'required', 'value', 'hidden'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
