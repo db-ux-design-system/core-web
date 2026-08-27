@@ -69,28 +69,34 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		subNavigation: getSortedNavigationItems([
 			{
 				path: 'shell',
-				label: 'Shell',
-				component: <ShellShowcase />
-			},
-			{
-				path: 'control-panel-brand',
-				label: 'ControlPanelBrand',
-				component: <ControlPanelBrandShowcase />
-			},
-			{
-				path: 'control-panel-desktop',
-				label: 'ControlPanelDesktop',
-				component: <ControlPanelDesktopShowcase />
-			},
-			{
-				path: 'control-panel-flat-icon',
-				label: 'ControlPanelFlatIcon',
-				component: <ControlPanelFlatIconShowcase />
-			},
-			{
-				path: 'control-panel-mobile',
-				label: 'ControlPanelMobile',
-				component: <ControlPanelMobileShowcase />
+				label: 'Shell related',
+				subNavigation: getSortedNavigationItems([
+					{
+						path: 'shell',
+						label: 'Shell',
+						component: <ShellShowcase />
+					},
+					{
+						path: 'control-panel-brand',
+						label: 'ControlPanelBrand',
+						component: <ControlPanelBrandShowcase />
+					},
+					{
+						path: 'control-panel-desktop',
+						label: 'ControlPanelDesktop',
+						component: <ControlPanelDesktopShowcase />
+					},
+					{
+						path: 'control-panel-flat-icon',
+						label: 'ControlPanelFlatIcon',
+						component: <ControlPanelFlatIconShowcase />
+					},
+					{
+						path: 'control-panel-mobile',
+						label: 'ControlPanelMobile',
+						component: <ControlPanelMobileShowcase />
+					}
+				])
 			},
 
 			// OLD

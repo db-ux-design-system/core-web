@@ -5,8 +5,6 @@
 @use "../../styles/internal/navigation-item";
 @use "control-panel-navigation-item-group-menu-non-tree";
 
-$outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
-
 %db-control-panel-navigation-item-group-menu-popover {
 	@extend %db-control-panel-navigation-item-group-menu-non-tree;
 
@@ -40,21 +38,13 @@ $outside-position: calc(-200% + #{variables.$db-spacing-fixed-xs});
 
 		@include navigation-item.navigation-item-group-menu-triangle-vertical;
 
-		&[data-outside-vy="bottom"] {
-			transform: translateY($outside-position);
-		}
+		// Viewport overflow positioning (both vertical and horizontal)
+		// is handled by JS (adjustNestedSubNavigationPosition) which
+		// computes precise pixel-based transforms on mouse enter.
 
 		&[data-outside-vx="right"] {
-			transform: translateX($outside-position);
-
-			&[data-outside-vy="bottom"] {
-				transform: translate($outside-position, $outside-position);
-			}
-
 			&::before {
 				inset-block: auto 0;
-
-				// inline-size: calc(var(--db-control-panel-navigation-item-inline-size, 100%) - #{variables.$db-spacing-fixed-xs} - 2px);
 				transform: translateX(100%) scaleX(-1);
 			}
 		}

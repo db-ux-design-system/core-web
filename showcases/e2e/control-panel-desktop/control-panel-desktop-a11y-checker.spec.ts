@@ -9,5 +9,5 @@ test.describe('DBControlPanelDesktop', () => {
 		}
 	});
 
-	runA11yCheckerTest({ path: '05/control-panel-desktop' });
+	runA11yCheckerTest({ path: '05/shell/control-panel-desktop' });
 });

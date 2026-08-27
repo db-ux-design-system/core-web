@@ -20,12 +20,12 @@ if (hasWebComponentSyntax(process.env.showcase)) {
 
 test.describe('DBShell', () => {
 	runAxeCoreTest({
-		path: '05/shell',
+		path: '05/shell/shell',
 		axeDisableRules
 	});
-	runAxeCoreTest({ path: '05/shell', color: lvl3, axeDisableRules });
+	runAxeCoreTest({ path: '05/shell/shell', color: lvl3, axeDisableRules });
 	runAxeCoreTest({
-		path: '05/shell',
+		path: '05/shell/shell',
 		density: 'functional',
 		axeDisableRules
 	});

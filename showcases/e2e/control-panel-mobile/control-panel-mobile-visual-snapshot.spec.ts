@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
-const path = '05/control-panel-mobile';
+const path = '05/shell/control-panel-mobile';
 test.describe('DBControlPanelMobile', () => {
 	// eslint-disable-next-line no-empty-pattern
 	test.beforeEach(({}, { project }) => {

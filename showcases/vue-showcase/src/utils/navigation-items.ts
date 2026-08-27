@@ -74,28 +74,34 @@ export const navigationItems: NavItem[] = [
 		subNavigation: getSortedNavigationItems([
 			{
 				path: '/05/shell',
-				label: 'Shell',
-				component: markRaw(Shell)
-			},
-			{
-				path: '/05/control-panel-brand',
-				label: 'ControlPanelBrand',
-				component: markRaw(ControlPanelBrand)
-			},
-			{
-				path: '/05/control-panel-desktop',
-				label: 'ControlPanelDesktop',
-				component: markRaw(ControlPanelDesktop)
-			},
-			{
-				path: '/05/control-panel-flat-icon',
-				label: 'ControlPanelFlatIcon',
-				component: markRaw(ControlPanelFlatIcon)
-			},
-			{
-				path: '/05/control-panel-mobile',
-				label: 'ControlPanelMobile',
-				component: markRaw(ControlPanelMobile)
+				label: 'Shell related',
+				subNavigation: getSortedNavigationItems([
+					{
+						path: '/05/shell/shell',
+						label: 'Shell',
+						component: markRaw(Shell)
+					},
+					{
+						path: '/05/shell/control-panel-brand',
+						label: 'ControlPanelBrand',
+						component: markRaw(ControlPanelBrand)
+					},
+					{
+						path: '/05/shell/control-panel-desktop',
+						label: 'ControlPanelDesktop',
+						component: markRaw(ControlPanelDesktop)
+					},
+					{
+						path: '/05/shell/control-panel-flat-icon',
+						label: 'ControlPanelFlatIcon',
+						component: markRaw(ControlPanelFlatIcon)
+					},
+					{
+						path: '/05/shell/control-panel-mobile',
+						label: 'ControlPanelMobile',
+						component: markRaw(ControlPanelMobile)
+					}
+				])
 			},
 			{
 				path: '/05/navigation-item',

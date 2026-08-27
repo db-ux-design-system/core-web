@@ -8,7 +8,7 @@ test.describe('DBControlPanelMobile', () => {
 		title: 'default',
 		description:
 			'should have a burger menu button that opens a drawer with navigation (next())',
-		url: './#/05/control-panel-mobile?page=examples',
+		url: './#/05/shell/control-panel-mobile?page=examples',
 		async testFn(voiceOver, nvda, page) {
 			if (nvda) {
 				await nvda?.previous(); // Button "BurgerMenu"

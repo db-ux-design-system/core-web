@@ -91,8 +91,16 @@
 		}
 	}
 
+	// Nested popover menus open to the right, so nested expand buttons
+	// need chevron_right instead of the top-level chevron_down.
 	.db-control-panel-navigation-item-group-menu {
 		@extend %db-control-panel-navigation-item-group-menu-popover;
+
+		.db-control-panel-navigation-item-group-expand-button {
+			.db-control-panel-navigation-item-group-expand-button-end-slot-container {
+				@include icons.set-icon("chevron_right", "after");
+			}
+		}
 	}
 }
 

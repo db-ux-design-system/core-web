@@ -3,8 +3,11 @@ import { handleFixedPopover } from './floating-components';
 /**
  * Adjusts a sub-navigation's position so it stays within the viewport.
  * Called from _handleMouseEnter for the specific hovered item's menu.
- * Computes a precise pixel-based transform instead of the CSS's fixed
- * `translateY(-200%)` which overshoots for most menu heights.
+ *
+ * When the menu overflows the right edge of the viewport it flips to
+ * open on the left side of its parent (proper CSS flip via inset
+ * properties). Vertical overflow is handled with a pixel-based
+ * translateY so the menu stays reachable.
  *
  * Only applies to menus NOT already positioned by handleFixedPopover
  * (i.e., nested sub-navigations that use position: absolute).
@@ -23,40 +26,52 @@ export const adjustNestedSubNavigationPosition = (
 
 	// Clear any previous adjustments to measure the natural position
 	element.style.transform = '';
+	element.style.insetInlineStart = '';
+	element.style.insetInlineEnd = '';
+	delete element.dataset['outsideVx'];
+
+	// Read the gap the CSS uses between parent and menu
+	const gap =
+		computedStyle.getPropertyValue('--db-spacing-fixed-xs').trim() ||
+		'0.375rem';
 
 	const rect = element.getBoundingClientRect();
 	const { innerHeight, innerWidth } = window;
 
+	// Small viewport margin to avoid flush-against-edge placement
+	const viewportMargin = 8;
+
+	// --- Horizontal: flip to the other side if overflowing ---
+	if (rect.right > innerWidth - viewportMargin) {
+		// Flip: open to the left of the parent
+		element.style.insetInlineStart = 'auto';
+		element.style.insetInlineEnd = `calc(100% + ${gap})`;
+		element.dataset['outsideVx'] = 'right';
+
+		// Re-measure after flip — if now overflows left, revert
+		const flippedRect = element.getBoundingClientRect();
+		if (flippedRect.left < viewportMargin) {
+			element.style.insetInlineStart = '';
+			element.style.insetInlineEnd = '';
+			delete element.dataset['outsideVx'];
+		}
+	}
+
+	// --- Vertical: shift with translateY ---
+	const measuredRect = element.getBoundingClientRect();
 	let translateY = 0;
-	let translateX = 0;
 
-	// Shift up if bottom edge overflows the viewport
-	if (rect.bottom > innerHeight) {
-		translateY = innerHeight - rect.bottom;
+	if (measuredRect.bottom > innerHeight - viewportMargin) {
+		translateY = innerHeight - viewportMargin - measuredRect.bottom;
 	}
 
-	// Don't shift above the viewport top
-	if (rect.top + translateY < 0) {
-		translateY = -rect.top;
+	if (measuredRect.top + translateY < viewportMargin) {
+		translateY = viewportMargin - measuredRect.top;
 	}
 
-	// Shift left if right edge overflows the viewport
-	if (rect.right > innerWidth) {
-		translateX = innerWidth - rect.right;
-	}
 
-	// Don't shift past the viewport left
-	if (rect.left + translateX < 0) {
-		translateX = -rect.left;
-	}
-
-	if (translateY !== 0 || translateX !== 0) {
-		element.style.transform = `translate(${translateX}px, ${translateY}px)`;
-	} else {
-		// Explicitly set no-op transform to prevent the CSS
-		// translateY(-200%) from applying via data-outside-vy
-		element.style.transform = 'translate(0px, 0px)';
-	}
+	// Always set inline transform to prevent any CSS fallback
+	element.style.transform = `translate(0px, ${translateY}px)`;
 };
 
 export type TriangleData = {

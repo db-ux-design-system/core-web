@@ -16,14 +16,14 @@ test.describe('DBControlPanelMobile', () => {
 		}
 	});
 
-	runAxeCoreTest({ path: '05/control-panel-mobile', axeDisableRules });
+	runAxeCoreTest({ path: '05/shell/control-panel-mobile', axeDisableRules });
 	runAxeCoreTest({
-		path: '05/control-panel-mobile',
+		path: '05/shell/control-panel-mobile',
 		color: lvl3,
 		axeDisableRules
 	});
 	runAxeCoreTest({
-		path: '05/control-panel-mobile',
+		path: '05/shell/control-panel-mobile',
 		density: 'functional',
 		axeDisableRules
 	});

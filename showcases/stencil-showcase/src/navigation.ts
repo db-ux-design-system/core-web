@@ -94,16 +94,31 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		path: '05',
 		label: '05 Navigation',
 		children: sortNavItems([
-			{ path: '05/shell', label: 'Shell' },
-			{ path: '05/control-panel-brand', label: 'ControlPanelBrand' },
 			{
-				path: '05/control-panel-desktop',
-				label: 'Control Panel Desktop'
-			},
-			{ path: '05/control-panel-mobile', label: 'Control Panel Mobile' },
-			{
-				path: '05/control-panel-flat-icon',
-				label: 'Control Panel Flat Icon'
+				path: '05/shell',
+				label: 'Shell related',
+				children: sortNavItems([
+					{
+						path: '05/shell/shell',
+						label: 'Shell'
+					},
+					{
+						path: '05/shell/control-panel-brand',
+						label: 'ControlPanelBrand'
+					},
+					{
+						path: '05/shell/control-panel-desktop',
+						label: 'Control Panel Desktop'
+					},
+					{
+						path: '05/shell/control-panel-mobile',
+						label: 'Control Panel Mobile'
+					},
+					{
+						path: '05/shell/control-panel-flat-icon',
+						label: 'Control Panel Flat Icon'
+					}
+				])
 			},
 			{ path: '05/navigation-item', label: 'NavigationItem' },
 			{ path: '05/navigation', label: 'Navigation' },

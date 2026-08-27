@@ -5,7 +5,7 @@ import {
 	waitForDBShell
 } from '../default.ts';
 
-const path = '05/shell';
+const path = '05/shell/shell';
 
 type ShellSettings = {
 	controlPanelDesktopPosition: 'top' | 'left';

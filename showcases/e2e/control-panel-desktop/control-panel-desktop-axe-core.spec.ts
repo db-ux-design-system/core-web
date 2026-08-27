@@ -16,14 +16,14 @@ test.describe('DBControlPanelDesktop', () => {
 		}
 	});
 
-	runAxeCoreTest({ path: '05/control-panel-desktop', axeDisableRules });
+	runAxeCoreTest({ path: '05/shell/control-panel-desktop', axeDisableRules });
 	runAxeCoreTest({
-		path: '05/control-panel-desktop',
+		path: '05/shell/control-panel-desktop',
 		color: lvl3,
 		axeDisableRules
 	});
 	runAxeCoreTest({
-		path: '05/control-panel-desktop',
+		path: '05/shell/control-panel-desktop',
 		density: 'functional',
 		axeDisableRules
 	});

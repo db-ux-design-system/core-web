@@ -9,14 +9,17 @@ if (hasWebComponentSyntax(process.env.showcase)) {
 }
 
 test.describe('DBControlPanelFlatIcon', () => {
-	runAxeCoreTest({ path: '05/control-panel-flat-icon', axeDisableRules });
 	runAxeCoreTest({
-		path: '05/control-panel-flat-icon',
+		path: '05/shell/control-panel-flat-icon',
+		axeDisableRules
+	});
+	runAxeCoreTest({
+		path: '05/shell/control-panel-flat-icon',
 		color: lvl3,
 		axeDisableRules
 	});
 	runAxeCoreTest({
-		path: '05/control-panel-flat-icon',
+		path: '05/shell/control-panel-flat-icon',
 		density: 'functional',
 		axeDisableRules
 	});

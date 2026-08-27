@@ -8,7 +8,7 @@ test.describe('DBControlPanelDesktop', () => {
 		title: 'default',
 		description:
 			'should have navigation with links, buttons and a collapse button (next())',
-		url: './#/05/control-panel-desktop?page=examples',
+		url: './#/05/shell/control-panel-desktop?page=examples',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
 				await nvda?.previous(); // Link "With Application Name + Navigation"

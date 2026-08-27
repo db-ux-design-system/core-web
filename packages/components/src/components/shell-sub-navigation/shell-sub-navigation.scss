@@ -43,6 +43,11 @@
 
 			@include control-panel-desktop.horizontal-navigation;
 
+			.overflow-scroll-left-button,
+			.overflow-scroll-right-button {
+				display: flex;
+			}
+
 			> menu {
 				/* workaround for showing correct scrolling and focus */
 				padding-inline: calc(#{variables.$db-spacing-fixed-sm} / 2);

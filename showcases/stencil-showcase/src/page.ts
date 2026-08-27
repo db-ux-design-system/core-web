@@ -8,14 +8,28 @@ function renderPageNavItems(items: NavItem[], parentPath = ''): string {
 				: item.path;
 
 			if (item.children) {
+				const renderChildren = (children: NavItem[]): string =>
+					children
+						.map((child) => {
+							if (child.children) {
+								return `
+								<db-navigation-item text="${child.label}" slot="subNavigation">
+									${child.children
+										.map(
+											(grandchild) =>
+												`<db-navigation-item slot="subNavigation" hide-sub-navigation="true"><a href="#/${grandchild.path}">${grandchild.label}</a></db-navigation-item>`
+										)
+										.join('')}
+								</db-navigation-item>`;
+							}
+
+							return `<db-navigation-item slot="subNavigation" hide-sub-navigation="true"><a href="#/${child.path}">${child.label}</a></db-navigation-item>`;
+						})
+						.join('');
+
 				return `
 				<db-navigation-item text="${item.label}">
-					${item.children
-						.map(
-							(child) =>
-								`<db-navigation-item slot="subNavigation" hide-sub-navigation="true"><a href="#/${child.path}">${child.label}</a></db-navigation-item>`
-						)
-						.join('')}
+					${renderChildren(item.children)}
 				</db-navigation-item>`;
 			}
 

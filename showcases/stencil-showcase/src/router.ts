@@ -4,6 +4,7 @@ import { NAVIGATION_ITEMS } from './navigation';
 /**
  * Parse the current hash to extract route information.
  * Route format: #/{category_number}/{component_name}?density=...&color=...
+ * or: #/{category_number}/{parent_component}/{component_name}?density=...&color=...
  */
 function parseHash(hash: string): {
 	category: string | undefined;
@@ -19,6 +20,15 @@ function parseHash(hash: string): {
 	}
 
 	const segments = hashPath.split('/').filter(Boolean);
+
+	if (segments.length >= 3) {
+		// 3-segment path: category/parent/component -> treat full path as the route
+		return {
+			category: segments[0],
+			component: segments.slice(1).join('/'),
+			parameters
+		};
+	}
 
 	if (segments.length >= 2) {
 		return {
@@ -41,7 +51,14 @@ function parseHash(hash: string): {
 function isKnownRoute(category: string, component: string): boolean {
 	const path = `${category}/${component}`;
 	return NAVIGATION_ITEMS.some(
-		(item) => item.children?.some((child) => child.path === path) ?? false
+		(item) =>
+			item.children?.some(
+				(child) =>
+					child.path === path ||
+					child.children?.some(
+						(grandchild) => grandchild.path === path
+					)
+			) ?? false
 	);
 }
 
@@ -72,7 +89,12 @@ function renderShowcasePage(
 	component: string,
 	parameters: URLSearchParams
 ): void {
-	const showcaseTag = `${component}-showcase`;
+	// For nested paths like "shell/control-panel-desktop",
+	// use only the last segment for the showcase tag name
+	const componentName = component.includes('/')
+		? component.split('/').pop()!
+		: component;
+	const showcaseTag = `${componentName}-showcase`;
 
 	// Validate the tag name to prevent DOM injection even though
 	// callers gate this behind isKnownRoute().
