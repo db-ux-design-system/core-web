@@ -255,6 +255,15 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 - `configs/plugins/storybook/get-stories.cjs` — builds individual story exports
 - `configs/plugins/storybook/storybook-plugin.cjs` — main Mitosis plugin entry
 
+### Sidebar category vs. reference component
+
+The sidebar category (`title: 'Components/<category>/<storybookTitle>'`) and the reference component are separate values — do not couple them.
+
+- **Category** defaults to the component folder name (`heading` -> `DBHeading`) and is overridable per example via `storybookCategory`. The default keeps level, size or variant components of one family in a single category (`DBHeadingH1`–`DBHeadingH6` all appear under `Components/DBHeading`). Override it when a folder also ships a component that is not a variant of that family — `heading/examples/slots.example.lite.tsx` sets `storybookCategory: 'DBCustomHeading'`.
+- **Reference component** is `storybookComponentName`, defaulting to the same folder-derived name. It drives `component:`, the `@components` import and the `Props` type, so it must be an actual export. `heading` has no `DBHeading` export, which is why every heading example names one explicitly.
+
+`storybookComponentNames` picks the component per story inside one example file — see `docs/creating-examples.md`.
+
 ## Model Convention: Always keep `DefaultProps` and `DefaultState`
 
 Every component's `model.ts` **must** export a `DB[ComponentName]DefaultProps` and `DB[ComponentName]DefaultState` type, even if they are empty (`{}`). This ensures consistency across all components and makes it straightforward to add default values later without restructuring the type hierarchy.

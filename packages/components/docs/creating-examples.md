@@ -43,6 +43,35 @@ The `useMetadata` hook configures how the example appears in Storybook:
 - **`storybookArgTypes`**: Reference to the arg types object from `_<component>.arg.types.ts`
 - **`storybookIgnore`**: Set to `true` to exclude the entire example from Storybook
 - **`storybookOverwriteArgs`**: Override default arg values for Storybook controls
+- **`storybookComponentName`**: The reference component of the example — used for `component:`, the `@components` import and the `Props` type. Defaults to `DB<PascalCase folder name>`; only set it when that default is not an actual export.
+- **`storybookComponentNames`**: Array with the component per variant, for examples that mix several components (matches the order of `storybookNames`). Defaults to `storybookComponentName` for every variant.
+- **`storybookCategory`**: The sidebar category the example is filed under (`Components/<category>/<storybookTitle>`). Defaults to `DB<PascalCase folder name>`.
+
+Category and reference component are independent. A folder with several exports keeps its variants in one category and only breaks out components that are not variants of the same family:
+
+```tsx
+// heading/examples/as-size.example.lite.tsx
+// No storybookCategory -> Components/DBHeading/Semantic and visual decoupling
+useMetadata({
+	storybookTitle: "Semantic and visual decoupling",
+	storybookComponentName: "DBHeadingH2",
+	storybookComponentNames: ["DBHeadingH6", "DBHeadingH2"],
+	storybookNames: ["h6 rendered at 2xl", "h2 rendered at 3xs"],
+	storybookArgTypes: StorybookHeadingArgTypes
+});
+```
+
+```tsx
+// heading/examples/slots.example.lite.tsx
+// DBCustomHeading is its own component -> Components/DBCustomHeading/Start and end slot
+useMetadata({
+	storybookTitle: "Start and end slot",
+	storybookCategory: "DBCustomHeading",
+	storybookComponentName: "DBCustomHeading",
+	storybookNames: ["End slot with a badge", "Both slots with an action"],
+	storybookArgTypes: StorybookHeadingArgTypes
+});
+```
 
 Example with overwrite:
 
