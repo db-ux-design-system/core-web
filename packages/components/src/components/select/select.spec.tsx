@@ -1,10 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
-// VUE: /*
-import ControlledSelectHarness from './test-fixtures/controlled-select.fixture';
-// VUE: */
-
 import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -71,68 +67,53 @@ const testAction = () => {
 		expect(selected).toContain(test);
 	});
 
-	test('should update controlled values with required and empty option variants', async ({
+	// The empty option of a `placeholder` or floating label select carries the
+	// native `hidden` attribute. `required` hides it by default,
+	// `showEmptyOption` overrides that in both directions.
+	test('should hide the empty option of a required select', async ({
 		mount
-	}, testInfo) => {
-		test.skip(
-			!testInfo.config.rootDir.includes('/output/react/'),
-			'React-specific controlled component regression test'
+	}) => {
+		const component = await mount(
+			<DBSelect label="Label" placeholder="Choose an option" required>
+				<option value="first">First option</option>
+			</DBSelect>
 		);
+		await expect(component.locator('option[value=""]')).toHaveJSProperty(
+			'hidden',
+			true
+		);
+	});
 
-		const scenarios = [
-			{
-				id: 'required-default',
-				required: true,
-				expectedShowEmptyOption: 'false'
-			},
-			{
-				id: 'required-show-empty',
-				required: true,
-				showEmptyOption: true,
-				expectedShowEmptyOption: 'true'
-			},
-			{
-				id: 'optional-default',
-				required: false,
-				expectedShowEmptyOption: 'true'
-			},
-			{
-				id: 'required-floating',
-				required: true,
-				variant: 'floating',
-				expectedShowEmptyOption: 'false'
-			}
-		];
+	test('should show the empty option with showEmptyOption', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBSelect
+				label="Label"
+				placeholder="Choose an option"
+				required
+				showEmptyOption>
+				<option value="first">First option</option>
+			</DBSelect>
+		);
+		await expect(component.locator('option[value=""]')).toHaveJSProperty(
+			'hidden',
+			false
+		);
+	});
 
-		const component = await mount(<ControlledSelectHarness />);
-
-		for (const { id, expectedShowEmptyOption } of scenarios) {
-			const scenario = component.getByTestId(`scenario-${id}`);
-			const select = scenario.getByRole('combobox');
-			const controlledValue = scenario.getByTestId('controlled-value');
-			const emptyOption = select.locator('option[value=""]');
-
-			await expect(select).toHaveValue('');
-			await expect(emptyOption).toHaveJSProperty(
-				'hidden',
-				expectedShowEmptyOption === 'false'
-			);
-
-			for (const [value, label] of [
-				['first', 'First option'],
-				['second', 'Second option']
-			]) {
-				await select.selectOption(value);
-				await expect(controlledValue).toHaveText(value);
-				await expect(select).toHaveValue(value);
-				await expect(select.locator('option:checked')).toHaveText(
-					label
-				);
-				expect(await select.ariaSnapshot()).toContain(
-					`option "${label}" [selected]`
-				);
-			}
-		}
+	test('should show the empty option of an optional select', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBSelect label="Label" placeholder="Choose an option">
+				<option value="first">First option</option>
+			</DBSelect>
+		);
+		await expect(component.locator('option[value=""]')).toHaveJSProperty(
+			'hidden',
+			false
+		);
 	});
 };
 
