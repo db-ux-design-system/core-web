@@ -1,13 +1,13 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import { DBControlPanelPrimaryActionsProps } from './model';
+import { DBControlPanelActions2Props } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBControlPanelPrimaryActionsProps>({});
+useDefaultProps<DBControlPanelActions2Props>({});
 
-export default function DBControlPanelPrimaryActions(
-	props: DBControlPanelPrimaryActionsProps
+export default function DBControlPanelActions2(
+	props: DBControlPanelActions2Props
 ) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
@@ -16,7 +16,7 @@ export default function DBControlPanelPrimaryActions(
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-control-panel-primary-actions', props.className)}>
+			class={cls('db-control-panel-actions-2', props.className)}>
 			{props.children}
 		</div>
 	);

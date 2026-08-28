@@ -71,7 +71,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				onClose={(event) => state.handleClose(event)}
 				footer={
 					<DBDrawerFooter>
-						<Slot name="secondaryActions" />
+						<Slot name="actions2" />
 					</DBDrawerFooter>
 				}>
 				<div
@@ -82,7 +82,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 				</div>
 			</DBDrawer>
 			<Slot name="brand" />
-			<Slot name="primaryActions" />
+			<Slot name="actions1" />
 			<DBButton
 				class="db-control-panel-mobile-button"
 				icon="menu"

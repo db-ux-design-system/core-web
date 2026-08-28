@@ -254,7 +254,7 @@
 	padding-inline: var(--db-spacing-fixed-xs);
 }
 
-.db-control-panel-primary-actions {
+.db-control-panel-actions-1 {
 	.db-drawer {
 		.db-drawer-content {
 			display: flex;

@@ -16,5 +16,5 @@ feat: introduce control-panel shell architecture (deprecates DBPage, DBHeader, D
 - New `DBControlPanelNavigationItemGroup` for sub-navigation
 - New `DBShellContent` component for main content area
 - New `DBShellSubNavigation` for secondary navigation panels
-- New `DBControlPanelMeta`, `DBControlPanelPrimaryActions`, `DBControlPanelSecondaryActions` slot components
+- New `DBControlPanelMeta`, `DBControlPanelActions1`, `DBControlPanelActions2` slot components
 - New `DBControlPanelFlatIcon` for collapsed icon-only navigation

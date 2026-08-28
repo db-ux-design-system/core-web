@@ -255,9 +255,9 @@ function renderSettingsControls(): string {
 		${settingSelects}`;
 }
 
-function renderPrimaryActions(): string {
+function renderActions1(): string {
 	return `
-		<db-control-panel-primary-actions slot="primaryActions">
+		<db-control-panel-actions-1 slot="actions1">
 			<db-drawer
 				class="js-settings-drawer"
 				direction="to-left"
@@ -275,7 +275,7 @@ function renderPrimaryActions(): string {
 				Settings
 				<db-tooltip>Settings</db-tooltip>
 			</db-button>
-		</db-control-panel-primary-actions>`;
+		</db-control-panel-actions-1>`;
 }
 
 function renderMetaNavigation(): string {
@@ -287,13 +287,13 @@ function renderMetaNavigation(): string {
 		</db-control-panel-meta>`;
 }
 
-function renderSecondaryActions(): string {
+function renderActions2(): string {
 	return `
-		<db-control-panel-secondary-actions slot="secondaryActions">
+		<db-control-panel-actions-2 slot="actions2">
 			<db-switch class="js-shell-toggle" checked="true">Shell</db-switch>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Notification</db-button>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Help</db-button>
-		</db-control-panel-secondary-actions>`;
+		</db-control-panel-actions-2>`;
 }
 
 export function renderNavigation(): void {
@@ -321,8 +321,8 @@ export function renderNavigation(): void {
 			<db-control-panel-desktop>
 				<db-control-panel-brand slot="brand">Showcase</db-control-panel-brand>
 				${renderMetaNavigation()}
-				${renderPrimaryActions()}
-				${renderSecondaryActions()}
+				${renderActions1()}
+				${renderActions2()}
 				${renderNavigationTree('desktop-navigation', settings.navigationDesktopVariant)}
 			</db-control-panel-desktop>
 
@@ -331,8 +331,8 @@ export function renderNavigation(): void {
 			>
 				<db-control-panel-brand slot="brand">Showcase</db-control-panel-brand>
 				${renderMetaNavigation()}
-				${renderPrimaryActions()}
-				${renderSecondaryActions()}
+				${renderActions1()}
+				${renderActions2()}
 				${renderNavigationTree('mobileNavigation', settings.navigationMobileVariant)}
 			</db-control-panel-mobile>
 			<db-shell-content></db-shell-content>
@@ -426,7 +426,7 @@ function initSettingsControls(): void {
 		}
 
 		const drawer = toggle
-			.closest('db-control-panel-primary-actions')
+			.closest('db-control-panel-actions-1')
 			?.querySelector<HTMLDialogElement>('.js-settings-drawer');
 
 		if (drawer) {

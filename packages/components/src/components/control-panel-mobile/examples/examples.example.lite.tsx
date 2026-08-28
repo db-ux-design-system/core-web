@@ -4,8 +4,8 @@ import DBControlPanelBrand from '../../control-panel-brand/control-panel-brand.l
 import DBControlPanelMeta from '../../control-panel-meta/control-panel-meta.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
-import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
-import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
+import DBControlPanelActions1 from '../../control-panel-actions/control-panel-actions-1.lite';
+import DBControlPanelActions2 from '../../control-panel-actions/control-panel-actions-2.lite';
 import DBLink from '../../link/link.lite';
 import DBControlPanelMobile from '../control-panel-mobile.lite';
 import { StorybookControlPanelMobileArgTypes } from './_control-panel-mobile.arg.types';
@@ -64,18 +64,18 @@ export default function ControlPanelMobileExamples() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
-					primaryActions={
-						<DBControlPanelPrimaryActions>
+					actions1={
+						<DBControlPanelActions1>
 							<DBButton
 								icon="magnifying_glass"
 								variant="ghost"
 								noText>
 								Search
 							</DBButton>
-						</DBControlPanelPrimaryActions>
+						</DBControlPanelActions1>
 					}
-					secondaryActions={
-						<DBControlPanelSecondaryActions>
+					actions2={
+						<DBControlPanelActions2>
 							<DBButton
 								icon="x_placeholder"
 								variant="ghost"
@@ -94,7 +94,7 @@ export default function ControlPanelMobileExamples() {
 								noText>
 								Help
 							</DBButton>
-						</DBControlPanelSecondaryActions>
+						</DBControlPanelActions2>
 					}
 				/>
 			</div>
@@ -103,15 +103,15 @@ export default function ControlPanelMobileExamples() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
-					primaryActions={
-						<DBControlPanelPrimaryActions>
+					actions1={
+						<DBControlPanelActions1>
 							<DBButton
 								icon="magnifying_glass"
 								variant="ghost"
 								noText>
 								Search
 							</DBButton>
-						</DBControlPanelPrimaryActions>
+						</DBControlPanelActions1>
 					}
 				/>
 			</div>
@@ -120,8 +120,8 @@ export default function ControlPanelMobileExamples() {
 					position="top"
 					drawerHeaderText="DBControlPanel"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
-					secondaryActions={
-						<DBControlPanelSecondaryActions>
+					actions2={
+						<DBControlPanelActions2>
 							<DBButton
 								icon="x_placeholder"
 								variant="ghost"
@@ -140,7 +140,7 @@ export default function ControlPanelMobileExamples() {
 								noText>
 								Help
 							</DBButton>
-						</DBControlPanelSecondaryActions>
+						</DBControlPanelActions2>
 					}
 				/>
 			</div>

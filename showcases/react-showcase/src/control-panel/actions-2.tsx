@@ -1,15 +1,11 @@
-import {
-	DBButton,
-	DBControlPanelSecondaryActions,
-	DBSwitch
-} from '@components';
+import { DBButton, DBControlPanelActions2, DBSwitch } from '@components';
 import useQuery from '../hooks/use-query';
 
-export default function SecondaryActions() {
+export default function Actions2() {
 	const { shell, setShell } = useQuery();
 
 	return (
-		<DBControlPanelSecondaryActions>
+		<DBControlPanelActions2>
 			<DBSwitch
 				checked={shell}
 				onChange={() => {
@@ -23,6 +19,6 @@ export default function SecondaryActions() {
 			<DBButton icon="x_placeholder" variant="ghost" noText>
 				Help
 			</DBButton>
-		</DBControlPanelSecondaryActions>
+		</DBControlPanelActions2>
 	);
 }

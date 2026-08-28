@@ -8,9 +8,9 @@ import {
 	DBShellSubNavigation
 } from '@components';
 import { Outlet } from 'react-router-dom';
+import Actions1 from './control-panel/actions-1';
+import Actions2 from './control-panel/actions-2';
 import MetaNavigation from './control-panel/meta-navigation';
-import PrimaryActions from './control-panel/primary-actions';
-import SecondaryActions from './control-panel/secondary-actions';
 import useQuery from './hooks/use-query';
 import Navigation from './navigation';
 import Page from './page/page';
@@ -63,8 +63,8 @@ export default function App() {
 					</DBControlPanelSkipNavigation>
 				}
 				brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
-				primaryActions={
-					<PrimaryActions
+				actions1={
+					<Actions1
 						color={color}
 						settings={settings}
 						density={density}
@@ -73,7 +73,7 @@ export default function App() {
 						onDensityChange={setDensity}
 					/>
 				}
-				secondaryActions={<SecondaryActions />}
+				actions2={<Actions2 />}
 				meta={<MetaNavigation />}>
 				<Navigation
 					label="mobile"
@@ -88,8 +88,8 @@ export default function App() {
 				}
 				brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 				meta={<MetaNavigation />}
-				primaryActions={
-					<PrimaryActions
+				actions1={
+					<Actions1
 						color={color}
 						settings={settings}
 						density={density}
@@ -98,7 +98,7 @@ export default function App() {
 						onDensityChange={setDensity}
 					/>
 				}
-				secondaryActions={<SecondaryActions />}>
+				actions2={<Actions2 />}>
 				<Navigation
 					label="desktop"
 					variant={settings.navigationDesktopVariant}

@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-	DBButton,
-	DBControlPanelSecondaryActions,
-	DBSwitch
-} from '@components';
+import { DBButton, DBControlPanelActions2, DBSwitch } from '@components';
 
 @Component({
-	selector: 'app-secondary-actions',
+	selector: 'app-actions-2',
 	schemas: [],
-	imports: [DBControlPanelSecondaryActions, DBButton, DBSwitch],
-	templateUrl: './secondary-actions.component.html'
+	imports: [DBControlPanelActions2, DBButton, DBSwitch],
+	templateUrl: './actions-2.component.html'
 })
-export class SecondaryActionsComponent {
+export class Actions2Component {
 	shell = true;
 
 	constructor(
