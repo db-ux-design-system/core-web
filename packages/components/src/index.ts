@@ -40,6 +40,8 @@ export * from './components/footer-meta/model';
 export * from './components/footer/model';
 export * from './components/header';
 export * from './components/header/model';
+export * from './components/heading';
+export * from './components/heading/model';
 export * from './components/icon';
 export * from './components/icon/model';
 export * from './components/infotext';

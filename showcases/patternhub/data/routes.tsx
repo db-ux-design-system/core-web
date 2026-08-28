@@ -30,6 +30,9 @@ import TagShowcase from '@components/components/tag/showcase/tag.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import type { ReactElement } from 'react';
+
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -42,6 +45,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	heading: <HeadingShowcase isPatternhub />,
+
 	accordion: <AccordionShowcase isPatternhub />,
 
 	'accordion-item': <AccordionItemShowcase isPatternhub />,
