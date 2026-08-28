@@ -1124,18 +1124,15 @@
   - button "Restore options without selection"
   - text: Country
   - group:
-    - text: Germany Germany
-    - button "Remove Germany"
     - article:
       - group "Country":
         - list:
           - listitem:
-            - checkbox "Germany" [checked]
+            - checkbox "Germany"
             - text: Germany
           - listitem:
             - checkbox "Austria"
             - text: Austria
-  - button "Clear selection"
   - status
   - paragraph: "Selections by user: 0"
   - link "Examples Single"
