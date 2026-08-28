@@ -570,16 +570,19 @@ const testValuesReset = () => {
 		// controlled props are synchronized.
 		const selectionReadout = component.getByText('Selections by user: 0');
 
-		await expect(summary).toContainText('Germany');
-		await expect(tags).toHaveCount(1);
+		// The example starts without a selection, so no removable tag is rendered
+		// inside the interactive <summary> on the showcase page.
+		await expect(summary).not.toContainText('Germany');
+		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(
 			component
 				.locator('.db-custom-select-list-item')
 				.filter({ hasText: 'Germany' })
 		).toHaveCount(1);
-		await expect(component.locator('input[value="de"]')).toBeChecked();
+		await expect(component.locator('input[value="de"]')).not.toBeChecked();
 
+		// Options and values change in the same render: the reported bug.
 		await loadOtherOptions.click();
 		await expect(summary).toContainText('Switzerland');
 		await expect(summary).not.toContainText('Germany');

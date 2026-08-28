@@ -27,7 +27,12 @@ export default function CustomSelectControlled() {
 			{ value: 'de', label: 'Germany' },
 			{ value: 'at', label: 'Austria' }
 		],
-		values: ['de'],
+		// Starts without a selection on purpose: with selectedType="tag" every
+		// selected option renders a removable DBTag inside the interactive
+		// <summary>, which axe-core reports as `nested-interactive`. The buttons
+		// below drive the selection, so the controlled synchronization is still
+		// demonstrated without shipping that violation on page load.
+		values: undefined,
 		selectionCount: 0,
 		// Built in one expression: Mitosis drops JSX whitespace such as {' '}
 		getReadout: () => {
