@@ -315,7 +315,6 @@ $input-valid-types:
 @mixin get-validity($selector, $key: "valid") {
 	$user: "";
 
-
 	@if $selector == check or $selector == radio or $selector == switch {
 		$user: "user-";
 		$selector: input;
