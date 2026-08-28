@@ -184,6 +184,38 @@
 	overflow-inline: hidden;
 }
 
+/*
+ * The DBFooter width variants clamp the inner content to a breakpoint token, so two
+ * variants only look different once more space than the larger one is available. The
+ * showcase card is narrower than the smallest variant (48em), which would render all
+ * four identically. Scrolling a track wider than the largest variant keeps them
+ * distinguishable in every showcase and in Patternhub.
+ */
+.footer-width-example {
+	/* min-inline-size keeps the flex and grid min-content floor from widening the
+	 * scroller itself, which would overflow the card instead of scrolling inside it. */
+	inline-size: 100%;
+	min-inline-size: 0;
+	overflow-x: auto;
+	overflow-inline: auto;
+}
+
+/*
+ * Overrides the generic ".variants-list > div:not([class^='db-'])" rule above, which
+ * turns any plain wrapper into a centred flex row. Centring an overflowing track makes
+ * its leading half unreachable, because inline-start overflow cannot be scrolled to.
+ * The selector deliberately matches that rule's specificity and relies on source order.
+ */
+.variants-list > div.footer-width-example {
+	display: block;
+}
+
+.footer-width-example-track {
+	display: grid;
+	gap: var(--db-spacing-fixed-sm);
+	min-inline-size: calc(var(--db-screen-lg) + 2 * var(--db-spacing-fixed-xl));
+}
+
 :root:has(.db-page) {
 	block-size: 100%;
 	overflow: hidden;
