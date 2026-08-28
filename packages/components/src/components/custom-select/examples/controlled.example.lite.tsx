@@ -83,7 +83,6 @@ export default function CustomSelectControlled() {
 				<div style={{ width: '200px' }}>
 					<DBCustomSelect
 						label="Country"
-						listLabel="id-10250-Country"
 						multiple={true}
 						options={state.options}
 						placeholder="Choose countries"
@@ -91,7 +90,9 @@ export default function CustomSelectControlled() {
 						values={state.values}
 						onOptionSelected={() => state.countSelection()}
 					/>
-					<p>{state.getReadout()}</p>
+					<p data-sb-replace="Selections by user: 0">
+						{state.getReadout()}
+					</p>
 				</div>
 			</div>
 		</Fragment>
