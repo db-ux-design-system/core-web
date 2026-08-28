@@ -1,6 +1,11 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+// The harness is a React-only regression fixture, vue must not resolve it.
+// VUE: /*
+import ControlledSelectHarness from './test-fixtures/controlled-select.fixture';
+// VUE: */
+
 import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -65,6 +70,40 @@ const testAction = () => {
 		const select = component.getByRole('combobox');
 		const selected = await select.selectOption({ label: 'Test1' });
 		expect(selected).toContain(test);
+	});
+
+	test('should keep the selection while validating between input and change', async ({
+		mount
+	}, testInfo) => {
+		test.skip(
+			!testInfo.config.rootDir.includes('/output/react/'),
+			'React-specific controlled component regression test'
+		);
+
+		const component = await mount(<ControlledSelectHarness />);
+		const scenario = component.getByTestId('scenario-required-default');
+		const select = scenario.getByRole('combobox');
+
+		/* A browser dispatches `input` and `change` for a select in separate
+		 * tasks. `handleInput` validates, and React re-applies the controlled
+		 * `value` on every commit of a `select` - so an internal state change in
+		 * that window would discard the selection before the consumer ever sees
+		 * it. `selectOption` cannot cover this because it dispatches both events
+		 * in the same task, i.e. before the re-render lands.
+		 * https://github.com/db-ux-design-system/core-web/issues/7554 */
+		await select.evaluate(async (element: any) => {
+			element.value = 'first';
+			element.dispatchEvent(new Event('input', { bubbles: true }));
+			await new Promise((resolve) => {
+				requestAnimationFrame(() => resolve(null));
+			});
+			element.dispatchEvent(new Event('change', { bubbles: true }));
+		});
+
+		await expect(select).toHaveValue('first');
+		await expect(scenario.getByTestId('controlled-value')).toHaveText(
+			'first'
+		);
 	});
 };
 
