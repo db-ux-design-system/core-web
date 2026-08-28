@@ -215,6 +215,27 @@ When adding or modifying examples:
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Do NOT manually edit showcase files** — they are generated
 
+## Component tests (`src/components/**/*.spec.tsx`)
+
+One spec per component (or per component family, declared via `spec` in `components.ts`). `copy-files.ts` copies it into the React and Vue outputs only — Angular and Stencil have no Playwright component tests, they are covered by the showcase e2e suite. The `// VUE:` marker activates a line for Vue only, since it is stripped for that target.
+
+**`selectOption` cannot test controlled-component event ordering.** Playwright dispatches `input` and `change` in the same task, while a browser dispatches them in separate tasks. Anything that depends on what happens _between_ the two events is invisible to it — a controlled `select` looks fine even when a real user interaction breaks it, because React's re-render lands after both events instead of between them. That is how [#7554](https://github.com/db-ux-design-system/core-web/issues/7554) survived the suite. Drive the sequence explicitly when the gap matters:
+
+```ts
+await select.evaluate(async (element: any) => {
+	element.value = "first";
+	element.dispatchEvent(new Event("input", { bubbles: true }));
+	await new Promise((resolve) => {
+		requestAnimationFrame(() => resolve(null));
+	});
+	element.dispatchEvent(new Event("change", { bubbles: true }));
+});
+```
+
+The same caveat applies in reverse: a direct `element.value = …` assignment on a **text** input or textarea does not reach React, because React's change plugin consults its value tracker for those elements and sees no change. Use `fill()` or `pressSequentially()` there — they go through the native setter. Only `select` and `input[type=file]` route `onChange` to the native `change` event and therefore ignore the tracker.
+
+**Always verify a regression test fails without the fix.** Stash the change, regenerate the output, run the test. A test that passes either way documents the implementation instead of the defect.
+
 ## Figma Code Connect (`src/components/**/figma/`)
 
 Each component can have a `figma/` folder with Figma Code Connect definitions. These are generated into `figma-code-connect/` via `mitosis.figma.config.cjs` and the `configs/plugins/figma/` plugin.
