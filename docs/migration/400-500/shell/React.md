@@ -116,8 +116,8 @@ import {
 	DBControlPanelMobile, // previously: DBHeader
 	DBControlPanelBrand, // previously: DBBrand
 	DBControlPanelMeta, // new
-	DBControlPanelPrimaryActions, // new
-	DBControlPanelSecondaryActions, // new
+	DBControlPanelActions1, // new
+	DBControlPanelActions2, // new
 	DBLink,
 	DBControlPanelNavigation,
 	DBControlPanelNavigationItem,
@@ -137,17 +137,17 @@ const MetaNavigation = () => (
 );
 
 const PrimaryActions = () => (
-	<DBControlPanelPrimaryActions>
-		{/* added DBControlPanelPrimaryActions */}
+	<DBControlPanelActions1>
+		{/* added DBControlPanelActions1 */}
 		<DBButton icon="magnifying_glass" variant="ghost" noText>
 			Search
 		</DBButton>
-	</DBControlPanelPrimaryActions>
+	</DBControlPanelActions1>
 );
 
 const SecondaryActions = () => (
-	<DBControlPanelSecondaryActions>
-		{/* added DBControlPanelSecondaryActions */}
+	<DBControlPanelActions2>
+		{/* added DBControlPanelActions2 */}
 		<DBButton icon="x_placeholder" variant="ghost" noText>
 			Profile
 		</DBButton>
@@ -157,7 +157,7 @@ const SecondaryActions = () => (
 		<DBButton icon="help" variant="ghost" noText>
 			Help
 		</DBButton>
-	</DBControlPanelSecondaryActions>
+	</DBControlPanelActions2>
 );
 
 const Navigation = () => (
@@ -193,8 +193,8 @@ const App = () => (
 		<DBControlPanelDesktop
 			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
 			meta={<MetaNavigation />}
-			primaryActions={<PrimaryActions />}
-			secondaryActions={<SecondaryActions />}
+			actions1={<PrimaryActions />}
+			actions2={<SecondaryActions />}
 		>
 			<Navigation />
 		</DBControlPanelDesktop>
@@ -202,8 +202,8 @@ const App = () => (
 			drawerHeaderText="My Awesome App"
 			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
 			meta={<MetaNavigation />}
-			primaryActions={<PrimaryActions />}
-			secondaryActions={<SecondaryActions />}
+			actions1={<PrimaryActions />}
+			actions2={<SecondaryActions />}
 		>
 			<Navigation />
 		</DBControlPanelMobile>

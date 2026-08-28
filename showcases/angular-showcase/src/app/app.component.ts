@@ -16,8 +16,6 @@ import {
 } from '@components';
 import { defaultSettings, DefaultSettings } from '../../../settings';
 import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
-import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
-import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { PageComponent } from './page/page.component';
 import {
@@ -34,8 +32,8 @@ import {
 		FormsModule,
 		RouterOutlet,
 		MetaNavigationComponent,
-		PrimaryActionsComponent,
-		SecondaryActionsComponent,
+		Actions1Component,
+		Actions2Component,
 		NavItemComponent,
 		PageComponent,
 		DBShell,

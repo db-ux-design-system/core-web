@@ -8,7 +8,7 @@
 
 @mixin has-empty-drawer {
 	&:has(.db-control-panel-mobile-drawer-scroll-container:empty):not(
-			:has(.db-control-panel-secondary-actions)
+			:has(.db-control-panel-actions-2)
 		) {
 		@content;
 	}
@@ -31,7 +31,7 @@
 		)
 		variables.$db-spacing-fixed-xs;
 
-	.db-control-panel-primary-actions {
+	.db-control-panel-actions-1 {
 		// fake divider margin
 		padding-inline-end: variables.$db-spacing-fixed-xs;
 

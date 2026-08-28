@@ -24,8 +24,8 @@ import {
 	getNavigationList,
 	type NavigationItem
 } from '../data/routes';
-import PrimaryActions from './control-panel/primary-actions';
-import SecondaryActions from './control-panel/secondary-actions';
+import Actions1 from './control-panel/actions-1';
+import Actions2 from './control-panel/actions-2';
 import { FrameworkProvider } from './framework-context';
 import Navigation from './navigation';
 
@@ -189,13 +189,13 @@ const DefaultPage = ({
 						brand={
 							<DBControlPanelBrand>Showcase</DBControlPanelBrand>
 						}
-						primaryActions={
-							<PrimaryActions
+						actions1={
+							<Actions1
 								mode={mode}
 								toggleColorMode={toggleColorMode}
 							/>
 						}
-						secondaryActions={<SecondaryActions />}>
+						actions2={<Actions2 />}>
 						<Navigation />
 					</DBControlPanelDesktop>
 					<DBControlPanelMobile
@@ -204,13 +204,13 @@ const DefaultPage = ({
 								{process.env.NEXT_PUBLIC_APP_NAME}
 							</DBControlPanelBrand>
 						}
-						primaryActions={
-							<PrimaryActions
+						actions1={
+							<Actions1
 								mode={mode}
 								toggleColorMode={toggleColorMode}
 							/>
 						}
-						secondaryActions={<SecondaryActions />}>
+						actions2={<Actions2 />}>
 						<Navigation />
 					</DBControlPanelMobile>
 					<DBShellContent>

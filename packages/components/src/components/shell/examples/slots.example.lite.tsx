@@ -8,8 +8,8 @@ import DBControlPanelMobile from '../../control-panel-mobile/control-panel-mobil
 import DBControlPanelNavigationItemGroup from '../../control-panel-navigation-item-group/control-panel-navigation-item-group.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
-import DBControlPanelPrimaryActions from '../../control-panel-primary-actions/control-panel-primary-actions.lite';
-import DBControlPanelSecondaryActions from '../../control-panel-secondary-actions/control-panel-secondary-actions.lite';
+import DBControlPanelActions1 from '../../control-panel-actions/control-panel-actions-1.lite';
+import DBControlPanelActions2 from '../../control-panel-actions/control-panel-actions-2.lite';
 import DBLink from '../../link/link.lite';
 import DBShellContent from '../../shell-content/shell-content.lite';
 import DBShell from '../shell.lite';
@@ -49,25 +49,25 @@ export default function ShellSlots() {
 								<DBLink href="#">Help</DBLink>
 							</DBControlPanelMeta>
 						}
-						primaryActions={
-							<DBControlPanelPrimaryActions>
+						actions1={
+							<DBControlPanelActions1>
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
 									noText>
 									Search
 								</DBButton>
-							</DBControlPanelPrimaryActions>
+							</DBControlPanelActions1>
 						}
-						secondaryActions={
-							<DBControlPanelSecondaryActions>
+						actions2={
+							<DBControlPanelActions2>
 								<DBButton
 									icon="x_placeholder"
 									variant="ghost"
 									noText>
 									Profile
 								</DBButton>
-							</DBControlPanelSecondaryActions>
+							</DBControlPanelActions2>
 						}>
 						<DBControlPanelNavigation aria-label="shell-slots-top">
 							<DBControlPanelNavigationItem
@@ -113,25 +113,25 @@ export default function ShellSlots() {
 					<DBControlPanelMobile
 						drawerHeaderText="Nav Item Badge"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						primaryActions={
-							<DBControlPanelPrimaryActions>
+						actions1={
+							<DBControlPanelActions1>
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
 									noText>
 									Search
 								</DBButton>
-							</DBControlPanelPrimaryActions>
+							</DBControlPanelActions1>
 						}
-						secondaryActions={
-							<DBControlPanelSecondaryActions>
+						actions2={
+							<DBControlPanelActions2>
 								<DBButton
 									icon="x_placeholder"
 									variant="ghost"
 									noText>
 									Profile
 								</DBButton>
-							</DBControlPanelSecondaryActions>
+							</DBControlPanelActions2>
 						}>
 						<DBControlPanelNavigation aria-label="shell-slots-top">
 							<DBControlPanelNavigationItem
@@ -205,25 +205,25 @@ export default function ShellSlots() {
 								<DBLink href="#">Help</DBLink>
 							</DBControlPanelMeta>
 						}
-						primaryActions={
-							<DBControlPanelPrimaryActions>
+						actions1={
+							<DBControlPanelActions1>
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
 									noText>
 									Search
 								</DBButton>
-							</DBControlPanelPrimaryActions>
+							</DBControlPanelActions1>
 						}
-						secondaryActions={
-							<DBControlPanelSecondaryActions>
+						actions2={
+							<DBControlPanelActions2>
 								<DBButton
 									icon="x_placeholder"
 									variant="ghost"
 									noText>
 									Profile
 								</DBButton>
-							</DBControlPanelSecondaryActions>
+							</DBControlPanelActions2>
 						}>
 						<DBControlPanelNavigation aria-label="shell-slots-group-badge">
 							<DBControlPanelNavigationItem
@@ -259,25 +259,25 @@ export default function ShellSlots() {
 					<DBControlPanelMobile
 						drawerHeaderText="Group Badge"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						primaryActions={
-							<DBControlPanelPrimaryActions>
+						actions1={
+							<DBControlPanelActions1>
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
 									noText>
 									Search
 								</DBButton>
-							</DBControlPanelPrimaryActions>
+							</DBControlPanelActions1>
 						}
-						secondaryActions={
-							<DBControlPanelSecondaryActions>
+						actions2={
+							<DBControlPanelActions2>
 								<DBButton
 									icon="x_placeholder"
 									variant="ghost"
 									noText>
 									Profile
 								</DBButton>
-							</DBControlPanelSecondaryActions>
+							</DBControlPanelActions2>
 						}>
 						<DBControlPanelNavigation aria-label="shell-slots-group-badge-mobile">
 							<DBControlPanelNavigationItem
@@ -336,25 +336,25 @@ export default function ShellSlots() {
 								<DBLink href="#">Help</DBLink>
 							</DBControlPanelMeta>
 						}
-						primaryActions={
-							<DBControlPanelPrimaryActions>
+						actions1={
+							<DBControlPanelActions1>
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
 									noText>
 									Search
 								</DBButton>
-							</DBControlPanelPrimaryActions>
+							</DBControlPanelActions1>
 						}
-						secondaryActions={
-							<DBControlPanelSecondaryActions>
+						actions2={
+							<DBControlPanelActions2>
 								<DBButton
 									icon="x_placeholder"
 									variant="ghost"
 									noText>
 									Profile
 								</DBButton>
-							</DBControlPanelSecondaryActions>
+							</DBControlPanelActions2>
 						}>
 						<DBControlPanelNavigation
 							aria-label="shell-slots-left-tree"
@@ -392,25 +392,25 @@ export default function ShellSlots() {
 					<DBControlPanelMobile
 						drawerHeaderText="Group Badge"
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
-						primaryActions={
-							<DBControlPanelPrimaryActions>
+						actions1={
+							<DBControlPanelActions1>
 								<DBButton
 									icon="magnifying_glass"
 									variant="ghost"
 									noText>
 									Search
 								</DBButton>
-							</DBControlPanelPrimaryActions>
+							</DBControlPanelActions1>
 						}
-						secondaryActions={
-							<DBControlPanelSecondaryActions>
+						actions2={
+							<DBControlPanelActions2>
 								<DBButton
 									icon="x_placeholder"
 									variant="ghost"
 									noText>
 									Profile
 								</DBButton>
-							</DBControlPanelSecondaryActions>
+							</DBControlPanelActions2>
 						}>
 						<DBControlPanelNavigation
 							aria-label="shell-slots-left-tree-mobile"

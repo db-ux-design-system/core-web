@@ -8,9 +8,9 @@ import {
 } from '@components';
 import type { AppProps } from 'next/app';
 import { useId } from 'react';
+import Actions1 from '../../react-showcase/src/control-panel/actions-1';
+import Actions2 from '../../react-showcase/src/control-panel/actions-2';
 import MetaNavigation from '../../react-showcase/src/control-panel/meta-navigation';
-import PrimaryActions from '../../react-showcase/src/control-panel/primary-actions';
-import SecondaryActions from '../../react-showcase/src/control-panel/secondary-actions';
 import useQuery from '../../react-showcase/src/hooks/use-query';
 import Navigation from '../../react-showcase/src/navigation';
 import '../../showcase-styles.css';
@@ -59,8 +59,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 				id={controlPanelMobileId}
 				drawerHeaderText="Showcase"
 				brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
-				primaryActions={
-					<PrimaryActions
+				actions1={
+					<Actions1
 						color={color}
 						settings={settings}
 						density={density}
@@ -69,7 +69,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 						onDensityChange={setDensity}
 					/>
 				}
-				secondaryActions={<SecondaryActions />}
+				actions2={<Actions2 />}
 				meta={<MetaNavigation />}>
 				<Navigation
 					variant={settings.navigationMobileVariant}
@@ -80,8 +80,8 @@ const App = ({ Component, pageProps }: AppProps) => {
 				id={controlPanelDesktopId}
 				brand={<DBControlPanelBrand>Showcase</DBControlPanelBrand>}
 				meta={<MetaNavigation />}
-				primaryActions={
-					<PrimaryActions
+				actions1={
+					<Actions1
 						color={color}
 						settings={settings}
 						density={density}
@@ -90,7 +90,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 						onDensityChange={setDensity}
 					/>
 				}
-				secondaryActions={<SecondaryActions />}>
+				actions2={<Actions2 />}>
 				<Navigation
 					variant={settings.navigationDesktopVariant}
 					label="desktop"

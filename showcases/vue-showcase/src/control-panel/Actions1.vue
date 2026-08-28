@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
 	DBButton,
-	DBControlPanelPrimaryActions,
+	DBControlPanelActions1,
 	DBDivider,
 	DBDrawer,
 	DBDrawerHeader,
@@ -30,7 +30,7 @@ const open = ref(false);
 </script>
 
 <template>
-	<DBControlPanelPrimaryActions>
+	<DBControlPanelActions1>
 		<DBDrawer :open="open" @close="() => (open = false)"
 			><template v-slot:header>
 				<DBDrawerHeader>Settings</DBDrawerHeader></template
@@ -85,5 +85,5 @@ const open = ref(false);
 			Settings
 			<DBTooltip>Settings</DBTooltip>
 		</DBButton>
-	</DBControlPanelPrimaryActions>
+	</DBControlPanelActions1>
 </template>

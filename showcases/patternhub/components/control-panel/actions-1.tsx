@@ -1,6 +1,6 @@
-import { DBControlPanelPrimaryActions, DBSwitch, DBTooltip } from '@components';
+import { DBControlPanelActions1, DBSwitch, DBTooltip } from '@components';
 
-export default function PrimaryActions({
+export default function Actions1({
 	mode,
 	toggleColorMode
 }: {
@@ -8,7 +8,7 @@ export default function PrimaryActions({
 	toggleColorMode: () => void;
 }) {
 	return (
-		<DBControlPanelPrimaryActions>
+		<DBControlPanelActions1>
 			<DBSwitch
 				checked={mode}
 				visualAid
@@ -21,6 +21,6 @@ export default function PrimaryActions({
 				<DBTooltip>Switch color scheme (light/dark)</DBTooltip>
 				Switch color scheme (light/dark)
 			</DBSwitch>
-		</DBControlPanelPrimaryActions>
+		</DBControlPanelActions1>
 	);
 }

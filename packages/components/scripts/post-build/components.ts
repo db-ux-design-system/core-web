@@ -65,8 +65,25 @@ const headingComponents: Component[] = [
 	}
 }));
 
+/*
+ * The two ControlPanelActions components share one folder, one model, one
+ * stylesheet and one spec, following the same pattern as the Heading family.
+ */
+const controlPanelActionsComponents: Component[] = [
+	'control-panel-actions-1',
+	'control-panel-actions-2'
+].map((name, index) => ({
+	name,
+	folder: 'control-panel-actions',
+	spec: index === 0 ? 'control-panel-actions' : undefined,
+	overwrites: {
+		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
+	}
+}));
+
 export const getComponents = (): Component[] => [
 	...headingComponents,
+	...controlPanelActionsComponents,
 
 	{
 		name: 'control-panel-skip-navigation'
@@ -99,14 +116,6 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'control-panel-navigation-item-group'
-	},
-
-	{
-		name: 'control-panel-secondary-actions'
-	},
-
-	{
-		name: 'control-panel-primary-actions'
 	},
 
 	{

@@ -108,8 +108,8 @@ export default function DBControlPanelDesktop(
 				{props.children}
 				<Slot name="meta" />
 			</div>
-			<Slot name="primaryActions" />
-			<Slot name="secondaryActions" />
+			<Slot name="actions1" />
+			<Slot name="actions2" />
 			<div className="db-control-panel-desktop-button">
 				<button
 					onClick={(event) => state.handleToggle(event)}
