@@ -160,14 +160,14 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		[padding-top]
 		". . navigation . . ." #{$control-panel-desktop-horizontal-padding-block}
 		[others]
-		". brand navigation primary secondary ." auto
+		". brand navigation actions-1 actions-2 ." auto
 		[padding-bottom]
 		". . navigation . . ." #{$control-panel-desktop-horizontal-padding-block} /
 		[padding-left] 0
 		[brand] max-content
 		[navigation] 1fr
-		[primary] max-content
-		[secondary] max-content
+		[actions-1] max-content
+		[actions-2] max-content
 		[padding-right] 0;
 
 	> .db-control-panel-desktop-scroll-container {
@@ -178,8 +178,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		padding-inline: $control-panel-desktop-horizontal-padding-inline;
 	}
 
-	.db-control-panel-primary-actions,
-	.db-control-panel-secondary-actions {
+	.db-control-panel-actions-1,
+	.db-control-panel-actions-2 {
 		block-size: variables.$db-sizing-md;
 	}
 
@@ -187,7 +187,7 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		display: none;
 	}
 
-	.db-control-panel-secondary-actions {
+	.db-control-panel-actions-2 {
 		padding-inline-start: $control-panel-desktop-horizontal-padding-inline;
 
 		@include helpers.divider("left");
@@ -280,8 +280,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 	grid-template:
 		[brand] "brand" auto
 		[scroll] "scroll" 1fr
-		[primary] "primary" auto
-		[secondary] "secondary" auto
+		[actions-1] "actions-1" auto
+		[actions-2] "actions-2" auto
 		[button] "button" auto;
 
 	@media screen and (prefers-reduced-motion: no-preference) {
@@ -307,8 +307,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 		.db-control-panel-navigation-item-group,
 		.db-control-panel-navigation-item,
-		.db-control-panel-primary-actions,
-		.db-control-panel-secondary-actions,
+		.db-control-panel-actions-1,
+		.db-control-panel-actions-2,
 		.db-control-panel-meta {
 			display: none;
 		}
@@ -360,8 +360,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		@include helpers.divider("top");
 	}
 
-	.db-control-panel-primary-actions,
-	.db-control-panel-secondary-actions,
+	.db-control-panel-actions-1,
+	.db-control-panel-actions-2,
 	> .db-control-panel-desktop-button {
 		padding-block: $control-panel-desktop-vertical-padding-block;
 		padding-inline: $control-panel-desktop-vertical-padding-inline-start
@@ -401,8 +401,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		}
 	}
 
-	.db-control-panel-primary-actions,
-	.db-control-panel-secondary-actions {
+	.db-control-panel-actions-1,
+	.db-control-panel-actions-2 {
 		@include helpers.divider("top");
 	}
 

@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
 	DBButton,
-	DBControlPanelPrimaryActions,
+	DBControlPanelActions1,
 	DBDivider,
 	DBDrawer,
 	DBDrawerHeader,
@@ -21,10 +21,10 @@ import {
 } from '../../../../../settings';
 
 @Component({
-	selector: 'app-primary-actions',
+	selector: 'app-actions-1',
 	schemas: [],
 	imports: [
-		DBControlPanelPrimaryActions,
+		DBControlPanelActions1,
 		DBButton,
 		DBDrawer,
 		DBSelect,
@@ -33,9 +33,9 @@ import {
 		DBDivider,
 		DBDrawerHeader
 	],
-	templateUrl: './primary-actions.component.html'
+	templateUrl: './actions-1.component.html'
 })
-export class PrimaryActionsComponent {
+export class Actions1Component {
 	defaultSettingsMapping = Object.entries(defaultSettingsMapping);
 
 	metaRef = viewChild<ElementRef>('metaRef');

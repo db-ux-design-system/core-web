@@ -766,17 +766,17 @@ export type ControlPanelProps = {
 	 */
 	meta?: any;
 	/**
-	 * Slot to pass one or more elements like DBButton (e.g. search) as primary action.
+	 * Slot to pass one or more elements like DBButton (e.g. search) as actions-1.
 	 * Desktop: Shown next to the main-navigation
 	 * Mobile: Shown next to the control-panel-brand
 	 */
-	primaryActions?: any;
+	actions1?: any;
 	/**
-	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as secondary action.
+	 * Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as actions-2.
 	 * Desktop: Shown separated by divider at the end of the control-panel-desktop
 	 * Mobile: Shown inside the drawer at the bottom.
 	 */
-	secondaryActions?: any;
+	actions2?: any;
 	/**
 	 * Slot to pass an anchor or link to skip the navigation and jump to main content.
 	 */

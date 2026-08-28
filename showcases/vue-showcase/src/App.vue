@@ -11,9 +11,9 @@ import {
 import NavItemComponent from "./NavItemComponent.vue";
 
 import { useLayout } from "./composables/use-layout";
+import Actions1 from "./control-panel/Actions1.vue";
+import Actions2 from "./control-panel/Actions2.vue";
 import MetaNavigation from "./control-panel/MetaNavigation.vue";
-import PrimaryActions from "./control-panel/PrimaryActions.vue";
-import SecondaryActions from "./control-panel/SecondaryActions.vue";
 import Page from "./page/Page.vue";
 
 const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
@@ -59,11 +59,11 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
 			</DBControlPanelNavigation>
-			<template v-slot:primary-actions>
-				<PrimaryActions />
+			<template v-slot:actions1>
+				<Actions1 />
 			</template>
-			<template v-slot:secondary-actions>
-				<SecondaryActions />
+			<template v-slot:actions2>
+				<Actions2 />
 			</template>
 			<template v-slot:meta>
 				<MetaNavigation />
@@ -81,11 +81,11 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
 			</DBControlPanelNavigation>
-			<template v-slot:primary-actions>
-				<PrimaryActions />
+			<template v-slot:actions1>
+				<Actions1 />
 			</template>
-			<template v-slot:secondary-actions>
-				<SecondaryActions />
+			<template v-slot:actions2>
+				<Actions2 />
 			</template>
 			<template v-slot:meta>
 				<MetaNavigation />

@@ -8,8 +8,8 @@ import { DBButton } from '../button';
 import { DBControlPanelBrand } from '../control-panel-brand';
 import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
-import { DBControlPanelPrimaryActions } from '../control-panel-primary-actions';
-import { DBControlPanelSecondaryActions } from '../control-panel-secondary-actions';
+import { DBControlPanelActions1 } from '../control-panel-actions';
+import { DBControlPanelActions2 } from '../control-panel-actions';
 import { DBShell } from '../shell';
 import { DBShellContent } from '../shell-content';
 
@@ -19,33 +19,33 @@ const comp: any = (
 		<DBControlPanelDesktop
 			orientation="horizontal"
 			brand={<DBControlPanelBrand data-logo="db-systel" />}
-			primaryActions={
-				<DBControlPanelPrimaryActions>
+			actions1={
+				<DBControlPanelActions1>
 					<DBButton icon="magnifying_glass" variant="ghost" noText>
 						Search
 					</DBButton>
-				</DBControlPanelPrimaryActions>
+				</DBControlPanelActions1>
 			}
-			secondaryActions={
-				<DBControlPanelSecondaryActions>
+			actions2={
+				<DBControlPanelActions2>
 					<DBButton icon="x_placeholder" variant="ghost" noText>
 						Profile
 					</DBButton>
-				</DBControlPanelSecondaryActions>
+				</DBControlPanelActions2>
 			}>
 			{/*
 				<template v-slot:brand>
 					<DBControlPanelBrand data-logo="db-systel" />
 				</template>
-				<template v-slot:primary-actions>
-					<DBControlPanelPrimaryActions>
+				<template v-slot:actions1>
+					<DBControlPanelActions1>
 						<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
-					</DBControlPanelPrimaryActions>
+					</DBControlPanelActions1>
 				</template>
-				<template v-slot:secondary-actions>
-					<DBControlPanelSecondaryActions>
+				<template v-slot:actions2>
+					<DBControlPanelActions2>
 						<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
-					</DBControlPanelSecondaryActions>
+					</DBControlPanelActions2>
 				</template>
 		*/}
 			<DBControlPanelNavigation aria-label="Main Navigation">

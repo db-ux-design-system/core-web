@@ -49,7 +49,7 @@
 		}
 
 		// We don't show primary border in this case
-		.db-control-panel-primary-actions {
+		.db-control-panel-actions-1 {
 			padding-inline-end: 0;
 
 			&::before {
@@ -59,7 +59,7 @@
 	}
 
 	.db-control-panel-mobile-drawer {
-		&:not(:has(.db-control-panel-secondary-actions)) {
+		&:not(:has(.db-control-panel-actions-2)) {
 			.db-drawer-footer {
 				display: none;
 			}

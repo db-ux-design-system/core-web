@@ -1,6 +1,6 @@
 import {
 	DBButton,
-	DBControlPanelPrimaryActions,
+	DBControlPanelActions1,
 	DBDivider,
 	DBDrawer,
 	DBDrawerHeader,
@@ -15,7 +15,7 @@ import {
 	defaultSettingsMapping
 } from '../../../settings';
 
-export type PrimaryActionsProps = {
+export type Actions1Props = {
 	color: string;
 	density: string;
 	settings: DefaultSettings;
@@ -24,18 +24,18 @@ export type PrimaryActionsProps = {
 	onSettingsChange: (settings: DefaultSettings) => void;
 };
 
-const PrimaryActions = ({
+const Actions1 = ({
 	onSettingsChange,
 	onDensityChange,
 	onColorChange,
 	color,
 	density,
 	settings
-}: PrimaryActionsProps) => {
+}: Actions1Props) => {
 	const [open, setOpen] = useState<boolean>(false);
 
 	return (
-		<DBControlPanelPrimaryActions>
+		<DBControlPanelActions1>
 			<DBDrawer
 				header={<DBDrawerHeader>Settings</DBDrawerHeader>}
 				open={open}
@@ -106,8 +106,8 @@ const PrimaryActions = ({
 				Settings
 				<DBTooltip>Settings</DBTooltip>
 			</DBButton>
-		</DBControlPanelPrimaryActions>
+		</DBControlPanelActions1>
 	);
 };
 
-export default PrimaryActions;
+export default Actions1;

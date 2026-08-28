@@ -216,20 +216,20 @@ export class MetaNavigationComponent {}
 import { Component } from "@angular/core";
 import {
 	DBButton,
-	DBControlPanelPrimaryActions // new
+	DBControlPanelActions1 // new
 } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-primary-actions",
-	imports: [DBButton, DBControlPanelPrimaryActions],
+	imports: [DBButton, DBControlPanelActions1],
 	standalone: true,
 	template: `
-		/* added db-control-panel-primary-actions */
-		<db-control-panel-primary-actions>
+		/* added db-control-panel-actions-1 */
+		<db-control-panel-actions-1>
 			<db-button icon="magnifying_glass" variant="ghost" [noText]="true">
 				Search
 			</db-button>
-		</db-control-panel-primary-actions>
+		</db-control-panel-actions-1>
 	`
 })
 export class PrimaryActionsComponent {}
@@ -241,16 +241,16 @@ export class PrimaryActionsComponent {}
 import { Component } from "@angular/core";
 import {
 	DBButton,
-	DBControlPanelSecondaryActions // new
+	DBControlPanelActions2 // new
 } from "@db-ux/ngx-core-components";
 
 @Component({
 	selector: "app-secondary-actions",
-	imports: [DBButton, DBControlPanelSecondaryActions],
+	imports: [DBButton, DBControlPanelActions2],
 	standalone: true,
 	template: `
-		/* added db-control-panel-secondary-actions */
-		<db-control-panel-secondary-actions>
+		/* added db-control-panel-actions-2 */
+		<db-control-panel-actions-2>
 			<db-button icon="x_placeholder" variant="ghost" [noText]="true">
 				Profile
 			</db-button>
@@ -260,7 +260,7 @@ import {
 			<db-button icon="help" variant="ghost" [noText]="true">
 				Help
 			</db-button>
-		</db-control-panel-secondary-actions>
+		</db-control-panel-actions-2>
 	`
 })
 export class SecondaryActionsComponent {}

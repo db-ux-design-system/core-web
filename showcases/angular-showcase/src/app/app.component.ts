@@ -15,9 +15,9 @@ import {
 	SEMANTIC
 } from '@components';
 import { defaultSettings, DefaultSettings } from '../../../settings';
+import { Actions1Component } from './control-panel/actions-1/actions-1.component';
+import { Actions2Component } from './control-panel/actions-2/actions-2.component';
 import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
-import { PrimaryActionsComponent } from './control-panel/primary-actions/primary-actions.component';
-import { SecondaryActionsComponent } from './control-panel/secondary-actions/secondary-actions.component';
 import { NavItemComponent } from './nav-item/nav-item.component';
 import { PageComponent } from './page/page.component';
 import {
@@ -34,8 +34,8 @@ import {
 		FormsModule,
 		RouterOutlet,
 		MetaNavigationComponent,
-		PrimaryActionsComponent,
-		SecondaryActionsComponent,
+		Actions1Component,
+		Actions2Component,
 		NavItemComponent,
 		PageComponent,
 		DBShell,
