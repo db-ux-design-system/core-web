@@ -10,6 +10,26 @@
 @use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown";
 
 %drilldown-navigation {
+	// Prevent scrolling behind the active drilldown overlay.
+	// When a group is expanded, the nav root and any intermediate
+	// menus (which have a deeper expanded child) get overflow:hidden.
+	// The deepest expanded menu keeps its own overflow so users can
+	// scroll through its items.
+	&:has(
+		.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+	) {
+		overflow: hidden;
+	}
+
+	// Lock intermediate drilldown menus that sit behind a deeper overlay.
+	// A menu :has() an expanded button inside it -> there is an open
+	// sub-level on top, so this menu must not scroll.
+	.db-control-panel-navigation-item-group-menu:has(
+		.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+	) {
+		overflow: hidden;
+	}
+
 	.db-control-panel-navigation-item-group-expand-button {
 		// show/hide sub-navigation by click
 		&[aria-expanded="true"] {
