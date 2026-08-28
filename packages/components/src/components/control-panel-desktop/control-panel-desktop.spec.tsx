@@ -5,11 +5,13 @@ import { DBControlPanelDesktop } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
 import { DBButton } from '../button';
+import {
+	DBControlPanelActions1,
+	DBControlPanelActions2
+} from '../control-panel-actions';
 import { DBControlPanelBrand } from '../control-panel-brand';
 import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
-import { DBControlPanelActions1 } from '../control-panel-actions';
-import { DBControlPanelActions2 } from '../control-panel-actions';
 import { DBShell } from '../shell';
 import { DBShellContent } from '../shell-content';
 
