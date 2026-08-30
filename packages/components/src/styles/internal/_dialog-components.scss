@@ -65,6 +65,11 @@ $container-size-scale: (
 		.db-#{$prefix}-header-container {
 			font-weight: bold;
 			margin-inline-end: auto;
+
+			h2 {
+				font-size: inherit;
+				margin-block: 0;
+			}
 		}
 	} @else if $part == "footer" {
 		flex-direction: column;

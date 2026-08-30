@@ -8,7 +8,20 @@ For general installation and configuration take a look at the [react-core-compon
 // App.tsx
 import { DBDialogFooter } from "@db-ux/react-core-components";
 
-const App = () => <DBDialogFooter>DialogFooter</DBDialogFooter>;
+const App = () => {
+	return (
+		<DBDialogFooter>
+			<DBButton
+				variant="ghost">
+				Cancel
+			</DBButton>
+			<DBButton
+				variant="brand">
+				Confirm
+			</DBButton>
+		</DBDialogFooter>;
+	);
+};
 
 export default App;
 ```
