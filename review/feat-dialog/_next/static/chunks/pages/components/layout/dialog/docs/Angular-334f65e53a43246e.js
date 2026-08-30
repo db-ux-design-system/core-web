@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[8453],{43167:(_,n,o)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/components/layout/dialog/docs/Angular",function(){return o(93902)}])}},_=>{_.O(0,[3902,636,6593,8792],()=>_(_.s=43167)),_N_E=_.O()}]);
