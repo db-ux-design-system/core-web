@@ -9,8 +9,8 @@ For general installation and configuration take a look at the [components](https
 ...
 <body>
 	<div class="db-dialog-footer">
-		<button class="db-button" data-variant="ghost">Cancel</button>
-		<button class="db-button" data-variant="brand">Confirm</button>
+		<button class="db-button" data-variant="ghost" type="button">Cancel</button>
+		<button class="db-button" data-variant="brand" type="button">Confirm</button>
 	</div>
 </body>
 ```
