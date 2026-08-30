@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-Crvc21--.js";e();
