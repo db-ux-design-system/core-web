@@ -467,4 +467,36 @@ describe('handleFixedDropdown', () => {
 		// stays aligned to the trigger instead of right - childWidth (= 220px)
 		expect(style.insetInlineStart).toBe('100px');
 	});
+
+	it('clears inline positioning styles when transitioning to mobile z-index 9999', () => {
+		const element = createDropdownElement('auto', {
+			width: 100,
+			height: 50
+		});
+		element.style.insetInlineStart = '400px';
+		element.style.insetBlockStart = '200px';
+		element.style.position = 'fixed';
+
+		const parent = {
+			getBoundingClientRect: () => ({
+				top: 10,
+				left: 10,
+				width: 100,
+				height: 40,
+				bottom: 50,
+				right: 110
+			})
+		} as HTMLElement;
+
+		withComputedStyle(
+			new Map([[element, { zIndex: '9999', position: 'fixed' }]]),
+			() => {
+				handleFixedDropdown(element, parent, 'bottom');
+			}
+		);
+
+		expect(element.style.insetInlineStart).toBe('');
+		expect(element.style.insetBlockStart).toBe('');
+		expect(element.style.position).toBe('');
+	});
 });
