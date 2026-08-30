@@ -20,5 +20,14 @@ import { DBDialogFooter } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-dialog-footer>DialogFooter</db-dialog-footer>
+<db-dialog-footer>
+	<db-button
+		variant="ghost">
+		Cancel
+	</db-button>
+	<db-button
+		variant="brand">
+		Confirm
+	</db-button>
+</db-dialog-footer>
 ```

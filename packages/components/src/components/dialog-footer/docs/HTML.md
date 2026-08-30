@@ -8,6 +8,17 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-dialog-footer">DialogFooter</div>
+	<div class="db-dialog-footer">
+	  	<button
+	  	  	class="db-button"
+	  		data-variant="ghost">
+	  		Cancel
+	  	</button>
+  		<button
+	  	  	class="db-button"
+	  		data-variant="brand">
+  			Confirm
+  		</button>
+	</div>
 </body>
 ```
