@@ -1,0 +1,190 @@
+---
+# Auto-resolve merge conflicts for regenerated files
+#
+# When a PR branch falls behind main and the only conflicts are in files that
+# CI regenerates anyway (e.g. Playwright snapshots), this workflow merges main
+# into the branch and resolves those conflicts with "theirs" (the main version).
+#
+# Trigger: manually via workflow_dispatch, selecting the PR branch.
+# Config:  .github/conflict-resolver.yml defines which file patterns are safe
+#          to auto-resolve.
+#
+# If any conflicts remain that are NOT covered by the config, the workflow fails
+# with a clear list so a human can take over.
+
+name: 🔀 Auto-resolve regenerated-file conflicts
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "PR branch to update (e.g. feat-my-feature)"
+        required: true
+        type: string
+      base:
+        description: "Base branch to merge from"
+        required: false
+        default: "main"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  resolve:
+    name: 🔀 Merge & auto-resolve conflicts
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout PR branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🔀 Attempt merge from base branch
+        id: merge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin "$BASE_BRANCH"
+
+          if git merge "origin/$BASE_BRANCH" --no-edit; then
+            echo "status=clean" >> "$GITHUB_OUTPUT"
+            echo "✅ Merge completed without conflicts."
+          else
+            echo "status=conflicts" >> "$GITHUB_OUTPUT"
+            echo "⚠️ Merge has conflicts — attempting auto-resolution."
+          fi
+        env:
+          BASE_BRANCH: ${{ inputs.base }}
+
+      - name: 🔧 Auto-resolve configured patterns
+        if: steps.merge.outputs.status == 'conflicts'
+        id: resolve
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CONFIG=".github/conflict-resolver.yml"
+          if [[ ! -f "$CONFIG" ]]; then
+            echo "::error::Config file $CONFIG not found."
+            exit 1
+          fi
+
+          # Parse rules from the YAML config (lightweight, no yq dependency).
+          # Each rule has:  - paths: "glob"  and  strategy: "theirs|ours"
+          mapfile -t PATTERNS < <(grep -oP '^\s*-\s*paths:\s*['\''"]?\K[^'\''"]+' "$CONFIG")
+          mapfile -t STRATEGIES < <(grep -oP '^\s*strategy:\s*['\''"]?\K[^'\''"]+' "$CONFIG")
+
+          if [[ ${#PATTERNS[@]} -eq 0 ]]; then
+            echo "::error::No rules found in $CONFIG."
+            exit 1
+          fi
+
+          echo "Loaded ${#PATTERNS[@]} rule(s) from $CONFIG"
+          for i in "${!PATTERNS[@]}"; do
+            echo "   [$i] ${PATTERNS[$i]} -> ${STRATEGIES[$i]}"
+          done
+
+          # Collect conflicted files (UU, AA, DU, UD, etc.)
+          mapfile -t CONFLICTED < <(git diff --name-only --diff-filter=U)
+
+          if [[ ${#CONFLICTED[@]} -eq 0 ]]; then
+            echo "No conflicted files found (merge may have resolved itself)."
+            echo "unresolved=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Found ${#CONFLICTED[@]} conflicted file(s)"
+
+          # Build a lookup of resolved files.
+          declare -A resolved_map
+          resolved_count=0
+
+          # Match files against glob patterns using git check-ignore with a
+          # temporary excludes file. This gives us native git fnmatch (with
+          # full ** support) without any fragile regex conversion.
+          for i in "${!PATTERNS[@]}"; do
+            pattern="${PATTERNS[$i]}"
+            strategy="${STRATEGIES[$i]}"
+
+            tmpignore=$(mktemp)
+            echo "$pattern" > "$tmpignore"
+
+            for file in "${CONFLICTED[@]}"; do
+              # Skip already-resolved files
+              [[ -n "${resolved_map[$file]+x}" ]] && continue
+
+              # git check-ignore exits 0 if the path matches, 1 if not
+              if echo "$file" | git -c "core.excludesFile=$tmpignore" check-ignore --no-index --stdin -q 2>/dev/null; then
+                if [[ "$strategy" == "theirs" ]]; then
+                  git checkout --theirs -- "$file"
+                else
+                  git checkout --ours -- "$file"
+                fi
+                git add -- "$file"
+                resolved_map["$file"]=1
+                ((resolved_count++)) || true
+                echo "  resolved: $file ($strategy)"
+              fi
+            done
+
+            rm -f "$tmpignore"
+          done
+
+          # Determine unresolved files
+          unresolved=()
+          for file in "${CONFLICTED[@]}"; do
+            if [[ -z "${resolved_map[$file]+x}" ]]; then
+              unresolved+=("$file")
+              echo "  unresolved: $file (no matching rule)"
+            fi
+          done
+
+          echo ""
+          echo "Results: $resolved_count resolved, ${#unresolved[@]} unresolved"
+
+          if [[ ${#unresolved[@]} -gt 0 ]]; then
+            echo "unresolved=${unresolved[*]}" >> "$GITHUB_OUTPUT"
+            {
+              echo "### Unresolved conflicts"
+              echo ""
+              echo "The following files have conflicts that could not be auto-resolved:"
+              echo ""
+              for f in "${unresolved[@]}"; do
+                echo "- \`$f\`"
+              done
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "unresolved=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 🚫 Fail if unresolved conflicts remain
+        if: steps.merge.outputs.status == 'conflicts' && steps.resolve.outputs.unresolved != ''
+        run: |
+          echo "::error::Unresolved conflicts remain: ${{ steps.resolve.outputs.unresolved }}"
+          echo "These files need manual conflict resolution."
+          # Abort the merge so the branch is not left in a dirty state
+          git merge --abort
+          exit 1
+
+      - name: 🆙 Commit and push
+        if: steps.merge.outputs.status == 'conflicts' && steps.resolve.outputs.unresolved == ''
+        env:
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          # The merge commit is already staged by git merge + our resolutions.
+          # Complete the merge commit.
+          git commit --no-edit
+          git push origin "$BRANCH"
+          echo "✅ Conflicts resolved and pushed to $BRANCH"
+
+      - name: 🆙 Push clean merge
+        if: steps.merge.outputs.status == 'clean'
+        env:
+          BRANCH: ${{ inputs.branch }}
+        run: |
+          git push origin "$BRANCH"
+          echo "✅ Clean merge pushed to $BRANCH"
