@@ -1,5 +1,31 @@
 # @db-ux/core-eslint-plugin
 
+## 5.2.0
+
+### Minor Changes
+
+- feat: add `custom-heading-single-heading` rule for `DBCustomHeading` - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156)
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
 ## 5.1.1
 
 _version bump_

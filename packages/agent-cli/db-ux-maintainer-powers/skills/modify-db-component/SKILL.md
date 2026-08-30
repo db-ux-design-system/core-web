@@ -180,10 +180,16 @@ Showcase files in `showcases/` are generated from these and must not be edited m
     This MUST succeed.
 
 2. **Create changeset:**
+
     ```bash
     pnpm changeset
     ```
-    Select `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all JavaScript framework output packages.
+
+    Which packages to select depends only on **which targets the changed files feed**, never on the kind of change:
+    - **Shared component code** (`*.scss`, `model.ts`, `*.lite.tsx`) → all five: `@db-ux/core-components` **and** the four framework output packages. This holds for a template-only edit as well: `@db-ux/core-components` publishes CSS only, but its consumers hand-write the component HTML, so changed markup concerns them too.
+    - **Code only one target consumes** (`src/utils/react.ts`, `configs/plugins/<framework>/`, `scripts/post-build/angular.ts` / `react.ts` / `vue.ts` / `stencil.ts`) → only that one framework package.
+    - **Shared build code** (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) → read the targets off the diff: entries in `components.ts` are keyed by target (`overwrites.angular`, `config.react`, `overwrites.global` = all four), `index.ts` and `mitosis.config.cjs` cover all four, and a target-gated file like `copy-files.ts` covers only the targets it gates on. See `packages/components/AGENTS.md` § Changeset Rules.
+
     Bump type:
     - `patch` for bug fixes.
     - `minor` for new features (new variant, new prop).
@@ -206,13 +212,14 @@ Showcase files in `showcases/` are generated from these and must not be edited m
 
 ## Red Flags
 
-| Thought                            | Response                                    |
-| ---------------------------------- | ------------------------------------------- |
-| "Edit React output directly"       | STOP. `.lite.tsx` ONLY.                     |
-| "Hardcoded color for this variant" | STOP. Use `var(--db-*)`.                    |
-| "Tests can wait"                   | STOP. Update tests FIRST. TDD is mandatory. |
-| "I know the token name"            | STOP. ALWAYS query MCP.                     |
-| "Removing this prop is fine"       | STOP. Breaking change. Confirm with user.   |
-| "Skip showcase update"             | STOP. New visual feature = showcase update. |
-| "Skip changeset"                   | STOP. Governance requires it.               |
-| "build-outputs is optional"        | STOP. It is mandatory.                      |
+| Thought                                            | Response                                                            |
+| -------------------------------------------------- | ------------------------------------------------------------------- |
+| "Edit React output directly"                       | STOP. `.lite.tsx` ONLY.                                             |
+| "Hardcoded color for this variant"                 | STOP. Use `var(--db-*)`.                                            |
+| "Tests can wait"                                   | STOP. Update tests FIRST. TDD is mandatory.                         |
+| "I know the token name"                            | STOP. ALWAYS query MCP.                                             |
+| "Removing this prop is fine"                       | STOP. Breaking change. Confirm with user.                           |
+| "Skip showcase update"                             | STOP. New visual feature = showcase update.                         |
+| "Skip changeset"                                   | STOP. Governance requires it.                                       |
+| "core-components ships no templates, leave it out" | STOP. Its consumers hand-write the HTML. All five packages, always. |
+| "build-outputs is optional"                        | STOP. It is mandatory.                                              |

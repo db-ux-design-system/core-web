@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DBBadge, DBCheckbox, DBTooltip } from '@components';
-import type { Table } from '@tanstack/angular-table';
+import type { StockFeatures, Table } from '@tanstack/angular-table';
 import type { Person } from '../makeData';
 
 @Component({
@@ -13,14 +13,16 @@ import type { Person } from '../makeData';
 			[label]="'Select All'"
 			[showLabel]="false"
 			[checked]="table.getIsAllRowsSelected()"
-			[indeterminate]="table.getIsSomeRowsSelected()"
+			[indeterminate]="
+				table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+			"
 			(checkedChange)="table.toggleAllRowsSelected(!!$event)">
 			<db-tooltip [placement]="'top'">Select All</db-tooltip>
 		</db-checkbox>
 	`
 })
 export class SelectHeaderComponent {
-	@Input() table!: Table<Person>;
+	@Input() table!: Table<StockFeatures, Person>;
 }
 
 @Component({
@@ -56,7 +58,7 @@ export class SelectCellComponent {
 	`
 })
 export class SelectFooterComponent {
-	@Input() table!: Table<Person>;
+	@Input() table!: Table<StockFeatures, Person>;
 
 	get length() {
 		return this.table.getSelectedRowModel().rows.length;

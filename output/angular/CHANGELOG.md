@@ -1,5 +1,63 @@
 # @db-ux/ngx-core-components
 
+## 5.2.0
+
+### Minor Changes
+
+- feat: add static and custom Heading components (beta) - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - `DBCustomHeading` takes the native heading as its default content and offers a
+    - `startSlot` and an `endSlot` for the content next to it, so that content stays out
+    - of the accessible heading name.
+
+### Patch Changes
+
+- fix: preserve component sizing inside custom headings - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+- fix(DBCustomSelect): initialize search value as empty string instead of undefined - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+
+## 5.1.6
+
+### Patch Changes
+
+- fix: multiple issues for DBPopover - [see commit a1a575c](https://github.com/db-ux-design-system/core-web/commit/a1a575c893d0b54aff6bddcb56719e4f8c40197d):
+    - DBPopover hides when moving mouse too slow
+    - DBPopover changes aria-expanded independently of open state
+    - DBPopover - wrong content position on programmatic "open" prop
+- fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive - [see commit 5f1584d](https://github.com/db-ux-design-system/core-web/commit/5f1584d2488115ef9418ca24b8e04f7bddbca803)
+
+## 5.1.5
+
+### Patch Changes
+
+- fix: handle `env(safe-area-inset-*)` correctly for drawer `direction="up"` and `direction="down"` - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+- fix(`DBHeader`): react to `forceMobile` changes after the initial render - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: use `dvh`/`dvw` instead of `lvh`/`lvw` for correct mobile viewport sizing in drawer - [see commit 630593c](https://github.com/db-ux-design-system/core-web/commit/630593c9c2a222d117b0644bb03d0dea5e194eea)
+
+- fix: re-run tooltip auto-placement when content changes - [see commit 32d9b9a](https://github.com/db-ux-design-system/core-web/commit/32d9b9a364cc525e3818c26b3c0eae1a05f2b550)
+
+- fix: allow auto-width tab items to fit their complete content - [see commit 7e4ae9a](https://github.com/db-ux-design-system/core-web/commit/7e4ae9adf2bd7dd1c00f03eac3a87c904bde75e7)
+
+- fix: support Angular RouterLink on DBLink - [see commit 43b9574](https://github.com/db-ux-design-system/core-web/commit/43b9574eadf9da598207aa5d0a10be5e1f0b5c6f)
+
+- fix: layout issue with sub-navigation-item inside the mobile drawer - [see commit bc079f0](https://github.com/db-ux-design-system/core-web/commit/bc079f055c02532334af4aaa295d08d104f92456)
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+### Patch Changes
+
+- refactor(drawer): further simplified transition implementation - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
+- fix(drawer): incorrect styling of `position=absolute` variant - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
 ## 5.1.1
 
 _version bump_

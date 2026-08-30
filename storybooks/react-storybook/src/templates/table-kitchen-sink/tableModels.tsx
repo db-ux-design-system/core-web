@@ -5,31 +5,35 @@ import {
 	type RankingInfo
 } from '@tanstack/match-sorter-utils';
 import {
-	sortingFns,
+	sortFn_alphanumeric,
 	type ColumnDef,
 	type FilterFn,
-	type SortingFn
+	type SortFn,
+	type StockFeatures
 } from '@tanstack/react-table';
 import { useEffect, useState, type Dispatch, type SetStateAction } from 'react';
 import type { Person } from './makeData';
 
-export const fuzzyFilter: FilterFn<Person> = (
+export const fuzzyFilter: FilterFn<StockFeatures, Person> = (
 	row,
 	columnId,
 	value,
 	addMeta
 ) => {
-	// Rank the item
 	const itemRank = rankItem(row.getValue(columnId), value);
 
 	// Store the ranking info
-	addMeta(itemRank);
+	addMeta?.(itemRank);
 
 	// Return if the item should be filtered in/out
 	return itemRank.passed;
 };
 
-export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
+export const fuzzySort: SortFn<StockFeatures, Person> = (
+	rowA,
+	rowB,
+	columnId
+) => {
 	let dir = 0;
 
 	// Only sort by rank if the column has ranking information
@@ -41,7 +45,7 @@ export const fuzzySort: SortingFn<Person> = (rowA, rowB, columnId) => {
 	}
 
 	// Provide an alphanumeric fallback for when the item ranks are equal
-	return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
+	return dir === 0 ? sortFn_alphanumeric(rowA, rowB, columnId) : dir;
 };
 
 export type TableMeta = {
@@ -49,7 +53,7 @@ export type TableMeta = {
 };
 
 // Give our default column cell renderer editing superpowers!
-export const defaultColumn: Partial<ColumnDef<Person>> = {
+export const defaultColumn: Partial<ColumnDef<StockFeatures, Person>> = {
 	cell: ({ getValue, row: { index }, column: { id, columnDef }, table }) => {
 		const initialValue = getValue();
 		// We need to keep and update the state of the cell normally
@@ -77,7 +81,7 @@ export const defaultColumn: Partial<ColumnDef<Person>> = {
 	}
 };
 
-export const columns: ColumnDef<Person>[] = [
+export const columns: ColumnDef<StockFeatures, Person>[] = [
 	{
 		id: 'select',
 		header: ({ table }) => (
@@ -86,7 +90,10 @@ export const columns: ColumnDef<Person>[] = [
 				label="Select All"
 				showLabel={false}
 				checked={table.getIsAllRowsSelected()}
-				indeterminate={table.getIsSomeRowsSelected()}
+				indeterminate={
+					table.getIsSomeRowsSelected() &&
+					!table.getIsAllRowsSelected()
+				}
 				onChange={table.getToggleAllRowsSelectedHandler()}>
 				<DBTooltip placement="top">Select All</DBTooltip>
 			</DBCheckbox>
@@ -138,7 +145,7 @@ export const columns: ColumnDef<Person>[] = [
 				cell: (info) => info.getValue(),
 				footer: (props) => props.column.id,
 				filterFn: fuzzyFilter,
-				sortingFn: fuzzySort
+				sortFn: fuzzySort
 			}
 		]
 	},

@@ -31,6 +31,8 @@
   - 'button "Open: To-Right"'
   - 'button "Open: Up"'
   - 'button "Open: Down"'
+  - 'button "Open: Up (Full)"'
+  - 'button "Open: Down (Full)"'
   - link "Position"
   - 'button "Open: Absolute"'
   - link "Example"

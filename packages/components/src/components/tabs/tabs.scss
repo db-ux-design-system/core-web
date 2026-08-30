@@ -176,7 +176,6 @@ $focus-outline-reach: calc(
 		&:not([data-orientation="vertical"]) .db-tab-item {
 			flex: 1 0 0;
 			inline-size: 0;
-			max-inline-size: none;
 			justify-content: flex-start;
 		}
 
@@ -254,7 +253,7 @@ $focus-outline-reach: calc(
 		}
 
 		&:not([data-orientation="vertical"]) {
-			// Track für Arrow-Buttons-Modus als ::before Pseudo-Element auf .db-tabs
+			// Track for Arrow-Buttons-Modus as ::before Pseudo Elements on .db-tabs
 			&::before {
 				content: "";
 				position: absolute;

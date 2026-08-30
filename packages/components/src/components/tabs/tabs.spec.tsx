@@ -187,10 +187,110 @@ const testProps = () => {
 	});
 };
 
+const testTabItemWidth = () => {
+	// Regression guard for https://github.com/db-ux-design-system/core-web/issues/7405:
+	// tab items must not be clipped by a global maximum width.
+	test('should not limit the width of horizontal auto-width tab items', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({ width: 1920, height: 1080 });
+		const longLabel =
+			'Tab item with a very long label that must not be cut off';
+		const component = await mount(
+			<DBTabs tabItemWidth="auto">
+				<DBTabList>
+					<DBTabItem icon="x_placeholder">{longLabel}</DBTabItem>
+					<DBTabItem>Short</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel 1</DBTabPanel>
+				<DBTabPanel>Panel 2</DBTabPanel>
+			</DBTabs>
+		);
+
+		const tab = component.getByRole('tab', { name: longLabel });
+		await expect(tab).toHaveCSS('max-inline-size', 'none');
+
+		// The removed hard cap was `$db-sizing-2xl` (10rem = 160px).
+		const tabWidth = await tab.evaluate(
+			(element) => element.getBoundingClientRect().width
+		);
+		expect(tabWidth).toBeGreaterThan(160);
+
+		// The label text must be rendered completely instead of being cut off.
+		const labelMetrics = await tab
+			.locator('.db-tab-item-label-text')
+			.evaluate((element) => ({
+				clientWidth: element.clientWidth,
+				scrollWidth: element.scrollWidth
+			}));
+		expect(labelMetrics.scrollWidth).toBeLessThanOrEqual(
+			labelMetrics.clientWidth + 1
+		);
+	});
+
+	test('should keep truncating vertical tab items', async ({ mount }) => {
+		const longLabel =
+			'Very long vertical tab label that definitely gets truncated';
+		const component = await mount(
+			<DBTabs orientation="vertical" tabItemWidth="auto">
+				<DBTabList>
+					<DBTabItem>{longLabel}</DBTabItem>
+					<DBTabItem>Short</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel 1</DBTabPanel>
+				<DBTabPanel>Panel 2</DBTabPanel>
+			</DBTabs>
+		);
+
+		const tab = component.getByRole('tab', { name: longLabel });
+		const labelMetrics = await tab
+			.locator('.db-tab-item-label-text')
+			.evaluate((element) => ({
+				clientWidth: element.clientWidth,
+				scrollWidth: element.scrollWidth
+			}));
+		expect(labelMetrics.scrollWidth).toBeGreaterThan(
+			labelMetrics.clientWidth
+		);
+
+		// Truncated labels stay readable via the built-in truncation tooltip.
+		await expect(tab.locator('.db-tooltip')).toBeAttached();
+	});
+
+	test('should stretch full-width tab items equally', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize({ width: 1920, height: 1080 });
+		const component = await mount(
+			<DBTabs tabItemWidth="full">
+				<DBTabList>
+					<DBTabItem>Short</DBTabItem>
+					<DBTabItem>
+						A considerably longer full-width tab item label
+					</DBTabItem>
+				</DBTabList>
+				<DBTabPanel>Panel 1</DBTabPanel>
+				<DBTabPanel>Panel 2</DBTabPanel>
+			</DBTabs>
+		);
+
+		const widths = await component
+			.getByRole('tab')
+			.evaluateAll((elements) =>
+				elements.map((element) => element.getBoundingClientRect().width)
+			);
+		expect(widths).toHaveLength(2);
+		expect(Math.abs(widths[0] - widths[1])).toBeLessThanOrEqual(1);
+	});
+};
+
 test.describe('DBTabs', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testA11y();
 	testActions();
 	testProps();
+	testTabItemWidth();
 });

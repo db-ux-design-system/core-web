@@ -1,6 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { DBButton, DBPopover, DBStack, DBTooltip } from '@components';
-import type { Column, RowData, Table } from '@tanstack/angular-table';
+import type {
+	Column,
+	RowData,
+	StockFeatures,
+	Table
+} from '@tanstack/angular-table';
 import { DebouncedInputComponent } from './debounced-input.component';
 
 @Component({
@@ -50,8 +55,8 @@ import { DebouncedInputComponent } from './debounced-input.component';
 	`
 })
 export class FilterComponent<T extends RowData> {
-	@Input() column!: Column<T, unknown>;
-	@Input() table!: Table<T>;
+	@Input() column!: Column<StockFeatures, T, unknown>;
+	@Input() table!: Table<StockFeatures, T>;
 
 	get firstValue() {
 		return this.table

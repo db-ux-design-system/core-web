@@ -406,9 +406,10 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<Show when={props.placeholder}>
-				<span class="db-select-placeholder" id={state._placeholderId}>
-					{props.placeholder}
-				</span>
+				<span
+					class="db-select-placeholder"
+					data-placeholder={props.placeholder}
+					id={state._placeholderId}></span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext

@@ -10,7 +10,11 @@ import {
 	DBTableRow,
 	DBTooltip
 } from '@components';
-import { FlexRenderDirective, type Table } from '@tanstack/angular-table';
+import {
+	FlexRenderDirective,
+	type StockFeatures,
+	type Table
+} from '@tanstack/angular-table';
 import type { Person } from '../makeData';
 import { EditableCellComponent } from './editable-cell.component';
 import { FilterComponent } from './filter.component';
@@ -170,7 +174,7 @@ import {
 	`
 })
 export class CustomTableComponent {
-	@Input() table!: Table<Person>;
+	@Input() table!: Table<StockFeatures, Person>;
 
 	columnSizes = { 0: 'min-content', 4: 'min-content', 5: 'min-content' };
 

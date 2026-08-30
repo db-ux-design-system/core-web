@@ -12,14 +12,12 @@ export default function NavigationItemActive() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem active={false}>
-					<a href="#">(Default) False</a>
-				</DBNavigationItem>
+				<DBNavigationItem
+					active={false}
+					text="(Default) False"></DBNavigationItem>
 			</ul>
 			<ul>
-				<DBNavigationItem active={true}>
-					<a href="#">True</a>
-				</DBNavigationItem>
+				<DBNavigationItem active={true} text="True"></DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

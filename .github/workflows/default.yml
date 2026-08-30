@@ -49,6 +49,12 @@ jobs:
     needs: [init]
     secrets: inherit
 
+  audit-fix:
+    if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+    uses: ./.github/workflows/99-audit-fix-dependabot.yml
+    needs: [init]
+    secrets: inherit
+
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
@@ -369,9 +375,15 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
+  # Bot PRs are excluded because Dependabot runs get a read-only token and no
+  # secrets, so the follow-up commit could never be pushed. Renovate PRs are
+  # created by our own GitHub App and do have those secrets -- and DB theme
+  # bumps are exactly the case where the regenerated screenshots are the thing
+  # a reviewer needs to look at, so they must not stay red.
   regenerate-snapshots:
     if: |
-      github.event_name == 'pull_request' && !cancelled() && !contains(github.actor,'[bot]') && (
+      github.event_name == 'pull_request' && !cancelled() &&
+      (!contains(github.actor,'[bot]') || startsWith(github.head_ref,'renovate-')) && (
         needs.test-showcase-angular.result == 'failure' ||
         needs.test-showcase-react.result == 'failure' ||
         needs.test-showcase-vue.result == 'failure' ||
@@ -451,6 +463,7 @@ jobs:
           resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
+          resultAuditFix="${{ needs.audit-fix.result }}"
 
           echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
           echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
@@ -498,7 +511,8 @@ jobs:
              [[ $resultBuildShowcaseNext == "success" ]] && \
              [[ $resultBuildShowcaseVue == "success" ]] && \
              [[ $resultBuildShowcaseNuxt == "success" ]] && \
-             [[ $resultBuildShowcasePatternhub == "success" ]]; then
+             [[ $resultBuildShowcasePatternhub == "success" ]] && \
+             [[ $resultAuditFix == "success" || $resultAuditFix == "skipped" ]]; then
              echo "🎉 All tests were successful."
             exit 0
           else
@@ -531,6 +545,7 @@ jobs:
         test-showcase-patternhub,
         test-foundations,
         test-screen-reader,
+        audit-fix,
         init
       ]
 

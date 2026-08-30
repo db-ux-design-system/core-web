@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { DBCard, DBCustomSelect, DBStack } from "@components";
-import type { Table } from "@tanstack/vue-table";
+import type { StockFeatures, Table } from "@tanstack/vue-table";
 import { computed } from "vue";
 import DebouncedInput from "./DebouncedInput.vue";
 
 interface Props {
-	table: Table<any>;
+	table: Table<StockFeatures, any>;
 	globalFilter: string;
 }
 
@@ -17,17 +17,19 @@ const emit = defineEmits<{
 const visibleColumns = computed(() =>
 	props.table
 		.getAllLeafColumns()
-		.filter(({ getIsVisible }) => getIsVisible())
-		.map(({ id }) => id)
+		.filter((column) => column.getIsVisible())
+		.map((column) => column.id)
 );
 
 const columnOptions = computed(() =>
-	props.table.getAllLeafColumns().map(({ id }) => ({ id, value: id }))
+	props.table
+		.getAllLeafColumns()
+		.map((column) => ({ id: column.id, value: column.id }))
 );
 
 const handleColumnSelection = (values: string[]) => {
-	props.table.getAllLeafColumns().forEach(({ id, toggleVisibility }) => {
-		toggleVisibility(values.includes(id));
+	props.table.getAllLeafColumns().forEach((column) => {
+		column.toggleVisibility(values.includes(column.id));
 	});
 };
 </script>

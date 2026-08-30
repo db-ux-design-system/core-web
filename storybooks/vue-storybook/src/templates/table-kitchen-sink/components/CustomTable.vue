@@ -10,11 +10,16 @@ import {
 	DBTableRow,
 	DBTooltip
 } from "@components";
-import { FlexRender, type RowData, type Table } from "@tanstack/vue-table";
+import {
+	FlexRender,
+	type RowData,
+	type StockFeatures,
+	type Table
+} from "@tanstack/vue-table";
 import Filter from "./Filter.vue";
 
 interface Props {
-	table: Table<T>;
+	table: Table<StockFeatures, T>;
 }
 
 defineProps<Props>();

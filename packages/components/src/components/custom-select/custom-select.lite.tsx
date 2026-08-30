@@ -133,7 +133,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		_searchValue: undefined,
+		_searchValue: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -858,7 +858,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
-		state._searchValue = props.searchValue;
+		state._searchValue = props.searchValue ?? '';
 		if (props.searchValue) {
 			const sValue = props.searchValue!; // <- workaround for Angular
 			state.handleSearch(sValue);
@@ -1265,13 +1265,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</DBTooltip>
 				</DBButton>
 			</Show>
-
 			<span
+				data-placeholder={props.placeholder ?? props.label}
 				class="db-custom-select-placeholder"
 				aria-hidden="true"
-				id={state._placeholderId}>
-				{props.placeholder ?? props.label}
-			</span>
+				id={state._placeholderId}></span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
