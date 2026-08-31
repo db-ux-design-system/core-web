@@ -13,9 +13,9 @@ useMetadata({
 	storybookNames: [
 		'With Application Name + Navigation',
 		'Without Navigation',
-		'Without Navigation + Primary + Secondary',
-		'Without Navigation + Primary',
-		'Without Navigation + Secondary',
+		'Without Navigation + Actions1 + Actions2',
+		'Without Navigation + Actions1',
+		'Without Navigation + Actions2',
 		'Without Application Name',
 		'Without Application Name + Navigation'
 	],
