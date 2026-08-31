@@ -121,15 +121,11 @@ Bei Shell Content sind beim Review am 2026-08-14 Code-Aspekte aufgefallen, die i
 
 Mehrere Regeln steuern eine Mengenentscheidung über ein Wort statt über einen Wert. Damit ist die Grenze unbestimmt und beim Generieren der `documentation.json` müsste für das `dont` eine Zahl erfunden werden. Jeweils beim Bearbeiten der Datei entscheiden, ob ein Wert festgelegt wird oder ob ein anderes Kriterium die Menge ersetzt.
 
-| Datei                                                             | Regel | Begriffe                                    |
-| ----------------------------------------------------------------- | ----- | ------------------------------------------- |
-| `components/shell/shell-sub-navigation/guidelines.md`             | 1     | überschaubar, zu viele, übermäßig           |
-| `components/shell/shell-content/guidelines.md`                    | 2     | kompakt, überfüllen, zu große, unbrauchbare |
-| `components/control-panel/control-panel-navigation/guidelines.md` | 1     | angemessen, zu viele                        |
-| `components/control-panel/control-panel-navigation/guidelines.md` | 2     | viele Navigation Items                      |
-| `components/control-panel/control-panel-navigation/guidelines.md` | 5     | zu vielen                                   |
+| Datei                                          | Regel | Begriffe                                    |
+| ---------------------------------------------- | ----- | ------------------------------------------- |
+| `components/shell/shell-content/guidelines.md` | 3     | kompakt, überfüllen, zu große, unbrauchbare |
 
-Shell Desktop ist erledigt: dort stehen jetzt vier Navigation Items für Control Panel Left und sechs für Sub Navigation Left. `control-panel-primary-actions` und `control-panel-secondary-actions` quantifizieren bereits („ein bis zwei", „eine bis drei"), `control-panel-navigation` Regel 3 ebenfalls („vier oder mehr Ebenen"). Die Uneinheitlichkeit betrifft also einzelne Regeln, nicht die Praxis insgesamt.
+Der übrige Bestand ist erledigt: Shell Desktop nennt vier Navigation Items für Control Panel Left und sechs für Sub Navigation Left, Shell Sub Navigation höchstens fünf Navigation Items auf Mobile, Control Panel Navigation acht beziehungsweise sieben Navigation Items je Ebene, und Control Panel Actions höchstens eine Hauptaktion und höchstens vier Utility-Aktionen. Offen ist damit nur noch Shell Content Regel 3.
 
 ### 16. Control Panel Desktop: Kriterien für `width` bei Top
 

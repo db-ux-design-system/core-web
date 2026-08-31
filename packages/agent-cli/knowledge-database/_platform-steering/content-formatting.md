@@ -59,7 +59,7 @@ Documentation and Figma spell component and property names **with spaces**, not 
 | Control Panel Navigation | ControlPanel Navigation, CP Navigation |
 | Sub Navigation | SubNavigation |
 | Navigation Item | NavigationItem |
-| Primary Actions, Secondary Actions | PrimaryActions, SecondaryActions |
+| Actions 1, Actions 2 | Actions1, Actions2 |
 | Flat Icon, Drill Down | FlatIcon, DrillDown |
 | Button Group, Toggle Button, Split Button | ButtonGroup, ToggleButton, SplitButton |
 | Custom Select, Loading Indicator | CustomSelect, LoadingIndicator |

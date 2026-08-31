@@ -2,13 +2,13 @@
 	"component": "control-panel-mobile",
 	"properties": [
 		{
-			"name": "showPrimaryActions",
+			"name": "showActions1",
 			"type": "boolean",
 			"code": null,
 			"design": {
-				"name": "👁️ Show Primary Actions",
+				"name": "👁️ Show Actions 1",
 				"componentSet": ["drill-down-top", "drill-down-bottom"],
-				"note": "Also controls the divider next to the menu button, it appears automatically when Primary Actions are shown."
+				"note": "Also controls the divider next to the menu button, it appears automatically when Actions 1 are shown."
 			}
 		}
 	]

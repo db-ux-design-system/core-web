@@ -1,5 +1,5 @@
 {
-	"component": "control-panel-primary-actions",
+	"component": "control-panel-actions",
 	"properties": [
 		{
 			"name": "children",

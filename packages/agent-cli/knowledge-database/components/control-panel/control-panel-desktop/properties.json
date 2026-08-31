@@ -2,20 +2,20 @@
 	"component": "control-panel-desktop",
 	"properties": [
 		{
-			"name": "showPrimaryActions",
+			"name": "showActions1",
 			"type": "boolean",
 			"code": null,
 			"design": {
-				"name": "👁️ Show Primary Actions",
+				"name": "👁️ Show Actions 1",
 				"componentSet": ["top", "drill-down-left", "tree-left"]
 			}
 		},
 		{
-			"name": "showSecondaryActions",
+			"name": "showActions2",
 			"type": "boolean",
 			"code": null,
 			"design": {
-				"name": "👁️ Show Secondary Actions",
+				"name": "👁️ Show Actions 2",
 				"componentSet": ["top", "drill-down-left", "tree-left"]
 			}
 		},

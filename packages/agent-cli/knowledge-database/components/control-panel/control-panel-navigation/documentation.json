@@ -27,8 +27,8 @@
 				"en": "Navigation Destinations Only"
 			},
 			"text": {
-				"de": "Die Navigation nimmt ausschließlich Navigationsziele auf. Aktionen gehören in Primary Actions oder Secondary Actions.",
-				"en": "The navigation only holds navigation destinations. Actions belong in Primary Actions or Secondary Actions."
+				"de": "Die Navigation nimmt ausschließlich Navigationsziele auf. Aktionen gehören in Control Panel Actions.",
+				"en": "The navigation only holds navigation destinations. Control Panel Actions."
 			},
 			"do": {
 				"figmaNodeId": "4798-2",

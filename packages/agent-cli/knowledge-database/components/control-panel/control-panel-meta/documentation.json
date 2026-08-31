@@ -42,8 +42,8 @@
 			"dont": {
 				"figmaNodeId": "4358-4",
 				"description": {
-					"de": "Platziere keine primären Navigation Items und keine hochpriorisierten Aktionen in Meta. Sie gehören in die Control Panel Navigation und in die Primary Actions.",
-					"en": "Don't place primary Navigation Items or high-priority actions in Meta. They belong in the Control Panel Navigation and in the Primary Actions."
+					"de": "Platziere keine primären Navigation Items und keine hochpriorisierten Aktionen in Meta. Sie gehören in die Control Panel Navigation und in Control Panel Actions.",
+					"en": "Don't place primary Navigation Items or high-priority actions in Meta. They belong in the Control Panel Navigation and in Control Panel Actions."
 				}
 			}
 		}
@@ -56,8 +56,8 @@
 				"en": "Meta Position"
 			},
 			"text": {
-				"de": "Die Position von Meta unterscheidet sich je Variante: bei Top über der Navigation, bei Left und im mobilen Drawer über den Primary Actions und Secondary Actions.",
-				"en": "The position of Meta differs per variant: with Top above the navigation, with Left and in the mobile Drawer above the Primary Actions and Secondary Actions."
+				"de": "Die Position von Meta unterscheidet sich je Variante: bei Top über der Navigation, bei Left und im mobilen Drawer über Actions 1 und Actions 2.",
+				"en": "The position of Meta differs per variant: with Top above the navigation, with Left and in the mobile Drawer above Actions 1 and Actions 2."
 			},
 			"items": [
 				{
@@ -80,8 +80,8 @@
 					},
 					"figmaNodeId": "4795-100",
 					"description": {
-						"de": "Bei Left und im mobilen Drawer liegt Meta über den Primary Actions und Secondary Actions.",
-						"en": "With Left and in the mobile Drawer, Meta sits above the Primary Actions and Secondary Actions."
+						"de": "Bei Left und im mobilen Drawer liegt Meta über Actions 1 und Actions 2.",
+						"en": "With Left and in the mobile Drawer, Meta sits above Actions 1 and Actions 2."
 					}
 				}
 			]
@@ -93,7 +93,7 @@
 			"component": "control-panel-navigation"
 		},
 		{
-			"component": "control-panel-primary-actions"
+			"component": "control-panel-actions"
 		},
 		{
 			"component": "control-panel-desktop"

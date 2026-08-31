@@ -8,6 +8,6 @@ Primäre Navigationsleiste für mobile Anwendungen innerhalb der Shell. Unterst�
 
 ## Zusätzliche Informationen
 
-- Auf der ersten Ebene liegen Brand, Primary Actions und der Menu-Button. Navigation, Meta und Secondary Actions liegen im Drawer. _(Example-Kandidat)_
+- Auf der ersten Ebene liegen Brand, Actions 1 und der Menu-Button. Navigation, Meta und Actions 2 liegen im Drawer. _(Example-Kandidat)_
 - Die Positionswahl wird in [Shell Mobile](../../shell/shell-mobile/guidelines.md) geregelt, Flat Icon in [Control Panel Flat Icon](../control-panel-flat-icon/guidelines.md).
-- Neben dem Menu-Button erscheint automatisch ein Divider, sobald Primary Actions eingeblendet sind.
+- Neben dem Menu-Button erscheint automatisch ein Divider, sobald Actions 1 eingeblendet sind.

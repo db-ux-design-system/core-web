@@ -42,8 +42,8 @@
 			"dont": {
 				"figmaNodeId": "4185-12",
 				"description": {
-					"de": "Platziere im End Slot keinen Anwendungsnamen und keine interaktiven Elemente. Aktionen gehören in Primary Actions oder Secondary Actions.",
-					"en": "Don't place an application name or interactive elements in the End slot. Actions belong in Primary Actions or Secondary Actions."
+					"de": "Platziere im End Slot keinen Anwendungsnamen und keine interaktiven Elemente. Aktionen gehören in Control Panel Actions.",
+					"en": "Don't place an application name or interactive elements in the End slot. Actions belong in Control Panel Actions."
 				}
 			}
 		},
@@ -154,10 +154,7 @@
 			"component": "shell-content"
 		},
 		{
-			"component": "control-panel-primary-actions"
-		},
-		{
-			"component": "control-panel-secondary-actions"
+			"component": "control-panel-actions"
 		},
 		{
 			"component": "control-panel-desktop"

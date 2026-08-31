@@ -10,7 +10,7 @@
 ## Zusätzliche Informationen
 
 - Beide Positionen werden unabhängig voneinander gewählt. Liegt die Komplexität erst auf Unterebene, ergibt das Control Panel Top mit Sub Navigation Left.
-- Die Schwellwerte für Left unterscheiden sich, weil in der Zeile des Control Panels zusätzlich [Brand](../../control-panel/control-panel-brand/guidelines.md) und je nach Aufbau [Primary Actions](../../control-panel/control-panel-primary-actions/guidelines.md) und [Secondary Actions](../../control-panel/control-panel-secondary-actions/guidelines.md) liegen. Die Sub Navigation Top hat die volle Breite.
+- Die Schwellwerte für Left unterscheiden sich, weil in der Zeile des Control Panels zusätzlich [Brand](../../control-panel/control-panel-brand/guidelines.md) und je nach Aufbau [Actions](../../control-panel/control-panel-actions/guidelines.md) liegen. Die Sub Navigation Top hat die volle Breite.
 - Control Panel Left und Sub Navigation Left sind nicht kombinierbar. Zwei vertikale Sidebars nebeneinander gibt es nicht.
 - **Mögliche Kombinationen von Control Panel und Sub Navigation:**
     - Control Panel: Desktop; Control Panel Position: Top; Control Panel Navigation: Popover; Sub Navigation: None.

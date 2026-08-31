@@ -11,12 +11,12 @@
 	},
 	"useCases": {
 		"de": [
-			"Logo, Primary Actions und den Zugang zur Navigation in einer mobilen Leiste bündeln",
+			"Logo, Actions 1 und den Zugang zur Navigation in einer mobilen Leiste bündeln",
 			"Die vollständige Navigation im Drawer öffnen, statt sie dauerhaft anzuzeigen",
 			"Die Leiste oben oder unten am Bildschirmrand positionieren"
 		],
 		"en": [
-			"Combine logo, primary actions, and access to the navigation in one mobile bar",
+			"Combine logo, Actions 1, and access to the navigation in one mobile bar",
 			"Open the full navigation in a Drawer instead of showing it permanently",
 			"Position the bar at the top or bottom edge of the screen"
 		]
@@ -56,8 +56,8 @@
 				"en": "First Level and Drawer"
 			},
 			"text": {
-				"de": "Auf der ersten Ebene liegen Brand, Primary Actions und der Menu-Button. Navigation, Meta und Secondary Actions liegen im Drawer. Neben dem Menu-Button erscheint automatisch ein Divider, sobald Primary Actions eingeblendet sind.",
-				"en": "The first level holds the Brand, Primary Actions, and the menu button. Navigation, Meta, and Secondary Actions sit in the Drawer. A divider appears next to the menu button automatically as soon as Primary Actions are shown."
+				"de": "Auf der ersten Ebene liegen Brand, Actions 1 und der Menu-Button. Navigation, Meta und Actions 2 liegen im Drawer. Neben dem Menu-Button erscheint automatisch ein Divider, sobald Actions 1 eingeblendet sind.",
+				"en": "The first level holds the Brand, Actions 1, and the menu button. Navigation, Meta, and Actions 2 sit in the Drawer. A divider appears next to the menu button automatically as soon as Actions 1 are shown."
 			},
 			"items": [
 				{
@@ -68,8 +68,8 @@
 					},
 					"figmaNodeId": "4748-6",
 					"description": {
-						"de": "Ohne Öffnen des Drawers erreichbar. Befülle hier die Slots für Brand und Primary Actions.",
-						"en": "Reachable without opening the Drawer. Fill the Brand and Primary Actions slots here."
+						"de": "Ohne Öffnen des Drawers erreichbar. Befülle hier die Slots für Brand und Actions 1.",
+						"en": "Reachable without opening the Drawer. Fill the Brand and Actions 1 slots here."
 					}
 				},
 				{
@@ -80,8 +80,8 @@
 					},
 					"figmaNodeId": "4748-16",
 					"description": {
-						"de": "Öffnet über den Menu-Button. Befülle hier die Slots für Navigation, Meta und Secondary Actions.",
-						"en": "Opens via the menu button. Fill the Navigation, Meta, and Secondary Actions slots here."
+						"de": "Öffnet über den Menu-Button. Befülle hier die Slots für Navigation, Meta und Actions 2.",
+						"en": "Opens via the menu button. Fill the Navigation, Meta, and Actions 2 slots here."
 					}
 				}
 			]

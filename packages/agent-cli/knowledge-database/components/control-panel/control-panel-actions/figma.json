@@ -1,0 +1,18 @@
+{
+	"component": "control-panel-actions",
+	"library": "core-components",
+	"componentSets": [
+		{
+			"name": "↳ CP Actions 1 (Beta)",
+			"nodeId": "35867:43533",
+			"type": "COMPONENT",
+			"key": "3416fa824f47bc51151b0251779879459cff5685"
+		},
+		{
+			"name": "↳ CP Actions 2 (Beta)",
+			"nodeId": "35867:43535",
+			"type": "COMPONENT",
+			"key": "2685802204e56f96163c08ab3142502f91dfadbf"
+		}
+	]
+}

@@ -1,6 +1,6 @@
 {
-	"id": "control-panel-navigation",
-	"name": "Control Panel Navigation",
+	"id": "control-panel-actions",
+	"name": "Control Panel Actions",
 	"type": "component",
 	"status": "beta",
 	"owner": "core-team",

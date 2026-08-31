@@ -4,7 +4,7 @@ Zeigt das Logo und einen optionalen Anwendungsnamen innerhalb des Control Panels
 
 ## Regeln
 
-1. Im End Slot nur Umgebungs-Informationen platzieren, keinen Anwendungsnamen und keine interaktiven Elemente, die gehören in [Primary Actions](../control-panel-primary-actions/guidelines.md) oder [Secondary Actions](../control-panel-secondary-actions/guidelines.md).
+1. Im End Slot nur Umgebungs-Informationen platzieren, keinen Anwendungsnamen und keine interaktiven Elemente, die gehören in [Actions](../control-panel-actions/guidelines.md).
 2. Bei hierarchisch aufgeteiltem Text nur den ersten Textteil bold setzen, nicht den zweiten und nicht beide.
 3. In Short das Standard-Logo nicht überschreiben, die Positionen dieser Variante bieten keinen Platz für Logozusatz oder Anwendungsnamen.
 4. Im Logo Slot der Variante für den offiziellen Logozusatz ausschließlich das freigegebene SVG aus dem Marketingportal einsetzen, keine eigenen Texte.

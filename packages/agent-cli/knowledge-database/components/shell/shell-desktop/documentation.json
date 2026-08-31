@@ -85,10 +85,7 @@
 			"component": "control-panel-brand"
 		},
 		{
-			"component": "control-panel-primary-actions"
-		},
-		{
-			"component": "control-panel-secondary-actions"
+			"component": "control-panel-actions"
 		}
 	]
 }

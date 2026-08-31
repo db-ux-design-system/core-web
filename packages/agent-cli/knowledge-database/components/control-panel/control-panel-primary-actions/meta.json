@@ -1,9 +1,0 @@
-{
-	"id": "control-panel-primary-actions",
-	"name": "Control Panel Primary Actions",
-	"type": "component",
-	"status": "beta",
-	"owner": "core-team",
-	"since": "v1.0.0",
-	"parent": "control-panel"
-}
