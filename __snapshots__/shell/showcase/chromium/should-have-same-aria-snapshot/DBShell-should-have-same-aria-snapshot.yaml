@@ -303,11 +303,35 @@
   - navigation "shell-deep-nav-left":
     - list:
       - listitem:
-        - button "Level 1a"
+        - button "Group A"
       - listitem:
-        - button "Level 1b"
+        - button "Group B"
       - listitem:
-        - link "Simple Item"
+        - button "Group C"
+      - listitem:
+        - button "Group D"
+      - listitem:
+        - button "Group E"
+      - listitem:
+        - link "Item 6"
+      - listitem:
+        - link "Item 7"
+      - listitem:
+        - link "Item 8"
+      - listitem:
+        - link "Item 9"
+      - listitem:
+        - link "Item 10"
+      - listitem:
+        - link "Item 11"
+      - listitem:
+        - link "Item 12"
+      - listitem:
+        - link "Item 13"
+      - listitem:
+        - link "Item 14"
+      - listitem:
+        - link "Item 15"
   - link "Imprint"
   - link "Help"
   - button "Search"
