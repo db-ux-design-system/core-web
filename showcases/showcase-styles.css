@@ -267,8 +267,8 @@
 
 /* stylelint-disable  selector-type-no-unknown */
 app-meta-navigation,
-app-primary-actions,
-app-secondary-actions,
+app-actions-1,
+app-actions-2,
 app-nav-item {
 	display: contents;
 }
