@@ -14,6 +14,7 @@ import {
 	getBooleanAsString,
 	isKeyboardEvent
 } from '../../utils';
+import { syncDialogOpenState } from '../../utils/dialog';
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -86,18 +87,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 			}
 		},
 		handleDialogOpen: () => {
-			if (!_ref) return;
-
-			const dialogOpen = getBoolean(props.open, 'open');
-			if (dialogOpen && !_ref.open) {
-				if (state.isNotModal()) {
-					_ref.show();
-				} else {
-					_ref.showModal();
-				}
-			} else if (!dialogOpen && _ref.open) {
-				_ref.close();
-			}
+			syncDialogOpenState(
+				_ref,
+				getBoolean(props.open, 'open'),
+				state.isNotModal()
+			);
 		}
 	});
 
