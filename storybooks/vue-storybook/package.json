@@ -21,8 +21,8 @@
     "@db-ux/v-core-components": "workspace:*",
     "@faker-js/faker": "10.6.0",
     "@tanstack/match-sorter-utils": "9.1.2",
-    "@tanstack/vue-table": "9.1.2",
-    "vue": "3.5.41"
+    "@tanstack/vue-table": "9.2.3",
+    "vue": "3.5.42"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.3.0",

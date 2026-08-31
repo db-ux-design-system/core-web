@@ -1,5 +1,13 @@
 # @db-ux/core-vite-plugin
 
+## 5.2.1
+
+_version bump_
+
+## 5.2.0
+
+_version bump_
+
 ## 5.1.6
 
 _version bump_
