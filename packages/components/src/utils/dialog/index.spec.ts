@@ -92,9 +92,7 @@ describe('getClosestDialogId', () => {
 
 	it('returns undefined for an empty id or a missing dialog ancestor', () => {
 		expect(
-			getClosestDialogId(
-				createElementStub(createDialogStub({ id: '' }))
-			)
+			getClosestDialogId(createElementStub(createDialogStub({ id: '' })))
 		).toBeUndefined();
 		expect(getClosestDialogId(createElementStub())).toBeUndefined();
 	});
@@ -134,9 +132,7 @@ describe('removeDialogAriaLabelledBy', () => {
 		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
 		vi.unstubAllGlobals();
 
-		expect(() =>
-			removeDialogAriaLabelledBy('', 'heading-1')
-		).not.toThrow();
+		expect(() => removeDialogAriaLabelledBy('', 'heading-1')).not.toThrow();
 		expect(() =>
 			removeDialogAriaLabelledBy(undefined, 'heading-1')
 		).not.toThrow();
