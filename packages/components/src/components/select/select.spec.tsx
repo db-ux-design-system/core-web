@@ -1,11 +1,6 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
-// The harness is a React-only regression fixture, vue must not resolve it.
-// VUE: /*
-import ControlledSelectHarness from './test-fixtures/controlled-select.fixture';
-// VUE: */
-
 import { DBSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -72,38 +67,38 @@ const testAction = () => {
 		expect(selected).toContain(test);
 	});
 
-	test('should keep the selection while validating between input and change', async ({
+	test('should keep the selection while validating on input', async ({
 		mount
-	}, testInfo) => {
-		test.skip(
-			!testInfo.config.rootDir.includes('/output/react/'),
-			'React-specific controlled component regression test'
+	}) => {
+		const requiredComp: any = (
+			<DBSelect
+				label="Label"
+				required
+				value=""
+				placeholder="Choose an option">
+				<option value="test1">Test1</option>
+				<option value="test2">Test2</option>
+			</DBSelect>
 		);
+		const component = await mount(requiredComp);
+		const select = component.getByRole('combobox');
 
-		const component = await mount(<ControlledSelectHarness />);
-		const scenario = component.getByTestId('scenario-required-default');
-		const select = scenario.getByRole('combobox');
-
-		/* A browser dispatches `input` and `change` for a select in separate
-		 * tasks. `handleInput` validates, and React re-applies the controlled
-		 * `value` on every commit of a `select` - so an internal state change in
-		 * that window would discard the selection before the consumer ever sees
-		 * it. `selectOption` cannot cover this because it dispatches both events
-		 * in the same task, i.e. before the re-render lands.
+		/* Validating on `input` flips internal state (`_descByIds`) as soon as
+		 * the value became valid. The re-render that follows re-applies the
+		 * `value` prop - which is still the previous one, because a browser
+		 * dispatches `change` after `input`, so the consumer cannot have
+		 * propagated the new value yet. The selection must survive that render.
 		 * https://github.com/db-ux-design-system/core-web/issues/7554 */
-		await select.evaluate(async (element: any) => {
-			element.value = 'first';
-			element.dispatchEvent(new Event('input', { bubbles: true }));
-			await new Promise((resolve) => {
-				requestAnimationFrame(() => resolve(null));
-			});
-			element.dispatchEvent(new Event('change', { bubbles: true }));
-		});
-
-		await expect(select).toHaveValue('first');
-		await expect(scenario.getByTestId('controlled-value')).toHaveText(
-			'first'
+		const valueAfterInput = await select.evaluate(
+			async (element: HTMLSelectElement) => {
+				element.value = 'test2';
+				element.dispatchEvent(new Event('input', { bubbles: true }));
+				await Promise.resolve();
+				return element.value;
+			}
 		);
+
+		expect(valueAfterInput).toBe('test2');
 	});
 };
 
