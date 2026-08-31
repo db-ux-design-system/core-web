@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix: synchronize custom select values and options when resetting
+fix(DBCustomSelect): synchronize values and options when resetting
