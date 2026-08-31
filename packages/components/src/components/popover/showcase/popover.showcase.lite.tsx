@@ -9,6 +9,7 @@ import PopoverGap from '../examples/gap.example.lite';
 import PopoverPlacement from '../examples/placement.example.lite';
 import PopoverSpacing from '../examples/spacing.example.lite';
 import PopoverWidth from '../examples/width.example.lite';
+import PopoverZIndex from '../examples/z-index.example.lite';
 
 export default function PopoverShowcase(props: PatternhubProps) {
 	return (
@@ -48,6 +49,11 @@ export default function PopoverShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Width">
 				<CardWrapperShowcase>
 					<PopoverWidth />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Z-Index">
+				<CardWrapperShowcase>
+					<PopoverZIndex />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
