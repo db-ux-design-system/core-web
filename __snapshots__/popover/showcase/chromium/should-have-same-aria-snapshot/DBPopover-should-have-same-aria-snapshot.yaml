@@ -167,3 +167,38 @@
   - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
   - button "Fixed"
   - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
+  - link "Z-Index"
+  - button "Switch"
+  - article:
+    - switch "Switch me"
+    - text: Switch me
+    - status
+  - button "Switch Visual Aid"
+  - article:
+    - switch "Switch me"
+    - text: Switch me
+    - status
+  - button "Input"
+  - article:
+    - text: Input
+    - textbox "Input":
+      - /placeholder: " "
+    - status
+  - button "Select"
+  - article:
+    - text: Select
+    - combobox "Select":
+      - option "Option 1" [selected]
+      - option "Option 2"
+    - status
+  - button "Checkbox"
+  - article:
+    - checkbox "Check me"
+    - text: Check me
+    - status
+  - button "Textarea"
+  - article:
+    - text: Textarea
+    - textbox "Textarea":
+      - /placeholder: " "
+    - status
