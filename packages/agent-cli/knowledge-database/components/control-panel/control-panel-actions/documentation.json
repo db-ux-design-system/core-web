@@ -2,45 +2,45 @@
 	"component": "control-panel-actions",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Control Panel Actions dokumentiert zwei eigenständige Slot-Komponenten, Actions 1 und Actions 2, gemeinsam.",
-		"en": "Control Panel Actions documents two independent slot components, Actions 1 and Actions 2, together."
+		"de": "Control Panel Actions umfasst die beiden eigenständigen Slot-Komponenten Actions 1 und Actions 2 für globale Aktionen im Control Panel.",
+		"en": "Control Panel Actions comprises the two independent slot components Actions 1 and Actions 2 for global actions in the Control Panel."
 	},
 	"shortDescription": {
-		"de": "Bereich im Control Panel für zwei eigenständige Slot-Komponenten: Actions 1 und Actions 2.",
-		"en": "Area for global actions with Actions 1 and Actions 2."
+		"de": "Zwei eigenständige Slot-Komponenten für globale Aktionen im Control Panel.",
+		"en": "Two independent slot components for global actions in the Control Panel."
 	},
 	"useCases": {
 		"de": [
-			"Hauptaktionen und Utility-Aktionen im Control Panel strukturieren",
-			"Aktionen je nach Inhalt und Hierarchie auf zwei Ausprägungen verteilen",
-			"Die Desktop- und Mobile-Anordnung der Aktionen adaptiv nutzen"
+			"Hauptaktion und Utility-Aktionen getrennt anordnen",
+			"Aktionen auf zwei Slots verteilen: nach Inhalt oder Hierarchie",
+			"Aktionen adaptiv anordnen: horizontal, vertikal oder im Drawer"
 		],
 		"en": [
-			"Structure primary and utility actions in the Control Panel",
-			"Distribute actions across two variants based on content and hierarchy",
-			"Use the responsive desktop and mobile arrangement of actions"
+			"Arrange the main action and utility actions separately",
+			"Distribute actions across two slots: by content or hierarchy",
+			"Arrange actions responsively: horizontally, vertically, or in the Drawer"
 		]
 	},
 	"guidelines": [
 		{
 			"id": "slot-content",
-			"headline": { "de": "Inhalt der Slots", "en": "Slot Content" },
+			"headline": { "de": "Slot-Inhalt", "en": "Slot Content" },
 			"text": {
-				"de": "Beide Slots können neben Aktionen auch Umgebungsinformationen aufnehmen. Eine Mischung beider Inhaltstypen innerhalb eines Slots sollte möglichst vermieden werden.",
-				"en": "Both slots can contain environmental information in addition to actions. Mixing both content types within one slot should be avoided where possible."
+				"de": "Beide Slots nehmen Aktionen oder Umgebungsinformationen auf. Innerhalb eines Slots liegt nur einer der beiden Inhaltstypen.",
+				"en": "Both slots hold either actions or environmental information. Only one of the two content types sits within a single slot."
 			},
 			"do": {
 				"figmaNodeId": "4354-6",
 				"description": {
-					"de": "Verwende einen Slot möglichst entweder für Aktionen oder für Umgebungsinformationen.",
-					"en": "Use a slot preferably either for actions or for environmental information."
+					"de": "Nutze einen Slot entweder für Aktionen oder für Umgebungsinformationen.",
+					"en": "Use a slot either for actions or for environmental information."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "4354-8",
 				"description": {
-					"de": "Eine Mischung von Aktionen und Umgebungsinformationen kann den Bereich unklar machen.",
-					"en": "Mixing actions and environmental information can make the area unclear."
+					"de": "In einem gemischten Slot ist nicht erkennbar, welche Elemente interaktiv sind. Verteile Aktionen und Umgebungsinformationen auf die beiden Slots.",
+					"en": "In a mixed slot it is not apparent which elements are interactive. Distribute actions and environmental information across the two slots."
 				}
 			}
 		},
@@ -51,30 +51,30 @@
 				"en": "Order and Split"
 			},
 			"text": {
-				"de": "Befülle zuerst Actions 1. Actions 2 ergänzt den Bereich, wenn eine inhaltliche oder hierarchische Aufteilung der Aktionen sinnvoll ist.",
-				"en": "Fill Actions 1 first. Actions 2 extends the area when a content-based or hierarchical split of actions is useful."
+				"de": "Befülle zuerst Actions 1. Nutze Actions 2 zusätzlich, wenn die Aktionen inhaltlich oder hierarchisch getrennt werden. Auf Desktop blendet Actions 2 einen Divider ein.",
+				"en": "Fill Actions 1 first. Use Actions 2 in addition when the actions are separated by content or hierarchy. On desktop, Actions 2 shows a divider."
 			},
 			"do": {
 				"figmaNodeId": "4815-1398",
 				"description": {
-					"de": "Befülle Actions 1 zuerst und nutze Actions 2 bei einer sinnvollen Aufteilung zusätzlich.",
-					"en": "Fill Actions 1 first and additionally use Actions 2 when a meaningful split is needed."
+					"de": "Befülle Actions 1 zuerst und nutze Actions 2 für eine zweite Gruppe von Aktionen.",
+					"en": "Fill Actions 1 first and use Actions 2 for a second group of actions."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4815-1402",
 				"description": {
-					"de": "Befülle Actions 2 nicht als alleinigen Slot, wenn keine Aufteilung der Aktionen erforderlich ist.",
-					"en": "Don't fill Actions 2 as the only slot when no split of the actions is needed."
+					"de": "Befülle Actions 2 nicht als einzigen Slot. Der Divider trennt auf Desktop sonst einen leeren Bereich ab.",
+					"en": "Don't fill Actions 2 as the only slot. On desktop the divider then separates an empty area."
 				}
 			}
 		},
 		{
 			"id": "action-count",
-			"headline": { "de": "Anzahl der Aktionen", "en": "Action Count" },
+			"headline": { "de": "Anzahl", "en": "Count" },
 			"text": {
-				"de": "Die empfohlene Anzahl gilt für beide Slots zusammen: höchstens eine Hauptaktion und höchstens vier Utility-Aktionen. In welchem Slot sie liegen, hängt von der gewählten Aufteilung ab.",
-				"en": "The recommended count applies to both slots together: at most one main action and at most four utility actions. Which slot they sit in depends on the chosen split."
+				"de": "Für beide Slots zusammen gelten höchstens eine Hauptaktion und höchstens vier Utility-Aktionen. In welchem Slot sie liegen, hängt von der gewählten Aufteilung ab.",
+				"en": "Across both slots together, at most one main action and at most four utility actions apply. Which slot they sit in depends on the chosen split."
 			},
 			"do": {
 				"figmaNodeId": "4354-10",
@@ -86,33 +86,33 @@
 			"caution": {
 				"figmaNodeId": "4354-12",
 				"description": {
-					"de": "Mehr Aktionen können die Priorität verwässern und das Control Panel überfrachten.",
-					"en": "More actions can dilute priority and overload the Control Panel."
+					"de": "Mehr Aktionen machen die wichtigste Aktion schwerer erkennbar. Prüfe, welche Aktionen auf eine eigene Seite gehören.",
+					"en": "More actions make the most important action harder to recognize. Check which actions belong on a dedicated page."
 				}
 			}
 		},
 		{
 			"id": "mobile-menu-bar-count",
 			"headline": {
-				"de": "Anzahl in der Menüleiste auf Mobile",
-				"en": "Count in the Menu Bar on Mobile"
+				"de": "Anzahl auf Mobile",
+				"en": "Count on Mobile"
 			},
 			"text": {
-				"de": "Auf Mobile teilt sich der Slot in der Menüleiste die Breite mit Control Panel Brand. Enthält Brand einen Anwendungsnamen oder Zusatz, bleibt Platz für eine Aktion; ohne Anwendungsnamen sind zwei Icon-Buttons möglich.",
-				"en": "On mobile, the slot in the menu bar shares its width with the Control Panel Brand. When the Brand includes an application name or additional content, there is room for one action; without an application name, two icon buttons are possible."
+				"de": "Auf Mobile teilt sich der Slot in der Menüleiste die Breite mit Control Panel Brand. Mit Anwendungsnamen oder Zusatz bleibt Platz für eine Aktion, ohne Anwendungsnamen für zwei Icon-Buttons.",
+				"en": "On mobile, the slot in the menu bar shares its width with the Control Panel Brand. With an application name or additional content there is room for one action, without an application name for two icon buttons."
 			},
 			"do": {
 				"figmaNodeId": null,
 				"description": {
-					"de": "Platziere in der Menüleiste eine Aktion, wenn Brand einen Anwendungsnamen oder Zusatz enthält, und höchstens zwei Icon-Buttons ohne Anwendungsnamen.",
-					"en": "Place one action in the menu bar when the Brand includes an application name or additional content, and at most two icon buttons without an application name."
+					"de": "Platziere eine Aktion in der Menüleiste, wenn Control Panel Brand einen Anwendungsnamen oder Zusatz enthält. Ohne Anwendungsnamen sind zwei Icon-Buttons möglich.",
+					"en": "Place one action in the menu bar when the Control Panel Brand includes an application name or additional content. Without an application name, two icon buttons are possible."
 				}
 			},
 			"caution": {
 				"figmaNodeId": null,
 				"description": {
-					"de": "Mehr Aktionen in der Menüleiste können neben Brand zu wenig Platz lassen. Verlagere zusätzliche Aktionen in den Drawer-Footer.",
-					"en": "More actions in the menu bar can leave too little room next to the Brand. Move additional actions to the Drawer footer."
+					"de": "Mehr Aktionen lassen in der Menüleiste neben Control Panel Brand zu wenig Platz. Verlagere zusätzliche Aktionen in den Drawer-Footer.",
+					"en": "More actions leave too little room next to the Control Panel Brand in the menu bar. Move additional actions to the Drawer footer."
 				}
 			}
 		},
@@ -129,7 +129,7 @@
 			"do": {
 				"figmaNodeId": "4354-14",
 				"description": {
-					"de": "Wähle eine Variante mit Bereich für Actions, wenn du globale Aktionen brauchst.",
+					"de": "Wähle eine Variante mit Bereich für Actions, wenn du globale Aktionen benötigst.",
 					"en": "Choose a variant with an area for Actions when you need global actions."
 				}
 			},
@@ -150,20 +150,32 @@
 				"en": "Split by Page Type"
 			},
 			"text": {
-				"de": "Die Aufteilung der Aktionen kann sich am Charakter der Seite orientieren. Die folgenden Varianten zeigen mögliche, nicht verbindliche Zuordnungen.",
-				"en": "The action split can reflect the character of the page. The following variants show possible, non-binding assignments."
+				"de": "Die Aufteilung der Aktionen kann sich am Charakter der Seite und an der Anzahl der Aktionen orientieren. Die folgenden Varianten zeigen mögliche Zuordnungen, keine verbindliche Vorgabe.",
+				"en": "The action split can follow the character of the page and the number of actions. The following variants show possible assignments, not a binding rule."
 			},
 			"items": [
 				{
-					"id": "marketing",
+					"id": "marketing-single-cta",
 					"headline": {
-						"de": "Marketinglastige Seite",
-						"en": "Marketing-Focused Page"
+						"de": "Marketingseite mit einem CTA",
+						"en": "Marketing Page with One CTA"
 					},
 					"figmaNodeId": null,
 					"description": {
-						"de": "Stelle den Haupt-CTA in Actions 1 heraus und lasse Actions 2 leer.",
-						"en": "Emphasize the main CTA in Actions 1 and leave Actions 2 empty."
+						"de": "Platziere den Haupt-CTA in Actions 1 und lasse Actions 2 leer.",
+						"en": "Place the main CTA in Actions 1 and leave Actions 2 empty."
+					}
+				},
+				{
+					"id": "marketing-cta-and-actions",
+					"headline": {
+						"de": "Marketingseite mit weiteren Aktionen",
+						"en": "Marketing Page with Additional Actions"
+					},
+					"figmaNodeId": null,
+					"description": {
+						"de": "Platziere den Haupt-CTA in Actions 2 und die übrigen Aktionen in Actions 1. Der Divider setzt den CTA ab.",
+						"en": "Place the main CTA in Actions 2 and the remaining actions in Actions 1. The divider sets the CTA apart."
 					}
 				},
 				{
@@ -187,8 +199,8 @@
 				"en": "Menu Bar and Drawer on Mobile"
 			},
 			"text": {
-				"de": "Auf Mobile bleibt Actions 1 in der Menüleiste sichtbar, während Actions 2 im Drawer-Footer liegt.",
-				"en": "On mobile, Actions 1 remains visible in the menu bar while Actions 2 sits in the Drawer footer."
+				"de": "Auf Mobile bleibt Actions 1 in der Menüleiste sichtbar, Actions 2 liegt im Drawer-Footer und ist erst nach dem Öffnen erreichbar.",
+				"en": "On mobile, Actions 1 stays visible in the menu bar, while Actions 2 sits in the Drawer footer and is only reachable after opening it."
 			},
 			"items": [
 				{
@@ -196,8 +208,8 @@
 					"headline": { "de": "Mobile", "en": "Mobile" },
 					"figmaNodeId": "4817-3065",
 					"description": {
-						"de": "Lege sichtbare Aktionen in Actions 1 und zusätzliche Utility-Aktionen in den Drawer-Footer von Actions 2.",
-						"en": "Place visible actions in Actions 1 and additional utility actions in the Actions 2 Drawer footer."
+						"de": "Lege die Hauptaktion in Actions 1 und die übrigen Aktionen in Actions 2 im Drawer-Footer.",
+						"en": "Place the main action in Actions 1 and the remaining actions in Actions 2 in the Drawer footer."
 					}
 				}
 			]
