@@ -152,17 +152,17 @@ import {
 <script setup lang="ts">
 import {
 	DBButton,
-	DBControlPanelPrimaryActions // new
+	DBControlPanelActions1 // new
 } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<!--	added DBControlPanelPrimaryActions	-->
-	<DBControlPanelPrimaryActions>
+	<!--	added DBControlPanelActions1	-->
+	<DBControlPanelActions1>
 		<DBButton icon="magnifying_glass" variant="ghost" noText>
 			Search
 		</DBButton>
-	</DBControlPanelPrimaryActions>
+	</DBControlPanelActions1>
 </template>
 ```
 
@@ -172,19 +172,19 @@ import {
 <script setup lang="ts">
 import {
 	DBButton,
-	DBControlPanelSecondaryActions // new
+	DBControlPanelActions2 // new
 } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<!--	added DBControlPanelSecondaryActions	-->
-	<DBControlPanelSecondaryActions>
+	<!--	added DBControlPanelActions2	-->
+	<DBControlPanelActions2>
 		<DBButton icon="x_placeholder" variant="ghost" noText>
 			Profile
 		</DBButton>
 		<DBButton icon="alert" variant="ghost" noText> Notification </DBButton>
 		<DBButton icon="help" variant="ghost" noText> Help </DBButton>
-	</DBControlPanelSecondaryActions>
+	</DBControlPanelActions2>
 </template>
 ```
 
@@ -257,10 +257,10 @@ const toggleDrawer = (open: boolean) => {
 			<template v-slot:brand>
 				<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
 			</template>
-			<template v-slot:primary-actions>
+			<template v-slot:actions-1>
 				<PrimaryActions />
 			</template>
-			<template v-slot:secondary-actions>
+			<template v-slot:actions-2>
 				<SecondaryActions />
 			</template>
 			<template v-slot:meta>
@@ -273,10 +273,10 @@ const toggleDrawer = (open: boolean) => {
 			<template v-slot:brand>
 				<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
 			</template>
-			<template v-slot:primary-actions>
+			<template v-slot:actions-1>
 				<PrimaryActions />
 			</template>
-			<template v-slot:secondary-actions>
+			<template v-slot:actions-2>
 				<SecondaryActions />
 			</template>
 			<template v-slot:meta>
