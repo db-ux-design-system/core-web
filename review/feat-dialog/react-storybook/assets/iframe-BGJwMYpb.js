@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-DR2Dinsm.js";e();
