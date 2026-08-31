@@ -253,3 +253,4 @@ descope
 pnpms
 renovatebot
 drilldown
+novalidate
