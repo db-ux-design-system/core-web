@@ -2,4 +2,9 @@
 
 .db-dialog-footer {
 	@include dialog-components.header-footer("footer", "dialog");
+
+	// The dialog footer lays out actions in a row (right-aligned), unlike the
+	// drawer footer which stacks them in a column.
+	flex-direction: row;
+	justify-content: flex-end;
 }
