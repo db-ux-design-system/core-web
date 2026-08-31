@@ -65,7 +65,7 @@ $container-size-scale: (
 		.db-#{$prefix}-header-container {
 			display: flex;
 			align-items: center;
-			gap: variables.$db-spacing-fixed-sm;
+			gap: variables.$db-spacing-fixed-xs;
 			font-weight: bold;
 			margin-inline-end: auto;
 
