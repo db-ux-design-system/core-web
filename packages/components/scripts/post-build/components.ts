@@ -485,7 +485,14 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'button',
 		overwrites: {
-			react: [{ from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes' }]
+			react: [
+				{ from: /HTMLAttributes/g, to: 'ButtonHTMLAttributes' },
+				{ from: /formaction=/g, to: 'formAction=' },
+				{ from: /formenctype=/g, to: 'formEncType=' },
+				{ from: /formmethod=/g, to: 'formMethod=' },
+				{ from: /formnovalidate=/g, to: 'formNoValidate=' },
+				{ from: /formtarget=/g, to: 'formTarget=' }
+			]
 		}
 	},
 	{
