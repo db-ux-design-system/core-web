@@ -356,10 +356,12 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File                      | What it covers                                          |
-| ------------------------- | ------------------------------------------------------- |
-| `_button-components.scss` | Ghost button appearance, button-like interactive states |
-| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas) |
+| File                        | What it covers                                          |
+| --------------------------- | ------------------------------------------------------- |
+| `_button-components.scss`   | Ghost button appearance, button-like interactive states |
+| `_dialog-components.scss`   | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
+| `_dialog-ponyfill.scss`     | Backdrop-click hit area fallback for browsers without `closedby` |
+| `_form-components.scss`     | Shared form element styles (inputs, selects, textareas) |
 | `_link-components.scss`   | Link-like appearance and states                         |
 | `_tag-components.scss`    | Tag/badge/chip shared styles                            |
 | `_stack-components.scss`  | Stack/layout shared styles                              |
@@ -372,6 +374,15 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_scrollbar.scss`         | Scrollbar styling                                       |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+## Shared Utils (`src/utils/dialog/`)
+
+When related utils grow beyond a single file, group them in a subfolder with an `index.ts` barrel. Name sibling files without the folder prefix to keep import paths clean (e.g. `utils/dialog/ponyfill` instead of `utils/dialog/dialog-ponyfill`). The `utils/dialog/` folder holds the dialog/drawer shared logic:
+
+| File           | What it covers                                                          |
+| -------------- | ----------------------------------------------------------------------- |
+| `index.ts`     | `syncDialogOpenState`, `resolveClosestDialog`, `getClosestDialogId`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy` |
+| `ponyfill.ts`  | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `requestCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
 
 ## Shared Props (`src/shared/model.ts`)
 
