@@ -4,7 +4,7 @@ Bereich im Control Panel für zwei eigenständige Slot-Komponenten: Actions 1 un
 
 ## Regeln
 
-1. **sollte** innerhalb eines Slots entweder Aktionen oder Umgebungsinformationen platzieren und beides nicht mischen. In einem gemischten Slot ist nicht erkennbar, welche Elemente interaktiv sind.
+1. **sollte** innerhalb eines Slots entweder Aktionen oder Umgebungsinformationen platzieren und beides nicht mischen. Die Elemente eines Slots werden als zusammengehörige Gruppe gelesen. Umgebungsinformationen stattdessen im End Slot von [Control Panel Brand](../control-panel-brand/guidelines.md) platzieren, auf Mobile steht in der Menüleiste neben Actions 1 nur dieser Slot zur Verfügung.
 2. Zuerst Actions 1 befüllen. Actions 2 zusätzlich verwenden, wenn die Aktionen inhaltlich oder hierarchisch getrennt werden. Actions 2 nicht als einzigen Slot befüllen, der Divider trennt auf Desktop sonst einen leeren Bereich ab.
 3. **sollte** über beide Slots hinweg höchstens eine Hauptaktion und höchstens vier Utility-Aktionen platzieren. In welchem Slot sie liegen, hängt von der gewählten Aufteilung ab.
 4. **sollte** auf Mobile im Slot in der Menüleiste nur eine Aktion platzieren, wenn [Control Panel Brand](../control-panel-brand/guidelines.md) einen Anwendungsnamen oder Zusatz enthält. Ohne Anwendungsnamen sind dort höchstens zwei Aktionen möglich, wenn beide Icon-Buttons sind.

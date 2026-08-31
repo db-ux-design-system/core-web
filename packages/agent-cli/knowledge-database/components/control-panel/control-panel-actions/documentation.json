@@ -26,21 +26,21 @@
 			"id": "slot-content",
 			"headline": { "de": "Slot-Inhalt", "en": "Slot Content" },
 			"text": {
-				"de": "Beide Slots nehmen Aktionen oder Umgebungsinformationen auf. Innerhalb eines Slots liegt nur einer der beiden Inhaltstypen.",
-				"en": "Both slots hold either actions or environmental information. Only one of the two content types sits within a single slot."
+				"de": "Beide Slots nehmen Aktionen oder Umgebungsinformationen auf. Die Elemente eines Slots werden als zusammengehörige Gruppe gelesen, deshalb liegt darin nur einer der beiden Inhaltstypen. Umgebungsinformationen nimmt auch der End Slot von Control Panel Brand auf. Auf Mobile steht in der Menüleiste neben Actions 1 nur dieser Slot zur Verfügung.",
+				"en": "Both slots hold either actions or environmental information. The elements of a slot read as one group, so only one of the two content types sits within a single slot. The Control Panel Brand End slot also holds environmental information. On mobile, it is the only slot available in the menu bar besides Actions 1."
 			},
 			"do": {
-				"figmaNodeId": "4354-6",
+				"figmaNodeId": "5565-270",
 				"description": {
 					"de": "Nutze einen Slot entweder für Aktionen oder für Umgebungsinformationen.",
 					"en": "Use a slot either for actions or for environmental information."
 				}
 			},
 			"caution": {
-				"figmaNodeId": "4354-8",
+				"figmaNodeId": "5565-402",
 				"description": {
-					"de": "In einem gemischten Slot ist nicht erkennbar, welche Elemente interaktiv sind. Verteile Aktionen und Umgebungsinformationen auf die beiden Slots.",
-					"en": "In a mixed slot it is not apparent which elements are interactive. Distribute actions and environmental information across the two slots."
+					"de": "In einem gemischten Slot wirkt die Umgebungsinformation wie Teil der Aktionsgruppe. Platziere sie stattdessen im End Slot von Control Panel Brand oder im zweiten Slot.",
+					"en": "In a mixed slot the environmental information appears to be part of the action group. Place it in the Control Panel Brand End slot or in the second slot instead."
 				}
 			}
 		},
@@ -77,14 +77,14 @@
 				"en": "Across both slots together, at most one main action and at most four utility actions apply. Which slot they sit in depends on the chosen split."
 			},
 			"do": {
-				"figmaNodeId": "4354-10",
+				"figmaNodeId": "4338-2",
 				"description": {
 					"de": "Platziere über beide Slots hinweg höchstens eine Hauptaktion und höchstens vier Utility-Aktionen.",
 					"en": "Place at most one main action and at most four utility actions across both slots."
 				}
 			},
 			"caution": {
-				"figmaNodeId": "4354-12",
+				"figmaNodeId": "4338-4",
 				"description": {
 					"de": "Mehr Aktionen machen die wichtigste Aktion schwerer erkennbar. Prüfe, welche Aktionen auf eine eigene Seite gehören.",
 					"en": "More actions make the most important action harder to recognize. Check which actions belong on a dedicated page."
@@ -102,14 +102,14 @@
 				"en": "On mobile, the slot in the menu bar shares its width with the Control Panel Brand. With an application name or additional content there is room for one action, without an application name for two icon buttons."
 			},
 			"do": {
-				"figmaNodeId": null,
+				"figmaNodeId": "5566-4609",
 				"description": {
 					"de": "Platziere eine Aktion in der Menüleiste, wenn Control Panel Brand einen Anwendungsnamen oder Zusatz enthält. Ohne Anwendungsnamen sind zwei Icon-Buttons möglich.",
 					"en": "Place one action in the menu bar when the Control Panel Brand includes an application name or additional content. Without an application name, two icon buttons are possible."
 				}
 			},
 			"caution": {
-				"figmaNodeId": null,
+				"figmaNodeId": "5566-4724",
 				"description": {
 					"de": "Mehr Aktionen lassen in der Menüleiste neben Control Panel Brand zu wenig Platz. Verlagere zusätzliche Aktionen in den Drawer-Footer.",
 					"en": "More actions leave too little room next to the Control Panel Brand in the menu bar. Move additional actions to the Drawer footer."
@@ -127,14 +127,14 @@
 				"en": "The Flat Icon variant has no area for Actions."
 			},
 			"do": {
-				"figmaNodeId": "4354-14",
+				"figmaNodeId": "4338-10",
 				"description": {
 					"de": "Wähle eine Variante mit Bereich für Actions, wenn du globale Aktionen benötigst.",
 					"en": "Choose a variant with an area for Actions when you need global actions."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4354-16",
+				"figmaNodeId": "4338-12",
 				"description": {
 					"de": "Verwende Flat Icon nicht, wenn Actions benötigt werden. Die Variante hat dafür keinen Bereich.",
 					"en": "Don't use Flat Icon when Actions are needed. The variant has no area for them."
@@ -160,7 +160,7 @@
 						"de": "Marketingseite mit einem CTA",
 						"en": "Marketing Page with One CTA"
 					},
-					"figmaNodeId": null,
+					"figmaNodeId": "5566-8126",
 					"description": {
 						"de": "Platziere den Haupt-CTA in Actions 1 und lasse Actions 2 leer.",
 						"en": "Place the main CTA in Actions 1 and leave Actions 2 empty."
@@ -172,7 +172,7 @@
 						"de": "Marketingseite mit weiteren Aktionen",
 						"en": "Marketing Page with Additional Actions"
 					},
-					"figmaNodeId": null,
+					"figmaNodeId": "5566-9222",
 					"description": {
 						"de": "Platziere den Haupt-CTA in Actions 2 und die übrigen Aktionen in Actions 1. Der Divider setzt den CTA ab.",
 						"en": "Place the main CTA in Actions 2 and the remaining actions in Actions 1. The divider sets the CTA apart."
@@ -184,7 +184,7 @@
 						"de": "Utility-lastige Seite",
 						"en": "Utility-Focused Page"
 					},
-					"figmaNodeId": null,
+					"figmaNodeId": "5566-9349",
 					"description": {
 						"de": "Platziere Suche und häufige globale Aktionen in Actions 1 sowie Utility-Aktionen in Actions 2.",
 						"en": "Place search and frequent global actions in Actions 1 and utility actions in Actions 2."
@@ -206,7 +206,7 @@
 				{
 					"id": "mobile",
 					"headline": { "de": "Mobile", "en": "Mobile" },
-					"figmaNodeId": "4817-3065",
+					"figmaNodeId": "4812-1247",
 					"description": {
 						"de": "Lege die Hauptaktion in Actions 1 und die übrigen Aktionen in Actions 2 im Drawer-Footer.",
 						"en": "Place the main action in Actions 1 and the remaining actions in Actions 2 in the Drawer footer."
