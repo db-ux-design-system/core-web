@@ -42,8 +42,8 @@
 			"caution": {
 				"figmaNodeId": "1-1133",
 				"description": {
-					"de": "Unter vier Navigation Items belegt Left Platz ohne strukturellen Nutzen. Prüfe in diesem Fall Top.",
-					"en": "Below four Navigation Items, Left takes up space without any structural benefit. Consider Top in that case."
+					"de": "Unter vier Navigation Items belegt Left Platz ohne strukturellen Nutzen. Prüfe in diesem Fall Top oder Flat Icon.",
+					"en": "Below four Navigation Items, Left takes up space without any structural benefit. Consider Top or Flat Icon in that case."
 				}
 			}
 		},
