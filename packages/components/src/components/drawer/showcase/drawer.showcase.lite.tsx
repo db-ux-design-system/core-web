@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import DrawerAreas from '../examples/areas.example.lite';
 import DrawerBackdrop from '../examples/backdrop.example.lite';
 import DrawerDensity from '../examples/density.example.lite';
 import DrawerDirection from '../examples/direction.example.lite';
@@ -49,6 +50,11 @@ export default function DrawerShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Position">
 				<CardWrapperShowcase>
 					<DrawerPosition />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Areas">
+				<CardWrapperShowcase>
+					<DrawerAreas />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Example">
