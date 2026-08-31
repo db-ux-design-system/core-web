@@ -54,6 +54,31 @@ export type DBButtonDefaultProps = {
 	form?: string;
 
 	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
+	 */
+	formaction?: string;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formenctype?: string;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formmethod?: string;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formnovalidate?: boolean | string;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formtarget?: string;
+
+	/**
 	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
 	 */
 	name?: string;
