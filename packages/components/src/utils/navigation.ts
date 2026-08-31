@@ -301,13 +301,33 @@ export const handleSubNavigationPosition = ({
 	// Guard against deeply nested or accidentally cyclic markup
 	if (resolvedLevel >= MAX_SUB_NAVIGATION_DEPTH) return;
 
-	// The second selector arm handles the Web Components (Stencil) output where
-	// a host element <db-control-panel-navigation-item-group> wraps the inner
-	// .db-control-panel-navigation-item-group div. No `:scope >` needed there
-	// because referencing the custom element tag already scopes it sufficiently.
-	const navItems = element.querySelectorAll(
-		':scope > .db-control-panel-navigation-item-group, db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group'
+	// Find item-group children of this menu. In React/Vue the inner <li> is a
+	// direct child; in Angular/Stencil one or more custom element wrappers
+	// (e.g. <db-control-panel-navigation-item-group> or user wrappers like
+	// <app-nav-item>) can sit between the <menu> and the inner <li>.
+	// Walk up from each group's parentElement to find the nearest menu-level
+	// ancestor. If that ancestor is `element`, the group belongs to this level.
+	const allGroupsInside = element.querySelectorAll(
+		'.db-control-panel-navigation-item-group'
 	);
+	const navItems = Array.from(allGroupsInside).filter((group) => {
+		let current = group.parentElement;
+		while (current && current !== element) {
+			// If we hit another menu before reaching `element`, this group
+			// belongs to a deeper nesting level -> exclude it.
+			if (
+				current !== element &&
+				(current.classList.contains(
+					'db-control-panel-navigation-item-group-menu'
+				) ||
+					current.tagName === 'MENU')
+			) {
+				return false;
+			}
+			current = current.parentElement;
+		}
+		return current === element;
+	});
 
 	for (const navItem of Array.from(navItems)) {
 		const subNavigation: HTMLElement | null = navItem.querySelector(
@@ -348,6 +368,23 @@ export const handleSubNavigationPosition = ({
 					});
 					subNavigation.dataset['open'] = 'horizontal';
 				}
+			} else {
+				// Nested sub-menus (level 1+) use CSS-controlled absolute
+				// positioning. Clear any stale fixed positioning that may
+				// have been set by a previous incorrect level-0 pass.
+				subNavigation.style.position = '';
+				subNavigation.style.insetBlock = '';
+				subNavigation.style.insetInline = '';
+				subNavigation.style.insetBlockStart = '';
+				subNavigation.style.insetBlockEnd = '';
+				subNavigation.style.insetInlineStart = '';
+				subNavigation.style.insetInlineEnd = '';
+				subNavigation.style.overflow = '';
+				subNavigation.style.maxBlockSize = '';
+				delete subNavigation.dataset['open'];
+				delete subNavigation.dataset['correctedPlacement'];
+				delete subNavigation.dataset['outsideVy'];
+				delete subNavigation.dataset['outsideVx'];
 			}
 
 			handleSubNavigationPosition({
