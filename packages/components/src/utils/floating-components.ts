@@ -19,6 +19,9 @@ export const handleFixedDropdown = (
 	// mobile max-inline-size guard and overflows the viewport.
 	element.style.inlineSize = '';
 	element.style.minInlineSize = '';
+	element.style.insetInlineStart = '';
+	element.style.insetBlockStart = '';
+	element.style.position = '';
 
 	// We skip this if we are in mobile it's already fixed or if we don't have a floating dropdown
 	const computedStyle = getComputedStyle(element);

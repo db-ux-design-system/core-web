@@ -55,30 +55,28 @@
 		}
 
 		&:checked {
-			&:not([data-size="small"]) {
-				border-width: calc(
-					(
-							#{form-components.$font-size-height} -
-								#{variables.$db-sizing-2xs}
-						) /
-						2
-				);
-			}
-
-			&[data-size="small"] {
-				border-width: calc(
-					(
-							#{form-components.$font-size-height} -
-								#{variables.$db-sizing-3xs}
-						) /
-						2
-				);
-			}
+			border-width: calc(
+				(
+						#{form-components.$font-size-height} -
+							#{variables.$db-sizing-2xs}
+					) /
+					2
+			);
 		}
 
 		&:focus-visible {
 			// Overwrite default border-radius
 			border-radius: variables.$db-border-radius-full;
 		}
+	}
+
+	&[data-size="small"] input:checked {
+		border-width: calc(
+			(
+					#{form-components.$font-size-height} -
+						#{variables.$db-sizing-3xs}
+				) /
+				2
+		);
 	}
 }

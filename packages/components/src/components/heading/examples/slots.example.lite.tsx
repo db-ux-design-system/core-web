@@ -7,6 +7,9 @@ import { StorybookHeadingArgTypes } from './_heading.arg.types';
 
 useMetadata({
 	storybookTitle: 'Start and end slot',
+	// DBCustomHeading is a component of its own, not a level variant, so it gets
+	// its own sidebar category instead of the folder default DBHeading.
+	storybookCategory: 'DBCustomHeading',
 	storybookComponentName: 'DBCustomHeading',
 	storybookComponentNames: ['DBCustomHeading', 'DBCustomHeading'],
 	storybookNames: ['End slot with a badge', 'Both slots with an action'],
