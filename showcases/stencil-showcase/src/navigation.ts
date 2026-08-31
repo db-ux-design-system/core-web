@@ -257,7 +257,7 @@ function renderSettingsControls(): string {
 
 function renderActions1(): string {
 	return `
-		<db-control-panel-actions-1 slot="actions-1">
+		<db-control-panel-actions-1 slot="actions1">
 			<db-drawer
 				class="js-settings-drawer"
 				direction="to-left"
@@ -289,7 +289,7 @@ function renderMetaNavigation(): string {
 
 function renderActions2(): string {
 	return `
-		<db-control-panel-actions-2 slot="actions-2">
+		<db-control-panel-actions-2 slot="actions2">
 			<db-switch class="js-shell-toggle" checked="true">Shell</db-switch>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Notification</db-button>
 			<db-button icon="x_placeholder" variant="ghost" no-text="true">Help</db-button>
