@@ -2,7 +2,6 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBCheckbox from '../../checkbox/checkbox.lite';
 import DBInput from '../../input/input.lite';
-import DBSelect from '../../select/select.lite';
 import DBSwitch from '../../switch/switch.lite';
 import DBTextarea from '../../textarea/textarea.lite';
 import DBPopover from '../popover.lite';
@@ -14,7 +13,6 @@ useMetadata({
 		'Switch',
 		'Switch Visual Aid',
 		'Input',
-		'Select',
 		'Checkbox',
 		'Textarea'
 	],
@@ -38,14 +36,6 @@ export default function PopoverZIndex() {
 				id="popover-zindex-input"
 				trigger={<DBButton>Input</DBButton>}>
 				<DBInput label="Input" icon="search" />
-			</DBPopover>
-			<DBPopover
-				id="popover-zindex-select"
-				trigger={<DBButton>Select</DBButton>}>
-				<DBSelect label="Select">
-					<option>Option 1</option>
-					<option>Option 2</option>
-				</DBSelect>
 			</DBPopover>
 			<DBPopover
 				id="popover-zindex-checkbox"
