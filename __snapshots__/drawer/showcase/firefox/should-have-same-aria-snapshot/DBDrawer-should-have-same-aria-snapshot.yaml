@@ -35,6 +35,11 @@
   - 'button "Open: Down (Full)"'
   - link "Position"
   - 'button "Open: Absolute"'
+  - link "Areas"
+  - 'button "Open: With text prop"'
+  - 'button "Open: With start slot"'
+  - 'button "Open: With end slot"'
+  - 'button "Open: With footer"'
   - link "Example"
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
