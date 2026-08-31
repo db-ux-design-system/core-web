@@ -50,12 +50,12 @@ const comp: any = (
 					<a href="#">Help</a>
 				</DBControlPanelMeta>
 			</template>*/}
-			{/*<template v-slot:actions1>
+			{/*<template v-slot:actions-1>
 				<DBControlPanelActions1>
 					<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 				</DBControlPanelActions1>
 			</template>*/}
-			{/*<template v-slot:actions2>
+			{/*<template v-slot:actions-2>
 				<DBControlPanelActions2>
 					<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 				</DBControlPanelActions2>
@@ -94,12 +94,12 @@ const comp: any = (
 			{/*<template v-slot:brand>
 				<DBControlPanelBrand data-logo="db-systel" />
 			</template>*/}
-			{/*<template v-slot:actions1>
+			{/*<template v-slot:actions-1>
 				<DBControlPanelActions1>
 					<DBButton icon="magnifying_glass" variant="ghost" noText>Search</DBButton>
 				</DBControlPanelActions1>
 			</template>*/}
-			{/*<template v-slot:actions2>
+			{/*<template v-slot:actions-2>
 				<DBControlPanelActions2>
 					<DBButton icon="x_placeholder" variant="ghost" noText>Profile</DBButton>
 				</DBControlPanelActions2>

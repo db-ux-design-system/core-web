@@ -257,10 +257,10 @@ const toggleDrawer = (open: boolean) => {
 			<template v-slot:brand>
 				<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
 			</template>
-			<template v-slot:actions1>
+			<template v-slot:actions-1>
 				<PrimaryActions />
 			</template>
-			<template v-slot:actions2>
+			<template v-slot:actions-2>
 				<SecondaryActions />
 			</template>
 			<template v-slot:meta>
@@ -273,10 +273,10 @@ const toggleDrawer = (open: boolean) => {
 			<template v-slot:brand>
 				<DBControlPanelBrand> My Awesome App </DBControlPanelBrand>
 			</template>
-			<template v-slot:actions1>
+			<template v-slot:actions-1>
 				<PrimaryActions />
 			</template>
-			<template v-slot:actions2>
+			<template v-slot:actions-2>
 				<SecondaryActions />
 			</template>
 			<template v-slot:meta>

@@ -59,10 +59,10 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
 			</DBControlPanelNavigation>
-			<template v-slot:actions1>
+			<template v-slot:actions-1>
 				<Actions1 />
 			</template>
-			<template v-slot:actions2>
+			<template v-slot:actions-2>
 				<Actions2 />
 			</template>
 			<template v-slot:meta>
@@ -81,10 +81,10 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 					<NavItemComponent :navItem="item"></NavItemComponent>
 				</template>
 			</DBControlPanelNavigation>
-			<template v-slot:actions1>
+			<template v-slot:actions-1>
 				<Actions1 />
 			</template>
-			<template v-slot:actions2>
+			<template v-slot:actions-2>
 				<Actions2 />
 			</template>
 			<template v-slot:meta>

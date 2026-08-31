@@ -358,10 +358,8 @@ import { NavigationComponent } from "./navigation.component";
 					>My Awesome App</db-control-panel-brand
 				>
 				<app-meta-navigation meta></app-meta-navigation>
-				<app-primary-actions primary-actions></app-primary-actions>
-				<app-secondary-actions
-					secondary-actions
-				></app-secondary-actions>
+				<app-primary-actions actions-1></app-primary-actions>
+				<app-secondary-actions actions-2></app-secondary-actions>
 				<app-navigation></app-navigation>
 			</db-control-panel-desktop>
 			<db-control-panel-mobile>
@@ -369,10 +367,8 @@ import { NavigationComponent } from "./navigation.component";
 					>My Awesome App</db-control-panel-brand
 				>
 				<app-meta-navigation meta></app-meta-navigation>
-				<app-primary-actions primary-actions></app-primary-actions>
-				<app-secondary-actions
-					secondary-actions
-				></app-secondary-actions>
+				<app-primary-actions actions-1></app-primary-actions>
+				<app-secondary-actions actions-2></app-secondary-actions>
 				<app-navigation></app-navigation>
 			</db-control-panel-mobile>
 			<db-shell-content>Main Page</db-shell-content>
