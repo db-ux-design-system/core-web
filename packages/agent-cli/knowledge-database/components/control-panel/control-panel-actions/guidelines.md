@@ -1,6 +1,6 @@
 # Control Panel Actions
 
-Bereich im Control Panel für globale Aktionen mit den Ausprägungen Actions 1 und Actions 2.
+Bereich im Control Panel für zwei eigenständige Slot-Komponenten: Actions 1 und Actions 2.
 
 ## Regeln
 
@@ -12,6 +12,7 @@ Bereich im Control Panel für globale Aktionen mit den Ausprägungen Actions 1 u
 
 ## Zusätzliche Informationen
 
+- Actions 1 und Actions 2 werden gemeinsam dokumentiert, bleiben in Development und Design aber eigenständige Slot-Komponenten.
 - Je nach Seitentyp können unterschiedliche Aufteilungen sinnvoll sein: Auf eher marketinglastigen Seiten kann der Haupt-CTA in Actions 1 stehen und Actions 2 leer bleiben. Auf eher utility-lastigen Seiten können Suche und häufig genutzte globale Aktionen in Actions 1 sowie Utility-Aktionen wie Light-/Dark-Switcher und Login oder Account in Actions 2 liegen. _(Example-Kandidat)_
 - Auf Mobile liegt Actions 1 in der Control-Panel-Menüleiste. Der Inhalt von Actions 2 liegt im Drawer-Footer und ist erst nach dem Öffnen des Drawers erreichbar. _(Example-Kandidat)_
 - Auf Desktop Top sind Actions 1 und Actions 2 horizontal angeordnet. Auf Desktop Left sind sie vertikal angeordnet.

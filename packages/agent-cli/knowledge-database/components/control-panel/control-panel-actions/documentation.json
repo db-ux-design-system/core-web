@@ -2,11 +2,11 @@
 	"component": "control-panel-actions",
 	"figmaFileKey": "pElrqVUyojrzYzSagyJPS6",
 	"description": {
-		"de": "Control Panel Actions bündelt globale Aktionen in zwei frei nutzbaren Ausprägungen: Actions 1 und Actions 2.",
-		"en": "Control Panel Actions groups global actions into two freely usable variants: Actions 1 and Actions 2."
+		"de": "Control Panel Actions dokumentiert zwei eigenständige Slot-Komponenten, Actions 1 und Actions 2, gemeinsam.",
+		"en": "Control Panel Actions documents two independent slot components, Actions 1 and Actions 2, together."
 	},
 	"shortDescription": {
-		"de": "Bereich für globale Aktionen mit Actions 1 und Actions 2.",
+		"de": "Bereich im Control Panel für zwei eigenständige Slot-Komponenten: Actions 1 und Actions 2.",
 		"en": "Area for global actions with Actions 1 and Actions 2."
 	},
 	"useCases": {
