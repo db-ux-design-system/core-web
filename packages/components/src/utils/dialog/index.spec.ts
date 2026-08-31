@@ -6,7 +6,7 @@ import {
 	resolveClosestDialog,
 	setDialogAriaLabelledBy,
 	syncDialogOpenState
-} from './dialog';
+} from '.';
 
 type DialogStub = HTMLDialogElement & {
 	_calls: string[];

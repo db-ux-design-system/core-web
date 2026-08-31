@@ -3,9 +3,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 // The detections cache their result at module level, so every scenario needs a
 // fresh module instance.
-const loadPonyfill = async (): Promise<typeof import('./dialog-ponyfill')> => {
+const loadPonyfill = async (): Promise<typeof import('./ponyfill')> => {
 	vi.resetModules();
-	return import('./dialog-ponyfill');
+	return import('./ponyfill');
 };
 
 // Node has neither HTMLDialogElement nor HTMLButtonElement, so the unstubbed
