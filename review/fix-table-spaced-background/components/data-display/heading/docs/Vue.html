@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/fix-table-spaced-background/_next/static/css/a026e989517ea4ae.css" as="style"/><link rel="stylesheet" href="/core-web/review/fix-table-spaced-background/_next/static/css/a026e989517ea4ae.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/fix-table-spaced-background/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/fix-table-spaced-background/_next/static/chunks/webpack-e1077a01fc050825.js" defer=""></script><script src="/core-web/review/fix-table-spaced-background/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/fix-table-spaced-background/_next/static/chunks/main-bb8e73289624df7c.js" defer=""></script><script src="/core-web/review/fix-table-spaced-background/_next/static/chunks/pages/_app-6129b36e92b4fe01.js" defer=""></script><script src="/core-web/review/fix-table-spaced-background/_next/static/chunks/pages/components/data-display/heading/docs/Vue-141b16a1a37a60f8.js" defer=""></script><script src="/core-web/review/fix-table-spaced-background/_next/static/wVqlf-Sig1w-mhexN1W-G/_buildManifest.js" defer=""></script><script src="/core-web/review/fix-table-spaced-background/_next/static/wVqlf-Sig1w-mhexN1W-G/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/fix-table-spaced-background/components/data-display/heading/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<blockquote>
+<p><strong>Beta:</strong> The Heading components are available as beta components. Their API and visual design may change before the stable release.</p>
+</blockquote>
+<p>For installation and configuration, see <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/v-core-components"><code>@db-ux/v-core-components</code></a>.</p>
+<h3 id="semantics-and-visual-size">Semantics and visual size<a class="header-link" href="/core-web/review/fix-table-spaced-background/components/data-display/heading/docs/Vue?current=semantics-and-visual-size"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>semantics-and-visual-size<!-- --> anchor link</a></h3>
+<p>Choose <code>DBHeadingH1</code> through <code>DBHeadingH6</code> from the document hierarchy, never from appearance. <code>size</code> changes only visual size. Without <code>size</code>, the mapping is <code>h1</code>/<code>xl</code>, <code>h2</code>/<code>lg</code>, <code>h3</code>/<code>md</code>, <code>h4</code>/<code>sm</code>, <code>h5</code>/<code>xs</code>, and <code>h6</code>/<code>2xs</code>.</p>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { DBHeadingH6 } from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBHeadingH6 size=&quot;2xl&quot;&gt;A level-six heading displayed at 2xl&lt;/DBHeadingH6&gt;
+&lt;/template&gt;
+</code></pre>
+<p>All visual sizes work with every semantic level. <code>fontWeight</code> accepts <code>black</code> and <code>light</code>; logical <code>alignment</code> follows the writing direction. <code>paragraphSpacing</code> adds exactly <code>1lh</code> at block-end when enabled. Density tokens provide responsive typography.</p>
+<pre><code class="language-vue">&lt;DBHeadingH2
+	alignment=&quot;end&quot;
+	font-weight=&quot;light&quot;
+	:paragraph-spacing=&quot;true&quot;
+	data-density=&quot;expressive&quot;
+&gt;
+	Responsive heading
+&lt;/DBHeadingH2&gt;
+</code></pre>
+<h3 id="content-attributes-and-accessibility">Content, attributes and accessibility<a class="header-link" href="/core-web/review/fix-table-spaced-background/components/data-display/heading/docs/Vue?current=content-attributes-and-accessibility"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>content-attributes-and-accessibility<!-- --> anchor link</a></h3>
+<p>The default content must be phrasing content and defines the accessible heading name. Mark decorative children with <code>aria-hidden=&quot;true&quot;</code>. Native <code>aria-*</code>, <code>data-*</code>, title, style, class, and id attributes are forwarded to the native heading.</p>
+<pre><code class="language-vue">&lt;DBHeadingH2 id=&quot;account-heading&quot; data-track-id=&quot;account&quot;&gt;
+	&lt;span aria-hidden=&quot;true&quot;&gt;[&lt;/span&gt;Account&lt;span aria-hidden=&quot;true&quot;&gt;]&lt;/span&gt;
+&lt;/DBHeadingH2&gt;
+</code></pre>
+<h3 id="heading-with-sibling-content">Heading with sibling content<a class="header-link" href="/core-web/review/fix-table-spaced-background/components/data-display/heading/docs/Vue?current=heading-with-sibling-content"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>heading-with-sibling-content<!-- --> anchor link</a></h3>
+<p><code>DBCustomHeading</code> is the styling wrapper for a heading you write yourself, optionally next to sibling content. It relates to the Heading components the same way <code>DBCustomButton</code> relates to <code>DBButton</code>: it renders a plain <code>div</code> with no semantics of its own, you bring the native element, and the wrapper applies the styling.</p>
+<p>The default slot is the heading. Content that belongs next to it goes into the <code>start-slot</code> and <code>end-slot</code>, which render before and after the default slot:</p>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { DBButton, DBCustomHeading } from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBCustomHeading size=&quot;xl&quot; font-weight=&quot;light&quot;&gt;
+		&lt;h2&gt;Installation&lt;/h2&gt;
+		&lt;template #end-slot&gt;
+			&lt;DBButton variant=&quot;ghost&quot;&gt;More options&lt;/DBButton&gt;
+		&lt;/template&gt;
+	&lt;/DBCustomHeading&gt;
+&lt;/template&gt;
+</code></pre>
+<p>The nested heading needs no class of its own, the wrapper styles it. Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.</p>
+<p><code>size</code>, <code>fontWeight</code> and <code>paragraphSpacing</code> behave exactly as on the Heading components, and omitting <code>size</code> applies the same default level mapping. <code>alignment</code> aligns the items in the row together with the heading text. An unused slot adds no spacing.</p>
+<p>A nested heading that already carries the <code>db-heading</code> class, for example a Heading component, keeps its own typography and ignores the wrapper&#x27;s props. Use one or the other, not both.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/heading/docs/Vue","query":{},"buildId":"wVqlf-Sig1w-mhexN1W-G","assetPrefix":"/core-web/review/fix-table-spaced-background","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
