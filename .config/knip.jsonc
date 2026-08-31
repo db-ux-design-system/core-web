@@ -15,6 +15,10 @@
 		// Same pattern: two ControlPanelActions components share one folder.
 		"packages/components/src/components/control-panel-actions/index.ts": [
 			"unresolved"
+		],
+		// The spec mounts the generated example, which Mitosis emits without the .lite suffix.
+		"packages/components/src/components/custom-select/custom-select.spec.tsx": [
+			"unresolved"
 		]
 	},
 
