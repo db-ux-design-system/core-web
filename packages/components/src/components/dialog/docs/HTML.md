@@ -7,11 +7,11 @@ For general installation and configuration take a look at the [components](https
 The dialog is a native `<dialog>` element. It centres itself, sizes to its content and is capped by
 `data-container-size` (`small`, `medium`, `large`, `full`, defaults to `medium`).
 
-You are able to overwrite the resulting `max-inline-size` with the `--db-dialog-max-width:` CSS variable.
+You are able to overwrite the resulting `max-inline-size` with the `--db-dialog-max-width` CSS variable.
 
 A fixed inset of `40px` is kept between every dialog edge and the corresponding viewport edge, at every container size
 including `full`, so that a clickable backdrop area always remains. Overwrite it with the
-`--db-dialog-viewport-inset:` CSS variable, e.g. `--db-dialog-viewport-inset: 0px;` for an edge-to-edge dialog.
+`--db-dialog-viewport-inset` CSS variable, e.g. `--db-dialog-viewport-inset: 0px;` for an edge-to-edge dialog.
 
 ### Use component
 

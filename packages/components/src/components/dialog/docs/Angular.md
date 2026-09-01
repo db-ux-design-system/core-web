@@ -6,9 +6,9 @@ For general installation and configuration take a look at the [ngx-core-componen
 
 `DBDialog` renders a native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog) element in the top layer. The browser centers it, `backdrop` decides whether it opens modal (`strong`, `weak`) or non-modal (`none`), and `containerSize` (`small`, `medium`, `large`, `full`, default `medium`) sets the maximum inline size.
 
-If you use `containerSize !== full` you are able to overwrite the `max-width` with the `--db-dialog-max-width:` CSS variable.
+If you use `containerSize` !== `full` you are able to overwrite the `max-width` with the `--db-dialog-max-width` CSS variable.
 
-Every `containerSize`, `full` included, keeps a gap of `--db-dialog-viewport-inset:` (default `40px`) to the viewport edges, so an area outside the dialog stays available for backdrop clicks. Set it to `0px` for an edge-to-edge dialog.
+Every `containerSize`, `full` included, keeps a gap of `--db-dialog-viewport-inset` (default `40px`) to the viewport edges, so an area outside the dialog stays available for backdrop clicks. Set it to `0px` for an edge-to-edge dialog.
 
 ### Load component
 
