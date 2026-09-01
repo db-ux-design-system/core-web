@@ -231,6 +231,15 @@ export type WidthProps = {
 	width?: WidthType | string;
 };
 
+export const HeightList = ['full', 'auto'] as const;
+export type HeightType = (typeof HeightList)[number];
+export type HeightProps = {
+	/**
+	 * Height of the component. Auto height based on children size, full height based on parent elements height.
+	 */
+	height?: HeightType;
+};
+
 export const MaxWidthList = ['full', 'medium', 'large', 'small'] as const;
 export type MaxWidthType = (typeof MaxWidthList)[number];
 
