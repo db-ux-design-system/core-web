@@ -6,7 +6,16 @@ import { overflowTable } from './data';
 
 useMetadata({
 	storybookTitle: 'Sticky Header',
-	storybookNames: ['(Default) None', 'Both', 'Horizontal', 'Vertical'],
+	storybookNames: [
+		'(Default) None',
+		'None Spaced',
+		'Both',
+		'Both Spaced',
+		'Horizontal',
+		'Horizontal Spaced',
+		'Vertical',
+		'Vertical Spaced'
+	],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
@@ -16,10 +25,8 @@ export default function TableStickyHeader() {
 			<div
 				style={{
 					inlineSize: '300px',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
+					display: 'block',
+					textAlign: 'center',
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
@@ -27,14 +34,28 @@ export default function TableStickyHeader() {
 				</DBInfotext>
 				<DBTable data={overflowTable} captionPlain="(Default) None" />
 			</div>
+			<div
+				style={{
+					inlineSize: '300px',
+					display: 'block',
+					textAlign: 'center',
+					blockSize: '300px'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					None Spaced
+				</DBInfotext>
+				<DBTable
+					data={overflowTable}
+					variant="spaced"
+					captionPlain="None Spaced"
+				/>
+			</div>
 			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
 					inlineSize: '300px',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
+					display: 'block',
+					textAlign: 'center',
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
@@ -46,14 +67,29 @@ export default function TableStickyHeader() {
 					stickyHeader="both"
 				/>
 			</div>
+			<div
+				style={{
+					inlineSize: '300px',
+					display: 'block',
+					textAlign: 'center',
+					blockSize: '300px'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Both Spaced
+				</DBInfotext>
+				<DBTable
+					data={overflowTable}
+					variant="spaced"
+					captionPlain="Both Spaced"
+					stickyHeader="both"
+				/>
+			</div>
 			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
 					inlineSize: '300px',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
+					display: 'block',
+					textAlign: 'center',
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
@@ -65,14 +101,29 @@ export default function TableStickyHeader() {
 					captionPlain="Horizontal"
 				/>
 			</div>
+			<div
+				style={{
+					inlineSize: '300px',
+					display: 'block',
+					textAlign: 'center',
+					blockSize: '300px'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Horizontal Spaced
+				</DBInfotext>
+				<DBTable
+					data={overflowTable}
+					variant="spaced"
+					stickyHeader="horizontal"
+					captionPlain="Horizontal Spaced"
+				/>
+			</div>
 			<i class="line-break" data-sb-ignore="true" />
 			<div
 				style={{
 					inlineSize: '300px',
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-					gap: 'var(--db-spacing-fixed-md)',
+					display: 'block',
+					textAlign: 'center',
 					blockSize: '300px'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
@@ -82,6 +133,23 @@ export default function TableStickyHeader() {
 					data={overflowTable}
 					stickyHeader="vertical"
 					captionPlain="Vertical"
+				/>
+			</div>
+			<div
+				style={{
+					inlineSize: '300px',
+					display: 'block',
+					textAlign: 'center',
+					blockSize: '300px'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Vertical Spaced
+				</DBInfotext>
+				<DBTable
+					data={overflowTable}
+					variant="spaced"
+					stickyHeader="vertical"
+					captionPlain="Vertical Spaced"
 				/>
 			</div>
 		</Fragment>
