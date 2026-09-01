@@ -11,6 +11,6 @@ import { DBDialogHeader } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBDialogHeader>DialogHeader</DBDialogHeader>
+	<DBDialogHeader closebuttontext="Close" text="With text prop"></DBDialogHeader>
 </template>
 ```

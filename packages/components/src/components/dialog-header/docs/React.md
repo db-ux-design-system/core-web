@@ -8,7 +8,11 @@ For general installation and configuration take a look at the [react-core-compon
 // App.tsx
 import { DBDialogHeader } from "@db-ux/react-core-components";
 
-const App = () => <DBDialogHeader>DialogHeader</DBDialogHeader>;
+const App = () => {
+	return (
+		<DBDialogHeader closebuttontext="Close" text="With text prop"></DBDialogHeader>
+	)
+};
 
 export default App;
 ```

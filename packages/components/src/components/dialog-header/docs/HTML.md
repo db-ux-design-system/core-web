@@ -8,6 +8,10 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-dialog-header">DialogHeader</div>
+	<div class="db-dialog-header">
+		<header class="db-dialog-header-container" id="…">
+			<h2>With text prop</h2>
+		</header>
+	</div>
 </body>
 ```
