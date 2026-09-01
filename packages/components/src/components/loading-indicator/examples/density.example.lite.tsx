@@ -33,6 +33,7 @@ export default function LoadingIndicatorDensity() {
 									})}
 									data-density={density.value}
 									variant={indicator.variant}
+									orientation={indicator.orientation}
 									progressText={indicator.progressText}>
 									{indicator.label}
 								</DBLoadingIndicator>

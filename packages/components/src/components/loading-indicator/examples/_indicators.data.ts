@@ -1,4 +1,8 @@
-import { PopoverDelayType, SizeType } from '../../../shared/model';
+import {
+	OrientationType,
+	PopoverDelayType,
+	SizeType
+} from '../../../shared/model';
 import {
 	LoadingIndicatorStateType,
 	LoadingIndicatorVariantType
@@ -6,27 +10,30 @@ import {
 
 export const indicators: {
 	variant: LoadingIndicatorVariantType;
+	orientation?: OrientationType;
 	progressText: string;
 	progressTextState: string;
 	label: string;
 }[] = [
 	{
-		variant: 'inline',
+		variant: 'circular',
+		orientation: 'horizontal',
 		progressText: '42 of 100',
 		progressTextState: '100 of 100',
-		label: 'Inline'
+		label: 'Circular horizontal'
 	},
 	{
-		variant: 'onsite',
+		variant: 'circular',
+		orientation: 'vertical',
 		progressText: '42%',
 		progressTextState: '100%',
-		label: 'Onsite'
+		label: 'Circular vertical'
 	},
 	{
-		variant: 'progress-bar',
+		variant: 'bar',
 		progressText: '42 of 100',
 		progressTextState: '100 of 100',
-		label: 'Progress'
+		label: 'Bar'
 	}
 ];
 

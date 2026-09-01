@@ -16,7 +16,8 @@ useMetadata({});
 
 useDefaultProps<DBLoadingIndicatorProps>({
 	indeterminate: true,
-	variant: 'inline',
+	variant: 'circular',
+	orientation: 'horizontal',
 	size: 'medium',
 	autoDisable: true
 });
@@ -204,16 +205,17 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}
+			data-orientation={props.orientation}
 			data-delay={props.delay}
 			data-state={state._loadingState}
 			data-overlay={getBooleanAsString(props.overlay)}>
-			<Show when={props.variant !== 'progress-bar'}>
+			<Show when={props.variant === 'circular'}>
 				<svg
 					class="db-loading-indicator-circle"
 					viewBox={
-						props.variant === 'inline'
-							? '10 10 20 20'
-							: '32 32 64 64'
+						props.orientation === 'vertical'
+							? '32 32 64 64'
+							: '10 10 20 20'
 					}
 					aria-hidden="true">
 					<circle class="db-loading-indicator-circle-track" />

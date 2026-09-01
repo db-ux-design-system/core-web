@@ -37,6 +37,7 @@ export default function LoadingIndicatorShowProgressText() {
 									max={100}
 									state="active"
 									variant={indicator.variant}
+									orientation={indicator.orientation}
 									progressText={indicator.progressText}>
 									{indicator.label}
 								</DBLoadingIndicator>

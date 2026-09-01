@@ -3,7 +3,11 @@ import type { InputType } from 'storybook/internal/csf';
 export const StorybookLoadingIndicatorArgTypes: Record<string, InputType> = {
 	variant: {
 		control: 'select',
-		options: ['inline', 'onsite', 'progress-bar']
+		options: ['bar', 'circular']
+	},
+	orientation: {
+		control: 'select',
+		options: ['horizontal', 'vertical']
 	},
 	size: { control: 'select', options: ['small', 'medium'] },
 	state: {

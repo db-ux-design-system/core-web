@@ -33,6 +33,7 @@ export default function LoadingIndicatorState() {
 									})}
 									state={item.value}
 									variant={indicator.variant}
+									orientation={indicator.orientation}
 									progressText={
 										item.value === 'successful' ||
 										item.value === 'critical'

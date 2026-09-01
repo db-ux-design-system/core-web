@@ -36,6 +36,7 @@ export default function LoadingIndicatorIndeterminate() {
 									max={item.value ? undefined : 100}
 									state={item.value ? undefined : 'active'}
 									variant={indicator.variant}
+									orientation={indicator.orientation}
 									progressText={indicator.progressText}>
 									{indicator.label}
 								</DBLoadingIndicator>

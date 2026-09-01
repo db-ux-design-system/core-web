@@ -36,6 +36,7 @@ export default function LoadingIndicatorOverlay() {
 										<DBLoadingIndicator
 											overlay={item.value}
 											variant={indicator.variant}
+											orientation={indicator.orientation}
 											progressText={
 												indicator.progressText
 											}>
@@ -53,6 +54,7 @@ export default function LoadingIndicatorOverlay() {
 										})}
 										overlay={item.value}
 										variant={indicator.variant}
+										orientation={indicator.orientation}
 										progressText={indicator.progressText}>
 										{indicator.label}
 									</DBLoadingIndicator>

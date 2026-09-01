@@ -34,6 +34,7 @@ export default function LoadingIndicatorStateDeterminate() {
 									})}
 									state={item.value}
 									variant={indicator.variant}
+									orientation={indicator.orientation}
 									indeterminate={false}
 									value={42}
 									max={100}

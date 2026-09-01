@@ -7,11 +7,7 @@ import {
 	SizeProps
 } from '../../shared/model';
 
-export const LoadingIndicatorVariantList = [
-	'progress-bar',
-	'onsite',
-	'inline'
-] as const;
+export const LoadingIndicatorVariantList = ['bar', 'circular'] as const;
 export type LoadingIndicatorVariantType =
 	(typeof LoadingIndicatorVariantList)[number];
 export const LoadingIndicatorStateList = [
@@ -59,6 +55,7 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	GlobalProps &
 	SizeProps &
 	ShowLabelProps &
+	OrientationProps &
 	DelayProps;
 
 export type DBLoadingIndicatorDefaultState = {

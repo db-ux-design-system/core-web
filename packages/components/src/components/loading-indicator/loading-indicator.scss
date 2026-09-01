@@ -6,8 +6,8 @@
 @use "../../styles/dialog-init";
 @use "../../styles/internal/loading";
 
-$stroke-dasharray-inline: calc(var(--circle) * 2 - var(--stroke-width));
-$stroke-dasharray-onsite: calc(
+$stroke-dasharray-horizontal: calc(var(--circle) * 2 - var(--stroke-width));
+$stroke-dasharray-vertical: calc(
 	var(--circle) * 2 + var(--stroke-width) + var(--radius)
 );
 $stroke-segment-length: calc((var(--circle) / 2 - var(--stroke-width)));
@@ -23,6 +23,7 @@ $db-loading-indicator-track-color: color(
 		> label {
 			display: inline-flex;
 			align-items: center;
+			gap: var(--db-indicator-gap);
 
 			> progress {
 				display: none;
@@ -37,8 +38,7 @@ $db-loading-indicator-track-color: color(
 		}
 	}
 
-	&:not([data-variant]),
-	&[data-variant="inline"] {
+	&[data-variant="circular"][data-orientation="horizontal"] {
 		flex-direction: row;
 
 		div {
@@ -46,12 +46,12 @@ $db-loading-indicator-track-color: color(
 		}
 	}
 
-	&[data-variant="progress-bar"],
-	&[data-variant="onsite"] {
+	&[data-variant="bar"],
+	&[data-variant="circular"][data-orientation="vertical"] {
 		flex-direction: column;
 	}
 
-	&[data-variant="onsite"] {
+	&[data-variant="circular"][data-orientation="vertical"] {
 		div {
 			> span {
 				position: absolute;
@@ -60,9 +60,7 @@ $db-loading-indicator-track-color: color(
 				inset-block-start: calc(
 					var(--db-loading-indicator-spinner-inline-size) / 2
 				);
-				inset-inline-start: calc(
-					var(--db-loading-indicator-spinner-inline-size) / 2
-				);
+				inset-inline-start: 50%;
 				transform: translate(-50%, -50%);
 			}
 		}
@@ -87,40 +85,40 @@ $db-loading-indicator-track-color: color(
 				}
 			}
 
-			&:not([data-variant]),
-			&[data-variant="inline"] {
+			&[data-orientation="horizontal"] {
 				.db-loading-indicator-circle-segment {
 					stroke-dashoffset: calc(
-						#{$stroke-dasharray-inline} - #{$stroke-segment-length}
+						#{$stroke-dasharray-horizontal} -
+							#{$stroke-segment-length}
 					);
 				}
 			}
 
-			&[data-variant="onsite"] {
+			&[data-orientation="vertical"] {
 				.db-loading-indicator-circle-segment {
 					stroke-dashoffset: calc(
-						#{$stroke-dasharray-onsite} - #{$stroke-segment-length}
+						#{$stroke-dasharray-vertical} -
+							#{$stroke-segment-length}
 					);
 				}
 			}
 		}
 
 		&[data-indeterminate="false"] {
-			&:not([data-variant]),
-			&[data-variant="inline"] {
+			&[data-orientation="horizontal"] {
 				.db-loading-indicator-circle-segment {
 					stroke-dashoffset: calc(
 						(1 - var(--db-loading-indicator-percentage, 0)) *
-							#{$stroke-dasharray-inline}
+							#{$stroke-dasharray-horizontal}
 					);
 				}
 			}
 
-			&[data-variant="onsite"] {
+			&[data-orientation="vertical"] {
 				.db-loading-indicator-circle-segment {
 					stroke-dashoffset: calc(
 						(1 - var(--db-loading-indicator-percentage, 0)) *
-							#{$stroke-dasharray-onsite}
+							#{$stroke-dasharray-vertical}
 					);
 				}
 			}
@@ -138,8 +136,7 @@ $db-loading-indicator-track-color: color(
 		inline-size: var(--db-loading-indicator-spinner-inline-size, 1lh);
 	}
 
-	&:not([data-variant]),
-	&[data-variant="inline"] {
+	&[data-orientation="horizontal"] {
 		svg {
 			--radius: 6px; // This is the size based on the viewBox of the <svg>
 			--circle: 20px; // This is the size based on the viewBox of the <svg>
@@ -147,7 +144,7 @@ $db-loading-indicator-track-color: color(
 		}
 
 		.db-loading-indicator-circle-segment {
-			stroke-dasharray: $stroke-dasharray-inline;
+			stroke-dasharray: $stroke-dasharray-horizontal;
 		}
 
 		&[data-size="small"] {
@@ -172,9 +169,9 @@ $db-loading-indicator-track-color: color(
 		}
 	}
 
-	&[data-variant="onsite"] {
+	&[data-orientation="vertical"] {
 		.db-loading-indicator-circle-segment {
-			stroke-dasharray: $stroke-dasharray-onsite;
+			stroke-dasharray: $stroke-dasharray-vertical;
 		}
 
 		svg {
@@ -188,7 +185,7 @@ $db-loading-indicator-track-color: color(
 
 			div {
 				> span {
-					// Hide progress text for onsite spinner, as it is centered inside the spinner and can overlap with the segment
+					// Hide progress text for vertical spinner, as it is centered inside the spinner and can overlap with the segment
 					display: none;
 				}
 			}
@@ -363,9 +360,7 @@ $progress-bar-full-segment-inline-size: calc(
 	}
 
 	&[data-state="inactive"] {
-		&:not([data-variant]),
-		&[data-variant="inline"],
-		&[data-variant="onsite"] {
+		&[data-variant="circular"] {
 			.db-loading-indicator-circle-segment {
 				display: none;
 			}
@@ -378,8 +373,7 @@ $progress-bar-full-segment-inline-size: calc(
 				--db-#{$name}-on-bg-basic-emphasis-70-default
 			);
 
-			&:not([data-variant]),
-			&[data-variant="inline"] {
+			&[data-variant="circular"][data-orientation="horizontal"] {
 				svg {
 					display: none;
 				}
@@ -388,6 +382,7 @@ $progress-bar-full-segment-inline-size: calc(
 					@include get-state-icon($name);
 
 					display: grid;
+					column-gap: var(--db-indicator-gap);
 					grid-template-columns: min-content 1fr;
 
 					&:has(> label) {
@@ -403,8 +398,6 @@ $progress-bar-full-segment-inline-size: calc(
 					}
 
 					&::before {
-						--db-icon-margin-end: var(--db-indicator-gap);
-
 						grid-area: icon;
 						align-self: center;
 					}
@@ -419,15 +412,11 @@ $progress-bar-full-segment-inline-size: calc(
 				}
 			}
 
-			&[data-variant="progress-bar"],
-			&[data-variant="onsite"] {
+			&[data-variant="bar"],
+			&[data-variant="circular"][data-orientation="vertical"] {
 				div {
 					> label {
 						@include get-state-icon($name);
-
-						&::before {
-							--db-icon-margin-end: var(--db-indicator-gap);
-						}
 					}
 				}
 			}
@@ -464,7 +453,7 @@ $progress-bar-full-segment-inline-size: calc(
 			background-color: dialog-init.$backdrop-color-strong;
 		}
 
-		&[data-variant="progress-bar"] {
+		&[data-variant="bar"] {
 			div {
 				max-inline-size: calc(100% - #{variables.$db-spacing-fixed-md});
 			}
@@ -498,13 +487,11 @@ $progress-bar-full-segment-inline-size: calc(
 	align-items: center;
 	justify-content: center;
 
-	&:not([data-variant]),
-	&[data-variant="inline"],
-	&[data-variant="onsite"] {
+	&[data-variant="circular"] {
 		@extend %spinner;
 	}
 
-	&[data-variant="progress-bar"] {
+	&[data-variant="bar"] {
 		@extend %progress-bar;
 	}
 

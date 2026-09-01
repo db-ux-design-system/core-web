@@ -33,6 +33,7 @@ export default function LoadingIndicatorDelay() {
 									})}
 									delay={delay.value}
 									variant={indicator.variant}
+									orientation={indicator.orientation}
 									progressText={indicator.progressText}>
 									{indicator.label}
 								</DBLoadingIndicator>
