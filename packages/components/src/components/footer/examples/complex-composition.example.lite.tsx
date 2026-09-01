@@ -155,7 +155,7 @@ export default function FooterComplexComposition() {
 					</div>
 				</DBFooterContent>
 				<DBFooterMeta copyright="© Deutsche Bahn AG">
-					<nav aria-label="Legal navigation">
+					<nav aria-label="Complex legal navigation">
 						<ul
 							style={{
 								display: 'flex',

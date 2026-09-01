@@ -45,7 +45,7 @@
       - listitem:
         - link "Sustainability"
   - paragraph: © Deutsche Bahn AG
-  - navigation "Legal navigation":
+  - navigation "Complex legal navigation":
     - list:
       - listitem:
         - link "Privacy policy"
