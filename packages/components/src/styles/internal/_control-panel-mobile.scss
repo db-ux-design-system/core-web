@@ -19,11 +19,11 @@
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	grid-template-areas: var(
 		--db-control-panel-mobile-position-top-grid-areas,
-		"brand primary drawer-button"
+		"brand actions-1 drawer-button"
 	);
 	grid-template-columns: var(
 		--db-control-panel-mobile-position-top-grid-columns,
-		[brand] 1fr [primary] min-content [drawer-button] min-content
+		[brand] 1fr [actions-1] min-content [drawer-button] min-content
 	);
 	justify-items: center;
 	padding-block: calc(
@@ -46,7 +46,7 @@
 %control-panel-mobile-position-bottom {
 	border-block-start: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-	grid-template-areas: "brand drawer-button primary";
+	grid-template-areas: "brand drawer-button actions-1";
 	grid-template-columns:
 		minmax(#{variables.$db-sizing-md}, min-content)
 		1fr minmax(#{variables.$db-sizing-md}, min-content);

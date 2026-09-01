@@ -128,15 +128,19 @@ export default function DBControlPanelNavigation(
 		_isShellDesktopPositionTop: () => {
 			if (!_ref) return false;
 			const element = _ref as HTMLElement;
-			const shell = element.closest('.db-shell');
-			const shellSubNavigation = element.closest(
-				'.db-shell-sub-navigation'
-			);
 			const mobileControlPanel = element.closest(
 				'.db-control-panel-mobile'
 			);
+			if (mobileControlPanel) return false;
+
 			const flatIconControlPanel = element.closest(
 				'.db-control-panel-flat-icon'
+			);
+			if (flatIconControlPanel) return false;
+
+			const shell = element.closest('.db-shell');
+			const shellSubNavigation = element.closest(
+				'.db-shell-sub-navigation'
 			);
 			const isSubNavigationPositionTop =
 				shell?.getAttribute('data-sub-navigation-desktop-position') ===
@@ -159,9 +163,7 @@ export default function DBControlPanelNavigation(
 					isSubNavigationMobile);
 
 			return (
-				(!mobileControlPanel &&
-					!flatIconControlPanel &&
-					isPopoverSubNavigation) ||
+				isPopoverSubNavigation ||
 				(!shellSubNavigation && isMainNavigationPositionTop)
 			);
 		},

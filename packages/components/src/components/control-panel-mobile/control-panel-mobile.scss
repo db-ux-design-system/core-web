@@ -39,16 +39,16 @@
 	}
 
 	@include control-panel-mobile.has-empty-drawer {
-		--db-control-panel-mobile-position-top-grid-areas: "brand primary";
+		--db-control-panel-mobile-position-top-grid-areas: "brand actions-1";
 		--db-control-panel-mobile-position-top-grid-columns: [brand] 1fr
-			[primary] min-content;
+			[actions-1] min-content;
 
 		// If drawer is empty we hide burger button
 		.db-control-panel-mobile-button {
 			display: none;
 		}
 
-		// We don't show primary border in this case
+		// We don't show actions-1 border in this case
 		.db-control-panel-actions-1 {
 			padding-inline-end: 0;
 
