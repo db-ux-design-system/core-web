@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import FooterComplexComposition from '../examples/complex-composition.example.lite';
 import FooterComposition from '../examples/composition.example.lite';
 import FooterCopyright from '../examples/copyright.example.lite';
 import FooterOptionalAreas from '../examples/optional-areas.example.lite';
@@ -15,6 +16,11 @@ export default function FooterShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Composition">
 				<CardWrapperShowcase>
 					<FooterComposition />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Complex composition">
+				<CardWrapperShowcase>
+					<FooterComplexComposition />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Optional Areas">
