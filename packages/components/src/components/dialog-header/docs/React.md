@@ -10,8 +10,11 @@ import { DBDialogHeader } from "@db-ux/react-core-components";
 
 const App = () => {
 	return (
-		<DBDialogHeader closebuttontext="Close" text="With text prop"></DBDialogHeader>
-	)
+		<DBDialogHeader
+			closebuttontext="Close"
+			text="With text prop"
+		></DBDialogHeader>
+	);
 };
 
 export default App;
