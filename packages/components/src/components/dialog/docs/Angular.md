@@ -29,7 +29,36 @@ import {
 })
 ```
 
-### Use component
+### Use Component
+
+Project `db-dialog-header` with the `header` attribute and `db-dialog-footer` with the `footer` attribute. `DBDialogHeader` links its heading to the dialog via `aria-labelledby` and renders the close button, so it should be part of every dialog.
+
+#### Invoker Commands
+
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
+
+Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
+
+```html app.component.html
+<!-- app.component.html -->
+
+<db-button command="show-modal" commandfor="my-dialog">Open dialog</db-button>
+
+<db-dialog id="my-dialog">
+	<db-dialog-header header text="Dialog title" closeButtonText="Close">
+	</db-dialog-header>
+	My dialog content
+	<db-dialog-footer footer>
+		<db-button command="request-close" commandfor="my-dialog">
+			Confirm
+		</db-button>
+	</db-dialog-footer>
+</db-dialog>
+```
+
+The close button inside `DBDialogHeader` already uses `command="request-close"` with the resolved dialog `id`.
+
+#### Manage component by state
 
 ```html app.component.html
 <!-- app.component.html -->
@@ -67,33 +96,6 @@ export class AppComponent {
 	};
 }
 ```
-
-Project `db-dialog-header` with the `header` attribute and `db-dialog-footer` with the `footer` attribute. `DBDialogHeader` links its heading to the dialog via `aria-labelledby` and renders the close button, so it should be part of every dialog.
-
-### Invoker Commands
-
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
-
-Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
-
-```html app.component.html
-<!-- app.component.html -->
-
-<db-button command="show-modal" commandfor="my-dialog">Open dialog</db-button>
-
-<db-dialog id="my-dialog">
-	<db-dialog-header header text="Dialog title" closeButtonText="Close">
-	</db-dialog-header>
-	My dialog content
-	<db-dialog-footer footer>
-		<db-button command="request-close" commandfor="my-dialog">
-			Confirm
-		</db-button>
-	</db-dialog-footer>
-</db-dialog>
-```
-
-The close button inside `DBDialogHeader` already uses `command="request-close"` with the resolved dialog `id`.
 
 ### Return a value
 
