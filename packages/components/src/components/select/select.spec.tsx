@@ -78,10 +78,20 @@ const testAction = () => {
 				<option value="first">First option</option>
 			</DBSelect>
 		);
-		await expect(component.locator('option[value=""]')).toHaveJSProperty(
-			'hidden',
-			true
-		);
+		const emptyOption = component.locator('option[value=""]');
+		const firstOption = component.locator('option[value="first"]');
+		const select = component.getByRole('combobox');
+
+		await expect(emptyOption).toHaveJSProperty('hidden', true);
+		await expect(emptyOption).toHaveJSProperty('selected', true);
+		await expect(firstOption).toHaveJSProperty('selected', false);
+		await expect(select).toHaveValue('');
+		await expect(select).toHaveJSProperty('selectedIndex', 0);
+		expect(
+			await select.evaluate(
+				(element: HTMLSelectElement) => element.validity.valueMissing
+			)
+		).toBe(true);
 	});
 
 	test('should show the empty option with showEmptyOption', async ({
