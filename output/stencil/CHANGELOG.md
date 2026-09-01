@@ -1,5 +1,14 @@
 # @db-ux/wc-core-components
 
+## 5.2.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): synchronize values and options when resetting - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(radio): checked state barely visible at `size="small"` with `density="functional"` - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBRadio): use `:user-valid`/`:user-invalid` instead of `:valid`/`:invalid` for radio inputs - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBCustomSelect): reset inline positioning when switching to mobile screen sizes - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+
 ## 5.2.0
 
 ### Minor Changes
