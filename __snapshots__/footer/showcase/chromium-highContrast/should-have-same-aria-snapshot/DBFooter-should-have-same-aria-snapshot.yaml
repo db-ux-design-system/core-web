@@ -14,6 +14,47 @@
         - link "Imprint"
       - listitem:
         - link "Accessibility"
+  - link "Complex composition"
+  - text: Deutsche Bahn
+  - paragraph: Moving people and goods while connecting regions and cities.
+  - navigation "Travel":
+    - heading "Travel" [level=2]
+    - list:
+      - listitem:
+        - link "Journey planner"
+      - listitem:
+        - link "Offers"
+      - listitem:
+        - link "Stations"
+  - navigation "Support":
+    - heading "Support" [level=2]
+    - list:
+      - listitem:
+        - link "Help and contact"
+      - listitem:
+        - link "Passenger rights"
+      - listitem:
+        - link "Lost property"
+  - navigation "Company":
+    - heading "Company" [level=2]
+    - list:
+      - listitem:
+        - link "Company profile"
+      - listitem:
+        - link "Careers"
+      - listitem:
+        - link "Sustainability"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Accessibility"
+      - listitem:
+        - link "Terms and conditions"
   - link "Optional Areas"
   - navigation "Content-only footer navigation":
     - list:
