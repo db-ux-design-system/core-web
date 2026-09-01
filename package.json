@@ -103,7 +103,7 @@
     "eslint": "10.9.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-xo": "1.0.0",
-    "eslint-plugin-package-json": "1.7.1",
+    "eslint-plugin-package-json": "1.8.0",
     "husky": "9.1.7",
     "jscpd": "5.0.16",
     "knip": "6.33.0",
