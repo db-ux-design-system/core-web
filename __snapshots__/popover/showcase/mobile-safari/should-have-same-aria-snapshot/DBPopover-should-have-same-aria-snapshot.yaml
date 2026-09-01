@@ -167,7 +167,7 @@
   - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
   - button "Fixed"
   - article: Max width, lorem ipsum dolor sit amet, consetetur sadipscing
-  - link "Z-Index"
+  - link "Closed Popover Visibility"
   - button "Switch"
   - article:
     - switch "Switch me"
@@ -178,6 +178,7 @@
     - switch "Switch me"
     - text: Switch me
     - status
+  - button "Switch Visual Aid Closed"
   - button "Input"
   - article:
     - text: Input
