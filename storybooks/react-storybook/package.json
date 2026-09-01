@@ -21,7 +21,7 @@
     "@db-ux/react-core-components": "workspace:*",
     "@faker-js/faker": "10.6.0",
     "@tanstack/match-sorter-utils": "9.1.2",
-    "@tanstack/react-table": "9.2.3",
+    "@tanstack/react-table": "9.2.4",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
