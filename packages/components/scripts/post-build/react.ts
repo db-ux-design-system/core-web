@@ -57,6 +57,13 @@ const overwriteEvents = (tmp?: boolean) => {
 		'export type GeneralKeyboardEvent<T> = KeyboardEvent;',
 		'export type GeneralKeyboardEvent<T> = React.KeyboardEvent<T>;'
 	);
+	// Widen formAction to React's native union so React Action functions
+	// (`formAction={async (formData) => ...}`) keep type-checking instead of
+	// being narrowed to a plain string by the shared model.
+	modelFileContent = modelFileContent.replace(
+		'export type ButtonFormActionType = string;',
+		'export type ButtonFormActionType = NonNullable<React.ButtonHTMLAttributes<HTMLButtonElement>["formAction"]>;'
+	);
 	writeFileSync(modelFilePath, modelFileContent);
 };
 

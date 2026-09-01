@@ -1,4 +1,5 @@
 import type {
+	ButtonFormActionType,
 	ClickEventProps,
 	GlobalProps,
 	GlobalState,
@@ -56,7 +57,7 @@ export type DBButtonDefaultProps = {
 	/**
 	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
 	 */
-	formAction?: string;
+	formAction?: ButtonFormActionType;
 
 	/**
 	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.

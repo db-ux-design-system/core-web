@@ -630,6 +630,16 @@ export type GeneralEvent<T> = Event;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type GeneralKeyboardEvent<T> = KeyboardEvent;
 
+/**
+ * Type of the `formAction` button attribute. Defaults to the plain HTML string
+ * attribute; the React post-build widens this to React's native union so that
+ * React Action functions (`formAction={async (formData) => ...}`) keep
+ * type-checking (see `scripts/post-build/react.ts`).
+ *
+ * @public
+ */
+export type ButtonFormActionType = string;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type ClickEvent<T> = MouseEvent;
 export type ClickEventProps<T> = {
