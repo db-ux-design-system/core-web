@@ -14,5 +14,3 @@ import { DBLoadingIndicator } from "@db-ux/v-core-components";
 	<DBLoadingIndicator>LoadingIndicator</DBLoadingIndicator>
 </template>
 ```
-
-

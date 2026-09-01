@@ -8,12 +8,7 @@ For general installation and configuration take a look at the [react-core-compon
 // App.tsx
 import { DBLoadingIndicator } from "@db-ux/react-core-components";
 
-const App = () => (
-	<DBLoadingIndicator>
-		LoadingIndicator
-	</DBLoadingIndicator>
-);
+const App = () => <DBLoadingIndicator>LoadingIndicator</DBLoadingIndicator>;
 
 export default App;
 ```
-

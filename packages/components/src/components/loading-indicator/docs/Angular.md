@@ -22,5 +22,3 @@ import { DBLoadingIndicator } from '@db-ux/ngx-core-components';
 <!-- app.component.html -->
 <db-loading-indicator>LoadingIndicator</db-loading-indicator>
 ```
-
-

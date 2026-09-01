@@ -1,1 +1,1 @@
-export { default as DBLoadingIndicator } from "./loading-indicator";
+export { default as DBLoadingIndicator } from './loading-indicator';
