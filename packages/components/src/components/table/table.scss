@@ -274,10 +274,13 @@
 	max-block-size: 100%;
 	// stylelint-disable-next-line db-ux/use-spacings
 	padding: variables.$db-border-width-xs; // offset for focus
+	// Always allow vertical scrolling so a tall table respects its parent's height
+	overflow-y: auto;
 
 	&:not([data-width]),
 	&[data-width="full"] {
-		overflow: auto;
+		// A full-width table may be wider than its wrapper -> allow horizontal scrolling
+		overflow-x: auto;
 
 		table {
 			inline-size: inherit;
@@ -287,6 +290,10 @@
 	&[data-width="auto"] {
 		display: flex;
 		justify-content: center;
+
+		// No overflow-x here: the table is fit-content and centered, so it never
+		// exceeds the wrapper width. (Setting overflow-x: visible would be promoted
+		// to auto by the browser because overflow-y is auto.)
 
 		table {
 			--db-table-columns-size: auto;
