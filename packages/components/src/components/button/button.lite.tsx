@@ -56,11 +56,15 @@ export default function DBButton(props: DBButtonProps) {
 			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			name={props.name}
 			form={props.form}
-			formAction={props.formAction}
-			formEncType={props.formEncType}
-			formMethod={props.formMethod}
-			formNoValidate={getBoolean(props.formNoValidate, 'formNoValidate')}
-			formTarget={props.formTarget}
+			formAction={props.formAction ?? props.formaction}
+			formEncType={props.formEncType ?? props.formenctype}
+			formMethod={props.formMethod ?? props.formmethod}
+			formNoValidate={
+				getBoolean(props.formNoValidate, 'formNoValidate') ||
+				getBoolean(props.formnovalidate, 'formnovalidate') ||
+				undefined
+			}
+			formTarget={props.formTarget ?? props.formtarget}
 			value={props.value}
 			command={props.command}
 			commandfor={props.commandfor}>
