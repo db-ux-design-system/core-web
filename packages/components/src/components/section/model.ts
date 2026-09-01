@@ -1,4 +1,4 @@
-import {
+import type {
 	ContainerWidthProps,
 	GlobalProps,
 	SpacingProps

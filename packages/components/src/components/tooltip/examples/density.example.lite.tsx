@@ -1,0 +1,29 @@
+import { Fragment, useMetadata } from '@builder.io/mitosis';
+import DBButton from '../../button/button.lite';
+import DBTooltip from '../tooltip.lite';
+import { StorybookTooltipArgTypes } from './_tooltip.arg.types';
+
+useMetadata({
+	storybookTitle: 'Density',
+	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
+	storybookArgTypes: StorybookTooltipArgTypes
+});
+
+export default function TooltipDensity() {
+	return (
+		<Fragment>
+			<DBButton data-density="functional">
+				Functional
+				<DBTooltip id="tooltip-01">Tooltip</DBTooltip>
+			</DBButton>
+			<DBButton data-density="regular">
+				(Default) Regular
+				<DBTooltip id="tooltip-02">Tooltip</DBTooltip>
+			</DBButton>
+			<DBButton data-density="expressive">
+				Expressive
+				<DBTooltip id="tooltip-03">Tooltip</DBTooltip>
+			</DBButton>
+		</Fragment>
+	);
+}

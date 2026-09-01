@@ -5,6 +5,9 @@ import {
 	DBCheckbox,
 	DBCustomSelect,
 	DBDivider,
+	DBDrawer,
+	DBDrawerHeader,
+	DBInfotext,
 	DBInput,
 	DBLink,
 	DBPopover,
@@ -22,6 +25,7 @@ import type { ChangeEvent, ValueLabelType } from '@components/src/shared/model';
 import { useEffect, useState } from 'react';
 
 const FormComponent = () => {
+	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [input, setInput] = useState('');
 	const [dataInput, setDataInput] = useState('');
 	const [textarea, setTextarea] = useState('default textarea');
@@ -29,10 +33,10 @@ const FormComponent = () => {
 	const [radio, setRadio] = useState('');
 	const [select, setSelect] = useState('');
 	const [tags, setTags] = useState<string[]>([]);
-	const [checked, setChecked] = useState<boolean[]>([true, false]);
+	const [checked, setChecked] = useState([true, false]);
 
 	const [accordionItems, setAccordionItems] = useState<ValueLabelType[]>();
-	const [tabsTest, setTabsTest] = useState<boolean>(false);
+	const [tabsTest, setTabsTest] = useState(false);
 
 	const [customSelectValue, setCustomSelectValue] = useState<
 		string[] | undefined
@@ -352,7 +356,7 @@ const FormComponent = () => {
 						</DBTabItem>
 						<DBTabItem
 							icon="x_placeholder"
-							noText={true}></DBTabItem>
+							label="Icon only tab"></DBTabItem>
 					</DBTabList>
 					<DBTabPanel>
 						Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
@@ -489,6 +493,42 @@ const FormComponent = () => {
 					validMessage="😎"
 					minLength={10}
 				/>
+
+				<h2>Drawer Test</h2>
+				<p>
+					Test: Click "Open Drawer", then mouse down inside the drawer
+					content, drag to the backdrop, and release. The drawer
+					should NOT close.
+				</p>
+				<DBButton
+					onClick={() => {
+						setDrawerOpen(true);
+					}}>
+					Open Drawer
+				</DBButton>
+				<DBDrawer
+					onClose={() => {
+						setDrawerOpen(false);
+					}}
+					header={<DBDrawerHeader>Drawer Test</DBDrawerHeader>}
+					open={drawerOpen}>
+					<DBInfotext>
+						Test: Mouse down here, drag to backdrop, release. Drawer
+						should stay open.
+						<DBTooltip placement="bottom-start">
+							Test tooltip
+						</DBTooltip>
+					</DBInfotext>
+
+					<DBCustomSelect
+						options={[{ value: 'Option 1' }, { value: 'Option 2' }]}
+						label="Test"
+						required
+						showSearch
+						multiple
+						placeholder="Placeholder"
+					/>
+				</DBDrawer>
 
 				<DBTag semantic="neutral" emphasis="strong">
 					KUZ

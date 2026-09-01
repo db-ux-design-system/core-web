@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -7,9 +6,17 @@ import {
 	DBButton,
 	DBCard,
 	DBCheckbox,
+	DBCustomButton,
+	DBCustomHeading,
 	DBCustomSelect,
 	DBDivider,
 	DBHeader,
+	DBHeadingH1,
+	DBHeadingH2,
+	DBHeadingH3,
+	DBHeadingH4,
+	DBHeadingH5,
+	DBHeadingH6,
 	DBIcon,
 	DBInfotext,
 	DBInput,
@@ -25,6 +32,7 @@ import {
 	DBStack,
 	DBSwitch,
 	DBTabItem,
+	DBTable,
 	DBTabList,
 	DBTabPanel,
 	DBTabs,
@@ -32,6 +40,8 @@ import {
 	DBTextarea,
 	DBTooltip
 } from '../../../../output/react/src/index';
+
+import { useEffect, useState } from 'react';
 import type { ComponentParserType, ComponentType } from './data';
 
 const validHosts = new Set(['marketingportal.extranet.deutschebahn.com']);
@@ -84,7 +94,11 @@ const ComponentSwitch = ({
 		return (
 			<div
 				className={`flex ${className ?? ''}`}
-				data-variant={props?.column ? 'column' : 'row'}>
+				data-variant={
+					(props as Record<string, unknown>)?.column
+						? 'column'
+						: 'row'
+				}>
 				{resolvedContent}
 			</div>
 		);
@@ -92,14 +106,15 @@ const ComponentSwitch = ({
 
 	if (type === 'a') {
 		try {
-			const url = new URL('', props.href);
+			const aProps = props as Record<string, string>;
+			const url = new URL('', aProps.href);
 			const { host } = url;
 			if (validHosts.has(host)) {
 				return (
 					<a
 						className={className}
-						href={props.href}
-						target={props.target}>
+						href={aProps.href}
+						target={aProps.target}>
 						{resolvedContent}
 					</a>
 				);
@@ -109,6 +124,7 @@ const ComponentSwitch = ({
 		}
 	}
 
+	// eslint-disable-next-line unicorn/prefer-else-if
 	if (type === 'notification') {
 		return (
 			<DBNotification className={className} {...props}>
@@ -349,6 +365,47 @@ const ComponentSwitch = ({
 		);
 	}
 
+	if (type === 'table') {
+		return (
+			<DBTable className={className} {...props}>
+				{resolvedContent}
+			</DBTable>
+		);
+	}
+
+	if (type === 'custom-button') {
+		return (
+			<DBCustomButton className={className} {...props}>
+				{resolvedContent}
+			</DBCustomButton>
+		);
+	}
+
+	if (type === 'custom-heading') {
+		return (
+			<DBCustomHeading className={className} {...props}>
+				{resolvedContent}
+			</DBCustomHeading>
+		);
+	}
+
+	const headingComponents: Record<string, any> = {
+		'heading-h1': DBHeadingH1,
+		'heading-h2': DBHeadingH2,
+		'heading-h3': DBHeadingH3,
+		'heading-h4': DBHeadingH4,
+		'heading-h5': DBHeadingH5,
+		'heading-h6': DBHeadingH6
+	};
+	const Heading = type ? headingComponents[type] : undefined;
+	if (Heading) {
+		return (
+			<Heading className={className} {...props}>
+				{resolvedContent}
+			</Heading>
+		);
+	}
+
 	if (type === 'loading-indicator') {
 		return (
 			<DBLoadingIndicator className={className} {...props}>
@@ -376,17 +433,15 @@ const ComponentParser = ({ componentsString }: ComponentParserType) => {
 	if (components && Array.isArray(components)) {
 		return (
 			<>
-				{components.map((component: ComponentType, index: number) => {
-					return (
-						<ComponentSwitch
-							key={`component-${index}`}
-							index={index}
-							type={component.type}
-							content={component.content}
-							props={component.props}
-						/>
-					);
-				})}
+				{components.map((component: ComponentType, index: number) => (
+					<ComponentSwitch
+						key={`component-${index}`}
+						index={index}
+						type={component.type}
+						content={component.content}
+						props={component.props}
+					/>
+				))}
 			</>
 		);
 	}

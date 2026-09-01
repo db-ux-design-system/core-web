@@ -8,27 +8,32 @@
 	@include helpers.display(inline-block);
 
 	&:not([data-wrap="true"]) {
-		block-size: variables.$db-sizing-sm;
+		@include helpers.display(inline-flex);
+
+		block-size: 1lh;
+		align-items: center;
 	}
 }
 
 %db-link-default-color {
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 
-	@include helpers.hover {
-		color: color-mix(
-			in srgb,
-			transparent 25%,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			color: color-mix(
+				in srgb,
+				transparent 25%,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
+		}
 
-	@include helpers.active {
-		color: color-mix(
-			in srgb,
-			transparent 50%,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
+		@include helpers.active {
+			color: color-mix(
+				in srgb,
+				transparent 50%,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+			);
+		}
 	}
 }
 
@@ -61,5 +66,9 @@
 	&[aria-disabled="true"] {
 		opacity: variables.$db-opacity-md;
 		pointer-events: none;
+	}
+
+	&::after {
+		text-decoration: none;
 	}
 }

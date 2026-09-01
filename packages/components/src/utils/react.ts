@@ -45,6 +45,7 @@ const reactHtmlAttributes = [
 	'ping'
 ];
 
+/** @public */
 export const filterPassingProps = (
 	props: any,
 	propsPassingFilter: string[]
@@ -65,6 +66,7 @@ export const filterPassingProps = (
 			return { ...obj, [key]: props[key] };
 		}, {});
 
+/** @public */
 export const getRootProps = (
 	props: any,
 	rooProps: string[]
@@ -76,6 +78,7 @@ export const getRootProps = (
 		}, {});
 };
 
+/** @public */
 export default {
 	getRootProps,
 	filterPassingProps

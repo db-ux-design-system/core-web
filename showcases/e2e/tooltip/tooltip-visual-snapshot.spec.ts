@@ -8,6 +8,10 @@ const path = '04/tooltip';
 test.describe('DBTooltip', () => {
 	getDefaultScreenshotTest({
 		path,
-		preScreenShot: async (page) => hoverPre(page, selector)
+		preScreenShot: async (page) => hoverPre(page, selector),
+		fixedHeight: (project) =>
+			project.name === 'webkit' || project.name === 'mobile_safari'
+				? 1886
+				: undefined
 	});
 });

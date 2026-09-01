@@ -11,6 +11,10 @@
 			{
 				"label": "DBLink",
 				"name": "link"
+			},
+			{
+				"label": "DBCustomButton",
+				"name": "custom-button"
 			}
 		]
 	},
@@ -19,6 +23,19 @@
 		"path": "/components/data-display",
 		"name": "data-display",
 		"subNavigation": [
+			{
+				"label": "DBHeading",
+				"name": "heading",
+				"elements": [
+					"db-heading-h-1",
+					"db-heading-h-2",
+					"db-heading-h-3",
+					"db-heading-h-4",
+					"db-heading-h-5",
+					"db-heading-h-6",
+					"db-custom-heading"
+				]
+			},
 			{
 				"label": "DBBrand",
 				"name": "brand"
@@ -49,6 +66,10 @@
 				"label": "DBAccordionItem",
 				"name": "accordion-item",
 				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBTable",
+				"name": "table"
 			},
 			{
 				"label": "DBTabs",

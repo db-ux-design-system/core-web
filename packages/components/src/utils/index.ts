@@ -26,9 +26,7 @@ export const addAttributeToChildren = (
 };
 
 export type ClassNameArg =
-	| string
-	| { [key: string]: boolean | undefined }
-	| undefined;
+	string | { [key: string]: boolean | undefined } | undefined;
 export const cls = (...args: ClassNameArg[]) => {
 	let result = '';
 
@@ -82,16 +80,28 @@ export const delay = (fn: () => void, ms: number) =>
 	new Promise(() => setTimeout(fn, ms));
 
 /**
- * Some frameworks like stencil would not add "true" as value for a prop
- * if it is used in a framework like angular e.g.: [disabled]="myDisabledProp"
- * @param originBool Some boolean to convert to string
+ * Converts boolean-like inputs to "true" or "false" strings.
+ * Handles HTML-style boolean attributes where an empty string or the
+ * attribute's own name as value (e.g. noText="noText") should be treated as true.
+ * Some frameworks like Stencil do not add "true" as value for a prop
+ * if it is used in a framework like Angular e.g.: [disabled]="myDisabledProp"
+ * @param originBool Boolean or string value to convert
+ * @param propertyName The prop/attribute name — when originBool is a string equal
+ *   to this name (case-insensitive), it is treated as true
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const getBooleanAsString = (originBool?: boolean | string): any => {
+export const getBooleanAsString = (
+	originBool?: boolean | string,
+	propertyName?: string
+): any => {
 	if (originBool === undefined || originBool === null) return;
 
 	if (typeof originBool === 'string') {
-		return String(Boolean(originBool));
+		return String(
+			originBool === '' ||
+				originBool === 'true' ||
+				propertyName?.toLowerCase() === originBool.toLowerCase()
+		);
 	}
 
 	return String(originBool);
@@ -103,8 +113,12 @@ export const getBoolean = (
 ): boolean | undefined => {
 	if (originBool === undefined || originBool === null) return;
 
-	if (typeof originBool === 'string' && propertyName) {
-		return Boolean(propertyName === originBool || originBool);
+	if (typeof originBool === 'string') {
+		return Boolean(
+			originBool === '' ||
+			originBool === 'true' ||
+			propertyName?.toLowerCase() === originBool.toLowerCase()
+		);
 	}
 
 	return Boolean(originBool);
@@ -164,13 +178,16 @@ export const getInputValue = (
 		: value;
 };
 
+const toBool = (value: boolean | string): boolean =>
+	typeof value === 'string' ? value !== 'false' : value;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getHideProp = (show?: boolean | string): any => {
 	if (show === undefined || show === null) {
 		return undefined;
 	}
 
-	return getBooleanAsString(!Boolean(show));
+	return getBooleanAsString(!toBool(show), 'show');
 };
 
 export const stringPropVisible = (
@@ -179,19 +196,59 @@ export const stringPropVisible = (
 ) => {
 	if (showString === undefined) {
 		return !!givenString;
-	} else {
-		return Boolean(showString) && Boolean(givenString);
 	}
+
+	return toBool(showString) && Boolean(givenString);
 };
 
 export const getSearchInput = (element: HTMLElement): HTMLInputElement | null =>
 	element.querySelector<HTMLInputElement>(`input[type="search"]`);
 
+// WeakMap to store generated keys for option objects without mutating them.
+// Used only as a last resort for options that have neither id, value, nor label.
+const optionKeyMap = new WeakMap<object, string>();
+
 export const getOptionKey = (
-	option: { id?: string; value?: string | number | string[] | undefined },
+	option: {
+		id?: string;
+		label?: string;
+		value?: string | number | string[] | undefined;
+	},
 	prefix: string
 ) => {
-	const key = option.id ?? option.value ?? uuid();
+	// 1. Consumer-provided id — stable and unique (best case).
+	if (option.id) {
+		return `${prefix}${option.id}`;
+	}
+
+	// 2. Data-based key from value and/or label — stable across object
+	//    recreations (e.g. inline options={[...]} on every render).
+	//    Combining both fields maximizes uniqueness: two options may share
+	//    a value but users couldn't distinguish identical labels, so in
+	//    practice the combination is unique.
+	//    We prefix each segment with its length to avoid ambiguous
+	//    concatenations (e.g. 'a-b'+'c' vs 'a'+'b-c').
+	const value =
+		option.value !== undefined && option.value !== ''
+			? String(option.value)
+			: '';
+	const label = option.label ?? '';
+
+	if (value || label) {
+		return `${prefix}${value.length}:${value}.${label}`;
+	}
+
+	// 3. Last resort for truly anonymous options (no id, no value, no label).
+	//    WeakMap ties a generated uuid to the object reference so the key
+	//    persists as long as the same object is reused. If the consumer
+	//    recreates these objects every render, keys will be unstable — but
+	//    that's an unsolvable edge case without any data to anchor to.
+	let key = optionKeyMap.get(option);
+	if (!key) {
+		key = uuid();
+		optionKeyMap.set(option, key);
+	}
+
 	return `${prefix}${key}`;
 };
 
@@ -234,4 +291,30 @@ export const getNotificationRole = ({
 		default:
 			return 'article';
 	}
+};
+
+export const NAVIGATION_KEYS = [
+	'ArrowRight',
+	'ArrowDown',
+	'ArrowLeft',
+	'ArrowUp',
+	'Home',
+	'End',
+	'Enter',
+	' '
+] as const;
+
+/**
+ * Checks whether the browser natively supports the `focusgroup` HTML attribute.
+ * When supported, the browser handles arrow-key navigation and roving tabindex
+ * for composite widgets (tablists, toolbars, etc.), so our JS fallback can be skipped.
+ *
+ * @public
+ */
+export const hasFocusgroupSupport = (): boolean => {
+	if (typeof HTMLElement === 'undefined') return false;
+	return (
+		'focusGroup' in HTMLElement.prototype ||
+		'focusgroup' in HTMLElement.prototype
+	);
 };

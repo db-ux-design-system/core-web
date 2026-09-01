@@ -1,0 +1,481 @@
+# @db-ux/core-components
+
+Contains all component styles and the Mitosis source definitions that generate framework-specific outputs (Angular, React, Vue, Web Components).
+
+## Key Facts
+
+- **ESM only** (`"type": "module"`)
+- Components are authored in Mitosis (`.lite.tsx`) and compiled to framework outputs
+- Styles are authored in SCSS and compiled via Sass + PostCSS
+- Framework outputs land in `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
+
+## Scripts
+
+```bash
+pnpm run build                  # Full build: Mitosis + assets + SCSS + PostCSS
+pnpm run test                   # Run vitest
+pnpm run generate:component     # Scaffold a new component (hygen)
+pnpm run generate:docs          # Regenerate component docs
+pnpm run generate:showcase      # Generate showcase files via Mitosis
+pnpm run generate:stories       # Generate Storybook stories via Mitosis
+pnpm run dev:react              # Watch + recompile React output
+pnpm run dev:vue                # Watch + recompile Vue output
+pnpm run dev:angular            # Watch + recompile Angular output
+```
+
+## Structure
+
+```text
+src/
+└── components/
+    └── [component-name]/
+        ├── [component].lite.tsx    # Mitosis source (framework-agnostic)
+        ├── [component].scss        # Component styles
+        ├── model.ts                # Prop definitions (TypeScript interfaces)
+        ├── docs/                   # Component documentation
+        ├── examples/               # Example use cases (see below)
+        └── figma/                  # Figma Code Connect definitions (see below)
+configs/
+├── mitosis.config.cjs              # Base Mitosis config
+├── mitosis.showcase.config.cjs     # Config for showcase generation
+├── mitosis.storybook.config.cjs    # Config for Storybook generation
+├── mitosis.figma.config.cjs        # Config for Figma Code Connect generation
+├── mitosis.agent.config.cjs        # Config for agent documentation generation
+├── plugins/
+│   ├── esm-extensions.cjs          # Appends explicit .js/index.js extensions to relative imports (ESM)
+│   ├── react/                      # React-specific Mitosis plugins
+│   ├── storybook/                  # Storybook generation plugin
+│   ├── figma/                      # Figma Code Connect generation plugin
+│   ├── angular/                    # Angular-specific Mitosis plugins
+│   ├── vue/                        # Vue-specific Mitosis plugins
+│   ├── stencil/                    # Stencil-specific Mitosis plugins
+│   └── agent/                      # Agent documentation plugin
+scripts/
+├── exec/                           # Per-framework post-Mitosis exec scripts
+└── post-build/                     # ⚠️ DEPRECATED — see note below
+```
+
+## Heading component family
+
+`src/components/heading/` contains six native Mitosis components,
+`heading-h1.lite.tsx` through `heading-h6.lite.tsx`, plus
+`custom-heading.lite.tsx`. They form one documented component family with
+shared models, styles, examples, tests, and showcase. The six native components
+have fixed matching heading roots. All Heading components must remain free of
+runtime tag switching and named heading slots.
+
+### One folder, seven registry entries
+
+Every other component owns its folder, which is why `scripts/post-build/` can
+resolve them as `components/${name}/${name}.ext`. The Heading family shares a
+single folder, so that lookup misses it. Two optional fields on the registry
+entry bridge the gap and are set for all seven Heading components in
+`scripts/post-build/components.ts`:
+
+- **`folder`** — the shared `heading` directory.
+- **`spec`** — the shared `heading.spec.tsx`, declared on exactly one entry
+  because one spec covers all seven components.
+
+With those, Heading uses the same pipeline as every other component: the React
+`forwardRef` and root props, the Angular and Stencil barrel rewrite, and the spec
+copy including the `// VUE:` marker stripping in `copy-files.ts`. Do not
+reintroduce Heading-specific plugins for any of that.
+
+The one genuine difference is the Vue class alias, declared as an overwrite on
+each entry:
+
+```ts
+overwrites: {
+	vue: [{ from: "props.class", to: "props.className ?? props.class" }];
+}
+```
+
+It runs after the built-in `className` to `props.class` rewrite and is required
+because the shared spec runs against both the React and the Vue output and
+asserts the React `className` API. Removing it fails six
+`forwards native attributes` tests plus `composes class` on Vue.
+
+### Component names with a digit
+
+`DBHeadingH1` is the first component whose name ends in a digit, which two
+generators had to learn:
+
+- `configs/plugins/attribute-passing/index.cjs` derives the custom-element tag
+  from the component name. Without the digit boundary in its `dashCase` it
+  produces `db-heading-h1` while the element is `db-heading-h-1`, so the
+  MutationObserver never finds the host and attribute passing silently stops
+  working for the six native Heading components.
+- `configs/plugins/figma/index.cjs` injects the generated prop fragments after the
+  opening tag. Without digits in its tag regexes it matches `<DBHeadingH` and
+  inserts them in the wrong place, which breaks all three Code Connect snapshots.
+
+### `DBCustomHeading` is a styling wrapper, not a heading
+
+`DBCustomHeading` follows the same contract as every other `DBCustom*` component
+in this package: it mirrors the styling API of its regular counterpart and lets
+the consumer bring the semantics. Compare `DBCustomButton`, which mirrors
+`DBButton`'s styling props (`variant`, `size`, `icon*`, `width`, `noText`, `wrap`)
+and drops only the ones belonging to the native `<button>` (`type`, `disabled`,
+`form`, `name`, `value`, `command*`, click events, `text`).
+
+Applied to Heading: `size`, `fontWeight`, `paragraphSpacing` and `alignment` are
+styling and therefore live on the wrapper; `id` and everything else native lives
+on the heading the consumer writes.
+
+```html
+<div class="db-custom-heading" data-size="xl">
+	<h2>Installation</h2>
+	<button type="button">More options</button>
+</div>
+```
+
+It must **not** set `role="heading"` or `aria-level`. An earlier iteration did,
+which forced interactive sibling content into the heading's accessible name
+(`"Installation More options"`) and required per-target generator transforms
+to keep the derived semantics from being overridden. Keeping the heading native
+removes both problems.
+
+#### The default content is the heading, the slots are its siblings
+
+`startSlot` and `endSlot` (the shared `StartSlotProps` and `EndSlotProps`, as used
+by `DBDrawerHeader` and `DBTabItem`) render before and after the default content.
+That split is what keeps the accessible name clean: the same content nested
+_inside_ the heading would be part of its name and would hide an interactive
+control behind it.
+
+The slots are deliberately **not** wrapped in an element. The wrapper is already a
+flex row with `gap`, so projected content becomes a flex item directly and an
+unused slot contributes no box and therefore no gap. A wrapper element would also
+behave inconsistently against the `display: contents` custom-element hosts in the
+Angular and Stencil output.
+
+The CSS-only variant has no slot concept — there, plain DOM order is the
+equivalent, which is why `heading.scss` needs nothing for the slots.
+
+`custom-heading-single-heading` in `@db-ux/core-eslint-plugin` counts the slot
+content too, because it renders inside the wrapper. In React that content is a
+JSX attribute rather than a child, so the rule inspects the `startSlot` and
+`endSlot` attribute values in addition to the child walk; Vue and Angular project
+slot content as a real child and are covered by the walk alone.
+
+Three implementation details in `heading.scss` that should not be traded away:
+
+- **The child selectors exclude `.db-heading`.** A nested Heading component keeps
+  its own typography instead of fighting the wrapper's attributes, so the two
+  models never produce an ambiguous result.
+- **Only the headline font shorthand lands on the wrapper.** The wrapper needs
+  the matching line height so `1lh` for `data-paragraph-spacing` resolves from
+  the heading typography rather than the surrounding body text. Use
+  `fonts.set-headline-size` there; the full `%db-overwrite-headline-size-*`
+  placeholder additionally sets icon custom properties and must stay on the
+  nested heading, otherwise those properties leak into sibling slot components.
+  The nested heading also needs the full override because user-agent styles for
+  `h1`-`h6` block font inheritance. Without an explicit `data-size`, the wrapper
+  picks the level default via `:has(:where(h1))` etc.
+- **`data-alignment` sets `justify-content` on the wrapper and repeats
+  `text-align` on the child.** `%heading-base` sets an explicit
+  `text-align: start` on the child, which would otherwise block inheritance.
+
+The level-to-size mapping comes from `fonts.$headlines` in
+`@db-ux/core-foundations`, shared with the foundations'
+`defaults/default-fonts.scss` so the two cannot drift apart.
+
+### `useMetadata({ figma })` props must not be a chained identifier alias
+
+The `useMetadata` hook is parsed with JSON5, and the resolver does not follow a
+chained identifier reference. `const customHeadingProps = headingProps;` makes
+the whole `figma` metadata unresolvable, which **silently** skips the prop
+injection and leaves literal `props.size` in the generated Code Connect snippet
+instead of the selected Figma value. Use a spread (`{ ...headingProps }`) to
+reuse a map, and member access (`headingProps.alignment`) fails outright with
+`JSON5: invalid character`. After changing a `*.figma.ts` map, always check the
+regenerated snapshot for `props.` occurrences.
+
+### Props types must intersect the shared base directly
+
+Per-component props must be declared as
+`DBHeadingBaseDefaultProps & GlobalProps & AlignmentProps`, not via a bare alias
+hop such as `DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps`. The
+custom-elements analyzer stops resolving at the second alias hop, which publishes
+every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
+the real union and JSDoc.
+
+## Examples (`src/components/**/examples/`)
+
+Examples are the **single source of truth** for component usage. They are used to generate:
+
+- **Showcase content** (via `mitosis.showcase.config.cjs`)
+- **Storybook stories** (via `mitosis.storybook.config.cjs` + `configs/plugins/storybook/`)
+- **Agent documentation** (via `mitosis.agent.config.cjs`)
+
+When adding or modifying examples:
+
+- Place example files inside `src/components/[name]/examples/`
+- Use `data-sb-*` attributes to control Storybook story generation (e.g. controls, args, decorators)
+- Examples must be valid Mitosis components — they go through the same compilation pipeline
+- **Do NOT manually edit showcase files** — they are generated
+
+## Component tests (`src/components/**/*.spec.tsx`)
+
+One spec per component (or per component family, declared via `spec` in `components.ts`). `copy-files.ts` copies it into the React and Vue outputs only — Angular and Stencil have no Playwright component tests, they are covered by the showcase e2e suite. The `// VUE:` marker activates a line for Vue only, since it is stripped for that target.
+
+**Everything a spec needs belongs in the spec.** Do not add test-only components (harnesses, fixtures) under `src/components/`: the main Mitosis config compiles `src/**/*.{lite.tsx,ts}` for all four targets, so such a file ships in every framework output — in Stencil it even becomes a registered custom element in `custom-elements.json` and gets its own lazy-load chunk. Mount the component under test directly, as the other specs do, and re-mount with different props when a prop change is part of the scenario (see `custom-select.spec.tsx`).
+
+**`selectOption` cannot test what happens between `input` and `change`.** It dispatches both events in the same task, and React flushes the re-render triggered by the first handler only after the task — so a controlled `select` looks fine even when the internal state change during `input` discards the selection. That is how [#7554](https://github.com/db-ux-design-system/core-web/issues/7554) survived the suite. Drive the sequence explicitly and let the pending render land, then read the DOM inside the same `evaluate` — the assertion must happen while the DOM state is still the interesting one:
+
+```ts
+const valueAfterInput = await select.evaluate(
+	async (element: HTMLSelectElement) => {
+		element.value = "test2";
+		element.dispatchEvent(new Event("input", { bubbles: true }));
+		await Promise.resolve();
+		return element.value;
+	}
+);
+```
+
+Use a microtask, not `requestAnimationFrame` or a timer: one microtask is enough for the re-render to commit, while anything longer also lets deferred work (`delay(fn, 0)`) run and makes the test race with it.
+
+The same caveat applies in reverse: a direct `element.value = …` assignment on a **text** input or textarea does not reach React, because React's change plugin consults its value tracker for those elements and sees no change. Use `fill()` or `pressSequentially()` there — they go through the native setter. Only `select` and `input[type=file]` route `onChange` to the native `change` event and therefore ignore the tracker.
+
+**Always verify a regression test fails without the fix, repeatedly.** Regenerate the output with the fix reverted and run the test a few times (`--repeat-each=5`) on both states. A test that only sometimes fails without the fix is a flaky test, not a regression test.
+
+## Figma Code Connect (`src/components/**/figma/`)
+
+Each component can have a `figma/` folder with Figma Code Connect definitions. These are generated into `figma-code-connect/` via `mitosis.figma.config.cjs` and the `configs/plugins/figma/` plugin.
+
+- Edit only the source files in `src/components/[name]/figma/`
+- Never edit files in `figma-code-connect/` directly — they are generated
+- **One code component per `*.figma.lite.tsx` file.** The plugin injects every prop fragment into the first opening tag, so a template that renders several components (e.g. via `Show`) would emit all branches verbatim and hand designers a snippet they have to edit by hand. When one Figma component set maps to a different code component per variant, add one file per variant group with its own `useMetadata({ figma: … })` and its own `FigmaCodeConnect` export — see `heading/figma/` (seven sets) and `tag/figma/` (three).
+- Enum props may map to numbers (`{ '1': 1 }`). Numeric and boolean maps are emitted as bound values (`prop={1}` / `[prop]="1"` / `:prop="1"`), string maps as attributes.
+
+## ESM Import Extensions (`configs/plugins/esm-extensions.cjs`)
+
+The published outputs are ESM (`"type": "module"`), which requires relative imports to carry explicit file extensions. The `esm-extensions` Mitosis plugin runs in `build.post` for the React, Vue and Stencil targets and appends the correct extension to every relative import/export specifier in the generated source:
+
+- File import → `./model` becomes `./model.js`
+- Directory import (barrel) → `./components/accordion` becomes `./components/accordion/index.js`
+- Specifiers that already carry an extension (`.js`, `.vue`, `.css`, …) are left untouched
+- Showcase/example/`arg.types` files are skipped (they are consumed as raw TypeScript and never compiled to `.js`)
+
+This replaced the earlier `tsc-esm-fix` / Vite / post-tsc workaround. The React output's `tsconfig.json` uses `module`/`moduleResolution: "node16"` so any missing extension fails at compile time rather than at runtime.
+
+Consumers of the **raw** `output/react/src` (Patternhub and next-showcase via webpack) need `resolve.extensionAlias` mapping `.js → .ts/.tsx/.js`; Vite-based consumers (react-showcase) resolve this natively. Unit tests live in `configs/plugins/esm-extensions.spec.ts`.
+
+## React Invoker Commands Types (`configs/plugins/react/invoker-commands.cjs`)
+
+React's type definitions do not yet ship the [Invoker Commands API](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) `command` and `commandfor` HTML attributes, so consumers of `@db-ux/react-core-components` would get a type error when passing them to `DBButton`. The `react-invoker-commands` Mitosis plugin runs in `build.post` for the React target only and appends a type-only `declare module "react"` augmentation to the generated `index.ts` entrypoint:
+
+- The augmentation is type-only, so it adds no runtime code to the published bundle
+- The append is idempotent (guarded by a marker comment) so incremental builds do not duplicate it
+- This is a temporary workaround — remove the plugin once React's type definitions support these attributes natively
+
+Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
+
+## Storybook Generation
+
+Stories are generated from the `examples/` folder via the `configs/plugins/storybook/` plugin. The plugin reads `data-sb-*` attributes from example components to configure story metadata, controls, and args.
+
+- `configs/plugins/storybook/get-meta-object.cjs` — builds the story `meta` export
+- `configs/plugins/storybook/get-stories.cjs` — builds individual story exports
+- `configs/plugins/storybook/storybook-plugin.cjs` — main Mitosis plugin entry
+
+### Sidebar category vs. reference component
+
+The sidebar category (`title: 'Components/<category>/<storybookTitle>'`) and the reference component are separate values — do not couple them.
+
+- **Category** defaults to the component folder name (`heading` -> `DBHeading`) and is overridable per example via `storybookCategory`. The default keeps level, size or variant components of one family in a single category (`DBHeadingH1`–`DBHeadingH6` all appear under `Components/DBHeading`). Override it when a folder also ships a component that is not a variant of that family — `heading/examples/slots.example.lite.tsx` sets `storybookCategory: 'DBCustomHeading'`.
+- **Reference component** is `storybookComponentName`, defaulting to the same folder-derived name. It drives `component:`, the `@components` import and the `Props` type, so it must be an actual export. `heading` has no `DBHeading` export, which is why every heading example names one explicitly.
+
+`storybookComponentNames` picks the component per story inside one example file — see `docs/creating-examples.md`.
+
+## Model Convention: Always keep `DefaultProps` and `DefaultState`
+
+Every component's `model.ts` **must** export a `DB[ComponentName]DefaultProps` and `DB[ComponentName]DefaultState` type, even if they are empty (`{}`). This ensures consistency across all components and makes it straightforward to add default values later without restructuring the type hierarchy.
+
+```ts
+// Always present, even when empty:
+export type DBDrawerFooterDefaultProps = {};
+export type DBDrawerFooterProps = DBDrawerFooterDefaultProps & GlobalProps;
+
+export type DBDrawerFooterDefaultState = {};
+export type DBDrawerFooterState = DBDrawerFooterDefaultState & GlobalState;
+```
+
+During code review, **do not flag empty `DefaultProps`/`DefaultState` types as dead code** — they are intentional for alignment with the component architecture.
+
+## Adding or Modifying Components
+
+1. Use `pnpm run generate:component` to scaffold — never create component folders manually
+2. **Check `src/shared/model.ts` first** before adding any new prop — it may already exist as a shared type (see Shared Props section below)
+3. **Check other `**/model.ts`files** — if a similar prop exists in another component, consider moving it to`src/shared/model.ts` before reusing it
+4. Edit `model.ts` for prop changes (breaking change if props are removed/renamed/retyped → needs `major` changeset; if props are added → needs `minor` changeset)
+5. Edit the `.lite.tsx` for template/logic changes
+6. **Check `src/styles/internal/` first** before writing new SCSS — the style may already exist as a shared internal mixin/placeholder (see Shared Styles section below)
+7. Edit the `.scss` for style changes
+8. Add or update examples in `src/components/[name]/examples/`
+9. Run `pnpm run build` to verify
+10. Add a changeset for `@db-ux/core-components` **and** all four framework output packages — always all five, whether SCSS, `model.ts` or the template changed (see Changeset Rules below)
+
+**Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
+
+### Sub-Components
+
+Sub-components (e.g. `accordion-item`, `navigation-item`, `tab-item`) are child components that
+are always used inside a parent component. They do **not** have standalone:
+
+- Spec test files (`*.spec.tsx`) — tested within the parent component's spec
+- Density example files — demonstrated within the parent's examples
+- Showcase files — showcased within the parent's showcase page
+- E2E test files — covered by the parent's e2e tests
+- Router/navigation entries — no standalone showcase page exists
+
+They **do** still get:
+
+- Patternhub component parser entries (import, switch case, type) — needed to render inside parent examples
+
+When generating a sub-component with `pnpm run generate:component`, answer **Yes** to the
+"Is this a sub-component?" prompt. The generator's `subComponent` flag skips all of the above
+standalone files automatically while preserving the parser and docs metadata entries.
+
+**Examples of sub-components:** `accordion-item`, `navigation-item`, `tab-item`, `tab-panel`,
+`drawer-handle`, `split-button-menu`
+
+**Sub-component suffix convention:** The test-table generator
+(`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
+in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
+
+## Mitosis Limitations
+
+Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
+
+- **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
+- **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
+- **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
+
+    ```tsx
+    // ✅ Correct — guard inside the async callback
+    void delay(() => {
+    	if (detailsRef) {
+    		detailsRef.open = false;
+    	}
+    }, 1);
+
+    // ✅ Correct — guard inside observer callback
+    new IntersectionObserverListener().observe(element, (entry) => {
+    	if (!entry.isIntersecting && detailsRef?.open) {
+    		detailsRef.open = false;
+    	}
+    });
+
+    // ❌ Wrong — ref checked before delay, but could be null when timer fires
+    if (detailsRef) {
+    	void delay(() => {
+    		detailsRef.open = false; // crash if unmounted during delay
+    	}, 1);
+    }
+    ```
+
+## Shared Styles (`src/styles/internal/`)
+
+Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
+
+| File                      | What it covers                                          |
+| ------------------------- | ------------------------------------------------------- |
+| `_button-components.scss` | Ghost button appearance, button-like interactive states |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas) |
+| `_link-components.scss`   | Link-like appearance and states                         |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                            |
+| `_stack-components.scss`  | Stack/layout shared styles                              |
+| `_select-components.scss` | Select/dropdown shared styles                           |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance              |
+| `_icon-passing.scss`      | Icon passing via data attributes                        |
+| `_custom-elements.scss`   | Custom element host/shadow styles                       |
+| `_component.scss`         | Base component resets and defaults                      |
+| `_indicator.scss`         | Indicator animation                                     |
+| `_scrollbar.scss`         | Scrollbar styling                                       |
+
+If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+## Shared Props (`src/shared/model.ts`)
+
+Before adding a new prop to a component's `model.ts`, **always check `src/shared/model.ts`** for existing shared types. Key shared types include:
+
+- `GlobalProps` — `children`, `className`, `class`, `id`, `autofocus`, `propOverrides`
+- `SemanticProps` — `semantic` (neutral, critical, informational, warning, successful, adaptive)
+- `IconProps` / `IconLeadingProps` / `IconTrailingProps` — icon identifiers
+- `ShowIconProps` / `ShowIconLeadingProps` / `ShowIconTrailingProps` — icon visibility toggles
+- `SpacingProps` / `MarginProps` / `GapSpacingProps` — spacing and gap
+- `SizeProps` — `size` (small, medium)
+- `EmphasisProps` — `emphasis` (weak, strong)
+- `OrientationProps` — `orientation` (horizontal, vertical)
+- `WidthProps` / `ContainerWidthProps` — width variants
+- `FormProps` / `BaseFormProps` / `FormMessageProps` / `FormTextProps` — all form-related props
+- `LinkProps` — href, target, rel, referrerPolicy
+- `PlacementProps` — popover/tooltip placement
+- `PopoverProps` — delay, animation, width
+- `TextProps` — `text` as alternative to slot
+- `NoTextProps` — `noText` for icon-only variants
+- `ActiveProps` — `active` state
+- `AlignmentProps` — `alignment` (start, center)
+- `OverflowProps` / `WrapProps` — text overflow and wrapping
+- Event props: `ClickEventProps`, `InputEventProps`, `ChangeEventProps`, `FocusEventProps`, `ToggleEventProps`, `CloseEventProps`
+
+If a prop is needed by multiple components and does not yet exist in `src/shared/model.ts`, **add it there** and import it in each component's `model.ts`. If an existing component already has a similar prop that should be shared, **move it to `src/shared/model.ts`** and update all affected `model.ts` files (this is a `major` changeset if the prop type changes).
+
+## Build Pipeline: Mitosis Output is Always Regenerated Fresh
+
+The Mitosis CLI **cleans and regenerates** all output files on every build (see [`packages/cli/src/build/build.ts`](https://github.com/BuilderIO/mitosis/blob/main/packages/cli/src/build/build.ts)). The build flow per target is:
+
+1. `clean()` — removes stale output files that no longer have a corresponding source
+2. `buildAndOutputComponentFiles()` / `buildAndOutputNonComponentFiles()` — writes fresh files via `outputFile()`, overwriting any existing content
+
+**This means post-build scripts always operate on freshly generated files.** They do NOT need idempotency guards (e.g. "check if content was already appended before appending"). The output directory is never carried over between builds — Mitosis always produces a clean baseline before post-build runs.
+
+When reviewing code that appends or modifies files in `output/*/src/`, do **not** flag missing idempotency checks as a concern. It is a false positive.
+
+## ⚠️ Deprecated: `scripts/post-build/`
+
+The `scripts/post-build/` folder contains post-Mitosis transformations that run after code generation. **This folder is deprecated.**
+
+- Do **not** add new code here
+- New transformations must be implemented as Mitosis plugins in `configs/plugins/`
+- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
+
+> Exception: registering a component in `components.ts` is not new logic, it is
+> configuration for transformations that already exist. When a component would
+> otherwise need a private copy of those transformations as a plugin, prefer the
+> registry entry — the Heading family reduced roughly 450 lines of duplicated
+> plugin code to about 30 lines of configuration that way. Migrate the
+> transformations themselves out of this folder, not individual components into
+> parallel implementations.
+>
+> Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
+
+### React `propsPassingFilter` and `default*` props
+
+The `filterPassingProps` utility in `src/utils/react.ts` forwards any prop starting with `default` to the inner DOM element (alongside `data-*`, `aria-*`, `on*`, etc.). This works for standard HTML attributes like `defaultValue`, `defaultChecked`, and `defaultSelected`, but **custom** `default*` props (e.g. `defaultOpen`) must NOT reach the DOM — React will warn about unrecognized attributes.
+
+**When introducing a new prop that starts with `default`:**
+
+1. If it maps to a standard HTML attribute on the target element (e.g. `defaultValue` on `<input>`), no action needed — it passes through correctly.
+2. If it is a custom prop (e.g. `defaultOpen` on `<details>`, which only has `open`), add it to the component's `propsPassingFilter` in `scripts/post-build/components.ts` so it gets excluded from the DOM spread.
+
+Alternatively, consider naming the prop without the `default` prefix (e.g. `initialOpen`) to avoid the forwarding issue entirely.
+
+## Changeset Rules
+
+Consumer-facing changes in `packages/components/src` require a changeset. Which packages to list, which bump type to pick, and all exceptions (code-style-only changes, test/showcase-only changes, internal `_`-prefixed state properties) are defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets). That file always applies — do not duplicate its rules here.
+
+Only these package-specific details are added on top:
+
+- **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
+    - `components.ts` keys every entry by target: a changed `overwrites.angular` / `config.react` block hits that target only, an `overwrites.global` entry hits all four.
+    - `index.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
+    - `copy-files.ts` (and `frameworks.ts`, which only that file imports) copies spec and Playwright files, gated on `react`/`vue`. Those files are never published, so such a change usually needs no changeset at all; if it does become consumer-facing, it is React and Vue.
+    - For a changed shared helper, grep its callers: whichever of `angular.ts`, `react.ts`, `vue.ts`, `stencil.ts` reaches it defines the list.
+
+    Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
+
+- **Examples do not determine bump type** — changes in `src/components/*/examples/` do not inherently require a `minor` bump. The bump type is determined by the underlying change the example demonstrates (e.g. a bug fix with a new regression example is still `patch`; an example for a newly added prop is `minor` because the prop itself is the feature).

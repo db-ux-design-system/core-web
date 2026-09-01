@@ -12,7 +12,10 @@ const FrameworkSwitcher = () => {
 			variant="floating"
 			value={framework}
 			onChange={(event) => {
-				setFramework(event.target.value as Framework);
+				const { value } = event.target;
+				if (['angular', 'html', 'react', 'vue'].includes(value)) {
+					setFramework(value as Framework);
+				}
 			}}>
 			{FRAMEWORK_OPTIONS.map((option) => (
 				<option key={option.value} value={option.value}>

@@ -13,7 +13,6 @@
 
 	&::before {
 		--db-icon-font-size: #{variables.$db-sizing-md};
-		--db-icon-margin-end: 0;
 		--db-icon-color: #{colors.$db-brand-origin-default};
 	}
 
@@ -22,7 +21,9 @@
 			#{variables.$db-sizing-md} - #{variables.$db-sizing-3xs}
 		);
 
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		inline-size: $logo-size;
+		/* stylelint-disable-next-line db-ux/use-sizing */
 		max-block-size: $logo-size;
 	}
 

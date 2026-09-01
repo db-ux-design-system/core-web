@@ -2,7 +2,7 @@
 
 import { IconTypes } from '@db-ux/core-foundations';
 
-export type GlobalProps = {
+export interface GlobalProps {
 	/**
 	 * default slot
 	 */
@@ -28,7 +28,29 @@ export type GlobalProps = {
 	 * Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)
 	 */
 	autofocus?: boolean | string;
+
+	/**
+	 * Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id
+	 */
+	propOverrides?: PropOverridesType;
+}
+
+export type StartSlotProps = {
+	/**
+	 * Slot for start content, for example add a custom component between an icon and a label.
+	 */
+	startSlot?: any;
 };
+
+export type EndSlotProps = {
+	/**
+	 * Slot for end content, for example add a custom component between an icon and a label.
+	 */
+	endSlot?: any;
+};
+
+// We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
+export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
 export type GlobalState = {
 	_id?: string;
@@ -311,11 +333,14 @@ export type ValueProps = {
 	value?: any;
 };
 
-export type BaseFormProps = {
+export type DisabledProps = {
 	/**
-	 * The disabled attribute can be set to keep a user from clicking on the form element.
+	 * The disabled attribute can be set to keep a user from clicking on the item.
 	 */
 	disabled?: boolean | string;
+};
+
+export type BaseFormProps = {
 	/**
 	 * The label attribute specifies the caption of the form element.
 	 */
@@ -325,7 +350,7 @@ export type BaseFormProps = {
 	 * The name attribute gives the name of the form control, as used in form submission and in the form element's elements object.
 	 */
 	name?: string;
-};
+} & DisabledProps;
 
 export type CustomFormProps = {
 	/**
@@ -499,6 +524,10 @@ export type FormMessageProps = {
 	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 	 */
 	autocomplete?: string | AutoCompleteType;
+	/**
+	 * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+	 */
+	autoComplete?: string | AutoCompleteType;
 
 	/**
 	 * Enables or disables the visibility of the message.
@@ -510,6 +539,10 @@ export type FromValidState = {
 	hasValidState: () => boolean;
 	handleValidation: () => void;
 	_invalidMessage?: string;
+};
+
+export type ResetIdState = {
+	resetIds: () => void;
 };
 
 export type FormState = {
@@ -530,7 +563,7 @@ export type FormState = {
 	 * We use this to remove form event listener
 	 */
 	abortController?: AbortController;
-};
+} & ResetIdState;
 
 export type InitializedState = {
 	initialized: boolean;
@@ -590,7 +623,7 @@ export type RoleProps = {
 
 export type TextProps = {
 	/**
-	 * Alternative for default slot/children.
+	 * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
 	 */
 	text?: string;
 };
@@ -638,11 +671,11 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export const AlignmentList = ['start', 'center'] as const;
+export const AlignmentList = ['start', 'center', 'end'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
 	/**
-	 * Define the content alignment in full width
+	 * Define the content alignment
 	 */
 	alignment?: AlignmentType | string;
 };
@@ -718,6 +751,13 @@ export type AriaControlsProps = {
 	controls?: string;
 };
 
+export type NoTextProps = {
+	/**
+	 * Define the text next to the icon specified via the icon Property to get hidden.
+	 */
+	noText?: boolean | string;
+};
+
 export type ValueLabelType = {
 	value: string;
 	label?: string;
@@ -726,14 +766,15 @@ export type ValueLabelType = {
 export type DocumentScrollState = {
 	_documentScrollListenerCallbackId?: string;
 	handleDocumentScroll: (event: any, parent?: HTMLElement) => void;
-	_observer?: IntersectionObserver;
+	_intersectionObserverCallbackId?: string;
+	_resizeObserverCallbackId?: string;
 };
 
 export type PopoverState = {
 	handleEscape: (event: any) => void;
 	handleAutoPlacement: (parent?: HTMLElement) => void;
-	handleEnter: (parent?: HTMLElement) => void;
-	handleLeave: (event?: any) => void;
+	handleEnter: (parent?: HTMLElement, manualOpen?: boolean) => void;
+	handleLeave: (event?: any, manualOpen?: boolean) => void;
 } & DocumentScrollState;
 
 // TODO: Remove this after we migrate to one-platform
@@ -743,3 +784,50 @@ export interface PatternhubProps {
 	 */
 	isPatternhub?: boolean;
 }
+
+export type DBTableCellProps = {
+	/**
+	 * The **`colSpan`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
+	 */
+	colSpan?: number | string;
+
+	/**
+	 * Lowercase HTML attribute alternative to `colSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).
+	 * If both `colSpan` and `colspan` are provided, `colSpan` takes precedence.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)
+	 */
+	colspan?: number | string;
+
+	/**
+	 * The **`headers`** property of the HTMLTableCellElement interface contains a list of IDs of th elements that are _headers_ for this specific cell.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/headers)
+	 */
+	headers?: string;
+
+	/**
+	 * The **`rowSpan`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
+	 */
+	rowSpan?: number | string;
+	/**
+	 * Lowercase HTML attribute alternative to `rowSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).
+	 * If both `rowSpan` and `rowspan` are provided, `rowSpan` takes precedence.
+	 *
+	 * [MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)
+	 */
+	rowspan?: number | string;
+
+	/**
+	 * Set the horizontal alignment of the cell content.
+	 */
+	horizontalAlignment?: AlignmentType;
+	/**
+	 * Set the vertical alignment of the cell content.
+	 */
+	verticalAlignment?: AlignmentType;
+};

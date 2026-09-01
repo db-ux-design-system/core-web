@@ -1,5 +1,173 @@
 # @db-ux/core-stylelint
 
+## 5.2.1
+
+_version bump_
+
+## 5.2.0
+
+_version bump_
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
+## 5.0.2
+
+_version bump_
+
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+_version bump_
+
+## 4.14.0
+
+_version bump_
+
+## 4.13.0
+
+_version bump_
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+_version bump_
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
+## 4.9.1
+
+_version bump_
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+_version bump_
+
+## 4.5.4
+
+_version bump_
+
+## 4.5.3
+
+### Patch Changes
+
+- fix: issue with border rules not showing error for `border-top`, `border-block-start` etc. - [see commit 25bf2db](https://github.com/db-ux-design-system/core-web/commit/25bf2dbfd7d4ff54d9b1625b62c8db7d105e4976)
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with Stylelint peer dependency being too restrictive - [see commit 1e146bc](https://github.com/db-ux-design-system/core-web/commit/1e146bc5101e5dc33781bbdecb5b75c5a91bbc99)
+
+## 4.5.0
+
+### Minor Changes
+
+- feat: add `db-ux/use-sizing` rule for `@db-ux/core-stylelint` node package, checking for `height`, `width`, `block-size` etc. - [see commit e2ebb4f](https://github.com/db-ux-design-system/core-web/commit/e2ebb4faa2efc1a5cfd4d1b2e913f1bc5ce8d286)
+
+## 4.4.3
+
+### Patch Changes
+
+- refactor: added acceptable values (`transparent` and `currentcolor`) for border declarations - [see commit 4f58e98](https://github.com/db-ux-design-system/core-web/commit/4f58e98d04685773d79feeaf24f31fc84447f39f)
+
+## 4.4.2
+
+_version bump_
+
+## 4.4.1
+
+_version bump_
+
 ## 4.4.0
 
 ### Patch Changes

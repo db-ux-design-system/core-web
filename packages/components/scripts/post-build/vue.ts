@@ -14,20 +14,15 @@ export default (tmp?: boolean) => {
 	});
 	for (const component of components) {
 		const componentName = component.name;
-		const vueFile = `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.vue`;
+		const componentFolder = component.folder ?? componentName;
+		const vueFile = `../../${outputFolder}/vue/src/components/${componentFolder}/${componentName}.vue`;
 
 		try {
 			// Rewire imports in Playwright component tests
 			replaceInFileSync({
-				files: `../../${outputFolder}/vue/src/components/${componentName}/${componentName}.spec.tsx`,
+				files: `../../${outputFolder}/vue/src/components/${componentFolder}/${component.spec ?? componentName}.spec.tsx`,
 				from: `react`,
 				to: `vue`
-			});
-
-			replaceInFileSync({
-				files: `../../${outputFolder}/vue/src/components/${componentName}/index.ts`,
-				from: `./${componentName}`,
-				to: `./${componentName}.vue`
 			});
 
 			const replacements: Overwrite[] = [

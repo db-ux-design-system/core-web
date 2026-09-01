@@ -1,36 +1,37 @@
 import {
 	onMount,
 	useDefaultProps,
-	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import { DBTabListProps, DBTabListState } from './model';
 
-useMetadata({});
 useDefaultProps<DBTabListProps>({});
 
 export default function DBTabList(props: DBTabListProps) {
-	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(null);
-	// jscpd:ignore-start
+	// _ref is required for Mitosis to generate forwardRef in React/Angular output
+	const _ref = useRef<HTMLDivElement | null>(null);
 	const state = useStore<DBTabListState>({
-		_id: DEFAULT_ID
+		_id: undefined
 	});
 
 	onMount(() => {
-		state._id = props.id || 'tab-list-' + uuid();
+		state._id = props.id || props.propOverrides?.id || 'tab-list-' + uuid();
 	});
-	// jscpd:ignore-end
-
 	return (
 		<div
 			ref={_ref}
-			id={state._id}
-			class={cls('db-tab-list', props.className)}>
-			<ul role="tablist">{props.children}</ul>
+			id={props.id ?? props.propOverrides?.id ?? state._id}
+			class={cls('db-tab-list', props.className)}
+			role="tablist"
+			aria-orientation={props.orientation ?? 'horizontal'}
+			focusgroup={
+				props.orientation === 'vertical'
+					? 'tablist block wrap'
+					: 'tablist'
+			}>
+			{props.children}
 		</div>
 	);
 }

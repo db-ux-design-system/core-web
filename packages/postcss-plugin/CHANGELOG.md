@@ -1,0 +1,129 @@
+# @db-ux/core-postcss-plugin
+
+## 5.2.1
+
+_version bump_
+
+## 5.2.0
+
+_version bump_
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
+## 5.0.2
+
+_version bump_
+
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+_version bump_
+
+## 4.14.0
+
+_version bump_
+
+## 4.13.0
+
+_version bump_
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+_version bump_
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
+## 4.9.1
+
+_version bump_
+
+## 4.9.0
+
+### Patch Changes
+
+- fix: color deduplication merging transparent and semi-transparent values with the same hex base into one value - [see commit 762297f](https://github.com/db-ux-design-system/core-web/commit/762297ffc404829364598fd04f96fb62cc13b0c6)
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.0
+
+### Minor Changes
+
+- First publish for `@db-ux/core-postcss-plugin` - [see commit aae0316](https://github.com/db-ux-design-system/core-web/commit/aae0316a4a1866de2ce657592080ed6c22148ed5)

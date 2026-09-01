@@ -1,6 +1,5 @@
-import {
+import type {
 	GlobalProps,
-	GlobalState,
 	InitializedState,
 	NameProps,
 	NameState,
@@ -14,6 +13,10 @@ export type DBAccordionItemDefaultProps = {
 	 * Initial state for the accordion item
 	 */
 	defaultOpen?: boolean;
+	/**
+	 * State for the accordion item
+	 */
+	open?: boolean | string;
 	/**
 	 * The disabled attribute can be set to keep a user from clicking on the element.
 	 */
@@ -38,7 +41,6 @@ export type DBAccordionItemDefaultState = {
 };
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &
-	GlobalState &
 	ToggleEventState<HTMLElement> &
 	InitializedState &
 	NameState;

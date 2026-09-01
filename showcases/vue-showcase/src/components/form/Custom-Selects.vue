@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { DBCustomSelect } from "@components";
 import { ref } from "vue";
-import { DBCustomSelect } from "../../../../../output/vue/src";
 import FormWrapper from "./FormWrapper.vue";
 
 const plain = ref(["combobox-2"]);

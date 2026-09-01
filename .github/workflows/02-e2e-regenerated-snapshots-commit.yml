@@ -23,19 +23,25 @@ on:
 jobs:
   commit-showcases:
     name: 🆙 Commit regenerated snapshots
-    if: (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) && !contains(github.actor,'[bot]')
+    # Same reasoning as the regenerate jobs in `default.yml`: Dependabot runs
+    # cannot push (read-only token, no secrets), while Renovate PRs come from
+    # our own GitHub App and need the regenerated snapshots committed so the
+    # visual diff of a DB theme bump becomes reviewable.
+    if: |
+      (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) &&
+      (!contains(github.actor,'[bot]') || startsWith(github.head_ref,'renovate-'))
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     permissions:
       contents: write
       pull-requests: write
     steps:
       - name: ⏬ Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.head_ref }}
 
       - name: ⏬ Download components
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         # Only download artifact if the artifact exists
         if: inputs.components
         with:
@@ -43,7 +49,7 @@ jobs:
           path: ./__snapshots__/
 
       - name: ⏬ Download foundations
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         # Only download artifact if the artifact exists
         if: inputs.foundations
         with:
@@ -51,14 +57,14 @@ jobs:
           path: ./__snapshots__/foundations
 
       - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         if: inputs.patternhub
         with:
           name: snapshots-patternhub
           path: ./__snapshots__/
 
       - name: ⏬ Download showcase
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         if: inputs.showcases
         with:
           name: snapshots-showcases
@@ -70,6 +76,6 @@ jobs:
           branch-name: "${{ github.head_ref }}-auto"
           commit-message: "auto update snapshots"
           commit-files: "__snapshots__/*"
-          auto-merge-app-id: ${{ vars.AUTO_MERGE_APP_ID }}
+          auto-merge-client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           auto-merge-private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}

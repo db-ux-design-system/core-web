@@ -10,6 +10,7 @@ test.describe('DBDrawer', () => {
 		url: './#/01/drawer?page=density',
 		async testFn(voiceOver, nvda) {
 			const screenReader = voiceOver ?? nvda;
+			await screenReader?.previous();
 			await screenReader?.act();
 			await screenReader?.next();
 		},
@@ -24,6 +25,15 @@ test.describe('DBDrawer', () => {
 						log
 							.replace('Showcase, document. unknown', 'button')
 							.replace('unknown', 'button')
+							// Autofocus timing: NVDA sometimes prepends "button." to the dialog announcement
+							.replace(
+								'button. dialog. document',
+								'dialog. document'
+							)
+							.replace(
+								'button. Functional, dialog. document',
+								'dialog. document'
+							)
 					)
 				);
 			} else if (voiceOver) {

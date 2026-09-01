@@ -60,6 +60,9 @@
 				},
 				"serve": {
 					"builder": "@angular/build:dev-server",
+					"options": {
+						"prebundle": false
+					},
 					"configurations": {
 						"production": {
 							"buildTarget": "angular-showcase:build:production"
@@ -80,6 +83,7 @@
 		}
 	},
 	"cli": {
+		"packageManager": "pnpm",
 		"analytics": false
 	}
 }

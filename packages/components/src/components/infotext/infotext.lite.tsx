@@ -18,19 +18,21 @@ export default function DBInfotext(props: DBInfotextProps) {
 	const state = useStore<DBInfotextState>({});
 	// jscpd:ignore-end
 
-	// TODO: Check if this should be a div or a span
 	return (
 		<span
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-infotext', props.className)}
 			data-icon={props.icon}
 			data-semantic={props.semantic}
 			data-size={props.size}
-			data-show-icon-leading={getBooleanAsString(props.showIcon ?? true)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
+			data-show-icon-leading={getBooleanAsString(
+				props.showIcon ?? true,
+				'showIcon'
+			)}>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</span>
 	);
 }

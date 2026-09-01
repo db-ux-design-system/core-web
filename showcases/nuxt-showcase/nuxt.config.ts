@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { defineNuxtConfig } from 'nuxt/config';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,7 +23,8 @@ export default defineNuxtConfig({
 		base: `/nuxt-showcase/`,
 		build: {
 			outDir: '../../build-showcases/nuxt-showcase',
-			emptyOutDir: true
+			emptyOutDir: true,
+			cssMinify: 'esbuild'
 		}
 	},
 	nitro: {

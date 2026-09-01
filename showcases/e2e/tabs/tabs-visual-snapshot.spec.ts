@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type FullProject, type Page } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
 
 const path = '04/tabs';
 
-const preScreenShot = async (page, project) => {
+const preScreenShot = async (page: Page, project: FullProject) => {
 	if (project.name === 'webkit' || project.name === 'mobile_safari') {
 		// There is a bug in webkit where the scroll buttons are not visible 50% of the time
 		// Probably due to the scrollWidth or clientWidth not being calculated correctly
@@ -11,13 +11,19 @@ const preScreenShot = async (page, project) => {
 		test.skip();
 	}
 
-	const scrollRight = page.locator('[data-icon=chevron_right]');
+	const scrollRight = page
+		.locator('[data-scroll-behavior="arrows"]')
+		.first()
+		.locator('[data-icon=chevron_right]');
 	await expect(scrollRight).toBeVisible();
 };
 
 test.describe('DBTabs', () => {
 	getDefaultScreenshotTest({
 		path,
-		preScreenShot
+		preScreenShot,
+		// Increased tolerance due to scroll button visibility timing and
+		// subpixel rendering differences of tab indicators across browsers.
+		ratio: '0.02'
 	});
 });

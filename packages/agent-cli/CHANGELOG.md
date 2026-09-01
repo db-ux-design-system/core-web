@@ -1,9 +1,172 @@
 # @db-ux/agent-cli
 
-## 4.4.0
+## 5.2.1
 
 _version bump_
 
+## 5.2.0
+
+_version bump_
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
+## 5.1.3
+
+### Patch Changes
+
+- fix: remove invalid `@` org scope from `bin` entries in `package.json` - [see commit ff8de1f](https://github.com/db-ux-design-system/core-web/commit/ff8de1ffa813c0f92b9ee78c5920b1b81371c468)
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
+## 5.0.2
+
+_version bump_
+
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+_version bump_
+
+## 4.14.0
+
+_version bump_
+
+## 4.13.0
+
+_version bump_
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+_version bump_
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+_version bump_
+
+## 4.10.0
+
+_version bump_
+
+## 4.9.1
+
+_version bump_
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+_version bump_
+
+## 4.5.4
+
+_version bump_
+
+## 4.5.3
+
+### Patch Changes
+
+- fix(agent-cli): add pnpm compatibility by following symlinks in `node_modules` - [see commit 28606fd](https://github.com/db-ux-design-system/core-web/commit/28606fdae48ca991cbe341c6a7ea5e0c420b3a46)
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+_version bump_
+
+## 4.5.0
+
+_version bump_
+
+## 4.4.3
+
+_version bump_
+
+## 4.4.2
+
+_version bump_
+
+## 4.4.1
+
+_version bump_
+
+## 4.4.0
+
+_version bump_
 
 ## 4.3.2
 
@@ -66,7 +229,7 @@ _version bump_
 ### Patch Changes
 
 - chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
-  - fix: add some missing variables
+    - fix: add some missing variables
 
 ## 4.0.1
 
@@ -89,4 +252,4 @@ _version bump_
 ### Patch Changes
 
 - enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
-  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+    - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation

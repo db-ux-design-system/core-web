@@ -82,7 +82,7 @@ export default function DBSelect(props: DBSelectProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -93,7 +93,7 @@ export default function DBSelect(props: DBSelectProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -139,7 +139,16 @@ export default function DBSelect(props: DBSelectProps) {
 				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
-			state.handleValidation();
+			/* `handleValidation` must not run synchronously here: it changes
+			 * internal state (`_descByIds` flips as soon as the value became
+			 * valid). React re-applies the controlled `value` to the `select` on
+			 * every commit, and while the `input` event is being handled that
+			 * prop is still the previous value - so the re-render would discard
+			 * the selection the user just made, before `change` is even
+			 * dispatched. Deferring keeps the DOM authoritative until the value
+			 * has been propagated; `handleChange` validates the settled value.
+			 * https://github.com/db-ux-design-system/core-web/issues/7554 */
+			void delay(() => state.handleValidation(), 0);
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLSelectElement> | any,
@@ -191,17 +200,21 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 			// Default: show empty option for non-required selects
 			return !props.required;
+		},
+		resetIds: () => {
+			const mId =
+				props.id ?? props.propOverrides?.id ?? `select-${uuid()}`;
+			state._id = mId;
+			state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
+			state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
+			state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
+			state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
 		}
 	});
 
 	onMount(() => {
 		state.initialized = true;
-		const mId = props.id ?? `select-${uuid()}`;
-		state._id = mId;
-		state._messageId = mId + DEFAULT_MESSAGE_ID_SUFFIX;
-		state._validMessageId = mId + DEFAULT_VALID_MESSAGE_ID_SUFFIX;
-		state._invalidMessageId = mId + DEFAULT_INVALID_MESSAGE_ID_SUFFIX;
-		state._placeholderId = mId + DEFAULT_PLACEHOLDER_ID_SUFFIX;
+		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
 
 		useTarget({
@@ -211,6 +224,12 @@ export default function DBSelect(props: DBSelectProps) {
 			}
 		});
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetIds();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	onUpdate(() => {
 		state._invalidMessage =
@@ -289,7 +308,7 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon)}>
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
 			<select
 				aria-invalid={props.validation === 'invalid'}
@@ -300,8 +319,8 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._id}
 				name={props.name}
 				size={props.size}
-				value={props.value ?? state._value}
-				autocomplete={props.autocomplete}
+				value={props.value ?? state._value ?? ''}
+				autocomplete={props.autoComplete ?? props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
@@ -326,7 +345,8 @@ export default function DBSelect(props: DBSelectProps) {
 						class="placeholder"
 						value=""
 						data-show-empty-option={getBooleanAsString(
-							state.shouldShowEmptyOption()
+							state.shouldShowEmptyOption(),
+							'showEmptyOption'
 						)}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
@@ -395,9 +415,10 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<Show when={props.placeholder}>
-				<span class="db-select-placeholder" id={state._placeholderId}>
-					{props.placeholder}
-				</span>
+				<span
+					class="db-select-placeholder"
+					data-placeholder={props.placeholder}
+					id={state._placeholderId}></span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext

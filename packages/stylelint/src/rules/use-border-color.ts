@@ -2,6 +2,7 @@ import stylelint from 'stylelint';
 import { createRule } from '../shared/create-rule.js';
 import {
 	type AllowedType,
+	borderPropertiesExact,
 	defaultColorsExact,
 	defaultExact,
 	getDeclarationRuleFunction
@@ -25,7 +26,7 @@ const meta = {
 
 const allowedDeclarations: AllowedType = {
 	includes: [{ include: 'border', and: ['color'] }],
-	exact: ['border']
+	exact: borderPropertiesExact
 };
 const allowedValues: AllowedType = {
 	includes: [

@@ -6,6 +6,10 @@
 $min-mobile-header-height: calc(
 	#{variables.$db-sizing-md} + 2 * #{variables.$db-spacing-fixed-xs}
 );
+$drawer-content-padding-inline: max(
+	#{variables.$db-spacing-fixed-sm},
+	max(env(safe-area-inset-left), env(safe-area-inset-right))
+);
 $component-border: variables.$db-border-width-3xs solid
 	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
@@ -59,6 +63,7 @@ $default-spacings: (
 	"none": 0
 );
 
+// jscpd:ignore-start
 @mixin get-data-spacing($type: padding, $spacings: $default-spacings) {
 	@each $name, $spacing in $spacings {
 		@if $name == "default" {
@@ -74,3 +79,5 @@ $default-spacings: (
 		}
 	}
 }
+
+// jscpd:ignore-end

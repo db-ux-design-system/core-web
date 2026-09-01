@@ -15,6 +15,7 @@ $switch-active-thumb-size: calc(#{form-components.$font-size-height});
 $checked-active-transition-size: calc(
 	#{form-components.$font-size-height} - #{$switch-fixed-padding} * 2
 );
+$switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 
 %active-transition {
 	&::before {
@@ -46,6 +47,7 @@ $checked-active-transition-size: calc(
 		}
 	}
 
+	// jscpd:ignore-start
 	@include form-components.get-validity(check) {
 		&:has(.db-infotext[data-semantic="successful"]) {
 			@include form-components.get-validity-color-checkbox("valid");
@@ -56,17 +58,17 @@ $checked-active-transition-size: calc(
 		@include form-components.get-validity-color-checkbox("invalid");
 	}
 
+	// jscpd:ignore-end
+
 	input {
-		--db-icon-margin-start: 0;
 		--thumb-offset-x: #{$switch-fixed-padding};
 
 		@extend %db-overwrite-font-size-sm;
 
 		appearance: none;
 		margin-inline-end: 0;
-		inline-size: calc(
-			#{form-components.$font-size-height} * 2 + #{$switch-fixed-padding}
-		);
+		inline-size: $switch-inline-size;
+		min-inline-size: $switch-inline-size;
 		block-size: form-components.$font-size-height;
 		box-sizing: content-box;
 
@@ -82,9 +84,13 @@ $checked-active-transition-size: calc(
 		&::after {
 			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 
-			visibility: hidden;
+			opacity: 0;
 			align-self: center;
 			aspect-ratio: 1;
+
+			@media (forced-colors: active) {
+				border-radius: variables.$db-border-radius-full;
+			}
 		}
 
 		// thumb
@@ -108,7 +114,7 @@ $checked-active-transition-size: calc(
 				#{$switch-active-thumb-size} - #{$switch-inactive-thumb-size}
 			);
 
-			@media screen and (prefers-reduced-motion: no-preference) {
+			@media (prefers-reduced-motion: no-preference) {
 				transition:
 					margin variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional,
@@ -117,20 +123,21 @@ $checked-active-transition-size: calc(
 					block-size variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional,
 					transform variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					visibility variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional;
 			}
 
 			// This is a workaround for forced-colors mode from browser
 			@media (forced-colors: active) {
-				content: "•" / "";
+				border-style: solid;
+				border-width: calc(0.5lh - var(--db-border-width-3xs) * 2);
 			}
 		}
 
 		/* positioned at the end of the track: track length - 100% (thumb width) */
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
+
+			// jscpd:ignore-start
 			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
 			--db-adaptive-bg-basic-transparent-full-default: var(
 				--db-adaptive-bg-inverted-contrast-max-default
@@ -142,6 +149,8 @@ $checked-active-transition-size: calc(
 				--db-adaptive-bg-inverted-contrast-max-pressed
 			);
 
+			// jscpd:ignore-end
+
 			&::after {
 				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 			}
@@ -151,6 +160,12 @@ $checked-active-transition-size: calc(
 				background-color: colors.$db-adaptive-on-bg-inverted-default;
 				color: colors.$db-adaptive-on-bg-inverted-default;
 				margin: 0;
+
+				// This is a workaround for forced-colors mode from browser
+				@media (forced-colors: active) {
+					/* stylelint-disable-next-line db-ux/use-border-width */
+					border-width: 0.5lh;
+				}
 			}
 		}
 
@@ -167,7 +182,7 @@ $checked-active-transition-size: calc(
 			--db-icon-trailing: attr(data-aid-icon-trailing);
 		}
 
-		@media screen and (prefers-reduced-motion: no-preference) {
+		@media (prefers-reduced-motion: no-preference) {
 			// Overwrite default transition for switch border
 			transition: none;
 		}
@@ -184,10 +199,6 @@ $checked-active-transition-size: calc(
 	}
 
 	&[data-size="small"] {
-		> label {
-			gap: variables.$db-spacing-fixed-2xs;
-		}
-
 		input {
 			@extend %db-overwrite-font-size-xs;
 		}
@@ -196,10 +207,10 @@ $checked-active-transition-size: calc(
 	&[data-visual-aid="true"] {
 		input {
 			&::after {
-				visibility: visible;
+				opacity: 1;
 				block-size: $switch-active-thumb-size;
 
-				@media screen and (prefers-reduced-motion: no-preference) {
+				@media (prefers-reduced-motion: no-preference) {
 					transition: transform variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional;
 				}

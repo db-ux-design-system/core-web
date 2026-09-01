@@ -1,11 +1,12 @@
-import {
+import type {
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	SemanticProps,
 	ShowIconProps,
 	SizeProps,
-	TextProps
+	TextProps,
+	WrapProps
 } from '../../shared/model';
 
 export type DBInfotextDefaultProps = {};
@@ -16,7 +17,8 @@ export type DBInfotextProps = DBInfotextDefaultProps &
 	IconProps &
 	SizeProps &
 	ShowIconProps &
-	TextProps;
+	TextProps &
+	WrapProps;
 
 export type DBInfotextDefaultState = {};
 

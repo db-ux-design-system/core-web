@@ -1,11 +1,9 @@
 /**
  * Resolves component imports from the imports array
- * @param {Array} imports - Array of import objects
- * @param {string} componentNameLowercase - Lowercase component name
- * @returns {{componentName: string, allImports: Array<string>}} Component name and all imports
+ * @param {Array<import('@builder.io/mitosis').MitosisImport>} imports - Array of import objects
+ * @returns {{allImports: Array<string>}} Component name and all imports
  */
-const resolveImports = (imports, componentNameLowercase) => {
-	let componentName;
+const resolveImports = (imports) => {
 	let allImports;
 
 	if (imports.length > 0) {
@@ -13,23 +11,30 @@ const resolveImports = (imports, componentNameLowercase) => {
 			imp.path.endsWith(`.lite`)
 		);
 		if (componentImports.length > 0) {
-			const exampleComponentImport = imports.find((imp) =>
-				imp.path.includes(componentNameLowercase)
-			);
-			const exampleComponentImports = Object.keys(
-				exampleComponentImport.imports
-			);
-			if (exampleComponentImports.length > 0) {
-				componentName = exampleComponentImports[0];
-			}
-
-			allImports = componentImports.map(
-				(imp) => Object.keys(imp.imports)[0]
+			allImports = componentImports.flatMap((imp) =>
+				Object.keys(imp.imports)
 			);
 		}
 	}
 
-	return { componentName, allImports };
+	return { allImports };
 };
 
-module.exports = { resolveImports };
+/**
+ * Resolves data imports from relative paths
+ * @param {Array<import('@builder.io/mitosis').MitosisImport>} imports - Array of import objects
+ * @returns {string} Import statement string
+ */
+const resolveDataImports = (imports) => {
+	if (!imports || imports.length === 0) return '';
+
+	return imports
+		.filter((imp) => imp.path === './data')
+		.map((imp) => {
+			const namedImports = Object.keys(imp.imports).join(', ');
+			return `import { ${namedImports} } from '${imp.path}';`;
+		})
+		.join('\n');
+};
+
+module.exports = { resolveImports, resolveDataImports };

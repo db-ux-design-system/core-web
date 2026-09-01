@@ -1,0 +1,126 @@
+- main:
+  - heading "DBCustomButton" [level=1]
+  - link "Density"
+  - text: Functional
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: (Default) Regular
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: Expressive
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "Variant"
+  - text: (Default) Outlined
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: Filled
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: Ghost
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: Brand
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "Disabled"
+  - text: (Default) False
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: "True"
+  - button "Button" [disabled]
+  - checkbox "Checkbox" [disabled]
+  - text: Checkbox
+  - link "Link" [disabled]
+  - link "Size"
+  - text: (Default) Medium
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: Small
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "Show Icon Leading"
+  - text: (Default) False
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: "True"
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "Show Icon Trailing"
+  - text: (Default) False
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: "True"
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "No Text"
+  - text: (Default) False
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: "True"
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "Width"
+  - text: (Default) Auto
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - text: Full
+  - button "Button"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - link "Link"
+  - link "Multi-line Text With Line Breaks"
+  - text: Automatic Line Breaks
+  - button "Multi-line Text With Automatic Line Breaks"
+  - checkbox "Multi-line Text With Automatic Line Breaks"
+  - text: Multi-line Text With Automatic Line Breaks
+  - link "Multi-line Text With Automatic Line Breaks"
+  - text: With Icon
+  - button "Multi-line Text With Automatic Line Breaks and Icon"
+  - checkbox "Multi-line Text With Automatic Line Breaks and Icon"
+  - text: Multi-line Text With Automatic Line Breaks and Icon
+  - link "Multi-line Text With Automatic Line Breaks and Icon"
+  - text: Small
+  - button "Button Small Multi-line Text With Automatic Line Breaks"
+  - checkbox "Button Small Multi-line Text With Automatic Line Breaks"
+  - text: Button Small Multi-line Text With Automatic Line Breaks
+  - link "Button Small Multi-line Text With Automatic Line Breaks"
+  - link "Checkbox Example"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - checkbox "Checkbox" [checked]
+  - text: Checkbox

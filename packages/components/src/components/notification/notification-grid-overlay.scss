@@ -145,12 +145,12 @@
 	@include overlay-timestamp-area-layouts;
 
 	// 2. Override: When explicitly "block" link variant with timestamp
-	&:has(span)[data-link-variant="block"] {
+	&:has([data-area="timestamp"])[data-link-variant="block"] {
 		@include overlay-block-layouts;
 	}
 
 	// 3. Override: When "block" link variant WITHOUT timestamp
-	&:not(:has(span))[data-link-variant="block"] {
+	&:not(:has([data-area="timestamp"]))[data-link-variant="block"] {
 		@include overlay-block-layouts-without-timestamp;
 	}
 }

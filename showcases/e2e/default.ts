@@ -1,21 +1,24 @@
 import { AxeBuilder } from '@axe-core/playwright';
-import { expect, type Page, test } from '@playwright/test';
-import { close, getCompliance } from 'accessibility-checker';
-import { type ICheckerError } from 'accessibility-checker/lib/api/IChecker';
-import { type IBaselineResult } from 'accessibility-checker/lib/common/engine/IReport';
-import { type FullProject } from 'playwright/types';
+import { expect, type FullProject, type Page, test } from '@playwright/test';
+import { createRequire } from 'node:module';
+
 import { lvl1 } from './fixtures/variants';
 import { setScrollViewport } from './fixtures/viewport';
+
+import type { Checker } from 'accessibility-checker-engine';
+import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
 
 const density = 'regular';
 
 export type SkipType = {
 	angular?: boolean;
+	stencil?: boolean;
+	project?: (project: FullProject) => boolean;
 };
 
 export type DefaultTestType = {
 	path: string;
-	fixedHeight?: number;
+	fixedHeight?: number | ((project: FullProject) => number | undefined);
 	skip?: SkipType;
 };
 
@@ -44,9 +47,8 @@ export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 
-export const hasWebComponentSyntax = (showcase?: string): boolean => {
-	return isAngular(showcase) || isStencil(showcase);
-};
+export const hasWebComponentSyntax = (showcase?: string): boolean =>
+	isAngular(showcase) || isStencil(showcase);
 
 export const waitForDBPage = async (page: Page) => {
 	const dbPage = page.locator('.db-page');
@@ -72,19 +74,26 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
 	await page.evaluate(async () => document.fonts.ready);
 
 	await waitForDBPage(page);
+
 	await setScrollViewport(page, fixedHeight)();
 };
 
-const isCheckerError = (object: any): object is ICheckerError =>
-	'details' in object;
-
-const shouldSkip = (skip?: SkipType): boolean => {
+const shouldSkip = (project: FullProject, skip?: SkipType): boolean => {
 	if (skip) {
+		if (skip.project?.(project)) {
+			return true;
+		}
+
 		const { showcase } = process.env;
-		if (skip.angular && showcase?.startsWith('angular')) {
+		if (skip.angular && isAngular('angular')) {
+			return true;
+		}
+
+		if (skip.stencil && isStencil(showcase)) {
 			return true;
 		}
 	}
@@ -99,17 +108,17 @@ export const getDefaultScreenshotTest = ({
 	skip,
 	ratio
 }: DefaultSnapshotTestType) => {
-	test(`should match screenshot`, async ({ page }, { project }) => {
+	test('should match screenshot', async ({ page }, { project }) => {
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 
-		if (shouldSkip(skip)) {
+		if (shouldSkip(project, skip)) {
 			test.skip();
 		}
 
-		const config: any = {};
+		const config: Record<string, unknown> = {};
 
 		if (maxDiffPixelRatio ?? diffPixel) {
 			if (maxDiffPixelRatio) {
@@ -121,6 +130,10 @@ export const getDefaultScreenshotTest = ({
 			}
 		} else if (isWebkit) {
 			config.maxDiffPixelRatio = 0.0123;
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight);
@@ -165,10 +178,15 @@ export const runAxeCoreTest = ({
 			test.skip();
 		}
 
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
+		}
+
 		await gotoPage(page, path, color, fixedHeight, density);
 
 		// This is a workaround for axe for browsers using forcedColors
 		// see https://github.com/dequelabs/axe-core-npm/issues/1067
+		/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
 		await page.evaluate(($project) => {
 			if ($project.use.contextOptions?.forcedColors === 'active') {
 				const style = document.createElement('style');
@@ -178,6 +196,7 @@ export const runAxeCoreTest = ({
 				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
 			}
 		}, project);
+		/* eslint-enable unicorn/isolated-functions */
 
 		if (preAxe) {
 			await preAxe(page);
@@ -211,6 +230,10 @@ export const runA11yCheckerTest = ({
 
 		test.slow(); // Easy way to triple the default timeout
 
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
+		}
+
 		await gotoPage(page, path, lvl1, fixedHeight);
 
 		if (preChecker) {
@@ -219,23 +242,34 @@ export const runA11yCheckerTest = ({
 
 		let failures: any[] = [];
 		try {
-			// Makes a call against https://cdn.jsdelivr.net/npm/accessibility-checker-engine
-			const { report } = await getCompliance(page, path);
+			// Inject the accessibility-checker engine from local node_modules
+			const require = createRequire(import.meta.url);
+			const enginePath = require.resolve('accessibility-checker-engine');
+			await page.addScriptTag({ path: enginePath });
 
-			if (isCheckerError(report)) {
-				failures = report.details;
-			} else {
-				failures = report.results.filter(
-					({ level, ruleId }: IBaselineResult) =>
-						level.toString() === 'violation' &&
-						!aCheckerDisableRules?.includes(ruleId)
-				);
-			}
+			/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
+			const results: Issue[] = await page.evaluate(async () => {
+				const { ace } = globalThis as any;
+				if (!ace?.Checker) {
+					return [];
+				}
+				const checker: Checker = new ace.Checker();
+				const report = await checker.check(document, [
+					'IBM_Accessibility'
+				]);
+				return report.results ?? [];
+			});
+			/* eslint-enable unicorn/isolated-functions */
+
+			failures = results.filter(
+				(result: Issue) =>
+					result.value.includes('VIOLATION') &&
+					result.value.includes('FAIL') &&
+					!aCheckerDisableRules?.includes(result.ruleId)
+			);
 		} catch (error) {
 			console.error(error);
 			failures.push(error);
-		} finally {
-			await close();
 		}
 
 		expect(failures).toEqual([]);
@@ -248,13 +282,17 @@ export const runAriaSnapshotTest = ({
 	preScreenShot,
 	skip
 }: DefaultSnapshotTestType) => {
-	test(`should have same aria-snapshot`, async ({ page }, {
+	test('should have same aria-snapshot', async ({ page }, {
 		project,
 		title
 	}) => {
 		if (shouldSkip(skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
 		}
 
 		await gotoPage(page, path, lvl1, fixedHeight, density);
@@ -278,6 +316,11 @@ export const runAriaSnapshotTest = ({
 
 				if (line.includes('- link')) {
 					line = line.replace(':', '');
+				}
+
+				if (line.includes(' [invalid]')) {
+					// Some frameworks add additional [invalid]
+					line = line.replace(' [invalid]', '');
 				}
 
 				return line;

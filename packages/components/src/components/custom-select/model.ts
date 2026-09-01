@@ -1,4 +1,4 @@
-import {
+import type {
 	BaseFormProps,
 	ClickEvent,
 	CloseEventState,
@@ -20,9 +20,9 @@ import {
 	ValidationType,
 	WidthType
 } from '../../shared/model';
-import { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
-import { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
-import { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
+import type { CustomSelectDropdownWidthType } from '../custom-select-dropdown/model';
+import type { DBCustomSelectFormFieldDefaultProps } from '../custom-select-form-field/model';
+import type { DBCustomSelectListItemExtraProps } from '../custom-select-list-item/model';
 
 export type CustomSelectOptionType = {
 	/**
@@ -266,6 +266,10 @@ export type DBCustomSelectDefaultState = {
 	_infoTextId?: string;
 	_internalChangeTimestamp: number;
 	_documentClickListenerCallbackId?: string;
+	_documentScrollListenerCallbackId?: string;
+	handleDocumentScroll: (event: any) => void;
+	_intersectionObserverCallbackId?: string;
+	_resizeObserverCallbackId?: string;
 	_searchValue?: string;
 	_userInteraction?: boolean;
 	getNativeSelectValue: () => string;
@@ -278,7 +282,7 @@ export type DBCustomSelectDefaultState = {
 	setDescById: (descId?: string) => void;
 	handleTagRemove: (
 		option: CustomSelectOptionType,
-		event?: ClickEvent<HTMLButtonElement> | void
+		event?: ClickEvent<HTMLButtonElement> | Event | void
 	) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;

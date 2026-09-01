@@ -4,14 +4,18 @@ For general installation and configuration take a look at the [react-core-compon
 
 ### General
 
-If you use `width !== full` you are able to overwrite the `max-width` with `--db-drawer-max-width:` CSS variable.
+If you use `containerSize !== full` you are able to overwrite the `max-width` with `--db-drawer-max-width:` CSS variable.
 
 ### Use component
 
 ```tsx App.tsx
 // App.tsx
 import { useState } from "react";
-import { DBButton, DBDrawer } from "@db-ux/react-core-components";
+import {
+	DBButton,
+	DBDrawer,
+	DBDrawerHeader
+} from "@db-ux/react-core-components";
 
 const App = () => {
 	const [open, setOpen] = useState<boolean>(false);
@@ -29,7 +33,11 @@ const App = () => {
 				onClose={() => {
 					setOpen(false);
 				}}
-				drawerHeader={<header>Optional drawer header</header>}
+				header={
+					<DBDrawerHeader closeButtonText="Close">
+						Drawer Title
+					</DBDrawerHeader>
+				}
 			>
 				My Drawer content
 			</DBDrawer>

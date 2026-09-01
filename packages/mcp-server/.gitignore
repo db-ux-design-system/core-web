@@ -1,0 +1,8 @@
+# Ignore copied build artifacts but keep the directories
+assets/migration/*
+!assets/migration/.gitkeep
+
+assets/tokens/*
+!assets/tokens/.gitkeep
+
+

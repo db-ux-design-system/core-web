@@ -23,12 +23,11 @@ export default function DBBrand(props: DBBrandProps) {
 		<div
 			ref={_ref}
 			data-icon={props.hideLogo ? 'none' : (props.icon ?? DEFAULT_ICON)}
-			data-show-icon={getBooleanAsString(props.showIcon)}
-			id={props.id}
+			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-brand', props.className)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			{props.children}
+			<Show when={props.text}>{props.text}</Show>
 		</div>
 	);
 }

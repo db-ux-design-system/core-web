@@ -9,9 +9,10 @@ export default {
 	// And elsewhere we don't, compare to https://github.com/stylelint/stylelint/pull/8009
 	'*.{css,scss}': 'stylelint --fix --allow-empty-input --no-validate',
 	'*.{js,ts,tsx,jsx,mjs,cjs}': 'xo --fix',
-	'**/package.json': [
-		() => 'npm install --package-lock-only --ignore-scripts',
-		'npm run lint:package-json'
-	],
-	'*': 'cspell --config .config/cspell.config.ts'
+	'**/package.json': [() => 'pnpm install', 'pnpm run lint:package-json'],
+	'*': 'cspell --config .config/cspell.config.ts --no-must-find-files --quiet',
+	// Screen-reader snapshot files must not have a trailing newline —
+	// Playwright's toMatchSnapshot() compares byte-for-byte.
+	'showcases/screen-reader/__snapshots__/**/*.txt':
+		'node scripts/strip-final-newline.js --fix'
 };

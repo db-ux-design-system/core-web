@@ -12,7 +12,7 @@ There are three different **Densities**, you can use them to change the volume o
 
 ## How to include
 
-For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../../foundations/readme).
+For **CSS**, **SCSS** and **Tailwind** you don't have to include a specific file, just follow the documentation for [foundations](../README.md).
 
 ### How to use
 

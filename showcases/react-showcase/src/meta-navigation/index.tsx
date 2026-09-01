@@ -21,25 +21,27 @@ const MetaNavigation = ({
 }: MetaNavigationProps) => {
 	const [searchParameters, setSearchParameters] =
 		useUniversalSearchParameters();
-	const [density, setDensity] = useState<string>(
+	const [density, setDensity] = useState(
 		searchParameters.get(DENSITY_CONST) ?? DENSITY.REGULAR
 	);
-	const [color, setColor] = useState<string>(
+	const [color, setColor] = useState(
 		searchParameters.get(COLOR_CONST) ?? COLOR.NEUTRAL_BG_LEVEL_1
 	);
 
 	useEffect(() => {
 		for (const [key, value] of searchParameters.entries()) {
-			if (value) {
-				if (key === DENSITY_CONST && density !== value) {
-					setDensity(value);
-					onDensityChange(value);
-				}
+			if (!value) {
+				continue;
+			}
 
-				if (key === COLOR_CONST && color !== value) {
-					setColor(value);
-					onColorChange(value);
-				}
+			if (key === DENSITY_CONST && density !== value) {
+				setDensity(value);
+				onDensityChange(value);
+			}
+
+			if (key === COLOR_CONST && color !== value) {
+				setColor(value);
+				onColorChange(value);
 			}
 		}
 	}, [searchParameters]);

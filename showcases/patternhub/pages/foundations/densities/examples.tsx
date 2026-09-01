@@ -2,7 +2,7 @@ import { DBButton, DBCard, DBInput } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
 const densities = ['functional', 'regular', 'expressive'];
-const Example = () => {
+export default function Example() {
 	return (
 		<DefaultPage>
 			<h1>Density Examples</h1>
@@ -91,6 +91,4 @@ const Example = () => {
 			</div>
 		</DefaultPage>
 	);
-};
-
-export default Example;
+}

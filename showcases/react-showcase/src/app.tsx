@@ -5,11 +5,11 @@ import useQuery from './hooks/use-query';
 import MetaNavigation from './meta-navigation';
 import Navigation from './navigation';
 
-const App = () => {
+export default function App() {
 	const [density, setDensity, color, setColor, pageName, fullscreen] =
 		useQuery();
 
-	const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+	const [drawerOpen, setDrawerOpen] = useState(false);
 
 	if (pageName ?? fullscreen) {
 		return (
@@ -74,6 +74,4 @@ const App = () => {
 			</div>
 		</DBPage>
 	);
-};
-
-export default App;
+}

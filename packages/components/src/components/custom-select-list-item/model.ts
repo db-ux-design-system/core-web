@@ -1,10 +1,9 @@
-import {
+import type {
 	BaseFormProps,
 	ChangeEventProps,
 	ChangeEventState,
 	FormCheckProps,
 	GlobalProps,
-	GlobalState,
 	IconProps,
 	ShowIconProps,
 	ValueProps
@@ -51,5 +50,4 @@ export type DBCustomSelectListItemDefaultState = {
 };
 
 export type DBCustomSelectListItemState = DBCustomSelectListItemDefaultState &
-	ChangeEventState<HTMLInputElement> &
-	GlobalState;
+	ChangeEventState<HTMLInputElement>;

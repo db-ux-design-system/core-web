@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { DBButton } from '../../../../../../../output/angular/src';
+import { Component, input } from '@angular/core';
+import { DBButton } from '@components';
 
 @Component({
 	selector: 'app-form-wrapper',
@@ -8,7 +8,8 @@ import { DBButton } from '../../../../../../../output/angular/src';
 	standalone: true
 })
 export class WrapperComponent {
-	@Input('plain') plain!: string | boolean | string[];
-	@Input('model') model!: string | boolean | string[];
-	@Input('control') control!: string | boolean | string[];
+	plain = input<string | boolean | string[]>('');
+	model = input<string | boolean | string[]>('');
+	control = input<string | boolean | string[]>('');
+	signalForms = input<string | boolean | string[]>('');
 }

@@ -11,7 +11,7 @@ import { DBNavigation, DBNavigationItem } from "@db-ux/react-core-components";
 const App = () => (
 	<DBNavigation>
 		<DBNavigationItem
-			slotSubNavigation={
+			subNavigation={
 				<>
 					<DBNavigationItem
 						subNavigation={

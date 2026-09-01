@@ -1,0 +1,16 @@
+@use "../colors/placeholder";
+@forward "../defaults/default-properties";
+@forward "../fonts/relative";
+@forward "../icons/relative";
+
+@property --db-font-family-sans {
+	syntax: "*";
+	initial-value: "OpenSans", helvetica, arial, sans-serif;
+	inherits: true;
+}
+
+@property --db-font-family-head {
+	syntax: "*";
+	initial-value: "OpenSans Head", helvetica, arial, sans-serif;
+	inherits: true;
+}

@@ -1,9 +1,219 @@
 # @db-ux/core-foundations
 
-## 4.4.0
+## 5.2.1
 
 _version bump_
 
+## 5.2.0
+
+### Minor Changes
+
+- refactor(SASS): expose the headline level mapping as `fonts.$headlines` - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - The default visual size per semantic level moves from
+    - `defaults/default-fonts.scss` into the new non-emitting partial
+    - `fonts/_headline-levels.scss`, so `defaults/default-fonts.scss` and the Heading
+    - component styles share one source of truth. The emitted CSS is unchanged.
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: prevent Sass from emitting `@charset` in published SCSS output for non-ASCII characters, which causes problems e.g. in Next.js - [see commit cefb202](https://github.com/db-ux-design-system/core-web/commit/cefb20259dc650d478e9a58f67e4f46051ee46e3)
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
+## 5.0.2
+
+_version bump_
+
+## 5.0.1
+
+_version bump_
+
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+### Patch Changes
+
+- refactor: we're not assigning our CSS Custom Properties to the `:host` selector anymore, but only `:root`, which even also covers `:host`, as the ShadowRoot boundary doesn't block the CSS cascade. - [see commit b6f0600](https://github.com/db-ux-design-system/core-web/commit/b6f06000c5f23ba10c324f93faae8fb7cc4fe33d)
+
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: allow overriding font-weight on `text-body-*` / `text-head-*` Tailwind utilities - [see commit 771da1a](https://github.com/db-ux-design-system/core-web/commit/771da1aead25ba11a3aff37b7a578edeecf54605):
+
+    - The typography utilities applied the `font` shorthand, which reset `font-weight` to its initial value and made utilities like `font-bold` ineffective. The utilities now re-apply `font-weight` via Tailwind's `--tw-font-weight` variable, keeping the token's natural weight as the default while allowing independent overrides.
+
+## 4.13.0
+
+### Patch Changes
+
+- fix: add missing `@property --db-screen-lg` - [see commit 43c450e](https://github.com/db-ux-design-system/core-web/commit/43c450e0a731b85f59ae22efd029ceb435bdeca4)
+
+## 4.12.1
+
+_version bump_
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+_version bump_
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+## 4.10.2
+
+### Patch Changes
+
+- refactor: replaced external fallback icon font as inline base64 to ensure it loads with CSS even when the font file cannot be fetched, preventing layout shifts. - [see commit 8a6b622](https://github.com/db-ux-design-system/core-web/commit/8a6b622179dfd3fc61cecd149cd3b61a40147f92)
+
+- fix: ensure that the icon fallback is displayed as a rectangle - [see commit 6ebc636](https://github.com/db-ux-design-system/core-web/commit/6ebc6361f06fbb44476435b1f011def97318d586)
+
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+_version bump_
+
+## 4.9.1
+
+### Patch Changes
+
+- fix: correct default relative asset base for fonts/icons in `build/styles/theme/relative.css` and other `*relative.css` files - [see commit f465d98](https://github.com/db-ux-design-system/core-web/commit/f465d98c2c091dfe8d9f8f1f461d8073c52a5f15)
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+_version bump_
+
+## 4.7.3
+
+### Patch Changes
+
+- fix: `meta[name="color-scheme"]` HTML tag support - [see commit b23c57b](https://github.com/db-ux-design-system/core-web/commit/b23c57b9f735a88ceb4308f2d1bcf38092f50786)
+
+## 4.7.2
+
+_version bump_
+
+## 4.7.1
+
+_version bump_
+
+## 4.7.0
+
+_version bump_
+
+## 4.6.1
+
+_version bump_
+
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+## 4.5.4
+
+### Patch Changes
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+## 4.5.3
+
+_version bump_
+
+## 4.5.2
+
+_version bump_
+
+## 4.5.1
+
+### Patch Changes
+
+- fix: issue with hover state when using DBPopover/Tooltip with animation - [see commit bc4801b](https://github.com/db-ux-design-system/core-web/commit/bc4801bf0b32d5dc4fd8e29626a6122e34fb6ada)
+
+## 4.5.0
+
+_version bump_
+
+## 4.4.3
+
+_version bump_
+
+## 4.4.2
+
+_version bump_
+
+## 4.4.1
+
+### Patch Changes
+
+- fix: issue with tailwind not reflecting adaptive color changes with `[data-color="xxx"]` - [see commit 936638d](https://github.com/db-ux-design-system/core-web/commit/936638d672bbb6c0f8a0ecf77bf41fafa0e31656)
+
+## 4.4.0
+
+_version bump_
 
 ## 4.3.2
 
@@ -70,28 +280,28 @@ _version bump_
 ### Patch Changes
 
 - chore: update instructions files for better copilot outputs - [see commit e4bc905](https://github.com/db-ux-design-system/core-web/commit/e4bc90508479387371d816d5776f9f568aa5fb82):
-  - fix: add some missing variables
+    - fix: add some missing variables
 
 - fix(tailwind): add individual color theme files for all color variants - [see commit e8d58bd](https://github.com/db-ux-design-system/core-web/commit/e8d58bde01039a3d233105c2c72efa71c619c4b4):
-  - Create separate CSS files for each color
-  - Move colors.css to colors/ subdirectory with adaptive theme
-  - Add colors/index.css that imports all color variants
-  - Update theme/index.css to import from colors/index.css
-    - burgundy
-    - critical
-    - cyan
-    - green
-    - informational
-    - light-green
-    - neutral
-    - orange
-    - pink
-    - red
-    - successful
-    - turquoise
-    - violet
-    - warning
-    - yellow
+    - Create separate CSS files for each color
+    - Move colors.css to colors/ subdirectory with adaptive theme
+    - Add colors/index.css that imports all color variants
+    - Update theme/index.css to import from colors/index.css
+        - burgundy
+        - critical
+        - cyan
+        - green
+        - informational
+        - light-green
+        - neutral
+        - orange
+        - pink
+        - red
+        - successful
+        - turquoise
+        - violet
+        - warning
+        - yellow
 
 ## 4.0.1
 
@@ -118,7 +328,7 @@ _version bump_
 ### Patch Changes
 
 - enabled [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) for every package - [see commit 0233048](https://github.com/db-ux-design-system/core-web/commit/023304869e61f5a506dca66a22d69e5f3d70f4d0):
-  - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
+    - auto-generate/auto-update `.github/copilot-instructions.md`, to ensure GitHub Copilot uses DB UX Components for code generation
 
 ## 3.1.17
 

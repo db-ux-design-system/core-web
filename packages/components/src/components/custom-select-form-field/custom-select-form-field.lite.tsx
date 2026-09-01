@@ -15,7 +15,7 @@ export default function DBCustomSelectFormField(
 	return (
 		<summary
 			ref={_ref}
-			id={props.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-select-form-field', props.className)}>
 			{props.children}
 		</summary>

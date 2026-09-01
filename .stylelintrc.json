@@ -15,15 +15,44 @@
 						"-calc",
 						"$default-icon-margin",
 						"form-components.",
-						"section-padding-inline"
+						"section-padding-inline",
+						"component.$",
+						"env(safe-area-"
 					],
 					"startsWith": ["icons.$", "map.get"]
 				}
 			}
 		],
-		"db-ux/use-border-width": [true],
+		"db-ux/use-sizing": [
+			true,
+			{
+				"allowCalc": true,
+				"allow": {
+					"includes": ["$db-", "$font-size-height", "--db-drawer-"],
+					"startsWith": [
+						"icons.$",
+						"component.$",
+						"form-components.$",
+						"calc-size("
+					],
+					"exact": ["$popover-gap-size", "$scrollbar-width"]
+				}
+			}
+		],
+		"db-ux/use-border-width": [
+			true,
+			{
+				"allowCalc": true,
+				"allow": { "startsWith": ["component.$", "form-components.$"] }
+			}
+		],
 		"db-ux/use-border-radius": [true],
-		"db-ux/use-border-color": [true],
+		"db-ux/use-border-color": [
+			true,
+			{
+				"allow": { "startsWith": ["component.$", "form-components.$"] }
+			}
+		],
 		"a11y/media-prefers-reduced-motion": true,
 		"a11y/no-outline-none": true,
 		"a11y/selector-pseudo-class-focus": true,

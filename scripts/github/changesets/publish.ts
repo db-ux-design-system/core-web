@@ -27,7 +27,7 @@ function run(cmd: string, options = {}): any {
 }
 
 /**
- * Get the current version from package.json - we can use foundations here as it's always in sync with the other packages
+ Get the current version from package.json - we can use foundations here as it's always in sync with the other packages
  */
 function getVersion(): string {
 	const pkgPath = path.resolve(
@@ -70,7 +70,7 @@ function getReleaseNotes(): string {
 	return notes.join('\n\n---\n\n').trim();
 }
 
-function releaseExists(tag: string): boolean {
+function hasRelease(tag: string): boolean {
 	try {
 		run(`gh release view "${tag}"`);
 		return true;
@@ -88,7 +88,7 @@ function main() {
 	// Extract release notes
 	const notes = getReleaseNotes();
 
-	if (releaseExists(tag)) {
+	if (hasRelease(tag)) {
 		console.log(
 			`Release ${tag} already exists. Skipping release creation.`
 		);
@@ -96,7 +96,7 @@ function main() {
 	}
 
 	// Write notes to a temporary file for safe shell usage
-	const temporaryFile = path.join(os.tmpdir(), `dbux-release-notes.md`);
+	const temporaryFile = path.join(os.tmpdir(), 'dbux-release-notes.md');
 	fs.writeFileSync(temporaryFile, notes, 'utf8');
 	try {
 		const releaseCommand = `gh release create "${tag}" --target main --title "${tag}" --notes-file "${temporaryFile}"`;
