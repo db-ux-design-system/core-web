@@ -1,5 +1,29 @@
 # @db-ux/wc-core-components
 
+## 5.2.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): synchronize values and options when resetting - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(radio): checked state barely visible at `size="small"` with `density="functional"` - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBRadio): use `:user-valid`/`:user-invalid` instead of `:valid`/`:invalid` for radio inputs - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBCustomSelect): reset inline positioning when switching to mobile screen sizes - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+
+## 5.2.0
+
+### Minor Changes
+
+- feat: add static and custom Heading components (beta) - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - `DBCustomHeading` takes the native heading as its default content and offers a
+    - `startSlot` and an `endSlot` for the content next to it, so that content stays out
+    - of the accessible heading name.
+
+### Patch Changes
+
+- fix: preserve component sizing inside custom headings - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+- fix(DBCustomSelect): initialize search value as empty string instead of undefined - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+
 ## 5.1.6
 
 ### Patch Changes

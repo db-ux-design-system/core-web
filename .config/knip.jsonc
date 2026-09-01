@@ -9,6 +9,12 @@
 	"ignoreIssues": {
 		"packages/components/src/components/select/figma/select.figma.ts": [
 			"duplicates"
+		],
+		// Mitosis resolves the six imports without extensions to sibling *.lite.tsx files.
+		"packages/components/src/components/heading/index.ts": ["unresolved"],
+		// The spec mounts the generated example, which Mitosis emits without the .lite suffix.
+		"packages/components/src/components/custom-select/custom-select.spec.tsx": [
+			"unresolved"
 		]
 	},
 

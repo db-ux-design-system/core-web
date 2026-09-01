@@ -1,6 +1,10 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+// VUE: /*
+import CustomSelectControlled from './examples/controlled.example';
+// VUE: */
+
 import { DBCustomSelect } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -537,6 +541,77 @@ const testValuesReset = () => {
 		// Verify selection is cleared
 		await expect(resetSummary).not.toContainText('Option 1');
 		await expect(resetSummary).toContainText('');
+	});
+
+	test('should synchronize controlled values and options on the same instance', async ({
+		mount
+	}, testInfo) => {
+		test.skip(
+			!testInfo.config.rootDir.includes('/output/react/'),
+			'React-specific controlled component regression test'
+		);
+
+		const component = await mount(<CustomSelectControlled />);
+		const summary = component.locator('summary');
+		const tags = component.locator('.db-tag');
+		const optionInputs = component.locator(
+			'.db-custom-select-list-item input[value]'
+		);
+		const loadOtherOptions = component.getByRole('button', {
+			name: 'Load other options'
+		});
+		const clearOptionsAndSelection = component.getByRole('button', {
+			name: 'Clear options and selection'
+		});
+		const restoreOptions = component.getByRole('button', {
+			name: 'Restore options without selection'
+		});
+		// The example only counts user selections, so it stays at 0 while the
+		// controlled props are synchronized.
+		const selectionReadout = component.getByText('Selections by user: 0');
+
+		// The example starts without a selection, so no removable tag is rendered
+		// inside the interactive <summary> on the showcase page.
+		await expect(summary).not.toContainText('Germany');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(2);
+		await expect(
+			component
+				.locator('.db-custom-select-list-item')
+				.filter({ hasText: 'Germany' })
+		).toHaveCount(1);
+		await expect(component.locator('input[value="de"]')).not.toBeChecked();
+
+		// Options and values change in the same render: the reported bug.
+		await loadOtherOptions.click();
+		await expect(summary).toContainText('Switzerland');
+		await expect(summary).not.toContainText('Germany');
+		await expect(tags).toHaveCount(1);
+		await expect(tags).toContainText('Switzerland');
+		await expect(optionInputs).toHaveCount(2);
+		await expect(component.locator('input[value="ch"]')).toBeChecked();
+		await expect(component.locator('input[value="de"]')).toHaveCount(0);
+
+		await clearOptionsAndSelection.click();
+		await expect(summary).not.toContainText('Switzerland');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(0);
+		await expect(selectionReadout).toBeVisible();
+
+		await restoreOptions.click();
+		await expect(summary).not.toContainText('Germany');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(2);
+		await expect(component.locator('input[value="de"]')).not.toBeChecked();
+		await expect(selectionReadout).toBeVisible();
+
+		await loadOtherOptions.click();
+		await restoreOptions.click();
+		await expect(summary).not.toContainText('Switzerland');
+		await expect(tags).toHaveCount(0);
+		await expect(optionInputs).toHaveCount(2);
+		await expect(component.locator('input[value="de"]')).not.toBeChecked();
+		await expect(selectionReadout).toBeVisible();
 	});
 };
 

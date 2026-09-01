@@ -133,7 +133,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		_searchValue: undefined,
+		_searchValue: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -858,7 +858,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
-		state._searchValue = props.searchValue;
+		state._searchValue = props.searchValue ?? '';
 		if (props.searchValue) {
 			const sValue = props.searchValue!; // <- workaround for Angular
 			state.handleSearch(sValue);
@@ -866,20 +866,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.searchValue]);
 
 	onUpdate(() => {
-		if (props.options?.length) {
-			state._selectedOptions = props.options?.filter(
-				(option: CustomSelectOptionType) => {
-					if (!option.value || !state._values?.['includes']) {
-						return false;
-					}
-
-					return (
-						!option.isGroupTitle &&
-						state._values?.includes(option.value)
-					);
+		state._selectedOptions =
+			props.options?.filter((option: CustomSelectOptionType) => {
+				if (!option.value || !state._values?.['includes']) {
+					return false;
 				}
-			);
-		}
+
+				return (
+					!option.isGroupTitle &&
+					state._values?.includes(option.value)
+				);
+			}) ?? [];
 	}, [props.options, state._values]);
 
 	onUpdate(() => {

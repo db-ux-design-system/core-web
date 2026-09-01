@@ -257,12 +257,3 @@ export const transformToUpperComponentName = (componentName) =>
 		: '';
 
 export const getComponentName = (elementName) => elementName.replace('db-', '');
-
-export const getComponentGroup = (components, componentName) =>
-	components.find((comp) =>
-		comp.subNavigation.find(
-			(sub) =>
-				componentName.includes(sub.name) ||
-				componentName.replace('tab-item', 'tabs').includes(sub.name)
-		)
-	);
