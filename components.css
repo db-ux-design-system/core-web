@@ -3,7 +3,8 @@
 	color: var(--db-text-default);
 	border: 1px solid var(--db-border);
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		background-color: var(--db-bg-hovered);
 	}
 
@@ -12,7 +13,48 @@
 	}
 }
 
+* {
+	box-sizing: border-box;
+}
 
-:is(:root, :host){
+:is(:root, :host) {
 	background-color: lightblue;
+}
+
+
+.button {
+	font-size: var(--db-font-size);
+	line-height: var(--db-line-height);
+	border-radius: var(--db-border-radius);
+	padding: var(--db-component-padding-block)
+		var(--db-component-padding-inline);
+	display: inline-flex;
+	gap: var(--db-component-gap);
+	align-items: center;
+
+	&::before {
+		block-size: var(--db-content-height);
+		inline-size: var(--db-content-height);
+		content: "+";
+	}
+
+	> span {
+		block-size: var(--db-content-height);
+		padding: var(--db-content-padding-block)
+			var(--db-content-padding-inline);
+	}
+
+	/* Color */
+	background-color: var(--db-bg-default);
+	color: var(--db-text-default);
+	border: var(--db-border-width) solid var(--db-border);
+
+	&:hover,
+	&:focus {
+		background-color: var(--db-bg-hovered);
+	}
+
+	&:active {
+		background-color: var(--db-bg-pressed);
+	}
 }

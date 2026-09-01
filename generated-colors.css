@@ -1,4 +1,4 @@
-@layer material, material-high-contrast;
+@layer material, material-high-contrast, size;
 
 :is(:root,:host) {
 	--db-focus-outline-color: light-dark(#257FA8, #257FA8);
@@ -11511,3 +11511,174 @@
 }
 
 } /* @layer material-high-contrast */
+
+@layer size {
+
+:is(:root,:host) {
+	--db-base-size-0: 0;
+	--db-base-size-25: 1px;
+	--db-base-size-50: 2px;
+	--db-base-size-75: 3px;
+	--db-base-size-100: 4px;
+	--db-base-size-125: 5px;
+	--db-base-size-150: 6px;
+	--db-base-size-175: 7px;
+	--db-base-size-200: 8px;
+	--db-base-size-250: 10px;
+	--db-base-size-300: 12px;
+	--db-base-size-350: 14px;
+	--db-base-size-400: 16px;
+	--db-base-size-450: 18px;
+	--db-base-size-500: 20px;
+	--db-base-size-600: 24px;
+	--db-base-size-700: 28px;
+	--db-base-size-800: 32px;
+	--db-base-size-1000: 40px;
+	--db-base-size-1200: 48px;
+}
+
+[data-size="3xs"] {
+	--db-component-padding-block: 0;
+	--db-component-padding-inline: 2px;
+	--db-component-height: 16px;
+	--db-content-height: 16px;
+	--db-content-padding-inline: 2px;
+	--db-content-padding-block: 0;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 12px;
+	--db-font-size: 10.67px;
+	--db-line-height: 16px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "12";
+}
+
+[data-size="2xs"] {
+	--db-component-padding-block: 1px;
+	--db-component-padding-inline: 3px;
+	--db-component-height: 18px;
+	--db-content-height: 16px;
+	--db-content-padding-inline: 2px;
+	--db-content-padding-block: 0;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 12px;
+	--db-font-size: 10.67px;
+	--db-line-height: 16px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "12";
+}
+
+[data-size="xs"] {
+	--db-component-padding-block: 1px;
+	--db-component-padding-inline: 3px;
+	--db-component-height: 20px;
+	--db-content-height: 18px;
+	--db-content-padding-inline: 2px;
+	--db-content-padding-block: 0;
+	--db-component-gap: max(3px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 14px;
+	--db-font-size: 12px;
+	--db-line-height: 18px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "14";
+}
+
+[data-size="sm"] {
+	--db-component-padding-block: 2px;
+	--db-component-padding-inline: 5px;
+	--db-component-height: 24px;
+	--db-content-height: 20px;
+	--db-content-padding-inline: 2px;
+	--db-content-padding-block: 0;
+	--db-component-gap: max(3px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 16px;
+	--db-font-size: 13.33px;
+	--db-line-height: 20px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "16";
+}
+
+:is(:root,:host) {
+	--db-component-padding-block: 2px;
+	--db-component-padding-inline: 4px;
+	--db-component-height: 28px;
+	--db-content-height: 24px;
+	--db-content-padding-inline: 4px;
+	--db-content-padding-block: 0;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 20px;
+	--db-font-size: 16px;
+	--db-line-height: 24px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "20";
+}
+
+[data-size="md"] {
+	--db-component-padding-block: 2px;
+	--db-component-padding-inline: 4px;
+	--db-component-height: 28px;
+	--db-content-height: 24px;
+	--db-content-padding-inline: 4px;
+	--db-content-padding-block: 0;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 20px;
+	--db-font-size: 16px;
+	--db-line-height: 24px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "20";
+}
+
+[data-size="lg"] {
+	--db-component-padding-block: 2px;
+	--db-component-padding-inline: 6px;
+	--db-component-height: 32px;
+	--db-content-height: 28px;
+	--db-content-padding-inline: 4px;
+	--db-content-padding-block: 2px;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 20px;
+	--db-font-size: 16px;
+	--db-line-height: 24px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "20";
+}
+
+[data-size="xl"] {
+	--db-component-padding-block: 4px;
+	--db-component-padding-inline: 10px;
+	--db-component-height: 40px;
+	--db-content-height: 32px;
+	--db-content-padding-inline: 4px;
+	--db-content-padding-block: 4px;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 20px;
+	--db-font-size: 16px;
+	--db-line-height: 24px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "20";
+}
+
+[data-size="2xl"] {
+	--db-component-padding-block: 4px;
+	--db-component-padding-inline: 12px;
+	--db-component-height: 48px;
+	--db-content-height: 40px;
+	--db-content-padding-inline: 4px;
+	--db-content-padding-block: 8px;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
+	--db-icon-size: 20px;
+	--db-font-size: 16px;
+	--db-line-height: 24px;
+	--db-border-radius: 4px;
+	--db-border-width: 1px;
+	--db-icon-size-name: "20";
+}
+
+} /* @layer size */
