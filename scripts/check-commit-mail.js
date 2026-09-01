@@ -15,10 +15,10 @@ try {
 }
 
 const checkCommitMail = () => {
-	console.warn(`Check COMMIT_MAIL`);
+	console.warn('Check COMMIT_MAIL');
 	if (!env.COMMIT_MAIL) {
 		console.error(
-			`No COMMIT_MAIL set in .env, please take a look at the file '.env.template'`
+			"No COMMIT_MAIL set in .env, please take a look at the file '.env.template'"
 		);
 		exit(1);
 	}

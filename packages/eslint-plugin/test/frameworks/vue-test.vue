@@ -12,9 +12,43 @@
 		</DBButton>
 
 		<!-- db-ux/close-button-text-required -->
-		<DBNotification></DBNotification>
-		<DBDrawer></DBDrawer>
+		<DBNotification closeable>Test</DBNotification>
+		<DBNotification :closeable="true">Test</DBNotification>
+		<DBNotification :closeable="false">Test</DBNotification>
+		<DBNotification>Test</DBNotification>
+		<DBDrawerHeader>Test</DBDrawerHeader>
 		<DBCustomSelect label="Select"></DBCustomSelect>
+
+		<!-- db-ux/drawer-header-required -->
+		<DBDrawer>Content without header</DBDrawer>
+
+		<!-- db-ux/sub-component-required-parent -->
+		<DBDrawerHeader>Outside drawer</DBDrawerHeader>
+		<DBDrawerFooter>Outside drawer</DBDrawerFooter>
+		<DBNavigationItem>Outside navigation</DBNavigationItem>
+		<DBTabList><DBTabItem>Outside tabs</DBTabItem></DBTabList>
+		<DBTabPanel>Outside tabs</DBTabPanel>
+		<DBTableHead
+			><DBTableRow
+				><DBTableHeaderCell>H</DBTableHeaderCell></DBTableRow
+			></DBTableHead
+		>
+		<DBTableBody
+			><DBTableRow
+				><DBTableDataCell>D</DBTableDataCell></DBTableRow
+			></DBTableBody
+		>
+		<DBTableFooter
+			><DBTableRow
+				><DBTableDataCell>F</DBTableDataCell></DBTableRow
+			></DBTableFooter
+		>
+		<DBTableRow
+			><DBTableDataCell>Outside section</DBTableDataCell></DBTableRow
+		>
+		<DBTableHeaderCell>Outside row</DBTableHeaderCell>
+		<DBTableDataCell>Outside row</DBTableDataCell>
+		<DBTableCaption>Outside table</DBTableCaption>
 
 		<!-- db-ux/button-no-text-requires-tooltip -->
 		<DBButton type="submit" noText icon="search"></DBButton>
@@ -68,6 +102,17 @@
 		<!-- db-ux/tag-removable-remove-button-required -->
 		<DBTag behavior="removable"></DBTag>
 
+		<!-- db-ux/custom-heading-single-heading -->
+		<DBCustomHeading>Installation</DBCustomHeading>
+		<DBCustomHeading>
+			<h2>One</h2>
+			<h3>Two</h3>
+		</DBCustomHeading>
+		<DBCustomHeading>
+			<h2>One</h2>
+			<template #end-slot><h3>Two</h3></template>
+		</DBCustomHeading>
+
 		<!-- db-ux/tooltip-requires-interactive-parent -->
 		<div>
 			<DBTooltip>Tooltip without interactive parent</DBTooltip>
@@ -81,8 +126,11 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBCustomHeading,
 	DBCustomSelect,
 	DBDrawer,
+	DBDrawerFooter,
+	DBDrawerHeader,
 	DBHeader,
 	DBIcon,
 	DBInput,
@@ -90,6 +138,16 @@ import {
 	DBNavigationItem,
 	DBNotification,
 	DBSelect,
+	DBTabItem,
+	DBTabList,
+	DBTabPanel,
+	DBTableBody,
+	DBTableCaption,
+	DBTableDataCell,
+	DBTableFooter,
+	DBTableHead,
+	DBTableHeaderCell,
+	DBTableRow,
 	DBTag,
 	DBTooltip
 } from "@db-ux/v-core-components";

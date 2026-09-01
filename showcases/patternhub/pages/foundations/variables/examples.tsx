@@ -6,7 +6,7 @@ import {
 } from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 
-const Example = () => {
+export default function Example() {
 	return (
 		<DefaultPage>
 			<h1>Variable Examples</h1>
@@ -99,6 +99,4 @@ const Example = () => {
 			)}
 		</DefaultPage>
 	);
-};
-
-export default Example;
+}

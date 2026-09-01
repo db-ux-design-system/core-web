@@ -35,9 +35,9 @@ const getArrayType = (ts, type) => {
 			array = getPrimitive(ts, type.elementType.kind);
 		}
 		return `${array}[]`;
-	}catch (error) {
-		console.error(error)
-		return  "ERROR";
+	} catch (error) {
+		console.error(error);
+		return 'ERROR';
 	}
 };
 
@@ -53,7 +53,7 @@ const getUnions = (ts, types) => {
 	for (const innerType of types) {
 		if (innerType.typeName) {
 			typeUnions = true;
-			values.push(innerType.typeName?.escapedText)
+			values.push(innerType.typeName?.escapedText);
 		} else if (innerType.literal) {
 			values.push(`'${innerType.literal?.text}'`);
 		} else if (innerType.elementType) {
@@ -64,7 +64,7 @@ const getUnions = (ts, types) => {
 			values = values.concat(members.values);
 		} else if (innerType.kind) {
 			values.push(getPrimitive(ts, innerType.kind));
-		}else{
+		} else {
 			values.push('ERROR');
 		}
 	}
@@ -98,10 +98,12 @@ const getTypeOfList = (type) => {
  */
 const getMembers = (ts, members) => {
 	try {
-		return ({
+		return {
 			values: members.map((member) => {
 				const memberType = member.type;
-				const comment = member.jsDoc?.map((doc) => doc.comment).join('\n');
+				const comment = member.jsDoc
+					?.map((doc) => doc.comment)
+					.join('\n');
 				let type;
 
 				if (memberType.typeName) {
@@ -117,7 +119,7 @@ const getMembers = (ts, members) => {
 				let name = member.name?.escapedText;
 				if (!name) {
 					const keys = Array.from(member.locals.keys());
-					name = keys.join(",")
+					name = keys.join(',');
 				}
 
 				return {
@@ -127,13 +129,13 @@ const getMembers = (ts, members) => {
 				};
 			}),
 			type: 'props'
-		})
-	}catch (error) {
+		};
+	} catch (error) {
 		console.error(error);
 		return {
 			values: ['ERROR'],
 			type: 'props'
-		}
+		};
 	}
 };
 

@@ -70,8 +70,8 @@ export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
 	for (const component of components) {
 		const componentName = component.name;
-		const file = `../../${outputFolder}/stencil/src/components/${componentName}/${componentName}.tsx`;
-		const indexFile = `../../${outputFolder}/stencil/src/components/${componentName}/index.ts`;
+		const file = `../../${outputFolder}/stencil/src/components/${component.folder ?? componentName}/${componentName}.tsx`;
+		const indexFile = `../../${outputFolder}/stencil/src/components/${component.folder ?? componentName}/index.ts`;
 		const upperComponentName = `DB${transformToUpperComponentName(component.name)}`;
 
 		replaceInFileSync({
@@ -79,7 +79,9 @@ export default (tmp?: boolean) => {
 			processor: (input: string) => changeFile(upperComponentName, input)
 		});
 
-		const replacements: Overwrite[] = [{ from: 'for={', to: 'htmlFor={' }];
+		const replacements: Overwrite[] = [
+			{ from: /(?<!\w)for={/g, to: 'htmlFor={' }
+		];
 		replaceIndexFile(indexFile, componentName, upperComponentName);
 		runReplacements(replacements, component, 'stencil', file);
 	}

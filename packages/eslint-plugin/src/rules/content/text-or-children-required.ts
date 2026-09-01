@@ -8,6 +8,7 @@ import {
 
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
+	'DBBadge',
 	'DBButton',
 	'DBLink',
 	'DBIcon',
@@ -35,7 +36,9 @@ export default {
 			const component = COMPONENTS_REQUIRING_CONTENT.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const text = getAttributeValue(node, 'text');
 			const hasChildren = node.children?.some(
@@ -45,7 +48,7 @@ export default {
 					child.type === 'Element$1'
 			);
 
-			if (text === null && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -57,13 +60,20 @@ export default {
 			}
 		};
 
+		const angularVisitors: any = {};
 		for (const comp of COMPONENTS_REQUIRING_CONTENT) {
-			const angularVisitors = createAngularVisitors(
+			const visitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
+		}
+
+		if (Object.keys(angularVisitors).length > 0) {
+			return angularVisitors;
 		}
 
 		const checkComponent = (node: any) => {
@@ -72,7 +82,9 @@ export default {
 			const component = COMPONENTS_REQUIRING_CONTENT.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
@@ -88,7 +100,7 @@ export default {
 					child.type === 'VExpressionContainer'
 			);
 
-			if (text === null && !hasChildren) {
+			if (text === undefined && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,

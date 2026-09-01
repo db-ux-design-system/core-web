@@ -235,6 +235,7 @@ $db-min-inline-size: var(
 		@extend %db-#{$variant}-variables;
 		/* stylelint-disable-next-line at-rule-empty-line-before */
 	} @else {
+		// jscpd:ignore-start
 		// this is a workaround for the textarea scrollbar
 		--db-textarea-read-only: var(--db-#{$variant}-bg-basic-level-1-default);
 		--db-adaptive-bg-basic-transparent-full-default: var(
@@ -258,6 +259,8 @@ $db-min-inline-size: var(
 		--db-adaptive-on-bg-basic-emphasis-100-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-100-default
 		);
+
+		// jscpd:ignore-end
 		--db-adaptive-on-bg-basic-emphasis-60-default: var(
 			--db-#{$variant}-on-bg-basic-emphasis-60-default
 		);
@@ -312,11 +315,8 @@ $input-valid-types:
 @mixin get-validity($selector, $key: "valid") {
 	$user: "";
 
-	@if $selector == check or $selector == switch {
-		$user: "user-";
-	}
-
 	@if $selector == check or $selector == radio or $selector == switch {
+		$user: "user-";
 		$selector: input;
 
 		&:has(
@@ -425,8 +425,11 @@ $input-valid-types:
 				#{variables.$db-spacing-fixed-sm}
 			);
 
-		@include helpers.hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+		@include helpers.not-disabled {
+			// cursor: revert - text/textarea inputs should use the text cursor, not pointer
+			@include helpers.hover(revert) {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
 		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {
@@ -455,7 +458,7 @@ $input-valid-types:
 		@extend %db-overwrite-font-size-xs;
 
 		padding-block-end: variables.$db-spacing-fixed-xs;
-		max-inline-size: 25ch;
+		max-inline-size: var(--db-label-max-size, 100%);
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
@@ -582,6 +585,7 @@ $input-valid-types:
 
 	@include get-validity-message($key);
 
+	// jscpd:ignore-start
 	input {
 		&:not(:checked) {
 			--db-adaptive-bg-basic-transparent-full-default: var(
@@ -594,6 +598,8 @@ $input-valid-types:
 				--db-#{$variant}-bg-basic-transparent-full-pressed
 			);
 		}
+
+		// jscpd:ignore-end
 
 		&:checked {
 			--db-adaptive-bg-basic-transparent-full-default: var(
@@ -625,7 +631,6 @@ $input-valid-types:
 		@include helpers.display(flex);
 
 		align-items: flex-start;
-		position: relative;
 		color: var(
 			--db-check-element-label-color,
 			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
@@ -659,6 +664,7 @@ $input-valid-types:
 
 	&[data-hide-label="true"] {
 		font-size: 0;
+		inline-size: fit-content;
 
 		input {
 			margin-inline-end: 0;

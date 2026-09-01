@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -7,9 +8,16 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	delay as utilsDelay
+} from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
+import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
+import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBPopoverProps, DBPopoverState } from './model';
 
 useMetadata({});
@@ -22,8 +30,10 @@ export default function DBPopover(props: DBPopoverProps) {
 		initialized: false,
 		isExpanded: false,
 		_documentScrollListenerCallbackId: undefined,
-		_observer: undefined,
+		_intersectionObserverCallbackId: undefined,
+		_resizeObserverCallbackId: undefined,
 		handleEscape: (event: any) => {
+			if (!_ref) return;
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
 				for (const child of Array.from(_ref.children)) {
@@ -37,11 +47,9 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
-					handleFixedPopover(
-						article,
-						_ref,
-						(props.placement as unknown as string) ?? 'bottom'
-					);
+					if (_ref) {
+						handleFixedPopover(article, _ref);
+					}
 				}, 1);
 			}
 		},
@@ -50,23 +58,66 @@ export default function DBPopover(props: DBPopoverProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		handleEnter(): void {
+		handleEnter(_parent?: HTMLElement, manualOpen?: boolean): void {
+			if (!manualOpen && props.open != null) {
+				return;
+			}
+
 			state.isExpanded = true;
+
+			// Clean up any existing observers to prevent leaks from repeated enter
+			if (state._documentScrollListenerCallbackId) {
+				new DocumentScrollListener().removeCallback(
+					state._documentScrollListenerCallbackId!
+				);
+				state._documentScrollListenerCallbackId = undefined;
+			}
+			if (state._resizeObserverCallbackId) {
+				new ResizeObserverListener().unobserve(
+					state._resizeObserverCallbackId!
+				);
+				state._resizeObserverCallbackId = undefined;
+			}
+			if (state._intersectionObserverCallbackId) {
+				new IntersectionObserverListener().unobserve(
+					state._intersectionObserverCallbackId!
+				);
+				state._intersectionObserverCallbackId = undefined;
+			}
+
 			state._documentScrollListenerCallbackId =
 				new DocumentScrollListener().addCallback((event) =>
 					state.handleDocumentScroll(event)
 				);
 			state.handleAutoPlacement();
+			state._resizeObserverCallbackId =
+				new ResizeObserverListener().observe(
+					document.documentElement,
+					() => state.handleAutoPlacement()
+				);
 			const child = state.getTrigger();
 			if (child) {
-				state._observer?.observe(child);
+				state._intersectionObserverCallbackId =
+					new IntersectionObserverListener().observe(
+						child,
+						(entry) => {
+							if (!entry.isIntersecting) {
+								state.handleEscape(false);
+							}
+						}
+					);
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleLeave: (event?: any) => {
+		handleLeave: (event?: any, manualOpen?: boolean) => {
+			if (!manualOpen && props.open != null) {
+				return;
+			}
+
 			const element = event?.target as HTMLElement;
 			const parent = element?.parentNode;
 			if (
+				manualOpen ||
 				!parent ||
 				(element.parentNode.querySelector(':focus') !== element &&
 					element.parentNode.querySelector(':focus-within') !==
@@ -79,11 +130,21 @@ export default function DBPopover(props: DBPopoverProps) {
 					new DocumentScrollListener().removeCallback(
 						state._documentScrollListenerCallbackId!
 					);
+					state._documentScrollListenerCallbackId = undefined;
 				}
 
-				const child = state.getTrigger();
-				if (child) {
-					state._observer?.unobserve(child);
+				if (state._resizeObserverCallbackId) {
+					new ResizeObserverListener().unobserve(
+						state._resizeObserverCallbackId!
+					);
+					state._resizeObserverCallbackId = undefined;
+				}
+
+				if (state._intersectionObserverCallbackId) {
+					new IntersectionObserverListener().unobserve(
+						state._intersectionObserverCallbackId!
+					);
+					state._intersectionObserverCallbackId = undefined;
 				}
 			}
 		},
@@ -111,6 +172,27 @@ export default function DBPopover(props: DBPopoverProps) {
 		state.initialized = true;
 	});
 
+	onUnMount(() => {
+		if (state._documentScrollListenerCallbackId) {
+			new DocumentScrollListener().removeCallback(
+				state._documentScrollListenerCallbackId!
+			);
+			state._documentScrollListenerCallbackId = undefined;
+		}
+		if (state._resizeObserverCallbackId) {
+			new ResizeObserverListener().unobserve(
+				state._resizeObserverCallbackId!
+			);
+			state._resizeObserverCallbackId = undefined;
+		}
+		if (state._intersectionObserverCallbackId) {
+			new IntersectionObserverListener().unobserve(
+				state._intersectionObserverCallbackId!
+			);
+			state._intersectionObserverCallbackId = undefined;
+		}
+	});
+
 	onUpdate(() => {
 		if (_ref && state.initialized) {
 			state.initialized = false;
@@ -129,20 +211,6 @@ export default function DBPopover(props: DBPopoverProps) {
 			['mouseleave', 'focusout'].forEach((event) => {
 				_ref.addEventListener(event, () => state.handleLeave());
 			});
-
-			if (
-				typeof window !== 'undefined' &&
-				'IntersectionObserver' in window
-			) {
-				state._observer = new IntersectionObserver((payload) => {
-					const entry = payload.find(
-						({ target }) => target === state.getTrigger()
-					);
-					if (entry && !entry.isIntersecting) {
-						state.handleEscape(false);
-					}
-				});
-			}
 		}
 	}, [_ref, state.initialized]);
 
@@ -150,10 +218,32 @@ export default function DBPopover(props: DBPopoverProps) {
 		if (_ref) {
 			const child = state.getTrigger();
 			if (child) {
-				child.ariaExpanded = Boolean(state.isExpanded).toString();
+				// In controlled mode (open prop set), aria-expanded follows open;
+				// otherwise it follows internal hover/focus state
+				const expanded =
+					props.open != null
+						? Boolean(getBoolean(props.open, 'open'))
+						: Boolean(state.isExpanded);
+				child.ariaExpanded = expanded.toString();
 			}
 		}
-	}, [_ref, state.isExpanded]);
+	}, [_ref, state.isExpanded, props.open]);
+
+	// Controlled open state handler.
+	// Transitioning from controlled (open={true|false}) to uncontrolled
+	// (open={undefined|null}) at runtime is not supported. Components should
+	// be either always controlled or always uncontrolled.
+	onUpdate(() => {
+		if (props.open == null) {
+			return;
+		}
+
+		if (getBoolean(props.open, 'open')) {
+			state.handleEnter(undefined, true);
+		} else {
+			state.handleLeave(undefined, true);
+		}
+	}, [props.open]);
 
 	// jscpd:ignore-end
 
@@ -166,9 +256,12 @@ export default function DBPopover(props: DBPopoverProps) {
 			<article
 				class="db-popover-content"
 				data-spacing={props.spacing}
-				data-gap={getBooleanAsString(props.gap)}
-				data-animation={getBooleanAsString(props.animation ?? true)}
-				data-open={getBooleanAsString(props.open)}
+				data-gap={getBooleanAsString(props.gap, 'gap')}
+				data-animation={getBooleanAsString(
+					props.animation ?? true,
+					'animation'
+				)}
+				data-open={getBooleanAsString(props.open, 'open')}
 				data-delay={props.delay}
 				data-width={props.width}
 				data-placement={props.placement}>

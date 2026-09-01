@@ -6,50 +6,38 @@
 @use "../fonts";
 @use "../screen-sizes";
 @use "../colors/default-color-icons";
+@use "non-ascii-tokens.css";
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
 
-/* stylelint-disable-next-line at-rule-prelude-no-invalid,layer-name-pattern */
-@layer #{helpers.$layer-variables} {
-	:root,
-	:host {
-		@extend %db-font-size-md;
+:root,
+:host {
+	@extend %db-font-size-md;
 
-		/* COLORS */
+	/* COLORS */
+	@include default-color-icons.get-color-icons-light;
+
+	@media (prefers-color-scheme: dark) {
+		@include default-color-icons.get-color-icons-dark;
+	}
+
+	[data-mode="dark"] {
+		@include default-color-icons.get-color-icons-dark;
+	}
+
+	[data-mode="light"] {
 		@include default-color-icons.get-color-icons-light;
-
-		@media (prefers-color-scheme: dark) {
-			@include default-color-icons.get-color-icons-dark;
-		}
-
-		[data-mode="dark"] {
-			@include default-color-icons.get-color-icons-dark;
-		}
-
-		[data-mode="light"] {
-			@include default-color-icons.get-color-icons-light;
-		}
 	}
 }
 
 // We'll set the color scheme (https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to light and dark if it's not already set as a meta tag in the head, which would be the recommended way.
 :root {
 	color-scheme: var(--db-color-scheme, light dark);
-}
 
-// We need to set the CSS value based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
-head {
-	&:has([name="color-scheme"][content*="light"][content*="dark"]) + body {
-		--db-color-scheme: light dark;
-	}
-
-	&:has([name="color-scheme"][content="light"]) + body {
-		--db-color-scheme: light;
-	}
-
-	&:has([name="color-scheme"][content="dark"]) + body {
-		--db-color-scheme: dark;
+	// We need to provide the possibility to set the color-scheme via CSS Custom Property, but not set a fallback based on an existing HTML meta tag definition because the previous CSS definition would override that HTML declaration.
+	&:has([name="color-scheme"]:is([content~="light"], [content~="dark"])) {
+		color-scheme: var(--db-color-scheme);
 	}
 }
 
@@ -60,6 +48,15 @@ head {
 
 [data-mode="dark"] {
 	color-scheme: dark;
+}
+
+[data-pride="true"] {
+	--db-pride-red: #{colors.$db-red-origin-default};
+	--db-pride-orange: #{colors.$db-orange-origin-default};
+	--db-pride-yellow: #{colors.$db-yellow-origin-default};
+	--db-pride-green: #{colors.$db-light-green-origin-default};
+	--db-pride-blue: #{colors.$db-blue-origin-default};
+	--db-pride-violet: #{colors.$db-violet-origin-default};
 }
 
 // *! this is an opionionated (especially based on "enhancing" normalize.css) version of minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css
@@ -122,26 +119,16 @@ iframe {
 	border: 0;
 }
 
-// Focus styles
-:is(
-	a,
-	button,
-	input,
-	textarea,
-	summary,
-	select,
-	[tabindex]:not([tabindex="-1"])
-) {
-	&:focus-visible {
-		@extend %focus-placeholder;
-	}
+// Override default focus visible
+:focus-visible {
+	@extend %focus-placeholder;
 }
 
 // List style / https://marketingportal.extranet.deutschebahn.com/marketingportal/Marke-und-Design/Basiselemente/Typografie#Aufzaehlungszeichen-9693110
 :where(ul) {
 	padding-inline-start: variables.$db-spacing-fixed-md;
 	/* stylelint-disable-next-line declaration-property-value-no-unknown, no-irregular-whitespace */
-	list-style-type: "\2022" + " ";
+	list-style-type: var(--db-list-bullet);
 
 	li::marker {
 		color: #{colors.$db-brand-origin-default};

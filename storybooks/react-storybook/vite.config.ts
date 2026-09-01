@@ -16,5 +16,8 @@ export default defineConfig({
 			// eslint-disable-next-line @typescript-eslint/naming-convention
 			'@components': path.resolve(__dirname, '../../output/react/src')
 		}
+	},
+	build: {
+		cssMinify: 'esbuild'
 	}
 });

@@ -29,15 +29,17 @@ function hasInteractiveChild(node: any): boolean {
 			if (
 				tagName &&
 				INTERACTIVE_ELEMENTS.some(
-					(el) =>
-						tagName === el ||
-						tagName === el.toLowerCase().replace('db', 'db-')
+					(element) =>
+						tagName === element ||
+						tagName === element.toLowerCase().replace('db', 'db-')
 				)
 			) {
 				return true;
 			}
+
 			return hasInteractiveChild(child);
 		}
+
 		return false;
 	});
 }
@@ -72,11 +74,15 @@ export default {
 			COMPONENTS.DBTooltip,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkTooltip = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, 'DBTooltip')) return;
+			if (!isDBComponent(openingElement, 'DBTooltip')) {
+				return;
+			}
 
 			if (hasInteractiveChild(node)) {
 				context.report({

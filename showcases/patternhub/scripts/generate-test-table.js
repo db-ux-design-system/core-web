@@ -7,7 +7,13 @@ const unlistedComponents = new Set([
 	'custom-select-form-field',
 	'custom-select-dropdown'
 ]);
-const unlistedSubComponentsPrefixes = new Set(['-list', '-panel', '-item']);
+const unlistedSubComponentsPrefixes = new Set([
+	'-list',
+	'-panel',
+	'-item',
+	'-handle',
+	'-menu'
+]);
 
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
@@ -65,7 +71,7 @@ const generateTestTable = () => {
 	}
 
 	FS.writeFileSync(
-		`./data/testing-table.ts`,
+		'./data/testing-table.ts',
 		'export const testTableData: any[] = ' + JSON.stringify(data)
 	);
 };

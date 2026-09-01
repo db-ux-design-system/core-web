@@ -14,7 +14,7 @@ function getAbsolutePath(value: string): any {
 }
 
 const config: StorybookConfig = {
-	stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: ['@storybook/addon-docs'],
 	staticDirs: ['../public'],
 	framework: {
@@ -27,7 +27,10 @@ const config: StorybookConfig = {
 		const { mergeConfig } = await import('vite');
 		const baseUrl = process.env.BASE_URL || '';
 		return mergeConfig(config, {
-			base: `${baseUrl}/vue-storybook`
+			base: `${baseUrl}/vue-storybook`,
+			build: {
+				cssMinify: 'esbuild'
+			}
 		});
 	}
 };

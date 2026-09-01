@@ -9,14 +9,16 @@ For general installation and configuration look at the [v-core-components](https
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBAccordionItem } from "@db-ux/v-core-components";
+import { DBAccordion, DBAccordionItem } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBAccordionItem>
-		<template v-slot:headline>Title</template>
-		Content
-	</DBAccordionItem>
+	<DBAccordion>
+		<DBAccordionItem>
+			<template v-slot:headline>Title</template>
+			Content
+		</DBAccordionItem>
+	</DBAccordion>
 </template>
 ```
 
@@ -25,10 +27,12 @@ import { DBAccordionItem } from "@db-ux/v-core-components";
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBAccordionItem } from "@db-ux/v-core-components";
+import { DBAccordion, DBAccordionItem } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBAccordionItem headline="Title" content="Content"></DBAccordionItem>
+	<DBAccordion>
+		<DBAccordionItem headline="Title" content="Content"></DBAccordionItem>
+	</DBAccordion>
 </template>
 ```

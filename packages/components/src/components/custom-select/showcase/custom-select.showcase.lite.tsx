@@ -2,8 +2,10 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import CustomSelectControlled from '../examples/controlled.example.lite';
 import CustomSelectDensity from '../examples/density.example.lite';
 import CustomSelectDisabled from '../examples/disabled.example.lite';
+import CustomSelectDropdownWidthAuto from '../examples/dropdown-width-auto.example.lite';
 import CustomSelectDropdownWidth from '../examples/dropdown-width.example.lite';
 import CustomSelectExampleOtherConfiguration from '../examples/example-other-configuration.example.lite';
 import CustomSelectExampletags from '../examples/example-tags.example.lite';
@@ -92,6 +94,11 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 					<CustomSelectDropdownWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Dropdown Width Auto Edge Cases">
+				<CardWrapperShowcase>
+					<CustomSelectDropdownWidthAuto />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Placement">
 				<CardWrapperShowcase>
 					<CustomSelectPlacement />
@@ -125,6 +132,11 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Show Clear Selection">
 				<CardWrapperShowcase>
 					<CustomSelectShowClearSelection />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Controlled">
+				<CardWrapperShowcase>
+					<CustomSelectControlled />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples Single">

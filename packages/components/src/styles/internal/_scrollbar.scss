@@ -111,3 +111,74 @@ $scrollbar-width: helpers.px-to-rem(8);
 		border-end-end-radius: variables.$db-border-radius-xs;
 	}
 }
+
+@mixin angular-button-workaround() {
+	> .db-button,
+	&:is(.db-button) {
+		@content;
+	}
+}
+
+$db-overflow-scroll-buttons-background: 21;
+$db-overflow-scroll-buttons-button: 22;
+
+@mixin set-overflow-scroll-button-backgrounds {
+	&::before,
+	&::after {
+		position: absolute;
+		z-index: $db-overflow-scroll-buttons-background;
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		inline-size: variables.$db-sizing-md;
+		block-size: calc(
+			var(
+					--db-overflow-scroll-button-background-block-size,
+					#{variables.$db-spacing-fixed-sm}
+				) +
+				#{variables.$db-sizing-md}
+		);
+		flex: 0 0 auto;
+	}
+
+	&::before {
+		inset-inline-start: var(
+			--db-overflow-scroll-button-inset-inline-start,
+			0
+		);
+	}
+
+	&::after {
+		inset-inline-end: 0;
+	}
+}
+
+@mixin set-overflow-scroll-buttons {
+	/*
+	 * Scroll left / right buttons
+	 */
+	.overflow-scroll-left-button {
+		@include angular-button-workaround {
+			inset-inline-start: var(
+				--db-overflow-scroll-button-inset-inline-start,
+				0
+			);
+		}
+	}
+
+	.overflow-scroll-right-button {
+		@include angular-button-workaround {
+			inset-inline-end: 0;
+		}
+	}
+
+	.overflow-scroll-left-button,
+	.overflow-scroll-right-button {
+		@include angular-button-workaround {
+			position: absolute;
+			z-index: $db-overflow-scroll-buttons-button;
+			inset-block: var(
+				--db-overflow-scroll-button-inset-block,
+				#{variables.$db-spacing-fixed-xs}
+			);
+		}
+	}
+}

@@ -1,18 +1,25 @@
 // stylelint-disable property-no-deprecated, db-ux/use-sizing
 %a11y-visually-hidden {
-	clip: rect(0, 0, 0, 0) !important;
-	overflow: hidden !important;
-	white-space: nowrap !important;
-	font-size: 0 !important;
-	all: initial;
-	inset-block-start: 0 !important;
-	block-size: 1px !important;
 	position: absolute !important;
+	inset-block-start: 0 !important;
 	inline-size: 1px !important;
-	border-width: 0 !important;
-	border-style: initial !important;
-	border-color: initial !important;
-	border-image: initial !important;
+	block-size: 1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
 	padding: 0 !important;
 	pointer-events: none !important;
+}
+
+// Hides text while keeping the element visible (e.g. for background images).
+// RTL-safe alternative to text-indent: -9999px.
+@mixin a11y-visually-hidden-text {
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+%a11y-visually-hidden-text {
+	@include a11y-visually-hidden-text;
 }

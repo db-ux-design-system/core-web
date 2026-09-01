@@ -1,0 +1,35 @@
+---
+name: PR project status
+
+permissions:
+  contents: read
+  pull-requests: write
+  repository-projects: write
+
+on:
+  pull_request:
+    branches: ["main"]
+    types:
+      - assigned
+      - unassigned
+      - opened
+      - edited
+      - closed
+      - reopened
+      - synchronize
+      - converted_to_draft
+      - ready_for_review
+      - review_requested
+      - review_request_removed
+
+jobs:
+  auto-set-project-status:
+    # Run for repository (non-fork) PRs.
+    # Dependabot PRs are intentionally excluded as we currently face a secrets
+    # problem on non-patch Dependabot updates.
+    # TODO: ensure that dependabot updates even also get moved to "🎁 Ready for review".
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.actor != 'dependabot[bot]'
+    uses: ./.github/workflows/99-auto-set-project-status.yml
+    secrets: inherit

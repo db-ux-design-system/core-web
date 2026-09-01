@@ -1,5 +1,270 @@
 # @db-ux/core-components
 
+## 5.2.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): synchronize values and options when resetting - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(radio): checked state barely visible at `size="small"` with `density="functional"` - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBRadio): use `:user-valid`/`:user-invalid` instead of `:valid`/`:invalid` for radio inputs - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+
+## 5.2.0
+
+### Minor Changes
+
+- feat: add static and custom Heading components (beta) - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - `DBCustomHeading` takes the native heading as its default content and offers a
+    - `startSlot` and an `endSlot` for the content next to it, so that content stays out
+    - of the accessible heading name.
+
+### Patch Changes
+
+- fix: preserve component sizing inside custom headings - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+
+## 5.1.6
+
+### Patch Changes
+
+- fix: multiple issues for DBPopover - [see commit a1a575c](https://github.com/db-ux-design-system/core-web/commit/a1a575c893d0b54aff6bddcb56719e4f8c40197d):
+    - DBPopover hides when moving mouse too slow
+    - DBPopover changes aria-expanded independently of open state
+    - DBPopover - wrong content position on programmatic "open" prop
+- fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive - [see commit 5f1584d](https://github.com/db-ux-design-system/core-web/commit/5f1584d2488115ef9418ca24b8e04f7bddbca803)
+
+## 5.1.5
+
+### Patch Changes
+
+- fix: handle `env(safe-area-inset-*)` correctly for drawer `direction="up"` and `direction="down"` - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: prevent Sass from emitting `@charset` in published SCSS output for non-ASCII characters, which causes problems e.g. in Next.js - [see commit cefb202](https://github.com/db-ux-design-system/core-web/commit/cefb20259dc650d478e9a58f67e4f46051ee46e3)
+
+- fix: use `dvh`/`dvw` instead of `lvh`/`lvw` for correct mobile viewport sizing in drawer - [see commit 630593c](https://github.com/db-ux-design-system/core-web/commit/630593c9c2a222d117b0644bb03d0dea5e194eea)
+
+- fix: allow auto-width tab items to fit their complete content - [see commit 7e4ae9a](https://github.com/db-ux-design-system/core-web/commit/7e4ae9adf2bd7dd1c00f03eac3a87c904bde75e7)
+
+- fix: layout issue with sub-navigation-item inside the mobile drawer - [see commit bc079f0](https://github.com/db-ux-design-system/core-web/commit/bc079f055c02532334af4aaa295d08d104f92456)
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+### Patch Changes
+
+- refactor(drawer): further simplified transition implementation - [see commit 895522b](https://github.com/db-ux-design-system/core-web/commit/895522b4fc3d5eecbfbfd0b99dbc73f80e483592)
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+### Minor Changes
+
+- refactor(drawer): replace JS transition workaround with CSS native functionality - [see commit 9370d63](https://github.com/db-ux-design-system/core-web/commit/9370d638176cf270e5700094c2a544d712c7413b)
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- refactor(Indicator in Tabs & Navigation): switched from `background` to `background-color` CSS property (mainly for Tailwind compatibility) - [see commit 1b3081c](https://github.com/db-ux-design-system/core-web/commit/1b3081c757d81ed80a080be99694bda2cf9968ed)
+
+- fix(tabs): indicator position slightly off - [see commit 1d58254](https://github.com/db-ux-design-system/core-web/commit/1d58254c6f1f7f106ae6682e721f784d3a69cf1e)
+
+## 5.0.2
+
+### Patch Changes
+
+- fix(links): removing icon underline at 110% zoom level - [see commit dc5a0de](https://github.com/db-ux-design-system/core-web/commit/dc5a0de4067468f858a7b22e53c5565c14688949)
+
+- refactor: prevent placeholder from being hidden when select is opened - [see commit 1421a4f](https://github.com/db-ux-design-system/core-web/commit/1421a4fb9ed5fe7307960fba00e5932f3971665a)
+
+## 5.0.1
+
+### Patch Changes
+
+- fix: drawer close handling by removing timeout state management - [see commit 45d93f0](https://github.com/db-ux-design-system/core-web/commit/45d93f010bf0caece669f96c6f00d288ebdf5363)
+
+- fix(select): icon overlapping the floating label - [see commit 9dff6ed](https://github.com/db-ux-design-system/core-web/commit/9dff6ed85fa5e2f6aebd89b3b2662e3a017b196e)
+
+## 5.0.0
+
+We're providing a [migration guide for all 4.x to 5.0.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md) changes.
+
+### Major Changes
+
+- refactor: DBDrawer with breaking changes - [see commit 9189f6c](https://github.com/db-ux-design-system/core-web/commit/9189f6c24cd3a64f072c2f60f8c8127d1ed68c55):
+
+        - The `DBDrawer` component now requires a `DBDrawerHeader` component to be passed in the `header` slot.
+        - The `spacing` property has been removed from `DBDrawer`.
+        - The default `direction` has changed from `right` to `to-left`.
+        - The `width` property has been renamed to `containerSize`.
+        - The `direction` values have been renamed from `right`/`left` to `to-left`/`to-right`.
+
+- refactor: remove default `margin-inline` from `[data-icon]` pseudo-elements in favor of `gap` - [see commit 635f4b7](https://github.com/db-ux-design-system/core-web/commit/635f4b7ff6ce2aa9341932cb0b8a9c8657ed1ade)
+
+- refactor: rework DBTabs and DBTabItem - [see commit c50e522](https://github.com/db-ux-design-system/core-web/commit/c50e5221a4c6f3357ff52451291bdc5772267178):
+
+        - **Breaking:** DBTabItem now renders a native `button` (`role="tab"`) instead of a radio `input`.
+        - **Breaking:** Removed `checked`, `noText` and `name` from DBTabItem.
+        - **Breaking:** Renamed DBTabs props `onTabSelect` → `onIndexChange`, `alignment` → `tabItemAlignment`, `width` → `tabItemWidth`.
+        - **Breaking:** Deep linking derives the tab id from the `id` prop instead of `label`.
+        - Added truncation tooltip for overflowing tab labels and fixed vertical layout, trailing icon and tooltip placement.
+
+### Patch Changes
+
+- fix: remove dead `z-index` and `position: relative` from table-row interactive children - [see commit 7edb77b](https://github.com/db-ux-design-system/core-web/commit/7edb77bb9f90d4a79f238ebab362074d12f02f0f)
+
+## 4.14.0
+
+### Minor Changes
+
+- refactor: consolidate floating component listeners into shared abstractions - [see commit de676fe](https://github.com/db-ux-design-system/core-web/commit/de676fe17e8a8157acd2e574fcea28ab6022389c)
+
+### Patch Changes
+
+- fix: correct accordion variant backgrounds to match design (divider is transparent, card is level-1 including the open content area) - [see commit b611b84](https://github.com/db-ux-design-system/core-web/commit/b611b845e6aded8f50dd07f3727ebf5fdf902b69)
+
+- fix: use inline-flex with align-items center for link components to vertically center text with fixed height across densities - [see commit 5ebdef8](https://github.com/db-ux-design-system/core-web/commit/5ebdef89b14d56d901630aa61e098213704ba603)
+
+## 4.13.0
+
+_version bump_
+
+## 4.12.1
+
+### Patch Changes
+
+- fix(custom-select): dropdown with `dropdownWidth="auto"` now correctly sizes to content width and respects the trigger minimum width. Long option labels no longer get truncated: `auto` keeps them on a single line (dropdown grows to the longest option), while `fixed` and `full` wrap long labels onto new lines. - [see commit 68dedc3](https://github.com/db-ux-design-system/core-web/commit/68dedc33c324b48339d5bb73a85fdff3045ed059)
+
+## 4.12.0
+
+_version bump_
+
+## 4.11.1
+
+### Patch Changes
+
+- fix: transition logical inline-size/block-size instead of physical width/height in DB Puls animation - [see commit 4445d59](https://github.com/db-ux-design-system/core-web/commit/4445d599ff3e1352f6ee1a1868ace803d3a70518)
+
+## 4.11.0
+
+### Minor Changes
+
+- feat: add DBTable, DBTableHead, DBTableBody, DBTableFooter, DBTableRow, DBTableHeaderCell, and DBTableDataCell components - [see commit f64b6e0](https://github.com/db-ux-design-system/core-web/commit/f64b6e0f4b36ea4987c1d9ac7a0328bf317cdcad)
+
+### Patch Changes
+
+- fix: Remove unwanted whitespace characters from rendered output to prevent layout shifts - [see commit a0f23a4](https://github.com/db-ux-design-system/core-web/commit/a0f23a4a3e715414de3d045b59b88dc3ac28d5e7)
+
+## 4.10.2
+
+_version bump_
+
+## 4.10.1
+
+### Patch Changes
+
+- refactor: simplify cursor-pointer SCSS mixin for inputs and fix tab-item hover/active states - [see commit 17af11f](https://github.com/db-ux-design-system/core-web/commit/17af11fb67c478534e3ee8ec44d8b3cc36623c11)
+
+## 4.10.0
+
+### Minor Changes
+
+- feat(`DBAccordionItem`): add `open` prop to control the expanded state of an accordion item programmatically. - [see commit 8e7c85d](https://github.com/db-ux-design-system/core-web/commit/8e7c85dfba9e0b013fce9db2151545b8f336a29a)
+
+- refactor(form components): replace hard 25ch label width limit with customizable CSS variable `--db-label-max-size` (defaults to `100%`). To restore the previous behavior, set `--db-label-max-size: 25ch;` in your project styles. - [see commit 08b1234](https://github.com/db-ux-design-system/core-web/commit/08b1234342e3c0d622116d528a979ff53d7e2356)
+
+## 4.9.1
+
+### Patch Changes
+
+- fix(switch): use `2lh` unit and add `min-inline-size` to prevent track from shrinking - [see commit 78c9fde](https://github.com/db-ux-design-system/core-web/commit/78c9fde67d9677f61eaa41761a088b9c1a9773a1)
+
+- fix(notification): remove empty grid gap when icon is hidden - [see commit 96f94c6](https://github.com/db-ux-design-system/core-web/commit/96f94c651391f014e2d073402c2700b524ccbf5e)
+
+## 4.9.0
+
+_version bump_
+
+## 4.8.0
+
+### Minor Changes
+
+- Notification content now supports additional inline elements like `span` without styling collisions. And added the possibility to set the duration as a machine-readable value via the new `timestampDatetime` property - [see commit dae5149](https://github.com/db-ux-design-system/core-web/commit/dae514902f92a74cb95a3a3adab205d560174692)
+
+## 4.7.3
+
+_version bump_
+
+## 4.7.2
+
+### Patch Changes
+
+- fix(navigation): changed transform inside the drawer led to overlapping sub-navigation on smaller viewports - [see commit dd88a33](https://github.com/db-ux-design-system/core-web/commit/dd88a339fe6e7510e964c6979eeee84f4e40df59)
+
+## 4.7.1
+
+### Patch Changes
+
+- fix(dialog): re-added missing styles to native `dialog` HTML element. We'll most likely remove those later again, and provide a DBDialog component. - [see commit ce1b5a0](https://github.com/db-ux-design-system/core-web/commit/ce1b5a061ad0ef14a0ff415aa3a00fa06f217479)
+
+## 4.7.0
+
+### Minor Changes
+
+- DBSelect: correctly hiding empty `option` element for _placeholder_ or _floating label_ components with property `showEmptyOption=false` - [see commit ec01b5c](https://github.com/db-ux-design-system/core-web/commit/ec01b5cb56e1fc05911d33cbff0fc8f385644628)
+
+- refactor(notification): not enforcing a paragraph for it's contents anymore. You could set any block level elements now as children. - [see commit 3170b3a](https://github.com/db-ux-design-system/core-web/commit/3170b3a6ef57bb73fa32b3176b7b8cf651a38641) and [commit 2ebe315](https://github.com/db-ux-design-system/core-web/commit/2ebe3156cd45e3702cf4acdc4224cd34da31d907)
+
+### Patch Changes
+
+- docs(HTML): added Invoker Commands to header and drawer "how to use" documentation - [see commit b9d2c39](https://github.com/db-ux-design-system/core-web/commit/b9d2c396a2af7c65e0e2fab5517e257d3797ffda)
+
+## 4.6.1
+
+### Patch Changes
+
+- fix(navigation): issue with changed transform inside drawer lead to broken sub-navigation for mobile view - [see commit 1762975](https://github.com/db-ux-design-system/core-web/commit/17629755c0c249808c0bb69686f167677d4181ee)
+
+## 4.6.0
+
+### Minor Changes
+
+- refactor: exclude whitelabel-theme from default bundle to reduce size and to align with "how to import a theme" - [see commit f272967](https://github.com/db-ux-design-system/core-web/commit/f272967acb7a37dc9b07d9786134e437b284e9b6)
+
+### Patch Changes
+
+- fix: issue with tailwind duplicating some classes by using `@theme` inline - [see commit 92de4e6](https://github.com/db-ux-design-system/core-web/commit/92de4e6e5fdad3be5629d7457944d3b9b7396cf4)
+
+- fix: the drawer ignored custom `max-width` and `max-height` properties due to internal `min-width` overrides. Additionally, resolved a bug where nested fixed-position elements (like DBCustomSelect dropdowns) were incorrectly positioned while the drawer was open. - [see commit d40e651](https://github.com/db-ux-design-system/core-web/commit/d40e6516c147c5e0f62bd049cf9bc1928ed6b36f)
+
+- docs(vite): mentioning version 8 configuration in `README.md` file - [see commit 4c5fc92](https://github.com/db-ux-design-system/core-web/commit/4c5fc9266402d9585087f4738a1a800cff1515f1)
+
+- fix(number input): prevent from clearing on intermediate decimal entry - [see commit aa85967](https://github.com/db-ux-design-system/core-web/commit/aa85967ffeaa685f6b647069d0e1d415d812dc87):
+    - fix(input,textarea): allow using `undefined` as `value`
+
+## 4.5.4
+
+### Patch Changes
+
+- refactor: Enhance the accessibility of the navigation components by adding missing WAI-ARIA attributes (`aria-controls`, `aria-label`, `aria-haspopup`) for better screen reader support. - [see commit f040188](https://github.com/db-ux-design-system/core-web/commit/f0401886267359518c37062373bb0f9df311214c)
+
+- fix: adjusted `@media` queries (removed `screen` from combined queries) to avoid broken layouts when printing - [see commit 0960eb6](https://github.com/db-ux-design-system/core-web/commit/0960eb6f9223fe23bdaac0de685cf7aa5eb7654e)
+
+- fix(switch): removed obsolete gap towards label in `small` variant - [see commit 40bad01](https://github.com/db-ux-design-system/core-web/commit/40bad017f068bf8968829977808a6d8e9d21b4fe)
+
 ## 4.5.3
 
 _version bump_

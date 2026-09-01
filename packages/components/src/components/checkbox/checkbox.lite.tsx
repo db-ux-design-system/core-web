@@ -138,7 +138,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					DEFAULT_INVALID_MESSAGE;
 				if (hasVoiceOver()) {
 					state._voiceOverFallback = state._invalidMessage;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (
 				state.hasValidState() &&
@@ -149,7 +149,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				if (hasVoiceOver()) {
 					state._voiceOverFallback =
 						props.validMessage ?? DEFAULT_VALID_MESSAGE;
-					delay(() => (state._voiceOverFallback = ''), 1000);
+					void delay(() => (state._voiceOverFallback = ''), 1000);
 				}
 			} else if (stringPropVisible(props.message, props.showMessage)) {
 				state._descByIds = state._messageId;
@@ -240,27 +240,13 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	onUpdate(() => {
 		if (_ref) {
-			useTarget({
-				angular: () => {
-					if (
-						state.initialized &&
-						props.indeterminate !== undefined
-					) {
-						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
-						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-						_ref.indeterminate = !!getBoolean(props.indeterminate);
-					}
-				},
-				default: () => {
-					if (props.indeterminate !== undefined) {
-						// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
-						// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
-						_ref.indeterminate = !!getBoolean(props.indeterminate);
-					}
-				}
-			});
+			if (props.indeterminate !== undefined) {
+				// When indeterminate is set, the value of the checked prop only impacts the form submitted values.
+				// It has no accessibility or UX implications. (https://mui.com/material-ui/react-checkbox/)
+				_ref.indeterminate = !!getBoolean(props.indeterminate);
+			}
 		}
-	}, [state.initialized, _ref, props.indeterminate]);
+	}, [_ref, props.indeterminate]);
 
 	onUpdate(() => {
 		if (state.initialized && _ref) {
@@ -341,9 +327,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
-				<Show when={props.label} else={props.children}>
-					{props.label}
-				</Show>
+				<Show when={props.label}>{props.label}</Show>
+				{props.children}
 			</label>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>

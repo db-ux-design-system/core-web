@@ -16,7 +16,11 @@ const FORM_COMPONENTS = [
 	'DBSwitch'
 ];
 
-const COMPONENTS_WITH_CHILDREN_LABEL = ['DBCheckbox', 'DBRadio', 'DBSwitch'];
+const COMPONENTS_WITH_CHILDREN_LABEL = new Set([
+	'DBCheckbox',
+	'DBRadio',
+	'DBSwitch'
+]);
 
 export default {
 	meta: {
@@ -37,7 +41,9 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(node, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const label = getAttributeValue(node, 'label');
 			const hasChildren = node.children?.some(
@@ -46,10 +52,10 @@ export default {
 			);
 
 			const canUseChildren =
-				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
+				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
-				(label === null || label === '') &&
+				(label === undefined || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
@@ -63,13 +69,20 @@ export default {
 			}
 		};
 
+		const angularVisitors: any = {};
 		for (const comp of FORM_COMPONENTS) {
-			const angularVisitors = createAngularVisitors(
+			const visitors = createAngularVisitors(
 				context,
 				comp,
 				angularHandler
 			);
-			if (angularVisitors) return angularVisitors;
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
+		}
+
+		if (Object.keys(angularVisitors).length > 0) {
+			return angularVisitors;
 		}
 
 		const checkFormComponent = (node: any) => {
@@ -78,7 +91,9 @@ export default {
 			const component = FORM_COMPONENTS.find((comp) =>
 				isDBComponent(openingElement, comp)
 			);
-			if (!component) return;
+			if (!component) {
+				return;
+			}
 
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
@@ -92,10 +107,10 @@ export default {
 			);
 
 			const canUseChildren =
-				COMPONENTS_WITH_CHILDREN_LABEL.includes(component);
+				COMPONENTS_WITH_CHILDREN_LABEL.has(component);
 
 			if (
-				(label === null || label === '') &&
+				(label === undefined || label === '') &&
 				!(canUseChildren && hasChildren)
 			) {
 				context.report({

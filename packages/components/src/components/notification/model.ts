@@ -1,4 +1,4 @@
-import {
+import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
@@ -69,6 +69,18 @@ export type DBNotificationDefaultProps = {
 	 * The timestamp attribute can be set for overlay notifications
 	 */
 	timestamp?: string;
+
+	/**
+	 * Machine-readable value for the `datetime` attribute of the rendered `<time>` element.
+	 *
+	 * Accepts any valid HTML datetime string:
+	 * - Absolute moment: ISO 8601 date/time, e.g. `"2024-06-01T12:30:00"`
+	 * - Duration: ISO 8601 duration, e.g. `"PT5M"` (5 minutes), `"PT1H30M"` (1 h 30 min)
+	 *
+	 * When omitted the `datetime` attribute is not rendered and assistive technologies
+	 * fall back to the visible `timestamp` text.
+	 */
+	timestampDatetime?: string;
 
 	/**
 	 * Enables or disables the visibility of the timestamp.

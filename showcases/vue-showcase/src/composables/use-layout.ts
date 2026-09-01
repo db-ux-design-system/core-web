@@ -20,19 +20,20 @@ export const useLayout = () => {
 	const fullscreen = ref();
 	const drawerOpen = ref(false);
 
-	const toggleDrawer = (open: boolean) => {
-		drawerOpen.value = open;
+	const toggleDrawer = (isOpen: boolean) => {
+		drawerOpen.value = isOpen;
 	};
 
 	const classNames = computed(
 		() => `db-density-${density.value} db-${color.value}`
 	);
 
-	const onChange = async (event: any, target?: string) => {
+	const onChange = async (event: Event, target?: string) => {
+		const inputEvent = event as Event & { target: HTMLInputElement };
 		if (target === 'density') {
-			density.value = event.target.value;
+			density.value = inputEvent.target.value;
 		} else if (target === 'color') {
-			color.value = event.target.value;
+			color.value = inputEvent.target.value;
 		}
 
 		await router.push({
@@ -47,7 +48,7 @@ export const useLayout = () => {
 
 	watch(
 		() => route.query,
-		async (query: any) => {
+		async (query: Record<string, string>) => {
 			if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
 				color.value = query[COLOR_CONST];
 			}

@@ -1,3 +1,5 @@
+import HeadingShowcase from '@components/components/heading/showcase/heading.showcase.vue';
+
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
@@ -24,6 +26,7 @@ import SelectShowcase from '@components/components/select/showcase/select.showca
 import StackShowcase from '@components/components/stack/showcase/stack.showcase.vue';
 import SwitchShowcase from '@components/components/switch/showcase/switch.showcase.vue';
 import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.showcase.vue';
+import TableShowcase from '@components/components/table/showcase/table.showcase.vue';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase.vue';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase.vue';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase.vue';
@@ -40,7 +43,7 @@ export type NavItem = {
 };
 
 export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
-	navigationItems.sort((a: NavItem, b: NavItem) =>
+	navigationItems.toSorted((a: NavItem, b: NavItem) =>
 		a.path.localeCompare(b.path)
 	);
 
@@ -84,6 +87,11 @@ export const navigationItems: NavItem[] = [
 		label: '04 Data-Display',
 		subNavigation: getSortedNavigationItems([
 			{
+				path: '/04/heading',
+				label: 'Heading',
+				component: markRaw(HeadingShowcase)
+			},
+			{
 				path: '/04/brand',
 				label: 'Brand',
 				component: markRaw(BrandShowcase)
@@ -118,6 +126,11 @@ export const navigationItems: NavItem[] = [
 				path: '/04/tab-item',
 				label: 'TabItem',
 				component: markRaw(TabItemShowcase)
+			},
+			{
+				path: '/04/table',
+				label: 'Table',
+				component: markRaw(TableShowcase)
 			},
 
 			{

@@ -1,9 +1,4 @@
-import {
-	DBTabItem,
-	DBTabList,
-	DBTabPanel,
-	DBTabs
-} from '@db-ux/react-core-components/src';
+import { DBTabItem, DBTabList, DBTabPanel, DBTabs } from '@components';
 import FormComponent from '../form';
 import FormCheckboxes from '../form/checkbox';
 import FormCustomSelects from '../form/custom-select';
@@ -13,7 +8,7 @@ import FormSelects from '../form/select';
 import FormSwitches from '../form/switch';
 import FormTextareas from '../form/textarea';
 
-const Home = () => {
+export default function Home() {
 	return (
 		<DBTabs data-testid="tabs">
 			<DBTabList>
@@ -54,6 +49,4 @@ const Home = () => {
 			</DBTabPanel>
 		</DBTabs>
 	);
-};
-
-export default Home;
+}

@@ -22,13 +22,20 @@
 		"target": "es2017",
 		"module": "es2020",
 		"lib": ["es2022", "dom"],
+		"types": ["node"],
 		"declarationMap": false,
 		"allowSyntheticDefaultImports": true,
 		"useDefineForClassFields": false,
 		"noImplicitAny": false,
 		"skipLibCheck": true
 	},
-	"exclude": ["node_modules", "src/**/*.spec.ts", "src/**/*.example.ts", "src/**/*.showcase.ts", "src/**/*.arg.types.ts"],
+	"exclude": [
+		"node_modules",
+		"src/**/*.spec.ts",
+		"src/**/*.example.ts",
+		"src/**/*.showcase.ts",
+		"src/**/*.arg.types.ts"
+	],
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,
 		"strictInjectionParameters": true,

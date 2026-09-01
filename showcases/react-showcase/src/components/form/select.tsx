@@ -1,8 +1,8 @@
-import { DBSelect } from '@db-ux/react-core-components/src';
+import { DBSelect } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
-const FormSelects = () => {
+export default function FormSelects() {
 	const [controlled, setControlled] = useState('combobox-2');
 	const [uncontrolled, setUncontrolled] = useState('combobox-2');
 
@@ -30,6 +30,4 @@ const FormSelects = () => {
 			</DBSelect>
 		</FormWrapper>
 	);
-};
-
-export default FormSelects;
+}

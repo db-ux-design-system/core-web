@@ -1,0 +1,19 @@
+---
+name: Dependabot review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+on:
+  workflow_call:
+
+jobs:
+  review:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: Prepare dependency review prompt
+        uses: mfranzke/dependabot-review-action@ddcb73c0b7a50ea88830061cd423ab13d7a4bf7a # v0.1.1
+        with:
+          github-token: ${{ github.token }}

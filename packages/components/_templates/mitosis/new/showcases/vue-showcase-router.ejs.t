@@ -1,6 +1,6 @@
 ---
 inject: true
-to: "<%= showcases ? `../../showcases/vue-showcase/src/utils/navigation-items.ts` : null %>"
+to: "<%= (!subComponent && showcases) ? `../../showcases/vue-showcase/src/utils/navigation-items.ts` : null %>"
 after: "export const navigationItems: NavItem\\[\\] = \\["
 ---
 	{

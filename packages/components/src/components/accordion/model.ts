@@ -1,10 +1,10 @@
-import {
+import type {
 	GlobalProps,
 	InitializedState,
 	MaterialState,
 	TempGlobalProps
 } from '../../shared/model';
-import { DBAccordionItemDefaultProps } from '../accordion-item/model';
+import type { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
 export const AccordionVariantList = ['divider', 'card'] as const;
 export type AccordionVariantType = (typeof AccordionVariantList)[number];

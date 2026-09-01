@@ -1,8 +1,8 @@
-import { DBInput } from '@db-ux/react-core-components/src';
+import { DBInput } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
-const FormInputs = () => {
+export default function FormInputs() {
 	const [controlled, setControlled] = useState('test1');
 	const [uncontrolled, setUncontrolled] = useState('test2');
 
@@ -32,6 +32,4 @@ const FormInputs = () => {
 			/>
 		</FormWrapper>
 	);
-};
-
-export default FormInputs;
+}

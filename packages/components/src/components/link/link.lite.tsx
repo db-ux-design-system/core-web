@@ -25,16 +25,18 @@ export default function DBLink(props: DBLinkProps) {
 			role={props.role}
 			referrerPolicy={props.referrerpolicy ?? props.referrerPolicy}
 			hrefLang={props.hreflang}
-			aria-disabled={getBooleanAsString(props.disabled)}
+			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 			tabIndex={props.disabled ? -1 : 0}
 			data-size={props.size}
-			data-show-icon-trailing={getBooleanAsString(props.showIcon ?? true)}
+			data-show-icon-trailing={getBooleanAsString(
+				props.showIcon ?? true,
+				'showIcon'
+			)}
 			data-variant={props.variant}
 			data-content={props.content || 'internal'}
-			data-wrap={getBooleanAsString(props.wrap)}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			data-wrap={getBooleanAsString(props.wrap, 'wrap')}>
+			<Show when={props.text}>{props.text}</Show>
+			{props.children}
 		</a>
 	);
 }

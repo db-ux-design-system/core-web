@@ -14,9 +14,11 @@
 			"@db-ux/v-core-components",
 			"@db-ux/wc-core-components",
 			"@db-ux/core-stylelint",
-			"@db-ux/core-migration",
 			"@db-ux/agent-cli",
-			"@db-ux/core-eslint-plugin"
+			"@db-ux/core-eslint-plugin",
+			"@db-ux/core-vite-plugin",
+			"@db-ux/core-postcss-plugin",
+			"@db-ux/mcp-server"
 		]
 	],
 	"ignore": [
@@ -29,7 +31,11 @@
 		"patternhub",
 		"react-showcase",
 		"stencil-showcase",
-		"vue-showcase"
+		"vue-showcase",
+		"composition-storybook",
+		"angular-storybook",
+		"react-storybook",
+		"vue-storybook"
 	],
 	"linked": [],
 	"access": "public",

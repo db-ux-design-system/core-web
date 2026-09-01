@@ -1,3 +1,5 @@
+## Usage
+
 ```html
 <div class="flex flex-col gap-md">
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-xs">
@@ -125,12 +127,12 @@
 
 ### Gap
 
-- `gap-3xs`
-- `gap-2xs`
-- `gap-xs`
-- `gap-sm`
-- `gap-md`
-- `gap-lg`
-- `gap-xl`
-- `gap-2xl`
-- `gap-3xl`
+- `gap-fix-3xs`
+- `gap-fix-2xs`
+- `gap-fix-xs`
+- `gap-fix-sm`
+- `gap-fix-md`
+- `gap-fix-lg`
+- `gap-fix-xl`
+- `gap-fix-2xl`
+- `gap-fix-3xl`

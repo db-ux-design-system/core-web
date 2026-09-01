@@ -32,6 +32,12 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 		initial-value: #{$db-breakpoint-md};
 	}
 
+	@property --db-screen-lg {
+		syntax: "*";
+		inherits: true;
+		initial-value: #{$db-breakpoint-lg};
+	}
+
 	@property --db-screen-xl {
 		syntax: "*";
 		inherits: true;

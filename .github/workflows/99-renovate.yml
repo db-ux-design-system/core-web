@@ -1,0 +1,60 @@
+---
+# Renovate (self-hosted)
+#
+# Covers the three things Dependabot cannot handle for us:
+#   1. Node itself (the version defined in `.nvmrc` both for local and CI usage)
+#   2. pnpm itself (the `packageManager` field including its integrity hash)
+#   3. the `@db-ux/db-theme*` packages (manually triggered, w/o the need to
+#      check for all other dependencies)
+# Everything else stays with Dependabot, see `.github/dependabot.yml`.
+# Scope and grouping live in `.github/renovate.json`.
+#
+# Schedule: daily 22:30 Europe/Berlin, i.e. ahead of the Dependabot window at
+# 23:00. GitHub cron only knows UTC, so both possible offsets are triggered and
+# Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`) makes the
+# out-of-window invocation a no-op: it gates branch creation, and because
+# `updateNotScheduled` is set to false it also gates updates of existing
+# branches -- without that option the second run would still rebase open
+# Renovate branches and retrigger their pipelines at the wrong hour.
+# A manual `workflow_dispatch` run drops that gate via `RENOVATE_FORCE`.
+
+name: Renovate
+
+on:
+  schedule:
+    - cron: "30 20 * * *" # 22:30 Berlin during CEST (UTC+2)
+    - cron: "30 21 * * *" # 22:30 Berlin during CET (UTC+1)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-24.04
+    steps:
+      # The GitHub App token (instead of GITHUB_TOKEN) makes sure the pipeline
+      # runs on the created pull requests.
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: 🤖 Self-hosted Renovate
+        uses: renovatebot/github-action@5402b206248e5a8c8427a15102702eb9c1793efc # v46.2.4
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          # Commit through the GitHub API so commits are signed by the app
+          RENOVATE_PLATFORM_COMMIT: "enabled"
+          RENOVATE_GIT_AUTHOR:
+            "${{ steps.generate-token.outputs.app-slug }}[bot]
+            <${{ steps.generate-token.outputs.app-slug }}[bot]@users.noreply.github.com>"
+          # Together with RENOVATE_GIT_AUTHOR this skips the GraphQL `viewer`
+          # lookup during platform init, whose transient failures abort the
+          # whole run with "Initialization error: Authentication failure".
+          RENOVATE_USERNAME: "${{ steps.generate-token.outputs.app-slug }}[bot]"
+          RENOVATE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '{"schedule":null}' || '{}' }}

@@ -12,40 +12,30 @@ export default function NavigationItemWrap() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem>
-					<a href="#">No Wrap (Default)</a>
-				</DBNavigationItem>
+				<DBNavigationItem text="No Wrap (Default)"></DBNavigationItem>
 			</ul>
 			<ul
 				style={{
 					width: '200px'
 				}}>
 				<DBNavigationItem
+					text="This is a very long text that is broken into multiple lines."
 					subNavigation={
 						<>
 							<DBNavigationItem
+								text="Sub-Navi-Item 1"
 								subNavigation={
 									<>
-										<DBNavigationItem>
-											<a href="#">Sub-Sub-Navi-Item 1</a>
-										</DBNavigationItem>
-										<DBNavigationItem>
-											<a href="#">Sub-Sub-Navi-Item 2</a>
-										</DBNavigationItem>
+										<DBNavigationItem text="Sub-Sub-Navi-Item 1"></DBNavigationItem>
+										<DBNavigationItem text="Sub-Sub-Navi-Item 2"></DBNavigationItem>
 									</>
-								}>
-								Sub-Navi-Item 1
-							</DBNavigationItem>
-							<DBNavigationItem>
-								<a href="#">Sub-Navi-Item 2</a>
-							</DBNavigationItem>
+								}></DBNavigationItem>
+							<DBNavigationItem text="Sub-Navi-Item 2"></DBNavigationItem>
 						</>
 					}
 					icon="x_placeholder"
 					showIcon={true}
-					wrap={true}>
-					This is a very long text that is broken into multiple lines.
-				</DBNavigationItem>
+					wrap={true}></DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

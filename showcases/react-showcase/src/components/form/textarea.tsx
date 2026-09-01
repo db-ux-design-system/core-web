@@ -1,8 +1,8 @@
-import { DBTextarea } from '@db-ux/react-core-components/src';
+import { DBTextarea } from '@components';
 import { useState } from 'react';
 import FormWrapper from './form-wrapper';
 
-const FormTextareas = () => {
+export default function FormTextareas() {
 	const [controlled, setControlled] = useState('test1');
 	const [uncontrolled, setUncontrolled] = useState('test2');
 
@@ -24,6 +24,4 @@ const FormTextareas = () => {
 			/>
 		</FormWrapper>
 	);
-};
-
-export default FormTextareas;
+}

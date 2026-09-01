@@ -50,8 +50,8 @@
 	}
 
 	// 3. icon or img
-	&[data-icon],
-	&[data-semantic]:not([data-semantic="adaptive"]),
+	&[data-icon]:not([data-show-icon="false"]),
+	&[data-semantic]:not([data-semantic="adaptive"], [data-show-icon="false"]),
 	&:has(img) {
 		grid-template-areas: "icon content";
 		grid-template-columns: min-content 1fr;

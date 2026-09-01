@@ -25,7 +25,7 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const type = getAttributeValue(node, 'type');
-			if (type === null) {
+			if (type === undefined) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -38,7 +38,9 @@ export default {
 							node,
 							' type="text"'
 						);
-						if (!fixData) return null;
+						if (!fixData) {
+							return null;
+						}
 						return fixer.insertTextBeforeRange(
 							[fixData.insertPos, fixData.insertPos],
 							fixData.attributeText
@@ -53,15 +55,19 @@ export default {
 			COMPONENTS.DBInput,
 			angularHandler
 		);
-		if (angularVisitors) return angularVisitors;
+		if (angularVisitors) {
+			return angularVisitors;
+		}
 
 		const checkInput = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) return;
+			if (!isDBComponent(openingElement, COMPONENTS.DBInput)) {
+				return;
+			}
 
 			const type = getAttributeValue(openingElement, 'type');
 
-			if (type === null) {
+			if (type === undefined) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.INPUT_TYPE_REQUIRED,

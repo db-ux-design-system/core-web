@@ -20,13 +20,10 @@
 %button-outlined-ghost-colors {
 	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 
-	@include helpers.hover {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-	}
-
-	@include helpers.active {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
-	}
+	@include helpers.interactive-bg(
+		colors.$db-adaptive-bg-basic-transparent-full-hovered,
+		colors.$db-adaptive-bg-basic-transparent-full-pressed
+	);
 }
 
 %button-brand-colors {
@@ -34,14 +31,16 @@
 	color: colors.$db-brand-on-origin-default;
 	border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
 
-	@include helpers.hover {
-		background-color: colors.$db-brand-origin-hovered;
-		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: colors.$db-brand-origin-hovered;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		}
 
-	@include helpers.active {
-		background-color: colors.$db-brand-origin-pressed;
-		border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		@include helpers.active {
+			background-color: colors.$db-brand-origin-pressed;
+			border-color: colors.$db-brand-on-bg-basic-emphasis-70-default;
+		}
 	}
 }
 
@@ -77,6 +76,12 @@
 		}
 	}
 
+	&:not([data-no-text="true"]) {
+		#{$selector} {
+			gap: variables.$db-spacing-fixed-xs;
+		}
+	}
+
 	&[data-wrap="false"] {
 		#{$selector} {
 			white-space: nowrap;
@@ -93,10 +98,7 @@
 			&:not([data-no-text="true"]) {
 				// stylelint-disable-next-line db-ux/use-spacings
 				padding: 1px variables.$db-spacing-fixed-sm;
-
-				&::before {
-					margin-inline-end: variables.$db-spacing-fixed-2xs;
-				}
+				gap: variables.$db-spacing-fixed-2xs;
 			}
 
 			// Square icon only buttons
@@ -141,12 +143,14 @@
 		#{$selector} {
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
-			}
+			@include helpers.not-disabled {
+				@include helpers.hover {
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+				}
 
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+				@include helpers.active {
+					background-color: colors.$db-adaptive-bg-basic-transparent-semi-pressed;
+				}
 			}
 		}
 	}
