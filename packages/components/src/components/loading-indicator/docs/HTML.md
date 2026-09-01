@@ -8,9 +8,6 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-loading-indicator">
-		LoadingIndicator
-	</div>
+	<div class="db-loading-indicator">LoadingIndicator</div>
 </body>
 ```
-
