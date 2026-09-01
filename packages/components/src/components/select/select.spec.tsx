@@ -125,6 +125,40 @@ const testAction = () => {
 			false
 		);
 	});
+
+	test('should keep the selection while validating on input', async ({
+		mount
+	}) => {
+		const requiredComp: any = (
+			<DBSelect
+				label="Label"
+				required
+				value=""
+				placeholder="Choose an option">
+				<option value="test1">Test1</option>
+				<option value="test2">Test2</option>
+			</DBSelect>
+		);
+		const component = await mount(requiredComp);
+		const select = component.getByRole('combobox');
+
+		/* Validating on `input` flips internal state (`_descByIds`) as soon as
+		 * the value became valid. The re-render that follows re-applies the
+		 * `value` prop - which is still the previous one, because a browser
+		 * dispatches `change` after `input`, so the consumer cannot have
+		 * propagated the new value yet. The selection must survive that render.
+		 * https://github.com/db-ux-design-system/core-web/issues/7554 */
+		const valueAfterInput = await select.evaluate(
+			async (element: HTMLSelectElement) => {
+				element.value = 'test2';
+				element.dispatchEvent(new Event('input', { bubbles: true }));
+				await Promise.resolve();
+				return element.value;
+			}
+		);
+
+		expect(valueAfterInput).toBe('test2');
+	});
 };
 
 test.describe('DBSelect', () => {
