@@ -194,6 +194,23 @@ const testPagination = () => {
 		).toBeVisible();
 	});
 
+	test('should replace repeated pageLabel placeholders', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBPagination
+				currentPage={2}
+				totalCount={30}
+				pageSize={10}
+				pageLabel="Page {page} of {totalPages} (page {page})"
+			/>
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Page 2 of 3 (page 2)' })
+		).toHaveAttribute('aria-current', 'page');
+	});
+
 	test('should support small size and localized labels', async ({
 		mount
 	}) => {

@@ -121,9 +121,12 @@ export default function DBPagination(props: DBPaginationProps) {
 			return items.concat(endPages);
 		},
 		getPageLabel: (page: number) => {
+			// replaceAll, not replace: a translation may legitimately repeat a
+			// placeholder, and replace with a string pattern only substitutes the
+			// first occurrence - leaving a literal {page} in the accessible name.
 			return (props.pageLabel ?? 'Page {page} of {totalPages}')
-				.replace('{page}', String(page))
-				.replace('{totalPages}', String(state.getTotalPages()));
+				.replaceAll('{page}', String(page))
+				.replaceAll('{totalPages}', String(state.getTotalPages()));
 		},
 		handlePageChange: (page: number) => {
 			if (
@@ -139,6 +142,14 @@ export default function DBPagination(props: DBPaginationProps) {
 		}
 	});
 
+	// The `key` values below only take effect in React and Stencil. Angular emits
+	// `track index` for the generated @for block and Vue puts its own `:key` on the
+	// wrapping template, so both reconcile by position rather than by page number.
+	// They cannot be removed either - React warns about missing keys inside a map.
+	// Consequence: after a page change the focused DOM node keeps the same page
+	// number in React and Stencil, but the same position in Angular and Vue.
+	// Acceptable while focus management is out of scope; revisit together with it.
+	//
 	// aria-label has to stay the first attribute, above `ref`: the React post-build
 	// injects the aria-*/data-* pass-through spread directly after `ref={_ref}`, so
 	// an attribute placed below it overrides whatever the consumer passes. That
