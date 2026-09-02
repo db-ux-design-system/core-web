@@ -15,6 +15,58 @@ A fixed inset of `40px` is kept between every dialog edge and the corresponding 
 
 ### Use component
 
+#### Invoker Commands
+
+Instead of the `open` property you can use
+[Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
+to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
+`commandfor`. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+
+Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
+`event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
+`DBDialogHeader` already uses `request-close` with the resolved dialog `id`.
+
+```tsx App.tsx
+// App.tsx
+import {
+	DBButton,
+	DBDialog,
+	DBDialogFooter,
+	DBDialogHeader
+} from "@db-ux/react-core-components";
+
+const App = () => (
+	<div>
+		<DBButton command="show-modal" commandfor="my-dialog">
+			Open dialog
+		</DBButton>
+		<DBDialog
+			id="my-dialog"
+			header={
+				<DBDialogHeader closeButtonText="Close">
+					Dialog title
+				</DBDialogHeader>
+			}
+			footer={
+				<DBDialogFooter>
+					<DBButton
+						variant="brand"
+						command="request-close"
+						commandfor="my-dialog"
+					>
+						Confirm
+					</DBButton>
+				</DBDialogFooter>
+			}
+		>
+			My dialog content
+		</DBDialog>
+	</div>
+);
+
+export default App;
+```
+
 #### Manage component by state
 
 ```tsx App.tsx
@@ -74,58 +126,6 @@ export default App;
 
 Set `backdrop="none"` to get a non-modal dialog: no dimmed backdrop, no focus trap, and clicks outside the dialog
 leave it open.
-
-### Invoker Commands
-
-Instead of the `open` property you can use
-[Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
-to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
-`commandfor`. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
-
-Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
-`event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
-`DBDialogHeader` already uses `request-close` with the resolved dialog `id`.
-
-```tsx App.tsx
-// App.tsx
-import {
-	DBButton,
-	DBDialog,
-	DBDialogFooter,
-	DBDialogHeader
-} from "@db-ux/react-core-components";
-
-const App = () => (
-	<div>
-		<DBButton command="show-modal" commandfor="my-dialog">
-			Open dialog
-		</DBButton>
-		<DBDialog
-			id="my-dialog"
-			header={
-				<DBDialogHeader closeButtonText="Close">
-					Dialog title
-				</DBDialogHeader>
-			}
-			footer={
-				<DBDialogFooter>
-					<DBButton
-						variant="brand"
-						command="request-close"
-						commandfor="my-dialog"
-					>
-						Confirm
-					</DBButton>
-				</DBDialogFooter>
-			}
-		>
-			My dialog content
-		</DBDialog>
-	</div>
-);
-
-export default App;
-```
 
 ### Return a value
 
