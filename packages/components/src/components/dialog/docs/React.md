@@ -134,7 +134,7 @@ on submission and writes its `value` into `dialog.returnValue`, so you do not ne
 Read the value in `onClose` from the event target.
 
 `DBButton` does not expose `formmethod`, so wrap the submit controls in a `<form method="dialog">`. If the dialog
-already contains a form with a different method, use a native `<button class="db-button" formmethod="dialog">`
+already contains a form with a different method, use a native `<button class="db-button" formmethod="dialog" type="button">`
 instead.
 
 ```tsx App.tsx
