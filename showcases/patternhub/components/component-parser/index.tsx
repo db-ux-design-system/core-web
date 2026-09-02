@@ -398,6 +398,9 @@ const ComponentSwitch = ({
 			<DBDialogFooter className={className} {...props}>
 				{resolvedContent}
 			</DBDialogFooter>
+		);
+	}
+
 	if (type === 'control-panel-mobile') {
 		return (
 			<DBControlPanelMobile className={className} {...props}>
