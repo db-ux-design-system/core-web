@@ -15,6 +15,8 @@ A fixed inset of `40px` is kept between every dialog edge and the corresponding 
 
 ### Use component
 
+#### Manage component by state
+
 ```tsx App.tsx
 // App.tsx
 import { useState } from "react";

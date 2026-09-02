@@ -12,6 +12,8 @@ Every `containerSize`, `full` included, keeps a gap of `--db-dialog-viewport-ins
 
 ### Use component
 
+#### Manage component by state
+
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
@@ -64,7 +66,7 @@ Pass `DBDialogHeader` through `<template #header>` and `DBDialogFooter` through 
 
 ### Invoker Commands
 
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
 
