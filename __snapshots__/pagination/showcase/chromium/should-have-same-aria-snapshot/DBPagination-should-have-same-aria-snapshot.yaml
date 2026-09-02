@@ -18,6 +18,139 @@
       - listitem:
         - button "Next page"
   - paragraph: "Current page: 5"
+  - link "Position"
+  - text: (Default) Start - previous is disabled
+  - navigation "Start position pagination":
+    - list:
+      - listitem:
+        - button "Previous page" [disabled]
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 2 of 10": "2"
+      - listitem:
+        - button "Page 3 of 10": "3"
+      - listitem:
+        - button "Page 4 of 10": "4"
+      - listitem:
+        - button "Page 5 of 10": "5"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
+  - text: Center - truncated on both sides
+  - navigation "Center position pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 4 of 10": "4"
+      - listitem:
+        - button "Page 5 of 10": "5"
+      - listitem:
+        - button "Page 6 of 10": "6"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
+  - text: End - next is disabled
+  - navigation "End position pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 6 of 10": "6"
+      - listitem:
+        - button "Page 7 of 10": "7"
+      - listitem:
+        - button "Page 8 of 10": "8"
+      - listitem:
+        - button "Page 9 of 10": "9"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page" [disabled]
+  - link "Truncation"
+  - text: Without truncation - all 5 pages fit
+  - navigation "Untruncated pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 5": "1"
+      - listitem:
+        - button "Page 2 of 5": "2"
+      - listitem:
+        - button "Page 3 of 5": "3"
+      - listitem:
+        - button "Page 4 of 5": "4"
+      - listitem:
+        - button "Page 5 of 5": "5"
+      - listitem:
+        - button "Next page"
+  - text: (Default) siblingCount 1, boundaryCount 1
+  - navigation "Default truncation pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 20": "1"
+      - listitem:
+        - button "Page 9 of 20": "9"
+      - listitem:
+        - button "Page 10 of 20": "10"
+      - listitem:
+        - button "Page 11 of 20": "11"
+      - listitem:
+        - button "Page 20 of 20": "20"
+      - listitem:
+        - button "Next page"
+  - text: siblingCount 2 - wider window around the current page
+  - navigation "Two siblings pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 20": "1"
+      - listitem:
+        - button "Page 8 of 20": "8"
+      - listitem:
+        - button "Page 9 of 20": "9"
+      - listitem:
+        - button "Page 10 of 20": "10"
+      - listitem:
+        - button "Page 11 of 20": "11"
+      - listitem:
+        - button "Page 12 of 20": "12"
+      - listitem:
+        - button "Page 20 of 20": "20"
+      - listitem:
+        - button "Next page"
+  - text: boundaryCount 2 - two pages pinned at each end
+  - navigation "Two boundaries pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 20": "1"
+      - listitem:
+        - button "Page 2 of 20": "2"
+      - listitem:
+        - button "Page 9 of 20": "9"
+      - listitem:
+        - button "Page 10 of 20": "10"
+      - listitem:
+        - button "Page 11 of 20": "11"
+      - listitem:
+        - button "Page 19 of 20": "19"
+      - listitem:
+        - button "Page 20 of 20": "20"
+      - listitem:
+        - button "Next page"
   - link "Size"
   - text: (Default) Medium
   - navigation "Medium pagination":
