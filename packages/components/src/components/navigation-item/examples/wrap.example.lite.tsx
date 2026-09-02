@@ -12,7 +12,9 @@ export default function NavigationItemWrap() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem text="No Wrap (Default)"></DBNavigationItem>
+				<DBNavigationItem>
+					<a href="#">No Wrap (Default)</a>
+				</DBNavigationItem>
 			</ul>
 			<ul
 				style={{
@@ -26,11 +28,17 @@ export default function NavigationItemWrap() {
 								text="Sub-Navi-Item 1"
 								subNavigation={
 									<>
-										<DBNavigationItem text="Sub-Sub-Navi-Item 1"></DBNavigationItem>
-										<DBNavigationItem text="Sub-Sub-Navi-Item 2"></DBNavigationItem>
+										<DBNavigationItem>
+											<a href="#">Sub-Sub-Navi-Item 1</a>
+										</DBNavigationItem>
+										<DBNavigationItem>
+											<a href="#">Sub-Sub-Navi-Item 2</a>
+										</DBNavigationItem>
 									</>
 								}></DBNavigationItem>
-							<DBNavigationItem text="Sub-Navi-Item 2"></DBNavigationItem>
+							<DBNavigationItem>
+								<a href="#">Sub-Navi-Item 2</a>
+							</DBNavigationItem>
 						</>
 					}
 					icon="x_placeholder"

@@ -215,6 +215,31 @@ When adding or modifying examples:
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Do NOT manually edit showcase files** — they are generated
 
+## Component tests (`src/components/**/*.spec.tsx`)
+
+One spec per component (or per component family, declared via `spec` in `components.ts`). `copy-files.ts` copies it into the React and Vue outputs only — Angular and Stencil have no Playwright component tests, they are covered by the showcase e2e suite. The `// VUE:` marker activates a line for Vue only, since it is stripped for that target.
+
+**Everything a spec needs belongs in the spec.** Do not add test-only components (harnesses, fixtures) under `src/components/`: the main Mitosis config compiles `src/**/*.{lite.tsx,ts}` for all four targets, so such a file ships in every framework output — in Stencil it even becomes a registered custom element in `custom-elements.json` and gets its own lazy-load chunk. Mount the component under test directly, as the other specs do, and re-mount with different props when a prop change is part of the scenario (see `custom-select.spec.tsx`).
+
+**`selectOption` cannot test what happens between `input` and `change`.** It dispatches both events in the same task, and React flushes the re-render triggered by the first handler only after the task — so a controlled `select` looks fine even when the internal state change during `input` discards the selection. That is how [#7554](https://github.com/db-ux-design-system/core-web/issues/7554) survived the suite. Drive the sequence explicitly and let the pending render land, then read the DOM inside the same `evaluate` — the assertion must happen while the DOM state is still the interesting one:
+
+```ts
+const valueAfterInput = await select.evaluate(
+	async (element: HTMLSelectElement) => {
+		element.value = "test2";
+		element.dispatchEvent(new Event("input", { bubbles: true }));
+		await Promise.resolve();
+		return element.value;
+	}
+);
+```
+
+Use a microtask, not `requestAnimationFrame` or a timer: one microtask is enough for the re-render to commit, while anything longer also lets deferred work (`delay(fn, 0)`) run and makes the test race with it.
+
+The same caveat applies in reverse: a direct `element.value = …` assignment on a **text** input or textarea does not reach React, because React's change plugin consults its value tracker for those elements and sees no change. Use `fill()` or `pressSequentially()` there — they go through the native setter. Only `select` and `input[type=file]` route `onChange` to the native `change` event and therefore ignore the tracker.
+
+**Always verify a regression test fails without the fix, repeatedly.** Regenerate the output with the fix reverted and run the test a few times (`--repeat-each=5`) on both states. A test that only sometimes fails without the fix is a flaky test, not a regression test.
+
 ## Figma Code Connect (`src/components/**/figma/`)
 
 Each component can have a `figma/` folder with Figma Code Connect definitions. These are generated into `figma-code-connect/` via `mitosis.figma.config.cjs` and the `configs/plugins/figma/` plugin.

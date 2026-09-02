@@ -866,20 +866,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.searchValue]);
 
 	onUpdate(() => {
-		if (props.options?.length) {
-			state._selectedOptions = props.options?.filter(
-				(option: CustomSelectOptionType) => {
-					if (!option.value || !state._values?.['includes']) {
-						return false;
-					}
-
-					return (
-						!option.isGroupTitle &&
-						state._values?.includes(option.value)
-					);
+		state._selectedOptions =
+			props.options?.filter((option: CustomSelectOptionType) => {
+				if (!option.value || !state._values?.['includes']) {
+					return false;
 				}
-			);
-		}
+
+				return (
+					!option.isGroupTitle &&
+					state._values?.includes(option.value)
+				);
+			}) ?? [];
 	}, [props.options, state._values]);
 
 	onUpdate(() => {

@@ -7,6 +7,7 @@ import { setScrollViewport } from './fixtures/viewport';
 
 import type { Checker } from 'accessibility-checker-engine';
 import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
+import { type PageAssertionsToHaveScreenshotOptions } from 'playwright/types/test';
 
 const density = 'regular';
 
@@ -50,15 +51,14 @@ export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
 export const hasWebComponentSyntax = (showcase?: string): boolean =>
 	isAngular(showcase) || isStencil(showcase);
 
-export const waitForDBPage = async (page: Page) => {
-	const dbPage = page.locator('.db-page');
-	// We wait till db-page fully loaded
-	await dbPage.evaluate((element) => {
+export const waitForDBShell = async (page: Page) => {
+	const dbShell = page.locator('.db-shell:not([data-test-id])');
+	// We wait till db-shell fully loaded
+	await dbShell.evaluate((element) => {
 		element.style.transition = 'none';
 	});
-	await expect(dbPage).not.toHaveAttribute('data-fonts-loaded', 'false');
-	await expect(dbPage).toHaveCSS('opacity', '1');
-	await expect(page.locator('html')).toHaveCSS('overflow', 'hidden');
+	await expect(dbShell).not.toHaveAttribute('data-fonts-loaded', 'false');
+	await expect(dbShell).toHaveCSS('opacity', '1');
 };
 
 const gotoPage = async (
@@ -77,8 +77,7 @@ const gotoPage = async (
 	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
 	await page.evaluate(async () => document.fonts.ready);
 
-	await waitForDBPage(page);
-
+	await waitForDBShell(page);
 	await setScrollViewport(page, fixedHeight)();
 };
 
@@ -118,7 +117,7 @@ export const getDefaultScreenshotTest = ({
 			test.skip();
 		}
 
-		const config: Record<string, unknown> = {};
+		const config: PageAssertionsToHaveScreenshotOptions = {};
 
 		if (maxDiffPixelRatio ?? diffPixel) {
 			if (maxDiffPixelRatio) {
@@ -138,9 +137,10 @@ export const getDefaultScreenshotTest = ({
 
 		await gotoPage(page, path, lvl1, fixedHeight);
 
-		const header = page.locator('header').first();
+		const headerDesktop = page.locator('.db-control-panel-desktop').first();
+		const headerMobile = page.locator('.db-control-panel-mobile').first();
 
-		config.mask = [header];
+		config.mask = [headerDesktop, headerMobile];
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
@@ -205,7 +205,7 @@ export const runAxeCoreTest = ({
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		})
-			.include('main')
+			.include('#main-content')
 			.disableRules(axeDisableRules ?? [])
 			.analyze();
 
@@ -303,7 +303,10 @@ export const runAriaSnapshotTest = ({
 
 		await page.waitForTimeout(1000); // We wait a little bit until everything loaded
 
-		let snapshot = await page.locator('main').ariaSnapshot();
+		let snapshot = await page
+			.locator('#main-content')
+			.first()
+			.ariaSnapshot();
 
 		// Remove `/url` in snapshot because they differ in every showcase
 		const lines = snapshot.split('\n');
