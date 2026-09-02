@@ -17,7 +17,7 @@ including `full`, so that a clickable backdrop area always remains. Overwrite it
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and
 `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element via its `id`. Supported
-built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
@@ -83,14 +83,13 @@ all of its submit buttons.
 <dialog id="my-dialog" class="db-dialog">
 	<div class="db-dialog-content">Delete this entry?</div>
 	<footer class="db-dialog-footer">
-		<form>
-			<button class="db-button" formmethod="dialog" value="cancel">
+		<form formmethod="dialog">
+			<button class="db-button" value="cancel">
 				Cancel
 			</button>
 			<button
 				class="db-button"
 				data-variant="brand"
-				formmethod="dialog"
 				value="confirm"
 			>
 				Confirm

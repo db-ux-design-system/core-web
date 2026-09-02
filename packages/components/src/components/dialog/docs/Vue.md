@@ -16,7 +16,7 @@ Pass `DBDialogHeader` through `<template #header>` and `DBDialogFooter` through 
 
 #### Invoker Commands
 
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
 
@@ -126,22 +126,16 @@ const onClose = (event: Event) => {
 		Delete this entry?
 		<template #footer>
 			<DBDialogFooter>
-				<form>
-					<button
-						class="db-button"
-						formmethod="dialog"
-						value="cancel"
-					>
+				<form formmethod="dialog">
+					<DBButton value="cancel">
 						Cancel
-					</button>
-					<button
-						class="db-button"
-						data-variant="brand"
-						formmethod="dialog"
+					</DBButton>
+					<DBButton
+						variant="brand"
 						value="confirm"
 					>
 						Delete
-					</button>
+					</DBButton>
 				</form>
 			</DBDialogFooter>
 		</template>
