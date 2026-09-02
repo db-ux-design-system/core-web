@@ -83,7 +83,7 @@ all of its submit buttons.
 <dialog id="my-dialog" class="db-dialog">
 	<div class="db-dialog-content">Delete this entry?</div>
 	<footer class="db-dialog-footer">
-		<form formmethod="dialog">
+		<form method="dialog">
 			<button class="db-button" value="cancel">Cancel</button>
 			<button class="db-button" data-variant="brand" value="confirm">
 				Confirm
