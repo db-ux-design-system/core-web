@@ -4,17 +4,17 @@ export type PaginationItemType = number | 'start-ellipsis' | 'end-ellipsis';
 
 export type DBPaginationDefaultProps = {
 	/**
-	 * One-based number of the currently active page.
+	 * One-based number of the currently active page. Defaults to `1`.
 	 */
-	currentPage: number | string;
+	currentPage?: number | string;
 	/**
-	 * Total number of items across all pages.
+	 * Total number of items across all pages. Defaults to `0`.
 	 */
-	totalCount: number | string;
+	totalCount?: number | string;
 	/**
-	 * Number of items displayed on one page.
+	 * Number of items displayed on one page. Defaults to `10`.
 	 */
-	pageSize: number | string;
+	pageSize?: number | string;
 	/**
 	 * Number of page buttons shown on each side of the current page.
 	 */

@@ -3,7 +3,7 @@ import { runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
 test.describe('DBPagination', () => {
-	runAxeCoreTest({ path: 'pagination' });
-	runAxeCoreTest({ path: 'pagination', color: lvl3 });
-	runAxeCoreTest({ path: 'pagination', density: 'functional' });
+	runAxeCoreTest({ path: '05/pagination' });
+	runAxeCoreTest({ path: '05/pagination', color: lvl3 });
+	runAxeCoreTest({ path: '05/pagination', density: 'functional' });
 });

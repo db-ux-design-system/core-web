@@ -1,5 +1,3 @@
-import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
-
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
@@ -24,6 +22,7 @@ import LinkShowcase from '@components/components/link/showcase/link.showcase';
 import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
 import SectionShowcase from '@components/components/section/showcase/section.showcase';
@@ -53,12 +52,6 @@ export const getSortedNavigationItems = (
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-	{
-		path: 'pagination',
-		label: 'Pagination',
-		component: <PaginationShowcase />
-	},
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -119,6 +112,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'navigation',
 				label: 'Navigation',
 				component: <NavigationShowcase />
+			},
+			{
+				path: 'pagination',
+				label: 'Pagination',
+				component: <PaginationShowcase />
 			},
 			{
 				path: 'brand',

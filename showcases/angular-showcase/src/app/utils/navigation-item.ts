@@ -53,8 +53,6 @@ export const getSortedNavigationItems = (navigationItems: NavItem[]): any[] =>
 	);
 
 export const NAVIGATION_ITEMS: NavItem[] = [
-	{ path: 'pagination', label: 'Pagination', component: PaginationComponent },
-
 	{
 		path: '06',
 		label: '06 Feedback',
@@ -112,6 +110,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '05/navigation',
 				label: 'Navigation',
 				component: NavigationShowcase
+			},
+			{
+				path: '05/pagination',
+				label: 'Pagination',
+				component: PaginationComponent
 			},
 			{
 				path: '05/brand',
