@@ -12,6 +12,39 @@ Every `containerSize`, `full` included, keeps a gap of `--db-dialog-viewport-ins
 
 ### Use component
 
+Pass `DBDialogHeader` through `<template #header>` and `DBDialogFooter` through `<template #footer>`. `DBDialogHeader` links its heading to the dialog via `aria-labelledby` and renders the close button, so it should be part of every dialog.
+
+#### Invoker Commands
+
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+
+Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
+
+```vue App.vue
+<!-- App.vue -->
+<template>
+	<DBButton command="show-modal" commandfor="my-dialog">
+		Open dialog
+	</DBButton>
+
+	<DBDialog id="my-dialog">
+		<template #header>
+			<DBDialogHeader text="Dialog title" closeButtonText="Close" />
+		</template>
+		My dialog content
+		<template #footer>
+			<DBDialogFooter>
+				<DBButton command="request-close" commandfor="my-dialog">
+					Confirm
+				</DBButton>
+			</DBDialogFooter>
+		</template>
+	</DBDialog>
+</template>
+```
+
+The close button inside `DBDialogHeader` already uses `command="request-close"` with the resolved dialog `id`.
+
 #### Manage component by state
 
 ```vue App.vue
@@ -61,39 +94,6 @@ const onCancel = () => {
 	</DBDialog>
 </template>
 ```
-
-Pass `DBDialogHeader` through `<template #header>` and `DBDialogFooter` through `<template #footer>`. `DBDialogHeader` links its heading to the dialog via `aria-labelledby` and renders the close button, so it should be part of every dialog.
-
-### Invoker Commands
-
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
-
-Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
-
-```vue App.vue
-<!-- App.vue -->
-<template>
-	<DBButton command="show-modal" commandfor="my-dialog">
-		Open dialog
-	</DBButton>
-
-	<DBDialog id="my-dialog">
-		<template #header>
-			<DBDialogHeader text="Dialog title" closeButtonText="Close" />
-		</template>
-		My dialog content
-		<template #footer>
-			<DBDialogFooter>
-				<DBButton command="request-close" commandfor="my-dialog">
-					Confirm
-				</DBButton>
-			</DBDialogFooter>
-		</template>
-	</DBDialog>
-</template>
-```
-
-The close button inside `DBDialogHeader` already uses `command="request-close"` with the resolved dialog `id`.
 
 ### Return a value
 
