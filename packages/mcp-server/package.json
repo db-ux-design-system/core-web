@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.30.0",
-    "zod": "4.5.2"
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "@db-ux/db-theme-icons": "4.2.0",
