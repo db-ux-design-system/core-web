@@ -1,0 +1,55 @@
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.db-pagination {
+	inline-size: fit-content;
+
+	> ul {
+		display: flex;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-2xs;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.db-pagination-page.db-button {
+		block-size: variables.$db-sizing-md;
+		min-inline-size: variables.$db-sizing-md;
+		padding: variables.$db-spacing-fixed-2xs;
+
+		&:not([aria-current="page"]) {
+			font-weight: 400;
+		}
+	}
+
+	.db-pagination-ellipsis {
+		@extend %db-overwrite-font-size-md;
+
+		block-size: variables.$db-sizing-md;
+		min-inline-size: variables.$db-sizing-sm;
+		padding-inline: variables.$db-spacing-fixed-2xs;
+	}
+
+	&[data-size="small"] {
+		.db-pagination-page.db-button {
+			block-size: variables.$db-sizing-sm;
+			min-inline-size: variables.$db-sizing-sm;
+			padding: variables.$db-spacing-fixed-3xs;
+		}
+
+		.db-pagination-ellipsis {
+			@extend %db-overwrite-font-size-sm;
+
+			block-size: variables.$db-sizing-sm;
+			min-inline-size: variables.$db-spacing-fixed-lg;
+			padding-inline: variables.$db-spacing-fixed-3xs;
+		}
+	}
+}

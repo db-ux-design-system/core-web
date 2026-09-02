@@ -1,3 +1,5 @@
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
+
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
@@ -51,6 +53,12 @@ export const getSortedNavigationItems = (
 		a.path.localeCompare(b.path)
 	);
 export const NAVIGATION_ITEMS: NavigationItem[] = [
+	{
+		path: 'pagination',
+		label: 'Pagination',
+		component: <PaginationShowcase />
+	},
+
 	{
 		path: '06',
 		label: '06 Feedback',

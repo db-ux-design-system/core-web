@@ -38,6 +38,8 @@ import ControlPanelMobileShowcase from '@components/components/control-panel-mob
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -50,6 +52,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	pagination: <PaginationShowcase isPatternhub />,
+
 	heading: <HeadingShowcase isPatternhub />,
 
 	accordion: <AccordionShowcase isPatternhub />,

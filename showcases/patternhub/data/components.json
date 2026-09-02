@@ -167,6 +167,10 @@
 		"name": "navigation",
 		"subNavigation": [
 			{
+				"label": "DBPagination",
+				"name": "pagination"
+			},
+			{
 				"label": "DBControlPanelBrand",
 				"name": "control-panel-brand"
 			},
