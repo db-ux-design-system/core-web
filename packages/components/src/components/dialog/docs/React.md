@@ -80,7 +80,7 @@ leave it open.
 Instead of the `open` property you can use
 [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
 to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
-`commandfor`. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
+`commandfor`. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
