@@ -43,6 +43,21 @@ const flakyExpressions: Record<string, string> = {
 	'not checked. not checked': 'not checked'
 };
 
+// Normalize non-ASCII characters to ASCII equivalents.
+// MacOS VoiceOver inconsistently outputs non-ASCII chars (e.g. U+00A0,
+// U+2022 bullet, curly quotes) depending on the OS version.
+const nonAsciiReplacements: Record<string, string> = {
+	'\u2022': '*',
+	'\u2018': "'",
+	'\u2019': "'",
+	'\u201C': '"',
+	'\u201D': '"',
+	'\u2013': '-',
+	'\u2014': '-',
+	'\u2026': '...',
+	'\u00A0': ' '
+};
+
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 	phraseLog.map((phrase) => {
 		const phraseParts = phrase.split('. ');
@@ -75,6 +90,19 @@ const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
 		for (const [key, value] of Object.entries(flakyExpressions)) {
 			result = result.replaceAll(key, value);
 		}
+
+		// Normalize non-ASCII to ASCII equivalents and strip the rest
+		for (const [char, replacement] of Object.entries(
+			nonAsciiReplacements
+		)) {
+			result = result.replaceAll(char, replacement);
+		}
+
+		// Strip any remaining non-ASCII characters and collapse whitespace
+		result = result
+			.replaceAll(/[^\u0020-\u007E\t\n\r]/g, '')
+			.replaceAll(/\s{2,}/g, ' ')
+			.trim();
 
 		return result;
 	});
