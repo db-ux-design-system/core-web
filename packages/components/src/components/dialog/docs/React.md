@@ -87,6 +87,7 @@ const App = () => {
 				onClick={() => {
 					setOpen(true);
 				}}
+				type="button"
 			>
 				Open dialog
 			</DBButton>
@@ -276,6 +277,7 @@ const App = () => {
 				onClick={() => {
 					setOpen(true);
 				}}
+				type="button"
 			>
 				Open dialog
 			</DBButton>
