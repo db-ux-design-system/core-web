@@ -130,7 +130,9 @@ const testPagination = () => {
 		// boundaryCount 0 drops the first/last page, siblingCount 0 leaves only the
 		// active page between the two ellipses.
 		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
-		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(2);
+		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(
+			2
+		);
 		await expect(
 			component.getByRole('button', { name: 'Page 10 of 20' })
 		).toHaveAttribute('aria-current', 'page');
@@ -158,7 +160,9 @@ const testPagination = () => {
 		).not.toHaveAttribute('aria-current', 'page');
 	});
 
-	test('should clamp a currentPage beyond the last page', async ({ mount }) => {
+	test('should clamp a currentPage beyond the last page', async ({
+		mount
+	}) => {
 		const component = await mount(
 			<DBPagination currentPage={99} totalCount={100} pageSize={10} />
 		);
