@@ -4,7 +4,9 @@ import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import PaginationControlled from '../examples/controlled.example.lite';
 import PaginationDensity from '../examples/density.example.lite';
+import PaginationPosition from '../examples/position.example.lite';
 import PaginationSize from '../examples/size.example.lite';
+import PaginationTruncation from '../examples/truncation.example.lite';
 
 export default function PaginationShowcase(props: PatternhubProps) {
 	return (
@@ -14,6 +16,16 @@ export default function PaginationShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Controlled">
 				<CardWrapperShowcase>
 					<PaginationControlled />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Position">
+				<CardWrapperShowcase>
+					<PaginationPosition />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Truncation">
+				<CardWrapperShowcase>
+					<PaginationTruncation />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Size">
