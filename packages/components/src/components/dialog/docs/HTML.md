@@ -17,7 +17,7 @@ including `full`, so that a clickable backdrop area always remains. Overwrite it
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and
 `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element via its `id`. Supported
-built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
+built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
