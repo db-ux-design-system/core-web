@@ -26,8 +26,6 @@ robotstxt
 guidepup
 Guidepup
 Marketingportal
-unstub
-unstubbed
 llms
 checkins
 wombot
@@ -232,8 +230,11 @@ fbca
 unreviewed
 notext
 prebundle
+notext
+treeitems
 knip
 checkin
+commitlintrc
 focusgroup
 unprovide
 tablists
@@ -257,4 +258,6 @@ descope
 pnpms
 renovatebot
 drilldown
-synchronisation
+Drilldown
+unstub
+closebuttontext

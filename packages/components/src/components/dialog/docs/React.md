@@ -7,13 +7,67 @@ For general installation and configuration take a look at the [react-core-compon
 `DBDialog` renders a native `<dialog>` element. It centres itself, sizes to its content and is capped by
 `containerSize` (`small`, `medium`, `large`, `full`, defaults to `medium`).
 
-You are able to overwrite the resulting `max-inline-size` with the `--db-dialog-max-width:` CSS variable.
+You are able to overwrite the resulting `max-inline-size` with the `--db-dialog-max-width` CSS variable.
 
 A fixed inset of `40px` is kept between every dialog edge and the corresponding viewport edge, at every
 `containerSize` including `full`, so that a clickable backdrop area always remains. Overwrite it with the
-`--db-dialog-viewport-inset:` CSS variable, e.g. `--db-dialog-viewport-inset: 0px;` for an edge-to-edge dialog.
+`--db-dialog-viewport-inset` CSS variable, e.g. `--db-dialog-viewport-inset: 0px;` for an edge-to-edge dialog.
 
 ### Use component
+
+#### Invoker Commands
+
+Instead of the `open` property you can use
+[Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
+to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
+`commandfor`. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+
+Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
+`event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
+`DBDialogHeader` already uses `request-close` with the resolved dialog `id`.
+
+```tsx App.tsx
+// App.tsx
+import {
+	DBButton,
+	DBDialog,
+	DBDialogFooter,
+	DBDialogHeader
+} from "@db-ux/react-core-components";
+
+const App = () => (
+	<div>
+		<DBButton command="show-modal" commandfor="my-dialog">
+			Open dialog
+		</DBButton>
+		<DBDialog
+			id="my-dialog"
+			header={
+				<DBDialogHeader closeButtonText="Close">
+					Dialog title
+				</DBDialogHeader>
+			}
+			footer={
+				<DBDialogFooter>
+					<DBButton
+						variant="brand"
+						command="request-close"
+						commandfor="my-dialog"
+					>
+						Confirm
+					</DBButton>
+				</DBDialogFooter>
+			}
+		>
+			My dialog content
+		</DBDialog>
+	</div>
+);
+
+export default App;
+```
+
+#### Manage component by state
 
 ```tsx App.tsx
 // App.tsx
@@ -73,58 +127,6 @@ export default App;
 Set `backdrop="none"` to get a non-modal dialog: no dimmed backdrop, no focus trap, and clicks outside the dialog
 leave it open.
 
-### Invoker Commands
-
-Instead of the `open` property you can use
-[Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
-to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
-`commandfor`. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
-
-Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
-`event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
-`DBDialogHeader` already uses `request-close` with the resolved dialog `id`.
-
-```tsx App.tsx
-// App.tsx
-import {
-	DBButton,
-	DBDialog,
-	DBDialogFooter,
-	DBDialogHeader
-} from "@db-ux/react-core-components";
-
-const App = () => (
-	<div>
-		<DBButton command="show-modal" commandfor="my-dialog">
-			Open dialog
-		</DBButton>
-		<DBDialog
-			id="my-dialog"
-			header={
-				<DBDialogHeader closeButtonText="Close">
-					Dialog title
-				</DBDialogHeader>
-			}
-			footer={
-				<DBDialogFooter>
-					<DBButton
-						variant="brand"
-						command="request-close"
-						commandfor="my-dialog"
-					>
-						Confirm
-					</DBButton>
-				</DBDialogFooter>
-			}
-		>
-			My dialog content
-		</DBDialog>
-	</div>
-);
-
-export default App;
-```
-
 ### Return a value
 
 A submit control with `formmethod="dialog"`, or any submit control inside a `<form method="dialog">`, closes the dialog
@@ -132,7 +134,7 @@ on submission and writes its `value` into `dialog.returnValue`, so you do not ne
 Read the value in `onClose` from the event target.
 
 `DBButton` does not expose `formmethod`, so wrap the submit controls in a `<form method="dialog">`. If the dialog
-already contains a form with a different method, use a native `<button class="db-button" formmethod="dialog">`
+already contains a form with a different method, use a native `<button class="db-button" formmethod="dialog" type="button">`
 instead.
 
 ```tsx App.tsx

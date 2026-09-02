@@ -1,5 +1,5 @@
 export type Overwrite = {
-	from: string | RegExp;
+	from: string | string[] | RegExp;
 	to: string;
 };
 
@@ -65,8 +65,25 @@ const headingComponents: Component[] = [
 	}
 }));
 
+/*
+ * The two ControlPanelActions components share one folder, one model, one
+ * stylesheet and one spec, following the same pattern as the Heading family.
+ */
+const controlPanelActionsComponents: Component[] = [
+	'control-panel-actions-1',
+	'control-panel-actions-2'
+].map((name, index) => ({
+	name,
+	folder: 'control-panel-actions',
+	spec: index === 0 ? 'control-panel-actions' : undefined,
+	overwrites: {
+		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
+	}
+}));
+
 export const getComponents = (): Component[] => [
 	...headingComponents,
+	...controlPanelActionsComponents,
 
 	{
 		name: 'dialog-footer'
@@ -89,7 +106,51 @@ export const getComponents = (): Component[] => [
 			}
 		}
 	},
+	{
+		name: 'control-panel-skip-navigation'
+	},
 
+	{
+		name: 'drawer-footer'
+	},
+
+	{
+		name: 'drawer-header'
+	},
+
+	{
+		name: 'shell-content'
+	},
+
+	{
+		name: 'control-panel-flat-icon'
+	},
+
+	{
+		name: 'shell-sub-navigation',
+		config: {
+			react: {
+				propsPassingFilter: ['onExpandButtonTooltipFn']
+			}
+		}
+	},
+
+	{
+		name: 'control-panel-navigation-item-group'
+	},
+
+	{
+		name: 'control-panel-meta'
+	},
+
+	{
+		name: 'control-panel-mobile',
+		config: {
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
+		}
+	},
 	{
 		name: 'table-data-cell'
 	},
@@ -323,6 +384,12 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
+		name: 'control-panel-navigation'
+	},
+	{
+		name: 'control-panel-navigation-item'
+	},
+	{
 		name: 'select',
 		overwrites: {
 			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
@@ -364,15 +431,6 @@ export const getComponents = (): Component[] => [
 			}
 		}
 	},
-
-	{
-		name: 'drawer-header'
-	},
-
-	{
-		name: 'drawer-footer'
-	},
-
 	{
 		name: 'tag',
 		overwrites: {
@@ -442,7 +500,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'section'
 	},
-
 	{
 		name: 'page'
 	},
@@ -479,6 +536,20 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'brand'
+	},
+	{
+		name: 'shell'
+	},
+	{
+		name: 'control-panel-desktop',
+		config: {
+			react: {
+				propsPassingFilter: ['onExpandButtonTooltipFn']
+			}
+		}
+	},
+	{
+		name: 'control-panel-brand'
 	},
 	{
 		name: 'input',

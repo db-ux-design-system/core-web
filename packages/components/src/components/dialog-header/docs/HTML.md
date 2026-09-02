@@ -7,7 +7,9 @@ For general installation and configuration take a look at the [components](https
 ```html index.html
 <!-- index.html -->
 ...
-<body>
-	<div class="db-dialog-header">DialogHeader</div>
-</body>
+<div class="db-dialog-header">
+	<header class="db-dialog-header-container" id="…">
+		<h2>Headline</h2>
+	</header>
+</div>
 ```

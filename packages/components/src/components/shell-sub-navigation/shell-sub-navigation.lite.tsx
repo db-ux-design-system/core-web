@@ -1,0 +1,95 @@
+import {
+	onInit,
+	onUpdate,
+	useDefaultProps,
+	useMetadata,
+	useRef,
+	useStore,
+	useTarget
+} from '@builder.io/mitosis';
+import { DEFAULT_COLLAPSE, DEFAULT_EXPAND } from '../../shared/constants';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import DBTooltip from '../tooltip/tooltip.lite';
+import { DBShellSubNavigationProps, DBShellSubNavigationState } from './model';
+
+useMetadata({});
+
+useDefaultProps<DBShellSubNavigationProps>({});
+
+export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
+	// This is used as forwardRef
+	const _ref = useRef<HTMLDivElement | any>(null);
+	// jscpd:ignore-start
+	const state = useStore<DBShellSubNavigationState>({
+		_id: `db-shell-sub-navigation-${uuid()}`,
+		_open: true,
+		handleToggle: (event: any) => {
+			event.stopPropagation();
+
+			state._open = !state._open;
+		},
+		getToggleButtonText: (): string => {
+			if (props.expandButtonTooltip) {
+				return props.expandButtonTooltip;
+			}
+			const fnOutput = useTarget({
+				angular: () => undefined,
+				stencil: () => undefined,
+				default: () => {
+					// Vue strips "on" prefix, so consumers use :expand-button-tooltip-fn
+					const tooltipFn =
+						props.onExpandButtonTooltipFn ??
+						props.expandButtonTooltipFn;
+					if (tooltipFn) {
+						const open = state._open;
+						return tooltipFn(open);
+					}
+				}
+			});
+
+			return (
+				fnOutput() ?? (state._open ? DEFAULT_COLLAPSE : DEFAULT_EXPAND)
+			);
+		},
+		syncExpanded: () => {
+			if (props.expanded !== undefined) {
+				state._open = getBoolean(props.expanded, 'expanded') ?? true;
+			}
+		}
+	});
+	// jscpd:ignore-end
+
+	onInit(() => {
+		state.syncExpanded();
+	});
+
+	onUpdate(() => {
+		state.syncExpanded();
+	}, [props.expanded]);
+
+	return (
+		<aside
+			ref={_ref}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
+			data-open={getBooleanAsString(state._open)}
+			class={cls('db-shell-sub-navigation', props.className)}>
+			{props.children}
+			<div class="db-shell-sub-navigation-button">
+				<button
+					onClick={(event) => state.handleToggle(event)}
+					class="db-button"
+					data-variant="ghost"
+					aria-controls={
+						props.id ?? props.propOverrides?.id ?? state._id
+					}
+					aria-expanded={getBooleanAsString(state._open)}
+					data-no-text="true"
+					data-icon="double_chevron_left">
+					<DBTooltip variant="label" placement="right">
+						{state.getToggleButtonText()}
+					</DBTooltip>
+				</button>
+			</div>
+		</aside>
+	);
+}

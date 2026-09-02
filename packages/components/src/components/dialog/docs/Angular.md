@@ -6,9 +6,9 @@ For general installation and configuration take a look at the [ngx-core-componen
 
 `DBDialog` renders a native [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog) element in the top layer. The browser centers it, `backdrop` decides whether it opens modal (`strong`, `weak`) or non-modal (`none`), and `containerSize` (`small`, `medium`, `large`, `full`, default `medium`) sets the maximum inline size.
 
-If you use `containerSize !== full` you are able to overwrite the `max-width` with the `--db-dialog-max-width:` CSS variable.
+If you use `containerSize` !== `full` you are able to overwrite the `max-width` with the `--db-dialog-max-width` CSS variable.
 
-Every `containerSize`, `full` included, keeps a gap of `--db-dialog-viewport-inset:` (default `40px`) to the viewport edges, so an area outside the dialog stays available for backdrop clicks. Set it to `0px` for an edge-to-edge dialog.
+Every `containerSize`, `full` included, keeps a gap of `--db-dialog-viewport-inset` (default `40px`) to the viewport edges, so an area outside the dialog stays available for backdrop clicks. Set it to `0px` for an edge-to-edge dialog.
 
 ### Load component
 
@@ -29,7 +29,36 @@ import {
 })
 ```
 
-### Use component
+### Use Component
+
+Project `db-dialog-header` with the `header` attribute and `db-dialog-footer` with the `footer` attribute. `DBDialogHeader` links its heading to the dialog via `aria-labelledby` and renders the close button, so it should be part of every dialog.
+
+#### Invoker Commands
+
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `request-close` (recommended over `close`).
+
+Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
+
+```html app.component.html
+<!-- app.component.html -->
+
+<db-button command="show-modal" commandfor="my-dialog">Open dialog</db-button>
+
+<db-dialog id="my-dialog">
+	<db-dialog-header header text="Dialog title" closeButtonText="Close">
+	</db-dialog-header>
+	My dialog content
+	<db-dialog-footer footer>
+		<db-button command="request-close" commandfor="my-dialog">
+			Confirm
+		</db-button>
+	</db-dialog-footer>
+</db-dialog>
+```
+
+The close button inside `DBDialogHeader` already uses `command="request-close"` with the resolved dialog `id`.
+
+#### Manage component by state
 
 ```html app.component.html
 <!-- app.component.html -->
@@ -68,36 +97,9 @@ export class AppComponent {
 }
 ```
 
-Project `db-dialog-header` with the `header` attribute and `db-dialog-footer` with the `footer` attribute. `DBDialogHeader` links its heading to the dialog via `aria-labelledby` and renders the close button, so it should be part of every dialog.
-
-### Invoker Commands
-
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
-
-Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
-
-```html app.component.html
-<!-- app.component.html -->
-
-<db-button command="show-modal" commandfor="my-dialog">Open dialog</db-button>
-
-<db-dialog id="my-dialog">
-	<db-dialog-header header text="Dialog title" closeButtonText="Close">
-	</db-dialog-header>
-	My dialog content
-	<db-dialog-footer footer>
-		<db-button command="request-close" commandfor="my-dialog">
-			Confirm
-		</db-button>
-	</db-dialog-footer>
-</db-dialog>
-```
-
-The close button inside `DBDialogHeader` already uses `command="request-close"` with the resolved dialog `id`.
-
 ### Return a value
 
-A submit control with `formmethod="dialog"` inside a `<form>` in the dialog closes the dialog without submitting the form and writes its `value` to `dialog.returnValue`. Read that value from the event target in the `close` handler. `DBButton` does not forward `formmethod`, so use a native `<button class="db-button">` for those controls, or set `method="dialog"` on the form and keep `DBButton` with `type="submit"`.
+A submit control with `formmethod="dialog"` inside a `<form>` in the dialog closes the dialog without submitting the form and writes its `value` to `dialog.returnValue`. Read that value from the event target in the `close` handler. Set `method="dialog"` on the form and keep `DBButton` with `type="submit"`, or use a native `<button class="db-button" type="button">` for those controls in the meantime, as `DBButton` does not forward `formmethod`.
 
 ```html app.component.html
 <!-- app.component.html -->

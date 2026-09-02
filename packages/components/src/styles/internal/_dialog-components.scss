@@ -69,7 +69,12 @@ $container-size-scale: (
 			font-weight: bold;
 			margin-inline-end: auto;
 
-			h2 {
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
 				font-size: inherit;
 				margin-block: 0;
 			}

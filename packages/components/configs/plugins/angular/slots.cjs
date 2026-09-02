@@ -125,8 +125,8 @@ module.exports = () => ({
 					'<ng-container meta-navigation',
 					'<ng-container *dbMetaNavigation'
 				)
-				.replaceAll(
-					'<ng-container secondary-action',
+				.replace(
+					/<ng-container secondary-action(?!s)/g,
 					'<ng-container *dbSecondaryAction'
 				)
 				.replaceAll(
