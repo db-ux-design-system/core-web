@@ -131,7 +131,9 @@ export class AppComponent {
 
 ### Top layer limitation
 
-Components that render into the top layer themselves - `DBTooltip`, native popovers and the option list of `DBCustomSelect` - are painted in top-layer order. Inside a modal dialog they can be clipped by the dialog box or stack below the dialog, so they may become partially or fully invisible. No workaround ships in this phase, so avoid these components inside a dialog for now.
+A modal `<dialog>` renders in the top layer and the `.db-dialog` box uses `overflow: clip`. Overlay content that renders into the top layer itself or uses fixed positioning escapes the box and paints correctly above the dialog: `DBTooltip` (`position: fixed`) and native popovers work as expected inside a modal dialog.
+
+Only overlay content positioned in the normal flow of the dialog - such as the absolutely positioned `DBCustomSelect` option list on desktop - can be clipped at the dialog edges when it overflows the box. Keep such content inside the scrollable dialog content area, or leave enough room so its overlay stays within the dialog bounds.
 
 ### Migration
 
@@ -191,7 +193,7 @@ Two files carry fallbacks for browser features that the project [Browserslist](h
 
 | File                                    | Missing feature                                                                    | Deleted when                                     | Behavior without native support                                                                                                               |
 | --------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `utils/dialog-ponyfill.ts`              | `closedby` attribute on `<dialog>` and Invoker Commands (`command` / `commandfor`) | every Browserslist target supports both features | marks the dialog with `data-closedby="not-supported"` and calls `requestClose()` on click of a `command="request-close"` button in JavaScript |
+| `utils/dialog/ponyfill.ts`              | `closedby` attribute on `<dialog>` and Invoker Commands (`command` / `commandfor`) | every Browserslist target supports both features | marks the dialog with `data-closedby="not-supported"` and calls `requestClose()` on click of a `command="request-close"` button in JavaScript |
 | `styles/internal/_dialog-ponyfill.scss` | `closedby` attribute on `<dialog>`                                                 | every Browserslist target supports `closedby`    | extends the close button hit area over the area outside the dialog box, so a click next to a modal dialog still closes it                     |
 
 Browsers with native support get the native behavior: no `data-closedby` attribute, no intercepted clicks.
