@@ -4,8 +4,12 @@
 .db-pagination {
 	inline-size: fit-content;
 
+	// Page buttons only have a min-inline-size, so they grow with the number of
+	// digits. Without wrapping, the default 7 items exceed a mobile viewport at
+	// four-digit page numbers and produce a horizontal scrollbar on the document.
 	> ul {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
 		gap: variables.$db-spacing-fixed-2xs;
 		padding: 0;

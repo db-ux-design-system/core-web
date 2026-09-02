@@ -116,6 +116,80 @@ const testPagination = () => {
 		await expect(component.locator('.db-pagination-page')).toHaveCount(5);
 	});
 
+	test('should honor siblingCount and boundaryCount', async ({ mount }) => {
+		const component = await mount(
+			<DBPagination
+				currentPage={10}
+				totalCount={200}
+				pageSize={10}
+				siblingCount={0}
+				boundaryCount={0}
+			/>
+		);
+
+		// boundaryCount 0 drops the first/last page, siblingCount 0 leaves only the
+		// active page between the two ellipses.
+		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
+		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(2);
+		await expect(
+			component.getByRole('button', { name: 'Page 10 of 20' })
+		).toHaveAttribute('aria-current', 'page');
+	});
+
+	test('should follow currentPage when the parent updates it', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBPagination currentPage={2} totalCount={50} pageSize={10} />
+		);
+		await expect(
+			component.getByRole('button', { name: 'Page 2 of 5' })
+		).toHaveAttribute('aria-current', 'page');
+
+		await component.update(
+			<DBPagination currentPage={4} totalCount={50} pageSize={10} />
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Page 4 of 5' })
+		).toHaveAttribute('aria-current', 'page');
+		await expect(
+			component.getByRole('button', { name: 'Page 2 of 5' })
+		).not.toHaveAttribute('aria-current', 'page');
+	});
+
+	test('should clamp a currentPage beyond the last page', async ({ mount }) => {
+		const component = await mount(
+			<DBPagination currentPage={99} totalCount={100} pageSize={10} />
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Page 10 of 10' })
+		).toHaveAttribute('aria-current', 'page');
+		await expect(
+			component.getByRole('button', { name: 'Next page' })
+		).toBeDisabled();
+	});
+
+	test('should fall back to the default pageSize for blank values', async ({
+		mount
+	}) => {
+		const blank = await mount(
+			<DBPagination currentPage={1} totalCount={100} pageSize={''} />
+		);
+		await expect(
+			blank.getByRole('button', { name: 'Page 1 of 10' })
+		).toBeVisible();
+		await blank.unmount();
+
+		const invalid = await mount(
+			<DBPagination currentPage={1} totalCount={100} pageSize="abc" />
+		);
+		await expect(
+			invalid.getByRole('button', { name: 'Page 1 of 10' })
+		).toBeVisible();
+	});
+
 	test('should support small size and localized labels', async ({
 		mount
 	}) => {
@@ -143,6 +217,32 @@ const testPagination = () => {
 };
 
 const testA11y = () => {
+	test('should let a passed aria-label win over the label prop', async ({
+		mount
+	}) => {
+		// The React output spreads the aria-*/data-* pass-through right after
+		// `ref={_ref}`, so aria-label has to stay above it in pagination.lite.tsx.
+		// Moving it below silently turns aria-label into a no-op for React only.
+		const passed = await mount(
+			<DBPagination
+				aria-label="Consumer provided label"
+				currentPage={1}
+				totalCount={30}
+				pageSize={10}
+			/>
+		);
+		await expect(passed).toHaveAttribute(
+			'aria-label',
+			'Consumer provided label'
+		);
+		await passed.unmount();
+
+		const fallback = await mount(
+			<DBPagination currentPage={1} totalCount={30} pageSize={10} />
+		);
+		await expect(fallback).toHaveAttribute('aria-label', 'Pagination');
+	});
+
 	test('should have same aria snapshot', async ({ mount }, testInfo) => {
 		const component = await mount(comp);
 		const snapshot = await component.ariaSnapshot();

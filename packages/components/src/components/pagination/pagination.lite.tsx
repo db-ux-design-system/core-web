@@ -38,7 +38,12 @@ export default function DBPagination(props: DBPaginationProps) {
 			fallback: number,
 			minimum: number
 		) => {
-			const parsedValue = Number(value);
+			// Number('') and Number(null) both return 0, which is finite and would
+			// therefore be clamped to `minimum` instead of using `fallback`. A blank
+			// value means "not set" - reachable via an empty custom element attribute
+			// or a template expression that resolves to an empty string.
+			const parsedValue =
+				String(value ?? '').trim() === '' ? Number.NaN : Number(value);
 			return Number.isFinite(parsedValue)
 				? Math.max(minimum, Math.floor(parsedValue))
 				: fallback;
@@ -134,13 +139,20 @@ export default function DBPagination(props: DBPaginationProps) {
 		}
 	});
 
+	// aria-label has to stay the first attribute, above `ref`: the React post-build
+	// injects the aria-*/data-* pass-through spread directly after `ref={_ref}`, so
+	// an attribute placed below it overrides whatever the consumer passes. That
+	// would make aria-label a no-op in React while it keeps working in Angular, Vue
+	// and Stencil. Above the spread, `label` behaves as the fallback it is meant to
+	// be. data-size stays below on purpose - there the typed `size` prop should win
+	// over a forwarded data-size.
 	return (
 		<nav
+			aria-label={props.label}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-pagination', props.className)}
-			data-size={props.size}
-			aria-label={props.label}>
+			data-size={props.size}>
 			<ul>
 				<li>
 					<DBButton
