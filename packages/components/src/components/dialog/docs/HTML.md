@@ -58,7 +58,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 			<button
 				class="db-button"
 				data-variant="brand"
-				command="close"
+				command="request-close"
 				commandfor="my-dialog"
 				type="button"
 			>
