@@ -97,7 +97,7 @@ const onCancel = () => {
 
 ### Return a value
 
-A submit control with `formmethod="dialog"` inside a `<form>` in the dialog closes the dialog without submitting the form and writes its `value` to `dialog.returnValue`. Read that value from the event target in the `close` handler. `DBButton` does not forward `formmethod`, so use a native `<button class="db-button">` for those controls, or set `method="dialog"` on the form and keep `DBButton` with `type="submit"`.
+A submit control with `formmethod="dialog"` inside a `<form>` in the dialog closes the dialog without submitting the form and writes its `value` to `dialog.returnValue`. Read that value from the event target in the `close` handler. Set `method="dialog"` on the form and keep `DBButton` with `type="submit"`, or use a native `<button class="db-button" type="button">` for those controls in the meantime, as `DBButton` does not forward `formmethod`.
 
 ```vue App.vue
 <!-- App.vue -->
