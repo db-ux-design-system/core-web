@@ -257,3 +257,5 @@ pnpms
 renovatebot
 drilldown
 Drilldown
+unstub
+closebuttontext
