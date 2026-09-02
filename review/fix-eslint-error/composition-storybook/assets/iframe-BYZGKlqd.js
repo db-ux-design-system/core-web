@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-Cp5-Ingo.js";e();
