@@ -48,6 +48,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 				type="button"
 				command="request-close"
 				commandfor="my-dialog"
+				type="button"
 			>
 				Close
 			</button>
@@ -59,6 +60,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 				data-variant="brand"
 				command="close"
 				commandfor="my-dialog"
+				type="button"
 			>
 				Confirm
 			</button>
