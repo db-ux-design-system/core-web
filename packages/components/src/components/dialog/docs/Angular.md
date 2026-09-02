@@ -110,15 +110,8 @@ A submit control with `formmethod="dialog"` inside a `<form>` in the dialog clos
 	Delete this entry?
 	<db-dialog-footer footer>
 		<form method="dialog">
-			<db-button value="cancel">
-				Cancel
-			</db-button>
-			<db-button
-				variant="brand"
-				value="confirm"
-			>
-				Delete
-			</db-button>
+			<db-button value="cancel"> Cancel </db-button>
+			<db-button variant="brand" value="confirm"> Delete </db-button>
 		</form>
 	</db-dialog-footer>
 </db-dialog>

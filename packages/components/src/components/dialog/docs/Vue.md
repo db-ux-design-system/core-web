@@ -127,13 +127,8 @@ const onClose = (event: Event) => {
 		<template #footer>
 			<DBDialogFooter>
 				<form formmethod="dialog">
-					<DBButton value="cancel">
-						Cancel
-					</DBButton>
-					<DBButton
-						variant="brand"
-						value="confirm"
-					>
+					<DBButton value="cancel"> Cancel </DBButton>
+					<DBButton variant="brand" value="confirm">
 						Delete
 					</DBButton>
 				</form>
