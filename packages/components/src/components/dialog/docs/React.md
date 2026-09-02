@@ -185,28 +185,9 @@ bounds.
 
 ### Migration from a hand-written modal
 
-One row per public property and per slot of `DBDialog`, against the construct a hand-written modal needs and against
-the `DBDrawer` equivalent:
+`DBDialog` replaces a hand-written modal.
 
-| `DBDialog`                      | Hand-written modal                                                       | `DBDrawer`              |
-| ------------------------------- | ------------------------------------------------------------------------ | ----------------------- |
-| `open`                          | `showModal()` / `show()` / `close()` calls plus your own state flag      | `open`                  |
-| `backdrop="strong \| weak"`     | overlay element with a dim colour, `z-index` and scroll locking          | `backdrop`, same values |
-| `backdrop="none"`               | `show()` instead of `showModal()`, no overlay element                    | `backdrop="none"`       |
-| `containerSize`                 | media queries and `max-width` values per breakpoint                      | `containerSize`         |
-| `header` slot                   | heading markup plus a close button plus `aria-labelledby` wiring by hand | `header` slot           |
-| `footer` slot                   | action row with its own divider, padding and gap                         | `footer` slot           |
-| `onClose`                       | your own callback after every close path                                 | `onClose`               |
-| `onCancel`                      | Escape handler that can be vetoed                                        | `onCancel`              |
-| `children`                      | scroll container with `overflow: auto` and `overscroll-behavior`         | `children`              |
-| `id`                            | id used for `aria-labelledby` and for your own query selectors           | `id`                    |
-| `className`, `data-*`, `aria-*` | same attributes on your own root element                                 | same                    |
-
-The drawer properties `direction`, `position`, `rounded`, `showSpacing` and `variant` as well as
-`backdrop="invisible"` have no `DBDialog` equivalent: the dialog is always centred, always rounded, always spaced by
-the viewport inset, and non-modal usage is covered by `backdrop="none"`.
-
-Before, a hand-written modal:
+Before, a possible hand-written modal:
 
 ```tsx App.tsx
 // App.tsx

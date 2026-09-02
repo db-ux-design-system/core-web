@@ -137,23 +137,9 @@ Only overlay content positioned in the normal flow of the dialog - such as the a
 
 ### Migration
 
-The table maps every public `DBDialog` property and slot to the construct a hand-written modal needs and to its `DBDrawer` equivalent.
+`DBDialog` replaces a hand-written modal.
 
-| `DBDialog` property or slot           | Hand-written modal                                                                        | `DBDrawer`                                                                           |
-| ------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `open`                                | own `showModal()` / `show()` / `close()` calls on the `<dialog>` element                  | `open`                                                                               |
-| `backdrop` (`strong`, `weak`, `none`) | own `::backdrop` color plus the choice between `showModal()` and `show()`                 | `backdrop` (`strong`, `weak`, `none`, `invisible`)                                   |
-| `containerSize` (`small` to `full`)   | own `max-inline-size` and viewport gap declarations                                       | `containerSize`                                                                      |
-| `onClose` / `(close)`                 | own `close` event listener                                                                | `onClose` / `(close)`                                                                |
-| `onCancel` / `(cancel)`               | own `cancel` event listener, including ESC and backdrop dismissal                         | `onCancel` / `(cancel)`                                                              |
-| `header` slot with `DBDialogHeader`   | own `<header>` with heading, generated heading `id`, `aria-labelledby` and a close button | `header` slot with `DBDrawerHeader`                                                  |
-| `footer` slot with `DBDialogFooter`   | own `<footer>` holding the action buttons                                                 | no equivalent, drawer actions live in the content                                    |
-| default slot (`.db-dialog-content`)   | own scroll container so only the content scrolls                                          | default slot (`.db-drawer-content`)                                                  |
-| not available                         | -                                                                                         | `direction`, `position`, `rounded`, `showSpacing`, `variant`, `backdrop="invisible"` |
-
-A dialog is always centered in the top layer and uses the `DBCard` visual base, so the drawer properties in the last row have no `DBDialog` counterpart.
-
-Before, a hand-written modal:
+Before, a possible hand-written modal:
 
 ```html app.component.html
 <!-- app.component.html -->

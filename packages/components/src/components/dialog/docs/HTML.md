@@ -113,29 +113,9 @@ dialog bounds.
 
 ### Migration from a hand-written modal
 
-One row per public property and per slot of the dialog, against the construct a hand-written modal needs and against
-the `DBDrawer` equivalent:
+The dialog replaces a hand-written modal.
 
-| Dialog (HTML)                     | Hand-written modal                                                       | `DBDrawer`                   |
-| --------------------------------- | ------------------------------------------------------------------------ | ---------------------------- |
-| `open` attribute                  | `showModal()` / `show()` / `close()` calls plus your own state flag      | `open`                       |
-| `data-backdrop="strong \| weak"`  | overlay element with a dim colour, `z-index` and scroll locking          | `data-backdrop`, same values |
-| `data-backdrop="none"`            | `show()` instead of `showModal()`, no overlay element                    | `data-backdrop="none"`       |
-| `data-container-size`             | media queries and `max-width` values per breakpoint                      | `data-container-size`        |
-| `closedby="any"`                  | click listener on the overlay comparing `event.target`                   | `closedby="any"`             |
-| `closedby="closerequest"`         | `keydown` listener for Escape                                            | `closedby="closerequest"`    |
-| `close` event                     | your own callback after every close path                                 | `close` event                |
-| `cancel` event                    | Escape handler that can be vetoed                                        | `cancel` event               |
-| `.db-dialog-header` (header slot) | heading markup plus a close button plus `aria-labelledby` wiring by hand | `.db-drawer-header`          |
-| `.db-dialog-footer` (footer slot) | action row with its own divider, padding and gap                         | `.db-drawer-footer`          |
-| `.db-dialog-content`              | scroll container with `overflow: auto` and `overscroll-behavior`         | `.db-drawer-content`         |
-| `class`, `id`, `data-*`, `aria-*` | same attributes on your own root element                                 | same                         |
-
-The drawer properties `direction`, `position`, `rounded`, `showSpacing` and `variant` as well as
-`data-backdrop="invisible"` have no dialog equivalent: the dialog is always centred, always rounded, always spaced by
-the viewport inset, and non-modal usage is covered by `data-backdrop="none"`.
-
-Before, a hand-written modal:
+Before, a possible hand-written modal:
 
 ```html index.html
 <!-- index.html -->
