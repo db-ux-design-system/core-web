@@ -37,7 +37,13 @@ export default function PaginationControlled() {
 					pageSize={10}
 					onPageChange={(page: any) => state.setPage(page)}
 				/>
-				<p aria-live="polite" data-sb-replace="Current page: 5">
+				{/* data-sb-replace has to be a hint, not a value: the story drives
+				currentPage through the args panel while this readout is replaced by
+				static text, so a baked-in "Current page: 5" would contradict the
+				rendered page as soon as the arg changes. */}
+				<p
+					aria-live="polite"
+					data-sb-replace="The parent keeps the current page in its own state">
 					{state.getReadout()}
 				</p>
 			</div>
