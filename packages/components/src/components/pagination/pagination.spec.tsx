@@ -3,9 +3,37 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBPagination } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 
+// The describe below runs at DEFAULT_VIEWPORT, which is 390px wide and therefore
+// below the collapsing breakpoint - every test sees the collapsed page list
+// unless it switches to DESKTOP_VIEWPORT first.
 let requestedPage: number | undefined;
+
+type PaginationItemSnapshot = {
+	attribute: string;
+	text: string;
+	current: boolean;
+	visible: boolean;
+};
+
+const readItems = async (component: any): Promise<PaginationItemSnapshot[]> =>
+	component
+		.locator('li[data-pagination-item]')
+		.evaluateAll((items: HTMLElement[]) =>
+			items.map((item) => ({
+				attribute: item.getAttribute('data-pagination-item') ?? '',
+				text: item.textContent?.trim() ?? '',
+				current: item.querySelector('[aria-current="page"]') !== null,
+				visible: window.getComputedStyle(item).display !== 'none'
+			}))
+		);
+
+const getShape = (items: PaginationItemSnapshot[]): string =>
+	items
+		.filter((item) => item.visible)
+		.map((item) => item.text)
+		.join(' ');
 
 const comp: any = (
 	<DBPagination
@@ -42,8 +70,12 @@ const testPagination = () => {
 	});
 
 	test('should request a page without changing controlled state', async ({
-		mount
+		mount,
+		page
 	}) => {
+		// Page 6 is a sibling of the current page and only rendered in the wide
+		// layout, so this has to run above the collapsing breakpoint.
+		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(comp);
 
 		await component.getByRole('button', { name: 'Page 6 of 10' }).click();
@@ -237,6 +269,278 @@ const testPagination = () => {
 	});
 };
 
+const testCollapsing = () => {
+	test('should keep every page of the wide layout above the breakpoint', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+
+		const start = await mount(
+			<DBPagination currentPage={1} totalCount={100} pageSize={10} />
+		);
+		expect(getShape(await readItems(start))).toBe('1 2 3 4 5 ... 10');
+		await expect(
+			start.getByRole('button', { name: 'Previous page' })
+		).toBeDisabled();
+		await start.unmount();
+
+		const center = await mount(
+			<DBPagination currentPage={5} totalCount={100} pageSize={10} />
+		);
+		expect(getShape(await readItems(center))).toBe('1 ... 4 5 6 ... 10');
+		await center.unmount();
+
+		const end = await mount(
+			<DBPagination currentPage={10} totalCount={100} pageSize={10} />
+		);
+		expect(getShape(await readItems(end))).toBe('1 ... 6 7 8 9 10');
+		await expect(
+			end.getByRole('button', { name: 'Next page' })
+		).toBeDisabled();
+	});
+
+	test('should drop the sibling pages below the breakpoint', async ({
+		mount
+	}) => {
+		const start = await mount(
+			<DBPagination currentPage={1} totalCount={100} pageSize={10} />
+		);
+		expect(getShape(await readItems(start))).toBe('1 2 3 ... 10');
+		await expect(
+			start.getByRole('button', { name: 'Previous page' })
+		).toBeDisabled();
+		await start.unmount();
+
+		const center = await mount(
+			<DBPagination currentPage={5} totalCount={100} pageSize={10} />
+		);
+		expect(getShape(await readItems(center))).toBe('1 ... 5 ... 10');
+		await center.unmount();
+
+		const end = await mount(
+			<DBPagination currentPage={10} totalCount={100} pageSize={10} />
+		);
+		expect(getShape(await readItems(end))).toBe('1 ... 8 9 10');
+		await expect(
+			end.getByRole('button', { name: 'Next page' })
+		).toBeDisabled();
+	});
+
+	test('should add an ellipsis for a gap that only the collapsed layout has', async ({
+		mount,
+		page
+	}) => {
+		// Seven pages fit without truncation, so the wide layout has no ellipsis at
+		// all while the collapsed one needs two - they cannot be reused, they have
+		// to be rendered on top and stay hidden above the breakpoint.
+		const comp70: any = (
+			<DBPagination currentPage={4} totalCount={70} pageSize={10} />
+		);
+
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const wide = await mount(comp70);
+		expect(getShape(await readItems(wide))).toBe('1 2 3 4 5 6 7');
+		await wide.unmount();
+
+		await page.setViewportSize(DEFAULT_VIEWPORT);
+		const collapsed = await mount(comp70);
+		expect(getShape(await readItems(collapsed))).toBe('1 ... 4 ... 7');
+	});
+
+	test('should not collapse a page list that has no siblings to drop', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBPagination currentPage={3} totalCount={50} pageSize={10} />
+		);
+
+		// Five pages are the collapsed layout already, so nothing may be hidden -
+		// hiding 2 and 4 here would claim a gap that does not exist.
+		expect(getShape(await readItems(component))).toBe('1 2 3 4 5');
+		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(
+			0
+		);
+	});
+
+	test('should keep the current page marked in the collapsed layout', async ({
+		mount
+	}) => {
+		const component = await mount(comp);
+
+		const currentButton = component.getByRole('button', {
+			name: 'Page 5 of 10'
+		});
+		await expect(currentButton).toBeVisible();
+		await expect(currentButton).toHaveAttribute('aria-current', 'page');
+		await expect(
+			component.getByRole('button', { name: 'Page 4 of 10' })
+		).toBeHidden();
+	});
+
+	test('should keep a hidden page out of the tab order', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(comp);
+
+		// The sibling pages stay in the DOM so the wide layout does not need a
+		// re-render, but display: none takes them out of the accessibility tree and
+		// with it out of the tab order.
+		await expect(
+			component.locator('li[data-pagination-item="sibling"]')
+		).toHaveCount(2);
+		await expect(
+			component.getByRole('button', { name: 'Page 4 of 10' })
+		).toHaveCount(0);
+
+		await component.getByRole('button', { name: 'Previous page' }).focus();
+		await page.keyboard.press('Tab');
+		await expect(
+			component.getByRole('button', { name: 'Page 1 of 10' })
+		).toBeFocused();
+		await page.keyboard.press('Tab');
+		await expect(
+			component.getByRole('button', { name: 'Page 5 of 10' })
+		).toBeFocused();
+	});
+
+	test('should keep the item shape consistent in both layouts', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBPagination currentPage={1} totalCount={10} pageSize={10} />
+		);
+
+		for (const boundaryCount of [0, 1, 2]) {
+			for (const siblingCount of [0, 1, 2]) {
+				for (const totalPages of [5, 8, 12]) {
+					for (const currentPage of [
+						1,
+						2,
+						Math.ceil(totalPages / 2),
+						totalPages - 1,
+						totalPages
+					]) {
+						await component.update(
+							<DBPagination
+								currentPage={currentPage}
+								totalCount={totalPages * 10}
+								pageSize={10}
+								siblingCount={siblingCount}
+								boundaryCount={boundaryCount}
+							/>
+						);
+
+						const items = await readItems(component);
+						const context = `boundaryCount ${boundaryCount}, siblingCount ${siblingCount}, page ${currentPage} of ${totalPages}`;
+
+						expectValidLayout(
+							items.filter(
+								(item) => item.attribute !== 'collapse-ellipsis'
+							),
+							{
+								totalPages,
+								currentPage,
+								boundaryCount,
+								context: `wide layout: ${context}`
+							}
+						);
+						expectValidLayout(
+							items.filter(
+								(item) =>
+									item.attribute !== 'sibling' &&
+									item.attribute !== 'wide-ellipsis'
+							),
+							{
+								totalPages,
+								currentPage,
+								boundaryCount,
+								context: `collapsed layout: ${context}`
+							}
+						);
+					}
+				}
+			}
+		}
+	});
+};
+
+const expectValidLayout = (
+	items: PaginationItemSnapshot[],
+	setup: {
+		totalPages: number;
+		currentPage: number;
+		boundaryCount: number;
+		context: string;
+	}
+) => {
+	const { totalPages, currentPage, boundaryCount, context } = setup;
+	const pages = items
+		.filter((item) => !item.attribute.includes('ellipsis'))
+		.map((item) => Number(item.text));
+
+	expect(pages, `${context}: contains the current page`).toContain(
+		currentPage
+	);
+	expect(
+		items.filter((item) => item.current).map((item) => Number(item.text)),
+		`${context}: marks exactly the current page with aria-current`
+	).toEqual([currentPage]);
+	expect(
+		[...pages].sort((a, b) => a - b),
+		`${context}: pages are ascending without duplicates`
+	).toEqual(pages);
+	expect(new Set(pages).size, `${context}: no duplicate pages`).toBe(
+		pages.length
+	);
+
+	let previousPage = 0;
+	let previousWasEllipsis = false;
+	items.forEach((item, index) => {
+		if (item.attribute.includes('ellipsis')) {
+			expect(
+				previousWasEllipsis,
+				`${context}: no two ellipses next to each other`
+			).toBe(false);
+			const nextPage =
+				index + 1 < items.length
+					? Number(items[index + 1]!.text)
+					: totalPages + 1;
+			const hiddenPages = nextPage - previousPage - 1;
+			// At a list border an ellipsis may stand in for a single page: with
+			// boundaryCount 0 there is no page pinned outside it that could be
+			// rendered instead.
+			const minimumHiddenPages =
+				boundaryCount === 0 &&
+				(previousPage === 0 || nextPage > totalPages)
+					? 1
+					: 2;
+			expect(
+				hiddenPages,
+				`${context}: ellipsis stands in for enough pages`
+			).toBeGreaterThanOrEqual(minimumHiddenPages);
+			previousWasEllipsis = true;
+			return;
+		}
+		if (!previousWasEllipsis) {
+			expect(
+				Number(item.text),
+				`${context}: pages are consecutive where no ellipsis separates them`
+			).toBe(previousPage + 1);
+		}
+		previousPage = Number(item.text);
+		previousWasEllipsis = false;
+	});
+
+	if (!previousWasEllipsis) {
+		expect(
+			previousPage,
+			`${context}: the list ends on the last page or an ellipsis`
+		).toBe(totalPages);
+	}
+};
+
 const testA11y = () => {
 	test('should let a passed aria-label win over the label prop', async ({
 		mount
@@ -284,5 +588,6 @@ test.describe('DBPagination', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testPagination();
+	testCollapsing();
 	testA11y();
 });

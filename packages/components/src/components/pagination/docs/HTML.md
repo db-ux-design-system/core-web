@@ -17,6 +17,10 @@ Three things are easy to miss when writing the markup by hand:
 - Skipped page ranges are rendered as an `<li>` with
   `class="db-pagination-ellipsis"` and `aria-hidden="true"`, so assistive
   technology is not read a decorative separator.
+- Every page and ellipsis `<li>` carries a `data-pagination-item` attribute. It
+  drives the collapsing described below and is the only part of the markup that
+  cannot be read off the rendered result. The previous and next buttons stay
+  without it, they are part of every layout.
 
 ```html index.html
 <nav class="db-pagination" data-size="medium" aria-label="Pagination">
@@ -34,7 +38,7 @@ Three things are easy to miss when writing the markup by hand:
 				Previous page
 			</button>
 		</li>
-		<li>
+		<li data-pagination-item="page">
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -45,10 +49,14 @@ Three things are easy to miss when writing the markup by hand:
 				1
 			</button>
 		</li>
-		<li class="db-pagination-ellipsis" aria-hidden="true">
+		<li
+			class="db-pagination-ellipsis"
+			data-pagination-item="ellipsis"
+			aria-hidden="true"
+		>
 			<span>...</span>
 		</li>
-		<li>
+		<li data-pagination-item="sibling">
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -59,7 +67,7 @@ Three things are easy to miss when writing the markup by hand:
 				4
 			</button>
 		</li>
-		<li>
+		<li data-pagination-item="page">
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -71,7 +79,7 @@ Three things are easy to miss when writing the markup by hand:
 				5
 			</button>
 		</li>
-		<li>
+		<li data-pagination-item="sibling">
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -82,10 +90,14 @@ Three things are easy to miss when writing the markup by hand:
 				6
 			</button>
 		</li>
-		<li class="db-pagination-ellipsis" aria-hidden="true">
+		<li
+			class="db-pagination-ellipsis"
+			data-pagination-item="ellipsis"
+			aria-hidden="true"
+		>
 			<span>...</span>
 		</li>
-		<li>
+		<li data-pagination-item="page">
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -117,3 +129,30 @@ Use `data-size="small"` on the `<nav>` for the small variant. Set
 `data-size="small"` on the page buttons as well; the previous/next buttons stay
 `data-size="small"` in both variants. Disable the previous button on the first
 and the next button on the last page with the native `disabled` attribute.
+
+### Collapsing on narrow viewports
+
+Below the `sm` breakpoint the page list collapses: the pages next to the current
+page give way, so only the boundary pages, the current page and the ellipses
+remain. Both layouts live in the same markup, which is why the list carries more
+items than any single layout shows.
+
+| `data-pagination-item` | Rendered                  | Meaning                                                            |
+| ---------------------- | ------------------------- | ------------------------------------------------------------------ |
+| `page`                 | always                    | Boundary page, current page, or a page closing a one-page gap      |
+| `sibling`              | only above the breakpoint | Page next to the current one                                       |
+| `ellipsis`             | always                    | Stands in for pages that neither layout shows                      |
+| `collapse-ellipsis`    | only below the breakpoint | Stands in for the pages the collapsing removes                     |
+| `wide-ellipsis`        | only above the breakpoint | Second ellipsis of a gap the collapsed layout covers with only one |
+
+Two rules decide the values, and each layout has to satisfy them on its own:
+between two rendered pages that are not consecutive stands exactly one ellipsis,
+and no ellipsis stands in for a single page - that page is rendered instead. The
+example above therefore collapses to `1 ... 5 ... 10`, while a list of seven
+pages that needs no ellipsis at all in the wide layout needs two
+`collapse-ellipsis` items to collapse to `1 ... 4 ... 7`.
+
+The framework components derive this from `currentPage`, `siblingCount` and
+`boundaryCount`. Writing the markup by hand means taking it over: work out the
+list twice, once with your `siblingCount` and once with `siblingCount` reduced
+to `0`, and mark up the difference.

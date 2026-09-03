@@ -1,6 +1,19 @@
 import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
 
-export type PaginationItemType = number | 'start-ellipsis' | 'end-ellipsis';
+/**
+ * Which of the two layouts an item belongs to. `wide` items are hidden once the
+ * page list collapses, `collapsed` items only appear there, `always` items are
+ * part of both.
+ */
+export type PaginationItemLayout = 'always' | 'wide' | 'collapsed';
+
+export type PaginationItemType = {
+	/**
+	 * One-based page number, or `0` for an ellipsis item.
+	 */
+	page: number;
+	layout: PaginationItemLayout;
+};
 
 export type DBPaginationDefaultProps = {
 	/**
@@ -57,10 +70,15 @@ export type DBPaginationDefaultState = {
 		minimum: number
 	) => number;
 	getRange: (start: number, end: number) => number[];
-	getPageNumber: (item: PaginationItemType) => number;
 	getTotalPages: () => number;
 	getCurrentPage: () => number;
+	getPages: (siblingCount: number) => number[];
 	getPaginationItems: () => PaginationItemType[];
+	getEllipsisLayout: (
+		forWide: boolean,
+		forCollapsed: boolean
+	) => PaginationItemLayout;
+	getItemAttribute: (item: PaginationItemType) => string;
 	getPageLabel: (page: number) => string;
 	handlePageChange: (page: number) => void;
 };

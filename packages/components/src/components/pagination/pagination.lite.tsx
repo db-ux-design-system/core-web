@@ -54,9 +54,6 @@ export default function DBPagination(props: DBPaginationProps) {
 				(_, index: number) => start + index
 			);
 		},
-		getPageNumber: (item: PaginationItemType) => {
-			return typeof item === 'number' ? item : 0;
-		},
 		getTotalPages: () => {
 			const totalCount = state.getInteger(props.totalCount, 0, 0);
 			const pageSize = state.getInteger(props.pageSize, 10, 1);
@@ -68,10 +65,14 @@ export default function DBPagination(props: DBPaginationProps) {
 				state.getInteger(props.currentPage, 1, 1)
 			);
 		},
-		getPaginationItems: () => {
+		// Returns the visible page numbers for a given siblingCount, without any
+		// ellipsis. The ellipses are derived from the gaps in this list by
+		// getPaginationItems, which is what allows one DOM to carry the wide and
+		// the collapsed layout at the same time: an ellipsis is a property of the
+		// gap it spans, and the two layouts do not have the same gaps.
+		getPages: (siblingCount: number) => {
 			const totalPages = state.getTotalPages();
 			const currentPage = state.getCurrentPage();
-			const siblingCount = state.getInteger(props.siblingCount, 1, 0);
 			const boundaryCount = state.getInteger(props.boundaryCount, 1, 0);
 			const maximumVisiblePages =
 				boundaryCount * 2 + siblingCount * 2 + 3;
@@ -102,23 +103,131 @@ export default function DBPagination(props: DBPaginationProps) {
 				),
 				totalPages - boundaryCount - 1
 			);
-			let items: PaginationItemType[] = startPages;
+			let pages: number[] = startPages;
 
-			if (siblingsStart > boundaryCount + 2) {
-				items = items.concat('start-ellipsis');
-			} else if (boundaryCount + 1 < totalPages - boundaryCount) {
-				items = items.concat(boundaryCount + 1);
+			// Where the window leaves a single page next to the boundary, that page
+			// is rendered instead of an ellipsis - an ellipsis standing in for one
+			// page would take the same room while hiding information.
+			if (
+				siblingsStart <= boundaryCount + 2 &&
+				boundaryCount + 1 < totalPages - boundaryCount
+			) {
+				pages = pages.concat(boundaryCount + 1);
 			}
 
-			items = items.concat(state.getRange(siblingsStart, siblingsEnd));
+			pages = pages.concat(state.getRange(siblingsStart, siblingsEnd));
 
-			if (siblingsEnd < totalPages - boundaryCount - 1) {
-				items = items.concat('end-ellipsis');
-			} else if (totalPages - boundaryCount > boundaryCount) {
-				items = items.concat(totalPages - boundaryCount);
+			if (
+				siblingsEnd >= totalPages - boundaryCount - 1 &&
+				totalPages - boundaryCount > boundaryCount
+			) {
+				pages = pages.concat(totalPages - boundaryCount);
 			}
 
-			return items.concat(endPages);
+			return pages.concat(endPages);
+		},
+		getPaginationItems: () => {
+			const totalPages = state.getTotalPages();
+			const widePages = state.getPages(
+				state.getInteger(props.siblingCount, 1, 0)
+			);
+			// The collapsed layout is the same algorithm with siblingCount reduced
+			// to 0, so it inherits every guarantee that layout already makes:
+			// ascending unique pages, the current page always among them, and no
+			// ellipsis standing in for a single page. Its pages are a subset of the
+			// wide ones, which is why both fit into one list of items.
+			const collapsedPages = state.getPages(0);
+			const items: PaginationItemType[] = [];
+			let lastWidePage = 0;
+			// Whether pages are missing since the last page the collapsed layout
+			// shows, and whether an ellipsis already stands in for them. Without the
+			// second flag a wide gap followed by a hidden page would emit a second
+			// ellipsis right next to the first one.
+			let collapsedGapOpen = false;
+			let collapsedEllipsisPlaced = false;
+
+			for (const page of widePages) {
+				const wideGap =
+					lastWidePage === 0 ? page > 1 : page - lastWidePage > 1;
+				if (wideGap) {
+					collapsedGapOpen = true;
+				}
+
+				const inCollapsed = collapsedPages.includes(page);
+				const collapsedEllipsis =
+					collapsedGapOpen && !collapsedEllipsisPlaced;
+
+				// An ellipsis slot is shared by both layouts wherever both need one.
+				// A collapsed-only ellipsis goes directly in front of the next page
+				// the collapsed layout shows, so it never ends up behind a page that
+				// is hidden there.
+				if (wideGap || (collapsedEllipsis && inCollapsed)) {
+					items.push({
+						page: 0,
+						layout: state.getEllipsisLayout(
+							wideGap,
+							collapsedEllipsis
+						)
+					});
+					if (collapsedEllipsis) {
+						collapsedEllipsisPlaced = true;
+					}
+				}
+
+				items.push({
+					page,
+					layout: inCollapsed ? 'always' : 'wide'
+				});
+				lastWidePage = page;
+
+				if (inCollapsed) {
+					collapsedGapOpen = false;
+					collapsedEllipsisPlaced = false;
+				} else {
+					collapsedGapOpen = true;
+				}
+			}
+
+			// Same decision for the region behind the last rendered page. It is not
+			// enough to look at the wide layout here: with boundaryCount 0 the
+			// collapsed layout can end before the wide one does, so it needs a
+			// trailing ellipsis where the wide layout needs none.
+			const wideTrailingGap =
+				lastWidePage > 0 && lastWidePage < totalPages;
+			if (wideTrailingGap) {
+				collapsedGapOpen = true;
+			}
+			const collapsedTrailingEllipsis =
+				collapsedGapOpen && !collapsedEllipsisPlaced;
+
+			if (wideTrailingGap || collapsedTrailingEllipsis) {
+				items.push({
+					page: 0,
+					layout: state.getEllipsisLayout(
+						wideTrailingGap,
+						collapsedTrailingEllipsis
+					)
+				});
+			}
+
+			return items;
+		},
+		getEllipsisLayout: (forWide: boolean, forCollapsed: boolean) => {
+			if (!forWide) {
+				return 'collapsed';
+			}
+			return forCollapsed ? 'always' : 'wide';
+		},
+		getItemAttribute: (item: PaginationItemType) => {
+			if (item.page === 0) {
+				if (item.layout === 'always') {
+					return 'ellipsis';
+				}
+				return item.layout === 'collapsed'
+					? 'collapse-ellipsis'
+					: 'wide-ellipsis';
+			}
+			return item.layout === 'always' ? 'page' : 'sibling';
 		},
 		getPageLabel: (page: number) => {
 			// replaceAll, not replace: a translation may legitimately repeat a
@@ -142,21 +251,6 @@ export default function DBPagination(props: DBPaginationProps) {
 		}
 	});
 
-	// The `key` values below only take effect in React and Stencil. Angular emits
-	// `track index` for the generated @for block and Vue puts its own `:key` on the
-	// wrapping template, so both reconcile by position rather than by page number.
-	// They cannot be removed either - React warns about missing keys inside a map.
-	// Consequence: after a page change the focused DOM node keeps the same page
-	// number in React and Stencil, but the same position in Angular and Vue.
-	// Acceptable while focus management is out of scope; revisit together with it.
-	//
-	// aria-label has to stay the first attribute, above `ref`: the React post-build
-	// injects the aria-*/data-* pass-through spread directly after `ref={_ref}`, so
-	// an attribute placed below it overrides whatever the consumer passes. That
-	// would make aria-label a no-op in React while it keeps working in Angular, Vue
-	// and Stencil. Above the spread, `label` behaves as the fallback it is meant to
-	// be. data-size stays below on purpose - there the typed `size` prop should win
-	// over a forwarded data-size.
 	return (
 		<nav
 			aria-label={props.label}
@@ -184,41 +278,42 @@ export default function DBPagination(props: DBPaginationProps) {
 				<For each={state.getPaginationItems()}>
 					{(item: PaginationItemType, index: number) => (
 						<Show
-							when={typeof item === 'number'}
+							when={item.page > 0}
 							else={
 								<li
-									key={'pagination-ellipsis-' + item + index}
+									key={'pagination-ellipsis-' + index}
 									class="db-pagination-ellipsis"
+									data-pagination-item={state.getItemAttribute(
+										item
+									)}
 									aria-hidden="true">
 									<span>...</span>
 								</li>
 							}>
-							<li key={'pagination-page-' + item}>
+							<li
+								key={'pagination-page-' + item.page}
+								data-pagination-item={state.getItemAttribute(
+									item
+								)}>
 								<DBButton
 									class="db-pagination-page"
 									variant={
-										state.getCurrentPage() ===
-										state.getPageNumber(item)
+										state.getCurrentPage() === item.page
 											? 'filled'
 											: 'ghost'
 									}
 									size={props.size}
 									type="button"
 									aria-current={
-										state.getCurrentPage() ===
-										state.getPageNumber(item)
+										state.getCurrentPage() === item.page
 											? 'page'
 											: undefined
 									}
-									aria-label={state.getPageLabel(
-										state.getPageNumber(item)
-									)}
+									aria-label={state.getPageLabel(item.page)}
 									onClick={() =>
-										state.handlePageChange(
-											state.getPageNumber(item)
-										)
+										state.handlePageChange(item.page)
 									}>
-									{item}
+									{item.page}
 								</DBButton>
 							</li>
 						</Show>

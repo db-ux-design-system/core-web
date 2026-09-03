@@ -377,6 +377,38 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     }
     ```
 
+## Responsive layouts belong in the DOM, not in a resize handler
+
+When a component has to render fewer items on narrow viewports, render **all**
+layouts into the DOM at once, tag each item with the layout it belongs to, and
+let CSS decide which ones are shown. Do not measure widths in `onUpdate` and do
+not reach for `ResizeObserver` or `matchMedia` — see
+[Shift-left: HTML → CSS → JS](../../docs/shift-left-web-development.md).
+
+`DBPagination` is the reference. Its `<li>` elements carry
+`data-pagination-item` (`page`, `sibling`, `ellipsis`, `collapse-ellipsis`,
+`wide-ellipsis`) and `pagination.scss` toggles `display` per layout inside
+`screen-sizes.screen("sm", "max")`. Three things made it work:
+
+- **Derive each layout from the same function.** The collapsed page list is the
+  existing algorithm run with `siblingCount` reduced to `0`, so it inherits every
+  guarantee that algorithm already makes instead of re-deriving them by hand.
+- **The narrow layout is not a subset of the rendered wide layout.** Removing
+  items opens gaps that need their own separators, so a layout can need elements
+  the other one does not have at all. Emit them and hide them in the other
+  layout, rather than trying to reuse one element for both.
+- **Hide with `display: none`.** Anything weaker keeps the hidden items in the
+  tab order and in the accessibility tree. Note that a focused element that gets
+  hidden loses focus to the document; that is the browser doing its job and
+  restoring it would need JavaScript.
+
+Two consequences for the specs: `DEFAULT_VIEWPORT` from `src/shared/constants.ts`
+is 390px wide, so a spec that does not switch viewports tests the **narrow**
+layout — use `DESKTOP_VIEWPORT` (or `TESTING_VIEWPORTS`) for the wide one. And
+`getByRole` does not match elements hidden with `display: none`, because they are
+gone from the accessibility tree; use a DOM locator when the assertion is about
+the item still being in the markup.
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:

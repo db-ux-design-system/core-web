@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import PaginationCollapsing from '../examples/collapsing.example.lite';
 import PaginationControlled from '../examples/controlled.example.lite';
 import PaginationDensity from '../examples/density.example.lite';
 import PaginationPosition from '../examples/position.example.lite';
@@ -26,6 +27,11 @@ export default function PaginationShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Truncation">
 				<CardWrapperShowcase>
 					<PaginationTruncation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Collapsing">
+				<CardWrapperShowcase>
+					<PaginationCollapsing />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Size">
