@@ -1,18 +1,12 @@
 import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
-
-/**
- * Which of the two layouts an item belongs to. `wide` items are hidden once the
- * page list collapses, `collapsed` items only appear there, `always` items are
- * part of both.
- */
-export type PaginationItemLayout = 'always' | 'wide' | 'collapsed';
+import type { PaginationItemLayoutType } from '../pagination-item/model';
 
 export type PaginationItemType = {
 	/**
 	 * One-based page number, or `0` for an ellipsis item.
 	 */
 	page: number;
-	layout: PaginationItemLayout;
+	layout: PaginationItemLayoutType;
 };
 
 export type DBPaginationDefaultProps = {
@@ -83,8 +77,7 @@ export type DBPaginationDefaultState = {
 	getEllipsisLayout: (
 		forWide: boolean,
 		forCollapsed: boolean
-	) => PaginationItemLayout;
-	getItemAttribute: (item: PaginationItemType) => string;
+	) => PaginationItemLayoutType;
 	getHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;

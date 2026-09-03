@@ -17,10 +17,14 @@ Three things are easy to miss when writing the markup by hand:
 - Skipped page ranges are rendered as an `<li>` with
   `class="db-pagination-ellipsis"` and `aria-hidden="true"`, so assistive
   technology is not read a decorative separator.
-- Every page and ellipsis `<li>` carries a `data-pagination-item` attribute. It
-  drives the collapsing described below and is the only part of the markup that
-  cannot be read off the rendered result. The previous and next buttons stay
-  without it, they are part of every layout.
+- Every page and ellipsis `<li>` is a pagination item: it carries
+  `class="db-pagination-item"`, its own `data-size` and a `data-pagination-item`
+  attribute. The last one drives the collapsing described below and is the only
+  part of the markup that cannot be read off the rendered result. In the framework
+  packages this markup comes from
+  [`DBPaginationItem`](../../pagination-item/docs/HTML.md).
+- The previous and next buttons are not pagination items. They are icon buttons,
+  the same split the Figma component set makes, and they are part of every layout.
 
 ```html index.html
 <nav class="db-pagination" data-size="medium" aria-label="Pagination">
@@ -38,7 +42,11 @@ Three things are easy to miss when writing the markup by hand:
 				Previous page
 			</button>
 		</li>
-		<li data-pagination-item="page">
+		<li
+			class="db-pagination-item"
+			data-pagination-item="page"
+			data-size="medium"
+		>
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -50,13 +58,18 @@ Three things are easy to miss when writing the markup by hand:
 			</button>
 		</li>
 		<li
-			class="db-pagination-ellipsis"
+			class="db-pagination-item db-pagination-ellipsis"
 			data-pagination-item="ellipsis"
+			data-size="medium"
 			aria-hidden="true"
 		>
 			<span>...</span>
 		</li>
-		<li data-pagination-item="sibling">
+		<li
+			class="db-pagination-item"
+			data-pagination-item="sibling"
+			data-size="medium"
+		>
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -67,7 +80,11 @@ Three things are easy to miss when writing the markup by hand:
 				4
 			</button>
 		</li>
-		<li data-pagination-item="page">
+		<li
+			class="db-pagination-item"
+			data-pagination-item="page"
+			data-size="medium"
+		>
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -79,7 +96,11 @@ Three things are easy to miss when writing the markup by hand:
 				5
 			</button>
 		</li>
-		<li data-pagination-item="sibling">
+		<li
+			class="db-pagination-item"
+			data-pagination-item="sibling"
+			data-size="medium"
+		>
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -91,13 +112,18 @@ Three things are easy to miss when writing the markup by hand:
 			</button>
 		</li>
 		<li
-			class="db-pagination-ellipsis"
+			class="db-pagination-item db-pagination-ellipsis"
 			data-pagination-item="ellipsis"
+			data-size="medium"
 			aria-hidden="true"
 		>
 			<span>...</span>
 		</li>
-		<li data-pagination-item="page">
+		<li
+			class="db-pagination-item"
+			data-pagination-item="page"
+			data-size="medium"
+		>
 			<button
 				class="db-button db-pagination-page"
 				type="button"
@@ -169,7 +195,7 @@ the page is server rendered.
 class and `data-*` attribute, and drop `type="button"`:
 
 ```html index.html
-<li data-pagination-item="page">
+<li class="db-pagination-item" data-pagination-item="page" data-size="medium">
 	<a
 		class="db-button db-pagination-page"
 		href="?page=5"

@@ -8,6 +8,7 @@ import {
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import DBButton from '../button/button.lite';
+import DBPaginationItem from '../pagination-item/pagination-item.lite';
 import type {
 	DBPaginationProps,
 	DBPaginationState,
@@ -218,17 +219,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 			return forCollapsed ? 'always' : 'wide';
 		},
-		getItemAttribute: (item: PaginationItemType) => {
-			if (item.page === 0) {
-				if (item.layout === 'always') {
-					return 'ellipsis';
-				}
-				return item.layout === 'collapsed'
-					? 'collapse-ellipsis'
-					: 'wide-ellipsis';
-			}
-			return item.layout === 'always' ? 'page' : 'sibling';
-		},
 		// Returns undefined for everything that must not become a link: no pattern
 		// means button mode, and a page outside the range means there is nothing to
 		// link to. The second case is what keeps the previous and next elements
@@ -333,79 +323,16 @@ export default function DBPagination(props: DBPaginationProps) {
 				</li>
 				<For each={state.getPaginationItems()}>
 					{(item: PaginationItemType, index: number) => (
-						<Show
-							when={item.page > 0}
-							else={
-								<li
-									key={'pagination-ellipsis-' + index}
-									class="db-pagination-ellipsis"
-									data-pagination-item={state.getItemAttribute(
-										item
-									)}
-									aria-hidden="true">
-									<span>...</span>
-								</li>
-							}>
-							<li
-								key={'pagination-page-' + item.page}
-								data-pagination-item={state.getItemAttribute(
-									item
-								)}>
-								<Show
-									when={state.getHref(item.page)}
-									else={
-										<DBButton
-											class="db-pagination-page"
-											variant={
-												state.getCurrentPage() ===
-												item.page
-													? 'filled'
-													: 'ghost'
-											}
-											size={props.size}
-											type="button"
-											aria-current={
-												state.getCurrentPage() ===
-												item.page
-													? 'page'
-													: undefined
-											}
-											aria-label={state.getPageLabel(
-												item.page
-											)}
-											onClick={() =>
-												state.handlePageChange(
-													item.page
-												)
-											}>
-											{item.page}
-										</DBButton>
-									}>
-									<a
-										class="db-button db-pagination-page"
-										href={state.getHref(item.page)}
-										data-variant={
-											state.getCurrentPage() === item.page
-												? 'filled'
-												: 'ghost'
-										}
-										data-size={props.size}
-										aria-current={
-											state.getCurrentPage() === item.page
-												? 'page'
-												: undefined
-										}
-										aria-label={state.getPageLabel(
-											item.page
-										)}
-										onClick={() =>
-											state.handlePageChange(item.page)
-										}>
-										{item.page}
-									</a>
-								</Show>
-							</li>
-						</Show>
+						<DBPaginationItem
+							key={'pagination-item-' + index}
+							page={item.page}
+							layout={item.layout}
+							size={props.size}
+							active={state.getCurrentPage() === item.page}
+							href={state.getHref(item.page)}
+							label={state.getPageLabel(item.page)}
+							onClick={() => state.handlePageChange(item.page)}
+						/>
 					)}
 				</For>
 				<li>

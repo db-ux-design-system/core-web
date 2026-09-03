@@ -83,6 +83,9 @@ const controlPanelActionsComponents: Component[] = [
 
 export const getComponents = (): Component[] => [
 	{
+		name: 'pagination-item'
+	},
+	{
 		name: 'pagination'
 	},
 

@@ -1,4 +1,3 @@
-@use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/variables";
 
@@ -21,22 +20,25 @@
 		list-style: none;
 	}
 
-	li {
+	// Previous and next are not pagination items, they are icon buttons - the same
+	// split the Figma component set makes. DBPaginationItem brings its own box.
+	li:not(.db-pagination-item) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
-	// Collapsing the page list: below the breakpoint the pages next to the
-	// current one give way, so only the boundary pages, the current page and the
-	// ellipses remain. Both layouts are in the DOM at once, marked up by
-	// data-pagination-item, and the component decides which ellipsis belongs to
-	// which layout - the collapsed layout has gaps the wide one does not.
+	// Collapsing the page list: below the breakpoint the pages next to the current
+	// one give way, so only the boundary pages, the current page and the ellipses
+	// remain. Both layouts are in the DOM at once, marked up by
+	// data-pagination-item on DBPaginationItem, and the component decides which
+	// ellipsis belongs to which layout - the collapsed layout has gaps the wide one
+	// does not.
 	// display: none, not visibility or opacity: a hidden page must leave the tab
 	// order and the accessibility tree, otherwise it stays reachable by keyboard
 	// while being invisible. A page that has focus while the viewport shrinks
-	// therefore loses it to the document, the same as any other element the
-	// browser removes from the flow. Restoring it would need JavaScript.
+	// therefore loses it to the document, the same as any other element the browser
+	// removes from the flow. Restoring it would need JavaScript.
 	li[data-pagination-item="collapse-ellipsis"] {
 		display: none;
 	}
@@ -53,17 +55,18 @@
 	}
 
 	// WCAG 2.2 SC 2.5.8 asks for a pointer target of at least 24 by 24 CSS pixels.
-	// $db-sizing-sm resolves to 20px at functional density, so every item of the
-	// small variant falls below that floor - the pages as well as the previous and
-	// next buttons, which follow the pagination size. The pseudo element grows the
-	// target without touching the visible box, so the densities keep the
-	// proportions they are designed with.
-	// The 24px cannot come from a sizing token: those scale with the density,
-	// which is exactly how the floor gets undercut. It is the success criterion
-	// itself, not a design decision, so it stays a literal value.
-	// The overlay reaches at most 2px into the 4px gap on each side, so the
-	// targets of two neighbors meet without overlapping - no click near an edge
-	// can end up on the wrong page.
+	// $db-sizing-sm resolves to 20px at functional density, so every control of the
+	// small variant falls below that floor - the pages as well as previous and
+	// next, which follow the pagination size. The pseudo element grows the target
+	// without touching the visible box, so the densities keep the proportions they
+	// are designed with.
+	// The 24px cannot come from a sizing token: those scale with the density, which
+	// is exactly how the floor gets undercut. It is the success criterion itself,
+	// not a design decision, so it stays a literal value.
+	// The overlay reaches at most 2px into the 4px gap on each side, so the targets
+	// of two neighbors meet without overlapping - no click near an edge can end up
+	// on the wrong page. It stays with the pagination rather than the item, because
+	// that argument depends on the gap of the surrounding list.
 	:is(.db-pagination-page, .db-pagination-previous, .db-pagination-next) {
 		position: relative;
 
@@ -79,46 +82,6 @@
 			min-inline-size: 1.5rem;
 			// stylelint-disable-next-line db-ux/use-sizing
 			min-block-size: 1.5rem;
-		}
-	}
-
-	.db-pagination-page.db-button {
-		block-size: variables.$db-sizing-md;
-		min-inline-size: variables.$db-sizing-md;
-		padding: variables.$db-spacing-fixed-2xs;
-
-		&:not([aria-current="page"]) {
-			font-weight: 400;
-		}
-	}
-
-	.db-pagination-ellipsis {
-		@extend %db-overwrite-font-size-md;
-
-		block-size: variables.$db-sizing-md;
-		min-inline-size: variables.$db-sizing-sm;
-		padding-inline: variables.$db-spacing-fixed-2xs;
-	}
-
-	&[data-size="small"] {
-		.db-pagination-page.db-button {
-			block-size: variables.$db-sizing-sm;
-			min-inline-size: variables.$db-sizing-sm;
-			padding: variables.$db-spacing-fixed-3xs;
-		}
-
-		.db-pagination-ellipsis {
-			@extend %db-overwrite-font-size-sm;
-
-			block-size: variables.$db-sizing-sm;
-
-			// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
-			// $db-sizing-sm at regular density, but is narrower at functional and
-			// wider at expressive - so the ellipsis ended up wider than the page
-			// button it sits next to. $db-sizing-xs stays below $db-sizing-sm in
-			// every density.
-			min-inline-size: variables.$db-sizing-xs;
-			padding-inline: variables.$db-spacing-fixed-3xs;
 		}
 	}
 }

@@ -168,7 +168,18 @@
 		"subNavigation": [
 			{
 				"label": "DBPagination",
-				"name": "pagination"
+				"name": "pagination",
+				"subNavigation": [
+					{
+						"label": "DBPaginationItem Properties",
+						"path": "/components/pagination-item/properties"
+					}
+				]
+			},
+			{
+				"label": "DBPaginationItem",
+				"name": "pagination-item",
+				"isHiddenInMenu": true
 			},
 			{
 				"label": "DBControlPanelBrand",

@@ -1,4 +1,7 @@
-import { DBPagination } from '../../../../output/react/src/index';
+import {
+	DBPagination,
+	DBPaginationItem
+} from '../../../../output/react/src/index';
 
 import {
 	DBAccordion,
@@ -422,6 +425,14 @@ const ComponentSwitch = ({
 			<Heading className={className} {...props}>
 				{resolvedContent}
 			</Heading>
+		);
+	}
+
+	if (type === 'pagination-item') {
+		return (
+			<DBPaginationItem className={className} {...props}>
+				{resolvedContent}
+			</DBPaginationItem>
 		);
 	}
 
