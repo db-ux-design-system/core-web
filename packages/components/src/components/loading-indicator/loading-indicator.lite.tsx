@@ -50,7 +50,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 			return 'status';
 		},
-		handleParentDisabled: () => {
+		handleParentDisabled: (forceEnable?: boolean) => {
 			if (_ref && props.autoDisable && state.initialized) {
 				let parent = (_ref as HTMLDivElement).parentElement;
 				if (parent && parent.localName === 'db-loading-indicator') {
@@ -58,7 +58,13 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				}
 
 				if (parent && 'disabled' in parent) {
-					parent.disabled = state._loadingState !== 'inactive';
+					// On cleanup we always re-enable the parent: otherwise a
+					// loading indicator that is unmounted via conditional
+					// rendering (instead of state="inactive") would leave the
+					// parent (e.g. a DBButton) permanently disabled.
+					parent.disabled = forceEnable
+						? false
+						: state._loadingState !== 'inactive';
 				}
 			}
 		},
@@ -194,7 +200,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 	onUnMount(() => {
 		state.handleParentAria(true);
-		state.handleParentDisabled();
+		state.handleParentDisabled(true);
 	});
 
 	return (
@@ -226,11 +232,13 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			<div role={state.getRole()}>
 				<label
 					data-show-label={getBooleanAsString(props.showLabel)}
-					id={state._id}>
+					id={state._id}
+					htmlFor={`${state._id}-progress`}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
 					<progress
+						id={`${state._id}-progress`}
 						value={
 							props.indeterminate ? undefined : (props.value ?? 0)
 						}

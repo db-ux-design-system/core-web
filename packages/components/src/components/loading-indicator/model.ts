@@ -66,7 +66,7 @@ export type DBLoadingIndicatorDefaultState = {
 	getPercentage: () => string | undefined;
 	getRole: () => string | undefined;
 	handleParentAria: (remove: boolean) => void;
-	handleParentDisabled: () => void;
+	handleParentDisabled: (forceEnable?: boolean) => void;
 };
 
 export type DBLoadingIndicatorState = DBLoadingIndicatorDefaultState &

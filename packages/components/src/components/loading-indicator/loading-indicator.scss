@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/dialog-init";
 @use "../../styles/internal/loading";
 
@@ -26,8 +27,11 @@ $db-loading-indicator-track-color: color(
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			gap: var(--db-indicator-gap);
 
+			// Keep the native <progress> in the accessibility tree so screen
+			// readers announce the loading state/value, but hide it visually
+			// (the value is shown via the adjacent, aria-hidden <span>).
 			> progress {
-				display: none;
+				@extend %a11y-visually-hidden;
 			}
 		}
 
