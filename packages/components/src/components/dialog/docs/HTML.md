@@ -81,6 +81,22 @@ all of its submit buttons.
 ```html index.html
 <!-- index.html -->
 <dialog id="my-dialog" class="db-dialog">
+	<div class="db-dialog-header">
+		<header id="my-dialog-heading" class="db-dialog-header-container">
+			<h2>Dialog title</h2>
+		</header>
+		<button
+			class="db-button is-icon-text-replace"
+			data-icon="cross"
+			data-variant="ghost"
+			type="button"
+			command="request-close"
+			commandfor="my-dialog"
+			type="button"
+		>
+			Close
+		</button>
+	</div>
 	<div class="db-dialog-content">Delete this entry?</div>
 	<footer class="db-dialog-footer">
 		<form method="dialog">

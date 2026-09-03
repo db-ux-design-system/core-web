@@ -15,6 +15,9 @@ A fixed inset of `40px` is kept between every dialog edge and the corresponding 
 
 ### Use component
 
+Set `backdrop="none"` to get a non-modal dialog: no dimmed backdrop, no focus trap, and clicks outside the dialog
+leave it open.
+
 #### Invoker Commands
 
 Instead of the `open` property you can use
@@ -125,9 +128,6 @@ const App = () => {
 export default App;
 ```
 
-Set `backdrop="none"` to get a non-modal dialog: no dimmed backdrop, no focus trap, and clicks outside the dialog
-leave it open.
-
 ### Return a value
 
 A submit control with `formmethod="dialog"`, or any submit control inside a `<form method="dialog">`, closes the dialog
@@ -143,7 +143,8 @@ instead.
 import {
 	DBButton,
 	DBDialog,
-	DBDialogFooter
+	DBDialogFooter,
+	DBDialogHeader
 } from "@db-ux/react-core-components";
 
 const App = () => (
@@ -164,6 +165,11 @@ const App = () => (
 					</DBButton>
 				</form>
 			</DBDialogFooter>
+		}
+		header={
+			<DBDialogHeader closeButtonText="Close">
+				Dialog title
+			</DBDialogHeader>
 		}
 	>
 		Delete this entry?
