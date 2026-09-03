@@ -194,7 +194,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						}
 					},
 					state._loadingState === 'active' ? 5000 : 2000
-				);
+				) as unknown as number;
 			}
 		}
 	}, [state._loadingState, props.onTimeout]);

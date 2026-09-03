@@ -64,7 +64,7 @@ export type DBLoadingIndicatorDefaultState = {
 	_previousLoadingState?: LoadingIndicatorStateType | string;
 	_labelId?: string;
 	_progressId?: string;
-	_timeoutId?: ReturnType<typeof setTimeout> | number;
+	_timeoutId?: number;
 	_didDisableParent?: boolean;
 	_style: any;
 	getPercentage: () => string | undefined;
