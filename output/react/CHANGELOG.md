@@ -1,5 +1,31 @@
 # @db-ux/react-core-components
 
+## 5.3.0
+
+### Minor Changes
+
+- feat: introduce control-panel shell architecture (deprecates DBPage, DBHeader, DBBrand, DBNavigation, DBNavigationItem) - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+  - New `DBShell` component (deprecates `DBPage`)
+  - New `DBControlPanelDesktop` and `DBControlPanelMobile` (deprecates `DBHeader`)
+  - New `DBControlPanelBrand` (deprecates `DBBrand`)
+  - New `DBControlPanelNavigation` (deprecates `DBNavigation`)
+  - New `DBControlPanelNavigationItem` (deprecates `DBNavigationItem`)
+  - New `DBControlPanelNavigationItemGroup` for sub-navigation
+  - New `DBShellContent` component for main content area
+  - New `DBShellSubNavigation` for secondary navigation panels
+  - New `DBControlPanelMeta`, `DBControlPanelActions1`, `DBControlPanelActions2` slot components
+  - New `DBControlPanelFlatIcon` for collapsed icon-only navigation
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+  - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
+### Patch Changes
+
+- fix(DBSelect): keep the user's selection when validation runs on `input` - [see commit 86d0feb](https://github.com/db-ux-design-system/core-web/commit/86d0feb14e3af59e170f08204fccf8c269e4c5fb):
+  - A browser dispatches `input` and `change` for a `select` in separate tasks. `DBSelect` validated synchronously on `input`, which changed internal state and triggered a re-render while the controlled `value` was still the previous one. Because React re-applies the `value` on every commit of a `select`, that re-render discarded the selection before `change` was dispatched — so controlled `required` selects never received the new value. Validation now runs once the value has been propagated.
+
+- fix(DBSwitch): icon no longer bleeds through a closed popover - [see commit 6d4deb5](https://github.com/db-ux-design-system/core-web/commit/6d4deb54cff50c36b45b3ea9b6331b333d072845)
+
 ## 5.2.1
 
 ### Patch Changes
