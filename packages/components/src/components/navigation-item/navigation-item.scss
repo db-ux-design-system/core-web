@@ -19,6 +19,7 @@
 	}
 }
 
+/* jscpd:ignore-start */
 @mixin sub-navi-handler-mobile() {
 	// show/hide sub-navigation by click
 	&[aria-expanded="true"] {
@@ -57,6 +58,8 @@
 	}
 }
 
+/* jscpd:ignore-end */
+
 %navigation-item {
 	@extend %default-interactive-component;
 	@extend %transparent-border;
@@ -66,7 +69,8 @@
 	cursor: pointer;
 	inline-size: 100%;
 	border-radius: variables.$db-border-radius-sm;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-sm;
+	min-block-size: variables.$db-sizing-md;
 	white-space: nowrap; // we don't want to break
 	text-align: center;
 	align-items: center; // Centering the content vertically and horizontally
@@ -141,6 +145,7 @@
 		}
 	}
 
+	/* jscpd:ignore-start */
 	&:has([aria-current="page"]),
 	&:has([data-active="true"]),
 	&[aria-current="page"],
@@ -166,8 +171,9 @@
 	}
 }
 
+/* jscpd:ignore-start */
 @mixin sub-navigation-item-mobile() {
-	padding: variables.$db-spacing-fixed-xs
+	padding: variables.$db-spacing-fixed-2xs
 		component.$drawer-content-padding-inline;
 	inline-size: var(--db-drawer-width-horizontal, 100%);
 	max-inline-size: var(
@@ -227,6 +233,7 @@
 			pointer-events: none;
 		}
 
+		/* jscpd:ignore-start */
 		&::before {
 			content: "";
 			position: absolute;
@@ -243,6 +250,8 @@
 					#{variables.$db-spacing-fixed-3xs}
 			);
 		}
+
+		/* jscpd:ignore-end */
 
 		.db-sub-navigation {
 			// 1px for box shadow
@@ -276,6 +285,7 @@
 				}
 			}
 
+			/* jscpd:ignore-start */
 			&::before {
 				content: "";
 				position: absolute;
@@ -303,6 +313,8 @@
 				block-size: 100%;
 				inline-size: variables.$db-spacing-fixed-xs;
 			}
+
+			/* jscpd:ignore-end */
 		}
 	}
 

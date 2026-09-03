@@ -7,7 +7,8 @@ import { WrapperComponent } from '../wrapper/wrapper.component';
 	selector: 'app-radios',
 	standalone: true,
 	imports: [WrapperComponent, DBRadio, FormsModule, ReactiveFormsModule],
-	templateUrl: './radios.component.html'
+	templateUrl: './radios.component.html',
+	schemas: []
 })
 export class RadiosComponent {
 	plain = '';

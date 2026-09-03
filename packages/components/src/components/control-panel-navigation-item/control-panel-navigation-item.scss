@@ -1,0 +1,39 @@
+@use "../../styles/internal/navigation-item";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+.db-control-panel-navigation-item {
+	@extend %navigation-item;
+
+	a {
+		@extend %navigation-item-interactive-element;
+
+		text-decoration: none;
+
+		&:focus-visible {
+			// We need to increase the z-index on focus-visible for the outline and box-shadow to appear above the indicator
+			z-index: 1;
+		}
+	}
+
+	.db-tooltip {
+		// We don't show the tooltip unless user uses DBShell with controlPanelDesktopPosition="left"
+		// and collapsed navigation
+		--db-show-popover-visibility: hidden;
+	}
+
+	.db-control-panel-navigation-item-end-slot-container {
+		position: absolute;
+		display: flex;
+		inset-block: 0;
+		inset-inline-end: 0;
+		align-items: center;
+
+		// We avoid clicking on <span> etc. so the Link can be clicked anyways
+		pointer-events: none;
+
+		&:empty {
+			display: none;
+		}
+	}
+}
