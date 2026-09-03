@@ -64,7 +64,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 			{
 				path: '06/loading-indicator',
 				label: 'LoadingIndicator',
-				component: LoadingIndicatorComponent
+				component: LoadingIndicatorShowcase
 			}
 		])
 	},
