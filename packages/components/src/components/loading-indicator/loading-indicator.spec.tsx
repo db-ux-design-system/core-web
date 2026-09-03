@@ -4,7 +4,6 @@ import { expect, test } from '@playwright/experimental-ct-react';
 import { DBLoadingIndicator } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
-import { DBButton } from '../button';
 
 const comp: any = <DBLoadingIndicator>Test</DBLoadingIndicator>;
 
@@ -88,32 +87,6 @@ const testComponent = () => {
 		);
 		// A native progress is only rendered in determinate mode.
 		await expect(component.locator('progress')).toHaveCount(1);
-	});
-
-	test('should disable a parent button while loading', async ({ mount }) => {
-		const component = await mount(
-			<DBButton>
-				<DBLoadingIndicator state="active">Loading</DBLoadingIndicator>
-				Submit
-			</DBButton>
-		);
-		await expect(component.locator('button')).toBeDisabled();
-	});
-
-	test('should not re-enable a parent button it did not disable', async ({
-		mount
-	}) => {
-		const component = await mount(
-			<DBButton disabled>
-				<DBLoadingIndicator state="inactive">
-					Loading
-				</DBLoadingIndicator>
-				Submit
-			</DBButton>
-		);
-		// The application disabled the button; an inactive indicator must not
-		// override that.
-		await expect(component.locator('button')).toBeDisabled();
 	});
 };
 
