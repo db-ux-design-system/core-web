@@ -963,7 +963,9 @@
   - text: "True"
   - group:
     - article:
-      - status: Loading
+      - status:
+        - text: Loading
+        - progressbar "Loading"
   - status
   - link "Show Search"
   - text: (Default) False

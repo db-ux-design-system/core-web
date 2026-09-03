@@ -1010,7 +1010,9 @@
   - text: "True"
   - group:
     - article:
-      - status: Loading
+      - status:
+        - text: Loading
+        - progressbar "Loading"
       - button "Close"
   - status
   - link "Show Search"
