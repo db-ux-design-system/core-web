@@ -151,6 +151,41 @@
         - button "Page 20 of 20": "20"
       - listitem:
         - button "Next page"
+  - link "Collapsing"
+  - text: Below the sm breakpoint the pages next to the current one give way - resize the window to see it
+  - navigation "Collapsing pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10000": "1"
+      - listitem:
+        - button "Page 4999 of 10000": "4999"
+      - listitem:
+        - button "Page 5000 of 10000": "5000"
+      - listitem:
+        - button "Page 5001 of 10000": "5001"
+      - listitem:
+        - button "Page 10000 of 10000": "10000"
+      - listitem:
+        - button "Next page"
+  - text: A list this short is already the collapsed layout, so it stays as it is
+  - navigation "Collapsing short list pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 5": "1"
+      - listitem:
+        - button "Page 2 of 5": "2"
+      - listitem:
+        - button "Page 3 of 5": "3"
+      - listitem:
+        - button "Page 4 of 5": "4"
+      - listitem:
+        - button "Page 5 of 5": "5"
+      - listitem:
+        - button "Next page"
   - link "Size"
   - text: (Default) Medium
   - navigation "Medium pagination":
