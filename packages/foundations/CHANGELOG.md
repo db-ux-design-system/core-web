@@ -5,7 +5,7 @@
 ### Minor Changes
 
 - feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
-  - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
 
 ## 5.2.1
 
