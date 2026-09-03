@@ -8,8 +8,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_ID } from '../../shared/constants';
-import { cls, delay as delayFn, getBooleanAsString, uuid } from '../../utils';
+import {
+	DEFAULT_ID,
+	DEFAULT_LABEL_ID_SUFFIX,
+	DEFAULT_PROGRESS_ID_SUFFIX
+} from '../../shared/constants';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { DBLoadingIndicatorProps, DBLoadingIndicatorState } from './model';
 
 useMetadata({});
@@ -28,43 +32,58 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBLoadingIndicatorState>({
 		_id: DEFAULT_ID,
+		_labelId: undefined,
+		_progressId: undefined,
 		_loadingState: 'inactive',
 		_previousLoadingState: undefined,
+		_timeoutId: 0,
+		_didDisableParent: false,
 		_style: {},
 		initialized: false,
+		resetIds: () => {
+			const mId = props.id || 'loading-indicator-' + uuid();
+			state._id = mId;
+			state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+			state._progressId = mId + DEFAULT_PROGRESS_ID_SUFFIX;
+		},
 		getPercentage: () => {
-			if (props.indeterminate || !props.value || !props.max) {
+			if (getBoolean(props.indeterminate) || !props.value || !props.max) {
 				return;
 			}
 
-			return `${(Number(props.value) / Number(props.max)).toFixed(2)}`;
+			return `${Math.min(Math.max(Number(props.value) / Number(props.max), 0), 1).toFixed(2)}`;
 		},
 		getRole: () => {
 			if (props.role) {
-				if (props.role === 'none') {
-					return;
-				}
-
 				return props.role;
 			}
 
 			return 'status';
 		},
 		handleParentDisabled: (forceEnable?: boolean) => {
-			if (_ref && props.autoDisable && state.initialized) {
+			if (_ref && getBoolean(props.autoDisable) && state.initialized) {
 				let parent = (_ref as HTMLDivElement).parentElement;
 				if (parent && parent.localName === 'db-loading-indicator') {
 					parent = parent.parentElement;
 				}
 
 				if (parent && 'disabled' in parent) {
-					// On cleanup we always re-enable the parent: otherwise a
-					// loading indicator that is unmounted via conditional
-					// rendering (instead of state="inactive") would leave the
-					// parent (e.g. a DBButton) permanently disabled.
-					parent.disabled = forceEnable
-						? false
-						: state._loadingState !== 'inactive';
+					if (
+						!forceEnable &&
+						state._loadingState !== 'inactive' &&
+						!parent.disabled
+					) {
+						state._didDisableParent = true;
+						parent.disabled = true;
+					}
+
+					if (
+						(forceEnable || state._loadingState === 'inactive') &&
+						state._didDisableParent
+					) {
+						state._didDisableParent = false;
+						parent.disabled = false;
+					}
 				}
 			}
 		},
@@ -87,7 +106,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 				const ariaLabelledBy = parent.getAttribute(ariaAttribute);
 				let labelledByElements = ariaLabelledBy
-					? ariaLabelledBy.split(',')
+					? ariaLabelledBy.split(' ')
 					: [];
 				if (remove || state._loadingState === 'inactive') {
 					if (labelledByElements.includes(state._id!)) {
@@ -115,7 +134,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				if (labelledByElements.length) {
 					parent.setAttribute(
 						ariaAttribute,
-						labelledByElements.join(',')
+						labelledByElements.join(' ')
 					);
 				} else {
 					parent.removeAttribute(ariaAttribute);
@@ -127,9 +146,15 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	// jscpd:ignore-end
 
 	onMount(() => {
-		state._id = props.id || 'loading-indicator-' + uuid();
+		state.resetIds();
 		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (props.id) {
+			state.resetIds();
+		}
+	}, [props.id]);
 
 	onUpdate(() => {
 		state.handleParentDisabled();
@@ -147,14 +172,23 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 	onUpdate(() => {
 		if (props.onTimeout) {
-			// Not merged if as workaround for angular
+			if (state._loadingState === 'inactive') {
+				state._previousLoadingState = 'inactive';
+			}
+
 			if (
 				state._loadingState !== 'inactive' &&
 				state._loadingState !== state._previousLoadingState
 			) {
 				state._previousLoadingState = state._loadingState;
-				void delayFn(
+
+				if (state._timeoutId) {
+					clearTimeout(state._timeoutId);
+				}
+
+				state._timeoutId = setTimeout(
 					() => {
+						state._timeoutId = 0;
 						if (props.onTimeout) {
 							props.onTimeout(state._loadingState);
 						}
@@ -170,27 +204,15 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 		if (props.state) {
 			state._loadingState = props.state;
-		} else if (props.indeterminate === undefined || props.indeterminate) {
+		} else if (
+			props.indeterminate === undefined ||
+			getBoolean(props.indeterminate)
+		) {
 			state._loadingState = 'active';
 		} else {
 			state._loadingState = 'inactive';
 		}
-	}, [props.state]);
-
-	onUpdate(() => {
-		if (_ref) {
-			if (props.delay === 'slow' || props.delay === 'fast') {
-				void delayFn(
-					() => {
-						if (_ref) {
-							(_ref as HTMLDivElement).dataset['delay'] = '';
-						}
-					},
-					props.delay === 'slow' ? 500 : 250
-				);
-			}
-		}
-	}, [_ref, props.delay]);
+	}, [props.state, props.indeterminate]);
 
 	onUpdate(() => {
 		state._style = {
@@ -199,6 +221,11 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	}, [props.indeterminate, props.value, props.max]);
 
 	onUnMount(() => {
+		if (state._timeoutId) {
+			clearTimeout(state._timeoutId);
+			state._timeoutId = 0;
+		}
+
 		state.handleParentAria(true);
 		state.handleParentDisabled(true);
 	});
@@ -206,6 +233,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	return (
 		<div
 			ref={_ref}
+			id={state._id}
 			class={cls('db-loading-indicator', props.className)}
 			style={state._style}
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
@@ -232,23 +260,29 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			<div role={state.getRole()}>
 				<label
 					data-show-label={getBooleanAsString(props.showLabel)}
-					id={state._id}
-					htmlFor={`${state._id}-progress`}>
+					id={state._labelId}
+					htmlFor={state._progressId}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
 					<progress
-						id={`${state._id}-progress`}
+						id={state._progressId}
 						value={
-							props.indeterminate ? undefined : (props.value ?? 0)
+							getBoolean(props.indeterminate)
+								? undefined
+								: (props.value ?? 0)
 						}
 						max={
-							props.indeterminate ? undefined : (props.max ?? 100)
+							getBoolean(props.indeterminate)
+								? undefined
+								: (props.max ?? 100)
 						}>
-						{props.indeterminate ? undefined : props.progressText}
+						{getBoolean(props.indeterminate)
+							? undefined
+							: props.progressText}
 					</progress>
 				</label>
-				<Show when={!props.indeterminate}>
+				<Show when={!getBoolean(props.indeterminate)}>
 					<span
 						aria-hidden="true"
 						data-show-progress-text={getBooleanAsString(

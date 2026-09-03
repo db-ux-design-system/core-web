@@ -17,6 +17,10 @@ $db-loading-indicator-track-color: color(
 		#{variables.$db-opacity-2xs}
 );
 
+// Matches an overlay loading-indicator that is a direct child, both as the
+// web component (db-loading-indicator) and as the plain CSS class output.
+$overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loading-indicator > .db-loading-indicator[data-overlay='true']";
+
 %text-container {
 	div {
 		display: flex;
@@ -468,13 +472,12 @@ $progress-bar-full-segment-inline-size: calc(
 	}
 }
 
-*:has(
-	> .db-loading-indicator[data-overlay="true"],
-	> db-loading-indicator > .db-loading-indicator[data-overlay="true"]
-) {
+*:has(#{$overlay-child-selector}) {
 	position: relative;
 
-	.db-loading-indicator {
+	// Only re-point the segment color on the direct overlay child, not on
+	// every nested .db-loading-indicator descendant of the parent.
+	#{$overlay-child-selector} {
 		--db-loading-indicator-segment-color: var(
 			--db-loading-indicator-segment-color-overlay
 		);
@@ -502,8 +505,32 @@ $progress-bar-full-segment-inline-size: calc(
 		@extend %progress-bar;
 	}
 
+	// Delayed appearance is handled purely in CSS (shift-left): the indicator
+	// starts hidden with visibility: hidden (which keeps it out of the
+	// accessibility tree, so nothing is announced during the delay) and a
+	// zero-duration animation with a delay flips it back to visible via
+	// animation-fill-mode: forwards. visibility (not display) is required
+	// here because animations do not run on a display: none element.
 	&[data-delay="slow"],
 	&[data-delay="fast"] {
-		display: none;
+		visibility: hidden;
+		animation: loading-indicator-delay 0s linear forwards;
+	}
+
+	&[data-delay="slow"] {
+		animation-delay: 500ms;
+	}
+
+	&[data-delay="fast"] {
+		animation-delay: 250ms;
+	}
+}
+
+// Reveals a delayed loading indicator once its animation-delay elapses.
+// Used with animation-fill-mode: forwards so the element stays visible.
+// Component-scoped, so it lives here instead of the shared foundations file.
+@keyframes loading-indicator-delay {
+	to {
+		visibility: visible;
 	}
 }

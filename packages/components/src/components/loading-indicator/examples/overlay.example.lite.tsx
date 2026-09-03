@@ -55,7 +55,7 @@ export default function LoadingIndicatorOverlay() {
 				icon="none">
 				True
 			</DBInfotext>
-			<DBCard data-sb-ignore="true">
+			<DBCard>
 				<DBLoadingIndicator
 					overlay={true}
 					variant="circular"
@@ -67,7 +67,7 @@ export default function LoadingIndicatorOverlay() {
 				<p>Content 2</p>
 				<p>Content 3</p>
 			</DBCard>
-			<DBCard data-sb-ignore="true">
+			<DBCard>
 				<DBLoadingIndicator
 					overlay={true}
 					variant="circular"
@@ -79,7 +79,7 @@ export default function LoadingIndicatorOverlay() {
 				<p>Content 2</p>
 				<p>Content 3</p>
 			</DBCard>
-			<DBCard data-sb-ignore="true">
+			<DBCard>
 				<DBLoadingIndicator
 					overlay={true}
 					variant="bar"

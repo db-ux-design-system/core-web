@@ -44,7 +44,7 @@ export type DBLoadingIndicatorDefaultProps = {
 	 */
 	autoDisable?: boolean | string;
 
-	role?: 'alert' | 'status' | 'none';
+	role?: 'alert' | 'status';
 
 	/**
 	 * Triggers after a timeout. For "active" after 5 seconds, for "successful" and "critical" after 2 seconds
@@ -59,14 +59,20 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	OrientationProps &
 	DelayProps;
 
+
 export type DBLoadingIndicatorDefaultState = {
 	_loadingState?: LoadingIndicatorStateType | string;
 	_previousLoadingState?: LoadingIndicatorStateType | string;
+	_labelId?: string;
+	_progressId?: string;
+	_timeoutId?: ReturnType<typeof setTimeout> | number;
+	_didDisableParent?: boolean;
 	_style: any;
 	getPercentage: () => string | undefined;
 	getRole: () => string | undefined;
 	handleParentAria: (remove: boolean) => void;
 	handleParentDisabled: (forceEnable?: boolean) => void;
+	resetIds: () => void;
 };
 
 export type DBLoadingIndicatorState = DBLoadingIndicatorDefaultState &

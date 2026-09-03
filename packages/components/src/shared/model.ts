@@ -249,8 +249,18 @@ export type ContainerWidthProps = {
 	width?: MaxWidthType;
 };
 
-export const PopoverDelayList = ['none', 'slow', 'fast'] as const;
-export type PopoverDelayType = (typeof PopoverDelayList)[number];
+export const DelayList = ['none', 'slow', 'fast'] as const;
+export type DelayType = (typeof DelayList)[number];
+/**
+ * @deprecated Use `DelayList` instead. Kept as an alias now that the delay
+ * concept is shared beyond popovers.
+ */
+export const PopoverDelayList = DelayList;
+/**
+ * @deprecated Use `DelayType` instead. Kept as an alias now that the delay
+ * concept is shared beyond popovers.
+ */
+export type PopoverDelayType = DelayType;
 export const PopoverWidthList = ['auto', 'fixed'] as const;
 export type PopoverWidthType = (typeof PopoverWidthList)[number];
 export type PopoverProps = {
@@ -273,7 +283,7 @@ export type DelayProps = {
 	/**
 	 * Add a delay before showing the component
 	 */
-	delay?: PopoverDelayType;
+	delay?: DelayType;
 };
 
 export type NameProps = {

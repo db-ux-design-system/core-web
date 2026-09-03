@@ -12,11 +12,11 @@ module.exports = {
 	typescript: true,
 	api: 'composition',
 	plugins: [
+		undefinedKeyPlugin,
 		useIdPlugin,
 		onClickPlugin,
 		defineOptionsPlugin,
 		slotsPlugin,
-		esmExtensionsPlugin,
-		undefinedKeyPlugin
+		esmExtensionsPlugin
 	]
 };

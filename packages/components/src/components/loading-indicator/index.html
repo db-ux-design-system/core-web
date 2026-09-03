@@ -6,6 +6,36 @@
 		<link rel="stylesheet" href="/styles/relative.css" />
 	</head>
 	<body style="padding: var(--db-spacing-fixed-md)">
-		<div class="db-loading-indicator">Test</div>
+		<div
+			class="db-loading-indicator"
+			data-variant="circular"
+			data-orientation="horizontal"
+			data-state="active"
+		>
+			<svg
+				class="db-loading-indicator-circle"
+				viewBox="10 10 20 20"
+				aria-hidden="true"
+			>
+				<circle class="db-loading-indicator-circle-track"></circle>
+				<circle class="db-loading-indicator-circle-segment"></circle>
+			</svg>
+			<div role="status">
+				<label
+					id="loading-indicator-1-label"
+					for="loading-indicator-1-progress"
+				>
+					Loading
+					<progress
+						id="loading-indicator-1-progress"
+						value="42"
+						max="100"
+					>
+						42 of 100
+					</progress>
+				</label>
+				<span aria-hidden="true">42 of 100</span>
+			</div>
+		</div>
 	</body>
 </html>

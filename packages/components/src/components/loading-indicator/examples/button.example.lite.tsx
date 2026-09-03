@@ -16,6 +16,16 @@ useMetadata({
 		'With overlay: Filled',
 		'With overlay: Ghost'
 	],
+	storybookComponentNames: [
+		'DBButton',
+		'DBButton',
+		'DBButton',
+		'DBButton',
+		'DBButton',
+		'DBButton',
+		'DBButton',
+		'DBButton'
+	],
 	storybookArgTypes: StorybookLoadingIndicatorArgTypes
 });
 
@@ -29,37 +39,25 @@ export default function LoadingIndicatorButton() {
 				icon="none">
 				Without overlay
 			</DBInfotext>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="outlined">
+			<DBButton icon="x_placeholder" variant="outlined">
 				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
 					Loading
 				</DBLoadingIndicator>
 				Button
 			</DBButton>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="brand">
+			<DBButton icon="x_placeholder" variant="brand">
 				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
 					Loading
 				</DBLoadingIndicator>
 				Button
 			</DBButton>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="filled">
+			<DBButton icon="x_placeholder" variant="filled">
 				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
 					Loading
 				</DBLoadingIndicator>
 				Button
 			</DBButton>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="ghost">
+			<DBButton icon="x_placeholder" variant="ghost">
 				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -73,37 +71,25 @@ export default function LoadingIndicatorButton() {
 				icon="none">
 				With overlay
 			</DBInfotext>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="outlined">
+			<DBButton icon="x_placeholder" variant="outlined">
 				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
 					Loading
 				</DBLoadingIndicator>
 				Button
 			</DBButton>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="brand">
+			<DBButton icon="x_placeholder" variant="brand">
 				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
 					Loading
 				</DBLoadingIndicator>
 				Button
 			</DBButton>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="filled">
+			<DBButton icon="x_placeholder" variant="filled">
 				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
 					Loading
 				</DBLoadingIndicator>
 				Button
 			</DBButton>
-			<DBButton
-				data-sb-ignore="true"
-				icon="x_placeholder"
-				variant="ghost">
+			<DBButton icon="x_placeholder" variant="ghost">
 				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
 					Loading
 				</DBLoadingIndicator>

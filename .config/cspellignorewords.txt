@@ -257,5 +257,3 @@ pnpms
 renovatebot
 drilldown
 Drilldown
-cspellignorewords
-xlarge

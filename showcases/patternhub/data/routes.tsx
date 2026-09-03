@@ -51,8 +51,6 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'loading-indicator': <LoadingIndicatorShowcase isPatternhub />,
-
 	heading: <HeadingShowcase isPatternhub />,
 
 	accordion: <AccordionShowcase isPatternhub />,
@@ -80,6 +78,7 @@ const nameComponentMap = {
 	infotext: <InfotextShowcase isPatternhub />,
 	input: <InputShowcase isPatternhub />,
 	link: <LinkShowcase isPatternhub />,
+	'loading-indicator': <LoadingIndicatorShowcase isPatternhub />,
 	navigation: <NavigationShowcase isPatternhub />,
 	'navigation-item': <NavigationItemShowcase isPatternhub />,
 	notification: <NotificationShowcase isPatternhub />,

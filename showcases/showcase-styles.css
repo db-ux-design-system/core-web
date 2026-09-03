@@ -74,9 +74,7 @@
 		display: block;
 	}
 
-	.variants-list
-		div[role]
-		> div:not([class^="db-"], [data-area], .loading-indicator-grid),
+	.variants-list div[role] > div:not([class^="db-"], [data-area]),
 	.variants-list > div:not([class^="db-"]) {
 		align-items: center;
 		display: flex;
@@ -290,10 +288,9 @@ app-nav-item {
 	}
 }
 
-.loading-indicator-grid {
-	overflow: hidden;
-	display: grid;
-	justify-items: center;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	gap: var(--db-spacing-fixed-md);
+/* The bar loading indicator is inline-size: 100% by design. In the showcase
+   it would otherwise stretch across the whole card and reflow the other
+   variants, so we cap it to a fixed width here (showcase-only). */
+.variants-list .db-loading-indicator[data-variant="bar"] {
+	inline-size: var(--db-sizing-3xl);
 }

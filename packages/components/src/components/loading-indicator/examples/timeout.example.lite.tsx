@@ -2,8 +2,8 @@ import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
 import { LoadingIndicatorStateType } from '../model';
-import { TimeoutStore } from './_indicators.data';
 import { StorybookLoadingIndicatorArgTypes } from './_loading-indicator.arg.types';
+import { TimeoutStore } from './_timeout.data';
 
 useMetadata({
 	storybookTitle: 'Examples: Timeout',

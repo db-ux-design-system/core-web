@@ -71,7 +71,7 @@ export const navigationItems: NavItem[] = [
 			{
 				path: '/06/loading-indicator',
 				label: 'LoadingIndicator',
-				component: LoadingIndicatorShowcase
+				component: markRaw(LoadingIndicatorShowcase)
 			}
 		])
 	},

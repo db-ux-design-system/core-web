@@ -304,6 +304,16 @@ export type DBDrawerFooterState = DBDrawerFooterDefaultState & GlobalState;
 
 During code review, **do not flag empty `DefaultProps`/`DefaultState` types as dead code** — they are intentional for alignment with the component architecture.
 
+## Convention: Generate all element ids in one place
+
+When a component renders multiple elements that need related ids (e.g. a root `id`, a `label` id, a `progress`/`message` id), **derive them all in a single `resetIds` state method** rather than building ids inline with template strings in the JSX. Store each id in its own `_*Id` state field and reference the state field in the template.
+
+- Base every id on the same root (`props.id ?? props.propOverrides?.id ?? \`<component>-${uuid()}\``) and append the shared suffix constants from `src/shared/constants.ts` (`DEFAULT_LABEL_ID_SUFFIX`, `DEFAULT_PROGRESS_ID_SUFFIX`, etc.).
+- Call `resetIds()` from `onMount`, and again from an `onUpdate` keyed on `props.id` so consumer-provided ids stay in sync.
+- Keep the consumer-provided `id` on the element carrying the `_ref` (the root), matching every other component.
+
+This keeps id logic in one place, avoids drift between the `id` and its `htmlFor`/`aria-*` references, and sidesteps a Mitosis pitfall where inline `${...}` template strings in JSX attributes can generate invalid output. See `input.lite.tsx` and `loading-indicator.lite.tsx` for the pattern.
+
 ## Adding or Modifying Components
 
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually
@@ -350,7 +360,7 @@ in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
 Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
 
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
-- **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
+- **No apostrophes, backticks or other special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) or a backtick (e.g. a comment referencing `` `status` ``) breaks the generated code because prettier interprets it as an unterminated string/template literal — the symptom is a bogus `const [if, setIf] = useState(...)` line in the generated output that fails to parse. Avoid `'`, `` ` `` and similar quoting characters in comments; prefer plain ASCII and double quotes (e.g. `"status"`).
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
 - **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
 

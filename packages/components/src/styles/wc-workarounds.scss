@@ -4,8 +4,15 @@
 @each $custom-element in custom-elements.$custom-elements {
 	#{$custom-element} {
 		display: contents;
-		border-radius: inherit; // We need this for overlay loading-indicator
 	}
+}
+
+// The overlay loading-indicator needs to inherit the border-radius through the
+// display: contents host. Scope this to db-loading-indicator only, so we don't
+// change how `border-radius: inherit` resolves for descendants of every other
+// custom element repo-wide.
+db-loading-indicator {
+	border-radius: inherit;
 }
 
 db-notification {
