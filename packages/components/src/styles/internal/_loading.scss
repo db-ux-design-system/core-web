@@ -57,12 +57,12 @@
 			&::before {
 				z-index: 1;
 
-				// `inherit` is invalid as a var() fallback here: after
-				// substitution it becomes the CSS-wide keyword `inherit`,
+				// "inherit" is invalid as a var() fallback here: after
+				// substitution it becomes the CSS-wide keyword inherit,
 				// which is invalid at computed-value time and falls back to
-				// `transparent` anyway. Only the brand variant sets an overlay
+				// transparent anyway. Only the brand variant sets an overlay
 				// color; every other variant intentionally shows the level-1
-				// background from the `::after` layer, so default to transparent.
+				// background from the ::after layer, so default to transparent.
 				background-color: var(
 					--db-loading-indicator-button-overlay-color,
 					transparent

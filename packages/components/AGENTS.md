@@ -306,13 +306,22 @@ During code review, **do not flag empty `DefaultProps`/`DefaultState` types as d
 
 ## Convention: Generate all element ids in one place
 
-When a component renders multiple elements that need related ids (e.g. a root `id`, a `label` id, a `progress`/`message` id), **derive them all in a single `resetIds` state method** rather than building ids inline with template strings in the JSX. Store each id in its own `_*Id` state field and reference the state field in the template.
+When a component renders multiple elements that need related ids (e.g. a root id, a label id, a progress/message id), **derive them all in a single `resetIds` state method** rather than building ids inline with template strings in the JSX. Store each id in its own `_*Id` state field and reference the state field in the template.
 
-- Base every id on the same root (`props.id ?? props.propOverrides?.id ?? \`<component>-${uuid()}\``) and append the shared suffix constants from `src/shared/constants.ts` (`DEFAULT_LABEL_ID_SUFFIX`, `DEFAULT_PROGRESS_ID_SUFFIX`, etc.).
+```ts
+resetIds: () => {
+	const mId = props.id || "loading-indicator-" + uuid();
+	state._id = mId;
+	state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+	state._progressId = mId + DEFAULT_PROGRESS_ID_SUFFIX;
+};
+```
+
+- Base every id on the same root id and append the shared suffix constants from `src/shared/constants.ts` (`DEFAULT_LABEL_ID_SUFFIX`, `DEFAULT_PROGRESS_ID_SUFFIX`, etc.).
 - Call `resetIds()` from `onMount`, and again from an `onUpdate` keyed on `props.id` so consumer-provided ids stay in sync.
 - Keep the consumer-provided `id` on the element carrying the `_ref` (the root), matching every other component.
 
-This keeps id logic in one place, avoids drift between the `id` and its `htmlFor`/`aria-*` references, and sidesteps a Mitosis pitfall where inline `${...}` template strings in JSX attributes can generate invalid output. See `input.lite.tsx` and `loading-indicator.lite.tsx` for the pattern.
+This keeps id logic in one place, avoids drift between the `id` and its `htmlFor`/`aria-*` references, and sidesteps a Mitosis pitfall where inline template-string ids in JSX attributes can generate invalid output. See `input.lite.tsx` and `loading-indicator.lite.tsx` for the pattern.
 
 ## Adding or Modifying Components
 

@@ -510,14 +510,8 @@ $progress-bar-full-segment-inline-size: calc(
 	// accessibility tree, so nothing is announced during the delay) and a
 	// zero-duration animation with a delay flips it back to visible via
 	// animation-fill-mode: forwards. visibility (not display) is required
-	// here because animations do not run on a display: none element.@media screen and (prefers-reduced-motion: reduce) {
-&[data-delay="slow"],
-	&[data-delay="fast"] {
-		visibility: hidden;
-		animation: none;
-}
-}
-
+	// here because animations do not run on a display: none element.
+	// stylelint-disable-next-line a11y/media-prefers-reduced-motion -- zero-duration reveal, not motion: the animation only flips visibility after animation-delay and must keep working under reduced motion
 	&[data-delay="slow"],
 	&[data-delay="fast"] {
 		visibility: hidden;
