@@ -59,7 +59,6 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	OrientationProps &
 	DelayProps;
 
-
 export type DBLoadingIndicatorDefaultState = {
 	_loadingState?: LoadingIndicatorStateType | string;
 	_previousLoadingState?: LoadingIndicatorStateType | string;

@@ -56,6 +56,7 @@
 
 			&::before {
 				z-index: 1;
+
 				// `inherit` is invalid as a var() fallback here: after
 				// substitution it becomes the CSS-wide keyword `inherit`,
 				// which is invalid at computed-value time and falls back to
