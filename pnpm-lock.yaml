@@ -96,8 +96,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       jscpd:
-        specifier: 5.0.16
-        version: 5.0.16
+        specifier: 5.1.0
+        version: 5.1.0
       knip:
         specifier: 6.33.0
         version: 6.33.0
@@ -11176,8 +11176,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  jscpd@5.0.16:
-    resolution: {integrity: sha512-TiQ4zKtKeldep6UswXFHjVCDhVdLBaJyQcZjhCSzVOmKpT6HBj0jUZiphP1vK1X3VSSuzwcfifJVNpsOIiwRCg==}
+  jscpd@5.1.0:
+    resolution: {integrity: sha512-Tg/ZeXjJblZQJaqFeR9XlVc9/RQdt6bFg9/6wvCxy0iom7jKJA6ojIfr9q1qiZih5KEt7uvsQERxQNqkEaefZg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -28136,7 +28136,7 @@ snapshots:
   jscpd-windows-x64-msvc@5.0.16:
     optional: true
 
-  jscpd@5.0.16:
+  jscpd@5.1.0:
     optionalDependencies:
       jscpd-darwin-arm64: 5.0.16
       jscpd-darwin-x64: 5.0.16
