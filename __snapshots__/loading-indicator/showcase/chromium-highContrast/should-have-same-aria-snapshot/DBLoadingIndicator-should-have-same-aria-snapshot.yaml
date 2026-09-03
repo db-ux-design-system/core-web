@@ -2,92 +2,206 @@
   - heading "DBLoadingIndicator" [level=1]
   - link "Density"
   - text: Functional
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: (Default) Regular
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: Expressive
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - link "Indeterminate"
   - text: (Default) True
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: "False"
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
   - link "Size"
   - text: Small
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: (Default) Medium
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - link "State"
   - text: Inactive
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: Active
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: Successful
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: Critical
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - 'link "State: Determinate"':
   - text: Inactive
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
   - text: Active
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
   - text: Successful
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 100 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 100%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 100 of 100
   - text: Critical
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 100 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 100%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 100 of 100
   - link "Show Label"
   - text: (Default) True
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: "False"
   - status
   - status
   - status
   - link "Show Progress Text"
   - text: (Default) True
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
   - text: "False"
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
   - link "Overlay"
   - text: (Default) False
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: "True"
   - status
   - paragraph: Content 1
@@ -103,17 +217,35 @@
   - paragraph: Content 3
   - link "Delay"
   - text: (Default) None
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: Slow
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - text: Fast
-  - status: Inline
-  - status: Onsite
-  - status: Progress
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - 'link "Examples: Button"':
   - text: Without overlay
   - button "Loading" [disabled]:
