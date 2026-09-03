@@ -1,5 +1,57 @@
 - main:
   - heading "DBPagination" [level=1]
+  - link "Density"
+  - text: Functional
+  - navigation "Functional pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 4 of 10": "4"
+      - listitem:
+        - button "Page 5 of 10": "5"
+      - listitem:
+        - button "Page 6 of 10": "6"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
+  - text: (Default) Regular
+  - navigation "Regular pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 4 of 10": "4"
+      - listitem:
+        - button "Page 5 of 10": "5"
+      - listitem:
+        - button "Page 6 of 10": "6"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
+  - text: Expressive
+  - navigation "Expressive pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 4 of 10": "4"
+      - listitem:
+        - button "Page 5 of 10": "5"
+      - listitem:
+        - button "Page 6 of 10": "6"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
   - link "Controlled"
   - navigation "Pagination":
     - list:
@@ -254,58 +306,6 @@
         - button "Next page"
   - text: Small
   - navigation "Small pagination":
-    - list:
-      - listitem:
-        - button "Previous page"
-      - listitem:
-        - button "Page 1 of 10": "1"
-      - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
-        - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
-      - listitem:
-        - button "Page 10 of 10": "10"
-      - listitem:
-        - button "Next page"
-  - link "Density"
-  - text: Functional
-  - navigation "Functional pagination":
-    - list:
-      - listitem:
-        - button "Previous page"
-      - listitem:
-        - button "Page 1 of 10": "1"
-      - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
-        - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
-      - listitem:
-        - button "Page 10 of 10": "10"
-      - listitem:
-        - button "Next page"
-  - text: (Default) Regular
-  - navigation "Regular pagination":
-    - list:
-      - listitem:
-        - button "Previous page"
-      - listitem:
-        - button "Page 1 of 10": "1"
-      - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
-        - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
-      - listitem:
-        - button "Page 10 of 10": "10"
-      - listitem:
-        - button "Next page"
-  - text: Expressive
-  - navigation "Expressive pagination":
     - list:
       - listitem:
         - button "Previous page"
