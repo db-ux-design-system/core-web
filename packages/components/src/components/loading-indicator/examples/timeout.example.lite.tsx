@@ -39,7 +39,7 @@ export default function LoadingIndicatorTimeout() {
 					state={state.loadingState}
 					overlay
 					onTimeout={state.onTimeoutFn}>
-					{state.getLabel(state.loadingState)}
+					Loading
 				</DBLoadingIndicator>
 				Start Timeout
 			</DBButton>

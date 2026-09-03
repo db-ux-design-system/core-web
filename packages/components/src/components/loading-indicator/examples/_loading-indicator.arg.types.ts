@@ -20,9 +20,5 @@ export const StorybookLoadingIndicatorArgTypes: Record<string, InputType> = {
 	showLabel: { control: 'boolean' },
 	showProgressText: { control: 'boolean' },
 	overlay: { control: 'boolean' },
-	delay: { control: 'select', options: ['none', 'slow', 'fast'] },
-	density: {
-		control: 'select',
-		options: ['functional', 'regular', 'expressive']
-	}
+	delay: { control: 'select', options: ['none', 'slow', 'fast'] }
 };

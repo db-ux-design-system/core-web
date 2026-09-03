@@ -1,69 +1,95 @@
-import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBCard from '../../card/card.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
-import { indicators, overlays } from './_indicators.data';
 import { StorybookLoadingIndicatorArgTypes } from './_loading-indicator.arg.types';
 
 useMetadata({
 	storybookTitle: 'Overlay',
-	storybookNames: ['(Default) False', 'True'],
+	storybookNames: [
+		'(Default) False: Circular horizontal',
+		'(Default) False: Circular vertical',
+		'(Default) False: Bar',
+		'True: Circular horizontal',
+		'True: Circular vertical',
+		'True: Bar'
+	],
 	storybookArgTypes: StorybookLoadingIndicatorArgTypes
 });
 
 export default function LoadingIndicatorOverlay() {
 	return (
 		<Fragment>
-			<For each={overlays}>
-				{(item) => (
-					<div
-						class="loading-indicator-grid"
-						key={`overlay-${item.name}`}>
-						<DBInfotext
-							size="small"
-							semantic="informational"
-							icon="none">
-							{item.name}
-						</DBInfotext>
-						<For each={indicators}>
-							{(indicator) =>
-								item.value ? (
-									<DBCard
-										key={useTarget({
-											react: `overlay-${item.name}-${indicator.label}`,
-											default: undefined
-										})}>
-										<DBLoadingIndicator
-											overlay={item.value}
-											variant={indicator.variant}
-											orientation={indicator.orientation}
-											progressText={
-												indicator.progressText
-											}>
-											{indicator.label}
-										</DBLoadingIndicator>
-										<p>Content 1</p>
-										<p>Content 2</p>
-										<p>Content 3</p>
-									</DBCard>
-								) : (
-									<DBLoadingIndicator
-										key={useTarget({
-											react: `overlay-${item.name}-${indicator.label}`,
-											default: undefined
-										})}
-										overlay={item.value}
-										variant={indicator.variant}
-										orientation={indicator.orientation}
-										progressText={indicator.progressText}>
-										{indicator.label}
-									</DBLoadingIndicator>
-								)
-							}
-						</For>
-					</div>
-				)}
-			</For>
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational"
+				icon="none">
+				(Default) False
+			</DBInfotext>
+			<DBLoadingIndicator
+				overlay={false}
+				variant="circular"
+				orientation="horizontal"
+				progressText="42 of 100">
+				Circular horizontal
+			</DBLoadingIndicator>
+			<DBLoadingIndicator
+				overlay={false}
+				variant="circular"
+				orientation="vertical"
+				progressText="42%">
+				Circular vertical
+			</DBLoadingIndicator>
+			<DBLoadingIndicator
+				overlay={false}
+				variant="bar"
+				progressText="42 of 100">
+				Bar
+			</DBLoadingIndicator>
+			<i class="line-break" data-sb-ignore="true" />
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational"
+				icon="none">
+				True
+			</DBInfotext>
+			<DBCard data-sb-ignore="true">
+				<DBLoadingIndicator
+					overlay={true}
+					variant="circular"
+					orientation="horizontal"
+					progressText="42 of 100">
+					Circular horizontal
+				</DBLoadingIndicator>
+				<p>Content 1</p>
+				<p>Content 2</p>
+				<p>Content 3</p>
+			</DBCard>
+			<DBCard data-sb-ignore="true">
+				<DBLoadingIndicator
+					overlay={true}
+					variant="circular"
+					orientation="vertical"
+					progressText="42%">
+					Circular vertical
+				</DBLoadingIndicator>
+				<p>Content 1</p>
+				<p>Content 2</p>
+				<p>Content 3</p>
+			</DBCard>
+			<DBCard data-sb-ignore="true">
+				<DBLoadingIndicator
+					overlay={true}
+					variant="bar"
+					progressText="42 of 100">
+					Bar
+				</DBLoadingIndicator>
+				<p>Content 1</p>
+				<p>Content 2</p>
+				<p>Content 3</p>
+			</DBCard>
 		</Fragment>
 	);
 }

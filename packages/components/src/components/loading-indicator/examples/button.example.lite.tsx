@@ -1,52 +1,114 @@
-import { For, Fragment, useMetadata, useTarget } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
-import { ButtonVariantList } from '../../button/model';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBLoadingIndicator from '../loading-indicator.lite';
-import { buttonExamples } from './_indicators.data';
 import { StorybookLoadingIndicatorArgTypes } from './_loading-indicator.arg.types';
 
 useMetadata({
 	storybookTitle: 'Examples: Button',
-	storybookNames: ['Without overlay', 'With overlay'],
+	storybookNames: [
+		'Without overlay: Outlined',
+		'Without overlay: Brand',
+		'Without overlay: Filled',
+		'Without overlay: Ghost',
+		'With overlay: Outlined',
+		'With overlay: Brand',
+		'With overlay: Filled',
+		'With overlay: Ghost'
+	],
 	storybookArgTypes: StorybookLoadingIndicatorArgTypes
 });
 
 export default function LoadingIndicatorButton() {
 	return (
 		<Fragment>
-			<For each={buttonExamples}>
-				{(example) => (
-					<div
-						class="loading-indicator-grid"
-						key={`button-${example.name}`}>
-						<DBInfotext
-							size="small"
-							semantic="informational"
-							icon="none">
-							{example.name}
-						</DBInfotext>
-						<For each={ButtonVariantList}>
-							{(variant) => (
-								<DBButton
-									key={useTarget({
-										react: `${example.name}-${variant}`,
-										default: undefined
-									})}
-									icon="x_placeholder"
-									variant={variant}>
-									<DBLoadingIndicator
-										progressText="0 of 100"
-										overlay={example.overlay}>
-										Loading
-									</DBLoadingIndicator>
-									Button
-								</DBButton>
-							)}
-						</For>
-					</div>
-				)}
-			</For>
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational"
+				icon="none">
+				Without overlay
+			</DBInfotext>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="outlined">
+				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="brand">
+				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="filled">
+				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="ghost">
+				<DBLoadingIndicator progressText="0 of 100" overlay={false}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<i class="line-break" data-sb-ignore="true" />
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational"
+				icon="none">
+				With overlay
+			</DBInfotext>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="outlined">
+				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="brand">
+				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="filled">
+				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
+			<DBButton
+				data-sb-ignore="true"
+				icon="x_placeholder"
+				variant="ghost">
+				<DBLoadingIndicator progressText="0 of 100" overlay={true}>
+					Loading
+				</DBLoadingIndicator>
+				Button
+			</DBButton>
 		</Fragment>
 	);
 }
