@@ -220,25 +220,24 @@
 }
 
 /*
- * The DBFooter width variants clamp the inner content to a breakpoint token, so two
- * variants only look different once more space than the larger one is available. The
- * showcase card is narrower than the smallest variant (48em), which would render all
- * four identically. Scrolling a track wider than the largest variant keeps them
- * distinguishable in every showcase and in Patternhub.
+ * The DBFooter width variants clamp the inner content with em-based breakpoint tokens
+ * (48em, 64em, 90em), so they only render differently once more space than the largest
+ * variant is available -- far more than any showcase card offers, which would make all
+ * four look identical. Because the clamp is em-based while every typography and spacing
+ * token is rem-based, the container's own font-size scales the clamp and nothing else.
+ * Turning this wrapper into an inline-size container therefore lets the variants render
+ * at 48%, 64%, 90% and 100% of the available width, which keeps them distinguishable at
+ * any card width and needs no scroll container.
  */
 .footer-width-example {
-	/* min-inline-size keeps the flex and grid min-content floor from widening the
-	 * scroller itself, which would overflow the card instead of scrolling inside it. */
+	container-type: inline-size;
 	inline-size: 100%;
-	min-inline-size: 0;
-	overflow-x: auto;
-	overflow-inline: auto;
 }
 
 /*
  * Overrides the generic ".variants-list > div:not([class^='db-'])" rule above, which
- * turns any plain wrapper into a centred flex row. Centring an overflowing track makes
- * its leading half unreachable, because inline-start overflow cannot be scrolled to.
+ * turns any plain wrapper into a centred flex row. The variants have to stack so their
+ * differing inline sizes stay comparable against a shared inline-start edge.
  * The selector deliberately matches that rule's specificity and relies on source order.
  */
 .variants-list > div.footer-width-example {
@@ -248,7 +247,23 @@
 .footer-width-example-track {
 	display: grid;
 	gap: var(--db-spacing-fixed-sm);
-	min-inline-size: calc(var(--db-screen-lg) + 2 * var(--db-spacing-fixed-xl));
+}
+
+/*
+ * 1cqw makes 1em equal 1% of the wrapper width, so the em-based max-inline-size of each
+ * variant becomes that percentage. DBFooterContent and DBFooterMeta both use this
+ * container, so content and meta stay aligned.
+ */
+.footer-width-example .db-footer-content-container {
+	font-size: 1cqw;
+}
+
+/*
+ * The tiny font-size must not reach the content. Resetting the direct children is
+ * enough, because font-size inheritance carries the normal value further down.
+ */
+.footer-width-example .db-footer-content-container > * {
+	font-size: 1rem;
 }
 
 .stack-container {
