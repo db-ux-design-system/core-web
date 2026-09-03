@@ -29,3 +29,25 @@ export class AppComponent {
 	(pageChange)="currentPage = $event"
 />
 ```
+
+### Page links
+
+With `hrefPattern` the pages render as anchors instead of buttons. `{page}` is
+replaced with the page number, so the pagination becomes deep linkable, shareable
+and usable before hydration.
+
+```html app.component.html
+<db-pagination
+	[currentPage]="currentPage"
+	[totalCount]="100"
+	[pageSize]="10"
+	hrefPattern="?page={page}"
+/>
+```
+
+The component does **not** call `preventDefault`, otherwise the plain href usage
+would be broken. `pageChange` still emits, so it can be combined with
+`hrefPattern` to keep local state in sync.
+
+For the Angular router, intercept the click on a wrapper element and read the
+`href` from the anchor; `$event` carries the page number only.

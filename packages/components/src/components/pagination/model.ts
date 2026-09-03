@@ -37,6 +37,12 @@ export type DBPaginationDefaultProps = {
 	 */
 	boundaryCount?: number | string;
 	/**
+	 * URL template that turns the pages into links, for example `?page={page}`.
+	 * `{page}` is replaced with the page number. Without it the component renders
+	 * buttons and stays fully controlled.
+	 */
+	hrefPattern?: string;
+	/**
 	 * Accessible label for the pagination navigation landmark.
 	 */
 	label?: string;
@@ -79,6 +85,9 @@ export type DBPaginationDefaultState = {
 		forCollapsed: boolean
 	) => PaginationItemLayout;
 	getItemAttribute: (item: PaginationItemType) => string;
+	getHref: (page: number) => string | undefined;
+	getPreviousHref: () => string | undefined;
+	getNextHref: () => string | undefined;
 	getPageLabel: (page: number) => string;
 	handlePageChange: (page: number) => void;
 };

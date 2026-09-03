@@ -466,6 +466,226 @@ const testCollapsing = () => {
 	});
 };
 
+const testLinks = () => {
+	test('should render buttons and no href without hrefPattern', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(comp);
+
+		await expect(component.locator('a')).toHaveCount(0);
+		await expect(component.locator('.db-pagination-page')).toHaveCount(5);
+		await expect(component.locator('[rel]')).toHaveCount(0);
+		await expect(
+			component.getByRole('button', { name: 'Page 5 of 10' })
+		).toHaveAttribute('aria-current', 'page');
+	});
+
+	test('should build the page links from the pattern', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="Linked pages"
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		const pageLinks = await component
+			.locator('a.db-pagination-page')
+			.evaluateAll((links: HTMLAnchorElement[]) =>
+				links.map((link) => link.getAttribute('href'))
+			);
+		expect(pageLinks).toEqual([
+			'?page=1',
+			'?page=4',
+			'?page=5',
+			'?page=6',
+			'?page=10'
+		]);
+		await expect(
+			component.locator('button.db-pagination-page')
+		).toHaveCount(0);
+	});
+
+	test('should replace every occurrence of the page placeholder', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={2}
+				totalCount={30}
+				pageSize={10}
+				hrefPattern="/list/{page}?page={page}"
+			/>
+		);
+
+		await expect(
+			component.getByRole('link', { name: 'Page 3 of 3' })
+		).toHaveAttribute('href', '/list/3?page=3');
+	});
+
+	test('should link previous and next with rel', async ({ mount, page }) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		const previous = component.locator('a.db-pagination-previous');
+		await expect(previous).toHaveAttribute('href', '?page=4');
+		await expect(previous).toHaveAttribute('rel', 'prev');
+
+		const next = component.locator('a.db-pagination-next');
+		await expect(next).toHaveAttribute('href', '?page=6');
+		await expect(next).toHaveAttribute('rel', 'next');
+
+		await expect(component.locator('[rel="prev"]')).toHaveCount(1);
+		await expect(component.locator('[rel="next"]')).toHaveCount(1);
+	});
+
+	test('should keep previous and next disabled buttons at the boundaries', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+
+		// No href to go to means no anchor: the element stays the native disabled
+		// button of the button mode instead of becoming an inert link.
+		const first = await mount(
+			<DBPagination
+				currentPage={1}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+		await expect(
+			first.locator('button.db-pagination-previous')
+		).toBeDisabled();
+		await expect(first.locator('a.db-pagination-previous')).toHaveCount(0);
+		await expect(first.locator('a.db-pagination-next')).toHaveAttribute(
+			'href',
+			'?page=2'
+		);
+		await expect(first.locator('[rel="prev"]')).toHaveCount(0);
+		await first.unmount();
+
+		const last = await mount(
+			<DBPagination
+				currentPage={10}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+		await expect(last.locator('button.db-pagination-next')).toBeDisabled();
+		await expect(last.locator('a.db-pagination-next')).toHaveCount(0);
+		await expect(last.locator('[rel="next"]')).toHaveCount(0);
+	});
+
+	test('should mark the current page link with aria-current', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		await expect(
+			component.getByRole('link', { name: 'Page 5 of 10' })
+		).toHaveAttribute('aria-current', 'page');
+		await expect(component.locator('[aria-current="page"]')).toHaveCount(1);
+	});
+
+	test('should not turn the ellipses into links', async ({ mount, page }) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		const ellipses = component.locator('.db-pagination-ellipsis');
+		await expect(ellipses).toHaveCount(2);
+		await expect(ellipses.first()).toHaveAttribute('aria-hidden', 'true');
+		await expect(ellipses.locator('a')).toHaveCount(0);
+	});
+
+	test('should keep the collapsed layout and its tab order in link mode', async ({
+		mount,
+		page
+	}) => {
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		expect(getShape(await readItems(component))).toBe('1 ... 5 ... 10');
+		await expect(
+			component.getByRole('link', { name: 'Page 4 of 10' })
+		).toHaveCount(0);
+
+		await component.locator('a.db-pagination-previous').focus();
+		await page.keyboard.press('Tab');
+		await expect(
+			component.getByRole('link', { name: 'Page 1 of 10' })
+		).toBeFocused();
+		await page.keyboard.press('Tab');
+		await expect(
+			component.getByRole('link', { name: 'Page 5 of 10' })
+		).toBeFocused();
+	});
+
+	test('should report the requested page from a link click', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="#page={page}"
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}
+			/>
+		);
+
+		// A fragment href keeps the test page from navigating away while still
+		// proving that the component does not swallow the click.
+		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
+		expect(requestedPage).toBe(6);
+	});
+};
+
 const expectValidLayout = (
 	items: PaginationItemSnapshot[],
 	setup: {
@@ -589,5 +809,6 @@ test.describe('DBPagination', () => {
 	testComponent();
 	testPagination();
 	testCollapsing();
+	testLinks();
 	testA11y();
 });

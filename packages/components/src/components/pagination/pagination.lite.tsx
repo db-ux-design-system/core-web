@@ -229,6 +229,34 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 			return item.layout === 'always' ? 'page' : 'sibling';
 		},
+		// Returns undefined for everything that must not become a link: no pattern
+		// means button mode, and a page outside the range means there is nothing to
+		// link to. The second case is what keeps the previous and next elements
+		// native disabled buttons at the boundaries - a link that leads nowhere
+		// would need aria-disabled plus tabindex -1 to be inert, and an anchor
+		// announced as a link that cannot be followed is worse than a button that
+		// says it is disabled.
+		getHref: (page: number) => {
+			// The pattern has to go into a local first. Angular turns every prop
+			// access into a signal call, so guarding props.hrefPattern and then
+			// using it again are two separate calls and the narrowing is lost -
+			// which fails the Angular build with TS2532 while the other three
+			// targets compile.
+			const pattern = props.hrefPattern;
+			if (!pattern || page < 1 || page > state.getTotalPages()) {
+				return undefined;
+			}
+			// replaceAll for the same reason as in getPageLabel: a pattern may
+			// legitimately repeat the placeholder, for example in a path segment and
+			// a query parameter.
+			return pattern.replaceAll('{page}', String(page));
+		},
+		getPreviousHref: () => {
+			return state.getHref(state.getCurrentPage() - 1);
+		},
+		getNextHref: () => {
+			return state.getHref(state.getCurrentPage() + 1);
+		},
 		getPageLabel: (page: number) => {
 			// replaceAll, not replace: a translation may legitimately repeat a
 			// placeholder, and replace with a string pattern only substitutes the
@@ -260,20 +288,48 @@ export default function DBPagination(props: DBPaginationProps) {
 			data-size={props.size}>
 			<ul>
 				<li>
-					<DBButton
-						class="db-pagination-previous"
-						variant="ghost"
-						size="small"
-						type="button"
-						icon="chevron_left"
-						noText
-						disabled={state.getCurrentPage() <= 1}
-						aria-label={props.previousLabel}
-						onClick={() =>
-							state.handlePageChange(state.getCurrentPage() - 1)
+					{/* The anchors carry the same class and data-attributes as
+					DBButton renders, because set-basic-button styles by class and
+					attribute and explicitly resets text-decoration for anchor use.
+					That is what keeps both modes pixel-identical without a single
+					line of extra CSS. */}
+					<Show
+						when={state.getPreviousHref()}
+						else={
+							<DBButton
+								class="db-pagination-previous"
+								variant="ghost"
+								size="small"
+								type="button"
+								icon="chevron_left"
+								noText
+								disabled={state.getCurrentPage() <= 1}
+								aria-label={props.previousLabel}
+								onClick={() =>
+									state.handlePageChange(
+										state.getCurrentPage() - 1
+									)
+								}>
+								{props.previousLabel}
+							</DBButton>
 						}>
-						{props.previousLabel}
-					</DBButton>
+						<a
+							class="db-button db-pagination-previous"
+							href={state.getPreviousHref()}
+							rel="prev"
+							data-icon="chevron_left"
+							data-no-text="true"
+							data-size="small"
+							data-variant="ghost"
+							aria-label={props.previousLabel}
+							onClick={() =>
+								state.handlePageChange(
+									state.getCurrentPage() - 1
+								)
+							}>
+							{props.previousLabel}
+						</a>
+					</Show>
 				</li>
 				<For each={state.getPaginationItems()}>
 					{(item: PaginationItemType, index: number) => (
@@ -295,47 +351,104 @@ export default function DBPagination(props: DBPaginationProps) {
 								data-pagination-item={state.getItemAttribute(
 									item
 								)}>
-								<DBButton
-									class="db-pagination-page"
-									variant={
-										state.getCurrentPage() === item.page
-											? 'filled'
-											: 'ghost'
-									}
-									size={props.size}
-									type="button"
-									aria-current={
-										state.getCurrentPage() === item.page
-											? 'page'
-											: undefined
-									}
-									aria-label={state.getPageLabel(item.page)}
-									onClick={() =>
-										state.handlePageChange(item.page)
+								<Show
+									when={state.getHref(item.page)}
+									else={
+										<DBButton
+											class="db-pagination-page"
+											variant={
+												state.getCurrentPage() ===
+												item.page
+													? 'filled'
+													: 'ghost'
+											}
+											size={props.size}
+											type="button"
+											aria-current={
+												state.getCurrentPage() ===
+												item.page
+													? 'page'
+													: undefined
+											}
+											aria-label={state.getPageLabel(
+												item.page
+											)}
+											onClick={() =>
+												state.handlePageChange(
+													item.page
+												)
+											}>
+											{item.page}
+										</DBButton>
 									}>
-									{item.page}
-								</DBButton>
+									<a
+										class="db-button db-pagination-page"
+										href={state.getHref(item.page)}
+										data-variant={
+											state.getCurrentPage() === item.page
+												? 'filled'
+												: 'ghost'
+										}
+										data-size={props.size}
+										aria-current={
+											state.getCurrentPage() === item.page
+												? 'page'
+												: undefined
+										}
+										aria-label={state.getPageLabel(
+											item.page
+										)}
+										onClick={() =>
+											state.handlePageChange(item.page)
+										}>
+										{item.page}
+									</a>
+								</Show>
 							</li>
 						</Show>
 					)}
 				</For>
 				<li>
-					<DBButton
-						class="db-pagination-next"
-						variant="ghost"
-						size="small"
-						type="button"
-						icon="chevron_right"
-						noText
-						disabled={
-							state.getCurrentPage() >= state.getTotalPages()
-						}
-						aria-label={props.nextLabel}
-						onClick={() =>
-							state.handlePageChange(state.getCurrentPage() + 1)
+					<Show
+						when={state.getNextHref()}
+						else={
+							<DBButton
+								class="db-pagination-next"
+								variant="ghost"
+								size="small"
+								type="button"
+								icon="chevron_right"
+								noText
+								disabled={
+									state.getCurrentPage() >=
+									state.getTotalPages()
+								}
+								aria-label={props.nextLabel}
+								onClick={() =>
+									state.handlePageChange(
+										state.getCurrentPage() + 1
+									)
+								}>
+								{props.nextLabel}
+							</DBButton>
 						}>
-						{props.nextLabel}
-					</DBButton>
+						<a
+							class="db-button db-pagination-next"
+							href={state.getNextHref()}
+							rel="next"
+							data-icon="chevron_right"
+							data-no-text="true"
+							data-size="small"
+							data-variant="ghost"
+							aria-label={props.nextLabel}
+							onClick={() =>
+								state.handlePageChange(
+									state.getCurrentPage() + 1
+								)
+							}>
+							{props.nextLabel}
+						</a>
+					</Show>
 				</li>
 			</ul>
 		</nav>

@@ -352,6 +352,25 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
 - **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Narrowing an optional prop does not survive the Angular signal transform**: Angular rewrites every prop access into a signal call, so guarding `props.foo` and then using it are two separate `this.foo()` calls and TypeScript drops the narrowing. This fails the Angular build with `TS2532: Object is possibly 'undefined'` while React, Vue and Stencil compile — so it only shows up in `build-outputs`. Assign the prop to a local first.
+
+    ```ts
+    // ✅ Correct — the local keeps the narrowing
+    const pattern = props.hrefPattern;
+    if (!pattern) {
+    	return undefined;
+    }
+    return pattern.replaceAll("{page}", String(page));
+
+    // ❌ Wrong — becomes two this.hrefPattern() calls in Angular
+    if (!props.hrefPattern) {
+    	return undefined;
+    }
+    return props.hrefPattern.replaceAll("{page}", String(page));
+    ```
+
+    A `??` fallback (`props.pageLabel ?? "default"`) is unaffected, because it needs no narrowing.
+
 - **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
 
     ```tsx

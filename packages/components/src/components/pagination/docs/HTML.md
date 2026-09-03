@@ -156,3 +156,59 @@ The framework components derive this from `currentPage`, `siblingCount` and
 `boundaryCount`. Writing the markup by hand means taking it over: work out the
 list twice, once with your `siblingCount` and once with `siblingCount` reduced
 to `0`, and mark up the difference.
+
+### Page links
+
+Pages can be anchors instead of buttons. That makes the pagination deep linkable,
+shareable and usable without JavaScript, which is the reason to prefer it whenever
+the page is server rendered.
+
+`set-basic-button` resets `text-decoration` for exactly this case, so an `<a>` with
+`class="db-button"` looks identical to the `<button>`. Swap the element, keep every
+class and `data-*` attribute, and drop `type="button"`:
+
+```html index.html
+<li data-pagination-item="page">
+	<a
+		class="db-button db-pagination-page"
+		href="?page=5"
+		data-size="medium"
+		data-variant="filled"
+		aria-current="page"
+		aria-label="Page 5 of 10"
+	>
+		5
+	</a>
+</li>
+```
+
+Previous and next additionally take `rel="prev"` and `rel="next"`. Google dropped
+them as an indexing signal in 2019, but they remain valid HTML, describe the
+sequential relationship and help browsers prefetch:
+
+```html index.html
+<li>
+	<a
+		class="db-button db-pagination-previous"
+		href="?page=4"
+		rel="prev"
+		data-icon="chevron_left"
+		data-no-text="true"
+		data-size="small"
+		data-variant="ghost"
+		aria-label="Previous page"
+	>
+		Previous page
+	</a>
+</li>
+```
+
+**At the boundaries, keep the `<button disabled>`.** On the first page there is no
+previous page to link to, and an anchor that leads nowhere would need
+`aria-disabled="true"` plus `tabindex="-1"` to be inert - announced as a link that
+cannot be followed. The native disabled button says what it is, needs no ARIA and
+looks the same. So the first and last page mix element types in one list, and the
+`rel` attribute disappears together with the anchor.
+
+The ellipses never become links; they stay `<li aria-hidden="true">` with a
+`<span>`.
