@@ -1,0 +1,13 @@
+- complementary:
+  - navigation "Sub Navigation":
+    - list:
+      - listitem:
+        - link "Sub-Item 1":
+          - /url: "#"
+      - listitem:
+        - link "Sub-Item 2":
+          - /url: "#"
+      - listitem:
+        - link "Sub-Item 3":
+          - /url: "#"
+- main "Main": Content

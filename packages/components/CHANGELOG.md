@@ -1,5 +1,28 @@
 # @db-ux/core-components
 
+## 5.3.0
+
+### Minor Changes
+
+- feat: introduce control-panel shell architecture (deprecates DBPage, DBHeader, DBBrand, DBNavigation, DBNavigationItem) - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - New `DBShell` component (deprecates `DBPage`)
+    - New `DBControlPanelDesktop` and `DBControlPanelMobile` (deprecates `DBHeader`)
+    - New `DBControlPanelBrand` (deprecates `DBBrand`)
+    - New `DBControlPanelNavigation` (deprecates `DBNavigation`)
+    - New `DBControlPanelNavigationItem` (deprecates `DBNavigationItem`)
+    - New `DBControlPanelNavigationItemGroup` for sub-navigation
+    - New `DBShellContent` component for main content area
+    - New `DBShellSubNavigation` for secondary navigation panels
+    - New `DBControlPanelMeta`, `DBControlPanelActions1`, `DBControlPanelActions2` slot components
+    - New `DBControlPanelFlatIcon` for collapsed icon-only navigation
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
+### Patch Changes
+
+- fix(DBSwitch): icon no longer bleeds through a closed popover - [see commit 6d4deb5](https://github.com/db-ux-design-system/core-web/commit/6d4deb54cff50c36b45b3ea9b6331b333d072845)
+
 ## 5.2.1
 
 ### Patch Changes

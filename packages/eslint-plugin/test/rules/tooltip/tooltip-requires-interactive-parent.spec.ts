@@ -34,7 +34,7 @@ describe('tooltip-requires-interactive-parent', () => {
 				code: '<DBLink href="#">Link<DBTooltip>More info</DBTooltip></DBLink>'
 			},
 			{
-				code: '<DBNavigationItem>Nav<DBTooltip>Info</DBTooltip></DBNavigationItem>'
+				code: '<DBControlPanelNavigationItem>Nav<DBTooltip>Info</DBTooltip></DBControlPanelNavigationItem>'
 			},
 			{
 				code: '<DBTabItem>Tab<DBTooltip>Info</DBTooltip></DBTabItem>'

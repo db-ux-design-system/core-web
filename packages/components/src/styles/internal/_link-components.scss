@@ -5,7 +5,9 @@
 @use "./component";
 
 %db-link-height {
-	@include helpers.display(inline-block);
+	@include helpers.display(inline-flex);
+
+	align-items: center;
 
 	&:not([data-wrap="true"]) {
 		@include helpers.display(inline-flex);
