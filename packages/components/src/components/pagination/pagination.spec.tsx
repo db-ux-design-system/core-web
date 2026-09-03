@@ -466,6 +466,146 @@ const testCollapsing = () => {
 	});
 };
 
+const testSizes = () => {
+	test('should give previous and next the size of the pagination', async ({
+		mount
+	}) => {
+		// Figma draws the previous and next buttons at the size of the page items,
+		// not at a fixed small - see the Pagination (Concept) component set.
+		const medium = await mount(
+			<DBPagination currentPage={5} totalCount={100} pageSize={10} />
+		);
+		await expect(medium.locator('.db-pagination-previous')).toHaveAttribute(
+			'data-size',
+			'medium'
+		);
+		await expect(medium.locator('.db-pagination-next')).toHaveAttribute(
+			'data-size',
+			'medium'
+		);
+		await medium.unmount();
+
+		const small = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				size="small"
+			/>
+		);
+		await expect(small.locator('.db-pagination-previous')).toHaveAttribute(
+			'data-size',
+			'small'
+		);
+		await expect(small.locator('.db-pagination-next')).toHaveAttribute(
+			'data-size',
+			'small'
+		);
+	});
+
+	test('should size the links like the buttons', async ({ mount }) => {
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		await expect(
+			component.locator('a.db-pagination-previous')
+		).toHaveAttribute('data-size', 'medium');
+		await expect(component.locator('a.db-pagination-next')).toHaveAttribute(
+			'data-size',
+			'medium'
+		);
+	});
+};
+
+const testTouchTargets = () => {
+	test('should keep a pointer target of at least 24 pixels', async ({
+		mount
+	}) => {
+		// WCAG 2.2 SC 2.5.8. At functional density the buttons themselves are only
+		// 20px, so the target comes from an overlay - see pagination.scss. The
+		// density cannot be exercised here because the component test harness does
+		// not load the density stylesheets, so this guards the mechanism: if the
+		// overlay goes away, the content is `none` and the floor is gone with it.
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				size="small"
+			/>
+		);
+
+		for (const selector of [
+			'.db-pagination-previous',
+			'.db-pagination-next',
+			'.db-pagination-page'
+		]) {
+			const overlay = await component
+				.locator(selector)
+				.first()
+				.evaluate((element: HTMLElement) => {
+					const style = window.getComputedStyle(element, '::after');
+					return {
+						content: style.content,
+						minInlineSize: Number.parseFloat(style.minInlineSize),
+						minBlockSize: Number.parseFloat(style.minBlockSize)
+					};
+				});
+
+			expect(overlay.content, `${selector}: overlay is rendered`).toBe(
+				'""'
+			);
+			expect(
+				overlay.minInlineSize,
+				`${selector}: target is at least 24px wide`
+			).toBeGreaterThanOrEqual(24);
+			expect(
+				overlay.minBlockSize,
+				`${selector}: target is at least 24px high`
+			).toBeGreaterThanOrEqual(24);
+		}
+	});
+
+	test('should not let two page targets overlap', async ({ mount }) => {
+		// Five pages need no truncation, so all page buttons are direct neighbors
+		// and none of them is hidden in either layout - with a truncated list the
+		// first two matches would be separated by an ellipsis, or hidden and
+		// therefore without a box to measure.
+		const component = await mount(
+			<DBPagination
+				currentPage={3}
+				totalCount={50}
+				pageSize={10}
+				size="small"
+			/>
+		);
+
+		// An overlay wider than the distance between two origins would make a click
+		// near an edge land on the neighbor, which is worse than a small target.
+		const measurements = await component
+			.locator('.db-pagination-page')
+			.evaluateAll((buttons: HTMLElement[]) => {
+				const boxes = buttons.map((button) =>
+					button.getBoundingClientRect()
+				);
+				const overlay = Number.parseFloat(
+					window.getComputedStyle(buttons[0]!, '::after')
+						.minInlineSize
+				);
+				const target = Math.max(overlay, boxes[0]!.width);
+				return { target, pitch: boxes[1]!.left - boxes[0]!.left };
+			});
+
+		expect(measurements.target).toBeLessThanOrEqual(measurements.pitch);
+	});
+};
+
 const testLinks = () => {
 	test('should render buttons and no href without hrefPattern', async ({
 		mount,
@@ -809,6 +949,8 @@ test.describe('DBPagination', () => {
 	testComponent();
 	testPagination();
 	testCollapsing();
+	testSizes();
+	testTouchTargets();
 	testLinks();
 	testA11y();
 });

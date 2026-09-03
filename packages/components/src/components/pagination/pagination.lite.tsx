@@ -299,7 +299,7 @@ export default function DBPagination(props: DBPaginationProps) {
 							<DBButton
 								class="db-pagination-previous"
 								variant="ghost"
-								size="small"
+								size={props.size}
 								type="button"
 								icon="chevron_left"
 								noText
@@ -319,7 +319,7 @@ export default function DBPagination(props: DBPaginationProps) {
 							rel="prev"
 							data-icon="chevron_left"
 							data-no-text="true"
-							data-size="small"
+							data-size={props.size}
 							data-variant="ghost"
 							aria-label={props.previousLabel}
 							onClick={() =>
@@ -415,7 +415,7 @@ export default function DBPagination(props: DBPaginationProps) {
 							<DBButton
 								class="db-pagination-next"
 								variant="ghost"
-								size="small"
+								size={props.size}
 								type="button"
 								icon="chevron_right"
 								noText
@@ -438,7 +438,7 @@ export default function DBPagination(props: DBPaginationProps) {
 							rel="next"
 							data-icon="chevron_right"
 							data-no-text="true"
-							data-size="small"
+							data-size={props.size}
 							data-variant="ghost"
 							aria-label={props.nextLabel}
 							onClick={() =>

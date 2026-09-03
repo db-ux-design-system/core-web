@@ -31,7 +31,7 @@ Three things are easy to miss when writing the markup by hand:
 				type="button"
 				data-icon="chevron_left"
 				data-no-text="true"
-				data-size="small"
+				data-size="medium"
 				data-variant="ghost"
 				aria-label="Previous page"
 			>
@@ -114,7 +114,7 @@ Three things are easy to miss when writing the markup by hand:
 				type="button"
 				data-icon="chevron_right"
 				data-no-text="true"
-				data-size="small"
+				data-size="medium"
 				data-variant="ghost"
 				aria-label="Next page"
 			>
@@ -125,10 +125,11 @@ Three things are easy to miss when writing the markup by hand:
 </nav>
 ```
 
-Use `data-size="small"` on the `<nav>` for the small variant. Set
-`data-size="small"` on the page buttons as well; the previous/next buttons stay
-`data-size="small"` in both variants. Disable the previous button on the first
-and the next button on the last page with the native `disabled` attribute.
+Use `data-size="small"` on the `<nav>` for the small variant, and set the same
+value on every button inside it. The previous and next buttons carry the size of
+the pagination, not a fixed one, so they stay as wide as the page buttons next to
+them. Disable the previous button on the first and the next button on the last
+page with the native `disabled` attribute.
 
 ### Collapsing on narrow viewports
 
@@ -194,7 +195,7 @@ sequential relationship and help browsers prefetch:
 		rel="prev"
 		data-icon="chevron_left"
 		data-no-text="true"
-		data-size="small"
+		data-size="medium"
 		data-variant="ghost"
 		aria-label="Previous page"
 	>

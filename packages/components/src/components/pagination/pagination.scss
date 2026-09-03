@@ -52,6 +52,36 @@
 		}
 	}
 
+	// WCAG 2.2 SC 2.5.8 asks for a pointer target of at least 24 by 24 CSS pixels.
+	// $db-sizing-sm resolves to 20px at functional density, so every item of the
+	// small variant falls below that floor - the pages as well as the previous and
+	// next buttons, which follow the pagination size. The pseudo element grows the
+	// target without touching the visible box, so the densities keep the
+	// proportions they are designed with.
+	// The 24px cannot come from a sizing token: those scale with the density,
+	// which is exactly how the floor gets undercut. It is the success criterion
+	// itself, not a design decision, so it stays a literal value.
+	// The overlay reaches at most 2px into the 4px gap on each side, so the
+	// targets of two neighbors meet without overlapping - no click near an edge
+	// can end up on the wrong page.
+	:is(.db-pagination-page, .db-pagination-previous, .db-pagination-next) {
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			translate: -50% -50%;
+			inline-size: 100%;
+			block-size: 100%;
+			// stylelint-disable-next-line db-ux/use-sizing
+			min-inline-size: 1.5rem;
+			// stylelint-disable-next-line db-ux/use-sizing
+			min-block-size: 1.5rem;
+		}
+	}
+
 	.db-pagination-page.db-button {
 		block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
