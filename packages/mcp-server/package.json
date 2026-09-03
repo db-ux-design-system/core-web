@@ -41,14 +41,14 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.30.0",
-    "zod": "4.5.2"
+    "zod": "4.5.4"
   },
   "devDependencies": {
     "@db-ux/db-theme-icons": "4.2.0",
     "cpr": "3.0.1",
     "esbuild": "0.28.2",
     "npm-run-all2": "9.0.3",
-    "tsx": "4.23.12",
+    "tsx": "4.23.13",
     "typescript": "5.9.3",
     "vitest": "4.1.11"
   },

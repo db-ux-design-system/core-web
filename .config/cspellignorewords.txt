@@ -230,8 +230,11 @@ fbca
 unreviewed
 notext
 prebundle
+notext
+treeitems
 knip
 checkin
+commitlintrc
 focusgroup
 unprovide
 tablists
@@ -253,5 +256,6 @@ descope
 pnpms
 renovatebot
 drilldown
+Drilldown
 cspellignorewords
 xlarge

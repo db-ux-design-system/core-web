@@ -15,6 +15,7 @@ export type ComponentType = {
 		| 'custom-heading'
 		| 'custom-button'
 		| 'table'
+		| 'control-panel-mobile'
 		| 'loading-indicator'
 		| 'stack'
 		| 'switch'
