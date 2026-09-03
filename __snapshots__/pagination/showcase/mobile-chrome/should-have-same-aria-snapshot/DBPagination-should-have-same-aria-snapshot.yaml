@@ -8,11 +8,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
@@ -31,10 +27,6 @@
       - listitem:
         - button "Page 3 of 10": "3"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
-        - button "Page 5 of 10": "5"
-      - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
         - button "Next page"
@@ -46,11 +38,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
@@ -62,10 +50,6 @@
         - button "Previous page"
       - listitem:
         - button "Page 1 of 10": "1"
-      - listitem:
-        - button "Page 6 of 10": "6"
-      - listitem:
-        - button "Page 7 of 10": "7"
       - listitem:
         - button "Page 8 of 10": "8"
       - listitem:
@@ -100,11 +84,7 @@
       - listitem:
         - button "Page 1 of 20": "1"
       - listitem:
-        - button "Page 9 of 20": "9"
-      - listitem:
         - button "Page 10 of 20": "10"
-      - listitem:
-        - button "Page 11 of 20": "11"
       - listitem:
         - button "Page 20 of 20": "20"
       - listitem:
@@ -117,15 +97,7 @@
       - listitem:
         - button "Page 1 of 20": "1"
       - listitem:
-        - button "Page 8 of 20": "8"
-      - listitem:
-        - button "Page 9 of 20": "9"
-      - listitem:
         - button "Page 10 of 20": "10"
-      - listitem:
-        - button "Page 11 of 20": "11"
-      - listitem:
-        - button "Page 12 of 20": "12"
       - listitem:
         - button "Page 20 of 20": "20"
       - listitem:
@@ -140,15 +112,42 @@
       - listitem:
         - button "Page 2 of 20": "2"
       - listitem:
-        - button "Page 9 of 20": "9"
-      - listitem:
         - button "Page 10 of 20": "10"
-      - listitem:
-        - button "Page 11 of 20": "11"
       - listitem:
         - button "Page 19 of 20": "19"
       - listitem:
         - button "Page 20 of 20": "20"
+      - listitem:
+        - button "Next page"
+  - link "Collapsing"
+  - text: Below the sm breakpoint the pages next to the current one give way - resize the window to see it
+  - navigation "Collapsing pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10000": "1"
+      - listitem:
+        - button "Page 5000 of 10000": "5000"
+      - listitem:
+        - button "Page 10000 of 10000": "10000"
+      - listitem:
+        - button "Next page"
+  - text: A list this short is already the collapsed layout, so it stays as it is
+  - navigation "Collapsing short list pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 5": "1"
+      - listitem:
+        - button "Page 2 of 5": "2"
+      - listitem:
+        - button "Page 3 of 5": "3"
+      - listitem:
+        - button "Page 4 of 5": "4"
+      - listitem:
+        - button "Page 5 of 5": "5"
       - listitem:
         - button "Next page"
   - link "Size"
@@ -160,11 +159,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
@@ -177,11 +172,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
@@ -195,11 +186,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
@@ -212,11 +199,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
@@ -229,11 +212,7 @@
       - listitem:
         - button "Page 1 of 10": "1"
       - listitem:
-        - button "Page 4 of 10": "4"
-      - listitem:
         - button "Page 5 of 10": "5"
-      - listitem:
-        - button "Page 6 of 10": "6"
       - listitem:
         - button "Page 10 of 10": "10"
       - listitem:
