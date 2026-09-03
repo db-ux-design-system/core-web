@@ -46,7 +46,9 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value'],
+		// `hidden` needs the native property binding: [attr.hidden]="false"
+		// would still hide the empty option.
+		nativeAttributes: ['disabled', 'required', 'value', 'hidden'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
@@ -344,10 +346,7 @@ export default function DBSelect(props: DBSelectProps) {
 					<option
 						class="placeholder"
 						value=""
-						data-show-empty-option={getBooleanAsString(
-							state.shouldShowEmptyOption(),
-							'showEmptyOption'
-						)}></option>
+						hidden={!state.shouldShowEmptyOption()}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>

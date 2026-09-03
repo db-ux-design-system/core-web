@@ -190,7 +190,6 @@
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -201,7 +200,6 @@
   - link "Show Required Asterisk"
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -211,7 +209,6 @@
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -287,7 +284,6 @@
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"

@@ -67,6 +67,65 @@ const testAction = () => {
 		expect(selected).toContain(test);
 	});
 
+	// The empty option of a `placeholder` or floating label select carries the
+	// native `hidden` attribute. `required` hides it by default,
+	// `showEmptyOption` overrides that in both directions.
+	test('should hide the empty option of a required select', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBSelect label="Label" placeholder="Choose an option" required>
+				<option value="first">First option</option>
+			</DBSelect>
+		);
+		const emptyOption = component.locator('option[value=""]');
+		const firstOption = component.locator('option[value="first"]');
+		const select = component.getByRole('combobox');
+
+		await expect(emptyOption).toHaveJSProperty('hidden', true);
+		await expect(emptyOption).toHaveJSProperty('selected', true);
+		await expect(firstOption).toHaveJSProperty('selected', false);
+		await expect(select).toHaveValue('');
+		await expect(select).toHaveJSProperty('selectedIndex', 0);
+		expect(
+			await select.evaluate(
+				(element: HTMLSelectElement) => element.validity.valueMissing
+			)
+		).toBe(true);
+	});
+
+	test('should show the empty option with showEmptyOption', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBSelect
+				label="Label"
+				placeholder="Choose an option"
+				required
+				showEmptyOption>
+				<option value="first">First option</option>
+			</DBSelect>
+		);
+		await expect(component.locator('option[value=""]')).toHaveJSProperty(
+			'hidden',
+			false
+		);
+	});
+
+	test('should show the empty option of an optional select', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBSelect label="Label" placeholder="Choose an option">
+				<option value="first">First option</option>
+			</DBSelect>
+		);
+		await expect(component.locator('option[value=""]')).toHaveJSProperty(
+			'hidden',
+			false
+		);
+	});
+
 	test('should keep the selection while validating on input', async ({
 		mount
 	}) => {
