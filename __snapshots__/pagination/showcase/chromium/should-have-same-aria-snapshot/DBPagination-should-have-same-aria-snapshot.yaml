@@ -151,6 +151,54 @@
         - button "Page 20 of 20": "20"
       - listitem:
         - button "Next page"
+  - link "Link"
+  - text: hrefPattern turns the pages into anchors - deep linkable and usable without JavaScript
+  - navigation "Linked pagination":
+    - list:
+      - listitem:
+        - link "Previous page"
+      - listitem:
+        - link "Page 1 of 10"
+          - text: "1"
+      - listitem:
+        - link "Page 4 of 10"
+          - text: "4"
+      - listitem:
+        - link "Page 5 of 10"
+          - text: "5"
+      - listitem:
+        - link "Page 6 of 10"
+          - text: "6"
+      - listitem:
+        - link "Page 10 of 10"
+          - text: "10"
+      - listitem:
+        - link "Next page"
+  - text: At the boundaries previous and next stay disabled buttons, because there is no page to link to
+  - navigation "Linked boundary pagination":
+    - list:
+      - listitem:
+        - button "Previous page" [disabled]
+      - listitem:
+        - link "Page 1 of 10"
+          - text: "1"
+      - listitem:
+        - link "Page 2 of 10"
+          - text: "2"
+      - listitem:
+        - link "Page 3 of 10"
+          - text: "3"
+      - listitem:
+        - link "Page 4 of 10"
+          - text: "4"
+      - listitem:
+        - link "Page 5 of 10"
+          - text: "5"
+      - listitem:
+        - link "Page 10 of 10"
+          - text: "10"
+      - listitem:
+        - link "Next page"
   - link "Collapsing"
   - text: Below the sm breakpoint the pages next to the current one give way - resize the window to see it
   - navigation "Collapsing pagination":
