@@ -1,36 +1,15 @@
 - main:
   - heading "DBLoadingIndicator" [level=1]
   - link "Density"
-  - text: Functional
   - status:
-    - text: Circular horizontal
-    - progressbar "Circular horizontal"
+    - text: Functional
+    - progressbar "Functional"
   - status:
-    - text: Circular vertical
-    - progressbar "Circular vertical"
+    - text: (Default) Regular
+    - progressbar "(Default) Regular"
   - status:
-    - text: Bar
-    - progressbar "Bar"
-  - text: (Default) Regular
-  - status:
-    - text: Circular horizontal
-    - progressbar "Circular horizontal"
-  - status:
-    - text: Circular vertical
-    - progressbar "Circular vertical"
-  - status:
-    - text: Bar
-    - progressbar "Bar"
-  - text: Expressive
-  - status:
-    - text: Circular horizontal
-    - progressbar "Circular horizontal"
-  - status:
-    - text: Circular vertical
-    - progressbar "Circular vertical"
-  - status:
-    - text: Bar
-    - progressbar "Bar"
+    - text: Expressive
+    - progressbar "Expressive"
   - link "Indeterminate"
   - text: (Default) True
   - status:
