@@ -1,15 +1,36 @@
 - main:
   - heading "DBLoadingIndicator" [level=1]
   - link "Density"
+  - text: Functional
   - status:
-    - text: Functional
-    - progressbar "Functional"
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
   - status:
-    - text: (Default) Regular
-    - progressbar "(Default) Regular"
+    - text: Circular vertical
+    - progressbar "Circular vertical"
   - status:
-    - text: Expressive
-    - progressbar "Expressive"
+    - text: Bar
+    - progressbar "Bar"
+  - text: (Default) Regular
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Expressive
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - link "Indeterminate"
   - text: (Default) True
   - status:
@@ -182,15 +203,21 @@
     - text: Bar
     - progressbar "Bar"
   - text: "True"
-  - status
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
   - paragraph: Content 1
   - paragraph: Content 2
   - paragraph: Content 3
-  - status
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
   - paragraph: Content 1
   - paragraph: Content 2
   - paragraph: Content 3
-  - status
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - paragraph: Content 1
   - paragraph: Content 2
   - paragraph: Content 3
@@ -228,29 +255,45 @@
   - 'link "Examples: Button"':
   - text: Without overlay
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - text: With overlay
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - button "Loading" [disabled]:
-    - status
+    - status:
+      - text: Loading
+      - progressbar "Loading"
     - text: Button
   - 'link "Example: Timeout"':
   - button "Start Timeout"
