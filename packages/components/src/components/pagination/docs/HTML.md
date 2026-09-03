@@ -21,8 +21,8 @@ Three things are easy to miss when writing the markup by hand:
   `class="db-pagination-item"`, its own `data-size` and a `data-pagination-item`
   attribute. The last one drives the collapsing described below and is the only
   part of the markup that cannot be read off the rendered result. In the framework
-  packages this markup comes from
-  [`DBPaginationItem`](../../pagination-item/docs/HTML.md).
+  packages this markup comes from `DBPaginationItem`, which is documented together
+  with `DBPagination`.
 - The previous and next buttons are not pagination items. They are icon buttons,
   the same split the Figma component set makes, and they are part of every layout.
 
@@ -238,4 +238,6 @@ looks the same. So the first and last page mix element types in one list, and th
 `rel` attribute disappears together with the anchor.
 
 The ellipses never become links; they stay `<li aria-hidden="true">` with a
-`<span>`.
+`<span>`. The `<span>` cannot be replaced by a pseudo element: Chromium exposes
+generated `content` as a text node, so an ellipsis drawn with `::before` would be
+announced instead of hidden.
