@@ -1,0 +1,116 @@
+- main:
+  - heading "DBFooter" [level=1]
+  - link "Composition"
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph: © Example Company
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Accessibility"
+  - link "Complex composition"
+  - text: Deutsche Bahn
+  - paragraph: Moving people and goods while connecting regions and cities.
+  - navigation "Travel":
+    - heading "Travel" [level=2]
+    - list:
+      - listitem:
+        - link "Journey planner"
+      - listitem:
+        - link "Offers"
+      - listitem:
+        - link "Stations"
+  - navigation "Support":
+    - heading "Support" [level=2]
+    - list:
+      - listitem:
+        - link "Help and contact"
+      - listitem:
+        - link "Passenger rights"
+      - listitem:
+        - link "Lost property"
+  - navigation "Company":
+    - heading "Company" [level=2]
+    - list:
+      - listitem:
+        - link "Company profile"
+      - listitem:
+        - link "Careers"
+      - listitem:
+        - link "Sustainability"
+  - paragraph: © Deutsche Bahn AG
+  - navigation "Complex legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Accessibility"
+      - listitem:
+        - link "Terms and conditions"
+  - link "Optional Areas"
+  - navigation "Content-only footer navigation":
+    - list:
+      - listitem:
+        - link "Services"
+  - paragraph:
+    - text: "Customer service:"
+    - link "Contact us"
+  - link "Copyright"
+  - paragraph: © Example Company
+  - navigation "Legal navigation with copyright":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+  - navigation "Legal navigation without copyright":
+    - list:
+      - listitem:
+        - link "Terms and conditions"
+      - listitem:
+        - link "Accessibility"
+  - link "Width"
+  - text: Full inner content width
+  - navigation "Full footer navigation":
+    - list:
+      - listitem:
+        - link "Full"
+  - navigation "Full legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - text: Large inner content width
+  - navigation "Large footer navigation":
+    - list:
+      - listitem:
+        - link "Large"
+  - navigation "Large legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - text: Medium inner content width
+  - navigation "Medium footer navigation":
+    - list:
+      - listitem:
+        - link "Medium"
+  - navigation "Medium legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"
+  - text: Small inner content width
+  - navigation "Small footer navigation":
+    - list:
+      - listitem:
+        - link "Small"
+  - navigation "Small legal navigation":
+    - list:
+      - listitem:
+        - link "Legal"

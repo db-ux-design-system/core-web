@@ -11,6 +11,7 @@ import CustomButtonShowcase from '@components/components/custom-button/showcase/
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
+import FooterShowcase from '@components/components/footer/showcase/footer.showcase';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
@@ -91,7 +92,8 @@ const nameComponentMap = {
 	tabs: <TabsShowcase isPatternhub />,
 	tag: <TagShowcase isPatternhub />,
 	textarea: <TextareaShowcase isPatternhub />,
-	tooltip: <TooltipShowcase isPatternhub />
+	tooltip: <TooltipShowcase isPatternhub />,
+	footer: <FooterShowcase isPatternhub />
 };
 
 const addComponentsToNavigationItems = (

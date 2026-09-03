@@ -18,6 +18,10 @@ const getDefaultScreenshotTest = async (
 
 for (const group of Components) {
 	for (const component of group.subNavigation) {
+		if (component.isHiddenInMenu === true) {
+			continue;
+		}
+
 		test.describe(component.name, () => {
 			void getDefaultScreenshotTest(
 				component.name,

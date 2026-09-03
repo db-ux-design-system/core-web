@@ -1,0 +1,24 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+
+.db-footer {
+	flex-direction: column;
+	inline-size: 100%;
+
+	.db-footer-content-container {
+		inline-size: 100%;
+		margin-inline: auto;
+		min-inline-size: 0;
+	}
+
+	&[data-width="small"] .db-footer-content-container {
+		max-inline-size: screen-sizes.$db-breakpoint-sm;
+	}
+
+	&[data-width="medium"] .db-footer-content-container {
+		max-inline-size: screen-sizes.$db-breakpoint-md;
+	}
+
+	&[data-width="large"] .db-footer-content-container {
+		max-inline-size: screen-sizes.$db-breakpoint-lg;
+	}
+}

@@ -1,0 +1,18 @@
+- contentinfo:
+  - navigation "Footer navigation":
+    - list:
+      - listitem:
+        - link "About us":
+          - /url: "#about"
+      - listitem:
+        - link "Contact":
+          - /url: "#contact"
+  - paragraph: © Example Company
+  - navigation "Legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy":
+          - /url: "#privacy"
+      - listitem:
+        - link "Imprint":
+          - /url: "#imprint"
