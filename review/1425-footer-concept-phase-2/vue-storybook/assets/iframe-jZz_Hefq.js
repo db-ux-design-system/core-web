@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-LaTfgao2.js";e();
