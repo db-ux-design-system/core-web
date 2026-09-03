@@ -15,6 +15,11 @@ export default function PaginationShowcase(props: PatternhubProps) {
 		<ContainerWrapperShowcase
 			title="DBPagination"
 			isPatternhub={props.isPatternhub}>
+			<LinkWrapperShowcase exampleName="Density">
+				<CardWrapperShowcase>
+					<PaginationDensity />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Controlled">
 				<CardWrapperShowcase>
 					<PaginationControlled />
@@ -43,11 +48,6 @@ export default function PaginationShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Size">
 				<CardWrapperShowcase>
 					<PaginationSize />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Density">
-				<CardWrapperShowcase>
-					<PaginationDensity />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
