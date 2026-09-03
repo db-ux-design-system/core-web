@@ -3,6 +3,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	OrientationProps,
 	ShowLabelProps,
 	SizeProps
 } from '../../shared/model';

@@ -23,6 +23,7 @@ $db-loading-indicator-track-color: color(
 		> label {
 			display: inline-flex;
 			align-items: center;
+			/* stylelint-disable-next-line db-ux/use-spacings */
 			gap: var(--db-indicator-gap);
 
 			> progress {
@@ -281,6 +282,7 @@ $progress-bar-full-segment-inline-size: calc(
 	&[data-state="critical"] {
 		div {
 			&::after {
+				/* stylelint-disable-next-line db-ux/use-sizing */
 				inline-size: $progress-bar-full-segment-inline-size;
 			}
 		}
@@ -299,6 +301,7 @@ $progress-bar-full-segment-inline-size: calc(
 			min-inline-size: variables.$db-sizing-md;
 			inset-block-start: 0;
 			inset-inline-start: 0;
+			/* stylelint-disable-next-line db-ux/use-sizing */
 			block-size: var(
 				--db-loading-indicator-progress-bar-track-block-size
 			);
