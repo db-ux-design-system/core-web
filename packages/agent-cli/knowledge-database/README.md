@@ -166,7 +166,10 @@ Platform MDX           ← Sync (db-ux-design-system.github.io)
 - `documentation.json` wird aus `guidelines.md` **generiert** und enthält die ausformulierten Texte für die Platform-Dokumentation in DE und EN. Die Tonalität folgt dem Content Styleguide (siehe „Generierung der documentation.json").
 - Die **Platform MDX-Dateien** im Repo `db-ux-design-system.github.io` werden perspektivisch aus `documentation.json` gesynct.
 
-`meta.json` kann optional `deprecation: "planned"` plus `note` enthalten, wenn eine Komponente mittelfristig abgelöst wird — dieser Hinweis gehört in die `meta.json` und nicht in die `guidelines.md`, damit er maschinell auswertbar bleibt.
+`meta.json` kann optional ein `deprecation`-Feld plus `note` enthalten — dieser Hinweis gehört in die `meta.json` und nicht in die `guidelines.md`, damit er maschinell auswertbar bleibt. Zwei Werte:
+
+- **`deprecation: "planned"`** — die Komponente wird mittelfristig abgelöst, ist aber weiter nutzbar.
+- **`deprecation: "deprecated"`** — die Ablösung ist vollzogen, die Komponente ist nicht mehr für neue Umsetzungen vorgesehen. Die `note` nennt das Datum.
 
 ### Abschnitte in `guidelines.md`
 
@@ -279,6 +282,6 @@ Nicht markierte Aussagen unter `## Zusätzliche Informationen` werden nicht in `
 
 #### Was nicht aus `guidelines.md` generiert wird
 
-- `figmaFileKey` — aus `figma.json`
-- `figmaNodeId` — Figma-Visuals müssen erst erstellt werden, Node-IDs werden nachgetragen. Immer als String in Anführungszeichen (`"4185-10"`), sonst liest JSON den Bindestrich als Minuszeichen und die Datei ist ungültig. Bis das Visual existiert steht `null`
+- `figmaFileKey` — aus `figma.json`; als roher alphanumerischer Figma-File-Key ohne URL oder Prefix
+- `figmaNodeId` — Figma-Visuals müssen erst erstellt werden, Node-IDs werden nachgetragen. Immer als String im Format `"page-node"` mit Bindestrich und ohne URL, Doppelpunkt oder `id=`-Prefix. Bis das Visual existiert, steht `null`
 - `faq` — wird manuell befüllt (Support, häufige Rückfragen)

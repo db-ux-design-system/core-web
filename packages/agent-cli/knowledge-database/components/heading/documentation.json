@@ -33,14 +33,14 @@
 				"en": "Use exactly one H1 per page as the top level of the document structure. Multiple H1 elements break the hierarchy and impair screen reader navigation."
 			},
 			"do": {
-				"figmaNodeId": "4117:2",
+				"figmaNodeId": "4117-2",
 				"description": {
 					"de": "Setze genau ein H1 als Seitenüberschrift ein und verwende H2–H6 für Unterabschnitte.",
 					"en": "Use exactly one H1 as the page title and H2–H6 for subsections."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4117:4",
+				"figmaNodeId": "4117-4",
 				"description": {
 					"de": "Verwende nicht mehrere H1 auf derselben Seite. Screenreader verlieren die Orientierung in der Dokumentstruktur.",
 					"en": "Don't use multiple H1 on the same page. Screen readers lose orientation in the document structure."
@@ -58,14 +58,14 @@
 				"en": "Maintain heading order (H1 → H2 → H3). Skipped levels create an incomplete outline and hinder navigation with assistive technologies."
 			},
 			"do": {
-				"figmaNodeId": "4117:6",
+				"figmaNodeId": "4117-6",
 				"description": {
 					"de": "Baue die Heading-Hierarchie lückenlos auf: H1, dann H2, dann H3.",
 					"en": "Build the heading hierarchy without gaps: H1, then H2, then H3."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4117:8",
+				"figmaNodeId": "4117-8",
 				"description": {
 					"de": "Springe nicht von H1 direkt auf H3. Die fehlende Ebene erzeugt eine unvollständige Outline für Screenreader.",
 					"en": "Don't jump from H1 directly to H3. The missing level creates an incomplete outline for screen readers."
@@ -83,14 +83,14 @@
 				"en": "When overriding size, maintain the visual hierarchy from H1 to H6. Each level must be equal to or smaller than the previous one."
 			},
 			"do": {
-				"figmaNodeId": "4117:10",
+				"figmaNodeId": "4117-10",
 				"description": {
 					"de": "Stelle sicher, dass H1 visuell größer oder gleich groß wie H2 bleibt, auch bei überschriebener Size.",
 					"en": "Ensure H1 remains visually larger than or equal to H2, even when overriding size."
 				}
 			},
 			"caution": {
-				"figmaNodeId": "4117:12",
+				"figmaNodeId": "4117-12",
 				"description": {
 					"de": "Eine invertierte Größenreihenfolge (H2 größer als H1) widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur.",
 					"en": "An inverted size order (H2 larger than H1) contradicts reading expectations and makes it harder to grasp page structure."
@@ -108,14 +108,14 @@
 				"en": "Use Custom Heading only when additional elements are needed in the start or end slot alongside the heading text. For plain text headings, Heading H1–H6 is the right choice."
 			},
 			"do": {
-				"figmaNodeId": "4117:14",
+				"figmaNodeId": "4117-14",
 				"description": {
 					"de": "Verwende Custom Heading, wenn Links, Icons oder Badges neben dem Heading-Text stehen sollen.",
 					"en": "Use Custom Heading when links, icons, or badges need to appear alongside the heading text."
 				}
 			},
 			"dont": {
-				"figmaNodeId": "4117:16",
+				"figmaNodeId": "4117-16",
 				"description": {
 					"de": "Verwende Custom Heading nicht für reine Textheadings. Heading H1–H6 ist dafür vorgesehen und einfacher in der Handhabung.",
 					"en": "Don't use Custom Heading for plain text headings. Heading H1–H6 is designed for that and simpler to use."
@@ -133,14 +133,14 @@
 				"en": "Limit additional elements in the slots to what is necessary. Too many actions distract from the content and reduce clarity."
 			},
 			"do": {
-				"figmaNodeId": "4117:18",
+				"figmaNodeId": "4117-18",
 				"description": {
 					"de": "Platziere nur die nötigsten Elemente (z. B. einen Link oder ein Badge) in den Slots.",
 					"en": "Place only the most necessary elements (e.g., a single link or badge) in the slots."
 				}
 			},
 			"caution": {
-				"figmaNodeId": "4117:20",
+				"figmaNodeId": "4117-20",
 				"description": {
 					"de": "Zu viele Aktionen neben einer Heading lenken vom eigentlichen Inhalt ab und machen den Bereich unübersichtlich.",
 					"en": "Too many actions alongside a heading distract from the actual content and make the area cluttered."

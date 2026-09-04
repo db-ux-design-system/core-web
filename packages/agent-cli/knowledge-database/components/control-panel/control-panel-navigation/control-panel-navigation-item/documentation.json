@@ -83,7 +83,7 @@
 				"en": "Short labels are quick to grasp when scanning the navigation. Long labels also change the layout, differently per variant: in Drill Down and Tree they wrap to several lines, in Popover the Navigation Item grows with them."
 			},
 			"do": {
-				"figmaNodeId": "id=4808-87",
+				"figmaNodeId": "4808-87",
 				"description": {
 					"de": "Halte Labels kurz.",
 					"en": "Keep labels short."
