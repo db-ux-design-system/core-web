@@ -127,17 +127,72 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			return pages.concat(endPages);
 		},
+		// The collapsed layout is not the wide algorithm run with siblingCount 0.
+		// That one keeps the number of rendered items constant by shifting its window
+		// towards the end of the list, so as soon as the current page sits at a
+		// border three pages of full width end up next to each other - 1 ... 9998
+		// 9999 10000. Width is the only reason the collapsed layout exists, so it
+		// gives up that stability and renders the boundary pages, the current page,
+		// and nothing else.
+		getCollapsedPages: () => {
+			const totalPages = state.getTotalPages();
+			const currentPage = state.getCurrentPage();
+			const boundaryCount = state.getInteger(props.boundaryCount, 1, 0);
+
+			// Same exit as the wide layout: a list this short is the collapsed shape
+			// already, so hiding anything would claim a gap that does not exist.
+			if (totalPages <= boundaryCount * 2 + 3) {
+				return state.getRange(1, totalPages);
+			}
+
+			const candidates = state
+				.getRange(1, Math.min(boundaryCount, totalPages))
+				.concat([currentPage])
+				.concat(
+					state.getRange(
+						Math.max(
+							totalPages - boundaryCount + 1,
+							boundaryCount + 1
+						),
+						totalPages
+					)
+				);
+			const pages: number[] = [];
+			let lastPage = 0;
+
+			for (const candidate of candidates) {
+				// The current page can fall inside the boundaries, where it is part of
+				// the list already.
+				if (candidate <= lastPage) {
+					continue;
+				}
+
+				// A gap of exactly one page is rendered instead of hidden, the same
+				// rule the wide layout follows: an ellipsis would take the room of the
+				// page it replaces while hiding which page that is. The wide layout
+				// never leaves such a gap either, so the page filled in here is one it
+				// renders as well - that is what keeps these pages a subset of the wide
+				// ones, which is the condition for both layouts sharing one list.
+				if (lastPage > 0 && candidate - lastPage === 2) {
+					pages.push(lastPage + 1);
+				}
+
+				pages.push(candidate);
+				lastPage = candidate;
+			}
+
+			return pages;
+		},
 		getPaginationItems: () => {
 			const totalPages = state.getTotalPages();
 			const widePages = state.getPages(
 				state.getInteger(props.siblingCount, 1, 0)
 			);
-			// The collapsed layout is the same algorithm with siblingCount reduced
-			// to 0, so it inherits every guarantee that layout already makes:
+			// getCollapsedPages makes the same guarantees the wide layout does:
 			// ascending unique pages, the current page always among them, and no
 			// ellipsis standing in for a single page. Its pages are a subset of the
 			// wide ones, which is why both fit into one list of items.
-			const collapsedPages = state.getPages(0);
+			const collapsedPages = state.getCollapsedPages();
 			const items: PaginationItemType[] = [];
 			let lastWidePage = 0;
 			// Whether pages are missing since the last page the collapsed layout
@@ -219,13 +274,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 			return forCollapsed ? 'always' : 'wide';
 		},
-		// Returns undefined for everything that must not become a link: no pattern
-		// means button mode, and a page outside the range means there is nothing to
-		// link to. The second case is what keeps the previous and next elements
-		// native disabled buttons at the boundaries - a link that leads nowhere
-		// would need aria-disabled plus tabindex -1 to be inert, and an anchor
-		// announced as a link that cannot be followed is worse than a button that
-		// says it is disabled.
 		getHref: (page: number) => {
 			// The pattern has to go into a local first. Angular turns every prop
 			// access into a signal call, so guarding props.hrefPattern and then

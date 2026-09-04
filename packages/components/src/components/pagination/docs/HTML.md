@@ -179,10 +179,18 @@ example above therefore collapses to `1 ... 5 ... 10`, while a list of seven
 pages that needs no ellipsis at all in the wide layout needs two
 `collapse-ellipsis` items to collapse to `1 ... 4 ... 7`.
 
-The framework components derive this from `currentPage`, `siblingCount` and
-`boundaryCount`. Writing the markup by hand means taking it over: work out the
-list twice, once with your `siblingCount` and once with `siblingCount` reduced
-to `0`, and mark up the difference.
+The two layouts are not the same calculation with different numbers. The wide one
+keeps the number of rendered items constant, so it pads the row towards the
+opposite border when the current page sits at one end - that is why page 10 of 10
+shows `1 ... 6 7 8 9 10`. The collapsed one gives that up, because width is the
+reason it exists: it renders the `boundaryCount` pages at each end, the current
+page, and nothing else, so the same list collapses to `1 ... 10`.
+
+Writing the markup by hand means working out both: the wide list from
+`currentPage`, `siblingCount` and `boundaryCount`, the collapsed list from
+`boundaryCount` and `currentPage` alone, and then marking up the difference. In
+both lists a gap of exactly one page is rendered as that page instead of an
+ellipsis.
 
 ### Page links
 

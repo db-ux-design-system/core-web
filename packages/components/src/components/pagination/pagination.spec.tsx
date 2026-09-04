@@ -303,10 +303,13 @@ const testCollapsing = () => {
 	test('should drop the sibling pages below the breakpoint', async ({
 		mount
 	}) => {
+		// At a border the collapsed layout keeps only the boundary page and the
+		// current one. The wide layout pads the row to a constant length instead, so
+		// it shows 1 2 3 ... 10 here - see the test above.
 		const start = await mount(
 			<DBPagination currentPage={1} totalCount={100} pageSize={10} />
 		);
-		expect(getShape(await readItems(start))).toBe('1 2 3 ... 10');
+		expect(getShape(await readItems(start))).toBe('1 ... 10');
 		await expect(
 			start.getByRole('button', { name: 'Previous page' })
 		).toBeDisabled();
@@ -321,10 +324,45 @@ const testCollapsing = () => {
 		const end = await mount(
 			<DBPagination currentPage={10} totalCount={100} pageSize={10} />
 		);
-		expect(getShape(await readItems(end))).toBe('1 ... 8 9 10');
+		expect(getShape(await readItems(end))).toBe('1 ... 10');
 		await expect(
 			end.getByRole('button', { name: 'Next page' })
 		).toBeDisabled();
+	});
+
+	test('should not put several wide pages next to each other when collapsed', async ({
+		mount
+	}) => {
+		// The reported case: on the last page of a five digit list the collapsed
+		// layout showed 1 ... 9998 9999 10000, because padding the row to a constant
+		// length pushes the window against the border. Three pages of that width do
+		// not fit a narrow column, so the next button wrapped into a second row.
+		const component = await mount(
+			<div style={{ inlineSize: '300px' }}>
+				<DBPagination
+					currentPage={10_000}
+					totalCount={100_000}
+					pageSize={10}
+				/>
+			</div>
+		);
+
+		const rows = await component
+			.locator('li')
+			.evaluateAll((items: HTMLElement[]) =>
+				items
+					.filter(
+						(item) =>
+							window.getComputedStyle(item).display !== 'none'
+					)
+					.map((item) => Math.round(item.getBoundingClientRect().top))
+			);
+		expect(
+			new Set(rows).size,
+			'every control stays on one row in a 300px column'
+		).toBe(1);
+
+		expect(getShape(await readItems(component))).toBe('1 ... 10000');
 	});
 
 	test('should add an ellipsis for a gap that only the collapsed layout has', async ({

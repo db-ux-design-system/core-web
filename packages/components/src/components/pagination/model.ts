@@ -73,6 +73,7 @@ export type DBPaginationDefaultState = {
 	getTotalPages: () => number;
 	getCurrentPage: () => number;
 	getPages: (siblingCount: number) => number[];
+	getCollapsedPages: () => number[];
 	getPaginationItems: () => PaginationItemType[];
 	getEllipsisLayout: (
 		forWide: boolean,
