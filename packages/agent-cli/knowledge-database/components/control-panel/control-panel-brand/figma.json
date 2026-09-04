@@ -6,19 +6,19 @@
 			"name": "↳ CP Brand → (Def) Custom (Beta)",
 			"nodeId": "38590:6462",
 			"type": "COMPONENT_SET",
-			"key": "a4c0bf5a01a39b9564382dc8091b6483f95d7ab2"
+			"key": "c509e50c8b44f5f0e7f5f5252ad4005c4557b8e4"
 		},
 		{
 			"name": "↳ CP Brand → Logozusatz (Beta)",
 			"nodeId": "35867:43542",
 			"type": "COMPONENT",
-			"key": "686e19c5524c705f0c220a5913db295394465b21"
+			"key": "a30e2597920f52bbebdf1700f4a28b2a567afe5e"
 		},
 		{
 			"name": "↳ CP Brand → Short (Beta)",
 			"nodeId": "35867:43547",
 			"type": "COMPONENT",
-			"key": "15e8613e04dd85b742bdbf0cad81f2d8bd23d44f"
+			"key": "4d1eb262dd822203fb6aa8d36f98cb5596e711be"
 		}
 	]
 }

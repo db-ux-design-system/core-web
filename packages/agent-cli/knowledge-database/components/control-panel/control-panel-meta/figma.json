@@ -6,13 +6,13 @@
 			"name": "↳ CP Meta → Horizontal (Beta)",
 			"nodeId": "35867:43537",
 			"type": "COMPONENT",
-			"key": "6770923a6696c1ba79a8913d45f6c8fe76336499"
+			"key": "03de3ca5fa2e27cbcee4e5f6ebe9214ecf797ad7"
 		},
 		{
 			"name": "↳ CP Meta → Vertical (Beta)",
 			"nodeId": "35867:43539",
 			"type": "COMPONENT",
-			"key": "29200c7520655049a5704d643da7a0e855d1e9c1"
+			"key": "14971c9c108959f5ce0f17d3ce30c21b7621577d"
 		}
 	]
 }

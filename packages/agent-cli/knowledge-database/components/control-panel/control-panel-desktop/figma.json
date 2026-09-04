@@ -6,19 +6,19 @@
 			"name": "CP → (Def) Top - Desktop (Beta)",
 			"nodeId": "35867:43253",
 			"type": "COMPONENT_SET",
-			"key": "4bf38f60d6d3a121823929acd4cf80fa7a4b3116"
+			"key": "ae0a85a5e5c4bce7757d16a4d6ae0a2b73dc44e5"
 		},
 		{
-			"name": "CP → (Def) Drill Down - Desktop - Left (Beta)",
+			"name": "CP → Drill Down - Desktop (Beta)",
 			"nodeId": "35867:43330",
 			"type": "COMPONENT_SET",
-			"key": "d297d1278a90193659e0fe5dcfdfc2ba310a9a77"
+			"key": "edf2f49d20f275e9e9f6fdc661495b647932e6e6"
 		},
 		{
-			"name": "CP → Tree - Desktop - Left (Beta)",
+			"name": "CP → Tree - Desktop (Beta)",
 			"nodeId": "38794:101184",
 			"type": "COMPONENT_SET",
-			"key": "b13bb60fb7a46cffb88a499f8c7003e752a1ac4c",
+			"key": "e1ae42954588193961029256adc30acc3f7bea53",
 			"note": "Split out from CP → Drill Down - Desktop - Left, which previously carried the Tree variant. Reached in Shell Desktop via the 🔄 CP Navigation instance swap, not by direct placement."
 		}
 	]

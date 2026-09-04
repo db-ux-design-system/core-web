@@ -6,7 +6,7 @@
 			"type": "boolean",
 			"code": null,
 			"design": {
-				"name": "👁️ Show Actions 1",
+				"name": "👁️ Show Actions",
 				"componentSet": ["top", "drill-down-left", "tree-left"]
 			}
 		},

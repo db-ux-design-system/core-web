@@ -6,9 +6,19 @@
 			"type": "boolean",
 			"code": null,
 			"design": {
-				"name": "👁️ Show Actions 1",
-				"componentSet": ["drill-down-top", "drill-down-bottom"],
-				"note": "Also controls the divider next to the menu button, it appears automatically when Actions 1 are shown."
+				"name": "👁️ Show Action 1",
+				"componentSet": ["top"],
+				"note": "On the Top set only. Also controls the divider next to the menu button, it appears automatically when Actions 1 are shown. The same logical property carries a different Figma name on the Bottom set (👁️ Show Primary Actions), tracked as showPrimaryActions."
+			}
+		},
+		{
+			"name": "showPrimaryActions",
+			"type": "boolean",
+			"code": null,
+			"design": {
+				"name": "👁️ Show Primary Actions",
+				"componentSet": ["bottom"],
+				"note": "Bottom set only. Same logical property as showActions1 on the Top set, but under a different Figma name (👁️ Show Action 1)."
 			}
 		}
 	]

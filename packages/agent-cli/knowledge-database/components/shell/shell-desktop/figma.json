@@ -3,22 +3,22 @@
 	"library": "core-components",
 	"componentSets": [
 		{
-			"name": "Shell → Desktop - (Def) 1440x1024 (Beta)",
+			"name": "Shell → (Def) 1440x1024 - Desktop (Beta)",
 			"nodeId": "35867:46431",
 			"type": "COMPONENT_SET",
-			"key": "3f60df483e78662ab7e6b9000fb7e0d452e6cb6f"
+			"key": "2dd41a179bafc5326c5409c97bdd2d2944e5bf84"
 		},
 		{
-			"name": "Shell → Desktop - 1024x768 (Beta)",
+			"name": "Shell →1024x768 - Desktop (Beta)",
 			"nodeId": "37178:48053",
 			"type": "COMPONENT_SET",
-			"key": "8857c1968e84bf459aa1793b0b96072021b46e42"
+			"key": "11b45c640e4ca4523bb273247107fc19d394b600"
 		},
 		{
-			"name": "Shell → Desktop - 1920x1080 (Beta)",
+			"name": "Shell → 1920x1080 - Desktop (Beta)",
 			"nodeId": "37178:48357",
 			"type": "COMPONENT_SET",
-			"key": "216603044dd02ad1e055efe1b912c20ac48b5cd0"
+			"key": "add541f2966a9cb09c1950435b4cdf9c89e26d60"
 		}
 	]
 }

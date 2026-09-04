@@ -8,22 +8,22 @@
 			"name": "shell-desktop",
 			"componentSets": [
 				{
-					"name": "Shell → Desktop - (Def) 1440x1024 (Beta)",
+					"name": "Shell → (Def) 1440x1024 - Desktop (Beta)",
 					"nodeId": "35867:46431",
 					"type": "COMPONENT_SET",
-					"key": "3f60df483e78662ab7e6b9000fb7e0d452e6cb6f"
+					"key": "2dd41a179bafc5326c5409c97bdd2d2944e5bf84"
 				},
 				{
-					"name": "Shell → Desktop - 1024x768 (Beta)",
+					"name": "Shell →1024x768 - Desktop (Beta)",
 					"nodeId": "37178:48053",
 					"type": "COMPONENT_SET",
-					"key": "8857c1968e84bf459aa1793b0b96072021b46e42"
+					"key": "11b45c640e4ca4523bb273247107fc19d394b600"
 				},
 				{
-					"name": "Shell → Desktop - 1920x1080 (Beta)",
+					"name": "Shell → 1920x1080 - Desktop (Beta)",
 					"nodeId": "37178:48357",
 					"type": "COMPONENT_SET",
-					"key": "216603044dd02ad1e055efe1b912c20ac48b5cd0"
+					"key": "add541f2966a9cb09c1950435b4cdf9c89e26d60"
 				}
 			]
 		},
@@ -31,22 +31,22 @@
 			"name": "shell-mobile",
 			"componentSets": [
 				{
-					"name": "Shell → Mobile - (Def) 375x812 (Beta)",
+					"name": "Shell →(Def) 375x812 - Mobile (Beta)",
 					"nodeId": "35867:46499",
 					"type": "COMPONENT_SET",
-					"key": "7af0bffb23c18b00cde8dc60922a66953b32ddee"
+					"key": "fb9c6e0e2654f01317da1837b44ea559edd7107d"
 				},
 				{
-					"name": "Shell → Mobile - 320x568 (Beta)",
+					"name": "Shell → 320x568 - Mobile (Beta)",
 					"nodeId": "37178:47277",
 					"type": "COMPONENT_SET",
-					"key": "ee19984fc8aa153b152b7b2a04a8b83e09054e89"
+					"key": "0eff7a265ba12663795b1efdf0070f00a743febb"
 				},
 				{
-					"name": "Shell → Mobile - 768x1024 (Beta)",
+					"name": "Shell → 768x1024 - Mobile (Beta)",
 					"nodeId": "37178:47747",
 					"type": "COMPONENT_SET",
-					"key": "236e27cb519e0573264c964d33d2451afdb3fd7e"
+					"key": "a4387b7636ec2fb7a5b96a8d2215510ce3105c82"
 				}
 			]
 		}
@@ -59,7 +59,7 @@
 					"name": "↳ Shell Content",
 					"nodeId": "35867:46567",
 					"type": "COMPONENT_SET",
-					"key": "a06574eb75feb605036b7e63800b2a077f66735f"
+					"key": "2e65d77ae9b8568b3970f2abef1cfa2860ed0321"
 				}
 			]
 		},
@@ -70,19 +70,19 @@
 					"name": "↳ Shell Sub Navigation → Desktop - Top (Beta)",
 					"nodeId": "35867:46528",
 					"type": "COMPONENT",
-					"key": "1adfd730fcdc60ca166cb6f25683961c62a5104d"
+					"key": "4169b351e4921b313b7f2ac5a8dd59d1071b7241"
 				},
 				{
 					"name": "↳ 🔄 Shell Sub Navigation → Desktop - Left (Beta)",
 					"nodeId": "35867:46534",
 					"type": "COMPONENT_SET",
-					"key": "d89730b5ba5ccf2d3346330944ddf3110abad634"
+					"key": "f218b5ee0cba4809a9b9a6445763209f739a0242"
 				},
 				{
 					"name": "↳ Shell Sub Navigation → Mobile (Beta)",
 					"nodeId": "36734:26505",
 					"type": "COMPONENT",
-					"key": "628ff210bc9cf1447f6fdbbb9f0122e394eb1ee2"
+					"key": "947e0215b8e8c99ccf7b272f642d97fb0f1fd762"
 				}
 			]
 		}
