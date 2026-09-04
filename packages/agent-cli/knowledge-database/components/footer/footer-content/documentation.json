@@ -1,0 +1,164 @@
+{
+	"component": "footer-content",
+	"figmaFileKey": "AtXL3DIkXMbr1PBEWB3yJG",
+	"description": {
+		"de": "Footer Content bildet den oberen Bereich des Footers und nimmt sekundäre Navigation sowie weiterführende, nicht-navigatorische Inhalte auf.",
+		"en": "Footer Content forms the upper area of the Footer and holds secondary navigation as well as further, non-navigational content."
+	},
+	"shortDescription": {
+		"de": "Oberer Bereich des Footers für sekundäre Navigation und weiterführende Inhalte.",
+		"en": "Upper area of the Footer for secondary navigation and further content."
+	},
+	"useCases": {
+		"de": [
+			"Weiterführende Inhalte am Ende des Layouts anbieten: Links, Unternehmensinfos, Zahlungsarten oder Social Media",
+			"Sekundäre Navigation über alle Seiten hinweg bereitstellen",
+			"Links thematisch gruppieren: jede Gruppe erhält eine Überschrift"
+		],
+		"en": [
+			"Offer further content at the end of the layout: links, company information, payment methods, or social media",
+			"Provide secondary navigation across all pages",
+			"Group links by topic: each group gets a heading"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "secondary-content-only",
+			"headline": {
+				"de": "Nur sekundäre Inhalte",
+				"en": "Secondary Content Only"
+			},
+			"text": {
+				"de": "Children nimmt ausschließlich kuratierte, sekundäre und weiterführende Inhalte auf. Die Primärnavigation liegt im Control Panel.",
+				"en": "Children holds only curated, secondary and further content. The primary navigation sits in the Control Panel."
+			},
+			"do": {
+				"figmaNodeId": "4020-13456",
+				"description": {
+					"de": "Platziere in Children kuratierte, sekundäre und weiterführende Inhalte.",
+					"en": "Place curated, secondary and further content in Children."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4020-13632",
+				"description": {
+					"de": "Bilde die Primärnavigation nicht in Children ab. Nutzer:innen finden dieselben Ziele dann an zwei Stellen und die Hierarchie zwischen Haupt- und Zweitnavigation verschwimmt.",
+					"en": "Don't reproduce the primary navigation in Children. Users then find the same destinations in two places and the hierarchy between primary and secondary navigation blurs."
+				}
+			}
+		},
+		{
+			"id": "link-count",
+			"headline": {
+				"de": "Anzahl der Links",
+				"en": "Number of Links"
+			},
+			"text": {
+				"de": "Bis zu sieben Links stehen einzeilig nebeneinander. Ab acht Links werden sie inhaltlich gruppiert.",
+				"en": "Up to seven links sit side by side in a single line. From eight links onward they are grouped by content."
+			},
+			"do": {
+				"figmaNodeId": "4031-4104",
+				"description": {
+					"de": "Ordne bis zu sieben Links einzeilig an und gruppiere sie ab acht Links inhaltlich.",
+					"en": "Arrange up to seven links in a single line and group them by content from eight links onward."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4031-4926",
+				"description": {
+					"de": "Mehr als sieben Links in einer Zeile werden unübersichtlich. Gruppiere sie stattdessen inhaltlich.",
+					"en": "More than seven links in one line become hard to scan. Group them by content instead."
+				}
+			}
+		},
+		{
+			"id": "group-headings",
+			"headline": {
+				"de": "Überschriften der Gruppen",
+				"en": "Group Headings"
+			},
+			"text": {
+				"de": "Jede Gruppe gruppierter Links trägt eine eindeutige Überschrift, die ihren Inhalt benennt.",
+				"en": "Each group of grouped links carries a unique heading that names its content."
+			},
+			"do": {
+				"figmaNodeId": "4031-5309",
+				"description": {
+					"de": "Versieh jede Gruppe mit einer eindeutigen Überschrift.",
+					"en": "Give each group a unique heading."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4031-5553",
+				"description": {
+					"de": "Ohne Überschrift ist nicht erkennbar, was die Links einer Gruppe verbindet. Benenne den Inhalt der Gruppe stattdessen eindeutig.",
+					"en": "Without a heading it is unclear what connects the links within a group. Name the group's content clearly instead."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "non-navigational-content",
+			"headline": {
+				"de": "Nicht-navigatorische Inhalte",
+				"en": "Non-Navigational Content"
+			},
+			"text": {
+				"de": "Footer Content nimmt neben sekundärer Navigation auch nicht-navigatorische Inhalte auf. Welche davon eingesetzt werden, hängt vom Produkt ab.",
+				"en": "Beyond secondary navigation, Footer Content also holds non-navigational content. Which of these are used depends on the product."
+			},
+			"items": [
+				{
+					"id": "company-information",
+					"headline": {
+						"de": "Unternehmensinfos",
+						"en": "Company Information"
+					},
+					"figmaNodeId": "4032-225",
+					"description": {
+						"de": "Zeige Unternehmensinfos, etwa Marke und Claim.",
+						"en": "Show company information, such as brand and claim."
+					}
+				},
+				{
+					"id": "payment-methods",
+					"headline": {
+						"de": "Zahlungsarten",
+						"en": "Payment Methods"
+					},
+					"figmaNodeId": "4033-622",
+					"description": {
+						"de": "Weise die akzeptierten Zahlungsarten aus.",
+						"en": "Display the accepted payment methods."
+					}
+				},
+				{
+					"id": "social-media-links",
+					"headline": {
+						"de": "Social-Media-Links",
+						"en": "Social Media Links"
+					},
+					"figmaNodeId": "4033-902",
+					"description": {
+						"de": "Verlinke die Social-Media-Kanäle des Produkts.",
+						"en": "Link to the product's social media channels."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "footer"
+		},
+		{
+			"component": "control-panel"
+		},
+		{
+			"component": "footer-meta"
+		}
+	]
+}

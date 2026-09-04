@@ -1,0 +1,83 @@
+{
+	"component": "footer-meta",
+	"figmaFileKey": "AtXL3DIkXMbr1PBEWB3yJG",
+	"description": {
+		"de": "Footer Meta bildet den unteren Bereich des Footers und nimmt den Copyright-Hinweis sowie die rechtlichen Links der Anwendung auf.",
+		"en": "Footer Meta forms the lower area of the Footer and holds the copyright notice and the application's legal links."
+	},
+	"shortDescription": {
+		"de": "Unterer Bereich des Footers für Copyright-Hinweis und rechtliche Links.",
+		"en": "Lower area of the Footer for the copyright notice and legal links."
+	},
+	"useCases": {
+		"de": [
+			"Rechtlich verpflichtende Links am Ende des Layouts ausweisen",
+			"Rechteinhaber der Anwendung benennen",
+			"Rechtliche Angaben über alle Seiten hinweg konsistent zeigen"
+		],
+		"en": [
+			"Display legally required links at the end of the layout",
+			"Name the application's copyright holder",
+			"Show legal information consistently across all pages"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "legal-links-only",
+			"headline": {
+				"de": "Nur rechtlich verpflichtende Links",
+				"en": "Legally Required Links Only"
+			},
+			"text": {
+				"de": "Children nimmt ausschließlich die Links auf, zu denen die Anwendung rechtlich verpflichtet ist.",
+				"en": "Children holds only the links the application is legally required to display."
+			},
+			"do": {
+				"figmaNodeId": "4019-12445",
+				"description": {
+					"de": "Platziere in Children nur die Links, zu denen die Anwendung rechtlich verpflichtet ist.",
+					"en": "Place only the links the application is legally required to display in Children."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4019-12622",
+				"description": {
+					"de": "Platziere keine werblichen oder navigatorischen Inhalte in Children. Die rechtlichen Angaben treten dann hinter Inhalten zurück, die nicht in diesen Bereich gehören.",
+					"en": "Don't place promotional or navigational content in Children. The legal information then recedes behind content that doesn't belong in this area."
+				}
+			}
+		},
+		{
+			"id": "copyright-notice",
+			"headline": {
+				"de": "Copyright-Hinweis",
+				"en": "Copyright Notice"
+			},
+			"text": {
+				"de": "Ist die Anwendung zur Angabe eines Rechteinhabers verpflichtet, trägt der Copyright-Hinweis diese Angabe. Ansonsten kann er weggelassen werden.",
+				"en": "If the application is required to name a copyright holder, the copyright notice carries that information. Otherwise it can be omitted."
+			},
+			"do": {
+				"figmaNodeId": "4020-13004",
+				"description": {
+					"de": "Benenne im Copyright-Hinweis den Rechteinhaber, wenn die Anwendung dazu verpflichtet ist.",
+					"en": "Name the copyright holder in the copyright notice when the application is required to do so."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4020-13268",
+				"description": {
+					"de": "Lasse den Copyright-Hinweis nicht leer, wenn die Anwendung zur Angabe eines Rechteinhabers verpflichtet ist. Die Anwendung erfüllt ihre rechtlichen Vorgaben dann nicht.",
+					"en": "Don't leave the copyright notice empty when the application is required to name a copyright holder. The application then fails to meet its legal requirements."
+				}
+			}
+		}
+	],
+	"examples": [],
+	"faq": [],
+	"related": [
+		{
+			"component": "footer"
+		}
+	]
+}

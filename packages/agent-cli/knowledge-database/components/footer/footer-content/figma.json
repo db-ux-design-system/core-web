@@ -1,0 +1,33 @@
+{
+	"component": "footer-content",
+	"library": "core-components",
+	"pageId": "39760:2809",
+	"pageName": "Footer (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ Footer Content → (Def) Full (Beta)",
+			"nodeId": "39765:2937",
+			"type": "COMPONENT",
+			"key": "685100cd0fcd500482af3ecc2f5de1f1cd826f76"
+		},
+		{
+			"name": "↳ Footer Content → Large (Beta)",
+			"nodeId": "39765:2939",
+			"type": "COMPONENT",
+			"key": "2ab6b5b6e3fbae096a5a90c2c5b531b4cc75f59e"
+		},
+		{
+			"name": "↳ Footer Content → Medium (Beta)",
+			"nodeId": "39765:2941",
+			"type": "COMPONENT",
+			"key": "8669642849fb7dc00c27c8c26b3af8f7ee0e3dc9"
+		},
+		{
+			"name": "↳ Footer Content → Small (Beta)",
+			"nodeId": "39765:2943",
+			"type": "COMPONENT",
+			"key": "3344ca262a72a01a415b676af9399dcf71e5089c"
+		}
+	],
+	"note": "Vier parallele Einzelkomponenten statt eines Component Sets, je eine pro Width-Wert. width existiert nur an der Elternkomponente Footer, nicht an Footer Content selbst."
+}

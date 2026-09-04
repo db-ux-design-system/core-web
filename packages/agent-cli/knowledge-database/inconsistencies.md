@@ -66,6 +66,13 @@ Ein anderer Weg zum gleichen Ergebnis ist keine Abweichung. Entscheidend ist, ob
 - **Interaktivität: Component Sets vs. Komposition** — In Figma sind vier Component Sets modelliert (Static, Interactive, Interactive Toggle, Removable). Im Code gibt es dafür nur `behavior` mit `static | removable`; dieses Property schaltet ausschließlich den Entfernen-Button. Interaktive Tags entstehen über das eingebettete Element (`<input type="checkbox">` / `<input type="radio">` im `<label>`, `<a>`, `<button>`), siehe `behavior.example` und `example-strong.example`. Beide Achsen sind kombinierbar, in Figma sind sie es nicht.
 - Konsequenz: Ein 1:n-Mapping zwischen Figma-Sets und Code-Property. Werte wie `behavior="link"` oder `behavior="button"` existieren nicht und dürfen nicht aus den Set-Namen abgeleitet werden.
 
+## Component Gaps (Fortsetzung)
+
+### Footer
+
+- **`width` an Footer Content und Footer Meta** — In Figma tragen `↳ Footer Content` und `↳ Footer Meta` jeweils vier parallele Komponenten (Full/Large/Medium/Small) statt eines gemeinsamen `width`-Property mit der Hauptkomponente `Footer`. Grund ist eine Figma-Plattformgrenze: Die Breite des Containers innerhalb der Unterkomponenten lässt sich nicht von der Hauptkomponente aus steuern, deshalb müssen die vier Varianten pro Unterkomponente einzeln modelliert werden. Im Code existiert `width` ausschließlich an der Elternkomponente `Footer`; `footer-content` und `footer-meta` haben keine eigene `width`-Prop.
+- Konsequenz: 1:4-Mapping zwischen den Sub-Component-Varianten in Figma und der einen `width`-Prop im Code. Kein Modellierungsfehler und keine Design-Entscheidung, sondern eine technische Einschränkung von Figma (vergleichbar mit § 8 „Slots für Unterelemente sind pro Variante unterschiedlich integriert" in `design-library.md`).
+
 ## Icons
 
 - **Format** — Figma: SVG-Instanzen (Component Instances). Code: Icon Font (woff2).

@@ -1,0 +1,9 @@
+{
+	"id": "footer-content",
+	"name": "Footer Content",
+	"type": "component",
+	"parent": "footer",
+	"status": "beta",
+	"owner": "core-team",
+	"since": null
+}

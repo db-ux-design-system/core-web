@@ -1,0 +1,43 @@
+{
+	"component": "footer-meta",
+	"properties": [
+		{
+			"name": "showCopyright",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Copyright"
+			}
+		},
+		{
+			"name": "copyright",
+			"type": "string",
+			"default": "© Deutsche Bahn AG",
+			"code": null,
+			"design": {
+				"name": "✏️ Copyright",
+				"type": "text",
+				"defaultValue": "© Deutsche Bahn AG"
+			}
+		},
+		{
+			"name": "showChildren",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children"
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		}
+	]
+}

@@ -1,0 +1,39 @@
+{
+	"component": "footer",
+	"properties": [
+		{
+			"name": "width",
+			"type": "enum",
+			"values": ["full", "large", "medium", "small"],
+			"default": "full",
+			"code": null,
+			"design": {
+				"name": "🔀 Width",
+				"values": [
+					"(Def) Full",
+					"Large (1440)",
+					"Medium (1024)",
+					"Small (768)"
+				]
+			}
+		},
+		{
+			"name": "showFooterContent",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Footer Content"
+			}
+		},
+		{
+			"name": "showFooterMeta",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Footer Meta"
+			}
+		}
+	]
+}

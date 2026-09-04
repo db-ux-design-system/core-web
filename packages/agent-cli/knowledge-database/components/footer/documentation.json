@@ -1,0 +1,164 @@
+{
+	"component": "footer",
+	"figmaFileKey": "AtXL3DIkXMbr1PBEWB3yJG",
+	"description": {
+		"de": "Der Footer bildet den unteren Bereich des Layouts und bündelt sekundäre Navigation, rechtliche Links und Meta-Informationen.",
+		"en": "The Footer forms the bottom area of the layout and bundles secondary navigation, legal links, and meta information."
+	},
+	"shortDescription": {
+		"de": "Unterer Bereich im Layout mit sekundärer Navigation, rechtlichen Links und Meta-Informationen.",
+		"en": "Bottom area of the layout with secondary navigation, legal links, and meta information."
+	},
+	"useCases": {
+		"de": [
+			"Rechtliche Informationen am Ende des Layouts ausweisen",
+			"Sekundäre Navigation über alle Seiten hinweg bereitstellen",
+			"Layout abschließen: Footer Content und Footer Meta getrennt befüllen"
+		],
+		"en": [
+			"Display legal information at the end of the layout",
+			"Provide secondary navigation across all pages",
+			"Close the layout: fill Footer Content and Footer Meta separately"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "single-instance",
+			"headline": {
+				"de": "Eine Instanz pro Seite",
+				"en": "One Instance per Page"
+			},
+			"text": {
+				"de": "Pro Seite existiert genau ein Footer. Eine zweite Instanz erzeugt einen doppelten Seitenabschluss und verteilt die Inhalte des Footers auf zwei Stellen.",
+				"en": "Exactly one Footer exists per page. A second instance creates a duplicate page ending and splits the Footer's content across two places."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Setze den Footer einmal pro Seite ein.",
+					"en": "Use the Footer once per page."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Ergänze keine zweite Footer-Instanz auf derselben Seite. Der Seitenabschluss erscheint doppelt und die Inhalte des Footers verteilen sich auf zwei Stellen.",
+					"en": "Don't add a second Footer instance on the same page. The page ending appears twice and the Footer's content is split across two places."
+				}
+			}
+		},
+		{
+			"id": "full-width",
+			"headline": {
+				"de": "Breite im Contentbereich",
+				"en": "Width in the Content Area"
+			},
+			"text": {
+				"de": "Der Footer erstreckt sich immer über die volle Breite des Contentbereichs, in dem er liegt.",
+				"en": "The Footer always spans the full width of the content area it sits in."
+			},
+			"do": {
+				"figmaNodeId": "4004-1640",
+				"description": {
+					"de": "Lasse den Footer die volle Breite des Contentbereichs einnehmen.",
+					"en": "Let the Footer span the full width of the content area."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-5943",
+				"description": {
+					"de": "Verschachtele den Footer nicht in einem schmaleren Container. Er löst sich dann von der Kante des Contentbereichs und wirkt nicht mehr als Seitenabschluss.",
+					"en": "Don't nest the Footer inside a narrower container. It then detaches from the edge of the content area and no longer reads as the page ending."
+				}
+			}
+		},
+		{
+			"id": "footer-meta-required",
+			"headline": {
+				"de": "Footer Meta bei rechtlicher Pflicht",
+				"en": "Footer Meta When Legally Required"
+			},
+			"text": {
+				"de": "Footer Meta trägt die rechtlichen Informationen der Anwendung. Ist die Anwendung zu deren Angabe verpflichtet, gehört Footer Meta in den Footer. Welche Inhalte das konkret sind, regelt Footer Meta.",
+				"en": "Footer Meta carries the application's legal information. If the application is required to display it, Footer Meta belongs in the Footer. Footer Meta defines which content that is."
+			},
+			"do": {
+				"figmaNodeId": "4004-6322",
+				"description": {
+					"de": "Setze Footer Meta ein, wenn die Anwendung zur Angabe rechtlicher Informationen verpflichtet ist.",
+					"en": "Include Footer Meta when the application is required to display legal information."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-10752",
+				"description": {
+					"de": "Lasse Footer Meta nicht weg, wenn die Anwendung zur Angabe rechtlicher Informationen verpflichtet ist. Die Anwendung erfüllt ihre rechtlichen Vorgaben dann nicht.",
+					"en": "Don't omit Footer Meta when the application is required to display legal information. The application then fails to meet its legal requirements."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "subcomponent-combination",
+			"headline": {
+				"de": "Kombination der Unterkomponenten",
+				"en": "Subcomponent Combination"
+			},
+			"text": {
+				"de": "Footer Content und Footer Meta werden unabhängig voneinander befüllt. Welche Kombination entsteht, hängt von der sekundären Navigation und den rechtlichen Pflichtangaben der Anwendung ab.",
+				"en": "Footer Content and Footer Meta are filled independently. The resulting combination depends on the application's secondary navigation and its legally required information."
+			},
+			"items": [
+				{
+					"id": "content-and-meta",
+					"headline": {
+						"de": "Footer Content und Footer Meta",
+						"en": "Footer Content and Footer Meta"
+					},
+					"figmaNodeId": "4004-11530",
+					"description": {
+						"de": "Befülle beide Unterkomponenten, wenn die Anwendung sekundäre Navigation anbietet und rechtliche Angaben ausweist.",
+						"en": "Fill both subcomponents when the application offers secondary navigation and displays legal information."
+					}
+				},
+				{
+					"id": "meta-only",
+					"headline": {
+						"de": "Nur Footer Meta",
+						"en": "Footer Meta Only"
+					},
+					"figmaNodeId": "4004-11855",
+					"description": {
+						"de": "Lasse Footer Content weg, wenn keine sekundäre Navigation benötigt wird.",
+						"en": "Omit Footer Content when no secondary navigation is needed."
+					}
+				},
+				{
+					"id": "content-only",
+					"headline": {
+						"de": "Nur Footer Content",
+						"en": "Footer Content Only"
+					},
+					"figmaNodeId": "4004-12028",
+					"description": {
+						"de": "Lasse Footer Meta weg, wenn die Anwendung zu keinen rechtlichen Angaben verpflichtet ist.",
+						"en": "Omit Footer Meta when the application is not required to display any legal information."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "footer-content"
+		},
+		{
+			"component": "footer-meta"
+		},
+		{
+			"component": "shell-content"
+		}
+	]
+}

@@ -138,5 +138,9 @@
 		}
 	],
 	"faq": [],
-	"related": []
+	"related": [
+		{
+			"component": "footer"
+		}
+	]
 }

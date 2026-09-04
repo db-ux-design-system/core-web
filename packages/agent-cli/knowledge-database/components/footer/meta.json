@@ -1,8 +1,8 @@
 {
 	"id": "footer",
 	"name": "Footer",
-	"type": "lab-component",
-	"status": "concept",
+	"type": "component",
+	"status": "beta",
 	"owner": "core-team",
 	"since": null
 }

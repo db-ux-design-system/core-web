@@ -10,5 +10,5 @@ Scrollbarer Hauptinhaltsbereich der Shell mit Slot-basiertem Layout.
 
 ## Zusätzliche Informationen
 
-- Ein Footer mit rechtlichen Links im End Slot kann mit Auto mitscrollen, ein primärer CTA braucht dort Fixed, sonst ist er nicht dauerhaft sichtbar. _(Example-Kandidat)_
+- Ein [Footer](../../footer/guidelines.md) mit rechtlichen Links im End Slot kann mit Auto mitscrollen, ein primärer CTA braucht dort Fixed, sonst ist er nicht dauerhaft sichtbar. _(Example-Kandidat)_
 - In Start Slot und End Slot liegen typischerweise angedockte Benachrichtigungen oder Systembanner.
