@@ -132,7 +132,8 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		label: '06 Feedback',
 		children: sortNavItems([
 			{ path: '06/notification', label: 'Notification' },
-			{ path: '06/badge', label: 'Badge' }
+			{ path: '06/badge', label: 'Badge' },
+			{ path: '06/loading-indicator', label: 'LoadingIndicator' }
 		])
 	}
 ]);

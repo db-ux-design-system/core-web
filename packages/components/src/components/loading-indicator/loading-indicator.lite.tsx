@@ -36,7 +36,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		_progressId: undefined,
 		_loadingState: 'inactive',
 		_previousLoadingState: undefined,
-		_timeoutId: 0,
+		_timeoutId: undefined,
 		_didDisableParent: false,
 		_style: {},
 		initialized: false,
@@ -188,13 +188,13 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 				state._timeoutId = setTimeout(
 					() => {
-						state._timeoutId = 0;
+						state._timeoutId = undefined;
 						if (props.onTimeout) {
 							props.onTimeout(state._loadingState);
 						}
 					},
 					state._loadingState === 'active' ? 5000 : 2000
-				) as unknown as number;
+				);
 			}
 		}
 	}, [state._loadingState, props.onTimeout]);
@@ -223,7 +223,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	onUnMount(() => {
 		if (state._timeoutId) {
 			clearTimeout(state._timeoutId);
-			state._timeoutId = 0;
+			state._timeoutId = undefined;
 		}
 
 		state.handleParentAria(true);
