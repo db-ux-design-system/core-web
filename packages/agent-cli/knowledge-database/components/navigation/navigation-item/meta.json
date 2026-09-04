@@ -6,5 +6,6 @@
 	"status": "stable",
 	"owner": "core-team",
 	"since": "v1.0.0",
-	"guidelines": "pending"
+	"deprecation": "deprecated",
+	"note": "Seit 2026-09-03 deprecated mit der Elternkomponente Navigation. Nicht für neue Umsetzungen verwenden."
 }
