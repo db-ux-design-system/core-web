@@ -1,7 +1,9 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/next/component";
+@use "../../styles/internal/form-components";
 
-[data-generation="next"] .db-checkbox,
-.db-checkbox[data-generation="next"] {
+%checkbox-materials {
 	> label {
 		color: var(--db-text-default);
 	}
@@ -17,13 +19,13 @@
 			}
 		}
 
-		:checked {
-			background-color: var(--db-acitve-bg-default);
-			color: var(--db-acitve-text-default);
-			border-color: var(--db-acitve-visual-default);
+		&:checked {
+			background-color: var(--db-active-bg-default);
+			color: var(--db-active-text-default);
+			border-color: var(--db-active-visual-default);
 
 			&::before {
-				color: var(--db-acitve-visual-default);
+				color: var(--db-active-visual-default);
 			}
 		}
 	}
@@ -38,7 +40,7 @@
 				background-color: var(--db-bg-hovered);
 			}
 
-			:checked {
+			&:checked {
 				background-color: var(--db-active-bg-hovered);
 			}
 		}
@@ -57,6 +59,83 @@
 			:checked {
 				background-color: var(--db-active-bg-pressed);
 			}
+		}
+	}
+}
+
+[data-generation="next"] .db-checkbox,
+.db-checkbox[data-generation="next"] {
+	@extend %checkbox-materials;
+	@extend %component;
+
+	@include helpers.display(flex);
+	flex-direction: column;
+	gap: var(--db-component-gap);
+
+	> db-infotext > .db-infotext,
+	> .db-infotext {
+		&:is([data-semantic="successful"], [data-semantic="critical"]) {
+			@include helpers.display(none);
+		}
+	}
+
+	@include form-components.get-validity(check) {
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include form-components.get-validity-message("valid");
+		}
+	}
+
+	@include form-components.get-validity(check, "invalid") {
+		@include form-components.get-validity-message("invalid");
+	}
+
+	&:not([data-hide-asterisk="true"]) {
+		label {
+			@include form-components.set-required-label(
+				input,
+				".db-checkbox-content"
+			);
+		}
+	}
+
+	&[data-hide-label="true"] {
+		.db-checkbox-content {
+			@extend %a11y-visually-hidden-text;
+		}
+	}
+
+	&:is(label),
+	> label {
+		@include helpers.display(flex);
+
+		align-items: flex-start;
+		gap: var(--db-component-gap);
+	}
+
+	.db-checkbox-content {
+		@extend %content;
+	}
+
+	input {
+		@include helpers.display(flex);
+
+		border: var(--db-border-width) solid var(--db-border);
+		border-radius: var(--db-border-radius);
+		align-items: center;
+		justify-content: center;
+		place-content: center center;
+		appearance: none;
+		aspect-ratio: 1;
+		block-size: var(--db-content-height);
+		inline-size: var(--db-content-height);
+
+		&:checked {
+			// Check icon
+			@include icons.set-icon("check");
+		}
+
+		&:indeterminate {
+			@include icons.set-icon("minus");
 		}
 	}
 }

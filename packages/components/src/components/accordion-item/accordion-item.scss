@@ -5,7 +5,7 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 
-.db-accordion-item {
+html:not([data-generation="next"]) .db-accordion-item {
 	position: relative;
 	inline-size: 100%;
 	border-radius: variables.$db-border-radius-sm;

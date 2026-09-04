@@ -2,7 +2,7 @@
 @use "../../styles/internal/button-components";
 
 // generic styles can be found in _button-components.scss
-.db-button {
+html:not([data-generation="next"]) .db-button {
 	@include button-components.set-basic-button;
 
 	&:is(:disabled, [aria-disabled="true"]) {

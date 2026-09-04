@@ -344,11 +344,11 @@ $input-valid-types:
 	}
 }
 
-@mixin set-required-label($selector) {
+@mixin set-required-label($selector, $element: label) {
 	&:has(#{$selector}:required),
 	&[data-required="true"] {
-		&:is(label),
-		> label {
+		&:is(#{$element}),
+		> #{$element} {
 			&::after {
 				// We're using 1px instead of a token here on purpose, as this is an edge case
 				/* stylelint-disable-next-line db-ux/use-spacings */

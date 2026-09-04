@@ -339,11 +339,23 @@ export type ContentSlotProps = {
 
 export const SizeList = ['small', 'medium'] as const;
 export type SizeType = (typeof SizeList)[number];
+
+export const NextGenSizeList = [
+	'3xs',
+	'2xs',
+	'xs',
+	'sm',
+	'md',
+	'lg',
+	'xl',
+	'2xl'
+] as const;
+export type NextGenSizeType = (typeof NextGenSizeList)[number];
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
-	size?: SizeType;
+	size?: SizeType | NextGenSizeType;
 };
 
 export const EmphasisList = ['weak', 'strong'] as const;

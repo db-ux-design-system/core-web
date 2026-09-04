@@ -98,8 +98,10 @@ export default function DBButton(props: DBButtonProps) {
 			value={props.value}
 			command={props.command}
 			commandfor={props.commandfor}>
-			<Show when={props.text}>{props.text}</Show>
-			{props.children}
+			<div class="db-button-content">
+				<Show when={props.text}>{props.text}</Show>
+				{props.children}
+			</div>
 		</button>
 	);
 }

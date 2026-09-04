@@ -1,0 +1,63 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+%font {
+	font-size: var(--db-font-size);
+	line-height: var(--db-line-height);
+}
+
+%default-border {
+	border-radius: var(--db-border-radius);
+	border: var(--db-border-width) solid transparent;
+}
+
+%component {
+	@extend %font;
+	@extend %default-border;
+	padding: var(--db-component-padding-block)
+		var(--db-component-padding-inline);
+}
+
+%content {
+	min-block-size: var(--db-content-height);
+	padding: var(--db-content-padding-block) var(--db-content-padding-inline);
+}
+
+%default-material {
+	background-color: var(--db-bg-default);
+	color: var(--db-text-default);
+	border-color: var(--db-border);
+}
+
+%interactive-materials {
+	@extend %default-material;
+
+	@include helpers.hover {
+		background-color: var(--db-bg-hovered);
+		border-color: var(--db-border);
+	}
+
+	@include helpers.active {
+		background-color: var(--db-bg-pressed);
+		border-color: var(--db-border);
+	}
+}
+
+%next-icon {
+	&:not([data-show-icon="false"], [data-show-icon-leading="false"])::before,
+	&:not([data-show-icon-trailing="false"])::after {
+		block-size: var(--db-content-height) !important;
+		inline-size: var(--db-icon-size) !important;
+		font-weight: var(--db-icon-size-name, normal) !important;
+		font-size: var(--db-icon-size) !important;
+		place-content: center;
+		align-self: flex-start;
+	}
+}
+
+[data-generation="next"]
+	:is(.db-button, .db-checkbox, .db-accordion, .db-accordion-item):is(
+		[data-icon],
+		[data-icon-trailing]
+	) {
+	@extend %next-icon;
+}

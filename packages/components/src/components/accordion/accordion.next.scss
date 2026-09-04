@@ -1,11 +1,22 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "accordion";
 
 [data-generation="next"] .db-accordion,
 .db-accordion[data-generation="next"] {
-	&[data-variant="card"] {
-		.db-accordion-item {
-			&::after {
-				border-color: var(--db-border);
+	padding: 0;
+	margin: 0;
+	list-style-type: "";
+	@include helpers.display(flex);
+	flex-direction: column;
+	gap: var(--db-component-gap);
+
+	&[data-variant="divider"],
+	&:not([data-variant]) {
+		@include accordion.accordion-subsequent-item-selector {
+			@include helpers.divider($position: "top");
+
+			&::before {
+				position: unset;
 			}
 		}
 	}

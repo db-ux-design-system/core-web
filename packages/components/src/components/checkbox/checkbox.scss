@@ -24,7 +24,7 @@
 	}
 }
 
-.db-checkbox {
+html:not([data-generation="next"]) .db-checkbox {
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 

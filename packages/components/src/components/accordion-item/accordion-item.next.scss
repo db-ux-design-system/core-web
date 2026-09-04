@@ -1,10 +1,48 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/next/component";
+@use "../../styles/internal/form-components";
 
 [data-generation="next"] .db-accordion-item,
 .db-accordion-item[data-generation="next"] {
+	@include helpers.display(flex);
+	flex-direction: column;
+	gap: var(--db-component-gap);
+
+	&:has(> details[open]) {
+		border-color: var(--db-border);
+	}
+
 	> details {
+		@extend %default-material;
+		@extend %component;
+
+		&[open] {
+			.db-accordion-item-content {
+				block-size: auto;
+				/* stylelint-disable-next-line declaration-property-value-no-unknown, db-ux/use-sizing */
+				block-size: calc-size(auto, size);
+			}
+
+			> summary::after {
+				transform: form-components.$dropdown-icon-transform;
+			}
+		}
+
+		.db-accordion-item-summary-content {
+			@extend %content;
+		}
+
 		> summary {
-			background-color: var(--db-bg-default);
+			@extend %default-border;
+			@extend %next-icon;
+			@extend %dropdown-icon;
+
+			gap: var(--db-component-gap);
+			justify-content: space-between;
+			list-style: none;
+
+			@include helpers.display(flex);
 
 			@include helpers.hover {
 				background-color: var(--db-bg-hovered);
@@ -12,6 +50,19 @@
 
 			@include helpers.active {
 				background-color: var(--db-bg-pressed);
+			}
+		}
+
+		.db-accordion-item-content {
+			@extend %content;
+			block-size: 0;
+			overflow: hidden;
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			.db-accordion-item-content {
+				transition: block-size
+					#{variables.$db-transition-straight-emotional};
 			}
 		}
 	}

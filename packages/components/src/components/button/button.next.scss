@@ -1,18 +1,29 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/next/component";
 
 [data-generation="next"] .db-button,
 .db-button[data-generation="next"] {
-	background-color: var(--db-bg-default);
-	color: var(--db-text-default);
-	border-color: var(--db-border);
+	@extend %component;
+	@extend %interactive-materials;
 
-	@include helpers.hover {
-		background-color: var(--db-bg-hovered);
-		border-color: var(--db-border);
+	display: inline-flex;
+	gap: var(--db-component-gap);
+	align-items: center;
+
+	.db-button-content {
+		@extend %content;
 	}
 
-	@include helpers.active {
-		background-color: var(--db-bg-pressed);
-		border-color: var(--db-border);
+	&[data-no-text="true"] {
+		.db-button-content {
+			@extend %a11y-visually-hidden-text;
+		}
+	}
+
+	&[data-width="full"]:not([data-no-text="true"]) {
+		&,
+		.db-button-content {
+			inline-size: 100%;
+		}
 	}
 }
