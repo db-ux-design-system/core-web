@@ -1,5 +1,12 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 
+$component-content-padding-block: calc(
+	var(--db-component-padding-block) + var(--db-content-padding-block)
+);
+$component-content-padding-inline: calc(
+	var(--db-component-padding-inline) + var(--db-content-padding-inline)
+);
+
 %font {
 	font-size: var(--db-font-size);
 	line-height: var(--db-line-height);
@@ -10,11 +17,15 @@
 	border: var(--db-border-width) solid transparent;
 }
 
+%component-padding {
+	padding: var(--db-component-padding-block)
+		var(--db-component-padding-inline);
+}
+
 %component {
 	@extend %font;
 	@extend %default-border;
-	padding: var(--db-component-padding-block)
-		var(--db-component-padding-inline);
+	@extend %component-padding;
 }
 
 %content {

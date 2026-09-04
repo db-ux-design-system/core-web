@@ -15,10 +15,13 @@
 
 	> details {
 		@extend %default-material;
-		@extend %component;
+		@extend %font;
+		@extend %default-border;
 
 		&[open] {
 			.db-accordion-item-content {
+				padding: component.$component-content-padding-block
+					component.$component-content-padding-inline;
 				block-size: auto;
 				/* stylelint-disable-next-line declaration-property-value-no-unknown, db-ux/use-sizing */
 				block-size: calc-size(auto, size);
@@ -34,9 +37,9 @@
 		}
 
 		> summary {
-			@extend %default-border;
 			@extend %next-icon;
 			@extend %dropdown-icon;
+			@extend %component;
 
 			gap: var(--db-component-gap);
 			justify-content: space-between;

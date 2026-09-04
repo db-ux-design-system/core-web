@@ -1,0 +1,183 @@
+{
+  "component-height": {
+    "$type": "number",
+    "$value": 20,
+    "$description": "Fixed outer component height.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:24",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:457a9ecd85bc2126bd4df9396acd11cc1a8b91c6/-1:-1",
+        "targetVariableName": "db-base-size/500",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "component-padding": {
+    "$type": "number",
+    "$value": 1,
+    "$description": "Padding on the visual Component / Layout Container.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:25",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:8865a5ed1341d3c448119d050d7ad57438376739/-1:-1",
+        "targetVariableName": "db-base-size/25",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "content-height": {
+    "$type": "number",
+    "$value": 18,
+    "$description": "Row content height: component-height − 2 × component-padding.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:26",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:470b9f1a42551d4923381836e2200d9b4524b240/-1:-1",
+        "targetVariableName": "db-base-size/450",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "row-padding-inline": {
+    "$type": "number",
+    "$value": 2,
+    "$description": "Inline padding on the Row container.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:27",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:65a3cbef633794dfe8ea158dfbe6a4d736029b29/-1:-1",
+        "targetVariableName": "db-base-size/50",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "content-padding-inline": {
+    "$type": "number",
+    "$value": 2,
+    "$description": "Optical inline correction on the text Content Container.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:28",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:65a3cbef633794dfe8ea158dfbe6a4d736029b29/-1:-1",
+        "targetVariableName": "db-base-size/50",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "content-padding-block": {
+    "$type": "number",
+    "$value": 0,
+    "$description": "Vertical correction where line-height is smaller than content-height.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:29",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:84472e5a3a2ec42b4ed6fa4cd968cc1a787291eb/-1:-1",
+        "targetVariableName": "db-base-size/0",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "content-gap": {
+    "$type": "number",
+    "$value": 3,
+    "$description": "Gap between icon and text Content Containers.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:30",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:fe2471c0fd28873b4775249cf455b25e1bc64496/-1:-1",
+        "targetVariableName": "db-base-size/75",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "icon-size": {
+    "$type": "number",
+    "$value": 14,
+    "$description": "Bound icon size; capped at 20 px from MD upward.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:31",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:a74c3db595752841a550f9293407dd34f43e0a48/-1:-1",
+        "targetVariableName": "db-base-size/350",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "font-size": {
+    "$type": "number",
+    "$value": 12,
+    "$description": "Body font size for the example component.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:32",
+      "com.figma.hiddenFromPublishing": true
+    }
+  },
+  "line-height": {
+    "$type": "number",
+    "$value": 18,
+    "$description": "Text line height and basis for the quarter-gap rule.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:33",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:470b9f1a42551d4923381836e2200d9b4524b240/-1:-1",
+        "targetVariableName": "db-base-size/450",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "size-name": {
+    "$type": "string",
+    "$value": "XS",
+    "$description": "Human-readable active Component Size mode.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:3:34",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.type": "string"
+    }
+  },
+  "corner-radius": {
+    "$type": "number",
+    "$value": 4,
+    "$extensions": {
+      "com.figma.variableId": "VariableID:42:2",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.aliasData": {
+        "targetVariableId": "VariableID:baca2b0add13d72aa4d6264f2ce33bf484039f42/-1:-1",
+        "targetVariableName": "db-base-size/100",
+        "targetVariableSetId": "VariableCollectionId:40992c13de3ce49973c480fa06ff4ea38283f92c/-1:-1",
+        "targetVariableSetName": "Base Size"
+      }
+    }
+  },
+  "icon-size-name": {
+    "$type": "string",
+    "$value": "14",
+    "$description": "Technical selector for the official DB Theme icon Size variant. Mirrors Size/icon-size without exposing a component Size property.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:74:178",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.type": "string"
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "XS"
+  }
+}

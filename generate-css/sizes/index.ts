@@ -55,7 +55,7 @@ const readTokenFile = (filename: string): SizeTokenFile =>
 	JSON.parse(readFileSync(new URL(filename, tokensDir), 'utf-8'));
 
 const formatPxValue = (value: number): string => {
-	if (value === 0) return '0';
+	if (value === 0) return '0px';
 	// Round fractional Figma values (e.g. 13.33) to 2 decimals
 	const rounded = Math.round(value * 100) / 100;
 	return `${rounded}px`;
@@ -125,6 +125,11 @@ const generateSizeTokensCss = (): string => {
 			const token = tokens[prop] as TokenEntry | undefined;
 			if (!token || token.$type !== 'number') return '';
 			const cssName = PROP_CSS_NAME[prop] ?? prop;
+			// component-gap is derived from content-height at runtime so it
+			// scales with the size, with a 2px floor.
+			if (cssName === 'component-gap') {
+				return `\t--db-${cssName}: max(2px, calc(0.25 * var(--db-content-height)));`;
+			}
 			return `\t--db-${cssName}: ${formatPxValue(token.$value as number)};`;
 		})
 			.filter(Boolean)

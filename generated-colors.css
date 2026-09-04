@@ -11515,7 +11515,7 @@
 @layer size {
 
 :is(:root,:host) {
-	--db-base-size-0: 0;
+	--db-base-size-0: 0px;
 	--db-base-size-25: 1px;
 	--db-base-size-50: 2px;
 	--db-base-size-75: 3px;
@@ -11538,12 +11538,12 @@
 }
 
 [data-size="3xs"] {
-	--db-component-padding-block: 0;
+	--db-component-padding-block: 0px;
 	--db-component-padding-inline: 2px;
 	--db-component-height: 16px;
 	--db-content-height: 16px;
 	--db-content-padding-inline: 2px;
-	--db-content-padding-block: 0;
+	--db-content-padding-block: 0px;
 	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
 	--db-icon-size: 12px;
 	--db-font-size: 10.67px;
@@ -11559,7 +11559,7 @@
 	--db-component-height: 18px;
 	--db-content-height: 16px;
 	--db-content-padding-inline: 2px;
-	--db-content-padding-block: 0;
+	--db-content-padding-block: 0px;
 	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
 	--db-icon-size: 12px;
 	--db-font-size: 10.67px;
@@ -11575,8 +11575,8 @@
 	--db-component-height: 20px;
 	--db-content-height: 18px;
 	--db-content-padding-inline: 2px;
-	--db-content-padding-block: 0;
-	--db-component-gap: max(3px, calc(0.25 * var(--db-content-height)));
+	--db-content-padding-block: 0px;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
 	--db-icon-size: 14px;
 	--db-font-size: 12px;
 	--db-line-height: 18px;
@@ -11591,8 +11591,8 @@
 	--db-component-height: 24px;
 	--db-content-height: 20px;
 	--db-content-padding-inline: 2px;
-	--db-content-padding-block: 0;
-	--db-component-gap: max(3px, calc(0.25 * var(--db-content-height)));
+	--db-content-padding-block: 0px;
+	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
 	--db-icon-size: 16px;
 	--db-font-size: 13.33px;
 	--db-line-height: 20px;
@@ -11607,7 +11607,7 @@
 	--db-component-height: 28px;
 	--db-content-height: 24px;
 	--db-content-padding-inline: 4px;
-	--db-content-padding-block: 0;
+	--db-content-padding-block: 0px;
 	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
 	--db-icon-size: 20px;
 	--db-font-size: 16px;
@@ -11623,7 +11623,7 @@
 	--db-component-height: 28px;
 	--db-content-height: 24px;
 	--db-content-padding-inline: 4px;
-	--db-content-padding-block: 0;
+	--db-content-padding-block: 0px;
 	--db-component-gap: max(2px, calc(0.25 * var(--db-content-height)));
 	--db-icon-size: 20px;
 	--db-font-size: 16px;

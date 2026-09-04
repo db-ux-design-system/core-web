@@ -1,0 +1,247 @@
+{
+  "db-base-size": {
+    "0": {
+      "$type": "number",
+      "$value": 0,
+      "$description": "0% of the 4 px base unit = 0 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:3",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-0"
+        }
+      }
+    },
+    "25": {
+      "$type": "number",
+      "$value": 1,
+      "$description": "25% of the 4 px base unit = 1 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:4",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-25"
+        }
+      }
+    },
+    "50": {
+      "$type": "number",
+      "$value": 2,
+      "$description": "50% of the 4 px base unit = 2 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:5",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-50"
+        }
+      }
+    },
+    "75": {
+      "$type": "number",
+      "$value": 3,
+      "$description": "75% of the 4 px base unit = 3 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:6",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-75"
+        }
+      }
+    },
+    "100": {
+      "$type": "number",
+      "$value": 4,
+      "$description": "100% of the 4 px base unit = 4 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:7",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-100"
+        }
+      }
+    },
+    "125": {
+      "$type": "number",
+      "$value": 5,
+      "$description": "125% of the 4 px base unit = 5 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:8",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-125"
+        }
+      }
+    },
+    "150": {
+      "$type": "number",
+      "$value": 6,
+      "$description": "150% of the 4 px base unit = 6 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:9",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-150"
+        }
+      }
+    },
+    "175": {
+      "$type": "number",
+      "$value": 7,
+      "$description": "175% of the 4 px base unit = 7 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:10",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-175"
+        }
+      }
+    },
+    "200": {
+      "$type": "number",
+      "$value": 8,
+      "$description": "200% of the 4 px base unit = 8 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:11",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-200"
+        }
+      }
+    },
+    "250": {
+      "$type": "number",
+      "$value": 10,
+      "$description": "250% of the 4 px base unit = 10 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:12",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-250"
+        }
+      }
+    },
+    "300": {
+      "$type": "number",
+      "$value": 12,
+      "$description": "300% of the 4 px base unit = 12 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:13",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-300"
+        }
+      }
+    },
+    "350": {
+      "$type": "number",
+      "$value": 14,
+      "$description": "350% of the 4 px base unit = 14 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:14",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-350"
+        }
+      }
+    },
+    "400": {
+      "$type": "number",
+      "$value": 16,
+      "$description": "400% of the 4 px base unit = 16 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:15",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-400"
+        }
+      }
+    },
+    "450": {
+      "$type": "number",
+      "$value": 18,
+      "$description": "450% of the 4 px base unit = 18 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:16",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-450"
+        }
+      }
+    },
+    "500": {
+      "$type": "number",
+      "$value": 20,
+      "$description": "500% of the 4 px base unit = 20 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:17",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-500"
+        }
+      }
+    },
+    "600": {
+      "$type": "number",
+      "$value": 24,
+      "$description": "600% of the 4 px base unit = 24 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:18",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-600"
+        }
+      }
+    },
+    "700": {
+      "$type": "number",
+      "$value": 28,
+      "$description": "700% of the 4 px base unit = 28 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:19",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-700"
+        }
+      }
+    },
+    "800": {
+      "$type": "number",
+      "$value": 32,
+      "$description": "800% of the 4 px base unit = 32 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:20",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-800"
+        }
+      }
+    },
+    "1000": {
+      "$type": "number",
+      "$value": 40,
+      "$description": "1000% of the 4 px base unit = 40 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:21",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-1000"
+        }
+      }
+    },
+    "1200": {
+      "$type": "number",
+      "$value": 48,
+      "$description": "1200% of the 4 px base unit = 48 px. Arithmetic primitive; use role-based Component Size variables in components.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:3:22",
+        "com.figma.hiddenFromPublishing": true,
+        "com.figma.codeSyntax": {
+          "WEB": "--db-base-size-1200"
+        }
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Value"
+  }
+}
