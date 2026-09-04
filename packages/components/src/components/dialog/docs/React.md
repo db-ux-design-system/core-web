@@ -15,12 +15,15 @@ A fixed inset of `40px` is kept between every dialog edge and the corresponding 
 
 ### Use component
 
+Set `backdrop="none"` to get a non-modal dialog: no dimmed backdrop, no focus trap, and clicks outside the dialog
+leave it open.
+
 #### Invoker Commands
 
 Instead of the `open` property you can use
 [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
 to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
-`commandfor`. Supported built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+`commandfor`. Supported built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
@@ -87,6 +90,7 @@ const App = () => {
 				onClick={() => {
 					setOpen(true);
 				}}
+				type="button"
 			>
 				Open dialog
 			</DBButton>
@@ -124,9 +128,6 @@ const App = () => {
 export default App;
 ```
 
-Set `backdrop="none"` to get a non-modal dialog: no dimmed backdrop, no focus trap, and clicks outside the dialog
-leave it open.
-
 ### Return a value
 
 A submit control with `formmethod="dialog"`, or any submit control inside a `<form method="dialog">`, closes the dialog
@@ -142,7 +143,8 @@ instead.
 import {
 	DBButton,
 	DBDialog,
-	DBDialogFooter
+	DBDialogFooter,
+	DBDialogHeader
 } from "@db-ux/react-core-components";
 
 const App = () => (
@@ -164,6 +166,11 @@ const App = () => (
 				</form>
 			</DBDialogFooter>
 		}
+		header={
+			<DBDialogHeader closeButtonText="Close">
+				Dialog title
+			</DBDialogHeader>
+		}
 	>
 		Delete this entry?
 	</DBDialog>
@@ -174,36 +181,20 @@ export default App;
 
 ### Top-layer limitation
 
-A modal `<dialog>` is rendered in the browser top layer. Elements inside the dialog that create a top layer of their
-own or that rely on the stacking context of the page do not escape the dialog box. This affects `DBTooltip`,
-`DBPopover` and `DBCustomSelect`: their overlays are clipped at the dialog edges or stack below the dialog instead of
-above it. No workaround ships in this phase, so avoid these components close to the dialog edges, or keep their
-content inside the scrollable dialog content area.
+A modal `<dialog>` is rendered in the browser top layer and the `.db-dialog` box uses `overflow: clip`. Overlay
+content that itself renders into the top layer or uses fixed positioning escapes the box and paints correctly above
+the dialog: `DBTooltip` (`position: fixed`) and native popovers work as expected inside a modal dialog.
+
+Only overlay content that is positioned in the normal flow of the dialog (e.g. an absolutely positioned dropdown such
+as the `DBCustomSelect` option list on desktop) can be clipped at the dialog edges when it overflows the box. Keep
+such content inside the scrollable dialog content area, or leave enough room so its overlay stays within the dialog
+bounds.
 
 ### Migration from a hand-written modal
 
-One row per public property and per slot of `DBDialog`, against the construct a hand-written modal needs and against
-the `DBDrawer` equivalent:
+`DBDialog` replaces a hand-written modal.
 
-| `DBDialog`                      | Hand-written modal                                                       | `DBDrawer`              |
-| ------------------------------- | ------------------------------------------------------------------------ | ----------------------- |
-| `open`                          | `showModal()` / `show()` / `close()` calls plus your own state flag      | `open`                  |
-| `backdrop="strong \| weak"`     | overlay element with a dim colour, `z-index` and scroll locking          | `backdrop`, same values |
-| `backdrop="none"`               | `show()` instead of `showModal()`, no overlay element                    | `backdrop="none"`       |
-| `containerSize`                 | media queries and `max-width` values per breakpoint                      | `containerSize`         |
-| `header` slot                   | heading markup plus a close button plus `aria-labelledby` wiring by hand | `header` slot           |
-| `footer` slot                   | action row with its own divider, padding and gap                         | `footer` slot           |
-| `onClose`                       | your own callback after every close path                                 | `onClose`               |
-| `onCancel`                      | Escape handler that can be vetoed                                        | `onCancel`              |
-| `children`                      | scroll container with `overflow: auto` and `overscroll-behavior`         | `children`              |
-| `id`                            | id used for `aria-labelledby` and for your own query selectors           | `id`                    |
-| `className`, `data-*`, `aria-*` | same attributes on your own root element                                 | same                    |
-
-The drawer properties `direction`, `position`, `rounded`, `showSpacing` and `variant` as well as
-`backdrop="invisible"` have no `DBDialog` equivalent: the dialog is always centred, always rounded, always spaced by
-the viewport inset, and non-modal usage is covered by `backdrop="none"`.
-
-Before, a hand-written modal:
+Before, a possible hand-written modal:
 
 ```tsx App.tsx
 // App.tsx
@@ -292,6 +283,7 @@ const App = () => {
 				onClick={() => {
 					setOpen(true);
 				}}
+				type="button"
 			>
 				Open dialog
 			</DBButton>
@@ -326,5 +318,5 @@ the component, so you do not have to add anything yourself.
 
 | File                                    | Missing feature                           | Deleted when                                     | Behaviour without native support                                                                                                                    |
 | --------------------------------------- | ----------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `utils/dialog-ponyfill.ts`              | `closedby` attribute and Invoker Commands | every Browserslist target supports both features | `data-closedby="not-supported"` is set on the dialog, and a click on a `command="request-close"` button calls `requestClose()` on the dialog itself |
+| `utils/dialog/ponyfill.ts`              | `closedby` attribute and Invoker Commands | every Browserslist target supports both features | `data-closedby="not-supported"` is set on the dialog, and a click on a `command="request-close"` button calls `requestClose()` on the dialog itself |
 | `styles/internal/_dialog-ponyfill.scss` | `closedby` attribute                      | every Browserslist target supports `closedby`    | the close button gets a hit area covering the area outside the dialog box, so clicking the backdrop still closes the dialog                         |

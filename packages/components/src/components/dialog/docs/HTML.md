@@ -17,7 +17,7 @@ including `full`, so that a clickable backdrop area always remains. Overwrite it
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and
 `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element via its `id`. Supported
-built-in commands for `<dialog>` are `show-modal` and `request-close` (recommended over `close`).
+built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
@@ -58,7 +58,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 			<button
 				class="db-button"
 				data-variant="brand"
-				command="close"
+				command="request-close"
 				commandfor="my-dialog"
 				type="button"
 			>
@@ -81,18 +81,27 @@ all of its submit buttons.
 ```html index.html
 <!-- index.html -->
 <dialog id="my-dialog" class="db-dialog">
+	<div class="db-dialog-header">
+		<header id="my-dialog-heading" class="db-dialog-header-container">
+			<h2>Dialog title</h2>
+		</header>
+		<button
+			class="db-button is-icon-text-replace"
+			data-icon="cross"
+			data-variant="ghost"
+			type="button"
+			command="request-close"
+			commandfor="my-dialog"
+			type="button"
+		>
+			Close
+		</button>
+	</div>
 	<div class="db-dialog-content">Delete this entry?</div>
 	<footer class="db-dialog-footer">
-		<form>
-			<button class="db-button" formmethod="dialog" value="cancel">
-				Cancel
-			</button>
-			<button
-				class="db-button"
-				data-variant="brand"
-				formmethod="dialog"
-				value="confirm"
-			>
+		<form method="dialog">
+			<button class="db-button" value="cancel">Cancel</button>
+			<button class="db-button" data-variant="brand" value="confirm">
 				Confirm
 			</button>
 		</form>
@@ -109,37 +118,20 @@ all of its submit buttons.
 
 ### Top-layer limitation
 
-A modal `<dialog>` is rendered in the browser top layer. Elements inside the dialog that create a top layer of their
-own or that rely on the stacking context of the page do not escape the dialog box. This affects the tooltip, the
-popover and `DBCustomSelect`: their overlays are clipped at the dialog edges or stack below the dialog instead of
-above it. No workaround ships in this phase, so avoid these components close to the dialog edges, or keep their
-content inside the scrollable `db-dialog-content` area.
+A modal `<dialog>` is rendered in the browser top layer and the `.db-dialog` box uses `overflow: clip`. Overlay
+content that itself renders into the top layer or uses fixed positioning escapes the box and paints correctly above
+the dialog: the tooltip (`position: fixed`) and native popovers work as expected inside a modal dialog.
+
+Only overlay content that is positioned in the normal flow of the dialog (e.g. an absolutely positioned dropdown such
+as the `DBCustomSelect` option list on desktop) can be clipped at the dialog edges when it overflows the box. Keep
+such content inside the scrollable `db-dialog-content` area, or leave enough room so its overlay stays within the
+dialog bounds.
 
 ### Migration from a hand-written modal
 
-One row per public property and per slot of the dialog, against the construct a hand-written modal needs and against
-the `DBDrawer` equivalent:
+The dialog replaces a hand-written modal.
 
-| Dialog (HTML)                     | Hand-written modal                                                       | `DBDrawer`                   |
-| --------------------------------- | ------------------------------------------------------------------------ | ---------------------------- |
-| `open` attribute                  | `showModal()` / `show()` / `close()` calls plus your own state flag      | `open`                       |
-| `data-backdrop="strong \| weak"`  | overlay element with a dim colour, `z-index` and scroll locking          | `data-backdrop`, same values |
-| `data-backdrop="none"`            | `show()` instead of `showModal()`, no overlay element                    | `data-backdrop="none"`       |
-| `data-container-size`             | media queries and `max-width` values per breakpoint                      | `data-container-size`        |
-| `closedby="any"`                  | click listener on the overlay comparing `event.target`                   | `closedby="any"`             |
-| `closedby="closerequest"`         | `keydown` listener for Escape                                            | `closedby="closerequest"`    |
-| `close` event                     | your own callback after every close path                                 | `close` event                |
-| `cancel` event                    | Escape handler that can be vetoed                                        | `cancel` event               |
-| `.db-dialog-header` (header slot) | heading markup plus a close button plus `aria-labelledby` wiring by hand | `.db-drawer-header`          |
-| `.db-dialog-footer` (footer slot) | action row with its own divider, padding and gap                         | `.db-drawer-footer`          |
-| `.db-dialog-content`              | scroll container with `overflow: auto` and `overscroll-behavior`         | `.db-drawer-content`         |
-| `class`, `id`, `data-*`, `aria-*` | same attributes on your own root element                                 | same                         |
-
-The drawer properties `direction`, `position`, `rounded`, `showSpacing` and `variant` as well as
-`data-backdrop="invisible"` have no dialog equivalent: the dialog is always centred, always rounded, always spaced by
-the viewport inset, and non-modal usage is covered by `data-backdrop="none"`.
-
-Before, a hand-written modal:
+Before, a possible hand-written modal:
 
 ```html index.html
 <!-- index.html -->
@@ -212,7 +204,7 @@ Two fallbacks ship for browser features that our [Browserslist](https://browsers
 
 | File                                    | Missing feature                           | Deleted when                                     | Behaviour without native support                                                                                                                    |
 | --------------------------------------- | ----------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `utils/dialog-ponyfill.ts`              | `closedby` attribute and Invoker Commands | every Browserslist target supports both features | `data-closedby="not-supported"` is set on the dialog, and a click on a `command="request-close"` button calls `requestClose()` on the dialog itself |
+| `utils/dialog/ponyfill.ts`              | `closedby` attribute and Invoker Commands | every Browserslist target supports both features | `data-closedby="not-supported"` is set on the dialog, and a click on a `command="request-close"` button calls `requestClose()` on the dialog itself |
 | `styles/internal/_dialog-ponyfill.scss` | `closedby` attribute                      | every Browserslist target supports `closedby`    | the close button gets a hit area covering the area outside the dialog box, so clicking the backdrop still closes the dialog                         |
 
 In plain HTML you wire these fallbacks yourself. Feature-detect Invoker Commands and fall back to event handlers:
