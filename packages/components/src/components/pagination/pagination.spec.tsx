@@ -9,6 +9,7 @@ import { DEFAULT_VIEWPORT, DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 // below the collapsing breakpoint - every test sees the collapsed page list
 // unless it switches to DESKTOP_VIEWPORT first.
 let requestedPage: number | undefined;
+let requestedPages: number[] = [];
 
 type PaginationItemSnapshot = {
 	attribute: string;
@@ -41,7 +42,10 @@ const comp: any = (
 		currentPage={5}
 		totalCount={100}
 		pageSize={10}
-		onPageChange={(page: number) => (requestedPage = page)}
+		onPageChange={(page: number) => {
+			requestedPage = page;
+			requestedPages.push(page);
+		}}
 	/>
 );
 
@@ -67,6 +71,46 @@ const testComponent = () => {
 const testPagination = () => {
 	test.beforeEach(() => {
 		requestedPage = undefined;
+		requestedPages = [];
+	});
+
+	test('should report a page change exactly once', async ({ mount }) => {
+		// The React pass-through forwards every prop starting with `on` to the root
+		// of the item, which is the <li>. The button inside it already reports the
+		// click, so without filtering onClick the same click bubbles into the
+		// forwarded handler and the consumer sees the page change twice - enough to
+		// send a request or an analytics event twice.
+		const component = await mount(comp);
+
+		await component.getByRole('button', { name: 'Page 1 of 10' }).click();
+
+		expect(requestedPages).toEqual([1]);
+	});
+
+	test('should keep the focus on the page that was activated', async ({
+		mount,
+		page
+	}) => {
+		// The items are keyed by page, not by position. Keyed by position, the
+		// element that holds the focus would be reused for whatever page moves into
+		// that slot: going from page 5 to 6 shifts the window from 1 ... 4 5 6 ... 10
+		// to 1 ... 5 6 7 ... 10, so the focus would end up on page 7.
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(comp);
+
+		await component.getByRole('button', { name: 'Page 6 of 10' }).click();
+		await component.update(
+			<DBPagination
+				label="Results pages"
+				currentPage={6}
+				totalCount={100}
+				pageSize={10}
+			/>
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Page 6 of 10' })
+		).toBeFocused();
 	});
 
 	test('should request a page without changing controlled state', async ({
@@ -563,7 +607,8 @@ const testSizes = () => {
 
 const testTouchTargets = () => {
 	test('should keep a pointer target of at least 24 pixels', async ({
-		mount
+		mount,
+		page
 	}) => {
 		// WCAG 2.2 SC 2.5.8. At functional density the buttons themselves are only
 		// 20px, so the target comes from an overlay - see pagination.scss. The
@@ -608,6 +653,33 @@ const testTouchTargets = () => {
 				`${selector}: target is at least 24px high`
 			).toBeGreaterThanOrEqual(24);
 		}
+
+		// The criterion is written in CSS pixels, so the floor has to survive a
+		// consumer that lowers the root font size. A plain rem value would follow it
+		// down - 1.5rem is 18px at a root of 12px.
+		await page.evaluate(() => {
+			document.documentElement.style.fontSize = '12px';
+		});
+
+		const lowered = await component
+			.locator('.db-pagination-page')
+			.first()
+			.evaluate((element: HTMLElement) => {
+				const style = window.getComputedStyle(element, '::after');
+				return {
+					minInlineSize: Number.parseFloat(style.minInlineSize),
+					minBlockSize: Number.parseFloat(style.minBlockSize)
+				};
+			});
+
+		expect(
+			lowered.minInlineSize,
+			'target stays 24px wide at a reduced root font size'
+		).toBeGreaterThanOrEqual(24);
+		expect(
+			lowered.minBlockSize,
+			'target stays 24px high at a reduced root font size'
+		).toBeGreaterThanOrEqual(24);
 	});
 
 	test('should not let two page targets overlap', async ({ mount }) => {

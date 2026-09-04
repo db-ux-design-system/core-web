@@ -409,9 +409,19 @@ not reach for `ResizeObserver` or `matchMedia` — see
 `wide-ellipsis`) and `pagination.scss` toggles `display` per layout inside
 `screen-sizes.screen("sm", "max")`. Three things made it work:
 
-- **Derive each layout from the same function.** The collapsed page list is the
-  existing algorithm run with `siblingCount` reduced to `0`, so it inherits every
-  guarantee that algorithm already makes instead of re-deriving them by hand.
+- **Give each layout its own list, and make one a subset of the other.**
+  `getPages` produces the wide list and `getCollapsedPages` the narrow one. They
+  are deliberately **not** the same function with a smaller `siblingCount`: the
+  wide algorithm keeps the number of rendered items constant by shifting its
+  window towards the opposite border, which puts three full-width pages next to
+  each other as soon as the current page sits at one end (`1 ... 9998 9999
+10000`). Width is the only reason the collapsed layout exists, so it renders the
+  boundary pages, the current page, and nothing else. What both must share is the
+  set of invariants — ascending unique pages, the current page always present, no
+  ellipsis standing in for a single page — and the collapsed pages must stay a
+  subset of the wide ones, because that is what lets one list of items carry both.
+  Assert those invariants for both layouts in the spec instead of deriving one
+  from the other.
 - **The narrow layout is not a subset of the rendered wide layout.** Removing
   items opens gaps that need their own separators, so a layout can need elements
   the other one does not have at all. Emit them and hide them in the other

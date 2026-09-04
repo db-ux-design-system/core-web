@@ -78,10 +78,16 @@
 			translate: -50% -50%;
 			inline-size: 100%;
 			block-size: 100%;
+
+			// max, not one of the two alone: the criterion is written in CSS pixels,
+			// so 24px is the floor. rem alone falls through it wherever a consumer
+			// lowers the root font size past the :root rule the foundations set -
+			// measured 18px at a root of 12px. The rem side stays so the target still
+			// grows for someone who raises the font size instead of being capped.
 			// stylelint-disable-next-line db-ux/use-sizing
-			min-inline-size: 1.5rem;
+			min-inline-size: max(24px, 1.5rem);
 			// stylelint-disable-next-line db-ux/use-sizing
-			min-block-size: 1.5rem;
+			min-block-size: max(24px, 1.5rem);
 		}
 	}
 }

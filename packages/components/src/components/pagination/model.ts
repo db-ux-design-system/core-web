@@ -7,6 +7,13 @@ export type PaginationItemType = {
 	 */
 	page: number;
 	layout: PaginationItemLayoutType;
+	/**
+	 * Identity of the item across page changes. Keying by list position instead
+	 * would move the focus to an adjacent page whenever the window shifts, because
+	 * the framework reuses the element for whatever page now sits at that
+	 * position.
+	 */
+	key: string;
 };
 
 export type DBPaginationDefaultProps = {

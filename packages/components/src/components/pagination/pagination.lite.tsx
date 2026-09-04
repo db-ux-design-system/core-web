@@ -223,7 +223,10 @@ export default function DBPagination(props: DBPaginationProps) {
 						layout: state.getEllipsisLayout(
 							wideGap,
 							collapsedEllipsis
-						)
+						),
+						// The gap is identified by the page it ends at, which is the
+						// only part of it that survives a page change.
+						key: 'ellipsis-before-' + page
 					});
 					if (collapsedEllipsis) {
 						collapsedEllipsisPlaced = true;
@@ -232,7 +235,8 @@ export default function DBPagination(props: DBPaginationProps) {
 
 				items.push({
 					page,
-					layout: inCollapsed ? 'always' : 'wide'
+					layout: inCollapsed ? 'always' : 'wide',
+					key: 'page-' + page
 				});
 				lastWidePage = page;
 
@@ -262,7 +266,8 @@ export default function DBPagination(props: DBPaginationProps) {
 					layout: state.getEllipsisLayout(
 						wideTrailingGap,
 						collapsedTrailingEllipsis
-					)
+					),
+					key: 'ellipsis-end'
 				});
 			}
 
@@ -372,7 +377,7 @@ export default function DBPagination(props: DBPaginationProps) {
 				<For each={state.getPaginationItems()}>
 					{(item: PaginationItemType, index: number) => (
 						<DBPaginationItem
-							key={'pagination-item-' + index}
+							key={item.key}
 							page={item.page}
 							layout={item.layout}
 							size={props.size}
