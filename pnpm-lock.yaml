@@ -51,17 +51,17 @@ importers:
         specifier: 2.0.0
         version: 2.0.0(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.33.2
-        version: 0.33.2(supports-color@10.2.2)
+        specifier: 0.34.0
+        version: 0.34.0(supports-color@10.2.2)
       '@guidepup/playwright':
         specifier: 0.19.1
-        version: 0.19.1(@guidepup/guidepup@0.33.2(supports-color@10.2.2))(@playwright/test@1.62.1)
+        version: 0.19.1(@guidepup/guidepup@0.34.0(supports-color@10.2.2))(@playwright/test@1.62.1)
       '@guidepup/record':
         specifier: 0.1.0
         version: 0.1.0(supports-color@10.2.2)
       '@guidepup/setup':
-        specifier: 0.24.6
-        version: 0.24.6(supports-color@10.2.2)
+        specifier: 0.25.2
+        version: 0.25.2(supports-color@10.2.2)
       '@playwright/experimental-ct-core':
         specifier: 1.62.1
         version: 1.62.1(@types/node@26.4.0)(esbuild@0.28.2)(jiti@2.7.0)(less@4.8.1(supports-color@10.2.2))(sass@1.103.1)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0)
@@ -3727,8 +3727,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.33.2':
-    resolution: {integrity: sha512-aOoZ7Su9sNBm6hjdrgHC1TTAofU0Dz1+uo9uzWuTD7DMIOWGrbbNaFOHoFWHQr8KHw6dV3UwuHIjhKjQlYpxFQ==}
+  '@guidepup/guidepup@0.34.0':
+    resolution: {integrity: sha512-nMLsvHXXNZg+/9okHvSOuMEKMGxs0U8o/sT1pKERh37ETB16X4geomIHjXJ/HRTfpue9gs9yRTLK5azHZV92iw==}
 
   '@guidepup/playwright@0.19.1':
     resolution: {integrity: sha512-d0FMH6LFbRbV71l2NGzv2gqV3vQbHDfTVctXsKm6d1ZahpS2/Ozq1WCEoZ7QTAR6iuNzwy03tZfvyijGH+zUDw==}
@@ -3739,8 +3739,8 @@ packages:
   '@guidepup/record@0.1.0':
     resolution: {integrity: sha512-jtSqZ0CZVdWzWIbLWHYoUi1IbNJVKns20oEYzwcTftw8rY5RXsK1OTXaXFx9Gup5mnmYaFLnON8WwTS+4DYwrQ==}
 
-  '@guidepup/setup@0.24.6':
-    resolution: {integrity: sha512-Oxcb0aXTVhl0iXYYuecUjTU4Bt0P7+qsOktcLNSnhwdynBYesUofTfk9QdboOhqLmg5wesw4qE3hXDHCgCz5OA==}
+  '@guidepup/setup@0.25.2':
+    resolution: {integrity: sha512-76aO6uefBt6LXGFU5b/hyql3SxEGX2l4/Zba2PT1S8Dc/Zec3iBNXM0lHCouo0Cp0DeYtTPpnXa45c0O0eFang==}
     hasBin: true
 
   '@harperfast/extended-iterable@1.0.3':
@@ -19523,16 +19523,16 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.33.2(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.34.0(supports-color@10.2.2)':
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
       plist: 4.0.0
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.33.2(supports-color@10.2.2))(@playwright/test@1.62.1)':
+  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.34.0(supports-color@10.2.2))(@playwright/test@1.62.1)':
     dependencies:
-      '@guidepup/guidepup': 0.33.2(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.34.0(supports-color@10.2.2)
       '@playwright/test': 1.62.1
 
   '@guidepup/record@0.1.0(supports-color@10.2.2)':
@@ -19541,7 +19541,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/setup@0.24.6(supports-color@10.2.2)':
+  '@guidepup/setup@0.25.2(supports-color@10.2.2)':
     dependencies:
       chalk: 4.1.2
       commander: 15.0.0
