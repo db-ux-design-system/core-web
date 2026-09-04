@@ -255,10 +255,6 @@ export const PopoverWidthList = ['auto', 'fixed'] as const;
 export type PopoverWidthType = (typeof PopoverWidthList)[number];
 export type PopoverProps = {
 	/**
-	 * Add a delay before showing the tooltip
-	 */
-	delay?: PopoverDelayType;
-	/**
 	 * Disable animation
 	 */
 	animation?: boolean | string;
@@ -271,6 +267,13 @@ export type PopoverProps = {
 	 * If the floating element is inside a fixed container we might need to force absolute position
 	 */
 	forceAbsolute?: boolean | string;
+} & DelayProps;
+
+export type DelayProps = {
+	/**
+	 * Add a delay before showing the component
+	 */
+	delay?: PopoverDelayType;
 };
 
 export type NameProps = {

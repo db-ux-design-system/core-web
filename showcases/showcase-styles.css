@@ -287,3 +287,10 @@ app-nav-item {
 		block-size: calc(var(--db-sizing-sm) + 4px);
 	}
 }
+
+/* The bar loading indicator is inline-size: 100% by design. In the showcase
+   it would otherwise stretch across the whole card and reflow the other
+   variants, so we cap it to a fixed width here (showcase-only). */
+.variants-list .db-loading-indicator[data-variant="bar"] {
+	inline-size: var(--db-sizing-3xl);
+}

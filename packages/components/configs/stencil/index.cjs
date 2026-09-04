@@ -3,6 +3,7 @@ const attributePassingPlugin = require('../plugins/attribute-passing/index.cjs')
 const slotsPlugin = require('../plugins/stencil/slots.cjs');
 const stencilPlugin = require('../plugins/stencil/index.cjs');
 const esmExtensionsPlugin = require('../plugins/esm-extensions.cjs');
+const undefinedKeyPlugin = require('../plugins/undefined-key.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').ToStencilOptions}
@@ -14,6 +15,7 @@ module.exports = {
 		customRef: '_ref'
 	},
 	plugins: [
+		undefinedKeyPlugin,
 		stencilPlugin,
 		attributePassingPlugin,
 		slotsPlugin,

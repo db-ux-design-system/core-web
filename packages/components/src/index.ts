@@ -64,6 +64,8 @@ export * from './components/input';
 export * from './components/input/model';
 export * from './components/link';
 export * from './components/link/model';
+export * from './components/loading-indicator';
+export * from './components/loading-indicator/model';
 export * from './components/navigation';
 export * from './components/navigation-item';
 export * from './components/navigation-item/model';
