@@ -239,9 +239,6 @@
   - status:
     - text: Circular vertical
     - progressbar "Circular vertical"
-  - status:
-    - text: Bar
-    - progressbar "Bar"
   - text: Fast
   - status:
     - text: Circular horizontal
