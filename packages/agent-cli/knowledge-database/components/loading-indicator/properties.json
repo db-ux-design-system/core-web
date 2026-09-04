@@ -1,0 +1,238 @@
+{
+	"component": "loading-indicator",
+	"properties": [
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": ["circular", "bar"],
+			"default": "circular",
+			"code": {
+				"prop": "variant",
+				"type": "LoadingIndicatorVariantType"
+			},
+			"design": {
+				"name": null,
+				"note": "Not a variant property in Figma. Circular and Bar are modelled as separate component sets. The Figma component overview calls this property Type; the canonical name follows the code prop variant, as it does for Button."
+			}
+		},
+		{
+			"name": "indeterminate",
+			"type": "boolean",
+			"default": true,
+			"code": {
+				"prop": "indeterminate",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": null,
+				"note": "Not a variant property in Figma. Indeterminate and Determinate are modelled as separate component sets per variant. The component overview lists Indeterminate as the canonical property."
+			}
+		},
+		{
+			"name": "state",
+			"type": "enum",
+			"values": ["inactive", "active", "successful", "critical"],
+			"default": null,
+			"code": {
+				"prop": "state",
+				"type": "LoadingIndicatorStateType | string"
+			},
+			"design": {
+				"name": "🔀 State",
+				"values": [
+					"(Def) Inactive",
+					"(Def) Active",
+					"Successful",
+					"Critical"
+				],
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular",
+					"indeterminate-bar",
+					"determinate-bar"
+				],
+				"note": "The value set differs per component set: indeterminate offers Active (default), Successful and Critical; determinate offers Inactive (default), Active, Successful and Critical. Same Figma property name in all four sets, therefore one entry with the union of values and no single default."
+			}
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"default": "Label",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular",
+					"indeterminate-bar",
+					"determinate-bar"
+				],
+				"note": "In code the label text can also be passed as children. The label prop takes precedence, children act as the fallback."
+			}
+		},
+		{
+			"name": "showLabel",
+			"type": "boolean",
+			"default": true,
+			"description": "Enables/disables the visibility of the label",
+			"code": {
+				"prop": "showLabel",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "👁️ Show Label",
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular",
+					"indeterminate-bar",
+					"determinate-bar"
+				]
+			}
+		},
+		{
+			"name": "progressText",
+			"type": "string",
+			"default": "Progress",
+			"code": {
+				"prop": "progressText",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Progress",
+				"type": "text",
+				"componentSet": ["determinate-circular", "determinate-bar"],
+				"note": "Determinate only. The indeterminate component sets carry no progress text. The Figma property is named Progress, the code prop progressText."
+			}
+		},
+		{
+			"name": "showProgressText",
+			"type": "boolean",
+			"default": true,
+			"description": "Enables/disables the visibility of the progressText",
+			"code": {
+				"prop": "showProgressText",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "👁️ Show Progress Text",
+				"componentSet": ["determinate-circular", "determinate-bar"],
+				"note": "Determinate only."
+			}
+		},
+		{
+			"name": "value",
+			"type": "string | number",
+			"code": {
+				"prop": "value",
+				"type": "string | number"
+			},
+			"design": null
+		},
+		{
+			"name": "max",
+			"type": "string | number",
+			"code": {
+				"prop": "max",
+				"type": "number | string"
+			},
+			"design": null
+		},
+		{
+			"name": "orientation",
+			"type": "enum",
+			"values": ["horizontal", "vertical"],
+			"default": "horizontal",
+			"description": "Change the orientation. Defaults to horizontal.",
+			"code": {
+				"prop": "orientation",
+				"type": "OrientationType"
+			},
+			"design": {
+				"name": "🔀 Orientation",
+				"values": ["(Def) Vertical", "Horizontal"],
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular"
+				],
+				"note": "Circular only. The bar component sets carry no orientation. The defaults differ: Figma defaults to Vertical, the code prop defaults to horizontal."
+			}
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["small", "medium"],
+			"default": "medium",
+			"description": "The size attribute changes the font-size and other related sizes of the component.",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "🔀 Size",
+				"values": ["(Def) Medium", "Small", "Large"],
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular",
+					"indeterminate-bar",
+					"determinate-bar"
+				],
+				"note": "The value sets differ: Figma additionally offers Large, the shared SizeList in code only covers small and medium. The canonical values follow the code."
+			}
+		},
+		{
+			"name": "overlay",
+			"type": "boolean",
+			"code": {
+				"prop": "overlay",
+				"type": "boolean | string"
+			},
+			"design": null
+		},
+		{
+			"name": "autoDisable",
+			"type": "boolean",
+			"description": "Disable the parent component (e.g. a DBButton) when loading indicator is inside it",
+			"code": {
+				"prop": "autoDisable",
+				"type": "boolean | string"
+			},
+			"design": null
+		},
+		{
+			"name": "delay",
+			"type": "enum",
+			"values": ["none", "slow", "fast"],
+			"default": "none",
+			"description": "Add a delay before showing the component",
+			"code": {
+				"prop": "delay",
+				"type": "PopoverDelayType"
+			},
+			"design": null
+		},
+		{
+			"name": "role",
+			"type": "enum",
+			"values": ["alert", "status"],
+			"code": {
+				"prop": "role",
+				"type": "'alert' | 'status'"
+			},
+			"design": null
+		},
+		{
+			"name": "onTimeout",
+			"type": "function",
+			"description": "Triggers after a timeout. For \"active\" after 5 seconds, for \"successful\" and \"critical\" after 2 seconds",
+			"code": {
+				"prop": "onTimeout",
+				"type": "(state?: LoadingIndicatorStateType | string) => void"
+			},
+			"design": null
+		}
+	]
+}

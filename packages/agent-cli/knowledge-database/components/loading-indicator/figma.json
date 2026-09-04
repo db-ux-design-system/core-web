@@ -1,0 +1,71 @@
+{
+	"component": "loading-indicator",
+	"library": "core-components",
+	"pageId": "40085:761",
+	"pageName": "Loading Indicator (Beta)",
+	"componentSets": [
+		{
+			"name": "Loading Indicator → (Def) Indeterminate - Circular (Beta)",
+			"nodeId": "40085:825",
+			"type": "COMPONENT_SET",
+			"key": "e008f9e290c26b36a129488f8388f387874d4cf1"
+		},
+		{
+			"name": "Loading Indicator → Determinate - Circular (Beta)",
+			"nodeId": "40085:924",
+			"type": "COMPONENT_SET",
+			"key": "dc4d373da2b3241ce58022183135f036628c253d"
+		},
+		{
+			"name": "Loading Indicator → (Def) Indeterminate - Bar (Beta)",
+			"nodeId": "40085:1083",
+			"type": "COMPONENT_SET",
+			"key": "fe69dd3ae2ac140a5dc9d8641f5d89a61f1e466e"
+		},
+		{
+			"name": "Loading Indicator → Determinate - Bar (Beta)",
+			"nodeId": "40085:1143",
+			"type": "COMPONENT_SET",
+			"key": "63f249fc05639c4465169589e4176cd639c98ac1"
+		}
+	],
+	"helperComponents": [
+		{
+			"name": "🛟 Loading Indicator → Circle Vertical (Beta)",
+			"nodeId": "40085:776",
+			"type": "COMPONENT_SET",
+			"key": "4ce8c7fe04c4e86d2354b2ae4d304c885f8a5e8f"
+		},
+		{
+			"name": "🛟 Loading Indicator → Circle Vertical Progress (Beta)",
+			"nodeId": "40085:769",
+			"type": "COMPONENT_SET",
+			"key": "f3d4f3e1f184a4994691096967f6b5dbf318aa0f"
+		},
+		{
+			"name": "🛟 Loading Indicator → Circle Horizontal (Beta)",
+			"nodeId": "40085:783",
+			"type": "COMPONENT_SET",
+			"key": "c1ed79805ef80ef4a2bf2eb1d7cd0afdc18b692e"
+		},
+		{
+			"name": "🛟 Loading Indicator → Circle Horizontal Progress (Beta)",
+			"nodeId": "40085:817",
+			"type": "COMPONENT_SET",
+			"key": "9f6467c1702fdbaae05f611927145eddf97a8815"
+		},
+		{
+			"name": "🛟 Loading Indicator → Bar (Beta)",
+			"nodeId": "40085:794",
+			"type": "COMPONENT_SET",
+			"key": "c0164b3ae42df77a6d35f1b83e402bc1424e8af1"
+		},
+		{
+			"name": "🛟 Loading Indicator → Bar Progress (Beta)",
+			"nodeId": "40085:804",
+			"type": "COMPONENT_SET",
+			"key": "00e5b17eb07fca619e0d0dca6258a923fee96c39"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--loading-indicator-beta' (fileKey fQ8J3a8W9ZQEc6Ba0CaE4f), Branch von core-components (mlJ6R0GkfR15a93KSlqXtB). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Anlegen dieser Komponente entfernt wurde."
+}

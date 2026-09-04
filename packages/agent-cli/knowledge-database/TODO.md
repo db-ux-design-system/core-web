@@ -27,6 +27,8 @@ Diese Komponenten haben eine leere `guidelines.md` und sind in ihrer `meta.json`
 
 Nach der Ausarbeitung entfällt das Feld `guidelines` in der jeweiligen `meta.json`.
 
+Nicht mehr enthalten ist `loading-indicator`: die Guidelines sind ausgearbeitet, die verbleibenden Punkte stehen in „Loading Indicator: offene Werte in den Regeln, Figma-IDs, Dev-Handoff".
+
 Nicht mehr auszuarbeiten: `header`, `navigation`/`navigation-item`, `brand` und `page` sind seit 2026-09-03 deprecated (`deprecation: "deprecated"` in der jeweiligen `meta.json`) und brauchen keine Guidelines mehr.
 
 ### 6. Footer: Figma-IDs nach Merge verifizieren, Dev-Handoff
@@ -62,9 +64,20 @@ Regel 3 von `components/shell/shell-content/guidelines.md` steuert eine Mengenen
 
 Der übrige Bestand ist erledigt: Shell Desktop nennt vier Navigation Items für Control Panel Left und sechs für Sub Navigation Left, Shell Sub Navigation höchstens fünf Navigation Items auf Mobile, Control Panel Navigation acht beziehungsweise sieben Navigation Items je Ebene, und Control Panel Actions höchstens eine Hauptaktion und höchstens vier Utility-Aktionen. Offen ist damit nur noch Shell Content Regel 3.
 
+### 11. Loading Indicator: offene Werte in den Regeln, Figma-IDs, Dev-Handoff
+
+Betrifft `components/loading-indicator`, angelegt aus dem Figma Feature Branch `feat--loading-indicator-beta` (fileKey `fQ8J3a8W9ZQEc6Ba0CaE4f`, Branch von `mlJ6R0GkfR15a93KSlqXtB`). Die `guidelines.md` ist mit neun Regeln ausgearbeitet, es gibt aber weder Code noch eine Doku-Seite. Jede Regel in der Datei lässt sich als Do-Dont-Paar oder mit einer Caution zeigen; drei ursprünglich formulierte Anforderungen sind daran gescheitert und stehen unten. Offene Punkte sind hier vermerkt und nicht in der `guidelines.md`, weil diese keine Arbeitsnotizen trägt.
+
+- **Zeitschwelle und monotoner Fortschritt: Zielort mit Dev klären.** Zwei Anforderungen sind aus der `guidelines.md` herausgenommen, weil sie sich nicht als Do-Dont-Paar zeigen lassen: ein Standbild kann keine Dauer und keinen fallenden Wert darstellen, das Dont wäre jeweils von der zulässigen Nutzung nicht unterscheidbar. Beide sind Dev-relevant, der Zielort ist noch offen.
+    - **Zeitschwelle.** Loading Indicator erst einblenden, wenn die Wartezeit eine Sekunde überschreitet, bei kürzeren Vorgängen entfällt er, weil ein aufblitzender Indikator als Fehler gelesen wird. Die Sekunde ist die einzige Grenze, die die recherchierten Design Systeme teilen: Fluent 2 zeigt unter einer Sekunde nichts, eine bis drei Sekunden einen Spinner, darüber eine Fortschrittsanzeige; Carbon nennt für seinen Loading-Spinner drei Sekunden; GitLab verzögert die Einblendung um 100 ms.
+    - **Monotoner Fortschritt.** Determinierten Fortschritt nur vorwärts führen, von 0 Prozent bis 100 Prozent, einen erreichten Wert nie verringern und nie zurücksetzen. Carbon führt das als Eigenschaft der determinierten Variante, ebenfalls ohne Do-Dont-Paar.
+- **Label-Verhalten hängt am Helper Text.** Carbon hält das Label während des Ladens konstant und trägt Abschluss und Fehlergrund im Helper Text. Unsere Figma-Komponente hat keinen Helper Text, nur `label` und `progress`, deshalb wechselt das `label` bei uns mit dem Zustand. Sobald mit Dev geklärt ist, ob ein Helper Text dazukommt, Regel 6 und Regel 7 daran anpassen.
+- **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell und Control Panel: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Betrifft die vier Einträge in `componentSets` und die sechs in `helperComponents`.
+- **`code` und `description` beim Dev-Handoff füllen.** Alle Properties tragen `code: null`, weil noch keine `model.ts` existiert. Vorher ist zu klären, ob `type` und `indeterminate` Props werden oder getrennte Komponenten, siehe `figma-findings.md`.
+
 ## Foundations
 
-### 11. Auswahlkriterien innerhalb der Skalen ergänzen
+### 12. Auswahlkriterien innerhalb der Skalen ergänzen
 
 Für `border-radius` und `container` ist geregelt, dass ausschließlich Tokens verwendet werden, und bei `border-radius` zusätzlich, dass `full` der Pill-/Kreisfall ist. Offen bleibt, welche Stufe der Skala wann zu wählen ist — das ist eine Design-Entscheidung.
 
@@ -75,13 +88,13 @@ Als Anhaltspunkt, wie Core die Stufen aktuell belegt:
 
 ## Icons
 
-### 12. Anleitung zur lokalen Einbindung ergänzen
+### 13. Anleitung zur lokalen Einbindung ergänzen
 
 Von Dev: Wie werden Icons lokal eingebunden/installiert (inner source, Font-Setup)?
 
 ## Tooling
 
-### 13. `lint:codespell` für die deutschsprachige Wissensbasis klären
+### 14. `lint:codespell` für die deutschsprachige Wissensbasis klären
 
 Von Dev zu entscheiden, sobald klar ist, wo die Wissensbasis dauerhaft liegt.
 
@@ -94,7 +107,7 @@ Zwei Optionen:
 
 ## Generierung und Doku-Konventionen
 
-### 14. Property-Werte in Guidelines konsequent in Backticks setzen
+### 15. Property-Werte in Guidelines konsequent in Backticks setzen
 
 Die Konvention steht bereits in `writing-conventions.md` („Property-Werte werden mit ihrem kanonischen Namen in Backticks referenziert"), ist aber noch nicht überall durchgesetzt. Der generelle Bestand wurde im Language Review unter Finding A4 bereinigt (`custom-select-dropdown`, `transition`).
 
@@ -102,7 +115,7 @@ Offen sind die Guidelines von Shell und Control Panel: dort stehen Variantenwert
 
 Pro Vorkommen entscheiden, nicht pauschal ersetzen: Nur echte Property-Werte bekommen Backticks. Komponentennamen (z. B. Popover als Komponente), Markdown-Links und reine Richtungsangaben bleiben unquotiert. Nach der Umbenennungsrunde im Design sind Variantenwerte und Component-Set-Namen einheitlich mit Leerzeichen geschrieben (`Drill Down`, `Flat Icon`), Doppeldeutigkeiten sind damit weg.
 
-### 15. `documentation.json` für alle Stable- und Beta-Komponenten erstellen
+### 16. `documentation.json` für alle Stable- und Beta-Komponenten erstellen
 
 Aktuell nur als Prototyp bei Button vorhanden. Muss für alle Komponenten mit Status `stable` oder `beta` aus der jeweiligen `guidelines.md` generiert werden. Voraussetzung: `guidelines.md` ist ausgearbeitet (nicht `pending`). Vorgehen siehe README-Abschnitt „Generierung der documentation.json".
 
@@ -110,19 +123,21 @@ Ausgenommen sind Komponenten mit `deprecation: "deprecated"` in der `meta.json` 
 
 Bei Shell und Control Panel hatte `control-panel-brand` als einzige Komponente noch keine `documentation.json`, weil zunächst keine Doku-Seite dafür bekannt war. Die Doku-Seite existiert inzwischen (`pElrqVUyojrzYzSagyJPS6`, Node `4006:3`) und wurde am 2026-08-11 ausgelesen, die Datei ist erzeugt.
 
-### 16. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
+### 17. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
 
 Welche Artefakte sich zukünftig aus der Wissensbasis generieren lassen, anstatt parallel gepflegt zu werden — z.B. Storybook-Dokumentation (Props-Tabellen, Controls, Beschreibungen) oder Teile der Plattform-Dokumentation. Voraussetzung: Props, Slots, Events und Guidelines vollständig in der Wissensbasis.
 
-### 17. Accessibility als eigener Bereich in der Komponenten-Doku
+### 18. Accessibility als eigener Bereich in der Komponenten-Doku
 
 Barrierefreiheits-Anforderungen lassen sich oft nicht als Do-Dont-Paar im Layout zeigen, weil sie an Werten hängen, die im Screenshot nicht sichtbar sind. Dafür braucht die Komponenten-Doku einen eigenen Bereich neben Guidelines und Examples, dessen Einträge ohne Visual funktionieren.
 
 Bis dahin bleibt eine Anforderung dieser Art aus den Guidelines heraus. Betroffen ist bei `control-panel-navigation-item` die Regel, für jedes Flat Icon Navigation Item einen beschreibenden Text anzugeben: er dient zugleich als zugängliches Label, und bei ausgeblendetem Label identifiziert der Tooltip den Eintrag als Einziges. Ein Dont-Visual dazu ist in Figma nicht darstellbar, weil der Tooltip bei Hover immer eingeblendet wird — zeigen ließe sich nur das Property-Panel, und das ist Werkzeugwissen und für Entwickler:innen ohne Entsprechung.
 
-Beim Aufbau des Bereichs diese Regel als ersten Eintrag übernehmen und prüfen, welche weiteren Komponenten Anforderungen tragen, die aus demselben Grund bisher fehlen.
+Bei `loading-indicator` sind es zwei Anforderungen. Erstens `label` auch bei `showLabel` mit dem Wert `false` zu setzen: es ist der zugängliche Name des Vorgangs und wird von Screenreadern ausgegeben. Ein Dont-Visual dazu ist nicht darstellbar, weil ein Indikator ohne sichtbares Label genauso aussieht wie die zulässige Nutzung, der Verstoß liegt allein im fehlenden Textwert. Zweitens das Verhalten bei `prefers-reduced-motion`, das noch mit Dev zu klären ist und ebenfalls kein Visual trägt.
 
-### 18. Figma-Learn-Einträge und Verweise darauf
+Beim Aufbau des Bereichs diese Regeln als erste Einträge übernehmen und prüfen, welche weiteren Komponenten Anforderungen tragen, die aus demselben Grund bisher fehlen.
+
+### 19. Figma-Learn-Einträge und Verweise darauf
 
 Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Komponenten-Doku, sondern nach Figma Learn. Die Komponentenseite verweist dann darauf, statt den Inhalt zu wiederholen.
 
@@ -133,7 +148,7 @@ Beim Anlegen der Learn-Einträge prüfen, welche weiteren Aussagen aus den Guide
 
 ## Platform-Repo
 
-### 19. Tonalitätsregeln aus `_platform-steering/` zurückspielen
+### 20. Tonalitätsregeln aus `_platform-steering/` zurückspielen
 
 Der Ordner [`_platform-steering/`](_platform-steering/README.md) enthält eine temporäre Arbeitskopie der Steering-Dateien aus `db-ux-design-system.github.io`. Lücken, die beim Generieren der `documentation.json` auffallen, werden dort ergänzt und gesammelt in das Platform-Repo integriert, statt pro Fund zwischen den Repos zu wechseln.
 

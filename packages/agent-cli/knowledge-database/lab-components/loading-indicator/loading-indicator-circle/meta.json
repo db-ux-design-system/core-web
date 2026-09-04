@@ -1,9 +1,0 @@
-{
-	"id": "loading-indicator-circle",
-	"name": "LoadingIndicatorCircle",
-	"type": "lab-component",
-	"parent": "loading-indicator",
-	"status": "concept",
-	"owner": "core-team",
-	"since": null
-}

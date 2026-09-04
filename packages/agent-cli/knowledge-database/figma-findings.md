@@ -13,4 +13,8 @@ Nicht enthalten sind Emoji-Präfixe, die vom Figma-Typ abweichen. Das Präfix ri
 
 ## Offen
 
-Aktuell keine offenen Punkte.
+### Loading Indicator: Hinweis zur horizontalen Orientation
+
+Die Beschreibung beider Circular Component Sets im Feature Branch `feat--loading-indicator-beta` enthält den Hinweis „Use the horizontal orientation for in-component use." Das ist eine Auswahlvorgabe für `orientation` und damit ein Regelkandidat, steht aber bisher nur in der Figma-Beschreibung und in keiner Doku-Quelle.
+
+Mit Design klären, ob daraus eine Regel wird und wie „in-component" abgegrenzt ist (Loading Indicator innerhalb einer anderen Komponente gegen eigenständige Ladeanzeige einer Seite oder eines Bereichs). Danach in die `guidelines.md` von Loading Indicator übernehmen.

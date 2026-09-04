@@ -1,0 +1,8 @@
+{
+	"id": "loading-indicator",
+	"name": "Loading Indicator",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": null
+}

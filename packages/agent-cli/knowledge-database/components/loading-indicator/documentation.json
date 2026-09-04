@@ -1,0 +1,255 @@
+{
+	"component": "loading-indicator",
+	"figmaFileKey": "bHzo18blEeRJQGWXvmavvC",
+	"description": {
+		"de": "Der Loading Indicator gibt visuelles Feedback darüber, dass Inhalte oder ein Prozess geladen werden.",
+		"en": "The Loading Indicator provides visual feedback that content or a process is loading."
+	},
+	"shortDescription": {
+		"de": "Visuelles Feedback, das anzeigt, dass Inhalte oder ein Prozess geladen werden.",
+		"en": "Visual feedback indicating that content or a process is loading."
+	},
+	"useCases": {
+		"de": [
+			"Wartezeit eines Systemvorgangs sichtbar machen",
+			"Messbaren Fortschritt als Wert anzeigen",
+			"Abschluss eines Vorgangs bestätigen: erfolgreich oder abgebrochen"
+		],
+		"en": [
+			"Make the wait time of a system process visible",
+			"Show measurable progress as a value",
+			"Confirm the end of a process: successful or failed"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "system-progress-only",
+			"headline": {
+				"de": "Nur Systemvorgänge",
+				"en": "System Processes Only"
+			},
+			"text": {
+				"de": "Der Loading Indicator zeigt, wie weit das System mit einem Vorgang ist. Fortschritt, den Nutzende selbst herstellen, etwa ausgefüllte Formularschritte oder erledigte Aufgaben, gehört nicht dazu.",
+				"en": "The Loading Indicator shows how far the system has progressed with a process. Progress that people create themselves, such as completed form steps or finished tasks, is not part of that."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Setze den Loading Indicator für Vorgänge ein, die das System ausführt.",
+					"en": "Use the Loading Indicator for processes the system runs."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Zeige Fortschritt, den Nutzende selbst herstellen, nicht mit dem Loading Indicator an. Er kündigt ein Ergebnis des Systems an, das in diesem Fall nicht kommt.",
+					"en": "Don't show progress that people create themselves with the Loading Indicator. It announces a system result that never arrives in this case."
+				}
+			}
+		},
+		{
+			"id": "one-per-process",
+			"headline": {
+				"de": "Ein Indikator pro Vorgang",
+				"en": "One Indicator per Process"
+			},
+			"text": {
+				"de": "Jeder Loading Indicator gehört zu genau einem Vorgang. Elemente, die auf diesen Vorgang warten, werden deaktiviert und zeigen keinen zweiten Indikator.",
+				"en": "Each Loading Indicator belongs to exactly one process. Elements waiting for that process are disabled and don't show a second indicator."
+			},
+			"do": {
+				"figmaNodeId": "4005-2",
+				"description": {
+					"de": "Zeige den Vorgang an der Stelle an, an der er läuft, und deaktiviere die Elemente, die auf ihn warten.",
+					"en": "Show the process where it runs, and disable the elements that wait for it."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4005-3",
+				"description": {
+					"de": "Wiederhole den Vorgang nicht im wartenden Element. Zwei Indikatoren für einen Upload lesen sich als zwei Vorgänge.",
+					"en": "Don't repeat the process in the waiting element. Two indicators for one upload read as two processes."
+				}
+			}
+		},
+		{
+			"id": "determinate-when-measurable",
+			"headline": {
+				"de": "Messbarer Fortschritt",
+				"en": "Measurable Progress"
+			},
+			"text": {
+				"de": "Ist der Fortschritt eines Vorgangs berechenbar, zeigt ihn die determinierte Variante als Wert in `progressText` an. Die indeterminierte Variante bleibt den Vorgängen vorbehalten, deren Fortschritt sich nicht berechnen lässt.",
+				"en": "If a process's progress can be calculated, the determinate variant shows it as a value in `progressText`. The indeterminate variant is reserved for processes whose progress cannot be calculated."
+			},
+			"do": {
+				"figmaNodeId": "4005-5",
+				"description": {
+					"de": "Wähle die determinierte Variante, sobald der Fortschritt berechenbar ist, und zeige den Wert in `progressText` an.",
+					"en": "Choose the determinate variant as soon as progress can be calculated, and show the value in `progressText`."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4005-6",
+				"description": {
+					"de": "Wähle `indeterminate` nicht bei berechenbarem Fortschritt. Nutzende können den verbleibenden Aufwand dann nicht einschätzen, obwohl die Information vorliegt.",
+					"en": "Don't choose `indeterminate` when progress can be calculated. People then cannot estimate the remaining effort even though the information exists."
+				}
+			}
+		},
+		{
+			"id": "label-with-verb",
+			"headline": {
+				"de": "Vorgang im Label",
+				"en": "Process in the Label"
+			},
+			"text": {
+				"de": "Das `label` benennt den Vorgang mit einem Verb, nicht nur das betroffene Objekt.",
+				"en": "The `label` names the process with a verb, not just the object involved."
+			},
+			"do": {
+				"figmaNodeId": "4005-8",
+				"description": {
+					"de": "Benenne den Vorgang im `label` mit einem Verb.",
+					"en": "Name the process in the `label` with a verb."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4005-9",
+				"description": {
+					"de": "Setze im `label` nicht nur das betroffene Objekt. Ohne Verb bleibt offen, ob der Vorgang läuft oder abgeschlossen ist.",
+					"en": "Don't put only the object involved in the `label`. Without a verb it remains unclear whether the process is running or finished."
+				}
+			}
+		},
+		{
+			"id": "label-per-state",
+			"headline": {
+				"de": "Label je Zustand",
+				"en": "Label per State"
+			},
+			"text": {
+				"de": "Das `label` folgt dem Zustand: bei `state` mit dem Wert `active` beschreibt es den laufenden Vorgang, bei `successful` das Ergebnis.",
+				"en": "The `label` follows the state: with `state` set to `active` it describes the running process, with `successful` the result."
+			},
+			"do": {
+				"figmaNodeId": "4005-11",
+				"description": {
+					"de": "Beschreibe im `label` bei `active` den laufenden Vorgang und bei `successful` das Ergebnis.",
+					"en": "In the `label`, describe the running process for `active` and the result for `successful`."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4005-12",
+				"description": {
+					"de": "Beschreibe im `label` nach dem Abschluss nicht weiter den Verlauf. Text und Status-Icon widersprechen sich dann.",
+					"en": "Don't keep describing the process in the `label` after it has finished. Text and status icon then contradict each other."
+				}
+			}
+		},
+		{
+			"id": "reason-on-critical",
+			"headline": {
+				"de": "Grund bei Abbruch",
+				"en": "Reason on Failure"
+			},
+			"text": {
+				"de": "Bei `state` mit dem Wert `critical` nennt das `label` den Grund des Abbruchs. Ein zweites Textfeld für diese Information gibt es nicht.",
+				"en": "With `state` set to `critical`, the `label` names the reason for the failure. There is no second text field for this information."
+			},
+			"do": {
+				"figmaNodeId": "4005-14",
+				"description": {
+					"de": "Nenne bei `critical` den Grund des Abbruchs im `label`.",
+					"en": "Name the reason for the failure in the `label` for `critical`."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4005-15",
+				"description": {
+					"de": "Melde einen Abbruch nicht ohne Grund. Es bleibt dann offen, ob der Vorgang wiederholbar ist.",
+					"en": "Don't report a failure without a reason. It then remains unclear whether the process can be retried."
+				}
+			}
+		},
+		{
+			"id": "hide-label-only-with-context",
+			"headline": {
+				"de": "Label ausblenden",
+				"en": "Hiding the Label"
+			},
+			"text": {
+				"de": "Das `label` lässt sich über `showLabel` ausblenden. Dann trägt der umgebende Kontext die Information, um welchen Vorgang es geht.",
+				"en": "The `label` can be hidden via `showLabel`. The surrounding context then carries the information about which process is meant."
+			},
+			"do": {
+				"figmaNodeId": "4005-17",
+				"description": {
+					"de": "Blende das `label` nur aus, wenn der umgebende Kontext den Vorgang eindeutig benennt.",
+					"en": "Hide the `label` only when the surrounding context clearly names the process."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4005-18",
+				"description": {
+					"de": "Blende das `label` nicht aus, wenn der Kontext den Vorgang offen lässt. Sichtbar bleibt dann eine Animation ohne Bezug.",
+					"en": "Don't hide the `label` when the context leaves the process open. What remains visible is an animation without reference."
+				}
+			}
+		},
+		{
+			"id": "quantitative-progress",
+			"headline": {
+				"de": "Inhalt des Fortschrittstexts",
+				"en": "Progress Text Content"
+			},
+			"text": {
+				"de": "`progressText` trägt eine quantitative Angabe: Prozentwert, Anteil oder Menge.",
+				"en": "`progressText` carries a quantitative value: percentage, ratio, or amount."
+			},
+			"do": {
+				"figmaNodeId": "4005-20",
+				"description": {
+					"de": "Setze in `progressText` einen Prozentwert, einen Anteil oder eine Menge.",
+					"en": "Set a percentage, a ratio, or an amount in `progressText`."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4005-21",
+				"description": {
+					"de": "Eine Wiederholung des `label` in `progressText` belegt Platz, ohne eine zusätzliche Information zu liefern. Setze stattdessen einen quantitativen Wert.",
+					"en": "Repeating the `label` in `progressText` takes up space without adding information. Set a quantitative value instead."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "parallel-processes",
+			"headline": {
+				"de": "Mehrere Vorgänge gleichzeitig",
+				"en": "Several Processes at Once"
+			},
+			"text": {
+				"de": "Laufen mehrere Vorgänge gleichzeitig, trägt jeder seinen eigenen Loading Indicator.",
+				"en": "When several processes run at the same time, each one carries its own Loading Indicator."
+			},
+			"items": [
+				{
+					"id": "one-per-list-row",
+					"headline": {
+						"de": "Ein Vorgang pro Zeile",
+						"en": "One Process per Row"
+					},
+					"figmaNodeId": "4005-23",
+					"description": {
+						"de": "Zeige je Zeile einer Liste den Vorgang an, der zu dieser Zeile gehört.",
+						"en": "Show the process belonging to each row of a list in that row."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": []
+}

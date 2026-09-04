@@ -22,8 +22,11 @@ knowledge-database/
 
 - **`guidelines.md`** — Was die Komponente kann und nicht kann. Doku-relevant.
 - **`inconsistencies.md`** — Abweichungen zwischen Figma und Code, offene Befunde. Nicht doku-relevant.
-- **`figma-findings.md`** — Beobachtungen aus dem Auslesen der Figma-Library, die noch keinen Zielort haben. Arbeitsliste zum Durchgehen mit Design, ausdrücklich kein Doku-Inhalt. Jeder Punkt wird nach der Klärung an seinen Zielort verschoben und dort gelöscht.
+- **`figma-findings.md`** — Beobachtungen aus dem Auslesen der Figma-Library, die noch keinen Zielort haben. Arbeitsliste zum Durchgehen mit Design. **Enthält ausschließlich offene Punkte**, erledigte Befunde wandern an ihren Zielort (z. B. `guidelines.md`, `inconsistencies.md`) und werden hier gelöscht.
+- **`TODO.md`** — Offene Punkte der Wissensbasis (fehlende Komponenten, Property-Reviews, Doku-Generierung, Verifikationen nach Release). **Enthält ausschließlich unerledigte Aufgaben**, erledigte Punkte werden entfernt.
 - **`writing-conventions.md`** — Schreibweisen, Normativität, Tonalität in der Wissensbasis.
+
+**Arbeitslisten-Regel:** Beide Dateien (`figma-findings.md` und `TODO.md`) führen nur aktuelle, offene Punkte. Historische oder erledigte Einträge werden nicht bewahrt — sobald ein Punkt erledigt ist, wird er an seinen Zielort verschoben oder gelöscht. Das hält die Listen fokussiert und die Wissensbasis wartbar.
 
 Beobachtungen aus Figma dürfen nicht in die `guidelines.md` einfließen, solange sie nicht fachlich bestätigt und in der Doku verankert sind. Die `guidelines.md` speist sich aus dem Doku-Inhalt, nicht aus der Figma-Struktur.
 

@@ -1,8 +1,0 @@
-{
-	"id": "loading-indicator",
-	"name": "LoadingIndicator",
-	"type": "lab-component",
-	"status": "concept",
-	"owner": "core-team",
-	"since": null
-}

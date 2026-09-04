@@ -1,9 +1,0 @@
-{
-	"id": "loading-indicator-bar",
-	"name": "LoadingIndicatorBar",
-	"type": "lab-component",
-	"parent": "loading-indicator",
-	"status": "concept",
-	"owner": "core-team",
-	"since": null
-}
