@@ -4,10 +4,18 @@
 		{
 			"name": "showSubNavigation",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "showSubNavigation",
+				"type": "boolean | string"
+			},
+			"description": "Shows sub-navigation",
 			"design": {
 				"name": "👁️ Show Sub Navigation",
-				"componentSet": ["375x812", "320x568", "768x1024"],
+				"componentSet": [
+					"375x812",
+					"320x568",
+					"768x1024"
+				],
 				"note": "In shell-desktop the equivalent property is a variant axis with the values False and True."
 			}
 		},
@@ -17,46 +25,88 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Drawer",
-				"componentSet": ["375x812", "320x568", "768x1024"],
+				"componentSet": [
+					"375x812",
+					"320x568",
+					"768x1024"
+				],
 				"note": "Mobile only. Navigation level two and deeper can only be shown in the Drawer, desktop has no equivalent. Not offered on CP Navigation=Flat Icon, that variant contains no Drawer."
 			}
 		},
 		{
 			"name": "controlPanelNavigation",
 			"type": "enum",
-			"values": ["drawer", "flat-icon"],
+			"values": [
+				"drawer",
+				"flat-icon"
+			],
 			"default": "drawer",
 			"code": null,
 			"design": {
 				"name": "🔀 CP Navigation",
-				"values": ["(Def) Drawer", "Flat Icon"],
-				"componentSet": ["375x812", "320x568", "768x1024"],
+				"values": [
+					"(Def) Drawer",
+					"Flat Icon"
+				],
+				"componentSet": [
+					"375x812",
+					"320x568",
+					"768x1024"
+				],
 				"note": "Design-only, no code counterpart is planned. The property exists to keep the Figma component usable and error-resistant, and because the Drawer is inserted in the Shell instead of the navigation. Code reaches the same result through a different implementation, so this is not a Figma-versus-code deviation. Flat Icon only exists in combination with Control Panel Mobile Position=Bottom and Sub Navigation Mobile Position=(Def) Top."
 			}
 		},
 		{
 			"name": "controlPanelMobilePosition",
 			"type": "enum",
-			"values": ["top", "bottom"],
+			"values": [
+				"top",
+				"bottom"
+			],
 			"default": "top",
-			"code": null,
+			"code": {
+				"prop": "controlPanelMobilePosition",
+				"type": "ShellControlPanelMobilePositionType"
+			},
+			"description": "Change the position of the mobile content panel",
 			"design": {
 				"name": "🔀 Control Panel Mobile Position",
-				"values": ["(Def) Top", "Bottom"],
-				"componentSet": ["375x812", "320x568", "768x1024"]
+				"values": [
+					"(Def) Top",
+					"Bottom"
+				],
+				"componentSet": [
+					"375x812",
+					"320x568",
+					"768x1024"
+				]
 			}
 		},
 		{
 			"name": "subNavigationPosition",
 			"type": "enum",
-			"values": ["top", "bottom"],
+			"values": [
+				"top",
+				"bottom"
+			],
 			"default": "top",
-			"code": null,
+			"code": {
+				"prop": "subNavigationMobilePosition",
+				"type": "ShellSubNavigationMobilePositionType"
+			},
+			"description": "Change the position of the optional sub navigation for mobile",
 			"design": {
 				"name": "🔀 Sub Navigation Mobile Position",
-				"values": ["(Def) Top", "Bottom"],
-				"componentSet": ["375x812", "320x568", "768x1024"],
-				"note": "Bottom only exists in combination with Control Panel Mobile Position=(Def) Top."
+				"values": [
+					"(Def) Top",
+					"Bottom"
+				],
+				"componentSet": [
+					"375x812",
+					"320x568",
+					"768x1024"
+				],
+				"note": "Bottom only exists in combination with Control Panel Mobile Position=(Def) Top. Code prop is named subNavigationMobilePosition and additionally offers the value none."
 			}
 		}
 	]

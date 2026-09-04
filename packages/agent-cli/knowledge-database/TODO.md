@@ -48,22 +48,13 @@ Mit Dev zu klären, was die Werte bewirken und wann welcher zu wählen ist. Dana
 
 Das Auswahlkriterium ist die Breite der Section im Inhaltsbereich: das Control Panel Top wird passend dazu gewählt, damit Navigation und Inhalt auf derselben Kante liegen. Sobald die Zuordnung der vier Werte zu den Section-Breiten geklärt ist, wird daraus eine Regel mit Do und Dont — der Fehlerfall ist gut zeigbar, nämlich ein Control Panel, dessen Kante gegen die Section versetzt ist.
 
-### 9. Shell und Control Panel: `description` und `code` beim Dev-Handoff füllen
+### 9. Shell und Control Panel: offene Punkte aus dem Property-Review
 
-Beide Komponenten haben aktuell `code: null` bei jeder Property und entsprechend keine `description` — so sieht es die Konvention vor, siehe README-Abschnitt „`description` nur bei vorhandener Code-Property".
+Der Property-Review von Shell und Control Panel hat `code` und `description` in allen `properties.json` gefüllt und die Asymmetrien in `inconsistencies.md` festgehalten. Drei Punkte hängen an Dev und bleiben offen:
 
-Sobald die `model.ts` existiert:
-
-- `code` mit Prop-Name und TypeScript-Typ füllen
-- `description` mit dem JSDoc-Wortlaut füllen, für die Properties die eine Code-Entsprechung haben
-- Figma-only Properties behalten weiterhin keine Description
-- Abweichungen zwischen Figma-Property-Namen und Code-Prop-Namen in `inconsistencies.md` nachtragen
-
-Bei Shell Content sind beim Review am 2026-08-14 Code-Aspekte aufgefallen, die in Figma keine Entsprechung haben und deshalb noch nicht in der `properties.json` stehen. Quelle war der WIP-Branch `feat-shell`, beim Handoff gegenprüfen:
-
-- `mainId`, `mainClass`, `mainLabel` fehlen als Properties. `mainId` ist das Ziel des Skip-Navigation-Links der Shell.
-- Pro Seite darf nur ein Shell Content existieren, sonst entstehen doppelte IDs und der Skip-Navigation-Link bricht. In Figma ist das nicht modellierbar, es ist also keine Design-Regel, sondern gehört als Note an `mainId`.
-- Children rendert innerhalb von `<main>`, Start Slot und End Slot liegen außerhalb. Daraus folgt Regel 3 der `guidelines.md`. Die Aussage steht bewusst nicht im `design`-Objekt, weil sie die Code-Struktur beschreibt, und gehört beim Handoff in den `code`-Teil, sofern sie dort nötig ist.
+- `secondLine` bei Control Panel Brand hat in der `model.ts` keinen JSDoc und bleibt deshalb ohne `description`, siehe README-Abschnitt „`description` nur bei vorhandener Code-Property". Sobald der JSDoc existiert, den Wortlaut übernehmen.
+- Der `📦 Logo`-Slot existiert in Figma nur im Set `Logozusatz`, im Code gibt es keinen `logo`-Slot. Die Abweichung ist gewollt und in `inconsistencies.md` vermerkt. Offen ist, wie das Logo im Code gesetzt wird — Dev muss das dokumentieren, danach gehört die Antwort als Note an die Property.
+- Shell Sub Navigation ist noch offen: welche Properties die Komponente überhaupt führt, ist unklar. In Figma tragen die Sets `Desktop - Top` und `Mobile` keine Properties, nur `Desktop - Left` hat `🔀 Variant` und `🔀 Expanded`, im Code hat `DBShellSubNavigation` kein `variant`. Beim Bearbeiten klären, ob `variant` in Figma oder im Code entfällt, und die `properties.json` entsprechend füllen.
 
 ### 10. Shell Content: unquantifiziertes Mengenwort in Regel 3
 

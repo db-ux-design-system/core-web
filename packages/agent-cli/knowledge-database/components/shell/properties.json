@@ -1,0 +1,15 @@
+{
+	"component": "shell",
+	"properties": [
+		{
+			"name": "fadeIn",
+			"type": "boolean",
+			"code": {
+				"prop": "fadeIn",
+				"type": "boolean | string"
+			},
+			"description": "Set this to have a transition with opacity to avoid layout-shifts https://simonhearne.com/2021/layout-shifts-webfonts/",
+			"design": null
+		}
+	]
+}

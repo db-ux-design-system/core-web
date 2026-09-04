@@ -4,7 +4,11 @@
 		{
 			"name": "children",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "children",
+				"type": "any"
+			},
+			"description": "default slot",
 			"design": {
 				"name": "📦 Children",
 				"type": "slot"

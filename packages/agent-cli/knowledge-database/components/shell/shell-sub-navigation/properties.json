@@ -4,24 +4,71 @@
 		{
 			"name": "variant",
 			"type": "enum",
-			"values": ["drill-down", "tree"],
+			"values": [
+				"drill-down",
+				"tree"
+			],
 			"default": "drill-down",
 			"code": null,
 			"design": {
 				"name": "🔀 Variant",
-				"values": ["(Def) Drill Down", "Tree"],
-				"componentSet": ["desktop-vertical"]
+				"values": [
+					"(Def) Drill Down",
+					"Tree"
+				],
+				"componentSet": [
+					"desktop-vertical"
+				]
 			}
 		},
 		{
 			"name": "expanded",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "expanded",
+				"type": "boolean | string"
+			},
+			"description": "Set the expanded/collapsed state initially for the left sidebar",
 			"design": {
 				"name": "🔀 Expanded",
-				"values": ["False", "True"],
-				"componentSet": ["desktop-vertical"]
+				"values": [
+					"False",
+					"True"
+				],
+				"componentSet": [
+					"desktop-vertical"
+				]
 			}
+		},
+		{
+			"name": "expandButtonTooltip",
+			"type": "string",
+			"code": {
+				"prop": "expandButtonTooltip",
+				"type": "string"
+			},
+			"description": "Set the tooltip for the expand/collapse button",
+			"design": null
+		},
+		{
+			"name": "expandButtonTooltipFn",
+			"type": "function",
+			"code": {
+				"prop": "expandButtonTooltipFn",
+				"type": "(open: boolean) => string"
+			},
+			"description": "Set the tooltip for the expand/collapse button based on the state. (only react|vue)",
+			"design": null
+		},
+		{
+			"name": "onExpandButtonTooltipFn",
+			"type": "function",
+			"code": {
+				"prop": "onExpandButtonTooltipFn",
+				"type": "(open: boolean) => string"
+			},
+			"description": "Set the tooltip for the expand/collapse button based on the state. (only react|vue)",
+			"design": null
 		}
 	]
 }

@@ -4,7 +4,11 @@
 		{
 			"name": "text",
 			"type": "text",
-			"code": null,
+			"code": {
+				"prop": "text",
+				"type": "string"
+			},
+			"description": "Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.",
 			"design": {
 				"name": "✏️ Text",
 				"componentSet": [
@@ -22,7 +26,11 @@
 		{
 			"name": "icon",
 			"type": "instanceSwap",
-			"code": null,
+			"code": {
+				"prop": "icon",
+				"type": "IconTypes"
+			},
+			"description": "Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.",
 			"design": {
 				"name": "🔄 Icon",
 				"type": "slot",
@@ -40,7 +48,11 @@
 		{
 			"name": "showIcon",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean | string"
+			},
+			"description": "Enables or disables the visibility of the icon. The default value depends on the component.\nFor many components this property is optional to reflect Figma properties.",
 			"design": {
 				"name": "👁️ Show Icon",
 				"componentSet": [
@@ -74,7 +86,11 @@
 		{
 			"name": "endSlot",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "endSlot",
+				"type": "any"
+			},
+			"description": "Slot for end content, for example add a custom component between an icon and a label.",
 			"design": {
 				"name": "📦 End Slot",
 				"type": "slot",
@@ -105,17 +121,27 @@
 		{
 			"name": "children",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "children",
+				"type": "any"
+			},
+			"description": "default slot",
 			"design": {
 				"name": "📦 Children",
 				"type": "slot",
-				"componentSet": ["tree-group"]
+				"componentSet": [
+					"tree-group"
+				]
 			}
 		},
 		{
 			"name": "expanded",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "expanded",
+				"type": "boolean | string"
+			},
+			"description": "This is for mobile navigation only, if it is set the sub-navigation is a static overlay",
 			"design": {
 				"name": "🔀 Expanded",
 				"componentSet": [
@@ -123,13 +149,19 @@
 					"popover-group-desktop-vertical",
 					"tree-group"
 				],
-				"note": "A boolean in popover-group and a variant in tree-group, because Tree switches its icon between the two states. In popover-group-desktop-vertical it is also a boolean, but with the 👁️ prefix instead of 🔀. Absent in drill-down-group, where the expanded state is handled by the parent CP Navigation Drill Down instead."
+				"note": "A boolean in popover-group and a variant in tree-group, because Tree switches its icon between the two states. In popover-group-desktop-vertical it is also a boolean, but with the 👁️ prefix instead of 🔀. Absent in drill-down-group, where the expanded state is handled by the parent CP Navigation Drill Down instead. In code this prop sits on DBControlPanelNavigationItemGroup."
 			}
 		},
 		{
 			"name": "interactionState",
 			"type": "enum",
-			"values": ["enabled", "hovered", "pressed", "focused", "none"],
+			"values": [
+				"enabled",
+				"hovered",
+				"pressed",
+				"focused",
+				"none"
+			],
 			"default": "enabled",
 			"code": null,
 			"design": {
@@ -156,10 +188,17 @@
 		{
 			"name": "disabled",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"description": "The disabled attribute can be set to keep a user from clicking on the item.",
 			"design": {
 				"name": "🔀 Disabled",
-				"values": ["False", "True"],
+				"values": [
+					"False",
+					"True"
+				],
 				"componentSet": [
 					"popover",
 					"popover-group",
@@ -175,10 +214,17 @@
 		{
 			"name": "active",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "active",
+				"type": "boolean | string"
+			},
+			"description": "If the tab is checked/active.",
 			"design": {
 				"name": "🔀 Active",
-				"values": ["False", "True"],
+				"values": [
+					"False",
+					"True"
+				],
 				"componentSet": [
 					"popover",
 					"popover-group",
@@ -190,6 +236,46 @@
 					"tree-group"
 				]
 			}
+		},
+		{
+			"name": "tooltip",
+			"type": "string",
+			"code": {
+				"prop": "tooltip",
+				"type": "string"
+			},
+			"description": "If you use DBShell with controlPanelDesktopPosition=\"left\" or DBControlPanelFlatIcon\nyou need to add a tooltip for collapsed navigation",
+			"design": null
+		},
+		{
+			"name": "menuId",
+			"type": "string",
+			"code": {
+				"prop": "menuId",
+				"type": "string"
+			},
+			"description": "Change id for db-control-panel-navigation-item-group-menu",
+			"design": null
+		},
+		{
+			"name": "backButtonId",
+			"type": "string",
+			"code": {
+				"prop": "backButtonId",
+				"type": "string"
+			},
+			"description": "The backButtonId attribute changes the id inside the back button.",
+			"design": null
+		},
+		{
+			"name": "backButtonText",
+			"type": "string",
+			"code": {
+				"prop": "backButtonText",
+				"type": "string"
+			},
+			"description": "The backButtonText attribute changes the text inside the back button.",
+			"design": null
 		}
 	]
 }

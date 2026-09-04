@@ -2,12 +2,17 @@
 	"component": "control-panel-desktop",
 	"properties": [
 		{
-			"name": "showActions1",
+			"name": "showActions",
 			"type": "boolean",
 			"code": null,
 			"design": {
 				"name": "👁️ Show Actions",
-				"componentSet": ["top", "drill-down-left", "tree-left"]
+				"componentSet": [
+					"top",
+					"drill-down-left",
+					"tree-left"
+				],
+				"note": "Overarching container toggle for Actions 1 and Actions 2, design-only. In code the visibility follows from whether the actions1 / actions2 slots are filled."
 			}
 		},
 		{
@@ -16,7 +21,11 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Actions 2",
-				"componentSet": ["top", "drill-down-left", "tree-left"]
+				"componentSet": [
+					"top",
+					"drill-down-left",
+					"tree-left"
+				]
 			}
 		},
 		{
@@ -25,7 +34,11 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Meta Navigation",
-				"componentSet": ["top", "drill-down-left", "tree-left"]
+				"componentSet": [
+					"top",
+					"drill-down-left",
+					"tree-left"
+				]
 			}
 		},
 		{
@@ -34,41 +47,164 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Navigation",
-				"componentSet": ["top", "drill-down-left", "tree-left"]
+				"componentSet": [
+					"top",
+					"drill-down-left",
+					"tree-left"
+				]
 			}
 		},
 		{
 			"name": "width",
 			"type": "enum",
-			"values": ["full", "small", "medium", "large"],
+			"values": [
+				"full",
+				"small",
+				"medium",
+				"large"
+			],
 			"default": "full",
-			"code": null,
+			"code": {
+				"prop": "width",
+				"type": "MaxWidthType"
+			},
+			"description": "Set max width for the component",
 			"design": {
 				"name": "🔀 Width",
-				"componentSet": ["top"],
-				"values": ["(Def) Full", "Small", "Medium", "Large"]
+				"componentSet": [
+					"top"
+				],
+				"values": [
+					"(Def) Full",
+					"Small",
+					"Medium",
+					"Large"
+				]
 			}
 		},
 		{
 			"name": "expanded",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "expanded",
+				"type": "boolean | string"
+			},
+			"description": "Set the expanded/collapsed state initially for the left sidebar",
 			"design": {
 				"name": "🔀 Expanded",
-				"componentSet": ["drill-down-left", "tree-left"],
-				"values": ["True", "False"]
+				"componentSet": [
+					"drill-down-left",
+					"tree-left"
+				],
+				"values": [
+					"True",
+					"False"
+				]
 			}
 		},
 		{
 			"name": "brandInstance",
 			"type": "instanceSwap",
-			"code": null,
+			"code": {
+				"prop": "brand",
+				"type": "any"
+			},
+			"description": "Slot to pass in the DBControlPanelBrand component",
 			"design": {
 				"name": "🔄 CP Brand",
 				"type": "slot",
-				"componentSet": ["top", "drill-down-left", "tree-left"],
+				"componentSet": [
+					"top",
+					"drill-down-left",
+					"tree-left"
+				],
 				"note": "Separate property instance per component set; keys differ (#38590:4 on top and #38759:4 on drill-down-left and tree-left)."
 			}
+		},
+		{
+			"name": "orientation",
+			"type": "enum",
+			"values": [
+				"horizontal",
+				"vertical"
+			],
+			"default": "horizontal",
+			"code": {
+				"prop": "orientation",
+				"type": "OrientationType"
+			},
+			"description": "Change the orientation. Defaults to horizontal.",
+			"design": null
+		},
+		{
+			"name": "meta",
+			"type": "slot",
+			"code": {
+				"prop": "meta",
+				"type": "any"
+			},
+			"description": "Slot to pass in a meta navigation.\nDesktop: Above the regular control-panel-desktop\nMobile: Inside the drawer",
+			"design": null
+		},
+		{
+			"name": "actions1",
+			"type": "slot",
+			"code": {
+				"prop": "actions1",
+				"type": "any"
+			},
+			"description": "Slot to pass one or more elements like DBButton (e.g. search) as actions-1.\nDesktop: Shown next to the main-navigation\nMobile: Shown next to the control-panel-brand",
+			"design": null
+		},
+		{
+			"name": "actions2",
+			"type": "slot",
+			"code": {
+				"prop": "actions2",
+				"type": "any"
+			},
+			"description": "Slot to pass one or more elements like DBButton (e.g. profile, language, etc.) as actions-2.\nDesktop: Shown separated by divider at the end of the control-panel-desktop\nMobile: Shown inside the drawer at the bottom.",
+			"design": null
+		},
+		{
+			"name": "skipNavigation",
+			"type": "slot",
+			"code": {
+				"prop": "skipNavigation",
+				"type": "any"
+			},
+			"description": "Slot to pass an anchor or link to skip the navigation and jump to main content.",
+			"design": null
+		},
+		{
+			"name": "expandButtonTooltip",
+			"type": "string",
+			"code": {
+				"prop": "expandButtonTooltip",
+				"type": "string"
+			},
+			"description": "Set the tooltip for the expand/collapse button",
+			"design": null
+		},
+		{
+			"name": "expandButtonTooltipFn",
+			"type": "function",
+			"code": {
+				"prop": "expandButtonTooltipFn",
+				"type": "(open: boolean) => string"
+			},
+			"description": "Set the tooltip for the expand/collapse button based on the state. (only react|vue)",
+			"design": null
+		},
+		{
+			"name": "onExpandButtonTooltipFn",
+			"type": "function",
+			"code": {
+				"prop": "onExpandButtonTooltipFn",
+				"type": "(open: boolean) => string"
+			},
+			"description": "Set the tooltip for the expand/collapse button based on the state. (only react|vue)",
+			"design": null
 		}
 	]
 }

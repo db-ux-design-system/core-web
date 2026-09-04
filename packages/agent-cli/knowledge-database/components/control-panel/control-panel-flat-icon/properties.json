@@ -4,11 +4,18 @@
 		{
 			"name": "children",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "children",
+				"type": "any"
+			},
+			"description": "default slot",
 			"design": {
 				"name": "📦 Children",
 				"type": "slot",
-				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+				"componentSet": [
+					"flat-icon-desktop",
+					"flat-icon-mobile"
+				]
 			}
 		},
 		{
@@ -18,18 +25,41 @@
 			"design": {
 				"name": "📦 Children No Text",
 				"type": "slot",
-				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+				"componentSet": [
+					"flat-icon-desktop",
+					"flat-icon-mobile"
+				]
 			}
 		},
 		{
 			"name": "noText",
 			"type": "boolean",
-			"code": null,
+			"code": {
+				"prop": "noText",
+				"type": "boolean | string"
+			},
+			"description": "Define the text next to the icon specified via the icon Property to get hidden.",
 			"design": {
 				"name": "🔀 No Text",
-				"values": ["False", "True"],
-				"componentSet": ["flat-icon-desktop", "flat-icon-mobile"]
+				"values": [
+					"False",
+					"True"
+				],
+				"componentSet": [
+					"flat-icon-desktop",
+					"flat-icon-mobile"
+				]
 			}
+		},
+		{
+			"name": "skipNavigation",
+			"type": "slot",
+			"code": {
+				"prop": "skipNavigation",
+				"type": "any"
+			},
+			"description": "Slot to pass an anchor or link to skip the navigation and jump to main content.",
+			"design": null
 		}
 	]
 }

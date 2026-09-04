@@ -4,7 +4,11 @@
 		{
 			"name": "children",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "children",
+				"type": "any"
+			},
+			"description": "default slot",
 			"design": {
 				"name": "📦 Children",
 				"type": "slot"
@@ -13,7 +17,11 @@
 		{
 			"name": "startSlot",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "startSlot",
+				"type": "any"
+			},
+			"description": "Slot for start content, for example add a custom component between an icon and a label.",
 			"design": {
 				"name": "📦 Start Slot",
 				"type": "slot"
@@ -22,7 +30,11 @@
 		{
 			"name": "endSlot",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "endSlot",
+				"type": "any"
+			},
+			"description": "Slot for end content, for example add a custom component between an icon and a label.",
 			"design": {
 				"name": "📦 End Slot",
 				"type": "slot"
@@ -47,13 +59,54 @@
 		{
 			"name": "variant",
 			"type": "enum",
-			"values": ["auto", "fixed"],
+			"values": [
+				"auto",
+				"fixed"
+			],
 			"default": "auto",
-			"code": null,
+			"code": {
+				"prop": "variant",
+				"type": "ShellContentVariantType"
+			},
+			"description": "Change the scrolling behavior. `auto` scrolling on complete wrapper, `fixed` scrolling only in for main.",
 			"design": {
 				"name": "🔀 Variant",
-				"values": ["(Def) Auto", "Fixed"]
+				"values": [
+					"(Def) Auto",
+					"Fixed"
+				]
 			}
+		},
+		{
+			"name": "mainClass",
+			"type": "string",
+			"code": {
+				"prop": "mainClass",
+				"type": "string"
+			},
+			"description": "Adds `class` to `<main>` element",
+			"design": null
+		},
+		{
+			"name": "mainId",
+			"type": "string",
+			"default": "main-content",
+			"code": {
+				"prop": "mainId",
+				"type": "string"
+			},
+			"description": "Overrides the default `id` on the `<main>` element.\nThis id is used as the target for the shell skip-navigation link.\nOnly one `DBShellContent` should exist per page to avoid duplicate IDs.",
+			"design": null
+		},
+		{
+			"name": "mainLabel",
+			"type": "string",
+			"code": {
+				"prop": "mainLabel",
+				"type": "string"
+			},
+			"description": "Adds `aria-label` to `<main>` element",
+			"design": null
 		}
 	]
 }

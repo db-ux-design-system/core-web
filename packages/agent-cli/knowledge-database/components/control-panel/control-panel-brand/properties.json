@@ -26,9 +26,13 @@
 		{
 			"name": "children",
 			"type": "string",
-			"code": null,
+			"code": {
+				"prop": "children",
+				"type": "any"
+			},
+			"description": "default slot",
 			"design": {
-				"name": "Children",
+				"name": "✏️ Children",
 				"type": "text",
 				"componentSet": ["custom"],
 				"note": "Füllt den Textknoten „Name“, sichtbar in Single Line und Double Line."
@@ -37,9 +41,12 @@
 		{
 			"name": "secondLine",
 			"type": "string",
-			"code": null,
+			"code": {
+				"prop": "secondLine",
+				"type": "string"
+			},
 			"design": {
-				"name": "Second Line",
+				"name": "✏️ Second Line",
 				"type": "text",
 				"componentSet": ["custom"],
 				"note": "Füllt den Textknoten „2nd Line“, sichtbar nur in Double Line."
@@ -57,7 +64,11 @@
 		{
 			"name": "endSlot",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "endSlot",
+				"type": "any"
+			},
+			"description": "Slot for end content, for example add a custom component between an icon and a label.",
 			"design": {
 				"name": "📦 End Slot",
 				"type": "slot",

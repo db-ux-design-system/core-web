@@ -4,11 +4,19 @@
 		{
 			"name": "children",
 			"type": "slot",
-			"code": null,
+			"code": {
+				"prop": "children",
+				"type": "any"
+			},
+			"description": "default slot",
 			"design": {
 				"name": "📦 Children",
 				"type": "slot",
-				"componentSet": ["popover", "tree", "drill-down"]
+				"componentSet": [
+					"popover",
+					"tree",
+					"drill-down"
+				]
 			}
 		},
 		{
@@ -18,7 +26,9 @@
 			"design": {
 				"name": "📦 Children Level 2",
 				"type": "slot",
-				"componentSet": ["drill-down"]
+				"componentSet": [
+					"drill-down"
+				]
 			}
 		},
 		{
@@ -27,7 +37,9 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Overflow Button Left",
-				"componentSet": ["popover"]
+				"componentSet": [
+					"popover"
+				]
 			}
 		},
 		{
@@ -36,7 +48,9 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Overflow Button Right",
-				"componentSet": ["popover"]
+				"componentSet": [
+					"popover"
+				]
 			}
 		},
 		{
@@ -45,8 +59,81 @@
 			"code": null,
 			"design": {
 				"name": "👁️ Show Level 2+",
-				"componentSet": ["drill-down"]
+				"componentSet": [
+					"drill-down"
+				]
 			}
+		},
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": [
+				"popover",
+				"tree",
+				"drilldown"
+			],
+			"code": {
+				"prop": "variant",
+				"type": "NavigationItemGroupVariantType"
+			},
+			"description": "Selects the navigation interaction model: `popover` shows sub-items\nin a flyout menu, `tree` shows a collapsible tree structure.\nNote: This selects an interaction model, not just a visual variant.",
+			"design": null
+		},
+		{
+			"name": "behavior",
+			"type": "enum",
+			"values": [
+				"single",
+				"multiple"
+			],
+			"default": "multiple",
+			"code": {
+				"prop": "behavior",
+				"type": "CollapsibleBehaviorType"
+			},
+			"description": "To allow multiple items open at the same time or only 1 item",
+			"design": null
+		},
+		{
+			"name": "showTreeLine",
+			"type": "boolean",
+			"default": "true",
+			"code": {
+				"prop": "showTreeLine",
+				"type": "boolean | string"
+			},
+			"description": "Show or hide the tree line connecting nested navigation items in tree variant.",
+			"design": null
+		},
+		{
+			"name": "arrowScrollDistance",
+			"type": "number",
+			"code": {
+				"prop": "arrowScrollDistance",
+				"type": "number | string"
+			},
+			"description": "Change amount of scroll distance when clicking on an overflow scroll arrow button.",
+			"design": null
+		},
+		{
+			"name": "scrollLeftText",
+			"type": "string",
+			"code": {
+				"prop": "scrollLeftText",
+				"type": "string"
+			},
+			"description": "Set the text for the scroll left button",
+			"design": null
+		},
+		{
+			"name": "scrollRightText",
+			"type": "string",
+			"code": {
+				"prop": "scrollRightText",
+				"type": "string"
+			},
+			"description": "Set the text for the scroll right button",
+			"design": null
 		}
 	]
 }
