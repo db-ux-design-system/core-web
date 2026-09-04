@@ -1,3 +1,13 @@
+import {
+	DBCard,
+	DBControlPanelBrand,
+	DBControlPanelDesktop,
+	DBControlPanelMobile,
+	DBIcon,
+	DBSection,
+	DBShell,
+	DBShellContent
+} from '@components';
 import hljs from 'highlight.js';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -10,27 +20,34 @@ import {
 	useState
 } from 'react';
 import {
-	DBBrand,
-	DBCard,
-	DBHeader,
-	DBIcon,
-	DBPage,
-	DBSection,
-	DBSwitch,
-	DBTooltip
-} from '../../../output/react/src';
-import {
 	getBreadcrumb,
 	getNavigationList,
 	type NavigationItem
 } from '../data/routes';
+import Actions1 from './control-panel/actions-1';
+import Actions2 from './control-panel/actions-2';
 import { FrameworkProvider } from './framework-context';
-import FrameworkSwitcher from './framework-switcher';
 import Navigation from './navigation';
-import VersionSwitcher from './version-switcher';
 
 const preferDark = '(prefers-color-scheme: dark)';
 const colorModeKey = 'db-ux-mode';
+
+const isOsModeDark = (): boolean =>
+	globalThis.matchMedia?.(preferDark).matches ?? false;
+
+/**
+ * Resolve current dark mode state from stored override or OS preference.
+ * Implements Lea Verou's two-state toggle model:
+ * @see https://lea.verou.me/blog/2026/dark-mode-toggles/
+ */
+const isDark = (): boolean => {
+	const stored = localStorage.getItem(colorModeKey);
+	if (stored !== null) {
+		return stored === 'dark';
+	}
+
+	return isOsModeDark();
+};
 
 const DefaultPage = ({
 	children,
@@ -50,23 +67,56 @@ const DefaultPage = ({
 	const [breadcrumb, setBreadcrumb] = useState<NavigationItem[]>();
 	const router = useRouter();
 
-	const [mode, setMode] = useState(
-		localStorage.getItem(colorModeKey) === null
-			? globalThis.matchMedia?.(preferDark).matches
-			: localStorage.getItem(colorModeKey) === 'dark'
-	);
+	const [mode, setMode] = useState(isDark);
 
-	const setColorMode = useCallback((isDark: boolean) => {
-		localStorage.setItem(colorModeKey, isDark ? 'dark' : 'light');
-		setMode(isDark);
-	}, []);
+	/**
+	 * Toggle color mode following Lea Verou's two-state model:
+	 * - If the target matches the OS preference, remove the override
+	 *   (revert to system default).
+	 * - If the target differs from the OS preference, store it as an
+	 *   explicit override.
+	 * This keeps the toggle at two visual states while correctly
+	 * modelling three underlying states (light / dark / system).
+	 * @see https://lea.verou.me/blog/2026/dark-mode-toggles/
+	 */
+	const toggleColorMode = useCallback(() => {
+		const isTargetDark = !mode;
+
+		if (isTargetDark === isOsModeDark()) {
+			// Target matches OS — remove override, revert to system
+			localStorage.removeItem(colorModeKey);
+		} else {
+			// Target differs from OS — store explicit override
+			localStorage.setItem(colorModeKey, isTargetDark ? 'dark' : 'light');
+		}
+
+		setMode(isTargetDark);
+	}, [mode]);
 
 	useEffect(() => {
-		globalThis
-			.matchMedia(preferDark)
-			.addEventListener('change', (event) => {
-				setColorMode(event.matches);
-			});
+		const mediaQuery = globalThis.matchMedia(preferDark);
+		const handleChange = () => {
+			// Only follow OS changes when no explicit override is stored
+			if (localStorage.getItem(colorModeKey) === null) {
+				setMode(mediaQuery.matches);
+			}
+		};
+
+		const handleStorage = (event: StorageEvent) => {
+			if (event.key !== colorModeKey) {
+				return;
+			}
+
+			// Another tab changed the override — resolve current state
+			setMode(isDark());
+		};
+
+		mediaQuery.addEventListener('change', handleChange);
+		globalThis.addEventListener('storage', handleStorage);
+		return () => {
+			mediaQuery.removeEventListener('change', handleChange);
+			globalThis.removeEventListener('storage', handleStorage);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -134,110 +184,110 @@ const DefaultPage = ({
 				</div>
 			)}
 			{router.isReady && !fullscreen && (
-				<DBPage
-					data-mode={mode ? 'dark' : 'light'}
-					fadeIn
-					variant="fixed"
-					header={
-						<DBHeader
-							drawerOpen={drawerOpen}
-							onToggle={setDrawerOpen}
-							brand={
-								<DBBrand>
-									{process.env.NEXT_PUBLIC_APP_NAME}
-								</DBBrand>
-							}
-							primaryAction={
-								<DBSwitch
-									checked={mode}
-									visualAid
-									icon="sun"
-									iconTrailing="moon"
-									showLabel={false}
-									onChange={() => {
-										setColorMode(!mode);
-									}}>
-									<DBTooltip>
-										Switch color scheme (light/dark)
-									</DBTooltip>
-									Switch color scheme (light/dark)
-								</DBSwitch>
-							}
-							secondaryAction={
-								<>
-									<FrameworkSwitcher />
-									<VersionSwitcher />
-								</>
-							}>
-							<Navigation />
-						</DBHeader>
-					}>
-					{breadcrumb && breadcrumb.length > 1 && (
-						<DBSection spacing="none" width="large">
-							<div
-								data-density="functional"
-								className="breadcrumb-container">
-								{breadcrumb?.map((navItem) => (
-									<Fragment
-										key={`breadcrumb-${navItem.path}`}>
-										{navItem.path !== '/' && (
-											<DBIcon icon="chevron_right" />
-										)}
-										<Link
-											className="db-button"
-											data-variant="ghost"
-											data-icon={
-												navItem.path === '/'
-													? 'house'
-													: 'none'
-											}
-											data-no-text={navItem.path === '/'}
-											href={navItem.path ?? '/'}>
-											{navItem.label}
-										</Link>
-									</Fragment>
-								))}
-							</div>
-						</DBSection>
-					)}
-					<DBSection spacing="none" width="large">
-						{children}
-					</DBSection>
-					{!noNavigation &&
-						(previousNavigationItem ?? nextNavigationItem) && (
-							<DBSection
-								width="large"
-								spacing="small"
-								className="link-containers">
-								{previousNavigationItem && (
-									<Link
-										className="previous-link-container"
-										href={
-											previousNavigationItem.path ?? '/'
-										}>
-										<DBCard behavior="interactive">
-											<small>Previous</small>
-											<span data-icon="arrow_left">
-												{previousNavigationItem.label}
-											</span>
-										</DBCard>
-									</Link>
-								)}
-								{nextNavigationItem && (
-									<Link
-										className="next-link-container"
-										href={nextNavigationItem.path ?? '/'}>
-										<DBCard behavior="interactive">
-											<small>Next</small>
-											<span data-icon-trailing="arrow_right">
-												{nextNavigationItem.label}
-											</span>
-										</DBCard>
-									</Link>
-								)}
+				<DBShell data-mode={mode ? 'dark' : 'light'} fadeIn>
+					<DBControlPanelDesktop
+						brand={
+							<DBControlPanelBrand>Showcase</DBControlPanelBrand>
+						}
+						actions1={
+							<Actions1
+								mode={mode}
+								toggleColorMode={toggleColorMode}
+							/>
+						}
+						actions2={<Actions2 />}>
+						<Navigation />
+					</DBControlPanelDesktop>
+					<DBControlPanelMobile
+						brand={
+							<DBControlPanelBrand>
+								{process.env.NEXT_PUBLIC_APP_NAME}
+							</DBControlPanelBrand>
+						}
+						actions1={
+							<Actions1
+								mode={mode}
+								toggleColorMode={toggleColorMode}
+							/>
+						}
+						actions2={<Actions2 />}>
+						<Navigation />
+					</DBControlPanelMobile>
+					<DBShellContent>
+						{breadcrumb && breadcrumb.length > 1 && (
+							<DBSection spacing="none" width="large">
+								<div
+									data-density="functional"
+									className="breadcrumb-container">
+									{breadcrumb?.map((navItem) => (
+										<Fragment
+											key={`breadcrumb-${navItem.path}`}>
+											{navItem.path !== '/' && (
+												<DBIcon icon="chevron_right" />
+											)}
+											<Link
+												className="db-button"
+												data-variant="ghost"
+												data-icon={
+													navItem.path === '/'
+														? 'house'
+														: 'none'
+												}
+												data-no-text={
+													navItem.path === '/'
+												}
+												href={navItem.path ?? '/'}>
+												{navItem.label}
+											</Link>
+										</Fragment>
+									))}
+								</div>
 							</DBSection>
 						)}
-				</DBPage>
+						<DBSection spacing="none" width="large">
+							{children}
+						</DBSection>
+						{!noNavigation &&
+							(previousNavigationItem ?? nextNavigationItem) && (
+								<DBSection
+									width="large"
+									spacing="small"
+									className="link-containers">
+									{previousNavigationItem && (
+										<Link
+											className="previous-link-container"
+											href={
+												previousNavigationItem.path ??
+												'/'
+											}>
+											<DBCard behavior="interactive">
+												<small>Previous</small>
+												<span data-icon="arrow_left">
+													{
+														previousNavigationItem.label
+													}
+												</span>
+											</DBCard>
+										</Link>
+									)}
+									{nextNavigationItem && (
+										<Link
+											className="next-link-container"
+											href={
+												nextNavigationItem.path ?? '/'
+											}>
+											<DBCard behavior="interactive">
+												<small>Next</small>
+												<span data-icon-trailing="arrow_right">
+													{nextNavigationItem.label}
+												</span>
+											</DBCard>
+										</Link>
+									)}
+								</DBSection>
+							)}
+					</DBShellContent>
+				</DBShell>
 			)}
 		</FrameworkProvider>
 	);

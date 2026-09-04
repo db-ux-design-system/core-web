@@ -83,3 +83,4 @@ packages/mcp-server/src/manifest.json
 **/db-ux-detection-report.json
 showcases/next-showcase/.browserslistrc
 /.kiro/specs/
+/.kiro/settings/

@@ -1,22 +1,15 @@
 import { Component, effect, signal } from '@angular/core';
 import { DBLink, DBStack } from '@components';
 import {
+	injectTable,
+	stockFeatures,
 	type ColumnFiltersState,
-	createAngularTable,
-	getCoreRowModel,
-	getFacetedMinMaxValues,
-	getFacetedRowModel,
-	getFacetedUniqueValues,
-	getFilteredRowModel,
-	getGroupedRowModel,
-	getPaginationRowModel,
-	getSortedRowModel,
 	type GroupingState
 } from '@tanstack/angular-table';
 import { ActionButtonsComponent } from './components/action-buttons.component';
 import { CustomTableComponent } from './components/custom-table.component';
 import { TableControlsComponent } from './components/table-controls.component';
-import { makeData, type Person } from './makeData';
+import { makeData } from './makeData';
 import { columns, fuzzyFilter, type TableMeta } from './tableModels';
 
 @Component({
@@ -61,8 +54,8 @@ import { columns, fuzzyFilter, type TableMeta } from './tableModels';
 				[hasNextPage]="table.getCanNextPage()"
 				[hasPreviousPage]="table.getCanPreviousPage()"
 				[pageCount]="table.getPageCount()"
-				[pageIndex]="table.getState().pagination.pageIndex"
-				[pageSize]="table.getState().pagination.pageSize"
+				[pageIndex]="table.store.state.pagination.pageIndex"
+				[pageSize]="table.store.state.pagination.pageSize"
 				(nextPage)="table.nextPage()"
 				(previousPage)="table.previousPage()"
 				(setPageIndex)="table.setPageIndex($event)"
@@ -75,7 +68,7 @@ export class TableKitchenSinkComponent {
 	columnVisibility = signal({});
 	grouping = signal<GroupingState>([]);
 	rowSelection = signal({});
-	columnPinning = signal({});
+	columnPinning = signal({ start: [] as string[], end: [] as string[] });
 	columnFilters = signal<ColumnFiltersState>([]);
 	globalFilter = signal('');
 	autoResetPageIndex = signal(true);
@@ -85,17 +78,10 @@ export class TableKitchenSinkComponent {
 		setTimeout(() => this.autoResetPageIndex.set(true), 0);
 	};
 
-	table = createAngularTable<Person>(() => ({
+	table = injectTable(() => ({
+		features: stockFeatures,
 		data: this.data(),
 		columns,
-		getCoreRowModel: getCoreRowModel(),
-		getFilteredRowModel: getFilteredRowModel(),
-		getPaginationRowModel: getPaginationRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		getGroupedRowModel: getGroupedRowModel(),
-		getFacetedRowModel: getFacetedRowModel(),
-		getFacetedUniqueValues: getFacetedUniqueValues(),
-		getFacetedMinMaxValues: getFacetedMinMaxValues(),
 		onColumnFiltersChange: (updater) => {
 			this.columnFilters.update((old) =>
 				typeof updater === 'function' ? updater(old) : updater
@@ -154,6 +140,7 @@ export class TableKitchenSinkComponent {
 		},
 		initialState: {
 			pagination: {
+				pageIndex: 0,
 				pageSize: 5
 			}
 		},
@@ -164,8 +151,8 @@ export class TableKitchenSinkComponent {
 
 	constructor() {
 		effect(() => {
-			if (this.table.getState().columnFilters[0]?.id === 'fullName') {
-				if (this.table.getState().sorting[0]?.id !== 'fullName') {
+			if (this.table.store.state.columnFilters[0]?.id === 'fullName') {
+				if (this.table.store.state.sorting[0]?.id !== 'fullName') {
 					this.table.setSorting([{ id: 'fullName', desc: false }]);
 				}
 			}

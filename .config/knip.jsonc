@@ -9,6 +9,16 @@
 	"ignoreIssues": {
 		"packages/components/src/components/select/figma/select.figma.ts": [
 			"duplicates"
+		],
+		// Mitosis resolves the six imports without extensions to sibling *.lite.tsx files.
+		"packages/components/src/components/heading/index.ts": ["unresolved"],
+		// Same pattern: two ControlPanelActions components share one folder.
+		"packages/components/src/components/control-panel-actions/index.ts": [
+			"unresolved"
+		],
+		// The spec mounts the generated example, which Mitosis emits without the .lite suffix.
+		"packages/components/src/components/custom-select/custom-select.spec.tsx": [
+			"unresolved"
 		]
 	},
 
@@ -118,5 +128,9 @@
 			"entry": ["test/**/*.{ts,tsx,js}"],
 			"ignoreDependencies": ["@db-ux/react-core-components"]
 		}
-	}
+	},
+
+	// Due to a potential bug in `pnpm audit --fix=update`, `catalog:` references in `package.json` files would get replaced by their actual version at the moment
+	// TODO: remove the following knip ignore after this bug has been solved and we could've reintroduced `catalog:` references in our `package.json` files
+	"exclude": ["catalog"]
 }

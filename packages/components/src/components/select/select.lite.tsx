@@ -139,7 +139,16 @@ export default function DBSelect(props: DBSelectProps) {
 				angular: () => handleFrameworkEventAngular(state, event),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
-			state.handleValidation();
+			/* `handleValidation` must not run synchronously here: it changes
+			 * internal state (`_descByIds` flips as soon as the value became
+			 * valid). React re-applies the controlled `value` to the `select` on
+			 * every commit, and while the `input` event is being handled that
+			 * prop is still the previous value - so the re-render would discard
+			 * the selection the user just made, before `change` is even
+			 * dispatched. Deferring keeps the DOM authoritative until the value
+			 * has been propagated; `handleChange` validates the settled value.
+			 * https://github.com/db-ux-design-system/core-web/issues/7554 */
+			void delay(() => state.handleValidation(), 0);
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLSelectElement> | any,
@@ -311,7 +320,7 @@ export default function DBSelect(props: DBSelectProps) {
 				name={props.name}
 				size={props.size}
 				value={props.value ?? state._value ?? ''}
-				autocomplete={props.autocomplete}
+				autocomplete={props.autoComplete ?? props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
 					state.handleInput(event)
@@ -406,9 +415,10 @@ export default function DBSelect(props: DBSelectProps) {
 				</Show>
 			</select>
 			<Show when={props.placeholder}>
-				<span class="db-select-placeholder" id={state._placeholderId}>
-					{props.placeholder}
-				</span>
+				<span
+					class="db-select-placeholder"
+					data-placeholder={props.placeholder}
+					id={state._placeholderId}></span>
 			</Show>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext

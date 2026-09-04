@@ -5,6 +5,30 @@ import { replaceInFileSync } from 'replace-in-file';
 
 import { runReplacements, transformToUpperComponentName } from '../utils';
 
+// Foundation attributes stay on the generated component root instead of being
+// forwarded as arbitrary custom data attributes.
+const rootProps = [
+	'data-icon-variant',
+	'data-icon-variant-before',
+	'data-icon-variant-after',
+	'data-icon-weight',
+	'data-icon-weight-before',
+	'data-icon-weight-after',
+	'data-interactive',
+	'data-force-mobile',
+	'data-color',
+	'data-container-color',
+	'data-bg-color',
+	'data-on-bg-color',
+	'data-color-scheme',
+	'data-font-size',
+	'data-headline-size',
+	'data-divider',
+	'data-focus',
+	'data-font',
+	'data-density'
+];
+
 const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/shared/model.ts`;
 	let modelFileContent = readFileSync(modelFilePath).toString('utf-8');
@@ -35,29 +59,6 @@ const overwriteEvents = (tmp?: boolean) => {
 	);
 	writeFileSync(modelFilePath, modelFileContent);
 };
-
-// All things from foundations should get set on the root component - custom "data-" attributes shouldn't
-const rootProps = [
-	'data-icon-variant',
-	'data-icon-variant-before',
-	'data-icon-variant-after',
-	'data-icon-weight',
-	'data-icon-weight-before',
-	'data-icon-weight-after',
-	'data-interactive',
-	'data-force-mobile',
-	'data-color',
-	'data-container-color',
-	'data-bg-color',
-	'data-on-bg-color',
-	'data-color-scheme',
-	'data-font-size',
-	'data-headline-size',
-	'data-divider',
-	'data-focus',
-	'data-font',
-	'data-density'
-];
 
 /**
  * We want to make sure that the items inside a map containing a key
@@ -98,7 +99,8 @@ export default (tmp?: boolean) => {
 				component.name
 			);
 
-			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${component.name}/${component.name}.tsx`;
+			const componentFolder = component.folder ?? component.name;
+			const tsxFile = `../../${tmp ? 'output/tmp' : 'output'}/react/src/components/${componentFolder}/${component.name}.tsx`;
 
 			const tsxFileContent = readFileSync(tsxFile).toString('utf-8');
 			const htmlElements = tsxFileContent.match('(?<=useRef<)(.*?)(?=>)');
@@ -113,7 +115,12 @@ export default (tmp?: boolean) => {
 					to: `, forwardRef, HTMLAttributes } from "react"`
 				},
 				{
-					from: `function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
+					from: [
+						`function DB${upperComponentName}(props: DB${upperComponentName}Props) {`,
+						`function DB${upperComponentName}(
+  props: DB${upperComponentName}Props
+) {`
+					],
 					to: `function DB${upperComponentName}Fn(props: Omit<HTMLAttributes<${htmlElement}>, keyof DB${upperComponentName}Props> & DB${upperComponentName}Props, component: any) {`
 				},
 				{
@@ -151,8 +158,9 @@ export default DB${upperComponentName};`
 				{
 					from: 'className={',
 					to:
-						`{...getRootProps(props,${JSON.stringify(rootProps)})}` +
-						'\nclassName={'
+						`{...getRootProps(props,${JSON.stringify(
+							rootProps
+						)})}` + '\nclassName={'
 				},
 				/* We need to overwrite the internal state._value property just for react to have controlled components.
 				 * It works for Angular & Vue, so we overwrite it only for React.  */

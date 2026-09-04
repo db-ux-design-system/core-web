@@ -9,7 +9,7 @@
 /*
  * The typography design tokens (--db-type-*) are stored as a CSS `font` shorthand.
  * The `font` shorthand resets every sub-property it does not explicitly contain
- * to its initial value — including `font-weight`. To keep the font-weight
+ * to its initial value - including `font-weight`. To keep the font-weight
  * overridable via Tailwind utilities (e.g. `font-bold`, `font-semibold`), we
  * re-apply `font-weight` right after the shorthand using Tailwind's own
  * `--tw-font-weight` custom property (set by the font-weight utilities) and fall

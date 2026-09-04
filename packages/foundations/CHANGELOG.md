@@ -1,5 +1,65 @@
 # @db-ux/core-foundations
 
+## 5.3.0
+
+### Minor Changes
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
+## 5.2.1
+
+_version bump_
+
+## 5.2.0
+
+### Minor Changes
+
+- refactor(SASS): expose the headline level mapping as `fonts.$headlines` - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - The default visual size per semantic level moves from
+    - `defaults/default-fonts.scss` into the new non-emitting partial
+    - `fonts/_headline-levels.scss`, so `defaults/default-fonts.scss` and the Heading
+    - component styles share one source of truth. The emitted CSS is unchanged.
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: prevent Sass from emitting `@charset` in published SCSS output for non-ASCII characters, which causes problems e.g. in Next.js - [see commit cefb202](https://github.com/db-ux-design-system/core-web/commit/cefb20259dc650d478e9a58f67e4f46051ee46e3)
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+_version bump_
+
 ## 5.0.2
 
 _version bump_

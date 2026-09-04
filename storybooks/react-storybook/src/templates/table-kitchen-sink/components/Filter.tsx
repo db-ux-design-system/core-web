@@ -1,5 +1,10 @@
 import { DBButton, DBPopover, DBStack, DBTooltip } from '@components';
-import type { Column, RowData, Table } from '@tanstack/react-table';
+import type {
+	Column,
+	RowData,
+	StockFeatures,
+	Table
+} from '@tanstack/react-table';
 import { type FC, Fragment, useMemo } from 'react';
 import DebouncedInput from './DebouncedInput';
 
@@ -85,8 +90,8 @@ const TextInput: FC<TextInputProps> = ({
 };
 
 type Props<T extends RowData> = {
-	column: Column<T, unknown>;
-	table: Table<T>;
+	column: Column<StockFeatures, T, unknown>;
+	table: Table<StockFeatures, T>;
 };
 
 export function Filter<T extends RowData>({ column, table }: Props<T>) {
@@ -116,15 +121,17 @@ export function Filter<T extends RowData>({ column, table }: Props<T>) {
 			{typeof firstValue === 'number' ? (
 				<NumberInput
 					columnFilterValue={columnFilterValue as [number, number]}
-					getFacetedMinMaxValues={column.getFacetedMinMaxValues}
-					setFilterValue={column.setFilterValue}
+					getFacetedMinMaxValues={() =>
+						column.getFacetedMinMaxValues()
+					}
+					setFilterValue={(updater) => column.setFilterValue(updater)}
 				/>
 			) : (
 				<TextInput
 					columnId={column.id}
 					columnFilterValue={columnFilterValue as string}
 					columnSize={uniqueValues.size}
-					setFilterValue={column.setFilterValue}
+					setFilterValue={(updater) => column.setFilterValue(updater)}
 					sortedUniqueValues={sortedUniqueValues}
 				/>
 			)}

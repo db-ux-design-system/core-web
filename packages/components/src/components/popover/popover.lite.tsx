@@ -8,7 +8,12 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, delay as utilsDelay } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	delay as utilsDelay
+} from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
@@ -28,6 +33,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		_intersectionObserverCallbackId: undefined,
 		_resizeObserverCallbackId: undefined,
 		handleEscape: (event: any) => {
+			if (!_ref) return;
 			if (!event || event.key === 'Escape') {
 				// TODO: Recursive for any child
 				for (const child of Array.from(_ref.children)) {
@@ -41,7 +47,16 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (article) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
-					handleFixedPopover(article, _ref);
+					if (_ref) {
+						handleFixedPopover({
+							element: article,
+							parent: _ref,
+							forceAbsolute: getBoolean(
+								props.forceAbsolute,
+								'forceAbsolute'
+							)
+						});
+					}
 				}, 1);
 			}
 		},
@@ -50,7 +65,11 @@ export default function DBPopover(props: DBPopoverProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		handleEnter(): void {
+		handleEnter(_parent?: HTMLElement, manualOpen?: boolean): void {
+			if (!manualOpen && props.open != null) {
+				return;
+			}
+
 			state.isExpanded = true;
 
 			// Clean up any existing observers to prevent leaks from repeated enter
@@ -97,10 +116,15 @@ export default function DBPopover(props: DBPopoverProps) {
 			}
 		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleLeave: (event?: any) => {
+		handleLeave: (event?: any, manualOpen?: boolean) => {
+			if (!manualOpen && props.open != null) {
+				return;
+			}
+
 			const element = event?.target as HTMLElement;
 			const parent = element?.parentNode;
 			if (
+				manualOpen ||
 				!parent ||
 				(element.parentNode.querySelector(':focus') !== element &&
 					element.parentNode.querySelector(':focus-within') !==
@@ -201,10 +225,32 @@ export default function DBPopover(props: DBPopoverProps) {
 		if (_ref) {
 			const child = state.getTrigger();
 			if (child) {
-				child.ariaExpanded = Boolean(state.isExpanded).toString();
+				// In controlled mode (open prop set), aria-expanded follows open;
+				// otherwise it follows internal hover/focus state
+				const expanded =
+					props.open != null
+						? Boolean(getBoolean(props.open, 'open'))
+						: Boolean(state.isExpanded);
+				child.ariaExpanded = expanded.toString();
 			}
 		}
-	}, [_ref, state.isExpanded]);
+	}, [_ref, state.isExpanded, props.open]);
+
+	// Controlled open state handler.
+	// Transitioning from controlled (open={true|false}) to uncontrolled
+	// (open={undefined|null}) at runtime is not supported. Components should
+	// be either always controlled or always uncontrolled.
+	onUpdate(() => {
+		if (props.open == null) {
+			return;
+		}
+
+		if (getBoolean(props.open, 'open')) {
+			state.handleEnter(undefined, true);
+		} else {
+			state.handleLeave(undefined, true);
+		}
+	}, [props.open]);
 
 	// jscpd:ignore-end
 

@@ -1,5 +1,60 @@
 # @db-ux/core-eslint-plugin
 
+## 5.3.0
+
+### Minor Changes
+
+- feat: add `control-panel-mobile-burger-menu-label-required` rule to recommended preset, replacing `header-burger-menu-label-required` for the new control-panel architecture - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - The legacy `header-burger-menu-label-required` rule remains available for consumers still using `DBHeader`.
+
+## 5.2.1
+
+_version bump_
+
+## 5.2.0
+
+### Minor Changes
+
+- feat: add `custom-heading-single-heading` rule for `DBCustomHeading` - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156)
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
+## 5.1.3
+
+_version bump_
+
+## 5.1.2
+
+_version bump_
+
+## 5.1.1
+
+_version bump_
+
+## 5.1.0
+
+_version bump_
+
+## 5.0.4
+
+_version bump_
+
+## 5.0.3
+
+### Patch Changes
+
+- fix: autofix for missing "type" prop breaks self-closing elements - [see commit 55fa552](https://github.com/db-ux-design-system/core-web/commit/55fa5522c13accd2bd6d740e7983b88274dfcac7)
+
 ## 5.0.2
 
 _version bump_

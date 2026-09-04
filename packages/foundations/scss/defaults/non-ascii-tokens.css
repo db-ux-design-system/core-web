@@ -1,0 +1,8 @@
+/* Non-ASCII character tokens as CSS custom properties.
+ * This file is plain CSS (not SCSS) so that Sass does not resolve the escape
+ * sequences to literal characters, which would emit @charset "UTF-8".
+ * See: https://github.com/db-ux-design-system/core-web/issues/7525
+ * TODO: Maybe this could become an official token as well */
+:root {
+	--db-list-bullet: "\2022\a0";
+}

@@ -6,8 +6,16 @@ export type ComponentType = {
 	index?: string | number;
 	type?:
 		/* Template hygen type */
+		| 'heading-h1'
+		| 'heading-h2'
+		| 'heading-h3'
+		| 'heading-h4'
+		| 'heading-h5'
+		| 'heading-h6'
+		| 'custom-heading'
 		| 'custom-button'
 		| 'table'
+		| 'control-panel-mobile'
 		| 'stack'
 		| 'switch'
 		| 'custom-select'

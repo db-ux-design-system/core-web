@@ -1,9 +1,9 @@
 import { DBCard, DBCustomSelect, DBStack } from '@components';
-import type { Table } from '@tanstack/react-table';
+import type { StockFeatures, Table } from '@tanstack/react-table';
 import DebouncedInput from './DebouncedInput';
 
 interface TableControlsProps {
-	table: Table<any>;
+	table: Table<StockFeatures, any>;
 	globalFilter: string;
 	setGlobalFilter: (value: string) => void;
 }
@@ -29,18 +29,16 @@ export const TableControls = ({
 					multiple
 					values={table
 						.getAllLeafColumns()
-						.filter(({ getIsVisible }) => getIsVisible())
-						.map(({ id }) => id)}
-					options={table.getAllLeafColumns().map(({ id }) => {
-						return { id, value: id };
+						.filter((column) => column.getIsVisible())
+						.map((column) => column.id)}
+					options={table.getAllLeafColumns().map((column) => {
+						return { id: column.id, value: column.id };
 					})}
 					selectAllLabel="Toggle All"
 					onOptionSelected={(values) => {
-						table
-							.getAllLeafColumns()
-							.forEach(({ id, toggleVisibility }) => {
-								toggleVisibility(values.includes(id));
-							});
+						table.getAllLeafColumns().forEach((column) => {
+							column.toggleVisibility(values.includes(column.id));
+						});
 					}}></DBCustomSelect>
 			</DBStack>
 		</DBCard>

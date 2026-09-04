@@ -16,7 +16,7 @@ try {
  */
 export const getParsedFigmaConnect = (): string => {
 	const result = execSync(
-		'npx figma connect parse --exit-on-unreadable-files',
+		'pnpm exec figma connect parse --exit-on-unreadable-files',
 		{ maxBuffer: 50 * 1024 * 1024 }
 	).toString();
 

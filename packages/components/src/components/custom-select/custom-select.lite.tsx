@@ -133,7 +133,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleAutoPlacement();
 			}
 		},
-		_searchValue: undefined,
+		_searchValue: '',
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -204,7 +204,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					new IntersectionObserverListener().observe(
 						detailsRef,
 						(entry) => {
-							if (!entry.isIntersecting && detailsRef.open) {
+							if (!entry.isIntersecting && detailsRef?.open) {
 								detailsRef.open = false;
 							}
 						}
@@ -300,11 +300,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				if (dropdown) {
 					// This is a workaround for Angular
 					void delay(() => {
-						handleFixedDropdown(
-							dropdown,
-							detailsRef,
-							(props.placement as unknown as string) ?? 'bottom'
-						);
+						if (detailsRef) {
+							handleFixedDropdown(
+								dropdown,
+								detailsRef,
+								(props.placement as unknown as string) ??
+									'bottom'
+							);
+						}
 					}, 1);
 				}
 			}
@@ -493,7 +496,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						) {
 							// We need to use delay here because the combination of `contains`
 							// and changing the DOM element causes a race condition inside browser
-							void delay(() => (detailsRef.open = false), 1);
+							void delay(() => {
+								if (detailsRef) {
+									detailsRef.open = false;
+								}
+							}, 1);
 						}
 					}
 				}
@@ -851,7 +858,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.options]);
 
 	onUpdate(() => {
-		state._searchValue = props.searchValue;
+		state._searchValue = props.searchValue ?? '';
 		if (props.searchValue) {
 			const sValue = props.searchValue!; // <- workaround for Angular
 			state.handleSearch(sValue);
@@ -859,20 +866,17 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	}, [props.searchValue]);
 
 	onUpdate(() => {
-		if (props.options?.length) {
-			state._selectedOptions = props.options?.filter(
-				(option: CustomSelectOptionType) => {
-					if (!option.value || !state._values?.['includes']) {
-						return false;
-					}
-
-					return (
-						!option.isGroupTitle &&
-						state._values?.includes(option.value)
-					);
+		state._selectedOptions =
+			props.options?.filter((option: CustomSelectOptionType) => {
+				if (!option.value || !state._values?.['includes']) {
+					return false;
 				}
-			);
-		}
+
+				return (
+					!option.isGroupTitle &&
+					state._values?.includes(option.value)
+				);
+			}) ?? [];
 	}, [props.options, state._values]);
 
 	onUpdate(() => {
@@ -986,6 +990,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
+				{/* ponytail: browser autofill will set the native value but state._values / summary would not sync; follow-up needed to wire onChange into handleOptionSelected */}
 				<select
 					role="none"
 					hidden
@@ -994,6 +999,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={selectRef}
 					form={props.form}
 					name={props.name}
+					autocomplete={props.autoComplete ?? props.autocomplete}
 					data-custom-validity={state._validity}
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
@@ -1256,13 +1262,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</DBTooltip>
 				</DBButton>
 			</Show>
-
 			<span
+				data-placeholder={props.placeholder ?? props.label}
 				class="db-custom-select-placeholder"
 				aria-hidden="true"
-				id={state._placeholderId}>
-				{props.placeholder ?? props.label}
-			</span>
+				id={state._placeholderId}></span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"

@@ -62,8 +62,8 @@
 	<!-- db-ux/form-validation-message-required -->
 	<db-input [label]="'Email'" required></db-input>
 
-	<!-- db-ux/header-burger-menu-label-required -->
-	<db-header></db-header>
+	<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
+	<db-control-panel-mobile></db-control-panel-mobile>
 
 	<!-- db-ux/input-type-required -->
 	<db-input [label]="'Test'"></db-input>
@@ -72,9 +72,11 @@
 	<db-link href="https://example.com" target="_blank">External link</db-link>
 
 	<!-- db-ux/navigation-item-back-button-text-required -->
-	<db-navigation-item>
-		<div slot="subNavigation">Sub nav</div>
-	</db-navigation-item>
+	<db-control-panel-navigation-item-group>
+		<db-control-panel-navigation-item
+			>Item</db-control-panel-navigation-item
+		>
+	</db-control-panel-navigation-item-group>
 
 	<!-- db-ux/no-interactive-tooltip-content -->
 	<db-tooltip>
@@ -92,6 +94,17 @@
 	<db-button type="submit">
 		<db-icon icon="search"></db-icon>
 	</db-button>
+
+	<!-- db-ux/custom-heading-single-heading -->
+	<db-custom-heading>Installation</db-custom-heading>
+	<db-custom-heading>
+		<h2>One</h2>
+		<h3>Two</h3>
+	</db-custom-heading>
+	<db-custom-heading>
+		<h2>One</h2>
+		<h3 end-slot>Two</h3>
+	</db-custom-heading>
 
 	<!-- db-ux/select-requires-options -->
 	<db-select [label]="'Select'"></db-select>

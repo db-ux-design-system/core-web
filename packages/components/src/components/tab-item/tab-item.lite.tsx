@@ -204,7 +204,7 @@ export default function DBTabItem(props: DBTabItemProps) {
 			// that support focusgroup natively. syncSelection manages this at
 			// runtime; this covers SSR/first-paint.
 			focusgroupstart={
-				getBoolean(props.active, 'active') ? '' : undefined
+				getBoolean(props.active, 'active') ? true : undefined
 			}
 			data-value={props.value}>
 			{/* wrapper needed for accurate width measurement via refs */}

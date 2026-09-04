@@ -143,6 +143,7 @@ When reviewing a PR, check that the Husky pre-commit hook would pass for the cha
 - **Branch name validation** — the branch name must match the `validate-branch-name` pattern in `package.json`. As of this writing that pattern accepts:
     - `copilot/...` (GitHub Copilot-created branches — slashes allowed here)
     - `dependabot-...`
+    - `renovate-...`
     - a `<type>-<description>` form where `<type>` is one of `test|feat|fix|chore|docs|refactor|style|ci|perf|alert` or a numeric issue id (e.g. `feat-my-feature`, `123-some-fix`), using `-` as the separator
       Do **not** flag a `copilot/` branch as invalid. For non-exempt branches, `/` is not allowed (it breaks preview URLs). Mirror the actual `package.json` pattern rather than this summary if they diverge.
 - **lint-staged** — changed files pass linting and Prettier formatting
@@ -208,6 +209,8 @@ Use these markers to indicate priority:
 
 ### Example Comments
 
+<!-- jscpd:ignore-start -->
+
 ```markdown
 🔴 [blocking] This could cause a race condition when multiple users update simultaneously.
 Consider wrapping this in a transaction or using optimistic locking.
@@ -223,3 +226,5 @@ from `@db-ux/core-components`.
 
 🎉 [praise] Great use of discriminated unions here — makes the type narrowing very clean.
 ```
+
+<!-- jscpd:ignore-end -->

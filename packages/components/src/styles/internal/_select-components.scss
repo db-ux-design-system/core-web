@@ -65,5 +65,9 @@ $select-icon-padding: calc(
 			100% - var(--db-form-component-padding-inline-end) -
 				#{$has-before-padding} - #{variables.$db-spacing-fixed-sm}
 		);
+
+		&::before {
+			content: attr(data-placeholder);
+		}
 	}
 }

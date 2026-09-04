@@ -277,7 +277,7 @@ Prefer using the `icon` attribute over `<DBIcon>` child component for components
 
 ### `text-or-children-required`
 
-Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBNavigationItem, DBNotification) have either a `text` property or children content.
+Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBControlPanelNavigationItem, DBNotification) have either a `text` property or children content.
 
 **❌ Invalid:**
 
@@ -650,6 +650,56 @@ Ensures DBDrawer has a DBDrawerHeader for accessibility. The header provides the
 <DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template>Content</DBDrawer>
 ```
 
+### `custom-heading-single-heading`
+
+Ensures DBCustomHeading wraps exactly one heading. The component only provides the layout for a heading plus sibling content and has no heading semantics of its own, so without a nested `h1`-`h6` (or `DBHeadingH1`-`DBHeadingH6`) nothing is exposed as a heading. More than one heading in a single wrapper breaks the document outline.
+
+The `startSlot` and `endSlot` content counts as well, because it renders inside the wrapper. In React that content is a property (`endSlot={…}`) rather than a child, so the rule inspects both.
+
+Content that cannot be resolved statically (JSX expressions, `<slot>`, `<ng-content>`, a non-DB component) suppresses the missing-heading report.
+
+**❌ Invalid:**
+
+```jsx
+// React
+<DBCustomHeading>Installation</DBCustomHeading>
+<DBCustomHeading><span>Installation</span></DBCustomHeading>
+<DBCustomHeading><h2>One</h2><h3>Two</h3></DBCustomHeading>
+<DBCustomHeading endSlot={<h3>Two</h3>}><h2>One</h2></DBCustomHeading>
+
+// Angular
+<db-custom-heading>Installation</db-custom-heading>
+<db-custom-heading><db-heading-h-2>One</db-heading-h-2><h3>Two</h3></db-custom-heading>
+<db-custom-heading><h2>One</h2><h3 end-slot>Two</h3></db-custom-heading>
+
+// Vue
+<DBCustomHeading>Installation</DBCustomHeading>
+<DBCustomHeading><h2>One</h2><DBHeadingH3>Two</DBHeadingH3></DBCustomHeading>
+<DBCustomHeading><h2>One</h2><template #end-slot><h3>Two</h3></template></DBCustomHeading>
+```
+
+**✅ Valid:**
+
+```jsx
+// React
+<DBCustomHeading><h2>Installation</h2></DBCustomHeading>
+<DBCustomHeading endSlot={<button type="button">More options</button>}>
+	<DBHeadingH2>Installation</DBHeadingH2>
+</DBCustomHeading>
+<DBCustomHeading>{children}</DBCustomHeading>
+<DBCustomHeading endSlot={slotContent} />
+
+// Angular
+<db-custom-heading><h2>Installation</h2></db-custom-heading>
+<db-custom-heading><h2>Installation</h2><db-badge end-slot>3</db-badge></db-custom-heading>
+<db-custom-heading><db-heading-h-2 *ngIf="visible">Installation</db-heading-h-2></db-custom-heading>
+
+// Vue
+<DBCustomHeading><DBHeadingH2>Installation</DBHeadingH2></DBCustomHeading>
+<DBCustomHeading><h2>Installation</h2><template #end-slot><DBBadge>3</DBBadge></template></DBCustomHeading>
+<DBCustomHeading><slot /></DBCustomHeading>
+```
+
 ### `sub-component-required-parent`
 
 Ensures sub-components are used inside their required parent component and slot.
@@ -695,70 +745,68 @@ Ensures sub-components are used inside their required parent component and slot.
 <DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 ```
 
-### `header-burger-menu-label-required`
+### `control-panel-mobile-burger-menu-label-required`
 
-Ensures DBHeader has burgerMenuLabel attribute for accessibility.
+Ensures DBControlPanelMobile has burgerMenuLabel attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBHeader>Content</DBHeader>
-<DBHeader closeButtonText="Close">Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 
 // Angular
-<db-header>Content</db-header>
+<db-control-panel-mobile>Content</db-control-panel-mobile>
 
 // Vue
-<DBHeader>Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBHeader burgerMenuLabel="Menu">Content</DBHeader>
-<DBHeader burgerMenuLabel="Open navigation">Content</DBHeader>
+<DBControlPanelMobile burgerMenuLabel="Menu">Content</DBControlPanelMobile>
 
 // Angular
-<db-header burgerMenuLabel="Menu">Content</db-header>
-<db-header [burgerMenuLabel]="menuLabel">Content</db-header>
+<db-control-panel-mobile burgerMenuLabel="Menu">Content</db-control-panel-mobile>
+<db-control-panel-mobile [burgerMenuLabel]="menuLabel">Content</db-control-panel-mobile>
 
 // Vue
-<DBHeader :burgerMenuLabel="label">Content</DBHeader>
+<DBControlPanelMobile :burgerMenuLabel="label">Content</DBControlPanelMobile>
 ```
 
 ### `navigation-item-back-button-text-required`
 
-Ensures DBNavigationItem has backButtonText attribute for accessibility.
+Ensures DBControlPanelNavigationItemGroup has backButtonText attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBNavigationItem>Item</DBNavigationItem>
-<DBNavigationItem icon="home">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup icon="home">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-navigation-item>Item</db-navigation-item>
+<db-control-panel-navigation-item-group>Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBNavigationItem>Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBNavigationItem backButtonText="Back">Item</DBNavigationItem>
-<DBNavigationItem backButtonText="Go back">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup backButtonText="Back">Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup backButtonText="Go back">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-navigation-item backButtonText="Back">Item</db-navigation-item>
-<db-navigation-item [backButtonText]="backText">Item</db-navigation-item>
+<db-control-panel-navigation-item-group backButtonText="Back">Item</db-control-panel-navigation-item-group>
+<db-control-panel-navigation-item-group [backButtonText]="backText">Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBNavigationItem :backButtonText="text">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup :backButtonText="text">Item</DBControlPanelNavigationItemGroup>
 ```
 
 ### `custom-select-tags-remove-text-required`

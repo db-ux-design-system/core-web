@@ -1,5 +1,5 @@
 /**
- @type {import('@changesets/types/dist/declarations/src').GetReleaseLine}
+ @type {import('@changesets/types').GetReleaseLine}
  */
 const getReleaseLine = async (changeset, _type, options) => {
 	const [firstLine, ...futureLines] = changeset.summary
@@ -8,8 +8,8 @@ const getReleaseLine = async (changeset, _type, options) => {
 
 	let returnValue = `- ${firstLine}`;
 
-	// Options are coming from .changeset/config.json
-	if (changeset.commit && options.owner && options.repo) {
+	// Options are coming from .changeset/config.json, they can be null
+	if (changeset.commit && options?.owner && options?.repo) {
 		const link = `https://github.com/${options.owner}/${options.repo}/commit/${changeset.commit}`;
 		returnValue += ` - [see commit ${changeset.commit.slice(0, 7)}](${link})`;
 	}
@@ -34,13 +34,13 @@ const getReleaseLine = async (changeset, _type, options) => {
 };
 
 /**
- @type {import('@changesets/types/dist/declarations/src').GetDependencyReleaseLine}
+ @type {import('@changesets/types').GetDependencyReleaseLine}
  */
 const getDependencyReleaseLine = async () =>
 	// We don't want dependencies to show in the changelog, because we align the version anyway
 	'';
 /**
- @type {import('@changesets/types/dist/declarations/src').ChangelogFunctions}
+ @type {import('@changesets/types').ChangelogFunctions}
  */
 const functions = {
 	getReleaseLine,

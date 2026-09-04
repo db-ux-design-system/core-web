@@ -15,7 +15,7 @@ const ruleName = 'db-ux/use-sizing';
 const messages = ruleMessages(ruleName, {
 	rejected: (property: string, value: string) =>
 		`Unexpected value: ${value} within prop: ${property}.\n` +
-		"Please use 'db-sizing-*', '%', 'lh', 'vw', 'vh', 'db-screen-*', or 'db-container-*' instead."
+		"Please use 'db-sizing-*', '%', 'lh', 'vw', 'vh', `dvw`, `dvh`, `lvw`, `lvh`, `svw`, `svh`, 'db-screen-*', or 'db-container-*' instead."
 });
 
 const meta = {
@@ -43,7 +43,13 @@ const allowedValues: AllowedType = {
 		'lh',
 		'ch',
 		'vw',
-		'vh'
+		'vh',
+		'dvw',
+		'dvh',
+		'lvw',
+		'lvh',
+		'svw',
+		'svh'
 	],
 	exact: [
 		...defaultExact,

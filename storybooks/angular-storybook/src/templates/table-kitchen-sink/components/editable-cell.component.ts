@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DBInput } from '@components';
-import type { Cell } from '@tanstack/angular-table';
+import type { Cell, StockFeatures } from '@tanstack/angular-table';
 import type { Person } from '../makeData';
 import type { TableMeta } from '../tableModels';
 
@@ -18,7 +18,7 @@ import type { TableMeta } from '../tableModels';
 	`
 })
 export class EditableCellComponent implements OnInit {
-	@Input() cell!: Cell<Person, unknown>;
+	@Input() cell!: Cell<StockFeatures, Person, unknown>;
 
 	value: any;
 	label = '';

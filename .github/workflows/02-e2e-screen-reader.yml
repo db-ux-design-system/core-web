@@ -42,9 +42,12 @@ jobs:
           version: ${{ inputs.version }}
 
       - name: 🦮 Guidepup Setup Windows
-        uses: guidepup/setup-action@5d19b1151e972898cae0f0cc44e239127953bd90 # 0.21.0
-        with:
-          record: true
+        shell: bash
+        run: pnpm exec guidepup setup --ci
+
+      - name: 🦮 Guidepup Install Assets
+        shell: bash
+        run: pnpm exec guidepup install
 
       - name: ⏬ Download react-showcase
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1

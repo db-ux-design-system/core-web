@@ -1,5 +1,12 @@
 import type { TSESTree } from '@typescript-eslint/utils';
 
+/**
+ * Sentinel returned by getAttributeValue for dynamic expressions
+ * (JSX: attr={expr}, Vue: :attr="expr"). Distinguishes from valueless
+ * boolean attributes which return literal `true`.
+ */
+const DYNAMIC_EXPRESSION = '__DYNAMIC__';
+
 type VElement = {
 	type: 'VElement';
 	startTag: {
@@ -107,7 +114,9 @@ export function getAttributeValue(
 		if (!attr.value) {
 			return true;
 		}
-		return attr.value.value ?? true;
+		// Dynamic bindings (:attr="expr") return a non-empty string or
+		// fall back to DYNAMIC_EXPRESSION to distinguish from valueless true
+		return attr.value.value ?? DYNAMIC_EXPRESSION;
 	}
 
 	const variants = new Set([attrName, `[${attrName}]`, `:${attrName}`]);
@@ -125,7 +134,8 @@ export function getAttributeValue(
 		return attr.value.value as string;
 	}
 	if (attr.value.type === 'JSXExpressionContainer') {
-		return true;
+		// Dynamic expressions (attr={expr}) — distinct from valueless true
+		return DYNAMIC_EXPRESSION;
 	}
 	return undefined;
 }
@@ -276,7 +286,14 @@ export function createAngularFix(
 	if (closeTagIndex === -1) {
 		return null;
 	}
-	const insertPos = startOffset + closeTagIndex;
+
+	let insertPos = startOffset + closeTagIndex;
+	// For self-closing tags (/>), insert before the slash (and any preceding whitespace)
+	if (closeTagIndex > 0 && tagText[closeTagIndex - 1] === '/') {
+		const beforeSlash = tagText.substring(0, closeTagIndex - 1);
+		insertPos = startOffset + beforeSlash.trimEnd().length;
+	}
+
 	return { insertPos, attributeText };
 }
 
