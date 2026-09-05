@@ -249,9 +249,11 @@ inspectable
 reimplementations
 prioritise
 nghost
+closedby
 Ponyfill
 ponyfill
 ponyfills
+browserlist
 descope
 pnpms
 renovatebot

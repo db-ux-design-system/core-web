@@ -489,4 +489,34 @@ Only these package-specific details are added on top:
 
     Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
 
+Bump types:
+
+- `patch` — bug fix
+- `minor` — new feature or example, or any prop added in `model.ts`
+- `major` — any prop in `model.ts` removed, renamed, or retyped
+
+**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
+
+**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
+
 - **Examples do not determine bump type** — changes in `src/components/*/examples/` do not inherently require a `minor` bump. The bump type is determined by the underlying change the example demonstrates (e.g. a bug fix with a new regression example is still `patch`; an example for a newly added prop is `minor` because the prop itself is the feature).
+
+## Playwright Component Testing: Callback Assertions
+
+Playwright CT marshals component callbacks between the browser (where the component executes) and Node (where the test asserts). `await locator.click()` resolves once the click action completes, but does **not** wait for the resulting callback to dispatch back to the Node process and mutate test-local variables.
+
+**Never assert a callback-mutated variable immediately after an action:**
+
+```tsx
+// ❌ Race condition — callback may not have dispatched yet
+await component.getByRole("button").click();
+expect(myVar).toEqual("expected");
+
+// ✅ Correct — polls until the value arrives or timeout expires
+await component.getByRole("button").click();
+await expect.poll(() => myVar).toEqual("expected");
+```
+
+`expect.poll` re-evaluates its function (~100 ms intervals, 5 s default timeout) until the assertion passes. Use it whenever a test asserts on a plain variable that is set inside a component callback (`onClose`, `onChange`, `onClick`, etc.).
+
+This applies to all framework outputs (React, Vue) that use Playwright CT for spec tests.

@@ -8,7 +8,9 @@ If you use `containerSize !== full` you are able to overwrite the `max-width` wi
 
 ### Use component
 
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element. Supported built-in commands for `<dialog>` are `show-modal` and `close`.
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element. Supported built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
+
+Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
 
 If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
 
@@ -58,7 +60,7 @@ If you do need to provide support for [browser versions that haven't implemented
 				drawer?.showModal?.();
 			});
 			closeButton?.addEventListener("click", () => {
-				drawer?.close?.();
+				drawer?.requestClose?.();
 			});
 		}
 	</script>
