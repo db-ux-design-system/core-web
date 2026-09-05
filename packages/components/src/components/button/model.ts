@@ -1,4 +1,5 @@
 import type {
+	ButtonFormActionType,
 	ClickEventProps,
 	GlobalProps,
 	GlobalState,
@@ -52,6 +53,56 @@ export type DBButtonDefaultProps = {
 	 * 	Associates the control with a form element
 	 */
 	form?: string;
+
+	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
+	 */
+	formAction?: ButtonFormActionType;
+
+	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
+	 */
+	formaction?: ButtonFormActionType;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formEncType?: string;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formenctype?: string;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formMethod?: string;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formmethod?: string;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formNoValidate?: boolean | string;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formnovalidate?: boolean | string;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formTarget?: string;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formtarget?: string;
 
 	/**
 	 * The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button.
