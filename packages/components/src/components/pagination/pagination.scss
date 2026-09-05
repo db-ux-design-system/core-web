@@ -1,0 +1,93 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.db-pagination {
+	inline-size: fit-content;
+
+	// Page buttons only have a min-inline-size, so they grow with the number of
+	// digits. The collapsing below removes the sibling pages on narrow viewports,
+	// which covers the common case, but it cannot see the available inline size -
+	// a pagination in a narrow column on a wide viewport, a high siblingCount or
+	// large text zoom can still overflow. Wrapping stays as the last resort so
+	// none of those produce a horizontal scrollbar on the document.
+	> ul {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-2xs;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	// Previous and next are not pagination items, they are icon buttons - the same
+	// split the Figma component set makes. DBPaginationItem brings its own box.
+	li:not(.db-pagination-item) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	// Collapsing the page list: below the breakpoint the pages next to the current
+	// one give way, so only the boundary pages, the current page and the ellipses
+	// remain. Both layouts are in the DOM at once, marked up by
+	// data-pagination-item on DBPaginationItem, and the component decides which
+	// ellipsis belongs to which layout - the collapsed layout has gaps the wide one
+	// does not.
+	// display: none, not visibility or opacity: a hidden page must leave the tab
+	// order and the accessibility tree, otherwise it stays reachable by keyboard
+	// while being invisible. A page that has focus while the viewport shrinks
+	// therefore loses it to the document, the same as any other element the browser
+	// removes from the flow. Restoring it would need JavaScript.
+	li[data-pagination-item="collapse-ellipsis"] {
+		display: none;
+	}
+
+	@include screen-sizes.screen("sm", "max") {
+		li[data-pagination-item="sibling"],
+		li[data-pagination-item="wide-ellipsis"] {
+			display: none;
+		}
+
+		li[data-pagination-item="collapse-ellipsis"] {
+			display: flex;
+		}
+	}
+
+	// WCAG 2.2 SC 2.5.8 asks for a pointer target of at least 24 by 24 CSS pixels.
+	// $db-sizing-sm resolves to 20px at functional density, so every control of the
+	// small variant falls below that floor - the pages as well as previous and
+	// next, which follow the pagination size. The pseudo element grows the target
+	// without touching the visible box, so the densities keep the proportions they
+	// are designed with.
+	// The 24px cannot come from a sizing token: those scale with the density, which
+	// is exactly how the floor gets undercut. It is the success criterion itself,
+	// not a design decision, so it stays a literal value.
+	// The overlay reaches at most 2px into the 4px gap on each side, so the targets
+	// of two neighbors meet without overlapping - no click near an edge can end up
+	// on the wrong page. It stays with the pagination rather than the item, because
+	// that argument depends on the gap of the surrounding list.
+	:is(.db-pagination-page, .db-pagination-previous, .db-pagination-next) {
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			translate: -50% -50%;
+			inline-size: 100%;
+			block-size: 100%;
+
+			// max, not one of the two alone: the criterion is written in CSS pixels,
+			// so 24px is the floor. rem alone falls through it wherever a consumer
+			// lowers the root font size past the :root rule the foundations set -
+			// measured 18px at a root of 12px. The rem side stays so the target still
+			// grows for someone who raises the font size instead of being capped.
+			// stylelint-disable-next-line db-ux/use-sizing
+			min-inline-size: max(24px, 1.5rem);
+			// stylelint-disable-next-line db-ux/use-sizing
+			min-block-size: max(24px, 1.5rem);
+		}
+	}
+}

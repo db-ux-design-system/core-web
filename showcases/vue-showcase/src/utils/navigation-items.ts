@@ -1,3 +1,5 @@
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase.vue';
+
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase.vue';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
@@ -114,6 +116,11 @@ export const navigationItems: NavItem[] = [
 				path: '/05/navigation',
 				label: 'Navigation',
 				component: markRaw(NavigationShowcase)
+			},
+			{
+				path: '/05/pagination',
+				label: 'Pagination',
+				component: markRaw(PaginationShowcase)
 			},
 			{
 				path: '/05/brand',

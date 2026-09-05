@@ -1,0 +1,12 @@
+- navigation "Results pages":
+  - list:
+    - listitem:
+      - button "Previous page"
+    - listitem:
+      - button "Page 1 of 10": "1"
+    - listitem:
+      - button "Page 5 of 10": "5"
+    - listitem:
+      - button "Page 10 of 10": "10"
+    - listitem:
+      - button "Next page"

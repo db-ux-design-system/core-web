@@ -82,6 +82,29 @@ const controlPanelActionsComponents: Component[] = [
 }));
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'pagination-item',
+		config: {
+			// The React pass-through forwards every prop starting with `on` to the
+			// root, which here is the <li>. The button or anchor inside it already
+			// calls onClick through handleClick, so a click would bubble into the
+			// forwarded handler as well and invoke the consumer callback twice.
+			react: {
+				propsPassingFilter: ['onClick']
+			}
+		}
+	},
+	{
+		name: 'pagination',
+		config: {
+			// Not a native event despite the name, so it has no business on the
+			// <nav>. Same reason tabs filters onIndexChange.
+			react: {
+				propsPassingFilter: ['onPageChange']
+			}
+		}
+	},
+
 	...headingComponents,
 	...controlPanelActionsComponents,
 

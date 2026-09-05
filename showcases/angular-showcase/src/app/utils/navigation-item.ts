@@ -1,3 +1,5 @@
+import { PaginationComponent } from '../components/pagination.component';
+
 import { type Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
@@ -108,6 +110,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '05/navigation',
 				label: 'Navigation',
 				component: NavigationShowcase
+			},
+			{
+				path: '05/pagination',
+				label: 'Pagination',
+				component: PaginationComponent
 			},
 			{
 				path: '05/brand',
