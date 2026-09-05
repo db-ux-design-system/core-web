@@ -18,7 +18,8 @@ export type DBDrawerHeaderProps = DBDrawerHeaderDefaultProps &
 
 export type DBDrawerHeaderDefaultState = {
 	_headingId: string;
-	setAriaLabelledBy: () => void;
+	_dialogId: string;
+	_resolveDialog: () => void;
 	removeAriaLabelledBy: () => void;
 };
 

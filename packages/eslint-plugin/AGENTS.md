@@ -26,6 +26,14 @@ Every rule MUST support all three frameworks:
 - `createAngularVisitors(context, COMPONENTS.DBButton, handler)` - creates Angular-specific visitors with parser services
 - `defineTemplateBodyVisitor(context, templateVisitor, scriptVisitor)` - handles Vue, Angular, and JSX
 
+### Shared rule factories
+
+- `createHeaderRequiredRule({ parent, header, messageId, message, description })` from `../../shared/slot-content.js` - creates a
+  complete rule that reports a `parent` usage whose `header` slot does not resolve to the `header` component (React
+  `header` prop, Angular `header` or `slot="header"` attribute, Vue `#header` template, at any nesting depth). Used by
+  `drawer-header-required` and `dialog-header-required`. Rules built on it are pure configuration objects; the README
+  anchor is derived from the kebab-case `messageId`.
+
 ### Constants
 
 - Use `COMPONENTS` from `constants.js` for component names (e.g., `COMPONENTS.DBButton`)

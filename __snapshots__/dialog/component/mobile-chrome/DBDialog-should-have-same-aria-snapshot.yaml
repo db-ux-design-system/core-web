@@ -1,0 +1,5 @@
+- dialog "Title":
+  - banner:
+    - heading "Title" [level=2]
+  - button "Close"
+  - text: Test

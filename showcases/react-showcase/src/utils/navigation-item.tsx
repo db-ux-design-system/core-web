@@ -11,6 +11,7 @@ import ControlPanelFlatIconShowcase from '@components/components/control-panel-f
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
+import DialogShowcase from '@components/components/dialog/showcase/dialog.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
 import HeaderShowcase from '@components/components/header/showcase/header.showcase';
@@ -219,6 +220,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 		subNavigation: getSortedNavigationItems([
 			{ path: 'stack', label: 'Stack', component: <StackShowcase /> },
 			{ path: 'card', label: 'Card', component: <CardShowcase /> },
+			{ path: 'dialog', label: 'Dialog', component: <DialogShowcase /> },
 			{ path: 'drawer', label: 'Drawer', component: <DrawerShowcase /> },
 			{
 				path: 'divider',

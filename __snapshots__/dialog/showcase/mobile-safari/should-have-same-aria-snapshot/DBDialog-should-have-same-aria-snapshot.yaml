@@ -1,0 +1,22 @@
+- main:
+  - heading "DBDialog" [level=1]
+  - link "Density"
+  - 'button "Open: Functional"'
+  - 'button "Open: (Default) Regular"'
+  - 'button "Open: Expressive"'
+  - link "Container Size"
+  - 'button "Open: Small"'
+  - 'button "Open: (Default) Medium"'
+  - 'button "Open: Large"'
+  - 'button "Open: Full"'
+  - link "Backdrop"
+  - 'button "Open: (Default) Strong"'
+  - 'button "Open: Weak"'
+  - 'button "Open: No Backdrop"'
+  - link "Areas"
+  - 'button "Open: With text prop"'
+  - 'button "Open: With start slot"'
+  - 'button "Open: With end slot"'
+  - 'button "Open: With footer"'
+  - link "Events"
+  - button "Open Dialog"

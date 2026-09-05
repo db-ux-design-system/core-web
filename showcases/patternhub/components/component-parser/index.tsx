@@ -14,6 +14,9 @@ import {
 	DBCustomButton,
 	DBCustomHeading,
 	DBCustomSelect,
+	DBDialog,
+	DBDialogFooter,
+	DBDialogHeader,
 	DBDivider,
 	DBHeadingH1,
 	DBHeadingH2,
@@ -371,6 +374,30 @@ const ComponentSwitch = ({
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'dialog') {
+		return (
+			<DBDialog className={className} {...props}>
+				{resolvedContent}
+			</DBDialog>
+		);
+	}
+
+	if (type === 'dialog-header') {
+		return (
+			<DBDialogHeader className={className} {...props}>
+				{resolvedContent}
+			</DBDialogHeader>
+		);
+	}
+
+	if (type === 'dialog-footer') {
+		return (
+			<DBDialogFooter className={className} {...props}>
+				{resolvedContent}
+			</DBDialogFooter>
 		);
 	}
 

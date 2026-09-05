@@ -26,7 +26,7 @@ If you do need to provide support for [browser versions that haven't implemented
 					class="db-button button-close-drawer is-icon-text-replace"
 					data-icon="cross"
 					data-variant="ghost"
-					command="close"
+					command="request-close"
 					commandfor="my-drawer"
 				>
 					Close Button
@@ -50,7 +50,7 @@ If you do need to provide support for [browser versions that haven't implemented
 				'[commandfor="my-drawer"][command="show-modal"]'
 			);
 			const closeButton = document.querySelector(
-				'[commandfor="my-drawer"][command="close"]'
+				'[commandfor="my-drawer"][command="request-close"]'
 			);
 			const drawer = document.getElementById("my-drawer");
 
