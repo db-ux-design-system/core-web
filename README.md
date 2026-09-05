@@ -195,6 +195,7 @@ For a comprehensive overview of all DB-UI components and their migration status,
 
 Check our migration docs for breaking changes:
 
+- [v5.x ➡ v6.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v5.x.x-to-v6.0.0.md)
 - [v4.x ➡ v5.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v4.x.x-to-v5.0.0.md)
 - [v3.x ➡ v4.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v3.x.x-to-v4.0.0.md)
 - [v2.x ➡ v3.0](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v2.x.x-to-v3.0.0.md)
