@@ -187,7 +187,7 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1 / Generation 2
 ┌──────────────────────────────────────────────────────────────────┐
 │ STEP 0: FILE SCAN (NEW — deterministic, no guessing)             │
 │  scan_v2_migration → JSON report with line numbers,           │
-│  v2 patterns, and migration suggestions                          │
+│  Generation 2 patterns, and migration suggestions                │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 1: MIGRATION ANALYSIS                                       │
 │  list_migration_guides → get_migration_guide → docs_search       │
@@ -210,7 +210,7 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1 / Generation 2
 
 **Step-by-step details:**
 
-1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` to load official migration rules (package renames, prop changes, removed components). Calls `docs_search` for component-specific migration docs. Produces a mapping table: Legacy Element → DB UX v3 Component → Rationale.
+1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` to load official migration rules (package renames, prop changes, removed components). Calls `docs_search` for component-specific migration docs. Produces a mapping table: Legacy Element → Generation 3 Component → Rationale.
 2. **Component Discovery & Props Retrieval** — Calls `list_components` to verify every mapped component exists. For each: `get_component_props` (TypeScript API), `get_component_details` (examples), `get_example_code` (canonical source to adapt). Calls `get_design_tokens` to replace hardcoded colors/spacing. Calls `list_icons` to verify icon names.
 3. **Code Generation** — Generates the complete migrated code with correct `@db-ux/*` imports, verified design tokens, and verified icon names. **Does NOT output this to the user yet.**
 4. **Code Verification & Self-Correction** — Calls `verify_migrated_code` which instructs the AI to run the project's own verification scripts (typecheck, lint, build from package.json). If errors are found, the AI fixes the code and retries — up to **3 attempts maximum**. This step applies to all framework targets.
