@@ -41,13 +41,13 @@ export const reviewUiCodeSchema = {
 
 export const migrateComponentSchema = {
 	description:
-		'Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture.',
+		'Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1 / Generation 2) into the modern Generation 3 architecture.',
 	argsSchema: {
 		legacy_code: z
 			.string()
 			.max(10_000)
 			.describe(
-				'The source code of the outdated component (e.g., DB UI v1/v2, Bootstrap, raw HTML/CSS).'
+				'The source code of the outdated component (e.g., DB UI v1 / Generation 2, Bootstrap, raw HTML/CSS).'
 			),
 		source_context: z
 			.string()

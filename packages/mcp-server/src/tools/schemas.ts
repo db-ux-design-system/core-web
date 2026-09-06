@@ -116,7 +116,7 @@ export const getMigrationGuideSchema = {
 
 export const verifyMigratedCodeSchema = {
 	description:
-		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
+		'IMPORTANT: ALWAYS call this tool after generating or modifying Generation 3 code and BEFORE showing it to the user. ' +
 		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
 		'If errors are found, fix the code and call the tool again (max 3 attempts).'
 };
@@ -124,7 +124,7 @@ export const verifyMigratedCodeSchema = {
 export const scanV2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
-		'Scans a source file for DB UI v2 patterns (v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*), ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*), ' +
 		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +

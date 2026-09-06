@@ -1,6 +1,6 @@
 ---
 name: "db-ux-consumer"
-description: "AI integration for consuming the DB UX Design System – Generation 3 in applications. Provides skills to implement UI and migrate from v2."
+description: "AI integration for consuming the DB UX Design System – Generation 3 in applications. Provides skills to implement UI and migrate from Generation 2."
 keywords:
     - db-ux
     - design system
@@ -17,8 +17,8 @@ This bundle equips AI agents to assist application developers using the DB UX De
 
 ## Skills
 
-- **migrate-to-v3** — Migrates legacy DB UI v2 code to DB UX Design System – Generation 3.
-- **implement-component** — Implements production-ready UI using DB UX v3 components, tokens, and icons.
+- **migrate-to-v3** — Migrates legacy Generation 2 code to DB UX Design System – Generation 3.
+- **implement-component** — Implements production-ready UI using Generation 3 components, tokens, and icons.
 
 ## Agent Rules Generation
 
