@@ -65,7 +65,7 @@ We provide dedicated tooling to integrate the DB UX Design System directly into 
 
 ### Model Context Protocol (MCP) Server
 
-For IDEs and AI tools that support the [Model Context Protocol](https://modelcontextprotocol.io/) (e.g., Claude plugins, Cursor, Windsurf), we provide a standalone MCP server. It equips your AI with our official documentation, design tokens, and a powerful migration engine to automatically refactor legacy DB UX Design System – Generation 2 code into modern Generation 3 standards.
+For IDEs and AI tools that support the [Model Context Protocol](https://modelcontextprotocol.io/) (e.g., Claude plugins, Cursor, Windsurf), we provide a standalone MCP server. It equips your AI with our official documentation, design tokens, and a powerful migration engine to automatically refactor legacy DB UX Design System – Generation 2 (aka DB UI) code into modern Generation 3 standards.
 
 Add the server to your AI assistant's MCP configuration:
 

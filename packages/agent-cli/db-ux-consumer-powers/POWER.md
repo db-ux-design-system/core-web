@@ -1,6 +1,6 @@
 ---
 name: "db-ux-consumer"
-description: "AI integration for consuming the DB UX Design System – Generation 3 in applications. Provides skills to implement UI and migrate from Generation 2."
+description: "AI integration for consuming the DB UX Design System – Generation 3 in applications. Provides skills to implement UI and migrate from Generation 2 (aka DB UI)."
 keywords:
     - db-ux
     - design system

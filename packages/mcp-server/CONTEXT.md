@@ -198,7 +198,7 @@ Always normalize paths (convert `\` to `/`) before string comparisons like `.inc
 
 ### DB UX Design System – Generation 2 vs Generation 3 Terminology
 
-- **Generation 2**: `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
+- **Generation 2** (aka DB UI): `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
 - **Generation 3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
 
 ## Communication
