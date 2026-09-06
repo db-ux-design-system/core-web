@@ -121,15 +121,6 @@ export const verifyMigratedCodeSchema = {
 		'If errors are found, fix the code and call the tool again (max 3 attempts).'
 };
 
-const scanMigrationInputSchema = {
-	filePath: z
-		.string()
-		.max(500)
-		.describe(
-			'Absolute path or path relative to the workspace root of the file to scan.'
-		)
-};
-
 export const scanGeneration2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
@@ -138,24 +129,14 @@ export const scanGeneration2MigrationSchema = {
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
 		'you start generating code — no guessing needed.',
-	inputSchema: scanMigrationInputSchema
-};
-
-/**
- * Deprecated alias for `scan_generation_2_migration`.
- *
- * Kept so that already-published 5.x consumer power bundles — whose `mcp.json`
- * launches the floating `npx --yes @db-ux/mcp-server` command and whose skill
- * still calls `scan_v2_migration` — do not break when they pull this 6.x server
- * without upgrading the agent package. Remove in the next major.
- */
-export const scanV2MigrationDeprecatedSchema = {
-	description:
-		'DEPRECATED — renamed to `scan_generation_2_migration`. This alias still works but ' +
-		'will be removed in the next major version; call `scan_generation_2_migration` instead. ' +
-		'Scans a source file for DB UX Design System – Generation 2 patterns and returns a JSON ' +
-		'migration report.',
-	inputSchema: scanMigrationInputSchema
+	inputSchema: {
+		filePath: z
+			.string()
+			.max(500)
+			.describe(
+				'Absolute path or path relative to the workspace root of the file to scan.'
+			)
+	}
 };
 
 export const listVisualsSchema = {
