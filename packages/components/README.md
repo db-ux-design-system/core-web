@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all styles for components of [DB UX Design System v3](https://github.com/db-ux-design-system/core-web).
+A library containing all styles for components of [DB UX Design System – Generation 3](https://github.com/db-ux-design-system/core-web).
 
 > **Note**
 > Furthermore we currently support these additional JavaScript frameworks, with more coming soon:

@@ -1,6 +1,6 @@
-# DB UX Design System v3 Core Web
+# DB UX Design System – Generation 3 Core Web
 
-DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, components, and framework-specific implementations (Angular, React, Vue, Web Components) for the Deutsche Bahn design system.
+DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS styles, components, and framework-specific implementations (Angular, React, Vue, Web Components) for the Deutsche Bahn design system.
 
 **Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
 

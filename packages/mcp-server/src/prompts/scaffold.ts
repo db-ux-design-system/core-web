@@ -25,7 +25,7 @@ export function handleScaffoldPagePrompt({
 				role: 'user' as const,
 				content: {
 					type: 'text' as const,
-					text: `You are a Lead Enterprise Frontend Architect specializing in the DB UX Design System v3. Your objective is to architect and implement a production-ready page layout for the Deutsche Bahn digital ecosystem.
+					text: `You are a Lead Enterprise Frontend Architect specializing in the DB UX Design System – Generation 3. Your objective is to architect and implement a production-ready page layout for the Deutsche Bahn digital ecosystem.
 
 Target Framework: ${framework}
 Page Type: ${page_type}

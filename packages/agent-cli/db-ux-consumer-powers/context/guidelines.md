@@ -1,6 +1,6 @@
 # DB UX Consumer Guidelines
 
-> **Authority**: This document is the single source of truth for all AI agents operating in projects that consume the DB UX Design System v3.
+> **Authority**: This document is the single source of truth for all AI agents operating in projects that consume the DB UX Design System – Generation 3.
 
 ---
 

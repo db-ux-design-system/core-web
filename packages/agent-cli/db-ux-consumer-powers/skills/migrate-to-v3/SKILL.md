@@ -1,6 +1,6 @@
 ---
 name: "migrate-to-v3"
-description: "Migrates legacy DB UI v2 code (cmp-*, elm-*, rea-* classes, <db-*> Web Components, db-color-* tokens) to DB UX Design System v3."
+description: "Migrates legacy DB UI v2 code (cmp-*, elm-*, rea-* classes, <db-*> Web Components, db-color-* tokens) to DB UX Design System – Generation 3."
 
 triggers:
     - "migrate to v3"

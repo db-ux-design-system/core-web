@@ -1,6 +1,6 @@
 # Creating Custom Components with DB UX Design System
 
-This guide provides comprehensive instructions for developers who want to create custom components in their applications using the DB UX Design System v3. Unlike contributing components to the design system itself, this focuses on building your own components that consume and extend the design system foundations.
+This guide provides comprehensive instructions for developers who want to create custom components in their applications using the DB UX Design System – Generation 3. Unlike contributing components to the design system itself, this focuses on building your own components that consume and extend the design system foundations.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ This guide provides comprehensive instructions for developers who want to create
 
 ## Getting Started
 
-The DB UX Design System v3 provides a comprehensive foundation for building consistent, accessible, and branded components. When creating custom components, you should leverage the design system's:
+The DB UX Design System – Generation 3 provides a comprehensive foundation for building consistent, accessible, and branded components. When creating custom components, you should leverage the design system's:
 
 - **Design tokens**: Colors, spacing, typography, and sizing variables
 - **Component patterns**: Reusable styling patterns and behaviors
