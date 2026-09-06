@@ -196,10 +196,10 @@ Always normalize paths (convert `\` to `/`) before string comparisons like `.inc
 - **Do NOT** force-replace generic `<div>` elements with `DBStack`/`DBSection`/`DBCard` — plain `<div>` is valid HTML
 - Only replace native elements when they are explicitly used as UI components
 
-### DB UX v2 vs v3 Terminology
+### DB UX Design System – Generation 2 vs Generation 3 Terminology
 
-- **v2**: `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
-- **v3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
+- **Generation 2**: `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
+- **Generation 3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
 
 ## Communication
 

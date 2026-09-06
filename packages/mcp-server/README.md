@@ -91,7 +91,7 @@ This will copy the correct rules for DB UX component usage and design token refe
 
 ### 5. Optimize Amazon Q for this Project (Recommended)
 
-Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the v3 component API — without any manual onboarding or repeated context-setting by the developer.
+Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the Generation 3 component API — without any manual onboarding or repeated context-setting by the developer.
 
 **Why this matters:**
 
@@ -133,7 +133,7 @@ Amazon Q can automatically load the project's `CONTEXT.md` as a persistent syste
 | `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                                                                                                                          |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                                                                                              |
 | `verify_migrated_code`         | Instructs the AI to verify its changes using the project's own scripts (`typecheck`, `lint`, `build`) from `package.json`. No temp files or hardcoded compilers — works with any toolchain (JS, TS, Vite, Angular CLI).                                                                                                                                                                                          |
-| `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.                                                                |
+| `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and Generation 2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.                  |
 | `list_visuals`                 | Returns all available visual reference names (e.g. `dashboard`, `form`, `table`). Call this to discover which visuals exist before requesting one.                                                                                                                                                                                                                                                               |
 | `get_visual_reference`         | Returns a pre-optimised static visual reference image (JPEG) as a Base64-encoded MCP image block. No build-time or runtime image processing dependencies — images are committed as pre-optimised assets.                                                                                                                                                                                                         |
 
@@ -171,7 +171,7 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` (Legacy Refactoring)
 
-Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1 / Generation 2) into the modern Generation 3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
 
 **Parameters:**
 
@@ -191,7 +191,7 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 1: MIGRATION ANALYSIS                                       │
 │  list_migration_guides → get_migration_guide → docs_search       │
-│  Output: Legacy Element → DB UX v3 Component mapping table       │
+│  Output: Legacy Element → Generation 3 Component mapping table   │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL                    │
 │  list_components → get_component_props → get_component_details   │
@@ -438,4 +438,4 @@ Open that **full URL including the token** in your browser — the token is requ
 | **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                                                      |
 | **Cross-platform paths**         | Normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\`.                                                                                             |
 
-> **Note:** AI-specific behavioral rules (gentle migration, v2/v3 terminology, icon verification, etc.) are maintained in `CONTEXT.md` (shipped with the package for consumer AI agents) and in `.github/copilot-instructions.md` (for agents working inside this monorepo). They are intentionally not duplicated here.
+> **Note:** AI-specific behavioral rules (gentle migration, Generation 2 / Generation 3 terminology, icon verification, etc.) are maintained in `CONTEXT.md` (shipped with the package for consumer AI agents) and in `.github/copilot-instructions.md` (for agents working inside this monorepo). They are intentionally not duplicated here.
