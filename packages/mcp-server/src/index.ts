@@ -42,6 +42,7 @@ import {
 	listMigrationGuidesSchema,
 	listVisualsSchema,
 	scanGeneration2MigrationSchema,
+	scanV2MigrationDeprecatedSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
@@ -114,6 +115,14 @@ server.registerTool(
 server.registerTool(
 	'scan_generation_2_migration',
 	scanGeneration2MigrationSchema,
+	handleScanGeneration2Migration
+);
+// Deprecated alias: keeps already-published 5.x consumer bundles (which launch the
+// floating `npx --yes @db-ux/mcp-server` command and still call `scan_v2_migration`)
+// working against this 6.x server. Remove in the next major.
+server.registerTool(
+	'scan_v2_migration',
+	scanV2MigrationDeprecatedSchema,
 	handleScanGeneration2Migration
 );
 server.registerTool('list_visuals', listVisualsSchema, handleListVisuals);

@@ -75,4 +75,28 @@ describe('MCP server — stdio transport', () => {
 
 		expect(response.isError).toBeTruthy();
 	}, 10_000);
+
+	it('registers scan_generation_2_migration and its deprecated scan_v2_migration alias', async () => {
+		const { tools } = await client.listTools();
+		const names = tools.map((t) => t.name);
+
+		expect(names).toContain('scan_generation_2_migration');
+		expect(names).toContain('scan_v2_migration');
+
+		// The alias must announce its deprecation so consumers learn the new name.
+		const alias = tools.find((t) => t.name === 'scan_v2_migration');
+		expect(alias?.description).toMatch(/deprecated/i);
+		expect(alias?.description).toContain('scan_generation_2_migration');
+	}, 10_000);
+
+	it('deprecated scan_v2_migration alias still returns a valid report', async () => {
+		const response = await client.callTool({
+			name: 'scan_v2_migration',
+			arguments: { filePath: 'does-not-exist-alias-check.html' }
+		});
+
+		// Delegates to the same handler as scan_generation_2_migration; an unknown-tool
+		// error would surface here if the alias were missing.
+		expect(response.content).toBeDefined();
+	}, 10_000);
 });
