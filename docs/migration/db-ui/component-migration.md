@@ -1,4 +1,4 @@
-# DB UI to DB UX v3 Component Migration
+# DB UI to DB UX Design System – Generation 3 Component Migration
 
 Prefer JS framework packages: Angular `@db-ux/ngx-core-components` (`<db-button>`), React `@db-ux/react-core-components` (`<DBButton>`), Vue `@db-ux/v-core-components` (`<DBButton>`) in case that the user wants to build a JavaScript application with one of these frameworks. If it's still a JavaScript framework, but none of these apply, use `@db-ux/core-components` node package. In all other cases, use the HTML and CSS basis: `@db-ux/core-components`.
 
@@ -30,7 +30,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **infotext** — New component
 
-**input** — `elm-input`->`db-input`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. New variants: `adaptive`,`neutral`,`critical`,`informational`,`warning`,`successful`. `description`->`message`. ⚠️ Behavior change: In v2, `description` was hidden by default (tooltip/hint). In v3, `message` is ALWAYS visible by default. To restore v2 hidden behavior, set `showMessage={false}` explicitly.
+**input** — `elm-input`->`db-input`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. New variants: `adaptive`,`neutral`,`critical`,`informational`,`warning`,`successful`. `description`->`message`. ⚠️ Behavior change: In Generation 2, `description` was hidden by default (tooltip/hint). In Generation 3, `message` is ALWAYS visible by default. To restore the Generation 2 hidden behavior, set `showMessage={false}` explicitly.
 
 **link** — `elm-link`->`db-link`. `icon`,`icononly`,`iconVariant`->[removed] (use `content` for arrow icon).
 
@@ -64,7 +64,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **tag** — `elm-tag`->`db-tag`. Chip+tag merged into tag only. Interactive tags: wrap `db-button`,`db-link`,`db-checkbox`,`db-radio` inside `db-tag`. `small`->[removed] (use density, `type="strong"` for emphasis). Variants: `poi-*`->[removed], `track`->[removed], `error`->`critical`, `informative`->`informational`, `success`->`successful`. `iconAfter`->[removed] (only leading icons).
 
-**textarea** — `elm-textarea`->`db-textarea`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. New: `adaptive`,`critical`,`informational`,`warning`,`successful`. `description`->`message`. ⚠️ Behavior change: In v2, `description` was hidden by default (tooltip/hint). In v3, `message` is ALWAYS visible by default. To restore v2 hidden behavior, set `showMessage={false}` explicitly.
+**textarea** — `elm-textarea`->`db-textarea`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. New: `adaptive`,`critical`,`informational`,`warning`,`successful`. `description`->`message`. ⚠️ Behavior change: In Generation 2, `description` was hidden by default (tooltip/hint). In Generation 3, `message` is ALWAYS visible by default. To restore the Generation 2 hidden behavior, set `showMessage={false}` explicitly.
 
 **tooltip** — New component
 
