@@ -171,7 +171,7 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` (Legacy Refactoring)
 
-Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1 / Generation 2) into the modern Generation 3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI Generation 1 or 2) into the modern Generation 3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
 
 **Parameters:**
 
