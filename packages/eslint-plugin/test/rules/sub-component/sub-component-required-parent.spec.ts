@@ -798,17 +798,9 @@ const angularPlacementShapes: PlacementShape[] = [
 ];
 
 describe('sub-component-required-parent', () => {
-	ruleTester.run(
-		'React',
-		rule,
-		expandPlacementShapes(reactPlacementShapes)
-	);
+	ruleTester.run('React', rule, expandPlacementShapes(reactPlacementShapes));
 
-	vueRuleTester.run(
-		'Vue',
-		rule,
-		expandPlacementShapes(vuePlacementShapes)
-	);
+	vueRuleTester.run('Vue', rule, expandPlacementShapes(vuePlacementShapes));
 
 	angularRuleTester.run(
 		'Angular',
