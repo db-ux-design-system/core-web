@@ -6,7 +6,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 > **Naming convention:** In human-readable prose and naming, spell out the design-system generation as **"DB UX Design System – Generation 3"** (the current generation) and **"DB UX Design System – Generation 2"** (the previous one, formerly "DB UI"). Do not use the shorthand "v2" / "v3" / "version 2" / "version 3" in prose. On the **first** mention of Generation 2 in a document, add the clarifier **"(aka DB UI)"** once so readers who know the product as "DB UI" recognise the rename; keep later mentions short.
 >
-> The `v2` / `v3` tokens remain valid — and must be kept unchanged — inside external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), third-party Action version pins (e.g. `# v3.2.0`), and the `migrate-to-v3` skill identifier. Rewriting those breaks links and tooling. Internal identifiers we own were migrated to the generation naming as breaking changes (e.g. the MCP tool `scan_generation_2_migration`, the `db-ux-generation-3` `source_context` values); the internal-only scanner constants (`RE_V2_*`, `V2_PACKAGE_MAP`) still use the `V2` shorthand.
+> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version pins (e.g. `# v3.2.0`). Rewriting those breaks links and tooling.
 
 ## Working Effectively
 
