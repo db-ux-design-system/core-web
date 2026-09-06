@@ -24,7 +24,7 @@ requires:
       autoLoad: true
 
 tools:
-    - db-ux/scan_v2_migration
+    - db-ux/scan_generation_2_migration
     - db-ux/list_migration_guides
     - db-ux/get_migration_guide
     - db-ux/list_components
@@ -58,7 +58,7 @@ on_error:
 
 ### Phase 1: Scan
 
-1. Call `scan_v2_migration({ filePath: "{file_path}" })`.
+1. Call `scan_generation_2_migration({ filePath: "{file_path}" })`.
 2. Capture the full findings report: Generation 2 CSS classes (`cmp-*`, `elm-*`, `rea-*`), Web Components (`<db-*>`), color tokens (`db-color-*`), icon names.
 3. If the scan returns zero findings → file is already Generation 3. Call `docs_search` to confirm if uncertain. STOP.
 
@@ -96,13 +96,13 @@ on_error:
 
 ### Phase 6: Verify
 
-1. Call `scan_v2_migration({ filePath: "{file_path}" })` again.
+1. Call `scan_generation_2_migration({ filePath: "{file_path}" })` again.
 2. If findings remain → address each individually, then re-scan.
 3. Repeat until the scan returns zero findings.
 
 ## Output Checklist
 
-- [ ] `scan_v2_migration` MCP tool called — full Generation 2 pattern list obtained
+- [ ] `scan_generation_2_migration` MCP tool called — full Generation 2 pattern list obtained
 - [ ] All relevant migration guides loaded via `get_migration_guide` MCP tool
 - [ ] `list_components` MCP tool called — all Generation 3 replacement components confirmed
 - [ ] `get_component_props` and `get_example_code` MCP tool called for each replacement
