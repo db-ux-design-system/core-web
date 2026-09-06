@@ -17,7 +17,7 @@ This bundle equips AI agents to assist application developers using the DB UX De
 
 ## Skills
 
-- **migrate-to-v3** — Migrates legacy Generation 2 code to DB UX Design System – Generation 3.
+- **migrate-to-generation-3** — Migrates legacy Generation 2 code to DB UX Design System – Generation 3.
 - **implement-component** — Implements production-ready UI using Generation 3 components, tokens, and icons.
 
 ## Agent Rules Generation
