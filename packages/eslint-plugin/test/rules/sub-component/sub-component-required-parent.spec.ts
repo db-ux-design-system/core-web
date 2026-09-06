@@ -537,7 +537,7 @@ describe('sub-component-required-parent', () => {
 	});
 });
 
-// Feature: dialog-component, Property 26: Dialog sub-components require a `DBDialog` ancestor
+// Dialog sub-components require a `DBDialog` ancestor
 //
 // The input space is markup, so the "generator" is a table of placement shapes per framework
 // (sub-component, slot form, wrapper element, nesting depth, presence of the `DBDialog` ancestor).
@@ -797,21 +797,21 @@ const angularPlacementShapes: PlacementShape[] = [
 	}
 ];
 
-describe('sub-component-required-parent - Property 26', () => {
+describe('sub-component-required-parent', () => {
 	ruleTester.run(
-		'Property 26 (React)',
+		'React',
 		rule,
 		expandPlacementShapes(reactPlacementShapes)
 	);
 
 	vueRuleTester.run(
-		'Property 26 (Vue)',
+		'Vue',
 		rule,
 		expandPlacementShapes(vuePlacementShapes)
 	);
 
 	angularRuleTester.run(
-		'Property 26 (Angular)',
+		'Angular',
 		rule,
 		expandPlacementShapes(angularPlacementShapes)
 	);
