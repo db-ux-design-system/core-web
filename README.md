@@ -5,7 +5,7 @@
 
 # DB UX Design System – Generation 3 🚂💖
 
-![Part of DB UX Design System (Generation 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
+![Part of DB UX Design System](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
 [![Default Pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -189,7 +189,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 [Button migration](https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration).
 
-For a comprehensive overview of all DB-UI components and their migration status, including components that don't have direct equivalents in DB-UX Design System Generation 3, see our [DB-UI to DB-UX Design System Generation 3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
+For a comprehensive overview of all components and their migration status, including components that don't have direct equivalents in DB UX Design System – Generation 3, see our [DB-UI to DB-UX Design System – Generation 3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
 
 ### In between DB UX Design System Core versions
 
@@ -211,7 +211,7 @@ Check our migration docs for breaking changes:
 
 ### Unexpected "new" colors
 
-> We've updated to the stable version of DB UX Design System (Generation 3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
+> We've updated to the stable version of DB UX Design System – Generation 3 version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
 
 Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
 
