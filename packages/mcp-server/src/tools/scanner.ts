@@ -151,6 +151,8 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 // ---------------------------------------------------------------------------
 
 /**
+ @public
+
  Analyzes a file for Generation 2 patterns that need migration to Generation 3.
 
  Deterministically scans for:
