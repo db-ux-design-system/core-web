@@ -161,7 +161,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  Returns a JSON report with line numbers, findings, and migration suggestions
  resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.
  */
-export async function handleScanV2Migration({
+export async function handleScanGeneration2Migration({
 	filePath
 }: {
 	filePath: string;

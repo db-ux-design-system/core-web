@@ -121,7 +121,7 @@ export const verifyMigratedCodeSchema = {
 		'If errors are found, fix the code and call the tool again (max 3 attempts).'
 };
 
-export const scanV2MigrationSchema = {
+export const scanGeneration2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
 		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*), ' +

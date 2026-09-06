@@ -53,7 +53,7 @@ export const migrateComponentSchema = {
 			.string()
 			.max(100)
 			.describe(
-				"The origin/context of the legacy code. Use one of: 'db-ui-v1', 'db-ui-v2', 'db-ux-v1', 'db-ux-v2', 'db-ux-v3', 'bootstrap-4', 'native-html'."
+				"The origin/context of the legacy code. Use one of: 'db-ui-generation-1', 'db-ui-generation-2', 'db-ux-generation-1', 'db-ux-generation-2', 'db-ux-generation-3', 'bootstrap-4', 'native-html'."
 			),
 		target_framework: frameworkSchema
 	}

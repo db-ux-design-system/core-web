@@ -25,7 +25,7 @@ import {
 	handleListIcons,
 	handleListMigrationGuides,
 	handleListVisuals,
-	handleScanV2Migration,
+	handleScanGeneration2Migration,
 	handleVerifyMigratedCode
 } from './tools';
 import {
@@ -41,7 +41,7 @@ import {
 	listIconsSchema,
 	listMigrationGuidesSchema,
 	listVisualsSchema,
-	scanV2MigrationSchema,
+	scanGeneration2MigrationSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
@@ -58,7 +58,7 @@ export {
 	handleListIcons,
 	handleListMigrationGuides,
 	handleListVisuals,
-	handleScanV2Migration,
+	handleScanGeneration2Migration,
 	handleVerifyMigratedCode
 } from './tools/index.js';
 export { resolveSafePath } from './utils/index.js';
@@ -112,9 +112,9 @@ server.registerTool(
 	handleVerifyMigratedCode
 );
 server.registerTool(
-	'scan_v2_migration',
-	scanV2MigrationSchema,
-	handleScanV2Migration
+	'scan_generation_2_migration',
+	scanGeneration2MigrationSchema,
+	handleScanGeneration2Migration
 );
 server.registerTool('list_visuals', listVisualsSchema, handleListVisuals);
 server.registerTool(

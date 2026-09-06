@@ -118,7 +118,7 @@ At runtime, `tokens.ts` loads `tokens.json` via `fs.readFile` + `JSON.parse` and
 
 **Status:** Implemented (April 2026)
 
-**Problem:** The `scan_v2_migration` tool previously parsed Markdown tables from migration guide files (`component-migration.md`, `color-migration.md`, `icon-migration.md`) at runtime using regex (`matchAll`). Functions like `parseComponentMap`, `parseColorMap`, and `parseIconMap` were fragile, required async caching (`ensureMaps`, `getManifest`), and broke silently when the Markdown format changed.
+**Problem:** The `scan_generation_2_migration` tool previously parsed Markdown tables from migration guide files (`component-migration.md`, `color-migration.md`, `icon-migration.md`) at runtime using regex (`matchAll`). Functions like `parseComponentMap`, `parseColorMap`, and `parseIconMap` were fragile, required async caching (`ensureMaps`, `getManifest`), and broke silently when the Markdown format changed.
 
 **Decision:** Migration mappings are now defined as a typed TypeScript object in `src/data/db-ui-migration-map.ts` — the Single Source of Truth. The scanner imports `migrationData` directly (synchronous, no caching needed) and performs lookups against `migrationData.components`, `migrationData.colors`, and `migrationData.icons`.
 
@@ -246,7 +246,7 @@ During development inside the monorepo, you can run TypeScript source directly v
 | `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                                                            |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                        |
 | `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                                                                  |
-| `scan_v2_migration`            | Scans a file for DB UX Design System – Generation 2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.             |
+| `scan_generation_2_migration`  | Scans a file for DB UX Design System – Generation 2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.             |
 | `list_visuals`                 | Returns all available visual reference names (e.g. dashboard, form, table).                                                                                                                                            |
 | `get_visual_reference`         | Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a Base64-encoded MCP image block. No native dependencies at runtime.                                                                      |
 

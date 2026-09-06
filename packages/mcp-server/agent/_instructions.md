@@ -35,7 +35,7 @@ Or add it to your MCP client config:
 10. `get_migration_guide` — load the full content of a specific migration guide
 11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
 12. `get_visual_reference` — _(optional, use sparingly)_ if you need visual context for complex layouts, call this tool with the visual name to receive a pre-optimised static JPEG reference image
-13. `scan_v2_migration` — **call FIRST when migrating a file.** Scans a source file for Generation 2 (aka DB UI) patterns (CSS classes `cmp-*`, `elm-*`, `rea-*`, Web Components `<db-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
+13. `scan_generation_2_migration` — **call FIRST when migrating a file.** Scans a source file for Generation 2 (aka DB UI) patterns (CSS classes `cmp-*`, `elm-*`, `rea-*`, Web Components `<db-*>`, `db-color-*`, legacy icons) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
 
 ### DON'Ts — these are hard violations:
 
