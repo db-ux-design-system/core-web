@@ -117,11 +117,15 @@
 		}
 	}
 
+	&[data-variant="brand"] {
+		#{$selector} {
+			--db-loading-indicator-button-overlay-color: #{colors.$db-brand-origin-default};
+		}
+	}
+
 	@if $selector == "&" {
 		&[data-variant="brand"] {
 			#{$selector} {
-				--db-loading-indicator-button-overlay-color: #{colors.$db-brand-origin-default};
-
 				@extend %button-brand-colors;
 			}
 		}

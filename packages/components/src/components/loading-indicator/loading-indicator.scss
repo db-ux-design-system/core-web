@@ -547,12 +547,14 @@ $progress-bar-full-segment-inline-size: calc(
 		animation: loading-indicator-delay 0s linear forwards;
 	}
 
+	// Use the shared transition-duration tokens so the delay matches the other
+	// consumer of DelayProps (tooltip/popover): "slow" = 0.5s, "fast" = 0.3s.
 	&[data-delay="slow"] {
-		animation-delay: 500ms;
+		animation-delay: variables.$db-transition-duration-extra-slow;
 	}
 
 	&[data-delay="fast"] {
-		animation-delay: 250ms;
+		animation-delay: variables.$db-transition-duration-medium;
 	}
 }
 

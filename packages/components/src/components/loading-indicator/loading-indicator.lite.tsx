@@ -49,17 +49,36 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		_style: {},
 		initialized: false,
 		resetIds: () => {
-			const mId = props.id || 'loading-indicator-' + uuid();
+			const mId =
+				props.id ||
+				props.propOverrides?.id ||
+				'loading-indicator-' + uuid();
 			state._id = mId;
 			state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
 			state._progressId = mId + DEFAULT_PROGRESS_ID_SUFFIX;
 		},
 		getPercentage: () => {
-			if (getBoolean(props.indeterminate) || !props.value || !props.max) {
+			if (
+				getBoolean(props.indeterminate) ||
+				props.value === undefined ||
+				props.value === null ||
+				props.max === undefined ||
+				props.max === null
+			) {
 				return;
 			}
 
-			return `${Math.min(Math.max(Number(props.value) / Number(props.max), 0), 1).toFixed(2)}`;
+			const value = Number(props.value);
+			const max = Number(props.max);
+
+			// Guard against non-numeric props (e.g. Number("abc") -> NaN) and a
+			// zero/negative max, which would otherwise produce "NaN" and render
+			// as an invalid calc() that falls back to a full bar.
+			if (Number.isNaN(value) || Number.isNaN(max) || max <= 0) {
+				return;
+			}
+
+			return `${Math.min(Math.max(value / max, 0), 1).toFixed(2)}`;
 		},
 		getRole: () => {
 			if (props.role) {
@@ -381,9 +400,9 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 							? undefined
 							: (props.max ?? 100)
 					}>
-					{getBoolean(props.indeterminate)
-						? undefined
-						: props.progressText}
+					<Show when={!getBoolean(props.indeterminate)}>
+						{props.progressText}
+					</Show>
 				</progress>
 				<Show when={!getBoolean(props.indeterminate)}>
 					<span
