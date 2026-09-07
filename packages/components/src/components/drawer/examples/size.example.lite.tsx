@@ -36,12 +36,11 @@ export default function DrawerSize() {
 			</DBInfotext>
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="drawer-size-small">
 					Open: (Default) Small
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-small"
 					containerSize="small"
 					direction="to-left"
 					open={openIndex === 0}
@@ -55,12 +54,11 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="drawer-size-medium">
 					Open: Medium
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-medium"
 					containerSize="medium"
 					direction="to-left"
 					open={openIndex === 1}
@@ -74,12 +72,11 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="drawer-size-large">
 					Open: Large
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-large"
 					containerSize="large"
 					direction="to-left"
 					open={openIndex === 2}
@@ -93,12 +90,11 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show-modal" commandfor="drawer-size-full">
 					Open: Full
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-full"
 					containerSize="full"
 					direction="to-left"
 					open={openIndex === 3}
@@ -121,11 +117,12 @@ export default function DrawerSize() {
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(4)}>
+					command="show-modal"
+					commandfor="drawer-size-small-up">
 					Open: Small (Up)
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-small-up"
 					containerSize="small"
 					direction="up"
 					open={openIndex === 4}
@@ -140,11 +137,12 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(5)}>
+					command="show-modal"
+					commandfor="drawer-size-medium-up">
 					Open: Medium (Up)
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-medium-up"
 					containerSize="medium"
 					direction="up"
 					open={openIndex === 5}

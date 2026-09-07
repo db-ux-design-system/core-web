@@ -23,11 +23,12 @@ export default function DrawerExample() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-example-modal">
 					Open: (Default) As modal
 				</DBButton>
 				<DBDrawer
+					id="drawer-example-modal"
 					variant="modal"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
@@ -40,12 +41,11 @@ export default function DrawerExample() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show" commandfor="drawer-example-inside">
 					Open: Inside
 				</DBButton>
 				<DBDrawer
+					id="drawer-example-inside"
 					variant="inside"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
@@ -59,11 +59,12 @@ export default function DrawerExample() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-example-slots">
 					Open: With slots
 				</DBButton>
 				<DBDrawer
+					id="drawer-example-slots"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={
