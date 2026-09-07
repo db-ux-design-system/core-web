@@ -186,11 +186,35 @@
 		{
 			"name": "overlay",
 			"type": "boolean",
+			"default": false,
 			"code": {
 				"prop": "overlay",
 				"type": "boolean | string"
 			},
-			"design": null
+			"design": {
+				"name": "🔀 Show Backdrop",
+				"values": ["False", "True"],
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular"
+				],
+				"note": "Circular only in Figma and in code: the backdrop covers an area and is meant for the circular vertical variant with label and progress text hidden. The bar component sets carry no backdrop. The Figma property is named Show Backdrop, the code prop overlay."
+			}
+		},
+		{
+			"name": "multiline",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "🔀 Multiline",
+				"values": ["False", "True"],
+				"componentSet": [
+					"indeterminate-circular",
+					"determinate-circular"
+				],
+				"note": "Design only, no code prop. Controls the wrapping of longer labels in Figma; in code the label wraps by layout. Circular only."
+			}
 		},
 		{
 			"name": "autoDisable",

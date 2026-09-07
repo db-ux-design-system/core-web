@@ -13,7 +13,6 @@ Visuelles Feedback, das anzeigt, dass Inhalte oder ein Prozess geladen werden.
 7. Im `label` bei `state` mit dem Wert `critical` den Grund des Abbruchs nennen. Ohne Grund bleibt offen, ob der Vorgang wiederholbar ist.
 8. `showLabel` nur auf `false` setzen, wenn der umgebende Kontext den Vorgang eindeutig benennt. Ohne sichtbares `label` und ohne Kontext bleibt offen, worauf sich das Warten bezieht.
 9. **sollte** in `progressText` eine quantitative Angabe setzen: Prozentwert, Anteil oder Menge. Eine Wiederholung des `label` liefert keine zusätzliche Information.
-10. **sollte** `label` aus wenigen Wörtern bilden und einzeilig halten. Bei `variant` mit dem Wert `circular` und `orientation` mit dem Wert `vertical` steht das `label` unter dem Kreis und bricht bei größerer Länge um.
 
 ## Zusätzliche Informationen
 
@@ -23,3 +22,4 @@ Visuelles Feedback, das anzeigt, dass Inhalte oder ein Prozess geladen werden.
 - `orientation` existiert nur bei `variant` mit dem Wert `circular`. Bei `bar` verläuft der Track immer horizontal.
 - `progressText` und `showProgressText` existieren nur in der determinierten Variante. Mit `indeterminate` gibt es keinen Fortschrittstext.
 - Die Textpositionen sind festgelegt und nicht wählbar: bei `circular` steht `progressText` im Kreis und `label` darunter, bei `bar` stehen `label` und `progressText` gemeinsam über dem Track.
+- Die Länge des `label` ist nicht begrenzt. Ein kurzes, einzeiliges `label` hält die Höhe des Indikators stabil, ein längeres vergrößert sie.

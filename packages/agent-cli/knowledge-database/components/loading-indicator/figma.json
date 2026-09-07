@@ -43,6 +43,18 @@
 			"key": "f3d4f3e1f184a4994691096967f6b5dbf318aa0f"
 		},
 		{
+			"name": "🛟 Loading Indicator → Circle Vertical - Backdrop (Beta)",
+			"nodeId": "40335:23003",
+			"type": "COMPONENT_SET",
+			"key": "cea673ec04e81af15f641f4cb95151c9d1baf5f5"
+		},
+		{
+			"name": "🛟 Loading Indicator → Circle Vertical Progress - Backdrop (Beta)",
+			"nodeId": "40335:22996",
+			"type": "COMPONENT_SET",
+			"key": "a9addc729c958565bebd0428f7a1e8b84e5d361b"
+		},
+		{
 			"name": "🛟 Loading Indicator → Circle Horizontal (Beta)",
 			"nodeId": "40085:783",
 			"type": "COMPONENT_SET",
