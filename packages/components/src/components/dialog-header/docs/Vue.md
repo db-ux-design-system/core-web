@@ -12,7 +12,7 @@ import { DBDialogHeader } from "@db-ux/v-core-components";
 
 <template>
 	<DBDialogHeader
-		closebuttontext="Close"
+		close-button-text="Close"
 		text="With text prop"
 	></DBDialogHeader>
 </template>

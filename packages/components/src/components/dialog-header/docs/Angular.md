@@ -21,7 +21,7 @@ import { DBDialogHeader } from '@db-ux/ngx-core-components';
 ```html app.component.html
 <!-- app.component.html -->
 <db-dialog-header
-	closebuttontext="Close"
+	closeButtonText="Close"
 	text="With text prop"
 ></db-dialog-header>
 ```
