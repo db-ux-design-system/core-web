@@ -27,7 +27,7 @@ export default function DialogEvents() {
 		handleSubmit: (event: any) => {
 			event.preventDefault();
 			console.log('surrounding form submitted');
-			event.closest('dialog').close();
+			event.currentTarget.closest('dialog').close();
 		}
 	});
 
