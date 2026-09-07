@@ -82,6 +82,10 @@
 			div {
 				z-index: 2;
 			}
+
+			&[data-orientation=horizontal][data-variant=circular] svg {
+				align-self: center;
+			}
 		}
 	}
 }

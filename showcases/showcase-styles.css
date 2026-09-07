@@ -292,6 +292,6 @@ app-nav-item {
    it would otherwise stretch across the whole card and reflow the other
    variants, so we cap it to a fixed width here (showcase-only). */
 .variants-list
-	.db-loading-indicator[data-variant="bar"]:not([data-width="auto"]) {
+	.db-loading-indicator[data-variant="bar"] {
 	max-inline-size: var(--db-sizing-3xl);
 }

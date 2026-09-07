@@ -30,13 +30,14 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			align-items: center;
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			gap: var(--db-indicator-gap);
+		}
 
-			// Keep the native <progress> in the accessibility tree so screen
-			// readers announce the loading state/value, but hide it visually
-			// (the value is shown via the adjacent, aria-hidden <span>).
-			> progress {
-				@extend %a11y-visually-hidden;
-			}
+		// The native <progress> is a sibling of the <label> (associated via
+		// id) and stays in the accessibility tree so screen readers announce
+		// the loading state/value, but it is hidden visually (the value is
+		// shown via the adjacent, aria-hidden <span>).
+		> progress {
+			@extend %a11y-visually-hidden;
 		}
 
 		> span,
@@ -75,9 +76,19 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		}
 	}
 
-	[data-show-label="false"],
+	// The progress text lives in an aria-hidden <span>, so removing it from the
+	// layout with display: none does not affect the accessibility tree.
 	[data-show-progress-text="false"] {
 		display: none;
+	}
+
+	// Hide the label visually only. The <progress> is now a sibling (not a
+	// child) of the label, so hiding the label no longer removes the progress
+	// from the accessibility tree - the loading state stays announced.
+	label[data-show-label="false"] {
+		@extend %a11y-visually-hidden;
+
+		padding: 0;
 	}
 }
 
@@ -237,6 +248,7 @@ $progress-bar-full-segment-inline-size: calc(
 );
 
 %progress-bar {
+	inline-size: 100%;
 	min-inline-size: variables.$db-sizing-xl;
 
 	&[data-size="small"] {
@@ -520,18 +532,6 @@ $progress-bar-full-segment-inline-size: calc(
 
 	&[data-variant="bar"] {
 		@extend %progress-bar;
-
-		// The bar variant is full width by default (data-width unset or "full")
-		// so the track spans its container; "auto" shrinks to content while the
-		// min-inline-size keeps the track from collapsing below db-sizing-xl.
-		&:not([data-width]),
-		&[data-width="full"] {
-			inline-size: 100%;
-		}
-
-		&[data-width="auto"] {
-			inline-size: fit-content;
-		}
 	}
 
 	// Delayed appearance is handled purely in CSS (shift-left): the indicator

@@ -11,9 +11,17 @@ import {
 import {
 	DEFAULT_ID,
 	DEFAULT_LABEL_ID_SUFFIX,
+	DEFAULT_LOADING_TIMEOUT,
+	DEFAULT_LOADING_TIMEOUT_ACTIVE,
 	DEFAULT_PROGRESS_ID_SUFFIX
 } from '../../shared/constants';
-import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	getNotificationRole,
+	uuid
+} from '../../utils';
 import { DBLoadingIndicatorProps, DBLoadingIndicatorState } from './model';
 
 useMetadata({});
@@ -58,7 +66,16 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				return props.role;
 			}
 
-			return 'status';
+			// Map the live-region role from the state so a critical result is
+			// announced assertively (alert) instead of politely (status),
+			// reusing the same semantic->role mapping as DBNotification.
+			// active/inactive/successful stay a polite "status" region.
+			return getNotificationRole({
+				semantic:
+					state._loadingState === 'critical'
+						? 'critical'
+						: 'successful'
+			});
 		},
 		handleParentDisabled: (forceEnable?: boolean) => {
 			if (_ref && getBoolean(props.autoDisable) && state.initialized) {
@@ -74,6 +91,11 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						!parent.disabled
 					) {
 						state._didDisableParent = true;
+						// Mirror the flag onto the DOM so the unmount cleanup
+						// can read it from the live _ref (state is stale in the
+						// React unmount closure).
+						(_ref as HTMLDivElement).dataset.didDisableParent =
+							'true';
 						parent.disabled = true;
 					}
 
@@ -82,6 +104,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						state._didDisableParent
 					) {
 						state._didDisableParent = false;
+						(_ref as HTMLDivElement).dataset.didDisableParent =
+							'false';
 						parent.disabled = false;
 					}
 				}
@@ -100,45 +124,103 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 				if (!(isButton || props.overlay)) return;
 
-				const ariaAttribute = isButton
-					? 'aria-labelledby'
-					: 'aria-describedby';
+				// Always use aria-describedby (never aria-labelledby): on a
+				// button aria-labelledby would replace the accessible name, so
+				// the button would announce "Loading" instead of its own label
+				// (WCAG 4.1.2 / 2.5.3). As a description the loading state is
+				// added to, not substituted for, the visible label.
+				const ariaAttribute = 'aria-describedby';
 
-				const ariaLabelledBy = parent.getAttribute(ariaAttribute);
-				let labelledByElements = ariaLabelledBy
-					? ariaLabelledBy.split(' ')
+				const ariaDescribedBy = parent.getAttribute(ariaAttribute);
+				let describedByElements = ariaDescribedBy
+					? ariaDescribedBy.split(' ')
 					: [];
 				if (remove || state._loadingState === 'inactive') {
-					if (labelledByElements.includes(state._id!)) {
-						labelledByElements = labelledByElements.filter(
+					if (describedByElements.includes(state._id!)) {
+						describedByElements = describedByElements.filter(
 							(elementId) => elementId !== state._id
 						);
 
-						if (!isButton) {
-							parent.ariaBusy = null;
-						}
+						parent.ariaBusy = null;
 					} else {
 						return;
 					}
 				} else {
-					if (!labelledByElements.includes(state._id!)) {
-						labelledByElements.push(state._id!);
+					if (!describedByElements.includes(state._id!)) {
+						describedByElements.push(state._id!);
 					}
 
-					if (!isButton) {
-						parent.ariaBusy =
-							state._loadingState === 'active' ? 'true' : null;
-					}
+					parent.ariaBusy =
+						state._loadingState === 'active' ? 'true' : null;
 				}
 
-				if (labelledByElements.length) {
+				if (describedByElements.length) {
 					parent.setAttribute(
 						ariaAttribute,
-						labelledByElements.join(' ')
+						describedByElements.join(' ')
 					);
 				} else {
 					parent.removeAttribute(ariaAttribute);
 				}
+			}
+		},
+		// Runs on unmount. Mitosis compiles onUnMount to a React
+		// useEffect(() => cleanup, []) whose closure captures the first-render
+		// state (initialized: false, _timeoutId/_didDisableParent unset), so
+		// the normal handlers would all bail out and never restore the parent.
+		// This cleanup therefore reads everything from the live _ref/DOM
+		// instead of from captured state.
+		handleUnmount: () => {
+			if (!_ref) return;
+
+			const root = _ref as HTMLDivElement;
+
+			// Read the timer handle from the DOM (state._timeoutId is stale in
+			// the React unmount closure) so a pending onTimeout never fires
+			// after the component is gone.
+			const pendingTimeoutId = root.dataset.timeoutId;
+			if (pendingTimeoutId) {
+				clearTimeout(Number(pendingTimeoutId));
+				delete root.dataset.timeoutId;
+			}
+
+			const rootId = root.id;
+
+			let parent = root.parentElement;
+			if (parent && parent.localName === 'db-loading-indicator') {
+				parent = parent.parentElement;
+			}
+
+			if (!parent) return;
+
+			// Restore aria-describedby / aria-busy on the parent.
+			if (rootId) {
+				const ariaDescribedBy = parent.getAttribute('aria-describedby');
+				const describedByElements = ariaDescribedBy
+					? ariaDescribedBy
+							.split(' ')
+							.filter((elementId) => elementId !== rootId)
+					: [];
+
+				if (describedByElements.length) {
+					parent.setAttribute(
+						'aria-describedby',
+						describedByElements.join(' ')
+					);
+				} else {
+					parent.removeAttribute('aria-describedby');
+				}
+
+				parent.ariaBusy = null;
+			}
+
+			// Re-enable the parent if this indicator disabled it. The marker
+			// is read from the DOM so it survives the stale unmount closure.
+			if (
+				root.dataset.didDisableParent === 'true' &&
+				'disabled' in parent
+			) {
+				parent.disabled = false;
 			}
 		}
 	});
@@ -173,6 +255,14 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	onUpdate(() => {
 		if (props.onTimeout) {
 			if (state._loadingState === 'inactive') {
+				// A cancelled load (active -> inactive) must not still fire the
+				// timeout for a state the consumer already left, so clear any
+				// running timer here as well.
+				if (state._timeoutId) {
+					clearTimeout(state._timeoutId);
+					state._timeoutId = undefined;
+				}
+
 				state._previousLoadingState = 'inactive';
 			}
 
@@ -186,17 +276,33 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					clearTimeout(state._timeoutId);
 				}
 
-				state._timeoutId = setTimeout(
+				const timeoutId = setTimeout(
 					() => {
 						state._timeoutId = undefined;
+						if (_ref) {
+							delete (_ref as HTMLDivElement).dataset.timeoutId;
+						}
+
 						if (props.onTimeout) {
 							props.onTimeout(state._loadingState);
 						}
 					},
 					state._loadingState === 'active'
-						? Number(props.timeoutActive ?? 5000)
-						: Number(props.timeout ?? 2000)
+						? Number(
+								props.timeoutActive ??
+									DEFAULT_LOADING_TIMEOUT_ACTIVE
+							)
+						: Number(props.timeout ?? DEFAULT_LOADING_TIMEOUT)
 				);
+				state._timeoutId = timeoutId;
+
+				// Mirror the timer handle onto the DOM so the unmount cleanup
+				// can clear it even though the React unmount closure captures a
+				// stale (undefined) state._timeoutId.
+				if (_ref) {
+					(_ref as HTMLDivElement).dataset.timeoutId =
+						`${Number(timeoutId)}`;
+				}
 			}
 		}
 	}, [state._loadingState, props.onTimeout]);
@@ -223,13 +329,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	}, [props.indeterminate, props.value, props.max]);
 
 	onUnMount(() => {
-		if (state._timeoutId) {
-			clearTimeout(state._timeoutId);
-			state._timeoutId = undefined;
-		}
-
-		state.handleParentAria(true);
-		state.handleParentDisabled(true);
+		state.handleUnmount();
 	});
 
 	return (
@@ -268,23 +368,23 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
-					<progress
-						id={state._progressId}
-						value={
-							getBoolean(props.indeterminate)
-								? undefined
-								: (props.value ?? 0)
-						}
-						max={
-							getBoolean(props.indeterminate)
-								? undefined
-								: (props.max ?? 100)
-						}>
-						{getBoolean(props.indeterminate)
-							? undefined
-							: props.progressText}
-					</progress>
 				</label>
+				<progress
+					id={state._progressId}
+					value={
+						getBoolean(props.indeterminate)
+							? undefined
+							: (props.value ?? 0)
+					}
+					max={
+						getBoolean(props.indeterminate)
+							? undefined
+							: (props.max ?? 100)
+					}>
+					{getBoolean(props.indeterminate)
+						? undefined
+						: props.progressText}
+				</progress>
 				<Show when={!getBoolean(props.indeterminate)}>
 					<span
 						aria-hidden="true"

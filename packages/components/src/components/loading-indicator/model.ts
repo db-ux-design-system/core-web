@@ -88,6 +88,7 @@ export type DBLoadingIndicatorDefaultState = {
 	getRole: () => string | undefined;
 	handleParentAria: (remove: boolean) => void;
 	handleParentDisabled: (forceEnable?: boolean) => void;
+	handleUnmount: () => void;
 	resetIds: () => void;
 };
 

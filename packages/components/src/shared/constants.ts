@@ -27,6 +27,11 @@ export const DEFAULT_ICON: string = 'brand';
 export const DEFAULT_BURGER_MENU: string = 'Open navigation menu';
 export const DEFAULT_ROWS: number = 4;
 
+// Default onTimeout delays for the loading indicator (in milliseconds):
+// the active state waits longer than the terminal successful/critical states.
+export const DEFAULT_LOADING_TIMEOUT_ACTIVE: number = 5000;
+export const DEFAULT_LOADING_TIMEOUT: number = 2000;
+
 export const DEFAULT_CLOSE_BUTTON: string = 'Close';
 export const MAIN_CONTENT_ID: string = 'main-content';
 export const DENSITY_CONST: string = 'density';
