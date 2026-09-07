@@ -285,7 +285,7 @@ describe('close-button-text-required', () => {
 	});
 });
 
-// Feature: dialog-component, Property 27: `closeButtonText` is required unless it is unresolvable
+// dialog-component: `closeButtonText` is required unless it is unresolvable
 //
 // The input space is markup, so the "generator" is a table of attribute shapes per framework
 // (missing, bare boolean, empty string, non-empty static string in camelCase and kebab-case, bound
@@ -458,21 +458,21 @@ const angularAttributeShapes: AttributeShape[] = [
 	}
 ];
 
-describe('close-button-text-required - Property 27', () => {
+describe('close-button-text-required', () => {
 	ruleTester.run(
-		'Property 27 (React)',
+		'React',
 		rule,
 		expandAttributeShapes(reactAttributeShapes, 'DBDialogHeader')
 	);
 
 	vueRuleTester.run(
-		'Property 27 (Vue)',
+		'Vue',
 		rule,
 		expandAttributeShapes(vueAttributeShapes, 'DBDialogHeader')
 	);
 
 	angularRuleTester.run(
-		'Property 27 (Angular)',
+		'Angular',
 		rule,
 		expandAttributeShapes(angularAttributeShapes, 'db-dialog-header')
 	);
