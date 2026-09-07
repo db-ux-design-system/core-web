@@ -2,20 +2,4 @@
 
 For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
-### Use component
-
-```tsx App.tsx
-// App.tsx
-import { DBDialogHeader } from "@db-ux/react-core-components";
-
-const App = () => {
-	return (
-		<DBDialogHeader
-			closeButtonText="Close"
-			text="With text prop"
-		></DBDialogHeader>
-	);
-};
-
-export default App;
-```
+`DBDialogHeader` is only used in the `header` slot of a `DBDialog`, which wires up the heading relationship and the close button. See the `DBDialog` documentation for complete, working examples.

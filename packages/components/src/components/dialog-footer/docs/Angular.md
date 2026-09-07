@@ -2,26 +2,4 @@
 
 For general installation and configuration take a look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
-### Load component
-
-```ts app.component.ts
-// app.component.ts
-import { DBDialogFooter } from '@db-ux/ngx-core-components';
-
-@Component({
-  // ...
-  imports: [..., DBDialogFooter],
-  standalone: true
-  // ...
-})
-```
-
-### Use component
-
-```html app.component.html
-<!-- app.component.html -->
-<db-dialog-footer>
-	<db-button variant="ghost"> Cancel </db-button>
-	<db-button variant="brand"> Confirm </db-button>
-</db-dialog-footer>
-```
+`DBDialogFooter` is only used in the `footer` slot of a `DBDialog`, which places the action row. See the `DBDialog` documentation for complete, working examples.
