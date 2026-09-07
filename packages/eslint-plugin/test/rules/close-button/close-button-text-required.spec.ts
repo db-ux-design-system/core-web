@@ -45,12 +45,6 @@ describe('close-button-text-required', () => {
 			},
 			{
 				code: '<DBCustomSelect mobileCloseButtonText="Close" label="Select" />'
-			},
-			{
-				code: '<DBDialogHeader closeButtonText="Close dialog">Title</DBDialogHeader>'
-			},
-			{
-				code: '<DBDialogHeader closeButtonText={closeText}>Title</DBDialogHeader>'
 			}
 		],
 		invalid: [
@@ -101,42 +95,6 @@ describe('close-button-text-required', () => {
 						}
 					}
 				]
-			},
-			{
-				code: '<DBDialogHeader>Title</DBDialogHeader>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'DBDialogHeader',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
-			},
-			{
-				code: '<DBDialogHeader closeButtonText="">Title</DBDialogHeader>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'DBDialogHeader',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
-			},
-			{
-				code: '<DBDialogHeader closeButtonText>Title</DBDialogHeader>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'DBDialogHeader',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
 			}
 		]
 	});
@@ -151,12 +109,6 @@ describe('close-button-text-required', () => {
 			},
 			{
 				code: '<template><DBDrawerHeader :closeButtonText="closeText">Title</DBDrawerHeader></template>'
-			},
-			{
-				code: '<template><DBDialogHeader close-button-text="Close dialog">Title</DBDialogHeader></template>'
-			},
-			{
-				code: '<template><DBDialogHeader :closeButtonText="closeText">Title</DBDialogHeader></template>'
 			}
 		],
 		invalid: [
@@ -183,30 +135,6 @@ describe('close-button-text-required', () => {
 						}
 					}
 				]
-			},
-			{
-				code: '<template><DBDialogHeader>Title</DBDialogHeader></template>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'DBDialogHeader',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
-			},
-			{
-				code: '<template><DBDialogHeader close-button-text="">Title</DBDialogHeader></template>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'DBDialogHeader',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
 			}
 		]
 	});
@@ -224,12 +152,6 @@ describe('close-button-text-required', () => {
 			},
 			{
 				code: '<db-drawer-header [closeButtonText]="closeText">Title</db-drawer-header>'
-			},
-			{
-				code: '<db-dialog-header close-button-text="Close dialog">Title</db-dialog-header>'
-			},
-			{
-				code: '<db-dialog-header [closeButtonText]="closeText">Title</db-dialog-header>'
 			}
 		],
 		invalid: [
@@ -256,36 +178,12 @@ describe('close-button-text-required', () => {
 						}
 					}
 				]
-			},
-			{
-				code: '<db-dialog-header>Title</db-dialog-header>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'db-dialog-header',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
-			},
-			{
-				code: '<db-dialog-header close-button-text="">Title</db-dialog-header>',
-				errors: [
-					{
-						messageId: 'missingCloseButtonText',
-						data: {
-							component: 'db-dialog-header',
-							attribute: 'closeButtonText'
-						}
-					}
-				]
 			}
 		]
 	});
 });
 
-// Feature: dialog-component, Property 27: `closeButtonText` is required unless it is unresolvable
+// dialog-component: `closeButtonText` is required unless it is unresolvable
 //
 // The input space is markup, so the "generator" is a table of attribute shapes per framework
 // (missing, bare boolean, empty string, non-empty static string in camelCase and kebab-case, bound
@@ -458,21 +356,21 @@ const angularAttributeShapes: AttributeShape[] = [
 	}
 ];
 
-describe('close-button-text-required - Property 27', () => {
+describe('close-button-text-required', () => {
 	ruleTester.run(
-		'Property 27 (React)',
+		'React',
 		rule,
 		expandAttributeShapes(reactAttributeShapes, 'DBDialogHeader')
 	);
 
 	vueRuleTester.run(
-		'Property 27 (Vue)',
+		'Vue',
 		rule,
 		expandAttributeShapes(vueAttributeShapes, 'DBDialogHeader')
 	);
 
 	angularRuleTester.run(
-		'Property 27 (Angular)',
+		'Angular',
 		rule,
 		expandAttributeShapes(angularAttributeShapes, 'db-dialog-header')
 	);

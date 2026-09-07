@@ -97,16 +97,18 @@ const onCancel = () => {
 
 ### Return a value
 
-A submit control with `formmethod="dialog"` inside a `<form>` in the dialog closes the dialog without submitting the form and writes its `value` to `dialog.returnValue`. Read that value from the event target in the `close` handler. Set `method="dialog"` on the form and keep `DBButton` with `type="submit"`, or use a native `<button class="db-button" type="button">` for those controls in the meantime, as `DBButton` does not forward `formmethod`.
+Put a `<form method="dialog">` in the dialog content. Submitting it closes the dialog without submitting the form to a server and writes the activating button's `value` to `dialog.returnValue`. Read that value from the event target in the `close` handler. If you place the submit buttons in the footer (outside the form), associate them with the form via the `form` prop pointing at the form `id`; buttons kept inside the form in the content need no `form` prop.
 
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">
 import { ref } from "vue";
 import {
+	DBButton,
 	DBDialog,
 	DBDialogFooter,
-	DBDialogHeader
+	DBDialogHeader,
+	DBInput
 } from "@db-ux/v-core-components";
 
 const openDialog = ref<boolean>(false);
@@ -121,17 +123,24 @@ const onClose = (event: Event) => {
 <template>
 	<DBDialog :open="openDialog" @close="onClose">
 		<template #header>
-			<DBDialogHeader text="Delete entry" closeButtonText="Close" />
+			<DBDialogHeader text="Rename entry" closeButtonText="Close" />
 		</template>
-		Delete this entry?
+		<form id="my-dialog-form" method="dialog">
+			<DBInput label="Name" name="name" />
+		</form>
 		<template #footer>
 			<DBDialogFooter>
-				<form method="dialog">
-					<DBButton value="cancel"> Cancel </DBButton>
-					<DBButton variant="brand" value="confirm">
-						Delete
-					</DBButton>
-				</form>
+				<DBButton type="submit" form="my-dialog-form" value="cancel">
+					Cancel
+				</DBButton>
+				<DBButton
+					type="submit"
+					variant="brand"
+					form="my-dialog-form"
+					value="confirm"
+				>
+					Save
+				</DBButton>
 			</DBDialogFooter>
 		</template>
 	</DBDialog>

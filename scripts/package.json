@@ -83,7 +83,7 @@
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
-    "@inquirer/prompts": "8.7.0",
+    "@inquirer/prompts": "8.7.1",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
     "npm-run-all2": "9.0.3",
@@ -93,6 +93,6 @@
     "typedoc": "0.28.20",
     "typedoc-plugin-markdown": "4.13.0",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "4.1.11"
+    "vitest": "5.0.0"
   }
 }

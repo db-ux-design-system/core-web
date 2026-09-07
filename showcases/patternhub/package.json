@@ -49,7 +49,7 @@
     "@types/dompurify": "3.2.0",
     "@types/node": "^26.4.1",
     "@types/react": "19.2.18",
-    "@types/react-dom": "19.2.5",
+    "@types/react-dom": "19.2.7",
     "cpr": "3.0.1",
     "cross-env": "10.1.0",
     "esbuild": "0.28.2",
@@ -60,7 +60,7 @@
     "npm-run-all2": "9.0.3",
     "open-cli": "9.0.0",
     "prettier": "3.9.6",
-    "sass": "1.103.1",
+    "sass": "1.104.0",
     "typescript": "5.9.3",
     "unist-util-visit": "5.1.0"
   }

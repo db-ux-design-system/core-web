@@ -28,12 +28,11 @@ export default function DialogEvents() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpen(true)}>
+				<DBButton command="show-modal" commandfor="dialog-events">
 					Open Dialog
 				</DBButton>
 				<DBDialog
+					id="dialog-events"
 					open={open}
 					onClose={() => state.handleClose()}
 					onCancel={() => state.handleCancel()}

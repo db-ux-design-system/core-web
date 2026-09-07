@@ -1,3 +1,4 @@
+@use "sass:list";
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
@@ -9,6 +10,20 @@ $container-size-scale: (
 	"medium": variables.$db-container-lg,
 	"large": variables.$db-container-3xl
 );
+
+// The components that share this layer. $prefix composes custom-property and
+// selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-content),
+// so a typo would silently emit wrong-but-valid CSS instead of failing. Every
+// mixin below validates its $prefix against this set.
+$known-prefixes: "drawer", "dialog";
+
+// Fails the build when $prefix is missing or not one of $known-prefixes.
+// $mixin is only used to name the offending mixin in the error message.
+@mixin assert-prefix($prefix, $mixin) {
+	@if not list.index($known-prefixes, $prefix) {
+		@error "#{$mixin}() expects $prefix to be one of #{$known-prefixes}, got: #{$prefix}";
+	}
+}
 
 // Grid shell shared by the drawer container element and the dialog element itself.
 // Emits no positioning and no sizing, so it stays usable for both element types.
@@ -25,9 +40,7 @@ $container-size-scale: (
 // Scrollable middle row. $prefix composes the overridable padding custom property,
 // e.g. "drawer" -> --db-drawer-content-padding.
 @mixin content($prefix) {
-	@if not $prefix {
-		@error "content() requires a $prefix argument";
-	}
+	@include assert-prefix($prefix, "content");
 
 	overflow-y: auto;
 	overscroll-behavior: contain;
@@ -44,9 +57,7 @@ $container-size-scale: (
 //   - direction-specific zeroing is possible (e.g. drawer opening from bottom)
 //   - debugging on desktop is possible without a real device
 @mixin header-footer($part, $prefix) {
-	@if not $prefix {
-		@error "header-footer() requires a $prefix argument";
-	}
+	@include assert-prefix($prefix, "header-footer");
 
 	display: flex;
 	gap: variables.$db-spacing-fixed-sm;
@@ -62,7 +73,7 @@ $container-size-scale: (
 
 		@include helpers.divider("bottom");
 
-		.db-#{$prefix}-header-container {
+		.db-#{$prefix}-header-content {
 			display: flex;
 			align-items: center;
 			gap: variables.$db-spacing-fixed-xs;
@@ -94,9 +105,7 @@ $container-size-scale: (
 // $fallback-size  Container_Size applied when data-container-size is absent
 // $viewport-clamp optional upper bound, wrapped into min() with the scale value
 @mixin container-size-inline($prefix, $fallback-size, $viewport-clamp: null) {
-	@if not $prefix {
-		@error "container-size-inline() requires a $prefix argument";
-	}
+	@include assert-prefix($prefix, "container-size-inline");
 
 	@if not $fallback-size {
 		@error "container-size-inline() requires a $fallback-size argument";
@@ -153,9 +162,7 @@ $container-size-scale: (
 //   up (opens from bottom): no top padding (--db-<prefix>-safe-area-inset-top: 0px)
 //   down (opens from top): no bottom padding (--db-<prefix>-safe-area-inset-bottom: 0px)
 @mixin safe-area($prefix) {
-	@if not $prefix {
-		@error "safe-area() requires a $prefix argument";
-	}
+	@include assert-prefix($prefix, "safe-area");
 
 	--db-#{$prefix}-safe-area-inset-top: env(safe-area-inset-top, 0px);
 	--db-#{$prefix}-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);

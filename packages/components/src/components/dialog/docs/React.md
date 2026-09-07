@@ -130,13 +130,12 @@ export default App;
 
 ### Return a value
 
-A submit control with `formmethod="dialog"`, or any submit control inside a `<form method="dialog">`, closes the dialog
-on submission and writes its `value` into `dialog.returnValue`, so you do not need any close handling of your own.
-Read the value in `onClose` from the event target.
+Put a `<form method="dialog">` in the dialog content. Submitting it closes the dialog and writes the activating
+button's `value` into `dialog.returnValue`, so you do not need any close handling of your own. Read the value in
+`onClose` from the event target.
 
-`DBButton` does not expose `formmethod`, so wrap the submit controls in a `<form method="dialog">`. If the dialog
-already contains a form with a different method, use a native `<button class="db-button" formmethod="dialog" type="button">`
-instead.
+If you place the submit buttons in the footer (outside the form), associate them with the form via the `form` prop
+pointing at the form `id`. Buttons you keep inside the form in the content need no `form` prop.
 
 ```tsx App.tsx
 // App.tsx
@@ -144,7 +143,8 @@ import {
 	DBButton,
 	DBDialog,
 	DBDialogFooter,
-	DBDialogHeader
+	DBDialogHeader,
+	DBInput
 } from "@db-ux/react-core-components";
 
 const App = () => (
@@ -156,23 +156,28 @@ const App = () => (
 		}}
 		footer={
 			<DBDialogFooter>
-				<form method="dialog">
-					<DBButton type="submit" value="cancel">
-						Cancel
-					</DBButton>
-					<DBButton type="submit" variant="brand" value="confirm">
-						Confirm
-					</DBButton>
-				</form>
+				<DBButton type="submit" form="my-dialog-form" value="cancel">
+					Cancel
+				</DBButton>
+				<DBButton
+					type="submit"
+					variant="brand"
+					form="my-dialog-form"
+					value="confirm"
+				>
+					Save
+				</DBButton>
 			</DBDialogFooter>
 		}
 		header={
 			<DBDialogHeader closeButtonText="Close">
-				Dialog title
+				Rename entry
 			</DBDialogHeader>
 		}
 	>
-		Delete this entry?
+		<form id="my-dialog-form" method="dialog">
+			<DBInput label="Name" name="name" />
+		</form>
 	</DBDialog>
 );
 

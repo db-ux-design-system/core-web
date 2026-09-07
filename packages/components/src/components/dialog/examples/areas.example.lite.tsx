@@ -27,12 +27,11 @@ export default function DialogAreas() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="dialog-areas-text">
 					Open: With text prop
 				</DBButton>
 				<DBDialog
+					id="dialog-areas-text"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -54,12 +53,11 @@ export default function DialogAreas() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="dialog-areas-start">
 					Open: With start slot
 				</DBButton>
 				<DBDialog
+					id="dialog-areas-start"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -82,12 +80,11 @@ export default function DialogAreas() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="dialog-areas-end">
 					Open: With end slot
 				</DBButton>
 				<DBDialog
+					id="dialog-areas-end"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -110,12 +107,11 @@ export default function DialogAreas() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show-modal" commandfor="dialog-areas-footer">
 					Open: With footer
 				</DBButton>
 				<DBDialog
+					id="dialog-areas-footer"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
 					header={

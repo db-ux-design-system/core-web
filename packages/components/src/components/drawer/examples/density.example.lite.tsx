@@ -20,11 +20,12 @@ export default function DrawerDensity() {
 		<Fragment>
 			<div data-density="functional">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-density-functional">
 					Open: Functional
 				</DBButton>
 				<DBDrawer
+					id="drawer-density-functional"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -37,11 +38,12 @@ export default function DrawerDensity() {
 			</div>
 			<div data-density="regular">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-density-regular">
 					Open: (Default) Regular
 				</DBButton>
 				<DBDrawer
+					id="drawer-density-regular"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -54,11 +56,12 @@ export default function DrawerDensity() {
 			</div>
 			<div data-density="expressive">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-density-expressive">
 					Open: Expressive
 				</DBButton>
 				<DBDrawer
+					id="drawer-density-expressive"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={

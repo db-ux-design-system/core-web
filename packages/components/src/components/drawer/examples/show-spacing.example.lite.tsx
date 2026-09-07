@@ -19,12 +19,11 @@ export default function DrawerShowSpacing() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="drawer-spacing-with">
 					Open: (Default) With Spacing
 				</DBButton>
 				<DBDrawer
+					id="drawer-spacing-with"
 					open={openIndex === 0}
 					showSpacing
 					containerSize="full"
@@ -39,11 +38,12 @@ export default function DrawerShowSpacing() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-spacing-without">
 					Open: Without Spacing
 				</DBButton>
 				<DBDrawer
+					id="drawer-spacing-without"
 					showSpacing={false}
 					containerSize="full"
 					open={openIndex === 1}

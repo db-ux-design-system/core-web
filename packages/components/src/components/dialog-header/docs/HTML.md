@@ -8,7 +8,7 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <div class="db-dialog-header">
-	<header class="db-dialog-header-container" id="…">
+	<header class="db-dialog-header-content" id="…">
 		<h2>Headline</h2>
 	</header>
 </div>
