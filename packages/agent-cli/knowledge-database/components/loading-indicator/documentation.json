@@ -48,27 +48,27 @@
 			}
 		},
 		{
-			"id": "one-per-process",
+			"id": "indicator-placement",
 			"headline": {
-				"de": "Ein Indikator pro Vorgang",
-				"en": "One Indicator per Process"
+				"de": "Ort des Indikators",
+				"en": "Indicator Placement"
 			},
 			"text": {
-				"de": "Jeder Loading Indicator gehört zu genau einem Vorgang. Elemente, die auf diesen Vorgang warten, werden deaktiviert und zeigen keinen zweiten Indikator.",
-				"en": "Each Loading Indicator belongs to exactly one process. Elements waiting for that process are disabled and don't show a second indicator."
+				"de": "Der Loading Indicator steht an der Stelle, die den Vorgang auslöst oder sein Ergebnis zeigt. Elemente, die nur auf den Vorgang warten, werden deaktiviert.",
+				"en": "The Loading Indicator sits where the process is triggered or where its result appears. Elements that only wait for the process are disabled."
 			},
 			"do": {
 				"figmaNodeId": "4005-2",
 				"description": {
-					"de": "Zeige den Vorgang an der Stelle an, an der er läuft, und deaktiviere die Elemente, die auf ihn warten.",
-					"en": "Show the process where it runs, and disable the elements that wait for it."
+					"de": "Zeige den Indikator dort, wo der Vorgang ausgelöst wird oder sein Ergebnis erscheint, und deaktiviere die wartenden Elemente.",
+					"en": "Show the indicator where the process is triggered or where its result appears, and disable the waiting elements."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4005-3",
 				"description": {
-					"de": "Wiederhole den Vorgang nicht im wartenden Element. Zwei Indikatoren für einen Upload lesen sich als zwei Vorgänge.",
-					"en": "Don't repeat the process in the waiting element. Two indicators for one upload read as two processes."
+					"de": "Zeige den Indikator nicht an einem Element, das nur auf den Vorgang wartet. Es sieht dann aus, als lade es selbst, und die betroffene Stelle bleibt unmarkiert.",
+					"en": "Don't show the indicator on an element that only waits for the process. It then looks as if it were loading itself, and the affected area stays unmarked."
 				}
 			}
 		},
@@ -94,6 +94,31 @@
 				"description": {
 					"de": "Wähle `indeterminate` nicht bei berechenbarem Fortschritt. Nutzende können den verbleibenden Aufwand dann nicht einschätzen, obwohl die Information vorliegt.",
 					"en": "Don't choose `indeterminate` when progress can be calculated. People then cannot estimate the remaining effort even though the information exists."
+				}
+			}
+		},
+		{
+			"id": "representations-per-process",
+			"headline": {
+				"de": "Darstellungen je Vorgang",
+				"en": "Representations per Process"
+			},
+			"text": {
+				"de": "Ein Vorgang kann zwei Darstellungen tragen, wenn sie Unterschiedliches aussagen, etwa die laufende Aktion im auslösenden Element und ihren Fortschritt in der determinierten Variante.",
+				"en": "A process can carry two representations when they say different things, such as the running action in the triggering element and its progress in the determinate variant."
+			},
+			"do": {
+				"figmaNodeId": "4125-9042",
+				"description": {
+					"de": "Zeige zwei Darstellungen nur, wenn jede eine eigene Aussage trägt: die laufende Aktion im auslösenden Element und den Fortschritt in der determinierten Variante.",
+					"en": "Show two representations only when each carries its own statement: the running action in the triggering element and the progress in the determinate variant."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4125-9162",
+				"description": {
+					"de": "Zeige denselben Vorgang nicht zweimal mit derselben Aussage. Zwei `indeterminate`-Darstellungen lesen sich als zwei Vorgänge.",
+					"en": "Don't show the same process twice with the same statement. Two `indeterminate` representations read as two processes."
 				}
 			}
 		},
@@ -154,8 +179,8 @@
 				"en": "Reason on Failure"
 			},
 			"text": {
-				"de": "Bei `state` mit dem Wert `critical` nennt das `label` den Grund des Abbruchs. Ein zweites Textfeld für diese Information gibt es nicht.",
-				"en": "With `state` set to `critical`, the `label` names the reason for the failure. There is no second text field for this information."
+				"de": "Bei `state` mit dem Wert `critical` nennt das `label` den Grund des Abbruchs.",
+				"en": "With `state` set to `critical`, the `label` names the reason for the failure."
 			},
 			"do": {
 				"figmaNodeId": "4005-14",
