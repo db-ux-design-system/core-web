@@ -481,20 +481,27 @@ const testCollapsing = () => {
 		// any supported viewport. And on page 20 it drew 1 2 ... 20, dropping page 19
 		// although the trailing boundary pinned it - the candidate list [1, 2] + [20] +
 		// [19, 20] is not ascending, so the duplicate check skipped 19.
-		const component = await mount(
-			<div style={{ inlineSize: '300px' }}>
-				<DBPagination
-					currentPage={17}
-					totalCount={200}
-					pageSize={10}
-					boundaryCount={2}
-				/>
-			</div>
-		);
+		//
+		// The column comes from a wrapper element, so every page is mounted on its own
+		// instead of through update(): the Vue harness refuses to update a mounted
+		// native element with "Updating a native HTML element is not supported", while
+		// React accepts it.
+		const mountAt = async (currentPage: number) =>
+			mount(
+				<div style={{ inlineSize: '300px' }}>
+					<DBPagination
+						currentPage={currentPage}
+						totalCount={200}
+						pageSize={10}
+						boundaryCount={2}
+					/>
+				</div>
+			);
 
-		expect(getShape(await readItems(component))).toBe('1 ... 17 ... 20');
+		const middle = await mountAt(17);
+		expect(getShape(await readItems(middle))).toBe('1 ... 17 ... 20');
 
-		const rows = await component
+		const rows = await middle
 			.locator('li')
 			.evaluateAll((items: HTMLElement[]) =>
 				items
@@ -508,32 +515,16 @@ const testCollapsing = () => {
 			new Set(rows).size,
 			'every control stays on one row in a 300px column'
 		).toBe(1);
+		await middle.unmount();
 
-		await component.update(
-			<div style={{ inlineSize: '300px' }}>
-				<DBPagination
-					currentPage={19}
-					totalCount={200}
-					pageSize={10}
-					boundaryCount={2}
-				/>
-			</div>
-		);
 		// A gap of one page is still rendered instead of hidden, so 19 keeps its
 		// neighbor - this is the shape page 20 lost it from.
-		expect(getShape(await readItems(component))).toBe('1 ... 19 20');
+		const beforeLast = await mountAt(19);
+		expect(getShape(await readItems(beforeLast))).toBe('1 ... 19 20');
+		await beforeLast.unmount();
 
-		await component.update(
-			<div style={{ inlineSize: '300px' }}>
-				<DBPagination
-					currentPage={20}
-					totalCount={200}
-					pageSize={10}
-					boundaryCount={2}
-				/>
-			</div>
-		);
-		expect(getShape(await readItems(component))).toBe('1 ... 20');
+		const last = await mountAt(20);
+		expect(getShape(await readItems(last))).toBe('1 ... 20');
 	});
 
 	test('should add an ellipsis for a gap that only the collapsed layout has', async ({

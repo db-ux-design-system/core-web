@@ -66,6 +66,12 @@ export default function PaginationPosition() {
 					onPageChange={(page: any) => state.setStart(page)}
 				/>
 			</div>
+			{/* One position per row. Three of these paginations need 1144px of a
+			1222px row, so whether they fit depends on how the platform rasterises
+			the font - the showcase screenshot flipped between one and two rows.
+			Stacking them is also the better comparison, because the shapes line up
+			under each other. */}
+			<i class="line-break" data-sb-ignore="true" />
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					Center - truncated on both sides
@@ -78,6 +84,7 @@ export default function PaginationPosition() {
 					onPageChange={(page: any) => state.setCenter(page)}
 				/>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div class="fit-content-container">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					End - next is disabled

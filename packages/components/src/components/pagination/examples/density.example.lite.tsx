@@ -61,6 +61,12 @@ export default function PaginationDensity() {
 					onPageChange={(page: any) => state.setFunctional(page)}
 				/>
 			</div>
+			{/* One density per row. Three of these paginations need 1144px of a
+			1222px row, so whether they fit depends on how the platform rasterises
+			the font - the showcase screenshot flipped between one and two rows.
+			Stacking them keeps the three control heights aligned on one edge, which
+			is what this example is about. */}
+			<i class="line-break" data-sb-ignore="true" />
 			<div class="fit-content-container" data-density="regular">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					(Default) Regular
@@ -73,6 +79,7 @@ export default function PaginationDensity() {
 					onPageChange={(page: any) => state.setRegular(page)}
 				/>
 			</div>
+			<i class="line-break" data-sb-ignore="true" />
 			<div class="fit-content-container" data-density="expressive">
 				<DBInfotext icon="none" size="small" semantic="informational">
 					Expressive
