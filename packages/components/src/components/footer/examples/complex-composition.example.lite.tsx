@@ -45,11 +45,7 @@ export default function FooterComplexComposition() {
 								}}>
 								Travel
 							</h2>
-							<ul
-								style={{
-									display: 'grid',
-									gap: 'var(--db-spacing-fixed-xs)'
-								}}>
+							<ul>
 								<li>
 									<DBLink
 										variant="inline"
@@ -79,11 +75,7 @@ export default function FooterComplexComposition() {
 								}}>
 								Support
 							</h2>
-							<ul
-								style={{
-									display: 'grid',
-									gap: 'var(--db-spacing-fixed-xs)'
-								}}>
+							<ul>
 								<li>
 									<DBLink
 										variant="inline"
@@ -117,11 +109,7 @@ export default function FooterComplexComposition() {
 								}}>
 								Company
 							</h2>
-							<ul
-								style={{
-									display: 'grid',
-									gap: 'var(--db-spacing-fixed-xs)'
-								}}>
+							<ul>
 								<li>
 									<DBLink
 										variant="inline"

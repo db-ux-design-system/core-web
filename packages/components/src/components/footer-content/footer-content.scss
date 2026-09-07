@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 
 .db-footer-content {
@@ -7,4 +8,21 @@
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	inline-size: 100%;
 	padding: variables.$db-spacing-fixed-lg;
+
+	/*
+	 * The content area stacks its links in columns, so lists inside it lay out
+	 * vertically with a gap by default. The foundations' `nav` rule in
+	 * default-required.scss zeroes the list margins and `li` has no default
+	 * spacing, so without this the entries would only be separated by their
+	 * line-height. The meta area applies the same idea as a wrapping row.
+	 */
+	nav,
+	[role="navigation"] {
+		ol,
+		ul {
+			@include helpers.display(grid);
+
+			gap: variables.$db-spacing-fixed-xs;
+		}
+	}
 }
