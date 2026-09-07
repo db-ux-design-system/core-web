@@ -46,7 +46,7 @@ importers:
         version: 4.2.0
       '@double-great/stylelint-a11y':
         specifier: 3.5.2
-        version: 3.5.2(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        version: 3.5.2(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       '@figma/code-connect':
         specifier: 2.0.0
         version: 2.0.0(supports-color@10.2.2)
@@ -129,14 +129,14 @@ importers:
         specifier: 0.22.1
         version: 0.22.1(prettier@3.9.6)
       stylelint:
-        specifier: 17.14.1
-        version: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+        specifier: 17.15.0
+        version: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
       stylelint-config-standard-scss:
         specifier: 17.0.0
-        version: 17.0.0(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        version: 17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       stylelint-use-logical:
         specifier: 2.1.3
-        version: 2.1.3(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        version: 2.1.3(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       tsx:
         specifier: 4.23.13
         version: 4.23.13
@@ -594,7 +594,7 @@ importers:
     dependencies:
       stylelint:
         specifier: '>=14.0.0'
-        version: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+        version: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
     devDependencies:
       cpr:
         specifier: 3.0.1
@@ -607,13 +607,13 @@ importers:
         version: 8.5.28
       stylelint-config-standard:
         specifier: 40.0.0
-        version: 40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        version: 40.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       stylelint-config-standard-scss:
         specifier: 17.0.0
-        version: 17.0.0(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        version: 17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       stylelint-config-standard-vue:
         specifier: 2.0.0
-        version: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard-scss@17.0.0(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard@40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+        version: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard-scss@17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard@40.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -927,7 +927,7 @@ importers:
         version: 4.2.0
       nuxt:
         specifier: 4.5.2
-        version: 4.5.2(0bdfdeb6eb8b770c3431f87874b2121f)
+        version: 4.5.2(844cfcc930a5ad9b02320fb86a96047c)
       vue:
         specifier: 3.5.42
         version: 3.5.42(typescript@5.9.3)
@@ -3009,8 +3009,8 @@ packages:
     peerDependencies:
       '@csstools/css-tokenizer': ^4.0.0
 
-  '@csstools/css-syntax-patches-for-csstree@1.1.7':
-    resolution: {integrity: sha512-fQ+05118eQS1cofO3aJpB5efgpBZMvIzwr/sbC8kDLVA5XLG8q1kJV5yzrUAI1f7lvhPnm8fgIjzFB8/O/5Dig==}
+  '@csstools/css-syntax-patches-for-csstree@1.1.12':
+    resolution: {integrity: sha512-3vLQK+dXxhBMR2Wx99PTCifE+vHtW2ndZWyla8yK813ev6oGhyn8Lja8jCyGAWTJ+LEYZK7EVtJxrDj8ztevJw==}
     peerDependencies:
       css-tree: ^3.2.1
     peerDependenciesMeta:
@@ -8384,8 +8384,8 @@ packages:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
 
-  colord@2.9.3:
-    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
+  colord@2.10.0:
+    resolution: {integrity: sha512-AidJptpBJmjTclAp9BkLwJi0T93fo5epJnbaZslpg6QVzpHjAiveF55mE9AcUJiGMqRHgMDY8soMsQtuNYMHfw==}
 
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
@@ -10314,12 +10314,12 @@ packages:
     resolution: {integrity: sha512-JmsqJalahxxgW8V2ecSQ2G7UjPlI9cpKdrkG9KoNiXhd/YslXOTEB0cViENWUznuovIuNT+FkMbraDGjr4FCUg==}
     engines: {node: '>=20'}
 
-  globby@16.2.2:
-    resolution: {integrity: sha512-NLvV9ubZ6NDsJaOpKPy3cQeJpKi9DcWiyCiFUpJPA0YihRqiE6RWaLUmgNNPr8MgPpLZjnBjSmou7uZBRJv9wA==}
-    engines: {node: '>=20'}
-
   globby@16.2.3:
     resolution: {integrity: sha512-VZX7TV7jmd/pn71vdnLKtgwy1IWqc3KjI9x1/UtPkwoKk5fKrNLY30ltDe3cAM5xruIN7YuuaulFt133jRrKZg==}
+    engines: {node: '>=20'}
+
+  globby@16.2.4:
+    resolution: {integrity: sha512-c8B/VNLmxRcmqqenRA9t+9IyOjf9+V6lTxPaUJLqOCONdQkWZ0ETYgX0qbtJqPsgCNusT9MZ5Jeidw8Eb9tn2g==}
     engines: {node: '>=20'}
 
   globjoin@0.1.4:
@@ -13322,10 +13322,6 @@ packages:
     peerDependencies:
       postcss: 8.5.28
 
-  postcss-selector-parser@7.1.4:
-    resolution: {integrity: sha512-HeP7D2wyhkR+XaK6v4W8oRF62Dsz4flyuczALJp61GckGm42u1saSSJ/0auvcBqxs3jMRFEcPK34At/0JBKdOg==}
-    engines: {node: '>=4'}
-
   postcss-selector-parser@7.1.5:
     resolution: {integrity: sha512-KvvtD7SrlBP7dlgkBghEE3r84CABm5SmV2aNcG4oCA+qDnJ/tvKonFVvwWAyyWUEwxuNawdfEAZKP9zM3oZ2Uw==}
     engines: {node: '>=4'}
@@ -14652,8 +14648,8 @@ packages:
     peerDependencies:
       stylelint: '>= 11 < 18'
 
-  stylelint@17.14.1:
-    resolution: {integrity: sha512-xVQwyiuxALUBNB2fBe0tmNemg9KqLtdj3T64mioFDar79B2cU8LIyz+3KL6LdiHs9NkeNfwxpKSaIVOY8f112g==}
+  stylelint@17.15.0:
+    resolution: {integrity: sha512-mWIkesYQvQjf4Kvdeu9ns0IL8/K/wtjaGxPqsPd6DlLZvaQxGysJsocxUDrBcyHQ5VleAk4uSMat4yMrVED7PA==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -18941,7 +18937,7 @@ snapshots:
     dependencies:
       '@csstools/css-tokenizer': 4.0.0
 
-  '@csstools/css-syntax-patches-for-csstree@1.1.7(css-tree@3.2.1)':
+  '@csstools/css-syntax-patches-for-csstree@1.1.12(css-tree@3.2.1)':
     optionalDependencies:
       css-tree: 3.2.1
 
@@ -18956,13 +18952,13 @@ snapshots:
 
   '@csstools/normalize.css@12.1.1': {}
 
-  '@csstools/selector-resolve-nested@4.0.1(postcss-selector-parser@7.1.4)':
+  '@csstools/selector-resolve-nested@4.0.1(postcss-selector-parser@7.1.5)':
     dependencies:
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.5
 
-  '@csstools/selector-specificity@6.0.0(postcss-selector-parser@7.1.4)':
+  '@csstools/selector-specificity@6.0.0(postcss-selector-parser@7.1.5)':
     dependencies:
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.5
 
   '@custom-elements-manifest/analyzer@0.11.0':
     dependencies:
@@ -19048,10 +19044,10 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@double-great/stylelint-a11y@3.5.2(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))':
+  '@double-great/stylelint-a11y@3.5.2(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))':
     dependencies:
       postcss: 8.5.28
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
 
   '@dxup/nuxt@0.5.6(esbuild@0.28.1)(magicast@0.5.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))':
     dependencies:
@@ -21034,7 +21030,7 @@ snapshots:
       - rolldown
       - unplugin
 
-  '@nuxt/nitro-server@4.5.2(0e629366f68a325452837caf63c4f2b4)':
+  '@nuxt/nitro-server@4.5.2(5578c137b099e936ae75f45dafaf32ef)':
     dependencies:
       '@nuxt/devalue': 2.0.2
       '@nuxt/kit': 4.5.2(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))
@@ -21053,7 +21049,7 @@ snapshots:
       mocked-exports: 0.1.1
       nitropack: 2.13.4(@parcel/watcher@2.6.0)(encoding@0.1.13)(oxc-parser@0.147.0)(rolldown@1.2.5)(srvx@0.11.22)(supports-color@10.2.2)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))(xml2js@0.6.2)
       nostics: 1.2.0
-      nuxt: 4.5.2(0bdfdeb6eb8b770c3431f87874b2121f)
+      nuxt: 4.5.2(844cfcc930a5ad9b02320fb86a96047c)
       nypm: 0.6.9
       ohash: 2.0.11
       pathe: 2.0.3
@@ -21139,7 +21135,7 @@ snapshots:
       rc9: 3.0.1
       std-env: 4.2.0
 
-  '@nuxt/vite-builder@4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@types/node@26.4.1)(esbuild@0.28.2)(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(less@4.9.0(supports-color@10.2.2))(magic-string@1.1.0)(magicast@0.5.4)(meow@14.1.0)(nuxt@4.5.2(0bdfdeb6eb8b770c3431f87874b2121f))(optionator@0.9.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.5)(rollup@4.62.4))(rollup@4.62.4)(sass@1.104.0)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))(supports-color@10.2.2)(terser@5.49.2)(tsx@4.23.13)(typescript@5.9.3)(vue-tsc@3.3.11(typescript@5.9.3))(vue@3.5.42(typescript@5.9.3))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))(yaml@2.9.0)':
+  '@nuxt/vite-builder@4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@types/node@26.4.1)(esbuild@0.28.2)(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(less@4.9.0(supports-color@10.2.2))(magic-string@1.1.0)(magicast@0.5.4)(meow@14.1.0)(nuxt@4.5.2(844cfcc930a5ad9b02320fb86a96047c))(optionator@0.9.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.5)(rollup@4.62.4))(rollup@4.62.4)(sass@1.104.0)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))(supports-color@10.2.2)(terser@5.49.2)(tsx@4.23.13)(typescript@5.9.3)(vue-tsc@3.3.11(typescript@5.9.3))(vue@3.5.42(typescript@5.9.3))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))(yaml@2.9.0)':
     dependencies:
       '@nuxt/kit': 4.5.2(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))
       '@vitejs/plugin-vue': 6.0.8(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue@3.5.42(typescript@5.9.3))
@@ -21157,7 +21153,7 @@ snapshots:
       knitwork: 1.3.0
       mlly: 1.8.2
       mocked-exports: 0.1.1
-      nuxt: 4.5.2(0bdfdeb6eb8b770c3431f87874b2121f)
+      nuxt: 4.5.2(844cfcc930a5ad9b02320fb86a96047c)
       nypm: 0.6.9
       pathe: 2.0.3
       pkg-types: 2.3.1
@@ -21170,7 +21166,7 @@ snapshots:
       unplugin: 3.3.0(esbuild@0.28.2)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
       vite: 8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0)
       vite-node: 6.0.0(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0)
-      vite-plugin-checker: 0.14.5(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))(typescript@5.9.3)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue-tsc@3.3.11(typescript@5.9.3))
+      vite-plugin-checker: 0.14.5(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))(typescript@5.9.3)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue-tsc@3.3.11(typescript@5.9.3))
       vue: 3.5.42(typescript@5.9.3)
       vue-bundle-renderer: 2.3.1
     optionalDependencies:
@@ -24606,7 +24602,7 @@ snapshots:
 
   color-support@1.1.3: {}
 
-  colord@2.9.3: {}
+  colord@2.10.0: {}
 
   colorette@2.0.20: {}
 
@@ -27150,7 +27146,7 @@ snapshots:
       slash: 5.1.0
       unicorn-magic: 0.4.0
 
-  globby@16.2.2:
+  globby@16.2.3:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       fast-glob: 3.3.3
@@ -27159,12 +27155,13 @@ snapshots:
       slash: 5.1.0
       unicorn-magic: 0.4.0
 
-  globby@16.2.3:
+  globby@16.2.4:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       fast-glob: 3.3.3
       ignore: 7.0.6
       is-path-inside: 4.0.0
+      micromatch: 4.0.8
       slash: 5.1.0
       unicorn-magic: 0.4.0
 
@@ -29978,16 +29975,16 @@ snapshots:
     optionalDependencies:
       chokidar: 3.6.0
 
-  nuxt@4.5.2(0bdfdeb6eb8b770c3431f87874b2121f):
+  nuxt@4.5.2(844cfcc930a5ad9b02320fb86a96047c):
     dependencies:
       '@dxup/nuxt': 0.5.6(esbuild@0.28.1)(magicast@0.5.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
       '@nuxt/cli': 3.37.0(@nuxt/schema@4.5.2)(@parcel/watcher@2.6.0)(cac@7.0.0)(commander@15.0.0)(magicast@0.5.4)(supports-color@10.2.2)
       '@nuxt/devtools': 3.4.1(db0@0.3.4)(ioredis@5.11.1(supports-color@10.2.2))(magic-string@1.1.0)(oxc-parser@0.147.0)(rolldown@1.2.5)(supports-color@10.2.2)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue@3.5.42(typescript@5.9.3))
       '@nuxt/kit': 4.5.2(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))
-      '@nuxt/nitro-server': 4.5.2(0e629366f68a325452837caf63c4f2b4)
+      '@nuxt/nitro-server': 4.5.2(5578c137b099e936ae75f45dafaf32ef)
       '@nuxt/schema': 4.5.2
       '@nuxt/telemetry': 2.8.0(@nuxt/kit@4.5.2(magic-string@1.1.0)(magicast@0.5.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))))
-      '@nuxt/vite-builder': 4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@types/node@26.4.1)(esbuild@0.28.2)(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(less@4.9.0(supports-color@10.2.2))(magic-string@1.1.0)(magicast@0.5.4)(meow@14.1.0)(nuxt@4.5.2(0bdfdeb6eb8b770c3431f87874b2121f))(optionator@0.9.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.5)(rollup@4.62.4))(rollup@4.62.4)(sass@1.104.0)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))(supports-color@10.2.2)(terser@5.49.2)(tsx@4.23.13)(typescript@5.9.3)(vue-tsc@3.3.11(typescript@5.9.3))(vue@3.5.42(typescript@5.9.3))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))(yaml@2.9.0)
+      '@nuxt/vite-builder': 4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7(supports-color@10.2.2)))(@types/node@26.4.1)(esbuild@0.28.2)(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(less@4.9.0(supports-color@10.2.2))(magic-string@1.1.0)(magicast@0.5.4)(meow@14.1.0)(nuxt@4.5.2(844cfcc930a5ad9b02320fb86a96047c))(optionator@0.9.4)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.5)(rollup@4.62.4))(rollup@4.62.4)(sass@1.104.0)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))(supports-color@10.2.2)(terser@5.49.2)(tsx@4.23.13)(typescript@5.9.3)(vue-tsc@3.3.11(typescript@5.9.3))(vue@3.5.42(typescript@5.9.3))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))(yaml@2.9.0)
       '@unhead/vue': 3.3.1(@oxc-project/types@0.147.0)(@vitejs/devtools-kit@0.4.3(@modelcontextprotocol/sdk@1.30.0(supports-color@10.2.2)(zod@4.5.4))(cac@7.0.0)(srvx@0.11.22)(typescript@5.9.3)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0)))(esbuild@0.28.1)(lightningcss@1.33.0)(oxc-parser@0.147.0)(rolldown@1.2.5)(rollup@4.62.4)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue@3.5.42(typescript@5.9.3))(webpack@5.109.2(clean-css@5.3.3)(cssnano@9.0.2(postcss@8.5.28))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
       '@vue/shared': 3.5.41
       chokidar: 5.0.0
@@ -31134,11 +31131,6 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.5.28):
     dependencies:
       postcss: 8.5.28
-
-  postcss-selector-parser@7.1.4:
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
 
   postcss-selector-parser@7.1.5:
     dependencies:
@@ -32703,62 +32695,62 @@ snapshots:
       postcss: 8.5.28
       postcss-selector-parser: 7.1.5
 
-  stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
       postcss-html: 2.0.0(postcss@8.5.28)
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
 
-  stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
       postcss-scss: 4.0.9(postcss@8.5.28)
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
-      stylelint-config-recommended: 18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
-      stylelint-scss: 7.2.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint-config-recommended: 18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-scss: 7.2.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
     optionalDependencies:
       postcss: 8.5.28
 
-  stylelint-config-recommended-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-recommended-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
       postcss-html: 2.0.0(postcss@8.5.28)
       semver: 7.8.5
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
-      stylelint-config-html: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
-      stylelint-config-recommended: 18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint-config-html: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-config-recommended: 18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
     optionalDependencies:
-      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
 
-  stylelint-config-recommended@18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-recommended@18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
 
-  stylelint-config-standard-scss@17.0.0(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-standard-scss@17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
-      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
-      stylelint-config-standard: 40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-config-standard: 40.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
     optionalDependencies:
       postcss: 8.5.28
 
-  stylelint-config-standard-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard-scss@17.0.0(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard@40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-standard-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-vue@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard-scss@17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-standard@40.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
       postcss-html: 2.0.0(postcss@8.5.28)
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
-      stylelint-config-html: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
-      stylelint-config-recommended-vue: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
-      stylelint-config-standard: 40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint-config-html: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-config-recommended-vue: 2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint-config-html@2.0.0(postcss-html@2.0.0(postcss@8.5.28))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended-scss@17.0.1(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint-config-recommended@18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)))(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-config-standard: 40.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
     optionalDependencies:
-      stylelint-config-standard-scss: 17.0.0(postcss@8.5.28)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint-config-standard-scss: 17.0.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
 
-  stylelint-config-standard@40.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-config-standard@40.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
-      stylelint-config-recommended: 18.0.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint-config-recommended: 18.0.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
 
-  stylelint-scss@7.2.0(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-scss@7.2.0(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
       '@csstools/css-calc': 3.3.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
-      '@csstools/css-syntax-patches-for-csstree': 1.1.7(css-tree@3.2.1)
+      '@csstools/css-syntax-patches-for-csstree': 1.1.12(css-tree@3.2.1)
       '@csstools/css-tokenizer': 4.0.0
       css-tree: 3.2.1
       is-plain-object: 5.0.0
@@ -32767,22 +32759,22 @@ snapshots:
       postcss-resolve-nested-selector: 0.1.6
       postcss-selector-parser: 7.1.5
       postcss-value-parser: 4.2.0
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
 
-  stylelint-use-logical@2.1.3(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3)):
+  stylelint-use-logical@2.1.3(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3)):
     dependencies:
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
 
-  stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3):
+  stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3):
     dependencies:
       '@csstools/css-calc': 3.3.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
       '@csstools/css-parser-algorithms': 4.0.0(@csstools/css-tokenizer@4.0.0)
-      '@csstools/css-syntax-patches-for-csstree': 1.1.7(css-tree@3.2.1)
+      '@csstools/css-syntax-patches-for-csstree': 1.1.12(css-tree@3.2.1)
       '@csstools/css-tokenizer': 4.0.0
       '@csstools/media-query-list-parser': 5.0.0(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)
-      '@csstools/selector-resolve-nested': 4.0.1(postcss-selector-parser@7.1.4)
-      '@csstools/selector-specificity': 6.0.0(postcss-selector-parser@7.1.4)
-      colord: 2.9.3
+      '@csstools/selector-resolve-nested': 4.0.1(postcss-selector-parser@7.1.5)
+      '@csstools/selector-specificity': 6.0.0(postcss-selector-parser@7.1.5)
+      colord: 2.10.0
       cosmiconfig: 9.0.2(typescript@5.9.3)
       css-functions-list: 3.3.3
       css-tree: 3.2.1
@@ -32791,7 +32783,7 @@ snapshots:
       fastest-levenshtein: 1.0.16
       file-entry-cache: 11.1.5
       global-modules: 2.0.0
-      globby: 16.2.2
+      globby: 16.2.4
       globjoin: 0.1.4
       html-tags: 5.1.0
       ignore: 7.0.6
@@ -32803,7 +32795,7 @@ snapshots:
       picocolors: 1.1.1
       postcss: 8.5.28
       postcss-safe-parser: 7.0.1(postcss@8.5.28)
-      postcss-selector-parser: 7.1.4
+      postcss-selector-parser: 7.1.5
       postcss-value-parser: 4.2.0
       string-width: 8.2.2
       supports-hyperlinks: 4.5.0
@@ -33886,7 +33878,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-checker@0.14.5(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.14.1(supports-color@10.2.2)(typescript@5.9.3))(typescript@5.9.3)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue-tsc@3.3.11(typescript@5.9.3)):
+  vite-plugin-checker@0.14.5(eslint@10.9.1(jiti@2.7.0)(supports-color@10.2.2))(meow@14.1.0)(optionator@0.9.4)(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))(typescript@5.9.3)(vite@8.2.2(@types/node@26.4.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.0)(terser@5.49.2)(tsx@4.23.13)(yaml@2.9.0))(vue-tsc@3.3.11(typescript@5.9.3)):
     dependencies:
       '@babel/code-frame': 7.29.7
       chokidar: 5.0.0
@@ -33900,7 +33892,7 @@ snapshots:
       eslint: 10.9.1(jiti@2.7.0)(supports-color@10.2.2)
       meow: 14.1.0
       optionator: 0.9.4
-      stylelint: 17.14.1(supports-color@10.2.2)(typescript@5.9.3)
+      stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
       typescript: 5.9.3
       vue-tsc: 3.3.11(typescript@5.9.3)
 
