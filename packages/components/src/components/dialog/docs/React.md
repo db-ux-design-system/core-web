@@ -47,7 +47,7 @@ const App = () => (
 			id="my-dialog"
 			header={
 				<DBDialogHeader closeButtonText="Close">
-					Dialog title
+					<h2>Dialog title</h2>
 				</DBDialogHeader>
 			}
 			footer={
@@ -103,7 +103,7 @@ const App = () => {
 				}}
 				header={
 					<DBDialogHeader closeButtonText="Close">
-						Dialog title
+						<h2>Dialog title</h2>
 					</DBDialogHeader>
 				}
 				footer={
@@ -171,7 +171,7 @@ const App = () => (
 		}
 		header={
 			<DBDialogHeader closeButtonText="Close">
-				Rename entry
+				<h2>Rename entry</h2>
 			</DBDialogHeader>
 		}
 	>
@@ -184,16 +184,12 @@ const App = () => (
 export default App;
 ```
 
-### Top-layer limitation
+### Nested overlays
 
-A modal `<dialog>` is rendered in the browser top layer and the `.db-dialog` box uses `overflow: clip`. Overlay
-content that itself renders into the top layer or uses fixed positioning escapes the box and paints correctly above
-the dialog: `DBTooltip` (`position: fixed`) and native popovers work as expected inside a modal dialog.
-
-Only overlay content that is positioned in the normal flow of the dialog (e.g. an absolutely positioned dropdown such
-as the `DBCustomSelect` option list on desktop) can be clipped at the dialog edges when it overflows the box. Keep
-such content inside the scrollable dialog content area, or leave enough room so its overlay stays within the dialog
-bounds.
+A modal `<dialog>` is rendered in the browser top layer. Overlay content nested inside it renders correctly:
+top-layer or fixed-position overlays such as `DBTooltip` and native popovers paint above the dialog, and overlays in
+the normal flow (e.g. the `DBCustomSelect` option list) are no longer clipped by the dialog box. Content that exceeds
+the dialog height scrolls inside the dialog content area.
 
 ### Migration from a hand-written modal
 
@@ -299,7 +295,7 @@ const App = () => {
 				}}
 				header={
 					<DBDialogHeader closeButtonText="Close">
-						Dialog title
+						<h2>Dialog title</h2>
 					</DBDialogHeader>
 				}
 			>

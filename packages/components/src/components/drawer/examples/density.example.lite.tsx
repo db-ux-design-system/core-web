@@ -30,7 +30,7 @@ export default function DrawerDensity() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Functional
+							<h2>Functional</h2>
 						</DBDrawerHeader>
 					}>
 					Functional
@@ -48,7 +48,7 @@ export default function DrawerDensity() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Regular
+							<h2>(Default) Regular</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Regular
@@ -66,7 +66,7 @@ export default function DrawerDensity() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Expressive
+							<h2>Expressive</h2>
 						</DBDrawerHeader>
 					}>
 					Expressive

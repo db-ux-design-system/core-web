@@ -31,7 +31,7 @@ export default function DrawerBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Strong
+							<h2>(Default) Strong</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Strong
@@ -50,7 +50,7 @@ export default function DrawerBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Weak
+							<h2>Weak</h2>
 						</DBDrawerHeader>
 					}>
 					Weak
@@ -69,7 +69,7 @@ export default function DrawerBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Invisible
+							<h2>Invisible</h2>
 						</DBDrawerHeader>
 					}>
 					Invisible
@@ -86,7 +86,7 @@ export default function DrawerBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							No Backdrop
+							<h2>No Backdrop</h2>
 						</DBDrawerHeader>
 					}>
 					No Backdrop

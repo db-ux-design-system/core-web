@@ -31,7 +31,7 @@ export default function DialogBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							(Default) Strong
+							<h2>(Default) Strong</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -59,7 +59,7 @@ export default function DialogBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Weak
+							<h2>Weak</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -85,7 +85,7 @@ export default function DialogBackdrop() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							No Backdrop
+							<h2>No Backdrop</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>

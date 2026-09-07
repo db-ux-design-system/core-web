@@ -47,7 +47,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Small
+							<h2>(Default) Small</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Small
@@ -65,7 +65,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Medium
+							<h2>Medium</h2>
 						</DBDrawerHeader>
 					}>
 					Medium
@@ -83,7 +83,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Large
+							<h2>Large</h2>
 						</DBDrawerHeader>
 					}>
 					Large
@@ -101,7 +101,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Full
+							<h2>Full</h2>
 						</DBDrawerHeader>
 					}>
 					Full
@@ -129,7 +129,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Small (Up)
+							<h2>Small (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Small (Up)
@@ -149,7 +149,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Medium (Up)
+							<h2>Medium (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Medium (Up)
@@ -169,7 +169,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Large (Up)
+							<h2>Large (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Large (Up)
@@ -187,7 +187,7 @@ export default function DrawerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Full (Up)
+							<h2>Full (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Full (Up)

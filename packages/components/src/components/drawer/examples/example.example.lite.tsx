@@ -34,7 +34,7 @@ export default function DrawerExample() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) As modal
+							<h2>(Default) As modal</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) As modal
@@ -51,7 +51,7 @@ export default function DrawerExample() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Inside
+							<h2>Inside</h2>
 						</DBDrawerHeader>
 					}>
 					Inside
@@ -71,7 +71,7 @@ export default function DrawerExample() {
 						<DBDrawerHeader
 							closeButtonText="Close"
 							endSlot={<DBBadge>New</DBBadge>}>
-							With slots
+							<h2>With slots</h2>
 						</DBDrawerHeader>
 					}
 					footer={

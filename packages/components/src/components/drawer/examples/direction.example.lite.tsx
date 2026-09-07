@@ -37,7 +37,7 @@ export default function DrawerDirection() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) To-Left
+							<h2>(Default) To-Left</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) To-Left
@@ -56,7 +56,7 @@ export default function DrawerDirection() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							To-Right
+							<h2>To-Right</h2>
 						</DBDrawerHeader>
 					}>
 					To-Right
@@ -73,7 +73,7 @@ export default function DrawerDirection() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Up
+							<h2>Up</h2>
 						</DBDrawerHeader>
 					}>
 					Up
@@ -92,7 +92,7 @@ export default function DrawerDirection() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Down
+							<h2>Down</h2>
 						</DBDrawerHeader>
 					}>
 					Down
@@ -112,7 +112,7 @@ export default function DrawerDirection() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Up (Full)
+							<h2>Up (Full)</h2>
 						</DBDrawerHeader>
 					}>
 					Up (Full)
@@ -132,7 +132,7 @@ export default function DrawerDirection() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Down (Full)
+							<h2>Down (Full)</h2>
 						</DBDrawerHeader>
 					}>
 					Down (Full)

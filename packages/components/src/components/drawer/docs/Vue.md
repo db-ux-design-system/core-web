@@ -26,7 +26,7 @@ const toggleDrawer = (open: boolean) => {
 	<DBDrawer :open="openDrawer" @close="toggleDrawer(false)">
 		<template #header>
 			<DBDrawerHeader closeButtonText="Close">
-				Drawer Title
+				<h2>Drawer Title</h2>
 			</DBDrawerHeader>
 		</template>
 		My Drawer content
