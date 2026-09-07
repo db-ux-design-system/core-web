@@ -517,7 +517,19 @@ $progress-bar-full-segment-inline-size: calc(
 	}
 }
 
-*:has(#{$overlay-child-selector}) {
+// Scope the "make me a positioning context for the overlay" rule to the known
+// overlay hosts instead of a universal `*:has()`, which would set
+// position: relative on any consumer element with an overlay child (silently
+// re-parenting their absolutely-positioned children) and cost a document-wide
+// recalc. Consumers with a custom container opt in via
+// [data-loading-overlay="true"].
+:is(
+	.db-button,
+	.db-custom-button,
+	.db-card,
+	.db-popover,
+	[data-loading-overlay="true"]
+):has(#{$overlay-child-selector}) {
 	position: relative;
 
 	// Only re-point the segment color on the direct overlay child, not on
