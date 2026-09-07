@@ -82,13 +82,17 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		display: none;
 	}
 
-	// Hide the label visually only. The <progress> is now a sibling (not a
-	// child) of the label, so hiding the label no longer removes the progress
-	// from the accessibility tree - the loading state stays announced.
-	label[data-show-label="false"] {
-		@extend %a11y-visually-hidden;
+	// Hide the label visually only, using the shared data-hide-label contract
+	// on the root (matching checkbox/input/select/switch/radio via
+	// getHideProp). The <progress> is a sibling of the label and is always
+	// visually hidden on its own, so it stays in the accessibility tree and
+	// the loading state keeps being announced regardless of the label state.
+	&[data-hide-label="true"] {
+		> div > label {
+			@extend %a11y-visually-hidden;
 
-		padding: 0;
+			padding: 0;
+		}
 	}
 }
 
@@ -100,8 +104,15 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			svg {
 				animation: rotate 1.5s linear 0s infinite normal none running;
 
+				// Under reduced motion the spinner must not rotate
+				// continuously. Instead it advances in discrete steps: the
+				// step() timing function makes it jump to the next of 8
+				// positions once every 2s (8 steps x 2s = 16s per turn), so
+				// there is no continuous motion but the indicator still
+				// visibly updates and does not look frozen/broken.
 				@media screen and (prefers-reduced-motion: reduce) {
-					animation-duration: 5s;
+					animation-duration: 16s;
+					animation-timing-function: steps(8, jump-end);
 				}
 			}
 
@@ -296,8 +307,13 @@ $progress-bar-full-segment-inline-size: calc(
 					inline-size: 25%;
 					animation: wobbling 2.5s infinite linear;
 
+					// Under reduced motion the bar segment advances in discrete
+					// steps instead of gliding: it jumps to the next of 8
+					// positions once every 2s (8 steps x 2s = 16s per cycle),
+					// so there is no continuous motion but it still updates.
 					@media screen and (prefers-reduced-motion: reduce) {
-						animation-duration: 5s;
+						animation-duration: 16s;
+						animation-timing-function: steps(8, jump-end);
 					}
 				}
 			}

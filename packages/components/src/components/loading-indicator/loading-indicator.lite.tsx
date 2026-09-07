@@ -364,6 +364,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			data-orientation={props.orientation}
 			data-delay={props.delay}
 			data-state={state._loadingState}
+			data-hide-label={getHideProp(props.showLabel)}
 			data-overlay={getBooleanAsString(props.overlay)}>
 			<Show when={props.variant === 'circular'}>
 				<svg
@@ -380,10 +381,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			</Show>
 
 			<div role={state.getRole()}>
-				<label
-					data-show-label={getBooleanAsString(props.showLabel)}
-					id={state._labelId}
-					htmlFor={state._progressId}>
+				<label id={state._labelId} htmlFor={state._progressId}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
