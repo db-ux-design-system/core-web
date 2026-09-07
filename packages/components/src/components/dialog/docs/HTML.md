@@ -245,10 +245,7 @@ In plain HTML you wire these fallbacks yourself. Feature-detect Invoker Commands
 	 * If the browser does not support the `command` and `commandfor`
 	 * HTML attributes, we fall back to JavaScript event handlers.
 	 */
-	if (
-		!("command" in HTMLButtonElement.prototype) ||
-		!("commandFor" in HTMLButtonElement.prototype)
-	) {
+	if (!("commandForElement" in HTMLButtonElement.prototype)) {
 		const dialog = document.getElementById("my-dialog");
 		document
 			.querySelector('[commandfor="my-dialog"][command="show-modal"]')

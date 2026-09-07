@@ -42,10 +42,7 @@ If you do need to provide support for [browser versions that haven't implemented
 		 * If the browser does not support the `command` and `commandfor`
 		 * HTML attributes, we fall back to JavaScript event handlers.
 		 */
-		if (
-			!("command" in HTMLButtonElement.prototype) ||
-			!("commandFor" in HTMLButtonElement.prototype)
-		) {
+		if (!("commandForElement" in HTMLButtonElement.prototype)) {
 			const openButton = document.querySelector(
 				'[commandfor="my-drawer"][command="show-modal"]'
 			);
