@@ -29,7 +29,7 @@ export default function DialogContainerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Small
+							<h2>Small</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -55,7 +55,7 @@ export default function DialogContainerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							(Default) Medium
+							<h2>(Default) Medium</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -81,7 +81,7 @@ export default function DialogContainerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Large
+							<h2>Large</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -107,7 +107,7 @@ export default function DialogContainerSize() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Full
+							<h2>Full</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>

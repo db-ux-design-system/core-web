@@ -30,7 +30,7 @@ export default function DialogDensity() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Functional
+							<h2>Functional</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -57,7 +57,7 @@ export default function DialogDensity() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							(Default) Regular
+							<h2>(Default) Regular</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -84,7 +84,7 @@ export default function DialogDensity() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Expressive
+							<h2>Expressive</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>

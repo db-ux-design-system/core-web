@@ -44,7 +44,7 @@ export default function DialogEvents() {
 					onCancel={() => state.handleCancel()}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Events Test
+							<h2>Events Test</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -67,7 +67,7 @@ export default function DialogEvents() {
 					id="dialog-events-form"
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							Submit form in content
+							<h2>Submit form in content</h2>
 						</DBDialogHeader>
 					}
 					footer={

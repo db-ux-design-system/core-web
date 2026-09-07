@@ -65,7 +65,7 @@ export default function DialogAreas() {
 						<DBDialogHeader
 							closeButtonText="Close"
 							startSlot={<DBIcon icon="person" />}>
-							With start slot
+							<h2>With start slot</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -92,7 +92,7 @@ export default function DialogAreas() {
 						<DBDialogHeader
 							closeButtonText="Close"
 							endSlot={<DBBadge>New</DBBadge>}>
-							With end slot
+							<h2>With end slot</h2>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -117,7 +117,7 @@ export default function DialogAreas() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
-							With footer
+							<h2>With footer</h2>
 						</DBDialogHeader>
 					}
 					footer={
