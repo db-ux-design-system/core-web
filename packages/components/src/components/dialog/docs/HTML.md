@@ -92,7 +92,6 @@ all of its submit buttons.
 			type="button"
 			command="request-close"
 			commandfor="my-dialog"
-			type="button"
 		>
 			Close
 		</button>
@@ -114,6 +113,39 @@ all of its submit buttons.
 		console.log(dialog.returnValue); // "cancel" or "confirm"
 	});
 </script>
+```
+
+When the form has fields spread across the content and the footer, keep the `<form method="dialog">` in the content
+and associate a footer submit button with it through the `form` attribute referencing the form `id`:
+
+```html index.html
+<!-- index.html -->
+<dialog id="my-dialog" class="db-dialog">
+	<div class="db-dialog-header">
+		<header id="my-dialog-heading" class="db-dialog-header-container">
+			<h2>Rename entry</h2>
+		</header>
+	</div>
+	<div class="db-dialog-content">
+		<form id="my-dialog-form" method="dialog">
+			<label class="db-label" for="entry-name">Name</label>
+			<input id="entry-name" class="db-input" name="name" />
+		</form>
+	</div>
+	<footer class="db-dialog-footer">
+		<button class="db-button" form="my-dialog-form" value="cancel">
+			Cancel
+		</button>
+		<button
+			class="db-button"
+			data-variant="brand"
+			form="my-dialog-form"
+			value="confirm"
+		>
+			Save
+		</button>
+	</footer>
+</dialog>
 ```
 
 ### Top-layer limitation
