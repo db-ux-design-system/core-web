@@ -149,15 +149,5 @@
 		}
 	],
 	"faq": [],
-	"related": [
-		{
-			"component": "control-panel-navigation"
-		},
-		{
-			"component": "control-panel-desktop"
-		},
-		{
-			"component": "control-panel-mobile"
-		}
-	]
+	"related": []
 }

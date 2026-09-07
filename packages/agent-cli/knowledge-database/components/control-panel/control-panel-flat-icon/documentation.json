@@ -106,12 +106,6 @@
 			"component": "control-panel-navigation"
 		},
 		{
-			"component": "control-panel-desktop"
-		},
-		{
-			"component": "control-panel-mobile"
-		},
-		{
 			"component": "control-panel-navigation-item"
 		}
 	]

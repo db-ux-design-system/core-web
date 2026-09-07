@@ -155,12 +155,6 @@
 		},
 		{
 			"component": "control-panel-actions"
-		},
-		{
-			"component": "control-panel-desktop"
-		},
-		{
-			"component": "control-panel-mobile"
 		}
 	]
 }

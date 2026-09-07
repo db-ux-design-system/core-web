@@ -129,12 +129,6 @@
 			"component": "control-panel-navigation-item"
 		},
 		{
-			"component": "control-panel-desktop"
-		},
-		{
-			"component": "control-panel-mobile"
-		},
-		{
 			"component": "shell-sub-navigation"
 		},
 		{

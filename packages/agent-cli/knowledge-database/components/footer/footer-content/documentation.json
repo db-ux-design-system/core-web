@@ -152,9 +152,6 @@
 	"faq": [],
 	"related": [
 		{
-			"component": "footer"
-		},
-		{
 			"component": "control-panel"
 		},
 		{

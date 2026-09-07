@@ -218,8 +218,6 @@
 	"faq": [],
 	"related": [
 		{ "component": "control-panel-brand" },
-		{ "component": "control-panel-desktop" },
-		{ "component": "control-panel-mobile" },
 		{ "component": "control-panel-flat-icon" }
 	]
 }
