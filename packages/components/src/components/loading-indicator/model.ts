@@ -6,7 +6,8 @@ import {
 	OrientationProps,
 	ShowLabelProps,
 	SizeProps,
-	SizeType
+	SizeType,
+	WidthProps
 } from '../../shared/model';
 
 export const LoadingIndicatorVariantList = ['bar', 'circular'] as const;
