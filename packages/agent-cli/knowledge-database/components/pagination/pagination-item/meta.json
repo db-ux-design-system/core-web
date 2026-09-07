@@ -1,0 +1,10 @@
+{
+	"id": "pagination-item",
+	"name": "Pagination Item",
+	"type": "component",
+	"parent": "pagination",
+	"status": "beta",
+	"owner": "core-team",
+	"since": null,
+	"guidelines": "delegated"
+}

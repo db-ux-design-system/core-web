@@ -1,0 +1,230 @@
+{
+	"component": "pagination",
+	"figmaFileKey": "diQoICeEsfVztFnf55Fufq",
+	"description": {
+		"de": "Die Pagination teilt einen großen Datensatz in Seiten auf und lässt Nutzende zwischen diesen Seiten blättern.",
+		"en": "Pagination splits a large data set into pages and lets people move between those pages."
+	},
+	"shortDescription": {
+		"de": "Navigations-Steuerelement zum Blättern zwischen den Seiten eines aufgeteilten Datensatzes.",
+		"en": "Navigation control for moving between the pages of a split data set."
+	},
+	"useCases": {
+		"de": [
+			"Lange Listen und Tabellen in Seiten aufteilen",
+			"Gezielt zu einer bestimmten Seite springen",
+			"Umfang eines Datensatzes sichtbar machen"
+		],
+		"en": [
+			"Split long lists and tables into pages",
+			"Jump directly to a specific page",
+			"Make the size of a data set visible"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "no-step-sequences",
+			"headline": {
+				"de": "Keine Schrittfolgen",
+				"en": "No Step Sequences"
+			},
+			"text": {
+				"de": "Die Pagination erlaubt freie Sprünge zwischen allen Seiten. Abläufe, die in einer festen Reihenfolge abgearbeitet werden, widersprechen diesem Prinzip.",
+				"en": "Pagination allows free jumps between all pages. Flows that are completed in a fixed order contradict that principle."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Setze Pagination für Datensätze ein, deren Seiten in beliebiger Reihenfolge erreichbar sind.",
+					"en": "Use Pagination for data sets whose pages can be reached in any order."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Setze Pagination nicht für Schrittfolgen ein, die in fester Reihenfolge abgearbeitet werden. Sie lädt zum Überspringen von Schritten ein.",
+					"en": "Don't use Pagination for step sequences that are completed in a fixed order. It invites people to skip steps."
+				}
+			}
+		},
+		{
+			"id": "minimum-number-of-entries",
+			"headline": {
+				"de": "Mindestanzahl Einträge",
+				"en": "Minimum Number of Entries"
+			},
+			"text": {
+				"de": "Pagination lohnt sich ab mehr als 20 Einträgen. Kürzere Listen werden vollständig gezeigt.",
+				"en": "Pagination pays off from more than 20 entries. Shorter lists are shown in full."
+			},
+			"do": {
+				"figmaNodeId": "4004-2",
+				"description": {
+					"de": "Setze Pagination ab mehr als 20 Einträgen ein.",
+					"en": "Use Pagination from more than 20 entries."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-3",
+				"description": {
+					"de": "Bei kürzeren Listen kostet das Blättern mehr, als das Aufteilen einspart. Zeige die Liste dann vollständig.",
+					"en": "With shorter lists, paging costs more than splitting saves. Show the list in full instead."
+				}
+			}
+		},
+		{
+			"id": "first-and-last-page",
+			"headline": {
+				"de": "Erste und letzte Seite",
+				"en": "First and Last Page"
+			},
+			"text": {
+				"de": "Die erste und letzte Seite sind immer sichtbar. Sie zeigen, wie groß der Datensatz ist und wo seine Grenzen liegen.",
+				"en": "The first and last page are always visible. They show how large the data set is and where its boundaries are."
+			},
+			"do": {
+				"figmaNodeId": "4004-5",
+				"description": {
+					"de": "Zeige die erste und letzte Seite in jeder Konfiguration an.",
+					"en": "Show the first and last page in every configuration."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-6",
+				"description": {
+					"de": "Verbirg die erste oder letzte Seite nicht. Ohne sie ist der Umfang des Datensatzes nicht erkennbar.",
+					"en": "Don't hide the first or last page. Without them the size of the data set is not recognizable."
+				}
+			}
+		},
+		{
+			"id": "at-most-seven-page-numbers",
+			"headline": {
+				"de": "Höchstens sieben Seitenzahlen",
+				"en": "At Most Seven Page Numbers"
+			},
+			"text": {
+				"de": "Die Reihe bleibt einzeilig, solange sie höchstens sieben Seitenzahlen trägt. `boundaryCount` und `siblingCount` bestimmen die Anzahl.",
+				"en": "The row stays on one line as long as it carries at most seven page numbers. `boundaryCount` and `siblingCount` determine the amount."
+			},
+			"do": {
+				"figmaNodeId": "4004-8",
+				"description": {
+					"de": "Wähle `boundaryCount` und `siblingCount` so, dass höchstens sieben Seitenzahlen entstehen.",
+					"en": "Choose `boundaryCount` and `siblingCount` so that at most seven page numbers appear."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-9",
+				"description": {
+					"de": "Mehr Seitenzahlen lassen die Reihe umbrechen, und mehrzeilig sind die Items schwerer zu treffen. Reduziere `siblingCount`, wenn der Platz knapp wird.",
+					"en": "More page numbers make the row wrap, and on multiple lines the items are harder to hit. Reduce `siblingCount` when space gets tight."
+				}
+			}
+		},
+		{
+			"id": "truncation-per-gap",
+			"headline": {
+				"de": "Truncation je Lücke",
+				"en": "Truncation per Gap"
+			},
+			"text": {
+				"de": "Jede Lücke in der Seitenfolge wird durch eine Truncation angezeigt. Sie macht sichtbar, dass zwischen zwei Seitenzahlen weitere Seiten liegen.",
+				"en": "Every gap in the page sequence is shown by a truncation. It makes visible that further pages lie between two page numbers."
+			},
+			"do": {
+				"figmaNodeId": "4004-11",
+				"description": {
+					"de": "Zeige für jede Lücke in der Seitenfolge eine Truncation an.",
+					"en": "Show a truncation for every gap in the page sequence."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-12",
+				"description": {
+					"de": "Lass die Truncation nicht weg. Ohne sie lesen sich die angrenzenden Seitenzahlen als benachbart.",
+					"en": "Don't leave out the truncation. Without it the adjacent page numbers read as neighbours."
+				}
+			}
+		},
+		{
+			"id": "current-page",
+			"headline": {
+				"de": "Aktuelle Seite",
+				"en": "Current Page"
+			},
+			"text": {
+				"de": "Die markierte Seite ist die Seite, deren Inhalt gerade angezeigt wird. Sie verortet Nutzende im Datensatz.",
+				"en": "The marked page is the page whose content is currently shown. It locates people within the data set."
+			},
+			"do": {
+				"figmaNodeId": "4004-14",
+				"description": {
+					"de": "Markiere die Seite, deren Inhalt angezeigt wird, als aktuelle Seite.",
+					"en": "Mark the page whose content is shown as the current page."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-15",
+				"description": {
+					"de": "Markiere keine andere Seite als die angezeigte. Eine falsche Markierung sieht korrekt aus und fällt an der Pagination selbst nicht auf.",
+					"en": "Don't mark a page other than the one shown. A wrong marking looks correct and is not noticeable on the Pagination itself."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "position-of-the-current-page",
+			"headline": {
+				"de": "Lage der aktuellen Seite",
+				"en": "Position of the Current Page"
+			},
+			"text": {
+				"de": "Wo die aktuelle Seite im Datensatz liegt, bestimmt das Aussehen der Reihe und welche Pfeile bedienbar sind.",
+				"en": "Where the current page sits in the data set determines how the row looks and which arrows are operable."
+			},
+			"items": [
+				{
+					"id": "start-middle-and-end",
+					"headline": {
+						"de": "Anfang, Mitte und Ende",
+						"en": "Start, Middle and End"
+					},
+					"figmaNodeId": "4004-17",
+					"description": {
+						"de": "Vergleiche die drei Lagen: am Anfang ist der Pfeil zurück deaktiviert, am Ende der Pfeil vorwärts, in der Mitte wird die Reihe auf beiden Seiten gekürzt.",
+						"en": "Compare the three positions: at the start the back arrow is disabled, at the end the forward arrow, and in the middle the row is shortened on both sides."
+					}
+				}
+			]
+		},
+		{
+			"id": "collapsing-on-narrow-viewports",
+			"headline": {
+				"de": "Zusammenklappen auf schmalen Viewports",
+				"en": "Collapsing on Narrow Viewports"
+			},
+			"text": {
+				"de": "Unterhalb des `sm`-Breakpoints klappt die Seitenliste zusammen. Dieselbe Konfiguration erscheint dort kürzer, ohne dass sich eine Property ändert.",
+				"en": "Below the `sm` breakpoint the page list collapses. The same configuration appears shorter there without any property changing."
+			},
+			"items": [
+				{
+					"id": "above-and-below-the-breakpoint",
+					"headline": {
+						"de": "Ab und unter dem Breakpoint",
+						"en": "Above and Below the Breakpoint"
+					},
+					"figmaNodeId": "4004-20",
+					"description": {
+						"de": "Vergleiche die vollständige Reihe ab dem Breakpoint mit der zusammengeklappten darunter, die nur Randseiten, aktuelle Seite und Truncations trägt.",
+						"en": "Compare the full row above the breakpoint with the collapsed one below it, which carries only boundary pages, the current page, and truncations."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": []
+}

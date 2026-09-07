@@ -1,0 +1,21 @@
+{
+	"component": "pagination-item",
+	"library": "core-components",
+	"pageId": "40157:4859",
+	"pageName": "Pagination (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ Pagination Item - Medium (Beta)",
+			"nodeId": "40157:4923",
+			"type": "COMPONENT_SET",
+			"key": "e48f84f0163e5db6f6fb8430b870a608a9035785"
+		},
+		{
+			"name": "↳ Pagination Item - Small (Beta)",
+			"nodeId": "40157:4942",
+			"type": "COMPONENT_SET",
+			"key": "990ead0d2a0a2bcdce4a48cf93bda3061ce5a95b"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--pagination-beta' (fileKey FCa6P77h0VdXbs3bY9a4UD). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Medium und Small sind getrennte Component Sets mit je neun Varianten aus den drei Achsen Interaction States, Current und Type, je eines pro Hauptkomponente der Elternkomponente. Deren Children-Slot schlägt über preferredValues das passende Set vor. Die Truncation ist die Variante Type=Truncation und existiert nur mit Current=False und Interaction States=None; die übrigen Kombinationen mit Type=Truncation lösen keine eigene Variante auf. Sie ist damit keine eigene Komponente mehr: die vormaligen Helper-Sets 'Pagination Truncation Item - Medium/Small' sind aufgelöst."
+}

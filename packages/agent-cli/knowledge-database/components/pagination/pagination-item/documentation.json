@@ -1,0 +1,28 @@
+{
+	"component": "pagination-item",
+	"figmaFileKey": null,
+	"description": {
+		"de": "Das Pagination Item ist eine einzelne Seite oder eine Auslassung innerhalb einer Pagination.",
+		"en": "A Pagination Item is a single page or a truncation within a Pagination."
+	},
+	"shortDescription": {
+		"de": "Einzelne Seite oder Auslassung innerhalb einer Pagination.",
+		"en": "Single page or truncation within a Pagination."
+	},
+	"useCases": {
+		"de": [
+			"Wählbare Seite in einer Pagination darstellen",
+			"Ausgelassene Seiten als Truncation kennzeichnen",
+			"Aktuelle Seite hervorheben"
+		],
+		"en": [
+			"Render a selectable page within a Pagination",
+			"Mark omitted pages as a truncation",
+			"Highlight the current page"
+		]
+	},
+	"guidelines": [],
+	"examples": [],
+	"faq": [],
+	"related": []
+}

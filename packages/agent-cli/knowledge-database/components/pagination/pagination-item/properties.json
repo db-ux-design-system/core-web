@@ -1,0 +1,124 @@
+{
+	"component": "pagination-item",
+	"properties": [
+		{
+			"name": "type",
+			"type": "enum",
+			"values": ["page", "truncation"],
+			"default": "page",
+			"code": null,
+			"design": {
+				"name": "🔀 Type",
+				"values": ["(Def) Page", "Truncation"],
+				"note": "In code there is no type prop: an item without page renders the truncation, see the page property. Truncation exists only in combination with Current=False and Interaction States=None."
+			}
+		},
+		{
+			"name": "page",
+			"type": "number | string",
+			"description": "One-based page number. Leave it out to render a truncation item, the ellipsis that stands in for the pages between two page numbers.",
+			"code": {
+				"prop": "page",
+				"type": "number | string"
+			},
+			"design": {
+				"name": "✏️ Page",
+				"type": "text",
+				"defaultValue": "1",
+				"note": "The page number is the visible text of the item. Figma expresses the truncation as the Type axis instead of omitting the number, therefore Type=Truncation maps to page being left out."
+			}
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"description": "Accessible name of the page, for example `Page 5 of 10`. The visible text is only a bare number, so the context lives in this label - it is not rendered.",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Label",
+				"type": "text",
+				"defaultValue": "Page X of Y",
+				"note": "Not rendered, it is the accessible name of the page. In code DBPagination derives it from pageLabel, whose default \"Page {page} of {totalPages}\" follows the same pattern; Figma spells the placeholders as X and Y."
+			}
+		},
+		{
+			"name": "href",
+			"type": "string",
+			"description": "Renders the page as an anchor instead of a button, which makes the pagination deep linkable and usable without JavaScript.",
+			"code": {
+				"prop": "href",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "layout",
+			"type": "enum",
+			"values": ["always", "wide", "collapsed"],
+			"default": "always",
+			"description": "Which layout the item belongs to. Defaults to `always`.",
+			"code": {
+				"prop": "layout",
+				"type": "PaginationItemLayoutType"
+			},
+			"design": null
+		},
+		{
+			"name": "active",
+			"type": "boolean",
+			"code": {
+				"prop": "active",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Current",
+				"values": ["False", "True"],
+				"note": "The Figma property is named Current, the code prop active (from the shared ActiveProps). It renders the current page and maps to aria-current=\"page\". The default is False. Unlike the other two axes the values carry no (Def) marker on purpose: Figma only renders the axis as a toggle while the values are exactly True and False."
+			}
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["medium", "small"],
+			"default": "medium",
+			"description": "The size attribute changes the font-size and other related sizes of the component.",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": null,
+				"note": "No variant property in Figma. Medium and Small are modelled as separate component sets (Pagination Item - Medium, Pagination Item - Small), one per main component of the parent. The parent's Children slot suggests the matching set per size. The truncation is a variant inside each set and therefore inherits the size."
+			}
+		},
+		{
+			"name": "interactionStates",
+			"type": "enum",
+			"values": ["enabled", "hovered", "pressed", "focused", "none"],
+			"default": "enabled",
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction States",
+				"values": [
+					"(Def) Enabled",
+					"Hovered",
+					"Pressed",
+					"Focused",
+					"None"
+				],
+				"note": "Figma-only. Documents the visual states of the item; in code these are the native interaction states of the underlying button or anchor and are not a property. None marks the truncation, which is not interactive and carries aria-hidden in code."
+			}
+		},
+		{
+			"name": "onClick",
+			"type": "function",
+			"code": {
+				"prop": "onClick",
+				"type": "(event: ClickEvent<HTMLElement>) => void"
+			},
+			"design": null
+		}
+	]
+}

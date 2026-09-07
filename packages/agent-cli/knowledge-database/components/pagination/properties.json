@@ -1,0 +1,164 @@
+{
+	"component": "pagination",
+	"properties": [
+		{
+			"name": "currentPage",
+			"type": "number | string",
+			"default": "1",
+			"description": "One-based number of the currently active page. Defaults to `1`.",
+			"code": {
+				"prop": "currentPage",
+				"type": "number | string"
+			},
+			"design": {
+				"name": null,
+				"note": "No variant property in Figma. The Figma Position property (Start, Center, End) is the visual result of currentPage sitting at the start, in the middle or at the end of the range; in code the position follows from currentPage and is not set separately."
+			}
+		},
+		{
+			"name": "totalCount",
+			"type": "number | string",
+			"default": "0",
+			"description": "Total number of items across all pages. Defaults to `0`.",
+			"code": {
+				"prop": "totalCount",
+				"type": "number | string"
+			},
+			"design": null
+		},
+		{
+			"name": "pageSize",
+			"type": "number | string",
+			"default": "10",
+			"description": "Number of items displayed on one page. Defaults to `10`.",
+			"code": {
+				"prop": "pageSize",
+				"type": "number | string"
+			},
+			"design": null
+		},
+		{
+			"name": "siblingCount",
+			"type": "number | string",
+			"default": "1",
+			"description": "Number of page buttons shown on each side of the current page.",
+			"code": {
+				"prop": "siblingCount",
+				"type": "number | string"
+			},
+			"design": null
+		},
+		{
+			"name": "boundaryCount",
+			"type": "number | string",
+			"default": "1",
+			"description": "Number of page buttons always shown at the start and end.",
+			"code": {
+				"prop": "boundaryCount",
+				"type": "number | string"
+			},
+			"design": null
+		},
+		{
+			"name": "hrefPattern",
+			"type": "string",
+			"description": "URL template that turns the pages into links, for example `?page={page}`. `{page}` is replaced with the page number. Without it the component renders buttons and stays fully controlled.",
+			"code": {
+				"prop": "hrefPattern",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"default": "Pagination",
+			"description": "Accessible label for the pagination navigation landmark.",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "previousLabel",
+			"type": "string",
+			"default": "Previous page",
+			"description": "Accessible label for the previous-page button.",
+			"code": {
+				"prop": "previousLabel",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "nextLabel",
+			"type": "string",
+			"default": "Next page",
+			"description": "Accessible label for the next-page button.",
+			"code": {
+				"prop": "nextLabel",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "pageLabel",
+			"type": "string",
+			"default": "Page {page} of {totalPages}",
+			"description": "Accessible page-button label. `{page}` and `{totalPages}` are replaced.",
+			"code": {
+				"prop": "pageLabel",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["medium", "small"],
+			"default": "medium",
+			"description": "The size attribute changes the font-size and other related sizes of the component.",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": null,
+				"note": "Not a variant property in Figma. Medium and Small are modelled as two separate main components (Pagination - (Def) Medium, Pagination - Small), which lets the Children slot restrict insertion to the matching item set. The size is therefore implicit in the chosen component and is carried into code by the Code Connect definition of that component, not by a Figma property."
+			}
+		},
+		{
+			"name": "onPageChange",
+			"type": "function",
+			"description": "Informs the parent that a different page was requested. The parent must update `currentPage`; the component never changes it internally.",
+			"code": {
+				"prop": "onPageChange",
+				"type": "(page: number) => void"
+			},
+			"design": null
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"note": "Figma-only. Holds the Pagination Items between the two arrows, both the page items and the truncations. The slot restricts insertion to the item set of the matching size (allowPreferredValuesOnly) and requires at least two items (minChildren). In code the items are computed by DBPagination from currentPage, totalCount, pageSize, siblingCount and boundaryCount and cannot be composed by consumers."
+			}
+		},
+		{
+			"name": "position",
+			"type": "enum",
+			"values": ["start", "center", "end"],
+			"default": "start",
+			"code": null,
+			"design": {
+				"name": "🔀 Position",
+				"values": ["(Def) Start", "Center", "End"],
+				"note": "Figma-only. Shows the three states the range takes when the current page sits at the start, the middle or the end. In code there is no position property; the layout follows from currentPage relative to totalCount and pageSize."
+			}
+		}
+	]
+}

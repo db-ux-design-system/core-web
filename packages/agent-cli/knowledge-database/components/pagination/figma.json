@@ -1,0 +1,22 @@
+{
+	"component": "pagination",
+	"library": "core-components",
+	"pageId": "40157:4859",
+	"pageName": "Pagination (Beta)",
+	"componentSets": [
+		{
+			"name": "Pagination - (Def) Medium (Beta)",
+			"nodeId": "40157:4967",
+			"type": "COMPONENT_SET",
+			"key": "208564656d1dd19b526bf3fe1dc5d9bd2269aabe"
+		},
+		{
+			"name": "Pagination - Small (Beta)",
+			"nodeId": "40266:966",
+			"type": "COMPONENT_SET",
+			"key": "76a162f1462e64bd507e847198ad3fc4d84773f9"
+		}
+	],
+	"subComponents": ["pagination-item"],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--pagination-beta' (fileKey FCa6P77h0VdXbs3bY9a4UD, Branch von core-components mlJ6R0GkfR15a93KSlqXtB). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Anlegen dieser Komponente entfernt wurde. Die beiden Größen sind als getrennte Hauptkomponenten modelliert, analog zu Link, Infotext und Checkbox. Damit kann der Children-Slot die Einsetzbarkeit auf das Item-Set der passenden Größe begrenzen (allowPreferredValuesOnly) und mindestens zwei Items verlangen (minChildren). Eine Size-Property tragen die Komponenten nicht; die Größe steckt in der Wahl der Komponente und wird über Code Connect übergeben. Einzige Achse ist 🔀 Position mit drei Werten, also je drei Varianten. Die Hauptkomponenten sind Slot-Komponenten: die beiden Pfeile (Icon Button Ghost) rahmen den Children-Slot ein, in den die Designer die Pagination Items legen; im Code berechnet DBPagination die Items aus den Properties. Die Truncation ist keine eigene Komponente, sondern die Variante Type=Truncation von Pagination Item."
+}
