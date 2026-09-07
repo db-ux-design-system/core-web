@@ -14,7 +14,7 @@ export default function DBFooterContent(props: DBFooterContentProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-footer-content', props.className)}>
-			<div class="db-footer-content-container">{props.children}</div>
+			<div class="db-footer-container">{props.children}</div>
 		</div>
 	);
 }

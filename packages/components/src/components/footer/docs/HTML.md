@@ -9,7 +9,7 @@ Compose the visual content and meta wrappers inside a native footer. The meta wr
 	<main class="db-main">Page content</main>
 	<footer class="db-footer" data-width="medium">
 		<div class="db-footer-content">
-			<div class="db-footer-content-container">
+			<div class="db-footer-container">
 				<nav aria-label="Footer navigation">
 					<ul>
 						<li>
@@ -27,30 +27,22 @@ Compose the visual content and meta wrappers inside a native footer. The meta wr
 			</div>
 		</div>
 		<div class="db-footer-meta">
-			<div class="db-footer-content-container">
-				<div class="db-footer-meta-inner">
-					<p class="db-footer-copyright">© Example Company</p>
-					<nav aria-label="Legal navigation">
-						<ul>
-							<li>
-								<a
-									class="db-link"
-									data-wrap="true"
-									href="/privacy"
-									>Privacy</a
-								>
-							</li>
-							<li>
-								<a
-									class="db-link"
-									data-wrap="true"
-									href="/imprint"
-									>Imprint</a
-								>
-							</li>
-						</ul>
-					</nav>
-				</div>
+			<div class="db-footer-container">
+				<p class="db-footer-copyright">&copy;&nbsp;Example Company</p>
+				<nav aria-label="Legal navigation">
+					<ul>
+						<li>
+							<a class="db-link" data-wrap="true" href="/privacy"
+								>Privacy</a
+							>
+						</li>
+						<li>
+							<a class="db-link" data-wrap="true" href="/imprint"
+								>Imprint</a
+							>
+						</li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</footer>

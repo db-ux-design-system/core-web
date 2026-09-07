@@ -9,7 +9,7 @@ import { DBFooter, DBFooterMeta } from "@db-ux/v-core-components";
 
 <template>
 	<DBFooter>
-		<DBFooterMeta copyright="© Example Company">
+		<DBFooterMeta copyright="Example Company">
 			<nav aria-label="Legal navigation">...</nav>
 		</DBFooterMeta>
 	</DBFooter>

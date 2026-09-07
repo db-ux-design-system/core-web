@@ -19,13 +19,11 @@ export default function DBFooterMeta(props: DBFooterMetaProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-footer-meta', props.className)}>
-			<div class="db-footer-content-container">
-				<div class="db-footer-meta-inner">
-					<Show when={props.copyright}>
-						<p class="db-footer-copyright">{props.copyright}</p>
-					</Show>
-					{props.children}
-				</div>
+			<div class="db-footer-container">
+				<Show when={props.copyright}>
+					<p class="db-footer-copyright">©&nbsp;{props.copyright}</p>
+				</Show>
+				{props.children}
 			</div>
 		</div>
 	);

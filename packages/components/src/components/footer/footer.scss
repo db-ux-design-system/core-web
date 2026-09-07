@@ -4,21 +4,21 @@
 	flex-direction: column;
 	inline-size: 100%;
 
-	.db-footer-content-container {
+	.db-footer-container {
 		inline-size: 100%;
 		margin-inline: auto;
 		min-inline-size: 0;
 	}
 
-	&[data-width="small"] .db-footer-content-container {
+	&[data-width="small"] .db-footer-container {
 		max-inline-size: screen-sizes.$db-breakpoint-sm;
 	}
 
-	&[data-width="medium"] .db-footer-content-container {
+	&[data-width="medium"] .db-footer-container {
 		max-inline-size: screen-sizes.$db-breakpoint-md;
 	}
 
-	&[data-width="large"] .db-footer-content-container {
+	&[data-width="large"] .db-footer-container {
 		max-inline-size: screen-sizes.$db-breakpoint-lg;
 	}
 }

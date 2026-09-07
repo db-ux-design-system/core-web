@@ -254,7 +254,7 @@
  * variant becomes that percentage. DBFooterContent and DBFooterMeta both use this
  * container, so content and meta stay aligned.
  */
-.footer-width-example .db-footer-content-container {
+.footer-width-example .db-footer-container {
 	font-size: 1cqw;
 }
 
@@ -262,7 +262,7 @@
  * The tiny font-size must not reach the content. Resetting the direct children is
  * enough, because font-size inheritance carries the normal value further down.
  */
-.footer-width-example .db-footer-content-container > * {
+.footer-width-example .db-footer-container > * {
 	font-size: 1rem;
 }
 

@@ -32,7 +32,7 @@ import {
 						</ul>
 					</nav></DBFooterContent
 				>
-				<DBFooterMeta copyright="© Example Company"
+				<DBFooterMeta copyright="Example Company"
 					><nav aria-label="Legal navigation">
 						<ul>
 							<li>

@@ -29,7 +29,7 @@ DBFooter is a new composable wrapper for replacing custom footer implementations
 					</ul>
 				</nav>
 			</DBFooterContent>
-			<DBFooterMeta copyright="© Example Company">
+			<DBFooterMeta copyright="Example Company">
 				<nav aria-label="Legal navigation">
 					<ul>
 						<li>

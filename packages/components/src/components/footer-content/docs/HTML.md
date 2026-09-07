@@ -5,7 +5,7 @@ Use `.db-footer-content` as the primary visual area inside a native `.db-footer`
 ```html index.html
 <footer class="db-footer">
 	<div class="db-footer-content">
-		<div class="db-footer-content-container">
+		<div class="db-footer-container">
 			<nav aria-label="Footer navigation">...</nav>
 		</div>
 	</div>

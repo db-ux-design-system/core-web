@@ -19,7 +19,7 @@ export default function FooterCopyright() {
 				width: '100%'
 			}}>
 			<DBFooter>
-				<DBFooterMeta copyright="© Example Company">
+				<DBFooterMeta copyright="Example Company">
 					<nav aria-label="Legal navigation with copyright">
 						<ul
 							style={{

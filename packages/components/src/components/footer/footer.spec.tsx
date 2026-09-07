@@ -22,7 +22,7 @@ const comp: any = (
 				</ul>
 			</nav>
 		</DBFooterContent>
-		<DBFooterMeta copyright="© Example Company">
+		<DBFooterMeta copyright="Example Company">
 			<nav aria-label="Legal navigation">
 				<ul>
 					<li>
@@ -73,7 +73,7 @@ const testComponent = () => {
 				expect(areaWidth).toBeCloseTo(footerWidth, 1);
 
 				const measurement = await areaLocator
-					.locator('.db-footer-content-container')
+					.locator('.db-footer-container')
 					.evaluate((element) => {
 						const parent = element.parentElement;
 						if (!parent) {
@@ -171,11 +171,13 @@ const testComponent = () => {
 
 		const withCopyright = await mount(
 			<DBFooter>
-				<DBFooterMeta copyright="© Example Company">Meta</DBFooterMeta>
+				<DBFooterMeta copyright="Example Company">Meta</DBFooterMeta>
 			</DBFooter>
 		);
+		// The component prepends the symbol and a non-breaking space, so the
+		// rendered text differs from the plain holder passed as the property.
 		await expect(withCopyright.locator('.db-footer-copyright')).toHaveText(
-			'© Example Company'
+			'\u00A9\u00A0Example Company'
 		);
 	});
 

@@ -10,16 +10,21 @@
 	padding-block: variables.$db-spacing-fixed-xs;
 	padding-inline: variables.$db-spacing-fixed-lg;
 
-	.db-footer-meta-inner {
+	/*
+	 * The shared width container doubles as the meta row. It already carries
+	 * the width clamp of the footer variant, so a separate flex wrapper would
+	 * only add a box without adding behaviour. `min-inline-size: 0` comes from
+	 * the container rule in footer.scss.
+	 */
+	.db-footer-container {
 		@include helpers.display(flex);
 
 		align-items: center;
 		flex-wrap: wrap;
 		gap: variables.$db-spacing-fixed-lg;
-		min-inline-size: 0;
 	}
 
-	.db-footer-meta-inner > :not(.db-footer-copyright) {
+	.db-footer-container > :not(.db-footer-copyright) {
 		flex: 1 1 auto;
 		max-inline-size: 100%;
 		min-inline-size: 0;

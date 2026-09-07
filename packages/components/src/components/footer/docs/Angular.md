@@ -28,7 +28,7 @@ import {
 					</ul>
 				</nav></db-footer-content
 			>
-			<db-footer-meta copyright="© Example Company"
+			<db-footer-meta copyright="Example Company"
 				><nav aria-label="Legal navigation">
 					<ul>
 						<li><db-link wrap href="/privacy">Privacy</db-link></li>

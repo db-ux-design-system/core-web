@@ -8,7 +8,7 @@ import { DBFooter, DBFooterMeta } from "@db-ux/ngx-core-components";
 @Component({
 	imports: [DBFooter, DBFooterMeta],
 	template: `<db-footer>
-		<db-footer-meta copyright="© Example Company">
+		<db-footer-meta copyright="Example Company">
 			<nav aria-label="Legal navigation">...</nav>
 		</db-footer-meta>
 	</db-footer>`
