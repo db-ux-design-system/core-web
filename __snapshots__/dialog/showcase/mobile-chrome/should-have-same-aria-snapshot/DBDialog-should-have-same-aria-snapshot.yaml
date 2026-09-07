@@ -18,6 +18,7 @@
   - 'button "Open: With start slot"'
   - 'button "Open: With end slot"'
   - 'button "Open: With footer"'
+  - 'button "Open: With header subtitle"'
   - link "JS Events on console"
   - button "Open Dialog"
   - button "Open Dialog"
