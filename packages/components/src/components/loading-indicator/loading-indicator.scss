@@ -142,6 +142,7 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 
 	svg {
 		aspect-ratio: 1;
+		min-inline-size: 1lh;
 		inline-size: var(--db-loading-indicator-spinner-inline-size, 1lh);
 	}
 
@@ -521,14 +522,15 @@ $progress-bar-full-segment-inline-size: calc(
 		@extend %progress-bar;
 
 		// The bar variant is full width by default (data-width unset or "full")
-		// so the track spans its container; "auto" lets it shrink to content.
+		// so the track spans its container; "auto" shrinks to content while the
+		// min-inline-size keeps the track from collapsing below db-sizing-xl.
 		&:not([data-width]),
 		&[data-width="full"] {
 			inline-size: 100%;
 		}
 
 		&[data-width="auto"] {
-			inline-size: auto;
+			inline-size: fit-content;
 		}
 	}
 

@@ -5,7 +5,7 @@ import { StorybookLoadingIndicatorArgTypes } from './_loading-indicator.arg.type
 
 useMetadata({
 	storybookTitle: 'Width',
-	storybookNames: ['(Default) Full', 'Auto'],
+	storybookNames: ['(Default) Full: Bar', 'Auto: Bar'],
 	storybookArgTypes: StorybookLoadingIndicatorArgTypes
 });
 
@@ -19,12 +19,15 @@ export default function LoadingIndicatorWidth() {
 				icon="none">
 				(Default) Full
 			</DBInfotext>
-			<DBLoadingIndicator
-				variant="bar"
-				width="full"
-				progressText="42 of 100">
-				Bar
-			</DBLoadingIndicator>
+			<div style={{ inlineSize: '200px' }} data-sb-ignore="true">
+				<DBLoadingIndicator
+					variant="bar"
+					width="full"
+					progressText="42 of 100">
+					Bar
+				</DBLoadingIndicator>
+			</div>
+
 			<i class="line-break" data-sb-ignore="true" />
 			<DBInfotext
 				data-sb-ignore="true"
@@ -33,12 +36,14 @@ export default function LoadingIndicatorWidth() {
 				icon="none">
 				Auto
 			</DBInfotext>
-			<DBLoadingIndicator
-				variant="bar"
-				width="auto"
-				progressText="42 of 100">
-				Bar
-			</DBLoadingIndicator>
+			<div style={{ inlineSize: '200px' }} data-sb-ignore="true">
+				<DBLoadingIndicator
+					variant="bar"
+					width="auto"
+					progressText="42 of 100">
+					Bar
+				</DBLoadingIndicator>
+			</div>
 		</Fragment>
 	);
 }
