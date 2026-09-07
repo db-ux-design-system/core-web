@@ -216,8 +216,7 @@
         - link "Page 4 of 10"
           - text: "4"
       - listitem:
-        - link "Page 5 of 10"
-          - text: "5"
+        - button "Page 5 of 10": "5"
       - listitem:
         - link "Page 6 of 10"
           - text: "6"
@@ -232,8 +231,7 @@
       - listitem:
         - button "Previous page" [disabled]
       - listitem:
-        - link "Page 1 of 10"
-          - text: "1"
+        - button "Page 1 of 10": "1"
       - listitem:
         - link "Page 2 of 10"
           - text: "2"
