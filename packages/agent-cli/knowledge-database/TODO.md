@@ -64,20 +64,21 @@ Regel 3 von `components/shell/shell-content/guidelines.md` steuert eine Mengenen
 
 Der übrige Bestand ist erledigt: Shell Desktop nennt vier Navigation Items für Control Panel Left und sechs für Sub Navigation Left, Shell Sub Navigation höchstens fünf Navigation Items auf Mobile, Control Panel Navigation acht beziehungsweise sieben Navigation Items je Ebene, und Control Panel Actions höchstens eine Hauptaktion und höchstens vier Utility-Aktionen. Offen ist damit nur noch Shell Content Regel 3.
 
-### 11. Loading Indicator: offene Werte in den Regeln, Figma-IDs, Dev-Handoff
+### 11. Loading Indicator: Figma-IDs, Dev-Handoff
 
-Betrifft `components/loading-indicator`, angelegt aus dem Figma Feature Branch `feat--loading-indicator-beta` (fileKey `fQ8J3a8W9ZQEc6Ba0CaE4f`, Branch von `mlJ6R0GkfR15a93KSlqXtB`). Die `guidelines.md` ist mit neun Regeln ausgearbeitet, es gibt aber weder Code noch eine Doku-Seite. Jede Regel in der Datei lässt sich als Do-Dont-Paar oder mit einer Caution zeigen; drei ursprünglich formulierte Anforderungen sind daran gescheitert und stehen unten. Offene Punkte sind hier vermerkt und nicht in der `guidelines.md`, weil diese keine Arbeitsnotizen trägt.
-
-- **Zeitschwelle und monotoner Fortschritt: Zielort mit Dev klären.** Zwei Anforderungen sind aus der `guidelines.md` herausgenommen, weil sie sich nicht als Do-Dont-Paar zeigen lassen: ein Standbild kann keine Dauer und keinen fallenden Wert darstellen, das Dont wäre jeweils von der zulässigen Nutzung nicht unterscheidbar. Beide sind Dev-relevant, der Zielort ist noch offen.
-    - **Zeitschwelle.** Loading Indicator erst einblenden, wenn die Wartezeit eine Sekunde überschreitet, bei kürzeren Vorgängen entfällt er, weil ein aufblitzender Indikator als Fehler gelesen wird. Die Sekunde ist die einzige Grenze, die die recherchierten Design Systeme teilen: Fluent 2 zeigt unter einer Sekunde nichts, eine bis drei Sekunden einen Spinner, darüber eine Fortschrittsanzeige; Carbon nennt für seinen Loading-Spinner drei Sekunden; GitLab verzögert die Einblendung um 100 ms.
-    - **Monotoner Fortschritt.** Determinierten Fortschritt nur vorwärts führen, von 0 Prozent bis 100 Prozent, einen erreichten Wert nie verringern und nie zurücksetzen. Carbon führt das als Eigenschaft der determinierten Variante, ebenfalls ohne Do-Dont-Paar.
-- **Label-Verhalten hängt am Helper Text.** Carbon hält das Label während des Ladens konstant und trägt Abschluss und Fehlergrund im Helper Text. Unsere Figma-Komponente hat keinen Helper Text, nur `label` und `progress`, deshalb wechselt das `label` bei uns mit dem Zustand. Sobald mit Dev geklärt ist, ob ein Helper Text dazukommt, Regel 6 und Regel 7 daran anpassen.
 - **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell und Control Panel: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Betrifft die vier Einträge in `componentSets` und die sechs in `helperComponents`.
 - **`code` und `description` beim Dev-Handoff füllen.** Alle Properties tragen `code: null`, weil noch keine `model.ts` existiert. Vorher ist zu klären, ob `type` und `indeterminate` Props werden oder getrennte Komponenten, siehe `figma-findings.md`.
 
+### 12. Pagination: Figma-IDs und Properties nach dem Merge verifizieren
+
+Betrifft `components/pagination` und `components/pagination/pagination-item`, angelegt aus dem Figma Feature Branch `feat--pagination-beta` (fileKey `FCa6P77h0VdXbs3bY9a4UD`, Branch von core-components `mlJ6R0GkfR15a93KSlqXtB`) und dem Umsetzungsstand aus dem noch offenen Core-Web-Pull-Request zur Beta-Komponente. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Anlegen entfernt wurde.
+
+- **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell, Control Panel und Loading Indicator: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Betrifft die zwei Einträge in `componentSets` der Elternkomponente und die zwei Sets von Pagination Item. Zusätzlich prüfen, ob das vormalige Helper-Set `🛟 Pagination Truncation Item - Small` endgültig verschwunden ist: es hatte nach dem Zusammenlegen keinen Parent mehr und lag auf keiner Seite, wurde von der Plugin-API aber noch nicht als entfernt gemeldet.
+- **Property-Namen und Defaults nach dem Merge des Pull Requests prüfen.** Die `properties.json` beider Ordner ist aus der `model.ts` und den `useDefaultProps` des Feature-Branch gefüllt. Solange der Pull Request offen ist, können sich Namen und Defaults noch ändern; nach dem Merge gegen `main` abgleichen.
+
 ## Foundations
 
-### 12. Auswahlkriterien innerhalb der Skalen ergänzen
+### 13. Auswahlkriterien innerhalb der Skalen ergänzen
 
 Für `border-radius` und `container` ist geregelt, dass ausschließlich Tokens verwendet werden, und bei `border-radius` zusätzlich, dass `full` der Pill-/Kreisfall ist. Offen bleibt, welche Stufe der Skala wann zu wählen ist — das ist eine Design-Entscheidung.
 
@@ -88,13 +89,13 @@ Als Anhaltspunkt, wie Core die Stufen aktuell belegt:
 
 ## Icons
 
-### 13. Anleitung zur lokalen Einbindung ergänzen
+### 14. Anleitung zur lokalen Einbindung ergänzen
 
 Von Dev: Wie werden Icons lokal eingebunden/installiert (inner source, Font-Setup)?
 
 ## Tooling
 
-### 14. `lint:codespell` für die deutschsprachige Wissensbasis klären
+### 15. `lint:codespell` für die deutschsprachige Wissensbasis klären
 
 Von Dev zu entscheiden, sobald klar ist, wo die Wissensbasis dauerhaft liegt.
 
@@ -107,7 +108,7 @@ Zwei Optionen:
 
 ## Generierung und Doku-Konventionen
 
-### 15. Property-Werte in Guidelines konsequent in Backticks setzen
+### 16. Property-Werte in Guidelines konsequent in Backticks setzen
 
 Die Konvention steht bereits in `writing-conventions.md` („Property-Werte werden mit ihrem kanonischen Namen in Backticks referenziert"), ist aber noch nicht überall durchgesetzt. Der generelle Bestand wurde im Language Review unter Finding A4 bereinigt (`custom-select-dropdown`, `transition`).
 
@@ -115,7 +116,7 @@ Offen sind die Guidelines von Shell und Control Panel: dort stehen Variantenwert
 
 Pro Vorkommen entscheiden, nicht pauschal ersetzen: Nur echte Property-Werte bekommen Backticks. Komponentennamen (z. B. Popover als Komponente), Markdown-Links und reine Richtungsangaben bleiben unquotiert. Nach der Umbenennungsrunde im Design sind Variantenwerte und Component-Set-Namen einheitlich mit Leerzeichen geschrieben (`Drill Down`, `Flat Icon`), Doppeldeutigkeiten sind damit weg.
 
-### 16. `documentation.json` für alle Stable- und Beta-Komponenten erstellen
+### 17. `documentation.json` für alle Stable- und Beta-Komponenten erstellen
 
 Aktuell nur als Prototyp bei Button vorhanden. Muss für alle Komponenten mit Status `stable` oder `beta` aus der jeweiligen `guidelines.md` generiert werden. Voraussetzung: `guidelines.md` ist ausgearbeitet (nicht `pending`). Vorgehen siehe README-Abschnitt „Generierung der documentation.json".
 
@@ -123,11 +124,11 @@ Ausgenommen sind Komponenten mit `deprecation: "deprecated"` in der `meta.json` 
 
 Bei Shell und Control Panel hatte `control-panel-brand` als einzige Komponente noch keine `documentation.json`, weil zunächst keine Doku-Seite dafür bekannt war. Die Doku-Seite existiert inzwischen (`pElrqVUyojrzYzSagyJPS6`, Node `4006:3`) und wurde am 2026-08-11 ausgelesen, die Datei ist erzeugt.
 
-### 17. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
+### 18. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
 
 Welche Artefakte sich zukünftig aus der Wissensbasis generieren lassen, anstatt parallel gepflegt zu werden — z.B. Storybook-Dokumentation (Props-Tabellen, Controls, Beschreibungen) oder Teile der Plattform-Dokumentation. Voraussetzung: Props, Slots, Events und Guidelines vollständig in der Wissensbasis.
 
-### 18. Accessibility als eigener Bereich in der Komponenten-Doku
+### 19. Accessibility als eigener Bereich in der Komponenten-Doku
 
 Barrierefreiheits-Anforderungen lassen sich oft nicht als Do-Dont-Paar im Layout zeigen, weil sie an Werten hängen, die im Screenshot nicht sichtbar sind. Dafür braucht die Komponenten-Doku einen eigenen Bereich neben Guidelines und Examples, dessen Einträge ohne Visual funktionieren.
 
@@ -137,18 +138,38 @@ Bei `loading-indicator` sind es zwei Anforderungen. Erstens `label` auch bei `sh
 
 Beim Aufbau des Bereichs diese Regeln als erste Einträge übernehmen und prüfen, welche weiteren Komponenten Anforderungen tragen, die aus demselben Grund bisher fehlen.
 
-### 19. Figma-Learn-Einträge und Verweise darauf
+### 20. Figma-Learn-Einträge und Verweise darauf
 
 Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Komponenten-Doku, sondern nach Figma Learn. Die Komponentenseite verweist dann darauf, statt den Inhalt zu wiederholen.
 
 - **End Slot des Navigation Items.** Wofür der End Slot gedacht ist, steht bisher nirgends — anders als bei `control-panel-brand`, wo eine Regel den End Slot auf Umgebungs-Informationen begrenzt. Das Floating Item wird in Figma Learn dokumentiert und von der Seite `control-panel-navigation-item` verlinkt. Bis dahin bleibt in der `guidelines.md` nur der Verfügbarkeitsfakt, dass Popover-Items keinen End Slot haben und Tree- und Drill-Down-Items einen.
 - **Manuell zu setzende Texte.** In Figma müssen Texte wie das Label des CP Back Buttons oder der Anwendungsname in CP Brand von Hand gesetzt werden, in Dev entstehen sie automatisch. Gleicher Output, anderer Weg — deshalb keine Inkonsistenz im Sinne von `inconsistencies.md`, aber erklärungsbedürftig für Designer:innen.
+- **Children-Slot der Pagination füllen.** Diese Aussagen standen als Regeln in `components/pagination/guidelines.md` und sind dort entfernt, weil sie im Code keine Entscheidung sind: Die Items werden von `DBPagination` berechnet. Für Figma bleiben sie nötig.
+    - Pro wählbarer Seite genau ein Pagination Item einsetzen und die Seitenzahlen aufsteigend anordnen.
+    - Genau ein Item auf `🔀 Current` mit dem Wert `True` setzen.
+    - Die Auslassung über `🔀 Type` mit dem Wert `Truncation` erzeugen, nicht über eine eigene Komponente.
+    - Je Hauptkomponente ist nur das Item-Set der passenden Größe einsetzbar, der Slot erzwingt das über `allowPreferredValuesOnly`. Mindestens zwei Items sind nötig.
+    - Kombinationen von `🔀 Type` mit dem Wert `Truncation` und einem Interaktionszustand oder `🔀 Current` mit dem Wert `True` lösen keine eigene Variante auf.
 
 Beim Anlegen der Learn-Einträge prüfen, welche weiteren Aussagen aus den Guidelines dorthin gehören, statt in `## Zusätzliche Informationen` zu stehen.
 
+### 21. Regelformulierung über alle Komponenten hinweg vereinheitlichen
+
+Die Regeln sind im Bestand in drei Stilen geschrieben. `writing-conventions.md` gibt unter „Formulierung in `## Regeln`" den eigenen Satz für Begründungen vor; ein Teil der Dateien folgt dem nicht.
+
+- **Begründung als eigener Satz** (konventionskonform): `loading-indicator`, `pagination`.
+- **Begründung mit Komma am selben Satz**: `shell-desktop`, `footer`, `control-panel-navigation-item`.
+- **Ohne Begründung, teils verblose Telegramme nach `**sollte**`**: `button`, `link`, `badge`, `checkbox`, `infotext`, `notification`, `section`. Diese Dateien formulieren überwiegend Auswahlkriterien statt Verbote, wo das Kriterium den Inhalt trägt und kein Warum nötig ist.
+
+Beim Durchgehen entscheiden, ob der eigene Satz die Zielform bleibt oder die Komma-Variante, und die abweichenden Dateien darauf umstellen. Fällt die Entscheidung gegen die Konvention, wird zuerst `writing-conventions.md` geändert.
+
+**Aus diesem Punkt dürfen sich keine inhaltlichen Änderungen ergeben, die die Texte der `documentation.json` betreffen.** Zulässig sind Satzbau, Zeichensetzung und die Konstruktion nach dem `**sollte**`-Marker. Nicht zulässig sind das Ergänzen oder Streichen von Begründungen, das Zusammenlegen oder Teilen von Regeln und geänderte Schwellwerte, weil daraus andere Do-, Dont- und Caution-Texte entstehen.
+
+Die fehlenden Begründungen der älteren Dateien sind deshalb kein Teil dieses Punkts. Sie werden erst entschieden, wenn für die jeweilige Komponente die `documentation.json` erzeugt wird, siehe Punkt 17.
+
 ## Platform-Repo
 
-### 20. Tonalitätsregeln aus `_platform-steering/` zurückspielen
+### 22. Tonalitätsregeln aus `_platform-steering/` zurückspielen
 
 Der Ordner [`_platform-steering/`](_platform-steering/README.md) enthält eine temporäre Arbeitskopie der Steering-Dateien aus `db-ux-design-system.github.io`. Lücken, die beim Generieren der `documentation.json` auffallen, werden dort ergänzt und gesammelt in das Platform-Repo integriert, statt pro Fund zwischen den Repos zu wechseln.
 
