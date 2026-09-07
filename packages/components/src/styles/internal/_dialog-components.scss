@@ -12,7 +12,7 @@ $container-size-scale: (
 );
 
 // The components that share this layer. $prefix composes custom-property and
-// selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-container),
+// selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-content),
 // so a typo would silently emit wrong-but-valid CSS instead of failing. Every
 // mixin below validates its $prefix against this set.
 $known-prefixes: "drawer", "dialog";
@@ -73,7 +73,7 @@ $known-prefixes: "drawer", "dialog";
 
 		@include helpers.divider("bottom");
 
-		.db-#{$prefix}-header-container {
+		.db-#{$prefix}-header-content {
 			display: flex;
 			align-items: center;
 			gap: variables.$db-spacing-fixed-xs;

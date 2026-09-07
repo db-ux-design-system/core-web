@@ -38,7 +38,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 		aria-labelledby="my-dialog-heading"
 	>
 		<div class="db-dialog-header">
-			<header id="my-dialog-heading" class="db-dialog-header-container">
+			<header id="my-dialog-heading" class="db-dialog-header-content">
 				<h2>Dialog title</h2>
 			</header>
 			<button
@@ -82,7 +82,7 @@ all of its submit buttons.
 <!-- index.html -->
 <dialog id="my-dialog" class="db-dialog">
 	<div class="db-dialog-header">
-		<header id="my-dialog-heading" class="db-dialog-header-container">
+		<header id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Dialog title</h2>
 		</header>
 		<button
@@ -122,7 +122,7 @@ and associate a footer submit button with it through the `form` attribute refere
 <!-- index.html -->
 <dialog id="my-dialog" class="db-dialog">
 	<div class="db-dialog-header">
-		<header id="my-dialog-heading" class="db-dialog-header-container">
+		<header id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Rename entry</h2>
 		</header>
 	</div>
@@ -208,7 +208,7 @@ After, with the dialog:
 	aria-labelledby="my-dialog-heading"
 >
 	<div class="db-dialog-header">
-		<header id="my-dialog-heading" class="db-dialog-header-container">
+		<header id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Dialog title</h2>
 		</header>
 		<button

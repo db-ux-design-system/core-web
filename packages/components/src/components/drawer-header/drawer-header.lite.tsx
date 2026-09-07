@@ -59,8 +59,8 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-drawer-header', props.className)}>
-			<header id={state._headingId} class="db-drawer-header-container">
-				<Slot name="startSlot" />
+			<Slot name="startSlot" />
+			<header id={state._headingId} class="db-drawer-header-content">
 				<Show when={props.text} else={props.children}>
 					<h2>{props.text}</h2>
 				</Show>

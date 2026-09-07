@@ -61,8 +61,8 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 			ref={_ref}
 			id={props.id || props.propOverrides?.id}
 			class={cls('db-dialog-header', props.className)}>
-			<header id={state._headingId} class="db-dialog-header-container">
-				<Slot name="startSlot" />
+			<Slot name="startSlot" />
+			<header id={state._headingId} class="db-dialog-header-content">
 				<Show when={props.text} else={props.children}>
 					<h2>{props.text}</h2>
 				</Show>
