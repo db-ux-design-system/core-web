@@ -13,6 +13,7 @@ import LoadingIndicatorSize from '../examples/size.example.lite';
 import LoadingIndicatorStateDeterminate from '../examples/state.determinate.example.lite';
 import LoadingIndicatorState from '../examples/state.example.lite';
 import LoadingIndicatorTimeout from '../examples/timeout.example.lite';
+import LoadingIndicatorWidth from '../examples/width.example.lite';
 
 export default function LoadingIndicatorShowcase(props: PatternhubProps) {
 	return (
@@ -32,6 +33,11 @@ export default function LoadingIndicatorShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Size">
 				<CardWrapperShowcase>
 					<LoadingIndicatorSize />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Width">
+				<CardWrapperShowcase>
+					<LoadingIndicatorWidth />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="State">

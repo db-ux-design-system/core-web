@@ -59,6 +59,7 @@ export default function DBButton(props: DBButtonProps) {
 			value={props.value}
 			command={props.command}
 			commandfor={props.commandfor}>
+			<Slot name="startSlot" />
 			<Show when={props.text}>{props.text}</Show>
 			{props.children}
 		</button>

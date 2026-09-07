@@ -5,7 +5,8 @@ import {
 	InitializedState,
 	OrientationProps,
 	ShowLabelProps,
-	SizeProps
+	SizeProps,
+	SizeType
 } from '../../shared/model';
 
 export const LoadingIndicatorVariantList = ['bar', 'circular'] as const;
@@ -50,6 +51,20 @@ export type DBLoadingIndicatorDefaultProps = {
 	 * Triggers after a timeout. For "active" after 5 seconds, for "successful" and "critical" after 2 seconds
 	 */
 	onTimeout?: (state?: LoadingIndicatorStateType | string) => void;
+
+	/**
+	 * The size attribute changes the font-size and other related sizes of the component.
+	 */
+	size?: SizeType | 'large';
+
+	/**
+	 * The timeout attribute specifies the time in milliseconds before the loading indicator triggers the onTimeout event. Default is 2000ms.
+	 */
+	timeout?: number | string;
+	/**
+	 * The timeoutActive attribute specifies the time in milliseconds before the loading indicator triggers the onTimeout event when the state is "active". Default is 5000ms.
+	 */
+	timeoutActive?: number | string;
 };
 
 export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
@@ -57,6 +72,7 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	SizeProps &
 	ShowLabelProps &
 	OrientationProps &
+	WidthProps &
 	DelayProps;
 
 export type DBLoadingIndicatorDefaultState = {

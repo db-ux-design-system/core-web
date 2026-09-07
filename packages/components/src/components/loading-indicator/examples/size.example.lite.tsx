@@ -11,7 +11,10 @@ useMetadata({
 		'Small: Bar',
 		'(Default) Medium: Circular horizontal',
 		'(Default) Medium: Circular vertical',
-		'(Default) Medium: Bar'
+		'(Default) Medium: Bar',
+		'Large: Circular horizontal',
+		'Large: Circular vertical',
+		'Large: Bar'
 	],
 	storybookArgTypes: StorybookLoadingIndicatorArgTypes
 });
@@ -70,6 +73,34 @@ export default function LoadingIndicatorSize() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				size="medium"
+				variant="bar"
+				progressText="42 of 100">
+				Bar
+			</DBLoadingIndicator>
+			<i class="line-break" data-sb-ignore="true" />
+			<DBInfotext
+				data-sb-ignore="true"
+				size="small"
+				semantic="informational"
+				icon="none">
+				Large
+			</DBInfotext>
+			<DBLoadingIndicator
+				size="large"
+				variant="circular"
+				orientation="horizontal"
+				progressText="42 of 100">
+				Circular horizontal
+			</DBLoadingIndicator>
+			<DBLoadingIndicator
+				size="large"
+				variant="circular"
+				orientation="vertical"
+				progressText="42%">
+				Circular vertical
+			</DBLoadingIndicator>
+			<DBLoadingIndicator
+				size="large"
 				variant="bar"
 				progressText="42 of 100">
 				Bar

@@ -150,6 +150,8 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			--radius: 6px; // This is the size based on the viewBox of the <svg>
 			--circle: 20px; // This is the size based on the viewBox of the <svg>
 			--stroke-width: 4px;
+
+			align-self: flex-start;
 		}
 
 		.db-loading-indicator-circle-segment {
@@ -157,22 +159,23 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		}
 
 		&[data-size="small"] {
-			svg {
-				@extend %db-overwrite-font-size-sm;
-			}
-
-			div > label::before {
+			svg,
+			div > :is(span, label, label::before) {
 				@extend %db-overwrite-font-size-xs;
+			}
+		}
+
+		&[data-size="large"] {
+			svg,
+			div > :is(span, label, label::before) {
+				@extend %db-overwrite-font-size-md;
 			}
 		}
 
 		&:not([data-size]),
 		&[data-size="medium"] {
-			svg {
-				@extend %db-overwrite-font-size-md;
-			}
-
-			div > label::before {
+			svg,
+			div > :is(span, label, label::before) {
 				@extend %db-overwrite-font-size-sm;
 			}
 		}
@@ -198,6 +201,10 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 					display: none;
 				}
 			}
+		}
+
+		&[data-size="large"] {
+			--db-loading-indicator-spinner-inline-size: #{variables.$db-sizing-xl};
 		}
 
 		&:not([data-size]),
@@ -229,13 +236,22 @@ $progress-bar-full-segment-inline-size: calc(
 );
 
 %progress-bar {
-	inline-size: 100%;
+	min-inline-size: variables.$db-sizing-xl;
 
 	&[data-size="small"] {
 		div {
 			&::before,
 			&::after {
 				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-3xs};
+			}
+		}
+	}
+
+	&[data-size="large"] {
+		div {
+			&::before,
+			&::after {
+				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-xs};
 			}
 		}
 	}
@@ -503,6 +519,17 @@ $progress-bar-full-segment-inline-size: calc(
 
 	&[data-variant="bar"] {
 		@extend %progress-bar;
+
+		// The bar variant is full width by default (data-width unset or "full")
+		// so the track spans its container; "auto" lets it shrink to content.
+		&:not([data-width]),
+		&[data-width="full"] {
+			inline-size: 100%;
+		}
+
+		&[data-width="auto"] {
+			inline-size: auto;
+		}
 	}
 
 	// Delayed appearance is handled purely in CSS (shift-left): the indicator

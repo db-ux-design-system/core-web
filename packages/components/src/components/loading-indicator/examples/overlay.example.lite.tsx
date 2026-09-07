@@ -10,9 +10,7 @@ useMetadata({
 		'(Default) False: Circular horizontal',
 		'(Default) False: Circular vertical',
 		'(Default) False: Bar',
-		'True: Circular horizontal',
-		'True: Circular vertical',
-		'True: Bar'
+		'True: Circular vertical'
 	],
 	storybookArgTypes: StorybookLoadingIndicatorArgTypes
 });
@@ -59,32 +57,9 @@ export default function LoadingIndicatorOverlay() {
 				<DBLoadingIndicator
 					overlay={true}
 					variant="circular"
-					orientation="horizontal"
-					progressText="42 of 100">
-					Circular horizontal
-				</DBLoadingIndicator>
-				<p>Content 1</p>
-				<p>Content 2</p>
-				<p>Content 3</p>
-			</DBCard>
-			<DBCard>
-				<DBLoadingIndicator
-					overlay={true}
-					variant="circular"
 					orientation="vertical"
 					progressText="42%">
 					Circular vertical
-				</DBLoadingIndicator>
-				<p>Content 1</p>
-				<p>Content 2</p>
-				<p>Content 3</p>
-			</DBCard>
-			<DBCard>
-				<DBLoadingIndicator
-					overlay={true}
-					variant="bar"
-					progressText="42 of 100">
-					Bar
 				</DBLoadingIndicator>
 				<p>Content 1</p>
 				<p>Content 2</p>

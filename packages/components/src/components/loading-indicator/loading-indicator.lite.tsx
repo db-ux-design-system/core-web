@@ -193,7 +193,9 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 							props.onTimeout(state._loadingState);
 						}
 					},
-					state._loadingState === 'active' ? 5000 : 2000
+					state._loadingState === 'active'
+						? Number(props.timeoutActive ?? 5000)
+						: Number(props.timeout ?? 2000)
 				);
 			}
 		}
@@ -239,6 +241,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}
+			data-width={props.width}
 			data-orientation={props.orientation}
 			data-delay={props.delay}
 			data-state={state._loadingState}
