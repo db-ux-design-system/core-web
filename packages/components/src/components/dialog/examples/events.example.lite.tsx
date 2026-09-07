@@ -1,12 +1,13 @@
 import { Fragment, useMetadata, useState, useStore } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBDialogFooter from '../../dialog-footer/dialog-footer.lite';
 import DBDialogHeader from '../../dialog-header/dialog-header.lite';
 import DBDialog from '../dialog.lite';
 import { StorybookDialogArgTypes } from './_dialog.arg.types';
 
 useMetadata({
-	storybookTitle: 'Events',
-	storybookNames: ['Close and Cancel'],
+	storybookTitle: 'JS Events on console',
+	storybookNames: ['Close and Cancel', 'Submit form in content'],
 	storybookArgTypes: StorybookDialogArgTypes,
 	storybookOverwriteArgs: {
 		open: false
@@ -22,6 +23,11 @@ export default function DialogEvents() {
 		},
 		handleCancel: () => {
 			console.log('onCancel fired');
+		},
+		handleSubmit: (event: any) => {
+			event.preventDefault();
+			console.log('surrounding form submitted');
+			event.closest('dialog').close();
 		}
 	});
 
@@ -51,6 +57,41 @@ export default function DialogEvents() {
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
+				</DBDialog>
+			</div>
+			<div>
+				<DBButton command="show-modal" commandfor="dialog-events-form">
+					Open Dialog
+				</DBButton>
+				<DBDialog
+					id="dialog-events-form"
+					header={
+						<DBDialogHeader closeButtonText="Close">
+							Submit form in content
+						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							{/*
+							 * The submit button sits in the footer, outside the
+							 * form, and is wired to the form in the content via
+							 * the `form` attribute referencing the form `id`.
+							 */}
+							<DBButton
+								type="submit"
+								variant="brand"
+								form="dialog-events-form-content">
+								Submit
+							</DBButton>
+						</DBDialogFooter>
+					}>
+					<form
+						id="dialog-events-form-content"
+						onSubmit={(event) => state.handleSubmit(event)}>
+						<p>
+							Submitting reaches the form in the dialog content.
+						</p>
+					</form>
 				</DBDialog>
 			</div>
 		</Fragment>

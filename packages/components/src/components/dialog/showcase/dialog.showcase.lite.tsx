@@ -33,7 +33,7 @@ export default function DialogShowcase(props: PatternhubProps) {
 					<DialogAreas />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Events">
+			<LinkWrapperShowcase exampleName="JS Events on console">
 				<CardWrapperShowcase>
 					<DialogEvents />
 				</CardWrapperShowcase>
