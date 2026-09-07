@@ -28,7 +28,7 @@ const vueRuleTester = new RuleTester({
 	}
 });
 
-// Feature: dialog-component, Property 25: The dialog header lint rule reports offending usages exactly once
+// Feature: dialog-component – The dialog header lint rule reports offending usages exactly once
 //
 // The rule input space is markup, so the "generator" is a table of markup shapes per framework
 // (nesting depth, wrapper element, attribute/slot form). `RuleTester` cases are declarative, so the
@@ -248,21 +248,21 @@ const angularHeaderShapes: HeaderShape[] = [
 	}
 ];
 
-describe('dialog-header-required - Property 25', () => {
+describe('dialog-header-required', () => {
 	ruleTester.run(
-		'Property 25 (React)',
+		'React',
 		rule,
 		expandHeaderShapes(reactHeaderShapes, 'DBDialog')
 	);
 
 	vueRuleTester.run(
-		'Property 25 (Vue)',
+		'Vue',
 		rule,
 		expandHeaderShapes(vueHeaderShapes, 'DBDialog')
 	);
 
 	angularRuleTester.run(
-		'Property 25 (Angular)',
+		'Angular',
 		rule,
 		expandHeaderShapes(angularHeaderShapes, 'db-dialog')
 	);
