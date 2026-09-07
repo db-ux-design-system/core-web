@@ -21,15 +21,7 @@ export default function FooterCopyright() {
 			<DBFooter>
 				<DBFooterMeta copyright="Example Company">
 					<nav aria-label="Legal navigation with copyright">
-						<ul
-							style={{
-								display: 'flex',
-								flexWrap: 'wrap',
-								gap: 'var(--db-spacing-fixed-md)',
-								listStyleType: '""',
-								margin: '0',
-								padding: '0'
-							}}>
+						<ul>
 							<li>
 								<DBLink
 									variant="inline"
@@ -53,15 +45,7 @@ export default function FooterCopyright() {
 			<DBFooter>
 				<DBFooterMeta>
 					<nav aria-label="Legal navigation without copyright">
-						<ul
-							style={{
-								display: 'flex',
-								flexWrap: 'wrap',
-								gap: 'var(--db-spacing-fixed-md)',
-								listStyleType: '""',
-								margin: '0',
-								padding: '0'
-							}}>
+						<ul>
 							<li>
 								<DBLink
 									variant="inline"

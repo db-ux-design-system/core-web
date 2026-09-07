@@ -27,15 +27,7 @@ export default function FooterComposition() {
 				</DBFooterContent>
 				<DBFooterMeta copyright="Example Company">
 					<nav aria-label="Legal navigation">
-						<ul
-							style={{
-								display: 'flex',
-								flexWrap: 'wrap',
-								gap: 'var(--db-spacing-fixed-md)',
-								listStyleType: '""',
-								margin: '0',
-								padding: '0'
-							}}>
+						<ul>
 							<li>
 								<DBLink
 									variant="inline"

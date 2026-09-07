@@ -48,10 +48,7 @@ export default function FooterComplexComposition() {
 							<ul
 								style={{
 									display: 'grid',
-									gap: 'var(--db-spacing-fixed-xs)',
-									listStyleType: '""',
-									margin: '0',
-									padding: '0'
+									gap: 'var(--db-spacing-fixed-xs)'
 								}}>
 								<li>
 									<DBLink
@@ -85,10 +82,7 @@ export default function FooterComplexComposition() {
 							<ul
 								style={{
 									display: 'grid',
-									gap: 'var(--db-spacing-fixed-xs)',
-									listStyleType: '""',
-									margin: '0',
-									padding: '0'
+									gap: 'var(--db-spacing-fixed-xs)'
 								}}>
 								<li>
 									<DBLink
@@ -126,10 +120,7 @@ export default function FooterComplexComposition() {
 							<ul
 								style={{
 									display: 'grid',
-									gap: 'var(--db-spacing-fixed-xs)',
-									listStyleType: '""',
-									margin: '0',
-									padding: '0'
+									gap: 'var(--db-spacing-fixed-xs)'
 								}}>
 								<li>
 									<DBLink
@@ -156,15 +147,7 @@ export default function FooterComplexComposition() {
 				</DBFooterContent>
 				<DBFooterMeta copyright="Deutsche Bahn AG">
 					<nav aria-label="Complex legal navigation">
-						<ul
-							style={{
-								display: 'flex',
-								flexWrap: 'wrap',
-								gap: 'var(--db-spacing-fixed-md)',
-								listStyleType: '""',
-								margin: '0',
-								padding: '0'
-							}}>
+						<ul>
 							<li>
 								<DBLink
 									variant="inline"

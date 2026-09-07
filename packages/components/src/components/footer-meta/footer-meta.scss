@@ -30,6 +30,25 @@
 		min-inline-size: 0;
 	}
 
+	/*
+	 * The meta area is a horizontal strip, so lists inside it lay out as a
+	 * wrapping row by default instead of every consumer restyling them. The
+	 * marker reset itself already comes from the `nav` rule in the
+	 * foundations' default-required.scss, and `list-style-type: ""` is used
+	 * there rather than `none` because `none` costs the list semantics in
+	 * Safari.
+	 */
+	nav,
+	[role="navigation"] {
+		ol,
+		ul {
+			@include helpers.display(flex);
+
+			flex-wrap: wrap;
+			gap: variables.$db-spacing-fixed-md;
+		}
+	}
+
 	.db-footer-copyright {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		font: var(--db-type-body-sm);
