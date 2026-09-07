@@ -13,7 +13,8 @@ useMetadata({
 		'With text prop',
 		'With start slot',
 		'With end slot',
-		'With footer'
+		'With footer',
+		'With header subtitle'
 	],
 	storybookArgTypes: StorybookDialogArgTypes,
 	storybookOverwriteArgs: {
@@ -132,6 +133,39 @@ export default function DialogAreas() {
 								Confirm
 							</DBButton>
 						</DBDialogFooter>
+					}>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet.</p>
+				</DBDialog>
+			</div>
+			<div>
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-areas-subtitle">
+					Open: With header subtitle
+				</DBButton>
+				<DBDialog
+					id="dialog-areas-subtitle"
+					open={openIndex === 4}
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDialogHeader
+							className="showcase-header-top-aligned"
+							closeButtonText="Close"
+							startSlot={<DBIcon icon="person" />}>
+							<div>
+								<h2>With header subtitle</h2>
+								<span>A second line of supporting copy.</span>
+							</div>
+						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>

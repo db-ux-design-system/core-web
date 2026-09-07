@@ -77,7 +77,6 @@ $known-prefixes: "drawer", "dialog";
 			display: flex;
 			align-items: center;
 			gap: variables.$db-spacing-fixed-xs;
-			font-weight: bold;
 			margin-inline-end: auto;
 
 			h1,
@@ -88,6 +87,7 @@ $known-prefixes: "drawer", "dialog";
 			h6 {
 				font-size: inherit;
 				margin-block: 0;
+				font-weight: 700;
 			}
 		}
 	} @else if $part == "footer" {

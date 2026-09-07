@@ -287,3 +287,20 @@ app-nav-item {
 		block-size: calc(var(--db-sizing-sm) + 4px);
 	}
 }
+
+/* Dialog header with a multi-line (title + subtitle) content: top-align the
+   row so the start icon and close button sit next to the title, not centered
+   against the taller content block. */
+.showcase-header-top-aligned.db-dialog-header {
+	align-items: flex-start;
+
+	> .db-icon {
+		margin-block-start: calc(
+			var(--db-sizing-md) / 2 - var(--db-icon-font-size, 1.5rem) / 1.9
+		);
+	}
+
+	> header {
+		margin-block-start: calc(var(--db-sizing-md) / 2 - 0.45lh);
+	}
+}
