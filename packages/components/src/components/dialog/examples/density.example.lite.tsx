@@ -20,11 +20,12 @@ export default function DialogDensity() {
 		<Fragment>
 			<div data-density="functional">
 				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="dialog-density-functional">
 					Open: Functional
 				</DBButton>
 				<DBDialog
+					id="dialog-density-functional"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -46,11 +47,12 @@ export default function DialogDensity() {
 			</div>
 			<div data-density="regular">
 				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="dialog-density-regular">
 					Open: (Default) Regular
 				</DBButton>
 				<DBDialog
+					id="dialog-density-regular"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -72,11 +74,12 @@ export default function DialogDensity() {
 			</div>
 			<div data-density="expressive">
 				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="dialog-density-expressive">
 					Open: Expressive
 				</DBButton>
 				<DBDialog
+					id="dialog-density-expressive"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={

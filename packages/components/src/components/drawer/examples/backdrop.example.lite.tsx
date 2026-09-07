@@ -20,11 +20,12 @@ export default function DrawerBackdrop() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-strong">
 					Open: (Default) Strong
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-strong"
 					backdrop="strong"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
@@ -38,11 +39,12 @@ export default function DrawerBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-weak">
 					Open: Weak
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-weak"
 					backdrop="weak"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
@@ -56,11 +58,12 @@ export default function DrawerBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-invisible">
 					Open: Invisible
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-invisible"
 					backdrop="invisible"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
@@ -73,12 +76,11 @@ export default function DrawerBackdrop() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show" commandfor="drawer-backdrop-none">
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-none"
 					backdrop="none"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}

@@ -20,11 +20,12 @@ export default function DialogBackdrop() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="dialog-backdrop-strong">
 					Open: (Default) Strong
 				</DBButton>
 				<DBDialog
+					id="dialog-backdrop-strong"
 					backdrop="strong"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
@@ -47,11 +48,12 @@ export default function DialogBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="dialog-backdrop-weak">
 					Open: Weak
 				</DBButton>
 				<DBDialog
+					id="dialog-backdrop-weak"
 					backdrop="weak"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
@@ -73,12 +75,11 @@ export default function DialogBackdrop() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show" commandfor="dialog-backdrop-none">
 					Open: No Backdrop
 				</DBButton>
 				<DBDialog
+					id="dialog-backdrop-none"
 					backdrop="none"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}

@@ -19,12 +19,11 @@ export default function DialogContainerSize() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="dialog-size-small">
 					Open: Small
 				</DBButton>
 				<DBDialog
+					id="dialog-size-small"
 					containerSize="small"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
@@ -46,12 +45,11 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="dialog-size-medium">
 					Open: (Default) Medium
 				</DBButton>
 				<DBDialog
+					id="dialog-size-medium"
 					containerSize="medium"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
@@ -73,12 +71,11 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="dialog-size-large">
 					Open: Large
 				</DBButton>
 				<DBDialog
+					id="dialog-size-large"
 					containerSize="large"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
@@ -100,12 +97,11 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDialog by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show-modal" commandfor="dialog-size-full">
 					Open: Full
 				</DBButton>
 				<DBDialog
+					id="dialog-size-full"
 					containerSize="full"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
