@@ -20,14 +20,6 @@
 		list-style: none;
 	}
 
-	// Previous and next are not pagination items, they are icon buttons - the same
-	// split the Figma component set makes. DBPaginationItem brings its own box.
-	li:not(.db-pagination-item) {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
 	// Collapsing the page list: below the breakpoint the pages next to the current
 	// one give way, so only the boundary pages and the current page remain. Both
 	// layouts are in the DOM at once, marked up by data-pagination-item, and each
@@ -38,42 +30,13 @@
 	// while being invisible. A page that has focus while the viewport shrinks
 	// therefore loses it to the document, the same as any other element the browser
 	// removes from the flow. Restoring it would need JavaScript.
-	// The gap markers switch with the layout too. They live in pagination-item.scss
-	// next to the rest of the item, because they are pseudo elements of a page and a
-	// placeholder cannot be extended across files.
+	// Previous and next carry no data-pagination-item, so they are never hidden -
+	// they belong to every layout. The gap markers switch with the layout too and
+	// live in pagination-item.scss next to the rest of the item, because they are
+	// pseudo elements of a page and a placeholder cannot be extended across files.
 	@include screen-sizes.screen("sm", "max") {
 		li[data-pagination-item="sibling"] {
 			display: none;
-		}
-	}
-
-	// WCAG 2.2 SC 2.5.8 asks for a pointer target of at least 24 by 24 CSS pixels.
-	// Previous and next are not pagination items, so unlike the pages they are not
-	// the element that receives the click - the button inside is. The overlay grows
-	// that target without touching the visible box, so the densities keep the
-	// proportions they are designed with. The pages get their floor from
-	// .db-pagination-item itself, see pagination-item.scss.
-	// The overlay reaches at most 2px into the 4px gap on each side, so adjacent
-	// targets meet without overlapping.
-	:is(.db-pagination-previous, .db-pagination-next) {
-		position: relative;
-
-		&::after {
-			content: "";
-			position: absolute;
-			inset-block-start: 50%;
-			inset-inline-start: 50%;
-			translate: -50% -50%;
-			inline-size: 100%;
-			block-size: 100%;
-
-			// max, not one of the two alone: the criterion is written in CSS pixels,
-			// so 24px is the floor. rem alone falls through it wherever a consumer
-			// lowers the root font size past the :root rule the foundations set.
-			// stylelint-disable-next-line db-ux/use-sizing
-			min-inline-size: max(24px, 1.5rem);
-			// stylelint-disable-next-line db-ux/use-sizing
-			min-block-size: max(24px, 1.5rem);
 		}
 	}
 }

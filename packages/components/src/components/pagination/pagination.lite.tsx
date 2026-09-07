@@ -323,7 +323,11 @@ export default function DBPagination(props: DBPaginationProps) {
 			class={cls('db-pagination', props.className)}
 			data-size={props.size}>
 			<ul onClick={(event: any) => state.handleClick(event)}>
-				<li>
+				{/* Previous and next go through the same shell as the pages, so the
+				box and the pointer target come from one place. They pass no page,
+				which keeps them out of data-pagination-item and therefore out of the
+				collapsing - they belong to every layout. */}
+				<DBPaginationItem size={props.size}>
 					{/* The anchors carry the same class and data-attributes as
 					DBButton renders, because set-basic-button styles by class and
 					attribute and explicitly resets text-decoration for anchor use.
@@ -366,7 +370,7 @@ export default function DBPagination(props: DBPaginationProps) {
 							{props.previousLabel}
 						</a>
 					</Show>
-				</li>
+				</DBPaginationItem>
 				{/* totalCount is the discriminator, not the presence of children.
 				Angular can only test inputs, never projected content, which is why the
 				accordion keys on its option prop as well. Without totalCount the
@@ -391,7 +395,7 @@ export default function DBPagination(props: DBPaginationProps) {
 					</For>
 				</Show>
 				<Show when={!props.totalCount}>{props.children}</Show>
-				<li>
+				<DBPaginationItem size={props.size}>
 					<Show
 						when={state.getNextHref()}
 						else={
@@ -432,7 +436,7 @@ export default function DBPagination(props: DBPaginationProps) {
 							{props.nextLabel}
 						</a>
 					</Show>
-				</li>
+				</DBPaginationItem>
 			</ul>
 		</nav>
 	);

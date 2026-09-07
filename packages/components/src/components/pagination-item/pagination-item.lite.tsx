@@ -31,8 +31,14 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 			return Boolean(getBoolean(props.active, 'active'));
 		},
 		// The attribute is the contract the stylesheet works against: a page is part
-		// of both layouts, a sibling only of the wide one.
+		// of both layouts, a sibling only of the wide one. An item without a page is
+		// not a page at all - the previous and next controls use this component as a
+		// shell - and stays out of the contract, so the collapsing never touches it
+		// and the tests do not read it as a page.
 		getItemAttribute: () => {
+			if (state.getPage() === 0) {
+				return undefined;
+			}
 			return props.layout === 'wide' ? 'sibling' : 'page';
 		}
 	});

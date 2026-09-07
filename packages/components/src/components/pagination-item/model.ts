@@ -66,7 +66,7 @@ export type DBPaginationItemProps = DBPaginationItemDefaultProps &
 export type DBPaginationItemDefaultState = {
 	getPage: () => number;
 	getActive: () => boolean;
-	getItemAttribute: () => string;
+	getItemAttribute: () => string | undefined;
 };
 
 export type DBPaginationItemState = DBPaginationItemDefaultState & GlobalState;
