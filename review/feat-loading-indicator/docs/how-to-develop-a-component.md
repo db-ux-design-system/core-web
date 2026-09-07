@@ -15,7 +15,7 @@
 
 - Your main work for the component will be inside `packages/components/src/components/my-awesome-component`.
 
-- To start developing your component, run `npm run dev`, which will present you with several options to choose from. When you begin "scribbling" (html+scss) with a component you can select `plain-html`. _Advanced users_ can skip this step and develop directly for a specific framework (HTML, SCSS, and TypeScript); see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
+- To start developing your component, run `npm run dev`, which will present you with several options to choose from. The default selection is `react`. _Advanced users_ can skip this step and develop directly for a specific framework (HTML, SCSS, and TypeScript); see [Test Frameworks with Showcases](#test-frameworks-with-showcases).
 
 ### Styling with SCSS
 
@@ -29,7 +29,7 @@ Starting with `packages/components/src/components/my-awesome-component/my-awesom
 
 ### Component structure with HTML
 
-In addition to the `SCSS`, you need to modify the HTML code for your component. If you start with `plain-html`, you can test your component using `packages/components/src/components/my-awesome-component/index.html`; _Advanced_ users can directly modify the `JSX` in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx`.
+In addition to the `SCSS`, you need to modify the HTML code for your component. You can directly modify the `JSX` in `packages/components/src/components/my-awesome-component/my-awesome-component.lite.tsx` and document the plain HTML usage in `packages/components/src/components/my-awesome-component/docs/HTML.md`.
 
 There are some things you have to know:
 
@@ -114,8 +114,6 @@ We have multiple tests you should update:
 
 1. Component Test: `packages/components/src/components/my-awesome-component/my-awesome-component.spec.tsx`. Just test all attributes here with screenshot tests and accessibility testing.
 2. Showcase Test: `showcases/e2e/my-awesome-component/showcase-my-awesome-component.spec.ts`. Test the styling in a specific framework here and also the functionality/events.
-
-To run all tests/update the screenshots you need `Docker`. More information here: `e2e/README.md`.
 
 ## Manual audit conducted by accessibility experts
 
