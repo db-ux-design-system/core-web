@@ -79,3 +79,37 @@ import { DBPaginationItem } from "@db-ux/v-core-components";
 Leave `page` out to render the truncation item. Pass `href` to render an anchor
 instead of a button, and `layout` to place the item in one of the two responsive
 layouts.
+
+### Composition
+
+Leave `totalCount` out and pass the items yourself. The pagination then renders the
+default slot instead of computing the page list, which is what lets you bring a router
+link. It still reports the page: it listens on the list and reads `page` back from the
+item, so your child never gets a handler attached to it.
+
+```vue App.vue
+<!-- App.vue -->
+<script setup lang="ts">
+import { DBPagination, DBPaginationItem } from "@db-ux/v-core-components";
+</script>
+
+<template>
+	<DBPagination :currentPage="2" @page-change="(page) => console.log(page)">
+		<DBPaginationItem :page="1" label="Page 1 of 2">
+			<RouterLink to="/results/1">1</RouterLink>
+		</DBPaginationItem>
+		<DBPaginationItem :page="2" label="Page 2 of 2" :active="true">
+			<RouterLink to="/results/2">2</RouterLink>
+		</DBPaginationItem>
+	</DBPagination>
+</template>
+```
+
+`page` is required on a composed item: it identifies the item rather than rendering
+it, and the pagination reads it back to know which page was activated.
+
+Two things move to you in this mode. The truncation and the responsive collapsing are
+not applied, because the component cannot know which pages your children stand for.
+And `aria-current` falls back to the `<li>`, since a child that you provide cannot be
+reached from inside the component - set it on your link as well if you want it where
+assistive technology expects it.

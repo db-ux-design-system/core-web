@@ -89,7 +89,9 @@ export type DBPaginationDefaultState = {
 	getHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;
+	getPageText: (page: number) => string;
 	getPageLabel: (page: number) => string;
+	handleClick: (event: any) => void;
 	handlePageChange: (page: number) => void;
 };
 

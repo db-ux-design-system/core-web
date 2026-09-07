@@ -1,6 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
+import { DBPaginationItem } from '../pagination-item/index';
 import { DBPagination } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT, DESKTOP_VIEWPORT } from '../../shared/constants.ts';
@@ -111,6 +112,40 @@ const testPagination = () => {
 		await expect(
 			component.getByRole('button', { name: 'Page 6 of 10' })
 		).toBeFocused();
+	});
+
+	test('should let a consumer compose the items', async ({ mount }) => {
+		// Without totalCount the consumer owns the list. The item renders whatever it
+		// is given - here a plain anchor standing in for a router link - and the
+		// pagination still reports the page, because it reads data-page off the item
+		// instead of attaching a handler to the child.
+		const component = await mount(
+			<DBPagination
+				label="Composed"
+				currentPage={1}
+				onPageChange={(page: number) => {
+					requestedPage = page;
+					requestedPages.push(page);
+				}}>
+				<DBPaginationItem page={1} label="Page 1" active>
+					<a href="?page=1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem page={2} label="Page 2">
+					<a href="?page=2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
+		);
+
+		await expect(component.locator('li[data-page]')).toHaveCount(2);
+		await expect(component.getByRole('link', { name: '2' })).toBeVisible();
+		// The child is out of reach, so the state falls back to the list item.
+		await expect(component.locator('li[data-page="1"]')).toHaveAttribute(
+			'aria-current',
+			'page'
+		);
+
+		await component.getByRole('link', { name: '2' }).click();
+		expect(requestedPages).toEqual([2]);
 	});
 
 	test('should request a page without changing controlled state', async ({
@@ -610,11 +645,12 @@ const testTouchTargets = () => {
 		mount,
 		page
 	}) => {
-		// WCAG 2.2 SC 2.5.8. At functional density the buttons themselves are only
-		// 20px, so the target comes from an overlay - see pagination.scss. The
-		// density cannot be exercised here because the component test harness does
-		// not load the density stylesheets, so this guards the mechanism: if the
-		// overlay goes away, the content is `none` and the floor is gone with it.
+		// WCAG 2.2 SC 2.5.8. At functional density the controls themselves are only
+		// 20px, so the floor comes from elsewhere. A page item is itself the target -
+		// the pagination reads data-page off it - so the item carries a minimum size.
+		// Previous and next are not items, the button inside them is the target, so
+		// those keep an overlay. The density cannot be exercised here because the
+		// component test harness does not load the density stylesheets.
 		const component = await mount(
 			<DBPagination
 				currentPage={5}
@@ -624,10 +660,32 @@ const testTouchTargets = () => {
 			/>
 		);
 
+		const item = await component
+			.locator('li[data-pagination-item="page"]')
+			.first()
+			.evaluate((element: HTMLElement) => {
+				const style = window.getComputedStyle(
+					element.firstElementChild as HTMLElement,
+					'::after'
+				);
+				return {
+					minInlineSize: Number.parseFloat(style.minInlineSize),
+					minBlockSize: Number.parseFloat(style.minBlockSize)
+				};
+			});
+
+		expect(
+			item.minInlineSize,
+			'page item is at least 24px wide'
+		).toBeGreaterThanOrEqual(24);
+		expect(
+			item.minBlockSize,
+			'page item is at least 24px high'
+		).toBeGreaterThanOrEqual(24);
+
 		for (const selector of [
 			'.db-pagination-previous',
-			'.db-pagination-next',
-			'.db-pagination-page'
+			'.db-pagination-next'
 		]) {
 			const overlay = await component
 				.locator(selector)
@@ -662,10 +720,13 @@ const testTouchTargets = () => {
 		});
 
 		const lowered = await component
-			.locator('.db-pagination-page')
+			.locator('li[data-pagination-item="page"]')
 			.first()
 			.evaluate((element: HTMLElement) => {
-				const style = window.getComputedStyle(element, '::after');
+				const style = window.getComputedStyle(
+					element.firstElementChild as HTMLElement,
+					'::after'
+				);
 				return {
 					minInlineSize: Number.parseFloat(style.minInlineSize),
 					minBlockSize: Number.parseFloat(style.minBlockSize)

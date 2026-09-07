@@ -2,22 +2,55 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 
 // The item owns its own box and reads its size from its own data-size, so it can
-// be used on its own. The surrounding layout, the collapsing between the two
-// layouts and the pointer target stay with the pagination, because all three
-// depend on the list context rather than on a single item.
+// be used on its own. The surrounding layout and the collapsing between the two
+// layouts stay with the pagination, because both depend on the list context.
+// The box is styled through the child rather than through a class on it, because
+// with composition the child is whatever the consumer passed - a DBButton, a plain
+// anchor or a framework link component. :is(a, button) covers the interactive
+// elements a page can reasonably be.
 .db-pagination-item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	.db-pagination-page.db-button {
+	> :is(a, button) {
+		position: relative;
 		block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
 		padding: variables.$db-spacing-fixed-2xs;
 
-		&:not([aria-current="page"]) {
-			font-weight: 400;
+		// WCAG 2.2 SC 2.5.8 asks for a pointer target of at least 24 by 24 CSS
+		// pixels. At functional density the controls are only 20px, so the floor
+		// comes from an overlay rather than from a minimum size on the box: growing
+		// the box would break the density proportions the sizes are designed with.
+		// It has to sit on the control, not on the <li>: an overlay on the list item
+		// would cover the control and take the hit target away from it, which stops
+		// the browser from following the anchor in link mode. The cost is that a
+		// composed child cannot use its own ::after - DBLink puts its arrow there.
+		&::after {
+			content: "";
+			position: absolute;
+			inset-block-start: 50%;
+			inset-inline-start: 50%;
+			translate: -50% -50%;
+			inline-size: 100%;
+			block-size: 100%;
+
+			// max, not one of the two alone: the criterion is written in CSS pixels,
+			// so 24px is the floor, while the rem side keeps the target growing for
+			// someone who raises the font size.
+			// stylelint-disable-next-line db-ux/use-sizing
+			min-inline-size: max(24px, 1.5rem);
+			// stylelint-disable-next-line db-ux/use-sizing
+			min-block-size: max(24px, 1.5rem);
 		}
+	}
+
+	// Keyed on the presentation attribute, not on aria-current: the latter sits on
+	// the control in the option API and only falls back to this element for a
+	// composed child, so it is not a reliable hook for styling.
+	&[data-variant="ghost"] > :is(a, button) {
+		font-weight: 400;
 	}
 
 	&.db-pagination-ellipsis {
@@ -29,7 +62,7 @@
 	}
 
 	&[data-size="small"] {
-		.db-pagination-page.db-button {
+		> :is(a, button) {
 			block-size: variables.$db-sizing-sm;
 			min-inline-size: variables.$db-sizing-sm;
 			padding: variables.$db-spacing-fixed-3xs;

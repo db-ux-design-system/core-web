@@ -1,10 +1,10 @@
 import type {
 	ActiveProps,
 	ClickEventProps,
-	ClickEventState,
 	GlobalProps,
 	GlobalState,
-	SizeProps
+	SizeProps,
+	TextProps
 } from '../../shared/model';
 
 /**
@@ -22,7 +22,9 @@ export type PaginationItemLayoutType =
 
 export type DBPaginationItemDefaultProps = {
 	/**
-	 * One-based page number. Leave it out to render a truncation item, the
+	 * One-based page number. It identifies the item rather than rendering it: the
+	 * pagination reads it back from the DOM to know which page was activated, so a
+	 * composed item needs it as well. Leave it out to render a truncation item, the
 	 * ellipsis that stands in for the pages between two page numbers.
 	 */
 	page?: number | string;
@@ -33,7 +35,8 @@ export type DBPaginationItemDefaultProps = {
 	label?: string;
 	/**
 	 * Renders the page as an anchor instead of a button, which makes the
-	 * pagination deep linkable and usable without JavaScript.
+	 * pagination deep linkable and usable without JavaScript. Only used together
+	 * with `text`.
 	 */
 	href?: string;
 	/**
@@ -46,15 +49,13 @@ export type DBPaginationItemProps = DBPaginationItemDefaultProps &
 	GlobalProps &
 	ActiveProps &
 	SizeProps &
+	TextProps &
 	ClickEventProps<HTMLElement>;
 
 export type DBPaginationItemDefaultState = {
 	getPage: () => number;
 	getActive: () => boolean;
 	getItemAttribute: () => string;
-	handleClick: (event: any) => void;
 };
 
-export type DBPaginationItemState = DBPaginationItemDefaultState &
-	GlobalState &
-	ClickEventState<HTMLElement>;
+export type DBPaginationItemState = DBPaginationItemDefaultState & GlobalState;

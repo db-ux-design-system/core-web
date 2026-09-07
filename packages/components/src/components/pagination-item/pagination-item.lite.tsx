@@ -41,22 +41,20 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 				return props.layout === 'wide' ? 'wide-ellipsis' : 'ellipsis';
 			}
 			return props.layout === 'wide' ? 'sibling' : 'page';
-		},
-		handleClick: (event: any) => {
-			if (props.onClick) {
-				props.onClick(event);
-			}
 		}
 	});
 
 	// A truncation item is decoration, so it is taken out of the accessibility
-	// tree entirely. A pseudo element would not be enough: Chromium exposes
-	// generated content as a text node, so the dots would be announced.
+	// tree entirely.
 	//
-	// The attributes below `ref` win over a forwarded aria-*/data-* value, because
-	// the React post-build injects the pass-through spread directly after
-	// `ref={_ref}`. That is intended here - the semantics of the item are not
-	// something a consumer should be able to overwrite by accident.
+	// The item owns no click handler. The pagination listens on the list and reads
+	// data-page back from the DOM, the same way DBTabs handles its items, so a
+	// composed child stays untouched and no click is reported twice.
+	//
+	// aria-current goes on the control where this component renders it, because that
+	// is where assistive technology expects it. Only a composed child, which cannot
+	// be reached from here, falls back to the <li> - never both, or the state would
+	// be announced twice.
 	return (
 		<li
 			id={props.id ?? props.propOverrides?.id}
@@ -67,38 +65,51 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 			)}
 			ref={_ref}
 			data-pagination-item={state.getItemAttribute()}
+			data-page={state.getPage() > 0 ? state.getPage() : undefined}
 			data-size={props.size}
+			data-variant={
+				state.getPage() === 0
+					? undefined
+					: state.getActive()
+						? 'filled'
+						: 'ghost'
+			}
+			aria-current={!props.text && state.getActive() ? 'page' : undefined}
 			aria-hidden={state.getPage() === 0 ? 'true' : undefined}>
-			<Show when={state.getPage() > 0} else={<span>...</span>}>
-				<Show
-					when={props.href}
-					else={
-						<DBButton
-							class="db-pagination-page"
-							variant={state.getActive() ? 'filled' : 'ghost'}
-							size={props.size}
-							type="button"
+			<Show when={state.getPage()} else={<span>...</span>}>
+				<Show when={props.text} else={props.children}>
+					<Show
+						when={props.href}
+						else={
+							<DBButton
+								class="db-pagination-page"
+								variant={state.getActive() ? 'filled' : 'ghost'}
+								size={props.size}
+								type="button"
+								aria-current={
+									state.getActive() ? 'page' : undefined
+								}
+								aria-label={props.label}>
+								{props.text}
+							</DBButton>
+						}>
+						{/* The anchor carries the same class and data-attributes that
+						DBButton renders, because set-basic-button styles by class and
+						attribute and resets text-decoration for anchor use. */}
+						<a
+							class="db-button db-pagination-page"
+							href={props.href}
+							data-variant={
+								state.getActive() ? 'filled' : 'ghost'
+							}
+							data-size={props.size}
 							aria-current={
 								state.getActive() ? 'page' : undefined
 							}
-							aria-label={props.label}
-							onClick={(event: any) => state.handleClick(event)}>
-							{state.getPage()}
-						</DBButton>
-					}>
-					{/* The anchor carries the same class and data-attributes that
-					DBButton renders, because set-basic-button styles by class and
-					attribute and resets text-decoration for anchor use. */}
-					<a
-						class="db-button db-pagination-page"
-						href={props.href}
-						data-variant={state.getActive() ? 'filled' : 'ghost'}
-						data-size={props.size}
-						aria-current={state.getActive() ? 'page' : undefined}
-						aria-label={props.label}
-						onClick={(event: any) => state.handleClick(event)}>
-						{state.getPage()}
-					</a>
+							aria-label={props.label}>
+							{props.text}
+						</a>
+					</Show>
 				</Show>
 			</Show>
 		</li>

@@ -19,7 +19,6 @@ useMetadata({});
 
 useDefaultProps<DBPaginationProps>({
 	currentPage: 1,
-	totalCount: 0,
 	pageSize: 10,
 	siblingCount: 1,
 	boundaryCount: 1,
@@ -300,6 +299,11 @@ export default function DBPagination(props: DBPaginationProps) {
 		getNextHref: () => {
 			return state.getHref(state.getCurrentPage() + 1);
 		},
+		// The conversion lives here because an Angular template cannot call String,
+		// the same reason the item parses its page in the store.
+		getPageText: (page: number) => {
+			return String(page);
+		},
 		getPageLabel: (page: number) => {
 			// replaceAll, not replace: a translation may legitimately repeat a
 			// placeholder, and replace with a string pattern only substitutes the
@@ -308,12 +312,34 @@ export default function DBPagination(props: DBPaginationProps) {
 				.replaceAll('{page}', String(page))
 				.replaceAll('{totalPages}', String(state.getTotalPages()));
 		},
+		handleClick: (event: any) => {
+			const target = event.target as HTMLElement;
+			const item = target.closest('[data-page]');
+			if (!item || !_ref) {
+				return;
+			}
+
+			// Guard against a nested pagination: only handle items of this instance.
+			if (item.closest('.db-pagination') !== _ref) {
+				return;
+			}
+
+			const page = Number(item.getAttribute('data-page'));
+			if (Number.isFinite(page)) {
+				state.handlePageChange(page);
+			}
+			// No preventDefault: in link mode the anchor has to stay a working link,
+			// which is the whole point of hrefPattern.
+		},
 		handlePageChange: (page: number) => {
-			if (
-				page < 1 ||
-				page > state.getTotalPages() ||
-				page === state.getCurrentPage()
-			) {
+			if (page < 1 || page === state.getCurrentPage()) {
+				return;
+			}
+
+			// The upper bound only exists in the option API. With composition the
+			// consumer owns the list and its length, so there is nothing to clamp
+			// against here.
+			if (props.totalCount && page > state.getTotalPages()) {
 				return;
 			}
 			if (props.onPageChange) {
@@ -329,7 +355,7 @@ export default function DBPagination(props: DBPaginationProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-pagination', props.className)}
 			data-size={props.size}>
-			<ul>
+			<ul onClick={(event: any) => state.handleClick(event)}>
 				<li>
 					{/* The anchors carry the same class and data-attributes as
 					DBButton renders, because set-basic-button styles by class and
@@ -374,20 +400,28 @@ export default function DBPagination(props: DBPaginationProps) {
 						</a>
 					</Show>
 				</li>
-				<For each={state.getPaginationItems()}>
-					{(item: PaginationItemType, index: number) => (
-						<DBPaginationItem
-							key={item.key}
-							page={item.page}
-							layout={item.layout}
-							size={props.size}
-							active={state.getCurrentPage() === item.page}
-							href={state.getHref(item.page)}
-							label={state.getPageLabel(item.page)}
-							onClick={() => state.handlePageChange(item.page)}
-						/>
-					)}
-				</For>
+				{/* totalCount is the discriminator, not the presence of children.
+				Angular can only test inputs, never projected content, which is why the
+				accordion keys on its option prop as well. Without totalCount the
+				consumer owns the item list and with it the truncation, because the
+				component cannot know which pages the children stand for. */}
+				<Show when={props.totalCount}>
+					<For each={state.getPaginationItems()}>
+						{(item: PaginationItemType, index: number) => (
+							<DBPaginationItem
+								key={item.key}
+								page={item.page}
+								layout={item.layout}
+								size={props.size}
+								active={state.getCurrentPage() === item.page}
+								href={state.getHref(item.page)}
+								label={state.getPageLabel(item.page)}
+								text={state.getPageText(item.page)}
+							/>
+						)}
+					</For>
+				</Show>
+				<Show when={!props.totalCount}>{props.children}</Show>
 				<li>
 					<Show
 						when={state.getNextHref()}
