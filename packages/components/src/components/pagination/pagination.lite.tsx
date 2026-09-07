@@ -131,12 +131,23 @@ export default function DBPagination(props: DBPaginationProps) {
 		// towards the end of the list, so as soon as the current page sits at a
 		// border three pages of full width end up next to each other - 1 ... 9998
 		// 9999 10000. Width is the only reason the collapsed layout exists, so it
-		// gives up that stability and renders the boundary pages, the current page,
+		// gives up that stability and renders one page at each end, the current page,
 		// and nothing else.
 		getCollapsedPages: () => {
 			const totalPages = state.getTotalPages();
 			const currentPage = state.getCurrentPage();
-			const boundaryCount = state.getInteger(props.boundaryCount, 1, 0);
+			// At most one page is pinned per end, whatever boundaryCount says. The
+			// collapsed layout already ignores siblingCount for the same reason: it
+			// exists to be narrow, and four pinned pages plus the current one is what
+			// pushed the row into a second line at boundaryCount 2.
+			// Capping also keeps the candidate list ascending, because the trailing
+			// boundary is then the last page and the current page can never sit behind
+			// it. With more than one pinned page it could, and the duplicate check
+			// below silently dropped the page in between.
+			const boundaryCount = Math.min(
+				state.getInteger(props.boundaryCount, 1, 0),
+				1
+			);
 
 			// Same exit as the wide layout: a list this short is the collapsed shape
 			// already, so hiding anything would claim a gap that does not exist.
@@ -259,6 +270,17 @@ export default function DBPagination(props: DBPaginationProps) {
 			// legitimately repeat the placeholder, for example in a path segment and
 			// a query parameter.
 			return pattern.replaceAll('{page}', String(page));
+		},
+		// The current page gets no href. It is not somewhere to go, so a link to it
+		// promises a change and delivers none - the item keeps its focus and its
+		// aria-current, but stops being a link, the way the ARIA APG treats the last
+		// breadcrumb item. Previous and next keep using getHref, they can never point
+		// at the current page.
+		getPageHref: (page: number) => {
+			if (page === state.getCurrentPage()) {
+				return undefined;
+			}
+			return state.getHref(page);
 		},
 		getPreviousHref: () => {
 			return state.getHref(state.getCurrentPage() - 1);
@@ -385,7 +407,7 @@ export default function DBPagination(props: DBPaginationProps) {
 								layout={item.layout}
 								size={props.size}
 								active={state.getCurrentPage() === item.page}
-								href={state.getHref(item.page)}
+								href={state.getPageHref(item.page)}
 								label={state.getPageLabel(item.page)}
 								text={state.getPageText(item.page)}
 								wideEllipsis={item.wideEllipsis}

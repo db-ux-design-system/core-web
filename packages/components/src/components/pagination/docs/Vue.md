@@ -31,6 +31,11 @@ With `href-pattern` the pages render as anchors instead of buttons. `{page}` is
 replaced with the page number, so the pagination becomes deep linkable, shareable
 and usable without JavaScript.
 
+The current page is the exception. It gets no `href`, because a link to the page one
+is already on promises a change and delivers none, so it stays a focusable
+`<button>` carrying `aria-current="page"` and shows neither a pointer cursor nor a
+hover or pressed state.
+
 ```vue App.vue
 <!-- App.vue -->
 <script setup lang="ts">

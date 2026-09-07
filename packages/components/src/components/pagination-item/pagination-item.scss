@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/variables";
@@ -65,6 +66,36 @@
 	// composed child, so it is not a reliable hook for styling.
 	&[data-variant="ghost"] > :is(a, button) {
 		font-weight: 400;
+	}
+
+	// The current page is not somewhere to go. It keeps the focus and the aria-current
+	// announcement, so it stays a control, but it stops signalling that it leads
+	// somewhere: the cursor stays default and hover and pressed keep the resting
+	// background. getPageHref
+	// drops its href for the same reason, so link mode offers no link to the page one is
+	// already on - the ARIA APG treats the last breadcrumb item the same way.
+	// Two selectors, because aria-current sits on the control where this component
+	// renders it and only falls back to the list item for a composed child.
+	&[aria-current="page"] > :is(a, button),
+	> :is(a, button)[aria-current="page"] {
+		// Both the hover and the pressed helper read this hook, so one declaration
+		// covers the cursor in either state.
+		--db-overwrite-cursor: default;
+
+		// Only the filled look is ours to hold still. A composed child brings its own
+		// background, and painting one on hover would add a state the consumer never
+		// asked for.
+		&[data-variant="filled"] {
+			// The rule resets a hover and a pressed background instead of adding one,
+			// so pulling :focus in here would undo the focus indicator rather than
+			// provide it - the reason the foundations mark their own hover helper the
+			// same way.
+			// stylelint-disable-next-line a11y/selector-pseudo-class-focus
+			&:hover,
+			&:active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			}
+		}
 	}
 
 	// The truncation is drawn by the page that borders the gap instead of by an

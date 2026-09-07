@@ -25,13 +25,20 @@ Three things are easy to miss when writing the markup by hand:
   know which page was activated, and `data-pagination-item` drives the collapsing
   described below. In the framework packages this markup comes from
   `DBPaginationItem`, which is documented together with `DBPagination`.
-- The previous and next buttons are not pagination items. They are icon buttons,
-  the same split the Figma component set makes, and they are part of every layout.
+- Previous and next sit in a pagination item as well, so the box and the pointer
+  target come from one place, but they carry neither `data-page` nor
+  `data-pagination-item`. That is what keeps them out of the collapsing and out of
+  the page handling: they are icon buttons, the same split the Figma component set
+  makes, and they belong to every layout.
+- The `<li>` carries `data-variant`, the control inside it carries the matching
+  `data-variant` or class. The active page is `filled`, every other page is `ghost`,
+  and the item uses the attribute rather than `aria-current` as its styling hook,
+  because `aria-current` sits on the control in the option API.
 
 ```html index.html
 <nav class="db-pagination" data-size="medium" aria-label="Pagination">
 	<ul>
-		<li>
+		<li class="db-pagination-item" data-size="medium" data-variant="ghost">
 			<button
 				class="db-button db-pagination-previous"
 				type="button"
@@ -47,7 +54,9 @@ Three things are easy to miss when writing the markup by hand:
 		<li
 			class="db-pagination-item"
 			data-pagination-item="page"
+			data-page="1"
 			data-size="medium"
+			data-variant="ghost"
 		>
 			<button
 				class="db-button db-pagination-page"
@@ -64,6 +73,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-pagination-item="sibling"
 			data-page="4"
 			data-size="medium"
+			data-variant="ghost"
 			data-ellipsis-wide="before"
 		>
 			<button
@@ -79,7 +89,10 @@ Three things are easy to miss when writing the markup by hand:
 		<li
 			class="db-pagination-item"
 			data-pagination-item="page"
+			data-page="5"
 			data-size="medium"
+			data-variant="filled"
+			data-ellipsis-collapsed="before"
 		>
 			<button
 				class="db-button db-pagination-page"
@@ -97,6 +110,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-pagination-item="sibling"
 			data-page="6"
 			data-size="medium"
+			data-variant="ghost"
 		>
 			<button
 				class="db-button db-pagination-page"
@@ -111,7 +125,11 @@ Three things are easy to miss when writing the markup by hand:
 		<li
 			class="db-pagination-item"
 			data-pagination-item="page"
+			data-page="10"
 			data-size="medium"
+			data-variant="ghost"
+			data-ellipsis-wide="before"
+			data-ellipsis-collapsed="before"
 		>
 			<button
 				class="db-button db-pagination-page"
@@ -123,7 +141,7 @@ Three things are easy to miss when writing the markup by hand:
 				10
 			</button>
 		</li>
-		<li>
+		<li class="db-pagination-item" data-size="medium" data-variant="ghost">
 			<button
 				class="db-button db-pagination-next"
 				type="button"
@@ -184,13 +202,20 @@ The two layouts are not the same calculation with different numbers. The wide on
 keeps the number of rendered items constant, so it pads the row towards the
 opposite border when the current page sits at one end - that is why page 10 of 10
 shows `1 ... 6 7 8 9 10`. The collapsed one gives that up, because width is the
-reason it exists: it renders the `boundaryCount` pages at each end, the current
-page, and nothing else, so the same list collapses to `1 ... 10`.
+reason it exists: it renders one page at each end, the current page, and nothing
+else, so the same list collapses to `1 ... 10`.
+
+One page per end, not `boundaryCount` of them: the collapsed layout ignores
+`boundaryCount` above one for the same reason it ignores `siblingCount`. With
+`boundaryCount 2` and 20 pages, four pinned pages plus the current one need 360px
+and wrap into a second row next to the two arrows, where one page per end needs
+272px and fits.
 
 Writing the markup by hand means working out both: the wide list from
 `currentPage`, `siblingCount` and `boundaryCount`, the collapsed list from
-`boundaryCount` and `currentPage` alone, and then marking up the difference. In
-both lists a gap of exactly one page is rendered as that page instead of a marker.
+`currentPage` and the first and last page alone, and then marking up the
+difference. In both lists a gap of exactly one page is rendered as that page
+instead of a marker.
 
 ### Page links
 
@@ -203,26 +228,37 @@ the page is server rendered.
 class and `data-*` attribute, and drop `type="button"`:
 
 ```html index.html
-<li class="db-pagination-item" data-pagination-item="page" data-size="medium">
+<li
+	class="db-pagination-item"
+	data-pagination-item="sibling"
+	data-page="4"
+	data-size="medium"
+>
 	<a
 		class="db-button db-pagination-page"
-		href="?page=5"
+		href="?page=4"
 		data-size="medium"
-		data-variant="filled"
-		aria-current="page"
-		aria-label="Page 5 of 10"
+		data-variant="ghost"
+		aria-label="Page 4 of 10"
 	>
-		5
+		4
 	</a>
 </li>
 ```
+
+**The current page stays a `<button>`.** It is not somewhere to go, so it gets no
+`href` - a link to the page one is already on promises a change and delivers none.
+It keeps its place in the tab order because it is the element that carries
+`aria-current="page"`, and it stops signalling that it leads somewhere: no pointer
+cursor, no hover and no pressed background. The ARIA APG treats the last breadcrumb
+item the same way.
 
 Previous and next additionally take `rel="prev"` and `rel="next"`. Google dropped
 them as an indexing signal in 2019, but they remain valid HTML, describe the
 sequential relationship and help browsers prefetch:
 
 ```html index.html
-<li>
+<li class="db-pagination-item" data-size="medium" data-variant="ghost">
 	<a
 		class="db-button db-pagination-previous"
 		href="?page=4"

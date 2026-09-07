@@ -472,6 +472,70 @@ const testCollapsing = () => {
 		expect(getShape(await readItems(component))).toBe('1 ... 10000');
 	});
 
+	test('should pin one page per end when boundaryCount asks for more', async ({
+		mount
+	}) => {
+		// The reported case, boundaryCount 2 with 20 pages, two defects at once. On page
+		// 17 the collapsed layout drew 1 2 ... 17 18 19 20: six numbers that wrap into a
+		// second row next to the two arrows, measured at 360px and therefore wider than
+		// any supported viewport. And on page 20 it drew 1 2 ... 20, dropping page 19
+		// although the trailing boundary pinned it - the candidate list [1, 2] + [20] +
+		// [19, 20] is not ascending, so the duplicate check skipped 19.
+		const component = await mount(
+			<div style={{ inlineSize: '300px' }}>
+				<DBPagination
+					currentPage={17}
+					totalCount={200}
+					pageSize={10}
+					boundaryCount={2}
+				/>
+			</div>
+		);
+
+		expect(getShape(await readItems(component))).toBe('1 ... 17 ... 20');
+
+		const rows = await component
+			.locator('li')
+			.evaluateAll((items: HTMLElement[]) =>
+				items
+					.filter(
+						(item) =>
+							window.getComputedStyle(item).display !== 'none'
+					)
+					.map((item) => Math.round(item.getBoundingClientRect().top))
+			);
+		expect(
+			new Set(rows).size,
+			'every control stays on one row in a 300px column'
+		).toBe(1);
+
+		await component.update(
+			<div style={{ inlineSize: '300px' }}>
+				<DBPagination
+					currentPage={19}
+					totalCount={200}
+					pageSize={10}
+					boundaryCount={2}
+				/>
+			</div>
+		);
+		// A gap of one page is still rendered instead of hidden, so 19 keeps its
+		// neighbor - this is the shape page 20 lost it from.
+		expect(getShape(await readItems(component))).toBe('1 ... 19 20');
+
+		await component.update(
+			<div style={{ inlineSize: '300px' }}>
+				<DBPagination
+					currentPage={20}
+					totalCount={200}
+					pageSize={10}
+					boundaryCount={2}
+				/>
+			</div>
+		);
+		expect(getShape(await readItems(component))).toBe('1 ... 20');
+	});
+
 	test('should add an ellipsis for a gap that only the collapsed layout has', async ({
 		mount,
 		page
@@ -836,16 +900,17 @@ const testLinks = () => {
 			.evaluateAll((links: HTMLAnchorElement[]) =>
 				links.map((link) => link.getAttribute('href'))
 			);
+		// Page 5 is the current one, which gets no href and therefore stays a
+		// button - see "should not link the current page".
 		expect(pageLinks).toEqual([
 			'?page=1',
 			'?page=4',
-			'?page=5',
 			'?page=6',
 			'?page=10'
 		]);
 		await expect(
 			component.locator('button.db-pagination-page')
-		).toHaveCount(0);
+		).toHaveCount(1);
 	});
 
 	test('should replace every occurrence of the page placeholder', async ({
@@ -930,7 +995,7 @@ const testLinks = () => {
 		await expect(last.locator('[rel="next"]')).toHaveCount(0);
 	});
 
-	test('should mark the current page link with aria-current', async ({
+	test('should mark the current page with aria-current in link mode', async ({
 		mount,
 		page
 	}) => {
@@ -945,9 +1010,70 @@ const testLinks = () => {
 		);
 
 		await expect(
-			component.getByRole('link', { name: 'Page 5 of 10' })
+			component.getByRole('button', { name: 'Page 5 of 10' })
 		).toHaveAttribute('aria-current', 'page');
 		await expect(component.locator('[aria-current="page"]')).toHaveCount(1);
+	});
+
+	test('should not link the current page', async ({ mount, page }) => {
+		// The page one is already on is not somewhere to go, so it gets no href and
+		// none of the signals of a control that leads somewhere: no pointer cursor,
+		// no hover and no pressed background. It stays a focusable button,
+		// because that is the element carrying aria-current - the ARIA APG treats the
+		// last breadcrumb item the same way.
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="?page={page}"
+			/>
+		);
+
+		await expect(
+			component.getByRole('link', { name: 'Page 5 of 10' })
+		).toHaveCount(0);
+		await expect(component.locator('a[href="?page=5"]')).toHaveCount(0);
+
+		const readState = async (target: any) => {
+			const resting = await target.evaluate(
+				(element: HTMLElement) =>
+					window.getComputedStyle(element).backgroundColor
+			);
+			await target.hover();
+			return target.evaluate(
+				(element: HTMLElement, restingBackground: string) => ({
+					cursor: window.getComputedStyle(element).cursor,
+					changed:
+						window.getComputedStyle(element).backgroundColor !==
+						restingBackground
+				}),
+				resting
+			);
+		};
+
+		const current = await readState(
+			component.getByRole('button', { name: 'Page 5 of 10' })
+		);
+		expect(current.cursor, 'the current page shows no pointer').toBe(
+			'default'
+		);
+		expect(
+			current.changed,
+			'hovering the current page keeps its background'
+		).toBe(false);
+
+		// The counter check: without it the assertions above would also pass if the
+		// harness loaded no button styles at all.
+		const other = await readState(
+			component.getByRole('link', { name: 'Page 4 of 10' })
+		);
+		expect(other.cursor, 'another page shows a pointer').toBe('pointer');
+		expect(
+			other.changed,
+			'hovering another page changes its background'
+		).toBe(true);
 	});
 
 	test('should not turn the ellipses into links', async ({ mount, page }) => {
@@ -963,12 +1089,14 @@ const testLinks = () => {
 
 		// The truncation is a pseudo element of the page that borders the gap, so there
 		// is nothing that could become a link and nothing that needs aria-hidden. What
-		// has to hold is that every item in the list is a page with exactly one link.
+		// has to hold is that every item in the list is a page with exactly one control:
+		// a link, except for the current page, which is not linked.
 		expect(getShape(await readItems(component))).toBe('1 ... 4 5 6 ... 10');
 
 		const items = component.locator('li[data-pagination-item]');
 		await expect(items).toHaveCount(5);
-		await expect(items.locator('a')).toHaveCount(5);
+		await expect(items.locator(':is(a, button)')).toHaveCount(5);
+		await expect(items.locator('a')).toHaveCount(4);
 		await expect(
 			component.locator('li[data-pagination-item][aria-hidden]')
 		).toHaveCount(0);
@@ -997,9 +1125,11 @@ const testLinks = () => {
 		await expect(
 			component.getByRole('link', { name: 'Page 1 of 10' })
 		).toBeFocused();
+		// The current page is a button here, not a link, and staying in the tab order
+		// is the point of that: it is the element that carries aria-current.
 		await page.keyboard.press('Tab');
 		await expect(
-			component.getByRole('link', { name: 'Page 5 of 10' })
+			component.getByRole('button', { name: 'Page 5 of 10' })
 		).toBeFocused();
 	});
 
@@ -1060,6 +1190,33 @@ const expectValidLayout = (
 	expect(new Set(pages).size, `${context}: no duplicate pages`).toBe(
 		pages.length
 	);
+
+	// The pinned pages are the ones a layout promises no matter where the current page
+	// is: boundaryCount per end in the wide layout, one per end in the collapsed one.
+	// Without this the marker walk below accepts a layout that simply drops a pinned
+	// page, which is how boundaryCount 2 lost page 19 on page 20 of 20 - hiding pages
+	// is what the collapsed layout is for, so nothing else here objected.
+	const pinnedCount =
+		layout === 'collapsed' ? Math.min(boundaryCount, 1) : boundaryCount;
+	const pinnedPages = Array.from(
+		{ length: Math.min(pinnedCount, totalPages) },
+		(_, index: number) => [index + 1, totalPages - index]
+	).flat();
+	pinnedPages.forEach((page) => {
+		expect(pages, `${context}: keeps the pinned page ${page}`).toContain(
+			page
+		);
+	});
+
+	if (layout === 'collapsed') {
+		// One page per end, the current page, and at most one filled single page gap on
+		// either side of it. More than that is what pushed the row into a second line
+		// at boundaryCount 2, where four pinned pages plus the current one were drawn.
+		expect(
+			pages.length,
+			`${context}: renders at most five pages`
+		).toBeLessThanOrEqual(5);
+	}
 
 	// A gap is now a marker on the page that borders it, so the walk checks that every
 	// jump in the sequence is covered by exactly one marker and that no marker claims

@@ -51,7 +51,9 @@ export type DBPaginationDefaultProps = {
 	 */
 	siblingCount?: number | string;
 	/**
-	 * Number of page buttons always shown at the start and end.
+	 * Number of page buttons always shown at the start and end. Below the collapsing
+	 * breakpoint at most one page is pinned per end, whatever this says - the
+	 * collapsed layout exists to be narrow.
 	 */
 	boundaryCount?: number | string;
 	/**
@@ -105,6 +107,7 @@ export type DBPaginationDefaultState = {
 		totalPages: number
 	) => PaginationEllipsisType | undefined;
 	getHref: (page: number) => string | undefined;
+	getPageHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;
 	getPageText: (page: number) => string;
