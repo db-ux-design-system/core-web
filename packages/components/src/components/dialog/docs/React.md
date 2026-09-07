@@ -47,7 +47,7 @@ const App = () => (
 			id="my-dialog"
 			header={
 				<DBDialogHeader closeButtonText="Close">
-					Dialog title
+					<h2>Dialog title</h2>
 				</DBDialogHeader>
 			}
 			footer={
@@ -103,7 +103,7 @@ const App = () => {
 				}}
 				header={
 					<DBDialogHeader closeButtonText="Close">
-						Dialog title
+						<h2>Dialog title</h2>
 					</DBDialogHeader>
 				}
 				footer={
@@ -171,7 +171,7 @@ const App = () => (
 		}
 		header={
 			<DBDialogHeader closeButtonText="Close">
-				Rename entry
+				<h2>Rename entry</h2>
 			</DBDialogHeader>
 		}
 	>
@@ -295,7 +295,7 @@ const App = () => {
 				}}
 				header={
 					<DBDialogHeader closeButtonText="Close">
-						Dialog title
+						<h2>Dialog title</h2>
 					</DBDialogHeader>
 				}
 			>

@@ -36,7 +36,7 @@ export default function DrawerPosition() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Absolute
+							<h2>Absolute</h2>
 						</DBDrawerHeader>
 					}>
 					Absolute

@@ -56,7 +56,7 @@ export default function DrawerAreas() {
 						<DBDrawerHeader
 							closeButtonText="Close"
 							startSlot={<DBIcon icon="person" />}>
-							With start slot
+							<h2>With start slot</h2>
 						</DBDrawerHeader>
 					}>
 					Lorem ipsum dolor sit amet.
@@ -74,7 +74,7 @@ export default function DrawerAreas() {
 						<DBDrawerHeader
 							closeButtonText="Close"
 							endSlot={<DBBadge>New</DBBadge>}>
-							With end slot
+							<h2>With end slot</h2>
 						</DBDrawerHeader>
 					}>
 					Lorem ipsum dolor sit amet.
@@ -90,7 +90,7 @@ export default function DrawerAreas() {
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							With footer
+							<h2>With footer</h2>
 						</DBDrawerHeader>
 					}
 					footer={
