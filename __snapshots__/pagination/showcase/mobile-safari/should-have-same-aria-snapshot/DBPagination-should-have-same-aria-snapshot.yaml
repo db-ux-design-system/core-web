@@ -142,11 +142,7 @@
       - listitem:
         - button "Page 1 of 20": "1"
       - listitem:
-        - button "Page 2 of 20": "2"
-      - listitem:
         - button "Page 10 of 20": "10"
-      - listitem:
-        - button "Page 19 of 20": "19"
       - listitem:
         - button "Page 20 of 20": "20"
       - listitem:
@@ -161,8 +157,7 @@
         - link "Page 1 of 10"
           - text: "1"
       - listitem:
-        - link "Page 5 of 10"
-          - text: "5"
+        - button "Page 5 of 10": "5"
       - listitem:
         - link "Page 10 of 10"
           - text: "10"
@@ -174,8 +169,7 @@
       - listitem:
         - button "Previous page" [disabled]
       - listitem:
-        - link "Page 1 of 10"
-          - text: "1"
+        - button "Page 1 of 10": "1"
       - listitem:
         - link "Page 10 of 10"
           - text: "10"
