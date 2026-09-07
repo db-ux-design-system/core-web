@@ -11,9 +11,20 @@
 // This makes clicking the "backdrop" area trigger the close button.
 // `data-closedby="not-supported"` is set by the component's JS feature
 // detection, since `closedby` cannot be feature-detected in CSS.
+
+// Scope the hit area to the dedicated header dismiss control only. Footer
+// actions (Confirm, Delete, ...) also use `command="request-close"`, so a bare
+// `[command="request-close"]` selector would give each of them a viewport-sized
+// pseudo. Those pseudos overlap at the same stack level (z-index: -1) and are
+// painted in DOM order, so a later footer action could receive a backdrop click
+// and run its handler - turning a light-dismiss into a destructive action.
+// The header dismiss button is the only request-close control inside the
+// `.db-dialog-header` / `.db-drawer-header` container.
+$header-dismiss: ".db-dialog-header, .db-drawer-header";
+
 @mixin backdrop-click-hit-area($absolute-variant: false) {
 	&[data-closedby="not-supported"]:not([data-backdrop="none"]) {
-		[command="request-close"]::after {
+		:is(#{$header-dismiss}) [command="request-close"]::after {
 			content: "";
 			position: fixed;
 			inset: 0;
@@ -25,7 +36,9 @@
 			// Absolute drawers are bounded by their parent element, not the viewport.
 			// The pseudo's containing block is `.db-drawer-container`, so oversize it
 			// and let the drawer's own `overflow: clip` trim it to the drawer box.
-			&[data-position="absolute"] [command="request-close"]::after {
+			&[data-position="absolute"]
+				:is(#{$header-dismiss})
+				[command="request-close"]::after {
 				position: absolute;
 				inset: -100vmax;
 			}
