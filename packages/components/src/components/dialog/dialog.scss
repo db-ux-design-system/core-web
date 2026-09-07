@@ -34,10 +34,6 @@
 		var(--db-dialog-block-size) - 2 * var(--db-dialog-viewport-inset)
 	);
 
-	// The content row owns the scrolling, so clip the box to the card radius
-	// instead of letting the dialog element scroll itself.
-	overflow: clip;
-
 	// Scoped to the open state so the user agent rule
 	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.
 	&[open] {
