@@ -109,6 +109,10 @@ Ein anderer Weg zum gleichen Ergebnis ist keine Abweichung. Entscheidend ist, ob
 - **`size` hat in Figma keine Property, sondern getrennte Komponenten auf beiden Ebenen** — `Pagination - (Def) Medium` und `Pagination - Small` sind zwei Hauptkomponenten, ebenso `↳ Pagination Item - Medium` und `↳ Pagination Item - Small`. Im Code ist es je eine geteilte `size`-Prop. 1:2-Mapping auf beiden Ebenen, und die Größe wird über Code Connect an der jeweiligen Komponente übergeben, nicht über eine Figma-Property. Die Aufteilung ist gewollt: Nur so kann der Children-Slot die Einsetzbarkeit auf das Item-Set der passenden Größe begrenzen. Sie folgt dem Muster von Link, Infotext und Checkbox. Die Truncation liegt als Variante in beiden Item-Sets und erbt die Größe.
 - **`layout` ist code-only** — `always` / `wide` / `collapsed` steuert, welche Items unterhalb des `sm`-Breakpoints sichtbar bleiben. In Figma ist der zusammengeklappte Zustand nicht ausgelegt, deshalb hat die Achse dort keine Entsprechung.
 
+### Loading Indicator
+
+- **`multiline` ist Figma-only** — `🔀 Multiline` steuert an den beiden Circular-Sets das Umbruchverhalten längerer Labels. Im Code existiert keine Entsprechung, dort bricht das Label über das Layout um. Konsequenz: Die Achse ist reines Werkzeugwissen für Figma und gehört nicht in die Komponenten-Doku, sondern nach Figma Learn.
+
 ## Icons
 
 - **Format** — Figma: SVG-Instanzen (Component Instances). Code: Icon Font (woff2).

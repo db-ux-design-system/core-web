@@ -66,8 +66,8 @@ Der übrige Bestand ist erledigt: Shell Desktop nennt vier Navigation Items für
 
 ### 11. Loading Indicator: Figma-IDs, Dev-Handoff
 
-- **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell und Control Panel: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Betrifft die vier Einträge in `componentSets` und die sechs in `helperComponents`.
-- **`code` und `description` beim Dev-Handoff füllen.** Alle Properties tragen `code: null`, weil noch keine `model.ts` existiert. Vorher ist zu klären, ob `type` und `indeterminate` Props werden oder getrennte Komponenten, siehe `figma-findings.md`.
+- **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell und Control Panel: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Betrifft die vier Einträge in `componentSets` und die acht in `helperComponents`.
+- **`description` beim Dev-Handoff füllen.** Nur ein Teil der Properties trägt einen JSDoc in der `model.ts`, die übrigen bleiben ohne `description`, siehe README-Abschnitt „`description` nur bei vorhandener Code-Property". Sobald die JSDocs existieren, den Wortlaut übernehmen.
 
 ### 12. Pagination: Figma-IDs und Properties nach dem Merge verifizieren
 
@@ -150,6 +150,7 @@ Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Kompone
     - Die Auslassung über `🔀 Type` mit dem Wert `Truncation` erzeugen, nicht über eine eigene Komponente.
     - Je Hauptkomponente ist nur das Item-Set der passenden Größe einsetzbar, der Slot erzwingt das über `allowPreferredValuesOnly`. Mindestens zwei Items sind nötig.
     - Kombinationen von `🔀 Type` mit dem Wert `Truncation` und einem Interaktionszustand oder `🔀 Current` mit dem Wert `True` lösen keine eigene Variante auf.
+- **`multiline` des Loading Indicators.** `🔀 Multiline` liegt an den beiden Circular-Sets und stellt das Umbruchverhalten längerer Labels ein. Die Property existiert nur in Figma, im Code bricht das Label über das Layout um. Wann sie zu setzen ist, gehört deshalb nach Figma Learn und nicht in die Komponenten-Doku. Der Satz „Bei `variant` mit dem Wert `circular` und `orientation` mit dem Wert `vertical` steht das `label` unter dem Kreis und bricht bei größerer Länge um" stand als zweiter Satz in Regel 10 der `guidelines.md` und ist dort entfernt; die Längenempfehlung steht jetzt als Zusatzinformation.
 
 Beim Anlegen der Learn-Einträge prüfen, welche weiteren Aussagen aus den Guidelines dorthin gehören, statt in `## Zusätzliche Informationen` zu stehen.
 
