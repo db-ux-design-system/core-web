@@ -4,6 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
+@use "../../styles/internal/dialog-ponyfill";
 @use "../../styles/dialog-init";
 
 %container-size-horizontal {
@@ -333,6 +334,8 @@
 			}
 		}
 	}
+
+	@include dialog-ponyfill.backdrop-click-hit-area($absolute-variant: true);
 
 	&[data-position="absolute"] {
 		--db-drawer-inline-size: 100%;
