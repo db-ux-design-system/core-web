@@ -14,15 +14,17 @@ Three things are easy to miss when writing the markup by hand:
 - Every page button needs an `aria-label` that names the page in context
   (`Page 5 of 10`), because the visible text is only a bare number. The active
   page additionally carries `aria-current="page"`.
-- Skipped page ranges are rendered as an `<li>` with
-  `class="db-pagination-ellipsis"` and `aria-hidden="true"`, so assistive
-  technology is not read a decorative separator.
-- Every page and ellipsis `<li>` is a pagination item: it carries
-  `class="db-pagination-item"`, its own `data-size` and a `data-pagination-item`
-  attribute. The last one drives the collapsing described below and is the only
-  part of the markup that cannot be read off the rendered result. In the framework
-  packages this markup comes from `DBPaginationItem`, which is documented together
-  with `DBPagination`.
+- Skipped page ranges are not elements. They are drawn by the page that borders the
+  gap, through `data-ellipsis-wide` and `data-ellipsis-collapsed` with the values
+  `before`, `after` or `both`. That keeps the list free of decorative entries and
+  the dots out of the accessibility tree, because a pseudo element with alternative
+  text has no accessible name.
+- Every page `<li>` is a pagination item: it carries `class="db-pagination-item"`,
+  its own `data-size`, a `data-page` with the page number and a
+  `data-pagination-item` attribute. `data-page` is what the component reads back to
+  know which page was activated, and `data-pagination-item` drives the collapsing
+  described below. In the framework packages this markup comes from
+  `DBPaginationItem`, which is documented together with `DBPagination`.
 - The previous and next buttons are not pagination items. They are icon buttons,
   the same split the Figma component set makes, and they are part of every layout.
 
@@ -58,17 +60,11 @@ Three things are easy to miss when writing the markup by hand:
 			</button>
 		</li>
 		<li
-			class="db-pagination-item db-pagination-ellipsis"
-			data-pagination-item="ellipsis"
-			data-size="medium"
-			aria-hidden="true"
-		>
-			<span>...</span>
-		</li>
-		<li
 			class="db-pagination-item"
 			data-pagination-item="sibling"
+			data-page="4"
 			data-size="medium"
+			data-ellipsis-wide="before"
 		>
 			<button
 				class="db-button db-pagination-page"
@@ -99,6 +95,7 @@ Three things are easy to miss when writing the markup by hand:
 		<li
 			class="db-pagination-item"
 			data-pagination-item="sibling"
+			data-page="6"
 			data-size="medium"
 		>
 			<button
@@ -110,14 +107,6 @@ Three things are easy to miss when writing the markup by hand:
 			>
 				6
 			</button>
-		</li>
-		<li
-			class="db-pagination-item db-pagination-ellipsis"
-			data-pagination-item="ellipsis"
-			data-size="medium"
-			aria-hidden="true"
-		>
-			<span>...</span>
 		</li>
 		<li
 			class="db-pagination-item"
@@ -160,24 +149,36 @@ page with the native `disabled` attribute.
 ### Collapsing on narrow viewports
 
 Below the `sm` breakpoint the page list collapses: the pages next to the current
-page give way, so only the boundary pages, the current page and the ellipses
-remain. Both layouts live in the same markup, which is why the list carries more
-items than any single layout shows.
+page give way, so only the boundary pages and the current page remain. Both layouts
+live in the same markup, which is why the list carries more items than any single
+layout shows.
 
-| `data-pagination-item` | Rendered                  | Meaning                                                            |
-| ---------------------- | ------------------------- | ------------------------------------------------------------------ |
-| `page`                 | always                    | Boundary page, current page, or a page closing a one-page gap      |
-| `sibling`              | only above the breakpoint | Page next to the current one                                       |
-| `ellipsis`             | always                    | Stands in for pages that neither layout shows                      |
-| `collapse-ellipsis`    | only below the breakpoint | Stands in for the pages the collapsing removes                     |
-| `wide-ellipsis`        | only above the breakpoint | Second ellipsis of a gap the collapsed layout covers with only one |
+Which pages are shown is one attribute:
 
-Two rules decide the values, and each layout has to satisfy them on its own:
-between two rendered pages that are not consecutive stands exactly one ellipsis,
-and no ellipsis stands in for a single page - that page is rendered instead. The
-example above therefore collapses to `1 ... 5 ... 10`, while a list of seven
-pages that needs no ellipsis at all in the wide layout needs two
-`collapse-ellipsis` items to collapse to `1 ... 4 ... 7`.
+| `data-pagination-item` | Rendered                  | Meaning                                                       |
+| ---------------------- | ------------------------- | ------------------------------------------------------------- |
+| `page`                 | always                    | Boundary page, current page, or a page closing a one-page gap |
+| `sibling`              | only above the breakpoint | Page next to the current one                                  |
+
+Where the gaps are is two more, one per layout. Each takes `before`, `after` or
+`both`, and the marker is drawn by the page it belongs to:
+
+| Attribute                 | Applies                   |
+| ------------------------- | ------------------------- |
+| `data-ellipsis-wide`      | only above the breakpoint |
+| `data-ellipsis-collapsed` | only below the breakpoint |
+
+The reason there are two is that a marker inherits the visibility of the page that
+carries it. A gap the wide layout opens in front of a sibling would disappear
+together with that sibling when the list collapses, so the collapsed layout marks
+the next page it actually shows instead.
+
+Two rules decide the markers, and each layout has to satisfy them on its own:
+between two rendered pages that are not consecutive stands exactly one marker, and
+no marker stands in for a single page - that page is rendered instead. The example
+above therefore collapses to `1 ... 5 ... 10`, while a list of seven pages that
+needs no marker at all in the wide layout needs two collapsed markers to collapse
+to `1 ... 4 ... 7`.
 
 The two layouts are not the same calculation with different numbers. The wide one
 keeps the number of rendered items constant, so it pads the row towards the
@@ -189,8 +190,7 @@ page, and nothing else, so the same list collapses to `1 ... 10`.
 Writing the markup by hand means working out both: the wide list from
 `currentPage`, `siblingCount` and `boundaryCount`, the collapsed list from
 `boundaryCount` and `currentPage` alone, and then marking up the difference. In
-both lists a gap of exactly one page is rendered as that page instead of an
-ellipsis.
+both lists a gap of exactly one page is rendered as that page instead of a marker.
 
 ### Page links
 
@@ -245,7 +245,10 @@ cannot be followed. The native disabled button says what it is, needs no ARIA an
 looks the same. So the first and last page mix element types in one list, and the
 `rel` attribute disappears together with the anchor.
 
-The ellipses never become links; they stay `<li aria-hidden="true">` with a
-`<span>`. The `<span>` cannot be replaced by a pseudo element: Chromium exposes
-generated `content` as a text node, so an ellipsis drawn with `::before` would be
-announced instead of hidden.
+The markers never become links, because they are pseudo elements of a page rather
+than elements of their own. They stay out of the accessibility tree through the
+alternative text syntax, `content: "..." / ""`, which gives generated content an
+empty accessible name. The plain `content: "..."` in front of it is the fallback:
+where the syntax is not understood the whole declaration would be dropped and the
+dots would vanish, so the first line keeps them visible at the price of being
+announced.

@@ -1,13 +1,27 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/variables";
 
-// The item owns its own box and reads its size from its own data-size, so it can
-// be used on its own. The surrounding layout and the collapsing between the two
-// layouts stay with the pagination, because both depend on the list context.
-// The box is styled through the child rather than through a class on it, because
-// with composition the child is whatever the consumer passed - a DBButton, a plain
-// anchor or a framework link component. :is(a, button) covers the interactive
-// elements a page can reasonably be.
+// Two content declarations, not one: the second wins wherever the alternative text
+// syntax parses, and is dropped where it does not, leaving the first. An engine
+// without support therefore still shows the dots and only announces them, instead of
+// dropping the declaration and losing them altogether. Drop the first line once every
+// target in .browserslistrc is confirmed to support the syntax.
+// Three ASCII dots rather than an escaped ellipsis: Sass resolves "\2026" back to the
+// literal character and then emits @charset, see the SCSS rules in AGENTS.md. It is
+// also what the markup rendered before.
+@mixin ellipsis-content {
+	content: "...";
+	content: "..." / "";
+}
+
+// The item owns its own box and reads its size from its own data-size, so it can be
+// used on its own. The surrounding layout stays with the pagination, because it
+// depends on the list context.
+// The box is styled through the child rather than through a class on it, because with
+// composition the child is whatever the consumer passed - a DBButton, a plain anchor
+// or a framework link component. :is(a, button) covers the interactive elements a
+// page can reasonably be.
 .db-pagination-item {
 	display: flex;
 	align-items: center;
@@ -53,12 +67,56 @@
 		font-weight: 400;
 	}
 
-	&.db-pagination-ellipsis {
+	// The truncation is drawn by the page that borders the gap instead of by an
+	// element of its own, so the list contains nothing but pages and the dots never
+	// reach the accessibility tree. The typography and the box are set for every
+	// marker regardless of layout, because Sass cannot extend across a media query -
+	// only the content and the margin are switched below the breakpoint.
+	&[data-ellipsis-wide]::before,
+	&[data-ellipsis-wide]::after,
+	&[data-ellipsis-collapsed]::before,
+	&[data-ellipsis-collapsed]::after {
 		@extend %db-overwrite-font-size-md;
 
-		block-size: variables.$db-sizing-md;
+		display: inline-block;
 		min-inline-size: variables.$db-sizing-sm;
-		padding-inline: variables.$db-spacing-fixed-2xs;
+		text-align: center;
+	}
+
+	&[data-ellipsis-wide="before"]::before,
+	&[data-ellipsis-wide="both"]::before {
+		@include ellipsis-content;
+
+		margin-inline-end: variables.$db-spacing-fixed-2xs;
+	}
+
+	&[data-ellipsis-wide="after"]::after,
+	&[data-ellipsis-wide="both"]::after {
+		@include ellipsis-content;
+
+		margin-inline-start: variables.$db-spacing-fixed-2xs;
+	}
+
+	@include screen-sizes.screen("sm", "max") {
+		&[data-ellipsis-wide]::before,
+		&[data-ellipsis-wide]::after {
+			content: none;
+			margin-inline: 0;
+		}
+
+		&[data-ellipsis-collapsed="before"]::before,
+		&[data-ellipsis-collapsed="both"]::before {
+			@include ellipsis-content;
+
+			margin-inline-end: variables.$db-spacing-fixed-2xs;
+		}
+
+		&[data-ellipsis-collapsed="after"]::after,
+		&[data-ellipsis-collapsed="both"]::after {
+			@include ellipsis-content;
+
+			margin-inline-start: variables.$db-spacing-fixed-2xs;
+		}
 	}
 
 	&[data-size="small"] {
@@ -68,18 +126,39 @@
 			padding: variables.$db-spacing-fixed-3xs;
 		}
 
-		&.db-pagination-ellipsis {
+		// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
+		// $db-sizing-sm at regular density, but is narrower at functional and wider
+		// at expressive - so the marker ended up wider than the page button it sits
+		// next to. $db-sizing-xs stays below $db-sizing-sm in every density.
+		&[data-ellipsis-wide]::before,
+		&[data-ellipsis-wide]::after,
+		&[data-ellipsis-collapsed]::before,
+		&[data-ellipsis-collapsed]::after {
 			@extend %db-overwrite-font-size-sm;
 
-			block-size: variables.$db-sizing-sm;
-
-			// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
-			// $db-sizing-sm at regular density, but is narrower at functional and
-			// wider at expressive - so the ellipsis ended up wider than the page
-			// button it sits next to. $db-sizing-xs stays below $db-sizing-sm in
-			// every density.
 			min-inline-size: variables.$db-sizing-xs;
-			padding-inline: variables.$db-spacing-fixed-3xs;
+		}
+
+		&[data-ellipsis-wide="before"]::before,
+		&[data-ellipsis-wide="both"]::before {
+			margin-inline-end: variables.$db-spacing-fixed-3xs;
+		}
+
+		&[data-ellipsis-wide="after"]::after,
+		&[data-ellipsis-wide="both"]::after {
+			margin-inline-start: variables.$db-spacing-fixed-3xs;
+		}
+
+		@include screen-sizes.screen("sm", "max") {
+			&[data-ellipsis-collapsed="before"]::before,
+			&[data-ellipsis-collapsed="both"]::before {
+				margin-inline-end: variables.$db-spacing-fixed-3xs;
+			}
+
+			&[data-ellipsis-collapsed="after"]::after,
+			&[data-ellipsis-collapsed="both"]::after {
+				margin-inline-start: variables.$db-spacing-fixed-3xs;
+			}
 		}
 	}
 }

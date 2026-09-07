@@ -17,24 +17,53 @@ type PaginationItemSnapshot = {
 	text: string;
 	current: boolean;
 	visible: boolean;
+	ellipsisBefore: boolean;
+	ellipsisAfter: boolean;
+	wideEllipsis: string;
+	collapsedEllipsis: string;
 };
 
+// The truncation is drawn by the page that borders the gap, so it is read off the
+// rendered pseudo elements instead of from an element of its own. That also means the
+// active layout is taken into account without the test having to know the breakpoint.
 const readItems = async (component: any): Promise<PaginationItemSnapshot[]> =>
 	component
 		.locator('li[data-pagination-item]')
 		.evaluateAll((items: HTMLElement[]) =>
-			items.map((item) => ({
-				attribute: item.getAttribute('data-pagination-item') ?? '',
-				text: item.textContent?.trim() ?? '',
-				current: item.querySelector('[aria-current="page"]') !== null,
-				visible: window.getComputedStyle(item).display !== 'none'
-			}))
+			items.map((item) => {
+				const hasMarker = (pseudo: string) => {
+					const content = window.getComputedStyle(
+						item,
+						pseudo
+					).content;
+					return content !== 'none' && content !== 'normal';
+				};
+				return {
+					attribute: item.getAttribute('data-pagination-item') ?? '',
+					text: item.textContent?.trim() ?? '',
+					current:
+						item.querySelector('[aria-current="page"]') !== null ||
+						item.getAttribute('aria-current') === 'page',
+					visible: window.getComputedStyle(item).display !== 'none',
+					// Rendered, so it reflects the active layout - used for the shape.
+					ellipsisBefore: hasMarker('::before'),
+					ellipsisAfter: hasMarker('::after'),
+					// Declared, so both layouts can be checked from one read.
+					wideEllipsis: item.getAttribute('data-ellipsis-wide') ?? '',
+					collapsedEllipsis:
+						item.getAttribute('data-ellipsis-collapsed') ?? ''
+				};
+			})
 		);
 
 const getShape = (items: PaginationItemSnapshot[]): string =>
 	items
 		.filter((item) => item.visible)
-		.map((item) => item.text)
+		.flatMap((item) => [
+			...(item.ellipsisBefore ? ['...'] : []),
+			item.text,
+			...(item.ellipsisAfter ? ['...'] : [])
+		])
 		.join(' ');
 
 const comp: any = (
@@ -203,7 +232,7 @@ const testPagination = () => {
 	test('should truncate large page ranges', async ({ mount }) => {
 		const component = await mount(comp);
 
-		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(
+		await expect(component.locator('li[data-ellipsis-wide]')).toHaveCount(
 			2
 		);
 		await expect(
@@ -221,7 +250,7 @@ const testPagination = () => {
 			<DBPagination currentPage={3} totalCount={50} pageSize={10} />
 		);
 
-		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(
+		await expect(component.locator('li[data-ellipsis-wide]')).toHaveCount(
 			0
 		);
 		await expect(component.locator('.db-pagination-page')).toHaveCount(5);
@@ -239,11 +268,10 @@ const testPagination = () => {
 		);
 
 		// boundaryCount 0 drops the first/last page, siblingCount 0 leaves only the
-		// active page between the two ellipses.
+		// active page between the two ellipses. Both markers hang off that single
+		// page, so they are counted through the shape rather than through carriers.
 		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
-		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(
-			2
-		);
+		expect(getShape(await readItems(component))).toBe('... 10 ...');
 		await expect(
 			component.getByRole('button', { name: 'Page 10 of 20' })
 		).toHaveAttribute('aria-current', 'page');
@@ -475,7 +503,7 @@ const testCollapsing = () => {
 		// Five pages are the collapsed layout already, so nothing may be hidden -
 		// hiding 2 and 4 here would claim a gap that does not exist.
 		expect(getShape(await readItems(component))).toBe('1 2 3 4 5');
-		await expect(component.locator('.db-pagination-ellipsis')).toHaveCount(
+		await expect(component.locator('li[data-ellipsis-wide]')).toHaveCount(
 			0
 		);
 	});
@@ -552,27 +580,22 @@ const testCollapsing = () => {
 						const items = await readItems(component);
 						const context = `boundaryCount ${boundaryCount}, siblingCount ${siblingCount}, page ${currentPage} of ${totalPages}`;
 
+						expectValidLayout(items, {
+							totalPages,
+							currentPage,
+							boundaryCount,
+							layout: 'wide',
+							context: `wide layout: ${context}`
+						});
 						expectValidLayout(
 							items.filter(
-								(item) => item.attribute !== 'collapse-ellipsis'
+								(item) => item.attribute !== 'sibling'
 							),
 							{
 								totalPages,
 								currentPage,
 								boundaryCount,
-								context: `wide layout: ${context}`
-							}
-						);
-						expectValidLayout(
-							items.filter(
-								(item) =>
-									item.attribute !== 'sibling' &&
-									item.attribute !== 'wide-ellipsis'
-							),
-							{
-								totalPages,
-								currentPage,
-								boundaryCount,
+								layout: 'collapsed',
 								context: `collapsed layout: ${context}`
 							}
 						);
@@ -938,10 +961,17 @@ const testLinks = () => {
 			/>
 		);
 
-		const ellipses = component.locator('.db-pagination-ellipsis');
-		await expect(ellipses).toHaveCount(2);
-		await expect(ellipses.first()).toHaveAttribute('aria-hidden', 'true');
-		await expect(ellipses.locator('a')).toHaveCount(0);
+		// The truncation is a pseudo element of the page that borders the gap, so there
+		// is nothing that could become a link and nothing that needs aria-hidden. What
+		// has to hold is that every item in the list is a page with exactly one link.
+		expect(getShape(await readItems(component))).toBe('1 ... 4 5 6 ... 10');
+
+		const items = component.locator('li[data-pagination-item]');
+		await expect(items).toHaveCount(5);
+		await expect(items.locator('a')).toHaveCount(5);
+		await expect(
+			component.locator('li[data-pagination-item][aria-hidden]')
+		).toHaveCount(0);
 	});
 
 	test('should keep the collapsed layout and its tab order in link mode', async ({
@@ -1003,13 +1033,18 @@ const expectValidLayout = (
 		totalPages: number;
 		currentPage: number;
 		boundaryCount: number;
+		layout: 'wide' | 'collapsed';
 		context: string;
 	}
 ) => {
-	const { totalPages, currentPage, boundaryCount, context } = setup;
-	const pages = items
-		.filter((item) => !item.attribute.includes('ellipsis'))
-		.map((item) => Number(item.text));
+	const { totalPages, currentPage, boundaryCount, layout, context } = setup;
+	const marker = (item: PaginationItemSnapshot): string =>
+		layout === 'wide' ? item.wideEllipsis : item.collapsedEllipsis;
+	const hasBefore = (item: PaginationItemSnapshot): boolean =>
+		marker(item) === 'before' || marker(item) === 'both';
+	const hasAfter = (item: PaginationItemSnapshot): boolean =>
+		marker(item) === 'after' || marker(item) === 'both';
+	const pages = items.map((item) => Number(item.text));
 
 	expect(pages, `${context}: contains the current page`).toContain(
 		currentPage
@@ -1026,48 +1061,57 @@ const expectValidLayout = (
 		pages.length
 	);
 
+	// A gap is now a marker on the page that borders it, so the walk checks that every
+	// jump in the sequence is covered by exactly one marker and that no marker claims
+	// a gap that does not exist.
 	let previousPage = 0;
-	let previousWasEllipsis = false;
-	items.forEach((item, index) => {
-		if (item.attribute.includes('ellipsis')) {
+	let previousHadTrailingMarker = false;
+	items.forEach((item) => {
+		const page = Number(item.text);
+		const gap = page - previousPage - 1;
+		const markedGap = hasBefore(item) || previousHadTrailingMarker;
+
+		expect(
+			hasBefore(item) && previousHadTrailingMarker,
+			`${context}: page ${page} is separated by two markers at once`
+		).toBe(false);
+
+		if (gap > 0) {
 			expect(
-				previousWasEllipsis,
-				`${context}: no two ellipses next to each other`
-			).toBe(false);
-			const nextPage =
-				index + 1 < items.length
-					? Number(items[index + 1]!.text)
-					: totalPages + 1;
-			const hiddenPages = nextPage - previousPage - 1;
-			// At a list border an ellipsis may stand in for a single page: with
+				markedGap,
+				`${context}: the gap before page ${page} is marked`
+			).toBe(true);
+			// At a list border a marker may stand in for a single page: with
 			// boundaryCount 0 there is no page pinned outside it that could be
 			// rendered instead.
 			const minimumHiddenPages =
-				boundaryCount === 0 &&
-				(previousPage === 0 || nextPage > totalPages)
-					? 1
-					: 2;
+				boundaryCount === 0 && previousPage === 0 ? 1 : 2;
 			expect(
-				hiddenPages,
-				`${context}: ellipsis stands in for enough pages`
+				gap,
+				`${context}: the marker before page ${page} stands in for enough pages`
 			).toBeGreaterThanOrEqual(minimumHiddenPages);
-			previousWasEllipsis = true;
-			return;
-		}
-		if (!previousWasEllipsis) {
+		} else {
 			expect(
-				Number(item.text),
-				`${context}: pages are consecutive where no ellipsis separates them`
-			).toBe(previousPage + 1);
+				markedGap,
+				`${context}: no marker between the consecutive pages ${previousPage} and ${page}`
+			).toBe(false);
 		}
-		previousPage = Number(item.text);
-		previousWasEllipsis = false;
+
+		previousPage = page;
+		previousHadTrailingMarker = hasAfter(item);
 	});
 
-	if (!previousWasEllipsis) {
+	if (previousHadTrailingMarker) {
+		const hiddenPages = totalPages - previousPage;
+		const minimumHiddenPages = boundaryCount === 0 ? 1 : 2;
+		expect(
+			hiddenPages,
+			`${context}: the trailing marker stands in for enough pages`
+		).toBeGreaterThanOrEqual(minimumHiddenPages);
+	} else {
 		expect(
 			previousPage,
-			`${context}: the list ends on the last page or an ellipsis`
+			`${context}: the list ends on the last page or a marker`
 		).toBe(totalPages);
 	}
 };

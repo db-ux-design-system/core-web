@@ -43,6 +43,17 @@ export type DBPaginationItemDefaultProps = {
 	 * Which layout the item belongs to. Defaults to `always`.
 	 */
 	layout?: PaginationItemLayoutType;
+	/**
+	 * On which side of this page the wide layout draws an ellipsis. The gap is drawn
+	 * by the page that borders it rather than by an element of its own, so it cannot
+	 * be reached by assistive technology.
+	 */
+	wideEllipsis?: string;
+	/**
+	 * On which side of this page the collapsed layout draws an ellipsis. Separate
+	 * from the wide side, because a marker inherits the visibility of its carrier.
+	 */
+	collapsedEllipsis?: string;
 };
 
 export type DBPaginationItemProps = DBPaginationItemDefaultProps &

@@ -182,101 +182,68 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			return pages;
 		},
+		// Only pages are items now. An ellipsis is drawn by the page it borders, which
+		// is why each layout marks its own gaps: a marker inherits the visibility of
+		// its carrier, so one attached to a page that the collapsing hides would
+		// disappear with it.
 		getPaginationItems: () => {
 			const totalPages = state.getTotalPages();
 			const widePages = state.getPages(
 				state.getInteger(props.siblingCount, 1, 0)
 			);
-			// getCollapsedPages makes the same guarantees the wide layout does:
-			// ascending unique pages, the current page always among them, and no
-			// ellipsis standing in for a single page. Its pages are a subset of the
-			// wide ones, which is why both fit into one list of items.
+			// The collapsed pages are a subset of the wide ones, so the wide list is the
+			// list of items and the collapsed layout only decides which of them it shows.
 			const collapsedPages = state.getCollapsedPages();
 			const items: PaginationItemType[] = [];
-			let lastWidePage = 0;
-			// Whether pages are missing since the last page the collapsed layout
-			// shows, and whether an ellipsis already stands in for them. Without the
-			// second flag a wide gap followed by a hidden page would emit a second
-			// ellipsis right next to the first one.
-			let collapsedGapOpen = false;
-			let collapsedEllipsisPlaced = false;
 
 			for (const page of widePages) {
-				const wideGap =
-					lastWidePage === 0 ? page > 1 : page - lastWidePage > 1;
-				if (wideGap) {
-					collapsedGapOpen = true;
-				}
-
 				const inCollapsed = collapsedPages.includes(page);
-				const collapsedEllipsis =
-					collapsedGapOpen && !collapsedEllipsisPlaced;
-
-				// An ellipsis slot is shared by both layouts wherever both need one.
-				// A collapsed-only ellipsis goes directly in front of the next page
-				// the collapsed layout shows, so it never ends up behind a page that
-				// is hidden there.
-				if (wideGap || (collapsedEllipsis && inCollapsed)) {
-					items.push({
-						page: 0,
-						layout: state.getEllipsisLayout(
-							wideGap,
-							collapsedEllipsis
-						),
-						// The gap is identified by the page it ends at, which is the
-						// only part of it that survives a page change.
-						key: 'ellipsis-before-' + page
-					});
-					if (collapsedEllipsis) {
-						collapsedEllipsisPlaced = true;
-					}
-				}
-
 				items.push({
 					page,
 					layout: inCollapsed ? 'always' : 'wide',
-					key: 'page-' + page
-				});
-				lastWidePage = page;
-
-				if (inCollapsed) {
-					collapsedGapOpen = false;
-					collapsedEllipsisPlaced = false;
-				} else {
-					collapsedGapOpen = true;
-				}
-			}
-
-			// Same decision for the region behind the last rendered page. It is not
-			// enough to look at the wide layout here: with boundaryCount 0 the
-			// collapsed layout can end before the wide one does, so it needs a
-			// trailing ellipsis where the wide layout needs none.
-			const wideTrailingGap =
-				lastWidePage > 0 && lastWidePage < totalPages;
-			if (wideTrailingGap) {
-				collapsedGapOpen = true;
-			}
-			const collapsedTrailingEllipsis =
-				collapsedGapOpen && !collapsedEllipsisPlaced;
-
-			if (wideTrailingGap || collapsedTrailingEllipsis) {
-				items.push({
-					page: 0,
-					layout: state.getEllipsisLayout(
-						wideTrailingGap,
-						collapsedTrailingEllipsis
+					key: 'page-' + page,
+					wideEllipsis: state.getEllipsisSide(
+						widePages,
+						page,
+						totalPages
 					),
-					key: 'ellipsis-end'
+					collapsedEllipsis: inCollapsed
+						? state.getEllipsisSide(
+								collapsedPages,
+								page,
+								totalPages
+							)
+						: undefined
 				});
 			}
 
 			return items;
 		},
-		getEllipsisLayout: (forWide: boolean, forCollapsed: boolean) => {
-			if (!forWide) {
-				return 'collapsed';
+		// A page borders a gap before it when the previous page in that layout is more
+		// than one away, or when it is the first page shown and page 1 is missing. Only
+		// the last page can border a trailing gap. Both sides at once happens with
+		// boundaryCount 0, where a single page stands between two gaps.
+		getEllipsisSide: (
+			pages: number[],
+			page: number,
+			totalPages: number
+		) => {
+			const index = pages.indexOf(page);
+			if (index === -1) {
+				return undefined;
 			}
-			return forCollapsed ? 'always' : 'wide';
+
+			const previousPage = index > 0 ? pages[index - 1] : 0;
+			const hasBefore = index === 0 ? page > 1 : page - previousPage > 1;
+			const hasAfter = index === pages.length - 1 && page < totalPages;
+
+			if (hasBefore && hasAfter) {
+				return 'both';
+			}
+			if (hasBefore) {
+				return 'before';
+			}
+			return hasAfter ? 'after' : undefined;
 		},
 		getHref: (page: number) => {
 			// The pattern has to go into a local first. Angular turns every prop
@@ -417,6 +384,8 @@ export default function DBPagination(props: DBPaginationProps) {
 								href={state.getHref(item.page)}
 								label={state.getPageLabel(item.page)}
 								text={state.getPageText(item.page)}
+								wideEllipsis={item.wideEllipsis}
+								collapsedEllipsis={item.collapsedEllipsis}
 							/>
 						)}
 					</For>

@@ -1,12 +1,29 @@
 import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
 import type { PaginationItemLayoutType } from '../pagination-item/model';
 
+/**
+ * On which side of a page the gap it borders is drawn. Every layout marks its own
+ * gaps, because a marker inherits the visibility of the page that carries it - one
+ * hidden below the breakpoint would take its ellipsis with it.
+ */
+export const PaginationEllipsisList = ['before', 'after', 'both'] as const;
+export type PaginationEllipsisType = (typeof PaginationEllipsisList)[number];
+
 export type PaginationItemType = {
 	/**
-	 * One-based page number, or `0` for an ellipsis item.
+	 * One-based page number.
 	 */
 	page: number;
 	layout: PaginationItemLayoutType;
+	/**
+	 * Where this page borders a gap in the wide layout.
+	 */
+	wideEllipsis?: PaginationEllipsisType;
+	/**
+	 * Where this page borders a gap in the collapsed layout. Only set on pages the
+	 * collapsed layout shows, since a hidden page cannot carry a visible marker.
+	 */
+	collapsedEllipsis?: PaginationEllipsisType;
 	/**
 	 * Identity of the item across page changes. Keying by list position instead
 	 * would move the focus to an adjacent page whenever the window shifts, because
@@ -82,10 +99,11 @@ export type DBPaginationDefaultState = {
 	getPages: (siblingCount: number) => number[];
 	getCollapsedPages: () => number[];
 	getPaginationItems: () => PaginationItemType[];
-	getEllipsisLayout: (
-		forWide: boolean,
-		forCollapsed: boolean
-	) => PaginationItemLayoutType;
+	getEllipsisSide: (
+		pages: number[],
+		page: number,
+		totalPages: number
+	) => PaginationEllipsisType | undefined;
 	getHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;

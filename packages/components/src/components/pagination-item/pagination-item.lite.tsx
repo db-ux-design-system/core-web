@@ -30,22 +30,16 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 		getActive: () => {
 			return Boolean(getBoolean(props.active, 'active'));
 		},
-		// The attribute is the contract the stylesheet works against, so the five
-		// values live here and not in the parent: page and sibling for a page,
-		// ellipsis, wide-ellipsis and collapse-ellipsis for a truncation item.
+		// The attribute is the contract the stylesheet works against: a page is part
+		// of both layouts, a sibling only of the wide one.
 		getItemAttribute: () => {
-			if (state.getPage() === 0) {
-				if (props.layout === 'collapsed') {
-					return 'collapse-ellipsis';
-				}
-				return props.layout === 'wide' ? 'wide-ellipsis' : 'ellipsis';
-			}
 			return props.layout === 'wide' ? 'sibling' : 'page';
 		}
 	});
 
-	// A truncation item is decoration, so it is taken out of the accessibility
-	// tree entirely.
+	// The truncation is no element of its own anymore. It is drawn by the page that
+	// borders the gap, through data-ellipsis-wide and data-ellipsis-collapsed, so it
+	// never reaches the accessibility tree and the list contains nothing but pages.
 	//
 	// The item owns no click handler. The pagination listens on the list and reads
 	// data-page back from the DOM, the same way DBTabs handles its items, so a
@@ -58,58 +52,45 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 	return (
 		<li
 			id={props.id ?? props.propOverrides?.id}
-			class={cls(
-				'db-pagination-item',
-				state.getPage() === 0 ? 'db-pagination-ellipsis' : undefined,
-				props.className
-			)}
+			class={cls('db-pagination-item', props.className)}
 			ref={_ref}
 			data-pagination-item={state.getItemAttribute()}
 			data-page={state.getPage() > 0 ? state.getPage() : undefined}
 			data-size={props.size}
-			data-variant={
-				state.getPage() === 0
-					? undefined
-					: state.getActive()
-						? 'filled'
-						: 'ghost'
-			}
-			aria-current={!props.text && state.getActive() ? 'page' : undefined}
-			aria-hidden={state.getPage() === 0 ? 'true' : undefined}>
-			<Show when={state.getPage()} else={<span>...</span>}>
-				<Show when={props.text} else={props.children}>
-					<Show
-						when={props.href}
-						else={
-							<DBButton
-								class="db-pagination-page"
-								variant={state.getActive() ? 'filled' : 'ghost'}
-								size={props.size}
-								type="button"
-								aria-current={
-									state.getActive() ? 'page' : undefined
-								}
-								aria-label={props.label}>
-								{props.text}
-							</DBButton>
-						}>
-						{/* The anchor carries the same class and data-attributes that
-						DBButton renders, because set-basic-button styles by class and
-						attribute and resets text-decoration for anchor use. */}
-						<a
-							class="db-button db-pagination-page"
-							href={props.href}
-							data-variant={
-								state.getActive() ? 'filled' : 'ghost'
-							}
-							data-size={props.size}
+			data-ellipsis-wide={props.wideEllipsis}
+			data-ellipsis-collapsed={props.collapsedEllipsis}
+			data-variant={state.getActive() ? 'filled' : 'ghost'}
+			aria-current={
+				!props.text && state.getActive() ? 'page' : undefined
+			}>
+			<Show when={props.text} else={props.children}>
+				<Show
+					when={props.href}
+					else={
+						<DBButton
+							class="db-pagination-page"
+							variant={state.getActive() ? 'filled' : 'ghost'}
+							size={props.size}
+							type="button"
 							aria-current={
 								state.getActive() ? 'page' : undefined
 							}
 							aria-label={props.label}>
 							{props.text}
-						</a>
-					</Show>
+						</DBButton>
+					}>
+					{/* The anchor carries the same class and data-attributes that
+						DBButton renders, because set-basic-button styles by class and
+						attribute and resets text-decoration for anchor use. */}
+					<a
+						class="db-button db-pagination-page"
+						href={props.href}
+						data-variant={state.getActive() ? 'filled' : 'ghost'}
+						data-size={props.size}
+						aria-current={state.getActive() ? 'page' : undefined}
+						aria-label={props.label}>
+						{props.text}
+					</a>
 				</Show>
 			</Show>
 		</li>
