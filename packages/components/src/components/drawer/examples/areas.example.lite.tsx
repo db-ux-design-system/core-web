@@ -28,12 +28,11 @@ export default function DrawerAreas() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-text">
 					Open: With text prop
 				</DBButton>
 				<DBDrawer
+					id="drawer-areas-text"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -46,12 +45,11 @@ export default function DrawerAreas() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-start">
 					Open: With start slot
 				</DBButton>
 				<DBDrawer
+					id="drawer-areas-start"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -65,12 +63,11 @@ export default function DrawerAreas() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-end">
 					Open: With end slot
 				</DBButton>
 				<DBDrawer
+					id="drawer-areas-end"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={
@@ -84,12 +81,11 @@ export default function DrawerAreas() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-footer">
 					Open: With footer
 				</DBButton>
 				<DBDrawer
+					id="drawer-areas-footer"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
 					header={
