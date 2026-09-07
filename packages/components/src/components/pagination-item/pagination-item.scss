@@ -16,6 +16,44 @@
 	content: "..." / "";
 }
 
+// The control of an item, in both shapes it has. React and Vue let DBButton render the
+// button itself, so it is a direct child of the list item. Angular and Stencil put the
+// custom element host in between: display: contents on that host changes the layout but
+// not which selectors match, so a direct child selector alone silently drops the box,
+// the pointer target overlay and the typography in two of the four framework packages.
+// The suffix carries a state selector for the control, for example an attribute.
+@mixin control($suffix: "") {
+	> :is(a, button)#{$suffix},
+	> db-button > :is(a, button)#{$suffix} {
+		@content;
+	}
+}
+
+// The current page is not somewhere to go. It keeps the focus and the aria-current
+// announcement, so it stays a control, but it stops signalling that it leads somewhere:
+// the cursor stays default and hover and pressed keep the resting background.
+// getPageHref drops its href for the same reason, so link mode offers no link to the
+// page one is already on - the ARIA APG treats the last breadcrumb item the same way.
+@mixin current-page {
+	// Both the hover and the pressed helper read this hook, so one declaration covers
+	// the cursor in either state.
+	--db-overwrite-cursor: default;
+
+	// Only the filled look is ours to hold still. A composed child brings its own
+	// background, and painting one on hover would add a state the consumer never
+	// asked for.
+	&[data-variant="filled"] {
+		// The rule resets a hover and a pressed background instead of adding one, so
+		// pulling :focus in here would undo the focus indicator rather than provide
+		// it - the reason the foundations mark their own hover helper the same way.
+		// stylelint-disable-next-line a11y/selector-pseudo-class-focus
+		&:hover,
+		&:active {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		}
+	}
+}
+
 // The item owns its own box and reads its size from its own data-size, so it can be
 // used on its own. The surrounding layout stays with the pagination, because it
 // depends on the list context.
@@ -28,7 +66,7 @@
 	align-items: center;
 	justify-content: center;
 
-	> :is(a, button) {
+	@include control {
 		position: relative;
 		block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
@@ -64,38 +102,23 @@
 	// Keyed on the presentation attribute, not on aria-current: the latter sits on
 	// the control in the option API and only falls back to this element for a
 	// composed child, so it is not a reliable hook for styling.
-	&[data-variant="ghost"] > :is(a, button) {
-		font-weight: 400;
+	&[data-variant="ghost"] {
+		@include control {
+			font-weight: 400;
+		}
 	}
 
-	// The current page is not somewhere to go. It keeps the focus and the aria-current
-	// announcement, so it stays a control, but it stops signalling that it leads
-	// somewhere: the cursor stays default and hover and pressed keep the resting
-	// background. getPageHref
-	// drops its href for the same reason, so link mode offers no link to the page one is
-	// already on - the ARIA APG treats the last breadcrumb item the same way.
-	// Two selectors, because aria-current sits on the control where this component
-	// renders it and only falls back to the list item for a composed child.
-	&[aria-current="page"] > :is(a, button),
-	> :is(a, button)[aria-current="page"] {
-		// Both the hover and the pressed helper read this hook, so one declaration
-		// covers the cursor in either state.
-		--db-overwrite-cursor: default;
-
-		// Only the filled look is ours to hold still. A composed child brings its own
-		// background, and painting one on hover would add a state the consumer never
-		// asked for.
-		&[data-variant="filled"] {
-			// The rule resets a hover and a pressed background instead of adding one,
-			// so pulling :focus in here would undo the focus indicator rather than
-			// provide it - the reason the foundations mark their own hover helper the
-			// same way.
-			// stylelint-disable-next-line a11y/selector-pseudo-class-focus
-			&:hover,
-			&:active {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-			}
+	// Twice, because aria-current sits on the control where this component renders it
+	// and only falls back to the list item for a composed child, which cannot be
+	// reached from here. Never both, or the state would be announced twice.
+	&[aria-current="page"] {
+		@include control {
+			@include current-page;
 		}
+	}
+
+	@include control('[aria-current="page"]') {
+		@include current-page;
 	}
 
 	// The truncation is drawn by the page that borders the gap instead of by an
@@ -151,7 +174,7 @@
 	}
 
 	&[data-size="small"] {
-		> :is(a, button) {
+		@include control {
 			block-size: variables.$db-sizing-sm;
 			min-inline-size: variables.$db-sizing-sm;
 			padding: variables.$db-spacing-fixed-3xs;
