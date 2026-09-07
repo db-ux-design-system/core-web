@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BUcFyl48.js";e();
