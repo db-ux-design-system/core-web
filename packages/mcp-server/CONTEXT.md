@@ -204,7 +204,7 @@ Always normalize paths (convert `\` to `/`) before string comparisons like `.inc
 
 ## Communication
 
-The server uses `StdioServerTransport` from the MCP SDK. It is started as a child process by the MCP client:
+The server is served with `serveStdio` from the MCP SDK, which owns the stdio transport and decides each connection's protocol era from the opening exchange: the 2025 era (`initialize` handshake) and 2026-07-28 (`server/discover` probe) are both served from the same factory. It is started as a child process by the MCP client:
 
 ```json
 {
