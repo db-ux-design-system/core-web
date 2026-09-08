@@ -15,6 +15,9 @@ import {
 	isKeyboardEvent
 } from '../../utils';
 import { syncDialogOpenState } from '../../utils/dialog';
+// BEGIN: drawer ponyfill
+import { escapeCloseFallback } from '../../utils/dialog/ponyfill';
+// END: drawer ponyfill
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
