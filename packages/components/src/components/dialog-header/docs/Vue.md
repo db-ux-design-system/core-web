@@ -2,18 +2,4 @@
 
 For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
-### Use component
-
-```vue App.vue
-<!-- App.vue -->
-<script>
-import { DBDialogHeader } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBDialogHeader
-		closebuttontext="Close"
-		text="With text prop"
-	></DBDialogHeader>
-</template>
-```
+`DBDialogHeader` is only used in the `#header` slot of a `DBDialog`, which wires up the heading relationship and the close button. See the `DBDialog` documentation for complete, working examples.

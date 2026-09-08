@@ -2,26 +2,4 @@
 
 For general installation and configuration take a look at the [react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) package.
 
-### Use component
-
-```tsx App.tsx
-// App.tsx
-import { DBDialogFooter } from "@db-ux/react-core-components";
-
-const App = () => {
-	return (
-		<DBDialogFooter>
-			<DBButton
-				variant="ghost">
-				Cancel
-			</DBButton>
-			<DBButton
-				variant="brand">
-				Confirm
-			</DBButton>
-		</DBDialogFooter>;
-	);
-};
-
-export default App;
-```
+`DBDialogFooter` is only used in the `footer` slot of a `DBDialog`, which places the action row. See the `DBDialog` documentation for complete, working examples.

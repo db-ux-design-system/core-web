@@ -11,11 +11,11 @@ export default function DBDialogFooter(props: DBDialogFooterProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
-		<footer
+		<div
 			ref={_ref}
 			id={props.id || props.propOverrides?.id}
 			class={cls('db-dialog-footer', props.className)}>
 			{props.children}
-		</footer>
+		</div>
 	);
 }

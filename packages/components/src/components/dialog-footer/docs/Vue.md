@@ -2,18 +2,4 @@
 
 For general installation and configuration take a look at the [v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components) package.
 
-### Use component
-
-```vue App.vue
-<!-- App.vue -->
-<script>
-import { DBDialogFooter } from "@db-ux/v-core-components";
-</script>
-
-<template>
-	<DBDialogFooter>
-		<DBButton variant="ghost"> Cancel </DBButton>
-		<DBButton variant="brand"> Confirm </DBButton>
-	</DBDialogFooter>
-</template>
-```
+`DBDialogFooter` is only used in the `#footer` slot of a `DBDialog`, which places the action row. See the `DBDialog` documentation for complete, working examples.

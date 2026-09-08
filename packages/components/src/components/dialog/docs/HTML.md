@@ -38,9 +38,9 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 		aria-labelledby="my-dialog-heading"
 	>
 		<div class="db-dialog-header">
-			<header id="my-dialog-heading" class="db-dialog-header-content">
+			<div id="my-dialog-heading" class="db-dialog-header-content">
 				<h2>Dialog title</h2>
-			</header>
+			</div>
 			<button
 				class="db-button is-icon-text-replace"
 				data-icon="cross"
@@ -54,7 +54,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 			</button>
 		</div>
 		<div class="db-dialog-content">My dialog content</div>
-		<footer class="db-dialog-footer">
+		<div class="db-dialog-footer">
 			<button
 				class="db-button"
 				data-variant="brand"
@@ -64,7 +64,7 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 			>
 				Confirm
 			</button>
-		</footer>
+		</div>
 	</dialog>
 </body>
 ```
@@ -82,9 +82,9 @@ all of its submit buttons.
 <!-- index.html -->
 <dialog id="my-dialog" class="db-dialog">
 	<div class="db-dialog-header">
-		<header id="my-dialog-heading" class="db-dialog-header-content">
+		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Dialog title</h2>
-		</header>
+		</div>
 		<button
 			class="db-button is-icon-text-replace"
 			data-icon="cross"
@@ -97,14 +97,14 @@ all of its submit buttons.
 		</button>
 	</div>
 	<div class="db-dialog-content">Delete this entry?</div>
-	<footer class="db-dialog-footer">
+	<div class="db-dialog-footer">
 		<form method="dialog">
 			<button class="db-button" value="cancel">Cancel</button>
 			<button class="db-button" data-variant="brand" value="confirm">
 				Confirm
 			</button>
 		</form>
-	</footer>
+	</div>
 </dialog>
 
 <script>
@@ -122,9 +122,9 @@ and associate a footer submit button with it through the `form` attribute refere
 <!-- index.html -->
 <dialog id="my-dialog" class="db-dialog">
 	<div class="db-dialog-header">
-		<header id="my-dialog-heading" class="db-dialog-header-content">
+		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Rename entry</h2>
-		</header>
+		</div>
 	</div>
 	<div class="db-dialog-content">
 		<form id="my-dialog-form" method="dialog">
@@ -132,7 +132,7 @@ and associate a footer submit button with it through the `form` attribute refere
 			<input id="entry-name" class="db-input" name="name" />
 		</form>
 	</div>
-	<footer class="db-dialog-footer">
+	<div class="db-dialog-footer">
 		<button class="db-button" form="my-dialog-form" value="cancel">
 			Cancel
 		</button>
@@ -144,7 +144,7 @@ and associate a footer submit button with it through the `form` attribute refere
 		>
 			Save
 		</button>
-	</footer>
+	</div>
 </dialog>
 ```
 
@@ -204,9 +204,9 @@ After, with the dialog:
 	aria-labelledby="my-dialog-heading"
 >
 	<div class="db-dialog-header">
-		<header id="my-dialog-heading" class="db-dialog-header-content">
+		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Dialog title</h2>
-		</header>
+		</div>
 		<button
 			class="db-button is-icon-text-replace"
 			data-icon="cross"
@@ -245,10 +245,7 @@ In plain HTML you wire these fallbacks yourself. Feature-detect Invoker Commands
 	 * If the browser does not support the `command` and `commandfor`
 	 * HTML attributes, we fall back to JavaScript event handlers.
 	 */
-	if (
-		!("command" in HTMLButtonElement.prototype) ||
-		!("commandFor" in HTMLButtonElement.prototype)
-	) {
+	if (!("commandForElement" in HTMLButtonElement.prototype)) {
 		const dialog = document.getElementById("my-dialog");
 		document
 			.querySelector('[commandfor="my-dialog"][command="show-modal"]')

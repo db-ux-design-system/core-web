@@ -409,6 +409,14 @@ When related utils grow beyond a single file, group them in a subfolder with an 
 | `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `getClosestDialogId`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                  |
 | `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `requestCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
 
+### `DBDialog` / `DBDrawer` modality is an open-time decision (do not make `backdrop` reactive)
+
+The `onUpdate` effect in `dialog.lite.tsx` (and the drawer equivalent) intentionally observes **`open` only**, not `backdrop`. Native `<dialog>` fixes its modality when it opens (`showModal()` vs `show()`) and offers no way to switch it while open; simulating a switch would require `close()` + reopen, which flickers, resets focus and fires an extra `close`/`cancel`. So changing `backdrop` on an **open** dialog updates only its appearance, and the modality applied at open time stays until the consumer closes and reopens.
+
+During code review, **do not flag the missing `backdrop` dependency as a bug** — a site owner who wants to change modality should close and reopen the dialog themselves.
+
+Likewise, `DBDialogHeader` / `DBDialogFooter` (and the drawer equivalents) render their heading and action wrappers as neutral `<div>` elements, **not** `<header>` / `<footer>`: a `<header>`/`<footer>` inside a `<dialog>` is not scoped by sectioning content and would expose a stray `banner` / `contentinfo` landmark on the page (`<dialog>` is a sectioning _root_, which scopes the heading outline but does not suppress those roles). During code review, **do not suggest restoring the semantic `<header>`/`<footer>` elements** — the nested `<h2>` carries the heading semantics.
+
 ## Shared Props (`src/shared/model.ts`)
 
 Before adding a new prop to a component's `model.ts`, **always check `src/shared/model.ts`** for existing shared types. Key shared types include:

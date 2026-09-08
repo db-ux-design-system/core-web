@@ -2,26 +2,4 @@
 
 For general installation and configuration take a look at the [ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) package.
 
-### Load component
-
-```ts app.component.ts
-// app.component.ts
-import { DBDialogHeader } from '@db-ux/ngx-core-components';
-
-@Component({
-  // ...
-  imports: [..., DBDialogHeader],
-  standalone: true
-  // ...
-})
-```
-
-### Use component
-
-```html app.component.html
-<!-- app.component.html -->
-<db-dialog-header
-	closebuttontext="Close"
-	text="With text prop"
-></db-dialog-header>
-```
+`DBDialogHeader` is only used in the `header` slot of a `DBDialog`, which wires up the heading relationship and the close button. See the `DBDialog` documentation for complete, working examples.

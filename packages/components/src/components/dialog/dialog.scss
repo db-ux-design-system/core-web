@@ -2,6 +2,13 @@
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/dialog-ponyfill";
 
+// The bare `dialog { ... }` reset (UA padding/margin/border) and the strong/weak
+// `::backdrop` colors live in `dialog-init`. It is `@use`d here (as the drawer
+// and custom-select styles do) so a consumer importing only this component's
+// `dialog.css` still gets them; Sass dedupes the `@use`, so the full bundle
+// keeps them once.
+@use "../../styles/dialog-init";
+
 .db-dialog {
 	--db-dialog-inline-size: 100lvw;
 	--db-dialog-block-size: 100lvh;

@@ -65,6 +65,12 @@ export default function DBDialog(props: DBDialogProps) {
 		state.handleDialogOpen();
 	});
 
+	// Intentionally observes `open` only, not `backdrop`. Modality (showModal
+	// vs show) is an open-time decision of the native <dialog>; there is no way
+	// to switch it while open without close()+reopen, which would flicker,
+	// reset focus and fire an extra close/cancel. So a `backdrop` change on an
+	// open dialog updates only its appearance, and the modality applied at open
+	// time stays until the consumer closes and reopens.
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
