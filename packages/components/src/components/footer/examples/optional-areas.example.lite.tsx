@@ -37,14 +37,16 @@ export default function FooterOptionalAreas() {
 					{/* The flex gap replaces a text space between label and
 					 * link. Mitosis drops explicit JSX whitespace expressions
 					 * during generation, so a text space would not survive
-					 * into the framework outputs. */}
+					 * into the framework outputs. The gap uses a typographic
+					 * unit rather than a spacing token, so it matches a word
+					 * space and scales with the font size. */}
 					<p
 						style={{
 							font: 'var(--db-type-body-sm)',
 							margin: '0',
 							display: 'flex',
 							flexWrap: 'wrap',
-							gap: 'var(--db-spacing-fixed-3xs)'
+							gap: '0.5ch'
 						}}>
 						<span>Customer service:</span>
 						<DBLink variant="inline" size="small" href="#contact">
