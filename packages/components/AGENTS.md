@@ -405,9 +405,9 @@ not reach for `ResizeObserver` or `matchMedia` — see
 [Shift-left: HTML → CSS → JS](../../docs/shift-left-web-development.md).
 
 `DBPagination` is the reference. Its `<li>` elements carry
-`data-pagination-item` (`page`, `sibling`, `ellipsis`, `collapse-ellipsis`,
-`wide-ellipsis`) and `pagination.scss` toggles `display` per layout inside
-`screen-sizes.screen("sm", "max")`. Three things made it work:
+`data-pagination-item` (`page`, `sibling`, `collapsed`) and `pagination.scss`
+toggles `display` per layout inside `screen-sizes.screen("sm", "max")`. Three
+things made it work:
 
 - **Give each layout its own list, and make one a subset of the other.**
   `getPages` produces the wide list and `getCollapsedPages` the narrow one. They
@@ -415,17 +415,22 @@ not reach for `ResizeObserver` or `matchMedia` — see
   wide algorithm keeps the number of rendered items constant by shifting its
   window towards the opposite border, which puts three full-width pages next to
   each other as soon as the current page sits at one end (`1 ... 9998 9999
-10000`). Width is the only reason the collapsed layout exists, so it renders the
-  boundary pages, the current page, and nothing else. What both must share is the
-  set of invariants — ascending unique pages, the current page always present, no
-  ellipsis standing in for a single page — and the collapsed pages must stay a
-  subset of the wide ones, because that is what lets one list of items carry both.
+10000`). Width is the only reason the collapsed layout exists, so it renders one
+  page at each end, the current page, and nothing else - it ignores `boundaryCount`
+  above one for the same reason it ignores `siblingCount`. What both must share is
+  the set of invariants — ascending unique pages, the current page always present,
+  the pages a layout pins actually rendered, no ellipsis standing in for a single
+  page — and the collapsed pages must stay a subset of the wide ones, because that
+  is what lets one list of items carry both.
   Assert those invariants for both layouts in the spec instead of deriving one
   from the other.
-- **The narrow layout is not a subset of the rendered wide layout.** Removing
-  items opens gaps that need their own separators, so a layout can need elements
-  the other one does not have at all. Emit them and hide them in the other
-  layout, rather than trying to reuse one element for both.
+- **A gap belongs to a layout, not to the list.** Removing items opens gaps that
+  the other layout does not have, so a separator cannot be one shared element. Do
+  not emit an element per gap either: draw the gap as a pseudo element on the item
+  that borders it and give each layout its own attribute (`data-ellipsis-wide`,
+  `data-ellipsis-collapsed`). A marker then inherits the visibility of its carrier,
+  which is what makes it switch with the layout, and `content: "..." / ""` keeps it
+  out of the accessibility tree without an `aria-hidden` element.
 - **Hide with `display: none`.** Anything weaker keeps the hidden items in the
   tab order and in the accessibility tree. Note that a focused element that gets
   hidden loses focus to the document; that is the browser doing its job and

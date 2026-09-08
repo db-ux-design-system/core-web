@@ -233,6 +233,7 @@ class and `data-*` attribute, and drop `type="button"`:
 	data-pagination-item="sibling"
 	data-page="4"
 	data-size="medium"
+	data-variant="ghost"
 >
 	<a
 		class="db-button db-pagination-page"

@@ -38,7 +38,7 @@ export default function DBPagination(props: DBPaginationProps) {
 			fallback: number,
 			minimum: number
 		) => {
-			// Number('') and Number(null) both return 0, which is finite and would
+			// An empty string and null both convert to 0, which is finite and would
 			// therefore be clamped to `minimum` instead of using `fallback`. A blank
 			// value means "not set" - reachable via an empty custom element attribute
 			// or a template expression that resolves to an empty string.
