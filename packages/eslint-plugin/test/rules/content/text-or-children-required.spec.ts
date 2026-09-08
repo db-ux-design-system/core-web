@@ -30,6 +30,13 @@ describe('text-or-children-required', () => {
 			{
 				code: '<DBNotification><span>Message</span></DBNotification>'
 			},
+			{ code: '<DBDialogHeader text="Title" />' },
+			{ code: '<DBDialogHeader>Title</DBDialogHeader>' },
+			{
+				code: '<DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>'
+			},
+			{ code: '<DBDrawerHeader text="Title" />' },
+			{ code: '<DBDrawerHeader>Title</DBDrawerHeader>' },
 			{ code: '<div />' }
 		],
 		invalid: [
@@ -104,6 +111,26 @@ describe('text-or-children-required', () => {
 						data: { component: 'DBAccordionItem' }
 					}
 				]
+			},
+			{
+				// Reviewer scenario: a header with only closeButtonText has no
+				// text/children, so the dialog gets an empty accessible name.
+				code: '<DBDialogHeader closeButtonText="Close" />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				code: '<DBDrawerHeader closeButtonText="Close" />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
 			}
 		]
 	});
@@ -112,8 +139,20 @@ describe('text-or-children-required', () => {
 		valid: [
 			{ code: '<db-button text="Save"></db-button>' },
 			{ code: '<db-button>Save</db-button>' },
-			{ code: '<db-button [text]="myText"></db-button>' }
+			{ code: '<db-button [text]="myText"></db-button>' },
+			{ code: '<db-dialog-header text="Title"></db-dialog-header>' },
+			{ code: '<db-drawer-header>Title</db-drawer-header>' }
 		],
-		invalid: []
+		invalid: [
+			{
+				code: '<db-dialog-header closeButtonText="Close"></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
+			}
+		]
 	});
 });

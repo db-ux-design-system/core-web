@@ -21,7 +21,8 @@ export default function DialogBackdrop() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-backdrop-strong">
+					commandfor="dialog-backdrop-strong"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Strong
 				</DBButton>
 				<DBDialog
@@ -49,7 +50,8 @@ export default function DialogBackdrop() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-backdrop-weak">
+					commandfor="dialog-backdrop-weak"
+					onClick={() => setOpenIndex(1)}>
 					Open: Weak
 				</DBButton>
 				<DBDialog
@@ -75,7 +77,10 @@ export default function DialogBackdrop() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show" commandfor="dialog-backdrop-none">
+				<DBButton
+					command="show"
+					commandfor="dialog-backdrop-none"
+					onClick={() => setOpenIndex(2)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDialog

@@ -28,7 +28,10 @@ export default function DialogAreas() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-areas-text">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-areas-text"
+					onClick={() => setOpenIndex(0)}>
 					Open: With text prop
 				</DBButton>
 				<DBDialog
@@ -54,7 +57,10 @@ export default function DialogAreas() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-areas-start">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-areas-start"
+					onClick={() => setOpenIndex(1)}>
 					Open: With start slot
 				</DBButton>
 				<DBDialog
@@ -81,7 +87,10 @@ export default function DialogAreas() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-areas-end">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-areas-end"
+					onClick={() => setOpenIndex(2)}>
 					Open: With end slot
 				</DBButton>
 				<DBDialog
@@ -108,7 +117,10 @@ export default function DialogAreas() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-areas-footer">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-areas-footer"
+					onClick={() => setOpenIndex(3)}>
 					Open: With footer
 				</DBButton>
 				<DBDialog
@@ -149,7 +161,8 @@ export default function DialogAreas() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-areas-subtitle">
+					commandfor="dialog-areas-subtitle"
+					onClick={() => setOpenIndex(4)}>
 					Open: With header subtitle
 				</DBButton>
 				<DBDialog

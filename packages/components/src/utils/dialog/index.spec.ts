@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
 	getClosestDialogId,
 	removeDialogAriaLabelledBy,
@@ -118,21 +118,25 @@ describe('removeDialogAriaLabelledBy', () => {
 	it('removes the attribute while it equals the heading id', () => {
 		const dialog = createDialogStub({ id: 'my-dialog' });
 		setDialogAriaLabelledBy(dialog, 'heading-1');
-		vi.stubGlobal('document', { getElementById: () => dialog });
-		removeDialogAriaLabelledBy('my-dialog', 'heading-1');
+		removeDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
-		vi.unstubAllGlobals();
+	});
+
+	it('removes the attribute for a dialog without an id', () => {
+		// The bug this guards: a drawer with no `id` still gets aria-labelledby
+		// set, so cleanup must work off the element, not a (missing) id.
+		const dialog = createDialogStub();
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		removeDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
 	});
 
 	it('leaves a foreign or absent value untouched', () => {
 		const dialog = createDialogStub({ id: 'my-dialog' });
 		setDialogAriaLabelledBy(dialog, 'foreign-id');
-		vi.stubGlobal('document', { getElementById: () => dialog });
-		removeDialogAriaLabelledBy('my-dialog', 'heading-1');
+		removeDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
-		vi.unstubAllGlobals();
 
-		expect(() => removeDialogAriaLabelledBy('', 'heading-1')).not.toThrow();
 		expect(() =>
 			removeDialogAriaLabelledBy(undefined, 'heading-1')
 		).not.toThrow();

@@ -42,6 +42,10 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<DBDrawer header={<div><DBDrawerHeader>Title</DBDrawerHeader></div>}>Content</DBDrawer>'
+			},
+			{
+				// A JSX spread may carry the header prop; contents are unverifiable.
+				code: '<DBDrawer {...drawerProps}>Content</DBDrawer>'
 			}
 		],
 		invalid: [

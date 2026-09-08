@@ -21,7 +21,8 @@ export default function DrawerRounded() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-rounded-false">
+					commandfor="drawer-rounded-false"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) False
 				</DBButton>
 				<DBDrawer
@@ -38,7 +39,10 @@ export default function DrawerRounded() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-rounded-true">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-rounded-true"
+					onClick={() => setOpenIndex(1)}>
 					Open: True
 				</DBButton>
 				<DBDrawer

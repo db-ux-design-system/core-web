@@ -511,6 +511,20 @@ const reactPlacementShapes: PlacementShape[] = [
 		reports: false
 	},
 	{
+		shape: 'sub-component extracted into a variable (unverifiable placement)',
+		code: 'const header = <DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>;',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		shape: 'sub-component returned from an arrow function (unverifiable placement)',
+		code: 'const renderFooter = () => <DBDialogFooter>Actions</DBDialogFooter>;',
+		component: 'DBDialogFooter',
+		slot: 'footer',
+		reports: false
+	},
+	{
 		shape: 'no dialog ancestor at all',
 		code: '<div><DBDialogHeader>Title</DBDialogHeader></div>',
 		component: 'DBDialogHeader',

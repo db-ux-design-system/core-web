@@ -24,7 +24,8 @@ export default function DrawerExample() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-example-modal">
+					commandfor="drawer-example-modal"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) As modal
 				</DBButton>
 				<DBDrawer
@@ -41,7 +42,10 @@ export default function DrawerExample() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show" commandfor="drawer-example-inside">
+				<DBButton
+					command="show"
+					commandfor="drawer-example-inside"
+					onClick={() => setOpenIndex(1)}>
 					Open: Inside
 				</DBButton>
 				<DBDrawer
@@ -60,7 +64,8 @@ export default function DrawerExample() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-example-slots">
+					commandfor="drawer-example-slots"
+					onClick={() => setOpenIndex(2)}>
 					Open: With slots
 				</DBButton>
 				<DBDrawer

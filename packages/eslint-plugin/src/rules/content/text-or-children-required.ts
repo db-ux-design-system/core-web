@@ -15,7 +15,12 @@ const COMPONENTS_REQUIRING_CONTENT = [
 	'DBInfotext',
 	'DBControlPanelNavigationItem',
 	'DBNavigationItem',
-	'DBNotification'
+	'DBNotification',
+	// The dialog/drawer header sets the dialog's aria-labelledby to its content
+	// container; without `text` or children that container is empty and the
+	// dialog has no accessible name.
+	'DBDialogHeader',
+	'DBDrawerHeader'
 ];
 
 export default {

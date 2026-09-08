@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/dialog-ponyfill";
@@ -9,9 +10,62 @@
 // keeps them once.
 @use "../../styles/dialog-init";
 
+%dialog-transition {
+	// Fade + scale transition. The dialog stays hidden with `display: none`
+	// (UA rule) while closed, so `display` and `overlay` are transitioned with
+	// `allow-discrete` to keep the box in the top layer until the fade-out
+	// finishes. `@starting-style` (in the open state below) defines the
+	// entry-from state.
+	// The transition on this base rule is the one that plays while *closing*
+	// (fast); the `[open]` rule overrides it with the slower *opening*
+	// duration. Guarded by `prefers-reduced-motion` so it is skipped for
+	// reduced motion.
+	@media (prefers-reduced-motion: no-preference) {
+		opacity: 0;
+		transform: scale(0.95);
+		transition:
+			opacity #{variables.$db-transition-duration-fast}
+				#{variables.$db-transition-timing-functional},
+			transform #{variables.$db-transition-duration-fast}
+				#{variables.$db-transition-timing-emotional},
+			display #{variables.$db-transition-duration-fast} allow-discrete,
+			overlay #{variables.$db-transition-duration-fast} allow-discrete;
+	}
+
+	// Scoped to the open state so the user agent rule
+	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.
+	&[open] {
+		@media (prefers-reduced-motion: no-preference) {
+			opacity: 1;
+			transform: scale(1);
+
+			// Slower duration for opening; closing uses the faster duration
+			// from the base rule above.
+			transition:
+				opacity #{variables.$db-transition-duration-medium}
+					#{variables.$db-transition-timing-functional},
+				transform #{variables.$db-transition-duration-medium}
+					#{variables.$db-transition-timing-emotional},
+				display #{variables.$db-transition-duration-medium}
+					allow-discrete,
+				overlay #{variables.$db-transition-duration-medium}
+					allow-discrete;
+
+			@starting-style {
+				opacity: 0;
+				transform: scale(0.95);
+			}
+		}
+	}
+}
+
 .db-dialog {
-	--db-dialog-inline-size: 100lvw;
-	--db-dialog-block-size: 100lvh;
+	// Dynamic viewport units track the currently visible viewport. `lvh`/`lvw`
+	// would use the larger viewport (mobile browser chrome retracted), so a tall
+	// dialog could exceed the visible area and hide its lower content/actions
+	// behind the address bar, defeating the viewport inset. Matches the drawer.
+	--db-dialog-inline-size: 100dvw;
+	--db-dialog-block-size: 100dvh;
 
 	// We're using 40px instead of a token here on purpose: the inset has to stay
 	// constant across all densities, which no sizing token can express
@@ -19,6 +73,7 @@
 	--db-dialog-viewport-inset: 40px;
 
 	@extend %default-card;
+	@extend %dialog-transition;
 	@include dialog-components.container-size-inline(
 		"dialog",
 		"medium",
@@ -40,6 +95,8 @@
 	max-block-size: calc(
 		var(--db-dialog-block-size) - 2 * var(--db-dialog-viewport-inset)
 	);
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+	overflow: hidden;
 
 	// Scoped to the open state so the user agent rule
 	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.

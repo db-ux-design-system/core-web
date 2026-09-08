@@ -277,7 +277,7 @@ Prefer using the `icon` attribute over `<DBIcon>` child component for components
 
 ### `text-or-children-required`
 
-Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBControlPanelNavigationItem, DBNotification) have either a `text` property or children content.
+Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBControlPanelNavigationItem, DBNavigationItem, DBNotification, DBDialogHeader, DBDrawerHeader) have either a `text` property or children content. For DBDialogHeader and DBDrawerHeader this guards the dialog's accessible name: the header content becomes the `aria-labelledby` target, so an empty header leaves the dialog unnamed.
 
 **❌ Invalid:**
 

@@ -43,6 +43,11 @@ export default function DBDialog(props: DBDialogProps) {
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
 			requestCloseFallback(event, _ref);
 		},
+		// Dismisses a non-modal dialog on Escape when the browser ignores closedby.
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleKeyDown: (event: any) => {
+			escapeCloseFallback(event, _ref);
+		},
 		// END: dialog ponyfill
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
@@ -82,6 +87,7 @@ export default function DBDialog(props: DBDialogProps) {
 			class={cls('db-dialog', props.className)}
 			onCancel={(event: Event) => state.handleCancel(event)}
 			onClick={(event) => state.handleClick(event)}
+			onKeyDown={(event) => state.handleKeyDown(event)}
 			onClose={(event) => state.handleClose(event)}
 			data-backdrop={props.backdrop}
 			data-container-size={props.containerSize}

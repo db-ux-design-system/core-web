@@ -404,16 +404,26 @@ If a new component visually resembles an existing one (e.g. looks like a ghost b
 
 When related utils grow beyond a single file, group them in a subfolder with an `index.ts` barrel. Name sibling files without the folder prefix to keep import paths clean (e.g. `utils/dialog/ponyfill` instead of `utils/dialog/dialog-ponyfill`). The `utils/dialog/` folder holds the dialog/drawer shared logic:
 
-| File          | What it covers                                                                                                                                                |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `getClosestDialogId`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                  |
-| `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `requestCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
+| File          | What it covers                                                                                                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `getClosestDialogId`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                                         |
+| `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `requestCloseFallback`, `escapeCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
 
 ### `DBDialog` / `DBDrawer` modality is an open-time decision (do not make `backdrop` reactive)
 
 The `onUpdate` effect in `dialog.lite.tsx` (and the drawer equivalent) intentionally observes **`open` only**, not `backdrop`. Native `<dialog>` fixes its modality when it opens (`showModal()` vs `show()`) and offers no way to switch it while open; simulating a switch would require `close()` + reopen, which flickers, resets focus and fires an extra `close`/`cancel`. So changing `backdrop` on an **open** dialog updates only its appearance, and the modality applied at open time stays until the consumer closes and reopens.
 
 During code review, **do not flag the missing `backdrop` dependency as a bug** — a site owner who wants to change modality should close and reopen the dialog themselves.
+
+### `closedby` ponyfill covers three dismiss paths (backdrop, request-close button, Escape)
+
+A non-modal dialog/drawer (`backdrop="none"`, opened via `show()`) sets `closedby="closerequest"`, which a browser without `closedby` support silently ignores. Native modal dialogs (`showModal()`) still dismiss on Escape, but non-modal ones do **not** — so all three light-dismiss paths need a fallback in unsupported browsers:
+
+- **Backdrop click** — CSS (`_dialog-ponyfill.scss`), gated by `data-closedby="not-supported"`. Intentionally excludes `backdrop="none"` (there is no backdrop to click).
+- **Header request-close button** — `requestCloseFallback` on the dialog `click` handler.
+- **Escape key** — `escapeCloseFallback` on the dialog/drawer `keydown` handler. Guards on `!supportsClosedBy()` **and** `!dialog.matches(':modal')` so modal dialogs keep their native Escape behavior and supporting browsers stay untouched.
+
+During code review, **do not flag the non-modal Escape path as missing** — `escapeCloseFallback` handles it.
 
 Likewise, `DBDialogHeader` / `DBDialogFooter` (and the drawer equivalents) render their heading and action wrappers as neutral `<div>` elements, **not** `<header>` / `<footer>`: a `<header>`/`<footer>` inside a `<dialog>` is not scoped by sectioning content and would expose a stray `banner` / `contentinfo` landmark on the page (`<dialog>` is a sectioning _root_, which scopes the heading outline but does not suppress those roles). During code review, **do not suggest restoring the semantic `<header>`/`<footer>` elements** — the nested `<h2>` carries the heading semantics.
 
