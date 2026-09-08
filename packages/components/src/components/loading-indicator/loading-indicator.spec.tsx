@@ -20,14 +20,16 @@ const testComponent = () => {
 
 	test('should default to the status live-region role', async ({ mount }) => {
 		const component = await mount(comp);
-		await expect(component.locator('[role="status"]')).toBeVisible();
+		// The live region is the root element itself, so the role sits on the
+		// component root (matching DBNotification) rather than on a descendant.
+		await expect(component).toHaveAttribute('role', 'status');
 	});
 
 	test('should allow overriding the role', async ({ mount }) => {
 		const component = await mount(
 			<DBLoadingIndicator role="alert">Test</DBLoadingIndicator>
 		);
-		await expect(component.locator('[role="alert"]')).toBeVisible();
+		await expect(component).toHaveAttribute('role', 'alert');
 	});
 
 	test('should put the id on the root element', async ({ mount }) => {

@@ -47,7 +47,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		_previousLoadingState: undefined,
 		_timeoutId: undefined,
 		_didDisableParent: false,
-		_segmentStyle: {},
 		initialized: false,
 		resetIds: () => {
 			const mId =
@@ -383,9 +382,23 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		if (_ref) {
 			const loadingIndicator = _ref as HTMLElement;
 			const percentage = state.getPercentage();
-			state._segmentStyle = {
-				'--db-loading-indicator-percentage': percentage
-			};
+
+			// Set the percentage custom property on the root element. It
+			// inherits down to both consumers -- the circular segment
+			// (.db-loading-indicator-circle-segment) and the bar segment
+			// (div::after) -- so it does not need to be repeated on each of
+			// them, and it lands on the element carrying the _ref, matching
+			// data-percentage-full below.
+			if (percentage === undefined) {
+				loadingIndicator.style.removeProperty(
+					'--db-loading-indicator-percentage'
+				);
+			} else {
+				loadingIndicator.style.setProperty(
+					'--db-loading-indicator-percentage',
+					percentage
+				);
+			}
 
 			if (percentage === '1.00') {
 				loadingIndicator.dataset['percentageFull'] = 'true';
@@ -404,6 +417,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			ref={_ref}
 			id={state._id}
 			class={cls('db-loading-indicator', props.className)}
+			role={state.getRole()}
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}
@@ -422,14 +436,11 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					}
 					aria-hidden="true">
 					<circle class="db-loading-indicator-circle-track" />
-					<circle
-						style={state._segmentStyle}
-						class="db-loading-indicator-circle-segment"
-					/>
+					<circle class="db-loading-indicator-circle-segment" />
 				</svg>
 			</Show>
 
-			<div role={state.getRole()} style={state._segmentStyle}>
+			<div>
 				<label id={state._labelId} htmlFor={state._progressId}>
 					<Show when={props.label} else={props.children}>
 						{props.label}

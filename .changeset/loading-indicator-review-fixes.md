@@ -16,6 +16,6 @@ fix(DBLoadingIndicator): correct determinate progress, ARIA naming and role hand
 - Keep the host button icon visible while the indicator is `inactive`.
 - Remove the parent ARIA relationship when `overlay` is turned off, and clean up the old relationship before an `id` change.
 - Cancel a pending timeout when `onTimeout` is removed.
-- Keep `role` off the generated React root so it only applies to the inner live region.
+- Move the live-region `role` onto the component root (matching `DBNotification`) so the Angular and Web Component outputs no longer expose a duplicated, nested live region.
 - Remove the unused `width` prop, which had no effect on the component.
 - Flip the indeterminate bar `wobbling` animation under `dir="rtl"`.
