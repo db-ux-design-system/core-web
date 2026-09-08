@@ -8,6 +8,12 @@ import { DBFooter } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 
+// The meta links use the same DBLink variant and size as the examples, so the
+// snapshot shows them at the size of the copyright next to them rather than at
+// the inherited body size. This note stays outside the JSX on purpose:
+// `copy-files.ts` strips the JSX comment delimiters when it generates the Vue
+// spec, so a comment inside the tree would turn into rendered template content
+// there and show up in the aria snapshot.
 const comp: any = (
 	<DBFooter>
 		<DBFooterContent>
@@ -22,9 +28,6 @@ const comp: any = (
 				</ul>
 			</nav>
 		</DBFooterContent>
-		{/* The meta links use the same DBLink variant and size as the examples,
-		 * so the snapshot shows them at the size of the copyright next to them
-		 * rather than at the inherited body size. */}
 		<DBFooterMeta copyright="Example Company">
 			<nav aria-label="Legal navigation">
 				<ul>
