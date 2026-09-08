@@ -82,6 +82,13 @@
 %popover-navigation {
 	position: relative;
 
+	// Each item group is the positioning context for its own popover flyout
+	// menu (position: absolute; inset-inline-start: 0). Without this, the
+	// flyout anchors to the nav root and all menus collapse to the left edge.
+	.db-control-panel-navigation-item-group {
+		position: relative;
+	}
+
 	.db-control-panel-navigation-item-group-expand-button {
 		&:is(:hover, :focus-visible):not(
 				:has(
