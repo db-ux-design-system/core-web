@@ -5,8 +5,7 @@ import {
 	InitializedState,
 	OrientationProps,
 	ShowLabelProps,
-	SizeType,
-	WidthProps
+	SizeType
 } from '../../shared/model';
 
 export const LoadingIndicatorVariantList = ['bar', 'circular'] as const;
@@ -101,7 +100,6 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	GlobalProps &
 	ShowLabelProps &
 	OrientationProps &
-	WidthProps &
 	DelayProps;
 
 export type DBLoadingIndicatorDefaultState = {

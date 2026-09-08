@@ -18,7 +18,17 @@
 }
 
 %interactive-element-with-loading {
-	&:has(.db-loading-indicator:not([data-overlay="true"])) {
+	// Only hide the button icon while an actual (non-inactive) loading
+	// indicator is present. An inactive indicator is itself hidden (see the
+	// rule below), so its host must keep showing the original icon -- otherwise
+	// a controlled flow that flips the indicator to inactive would leave an
+	// icon-only button visually blank.
+	&:has(
+		.db-loading-indicator:not(
+			[data-overlay="true"],
+			[data-state="inactive"]
+		)
+	) {
 		// Hide icon inside button when loading indicator is present
 		&[data-icon],
 		&[data-icon-before] {

@@ -301,6 +301,13 @@ $progress-bar-full-segment-inline-size: calc(
 		}
 	}
 
+	// Flip the wobbling translate under RTL: inset-inline-start already
+	// resolves to the opposite edge, so the physical translateX in the
+	// keyframe has to be negated to keep the segment inside the track.
+	&:dir(rtl) {
+		--db-loading-indicator-wobbling-direction: -1;
+	}
+
 	&[data-state="active"] {
 		&:not([data-indeterminate]),
 		&[data-indeterminate="true"] {

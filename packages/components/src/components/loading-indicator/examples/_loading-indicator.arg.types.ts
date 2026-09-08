@@ -10,7 +10,6 @@ export const StorybookLoadingIndicatorArgTypes: Record<string, InputType> = {
 		options: ['horizontal', 'vertical']
 	},
 	size: { control: 'select', options: ['small', 'medium'] },
-	width: { control: 'select', options: ['full', 'auto'] },
 	state: {
 		control: 'select',
 		options: ['inactive', 'active', 'successful', 'critical']

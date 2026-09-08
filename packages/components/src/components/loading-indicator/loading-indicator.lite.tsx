@@ -62,15 +62,19 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			if (
 				getBoolean(props.indeterminate) ||
 				props.value === undefined ||
-				props.value === null ||
-				props.max === undefined ||
-				props.max === null
+				props.value === null
 			) {
 				return;
 			}
 
 			const value = Number(props.value);
-			const max = Number(props.max);
+			// max defaults to 100 (matching the native <progress> and the
+			// documented default) so a determinate value without an explicit
+			// max still produces a percentage instead of nothing.
+			const max =
+				props.max === undefined || props.max === null
+					? 100
+					: Number(props.max);
 
 			// Guard against non-numeric props (e.g. Number("abc") -> NaN) and a
 			// zero/negative max, which would otherwise produce "NaN" and render
@@ -98,7 +102,11 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			});
 		},
 		handleParentDisabled: (forceEnable?: boolean) => {
-			if (_ref && getBoolean(props.autoDisable) && state.initialized) {
+			// Note: do not gate the whole method on props.autoDisable. When
+			// autoDisable is turned off after this indicator already disabled
+			// the parent, we still need to run so the parent can be re-enabled.
+			if (_ref && state.initialized) {
+				const autoDisable = getBoolean(props.autoDisable);
 				let parent = (_ref as HTMLDivElement).parentElement;
 				if (parent && parent.localName === 'db-loading-indicator') {
 					parent = parent.parentElement;
@@ -106,6 +114,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 				if (parent && 'disabled' in parent) {
 					if (
+						autoDisable &&
 						!forceEnable &&
 						state._loadingState !== 'inactive' &&
 						!parent.disabled
@@ -119,8 +128,13 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						parent.disabled = true;
 					}
 
+					// Re-enable when we forced it, when the load finished, or
+					// when autoDisable itself was turned off -- but only if this
+					// instance was the one that disabled the parent.
 					if (
-						(forceEnable || state._loadingState === 'inactive') &&
+						(forceEnable ||
+							!autoDisable ||
+							state._loadingState === 'inactive') &&
 						state._didDisableParent
 					) {
 						state._didDisableParent = false;
@@ -142,7 +156,12 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 				const isButton = parent?.localName === 'button';
 
-				if (!(isButton || props.overlay)) return;
+				// When this is neither a button nor an overlay we never add the
+				// relationship -- but if overlay was just turned off we must
+				// still remove a relationship added earlier, so force removal
+				// instead of bailing out.
+				const shouldRemove =
+					remove || !(isButton || getBoolean(props.overlay));
 
 				// Always use aria-describedby (never aria-labelledby): on a
 				// button aria-labelledby would replace the accessible name, so
@@ -155,7 +174,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				let describedByElements = ariaDescribedBy
 					? ariaDescribedBy.split(' ')
 					: [];
-				if (remove || state._loadingState === 'inactive') {
+				if (shouldRemove || state._loadingState === 'inactive') {
 					if (describedByElements.includes(state._id!)) {
 						describedByElements = describedByElements.filter(
 							(elementId) => elementId !== state._id
@@ -254,6 +273,11 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 	onUpdate(() => {
 		if (props.id) {
+			// Remove the parent relationship that still references the current
+			// (old) _id before resetIds swaps in the new one, otherwise the
+			// parent keeps a dangling aria-describedby token that the later
+			// add/remove for the new id can never clean up.
+			state.handleParentAria(true);
 			state.resetIds();
 		}
 	}, [props.id]);
@@ -328,6 +352,15 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						`${Number(timeoutId)}`;
 				}
 			}
+		} else if (state._timeoutId) {
+			// onTimeout was removed while a timer was still pending: this effect
+			// reruns (onTimeout is a dependency) but would otherwise leave the
+			// old timer and its captured callback alive, so clear it here.
+			clearTimeout(state._timeoutId);
+			state._timeoutId = undefined;
+			if (_ref) {
+				delete (_ref as HTMLDivElement).dataset['timeoutId'];
+			}
 		}
 	}, [state._loadingState, props.onTimeout]);
 
@@ -336,13 +369,13 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 		if (props.state) {
 			state._loadingState = props.state;
-		} else if (
-			props.indeterminate === undefined ||
-			getBoolean(props.indeterminate)
-		) {
-			state._loadingState = 'active';
 		} else {
-			state._loadingState = 'inactive';
+			// Without an explicit state both indeterminate and determinate
+			// (indeterminate={false} with value/max) modes are an ongoing load,
+			// so they default to "active". Determinate defaulting to "inactive"
+			// would hide the circular segment / force the bar to zero and make
+			// the documented value/max API render no progress.
+			state._loadingState = 'active';
 		}
 	}, [props.state, props.indeterminate]);
 
@@ -374,7 +407,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}
-			data-width={props.width}
 			data-orientation={props.orientation}
 			data-delay={props.delay}
 			data-state={state._loadingState}
@@ -397,7 +429,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				</svg>
 			</Show>
 
-			<div role={state.getRole()}>
+			<div role={state.getRole()} style={state._segmentStyle}>
 				<label id={state._labelId} htmlFor={state._progressId}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
