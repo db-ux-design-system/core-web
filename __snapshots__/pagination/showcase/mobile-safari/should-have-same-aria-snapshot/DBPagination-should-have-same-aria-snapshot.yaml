@@ -206,6 +206,33 @@
         - button "Page 5 of 5": "5"
       - listitem:
         - button "Next page"
+  - link "Wrapping"
+  - text: siblingCount 3 and boundaryCount 2 - 13 controls, one row
+  - navigation "Roomy pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 40": "1"
+      - listitem:
+        - button "Page 12 of 40": "12"
+      - listitem:
+        - button "Page 40 of 40": "40"
+      - listitem:
+        - button "Next page"
+  - text: The same counts in a 320px column - the row wraps and no page is dropped
+  - navigation "Narrow column pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 40": "1"
+      - listitem:
+        - button "Page 12 of 40": "12"
+      - listitem:
+        - button "Page 40 of 40": "40"
+      - listitem:
+        - button "Next page"
   - link "Size"
   - text: (Default) Medium
   - navigation "Medium pagination":

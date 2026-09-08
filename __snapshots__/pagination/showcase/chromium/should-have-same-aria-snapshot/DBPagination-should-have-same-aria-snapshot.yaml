@@ -284,6 +284,65 @@
         - button "Page 5 of 5": "5"
       - listitem:
         - button "Next page"
+  - link "Wrapping"
+  - text: siblingCount 3 and boundaryCount 2 - 13 controls, one row
+  - navigation "Roomy pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 40": "1"
+      - listitem:
+        - button "Page 2 of 40": "2"
+      - listitem:
+        - button "Page 9 of 40": "9"
+      - listitem:
+        - button "Page 10 of 40": "10"
+      - listitem:
+        - button "Page 11 of 40": "11"
+      - listitem:
+        - button "Page 12 of 40": "12"
+      - listitem:
+        - button "Page 13 of 40": "13"
+      - listitem:
+        - button "Page 14 of 40": "14"
+      - listitem:
+        - button "Page 15 of 40": "15"
+      - listitem:
+        - button "Page 39 of 40": "39"
+      - listitem:
+        - button "Page 40 of 40": "40"
+      - listitem:
+        - button "Next page"
+  - text: The same counts in a 320px column - the row wraps and no page is dropped
+  - navigation "Narrow column pagination":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 40": "1"
+      - listitem:
+        - button "Page 2 of 40": "2"
+      - listitem:
+        - button "Page 9 of 40": "9"
+      - listitem:
+        - button "Page 10 of 40": "10"
+      - listitem:
+        - button "Page 11 of 40": "11"
+      - listitem:
+        - button "Page 12 of 40": "12"
+      - listitem:
+        - button "Page 13 of 40": "13"
+      - listitem:
+        - button "Page 14 of 40": "14"
+      - listitem:
+        - button "Page 15 of 40": "15"
+      - listitem:
+        - button "Page 39 of 40": "39"
+      - listitem:
+        - button "Page 40 of 40": "40"
+      - listitem:
+        - button "Next page"
   - link "Size"
   - text: (Default) Medium
   - navigation "Medium pagination":
