@@ -35,6 +35,10 @@ export default function FooterComplexComposition() {
 								and cities.
 							</p>
 						</div>
+						{/* Grouped links stack instead of using the row default of
+						 * the content area: from eight links onward the design
+						 * groups them by topic, and each group reads as a column
+						 * under its own heading. */}
 						<nav aria-labelledby="footer-travel-heading">
 							<h2
 								id="footer-travel-heading"
@@ -45,7 +49,11 @@ export default function FooterComplexComposition() {
 								}}>
 								Travel
 							</h2>
-							<ul>
+							<ul
+								style={{
+									display: 'grid',
+									gap: 'var(--db-spacing-fixed-xs)'
+								}}>
 								<li>
 									<DBLink
 										variant="inline"
@@ -75,7 +83,11 @@ export default function FooterComplexComposition() {
 								}}>
 								Support
 							</h2>
-							<ul>
+							<ul
+								style={{
+									display: 'grid',
+									gap: 'var(--db-spacing-fixed-xs)'
+								}}>
 								<li>
 									<DBLink
 										variant="inline"
@@ -109,7 +121,11 @@ export default function FooterComplexComposition() {
 								}}>
 								Company
 							</h2>
-							<ul>
+							<ul
+								style={{
+									display: 'grid',
+									gap: 'var(--db-spacing-fixed-xs)'
+								}}>
 								<li>
 									<DBLink
 										variant="inline"
