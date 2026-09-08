@@ -22,14 +22,21 @@ const comp: any = (
 				</ul>
 			</nav>
 		</DBFooterContent>
+		{/* The meta links use the same DBLink variant and size as the examples,
+		 * so the snapshot shows them at the size of the copyright next to them
+		 * rather than at the inherited body size. */}
 		<DBFooterMeta copyright="Example Company">
 			<nav aria-label="Legal navigation">
 				<ul>
 					<li>
-						<a href="#privacy">Privacy</a>
+						<DBLink variant="inline" size="small" href="#privacy">
+							Privacy
+						</DBLink>
 					</li>
 					<li>
-						<a href="#imprint">Imprint</a>
+						<DBLink variant="inline" size="small" href="#imprint">
+							Imprint
+						</DBLink>
 					</li>
 				</ul>
 			</nav>
