@@ -61,8 +61,11 @@ export const markClosedByFallback = (
 
 /**
  * @public
- * Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
- * Shared by DBDialog and DBDrawer. Resolves the target once per click, without retry.
+ * Closes the dialog a request-close button targets when the native command cannot do it:
+ * no commandfor support, or a commandfor that does not resolve to an element. Honors the
+ * commandfor target rather than the closest dialog, and stays out of the way when the
+ * native command can resolve its target. Shared by DBDialog and DBDrawer. Resolves the
+ * target once per click, without retry.
  */
 export const requestCloseFallback = (
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,11 +85,28 @@ export const requestCloseFallback = (
 
 	const target = button.getAttribute('commandfor');
 
-	// Fire the fallback when native Invoker Commands are unsupported, or when
-	// the commandfor attribute is out of sync with the closest dialog's id
-	// (e.g. the id was generated after commandfor was set).
-	if (!supportsCommandFor() || target !== dialog.id) {
-		dialog.requestClose();
+	// Resolve the element the button actually targets. A request-close button may
+	// intentionally point at a different dialog than the one it sits in, so honor
+	// commandfor rather than assuming the closest dialog.
+	const targetDialog =
+		(target &&
+			(dialog.ownerDocument.getElementById(
+				target
+			) as HTMLDialogElement | null)) ||
+		null;
+
+	if (supportsCommandFor()) {
+		// Native Invoker Commands work. Only step in when commandfor cannot be
+		// resolved (empty or points at a missing id), so the native command is a
+		// no-op; then close the dialog the button sits in. When commandfor
+		// resolves, the native default action handles it - do nothing.
+		if (!targetDialog) {
+			dialog.requestClose();
+		}
+	} else {
+		// Native Invoker Commands are unsupported. Close the targeted dialog when
+		// commandfor resolves, otherwise fall back to the dialog the button sits in.
+		(targetDialog ?? dialog).requestClose();
 	}
 };
 

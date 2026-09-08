@@ -21,19 +21,31 @@ const stubCommandForSupport = (supported: boolean): void => {
 
 type DialogStub = HTMLDialogElement & { _calls: string[]; _modal: boolean };
 
-const createDialogStub = (id = 'test-dialog', modal = false): DialogStub =>
-	({
+// Shared registry so a dialog stub's ownerDocument.getElementById can resolve
+// other stubs by id, mirroring how requestCloseFallback resolves commandfor.
+let dialogRegistry: Record<string, DialogStub> = {};
+
+const createDialogStub = (id = 'test-dialog', modal = false): DialogStub => {
+	const stub = {
 		id,
 		dataset: {},
 		_calls: [],
 		_modal: modal,
+		ownerDocument: {
+			getElementById: (lookup: string) => dialogRegistry[lookup] ?? null
+		},
 		requestClose(this: DialogStub) {
 			this._calls.push('requestClose');
 		},
 		matches(this: DialogStub, selector: string) {
 			return selector === ':modal' ? this._modal : false;
 		}
-	}) as unknown as DialogStub;
+	} as unknown as DialogStub;
+	if (id) {
+		dialogRegistry[id] = stub;
+	}
+	return stub;
+};
 
 const createClickEvent = (
 	commandfor?: string | null,
@@ -54,6 +66,7 @@ const createClickEvent = (
 
 afterEach(() => {
 	vi.unstubAllGlobals();
+	dialogRegistry = {};
 });
 
 describe('supportsClosedBy', () => {
@@ -123,7 +136,7 @@ describe('requestCloseFallback', () => {
 		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
-	it('closes the dialog when commandfor is out of sync with the dialog id', async () => {
+	it('closes the closest dialog when commandfor does not resolve', async () => {
 		stubCommandForSupport(true);
 		const { requestCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
@@ -134,7 +147,7 @@ describe('requestCloseFallback', () => {
 		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
-	it('stays out of the way with native support and matching commandfor', async () => {
+	it('stays out of the way with native support and a resolvable commandfor', async () => {
 		stubCommandForSupport(true);
 		const { requestCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
@@ -143,6 +156,45 @@ describe('requestCloseFallback', () => {
 			dialog
 		);
 		expect(dialog._calls).toEqual([]);
+	});
+
+	it('does not close the surrounding dialog when commandfor targets another dialog (supported)', async () => {
+		stubCommandForSupport(true);
+		const { requestCloseFallback } = await loadPonyfill();
+		const dialogA = createDialogStub('dialog-a');
+		const dialogB = createDialogStub('dialog-b');
+		// Button sits in A but intentionally targets B; native command handles B.
+		requestCloseFallback(
+			createClickEvent('dialog-b', true, dialogA),
+			dialogA
+		);
+		expect(dialogA._calls).toEqual([]);
+		expect(dialogB._calls).toEqual([]);
+	});
+
+	it('closes the commandfor target, not the surrounding dialog, when unsupported', async () => {
+		stubCommandForSupport(false);
+		const { requestCloseFallback } = await loadPonyfill();
+		const dialogA = createDialogStub('dialog-a');
+		const dialogB = createDialogStub('dialog-b');
+		// Button sits in A but targets B; the fallback must close B, not A.
+		requestCloseFallback(
+			createClickEvent('dialog-b', true, dialogA),
+			dialogA
+		);
+		expect(dialogA._calls).toEqual([]);
+		expect(dialogB._calls).toEqual(['requestClose']);
+	});
+
+	it('closes the closest dialog when unsupported and commandfor does not resolve', async () => {
+		stubCommandForSupport(false);
+		const { requestCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub('dialog-a');
+		requestCloseFallback(
+			createClickEvent('missing-id', true, dialog),
+			dialog
+		);
+		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
 	it('ignores clicks outside a request-close button and an absent dialog', async () => {
