@@ -19,6 +19,7 @@ import {
 	cls,
 	getBoolean,
 	getBooleanAsString,
+	getHideProp,
 	getNotificationRole,
 	uuid
 } from '../../utils';
@@ -46,7 +47,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		_previousLoadingState: undefined,
 		_timeoutId: undefined,
 		_didDisableParent: false,
-		_style: {},
+		_segmentStyle: {},
 		initialized: false,
 		resetIds: () => {
 			const mId =
@@ -342,10 +343,20 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 	}, [props.state, props.indeterminate]);
 
 	onUpdate(() => {
-		state._style = {
-			'--db-loading-indicator-percentage': state.getPercentage()
-		};
-	}, [props.indeterminate, props.value, props.max]);
+		if (_ref) {
+			const loadingIndicator = _ref as HTMLElement;
+			const percentage = state.getPercentage();
+			state._segmentStyle = {
+				'--db-loading-indicator-percentage': percentage
+			};
+
+			if (percentage === '1.00') {
+				loadingIndicator.dataset['percentageFull'] = 'true';
+			} else {
+				delete loadingIndicator.dataset['percentageFull'];
+			}
+		}
+	}, [props.indeterminate, props.value, props.max, _ref]);
 
 	onUnMount(() => {
 		state.handleUnmount();
@@ -356,7 +367,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			ref={_ref}
 			id={state._id}
 			class={cls('db-loading-indicator', props.className)}
-			style={state._style}
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}
@@ -376,7 +386,10 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					}
 					aria-hidden="true">
 					<circle class="db-loading-indicator-circle-track" />
-					<circle class="db-loading-indicator-circle-segment" />
+					<circle
+						style={state._segmentStyle}
+						class="db-loading-indicator-circle-segment"
+					/>
 				</svg>
 			</Show>
 

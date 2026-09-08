@@ -205,8 +205,10 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 	}
 
 	&[data-orientation="vertical"] {
-		.db-loading-indicator-circle-segment {
-			stroke-dasharray: $stroke-dasharray-vertical;
+		&:not([data-percentage-full="true"]) {
+			.db-loading-indicator-circle-segment {
+				stroke-dasharray: $stroke-dasharray-vertical;
+			}
 		}
 
 		svg {

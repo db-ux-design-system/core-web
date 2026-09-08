@@ -113,7 +113,7 @@ export type DBLoadingIndicatorDefaultState = {
 	_progressId?: string;
 	_timeoutId?: ReturnType<typeof setTimeout>;
 	_didDisableParent?: boolean;
-	_style: any;
+	_segmentStyle: any;
 	getPercentage: () => string | undefined;
 	getRole: () => string | undefined;
 	handleParentAria: (remove: boolean) => void;
