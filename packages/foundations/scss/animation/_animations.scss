@@ -28,11 +28,13 @@
 	50% {
 		inset-inline-start: 100%;
 
-		// inset-inline-start is direction-aware and resolves to the right edge
-		// under RTL, so the follow-up translate has to flip too. The sign is
-		// provided via --db-loading-indicator-wobbling-direction (1 for LTR,
-		// -1 for RTL, set by the consuming component) so the segment lands at
-		// the opposite edge instead of overshooting the track.
+		/**
+		 * inset-inline-start is direction-aware and resolves to the right edge
+		 * under RTL, so the follow-up translate has to flip too. The sign is
+		 * provided via --db-loading-indicator-wobbling-direction (1 for LTR,
+		 * -1 for RTL, set by the consuming component) so the segment lands at
+		 * the opposite edge instead of overshooting the track.
+		 */
 		transform: translateX(
 			calc(
 				var(--db-loading-indicator-wobbling-direction, 1) *

@@ -17,8 +17,10 @@ $db-loading-indicator-track-color: color(
 		#{variables.$db-opacity-2xs}
 );
 
-// Matches an overlay loading-indicator that is a direct child, both as the
-// web component (db-loading-indicator) and as the plain CSS class output.
+/**
+ * Matches an overlay loading-indicator that is a direct child, both as the
+ * web component (db-loading-indicator) and as the plain CSS class output.
+ */
 $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loading-indicator > .db-loading-indicator[data-overlay='true']";
 
 %text-container {
@@ -32,10 +34,12 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			gap: var(--db-indicator-gap);
 		}
 
-		// The native <progress> is a sibling of the <label> (associated via
-		// id) and stays in the accessibility tree so screen readers announce
-		// the loading state/value, but it is hidden visually (the value is
-		// shown via the adjacent, aria-hidden <span>).
+		/**
+		 * The native <progress> is a sibling of the <label> (associated via
+		 * id) and stays in the accessibility tree so screen readers announce
+		 * the loading state/value, but it is hidden visually (the value is
+		 * shown via the adjacent, aria-hidden <span>).
+		 */
 		> progress {
 			@extend %a11y-visually-hidden;
 		}
@@ -66,7 +70,7 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			> span {
 				position: absolute;
 
-				// Center the progress text inside the spinner
+				/** Center the progress text inside the spinner */
 				inset-block-start: calc(
 					var(--db-loading-indicator-spinner-inline-size) / 2
 				);
@@ -76,17 +80,21 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		}
 	}
 
-	// The progress text lives in an aria-hidden <span>, so removing it from the
-	// layout with display: none does not affect the accessibility tree.
+	/**
+	 * The progress text lives in an aria-hidden <span>, so removing it from the
+	 * layout with display: none does not affect the accessibility tree.
+	 */
 	[data-show-progress-text="false"] {
 		display: none;
 	}
 
-	// Hide the label visually only, using the shared data-hide-label contract
-	// on the root (matching checkbox/input/select/switch/radio via
-	// getHideProp). The <progress> is a sibling of the label and is always
-	// visually hidden on its own, so it stays in the accessibility tree and
-	// the loading state keeps being announced regardless of the label state.
+	/**
+	 * Hide the label visually only, using the shared data-hide-label contract
+	 * on the root (matching checkbox/input/select/switch/radio via
+	 * getHideProp). The <progress> is a sibling of the label and is always
+	 * visually hidden on its own, so it stays in the accessibility tree and
+	 * the loading state keeps being announced regardless of the label state.
+	 */
 	&[data-hide-label="true"] {
 		> div > label {
 			@extend %a11y-visually-hidden;
@@ -104,12 +112,14 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			svg {
 				animation: rotate 1.5s linear 0s infinite normal none running;
 
-				// Under reduced motion the spinner must not rotate
-				// continuously. Instead it advances in discrete steps: the
-				// step() timing function makes it jump to the next of 8
-				// positions once every 2s (8 steps x 2s = 16s per turn), so
-				// there is no continuous motion but the indicator still
-				// visibly updates and does not look frozen/broken.
+				/**
+				 * Under reduced motion the spinner must not rotate
+				 * continuously. Instead it advances in discrete steps: the
+				 * step() timing function makes it jump to the next of 8
+				 * positions once every 2s (8 steps x 2s = 16s per turn), so
+				 * there is no continuous motion but the indicator still
+				 * visibly updates and does not look frozen/broken.
+				 */
 				@media screen and (prefers-reduced-motion: reduce) {
 					animation-duration: 16s;
 					animation-timing-function: steps(8, jump-end);
@@ -170,8 +180,8 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 
 	&[data-orientation="horizontal"] {
 		svg {
-			--radius: 6px; // This is the size based on the viewBox of the <svg>
-			--circle: 20px; // This is the size based on the viewBox of the <svg>
+			--radius: 6px; /* This is the size based on the viewBox of the <svg> */
+			--circle: 20px; /* This is the size based on the viewBox of the <svg> */
 			--stroke-width: 4px;
 
 			align-self: flex-start;
@@ -212,8 +222,8 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		}
 
 		svg {
-			--radius: 27px; // This is the size based on the viewBox of the <svg>
-			--circle: 64px; // This is the size based on the viewBox of the <svg>
+			--radius: 27px; /* This is the size based on the viewBox of the <svg> */
+			--circle: 64px; /* This is the size based on the viewBox of the <svg> */
 			--stroke-width: 10px;
 		}
 
@@ -222,7 +232,7 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 
 			div {
 				> span {
-					// Hide progress text for vertical spinner, as it is centered inside the spinner and can overlap with the segment
+					/** Hide progress text for vertical spinner, as it is centered inside the spinner and can overlap with the segment */
 					display: none;
 				}
 			}
@@ -301,9 +311,11 @@ $progress-bar-full-segment-inline-size: calc(
 		}
 	}
 
-	// Flip the wobbling translate under RTL: inset-inline-start already
-	// resolves to the opposite edge, so the physical translateX in the
-	// keyframe has to be negated to keep the segment inside the track.
+	/**
+	 * Flip the wobbling translate under RTL: inset-inline-start already
+	 * resolves to the opposite edge, so the physical translateX in the
+	 * keyframe has to be negated to keep the segment inside the track.
+	 */
 	&:dir(rtl) {
 		--db-loading-indicator-wobbling-direction: -1;
 	}
@@ -316,10 +328,12 @@ $progress-bar-full-segment-inline-size: calc(
 					inline-size: 25%;
 					animation: wobbling 2.5s infinite linear;
 
-					// Under reduced motion the bar segment advances in discrete
-					// steps instead of gliding: it jumps to the next of 8
-					// positions once every 2s (8 steps x 2s = 16s per cycle),
-					// so there is no continuous motion but it still updates.
+					/**
+					 * Under reduced motion the bar segment advances in discrete
+					 * steps instead of gliding: it jumps to the next of 8
+					 * positions once every 2s (8 steps x 2s = 16s per cycle),
+					 * so there is no continuous motion but it still updates.
+					 */
 					@media screen and (prefers-reduced-motion: reduce) {
 						animation-duration: 16s;
 						animation-timing-function: steps(8, jump-end);
@@ -387,7 +401,7 @@ $progress-bar-full-segment-inline-size: calc(
 			background-color: var(--db-loading-indicator-segment-color);
 		}
 
-		// Provide space for the progress bar because it is absolute
+		/** Provide space for the progress bar because it is absolute */
 		padding-block-start: calc(
 			#{variables.$db-sizing-2xs} + var(--db-indicator-gap)
 		);
@@ -503,7 +517,7 @@ $progress-bar-full-segment-inline-size: calc(
 	}
 
 	&[data-overlay="true"] {
-		// Hide label and progress when overlay
+		/** Hide label and progress when overlay */
 		@extend %hide-label-and-progress-text;
 
 		position: absolute;
@@ -526,12 +540,14 @@ $progress-bar-full-segment-inline-size: calc(
 	}
 }
 
-// Scope the "make me a positioning context for the overlay" rule to the known
-// overlay hosts instead of a universal `*:has()`, which would set
-// position: relative on any consumer element with an overlay child (silently
-// re-parenting their absolutely-positioned children) and cost a document-wide
-// recalc. Consumers with a custom container opt in via
-// [data-loading-overlay="true"].
+/**
+ * Scope the "make me a positioning context for the overlay" rule to the known
+ * overlay hosts instead of a universal `*:has()`, which would set
+ * position: relative on any consumer element with an overlay child (silently
+ * re-parenting their absolutely-positioned children) and cost a document-wide
+ * recalc. Consumers with a custom container opt in via
+ * [data-loading-overlay="true"].
+ */
 :is(
 	.db-button,
 	.db-custom-button,
@@ -541,8 +557,10 @@ $progress-bar-full-segment-inline-size: calc(
 ):has(#{$overlay-child-selector}) {
 	position: relative;
 
-	// Only re-point the segment color on the direct overlay child, not on
-	// every nested .db-loading-indicator descendant of the parent.
+	/**
+	 * Only re-point the segment color on the direct overlay child, not on
+	 * every nested .db-loading-indicator descendant of the parent.
+	 */
 	#{$overlay-child-selector} {
 		--db-loading-indicator-segment-color: var(
 			--db-loading-indicator-segment-color-overlay
@@ -571,21 +589,25 @@ $progress-bar-full-segment-inline-size: calc(
 		@extend %progress-bar;
 	}
 
-	// Delayed appearance is handled purely in CSS (shift-left): the indicator
-	// starts hidden with visibility: hidden (which keeps it out of the
-	// accessibility tree, so nothing is announced during the delay) and a
-	// zero-duration animation with a delay flips it back to visible via
-	// animation-fill-mode: forwards. visibility (not display) is required
-	// here because animations do not run on a display: none element.
-	// stylelint-disable-next-line a11y/media-prefers-reduced-motion -- zero-duration reveal, not motion: the animation only flips visibility after animation-delay and must keep working under reduced motion
+	/**
+	 * Delayed appearance is handled purely in CSS (shift-left): the indicator
+	 * starts hidden with visibility: hidden (which keeps it out of the
+	 * accessibility tree, so nothing is announced during the delay) and a
+	 * zero-duration animation with a delay flips it back to visible via
+	 * animation-fill-mode: forwards. visibility (not display) is required
+	 * here because animations do not run on a display: none element.
+	 */
+	/* stylelint-disable-next-line a11y/media-prefers-reduced-motion -- zero-duration reveal, not motion: the animation only flips visibility after animation-delay and must keep working under reduced motion */
 	&[data-delay="slow"],
 	&[data-delay="fast"] {
 		visibility: hidden;
 		animation: loading-indicator-delay 0s linear forwards;
 	}
 
-	// Use the shared transition-duration tokens so the delay matches the other
-	// consumer of DelayProps (tooltip/popover): "slow" = 0.5s, "fast" = 0.3s.
+	/**
+	 * Use the shared transition-duration tokens so the delay matches the other
+	 * consumer of DelayProps (tooltip/popover): "slow" = 0.5s, "fast" = 0.3s.
+	 */
 	&[data-delay="slow"] {
 		animation-delay: variables.$db-transition-duration-extra-slow;
 	}
@@ -595,9 +617,11 @@ $progress-bar-full-segment-inline-size: calc(
 	}
 }
 
-// Reveals a delayed loading indicator once its animation-delay elapses.
-// Used with animation-fill-mode: forwards so the element stays visible.
-// Component-scoped, so it lives here instead of the shared foundations file.
+/**
+ * Reveals a delayed loading indicator once its animation-delay elapses.
+ * Used with animation-fill-mode: forwards so the element stays visible.
+ * Component-scoped, so it lives here instead of the shared foundations file.
+ */
 @keyframes loading-indicator-delay {
 	to {
 		visibility: visible;
