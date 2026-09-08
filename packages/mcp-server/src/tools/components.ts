@@ -203,8 +203,12 @@ export async function handleGetExampleCode({
 						}
 					]
 				};
-			} catch (error: any) {
-				return error(`Error: ${error.message}`);
+			} catch (error_: unknown) {
+				// Must NOT be named `error`: that would shadow the imported
+				// error() helper and call the exception object as a function.
+				const message =
+					error_ instanceof Error ? error_.message : String(error_);
+				return error(`Error: ${message}`);
 			}
 		})(),
 		'Error: Reading example files took too long (exceeded 10 seconds).'

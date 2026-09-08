@@ -590,6 +590,29 @@ describe('handleGetExampleCode', () => {
 
 		expect(result.isError).toBe(true);
 	});
+
+	/**
+	 Regression guard: the catch block must not name its parameter `error`,
+	 which would shadow the imported error() helper and call the caught
+	 exception as a function (TypeError: error is not a function) instead of
+	 returning a readable ToolResult.
+	 */
+	it('returns a readable error result when the lookup throws', async () => {
+		resetManifestCache({
+			get components(): never {
+				throw new Error('manifest exploded');
+			}
+		} as never);
+
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('manifest exploded');
+	});
 });
 
 // ---------------------------------------------------------------------------
