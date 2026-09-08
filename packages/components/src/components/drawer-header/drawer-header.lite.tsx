@@ -35,14 +35,15 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		_dialogId: '',
 		// Links the heading to the dialog
 		_resolveDialog() {
+			const dialog = resolveClosestDialog(_ref);
 			state._dialogId = getClosestDialogId(_ref) ?? '';
-			setDialogAriaLabelledBy(
-				resolveClosestDialog(_ref),
-				state._headingId
-			);
+			// Hold the element itself for cleanup: the drawer may have no `id`,
+			// in which case _dialogId is empty but aria-labelledby is still set.
+			state._dialog = dialog;
+			setDialogAriaLabelledBy(dialog, state._headingId);
 		},
 		removeAriaLabelledBy() {
-			removeDialogAriaLabelledBy(state._dialogId, state._headingId);
+			removeDialogAriaLabelledBy(state._dialog, state._headingId);
 		}
 	});
 

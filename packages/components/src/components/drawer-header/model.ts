@@ -19,6 +19,9 @@ export type DBDrawerHeaderProps = DBDrawerHeaderDefaultProps &
 export type DBDrawerHeaderDefaultState = {
 	_headingId: string;
 	_dialogId: string;
+	// The resolved <dialog> element, held so aria-labelledby cleanup works even
+	// for a drawer without an `id` and when the header is already detaching.
+	_dialog?: HTMLDialogElement;
 	_resolveDialog: () => void;
 	removeAriaLabelledBy: () => void;
 };

@@ -34,16 +34,17 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 	const state = useStore<DBDialogHeaderState>({
 		_headingId: 'db-dialog-header-heading-' + uuid(),
 		_dialogId: '',
-		// Links the heading to the dialog and captures its id as the close button's command target.
+		// Links the heading to the dialog and captures its id as the close button command target.
 		_resolveDialog() {
+			const dialog = resolveClosestDialog(_ref);
 			state._dialogId = getClosestDialogId(_ref) ?? '';
-			setDialogAriaLabelledBy(
-				resolveClosestDialog(_ref),
-				state._headingId
-			);
+			// Hold the element itself for cleanup, independent of the `id` used
+			// for the close button `commandfor`.
+			state._dialog = dialog;
+			setDialogAriaLabelledBy(dialog, state._headingId);
 		},
 		removeAriaLabelledBy() {
-			removeDialogAriaLabelledBy(state._dialogId, state._headingId);
+			removeDialogAriaLabelledBy(state._dialog, state._headingId);
 		}
 	});
 

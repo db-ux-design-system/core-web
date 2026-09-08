@@ -19,6 +19,9 @@ export type DBDialogHeaderProps = DBDialogHeaderDefaultProps &
 export type DBDialogHeaderDefaultState = {
 	_headingId: string;
 	_dialogId: string;
+	// The resolved <dialog> element, held so aria-labelledby cleanup works
+	// regardless of the dialog `id` and when the header is already detaching.
+	_dialog?: HTMLDialogElement;
 	_resolveDialog: () => void;
 	removeAriaLabelledBy: () => void;
 };
