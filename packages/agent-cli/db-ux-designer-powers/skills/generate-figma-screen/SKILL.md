@@ -153,7 +153,7 @@ first, then add only the minimum enforcement/check reference required by the Ski
 >
 > **LIBRARY COMPONENTS ONLY — NEVER a local component from the working file.**
 > Every instance comes from a published DB UX library: **Core Components** (Button, Card,
-> Section, Input, …), **Core Lab** (`Heading`, `Body`, and the layout primitives `Grid` /
+> Section, Input, `Heading`, …), **Core Lab** (`Body` and the layout primitives `Grid` /
 > `Container`) and **DB Theme Icons**. The runtime imports each one by its registry key
 > (`importComponentSetByKeyAsync`); there is no local-component path, no `figma.root` page
 > scan and no name matching, so a look-alike component sitting in the target file can never be
@@ -161,9 +161,11 @@ first, then add only the minimum enforcement/check reference required by the Ski
 > `components.json`, STOP and report the gap — do not substitute something found in the file.
 > The audit enforces this: an instance whose main component is local fails with
 > `local-component`. Consequence for `Grid` / `Container`: they are Core Lab **Concept**
-> components, but — like `Heading` / `Body` — they are BASELINE (no screen can be composed
-> without typography and layout), so they do **not** trigger the `{concept_components}` opt-in.
-> Any other Concept component still does.
+> components, but — like `Body` — they are BASELINE (no screen can be composed without
+> typography and layout), so they do **not** trigger the `{concept_components}` opt-in.
+> Any other Concept component still does. `Heading` left Core Lab and is a Core Components
+> (Beta) component again, published as ONE SET PER LEVEL (`Heading H1 (Beta)` … `H6`), so the
+> plan's `as` selects the SET; it needs no opt-in at all.
 >
 > **NO PROTOTYPING FOR NOW.** Do NOT wire prototype interactions — no `setReactionsAsync`, no
 > `reactions`, no `flowStartingPoints`, no navigate/on-click flows between frames. Deliver the
@@ -199,8 +201,9 @@ modules under `assets/src/`, concatenated + minified into `assets/db-figma-runti
    `get_screenshot` returns a 1×1 px image. Skip both and go to Phase 2 — call them only for a
    page that actually holds frames you must match.
 2. If a Concept component is needed and `{concept_components}` is not enabled → ask once.
-   Exception: the four BASELINE Core Lab entries (`Heading`, `Body`, `Grid`, `Container`) are
-   always allowed — every screen needs typography and layout (see the library-only rule above).
+   Exception: the three BASELINE Core Lab entries (`Body`, `Grid`, `Container`) are always
+   allowed — every screen needs typography and layout (see the library-only rule above).
+   `Heading` is a Core Components (Beta) component and never needed the opt-in.
 3. **MODULE vs SCREEN — decide the output shape from the wording.**
     - The user asks for a **"module" / "modules" / "block" / "blocks" / "component"** → render each
       one as its OWN standalone frame with `module: true` (NO Header/shell, no page-zebra check,

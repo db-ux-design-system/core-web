@@ -100,7 +100,7 @@ A page-type catalog under `generate-figma-screen/assets/registries/<pageType>/` 
 - **Always run `pnpm run registry:validate` after touching a registry.** It is the gate, not a suggestion — an earlier optional validator is exactly how `gridLayout: "20-20-20-20-20"` (a layout the live Grid never had) shipped.
 - Selection metadata belongs on the pattern. Do not reintroduce a separate `sections.json`, and do not add `examples.json`: reference compositions live on the `<PageType> / Example` pages in Figma, where they cannot be mistaken for a skeleton to copy.
 - Equal columns come from a `ContainerHorizontal` of fill-width children, never from a Grid. The Grid has nine layouts and no five-column variant.
-- Only library components. `Grid`, `Container`, `Heading`, `Body`, `Dialog`, `Pagination` and `ProgressBar` are Core Lab library components resolved by registry key — never rebuilt from frames, rectangles or Cards.
+- Only library components. `Grid`, `Container`, `Body`, `Dialog`, `Pagination` and `ProgressBar` are Core Lab library components resolved by registry key; `Heading` is a Core Components (Beta) set per level (`as` selects the set). Never rebuilt from frames, rectangles or Cards.
 - `ProgressBar` offers only 25, 50 and 75 percent. Any other value is a hard stop, not a rounded approximation.
 - **`registry:validate` only proves INTERNAL consistency.** It checks schema, `$ref` resolution,
   reachability, Grid slots, props against real variant axes, tokens and icons — it never compares a

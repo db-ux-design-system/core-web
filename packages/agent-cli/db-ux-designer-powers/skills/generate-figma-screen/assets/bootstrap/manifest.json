@@ -1,15 +1,15 @@
 {
   "namespace": "dbuxRuntime",
-  "version_sha": "c81fa8cebfe1",
+  "version_sha": "64dc2f731a3c",
   "chunkCount": 5,
-  "chunkSize": 17261,
-  "runtimeBytes": 86301,
+  "chunkSize": 17351,
+  "runtimeBytes": 86752,
   "chunkChecksums": [
-    "66c5dd14",
-    "0f16e9b6",
-    "fa773570",
-    "0595ef62",
-    "f3205209"
+    "faec0e3c",
+    "67dcc0af",
+    "31e4af22",
+    "6599d077",
+    "fc33c0d2"
   ],
   "bootstrapRequiresLargeModel": true,
   "modelGate": "If you cannot reproduce each chunk byte-for-byte, STOP NOW, change nothing, and tell the user: Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln (z. B. Claude Opus 5) und den Auftrag erneut senden. The bootstrap is needed once per Figma file; afterwards every model can render. Never shorten, merge, split, guess or hand-repair a chunk, never write the meta record yourself, and never fall back to hand-written Figma node code."

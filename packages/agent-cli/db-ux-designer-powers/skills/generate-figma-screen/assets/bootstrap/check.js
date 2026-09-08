@@ -1,7 +1,7 @@
 /* DB UX runtime check + model gate. ready:true → paste render.js and render.
  * ready:false → BOOTSTRAP REQUIRED: follow `gate` EXACTLY, do not improvise. */
-const NS="dbuxRuntime",SHA="c81fa8cebfe1",COUNT=5,BYTES=86301;
-const SUM=["66c5dd14","0f16e9b6","fa773570","0595ef62","f3205209"];
+const NS="dbuxRuntime",SHA="64dc2f731a3c",COUNT=5,BYTES=86752;
+const SUM=["faec0e3c","67dcc0af","31e4af22","6599d077","fc33c0d2"];
 const _h=s=>{let v=0x811c9dc5;for(let i=0;i<s.length;i++){v^=s.charCodeAt(i);v=Math.imul(v,0x01000193)>>>0}return v.toString(16).padStart(8,"0")};
 const m=JSON.parse(figma.root.getSharedPluginData(NS,"meta")||"{}");
 let stored=0;const bad=[];
@@ -9,4 +9,4 @@ for(let i=0;i<(m.count||0);i++){const s=figma.root.getSharedPluginData(NS,"c"+i)
 if(i<COUNT&&_h(s)!==SUM[i])bad.push("c"+i);}
 const ready=m.sha===SHA&&m.count===COUNT&&stored===BYTES&&bad.length===0;
 return JSON.stringify({ready,storedSha:m.sha||null,expectedSha:SHA,storedBytes:stored,expectedBytes:BYTES,chunks:COUNT,corruptChunks:bad,
-gate:ready?"OK — runtime is current. Do NOT bootstrap. Paste bootstrap/render.js plus the plan.":(bad.length?"CORRUPT STORE — chunk(s) "+bad.join(", ")+" have the right length but altered content, so the stored runtime is NOT the built one. Do NOT patch chunks and do NOT hand-roll a renderer: re-paste those store-<i>.js file(s) VERBATIM and run store-meta.js again. ":"")+"BOOTSTRAP REQUIRED — "+COUNT+" chunks of up to "+17261+" chars must be pasted VERBATIM (~"+BYTES+" chars total). If you cannot reproduce each chunk byte-for-byte, STOP NOW, change nothing, and tell the user: Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln (z. B. Claude Opus 5) und den Auftrag erneut senden. The bootstrap is needed once per Figma file; afterwards every model can render. Never shorten, merge, split, guess or hand-repair a chunk, never write the meta record yourself, and never fall back to hand-written Figma node code."});
+gate:ready?"OK — runtime is current. Do NOT bootstrap. Paste bootstrap/render.js plus the plan.":(bad.length?"CORRUPT STORE — chunk(s) "+bad.join(", ")+" have the right length but altered content, so the stored runtime is NOT the built one. Do NOT patch chunks and do NOT hand-roll a renderer: re-paste those store-<i>.js file(s) VERBATIM and run store-meta.js again. ":"")+"BOOTSTRAP REQUIRED — "+COUNT+" chunks of up to "+17351+" chars must be pasted VERBATIM (~"+BYTES+" chars total). If you cannot reproduce each chunk byte-for-byte, STOP NOW, change nothing, and tell the user: Runtime-Bootstrap erforderlich — bitte auf ein großes Modell wechseln (z. B. Claude Opus 5) und den Auftrag erneut senden. The bootstrap is needed once per Figma file; afterwards every model can render. Never shorten, merge, split, guess or hand-repair a chunk, never write the meta record yourself, and never fall back to hand-written Figma node code."});

@@ -88,23 +88,32 @@ async function bindInnerTextFill(inst, token) {
 		if (t) await bindTextFill(t, token);
 	} catch {}
 }
-/* Heading (Concept): As=h1..h6 (size via default mapping), Font Weight, Text Align. */
+/* Heading (Core Components, Beta): ONE COMPONENT SET PER LEVEL — `as` selects the SET.
+ * -----------------------------------------------------------------------------
+ * The Heading moved out of Core Lab: the former "🧪 Heading (Concept)" was a SINGLE set with an
+ * `As` axis, and its key no longer resolves. Existing instances still reference it, so the stale
+ * key looked healthy on canvas and failed only at import time — which is why the level now
+ * addresses a registry SET (resolveKey) instead of a variant axis.
+ *
+ * Each level's DEFAULT variant already carries that level's size (h1→xl … h6→2xs), so NOT setting
+ * Size is what reproduces the old "default mapping". The alignment axis was renamed as well
+ * (`Text Align` → `Alignment`, Left/Right → Start/End); see HEADING_ALIGN_LABELS. */
 async function buildHeadingComponent(node) {
-	const set = await importSet(CONCEPT_KEYS.Heading);
+	const level = String(node.as || 'h2').toLowerCase();
+	const set = await importSet(resolveKey('Heading', { as: level }));
 	const inst = (
 		set.type === 'COMPONENT_SET'
 			? (set.defaultVariant ?? set.children[0])
 			: set
 	).createInstance();
-	// No font loading needed: the Concept text is set via the "✏️ Text" component property
+	// No font loading needed: the text is set via the "✏️ Text" component property
 	// (setProperties), which does not require the font to be loaded.
-	if (node.as) setVariant(inst, 'As', node.as);
 	if (node.weight) setVariant(inst, 'Font Weight', node.weight);
 	if (node.align)
 		setVariant(
 			inst,
-			'Text Align',
-			TEXT_ALIGN_LABELS[String(node.align).toLowerCase()] ?? node.align
+			'Alignment',
+			HEADING_ALIGN_LABELS[String(node.align).toLowerCase()] ?? node.align
 		);
 	if (node.content != null) setInstanceLabel(inst, node.content);
 	if (node.fills) await bindInnerTextFill(inst, node.fills);

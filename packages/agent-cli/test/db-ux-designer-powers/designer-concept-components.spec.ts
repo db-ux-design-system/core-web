@@ -40,7 +40,7 @@ const maps = buildMaps(join(ASSETS, 'registries'));
  * list is the point; growing it needs a reason that is not "nobody got around to it". */
 const NOT_REGISTERED: Record<string, string> = {
 	heading:
-		'registered as "Heading" — the KB has no figma.json for it, so the key stays hand-curated'
+		'left Core Lab — Core Components publishes it as one Beta set per level, so it is registered under components.Heading, not here'
 };
 
 describe('conceptComponents — Core Lab coverage', () => {

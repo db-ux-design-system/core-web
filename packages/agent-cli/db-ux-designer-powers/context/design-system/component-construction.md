@@ -99,6 +99,58 @@ Icon-Kante), nicht die Container-Kante.
 Container Padding werden so gewählt, dass in Summe 1/4 der maximalen Line Height der Row
 herauskommt (auf ganze Pixel aufgerundet). Die übrigen Zeilen sind reine Additionen.
 
+### Stroke und Auto Layout
+
+Ein Border des visuellen Component Containers wird in Figma mit **Stroke alignment: Inside** und
+**Strokes excluded** aufgebaut (`strokesIncludedInLayout = false`). Der Stroke wird damit innerhalb
+der vorhandenen Außenfläche gezeichnet, nimmt aber nicht an der Auto-Layout-Berechnung teil.
+
+- Component Height, CH, Padding und sichtbare Abstände werden **ohne zusätzliche Stroke-Breite**
+  berechnet.
+- Auf einer Hug-Content-Achse darf der Stroke die Komponente nicht um seine linke/rechte bzw.
+  obere/untere Stärke vergrößern.
+- **Strokes included** ist für Component Container nicht zulässig: Bei einer Hug-Breite und einer
+  festen Höhe würde der Stroke sonst nur die Breite vergrößern und die intrinsische Geometrie
+  zwischen den Achsen inkonsistent machen.
+- Die Regel gilt unabhängig davon, ob ein konkreter Variant gerade einen sichtbaren Stroke besitzt;
+  alle Main Components werden auf **Strokes excluded** eingestellt.
+
+### Decorative Border Contrast
+
+`border/decorative` ist eine subtile visuelle Trennung und wird deterministisch relativ zum
+aufgelösten `background/default` des jeweiligen WCAG-, Material-, Scheme- und Color-Modes
+bestimmt:
+
+- Zielkontrast im regulären WCAG-Modus: **1,3 : 1** zwischen Border und eigenem
+  Background. Dieser Wert erzeugt eine bewusst zurückhaltende, GitHub-ähnliche Kontur.
+- Im WCAG-Modus **AAA** wird die Outline nicht mehr nur dekorativ behandelt:
+  Nicht-transparente Materials verwenden die Content-Farbe als Outline und erreichen damit
+  mindestens den für nicht-textuelle UI-Grenzen erforderlichen Kontrast von **3 : 1** gegen den
+  eigenen Background. Transparente Materials behalten ihre explizit transparente dekorative
+  Border.
+- Zulässiger Korridor bei diskreten Palette-Steps: **1,2–1,4 : 1**.
+- Löst ein WCAG-Mode für ein Material einen anderen Background auf, erhält er einen eigenen
+  Decorative-Border-Alias-Pfad; ein gemeinsamer Border-Token darf nicht gegen unterschiedliche
+  Backgrounds ausgewertet werden.
+- Der nächstliegende Palette-Step innerhalb des Korridors wird im regulären WCAG-Modus
+  verwendet; Hue und Chroma bleiben dadurch möglichst in derselben Farbfamilie.
+- Gibt es dort keinen passenden Palette-Step, wird ein eigener physischer Token vom Background
+  in Richtung des zugehörigen Foreground-Polls interpoliert, bis 1,3 : 1 erreicht sind.
+  Außerhalb der AAA-Ausnahme wird `border/decorative` nie direkt auf `text/default`
+  beziehungsweise den maximalen Kontrast-Poll gelegt.
+- Bei transparenten Materials wird der aufgelöste Background zuerst über die Basisfläche des
+  aktuellen Schemes komponiert (Light: helle Basisfläche, Dark: dunkle Basisfläche); der Kontrast
+  wird gegen dieses Kompositionsergebnis berechnet.
+- Die Regel gilt für **alle Material-Modes**: Filled Level 1–3, Vibrant, Origin, Inverted,
+  Transparent und Transparent Semi.
+
+Der reguläre Zielwert von 1,3 : 1 ist eine visuelle Designregel, keine
+WCAG-Anforderung. Die AAA-Ausnahme macht die Outline dagegen bewusst
+kontrastrelevant. Ist ein Border unabhängig vom gewählten WCAG-Mode notwendig,
+um Form, Zustand oder Interaktivität einer Komponente überhaupt zu erkennen,
+ist er nicht dekorativ: Dann wird ein funktionaler Border-Token verwendet und
+separat mit mindestens **3 : 1** gegen die angrenzende Außenfläche geprüft.
+
 ## 4. Größenstufen (Referenzwerte)
 
 Standardkomponente mit visuellem Außencontainer, einzeilig, Icon + Text:
@@ -122,6 +174,39 @@ Ableitungen, die aus der Tabelle folgen und für neue Komponenten gelten:
   als vertikales Text-Container-Padding gesetzt, nicht als Zentrierung der Row — dadurch bleibt
   die Row weiterhin oben ausgerichtet und die CH unverändert.
 - Interne Abstände binden **Spacing-Tokens** (`db-spacing/fixed/*`), keine rohen Pixelwerte.
+
+### Figma-Umsetzung: Größe ausschließlich über Modes
+
+Die Größenstufe einer Komponente wird in Figma **ausschließlich über den Mode der
+Variablen-Collection `Size`** gesteuert — niemals über eine Component Property oder Variant-Achse
+wie `Size=SM`.
+
+- Das Main Component definiert über den `Size`-Mode seine Standardgröße (in der Regel `MD`).
+- Auf einer Instanz wird die Größe durch Wechseln des `Size`-Modes geändert.
+- Alle größenabhängigen Eigenschaften (Component Height und Padding, CH, Row-/Content-Padding,
+  Gap, Icon-Größe, Font Size und Line Height) bleiben an die Variablen der Collection gebunden und
+  reagieren gemeinsam auf den gewählten Mode.
+- Component Properties und Variant-Achsen bilden ausschließlich semantische, inhaltliche oder
+  strukturelle Unterschiede ab. Größenvarianten werden nicht als separate Components dupliziert.
+
+### Figma-Umsetzung: Typografie vollständig über Tokens
+
+Jeder Text-Content bindet seine Typografie vollständig an Variablen. Rohe Font-Werte auf dem
+Text-Layer sind nicht zulässig:
+
+- **Font Family** bindet an das passende Token der Collection `Theme`, zum Beispiel
+  `font-family/body` oder `font-family/headline`.
+- **Font Weight** bindet an das passende Token der Collection `Emphasis`. Figma bildet den Weight
+  technisch über das Feld `fontStyle` und Tokens wie `font-style/body` beziehungsweise
+  `font-style/headline` ab; Werte wie `Regular`, `Bold` oder `Black` werden nicht direkt gesetzt.
+- **Font Size** bindet an `Size/font-size`.
+- **Line Height** bindet an `Size/line-height`.
+
+Theme-, Emphasis- und Size-Modes lösen diese Bindings gemeinsam auf. Semantische Ausprägungen
+setzen den passenden Collection-Mode, statt Font Family oder Weight als rohe Werte beziehungsweise
+als eigene Typografie-Varianten zu duplizieren. Zeigt Figma bei einer Mehrfachauswahl nur die
+aufgelösten Werte an, werden die Bindings zusätzlich über die Variable-Details des einzelnen
+Text-Layers geprüft.
 
 ## 5. Content Components (ohne visuellen Container)
 

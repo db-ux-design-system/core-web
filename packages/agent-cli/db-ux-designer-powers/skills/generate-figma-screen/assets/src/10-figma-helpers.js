@@ -46,6 +46,17 @@ const TEXT_ALIGN_LABELS = {
 	center: 'Center',
 	right: 'Right'
 };
+/* The Core Components Heading spells its alignment axis `Alignment` with Start/End labels,
+ * NOT `Text Align` with Left/Right like the Core Lab `Text`. A plan keeps saying left/right —
+ * mapping it here is what stops the label from silently missing its variant option (the axis
+ * lookup succeeds, `setProperties` rejects "Left", and the heading stays start-aligned). */
+const HEADING_ALIGN_LABELS = {
+	left: '(Def) Start',
+	start: '(Def) Start',
+	center: 'Center',
+	right: 'End',
+	end: 'End'
+};
 
 /* Library components rendered as leaf instances that FILL their container width by default
  * (form fields, notifications, …). Buttons/Tags/Badges hug and are excluded.

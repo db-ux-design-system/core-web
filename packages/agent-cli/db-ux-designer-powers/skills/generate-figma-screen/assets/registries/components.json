@@ -858,10 +858,56 @@
 					"axes": {}
 				}
 			}
+		},
+		"Heading": {
+			"codeName": "heading",
+			"maturity": "Beta",
+			"required": true,
+			"textProp": "✏️ Text",
+			"note": "MOVED OUT OF CORE LAB (verified live 2026-09-02). The former Core Lab \"🧪 Heading (Concept)\" — ONE set with an `As` axis, key 016cad8991d12925c1364c07b90aa58559225743 — no longer resolves via importComponentSetByKeyAsync; existing instances still reference it, so a stale key looks fine on canvas and only fails at import. Core Components now publishes ONE SET PER LEVEL, so the plan's `as` selects the SET, not a variant axis. Each level's DEFAULT variant already carries that level's size (h1→xl, h2→lg, h3→md, h4→sm, h5→xs, h6→2xs), which preserves the old \"default mapping\" behavior: do not set Size unless the plan asks for an off-mapping size. The axes were renamed too — `Font Weight` kept its name, `Text Align` became `Alignment` with `(Def) Start|Center|End` instead of Left/Right. Because Heading is a Core COMPONENT again, it no longer needs the `concept_components` opt-in (only `Body`, `Grid` and `Container` remain Core Lab baseline). `Custom Heading H<n> (Beta)` sets with extra slots exist but are not registered — add them only when a plan needs the slots.",
+			"figmaSets": {
+				"Heading H1 (Beta)": {
+					"key": "9052a904d951cb0867a385911aa4c583a5994ec3",
+					"axes": {
+						"as": "h1"
+					}
+				},
+				"Heading H2 (Beta)": {
+					"key": "4d10762f348ea7474f939d45793c1ff3f8c979bd",
+					"axes": {
+						"as": "h2"
+					}
+				},
+				"Heading H3 (Beta)": {
+					"key": "68c7fdad5c4663771d7edecace75c26ef5d85c02",
+					"axes": {
+						"as": "h3"
+					}
+				},
+				"Heading H4 (Beta)": {
+					"key": "22be8c975266388d5192384da8572272774bc910",
+					"axes": {
+						"as": "h4"
+					}
+				},
+				"Heading H5 (Beta)": {
+					"key": "7abea9a701f1dd020fb80f2e615a4dbdb26faad3",
+					"axes": {
+						"as": "h5"
+					}
+				},
+				"Heading H6 (Beta)": {
+					"key": "86a6838fce990a7bb4b08d7577be693f6fef60c3",
+					"axes": {
+						"as": "h6"
+					}
+				}
+			},
+			"forbiddenFallback": "Never set a heading as a raw text node or as a styled Body. If a level's set key stops resolving, re-resolve it via search_design_system scoped to the Core Components library — never approximate."
 		}
 	},
 	"conceptComponents": {
-		"_note": "Core Lab (Concept 🧪) components — typography (Heading/Text) AND the layout primitives (Grid/Container). ALWAYS resolved from the Core Lab LIBRARY via importComponentSetByKeyAsync(setKey); NEVER from a local component inside the working Figma file. The DB UX examples author all headings and body copy with these, so PREFER them over raw styled text. The runtime exposes them as plan node types `Heading`, `Body`, `Grid`, `ContainerVertical` and `ContainerHorizontal`. Because typography and layout are unavoidable on every screen, these four are BASELINE and do not trigger the `concept_components` opt-in; any OTHER Concept component still does.",
+		"_note": "Core Lab (Concept 🧪) components — the body typography (`Text`) AND the layout primitives (Grid/Container). ALWAYS resolved from the Core Lab LIBRARY via importComponentSetByKeyAsync(setKey); NEVER from a local component inside the working Figma file. The DB UX examples author all body copy with these, so PREFER them over raw styled text. The runtime exposes them as plan node types `Body`, `Grid`, `ContainerVertical` and `ContainerHorizontal`. Because typography and layout are unavoidable on every screen, these three are BASELINE and do not trigger the `concept_components` opt-in; any OTHER Concept component still does. NOTE: `Heading` used to be here too — it moved to Core Components (Beta) as one set per level and now lives under `components.Heading`.",
 		"_libraryKey": "lk-a3cdd1c1a84ac1722095a8f87e0eb9024968bbed54bad4e33e4cc6acf87f32d71601e76e89105f41d369b93c165f3c09fd9eac224a596525c901f611ac834d99",
 		"_libraryName": "DB UX - 🧪 Core Lab",
 		"Breadcrumb": {
@@ -1167,19 +1213,6 @@
 			"slots": ["End Slot", "Start Slot"],
 			"note": "The REAL file-upload component — a drop area with a label, a Filled button and two slots (Start Slot / End Slot, each gated by its own 🎨 Show … boolean). It is Concept, so it needs the concept_components opt-in; it is NOT one of the four baseline entries. Use it instead of composing an upload from an Image grid plus a Button, and never rebuild a drop zone from a dashed rectangle. `children` render into the End Slot (previews//counters below the drop area) and the runtime flips the corresponding show boolean.",
 			"forbiddenFallback": "Never recreate an upload/drop zone from a frame with a dashed border, and do not substitute an Image grid + Button while this component is available."
-		},
-		"Heading": {
-			"codeName": "heading",
-			"maturity": "Concept",
-			"planNodeType": "Heading",
-			"setKey": "016cad8991d12925c1364c07b90aa58559225743",
-			"textProp": "✏️ Text",
-			"axes": {
-				"As": ["h1", "h2", "h3", "h4", "h5", "h6"],
-				"Font Weight": ["(Def) Black", "Light"],
-				"Text Align": ["(Def) Left", "Right", "Center"]
-			},
-			"note": "`As` sets the heading level; size follows the default mapping (h1 largest). Prefix/Component are locked (💻). Use h1 hero, h2 section titles, h4 card titles."
 		},
 		"ProgressBar": {
 			"codeName": "progress",

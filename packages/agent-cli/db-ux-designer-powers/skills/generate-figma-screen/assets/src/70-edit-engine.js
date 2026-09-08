@@ -468,16 +468,18 @@ async function applyEdits(spec) {
  *
  * NODE FIELDS
  *   type      Layout/base: Header|Section|Grid|ContainerVertical|ContainerHorizontal|
- *             Card|Divider|Image|Icon. Typography is ALWAYS a Concept COMPONENT — there is NO
+ *             Card|Divider|Image|Icon. Typography is ALWAYS a library COMPONENT — there is NO
  *             raw text node: Heading (headings) | Body (body/caption). Library components
  *             (rendered as leaf instances): Button|Tag|Badge|Link|Input|Textarea|Select|Checkbox|
  *             Radio|Switch|Infotext|Notification|Accordion|Tooltip. Any name in the
  *             COMPONENTS map works via the generic path — add more there to extend coverage.
- *   Heading   Concept Heading component. as = h1..h6 (level→size default mapping);
- *             weight = "(Def) Black"|"Light"; align = left|center|right; content = text;
- *             fills = color token (bound on the inner text). Requires Concept opt-in.
- *   Body      Concept Text component. size = "Small"|"(Def) Medium"|"Large"|"xLarge"|
- *             "2xLarge"|"3xLarge"; align, content, fills as Heading. Requires Concept opt-in.
+ *   Heading   Core Components Heading (Beta) — ONE SET PER LEVEL, so `as` = h1..h6 picks the set
+ *             and its default variant carries that level's size (the old default mapping).
+ *             weight = "(Def) Black"|"Light"; align = left|center|right (mapped to the
+ *             component's own Start/Center/End); content = text; fills = color token (bound on
+ *             the inner text). No Concept opt-in needed.
+ *   Body      Core Lab Text component (Concept). size = "Small"|"(Def) Medium"|"Large"|"xLarge"|
+ *             "2xLarge"|"3xLarge"; align, content, fills as Heading. BASELINE — no opt-in.
  *             Section `title`/`description` auto-build a Heading (titleAs, default h2) +
  *             Body (descriptionSize, default "(Def) Medium").
  *   Header    DB Header (first child of every screen). appName = brand app name.
