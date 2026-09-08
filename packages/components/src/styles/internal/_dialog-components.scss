@@ -2,6 +2,7 @@
 @use "sass:map";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
 
@@ -85,9 +86,9 @@ $known-prefixes: "drawer", "dialog";
 			h4,
 			h5,
 			h6 {
-				font-size: inherit;
+				@extend %db-overwrite-headline-size-3xs;
+
 				margin-block: 0;
-				font-weight: 700;
 			}
 		}
 	} @else if $part == "footer" {
