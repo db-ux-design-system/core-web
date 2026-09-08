@@ -87,9 +87,11 @@ export default function DBDialog(props: DBDialogProps) {
 			ref={_ref}
 			class={cls('db-dialog', props.className)}
 			onCancel={(event: Event) => state.handleCancel(event)}
+			onClose={(event) => state.handleClose(event)}
+			// BEGIN: dialog ponyfill
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}
-			onClose={(event) => state.handleClose(event)}
+			// END: dialog ponyfill
 			data-backdrop={props.backdrop}
 			data-container-size={props.containerSize}
 			closedby={props.backdrop === 'none' ? 'closerequest' : 'any'}>
