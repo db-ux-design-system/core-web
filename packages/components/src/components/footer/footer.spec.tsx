@@ -120,8 +120,13 @@ const testComponent = () => {
 			</div>
 		);
 		const footer = pageComponent.locator('.db-footer');
-		await expect(footer).toHaveCSS('flex-direction', 'column');
 
+		/*
+		 * The stacking is asserted through the measured layout below rather than
+		 * through a flex-direction declaration. The footer is a block element and
+		 * both areas are full-width block children, so normal flow stacks them
+		 * without a flex container.
+		 */
 		const layout = await footer.evaluate((element) => {
 			const content = element.querySelector('.db-footer-content');
 			const meta = element.querySelector('.db-footer-meta');
