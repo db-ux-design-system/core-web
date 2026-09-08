@@ -15,6 +15,7 @@ import {
 	DBCustomHeading,
 	DBCustomSelect,
 	DBDivider,
+	DBFooter,
 	DBFooterContent,
 	DBFooterMeta,
 	DBHeadingH1,
@@ -373,6 +374,14 @@ const ComponentSwitch = ({
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'footer') {
+		return (
+			<DBFooter className={className} {...props}>
+				{resolvedContent}
+			</DBFooter>
 		);
 	}
 
