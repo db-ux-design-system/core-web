@@ -102,6 +102,17 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// A spread may carry the header prop; its contents cannot be verified.
+		shape: 'JSX spread that may carry the header prop',
+		code: '<DBDialog {...dialogProps}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		shape: 'JSX spread alongside other explicit props',
+		code: '<DBDialog open {...dialogProps}>Content</DBDialog>',
+		reports: false
+	},
+	{
 		shape: 'no header prop',
 		code: '<DBDialog>Content</DBDialog>',
 		reports: true

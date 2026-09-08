@@ -222,8 +222,22 @@ export default {
 				return;
 			}
 
+			const attributes = openingElement.attributes || [];
+
+			// A JSX spread (e.g. <DBDrawer {...drawerProps}>) may carry the
+			// `header` prop, and its contents cannot be verified statically -
+			// same as an identifier or call-expression header value. Treat it
+			// as unresolved and do not report, so a standard React composition
+			// pattern does not fail lint.
+			const hasSpread = attributes.some(
+				(attr: any) => attr.type === 'JSXSpreadAttribute'
+			);
+			if (hasSpread) {
+				return;
+			}
+
 			// In React, DBDrawerHeader is passed via the `header` prop (JSXAttribute)
-			const headerAttr = (openingElement.attributes || []).find(
+			const headerAttr = attributes.find(
 				(attr: any) =>
 					attr.type === 'JSXAttribute' && attr.name?.name === 'header'
 			);
