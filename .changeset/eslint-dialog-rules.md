@@ -6,3 +6,4 @@ feat: add `dialog-header-required` rule to the recommended config
 
 - New `dialog-header-required` rule: reports a `DBDialog` usage whose `header` slot does not contain a `DBDialogHeader` (React, Angular, Vue).
 - `sub-component-required-parent` now covers `DBDialogHeader` and `DBDialogFooter`, `close-button-text-required` now covers `DBDialogHeader`.
+- `sub-component-required-parent` no longer reports React sub-components whose placement cannot be verified statically (e.g. extracted into a variable `const header = <DBDialogHeader />` and passed via `header={header}`), matching how `dialog-header-required` treats dynamic slot values.

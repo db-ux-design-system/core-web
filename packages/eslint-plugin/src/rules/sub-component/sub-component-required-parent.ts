@@ -203,6 +203,22 @@ function isInsideJsxParent(
 	parentName: string,
 	slotName: string | undefined
 ): boolean {
+	// Conservatively allow indirectly composed sub-components. When the element
+	// is not rendered inline inside another JSX tree - e.g. it is extracted into
+	// a variable (`const header = <DBDialogHeader />`), returned from a function,
+	// or stored in an array/object - its placement cannot be verified statically.
+	// This mirrors dialog-header-required, which accepts identifier and
+	// call-expression slot values as unverifiable, so normal React component
+	// extraction does not fail lint.
+	const jsxContainerTypes = new Set([
+		'JSXElement',
+		'JSXFragment',
+		'JSXExpressionContainer'
+	]);
+	if (!jsxContainerTypes.has(node.parent?.type)) {
+		return true;
+	}
+
 	let current = node.parent;
 
 	while (current) {
