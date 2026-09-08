@@ -74,6 +74,7 @@
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding: variables.$db-spacing-fixed-sm
 				component.$drawer-content-padding-inline;
+			position: relative;
 		}
 
 		/* jscpd:ignore-start */
@@ -86,7 +87,7 @@
 
 			/* jscpd:ignore-end */
 
-			.db-control-panel-navigation {
+			> *:not(.db-shell-sub-navigation-button) {
 				display: none;
 			}
 

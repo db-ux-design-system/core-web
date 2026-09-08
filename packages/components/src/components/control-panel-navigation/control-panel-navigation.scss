@@ -36,14 +36,12 @@
 			~ .db-control-panel-navigation-item-group-menu {
 				visibility: visible;
 
-				// Reveal fully via clip-path (right -> left). Keeps the
-				// panel in place with no transform travel or width reflow.
-				clip-path: inset(0 0 0 0);
+				margin-inline-start: 0;
 
 				@media (prefers-reduced-motion: no-preference) {
 					transition:
-						visibility 0ms linear 0ms,
-						clip-path
+						visibility 1ms linear, // workaround to enable focus with keyboard
+						margin-inline-start
 							#{variables.$db-transition-duration-extra-slow}
 							#{variables.$db-transition-timing-emotional};
 				}
@@ -56,17 +54,14 @@
 
 		&:not(&[aria-expanded="true"]) {
 			~ .db-control-panel-navigation-item-group-menu {
-				// Clip from the left so the panel is hidden while
-				// collapsed and revealed starting at the right edge,
-				// sweeping to the left when opened.
-				clip-path: inset(0 0 0 100%);
+				margin-inline-start: 100%;
 			}
 
 			@media (prefers-reduced-motion: no-preference) {
 				~ .db-control-panel-navigation-item-group-menu {
 					transition:
 						visibility 0ms linear 410ms,
-						clip-path #{variables.$db-transition-duration-slow}
+						margin-inline-start #{variables.$db-transition-duration-slow}
 							#{variables.$db-transition-timing-emotional}; // hide animation is 0.4s
 				}
 			}
@@ -84,6 +79,8 @@
 }
 
 %popover-navigation {
+	position: relative;
+
 	.db-control-panel-navigation-item-group-expand-button {
 		&:is(:hover, :focus-visible):not(
 				:has(
@@ -204,7 +201,6 @@
 
 .db-control-panel-navigation {
 	inline-size: 100%;
-	position: relative;
 
 	@include screen-sizes.screen("md") {
 		inline-size: auto;

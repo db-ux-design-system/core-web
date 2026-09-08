@@ -16,6 +16,13 @@
 	}
 }
 
+@mixin navigation-indicator {
+	> a,
+	> .db-control-panel-navigation-item-group-expand-button {
+		@content;
+	}
+}
+
 @mixin active-navigation-item() {
 	&:has([aria-current="page"]),
 	&:has([data-active="true"]),
@@ -85,9 +92,12 @@
 %navigation-item {
 	@extend %db-overwrite-font-size-md;
 
-	position: relative;
 	display: flex;
 	block-size: fit-content;
+
+	@include navigation-indicator {
+		position: relative;
+	}
 
 	// Mobile
 	@include screen-sizes.screen-min-max(
