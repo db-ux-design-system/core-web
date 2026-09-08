@@ -37,23 +37,22 @@ function hasAngularHeader(node: any, header: string): boolean {
 }
 
 /**
- * Checks if an Angular node has a child with the `header` attribute that
+ * Checks if an Angular node has a child with the slot-projection attribute that
  * contains (or is) the header component.
  * In Angular, the parent uses `<ng-content select="[header]">` for slot projection,
- * so a valid usage is:
+ * which matches the `header` attribute, not a `slot="header"` value, so a valid usage is:
  *   <db-drawer><db-drawer-header header>Title</db-drawer-header></db-drawer>
  *   <db-drawer><ng-container header><db-drawer-header>Title</db-drawer-header></ng-container></db-drawer>
- * The Web Components output renders `<slot name="header">` instead, so `slot="header"`
- * is accepted as well for consumers that use the custom elements in an Angular template.
+ * `slot="header"` is deliberately NOT accepted: Angular does not project it into the
+ * named region, so the markup would not enter the slot. This also keeps this rule
+ * consistent with `sub-component-required-parent`, which matches the same attribute.
  */
 function hasAngularHeaderSlot(node: any, header: string): boolean {
 	return (node.children || []).some((child: any) => {
 		if (child.type === 'Element' || child.type === 'Element$1') {
-			// Check if child has the `header` or `slot="header"` attribute
+			// Check if child has the `header` projection attribute
 			const hasHeaderAttr = child.attributes?.some(
-				(attr: any) =>
-					attr.name === 'header' ||
-					(attr.name === 'slot' && attr.value === 'header')
+				(attr: any) => attr.name === 'header'
 			);
 			if (hasHeaderAttr) {
 				// Verify the child IS the header component or CONTAINS one

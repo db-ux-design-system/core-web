@@ -195,9 +195,13 @@ const angularHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
-		shape: 'slot="header" on the header component',
+		// Angular projects via `<ng-content select="[header]">`, which matches the
+		// `header` attribute, not a `slot="header"` value. The markup therefore does
+		// not enter the header slot, so it must be reported (and stays consistent with
+		// `sub-component-required-parent`, which matches the `header` attribute too).
+		shape: 'slot="header" on the header component (not projected in Angular)',
 		code: '<db-dialog><db-dialog-header slot="header">Title</db-dialog-header>Content</db-dialog>',
-		reports: false
+		reports: true
 	},
 	{
 		shape: 'header attribute on an ng-container wrapper',
@@ -215,9 +219,11 @@ const angularHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
-		shape: 'slot="header" on a wrapper',
+		// Same reason: `slot="header"` on a wrapper is not the `[header]` projection
+		// selector, so Angular does not project it into the header slot.
+		shape: 'slot="header" on a wrapper (not projected in Angular)',
 		code: '<db-dialog><div slot="header"><db-dialog-header>Title</db-dialog-header></div>Content</db-dialog>',
-		reports: false
+		reports: true
 	},
 	{
 		shape: 'no header slot',
