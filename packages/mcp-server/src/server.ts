@@ -1,4 +1,4 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer } from '@modelcontextprotocol/server';
 import packageJson from '../package.json';
 
 /** The singleton McpServer instance shared across the entire application. */

@@ -12,12 +12,13 @@ Concrete use cases:
 
 ## Tech Stack
 
-| Technology                      | Purpose                                                                                  |
-| ------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Node.js** (≥ 22)              | Runtime environment                                                                      |
-| **TypeScript**                  | Type safety, consistent with the rest of the monorepo                                    |
-| **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
-| **`esbuild`**                   | Production build into a single standalone ESM bundle                                     |
+| Technology                         | Purpose                                                                                                    |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Node.js** (≥ 22)                 | Runtime environment                                                                                        |
+| **TypeScript**                     | Type safety, consistent with the rest of the monorepo                                                      |
+| **`@modelcontextprotocol/server`** | Official MCP TypeScript SDK v2 — provides `McpServer`, the stdio serving entry, and tool/prompt primitives |
+| **`@modelcontextprotocol/client`** | SDK v2 client, used by the stdio E2E test only (dev dependency)                                            |
+| **`esbuild`**                      | Production build into a single standalone ESM bundle                                                       |
 
 ## Monorepo Structure (relevant to this server)
 
