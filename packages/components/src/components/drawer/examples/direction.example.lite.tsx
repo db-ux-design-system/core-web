@@ -28,7 +28,8 @@ export default function DrawerDirection() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-direction-to-left">
+					commandfor="drawer-direction-to-left"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) To-Left
 				</DBButton>
 				<DBDrawer
@@ -46,7 +47,8 @@ export default function DrawerDirection() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-direction-to-right">
+					commandfor="drawer-direction-to-right"
+					onClick={() => setOpenIndex(1)}>
 					Open: To-Right
 				</DBButton>
 				<DBDrawer
@@ -63,7 +65,10 @@ export default function DrawerDirection() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-direction-up">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-direction-up"
+					onClick={() => setOpenIndex(2)}>
 					Open: Up
 				</DBButton>
 				<DBDrawer
@@ -82,7 +87,8 @@ export default function DrawerDirection() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-direction-down">
+					commandfor="drawer-direction-down"
+					onClick={() => setOpenIndex(3)}>
 					Open: Down
 				</DBButton>
 				<DBDrawer
@@ -101,7 +107,8 @@ export default function DrawerDirection() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-direction-up-full">
+					commandfor="drawer-direction-up-full"
+					onClick={() => setOpenIndex(4)}>
 					Open: Up (Full)
 				</DBButton>
 				<DBDrawer
@@ -121,7 +128,8 @@ export default function DrawerDirection() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-direction-down-full">
+					commandfor="drawer-direction-down-full"
+					onClick={() => setOpenIndex(5)}>
 					Open: Down (Full)
 				</DBButton>
 				<DBDrawer

@@ -21,7 +21,8 @@ export default function DialogDensity() {
 			<div data-density="functional">
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-density-functional">
+					commandfor="dialog-density-functional"
+					onClick={() => setOpenIndex(0)}>
 					Open: Functional
 				</DBButton>
 				<DBDialog
@@ -48,7 +49,8 @@ export default function DialogDensity() {
 			<div data-density="regular">
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-density-regular">
+					commandfor="dialog-density-regular"
+					onClick={() => setOpenIndex(1)}>
 					Open: (Default) Regular
 				</DBButton>
 				<DBDialog
@@ -75,7 +77,8 @@ export default function DialogDensity() {
 			<div data-density="expressive">
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-density-expressive">
+					commandfor="dialog-density-expressive"
+					onClick={() => setOpenIndex(2)}>
 					Open: Expressive
 				</DBButton>
 				<DBDialog

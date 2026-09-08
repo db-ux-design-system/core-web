@@ -28,7 +28,10 @@ export default function DrawerAreas() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-areas-text">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-text"
+					onClick={() => setOpenIndex(0)}>
 					Open: With text prop
 				</DBButton>
 				<DBDrawer
@@ -45,7 +48,10 @@ export default function DrawerAreas() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-areas-start">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-start"
+					onClick={() => setOpenIndex(1)}>
 					Open: With start slot
 				</DBButton>
 				<DBDrawer
@@ -63,7 +69,10 @@ export default function DrawerAreas() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-areas-end">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-end"
+					onClick={() => setOpenIndex(2)}>
 					Open: With end slot
 				</DBButton>
 				<DBDrawer
@@ -81,7 +90,10 @@ export default function DrawerAreas() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-areas-footer">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-footer"
+					onClick={() => setOpenIndex(3)}>
 					Open: With footer
 				</DBButton>
 				<DBDrawer

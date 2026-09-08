@@ -36,7 +36,10 @@ export default function DrawerSize() {
 			</DBInfotext>
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-size-small">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-size-small"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Small
 				</DBButton>
 				<DBDrawer
@@ -54,7 +57,10 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-size-medium">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-size-medium"
+					onClick={() => setOpenIndex(1)}>
 					Open: Medium
 				</DBButton>
 				<DBDrawer
@@ -72,7 +78,10 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-size-large">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-size-large"
+					onClick={() => setOpenIndex(2)}>
 					Open: Large
 				</DBButton>
 				<DBDrawer
@@ -90,7 +99,10 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-size-full">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-size-full"
+					onClick={() => setOpenIndex(3)}>
 					Open: Full
 				</DBButton>
 				<DBDrawer
@@ -118,7 +130,8 @@ export default function DrawerSize() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-size-small-up">
+					commandfor="drawer-size-small-up"
+					onClick={() => setOpenIndex(4)}>
 					Open: Small (Up)
 				</DBButton>
 				<DBDrawer
@@ -138,7 +151,8 @@ export default function DrawerSize() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-size-medium-up">
+					commandfor="drawer-size-medium-up"
+					onClick={() => setOpenIndex(5)}>
 					Open: Medium (Up)
 				</DBButton>
 				<DBDrawer
@@ -158,7 +172,8 @@ export default function DrawerSize() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-size-large-up">
+					commandfor="drawer-size-large-up"
+					onClick={() => setOpenIndex(6)}>
 					Open: Large (Up)
 				</DBButton>
 				<DBDrawer
@@ -176,7 +191,10 @@ export default function DrawerSize() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="drawer-size-full-up">
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-size-full-up"
+					onClick={() => setOpenIndex(7)}>
 					Open: Full (Up)
 				</DBButton>
 				<DBDrawer

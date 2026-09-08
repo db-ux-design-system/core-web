@@ -21,7 +21,8 @@ export default function DrawerDensity() {
 			<div data-density="functional">
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-density-functional">
+					commandfor="drawer-density-functional"
+					onClick={() => setOpenIndex(0)}>
 					Open: Functional
 				</DBButton>
 				<DBDrawer
@@ -39,7 +40,8 @@ export default function DrawerDensity() {
 			<div data-density="regular">
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-density-regular">
+					commandfor="drawer-density-regular"
+					onClick={() => setOpenIndex(1)}>
 					Open: (Default) Regular
 				</DBButton>
 				<DBDrawer
@@ -57,7 +59,8 @@ export default function DrawerDensity() {
 			<div data-density="expressive">
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-density-expressive">
+					commandfor="drawer-density-expressive"
+					onClick={() => setOpenIndex(2)}>
 					Open: Expressive
 				</DBButton>
 				<DBDrawer

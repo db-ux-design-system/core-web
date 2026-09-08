@@ -19,7 +19,10 @@ export default function DialogContainerSize() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-size-small">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-size-small"
+					onClick={() => setOpenIndex(0)}>
 					Open: Small
 				</DBButton>
 				<DBDialog
@@ -45,7 +48,10 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-size-medium">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-size-medium"
+					onClick={() => setOpenIndex(1)}>
 					Open: (Default) Medium
 				</DBButton>
 				<DBDialog
@@ -71,7 +77,10 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-size-large">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-size-large"
+					onClick={() => setOpenIndex(2)}>
 					Open: Large
 				</DBButton>
 				<DBDialog
@@ -97,7 +106,10 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-size-full">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-size-full"
+					onClick={() => setOpenIndex(3)}>
 					Open: Full
 				</DBButton>
 				<DBDialog

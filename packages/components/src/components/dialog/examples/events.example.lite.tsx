@@ -16,6 +16,7 @@ useMetadata({
 
 export default function DialogEvents() {
 	const [open, setOpen] = useState<boolean>(false);
+	const [openForm, setOpenForm] = useState<boolean>(false);
 	const state = useStore({
 		handleClose: () => {
 			console.log('onClose fired');
@@ -34,7 +35,10 @@ export default function DialogEvents() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-events">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-events"
+					onClick={() => setOpen(true)}>
 					Open Dialog
 				</DBButton>
 				<DBDialog
@@ -60,11 +64,16 @@ export default function DialogEvents() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton command="show-modal" commandfor="dialog-events-form">
+				<DBButton
+					command="show-modal"
+					commandfor="dialog-events-form"
+					onClick={() => setOpenForm(true)}>
 					Open Dialog
 				</DBButton>
 				<DBDialog
 					id="dialog-events-form"
+					open={openForm}
+					onClose={() => setOpenForm(false)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Submit form in content</h2>

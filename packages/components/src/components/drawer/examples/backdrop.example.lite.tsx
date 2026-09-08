@@ -21,7 +21,8 @@ export default function DrawerBackdrop() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-backdrop-strong">
+					commandfor="drawer-backdrop-strong"
+					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Strong
 				</DBButton>
 				<DBDrawer
@@ -40,7 +41,8 @@ export default function DrawerBackdrop() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-backdrop-weak">
+					commandfor="drawer-backdrop-weak"
+					onClick={() => setOpenIndex(1)}>
 					Open: Weak
 				</DBButton>
 				<DBDrawer
@@ -59,7 +61,8 @@ export default function DrawerBackdrop() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-backdrop-invisible">
+					commandfor="drawer-backdrop-invisible"
+					onClick={() => setOpenIndex(2)}>
 					Open: Invisible
 				</DBButton>
 				<DBDrawer
@@ -76,7 +79,10 @@ export default function DrawerBackdrop() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton command="show" commandfor="drawer-backdrop-none">
+				<DBButton
+					command="show"
+					commandfor="drawer-backdrop-none"
+					onClick={() => setOpenIndex(3)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer
