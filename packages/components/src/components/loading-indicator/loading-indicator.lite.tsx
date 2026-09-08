@@ -114,7 +114,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						// Mirror the flag onto the DOM so the unmount cleanup
 						// can read it from the live _ref (state is stale in the
 						// React unmount closure).
-						(_ref as HTMLDivElement).dataset.didDisableParent =
+						(_ref as HTMLDivElement).dataset['didDisableParent'] =
 							'true';
 						parent.disabled = true;
 					}
@@ -124,7 +124,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						state._didDisableParent
 					) {
 						state._didDisableParent = false;
-						(_ref as HTMLDivElement).dataset.didDisableParent =
+						(_ref as HTMLDivElement).dataset['didDisableParent'] =
 							'false';
 						parent.disabled = false;
 					}
@@ -198,10 +198,10 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			// Read the timer handle from the DOM (state._timeoutId is stale in
 			// the React unmount closure) so a pending onTimeout never fires
 			// after the component is gone.
-			const pendingTimeoutId = root.dataset.timeoutId;
+			const pendingTimeoutId = root.dataset['timeoutId'];
 			if (pendingTimeoutId) {
 				clearTimeout(Number(pendingTimeoutId));
-				delete root.dataset.timeoutId;
+				delete root.dataset['timeoutId'];
 			}
 
 			const rootId = root.id;
@@ -237,7 +237,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			// Re-enable the parent if this indicator disabled it. The marker
 			// is read from the DOM so it survives the stale unmount closure.
 			if (
-				root.dataset.didDisableParent === 'true' &&
+				root.dataset['didDisableParent'] === 'true' &&
 				'disabled' in parent
 			) {
 				parent.disabled = false;
@@ -300,7 +300,9 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					() => {
 						state._timeoutId = undefined;
 						if (_ref) {
-							delete (_ref as HTMLDivElement).dataset.timeoutId;
+							delete (_ref as HTMLDivElement).dataset[
+								'timeoutId'
+							];
 						}
 
 						if (props.onTimeout) {
@@ -309,10 +311,12 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					},
 					state._loadingState === 'active'
 						? Number(
-								props.timeoutActive ??
+								props.timeoutActiveDuration ??
 									DEFAULT_LOADING_TIMEOUT_ACTIVE
 							)
-						: Number(props.timeout ?? DEFAULT_LOADING_TIMEOUT)
+						: Number(
+								props.timeoutDuration ?? DEFAULT_LOADING_TIMEOUT
+							)
 				);
 				state._timeoutId = timeoutId;
 
@@ -320,7 +324,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				// can clear it even though the React unmount closure captures a
 				// stale (undefined) state._timeoutId.
 				if (_ref) {
-					(_ref as HTMLDivElement).dataset.timeoutId =
+					(_ref as HTMLDivElement).dataset['timeoutId'] =
 						`${Number(timeoutId)}`;
 				}
 			}

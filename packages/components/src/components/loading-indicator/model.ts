@@ -89,13 +89,13 @@ export type DBLoadingIndicatorDefaultProps = {
 	size?: SizeType | 'large';
 
 	/**
-	 * The timeout attribute specifies the time in milliseconds before the loading indicator triggers the onTimeout event. Default is 2000ms.
+	 * The timeoutDuration attribute specifies the time in milliseconds before the loading indicator triggers the onTimeout event. Default is 2000ms.
 	 */
-	timeout?: number | string;
+	timeoutDuration?: number | string;
 	/**
-	 * The timeoutActive attribute specifies the time in milliseconds before the loading indicator triggers the onTimeout event when the state is "active". Default is 5000ms.
+	 * The timeoutActiveDuration attribute specifies the time in milliseconds before the loading indicator triggers the onTimeout event when the state is "active". Default is 5000ms.
 	 */
-	timeoutActive?: number | string;
+	timeoutActiveDuration?: number | string;
 };
 
 export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
