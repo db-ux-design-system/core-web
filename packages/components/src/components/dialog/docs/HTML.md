@@ -235,18 +235,31 @@ Two fallbacks ship for browser features that our [Browserslist](https://browsers
 | `utils/dialog/ponyfill.ts`              | `closedby` attribute and Invoker Commands | every Browserslist target supports both features | `data-closedby="not-supported"` is set on the dialog, and a click on a `command="request-close"` button calls `requestClose()` on the dialog itself |
 | `styles/internal/_dialog-ponyfill.scss` | `closedby` attribute                      | every Browserslist target supports `closedby`    | the close button gets a hit area covering the area outside the dialog box, so clicking the backdrop still closes the dialog                         |
 
-In plain HTML you wire these fallbacks yourself. Feature-detect Invoker Commands and fall back to event handlers:
+If you do need to provide support for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands), add a feature detection fallback in JavaScript (see example below) or the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
+
+In plain HTML you wire these fallbacks yourself: mark the dialog when `closedby` is unsupported (so the CSS backdrop fallback applies) and fall back to event handlers when Invoker Commands are unsupported:
 
 ```html index.html
 <!-- index.html -->
 <script>
+	const dialog = document.querySelector("#my-dialog");
+
+	/*
+	 * Feature detection for the `closedby` attribute:
+	 * If the browser does not support it, mark the dialog so the shipped CSS
+	 * backdrop fallback (gated on `[data-closedby="not-supported"]`) extends
+	 * the close button's hit area over the backdrop.
+	 */
+	if (!("closedBy" in HTMLDialogElement.prototype)) {
+		dialog?.setAttribute("data-closedby", "not-supported");
+	}
+
 	/*
 	 * Feature detection for Invoker Commands:
 	 * If the browser does not support the `command` and `commandfor`
 	 * HTML attributes, we fall back to JavaScript event handlers.
 	 */
 	if (!("commandForElement" in HTMLButtonElement.prototype)) {
-		const dialog = document.getElementById("my-dialog");
 		document
 			.querySelector('[commandfor="my-dialog"][command="show-modal"]')
 			?.addEventListener("click", () => {
