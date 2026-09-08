@@ -30,7 +30,7 @@
 			},
 			"text": {
 				"de": "Die Pagination erlaubt freie Sprünge zwischen allen Seiten. Abläufe, die in einer festen Reihenfolge abgearbeitet werden, widersprechen diesem Prinzip.",
-				"en": "Pagination allows free jumps between all pages. Flows that are completed in a fixed order contradict that principle."
+				"en": "Pagination allows free jumps between all pages. Flows that are completed in a fixed order contradict this principle."
 			},
 			"do": {
 				"figmaNodeId": "1-1132",
@@ -42,8 +42,8 @@
 			"dont": {
 				"figmaNodeId": "1-1133",
 				"description": {
-					"de": "Setze Pagination nicht für Schrittfolgen ein, die in fester Reihenfolge abgearbeitet werden. Sie lädt zum Überspringen von Schritten ein.",
-					"en": "Don't use Pagination for step sequences that are completed in a fixed order. It invites people to skip steps."
+					"de": "Setze Pagination nicht für Schrittfolgen ein, die in fester Reihenfolge abgearbeitet werden. Die Pagination lädt zum Überspringen von Schritten ein.",
+					"en": "Don't use Pagination for step sequences that are completed in a fixed order. Pagination invites people to skip steps."
 				}
 			}
 		},
@@ -54,14 +54,14 @@
 				"en": "Minimum Number of Entries"
 			},
 			"text": {
-				"de": "Pagination lohnt sich ab mehr als 20 Einträgen. Kürzere Listen werden vollständig gezeigt.",
-				"en": "Pagination pays off from more than 20 entries. Shorter lists are shown in full."
+				"de": "Pagination lohnt sich bei mehr als 20 Einträgen. Kürzere Listen werden vollständig gezeigt.",
+				"en": "Pagination pays off for more than 20 entries. Shorter lists are shown in full."
 			},
 			"do": {
 				"figmaNodeId": "4004-2",
 				"description": {
-					"de": "Setze Pagination ab mehr als 20 Einträgen ein.",
-					"en": "Use Pagination from more than 20 entries."
+					"de": "Setze Pagination bei mehr als 20 Einträgen ein.",
+					"en": "Use Pagination for more than 20 entries."
 				}
 			},
 			"caution": {
@@ -79,46 +79,46 @@
 				"en": "First and Last Page"
 			},
 			"text": {
-				"de": "Die erste und letzte Seite sind immer sichtbar. Sie zeigen, wie groß der Datensatz ist und wo seine Grenzen liegen.",
-				"en": "The first and last page are always visible. They show how large the data set is and where its boundaries are."
+				"de": "Die erste und letzte Seite sollen immer sichtbar sein. Sie zeigen, wie groß der Datensatz ist und wo seine Grenzen liegen. Dafür muss `boundaryCount` mindestens `1` sein.",
+				"en": "The first and last page should always be visible. They show how large the data set is and where its boundaries are. `boundaryCount` has to be at least `1` for that."
 			},
 			"do": {
 				"figmaNodeId": "4004-5",
 				"description": {
-					"de": "Zeige die erste und letzte Seite in jeder Konfiguration an.",
-					"en": "Show the first and last page in every configuration."
+					"de": "Setze `boundaryCount` auf mindestens `1`, damit die erste und letzte Seite in jeder Konfiguration als Seitenzahl erscheinen.",
+					"en": "Set `boundaryCount` to at least `1` so that the first and last page appear as a page number in every configuration."
 				}
 			},
 			"dont": {
 				"figmaNodeId": "4004-6",
 				"description": {
-					"de": "Verbirg die erste oder letzte Seite nicht. Ohne sie ist der Umfang des Datensatzes nicht erkennbar.",
-					"en": "Don't hide the first or last page. Without them the size of the data set is not recognizable."
+					"de": "Setze `boundaryCount` nicht auf `0`. An den Rändern steht dann eine Truncation statt der ersten und letzten Seite, und der Umfang des Datensatzes ist nicht erkennbar.",
+					"en": "Don't set `boundaryCount` to `0`. A truncation then stands at the edges instead of the first and last page, and the size of the data set is not recognizable."
 				}
 			}
 		},
 		{
-			"id": "at-most-seven-page-numbers",
+			"id": "single-line-pagination",
 			"headline": {
-				"de": "Höchstens sieben Seitenzahlen",
-				"en": "At Most Seven Page Numbers"
+				"de": "Einzeilige Pagination",
+				"en": "Single-Line Pagination"
 			},
 			"text": {
-				"de": "Die Reihe bleibt einzeilig, solange sie höchstens sieben Seitenzahlen trägt. `boundaryCount` und `siblingCount` bestimmen die Anzahl; ab dem `sm`-Breakpoint gibt es kein Zusammenklappen, das sie reduziert.",
-				"en": "The row stays on one line as long as it carries at most seven page numbers. `boundaryCount` and `siblingCount` determine the amount; from the `sm` breakpoint upwards there is no collapsing that reduces it."
+				"de": "Die Pagination bleibt einzeilig. `boundaryCount` und `siblingCount` bestimmen, wie viele Seitenzahlen entstehen; höchstens sieben passen in den meisten Ansichten in eine Zeile.",
+				"en": "Pagination stays on one line. `boundaryCount` and `siblingCount` determine how many page numbers appear; at most seven fit on one line in most views."
 			},
 			"do": {
 				"figmaNodeId": "4004-8",
 				"description": {
-					"de": "Wähle `boundaryCount` und `siblingCount` so, dass höchstens sieben Seitenzahlen entstehen.",
-					"en": "Choose `boundaryCount` and `siblingCount` so that at most seven page numbers appear."
+					"de": "Wähle `boundaryCount` und `siblingCount` so, dass die Pagination einzeilig bleibt. Höchstens sieben Seitenzahlen sind dafür der Richtwert.",
+					"en": "Choose `boundaryCount` and `siblingCount` so that Pagination stays on one line. At most seven page numbers is the recommended maximum."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "4004-9",
 				"description": {
-					"de": "In einer schmalen Spalte oder mit einem höheren `siblingCount` bricht die Reihe um. Mehrzeilig sind die Items schwerer zu treffen. Reduziere `siblingCount`, wenn der Platz knapp wird.",
-					"en": "In a narrow column or with a higher `siblingCount` the row wraps. On multiple lines the items are harder to hit. Reduce `siblingCount` when space gets tight."
+					"de": "Bricht die Pagination in eine zweite Zeile um, wird sie schwerer zu bedienen. Reduziere `siblingCount` oder `boundaryCount`, letzteres nicht unter `1`.",
+					"en": "If Pagination wraps into a second line, it becomes harder to operate. Reduce `siblingCount` or `boundaryCount`, the latter not below `1`."
 				}
 			}
 		},
@@ -142,8 +142,8 @@
 			"dont": {
 				"figmaNodeId": "4004-12",
 				"description": {
-					"de": "Lass die Truncation nicht weg. Ohne sie lesen sich die angrenzenden Seitenzahlen als benachbart.",
-					"en": "Don't leave out the truncation. Without it the adjacent page numbers read as neighbours."
+					"de": "Lass die Truncation nicht weg. Ohne sie lesen sich die beiden Seitenzahlen als aufeinanderfolgend.",
+					"en": "Don't leave out the truncation. Without it the two page numbers read as consecutive."
 				}
 			}
 		},

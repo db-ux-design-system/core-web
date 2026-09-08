@@ -147,7 +147,7 @@ Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Kompone
 - **Children-Slot der Pagination füllen.** Diese Aussagen standen als Regeln in `components/pagination/guidelines.md` und sind dort entfernt, weil sie im Code keine Entscheidung sind: Die Items werden von `DBPagination` berechnet. Für Figma bleiben sie nötig.
     - Pro wählbarer Seite genau ein Pagination Item einsetzen und die Seitenzahlen aufsteigend anordnen.
     - Genau ein Item auf `🔀 Current` mit dem Wert `True` setzen.
-    - Die Auslassung über `🔀 Type` mit dem Wert `Truncation` erzeugen, nicht über eine eigene Komponente.
+    - Die Truncation über `🔀 Type` mit dem Wert `Truncation` erzeugen, nicht über eine eigene Komponente.
     - Je Hauptkomponente ist nur das Item-Set der passenden Größe einsetzbar, der Slot erzwingt das über `allowPreferredValuesOnly`. Mindestens zwei Items sind nötig.
     - Kombinationen von `🔀 Type` mit dem Wert `Truncation` und einem Interaktionszustand oder `🔀 Current` mit dem Wert `True` lösen keine eigene Variante auf.
 - **`multiline` des Loading Indicators.** `🔀 Multiline` liegt an den beiden Circular-Sets und stellt das Umbruchverhalten längerer Labels ein. Die Property existiert nur in Figma, im Code bricht das Label über das Layout um. Wann sie zu setzen ist, gehört deshalb nach Figma Learn und nicht in die Komponenten-Doku. Der Satz „Bei `variant` mit dem Wert `circular` und `orientation` mit dem Wert `vertical` steht das `label` unter dem Kreis und bricht bei größerer Länge um" stand als zweiter Satz in Regel 10 der `guidelines.md` und ist dort entfernt; die Längenempfehlung steht jetzt als Zusatzinformation.

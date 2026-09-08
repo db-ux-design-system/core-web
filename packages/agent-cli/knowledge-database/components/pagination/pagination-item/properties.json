@@ -10,7 +10,7 @@
 			"design": {
 				"name": "🔀 Type",
 				"values": ["(Def) Page", "Truncation"],
-				"note": "In code there is no type prop: an item without page renders the truncation, see the page property. Truncation exists only in combination with Current=False and Interaction States=None."
+				"note": "Design-only. In code there is no type prop: an item without page renders the truncation, see the page property, and DBPagination sets it automatically from the gaps in the page sequence. Truncation exists only in combination with Current=False and Interaction States=None."
 			}
 		},
 		{

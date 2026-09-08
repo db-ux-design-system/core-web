@@ -2,22 +2,20 @@
 	"component": "pagination-item",
 	"figmaFileKey": null,
 	"description": {
-		"de": "Das Pagination Item ist eine einzelne Seite oder eine Auslassung innerhalb einer Pagination.",
-		"en": "A Pagination Item is a single page or a truncation within a Pagination."
+		"de": "Das Pagination Item ist eine einzelne Seite innerhalb einer Pagination.",
+		"en": "A Pagination Item is a single page within a Pagination."
 	},
 	"shortDescription": {
-		"de": "Einzelne Seite oder Auslassung innerhalb einer Pagination.",
-		"en": "Single page or truncation within a Pagination."
+		"de": "Einzelne Seite innerhalb einer Pagination.",
+		"en": "Single page within a Pagination."
 	},
 	"useCases": {
 		"de": [
 			"Wählbare Seite in einer Pagination darstellen",
-			"Ausgelassene Seiten als Truncation kennzeichnen",
 			"Aktuelle Seite hervorheben"
 		],
 		"en": [
 			"Render a selectable page within a Pagination",
-			"Mark omitted pages as a truncation",
 			"Highlight the current page"
 		]
 	},
@@ -35,15 +33,15 @@
 			"do": {
 				"figmaNodeId": "4078-5623",
 				"description": {
-					"de": "Benenne im `label` die Seite im Kontext, zum Beispiel `Seite 2 von 9` bei sichtbarer 2, und verwende dasselbe Muster für jedes Item der Reihe.",
-					"en": "Name the page in context in `label`, for example `Page 2 of 9` for a visible 2, and use the same pattern for every item of the row."
+					"de": "Benenne im `label` die Seite im Kontext, zum Beispiel `Seite 2 von 9`, wenn die sichtbare Zahl 2 ist, und verwende dasselbe Muster für jedes Item der Reihe.",
+					"en": "Name the page in context in `label`, for example `Page 2 of 9` when the visible number is 2, and use the same pattern for every item of the row."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "4078-5693",
 				"description": {
 					"de": "Steht im `label` nur die Seitenzahl oder wechselt das Muster zwischen den Items, bleibt beim Vorlesen eine Zahl ohne Bezug. Halte das Muster über die ganze Reihe gleich.",
-					"en": "If `label` carries only the page number, or the pattern changes between items, all that is announced is a number without reference. Keep the pattern the same across the whole row."
+					"en": "If `label` carries only the page number, or the pattern changes between items, all that is announced is a number without context. Keep the pattern the same across the whole row."
 				}
 			}
 		}
