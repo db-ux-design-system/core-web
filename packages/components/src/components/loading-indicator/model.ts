@@ -5,7 +5,6 @@ import {
 	InitializedState,
 	OrientationProps,
 	ShowLabelProps,
-	SizeProps,
 	SizeType,
 	WidthProps
 } from '../../shared/model';
@@ -100,7 +99,6 @@ export type DBLoadingIndicatorDefaultProps = {
 
 export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	GlobalProps &
-	SizeProps &
 	ShowLabelProps &
 	OrientationProps &
 	WidthProps &
