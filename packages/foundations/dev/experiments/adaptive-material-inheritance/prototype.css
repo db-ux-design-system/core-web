@@ -1,0 +1,2140 @@
+/*
+ * Foundation snapshot from Figma file fPJQkHT1iDKiUz1nVgnFa0, node 42:739.
+ * Fixed modes: Theme DB · WCAG AA · Contrast Max · Emphasis Default.
+ * Variable modes: all Colors, Schemes, Materials, Sizes, Emphases, WCAG levels, and Contrasts.
+ */
+/* stylelint-disable alpha-value-notation -- Preserve exact Figma RGBA alpha values. */
+[data-color="neutral"] {
+	--prototype-bg-filled-1-light: color(srgb 1 1 1);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.0862745121 0.0941176489 0.1058823541
+	);
+	--prototype-bg-filled-2-light: color(
+		srgb 0.9529411793 0.9529411793 0.9607843161
+	);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.1333333403 0.1411764771 0.1568627506
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.9294117689 0.9333333373 0.9411764741
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.180392161 0.1882352978 0.2117647082
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.650980413 0.6705882549 0.7137255073
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.650980413 0.6705882549 0.7137255073
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.3921568692 0.4117647111 0.4509803951
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.3921568692 0.4117647111 0.4509803951
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.0862745121 0.0941176489 0.1058823541
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.9294117689 0.9333333373 0.9411764741
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.3529411852 0.3686274588 0.4078431427 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.650980413 0.6705882549 0.7137255073 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.3529411852 0.3686274588 0.4078431427 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.650980413 0.6705882549 0.7137255073 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.0862745121 0.0941176489 0.1058823541
+	);
+	--prototype-on-basic-dark: color(
+		srgb 0.9294117689 0.9333333373 0.9411764741
+	);
+	--prototype-on-vibrant-light: color(
+		srgb 0.0862745121 0.0941176489 0.1058823541
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.0862745121 0.0941176489 0.1058823541
+	);
+	--prototype-on-origin-light: color(
+		srgb 0.9764705896 0.9764705896 0.980392158
+	);
+	--prototype-on-origin-dark: color(
+		srgb 0.9764705896 0.9764705896 0.980392158
+	);
+	--prototype-on-inverted-light: color(srgb 1 1 1);
+	--prototype-on-inverted-dark: color(
+		srgb 0.0509803928 0.0549019612 0.0666666701
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8839196563 0.8849160075 0.8864106536
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.171542868 0.1789894104 0.1903575212
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8413451314 0.8423550725 0.8507031798
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.2074944824 0.2149723023 0.2299279273
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.820140779 0.8245705962 0.8329219818
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.2488486469 0.2563333809 0.2784291506
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.5675417185 0.5854112506 0.6239129901
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.5675417185 0.5854112506 0.6239129901
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.4656811357 0.4828217328 0.517596364
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.4656811357 0.4828217328 0.517596364
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.1718664616 0.1789748967 0.1896375716
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8205432892 0.8244648576 0.8327940106
+	);
+}
+
+[data-color="brand"] {
+	--prototype-bg-filled-1-light: color(srgb 1 0.9725490212 0.9725490212);
+	--prototype-bg-filled-1-dark: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-bg-filled-2-light: color(srgb 1 0.9411764741 0.9411764741);
+	--prototype-bg-filled-2-dark: color(srgb 0.3137255013 0 0.0117647061);
+	--prototype-bg-filled-3-light: color(srgb 1 0.9137254953 0.9137254953);
+	--prototype-bg-filled-3-dark: color(srgb 0.4117647111 0 0.0156862754);
+	--prototype-bg-vibrant-light: color(srgb 1 0.5333333611 0.5411764979);
+	--prototype-bg-vibrant-dark: color(srgb 1 0.5333333611 0.5411764979);
+	--prototype-bg-origin-light: color(srgb 0.9254902005 0 0.0862745121);
+	--prototype-bg-origin-dark: color(srgb 0.9254902005 0 0.0862745121);
+	--prototype-bg-inverted-light: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-bg-inverted-dark: color(srgb 1 0.9137254953 0.9137254953);
+	--prototype-bg-transparent-light: color(
+		srgb 0.7529411912 0 0.0627451017 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 1 0.5333333611 0.5411764979 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.7529411912 0 0.0627451017 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 1 0.5333333611 0.5411764979 / 0.160784319
+	);
+	--prototype-on-basic-light: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-on-basic-dark: color(srgb 1 0.9137254953 0.9137254953);
+	--prototype-on-vibrant-light: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-on-vibrant-dark: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-on-origin-light: color(srgb 1 1 1);
+	--prototype-on-origin-dark: color(srgb 1 1 1);
+	--prototype-on-inverted-light: color(srgb 1 0.9725490212 0.9725490212);
+	--prototype-on-inverted-dark: color(srgb 0.1568627506 0 0.0039215689);
+	--prototype-border-filled-1-light: color(
+		srgb 0.905392766 0.8540510535 0.8545288444
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.3159003556 0.1086991429 0.1121541858
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.904655993 0.8256079555 0.8260895014
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.3971042335 0.111012809 0.121348165
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.9039660692 0.8007158637 0.8012009263
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.4890920818 0.1201151684 0.133739382
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.8882722259 0.4565910399 0.4638698995
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.8882722259 0.4565910399 0.4638698995
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.9477119446 0.2982395887 0.3587836325
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.9477119446 0.2982395887 0.3587836325
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.312540859 0.1114890799 0.1149610952
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8975766897 0.8027272224 0.8032035828
+	);
+}
+
+[data-color="informational"] {
+	--prototype-bg-filled-1-light: color(srgb 0.9725490212 0.9764705896 1);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.0078431377 0.0823529437 0.2352941185
+	);
+	--prototype-bg-filled-2-light: color(srgb 0.9450980425 0.9529411793 1);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.0156862754 0.1294117719 0.3254902065
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.9176470637 0.9294117689 0.9960784316
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.0274509806 0.1764705926 0.4235294163
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.5647059083 0.6588235497 0.9882352948
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.5647059083 0.6588235497 0.9882352948
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.0784313753 0.3333333433 0.7529411912
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.0784313753 0.3333333433 0.7529411912
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.0078431377 0.0823529437 0.2352941185
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.9176470637 0.9294117689 0.9960784316
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.0823529437 0.3450980484 0.7764706016 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.5647059083 0.6588235497 0.9882352948 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.0823529437 0.3450980484 0.7764706016 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.5647059083 0.6588235497 0.9882352948 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.0078431377 0.0823529437 0.2352941185
+	);
+	--prototype-on-basic-dark: color(
+		srgb 0.9176470637 0.9294117689 0.9960784316
+	);
+	--prototype-on-vibrant-light: color(
+		srgb 0.0078431377 0.0823529437 0.2352941185
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.0078431377 0.0823529437 0.2352941185
+	);
+	--prototype-on-origin-light: color(srgb 0.9725490212 0.9764705896 1);
+	--prototype-on-origin-dark: color(srgb 0.9725490212 0.9764705896 1);
+	--prototype-on-inverted-light: color(srgb 0.9725490212 0.9764705896 1);
+	--prototype-on-inverted-dark: color(
+		srgb 0.0039215689 0.0509803928 0.160784319
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8512740135 0.8640693426 0.9038673639
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.1054925099 0.1732678711 0.3169491887
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8264699578 0.8427510858 0.9032114148
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.1066537723 0.2100959867 0.3931225538
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.8016567826 0.8214208484 0.8990865946
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.1172453985 0.2524200678 0.4812826514
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.4835812151 0.5748423338 0.8785455823
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.4835812151 0.5748423338 0.8785455823
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.1918203831 0.4148938656 0.7842723727
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.1918203831 0.4148938656 0.7842723727
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.1064826995 0.1737749726 0.3134840131
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8050127625 0.82112813 0.8931123018
+	);
+}
+/* stylelint-enable alpha-value-notation */
+
+:where(.surface) {
+	border-style: solid;
+	border-width: var(--db-border-width-3xs);
+}
+
+/* stylelint-disable db-ux/use-border-color -- Exact experiment-local Figma snapshot and WCAG outline override. */
+@scope ([data-material="filled-1"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-basic-light);
+		--prototype-on-base-dark: var(--prototype-on-basic-dark);
+		--prototype-on-min-active-light: var(--prototype-on-min-light);
+		--prototype-on-min-active-dark: var(--prototype-on-min-dark);
+		--prototype-visual-min-active-light: var(--prototype-visual-min-light);
+		--prototype-visual-min-active-dark: var(--prototype-visual-min-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-filled-1-light),
+			var(--prototype-bg-filled-1-dark)
+		);
+		border-color: var(
+			--prototype-required-outline,
+			light-dark(
+				var(--prototype-border-filled-1-light),
+				var(--prototype-border-filled-1-dark)
+			)
+		);
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="filled-2"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-basic-light);
+		--prototype-on-base-dark: var(--prototype-on-basic-dark);
+		--prototype-on-min-active-light: var(--prototype-on-min-light);
+		--prototype-on-min-active-dark: var(--prototype-on-min-dark);
+		--prototype-visual-min-active-light: var(--prototype-visual-min-light);
+		--prototype-visual-min-active-dark: var(--prototype-visual-min-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-filled-2-light),
+			var(--prototype-bg-filled-2-dark)
+		);
+		border-color: var(
+			--prototype-required-outline,
+			light-dark(
+				var(--prototype-border-filled-2-light),
+				var(--prototype-border-filled-2-dark)
+			)
+		);
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="filled-3"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-basic-light);
+		--prototype-on-base-dark: var(--prototype-on-basic-dark);
+		--prototype-on-min-active-light: var(--prototype-on-min-light);
+		--prototype-on-min-active-dark: var(--prototype-on-min-dark);
+		--prototype-visual-min-active-light: var(--prototype-visual-min-light);
+		--prototype-visual-min-active-dark: var(--prototype-visual-min-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-filled-3-light),
+			var(--prototype-bg-filled-3-dark)
+		);
+		border-color: var(
+			--prototype-required-outline,
+			light-dark(
+				var(--prototype-border-filled-3-light),
+				var(--prototype-border-filled-3-dark)
+			)
+		);
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="vibrant"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-vibrant-light);
+		--prototype-on-base-dark: var(--prototype-on-vibrant-dark);
+		--prototype-on-min-active-light: var(--prototype-on-base-light);
+		--prototype-on-min-active-dark: var(--prototype-on-base-dark);
+		--prototype-visual-min-active-light: var(--prototype-on-base-light);
+		--prototype-visual-min-active-dark: var(--prototype-on-base-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-vibrant-light),
+			var(--prototype-bg-vibrant-dark)
+		);
+		border-color: var(
+			--prototype-required-outline,
+			light-dark(
+				var(--prototype-border-vibrant-light),
+				var(--prototype-border-vibrant-dark)
+			)
+		);
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="origin"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(
+			--prototype-on-origin-active-light,
+			var(--prototype-on-origin-light)
+		);
+		--prototype-on-base-dark: var(
+			--prototype-on-origin-active-dark,
+			var(--prototype-on-origin-dark)
+		);
+		--prototype-on-min-active-light: var(--prototype-on-base-light);
+		--prototype-on-min-active-dark: var(--prototype-on-base-dark);
+		--prototype-visual-min-active-light: var(--prototype-on-base-light);
+		--prototype-visual-min-active-dark: var(--prototype-on-base-dark);
+
+		background-color: light-dark(
+			var(
+				--prototype-bg-origin-active-light,
+				var(--prototype-bg-origin-light)
+			),
+			var(
+				--prototype-bg-origin-active-dark,
+				var(--prototype-bg-origin-dark)
+			)
+		);
+		border-color: var(
+			--prototype-required-outline,
+			light-dark(
+				var(
+					--prototype-border-origin-active-light,
+					var(--prototype-border-origin-light)
+				),
+				var(
+					--prototype-border-origin-active-dark,
+					var(--prototype-border-origin-dark)
+				)
+			)
+		);
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="inverted"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-inverted-light);
+		--prototype-on-base-dark: var(--prototype-on-inverted-dark);
+		--prototype-on-min-active-light: var(--prototype-on-base-light);
+		--prototype-on-min-active-dark: var(--prototype-on-base-dark);
+		--prototype-visual-min-active-light: var(--prototype-on-base-light);
+		--prototype-visual-min-active-dark: var(--prototype-on-base-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-inverted-light),
+			var(--prototype-bg-inverted-dark)
+		);
+		border-color: var(
+			--prototype-required-outline,
+			light-dark(
+				var(--prototype-border-inverted-light),
+				var(--prototype-border-inverted-dark)
+			)
+		);
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="transparent"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-basic-light);
+		--prototype-on-base-dark: var(--prototype-on-basic-dark);
+		--prototype-on-min-active-light: var(--prototype-on-base-light);
+		--prototype-on-min-active-dark: var(--prototype-on-base-dark);
+		--prototype-visual-min-active-light: var(--prototype-on-base-light);
+		--prototype-visual-min-active-dark: var(--prototype-on-base-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-transparent-light),
+			var(--prototype-bg-transparent-dark)
+		);
+		border-color: transparent;
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+
+@scope ([data-material="transparent-semi"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-base-light: var(--prototype-on-basic-light);
+		--prototype-on-base-dark: var(--prototype-on-basic-dark);
+		--prototype-on-min-active-light: var(--prototype-on-base-light);
+		--prototype-on-min-active-dark: var(--prototype-on-base-dark);
+		--prototype-visual-min-active-light: var(--prototype-on-base-light);
+		--prototype-visual-min-active-dark: var(--prototype-on-base-dark);
+
+		background-color: light-dark(
+			var(--prototype-bg-transparent-semi-light),
+			var(--prototype-bg-transparent-semi-dark)
+		);
+		border-color: transparent;
+		color: light-dark(
+			var(--prototype-on-active-light, var(--prototype-on-base-light)),
+			var(--prototype-on-active-dark, var(--prototype-on-base-dark))
+		);
+	}
+}
+/* Contrast Min follows the material context for transparent overlays. */
+@scope ([data-material="filled-1"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-min-foreground-light: var(--prototype-on-min-light);
+		--prototype-min-foreground-dark: var(--prototype-on-min-dark);
+		--prototype-min-visual-light: var(--prototype-visual-min-light);
+		--prototype-min-visual-dark: var(--prototype-visual-min-dark);
+	}
+}
+
+@scope ([data-material="filled-2"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-min-foreground-light: var(--prototype-on-min-light);
+		--prototype-min-foreground-dark: var(--prototype-on-min-dark);
+		--prototype-min-visual-light: var(--prototype-visual-min-light);
+		--prototype-min-visual-dark: var(--prototype-visual-min-dark);
+	}
+}
+
+@scope ([data-material="filled-3"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-min-foreground-light: var(--prototype-on-min-light);
+		--prototype-min-foreground-dark: var(--prototype-on-min-dark);
+		--prototype-min-visual-light: var(--prototype-visual-min-light);
+		--prototype-min-visual-dark: var(--prototype-visual-min-dark);
+	}
+}
+
+@scope ([data-material="vibrant"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-min-foreground-light: var(--prototype-on-base-light);
+		--prototype-min-foreground-dark: var(--prototype-on-base-dark);
+		--prototype-min-visual-light: var(--prototype-on-base-light);
+		--prototype-min-visual-dark: var(--prototype-on-base-dark);
+	}
+}
+
+@scope ([data-material="origin"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-min-foreground-light: var(--prototype-on-base-light);
+		--prototype-min-foreground-dark: var(--prototype-on-base-dark);
+		--prototype-min-visual-light: var(--prototype-on-base-light);
+		--prototype-min-visual-dark: var(--prototype-on-base-dark);
+	}
+}
+
+@scope ([data-material="inverted"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-min-foreground-light: var(--prototype-on-base-light);
+		--prototype-min-foreground-dark: var(--prototype-on-base-dark);
+		--prototype-min-visual-light: var(--prototype-on-base-light);
+		--prototype-min-visual-dark: var(--prototype-on-base-dark);
+	}
+}
+
+@scope ([data-material="transparent"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-min-active-light: var(
+			--prototype-min-foreground-light,
+			var(--prototype-on-base-light)
+		);
+		--prototype-on-min-active-dark: var(
+			--prototype-min-foreground-dark,
+			var(--prototype-on-base-dark)
+		);
+		--prototype-visual-min-active-light: var(
+			--prototype-min-visual-light,
+			var(--prototype-on-base-light)
+		);
+		--prototype-visual-min-active-dark: var(
+			--prototype-min-visual-dark,
+			var(--prototype-on-base-dark)
+		);
+	}
+}
+
+@scope ([data-material="transparent-semi"]) to ([data-material]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-min-active-light: var(
+			--prototype-min-foreground-light,
+			var(--prototype-on-base-light)
+		);
+		--prototype-on-min-active-dark: var(
+			--prototype-min-foreground-dark,
+			var(--prototype-on-base-dark)
+		);
+		--prototype-visual-min-active-light: var(
+			--prototype-min-visual-light,
+			var(--prototype-on-base-light)
+		);
+		--prototype-visual-min-active-dark: var(
+			--prototype-min-visual-dark,
+			var(--prototype-on-base-dark)
+		);
+	}
+}
+/* stylelint-enable db-ux/use-border-color */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font: var(--db-type-body-md);
+	margin: 0;
+}
+
+main {
+	display: grid;
+	gap: var(--db-spacing-fixed-xl);
+	margin-inline: auto;
+	max-inline-size: var(--db-container-3xl);
+	padding: var(--db-spacing-responsive-md);
+}
+
+h1,
+h2,
+h3,
+p {
+	margin-block: 0;
+}
+
+h1 {
+	font: var(--db-type-headline-2xl);
+}
+
+h2 {
+	font: var(--db-type-headline-lg);
+}
+
+section,
+.intro,
+.mode-control,
+.surface,
+.logic {
+	display: grid;
+	gap: var(--db-spacing-fixed-md);
+}
+
+.mode-controls {
+	display: grid;
+	gap: var(--db-spacing-fixed-md);
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.mode-control {
+	gap: var(--db-spacing-fixed-xs);
+}
+
+.mode-control select {
+	background-color: light-dark(
+		color(srgb 1 1 1),
+		color(srgb 0.0862745121 0.0941176489 0.1058823541)
+	);
+	/* stylelint-disable-next-line db-ux/use-border-color -- Native experiment control. */
+	border: var(--db-border-width-3xs) solid
+		var(--db-adaptive-on-bg-basic-default);
+	border-radius: var(--db-border-radius-sm);
+	color: inherit;
+	font: inherit;
+	min-block-size: var(--db-sizing-regular-lg);
+	padding-inline: var(--db-spacing-fixed-sm);
+}
+
+.eyebrow,
+code {
+	font: var(--db-type-body-sm);
+}
+
+.eyebrow {
+	font-weight: 700;
+}
+
+.test-result {
+	/* stylelint-disable-next-line db-ux/use-border-color -- Proposed flattened token. */
+	border-inline-start: var(--db-border-width-xs) solid
+		var(--db-adaptive-on-bg-basic-default);
+	padding-inline-start: var(--db-spacing-fixed-sm);
+}
+
+.test-result[data-status="passed"] {
+	color: var(--db-successful-on-origin-default);
+}
+
+.test-result[data-status="failed"] {
+	color: var(--db-critical-on-origin-default);
+}
+
+/* Size collection modes from the same Figma snapshot. */
+[data-size="3xs"] {
+	--prototype-component-height: 16px;
+	--prototype-component-padding: 0px;
+	--prototype-content-gap: 2px;
+	--prototype-content-height: 16px;
+	--prototype-content-padding-block: 0px;
+	--prototype-content-padding-inline: 2px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 10.67px;
+	--prototype-icon-size: 12px;
+	--prototype-line-height: 16px;
+	--prototype-row-padding-inline: 2px;
+}
+
+[data-size="2xs"] {
+	--prototype-component-height: 18px;
+	--prototype-component-padding: 1px;
+	--prototype-content-gap: 2px;
+	--prototype-content-height: 16px;
+	--prototype-content-padding-block: 0px;
+	--prototype-content-padding-inline: 2px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 10.67px;
+	--prototype-icon-size: 12px;
+	--prototype-line-height: 16px;
+	--prototype-row-padding-inline: 2px;
+}
+
+[data-size="xs"] {
+	--prototype-component-height: 20px;
+	--prototype-component-padding: 1px;
+	--prototype-content-gap: 3px;
+	--prototype-content-height: 18px;
+	--prototype-content-padding-block: 0px;
+	--prototype-content-padding-inline: 2px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 12px;
+	--prototype-icon-size: 14px;
+	--prototype-line-height: 18px;
+	--prototype-row-padding-inline: 2px;
+}
+
+[data-size="sm"] {
+	--prototype-component-height: 24px;
+	--prototype-component-padding: 2px;
+	--prototype-content-gap: 3px;
+	--prototype-content-height: 20px;
+	--prototype-content-padding-block: 0px;
+	--prototype-content-padding-inline: 2px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 13.33px;
+	--prototype-icon-size: 16px;
+	--prototype-line-height: 20px;
+	--prototype-row-padding-inline: 3px;
+}
+
+[data-size="md"] {
+	--prototype-component-height: 28px;
+	--prototype-component-padding: 2px;
+	--prototype-content-gap: 2px;
+	--prototype-content-height: 24px;
+	--prototype-content-padding-block: 0px;
+	--prototype-content-padding-inline: 4px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 16px;
+	--prototype-icon-size: 20px;
+	--prototype-line-height: 24px;
+	--prototype-row-padding-inline: 2px;
+}
+
+[data-size="lg"] {
+	--prototype-component-height: 32px;
+	--prototype-component-padding: 2px;
+	--prototype-content-gap: 2px;
+	--prototype-content-height: 28px;
+	--prototype-content-padding-block: 2px;
+	--prototype-content-padding-inline: 4px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 16px;
+	--prototype-icon-size: 20px;
+	--prototype-line-height: 24px;
+	--prototype-row-padding-inline: 4px;
+}
+
+[data-size="xl"] {
+	--prototype-component-height: 40px;
+	--prototype-component-padding: 4px;
+	--prototype-content-gap: 2px;
+	--prototype-content-height: 32px;
+	--prototype-content-padding-block: 4px;
+	--prototype-content-padding-inline: 4px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 16px;
+	--prototype-icon-size: 20px;
+	--prototype-line-height: 24px;
+	--prototype-row-padding-inline: 6px;
+}
+
+[data-size="2xl"] {
+	--prototype-component-height: 48px;
+	--prototype-component-padding: 4px;
+	--prototype-content-gap: 2px;
+	--prototype-content-height: 40px;
+	--prototype-content-padding-block: 8px;
+	--prototype-content-padding-inline: 4px;
+	--prototype-corner-radius: 4px;
+	--prototype-font-size: 16px;
+	--prototype-icon-size: 20px;
+	--prototype-line-height: 24px;
+	--prototype-row-padding-inline: 8px;
+}
+
+/* stylelint-disable db-ux/use-border-radius, db-ux/use-sizing, db-ux/use-spacings -- Exact experiment-local Figma Size snapshot. */
+.component,
+.preview-component,
+.nested-component {
+	border-radius: var(--prototype-corner-radius);
+	font-size: var(--prototype-font-size);
+	font-weight: var(--prototype-font-weight-body);
+	gap: var(--prototype-content-gap);
+	line-height: var(--prototype-line-height);
+	min-block-size: var(--prototype-component-height);
+	padding: var(--prototype-component-padding);
+}
+
+.surface > strong,
+.component-content {
+	opacity: var(--prototype-opacity);
+}
+
+.surface > strong,
+.component-content > strong {
+	font-weight: var(--prototype-font-weight-headline);
+}
+
+.component-content > strong {
+	text-box-edge: cap alphabetic;
+	text-box-trim: trim-both;
+}
+
+.component-row {
+	align-items: flex-start;
+	display: flex;
+	gap: var(--prototype-content-gap);
+	min-block-size: var(--prototype-content-height);
+	padding-inline: var(--prototype-row-padding-inline);
+}
+
+.component-content {
+	align-items: center;
+	display: inline-flex;
+	min-block-size: var(--prototype-content-height);
+	padding-block: var(--prototype-content-padding-block);
+	padding-inline: var(--prototype-content-padding-inline);
+}
+
+.preview-component {
+	align-items: flex-start;
+	block-size: auto;
+	display: inline-flex;
+	inline-size: auto;
+	max-inline-size: 100%;
+}
+
+.preview-component > .component-row {
+	align-items: center;
+}
+
+.component-end-slot {
+	align-items: flex-start;
+	display: flex;
+	gap: var(--prototype-content-gap);
+}
+
+.nested-component {
+	display: block;
+	flex: 0 0 auto;
+}
+/* stylelint-enable db-ux/use-border-radius, db-ux/use-sizing, db-ux/use-spacings */
+
+.scheme-boundary {
+	background-color: light-dark(
+		color(srgb 1 1 1),
+		color(srgb 0.0862745121 0.0941176489 0.1058823541)
+	);
+	border-radius: var(--db-border-radius-sm);
+	display: grid;
+	gap: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+}
+
+.preview-card {
+	background-color: var(--db-neutral-bg-basic-level-2-default);
+	/* stylelint-disable-next-line db-ux/use-border-color -- Neutral preview-card chrome. */
+	border: var(--db-border-width-3xs) solid
+		var(--db-neutral-bg-basic-level-3-default);
+	border-radius: var(--db-border-radius-sm);
+	display: grid;
+	inline-size: 100%;
+	min-block-size: clamp(16rem, 40vh, 24rem);
+	padding: var(--db-spacing-responsive-md);
+	place-items: center;
+}
+
+.nesting {
+	--prototype-layout-spacing-r: var(--db-spacing-fixed-md);
+}
+
+.nesting .surface {
+	border-radius: var(--db-border-radius-sm);
+	/* stylelint-disable-next-line db-ux/use-spacings -- Layout R is an experiment-local alias. */
+	gap: var(--prototype-layout-spacing-r);
+	min-block-size: 0;
+	/* stylelint-disable-next-line db-ux/use-spacings -- Layout R is an experiment-local alias. */
+	padding: var(--prototype-layout-spacing-r);
+}
+
+.logic {
+	padding-block-end: var(--db-spacing-fixed-xl);
+}
+
+.logic ol {
+	display: grid;
+	gap: var(--db-spacing-fixed-xs);
+	margin-block: 0;
+	padding-inline-start: var(--db-spacing-fixed-lg);
+}
+
+/* Additional Color collection modes from the same Figma snapshot. */
+/* stylelint-disable alpha-value-notation -- Preserve exact Figma RGBA alpha values. */
+[data-color="yellow"] {
+	--prototype-bg-filled-1-light: color(srgb 1 0.9764705896 0.9215686321);
+	--prototype-bg-filled-1-dark: color(srgb 0.1137254909 0.0901960805 0);
+	--prototype-bg-filled-2-light: color(srgb 1 0.9529411793 0.8352941275);
+	--prototype-bg-filled-2-dark: color(srgb 0.1686274558 0.1372549087 0);
+	--prototype-bg-filled-3-light: color(srgb 1 0.9294117689 0.7372549176);
+	--prototype-bg-filled-3-dark: color(srgb 0.2274509817 0.1882352978 0);
+	--prototype-bg-vibrant-light: color(srgb 0.7843137383 0.6627451181 0);
+	--prototype-bg-vibrant-dark: color(srgb 0.7843137383 0.6627451181 0);
+	--prototype-bg-origin-light: color(srgb 1 0.8470588326 0);
+	--prototype-bg-origin-dark: color(srgb 1 0.8470588326 0);
+	--prototype-bg-inverted-light: color(srgb 0.1137254909 0.0901960805 0);
+	--prototype-bg-inverted-dark: color(srgb 1 0.9294117689 0.7372549176);
+	--prototype-bg-transparent-light: color(
+		srgb 0.4352941215 0.3647058904 0 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.7843137383 0.6627451181 0 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.4352941215 0.3647058904 0 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.7843137383 0.6627451181 0 / 0.160784319
+	);
+	--prototype-on-basic-light: color(srgb 0.1137254909 0.0901960805 0);
+	--prototype-on-basic-dark: color(srgb 1 0.9294117689 0.7372549176);
+	--prototype-on-vibrant-light: color(srgb 0.1137254909 0.0901960805 0);
+	--prototype-on-vibrant-dark: color(srgb 0.1137254909 0.0901960805 0);
+	--prototype-on-origin-light: color(srgb 0.0392156877 0.0274509806 0);
+	--prototype-on-origin-dark: color(srgb 0.0392156877 0.0274509806 0);
+	--prototype-on-inverted-light: color(srgb 1 0.9764705896 0.9215686321);
+	--prototype-on-inverted-dark: color(srgb 0.0745098069 0.0549019612 0);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8872050643 0.8636756539 0.8042818308
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.2038725466 0.1755565703 0.0749895871
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8863896728 0.8423470855 0.7282189131
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.2466546297 0.2116015553 0.0691939071
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.8855178356 0.821008265 0.6420219541
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.2987580597 0.256646663 0.0680493936
+	);
+	--prototype-border-vibrant-light: color(srgb 0.685595572 0.5784594417 0);
+	--prototype-border-vibrant-dark: color(srgb 0.685595572 0.5784594417 0);
+	--prototype-border-origin-light: color(srgb 0.8821073174 0.7464891672 0);
+	--prototype-border-origin-dark: color(srgb 0.8821073174 0.7464891672 0);
+	--prototype-border-inverted-light: color(
+		srgb 0.1997883171 0.1762589067 0.0894901082
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8851240277 0.8208637238 0.6457435489
+	);
+}
+
+[data-color="orange"] {
+	--prototype-bg-filled-1-light: color(srgb 1 0.9725490212 0.9607843161);
+	--prototype-bg-filled-1-dark: color(srgb 0.1529411823 0.0745098069 0);
+	--prototype-bg-filled-2-light: color(srgb 1 0.9450980425 0.9176470637);
+	--prototype-bg-filled-2-dark: color(srgb 0.2196078449 0.1137254909 0);
+	--prototype-bg-filled-3-light: color(srgb 1 0.9176470637 0.8745098114);
+	--prototype-bg-filled-3-dark: color(srgb 0.2901960909 0.1568627506 0);
+	--prototype-bg-vibrant-light: color(srgb 0.9647058845 0.5803921819 0);
+	--prototype-bg-vibrant-dark: color(srgb 0.9647058845 0.5803921819 0);
+	--prototype-bg-origin-light: color(srgb 0.9529411793 0.5725490451 0);
+	--prototype-bg-origin-dark: color(srgb 0.9529411793 0.5725490451 0);
+	--prototype-bg-inverted-light: color(srgb 0.1529411823 0.0745098069 0);
+	--prototype-bg-inverted-dark: color(srgb 1 0.9176470637 0.8745098114);
+	--prototype-bg-transparent-light: color(
+		srgb 0.5411764979 0.3176470697 0 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.9647058845 0.5803921819 0 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.5411764979 0.3176470697 0 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.9647058845 0.5803921819 0 / 0.160784319
+	);
+	--prototype-on-basic-light: color(srgb 0.1529411823 0.0745098069 0);
+	--prototype-on-basic-dark: color(srgb 1 0.9176470637 0.8745098114);
+	--prototype-on-vibrant-light: color(srgb 0.1529411823 0.0745098069 0);
+	--prototype-on-vibrant-dark: color(srgb 0.1529411823 0.0745098069 0);
+	--prototype-on-origin-light: color(srgb 0.0627451017 0.0196078438 0);
+	--prototype-on-origin-dark: color(srgb 0.0627451017 0.0196078438 0);
+	--prototype-on-inverted-light: color(srgb 1 0.9725490212 0.9607843161);
+	--prototype-on-inverted-dark: color(srgb 0.0980392173 0.0431372561 0);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8925302029 0.8586111069 0.8388856649
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.2405069917 0.1616702229 0.0904035866
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8917523623 0.8338435292 0.8003787994
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.2948160172 0.1912012547 0.0842785239
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.890929997 0.8090819716 0.7619051337
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.3577919304 0.2293135375 0.0832810625
+	);
+	--prototype-border-vibrant-light: color(srgb 0.8449519873 0.5057629347 0);
+	--prototype-border-vibrant-dark: color(srgb 0.8449519873 0.5057629347 0);
+	--prototype-border-origin-light: color(srgb 0.834002018 0.4986705482 0);
+	--prototype-border-origin-dark: color(srgb 0.834002018 0.4986705482 0);
+	--prototype-border-inverted-light: color(
+		srgb 0.2365816981 0.1631842554 0.0948700383
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8884558678 0.8094977736 0.7663605213
+	);
+}
+
+[data-color="red"] {
+	--prototype-bg-filled-1-light: color(srgb 1 0.9725490212 0.9725490212);
+	--prototype-bg-filled-1-dark: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-bg-filled-2-light: color(srgb 1 0.9411764741 0.9411764741);
+	--prototype-bg-filled-2-dark: color(srgb 0.3137255013 0 0.0117647061);
+	--prototype-bg-filled-3-light: color(srgb 1 0.9137254953 0.9137254953);
+	--prototype-bg-filled-3-dark: color(srgb 0.4117647111 0 0.0156862754);
+	--prototype-bg-vibrant-light: color(srgb 1 0.5333333611 0.5411764979);
+	--prototype-bg-vibrant-dark: color(srgb 1 0.5333333611 0.5411764979);
+	--prototype-bg-origin-light: color(srgb 0.9254902005 0 0.0862745121);
+	--prototype-bg-origin-dark: color(srgb 0.9254902005 0 0.0862745121);
+	--prototype-bg-inverted-light: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-bg-inverted-dark: color(srgb 1 0.9137254953 0.9137254953);
+	--prototype-bg-transparent-light: color(
+		srgb 0.7529411912 0 0.0627451017 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 1 0.5333333611 0.5411764979 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.7529411912 0 0.0627451017 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 1 0.5333333611 0.5411764979 / 0.160784319
+	);
+	--prototype-on-basic-light: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-on-basic-dark: color(srgb 1 0.9137254953 0.9137254953);
+	--prototype-on-vibrant-light: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-on-vibrant-dark: color(srgb 0.2235294133 0 0.0039215689);
+	--prototype-on-origin-light: color(srgb 1 1 1);
+	--prototype-on-origin-dark: color(srgb 1 1 1);
+	--prototype-on-inverted-light: color(srgb 1 0.9725490212 0.9725490212);
+	--prototype-on-inverted-dark: color(srgb 0.1568627506 0 0.0039215689);
+	--prototype-border-filled-1-light: color(
+		srgb 0.905392766 0.8540510535 0.8545288444
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.3159003556 0.1086991429 0.1121541858
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.904655993 0.8256079555 0.8260895014
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.3971042335 0.111012809 0.121348165
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.9039660692 0.8007158637 0.8012009263
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.4890920818 0.1201151684 0.133739382
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.8882722259 0.4565910399 0.4638698995
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.8882722259 0.4565910399 0.4638698995
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.9477119446 0.2982395887 0.3587836325
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.9477119446 0.2982395887 0.3587836325
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.312540859 0.1114890799 0.1149610952
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8975766897 0.8027272224 0.8032035828
+	);
+}
+
+[data-color="burgundy"] {
+	--prototype-bg-filled-1-light: color(
+		srgb 0.9882352948 0.9725490212 0.9764705896
+	);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.1764705926 0.0509803928 0.0784313753
+	);
+	--prototype-bg-filled-2-light: color(
+		srgb 0.980392158 0.9490196109 0.9529411793
+	);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.250980407 0.0823529437 0.1215686277
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.9725490212 0.9215686321 0.9294117689
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.3294117749 0.1176470593 0.1686274558
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.8745098114 0.5960784554 0.6470588446
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.8745098114 0.5960784554 0.6470588446
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.6627451181 0.270588249 0.3647058904
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.6627451181 0.270588249 0.3647058904
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.1764705926 0.0509803928 0.0784313753
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.9725490212 0.9215686321 0.9294117689
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.611764729 0.2470588237 0.3333333433 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.8745098114 0.5960784554 0.6470588446 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.611764729 0.2470588237 0.3333333433 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.8745098114 0.5960784554 0.6470588446 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.1764705926 0.0509803928 0.0784313753
+	);
+	--prototype-on-basic-dark: color(
+		srgb 0.9725490212 0.9215686321 0.9294117689
+	);
+	--prototype-on-vibrant-light: color(
+		srgb 0.1764705926 0.0509803928 0.0784313753
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.1764705926 0.0509803928 0.0784313753
+	);
+	--prototype-on-origin-light: color(
+		srgb 0.9882352948 0.9725490212 0.9764705896
+	);
+	--prototype-on-origin-dark: color(
+		srgb 0.9882352948 0.9725490212 0.9764705896
+	);
+	--prototype-on-inverted-light: color(
+		srgb 0.9882352948 0.9725490212 0.9764705896
+	);
+	--prototype-on-inverted-dark: color(
+		srgb 0.1176470593 0.0235294122 0.0470588244
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8859201074 0.8563940525 0.8632813096
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.2615713775 0.1440462768 0.1694011837
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8784399033 0.835131526 0.8420370221
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.3231998682 0.166347295 0.2024230063
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.8708354831 0.8103350997 0.8206834793
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.3931867778 0.1973658204 0.2440686226
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.7723263502 0.5162835121 0.5638195276
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.7723263502 0.5162835121 0.5638195276
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.7082991004 0.3688312173 0.4503254592
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.7082991004 0.3688312173 0.4503254592
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.2594284117 0.1451595724 0.1702059805
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8676154613 0.8113402128 0.8211087584
+	);
+}
+
+[data-color="pink"] {
+	--prototype-bg-filled-1-light: color(
+		srgb 0.9960784316 0.9725490212 0.980392158
+	);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.1960784346 0.0235294122 0.1058823541
+	);
+	--prototype-bg-filled-2-light: color(
+		srgb 0.9921568632 0.9450980425 0.9568627477
+	);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.2745098174 0.0470588244 0.1568627506
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.9882352948 0.9137254953 0.9372549057
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.360784322 0.0745098069 0.2078431398
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.9450980425 0.5490196347 0.6980392337
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.9450980425 0.5490196347 0.6980392337
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.9137254953 0.2431372553 0.5607843399
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.9137254953 0.2431372553 0.5607843399
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.1960784346 0.0235294122 0.1058823541
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.9882352948 0.9137254953 0.9372549057
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.6666666865 0.1686274558 0.4039215744 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.9450980425 0.5490196347 0.6980392337 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.6666666865 0.1686274558 0.4039215744 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.9450980425 0.5490196347 0.6980392337 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.1960784346 0.0235294122 0.1058823541
+	);
+	--prototype-on-basic-dark: color(
+		srgb 0.9882352948 0.9137254953 0.9372549057
+	);
+	--prototype-on-vibrant-light: color(
+		srgb 0.1960784346 0.0235294122 0.1058823541
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.1960784346 0.0235294122 0.1058823541
+	);
+	--prototype-on-origin-light: color(
+		srgb 0.0862745121 0.0078431377 0.0352941193
+	);
+	--prototype-on-origin-dark: color(
+		srgb 0.0862745121 0.0078431377 0.0352941193
+	);
+	--prototype-on-inverted-light: color(
+		srgb 0.9960784316 0.9725490212 0.980392158
+	);
+	--prototype-on-inverted-dark: color(
+		srgb 0.1333333403 0.0117647061 0.0627451017
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8967162967 0.8546782136 0.8717756867
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.285269171 0.1237585917 0.199488461
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8926036358 0.8298517466 0.8504437804
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.3510462344 0.1399959177 0.2405481786
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.8883607984 0.8014903069 0.8324361444
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.4281532168 0.1646156907 0.2861594558
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.836101234 0.4725506902 0.6118689775
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.836101234 0.4725506902 0.6118689775
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.7876061797 0.2072739452 0.480689615
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.7876061797 0.2072739452 0.480689615
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.282292068 0.1258024573 0.2001256943
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8836041093 0.8033348322 0.830223918
+	);
+}
+
+[data-color="violet"] {
+	--prototype-bg-filled-1-light: color(
+		srgb 0.9843137264 0.9725490212 0.9882352948
+	);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.1372549087 0.0627451017 0.1647058874
+	);
+	--prototype-bg-filled-2-light: color(
+		srgb 0.9686274529 0.9490196109 0.980392158
+	);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.200000003 0.0980392173 0.2352941185
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.9529411793 0.9215686321 0.9686274529
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.2627451122 0.1372549087 0.3137255013
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.7764706016 0.611764729 0.8549019694
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.7764706016 0.611764729 0.8549019694
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.5058823824 0.2862745225 0.5921568871
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.5058823824 0.2862745225 0.5921568871
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.1372549087 0.0627451017 0.1647058874
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.9529411793 0.9215686321 0.9686274529
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.4980392158 0.2823529541 0.5843137503 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.7764706016 0.611764729 0.8549019694 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.4980392158 0.2823529541 0.5843137503 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.7764706016 0.611764729 0.8549019694 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.1372549087 0.0627451017 0.1647058874
+	);
+	--prototype-on-basic-dark: color(
+		srgb 0.9529411793 0.9215686321 0.9686274529
+	);
+	--prototype-on-vibrant-light: color(
+		srgb 0.1372549087 0.0627451017 0.1647058874
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.1372549087 0.0627451017 0.1647058874
+	);
+	--prototype-on-origin-light: color(
+		srgb 0.9843137264 0.9725490212 0.9882352948
+	);
+	--prototype-on-origin-dark: color(
+		srgb 0.9843137264 0.9725490212 0.9882352948
+	);
+	--prototype-on-inverted-light: color(
+		srgb 0.9843137264 0.9725490212 0.9882352948
+	);
+	--prototype-on-inverted-dark: color(
+		srgb 0.0901960805 0.0313725509 0.1098039225
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8768242598 0.8570973873 0.8837316632
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.2222903669 0.1522776335 0.2485148758
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8624674678 0.8358491063 0.8762352467
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.2729648054 0.1778444499 0.3063587844
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.8479866385 0.8110636473 0.8651866913
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.3286519945 0.2121490836 0.3762621284
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.6825558543 0.5311017632 0.7534970641
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.6825558543 0.5311017632 0.7534970641
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.5645012259 0.3703589141 0.6406856179
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.5645012259 0.3703589141 0.6406856179
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.2213360667 0.1530545056 0.2464514673
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.8465456963 0.8117878437 0.8627156019
+	);
+}
+
+[data-color="cyan"] {
+	--prototype-bg-filled-1-light: color(srgb 0.9607843161 0.980392158 1);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.0117647061 0.1019607857 0.1450980455
+	);
+	--prototype-bg-filled-2-light: color(
+		srgb 0.9215686321 0.9607843161 0.9960784316
+	);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.0235294122 0.1529411823 0.2117647082
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.8784313798 0.9411764741 0.9960784316
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.0392156877 0.2039215714 0.2784313858
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.2196078449 0.7137255073 0.9372549057
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.2196078449 0.7137255073 0.9372549057
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.1882352978 0.6235294342 0.8196078539
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.1882352978 0.6235294342 0.8196078539
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.0117647061 0.1019607857 0.1450980455
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.8784313798 0.9411764741 0.9960784316
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.1058823541 0.3960784376 0.5254902244 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.2196078449 0.7137255073 0.9372549057 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.1058823541 0.3960784376 0.5254902244 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.2196078449 0.7137255073 0.9372549057 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.0117647061 0.1019607857 0.1450980455
+	);
+	--prototype-on-basic-dark: color(
+		srgb 0.8784313798 0.9411764741 0.9960784316
+	);
+	--prototype-on-vibrant-light: color(
+		srgb 0.0117647061 0.1019607857 0.1450980455
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.0117647061 0.1019607857 0.1450980455
+	);
+	--prototype-on-origin-light: color(
+		srgb 0.0039215689 0.0313725509 0.0588235296
+	);
+	--prototype-on-origin-dark: color(
+		srgb 0.0039215689 0.0313725509 0.0588235296
+	);
+	--prototype-on-inverted-light: color(srgb 0.9607843161 0.980392158 1);
+	--prototype-on-inverted-dark: color(
+		srgb 0.0039215689 0.0627451017 0.0941176489
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8403804302 0.8689439297 0.8915370107
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.101259321 0.1886207312 0.2329728454
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.8053236008 0.8510529995 0.8873492479
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.1059662625 0.2289494723 0.2873948514
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.7668424249 0.833122015 0.8865091801
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.1193148866 0.2742891014 0.3469274342
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.1888958216 0.6233278513 0.8202015758
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.1888958216 0.6233278513 0.8202015758
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.1622796357 0.5401399732 0.7124717236
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.1622796357 0.5401399732 0.7124717236
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.1052022055 0.1884483844 0.2292690128
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.7701922059 0.8324519396 0.8844416142
+	);
+}
+
+[data-color="turquoise"] {
+	--prototype-bg-filled-1-light: color(srgb 0.890196085 1 0.9921568632);
+	--prototype-bg-filled-1-dark: color(srgb 0 0.1098039225 0.1019607857);
+	--prototype-bg-filled-2-light: color(srgb 0.7647058964 1 0.980392158);
+	--prototype-bg-filled-2-dark: color(srgb 0 0.160784319 0.1529411823);
+	--prototype-bg-filled-3-light: color(srgb 0.6078431606 1 0.9725490212);
+	--prototype-bg-filled-3-dark: color(srgb 0 0.2156862766 0.2039215714);
+	--prototype-bg-vibrant-light: color(srgb 0 0.7490196228 0.7176470757);
+	--prototype-bg-vibrant-dark: color(srgb 0 0.7490196228 0.7176470757);
+	--prototype-bg-origin-light: color(srgb 0 0.6274510026 0.6000000238);
+	--prototype-bg-origin-dark: color(srgb 0 0.6274510026 0.6000000238);
+	--prototype-bg-inverted-light: color(srgb 0 0.1098039225 0.1019607857);
+	--prototype-bg-inverted-dark: color(srgb 0.6078431606 1 0.9725490212);
+	--prototype-bg-transparent-light: color(
+		srgb 0 0.4156862795 0.3960784376 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0 0.7490196228 0.7176470757 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0 0.4156862795 0.3960784376 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0 0.7490196228 0.7176470757 / 0.160784319
+	);
+	--prototype-on-basic-light: color(srgb 0 0.1098039225 0.1019607857);
+	--prototype-on-basic-dark: color(srgb 0.6078431606 1 0.9725490212);
+	--prototype-on-vibrant-light: color(srgb 0 0.1098039225 0.1019607857);
+	--prototype-on-vibrant-dark: color(srgb 0 0.1098039225 0.1019607857);
+	--prototype-on-origin-light: color(srgb 0 0.0352941193 0.0313725509);
+	--prototype-on-origin-dark: color(srgb 0 0.0352941193 0.0313725509);
+	--prototype-on-inverted-light: color(srgb 0.890196085 1 0.9921568632);
+	--prototype-on-inverted-dark: color(srgb 0 0.0666666701 0.0627451017);
+	--prototype-border-filled-1-light: color(
+		srgb 0.7769978642 0.8868017793 0.8789586425
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.0611617453 0.1993762851 0.1895601898
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.6665549874 0.8857422471 0.8676444292
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.0569545664 0.2394183576 0.2297379822
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.5290673375 0.8846315145 0.8597216606
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.0562942661 0.2883240283 0.2751065791
+	);
+	--prototype-border-vibrant-light: color(srgb 0 0.6545826197 0.626686275);
+	--prototype-border-vibrant-dark: color(srgb 0 0.6545826197 0.626686275);
+	--prototype-border-origin-light: color(srgb 0 0.5426208377 0.5185406208);
+	--prototype-border-origin-dark: color(srgb 0 0.5426208377 0.5185406208);
+	--prototype-border-inverted-light: color(
+		srgb 0.0867006183 0.1965045333 0.1886613965
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.5323842168 0.8841339946 0.8596040606
+	);
+}
+
+[data-color="light-green"] {
+	--prototype-bg-filled-1-light: color(srgb 0.9294117689 1 0.8941176534);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.0470588244 0.1058823541 0.0039215689
+	);
+	--prototype-bg-filled-2-light: color(srgb 0.850980401 1 0.7686274648);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.0784313753 0.160784319 0.0039215689
+	);
+	--prototype-bg-filled-3-light: color(srgb 0.7647058964 1 0.6156862974);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.1137254909 0.2156862766 0.0078431377
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.4470588267 0.7490196228 0.1019607857
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.4470588267 0.7490196228 0.1019607857
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.3882353008 0.650980413 0.0823529437
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.3882353008 0.650980413 0.0823529437
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.0470588244 0.1058823541 0.0039215689
+	);
+	--prototype-bg-inverted-dark: color(srgb 0.7647058964 1 0.6156862974);
+	--prototype-bg-transparent-light: color(
+		srgb 0.2392156869 0.4156862795 0.0352941193 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.4470588267 0.7490196228 0.1019607857 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.2392156869 0.4156862795 0.0352941193 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.4470588267 0.7490196228 0.1019607857 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.0470588244 0.1058823541 0.0039215689
+	);
+	--prototype-on-basic-dark: color(srgb 0.7647058964 1 0.6156862974);
+	--prototype-on-vibrant-light: color(
+		srgb 0.0470588244 0.1058823541 0.0039215689
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.0470588244 0.1058823541 0.0039215689
+	);
+	--prototype-on-origin-light: color(srgb 0.0117647061 0.0352941193 0);
+	--prototype-on-origin-dark: color(srgb 0.0117647061 0.0352941193 0);
+	--prototype-on-inverted-light: color(srgb 0.9294117689 1 0.8941176534);
+	--prototype-on-inverted-dark: color(srgb 0.0235294122 0.0666666701 0);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8173543811 0.8864485025 0.7810641527
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.1200702786 0.1968474388 0.0661608428
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.7480531335 0.8855248094 0.6707210541
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.142638728 0.2393007427 0.0611578412
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.6720578671 0.8845697045 0.5367076397
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.173612088 0.2878387868 0.063761346
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.3883079588 0.6545574665 0.0875610635
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.3883079588 0.6545574665 0.0875610635
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.335190326 0.5642297864 0.0707493573
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.335190326 0.5642297864 0.0707493573
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.1333153993 0.1932890266 0.0909448713
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.6728060842 0.8842743039 0.5393462181
+	);
+}
+
+[data-color="green"] {
+	--prototype-bg-filled-1-light: color(
+		srgb 0.9333333373 0.9960784316 0.9254902005
+	);
+	--prototype-bg-filled-1-dark: color(
+		srgb 0.0352941193 0.1098039225 0.0235294122
+	);
+	--prototype-bg-filled-2-light: color(
+		srgb 0.8588235378 0.9882352948 0.8470588326
+	);
+	--prototype-bg-filled-2-dark: color(
+		srgb 0.0627451017 0.160784319 0.0431372561
+	);
+	--prototype-bg-filled-3-light: color(
+		srgb 0.78039217 0.9843137264 0.760784328
+	);
+	--prototype-bg-filled-3-dark: color(
+		srgb 0.0901960805 0.2156862766 0.0705882385
+	);
+	--prototype-bg-vibrant-light: color(
+		srgb 0.380392164 0.7529411912 0.3176470697
+	);
+	--prototype-bg-vibrant-dark: color(
+		srgb 0.380392164 0.7529411912 0.3176470697
+	);
+	--prototype-bg-origin-light: color(
+		srgb 0.250980407 0.5137255192 0.2078431398
+	);
+	--prototype-bg-origin-dark: color(
+		srgb 0.250980407 0.5137255192 0.2078431398
+	);
+	--prototype-bg-inverted-light: color(
+		srgb 0.0352941193 0.1098039225 0.0235294122
+	);
+	--prototype-bg-inverted-dark: color(
+		srgb 0.78039217 0.9843137264 0.760784328
+	);
+	--prototype-bg-transparent-light: color(
+		srgb 0.200000003 0.4156862795 0.1647058874 / 0
+	);
+	--prototype-bg-transparent-dark: color(
+		srgb 0.380392164 0.7529411912 0.3176470697 / 0
+	);
+	--prototype-bg-transparent-semi-light: color(
+		srgb 0.200000003 0.4156862795 0.1647058874 / 0.0784313753
+	);
+	--prototype-bg-transparent-semi-dark: color(
+		srgb 0.380392164 0.7529411912 0.3176470697 / 0.160784319
+	);
+	--prototype-on-basic-light: color(
+		srgb 0.0352941193 0.1098039225 0.0235294122
+	);
+	--prototype-on-basic-dark: color(srgb 0.78039217 0.9843137264 0.760784328);
+	--prototype-on-vibrant-light: color(
+		srgb 0.0352941193 0.1098039225 0.0235294122
+	);
+	--prototype-on-vibrant-dark: color(
+		srgb 0.0352941193 0.1098039225 0.0235294122
+	);
+	--prototype-on-origin-light: color(
+		srgb 0.9686274529 0.9960784316 0.9647058845
+	);
+	--prototype-on-origin-dark: color(
+		srgb 0.9686274529 0.9960784316 0.9647058845
+	);
+	--prototype-on-inverted-light: color(
+		srgb 0.9333333373 0.9960784316 0.9254902005
+	);
+	--prototype-on-inverted-dark: color(
+		srgb 0.0156862754 0.0666666701 0.0117647061
+	);
+	--prototype-border-filled-1-light: color(
+		srgb 0.8190853596 0.8833271265 0.8107433319
+	);
+	--prototype-border-filled-1-dark: color(
+		srgb 0.1114085242 0.1991381943 0.0988426134
+	);
+	--prototype-border-filled-2-light: color(
+		srgb 0.7531315684 0.8754971623 0.7413668633
+	);
+	--prototype-border-filled-2-dark: color(
+		srgb 0.1306130886 0.2386656106 0.1110052392
+	);
+	--prototype-border-filled-3-light: color(
+		srgb 0.683975637 0.8711511493 0.6653826833
+	);
+	--prototype-border-filled-3-dark: color(
+		srgb 0.1542565227 0.2870263159 0.1346486807
+	);
+	--prototype-border-vibrant-light: color(
+		srgb 0.3294648528 0.6580311656 0.2742430866
+	);
+	--prototype-border-vibrant-dark: color(
+		srgb 0.3294648528 0.6580311656 0.2742430866
+	);
+	--prototype-border-origin-light: color(
+		srgb 0.3566737771 0.5847653151 0.3193121254
+	);
+	--prototype-border-origin-dark: color(
+		srgb 0.3566737771 0.5847653151 0.3193121254
+	);
+	--prototype-border-inverted-light: color(
+		srgb 0.1230674386 0.1964273751 0.1116860211
+	);
+	--prototype-border-inverted-dark: color(
+		srgb 0.6856359243 0.8706062436 0.6679717898
+	);
+}
+/* stylelint-enable alpha-value-notation */
+
+/* Min uses registered palette tiers: text/emphasis-80 and visual/emphasis-70. */
+[data-color="neutral"] {
+	--prototype-on-min-light: var(--db-neutral-6);
+	--prototype-on-min-dark: var(--db-neutral-9);
+	--prototype-visual-min-light: var(--db-neutral-7);
+	--prototype-visual-min-dark: var(--db-neutral-8);
+}
+
+[data-color="brand"],
+[data-color="red"] {
+	--prototype-on-min-light: var(--db-red-6);
+	--prototype-on-min-dark: var(--db-red-9);
+	--prototype-visual-min-light: var(--db-red-7);
+	--prototype-visual-min-dark: var(--db-red-8);
+}
+
+[data-color="yellow"] {
+	--prototype-on-min-light: var(--db-yellow-6);
+	--prototype-on-min-dark: var(--db-yellow-9);
+	--prototype-visual-min-light: var(--db-yellow-7);
+	--prototype-visual-min-dark: var(--db-yellow-8);
+}
+
+[data-color="orange"] {
+	--prototype-on-min-light: var(--db-orange-6);
+	--prototype-on-min-dark: var(--db-orange-9);
+	--prototype-visual-min-light: var(--db-orange-7);
+	--prototype-visual-min-dark: var(--db-orange-8);
+}
+
+[data-color="burgundy"] {
+	--prototype-on-min-light: var(--db-burgundy-6);
+	--prototype-on-min-dark: var(--db-burgundy-9);
+	--prototype-visual-min-light: var(--db-burgundy-7);
+	--prototype-visual-min-dark: var(--db-burgundy-8);
+}
+
+[data-color="pink"] {
+	--prototype-on-min-light: var(--db-pink-6);
+	--prototype-on-min-dark: var(--db-pink-9);
+	--prototype-visual-min-light: var(--db-pink-7);
+	--prototype-visual-min-dark: var(--db-pink-8);
+}
+
+[data-color="violet"] {
+	--prototype-on-min-light: var(--db-violet-6);
+	--prototype-on-min-dark: var(--db-violet-9);
+	--prototype-visual-min-light: var(--db-violet-7);
+	--prototype-visual-min-dark: var(--db-violet-8);
+}
+
+[data-color="informational"] {
+	--prototype-on-min-light: var(--db-informational-6);
+	--prototype-on-min-dark: var(--db-informational-9);
+	--prototype-visual-min-light: var(--db-informational-7);
+	--prototype-visual-min-dark: var(--db-informational-8);
+}
+
+[data-color="cyan"] {
+	--prototype-on-min-light: var(--db-cyan-6);
+	--prototype-on-min-dark: var(--db-cyan-9);
+	--prototype-visual-min-light: var(--db-cyan-7);
+	--prototype-visual-min-dark: var(--db-cyan-8);
+}
+
+[data-color="turquoise"] {
+	--prototype-on-min-light: var(--db-turquoise-6);
+	--prototype-on-min-dark: var(--db-turquoise-9);
+	--prototype-visual-min-light: var(--db-turquoise-7);
+	--prototype-visual-min-dark: var(--db-turquoise-8);
+}
+
+[data-color="light-green"] {
+	--prototype-on-min-light: var(--db-light-green-6);
+	--prototype-on-min-dark: var(--db-light-green-9);
+	--prototype-visual-min-light: var(--db-light-green-7);
+	--prototype-visual-min-dark: var(--db-light-green-8);
+}
+
+[data-color="green"] {
+	--prototype-on-min-light: var(--db-green-6);
+	--prototype-on-min-dark: var(--db-green-9);
+	--prototype-visual-min-light: var(--db-green-7);
+	--prototype-visual-min-dark: var(--db-green-8);
+}
+
+/* WCAG and Contrast deviations use palette-backed aliases. */
+[data-color="neutral"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.2823529541 0.2941176593 0.3254902065
+	);
+	--prototype-on-origin-aaa: color(srgb 1 1 1);
+	--prototype-border-origin-aaa: color(
+		srgb 0.3492567241 0.3599246442 0.3883724511
+	);
+}
+
+[data-color="brand"],
+[data-color="red"] {
+	--prototype-bg-origin-aaa: color(srgb 0.611764729 0 0.0392156877);
+	--prototype-on-origin-aaa: color(srgb 1 0.9725490212 0.9725490212);
+	--prototype-border-origin-aaa: color(
+		srgb 0.6771408916 0.1637705564 0.1963825971
+	);
+}
+
+[data-color="yellow"] {
+	--prototype-bg-origin-aaa: color(srgb 1 0.8470588326 0);
+	--prototype-on-origin-aaa: color(srgb 0.0745098069 0.0549019612 0);
+	--prototype-border-origin-aaa: color(srgb 0.8823834062 0.7463870049 0);
+}
+
+[data-color="orange"] {
+	--prototype-bg-origin-aaa: color(srgb 0.9529411793 0.5725490451 0);
+	--prototype-on-origin-aaa: color(srgb 0.0980392173 0.0431372561 0);
+	--prototype-border-origin-aaa: color(srgb 0.8338151574 0.4987783432);
+}
+
+[data-color="burgundy"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.4941176474 0.1921568662 0.2666666806
+	);
+	--prototype-on-origin-aaa: color(
+		srgb 0.9882352948 0.9725490212 0.9764705896
+	);
+	--prototype-border-origin-aaa: color(
+		srgb 0.5472767949 0.2761145532 0.3430302143
+	);
+}
+
+[data-color="pink"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.9450980425 0.5490196347 0.6980392337
+	);
+	--prototype-on-origin-aaa: color(
+		srgb 0.1333333403 0.0117647061 0.0627451017
+	);
+	--prototype-border-origin-aaa: color(
+		srgb 0.8328911066 0.4747570753 0.6102250814
+	);
+}
+
+[data-color="violet"] {
+	--prototype-bg-origin-aaa: color(srgb 0.400000006 0.2235294133 0.470588237);
+	--prototype-on-origin-aaa: color(
+		srgb 0.9843137264 0.9725490212 0.9882352948
+	);
+	--prototype-border-origin-aaa: color(
+		srgb 0.4596249759 0.2999614179 0.5234103799
+	);
+}
+
+[data-color="informational"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.0588235296 0.2745098174 0.631372571
+	);
+	--prototype-on-origin-aaa: color(srgb 0.9725490212 0.9764705896 1);
+	--prototype-border-origin-aaa: color(
+		srgb 0.1591993421 0.3516225517 0.6718675494
+	);
+}
+
+[data-color="cyan"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.2196078449 0.7137255073 0.9372549057
+	);
+	--prototype-on-origin-aaa: color(
+		srgb 0.0039215689 0.0627451017 0.0941176489
+	);
+	--prototype-border-origin-aaa: color(
+		srgb 0.1896430999 0.6232864857 0.8201200366
+	);
+}
+
+[data-color="turquoise"] {
+	--prototype-bg-origin-aaa: color(srgb 0 0.7490196228 0.7176470757);
+	--prototype-on-origin-aaa: color(srgb 0 0.0666666701 0.0627451017);
+	--prototype-border-origin-aaa: color(srgb 0 0.6545543671 0.6269821525);
+}
+
+[data-color="light-green"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.4470588267 0.7490196228 0.1019607857
+	);
+	--prototype-on-origin-aaa: color(srgb 0.0235294122 0.0666666701 0);
+	--prototype-border-origin-aaa: color(
+		srgb 0.3884150386 0.6545379758 0.087842837
+	);
+}
+
+[data-color="green"] {
+	--prototype-bg-origin-aaa: color(
+		srgb 0.1529411823 0.3333333433 0.1254902035
+	);
+	--prototype-on-origin-aaa: color(
+		srgb 0.9333333373 0.9960784316 0.9254902005
+	);
+	--prototype-border-origin-aaa: color(
+		srgb 0.2306194454 0.3993013203 0.2051201761
+	);
+}
+
+/* Emphasis resolves typography and content opacity without JavaScript. */
+[data-emphasis="default"] {
+	--prototype-font-weight-body: 400;
+	--prototype-font-weight-headline: 400;
+	--prototype-opacity: 100%;
+}
+
+[data-emphasis="low"] {
+	--prototype-font-weight-body: 400;
+	--prototype-font-weight-headline: 400;
+	--prototype-opacity: 80%;
+}
+
+[data-emphasis="high"] {
+	--prototype-font-weight-body: 700;
+	--prototype-font-weight-headline: 900;
+	--prototype-opacity: 100%;
+}
+
+/* Contrast is evaluated on every surface against its local Color context. */
+@scope ([data-contrast="max"]) to ([data-contrast]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-active-light: var(--prototype-on-base-light);
+		--prototype-on-active-dark: var(--prototype-on-base-dark);
+		--prototype-visual-active-light: var(--prototype-on-base-light);
+		--prototype-visual-active-dark: var(--prototype-on-base-dark);
+		--db-icon-color: light-dark(
+			var(--prototype-visual-active-light),
+			var(--prototype-visual-active-dark)
+		);
+	}
+}
+
+@scope ([data-contrast="min"]) to ([data-contrast]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-on-active-light: var(--prototype-on-min-active-light);
+		--prototype-on-active-dark: var(--prototype-on-min-active-dark);
+		--prototype-visual-active-light: var(
+			--prototype-visual-min-active-light
+		);
+		--prototype-visual-active-dark: var(--prototype-visual-min-active-dark);
+		--db-icon-color: light-dark(
+			var(--prototype-visual-active-light),
+			var(--prototype-visual-active-dark)
+		);
+	}
+}
+
+/* WCAG selects Origin branches locally and AAA supersedes the outline. */
+@scope ([data-wcag="aa"]) to ([data-wcag]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-required-outline: initial;
+		--prototype-bg-origin-active-light: var(--prototype-bg-origin-light);
+		--prototype-bg-origin-active-dark: var(--prototype-bg-origin-dark);
+		--prototype-on-origin-active-light: var(--prototype-on-origin-light);
+		--prototype-on-origin-active-dark: var(--prototype-on-origin-dark);
+		--prototype-border-origin-active-light: var(
+			--prototype-border-origin-light
+		);
+		--prototype-border-origin-active-dark: var(
+			--prototype-border-origin-dark
+		);
+	}
+}
+
+@scope ([data-wcag="aaa"]) to ([data-wcag]) {
+	:scope:is(.surface),
+	.surface {
+		--prototype-required-outline: light-dark(
+			var(--prototype-on-base-light),
+			var(--prototype-on-base-dark)
+		);
+		--prototype-bg-origin-active-light: var(--prototype-bg-origin-aaa);
+		--prototype-bg-origin-active-dark: var(--prototype-bg-origin-aaa);
+		--prototype-on-origin-active-light: var(--prototype-on-origin-aaa);
+		--prototype-on-origin-active-dark: var(--prototype-on-origin-aaa);
+		--prototype-border-origin-active-light: var(
+			--prototype-border-origin-aaa
+		);
+		--prototype-border-origin-active-dark: var(
+			--prototype-border-origin-aaa
+		);
+	}
+}

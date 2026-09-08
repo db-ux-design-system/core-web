@@ -1,5 +1,10 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	publicDir: '.'
+	publicDir: '.',
+	server: {
+		headers: {
+			'Cache-Control': 'no-store'
+		}
+	}
 });
