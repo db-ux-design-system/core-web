@@ -12,7 +12,7 @@
  falls back, so the modern suite fails loudly if the server stops serving that
  revision.
  */
-import { Client } from '@modelcontextprotocol/client';
+import { type ClientOptions, Client } from '@modelcontextprotocol/client';
 import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
 import { resolve } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -28,7 +28,7 @@ const REPO_ROOT = resolve(import.meta.dirname, '../../../..');
  Spawns the server over stdio and connects a client using the given era negotiation.
  */
 async function connect(
-	options?: ConstructorParameters<typeof Client>[1]
+	options?: ClientOptions
 ): Promise<{ client: Client; transport: StdioClientTransport }> {
 	const transport = new StdioClientTransport({
 		command: process.execPath,

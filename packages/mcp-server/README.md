@@ -334,7 +334,7 @@ packages/mcp-server/
 │   ├── prompts/            # Prompt handler implementations
 │   ├── utils/              # Shared utilities (path, manifest, formatting, async)
 │   └── manifest.json       # Generated — do not edit manually
-├── build/
+├── dist/
 │   └── index.js            # Compiled standalone bundle (gitignored)
 ├── esbuild.js              # Build script: bundles src/index.ts into standalone dist/index.js
 ├── package.json

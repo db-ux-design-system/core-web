@@ -103,6 +103,12 @@ updates:
         patterns:
           - "vitest"
           - "@vitest*"
+      # MCP SDK: all v2 packages share one version number and pin
+      # @modelcontextprotocol/core to an exact version, so a one-sided bump
+      # resolves two incompatible core copies into the tree.
+      modelcontextprotocol:
+        patterns:
+          - "@modelcontextprotocol*"
       # Development tools
       typescript:
         patterns:
