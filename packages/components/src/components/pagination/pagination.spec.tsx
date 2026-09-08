@@ -105,11 +105,10 @@ const testPagination = () => {
 	});
 
 	test('should report a page change exactly once', async ({ mount }) => {
-		// The React pass-through forwards every prop starting with `on` to the root
-		// of the item, which is the <li>. The button inside it already reports the
-		// click, so without filtering onClick the same click bubbles into the
-		// forwarded handler and the consumer sees the page change twice - enough to
-		// send a request or an analytics event twice.
+		// A click has exactly one path to the consumer: the item declares no handler
+		// of its own and DBPagination delegates once on the list. An onClick on the item
+		// next to that delegation reported the page twice, which is enough to send a
+		// request or an analytics event twice.
 		const component = await mount(comp);
 
 		await component.getByRole('button', { name: 'Page 1 of 10' }).click();

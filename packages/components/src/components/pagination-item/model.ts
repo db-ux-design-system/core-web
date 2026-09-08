@@ -1,6 +1,5 @@
 import type {
 	ActiveProps,
-	ClickEventProps,
 	GlobalProps,
 	GlobalState,
 	SizeProps,
@@ -60,8 +59,7 @@ export type DBPaginationItemProps = DBPaginationItemDefaultProps &
 	GlobalProps &
 	ActiveProps &
 	SizeProps &
-	TextProps &
-	ClickEventProps<HTMLElement>;
+	TextProps;
 
 export type DBPaginationItemDefaultState = {
 	getPage: () => number;
