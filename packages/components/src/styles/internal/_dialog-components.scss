@@ -45,19 +45,64 @@ $known-prefixes: "drawer", "dialog";
 	);
 }
 
+// Prefix-independent header declarations. Placeholders (unlike the mixin's
+// per-prefix output) merge into a single selector list in the bundle, so
+// `.db-dialog-header` and `.db-drawer-header` share one rule instead of two.
+// Only the padding (which embeds the per-prefix safe-area inset custom
+// property) and the header-content selector stay parameterized in the mixin.
+%dialog-header-shared {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	align-items: center;
+
+	@include helpers.divider("bottom");
+}
+
+// Prefix-independent heading-container declarations, extended from the
+// per-prefix `.db-<prefix>-header-content` selector so both merge in the bundle.
+%dialog-header-content-shared {
+	display: flex;
+	align-items: center;
+	gap: variables.$db-spacing-fixed-xs;
+	margin-inline-end: auto;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@extend %db-overwrite-headline-size-3xs;
+
+		margin-block: 0;
+	}
+}
+
+// Prefix-independent footer declarations (the footer uses no safe-area inset in
+// its padding, so unlike the header it is fully shareable).
+%dialog-footer-shared {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	flex-direction: column;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+
+	@include helpers.divider("top");
+}
+
 // Divider, padding, gap and heading-container styling for header and footer rows.
 // $part is "header" or "footer", $prefix is "drawer" or "dialog".
-// The header uses a CSS custom property for the safe-area inset so that:
-//   - direction-specific zeroing is possible (e.g. drawer opening from bottom)
-//   - debugging on desktop is possible without a real device
+// The shared declarations come from placeholders (merged across drawer/dialog in
+// the bundle); the mixin only adds the two parts that must stay per-prefix:
+//   - the header padding, which embeds `--db-<prefix>-safe-area-inset-top` so
+//     direction-specific zeroing (e.g. drawer opening from bottom) and desktop
+//     debugging stay possible
+//   - the `.db-<prefix>-header-content` selector name
 @mixin header-footer($part, $prefix) {
 	@include assert-prefix($prefix, "header-footer");
 
-	display: flex;
-	gap: variables.$db-spacing-fixed-sm;
-
 	@if $part == "header" {
-		align-items: center;
+		@extend %dialog-header-shared;
+
 		padding: calc(
 				#{variables.$db-spacing-fixed-xs} +
 					var(--db-#{$prefix}-safe-area-inset-top, 0px)
@@ -65,30 +110,11 @@ $known-prefixes: "drawer", "dialog";
 			variables.$db-spacing-fixed-sm
 			variables.$db-spacing-fixed-xs;
 
-		@include helpers.divider("bottom");
-
 		.db-#{$prefix}-header-content {
-			display: flex;
-			align-items: center;
-			gap: variables.$db-spacing-fixed-xs;
-			margin-inline-end: auto;
-
-			h1,
-			h2,
-			h3,
-			h4,
-			h5,
-			h6 {
-				@extend %db-overwrite-headline-size-3xs;
-
-				margin-block: 0;
-			}
+			@extend %dialog-header-content-shared;
 		}
 	} @else if $part == "footer" {
-		flex-direction: column;
-		padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-
-		@include helpers.divider("top");
+		@extend %dialog-footer-shared;
 	} @else {
 		@error "header-footer() expects $part to be \"header\" or \"footer\"";
 	}
