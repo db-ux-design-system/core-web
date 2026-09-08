@@ -60,8 +60,12 @@
 }
 
 .db-dialog {
-	--db-dialog-inline-size: 100lvw;
-	--db-dialog-block-size: 100lvh;
+	// Dynamic viewport units track the currently visible viewport. `lvh`/`lvw`
+	// would use the larger viewport (mobile browser chrome retracted), so a tall
+	// dialog could exceed the visible area and hide its lower content/actions
+	// behind the address bar, defeating the viewport inset. Matches the drawer.
+	--db-dialog-inline-size: 100dvw;
+	--db-dialog-block-size: 100dvh;
 
 	// We're using 40px instead of a token here on purpose: the inset has to stay
 	// constant across all densities, which no sizing token can express
