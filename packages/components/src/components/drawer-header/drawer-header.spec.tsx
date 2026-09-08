@@ -7,10 +7,16 @@ import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants.ts';
 
-const comp: any = <DBDrawerHeader>Test</DBDrawerHeader>;
+const comp: any = (
+	<DBDrawerHeader>
+		<h2>Test</h2>
+	</DBDrawerHeader>
+);
 const compWithText: any = <DBDrawerHeader text="My Title">Test</DBDrawerHeader>;
 const compWithCloseText: any = (
-	<DBDrawerHeader closeButtonText="Dismiss">Test</DBDrawerHeader>
+	<DBDrawerHeader closeButtonText="Dismiss">
+		<h2>Test</h2>
+	</DBDrawerHeader>
 );
 
 const testComponent = () => {
