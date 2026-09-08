@@ -47,22 +47,61 @@ import {
 } from './tools/schemas.js';
 
 /**
+ Cache lifetime advertised for the static list results (1 hour).
+
+ The lists only change with a new package version, which a host picks up by
+ spawning a new server process, so the ceiling is a restart rather than this TTL.
+ */
+const LIST_CACHE_TTL_MS = 3_600_000;
+
+/**
  Builds a fully registered McpServer instance.
 
  This is a factory, not a singleton: `serveStdio` owns the era decision for a
- connection and pins ONE instance from this factory for that connection's
- lifetime. The same factory serves both the 2025 (`legacy`) and the 2026-07-28
- (`modern`) protocol era, so every tool and prompt must be registered here
- rather than as a module side effect.
+ connection and pins the instance it serves for that connection's lifetime. The
+ same factory serves both the 2025 (`legacy`) and the 2026-07-28 (`modern`)
+ protocol era, so every tool and prompt must be registered here rather than as
+ a module side effect.
+
+ It may be called more than once per connection: a `server/discover` probe gets
+ its own instance, which is discarded again when the client falls back to
+ `initialize`. The factory must therefore stay free of side effects and must not
+ hand out shared mutable state.
 
  All tools are read-only and era-agnostic — they derive nothing from the
  connection, which is why the factory ignores its `McpRequestContext`.
  */
 export function buildServer(): McpServer {
-	const server = new McpServer({
-		name: 'db-ux-mcp',
-		version: packageJson.version
-	});
+	const server = new McpServer(
+		{
+			name: 'db-ux-mcp',
+			version: packageJson.version
+		},
+		{
+			// The tool and prompt lists are static for a given package version:
+			// they are compiled into the bundle and derive nothing from the
+			// connection or the caller. Without these hints the SDK emits the
+			// conservative defaults (`ttlMs: 0`, `cacheScope: 'private'`), which
+			// tells a 2026-07-28 host not to cache at all — so the revision's
+			// cacheable list results would go unused.
+			//
+			// Ignored on 2025-era connections: that codec has no cache path.
+			cacheHints: {
+				'tools/list': {
+					ttlMs: LIST_CACHE_TTL_MS,
+					cacheScope: 'public'
+				},
+				'prompts/list': {
+					ttlMs: LIST_CACHE_TTL_MS,
+					cacheScope: 'public'
+				},
+				'server/discover': {
+					ttlMs: LIST_CACHE_TTL_MS,
+					cacheScope: 'public'
+				}
+			}
+		}
+	);
 
 	// Tools
 	server.registerTool(

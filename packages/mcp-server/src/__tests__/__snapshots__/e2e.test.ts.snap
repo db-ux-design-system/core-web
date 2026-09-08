@@ -1,0 +1,186 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MCP server — stdio transport (modern era, 2026-07-28) > emits stable JSON Schemas for the tool inputs 1`] = `
+{
+  "docs_search": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "category": {
+        "description": "Search scope: 'global' (docs/ directory) or 'component' (packages/components/.../docs/).",
+        "enum": [
+          "global",
+          "component",
+        ],
+        "type": "string",
+      },
+      "componentName": {
+        "description": "Required if category is 'component' (e.g., 'button', 'navigation').",
+        "maxLength": 100,
+        "type": "string",
+      },
+      "docType": {
+        "description": "Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead.",
+        "enum": [
+          "React",
+          "Angular",
+          "Vue",
+          "HTML",
+          "Accessibility",
+        ],
+        "type": "string",
+      },
+      "query": {
+        "description": "Search term (e.g., 'focus state', 'migration', 'accessibility'). Use empty string if you just want to read a specific component doc.",
+        "maxLength": 200,
+        "type": "string",
+      },
+    },
+    "required": [
+      "query",
+      "category",
+    ],
+    "type": "object",
+  },
+  "get_component_details": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "componentName": {
+        "description": "e.g. 'button'",
+        "maxLength": 100,
+        "type": "string",
+      },
+    },
+    "required": [
+      "componentName",
+    ],
+    "type": "object",
+  },
+  "get_component_props": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "componentName": {
+        "description": "e.g. 'button'",
+        "maxLength": 100,
+        "type": "string",
+      },
+    },
+    "required": [
+      "componentName",
+    ],
+    "type": "object",
+  },
+  "get_design_tokens": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "category": {
+        "description": "Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories.",
+        "maxLength": 100,
+        "type": "string",
+      },
+    },
+    "required": [
+      "category",
+    ],
+    "type": "object",
+  },
+  "get_example_code": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "componentName": {
+        "description": "e.g. 'button'",
+        "maxLength": 100,
+        "type": "string",
+      },
+      "exampleName": {
+        "description": "Readable example name, e.g. 'Show Icon Leading'",
+        "maxLength": 100,
+        "type": "string",
+      },
+      "framework": {
+        "description": "Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'",
+        "enum": [
+          "react",
+          "angular",
+          "vue",
+          "web-components",
+          "html",
+        ],
+        "type": "string",
+      },
+    },
+    "required": [
+      "componentName",
+      "exampleName",
+      "framework",
+    ],
+    "type": "object",
+  },
+  "get_migration_guide": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "guideName": {
+        "description": "Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'.",
+        "maxLength": 100,
+        "pattern": "^[\\w\\-.]+$",
+        "type": "string",
+      },
+    },
+    "required": [
+      "guideName",
+    ],
+    "type": "object",
+  },
+  "get_visual_reference": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "name": {
+        "description": "Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names.",
+        "maxLength": 100,
+        "type": "string",
+      },
+    },
+    "required": [
+      "name",
+    ],
+    "type": "object",
+  },
+  "list_components": {
+    "properties": {},
+    "type": "object",
+  },
+  "list_design_token_categories": {
+    "properties": {},
+    "type": "object",
+  },
+  "list_icons": {
+    "properties": {},
+    "type": "object",
+  },
+  "list_migration_guides": {
+    "properties": {},
+    "type": "object",
+  },
+  "list_visuals": {
+    "properties": {},
+    "type": "object",
+  },
+  "scan_v2_migration": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "filePath": {
+        "description": "Absolute path or path relative to the workspace root of the file to scan.",
+        "maxLength": 500,
+        "type": "string",
+      },
+    },
+    "required": [
+      "filePath",
+    ],
+    "type": "object",
+  },
+  "verify_migrated_code": {
+    "properties": {},
+    "type": "object",
+  },
+}
+`;

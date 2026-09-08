@@ -203,7 +203,7 @@ export async function handleGetExampleCode({
 						}
 					]
 				};
-			} catch (error_: unknown) {
+			} catch (error_) {
 				// Must NOT be named `error`: that would shadow the imported
 				// error() helper and call the exception object as a function.
 				const message =
