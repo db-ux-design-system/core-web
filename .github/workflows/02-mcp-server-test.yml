@@ -21,23 +21,17 @@ jobs:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
-      # The mcp-server build generates assets/tokens/tokens.json from the density
-      # class overrides in the foundations build output.
-      - name: ⏬ Download foundations build
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: db-ux-foundations-build
-          path: packages/foundations/build
-
-      # The generated manifest.json embeds the framework example code from output/.
-      - name: ⏬ Download output
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: db-ux-output
-          path: output
-
-      # Runs `build` first (prebuild + manifest + esbuild bundle), then vitest:
-      # unit, integration and the stdio E2E suite, which spawns the real server
-      # and connects on both protocol eras.
+      # No build artifacts are downloaded on purpose, so this job runs early
+      # instead of waiting ~18 minutes for build-outputs.
+      #
+      # The build tolerates their absence: the only hard requirements are
+      # docs/migration/db-ui (committed) and @db-ux/db-theme (from node_modules,
+      # restored by the cache action above). A missing output/ leaves
+      # manifest.json without exampleCode, and a missing foundations build
+      # leaves the density tokens incomplete - neither is read by any test, as
+      # every get_example_code test supplies its own synthetic manifest.
+      #
+      # If a test ever needs the real framework example code, re-add the
+      # db-ux-output artifact and depend on build-outputs again.
       - name: 🧪 Run MCP Server Tests
         run: pnpm --filter @db-ux/mcp-server run test

@@ -121,8 +121,9 @@ jobs:
     secrets: inherit
 
   test-mcp-server:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/02-mcp-server-test.yml
-    needs: [build-outputs]
+    needs: [init]
     secrets: inherit
 
   test-figma-code-connect:
