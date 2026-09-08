@@ -104,8 +104,8 @@
 				"en": "At Most Seven Page Numbers"
 			},
 			"text": {
-				"de": "Die Reihe bleibt einzeilig, solange sie höchstens sieben Seitenzahlen trägt. `boundaryCount` und `siblingCount` bestimmen die Anzahl.",
-				"en": "The row stays on one line as long as it carries at most seven page numbers. `boundaryCount` and `siblingCount` determine the amount."
+				"de": "Die Reihe bleibt einzeilig, solange sie höchstens sieben Seitenzahlen trägt. `boundaryCount` und `siblingCount` bestimmen die Anzahl; ab dem `sm`-Breakpoint gibt es kein Zusammenklappen, das sie reduziert.",
+				"en": "The row stays on one line as long as it carries at most seven page numbers. `boundaryCount` and `siblingCount` determine the amount; from the `sm` breakpoint upwards there is no collapsing that reduces it."
 			},
 			"do": {
 				"figmaNodeId": "4004-8",
@@ -117,8 +117,8 @@
 			"caution": {
 				"figmaNodeId": "4004-9",
 				"description": {
-					"de": "Mehr Seitenzahlen lassen die Reihe umbrechen, und mehrzeilig sind die Items schwerer zu treffen. Reduziere `siblingCount`, wenn der Platz knapp wird.",
-					"en": "More page numbers make the row wrap, and on multiple lines the items are harder to hit. Reduce `siblingCount` when space gets tight."
+					"de": "In einer schmalen Spalte oder mit einem höheren `siblingCount` bricht die Reihe um. Mehrzeilig sind die Items schwerer zu treffen. Reduziere `siblingCount`, wenn der Platz knapp wird.",
+					"en": "In a narrow column or with a higher `siblingCount` the row wraps. On multiple lines the items are harder to hit. Reduce `siblingCount` when space gets tight."
 				}
 			}
 		},

@@ -21,7 +21,33 @@
 			"Highlight the current page"
 		]
 	},
-	"guidelines": [],
+	"guidelines": [
+		{
+			"id": "page-number-and-label",
+			"headline": {
+				"de": "Seitenzahl und Label",
+				"en": "Page Number and Label"
+			},
+			"text": {
+				"de": "Sichtbar ist allein die Seitenzahl. Die Einordnung in den Datensatz trägt `label`, das nicht dargestellt wird, sondern als zugänglicher Name der Seite dient. Alle Items einer Pagination folgen demselben Muster.",
+				"en": "Only the page number is visible. The position within the data set is carried by `label`, which is not rendered but serves as the accessible name of the page. Every item of a Pagination follows the same pattern."
+			},
+			"do": {
+				"figmaNodeId": "4078-5623",
+				"description": {
+					"de": "Benenne im `label` die Seite im Kontext, zum Beispiel `Seite 2 von 9` bei sichtbarer 2, und verwende dasselbe Muster für jedes Item der Reihe.",
+					"en": "Name the page in context in `label`, for example `Page 2 of 9` for a visible 2, and use the same pattern for every item of the row."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4078-5693",
+				"description": {
+					"de": "Steht im `label` nur die Seitenzahl oder wechselt das Muster zwischen den Items, bleibt beim Vorlesen eine Zahl ohne Bezug. Halte das Muster über die ganze Reihe gleich.",
+					"en": "If `label` carries only the page number, or the pattern changes between items, all that is announced is a number without reference. Keep the pattern the same across the whole row."
+				}
+			}
+		}
+	],
 	"examples": [],
 	"faq": [],
 	"related": []
