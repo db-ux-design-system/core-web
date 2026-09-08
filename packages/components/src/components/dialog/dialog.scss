@@ -1,3 +1,4 @@
+@use "sass:map";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
@@ -9,6 +10,60 @@
 // `dialog.css` still gets them; Sass dedupes the `@use`, so the full bundle
 // keeps them once.
 @use "../../styles/dialog-init";
+
+// Horizontal Container_Size scale. Dialog-specific: the drawer has its own
+// two-axis sizing (inline + block, with backdrop-spacing) and cannot reuse this,
+// so it lives here rather than in the shared dialog/drawer layer.
+$container-size-scale: (
+	"small": variables.$db-container-xs,
+	"medium": variables.$db-container-lg,
+	"large": variables.$db-container-3xl
+);
+
+// Emits the dialog's horizontal Container_Size custom properties and bounds.
+// $fallback-size  Container_Size applied when data-container-size is absent
+// $viewport-clamp optional upper bound, wrapped into min() with the scale value
+@mixin container-size-inline($fallback-size, $viewport-clamp: null) {
+	@if not map.has-key($container-size-scale, $fallback-size) {
+		@error "container-size-inline() got an unknown $fallback-size: #{$fallback-size}";
+	}
+
+	$fallback-value: map.get($container-size-scale, $fallback-size);
+	$max-width: var(
+		--db-dialog-max-width,
+		var(--db-dialog-max-width-horizontal, #{$fallback-value})
+	);
+
+	// The sizing values are consumer overrides that resolve to the
+	// Container_Size custom properties below, so no sizing token fits here
+	// stylelint-disable-next-line db-ux/use-sizing
+	min-inline-size: var(--db-dialog-min-width, auto);
+
+	@if $viewport-clamp {
+		// stylelint-disable-next-line db-ux/use-sizing
+		max-inline-size: min(#{$max-width}, #{$viewport-clamp});
+	} @else {
+		// stylelint-disable-next-line db-ux/use-sizing
+		max-inline-size: $max-width;
+	}
+
+	@each $name, $value in $container-size-scale {
+		@if $name == $fallback-size {
+			&:not([data-container-size]),
+			&[data-container-size="#{$name}"] {
+				--db-dialog-max-width-horizontal: #{$value};
+			}
+		} @else {
+			&[data-container-size="#{$name}"] {
+				--db-dialog-max-width-horizontal: #{$value};
+			}
+		}
+	}
+
+	&[data-container-size="full"] {
+		--db-dialog-max-width-horizontal: var(--db-dialog-inline-size);
+	}
+}
 
 %dialog-transition {
 	// Fade + scale transition. The dialog stays hidden with `display: none`
@@ -74,8 +129,7 @@
 
 	@extend %default-card;
 	@extend %dialog-transition;
-	@include dialog-components.container-size-inline(
-		"dialog",
+	@include container-size-inline(
 		"medium",
 		calc(var(--db-dialog-inline-size) - 2 * var(--db-dialog-viewport-inset))
 	);
