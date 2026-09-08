@@ -9,6 +9,7 @@ import PaginationLink from '../examples/link.example.lite';
 import PaginationPosition from '../examples/position.example.lite';
 import PaginationSize from '../examples/size.example.lite';
 import PaginationTruncation from '../examples/truncation.example.lite';
+import PaginationWrapping from '../examples/wrapping.example.lite';
 
 export default function PaginationShowcase(props: PatternhubProps) {
 	return (
@@ -43,6 +44,11 @@ export default function PaginationShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Collapsing">
 				<CardWrapperShowcase>
 					<PaginationCollapsing />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Wrapping">
+				<CardWrapperShowcase>
+					<PaginationWrapping />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Size">
