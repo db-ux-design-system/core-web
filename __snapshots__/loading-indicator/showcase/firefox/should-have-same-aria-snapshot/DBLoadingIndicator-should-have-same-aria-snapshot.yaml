@@ -73,6 +73,16 @@
   - status:
     - text: Bar
     - progressbar "Bar"
+  - text: Large
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - link "State"
   - text: Inactive
   - status:
@@ -105,13 +115,13 @@
     - text: Bar
     - progressbar "Bar"
   - text: Critical
-  - status:
+  - alert:
     - text: Circular horizontal
     - progressbar "Circular horizontal"
-  - status:
+  - alert:
     - text: Circular vertical
     - progressbar "Circular vertical"
-  - status:
+  - alert:
     - text: Bar
     - progressbar "Bar"
   - 'link "State: Determinate"':
@@ -146,15 +156,28 @@
     - text: Bar
     - progressbar "Bar": 100 of 100
   - text: Critical
-  - status:
+  - alert:
     - text: Circular horizontal
     - progressbar "Circular horizontal": 100 of 100
-  - status:
+  - alert:
     - text: Circular vertical
     - progressbar "Circular vertical": 100%
-  - status:
+  - alert:
     - text: Bar
     - progressbar "Bar": 100 of 100
+  - link "Role"
+  - text: Default (role derived from state)
+  - status:
+    - text: Default
+    - progressbar "Default"
+  - text: Explicit role="status"
+  - status:
+    - text: Status
+    - progressbar "Status"
+  - text: Explicit role="alert"
+  - alert:
+    - text: Alert
+    - progressbar "Alert"
   - link "Show Label"
   - text: (Default) True
   - status:
@@ -167,9 +190,15 @@
     - text: Bar
     - progressbar "Bar"
   - text: "False"
-  - status
-  - status
-  - status
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
   - link "Show Progress Text"
   - text: (Default) True
   - status:
@@ -204,20 +233,8 @@
     - progressbar "Bar"
   - text: "True"
   - status:
-    - text: Circular horizontal
-    - progressbar "Circular horizontal"
-  - paragraph: Content 1
-  - paragraph: Content 2
-  - paragraph: Content 3
-  - status:
     - text: Circular vertical
     - progressbar "Circular vertical"
-  - paragraph: Content 1
-  - paragraph: Content 2
-  - paragraph: Content 3
-  - status:
-    - text: Bar
-    - progressbar "Bar"
   - paragraph: Content 1
   - paragraph: Content 2
   - paragraph: Content 3
@@ -254,43 +271,43 @@
     - progressbar "Bar"
   - 'link "Examples: Button"':
   - text: Without overlay
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
   - text: With overlay
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
     - text: Button
-  - button "Loading" [disabled]:
+  - button "Button" [disabled]:
     - status:
       - text: Loading
       - progressbar "Loading"
