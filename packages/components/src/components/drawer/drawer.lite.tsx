@@ -55,6 +55,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 				if (event.key === 'Escape') {
 					event.preventDefault();
 
+					// BEGIN: drawer ponyfill
+					// Dismiss a non-modal drawer on Escape when the browser ignores closedby.
+					escapeCloseFallback(event, _ref);
+					// END: drawer ponyfill
+
 					if (props.onClose) {
 						props.onClose(event);
 					}

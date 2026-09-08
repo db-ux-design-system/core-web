@@ -89,3 +89,25 @@ export const requestCloseFallback = (
 		dialog.requestClose();
 	}
 };
+
+/**
+ * @public
+ * Dismisses a non-modal dialog on Escape when the browser ignores
+ * `closedby="closerequest"`. Modal dialogs (opened via showModal) close on
+ * Escape natively, so this only steps in for non-modal ones (backdrop="none",
+ * opened via show). No-op when closedby is supported or the key is not Escape.
+ * Shared by DBDialog and DBDrawer.
+ */
+export const escapeCloseFallback = (
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	event: any,
+	dialog?: HTMLDialogElement | null
+): void => {
+	if (!dialog || supportsClosedBy()) return;
+	if (event?.key !== 'Escape') return;
+
+	// Modal dialogs already dismiss on Escape natively; only non-modal ones need help.
+	if (dialog.matches?.(':modal')) return;
+
+	dialog.requestClose();
+};

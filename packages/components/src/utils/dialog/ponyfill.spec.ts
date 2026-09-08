@@ -19,15 +19,19 @@ const stubCommandForSupport = (supported: boolean): void => {
 	});
 };
 
-type DialogStub = HTMLDialogElement & { _calls: string[] };
+type DialogStub = HTMLDialogElement & { _calls: string[]; _modal: boolean };
 
-const createDialogStub = (id = 'test-dialog'): DialogStub =>
+const createDialogStub = (id = 'test-dialog', modal = false): DialogStub =>
 	({
 		id,
 		dataset: {},
 		_calls: [],
+		_modal: modal,
 		requestClose(this: DialogStub) {
 			this._calls.push('requestClose');
+		},
+		matches(this: DialogStub, selector: string) {
+			return selector === ':modal' ? this._modal : false;
 		}
 	}) as unknown as DialogStub;
 
@@ -162,5 +166,42 @@ describe('requestCloseFallback', () => {
 			outerDialog
 		);
 		expect(outerDialog._calls).toEqual([]);
+	});
+});
+
+describe('escapeCloseFallback', () => {
+	it('closes a non-modal dialog on Escape without closedby support', async () => {
+		stubClosedBySupport(false);
+		const { escapeCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub('test-dialog', false);
+		escapeCloseFallback({ key: 'Escape' }, dialog);
+		expect(dialog._calls).toEqual(['requestClose']);
+	});
+
+	it('leaves modal dialogs to the native Escape behavior', async () => {
+		stubClosedBySupport(false);
+		const { escapeCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub('test-dialog', true);
+		escapeCloseFallback({ key: 'Escape' }, dialog);
+		expect(dialog._calls).toEqual([]);
+	});
+
+	it('does nothing when closedby is supported', async () => {
+		stubClosedBySupport(true);
+		const { escapeCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub('test-dialog', false);
+		escapeCloseFallback({ key: 'Escape' }, dialog);
+		expect(dialog._calls).toEqual([]);
+	});
+
+	it('ignores non-Escape keys and a missing dialog', async () => {
+		stubClosedBySupport(false);
+		const { escapeCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub('test-dialog', false);
+		escapeCloseFallback({ key: 'Enter' }, dialog);
+		expect(dialog._calls).toEqual([]);
+		expect(() =>
+			escapeCloseFallback({ key: 'Escape' }, undefined)
+		).not.toThrow();
 	});
 });
