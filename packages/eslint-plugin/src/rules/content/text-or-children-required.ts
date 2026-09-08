@@ -6,6 +6,24 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
+/**
+ * A `text` attribute only counts as content when it is not absent and not an
+ * empty (or whitespace-only) string. A valueless boolean attribute (`true`) and
+ * a dynamic expression (non-empty sentinel string) are left as content, since
+ * the former is not this rule's concern and the latter cannot be verified
+ * statically. An empty string, by contrast, leaves the rendered element (and any
+ * `aria-labelledby` pointing at it) without an accessible name.
+ */
+const hasTextContent = (text: string | boolean | undefined): boolean => {
+	if (text === undefined) {
+		return false;
+	}
+	if (typeof text === 'string') {
+		return text.trim() !== '';
+	}
+	return true;
+};
+
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
 	'DBBadge',
@@ -46,7 +64,16 @@ export default {
 				return;
 			}
 
-			const text = getAttributeValue(node, 'text');
+			// `getAttributeValue` collapses an empty Angular attribute value
+			// (`text=""`) to `true`, which would hide an empty title. Read the
+			// raw attribute so `text=""` is treated as empty, not as a boolean.
+			const rawTextAttr = node.attributes?.find(
+				(a: any) => a.name === 'text'
+			);
+			const text =
+				rawTextAttr?.value === undefined
+					? getAttributeValue(node, 'text')
+					: rawTextAttr.value;
 			const hasChildren = node.children?.some(
 				(child: any) =>
 					(child.type === 'Text' && child.value.trim() !== '') ||
@@ -54,7 +81,7 @@ export default {
 					child.type === 'Element$1'
 			);
 
-			if (text === undefined && !hasChildren) {
+			if (!hasTextContent(text) && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
 				);
@@ -106,7 +133,7 @@ export default {
 					child.type === 'VExpressionContainer'
 			);
 
-			if (text === undefined && !hasChildren) {
+			if (!hasTextContent(text) && !hasChildren) {
 				context.report({
 					node: openingElement,
 					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,

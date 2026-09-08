@@ -1,6 +1,7 @@
 import * as angularTemplateParser from '@angular-eslint/template-parser';
 import { RuleTester as AngularRuleTester } from '@angular-eslint/test-utils';
 import { RuleTester } from '@typescript-eslint/rule-tester';
+import * as vueParser from 'vue-eslint-parser';
 
 import rule from '../../../src/rules/content/text-or-children-required.js';
 
@@ -15,6 +16,15 @@ const ruleTester = new RuleTester({
 const angularRuleTester = new AngularRuleTester({
 	languageOptions: {
 		parser: angularTemplateParser
+	}
+});
+
+const vueRuleTester = new RuleTester({
+	languageOptions: {
+		parser: vueParser,
+		parserOptions: {
+			ecmaFeatures: { jsx: true }
+		}
 	}
 });
 
@@ -131,6 +141,26 @@ describe('text-or-children-required', () => {
 						data: { component: 'DBDrawerHeader' }
 					}
 				]
+			},
+			{
+				// Empty text literal is not content: aria-labelledby target stays empty.
+				code: '<DBDialogHeader text="" />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// Whitespace-only text is likewise not an accessible name.
+				code: '<DBDialogHeader text="   " />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
 			}
 		]
 	});
@@ -141,7 +171,9 @@ describe('text-or-children-required', () => {
 			{ code: '<db-button>Save</db-button>' },
 			{ code: '<db-button [text]="myText"></db-button>' },
 			{ code: '<db-dialog-header text="Title"></db-dialog-header>' },
-			{ code: '<db-drawer-header>Title</db-drawer-header>' }
+			{ code: '<db-drawer-header>Title</db-drawer-header>' },
+			// Dynamic binding cannot be verified statically, so it is allowed.
+			{ code: '<db-dialog-header [text]="title"></db-dialog-header>' }
 		],
 		invalid: [
 			{
@@ -150,6 +182,43 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'db-dialog-header' }
+					}
+				]
+			},
+			{
+				// `getAttributeValue` collapses `text=""` to boolean true; the raw
+				// read keeps it recognized as an empty title and reports it.
+				code: '<db-dialog-header text=""></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
+			}
+		]
+	});
+
+	vueRuleTester.run('text-or-children-required (Vue)', rule, {
+		valid: [
+			{
+				code: '<template><DBDialogHeader text="Title" /></template>'
+			},
+			{
+				code: '<template><DBDialogHeader>Title</DBDialogHeader></template>'
+			},
+			// Dynamic binding cannot be verified statically, so it is allowed.
+			{
+				code: '<template><DBDialogHeader :text="title" /></template>'
+			}
+		],
+		invalid: [
+			{
+				code: '<template><DBDialogHeader text="" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
 					}
 				]
 			}
