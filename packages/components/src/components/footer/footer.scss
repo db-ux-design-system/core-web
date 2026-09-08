@@ -1,6 +1,13 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 .db-footer {
+	/*
+	 * DBPage turns the footer into a flex container: the header-footer-style mixin
+	 * in page.scss applies `display: flex` to `> :is(.db-header, .db-footer, ...)`
+	 * inside `.db-page[data-variant="fixed"]`. Without this the content and meta
+	 * areas would lay out in a row there instead of stacking.
+	 */
+	flex-direction: column;
 	inline-size: 100%;
 
 	.db-footer-container {
