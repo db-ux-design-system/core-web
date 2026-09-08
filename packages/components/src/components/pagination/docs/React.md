@@ -83,9 +83,9 @@ documentation for the reasoning.
 
 ### Single items
 
-`DBPaginationItem` is the `<li>` that `DBPagination` renders once per page and once
-per truncation. Use it directly only when you build the surrounding list yourself
-and want the item appearance and semantics of the design system.
+`DBPaginationItem` is the `<li>` that `DBPagination` renders once per page. Use it
+directly only when you build the surrounding list yourself and want the item
+appearance and semantics of the design system.
 
 ```tsx App.tsx
 import { DBPaginationItem } from "@db-ux/react-core-components";
@@ -93,17 +93,8 @@ import { DBPaginationItem } from "@db-ux/react-core-components";
 const App = () => (
 	<nav className="db-pagination" aria-label="Pagination">
 		<ul>
-			<DBPaginationItem
-				page={1}
-				label="Page 1 of 2"
-				onClick={() => console.log("page 1")}
-			/>
-			<DBPaginationItem
-				page={2}
-				active
-				label="Page 2 of 2"
-				onClick={() => console.log("page 2")}
-			/>
+			<DBPaginationItem page={1} text="1" label="Page 1 of 2" />
+			<DBPaginationItem page={2} text="2" label="Page 2 of 2" active />
 		</ul>
 	</nav>
 );
@@ -111,9 +102,13 @@ const App = () => (
 export default App;
 ```
 
-Leave `page` out to render the truncation item. Pass `href` to render an anchor
-instead of a button, and `layout` to place the item in one of the two responsive
-layouts.
+`text` is what the item renders. Without it the item renders its children instead, so
+an item with neither stays empty. Leave `page` out only for a control that is not a
+page, the way `DBPagination` wraps its previous and next buttons - the truncation is
+no item at all, it is drawn as a pseudo element on the page that borders the gap.
+Pass `href` to render an anchor instead of a button, and `layout` to place the item in
+one of the two responsive layouts: `wide` items disappear once the list collapses,
+`collapsed` items only appear there, and `always` items are part of both.
 
 ### Composition
 
@@ -129,10 +124,14 @@ import { Link } from "react-router-dom";
 const App = () => (
 	<DBPagination currentPage={2} onPageChange={(page) => console.log(page)}>
 		<DBPaginationItem page={1} label="Page 1 of 2">
-			<Link to="/results/1">1</Link>
+			<Link to="/results/1" aria-label="Page 1 of 2">
+				1
+			</Link>
 		</DBPaginationItem>
 		<DBPaginationItem page={2} label="Page 2 of 2" active>
-			<Link to="/results/2">2</Link>
+			<Link to="/results/2" aria-label="Page 2 of 2">
+				2
+			</Link>
 		</DBPaginationItem>
 	</DBPagination>
 );
@@ -143,8 +142,11 @@ export default App;
 `page` is required on a composed item: it identifies the item rather than rendering
 it, and the pagination reads it back to know which page was activated.
 
-Two things move to you in this mode. The truncation and the responsive collapsing are
-not applied, because the component cannot know which pages your children stand for.
-And `aria-current` falls back to the `<li>`, since a child that you provide cannot be
+Three things move to you in this mode. The truncation and the responsive collapsing
+are not applied, because the component cannot know which pages your children stand
+for. `aria-current` falls back to the `<li>`, since a child that you provide cannot be
 reached from inside the component - set it on your link as well if you want it where
-assistive technology expects it.
+assistive technology expects it. And the accessible name is yours: `label` is only
+used for the control the item renders itself, so without an `aria-label` on your link
+it is announced as the bare number. The last page is unknown as well, so the next
+button stays enabled and an out of range request is yours to ignore.

@@ -39,7 +39,14 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 			if (state.getPage() === 0) {
 				return undefined;
 			}
-			return props.layout === 'wide' ? 'sibling' : 'page';
+			if (props.layout === 'wide') {
+				return 'sibling';
+			}
+			// A collapsed item is the mirror image of a sibling: it belongs to the narrow
+			// layout alone. DBPagination never emits this value, because its own collapsed
+			// pages are a subset of the wide ones and are therefore marked page - the value
+			// exists for a consumer who composes the list.
+			return props.layout === 'collapsed' ? 'collapsed' : 'page';
 		}
 	});
 

@@ -54,15 +54,38 @@ export default function DBPagination(props: DBPaginationProps) {
 				(_, index: number) => start + index
 			);
 		},
+		// Whether the option API is in use. Not a truthiness test on the prop: a
+		// totalCount of 0 is a valid value - the empty result set - and would select
+		// composition, while a custom element hands the same value over as the string
+		// "0", which is truthy. The question is therefore whether the prop is set at
+		// all, the same distinction getInteger draws for a blank value.
+		hasTotalCount: () => {
+			return String(props.totalCount ?? '').trim() !== '';
+		},
 		getTotalPages: () => {
 			const totalCount = state.getInteger(props.totalCount, 0, 0);
 			const pageSize = state.getInteger(props.pageSize, 10, 1);
 			return Math.max(1, Math.ceil(totalCount / pageSize));
 		},
 		getCurrentPage: () => {
-			return Math.min(
-				state.getTotalPages(),
-				state.getInteger(props.currentPage, 1, 1)
+			const currentPage = state.getInteger(props.currentPage, 1, 1);
+			// Clamped in the option API only. With composition the consumer owns the
+			// list and getTotalPages falls back to a single page, so clamping pulled
+			// every page down to 1: both arrows ended up disabled and the guard in
+			// handlePageChange rejected the first page while letting the active one
+			// through.
+			if (!state.hasTotalCount()) {
+				return currentPage;
+			}
+			return Math.min(state.getTotalPages(), currentPage);
+		},
+		// Only the option API knows where the list ends. With composition the length
+		// belongs to the consumer, so next stays enabled and an out of range request
+		// is theirs to ignore.
+		isLastPage: () => {
+			return (
+				state.hasTotalCount() &&
+				state.getCurrentPage() >= state.getTotalPages()
 			);
 		},
 		// Returns the visible page numbers for a given siblingCount, without any
@@ -263,7 +286,13 @@ export default function DBPagination(props: DBPaginationProps) {
 			// which fails the Angular build with TS2532 while the other three
 			// targets compile.
 			const pattern = props.hrefPattern;
-			if (!pattern || page < 1 || page > state.getTotalPages()) {
+			if (!pattern || page < 1) {
+				return undefined;
+			}
+			// The last page is known in the option API alone, so the upper bound is
+			// checked there only - otherwise the next link of a composed pagination
+			// would be dropped, because getTotalPages falls back to a single page.
+			if (state.hasTotalCount() && page > state.getTotalPages()) {
 				return undefined;
 			}
 			// replaceAll for the same reason as in getPageLabel: a pattern may
@@ -328,7 +357,7 @@ export default function DBPagination(props: DBPaginationProps) {
 			// The upper bound only exists in the option API. With composition the
 			// consumer owns the list and its length, so there is nothing to clamp
 			// against here.
-			if (props.totalCount && page > state.getTotalPages()) {
+			if (state.hasTotalCount() && page > state.getTotalPages()) {
 				return;
 			}
 			if (props.onPageChange) {
@@ -398,7 +427,7 @@ export default function DBPagination(props: DBPaginationProps) {
 				accordion keys on its option prop as well. Without totalCount the
 				consumer owns the item list and with it the truncation, because the
 				component cannot know which pages the children stand for. */}
-				<Show when={props.totalCount}>
+				<Show when={state.hasTotalCount()}>
 					<For each={state.getPaginationItems()}>
 						{(item: PaginationItemType, index: number) => (
 							<DBPaginationItem
@@ -416,7 +445,7 @@ export default function DBPagination(props: DBPaginationProps) {
 						)}
 					</For>
 				</Show>
-				<Show when={!props.totalCount}>{props.children}</Show>
+				<Show when={!state.hasTotalCount()}>{props.children}</Show>
 				<DBPaginationItem size={props.size}>
 					<Show
 						when={state.getNextHref()}
@@ -428,10 +457,7 @@ export default function DBPagination(props: DBPaginationProps) {
 								type="button"
 								icon="chevron_right"
 								noText
-								disabled={
-									state.getCurrentPage() >=
-									state.getTotalPages()
-								}
+								disabled={state.isLastPage()}
 								aria-label={props.nextLabel}
 								onClick={() =>
 									state.handlePageChange(

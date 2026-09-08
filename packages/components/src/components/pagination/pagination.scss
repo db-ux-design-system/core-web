@@ -34,9 +34,23 @@
 	// they belong to every layout. The gap markers switch with the layout too and
 	// live in pagination-item.scss next to the rest of the item, because they are
 	// pseudo elements of a page and a placeholder cannot be extended across files.
+	// A collapsed item is the mirror image of a sibling: it belongs to the narrow
+	// layout alone, so it is hidden until the breakpoint and shown below it. The
+	// component does not emit the value itself, its own collapsed pages are a subset of
+	// the wide ones, but the item declares it as public API and a composed list has to
+	// be able to use it.
+	li[data-pagination-item="collapsed"] {
+		display: none;
+	}
+
 	@include screen-sizes.screen("sm", "max") {
 		li[data-pagination-item="sibling"] {
 			display: none;
+		}
+
+		// flex, not block: it is what .db-pagination-item uses to centre its control.
+		li[data-pagination-item="collapsed"] {
+			display: flex;
 		}
 	}
 }

@@ -177,6 +177,58 @@ const testPagination = () => {
 		expect(requestedPages).toEqual([2]);
 	});
 
+	test('should keep the requested page in composition mode', async ({
+		mount
+	}) => {
+		// Without totalCount getTotalPages falls back to a single page. Clamping
+		// currentPage against it made getCurrentPage always 1, so both arrows were
+		// disabled, the click on page 1 was swallowed as the current page and the click
+		// on the actually active page 2 was reported.
+		const component = await mount(
+			<DBPagination
+				label="Composed"
+				currentPage={2}
+				onPageChange={(page: number) => {
+					requestedPage = page;
+					requestedPages.push(page);
+				}}>
+				<DBPaginationItem page={1} label="Page 1" text="1" />
+				<DBPaginationItem page={2} label="Page 2" text="2" active />
+			</DBPagination>
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Previous page' })
+		).toBeEnabled();
+		await expect(
+			component.getByRole('button', { name: 'Next page' })
+		).toBeEnabled();
+
+		await component.getByRole('button', { name: 'Page 1' }).click();
+		expect(requestedPages).toEqual([1]);
+
+		// The active page reports nothing, because it is the page one is already on.
+		await component.getByRole('button', { name: 'Page 2' }).click();
+		expect(requestedPages).toEqual([1]);
+	});
+
+	test('should treat a zero totalCount as the option API', async ({
+		mount
+	}) => {
+		// Zero is a valid count, the empty result set, and used to be falsy enough to
+		// select composition - which rendered no page at all, although getTotalPages
+		// computes one. A custom element hands the same value over as the string "0"
+		// and took the opposite branch, so the behaviour differed per framework.
+		const component = await mount(
+			<DBPagination currentPage={1} totalCount={0} pageSize={10} />
+		);
+
+		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
+		await expect(
+			component.getByRole('button', { name: 'Page 1 of 1' })
+		).toHaveAttribute('aria-current', 'page');
+	});
+
 	test('should request a page without changing controlled state', async ({
 		mount,
 		page
@@ -435,6 +487,36 @@ const testCollapsing = () => {
 		await expect(
 			end.getByRole('button', { name: 'Next page' })
 		).toBeDisabled();
+	});
+
+	test('should show a collapsed item only below the breakpoint', async ({
+		mount,
+		page
+	}) => {
+		// layout collapsed is the mirror image of a sibling and public API of the item.
+		// The component never emits it, because its own collapsed pages are a subset of
+		// the wide ones, so only a composed list reaches this value - it used to render
+		// the same marker as always and was therefore visible in both layouts.
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination label="Composed" currentPage={1}>
+				<DBPaginationItem page={1} label="Page 1" text="1" active />
+				<DBPaginationItem
+					page={2}
+					label="Page 2"
+					text="2"
+					layout="collapsed"
+				/>
+			</DBPagination>
+		);
+
+		const collapsedOnly = component.locator(
+			'li[data-pagination-item="collapsed"]'
+		);
+		await expect(collapsedOnly).toBeHidden();
+
+		await page.setViewportSize(DEFAULT_VIEWPORT);
+		await expect(collapsedOnly).toBeVisible();
 	});
 
 	test('should not put several wide pages next to each other when collapsed', async ({

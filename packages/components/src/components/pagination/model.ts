@@ -96,8 +96,10 @@ export type DBPaginationDefaultState = {
 		minimum: number
 	) => number;
 	getRange: (start: number, end: number) => number[];
+	hasTotalCount: () => boolean;
 	getTotalPages: () => number;
 	getCurrentPage: () => number;
+	isLastPage: () => boolean;
 	getPages: (siblingCount: number) => number[];
 	getCollapsedPages: () => number[];
 	getPaginationItems: () => PaginationItemType[];
