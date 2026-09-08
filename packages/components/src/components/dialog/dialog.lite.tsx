@@ -12,6 +12,7 @@ import { cls, getBoolean, uuid } from '../../utils';
 import { syncDialogOpenState } from '../../utils/dialog';
 // BEGIN: dialog ponyfill
 import {
+	escapeCloseFallback,
 	markClosedByFallback,
 	requestCloseFallback
 } from '../../utils/dialog/ponyfill';

@@ -13,7 +13,8 @@ import { syncDialogOpenState } from '../../utils/dialog';
 // BEGIN: dialog ponyfill
 import {
 	markClosedByFallback,
-	requestCloseFallback
+	requestCloseFallback,
+  escapeCloseFallback
 } from '../../utils/dialog/ponyfill';
 // END: dialog ponyfill
 import { DBDrawerProps, DBDrawerState } from './model';

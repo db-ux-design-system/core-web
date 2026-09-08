@@ -1,8 +1,4 @@
-@use "sass:map";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/animation";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/dialog-ponyfill";
@@ -172,12 +168,11 @@
 
 	.db-drawer-container {
 		@include dialog-components.container-layout;
+		@include dialog-components.safe-area("drawer");
 
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
 		position: fixed;
-
-		@include dialog-components.safe-area("drawer");
 
 		> .db-drawer-content {
 			@include dialog-components.content("drawer");

@@ -34,6 +34,9 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 	const state = useStore<DBDialogHeaderState>({
 		_headingId: 'db-dialog-header-heading-' + uuid(),
 		_dialogId: '',
+		// Declared in the store so Mitosis emits it as state (otherwise a member
+		// only assigned later, never initialized, is undeclared in the Vue output).
+		_dialog: undefined,
 		// Links the heading to the dialog and captures its id as the close button command target.
 		_resolveDialog() {
 			const dialog = resolveClosestDialog(_ref);

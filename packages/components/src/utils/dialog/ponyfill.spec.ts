@@ -158,30 +158,30 @@ describe('requestCloseFallback', () => {
 		expect(dialog._calls).toEqual([]);
 	});
 
-	it('does not close the surrounding dialog when commandfor targets another dialog (supported)', async () => {
-		stubCommandForSupport(true);
+	// A request-close button sits in dialog A but intentionally targets dialog B.
+	// Runs the fallback with the given commandFor support and returns both dialogs.
+	const runCrossTargetClick = async (
+		supported: boolean
+	): Promise<{ dialogA: DialogStub; dialogB: DialogStub }> => {
+		stubCommandForSupport(supported);
 		const { requestCloseFallback } = await loadPonyfill();
 		const dialogA = createDialogStub('dialog-a');
 		const dialogB = createDialogStub('dialog-b');
-		// Button sits in A but intentionally targets B; native command handles B.
 		requestCloseFallback(
 			createClickEvent('dialog-b', true, dialogA),
 			dialogA
 		);
+		return { dialogA, dialogB };
+	};
+
+	it('leaves both dialogs to the native command when commandfor targets another dialog (supported)', async () => {
+		const { dialogA, dialogB } = await runCrossTargetClick(true);
 		expect(dialogA._calls).toEqual([]);
 		expect(dialogB._calls).toEqual([]);
 	});
 
 	it('closes the commandfor target, not the surrounding dialog, when unsupported', async () => {
-		stubCommandForSupport(false);
-		const { requestCloseFallback } = await loadPonyfill();
-		const dialogA = createDialogStub('dialog-a');
-		const dialogB = createDialogStub('dialog-b');
-		// Button sits in A but targets B; the fallback must close B, not A.
-		requestCloseFallback(
-			createClickEvent('dialog-b', true, dialogA),
-			dialogA
-		);
+		const { dialogA, dialogB } = await runCrossTargetClick(false);
 		expect(dialogA._calls).toEqual([]);
 		expect(dialogB._calls).toEqual(['requestClose']);
 	});

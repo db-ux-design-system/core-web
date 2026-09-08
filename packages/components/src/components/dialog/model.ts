@@ -55,6 +55,8 @@ export type DBDialogProps = DBDialogDefaultProps &
 export type DBDialogDefaultState = {
 	handleDialogOpen: () => void;
 	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	handleKeyDown: (event: any) => void;
 	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
 	isNotModal: () => boolean;
 };
