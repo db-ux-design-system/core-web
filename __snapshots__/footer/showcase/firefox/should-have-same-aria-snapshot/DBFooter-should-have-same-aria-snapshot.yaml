@@ -77,6 +77,39 @@
         - link "Terms and conditions"
       - listitem:
         - link "Accessibility"
+  - link "Meta layout"
+  - paragraph: "Wide: copyright and links share one line."
+  - paragraph: © Example Company
+  - navigation "Wide legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Terms and conditions"
+  - paragraph: "Medium: still side by side, the links wrap within their column while the copyright stays top aligned."
+  - paragraph: © Example Company
+  - navigation "Medium legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Accessibility statement"
+      - listitem:
+        - link "Terms and conditions"
+  - paragraph: "Narrow: below the breakpoint the links move underneath the copyright."
+  - paragraph: © Example Company
+  - navigation "Narrow legal navigation":
+    - list:
+      - listitem:
+        - link "Privacy policy"
+      - listitem:
+        - link "Imprint"
+      - listitem:
+        - link "Terms and conditions"
   - link "Width"
   - text: Full inner content width
   - navigation "Full footer navigation":
