@@ -10,6 +10,14 @@
 @use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown";
 
 %drilldown-navigation {
+	// The drilldown sub-menu is position: absolute; inset: 0 and must fill the
+	// whole nav scroll container as a sliding overlay. Reset the group back to
+	// static (it is relative by default via %navigation-item, for icon-passing)
+	// so the overlay anchors to the scroll container instead of the group box.
+	.db-control-panel-navigation-item-group {
+		position: static;
+	}
+
 	// Prevent scrolling behind the active drilldown overlay.
 	// When a group is expanded, the nav root and any intermediate
 	// menus (which have a deeper expanded child) get overflow:hidden.
@@ -83,11 +91,9 @@
 	position: relative;
 
 	// Each item group is the positioning context for its own popover flyout
-	// menu (position: absolute; inset-inline-start: 0). Without this, the
-	// flyout anchors to the nav root and all menus collapse to the left edge.
-	.db-control-panel-navigation-item-group {
-		position: relative;
-	}
+	// menu (position: absolute; inset-inline-start: 0). The group is already
+	// position: relative via %navigation-item; the drilldown variant is the
+	// only one that resets it to static, so no override is needed here.
 
 	.db-control-panel-navigation-item-group-expand-button {
 		&:is(:hover, :focus-visible):not(
@@ -124,11 +130,31 @@
 		@include icon-passing.icon-passing;
 	}
 
-	.db-control-panel-navigation-item-group {
+	// The group icon is rendered on the expand-button, not the group <li>.
+	// The button always establishes its own positioning context (see the
+	// navigation-indicator mixin), while the group <li> must stay static in
+	// the drilldown variant so its inset:0 overlay can fill the scroll
+	// container. data-icon is mirrored onto the button in the template.
+	.db-control-panel-navigation-item-group-expand-button {
 		@include icon-passing.icon-passing(
 			variables.$db-spacing-fixed-sm,
 			variables.$db-spacing-fixed-xs
 		);
+
+		// icon-passing pads interactive children; here the button itself is
+		// the icon-bearing element, so it needs the inline-start padding to
+		// clear the absolutely positioned icon "::before".
+		&[data-icon]:not([data-show-icon="false"]) {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			padding-inline-start: var(
+				--db-icon-passing-padding-inline-start,
+				calc(
+					#{variables.$db-spacing-fixed-sm} +
+						#{variables.$db-spacing-fixed-xs} +
+						var(--db-icon-font-size, 1lh)
+				)
+			);
+		}
 	}
 }
 

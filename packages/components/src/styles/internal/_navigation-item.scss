@@ -92,9 +92,18 @@
 %navigation-item {
 	@extend %db-overwrite-font-size-md;
 
+	// The item is the positioning context for its own icon-passing "::before"
+	// (icon-passing emits position: absolute). The drilldown variant opts back
+	// out to "static" on the group so its inset:0 overlay can anchor to the
+	// nav scroll container instead of the group box.
+	position: relative;
+
 	display: flex;
 	block-size: fit-content;
 
+	// The interactive child additionally establishes its own context so the
+	// indicator "::after" (attached to > a / > expand-button by mobile and
+	// desktop navigation) anchors to the link/button, not the item.
 	@include navigation-indicator {
 		position: relative;
 	}

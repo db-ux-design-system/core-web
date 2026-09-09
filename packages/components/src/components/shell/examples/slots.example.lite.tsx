@@ -375,10 +375,10 @@ export default function ShellSlots() {
 										2
 									</DBBadge>
 								}>
-								<DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem icon="x_placeholder">
 									<a href="#">Open Tasks</a>
 								</DBControlPanelNavigationItem>
-								<DBControlPanelNavigationItem>
+								<DBControlPanelNavigationItem icon="x_placeholder">
 									<a href="#">Completed</a>
 								</DBControlPanelNavigationItem>
 							</DBControlPanelNavigationItemGroup>
