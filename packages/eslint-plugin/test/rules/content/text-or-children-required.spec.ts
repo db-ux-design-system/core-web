@@ -173,7 +173,12 @@ describe('text-or-children-required', () => {
 			{ code: '<db-dialog-header text="Title"></db-dialog-header>' },
 			{ code: '<db-drawer-header>Title</db-drawer-header>' },
 			// Dynamic binding cannot be verified statically, so it is allowed.
-			{ code: '<db-dialog-header [text]="title"></db-dialog-header>' }
+			{ code: '<db-dialog-header [text]="title"></db-dialog-header>' },
+			// `{{ interpolation }}` is a BoundText child - dynamic content, allowed.
+			{
+				code: '<db-dialog-header header>{{ title }}</db-dialog-header>'
+			},
+			{ code: '<db-drawer-header>{{ title }}</db-drawer-header>' }
 		],
 		invalid: [
 			{

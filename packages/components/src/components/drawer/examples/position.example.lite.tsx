@@ -26,10 +26,7 @@ export default function DrawerPosition() {
 					border: '2px dashed currentColor',
 					overflow: 'hidden'
 				}}>
-				<DBButton
-					command="show"
-					commandfor="drawer-position-absolute"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton onClick={() => setOpenIndex(1)}>
 					Open: Absolute
 				</DBButton>
 				<DBDrawer

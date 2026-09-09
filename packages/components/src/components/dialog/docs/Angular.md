@@ -38,9 +38,11 @@ leave it open.
 
 #### Invoker Commands
 
-Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. Supported built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
+Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`) to open and close the dialog declaratively, without any component state. `commandfor` references the `id` of the dialog. The built-in commands for `<dialog>` are `show-modal`, `close` and `request-close` (`request-close` is recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
+
+There is no built-in command to open a dialog non-modally (`backdrop="none"`). Open it via the `open` property instead (or a [custom `--` command](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API#custom_commands) whose `command` event handler calls `dialog.show()`).
 
 ```html app.component.html
 <!-- app.component.html -->

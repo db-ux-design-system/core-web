@@ -13,7 +13,7 @@ export default function DBDialogFooter(props: DBDialogFooterProps) {
 	return (
 		<div
 			ref={_ref}
-			id={props.id || props.propOverrides?.id}
+			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-dialog-footer', props.className)}>
 			{props.children}
 		</div>

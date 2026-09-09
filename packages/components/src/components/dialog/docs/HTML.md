@@ -16,11 +16,32 @@ including `full`, so that a clickable backdrop area always remains. Overwrite it
 ### Use component
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and
-`commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element via its `id`. Supported
-built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
+`commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element via its `id`. The
+built-in commands for `<dialog>` are `show-modal`, `close` and `request-close` (`request-close` is recommended over
+`close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
+
+There is **no** built-in command to open a dialog non-modally (`backdrop="none"`, via `dialog.show()`). For that, open
+it from your own code (e.g. by toggling the native `open` HTML-attribute) or wire a
+[custom command](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API#custom_commands) - a `command`
+value starting with `--` dispatches a `command` event on the target that you handle yourself:
+
+```html
+<button class="db-button" command="--show" commandfor="my-dialog">
+	Open dialog
+</button>
+<script>
+	document
+		.querySelector("#my-dialog")
+		.addEventListener("command", (event) => {
+			if (event.command === "--show") {
+				event.currentTarget.show();
+			}
+		});
+</script>
+```
 
 ```html index.html
 <!-- index.html -->

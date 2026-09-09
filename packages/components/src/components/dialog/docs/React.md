@@ -23,11 +23,13 @@ leave it open.
 Instead of the `open` property you can use
 [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and `commandfor`)
 to connect buttons with the dialog declaratively. Pass an explicit `id` to `DBDialog` and reference it with
-`commandfor`. Supported built-in commands for `<dialog>` are `show-modal`, `show` and `request-close` (recommended over `close`).
+`commandfor`. The built-in commands for `<dialog>` are `show-modal`, `close` and `request-close` (`request-close` is recommended over `close`).
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity. The close button of
 `DBDialogHeader` already uses `request-close` with the resolved dialog `id`.
+
+There is no built-in command to open a dialog non-modally (`backdrop="none"`). Open it via the `open` prop instead (or a [custom `--` command](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API#custom_commands) whose `command` event handler calls `dialog.show()`).
 
 ```tsx App.tsx
 // App.tsx

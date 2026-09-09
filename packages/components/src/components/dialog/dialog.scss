@@ -66,7 +66,7 @@ $container-size-scale: (
 }
 
 %dialog-transition {
-	// Fade + scale transition. The dialog stays hidden with `display: none`
+	// Fade + subtle zoom transition. The dialog stays hidden with `display: none`
 	// (UA rule) while closed, so `display` and `overlay` are transitioned with
 	// `allow-discrete` to keep the box in the top layer until the fade-out
 	// finishes. `@starting-style` (in the open state below) defines the
@@ -75,13 +75,21 @@ $container-size-scale: (
 	// (fast); the `[open]` rule overrides it with the slower *opening*
 	// duration. Guarded by `prefers-reduced-motion` so it is skipped for
 	// reduced motion.
+
+	// The zoom uses the standalone `scale` property (not `transform: scale()`)
+	// so it can be switched off with the real value `scale: none` from a single
+	// place (see the `data-closedby="not-supported"` rule below): when the
+	// `closedby` ponyfill is active, the backdrop-click hit-area (a
+	// `position: fixed` pseudo) must span the viewport, but any `scale`/`transform`
+	// value other than `none` - even `scale: 1` - would make `.db-dialog` a
+	// containing block that traps the pseudo inside the dialog box.
 	@media (prefers-reduced-motion: no-preference) {
 		opacity: 0;
-		transform: scale(0.95);
+		scale: 0.95;
 		transition:
 			opacity #{variables.$db-transition-duration-fast}
 				#{variables.$db-transition-timing-functional},
-			transform #{variables.$db-transition-duration-fast}
+			scale #{variables.$db-transition-duration-fast}
 				#{variables.$db-transition-timing-emotional},
 			display #{variables.$db-transition-duration-fast} allow-discrete,
 			overlay #{variables.$db-transition-duration-fast} allow-discrete;
@@ -92,14 +100,14 @@ $container-size-scale: (
 	&[open] {
 		@media (prefers-reduced-motion: no-preference) {
 			opacity: 1;
-			transform: scale(1);
+			scale: 1;
 
 			// Slower duration for opening; closing uses the faster duration
 			// from the base rule above.
 			transition:
 				opacity #{variables.$db-transition-duration-medium}
 					#{variables.$db-transition-timing-functional},
-				transform #{variables.$db-transition-duration-medium}
+				scale #{variables.$db-transition-duration-medium}
 					#{variables.$db-transition-timing-emotional},
 				display #{variables.$db-transition-duration-medium}
 					allow-discrete,
@@ -108,10 +116,25 @@ $container-size-scale: (
 
 			@starting-style {
 				opacity: 0;
-				transform: scale(0.95);
+				scale: 0.95;
 			}
 		}
 	}
+
+	// BEGIN: closedby ponyfill – Single kill-switch for the zoom: while `closedby`
+	// is unsupported the backdrop-click hit-area is active and must span the
+	// viewport, so the dialog must not become a containing block for its
+	// `position: fixed` pseudo. `scale: none` removes the scale entirely (no
+	// containing block) while the dialog still fades; supporting browsers keep the
+	// zoom. No `prefers-reduced-motion` guard is needed: the `scale` value only
+	// exists under no-preference, so there is nothing to neutralise under reduced
+	// motion, and this unconditional rule (source-order last, equal specificity)
+	// still overrides the `scale: 1` inside the media query.
+	&[data-closedby="not-supported"] {
+		scale: none;
+	}
+
+	// END: closedby ponyfill
 }
 
 .db-dialog {

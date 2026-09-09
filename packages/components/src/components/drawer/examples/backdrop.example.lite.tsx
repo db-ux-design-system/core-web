@@ -79,10 +79,7 @@ export default function DrawerBackdrop() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show"
-					commandfor="drawer-backdrop-none"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton onClick={() => setOpenIndex(3)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer

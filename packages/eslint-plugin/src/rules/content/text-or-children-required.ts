@@ -77,6 +77,9 @@ export default {
 			const hasChildren = node.children?.some(
 				(child: any) =>
 					(child.type === 'Text' && child.value.trim() !== '') ||
+					// `{{ interpolation }}` is a BoundText node whose content
+					// cannot be verified statically, so treat it as content.
+					child.type === 'BoundText' ||
 					child.type === 'Element' ||
 					child.type === 'Element$1'
 			);
