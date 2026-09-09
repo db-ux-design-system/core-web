@@ -5,6 +5,8 @@
 .db-control-panel-navigation-item {
 	@extend %navigation-item;
 
+	position: relative;
+
 	a {
 		@extend %navigation-item-interactive-element;
 
