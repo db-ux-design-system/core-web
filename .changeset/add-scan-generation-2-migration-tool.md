@@ -1,5 +1,6 @@
 ---
 "@db-ux/mcp-server": minor
+"@db-ux/agent-cli": patch
 ---
 
 feat: add `scan_generation_2_migration` tool, deprecate `scan_v2_migration`
