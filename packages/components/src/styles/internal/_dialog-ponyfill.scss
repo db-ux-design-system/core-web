@@ -2,9 +2,14 @@
 // missing `closedby` attribute on `<dialog>`:
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#closedby
 // Support matrix: packages/foundations/docs/BrowserSupport.md
-// Delete this file, packages/components/src/utils/dialog-ponyfill.ts and the
+// Delete this file, packages/components/src/utils/dialog/ponyfill.ts and the
 // `@use` plus `@include` lines in dialog.scss and drawer.scss once every target
 // in .browserslistrc supports `closedby` (currently blocked by Firefox ESR).
+// NOTE: the dialog neutralises its zoom in the `data-closedby="not-supported"`
+// branch (dialog.scss sets `scale: none`), keeping `.db-dialog` a non-containing
+// block so this fixed hit-area spans the viewport. Any `scale`/`transform` value
+// other than `none` on the dialog - even `scale: 1` - would establish a
+// containing block and trap this pseudo inside the dialog box.
 
 // Backdrop click fallback: In browsers that don't support closedby,
 // extend the close button's hit area to cover the full viewport.
