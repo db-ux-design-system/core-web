@@ -46,12 +46,16 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 			const dialog = resolveClosestDialog(_ref);
 			state._dialogId = getClosestDialogId(_ref) ?? '';
 			// Generate the heading id and wire aria-labelledby together, both on
-			// the client, so the heading element and the dialog reference stay in sync.
-			state._headingId = 'db-dialog-header-heading-' + uuid();
+			// the client, so the heading element and the dialog reference stay in
+			// sync. Use a local const for the id: a state setter is async in the
+			// React output, so reading state._headingId right after assigning it
+			// would still see the old (undefined) value.
+			const headingId = 'db-dialog-header-heading-' + uuid();
+			state._headingId = headingId;
 			// Hold the element itself for cleanup, independent of the `id` used
 			// for the close button `commandfor`.
 			state._dialog = dialog;
-			setDialogAriaLabelledBy(dialog, state._headingId);
+			setDialogAriaLabelledBy(dialog, headingId);
 		},
 		removeAriaLabelledBy() {
 			removeDialogAriaLabelledBy(state._dialog, state._headingId);
