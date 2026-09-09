@@ -20,8 +20,17 @@ function normalize(p: string): string {
 export function resolveSafePath(baseDir: string, userPath: string): string {
 	const absoluteBase = normalize(resolve(baseDir));
 	let decoded = userPath;
-	while (decoded !== decodeURIComponent(decoded)) {
-		decoded = decodeURIComponent(decoded);
+	try {
+		while (decoded !== decodeURIComponent(decoded)) {
+			decoded = decodeURIComponent(decoded);
+		}
+	} catch {
+		// A malformed escape sequence makes decodeURIComponent throw — a literal
+		// '%' in a real filename does exactly that. Treating it as a traversal
+		// attempt would reject legitimate paths, so the raw input is used and
+		// still has to pass the containment check below. An undecoded string can
+		// only ever name a file inside the base, never escape it.
+		decoded = userPath;
 	}
 
 	const absoluteRequested = normalize(resolve(baseDir, decoded));

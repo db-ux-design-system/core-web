@@ -17,8 +17,11 @@ vi.mock('node:child_process', () => ({
 	exec(
 		_cmd: string,
 		_options: unknown,
+		// `null` on success, mirroring node:child_process' own
+		// `ExecException | null` contract — code under test may compare against
+		// it, so the mock must not silently swap it for `undefined`.
 		cb: (
-			error: Error | undefined,
+			error: Error | null | undefined,
 			result?: { stdout: string; stderr: string }
 		) => void
 	) {
@@ -728,6 +731,127 @@ describe('handleDocsSearch', () => {
 		expect(text(result.content[0])).toContain('No documentation found');
 	});
 
+	/**
+	 Regression guard: the search loop must collect one result beyond the
+	 display limit. Breaking at exactly 3 made the "more than 3 results" notice
+	 unreachable, so callers never learned that results were withheld.
+	 */
+	it('appends a truncation notice when more docs match than are returned', async () => {
+		const docs: Record<string, string> = {};
+		for (let i = 0; i < 6; i++) {
+			docs[`packages/foundations/docs/Doc${i}.md`] =
+				'# Doc\nadaptive colors everywhere';
+		}
+
+		resetManifestCache(JSON.parse(makeManifest({ docs })));
+
+		const result = await handleDocsSearch({
+			query: 'adaptive colors',
+			category: 'global'
+		});
+
+		expect(result.isError).toBeUndefined();
+		expect(text(result.content[1])).toContain('More than 3 results');
+	});
+
+	/**
+	 Regression guard: every term of a too-short query is discarded, and an
+	 empty term list makes every() vacuously true — which used to return three
+	 arbitrary docs as if they had matched.
+	 */
+	it('rejects a query whose terms are all shorter than three characters', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					docs: {
+						'packages/foundations/docs/Colors.md': '# Colors'
+					}
+				})
+			)
+		);
+
+		const result = await handleDocsSearch({
+			query: 'db v3',
+			category: 'global'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('at least 3 characters');
+	});
+
+	it('still allows an explicitly empty query to list the docs in scope', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					docs: {
+						'packages/foundations/docs/Colors.md': '# Colors'
+					}
+				})
+			)
+		);
+
+		const result = await handleDocsSearch({
+			query: '',
+			category: 'global'
+		});
+
+		expect(result.isError).toBeUndefined();
+		expect(text(result.content[0])).toContain('Colors');
+	});
+
+	/**
+	 Regression guard: the scope filter used to be guarded by `componentName &&`,
+	 so a missing name skipped it entirely and silently searched every doc
+	 although the schema calls the name required.
+	 */
+	it('rejects category "component" without a componentName', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					docs: {
+						'packages/foundations/docs/Colors.md':
+							'# Colors\nadaptive colors'
+					}
+				})
+			)
+		);
+
+		const result = await handleDocsSearch({
+			query: 'adaptive colors',
+			category: 'component'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain(
+			"'componentName' is required"
+		);
+	});
+
+	it('scopes a component search to that component', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					docs: {
+						'packages/components/src/components/button/docs/React.md':
+							'# Button docs\nfocus state',
+						'packages/components/src/components/input/docs/React.md':
+							'# Input docs\nfocus state'
+					}
+				})
+			)
+		);
+
+		const result = await handleDocsSearch({
+			query: 'focus state',
+			category: 'component',
+			componentName: 'button'
+		});
+
+		expect(result.isError).toBeUndefined();
+		expect(text(result.content[0])).toContain('Button docs');
+		expect(text(result.content[0])).not.toContain('Input docs');
+	});
+
 	it('filters out docs from blacklisted directories', async () => {
 		resetManifestCache(
 			JSON.parse(
@@ -1290,6 +1414,83 @@ describe('handleScanV2Migration', () => {
 		});
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('Path traversal');
+	});
+
+	/**
+	 The scanner routes its input through resolveSafePath, which collapses
+	 percent-encoding before resolving. Its own former startsWith() check saw
+	 only the encoded literal and let it through as a filename.
+	 */
+	it('🔒 rejects percent-encoded directory climbing', async () => {
+		const result = await handleScanV2Migration({
+			filePath: '%2E%2E%2F%2E%2E%2F%2E%2E%2Fetc%2Fpasswd'
+		});
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain('Path traversal');
+	});
+
+	/**
+	 A literal '%' is a legal filename character but makes decodeURIComponent
+	 throw, which must not be reported as a traversal attempt.
+	 */
+	it('accepts a filename containing a literal percent sign', async () => {
+		const { unlinkSync } = await import('node:fs');
+		const temporary = writeCwdTemporary(
+			'100%-width',
+			'<elm-button>Click</elm-button>'
+		);
+
+		try {
+			const result = await handleScanV2Migration({ filePath: temporary });
+
+			expect(result.isError).toBeUndefined();
+			expect(text(result.content[0])).toContain('elm-button');
+		} finally {
+			unlinkSync(temporary);
+		}
+	});
+
+	/**
+	 Regression guard: the report used to be truncated as rendered text, which
+	 cut the JSON mid-object and left the fenced block unterminated — the caller
+	 could not parse a single finding while the header still claimed the full
+	 count.
+	 */
+	it('keeps the findings JSON parsable when the report is capped', async () => {
+		const { unlinkSync } = await import('node:fs');
+		const lineCount = 400;
+		const temporary = writeCwdTemporary(
+			'many',
+			Array.from(
+				{ length: lineCount },
+				() => '<elm-button icon="account">Click</elm-button>'
+			).join('\n')
+		);
+
+		try {
+			const result = await handleScanV2Migration({ filePath: temporary });
+			const output = text(result.content[0]);
+
+			const json =
+				output.split('```json\n', 2)[1]?.split('\n```', 1)[0] ?? '';
+			const listed = JSON.parse(json) as unknown[];
+
+			const total = Number(
+				/\*\*(?<count>\d+) findings\*\*/v.exec(output)?.groups?.count
+			);
+			const omitted = Number(
+				/(?<count>\d+) more were omitted/v.exec(output)?.groups?.count
+			);
+
+			// The cap has to have kicked in, otherwise this asserts nothing.
+			expect(omitted).toBeGreaterThan(0);
+			expect(listed.length).toBeGreaterThan(0);
+			// The header count stays honest about what the file contains.
+			expect(total).toBe(listed.length + omitted);
+			expect(output.length).toBeLessThanOrEqual(20_000);
+		} finally {
+			unlinkSync(temporary);
+		}
 	});
 });
 
