@@ -237,23 +237,32 @@ export default {
 
 			const attributes = openingElement.attributes || [];
 
+			// In React, DBDrawerHeader is passed via the `header` prop. With JSX
+			// later-wins semantics, the last explicit `header` attribute is
+			// authoritative; take it if present.
+			const lastHeaderIndex = attributes.findLastIndex(
+				(attr: any) =>
+					attr.type === 'JSXAttribute' && attr.name?.name === 'header'
+			);
+			const lastSpreadIndex = attributes.findLastIndex(
+				(attr: any) => attr.type === 'JSXSpreadAttribute'
+			);
+
 			// A JSX spread (e.g. <DBDrawer {...drawerProps}>) may carry the
 			// `header` prop, and its contents cannot be verified statically -
 			// same as an identifier or call-expression header value. Treat it
 			// as unresolved and do not report, so a standard React composition
-			// pattern does not fail lint.
-			const hasSpread = attributes.some(
-				(attr: any) => attr.type === 'JSXSpreadAttribute'
-			);
-			if (hasSpread) {
+			// pattern does not fail lint. But only when the spread can still
+			// determine the final value: a later explicit `header` overrides the
+			// spread (React later-wins), so that explicit value must be validated.
+			if (lastSpreadIndex > lastHeaderIndex) {
 				return;
 			}
 
-			// In React, DBDrawerHeader is passed via the `header` prop (JSXAttribute)
-			const headerAttr = attributes.find(
-				(attr: any) =>
-					attr.type === 'JSXAttribute' && attr.name?.name === 'header'
-			);
+			const headerAttr =
+				lastHeaderIndex === -1
+					? undefined
+					: attributes[lastHeaderIndex];
 			if (headerAttr && isValidHeaderProp(headerAttr)) {
 				return;
 			}

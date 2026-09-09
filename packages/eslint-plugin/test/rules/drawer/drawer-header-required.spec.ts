@@ -46,9 +46,27 @@ describe('drawer-header-required', () => {
 			{
 				// A JSX spread may carry the header prop; contents are unverifiable.
 				code: '<DBDrawer {...drawerProps}>Content</DBDrawer>'
+			},
+			{
+				// A later explicit valid header overrides the spread (later-wins).
+				code: '<DBDrawer {...drawerProps} header={<DBDrawerHeader>Title</DBDrawerHeader>}>Content</DBDrawer>'
+			},
+			{
+				// A valid header before the spread may be overridden; unresolved.
+				code: '<DBDrawer header={<DBDrawerHeader>Title</DBDrawerHeader>} {...drawerProps}>Content</DBDrawer>'
 			}
 		],
 		invalid: [
+			{
+				// The later explicit header wins and is null, so no header renders.
+				code: '<DBDrawer {...drawerProps} header={null}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
 			{
 				code: '<DBDrawer>Content</DBDrawer>',
 				errors: [

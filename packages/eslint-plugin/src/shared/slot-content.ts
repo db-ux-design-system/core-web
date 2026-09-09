@@ -265,24 +265,34 @@ export function createHeaderRequiredRule({
 
 				const attributes = openingElement.attributes || [];
 
-				// A JSX spread (e.g. <DBDialog {...dialogProps}>) may carry the
-				// `header` prop, and its contents cannot be verified statically -
-				// same as an identifier or call-expression header value. Treat it
-				// as unresolved and do not report, so a standard React composition
-				// pattern does not fail lint.
-				const hasSpread = attributes.some(
-					(attr: any) => attr.type === 'JSXSpreadAttribute'
-				);
-				if (hasSpread) {
-					return;
-				}
-
-				// In React, the header component is passed via the `header` prop (JSXAttribute)
-				const headerAttr = attributes.find(
+				// In React, the header component is passed via the `header` prop.
+				// With JSX later-wins semantics, the last explicit `header`
+				// attribute is authoritative; take it if present.
+				const lastHeaderIndex = attributes.findLastIndex(
 					(attr: any) =>
 						attr.type === 'JSXAttribute' &&
 						attr.name?.name === 'header'
 				);
+				const lastSpreadIndex = attributes.findLastIndex(
+					(attr: any) => attr.type === 'JSXSpreadAttribute'
+				);
+
+				// A JSX spread (e.g. <DBDialog {...dialogProps}>) may carry the
+				// `header` prop, and its contents cannot be verified statically -
+				// same as an identifier or call-expression header value. Treat it
+				// as unresolved and do not report, so a standard React composition
+				// pattern does not fail lint. But only when the spread can still
+				// determine the final value: a later explicit `header` overrides
+				// the spread (React later-wins), so that explicit value must be
+				// validated instead.
+				if (lastSpreadIndex > lastHeaderIndex) {
+					return;
+				}
+
+				const headerAttr =
+					lastHeaderIndex === -1
+						? undefined
+						: attributes[lastHeaderIndex];
 				if (headerAttr && isValidHeaderProp(headerAttr, header)) {
 					return;
 				}
