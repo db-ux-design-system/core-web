@@ -50,9 +50,11 @@ export const getClosestDialogId = (
  */
 export const setDialogAriaLabelledBy = (
 	dialog: HTMLDialogElement | undefined | null,
-	headingId: string
+	headingId: string | undefined
 ): void => {
-	dialog?.setAttribute('aria-labelledby', headingId);
+	if (headingId) {
+		dialog?.setAttribute('aria-labelledby', headingId);
+	}
 };
 
 /**
@@ -65,9 +67,9 @@ export const setDialogAriaLabelledBy = (
  */
 export const removeDialogAriaLabelledBy = (
 	dialog: HTMLDialogElement | undefined | null,
-	headingId: string
+	headingId: string | undefined
 ): void => {
-	if (dialog?.getAttribute('aria-labelledby') === headingId) {
+	if (headingId && dialog?.getAttribute('aria-labelledby') === headingId) {
 		dialog.removeAttribute('aria-labelledby');
 	}
 };

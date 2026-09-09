@@ -17,7 +17,8 @@ export type DBDialogHeaderProps = DBDialogHeaderDefaultProps &
 	EndSlotProps;
 
 export type DBDialogHeaderDefaultState = {
-	_headingId: string;
+	// Assigned on mount (client-only) to stay hydration-stable; undefined during SSR.
+	_headingId?: string;
 	_dialogId: string;
 	// The resolved <dialog> element, held so aria-labelledby cleanup works
 	// regardless of the dialog `id` and when the header is already detaching.

@@ -31,7 +31,11 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	const state = useStore<DBDrawerHeaderState>({
-		_headingId: 'db-drawer-header-heading-' + uuid(),
+		// Left undefined at init so the uuid() runs only on the client (in
+		// onMount, via _resolveDialog), not during SSR. Generating it at render
+		// time would produce different server/client ids, and after hydration
+		// aria-labelledby would point at the stale server id -> no accessible name.
+		_headingId: undefined,
 		_dialogId: '',
 		// Declared in the store so Mitosis emits it as state (otherwise a member
 		// only assigned later, never initialized, is undeclared in the Vue output).
@@ -40,6 +44,9 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		_resolveDialog() {
 			const dialog = resolveClosestDialog(_ref);
 			state._dialogId = getClosestDialogId(_ref) ?? '';
+			// Generate the heading id and wire aria-labelledby together, both on
+			// the client, so the heading element and the dialog reference stay in sync.
+			state._headingId = 'db-drawer-header-heading-' + uuid();
 			// Hold the element itself for cleanup: the drawer may have no `id`,
 			// in which case _dialogId is empty but aria-labelledby is still set.
 			state._dialog = dialog;
