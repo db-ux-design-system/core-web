@@ -282,14 +282,20 @@ In plain HTML you wire these fallbacks yourself: mark the dialog when `closedby`
 	 */
 	if (!("commandForElement" in HTMLButtonElement.prototype)) {
 		document
-			.querySelector('[commandfor="my-dialog"][command="show-modal"]')
-			?.addEventListener("click", () => {
-				dialog?.showModal?.();
+			.querySelectorAll('[commandfor="my-dialog"][command="show-modal"]')
+			.forEach((button) => {
+				button.addEventListener("click", () => {
+					dialog?.showModal?.();
+				});
 			});
 		document
-			.querySelector('[commandfor="my-dialog"][command="request-close"]')
-			?.addEventListener("click", () => {
-				dialog?.requestClose?.();
+			.querySelectorAll(
+				'[commandfor="my-dialog"][command="request-close"]'
+			)
+			.forEach((button) => {
+				button.addEventListener("click", () => {
+					dialog?.requestClose?.();
+				});
 			});
 	}
 </script>

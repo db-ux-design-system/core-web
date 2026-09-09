@@ -98,14 +98,20 @@ In plain HTML you wire these fallbacks yourself: mark the drawer when `closedby`
 	 */
 	if (!("commandForElement" in HTMLButtonElement.prototype)) {
 		document
-			.querySelector('[commandfor="my-drawer"][command="show-modal"]')
-			?.addEventListener("click", () => {
-				drawer?.showModal?.();
+			.querySelectorAll('[commandfor="my-drawer"][command="show-modal"]')
+			.forEach((button) => {
+				button.addEventListener("click", () => {
+					drawer?.showModal?.();
+				});
 			});
 		document
-			.querySelector('[commandfor="my-drawer"][command="request-close"]')
-			?.addEventListener("click", () => {
-				drawer?.requestClose?.();
+			.querySelectorAll(
+				'[commandfor="my-drawer"][command="request-close"]'
+			)
+			.forEach((button) => {
+				button.addEventListener("click", () => {
+					drawer?.requestClose?.();
+				});
 			});
 	}
 </script>
