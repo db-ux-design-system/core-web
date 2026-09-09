@@ -1,39 +1,14 @@
-import { existsSync } from 'node:fs';
-import type { Framework } from '../types.js';
+import type { ExampleCodeFramework, Framework } from '../types.js';
 import {
 	type ToolResult,
 	COMPONENT_NOT_FOUND_MSG,
 	MAX_FILE_CONTENT,
 	MAX_JSON_OUTPUT,
 	error,
-	resolveSafePath,
 	truncate,
 	withTimeout
 } from '../utils';
 import { getManifest } from '../utils/manifest';
-
-/**
- Resolves and verifies a component path within a given base directory.
- Handles path traversal protection via resolveSafePath and existence check.
- @returns The resolved absolute path, or a ToolResult error object on failure.
- */
-function resolveComponentPath(
-	baseDir: string,
-	componentName: string
-): string | ToolResult {
-	let safePath: string;
-	try {
-		safePath = resolveSafePath(baseDir, componentName);
-	} catch {
-		return error(`Error: Invalid component name '${componentName}'.`);
-	}
-
-	if (!existsSync(safePath)) {
-		return error(COMPONENT_NOT_FOUND_MSG(componentName));
-	}
-
-	return safePath;
-}
 
 /** Returns all available DB UX component names from the filesystem or manifest. */
 export async function handleListComponents(): Promise<ToolResult> {
@@ -116,15 +91,18 @@ function toKebabCase(name: string): string {
 		.replaceAll(/^-|-$/g, '');
 }
 
-const FRAMEWORK_EXT: Partial<Record<Framework, string>> = {
+/**
+ File extension of the generated example for each framework that has one.
+
+ Keyed by {@link ExampleCodeFramework} rather than `Partial<Record<Framework>>`:
+ the partial type made every lookup `string | undefined`, even after `html` and
+ `vanilla` had already been rejected.
+ */
+const FRAMEWORK_EXT: Record<ExampleCodeFramework, string> = {
 	react: 'tsx',
 	angular: 'ts',
 	vue: 'vue',
 	'web-components': 'tsx'
-};
-
-const FRAMEWORK_OUTPUT_DIR: Partial<Record<Framework, string>> = {
-	'web-components': 'stencil'
 };
 
 /**
@@ -169,7 +147,6 @@ export async function handleGetExampleCode({
 		(async () => {
 			try {
 				const kebab = toKebabCase(exampleName);
-				const ext = FRAMEWORK_EXT[framework];
 				const manifest = await getManifest();
 				const comp = manifest.components[componentName];
 				if (!comp) {
@@ -181,12 +158,16 @@ export async function handleGetExampleCode({
 					);
 				}
 
+				// Looked up after the guard above, so `framework` is narrowed to
+				// the frameworks that actually have generated examples.
+				const ext = FRAMEWORK_EXT[framework];
 				const fwExamples = comp.exampleCode[framework] ?? {};
 				const directKey = `${kebab}.example.${ext}`;
 				const matchKey = fwExamples[directKey]
 					? directKey
 					: fuzzyMatchExample(Object.keys(fwExamples), kebab, ext);
-				if (!matchKey) {
+				const code = matchKey ? fwExamples[matchKey] : undefined;
+				if (code === undefined) {
 					return error(
 						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`
 					);
@@ -196,10 +177,7 @@ export async function handleGetExampleCode({
 					content: [
 						{
 							type: 'text',
-							text: truncate(
-								fwExamples[matchKey],
-								MAX_FILE_CONTENT
-							)
+							text: truncate(code, MAX_FILE_CONTENT)
 						}
 					]
 				};
