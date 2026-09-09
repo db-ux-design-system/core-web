@@ -101,7 +101,7 @@ all of its submit buttons.
 
 ```html index.html
 <!-- index.html -->
-<dialog id="my-dialog" class="db-dialog">
+<dialog id="my-dialog" class="db-dialog" aria-labelledby="my-dialog-heading">
 	<div class="db-dialog-header">
 		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Dialog title</h2>
@@ -141,7 +141,7 @@ and associate a footer submit button with it through the `form` attribute refere
 
 ```html index.html
 <!-- index.html -->
-<dialog id="my-dialog" class="db-dialog">
+<dialog id="my-dialog" class="db-dialog" aria-labelledby="my-dialog-heading">
 	<div class="db-dialog-header">
 		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Rename entry</h2>
