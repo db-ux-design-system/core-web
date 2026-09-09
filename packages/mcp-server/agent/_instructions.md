@@ -62,7 +62,7 @@ Or add it to your MCP client config:
 
 When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX Design System – Generation 3, you **MUST** follow this exact 5-step workflow — do NOT skip any step:
 
-1. **File Scan** — Call `analyze_v2_migration` with the file path. This returns a deterministic JSON report of all Generation 2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
+1. **File Scan** — Call `scan_generation_2_migration` with the file path. This returns a deterministic JSON report of all Generation 2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
 2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → Generation 3 Component → Rationale.
 3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
 4. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.

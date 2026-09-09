@@ -27,6 +27,7 @@ requires:
 
 tools:
     - db-ux/scan_generation_2_migration
+    - db-ux/scan_v2_migration # deprecated alias — fallback for older mcp-server installs
     - db-ux/list_migration_guides
     - db-ux/get_migration_guide
     - db-ux/list_components
@@ -60,7 +61,7 @@ on_error:
 
 ### Phase 1: Scan
 
-1. Call `scan_generation_2_migration({ filePath: "{file_path}" })`.
+1. Call `scan_generation_2_migration({ filePath: "{file_path}" })`. If the tool is unknown (the resolved `@db-ux/mcp-server` is an older cached install that predates the rename), retry once with the deprecated alias `scan_v2_migration({ filePath: "{file_path}" })`.
 2. Capture the full findings report: Generation 2 CSS classes (`cmp-*`, `elm-*`, `rea-*`), Web Components (`<db-*>`), color tokens (`db-color-*`), icon names.
 3. If the scan returns zero findings → file is already Generation 3. Call `docs_search` to confirm if uncertain. STOP.
 
@@ -98,7 +99,7 @@ on_error:
 
 ### Phase 6: Verify
 
-1. Call `scan_generation_2_migration({ filePath: "{file_path}" })` again.
+1. Call `scan_generation_2_migration({ filePath: "{file_path}" })` again (or the `scan_v2_migration` alias if that was the one that resolved in Phase 1).
 2. If findings remain → address each individually, then re-scan.
 3. Repeat until the scan returns zero findings.
 
