@@ -83,7 +83,7 @@ export default function DBDialog(props: DBDialogProps) {
 
 	return (
 		<dialog
-			id={props.id || props.propOverrides?.id || state._id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
 			class={cls('db-dialog', props.className)}
 			onCancel={(event: Event) => state.handleCancel(event)}
