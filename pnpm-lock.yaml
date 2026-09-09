@@ -45,8 +45,8 @@ importers:
         specifier: 4.2.0
         version: 4.2.0
       '@double-great/stylelint-a11y':
-        specifier: 3.5.2
-        version: 3.5.2(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
+        specifier: 3.5.3
+        version: 3.5.3(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))
       '@figma/code-connect':
         specifier: 2.0.0
         version: 2.0.0(supports-color@10.2.2)
@@ -3092,8 +3092,8 @@ packages:
     resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
     engines: {node: '>=14.17.0'}
 
-  '@double-great/stylelint-a11y@3.5.2':
-    resolution: {integrity: sha512-tzCK6ItlIiUJwGnATxO54ELtSaQwiMtghhIy6G5umOsp6wTPyMfTUKXt9g/TIGO2+APG1NM4V/V3aiG5W6R8Rw==}
+  '@double-great/stylelint-a11y@3.5.3':
+    resolution: {integrity: sha512-Zn3sR/+oxthUGvvE/f8tvNoxhG2QwQvNGvOEexK4/P2q+6TLDyInjUlx4/Gi29szs9QKWszcd0OTnYNQE3UZVw==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       stylelint: '>=16.0.0'
@@ -19048,7 +19048,7 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@double-great/stylelint-a11y@3.5.2(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))':
+  '@double-great/stylelint-a11y@3.5.3(stylelint@17.15.0(supports-color@10.2.2)(typescript@5.9.3))':
     dependencies:
       postcss: 8.5.28
       stylelint: 17.15.0(supports-color@10.2.2)(typescript@5.9.3)
