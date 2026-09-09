@@ -130,7 +130,7 @@ $container-size-scale: (
 		}
 	}
 
-	// BEGIN: closedby ponyfill – Single kill-switch for the zoom: while `closedby`
+	// BEGIN: closedby ponyfill - Single kill-switch for the zoom: while `closedby`
 	// is unsupported the backdrop-click hit-area is active and must span the
 	// viewport, so the dialog must not become a containing block for its
 	// `position: fixed` pseudo. The open/closed resting states already use
