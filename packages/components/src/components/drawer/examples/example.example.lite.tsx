@@ -42,10 +42,7 @@ export default function DrawerExample() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show"
-					commandfor="drawer-example-inside"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton onClick={() => setOpenIndex(1)}>
 					Open: Inside
 				</DBButton>
 				<DBDrawer

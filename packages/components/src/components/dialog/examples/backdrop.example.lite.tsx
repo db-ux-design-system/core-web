@@ -77,10 +77,7 @@ export default function DialogBackdrop() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					command="show"
-					commandfor="dialog-backdrop-none"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton onClick={() => setOpenIndex(2)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDialog
