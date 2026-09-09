@@ -289,6 +289,7 @@
 
 	&[data-width="auto"] {
 		display: flex;
+
 		// Safe centering: falls back to start alignment when the table is wider
 		// than the wrapper, so its leading columns stay reachable instead of being
 		// pushed before the horizontal scroll origin.
