@@ -43,9 +43,14 @@ or wire a [custom command](https://developer.mozilla.org/en-US/docs/Web/API/Invo
 	<button class="db-button" command="show-modal" commandfor="my-drawer">
 		Open Drawer
 	</button>
-	<dialog id="my-drawer" class="db-drawer" data-backdrop="true">
+	<dialog
+		id="my-drawer"
+		class="db-drawer"
+		data-backdrop="true"
+		aria-labelledby="my-drawer-heading"
+	>
 		<article class="db-drawer-container">
-			<header class="db-drawer-header">
+			<header class="db-drawer-header" id="my-drawer-heading">
 				<button
 					class="db-button button-close-drawer is-icon-text-replace"
 					data-icon="cross"
