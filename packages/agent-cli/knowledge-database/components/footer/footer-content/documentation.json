@@ -39,11 +39,11 @@
 					"en": "Place curated, secondary and further content in Children."
 				}
 			},
-			"dont": {
+			"caution": {
 				"figmaNodeId": "4020-13632",
 				"description": {
-					"de": "Bilde die Primärnavigation nicht in Children ab. Nutzer:innen finden dieselben Ziele dann an zwei Stellen und die Hierarchie zwischen Haupt- und Zweitnavigation verschwimmt.",
-					"en": "Don't reproduce the primary navigation in Children. Users then find the same destinations in two places and the hierarchy between primary and secondary navigation blurs."
+					"de": "Bilde die Primärnavigation möglichst nicht in Children ab. Nutzer:innen finden dieselben Ziele sonst an zwei Stellen und die Hierarchie zwischen Haupt- und Zweitnavigation verschwimmt.",
+					"en": "Avoid reproducing the primary navigation in Children. Otherwise users find the same destinations in two places and the hierarchy between primary and secondary navigation blurs."
 				}
 			}
 		},
