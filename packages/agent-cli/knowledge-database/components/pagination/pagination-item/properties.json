@@ -2,18 +2,6 @@
 	"component": "pagination-item",
 	"properties": [
 		{
-			"name": "type",
-			"type": "enum",
-			"values": ["page", "truncation"],
-			"default": "page",
-			"code": null,
-			"design": {
-				"name": "🔀 Type",
-				"values": ["(Def) Page", "Truncation"],
-				"note": "Design-only. In code there is no type prop: an item without page renders the truncation, see the page property, and DBPagination sets it automatically from the gaps in the page sequence. Truncation exists only in combination with Current=False and Interaction States=None."
-			}
-		},
-		{
 			"name": "page",
 			"type": "number | string",
 			"description": "One-based page number. Leave it out to render a truncation item, the ellipsis that stands in for the pages between two page numbers.",
@@ -25,7 +13,7 @@
 				"name": "✏️ Page",
 				"type": "text",
 				"defaultValue": "1",
-				"note": "The page number is the visible text of the item. Figma expresses the truncation as the Type axis instead of omitting the number, therefore Type=Truncation maps to page being left out."
+				"note": "The page number is the visible text of the item. In Figma the truncation is its own helper component (🛟 Pagination Truncation), not a value of this item, so the item always carries a page. In code there is no such component: DBPagination renders the truncation by leaving out the page and drawing an ellipsis on the bordering page."
 			}
 		},
 		{
@@ -90,7 +78,7 @@
 			},
 			"design": {
 				"name": null,
-				"note": "No variant property in Figma. Medium and Small are modelled as separate component sets (Pagination Item - Medium, Pagination Item - Small), one per main component of the parent. The parent's Children slot suggests the matching set per size. The truncation is a variant inside each set and therefore inherits the size."
+				"note": "No variant property in Figma. Medium and Small are modelled as separate component sets (Pagination Item - Medium, Pagination Item - Small), one per main component of the parent. The parent's Children slot suggests the matching set per size. The truncation is a separate helper component (🛟 Pagination Truncation) that ships in a Medium and a Small variant of its own."
 			}
 		},
 		{
@@ -100,15 +88,14 @@
 			"default": "enabled",
 			"code": null,
 			"design": {
-				"name": "🔀 Interaction States",
+				"name": "🔀 Interaction State",
 				"values": [
 					"(Def) Enabled",
 					"Hovered",
 					"Pressed",
-					"Focused",
-					"None"
+					"Focused"
 				],
-				"note": "Figma-only. Documents the visual states of the item; in code these are the native interaction states of the underlying button or anchor and are not a property. None marks the truncation, which is not interactive and carries aria-hidden in code."
+				"note": "Figma-only. Documents the visual states of the item; in code these are the native interaction states of the underlying button or anchor and are not a property."
 			}
 		},
 		{

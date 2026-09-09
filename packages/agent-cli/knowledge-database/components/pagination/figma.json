@@ -18,5 +18,17 @@
 		}
 	],
 	"subComponents": ["pagination-item"],
-	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--pagination-beta' (fileKey FCa6P77h0VdXbs3bY9a4UD, Branch von core-components mlJ6R0GkfR15a93KSlqXtB). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Anlegen dieser Komponente entfernt wurde. Die beiden Größen sind als getrennte Hauptkomponenten modelliert, analog zu Link, Infotext und Checkbox. Damit kann der Children-Slot die Einsetzbarkeit auf das Item-Set der passenden Größe begrenzen (allowPreferredValuesOnly) und mindestens zwei Items verlangen (minChildren). Eine Size-Property tragen die Komponenten nicht; die Größe steckt in der Wahl der Komponente und wird über Code Connect übergeben. Einzige Achse ist 🔀 Position mit drei Werten, also je drei Varianten. Die Hauptkomponenten sind Slot-Komponenten: die beiden Pfeile (Icon Button Ghost) rahmen den Children-Slot ein, in den die Designer die Pagination Items legen; im Code berechnet DBPagination die Items aus den Properties. Die Truncation ist keine eigene Komponente, sondern die Variante Type=Truncation von Pagination Item."
+	"helperComponents": [
+		{
+			"name": "🛟 Pagination Truncation → Medium (Beta)",
+			"nodeId": "40157:4962",
+			"type": "COMPONENT"
+		},
+		{
+			"name": "🛟 Pagination Truncation → Small (Beta)",
+			"nodeId": "40266:920",
+			"type": "COMPONENT"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--pagination-beta' (fileKey FCa6P77h0VdXbs3bY9a4UD, Branch von core-components mlJ6R0GkfR15a93KSlqXtB). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Anlegen dieser Komponente entfernt wurde. Die beiden Größen sind als getrennte Hauptkomponenten modelliert, analog zu Link, Infotext und Checkbox. Damit kann der Children-Slot die Einsetzbarkeit auf das Item-Set der passenden Größe begrenzen (allowPreferredValuesOnly) und mindestens zwei Items verlangen (minChildren). Eine Size-Property tragen die Komponenten nicht; die Größe steckt in der Wahl der Komponente und wird über Code Connect übergeben. Einzige Achse ist 🔀 Position mit drei Werten, also je drei Varianten. Die Hauptkomponenten sind Slot-Komponenten: die beiden Pfeile (Icon Button Ghost) rahmen den Children-Slot ein, in den die Designer die Pagination Items und Truncations legen; im Code berechnet DBPagination die Items aus den Properties. Die Truncation ist in Figma eine eigene Helper-Komponente (🛟 Pagination Truncation) mit je einer Medium- und Small-Variante; im Code gibt es keine Entsprechung, dort entsteht sie durch das Weglassen der Seitenzahl an einem Item. Helper-Komponenten werden wie in allen anderen Komponenten nicht eigens dokumentiert."
 }

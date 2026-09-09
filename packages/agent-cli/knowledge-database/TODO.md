@@ -142,14 +142,6 @@ Beim Aufbau des Bereichs diese Regeln als erste Einträge übernehmen und prüfe
 
 Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Komponenten-Doku, sondern nach Figma Learn. Die Komponentenseite verweist dann darauf, statt den Inhalt zu wiederholen.
 
-- **End Slot des Navigation Items.** Wofür der End Slot gedacht ist, steht bisher nirgends — anders als bei `control-panel-brand`, wo eine Regel den End Slot auf Umgebungs-Informationen begrenzt. Das Floating Item wird in Figma Learn dokumentiert und von der Seite `control-panel-navigation-item` verlinkt. Bis dahin bleibt in der `guidelines.md` nur der Verfügbarkeitsfakt, dass Popover-Items keinen End Slot haben und Tree- und Drill-Down-Items einen.
-- **Manuell zu setzende Texte.** In Figma müssen Texte wie das Label des CP Back Buttons oder der Anwendungsname in CP Brand von Hand gesetzt werden, in Dev entstehen sie automatisch. Gleicher Output, anderer Weg — deshalb keine Inkonsistenz im Sinne von `inconsistencies.md`, aber erklärungsbedürftig für Designer:innen.
-- **Children-Slot der Pagination füllen.** Diese Aussagen standen als Regeln in `components/pagination/guidelines.md` und sind dort entfernt, weil sie im Code keine Entscheidung sind: Die Items werden von `DBPagination` berechnet. Für Figma bleiben sie nötig.
-    - Pro wählbarer Seite genau ein Pagination Item einsetzen und die Seitenzahlen aufsteigend anordnen.
-    - Genau ein Item auf `🔀 Current` mit dem Wert `True` setzen.
-    - Die Truncation über `🔀 Type` mit dem Wert `Truncation` erzeugen, nicht über eine eigene Komponente.
-    - Je Hauptkomponente ist nur das Item-Set der passenden Größe einsetzbar, der Slot erzwingt das über `allowPreferredValuesOnly`. Mindestens zwei Items sind nötig.
-    - Kombinationen von `🔀 Type` mit dem Wert `Truncation` und einem Interaktionszustand oder `🔀 Current` mit dem Wert `True` lösen keine eigene Variante auf.
 - **`multiline` des Loading Indicators.** `🔀 Multiline` liegt an den beiden Circular-Sets und stellt das Umbruchverhalten längerer Labels ein. Die Property existiert nur in Figma, im Code bricht das Label über das Layout um. Wann sie zu setzen ist, gehört deshalb nach Figma Learn und nicht in die Komponenten-Doku. Der Satz „Bei `variant` mit dem Wert `circular` und `orientation` mit dem Wert `vertical` steht das `label` unter dem Kreis und bricht bei größerer Länge um" stand als zweiter Satz in Regel 10 der `guidelines.md` und ist dort entfernt; die Längenempfehlung steht jetzt als Zusatzinformation.
 
 Beim Anlegen der Learn-Einträge prüfen, welche weiteren Aussagen aus den Guidelines dorthin gehören, statt in `## Zusätzliche Informationen` zu stehen.
