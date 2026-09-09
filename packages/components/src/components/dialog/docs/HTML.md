@@ -101,7 +101,12 @@ all of its submit buttons.
 
 ```html index.html
 <!-- index.html -->
-<dialog id="my-dialog" class="db-dialog">
+<dialog
+	id="my-dialog"
+	class="db-dialog"
+	closedby="any"
+	aria-labelledby="my-dialog-heading"
+>
 	<div class="db-dialog-header">
 		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Dialog title</h2>
@@ -141,7 +146,12 @@ and associate a footer submit button with it through the `form` attribute refere
 
 ```html index.html
 <!-- index.html -->
-<dialog id="my-dialog" class="db-dialog">
+<dialog
+	id="my-dialog"
+	class="db-dialog"
+	closedby="any"
+	aria-labelledby="my-dialog-heading"
+>
 	<div class="db-dialog-header">
 		<div id="my-dialog-heading" class="db-dialog-header-content">
 			<h2>Rename entry</h2>
@@ -282,14 +292,20 @@ In plain HTML you wire these fallbacks yourself: mark the dialog when `closedby`
 	 */
 	if (!("commandForElement" in HTMLButtonElement.prototype)) {
 		document
-			.querySelector('[commandfor="my-dialog"][command="show-modal"]')
-			?.addEventListener("click", () => {
-				dialog?.showModal?.();
+			.querySelectorAll('[commandfor="my-dialog"][command="show-modal"]')
+			.forEach((button) => {
+				button.addEventListener("click", () => {
+					dialog?.showModal?.();
+				});
 			});
 		document
-			.querySelector('[commandfor="my-dialog"][command="request-close"]')
-			?.addEventListener("click", () => {
-				dialog?.requestClose?.();
+			.querySelectorAll(
+				'[commandfor="my-dialog"][command="request-close"]'
+			)
+			.forEach((button) => {
+				button.addEventListener("click", () => {
+					dialog?.requestClose?.();
+				});
 			});
 	}
 </script>

@@ -21,14 +21,20 @@ $known-prefixes: "drawer", "dialog";
 
 // Grid shell shared by the drawer container element and the dialog element itself.
 // Emits no positioning and no sizing, so it stays usable for both element types.
-@mixin container-layout() {
+// $box-shadow gates the elevation: the dialog always carries it, but the drawer
+// applies its shadow only under [data-rounded="true"] (set in drawer.scss), so
+// it opts out here to keep the default square drawer shadow-free.
+@mixin container-layout($box-shadow: true) {
 	display: grid;
 	grid-template-rows:
 		[header] auto
 		[main] 1fr
 		[footer] auto;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	box-shadow: variables.$db-elevation-md;
+
+	@if $box-shadow {
+		box-shadow: variables.$db-elevation-md;
+	}
 }
 
 // Scrollable middle row. $prefix composes the overridable padding custom property,

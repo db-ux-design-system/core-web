@@ -77,12 +77,17 @@ $container-size-scale: (
 	// reduced motion.
 
 	// The zoom uses the standalone `scale` property (not `transform: scale()`)
-	// so it can be switched off with the real value `scale: none` from a single
-	// place (see the `data-closedby="not-supported"` rule below): when the
-	// `closedby` ponyfill is active, the backdrop-click hit-area (a
-	// `position: fixed` pseudo) must span the viewport, but any `scale`/`transform`
-	// value other than `none` - even `scale: 1` - would make `.db-dialog` a
-	// containing block that traps the pseudo inside the dialog box.
+	// so it can be switched off with the real value `scale: none`. Two reasons the
+	// resting values are `none`, never a number:
+	//   1. A non-`none` `scale`/`transform` - even `scale: 1` - makes `.db-dialog`
+	//      a containing block for `position: fixed` descendants. At rest that would
+	//      offset/clip nested `DBTooltip`/popover overlays (positioned with
+	//      viewport coordinates) against the dialog box and its `overflow: hidden`,
+	//      and it would trap the backdrop-click hit-area pseudo (see the
+	//      `data-closedby="not-supported"` rule below).
+	//   2. `scale` still interpolates when animating to/from `none` (`none` counts
+	//      as `1`), so the zoom plays 0.95 <-> none while the resting value stays
+	//      `none` - no persistent containing block once the transition settles.
 	@media (prefers-reduced-motion: no-preference) {
 		opacity: 0;
 		scale: 0.95;
@@ -100,7 +105,11 @@ $container-size-scale: (
 	&[open] {
 		@media (prefers-reduced-motion: no-preference) {
 			opacity: 1;
-			scale: 1;
+
+			// `none`, not `1`: the entry animates from the `@starting-style` 0.95
+			// up to 1 (`none` interpolates as 1), then rests at `none` so the open
+			// dialog never stays a containing block for nested fixed overlays.
+			scale: none;
 
 			// Slower duration for opening; closing uses the faster duration
 			// from the base rule above.
@@ -121,15 +130,15 @@ $container-size-scale: (
 		}
 	}
 
-	// BEGIN: closedby ponyfill – Single kill-switch for the zoom: while `closedby`
+	// BEGIN: closedby ponyfill - Single kill-switch for the zoom: while `closedby`
 	// is unsupported the backdrop-click hit-area is active and must span the
 	// viewport, so the dialog must not become a containing block for its
-	// `position: fixed` pseudo. `scale: none` removes the scale entirely (no
-	// containing block) while the dialog still fades; supporting browsers keep the
-	// zoom. No `prefers-reduced-motion` guard is needed: the `scale` value only
-	// exists under no-preference, so there is nothing to neutralise under reduced
-	// motion, and this unconditional rule (source-order last, equal specificity)
-	// still overrides the `scale: 1` inside the media query.
+	// `position: fixed` pseudo. The open/closed resting states already use
+	// `scale: none`; this additionally overrides the animating `scale: 0.95`
+	// (base / `@starting-style`) so the dialog stays scale-free (no transient
+	// containing block) in these browsers, at the cost of the zoom. No
+	// `prefers-reduced-motion` guard is needed: the `scale` value only exists
+	// under no-preference, so there is nothing to neutralise under reduced motion.
 	&[data-closedby="not-supported"] {
 		scale: none;
 	}

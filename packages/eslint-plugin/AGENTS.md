@@ -30,9 +30,12 @@ Every rule MUST support all three frameworks:
 
 - `createHeaderRequiredRule({ parent, header, messageId, message, description })` from `../../shared/slot-content.js` - creates a
   complete rule that reports a `parent` usage whose `header` slot does not resolve to the `header` component (React
-  `header` prop, Angular `header` or `slot="header"` attribute, Vue `#header` template, at any nesting depth). Used by
+  `header` prop, Angular `header` projection attribute, Vue `#header` template, at any nesting depth). Used by
   `drawer-header-required` and `dialog-header-required`. Rules built on it are pure configuration objects; the README
   anchor is derived from the kebab-case `messageId`.
+  Angular projects the slot through `<ng-content select="[header]">`, so only the `header` attribute enters the region;
+  `slot="header"` is deliberately **not** accepted, since Angular would not project it (consistent with
+  `sub-component-required-parent`).
 
 ### Constants
 

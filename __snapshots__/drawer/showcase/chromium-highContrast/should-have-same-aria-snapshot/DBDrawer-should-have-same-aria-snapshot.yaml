@@ -40,9 +40,8 @@
   - 'button "Open: With start slot"'
   - 'button "Open: With end slot"'
   - 'button "Open: With footer"'
-  - link "Example"
+  - link "Examples"
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
   - 'button "Open: With slots"'
-  - link "Events"
-  - button "Open Drawer"
+  - button "Cancel and close Events in console"

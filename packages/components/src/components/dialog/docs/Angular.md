@@ -109,7 +109,14 @@ Put a `<form method="dialog">` in the dialog content. Submitting it closes the d
 ```html app.component.html
 <!-- app.component.html -->
 
-<db-dialog [open]="openDialog" (close)="onClose($event)">
+<db-button
+	command="show-modal"
+	commandfor="my-dialog"
+	(click)="toggleDialog(true)"
+>
+	Open dialog
+</db-button>
+<db-dialog id="my-dialog" [open]="openDialog" (close)="onClose($event)">
 	<db-dialog-header header text="Rename entry" closeButtonText="Close">
 	</db-dialog-header>
 	<form id="my-dialog-form" method="dialog">
@@ -135,6 +142,9 @@ Put a `<form method="dialog">` in the dialog content. Submitting it closes the d
 // app.component.ts
 export class AppComponent {
 	openDialog: boolean = false;
+	toggleDialog = (open: boolean) => {
+		this.openDialog = open;
+	};
 	onClose = (event: Event) => {
 		this.openDialog = false;
 		const dialog = event.target as HTMLDialogElement;

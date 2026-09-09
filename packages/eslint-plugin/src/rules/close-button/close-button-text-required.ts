@@ -13,6 +13,30 @@ const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
+/**
+ * A React header whose close-button attribute is absent may still receive it
+ * through a JSX spread ({...props}). Its final value cannot be verified
+ * statically, so return true (unresolved) when a spread is present and the
+ * attribute is not set explicitly. An explicit attribute always wins over the
+ * spread and is checked normally.
+ */
+const isUnresolvedBySpread = (
+	openingElement: any,
+	attribute: string
+): boolean => {
+	const { attributes } = openingElement;
+	if (!Array.isArray(attributes)) {
+		return false;
+	}
+	const hasExplicitAttribute = attributes.some(
+		(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
+	);
+	const hasSpread = attributes.some(
+		(a: any) => a.type === 'JSXSpreadAttribute'
+	);
+	return hasSpread && !hasExplicitAttribute;
+};
+
 export default {
 	meta: {
 		type: 'problem' as const,
@@ -198,6 +222,19 @@ export default {
 					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
 				];
 			const value = getAttributeValue(openingElement, attribute);
+
+			// A JSX spread (e.g. <DBDialogHeader {...headerProps} />) may supply
+			// closeButtonText, so its final value cannot be verified statically.
+			// Treat the header as unresolved and do not report - matching how the
+			// header-required rules handle spreads - unless closeButtonText is set
+			// explicitly, in which case that explicit attribute wins and is checked
+			// below regardless of the spread.
+			if (
+				(value === undefined || value === '') &&
+				isUnresolvedBySpread(openingElement, attribute)
+			) {
+				return;
+			}
 
 			if (value === undefined || value === '') {
 				context.report({

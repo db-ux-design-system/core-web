@@ -109,7 +109,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 		<dialog
 			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
-			class={cls('db-drawer', props.className)}
+			class="db-drawer"
 			onCancel={(event: Event) => state.handleCancel(event)}
 			onClose={(event) => state.handleClose(event)}
 			// BEGIN: dialog ponyfill

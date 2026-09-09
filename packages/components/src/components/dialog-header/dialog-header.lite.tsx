@@ -32,7 +32,11 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 
 	// jscpd:ignore-start
 	const state = useStore<DBDialogHeaderState>({
-		_headingId: 'db-dialog-header-heading-' + uuid(),
+		// Left undefined at init so the uuid() runs only on the client (in
+		// onMount, via _resolveDialog), not during SSR. Generating it at render
+		// time would produce different server/client ids, and after hydration
+		// aria-labelledby would point at the stale server id -> no accessible name.
+		_headingId: undefined,
 		_dialogId: '',
 		// Declared in the store so Mitosis emits it as state (otherwise a member
 		// only assigned later, never initialized, is undeclared in the Vue output).
@@ -41,10 +45,17 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 		_resolveDialog() {
 			const dialog = resolveClosestDialog(_ref);
 			state._dialogId = getClosestDialogId(_ref) ?? '';
+			// Generate the heading id and wire aria-labelledby together, both on
+			// the client, so the heading element and the dialog reference stay in
+			// sync. Use a local const for the id: a state setter is async in the
+			// React output, so reading state._headingId right after assigning it
+			// would still see the old (undefined) value.
+			const headingId = 'db-dialog-header-heading-' + uuid();
+			state._headingId = headingId;
 			// Hold the element itself for cleanup, independent of the `id` used
 			// for the close button `commandfor`.
 			state._dialog = dialog;
-			setDialogAriaLabelledBy(dialog, state._headingId);
+			setDialogAriaLabelledBy(dialog, headingId);
 		},
 		removeAriaLabelledBy() {
 			removeDialogAriaLabelledBy(state._dialog, state._headingId);

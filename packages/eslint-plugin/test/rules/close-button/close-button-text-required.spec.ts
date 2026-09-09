@@ -264,6 +264,36 @@ const reactAttributeShapes: AttributeShape[] = [
 		shape: 'empty string',
 		code: '<DBDialogHeader closeButtonText="">Title</DBDialogHeader>',
 		reports: true
+	},
+	{
+		shape: 'statically empty string expression container',
+		code: "<DBDialogHeader closeButtonText={''}>Title</DBDialogHeader>",
+		reports: true
+	},
+	{
+		shape: 'statically empty template literal expression container',
+		code: '<DBDialogHeader closeButtonText={``}>Title</DBDialogHeader>',
+		reports: true
+	},
+	{
+		shape: 'whitespace-only string expression container',
+		code: '<DBDialogHeader closeButtonText={"   "}>Title</DBDialogHeader>',
+		reports: true
+	},
+	{
+		shape: 'JSX spread may supply the label (unresolved, no explicit attribute)',
+		code: '<DBDialogHeader {...headerProps} text="Title" />',
+		reports: false
+	},
+	{
+		shape: 'JSX spread with a non-empty explicit label',
+		code: '<DBDialogHeader {...headerProps} closeButtonText="Close" />',
+		reports: false
+	},
+	{
+		shape: 'JSX spread with an explicit empty label still reports',
+		code: "<DBDialogHeader {...headerProps} closeButtonText='' />",
+		reports: true
 	}
 ];
 
@@ -301,6 +331,11 @@ const vueAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'empty string',
 		code: '<template><DBDialogHeader close-button-text="">Title</DBDialogHeader></template>',
+		reports: true
+	},
+	{
+		shape: 'statically empty string binding',
+		code: `<template><DBDialogHeader :close-button-text="''">Title</DBDialogHeader></template>`,
 		reports: true
 	},
 	{
@@ -352,6 +387,16 @@ const angularAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'empty string, camelCase attribute',
 		code: '<db-dialog-header closeButtonText="">Title</db-dialog-header>',
+		reports: true
+	},
+	{
+		shape: 'statically empty string binding, kebab-case input',
+		code: `<db-dialog-header [close-button-text]="''">Title</db-dialog-header>`,
+		reports: true
+	},
+	{
+		shape: 'statically empty string binding, camelCase input',
+		code: `<db-dialog-header [closeButtonText]="''">Title</db-dialog-header>`,
 		reports: true
 	}
 ];

@@ -112,6 +112,14 @@ describe('setDialogAriaLabelledBy', () => {
 		).not.toThrow();
 		expect(() => setDialogAriaLabelledBy(null, 'heading-1')).not.toThrow();
 	});
+
+	it('leaves aria-labelledby unset for an undefined heading id', () => {
+		// The heading id is undefined until the client assigns it on mount
+		// (hydration-stable). No id must never write an empty reference.
+		const dialog = createDialogStub();
+		setDialogAriaLabelledBy(dialog, undefined);
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+	});
 });
 
 describe('removeDialogAriaLabelledBy', () => {
@@ -143,5 +151,14 @@ describe('removeDialogAriaLabelledBy', () => {
 		expect(() =>
 			removeDialogAriaLabelledBy(null, 'heading-1')
 		).not.toThrow();
+	});
+
+	it('leaves the attribute untouched for an undefined heading id', () => {
+		// If the component unmounts before the client assigned the heading id,
+		// cleanup must be a no-op rather than stripping a foreign value.
+		const dialog = createDialogStub({ id: 'my-dialog' });
+		setDialogAriaLabelledBy(dialog, 'foreign-id');
+		removeDialogAriaLabelledBy(dialog, undefined);
+		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
 	});
 });

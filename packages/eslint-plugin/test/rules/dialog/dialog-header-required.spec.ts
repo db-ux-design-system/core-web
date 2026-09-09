@@ -113,6 +113,32 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// A later explicit header overrides the spread (React later-wins); the
+		// explicit valid header is authoritative.
+		shape: 'JSX spread followed by a valid explicit header',
+		code: '<DBDialog {...dialogProps} header={<DBDialogHeader>Title</DBDialogHeader>}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// A valid header before the spread can be overridden by the spread, so
+		// the final value is unresolved and must not be reported.
+		shape: 'valid explicit header before a JSX spread (spread may override)',
+		code: '<DBDialog header={<DBDialogHeader>Title</DBDialogHeader>} {...dialogProps}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// The later explicit header wins and is null, so the dialog renders no
+		// header regardless of what the spread carries.
+		shape: 'JSX spread followed by an explicit null header',
+		code: '<DBDialog {...dialogProps} header={null}>Content</DBDialog>',
+		reports: true
+	},
+	{
+		shape: 'JSX spread followed by an explicit plain-markup header',
+		code: '<DBDialog {...dialogProps} header={<div>Title</div>}>Content</DBDialog>',
+		reports: true
+	},
+	{
 		shape: 'no header prop',
 		code: '<DBDialog>Content</DBDialog>',
 		reports: true
@@ -227,6 +253,19 @@ const angularHeaderShapes: HeaderShape[] = [
 	{
 		shape: 'header attribute on a wrapper, header component at depth 2',
 		code: '<db-dialog><ng-container header><div><db-dialog-header>Title</db-dialog-header></div></ng-container>Content</db-dialog>',
+		reports: false
+	},
+	{
+		// A structural directive (*ngIf) wraps the header in a Template node, so the
+		// projected header component sits one level deeper. The rule must recurse
+		// through that wrapper rather than reporting the valid header as missing.
+		shape: 'header attribute on a conditional (*ngIf) header component',
+		code: '<db-dialog><db-dialog-header *ngIf="show" header>Title</db-dialog-header>Content</db-dialog>',
+		reports: false
+	},
+	{
+		shape: 'header attribute on a conditional (*ngIf) wrapper',
+		code: '<db-dialog><ng-container *ngIf="show" header><db-dialog-header>Title</db-dialog-header></ng-container>Content</db-dialog>',
 		reports: false
 	},
 	{
