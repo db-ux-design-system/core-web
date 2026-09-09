@@ -35,6 +35,13 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
+		handleDialogOpen: () => {
+			syncDialogOpenState(
+				_ref,
+				getBoolean(props.open, 'open'),
+				state.isNotModal()
+			);
+		},
 		// BEGIN: dialog ponyfill
 		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
 		// Shared by DBDialog and DBDrawer.
@@ -48,13 +55,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 			escapeCloseFallback(event, _ref);
 		},
 		// END: dialog ponyfill
-		handleDialogOpen: () => {
-			syncDialogOpenState(
-				_ref,
-				getBoolean(props.open, 'open'),
-				state.isNotModal()
-			);
-		},
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
 			if (props.onCancel) {
@@ -77,6 +77,12 @@ export default function DBDrawer(props: DBDrawerProps) {
 		state.initialized = true;
 	});
 
+	// Intentionally observes `open` only, not `backdrop`. Modality (showModal
+	// vs show) is an open-time decision of the native <dialog>; there is no way
+	// to switch it while open without close()+reopen, which would flicker,
+	// reset focus and fire an extra close/cancel. So a `backdrop` change on an
+	// open dialog updates only its appearance, and the modality applied at open
+	// time stays until the consumer closes and reopens.
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
@@ -103,7 +109,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 		<dialog
 			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
-			class="db-drawer"
+			class={cls('db-drawer', props.className)}
 			onCancel={(event: Event) => state.handleCancel(event)}
 			onClose={(event) => state.handleClose(event)}
 			// BEGIN: dialog ponyfill
