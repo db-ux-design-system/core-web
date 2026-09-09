@@ -41,14 +41,8 @@ export const handleFrameworkEventAngular = (
 		}
 	}
 	component.propagateChange(value);
-	// The value handled here comes from the element itself, so it must not be
-	// written back into the DOM. `writeValue` does exactly that and stays
-	// reserved for programmatic writes (reactive forms, ngModel). Echoing a
-	// value the element already holds is a no-op at best - and destructive for
-	// a date input while the browser cannot parse the current entry
-	// (`validity.badInput`, e.g. a half typed date): the browser reports the
-	// value as an empty string there, and assigning an empty string clears the
-	// native date editor including everything the user typed so far.
+	// Model only. `writeValue` would write the value back into the element,
+	// which clears the native date editor while `validity.badInput` is set.
 	component._setModelValue(value);
 };
 

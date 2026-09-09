@@ -247,13 +247,9 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		// In Angular the element renders from state._value while props.value is
-		// the form model (see the value binding below). Both are kept in sync,
-		// except while the browser cannot parse the current entry
-		// (validity.badInput, e.g. a half typed date): the model correctly
-		// becomes empty there, but mirroring that into the display value would
-		// make Angular assign an empty string to the element, which clears the
-		// native date editor and drops everything the user typed so far.
+		// Angular renders from state._value. Keep the last parsable value while
+		// the entry is unparsable, otherwise the empty model value would clear
+		// the native date editor.
 		const keepDisplayValue = useTarget({
 			angular: Boolean(_ref?.validity?.badInput) && !props.value,
 			default: false
@@ -332,10 +328,8 @@ export default function DBInput(props: DBInputProps) {
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
 				value={useTarget({
-					// Angular renders from the display value, which lags behind
-					// the model while the entry is unparsable - see the comment
-					// in the onUpdate above. state._value starts out undefined,
-					// so the very first render still uses props.value.
+					// state._value starts out undefined, so the first
+					// render still uses props.value.
 					angular: state._value ?? props.value ?? '',
 					default: props.value ?? state._value ?? ''
 				})}
