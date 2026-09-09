@@ -264,6 +264,21 @@ const reactAttributeShapes: AttributeShape[] = [
 		shape: 'empty string',
 		code: '<DBDialogHeader closeButtonText="">Title</DBDialogHeader>',
 		reports: true
+	},
+	{
+		shape: 'statically empty string expression container',
+		code: "<DBDialogHeader closeButtonText={''}>Title</DBDialogHeader>",
+		reports: true
+	},
+	{
+		shape: 'statically empty template literal expression container',
+		code: '<DBDialogHeader closeButtonText={``}>Title</DBDialogHeader>',
+		reports: true
+	},
+	{
+		shape: 'whitespace-only string expression container',
+		code: '<DBDialogHeader closeButtonText={"   "}>Title</DBDialogHeader>',
+		reports: true
 	}
 ];
 
@@ -301,6 +316,11 @@ const vueAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'empty string',
 		code: '<template><DBDialogHeader close-button-text="">Title</DBDialogHeader></template>',
+		reports: true
+	},
+	{
+		shape: 'statically empty string binding',
+		code: `<template><DBDialogHeader :close-button-text="''">Title</DBDialogHeader></template>`,
 		reports: true
 	},
 	{
@@ -352,6 +372,16 @@ const angularAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'empty string, camelCase attribute',
 		code: '<db-dialog-header closeButtonText="">Title</db-dialog-header>',
+		reports: true
+	},
+	{
+		shape: 'statically empty string binding, kebab-case input',
+		code: `<db-dialog-header [close-button-text]="''">Title</db-dialog-header>`,
+		reports: true
+	},
+	{
+		shape: 'statically empty string binding, camelCase input',
+		code: `<db-dialog-header [closeButtonText]="''">Title</db-dialog-header>`,
 		reports: true
 	}
 ];

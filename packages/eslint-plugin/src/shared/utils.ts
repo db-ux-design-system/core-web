@@ -75,6 +75,11 @@ export function getAttributeValue(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
 		if (input) {
+			// A statically empty binding ([attr]="''") carries no accessible
+			// content, so surface it as an empty string rather than dynamic.
+			if (isStaticallyEmptyAngularInput(input.value)) {
+				return '';
+			}
 			return true;
 		}
 		return undefined;
@@ -114,6 +119,12 @@ export function getAttributeValue(
 		if (!attr.value) {
 			return true;
 		}
+		// A statically empty binding (:attr="''", :attr="``") carries no
+		// accessible content, so surface it as an empty string rather than a
+		// dynamic sentinel.
+		if (isStaticallyEmptyExpression((attr.value as any)?.expression)) {
+			return '';
+		}
 		// Dynamic bindings (:attr="expr") return a non-empty string or
 		// fall back to DYNAMIC_EXPRESSION to distinguish from valueless true
 		return attr.value.value ?? DYNAMIC_EXPRESSION;
@@ -134,10 +145,69 @@ export function getAttributeValue(
 		return attr.value.value as string;
 	}
 	if (attr.value.type === 'JSXExpressionContainer') {
+		// A statically empty expression (attr={''}, attr={``}) carries no
+		// accessible content, so surface it as an empty string rather than a
+		// dynamic sentinel.
+		if (isStaticallyEmptyExpression(attr.value.expression)) {
+			return '';
+		}
 		// Dynamic expressions (attr={expr}) — distinct from valueless true
 		return DYNAMIC_EXPRESSION;
 	}
 	return undefined;
+}
+
+/**
+ * Angular equivalent of isStaticallyEmptyExpression for parsed input bindings.
+ * The Angular template AST exposes a string literal as `LiteralPrimitive` with a
+ * string `value`; the raw `source` (e.g. `''`) is the quoted text. Only an empty
+ * (or whitespace-only) string literal counts as empty; any other expression is
+ * unresolvable dynamic content.
+ */
+function isStaticallyEmptyAngularInput(value: any): boolean {
+	if (!value) {
+		return false;
+	}
+	if (
+		value.type === 'LiteralPrimitive' &&
+		typeof value.value === 'string' &&
+		value.value.trim() === ''
+	) {
+		return true;
+	}
+	// Some parser versions expose only the raw source for the binding.
+	return (
+		value.source === "''" || value.source === '""' || value.source === '``'
+	);
+}
+
+/**
+ * Detects expressions that are statically an empty string: a string literal
+ * `''`/`""` or a template literal with no substitutions and empty text (` `` `).
+ * Whitespace-only literals count as empty because they render no visible or
+ * accessible text. Anything else (identifiers, calls, member access, non-empty
+ * literals) is treated as unresolvable dynamic content.
+ */
+function isStaticallyEmptyExpression(expression: any): boolean {
+	if (!expression) {
+		return false;
+	}
+	if (expression.type === 'Literal') {
+		return (
+			typeof expression.value === 'string' &&
+			expression.value.trim() === ''
+		);
+	}
+	if (expression.type === 'TemplateLiteral') {
+		return (
+			expression.expressions.length === 0 &&
+			// cspell:ignore quasis
+			expression.quasis.every(
+				(quasi: any) => (quasi.value?.cooked ?? '').trim() === ''
+			)
+		);
+	}
+	return false;
 }
 
 export function hasChildOfType(
