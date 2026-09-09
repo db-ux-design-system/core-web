@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs';
 import { readFile, readdir } from 'node:fs/promises';
 import { basename, extname, join } from 'node:path';
-import { type ToolResult, error } from '../utils';
+import { type ToolResult, ASSETS_DIR, error } from '../utils';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -12,7 +12,7 @@ import { type ToolResult, error } from '../utils';
  Images are already downsampled (max 800x800 px, JPEG q75) -
  NO image processing happens at runtime.
  */
-const VISUALS_DIR = join(import.meta.dirname, '../../assets/visuals');
+const VISUALS_DIR = join(ASSETS_DIR, 'visuals');
 
 const SUPPORTED_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 
