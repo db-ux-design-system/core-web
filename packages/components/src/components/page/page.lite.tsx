@@ -14,6 +14,9 @@ import { DBPageProps, DBPageState } from './model';
 useMetadata({});
 useDefaultProps<DBPageProps>({});
 
+/**
+ * @deprecated Use DBShell instead
+ */
 export default function DBPage(props: DBPageProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start

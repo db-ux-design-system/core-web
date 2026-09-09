@@ -1,5 +1,12 @@
 # @db-ux/core-eslint-plugin
 
+## 5.3.0
+
+### Minor Changes
+
+- feat: add `control-panel-mobile-burger-menu-label-required` rule to recommended preset, replacing `header-burger-menu-label-required` for the new control-panel architecture - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - The legacy `header-burger-menu-label-required` rule remains available for consumers still using `DBHeader`.
+
 ## 5.2.1
 
 _version bump_

@@ -1,0 +1,52 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/animation";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/navigation-item";
+@use "control-panel-navigation-item-group-menu-non-tree";
+
+%db-control-panel-navigation-item-group-menu-popover {
+	@extend %db-control-panel-navigation-item-group-menu-non-tree;
+
+	inset-inline-start: 0;
+	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+	border: component.$component-border;
+	border-radius: variables.$db-border-radius-sm;
+	box-shadow: variables.$db-elevation-md;
+	padding: variables.$db-spacing-fixed-sm;
+	block-size: fit-content;
+	position: absolute;
+	inline-size: variables.$db-container-xs;
+	transition: visibility 1ms linear; // workaround to enable focus with keyboard
+
+	.db-control-panel-navigation-item-group-back-button {
+		display: none;
+	}
+
+	&:is(:hover, :focus-within):not([data-force-close="true"]) {
+		visibility: visible;
+	}
+
+	&[data-force-close="true"] {
+		pointer-events: none;
+	}
+
+	.db-control-panel-navigation-item-group-menu {
+		// 1px for box shadow
+		inset-block-start: calc(-50% + #{variables.$db-spacing-fixed-xs} + 1px);
+		inset-inline-start: calc(100% + #{variables.$db-spacing-fixed-xs});
+
+		@include navigation-item.navigation-item-group-menu-triangle-vertical;
+
+		// Viewport overflow positioning (both vertical and horizontal)
+		// is handled by JS (adjustNestedSubNavigationPosition) which
+		// computes precise pixel-based transforms on mouse enter.
+
+		&[data-outside-vx="right"] {
+			&::before {
+				inset-block: auto 0;
+				transform: translateX(100%) scaleX(-1);
+			}
+		}
+	}
+}

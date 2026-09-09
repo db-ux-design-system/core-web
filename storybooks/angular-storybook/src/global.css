@@ -5,4 +5,24 @@
 
 .docs-story {
 	background-color: var(--db-adaptive-bg-basic-level-1-default);
+
+	&:has(.db-shell) {
+		padding: 0;
+
+		> div {
+			inline-size: 100%;
+		}
+
+		.innerZoomElementWrapper > * {
+			border-width: 0 !important;
+		}
+	}
+
+	.db-shell {
+		max-inline-size: 100%;
+	}
+}
+
+#storybook-root:has(.db-shell) {
+	padding: 0 !important;
 }

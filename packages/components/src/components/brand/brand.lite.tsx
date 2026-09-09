@@ -13,6 +13,9 @@ useMetadata({});
 
 useDefaultProps<DBBrandProps>({});
 
+/**
+ * @deprecated Use DBControlPanelBrand instead
+ */
 export default function DBBrand(props: DBBrandProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start

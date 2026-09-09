@@ -79,11 +79,11 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
-				code: '<DBNavigationItem />',
+				code: '<DBControlPanelNavigationItem />',
 				errors: [
 					{
 						messageId: 'missingContent',
-						data: { component: 'DBNavigationItem' }
+						data: { component: 'DBControlPanelNavigationItem' }
 					}
 				]
 			},

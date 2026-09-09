@@ -12,14 +12,14 @@ export default function NavigationItemDisabled() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem
-					disabled={false}
-					text="(Default) False"></DBNavigationItem>
+				<DBNavigationItem disabled={false}>
+					<a href="#">(Default) False</a>
+				</DBNavigationItem>
 			</ul>
 			<ul>
-				<DBNavigationItem
-					disabled={true}
-					text="True"></DBNavigationItem>
+				<DBNavigationItem disabled={true}>
+					<a href="#">True</a>
+				</DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

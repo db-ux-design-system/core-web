@@ -1,0 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+
+%control-panel-actions {
+	display: flex;
+	gap: variables.$db-spacing-fixed-xs;
+	align-items: center;
+
+	&:empty {
+		display: none;
+	}
+}
