@@ -17,11 +17,13 @@ vi.mock('node:child_process', () => ({
 	exec(
 		_cmd: string,
 		_options: unknown,
-		// `null` on success, mirroring node:child_process' own
-		// `ExecException | null` contract — code under test may compare against
-		// it, so the mock must not silently swap it for `undefined`.
+		// Passes `null` on success, mirroring node:child_process' own
+		// `ExecException | null` contract — the mock must not silently swap it
+		// for `undefined`. The parameter is typed `unknown` rather than
+		// `Error | null` because `null` is banned as a type (xo's
+		// no-restricted-types); `unknown` still accepts the `null` passed below.
 		cb: (
-			error: Error | null | undefined,
+			error: unknown,
 			result?: { stdout: string; stderr: string }
 		) => void
 	) {
