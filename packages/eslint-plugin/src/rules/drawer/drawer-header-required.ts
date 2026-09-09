@@ -67,7 +67,11 @@ function hasDrawerHeader(node: any): boolean {
  */
 function hasVueHeaderSlot(node: any): boolean {
 	return (node.children || []).some((child: any) => {
-		if (child.type !== 'VElement' && child.type !== 'Element') {
+		if (
+			child.type !== 'VElement' &&
+			child.type !== 'Element' &&
+			child.type !== 'Element$1'
+		) {
 			return false;
 		}
 
@@ -110,7 +114,9 @@ function hasVueDrawerHeader(node: any): boolean {
 	}
 	return node.children.some((child: any) => {
 		if (
-			(child.type === 'VElement' || child.type === 'Element') &&
+			(child.type === 'VElement' ||
+				child.type === 'Element' ||
+				child.type === 'Element$1') &&
 			isDBComponent(child, 'DBDrawerHeader')
 		) {
 			return true;

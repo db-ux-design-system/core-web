@@ -83,7 +83,9 @@ function hasVueHeader(node: any, header: string): boolean {
 	}
 	return node.children.some((child: any) => {
 		if (
-			(child.type === 'VElement' || child.type === 'Element') &&
+			(child.type === 'VElement' ||
+				child.type === 'Element' ||
+				child.type === 'Element$1') &&
 			isDBComponent(child, header)
 		) {
 			return true;
@@ -101,7 +103,11 @@ function hasVueHeader(node: any, header: string): boolean {
  */
 function hasVueHeaderSlot(node: any, header: string): boolean {
 	return (node.children || []).some((child: any) => {
-		if (child.type !== 'VElement' && child.type !== 'Element') {
+		if (
+			child.type !== 'VElement' &&
+			child.type !== 'Element' &&
+			child.type !== 'Element$1'
+		) {
 			return false;
 		}
 
