@@ -129,6 +129,25 @@ function sortedNames(entries: Array<{ name: string }>): string[] {
 	return entries.map((entry) => entry.name).toSorted();
 }
 
+/**
+ Registers the surface assertion shared by the era suites.
+
+ The advertised tools and prompts must be identical on both eras, so the check
+ is defined once here and called from each `describe` instead of being repeated
+ verbatim. The client is passed as a thunk because the suites assign it in
+ `beforeAll`, after this runs.
+ */
+function itAdvertisesTheFullSurface(getClient: () => Client): void {
+	it('advertises every tool and prompt', async () => {
+		const client = getClient();
+		const { tools } = await client.listTools();
+		const { prompts } = await client.listPrompts();
+
+		expect(sortedNames(tools)).toEqual(EXPECTED_TOOLS);
+		expect(sortedNames(prompts)).toEqual(EXPECTED_PROMPTS);
+	}, 10_000);
+}
+
 describe('MCP server — stdio transport (legacy era)', () => {
 	let client: Client;
 	let transport: StdioClientTransport;
@@ -145,13 +164,7 @@ describe('MCP server — stdio transport (legacy era)', () => {
 		expect(client.getProtocolEra()).toBe('legacy');
 	});
 
-	it('advertises every tool and prompt', async () => {
-		const { tools } = await client.listTools();
-		const { prompts } = await client.listPrompts();
-
-		expect(sortedNames(tools)).toEqual(EXPECTED_TOOLS);
-		expect(sortedNames(prompts)).toEqual(EXPECTED_PROMPTS);
-	}, 10_000);
+	itAdvertisesTheFullSurface(() => client);
 
 	it('responds to list_components with a valid component list containing "button"', async () => {
 		const response = await client.callTool({ name: 'list_components' });
@@ -199,13 +212,7 @@ describe('MCP server — stdio transport (modern era, 2026-07-28)', () => {
 		expect(client.getProtocolEra()).toBe('modern');
 	});
 
-	it('advertises every tool and prompt', async () => {
-		const { tools } = await client.listTools();
-		const { prompts } = await client.listPrompts();
-
-		expect(sortedNames(tools)).toEqual(EXPECTED_TOOLS);
-		expect(sortedNames(prompts)).toEqual(EXPECTED_PROMPTS);
-	}, 10_000);
+	itAdvertisesTheFullSurface(() => client);
 
 	it('serves a tool call with validated arguments', async () => {
 		const response = await client.callTool({
