@@ -48,31 +48,6 @@
 			}
 		},
 		{
-			"id": "minimum-number-of-entries",
-			"headline": {
-				"de": "Mindestanzahl Einträge",
-				"en": "Minimum Number of Entries"
-			},
-			"text": {
-				"de": "Pagination lohnt sich bei mehr als 20 Einträgen. Kürzere Listen werden vollständig gezeigt.",
-				"en": "Pagination pays off for more than 20 entries. Shorter lists are shown in full."
-			},
-			"do": {
-				"figmaNodeId": "4004-2",
-				"description": {
-					"de": "Setze Pagination bei mehr als 20 Einträgen ein.",
-					"en": "Use Pagination for more than 20 entries."
-				}
-			},
-			"caution": {
-				"figmaNodeId": "4004-3",
-				"description": {
-					"de": "Bei kürzeren Listen kostet das Blättern mehr, als das Aufteilen einspart. Zeige die Liste dann vollständig.",
-					"en": "With shorter lists, paging costs more than splitting saves. Show the list in full instead."
-				}
-			}
-		},
-		{
 			"id": "first-and-last-page",
 			"headline": {
 				"de": "Erste und letzte Seite",
@@ -104,8 +79,8 @@
 				"en": "Single-Line Pagination"
 			},
 			"text": {
-				"de": "Die Pagination bleibt einzeilig. `boundaryCount` und `siblingCount` bestimmen, wie viele Seitenzahlen entstehen; höchstens sieben passen in den meisten Ansichten in eine Zeile.",
-				"en": "Pagination stays on one line. `boundaryCount` and `siblingCount` determine how many page numbers appear; at most seven fit on one line in most views."
+				"de": "Die Pagination sollte einzeilig bleiben. `boundaryCount` und `siblingCount` bestimmen, wie viele Seitenzahlen entstehen; höchstens sieben sind dafür der Richtwert.",
+				"en": "Pagination should stay on one line. `boundaryCount` and `siblingCount` determine how many page numbers appear; at most seven is the recommended maximum."
 			},
 			"do": {
 				"figmaNodeId": "4004-8",
@@ -175,6 +150,55 @@
 	],
 	"examples": [
 		{
+			"id": "page-size",
+			"headline": {
+				"de": "Einträge pro Seite",
+				"en": "Entries per Page"
+			},
+			"text": {
+				"de": "Welcher Wert für `pageSize` passt, hängt von der Art der Einträge und ihrer Anordnung ab. Der Default ist `10`.",
+				"en": "Which value suits `pageSize` depends on the type of entries and their arrangement. The default is `10`."
+			},
+			"items": [
+				{
+					"id": "table-rows",
+					"headline": {
+						"de": "Tabellenzeilen",
+						"en": "Table Rows"
+					},
+					"figmaNodeId": "4004-2",
+					"description": {
+						"de": "Tabellenzeilen brauchen wenig Höhe: hier liegen 20 Zeilen auf einer Seite.",
+						"en": "Table rows need little height: 20 rows sit on one page here."
+					}
+				},
+				{
+					"id": "cards-in-a-grid",
+					"headline": {
+						"de": "Karten im Grid",
+						"en": "Cards in a Grid"
+					},
+					"figmaNodeId": "4170-3837",
+					"description": {
+						"de": "Im dreispaltigen Grid liegen 12 Karten auf einer Seite, verteilt auf vier Reihen.",
+						"en": "In a three-column grid, 12 cards sit on one page across four rows."
+					}
+				},
+				{
+					"id": "multi-line-list-entries",
+					"headline": {
+						"de": "Mehrzeilige Listeneinträge",
+						"en": "Multi-Line List Entries"
+					},
+					"figmaNodeId": "4170-3838",
+					"description": {
+						"de": "Mehrzeilige Einträge brauchen mehr Höhe: hier liegen 8 Einträge auf einer Seite.",
+						"en": "Multi-line entries need more height: 8 entries sit on one page here."
+					}
+				}
+			]
+		},
+		{
 			"id": "position-of-the-current-page",
 			"headline": {
 				"de": "Lage der aktuellen Seite",
@@ -189,7 +213,7 @@
 					"id": "start-middle-and-end",
 					"headline": {
 						"de": "Anfang, Mitte und Ende",
-						"en": "Start, Middle and End"
+						"en": "Start, Middle, and End"
 					},
 					"figmaNodeId": "4004-17",
 					"description": {
@@ -213,7 +237,7 @@
 				{
 					"id": "above-and-below-the-breakpoint",
 					"headline": {
-						"de": "Ab und unter dem Breakpoint",
+						"de": "Ober- und unterhalb des Breakpoints",
 						"en": "Above and Below the Breakpoint"
 					},
 					"figmaNodeId": "4004-20",
