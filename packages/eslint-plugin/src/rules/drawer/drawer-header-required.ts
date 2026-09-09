@@ -15,6 +15,13 @@ import {
  */
 function hasAngularHeaderSlot(node: any): boolean {
 	return (node.children || []).some((child: any) => {
+		// A structural directive (e.g. *ngIf, *ngFor) wraps the real element in a
+		// Template node, so the projected header sits one level deeper. Recurse
+		// through Template wrappers before checking the projection attribute.
+		if (child.type === 'Template' || child.type === 'Template$1') {
+			return hasAngularHeaderSlot(child);
+		}
+
 		if (child.type === 'Element' || child.type === 'Element$1') {
 			// Check if child has the `header` attribute
 			const hasHeaderAttr = child.attributes?.some(

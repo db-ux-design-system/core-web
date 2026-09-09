@@ -230,6 +230,19 @@ const angularHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// A structural directive (*ngIf) wraps the header in a Template node, so the
+		// projected header component sits one level deeper. The rule must recurse
+		// through that wrapper rather than reporting the valid header as missing.
+		shape: 'header attribute on a conditional (*ngIf) header component',
+		code: '<db-dialog><db-dialog-header *ngIf="show" header>Title</db-dialog-header>Content</db-dialog>',
+		reports: false
+	},
+	{
+		shape: 'header attribute on a conditional (*ngIf) wrapper',
+		code: '<db-dialog><ng-container *ngIf="show" header><db-dialog-header>Title</db-dialog-header></ng-container>Content</db-dialog>',
+		reports: false
+	},
+	{
 		// Same reason: `slot="header"` on a wrapper is not the `[header]` projection
 		// selector, so Angular does not project it into the header slot.
 		shape: 'slot="header" on a wrapper (not projected in Angular)',

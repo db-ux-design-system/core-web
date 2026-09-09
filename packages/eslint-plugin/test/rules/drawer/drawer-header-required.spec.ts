@@ -153,6 +153,11 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<db-drawer><ng-container header><db-drawer-header>Title</db-drawer-header></ng-container>Content</db-drawer>'
+			},
+			{
+				// A structural directive (*ngIf) wraps the header in a Template node;
+				// the rule must recurse through it rather than reporting a missing header.
+				code: '<db-drawer><db-drawer-header *ngIf="show" header>Title</db-drawer-header>Content</db-drawer>'
 			}
 		],
 		invalid: [
