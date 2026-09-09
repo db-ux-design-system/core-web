@@ -47,6 +47,7 @@ or wire a [custom command](https://developer.mozilla.org/en-US/docs/Web/API/Invo
 		id="my-drawer"
 		class="db-drawer"
 		data-backdrop="true"
+		closedby="any"
 		aria-labelledby="my-drawer-heading"
 	>
 		<article class="db-drawer-container">
