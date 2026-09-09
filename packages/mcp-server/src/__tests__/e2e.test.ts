@@ -7,7 +7,8 @@
  */
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { resolve } from 'node:path';
+import { unlinkSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 const SERVER_ENTRY = resolve(import.meta.dirname, '../index.ts');
@@ -89,20 +90,46 @@ describe('MCP server — stdio transport', () => {
 		expect(alias?.description).toContain('scan_generation_2_migration');
 	}, 10_000);
 
-	it('both scan tool names delegate to the same handler and return a report', async () => {
-		const args = { filePath: 'does-not-exist-alias-check.html' };
+	it('both scan tool names delegate to the same handler and return an identical report', async () => {
+		// The scanner resolves filePath relative to the server's cwd (REPO_ROOT)
+		// and rejects anything outside it, so the fixture must live inside the repo.
+		const fixtureName = `.scan-alias-e2e-${Date.now()}.html`;
+		const fixturePath = join(REPO_ROOT, fixtureName);
+		writeFileSync(
+			fixturePath,
+			'<div><cmp-button class="cmp-button">Click</cmp-button></div>'
+		);
 
-		const canonical = await client.callTool({
-			name: 'scan_generation_2_migration',
-			arguments: args
-		});
-		const alias = await client.callTool({
-			name: 'scan_v2_migration',
-			arguments: args
-		});
+		const readText = (
+			result: Awaited<ReturnType<typeof client.callTool>>
+		) =>
+			(result.content as Array<{ type: string; text: string }>).find(
+				(c) => c.type === 'text'
+			)?.text ?? '';
 
-		// An unknown-tool error would surface here if either registration were missing.
-		expect(canonical.content).toBeDefined();
-		expect(alias.content).toBeDefined();
+		try {
+			const args = { filePath: fixtureName };
+
+			const canonical = await client.callTool({
+				name: 'scan_generation_2_migration',
+				arguments: args
+			});
+			const alias = await client.callTool({
+				name: 'scan_v2_migration',
+				arguments: args
+			});
+
+			// A real report is produced (not the existsSync error path).
+			expect(canonical.isError).toBeFalsy();
+			expect(alias.isError).toBeFalsy();
+
+			const canonicalText = readText(canonical);
+			expect(canonicalText).toContain('cmp-button');
+
+			// Same handler -> byte-for-byte identical payloads.
+			expect(readText(alias)).toStrictEqual(canonicalText);
+		} finally {
+			unlinkSync(fixturePath);
+		}
 	}, 10_000);
 });
