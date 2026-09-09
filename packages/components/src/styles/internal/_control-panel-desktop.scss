@@ -299,6 +299,12 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		}
 
 		.db-control-panel-brand {
+			@media screen and (prefers-reduced-motion: reduce) {
+				&::before {
+					transition: none;
+				}
+			}
+
 			&::before {
 				transition: transform
 					#{variables.$db-transition-straight-emotional};
@@ -334,6 +340,7 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 					--db-logo-aspect-ratio-short,
 					var(--db-logo-aspect-ratio)
 				);
+
 				// The inline-size of the container minus the height of the logo * aspect-ratio divided by 2 to center the logo in the container. This is a workaround to use animations.
 				transform: translateX(
 					calc(
