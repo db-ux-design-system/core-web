@@ -183,7 +183,9 @@
 	}
 
 	.db-drawer-container {
-		@include dialog-components.container-layout;
+		// Drawer keeps its shadow rounded-only (see &[data-rounded="true"] below),
+		// so it opts out of the shared shadow to preserve the square-drawer look.
+		@include dialog-components.container-layout($box-shadow: false);
 		@include dialog-components.safe-area("drawer");
 
 		inline-size: var(--db-drawer-inline-size);
