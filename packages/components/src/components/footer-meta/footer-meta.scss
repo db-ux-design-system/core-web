@@ -26,7 +26,7 @@
 		 * narrow-viewport case. Reusing the horizontal value there would space
 		 * them far too widely apart.
 		 */
-		gap: variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-lg;
+		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 		flex-wrap: wrap;
 	}
 
