@@ -58,11 +58,24 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: 'ngAfterViewInit()',
 		to: `
-		/** @legacy CVA - will be removed in a future major version */
-		writeValue(value: any) {
+		/**
+		 * @internal Applies a value to the model signal without writing it back
+		 * into the DOM. Used for values that originate from the element itself,
+		 * where the write-back is redundant - and destructive for a date input
+		 * whose current entry the browser cannot parse (validity.badInput):
+		 * assigning the empty string it reports there clears the native editor.
+		 */
+		_setModelValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
+			${valueAccessorRequired ? '}' : ''}
+		}
 
+		/** @legacy CVA - will be removed in a future major version */
+		writeValue(value: any) {
+		  this._setModelValue(value);
+
+			${valueAccessorRequired ? 'if(value){' : ''}
 		  if (this._ref()?.nativeElement) {
 			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }

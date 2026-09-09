@@ -72,7 +72,7 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: undefined,
-		_value: '',
+		_value: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -247,7 +247,21 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		// In Angular the element renders from state._value while props.value is
+		// the form model (see the value binding below). Both are kept in sync,
+		// except while the browser cannot parse the current entry
+		// (validity.badInput, e.g. a half typed date): the model correctly
+		// becomes empty there, but mirroring that into the display value would
+		// make Angular assign an empty string to the element, which clears the
+		// native date editor and drops everything the user typed so far.
+		const keepDisplayValue = useTarget({
+			angular: Boolean(_ref?.validity?.badInput) && !props.value,
+			default: false
+		});
+
+		if (!keepDisplayValue) {
+			state._value = props.value;
+		}
 	}, [props.value]);
 
 	onUpdate(() => {
@@ -317,7 +331,14 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={props.value ?? state._value ?? ''}
+				value={useTarget({
+					// Angular renders from the display value, which lags behind
+					// the model while the entry is unparsable - see the comment
+					// in the onUpdate above. state._value starts out undefined,
+					// so the very first render still uses props.value.
+					angular: state._value ?? props.value ?? '',
+					default: props.value ?? state._value ?? ''
+				})}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}
