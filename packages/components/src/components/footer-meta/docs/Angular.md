@@ -16,4 +16,4 @@ import { DBFooter, DBFooterMeta } from "@db-ux/ngx-core-components";
 export class AppComponent {}
 ```
 
-The copyright and the secondary content sit side by side while there is room for both, and the copyright stays aligned to the top of that row. Once the secondary content no longer fits beside it, it moves below the copyright and takes the full width. The switch follows the width available to the footer rather than the viewport, so a footer inside a narrower region, such as a shell with an open side panel, stacks even while a wide window is open.
+The copyright and the secondary content sit side by side from a footer width of 768 px upwards, with the copyright aligned to the top of the row. Below that the secondary content moves under the copyright and takes the full width. The switch measures the footer rather than the viewport, so a footer narrowed by its surroundings, such as a shell with an open side panel, stacks even while a wide window is open.

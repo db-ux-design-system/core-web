@@ -8,11 +8,11 @@
 
 feat(DBFooterMeta): derive the meta layout from the available width
 
-The copyright and the secondary content sit side by side while there is room for both and
-stack once there is not, with the copyright aligned to the top of the row either way. The
-switch is intrinsic to the flex layout rather than driven by a viewport media query, so a
-footer narrowed by its surroundings, such as a shell with an open side panel, stacks even
-while a wide window is open.
+The copyright and the secondary content sit side by side from a footer width of 768 px
+upwards and stack below that, with the copyright aligned to the top of the row either
+way. The switch is intrinsic to the flex layout rather than driven by a viewport media
+query, so a footer narrowed by its surroundings, such as a shell with an open side panel,
+stacks even while a wide window is open.
 
 The strip also sets `body-sm` on itself, so the list items no longer keep the inherited
 body size and push the links below the copyright next to them. Related fix: the `width`

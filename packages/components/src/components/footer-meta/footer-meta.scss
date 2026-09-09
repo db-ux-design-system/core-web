@@ -1,17 +1,15 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 /*
- * How much room the secondary content needs before it is worth putting next to
- * the copyright. Chosen so that a footer at the small breakpoint (768px) minus
- * the strip padding, the column gap and a short copyright still clears it, which
- * puts the switch to the stacked layout at roughly that width. It is a threshold,
- * not a derived constant: a longer copyright leaves less room and therefore
- * stacks earlier, which is the intended "side by side while there is space"
- * behaviour.
+ * The inline size at which the meta row switches between the two layouts,
+ * measured on the row itself: the small breakpoint minus the strip padding on
+ * both sides. Expressed in tokens rather than as a pre-computed number so it
+ * follows the padding, which changes with the density.
  */
-$secondary-min-inline-size: 35rem;
+$layout-break: "#{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)} - 2 * #{variables.$db-spacing-fixed-lg}";
 
 .db-footer-meta {
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
@@ -49,17 +47,24 @@ $secondary-min-inline-size: 35rem;
 		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 
 		/*
-		 * The layout switch is intrinsic: while the minimum below fits beside the
-		 * copyright, the secondary content stays on that line and its own content
-		 * wraps inside it; once it no longer fits, the flex line breaks and the
-		 * block moves under the copyright at full width.
+		 * Switches the two layouts on the width of the row itself, without a query.
+		 * `100%` in the flex basis resolves against the row, so the subtraction
+		 * changes sign at the break: above it the basis is negative and gets
+		 * clamped to zero, which lets the secondary content share the line with the
+		 * copyright and wrap its own content inside that column; below it the basis
+		 * becomes a value far wider than the row, so the flex line breaks and the
+		 * block moves under the copyright at full width. The factor only needs to
+		 * be large enough to push it past any realistic row width.
 		 *
-		 * The zero flex basis keeps it on the line in the first case - with an
-		 * `auto` basis the line-breaking step uses its max-content width and
-		 * pushes it onto a line of its own straight away.
+		 * `min-inline-size: 0` is required for the first case: without it the
+		 * automatic minimum size stops the column from shrinking below the width of
+		 * its widest link.
 		 *
-		 * `min()` against `100%` is what stops the minimum from overflowing a
-		 * container narrower than the threshold.
+		 * The point of comparing against the row rather than against the space left
+		 * next to the copyright is that the break then does not move with the
+		 * length of the copyright text. Verified in Chromium and WebKit: the
+		 * narrowest footer that still puts them side by side is 768px for both a
+		 * short and a long copyright.
 		 *
 		 * Deliberately not a container query: making the footer a size container
 		 * stops its contents from contributing to its intrinsic width, so any
@@ -70,9 +75,9 @@ $secondary-min-inline-size: 35rem;
 		 * wide screen) would keep the side-by-side layout without the room for it.
 		 */
 		> :not(.db-footer-copyright) {
-			flex: 1 1 0;
+			flex: 1 1 calc((#{$layout-break} - 100%) * 999);
 			max-inline-size: 100%;
-			min-inline-size: min($secondary-min-inline-size, 100%);
+			min-inline-size: 0;
 		}
 	}
 
