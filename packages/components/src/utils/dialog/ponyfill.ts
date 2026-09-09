@@ -74,6 +74,12 @@ export const requestCloseFallback = (
 ): void => {
 	if (!dialog) return;
 
+	// Honor a canceled click: native button command activation is suppressed
+	// when a consumer handler calls preventDefault(), so the fallback must not
+	// close the dialog either. This keeps supported and fallback browsers
+	// consistent and lets consumers conditionally veto the close on click.
+	if (event?.defaultPrevented) return;
+
 	const button = (event?.target as HTMLElement)?.closest?.(
 		'[command="request-close"]'
 	);

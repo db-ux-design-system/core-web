@@ -125,6 +125,20 @@ describe('markClosedByFallback', () => {
 });
 
 describe('requestCloseFallback', () => {
+	it('does nothing when the click was canceled via preventDefault', async () => {
+		stubCommandForSupport(false);
+		const { requestCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub();
+		requestCloseFallback(
+			{
+				...(createClickEvent('test-dialog', true, dialog) as object),
+				defaultPrevented: true
+			},
+			dialog
+		);
+		expect(dialog._calls).toEqual([]);
+	});
+
 	it('closes the dialog when Invoker Commands are unsupported', async () => {
 		stubCommandForSupport(false);
 		const { requestCloseFallback } = await loadPonyfill();
