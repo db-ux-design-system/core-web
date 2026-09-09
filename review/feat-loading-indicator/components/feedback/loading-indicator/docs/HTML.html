@@ -1,10 +1,19 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-loading-indicator/_next/static/css/a145a39a964584a4.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-loading-indicator/_next/static/css/a145a39a964584a4.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-loading-indicator/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/webpack-ba7d8c10185f2f8a.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/main-ea34d2b27335df10.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/pages/_app-99441ac2c6e3f121.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/pages/components/feedback/loading-indicator/docs/HTML-72b1b33c1a02b1e4.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/L_5DH_amzoMZ-abu3NU4Y/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/L_5DH_amzoMZ-abu3NU4Y/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-loading-indicator/components/feedback/loading-indicator/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-loading-indicator/_next/static/css/edad92cac444f6fc.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-loading-indicator/_next/static/css/edad92cac444f6fc.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-loading-indicator/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/webpack-ba7d8c10185f2f8a.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/main-ea34d2b27335df10.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/pages/_app-99441ac2c6e3f121.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/chunks/pages/components/feedback/loading-indicator/docs/HTML-37e2ba28cb4368a5.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/k5g6KYmHtv9Z2XQzWnZMZ/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-loading-indicator/_next/static/k5g6KYmHtv9Z2XQzWnZMZ/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-loading-indicator/components/feedback/loading-indicator/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
 <p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
 <h3 id="use-component">Use component<a class="header-link" href="/core-web/review/feat-loading-indicator/components/feedback/loading-indicator/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
 <p>The <code>db-loading-indicator</code> class expects an inner <code>&lt;div&gt;</code> with a live-region role
 (<code>status</code>) that wraps a <code>&lt;label&gt;</code>, its associated native <code>&lt;progress&gt;</code> and an
-<code>aria-hidden</code> span for the visible progress text. For the circular variant, add
-the SVG spinner markup.</p>
+<code>aria-hidden</code> span for the visible progress text. The <code>&lt;progress&gt;</code> must be a
+<strong>sibling</strong> of the <code>&lt;label&gt;</code> (associated via <code>for</code>/<code>id</code>), not a child, because
+the stylesheet only visually hides a <code>div &gt; progress</code> sibling — nesting it inside
+the label leaves the native control visible next to the custom spinner. For the
+circular variant, add the SVG spinner markup.</p>
+<p>For a determinate value (as opposed to the indeterminate spinner), CSS-only
+consumers must set the attributes the framework logic would otherwise derive:
+<code>data-indeterminate=&quot;false&quot;</code> and <code>data-state=&quot;active&quot;</code> so the stylesheet shows
+the segment instead of the continuous animation, and the
+<code>--db-loading-indicator-percentage</code> custom property (a fraction between 0 and 1,
+here <code>0.42</code> for 42 of 100) because there is no JavaScript to calculate it.</p>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
 ...
 &lt;body&gt;
@@ -12,6 +21,9 @@ the SVG spinner markup.</p>
 		class=&quot;db-loading-indicator&quot;
 		data-variant=&quot;circular&quot;
 		data-orientation=&quot;horizontal&quot;
+		data-indeterminate=&quot;false&quot;
+		data-state=&quot;active&quot;
+		style=&quot;--db-loading-indicator-percentage: 0.42;&quot;
 	&gt;
 		&lt;svg
 			class=&quot;db-loading-indicator-circle&quot;
@@ -27,16 +39,12 @@ the SVG spinner markup.</p>
 				for=&quot;loading-indicator-1-progress&quot;
 			&gt;
 				Loading
-				&lt;progress
-					id=&quot;loading-indicator-1-progress&quot;
-					value=&quot;42&quot;
-					max=&quot;100&quot;
-				&gt;
-					42 of 100
-				&lt;/progress&gt;
 			&lt;/label&gt;
+			&lt;progress id=&quot;loading-indicator-1-progress&quot; value=&quot;42&quot; max=&quot;100&quot;&gt;
+				42 of 100
+			&lt;/progress&gt;
 			&lt;span aria-hidden=&quot;true&quot;&gt;42 of 100&lt;/span&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/body&gt;
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/feedback/loading-indicator/docs/HTML","query":{},"buildId":"L_5DH_amzoMZ-abu3NU4Y","assetPrefix":"/core-web/review/feat-loading-indicator","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/feedback/loading-indicator/docs/HTML","query":{},"buildId":"k5g6KYmHtv9Z2XQzWnZMZ","assetPrefix":"/core-web/review/feat-loading-indicator","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
