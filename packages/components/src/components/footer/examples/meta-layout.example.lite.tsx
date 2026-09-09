@@ -6,158 +6,212 @@ import { StorybookFooterArgTypes } from './_footer.arg.types';
 
 useMetadata({
 	storybookTitle: 'Meta layout',
-	storybookNames: ['Wide', 'Medium', 'Narrow'],
+	storybookNames: [
+		'Side by side',
+		'Side by side with wrapped links',
+		'Stacked'
+	],
 	storybookArgTypes: StorybookFooterArgTypes
 });
 
 /*
- * DBFooterMeta lays its copyright and content out side by side from the small
- * breakpoint upwards and stacks them below it. The switch is a container query on
- * the footer, so it follows the space the footer actually has rather than the
- * viewport. Constraining the width per example therefore shows the real states.
+ * The three arrangements come from one set of rules that reacts to the footer's
+ * own available width, so the only difference between the variants is how much
+ * width their wrapper grants them. Nothing here simulates a state: each footer
+ * gets the same markup, and the layout it ends up in is the one the CSS produces
+ * at that width.
+ *
+ * The wrappers carry `max-inline-size: 100%`, so on a narrow screen the wider
+ * variants fall back to the same arrangement as the narrow one. That is the real
+ * behaviour and has to stay visible rather than being scaled away.
  */
 export default function FooterMetaLayout() {
 	return (
-		<div
-			style={{
-				display: 'grid',
-				gap: 'var(--db-spacing-fixed-lg)',
-				width: '100%'
-			}}>
-			<div style={{ maxInlineSize: '60rem' }}>
-				<p
-					style={{
-						font: 'var(--db-type-body-sm)',
-						margin: '0 0 0.5rem'
-					}}>
-					Wide: copyright and links share one line.
-				</p>
-				<DBFooter>
-					<DBFooterMeta copyright="Example Company">
-						<nav aria-label="Wide legal navigation">
-							<ul>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#wide-privacy">
-										Privacy policy
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#wide-imprint">
-										Imprint
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#wide-terms">
-										Terms and conditions
-									</DBLink>
-								</li>
-							</ul>
-						</nav>
-					</DBFooterMeta>
-				</DBFooter>
-			</div>
-
-			<div style={{ maxInlineSize: '48rem' }}>
-				<p
-					style={{
-						font: 'var(--db-type-body-sm)',
-						margin: '0 0 0.5rem'
-					}}>
-					Medium: still side by side, the links wrap within their
-					column while the copyright stays top aligned.
-				</p>
-				<DBFooter>
-					<DBFooterMeta copyright="Example Company">
-						<nav aria-label="Medium legal navigation">
-							<ul>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#medium-privacy">
-										Privacy policy
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#medium-imprint">
-										Imprint
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#medium-accessibility">
-										Accessibility statement
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#medium-terms">
-										Terms and conditions
-									</DBLink>
-								</li>
-							</ul>
-						</nav>
-					</DBFooterMeta>
-				</DBFooter>
-			</div>
-
-			<div style={{ maxInlineSize: '20rem' }}>
-				<p
-					style={{
-						font: 'var(--db-type-body-sm)',
-						margin: '0 0 0.5rem'
-					}}>
-					Narrow: below the breakpoint the links move underneath the
-					copyright.
-				</p>
-				<DBFooter>
-					<DBFooterMeta copyright="Example Company">
-						<nav aria-label="Narrow legal navigation">
-							<ul>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#narrow-privacy">
-										Privacy policy
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#narrow-imprint">
-										Imprint
-									</DBLink>
-								</li>
-								<li>
-									<DBLink
-										variant="inline"
-										size="small"
-										href="#narrow-terms">
-										Terms and conditions
-									</DBLink>
-								</li>
-							</ul>
-						</nav>
-					</DBFooterMeta>
-				</DBFooter>
+		<div class="footer-meta-layout-example">
+			<div class="footer-meta-layout-example-track">
+				{/* Enough room for the links to sit next to the copyright on one line. */}
+				<div style={{ inlineSize: '100%' }}>
+					<DBFooter>
+						<DBFooterMeta copyright="Example Company">
+							<nav aria-label="Legal navigation, side by side">
+								<ul>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#privacy">
+											Privacy policy
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#imprint">
+											Imprint
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#accessibility">
+											Accessibility statement
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#terms">
+											Terms and conditions
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#cookies">
+											Cookie settings
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#contact">
+											Contact and feedback
+										</DBLink>
+									</li>
+								</ul>
+							</nav>
+						</DBFooterMeta>
+					</DBFooter>
+				</div>
+				{/*
+				 * Still beside the copyright, but no longer wide enough for the links
+				 * to share a single line, so they wrap inside their own column.
+				 */}
+				<div style={{ inlineSize: '768px', maxInlineSize: '100%' }}>
+					<DBFooter>
+						<DBFooterMeta copyright="Example Company">
+							<nav aria-label="Legal navigation, wrapped links">
+								<ul>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#privacy">
+											Privacy policy
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#imprint">
+											Imprint
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#accessibility">
+											Accessibility statement
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#terms">
+											Terms and conditions
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#cookies">
+											Cookie settings
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#contact">
+											Contact and feedback
+										</DBLink>
+									</li>
+								</ul>
+							</nav>
+						</DBFooterMeta>
+					</DBFooter>
+				</div>
+				{/*
+				 * Too narrow for both columns, so the links move under the copyright and
+				 * take the full width. The copyright stays top aligned.
+				 */}
+				<div style={{ inlineSize: '320px', maxInlineSize: '100%' }}>
+					<DBFooter>
+						<DBFooterMeta copyright="Example Company">
+							<nav aria-label="Legal navigation, stacked">
+								<ul>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#privacy">
+											Privacy policy
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#imprint">
+											Imprint
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#accessibility">
+											Accessibility statement
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#terms">
+											Terms and conditions
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#cookies">
+											Cookie settings
+										</DBLink>
+									</li>
+									<li>
+										<DBLink
+											variant="inline"
+											size="small"
+											href="#contact">
+											Contact and feedback
+										</DBLink>
+									</li>
+								</ul>
+							</nav>
+						</DBFooterMeta>
+					</DBFooter>
+				</div>
 			</div>
 		</div>
 	);

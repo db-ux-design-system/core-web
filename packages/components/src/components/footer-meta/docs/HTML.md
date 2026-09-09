@@ -12,3 +12,5 @@ Use `.db-footer-meta` as the secondary visual area inside a native `.db-footer`.
 	</div>
 </footer>
 ```
+
+The copyright and the secondary content sit side by side while there is room for both, and the copyright stays aligned to the top of that row. Once the secondary content no longer fits beside it, it moves below the copyright and takes the full width. The switch follows the width available to the footer rather than the viewport, so a footer inside a narrower region, such as a shell with an open side panel, stacks even while a wide window is open.

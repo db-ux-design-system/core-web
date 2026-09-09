@@ -219,23 +219,10 @@
 	display: none !important;
 }
 
-/*
- * The DBFooter width variants clamp the inner content at 48em, 64em and 90em, so they
- * only render differently once more space than the clamp is available. On narrow
- * viewports all variants therefore fill the full width and look identical, which is
- * the actual behaviour and must stay visible: scaling the clamp to the example width
- * would hide a regression in the real breakpoints instead of exposing it.
- */
 .footer-width-example {
 	inline-size: 100%;
 }
 
-/*
- * Overrides the generic ".variants-list > div:not([class^='db-'])" rule above, which
- * turns any plain wrapper into a centred flex row. The variants have to stack so their
- * differing inline sizes stay comparable against a shared inline-start edge.
- * The selector deliberately matches that rule's specificity and relies on source order.
- */
 .variants-list > div.footer-width-example {
 	display: block;
 }
@@ -243,6 +230,34 @@
 .footer-width-example-track {
 	display: grid;
 	gap: var(--db-spacing-fixed-sm);
+}
+
+.footer-meta-layout-example {
+	inline-size: 100%;
+
+	/*
+	 * ".variants-list" is a wrapping flex container, so without this the automatic
+	 * minimum size keeps this item at the min-content width of its widest variant
+	 * and the card overflows on a narrow screen.
+	 */
+	min-inline-size: 0;
+}
+
+.variants-list > div.footer-meta-layout-example {
+	display: block;
+}
+
+.footer-meta-layout-example-track {
+	display: grid;
+
+	/*
+	 * An implicit "auto" track would size to the widest variant and overflow the
+	 * card, and the "max-inline-size: 100%" on the variants would then resolve
+	 * against that oversized track instead of the space actually available.
+	 */
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--db-spacing-fixed-sm);
+	justify-items: start;
 }
 
 .stack-container {

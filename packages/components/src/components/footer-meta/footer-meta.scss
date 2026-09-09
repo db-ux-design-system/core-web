@@ -1,12 +1,31 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
+
+/*
+ * How much room the secondary content needs before it is worth putting next to
+ * the copyright. Chosen so that a footer at the small breakpoint (768px) minus
+ * the strip padding, the column gap and a short copyright still clears it, which
+ * puts the switch to the stacked layout at roughly that width. It is a threshold,
+ * not a derived constant: a longer copyright leaves less room and therefore
+ * stacks earlier, which is the intended "side by side while there is space"
+ * behaviour.
+ */
+$secondary-min-inline-size: 35rem;
 
 .db-footer-meta {
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	border-block-start: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+	/*
+	 * The whole strip is small text, as in the design. Without it the list items
+	 * keep the inherited body size and their taller line box pushes the links
+	 * a few pixels below the copyright next to them. Note that this also changes
+	 * what `em` means inside the area, which is why the width clamps in
+	 * footer.scss use `rem`.
+	 */
+	font: var(--db-type-body-sm);
 	inline-size: 100%;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 
@@ -20,43 +39,40 @@
 		@include helpers.display(flex);
 
 		/*
-		 * Below the breakpoint the copyright sits above the secondary content,
-		 * separated by the row gap. The copyright stays top aligned rather than
-		 * centring itself against content that spans several rows.
+		 * The copyright stays top aligned rather than centring itself against
+		 * content that spans several rows, in both layouts.
 		 */
 		align-items: flex-start;
-		flex-direction: column;
-		gap: variables.$db-spacing-fixed-xs;
+		flex-flow: row wrap;
+
+		/* Row gap between the stacked columns, column gap between them side by side. */
+		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 
 		/*
-		 * Sizing guards for the secondary content, in both layouts: without them
-		 * an unbreakable string grows the box past the available width.
+		 * The layout switch is intrinsic: while the minimum below fits beside the
+		 * copyright, the secondary content stays on that line and its own content
+		 * wraps inside it; once it no longer fits, the flex line breaks and the
+		 * block moves under the copyright at full width.
+		 *
+		 * The zero flex basis keeps it on the line in the first case - with an
+		 * `auto` basis the line-breaking step uses its max-content width and
+		 * pushes it onto a line of its own straight away.
+		 *
+		 * `min()` against `100%` is what stops the minimum from overflowing a
+		 * container narrower than the threshold.
+		 *
+		 * Deliberately not a container query: making the footer a size container
+		 * stops its contents from contributing to its intrinsic width, so any
+		 * content-sized ancestor - a centred flex row, a `fit-content` box, a
+		 * table cell - collapses to zero width. Deliberately not a media query
+		 * either: that measures the viewport, so a footer narrowed by its
+		 * surroundings (a shell with an open side panel, a `width` variant on a
+		 * wide screen) would keep the side-by-side layout without the room for it.
 		 */
 		> :not(.db-footer-copyright) {
+			flex: 1 1 0;
 			max-inline-size: 100%;
-			min-inline-size: 0;
-		}
-	}
-
-	/*
-	 * From the small breakpoint upwards the two sit side by side. The zero flex
-	 * basis is what keeps the content on that line: with an `auto` basis the
-	 * line-breaking step uses its max-content width and pushes it onto a line of
-	 * its own instead of letting it wrap internally.
-	 *
-	 * The condition uses `rem` rather than the em-based breakpoint token: inside
-	 * a container query `em` resolves against the container's own font-size, so a
-	 * consumer changing it would move the breakpoint. `rem` stays tied to the
-	 * root and therefore still scales with the user's font size setting.
-	 */
-	@container db-footer (min-width: #{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)}) {
-		.db-footer-container {
-			column-gap: variables.$db-spacing-fixed-lg;
-			flex-flow: row wrap;
-
-			> :not(.db-footer-copyright) {
-				flex: 1 1 0;
-			}
+			min-inline-size: min($secondary-min-inline-size, 100%);
 		}
 	}
 
