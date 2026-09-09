@@ -1,5 +1,7 @@
 # Knowledge-Database — Offene Punkte
 
+> Diese Datei führt ausschließlich **offene** Punkte. Erledigtes wird hier **entfernt**, nicht als „erledigt" vermerkt oder abgehakt — der Nachweis steht im Commit und im geänderten Artefakt. Ein Punkt darf Kontext zu bereits Erledigtem enthalten, wenn er das verbleibende Offene verständlich macht (z. B. „der übrige Bestand ist erledigt, offen ist nur noch X").
+
 ## Components
 
 ### 1. `code.json` für alle Komponenten ausrollen
