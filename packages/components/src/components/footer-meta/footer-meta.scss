@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 .db-footer-meta {
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
@@ -18,22 +19,45 @@
 	.db-footer-container {
 		@include helpers.display(flex);
 
-		align-items: center;
+		/*
+		 * Below the breakpoint the copyright sits above the secondary content,
+		 * separated by the row gap. The copyright stays top aligned rather than
+		 * centring itself against content that spans several rows.
+		 */
+		align-items: flex-start;
+		flex-direction: column;
+		gap: variables.$db-spacing-fixed-xs;
 
 		/*
-		 * Row and column gap differ: the row gap only applies once the copyright
-		 * and the secondary content wrap onto separate lines, which is the
-		 * narrow-viewport case. Reusing the horizontal value there would space
-		 * them far too widely apart.
+		 * Sizing guards for the secondary content, in both layouts: without them
+		 * an unbreakable string grows the box past the available width.
 		 */
-		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
-		flex-wrap: wrap;
+		> :not(.db-footer-copyright) {
+			max-inline-size: 100%;
+			min-inline-size: 0;
+		}
 	}
 
-	.db-footer-container > :not(.db-footer-copyright) {
-		flex: 1 1 auto;
-		max-inline-size: 100%;
-		min-inline-size: 0;
+	/*
+	 * From the small breakpoint upwards the two sit side by side. The zero flex
+	 * basis is what keeps the content on that line: with an `auto` basis the
+	 * line-breaking step uses its max-content width and pushes it onto a line of
+	 * its own instead of letting it wrap internally.
+	 *
+	 * The condition uses `rem` rather than the em-based breakpoint token: inside
+	 * a container query `em` resolves against the container's own font-size, so a
+	 * consumer changing it would move the breakpoint. `rem` stays tied to the
+	 * root and therefore still scales with the user's font size setting.
+	 */
+	@container db-footer (min-width: #{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)}) {
+		.db-footer-container {
+			column-gap: variables.$db-spacing-fixed-lg;
+			flex-flow: row wrap;
+
+			> :not(.db-footer-copyright) {
+				flex: 1 1 0;
+			}
+		}
 	}
 
 	/*
@@ -51,7 +75,7 @@
 			@include helpers.display(flex);
 
 			flex-wrap: wrap;
-			gap: variables.$db-spacing-fixed-md;
+			gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 		}
 	}
 

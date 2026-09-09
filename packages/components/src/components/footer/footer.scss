@@ -2,6 +2,15 @@
 
 .db-footer {
 	/*
+	 * Named size container for the areas inside. The footer carries no padding,
+	 * so its content box is the available footer width, which is what the
+	 * design's breakpoints refer to. A container query rather than a media query
+	 * because the footer can sit in a narrow layout or use a `width` variant, in
+	 * which case the viewport says nothing about the space it actually has.
+	 */
+	container: db-footer / inline-size;
+
+	/*
 	 * DBPage turns the footer into a flex container: the header-footer-style mixin
 	 * in page.scss applies `display: flex` to `> :is(.db-header, .db-footer, ...)`
 	 * inside `.db-page[data-variant="fixed"]`. Without this the content and meta
