@@ -19,6 +19,7 @@
   - 'button "Open: With end slot"'
   - 'button "Open: With footer"'
   - 'button "Open: With header subtitle"'
-  - link "JS Events on console"
-  - button "Open Dialog"
-  - button "Open Dialog"
+  - link "Examples"
+  - button "Cancel and close Events in console"
+  - button "Buttons type dialog event in console"
+  - 'button "Open: Nested overlays"'
