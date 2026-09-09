@@ -135,5 +135,13 @@ export const escapeCloseFallback = (
 	// Modal dialogs already dismiss on Escape natively; only non-modal ones need help.
 	if (dialog.matches?.(':modal')) return;
 
+	// Scope to the owning dialog. When a nested dialog is open inside this
+	// non-modal one, its Escape keydown bubbles up here; the browser dismisses
+	// the nested dialog itself, so closing this outer one too would collapse
+	// both layers. Only act when the closest dialog to the event target is this
+	// dialog, not a nested one. Edge case, but hey ...
+	const targetDialog = (event?.target as HTMLElement)?.closest?.('dialog');
+	if (targetDialog && targetDialog !== dialog) return;
+
 	dialog.requestClose();
 };

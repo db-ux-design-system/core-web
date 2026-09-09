@@ -260,6 +260,26 @@ describe('escapeCloseFallback', () => {
 		expect(dialog._calls).toEqual([]);
 	});
 
+	it('ignores Escape bubbling from a nested dialog', async () => {
+		stubClosedBySupport(false);
+		const { escapeCloseFallback } = await loadPonyfill();
+		const outerDialog = createDialogStub('outer', false);
+		const nestedDialog = createDialogStub('nested', false);
+		// Escape originates inside the nested dialog: its closest dialog is the
+		// nested one, so the outer non-modal handler must not close.
+		escapeCloseFallback(
+			{
+				key: 'Escape',
+				target: {
+					closest: (selector: string) =>
+						selector === 'dialog' ? nestedDialog : null
+				}
+			},
+			outerDialog
+		);
+		expect(outerDialog._calls).toEqual([]);
+	});
+
 	it('ignores non-Escape keys and a missing dialog', async () => {
 		stubClosedBySupport(false);
 		const { escapeCloseFallback } = await loadPonyfill();
