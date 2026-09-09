@@ -335,6 +335,10 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 				position: absolute;
 			}
 
+			.db-control-panel-brand-end-slot {
+				display: none;
+			}
+
 			&::before {
 				$aspect-ratio: var(
 					--db-logo-aspect-ratio-short,
@@ -342,14 +346,20 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 				);
 
 				// The inline-size of the container minus the height of the logo * aspect-ratio divided by 2 to center the logo in the container. This is a workaround to use animations.
-				transform: translateX(
-					calc(
-						(#{variables.$db-sizing-md} - 1lh * #{$aspect-ratio}) /
-							2
-					)
+				$logo-translation: calc(
+					(#{variables.$db-sizing-md} - 1lh * #{$aspect-ratio}) / 2
 				);
+
+				transform: translateX($logo-translation);
 				aspect-ratio: $aspect-ratio;
 				background-image: var(--db-logo-url-short, var(--db-logo-url));
+
+				// In RTL the logo sits at the physical right edge, so the
+				// translation has to move it toward the center in the opposite
+				// direction.
+				&:dir(rtl) {
+					transform: translateX(calc(-1 * #{$logo-translation}));
+				}
 			}
 		}
 
