@@ -36,7 +36,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		// Declared in the store so Mitosis emits it as state (otherwise a member
 		// only assigned later, never initialized, is undeclared in the Vue output).
 		_dialog: undefined,
-		// Links the heading to the dialog
+		// Links the heading to the dialog and captures its id as the close button's command target.
 		_resolveDialog() {
 			const dialog = resolveClosestDialog(_ref);
 			state._dialogId = getClosestDialogId(_ref) ?? '';
@@ -71,7 +71,8 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			</div>
 			<Slot name="endSlot" />
 			<DBButton
-				data-action="close"
+				commandfor={state._dialogId}
+				command="request-close"
 				id={props.closeButtonId}
 				icon="cross"
 				variant="ghost"
