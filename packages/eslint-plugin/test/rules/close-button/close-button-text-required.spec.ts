@@ -279,6 +279,21 @@ const reactAttributeShapes: AttributeShape[] = [
 		shape: 'whitespace-only string expression container',
 		code: '<DBDialogHeader closeButtonText={"   "}>Title</DBDialogHeader>',
 		reports: true
+	},
+	{
+		shape: 'JSX spread may supply the label (unresolved, no explicit attribute)',
+		code: '<DBDialogHeader {...headerProps} text="Title" />',
+		reports: false
+	},
+	{
+		shape: 'JSX spread with a non-empty explicit label',
+		code: '<DBDialogHeader {...headerProps} closeButtonText="Close" />',
+		reports: false
+	},
+	{
+		shape: 'JSX spread with an explicit empty label still reports',
+		code: "<DBDialogHeader {...headerProps} closeButtonText='' />",
+		reports: true
 	}
 ];
 
