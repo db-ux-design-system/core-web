@@ -18,8 +18,24 @@ runs:
       with:
         node-version: ${{ inputs.nodeVersion }}
         node-version-file: ".nvmrc"
-        cache: "pnpm"
+
+    # Cache the resolved dependency tree (linked node_modules + the pnpm virtual
+    # store at node_modules/.pnpm) rather than only the download store. On a hit,
+    # `pnpm install` only has to verify links, turning a 30-45s install into a
+    # near-instant step. This single cache also works inside the Playwright
+    # containers, where the previous setup-node "pnpm" cache was re-saving the
+    # store on every shard (the expensive "Post Init Cache" step).
+    - name: 🆒 Cache node_modules
+      id: modules-cache
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      with:
+        path: |
+          node_modules
+          **/node_modules
+        key: pnpm-modules-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          pnpm-modules-${{ runner.os }}-${{ hashFiles('.nvmrc') }}-
 
     - name: ⏬ Install dependencies
       shell: bash
-      run: pnpm install
+      run: pnpm install --frozen-lockfile --prefer-offline
