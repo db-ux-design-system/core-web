@@ -126,13 +126,6 @@ jobs:
     needs: [build-figma-code-connect, init]
     secrets: inherit
 
-  test-components:
-    uses: ./.github/workflows/02-e2e.yml
-    needs: [build-packages, init]
-    secrets: inherit
-    with:
-      version: ${{ needs.init.outputs.playwrightVersion }}
-
   test-foundations:
     uses: ./.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
@@ -324,15 +317,6 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
       baseUrl: ${{ needs.init.outputs.baseUrl }}
 
-  regenerate-snapshots-components:
-    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-components.result == 'failure' }}
-    uses: ./.github/workflows/02-e2e-regenerate.yml
-    secrets: inherit
-    with:
-      version: ${{ needs.init.outputs.playwrightVersion }}
-      type: components
-    needs: [test-components, init]
-
   regenerate-snapshots-foundations:
     if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: ./.github/workflows/02-e2e-regenerate.yml
@@ -404,21 +388,18 @@ jobs:
     secrets: inherit
     if: |
       ${{ github.event_name == 'pull_request' && !cancelled() &&
-        ( needs.regenerate-snapshots-components.result == 'success' ||
-        needs.regenerate-snapshots-foundations.result == 'success' ||
+        ( needs.regenerate-snapshots-foundations.result == 'success' ||
         needs.regenerate-snapshots-patternhub.result == 'success' ||
         needs.regenerate-snapshots.result == 'success' )
       }}
     needs:
       [
-        regenerate-snapshots-components,
         regenerate-snapshots-foundations,
         regenerate-snapshots-patternhub,
         regenerate-snapshots
       ]
     with:
       showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
-      components: ${{ needs.regenerate-snapshots-components.result == 'success' }}
       foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
       patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
@@ -450,7 +431,6 @@ jobs:
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
-          resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
           resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
@@ -475,7 +455,6 @@ jobs:
           echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
           echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
           echo "resultBuildOutputs: $resultBuildOutputs"
-          echo "resultTestPackages: $resultTestPackages"
           echo "resultTestFoundations: $resultTestFoundations"
           echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
           echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
@@ -497,7 +476,6 @@ jobs:
              [[ $resultTestShowcaseReact == "success" ]] && \
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
-             [[ $resultTestPackages == "success" ]] && \
              [[ $resultTestVitePlugin == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
@@ -532,7 +510,6 @@ jobs:
         build-showcase-patternhub,
         build-outputs,
         test-figma-code-connect,
-        test-components,
         test-vite-plugin,
         test-showcase-stencil,
         test-showcase-angular,

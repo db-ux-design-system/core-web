@@ -94,7 +94,6 @@
     "@guidepup/playwright": "0.19.1",
     "@guidepup/record": "0.1.0",
     "@guidepup/setup": "0.25.2",
-    "@playwright/experimental-ct-core": "1.62.1",
     "@playwright/test": "1.62.1",
     "@typescript-eslint/eslint-plugin": "8.69.0",
     "@typescript-eslint/parser": "8.69.0",

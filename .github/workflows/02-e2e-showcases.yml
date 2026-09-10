@@ -85,6 +85,13 @@ jobs:
         run: |
           pnpm --filter ${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
+      - name: 👩🔬 Test interaction with Playwright 🎭
+        id: interaction
+        shell: bash
+        if: github.event.pull_request != null
+        run: |
+          pnpm --filter ${{ inputs.showcase }} run test:interaction --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
       - name: 👩🔬 Test visual-snapshots with Playwright 🎭
         id: visual-snapshots
         shell: bash

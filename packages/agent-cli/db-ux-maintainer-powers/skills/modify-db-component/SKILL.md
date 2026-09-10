@@ -53,7 +53,7 @@ outputs:
     - "packages/components/src/components/{component_slug}/model.ts"
     - "packages/components/src/components/{component_slug}/{component_slug}.lite.tsx"
     - "packages/components/src/components/{component_slug}/{component_slug}.scss"
-    - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"
+    - "showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts"
 
 on_error:
     max_retries: 3
@@ -94,37 +94,34 @@ Throughout this skill:
     - `packages/components/src/components/{component_slug}/model.ts`
     - `packages/components/src/components/{component_slug}/{component_slug}.lite.tsx`
     - `packages/components/src/components/{component_slug}/{component_slug}.scss`
-    - `packages/components/src/components/{component_slug}/{component_slug}.spec.tsx`
+    - `showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts` (if it exists)
 5. Read and capture the FULL current state before making ANY changes.
 
 ### Step 1: RED - Update Tests First
 
-Based on the user's instruction, update `{component_slug}.spec.tsx`:
+Behavior is tested cross-framework against the running showcase, not by mounting an isolated component (see `packages/components/AGENTS.md` and the maintainer `context/architecture.md` § Testing Rules).
 
-- If adding a new variant: add screenshot and aria-snapshot tests for that variant.
-- If adding a new prop: add test cases exercising the new prop.
-- If changing behavior: update existing assertions to reflect the new expected behavior.
+Based on the user's instruction:
 
-Rules:
+- If adding a new variant or prop with observable behavior (click, keyboard, focus, open/close, value change): add or update `showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts`, using `runInteractionTest` from `../default.ts`. If the fixture in `examples/interaction.example.lite.tsx` does not yet expose what the new behavior needs, extend it — reflect the effect into observable DOM (state + conditional render, or a readout element), never into a JS callback variable.
+- If changing existing behavior: update the existing assertions in that spec to reflect the new expected behavior.
+- Purely visual changes (new color, spacing) need no interaction spec update — the existing `*-visual-snapshot.spec.ts` / `*-aria-snapshot.spec.ts` / axe-core suites in `showcases/e2e/` already cover the showcase page and will be updated via CI snapshot regeneration, not by hand.
+- If no interaction spec exists yet for this component and the change introduces one, create it following the same pattern as `create-db-component`'s RED phase.
 
-- ALL new variants MUST get `toHaveScreenshot()` tests.
-- ALL new variants MUST get aria-snapshot tests.
-- Axe-core accessibility test scope (`.db-{component_slug}`) remains unchanged.
-
-**After updating the spec, build the project, generate outputs, and run the component tests from `output/react`:**
+**After updating the spec, build the project, generate outputs, and run the interaction test against the React showcase:**
 
 ```bash
 pnpm run build && pnpm run build-outputs &&
-cd output/react && pnpm run test:components
+cd showcases/react-showcase && pnpm exec playwright test -g "DB{component_name}"
 ```
 
 **The RED phase is only complete if:**
 
 1. The command exits non-zero.
 2. The failing test names are captured in the output.
-3. The failure is caused by missing or incomplete implementation, NOT by syntax errors in the spec itself.
+3. The failure is caused by missing or incomplete implementation, NOT by syntax errors in the spec or fixture itself.
 
-If the spec has syntax errors, fix them first and re-run until you get clean "missing implementation" failures.
+If the spec/fixture has syntax errors, fix them first and re-run until you get clean "missing implementation" failures.
 
 ### Step 2: GREEN - Implement the Change
 
@@ -167,7 +164,7 @@ Showcase files in `showcases/` are generated from these and must not be edited m
 1. Run `pnpm run build`. MUST SUCCEED.
 2. Run `pnpm run test`. ALL MUST PASS.
 3. Verify no hardcoded values in SCSS.
-4. Verify all new variants have screenshot tests.
+4. Verify all new interactive behavior has an interaction spec assertion.
 
 ### Step 4: Governance and Framework Outputs
 

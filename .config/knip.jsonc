@@ -15,10 +15,6 @@
 		// Same pattern: two ControlPanelActions components share one folder.
 		"packages/components/src/components/control-panel-actions/index.ts": [
 			"unresolved"
-		],
-		// The spec mounts the generated example, which Mitosis emits without the .lite suffix.
-		"packages/components/src/components/custom-select/custom-select.spec.tsx": [
-			"unresolved"
 		]
 	},
 
@@ -54,7 +50,6 @@
 				"@guidepup/playwright",
 				"@guidepup/record",
 				"@guidepup/setup",
-				"@playwright/experimental-ct-core",
 				"accessibility-checker-engine",
 				"validate-branch-name"
 			]
@@ -106,7 +101,7 @@
 			],
 			// react.ts is injected as an import string by scripts/post-build/react.ts
 			"ignoreFiles": ["src/utils/react.ts"],
-			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
+			"ignoreDependencies": ["react"]
 		},
 
 		// Vite plugin: test fixtures are mock apps with their own unlisted deps

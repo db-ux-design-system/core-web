@@ -8,6 +8,7 @@ import TagDensity from '../examples/density.example.lite';
 import TagDisabled from '../examples/disabled.example.lite';
 import TagEmphasis from '../examples/emphasis.example.lite';
 import TagExampleStrong from '../examples/example-strong.example.lite';
+import TagInteraction from '../examples/interaction.example.lite';
 import TagNoText from '../examples/no-text.example.lite';
 import TagOverflow from '../examples/overflow.example.lite';
 import TagSemantic from '../examples/semantic.example.lite';
@@ -78,6 +79,11 @@ export default function TagShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Example Strong">
 				<CardWrapperShowcase>
 					<TagExampleStrong />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<TagInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

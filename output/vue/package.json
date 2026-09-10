@@ -35,16 +35,13 @@
     "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
     "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
     "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
-    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
-    "test:components": "playwright test --config playwright.config.ts",
-    "test:components:ui": "playwright test --config playwright.config.ts --ui"
+    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.62.1",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/compiler-dom": "3.5.42",
     "cpr": "3.0.1",

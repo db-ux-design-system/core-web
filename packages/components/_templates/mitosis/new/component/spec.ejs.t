@@ -1,44 +1,29 @@
 ---
-to: "<%= subComponent ? null : `src/components/${name}/${name}.spec.tsx` %>"
+to: "<%= subComponent ? null : `../../showcases/e2e/${name}/${name}-interaction.spec.ts` %>"
 ---
-import { expect, test } from '@playwright/experimental-ct-react';
-import AxeBuilder from '@axe-core/playwright';
+import { test } from '@playwright/test';
+import { runInteractionTest } from '../default.ts';
 
-import { DB<%= h.changeCase.pascal(name) %> } from "./index";
-// @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
-
-const comp: any = <DB<%= h.changeCase.pascal(name) %>>Test</DB<%= h.changeCase.pascal(name) %>>;
-
-const testComponent = () =>{
-	test('should contain text', async ({ mount }) => {
-		const component = await mount(comp);
-		await expect(component).toContainText('Test');
-	});
-
-	test('should match screenshot', async ({ mount }) => {
-		const component = await mount(comp);
-		await expect(component).toHaveScreenshot();
-	});
-}
-
-const testA11y = () =>{
-	test('should not have any A11y issues', async ({
-		page,
-		mount
-	}) => {
-		await mount(comp);
-		const accessibilityScanResults = await new AxeBuilder({ page })
-			.include('.db-<%= name %>')
-			.analyze();
-
-		expect(accessibilityScanResults.violations).toEqual([]);
-	});
-}
+// TODO: Set the correct showcase route path, e.g. '02/<%= name %>'.
+const path = 'XX/<%= name %>';
 
 test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
-	test.use({ viewport: DEFAULT_VIEWPORT });
-	testComponent();
-	testA11y();
+	// Interaction / behavior tests run against every framework showcase.
+	// Visual, aria-snapshot and axe-core checks are covered by the generated
+	// <%= name %>-visual-snapshot / -aria-snapshot / -axe-core specs, so only add
+	// behavior that needs user interaction here.
+	//
+	// Add a matching fixture in
+	// packages/components/src/components/<%= name %>/examples/interaction.example.lite.tsx
+	// (wrapped in the showcase via LinkWrapperShowcase) and target it via the
+	// `example` option below.
+	runInteractionTest({
+		title: 'should ...',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			// await content.getByTestId('...').click();
+			// await expect(content.getByTestId('...')).toBeVisible();
+		}
+	});
 });
-
