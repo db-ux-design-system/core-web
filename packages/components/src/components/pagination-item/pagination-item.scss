@@ -180,6 +180,19 @@
 			padding: variables.$db-spacing-fixed-3xs;
 		}
 
+		// The padding above does not reach a small text control. set-basic-button
+		// declares its own through
+		// .db-button[data-size="small"]:not([data-no-text="true"]), which scores
+		// (0,3,0) against the (0,2,1) of the rule above and therefore wins - so the
+		// page controls kept the 12px inline padding of a small text button and grew
+		// out of the square box the concept specifies. Repeating the :not() is what
+		// takes the padding back; every other declaration above already applies.
+		// The medium size needs no counterpart, there the competing declaration comes
+		// from .db-button alone and loses.
+		@include control(':not([data-no-text="true"])') {
+			padding: variables.$db-spacing-fixed-3xs;
+		}
+
 		// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
 		// $db-sizing-sm at regular density, but is narrower at functional and wider
 		// at expressive - so the marker ended up wider than the page button it sits
@@ -193,26 +206,12 @@
 			min-inline-size: variables.$db-sizing-xs;
 		}
 
-		&[data-ellipsis-wide="before"]::before,
-		&[data-ellipsis-wide="both"]::before {
-			margin-inline-end: variables.$db-spacing-fixed-3xs;
-		}
-
-		&[data-ellipsis-wide="after"]::after,
-		&[data-ellipsis-wide="both"]::after {
-			margin-inline-start: variables.$db-spacing-fixed-3xs;
-		}
-
-		@include screen-sizes.screen("sm", "max") {
-			&[data-ellipsis-collapsed="before"]::before,
-			&[data-ellipsis-collapsed="both"]::before {
-				margin-inline-end: variables.$db-spacing-fixed-3xs;
-			}
-
-			&[data-ellipsis-collapsed="after"]::after,
-			&[data-ellipsis-collapsed="both"]::after {
-				margin-inline-start: variables.$db-spacing-fixed-3xs;
-			}
-		}
+		// The marker keeps the margin of the medium size on purpose, so this size
+		// overrides the width alone. The margin is one half of the space around the
+		// dots: the other half is the gap of the list, which the marker cannot reach
+		// because it is a pseudo element inside the item. That gap is
+		// $db-spacing-fixed-2xs for both sizes, so a smaller margin here made the
+		// space in front of the dots differ from the space behind them - and the
+		// concept spaces the truncation item evenly at 4px on either side.
 	}
 }
