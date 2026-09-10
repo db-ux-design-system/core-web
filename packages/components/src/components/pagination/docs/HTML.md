@@ -9,8 +9,9 @@ button behavior synchronized with your application state.
 
 Three things are easy to miss when writing the markup by hand:
 
-- The previous/next buttons are icon-only. They need `data-icon` together with
-  `data-no-text="true"`; the text stays in the DOM as the accessible name.
+- The previous/next buttons are icon-only, and `data-icon` is all they need for it.
+  The item hides the label off that attribute, so the text stays in the DOM as the
+  accessible name.
 - Every page button needs an `aria-label` that names the page in context
   (`Page 5 of 10`), because the visible text is only a bare number. The active
   page additionally carries `aria-current="page"`.
@@ -30,22 +31,24 @@ Three things are easy to miss when writing the markup by hand:
   `data-pagination-item`. That is what keeps them out of the collapsing and out of
   the page handling: they are icon buttons, the same split the Figma component set
   makes, and they belong to every layout.
-- The `<li>` carries `data-variant`, the control inside it carries the matching
-  `data-variant` or class. The active page is `filled`, every other page is `ghost`,
-  and the item uses the attribute rather than `aria-current` as its styling hook,
-  because `aria-current` sits on the control in the option API.
+- `data-variant` and `data-size` belong on the `<li>` and nowhere else. The item
+  styles its control from there, so the control itself needs no state attributes and
+  no `db-button` class - it is a plain `<button>` or `<a>`. The active page is
+  `filled`, every other page is `ghost`, and the item uses the attribute rather than
+  `aria-current` as its styling hook, because `aria-current` sits on the control.
+- `filled` marks the current page, so it has no hover and no pressed background on
+  purpose: the page you are already on is not somewhere to go.
+- An arrow declares `data-icon` and nothing further. The item hides the label text
+  and centres the glyph off that attribute alone.
 
 ```html index.html
 <nav class="db-pagination" data-size="medium" aria-label="Pagination">
 	<ul>
 		<li class="db-pagination-item" data-size="medium" data-variant="ghost">
 			<button
-				class="db-button db-pagination-previous"
+				class="db-pagination-previous"
 				type="button"
 				data-icon="chevron_left"
-				data-no-text="true"
-				data-size="medium"
-				data-variant="ghost"
 				aria-label="Previous page"
 			>
 				Previous page
@@ -59,10 +62,8 @@ Three things are easy to miss when writing the markup by hand:
 			data-variant="ghost"
 		>
 			<button
-				class="db-button db-pagination-page"
+				class="db-pagination-page"
 				type="button"
-				data-size="medium"
-				data-variant="ghost"
 				aria-label="Page 1 of 10"
 			>
 				1
@@ -77,10 +78,8 @@ Three things are easy to miss when writing the markup by hand:
 			data-ellipsis-wide="before"
 		>
 			<button
-				class="db-button db-pagination-page"
+				class="db-pagination-page"
 				type="button"
-				data-size="medium"
-				data-variant="ghost"
 				aria-label="Page 4 of 10"
 			>
 				4
@@ -95,10 +94,8 @@ Three things are easy to miss when writing the markup by hand:
 			data-ellipsis-collapsed="before"
 		>
 			<button
-				class="db-button db-pagination-page"
+				class="db-pagination-page"
 				type="button"
-				data-size="medium"
-				data-variant="filled"
 				aria-current="page"
 				aria-label="Page 5 of 10"
 			>
@@ -113,10 +110,8 @@ Three things are easy to miss when writing the markup by hand:
 			data-variant="ghost"
 		>
 			<button
-				class="db-button db-pagination-page"
+				class="db-pagination-page"
 				type="button"
-				data-size="medium"
-				data-variant="ghost"
 				aria-label="Page 6 of 10"
 			>
 				6
@@ -132,10 +127,8 @@ Three things are easy to miss when writing the markup by hand:
 			data-ellipsis-collapsed="before"
 		>
 			<button
-				class="db-button db-pagination-page"
+				class="db-pagination-page"
 				type="button"
-				data-size="medium"
-				data-variant="ghost"
 				aria-label="Page 10 of 10"
 			>
 				10
@@ -143,12 +136,9 @@ Three things are easy to miss when writing the markup by hand:
 		</li>
 		<li class="db-pagination-item" data-size="medium" data-variant="ghost">
 			<button
-				class="db-button db-pagination-next"
+				class="db-pagination-next"
 				type="button"
 				data-icon="chevron_right"
-				data-no-text="true"
-				data-size="medium"
-				data-variant="ghost"
 				aria-label="Next page"
 			>
 				Next page
@@ -223,9 +213,9 @@ Pages can be anchors instead of buttons. That makes the pagination deep linkable
 shareable and usable without JavaScript, which is the reason to prefer it whenever
 the page is server rendered.
 
-`set-basic-button` resets `text-decoration` for exactly this case, so an `<a>` with
-`class="db-button"` looks identical to the `<button>`. Swap the element, keep every
-class and `data-*` attribute, and drop `type="button"`:
+The item styles `<a>` and `<button>` through one rule and resets `text-decoration`,
+so both look identical. Swap the element, keep the class, add the `href` and drop
+`type="button"` - the `<li>` is untouched, since it is what carries the state:
 
 ```html index.html
 <li
@@ -235,13 +225,7 @@ class and `data-*` attribute, and drop `type="button"`:
 	data-size="medium"
 	data-variant="ghost"
 >
-	<a
-		class="db-button db-pagination-page"
-		href="?page=4"
-		data-size="medium"
-		data-variant="ghost"
-		aria-label="Page 4 of 10"
-	>
+	<a class="db-pagination-page" href="?page=4" aria-label="Page 4 of 10">
 		4
 	</a>
 </li>
@@ -261,13 +245,10 @@ sequential relationship and help browsers prefetch:
 ```html index.html
 <li class="db-pagination-item" data-size="medium" data-variant="ghost">
 	<a
-		class="db-button db-pagination-previous"
+		class="db-pagination-previous"
 		href="?page=4"
 		rel="prev"
 		data-icon="chevron_left"
-		data-no-text="true"
-		data-size="medium"
-		data-variant="ghost"
 		aria-label="Previous page"
 	>
 		Previous page

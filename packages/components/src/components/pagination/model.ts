@@ -112,6 +112,7 @@ export type DBPaginationDefaultState = {
 	getPageHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;
+	stepToPage: (page: number) => void;
 	getPageText: (page: number) => string;
 	getPageLabel: (page: number) => string;
 	handleClick: (event: any) => void;

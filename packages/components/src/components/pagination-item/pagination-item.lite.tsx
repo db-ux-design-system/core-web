@@ -6,7 +6,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls, getBoolean } from '../../utils';
-import DBButton from '../button/button.lite';
 import type { DBPaginationItemProps, DBPaginationItemState } from './model';
 
 useMetadata({});
@@ -76,30 +75,30 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 			aria-current={
 				!props.text && state.getActive() ? 'page' : undefined
 			}>
+			{/* A plain control rather than DBButton: the item needs the look of a
+				button but not its box, and pagination-item.scss takes exactly that
+				from the shared placeholders. It also keeps the two shapes identical -
+				DBButton put a custom element host between the <li> and the button in
+				Angular and Stencil. Neither branch repeats data-variant or data-size:
+				the list item above carries both, which is where the stylesheet reads
+				them, and a composed child is styled from there as well. */}
 			<Show when={props.text} else={props.children}>
 				<Show
 					when={props.href}
 					else={
-						<DBButton
+						<button
 							class="db-pagination-page"
-							variant={state.getActive() ? 'filled' : 'ghost'}
-							size={props.size}
 							type="button"
 							aria-current={
 								state.getActive() ? 'page' : undefined
 							}
 							aria-label={props.label}>
 							{props.text}
-						</DBButton>
+						</button>
 					}>
-					{/* The anchor carries the same class and data-attributes that
-						DBButton renders, because set-basic-button styles by class and
-						attribute and resets text-decoration for anchor use. */}
 					<a
-						class="db-button db-pagination-page"
+						class="db-pagination-page"
 						href={props.href}
-						data-variant={state.getActive() ? 'filled' : 'ghost'}
-						data-size={props.size}
 						aria-current={state.getActive() ? 'page' : undefined}
 						aria-label={props.label}>
 						{props.text}

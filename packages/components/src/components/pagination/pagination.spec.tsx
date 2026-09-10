@@ -255,6 +255,83 @@ const testPagination = () => {
 		expect(requestedPage).toBe(6);
 	});
 
+	test('should activate a composed child from previous and next', async ({
+		mount
+	}) => {
+		// The arrows hand their click to the item of the neighbouring page instead of
+		// reporting the number themselves. That is what reaches a router link a
+		// consumer composed: before, the arrows reported the page and left the child
+		// untouched, so the router of the consumer never ran.
+		const clicked: string[] = [];
+		const component = await mount(
+			<DBPagination
+				label="Composed"
+				currentPage={2}
+				onPageChange={(page: number) => {
+					requestedPages.push(page);
+				}}>
+				{/* Fragment targets, so following the link does not reload the page
+				and unmount the component. preventDefault is not an option here:
+				component testing proxies a handler back to the test process, where a
+				synthetic event cannot be passed along. */}
+				<DBPaginationItem page={1} label="Page 1">
+					<a href="#page-1" onClick={() => clicked.push('1')}>
+						1
+					</a>
+				</DBPaginationItem>
+				<DBPaginationItem page={2} label="Page 2" active>
+					<a href="#page-2" onClick={() => clicked.push('2')}>
+						2
+					</a>
+				</DBPaginationItem>
+				<DBPaginationItem page={3} label="Page 3">
+					<a href="#page-3" onClick={() => clicked.push('3')}>
+						3
+					</a>
+				</DBPaginationItem>
+			</DBPagination>
+		);
+
+		await component.getByRole('button', { name: 'Next page' }).click();
+		expect(clicked).toEqual(['3']);
+		expect(requestedPages).toEqual([3]);
+
+		await component.getByRole('button', { name: 'Previous page' }).click();
+		expect(clicked).toEqual(['3', '1']);
+		expect(requestedPages).toEqual([3, 1]);
+	});
+
+	test('should report the page when no neighbour is rendered', async ({
+		mount,
+		page
+	}) => {
+		// With siblingCount 0 the window is the current page on its own, so there is
+		// no neighbour to hand the click to. The arrow then reports the page directly,
+		// which is what it did before the delegation existed.
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="Without siblings"
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				siblingCount={0}
+				boundaryCount={0}
+				onPageChange={(pageNumber: number) => {
+					requestedPages.push(pageNumber);
+				}}
+			/>
+		);
+
+		await expect(component.locator('li[data-page]')).toHaveCount(1);
+
+		await component.getByRole('button', { name: 'Next page' }).click();
+		expect(requestedPages).toEqual([6]);
+
+		await component.getByRole('button', { name: 'Previous page' }).click();
+		expect(requestedPages).toEqual([6, 4]);
+	});
+
 	test('should disable previous and next buttons at the boundaries', async ({
 		mount
 	}) => {
@@ -748,17 +825,26 @@ const testSizes = () => {
 	}) => {
 		// Figma draws the previous and next buttons at the size of the page items,
 		// not at a fixed small - see the Pagination (Concept) component set.
+		// Measured rather than read off the control: the size is declared once on the
+		// list item, so asserting the attribute would only restate where it sits. The
+		// box is what the concept specifies, and both sizes are square there.
+		const boxOf = (target: any) =>
+			target.evaluate((element: HTMLElement) => {
+				const { width, height } = element.getBoundingClientRect();
+				return { width: Math.round(width), height: Math.round(height) };
+			});
+
 		const medium = await mount(
 			<DBPagination currentPage={5} totalCount={100} pageSize={10} />
 		);
-		await expect(medium.locator('.db-pagination-previous')).toHaveAttribute(
-			'data-size',
-			'medium'
-		);
-		await expect(medium.locator('.db-pagination-next')).toHaveAttribute(
-			'data-size',
-			'medium'
-		);
+		for (const control of ['previous', 'next', 'page']) {
+			expect(
+				await boxOf(
+					medium.locator('.db-pagination-' + control).first()
+				),
+				control + ' at medium'
+			).toEqual({ width: 40, height: 40 });
+		}
 		await medium.unmount();
 
 		const small = await mount(
@@ -769,17 +855,18 @@ const testSizes = () => {
 				size="small"
 			/>
 		);
-		await expect(small.locator('.db-pagination-previous')).toHaveAttribute(
-			'data-size',
-			'small'
-		);
-		await expect(small.locator('.db-pagination-next')).toHaveAttribute(
-			'data-size',
-			'small'
-		);
+		for (const control of ['previous', 'next', 'page']) {
+			expect(
+				await boxOf(small.locator('.db-pagination-' + control).first()),
+				control + ' at small'
+			).toEqual({ width: 24, height: 24 });
+		}
 	});
 
 	test('should size the links like the buttons', async ({ mount }) => {
+		// One rule styles both elements, so an anchor has to come out with the box of
+		// a button. Nothing declares this on the control any more - the item reads the
+		// size off the list item and applies it to whichever of the two it finds.
 		const component = await mount(
 			<DBPagination
 				currentPage={5}
@@ -789,12 +876,30 @@ const testSizes = () => {
 			/>
 		);
 
-		await expect(
-			component.locator('a.db-pagination-previous')
-		).toHaveAttribute('data-size', 'medium');
-		await expect(component.locator('a.db-pagination-next')).toHaveAttribute(
-			'data-size',
-			'medium'
+		const box = async (selector: string) =>
+			component
+				.locator(selector)
+				.first()
+				.evaluate((element: HTMLElement) => {
+					const { width, height } = element.getBoundingClientRect();
+					return {
+						width: Math.round(width),
+						height: Math.round(height)
+					};
+				});
+
+		// The current page stays a button, every other page becomes an anchor, so this
+		// compares the two element types against each other in one rendering.
+		expect(await box('a.db-pagination-previous')).toEqual({
+			width: 40,
+			height: 40
+		});
+		expect(await box('a.db-pagination-next')).toEqual({
+			width: 40,
+			height: 40
+		});
+		expect(await box('a.db-pagination-page')).toEqual(
+			await box('button.db-pagination-page')
 		);
 	});
 };

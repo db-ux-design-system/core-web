@@ -435,6 +435,16 @@ things made it work:
   tab order and in the accessibility tree. Note that a focused element that gets
   hidden loses focus to the document; that is the browser doing its job and
   restoring it would need JavaScript.
+- **Let a step control activate the item it points at.** `DBPagination` gives its
+  previous and next buttons no page logic of their own: they look up the `<li>` with
+  the neighbouring `data-page` and click the control inside it, which bubbles back to
+  the one delegated handler on the list. That is what reaches a child a consumer
+  composed — reporting the page directly would leave a router link untouched and the
+  router of the consumer out of the loop. Two conditions come with it: fall back to
+  reporting the page when the neighbour is not rendered (`siblingCount: 0`, or a
+  composed list that omits it), and only do this where the control is a button. An
+  anchor with a real `href` has to stay one, or it loses `rel`, middle click and the
+  ability to work without JavaScript.
 
 Two consequences for the specs: `DEFAULT_VIEWPORT` from `src/shared/constants.ts`
 is 390px wide, so a spec that does not switch viewports tests the **narrow**
@@ -463,6 +473,61 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_scrollbar.scss`         | Scrollbar styling                                       |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+### Want the look of a button but not its box? Extend the placeholders
+
+`set-basic-button` bundles two things: the appearance (border, radius, focus
+indicator, typography, variant colours) and the box (`padding`,
+`inline-size: fit-content`, `min-block-size`). Take it whole and you get both — which
+is right for `DBButton` and `DBCustomButton`, and wrong for a component whose box is
+its own, like a square pagination control.
+
+Do **not** nest `DBButton` to borrow the appearance, and do not include the mixin with
+the control as a child selector either. Both leave the shared rules in charge of the
+box, and they outrank you:
+
+```text
+.db-button[data-size="small"]:not([data-no-text="true"])            (0,3,0)
+.db-pagination-item[data-size="small"] > :is(a, button)              (0,2,1)   loses
+```
+
+That is a real bug, not a theoretical one: the small pagination controls rendered
+33.8px wide instead of the 24px the concept specifies, because the 12px inline padding
+of a small text button won. Beating it needs the competing `:not()` repeated, which
+only holds until the shared file changes again.
+
+Instead extend the placeholders you actually want and keep the box local:
+
+```scss
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/component";
+
+> :is(a, button) {
+	@extend %default-interactive-component; // border + radius + focus
+	@extend %default-button; // inline-flex, centring, weight
+	@extend %db-overwrite-font-size-md;
+
+	block-size: variables.$db-sizing-md; // the box stays yours
+	padding: variables.$db-spacing-fixed-2xs;
+	text-decoration: none; // for anchor use
+}
+```
+
+Variant colours come from `%button-outlined-ghost-colors` (ghost/outlined) and a
+`background-color` for filled. Placeholders are not namespaced, so `@use`-ing the file
+is enough to extend them.
+
+Two things to keep in mind when you do this:
+
+- **Put the state attributes on the wrapper**, not on the control. `data-variant` and
+  `data-size` on the `<li>` (or whatever the shell is) means the control needs none,
+  and a child a consumer composed is styled from there too — a consumer link used to
+  come out with the box but none of the colours, because those hung on a class it did
+  not have.
+- **`--db-overwrite-cursor` is not optional.** The foundations carry a global
+  `:is(a[href], button):not(...):hover` rule that resolves it at (0,3,1). A plain
+  `cursor: default` on your control loses to it on hover, so set the custom property
+  for the hover state and `cursor` itself for the resting state.
 
 ## Shared Props (`src/shared/model.ts`)
 

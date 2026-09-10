@@ -7,7 +7,6 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import DBButton from '../button/button.lite';
 import DBPaginationItem from '../pagination-item/pagination-item.lite';
 import type {
 	DBPaginationProps,
@@ -330,6 +329,38 @@ export default function DBPagination(props: DBPaginationProps) {
 				.replaceAll('{page}', String(page))
 				.replaceAll('{totalPages}', String(state.getTotalPages()));
 		},
+		// What previous and next do when they are buttons. Instead of reporting the
+		// page themselves they hand the click to the item of that page, so the arrow
+		// takes the same path as a click on the page number - whatever that item
+		// renders: the button of this component, its anchor, or a router link a
+		// consumer composed. That last one is the reason this exists. An arrow used to
+		// report the number and nothing else, which left a composed link untouched and
+		// the router of the consumer out of the loop.
+		// The synthesised click bubbles to the list, where handleClick reads data-page
+		// back, so the page is reported through the one path every activation uses.
+		// The anchor branch never comes through here: it carries a real href, and
+		// turning it into a synthesised click would cost it rel, middle click and the
+		// ability to work without JavaScript.
+		stepToPage: (page: number) => {
+			if (!_ref) {
+				return;
+			}
+
+			const item = _ref.querySelector('[data-page="' + page + '"]');
+			if (item) {
+				const control = item.querySelector('a, button');
+				if (control) {
+					control.click();
+					return;
+				}
+			}
+
+			// The neighbour is not always there to click. With siblingCount 0 the
+			// window is the current page alone, and with composition the list belongs
+			// to the consumer, who may render neither neighbour. Reporting the page
+			// directly keeps the arrow working in both cases.
+			state.handlePageChange(page);
+		},
 		handleClick: (event: any) => {
 			const target = event.target as HTMLElement;
 			const item = target.closest('[data-page]');
@@ -379,39 +410,43 @@ export default function DBPagination(props: DBPaginationProps) {
 				which keeps them out of data-pagination-item and therefore out of the
 				collapsing - they belong to every layout. */}
 				<DBPaginationItem size={props.size}>
-					{/* The anchors carry the same class and data-attributes as
-					DBButton renders, because set-basic-button styles by class and
-					attribute and explicitly resets text-decoration for anchor use.
-					That is what keeps both modes pixel-identical without a single
-					line of extra CSS. */}
+					{/* Plain controls, for the same reason the item renders one: the
+					box comes from .db-pagination-item and the look from the shared
+					button placeholders, so both branches are identical without a line
+					of extra CSS. data-icon is the only thing an arrow declares - the
+					item hides the label and centres the glyph off that attribute -
+					while data-variant and data-size sit on the list item around it. */}
 					<Show
 						when={state.getPreviousHref()}
 						else={
-							<DBButton
+							<button
 								class="db-pagination-previous"
-								variant="ghost"
-								size={props.size}
 								type="button"
-								icon="chevron_left"
-								noText
-								disabled={state.getCurrentPage() <= 1}
+								data-icon="chevron_left"
+								// true or nothing, never false. Without the
+								// prop DBButton declared for Angular this
+								// compiles to [attr.disabled], and Angular
+								// writes a false there as disabled="false" -
+								// which is a set boolean attribute and would
+								// disable the control for good. DBTabItem
+								// narrows its own disabled for the same reason.
+								disabled={
+									state.getCurrentPage() <= 1
+										? true
+										: undefined
+								}
 								aria-label={props.previousLabel}
 								onClick={() =>
-									state.handlePageChange(
-										state.getCurrentPage() - 1
-									)
+									state.stepToPage(state.getCurrentPage() - 1)
 								}>
 								{props.previousLabel}
-							</DBButton>
+							</button>
 						}>
 						<a
-							class="db-button db-pagination-previous"
+							class="db-pagination-previous"
 							href={state.getPreviousHref()}
 							rel="prev"
 							data-icon="chevron_left"
-							data-no-text="true"
-							data-size={props.size}
-							data-variant="ghost"
 							aria-label={props.previousLabel}
 							onClick={() =>
 								state.handlePageChange(
@@ -450,31 +485,26 @@ export default function DBPagination(props: DBPaginationProps) {
 					<Show
 						when={state.getNextHref()}
 						else={
-							<DBButton
+							<button
 								class="db-pagination-next"
-								variant="ghost"
-								size={props.size}
 								type="button"
-								icon="chevron_right"
-								noText
-								disabled={state.isLastPage()}
+								data-icon="chevron_right"
+								// See the previous control: a false in
+								// [attr.disabled] would stick as
+								// disabled="false" in Angular.
+								disabled={state.isLastPage() ? true : undefined}
 								aria-label={props.nextLabel}
 								onClick={() =>
-									state.handlePageChange(
-										state.getCurrentPage() + 1
-									)
+									state.stepToPage(state.getCurrentPage() + 1)
 								}>
 								{props.nextLabel}
-							</DBButton>
+							</button>
 						}>
 						<a
-							class="db-button db-pagination-next"
+							class="db-pagination-next"
 							href={state.getNextHref()}
 							rel="next"
 							data-icon="chevron_right"
-							data-no-text="true"
-							data-size={props.size}
-							data-variant="ghost"
 							aria-label={props.nextLabel}
 							onClick={() =>
 								state.handlePageChange(

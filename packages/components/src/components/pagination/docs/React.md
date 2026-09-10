@@ -140,7 +140,12 @@ export default App;
 ```
 
 `page` is required on a composed item: it identifies the item rather than rendering
-it, and the pagination reads it back to know which page was activated.
+it, and the pagination reads it back to know which page was activated. It is also
+what previous and next look for: as buttons they do not report a page themselves,
+they click the item of the neighbouring page. So your `<Link>` runs for the arrows
+too, and the router sees the same navigation it sees for a direct click. Where that
+neighbour is not in your list, the arrow falls back to reporting the page through
+`onPageChange`.
 
 Three things move to you in this mode. The truncation and the responsive collapsing
 are not applied, because the component cannot know which pages your children stand
