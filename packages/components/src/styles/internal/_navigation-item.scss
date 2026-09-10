@@ -78,7 +78,7 @@
 	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
 	min-block-size: variables.$db-sizing-md;
-	gap: variables.$db-spacing-fixed-sm;
+	gap: variables.$db-spacing-fixed-xs;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
@@ -97,7 +97,6 @@
 	// out to "static" on the group so its inset:0 overlay can anchor to the
 	// nav scroll container instead of the group box.
 	position: relative;
-
 	display: flex;
 	block-size: fit-content;
 

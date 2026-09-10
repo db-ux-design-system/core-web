@@ -125,39 +125,6 @@
 	}
 }
 
-%non-tree-navigation {
-	.db-control-panel-navigation-item {
-		@include icon-passing.icon-passing;
-	}
-
-	// The group icon is rendered on the expand-button, not the group <li>.
-	// The button always establishes its own positioning context (see the
-	// navigation-indicator mixin), while the group <li> must stay static in
-	// the drilldown variant so its inset:0 overlay can fill the scroll
-	// container. data-icon is mirrored onto the button in the template.
-	.db-control-panel-navigation-item-group-expand-button {
-		@include icon-passing.icon-passing(
-			variables.$db-spacing-fixed-sm,
-			variables.$db-spacing-fixed-xs
-		);
-
-		// icon-passing pads interactive children; here the button itself is
-		// the icon-bearing element, so it needs the inline-start padding to
-		// clear the absolutely positioned icon "::before".
-		&[data-icon]:not([data-show-icon="false"]) {
-			/* stylelint-disable-next-line db-ux/use-spacings */
-			padding-inline-start: var(
-				--db-icon-passing-padding-inline-start,
-				calc(
-					#{variables.$db-spacing-fixed-sm} +
-						#{variables.$db-spacing-fixed-xs} +
-						var(--db-icon-font-size, 1lh)
-				)
-			);
-		}
-	}
-}
-
 %tree-navigation {
 	.db-control-panel-navigation-item {
 		&:not([data-icon]) {
@@ -168,10 +135,6 @@
 			a {
 				@include icons.set-icon("circle_small");
 			}
-		}
-
-		&[data-icon] {
-			@include icon-passing.icon-passing;
 		}
 	}
 
@@ -249,8 +212,6 @@
 	}
 
 	&:not([data-variant="tree"]) {
-		@extend %non-tree-navigation;
-
 		// MOBILE Sliding
 		@include screen-sizes.screen-min-max(
 			(
