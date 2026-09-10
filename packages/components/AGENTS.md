@@ -367,6 +367,8 @@ value={useTarget({
 
 `state._value` mirrors `props.value` except while `validity.badInput` is set and the model is empty. Without that gap Angular would compare the new bound expression against the last one, see `"0020-02-29"` turn into `""` and write it to the element — the same reset through the binding instead of through `writeValue`. React binds `props.value` only (see `scripts/post-build/react.ts`), Vue and Stencil read `props.value` first and their renderers skip a write when the element already holds the value, so all three are unaffected either way.
 
+The condition itself lives in `shouldKeepDisplayValue` (`src/utils/form-components.ts`) so it can be unit tested. Keep it as narrow as it is: it may only hold while the element reports `badInput` **and** the incoming value is empty. Widening it breaks the `undefined` reset that consumers use to clear a field ([#6147](https://github.com/db-ux-design-system/core-web/issues/6147)), which is covered by `showcases/e2e/input/input-undefined-value.spec.ts`.
+
 The consequence to be aware of: while the entry is unparsable, `state._value` holds the last parsable value while the element holds none. A programmatic write of exactly that value does not change the bound expression and therefore does not reach the element. Any other value does, because `writeValue` also sets the property directly.
 
 ## Mitosis Limitations

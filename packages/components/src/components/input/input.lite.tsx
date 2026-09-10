@@ -45,7 +45,8 @@ import {
 import {
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
+	shouldKeepDisplayValue
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 import { DBInputProps, DBInputState } from './model';
@@ -249,9 +250,9 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		// Angular renders from state._value. Keep the last parsable value while
 		// the entry is unparsable, otherwise the empty model value would clear
-		// the native date editor.
+		// the native date editor. See `shouldKeepDisplayValue`.
 		const keepDisplayValue = useTarget({
-			angular: Boolean(_ref?.validity?.badInput) && !props.value,
+			angular: shouldKeepDisplayValue(_ref, props.value),
 			default: false
 		});
 
