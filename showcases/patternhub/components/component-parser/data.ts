@@ -7,6 +7,9 @@ export type ComponentType = {
 	type?:
 		/* Template hygen type */
 		| 'pagination'
+		| 'footer'
+		| 'footer-meta'
+		| 'footer-content'
 		| 'heading-h1'
 		| 'heading-h2'
 		| 'heading-h3'
