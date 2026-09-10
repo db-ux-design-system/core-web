@@ -89,7 +89,6 @@
     "npm-run-all2": "9.0.3",
     "publint": "0.3.24",
     "replace-in-file": "9.0.0",
-    "tar": "7.5.22",
     "typedoc": "0.28.20",
     "typedoc-plugin-markdown": "4.13.0",
     "typedoc-plugin-merge-modules": "7.0.0",
