@@ -1,0 +1,14 @@
+{
+	"component": "dialog-header",
+	"library": "core-components",
+	"pageId": "38776:28176",
+	"pageName": "Dialog (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ Dialog Header",
+			"nodeId": "38776:30027",
+			"type": "COMPONENT",
+			"key": "61fedeb27d74ac31e6c0259834e3abd216c83f7f"
+		}
+	]
+}

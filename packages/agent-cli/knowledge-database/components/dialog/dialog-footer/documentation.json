@@ -1,0 +1,103 @@
+{
+	"component": "dialog-footer",
+	"figmaFileKey": "TBG73nKNPgXcLTluGz6dLM",
+	"description": {
+		"de": "Der Dialog Footer bildet den unteren Bereich des Dialogs, nimmt die Aktionen zum Abschließen oder Abbrechen sowie dauerhaft sichtbare Hinweise auf und bleibt beim Scrollen sichtbar.",
+		"en": "The dialog footer forms the lower area of the dialog, holds the actions for completing or cancelling as well as permanently visible notes, and stays visible while scrolling."
+	},
+	"shortDescription": {
+		"de": "Unterer Bereich des Dialogs mit den Aktionen zum Abschließen oder Abbrechen.",
+		"en": "Lower area of the dialog with the actions for completing or cancelling."
+	},
+	"useCases": {
+		"de": [
+			"Aktionen zum Abschließen und Abbrechen anbieten",
+			"Sternchentext dauerhaft sichtbar halten",
+			"Aktionen beim Scrollen erreichbar halten"
+		],
+		"en": [
+			"Offer actions for completing and cancelling",
+			"Keep a footnote permanently visible",
+			"Keep actions reachable while scrolling"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "footer-content",
+			"headline": {
+				"de": "Inhalt des Footers",
+				"en": "Footer Content"
+			},
+			"text": {
+				"de": "Der Dialog Footer scrollt nicht mit. Er ist deshalb für Aktionen und für Hinweise gedacht, die dauerhaft sichtbar bleiben müssen, etwa einen Sternchentext.",
+				"en": "The dialog footer does not scroll along. It is therefore meant for actions and for notes that have to stay permanently visible, such as a footnote."
+			},
+			"do": {
+				"figmaNodeId": "4004-66",
+				"description": {
+					"de": "Nimm in den Dialog Footer nur Aktionen und dauerhaft sichtbare Hinweise auf.",
+					"en": "Only place actions and permanently visible notes in the dialog footer."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-68",
+				"description": {
+					"de": "Lege weiteren Inhalt nicht in den Dialog Footer, er gehört in den Inhaltsbereich. Der Footer scrollt nicht mit und verkleinert den scrollbaren Bereich.",
+					"en": "Don't put further content in the dialog footer, it belongs in the content area. The footer does not scroll along and shrinks the scrollable area."
+				}
+			}
+		},
+		{
+			"id": "button-labels",
+			"headline": {
+				"de": "Button-Labels",
+				"en": "Button Labels"
+			},
+			"text": {
+				"de": "Bei einer Bestätigung benennt jeder Button sein Ergebnis. So ist vor dem Klick klar, was jede der beiden Optionen bewirkt.",
+				"en": "In a confirmation, each button names its outcome. That way it is clear before the click what each of the two options does."
+			},
+			"do": {
+				"figmaNodeId": "4004-71",
+				"description": {
+					"de": "Benenne die Buttons einer Bestätigung nach ihrem Ergebnis, etwa „Datei löschen“ und „Datei behalten“.",
+					"en": "Name the buttons of a confirmation after their outcome, such as “Delete file” and “Keep file”."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-73",
+				"description": {
+					"de": "„Ja“ und „Nein“ lassen die Folge offen. Benenne stattdessen das Ergebnis.",
+					"en": "“Yes” and “No” leave the outcome open. Name the outcome instead."
+				}
+			}
+		},
+		{
+			"id": "action-order",
+			"headline": {
+				"de": "Reihenfolge der Aktionen",
+				"en": "Action Order"
+			},
+			"text": {
+				"de": "Die bestätigende Aktion steht rechts, abbrechende und ergänzende Aktionen links davon. Damit liegt die Aktion, die den Dialog abschließt, am Ende der Leserichtung.",
+				"en": "The confirming action sits on the right, cancelling and additional actions to its left. That puts the action which completes the dialog at the end of the reading direction."
+			},
+			"do": {
+				"figmaNodeId": "4004-76",
+				"description": {
+					"de": "Platziere die bestätigende Aktion rechts und die abbrechende links davon.",
+					"en": "Place the confirming action on the right and the cancelling one to its left."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-78",
+				"description": {
+					"de": "Eine abweichende Reihenfolge widerspricht der Leseerwartung und lässt Nutzende die falsche Aktion treffen. Behalte die gewohnte Anordnung.",
+					"en": "A different order contradicts the reading expectation and makes people hit the wrong action. Keep the familiar arrangement."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [{ "component": "dialog" }, { "component": "dialog-header" }]
+}

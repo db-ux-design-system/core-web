@@ -1,0 +1,257 @@
+{
+	"component": "dialog",
+	"figmaFileKey": "TBG73nKNPgXcLTluGz6dLM",
+	"description": {
+		"de": "Der Dialog legt den Fokus auf eine einzelne Aufgabe und lässt sie abschließen oder verwerfen, bevor es weitergeht.",
+		"en": "The dialog focuses attention on a single task and lets people complete or discard it before moving on."
+	},
+	"shortDescription": {
+		"de": "Modales Overlay für eine Aufgabe, die vor dem Weiterarbeiten erledigt werden muss.",
+		"en": "Modal overlay for a task that has to be resolved before moving on."
+	},
+	"useCases": {
+		"de": [
+			"Folgenreiche Aktion bestätigen lassen",
+			"Erforderliche Eingabe einholen, bevor ein Vorgang weiterläuft",
+			"Teilaufgabe ohne Seitenwechsel abschließen"
+		],
+		"en": [
+			"Confirm an action with consequences",
+			"Collect a required input before a process continues",
+			"Complete a sub-task without leaving the page"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "mandatory-tasks",
+			"headline": {
+				"de": "Zwingende Aufgaben",
+				"en": "Mandatory Tasks"
+			},
+			"text": {
+				"de": "Ein Dialog blockiert die Weiterarbeit. Er ist deshalb nur für Aufgaben gedacht, die abgeschlossen oder verworfen werden müssen: eine Bestätigung mit Konsequenz, eine erforderliche Eingabe, eine in sich geschlossene Teilaufgabe, oder eine blockierende Systemmeldung.",
+				"en": "A dialog blocks further work. It is therefore meant only for tasks that have to be completed or discarded: a confirmation with consequences, a required input, a self-contained sub-task, or a blocking system message."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Setze den Dialog ein, wenn die Aufgabe abgeschlossen oder verworfen werden muss, bevor es weitergeht.",
+					"en": "Use the dialog when the task has to be completed or discarded before moving on."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Setze den Dialog für nicht-blockierendes Feedback nicht ein, dafür ist die Notification vorgesehen. Ein Dialog stoppt die Arbeit für eine Nachricht, die niemand beantworten muss.",
+					"en": "Don't use the dialog for non-blocking feedback, that is what the notification is for. A dialog stops the work for a message that nobody has to answer."
+				}
+			}
+		},
+		{
+			"id": "required-header",
+			"headline": {
+				"de": "Erforderlicher Header",
+				"en": "Required Header"
+			},
+			"text": {
+				"de": "Der Dialog Header liefert den zugänglichen Namen des Dialogs. Er wird automatisch mit dem Dialog verknüpft, dafür ist keine Konfiguration nötig.",
+				"en": "The dialog header supplies the accessible name of the dialog. It is linked to the dialog automatically, no configuration is needed."
+			},
+			"do": {
+				"figmaNodeId": "4004-3",
+				"description": {
+					"de": "Verwende jeden Dialog mit einem Dialog Header.",
+					"en": "Use every dialog with a dialog header."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-5",
+				"description": {
+					"de": "Baue den Dialog nicht ohne Dialog Header. Assistenztechnologien geben dann nur „Dialog“ aus, ohne zu nennen, worum es geht.",
+					"en": "Don't build the dialog without a dialog header. Assistive technologies then only announce “dialog” without saying what it is about."
+				}
+			}
+		},
+		{
+			"id": "reversible-actions",
+			"headline": {
+				"de": "Umkehrbare Aktionen",
+				"en": "Reversible Actions"
+			},
+			"text": {
+				"de": "Lässt sich eine Aktion rückgängig machen, ist die Rückfrage überflüssig. Führe die Aktion aus und biete das Rückgängigmachen über eine Notification an.",
+				"en": "If an action can be undone, the confirmation is unnecessary. Perform the action and offer to undo it through a notification."
+			},
+			"do": {
+				"figmaNodeId": "4004-8",
+				"description": {
+					"de": "Führe eine umkehrbare Aktion sofort aus und biete das Rückgängigmachen über eine Notification an.",
+					"en": "Perform a reversible action right away and offer to undo it through a notification."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-10",
+				"description": {
+					"de": "Lass umkehrbare Aktionen nicht bestätigen. Die Rückfrage verhindert hier keinen Fehler, senkt aber die Aufmerksamkeit für die Rückfragen, die wirklich schützen.",
+					"en": "Don't ask for confirmation of reversible actions. The prompt prevents no error here, but it lowers the attention paid to the prompts that really protect."
+				}
+			}
+		},
+		{
+			"id": "consequence-and-object",
+			"headline": {
+				"de": "Konsequenz und Gegenstand",
+				"en": "Consequence and Object"
+			},
+			"text": {
+				"de": "Eine Bestätigung schützt nur, wenn sie erkennen lässt, was passiert und was betroffen ist. Bei vielen Objekten genügt die Anzahl statt einer Aufzählung.",
+				"en": "A confirmation only protects when it shows what happens and what is affected. For many objects, the count is enough instead of a list."
+			},
+			"do": {
+				"figmaNodeId": "4004-13",
+				"description": {
+					"de": "Benenne bei einer irreversiblen Aktion die Konsequenz und den betroffenen Gegenstand im Inhalt.",
+					"en": "Name the consequence and the affected object in the content of an irreversible action."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-15",
+				"description": {
+					"de": "Frage nicht nur „Sind Sie sicher?“. Ohne Gegenstand und Folge lässt sich nicht erkennen, ob das Richtige ausgewählt wurde.",
+					"en": "Don't just ask “Are you sure?”. Without the object and the consequence, there is no way to tell whether the right thing was selected."
+				}
+			}
+		},
+		{
+			"id": "one-dialog-at-a-time",
+			"headline": {
+				"de": "Ein Dialog gleichzeitig",
+				"en": "One Dialog at a Time"
+			},
+			"text": {
+				"de": "Ein modaler Dialog liegt im Top Layer des Browsers. Öffnet sich darüber ein weiterer, schließt Escape nur den obersten. Die Rückfrage nach ungespeicherten Änderungen beim Schließen ist der begründete Einzelfall.",
+				"en": "A modal dialog sits in the browser top layer. If another one opens on top of it, Escape only closes the topmost one. The prompt about unsaved changes when closing is the justified exception."
+			},
+			"do": {
+				"figmaNodeId": "4004-23",
+				"description": {
+					"de": "Öffne nur einen Dialog gleichzeitig.",
+					"en": "Open only one dialog at a time."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-25",
+				"description": {
+					"de": "Bei gestapelten Dialogen schließt Escape nur den obersten. Stapele nur, wenn der zweite Dialog den ersten absichert.",
+					"en": "With stacked dialogs, Escape only closes the topmost one. Only stack when the second dialog safeguards the first."
+				}
+			}
+		},
+		{
+			"id": "without-backdrop",
+			"headline": {
+				"de": "Ohne Backdrop",
+				"en": "Without Backdrop"
+			},
+			"text": {
+				"de": "Mit `backdrop` `none` ist der Dialog nicht modal. Der Hintergrund bleibt bedienbar, und der Fokus kann den Dialog mit dem Tabulator verlassen.",
+				"en": "With `backdrop` set to `none`, the dialog is not modal. The background stays operable and focus can leave the dialog with the Tab key."
+			},
+			"do": {
+				"figmaNodeId": "4004-28",
+				"description": {
+					"de": "Behalte den Backdrop, wenn die Aufgabe abgeschlossen oder verworfen werden muss.",
+					"en": "Keep the backdrop when the task has to be completed or discarded."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-30",
+				"description": {
+					"de": "Setze `backdrop` `none` bei einer solchen Aufgabe nicht ein. Ohne Backdrop bleibt der Hintergrund bedienbar, und die Aufgabe ist nicht erzwingbar.",
+					"en": "Don't use `backdrop` `none` for such a task. Without a backdrop the background stays operable and the task cannot be enforced."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "size",
+			"headline": {
+				"de": "Größe",
+				"en": "Size"
+			},
+			"text": {
+				"de": "`containerSize` setzt die Maximalbreite des Dialogs. Welche Stufe passt, hängt von der Art des Inhalts ab. Der Default ist `medium`.",
+				"en": "`containerSize` sets the maximum width of the dialog. Which step fits depends on the type of content. The default is `medium`."
+			},
+			"items": [
+				{
+					"id": "small",
+					"headline": {
+						"de": "Small",
+						"en": "Small"
+					},
+					"figmaNodeId": "4004-33",
+					"description": {
+						"de": "Die kleinste Stufe für kurze Texte, etwa eine Bestätigung mit zwei Aktionen.",
+						"en": "The smallest step for short texts, such as a confirmation with two actions."
+					}
+				},
+				{
+					"id": "medium",
+					"headline": {
+						"de": "Medium",
+						"en": "Medium"
+					},
+					"figmaNodeId": "4004-35",
+					"description": {
+						"de": "Die Standardstufe für einen kurzen Formularabschnitt.",
+						"en": "The default step for a short form section."
+					}
+				},
+				{
+					"id": "large",
+					"headline": {
+						"de": "Large",
+						"en": "Large"
+					},
+					"figmaNodeId": "4004-37",
+					"description": {
+						"de": "Die größte feste Stufe für breite Inhalte, etwa eine Table mit mehreren Spalten.",
+						"en": "The largest fixed step for wide content, such as a table with several columns."
+					}
+				},
+				{
+					"id": "full",
+					"headline": {
+						"de": "Full",
+						"en": "Full"
+					},
+					"figmaNodeId": "4004-39",
+					"description": {
+						"de": "Die Viewport-Breite abzüglich des Abstands zum Rand, für datenreiche Inhalte.",
+						"en": "The viewport width minus the distance to the edge, for data-rich content."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "dialog-header"
+		},
+		{
+			"component": "dialog-footer"
+		},
+		{
+			"component": "drawer"
+		},
+		{
+			"component": "notification"
+		},
+		{
+			"component": "backdrop"
+		}
+	]
+}

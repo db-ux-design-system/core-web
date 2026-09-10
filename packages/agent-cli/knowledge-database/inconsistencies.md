@@ -113,6 +113,16 @@ Ein anderer Weg zum gleichen Ergebnis ist keine Abweichung. Entscheidend ist, ob
 
 - **`multiline` ist Figma-only** — `🔀 Multiline` steuert an den beiden Circular-Sets das Umbruchverhalten längerer Labels. Im Code existiert keine Entsprechung, dort bricht das Label über das Layout um. Konsequenz: Die Achse ist reines Werkzeugwissen für Figma und gehört nicht in die Komponenten-Doku, sondern nach Figma Learn.
 
+### Dialog
+
+- **`👁️ Show Backdrop` gegen `backdrop`** — In Figma schaltet ein Boolean nur die Anwesenheit des Backdrops, die Ausprägung `strong` oder `weak` wird an der eingebetteten Backdrop-Instanz gesetzt. Im Code deckt das Enum `backdrop` (`none` / `weak` / `strong`) beides in einer Property ab. Konsequenz: Aus dem Figma-Boolean allein lässt sich der Code-Wert nicht ableiten.
+- **`🔀 Closeable` ist Figma-only** — Im Code rendert `DBDialogHeader` den Close-Button immer, eine Property zum Ausblenden existiert nicht. Ob sie ergänzt wird, ist offen (siehe `TODO.md`). Solange nicht, ist ein in Figma ausgeblendeter Close-Button im Code nicht umsetzbar.
+- **`🔀 Content Behavior` ist Figma-only** — Die Achse `(Def) Hug` / `Fill/Scroll` bildet im Mockup ab, wie sich der Inhaltsbereich verhält. Im Code scrollt er automatisch, sobald der Inhalt die verfügbare Höhe überschreitet. Konsequenz: Die Achse ist Werkzeugwissen für Figma und gehört nach Figma Learn, nicht in die Komponenten-Doku. Gleiche Lage wie `multiline` beim Loading Indicator.
+- **Die drei Bereiche liegen in Figma an der eingebetteten Popover-Instanz** — `📦 Start Slot`, `📦 Children` und `📦 End Slot` sind Slots des eingebetteten Popovers und keine Properties des Dialog-Sets. Im Code sind es `header`, `children` und `footer` an `DBDialog`. Konsequenz: Die Slot-Fläche des Dialogs ist aus den Properties des Component Sets nicht ablesbar.
+- **`✏️ Headline` ist in Figma ein Textlayer, im Code eine Property** — Der Titel liegt in Figma als Textlayer im Children-Slot des Dialog Headers, im Code als `text` an `DBDialogHeader`.
+- **Das Heading-Level ist code-seitig festgelegt** — `DBDialogHeader` gibt `text` als `<h2>` aus. In Figma ist die Stufe nicht modelliert. Noch mit Design zu klären (siehe `TODO.md`).
+- **Code-only Properties** — `open`, `closeButtonId`, `closeButtonText`, die Events `onClose` und `onCancel` sowie die Overrides `--db-dialog-max-width` und `--db-dialog-viewport-inset` haben keine Figma-Entsprechung.
+
 ## Icons
 
 - **Format** — Figma: SVG-Instanzen (Component Instances). Code: Icon Font (woff2).

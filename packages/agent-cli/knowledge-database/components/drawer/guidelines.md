@@ -4,7 +4,7 @@ Sliding Panel, das von allen Seiten eingeblendet werden kann und ergänzende Inh
 
 ## Regeln
 
-1. Drawer nur für optionale Inhalte verwenden. Wenn die Information kritisch oder blockierend ist, stattdessen [Dialog](../../lab-components/dialog/guidelines.md) oder eine eigene Seite nutzen. Dialog ist eine Lab-Komponente ohne stabilen API-Vertrag.
+1. Drawer nur für optionale Inhalte verwenden. Wenn die Information kritisch oder blockierend ist, stattdessen [Dialog](../dialog/guidelines.md) oder eine eigene Seite nutzen.
 2. Inhalt auf einfache Aktionen beschränken, keine mehrstufigen Prozesse oder komplexen Validierungen abbilden.
 3. Der Drawer überlagert immer die gesamte Seitenbreite und -höhe inklusive Header. Nicht auf einen bestimmten Seitenbereich beschränken.
 4. **sollte** `containerSize` entsprechend der Menge und Komplexität des Inhalts wählen, nicht größer als nötig.

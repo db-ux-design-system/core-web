@@ -1,0 +1,103 @@
+{
+	"component": "dialog-header",
+	"properties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Text content for the dialog header",
+			"code": {
+				"prop": "text",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Headline",
+				"note": "In Figma the headline is a text layer inside the Children slot, not a property of the Dialog Header component."
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showStartSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Start Slot"
+			}
+		},
+		{
+			"name": "startSlot",
+			"type": "any",
+			"description": "Slot for content at the start of the header",
+			"code": {
+				"prop": "startSlot",
+				"type": "any"
+			},
+			"design": {
+				"name": "📦 Start Slot",
+				"type": "slot"
+			}
+		},
+		{
+			"name": "showEndSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show End Slot"
+			}
+		},
+		{
+			"name": "endSlot",
+			"type": "any",
+			"description": "Slot for content at the end of the header",
+			"code": {
+				"prop": "endSlot",
+				"type": "any"
+			},
+			"design": {
+				"name": "📦 End",
+				"type": "slot",
+				"note": "Named `📦 End` in Figma, not `📦 End Slot`."
+			}
+		},
+		{
+			"name": "closeable",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "🔀 Closeable",
+				"note": "Design-only. In code the close button is always rendered, a matching prop is under discussion."
+			}
+		},
+		{
+			"name": "closeButtonText",
+			"type": "string",
+			"default": "Close",
+			"description": "Accessible label for the close button",
+			"code": {
+				"prop": "closeButtonText",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "closeButtonId",
+			"type": "string",
+			"description": "Id of the close button",
+			"code": {
+				"prop": "closeButtonId",
+				"type": "string"
+			},
+			"design": null
+		}
+	]
+}

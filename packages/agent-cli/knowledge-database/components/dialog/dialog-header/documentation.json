@@ -1,0 +1,128 @@
+{
+	"component": "dialog-header",
+	"figmaFileKey": "TBG73nKNPgXcLTluGz6dLM",
+	"description": {
+		"de": "Der Dialog Header bildet den oberen Bereich des Dialogs und nimmt den Titel, den Close-Button und ergänzende Inhalte in Start Slot und End Slot auf.",
+		"en": "The dialog header forms the upper area of the dialog and holds the title, the close button and additional content in the start and end slot."
+	},
+	"shortDescription": {
+		"de": "Oberer Bereich des Dialogs mit Titel und Close-Button.",
+		"en": "Upper area of the dialog with title and close button."
+	},
+	"useCases": {
+		"de": [
+			"Dialog mit einem Titel benennen",
+			"Dialog über den Close-Button schließbar machen",
+			"Badge oder Icon neben dem Titel ergänzen"
+		],
+		"en": [
+			"Name the dialog with a title",
+			"Make the dialog closable through the close button",
+			"Add a badge or icon next to the title"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "title",
+			"headline": {
+				"de": "Titel",
+				"en": "Title"
+			},
+			"text": {
+				"de": "Der Titel wird automatisch zum zugänglichen Namen des Dialogs. Er lässt sich über `text` setzen oder als Inhalt in Children einsetzen.",
+				"en": "The title automatically becomes the accessible name of the dialog. It can be set through `text` or placed as content in children."
+			},
+			"do": {
+				"figmaNodeId": "4004-44",
+				"description": {
+					"de": "Vergib immer einen Titel, entweder über `text` oder als Inhalt in Children.",
+					"en": "Always provide a title, either through `text` or as content in children."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4004-46",
+				"description": {
+					"de": "Lass den Dialog Header nicht ohne Titel. Der Dialog bleibt dann unbenannt, weil die Verknüpfung ins Leere zeigt.",
+					"en": "Don't leave the dialog header without a title. The dialog then stays unnamed because the link points to nothing."
+				}
+			}
+		},
+		{
+			"id": "title-wording",
+			"headline": {
+				"de": "Wortlaut des Titels",
+				"en": "Title Wording"
+			},
+			"text": {
+				"de": "Der Titel benennt die Aktion, die im Dialog ausgeführt wird. Als Bezugspunkt dient das Label des Elements, über das der Dialog geöffnet wurde.",
+				"en": "The title names the action carried out in the dialog. The label of the element that opened the dialog serves as the reference point."
+			},
+			"do": {
+				"figmaNodeId": "4004-49",
+				"description": {
+					"de": "Benenne im Titel die Aktion und orientiere dich am Label des auslösenden Elements.",
+					"en": "Name the action in the title and take the label of the triggering element as a reference."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-51",
+				"description": {
+					"de": "Weicht der Titel vom Label ab, bleibt offen, ob der erwartete Dialog geöffnet wurde. Halte beide Formulierungen beieinander.",
+					"en": "If the title differs from the label, it stays unclear whether the expected dialog opened. Keep both wordings close to each other."
+				}
+			}
+		},
+		{
+			"id": "supporting-description",
+			"headline": {
+				"de": "Ergänzende Erläuterung",
+				"en": "Supporting Description"
+			},
+			"text": {
+				"de": "Neben dem Titel lässt sich eine kurze Erläuterung einsetzen. Sie ist nur nötig, wenn der Zweck des Dialogs aus dem Titel allein nicht hervorgeht.",
+				"en": "A short description can sit next to the title. It is only needed when the purpose of the dialog does not come across from the title alone."
+			},
+			"do": {
+				"figmaNodeId": "4004-54",
+				"description": {
+					"de": "Ergänze eine Erläuterung, wenn der Zweck des Dialogs aus dem Titel nicht hervorgeht.",
+					"en": "Add a description when the purpose of the dialog does not come across from the title."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-56",
+				"description": {
+					"de": "Eine Erläuterung, die den Titel wiederholt, verlängert den Weg zum Inhalt. Lass sie dann weg.",
+					"en": "A description that repeats the title lengthens the way to the content. Leave it out in that case."
+				}
+			}
+		},
+		{
+			"id": "start-and-end-slot",
+			"headline": {
+				"de": "Start Slot und End Slot",
+				"en": "Start and End Slot"
+			},
+			"text": {
+				"de": "Start Slot und End Slot nehmen zusätzliche Elemente neben dem Titel auf, etwa ein Badge oder ein Icon. Beide sind standardmäßig ausgeblendet.",
+				"en": "The start and end slot hold additional elements next to the title, such as a badge or an icon. Both are hidden by default."
+			},
+			"do": {
+				"figmaNodeId": "4004-59",
+				"description": {
+					"de": "Nimm in Start Slot und End Slot nur Elemente auf, die sich auf den Inhalt des Dialogs beziehen.",
+					"en": "Only place elements in the start and end slot that relate to the content of the dialog."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4004-61",
+				"description": {
+					"de": "Aktionen ohne Bezug zum Dialog lenken von der Aufgabe ab. Platziere sie außerhalb des Dialogs.",
+					"en": "Actions unrelated to the dialog distract from the task. Place them outside the dialog."
+				}
+			}
+		}
+	],
+	"faq": [],
+	"related": [{ "component": "dialog" }, { "component": "dialog-footer" }]
+}

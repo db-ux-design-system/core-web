@@ -1,0 +1,102 @@
+{
+	"component": "dialog",
+	"properties": [
+		{
+			"name": "backdrop",
+			"type": "enum",
+			"values": ["none", "weak", "strong"],
+			"default": "strong",
+			"description": "Changes the opacity of the backdrop",
+			"code": {
+				"prop": "backdrop",
+				"type": "DialogBackdropType"
+			},
+			"design": null
+		},
+		{
+			"name": "showBackdrop",
+			"type": "boolean",
+			"default": true,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Backdrop",
+				"note": "Only toggles the presence of the backdrop. The strong and weak appearance is set on the nested Backdrop instance, while the code prop `backdrop` covers presence and appearance in one enum."
+			}
+		},
+		{
+			"name": "containerSize",
+			"type": "enum",
+			"values": ["small", "medium", "large", "full"],
+			"default": "medium",
+			"description": "Maximum inline size of the dialog",
+			"code": {
+				"prop": "containerSize",
+				"type": "DialogContainerSizeType"
+			},
+			"design": {
+				"name": "🔀 Container Size",
+				"values": ["Small", "(Def) Medium", "Large", "Full"]
+			}
+		},
+		{
+			"name": "contentBehavior",
+			"type": "enum",
+			"values": ["hug", "fill/scroll"],
+			"default": "hug",
+			"code": null,
+			"design": {
+				"name": "🔀 Content Behavior",
+				"values": ["(Def) Hug", "Fill/Scroll"],
+				"note": "Design-only variant that depicts the scroll behaviour in mockups. In code the content area scrolls automatically once the content exceeds the available height, so there is no matching prop."
+			}
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"description": "Opens or closes the dialog",
+			"code": {
+				"prop": "open",
+				"type": "boolean | string"
+			},
+			"design": null
+		},
+		{
+			"name": "header",
+			"type": "any",
+			"description": "Slot for the dialog header",
+			"code": {
+				"prop": "header",
+				"type": "any"
+			},
+			"design": {
+				"name": "📦 Start Slot",
+				"type": "slot",
+				"note": "In Figma the slot belongs to the nested Popover instance and is not exposed as a property of the Dialog component set."
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"note": "In Figma the slot belongs to the nested Popover instance and is not exposed as a property of the Dialog component set."
+			}
+		},
+		{
+			"name": "footer",
+			"type": "any",
+			"description": "Slot for the dialog footer",
+			"code": {
+				"prop": "footer",
+				"type": "any"
+			},
+			"design": {
+				"name": "📦 End Slot",
+				"type": "slot",
+				"note": "In Figma the slot belongs to the nested Popover instance and is not exposed as a property of the Dialog component set."
+			}
+		}
+	]
+}

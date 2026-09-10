@@ -76,6 +76,14 @@ Regeln sind handlungsorientiert und müssen sich als Do, Don't oder bei `**sollt
 
 Eine Regel besteht immer aus Do **und** Don't (oder Caution). Ein Do ohne zugehöriges Don't ist keine Regel, sondern ein Example: Es zeigt einen gültigen Fall, ohne einen ungültigen davon abzugrenzen. Lässt sich zu einem Do kein eigenständiges Don't formulieren, das mehr ist als die reine Negation derselben Aussage, gehört der Inhalt nicht unter `## Regeln`.
 
+#### Keine Verbote aus Systemlücken ableiten
+
+Was das Design System nicht anbietet, begrenzt nicht, was Produkte umsetzen dürfen. Eine fehlende Komponente ist deshalb keine Begründung für ein Verbot. Produkte bauen eigene Komponenten, und Backlog-Einträge werden umgesetzt.
+
+Umgekehrt gilt die Einschränkung sehr wohl: Eine Regel darf nicht auf eine Alternative verweisen, die im System nicht abbildbar ist. Vor dem Formulieren prüfen, ob die genannte Komponente die verlangte Aufgabe übernehmen kann.
+
+Der Test: Fällt die Begründung einer Regel weg, sobald die Systemlücke geschlossen ist, war die Lücke nie ihr Grund. Dann trägt die Regel eine andere, unabhängige Begründung oder sie entfällt.
+
 #### Reihenfolge der Regeln
 
 Die Reihenfolge unter `## Regeln` wird beim Generieren zur Reihenfolge in `guidelines[]` und damit zum Inhaltsverzeichnis der Doku-Seite. Sie folgt vier Kriterien in dieser Priorität:

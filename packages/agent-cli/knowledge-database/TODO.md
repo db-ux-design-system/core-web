@@ -78,9 +78,19 @@ Betrifft `components/pagination` und `components/pagination/pagination-item`, an
 - **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell, Control Panel und Loading Indicator: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Betrifft die zwei Einträge in `componentSets` der Elternkomponente und die zwei Sets von Pagination Item. Zusätzlich prüfen, ob das vormalige Helper-Set `🛟 Pagination Truncation Item - Small` endgültig verschwunden ist: es hatte nach dem Zusammenlegen keinen Parent mehr und lag auf keiner Seite, wurde von der Plugin-API aber noch nicht als entfernt gemeldet.
 - **Property-Namen und Defaults nach dem Merge des Pull Requests prüfen.** Die `properties.json` beider Ordner ist aus der `model.ts` und den `useDefaultProps` des Feature-Branch gefüllt. Solange der Pull Request offen ist, können sich Namen und Defaults noch ändern; nach dem Merge gegen `main` abgleichen.
 
+### 13. Dialog: Figma-IDs und offene Klärungen nach dem Merge
+
+Betrifft `components/dialog`, `components/dialog/dialog-header` und `components/dialog/dialog-footer`, angelegt aus dem Figma Feature Branch `feat--dialog-beta` (fileKey `c6pyUBcNsuvAv1Pr6YNlGT`) und dem Umsetzungsstand des noch offenen Core-Web-Pull-Requests zur Beta-Komponente. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Umzug nach `components/` entfernt wurde.
+
+- **Figma-IDs nach dem Merge verifizieren.** Nach dem Merge in `mlJ6R0GkfR15a93KSlqXtB` und dem Core-Release Node IDs, Component-Set-Namen und `key`-Felder aller drei `figma.json`-Dateien gegen das Main-File abgleichen. Erfahrungswert von Footer, Shell, Control Panel, Loading Indicator und Pagination: der Publish vergibt die `key`s neu, die Node IDs bleiben stabil. Zusätzlich prüfen, ob `library` weiterhin `core-components` ist.
+- **Property-Namen und Defaults nach dem Merge des Pull Requests prüfen.** Die drei `properties.json` sind aus der `model.ts`, den `useDefaultProps` und dem SCSS des Feature-Branch gefüllt. Solange der Pull Request offen ist, können sich Namen und Defaults noch ändern.
+- **`closeable` entscheiden.** Die Figma-Property hat kein Code-Pendant. Entweder bekommt `DBDialogHeader` eine Property zum Ausblenden des Close-Buttons, oder die Figma-Property entfällt. Wird sie zur Code-Property, kommt die Regel zurück, immer eine sichtbare Möglichkeit zum Schließen bereitzustellen: dann existiert eine echte Entscheidung mit einem Dont.
+- **Heading-Level des Titels klären.** `DBDialogHeader` gibt `text` als `<h2>` aus. Mit Design abstimmen, ob die Stufe fest bleibt, und prüfen, ob das mit Regel 2 von `components/heading/guidelines.md` vereinbar ist.
+- **Backdrop-Klick.** Der Klick außerhalb schließt bei vorhandenem Backdrop immer (`closedby="any"`), eine Property dafür gibt es nicht. Absichern lässt sich das nur über `onCancel` mit `preventDefault()`. Entscheiden, ob das eine Property braucht; bis dahin gehört der Hinweis in die `docs/*.md` der Komponente und nicht in die Guidelines.
+
 ## Foundations
 
-### 13. Auswahlkriterien innerhalb der Skalen ergänzen
+### 14. Auswahlkriterien innerhalb der Skalen ergänzen
 
 Für `border-radius` und `container` ist geregelt, dass ausschließlich Tokens verwendet werden, und bei `border-radius` zusätzlich, dass `full` der Pill-/Kreisfall ist. Offen bleibt, welche Stufe der Skala wann zu wählen ist — das ist eine Design-Entscheidung.
 
@@ -91,13 +101,13 @@ Als Anhaltspunkt, wie Core die Stufen aktuell belegt:
 
 ## Icons
 
-### 14. Anleitung zur lokalen Einbindung ergänzen
+### 15. Anleitung zur lokalen Einbindung ergänzen
 
 Von Dev: Wie werden Icons lokal eingebunden/installiert (inner source, Font-Setup)?
 
 ## Tooling
 
-### 15. `lint:codespell` für die deutschsprachige Wissensbasis klären
+### 16. `lint:codespell` für die deutschsprachige Wissensbasis klären
 
 Von Dev zu entscheiden, sobald klar ist, wo die Wissensbasis dauerhaft liegt.
 
@@ -110,7 +120,7 @@ Zwei Optionen:
 
 ## Generierung und Doku-Konventionen
 
-### 16. Property-Werte in Guidelines konsequent in Backticks setzen
+### 17. Property-Werte in Guidelines konsequent in Backticks setzen
 
 Die Konvention steht bereits in `writing-conventions.md` („Property-Werte werden mit ihrem kanonischen Namen in Backticks referenziert"), ist aber noch nicht überall durchgesetzt. Der generelle Bestand wurde im Language Review unter Finding A4 bereinigt (`custom-select-dropdown`, `transition`).
 
@@ -118,7 +128,7 @@ Offen sind die Guidelines von Shell und Control Panel: dort stehen Variantenwert
 
 Pro Vorkommen entscheiden, nicht pauschal ersetzen: Nur echte Property-Werte bekommen Backticks. Komponentennamen (z. B. Popover als Komponente), Markdown-Links und reine Richtungsangaben bleiben unquotiert. Nach der Umbenennungsrunde im Design sind Variantenwerte und Component-Set-Namen einheitlich mit Leerzeichen geschrieben (`Drill Down`, `Flat Icon`), Doppeldeutigkeiten sind damit weg.
 
-### 17. `documentation.json` für alle Stable- und Beta-Komponenten erstellen
+### 18. `documentation.json` für alle Stable- und Beta-Komponenten erstellen
 
 Aktuell nur als Prototyp bei Button vorhanden. Muss für alle Komponenten mit Status `stable` oder `beta` aus der jeweiligen `guidelines.md` generiert werden. Voraussetzung: `guidelines.md` ist ausgearbeitet (nicht `pending`). Vorgehen siehe README-Abschnitt „Generierung der documentation.json".
 
@@ -126,11 +136,11 @@ Ausgenommen sind Komponenten mit `deprecation: "deprecated"` in der `meta.json` 
 
 Bei Shell und Control Panel hatte `control-panel-brand` als einzige Komponente noch keine `documentation.json`, weil zunächst keine Doku-Seite dafür bekannt war. Die Doku-Seite existiert inzwischen (`pElrqVUyojrzYzSagyJPS6`, Node `4006:3`) und wurde am 2026-08-11 ausgelesen, die Datei ist erzeugt.
 
-### 18. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
+### 19. Nachgelagerte Artefakte aus der Wissensbasis erzeugen
 
 Welche Artefakte sich zukünftig aus der Wissensbasis generieren lassen, anstatt parallel gepflegt zu werden — z.B. Storybook-Dokumentation (Props-Tabellen, Controls, Beschreibungen) oder Teile der Plattform-Dokumentation. Voraussetzung: Props, Slots, Events und Guidelines vollständig in der Wissensbasis.
 
-### 19. Accessibility als eigener Bereich in der Komponenten-Doku
+### 20. Accessibility als eigener Bereich in der Komponenten-Doku
 
 Barrierefreiheits-Anforderungen lassen sich oft nicht als Do-Dont-Paar im Layout zeigen, weil sie an Werten hängen, die im Screenshot nicht sichtbar sind. Dafür braucht die Komponenten-Doku einen eigenen Bereich neben Guidelines und Examples, dessen Einträge ohne Visual funktionieren.
 
@@ -140,7 +150,7 @@ Bei `loading-indicator` sind es zwei Anforderungen. Erstens `label` auch bei `sh
 
 Beim Aufbau des Bereichs diese Regeln als erste Einträge übernehmen und prüfen, welche weiteren Komponenten Anforderungen tragen, die aus demselben Grund bisher fehlen.
 
-### 20. Figma-Learn-Einträge und Verweise darauf
+### 21. Figma-Learn-Einträge und Verweise darauf
 
 Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Komponenten-Doku, sondern nach Figma Learn. Die Komponentenseite verweist dann darauf, statt den Inhalt zu wiederholen.
 
@@ -148,7 +158,7 @@ Manche Aussagen sind Werkzeugwissen für Figma und gehören nicht in die Kompone
 
 Beim Anlegen der Learn-Einträge prüfen, welche weiteren Aussagen aus den Guidelines dorthin gehören, statt in `## Zusätzliche Informationen` zu stehen.
 
-### 21. Regelformulierung über alle Komponenten hinweg vereinheitlichen
+### 22. Regelformulierung über alle Komponenten hinweg vereinheitlichen
 
 Die Regeln sind im Bestand in drei Stilen geschrieben. `writing-conventions.md` gibt unter „Formulierung in `## Regeln`" den eigenen Satz für Begründungen vor; ein Teil der Dateien folgt dem nicht.
 
@@ -160,11 +170,11 @@ Beim Durchgehen entscheiden, ob der eigene Satz die Zielform bleibt oder die Kom
 
 **Aus diesem Punkt dürfen sich keine inhaltlichen Änderungen ergeben, die die Texte der `documentation.json` betreffen.** Zulässig sind Satzbau, Zeichensetzung und die Konstruktion nach dem `**sollte**`-Marker. Nicht zulässig sind das Ergänzen oder Streichen von Begründungen, das Zusammenlegen oder Teilen von Regeln und geänderte Schwellwerte, weil daraus andere Do-, Dont- und Caution-Texte entstehen.
 
-Die fehlenden Begründungen der älteren Dateien sind deshalb kein Teil dieses Punkts. Sie werden erst entschieden, wenn für die jeweilige Komponente die `documentation.json` erzeugt wird, siehe Punkt 17.
+Die fehlenden Begründungen der älteren Dateien sind deshalb kein Teil dieses Punkts. Sie werden erst entschieden, wenn für die jeweilige Komponente die `documentation.json` erzeugt wird, siehe Punkt 18.
 
 ## Platform-Repo
 
-### 22. Tonalitätsregeln aus `_platform-steering/` zurückspielen
+### 23. Tonalitätsregeln aus `_platform-steering/` zurückspielen
 
 Der Ordner [`_platform-steering/`](_platform-steering/README.md) enthält eine temporäre Arbeitskopie der Steering-Dateien aus `db-ux-design-system.github.io`. Lücken, die beim Generieren der `documentation.json` auffallen, werden dort ergänzt und gesammelt in das Platform-Repo integriert, statt pro Fund zwischen den Repos zu wechseln.
 

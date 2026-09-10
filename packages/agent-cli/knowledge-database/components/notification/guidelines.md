@@ -4,7 +4,7 @@ Kommuniziert eine kurze Nachricht über ein Ereignis, eine Zustandsänderung ode
 
 ## Regeln
 
-1. Nur für nicht-blockierendes Feedback verwenden. Für Bestätigungen irreversibler Aktionen oder erzwungene Entscheidungen stattdessen [Dialog](../../lab-components/dialog/guidelines.md) verwenden. Dialog ist eine Lab-Komponente ohne stabilen API-Vertrag.
+1. Nur für nicht-blockierendes Feedback verwenden. Für Bestätigungen irreversibler Aktionen oder erzwungene Entscheidungen stattdessen [Dialog](../dialog/guidelines.md) verwenden.
 2. Semantische Variante passend zur Dringlichkeit wählen, nicht zur rein visuellen Betonung.
 3. Bedeutung muss auch ohne Farbe verständlich sein.
 4. **sollte** Nachricht so kurz wie möglich halten. Für Details auf eine eigene Oberfläche verlinken.
