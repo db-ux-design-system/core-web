@@ -48,9 +48,6 @@ export class InputsComponent {
 	 * `any` because the generated `value` model does not accept `undefined`.
 	 */
 	undefinedValue: any = 'reset-me';
-	public unsetValue() {
-		this.undefinedValue = undefined;
-	}
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
 	signalModel = signal({ value: 'test4' });
@@ -60,5 +57,9 @@ export class InputsComponent {
 			return;
 		}
 		this.plain = (event.target as HTMLInputElement).value;
+	}
+
+	public unsetValue() {
+		this.undefinedValue = undefined;
 	}
 }

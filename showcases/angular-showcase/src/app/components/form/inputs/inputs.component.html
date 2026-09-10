@@ -42,7 +42,7 @@
 <fieldset>
 	<legend>Reset to undefined</legend>
 	<db-input [value]="undefinedValue" label="Undefined reset" />
-	<db-button data-testid="unset-value-button" (click)="unsetValue()">
+	<db-button (click)="unsetValue()" data-testid="unset-value-button">
 		Set value to undefined
 	</db-button>
 </fieldset>
