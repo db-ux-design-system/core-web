@@ -1,0 +1,104 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+
+.db-footer-meta {
+	/*
+	 * The whole strip is small text, as in the design. Without it the list items
+	 * keep the inherited body size and their taller line box pushes the links a
+	 * few pixels below the copyright next to them. The placeholder rather than a
+	 * plain `font` declaration because it also lowers the icon sizing variables,
+	 * which a bare `font` would leave at the inherited size.
+	 *
+	 * Both the font and those variables inherit, so this one declaration covers
+	 * the copyright and any slotted content. Note that it also changes what `em`
+	 * means inside the area, which is why the width clamps in footer.scss use
+	 * `rem`.
+	 */
+	@extend %db-overwrite-font-size-sm;
+
+	/*
+	 * The meta links regularly wrap onto several rows, where the horizontal
+	 * spacing is too wide vertically. The shared list rule in footer.scss reads
+	 * this, so no second selector has to compete with it.
+	 */
+	--footer-list-row-gap: #{variables.$db-spacing-fixed-xs};
+
+	background-color: colors.$db-adaptive-bg-basic-level-2-default;
+	border-block-start: variables.$db-border-width-3xs solid
+		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	inline-size: 100%;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
+
+	/*
+	 * The shared width container doubles as the meta row. It already carries
+	 * the width clamp of the footer variant, so a separate flex wrapper would
+	 * only add a box without adding behaviour. `min-inline-size: 0` comes from
+	 * the container rule in footer.scss.
+	 */
+	.db-footer-container {
+		@include helpers.display(flex);
+
+		/*
+		 * The copyright stays top aligned rather than centring itself against
+		 * content that spans several rows, in both layouts.
+		 */
+		align-items: flex-start;
+		flex-flow: row wrap;
+
+		/* Row gap between the stacked columns, column gap between them side by side. */
+		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
+	}
+
+	/*
+	 * The design has two arrangements: side by side from the small breakpoint
+	 * upwards, stacked below it.
+	 *
+	 * The mixin is applied here rather than inside the container rule on purpose.
+	 * Besides the media query it emits a `[data-force-mobile="true"]` branch on
+	 * whatever `&` currently is, and this element is the one that carries the
+	 * `_ref`, so a consumer reaches it: `data-*` attributes on `DBFooterMeta` are
+	 * forwarded here. That is the escape hatch for a footer placed in a region
+	 * narrower than the viewport suggests, which the query cannot detect.
+	 */
+	@include screen-sizes.screen("sm", "max") {
+		.db-footer-container {
+			flex-direction: column;
+		}
+	}
+
+	/*
+	 * Groups the slotted content into one column, so several children line up
+	 * inside it rather than each becoming a column of its own next to the
+	 * copyright.
+	 *
+	 * The zero flex basis together with `min-inline-size: 0` is what keeps the
+	 * column on the line in the side-by-side arrangement: with an `auto` basis
+	 * the line-breaking step uses its max-content width and would push it onto a
+	 * line of its own as soon as the links no longer fit on one row, which would
+	 * be a second, unintended break above the breakpoint.
+	 */
+	.db-footer-meta-content {
+		@include helpers.display(flex);
+
+		flex: 1 1 0;
+		flex-wrap: wrap;
+		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+		min-inline-size: 0;
+
+		/* Without content the box would still take the gap next to the copyright. */
+		&:empty {
+			@include helpers.display(none);
+		}
+	}
+
+	/* The font comes from the strip above, `p` carries no size of its own. */
+	.db-footer-copyright {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+		margin: 0;
+		max-inline-size: 100%;
+		overflow-wrap: anywhere;
+	}
+}
