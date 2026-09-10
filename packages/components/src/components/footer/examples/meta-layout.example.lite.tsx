@@ -1,4 +1,4 @@
-import { useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBFooterMeta from '../../footer-meta/footer-meta.lite';
 import DBLink from '../../link/link.lite';
 import DBFooter from '../footer.lite';
@@ -20,82 +20,87 @@ useMetadata({
  */
 export default function FooterMetaLayout() {
 	return (
-		<DBFooter>
-			<DBFooterMeta copyright="Example Company">
-				<nav aria-label="Meta layout legal navigation">
-					<ul>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#privacy">
-								Privacy policy
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#imprint">
-								Imprint
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#accessibility">
-								Accessibility statement
-							</DBLink>
-						</li>
-						<li>
-							<DBLink variant="inline" size="small" href="#terms">
-								Terms and conditions
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#cookies">
-								Cookie settings
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#contact">
-								Contact and feedback
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#transparency">
-								Transparency and reporting
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#whistleblowing">
-								Whistleblowing system
-							</DBLink>
-						</li>
-						<li>
-							<DBLink
-								variant="inline"
-								size="small"
-								href="#supplier-code">
-								Supplier code of conduct
-							</DBLink>
-						</li>
-					</ul>
-				</nav>
-			</DBFooterMeta>
-		</DBFooter>
+		<Fragment>
+			<DBFooter>
+				<DBFooterMeta copyright="Example Company">
+					<nav aria-label="Meta layout legal navigation">
+						<ul>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#privacy">
+									Privacy policy
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#imprint">
+									Imprint
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#accessibility">
+									Accessibility statement
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#terms">
+									Terms and conditions
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#cookies">
+									Cookie settings
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#contact">
+									Contact and feedback
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#transparency">
+									Transparency and reporting
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#whistleblowing">
+									Whistleblowing system
+								</DBLink>
+							</li>
+							<li>
+								<DBLink
+									variant="inline"
+									size="small"
+									href="#supplier-code">
+									Supplier code of conduct
+								</DBLink>
+							</li>
+						</ul>
+					</nav>
+				</DBFooterMeta>
+			</DBFooter>
+		</Fragment>
 	);
 }
