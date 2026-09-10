@@ -6,6 +6,7 @@ import TextareaDensity from '../examples/density.example.lite';
 import TextareaDisabled from '../examples/disabled.example.lite';
 import TextareaExamplesFloatingLabel from '../examples/examples-floating-label.example.lite';
 import TextareaFieldSizing from '../examples/field-sizing.example.lite';
+import TextareaInteraction from '../examples/interaction.example.lite';
 import TextareaReadonly from '../examples/readonly.example.lite';
 import TextareaRequired from '../examples/required.example.lite';
 import TextareaRows from '../examples/rows.example.lite';
@@ -90,6 +91,11 @@ export default function TextareaShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples Floating Label">
 				<CardWrapperShowcase>
 					<TextareaExamplesFloatingLabel />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<TextareaInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

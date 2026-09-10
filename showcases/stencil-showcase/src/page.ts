@@ -78,6 +78,29 @@ const COLORS = [
 	'adaptive'
 ];
 
+/**
+ * Renders the bare content container without any shell / control-panel chrome.
+ * Used when a `?page=` (single example) or `?fullscreen=` query param is
+ * present, mirroring the fullscreen branch of the React showcase's `App`.
+ * The router injects the showcase element into the `<main>` element.
+ */
+export function renderFullscreen(): void {
+	const app = document.querySelector('#app');
+
+	if (!app) {
+		return;
+	}
+
+	const density = getDensity();
+	const color = getColor();
+
+	app.innerHTML = `
+		<div data-density="${density}" class="fullscreen-container db-${color}">
+			<main></main>
+		</div>
+	`;
+}
+
 export function renderPage(): void {
 	const app = document.querySelector('#app');
 

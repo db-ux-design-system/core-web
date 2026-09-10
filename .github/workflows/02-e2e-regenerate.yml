@@ -72,9 +72,7 @@ jobs:
           TYPE: ${{ inputs.type }}
           NEXT_PUBLIC_BASE_PATH: ${{ inputs.path }}
         run: |
-          if [[ $TYPE == "components" ]]; then
-            pnpm --filter @db-ux/react-core-components run regenerate:screenshots
-          elif [[ $TYPE == "foundations" ]]; then
+          if [[ $TYPE == "foundations" ]]; then
             pnpm --filter @db-ux/core-foundations run regenerate:screenshots
           elif [[ $TYPE == "patternhub" ]]; then
             mkdir --parents ./build-showcases${{ inputs.path }}
@@ -84,14 +82,6 @@ jobs:
             pnpm --filter react-showcase run regenerate:visual-snapshots
             pnpm --filter react-showcase run regenerate:aria-snapshots
           fi
-
-      - name: 🆙 Upload components
-        if: ${{ !cancelled() && inputs.type == 'components' }}
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: snapshots-${{ inputs.type }}
-          path: ./__snapshots__/*/component
-          retention-days: 7
 
       - name: 🆙 Upload foundations
         if: ${{ !cancelled() && inputs.type == 'foundations' }}

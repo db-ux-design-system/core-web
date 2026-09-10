@@ -18,6 +18,7 @@
     "test:aria-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
     "test:axe-core": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts",
+    "test:interaction": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.interaction.ts",
     "test:ui": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.config.ts --ui",
     "test:visual-snapshots": "cross-env showcase=vue-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
