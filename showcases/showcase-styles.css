@@ -232,34 +232,6 @@
 	gap: var(--db-spacing-fixed-sm);
 }
 
-.footer-meta-layout-example {
-	inline-size: 100%;
-
-	/*
-	 * ".variants-list" is a wrapping flex container, so without this the automatic
-	 * minimum size keeps this item at the min-content width of its widest variant
-	 * and the card overflows on a narrow screen.
-	 */
-	min-inline-size: 0;
-}
-
-.variants-list > div.footer-meta-layout-example {
-	display: block;
-}
-
-.footer-meta-layout-example-track {
-	display: grid;
-
-	/*
-	 * An implicit "auto" track would size to the widest variant and overflow the
-	 * card, and the "max-inline-size: 100%" on the variants would then resolve
-	 * against that oversized track instead of the space actually available.
-	 */
-	grid-template-columns: minmax(0, 1fr);
-	gap: var(--db-spacing-fixed-sm);
-	justify-items: start;
-}
-
 .stack-container {
 	padding: var(--db-spacing-fixed-xs);
 }

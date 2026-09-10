@@ -23,7 +23,7 @@ export default function DBFooterMeta(props: DBFooterMetaProps) {
 				<Show when={props.copyright}>
 					<p class="db-footer-copyright">©&nbsp;{props.copyright}</p>
 				</Show>
-				{props.children}
+				<div class="db-footer-meta-content">{props.children}</div>
 			</div>
 		</div>
 	);

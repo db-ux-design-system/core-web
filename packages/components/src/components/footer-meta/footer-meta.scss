@@ -4,14 +4,6 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 
-/*
- * The inline size at which the meta row switches between the two layouts,
- * measured on the row itself: the small breakpoint minus the strip padding on
- * both sides. Expressed in tokens rather than as a pre-computed number so it
- * follows the padding, which changes with the density.
- */
-$layout-break: "#{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)} - 2 * #{variables.$db-spacing-fixed-lg}";
-
 .db-footer-meta {
 	/*
 	 * The whole strip is small text, as in the design. Without it the list items
@@ -58,39 +50,47 @@ $layout-break: "#{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)} - 2 * #{va
 
 		/* Row gap between the stacked columns, column gap between them side by side. */
 		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
+	}
 
-		/*
-		 * Switches the two layouts on the width of the row itself, without a query.
-		 * `100%` in the flex basis resolves against the row, so the subtraction
-		 * changes sign at the break: above it the basis is negative and gets
-		 * clamped to zero, which lets the secondary content share the line with the
-		 * copyright and wrap its own content inside that column; below it the basis
-		 * becomes a value far wider than the row, so the flex line breaks and the
-		 * block moves under the copyright at full width. The factor only needs to
-		 * be large enough to push it past any realistic row width.
-		 *
-		 * `min-inline-size: 0` is required for the first case: without it the
-		 * automatic minimum size stops the column from shrinking below the width of
-		 * its widest link.
-		 *
-		 * The point of comparing against the row rather than against the space left
-		 * next to the copyright is that the break then does not move with the
-		 * length of the copyright text. Verified in Chromium and WebKit: the
-		 * narrowest footer that still puts them side by side is 768px for both a
-		 * short and a long copyright.
-		 *
-		 * Deliberately not a container query: making the footer a size container
-		 * stops its contents from contributing to its intrinsic width, so any
-		 * content-sized ancestor - a centred flex row, a `fit-content` box, a
-		 * table cell - collapses to zero width. Deliberately not a media query
-		 * either: that measures the viewport, so a footer narrowed by its
-		 * surroundings (a shell with an open side panel, a `width` variant on a
-		 * wide screen) would keep the side-by-side layout without the room for it.
-		 */
-		> :not(.db-footer-copyright) {
-			flex: 1 1 calc((#{$layout-break} - 100%) * 999);
-			max-inline-size: 100%;
-			min-inline-size: 0;
+	/*
+	 * The design has two arrangements: side by side from the small breakpoint
+	 * upwards, stacked below it.
+	 *
+	 * The mixin is applied here rather than inside the container rule on purpose.
+	 * Besides the media query it emits a `[data-force-mobile="true"]` branch on
+	 * whatever `&` currently is, and this element is the one that carries the
+	 * `_ref`, so a consumer reaches it: `data-*` attributes on `DBFooterMeta` are
+	 * forwarded here. That is the escape hatch for a footer placed in a region
+	 * narrower than the viewport suggests, which the query cannot detect.
+	 */
+	@include screen-sizes.screen("sm", "max") {
+		.db-footer-container {
+			flex-direction: column;
+		}
+	}
+
+	/*
+	 * Groups the slotted content into one column, so several children line up
+	 * inside it rather than each becoming a column of its own next to the
+	 * copyright.
+	 *
+	 * The zero flex basis together with `min-inline-size: 0` is what keeps the
+	 * column on the line in the side-by-side arrangement: with an `auto` basis
+	 * the line-breaking step uses its max-content width and would push it onto a
+	 * line of its own as soon as the links no longer fit on one row, which would
+	 * be a second, unintended break above the breakpoint.
+	 */
+	.db-footer-meta-content {
+		@include helpers.display(flex);
+
+		flex: 1 1 0;
+		flex-wrap: wrap;
+		gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
+		min-inline-size: 0;
+
+		/* Without content the box would still take the gap next to the copyright. */
+		&:empty {
+			@include helpers.display(none);
 		}
 	}
 

@@ -15,7 +15,6 @@ the copyright symbol. Both areas are optional, so consumers compose only the par
 need and wrap navigational content in a labelled `nav` themselves.
 
 Inside `DBFooterMeta` the copyright and the secondary content sit side by side from a
-footer width of 768 px upwards, with the copyright aligned to the top of the row, and
-stack below that. The switch measures the footer rather than the viewport, so a footer
-narrowed by its surroundings, such as a shell with an open side panel, stacks even while
-a wide window is open.
+viewport width of 768 px upwards, with the copyright aligned to the top of the row, and
+stack below that. `data-force-mobile="true"` on the footer forces the stacked
+arrangement, for a footer placed in a region narrower than the viewport suggests.
