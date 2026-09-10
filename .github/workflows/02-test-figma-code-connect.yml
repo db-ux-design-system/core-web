@@ -27,7 +27,7 @@ jobs:
       - name: 🔨 Generate Figma Code Connect
         env:
           FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
-        run: pnpm run --filter=@db-ux/core-components generate:figma
+        run: pnpm --filter=@db-ux/core-components run generate:figma
 
       # The publish job (03-publish-figma-code-connect, main only) consumes this
       # artifact, so we keep producing it here now that the separate build job is
