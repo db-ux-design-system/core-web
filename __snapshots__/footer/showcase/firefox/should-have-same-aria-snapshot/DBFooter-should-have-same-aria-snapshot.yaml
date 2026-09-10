@@ -79,7 +79,7 @@
         - link "Accessibility"
   - link "Meta layout"
   - paragraph: © Example Company
-  - navigation "Legal navigation, side by side":
+  - navigation "Meta layout legal navigation":
     - list:
       - listitem:
         - link "Privacy policy"
@@ -93,36 +93,12 @@
         - link "Cookie settings"
       - listitem:
         - link "Contact and feedback"
-  - paragraph: © Example Company
-  - navigation "Legal navigation, wrapped links":
-    - list:
       - listitem:
-        - link "Privacy policy"
+        - link "Transparency and reporting"
       - listitem:
-        - link "Imprint"
+        - link "Whistleblowing system"
       - listitem:
-        - link "Accessibility statement"
-      - listitem:
-        - link "Terms and conditions"
-      - listitem:
-        - link "Cookie settings"
-      - listitem:
-        - link "Contact and feedback"
-  - paragraph: © Example Company
-  - navigation "Legal navigation, stacked":
-    - list:
-      - listitem:
-        - link "Privacy policy"
-      - listitem:
-        - link "Imprint"
-      - listitem:
-        - link "Accessibility statement"
-      - listitem:
-        - link "Terms and conditions"
-      - listitem:
-        - link "Cookie settings"
-      - listitem:
-        - link "Contact and feedback"
+        - link "Supplier code of conduct"
   - link "Width"
   - text: Full inner content width
   - navigation "Full footer navigation":
