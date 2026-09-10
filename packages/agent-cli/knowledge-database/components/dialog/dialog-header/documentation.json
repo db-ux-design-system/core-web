@@ -54,21 +54,21 @@
 				"en": "Title Wording"
 			},
 			"text": {
-				"de": "Der Titel benennt die Aktion, die im Dialog ausgeführt wird. Als Bezugspunkt dient das Label des Elements, über das der Dialog geöffnet wurde.",
-				"en": "The title names the action carried out in the dialog. The label of the element that opened the dialog serves as the reference point."
+				"de": "Der Titel benennt die Aktion, die im Dialog ausgeführt wird, und bleibt dabei nah am Label des Elements, über das der Dialog geöffnet wurde. Er muss nicht wortgleich sein.",
+				"en": "The title names the action carried out in the dialog and stays close to the label of the element that opened it. It does not have to match word for word."
 			},
 			"do": {
 				"figmaNodeId": "4004-49",
 				"description": {
-					"de": "Benenne im Titel die Aktion und orientiere dich am Label des auslösenden Elements.",
-					"en": "Name the action in the title and take the label of the triggering element as a reference."
+					"de": "Benenne im Titel dieselbe Aufgabe wie das auslösende Element, in einem dazu passenden Wortlaut.",
+					"en": "Name the same task in the title as the triggering element, in wording that matches it."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "4004-51",
 				"description": {
-					"de": "Weicht der Titel vom Label ab, bleibt offen, ob der erwartete Dialog geöffnet wurde. Halte beide Formulierungen beieinander.",
-					"en": "If the title differs from the label, it stays unclear whether the expected dialog opened. Keep both wordings close to each other."
+					"de": "Benennt der Titel eine andere Aufgabe als das auslösende Element, bleibt offen, ob der erwartete Dialog geöffnet wurde. Titel und Label dürfen sich im Wortlaut unterscheiden, solange sie dieselbe Aufgabe meinen.",
+					"en": "If the title names a different task than the triggering element, it stays unclear whether the expected dialog opened. The title and the label may differ in wording as long as they mean the same task."
 				}
 			}
 		},
@@ -124,5 +124,12 @@
 		}
 	],
 	"faq": [],
-	"related": [{ "component": "dialog" }, { "component": "dialog-footer" }]
+	"related": [
+		{
+			"component": "dialog"
+		},
+		{
+			"component": "dialog-footer"
+		}
+	]
 }

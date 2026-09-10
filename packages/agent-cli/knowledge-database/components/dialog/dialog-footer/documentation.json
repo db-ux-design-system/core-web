@@ -48,6 +48,31 @@
 			}
 		},
 		{
+			"id": "cancel-action",
+			"headline": {
+				"de": "Abbrechen-Aktion",
+				"en": "Cancel Action"
+			},
+			"text": {
+				"de": "Bei einer Bestätigung oder einer Eingabe gehört eine abbrechende Aktion in den Dialog Footer. Der Close-Button im Dialog Header allein reicht nicht, weil er visuell schwächer ist und man bei einer Entscheidung beide Optionen als gleichwertige Buttons erwartet.",
+				"en": "For a confirmation or an input, a cancelling action belongs in the dialog footer. The close button in the dialog header alone is not enough, because it is visually weaker and people expect both options as equal buttons in a decision."
+			},
+			"do": {
+				"figmaNodeId": "4024-2",
+				"description": {
+					"de": "Lege bei einer Bestätigung oder Eingabe eine abbrechende Aktion neben die bestätigende in den Dialog Footer.",
+					"en": "Place a cancelling action next to the confirming one in the dialog footer for a confirmation or input."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4024-4",
+				"description": {
+					"de": "Biete das Abbrechen nicht nur über den Close-Button an. Wer die abbrechende Option sucht, findet im Dialog Footer nur die bestätigende Aktion.",
+					"en": "Don't offer cancelling only through the close button. Someone looking for the cancelling option finds only the confirming action in the dialog footer."
+				}
+			}
+		},
+		{
 			"id": "button-labels",
 			"headline": {
 				"de": "Button-Labels",
@@ -99,5 +124,12 @@
 		}
 	],
 	"faq": [],
-	"related": [{ "component": "dialog" }, { "component": "dialog-header" }]
+	"related": [
+		{
+			"component": "dialog"
+		},
+		{
+			"component": "dialog-header"
+		}
+	]
 }
