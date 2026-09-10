@@ -1,13 +1,16 @@
 #!/usr/bin/env node
-import { Buffer } from 'node:buffer';
 import fs from 'node:fs';
 import path from 'node:path';
-import { extract } from 'tar';
 
-const buildGHPage = async () => {
+/*
+ * Assembles ONLY the current branch's (or version's) subtree into ./public,
+ * which is then published with `keep_files: true` so it merges on top of the
+ * existing gh-pages branch. This avoids downloading, unpacking and re-committing
+ * the entire accumulated gh-pages site on every deploy (previously the dominant
+ * cost of the deploy job). Pruning of removed branches stays in cleanup.yml.
+ */
+const buildGHPage = () => {
 	const { NAME } = process.env;
-	const { OWNER_NAME } = process.env;
-	const { REPO_NAME } = process.env;
 	const OUT_DIR: string = process.env.OUT_DIR ?? 'out';
 	const IS_RELEASE: boolean = process.env.RELEASE === 'true';
 	const IS_PRE_RELEASE: boolean = process.env.PRE_RELEASE === 'true';
@@ -18,81 +21,40 @@ const buildGHPage = async () => {
 	}
 
 	console.log('➕ Create public dir');
-	if (!fs.existsSync('public')) {
-		fs.mkdirSync('public');
-	}
+	fs.mkdirSync('public', { recursive: true });
 
-	console.log('📥 Get gh-pages tar');
+	// Copy the freshly built site into the subtree that this deploy owns.
+	// With keep_files: true, everything already on gh-pages that we do NOT
+	// write here is left untouched, so other previews/versions are preserved.
+	const copyInto = (targetDir: string) => {
+		fs.mkdirSync(path.dirname(targetDir), { recursive: true });
+		if (fs.existsSync(targetDir)) {
+			fs.rmSync(targetDir, { recursive: true, force: true });
+		}
 
-	const result = await fetch(
-		`https://github.com/${OWNER_NAME}/${REPO_NAME}/tarball/gh-pages`
-	);
+		fs.cpSync(OUT_DIR, targetDir, { recursive: true });
+		console.log(`Copied dir ${OUT_DIR} to ${targetDir}`);
+	};
 
-	if (!result.ok) {
-		throw new Error(`Failed to fetch tarball: ${result.statusText}`);
-	}
-
-	const buffer = await result.arrayBuffer();
-	fs.writeFileSync('gh-pages.tar.gz', Buffer.from(buffer));
-	console.log('📦 Unpack Tar');
-	await extract({
-		file: 'gh-pages.tar.gz',
-
-		C: 'public',
-		strip: 1
-	});
-
-	if (IS_RELEASE) {
-		console.log('🔃 Create redirect');
-		const redirectContent = `<meta http-equiv="refresh" content="0; URL=https://${OWNER_NAME}.github.io/${REPO_NAME}/version/latest" />`;
-		fs.writeFileSync(path.join('public', 'index.html'), redirectContent);
-	}
-
-	console.log('👣 Move out dir');
 	if (IS_PRE_RELEASE || IS_RELEASE) {
-		const versionDir = path.join('public', 'version');
-		if (!fs.existsSync(versionDir)) {
-			console.log('Make dir ./public/version');
-			fs.mkdirSync(versionDir);
-		}
-
-		const nameDir = path.join(versionDir, NAME);
-		if (fs.existsSync(nameDir)) {
-			console.log(`Remove dir ./public/version/${NAME}`);
-			fs.rmSync(nameDir, { recursive: true });
-		}
+		copyInto(path.join('public', 'version', NAME));
 
 		if (IS_RELEASE) {
-			const latestDir = path.join(versionDir, 'latest');
-			if (fs.existsSync(latestDir)) {
-				console.log('Remove dir ./public/version/latest');
-				fs.rmSync(latestDir, { recursive: true });
-			}
+			copyInto(path.join('public', 'version', 'latest'));
 
-			fs.mkdirSync(latestDir);
-			fs.cpSync(OUT_DIR, latestDir, { recursive: true });
-			console.log('Copied dir out to ./public/version/latest');
+			// Root redirect to the latest published version.
+			const { OWNER_NAME } = process.env;
+			const { REPO_NAME } = process.env;
+			const redirectContent = `<meta http-equiv="refresh" content="0; URL=https://${OWNER_NAME}.github.io/${REPO_NAME}/version/latest" />`;
+			fs.writeFileSync(
+				path.join('public', 'index.html'),
+				redirectContent
+			);
+			console.log('🔃 Created root redirect to version/latest');
 		}
-
-		fs.cpSync(OUT_DIR, nameDir, { recursive: true });
-		console.log(`Moved dir out to ./public/version/${NAME}`);
 	} else {
-		const reviewDir = path.join('public', 'review');
-		if (!fs.existsSync(reviewDir)) {
-			console.log('Make dir ./public/review');
-			fs.mkdirSync(reviewDir);
-		}
-
-		const nameDir = path.join(reviewDir, NAME);
-		if (fs.existsSync(nameDir)) {
-			console.log(`Remove dir ./public/review/${NAME}`);
-			fs.rmSync(nameDir, { recursive: true });
-		}
-
-		fs.cpSync(OUT_DIR, nameDir, { recursive: true });
-		console.log(`Moved dir out to ./public/review/${NAME}`);
+		copyInto(path.join('public', 'review', NAME));
 	}
 };
 
-// eslint-disable-next-line unicorn/prefer-top-level-await
-void buildGHPage();
+buildGHPage();
