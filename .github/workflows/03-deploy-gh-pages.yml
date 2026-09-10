@@ -92,7 +92,47 @@ jobs:
           mv build-storybooks/react-storybook out/react-storybook
           mv build-storybooks/vue-storybook out/vue-storybook
 
-      - name: 🔨 Build page
+      # Compute which gh-pages subdirectory this deploy owns (review/<branch>,
+      # version/<name>, or version/latest for a release). Publishing into a
+      # dedicated destination_dir lets the action replace exactly that subtree
+      # while leaving every sibling (other previews/versions) untouched.
+      - name: 🧭 Resolve destination dir
+        id: dest
+        shell: bash
+        env:
+          RELEASE: ${{ inputs.release }}
+          PRE_RELEASE: ${{ inputs.preRelease }}
+          NAME: ${{ inputs.name }}
+        run: |
+          if [[ "$RELEASE" == "true" || "$PRE_RELEASE" == "true" ]]; then
+            echo "dir=version/${NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=review/${NAME}" >> "$GITHUB_OUTPUT"
+          fi
+
+      # Replace this branch's/version's subtree. keep_files defaults to false, so
+      # files deleted from the build (removed pages/routes) are removed from the
+      # subtree too, fixing stale-file retention. destination_dir scopes the
+      # action to just this subdir, so unrelated subtrees are preserved.
+      - name: 🥅 Deploy to GH-Pages
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          destination_dir: ${{ steps.dest.outputs.dir }}
+
+      # On a full release, also refresh version/latest as its own owned subtree.
+      - name: 🥅 Deploy latest to GH-Pages
+        if: ${{ inputs.release == 'true' }}
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          destination_dir: version/latest
+
+      # Generate the root redirect file (./root-redirect/index.html) for releases.
+      - name: 🔨 Build root redirect
+        if: ${{ inputs.release == 'true' }}
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
@@ -102,15 +142,16 @@ jobs:
         run: |
           node scripts/github/build-gh-page.ts
 
-      # keep_files: true merges the published subtree on top of the existing
-      # gh-pages branch, so previews for other branches/versions are preserved
-      # without downloading and re-committing the whole site. Stale previews are
-      # pruned separately by cleanup.yml.
-      - name: 🥅 Deploy to GH-Pages
+      # On a full release, refresh the root redirect to version/latest. This is
+      # the one file that must sit at the gh-pages root alongside every subtree,
+      # so it is published with keep_files: true (merge the single index.html
+      # without removing review/ or version/ siblings).
+      - name: 🥅 Deploy root redirect to GH-Pages
+        if: ${{ inputs.release == 'true' }}
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./root-redirect
           keep_files: true
 
       - name: 🖨️ Print gh-pages url
