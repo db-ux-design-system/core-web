@@ -291,7 +291,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -300,7 +299,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -309,7 +307,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -318,7 +315,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml
