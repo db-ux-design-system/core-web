@@ -1,29 +1,17 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
 
+/*
+ * The wrapping row for navigation lists is shared with the meta area and lives in
+ * footer.scss. It carries the design's rule that up to seven links sit side by
+ * side in a single line. From eight links onward the design groups them by topic,
+ * and such a group lays its own list out vertically, which the grouped example
+ * does locally.
+ */
 .db-footer-content {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	border-block-start: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	inline-size: 100%;
 	padding: variables.$db-spacing-fixed-lg;
-
-	/*
-	 * Up to seven links sit side by side in a single line, so lists default to a
-	 * wrapping row. From eight links onward the design groups them by topic, and
-	 * such a group lays its own list out vertically instead. The gap is needed
-	 * because the foundations' `nav` rule in default-required.scss zeroes the list
-	 * margins and `li` carries no default spacing.
-	 */
-	nav,
-	[role="navigation"] {
-		ol,
-		ul {
-			@include helpers.display(flex);
-
-			flex-wrap: wrap;
-			gap: variables.$db-spacing-fixed-md;
-		}
-	}
 }

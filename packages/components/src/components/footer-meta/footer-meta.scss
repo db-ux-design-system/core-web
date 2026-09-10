@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 /*
@@ -12,18 +13,30 @@
 $layout-break: "#{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)} - 2 * #{variables.$db-spacing-fixed-lg}";
 
 .db-footer-meta {
+	/*
+	 * The whole strip is small text, as in the design. Without it the list items
+	 * keep the inherited body size and their taller line box pushes the links a
+	 * few pixels below the copyright next to them. The placeholder rather than a
+	 * plain `font` declaration because it also lowers the icon sizing variables,
+	 * which a bare `font` would leave at the inherited size.
+	 *
+	 * Both the font and those variables inherit, so this one declaration covers
+	 * the copyright and any slotted content. Note that it also changes what `em`
+	 * means inside the area, which is why the width clamps in footer.scss use
+	 * `rem`.
+	 */
+	@extend %db-overwrite-font-size-sm;
+
+	/*
+	 * The meta links regularly wrap onto several rows, where the horizontal
+	 * spacing is too wide vertically. The shared list rule in footer.scss reads
+	 * this, so no second selector has to compete with it.
+	 */
+	--footer-list-row-gap: #{variables.$db-spacing-fixed-xs};
+
 	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	border-block-start: variables.$db-border-width-3xs solid
 		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-
-	/*
-	 * The whole strip is small text, as in the design. Without it the list items
-	 * keep the inherited body size and their taller line box pushes the links
-	 * a few pixels below the copyright next to them. Note that this also changes
-	 * what `em` means inside the area, which is why the width clamps in
-	 * footer.scss use `rem`.
-	 */
-	font: var(--db-type-body-sm);
 	inline-size: 100%;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 
@@ -81,28 +94,9 @@ $layout-break: "#{helpers.px-to-rem(screen-sizes.$db-screen-size-sm)} - 2 * #{va
 		}
 	}
 
-	/*
-	 * The meta area is a horizontal strip, so lists inside it lay out as a
-	 * wrapping row by default instead of every consumer restyling them. The
-	 * marker reset itself already comes from the `nav` rule in the
-	 * foundations' default-required.scss, and `list-style-type: ""` is used
-	 * there rather than `none` because `none` costs the list semantics in
-	 * Safari.
-	 */
-	nav,
-	[role="navigation"] {
-		ol,
-		ul {
-			@include helpers.display(flex);
-
-			flex-wrap: wrap;
-			gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
-		}
-	}
-
+	/* The font comes from the strip above, `p` carries no size of its own. */
 	.db-footer-copyright {
 		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-		font: var(--db-type-body-sm);
 		margin: 0;
 		max-inline-size: 100%;
 		overflow-wrap: anywhere;

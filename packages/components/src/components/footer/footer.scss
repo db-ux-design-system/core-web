@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
 
 .db-footer {
 	/*
@@ -15,6 +16,33 @@
 		inline-size: 100%;
 		margin-inline: auto;
 		min-inline-size: 0;
+	}
+
+	/*
+	 * Both areas lay their navigation lists out as a wrapping row, so the rule
+	 * lives here rather than once per area. It sits in footer.scss because both
+	 * areas only ever appear inside a footer, and the only difference between
+	 * them is the row gap below.
+	 *
+	 * The marker reset itself already comes from the `nav` rule in the
+	 * foundations' default-required.scss, which uses `list-style-type: ""`
+	 * rather than `none` because `none` costs the list semantics in Safari. The
+	 * gap is needed because that rule also zeroes the list margins and `li`
+	 * carries no default spacing.
+	 */
+	:is(nav, [role="navigation"]) :is(ol, ul) {
+		@include helpers.display(flex);
+
+		flex-wrap: wrap;
+
+		/*
+		 * The row gap is read from a custom property so an area can differ without
+		 * a second selector: an override would land on the same specificity as this
+		 * rule and would then depend on the order the component styles happen to be
+		 * concatenated in.
+		 */
+		gap: var(--footer-list-row-gap, #{variables.$db-spacing-fixed-md})
+			variables.$db-spacing-fixed-md;
 	}
 
 	/*
