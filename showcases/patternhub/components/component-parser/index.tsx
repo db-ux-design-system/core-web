@@ -15,6 +15,9 @@ import {
 	DBCustomHeading,
 	DBCustomSelect,
 	DBDivider,
+	DBFooter,
+	DBFooterContent,
+	DBFooterMeta,
 	DBHeadingH1,
 	DBHeadingH2,
 	DBHeadingH3,
@@ -371,6 +374,30 @@ const ComponentSwitch = ({
 			<DBCustomButton className={className} {...props}>
 				{resolvedContent}
 			</DBCustomButton>
+		);
+	}
+
+	if (type === 'footer') {
+		return (
+			<DBFooter className={className} {...props}>
+				{resolvedContent}
+			</DBFooter>
+		);
+	}
+
+	if (type === 'footer-content') {
+		return (
+			<DBFooterContent className={className} {...props}>
+				{resolvedContent}
+			</DBFooterContent>
+		);
+	}
+
+	if (type === 'footer-meta') {
+		return (
+			<DBFooterMeta className={className} {...props}>
+				{resolvedContent}
+			</DBFooterMeta>
 		);
 	}
 

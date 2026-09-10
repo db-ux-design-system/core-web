@@ -1,0 +1,66 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.db-footer {
+	/*
+	 * DBPage turns the footer into a flex container: the header-footer-style mixin
+	 * in page.scss applies `display: flex` to `> :is(.db-header, .db-footer, ...)`
+	 * inside `.db-page[data-variant="fixed"]`. Without this the content and meta
+	 * areas would lay out in a row there instead of stacking.
+	 */
+	flex-direction: column;
+	inline-size: 100%;
+
+	.db-footer-container {
+		inline-size: 100%;
+		margin-inline: auto;
+		min-inline-size: 0;
+	}
+
+	/*
+	 * Both areas lay their navigation lists out as a wrapping row, so the rule
+	 * lives here rather than once per area. It sits in footer.scss because both
+	 * areas only ever appear inside a footer, and the only difference between
+	 * them is the row gap below.
+	 *
+	 * The marker reset itself already comes from the `nav` rule in the
+	 * foundations' default-required.scss, which uses `list-style-type: ""`
+	 * rather than `none` because `none` costs the list semantics in Safari. The
+	 * gap is needed because that rule also zeroes the list margins and `li`
+	 * carries no default spacing.
+	 */
+	:is(nav, [role="navigation"]) :is(ol, ul) {
+		@include helpers.display(flex);
+
+		flex-wrap: wrap;
+
+		/*
+		 * The row gap is read from a custom property so an area can differ without
+		 * a second selector: an override would land on the same specificity as this
+		 * rule and would then depend on the order the component styles happen to be
+		 * concatenated in.
+		 */
+		gap: var(--footer-list-row-gap, #{variables.$db-spacing-fixed-md})
+			variables.$db-spacing-fixed-md;
+	}
+
+	/*
+	 * `rem`, not the `em`-based `$db-breakpoint-*` variables: `em` on a width
+	 * resolves against the element's own font size, so the meta area - which sets
+	 * `body-sm` on itself - would clamp at 42rem where the content area clamps at
+	 * 48rem, and the two areas would no longer line up. `rem` still scales the
+	 * clamp with a user-adjusted root font size.
+	 */
+	&[data-width="small"] .db-footer-container {
+		max-inline-size: helpers.px-to-rem(screen-sizes.$db-screen-size-sm);
+	}
+
+	&[data-width="medium"] .db-footer-container {
+		max-inline-size: helpers.px-to-rem(screen-sizes.$db-screen-size-md);
+	}
+
+	&[data-width="large"] .db-footer-container {
+		max-inline-size: helpers.px-to-rem(screen-sizes.$db-screen-size-lg);
+	}
+}
