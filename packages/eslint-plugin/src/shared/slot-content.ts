@@ -1,4 +1,5 @@
 import {
+	angularChildNodes,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	isDBComponent,
@@ -22,10 +23,7 @@ type HeaderRequiredRuleOptions = {
  * Recursively checks if a node or its children contain the header component.
  */
 function hasAngularHeader(node: any, header: string): boolean {
-	if (!node.children) {
-		return false;
-	}
-	return node.children.some((child: any) => {
+	return angularChildNodes(node).some((child: any) => {
 		if (
 			(child.type === 'Element' || child.type === 'Element$1') &&
 			isDBComponent(child, header)
@@ -48,11 +46,21 @@ function hasAngularHeader(node: any, header: string): boolean {
  * consistent with `sub-component-required-parent`, which matches the same attribute.
  */
 function hasAngularHeaderSlot(node: any, header: string): boolean {
-	return (node.children || []).some((child: any) => {
-		// A structural directive (e.g. *ngIf, *ngFor) wraps the real element in a
-		// Template node, so the projected header sits one level deeper. Recurse
-		// through Template wrappers before checking the projection attribute.
-		if (child.type === 'Template' || child.type === 'Template$1') {
+	return angularChildNodes(node).some((child: any) => {
+		// The projected header may sit one (or more) levels deeper inside a
+		// wrapper that still projects transparently into the slot:
+		//   - a structural directive (*ngIf, *ngFor) wraps it in a Template node
+		//   - built-in control flow (@if, @for, @switch, @defer) wraps it in block
+		//     nodes (IfBlock -> IfBlockBranch, ForLoopBlock, SwitchBlock ->
+		//     SwitchBlockCase, DeferredBlock, ...) whose children live in varying
+		//     collections (children/branches/cases). angularChildNodes flattens
+		//     them, so recurse through any non-element wrapper; real elements are
+		//     handled below where the projection attribute is checked.
+		if (
+			child.type !== 'Element' &&
+			child.type !== 'Element$1' &&
+			angularChildNodes(child).length > 0
+		) {
 			return hasAngularHeaderSlot(child, header);
 		}
 

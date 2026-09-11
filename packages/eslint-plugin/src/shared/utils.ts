@@ -334,6 +334,31 @@ export function toKebabCase(string_: string): string {
 	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
+/**
+ * Returns the traversable child nodes of an Angular template AST node, flattening
+ * the collections that built-in control flow spreads its content across. `@if`
+ * keeps its content under `branches[].children`, `@switch` under `groups[].children`,
+ * and `@for` exposes an `empty` block alongside its `children`; plain elements and
+ * `@for`/`@defer` blocks use `children` directly. Callers can therefore recurse
+ * transparently through control-flow wrappers without enumerating every version-
+ * specific block type.
+ */
+export function angularChildNodes(node: any): any[] {
+	if (!node) {
+		return [];
+	}
+	const nodes: any[] = Array.isArray(node.children) ? [...node.children] : [];
+	for (const collection of [node.branches, node.groups]) {
+		if (Array.isArray(collection)) {
+			nodes.push(...collection);
+		}
+	}
+	if (node.empty) {
+		nodes.push(node.empty);
+	}
+	return nodes;
+}
+
 /** @public */
 export function getAngularComponentName(componentName: string): string {
 	// For DB components, convert DBComponentName -> db-component-name
