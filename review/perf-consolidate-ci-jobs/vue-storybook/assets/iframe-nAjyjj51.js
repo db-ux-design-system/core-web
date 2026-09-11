@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BHPv96um.js";e();
