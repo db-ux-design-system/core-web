@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-DyJS_vws.js";e();
