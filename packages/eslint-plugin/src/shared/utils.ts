@@ -276,7 +276,7 @@ export function defineTemplateBodyVisitor(
 	templateVisitor: any,
 	scriptVisitor?: any
 ) {
-	const sourceCode = context.sourceCode || context.getSourceCode();
+	const { sourceCode } = context;
 
 	// Vue templates
 	if (sourceCode.parserServices?.defineTemplateBodyVisitor) {
@@ -309,7 +309,7 @@ export function createAngularVisitors(
 	componentName: string,
 	handler: (node: any, parserServices: any) => void
 ) {
-	const sourceCode = context.sourceCode || context.getSourceCode();
+	const { sourceCode } = context;
 	const parserServices = sourceCode?.parserServices;
 	const isAngular = parserServices?.convertNodeSourceSpanToLoc;
 
@@ -372,7 +372,7 @@ export function createAngularFix(
 	node: any,
 	attributeText: string
 ) {
-	const sourceCode = context.sourceCode || context.getSourceCode();
+	const { sourceCode } = context;
 	const text = sourceCode.getText();
 	const startOffset = node.sourceSpan.start.offset;
 	const endOffset = node.sourceSpan.end.offset;

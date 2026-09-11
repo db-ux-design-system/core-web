@@ -535,6 +535,15 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
+		name: 'footer-content'
+	},
+	{
+		name: 'footer-meta'
+	},
+	{
+		name: 'footer'
+	},
+	{
 		name: 'brand'
 	},
 	{
