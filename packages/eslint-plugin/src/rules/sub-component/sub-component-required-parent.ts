@@ -145,8 +145,15 @@ function isInsideVueParent(
 	let hasSlotTemplate = false;
 
 	while (current) {
-		// Skip non-element nodes (text nodes, document fragments, etc.)
-		if (current.type !== 'VElement' && current.type !== 'Element') {
+		// Skip non-element nodes (text nodes, document fragments, etc.).
+		// `Element$1` is the Vue parser's fallback element type; it can expose the
+		// slot template or the parent component, so it must be walked like a real
+		// element rather than skipped.
+		if (
+			current.type !== 'VElement' &&
+			current.type !== 'Element' &&
+			current.type !== 'Element$1'
+		) {
 			current = current.parent;
 			continue;
 		}

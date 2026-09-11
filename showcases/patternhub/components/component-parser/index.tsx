@@ -18,6 +18,9 @@ import {
 	DBDialogFooter,
 	DBDialogHeader,
 	DBDivider,
+	DBFooter,
+	DBFooterContent,
+	DBFooterMeta,
 	DBHeadingH1,
 	DBHeadingH2,
 	DBHeadingH3,
@@ -400,6 +403,30 @@ const ComponentSwitch = ({
 			<DBDialogFooter className={className} {...props}>
 				{resolvedContent}
 			</DBDialogFooter>
+		);
+	}
+
+	if (type === 'footer') {
+		return (
+			<DBFooter className={className} {...props}>
+				{resolvedContent}
+			</DBFooter>
+		);
+	}
+
+	if (type === 'footer-content') {
+		return (
+			<DBFooterContent className={className} {...props}>
+				{resolvedContent}
+			</DBFooterContent>
+		);
+	}
+
+	if (type === 'footer-meta') {
+		return (
+			<DBFooterMeta className={className} {...props}>
+				{resolvedContent}
+			</DBFooterMeta>
 		);
 	}
 

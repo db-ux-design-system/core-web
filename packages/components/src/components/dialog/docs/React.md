@@ -31,6 +31,8 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 
 There is no built-in command to open a dialog non-modally (`backdrop="none"`). Open it via the `open` prop instead (or a [custom `--` command](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API#custom_commands) whose `command` event handler calls `dialog.show()`).
 
+`DBDialog` already ponyfills `request-close` and the backdrop click for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands) (see [Ponyfill](#ponyfill) below), so you do not have to. Command-based _opening_ (`show-modal`) is not ponyfilled, though: if you need to open via a command in those browsers, use the `open` prop (as in [Manage component by state](#manage-component-by-state)) or add the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
+
 ```tsx App.tsx
 // App.tsx
 import {

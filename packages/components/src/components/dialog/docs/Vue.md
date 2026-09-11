@@ -22,6 +22,8 @@ Prefer `request-close` for close buttons: it fires a `cancel` event before closi
 
 There is no built-in command to open a dialog non-modally (`backdrop="none"`). Open it via the `open` property instead (or a [custom `--` command](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API#custom_commands) whose `command` event handler calls `dialog.show()`).
 
+`DBDialog` already ponyfills `request-close` and the backdrop click for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands) (see [Ponyfill files](#ponyfill-files) below), so you do not have to. Command-based _opening_ (`show-modal`) is not ponyfilled, though: if you need to open via a command in those browsers, use the `open` property (as in [Manage component by state](#manage-component-by-state)) or add the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
+
 ```vue App.vue
 <!-- App.vue -->
 <template>
@@ -115,6 +117,10 @@ import {
 
 const openDialog = ref<boolean>(false);
 
+const toggleDialog = (open: boolean) => {
+	openDialog.value = open;
+};
+
 const onClose = (event: Event) => {
 	openDialog.value = false;
 	const dialog = event.target as HTMLDialogElement;
@@ -123,7 +129,15 @@ const onClose = (event: Event) => {
 </script>
 
 <template>
-	<DBDialog :open="openDialog" @close="onClose">
+	<DBButton
+		command="show-modal"
+		commandfor="my-dialog"
+		@click="toggleDialog(true)"
+	>
+		Open dialog
+	</DBButton>
+
+	<DBDialog id="my-dialog" :open="openDialog" @close="onClose">
 		<template #header>
 			<DBDialogHeader text="Rename entry" closeButtonText="Close" />
 		</template>

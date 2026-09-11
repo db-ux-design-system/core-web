@@ -219,6 +219,19 @@
 	display: none !important;
 }
 
+.footer-width-example {
+	inline-size: 100%;
+}
+
+.variants-list > div.footer-width-example {
+	display: block;
+}
+
+.footer-width-example-track {
+	display: grid;
+	gap: var(--db-spacing-fixed-sm);
+}
+
 .stack-container {
 	padding: var(--db-spacing-fixed-xs);
 }
