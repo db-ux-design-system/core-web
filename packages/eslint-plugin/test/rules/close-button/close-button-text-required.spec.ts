@@ -294,6 +294,13 @@ const reactAttributeShapes: AttributeShape[] = [
 		shape: 'JSX spread with an explicit empty label still reports',
 		code: "<DBDialogHeader {...headerProps} closeButtonText='' />",
 		reports: true
+	},
+	{
+		// Reverse ordering: the spread comes AFTER the empty explicit label, so
+		// (React later-wins) the spread may supply a valid label - unresolved.
+		shape: 'JSX spread after an explicit empty label (spread wins, unresolved)',
+		code: "<DBDialogHeader closeButtonText='' {...headerProps} />",
+		reports: false
 	}
 ];
 
@@ -362,6 +369,13 @@ const vueAttributeShapes: AttributeShape[] = [
 		shape: 'object v-bind with an explicit empty label still reports',
 		code: '<template><DBDialogHeader v-bind="headerProps" close-button-text="">Title</DBDialogHeader></template>',
 		reports: true
+	},
+	{
+		// Reverse ordering: the object v-bind comes AFTER the empty explicit label,
+		// so (Vue later-wins) it may supply a valid label - unresolved.
+		shape: 'object v-bind after an explicit empty label (v-bind wins, unresolved)',
+		code: '<template><DBDialogHeader close-button-text="" v-bind="headerProps">Title</DBDialogHeader></template>',
+		reports: false
 	}
 ];
 
