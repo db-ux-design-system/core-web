@@ -26,6 +26,15 @@ jobs:
           pnpm run build
           pnpm --filter scripts run docs-file-references
 
+      # Run the vite-plugin tests here rather than in a separate job. `pnpm run
+      # build` above already produced everything they need in-tree: the
+      # packages/{components,foundations}/build styles and the output/* framework
+      # packages that the integration-test fixtures reference via file: deps.
+      # Testing in-place avoids a whole extra job (Init Cache + artifact
+      # downloads) - valuable under the org's 20-runner cap.
+      - name: 🧪 Run Vite Plugin Tests
+        run: pnpm --filter @db-ux/core-vite-plugin run test
+
       - name: ⏫ Upload foundations build
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
