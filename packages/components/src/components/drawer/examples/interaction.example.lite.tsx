@@ -14,22 +14,32 @@ useMetadata({
 });
 
 /**
- * Fixture for the cross-framework interaction e2e tests
- * (see showcases/e2e/drawer/drawer-interaction.spec.ts).
- * A drawer whose open state is controlled by external buttons, so opening and
- * closing (via the header close button, which fires onClose) is observable.
+ Fixture for the cross-framework interaction e2e tests
+ (see showcases/e2e/drawer/drawer-interaction.spec.ts).
+ A drawer whose open state is controlled by external buttons, so opening and
+ closing (via the header close button, which fires onClose) is observable.
  */
 export default function DrawerInteraction() {
 	const [open, setOpen] = useState<boolean>(false);
 
 	return (
 		<div>
-			<DBButton data-testid="open-button" onClick={() => setOpen(true)}>
+			{/* Excluded from story generation: it has no nested DBDrawer, so
+			 * the Storybook plugin's component lookup for this story would
+			 * fail on it. It still renders in the showcase/e2e output. */}
+			<DBButton
+				data-sb-ignore="true"
+				data-testid="open-button"
+				onClick={() => {
+					setOpen(true);
+				}}>
 				Open
 			</DBButton>
 			<DBDrawer
 				open={open}
-				onClose={() => setOpen(false)}
+				onClose={() => {
+					setOpen(false);
+				}}
 				header={
 					<DBDrawerHeader closeButtonText="Close">
 						Title

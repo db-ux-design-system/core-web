@@ -9,12 +9,12 @@ useMetadata({
 });
 
 /**
- * Fixtures for the cross-framework interaction e2e tests
- * (see showcases/e2e/select/select-interaction.spec.ts).
- *
- * "Change" reflects the selected value into observable DOM so the change
- * handler can be verified. "Required" is an empty, required select used to
- * verify the selection survives validation on input (regression #7554).
+ Fixtures for the cross-framework interaction e2e tests
+ (see showcases/e2e/select/select-interaction.spec.ts).
+
+ "Change" reflects the selected value into observable DOM so the change
+ handler can be verified. "Required" is an empty, required select used to
+ verify the selection survives validation on input (regression #7554).
  */
 export default function SelectInteraction() {
 	const state = useStore({
@@ -29,11 +29,18 @@ export default function SelectInteraction() {
 			<DBSelect
 				data-testid="select-change"
 				label="Label"
-				onInput={(event: any) => state.handleInput(event)}>
+				onInput={(event: any) => {
+					state.handleInput(event);
+				}}>
 				<option value="test1">Test1</option>
 				<option value="test2">Test2</option>
 			</DBSelect>
-			<span data-testid="select-result">{state.selectedValue}</span>
+			{/* Excluded from story generation: it has no nested DBSelect, and
+			 * would otherwise misalign with the two declared storybookNames
+			 * ('Change', 'Required') below. */}
+			<span data-testid="select-result" data-sb-ignore="true">
+				{state.selectedValue}
+			</span>
 
 			<DBSelect
 				data-testid="select-required"
