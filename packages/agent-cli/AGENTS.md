@@ -34,7 +34,7 @@ db-ux-consumer-powers/        # Published powers bundle (consumers / app develop
 │   │   guidelines.md         # Auto-loaded steering file for consumer skills
 │   skills/
 │       implement-component/  # Skill: implement UI with DB UX components
-│       migrate-to-v3/        # Skill: migrate legacy Generation 2 -> Generation 3
+│       migrate-to-v3/        # Skill: migrate DB UX Design System - Generation 2 (aka DB UI) -> Generation 3
 db-ux-maintainer-powers/      # Internal powers bundle (DB UX component authors)
 │   power.yaml                # Bundle manifest
 │   mcp.json                  # MCP config for @db-ux/mcp-server + figma-developer-mcp

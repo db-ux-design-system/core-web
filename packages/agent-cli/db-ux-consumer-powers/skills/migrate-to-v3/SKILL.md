@@ -51,7 +51,7 @@ on_error:
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
-# Migrate to Generation 3
+# Migrate to DB UX Design System – Generation 3
 
 ## Pre-Conditions
 
