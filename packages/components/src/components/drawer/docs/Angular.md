@@ -32,7 +32,7 @@ import { DBDrawer, DBDrawerHeader } from '@db-ux/ngx-core-components';
 >
 	Open drawer
 </db-button>
-<db-drawer id="my-drawer [open]="openDrawer" (close)="toggleDrawer(false)">
+<db-drawer id="my-drawer" [open]="openDrawer" (close)="toggleDrawer(false)">
 	<db-drawer-header header closeButtonText="Close">
 		<h2>Drawer Title</h2>
 	</db-drawer-header>
