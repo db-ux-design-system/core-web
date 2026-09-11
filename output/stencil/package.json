@@ -53,7 +53,7 @@
     "@types/node": "26.5.0",
     "cem-plugin-expanded-types": "1.4.0",
     "cpr": "3.0.1",
-    "custom-element-jet-brains-integration": "1.7.0",
+    "custom-element-jet-brains-integration": "1.8.0",
     "custom-element-vs-code-integration": "1.5.0",
     "npm-run-all2": "9.0.3",
     "storybook": "10.6.0",
