@@ -24,6 +24,43 @@ const hasTextContent = (text: string | boolean | undefined): boolean => {
 	return true;
 };
 
+/**
+ * Whether a React JSX expression child (`{...}`) renders nothing, so it does not
+ * count as content. React renders no output for `null`, `undefined`, `true`,
+ * `false`, an empty/whitespace string (`''`, `'   '`) or an empty template
+ * literal, and `{}` is an empty expression. Anything else - an identifier, call,
+ * member access, conditional or non-empty literal - cannot be verified
+ * statically, so it is treated as (possible) content.
+ */
+const isEmptyJsxExpression = (container: any): boolean => {
+	const { expression } = container;
+	if (!expression || expression.type === 'JSXEmptyExpression') {
+		return true;
+	}
+	if (expression.type === 'Literal') {
+		const { value } = expression;
+		return (
+			value === null ||
+			value === true ||
+			value === false ||
+			(typeof value === 'string' && value.trim() === '')
+		);
+	}
+	if (expression.type === 'Identifier') {
+		return expression.name === 'undefined';
+	}
+	if (expression.type === 'TemplateLiteral') {
+		return (
+			expression.expressions.length === 0 &&
+			// cspell:ignore quasis
+			expression.quasis.every(
+				(quasi: any) => (quasi.value?.cooked ?? '').trim() === ''
+			)
+		);
+	}
+	return false;
+};
+
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
 	'DBBadge',
@@ -132,7 +169,11 @@ export default {
 					(child.type === 'VText' && child.value.trim() !== '') ||
 					child.type === 'JSXElement' ||
 					child.type === 'VElement' ||
-					child.type === 'JSXExpressionContainer' ||
+					// A JSX expression child counts as content unless it renders
+					// nothing (e.g. {null}, {false}, {''}), which would leave the
+					// element referenced by aria-labelledby empty.
+					(child.type === 'JSXExpressionContainer' &&
+						!isEmptyJsxExpression(child)) ||
 					child.type === 'VExpressionContainer'
 			);
 

@@ -47,6 +47,12 @@ describe('text-or-children-required', () => {
 			},
 			{ code: '<DBDrawerHeader text="Title" />' },
 			{ code: '<DBDrawerHeader>Title</DBDrawerHeader>' },
+			{
+				// A dynamic expression child cannot be verified statically, so it
+				// is treated as (possible) content and not reported.
+				code: '<DBDialogHeader>{title}</DBDialogHeader>'
+			},
+			{ code: '<DBDialogHeader>{`Title ${suffix}`}</DBDialogHeader>' },
 			{ code: '<div />' }
 		],
 		invalid: [
@@ -155,6 +161,52 @@ describe('text-or-children-required', () => {
 			{
 				// Whitespace-only text is likewise not an accessible name.
 				code: '<DBDialogHeader text="   " />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// {null} renders nothing, so aria-labelledby target stays empty.
+				code: '<DBDialogHeader>{null}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				code: '<DBDialogHeader>{false}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				code: '<DBDialogHeader>{undefined}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				code: "<DBDrawerHeader>{''}</DBDrawerHeader>",
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
+				code: '<DBDialogHeader>{`   `}</DBDialogHeader>',
 				errors: [
 					{
 						messageId: 'missingContent',
