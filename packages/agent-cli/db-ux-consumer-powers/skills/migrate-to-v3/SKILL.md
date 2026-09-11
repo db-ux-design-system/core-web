@@ -4,7 +4,10 @@ description: "Migrates legacy Generation 2 (aka DB UI) code (cmp-*, elm-*, rea-*
 
 triggers:
     - "migrate to v3"
+    - "migrate to Generation 3"
     - "upgrade from v2"
+    - "upgrade from Generation 2"
+    - "migrate from DB UI"
     - "convert legacy DB UI code"
     - "replace cmp-* classes"
     - "migrate db-color tokens"
