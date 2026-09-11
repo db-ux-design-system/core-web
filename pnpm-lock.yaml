@@ -324,8 +324,8 @@ importers:
         specifier: 3.0.1
         version: 3.0.1
       custom-element-jet-brains-integration:
-        specifier: 1.7.0
-        version: 1.7.0(prettier@3.9.6)
+        specifier: 1.8.0
+        version: 1.8.0(prettier@3.9.6)
       custom-element-vs-code-integration:
         specifier: 1.5.0
         version: 1.5.0(prettier@3.9.6)
@@ -8877,8 +8877,8 @@ packages:
   cubic2quad@1.2.1:
     resolution: {integrity: sha512-wT5Y7mO8abrV16gnssKdmIhIbA9wSkeMzhh27jAguKrV82i24wER0vL5TGhUJ9dbJNDcigoRZ0IAHFEEEI4THQ==}
 
-  custom-element-jet-brains-integration@1.7.0:
-    resolution: {integrity: sha512-xub1zmgHsxKn1LSUDrP5UNPuMHVVowcZu6w+y3GC43Kh6gPzNyQs1jRFurUD9bHg7QUmnd7DcT0WhNRuiGkmJA==}
+  custom-element-jet-brains-integration@1.8.0:
+    resolution: {integrity: sha512-KNhuazNaDfGWH5udm/MyHcmGHf445fiDJFwj+P0Y1FioM5ule+ywrE/wiyjNPD2oUdlxDcBXKoDIuJgKf35gSg==}
 
   custom-element-vs-code-integration@1.5.0:
     resolution: {integrity: sha512-dMKlHq7qz1HbNZUXqw/4fVTh8FBLYX/dIQRt9M0M3KX+Z4iXKUzXxCBdNIdLjE18kMiOCZuRLDZly5mBznoCYw==}
@@ -25206,7 +25206,7 @@ snapshots:
 
   cubic2quad@1.2.1: {}
 
-  custom-element-jet-brains-integration@1.7.0(prettier@3.9.6):
+  custom-element-jet-brains-integration@1.8.0(prettier@3.9.6):
     dependencies:
       '@prettier/sync': 0.5.5(prettier@3.9.6)
     transitivePeerDependencies:
