@@ -122,6 +122,8 @@ jobs:
           destination_dir: ${{ steps.dest.outputs.dir }}
 
       # On a full release, also refresh version/latest as its own owned subtree.
+      # The root index.html redirect already exists on gh-pages and always points
+      # to version/latest, so it never needs republishing here.
       - name: 🥅 Deploy latest to GH-Pages
         if: ${{ inputs.release == 'true' }}
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
@@ -129,30 +131,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
           destination_dir: version/latest
-
-      # Generate the root redirect file (./root-redirect/index.html) for releases.
-      - name: 🔨 Build root redirect
-        if: ${{ inputs.release == 'true' }}
-        env:
-          RELEASE: ${{ inputs.release }}
-          PRE_RELEASE: ${{ inputs.preRelease }}
-          NAME: ${{ inputs.name }}
-          REPO_NAME: ${{ inputs.repoName }}
-          OWNER_NAME: ${{ inputs.repoOwner }}
-        run: |
-          node scripts/github/build-gh-page.ts
-
-      # On a full release, refresh the root redirect to version/latest. This is
-      # the one file that must sit at the gh-pages root alongside every subtree,
-      # so it is published with keep_files: true (merge the single index.html
-      # without removing review/ or version/ siblings).
-      - name: 🥅 Deploy root redirect to GH-Pages
-        if: ${{ inputs.release == 'true' }}
-        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./root-redirect
-          keep_files: true
 
       - name: 🖨️ Print gh-pages url
         env:
