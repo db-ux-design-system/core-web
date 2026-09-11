@@ -98,6 +98,31 @@
 			}
 		},
 		{
+			"id": "title-hierarchy",
+			"headline": {
+				"de": "Hierarchie im Header",
+				"en": "Hierarchy in the Header"
+			},
+			"text": {
+				"de": "Der Titel ist standardmäßig im Bold-Schnitt gesetzt. Ergänzende Inhalte stehen im regulären Schnitt darunter und lassen sich optional über Größe und Farbe weiter abstufen.",
+				"en": "The title is set in bold by default. Additional content sits below it in regular weight and can optionally be de-emphasized further through size and color."
+			},
+			"do": {
+				"figmaNodeId": "4209-42257",
+				"description": {
+					"de": "Belasse den Titel im Bold-Schnitt und setze ergänzende Inhalte im regulären Schnitt, nicht größer als den Titel.",
+					"en": "Keep the title in bold and set additional content in regular weight, no larger than the title."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4209-42331",
+				"description": {
+					"de": "Setze ergänzende Inhalte nicht in Bold und nicht größer als den Titel. Sie konkurrieren dann mit ihm und schwächen ihn als Einstieg in den Dialog.",
+					"en": "Don't set additional content in bold or larger than the title. It then competes with the title and weakens it as the entry point into the dialog."
+				}
+			}
+		},
+		{
 			"id": "start-and-end-slot",
 			"headline": {
 				"de": "Start Slot und End Slot",

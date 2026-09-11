@@ -48,6 +48,31 @@
 			}
 		},
 		{
+			"id": "popover-or-dialog",
+			"headline": {
+				"de": "Popover oder Dialog",
+				"en": "Popover or Dialog"
+			},
+			"text": {
+				"de": "Popover und Dialog unterscheiden sich im Bezug: Das Popover wird an einem Element verankert, der Dialog erscheint zentriert. Erfordert der Inhalt keinen Abschluss, entscheidet dieser Bezug darüber, welche Komponente passt.",
+				"en": "Popover and dialog differ in their reference: the popover is anchored to an element, the dialog appears centered. When the content requires no completion, that reference decides which component fits."
+			},
+			"do": {
+				"figmaNodeId": "4208-39479",
+				"description": {
+					"de": "Zeige Inhalte, die zu einem bestimmten Auslöser gehören, im Popover direkt an diesem Auslöser.",
+					"en": "Show content that belongs to a specific trigger in a popover anchored directly to that trigger."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "4208-39480",
+				"description": {
+					"de": "Verwende dafür keinen Dialog. Er erscheint immer zentriert im Viewport und lässt sich nicht am Auslöser verankern. Selbst ohne Backdrop, wo er dem Popover fast gleicht, bleiben die zentrierte Position und der zusätzliche Close-Button als Bezugslosigkeit sichtbar.",
+					"en": "Don't use a dialog for this. It always appears centered in the viewport and cannot be anchored to the trigger. Even without a backdrop, where it looks almost like the popover, the centered position and the extra close button remain visible as a lack of reference."
+				}
+			}
+		},
+		{
 			"id": "required-header",
 			"headline": {
 				"de": "Erforderlicher Header",
@@ -243,6 +268,9 @@
 		},
 		{
 			"component": "dialog-footer"
+		},
+		{
+			"component": "popover"
 		},
 		{
 			"component": "drawer"
