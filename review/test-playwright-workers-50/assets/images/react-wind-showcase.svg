@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="react-wind-showcase.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.7198092"
+     inkscape:cx="397.32751"
+     inkscape:cy="561.95447"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1-9" />
+  <defs
+     id="defs2">
+    <clipPath
+       id="prefix__clip0">
+      <path
+         fill="#fff"
+         d="M0 0h54v32.4H0z"
+         id="path599" />
+    </clipPath>
+    <clipPath
+       id="prefix__clip0-4">
+      <path
+         fill="#fff"
+         d="M0 0h54v32.4H0z"
+         id="path132" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       inkscape:label="Ebene 1"
+       id="layer1-9"
+       transform="translate(1.5965349,-4.043317)">
+      <g
+         class="icon-style"
+         transform="matrix(4.6754744,0,0,4.6754744,33.271349,21.630034)"
+         id="g69"
+         style="fill:none;fill-rule:evenodd">
+        <path
+           fill="#282D37"
+           style="fill:currentColor"
+           fill-rule="nonzero"
+           d="m 25,0 a 5,5 0 0 1 4.995,4.783 L 30,51 a 5,5 0 0 1 -4.783,4.995 L 5,56 A 5,5 0 0 1 0.005,51.217 L 0,5 A 5,5 0 0 1 4.783,0.005 Z M 23,2 V 2.034 A 2.966,2.966 0 0 1 20.248,4.992 L 9.966,5 C 8.386,5 7.096,3.557 7.005,2 H 5 A 3,3 0 0 0 2.005,4.824 L 2,51 a 3,3 0 0 0 2.824,2.995 L 25,54 a 3,3 0 0 0 2.995,-2.824 L 28,5 A 3,3 0 0 0 25.176,2.005 Z M 21,2 H 9 V 2.034 C 9,2.53 9.373,2.938 9.853,2.994 L 9.966,3 H 20.034 A 0.966,0.966 0 0 0 20.992,2.161 L 21,2.034 Z"
+           class="base"
+           id="path65" />
+        <path
+           fill="#EC0016"
+           style="fill:#ec0016"
+           d="m 21,50 a 1,1 0 0 1 0.117,1.993 L 21,52 H 9 A 1,1 0 0 1 8.883,50.007 L 9,50 Z"
+           class="pulse"
+           id="path67" />
+      </g>
+      <g
+         style="fill:none"
+         id="g612"
+         transform="matrix(1.8518519,0,0,1.8518519,53.403464,267.21041)">
+        <path
+           fill="#38bdf8"
+           fill-rule="evenodd"
+           d="m 27,-51.277751 c -7.2,0 -11.7,3.6 -13.5,10.8 2.7,-3.6 5.85,-4.95 9.45,-4.05 2.054,0.513 3.522,2.004 5.147,3.653 2.647,2.687 5.711,5.797 12.403,5.797 7.2,0 11.7,-3.6 13.5,-10.8 -2.7,3.6 -5.85,4.95 -9.45,4.05 -2.054,-0.513 -3.522,-2.004 -5.147,-3.653 -2.647,-2.687 -5.711,-5.797 -12.403,-5.797 z m -13.5,16.2 c -7.2000002,0 -11.7000002,3.6 -13.5000002176875,10.8 2.7000000176875,-3.6 5.8500000176875,-4.95 9.4500000176875,-4.05 2.0540002,0.514 3.5220002,2.004 5.1470002,3.653 2.647,2.687 5.711,5.797 12.403,5.797 7.2,0 11.7,-3.6 13.5,-10.8 -2.7,3.6 -5.85,4.95 -9.45,4.05 -2.054,-0.513 -3.522,-2.004 -5.147,-3.653 -2.647,-2.687 -5.711,-5.797 -12.403,-5.797 z"
+           clip-rule="evenodd"
+           id="path595" />
+      </g>
+      <g
+         id="g735"
+         transform="matrix(4.3478261,0,0,4.3478261,103.40347,96.257633)">
+        <circle
+           cx="0"
+           cy="0"
+           r="2.05"
+           fill="#61dafb"
+           id="circle714" />
+        <g
+           stroke="#61dafb"
+           stroke-width="1"
+           fill="none"
+           id="g722">
+          <ellipse
+             rx="11"
+             ry="4.1999998"
+             id="ellipse716"
+             cx="0"
+             cy="0" />
+          <ellipse
+             rx="11"
+             ry="4.1999998"
+             transform="rotate(60)"
+             id="ellipse718"
+             cx="0"
+             cy="0" />
+          <ellipse
+             rx="11"
+             ry="4.1999998"
+             transform="rotate(120)"
+             id="ellipse720"
+             cx="0"
+             cy="0" />
+        </g>
+      </g>
+      <path
+         d="m 103.40344,140.54332 c 0.96688,0 1.73143,0.76452 1.73143,1.7314 v 8.53713 h 8.53717 c 0.96683,0 1.73142,0.76458 1.73142,1.73147 0,0.96682 -0.76459,1.73147 -1.73142,1.73147 h -8.53717 v 8.53706 c 0,0.96696 -0.76455,1.73147 -1.73143,1.73147 -0.96683,0 -1.73145,-0.76451 -1.73145,-1.73147 v -8.53706 h -8.537092 c -0.966887,0 -1.731432,-0.76465 -1.731432,-1.73147 0,-0.96689 0.764545,-1.73147 1.731432,-1.73147 h 8.537092 v -8.53713 c 0,-0.96688 0.76462,-1.7314 1.73145,-1.7314 z"
+         fill="#282D37"
+         style="fill:currentColor;stroke-width:1.71428"
+         fill-rule="evenodd"
+         id="path120" />
+    </g>
+  </g>
+</svg>
