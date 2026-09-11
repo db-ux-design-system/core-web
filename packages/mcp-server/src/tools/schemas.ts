@@ -147,12 +147,15 @@ export const scanGeneration2MigrationSchema = {
  * The tool was renamed to spell out the generation. The old `scan_v2_migration`
  * name stays registered so existing consumer configs (whose `mcp.json` still lists
  * it) keep working without changes. Prefer `scan_generation_2_migration`; this alias
- * will be removed in the next major.
+ * will be removed in the next major (6.0.0) — tracked in
+ * https://github.com/db-ux-design-system/core-web/pull/8005.
  */
 export const scanV2MigrationDeprecatedSchema = {
 	description:
 		'DEPRECATED — renamed to `scan_generation_2_migration`. This alias still works but ' +
-		'will be removed in the next major version; call `scan_generation_2_migration` instead. ' +
+		'will be removed in the next major version (6.0.0, tracked in ' +
+		'https://github.com/db-ux-design-system/core-web/pull/8005); call ' +
+		'`scan_generation_2_migration` instead. ' +
 		'Scans a source file for DB UX Design System – Generation 2 patterns and returns a JSON ' +
 		'migration report.',
 	inputSchema: scanMigrationInputSchema
