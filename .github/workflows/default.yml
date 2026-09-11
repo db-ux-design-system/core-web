@@ -84,18 +84,6 @@ jobs:
     secrets: inherit
     needs: [build-figma-code-connect]
 
-  build-stories:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/01-build-stories.yml
-    needs: [init]
-    secrets: inherit
-
-  cancel-on-failure-build-stories:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-stories.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-stories]
-
   init-playwright:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-init-playwright.yml
@@ -140,43 +128,10 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
-  build-storybook-composition:
+  build-storybooks:
     uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init, build-stories]
+    needs: [build-packages, init]
     with:
-      storybook: composition-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
-    secrets: inherit
-
-  build-storybook-angular:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init, build-stories]
-    with:
-      storybook: angular-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
-    secrets: inherit
-
-  build-storybook-react:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init, build-stories]
-    with:
-      storybook: react-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
-    secrets: inherit
-
-  build-storybook-vue:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init, build-stories]
-    with:
-      storybook: vue-storybook
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
-    secrets: inherit
-
-  build-storybook-html:
-    uses: ./.github/workflows/01-build-storybooks.yml
-    needs: [build-packages, init, build-stories]
-    with:
-      storybook: html-storybook
       baseUrl: ${{ needs.init.outputs.baseUrl }}
     secrets: inherit
 
@@ -435,11 +390,7 @@ jobs:
             echo "🎉 Changeset release PR - skipping checks."
             exit 0
           fi
-          resultBuildStorybookComposition="${{ needs.build-storybook-composition.result }}"
-          resultBuildStorybookAngular="${{ needs.build-storybook-angular.result }}"
-          resultBuildStorybookHtml="${{ needs.build-storybook-html.result }}"
-          resultBuildStorybookReact="${{ needs.build-storybook-react.result }}"
-          resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
+          resultBuildStorybooks="${{ needs.build-storybooks.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
@@ -461,11 +412,7 @@ jobs:
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
           resultAuditFix="${{ needs.audit-fix.result }}"
 
-          echo "resultBuildStorybookComposition: $resultBuildStorybookComposition"
-          echo "resultBuildStorybookAngular: $resultBuildStorybookAngular"
-          echo "resultBuildStorybookHtml: $resultBuildStorybookHtml"
-          echo "resultBuildStorybookReact: $resultBuildStorybookReact"
-          echo "resultBuildStorybookVue: $resultBuildStorybookVue"
+          echo "resultBuildStorybooks: $resultBuildStorybooks"
           echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
           echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
           echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
@@ -484,11 +431,7 @@ jobs:
           echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
           echo "resultTestScreenReader: $resultTestScreenReader"
 
-          if [[ $resultBuildStorybookComposition == "success" ]] && \
-             [[ $resultBuildStorybookAngular == "success" ]] && \
-             [[ $resultBuildStorybookHtml == "success" ]] && \
-             [[ $resultBuildStorybookReact == "success" ]] && \
-             [[ $resultBuildStorybookVue == "success" ]] && \
+          if [[ $resultBuildStorybooks == "success" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
              [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
@@ -517,11 +460,7 @@ jobs:
           fi
     needs:
       [
-        build-storybook-composition,
-        build-storybook-angular,
-        build-storybook-html,
-        build-storybook-react,
-        build-storybook-vue,
+        build-storybooks,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-angular-ssr,

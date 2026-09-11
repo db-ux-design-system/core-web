@@ -7,16 +7,19 @@ permissions:
 on:
   workflow_call:
     inputs:
-      storybook:
-        required: true
-        type: string
       baseUrl:
         required: true
         type: string
 
+# One job generates the stories and builds all five storybooks. Previously this
+# was a separate build-stories job (uploading stories artifacts) fanning out to
+# five parameterized build-storybook jobs. Collapsing them removes six jobs'
+# worth of Init Cache + artifact round-trips down to one, which matters under the
+# org's 20-runner cap. Stories are generated in-tree so no stories artifact is
+# needed; html-storybook reads react-storybook's generated stories directly.
 jobs:
   build-storybooks:
-    name: Build Storybook ${{ inputs.storybook }}
+    name: Build Storybooks
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
     steps:
       - name: ⏬ Checkout repo
@@ -46,29 +49,50 @@ jobs:
           name: db-ux-components-build
           path: packages/components/build
 
-      - name: ⏫ Download stories
-        if: ${{ inputs.storybook != 'composition-storybook' && inputs.storybook != 'html-storybook' }}
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: ${{ inputs.storybook }}-stories
-          path: storybooks/${{ inputs.storybook }}/src
+      # Generate the Storybook stories in-tree (previously the separate
+      # build-stories job + three uploaded artifacts). html-storybook consumes
+      # react-storybook's generated stories directly from the working tree.
+      - name: 🔨 Generate stories
+        run: pnpm --filter @db-ux/core-components run generate:stories
 
-      - name: ⏫ Download stories for html-storybook
-        if: ${{ inputs.storybook == 'html-storybook' }}
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: react-storybook-stories
-          path: storybooks/react-storybook/src/components
-
-      - name: 🔨 Build ${{ inputs.storybook }}
+      - name: 🔨 Build storybooks
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
           BASE_URL: ${{ inputs.baseUrl }}
-        run: pnpm --filter ${{ inputs.storybook }} run build
+        run: |
+          pnpm --filter composition-storybook run build
+          pnpm --filter angular-storybook run build
+          pnpm --filter react-storybook run build
+          pnpm --filter vue-storybook run build
+          pnpm --filter html-storybook run build
 
-      - name: ⏫ Upload ${{ inputs.storybook }}
+      - name: ⏫ Upload composition-storybook
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: db-ux-${{ inputs.storybook }}
-          path: build-storybooks/${{ inputs.storybook }}
+          name: db-ux-composition-storybook
+          path: build-storybooks/composition-storybook
+
+      - name: ⏫ Upload angular-storybook
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-angular-storybook
+          path: build-storybooks/angular-storybook
+
+      - name: ⏫ Upload react-storybook
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-react-storybook
+          path: build-storybooks/react-storybook
+
+      - name: ⏫ Upload vue-storybook
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-vue-storybook
+          path: build-storybooks/vue-storybook
+
+      - name: ⏫ Upload html-storybook
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-html-storybook
+          path: build-storybooks/html-storybook
