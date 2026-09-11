@@ -10,15 +10,16 @@
 # Scope and grouping live in `.github/renovate.json`.
 #
 # Schedule: daily 22:30 Europe/Berlin, i.e. ahead of the Dependabot window at
-# 23:00. GitHub cron only knows UTC, so both possible DST offsets are triggered:
-# during CEST (UTC+2) the "30 20" line fires at 22:30 Berlin, during CET (UTC+1)
-# the "30 21" line does. The respective other line fires an hour off (21:30 or
-# 23:30 Berlin). Renovate's own `schedule` (evaluated in `timezone:
-# Europe/Berlin`, see `.github/renovate.json`) must therefore span a window wide
-# enough to cover both offsets plus Renovate's own ~1-2 min startup drift --
-# otherwise the invocation lands outside the window and Renovate skips branch/PR
-# creation as a no-op. The window "after 9:00pm and before 11:59pm" covers the
-# 21:30 and 23:30 edges as well as the on-time 22:30 run.
+# 23:00, so pnpm lands first and Dependabot PRs rebase onto it. GitHub cron only
+# knows UTC, so both possible DST offsets are triggered: during CEST (UTC+2) the
+# "30 20" line fires at 22:30 Berlin, during CET (UTC+1) the "30 21" line does.
+# The respective other line fires an hour off (23:30 during CEST, 21:30 during
+# CET). Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`, see
+# `.github/renovate.json`) gates those off-DST invocations to a no-op: its window
+# is centred on 22:30 -- wide enough to absorb Renovate's ~1-2 min startup drift,
+# narrow enough to exclude both 21:30 and 23:30. Keeping 23:30 out matters: a
+# summer run at 23:30 would otherwise create/update PRs after Dependabot's 23:00
+# window and reverse the intended ordering.
 # A manual `workflow_dispatch` run drops that gate via `RENOVATE_FORCE`.
 
 name: Renovate
