@@ -9,6 +9,9 @@ keywords:
     - implement
     - migrate
     - v3
+    - generation 3
+    - generation 2
+    - db ui
 ---
 
 # DB UX Consumer Powers

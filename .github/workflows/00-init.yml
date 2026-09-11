@@ -62,7 +62,11 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          fetch-depth: 0
+          # Shallow checkout. The only thing in this job that needs git history is
+          # the aria-snapshot diff against main (see "Should Test a11y" below), and
+          # that only needs main's tip, fetched shallowly in a dedicated step. A
+          # full fetch-depth: 0 pulled every ref's complete history (~3 min).
+          fetch-depth: 1
           fetch-tags: false
 
       - name: 🔄 Init Cache Default
@@ -97,6 +101,12 @@ jobs:
         run: |
           OUTPUT=$(pnpm --silent tsx scripts/github/get-playwright-version.ts)
           echo "version=$OUTPUT" >> $GITHUB_OUTPUT
+
+      # Fetch only main's tip (single commit) so `git diff origin/main` in the
+      # a11y check has a ref to compare against, without a full-history fetch.
+      - name: ⏬ Fetch main for snapshot diff
+        shell: bash
+        run: git fetch --depth=1 origin main
 
       - name: 👩 Should Test a11y
         id: ally

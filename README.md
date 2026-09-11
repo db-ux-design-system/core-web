@@ -5,7 +5,7 @@
 
 # DB UX Design System – Generation 3 🚂💖
 
-![Part of DB UX Design System](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
+![Part of DB UX Design System](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System-d7dce1.svg)
 [![Default Pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -189,7 +189,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 [Button migration](https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration).
 
-For a comprehensive overview of all components and their migration status, including components that don't have direct equivalents in DB UX Design System – Generation 3, see our [DB-UI to DB-UX Design System – Generation 3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui/component-migration.md).
+For a comprehensive overview of all components and their migration status, including components that don't have direct equivalents in DB UX Design System – Generation 3, see our [DB UI to DB UX Design System – Generation 3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui/component-migration.md).
 
 ### In between DB UX Design System Core versions
 

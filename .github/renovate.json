@@ -29,7 +29,8 @@
 			"matchDepTypes": ["packageManager"],
 			"matchPackageNames": ["pnpm"],
 			"matchUpdateTypes": ["patch"],
-			"automerge": true
+			"automerge": true,
+			"enabled": true
 		},
 		{
 			"description": "DB theme packages, kept in one PR so assets stay in sync. Mostly triggered manually. No automerge: theme bumps change visual snapshots, and that diff needs human eyes.",
