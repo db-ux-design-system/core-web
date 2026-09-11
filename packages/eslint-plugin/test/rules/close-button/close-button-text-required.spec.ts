@@ -281,6 +281,12 @@ const reactAttributeShapes: AttributeShape[] = [
 		reports: true
 	},
 	{
+		// {null} renders no accessible label, same as an empty string.
+		shape: 'statically null expression container',
+		code: '<DBDialogHeader closeButtonText={null}>Title</DBDialogHeader>',
+		reports: true
+	},
+	{
 		shape: 'JSX spread may supply the label (unresolved, no explicit attribute)',
 		code: '<DBDialogHeader {...headerProps} text="Title" />',
 		reports: false
@@ -343,6 +349,12 @@ const vueAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'statically empty string binding',
 		code: `<template><DBDialogHeader :close-button-text="''">Title</DBDialogHeader></template>`,
+		reports: true
+	},
+	{
+		// A null binding renders no accessible label, same as an empty string.
+		shape: 'statically null binding',
+		code: '<template><DBDialogHeader :close-button-text="null">Title</DBDialogHeader></template>',
 		reports: true
 	},
 	{
@@ -423,6 +435,12 @@ const angularAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'statically empty string binding, kebab-case input',
 		code: `<db-dialog-header [close-button-text]="''">Title</db-dialog-header>`,
+		reports: true
+	},
+	{
+		// A null binding renders no accessible label, same as an empty string.
+		shape: 'statically null binding, kebab-case input',
+		code: '<db-dialog-header [close-button-text]="null">Title</db-dialog-header>',
 		reports: true
 	},
 	{

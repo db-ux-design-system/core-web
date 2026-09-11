@@ -168,34 +168,41 @@ function isStaticallyEmptyAngularInput(value: any): boolean {
 	if (!value) {
 		return false;
 	}
-	if (
-		value.type === 'LiteralPrimitive' &&
-		typeof value.value === 'string' &&
-		value.value.trim() === ''
-	) {
-		return true;
+	if (value.type === 'LiteralPrimitive') {
+		// `null` renders no text, same as an empty string literal.
+		if (value.value === null) {
+			return true;
+		}
+		if (typeof value.value === 'string' && value.value.trim() === '') {
+			return true;
+		}
 	}
 	// Some parser versions expose only the raw source for the binding.
 	return (
-		value.source === "''" || value.source === '""' || value.source === '``'
+		value.source === "''" ||
+		value.source === '""' ||
+		value.source === '``' ||
+		value.source === 'null'
 	);
 }
 
 /**
- * Detects expressions that are statically an empty string: a string literal
- * `''`/`""` or a template literal with no substitutions and empty text (` `` `).
- * Whitespace-only literals count as empty because they render no visible or
- * accessible text. Anything else (identifiers, calls, member access, non-empty
- * literals) is treated as unresolvable dynamic content.
+ * Detects expressions that statically render no text: a `null` literal, an empty
+ * string literal `''`/`""` or a template literal with no substitutions and empty
+ * text (` `` `). Whitespace-only literals count as empty because they render no
+ * visible or accessible text. Anything else (identifiers, calls, member access,
+ * non-empty literals) is treated as unresolvable dynamic content.
  */
 function isStaticallyEmptyExpression(expression: any): boolean {
 	if (!expression) {
 		return false;
 	}
 	if (expression.type === 'Literal') {
+		// `null` renders no text, same as an empty string literal.
 		return (
-			typeof expression.value === 'string' &&
-			expression.value.trim() === ''
+			expression.value === null ||
+			(typeof expression.value === 'string' &&
+				expression.value.trim() === '')
 		);
 	}
 	if (expression.type === 'TemplateLiteral') {
