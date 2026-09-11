@@ -23,8 +23,10 @@ export type DBPaginationItemDefaultProps = {
 	/**
 	 * One-based page number. It identifies the item rather than rendering it: the
 	 * pagination reads it back from the DOM to know which page was activated, so a
-	 * composed item needs it as well. Leave it out to render a truncation item, the
-	 * ellipsis that stands in for the pages between two page numbers.
+	 * composed item needs it as well, and previous and next look for it to find the
+	 * page they step to. Leave it out only for a control that is not a page, the way
+	 * the previous and next buttons use this component as their shell - such an item
+	 * takes part in no layout and is never collapsed.
 	 */
 	page?: number | string;
 	/**

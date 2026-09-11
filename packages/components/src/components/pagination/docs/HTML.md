@@ -149,10 +149,11 @@ Three things are easy to miss when writing the markup by hand:
 ```
 
 Use `data-size="small"` on the `<nav>` for the small variant, and set the same
-value on every button inside it. The previous and next buttons carry the size of
-the pagination, not a fixed one, so they stay as wide as the page buttons next to
-them. Disable the previous button on the first and the next button on the last
-page with the native `disabled` attribute.
+value on every `<li>`. The controls inside them need nothing: the item reads the
+size off the list item and applies it to whichever control it finds. Previous and
+next carry the size of the pagination rather than a fixed one, so they stay as
+wide as the page buttons next to them. Disable the previous button on the first
+and the next button on the last page with the native `disabled` attribute.
 
 ### Collapsing on narrow viewports
 

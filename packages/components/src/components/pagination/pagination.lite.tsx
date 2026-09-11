@@ -347,7 +347,10 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 
 			const item = _ref.querySelector('[data-page="' + page + '"]');
-			if (item) {
+			// Same guard as handleClick: a composed item may contain a nested
+			// pagination, whose pages are descendants of this one and would otherwise
+			// be the first match.
+			if (item && item.closest('.db-pagination') === _ref) {
 				const control = item.querySelector('a, button');
 				if (control) {
 					control.click();
