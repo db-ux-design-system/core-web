@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-DWgu-Da7.js";e();
