@@ -14,27 +14,61 @@ const COMPONENTS_WITH_CLOSE_BUTTON = {
 };
 
 /**
- * A React header whose close-button attribute is absent may still receive it
- * through a JSX spread ({...props}). Its final value cannot be verified
- * statically, so return true (unresolved) when a spread is present and the
- * attribute is not set explicitly. An explicit attribute always wins over the
- * spread and is checked normally.
+ * A header whose close-button attribute is absent may still receive it through a
+ * spread whose contents cannot be verified statically:
+ *   - React JSX spread: `<DBDialogHeader {...props} />`
+ *   - Vue object v-bind: `<DBDialogHeader v-bind="props" />` (argumentless bind)
+ * Return true (unresolved) when such a spread is present and the attribute is not
+ * set explicitly. An explicit attribute always wins over the spread and is checked
+ * normally, so it is excluded here.
  */
 const isUnresolvedBySpread = (
 	openingElement: any,
 	attribute: string
 ): boolean => {
-	const { attributes } = openingElement;
-	if (!Array.isArray(attributes)) {
-		return false;
+	// React: attributes live directly on the opening element.
+	const jsxAttributes = openingElement.attributes;
+	if (Array.isArray(jsxAttributes)) {
+		const hasExplicitAttribute = jsxAttributes.some(
+			(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
+		);
+		const hasSpread = jsxAttributes.some(
+			(a: any) => a.type === 'JSXSpreadAttribute'
+		);
+		if (hasSpread && !hasExplicitAttribute) {
+			return true;
+		}
 	}
-	const hasExplicitAttribute = attributes.some(
-		(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
-	);
-	const hasSpread = attributes.some(
-		(a: any) => a.type === 'JSXSpreadAttribute'
-	);
-	return hasSpread && !hasExplicitAttribute;
+
+	// Vue: attributes live on the start tag. An argumentless `v-bind="obj"` is a
+	// `bind` directive with no argument, so its object contents cannot be resolved.
+	const vueAttributes = openingElement.startTag?.attributes;
+	if (Array.isArray(vueAttributes)) {
+		const kebabAttr = attribute
+			.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+			.toLowerCase();
+		const directiveName = (a: any) =>
+			typeof a.key?.name === 'string' ? a.key.name : a.key?.name?.name;
+		const hasExplicitAttribute = vueAttributes.some((a: any) => {
+			const keyName = directiveName(a);
+			// Static attr (key.name is the attr) or bound `:attr` (bind + argument).
+			return (
+				keyName === attribute ||
+				keyName === kebabAttr ||
+				(keyName === 'bind' &&
+					(a.key?.argument?.name === attribute ||
+						a.key?.argument?.name === kebabAttr))
+			);
+		});
+		const hasObjectVBind = vueAttributes.some(
+			(a: any) => directiveName(a) === 'bind' && !a.key?.argument
+		);
+		if (hasObjectVBind && !hasExplicitAttribute) {
+			return true;
+		}
+	}
+
+	return false;
 };
 
 export default {

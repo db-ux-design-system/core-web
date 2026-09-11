@@ -345,6 +345,23 @@ const vueAttributeShapes: AttributeShape[] = [
 		shape: 'non-empty static string, camelCase attribute (lowercased by the Vue parser)',
 		code: '<template><DBDialogHeader closeButtonText="Close dialog">Title</DBDialogHeader></template>',
 		reports: true
+	},
+	{
+		// Object v-bind may supply closeButtonText; its contents cannot be
+		// verified statically, so treat as unresolved (matching the JSX spread).
+		shape: 'object v-bind may supply the label (unresolved, no explicit attribute)',
+		code: '<template><DBDialogHeader v-bind="headerProps">Title</DBDialogHeader></template>',
+		reports: false
+	},
+	{
+		shape: 'object v-bind with a non-empty explicit label',
+		code: '<template><DBDialogHeader v-bind="headerProps" close-button-text="Close">Title</DBDialogHeader></template>',
+		reports: false
+	},
+	{
+		shape: 'object v-bind with an explicit empty label still reports',
+		code: '<template><DBDialogHeader v-bind="headerProps" close-button-text="">Title</DBDialogHeader></template>',
+		reports: true
 	}
 ];
 
