@@ -117,6 +117,10 @@ import {
 
 const openDialog = ref<boolean>(false);
 
+const toggleDialog = (open: boolean) => {
+	openDialog.value = open;
+};
+
 const onClose = (event: Event) => {
 	openDialog.value = false;
 	const dialog = event.target as HTMLDialogElement;
@@ -125,7 +129,15 @@ const onClose = (event: Event) => {
 </script>
 
 <template>
-	<DBDialog :open="openDialog" @close="onClose">
+	<DBButton
+		command="show-modal"
+		commandfor="my-dialog"
+		@click="toggleDialog(true)"
+	>
+		Open dialog
+	</DBButton>
+
+	<DBDialog id="my-dialog" :open="openDialog" @close="onClose">
 		<template #header>
 			<DBDialogHeader text="Rename entry" closeButtonText="Close" />
 		</template>
