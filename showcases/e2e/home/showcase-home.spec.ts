@@ -4,7 +4,7 @@ import {
 	hasWebComponentSyntax,
 	isAngular,
 	isStencil,
-	waitForDBPage
+	waitForDBShell
 } from '../default';
 
 const isStencilShowcase = isStencil(process.env.showcase);
@@ -155,7 +155,7 @@ test.describe('Home', () => {
 			waitUntil: 'domcontentloaded'
 		});
 
-		await waitForDBPage(page);
+		await waitForDBShell(page);
 		const accessibilityScanResults = await new AxeBuilder({
 			page
 		}).analyze();

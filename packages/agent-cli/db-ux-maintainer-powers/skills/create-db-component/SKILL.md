@@ -62,10 +62,10 @@ on_error:
 
 Throughout this skill:
 
-- `{component_slug}` = kebab-case directory/file name (e.g. `navigation-item`)
-- `{component_name}` = PascalCase symbol name derived from `{component_slug}` (e.g. `navigation-item` -> `NavigationItem`)
-- `DB{component_name}` = full component class name (e.g. `DBNavigationItem`)
-- `.db-{component_slug}` = CSS class (e.g. `.db-navigation-item`)
+- `{component_slug}` = kebab-case directory/file name (e.g. `control-panel-navigation-item`)
+- `{component_name}` = PascalCase symbol name derived from `{component_slug}` (e.g. `control-panel-navigation-item` -> `ControlPanelNavigationItem`)
+- `DB{component_name}` = full component class name (e.g. `DBControlPanelNavigationItem`)
+- `.db-{component_slug}` = CSS class (e.g. `.db-control-panel-navigation-item`)
 
 ## Pre-Conditions
 

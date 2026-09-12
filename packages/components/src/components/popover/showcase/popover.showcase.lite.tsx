@@ -3,6 +3,7 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import PopoverAnimation from '../examples/animation.example.lite';
+import PopoverClosedVisibility from '../examples/closed-popover-visibility.example.lite';
 import PopoverDelay from '../examples/delay.example.lite';
 import PopoverDensity from '../examples/density.example.lite';
 import PopoverGap from '../examples/gap.example.lite';
@@ -48,6 +49,11 @@ export default function PopoverShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Width">
 				<CardWrapperShowcase>
 					<PopoverWidth />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Closed Popover Visibility">
+				<CardWrapperShowcase>
+					<PopoverClosedVisibility />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

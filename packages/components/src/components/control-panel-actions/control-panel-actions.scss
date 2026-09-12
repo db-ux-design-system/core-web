@@ -1,0 +1,13 @@
+@use "../../styles/internal/control-panel-actions";
+
+.db-control-panel-actions-1 {
+	@extend %control-panel-actions;
+
+	grid-area: actions-1;
+}
+
+.db-control-panel-actions-2 {
+	@extend %control-panel-actions;
+
+	grid-area: actions-2;
+}

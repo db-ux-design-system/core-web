@@ -1118,6 +1118,23 @@
             - checkbox "Option 5"
             - text: Option 5
   - status
+  - link "Controlled"
+  - button "Load other options"
+  - button "Clear options and selection"
+  - button "Restore options without selection"
+  - text: Country
+  - group:
+    - article:
+      - group "Country":
+        - list:
+          - listitem:
+            - checkbox "Germany"
+            - text: Germany
+          - listitem:
+            - checkbox "Austria"
+            - text: Austria
+  - status
+  - paragraph: "Selections by user: 0"
   - link "Examples Single"
   - text: Icons
   - group:

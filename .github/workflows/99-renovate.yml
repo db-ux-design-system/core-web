@@ -9,21 +9,22 @@
 # Everything else stays with Dependabot, see `.github/dependabot.yml`.
 # Scope and grouping live in `.github/renovate.json`.
 #
-# Schedule: daily 22:30 Europe/Berlin, i.e. ahead of the Dependabot window at
-# 23:00. GitHub cron only knows UTC, so both possible offsets are triggered and
-# Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`) makes the
-# out-of-window invocation a no-op: it gates branch creation, and because
-# `updateNotScheduled` is set to false it also gates updates of existing
-# branches -- without that option the second run would still rebase open
-# Renovate branches and retrigger their pipelines at the wrong hour.
-# A manual `workflow_dispatch` run drops that gate via `RENOVATE_FORCE`.
+# Schedule: a single daily cron at 20:17 UTC (22:17 Berlin in CEST, 21:17 in
+# CET). Both are ahead of the Dependabot window at 23:00 Berlin, so pnpm lands
+# first and Dependabot PRs rebase onto it. The minute is deliberately off the top
+# of the hour: GitHub warns that scheduled jobs starting at :00 sit in the
+# busiest queue and may be dropped entirely under load, which no config on our
+# side can recover from. The GitHub Actions cron is the only scheduling gate --
+# Renovate has no internal `schedule` in `.github/renovate.json`, so every
+# invocation is free to create PRs and there is no window it can drift out of. A
+# single cron line (rather than one per DST offset) keeps it to one run per day
+# without any no-op gate.
 
 name: Renovate
 
 on:
   schedule:
-    - cron: "30 20 * * *" # 22:30 Berlin during CEST (UTC+2)
-    - cron: "30 21 * * *" # 22:30 Berlin during CET (UTC+1)
+    - cron: "17 20 * * *" # 22:17 Berlin (CEST) / 21:17 Berlin (CET)
   workflow_dispatch:
 
 permissions: {}
@@ -43,7 +44,7 @@ jobs:
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
 
       - name: 🤖 Self-hosted Renovate
-        uses: renovatebot/github-action@e09d604f8f803bb527bd8321ed5be06c460b8682 # v46.2.2
+        uses: renovatebot/github-action@39b914146caeff8cd512e61c8992f1d5913af85c # v46.2.5
         with:
           token: ${{ steps.generate-token.outputs.token }}
         env:
@@ -57,4 +58,3 @@ jobs:
           # lookup during platform init, whose transient failures abort the
           # whole run with "Initialization error: Authentication failure".
           RENOVATE_USERNAME: "${{ steps.generate-token.outputs.app-slug }}[bot]"
-          RENOVATE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '{"schedule":null}' || '{}' }}

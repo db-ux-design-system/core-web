@@ -2,40 +2,53 @@
   - heading "DBNavigationItem" [level=1]
   - link "Density"
   - list:
-    - listitem: Functional
+    - listitem:
+      - link "Functional"
   - list:
-    - listitem: (Default) Regular
+    - listitem:
+      - link "(Default) Regular"
   - list:
-    - listitem: Expressive
+    - listitem:
+      - link "Expressive"
   - link "Disabled"
   - list:
-    - listitem: (Default) False
+    - listitem:
+      - link "(Default) False"
   - list:
-    - listitem: "True"
+    - listitem:
+      - link "True" [disabled]
   - link "Active"
   - list:
-    - listitem: (Default) False
+    - listitem:
+      - link "(Default) False"
   - list:
-    - listitem: "True"
+    - listitem:
+      - link "True"
   - link "Expanded"
   - list:
-    - listitem: (Default) False
+    - listitem:
+      - link "(Default) False"
   - list:
     - listitem:
       - button "True"
   - link "Show Icon"
   - list:
-    - listitem: (Default) False
+    - listitem:
+      - link "(Default) False"
   - list:
-    - listitem: "True"
+    - listitem:
+      - link "True"
   - link "Width"
   - list:
-    - listitem: (Default) Auto
+    - listitem:
+      - link "(Default) Auto"
   - list:
-    - listitem: Full
+    - listitem:
+      - link "Full"
   - link "Wrap"
   - list:
-    - listitem: No Wrap (Default)
+    - listitem:
+      - link "No Wrap (Default)"
   - list:
     - listitem:
       - button "This is a very long text that is broken into multiple lines."

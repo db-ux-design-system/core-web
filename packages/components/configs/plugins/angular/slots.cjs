@@ -1,5 +1,5 @@
 // TODO: Remove some of this when https://github.com/BuilderIO/mitosis/pull/1789 is merged
-// TODO: Remove the rest when https://github.com/db-ux-design-system/core-web/pull/4639 is merged
+// TODO: Remove the rest as soon as DBHeader/DBNavigation are removed from our codebase
 
 const { getSlotKey } = require('../utils.cjs');
 /**
@@ -125,8 +125,8 @@ module.exports = () => ({
 					'<ng-container meta-navigation',
 					'<ng-container *dbMetaNavigation'
 				)
-				.replaceAll(
-					'<ng-container secondary-action',
+				.replace(
+					/<ng-container secondary-action(?!s)/g,
 					'<ng-container *dbSecondaryAction'
 				)
 				.replaceAll(
