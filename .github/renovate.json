@@ -1,7 +1,5 @@
 {
 	"extends": ["config:recommended", ":disableDependencyDashboard"],
-	"timezone": "Europe/Berlin",
-	"schedule": ["after 9:00pm and before 11:59pm"],
 	"branchPrefix": "renovate-",
 	"branchNameStrict": true,
 	"enabledManagers": ["npm", "nvm"],
