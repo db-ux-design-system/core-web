@@ -1,0 +1,56 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.db-pagination {
+	inline-size: fit-content;
+
+	// Page buttons only have a min-inline-size, so they grow with the number of
+	// digits. The collapsing below removes the sibling pages on narrow viewports,
+	// which covers the common case, but it cannot see the available inline size -
+	// a pagination in a narrow column on a wide viewport, a high siblingCount or
+	// large text zoom can still overflow. Wrapping stays as the last resort so
+	// none of those produce a horizontal scrollbar on the document.
+	> ul {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-2xs;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	// Collapsing the page list: below the breakpoint the pages next to the current
+	// one give way, so only the boundary pages and the current page remain. Both
+	// layouts are in the DOM at once, marked up by data-pagination-item, and each
+	// layout brings its own gap markers - the collapsed one has gaps the wide one
+	// does not.
+	// display: none, not visibility or opacity: a hidden page must leave the tab
+	// order and the accessibility tree, otherwise it stays reachable by keyboard
+	// while being invisible. A page that has focus while the viewport shrinks
+	// therefore loses it to the document, the same as any other element the browser
+	// removes from the flow. Restoring it would need JavaScript.
+	// Previous and next carry no data-pagination-item, so they are never hidden -
+	// they belong to every layout. The gap markers switch with the layout too and
+	// live in pagination-item.scss next to the rest of the item, because they are
+	// pseudo elements of a page and a placeholder cannot be extended across files.
+	// A collapsed item is the mirror image of a sibling: it belongs to the narrow
+	// layout alone, so it is hidden until the breakpoint and shown below it. The
+	// component does not emit the value itself, its own collapsed pages are a subset of
+	// the wide ones, but the item declares it as public API and a composed list has to
+	// be able to use it.
+	li[data-pagination-item="collapsed"] {
+		display: none;
+	}
+
+	@include screen-sizes.screen("sm", "max") {
+		li[data-pagination-item="sibling"] {
+			display: none;
+		}
+
+		// flex, not block: it is what .db-pagination-item uses to centre its control.
+		li[data-pagination-item="collapsed"] {
+			display: flex;
+		}
+	}
+}

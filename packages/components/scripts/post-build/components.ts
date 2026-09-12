@@ -82,6 +82,20 @@ const controlPanelActionsComponents: Component[] = [
 }));
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'pagination-item'
+	},
+	{
+		name: 'pagination',
+		config: {
+			// Not a native event despite the name, so it has no business on the
+			// <nav>. Same reason tabs filters onIndexChange.
+			react: {
+				propsPassingFilter: ['onPageChange']
+			}
+		}
+	},
+
 	...headingComponents,
 	...controlPanelActionsComponents,
 
