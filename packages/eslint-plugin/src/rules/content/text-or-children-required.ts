@@ -1,5 +1,6 @@
 import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
+	angularChildNodes,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
@@ -62,6 +63,24 @@ const isEmptyJsxExpression = (container: any): boolean => {
 	return false;
 };
 
+/**
+ * Whether an Angular node has renderable content, recursing through wrapper nodes.
+ * A structural directive (`*ngIf`) or built-in control flow (`@if`, `@for`, ...)
+ * makes the header's title a descendant of a Template/block node rather than a
+ * direct child, so a flat check would miss it. `angularChildNodes` flattens those
+ * wrappers; a non-empty `Text`, a `BoundText` (dynamic `{{ }}`, unverifiable) or
+ * any `Element`/`Element$1` counts as content.
+ */
+const hasAngularContent = (node: any): boolean =>
+	angularChildNodes(node).some(
+		(child: any) =>
+			(child.type === 'Text' && child.value.trim() !== '') ||
+			child.type === 'BoundText' ||
+			child.type === 'Element' ||
+			child.type === 'Element$1' ||
+			hasAngularContent(child)
+	);
+
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
 	'DBBadge',
@@ -112,15 +131,9 @@ export default {
 				rawTextAttr?.value === undefined
 					? getAttributeValue(node, 'text')
 					: rawTextAttr.value;
-			const hasChildren = node.children?.some(
-				(child: any) =>
-					(child.type === 'Text' && child.value.trim() !== '') ||
-					// `{{ interpolation }}` is a BoundText node whose content
-					// cannot be verified statically, so treat it as content.
-					child.type === 'BoundText' ||
-					child.type === 'Element' ||
-					child.type === 'Element$1'
-			);
+			// Recurse through Angular wrapper nodes (*ngIf Template, @if/@for/@switch
+			// blocks) so a title nested in conditional control flow still counts.
+			const hasChildren = hasAngularContent(node);
 
 			if (!hasTextContent(text) && !hasChildren) {
 				const loc = parserServices.convertNodeSourceSpanToLoc(

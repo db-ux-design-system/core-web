@@ -254,7 +254,19 @@ describe('text-or-children-required', () => {
 			{
 				code: '<db-dialog-header header>{{ title }}</db-dialog-header>'
 			},
-			{ code: '<db-drawer-header>{{ title }}</db-drawer-header>' }
+			{ code: '<db-drawer-header>{{ title }}</db-drawer-header>' },
+			// A heading nested in a structural directive (*ngIf) sits under a
+			// Template node; the rule must recurse into it rather than report empty.
+			{
+				code: '<db-dialog-header><h2 *ngIf="show">Title</h2></db-dialog-header>'
+			},
+			// Built-in control flow (@if / @for) wraps the heading in block nodes.
+			{
+				code: '<db-dialog-header>@if (show) { <h2>Title</h2> }</db-dialog-header>'
+			},
+			{
+				code: '<db-drawer-header>@for (item of items; track item) { <h2>{{ item }}</h2> }</db-drawer-header>'
+			}
 		],
 		invalid: [
 			{
