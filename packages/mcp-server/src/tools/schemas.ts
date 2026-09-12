@@ -116,27 +116,49 @@ export const getMigrationGuideSchema = {
 
 export const verifyMigratedCodeSchema = {
 	description:
-		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
+		'IMPORTANT: ALWAYS call this tool after generating or modifying Generation 3 code and BEFORE showing it to the user. ' +
 		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
 		'If errors are found, fix the code and call the tool again (max 3 attempts).'
 };
 
-export const scanV2MigrationSchema = {
+const scanMigrationInputSchema = {
+	filePath: z
+		.string()
+		.max(500)
+		.describe(
+			'Absolute path or path relative to the workspace root of the file to scan.'
+		)
+};
+
+export const scanGeneration2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
-		'Scans a source file for DB UI v2 patterns (v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*), ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*), ' +
 		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
 		'you start generating code — no guessing needed.',
-	inputSchema: {
-		filePath: z
-			.string()
-			.max(500)
-			.describe(
-				'Absolute path or path relative to the workspace root of the file to scan.'
-			)
-	}
+	inputSchema: scanMigrationInputSchema
+};
+
+/**
+ * Deprecated alias for `scan_generation_2_migration`.
+ *
+ * The tool was renamed to spell out the generation. The old `scan_v2_migration`
+ * name stays registered so existing consumer configs (whose `mcp.json` still lists
+ * it) keep working without changes. Prefer `scan_generation_2_migration`; this alias
+ * will be removed in the next major (6.0.0) — tracked in
+ * https://github.com/db-ux-design-system/core-web/pull/8005.
+ */
+export const scanV2MigrationDeprecatedSchema = {
+	description:
+		'DEPRECATED — renamed to `scan_generation_2_migration`. This alias still works but ' +
+		'will be removed in the next major version (6.0.0, tracked in ' +
+		'https://github.com/db-ux-design-system/core-web/pull/8005); call ' +
+		'`scan_generation_2_migration` instead. ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns and returns a JSON ' +
+		'migration report.',
+	inputSchema: scanMigrationInputSchema
 };
 
 export const listVisualsSchema = {

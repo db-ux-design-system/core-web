@@ -1199,7 +1199,7 @@ describe('handleScanV2Migration', () => {
 			const result = await handleScanV2Migration({ filePath: temporary });
 			const output = text(result.content[0]);
 
-			expect(output).toContain('No DB UI v2 patterns found');
+			expect(output).toContain('No Generation 2 patterns found');
 		} finally {
 			unlinkSync(temporary);
 		}
