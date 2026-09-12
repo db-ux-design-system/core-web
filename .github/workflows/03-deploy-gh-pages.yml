@@ -38,11 +38,13 @@ jobs:
       - name: ⏬ Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: 🔄 Init Cache
-        uses: ./.github/actions/pnpm-cache
-        env:
-          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
-          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+      # Only Node is needed here (no pnpm install): the deploy script has no
+      # runtime dependencies and just assembles this branch's subtree. .nvmrc
+      # pins Node 26, which executes the TypeScript script natively.
+      - name: 🆙 Setup node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: ".nvmrc"
 
       - name: ⏬ Download patternhub
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
@@ -90,21 +92,45 @@ jobs:
           mv build-storybooks/react-storybook out/react-storybook
           mv build-storybooks/vue-storybook out/vue-storybook
 
-      - name: 🔨 Build page
+      # Compute which gh-pages subdirectory this deploy owns (review/<branch>,
+      # version/<name>, or version/latest for a release). Publishing into a
+      # dedicated destination_dir lets the action replace exactly that subtree
+      # while leaving every sibling (other previews/versions) untouched.
+      - name: 🧭 Resolve destination dir
+        id: dest
+        shell: bash
         env:
           RELEASE: ${{ inputs.release }}
           PRE_RELEASE: ${{ inputs.preRelease }}
           NAME: ${{ inputs.name }}
-          REPO_NAME: ${{ inputs.repoName }}
-          OWNER_NAME: ${{ inputs.repoOwner }}
         run: |
-          pnpm --silent tsx scripts/github/build-gh-page.ts
+          if [[ "$RELEASE" == "true" || "$PRE_RELEASE" == "true" ]]; then
+            echo "dir=version/${NAME}" >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=review/${NAME}" >> "$GITHUB_OUTPUT"
+          fi
 
+      # Replace this branch's/version's subtree. keep_files defaults to false, so
+      # files deleted from the build (removed pages/routes) are removed from the
+      # subtree too, fixing stale-file retention. destination_dir scopes the
+      # action to just this subdir, so unrelated subtrees are preserved.
       - name: 🥅 Deploy to GH-Pages
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./out
+          destination_dir: ${{ steps.dest.outputs.dir }}
+
+      # On a full release, also refresh version/latest as its own owned subtree.
+      # The root index.html redirect already exists on gh-pages and always points
+      # to version/latest, so it never needs republishing here.
+      - name: 🥅 Deploy latest to GH-Pages
+        if: ${{ inputs.release == 'true' }}
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          destination_dir: version/latest
 
       - name: 🖨️ Print gh-pages url
         env:
