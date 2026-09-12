@@ -1,11 +1,22 @@
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
-import { resolve } from 'node:path';
 import { migrationData } from '../data/db-ui-migration-map';
-import { type ToolResult, error, MAX_JSON_OUTPUT, truncate } from '../utils';
+import {
+	type ToolResult,
+	error,
+	MAX_JSON_OUTPUT,
+	resolveSafePath
+} from '../utils';
 
 /** Maximum file size the scanner will read (5 MB). */
 const MAX_SCAN_SIZE = 5 * 1024 * 1024;
+
+/**
+ Characters reserved in the report budget for everything that is not a finding:
+ the "## Findings" heading, the fenced block markers and the
+ omitted-findings note.
+ */
+const REPORT_OVERHEAD = 500;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -166,12 +177,13 @@ export async function handleScanV2Migration({
 }: {
 	filePath: string;
 }): Promise<ToolResult> {
-	// Resolve path (absolute or relative to cwd)
-	const cwd = resolve(process.cwd()).replaceAll('\\', '/');
-	const absolutePath = resolve(cwd, filePath).replaceAll('\\', '/');
-
-	// Path traversal protection: file must be within cwd()
-	if (!absolutePath.startsWith(cwd + '/')) {
+	// Path traversal protection via the shared helper, which also collapses
+	// single and double percent-encoding before resolving. Accepts an absolute
+	// path as well, as long as it stays inside the workspace root.
+	let absolutePath: string;
+	try {
+		absolutePath = resolveSafePath(process.cwd(), filePath);
+	} catch {
 		return error(
 			`Error: filePath '${filePath}' resolves outside the workspace root. Path traversal is not allowed.`
 		);
@@ -225,7 +237,51 @@ export async function handleScanV2Migration({
 		};
 	}
 
-	// Build summary header
+	return buildReport(absolutePath, findings, lines.length);
+}
+
+/**
+ Size a single finding contributes to the pretty-printed findings array.
+ */
+function serializedSize(finding: ScanFinding): number {
+	const json = JSON.stringify(finding, null, 2);
+	// Inside an array every line carries two extra spaces of indentation,
+	// plus the ",\n" that separates two items.
+	const indent = json.split('\n').length * 2;
+	const separator = 2;
+
+	return json.length + indent + separator;
+}
+
+/**
+ Returns as many leading findings as fit into `budget` characters of
+ pretty-printed JSON. Returns an empty array when even the first does not fit,
+ which still yields a parsable (empty) findings array.
+ */
+function findingsWithinBudget(
+	findings: ScanFinding[],
+	budget: number
+): ScanFinding[] {
+	// The enclosing "[\n" and "\n]" of the array.
+	let size = 4;
+	for (const [index, finding] of findings.entries()) {
+		size += serializedSize(finding);
+		if (size > budget) {
+			return findings.slice(0, index);
+		}
+	}
+
+	return findings;
+}
+
+/**
+ Renders the scan report: a summary header plus the findings as JSON.
+ */
+function buildReport(
+	absolutePath: string,
+	findings: ScanFinding[],
+	lineCount: number
+): ToolResult {
 	const componentCount = findings.filter(
 		(f) => f.type === 'component'
 	).length;
@@ -239,17 +295,37 @@ export async function handleScanV2Migration({
 		)
 	];
 
-	const summary = [
+	const header = [
 		`## Migration Scan: ${absolutePath}`,
-		`**${findings.length} findings** in ${lines.length} lines:`,
+		`**${findings.length} findings** in ${lineCount} lines:`,
 		`- ${componentCount} component(s): ${uniqueComponents.join(', ') || 'none'}`,
 		`- ${colorCount} color token(s)`,
 		`- ${iconCount} icon(s)`,
-		`- ${importCount} legacy import(s)`,
+		`- ${importCount} legacy import(s)`
+	];
+
+	// Cap the findings themselves rather than the rendered report: truncating
+	// the text would cut the JSON mid-object and leave the fenced block
+	// unterminated, so the caller could not parse a single finding while the
+	// header still claimed the full count.
+	const reported = findingsWithinBudget(
+		findings,
+		MAX_JSON_OUTPUT - header.join('\n').length - REPORT_OVERHEAD
+	);
+	const omitted = findings.length - reported.length;
+
+	const summary = [
+		...header,
+		...(omitted > 0
+			? [
+					'',
+					`> Listing the first ${reported.length} findings (sorted by line number); ${omitted} more were omitted to stay within the response limit. Migrate these first, then scan the file again.`
+				]
+			: []),
 		'',
 		'## Findings',
 		'```json',
-		JSON.stringify(findings, null, 2),
+		JSON.stringify(reported, null, 2),
 		'```'
 	].join('\n');
 
@@ -257,7 +333,7 @@ export async function handleScanV2Migration({
 		content: [
 			{
 				type: 'text',
-				text: truncate(summary, MAX_JSON_OUTPUT)
+				text: summary
 			}
 		]
 	};
