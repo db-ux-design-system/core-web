@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 5.4.1
+
+### Patch Changes
+
+- fix(DBCustomSelectListItem): make label bold when checked - [see commit 58df675](https://github.com/db-ux-design-system/core-web/commit/58df6754fde599346696e4e9372d97e13c384082)
+
 ## 5.4.0
 
 ### Minor Changes
