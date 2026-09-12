@@ -11,7 +11,13 @@ const preScreenShot = async (page: Page) => {
 		.locator('main')
 		.getByRole('button', { name: 'Open: With footer' })
 		.click();
-	await page.locator('dialog[open]').first().waitFor({ state: 'visible' });
+	// The drawer's <dialog> is a 0x0 box (it sizes to fit-content and the visible
+	// panel is the fixed `.db-drawer-container` inside it), so it never counts as
+	// "visible". Wait for the panel that actually renders instead.
+	await page
+		.locator('dialog[open] .db-drawer-container')
+		.first()
+		.waitFor({ state: 'visible' });
 };
 
 test.describe('DBDrawer', () => {
