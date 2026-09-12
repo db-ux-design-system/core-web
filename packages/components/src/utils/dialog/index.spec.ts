@@ -99,11 +99,26 @@ describe('getClosestDialogId', () => {
 });
 
 describe('setDialogAriaLabelledBy', () => {
-	it('overwrites any existing aria-labelledby value', () => {
+	it('sets the heading id when no aria-labelledby exists yet', () => {
 		const dialog = createDialogStub();
 		setDialogAriaLabelledBy(dialog, 'heading-1');
-		setDialogAriaLabelledBy(dialog, 'heading-2');
-		expect(dialog._attributes['aria-labelledby']).toBe('heading-2');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
+	});
+
+	it('re-applies its own heading id (idempotent)', () => {
+		const dialog = createDialogStub();
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
+	});
+
+	it('never clobbers a consumer-supplied aria-labelledby', () => {
+		// aria-labelledby is a supported pass-through attribute; an explicit
+		// consumer value must win over the header's generated heading id.
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
 	});
 
 	it('does not throw for an unresolved dialog', () => {
@@ -160,5 +175,15 @@ describe('removeDialogAriaLabelledBy', () => {
 		setDialogAriaLabelledBy(dialog, 'foreign-id');
 		removeDialogAriaLabelledBy(dialog, undefined);
 		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
+	});
+
+	it('preserves a consumer value across a conditional header lifecycle', () => {
+		// Consumer supplies aria-labelledby, a conditional header mounts (set is
+		// skipped) then unmounts (remove is a no-op); the consumer value stays.
+		const dialog = createDialogStub({ id: 'my-dialog' });
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		removeDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
 	});
 });

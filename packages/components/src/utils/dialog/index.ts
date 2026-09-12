@@ -46,23 +46,34 @@ export const getClosestDialogId = (
 
 /**
  * @public
- * Sets `aria-labelledby` on a `<dialog>` element, overwriting any existing value.
+ * Links a `<dialog>` element to the header's heading via `aria-labelledby`, but
+ * never clobbers a value the consumer set themselves. `aria-labelledby` is a
+ * supported pass-through attribute, so an explicit consumer value (any existing
+ * value that is not our generated heading id) wins and is left untouched - the
+ * header only fills in the accessible name when the consumer did not provide one.
  */
 export const setDialogAriaLabelledBy = (
 	dialog: HTMLDialogElement | undefined | null,
 	headingId: string | undefined
 ): void => {
-	if (headingId) {
-		dialog?.setAttribute('aria-labelledby', headingId);
+	if (!headingId || !dialog) {
+		return;
+	}
+	const existing = dialog.getAttribute('aria-labelledby');
+	// Respect a consumer-supplied value; only set our own when none exists.
+	if (existing === null || existing === '' || existing === headingId) {
+		dialog.setAttribute('aria-labelledby', headingId);
 	}
 };
 
 /**
  * @public
  * Removes `aria-labelledby` from a `<dialog>` element, but only while its current
- * value equals the given heading id. Takes the dialog element resolved at mount
- * (held in the header's state) rather than re-resolving it, so cleanup works even
- * when the header is already detached from the DOM (e.g. during React effect
+ * value equals the given heading id. A consumer-supplied value never equals our
+ * generated heading id, so it is left intact - a conditional header unmounting
+ * only clears the reference it added itself. Takes the dialog element resolved at
+ * mount (held in the header's state) rather than re-resolving it, so cleanup works
+ * even when the header is already detached from the DOM (e.g. during React effect
  * cleanup) and regardless of whether the dialog has an `id`.
  */
 export const removeDialogAriaLabelledBy = (
