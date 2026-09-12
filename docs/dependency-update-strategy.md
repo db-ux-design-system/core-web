@@ -193,7 +193,7 @@ Watch out for one consequence: the fixtures are plain npm projects with `file:` 
 
 ### Scheduling
 
-The workflow runs daily via a single GitHub Actions cron at **20:00 UTC** (22:00 Europe/Berlin in CEST, 21:00 in CET). Both are ahead of the Dependabot window at 23:00 Berlin, so a pnpm bump lands first and Dependabot's PRs are rebased onto it instead of the other way around. It can also be started manually via _Run workflow_ (`workflow_dispatch`).
+The workflow runs daily via a single GitHub Actions cron at **20:17 UTC** (22:17 Europe/Berlin in CEST, 21:17 in CET). Both are ahead of the Dependabot window at 23:00 Berlin, so a pnpm bump lands first and Dependabot's PRs are rebased onto it instead of the other way around. The minute is deliberately off `:00`: GitHub warns that jobs scheduled at the top of the hour sit in the busiest queue and can be dropped under load. It can also be started manually via _Run workflow_ (`workflow_dispatch`).
 
 The GitHub Actions cron is the **only** scheduling gate. Renovate deliberately has no internal `schedule` in `.github/renovate.json`: an internal window is evaluated after the container starts, so image-pull and init drift (~1–2 min) could push the invocation past the window and turn the run into a no-op that never opens PRs. Letting the cron decide _when_ and Renovate always act removes that failure mode. A single cron line (rather than one per DST offset) keeps it to one run per day.
 
