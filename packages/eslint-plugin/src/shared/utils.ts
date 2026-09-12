@@ -342,6 +342,62 @@ export function toKebabCase(string_: string): string {
 }
 
 /**
+ * Whether the final value of `attribute` on a React/Vue element may be supplied by
+ * a spread whose contents cannot be verified statically:
+ *   - React JSX spread: `<DBDialogHeader {...props} />`
+ *   - Vue object v-bind: `<DBDialogHeader v-bind="props" />` (argumentless bind)
+ * Returns true only when such a spread comes after the last explicit occurrence of
+ * the attribute, so it can still determine the final value (JSX/Vue later-wins). A
+ * later explicit attribute overrides the spread and must be validated normally.
+ */
+export function isUnresolvedBySpread(
+	openingElement: any,
+	attribute: string
+): boolean {
+	// React: attributes live directly on the opening element.
+	const jsxAttributes = openingElement.attributes;
+	if (jsxAttributes) {
+		const lastAttributeIndex = jsxAttributes.findLastIndex(
+			(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
+		);
+		const lastSpreadIndex = jsxAttributes.findLastIndex(
+			(a: any) => a.type === 'JSXSpreadAttribute'
+		);
+		if (lastSpreadIndex > lastAttributeIndex) {
+			return true;
+		}
+	}
+
+	// Vue: attributes live on the start tag. An argumentless `v-bind="obj"` is a
+	// `bind` directive with no argument, so its object contents cannot be resolved.
+	const vueAttributes = openingElement.startTag?.attributes;
+	if (vueAttributes) {
+		const kebabAttr = toKebabCase(attribute);
+		const directiveName = (a: any) =>
+			typeof a.key?.name === 'string' ? a.key.name : a.key?.name?.name;
+		const lastAttributeIndex = vueAttributes.findLastIndex((a: any) => {
+			const keyName = directiveName(a);
+			// Static attr (key.name is the attr) or bound `:attr` (bind + argument).
+			return (
+				keyName === attribute ||
+				keyName === kebabAttr ||
+				(keyName === 'bind' &&
+					(a.key?.argument?.name === attribute ||
+						a.key?.argument?.name === kebabAttr))
+			);
+		});
+		const lastObjectVBindIndex = vueAttributes.findLastIndex(
+			(a: any) => directiveName(a) === 'bind' && !a.key?.argument
+		);
+		if (lastObjectVBindIndex > lastAttributeIndex) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Returns the traversable child nodes of an Angular template AST node, flattening
  * the collections that built-in control flow spreads its content across. `@if`
  * keeps its content under `branches[].children`, `@switch` under `groups[].children`,
