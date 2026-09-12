@@ -46,22 +46,26 @@ or wire a [custom command](https://developer.mozilla.org/en-US/docs/Web/API/Invo
 	<dialog
 		id="my-drawer"
 		class="db-drawer"
-		data-backdrop="true"
+		data-backdrop="strong"
 		closedby="any"
 		aria-labelledby="my-drawer-heading"
 	>
 		<article class="db-drawer-container">
-			<header class="db-drawer-header" id="my-drawer-heading">
+			<div class="db-drawer-header">
+				<div id="my-drawer-heading" class="db-drawer-header-content">
+					<h2>Drawer title</h2>
+				</div>
 				<button
-					class="db-button button-close-drawer is-icon-text-replace"
+					class="db-button is-icon-text-replace"
 					data-icon="cross"
 					data-variant="ghost"
+					type="button"
 					command="request-close"
 					commandfor="my-drawer"
 				>
-					Close Button
+					Close
 				</button>
-			</header>
+			</div>
 			<div class="db-drawer-content">My Drawer content</div>
 		</article>
 	</dialog>
