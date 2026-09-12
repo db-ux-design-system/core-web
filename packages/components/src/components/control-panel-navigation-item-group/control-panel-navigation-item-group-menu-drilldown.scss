@@ -6,13 +6,12 @@
 @use "../../styles/internal/navigation-item";
 @use "control-panel-navigation-item-group-menu-non-tree";
 
-// This is the height from the Brand section and Collapse section
-$drilldown-inset: calc(
-	#{variables.$db-sizing-md} + #{variables.$db-spacing-fixed-sm} * 2
-);
-
 %db-control-panel-navigation-item-group-menu-drilldown {
 	@extend %db-control-panel-navigation-item-group-menu-non-tree;
+
+	overflow: hidden auto;
+	position: absolute;
+	inset: 0;
 
 	/* jscpd:ignore-start */
 
@@ -29,17 +28,6 @@ $drilldown-inset: calc(
 			--db-drawer-max-width,
 			var(--db-drawer-max-width-horizontal)
 		);
-		position: fixed;
-		overflow: hidden auto;
-		inset-inline-end: 0;
-		inset-block: calc(
-				#{component.$min-mobile-header-height} +
-					env(safe-area-inset-top)
-			)
-			calc(
-				#{component.$min-mobile-header-height} +
-					env(safe-area-inset-bottom)
-			);
 	}
 
 	/* jscpd:ignore-end */
@@ -50,8 +38,6 @@ $drilldown-inset: calc(
 			min: "sm"
 		)
 	) {
-		inset-inline-start: 0;
-		overflow: hidden auto;
 		inline-size: calc(
 			var(
 					--db-control-panel-desktop-inline-size,
@@ -61,7 +47,5 @@ $drilldown-inset: calc(
 		); // Remove the border from fixed menu
 
 		padding: variables.$db-spacing-fixed-sm;
-		position: fixed;
-		inset-block: $drilldown-inset;
 	}
 }

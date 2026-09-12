@@ -1,6 +1,7 @@
 @use "../../styles/internal/navigation-item";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/icon-passing";
 
 .db-control-panel-navigation-item {
 	@extend %navigation-item;
@@ -35,5 +36,9 @@
 		&:empty {
 			display: none;
 		}
+	}
+
+	&[data-icon] {
+		@include icon-passing.icon-passing;
 	}
 }

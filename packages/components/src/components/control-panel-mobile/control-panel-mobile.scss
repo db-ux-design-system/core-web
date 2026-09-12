@@ -73,6 +73,7 @@
 				flex-direction: column;
 				block-size: 100%;
 				overflow-x: hidden;
+				position: relative;
 
 				/* jscpd:ignore-start */
 				.db-control-panel-meta {
@@ -94,11 +95,15 @@
 
 					> menu {
 						@include navigation-item.direct-navigation-items {
-							@extend %indicator;
-							@include indicator.set-indicator-vertical;
+							@include navigation-item.navigation-indicator {
+								@extend %indicator;
+								@include indicator.set-indicator-vertical;
+							}
 
 							@include navigation-item.active-navigation-item {
-								@include indicator.show-indicator-vertical;
+								@include navigation-item.navigation-indicator {
+									@include indicator.show-indicator-vertical;
+								}
 							}
 
 							@include navigation-item.direct-navigation-items {
