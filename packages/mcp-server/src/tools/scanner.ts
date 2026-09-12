@@ -30,24 +30,24 @@ type ScanFinding = {
 // ---------------------------------------------------------------------------
 
 /** Matches Generation 2 CSS classes: cmp-xxx, elm-xxx, rea-xxx (in class attributes, SCSS, etc.) */
-const RE_V2_CSS_CLASS = /\b((?:cmp|elm|rea)-[\w-]+)\b/g;
+const RE_GENERATION_2_CSS_CLASS = /\b((?:cmp|elm|rea)-[\w-]+)\b/g;
 
 /** Matches Generation 2 Web Components: <db-xxx (HTML/JSX custom element tags) */
-const RE_V2_WEB_COMPONENT = /<(db-[\w-]+)\b/g;
+const RE_GENERATION_2_WEB_COMPONENT = /<(db-[\w-]+)\b/g;
 
 /** Matches Generation 2 color tokens: db-color-xxx-nnn */
-const RE_V2_COLOR = /\b(db-color-[\w-]+)/g;
+const RE_GENERATION_2_COLOR = /\b(db-color-[\w-]+)/g;
 
 /** Matches icon references: icon="xxx" or icon='xxx' or data-icon="xxx" */
 const RE_ICON_ATTR =
 	/(?:icon|data-icon|data-icon-leading|data-icon-trailing|iconName)\s*=\s*["'](\w+)["']/g;
 
 /** Matches Generation 2 npm package imports: @db-ui/react-components, @db-ui/ngx-components, @db-ui/v-components, @db-ui/elements */
-const RE_V2_IMPORT =
+const RE_GENERATION_2_IMPORT =
 	/['"](@db-ui\/(?:react-components|ngx-components|v-components|elements))['"]/g;
 
 /** Maps Generation 2 package names to their Generation 3 equivalents */
-const V2_PACKAGE_MAP: Record<string, string> = {
+const GENERATION_2_PACKAGE_MAP: Record<string, string> = {
 	'@db-ui/react-components': '@db-ux/react-core-components',
 	'@db-ui/ngx-components': '@db-ux/ngx-core-components',
 	'@db-ui/v-components': '@db-ux/v-core-components',
@@ -67,7 +67,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	const ctx = line.length > 120 ? line.slice(0, 120) + '...' : line;
 
 	// --- Generation 2 CSS classes (cmp-*, elm-*, rea-*) ---
-	for (const match of line.matchAll(RE_V2_CSS_CLASS)) {
+	for (const match of line.matchAll(RE_GENERATION_2_CSS_CLASS)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
@@ -84,7 +84,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	}
 
 	// --- Generation 2 Web Components (<db-*>) ---
-	for (const match of line.matchAll(RE_V2_WEB_COMPONENT)) {
+	for (const match of line.matchAll(RE_GENERATION_2_WEB_COMPONENT)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
@@ -99,7 +99,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	}
 
 	// --- Colors ---
-	for (const match of line.matchAll(RE_V2_COLOR)) {
+	for (const match of line.matchAll(RE_GENERATION_2_COLOR)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
@@ -132,14 +132,14 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	}
 
 	// --- Generation 2 npm package imports (@db-ui/*) ---
-	for (const match of line.matchAll(RE_V2_IMPORT)) {
+	for (const match of line.matchAll(RE_GENERATION_2_IMPORT)) {
 		const old = match[1];
 		findings.push({
 			line: lineNumber,
 			type: 'import',
 			found: old,
 			context: ctx.trim(),
-			suggestion: `Replace with ${V2_PACKAGE_MAP[old] ?? '@db-ux/core-components'}. Update all named imports to Generation 3 component names.`
+			suggestion: `Replace with ${GENERATION_2_PACKAGE_MAP[old] ?? '@db-ux/core-components'}. Update all named imports to Generation 3 component names.`
 		});
 	}
 
@@ -151,6 +151,8 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 // ---------------------------------------------------------------------------
 
 /**
+ @public
+
  Analyzes a file for Generation 2 patterns that need migration to Generation 3.
 
  Deterministically scans for:
@@ -161,7 +163,7 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  Returns a JSON report with line numbers, findings, and migration suggestions
  resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.
  */
-export async function handleScanV2Migration({
+export async function handleScanGeneration2Migration({
 	filePath
 }: {
 	filePath: string;

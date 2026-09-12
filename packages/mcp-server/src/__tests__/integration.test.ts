@@ -955,7 +955,7 @@ describe('handleMigrateComponentPrompt', () => {
 	it('references the correct framework package for angular', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<db-button>Go</db-button>',
-			source_context: 'db-ui-v2',
+			source_context: 'db-ui-generation-2',
 			target_framework: 'angular'
 		});
 
@@ -967,7 +967,7 @@ describe('handleMigrateComponentPrompt', () => {
 	it('references the correct framework package for vue', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<db-button>Go</db-button>',
-			source_context: 'db-ui-v2',
+			source_context: 'db-ui-generation-2',
 			target_framework: 'vue'
 		});
 
@@ -1046,7 +1046,7 @@ describe('handleMigrateComponentPrompt', () => {
 	it('instructs the agent to call list_migration_guides', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<db-button>Go</db-button>',
-			source_context: 'db-ui-v2',
+			source_context: 'db-ui-generation-2',
 			target_framework: 'react'
 		});
 
@@ -1100,10 +1100,10 @@ describe('handleVerifyMigratedCode', () => {
 });
 
 // ---------------------------------------------------------------------------
-// scan_v2_migration
+// scan_generation_2_migration
 // ---------------------------------------------------------------------------
-describe('handleScanV2Migration', () => {
-	let handleScanV2Migration: (typeof import('../tools/scanner.js'))['handleScanV2Migration'];
+describe('handleScanGeneration2Migration', () => {
+	let handleScanGeneration2Migration: (typeof import('../tools/scanner.js'))['handleScanGeneration2Migration'];
 
 	/** Creates a temp file inside process.cwd() and returns its path. */
 	function writeCwdTemporary(name: string, content: string): string {
@@ -1119,7 +1119,7 @@ describe('handleScanV2Migration', () => {
 
 	beforeEach(async () => {
 		const mod = await import('../tools/scanner.js');
-		handleScanV2Migration = mod.handleScanV2Migration;
+		handleScanGeneration2Migration = mod.handleScanGeneration2Migration;
 	});
 
 	it('detects v2 component tags and returns suggestions', async () => {
@@ -1130,7 +1130,9 @@ describe('handleScanV2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			expect(output).toContain('elm-button');
@@ -1151,7 +1153,9 @@ describe('handleScanV2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			expect(output).toContain('db-color-red-500');
@@ -1175,7 +1179,9 @@ describe('handleScanV2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			expect(output).toContain('"type": "icon"');
@@ -1196,7 +1202,9 @@ describe('handleScanV2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			expect(output).toContain('No Generation 2 patterns found');
@@ -1206,7 +1214,7 @@ describe('handleScanV2Migration', () => {
 	});
 
 	it('returns an error for non-existent files', async () => {
-		const result = await handleScanV2Migration({
+		const result = await handleScanGeneration2Migration({
 			filePath: 'does-not-exist-12345.html'
 		});
 
@@ -1222,7 +1230,9 @@ describe('handleScanV2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			// Elm-button is on line 3
@@ -1240,7 +1250,9 @@ describe('handleScanV2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			expect(output).toContain('component(s)');
@@ -1254,7 +1266,7 @@ describe('handleScanV2Migration', () => {
 	// --- Security tests ---
 
 	it('🔒 rejects file paths outside workspace (path traversal)', async () => {
-		const result = await handleScanV2Migration({
+		const result = await handleScanGeneration2Migration({
 			filePath: '/etc/passwd'
 		});
 		expect(result.isError).toBe(true);
@@ -1262,7 +1274,7 @@ describe('handleScanV2Migration', () => {
 	});
 
 	it('🔒 rejects ../ directory climbing', async () => {
-		const result = await handleScanV2Migration({
+		const result = await handleScanGeneration2Migration({
 			filePath: '../../../../../../etc/passwd'
 		});
 		expect(result.isError).toBe(true);
