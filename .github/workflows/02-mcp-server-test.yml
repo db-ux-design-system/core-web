@@ -1,0 +1,37 @@
+---
+name: MCP Server Test
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+jobs:
+  test-mcp-server:
+    name: Test MCP Server
+    runs-on: ubuntu-24.04
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      # No build artifacts are downloaded on purpose, so this job runs early
+      # instead of waiting ~18 minutes for build-outputs.
+      #
+      # The build tolerates their absence: the only hard requirements are
+      # docs/migration/db-ui (committed) and @db-ux/db-theme (from node_modules,
+      # restored by the cache action above). A missing output/ leaves
+      # manifest.json without exampleCode, and a missing foundations build
+      # leaves the density tokens incomplete - neither is read by any test, as
+      # every get_example_code test supplies its own synthetic manifest.
+      #
+      # If a test ever needs the real framework example code, re-add the
+      # db-ux-output artifact and depend on build-outputs again.
+      - name: 🧪 Run MCP Server Tests
+        run: pnpm --filter @db-ux/mcp-server run test

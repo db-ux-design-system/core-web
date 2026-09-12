@@ -1,4 +1,4 @@
-import { z } from 'zod/v3';
+import { z } from 'zod';
 
 export const listComponentsSchema = {
 	description:
@@ -8,17 +8,17 @@ export const listComponentsSchema = {
 export const getComponentDetailsSchema = {
 	description:
 		'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
-	inputSchema: {
+	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'")
-	}
+	})
 };
 
 export const getComponentPropsSchema = {
 	description:
 		"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
-	inputSchema: {
+	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'")
-	}
+	})
 };
 
 export const listDesignTokenCategoriesSchema = {
@@ -29,14 +29,14 @@ export const listDesignTokenCategoriesSchema = {
 export const getDesignTokensSchema = {
 	description:
 		'Returns CSS custom properties (--db-*) for a given design token category. For spacing, elevation, and density, returns compiled primitive values (rem, px, box-shadow). For colors, typography, animation, and transitions, returns SCSS variable declarations.',
-	inputSchema: {
+	inputSchema: z.object({
 		category: z
 			.string()
 			.max(100)
 			.describe(
 				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories."
 			)
-	}
+	})
 };
 
 export const listIconsSchema = {
@@ -47,7 +47,7 @@ export const listIconsSchema = {
 export const getExampleCodeSchema = {
 	description:
 		'Returns the generated framework-specific source code for a component example. For Angular, the template is inline inside the @Component decorator within the .ts file.',
-	inputSchema: {
+	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'"),
 		exampleName: z
 			.string()
@@ -58,13 +58,13 @@ export const getExampleCodeSchema = {
 			.describe(
 				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'"
 			)
-	}
+	})
 };
 
 export const docsSearchSchema = {
 	description:
 		'Searches the DB UX component and foundation documentation (guidelines, Accessibility, framework-specific docs). Only docs from packages/components/ and packages/foundations/docs/ are included. For migration guides, use list_migration_guides and get_migration_guide instead.',
-	inputSchema: {
+	inputSchema: z.object({
 		query: z
 			.string()
 			.max(200)
@@ -89,7 +89,7 @@ export const docsSearchSchema = {
 			.describe(
 				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead."
 			)
-	}
+	})
 };
 
 export const listMigrationGuidesSchema = {
@@ -100,7 +100,7 @@ export const listMigrationGuidesSchema = {
 export const getMigrationGuideSchema = {
 	description:
 		'Returns the full markdown content of a specific DB UX migration guide. Use this to learn the exact syntax changes needed to refactor legacy "DB UI" code to "DB UX" code.',
-	inputSchema: {
+	inputSchema: z.object({
 		guideName: z
 			.string()
 			.max(100)
@@ -111,7 +111,7 @@ export const getMigrationGuideSchema = {
 			.describe(
 				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'."
 			)
-	}
+	})
 };
 
 export const verifyMigratedCodeSchema = {
@@ -129,14 +129,14 @@ export const scanV2MigrationSchema = {
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
 		'you start generating code — no guessing needed.',
-	inputSchema: {
+	inputSchema: z.object({
 		filePath: z
 			.string()
 			.max(500)
 			.describe(
 				'Absolute path or path relative to the workspace root of the file to scan.'
 			)
-	}
+	})
 };
 
 export const listVisualsSchema = {
@@ -151,12 +151,12 @@ export const getVisualReferenceSchema = {
 		'Base64-encoded image block. Use this when you need visual context for complex layouts, ' +
 		'z-index reasoning, or verifying visual hierarchies. Call list_visuals first to see ' +
 		'available names.',
-	inputSchema: {
+	inputSchema: z.object({
 		name: z
 			.string()
 			.max(100)
 			.describe(
 				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names."
 			)
-	}
+	})
 };

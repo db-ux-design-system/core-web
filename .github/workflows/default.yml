@@ -109,6 +109,12 @@ jobs:
     needs: [build-outputs]
     secrets: inherit
 
+  test-mcp-server:
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    uses: ./.github/workflows/02-mcp-server-test.yml
+    needs: [init]
+    secrets: inherit
+
   test-figma-code-connect:
     if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
@@ -439,6 +445,7 @@ jobs:
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
+          resultTestMcpServer="${{ needs.test-mcp-server.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
@@ -465,6 +472,7 @@ jobs:
           echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
           echo "resultBuildOutputs: $resultBuildOutputs"
           echo "resultTestPackages: $resultTestPackages"
+          echo "resultTestMcpServer: $resultTestMcpServer"
           echo "resultTestFoundations: $resultTestFoundations"
           echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
           echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
@@ -488,6 +496,7 @@ jobs:
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
              [[ $resultTestVitePlugin == "success" ]] && \
+             [[ $resultTestMcpServer == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
@@ -523,6 +532,7 @@ jobs:
         test-figma-code-connect,
         test-components,
         test-vite-plugin,
+        test-mcp-server,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
