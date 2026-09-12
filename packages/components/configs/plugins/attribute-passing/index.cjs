@@ -117,8 +117,11 @@ module.exports = () => ({
 					.replace(
 						'element.setAttribute(attr.name, attr.value);\n' +
 							'          parent.removeAttribute(attr.name);',
-						// Remove attribute from child if value is empty, otherwise forward it
-						'if (attr.value) {\n' +
+						// Issue #7001: Use != null instead of truthiness check so that
+						// empty-valued attributes (e.g. data-state="" or aria-label="")
+						// are forwarded correctly. They are commonly used as presence
+						// flags for CSS selectors like [data-state].
+						'if (attr.value != null) {\n' +
 							'            element.setAttribute(attr.name, attr.value);\n' +
 							'          } else {\n' +
 							'            element.removeAttribute(attr.name);\n' +
@@ -127,7 +130,9 @@ module.exports = () => ({
 					)
 					.replace(
 						'`${currentClass ? `${currentClass} ` : ""}${value}`',
-						'`${currentClass ? currentClass : ""}${value ? ` ${value}`: ""}`'
+						// Issue #7000: Deduplicate class tokens to prevent accumulation
+						// when the observer triggers enableAttributePassing repeatedly.
+						'[...new Set(`${currentClass ? currentClass : ""}${value ? ` ${value}` : ""}`.split(" "))].filter(Boolean).join(" ")'
 					);
 			}
 
