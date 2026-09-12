@@ -195,19 +195,6 @@ jobs:
     secrets: inherit
     needs: [build-showcase-angular]
 
-  build-showcase-angular-ssr:
-    uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
-    secrets: inherit
-    with:
-      showcase: angular-ssr-showcase
-
-  cancel-on-failure-build-showcase-angular-ssr:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-angular-ssr.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-angular-ssr]
-
   build-showcase-react:
     uses: ./.github/workflows/01-build-showcases.yml
     needs: [build-packages]
@@ -220,19 +207,6 @@ jobs:
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-react]
-
-  build-showcase-next:
-    uses: ./.github/workflows/01-build-showcases.yml
-    needs: [build-packages]
-    secrets: inherit
-    with:
-      showcase: next-showcase
-
-  cancel-on-failure-build-showcase-next:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-next.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-next]
 
   build-showcase-vue:
     uses: ./.github/workflows/01-build-showcases.yml
@@ -247,18 +221,16 @@ jobs:
     secrets: inherit
     needs: [build-showcase-vue]
 
-  build-showcase-nuxt:
-    uses: ./.github/workflows/01-build-showcases.yml
+  build-untested-showcases:
+    uses: ./.github/workflows/01-build-showcases-untested.yml
     needs: [build-packages]
     secrets: inherit
-    with:
-      showcase: nuxt-showcase
 
-  cancel-on-failure-build-showcase-nuxt:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-nuxt.result == 'failure' }}
+  cancel-on-failure-build-untested-showcases:
+    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-untested-showcases.result == 'failure' }}
     uses: ./.github/workflows/00-cancel-workflow.yml
     secrets: inherit
-    needs: [build-showcase-nuxt]
+    needs: [build-untested-showcases]
 
   build-showcase-patternhub:
     uses: ./.github/workflows/01-build-patternhub.yml
@@ -431,11 +403,9 @@ jobs:
           resultBuildStorybookVue="${{ needs.build-storybook-vue.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
-          resultBuildShowcaseAngularSSR="${{ needs.build-showcase-angular-ssr.result }}"
           resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
-          resultBuildShowcaseNext="${{ needs.build-showcase-next.result }}"
           resultBuildShowcaseVue="${{ needs.build-showcase-vue.result }}"
-          resultBuildShowcaseNuxt="${{ needs.build-showcase-nuxt.result }}"
+          resultBuildUntestedShowcases="${{ needs.build-untested-showcases.result }}"
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestVitePlugin="${{ needs.test-vite-plugin.result }}"
@@ -457,11 +427,9 @@ jobs:
           echo "resultBuildStorybookVue: $resultBuildStorybookVue"
           echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
           echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
-          echo "resultBuildShowcaseAngularSSR: $resultBuildShowcaseAngularSSR"
           echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
-          echo "resultBuildShowcaseNext: $resultBuildShowcaseNext"
           echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
-          echo "resultBuildShowcaseNuxt: $resultBuildShowcaseNuxt"
+          echo "resultBuildUntestedShowcases: $resultBuildUntestedShowcases"
           echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
           echo "resultBuildOutputs: $resultBuildOutputs"
           echo "resultTestPackages: $resultTestPackages"
@@ -491,11 +459,9 @@ jobs:
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
-             [[ $resultBuildShowcaseAngularSSR == "success" ]] && \
              [[ $resultBuildShowcaseReact == "success" ]] && \
-             [[ $resultBuildShowcaseNext == "success" ]] && \
              [[ $resultBuildShowcaseVue == "success" ]] && \
-             [[ $resultBuildShowcaseNuxt == "success" ]] && \
+             [[ $resultBuildUntestedShowcases == "success" ]] && \
              [[ $resultBuildShowcasePatternhub == "success" ]] && \
              [[ $resultAuditFix == "success" || $resultAuditFix == "skipped" ]]; then
              echo "🎉 All tests were successful."
@@ -513,11 +479,9 @@ jobs:
         build-storybook-vue,
         build-showcase-stencil,
         build-showcase-angular,
-        build-showcase-angular-ssr,
         build-showcase-react,
-        build-showcase-next,
         build-showcase-vue,
-        build-showcase-nuxt,
+        build-untested-showcases,
         build-showcase-patternhub,
         build-outputs,
         test-figma-code-connect,

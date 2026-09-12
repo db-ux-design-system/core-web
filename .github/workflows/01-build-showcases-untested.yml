@@ -1,0 +1,82 @@
+---
+name: Build Untested Showcases
+
+permissions:
+  contents: read
+
+on:
+  workflow_call:
+
+# Builds the three showcases that have NO e2e test consumer (angular-ssr, next,
+# nuxt) in one job. Their artifacts are only used for build validation via
+# checks-done, so nothing on the test critical path waits on them - unlike the
+# react/vue/angular/stencil showcases, whose e2e jobs depend on their individual
+# build jobs and must stay separate. Collapsing these three frees runner slots
+# under the org's 20-runner cap with no critical-path cost.
+jobs:
+  build-untested-showcases:
+    name: Build Untested Showcases
+    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: 🔄 Init Cache
+        uses: ./.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      - name: ⏬ Download foundations build
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: db-ux-foundations-build
+          path: packages/foundations/build
+
+      - name: ⏬ Download output
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: db-ux-output
+          path: output
+
+      - name: ⏬ Download components build
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: db-ux-components-build
+          path: packages/components/build
+
+      - name: ⏬ Download postcss-plugin build
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: db-ux-postcss-plugin-build
+          path: packages/postcss-plugin/build
+
+      # Same invocations the individual build jobs used (angular-ssr/next via
+      # `run build`, nuxt via `run generate`), run sequentially in one job. Any
+      # failure fails the job, matching checks-done's previous per-showcase view.
+      - name: 🔨 Build untested showcases
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+        run: |
+          pnpm --filter angular-ssr-showcase run build
+          pnpm --filter next-showcase run build
+          pnpm --filter nuxt-showcase run generate
+
+      - name: ⏫ Upload angular-ssr-showcase
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-angular-ssr-showcase
+          path: build-showcases/angular-ssr-showcase
+
+      - name: ⏫ Upload next-showcase
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-next-showcase
+          path: build-showcases/next-showcase
+
+      - name: ⏫ Upload nuxt-showcase
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-nuxt-showcase
+          path: build-showcases/nuxt-showcase
