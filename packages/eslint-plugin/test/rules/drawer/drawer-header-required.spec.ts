@@ -44,6 +44,12 @@ describe('drawer-header-required', () => {
 				code: '<DBDrawer header={<div><DBDrawerHeader>Title</DBDrawerHeader></div>}>Content</DBDrawer>'
 			},
 			{
+				// A conditional header nested in a fragment wrapper: the expression
+				// container inside the fragment is unwrapped so the logical
+				// expression is accepted as it would be used directly.
+				code: '<DBDrawer header={<>{show && <DBDrawerHeader>Title</DBDrawerHeader>}</>}>Content</DBDrawer>'
+			},
+			{
 				// A JSX spread may carry the header prop; contents are unverifiable.
 				code: '<DBDrawer {...drawerProps}>Content</DBDrawer>'
 			},

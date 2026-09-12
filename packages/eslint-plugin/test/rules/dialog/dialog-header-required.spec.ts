@@ -102,6 +102,24 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// A conditional header nested in a fragment wrapper: the expression
+		// container inside the fragment must be unwrapped so the logical
+		// expression is accepted exactly as it would be used directly.
+		shape: 'header prop, conditional header inside a fragment wrapper',
+		code: '<DBDialog header={<>{show && <DBDialogHeader>Title</DBDialogHeader>}</>}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		shape: 'header prop, statically resolvable header inside an expression in a wrapper',
+		code: '<DBDialog header={<div>{<DBDialogHeader>Title</DBDialogHeader>}</div>}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		shape: 'header prop, ternary header inside an element wrapper',
+		code: '<DBDialog header={<div>{show ? <DBDialogHeader>Title</DBDialogHeader> : null}</div>}>Content</DBDialog>',
+		reports: false
+	},
+	{
 		// A spread may carry the header prop; its contents cannot be verified.
 		shape: 'JSX spread that may carry the header prop',
 		code: '<DBDialog {...dialogProps}>Content</DBDialog>',
