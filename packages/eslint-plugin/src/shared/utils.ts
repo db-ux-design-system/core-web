@@ -168,34 +168,41 @@ function isStaticallyEmptyAngularInput(value: any): boolean {
 	if (!value) {
 		return false;
 	}
-	if (
-		value.type === 'LiteralPrimitive' &&
-		typeof value.value === 'string' &&
-		value.value.trim() === ''
-	) {
-		return true;
+	if (value.type === 'LiteralPrimitive') {
+		// `null` renders no text, same as an empty string literal.
+		if (value.value === null) {
+			return true;
+		}
+		if (typeof value.value === 'string' && value.value.trim() === '') {
+			return true;
+		}
 	}
 	// Some parser versions expose only the raw source for the binding.
 	return (
-		value.source === "''" || value.source === '""' || value.source === '``'
+		value.source === "''" ||
+		value.source === '""' ||
+		value.source === '``' ||
+		value.source === 'null'
 	);
 }
 
 /**
- * Detects expressions that are statically an empty string: a string literal
- * `''`/`""` or a template literal with no substitutions and empty text (` `` `).
- * Whitespace-only literals count as empty because they render no visible or
- * accessible text. Anything else (identifiers, calls, member access, non-empty
- * literals) is treated as unresolvable dynamic content.
+ * Detects expressions that statically render no text: a `null` literal, an empty
+ * string literal `''`/`""` or a template literal with no substitutions and empty
+ * text (` `` `). Whitespace-only literals count as empty because they render no
+ * visible or accessible text. Anything else (identifiers, calls, member access,
+ * non-empty literals) is treated as unresolvable dynamic content.
  */
 function isStaticallyEmptyExpression(expression: any): boolean {
 	if (!expression) {
 		return false;
 	}
 	if (expression.type === 'Literal') {
+		// `null` renders no text, same as an empty string literal.
 		return (
-			typeof expression.value === 'string' &&
-			expression.value.trim() === ''
+			expression.value === null ||
+			(typeof expression.value === 'string' &&
+				expression.value.trim() === '')
 		);
 	}
 	if (expression.type === 'TemplateLiteral') {
@@ -332,6 +339,62 @@ export function createAngularVisitors(
 /** @public */
 export function toKebabCase(string_: string): string {
 	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+/**
+ * Whether the final value of `attribute` on a React/Vue element may be supplied by
+ * a spread whose contents cannot be verified statically:
+ *   - React JSX spread: `<DBDialogHeader {...props} />`
+ *   - Vue object v-bind: `<DBDialogHeader v-bind="props" />` (argumentless bind)
+ * Returns true only when such a spread comes after the last explicit occurrence of
+ * the attribute, so it can still determine the final value (JSX/Vue later-wins). A
+ * later explicit attribute overrides the spread and must be validated normally.
+ */
+export function isUnresolvedBySpread(
+	openingElement: any,
+	attribute: string
+): boolean {
+	// React: attributes live directly on the opening element.
+	const jsxAttributes = openingElement.attributes;
+	if (jsxAttributes) {
+		const lastAttributeIndex = jsxAttributes.findLastIndex(
+			(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
+		);
+		const lastSpreadIndex = jsxAttributes.findLastIndex(
+			(a: any) => a.type === 'JSXSpreadAttribute'
+		);
+		if (lastSpreadIndex > lastAttributeIndex) {
+			return true;
+		}
+	}
+
+	// Vue: attributes live on the start tag. An argumentless `v-bind="obj"` is a
+	// `bind` directive with no argument, so its object contents cannot be resolved.
+	const vueAttributes = openingElement.startTag?.attributes;
+	if (vueAttributes) {
+		const kebabAttr = toKebabCase(attribute);
+		const directiveName = (a: any) =>
+			typeof a.key?.name === 'string' ? a.key.name : a.key?.name?.name;
+		const lastAttributeIndex = vueAttributes.findLastIndex((a: any) => {
+			const keyName = directiveName(a);
+			// Static attr (key.name is the attr) or bound `:attr` (bind + argument).
+			return (
+				keyName === attribute ||
+				keyName === kebabAttr ||
+				(keyName === 'bind' &&
+					(a.key?.argument?.name === attribute ||
+						a.key?.argument?.name === kebabAttr))
+			);
+		});
+		const lastObjectVBindIndex = vueAttributes.findLastIndex(
+			(a: any) => directiveName(a) === 'bind' && !a.key?.argument
+		);
+		if (lastObjectVBindIndex > lastAttributeIndex) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 /**

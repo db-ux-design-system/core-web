@@ -3,7 +3,8 @@ import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
+	isUnresolvedBySpread
 } from '../../shared/utils.js';
 
 /**
@@ -176,6 +177,18 @@ export default {
 						!isEmptyJsxExpression(child)) ||
 					child.type === 'VExpressionContainer'
 			);
+
+			// A React spread (<DBDialogHeader {...headerProps} />) or Vue object
+			// v-bind may supply `text`, and its contents cannot be verified
+			// statically, so treat the header as unresolved rather than reporting -
+			// unless a later explicit `text` determines the final value.
+			if (
+				!hasTextContent(text) &&
+				!hasChildren &&
+				isUnresolvedBySpread(openingElement, 'text')
+			) {
+				return;
+			}
 
 			if (!hasTextContent(text) && !hasChildren) {
 				context.report({

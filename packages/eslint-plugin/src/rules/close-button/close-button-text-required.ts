@@ -3,7 +3,8 @@ import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
+	isUnresolvedBySpread
 } from '../../shared/utils.js';
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
@@ -11,71 +12,6 @@ const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBDrawerHeader: 'closeButtonText',
 	DBDialogHeader: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
-};
-
-/**
- * A header whose close-button attribute is absent may still receive it through a
- * spread whose contents cannot be verified statically:
- *   - React JSX spread: `<DBDialogHeader {...props} />`
- *   - Vue object v-bind: `<DBDialogHeader v-bind="props" />` (argumentless bind)
- * Return true (unresolved) only when such a spread comes after the last explicit
- * occurrence of the attribute, so it can still determine the final value. A later
- * explicit attribute wins over the spread and is checked normally.
- */
-const isUnresolvedBySpread = (
-	openingElement: any,
-	attribute: string
-): boolean => {
-	// React: attributes live directly on the opening element. With JSX later-wins
-	// semantics, only the last of the explicit attribute and the spread determines
-	// the final value. A spread after the last explicit `attribute` may supply the
-	// label, so treat it as unresolved; a later explicit attribute overrides the
-	// spread and must be validated instead.
-	const jsxAttributes = openingElement.attributes;
-	if (jsxAttributes) {
-		const lastAttributeIndex = jsxAttributes.findLastIndex(
-			(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
-		);
-		const lastSpreadIndex = jsxAttributes.findLastIndex(
-			(a: any) => a.type === 'JSXSpreadAttribute'
-		);
-		if (lastSpreadIndex > lastAttributeIndex) {
-			return true;
-		}
-	}
-
-	// Vue: attributes live on the start tag. An argumentless `v-bind="obj"` is a
-	// `bind` directive with no argument, so its object contents cannot be resolved.
-	// Vue 3 also applies later-wins between an object v-bind and an individual
-	// binding, so compare indexes just like React: only an object v-bind after the
-	// last explicit `attribute` can still determine the final value.
-	const vueAttributes = openingElement.startTag?.attributes;
-	if (vueAttributes) {
-		const kebabAttr = attribute
-			.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
-			.toLowerCase();
-		const directiveName = (a: any) =>
-			typeof a.key?.name === 'string' ? a.key.name : a.key?.name?.name;
-		const lastAttributeIndex = vueAttributes.findLastIndex((a: any) => {
-			const keyName = directiveName(a);
-			// Static attr (key.name is the attr) or bound `:attr` (bind + argument).
-			return (
-				keyName === attribute ||
-				keyName === kebabAttr ||
-				(keyName === 'bind' &&
-					(a.key?.argument?.name === attribute ||
-						a.key?.argument?.name === kebabAttr))
-			);
-		});
-		const lastObjectVBindIndex = vueAttributes.findLastIndex(
-			(a: any) => directiveName(a) === 'bind' && !a.key?.argument
-		);
-		if (lastObjectVBindIndex > lastAttributeIndex) {
-			return true;
-		}
-	}
-
-	return false;
 };
 
 export default {

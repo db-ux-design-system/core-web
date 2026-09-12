@@ -53,6 +53,19 @@ describe('text-or-children-required', () => {
 				code: '<DBDialogHeader>{title}</DBDialogHeader>'
 			},
 			{ code: '<DBDialogHeader>{`Title ${suffix}`}</DBDialogHeader>' },
+			{
+				// A JSX spread may supply `text`; its contents are unverifiable,
+				// so the header is treated as unresolved rather than reported.
+				code: '<DBDialogHeader {...headerProps} />'
+			},
+			{
+				code: '<DBDialogHeader {...headerProps} text="Title" />'
+			},
+			{
+				// Reverse ordering: the spread comes AFTER the empty text, so
+				// (React later-wins) it may supply a valid text - unresolved.
+				code: '<DBDialogHeader text="" {...headerProps} />'
+			},
 			{ code: '<div />' }
 		],
 		invalid: [
@@ -213,6 +226,17 @@ describe('text-or-children-required', () => {
 						data: { component: 'DBDialogHeader' }
 					}
 				]
+			},
+			{
+				// A spread before an explicit empty text does not determine the
+				// final value (the later explicit text wins), so it still reports.
+				code: '<DBDialogHeader {...headerProps} text="" />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
 			}
 		]
 	});
@@ -267,11 +291,27 @@ describe('text-or-children-required', () => {
 			// Dynamic binding cannot be verified statically, so it is allowed.
 			{
 				code: '<template><DBDialogHeader :text="title" /></template>'
+			},
+			{
+				// An object v-bind may supply `text`; its contents are
+				// unverifiable, so the header is treated as unresolved.
+				code: '<template><DBDialogHeader v-bind="headerProps" /></template>'
 			}
 		],
 		invalid: [
 			{
 				code: '<template><DBDialogHeader text="" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A v-bind before an explicit empty text does not determine the
+				// final value (the later explicit text wins), so it still reports.
+				code: '<template><DBDialogHeader v-bind="headerProps" text="" /></template>',
 				errors: [
 					{
 						messageId: 'missingContent',
