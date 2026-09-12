@@ -41,8 +41,29 @@ export const handleFrameworkEventAngular = (
 		}
 	}
 	component.propagateChange(value);
-	component.writeValue(value);
+	// Model only. `writeValue` would write the value back into the element,
+	// which clears the native date editor while `validity.badInput` is set.
+	component._setModelValue(value);
 };
+
+/**
+ * Angular renders the element from `state._value` instead of `props.value`.
+ * While the browser cannot parse the current entry (`validity.badInput`, e.g.
+ * `29.02.0202` on the way to `29.02.2028`) it reports `value` as an empty
+ * string. Mirroring that empty value into the bound expression would write it
+ * to the element and clear the native editor with everything the user typed
+ * (https://github.com/db-ux-design-system/core-web/issues/7748).
+ *
+ * The gap is deliberately narrow: it applies only while the element itself
+ * reports `badInput` **and** the incoming value is empty. Every other write
+ * reaches the display value, which is what keeps a programmatic reset to
+ * `undefined` working
+ * (https://github.com/db-ux-design-system/core-web/issues/6147).
+ *
+ * @internal
+ */
+export const shouldKeepDisplayValue = (element: any, value: any): boolean =>
+	Boolean(element?.validity?.badInput) && !value;
 
 export const handleFrameworkEventVue = (
 	emit: (event: string, ...args: any[]) => void,

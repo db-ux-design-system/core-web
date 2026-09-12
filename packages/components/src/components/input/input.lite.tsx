@@ -45,7 +45,8 @@ import {
 import {
 	addValueResetEventListener,
 	handleFrameworkEventAngular,
-	handleFrameworkEventVue
+	handleFrameworkEventVue,
+	shouldKeepDisplayValue
 } from '../../utils/form-components';
 import DBInfotext from '../infotext/infotext.lite';
 import { DBInputProps, DBInputState } from './model';
@@ -72,7 +73,7 @@ export default function DBInput(props: DBInputProps) {
 		_invalidMessage: undefined,
 		_dataListId: undefined,
 		_descByIds: undefined,
-		_value: '',
+		_value: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
 		hasValidState: () => {
@@ -247,7 +248,17 @@ export default function DBInput(props: DBInputProps) {
 	}, [state._id]);
 
 	onUpdate(() => {
-		state._value = props.value;
+		// Angular renders from state._value. Keep the last parsable value while
+		// the entry is unparsable, otherwise the empty model value would clear
+		// the native date editor. See `shouldKeepDisplayValue`.
+		const keepDisplayValue = useTarget({
+			angular: shouldKeepDisplayValue(_ref, props.value),
+			default: false
+		});
+
+		if (!keepDisplayValue) {
+			state._value = props.value;
+		}
 	}, [props.value]);
 
 	onUpdate(() => {
@@ -317,7 +328,12 @@ export default function DBInput(props: DBInputProps) {
 				disabled={getBoolean(props.disabled, 'disabled')}
 				required={getBoolean(props.required, 'required')}
 				step={getStep(props.step)}
-				value={props.value ?? state._value ?? ''}
+				value={useTarget({
+					// state._value starts out undefined, so the first
+					// render still uses props.value.
+					angular: state._value ?? props.value ?? '',
+					default: props.value ?? state._value ?? ''
+				})}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
 				minLength={getNumber(props.minLength, props.minlength)}
 				max={getInputValue(props.max, props.type)}
