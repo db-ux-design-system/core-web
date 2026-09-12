@@ -13,24 +13,8 @@
 	);
 
 	inline-size: var(--db-drawer-width-horizontal);
-	min-inline-size: var(--db-drawer-min-width, auto);
-	max-inline-size: var(
-		--db-drawer-max-width,
-		var(--db-drawer-max-width-horizontal)
-	);
 
-	&:not([data-container-size]),
-	&[data-container-size="small"] {
-		--db-drawer-max-width-horizontal: #{variables.$db-container-xs};
-	}
-
-	&[data-container-size="medium"] {
-		--db-drawer-max-width-horizontal: #{variables.$db-container-lg};
-	}
-
-	&[data-container-size="large"] {
-		--db-drawer-max-width-horizontal: #{variables.$db-container-3xl};
-	}
+	@include dialog-components.container-size-inline("drawer", "small");
 }
 
 %container-size-vertical {
@@ -216,10 +200,6 @@
 			&[data-direction="down"] {
 				border-block-end: component.$component-border;
 			}
-		}
-
-		&[data-rounded="true"] {
-			box-shadow: variables.$db-elevation-md;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {
