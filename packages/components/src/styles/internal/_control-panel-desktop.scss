@@ -289,12 +289,19 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 		> .db-control-panel-desktop-button {
 			.db-button {
+				/* stylelint-disable-next-line a11y/media-prefers-reduced-motion */
 				&::before {
-					@media screen and (prefers-reduced-motion: no-preference) {
-						transition: transform
-							#{variables.$db-transition-straight-functional};
-					}
+					transition: transform
+						#{variables.$db-transition-straight-functional};
 				}
+			}
+		}
+
+		.db-control-panel-brand {
+			/* stylelint-disable-next-line a11y/media-prefers-reduced-motion */
+			&::before {
+				transition: transform
+					#{variables.$db-transition-straight-emotional};
 			}
 		}
 	}
@@ -315,15 +322,35 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 		.db-control-panel-brand {
 			inline-size: variables.$db-sizing-md;
-			overflow: hidden;
+
+			.db-control-panel-brand-text-container {
+				@extend %a11y-visually-hidden-text;
+
+				position: absolute;
+			}
+
+			.db-control-panel-brand-end-slot {
+				display: none;
+			}
+
+			$aspect-ratio: var(
+				--db-logo-aspect-ratio-short,
+				var(--db-logo-aspect-ratio)
+			);
+
+			// The inline-size of the container minus the height of the logo * aspect-ratio divided by 2 to center the logo in the container. This is a workaround to use animations.
+			$logo-translation: calc(
+				(#{variables.$db-sizing-md} - 1lh * #{$aspect-ratio}) / 2
+			);
 
 			&::before {
-				margin: auto;
-				aspect-ratio: var(
-					--db-logo-aspect-ratio-short,
-					var(--db-logo-aspect-ratio)
-				);
+				transform: translateX($logo-translation);
+				aspect-ratio: $aspect-ratio;
 				background-image: var(--db-logo-url-short, var(--db-logo-url));
+			}
+
+			&:dir(rtl) {
+				transform: translateX(calc(-1 * #{$logo-translation}));
 			}
 		}
 
