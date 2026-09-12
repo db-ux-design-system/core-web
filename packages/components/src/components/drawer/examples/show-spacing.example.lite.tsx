@@ -20,18 +20,20 @@ export default function DrawerShowSpacing() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-spacing-with"
 					onClick={() => setOpenIndex(0)}>
 					Open: (Default) With Spacing
 				</DBButton>
 				<DBDrawer
+					id="drawer-spacing-with"
 					open={openIndex === 0}
 					showSpacing
 					containerSize="full"
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) With Spacing
+							<h2>(Default) With Spacing</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) With Spacing
@@ -39,18 +41,20 @@ export default function DrawerShowSpacing() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-spacing-without"
 					onClick={() => setOpenIndex(1)}>
 					Open: Without Spacing
 				</DBButton>
 				<DBDrawer
+					id="drawer-spacing-without"
 					showSpacing={false}
 					containerSize="full"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Without Spacing
+							<h2>Without Spacing</h2>
 						</DBDrawerHeader>
 					}>
 					Without Spacing

@@ -12,7 +12,9 @@ export default function DrawerHeaderExample() {
 	return (
 		<Fragment>
 			<div>
-				<DBDrawerHeader>(Default) With children</DBDrawerHeader>
+				<DBDrawerHeader>
+					<h2>(Default) With children</h2>
+				</DBDrawerHeader>
 			</div>
 			<div>
 				<DBDrawerHeader text="With text prop" />

@@ -75,6 +75,11 @@ export function getAttributeValue(
 			(i) => i.name === attrName || i.name === kebabAttrName
 		);
 		if (input) {
+			// A statically empty binding ([attr]="''") carries no accessible
+			// content, so surface it as an empty string rather than dynamic.
+			if (isStaticallyEmptyAngularInput(input.value)) {
+				return '';
+			}
 			return true;
 		}
 		return undefined;
@@ -114,6 +119,12 @@ export function getAttributeValue(
 		if (!attr.value) {
 			return true;
 		}
+		// A statically empty binding (:attr="''", :attr="``") carries no
+		// accessible content, so surface it as an empty string rather than a
+		// dynamic sentinel.
+		if (isStaticallyEmptyExpression((attr.value as any)?.expression)) {
+			return '';
+		}
 		// Dynamic bindings (:attr="expr") return a non-empty string or
 		// fall back to DYNAMIC_EXPRESSION to distinguish from valueless true
 		return attr.value.value ?? DYNAMIC_EXPRESSION;
@@ -134,10 +145,76 @@ export function getAttributeValue(
 		return attr.value.value as string;
 	}
 	if (attr.value.type === 'JSXExpressionContainer') {
+		// A statically empty expression (attr={''}, attr={``}) carries no
+		// accessible content, so surface it as an empty string rather than a
+		// dynamic sentinel.
+		if (isStaticallyEmptyExpression(attr.value.expression)) {
+			return '';
+		}
 		// Dynamic expressions (attr={expr}) — distinct from valueless true
 		return DYNAMIC_EXPRESSION;
 	}
 	return undefined;
+}
+
+/**
+ * Angular equivalent of isStaticallyEmptyExpression for parsed input bindings.
+ * The Angular template AST exposes a string literal as `LiteralPrimitive` with a
+ * string `value`; the raw `source` (e.g. `''`) is the quoted text. Only an empty
+ * (or whitespace-only) string literal counts as empty; any other expression is
+ * unresolvable dynamic content.
+ */
+function isStaticallyEmptyAngularInput(value: any): boolean {
+	if (!value) {
+		return false;
+	}
+	if (value.type === 'LiteralPrimitive') {
+		// `null` renders no text, same as an empty string literal.
+		if (value.value === null) {
+			return true;
+		}
+		if (typeof value.value === 'string' && value.value.trim() === '') {
+			return true;
+		}
+	}
+	// Some parser versions expose only the raw source for the binding.
+	return (
+		value.source === "''" ||
+		value.source === '""' ||
+		value.source === '``' ||
+		value.source === 'null'
+	);
+}
+
+/**
+ * Detects expressions that statically render no text: a `null` literal, an empty
+ * string literal `''`/`""` or a template literal with no substitutions and empty
+ * text (` `` `). Whitespace-only literals count as empty because they render no
+ * visible or accessible text. Anything else (identifiers, calls, member access,
+ * non-empty literals) is treated as unresolvable dynamic content.
+ */
+function isStaticallyEmptyExpression(expression: any): boolean {
+	if (!expression) {
+		return false;
+	}
+	if (expression.type === 'Literal') {
+		// `null` renders no text, same as an empty string literal.
+		return (
+			expression.value === null ||
+			(typeof expression.value === 'string' &&
+				expression.value.trim() === '')
+		);
+	}
+	if (expression.type === 'TemplateLiteral') {
+		return (
+			expression.expressions.length === 0 &&
+			// cspell:ignore quasis
+			expression.quasis.every(
+				(quasi: any) => (quasi.value?.cooked ?? '').trim() === ''
+			)
+		);
+	}
+	return false;
 }
 
 export function hasChildOfType(
@@ -262,6 +339,87 @@ export function createAngularVisitors(
 /** @public */
 export function toKebabCase(string_: string): string {
 	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+/**
+ * Whether the final value of `attribute` on a React/Vue element may be supplied by
+ * a spread whose contents cannot be verified statically:
+ *   - React JSX spread: `<DBDialogHeader {...props} />`
+ *   - Vue object v-bind: `<DBDialogHeader v-bind="props" />` (argumentless bind)
+ * Returns true only when such a spread comes after the last explicit occurrence of
+ * the attribute, so it can still determine the final value (JSX/Vue later-wins). A
+ * later explicit attribute overrides the spread and must be validated normally.
+ */
+export function isUnresolvedBySpread(
+	openingElement: any,
+	attribute: string
+): boolean {
+	// React: attributes live directly on the opening element.
+	const jsxAttributes = openingElement.attributes;
+	if (jsxAttributes) {
+		const lastAttributeIndex = jsxAttributes.findLastIndex(
+			(a: any) => a.type === 'JSXAttribute' && a.name?.name === attribute
+		);
+		const lastSpreadIndex = jsxAttributes.findLastIndex(
+			(a: any) => a.type === 'JSXSpreadAttribute'
+		);
+		if (lastSpreadIndex > lastAttributeIndex) {
+			return true;
+		}
+	}
+
+	// Vue: attributes live on the start tag. An argumentless `v-bind="obj"` is a
+	// `bind` directive with no argument, so its object contents cannot be resolved.
+	const vueAttributes = openingElement.startTag?.attributes;
+	if (vueAttributes) {
+		const kebabAttr = toKebabCase(attribute);
+		const directiveName = (a: any) =>
+			typeof a.key?.name === 'string' ? a.key.name : a.key?.name?.name;
+		const lastAttributeIndex = vueAttributes.findLastIndex((a: any) => {
+			const keyName = directiveName(a);
+			// Static attr (key.name is the attr) or bound `:attr` (bind + argument).
+			return (
+				keyName === attribute ||
+				keyName === kebabAttr ||
+				(keyName === 'bind' &&
+					(a.key?.argument?.name === attribute ||
+						a.key?.argument?.name === kebabAttr))
+			);
+		});
+		const lastObjectVBindIndex = vueAttributes.findLastIndex(
+			(a: any) => directiveName(a) === 'bind' && !a.key?.argument
+		);
+		if (lastObjectVBindIndex > lastAttributeIndex) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Returns the traversable child nodes of an Angular template AST node, flattening
+ * the collections that built-in control flow spreads its content across. `@if`
+ * keeps its content under `branches[].children`, `@switch` under `groups[].children`,
+ * and `@for` exposes an `empty` block alongside its `children`; plain elements and
+ * `@for`/`@defer` blocks use `children` directly. Callers can therefore recurse
+ * transparently through control-flow wrappers without enumerating every version-
+ * specific block type.
+ */
+export function angularChildNodes(node: any): any[] {
+	if (!node) {
+		return [];
+	}
+	const nodes: any[] = Array.isArray(node.children) ? [...node.children] : [];
+	for (const collection of [node.branches, node.groups]) {
+		if (Array.isArray(collection)) {
+			nodes.push(...collection);
+		}
+	}
+	if (node.empty) {
+		nodes.push(node.empty);
+	}
+	return nodes;
 }
 
 /** @public */

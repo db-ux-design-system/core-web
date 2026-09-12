@@ -1,0 +1,86 @@
+/**
+ * @public
+ * Keeps the open state of a native `<dialog>` element in sync with a requested state.
+ * Calls `showModal()`, `show()` or `close()` only when the current state differs from
+ * the requested one. A requested state of `undefined`/`null` leaves the element unchanged.
+ *
+ * @param dialog The `<dialog>` element, may be unresolved
+ * @param open The requested open state, already converted via `getBoolean`
+ * @param notModal `true` opens the dialog via `show()` instead of `showModal()`
+ */
+export const syncDialogOpenState = (
+	dialog?: HTMLDialogElement | null,
+	open?: boolean,
+	notModal?: boolean
+): void => {
+	if (!dialog || open === undefined || open === null) return;
+
+	if (open && !dialog.open) {
+		if (notModal) {
+			dialog.show();
+		} else {
+			dialog.showModal();
+		}
+	} else if (!open && dialog.open) {
+		dialog.close();
+	}
+};
+
+/**
+ * @public
+ * Resolves the closest `<dialog>` ancestor of an element without modifying it.
+ */
+export const resolveClosestDialog = (
+	element?: HTMLElement | null
+): HTMLDialogElement | undefined =>
+	(element?.closest?.('dialog') as HTMLDialogElement | null) ?? undefined;
+
+/**
+ * @public
+ * Returns the `id` of the closest `<dialog>` ancestor, or `undefined` when there is
+ * no such ancestor or its `id` is empty.
+ */
+export const getClosestDialogId = (
+	element?: HTMLElement | null
+): string | undefined => resolveClosestDialog(element)?.id || undefined;
+
+/**
+ * @public
+ * Links a `<dialog>` element to the header's heading via `aria-labelledby`, but
+ * never clobbers a value the consumer set themselves. `aria-labelledby` is a
+ * supported pass-through attribute, so an explicit consumer value (any existing
+ * value that is not our generated heading id) wins and is left untouched - the
+ * header only fills in the accessible name when the consumer did not provide one.
+ */
+export const setDialogAriaLabelledBy = (
+	dialog: HTMLDialogElement | undefined | null,
+	headingId: string | undefined
+): void => {
+	if (!headingId || !dialog) {
+		return;
+	}
+	const existing = dialog.getAttribute('aria-labelledby');
+	// Respect a consumer-supplied value; only set our own when none exists.
+	if (existing === null || existing === '' || existing === headingId) {
+		dialog.setAttribute('aria-labelledby', headingId);
+	}
+};
+
+/**
+ * @public
+ * Removes `aria-labelledby` from a `<dialog>` element, but only while its current
+ * value equals the given heading id. A consumer-supplied value never equals our
+ * generated heading id, so it is left intact - a conditional header unmounting
+ * only clears the reference it added itself. Takes the dialog element resolved at
+ * mount (held in the header's state) rather than re-resolving it, so cleanup works
+ * even when the header is already detached from the DOM (e.g. during React effect
+ * cleanup) and regardless of whether the dialog has an `id`.
+ */
+export const removeDialogAriaLabelledBy = (
+	dialog: HTMLDialogElement | undefined | null,
+	headingId: string | undefined
+): void => {
+	if (headingId && dialog?.getAttribute('aria-labelledby') === headingId) {
+		dialog.removeAttribute('aria-labelledby');
+	}
+};

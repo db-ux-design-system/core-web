@@ -26,18 +26,17 @@ export default function DrawerPosition() {
 					border: '2px dashed currentColor',
 					overflow: 'hidden'
 				}}>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton onClick={() => setOpenIndex(1)}>
 					Open: Absolute
 				</DBButton>
 				<DBDrawer
+					id="drawer-position-absolute"
 					position="absolute"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Absolute
+							<h2>Absolute</h2>
 						</DBDrawerHeader>
 					}>
 					Absolute

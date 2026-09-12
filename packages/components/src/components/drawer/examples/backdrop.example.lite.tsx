@@ -20,17 +20,19 @@ export default function DrawerBackdrop() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-backdrop-strong"
 					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Strong
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-strong"
 					backdrop="strong"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Strong
+							<h2>(Default) Strong</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Strong
@@ -38,17 +40,19 @@ export default function DrawerBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-backdrop-weak"
 					onClick={() => setOpenIndex(1)}>
 					Open: Weak
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-weak"
 					backdrop="weak"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Weak
+							<h2>Weak</h2>
 						</DBDrawerHeader>
 					}>
 					Weak
@@ -56,35 +60,36 @@ export default function DrawerBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-backdrop-invisible"
 					onClick={() => setOpenIndex(2)}>
 					Open: Invisible
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-invisible"
 					backdrop="invisible"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Invisible
+							<h2>Invisible</h2>
 						</DBDrawerHeader>
 					}>
 					Invisible
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton onClick={() => setOpenIndex(3)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer
+					id="drawer-backdrop-none"
 					backdrop="none"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							No Backdrop
+							<h2>No Backdrop</h2>
 						</DBDrawerHeader>
 					}>
 					No Backdrop

@@ -3,12 +3,14 @@ import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
+	isUnresolvedBySpread
 } from '../../shared/utils.js';
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
 	DBDrawerHeader: 'closeButtonText',
+	DBDialogHeader: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
@@ -197,6 +199,19 @@ export default {
 					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
 				];
 			const value = getAttributeValue(openingElement, attribute);
+
+			// A JSX spread (e.g. <DBDialogHeader {...headerProps} />) may supply
+			// closeButtonText, so its final value cannot be verified statically.
+			// Treat the header as unresolved and do not report - matching how the
+			// header-required rules handle spreads - unless closeButtonText is set
+			// explicitly, in which case that explicit attribute wins and is checked
+			// below regardless of the spread.
+			if (
+				(value === undefined || value === '') &&
+				isUnresolvedBySpread(openingElement, attribute)
+			) {
+				return;
+			}
 
 			if (value === undefined || value === '') {
 				context.report({

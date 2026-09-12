@@ -1,0 +1,159 @@
+@use "sass:list";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "component";
+
+// The components that share this layer. $prefix composes custom-property and
+// selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-content),
+// so a typo would silently emit wrong-but-valid CSS instead of failing. Every
+// mixin below validates its $prefix against this set.
+$known-prefixes: "drawer", "dialog";
+
+// Fails the build when $prefix is missing or not one of $known-prefixes.
+// $mixin is only used to name the offending mixin in the error message.
+@mixin assert-prefix($prefix, $mixin) {
+	@if not list.index($known-prefixes, $prefix) {
+		@error "#{$mixin}() expects $prefix to be one of #{$known-prefixes}, got: #{$prefix}";
+	}
+}
+
+// Grid shell shared by the drawer container element and the dialog element itself.
+// Emits no positioning and no sizing, so it stays usable for both element types.
+// $box-shadow gates the elevation: the dialog always carries it, but the drawer
+// applies its shadow only under [data-rounded="true"] (set in drawer.scss), so
+// it opts out here to keep the default square drawer shadow-free.
+@mixin container-layout($box-shadow: true) {
+	display: grid;
+	grid-template-rows:
+		[header] auto
+		[main] 1fr
+		[footer] auto;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	@if $box-shadow {
+		box-shadow: variables.$db-elevation-md;
+	}
+}
+
+// Scrollable middle row. $prefix composes the overridable padding custom property,
+// e.g. "drawer" -> --db-drawer-content-padding.
+@mixin content($prefix) {
+	@include assert-prefix($prefix, "content");
+
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: var(
+		--db-#{$prefix}-content-padding,
+		#{variables.$db-spacing-fixed-xs}
+			#{component.$drawer-content-padding-inline}
+	);
+}
+
+// Prefix-independent header declarations. Placeholders (unlike the mixin's
+// per-prefix output) merge into a single selector list in the bundle, so
+// `.db-dialog-header` and `.db-drawer-header` share one rule instead of two.
+// Only the padding (which embeds the per-prefix safe-area inset custom
+// property) and the header-content selector stay parameterized in the mixin.
+%dialog-header-shared {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	align-items: center;
+
+	@include helpers.divider("bottom");
+}
+
+// Prefix-independent heading-container declarations, extended from the
+// per-prefix `.db-<prefix>-header-content` selector so both merge in the bundle.
+%dialog-header-content-shared {
+	display: flex;
+	align-items: center;
+	gap: variables.$db-spacing-fixed-xs;
+	margin-inline-end: auto;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@extend %db-overwrite-headline-size-3xs;
+
+		margin-block: 0;
+	}
+}
+
+// Prefix-independent footer declarations (the footer uses no safe-area inset in
+// its padding, so unlike the header it is fully shareable).
+%dialog-footer-shared {
+	display: flex;
+	gap: variables.$db-spacing-fixed-sm;
+	flex-direction: column;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+
+	@include helpers.divider("top");
+}
+
+// Divider, padding, gap and heading-container styling for header and footer rows.
+// $part is "header" or "footer", $prefix is "drawer" or "dialog".
+// The shared declarations come from placeholders (merged across drawer/dialog in
+// the bundle); the mixin only adds the two parts that must stay per-prefix:
+//   - the header padding, which embeds `--db-<prefix>-safe-area-inset-top` so
+//     direction-specific zeroing (e.g. drawer opening from bottom) and desktop
+//     debugging stay possible
+//   - the `.db-<prefix>-header-content` selector name
+@mixin header-footer($part, $prefix) {
+	@include assert-prefix($prefix, "header-footer");
+
+	@if $part == "header" {
+		@extend %dialog-header-shared;
+
+		padding: calc(
+				#{variables.$db-spacing-fixed-xs} +
+					var(--db-#{$prefix}-safe-area-inset-top, 0px)
+			)
+			variables.$db-spacing-fixed-sm
+			variables.$db-spacing-fixed-xs;
+
+		.db-#{$prefix}-header-content {
+			@extend %dialog-header-content-shared;
+		}
+	} @else if $part == "footer" {
+		@extend %dialog-footer-shared;
+	} @else {
+		@error "header-footer() expects $part to be \"header\" or \"footer\"";
+	}
+}
+
+// Safe Area Inset Handling (PWA / Mobile)
+// On devices with viewport-fit=cover, env(safe-area-inset-*) provides the
+// inset values for notch, home indicator, etc.
+// The drawer/dialog uses CSS custom properties so the behavior can be simulated
+// on desktop for debugging without a real device or iOS Simulator.
+// Direction behavior (drawer-specific, set in drawer.scss):
+//   to-left / to-right (default): both top and bottom safe areas
+//   up (opens from bottom): no top padding (--db-<prefix>-safe-area-inset-top: 0px)
+//   down (opens from top): no bottom padding (--db-<prefix>-safe-area-inset-bottom: 0px)
+@mixin safe-area($prefix) {
+	@include assert-prefix($prefix, "safe-area");
+
+	--db-#{$prefix}-safe-area-inset-top: env(safe-area-inset-top, 0px);
+	--db-#{$prefix}-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+
+	&:not(:has(.db-#{$prefix}-footer)) {
+		> .db-#{$prefix}-content {
+			// stylelint-disable-next-line db-ux/use-spacings -- safe-area env value, not a static spacing
+			margin-block-end: var(--db-#{$prefix}-safe-area-inset-bottom);
+		}
+	}
+
+	&:has(.db-#{$prefix}-footer) {
+		.db-#{$prefix}-footer {
+			padding-block-end: calc(
+				#{variables.$db-spacing-fixed-xs} +
+					var(--db-#{$prefix}-safe-area-inset-bottom)
+			);
+		}
+	}
+}

@@ -14,6 +14,9 @@ import {
 	DBCustomButton,
 	DBCustomHeading,
 	DBCustomSelect,
+	DBDialog,
+	DBDialogFooter,
+	DBDialogHeader,
 	DBDivider,
 	DBFooter,
 	DBFooterContent,
@@ -44,7 +47,7 @@ import {
 	DBTextarea,
 	DBTooltip
 } from '@components';
-import { useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 import type { ComponentParserType, ComponentType } from './data';
 
@@ -377,6 +380,32 @@ const ComponentSwitch = ({
 		);
 	}
 
+	if (type === 'dialog') {
+		return renderDialog({
+			content,
+			resolvedContent,
+			index,
+			props,
+			className
+		});
+	}
+
+	if (type === 'dialog-header') {
+		return (
+			<DBDialogHeader className={className} {...props}>
+				{resolvedContent}
+			</DBDialogHeader>
+		);
+	}
+
+	if (type === 'dialog-footer') {
+		return (
+			<DBDialogFooter className={className} {...props}>
+				{resolvedContent}
+			</DBDialogFooter>
+		);
+	}
+
 	if (type === 'footer') {
 		return (
 			<DBFooter className={className} {...props}>
@@ -453,6 +482,97 @@ const ComponentSwitch = ({
 	// Template hygen before
 
 	return <span className={className}>{resolvedContent}</span>;
+};
+
+/**
+ * Renders a single parsed content node through `ComponentSwitch`, keeping the
+ * same key/index scheme as the inline mapping in `ComponentSwitch`.
+ */
+const renderParsedNode = (
+	innerComponent: ComponentType,
+	parentIndex: ComponentType['index'],
+	innerIndex: number
+) => (
+	<ComponentSwitch
+		key={`innerComponent-${parentIndex}-${innerIndex}`}
+		index={`${parentIndex}-${innerIndex}`}
+		type={innerComponent.type}
+		content={innerComponent.content}
+		props={innerComponent.props}
+		className={innerComponent.className}
+	/>
+);
+
+/**
+ * DBDialog renders children only inside `.db-dialog-content`; its header and
+ * footer regions come from the separate `header` / `footer` props. Parsed
+ * `dialog-header` / `dialog-footer` nodes are therefore partitioned out of the
+ * body and projected into their named props so they land in the right grid rows.
+ *
+ * NOTE: any other prop-slotted component added to this parser (most notably
+ * `DBDrawer`, which also projects `header` / `footer` via props rather than
+ * children) needs the same partitioning - passing its sub-components as plain
+ * children would drop them into the scrolling body instead of their grid rows.
+ */
+const renderDialog = ({
+	content,
+	resolvedContent,
+	index,
+	props,
+	className
+}: {
+	content: ComponentType['content'];
+	resolvedContent: ReactNode;
+	index: ComponentType['index'];
+	props: ComponentType['props'];
+	className: ComponentType['className'];
+}) => {
+	if (!Array.isArray(content)) {
+		return (
+			<DBDialog className={className} {...props}>
+				{resolvedContent}
+			</DBDialog>
+		);
+	}
+
+	const headerNode = content.find(
+		(inner: ComponentType) => inner.type === 'dialog-header'
+	);
+	const footerNode = content.find(
+		(inner: ComponentType) => inner.type === 'dialog-footer'
+	);
+	const bodyNodes = content.filter(
+		(inner: ComponentType) =>
+			inner.type !== 'dialog-header' && inner.type !== 'dialog-footer'
+	);
+
+	return (
+		<DBDialog
+			className={className}
+			{...props}
+			header={
+				headerNode
+					? renderParsedNode(
+							headerNode,
+							index,
+							content.indexOf(headerNode)
+						)
+					: undefined
+			}
+			footer={
+				footerNode
+					? renderParsedNode(
+							footerNode,
+							index,
+							content.indexOf(footerNode)
+						)
+					: undefined
+			}>
+			{bodyNodes.map((inner: ComponentType) =>
+				renderParsedNode(inner, index, content.indexOf(inner))
+			)}
+		</DBDialog>
+	);
 };
 
 const ComponentParser = ({ componentsString }: ComponentParserType) => {

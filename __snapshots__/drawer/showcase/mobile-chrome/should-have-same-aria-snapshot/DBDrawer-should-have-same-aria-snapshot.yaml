@@ -35,7 +35,13 @@
   - 'button "Open: Down (Full)"'
   - link "Position"
   - 'button "Open: Absolute"'
-  - link "Example"
+  - link "Areas"
+  - 'button "Open: With text prop"'
+  - 'button "Open: With start slot"'
+  - 'button "Open: With end slot"'
+  - 'button "Open: With footer"'
+  - link "Examples"
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
   - 'button "Open: With slots"'
+  - button "Cancel and close Events in console"

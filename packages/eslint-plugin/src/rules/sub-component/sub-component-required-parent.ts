@@ -22,6 +22,8 @@ const SUB_COMPONENT_CONFIG: Record<
 > = {
 	DBDrawerHeader: { parents: [{ name: 'DBDrawer', slot: 'header' }] },
 	DBDrawerFooter: { parents: [{ name: 'DBDrawer', slot: 'footer' }] },
+	DBDialogHeader: { parents: [{ name: 'DBDialog', slot: 'header' }] },
+	DBDialogFooter: { parents: [{ name: 'DBDialog', slot: 'footer' }] },
 	DBAccordionItem: { parents: [{ name: 'DBAccordion', slot: undefined }] },
 	DBNavigationItem: {
 		parents: [
@@ -143,8 +145,15 @@ function isInsideVueParent(
 	let hasSlotTemplate = false;
 
 	while (current) {
-		// Skip non-element nodes (text nodes, document fragments, etc.)
-		if (current.type !== 'VElement' && current.type !== 'Element') {
+		// Skip non-element nodes (text nodes, document fragments, etc.).
+		// `Element$1` is the Vue parser's fallback element type; it can expose the
+		// slot template or the parent component, so it must be walked like a real
+		// element rather than skipped.
+		if (
+			current.type !== 'VElement' &&
+			current.type !== 'Element' &&
+			current.type !== 'Element$1'
+		) {
 			current = current.parent;
 			continue;
 		}
@@ -201,6 +210,22 @@ function isInsideJsxParent(
 	parentName: string,
 	slotName: string | undefined
 ): boolean {
+	// Conservatively allow indirectly composed sub-components. When the element
+	// is not rendered inline inside another JSX tree - e.g. it is extracted into
+	// a variable (`const header = <DBDialogHeader />`), returned from a function,
+	// or stored in an array/object - its placement cannot be verified statically.
+	// This mirrors dialog-header-required, which accepts identifier and
+	// call-expression slot values as unverifiable, so normal React component
+	// extraction does not fail lint.
+	const jsxContainerTypes = new Set([
+		'JSXElement',
+		'JSXFragment',
+		'JSXExpressionContainer'
+	]);
+	if (!jsxContainerTypes.has(node.parent?.type)) {
+		return true;
+	}
+
 	let current = node.parent;
 
 	while (current) {

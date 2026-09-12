@@ -381,22 +381,51 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File                      | What it covers                                          |
-| ------------------------- | ------------------------------------------------------- |
-| `_button-components.scss` | Ghost button appearance, button-like interactive states |
-| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas) |
-| `_link-components.scss`   | Link-like appearance and states                         |
-| `_tag-components.scss`    | Tag/badge/chip shared styles                            |
-| `_stack-components.scss`  | Stack/layout shared styles                              |
-| `_select-components.scss` | Select/dropdown shared styles                           |
-| `_popover-component.scss` | Popover/tooltip positioning and appearance              |
-| `_icon-passing.scss`      | Icon passing via data attributes                        |
-| `_custom-elements.scss`   | Custom element host/shadow styles                       |
-| `_component.scss`         | Base component resets and defaults                      |
-| `_indicator.scss`         | Indicator animation                                     |
-| `_scrollbar.scss`         | Scrollbar styling                                       |
+| File                      | What it covers                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| `_button-components.scss` | Ghost button appearance, button-like interactive states                        |
+| `_dialog-components.scss` | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
+| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`               |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                        |
+| `_link-components.scss`   | Link-like appearance and states                                                |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                                                   |
+| `_stack-components.scss`  | Stack/layout shared styles                                                     |
+| `_select-components.scss` | Select/dropdown shared styles                                                  |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance                                     |
+| `_icon-passing.scss`      | Icon passing via data attributes                                               |
+| `_custom-elements.scss`   | Custom element host/shadow styles                                              |
+| `_component.scss`         | Base component resets and defaults                                             |
+| `_indicator.scss`         | Indicator animation                                                            |
+| `_scrollbar.scss`         | Scrollbar styling                                                              |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+## Shared Utils (`src/utils/dialog/`)
+
+When related utils grow beyond a single file, group them in a subfolder with an `index.ts` barrel. Name sibling files without the folder prefix to keep import paths clean (e.g. `utils/dialog/ponyfill` instead of `utils/dialog/dialog-ponyfill`). The `utils/dialog/` folder holds the dialog/drawer shared logic:
+
+| File          | What it covers                                                                                                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `getClosestDialogId`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                                         |
+| `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `requestCloseFallback`, `escapeCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
+
+### `DBDialog` / `DBDrawer` modality is an open-time decision (do not make `backdrop` reactive)
+
+The `onUpdate` effect in `dialog.lite.tsx` (and the drawer equivalent) intentionally observes **`open` only**, not `backdrop`. Native `<dialog>` fixes its modality when it opens (`showModal()` vs `show()`) and offers no way to switch it while open; simulating a switch would require `close()` + reopen, which flickers, resets focus and fires an extra `close`/`cancel`. So changing `backdrop` on an **open** dialog updates only its appearance, and the modality applied at open time stays until the consumer closes and reopens.
+
+During code review, **do not flag the missing `backdrop` dependency as a bug** — a site owner who wants to change modality should close and reopen the dialog themselves.
+
+### `closedby` ponyfill covers three dismiss paths (backdrop, request-close button, Escape)
+
+A non-modal dialog/drawer (`backdrop="none"`, opened via `show()`) sets `closedby="closerequest"`, which a browser without `closedby` support silently ignores. Native modal dialogs (`showModal()`) still dismiss on Escape, but non-modal ones do **not** — so all three light-dismiss paths need a fallback in unsupported browsers:
+
+- **Backdrop click** — CSS (`_dialog-ponyfill.scss`), gated by `data-closedby="not-supported"`. Intentionally excludes `backdrop="none"` (there is no backdrop to click).
+- **Header request-close button** — `requestCloseFallback` on the dialog `click` handler.
+- **Escape key** — `escapeCloseFallback` on the dialog/drawer `keydown` handler. Guards on `!supportsClosedBy()` **and** `!dialog.matches(':modal')` so modal dialogs keep their native Escape behavior and supporting browsers stay untouched.
+
+During code review, **do not flag the non-modal Escape path as missing** — `escapeCloseFallback` handles it.
+
+Likewise, `DBDialogHeader` / `DBDialogFooter` (and the drawer equivalents) render their heading and action wrappers as neutral `<div>` elements, **not** `<header>` / `<footer>`: a `<header>`/`<footer>` inside a `<dialog>` is not scoped by sectioning content and would expose a stray `banner` / `contentinfo` landmark on the page (`<dialog>` is a sectioning _root_, which scopes the heading outline but does not suppress those roles). During code review, **do not suggest restoring the semantic `<header>`/`<footer>` elements** — the nested `<h2>` carries the heading semantics.
 
 ## Shared Props (`src/shared/model.ts`)
 

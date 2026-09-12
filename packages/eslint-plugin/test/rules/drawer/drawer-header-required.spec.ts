@@ -42,9 +42,31 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<DBDrawer header={<div><DBDrawerHeader>Title</DBDrawerHeader></div>}>Content</DBDrawer>'
+			},
+			{
+				// A JSX spread may carry the header prop; contents are unverifiable.
+				code: '<DBDrawer {...drawerProps}>Content</DBDrawer>'
+			},
+			{
+				// A later explicit valid header overrides the spread (later-wins).
+				code: '<DBDrawer {...drawerProps} header={<DBDrawerHeader>Title</DBDrawerHeader>}>Content</DBDrawer>'
+			},
+			{
+				// A valid header before the spread may be overridden; unresolved.
+				code: '<DBDrawer header={<DBDrawerHeader>Title</DBDrawerHeader>} {...drawerProps}>Content</DBDrawer>'
 			}
 		],
 		invalid: [
+			{
+				// The later explicit header wins and is null, so no header renders.
+				code: '<DBDrawer {...drawerProps} header={null}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
 			{
 				code: '<DBDrawer>Content</DBDrawer>',
 				errors: [
@@ -149,6 +171,11 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<db-drawer><ng-container header><db-drawer-header>Title</db-drawer-header></ng-container>Content</db-drawer>'
+			},
+			{
+				// A structural directive (*ngIf) wraps the header in a Template node;
+				// the rule must recurse through it rather than reporting a missing header.
+				code: '<db-drawer><db-drawer-header *ngIf="show" header>Title</db-drawer-header>Content</db-drawer>'
 			}
 		],
 		invalid: [

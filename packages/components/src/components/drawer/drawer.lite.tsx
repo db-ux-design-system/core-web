@@ -7,13 +7,16 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
+import { ClickEvent, GeneralEvent } from '../../shared/model';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { syncDialogOpenState } from '../../utils/dialog';
+// BEGIN: dialog ponyfill
 import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	isKeyboardEvent
-} from '../../utils';
+	escapeCloseFallback,
+	markClosedByFallback,
+	requestCloseFallback
+} from '../../utils/dialog/ponyfill';
+// END: dialog ponyfill
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -24,7 +27,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		backdropPointerDown: false,
+		_id: 'db-drawer-' + uuid(),
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -32,80 +35,54 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleBackdropPointerDown: (event: any) => {
-			// Remember whether the pointer interaction started on the backdrop
-			// (the DIALOG element itself) so we only close on a real backdrop
-			// click and not when a drag started inside the content and ended
-			// on the backdrop.
-			state.backdropPointerDown =
-				(event?.target as any)?.nodeName === 'DIALOG';
+		handleDialogOpen: () => {
+			syncDialogOpenState(
+				_ref,
+				getBoolean(props.open, 'open'),
+				state.isNotModal()
+			);
 		},
+		// BEGIN: dialog ponyfill
+		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
+		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (
-			event?:
-				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void
-		) => {
-			if (!event) return;
-
-			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
-				if (event.key === 'Escape') {
-					event.preventDefault();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-			} else {
-				const isBackdrop =
-					(event.target as any)?.nodeName === 'DIALOG' &&
-					event.type === 'click' &&
-					props.backdrop !== 'none' &&
-					state.backdropPointerDown;
-				const isCloseButton = Boolean(
-					(event.target as HTMLElement)?.closest?.(
-						'[data-action="close"]'
-					)
-				);
-
-				if (isBackdrop || isCloseButton) {
-					if (isCloseButton) {
-						event.stopPropagation();
-					}
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-
-				// Reset after handling the click so the next interaction
-				// starts from a clean state.
-				state.backdropPointerDown = false;
+		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
+			requestCloseFallback(event, _ref);
+		},
+		// Dismisses a non-modal dialog on Escape when the browser ignores closedby.
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleKeyDown: (event: any) => {
+			escapeCloseFallback(event, _ref);
+		},
+		// END: dialog ponyfill
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
+			if (props.onCancel) {
+				props.onCancel(event);
 			}
 		},
-		handleDialogOpen: () => {
-			if (!_ref) return;
-
-			const dialogOpen = getBoolean(props.open, 'open');
-			if (dialogOpen && !_ref.open) {
-				if (state.isNotModal()) {
-					_ref.show();
-				} else {
-					_ref.showModal();
-				}
-			} else if (!dialogOpen && _ref.open) {
-				_ref.close();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleClose: (event?: any) => {
+			if (props.onClose) {
+				props.onClose(event);
 			}
 		}
 	});
 
 	onMount(() => {
+		// BEGIN: dialog ponyfill
+		markClosedByFallback(_ref);
+		// END: dialog ponyfill
 		state.handleDialogOpen();
 		state.initialized = true;
 	});
 
+	// Intentionally observes `open` only, not `backdrop`. Modality (showModal
+	// vs show) is an open-time decision of the native <dialog>; there is no way
+	// to switch it while open without close()+reopen, which would flicker,
+	// reset focus and fire an extra close/cancel. So a `backdrop` change on an
+	// open dialog updates only its appearance, and the modality applied at open
+	// time stays until the consumer closes and reopens.
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
@@ -130,16 +107,20 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
 			class="db-drawer"
-			onClick={(event) => state.handleClose(event)}
-			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
-			onKeyDown={(event) => state.handleClose(event)}
+			onCancel={(event: Event) => state.handleCancel(event)}
+			onClose={(event) => state.handleClose(event)}
+			// BEGIN: dialog ponyfill
+			onClick={(event) => state.handleClick(event)}
+			onKeyDown={(event) => state.handleKeyDown(event)}
+			// END: dialog ponyfill
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			closedby={props.backdrop === 'none' ? 'closerequest' : 'any'}>
 			<article
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}

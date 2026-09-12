@@ -1,0 +1,207 @@
+@use "sass:map";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "../../styles/internal/component";
+@use "../../styles/internal/dialog-components";
+@use "../../styles/internal/dialog-ponyfill";
+
+// The bare `dialog { ... }` reset (UA padding/margin/border) and the strong/weak
+// `::backdrop` colors live in `dialog-init`. It is `@use`d here (as the drawer
+// and custom-select styles do) so a consumer importing only this component's
+// `dialog.css` still gets them; Sass dedupes the `@use`, so the full bundle
+// keeps them once.
+@use "../../styles/dialog-init";
+
+// Horizontal Container_Size scale. Dialog-specific: the drawer has its own
+// two-axis sizing (inline + block, with backdrop-spacing) and cannot reuse this,
+// so it lives here rather than in the shared dialog/drawer layer.
+$container-size-scale: (
+	"small": variables.$db-container-xs,
+	"medium": variables.$db-container-lg,
+	"large": variables.$db-container-3xl
+);
+
+// Emits the dialog's horizontal Container_Size custom properties and bounds.
+// $fallback-size  Container_Size applied when data-container-size is absent
+// $viewport-clamp optional upper bound, wrapped into min() with the scale value
+@mixin container-size-inline($fallback-size, $viewport-clamp: null) {
+	@if not map.has-key($container-size-scale, $fallback-size) {
+		@error "container-size-inline() got an unknown $fallback-size: #{$fallback-size}";
+	}
+
+	$fallback-value: map.get($container-size-scale, $fallback-size);
+	$max-width: var(
+		--db-dialog-max-width,
+		var(--db-dialog-max-width-horizontal, #{$fallback-value})
+	);
+
+	// The sizing values are consumer overrides that resolve to the
+	// Container_Size custom properties below, so no sizing token fits here
+	// stylelint-disable-next-line db-ux/use-sizing
+	min-inline-size: var(--db-dialog-min-width, auto);
+
+	@if $viewport-clamp {
+		// stylelint-disable-next-line db-ux/use-sizing
+		max-inline-size: min(#{$max-width}, #{$viewport-clamp});
+	} @else {
+		// stylelint-disable-next-line db-ux/use-sizing
+		max-inline-size: $max-width;
+	}
+
+	@each $name, $value in $container-size-scale {
+		@if $name == $fallback-size {
+			&:not([data-container-size]),
+			&[data-container-size="#{$name}"] {
+				--db-dialog-max-width-horizontal: #{$value};
+			}
+		} @else {
+			&[data-container-size="#{$name}"] {
+				--db-dialog-max-width-horizontal: #{$value};
+			}
+		}
+	}
+
+	&[data-container-size="full"] {
+		--db-dialog-max-width-horizontal: var(--db-dialog-inline-size);
+	}
+}
+
+%dialog-transition {
+	// Fade + subtle zoom transition. The dialog stays hidden with `display: none`
+	// (UA rule) while closed, so `display` and `overlay` are transitioned with
+	// `allow-discrete` to keep the box in the top layer until the fade-out
+	// finishes. `@starting-style` (in the open state below) defines the
+	// entry-from state.
+	// The transition on this base rule is the one that plays while *closing*
+	// (fast); the `[open]` rule overrides it with the slower *opening*
+	// duration. Guarded by `prefers-reduced-motion` so it is skipped for
+	// reduced motion.
+
+	// The zoom uses the standalone `scale` property (not `transform: scale()`)
+	// so it can be switched off with the real value `scale: none`. Two reasons the
+	// resting values are `none`, never a number:
+	//   1. A non-`none` `scale`/`transform` - even `scale: 1` - makes `.db-dialog`
+	//      a containing block for `position: fixed` descendants. At rest that would
+	//      offset/clip nested `DBTooltip`/popover overlays (positioned with
+	//      viewport coordinates) against the dialog box and its `overflow: hidden`,
+	//      and it would trap the backdrop-click hit-area pseudo (see the
+	//      `data-closedby="not-supported"` rule below).
+	//   2. `scale` still interpolates when animating to/from `none` (`none` counts
+	//      as `1`), so the zoom plays 0.95 <-> none while the resting value stays
+	//      `none` - no persistent containing block once the transition settles.
+	@media (prefers-reduced-motion: no-preference) {
+		opacity: 0;
+		scale: 0.95;
+		transition:
+			opacity #{variables.$db-transition-duration-fast}
+				#{variables.$db-transition-timing-functional},
+			scale #{variables.$db-transition-duration-fast}
+				#{variables.$db-transition-timing-emotional},
+			display #{variables.$db-transition-duration-fast} allow-discrete,
+			overlay #{variables.$db-transition-duration-fast} allow-discrete;
+	}
+
+	// Scoped to the open state so the user agent rule
+	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.
+	&[open] {
+		@media (prefers-reduced-motion: no-preference) {
+			opacity: 1;
+
+			// `none`, not `1`: the entry animates from the `@starting-style` 0.95
+			// up to 1 (`none` interpolates as 1), then rests at `none` so the open
+			// dialog never stays a containing block for nested fixed overlays.
+			scale: none;
+
+			// Slower duration for opening; closing uses the faster duration
+			// from the base rule above.
+			transition:
+				opacity #{variables.$db-transition-duration-medium}
+					#{variables.$db-transition-timing-functional},
+				scale #{variables.$db-transition-duration-medium}
+					#{variables.$db-transition-timing-emotional},
+				display #{variables.$db-transition-duration-medium}
+					allow-discrete,
+				overlay #{variables.$db-transition-duration-medium}
+					allow-discrete;
+
+			@starting-style {
+				opacity: 0;
+				scale: 0.95;
+			}
+		}
+	}
+
+	// BEGIN: closedby ponyfill - Single kill-switch for the zoom: while `closedby`
+	// is unsupported the backdrop-click hit-area is active and must span the
+	// viewport, so the dialog must not become a containing block for its
+	// `position: fixed` pseudo. The open/closed resting states already use
+	// `scale: none`; this additionally overrides the animating `scale: 0.95`
+	// (base / `@starting-style`) so the dialog stays scale-free (no transient
+	// containing block) in these browsers, at the cost of the zoom. No
+	// `prefers-reduced-motion` guard is needed: the `scale` value only exists
+	// under no-preference, so there is nothing to neutralise under reduced motion.
+	&[data-closedby="not-supported"] {
+		scale: none;
+	}
+
+	// END: closedby ponyfill
+}
+
+.db-dialog {
+	// Dynamic viewport units track the currently visible viewport. `lvh`/`lvw`
+	// would use the larger viewport (mobile browser chrome retracted), so a tall
+	// dialog could exceed the visible area and hide its lower content/actions
+	// behind the address bar, defeating the viewport inset. Matches the drawer.
+	--db-dialog-inline-size: 100dvw;
+	--db-dialog-block-size: 100dvh;
+
+	// We're using 40px instead of a token here on purpose: the inset has to stay
+	// constant across all densities, which no sizing token can express
+	/* stylelint-disable-next-line db-ux/use-sizing */
+	--db-dialog-viewport-inset: 40px;
+
+	@extend %default-card;
+	@extend %dialog-transition;
+	@include container-size-inline(
+		"medium",
+		calc(var(--db-dialog-inline-size) - 2 * var(--db-dialog-viewport-inset))
+	);
+	@include dialog-components.safe-area("dialog");
+	@include dialog-ponyfill.backdrop-click-hit-area;
+
+	// The dialog should fill its container-size width, not shrink to content.
+	// The UA stylesheet sets `width: fit-content`; this overrides it so the
+	// dialog always occupies the full max-inline-size (capped by the viewport).
+	// stylelint-disable-next-line db-ux/use-sizing
+	inline-size: 100%;
+
+	// dialog-init.scss resets `margin: 0` on every dialog for the drawer.
+	// `revert` restores the user agent `margin: auto` that centres the box.
+	/* stylelint-disable-next-line db-ux/use-spacings */
+	margin: revert;
+	max-block-size: calc(
+		var(--db-dialog-block-size) - 2 * var(--db-dialog-viewport-inset)
+	);
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+	overflow: hidden;
+
+	// Scoped to the open state so the user agent rule
+	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.
+	&[open] {
+		@include dialog-components.container-layout;
+	}
+
+	> .db-dialog-content {
+		@include dialog-components.content("dialog");
+	}
+}
+
+// Specificity note: dialog-init.scss applies `position: fixed; inset: 0` to
+// `dialog:not([data-position="absolute"])[data-backdrop]` -> (0,2,1).
+// Three class/attribute selectors -> (0,3,0) win without `!important`.
+// `revert` hands positioning back to the user agent, which places a modal
+// dialog with `position: fixed`, `inset: 0` and `margin: auto`, so the box
+// is content sized, centred, and the remaining area stays a clickable backdrop.
+.db-dialog[open]:not([data-backdrop="none"]) {
+	position: revert;
+	inset: revert;
+}
