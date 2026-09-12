@@ -330,9 +330,14 @@ export function createAngularVisitors(
 		handler(node, parserServices);
 	};
 
+	// The Angular parser exposes elements as either `Element` or its fallback
+	// `Element$1` node type, so register both. Missing `Element$1` would let a
+	// rule silently skip a component the parser happened to emit as the fallback.
 	return {
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
-		[`Element[name="${componentName}"]`]: wrappedHandler
+		[`Element[name="${componentName}"]`]: wrappedHandler,
+		[`Element$1[name="${kebabName}"]`]: wrappedHandler,
+		[`Element$1[name="${componentName}"]`]: wrappedHandler
 	};
 }
 
