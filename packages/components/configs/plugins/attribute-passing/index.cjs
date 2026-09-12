@@ -115,6 +115,10 @@ module.exports = () => ({
 						"attr && attr.name !== 'data-density' &&"
 					)
 					.replace(
+						'attr.name.startsWith("aria-")',
+						'attr.name.startsWith("aria-") || attr.name === "role"'
+					)
+					.replace(
 						'element.setAttribute(attr.name, attr.value);\n' +
 							'          parent.removeAttribute(attr.name);',
 						// Remove attribute from child if value is empty, otherwise forward it

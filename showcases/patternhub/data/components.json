@@ -131,6 +131,10 @@
 			{
 				"label": "DBBadge",
 				"name": "badge"
+			},
+			{
+				"label": "DBLoadingIndicator",
+				"name": "loading-indicator"
 			}
 		]
 	},
