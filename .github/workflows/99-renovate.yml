@@ -9,25 +9,19 @@
 # Everything else stays with Dependabot, see `.github/dependabot.yml`.
 # Scope and grouping live in `.github/renovate.json`.
 #
-# Schedule: daily 22:30 Europe/Berlin, i.e. ahead of the Dependabot window at
-# 23:00, so pnpm lands first and Dependabot PRs rebase onto it. GitHub cron only
-# knows UTC, so both possible DST offsets are triggered: during CEST (UTC+2) the
-# "30 20" line fires at 22:30 Berlin, during CET (UTC+1) the "30 21" line does.
-# The respective other line fires an hour off (23:30 during CEST, 21:30 during
-# CET). Renovate's own `schedule` (evaluated in `timezone: Europe/Berlin`, see
-# `.github/renovate.json`) gates those off-DST invocations to a no-op: its window
-# is centred on 22:30 -- wide enough to absorb Renovate's ~1-2 min startup drift,
-# narrow enough to exclude both 21:30 and 23:30. Keeping 23:30 out matters: a
-# summer run at 23:30 would otherwise create/update PRs after Dependabot's 23:00
-# window and reverse the intended ordering.
-# A manual `workflow_dispatch` run drops that gate via `RENOVATE_FORCE`.
+# Schedule: a single daily cron at 20:00 UTC (22:00 Berlin in CEST, 21:00 in
+# CET). Both are ahead of the Dependabot window at 23:00 Berlin, so pnpm lands
+# first and Dependabot PRs rebase onto it. The GitHub Actions cron is the only
+# scheduling gate -- Renovate has no internal `schedule` in
+# `.github/renovate.json`, so every invocation is free to create PRs and there is
+# no window it can drift out of. A single cron line (rather than one per DST
+# offset) keeps it to one run per day without any no-op gate.
 
 name: Renovate
 
 on:
   schedule:
-    - cron: "30 20 * * *" # 22:30 Berlin during CEST (UTC+2)
-    - cron: "30 21 * * *" # 22:30 Berlin during CET (UTC+1)
+    - cron: "0 20 * * *" # 22:00 Berlin (CEST) / 21:00 Berlin (CET)
   workflow_dispatch:
 
 permissions: {}
@@ -61,4 +55,3 @@ jobs:
           # lookup during platform init, whose transient failures abort the
           # whole run with "Initialization error: Authentication failure".
           RENOVATE_USERNAME: "${{ steps.generate-token.outputs.app-slug }}[bot]"
-          RENOVATE_FORCE: ${{ github.event_name == 'workflow_dispatch' && '{"schedule":null}' || '{}' }}
