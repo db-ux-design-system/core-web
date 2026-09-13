@@ -158,6 +158,53 @@ export function getAttributeValue(
 }
 
 /**
+ * Whether `attrName` is present as a bare valueless attribute (e.g. `text`,
+ * `<DBDialogHeader text />`, `<db-dialog-header text>`) rather than a bound value.
+ *
+ * `getAttributeValue` collapses a bare attribute and a dynamic binding
+ * (`[text]="x"` / `:text="x"`) to the same `true`, which hides the difference:
+ * a bare attribute renders no text (React boolean) or an empty string
+ * (Angular/Vue), while a dynamic binding is unverifiable content. Call this when
+ * `getAttributeValue` returned `true` to distinguish the two - a bare attribute
+ * means "no accessible content", a binding means "leave it alone".
+ */
+export function isBareBooleanAttribute(
+	node: ElementNode,
+	attrName: string
+): boolean {
+	const kebabAttrName = toKebabCase(attrName);
+
+	if (isAngularElement(node)) {
+		const attr = node.attributes.find(
+			(a) => a.name === attrName || a.name === kebabAttrName
+		);
+		// A static attribute with no value is bare; a `[attr]` binding lives in
+		// `inputs`, so its presence means the `true` came from a binding.
+		return Boolean(attr && (attr.value === undefined || attr.value === ''));
+	}
+
+	if (isVElement(node)) {
+		const attr = node.startTag.attributes.find((a: any) => {
+			if (a.directive) {
+				return false;
+			}
+			const keyName =
+				typeof a.key?.name === 'string'
+					? a.key.name
+					: a.key?.name?.name;
+			return keyName === attrName || keyName === kebabAttrName;
+		});
+		return Boolean(attr && !attr.value);
+	}
+
+	// JSX: a bare attribute has no `value` (a binding is a JSXExpressionContainer).
+	const jsxAttr = (node.attributes as any[])?.find(
+		(a: any) => a.type === 'JSXAttribute' && a.name?.name === attrName
+	);
+	return Boolean(jsxAttr && !jsxAttr.value);
+}
+
+/**
  * Angular equivalent of isStaticallyEmptyExpression for parsed input bindings.
  * The Angular template AST exposes a string literal as `LiteralPrimitive` with a
  * string `value`; the raw `source` (e.g. `''`) is the quoted text. Only an empty

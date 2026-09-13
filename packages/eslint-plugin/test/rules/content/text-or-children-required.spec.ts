@@ -172,6 +172,17 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// A bare valueless `text` renders no text in React, so the header
+				// has no accessible name and must be reported.
+				code: '<DBDialogHeader text />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// Whitespace-only text is likewise not an accessible name.
 				code: '<DBDialogHeader text="   " />',
 				errors: [
@@ -288,6 +299,18 @@ describe('text-or-children-required', () => {
 						data: { component: 'db-dialog-header' }
 					}
 				]
+			},
+			{
+				// A bare valueless `text` supplies an empty string at runtime in
+				// Angular, so the header has no accessible name and is reported.
+				// (A dynamic `[text]="title"` binding is unverifiable and allowed.)
+				code: '<db-dialog-header text></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
 			}
 		]
 	});
@@ -323,6 +346,18 @@ describe('text-or-children-required', () => {
 		invalid: [
 			{
 				code: '<template><DBDialogHeader text="" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A bare valueless `text` yields an empty string in Vue, so the
+				// header has no accessible name and is reported. (A dynamic
+				// `:text="title"` binding is unverifiable and allowed.)
+				code: '<template><DBDialogHeader text /></template>',
 				errors: [
 					{
 						messageId: 'missingContent',

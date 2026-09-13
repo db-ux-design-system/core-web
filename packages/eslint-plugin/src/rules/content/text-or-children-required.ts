@@ -4,6 +4,7 @@ import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
+	isBareBooleanAttribute,
 	isDBComponent,
 	isStaticallyEmptyExpression,
 	isUnresolvedBySpread
@@ -128,9 +129,15 @@ export default {
 			const rawTextAttr = node.attributes?.find(
 				(a: any) => a.name === 'text'
 			);
+			// A bare valueless attribute (`text`) renders an empty string in
+			// Angular, so treat it as empty content rather than boolean `true`.
+			// A dynamic `[text]="x"` binding also yields `true` but is unverifiable
+			// content, so it must not be forced to empty.
 			const text =
 				rawTextAttr?.value === undefined
-					? getAttributeValue(node, 'text')
+					? isBareBooleanAttribute(node, 'text')
+						? ''
+						: getAttributeValue(node, 'text')
 					: rawTextAttr.value;
 			// Recurse through Angular wrapper nodes (*ngIf Template, @if/@for/@switch
 			// blocks) so a title nested in conditional control flow still counts.
@@ -177,7 +184,13 @@ export default {
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
 
-			const text = getAttributeValue(openingElement, 'text');
+			// A bare valueless `text` (React `<DBDialogHeader text />` renders no
+			// text; Vue `<DBDialogHeader text>` yields an empty string) is empty
+			// content. getAttributeValue collapses it to `true`, so map a bare
+			// attribute to '' while leaving dynamic values (DYNAMIC sentinel) intact.
+			const text = isBareBooleanAttribute(openingElement, 'text')
+				? ''
+				: getAttributeValue(openingElement, 'text');
 			const hasChildren = node.children?.some(
 				(child: any) =>
 					(child.type === 'JSXText' && child.value.trim() !== '') ||
