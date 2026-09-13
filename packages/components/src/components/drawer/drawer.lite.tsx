@@ -12,9 +12,9 @@ import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import { syncDialogOpenState } from '../../utils/dialog';
 // BEGIN: dialog ponyfill
 import {
+	commandForCloseFallback,
 	escapeCloseFallback,
-	markClosedByFallback,
-	requestCloseFallback
+	markClosedByFallback
 } from '../../utils/dialog/ponyfill';
 // END: dialog ponyfill
 import { DBDrawerProps, DBDrawerState } from './model';
@@ -47,7 +47,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			requestCloseFallback(event, _ref);
+			commandForCloseFallback(event, _ref);
 			// Native onClick forwarded by filterPassingProps is overwritten by
 			// this explicit listener, so invoke the consumer callback ourselves.
 			if (props.onClick) {

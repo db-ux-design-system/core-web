@@ -22,7 +22,7 @@ const stubCommandForSupport = (supported: boolean): void => {
 type DialogStub = HTMLDialogElement & { _calls: string[]; _modal: boolean };
 
 // Shared registry so a dialog stub's ownerDocument.getElementById can resolve
-// other stubs by id, mirroring how requestCloseFallback resolves commandfor.
+// other stubs by id, mirroring how commandForCloseFallback resolves commandfor.
 let dialogRegistry: Record<string, DialogStub> = {};
 
 const createDialogStub = (id = 'test-dialog', modal = false): DialogStub => {
@@ -124,12 +124,12 @@ describe('markClosedByFallback', () => {
 	});
 });
 
-describe('requestCloseFallback', () => {
+describe('commandForCloseFallback', () => {
 	it('does nothing when the click was canceled via preventDefault', async () => {
 		stubCommandForSupport(false);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(
+		commandForCloseFallback(
 			{
 				...(createClickEvent('test-dialog', true, dialog) as object),
 				defaultPrevented: true
@@ -141,9 +141,9 @@ describe('requestCloseFallback', () => {
 
 	it('closes the dialog when Invoker Commands are unsupported', async () => {
 		stubCommandForSupport(false);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(
+		commandForCloseFallback(
 			createClickEvent('test-dialog', true, dialog),
 			dialog
 		);
@@ -152,9 +152,9 @@ describe('requestCloseFallback', () => {
 
 	it('closes the closest dialog when commandfor does not resolve', async () => {
 		stubCommandForSupport(true);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(
+		commandForCloseFallback(
 			createClickEvent('stale-id', true, dialog),
 			dialog
 		);
@@ -163,9 +163,9 @@ describe('requestCloseFallback', () => {
 
 	it('stays out of the way with native support and a resolvable commandfor', async () => {
 		stubCommandForSupport(true);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(
+		commandForCloseFallback(
 			createClickEvent('test-dialog', true, dialog),
 			dialog
 		);
@@ -178,10 +178,10 @@ describe('requestCloseFallback', () => {
 		supported: boolean
 	): Promise<{ dialogA: DialogStub; dialogB: DialogStub }> => {
 		stubCommandForSupport(supported);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialogA = createDialogStub('dialog-a');
 		const dialogB = createDialogStub('dialog-b');
-		requestCloseFallback(
+		commandForCloseFallback(
 			createClickEvent('dialog-b', true, dialogA),
 			dialogA
 		);
@@ -202,9 +202,9 @@ describe('requestCloseFallback', () => {
 
 	it('closes the closest dialog when unsupported and commandfor does not resolve', async () => {
 		stubCommandForSupport(false);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub('dialog-a');
-		requestCloseFallback(
+		commandForCloseFallback(
 			createClickEvent('missing-id', true, dialog),
 			dialog
 		);
@@ -212,22 +212,22 @@ describe('requestCloseFallback', () => {
 	});
 
 	it('ignores clicks outside a request-close button and an absent dialog', async () => {
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const dialog = createDialogStub();
-		requestCloseFallback(createClickEvent(undefined, false), dialog);
+		commandForCloseFallback(createClickEvent(undefined, false), dialog);
 		expect(dialog._calls).toEqual([]);
 		expect(() =>
-			requestCloseFallback(createClickEvent('test-dialog'), undefined)
+			commandForCloseFallback(createClickEvent('test-dialog'), undefined)
 		).not.toThrow();
-		expect(() => requestCloseFallback({}, dialog)).not.toThrow();
+		expect(() => commandForCloseFallback({}, dialog)).not.toThrow();
 	});
 
 	it('ignores clicks from a nested dialog close button', async () => {
 		stubCommandForSupport(false);
-		const { requestCloseFallback } = await loadPonyfill();
+		const { commandForCloseFallback } = await loadPonyfill();
 		const outerDialog = createDialogStub('outer');
 		const innerDialog = createDialogStub('inner');
-		requestCloseFallback(
+		commandForCloseFallback(
 			createClickEvent('inner', true, innerDialog),
 			outerDialog
 		);

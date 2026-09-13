@@ -67,7 +67,7 @@ export const markClosedByFallback = (
  * native command can resolve its target. Shared by DBDialog and DBDrawer. Resolves the
  * target once per click, without retry.
  */
-export const requestCloseFallback = (
+export const commandForCloseFallback = (
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	event: any,
 	dialog?: HTMLDialogElement | null
