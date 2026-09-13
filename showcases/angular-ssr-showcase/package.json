@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "ng build && rm --recursive --force ../../build-showcases/angular-ssr-showcase && cpy 'dist/angular-ssr-showcase/**' ../../build-showcases/angular-ssr-showcase --dot",
+    "build": "ng build && rm -rf ../../build-showcases/angular-ssr-showcase && cpy 'dist/angular-ssr-showcase/**' ../../build-showcases/angular-ssr-showcase --dot",
     "build:debug": "ng build --optimization=false",
     "dev": "pnpm run start --open",
     "ng": "ng",
