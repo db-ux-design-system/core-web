@@ -194,6 +194,7 @@ Before, a possible hand-written modal:
 
 ```html index.html
 <!-- index.html -->
+<button type="button" class="my-modal-open">Open dialog</button>
 <div class="my-modal-overlay" hidden>
 	<div class="my-modal" role="dialog" aria-modal="true" aria-labelledby="t">
 		<h2 id="t">Dialog title</h2>
