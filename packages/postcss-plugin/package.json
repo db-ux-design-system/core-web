@@ -29,7 +29,7 @@
     "build": "tsc",
     "copy-output": "run-p copy:*",
     "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/postcss-plugin/CHANGELOG.md",
-    "copy:outputs": "cpy '**' ../../build-outputs/postcss-plugin/build --cwd=build --dot",
+    "copy:outputs": "cpy 'build/**' ../../build-outputs/postcss-plugin/build --dot",
     "copy:package.json": "cpy package.json ../../build-outputs/postcss-plugin/package.json",
     "copy:readme": "cpy README.md ../../build-outputs/postcss-plugin/README.md",
     "test": "vitest run --config vitest.config.ts",

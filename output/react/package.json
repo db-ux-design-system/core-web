@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "build": "npm-run-all tsc mv:*",
-    "mv:agent": "cpy '**' ../../build-outputs/react/agent --cwd=agent --dot",
+    "mv:agent": "cpy 'agent/**' ../../build-outputs/react/agent --dot",
     "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/react/CHANGELOG.md",
-    "mv:dist": "cpy '**' ../../build-outputs/react/dist --cwd=dist --dot",
+    "mv:dist": "cpy 'dist/**' ../../build-outputs/react/dist --dot",
     "mv:package.json": "cpy package.json ../../build-outputs/react/package.json",
     "mv:readme": "cpy README.md ../../build-outputs/react/README.md",
     "open:report": "npx playwright show-report",

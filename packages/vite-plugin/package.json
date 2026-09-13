@@ -33,7 +33,7 @@
     "copy-output": "run-p copy:*",
     "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/vite-plugin/CHANGELOG.md",
     "copy:index.css": "cpy index.css ../../build-outputs/vite-plugin/index.css",
-    "copy:outputs": "cpy '**' ../../build-outputs/vite-plugin/build --cwd=build --dot",
+    "copy:outputs": "cpy 'build/**' ../../build-outputs/vite-plugin/build --dot",
     "copy:package.json": "cpy package.json ../../build-outputs/vite-plugin/package.json",
     "copy:readme": "cpy README.md ../../build-outputs/vite-plugin/README.md",
     "test": "vitest run --config vitest.config.ts",

@@ -13,7 +13,7 @@
   "scripts": {
     "build": "npm-run-all build:* --parallel mv:*",
     "build:angular": "ng build",
-    "mv:agent": "cpy '**' ../../build-outputs/angular/agent --cwd=agent --dot",
+    "mv:agent": "cpy 'agent/**' ../../build-outputs/angular/agent --dot",
     "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/angular/CHANGELOG.md",
     "ng": "ng",
     "start": "ng serve"
