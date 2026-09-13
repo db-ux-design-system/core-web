@@ -220,7 +220,28 @@ function isInsideJsxParent(
 		'JSXFragment',
 		'JSXExpressionContainer'
 	]);
-	if (!jsxContainerTypes.has(node.parent?.type)) {
+
+	// An inline array (or transparent TS wrapper) inside a JSX expression still
+	// has a statically known placement, e.g. `<div>{[<DBDialogHeader />]}</div>`
+	// renders the header inside the div, not in a DBDialog header slot. Peel such
+	// wrappers to find the effective parent so the placement is verified rather
+	// than bypassed. An array/wrapper that is NOT inside a JSX tree (e.g.
+	// `const items = [<DBDialogHeader />]`) stays unverifiable and is allowed.
+	const transparentWrapperTypes = new Set([
+		'ArrayExpression',
+		'TSAsExpression',
+		'TSSatisfiesExpression',
+		'TSNonNullExpression'
+	]);
+	let effectiveParent = node.parent;
+	while (
+		effectiveParent &&
+		transparentWrapperTypes.has(effectiveParent.type)
+	) {
+		effectiveParent = effectiveParent.parent;
+	}
+
+	if (!jsxContainerTypes.has(effectiveParent?.type)) {
 		return true;
 	}
 

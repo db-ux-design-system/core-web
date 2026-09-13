@@ -518,6 +518,24 @@ const reactPlacementShapes: PlacementShape[] = [
 		reports: false
 	},
 	{
+		// An inline array inside the header slot has a statically known, valid
+		// placement, so it must be accepted.
+		shape: 'sub-component in the header slot via an inline array',
+		code: '<DBDialog header={[<DBDialogHeader key="h">Title</DBDialogHeader>]}>Content</DBDialog>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// An array extracted into a variable is not inside a JSX tree, so its
+		// placement stays unverifiable and is allowed.
+		shape: 'sub-component in an array extracted into a variable (unverifiable placement)',
+		code: 'const headers = [<DBDialogHeader key="h">Title</DBDialogHeader>];',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
 		shape: 'sub-component returned from an arrow function (unverifiable placement)',
 		code: 'const renderFooter = () => <DBDialogFooter>Actions</DBDialogFooter>;',
 		component: 'DBDialogFooter',
@@ -527,6 +545,16 @@ const reactPlacementShapes: PlacementShape[] = [
 	{
 		shape: 'no dialog ancestor at all',
 		code: '<div><DBDialogHeader>Title</DBDialogHeader></div>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
+	},
+	{
+		// An orphaned sub-component rendered through an inline array inside a
+		// plain element has a known placement (inside the div, no DBDialog slot),
+		// so it must still be reported rather than bypassed by the array wrapper.
+		shape: 'orphaned sub-component via an inline array inside a plain element',
+		code: '<div>{[<DBDialogHeader key="h">Title</DBDialogHeader>]}</div>',
 		component: 'DBDialogHeader',
 		slot: 'header',
 		reports: true
