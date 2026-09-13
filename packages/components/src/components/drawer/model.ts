@@ -96,6 +96,18 @@ export type DBDrawerDefaultProps = {
 	 * Change the size of the drawer container.
 	 */
 	containerSize?: DrawerContainerSizeType;
+
+	/**
+	 * React specific onClick to pass to forward ref. Composed with the
+	 * backdrop-close ponyfill, so a consumer handler still fires.
+	 */
+	onClick?: (event: ClickEvent<HTMLDialogElement>) => void;
+
+	/**
+	 * React specific onKeyDown to pass to forward ref. Composed with the
+	 * Escape-close ponyfill, so a consumer handler still fires.
+	 */
+	onKeyDown?: (event: GeneralKeyboardEvent<HTMLDialogElement>) => void;
 };
 
 export type DBDrawerProps = DBDrawerDefaultProps &

@@ -78,6 +78,25 @@ const testAction = () => {
 		await expect.poll(() => closeCount).toEqual(1);
 	});
 
+	test(`should invoke consumer onClick alongside the ponyfill`, async ({
+		mount
+	}) => {
+		// Regression guard: the ponyfill handleClick used to overwrite the
+		// consumer's forwarded onClick, so a native handler never fired.
+		let clickCount = 0;
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				onClick={() => clickCount++}
+				header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		const component = await mount(dialog);
+		await component.getByTestId('test').click();
+		await expect.poll(() => clickCount).toEqual(1);
+	});
+
 	test(`should cancel and close dialog via escape`, async ({
 		mount,
 		page
