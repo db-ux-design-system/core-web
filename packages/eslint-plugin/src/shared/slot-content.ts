@@ -169,11 +169,23 @@ function hasJsxHeader(node: any, header: string): boolean {
 	}
 
 	// A wrapper may nest the header in an expression container, e.g.
-	// `header={<>{show && <DBDialogHeader />}</>}`. Unwrap to the expression up
-	// front so the wrapped case is treated exactly like the same expression used
-	// directly (a dynamic expression is accepted, an element/fragment is searched).
-	const current =
-		node.type === 'JSXExpressionContainer' ? node.expression : node;
+	// `header={<>{show && <DBDialogHeader />}</>}`, or in a transparent TypeScript
+	// node that does not change what React renders, e.g.
+	// `header={(<DBDialogHeader />) as ReactNode}` (TSAsExpression),
+	// `... satisfies ReactNode` (TSSatisfiesExpression) or `header!` (TSNonNullExpression).
+	// Peel those wrappers up front so the inner expression is treated exactly like
+	// the same expression used directly (a dynamic expression is accepted, an
+	// element/fragment/array is searched).
+	let current = node;
+	while (
+		current &&
+		(current.type === 'JSXExpressionContainer' ||
+			current.type === 'TSAsExpression' ||
+			current.type === 'TSSatisfiesExpression' ||
+			current.type === 'TSNonNullExpression')
+	) {
+		current = current.expression;
+	}
 	if (!current) {
 		return false;
 	}

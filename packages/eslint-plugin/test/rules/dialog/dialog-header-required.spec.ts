@@ -132,6 +132,25 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: true
 	},
 	{
+		// A TypeScript `as` cast is transparent to what React renders, so the
+		// inner header component must be unwrapped and recognized.
+		shape: 'header prop, header wrapped in a TSAsExpression',
+		code: '<DBDialog header={(<DBDialogHeader>Title</DBDialogHeader>) as ReactNode}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// `satisfies` is likewise transparent and must be unwrapped.
+		shape: 'header prop, header wrapped in a TSSatisfiesExpression',
+		code: '<DBDialog header={(<DBDialogHeader>Title</DBDialogHeader>) satisfies ReactNode}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// A transparent TS wrapper around plain markup still reports (no header).
+		shape: 'header prop, TSAsExpression around plain markup without the header',
+		code: '<DBDialog header={(<div>Title</div>) as ReactNode}>Content</DBDialog>',
+		reports: true
+	},
+	{
 		// A spread may carry the header prop; its contents cannot be verified.
 		shape: 'JSX spread that may carry the header prop',
 		code: '<DBDialog {...dialogProps}>Content</DBDialog>',

@@ -64,12 +64,27 @@ describe('drawer-header-required', () => {
 			{
 				// React renders a node array, so an array holding the header resolves.
 				code: '<DBDrawer header={[<DBDrawerHeader key="h">Title</DBDrawerHeader>]}>Content</DBDrawer>'
+			},
+			{
+				// A TypeScript `as` cast is transparent to what React renders,
+				// so the inner header component must be unwrapped and recognized.
+				code: '<DBDrawer header={(<DBDrawerHeader>Title</DBDrawerHeader>) as ReactNode}>Content</DBDrawer>'
 			}
 		],
 		invalid: [
 			{
 				// A statically inspectable array without the header still reports.
 				code: '<DBDrawer header={[<div key="d">Title</div>]}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
+			{
+				// A transparent TS wrapper around plain markup still reports.
+				code: '<DBDrawer header={(<div>Title</div>) as ReactNode}>Content</DBDrawer>',
 				errors: [
 					{
 						messageId: 'drawerHeaderRequired',
