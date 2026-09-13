@@ -27,7 +27,7 @@
     "build": "tsc",
     "copy-output": "run-p copy:*",
     "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/eslint-plugin/CHANGELOG.md",
-    "copy:outputs": "cpy 'build/**' ../../build-outputs/eslint-plugin/build --dot",
+    "copy:outputs": "cpy build ../../build-outputs/eslint-plugin --dot",
     "copy:package.json": "cpy package.json ../../build-outputs/eslint-plugin/package.json",
     "copy:readme": "cpy README.md ../../build-outputs/eslint-plugin/README.md",
     "test": "vitest run --config vitest.config.ts",

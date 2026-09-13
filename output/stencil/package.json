@@ -35,10 +35,10 @@
     "build:_stencil": "stencil build",
     "build:cem": "cem analyze",
     "dev-build": "stencil build --config stencil.config.dev.ts",
-    "mv:agent": "cpy 'agent/**' ../../build-outputs/wc-core-components/agent --dot",
-    "mv:bundle": "cpy 'bundle/**' ../../build-outputs/wc-core-components/bundle --dot",
+    "mv:agent": "cpy agent ../../build-outputs/wc-core-components --dot",
+    "mv:bundle": "cpy bundle ../../build-outputs/wc-core-components --dot",
     "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md",
-    "mv:dist": "cpy 'dist/**' ../../build-outputs/wc-core-components/dist --dot",
+    "mv:dist": "cpy dist ../../build-outputs/wc-core-components --dot",
     "mv:package.json": "cpy package.json ../../build-outputs/wc-core-components/package.json",
     "mv:readme": "cpy README.md ../../build-outputs/wc-core-components/README.md",
     "start": "stencil build --watch --config stencil.config.dev.ts"

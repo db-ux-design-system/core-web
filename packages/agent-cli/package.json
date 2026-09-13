@@ -20,10 +20,10 @@
   "scripts": {
     "build": "node esbuild.js",
     "copy-output": "run-p copy-output:*",
-    "copy-output:build": "cpy 'build/**' ../../build-outputs/agent-cli/build --dot",
+    "copy-output:build": "cpy build ../../build-outputs/agent-cli --dot",
     "copy-output:changelog": "cpy CHANGELOG.md ../../build-outputs/agent-cli/CHANGELOG.md",
     "copy-output:package.json": "cpy package.json ../../build-outputs/agent-cli/package.json",
-    "copy-output:powers": "cpy 'db-ux-consumer-powers/**' ../../build-outputs/agent-cli/db-ux-consumer-powers --dot",
+    "copy-output:powers": "cpy db-ux-consumer-powers ../../build-outputs/agent-cli --dot",
     "copy-output:readme": "cpy README.md ../../build-outputs/agent-cli/README.md",
     "test": "vitest run --config vitest.config.ts",
     "test:cli": "tsx src/cli.ts --help",

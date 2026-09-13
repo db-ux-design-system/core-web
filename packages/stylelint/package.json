@@ -26,7 +26,7 @@
     "build": "tsc",
     "copy-output": "run-p copy:*",
     "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md",
-    "copy:outputs": "cpy 'build/**' ../../build-outputs/stylelint/build --dot",
+    "copy:outputs": "cpy build ../../build-outputs/stylelint --dot",
     "copy:package.json": "cpy package.json ../../build-outputs/stylelint/package.json",
     "copy:readme": "cpy README.md ../../build-outputs/stylelint/README.md",
     "test": "vitest run --config vitest.config.ts"
