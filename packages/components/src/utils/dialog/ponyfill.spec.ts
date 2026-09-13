@@ -161,6 +161,42 @@ describe('commandForCloseFallback', () => {
 		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
+	it('closes the surrounding dialog (no throw) when commandfor resolves to a non-dialog host', async () => {
+		// Angular/Stencil: the custom-element host can share the consumer id with
+		// the nested <dialog> and precede it, so getElementById returns the host,
+		// which has no requestClose(). The fallback must not call it on the host.
+		stubCommandForSupport(false);
+		const { commandForCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub();
+		// Register a host-like element (no requestClose) under the commandfor id.
+		dialogRegistry['host-id'] = {
+			id: 'host-id'
+		} as unknown as DialogStub;
+		expect(() =>
+			commandForCloseFallback(
+				createClickEvent('host-id', true, dialog),
+				dialog
+			)
+		).not.toThrow();
+		expect(dialog._calls).toEqual(['requestClose']);
+	});
+
+	it('steps in with native support when commandfor resolves to a non-dialog host', async () => {
+		// With Invoker Commands supported, a command targeting the host is a
+		// native no-op, so the fallback closes the surrounding dialog instead.
+		stubCommandForSupport(true);
+		const { commandForCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub();
+		dialogRegistry['host-id'] = {
+			id: 'host-id'
+		} as unknown as DialogStub;
+		commandForCloseFallback(
+			createClickEvent('host-id', true, dialog),
+			dialog
+		);
+		expect(dialog._calls).toEqual(['requestClose']);
+	});
+
 	it('stays out of the way with native support and a resolvable commandfor', async () => {
 		stubCommandForSupport(true);
 		const { commandForCloseFallback } = await loadPonyfill();

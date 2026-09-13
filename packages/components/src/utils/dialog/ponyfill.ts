@@ -94,18 +94,26 @@ export const commandForCloseFallback = (
 	// Resolve the element the button actually targets. A request-close button may
 	// intentionally point at a different dialog than the one it sits in, so honor
 	// commandfor rather than assuming the closest dialog.
+	const targetElement =
+		(target && dialog.ownerDocument.getElementById(target)) || null;
+
+	// Only treat the resolved element as a dialog when it truly is one. In the
+	// Angular/Stencil outputs the `display: contents` custom-element host can share
+	// the consumer `id` with the nested <dialog> and precede it, so getElementById
+	// may return the host - which has no requestClose(). Guarding avoids calling a
+	// nonexistent method on it (and never closes the wrong element).
 	const targetDialog =
-		(target &&
-			(dialog.ownerDocument.getElementById(
-				target
-			) as HTMLDialogElement | null)) ||
-		null;
+		targetElement &&
+		typeof (targetElement as HTMLDialogElement).requestClose === 'function'
+			? (targetElement as HTMLDialogElement)
+			: null;
 
 	if (supportsCommandFor()) {
-		// Native Invoker Commands work. Only step in when commandfor cannot be
-		// resolved (empty or points at a missing id), so the native command is a
-		// no-op; then close the dialog the button sits in. When commandfor
-		// resolves, the native default action handles it - do nothing.
+		// Native Invoker Commands work. Only step in when commandfor does not
+		// resolve to a dialog (empty, a missing id, or the custom-element host),
+		// so the native command is a no-op; then close the dialog the button sits
+		// in. When commandfor resolves to a dialog, the native default action
+		// handles it - do nothing.
 		if (!targetDialog) {
 			dialog.requestClose();
 		}
