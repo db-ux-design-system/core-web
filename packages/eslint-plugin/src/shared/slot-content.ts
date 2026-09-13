@@ -355,7 +355,14 @@ export function createHeaderRequiredRule({
 
 			return defineTemplateBodyVisitor(
 				context,
-				{ VElement: checkParent, Element: checkParent },
+				// `Element$1` is the Vue parser's fallback element type; register
+				// it too so a DBDialog/DBDrawer root exposed as that node is still
+				// validated (the traversal helpers already recognize `Element$1`).
+				{
+					VElement: checkParent,
+					Element: checkParent,
+					Element$1: checkParent
+				},
 				{ JSXElement: checkParent }
 			);
 		}
