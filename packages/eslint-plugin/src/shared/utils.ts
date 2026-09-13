@@ -193,7 +193,7 @@ function isStaticallyEmptyAngularInput(value: any): boolean {
  * visible or accessible text. Anything else (identifiers, calls, member access,
  * non-empty literals) is treated as unresolvable dynamic content.
  */
-function isStaticallyEmptyExpression(expression: any): boolean {
+export function isStaticallyEmptyExpression(expression: any): boolean {
 	if (!expression) {
 		return false;
 	}

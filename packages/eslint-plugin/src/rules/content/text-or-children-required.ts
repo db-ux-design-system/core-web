@@ -5,6 +5,7 @@ import {
 	defineTemplateBodyVisitor,
 	getAttributeValue,
 	isDBComponent,
+	isStaticallyEmptyExpression,
 	isUnresolvedBySpread
 } from '../../shared/utils.js';
 
@@ -188,7 +189,13 @@ export default {
 					// element referenced by aria-labelledby empty.
 					(child.type === 'JSXExpressionContainer' &&
 						!isEmptyJsxExpression(child)) ||
-					child.type === 'VExpressionContainer'
+					// A Vue interpolation ({{ ... }}) counts as content unless it
+					// statically renders no text (e.g. {{ null }}, {{ '' }}). Vue
+					// differs from React here: {{ false }}/{{ true }}/{{ 0 }} DO
+					// render text, so isStaticallyEmptyExpression (not the JSX
+					// check) is the right predicate.
+					(child.type === 'VExpressionContainer' &&
+						!isStaticallyEmptyExpression(child.expression))
 			);
 
 			// A React spread (<DBDialogHeader {...headerProps} />) or Vue object

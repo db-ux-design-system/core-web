@@ -308,11 +308,51 @@ describe('text-or-children-required', () => {
 				// An object v-bind may supply `text`; its contents are
 				// unverifiable, so the header is treated as unresolved.
 				code: '<template><DBDialogHeader v-bind="headerProps" /></template>'
+			},
+			{
+				// A dynamic interpolation cannot be verified statically, so it
+				// counts as (possible) content.
+				code: '<template><DBDialogHeader>{{ title }}</DBDialogHeader></template>'
+			},
+			{
+				// Vue renders {{ false }} as the text "false" (unlike React),
+				// so it is a real accessible name and must not be reported.
+				code: '<template><DBDialogHeader>{{ false }}</DBDialogHeader></template>'
 			}
 		],
 		invalid: [
 			{
 				code: '<template><DBDialogHeader text="" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// {{ null }} renders no text, so the aria-labelledby target stays empty.
+				code: '<template><DBDialogHeader>{{ null }}</DBDialogHeader></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// {{ '' }} likewise renders no accessible name.
+				code: "<template><DBDrawerHeader>{{ '' }}</DBDrawerHeader></template>",
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
+				// A whitespace-only template literal interpolation is not content.
+				code: '<template><DBDialogHeader>{{ `   ` }}</DBDialogHeader></template>',
 				errors: [
 					{
 						messageId: 'missingContent',
