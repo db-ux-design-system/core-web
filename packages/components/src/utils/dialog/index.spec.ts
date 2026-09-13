@@ -112,13 +112,26 @@ describe('setDialogAriaLabelledBy', () => {
 		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
 	});
 
-	it('never clobbers a consumer-supplied aria-labelledby', () => {
-		// aria-labelledby is a supported pass-through attribute; an explicit
-		// consumer value must win over the header's generated heading id.
+	it('appends the heading id to a consumer-supplied aria-labelledby', () => {
+		// aria-labelledby is a space-separated token list, so the visible heading
+		// composes with a consumer id rather than clobbering it. A consumer who
+		// wants to override the name entirely uses aria-label (which wins).
 		const dialog = createDialogStub();
 		dialog.setAttribute('aria-labelledby', 'consumer-label');
 		setDialogAriaLabelledBy(dialog, 'heading-1');
-		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
+		expect(dialog.getAttribute('aria-labelledby')).toBe(
+			'consumer-label heading-1'
+		);
+	});
+
+	it('does not duplicate the heading id when re-applied to a token list', () => {
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe(
+			'consumer-label heading-1'
+		);
 	});
 
 	it('does not throw for an unresolved dialog', () => {
@@ -154,9 +167,18 @@ describe('removeDialogAriaLabelledBy', () => {
 		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
 	});
 
+	it('removes only the heading token from a shared token list', () => {
+		// A consumer id and our heading coexist; cleanup strips only our token.
+		const dialog = createDialogStub({ id: 'my-dialog' });
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		removeDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
+	});
+
 	it('leaves a foreign or absent value untouched', () => {
 		const dialog = createDialogStub({ id: 'my-dialog' });
-		setDialogAriaLabelledBy(dialog, 'foreign-id');
+		dialog.setAttribute('aria-labelledby', 'foreign-id');
 		removeDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
 

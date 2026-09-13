@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUnMount,
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
@@ -40,6 +41,8 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		// Declared in the store so Mitosis emits it as state (otherwise a member
 		// only assigned later, never initialized, is undeclared in the Vue output).
 		_dialog: undefined,
+		// Watches the dialog aria-labelledby so a cleared consumer label is restored.
+		_ariaObserver: undefined,
 		// Links the heading to the dialog and captures its id as the close button elements command target.
 		_resolveDialog() {
 			const dialog = resolveClosestDialog(_ref);
@@ -65,7 +68,28 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		state._resolveDialog();
 	});
 
+	// The dialog's aria-labelledby is a consumer-forwarded (framework-controlled)
+	// attribute, so a re-render can drop our heading id. Observe it and re-add our
+	// token when missing; setDialogAriaLabelledBy is idempotent (only writes when
+	// the token is absent), so it composes with consumer ids and never loops.
+	// Guarded so it attaches once, after the dialog is resolved in onMount.
+	onUpdate(() => {
+		if (!state._dialog || state._ariaObserver) {
+			return;
+		}
+		const observer = new MutationObserver(() => {
+			setDialogAriaLabelledBy(state._dialog, state._headingId);
+		});
+		observer.observe(state._dialog, {
+			attributes: true,
+			attributeFilter: ['aria-labelledby']
+		});
+		state._ariaObserver = observer;
+	}, [state._dialog]);
+
 	onUnMount(() => {
+		state._ariaObserver?.disconnect();
+		state._ariaObserver = undefined;
 		state.removeAriaLabelledBy();
 	});
 

@@ -23,6 +23,8 @@ export type DBDrawerHeaderDefaultState = {
 	// The resolved <dialog> element, held so aria-labelledby cleanup works even
 	// for a drawer without an `id` and when the header is already detaching.
 	_dialog?: HTMLDialogElement;
+	// Observes the dialog aria-labelledby to re-add our heading token if dropped.
+	_ariaObserver?: MutationObserver;
 	_resolveDialog: () => void;
 	removeAriaLabelledBy: () => void;
 };

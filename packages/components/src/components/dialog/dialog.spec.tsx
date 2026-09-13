@@ -60,6 +60,35 @@ const testA11y = () => {
 };
 
 const testAction = () => {
+	test(`should compose the heading into a consumer aria-labelledby`, async ({
+		mount,
+		page
+	}) => {
+		// The header contributes the visible heading to the accessible name and
+		// composes with a consumer-supplied id (aria-labelledby is a token list),
+		// so the dialog ends up referencing both.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				aria-labelledby="consumer-label"
+				header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const labelledBy = await page
+			.locator('dialog.db-dialog')
+			.getAttribute('aria-labelledby');
+		const tokens = (labelledBy ?? '').split(/\s+/).filter(Boolean);
+		expect(tokens).toContain('consumer-label');
+		// The generated heading id is also present, so the name is never empty.
+		expect(
+			tokens.some((token) =>
+				token.startsWith('db-dialog-header-heading-')
+			)
+		).toBe(true);
+	});
+
 	test(`should close dialog via close button`, async ({ mount }) => {
 		let closeCount = 0;
 		const dialog: any = (
