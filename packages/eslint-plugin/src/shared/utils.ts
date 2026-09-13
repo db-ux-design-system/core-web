@@ -347,6 +347,46 @@ export function toKebabCase(string_: string): string {
 }
 
 /**
+ * Reads the slot argument off a Vue `v-slot` / `#slot` directive attribute.
+ *
+ * A static slot (`#header`) exposes a `VIdentifier` argument whose `name` is the
+ * literal slot name. A dynamic slot (`#[slotName]`) exposes a `VExpressionContainer`
+ * argument instead, whose name cannot be resolved statically - so it is reported as
+ * `dynamic`, and callers treat it as an unverifiable match rather than rejecting
+ * valid runtime markup (consistent with how identifier-valued React headers are
+ * accepted).
+ *
+ * @returns `undefined` when the attribute is not a slot directive; otherwise
+ * `{ dynamic }` for a dynamic argument, or `{ name }` for a static one (`name` is
+ * `undefined` for a bare `v-slot`/`#default`).
+ */
+export function getVueSlotArgument(
+	attr: any
+): { dynamic: boolean; name?: string } | undefined {
+	const keyName =
+		typeof attr.key?.name === 'string'
+			? attr.key.name
+			: attr.key?.name?.name;
+	if (keyName !== 'slot') {
+		return undefined;
+	}
+
+	const argument = attr.key?.argument;
+	// A dynamic argument (`#[slotName]`) is a VExpressionContainer - unresolvable.
+	if (argument?.type === 'VExpressionContainer') {
+		return { dynamic: true };
+	}
+
+	const name =
+		typeof argument === 'string'
+			? argument
+			: typeof argument?.name === 'string'
+				? argument.name
+				: argument?.name?.name;
+	return { dynamic: false, name };
+}
+
+/**
  * Whether the final value of `attribute` on a React/Vue element may be supplied by
  * a spread whose contents cannot be verified statically:
  *   - React JSX spread: `<DBDialogHeader {...props} />`

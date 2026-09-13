@@ -3,6 +3,7 @@ import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAngularComponentName,
+	getVueSlotArgument,
 	isDBComponent
 } from '../../shared/utils.js';
 
@@ -165,22 +166,19 @@ function isInsideVueParent(
 		) {
 			const attrs = current.startTag?.attributes || [];
 			const matchesSlot = attrs.some((attr: any) => {
-				const keyName =
-					typeof attr.key?.name === 'string'
-						? attr.key.name
-						: attr.key?.name?.name;
-				const argName = attr.key?.argument
-					? typeof attr.key.argument === 'string'
-						? attr.key.argument
-						: typeof attr.key.argument.name === 'string'
-							? attr.key.argument.name
-							: attr.key.argument.name?.name
-					: undefined;
-
+				const slotArg = getVueSlotArgument(attr);
+				if (!slotArg) {
+					return false;
+				}
+				// A dynamic slot argument (`#[slotName]`) cannot be resolved
+				// statically, so it may place the sub-component in the required
+				// slot at runtime - accept it as unverified rather than reporting.
+				if (slotArg.dynamic) {
+					return true;
+				}
 				return (
-					keyName === 'slot' &&
-					argName !== undefined &&
-					doesSlotNameMatch(argName, slotName)
+					slotArg.name !== undefined &&
+					doesSlotNameMatch(slotArg.name, slotName)
 				);
 			});
 			if (matchesSlot) {

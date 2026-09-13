@@ -151,6 +151,11 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<template><DBDrawer><template #header><DBDrawerHeader>Title</DBDrawerHeader></template>Content</DBDrawer></template>'
+			},
+			{
+				// A dynamic slot argument (#[slotName]) cannot be resolved
+				// statically, so it is accepted as an unverified header slot.
+				code: '<template><DBDrawer><template #[slotName]><DBDrawerHeader>Title</DBDrawerHeader></template>Content</DBDrawer></template>'
 			}
 		],
 		invalid: [

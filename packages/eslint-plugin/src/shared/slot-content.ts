@@ -2,6 +2,7 @@ import {
 	angularChildNodes,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
+	getVueSlotArgument,
 	isDBComponent,
 	toKebabCase
 } from './utils.js';
@@ -124,22 +125,19 @@ function hasVueHeaderSlot(node: any, header: string): boolean {
 		}
 
 		const attrs = child.startTag?.attributes || [];
-		const isHeaderSlot = attrs.some((attr: any) => {
-			const keyName =
-				typeof attr.key?.name === 'string'
-					? attr.key.name
-					: attr.key?.name?.name;
-			const argName = attr.key?.argument
-				? typeof attr.key.argument === 'string'
-					? attr.key.argument
-					: typeof attr.key.argument.name === 'string'
-						? attr.key.argument.name
-						: attr.key.argument.name?.name
-				: undefined;
+		const slotArgs = attrs
+			.map((attr: any) => getVueSlotArgument(attr))
+			.filter(Boolean);
 
-			return keyName === 'slot' && argName === 'header';
-		});
+		// A dynamic slot argument (`#[slotName]`) cannot be resolved statically,
+		// so the template may project into the header slot at runtime - accept it
+		// as unverified rather than reporting valid markup (mirrors an
+		// identifier-valued React header value).
+		if (slotArgs.some((arg: any) => arg.dynamic)) {
+			return true;
+		}
 
+		const isHeaderSlot = slotArgs.some((arg: any) => arg.name === 'header');
 		if (!isHeaderSlot) {
 			return false;
 		}

@@ -584,6 +584,16 @@ const vuePlacementShapes: PlacementShape[] = [
 		reports: false
 	},
 	{
+		// A dynamic slot argument (#[slotName]) may place the sub-component in the
+		// required slot at runtime; it cannot be verified statically, so it is
+		// accepted as unresolved rather than reported.
+		shape: 'dynamic #[slotName] template holds the sub-component',
+		code: '<template><DBDialog><template #[slotName]><DBDialogHeader>Title</DBDialogHeader></template></DBDialog></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
 		shape: '#header template, element wrapper at depth 1',
 		code: '<template><DBDialog><template #header><div><DBDialogHeader>Title</DBDialogHeader></div></template></DBDialog></template>',
 		component: 'DBDialogHeader',
