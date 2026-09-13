@@ -67,10 +67,13 @@ $known-prefixes: "drawer", "dialog";
 // Prefix-independent heading-container declarations, extended from the
 // per-prefix `.db-<prefix>-header-content` selector so both merge in the bundle.
 %dialog-header-content-shared {
-	display: flex;
-	align-items: center;
-	gap: variables.$db-spacing-fixed-xs;
 	margin-inline-end: auto;
+
+	// bold first semantic element or non-element/only textual content
+	&:not(:has(*)),
+	> :first-child {
+		font-weight: 700;
+	}
 
 	h1,
 	h2,
@@ -78,8 +81,7 @@ $known-prefixes: "drawer", "dialog";
 	h4,
 	h5,
 	h6 {
-		@extend %db-overwrite-headline-size-3xs;
-
+		font-size: inherit;
 		margin-block: 0;
 	}
 }

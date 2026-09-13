@@ -174,10 +174,8 @@ export default function DialogAreas() {
 							className="showcase-header-top-aligned"
 							closeButtonText="Close"
 							startSlot={<DBIcon icon="person" />}>
-							<div>
-								<h2>With header subtitle</h2>
-								<span>A second line of supporting copy.</span>
-							</div>
+							<h2>With header subtitle</h2>
+							<span>A second line of supporting</span>
 						</DBDialogHeader>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
