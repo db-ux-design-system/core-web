@@ -145,7 +145,7 @@ NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monore
 The prebuild script is executed via `tsx` to ensure Node.js 22+ compatibility. It is the central orchestrator that prepares all assets and metadata for standalone (npx) operation:
 
 ```text
-prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
+prebuild:migration      → copy docs/migration/db-ui/ → assets/migration/
 prebuild:tokens         → parse CSS custom properties from @db-ux/db-theme/_default_variables.scss
                           + foundations/build/density/classes/all.css → assets/tokens/tokens.json
                           (internal --db-base-* tokens are filtered out to prevent LLM misuse)

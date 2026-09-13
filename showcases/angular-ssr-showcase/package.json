@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "ng build && cpr ./dist/angular-ssr-showcase/ ../../build-showcases/angular-ssr-showcase/ -d",
+    "build": "ng build && rm --recursive --force ../../build-showcases/angular-ssr-showcase && cpy '**' ../../build-showcases/angular-ssr-showcase --cwd=dist/angular-ssr-showcase --dot",
     "build:debug": "ng build --optimization=false",
     "dev": "pnpm run start --open",
     "ng": "ng",
@@ -45,7 +45,7 @@
     "@angular/compiler-cli": "21.2.22",
     "@types/express": "5.0.6",
     "@types/node": "26.5.0",
-    "cpr": "3.0.1",
+    "cpy-cli": "7.0.0",
     "typescript": "5.9.3"
   }
 }
