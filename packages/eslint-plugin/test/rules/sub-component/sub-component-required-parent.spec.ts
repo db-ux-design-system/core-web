@@ -705,6 +705,24 @@ const angularPlacementShapes: PlacementShape[] = [
 		reports: false
 	},
 	{
+		// Angular projects the directly-projected <div> (no marker) into the
+		// default slot, so a footer marker on the nested sub-component does NOT
+		// reach the footer row - it must still be reported.
+		shape: 'footer marker on a sub-component nested in an unmarked wrapper',
+		code: '<db-dialog><div><db-dialog-footer footer>Actions</db-dialog-footer></div></db-dialog>',
+		component: 'db-dialog-footer',
+		slot: 'footer',
+		reports: true
+	},
+	{
+		// Same for the header: the marker must sit on the directly-projected node.
+		shape: 'header marker on a sub-component nested in an unmarked wrapper',
+		code: '<db-dialog><div><db-dialog-header header>Title</db-dialog-header></div></db-dialog>',
+		component: 'db-dialog-header',
+		slot: 'header',
+		reports: true
+	},
+	{
 		shape: 'no dialog ancestor at all',
 		code: '<div><db-dialog-header header>Title</db-dialog-header></div>',
 		component: 'db-dialog-header',

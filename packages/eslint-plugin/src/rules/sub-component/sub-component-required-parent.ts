@@ -88,46 +88,42 @@ function doesSlotNameMatch(actual: string, expected: string): boolean {
 
 /**
  * Checks if an Angular node is inside the expected parent, optionally within a named slot.
- * For slot-based placement, the slot attribute can be on:
- * - The sub-component itself: <db-drawer-header header>
- * - A wrapper element: <ng-container header><db-drawer-header></ng-container>
+ * For slot-based placement, Angular projects with `<ng-content select="[slot]">`,
+ * which matches only the element that is a DIRECT child of the parent. So the slot
+ * attribute must be on that directly-projected node - either:
+ * - the sub-component itself when it is the direct child: <db-drawer-header header>
+ * - a directly-projected wrapper: <db-drawer><ng-container header><db-drawer-header>
+ * A marker on a deeper descendant (e.g. <db-dialog><div><db-dialog-footer footer>)
+ * does NOT project: Angular matches the unmarked <div>, so the content lands in the
+ * default slot, not the footer row - that case must still be reported.
  */
 function isInsideAngularParent(
 	node: any,
 	parentName: string,
 	slotName: string | undefined
 ): boolean {
-	// First check if the node itself has the slot attribute
-	let hasSlotAttribute = false;
-	if (slotName) {
-		const selfAttrs = node.attributes || [];
-		if (selfAttrs.some((a: any) => doesSlotNameMatch(a.name, slotName))) {
-			hasSlotAttribute = true;
-		}
-	}
-
+	// Track the node one level below `current` so that, when we reach the parent,
+	// `projected` is the element Angular actually projects (the parent's direct
+	// child). The slot marker only counts when it sits on that projected node.
+	let projected = node;
 	let current = node.parent;
 
 	while (current) {
-		// Check if current node has the slot attribute
-		if (
-			slotName &&
-			!hasSlotAttribute &&
-			current.attributes?.some((a: any) =>
-				doesSlotNameMatch(a.name, slotName)
-			)
-		) {
-			hasSlotAttribute = true;
-		}
-
 		// Check if we reached the parent component
 		if (
 			(current.type === 'Element' || current.type === 'Element$1') &&
 			isDBComponent(current, parentName)
 		) {
-			return slotName ? hasSlotAttribute : true;
+			if (!slotName) {
+				return true;
+			}
+			const projectedAttrs = projected.attributes || [];
+			return projectedAttrs.some((a: any) =>
+				doesSlotNameMatch(a.name, slotName)
+			);
 		}
 
+		projected = current;
 		current = current.parent;
 	}
 
