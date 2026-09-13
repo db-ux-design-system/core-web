@@ -536,6 +536,16 @@ const reactPlacementShapes: PlacementShape[] = [
 		reports: false
 	},
 	{
+		// Unlike an array (rendered in place), a header inside an object-literal
+		// prop value is data whose rendering placement depends on the receiving
+		// component, so it stays unverifiable and must NOT be traversed/reported.
+		shape: 'sub-component inside an object-literal prop value (unverifiable placement)',
+		code: '<Foo cfg={{ header: <DBDialogHeader>Title</DBDialogHeader> }} />',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
 		shape: 'sub-component returned from an arrow function (unverifiable placement)',
 		code: 'const renderFooter = () => <DBDialogFooter>Actions</DBDialogFooter>;',
 		component: 'DBDialogFooter',
