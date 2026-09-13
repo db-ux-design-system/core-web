@@ -425,6 +425,12 @@ A non-modal dialog/drawer (`backdrop="none"`, opened via `show()`) sets `closedb
 
 During code review, **do not flag the non-modal Escape path as missing** — `escapeCloseFallback` handles it.
 
+#### `commandfor` targets the native `<dialog>`, not the custom-element host (Angular/Stencil)
+
+In the Angular and Stencil outputs the component renders a `display: contents` custom-element host (`<db-dialog>`) around the native `<dialog>`. The consumer `id` prop stays on the **host**, so a consumer must point `commandfor` at the **inner** `<dialog>` id via `propOverrides.id` (`[propOverrides]="{ id: 'my-dialog' }"`), not the host `id` — otherwise `getElementById`/`commandfor` resolves to the host (which precedes the dialog and is not an `HTMLDialogElement`), and the native command is a no-op. The `id` prop is for referencing the component from outside (CSS, `querySelector`). React and Vue have no host, so `id` on the `<dialog>` works directly there. This is documented in `dialog/docs/Angular.md`.
+
+Because a resolved `commandfor` target can therefore be a non-dialog host, `commandForCloseFallback` guards with a `typeof target.requestClose === 'function'` check before treating it as a dialog: it never calls `requestClose()` on the host (would throw) and instead closes the surrounding dialog. During code review, **keep that guard** — dropping it reintroduces the crash. The proper per-output id fix (keeping the consumer `id` off the inner `<dialog>`) is a breaking change deferred to an exclusive branch.
+
 Likewise, `DBDialogHeader` / `DBDialogFooter` (and the drawer equivalents) render their heading and action wrappers as neutral `<div>` elements, **not** `<header>` / `<footer>`: a `<header>`/`<footer>` inside a `<dialog>` is not scoped by sectioning content and would expose a stray `banner` / `contentinfo` landmark on the page (`<dialog>` is a sectioning _root_, which scopes the heading outline but does not suppress those roles). During code review, **do not suggest restoring the semantic `<header>`/`<footer>` elements** — the nested `<h2>` carries the heading semantics.
 
 ## Shared Props (`src/shared/model.ts`)
