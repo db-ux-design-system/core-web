@@ -120,6 +120,18 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// React renders a node array, so an array holding the header resolves.
+		shape: 'header prop, node array containing the header',
+		code: '<DBDialog header={[<DBDialogHeader key="h">Title</DBDialogHeader>]}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// A statically empty array cannot contain the header, so it reports.
+		shape: 'header prop, array of plain markup without the header',
+		code: '<DBDialog header={[<div key="d">Title</div>]}>Content</DBDialog>',
+		reports: true
+	},
+	{
 		// A spread may carry the header prop; its contents cannot be verified.
 		shape: 'JSX spread that may carry the header prop',
 		code: '<DBDialog {...dialogProps}>Content</DBDialog>',

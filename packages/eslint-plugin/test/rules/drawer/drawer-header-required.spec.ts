@@ -60,9 +60,23 @@ describe('drawer-header-required', () => {
 			{
 				// A valid header before the spread may be overridden; unresolved.
 				code: '<DBDrawer header={<DBDrawerHeader>Title</DBDrawerHeader>} {...drawerProps}>Content</DBDrawer>'
+			},
+			{
+				// React renders a node array, so an array holding the header resolves.
+				code: '<DBDrawer header={[<DBDrawerHeader key="h">Title</DBDrawerHeader>]}>Content</DBDrawer>'
 			}
 		],
 		invalid: [
+			{
+				// A statically inspectable array without the header still reports.
+				code: '<DBDrawer header={[<div key="d">Title</div>]}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
 			{
 				// The later explicit header wins and is null, so no header renders.
 				code: '<DBDrawer {...drawerProps} header={null}>Content</DBDrawer>',

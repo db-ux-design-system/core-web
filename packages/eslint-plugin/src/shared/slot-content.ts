@@ -197,6 +197,15 @@ function hasJsxHeader(node: any, header: string): boolean {
 		);
 	}
 
+	// React renders a node array normally, e.g. `header={[<DBDialogHeader />]}`,
+	// so recurse through its elements (skipping array holes/`null`) before
+	// falling through to the dynamic-type check.
+	if (current.type === 'ArrayExpression') {
+		return (current.elements || []).some((element: any) =>
+			hasJsxHeader(element, header)
+		);
+	}
+
 	// An unverifiable dynamic expression is accepted (may resolve to the header).
 	return DYNAMIC_EXPRESSION_TYPES.has(current.type);
 }
