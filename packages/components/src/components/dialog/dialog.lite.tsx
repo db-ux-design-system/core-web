@@ -42,22 +42,25 @@ export default function DBDialog(props: DBDialogProps) {
 		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			commandForCloseFallback(event, _ref);
 			// Native onClick forwarded by filterPassingProps is overwritten by
 			// this explicit listener, so invoke the consumer callback ourselves.
+			// Run it before the fallback so a consumer preventDefault() vetoes the
+			// close, matching native command activation (which happens after the
+			// click dispatch); commandForCloseFallback bails on defaultPrevented.
 			if (props.onClick) {
 				props.onClick(event);
 			}
+			commandForCloseFallback(event, _ref);
 		},
 		// Dismisses a non-modal dialog on Escape when the browser ignores closedby.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleKeyDown: (event: any) => {
-			escapeCloseFallback(event, _ref);
-			// Native onKeyDown forwarded by filterPassingProps is overwritten by
-			// this explicit listener, so invoke the consumer callback ourselves.
+			// Consumer first (see handleClick): a preventDefault() on Escape must
+			// veto the fallback dismissal; escapeCloseFallback bails on defaultPrevented.
 			if (props.onKeyDown) {
 				props.onKeyDown(event);
 			}
+			escapeCloseFallback(event, _ref);
 		},
 		// END: dialog ponyfill
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

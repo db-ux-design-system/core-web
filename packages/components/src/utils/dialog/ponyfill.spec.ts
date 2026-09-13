@@ -244,6 +244,14 @@ describe('escapeCloseFallback', () => {
 		expect(dialog._calls).toEqual(['requestClose']);
 	});
 
+	it('does nothing when the Escape keydown was canceled via preventDefault', async () => {
+		stubClosedBySupport(false);
+		const { escapeCloseFallback } = await loadPonyfill();
+		const dialog = createDialogStub('test-dialog', false);
+		escapeCloseFallback({ key: 'Escape', defaultPrevented: true }, dialog);
+		expect(dialog._calls).toEqual([]);
+	});
+
 	it('leaves modal dialogs to the native Escape behavior', async () => {
 		stubClosedBySupport(false);
 		const { escapeCloseFallback } = await loadPonyfill();
