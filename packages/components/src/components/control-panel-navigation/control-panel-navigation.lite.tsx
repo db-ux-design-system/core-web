@@ -40,7 +40,6 @@ export default function DBControlPanelNavigation(
 		_variant: undefined,
 		initialized: false,
 		_resizeObserverCallbackId: undefined,
-		_rootResizeObserverCallbackId: undefined,
 		_singleBehaviorObserver: undefined,
 		_shellObserver: undefined,
 		_handleVariantArias: (variant) => {
@@ -684,13 +683,6 @@ export default function DBControlPanelNavigation(
 			state._resizeObserverCallbackId = undefined;
 		}
 
-		if (state._rootResizeObserverCallbackId) {
-			new ResizeObserverListener().unobserve(
-				state._rootResizeObserverCallbackId!
-			);
-			state._rootResizeObserverCallbackId = undefined;
-		}
-
 		state._disconnectSingleBehaviorObserver();
 
 		state._shellObserver?.disconnect();
@@ -705,20 +697,8 @@ export default function DBControlPanelNavigation(
 			requestAnimationFrame(() => {
 				state._update();
 
-				// Set up ResizeObserver for scroll buttons and sub-nav positioning
 				if (!state._resizeObserverCallbackId) {
 					state._resizeObserverCallbackId =
-						new ResizeObserverListener().observe(menuRef, () => {
-							state._update();
-						});
-				}
-
-				// Also observe the nav root. Its box reflows across the
-				// mobile/desktop breakpoint while menuRef may not, so this
-				// guarantees the variant (popover vs drilldown) is recomputed
-				// on viewport changes instead of sticking to the previous one.
-				if (!state._rootResizeObserverCallbackId) {
-					state._rootResizeObserverCallbackId =
 						new ResizeObserverListener().observe(_ref, () => {
 							state._update();
 						});

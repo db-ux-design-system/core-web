@@ -35,7 +35,6 @@ export type DBControlPanelNavigationDefaultState = {
 	_focusParentGroupButton: (activeElement: HTMLElement) => boolean;
 	_closeSubMenuAndReturnToParent: (parentGroupMenu: Element) => void;
 	_resizeObserverCallbackId?: string;
-	_rootResizeObserverCallbackId?: string;
 	_singleBehaviorObserver?: MutationObserver;
 	_shellObserver?: MutationObserver;
 	_attachSingleBehaviorObserver: () => void;
