@@ -41,7 +41,8 @@ import {
 	listIconsSchema,
 	listMigrationGuidesSchema,
 	listVisualsSchema,
-	scanV2MigrationSchema,
+	scanGeneration2MigrationSchema,
+	scanV2MigrationDeprecatedSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
 
@@ -112,8 +113,15 @@ server.registerTool(
 	handleVerifyMigratedCode
 );
 server.registerTool(
+	'scan_generation_2_migration',
+	scanGeneration2MigrationSchema,
+	handleScanV2Migration
+);
+// Deprecated alias: keeps existing consumer configs that still list `scan_v2_migration`
+// working. Both names delegate to the same handler. Remove in the next major.
+server.registerTool(
 	'scan_v2_migration',
-	scanV2MigrationSchema,
+	scanV2MigrationDeprecatedSchema,
 	handleScanV2Migration
 );
 server.registerTool('list_visuals', listVisualsSchema, handleListVisuals);
