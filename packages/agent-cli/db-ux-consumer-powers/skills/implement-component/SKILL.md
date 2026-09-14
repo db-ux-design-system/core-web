@@ -1,6 +1,6 @@
 ---
 name: "implement-component"
-description: "Implements production-ready UI using DB UX Design System v3 components, tokens, and icons with a discovery-first approach."
+description: "Implements production-ready UI using DB UX Design System – Generation 3 components, tokens, and icons with a discovery-first approach."
 
 triggers:
     - "implement a component"

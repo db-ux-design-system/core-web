@@ -2,7 +2,7 @@
   "name": "@db-ux/core-foundations",
   "version": "5.4.0",
   "type": "module",
-  "description": "Provides basic tokens and assets based on DB UX Design System (Version 3).",
+  "description": "Provides basic tokens and assets based on DB UX Design System – Generation 3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db-ux-design-system/core-web.git"
