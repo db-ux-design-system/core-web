@@ -323,14 +323,9 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		.db-control-panel-brand {
 			inline-size: variables.$db-sizing-md;
 
-			.db-control-panel-brand-text-container {
-				@extend %a11y-visually-hidden-text;
-
-				position: absolute;
-			}
-
+			.db-control-panel-brand-text-container,
 			.db-control-panel-brand-end-slot {
-				display: none;
+				@extend %a11y-visually-hidden;
 			}
 
 			$aspect-ratio: var(
@@ -349,7 +344,7 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 				background-image: var(--db-logo-url-short, var(--db-logo-url));
 			}
 
-			&:dir(rtl) {
+			&:dir(rtl)::before {
 				transform: translateX(calc(-1 * #{$logo-translation}));
 			}
 		}
