@@ -73,17 +73,6 @@ jobs:
     secrets: inherit
     needs: [build-packages]
 
-  build-figma-code-connect:
-    if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
-    uses: ./.github/workflows/01-build-figma-code-connect.yml
-    needs: [init]
-
-  cancel-on-failure-figma-code-connect:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-figma-code-connect.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-figma-code-connect]
-
   build-stories:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: ./.github/workflows/01-build-stories.yml
@@ -123,7 +112,7 @@ jobs:
   test-figma-code-connect:
     if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
-    needs: [build-figma-code-connect, init]
+    needs: [init]
     secrets: inherit
 
   test-components:
@@ -291,7 +280,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: stencil-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-angular:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -300,7 +288,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: angular-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-react:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -309,7 +296,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: react-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-vue:
     uses: ./.github/workflows/02-e2e-showcases.yml
@@ -318,7 +304,6 @@ jobs:
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
-      test-ally: ${{ needs.init.outputs.test-ally }}
 
   test-showcase-patternhub:
     uses: ./.github/workflows/02-e2e-patternhub.yml

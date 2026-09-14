@@ -9,9 +9,6 @@ on:
       showcase:
         required: true
         type: string
-      test-ally:
-        required: false
-        type: string
 
 permissions:
   actions: write
