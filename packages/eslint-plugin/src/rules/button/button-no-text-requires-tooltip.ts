@@ -51,8 +51,7 @@ export default {
 					loc,
 					messageId: MESSAGE_IDS.BUTTON_NO_TEXT_MISSING_TOOLTIP,
 					fix(fixer: any) {
-						const sourceCode =
-							context.sourceCode || context.getSourceCode();
+						const { sourceCode } = context;
 						const text = sourceCode.getText();
 						const startOffset = node.sourceSpan.start.offset;
 						const endOffset = node.sourceSpan.end.offset;
