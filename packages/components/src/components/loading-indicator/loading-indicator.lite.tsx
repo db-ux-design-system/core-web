@@ -47,6 +47,10 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		_previousLoadingState: undefined,
 		_timeoutId: undefined,
 		_didDisableParent: false,
+		// Whether THIS instance set aria-busy on the parent, so unmount only
+		// clears it when we set it (a parent may carry aria-busy for unrelated
+		// concurrent work that must not be cleared).
+		_didSetAriaBusy: false,
 		initialized: false,
 		resetIds: () => {
 			const mId =
@@ -137,8 +141,12 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						state._didDisableParent
 					) {
 						state._didDisableParent = false;
-						(_ref as HTMLDivElement).dataset['didDisableParent'] =
-							'false';
+						// Delete the marker rather than setting it to "false" so
+						// it does not linger in the consumer DOM forever
+						// (consistent with delete dataset.timeoutId).
+						delete (_ref as HTMLDivElement).dataset[
+							'didDisableParent'
+						];
 						parent.disabled = false;
 					}
 				}
@@ -179,7 +187,15 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 							(elementId) => elementId !== state._id
 						);
 
-						parent.ariaBusy = null;
+						// Only clear aria-busy if this instance set it; the
+						// parent may carry aria-busy for unrelated work.
+						if (state._didSetAriaBusy) {
+							parent.ariaBusy = null;
+							state._didSetAriaBusy = false;
+							delete (_ref as HTMLDivElement).dataset[
+								'didSetAriaBusy'
+							];
+						}
 					} else {
 						return;
 					}
@@ -188,8 +204,21 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 						describedByElements.push(state._id!);
 					}
 
-					parent.ariaBusy =
-						state._loadingState === 'active' ? 'true' : null;
+					if (state._loadingState === 'active') {
+						parent.ariaBusy = 'true';
+						state._didSetAriaBusy = true;
+						// Mirror onto the DOM so the unmount cleanup can read it
+						// from the live node (state is stale in the React
+						// unmount closure).
+						(_ref as HTMLDivElement).dataset['didSetAriaBusy'] =
+							'true';
+					} else if (state._didSetAriaBusy) {
+						parent.ariaBusy = null;
+						state._didSetAriaBusy = false;
+						delete (_ref as HTMLDivElement).dataset[
+							'didSetAriaBusy'
+						];
+					}
 				}
 
 				if (describedByElements.length) {
@@ -209,9 +238,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		// This cleanup therefore reads everything from the live _ref/DOM
 		// instead of from captured state.
 		handleUnmount: () => {
-			if (!_ref) return;
-
 			const root = _ref as HTMLDivElement;
+			if (!root) return;
 
 			// Read the timer handle from the DOM (state._timeoutId is stale in
 			// the React unmount closure) so a pending onTimeout never fires
@@ -231,7 +259,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 			if (!parent) return;
 
-			// Restore aria-describedby / aria-busy on the parent.
+			// Restore aria-describedby on the parent.
 			if (rootId) {
 				const ariaDescribedBy = parent.getAttribute('aria-describedby');
 				const describedByElements = ariaDescribedBy
@@ -248,7 +276,13 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				} else {
 					parent.removeAttribute('aria-describedby');
 				}
+			}
 
+			// Only clear aria-busy if this indicator set it. The flag is
+			// mirrored onto the DOM so it survives the stale React unmount
+			// closure; a parent carrying aria-busy for unrelated concurrent
+			// work must not be announced as ready by our unmount.
+			if (root.dataset['didSetAriaBusy'] === 'true') {
 				parent.ariaBusy = null;
 			}
 
@@ -267,6 +301,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 	onMount(() => {
 		state.resetIds();
+		state._loadingState = props.state ?? 'active';
 		state.initialized = true;
 	});
 
@@ -360,6 +395,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			if (_ref) {
 				delete (_ref as HTMLDivElement).dataset['timeoutId'];
 			}
+
+			state._previousLoadingState = undefined;
 		}
 	}, [state._loadingState, props.onTimeout]);
 
@@ -440,7 +477,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				</svg>
 			</Show>
 
-			<div>
+			<div class="db-loading-indicator-content">
 				<label id={state._labelId} htmlFor={state._progressId}>
 					<Show when={props.label} else={props.children}>
 						{props.label}

@@ -114,6 +114,14 @@ module.exports = () => ({
 						// Pass all `data-` and `aria-` attributes, except `data-density`
 						"attr && attr.name !== 'data-density' &&"
 					)
+					// Also forward the global `role` attribute. It is not
+					// component-specific: a consumer may set `role` on any
+					// custom-element host, and because the host is a
+					// display: contents wrapper the role has to move onto the
+					// real inner element (like data-/aria-). Forwarding is
+					// intentionally allowed to overwrite a component's own inner
+					// role (e.g. DBTabItem role="tab") -- the consumer owns the
+					// global attribute.
 					.replace(
 						'attr.name.startsWith("aria-")',
 						'attr.name.startsWith("aria-") || attr.name === "role"'
