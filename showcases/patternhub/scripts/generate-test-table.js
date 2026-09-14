@@ -5,7 +5,10 @@ import { getComponentName } from './utils.js';
 const unlistedComponents = new Set([
 	'page',
 	'custom-select-form-field',
-	'custom-select-dropdown'
+	'custom-select-dropdown',
+	// Covered by the DBFooter row: their names match none of the suffixes below.
+	'footer-content',
+	'footer-meta'
 ]);
 const unlistedSubComponentsPrefixes = new Set([
 	'-list',

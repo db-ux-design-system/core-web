@@ -1,0 +1,30 @@
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
+import { cls } from '../../utils';
+import { DBFooterMetaProps } from './model';
+
+useMetadata({});
+useDefaultProps<DBFooterMetaProps>({});
+
+export default function DBFooterMeta(props: DBFooterMetaProps) {
+	// This is used as forwardRef
+	const _ref = useRef<HTMLDivElement | any>(null);
+
+	return (
+		<div
+			ref={_ref}
+			id={props.id ?? props.propOverrides?.id}
+			class={cls('db-footer-meta', props.className)}>
+			<div class="db-footer-container">
+				<Show when={props.copyright}>
+					<p class="db-footer-copyright">©&nbsp;{props.copyright}</p>
+				</Show>
+				<div class="db-footer-meta-content">{props.children}</div>
+			</div>
+		</div>
+	);
+}

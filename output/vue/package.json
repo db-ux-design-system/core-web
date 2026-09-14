@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -31,11 +31,11 @@
     "build": "npm-run-all --parallel build:* --parallel mv:*",
     "build:01_vite": "vite build",
     "build:02_types": "vue-tsc --declaration --emitDeclarationOnly",
-    "mv:agent": "cpr agent ../../build-outputs/vue/agent --overwrite",
-    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md --overwrite",
-    "mv:dist": "cpr dist ../../build-outputs/vue/dist --overwrite",
-    "mv:package.json": "cpr package.json ../../build-outputs/vue/package.json --overwrite",
-    "mv:readme": "cpr README.md ../../build-outputs/vue/README.md --overwrite",
+    "mv:agent": "cpy agent ../../build-outputs/vue --dot",
+    "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md",
+    "mv:dist": "cpy dist ../../build-outputs/vue --dot",
+    "mv:package.json": "cpy package.json ../../build-outputs/vue/package.json",
+    "mv:readme": "cpy README.md ../../build-outputs/vue/README.md",
     "test:components": "playwright test --config playwright.config.ts",
     "test:components:ui": "playwright test --config playwright.config.ts --ui"
   },
@@ -47,7 +47,7 @@
     "@playwright/experimental-ct-vue": "1.62.1",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/compiler-dom": "3.5.42",
-    "cpr": "3.0.1",
+    "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "replace-in-file": "9.0.0",
     "tsx": "4.23.13",

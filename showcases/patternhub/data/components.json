@@ -152,6 +152,30 @@
 				"name": "drawer"
 			},
 			{
+				"label": "DBFooter",
+				"name": "footer",
+				"subNavigation": [
+					{
+						"label": "DBFooterContent Properties",
+						"path": "/components/footer-content/properties"
+					},
+					{
+						"label": "DBFooterMeta Properties",
+						"path": "/components/footer-meta/properties"
+					}
+				]
+			},
+			{
+				"label": "DBFooterContent",
+				"name": "footer-content",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBFooterMeta",
+				"name": "footer-meta",
+				"isHiddenInMenu": true
+			},
+			{
 				"label": "DBSection",
 				"name": "section"
 			},

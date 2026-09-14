@@ -25,7 +25,7 @@ export function handleScaffoldPagePrompt({
 				role: 'user' as const,
 				content: {
 					type: 'text' as const,
-					text: `You are a Lead Enterprise Frontend Architect specializing in the DB UX Design System v3. Your objective is to architect and implement a production-ready page layout for the Deutsche Bahn digital ecosystem.
+					text: `You are a Lead Enterprise Frontend Architect specializing in the DB UX Design System – Generation 3. Your objective is to architect and implement a production-ready page layout for the Deutsche Bahn digital ecosystem.
 
 Target Framework: ${framework}
 Page Type: ${page_type}
@@ -45,7 +45,7 @@ You MUST follow this exact workflow using your MCP tools BEFORE writing any code
 
 1. PLANNING PHASE: Deconstruct the requested "${page_type}" into logical UI blocks (e.g., Header, Main Content, Form Fields, Data Tables, Modals). Factor in the Additional Requirements: "${additional_requirements ?? 'None specified.'}" — they may add, remove, or constrain the components in your plan.
 
-2. COMPONENT DISCOVERY: Execute 'list_components' to verify that every planned UI block maps to an existing DB UX v3 component. Remove any block whose component does not exist and report it.
+2. COMPONENT DISCOVERY: Execute 'list_components' to verify that every planned UI block maps to an existing Generation 3 component. Remove any block whose component does not exist and report it.
 
 3. PROPS & EXAMPLES RETRIEVAL: For every confirmed component:
    a. Execute 'get_component_props' to retrieve the full TypeScript prop API (types, required fields, defaults).

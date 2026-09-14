@@ -14,6 +14,7 @@ import { CustomButtonShowcase } from '@components/components/custom-button/showc
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
 import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
+import { FooterShowcase } from '@components/components/footer/showcase/footer.showcase';
 import { HeaderShowcase } from '@components/components/header/showcase/header.showcase';
 import { HeadingShowcase } from '@components/components/heading/showcase/heading.showcase';
 import { IconShowcase } from '@components/components/icon/showcase/icon.showcase';
@@ -222,6 +223,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '01/section',
 				label: 'Section',
 				component: SectionShowcase
+			},
+			{
+				path: '01/footer',
+				label: 'Footer',
+				component: FooterShowcase
 			}
 		])
 	},

@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-postcss-plugin",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "type": "module",
   "description": "PostCSS plugins for DB UX Design System",
   "repository": {
@@ -28,10 +28,10 @@
   "scripts": {
     "build": "tsc",
     "copy-output": "run-p copy:*",
-    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/postcss-plugin/CHANGELOG.md --overwrite",
-    "copy:outputs": "cpr build ../../build-outputs/postcss-plugin/build -o",
-    "copy:package.json": "cpr package.json ../../build-outputs/postcss-plugin/package.json -o",
-    "copy:readme": "cpr README.md ../../build-outputs/postcss-plugin/README.md -o",
+    "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/postcss-plugin/CHANGELOG.md",
+    "copy:outputs": "cpy build ../../build-outputs/postcss-plugin --dot",
+    "copy:package.json": "cpy package.json ../../build-outputs/postcss-plugin/package.json",
+    "copy:readme": "cpy README.md ../../build-outputs/postcss-plugin/README.md",
     "test": "vitest run --config vitest.config.ts",
     "test:update": "vitest run --config vitest.config.ts --update"
   },
@@ -39,7 +39,7 @@
     "postcss": "^8.0.0"
   },
   "devDependencies": {
-    "cpr": "3.0.1",
+    "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "postcss": "8.5.28",
     "typescript": "5.9.3",
