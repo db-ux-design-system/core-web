@@ -45,7 +45,7 @@ We'd like to maintain a list of other design systems that might be interesting f
 - [Washington Post Design System (WPDS)](https://build.washingtonpost.com/)
     - React
 - [GOV.UK Design System](https://design-system.service.gov.uk/)
-    -  HTML & Nunjucks
+    - HTML & Nunjucks
 - [Paste](https://paste.twilio.design/)
 - [Swiss Post](https://github.com/swisspost/design-system):
     - Web Components / StencilJS
