@@ -9,7 +9,7 @@ test.describe('DBTabs', () => {
 		description:
 			'should select tab and announce corresponding tab panel content',
 		url: './#/04/tabs?page=density',
-		async testFn(voiceOver, nvda) {
+		async testFn(voiceOver, nvda, page) {
 			if (nvda) {
 				// We want to lose focus for radio buttons otherwise we can't jump to tab panel
 				await nvda.perform(
@@ -27,6 +27,10 @@ test.describe('DBTabs', () => {
 				await voiceOver?.next(); // Focus "tab 1 inline-text"
 				await voiceOver?.next(); // Focus "tab 2"
 				await voiceOver?.act(); // Select "tab 2"
+
+				// Wait for VoiceOver to process the tab selection
+				await page?.waitForTimeout(500);
+
 				await voiceOver?.next(); // Focus "tab 2 inline-text"
 				await voiceOver?.next(); // Focus "tab 3"
 				await voiceOver?.next(); // Focus "tab 3 inline-text"

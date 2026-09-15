@@ -1,1 +1,1 @@
-["Test 1 selected tab","Test 1","Test 2nd tab","selected Test 2nd tab","Test 2","Test 3 tab","Test 3","on empty tab panel","on tab panel"]
+["Test 2 tab, 2 of 3","Test 3 tab, 3 of 3","Test 1 tab panel","1","end of Test 1 tab panel","(Default) Regular:","Test 1 selected tab, 1 of 3","Test 2 tab, 2 of 3","Test 3 tab, 3 of 3"]
