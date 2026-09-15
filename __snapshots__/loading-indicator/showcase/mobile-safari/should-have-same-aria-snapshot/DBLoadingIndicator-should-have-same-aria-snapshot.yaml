@@ -1,0 +1,316 @@
+- main:
+  - heading "DBLoadingIndicator" [level=1]
+  - link "Density"
+  - text: Functional
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: (Default) Regular
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Expressive
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - link "Indeterminate"
+  - text: (Default) True
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: "False"
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
+  - link "Size"
+  - text: Small
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: (Default) Medium
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Large
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - link "State"
+  - text: Inactive
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Active
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Successful
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Critical
+  - alert:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - alert:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - alert:
+    - text: Bar
+    - progressbar "Bar"
+  - 'link "State: Determinate"':
+  - text: Inactive
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
+  - text: Active
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
+  - text: Successful
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 100 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 100%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 100 of 100
+  - text: Critical
+  - alert:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 100 of 100
+  - alert:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 100%
+  - alert:
+    - text: Bar
+    - progressbar "Bar": 100 of 100
+  - link "Role"
+  - text: Default (role derived from state)
+  - status:
+    - text: Default
+    - progressbar "Default"
+  - text: Explicit role="status"
+  - status:
+    - text: Status
+    - progressbar "Status"
+  - text: Explicit role="alert"
+  - alert:
+    - text: Alert
+    - progressbar "Alert"
+  - link "Show Label"
+  - text: (Default) True
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: "False"
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - link "Show Progress Text"
+  - text: (Default) True
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
+  - text: "False"
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal": 42 of 100
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical": 42%
+  - status:
+    - text: Bar
+    - progressbar "Bar": 42 of 100
+  - link "Overlay"
+  - text: (Default) False
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: "True"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - paragraph: Content 1
+  - paragraph: Content 2
+  - paragraph: Content 3
+  - link "Delay"
+  - text: (Default) None
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Slow
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - text: Fast
+  - status:
+    - text: Circular horizontal
+    - progressbar "Circular horizontal"
+  - status:
+    - text: Circular vertical
+    - progressbar "Circular vertical"
+  - status:
+    - text: Bar
+    - progressbar "Bar"
+  - 'link "Examples: Button"':
+  - text: Without overlay
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - text: With overlay
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Loading"
+    - text: Button
+  - 'link "Example: Timeout"':
+  - button "Start Timeout"
