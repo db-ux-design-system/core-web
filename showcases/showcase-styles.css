@@ -313,7 +313,7 @@ app-nav-item {
 		);
 	}
 
-	> header {
+	> .db-dialog-header-content {
 		margin-block-start: calc(var(--db-sizing-md) / 2 - 0.45lh);
 	}
 }
