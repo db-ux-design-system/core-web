@@ -76,17 +76,56 @@ const testAction = () => {
 			</DBDialog>
 		);
 		await mount(dialog);
-		const labelledBy = await page
-			.locator('dialog.db-dialog')
-			.getAttribute('aria-labelledby');
-		const tokens = (labelledBy ?? '').split(/\s+/).filter(Boolean);
-		expect(tokens).toContain('consumer-label');
-		// The generated heading id is also present, so the name is never empty.
-		expect(
-			tokens.some((token) =>
-				token.startsWith('db-dialog-header-heading-')
-			)
-		).toBe(true);
+		// The composition settles asynchronously: React applies the controlled
+		// aria-labelledby, then the header observer re-appends the heading token.
+		const dialogEl = page.locator('dialog.db-dialog');
+		await expect
+			.poll(async () => {
+				const labelledBy =
+					(await dialogEl.getAttribute('aria-labelledby')) ?? '';
+				return labelledBy.split(/\s+/).filter(Boolean);
+			})
+			.toEqual(
+				expect.arrayContaining([
+					'consumer-label',
+					expect.stringMatching(/^db-dialog-header-heading-/)
+				])
+			);
+	});
+
+	test(`should resync the close button commandfor when the dialog id changes`, async ({
+		mount,
+		page
+	}) => {
+		// The header close button targets the dialog id via commandfor. If the
+		// dialog id changes while mounted, a stale target could resolve to another
+		// dialog reusing the old id and close the wrong one - so it must resync.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				propOverrides={{ id: 'dialog-initial' }}
+				header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const closeButton = page.locator(
+			'.db-dialog-header [command="request-close"]'
+		);
+		await expect(closeButton).toHaveAttribute(
+			'commandfor',
+			'dialog-initial'
+		);
+		// Change the dialog id at runtime; the header observer must pick it up.
+		await page.evaluate(() => {
+			document
+				.querySelector('dialog.db-dialog')
+				?.setAttribute('id', 'dialog-renamed');
+		});
+		await expect(closeButton).toHaveAttribute(
+			'commandfor',
+			'dialog-renamed'
+		);
 	});
 
 	test(`should close dialog via close button`, async ({ mount }) => {

@@ -68,10 +68,13 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		state._resolveDialog();
 	});
 
-	// The dialog's aria-labelledby is a consumer-forwarded (framework-controlled)
-	// attribute, so a re-render can drop our heading id. Observe it and re-add our
-	// token when missing; setDialogAriaLabelledBy is idempotent (only writes when
-	// the token is absent), so it composes with consumer ids and never loops.
+	// Observe the resolved dialog for two consumer-driven attribute changes:
+	// - aria-labelledby: it is framework-controlled and a re-render can drop our
+	//   heading id, so re-add our token (setDialogAriaLabelledBy is idempotent -
+	//   only writes when the token is absent - so it composes and never loops).
+	// - id: the close button targets it via commandfor, so a changed dialog id
+	//   must resync _dialogId, otherwise the button keeps a stale target and could
+	//   resolve to a different dialog that reused the old id.
 	// Guarded so it attaches once, after the dialog is resolved in onMount.
 	onUpdate(() => {
 		if (!state._dialog || state._ariaObserver) {
@@ -79,10 +82,18 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		}
 		const observer = new MutationObserver(() => {
 			setDialogAriaLabelledBy(state._dialog, state._headingId);
+			// Only assign when the id actually changed. The aria-labelledby branch
+			// fires this observer (including our own token appends), and an
+			// unconditional state assignment would re-render and reassert the
+			// framework-controlled aria-labelledby, thrashing with the append.
+			const nextDialogId = state._dialog?.id ?? '';
+			if (nextDialogId !== state._dialogId) {
+				state._dialogId = nextDialogId;
+			}
 		});
 		observer.observe(state._dialog, {
 			attributes: true,
-			attributeFilter: ['aria-labelledby']
+			attributeFilter: ['aria-labelledby', 'id']
 		});
 		state._ariaObserver = observer;
 	}, [state._dialog]);
