@@ -88,9 +88,32 @@ const testAction = () => {
 			.toEqual(
 				expect.arrayContaining([
 					'consumer-label',
-					expect.stringMatching(/^db-dialog-header-heading-/)
+					expect.stringMatching(/-heading$/)
 				])
 			);
+	});
+
+	test(`should derive the heading id from a consumer header id`, async ({
+		mount,
+		page
+	}) => {
+		// The heading id is derived from the header's own id with a `-heading`
+		// suffix, so it is deterministic (not a random uuid) when the consumer
+		// sets an id, and the dialog references exactly that.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				header={<DBDialogHeader id="my-header" text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const headingContent = page.locator('.db-dialog-header-content');
+		await expect(headingContent).toHaveAttribute('id', 'my-header-heading');
+		await expect(page.locator('dialog.db-dialog')).toHaveAttribute(
+			'aria-labelledby',
+			'my-header-heading'
+		);
 	});
 
 	test(`should let a consumer aria-label override the header naming`, async ({
@@ -111,6 +134,33 @@ const testAction = () => {
 		await mount(dialog);
 		const dialogEl = page.locator('dialog.db-dialog');
 		// No generated aria-labelledby, so the aria-label is the accessible name.
+		await expect(dialogEl).not.toHaveAttribute('aria-labelledby');
+		await expect(dialogEl).toHaveAccessibleName('Consumer name');
+	});
+
+	test(`should drop the generated label when an aria-label is added after mount`, async ({
+		mount,
+		page
+	}) => {
+		// Dynamic override: the header adds aria-labelledby at mount, then the
+		// consumer adds aria-label. The observer must strip our token so the
+		// lower-precedence aria-label becomes the accessible name (and not loop).
+		const dialog: any = (
+			<DBDialog open={true} header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const dialogEl = page.locator('dialog.db-dialog');
+		// Initially the header wired its heading reference.
+		await expect(dialogEl).toHaveAttribute('aria-labelledby', /-heading$/);
+		// The consumer adds an aria-label at runtime.
+		await page.evaluate(() => {
+			document
+				.querySelector('dialog.db-dialog')
+				?.setAttribute('aria-label', 'Consumer name');
+		});
+		// The generated reference is removed so the aria-label wins.
 		await expect(dialogEl).not.toHaveAttribute('aria-labelledby');
 		await expect(dialogEl).toHaveAccessibleName('Consumer name');
 	});

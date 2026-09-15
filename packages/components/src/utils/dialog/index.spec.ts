@@ -133,6 +133,37 @@ describe('setDialogAriaLabelledBy', () => {
 		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
 	});
 
+	it('removes the generated token when an aria-label is added after mount', () => {
+		// Dynamic path: the token is added at mount, then the consumer adds an
+		// aria-label. Re-running must strip our token so the label (lower
+		// precedence than aria-labelledby) actually becomes the accessible name.
+		const dialog = createDialogStub();
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+	});
+
+	it('keeps a consumer token but drops ours when an aria-label is added', () => {
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
+	});
+
+	it('restores the generated token when the aria-label is cleared again', () => {
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+		dialog.removeAttribute('aria-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
+	});
+
 	it('does not duplicate the heading id when re-applied to a token list', () => {
 		const dialog = createDialogStub();
 		dialog.setAttribute('aria-labelledby', 'consumer-label');

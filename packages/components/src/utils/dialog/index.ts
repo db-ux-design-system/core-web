@@ -56,10 +56,12 @@ const labelledByTokens = (value: string | null): string[] =>
  * referenced elements). The heading id is appended once (idempotent), so a consumer
  * value composes with it rather than being clobbered.
  *
- * Skips adding the reference entirely when the consumer set an explicit
+ * Keeps the reference out of the way when the consumer set an explicit
  * `aria-label`: the accessible-name computation evaluates `aria-labelledby` before
- * `aria-label`, so adding our reference would win and silently defeat the label.
- * Leaving `aria-labelledby` off lets the `aria-label` be the naming override.
+ * `aria-label`, so our reference would win and silently defeat the label. While an
+ * `aria-label` is present it removes only our own token (leaving consumer ids), and
+ * adds it back once the label is cleared - so the naming override works whether the
+ * `aria-label` was set before mount or added dynamically afterwards.
  */
 export const setDialogAriaLabelledBy = (
 	dialog: HTMLDialogElement | undefined | null,
@@ -68,9 +70,12 @@ export const setDialogAriaLabelledBy = (
 	if (!headingId || !dialog) {
 		return;
 	}
-	// A consumer aria-label is a deliberate name override; do not let our
-	// higher-precedence aria-labelledby reference override it.
+	// A consumer aria-label is a deliberate name override; drop our own token so
+	// our higher-precedence aria-labelledby reference cannot override it. This must
+	// remove a token added at mount, not just skip adding one, because the label
+	// may be added after the header mounted.
 	if (dialog.getAttribute('aria-label')) {
+		removeDialogAriaLabelledBy(dialog, headingId);
 		return;
 	}
 	const tokens = labelledByTokens(dialog.getAttribute('aria-labelledby'));
@@ -96,9 +101,14 @@ export const removeDialogAriaLabelledBy = (
 	if (!headingId || !dialog) {
 		return;
 	}
-	const tokens = labelledByTokens(
-		dialog.getAttribute('aria-labelledby')
-	).filter((token) => token !== headingId);
+	const existing = labelledByTokens(dialog.getAttribute('aria-labelledby'));
+	const tokens = existing.filter((token) => token !== headingId);
+	// Our token was not present: nothing to remove. Skip the write so a re-run
+	// (e.g. the aria-label observer firing) cannot rewrite the same value and
+	// re-trigger the observer in a loop.
+	if (tokens.length === existing.length) {
+		return;
+	}
 	if (tokens.length > 0) {
 		dialog.setAttribute('aria-labelledby', tokens.join(' '));
 	} else {
