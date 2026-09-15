@@ -10,5 +10,5 @@ When working on the `@db-ux/mcp-server` package, these rules are **mandatory**:
 - **Strict assets-only reading**: The server must never fall back to monorepo source paths (`packages/foundations/...`) at runtime. Read strictly from `assets/` to avoid masking build failures.
 - **File system safety**: After `stat()`, always check `stats.isFile()` before calling `readFile()`. Passing a directory path to `readFile()` causes an unhandled `EISDIR` error that crashes the server.
 - **Cross-platform paths**: Always normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\` which breaks `.includes('/')` checks.
-- **DB UX v2 terminology**: In v2, `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The actual custom elements were `<db-*>`. Do not confuse these in migration docs or scanner descriptions.
-- **DB UX v3 HTML markup**: Use CSS classes (`class="db-card"`, `class="db-button"`) with `data-variant` for variants and `type="button"` on buttons. Do not invent attributes like `data-variant="card"` on divs.
+- **DB UX Design System – Generation 2 (aka DB UI) terminology**: In Generation 2, `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The actual custom elements were `<db-*>`. Do not confuse these in migration docs or scanner descriptions.
+- **DB UX Design System – Generation 3 HTML markup**: Use CSS classes (`class="db-card"`, `class="db-button"`) with `data-variant` for variants and `type="button"` on buttons. Do not invent attributes like `data-variant="card"` on divs.

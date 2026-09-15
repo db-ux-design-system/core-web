@@ -16,7 +16,7 @@
     "dev": "npm-run-all setup:browserslist --parallel next:dev open",
     "next:dev": "next dev --webpack --port 5050",
     "open": "open-cli http://localhost:5050/next-showcase",
-    "setup:browserslist": "cpr ../../.browserslistrc .browserslistrc -o",
+    "setup:browserslist": "cpy ../../.browserslistrc .browserslistrc",
     "start": "next start"
   },
   "dependencies": {
@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/node": "^26.5.0",
     "@types/react": "19.2.18",
-    "cpr": "3.0.1",
+    "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "open-cli": "9.0.0",
     "typescript": "5.9.3"
