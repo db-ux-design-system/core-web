@@ -170,11 +170,33 @@ describe('sub-component-required-parent', () => {
 				valid: [
 					{
 						code: '<DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>'
+					},
+					{
+						// A transparent inline array renders its items directly
+						// inside DBAccordion, so a slot-less direct child through
+						// the array is a valid placement.
+						code: '<DBAccordion>{[<DBAccordionItem key="a" headlinePlain="Test">Content</DBAccordionItem>]}</DBAccordion>'
 					}
 				],
 				invalid: [
 					{
 						code: '<div><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></div>',
+						errors: [
+							{
+								messageId: 'subComponentRequiredParent',
+								data: {
+									component: 'DBAccordionItem',
+									parent: 'DBAccordion',
+									slot: ''
+								}
+							}
+						]
+					},
+					{
+						// The same inline array inside a plain element has a known
+						// placement (inside the div, not DBAccordion), so it is
+						// still reported rather than bypassed by the array wrapper.
+						code: '<div>{[<DBAccordionItem key="a" headlinePlain="Test">Content</DBAccordionItem>]}</div>',
 						errors: [
 							{
 								messageId: 'subComponentRequiredParent',

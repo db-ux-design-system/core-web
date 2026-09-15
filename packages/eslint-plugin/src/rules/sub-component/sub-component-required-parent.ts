@@ -197,6 +197,25 @@ function isInsideVueParent(
 }
 
 /**
+ * Whether `node` is a direct child of `parentElement`, counting a transparent
+ * inline array/TS wrapper as direct: `<DBAccordion>{[<DBAccordionItem />]}</DBAccordion>`
+ * renders the item directly inside DBAccordion. `effectiveParent` is the JSX
+ * container that holds the node after peeling those wrappers, so the node itself
+ * (unwrapped), that container, or the container's parent must be `parentElement`.
+ */
+function isDirectChild(
+	node: any,
+	effectiveParent: any,
+	parentElement: any
+): boolean {
+	return (
+		node.parent === parentElement ||
+		effectiveParent === parentElement ||
+		effectiveParent?.parent === parentElement
+	);
+}
+
+/**
  * Checks if a JSX node is inside the expected parent, or is passed as a slot prop value.
  */
 function isInsideJsxParent(
@@ -247,8 +266,9 @@ function isInsideJsxParent(
 		if (current.type === 'JSXElement') {
 			const opening = current.openingElement;
 			if (opening && isDBComponent(opening, parentName) && !slotName) {
-				// If no slot is required, only accept direct children of the parent
-				return node.parent === current;
+				// If no slot is required, only accept direct children of the
+				// parent - counting a transparent inline array/wrapper as direct.
+				return isDirectChild(node, effectiveParent, current);
 			}
 			// If a slot IS required, only accept if passed through the named slot prop
 			// (handled by the JSXExpressionContainer check below).
