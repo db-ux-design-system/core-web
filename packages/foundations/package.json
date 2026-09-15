@@ -37,7 +37,7 @@
     "copy-output:web": "cpy build ../../build-outputs/foundations --dot",
     "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts && prettier dev/icons.html --write",
     "copy-prepare:normalize": "cpy node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss",
-    "copy:scss": "cpy 'scss/**' build/styles --dot",
+    "copy:scss": "cpy \"scss/**\" build/styles --dot",
     "dev": "pnpm run copy-prepare:icon-overview && pnpm run copy-prepare:normalize && pnpm run dev:vite",
     "dev:vite": "vite --open",
     "generate:fallback-icon-font": "tsx scripts/local/generate-fallback-icon-font.ts",

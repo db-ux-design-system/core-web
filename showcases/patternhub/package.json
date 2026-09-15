@@ -11,9 +11,9 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all compile build:*",
-    "build:_iframe_resizer": "cpy 'node_modules/iframe-resizer/js/**' public/iframe-resizer --dot",
+    "build:_iframe_resizer": "cpy \"node_modules/iframe-resizer/js/**\" public/iframe-resizer --dot",
     "build:app": "next build --webpack",
-    "build:copy": "cpy 'out/**' ../../build-showcases/patternhub --dot",
+    "build:copy": "cpy \"out/**\" ../../build-showcases/patternhub --dot",
     "compile": "npm-run-all compile:*",
     "compile:01_jsx": "node scripts/generate-example-jsx.js",
     "compile:02_copy-docs": "cpy ../../docs ./public --dot",
