@@ -32,9 +32,7 @@ export default function InputInteraction() {
 			<DBInput
 				data-testid="input-change"
 				label="Label"
-				onInput={(event: any) => {
-					state.handleInput(event);
-				}}
+				onInput={(event: any) => state.handleInput(event)}
 			/>
 			{/* Storybook only generates one story ('Interaction') for this
 			 * example - the readout and the remaining inputs below are

@@ -29,9 +29,7 @@ export default function ButtonInteraction() {
 		<Fragment>
 			<DBButton
 				data-testid="click-button"
-				onClick={() => {
-					state.handleClick();
-				}}>
+				onClick={() => state.handleClick()}>
 				Click me
 			</DBButton>
 			{/* Storybook only generates one story ('Interaction') for this

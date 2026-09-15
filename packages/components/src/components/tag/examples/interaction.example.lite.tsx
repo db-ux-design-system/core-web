@@ -32,12 +32,7 @@ export default function TagInteraction() {
 	return (
 		<Fragment>
 			<DBTag data-testid="button-tag">
-				<DBButton
-					onClick={() => {
-						state.handleClick();
-					}}>
-					Test
-				</DBButton>
+				<DBButton onClick={() => state.handleClick()}>Test</DBButton>
 			</DBTag>
 			{/* Storybook only generates one story ('Interaction') for this
 			 * example - the readout and the removable-tag scenario below are
@@ -56,9 +51,7 @@ export default function TagInteraction() {
 					<DBTag
 						data-testid="removable-tag"
 						behavior="removable"
-						onRemove={() => {
-							state.handleRemove();
-						}}>
+						onRemove={() => state.handleRemove()}>
 						Remove me
 					</DBTag>
 				</Show>

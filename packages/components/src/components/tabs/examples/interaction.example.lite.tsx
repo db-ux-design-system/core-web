@@ -29,10 +29,10 @@ export default function TabsInteraction() {
 	const state = useStore({
 		selectedValue: 'initial',
 		nestedActiveIndex: 'initial',
-		handleValueChange(value: string | undefined) {
+		handleValueChange(value: any) {
 			state.selectedValue = value ?? 'undefined';
 		},
-		handleNestedIndexChange(index: number) {
+		handleNestedIndexChange(index: any) {
 			state.nestedActiveIndex = String(index);
 		}
 	});
@@ -52,7 +52,7 @@ export default function TabsInteraction() {
 
 			<div class="fit-content-container" data-testid="value-tabs">
 				<DBTabs
-					onValueChange={(value: string | undefined) =>
+					onValueChange={(value: any) =>
 						state.handleValueChange(value)
 					}>
 					<DBTabList>
@@ -67,7 +67,7 @@ export default function TabsInteraction() {
 
 			<div class="fit-content-container" data-testid="nested-tabs">
 				<DBTabs
-					onIndexChange={(index: number) =>
+					onIndexChange={(index: any) =>
 						state.handleNestedIndexChange(index)
 					}>
 					<DBTabList>

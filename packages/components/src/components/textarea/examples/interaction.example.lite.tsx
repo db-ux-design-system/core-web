@@ -27,9 +27,7 @@ export default function TextareaInteraction() {
 			<DBTextarea
 				data-testid="textarea"
 				label="Label"
-				onInput={(event: any) => {
-					state.handleInput(event);
-				}}
+				onInput={(event: any) => state.handleInput(event)}
 			/>
 			{/* Excluded from story generation: it has no nested DBTextarea, so
 			 * the Storybook plugin's component lookup for this story would

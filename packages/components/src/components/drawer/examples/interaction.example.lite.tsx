@@ -30,16 +30,12 @@ export default function DrawerInteraction() {
 			<DBButton
 				data-sb-ignore="true"
 				data-testid="open-button"
-				onClick={() => {
-					setOpen(true);
-				}}>
+				onClick={() => setOpen(true)}>
 				Open
 			</DBButton>
 			<DBDrawer
 				open={open}
-				onClose={() => {
-					setOpen(false);
-				}}
+				onClose={() => setOpen(false)}
 				header={
 					<DBDrawerHeader closeButtonText="Close">
 						Title

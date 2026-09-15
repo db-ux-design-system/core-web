@@ -30,9 +30,7 @@ export default function NotificationInteraction() {
 					<DBNotification
 						data-testid="notification"
 						closeable
-						onClose={() => {
-							state.handleClose();
-						}}>
+						onClose={() => state.handleClose()}>
 						Test
 					</DBNotification>
 				</Show>
