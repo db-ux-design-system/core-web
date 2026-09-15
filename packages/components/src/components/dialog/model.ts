@@ -3,7 +3,7 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
-	GeneralEvent,
+	DialogDrawerDefaultState,
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState
@@ -65,15 +65,7 @@ export type DBDialogProps = DBDialogDefaultProps &
 	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<Event>;
 
-export type DBDialogDefaultState = {
-	resetId: () => void;
-	handleDialogOpen: () => void;
-	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleKeyDown: (event: any) => void;
-	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
-	isNotModal: () => boolean;
-};
+export type DBDialogDefaultState = DialogDrawerDefaultState;
 
 export type DBDialogState = DBDialogDefaultState &
 	GlobalState &

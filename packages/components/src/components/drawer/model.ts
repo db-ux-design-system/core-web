@@ -3,7 +3,7 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
-	GeneralEvent,
+	DialogDrawerDefaultState,
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
@@ -118,15 +118,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 		| GeneralKeyboardEvent<HTMLDialogElement>
 	>;
 
-export type DBDrawerDefaultState = {
-	resetId: () => void;
-	handleDialogOpen: () => void;
-	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleKeyDown: (event: any) => void;
-	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
-	isNotModal: () => boolean;
-};
+export type DBDrawerDefaultState = DialogDrawerDefaultState;
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &
