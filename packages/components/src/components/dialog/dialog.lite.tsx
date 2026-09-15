@@ -94,10 +94,12 @@ export default function DBDialog(props: DBDialogProps) {
 		state.handleDialogOpen();
 	});
 
+	// Re-run on every id-dependency change, unguarded: resetId() falls back to
+	// the generated id when the consumer clears an explicit one, so state._id
+	// never stays pinned to a stale consumer id (which would leave a duplicate
+	// id in the document and let commandfor resolve to the wrong element).
 	onUpdate(() => {
-		if (props.id ?? props.propOverrides?.id) {
-			state.resetId();
-		}
+		state.resetId();
 	}, [props.id, props.propOverrides?.id]);
 
 	// Intentionally observes `open` only, not `backdrop`. Modality (showModal

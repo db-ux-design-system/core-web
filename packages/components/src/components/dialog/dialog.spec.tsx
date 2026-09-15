@@ -205,6 +205,31 @@ const testAction = () => {
 		);
 	});
 
+	test(`should fall back to a generated id when a controlled id is cleared`, async ({
+		mount,
+		page
+	}) => {
+		// Clearing an explicit id must switch to the generated fallback, not keep
+		// the stale consumer id - otherwise reusing that id elsewhere yields
+		// duplicate ids and a misdirected commandfor.
+		const component = await mount(
+			<DBDialog open={true} id="dialog-controlled">
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		const dialogEl = page.locator('dialog.db-dialog');
+		await expect(dialogEl).toHaveAttribute('id', 'dialog-controlled');
+		// The consumer clears the id at runtime.
+		await component.update(
+			<DBDialog open={true} id={undefined}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		// The id must no longer be the cleared value; it falls back to the generated one.
+		await expect(dialogEl).not.toHaveAttribute('id', 'dialog-controlled');
+		await expect(dialogEl).toHaveAttribute('id', /^db-dialog-/);
+	});
+
 	test(`should close dialog via close button`, async ({ mount }) => {
 		let closeCount = 0;
 		const dialog: any = (

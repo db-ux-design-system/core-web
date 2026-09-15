@@ -362,9 +362,12 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     	}
     });
     onMount(() => state.resetId());
-    // Re-run when the consumer id changes so a controlled id stays in sync.
+    // Re-run on every id-dependency change, UNGUARDED: resetId() falls back to
+    // the generated id when the consumer clears an explicit one, so state._id is
+    // never pinned to a stale consumer id (a guard like `if (props.id ?? ...)`
+    // would skip the reset on clear and leave a duplicate id in the document).
     onUpdate(() => {
-    	if (props.id ?? props.propOverrides?.id) state.resetId();
+    	state.resetId();
     }, [props.id, props.propOverrides?.id]);
     ```
 
