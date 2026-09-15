@@ -246,11 +246,19 @@ const vueHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
-		// A dynamic slot argument (#[slotName]) may resolve to the header slot at
-		// runtime; it cannot be verified statically, so it is accepted as unresolved.
+		// A dynamic slot argument (#[slotName]) has an unresolvable destination,
+		// but its content is statically visible - a real header inside it is
+		// accepted (only where it lands is unknown).
 		shape: 'dynamic #[slotName] template with the header component',
 		code: '<template><DBDialog><template #[slotName]><DBDialogHeader>Title</DBDialogHeader></template>Content</DBDialog></template>',
 		reports: false
+	},
+	{
+		// The destination is unknown, but the content is not: a dynamic slot that
+		// holds only plain markup contains no header anywhere, so it must report.
+		shape: 'dynamic #[slotName] template holds plain markup',
+		code: '<template><DBDialog><template #[slotName]><div>Title</div></template>Content</DBDialog></template>',
+		reports: true
 	},
 	{
 		shape: 'no header slot',

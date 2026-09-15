@@ -129,12 +129,15 @@ function hasVueHeaderSlot(node: any, header: string): boolean {
 			.map((attr: any) => getVueSlotArgument(attr))
 			.filter(Boolean);
 
-		// A dynamic slot argument (`#[slotName]`) cannot be resolved statically,
-		// so the template may project into the header slot at runtime - accept it
-		// as unverified rather than reporting valid markup (mirrors an
-		// identifier-valued React header value).
-		if (slotArgs.some((arg: any) => arg.dynamic)) {
-			return true;
+		// A dynamic slot argument (`#[slotName]`) cannot be resolved to a slot
+		// name statically, so its destination is unknown. But its content is
+		// statically visible, so we still require the header component to appear
+		// inside it - only the destination, not the content, is treated as
+		// unverified. A dynamic slot holding a real header is accepted; one that
+		// holds plain markup falls through so the header must be found elsewhere.
+		const isDynamicSlot = slotArgs.some((arg: any) => arg.dynamic);
+		if (isDynamicSlot) {
+			return hasVueHeader(child, header);
 		}
 
 		const isHeaderSlot = slotArgs.some((arg: any) => arg.name === 'header');
