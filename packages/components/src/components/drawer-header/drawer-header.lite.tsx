@@ -68,10 +68,13 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		state._resolveDialog();
 	});
 
-	// Observe the resolved dialog for two consumer-driven attribute changes:
+	// Observe the resolved dialog for consumer-driven attribute changes:
 	// - aria-labelledby: it is framework-controlled and a re-render can drop our
 	//   heading id, so re-add our token (setDialogAriaLabelledBy is idempotent -
 	//   only writes when the token is absent - so it composes and never loops).
+	// - aria-label: it is a naming override that beats aria-labelledby, so
+	//   setDialogAriaLabelledBy skips our token while it is present; re-run when it
+	//   toggles so our token is added back once the override is removed.
 	// - id: the close button targets it via commandfor, so a changed dialog id
 	//   must resync _dialogId, otherwise the button keeps a stale target and could
 	//   resolve to a different dialog that reused the old id.
@@ -94,7 +97,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 		});
 		observer.observe(dialog, {
 			attributes: true,
-			attributeFilter: ['aria-labelledby', 'id']
+			attributeFilter: ['aria-labelledby', 'aria-label', 'id']
 		});
 		state._ariaObserver = observer;
 	}, [state._dialog]);

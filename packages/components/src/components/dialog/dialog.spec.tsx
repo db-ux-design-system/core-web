@@ -93,6 +93,28 @@ const testAction = () => {
 			);
 	});
 
+	test(`should let a consumer aria-label override the header naming`, async ({
+		mount,
+		page
+	}) => {
+		// aria-labelledby wins over aria-label in the accessible-name computation,
+		// so the header must NOT add its heading reference when the consumer set an
+		// aria-label - otherwise the label override would be silently defeated.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				aria-label="Consumer name"
+				header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const dialogEl = page.locator('dialog.db-dialog');
+		// No generated aria-labelledby, so the aria-label is the accessible name.
+		await expect(dialogEl).not.toHaveAttribute('aria-labelledby');
+		await expect(dialogEl).toHaveAccessibleName('Consumer name');
+	});
+
 	test(`should resync the close button commandfor when the dialog id changes`, async ({
 		mount,
 		page

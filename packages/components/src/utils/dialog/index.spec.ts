@@ -114,14 +114,23 @@ describe('setDialogAriaLabelledBy', () => {
 
 	it('appends the heading id to a consumer-supplied aria-labelledby', () => {
 		// aria-labelledby is a space-separated token list, so the visible heading
-		// composes with a consumer id rather than clobbering it. A consumer who
-		// wants to override the name entirely uses aria-label (which wins).
+		// composes with a consumer id rather than clobbering it.
 		const dialog = createDialogStub();
 		dialog.setAttribute('aria-labelledby', 'consumer-label');
 		setDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe(
 			'consumer-label heading-1'
 		);
+	});
+
+	it('does not add the heading reference when the consumer set an aria-label', () => {
+		// The accessible-name computation evaluates aria-labelledby before
+		// aria-label, so adding our reference would win and defeat the label.
+		// Leaving aria-labelledby off lets the aria-label be the naming override.
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
 	});
 
 	it('does not duplicate the heading id when re-applied to a token list', () => {

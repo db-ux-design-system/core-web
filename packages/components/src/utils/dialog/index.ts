@@ -51,18 +51,26 @@ const labelledByTokens = (value: string | null): string[] =>
 /**
  * @public
  * Adds the header's heading id to the dialog's `aria-labelledby` token list so
- * the visible heading is always part of the accessible name, while preserving any
- * ids the consumer added (`aria-labelledby` is a space-separated list of one or
- * more referenced elements). The heading id is appended once (idempotent), so a
- * consumer value composes with it rather than being clobbered. A consumer who
- * wants to override the name entirely can still set `aria-label`, which wins over
- * `aria-labelledby` in the accessible-name computation.
+ * the visible heading is part of the accessible name, while preserving any ids the
+ * consumer added (`aria-labelledby` is a space-separated list of one or more
+ * referenced elements). The heading id is appended once (idempotent), so a consumer
+ * value composes with it rather than being clobbered.
+ *
+ * Skips adding the reference entirely when the consumer set an explicit
+ * `aria-label`: the accessible-name computation evaluates `aria-labelledby` before
+ * `aria-label`, so adding our reference would win and silently defeat the label.
+ * Leaving `aria-labelledby` off lets the `aria-label` be the naming override.
  */
 export const setDialogAriaLabelledBy = (
 	dialog: HTMLDialogElement | undefined | null,
 	headingId: string | undefined
 ): void => {
 	if (!headingId || !dialog) {
+		return;
+	}
+	// A consumer aria-label is a deliberate name override; do not let our
+	// higher-precedence aria-labelledby reference override it.
+	if (dialog.getAttribute('aria-label')) {
 		return;
 	}
 	const tokens = labelledByTokens(dialog.getAttribute('aria-labelledby'));
