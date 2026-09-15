@@ -119,6 +119,7 @@ export type DBDrawerProps = DBDrawerDefaultProps &
 	>;
 
 export type DBDrawerDefaultState = {
+	resetId: () => void;
 	handleDialogOpen: () => void;
 	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any

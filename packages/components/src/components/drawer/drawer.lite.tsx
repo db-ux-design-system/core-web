@@ -27,7 +27,16 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		_id: 'db-drawer-' + uuid(),
+		// Left undefined at init so the uuid() fallback runs only on the client
+		// (in onMount, via resetId), not during SSR. Generating it at render time
+		// would produce different server/client ids and force a hydration mismatch
+		// (React warns and may keep stale server markup). Matches the id handling
+		// in the other components and in DBDrawerHeader.
+		_id: undefined,
+		resetId: () => {
+			state._id =
+				props.id ?? props.propOverrides?.id ?? 'db-drawer-' + uuid();
+		},
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -83,12 +92,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 	});
 
 	onMount(() => {
+		state.resetId();
 		// BEGIN: dialog ponyfill
 		markClosedByFallback(_ref);
 		// END: dialog ponyfill
 		state.handleDialogOpen();
 		state.initialized = true;
 	});
+
+	onUpdate(() => {
+		if (props.id ?? props.propOverrides?.id) {
+			state.resetId();
+		}
+	}, [props.id, props.propOverrides?.id]);
 
 	// Intentionally observes `open` only, not `backdrop`. Modality (showModal
 	// vs show) is an open-time decision of the native <dialog>; there is no way

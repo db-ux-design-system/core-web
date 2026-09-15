@@ -352,6 +352,24 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
 - **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Never generate a fallback `id` (or any `uuid()`) at render time**: initializing state with a random value in the `useStore({...})` literal (e.g. `_id: 'db-dialog-' + uuid()`) runs once on the server and again during hydration, producing different ids each time. React then warns about the mismatch and may keep stale server markup, and any `aria-labelledby`/`commandfor` pointing at that id breaks. Initialize the id state to `undefined` in the store and assign the fallback in `onMount` (client-only) via a small state method, mirroring `input`/`select`/`tooltip` and `DBDialogHeader`:
+
+    ```tsx
+    const state = useStore({
+    	_id: undefined,
+    	resetId: () => {
+    		state._id = props.id ?? props.propOverrides?.id ?? "db-x-" + uuid();
+    	}
+    });
+    onMount(() => state.resetId());
+    // Re-run when the consumer id changes so a controlled id stays in sync.
+    onUpdate(() => {
+    	if (props.id ?? props.propOverrides?.id) state.resetId();
+    }, [props.id, props.propOverrides?.id]);
+    ```
+
+    The render uses `id={props.id ?? props.propOverrides?.id ?? state._id}`, so an id-less element renders no `id` on the server and gains the stable fallback after mount. Note: keep the id state member initialized in the store literal (`_id: undefined`) — a member only assigned later, never declared, is not emitted as state in the Vue output.
+
 - **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
 
     ```tsx
