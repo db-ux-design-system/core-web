@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BaUXU5_0.js";e();
