@@ -51,9 +51,10 @@ jobs:
           name: db-ux-postcss-plugin-build
           path: packages/postcss-plugin/build
 
-      # Same invocations the individual build jobs used (angular-ssr/next via
-      # `run build`, nuxt via `run generate`), run sequentially in one job. Any
-      # failure fails the job, matching checks-done's previous per-showcase view.
+      # Same invocations the individual build jobs used (the shared
+      # 01-build-showcases.yml ran `run build` for every showcase, including
+      # nuxt), run sequentially in one job. Any failure fails the job, matching
+      # checks-done's previous per-showcase view.
       - name: 🔨 Build untested showcases
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
@@ -61,7 +62,7 @@ jobs:
         run: |
           pnpm --filter angular-ssr-showcase run build
           pnpm --filter next-showcase run build
-          pnpm --filter nuxt-showcase run generate
+          pnpm --filter nuxt-showcase run build
 
       - name: ⏫ Upload angular-ssr-showcase
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
