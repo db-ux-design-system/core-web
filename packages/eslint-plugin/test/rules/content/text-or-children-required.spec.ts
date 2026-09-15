@@ -54,6 +54,15 @@ describe('text-or-children-required', () => {
 			},
 			{ code: '<DBDialogHeader>{`Title ${suffix}`}</DBDialogHeader>' },
 			{
+				// A node array with a rendering element is content.
+				code: '<DBDialogHeader>{[<span key="t">Title</span>]}</DBDialogHeader>'
+			},
+			{
+				// A dynamic element in the array cannot be verified statically,
+				// so the array is treated as (possible) content.
+				code: '<DBDialogHeader>{[title]}</DBDialogHeader>'
+			},
+			{
 				// A JSX spread may supply `text`; its contents are unverifiable,
 				// so the header is treated as unresolved rather than reported.
 				code: '<DBDialogHeader {...headerProps} />'
@@ -231,6 +240,26 @@ describe('text-or-children-required', () => {
 			},
 			{
 				code: '<DBDialogHeader>{`   `}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An empty array renders nothing, so it is not content.
+				code: '<DBDialogHeader>{[]}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An array of only non-rendering values renders nothing either.
+				code: '<DBDialogHeader>{[null, false]}</DBDialogHeader>',
 				errors: [
 					{
 						messageId: 'missingContent',

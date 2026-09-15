@@ -29,15 +29,15 @@ const hasTextContent = (text: string | boolean | undefined): boolean => {
 };
 
 /**
- * Whether a React JSX expression child (`{...}`) renders nothing, so it does not
- * count as content. React renders no output for `null`, `undefined`, `true`,
- * `false`, an empty/whitespace string (`''`, `'   '`) or an empty template
- * literal, and `{}` is an empty expression. Anything else - an identifier, call,
- * member access, conditional or non-empty literal - cannot be verified
- * statically, so it is treated as (possible) content.
+ * Whether a React expression renders nothing. React renders no output for `null`,
+ * `undefined`, `true`, `false`, an empty/whitespace string (`''`, `'   '`) or an
+ * empty template literal, and an empty expression (`{}`). A node array renders
+ * nothing when every element is itself empty (e.g. `[]`, `[null, false]`), so it
+ * is inspected recursively; an array hole (`null` element) renders nothing too.
+ * Anything else - an identifier, call, member access, conditional or non-empty
+ * literal - cannot be verified statically, so it is treated as (possible) content.
  */
-const isEmptyJsxExpression = (container: any): boolean => {
-	const { expression } = container;
+const isEmptyReactExpression = (expression: any): boolean => {
 	if (!expression || expression.type === 'JSXEmptyExpression') {
 		return true;
 	}
@@ -62,8 +62,22 @@ const isEmptyJsxExpression = (container: any): boolean => {
 			)
 		);
 	}
+	if (expression.type === 'ArrayExpression') {
+		// An array of only non-rendering elements (or an empty array) renders
+		// nothing; a hole is a `null` element that also renders nothing.
+		return expression.elements.every((element: any) =>
+			isEmptyReactExpression(element)
+		);
+	}
 	return false;
 };
+
+/**
+ * Whether a React JSX expression child (`{...}`) renders nothing, so it does not
+ * count as content.
+ */
+const isEmptyJsxExpression = (container: any): boolean =>
+	isEmptyReactExpression(container.expression);
 
 /**
  * Whether an Angular node has renderable content, recursing through wrapper nodes.
