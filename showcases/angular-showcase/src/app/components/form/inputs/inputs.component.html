@@ -34,3 +34,15 @@
 		<app-signal-forms-input [formField]="signalForm.value" />
 	</fieldset>
 </app-form-wrapper>
+<!--
+	Regression fixture for
+	https://github.com/db-ux-design-system/core-web/issues/6147 -- a consumer
+	resets a field by binding `value` to `undefined`.
+-->
+<fieldset>
+	<legend>Reset to undefined</legend>
+	<db-input [value]="undefinedValue" label="Undefined reset" />
+	<db-button (click)="unsetValue()" data-testid="unset-value-button">
+		Set value to undefined
+	</db-button>
+</fieldset>
