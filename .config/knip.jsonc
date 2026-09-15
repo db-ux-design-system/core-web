@@ -45,6 +45,12 @@
 			"entry": [".config/*.{js,ts}"],
 			"project": [".config/**/*.{js,ts}"],
 			"ignoreDependencies": [
+				// Used only by the e2e suite under showcases/e2e (an ignored
+				// workspace), so Knip cannot see the import and would otherwise
+				// auto-remove it. playwright-core is @axe-core/playwright's
+				// peerDependency and is never imported directly.
+				"@axe-core/playwright",
+				"playwright-core",
 				"@figma/code-connect",
 				"@guidepup/guidepup",
 				"@guidepup/playwright",
