@@ -211,7 +211,8 @@ export default {
 				child.type === 'JSXElement' ||
 				child.type === 'VElement' ||
 				// The Vue parser may expose an element child as its fallback
-				// `Element$1` node, so count it as content too.
+				// `Element`/`Element$1` node, so count both as content too.
+				child.type === 'Element' ||
 				child.type === 'Element$1' ||
 				// A fragment renders no wrapper of its own, so React shows its
 				// descendants directly (e.g. <DBDialogHeader><>Title</></...>).
