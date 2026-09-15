@@ -1,4 +1,4 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	angularChildNodes,
 	createAngularVisitors,
@@ -110,8 +110,8 @@ const COMPONENTS_REQUIRING_CONTENT = [
 	// The dialog/drawer header sets the dialog's aria-labelledby to its content
 	// container; without `text` or children that container is empty and the
 	// dialog has no accessible name.
-	'DBDialogHeader',
-	'DBDrawerHeader'
+	COMPONENTS.DBDialogHeader,
+	COMPONENTS.DBDrawerHeader
 ];
 
 export default {

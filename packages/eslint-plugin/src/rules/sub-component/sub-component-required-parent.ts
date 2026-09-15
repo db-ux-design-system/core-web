@@ -1,4 +1,4 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -21,10 +21,18 @@ const SUB_COMPONENT_CONFIG: Record<
 	string,
 	{ parents: Array<{ name: string; slot: string | undefined }> }
 > = {
-	DBDrawerHeader: { parents: [{ name: 'DBDrawer', slot: 'header' }] },
-	DBDrawerFooter: { parents: [{ name: 'DBDrawer', slot: 'footer' }] },
-	DBDialogHeader: { parents: [{ name: 'DBDialog', slot: 'header' }] },
-	DBDialogFooter: { parents: [{ name: 'DBDialog', slot: 'footer' }] },
+	[COMPONENTS.DBDrawerHeader]: {
+		parents: [{ name: COMPONENTS.DBDrawer, slot: 'header' }]
+	},
+	[COMPONENTS.DBDrawerFooter]: {
+		parents: [{ name: COMPONENTS.DBDrawer, slot: 'footer' }]
+	},
+	[COMPONENTS.DBDialogHeader]: {
+		parents: [{ name: COMPONENTS.DBDialog, slot: 'header' }]
+	},
+	[COMPONENTS.DBDialogFooter]: {
+		parents: [{ name: COMPONENTS.DBDialog, slot: 'footer' }]
+	},
 	DBAccordionItem: { parents: [{ name: 'DBAccordion', slot: undefined }] },
 	DBNavigationItem: {
 		parents: [

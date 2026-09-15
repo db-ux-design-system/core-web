@@ -1,4 +1,4 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -9,8 +9,8 @@ import {
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
-	DBDrawerHeader: 'closeButtonText',
-	DBDialogHeader: 'closeButtonText',
+	[COMPONENTS.DBDrawerHeader]: 'closeButtonText',
+	[COMPONENTS.DBDialogHeader]: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
