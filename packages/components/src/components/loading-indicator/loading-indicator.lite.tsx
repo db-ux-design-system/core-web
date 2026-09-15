@@ -301,6 +301,17 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 	onMount(() => {
 		state.resetIds();
+		// Seed the loading state here rather than in the useStore initializer
+		// (props are not reliably in scope there across all targets, and we do
+		// not reference props.state inside useStore). Tradeoff: onMount compiles
+		// to a post-render effect, so the SSR / first-paint markup carries the
+		// initial data-state="inactive" until this runs. That is intentional and
+		// not visually wrong: "inactive" paints the bare track (bar) / empty
+		// circle (circular), then this promotes it to the real state within a
+		// frame, so it reads as the indicator "starting" instead of flashing a
+		// wrong segment. Keeping _loadingState as the template binding is
+		// required because it also carries the internal transitions driven by
+		// onTimeout and state changes.
 		state._loadingState = props.state ?? 'active';
 		state.initialized = true;
 	});

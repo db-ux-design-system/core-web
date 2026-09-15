@@ -3,17 +3,23 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 %hide-label-and-progress-text {
-	div {
+	> .db-loading-indicator-content {
 		/**
 		 * Keep the label in the accessibility tree so screen readers still
 		 * announce the loading state in overlay/button mode. Only the
 		 * aria-hidden progress-text span is fully removed.
+		 *
+		 * Target the structural label/span as direct children only: a bare
+		 * "div label" / "div span" would also match consumer markup passed as
+		 * children (which renders inside the label), e.g. a nested <span>
+		 * loading text -- hiding it from the a11y tree, the opposite of what
+		 * this rule intends.
 		 */
-		label {
+		> label {
 			@extend %a11y-visually-hidden;
 		}
 
-		span {
+		> span {
 			display: none;
 		}
 	}
@@ -94,8 +100,8 @@
 				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
-			svg,
-			div {
+			> svg,
+			> .db-loading-indicator-content {
 				z-index: 2;
 			}
 
