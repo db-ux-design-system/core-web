@@ -169,9 +169,6 @@ importers:
 
   .:
     devDependencies:
-      '@axe-core/playwright':
-        specifier: 4.13.0
-        version: 4.13.0(playwright-core@1.62.1)
       '@changesets/cli':
         specifier: 3.0.2
         version: 3.0.2
@@ -2044,11 +2041,6 @@ packages:
 
   '@asamuzakjp/css-color@3.2.0':
     resolution: {integrity: sha512-K1A6z8tS3XsmCMM86xoWdn7Fkdn9m6RSVtocUrJYIwZnFVkng/PvkEoWtOWmP+Scc6saYWHWZYbndEEXxl24jw==}
-
-  '@axe-core/playwright@4.13.0':
-    resolution: {integrity: sha512-6YLx+kxXu5GJceG4ozFg+33a2EMTdjYwWGloJ3sb9Kta5pp+ZNS53uxGVog5JetIY8s++P5UrtX+cri+u0VAVg==}
-    peerDependencies:
-      playwright-core: '>= 1.0.0'
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -16623,11 +16615,6 @@ snapshots:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
-
-  '@axe-core/playwright@4.13.0(playwright-core@1.62.1)':
-    dependencies:
-      axe-core: 4.13.0
-      playwright-core: 1.62.1
 
   '@babel/code-frame@7.29.7':
     dependencies:
