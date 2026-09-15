@@ -99,6 +99,20 @@ In plain HTML you wire these fallbacks yourself: mark the drawer when `closedby`
 	 */
 	if (!("closedBy" in HTMLDialogElement.prototype)) {
 		drawer?.setAttribute("data-closedby", "not-supported");
+
+		/*
+		 * A non-modal drawer (backdrop="none", variant="inside" or
+		 * position="absolute", opened via show()) does not dismiss on Escape
+		 * natively - only modal drawers (showModal()) do - and without
+		 * `closedby` the browser adds no light-dismiss. Close it on Escape
+		 * yourself. Modal drawers keep their native Escape behaviour, so only
+		 * step in when the drawer is not `:modal`.
+		 */
+		drawer?.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && !drawer.matches(":modal")) {
+				drawer.requestClose?.();
+			}
+		});
 	}
 
 	/*
