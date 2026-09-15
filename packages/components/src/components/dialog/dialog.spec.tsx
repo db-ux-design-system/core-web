@@ -72,6 +72,7 @@ const testAction = () => {
 				open={true}
 				aria-labelledby="consumer-label"
 				header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
@@ -104,6 +105,7 @@ const testAction = () => {
 			<DBDialog
 				open={true}
 				header={<DBDialogHeader id="my-header" text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader id="my-header" text="Title" /></template>*/}
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
@@ -128,6 +130,7 @@ const testAction = () => {
 				open={true}
 				aria-label="Consumer name"
 				header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
@@ -147,6 +150,7 @@ const testAction = () => {
 		// lower-precedence aria-label becomes the accessible name (and not loop).
 		const dialog: any = (
 			<DBDialog open={true} header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
@@ -177,6 +181,7 @@ const testAction = () => {
 				open={true}
 				propOverrides={{ id: 'dialog-initial' }}
 				header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
