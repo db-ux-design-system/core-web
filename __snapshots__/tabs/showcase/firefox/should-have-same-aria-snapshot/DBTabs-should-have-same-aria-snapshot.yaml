@@ -192,3 +192,35 @@
     - tab "Test 1"
     - tab "Test 2"
     - tab "Test 3"
+  - link "Interaction"
+  - tablist:
+    - tab "Test 1" [selected]
+    - tab "Test 2"
+  - tabpanel "Test 1": Panel 1
+  - tablist:
+    - tab "Tab A" [selected]
+    - tab "Tab B"
+  - tabpanel "Tab A": Panel A
+  - text: initial
+  - tablist:
+    - tab "Tab 1" [selected]
+    - tab "Tab 2"
+  - tabpanel "Tab 1":
+    - checkbox "Nested control"
+    - text: Nested control
+  - text: initial
+  - tablist:
+    - tab "Test 1" [selected]
+  - tabpanel "Test 1": Content 1
+  - tablist:
+    - tab "Tab item with a very long label that must not be cut off" [selected]
+    - tab "Short"
+  - tabpanel "Tab item with a very long label that must not be cut off": Panel 1
+  - tablist:
+    - tab "Very long vertical tab label that definitely gets truncated" [selected]
+    - tab "Short"
+  - tabpanel "Very long vertical tab label that definitely gets truncated": Panel 1
+  - tablist:
+    - tab "Short" [selected]
+    - tab "A considerably longer full-width tab item label"
+  - tabpanel "Short": Panel 1

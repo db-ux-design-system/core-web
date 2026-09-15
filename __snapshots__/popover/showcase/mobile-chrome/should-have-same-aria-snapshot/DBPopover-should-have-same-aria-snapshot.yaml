@@ -196,3 +196,8 @@
     - textbox "Textarea":
       - /placeholder: " "
     - status
+  - link "Interaction"
+  - button "Button"
+  - article: Test
+  - button "Toggle"
+  - button "Button"

@@ -43,3 +43,17 @@
   - text: "3"
   - heading "Installation" [level=2]
   - button "More options"
+  - link "Interaction"
+  - heading "Native H1" [level=1]
+  - heading "Accessible h6" [level=6]: Forwarded
+  - heading "Class alias" [level=6]
+  - heading "Nested heading" [level=2]
+  - text: Section
+  - heading "Installation" [level=2]
+  - button "More options"
+  - heading "Icon heading" [level=2]
+  - heading "Badge heading" [level=2]
+  - text: 3 3
+  - heading "Button heading" [level=2]
+  - button "More options"
+  - button "More options"

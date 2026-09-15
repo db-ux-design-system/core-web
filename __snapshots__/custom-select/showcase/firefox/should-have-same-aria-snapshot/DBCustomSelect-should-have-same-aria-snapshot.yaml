@@ -1576,3 +1576,153 @@
             - text: Option 5
   - text: Invalid Message
   - status
+  - link "Interaction"
+  - text: Single
+  - group:
+    - article:
+      - radiogroup "Single":
+        - list:
+          - listitem:
+            - radio "Option 1"
+            - text: Option 1
+          - listitem:
+            - radio "Option 2"
+            - text: Option 2
+          - listitem:
+            - radio "Option 3"
+            - text: Option 3
+          - listitem:
+            - radio "Option 4"
+            - text: Option 4
+          - listitem:
+            - radio "Option 5"
+            - text: Option 5
+  - status
+  - text: Multiple
+  - group:
+    - article:
+      - group "Multiple":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+  - status
+  - text: Search
+  - group:
+    - article:
+      - text: LABEL SHOULD BE SET
+      - searchbox "LABEL SHOULD BE SET"
+      - status
+      - checkbox "LABEL SHOULD BE SET"
+      - text: LABEL SHOULD BE SET
+      - group "Search":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+  - status
+  - text: Select all
+  - group:
+    - article:
+      - checkbox "LABEL SHOULD BE SET"
+      - text: LABEL SHOULD BE SET
+      - group "Select all":
+        - list:
+          - listitem:
+            - checkbox "Option 1"
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2"
+            - text: Option 2
+          - listitem:
+            - checkbox "Option 3"
+            - text: Option 3
+          - listitem:
+            - checkbox "Option 4"
+            - text: Option 4
+          - listitem:
+            - checkbox "Option 5"
+            - text: Option 5
+  - status
+  - text: Option Groups
+  - group:
+    - article:
+      - radiogroup "Option Groups":
+        - list:
+          - listitem: Option group 1
+          - listitem:
+            - radio "G1:Option 1"
+            - text: G1:Option 1
+          - listitem:
+            - radio "G1:Option 2"
+            - text: G1:Option 2
+          - listitem: Option group 2
+          - listitem:
+            - radio "G2:Option 1"
+            - text: G2:Option 1
+          - listitem:
+            - radio "G2:Option 2"
+            - text: G2:Option 2
+  - status
+  - text: Colors
+  - group:
+    - text: Blue Color, Green Color Blue Color
+    - button "Remove Blue Color"
+    - text: Green Color
+    - button "Remove Green Color"
+    - article:
+      - group "Colors":
+        - list:
+          - listitem:
+            - checkbox "Red Color"
+            - text: Red Color
+          - listitem:
+            - checkbox "Blue Color" [checked]
+            - text: Blue Color
+          - listitem:
+            - checkbox "Green Color" [checked]
+            - text: Green Color
+  - button "Clear selection"
+  - status
+  - button "Set values"
+  - button "Reset to null"
+  - button "Reset to undefined"
+  - button "Reset to empty array"
+  - text: Values reset
+  - group:
+    - text: Option 1, Option 2
+    - article:
+      - group "Values reset":
+        - list:
+          - listitem:
+            - checkbox "Option 1" [checked]
+            - text: Option 1
+          - listitem:
+            - checkbox "Option 2" [checked]
+            - text: Option 2
+  - button "Clear selection"
+  - status
