@@ -63,6 +63,15 @@ describe('text-or-children-required', () => {
 				code: '<DBDialogHeader>{[title]}</DBDialogHeader>'
 			},
 			{
+				// A fragment renders its descendants directly, so a fragment with
+				// text is content (React shows "Title").
+				code: '<DBDialogHeader><>Title</></DBDialogHeader>'
+			},
+			{
+				// A fragment with a rendering element descendant is content too.
+				code: '<DBDialogHeader><><span>Title</span></></DBDialogHeader>'
+			},
+			{
 				// A JSX spread may supply `text`; its contents are unverifiable,
 				// so the header is treated as unresolved rather than reported.
 				code: '<DBDialogHeader {...headerProps} />'
@@ -260,6 +269,27 @@ describe('text-or-children-required', () => {
 			{
 				// An array of only non-rendering values renders nothing either.
 				code: '<DBDialogHeader>{[null, false]}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An empty fragment renders nothing, so the header still has no
+				// accessible name.
+				code: '<DBDialogHeader><></></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A fragment whose only child renders nothing is likewise empty.
+				code: '<DBDialogHeader><>{null}</></DBDialogHeader>',
 				errors: [
 					{
 						messageId: 'missingContent',

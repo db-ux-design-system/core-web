@@ -205,28 +205,34 @@ export default {
 			const text = isBareBooleanAttribute(openingElement, 'text')
 				? ''
 				: getAttributeValue(openingElement, 'text');
-			const hasChildren = node.children?.some(
-				(child: any) =>
-					(child.type === 'JSXText' && child.value.trim() !== '') ||
-					(child.type === 'VText' && child.value.trim() !== '') ||
-					child.type === 'JSXElement' ||
-					child.type === 'VElement' ||
-					// The Vue parser may expose an element child as its fallback
-					// `Element$1` node, so count it as content too.
-					child.type === 'Element$1' ||
-					// A JSX expression child counts as content unless it renders
-					// nothing (e.g. {null}, {false}, {''}), which would leave the
-					// element referenced by aria-labelledby empty.
-					(child.type === 'JSXExpressionContainer' &&
-						!isEmptyJsxExpression(child)) ||
-					// A Vue interpolation ({{ ... }}) counts as content unless it
-					// statically renders no text (e.g. {{ null }}, {{ '' }}). Vue
-					// differs from React here: {{ false }}/{{ true }}/{{ 0 }} DO
-					// render text, so isStaticallyEmptyExpression (not the JSX
-					// check) is the right predicate.
-					(child.type === 'VExpressionContainer' &&
-						!isStaticallyEmptyExpression(child.expression))
-			);
+			const isContentChild = (child: any): boolean =>
+				(child.type === 'JSXText' && child.value.trim() !== '') ||
+				(child.type === 'VText' && child.value.trim() !== '') ||
+				child.type === 'JSXElement' ||
+				child.type === 'VElement' ||
+				// The Vue parser may expose an element child as its fallback
+				// `Element$1` node, so count it as content too.
+				child.type === 'Element$1' ||
+				// A fragment renders no wrapper of its own, so React shows its
+				// descendants directly (e.g. <DBDialogHeader><>Title</></...>).
+				// Recurse with the same predicate; an empty fragment (or one with
+				// only non-rendering children) still counts as no content.
+				(child.type === 'JSXFragment' &&
+					(child.children || []).some(isContentChild)) ||
+				// A JSX expression child counts as content unless it renders
+				// nothing (e.g. {null}, {false}, {''}), which would leave the
+				// element referenced by aria-labelledby empty.
+				(child.type === 'JSXExpressionContainer' &&
+					!isEmptyJsxExpression(child)) ||
+				// A Vue interpolation ({{ ... }}) counts as content unless it
+				// statically renders no text (e.g. {{ null }}, {{ '' }}). Vue
+				// differs from React here: {{ false }}/{{ true }}/{{ 0 }} DO
+				// render text, so isStaticallyEmptyExpression (not the JSX
+				// check) is the right predicate.
+				(child.type === 'VExpressionContainer' &&
+					!isStaticallyEmptyExpression(child.expression));
+
+			const hasChildren = node.children?.some(isContentChild);
 
 			// A React spread (<DBDialogHeader {...headerProps} />) or Vue object
 			// v-bind may supply `text`, and its contents cannot be verified
