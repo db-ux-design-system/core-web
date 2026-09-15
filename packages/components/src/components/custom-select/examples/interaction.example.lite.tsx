@@ -132,7 +132,14 @@ export default function CustomSelectInteraction() {
 				/>
 			</div>
 
-			<div style={{ width: '200px' }}>
+			{/* Test-only scenario for the interaction e2e spec: buttons drive
+			 * the DBCustomSelect `values` prop through null / undefined / empty
+			 * array / a real selection. Its `values` binds to component state
+			 * (`state.resetValues`), which cannot be serialized into a static
+			 * Storybook `args` object, so the whole scenario is excluded from
+			 * story generation via data-sb-ignore. It still renders in the
+			 * showcase/e2e output. */}
+			<div style={{ width: '200px' }} data-sb-ignore="true">
 				<DBButton
 					data-testid="values-reset-set"
 					onClick={() =>
