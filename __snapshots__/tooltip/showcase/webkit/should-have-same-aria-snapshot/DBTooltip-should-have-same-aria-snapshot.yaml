@@ -33,3 +33,5 @@
   - button "(Default) None"
   - button "Slow"
   - button "Fast"
+  - link "Interaction"
+  - button "Button"
