@@ -681,17 +681,17 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
-export type CancelEventProps = {
+export type CancelEventProps<T> = {
 	/**
 	 * Called when the native cancel event fires (e.g. Escape key on a dialog).
 	 * Call event.preventDefault() to veto the native close.
 	 */
-	onCancel?: (event: Event) => void;
+	onCancel?: (event: GeneralEvent<T>) => void;
 	/**
 	 * Called when the native cancel event fires (e.g. Escape key on a dialog).
 	 * Call event.preventDefault() to veto the native close.
 	 */
-	cancel?: (event: Event) => void;
+	cancel?: (event: GeneralEvent<T>) => void;
 };
 
 export const AlignmentList = ['start', 'center', 'end'] as const;

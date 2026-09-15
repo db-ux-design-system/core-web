@@ -77,21 +77,22 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	//   resolve to a different dialog that reused the old id.
 	// Guarded so it attaches once, after the dialog is resolved in onMount.
 	onUpdate(() => {
-		if (!state._dialog || state._ariaObserver) {
+		const dialog = state._dialog;
+		if (!dialog || state._ariaObserver) {
 			return;
 		}
 		const observer = new MutationObserver(() => {
-			setDialogAriaLabelledBy(state._dialog, state._headingId);
+			setDialogAriaLabelledBy(dialog, state._headingId);
 			// Only assign when the id actually changed. The aria-labelledby branch
 			// fires this observer (including our own token appends), and an
 			// unconditional state assignment would re-render and reassert the
 			// framework-controlled aria-labelledby, thrashing with the append.
-			const nextDialogId = state._dialog?.id ?? '';
+			const nextDialogId = dialog.id ?? '';
 			if (nextDialogId !== state._dialogId) {
 				state._dialogId = nextDialogId;
 			}
 		});
-		observer.observe(state._dialog, {
+		observer.observe(dialog, {
 			attributes: true,
 			attributeFilter: ['aria-labelledby', 'id']
 		});

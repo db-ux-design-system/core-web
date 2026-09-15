@@ -112,7 +112,7 @@ export type DBDrawerDefaultProps = {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
-	CancelEventProps &
+	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 		| GeneralKeyboardEvent<HTMLDialogElement>

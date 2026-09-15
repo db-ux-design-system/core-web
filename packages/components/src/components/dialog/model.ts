@@ -62,7 +62,7 @@ export type DBDialogDefaultProps = {
 
 export type DBDialogProps = DBDialogDefaultProps &
 	GlobalProps &
-	CancelEventProps &
+	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<Event>;
 
 export type DBDialogDefaultState = {
