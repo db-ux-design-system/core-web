@@ -13,6 +13,7 @@ import CustomSelectExamplesFloatinglabel from '../examples/examples-floating-lab
 import CustomSelectExamplesMultiple from '../examples/examples-multiple.example.lite';
 import CustomSelectExamplesSingle from '../examples/examples-single.example.lite';
 import CustomSelectFormFieldWidth from '../examples/form-field-width.example.lite';
+import CustomSelectInteraction from '../examples/interaction.example.lite';
 import CustomSelectMultiple from '../examples/multiple.example.lite';
 import CustomSelectPlacement from '../examples/placement.example.lite';
 import CustomSelectRequired from '../examples/required.example.lite';
@@ -162,6 +163,11 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples Floating label">
 				<CardWrapperShowcase>
 					<CustomSelectExamplesFloatinglabel />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<CustomSelectInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

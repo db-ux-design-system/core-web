@@ -1,30 +1,15 @@
-import { replaceInFileSync } from 'replace-in-file';
-
 import components, { Overwrite } from './components.js';
 
 import { runReplacements } from '../utils';
 
 export default (tmp?: boolean) => {
 	const outputFolder = `${tmp ? 'output/tmp' : 'output'}`;
-	// Rewire imports in Playwright config
-	replaceInFileSync({
-		files: `../../${outputFolder}/vue/playwright.config.ts`,
-		from: /react/g,
-		to: `vue`
-	});
 	for (const component of components) {
 		const componentName = component.name;
 		const componentFolder = component.folder ?? componentName;
 		const vueFile = `../../${outputFolder}/vue/src/components/${componentFolder}/${componentName}.vue`;
 
 		try {
-			// Rewire imports in Playwright component tests
-			replaceInFileSync({
-				files: `../../${outputFolder}/vue/src/components/${componentFolder}/${component.spec ?? componentName}.spec.tsx`,
-				from: `react`,
-				to: `vue`
-			});
-
 			const replacements: Overwrite[] = [
 				{
 					from: /immediate: true/g,

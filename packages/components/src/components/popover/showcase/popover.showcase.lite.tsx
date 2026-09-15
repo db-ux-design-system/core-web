@@ -7,6 +7,7 @@ import PopoverClosedVisibility from '../examples/closed-popover-visibility.examp
 import PopoverDelay from '../examples/delay.example.lite';
 import PopoverDensity from '../examples/density.example.lite';
 import PopoverGap from '../examples/gap.example.lite';
+import PopoverInteraction from '../examples/interaction.example.lite';
 import PopoverPlacement from '../examples/placement.example.lite';
 import PopoverSpacing from '../examples/spacing.example.lite';
 import PopoverWidth from '../examples/width.example.lite';
@@ -54,6 +55,11 @@ export default function PopoverShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Closed Popover Visibility">
 				<CardWrapperShowcase>
 					<PopoverClosedVisibility />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<PopoverInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

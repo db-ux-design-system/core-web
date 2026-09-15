@@ -80,6 +80,7 @@ referrerpolicy
 haspopup
 arialive
 screenreader
+spinbutton
 snackbars
 bday
 untick

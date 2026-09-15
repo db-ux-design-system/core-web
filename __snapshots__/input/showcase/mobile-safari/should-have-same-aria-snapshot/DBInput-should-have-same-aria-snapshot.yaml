@@ -268,3 +268,36 @@
   - text: Search Stations
   - combobox "Search Stations"
   - status
+  - link "Interaction"
+  - text: Label
+  - textbox "Label":
+    - /placeholder: " "
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: " "
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: " "
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: " "
+  - status
+  - text: Label
+  - spinbutton "Label"
+  - status
+  - text: Label
+  - spinbutton "Label"
+  - status
+  - text: Label
+  - button "Label"
+  - status
+  - text: Label
+  - button "Label"
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: " "
+  - status

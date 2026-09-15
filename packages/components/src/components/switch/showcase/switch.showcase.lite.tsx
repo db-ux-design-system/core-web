@@ -6,6 +6,7 @@ import SwitchChecked from '../examples/checked.example.lite';
 import SwitchDensity from '../examples/density.example.lite';
 import SwitchDisabled from '../examples/disabled.example.lite';
 import SwitchExamples from '../examples/examples.example.lite';
+import SwitchInteraction from '../examples/interaction.example.lite';
 import SwitchRequired from '../examples/required.example.lite';
 import SwitchShowLabel from '../examples/show-label.example.lite';
 import SwitchShowMessage from '../examples/show-message.example.lite';
@@ -78,6 +79,11 @@ export default function SwitchShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples">
 				<CardWrapperShowcase>
 					<SwitchExamples />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<SwitchInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

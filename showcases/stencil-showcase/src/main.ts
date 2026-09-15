@@ -1,19 +1,30 @@
 import { renderNavigation } from './navigation';
-import { renderPage } from './page';
+import { renderFullscreen, renderPage } from './page';
 import { initRouter } from './router';
 import './styles.css';
 
+function getHashParameters(): URLSearchParams {
+	const [, queryString = ''] = (globalThis.location.hash || '#/').split('?');
+	return new URLSearchParams(queryString);
+}
+
 // TODO: Remove shell state and `showcases/stencil-showcase/src/page.ts` after v6.0.0
 function isShellEnabled(): boolean {
-	const [, queryString = ''] = (globalThis.location.hash || '#/').split('?');
-	const parameters = new URLSearchParams(queryString);
-	const shell = parameters.get('shell');
+	return getHashParameters().get('shell') !== 'false';
+}
 
-	return shell !== 'false';
+// When a single example is requested via `?page=` (or `?fullscreen=`) we render
+// only the bare content, without any shell / control-panel chrome - matching the
+// other framework showcases (see the fullscreen branch of the React showcase).
+function isFullscreen(): boolean {
+	const parameters = getHashParameters();
+	return parameters.has('page') || parameters.get('fullscreen') === 'true';
 }
 
 function render(): void {
-	if (isShellEnabled()) {
+	if (isFullscreen()) {
+		renderFullscreen();
+	} else if (isShellEnabled()) {
 		renderNavigation();
 	} else {
 		renderPage();
@@ -25,17 +36,29 @@ function render(): void {
 // Initial render
 render();
 
-// Re-render on hashchange to switch between shell and page modes
+// Re-render on hashchange to switch between fullscreen, shell and page modes
 globalThis.addEventListener('hashchange', () => {
-	const isCurrentlyShell = isShellEnabled();
+	const fullscreenElement = document.querySelector('.fullscreen-container');
 	const shellElement = document.querySelector('db-shell');
 	const pageElement = document.querySelector('db-page');
 
-	// Only re-render if the shell state changed
-	if (
-		(isCurrentlyShell && !shellElement) ||
-		(!isCurrentlyShell && !pageElement)
-	) {
+	// Determine whether the current DOM already matches the requested mode.
+	let mode: 'fullscreen' | 'shell' | 'page';
+	if (isFullscreen()) {
+		mode = 'fullscreen';
+	} else if (isShellEnabled()) {
+		mode = 'shell';
+	} else {
+		mode = 'page';
+	}
+
+	const isAlreadyRendered =
+		Boolean(mode === 'fullscreen' && fullscreenElement) ||
+		Boolean(mode === 'shell' && shellElement && !fullscreenElement) ||
+		Boolean(mode === 'page' && pageElement && !fullscreenElement);
+
+	// Only re-render the chrome if the mode changed.
+	if (!isAlreadyRendered) {
 		render();
 	}
 });

@@ -18,6 +18,7 @@
     "test:aria-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
     "test:axe-core": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.config.ts",
+    "test:interaction": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.interaction.ts",
     "test:ui": "npm run test:e2e -- --ui",
     "test:visual-snapshots": "cross-env showcase=angular-showcase npx playwright test --config=../playwright.visual-snapshots.ts",
     "watch": "ng build --watch --configuration development"

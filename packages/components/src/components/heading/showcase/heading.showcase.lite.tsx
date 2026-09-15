@@ -7,6 +7,7 @@ import HeadingAsSize from '../examples/as-size.example.lite';
 import HeadingAttributeForwarding from '../examples/attribute-forwarding.example.lite';
 import HeadingDensity from '../examples/density.example.lite';
 import HeadingFontWeight from '../examples/font-weight.example.lite';
+import HeadingInteraction from '../examples/interaction.example.lite';
 import HeadingParagraphSpacing from '../examples/paragraph-spacing.example.lite';
 import HeadingSemanticLevels from '../examples/semantic-levels.example.lite';
 import HeadingSizes from '../examples/sizes.example.lite';
@@ -61,6 +62,11 @@ export default function HeadingShowcase(props: PatternhubProps) {
 				<LinkWrapperShowcase exampleName="Start And End Slot">
 					<CardWrapperShowcase>
 						<HeadingSlots />
+					</CardWrapperShowcase>
+				</LinkWrapperShowcase>
+				<LinkWrapperShowcase exampleName="Interaction">
+					<CardWrapperShowcase>
+						<HeadingInteraction />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 			</div>

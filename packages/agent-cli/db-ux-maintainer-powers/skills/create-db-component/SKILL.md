@@ -1,6 +1,6 @@
 ---
 name: create-db-component
-description: "Creates a new DB UX Design System component with Mitosis source, SCSS, typed model, and Playwright tests."
+description: "Creates a new DB UX Design System component with Mitosis source, SCSS, typed model, and a cross-framework Playwright interaction test."
 
 triggers:
     - "create a new component"
@@ -48,6 +48,7 @@ tools:
 
 outputs:
     - "packages/components/src/components/{component_slug}/"
+    - "showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts"
 
 on_error:
     max_retries: 3
@@ -115,83 +116,88 @@ Throughout this skill:
 
 ### Step 1: RED - Write Failing Tests
 
-Create `packages/components/src/components/{component_slug}/{component_slug}.spec.tsx`:
+Behavior is tested cross-framework against the running showcase, not by mounting an isolated component. This needs two files.
+
+**First, decide if the component has any interaction to test.** Clicks, keyboard input, focus, open/close, value changes -> yes, write the spec below. A purely presentational component with no gestures of its own does not need one (visual/aria/a11y coverage comes from the showcase e2e suite automatically once the showcase page exists).
+
+If interactive, create `packages/components/src/components/{component_slug}/examples/interaction.example.lite.tsx`:
+
+```tsx
+import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
+import DB{component_name} from '../{component_slug}.lite';
+
+useMetadata({
+  storybookTitle: 'Interaction',
+  storybookNames: ['Interaction']
+});
+
+/**
+ * Fixture for the cross-framework interaction e2e test
+ * (see showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts).
+ *
+ * AI-REPLACE: reflect whatever gesture the component supports into an
+ * observable DOM node — the e2e test only sees rendered DOM, never a JS
+ * callback variable.
+ */
+export default function {component_name}Interaction() {
+  const state = useStore({
+    result: 'not clicked',
+    handle() {
+      state.result = 'clicked';
+    }
+  });
+
+  return (
+    <Fragment>
+      <DB{component_name} data-testid="interaction-target" onClick={() => state.handle()}>
+        Content
+      </DB{component_name}>
+      <span data-testid="interaction-result">{state.result}</span>
+    </Fragment>
+  );
+}
+```
+
+Wire it into `showcase/{component_slug}.showcase.lite.tsx` inside a `LinkWrapperShowcase exampleName="Interaction"` block (this file does not exist yet in RED phase — create it in Step 2f, then come back to add the wiring before running the test).
+
+Then create `showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts`:
 
 ```typescript
-import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/experimental-ct-react';
+import { expect, test } from "@playwright/test";
+import { runInteractionTest } from "../default.ts";
 
-import { DB{component_name} } from './index';
-// @ts-ignore - vue can only find it with .ts as file ending
-import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
+// AI-REPLACE: use the real route prefix, e.g. '02/button', '04/tag'.
+const path = "XX/{component_slug}";
 
-const comp: any = <DB{component_name}>Content</DB{component_name}>;
-
-const testComponent = () => {
-  test('should contain text', async ({ mount }) => {
-    const component = await mount(comp);
-    await expect(component).toContainText('Content');
-  });
-
-  test('should match screenshot', async ({ mount }) => {
-    const component = await mount(comp);
-    await expect(component).toHaveScreenshot();
-  });
-
-  // AI-REPLACE: Inline the real variant list from Figma Phase 0.1 here.
-  // AI-NOTE: Do NOT import from model.ts — it does not exist yet in RED phase.
-  for (const variant of ['variant1', 'variant2' /* AI-REPLACE: use real Figma variants */]) {
-    const variantComp: any = <DB{component_name} variant={variant}>Content</DB{component_name}>;
-
-    test(`should contain text for variant ${variant}`, async ({ mount }) => {
-      const component = await mount(variantComp);
-      await expect(component).toContainText('Content');
-    });
-
-    test(`should match screenshot for variant ${variant}`, async ({ mount }) => {
-      const component = await mount(variantComp);
-      await expect(component).toHaveScreenshot();
-    });
-  }
-};
-
-const testA11y = () => {
-  test('should have same aria-snapshot', async ({ mount }, testInfo) => {
-    const component = await mount(comp);
-    const snapshot = await component.ariaSnapshot();
-    expect(snapshot).toMatchSnapshot(`${testInfo.testId}.yaml`);
-  });
-
-  test('should not have any A11y issues', async ({ page, mount }) => {
-    await mount(comp);
-    const accessibilityScanResults = await new AxeBuilder({ page })
-      .include('.db-{component_slug}')
-      .analyze();
-    expect(accessibilityScanResults.violations).toEqual([]);
-  });
-};
-
-test.describe('DB{component_name}', () => {
-  test.use({ viewport: DEFAULT_VIEWPORT });
-  testComponent();
-  testA11y();
+test.describe("DB{component_name}", () => {
+	runInteractionTest({
+		title: "should fire click handler",
+		path,
+		example: "Interaction",
+		async run({ content }) {
+			const result = content.getByTestId("interaction-result");
+			await expect(result).toHaveText("not clicked");
+			await content.getByTestId("interaction-target").click();
+			await expect(result).toHaveText("clicked");
+		}
+	});
 });
 ```
 
-**After writing the spec, build the project, generate outputs, and run the component tests from `output/react`:**
+**After writing the spec, build the project, generate outputs, and run the interaction test against the React showcase:**
 
 ```bash
 pnpm run build && pnpm run build-outputs &&
-cd output/react && pnpm run test:components
+cd showcases/react-showcase && pnpm exec playwright test -g "DB{component_name}"
 ```
 
 **The RED phase is only complete if:**
 
 1. The command exits non-zero.
 2. The failing test names are captured in the output.
-3. The failure is caused by missing or incomplete implementation (e.g. missing module, missing export), NOT by syntax errors in the spec itself.
+3. The failure is caused by missing or incomplete implementation (e.g. missing route, missing testid, component not rendering), NOT by syntax errors in the spec or fixture.
 
-If the spec has syntax errors, fix them first and re-run until you get clean "missing implementation" failures.
+If the spec/fixture has syntax errors, fix them first and re-run until you get clean "missing implementation" failures.
 
 ### Step 2: GREEN - Implement
 
@@ -341,7 +347,7 @@ pnpm changeset
 - [ ] `model.ts` with typed props
 - [ ] `{component_slug}.lite.tsx` with Mitosis patterns
 - [ ] `{component_slug}.scss` with tokens only
-- [ ] `{component_slug}.spec.tsx` with screenshots + a11y
+- [ ] `showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts` (if the component is interactive)
 - [ ] `index.ts` (no `.lite`, no model re-export)
 - [ ] `docs/`, `examples/`, `showcase/`, `agent/` complete
 - [ ] `pnpm run build` passes

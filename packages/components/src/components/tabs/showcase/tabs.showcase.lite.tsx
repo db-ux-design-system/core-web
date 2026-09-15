@@ -8,6 +8,7 @@ import TabsDisabled from '../examples/disabled.example.lite';
 import TabsExamples from '../examples/examples.example.lite';
 import TabsIcons from '../examples/icons.example.lite';
 import TabsInitialSelection from '../examples/initialSelection.example.lite';
+import TabsInteraction from '../examples/interaction.example.lite';
 import TabsNested from '../examples/nested.example.lite';
 import TabsOrientation from '../examples/orientation.example.lite';
 import TabsOverflow from '../examples/overflow.example.lite';
@@ -84,6 +85,11 @@ export default function TabsShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples">
 				<CardWrapperShowcase>
 					<TabsExamples />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<TabsInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

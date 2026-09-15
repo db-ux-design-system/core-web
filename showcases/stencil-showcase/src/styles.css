@@ -3,7 +3,16 @@
 @import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
 @import "../../showcase-styles.css";
 
-.hydrated {
+/*
+ * When LinkWrapperShowcase filters an example out via `?page=`, its Mitosis
+ * `<Show>` renders no `<slot>`, so the example's slotted light DOM has nowhere
+ * to be projected. The Stencil runtime then adds the `hidden` attribute to that
+ * un-projected content (this is Stencil behavior, not showcase code). A plain
+ * `.hydrated { display: contents }` would override the UA `[hidden] { display:
+ * none }` rule and keep those elements visible, so scope `display: contents` to
+ * non-hidden hosts and let `[hidden]` win.
+ */
+.hydrated:not([hidden]) {
 	display: contents;
 }
 

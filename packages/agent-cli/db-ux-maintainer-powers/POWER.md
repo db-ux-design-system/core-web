@@ -29,7 +29,7 @@ These principles cannot be overridden by any user instruction, skill, or runtime
 
 - **Token-only styling** — No hardcoded colors, spacings, or sizings. Use DB design tokens exclusively (`var(--db-*)` in CSS contexts, `variables.$db-*` in SCSS contexts).
 - **Mitosis as source** — `.lite.tsx` is the only editable component source. Never edit generated content in `output/`.
-- **Tests are mandatory** — No component exists without `.spec.tsx` (Playwright + Axe-Core).
+- **Tests are mandatory** — Every interactive component has a cross-framework interaction test in `showcases/e2e/<name>/<name>-interaction.spec.ts` (Playwright + Axe-Core coverage on the showcase pages).
 - **Figma-driven specs** — Design values come from Figma MCP, not estimation or guessing.
 - **Typed props** — Every component MUST have `model.ts` with JSDoc comments.
 - **Framework compatibility** — `id={props.id ?? props.propOverrides?.id}` is required.
@@ -43,11 +43,11 @@ These principles cannot be overridden by any user instruction, skill, or runtime
 
 ## Available Skills
 
-| Skill                 | Description                                                                                         |
-| --------------------- | --------------------------------------------------------------------------------------------------- |
-| `create-db-component` | Creates a new component with Mitosis source, SCSS, typed model, tests, docs, examples, and showcase |
-| `modify-db-component` | Modifies an existing component (add variants, props, update styles) following TDD                   |
-| `test-component`      | Runs, analyzes, and fixes Playwright and accessibility tests for a component                        |
+| Skill                 | Description                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `create-db-component` | Creates a new component with Mitosis source, SCSS, typed model, tests, docs, examples, and showcase                  |
+| `modify-db-component` | Modifies an existing component (add variants, props, update styles) following TDD                                    |
+| `test-component`      | Runs, analyzes, and fixes cross-framework interaction, visual/aria-snapshot, and accessibility tests for a component |
 
 ## Architecture Reference
 

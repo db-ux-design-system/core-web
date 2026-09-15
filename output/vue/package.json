@@ -35,16 +35,13 @@
     "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/vue/CHANGELOG.md",
     "mv:dist": "cpy dist ../../build-outputs/vue --dot",
     "mv:package.json": "cpy package.json ../../build-outputs/vue/package.json",
-    "mv:readme": "cpy README.md ../../build-outputs/vue/README.md",
-    "test:components": "playwright test --config playwright.config.ts",
-    "test:components:ui": "playwright test --config playwright.config.ts --ui"
+    "mv:readme": "cpy README.md ../../build-outputs/vue/README.md"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-vue": "1.62.1",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/compiler-dom": "3.5.42",
     "cpy-cli": "7.0.0",

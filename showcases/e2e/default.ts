@@ -1,13 +1,17 @@
 import { AxeBuilder } from '@axe-core/playwright';
-import { expect, type FullProject, type Page, test } from '@playwright/test';
-import { createRequire } from 'node:module';
-
-import { lvl1 } from './fixtures/variants';
-import { setScrollViewport } from './fixtures/viewport';
-
+import {
+	expect,
+	type FullProject,
+	type Locator,
+	type Page,
+	test
+} from '@playwright/test';
 import type { Checker } from 'accessibility-checker-engine';
 import { type Issue } from 'accessibility-checker-engine/v4/api/IRule';
+import { createRequire } from 'node:module';
 import { type PageAssertionsToHaveScreenshotOptions } from 'playwright/types/test';
+import { lvl1 } from './fixtures/variants.ts';
+import { setScrollViewport } from './fixtures/viewport.ts';
 
 const density = 'regular';
 
@@ -42,6 +46,29 @@ export type A11yCheckerTestType = {
 	preChecker?: (page: Page) => Promise<void>;
 } & DefaultTestType;
 
+export type InteractionTestType = {
+	/**
+	 Test title shown in the report.
+	 */
+	title: string;
+	/**
+	 Optional example name to target a single example on the showcase page
+	 (matches the `page=` query the showcase uses to filter examples).
+	 The value is lower-cased and spaces are replaced with `+`, mirroring
+	 `LinkWrapperShowcase.getPage()`.
+	 */
+	example?: string;
+	/**
+	 The interaction to run. `content` is the `#main-content` locator, already
+	 scoped to the rendered example, so tests do not have to repeat the scope.
+	 */
+	run: (args: {
+		page: Page;
+		content: Locator;
+		project: FullProject;
+	}) => Promise<void>;
+} & DefaultTestType;
+
 export const isStencil = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('stencil'));
 export const isAngular = (showcase?: string): boolean =>
@@ -61,15 +88,27 @@ export const waitForDBShell = async (page: Page) => {
 	await expect(dbShell).toHaveCSS('opacity', '1');
 };
 
+/**
+ Normalizes an example name into the `page=` query value the showcase uses to
+ filter to a single example. Mirrors `LinkWrapperShowcase.getPage()`:
+ lower-cased with spaces replaced by `+`.
+ */
+export const getExampleParameter = (example: string): string =>
+	example.replaceAll(' ', '+').toLowerCase();
+
 const gotoPage = async (
 	page: Page,
 	path: string,
 	color: string,
 	fixedHeight?: number,
-	otherDensity?: 'functional' | 'regular' | 'expressive'
+	otherDensity?: 'functional' | 'regular' | 'expressive',
+	example?: string
 ) => {
+	const pageParameter = example
+		? `&page=${getExampleParameter(example)}`
+		: '';
 	await page.goto(
-		`./#/${path}?density=${otherDensity ?? density}&color=${color}`,
+		`./#/${path}?density=${otherDensity ?? density}&color=${color}${pageParameter}`,
 		{
 			waitUntil: 'domcontentloaded'
 		}
@@ -77,8 +116,10 @@ const gotoPage = async (
 	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
 	await page.evaluate(async () => document.fonts.ready);
 
-	await waitForDBShell(page);
-	await setScrollViewport(page, fixedHeight)();
+	if (!example) {
+		await waitForDBShell(page);
+		await setScrollViewport(page, fixedHeight)();
+	}
 };
 
 const shouldSkip = (project: FullProject, skip?: SkipType): boolean => {
@@ -188,13 +229,15 @@ export const runAxeCoreTest = ({
 		// see https://github.com/dequelabs/axe-core-npm/issues/1067
 		/* eslint-disable unicorn/isolated-functions -- document is available in browser context */
 		await page.evaluate(($project) => {
-			if ($project.use.contextOptions?.forcedColors === 'active') {
-				const style = document.createElement('style');
-				document.head.append(style);
-				const textColor =
-					$project.use.colorScheme === 'dark' ? '#fff' : '#000';
-				style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
+			if ($project.use.contextOptions?.forcedColors !== 'active') {
+				return;
 			}
+
+			const style = document.createElement('style');
+			document.head.append(style);
+			const textColor =
+				$project.use.colorScheme === 'dark' ? '#fff' : '#000';
+			style.textContent = `* {-webkit-text-stroke-color:${textColor}!important;-webkit-text-fill-color:${textColor}!important;}`;
 		}, project);
 		/* eslint-enable unicorn/isolated-functions */
 
@@ -253,6 +296,7 @@ export const runA11yCheckerTest = ({
 				if (!ace?.Checker) {
 					return [];
 				}
+
 				const checker: Checker = new ace.Checker();
 				const report = await checker.check(document, [
 					'IBM_Accessibility'
@@ -332,5 +376,52 @@ export const runAriaSnapshotTest = ({
 			.join('\n');
 
 		expect(snapshot).toMatchSnapshot(`${title}.yaml`);
+	});
+};
+
+/**
+ Runs a cross-framework interaction test against a showcase example.
+
+ Replaces the component-mount interaction tests that previously lived in
+ `packages/components/src/components/**\/*.spec.tsx` and only ran against the
+ React and Vue outputs. By driving the running showcase app instead of a
+ mounted component, the same assertions run against every framework showcase
+ (react, vue, angular, stencil, next, nuxt).
+
+ The `run` callback receives the `page` plus a `content` locator already
+ scoped to `#main-content`, so tests interact with the rendered example the
+ * same way a user would and assert on observable DOM instead of JS callbacks.
+ */
+export const runInteractionTest = ({
+	title,
+	path,
+	example,
+	fixedHeight,
+	skip,
+	run
+}: InteractionTestType) => {
+	test(title, async ({ page }, { project }) => {
+		if (shouldSkip(project, skip)) {
+			test.skip();
+		}
+
+		if (typeof fixedHeight === 'function') {
+			fixedHeight = fixedHeight(project);
+		}
+
+		await gotoPage(page, path, lvl1, fixedHeight, density, example);
+
+		// Scope to the requested example's container. Each LinkWrapperShowcase
+		// tags its content with `data-example="<normalized name>"`, so the
+		// locator stays unambiguous even on Stencil, which keeps non-matching
+		// examples in the DOM (hidden) instead of removing them like React/Vue.
+		const root = page.locator('.fullscreen-container').first();
+		const content = example
+			? root
+					.locator(`[data-example="${getExampleParameter(example)}"]`)
+					.first()
+			: root;
+
+		await run({ page, content, project });
 	});
 };

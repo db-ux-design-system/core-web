@@ -4,6 +4,8 @@ import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import AccordionBehavior from '../examples/behavior.example.lite';
 import AccordionDensity from '../examples/density.example.lite';
+import AccordionInteractionAction from '../examples/interaction-action.example.lite';
+import AccordionInteractionInitOpen from '../examples/interaction-init-open.example.lite';
 import AccordionVariant from '../examples/variant.example.lite';
 
 export default function AccordionShowcase(props: PatternhubProps) {
@@ -24,6 +26,16 @@ export default function AccordionShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Behavior">
 				<CardWrapperShowcase>
 					<AccordionBehavior />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Init Open">
+				<CardWrapperShowcase>
+					<AccordionInteractionInitOpen />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Action">
+				<CardWrapperShowcase>
+					<AccordionInteractionAction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
