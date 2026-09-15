@@ -681,6 +681,33 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
+export type CancelEventProps<T> = {
+	/**
+	 * Called when the native cancel event fires (e.g. Escape key on a dialog).
+	 * Call event.preventDefault() to veto the native close.
+	 */
+	onCancel?: (event: GeneralEvent<T>) => void;
+	/**
+	 * Called when the native cancel event fires (e.g. Escape key on a dialog).
+	 * Call event.preventDefault() to veto the native close.
+	 */
+	cancel?: (event: GeneralEvent<T>) => void;
+};
+
+/**
+ * Shared internal state for the native `<dialog>`-based components (DBDialog and
+ * DBDrawer). Both drive the same open/click/keydown/cancel handlers and the id
+ * fallback, so they extend this instead of duplicating the shape.
+ */
+export type DialogDrawerDefaultState = {
+	resetId: () => void;
+	handleDialogOpen: () => void;
+	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
+	handleKeyDown: (event: any) => void;
+	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
+	isNotModal: () => boolean;
+};
+
 export const AlignmentList = ['start', 'center', 'end'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {

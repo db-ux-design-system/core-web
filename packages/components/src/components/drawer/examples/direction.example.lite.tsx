@@ -27,16 +27,18 @@ export default function DrawerDirection() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-direction-to-left"
 					onClick={() => setOpenIndex(0)}>
 					Open: (Default) To-Left
 				</DBButton>
 				<DBDrawer
+					id="drawer-direction-to-left"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) To-Left
+							<h2>(Default) To-Left</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) To-Left
@@ -44,17 +46,19 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-direction-to-right"
 					onClick={() => setOpenIndex(1)}>
 					Open: To-Right
 				</DBButton>
 				<DBDrawer
+					id="drawer-direction-to-right"
 					direction="to-right"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							To-Right
+							<h2>To-Right</h2>
 						</DBDrawerHeader>
 					}>
 					To-Right
@@ -62,17 +66,19 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-direction-up"
 					onClick={() => setOpenIndex(2)}>
 					Open: Up
 				</DBButton>
 				<DBDrawer
+					id="drawer-direction-up"
 					direction="up"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Up
+							<h2>Up</h2>
 						</DBDrawerHeader>
 					}>
 					Up
@@ -80,17 +86,19 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-direction-down"
 					onClick={() => setOpenIndex(3)}>
 					Open: Down
 				</DBButton>
 				<DBDrawer
+					id="drawer-direction-down"
 					direction="down"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Down
+							<h2>Down</h2>
 						</DBDrawerHeader>
 					}>
 					Down
@@ -98,18 +106,20 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-direction-up-full"
 					onClick={() => setOpenIndex(4)}>
 					Open: Up (Full)
 				</DBButton>
 				<DBDrawer
+					id="drawer-direction-up-full"
 					direction="up"
 					containerSize="full"
 					open={openIndex === 4}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Up (Full)
+							<h2>Up (Full)</h2>
 						</DBDrawerHeader>
 					}>
 					Up (Full)
@@ -117,18 +127,20 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-direction-down-full"
 					onClick={() => setOpenIndex(5)}>
 					Open: Down (Full)
 				</DBButton>
 				<DBDrawer
+					id="drawer-direction-down-full"
 					direction="down"
 					containerSize="full"
 					open={openIndex === 5}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Down (Full)
+							<h2>Down (Full)</h2>
 						</DBDrawerHeader>
 					}>
 					Down (Full)

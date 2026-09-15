@@ -1,7 +1,9 @@
 import type {
+	CancelEventProps,
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
+	DialogDrawerDefaultState,
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
@@ -38,12 +40,16 @@ export const DrawerContainerSizeList = [
 ] as const;
 export type DrawerContainerSizeType = (typeof DrawerContainerSizeList)[number];
 
+export const DrawerClosedByList = ['any', 'closerequest', 'none'] as const;
+export type DrawerClosedByType = (typeof DrawerClosedByList)[number];
+
 export type DBDrawerDefaultProps = {
 	/**
 	 * The backdrop attribute changes the opacity of the backdrop.
 	 * The backdrop 'none' will use `dialog.show()` instead of `dialog.showModal()`
 	 */
 	backdrop?: DrawerBackdropType;
+
 	/**
 	 * The direction attribute changes the position & animation of the drawer.
 	 * E.g. "to-left" slides from right screen border to the left.
@@ -90,26 +96,31 @@ export type DBDrawerDefaultProps = {
 	 * Change the size of the drawer container.
 	 */
 	containerSize?: DrawerContainerSizeType;
+
+	/**
+	 * React specific onClick to pass to forward ref. Composed with the
+	 * backdrop-close ponyfill, so a consumer handler still fires.
+	 */
+	onClick?: (event: ClickEvent<HTMLDialogElement>) => void;
+
+	/**
+	 * React specific onKeyDown to pass to forward ref. Composed with the
+	 * Escape-close ponyfill, so a consumer handler still fires.
+	 */
+	onKeyDown?: (event: GeneralKeyboardEvent<HTMLDialogElement>) => void;
 };
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
+	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
 		| GeneralKeyboardEvent<HTMLDialogElement>
 	>;
 
-export type DBDrawerDefaultState = {
-	handleDialogOpen: () => void;
-	isNotModal: () => boolean;
-	handleBackdropPointerDown: (event: any) => void;
-	backdropPointerDown: boolean;
-};
+export type DBDrawerDefaultState = DialogDrawerDefaultState;
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &
-	CloseEventState<
-		| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-		| GeneralKeyboardEvent<HTMLDialogElement>
-	> &
+	CloseEventState<Event> &
 	InitializedState;
