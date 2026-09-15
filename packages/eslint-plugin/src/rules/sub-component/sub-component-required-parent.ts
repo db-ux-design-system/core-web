@@ -419,7 +419,16 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkComponent, Element: checkComponent },
+			// `Element$1` is the Vue parser's fallback element type; register it
+			// too so a sub-component (e.g. DBDialogHeader/DBDialogFooter) exposed
+			// as that node is still validated. Walking `Element$1` ancestors does
+			// not help when the root sub-component itself is skipped (matches the
+			// header-required rules and text-or-children-required).
+			{
+				VElement: checkComponent,
+				Element: checkComponent,
+				Element$1: checkComponent
+			},
 			{ JSXElement: checkComponent }
 		);
 	}
