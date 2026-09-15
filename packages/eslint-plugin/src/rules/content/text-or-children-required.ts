@@ -211,6 +211,9 @@ export default {
 					(child.type === 'VText' && child.value.trim() !== '') ||
 					child.type === 'JSXElement' ||
 					child.type === 'VElement' ||
+					// The Vue parser may expose an element child as its fallback
+					// `Element$1` node, so count it as content too.
+					child.type === 'Element$1' ||
 					// A JSX expression child counts as content unless it renders
 					// nothing (e.g. {null}, {false}, {''}), which would leave the
 					// element referenced by aria-labelledby empty.
@@ -248,7 +251,15 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkComponent, Element: checkComponent },
+			// `Element$1` is the Vue parser's fallback element type; register it
+			// too so a DBDialogHeader/DBDrawerHeader exposed as that node still
+			// runs through this recommended accessibility check (matches the
+			// header-required rules, which register all three).
+			{
+				VElement: checkComponent,
+				Element: checkComponent,
+				Element$1: checkComponent
+			},
 			{ JSXElement: checkComponent }
 		);
 	}
