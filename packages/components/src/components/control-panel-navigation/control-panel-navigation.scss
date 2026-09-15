@@ -10,6 +10,14 @@
 @use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown";
 
 %drilldown-navigation {
+	// The drilldown sub-menu is position: absolute; inset: 0 and must fill the
+	// whole nav scroll container as a sliding overlay. Reset the group back to
+	// static (it is relative by default via %navigation-item, for icon-passing)
+	// so the overlay anchors to the scroll container instead of the group box.
+	.db-control-panel-navigation-item-group {
+		position: static;
+	}
+
 	// Prevent scrolling behind the active drilldown overlay.
 	// When a group is expanded, the nav root and any intermediate
 	// menus (which have a deeper expanded child) get overflow:hidden.
@@ -35,15 +43,13 @@
 		&[aria-expanded="true"] {
 			~ .db-control-panel-navigation-item-group-menu {
 				visibility: visible;
-
-				// Reveal fully via clip-path (right -> left). Keeps the
-				// panel in place with no transform travel or width reflow.
-				clip-path: inset(0 0 0 0);
+				margin-inline-start: 0;
 
 				@media (prefers-reduced-motion: no-preference) {
 					transition:
-						visibility 0ms linear 0ms,
-						clip-path
+						visibility 1ms linear,
+						// workaround to enable focus with keyboard
+						margin-inline-start
 							#{variables.$db-transition-duration-extra-slow}
 							#{variables.$db-transition-timing-emotional};
 				}
@@ -56,17 +62,15 @@
 
 		&:not(&[aria-expanded="true"]) {
 			~ .db-control-panel-navigation-item-group-menu {
-				// Clip from the left so the panel is hidden while
-				// collapsed and revealed starting at the right edge,
-				// sweeping to the left when opened.
-				clip-path: inset(0 0 0 100%);
+				margin-inline-start: 100%;
 			}
 
 			@media (prefers-reduced-motion: no-preference) {
 				~ .db-control-panel-navigation-item-group-menu {
 					transition:
 						visibility 0ms linear 410ms,
-						clip-path #{variables.$db-transition-duration-slow}
+						margin-inline-start
+							#{variables.$db-transition-duration-slow}
 							#{variables.$db-transition-timing-emotional}; // hide animation is 0.4s
 				}
 			}
@@ -84,6 +88,13 @@
 }
 
 %popover-navigation {
+	position: relative;
+
+	// Each item group is the positioning context for its own popover flyout
+	// menu (position: absolute; inset-inline-start: 0). The group is already
+	// position: relative via %navigation-item; the drilldown variant is the
+	// only one that resets it to static, so no override is needed here.
+
 	.db-control-panel-navigation-item-group-expand-button {
 		&:is(:hover, :focus-visible):not(
 				:has(
@@ -114,19 +125,6 @@
 	}
 }
 
-%non-tree-navigation {
-	.db-control-panel-navigation-item {
-		@include icon-passing.icon-passing;
-	}
-
-	.db-control-panel-navigation-item-group {
-		@include icon-passing.icon-passing(
-			variables.$db-spacing-fixed-sm,
-			variables.$db-spacing-fixed-xs
-		);
-	}
-}
-
 %tree-navigation {
 	.db-control-panel-navigation-item {
 		&:not([data-icon]) {
@@ -137,10 +135,6 @@
 			a {
 				@include icons.set-icon("circle_small");
 			}
-		}
-
-		&[data-icon] {
-			@include icon-passing.icon-passing;
 		}
 	}
 
@@ -204,7 +198,6 @@
 
 .db-control-panel-navigation {
 	inline-size: 100%;
-	position: relative;
 
 	@include screen-sizes.screen("md") {
 		inline-size: auto;
@@ -219,8 +212,6 @@
 	}
 
 	&:not([data-variant="tree"]) {
-		@extend %non-tree-navigation;
-
 		// MOBILE Sliding
 		@include screen-sizes.screen-min-max(
 			(

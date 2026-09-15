@@ -35,6 +35,13 @@
 				flex-direction: column;
 
 				.db-control-panel-navigation-item {
+					// The indicator is anchored to the item, not the anchor:
+					// the anchor clips overflow (for text ellipsis), which
+					// would hide the indicator sitting at a negative inset.
+					// The %indicator skeleton is extended in the base block
+					// (extend across media queries is not allowed).
+					@include indicator.set-indicator-vertical;
+
 					a {
 						inline-size: 100%;
 						block-size: 100%;
@@ -43,14 +50,10 @@
 						white-space: nowrap;
 						display: inline;
 						text-align: center;
-
-						@include indicator.set-indicator-vertical;
 					}
 
 					@include navigation-item.active-navigation-item {
-						a {
-							@include indicator.show-indicator-vertical;
-						}
+						@include indicator.show-indicator-vertical;
 					}
 				}
 			}
@@ -231,13 +234,18 @@
 		justify-content: center;
 		align-items: center;
 
+		// The indicator "::after" is attached per breakpoint: on the item
+		// itself for desktop (vertical), and on the end-slot-container for
+		// mobile (horizontal). The anchor must not carry it because its
+		// overflow: hidden (for text ellipsis) would clip the indicator.
+		@extend %indicator;
+
 		.db-control-panel-navigation-item-end-slot-container {
 			@extend %indicator;
 		}
 
 		a {
 			@extend %db-overwrite-font-size-3xs;
-			@extend %indicator;
 
 			min-block-size: variables.$db-sizing-md;
 			min-inline-size: variables.$db-sizing-md;

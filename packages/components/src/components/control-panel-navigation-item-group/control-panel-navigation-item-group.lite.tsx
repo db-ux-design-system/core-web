@@ -426,8 +426,6 @@ export default function DBControlPanelNavigationItemGroup(
 				'db-control-panel-navigation-item-group',
 				props.className
 			)}
-			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={getBooleanAsString(props.active, 'active')}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button
@@ -441,6 +439,8 @@ export default function DBControlPanelNavigationItemGroup(
 					state.isSubNavigationExpanded
 				)}
 				class="db-control-panel-navigation-item-group-expand-button"
+				data-icon={props.icon}
+				data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				onClick={(event: ClickEvent<HTMLButtonElement>) =>
 					state.handleClick(event)
