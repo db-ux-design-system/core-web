@@ -30,7 +30,7 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@types/node": "^26.5.0",
+    "@types/node": "^26.5.1",
     "@types/react": "19.2.18",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
