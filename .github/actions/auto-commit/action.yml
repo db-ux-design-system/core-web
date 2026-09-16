@@ -36,6 +36,23 @@ runs:
           echo "changes_detected=true" >> $GITHUB_ENV
         fi
 
+    - name: 🔎 Verify App credentials are present
+      if: env.changes_detected == 'true'
+      shell: bash
+      env:
+        CLIENT_ID: ${{ inputs.auto-merge-client-id }}
+        PRIVATE_KEY: ${{ inputs.auto-merge-private-key }}
+      run: |
+        if [[ -z "$CLIENT_ID" ]]; then
+          echo "::error::auto-merge-client-id input is empty (check vars.AUTO_MERGE_CLIENT_ID and the caller)."
+          exit 1
+        fi
+        if [[ -z "$PRIVATE_KEY" ]]; then
+          echo "::error::auto-merge-private-key input is empty in this run. Dependabot-triggered runs only see secrets exposed to them; verify AUTO_MERGE_PRIVATE_KEY is passed in and available."
+          exit 1
+        fi
+        echo "App credentials are present."
+
     - name: 🏗️ Create new branch and commit changes
       if: env.changes_detected == 'true'
       shell: bash
