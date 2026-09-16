@@ -352,6 +352,25 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
 - **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Narrowing an optional prop does not survive the Angular signal transform**: Angular rewrites every prop access into a signal call, so guarding `props.foo` and then using it are two separate `this.foo()` calls and TypeScript drops the narrowing. This fails the Angular build with `TS2532: Object is possibly 'undefined'` while React, Vue and Stencil compile — so it only shows up in `build-outputs`. Assign the prop to a local first.
+
+    ```ts
+    // ✅ Correct — the local keeps the narrowing
+    const pattern = props.hrefPattern;
+    if (!pattern) {
+    	return undefined;
+    }
+    return pattern.replaceAll("{page}", String(page));
+
+    // ❌ Wrong — becomes two this.hrefPattern() calls in Angular
+    if (!props.hrefPattern) {
+    	return undefined;
+    }
+    return props.hrefPattern.replaceAll("{page}", String(page));
+    ```
+
+    A `??` fallback (`props.pageLabel ?? "default"`) is unaffected, because it needs no narrowing.
+
 - **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
 
     ```tsx
@@ -377,6 +396,63 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     }
     ```
 
+## Responsive layouts belong in the DOM, not in a resize handler
+
+When a component has to render fewer items on narrow viewports, render **all**
+layouts into the DOM at once, tag each item with the layout it belongs to, and
+let CSS decide which ones are shown. Do not measure widths in `onUpdate` and do
+not reach for `ResizeObserver` or `matchMedia` — see
+[Shift-left: HTML → CSS → JS](../../docs/shift-left-web-development.md).
+
+`DBPagination` is the reference. Its `<li>` elements carry
+`data-pagination-item` (`page`, `sibling`, `collapsed`) and `pagination.scss`
+toggles `display` per layout inside `screen-sizes.screen("sm", "max")`. Three
+things made it work:
+
+- **Give each layout its own list, and make one a subset of the other.**
+  `getPages` produces the wide list and `getCollapsedPages` the narrow one. They
+  are deliberately **not** the same function with a smaller `siblingCount`: the
+  wide algorithm keeps the number of rendered items constant by shifting its
+  window towards the opposite border, which puts three full-width pages next to
+  each other as soon as the current page sits at one end (`1 ... 9998 9999
+10000`). Width is the only reason the collapsed layout exists, so it renders one
+  page at each end, the current page, and nothing else - it ignores `boundaryCount`
+  above one for the same reason it ignores `siblingCount`. What both must share is
+  the set of invariants — ascending unique pages, the current page always present,
+  the pages a layout pins actually rendered, no ellipsis standing in for a single
+  page — and the collapsed pages must stay a subset of the wide ones, because that
+  is what lets one list of items carry both.
+  Assert those invariants for both layouts in the spec instead of deriving one
+  from the other.
+- **A gap belongs to a layout, not to the list.** Removing items opens gaps that
+  the other layout does not have, so a separator cannot be one shared element. Do
+  not emit an element per gap either: draw the gap as a pseudo element on the item
+  that borders it and give each layout its own attribute (`data-ellipsis-wide`,
+  `data-ellipsis-collapsed`). A marker then inherits the visibility of its carrier,
+  which is what makes it switch with the layout, and `content: "..." / ""` keeps it
+  out of the accessibility tree without an `aria-hidden` element.
+- **Hide with `display: none`.** Anything weaker keeps the hidden items in the
+  tab order and in the accessibility tree. Note that a focused element that gets
+  hidden loses focus to the document; that is the browser doing its job and
+  restoring it would need JavaScript.
+- **Let a step control activate the item it points at.** `DBPagination` gives its
+  previous and next buttons no page logic of their own: they look up the `<li>` with
+  the neighbouring `data-page` and click the control inside it, which bubbles back to
+  the one delegated handler on the list. That is what reaches a child a consumer
+  composed — reporting the page directly would leave a router link untouched and the
+  router of the consumer out of the loop. Two conditions come with it: fall back to
+  reporting the page when the neighbour is not rendered (`siblingCount: 0`, or a
+  composed list that omits it), and only do this where the control is a button. An
+  anchor with a real `href` has to stay one, or it loses `rel`, middle click and the
+  ability to work without JavaScript.
+
+Two consequences for the specs: `DEFAULT_VIEWPORT` from `src/shared/constants.ts`
+is 390px wide, so a spec that does not switch viewports tests the **narrow**
+layout — use `DESKTOP_VIEWPORT` (or `TESTING_VIEWPORTS`) for the wide one. And
+`getByRole` does not match elements hidden with `display: none`, because they are
+gone from the accessibility tree; use a DOM locator when the assertion is about
+the item still being in the markup.
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
@@ -397,6 +473,61 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_scrollbar.scss`         | Scrollbar styling                                       |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+### Want the look of a button but not its box? Extend the placeholders
+
+`set-basic-button` bundles two things: the appearance (border, radius, focus
+indicator, typography, variant colours) and the box (`padding`,
+`inline-size: fit-content`, `min-block-size`). Take it whole and you get both — which
+is right for `DBButton` and `DBCustomButton`, and wrong for a component whose box is
+its own, like a square pagination control.
+
+Do **not** nest `DBButton` to borrow the appearance, and do not include the mixin with
+the control as a child selector either. Both leave the shared rules in charge of the
+box, and they outrank you:
+
+```text
+.db-button[data-size="small"]:not([data-no-text="true"])            (0,3,0)
+.db-pagination-item[data-size="small"] > :is(a, button)              (0,2,1)   loses
+```
+
+That is a real bug, not a theoretical one: the small pagination controls rendered
+33.8px wide instead of the 24px the concept specifies, because the 12px inline padding
+of a small text button won. Beating it needs the competing `:not()` repeated, which
+only holds until the shared file changes again.
+
+Instead extend the placeholders you actually want and keep the box local:
+
+```scss
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/component";
+
+> :is(a, button) {
+	@extend %default-interactive-component; // border + radius + focus
+	@extend %default-button; // inline-flex, centring, weight
+	@extend %db-overwrite-font-size-md;
+
+	block-size: variables.$db-sizing-md; // the box stays yours
+	padding: variables.$db-spacing-fixed-2xs;
+	text-decoration: none; // for anchor use
+}
+```
+
+Variant colours come from `%button-outlined-ghost-colors` (ghost/outlined) and a
+`background-color` for filled. Placeholders are not namespaced, so `@use`-ing the file
+is enough to extend them.
+
+Two things to keep in mind when you do this:
+
+- **Put the state attributes on the wrapper**, not on the control. `data-variant` and
+  `data-size` on the `<li>` (or whatever the shell is) means the control needs none,
+  and a child a consumer composed is styled from there too — a consumer link used to
+  come out with the box but none of the colours, because those hung on a class it did
+  not have.
+- **`--db-overwrite-cursor` is not optional.** The foundations carry a global
+  `:is(a[href], button):not(...):hover` rule that resolves it at (0,3,1). A plain
+  `cursor: default` on your control loses to it on hover, so set the custom property
+  for the hover state and `cursor` itself for the resting state.
 
 ## Shared Props (`src/shared/model.ts`)
 

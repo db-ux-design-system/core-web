@@ -5,18 +5,22 @@ import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 
 const outdir = './dist';
 
-const HEADING_TAGS = new Set([
-	'db-heading-h-1',
-	'db-heading-h-2',
-	'db-heading-h-3',
-	'db-heading-h-4',
-	'db-heading-h-5',
-	'db-heading-h-6',
-	'db-custom-heading'
+// Elements that are documented on another element's page, because they belong to a
+// component family. The Patternhub lists them there via `elements` in
+// `components.json`, so their own tag name resolves to no page.
+const FAMILY_DOCUMENTATION_PATHS = new Map([
+	['db-heading-h-1', 'data-display/heading'],
+	['db-heading-h-2', 'data-display/heading'],
+	['db-heading-h-3', 'data-display/heading'],
+	['db-heading-h-4', 'data-display/heading'],
+	['db-heading-h-5', 'data-display/heading'],
+	['db-heading-h-6', 'data-display/heading'],
+	['db-custom-heading', 'data-display/heading'],
+	['db-pagination-item', 'navigation/pagination']
 ]);
 
 const getDocumentationPath = (tag) =>
-	HEADING_TAGS.has(tag) ? 'data-display/heading' : tag.replace('db-', '');
+	FAMILY_DOCUMENTATION_PATHS.get(tag) ?? tag.replace('db-', '');
 
 const vsCodeOptions = {
 	outdir,
