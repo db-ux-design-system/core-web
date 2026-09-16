@@ -218,8 +218,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0(supports-color@10.2.2)
       '@guidepup/setup':
-        specifier: 0.25.2
-        version: 0.25.2(supports-color@10.2.2)
+        specifier: 0.25.3
+        version: 0.25.3(supports-color@10.2.2)
       '@playwright/experimental-ct-core':
         specifier: 1.62.1
         version: 1.62.1(@types/node@26.5.1)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.104.1)(terser@5.51.2)(tsx@4.23.13)(yaml@2.9.1)
@@ -3855,8 +3855,8 @@ packages:
   '@guidepup/record@0.1.0':
     resolution: {integrity: sha512-jtSqZ0CZVdWzWIbLWHYoUi1IbNJVKns20oEYzwcTftw8rY5RXsK1OTXaXFx9Gup5mnmYaFLnON8WwTS+4DYwrQ==}
 
-  '@guidepup/setup@0.25.2':
-    resolution: {integrity: sha512-76aO6uefBt6LXGFU5b/hyql3SxEGX2l4/Zba2PT1S8Dc/Zec3iBNXM0lHCouo0Cp0DeYtTPpnXa45c0O0eFang==}
+  '@guidepup/setup@0.25.3':
+    resolution: {integrity: sha512-vQtQSdrLGHY0lh16dA5LL22fQwNr8Ed3Ll1EAZyxRm30sYkNsQ+rijIe7v8LQMOT78pjRGYzkYH9P53nTc6eIQ==}
     hasBin: true
 
   '@harperfast/extended-iterable@1.0.3':
@@ -19116,7 +19116,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/setup@0.25.2(supports-color@10.2.2)':
+  '@guidepup/setup@0.25.3(supports-color@10.2.2)':
     dependencies:
       chalk: 4.1.2
       commander: 15.0.0
