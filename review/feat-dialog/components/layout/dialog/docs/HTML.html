@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-dialog/_next/static/css/78ff4dc502c43b5a.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-dialog/_next/static/css/78ff4dc502c43b5a.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-dialog/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-dialog/_next/static/chunks/webpack-b50a6d3641f0fbfd.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/framework-46903522d23c49d9.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/main-5c410031dcb4d80b.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/_app-321c5bfe4fa55e40.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/5921-41c8ff814dc4065a.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/components/layout/dialog/docs/HTML-882044019f092d02.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/otbaUfB48oofc3nbN5O-9/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/otbaUfB48oofc3nbN5O-9/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-dialog/_next/static/css/1e15c7a992010238.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-dialog/_next/static/css/1e15c7a992010238.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-dialog/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-dialog/_next/static/chunks/webpack-bb878476bc8feb93.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/framework-0d21bc66bbf652a5.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/main-01f6edeb916b09f5.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/_app-52445d4e07b9a0fb.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/22665-fd88a89e1eddaea5.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/components/layout/dialog/docs/HTML-c5d1a15d66ae8a13.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/x_mq2KiZQb4oO-vyqFK_f/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/x_mq2KiZQb4oO-vyqFK_f/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
 <p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
 <h3 id="general">General<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
 <p>The dialog is a native <code>&lt;dialog&gt;</code> element. It centres itself, sizes to its content and is capped by
@@ -9,10 +9,28 @@ including <code>full</code>, so that a clickable backdrop area always remains. O
 <code>--db-dialog-viewport-inset</code> CSS variable, e.g. <code>--db-dialog-viewport-inset: 0px;</code> for an edge-to-edge dialog.</p>
 <h3 id="use-component">Use component<a class="header-link" href="/core-web/review/feat-dialog/components/layout/dialog/docs/HTML?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
 <p>Use <a target="_blank" referrerPolicy="no-referrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API">Invoker Commands</a> (<code>command</code> and
-<code>commandfor</code> HTML attributes) to declaratively connect buttons with the <code>&lt;dialog&gt;</code> element via its <code>id</code>. Supported
-built-in commands for <code>&lt;dialog&gt;</code> are <code>show-modal</code>, <code>show</code> and <code>request-close</code> (recommended over <code>close</code>).</p>
+<code>commandfor</code> HTML attributes) to declaratively connect buttons with the <code>&lt;dialog&gt;</code> element via its <code>id</code>. The
+built-in commands for <code>&lt;dialog&gt;</code> are <code>show-modal</code>, <code>close</code> and <code>request-close</code> (<code>request-close</code> is recommended over
+<code>close</code>).</p>
 <p>Prefer <code>request-close</code> for close buttons: it fires a <code>cancel</code> event before closing, so you can veto the close with
 <code>event.preventDefault()</code>. <code>close</code> dismisses the dialog immediately without that opportunity.</p>
+<p>There is <strong>no</strong> built-in command to open a dialog non-modally (<code>backdrop=&quot;none&quot;</code>, via <code>dialog.show()</code>). For that, open
+it from your own code (e.g. by toggling the native <code>open</code> HTML-attribute) or wire a
+<a target="_blank" referrerPolicy="no-referrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API#custom_commands">custom command</a> - a <code>command</code>
+value starting with <code>--</code> dispatches a <code>command</code> event on the target that you handle yourself:</p>
+<pre><code class="language-html">&lt;button class=&quot;db-button&quot; command=&quot;--show&quot; commandfor=&quot;my-dialog&quot;&gt;
+	Open dialog
+&lt;/button&gt;
+&lt;script&gt;
+	document
+		.querySelector(&quot;#my-dialog&quot;)
+		.addEventListener(&quot;command&quot;, (event) =&gt; {
+			if (event.command === &quot;--show&quot;) {
+				event.currentTarget.show();
+			}
+		});
+&lt;/script&gt;
+</code></pre>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
 ...
 &lt;body&gt;
@@ -65,7 +83,12 @@ focus trap, and clicks outside the dialog leave it open.</p>
 <code>dialog.returnValue</code>, so you do not need any close handling of your own. A <code>&lt;form method=&quot;dialog&quot;&gt;</code> does the same for
 all of its submit buttons.</p>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
-&lt;dialog id=&quot;my-dialog&quot; class=&quot;db-dialog&quot;&gt;
+&lt;dialog
+	id=&quot;my-dialog&quot;
+	class=&quot;db-dialog&quot;
+	closedby=&quot;any&quot;
+	aria-labelledby=&quot;my-dialog-heading&quot;
+&gt;
 	&lt;div class=&quot;db-dialog-header&quot;&gt;
 		&lt;div id=&quot;my-dialog-heading&quot; class=&quot;db-dialog-header-content&quot;&gt;
 			&lt;h2&gt;Dialog title&lt;/h2&gt;
@@ -102,7 +125,12 @@ all of its submit buttons.</p>
 <p>When the form has fields spread across the content and the footer, keep the <code>&lt;form method=&quot;dialog&quot;&gt;</code> in the content
 and associate a footer submit button with it through the <code>form</code> attribute referencing the form <code>id</code>:</p>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
-&lt;dialog id=&quot;my-dialog&quot; class=&quot;db-dialog&quot;&gt;
+&lt;dialog
+	id=&quot;my-dialog&quot;
+	class=&quot;db-dialog&quot;
+	closedby=&quot;any&quot;
+	aria-labelledby=&quot;my-dialog-heading&quot;
+&gt;
 	&lt;div class=&quot;db-dialog-header&quot;&gt;
 		&lt;div id=&quot;my-dialog-heading&quot; class=&quot;db-dialog-header-content&quot;&gt;
 			&lt;h2&gt;Rename entry&lt;/h2&gt;
@@ -138,6 +166,7 @@ the dialog height scrolls inside the <code>db-dialog-content</code> area.</p>
 <p>The dialog replaces a hand-written modal.</p>
 <p>Before, a possible hand-written modal:</p>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
+&lt;button type=&quot;button&quot; class=&quot;my-modal-open&quot;&gt;Open dialog&lt;/button&gt;
 &lt;div class=&quot;my-modal-overlay&quot; hidden&gt;
 	&lt;div class=&quot;my-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;t&quot;&gt;
 		&lt;h2 id=&quot;t&quot;&gt;Dialog title&lt;/h2&gt;
@@ -213,6 +242,19 @@ platform, so the script goes away entirely.</p>
 	 */
 	if (!(&quot;closedBy&quot; in HTMLDialogElement.prototype)) {
 		dialog?.setAttribute(&quot;data-closedby&quot;, &quot;not-supported&quot;);
+
+		/*
+		 * A non-modal dialog (backdrop=&quot;none&quot;, opened via show()) does not
+		 * dismiss on Escape natively - only modal dialogs (showModal()) do -
+		 * and without `closedby` the browser adds no light-dismiss. Close it
+		 * on Escape yourself. Modal dialogs keep their native Escape behaviour,
+		 * so only step in when the dialog is not `:modal`.
+		 */
+		dialog?.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+			if (event.key === &quot;Escape&quot; &amp;&amp; !dialog.matches(&quot;:modal&quot;)) {
+				dialog.requestClose?.();
+			}
+		});
 	}
 
 	/*
@@ -222,15 +264,21 @@ platform, so the script goes away entirely.</p>
 	 */
 	if (!(&quot;commandForElement&quot; in HTMLButtonElement.prototype)) {
 		document
-			.querySelector(&#x27;[commandfor=&quot;my-dialog&quot;][command=&quot;show-modal&quot;]&#x27;)
-			?.addEventListener(&quot;click&quot;, () =&gt; {
-				dialog?.showModal?.();
+			.querySelectorAll(&#x27;[commandfor=&quot;my-dialog&quot;][command=&quot;show-modal&quot;]&#x27;)
+			.forEach((button) =&gt; {
+				button.addEventListener(&quot;click&quot;, () =&gt; {
+					dialog?.showModal?.();
+				});
 			});
 		document
-			.querySelector(&#x27;[commandfor=&quot;my-dialog&quot;][command=&quot;request-close&quot;]&#x27;)
-			?.addEventListener(&quot;click&quot;, () =&gt; {
-				dialog?.requestClose?.();
+			.querySelectorAll(
+				&#x27;[commandfor=&quot;my-dialog&quot;][command=&quot;request-close&quot;]&#x27;
+			)
+			.forEach((button) =&gt; {
+				button.addEventListener(&quot;click&quot;, () =&gt; {
+					dialog?.requestClose?.();
+				});
 			});
 	}
 &lt;/script&gt;
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/dialog/docs/HTML","query":{},"buildId":"otbaUfB48oofc3nbN5O-9","assetPrefix":"/core-web/review/feat-dialog","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/dialog/docs/HTML","query":{},"buildId":"x_mq2KiZQb4oO-vyqFK_f","assetPrefix":"/core-web/review/feat-dialog","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
