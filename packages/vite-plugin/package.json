@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-vite-plugin",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "type": "module",
   "description": "Vite plugin for optimized DB UX Design System CSS imports",
   "repository": {
@@ -31,11 +31,11 @@
   "scripts": {
     "build": "tsc",
     "copy-output": "run-p copy:*",
-    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/vite-plugin/CHANGELOG.md --overwrite",
-    "copy:index.css": "cpr index.css ../../build-outputs/vite-plugin/index.css -o",
-    "copy:outputs": "cpr build ../../build-outputs/vite-plugin/build -o",
-    "copy:package.json": "cpr package.json ../../build-outputs/vite-plugin/package.json -o",
-    "copy:readme": "cpr README.md ../../build-outputs/vite-plugin/README.md -o",
+    "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/vite-plugin/CHANGELOG.md",
+    "copy:index.css": "cpy index.css ../../build-outputs/vite-plugin/index.css",
+    "copy:outputs": "cpy build ../../build-outputs/vite-plugin --dot",
+    "copy:package.json": "cpy package.json ../../build-outputs/vite-plugin/package.json",
+    "copy:readme": "cpy README.md ../../build-outputs/vite-plugin/README.md",
     "test": "vitest run --config vitest.config.ts",
     "test:update": "npm run test -- --update"
   },
@@ -47,11 +47,11 @@
   },
   "devDependencies": {
     "@db-ux/db-theme": "6.2.0",
-    "@types/node": "26.5.0",
-    "cpr": "3.0.1",
+    "@types/node": "26.5.1",
+    "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "typescript": "5.9.3",
-    "vite": "8.2.2",
+    "vite": "8.3.0",
     "vitest": "5.0.0"
   },
   "publishConfig": {
