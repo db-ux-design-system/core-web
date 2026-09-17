@@ -255,11 +255,15 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 			);
 
 			@include navigation-item.direct-navigation-items {
-				@extend %indicator;
-				@include indicator.set-indicator-horizontal;
+				@include navigation-item.navigation-indicator {
+					@extend %indicator;
+					@include indicator.set-indicator-horizontal;
+				}
 
 				@include navigation-item.active-navigation-item {
-					@include indicator.show-indicator-horizontal;
+					@include navigation-item.navigation-indicator {
+						@include indicator.show-indicator-horizontal;
+					}
 				}
 
 				@include navigation-item.direct-navigation-items {
@@ -387,6 +391,7 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		overflow: hidden auto;
 		grid-area: scroll;
 		grid-template-areas: "navigation" "meta";
+		position: relative;
 
 		.db-control-panel-meta {
 			margin-block-start: auto;
@@ -412,11 +417,15 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		/* jscpd:ignore-start */
 		> menu {
 			@include navigation-item.direct-navigation-items {
-				@extend %indicator;
-				@include indicator.set-indicator-vertical;
+				@include navigation-item.navigation-indicator {
+					@extend %indicator;
+					@include indicator.set-indicator-vertical;
+				}
 
 				@include navigation-item.active-navigation-item {
-					@include indicator.show-indicator-vertical;
+					@include navigation-item.navigation-indicator {
+						@include indicator.show-indicator-vertical;
+					}
 				}
 
 				@include navigation-item.direct-navigation-items {
