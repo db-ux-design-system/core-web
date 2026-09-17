@@ -1,10 +1,26 @@
 ---
 # Audit Fix for Dependabot PRs
 #
-# Runs `pnpm audit --fix=update` on dependabot PRs to opportunistically resolve
-# additional known vulnerabilities beyond what the current PR addresses.
-# If any files change (lockfile, workspace config, package.json), commits and
-# pushes via the auto-commit action to re-trigger the pipeline.
+# Runs `pnpm audit --fix` on dependabot PRs to opportunistically resolve known
+# vulnerabilities beyond what the current PR addresses.
+#
+# We use `--fix` (overrides mode), NOT `--fix=update`. `--fix` writes targeted
+# `overrides` (and, when minimumReleaseAge is set, `minimumReleaseAgeExclude`
+# entries) to pnpm-workspace.yaml that pin only the vulnerable packages to their
+# minimum patched version. This is deterministic. `--fix=update` instead bumps
+# versions in the lockfile and opportunistically drags in unrelated patch churn
+# (e.g. electron-to-chromium, released almost daily), which caused an endless
+# auto-commit loop that re-triggered the whole pipeline on runs that fixed
+# nothing.
+#
+# The audit is scoped to production dependencies (`--prod`): a design system's
+# security surface is what it ships to consumers, not its internal build/dev
+# toolchain. Today every advisory is dev-only, so a prod-scoped `--fix` writes
+# nothing at all -- which is the desired outcome.
+#
+# We commit/push (to re-trigger the pipeline) ONLY when `--fix` actually added
+# overrides, i.e. when pnpm-workspace.yaml changed. On runs where nothing new is
+# fixable, `--fix` writes nothing and we skip the commit, breaking the loop.
 # Runs after `init` to reuse the pnpm cache and avoid blocking the pipeline start.
 
 name: Audit fix (Dependabot)
@@ -33,27 +49,40 @@ jobs:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
-      - name: 🔒 Run pnpm audit --fix=update
-        run: pnpm audit --fix=update || true
+      - name: 🔒 Run pnpm audit --fix
+        # `--prod` audits only production dependencies. Every advisory in this
+        # repo currently lives in devDependencies (build tooling, mitosis,
+        # storybook, showcases) and never ships to consumers of the @db-ux/*
+        # packages, so those do not warrant an auto-fix commit. Scoping to prod
+        # keeps this workflow focused on vulnerabilities that actually reach
+        # consumers.
+        run: pnpm audit --fix --prod --ignore-unfixable || true
 
-      - name: 📦 Sync lockfile
-        run: pnpm install --no-frozen-lockfile
-
-      - name: 🔍 Check for changes
-        id: changes
+      - name: 🔍 Check whether new overrides were added
+        id: audit
         run: |
-          if git diff --quiet; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+          # `--fix` writes overrides / minimumReleaseAgeExclude entries to
+          # pnpm-workspace.yaml only when it finds a fixable advisory. If that
+          # file is unchanged, nothing was fixable this run, so we skip the
+          # sync + commit entirely. This is the loop-breaker: no fix, no commit.
+          if git diff --quiet -- pnpm-workspace.yaml; then
+            echo "No new overrides added; nothing to fix. Skipping."
+            echo "fixed=false" >> $GITHUB_OUTPUT
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "audit --fix added overrides to pnpm-workspace.yaml."
+            echo "fixed=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: 📦 Sync lockfile
+        if: ${{ steps.audit.outputs.fixed == 'true' }}
+        run: pnpm install --no-frozen-lockfile
+
       - name: 🎨 Format changed files
-        if: ${{ steps.changes.outputs.changed == 'true' }}
+        if: ${{ steps.audit.outputs.fixed == 'true' }}
         run: pnpm exec prettier --write pnpm-workspace.yaml
 
       - name: 📝 Commit and push changes
-        if: ${{ steps.changes.outputs.changed == 'true' }}
+        if: ${{ steps.audit.outputs.fixed == 'true' }}
         uses: ./.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-audit-fix"
