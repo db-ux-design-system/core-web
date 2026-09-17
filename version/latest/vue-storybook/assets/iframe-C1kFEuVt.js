@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-BI2NuRu_.js";e();
