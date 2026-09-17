@@ -13,6 +13,11 @@
 # auto-commit loop that re-triggered the whole pipeline on runs that fixed
 # nothing.
 #
+# The audit is scoped to production dependencies (`--prod`): a design system's
+# security surface is what it ships to consumers, not its internal build/dev
+# toolchain. Today every advisory is dev-only, so a prod-scoped `--fix` writes
+# nothing at all -- which is the desired outcome.
+#
 # We commit/push (to re-trigger the pipeline) ONLY when `--fix` actually added
 # overrides, i.e. when pnpm-workspace.yaml changed. On runs where nothing new is
 # fixable, `--fix` writes nothing and we skip the commit, breaking the loop.
@@ -45,7 +50,13 @@ jobs:
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
       - name: 🔒 Run pnpm audit --fix
-        run: pnpm audit --fix --ignore-unfixable || true
+        # `--prod` audits only production dependencies. Every advisory in this
+        # repo currently lives in devDependencies (build tooling, mitosis,
+        # storybook, showcases) and never ships to consumers of the @db-ux/*
+        # packages, so those do not warrant an auto-fix commit. Scoping to prod
+        # keeps this workflow focused on vulnerabilities that actually reach
+        # consumers.
+        run: pnpm audit --fix --prod --ignore-unfixable || true
 
       - name: 🔍 Check whether new overrides were added
         id: audit
