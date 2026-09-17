@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-stylelint",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "type": "module",
   "description": "Ensures DB UX styles are used correctly",
   "repository": {
@@ -25,17 +25,17 @@
   "scripts": {
     "build": "tsc",
     "copy-output": "run-p copy:*",
-    "copy:changelog": "cpr CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md --overwrite",
-    "copy:outputs": "cpr build ../../build-outputs/stylelint/build -o",
-    "copy:package.json": "cpr package.json ../../build-outputs/stylelint/package.json -o",
-    "copy:readme": "cpr README.md ../../build-outputs/stylelint/README.md -o",
+    "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/stylelint/CHANGELOG.md",
+    "copy:outputs": "cpy build ../../build-outputs/stylelint --dot",
+    "copy:package.json": "cpy package.json ../../build-outputs/stylelint/package.json",
+    "copy:readme": "cpy README.md ../../build-outputs/stylelint/README.md",
     "test": "vitest run --config vitest.config.ts"
   },
   "peerDependencies": {
     "stylelint": ">=14.0.0"
   },
   "devDependencies": {
-    "cpr": "3.0.1",
+    "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "postcss": "8.5.28",
     "stylelint-config-standard": "40.0.0",

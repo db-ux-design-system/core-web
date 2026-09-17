@@ -7,14 +7,16 @@ permissions:
 on:
   workflow_call:
 
+# Build + test in one job. Generating the Figma Code Connect output and testing
+# it share the same runner, the same fork/release gating (both need Figma secrets)
+# and the same dependency (init only). Merging them removes a whole job, its
+# Init Cache (~40s) and the figma-code-connect artifact upload/download round-trip.
+# The output is generated once, then all three targets are tested sequentially
+# (a matrix would redundantly regenerate the output three times).
 jobs:
   test-figma-code-connect:
     name: Test figma code-connect
     runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
-    strategy:
-      fail-fast: false
-      matrix:
-        target: [angular, react, vue]
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -22,15 +24,34 @@ jobs:
       - name: 🔄 Init Cache
         uses: ./.github/actions/pnpm-cache
 
-      - name: ⏬ Download figma code connect
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      - name: 🔨 Generate Figma Code Connect
+        env:
+          FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
+        run: pnpm --filter=@db-ux/core-components run generate:figma
+
+      # The publish job (03-publish-figma-code-connect, main only) consumes this
+      # artifact, so we keep producing it here now that the separate build job is
+      # gone. Generation + test + upload all happen on this one runner.
+      - name: ⏫ Upload figma-code-connect
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: figma-code-connect
           path: figma-code-connect
 
-      - name: ⚡ Run Test
+      - name: ⚡ Run Test (angular)
         env:
           FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
-        run: |
-          pnpm --filter=${{ matrix.target }}-figma run test
+        run: pnpm --filter=angular-figma run test
+
+      - name: ⚡ Run Test (react)
+        env:
+          FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: pnpm --filter=react-figma run test
+
+      - name: ⚡ Run Test (vue)
+        env:
+          FIGMA_FILE: ${{ github.event.pull_request != null && vars.FIGMA_FILE_DEV || vars.FIGMA_FILE_MAIN }}
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: pnpm --filter=vue-figma run test
