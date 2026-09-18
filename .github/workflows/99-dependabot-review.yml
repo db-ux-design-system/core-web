@@ -11,7 +11,7 @@ on:
 jobs:
   review:
     if: github.actor == 'dependabot[bot]'
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     steps:
       - name: Prepare dependency review prompt
         uses: mfranzke/dependabot-review-action@ddcb73c0b7a50ea88830061cd423ab13d7a4bf7a # v0.1.1
