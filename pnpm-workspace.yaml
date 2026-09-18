@@ -80,6 +80,6 @@ overrides:
 
 catalog:
   postcss: 8.5.28
-  webpack: 5.105.2
+  webpack: 5.111.0
 
 saveExact: true
