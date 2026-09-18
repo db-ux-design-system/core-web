@@ -37,18 +37,20 @@ export default function DrawerSize() {
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-small"
 					onClick={() => setOpenIndex(0)}>
 					Open: (Default) Small
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-small"
 					containerSize="small"
 					direction="to-left"
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Small
+							<h2>(Default) Small</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Small
@@ -56,18 +58,20 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-medium"
 					onClick={() => setOpenIndex(1)}>
 					Open: Medium
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-medium"
 					containerSize="medium"
 					direction="to-left"
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Medium
+							<h2>Medium</h2>
 						</DBDrawerHeader>
 					}>
 					Medium
@@ -75,18 +79,20 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-large"
 					onClick={() => setOpenIndex(2)}>
 					Open: Large
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-large"
 					containerSize="large"
 					direction="to-left"
 					open={openIndex === 2}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Large
+							<h2>Large</h2>
 						</DBDrawerHeader>
 					}>
 					Large
@@ -94,18 +100,20 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-full"
 					onClick={() => setOpenIndex(3)}>
 					Open: Full
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-full"
 					containerSize="full"
 					direction="to-left"
 					open={openIndex === 3}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Full
+							<h2>Full</h2>
 						</DBDrawerHeader>
 					}>
 					Full
@@ -121,18 +129,20 @@ export default function DrawerSize() {
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-small-up"
 					onClick={() => setOpenIndex(4)}>
 					Open: Small (Up)
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-small-up"
 					containerSize="small"
 					direction="up"
 					open={openIndex === 4}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Small (Up)
+							<h2>Small (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Small (Up)
@@ -140,18 +150,20 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-medium-up"
 					onClick={() => setOpenIndex(5)}>
 					Open: Medium (Up)
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-medium-up"
 					containerSize="medium"
 					direction="up"
 					open={openIndex === 5}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Medium (Up)
+							<h2>Medium (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Medium (Up)
@@ -159,18 +171,20 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-large-up"
 					onClick={() => setOpenIndex(6)}>
 					Open: Large (Up)
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-large-up"
 					containerSize="large"
 					direction="up"
 					open={openIndex === 6}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Large (Up)
+							<h2>Large (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Large (Up)
@@ -178,18 +192,20 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-size-full-up"
 					onClick={() => setOpenIndex(7)}>
 					Open: Full (Up)
 				</DBButton>
 				<DBDrawer
+					id="drawer-size-full-up"
 					containerSize="full"
 					direction="up"
 					open={openIndex === 7}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Full (Up)
+							<h2>Full (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Full (Up)

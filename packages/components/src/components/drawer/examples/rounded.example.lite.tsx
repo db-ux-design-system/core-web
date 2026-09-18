@@ -20,17 +20,19 @@ export default function DrawerRounded() {
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-rounded-false"
 					onClick={() => setOpenIndex(0)}>
 					Open: (Default) False
 				</DBButton>
 				<DBDrawer
+					id="drawer-rounded-false"
 					rounded={false}
 					open={openIndex === 0}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) False
+							<h2>(Default) False</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) False
@@ -38,17 +40,19 @@ export default function DrawerRounded() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
+					command="show-modal"
+					commandfor="drawer-rounded-true"
 					onClick={() => setOpenIndex(1)}>
 					Open: True
 				</DBButton>
 				<DBDrawer
+					id="drawer-rounded-true"
 					rounded={true}
 					open={openIndex === 1}
 					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							True
+							<h2>True</h2>
 						</DBDrawerHeader>
 					}>
 					True

@@ -1,14 +1,16 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAttributeValue,
-	isDBComponent
+	isDBComponent,
+	isUnresolvedBySpread
 } from '../../shared/utils.js';
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
-	DBDrawerHeader: 'closeButtonText',
+	[COMPONENTS.DBDrawerHeader]: 'closeButtonText',
+	[COMPONENTS.DBDialogHeader]: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
@@ -198,6 +200,19 @@ export default {
 				];
 			const value = getAttributeValue(openingElement, attribute);
 
+			// A JSX spread (e.g. <DBDialogHeader {...headerProps} />) may supply
+			// closeButtonText, so its final value cannot be verified statically.
+			// Treat the header as unresolved and do not report - matching how the
+			// header-required rules handle spreads - unless closeButtonText is set
+			// explicitly, in which case that explicit attribute wins and is checked
+			// below regardless of the spread.
+			if (
+				(value === undefined || value === '') &&
+				isUnresolvedBySpread(openingElement, attribute)
+			) {
+				return;
+			}
+
 			if (value === undefined || value === '') {
 				context.report({
 					node: openingElement,
@@ -254,7 +269,16 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkComponent, Element: checkComponent },
+			// `Element$1` is the Vue parser's fallback element type; register it
+			// too so a component exposed as that node (e.g. DBDialogHeader) still
+			// runs the close-button label check instead of bypassing this
+			// recommended accessibility rule (matches the header-required rules,
+			// text-or-children-required and sub-component-required-parent).
+			{
+				VElement: checkComponent,
+				Element: checkComponent,
+				Element$1: checkComponent
+			},
 			{ JSXElement: checkComponent }
 		);
 	}
