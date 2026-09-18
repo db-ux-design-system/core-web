@@ -30,7 +30,7 @@
     "@storybook/addon-docs": "10.6.0",
     "@storybook/addon-vitest": "10.6.0",
     "@storybook/vue3-vite": "10.6.0",
-    "@vitejs/plugin-vue": "6.0.8",
+    "@vitejs/plugin-vue": "6.0.9",
     "@vue/tsconfig": "0.9.1",
     "cross-env": "10.1.0",
     "eslint-plugin-storybook": "10.6.0",
