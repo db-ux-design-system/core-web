@@ -335,7 +335,7 @@ jobs:
 
   checks-done:
     if: ${{ !cancelled() }}
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     steps:
       - name: 🎉 Checks done
         env:
