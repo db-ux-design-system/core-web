@@ -258,3 +258,5 @@ renovatebot
 drilldown
 Drilldown
 deconflict
+crumbtrail
+hrefs
