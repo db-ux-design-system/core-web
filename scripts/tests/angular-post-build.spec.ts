@@ -9,7 +9,7 @@ vi.mock('replace-in-file', () => ({
 describe('Angular Post-Build Error Handling', () => {
 	test('runReplacements throws when replaceInFileSync fails on missing file', async () => {
 		const { runReplacements } =
-			await import('../../packages/components/scripts/utils/index.ts');
+			await import('../../packages/components/scripts/utils/index.ts.js');
 
 		const component = { name: 'non-existent-component' };
 		const replacements = [{ from: 'pattern-not-found', to: 'replacement' }];

@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { resetManifestCache } from '../utils/manifest';
+import { resetManifestCache } from '../utils/manifest.ts';
 
 import { platform } from 'node:os';
 import { resolve } from 'node:path';
@@ -1105,7 +1105,9 @@ describe('handleVerifyMigratedCode', () => {
 describe('handleScanV2Migration', () => {
 	let handleScanV2Migration: (typeof import('../tools/scanner.js'))['handleScanV2Migration'];
 
-	/** Creates a temp file inside process.cwd() and returns its path. */
+	/**
+	Creates a temp file inside process.cwd() and returns its path.
+	*/
 	function writeCwdTemporary(name: string, content: string): string {
 		const { writeFileSync } = require('node:fs');
 		const { join } = require('node:path');

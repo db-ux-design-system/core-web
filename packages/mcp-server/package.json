@@ -3,10 +3,7 @@
   "version": "5.5.0",
   "type": "module",
   "description": "MCP server for DB UX Design System – gives LLMs access to UI components and code examples",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/db-ux-design-system/core-web.git"
-  },
+  "repository": "github:db-ux-design-system/core-web",
   "license": "Apache-2.0",
   "engines": {
     "node": ">=22.0.0"

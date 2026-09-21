@@ -3,14 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "description": "DB UX Design System",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/db-ux-design-system/core-web.git"
-  },
+  "repository": "github:db-ux-design-system/core-web",
   "homepage": "https://design-system.deutschebahn.com/core-web/",
-  "bugs": {
-    "url": "https://github.com/db-ux-design-system/core-web/issues"
-  },
+  "bugs": "https://github.com/db-ux-design-system/core-web/issues",
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
