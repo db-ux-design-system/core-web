@@ -28,7 +28,7 @@ Replace all inline `style` attributes, as they bypass theming, density, and dark
 
 ## Required CSS Imports & Token Architecture
 
-v3 uses a layered CSS architecture. All four imports are required in this exact order:
+Generation 3 uses a layered CSS architecture. All four imports are required in this exact order:
 
 ```tsx
 // main.tsx — order matters!

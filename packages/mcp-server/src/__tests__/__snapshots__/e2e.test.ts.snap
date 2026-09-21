@@ -164,6 +164,20 @@ exports[`MCP server — stdio transport (modern era, 2026-07-28) > emits stable 
     "properties": {},
     "type": "object",
   },
+  "scan_generation_2_migration": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "filePath": {
+        "description": "Absolute path or path relative to the workspace root of the file to scan.",
+        "maxLength": 500,
+        "type": "string",
+      },
+    },
+    "required": [
+      "filePath",
+    ],
+    "type": "object",
+  },
   "scan_v2_migration": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "properties": {

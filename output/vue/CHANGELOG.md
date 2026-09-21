@@ -1,5 +1,12 @@
 # @db-ux/v-core-components
 
+## 5.5.0
+
+### Patch Changes
+
+- fix(DBCustomSelectListItem): make label bold when checked - [see commit 58df675](https://github.com/db-ux-design-system/core-web/commit/58df6754fde599346696e4e9372d97e13c384082)
+- fix(table): remove unwanted white background on component wrapper for `variant="spaced"` - [see commit 1524afe](https://github.com/db-ux-design-system/core-web/commit/1524afe64488b90e47c133594438182bb47a59e7)
+
 ## 5.4.0
 
 ### Minor Changes
