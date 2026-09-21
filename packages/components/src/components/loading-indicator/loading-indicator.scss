@@ -368,27 +368,21 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			content: "";
 			border-radius: variables.$db-border-radius-sm;
 			position: absolute;
-		}
-
-		&::before {
-			inline-size: 100%;
-			min-inline-size: variables.$db-sizing-md;
-			inset-block-start: 0;
-			inset-inline-start: 0;
-			/* stylelint-disable-next-line db-ux/use-sizing */
-			block-size: var(
-				--db-loading-indicator-progress-bar-track-block-size
-			);
-			background-color: $db-loading-indicator-track-color;
-		}
-
-		&::after {
-			z-index: 1;
 			inset: 0;
 			/* stylelint-disable-next-line db-ux/use-sizing */
 			block-size: var(
 				--db-loading-indicator-progress-bar-track-block-size
 			);
+		}
+
+		&::before {
+			inline-size: 100%;
+			min-inline-size: variables.$db-sizing-md;
+			background-color: $db-loading-indicator-track-color;
+		}
+
+		&::after {
+			z-index: 1;
 			background-color: var(--db-loading-indicator-segment-color);
 		}
 
