@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { DBInput } from "@components";
+import { DBButton, DBInput } from "@components";
 import { ref } from "vue";
 import FormWrapper from "./FormWrapper.vue";
-
-import { DBButton } from "@components";
 
 const plain = ref("test1");
 const vModel = ref("test2");

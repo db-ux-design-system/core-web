@@ -1,33 +1,33 @@
 import { expect, type Locator, type Page, test } from '@playwright/test';
-import { isAngular, isVue, waitForDBShell } from '../default';
+import { isStencil, waitForDBShell } from '../default';
 
 /**
  * Regression test for
  * https://github.com/db-ux-design-system/core-web/issues/6147
  *
- * Consumers reset a field by binding `value` to `undefined`. That has to reach
- * the element: before the fix, `state._value` was only mirrored from
+ * Consumers clear a controlled field by resetting its bound `value`. That has
+ * to reach the element: before the fix, `state._value` was only mirrored from
  * `props.value` when it was not `undefined`, so the element kept the last value
  * it had and the reset silently did nothing.
  *
  * This also guards the narrow gap introduced for
  * https://github.com/db-ux-design-system/core-web/issues/7748, where Angular
  * renders from `state._value` and keeps it while `validity.badInput` is set.
- * That gap has to stay shut for a plain `undefined` write.
+ * That gap has to stay shut for a plain clearing write.
  *
- * Angular and Vue only. React binds `props.value` alone (see
- * `scripts/post-build/react.ts`), so `value={undefined}` renders no `value`
- * prop at all and React deliberately stops controlling the element instead of
- * clearing it -- resetting a React input means passing `''`. The stencil
- * showcase has no form page, like the other form tests.
+ * All framework showcases carry the fixture (see `input.tsx`, `Inputs.vue`,
+ * `inputs.component.*`). Angular and Vue reset by binding `value` to
+ * `undefined`; React binds `props.value` alone, so `value={undefined}` would
+ * make the element uncontrolled -- the React fixture therefore resets to `''`,
+ * which is how a controlled React input is cleared. The stencil showcase has no
+ * form page, like the other form tests.
  */
 const getInput = (page: Page): Locator =>
 	page.getByLabel('Undefined reset', { exact: true });
 
 test.describe('DBInput undefined value', () => {
 	test.beforeEach(async ({ page }) => {
-		const { showcase } = process.env;
-		if (!isAngular(showcase) && !isVue(showcase ?? '')) {
+		if (isStencil(process.env.showcase)) {
 			test.skip();
 		}
 
@@ -39,7 +39,7 @@ test.describe('DBInput undefined value', () => {
 		await tab.click({ force: true });
 	});
 
-	test('clears the element when value becomes undefined', async ({
+	test('clears the element when the bound value is reset', async ({
 		page
 	}) => {
 		const input = getInput(page);
@@ -50,7 +50,7 @@ test.describe('DBInput undefined value', () => {
 		await expect(input).toHaveValue('');
 	});
 
-	test('clears a value the user typed when value becomes undefined', async ({
+	test('clears a value the user typed when the bound value is reset', async ({
 		page
 	}) => {
 		const input = getInput(page);
