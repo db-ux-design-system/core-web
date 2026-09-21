@@ -157,7 +157,8 @@
         - link "Page 1 of 10"
           - text: "1"
       - listitem:
-        - button "Page 5 of 10": "5"
+        - link "Page 5 of 10"
+          - text: "5"
       - listitem:
         - link "Page 10 of 10"
           - text: "10"
@@ -169,7 +170,8 @@
       - listitem:
         - button "Previous page" [disabled]
       - listitem:
-        - button "Page 1 of 10": "1"
+        - link "Page 1 of 10"
+          - text: "1"
       - listitem:
         - link "Page 10 of 10"
           - text: "10"
