@@ -5,7 +5,7 @@ import { StorybookBreadcrumbArgTypes } from './_breadcrumb.arg.types';
 
 useMetadata({
 	storybookTitle: 'Length',
-	storybookNames: ['4 Items', '7 Items', '10 Items'],
+	storybookNames: ['Four Items', 'Seven Items', 'Ten Items'],
 	storybookArgTypes: StorybookBreadcrumbArgTypes
 });
 
