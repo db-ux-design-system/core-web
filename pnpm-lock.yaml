@@ -164,7 +164,7 @@ settings:
 
 overrides:
   postcss: 8.5.28
-  html-webpack-plugin>webpack: 5.105.2
+  html-webpack-plugin>webpack: 5.111.0
   esbuild@~0.28.0: 0.28.2
 
 importers:
@@ -10239,7 +10239,7 @@ packages:
     engines: {node: '>=10.13.0'}
     peerDependencies:
       '@rspack/core': 0.x || 1.x || 2.x
-      webpack: 5.105.2
+      webpack: 5.111.0
     peerDependenciesMeta:
       '@rspack/core':
         optional: true
