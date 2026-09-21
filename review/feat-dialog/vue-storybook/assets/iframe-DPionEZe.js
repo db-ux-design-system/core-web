@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-Doqdva_z.js";e();
