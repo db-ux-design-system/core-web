@@ -1,12 +1,9 @@
 [
-
 	{
 		"label": "DBBreadcrumbTruncationItem",
 		"name": "breadcrumb-truncation-item",
 		"isHiddenInMenu": true
 	},
-
-
 
 	{
 		"label": "DBBreadcrumbItem",
@@ -14,13 +11,10 @@
 		"isHiddenInMenu": true
 	},
 
-
-
 	{
 		"label": "TODO: Add to specific category; DBBreadcrumb",
-		"name": "breadcrumb",
+		"name": "breadcrumb"
 	},
-
 
 	{
 		"label": "Action",

@@ -5,4 +5,3 @@ const path = 'breadcrumb';
 test.describe('DBBreadcrumb', () => {
 	runAriaSnapshotTest({ path });
 });
-

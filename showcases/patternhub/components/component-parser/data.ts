@@ -6,12 +6,9 @@ export type ComponentType = {
 	index?: string | number;
 	type?:
 		/* Template hygen type */
-| 'breadcrumb-truncation-item'
-
-| 'breadcrumb-item'
-
-| 'breadcrumb'
-
+		| 'breadcrumb-truncation-item'
+		| 'breadcrumb-item'
+		| 'breadcrumb'
 		| 'footer'
 		| 'footer-meta'
 		| 'footer-content'

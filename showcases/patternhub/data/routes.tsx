@@ -53,7 +53,7 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
-	'breadcrumb': <BreadcrumbShowcase isPatternhub />,
+	breadcrumb: <BreadcrumbShowcase isPatternhub />,
 
 	heading: <HeadingShowcase isPatternhub />,
 
