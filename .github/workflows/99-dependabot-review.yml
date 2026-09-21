@@ -14,6 +14,6 @@ jobs:
     runs-on: ubuntu-26.04
     steps:
       - name: Prepare dependency review prompt
-        uses: mfranzke/dependabot-review-action@ddcb73c0b7a50ea88830061cd423ab13d7a4bf7a # v0.1.1
+        uses: mfranzke/dependabot-review-action@ba9c2ed4b62f6c5c13ed316e05549b1d1e96129e # v0.2.1
         with:
           github-token: ${{ github.token }}
