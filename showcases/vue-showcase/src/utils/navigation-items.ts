@@ -4,6 +4,7 @@ import AccordionItemShowcase from '@components/components/accordion-item/showcas
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase.vue';
 import BrandShowcase from '@components/components/brand/showcase/brand.showcase.vue';
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase.vue';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase.vue';
 import CardShowcase from '@components/components/card/showcase/card.showcase.vue';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase.vue';
@@ -105,6 +106,11 @@ export const navigationItems: NavItem[] = [
 						component: markRaw(ControlPanelMobile)
 					}
 				])
+			},
+			{
+				path: '/05/breadcrumb',
+				label: 'Breadcrumb',
+				component: markRaw(BreadcrumbShowcase)
 			},
 			{
 				path: '/05/navigation-item',

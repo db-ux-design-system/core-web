@@ -1,0 +1,154 @@
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "../../styles/internal/button-components";
+
+@mixin not-first-breadcrumb-item {
+	> ol > li:not(:first-child),
+	> ol > db-breadcrumb-item:not(:first-child) > li {
+		@content;
+	}
+}
+
+@mixin not-last-breadcrumb-item {
+	> ol > li:not(:last-child),
+	> ol > db-breadcrumb-item:not(:last-child) > li,
+	.db-breadcrumb-truncation-item {
+		@content;
+	}
+}
+
+%breadcrumb-separator-slash {
+	content: "/" / "";
+	inline-size: 1lh;
+	text-align: center;
+}
+
+.db-breadcrumb-truncation-item {
+	align-items: center;
+	gap: variables.$db-spacing-fixed-3xs;
+
+	@include helpers.display(flex);
+}
+
+.db-breadcrumb {
+	align-items: center;
+	list-style: none;
+	gap: variables.$db-spacing-fixed-3xs;
+
+	@include helpers.display(flex);
+
+	// The <ol> is transparent to layout so its crumbs and the expand button
+	// (a direct child of the nav) become siblings in the same flex row. This
+	// lets `order` position the button relative to the crumbs.
+	> ol {
+		display: contents;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	// Expand button (DBButton) placed visually after the first crumb.
+	> .db-breadcrumb-truncation-item {
+		order: 1;
+	}
+
+	// The truncation button shows a text ellipsis (not the noText icon slot),
+	// but visually it should match a square icon-only button. Mirror the
+	// icon-only button sizing so the "..." sits centered in a square target.
+	.db-breadcrumb-truncation-item-button {
+		inline-size: variables.$db-sizing-sm;
+		block-size: variables.$db-sizing-sm;
+		min-block-size: variables.$db-sizing-sm;
+		padding: 0;
+	}
+
+	// First crumb stays first; everything after the first crumb comes after
+	// the expand button. The two selectors cover the plain <li> (React/Vue)
+	// and the custom-element-wrapped <li> (Angular/Stencil).
+	> ol > li:first-child,
+	> ol > db-breadcrumb-item:first-child > li {
+		order: 0;
+
+		&:not([data-no-text="true"]) {
+			.db-tooltip {
+				display: none;
+			}
+		}
+
+		&[data-no-text="true"] {
+			--db-icon: house !important; // You are not allowed to overwrite the icon of the first breadcrumb item, it is always a house icon
+
+			a {
+				--db-icon-passing-padding-inline-start: #{variables.$db-spacing-fixed-3xs};
+
+				@include icons.is-icon-text-replace;
+				@include icons.set-icon("house", "before");
+			}
+		}
+	}
+
+	@include not-first-breadcrumb-item {
+		order: 2;
+
+		.db-tooltip {
+			display: none;
+		}
+	}
+
+	&[data-collapsed="true"] {
+		> ol > li:not(:first-child, :last-child),
+		> ol > db-breadcrumb-item:not(:first-child, :last-child) > li {
+			display: none;
+		}
+	}
+
+	&:not([data-separator="slash"]) {
+		@include not-last-breadcrumb-item {
+			@include icons.set-icon("chevron_right", "after");
+		}
+	}
+
+	&[data-separator="slash"] {
+		@include not-last-breadcrumb-item {
+			&::after {
+				@extend %breadcrumb-separator-slash;
+			}
+		}
+	}
+
+	&:not([data-size="medium"]) {
+		.db-breadcrumb-item {
+			@extend %db-overwrite-font-size-sm;
+		}
+	}
+
+	&[data-size="medium"] {
+		.db-breadcrumb-item {
+			@extend %db-overwrite-font-size-sm;
+
+			a {
+				padding: variables.$db-spacing-fixed-2xs
+					variables.$db-spacing-fixed-xs;
+			}
+
+			&[data-no-text="true"] {
+				a {
+					padding: variables.$db-spacing-fixed-xs;
+				}
+			}
+		}
+
+		.db-breadcrumb-truncation-item-button {
+			inline-size: variables.$db-sizing-md;
+			block-size: variables.$db-sizing-md;
+			min-block-size: variables.$db-sizing-md;
+		}
+
+		.db-breadcrumb-truncation-item-toggle {
+			inline-size: variables.$db-sizing-md;
+			block-size: variables.$db-sizing-md;
+		}
+	}
+}

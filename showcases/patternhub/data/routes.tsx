@@ -39,6 +39,8 @@ import ControlPanelMobileShowcase from '@components/components/control-panel-mob
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -51,6 +53,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	'breadcrumb': <BreadcrumbShowcase isPatternhub />,
+
 	heading: <HeadingShowcase isPatternhub />,
 
 	accordion: <AccordionShowcase isPatternhub />,

@@ -1,3 +1,9 @@
+import { DBBreadcrumbTruncationItem } from '../../../../output/react/src/index';
+
+import { DBBreadcrumbItem } from '../../../../output/react/src/index';
+
+import { DBBreadcrumb } from '../../../../output/react/src/index';
+
 import {
 	DBAccordion,
 	DBAccordionItem,
@@ -447,6 +453,30 @@ const ComponentSwitch = ({
 			<Heading className={className} {...props}>
 				{resolvedContent}
 			</Heading>
+		);
+	}
+
+	if (type === 'breadcrumb') {
+		return (
+			<DBBreadcrumb className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumb>
+		);
+	}
+
+	if (type === 'breadcrumb-item') {
+		return (
+			<DBBreadcrumbItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbItem>
+		);
+	}
+
+	if (type === 'breadcrumb-truncation-item') {
+		return (
+			<DBBreadcrumbTruncationItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbTruncationItem>
 		);
 	}
 

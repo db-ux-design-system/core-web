@@ -3,6 +3,7 @@ import { AccordionItemShowcase } from '@components/components/accordion-item/sho
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
 import { BadgeShowcase } from '@components/components/badge/showcase/badge.showcase';
 import { BrandShowcase } from '@components/components/brand/showcase/brand.showcase';
+import { BreadcrumbShowcase } from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 import { ButtonShowcase } from '@components/components/button/showcase/button.showcase';
 import { CardShowcase } from '@components/components/card/showcase/card.showcase';
 import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -69,6 +70,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '05/breadcrumb',
+				label: 'Breadcrumb',
+				component: BreadcrumbShowcase
+			},
 			{
 				path: '05/shell',
 				label: 'Shell related',

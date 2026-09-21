@@ -82,6 +82,18 @@ const controlPanelActionsComponents: Component[] = [
 }));
 
 export const getComponents = (): Component[] => [
+  {
+    name: "breadcrumb-truncation-item"
+  },
+
+  {
+    name: "breadcrumb-item"
+  },
+
+  {
+    name: "breadcrumb"
+  },
+
 	...headingComponents,
 	...controlPanelActionsComponents,
 
