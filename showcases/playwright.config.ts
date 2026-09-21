@@ -67,8 +67,14 @@ const config: PlaywrightTestConfig = {
 	fullyParallel: true,
 	/* Fail the build on CI if you accidentally left test.only in the source code. */
 	forbidOnly: Boolean(process.env.CI),
-	/* Opt out of parallel tests on CI. */
-	workers: process.env.CI ? 1 : undefined,
+	/*
+	 * EXPERIMENT: use half the runner's cores on CI instead of a single worker,
+	 * to measure whether parallelism speeds up the showcase e2e suites. Playwright
+	 * recommends workers: 1 on CI for stability, and standard hosted ubuntu runners
+	 * are 4-core (so '50%' == 2 there); the interesting case is the Playwright
+	 * container jobs if they have more cores. Watch the run for timeouts/flakiness.
+	 */
+	workers: process.env.CI ? '50%' : undefined,
 	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
 	reporter: process.env.CI ? 'blob' : [['list'], ['html', { open: 'never' }]],
 	/* Configure projects for major browsers */

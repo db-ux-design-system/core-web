@@ -57,7 +57,7 @@ jobs:
       test-ally: ${{ steps.ally.outputs.test-ally }}
       isChangesetRelease: ${{ steps.changeset-check.outputs.isChangesetRelease }}
       isFork: ${{ steps.fork-check.outputs.isFork }}
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -147,7 +147,7 @@ jobs:
 
   publish:
     name: Get and save publish version
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     if: ${{ inputs.release }}
     outputs:
       release: ${{ steps.releaseCheck.outputs.release }}
