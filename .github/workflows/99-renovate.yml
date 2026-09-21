@@ -8,23 +8,10 @@
 #      check for all other dependencies)
 # Everything else stays with Dependabot, see `.github/dependabot.yml`.
 # Scope and grouping live in `.github/renovate.json`.
-#
-# Schedule: a single daily cron at 20:17 UTC (22:17 Berlin in CEST, 21:17 in
-# CET). Both are ahead of the Dependabot window at 23:00 Berlin, so pnpm lands
-# first and Dependabot PRs rebase onto it. The minute is deliberately off the top
-# of the hour: GitHub warns that scheduled jobs starting at :00 sit in the
-# busiest queue and may be dropped entirely under load, which no config on our
-# side can recover from. The GitHub Actions cron is the only scheduling gate --
-# Renovate has no internal `schedule` in `.github/renovate.json`, so every
-# invocation is free to create PRs and there is no window it can drift out of. A
-# single cron line (rather than one per DST offset) keeps it to one run per day
-# without any no-op gate.
 
 name: Renovate
 
 on:
-  schedule:
-    - cron: "17 20 * * *" # 22:17 Berlin (CEST) / 21:17 Berlin (CET)
   workflow_dispatch:
 
 permissions: {}
@@ -35,7 +22,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: 🤖 Self-hosted Renovate
-        uses: renovatebot/github-action@37beffda261423addd537c33f2d126df7f6ffbab # v46.2.6
+        uses: renovatebot/github-action@c314dda4a9a93b08239ec978f2043b9a433b9ac4 # v46.3.0
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           # Commit through the GitHub API so commits are signed by the app
