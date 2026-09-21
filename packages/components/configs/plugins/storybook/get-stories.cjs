@@ -73,27 +73,27 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 			args.push(`"${bindingKey}": fn()`);
 		} else {
 			let overwriteValue = overwritesArgs[key] ?? value.code;
-			// Handle state values like `checked`
-			try {
+			// Resolve state references (e.g. `checked()` in Angular,
+			// `state.foo` in React, a bare state key in Vue) to the state's
+			// actual `code`. A binding may legitimately point at something that
+			// is not a resolvable state entry -- in that case we keep the
+			// original value instead of treating it as an error.
+			if (typeof overwriteValue === 'string') {
+				let stateKey;
 				if (target === 'angular' && overwriteValue.endsWith('()')) {
-					const replacedStateValue = overwriteValue.replace('()', '');
-					overwriteValue = json.state[replacedStateValue].code;
+					stateKey = overwriteValue.replace('()', '');
 				} else if (
 					target === 'react' &&
 					overwriteValue.startsWith('state.')
 				) {
-					const replacedStateValue = overwriteValue.replace(
-						'state.',
-						''
-					);
-					overwriteValue = json.state[replacedStateValue].code;
-				} else if (target === 'vue' && json.state[overwriteValue]) {
-					overwriteValue = json.state[overwriteValue].code;
+					stateKey = overwriteValue.replace('state.', '');
+				} else if (target === 'vue') {
+					stateKey = overwriteValue;
 				}
-			} catch (e) {
-				console.error(
-					`There is some issue with state values for ${json.name}`
-				);
+
+				if (stateKey && json.state?.[stateKey]?.code !== undefined) {
+					overwriteValue = json.state[stateKey].code;
+				}
 			}
 
 			if (target === 'react' && key === 'class') {
