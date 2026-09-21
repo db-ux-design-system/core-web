@@ -16,13 +16,11 @@ Three things are easy to miss when writing the markup by hand:
   (`Page 5 of 10`), because the visible text is only a bare number. The active
   page additionally carries `aria-current="page"`.
 - Skipped page ranges are not elements. They are drawn by the page that borders the
-  gap, through `data-ellipsis-wide` and `data-ellipsis-collapsed` with the values
-  `before`, `after` or `both`. That keeps the list free of decorative entries and
-  the dots out of the accessibility tree, because a pseudo element with alternative
-  text has no accessible name.
-- Every page `<li>` is a pagination item: it carries `class="db-pagination-item"`,
-  its own `data-size`, a `data-page` with the page number and a
-  `data-pagination-item` attribute. `data-page` is what the component reads back to
+  gap, through the layout tokens in `data-ellipsis`. That keeps the list free of
+  decorative entries and the dots out of the accessibility tree, because a pseudo
+  element with alternative text has no accessible name.
+- Every page `<li>` is a pagination item: it carries `class="db-pagination-item"`, a
+  `data-page` with the page number and a `data-pagination-item` attribute. `data-page` is what the component reads back to
   know which page was activated, and `data-pagination-item` drives the collapsing
   described below. In the framework packages this markup comes from
   `DBPaginationItem`, which is documented together with `DBPagination`.
@@ -31,9 +29,9 @@ Three things are easy to miss when writing the markup by hand:
   `data-pagination-item`. That is what keeps them out of the collapsing and out of
   the page handling: they are icon buttons, the same split the Figma component set
   makes, and they belong to every layout.
-- `data-variant` and `data-size` belong on the `<li>` and nowhere else. The item
-  styles its control from there, so the control itself needs no state attributes and
-  no `db-button` class - it is a plain `<button>` or `<a>`. The active page is
+- `data-variant` belongs on the `<li>` and nowhere else. The item styles its control
+  from there, so the control itself needs no state attributes and no `db-button`
+  class - it is a plain `<button>` or `<a>`. The active page is
   `filled`, every other page is `ghost`, and the item uses the attribute rather than
   `aria-current` as its styling hook, because `aria-current` sits on the control.
 - `filled` marks the current page, so it has no hover and no pressed background on
@@ -44,7 +42,7 @@ Three things are easy to miss when writing the markup by hand:
 ```html index.html
 <nav class="db-pagination" data-size="medium" aria-label="Pagination">
 	<ul>
-		<li class="db-pagination-item" data-size="medium" data-variant="ghost">
+		<li class="db-pagination-item" data-variant="ghost">
 			<button
 				class="db-pagination-previous"
 				type="button"
@@ -58,7 +56,6 @@ Three things are easy to miss when writing the markup by hand:
 			class="db-pagination-item"
 			data-pagination-item="page"
 			data-page="1"
-			data-size="medium"
 			data-variant="ghost"
 		>
 			<button
@@ -73,9 +70,8 @@ Three things are easy to miss when writing the markup by hand:
 			class="db-pagination-item"
 			data-pagination-item="sibling"
 			data-page="4"
-			data-size="medium"
 			data-variant="ghost"
-			data-ellipsis-wide="before"
+			data-ellipsis="wide-before"
 		>
 			<button
 				class="db-pagination-page"
@@ -89,9 +85,8 @@ Three things are easy to miss when writing the markup by hand:
 			class="db-pagination-item"
 			data-pagination-item="page"
 			data-page="5"
-			data-size="medium"
 			data-variant="filled"
-			data-ellipsis-collapsed="before"
+			data-ellipsis="collapsed-before"
 		>
 			<button
 				class="db-pagination-page"
@@ -106,7 +101,6 @@ Three things are easy to miss when writing the markup by hand:
 			class="db-pagination-item"
 			data-pagination-item="sibling"
 			data-page="6"
-			data-size="medium"
 			data-variant="ghost"
 		>
 			<button
@@ -121,10 +115,8 @@ Three things are easy to miss when writing the markup by hand:
 			class="db-pagination-item"
 			data-pagination-item="page"
 			data-page="10"
-			data-size="medium"
 			data-variant="ghost"
-			data-ellipsis-wide="before"
-			data-ellipsis-collapsed="before"
+			data-ellipsis="wide-before collapsed-before"
 		>
 			<button
 				class="db-pagination-page"
@@ -134,7 +126,7 @@ Three things are easy to miss when writing the markup by hand:
 				10
 			</button>
 		</li>
-		<li class="db-pagination-item" data-size="medium" data-variant="ghost">
+		<li class="db-pagination-item" data-variant="ghost">
 			<button
 				class="db-pagination-next"
 				type="button"
@@ -148,11 +140,11 @@ Three things are easy to miss when writing the markup by hand:
 </nav>
 ```
 
-Use `data-size="small"` on the `<nav>` for the small variant, and set the same
-value on every `<li>`. The controls inside them need nothing: the item reads the
-size off the list item and applies it to whichever control it finds. Previous and
-next carry the size of the pagination rather than a fixed one, so they stay as
-wide as the page buttons next to them. Disable the previous button on the first
+Use `data-size="small"` on the `<nav>` for the small variant. That one attribute is
+all it takes: the items and their controls are styled as descendants of it, so
+neither the `<li>` nor the `<button>` or `<a>` inside it repeats the value. Previous
+and next are sized from the same attribute, so they stay as wide as the page buttons
+next to them. Disable the previous button on the first
 and the next button on the last page with the native `disabled` attribute.
 
 ### Collapsing on narrow viewports
@@ -175,18 +167,25 @@ whose collapsed layout is not a subset of its wide one. `DBPagination` never emi
 it, because the pages it collapses to are always a subset of the pages it shows
 above the breakpoint - it marks those `page` and hides the rest as `sibling`.
 
-Where the gaps are is two more, one per layout. Each takes `before`, `after` or
-`both`, and the marker is drawn by the page it belongs to:
+Where the gaps are is one more attribute, `data-ellipsis`, holding a space separated
+list of tokens. The marker is drawn by the page it belongs to:
 
-| Attribute                 | Applies                   |
-| ------------------------- | ------------------------- |
-| `data-ellipsis-wide`      | only above the breakpoint |
-| `data-ellipsis-collapsed` | only below the breakpoint |
+| `data-ellipsis` token | Drawn                                       |
+| --------------------- | ------------------------------------------- |
+| `wide-before`         | in front of this page, above the breakpoint |
+| `wide-after`          | behind this page, above the breakpoint      |
+| `collapsed-before`    | in front of this page, below the breakpoint |
+| `collapsed-after`     | behind this page, below the breakpoint      |
 
-The reason there are two is that a marker inherits the visibility of the page that
-carries it. A gap the wide layout opens in front of a sibling would disappear
-together with that sibling when the list collapses, so the collapsed layout marks
-the next page it actually shows instead.
+Each layout brings its own tokens, because a marker inherits the visibility of the
+page that carries it. A gap the wide layout opens in front of a sibling would
+disappear together with that sibling when the list collapses, so the collapsed layout
+marks the next page it actually shows instead: `data-ellipsis="wide-before
+collapsed-before"` where both layouts open a gap at the same place, and one token
+alone where only one of them does.
+
+The two sides are separate tokens, so a page standing between two gaps - which happens
+at `boundaryCount="0"` - carries both rather than a third value meaning both.
 
 Two rules decide the markers, and each layout has to satisfy them on its own:
 between two rendered pages that are not consecutive stands exactly one marker, and
@@ -229,7 +228,6 @@ so both look identical. Swap the element, keep the class, add the `href` and dro
 	class="db-pagination-item"
 	data-pagination-item="sibling"
 	data-page="4"
-	data-size="medium"
 	data-variant="ghost"
 >
 	<a class="db-pagination-page" href="?page=4" aria-label="Page 4 of 10">
@@ -249,7 +247,6 @@ cursor, no hover and no pressed background, all driven by that `data-variant`.
 	class="db-pagination-item"
 	data-pagination-item="page"
 	data-page="5"
-	data-size="medium"
 	data-variant="filled"
 >
 	<a
@@ -272,7 +269,7 @@ them as an indexing signal in 2019, but they remain valid HTML, describe the
 sequential relationship and help browsers prefetch:
 
 ```html index.html
-<li class="db-pagination-item" data-size="medium" data-variant="ghost">
+<li class="db-pagination-item" data-variant="ghost">
 	<a
 		class="db-pagination-previous"
 		href="?page=4"

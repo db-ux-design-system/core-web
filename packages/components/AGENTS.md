@@ -427,10 +427,12 @@ things made it work:
 - **A gap belongs to a layout, not to the list.** Removing items opens gaps that
   the other layout does not have, so a separator cannot be one shared element. Do
   not emit an element per gap either: draw the gap as a pseudo element on the item
-  that borders it and give each layout its own attribute (`data-ellipsis-wide`,
-  `data-ellipsis-collapsed`). A marker then inherits the visibility of its carrier,
-  which is what makes it switch with the layout, and `content: "..." / ""` keeps it
-  out of the accessibility tree without an `aria-hidden` element.
+  that borders it and prefix every marker with the layout it belongs to
+  (`data-ellipsis="wide-before collapsed-before"`, matched with `~=`). A marker then
+  inherits the visibility of its carrier, which is what makes it switch with the
+  layout, and `content: "..." / ""` keeps it out of the accessibility tree without an
+  `aria-hidden` element. One token per side rather than a value meaning both, so each
+  side stays a single selector.
 - **Hide with `display: none`.** Anything weaker keeps the hidden items in the
   tab order and in the accessibility tree. Note that a focused element that gets
   hidden loses focus to the document; that is the browser doing its job and
@@ -445,6 +447,15 @@ things made it work:
   composed list that omits it), and only do this where the control is a button. An
   anchor with a real `href` has to stay one, or it loses `rel`, middle click and the
   ability to work without JavaScript.
+- **Style a sub-component from the parent scope where the two are inseparable.** A
+  `DBPaginationItem` never appears outside a `.db-pagination`, so its size is one
+  `data-size` on the `<nav>` and the item is styled as a descendant of it - no
+  per-item prop that would only forward the same value. Two things to check before
+  doing this elsewhere: the parent has to be a documented requirement rather than a
+  convention, and the extra ancestor raises the specificity of every rule it scopes,
+  so any rule that used to win on source order alone has to be scoped along with it.
+  In `pagination-item.scss` that applies to the `[data-icon]` padding reset for the
+  arrows.
 
 Two consequences for the specs: `DEFAULT_VIEWPORT` from `src/shared/constants.ts`
 is 390px wide, so a spec that does not switch viewports tests the **narrow**
@@ -488,7 +499,7 @@ box, and they outrank you:
 
 ```text
 .db-button[data-size="small"]:not([data-no-text="true"])            (0,3,0)
-.db-pagination-item[data-size="small"] > :is(a, button)              (0,2,1)   loses
+.db-pagination-item > :is(a, button)                                (0,1,1)   loses
 ```
 
 That is a real bug, not a theoretical one: the small pagination controls rendered

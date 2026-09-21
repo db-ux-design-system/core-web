@@ -50,8 +50,8 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 	});
 
 	// The truncation is no element of its own anymore. It is drawn by the page that
-	// borders the gap, through data-ellipsis-wide and data-ellipsis-collapsed, so it
-	// never reaches the accessibility tree and the list contains nothing but pages.
+	// borders the gap, through the layout tokens in data-ellipsis, so it never reaches
+	// the accessibility tree and the list contains nothing but pages.
 	//
 	// The item owns no click handler. The pagination listens on the list and reads
 	// data-page back from the DOM, the same way DBTabs handles its items, so a
@@ -68,20 +68,14 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 			ref={_ref}
 			data-pagination-item={state.getItemAttribute()}
 			data-page={state.getPage() > 0 ? state.getPage() : undefined}
-			data-size={props.size}
-			data-ellipsis-wide={props.wideEllipsis}
-			data-ellipsis-collapsed={props.collapsedEllipsis}
+			// No data-size. The size is one attribute on the surrounding
+			// .db-pagination and reaches the control from there, so it does not need
+			// repeating on every list item.
+			data-ellipsis={props.ellipsis}
 			data-variant={state.getActive() ? 'filled' : 'ghost'}
 			aria-current={
 				!props.text && state.getActive() ? 'page' : undefined
 			}>
-			{/* A plain control rather than DBButton: the item needs the look of a
-				button but not its box, and pagination-item.scss takes exactly that
-				from the shared placeholders. It also keeps the two shapes identical -
-				DBButton put a custom element host between the <li> and the button in
-				Angular and Stencil. Neither branch repeats data-variant or data-size:
-				the list item above carries both, which is where the stylesheet reads
-				them, and a composed child is styled from there as well. */}
 			<Show when={props.text} else={props.children}>
 				<Show
 					when={props.href}

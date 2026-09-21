@@ -2,7 +2,6 @@ import type {
 	ActiveProps,
 	GlobalProps,
 	GlobalState,
-	SizeProps,
 	TextProps
 } from '../../shared/model';
 
@@ -45,22 +44,23 @@ export type DBPaginationItemDefaultProps = {
 	 */
 	layout?: PaginationItemLayoutType;
 	/**
-	 * On which side of this page the wide layout draws an ellipsis. The gap is drawn
-	 * by the page that borders it rather than by an element of its own, so it cannot
-	 * be reached by assistive technology.
+	 * Which gaps this page borders, as a space separated list of `wide-before`,
+	 * `wide-after`, `collapsed-before` and `collapsed-after`. The gap is drawn by the
+	 * page that borders it rather than by an element of its own, so it cannot be
+	 * reached by assistive technology. Each layout brings its own tokens, because a
+	 * marker inherits the visibility of its carrier, and the two sides are separate
+	 * tokens so a page standing between two gaps needs no value of its own.
 	 */
-	wideEllipsis?: string;
-	/**
-	 * On which side of this page the collapsed layout draws an ellipsis. Separate
-	 * from the wide side, because a marker inherits the visibility of its carrier.
-	 */
-	collapsedEllipsis?: string;
+	ellipsis?: string;
 };
 
+// No SizeProps: the size comes from the data-size of the surrounding .db-pagination,
+// so it is set once for the whole component instead of once per item. That makes the
+// wrapper a requirement rather than a convention - there is no pagination item outside
+// a pagination, and an item without that ancestor renders at the medium size.
 export type DBPaginationItemProps = DBPaginationItemDefaultProps &
 	GlobalProps &
 	ActiveProps &
-	SizeProps &
 	TextProps;
 
 export type DBPaginationItemDefaultState = {

@@ -33,9 +33,9 @@
 	}
 }
 
-// The item owns its own box and reads its size from its own data-size, so it can be
-// used on its own. The surrounding layout stays with the pagination, because it
-// depends on the list context.
+// The item owns its own box, but not its size - that comes from the data-size of the
+// surrounding .db-pagination, see the rules at the end of this file. The surrounding
+// layout stays with the pagination as well, because it depends on the list context.
 .db-pagination-item {
 	display: flex;
 	align-items: center;
@@ -152,10 +152,8 @@
 	// reach the accessibility tree. The typography and the box are set for every
 	// marker regardless of layout, because Sass cannot extend across a media query -
 	// only the content and the margin are switched below the breakpoint.
-	&[data-ellipsis-wide]::before,
-	&[data-ellipsis-wide]::after,
-	&[data-ellipsis-collapsed]::before,
-	&[data-ellipsis-collapsed]::after {
+	&[data-ellipsis]::before,
+	&[data-ellipsis]::after {
 		@extend %db-overwrite-font-size-md;
 
 		display: inline-block;
@@ -163,82 +161,88 @@
 		text-align: center;
 	}
 
-	&[data-ellipsis-wide="before"]::before,
-	&[data-ellipsis-wide="both"]::before {
+	// One token per side, so a page standing between two gaps carries both instead of
+	// a value that means both - which is what keeps each side a single selector.
+	&[data-ellipsis~="wide-before"]::before {
 		@include ellipsis-content;
 
 		margin-inline-end: variables.$db-spacing-fixed-2xs;
 	}
 
-	&[data-ellipsis-wide="after"]::after,
-	&[data-ellipsis-wide="both"]::after {
+	&[data-ellipsis~="wide-after"]::after {
 		@include ellipsis-content;
 
 		margin-inline-start: variables.$db-spacing-fixed-2xs;
 	}
 
 	@include screen-sizes.screen("sm", "max") {
-		&[data-ellipsis-wide]::before,
-		&[data-ellipsis-wide]::after {
+		// Reset both sides first: the wide tokens stay on the item below the
+		// breakpoint, they only stop being drawn there.
+		&[data-ellipsis]::before,
+		&[data-ellipsis]::after {
 			content: none;
 			margin-inline: 0;
 		}
 
-		&[data-ellipsis-collapsed="before"]::before,
-		&[data-ellipsis-collapsed="both"]::before {
+		&[data-ellipsis~="collapsed-before"]::before {
 			@include ellipsis-content;
 
 			margin-inline-end: variables.$db-spacing-fixed-2xs;
 		}
 
-		&[data-ellipsis-collapsed="after"]::after,
-		&[data-ellipsis-collapsed="both"]::after {
+		&[data-ellipsis~="collapsed-after"]::after {
 			@include ellipsis-content;
 
 			margin-inline-start: variables.$db-spacing-fixed-2xs;
 		}
 	}
+}
 
-	&[data-size="small"] {
-		@include control {
-			@extend %db-overwrite-font-size-sm;
+// The small variant, keyed on the pagination around the item rather than on the item
+// itself. The <nav> already carries data-size for the whole component, and every
+// documented usage - the generated markup and a hand-written list alike - puts the
+// items inside it, so a per-item attribute would reach nothing this does not. It also
+// spares a hand-written list from repeating the value on every <li>.
+.db-pagination[data-size="small"] .db-pagination-item {
+	@include control {
+		@extend %db-overwrite-font-size-sm;
 
-			block-size: variables.$db-sizing-sm;
-			min-inline-size: variables.$db-sizing-sm;
-			padding: variables.$db-spacing-fixed-3xs;
-		}
-
-		// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
-		// $db-sizing-sm at regular density, but is narrower at functional and wider
-		// at expressive - so the marker ended up wider than the page button it sits
-		// next to. $db-sizing-xs stays below $db-sizing-sm in every density.
-		&[data-ellipsis-wide]::before,
-		&[data-ellipsis-wide]::after,
-		&[data-ellipsis-collapsed]::before,
-		&[data-ellipsis-collapsed]::after {
-			@extend %db-overwrite-font-size-sm;
-
-			min-inline-size: variables.$db-sizing-xs;
-		}
-
-		// The marker keeps the margin of the medium size on purpose, so this size
-		// overrides the width alone. The margin is one half of the space around the
-		// dots: the other half is the gap of the list, which the marker cannot reach
-		// because it is a pseudo element inside the item. That gap is
-		// $db-spacing-fixed-2xs for both sizes, so a smaller margin here made the
-		// space in front of the dots differ from the space behind them - and the
-		// concept spaces the truncation item evenly at 4px on either side.
+		block-size: variables.$db-sizing-sm;
+		min-inline-size: variables.$db-sizing-sm;
+		padding: variables.$db-spacing-fixed-3xs;
 	}
 
-	// An arrow instead of a number: the icon replaces the label, so the text is hidden
-	// and the glyph centred in the box the control already has. Keyed on the icon
-	// attribute of the control rather than on a no-text flag, because a page control
-	// never carries an icon and the arrows always do - which saves the item a property
-	// whose only job would be to forward the distinction.
-	// Last on purpose. The padding has to go for the glyph to fit inside the square,
-	// and both sizes above declare one, so this rule has to follow them - it matches
-	// them on specificity and only wins on order. set-basic-button clears the padding
-	// the same way for an icon-only button.
+	// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
+	// $db-sizing-sm at regular density, but is narrower at functional and wider at
+	// expressive - so the marker ended up wider than the page button it sits next to.
+	// $db-sizing-xs stays below $db-sizing-sm in every density.
+	&[data-ellipsis]::before,
+	&[data-ellipsis]::after {
+		@extend %db-overwrite-font-size-sm;
+
+		min-inline-size: variables.$db-sizing-xs;
+	}
+
+	// The marker keeps the margin of the medium size on purpose, so this size overrides
+	// the width alone. The margin is one half of the space around the dots: the other
+	// half is the gap of the list, which the marker cannot reach because it is a pseudo
+	// element inside the item. That gap is $db-spacing-fixed-2xs for both sizes, so a
+	// smaller margin here made the space in front of the dots differ from the space
+	// behind them - and the concept spaces the truncation item evenly at 4px on either
+	// side.
+}
+
+// An arrow instead of a number: the icon replaces the label, so the text is hidden and
+// the glyph centred in the box the control already has. Keyed on the icon attribute of
+// the control rather than on a no-text flag, because a page control never carries an
+// icon and the arrows always do - which saves the item a property whose only job would
+// be to forward the distinction.
+// Last on purpose, and scoped through .db-pagination for the same reason. The padding
+// has to go for the glyph to fit inside the square, and both sizes declare one, so this
+// rule has to match them on specificity and win on order - which means it has to carry
+// the same ancestor the small size does. set-basic-button clears the padding the same
+// way for an icon-only button.
+.db-pagination .db-pagination-item {
 	@include control("[data-icon]") {
 		@include icons.is-icon-text-replace;
 

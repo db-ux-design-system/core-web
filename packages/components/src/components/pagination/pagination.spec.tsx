@@ -19,8 +19,7 @@ type PaginationItemSnapshot = {
 	visible: boolean;
 	ellipsisBefore: boolean;
 	ellipsisAfter: boolean;
-	wideEllipsis: string;
-	collapsedEllipsis: string;
+	ellipsis: string[];
 };
 
 // The truncation is drawn by the page that borders the gap, so it is read off the
@@ -49,9 +48,9 @@ const readItems = async (component: any): Promise<PaginationItemSnapshot[]> =>
 					ellipsisBefore: hasMarker('::before'),
 					ellipsisAfter: hasMarker('::after'),
 					// Declared, so both layouts can be checked from one read.
-					wideEllipsis: item.getAttribute('data-ellipsis-wide') ?? '',
-					collapsedEllipsis:
-						item.getAttribute('data-ellipsis-collapsed') ?? ''
+					ellipsis: (item.getAttribute('data-ellipsis') ?? '')
+						.split(' ')
+						.filter((token) => token !== '')
 				};
 			})
 		);
@@ -396,9 +395,9 @@ const testPagination = () => {
 	test('should truncate large page ranges', async ({ mount }) => {
 		const component = await mount(comp);
 
-		await expect(component.locator('li[data-ellipsis-wide]')).toHaveCount(
-			2
-		);
+		await expect(
+			component.locator('li[data-ellipsis*="wide-"]')
+		).toHaveCount(2);
 		await expect(
 			component.getByRole('button', { name: 'Page 1 of 10' })
 		).toBeVisible();
@@ -414,9 +413,9 @@ const testPagination = () => {
 			<DBPagination currentPage={3} totalCount={50} pageSize={10} />
 		);
 
-		await expect(component.locator('li[data-ellipsis-wide]')).toHaveCount(
-			0
-		);
+		await expect(
+			component.locator('li[data-ellipsis*="wide-"]')
+		).toHaveCount(0);
 		await expect(component.locator('.db-pagination-page')).toHaveCount(5);
 	});
 
@@ -752,9 +751,9 @@ const testCollapsing = () => {
 		// Five pages are the collapsed layout already, so nothing may be hidden -
 		// hiding 2 and 4 here would claim a gap that does not exist.
 		expect(getShape(await readItems(component))).toBe('1 2 3 4 5');
-		await expect(component.locator('li[data-ellipsis-wide]')).toHaveCount(
-			0
-		);
+		await expect(
+			component.locator('li[data-ellipsis*="wide-"]')
+		).toHaveCount(0);
 	});
 
 	test('should keep the current page marked in the collapsed layout', async ({
@@ -862,8 +861,8 @@ const testSizes = () => {
 		// Figma draws the previous and next buttons at the size of the page items,
 		// not at a fixed small - see the Pagination (Concept) component set.
 		// Measured rather than read off the control: the size is declared once on the
-		// list item, so asserting the attribute would only restate where it sits. The
-		// box is what the concept specifies, and both sizes are square there.
+		// nav, so asserting the attribute would only restate where it sits. The box is
+		// what the concept specifies, and both sizes are square there.
 		const boxOf = (target: any) =>
 			target.evaluate((element: HTMLElement) => {
 				const { width, height } = element.getBoundingClientRect();
@@ -901,8 +900,8 @@ const testSizes = () => {
 
 	test('should size the links like the buttons', async ({ mount }) => {
 		// One rule styles both elements, so an anchor has to come out with the box of
-		// a button. Nothing declares this on the control any more - the item reads the
-		// size off the list item and applies it to whichever of the two it finds.
+		// a button. Nothing declares this on the control or on the item - both are styled
+		// as descendants of the data-size on the nav.
 		// Page 1, so that both element types are in this one rendering: every page is
 		// an anchor in link mode, including the current one, while previous stays a
 		// native disabled button at the boundary.
@@ -1463,12 +1462,12 @@ const expectValidLayout = (
 	}
 ) => {
 	const { totalPages, currentPage, boundaryCount, layout, context } = setup;
-	const marker = (item: PaginationItemSnapshot): string =>
-		layout === 'wide' ? item.wideEllipsis : item.collapsedEllipsis;
+	// One token per side, so each side is one membership test instead of a value that
+	// may or may not stand for both.
 	const hasBefore = (item: PaginationItemSnapshot): boolean =>
-		marker(item) === 'before' || marker(item) === 'both';
+		item.ellipsis.includes(`${layout}-before`);
 	const hasAfter = (item: PaginationItemSnapshot): boolean =>
-		marker(item) === 'after' || marker(item) === 'both';
+		item.ellipsis.includes(`${layout}-after`);
 	const pages = items.map((item) => Number(item.text));
 
 	expect(pages, `${context}: contains the current page`).toContain(

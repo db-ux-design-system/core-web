@@ -2,11 +2,17 @@ import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
 import type { PaginationItemLayoutType } from '../pagination-item/model';
 
 /**
- * On which side of a page the gap it borders is drawn. Every layout marks its own
- * gaps, because a marker inherits the visibility of the page that carries it - one
- * hidden below the breakpoint would take its ellipsis with it.
+ * The gap tokens a page can carry. Every layout marks its own gaps, because a marker
+ * inherits the visibility of the page that carries it - one hidden below the
+ * breakpoint would take its ellipsis with it. One token per side, so a page standing
+ * between two gaps carries two of them instead of a value meaning both.
  */
-export const PaginationEllipsisList = ['before', 'after', 'both'] as const;
+export const PaginationEllipsisList = [
+	'wide-before',
+	'wide-after',
+	'collapsed-before',
+	'collapsed-after'
+] as const;
 export type PaginationEllipsisType = (typeof PaginationEllipsisList)[number];
 
 export type PaginationItemType = {
@@ -16,14 +22,11 @@ export type PaginationItemType = {
 	page: number;
 	layout: PaginationItemLayoutType;
 	/**
-	 * Where this page borders a gap in the wide layout.
-	 */
-	wideEllipsis?: PaginationEllipsisType;
-	/**
-	 * Where this page borders a gap in the collapsed layout. Only set on pages the
+	 * Which gaps this page borders, as a space separated list of
+	 * `PaginationEllipsisType` tokens. The collapsed tokens are only set on pages the
 	 * collapsed layout shows, since a hidden page cannot carry a visible marker.
 	 */
-	collapsedEllipsis?: PaginationEllipsisType;
+	ellipsis?: string;
 	/**
 	 * Identity of the item across page changes. Keying by list position instead
 	 * would move the focus to an adjacent page whenever the window shifts, because
@@ -103,11 +106,12 @@ export type DBPaginationDefaultState = {
 	getPages: (siblingCount: number) => number[];
 	getCollapsedPages: () => number[];
 	getPaginationItems: () => PaginationItemType[];
-	getEllipsisSide: (
+	getEllipsisTokens: (
+		layout: string,
 		pages: number[],
 		page: number,
 		totalPages: number
-	) => PaginationEllipsisType | undefined;
+	) => string[];
 	getHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;

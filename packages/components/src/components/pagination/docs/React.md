@@ -89,6 +89,11 @@ documentation for the reasoning.
 directly only when you build the surrounding list yourself and want the item
 appearance and semantics of the design system.
 
+**It needs a `.db-pagination` ancestor.** The item is not a standalone component: the
+size is one `data-size` on the `<nav>` and reaches the items from there, so an item
+outside that wrapper renders at the medium size whatever you do. Keep the
+`<nav class="db-pagination">` around your list, as the example below does.
+
 ```tsx App.tsx
 import { DBPaginationItem } from "@db-ux/react-core-components";
 

@@ -231,22 +231,26 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			for (const page of widePages) {
 				const inCollapsed = collapsedPages.includes(page);
+				// One attribute carries both layouts. A hidden page cannot draw a
+				// visible marker, so the collapsed tokens are only asked for where
+				// the collapsed layout shows this page.
+				const tokens = state
+					.getEllipsisTokens('wide', widePages, page, totalPages)
+					.concat(
+						inCollapsed
+							? state.getEllipsisTokens(
+									'collapsed',
+									collapsedPages,
+									page,
+									totalPages
+								)
+							: []
+					);
 				items.push({
 					page,
 					layout: inCollapsed ? 'always' : 'wide',
 					key: 'page-' + page,
-					wideEllipsis: state.getEllipsisSide(
-						widePages,
-						page,
-						totalPages
-					),
-					collapsedEllipsis: inCollapsed
-						? state.getEllipsisSide(
-								collapsedPages,
-								page,
-								totalPages
-							)
-						: undefined
+					ellipsis: tokens.length > 0 ? tokens.join(' ') : undefined
 				});
 			}
 
@@ -255,28 +259,31 @@ export default function DBPagination(props: DBPaginationProps) {
 		// A page borders a gap before it when the previous page in that layout is more
 		// than one away, or when it is the first page shown and page 1 is missing. Only
 		// the last page can border a trailing gap. Both sides at once happens with
-		// boundaryCount 0, where a single page stands between two gaps.
-		getEllipsisSide: (
+		// boundaryCount 0, where a single page stands between two gaps - which is why
+		// this returns a list: one token per side, prefixed with the layout it belongs
+		// to, so the stylesheet needs no value standing for both.
+		getEllipsisTokens: (
+			layout: string,
 			pages: number[],
 			page: number,
 			totalPages: number
 		) => {
 			const index = pages.indexOf(page);
 			if (index === -1) {
-				return undefined;
+				return [];
 			}
 
 			const previousPage = index > 0 ? pages[index - 1] : 0;
-			const hasBefore = index === 0 ? page > 1 : page - previousPage > 1;
-			const hasAfter = index === pages.length - 1 && page < totalPages;
+			const tokens: string[] = [];
 
-			if (hasBefore && hasAfter) {
-				return 'both';
+			if (index === 0 ? page > 1 : page - previousPage > 1) {
+				tokens.push(layout + '-before');
 			}
-			if (hasBefore) {
-				return 'before';
+			if (index === pages.length - 1 && page < totalPages) {
+				tokens.push(layout + '-after');
 			}
-			return hasAfter ? 'after' : undefined;
+
+			return tokens;
 		},
 		getHref: (page: number) => {
 			// The pattern has to go into a local first. Angular turns every prop
@@ -434,13 +441,14 @@ export default function DBPagination(props: DBPaginationProps) {
 				box and the pointer target come from one place. They pass no page,
 				which keeps them out of data-pagination-item and therefore out of the
 				collapsing - they belong to every layout. */}
-				<DBPaginationItem size={props.size}>
+				<DBPaginationItem>
 					{/* Plain controls, for the same reason the item renders one: the
 					box comes from .db-pagination-item and the look from the shared
 					button placeholders, so both branches are identical without a line
 					of extra CSS. data-icon is the only thing an arrow declares - the
 					item hides the label and centres the glyph off that attribute -
-					while data-variant and data-size sit on the list item around it. */}
+					while data-variant sits on the list item around it and the size comes
+					from the data-size of the nav. */}
 					<Show
 						when={state.getPreviousHref()}
 						else={
@@ -495,7 +503,6 @@ export default function DBPagination(props: DBPaginationProps) {
 								key={item.key}
 								page={item.page}
 								layout={item.layout}
-								size={props.size}
 								active={state.getCurrentPage() === item.page}
 								// The current page keeps its href. Dropping it would
 								// swap the anchor for a button the moment the page
@@ -508,14 +515,13 @@ export default function DBPagination(props: DBPaginationProps) {
 								href={state.getHref(item.page)}
 								label={state.getPageLabel(item.page)}
 								text={state.getPageText(item.page)}
-								wideEllipsis={item.wideEllipsis}
-								collapsedEllipsis={item.collapsedEllipsis}
+								ellipsis={item.ellipsis}
 							/>
 						)}
 					</For>
 				</Show>
 				<Show when={!state.hasTotalCount()}>{props.children}</Show>
-				<DBPaginationItem size={props.size}>
+				<DBPaginationItem>
 					<Show
 						when={state.getNextHref()}
 						else={
