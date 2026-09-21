@@ -7,7 +7,12 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { GeneralEvent } from '../../shared/model';
-import { cls, getBoolean, getBooleanAsString } from '../../utils';
+import {
+	cls,
+	getBoolean,
+	getBooleanAsString,
+	delay as utilsDelay
+} from '../../utils';
 import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';

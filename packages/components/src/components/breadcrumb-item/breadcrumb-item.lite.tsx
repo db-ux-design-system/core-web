@@ -97,7 +97,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					href={props.href}
 					target={props.target}
 					rel={props.rel}
-					hreflang={props.hreflang}
+					hrefLang={props.hreflang}
 					referrerPolicy={props.referrerPolicy}
 					aria-current={props.ariaCurrent}>
 					{props.text}
