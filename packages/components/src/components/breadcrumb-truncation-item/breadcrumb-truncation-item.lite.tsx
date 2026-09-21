@@ -7,7 +7,7 @@ import {
 	useTarget
 } from '@builder.io/mitosis';
 import type { GeneralEvent } from '../../shared/model';
-import { cls, delay, getBoolean, getBooleanAsString } from '../../utils';
+import { cls, getBoolean, getBooleanAsString } from '../../utils';
 import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedPopover } from '../../utils/floating-components';
@@ -82,7 +82,7 @@ export default function DBBreadcrumbTruncationItem(
 				);
 				if (popover) {
 					// Workaround so the DOM has settled (needed for Angular).
-					void delay(() => {
+					void utilsDelay(() => {
 						if (detailsRef) {
 							handleFixedPopover({
 								element: popover,
@@ -101,19 +101,19 @@ export default function DBBreadcrumbTruncationItem(
 		removeListeners: () => {
 			if (state._documentClickListenerCallbackId) {
 				new DocumentClickListener().removeCallback(
-					state._documentClickListenerCallbackId
+					state._documentClickListenerCallbackId!
 				);
 				state._documentClickListenerCallbackId = undefined;
 			}
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
-					state._documentScrollListenerCallbackId
+					state._documentScrollListenerCallbackId!
 				);
 				state._documentScrollListenerCallbackId = undefined;
 			}
 			if (state._resizeObserverCallbackId) {
 				new ResizeObserverListener().unobserve(
-					state._resizeObserverCallbackId
+					state._resizeObserverCallbackId!
 				);
 				state._resizeObserverCallbackId = undefined;
 			}

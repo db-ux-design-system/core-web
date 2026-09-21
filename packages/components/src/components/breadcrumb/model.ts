@@ -21,6 +21,10 @@ export type DBBreadcrumbDefaultState = {
 	_autoCollapse: boolean;
 	_expanded: boolean;
 	/**
+	 * Expands the auto-collapsed trail (shows all items, hides the toggle).
+	 */
+	handleExpand: () => void;
+	/**
 	 * Normalized breadcrumb items derived from the `items` prop (options API).
 	 */
 	getItems: () => DBBreadcrumbItemDefaultProps[];

@@ -25,6 +25,9 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	const state = useStore<DBBreadcrumbState>({
 		_autoCollapse: false,
 		_expanded: false,
+		handleExpand: () => {
+			state._expanded = true;
+		},
 		getItems: () => {
 			return parseItems<DBBreadcrumbItemDefaultProps>(props.items);
 		},
@@ -73,9 +76,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 						variant="ghost"
 						size={props.size ?? 'small'}
 						aria-label={props.expandText}
-						onClick={() => {
-							state._expanded = true;
-						}}>
+						onClick={() => state.handleExpand()}>
 						{/* Visible ellipsis as text (design); accessible name */}
 						{/* comes from aria-label. Escaped so source stays ASCII. */}
 						<span aria-hidden="true">{'\u2026'}</span>
