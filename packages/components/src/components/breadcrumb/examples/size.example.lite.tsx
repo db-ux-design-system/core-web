@@ -1,5 +1,6 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBBreadcrumbItem from '../../breadcrumb-item/breadcrumb-item.lite';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBBreadcrumb from '../breadcrumb.lite';
 import { StorybookBreadcrumbArgTypes } from './_breadcrumb.arg.types';
 
@@ -12,6 +13,13 @@ useMetadata({
 export default function BreadcrumbSize() {
 	return (
 		<Fragment>
+			<DBInfotext
+				semantic="informational"
+				size="small"
+				icon="none"
+				data-sb-ignore="true">
+				Small
+			</DBInfotext>
 			<DBBreadcrumb size="small" expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
@@ -25,6 +33,14 @@ export default function BreadcrumbSize() {
 					</a>
 				</DBBreadcrumbItem>
 			</DBBreadcrumb>
+			<i class="line-break" data-sb-ignore="true" />
+			<DBInfotext
+				semantic="informational"
+				size="small"
+				icon="none"
+				data-sb-ignore="true">
+				Medium
+			</DBInfotext>
 			<DBBreadcrumb size="medium" expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
