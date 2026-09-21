@@ -1,13 +1,10 @@
-import { DBBreadcrumbTruncationItem } from '../../../../output/react/src/index';
-
-import { DBBreadcrumbItem } from '../../../../output/react/src/index';
-
-import { DBBreadcrumb } from '../../../../output/react/src/index';
-
 import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
+	DBBreadcrumb,
+	DBBreadcrumbItem,
+	DBBreadcrumbTruncationItem,
 	DBButton,
 	DBCard,
 	DBCheckbox,
