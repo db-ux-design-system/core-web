@@ -35,15 +35,18 @@ export default function PaginationDensity() {
 		expressivePage: 5,
 		// Routed through state methods with an `any` parameter: an inline typed
 		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent.
+		// the Stencil showcase, where the payload is a CustomEvent. That event is
+		// also why the page is unwrapped before it is stored: Stencil turns
+		// onPageChange into an emitter, so the handler receives the event rather
+		// than the number it carries.
 		setFunctional(page: any) {
-			state.functionalPage = page;
+			state.functionalPage = page?.detail ?? page;
 		},
 		setRegular(page: any) {
-			state.regularPage = page;
+			state.regularPage = page?.detail ?? page;
 		},
 		setExpressive(page: any) {
-			state.expressivePage = page;
+			state.expressivePage = page?.detail ?? page;
 		}
 	});
 

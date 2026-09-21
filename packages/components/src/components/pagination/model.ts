@@ -115,7 +115,9 @@ export type DBPaginationDefaultState = {
 	stepToPage: (page: number) => void;
 	getPageText: (page: number) => string;
 	getPageLabel: (page: number) => string;
+	isModifiedLinkClick: (event: any) => boolean;
 	handleClick: (event: any) => void;
+	handleStepClick: (event: any, page: number) => void;
 	handlePageChange: (page: number) => void;
 };
 

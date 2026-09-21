@@ -24,12 +24,15 @@ export default function PaginationLink() {
 		boundaryPage: 1,
 		// Routed through state methods with an `any` parameter: an inline typed
 		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent.
+		// the Stencil showcase, where the payload is a CustomEvent. That event is
+		// also why the page is unwrapped before it is stored: Stencil turns
+		// onPageChange into an emitter, so the handler receives the event rather
+		// than the number it carries.
 		setLinked(page: any) {
-			state.linkedPage = page;
+			state.linkedPage = page?.detail ?? page;
 		},
 		setBoundary(page: any) {
-			state.boundaryPage = page;
+			state.boundaryPage = page?.detail ?? page;
 		}
 	});
 

@@ -40,15 +40,18 @@ export default function PaginationPosition() {
 		endPage: 10,
 		// Routed through state methods with an `any` parameter: an inline typed
 		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent.
+		// the Stencil showcase, where the payload is a CustomEvent. That event is
+		// also why the page is unwrapped before it is stored: Stencil turns
+		// onPageChange into an emitter, so the handler receives the event rather
+		// than the number it carries.
 		setStart(page: any) {
-			state.startPage = page;
+			state.startPage = page?.detail ?? page;
 		},
 		setCenter(page: any) {
-			state.centerPage = page;
+			state.centerPage = page?.detail ?? page;
 		},
 		setEnd(page: any) {
-			state.endPage = page;
+			state.endPage = page?.detail ?? page;
 		}
 	});
 

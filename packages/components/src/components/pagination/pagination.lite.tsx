@@ -364,7 +364,31 @@ export default function DBPagination(props: DBPaginationProps) {
 			// directly keeps the arrow working in both cases.
 			state.handlePageChange(page);
 		},
+		// True when the browser is about to handle the activation somewhere other
+		// than this document: a modifier key or a non-primary button on a link opens
+		// the destination in a new tab or window, so reporting the page would move
+		// this pagination away from the page the user still has in front of them.
+		// Only links are tested - a modifier on a button is a plain activation.
+		isModifiedLinkClick: (event: any) => {
+			const target = event.target as HTMLElement;
+			if (!target || !target.closest('a[href]')) {
+				return false;
+			}
+			return Boolean(
+				event.metaKey ||
+				event.ctrlKey ||
+				event.shiftKey ||
+				event.altKey ||
+				(typeof event.button === 'number' && event.button > 0)
+			);
+		},
 		handleClick: (event: any) => {
+			// A modified click on a page link belongs to the other tab, not to this
+			// pagination.
+			if (state.isModifiedLinkClick(event)) {
+				return;
+			}
+
 			const target = event.target as HTMLElement;
 			const item = target.closest('[data-page]');
 			if (!item || !_ref) {
@@ -382,6 +406,15 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 			// No preventDefault: in link mode the anchor has to stay a working link,
 			// which is the whole point of hrefPattern.
+		},
+		// Previous and next as anchors report their page themselves instead of going
+		// through the delegated handler, so they need the same modified-click guard.
+		handleStepClick: (event: any, page: number) => {
+			if (state.isModifiedLinkClick(event)) {
+				return;
+			}
+
+			state.handlePageChange(page);
 		},
 		handlePageChange: (page: number) => {
 			if (page < 1 || page === state.getCurrentPage()) {
@@ -451,8 +484,9 @@ export default function DBPagination(props: DBPaginationProps) {
 							rel="prev"
 							data-icon="chevron_left"
 							aria-label={props.previousLabel}
-							onClick={() =>
-								state.handlePageChange(
+							onClick={(event: any) =>
+								state.handleStepClick(
+									event,
 									state.getCurrentPage() - 1
 								)
 							}>
@@ -509,8 +543,9 @@ export default function DBPagination(props: DBPaginationProps) {
 							rel="next"
 							data-icon="chevron_right"
 							aria-label={props.nextLabel}
-							onClick={() =>
-								state.handlePageChange(
+							onClick={(event: any) =>
+								state.handleStepClick(
+									event,
 									state.getCurrentPage() + 1
 								)
 							}>

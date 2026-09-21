@@ -35,12 +35,15 @@ export default function PaginationWrapping() {
 		narrowPage: 12,
 		// Routed through state methods with an `any` parameter: an inline typed
 		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent.
+		// the Stencil showcase, where the payload is a CustomEvent. That event is
+		// also why the page is unwrapped before it is stored: Stencil turns
+		// onPageChange into an emitter, so the handler receives the event rather
+		// than the number it carries.
 		setRoomy(page: any) {
-			state.roomyPage = page;
+			state.roomyPage = page?.detail ?? page;
 		},
 		setNarrow(page: any) {
-			state.narrowPage = page;
+			state.narrowPage = page?.detail ?? page;
 		}
 	});
 

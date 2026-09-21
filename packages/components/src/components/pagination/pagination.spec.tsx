@@ -1332,6 +1332,76 @@ const testLinks = () => {
 		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
 		expect(requestedPage).toBe(6);
 	});
+
+	test('should ignore a modified click on a page link', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="#page={page}"
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}
+			/>
+		);
+
+		// A modified click opens the destination in another tab or window, which is
+		// not something this test run should do. preventDefault on the document
+		// cancels that default action without hiding the click from the component:
+		// its listener sits on the <ul> and therefore runs first.
+		await page.evaluate(() => {
+			document.addEventListener('click', (event: MouseEvent) => {
+				event.preventDefault();
+			});
+		});
+
+		await component
+			.getByRole('link', { name: 'Page 6 of 10' })
+			.click({ modifiers: ['ControlOrMeta'] });
+		expect(
+			requestedPage,
+			'a ctrl/cmd click reports nothing'
+		).toBeUndefined();
+
+		await component
+			.getByRole('link', { name: 'Page 6 of 10' })
+			.click({ modifiers: ['Shift'] });
+		expect(requestedPage, 'a shift click reports nothing').toBeUndefined();
+
+		// The counter check: without it the assertions above would also pass if the
+		// guard rejected every click on a link.
+		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
+		expect(requestedPage).toBe(6);
+	});
+
+	test('should still report a modified click on a page button', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}
+			/>
+		);
+
+		// Only links are guarded. A modifier on a button carries no navigation the
+		// browser could take elsewhere, so it stays a plain activation.
+		await component
+			.getByRole('button', { name: 'Page 6 of 10' })
+			.click({ modifiers: ['ControlOrMeta'] });
+		expect(requestedPage).toBe(6);
+	});
 };
 
 const expectValidLayout = (

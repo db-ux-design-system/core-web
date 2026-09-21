@@ -168,6 +168,12 @@ Which pages are shown is one attribute:
 | ---------------------- | ------------------------- | ------------------------------------------------------------- |
 | `page`                 | always                    | Boundary page, current page, or a page closing a one-page gap |
 | `sibling`              | only above the breakpoint | Page next to the current one                                  |
+| `collapsed`            | only below the breakpoint | Page the collapsed layout adds on its own                     |
+
+`collapsed` is the mirror image of `sibling` and exists for a hand-written list
+whose collapsed layout is not a subset of its wide one. `DBPagination` never emits
+it, because the pages it collapses to are always a subset of the pages it shows
+above the breakpoint - it marks those `page` and hides the rest as `sibling`.
 
 Where the gaps are is two more, one per layout. Each takes `before`, `after` or
 `both`, and the marker is drawn by the page it belongs to:

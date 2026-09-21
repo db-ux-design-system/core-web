@@ -31,12 +31,15 @@ export default function PaginationSize() {
 		smallPage: 5,
 		// Routed through a state method with an `any` parameter: an inline typed
 		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent.
+		// the Stencil showcase, where the payload is a CustomEvent. That event is
+		// also why the page is unwrapped before it is stored: Stencil turns
+		// onPageChange into an emitter, so the handler receives the event rather
+		// than the number it carries.
 		setMedium(page: any) {
-			state.mediumPage = page;
+			state.mediumPage = page?.detail ?? page;
 		},
 		setSmall(page: any) {
-			state.smallPage = page;
+			state.smallPage = page?.detail ?? page;
 		}
 	});
 

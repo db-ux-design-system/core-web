@@ -35,18 +35,21 @@ export default function PaginationTruncation() {
 		boundariesPage: 10,
 		// Routed through state methods with an `any` parameter: an inline typed
 		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent.
+		// the Stencil showcase, where the payload is a CustomEvent. That event is
+		// also why the page is unwrapped before it is stored: Stencil turns
+		// onPageChange into an emitter, so the handler receives the event rather
+		// than the number it carries.
 		setShort(page: any) {
-			state.shortPage = page;
+			state.shortPage = page?.detail ?? page;
 		},
 		setDefault(page: any) {
-			state.defaultPage = page;
+			state.defaultPage = page?.detail ?? page;
 		},
 		setSiblings(page: any) {
-			state.siblingsPage = page;
+			state.siblingsPage = page?.detail ?? page;
 		},
 		setBoundaries(page: any) {
-			state.boundariesPage = page;
+			state.boundariesPage = page?.detail ?? page;
 		}
 	});
 

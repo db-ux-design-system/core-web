@@ -105,6 +105,29 @@ content instead of computing the page list, which is what lets you bring a route
 link. It still reports the page: it listens on the list and reads `page` back from the
 item, so your child never gets a handler attached to it.
 
+A composed item is a child of your own component, so the directives it uses have to
+be imported there. `RouterLink` belongs in that list next to both components -
+without it `routerLink` is an inert attribute and the example below does not
+navigate:
+
+```ts app.component.ts
+import { Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
+import { DBPagination, DBPaginationItem } from "@db-ux/ngx-core-components";
+
+@Component({
+	selector: "app-root",
+	templateUrl: "./app.component.html",
+	imports: [DBPagination, DBPaginationItem, RouterLink],
+	standalone: true
+})
+export class AppComponent {
+	onPageChange(page: number) {
+		// Keep your own state in sync; the router handles the navigation itself.
+	}
+}
+```
+
 ```html app.component.html
 <db-pagination [currentPage]="2" (pageChange)="onPageChange($event)">
 	<db-pagination-item [page]="1" label="Page 1 of 2">
