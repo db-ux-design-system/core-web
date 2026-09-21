@@ -36,7 +36,7 @@
     "next": "16.3.5",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "react-router-dom": "7.18.3"
+    "react-router-dom": "7.18.4"
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
