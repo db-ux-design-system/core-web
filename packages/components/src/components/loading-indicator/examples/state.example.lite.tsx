@@ -90,6 +90,7 @@ export default function LoadingIndicatorState() {
 			</DBInfotext>
 			<DBLoadingIndicator
 				state="successful"
+				propOverrides={{ label: { ariaLabel: 'Success' } }}
 				variant="circular"
 				orientation="horizontal"
 				progressText="100 of 100">
@@ -97,6 +98,7 @@ export default function LoadingIndicatorState() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="successful"
+				propOverrides={{ label: { ariaLabel: 'Success' } }}
 				variant="circular"
 				orientation="vertical"
 				progressText="100%">
@@ -104,6 +106,7 @@ export default function LoadingIndicatorState() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="successful"
+				propOverrides={{ label: { ariaLabel: 'Success' } }}
 				variant="bar"
 				progressText="100 of 100">
 				Bar
@@ -118,6 +121,7 @@ export default function LoadingIndicatorState() {
 			</DBInfotext>
 			<DBLoadingIndicator
 				state="critical"
+				propOverrides={{ label: { ariaLabel: 'Error' } }}
 				variant="circular"
 				orientation="horizontal"
 				progressText="100 of 100">
@@ -125,6 +129,7 @@ export default function LoadingIndicatorState() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="critical"
+				propOverrides={{ label: { ariaLabel: 'Error' } }}
 				variant="circular"
 				orientation="vertical"
 				progressText="100%">
@@ -132,6 +137,7 @@ export default function LoadingIndicatorState() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="critical"
+				propOverrides={{ label: { ariaLabel: 'Error' } }}
 				variant="bar"
 				progressText="100 of 100">
 				Bar

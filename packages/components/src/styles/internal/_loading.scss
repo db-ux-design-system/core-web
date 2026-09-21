@@ -61,6 +61,8 @@
 	}
 
 	.db-loading-indicator {
+		gap: 0;
+
 		&:not([data-state="successful"], [data-state="critical"]) {
 			--db-loading-indicator-segment-color: currentcolor;
 			--db-loading-indicator-segment-color-overlay: currentcolor;

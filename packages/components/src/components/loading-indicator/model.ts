@@ -4,6 +4,7 @@ import {
 	GlobalState,
 	InitializedState,
 	OrientationProps,
+	PropOverridesType,
 	ShowLabelProps,
 	SizeType
 } from '../../shared/model';
@@ -100,7 +101,15 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	GlobalProps &
 	ShowLabelProps &
 	OrientationProps &
-	DelayProps;
+	DelayProps & {
+		/**
+		 * Allows overriding specific props on nested elements or internal component structure
+		 */
+		propOverrides?: PropOverridesType & {
+			label?: { ariaLabel?: string };
+			progress?: { ariaLabel?: string };
+		};
+	};
 
 export type DBLoadingIndicatorDefaultState = {
 	_loadingState?: LoadingIndicatorStateType | string;

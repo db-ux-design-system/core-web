@@ -88,7 +88,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 
 			return `${Math.min(Math.max(value / max, 0), 1).toFixed(2)}`;
 		},
-		getRole: () => {
+		getRole: (): string | undefined => {
 			if (props.role) {
 				return props.role;
 			}
@@ -489,13 +489,17 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			</Show>
 
 			<div class="db-loading-indicator-content">
-				<label id={state._labelId} htmlFor={state._progressId}>
+				<label
+					id={state._labelId}
+					htmlFor={state._progressId}
+					aria-label={props.propOverrides?.label?.ariaLabel}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
 				</label>
 				<progress
 					id={state._progressId}
+					aria-label={props.propOverrides?.progress?.ariaLabel}
 					value={
 						getBoolean(props.indeterminate)
 							? undefined

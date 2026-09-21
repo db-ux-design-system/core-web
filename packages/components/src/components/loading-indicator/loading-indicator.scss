@@ -266,10 +266,6 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 	}
 }
 
-$progress-bar-full-segment-inline-size: calc(
-	100% - var(--db-loading-indicator-progress-bar-segment-padding) * 2
-);
-
 %progress-bar {
 	inline-size: 100%;
 	min-inline-size: variables.$db-sizing-xl;
@@ -350,8 +346,7 @@ $progress-bar-full-segment-inline-size: calc(
 			> .db-loading-indicator-content {
 				&::after {
 					inline-size: calc(
-						var(--db-loading-indicator-percentage, 0) *
-							#{$progress-bar-full-segment-inline-size}
+						var(--db-loading-indicator-percentage, 0) * 100%
 					);
 				}
 			}
@@ -362,8 +357,7 @@ $progress-bar-full-segment-inline-size: calc(
 	&[data-state="critical"] {
 		> .db-loading-indicator-content {
 			&::after {
-				/* stylelint-disable-next-line db-ux/use-sizing */
-				inline-size: $progress-bar-full-segment-inline-size;
+				inline-size: 100%;
 			}
 		}
 	}
@@ -389,18 +383,11 @@ $progress-bar-full-segment-inline-size: calc(
 		}
 
 		&::after {
-			--db-loading-indicator-progress-bar-segment-padding: 2px;
-
 			z-index: 1;
-			inset-block-start: var(
-				--db-loading-indicator-progress-bar-segment-padding
-			);
-			inset-inline: var(
-				--db-loading-indicator-progress-bar-segment-padding
-			);
-			block-size: calc(
-				var(--db-loading-indicator-progress-bar-track-block-size) - 2 *
-					var(--db-loading-indicator-progress-bar-segment-padding)
+			inset: 0;
+			/* stylelint-disable-next-line db-ux/use-sizing */
+			block-size: var(
+				--db-loading-indicator-progress-bar-track-block-size
 			);
 			background-color: var(--db-loading-indicator-segment-color);
 		}

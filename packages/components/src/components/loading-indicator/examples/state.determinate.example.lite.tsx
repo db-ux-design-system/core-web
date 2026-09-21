@@ -108,6 +108,7 @@ export default function LoadingIndicatorStateDeterminate() {
 			</DBInfotext>
 			<DBLoadingIndicator
 				state="successful"
+				propOverrides={{ label: { ariaLabel: 'Success' } }}
 				indeterminate={false}
 				value={100}
 				max={100}
@@ -118,6 +119,7 @@ export default function LoadingIndicatorStateDeterminate() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="successful"
+				propOverrides={{ label: { ariaLabel: 'Success' } }}
 				indeterminate={false}
 				value={100}
 				max={100}
@@ -128,6 +130,7 @@ export default function LoadingIndicatorStateDeterminate() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="successful"
+				propOverrides={{ label: { ariaLabel: 'Success' } }}
 				indeterminate={false}
 				value={100}
 				max={100}
@@ -145,6 +148,7 @@ export default function LoadingIndicatorStateDeterminate() {
 			</DBInfotext>
 			<DBLoadingIndicator
 				state="critical"
+				propOverrides={{ label: { ariaLabel: 'Error' } }}
 				indeterminate={false}
 				value={100}
 				max={100}
@@ -155,6 +159,7 @@ export default function LoadingIndicatorStateDeterminate() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="critical"
+				propOverrides={{ label: { ariaLabel: 'Error' } }}
 				indeterminate={false}
 				value={100}
 				max={100}
@@ -165,6 +170,7 @@ export default function LoadingIndicatorStateDeterminate() {
 			</DBLoadingIndicator>
 			<DBLoadingIndicator
 				state="critical"
+				propOverrides={{ label: { ariaLabel: 'Error' } }}
 				indeterminate={false}
 				value={100}
 				max={100}
