@@ -1,5 +1,7 @@
 import { expect, type Locator, type Page, test } from '@playwright/test';
-import { isAngular, waitForDBShell } from '../default';
+import { waitForDBShell } from '../default';
+
+const path = '03/input';
 
 /**
  * Regression test for
@@ -15,9 +17,12 @@ import { isAngular, waitForDBShell } from '../default';
  * that guard the separator is restored on every keystroke and the field can no
  * longer be cleared at all.
  *
- * Angular only, because the write-back path (`handleFrameworkEventAngular`) is
- * Angular only. React and Vue bind `props.value` directly and their renderers
- * skip a property write when the element already holds the value.
+ * The regression itself is Angular-only (the write-back path lives in
+ * `handleFrameworkEventAngular`; React binds `props.value` directly and Vue and
+ * Stencil skip a property write when the element already holds the value), but
+ * the test runs against every framework showcase so the behaviour stays
+ * verified everywhere. Only Chromium is driven: native number-editor keyboard
+ * handling differs per engine, while the behaviour under test does not.
  */
 const getNumberInput = (page: Page): Locator =>
 	page.locator('input[type="number"]').first();
@@ -30,13 +35,12 @@ const clear = async (page: Page, input: Locator): Promise<void> => {
 };
 
 test.describe('DBInput number', () => {
-	test.beforeEach(async ({ page }) => {
-		const { showcase } = process.env;
-		if (!isAngular(showcase)) {
+	test.beforeEach(async ({ page }, { project }) => {
+		if (project.name !== 'chromium') {
 			test.skip();
 		}
 
-		await page.goto('./', { waitUntil: 'domcontentloaded' });
+		await page.goto(`./#/${path}`, { waitUntil: 'domcontentloaded' });
 		await waitForDBShell(page);
 	});
 

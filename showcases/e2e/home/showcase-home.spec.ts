@@ -133,6 +133,16 @@ const testFormComponents = async (
 
 			case 'textbox': {
 				expect(text).toEqual(`test${index + 1}`);
+				// The bound model above is not enough: a reset must also reach
+				// the element. In Angular the reset value often equals the value
+				// the model already holds, so nothing would be written back and
+				// the field would stay empty after the native reset cleared it
+				// (https://github.com/db-ux-design-system/core-web/issues/6147).
+				const input = components[index];
+				if (input) {
+					await expect(input).toHaveValue(`test${index + 1}`);
+				}
+
 				break;
 			}
 		}

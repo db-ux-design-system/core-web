@@ -7,10 +7,25 @@ export const handleFrameworkEventAngular = (
 	component: any,
 	event: any,
 	modelValue: string = 'value',
-	lastValue?: any
+	lastValue?: any,
+	reset?: boolean
 ): void => {
 	const value = event.target[modelValue];
 	const type = event.target?.type;
+
+	if (reset) {
+		// A form reset is a programmatic write, not user input. Route it through
+		// `writeValue` so it also writes the value into the element via
+		// `renderer.setProperty`. The model alone is not enough: the reset value
+		// often equals the value the model already holds (e.g. `[value]="plain"`
+		// bound to the last typed value), so the bound expression would not
+		// change and nothing would reach the DOM -- the field would stay empty
+		// after a native reset cleared it
+		// (https://github.com/db-ux-design-system/core-web/issues/6147).
+		component.propagateChange(value);
+		component.writeValue(value);
+		return;
+	}
 
 	if (
 		!value &&

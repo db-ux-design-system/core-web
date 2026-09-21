@@ -151,6 +151,72 @@ describe('handleFrameworkEventAngular', () => {
 	});
 });
 
+/**
+ * Regression tests for https://github.com/db-ux-design-system/core-web/issues/6147
+ *
+ * A native form reset is a programmatic write, not user input. Routing it
+ * through `_setModelValue` alone is not enough: the reset value often equals the
+ * value the model already holds (e.g. `[value]` bound to the last typed value),
+ * so the bound expression does not change and nothing reaches the DOM -- the
+ * field stays empty after the native reset cleared it. The reset path therefore
+ * has to go through `writeValue`, which also sets the property directly.
+ */
+describe('handleFrameworkEventAngular: form reset', () => {
+	it('writes the reset value into the element via writeValue', () => {
+		const component = createComponent();
+		handleFrameworkEventAngular(
+			component,
+			createTextEvent('test1'),
+			'value',
+			'test1',
+			true
+		);
+		expect(component.propagateChange).toHaveBeenCalledWith('test1');
+		expect(component.writeValue).toHaveBeenCalledWith('test1');
+	});
+
+	it('does not fall back to the model-only path on reset', () => {
+		const component = createComponent();
+		handleFrameworkEventAngular(
+			component,
+			createTextEvent('test1'),
+			'value',
+			'test1',
+			true
+		);
+		expect(component._setModelValue).not.toHaveBeenCalled();
+	});
+
+	it('applies an empty reset value to the element', () => {
+		const component = createComponent();
+		handleFrameworkEventAngular(
+			component,
+			createTextEvent(''),
+			'value',
+			'',
+			true
+		);
+		expect(component.writeValue).toHaveBeenCalledWith('');
+	});
+
+	it('bypasses the number intermediate-entry guards on reset', () => {
+		const component = createComponent();
+		// A reset value that looks like an intermediate number entry must still
+		// be written -- the guards only apply to live user input.
+		handleFrameworkEventAngular(
+			component,
+			{
+				type: 'change',
+				target: { type: 'number', value: '5' }
+			},
+			'value',
+			'5',
+			true
+		);
+		expect(component.writeValue).toHaveBeenCalledWith('5');
+	});
+});
+
 describe('handleFrameworkEventVue', () => {
 	it('emits update:value for valid number value', () => {
 		const emit = vi.fn();

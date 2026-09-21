@@ -141,7 +141,8 @@ export default function DBInput(props: DBInputProps) {
 						state,
 						event,
 						'value',
-						state._value
+						state._value,
+						reset
 					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
@@ -173,7 +174,8 @@ export default function DBInput(props: DBInputProps) {
 						state,
 						event,
 						'value',
-						state._value
+						state._value,
+						reset
 					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
@@ -332,6 +334,11 @@ export default function DBInput(props: DBInputProps) {
 					// state._value starts out undefined, so the first
 					// render still uses props.value.
 					angular: state._value ?? props.value ?? '',
+					// React needs the raw prop so the element stays a
+					// controlled component; falling back to state._value would
+					// pin it because state._value is never updated from user
+					// input in React.
+					react: props.value,
 					default: props.value ?? state._value ?? ''
 				})}
 				maxLength={getNumber(props.maxLength, props.maxlength)}
