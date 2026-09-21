@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-BUshzU1S.js";e();
