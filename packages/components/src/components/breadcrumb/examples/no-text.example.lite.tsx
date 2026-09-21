@@ -1,6 +1,5 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBBreadcrumbItem from '../../breadcrumb-item/breadcrumb-item.lite';
-import DBInfotext from '../../infotext/infotext.lite';
 import DBBreadcrumb from '../breadcrumb.lite';
 import { StorybookBreadcrumbArgTypes } from './_breadcrumb.arg.types';
 
@@ -13,14 +12,11 @@ useMetadata({
 export default function BreadcrumbNoText() {
 	return (
 		<Fragment>
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Composition
-			</DBInfotext>
-			<DBBreadcrumb separator="slash" expandText="Show more">
-				<DBBreadcrumbItem noText icon="pen" text="Home" href="/" />
+			<DBBreadcrumb expandText="Show more">
+				<DBBreadcrumbItem noText icon="house" text="Home" href="/" />
 				<DBBreadcrumbItem
 					noText
-					icon="person"
+					icon="user"
 					text="Profile"
 					href="/profile"
 				/>
@@ -32,19 +28,13 @@ export default function BreadcrumbNoText() {
 					ariaCurrent="page"
 				/>
 			</DBBreadcrumb>
-
-			<i class="line-break" data-sb-ignore="true" />
-			<DBInfotext semantic="informational" size="small" icon="none">
-				Options API
-			</DBInfotext>
 			<DBBreadcrumb
-				separator="slash"
 				expandText="Show more"
 				items={[
-					{ noText: true, icon: 'pen', text: 'Home', href: '/' },
+					{ noText: true, icon: 'house', text: 'Home', href: '/' },
 					{
 						noText: true,
-						icon: 'person',
+						icon: 'user',
 						text: 'Profile',
 						href: '/profile'
 					},

@@ -1,22 +1,5 @@
 [
 	{
-		"label": "DBBreadcrumbTruncationItem",
-		"name": "breadcrumb-truncation-item",
-		"isHiddenInMenu": true
-	},
-
-	{
-		"label": "DBBreadcrumbItem",
-		"name": "breadcrumb-item",
-		"isHiddenInMenu": true
-	},
-
-	{
-		"label": "TODO: Add to specific category; DBBreadcrumb",
-		"name": "breadcrumb"
-	},
-
-	{
 		"label": "Action",
 		"name": "action",
 		"path": "/components/action",
@@ -226,6 +209,20 @@
 			{
 				"label": "DBShell",
 				"name": "shell"
+			},
+			{
+				"label": "DBBreadcrumb",
+				"name": "breadcrumb"
+			},
+			{
+				"label": "DBBreadcrumbItem",
+				"name": "breadcrumb-item",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBBreadcrumbTruncationItem",
+				"name": "breadcrumb-truncation-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},
