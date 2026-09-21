@@ -31,6 +31,9 @@ useDefaultProps<DBBreadcrumbTruncationItemProps>({
 export default function DBBreadcrumbTruncationItem(
 	props: DBBreadcrumbTruncationItemProps
 ) {
+	// This is used as forwardRef
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const _ref = useRef<HTMLLIElement | any>(null);
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const detailsRef = useRef<HTMLDetailsElement | any>(null);
 
@@ -131,6 +134,7 @@ export default function DBBreadcrumbTruncationItem(
 
 	return (
 		<li
+			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-breadcrumb-truncation-item', props.className)}>
 			<details

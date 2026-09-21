@@ -10,8 +10,8 @@ import {
 import { cls, parseItems } from '../../utils';
 import DBBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.lite';
 import { DBBreadcrumbItemDefaultProps } from '../breadcrumb-item/model';
-import { DBButton } from '../button';
-import { DBTooltip } from '../tooltip';
+import DBButton from '../button/button.lite';
+import DBTooltip from '../tooltip/tooltip.lite';
 import { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
 useMetadata({});
