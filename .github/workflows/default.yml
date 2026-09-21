@@ -98,7 +98,6 @@ jobs:
     needs: [init]
     secrets: inherit
 
-
   test-figma-code-connect:
     if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
