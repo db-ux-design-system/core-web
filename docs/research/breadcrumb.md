@@ -25,13 +25,13 @@ The following overview consolidates the basic data of the examined design system
 | **GitLab Pajamas**          | `Breadcrumb` ✅                                 | Vue.js / Rails (ViewComponent)             | [Pajamas](https://design.gitlab.com/components/breadcrumb)                                   | Takes all available width and automatically collapses overflowing items into a `…` dropdown, starting with the first item. Separator implemented as a CSS pseudo-class.               |
 | **HPE Grommet**             | — ❌                                            | React                                      | [Grommet](https://v2.grommet.io/components)                                                  | No dedicated breadcrumb component; trails are composed manually from `Anchor` / `Box`.                                                                                                |
 | **IBM Carbon**              | `Breadcrumb` / `BreadcrumbItem` ✅              | React, Web Components, Angular, Vue        | [Carbon](https://carbondesignsystem.com/components/breadcrumb/usage/)                        | Explicitly documents location-based vs. path-based types. Supports an overflow menu (`overflowThreshold`) and an optional trailing-slash toggle. Placed above the page title.         |
-| **KoliBri**                 | `kol-breadcrumb` ✅                             | Web Components (StencilJS)                 | [KoliBri](https://public-ui.github.io/)                                                      | Accessibility-first reference implementation aligned with WCAG 2.2 and BITV 2.0. Renders a `<nav>`/`<ol>` structure with a configurable separator icon.                               |
+| **KoliBri**                 | `kol-breadcrumb` ✅                             | Web Components (StencilJS)                 | [KoliBri](https://public-ui.github.io/)                                                      | Renders a `<nav>`/`<ol>` structure with a configurable separator icon.                                                                                                                |
 | **Material UI**             | `Breadcrumbs` ✅                                | React                                      | [MUI](https://mui.com/material-ui/react-breadcrumbs/)                                        | Collapses via `maxItems`, `itemsBeforeCollapse`, `itemsAfterCollapse` with an accessible expand button (`expandText`, default "Show path"). Custom separators supported.              |
 | **MongoDB LeafyGreen**      | — ❌                                            | React / TypeScript                         | [LeafyGreen](https://www.mongodb.design/)                                                    | No dedicated breadcrumb component in the public component set.                                                                                                                        |
-| **Porsche Design System**   | `Crumbtrail` (`p-crumbtrail`) ✅                | Web Components (`<p-crumbtrail>`)          | [Porsche](https://designsystem.porsche.com/v3/components/introduction/)                      | Named "Crumbtrail" rather than "Breadcrumb". Web-component-first with framework wrappers (Angular, React, Vue). Handles responsive collapsing.                                        |
+| **Porsche Design System**   | `Crumbtrail` (`p-crumbtrail`) ✅                | Web Components (`<p-crumbtrail>`)          | [Porsche](https://designsystem.porsche.com/v3/components/introduction/)                      | Named "Crumbtrail" rather than "Breadcrumb". Handles responsive collapsing.                                                                                                           |
 | **SBB Lyne**                | `sbb-breadcrumb` / `sbb-breadcrumb-group` ✅    | Web Components (Lit) / Angular             | [SBB Lyne](https://digital.sbb.ch/en/design-system/lyne/components/breadcrumb/)              | Collapses to first + last with an ellipsis crumb when width is exceeded; expanding is one-way. Sets `accessibility-current="page"` on the last item; recommends a group `aria-label`. |
 | **Shopify Polaris**         | part of `Page` / `s-page` ⚠️                    | Web Components / React                     | [Polaris](https://polaris.shopify.com/components/structure/page/)                            | No standalone breadcrumb; a single "back" breadcrumb is exposed as a prop of the `Page` header rather than a full trail component.                                                    |
-| **SNCF WCS**                | `wcs-breadcrumb` / `wcs-breadcrumb-item` ✅     | Web Components (StencilJS), Angular, React | [SNCF WCS](https://wcs.dev.sncf/?path=/docs/components-breadcrumb--documentation)            | Framework-agnostic web components driven by shared design tokens. Separates visual representation from item data.                                                                     |
+| **SNCF WCS**                | `wcs-breadcrumb` / `wcs-breadcrumb-item` ✅     | Web Components (StencilJS), Angular, React | [SNCF WCS](https://wcs.dev.sncf/?path=/docs/components-breadcrumb--documentation)            | Separates visual representation from item data.                                                                                                                                       |
 | **Telefonica Mistica**      | `Breadcrumbs` ✅                                | React                                      | [Mistica](https://brandfactory.telefonica.com/d/iSp7b1DkYygv/n-a#/components/breadcrumbs)    | Presentational component relying on external routing/state. Themed per brand skin (e.g. Movistar).                                                                                    |
 | **Telekom Scale**           | `scale-breadcrumb` / `scale-breadcrumb-item` ✅ | Web Components (StencilJS)                 | [Telekom Scale](https://telekom.github.io/scale/?path=/docs/components-breadcrumb--standard) | Web-component pair with a "standard" story. Separator and current-page handling are built in.                                                                                         |
 | **Washington Post WPDS**    | — ❌                                            | React                                      | [WPDS](https://build.washingtonpost.com/)                                                    | No dedicated breadcrumb component in the public component set.                                                                                                                        |
@@ -42,11 +42,11 @@ The following overview consolidates the basic data of the examined design system
 
 Several abstract architectural patterns can be derived and considered as practices for developing a scalable breadcrumb component.
 
-The dominant markup pattern is remarkably consistent across systems: a `<nav>` landmark wrapping an ordered list (`<ol>` / `<li>`), with links for the ancestor pages and a plain (non-link) final item for the current page. The ordered list is important because the sequence of items carries meaning (least specific to most specific). Separators are almost universally rendered via CSS pseudo-elements (`::before` / `content`) rather than as real DOM nodes, so assistive technology does not announce them as content. Bootstrap exposes this as a themeable custom property (`--bs-breadcrumb-divider`), which is a clean pattern worth adopting.
+The dominant markup pattern is remarkably consistent across systems: a `<nav>` landmark wrapping an ordered list (`<ol>` / `<li>`), with links for the ancestor pages and a plain (non-link) final item for the current page. The ordered list is important because the sequence of items carries meaning (least specific to most specific). Separators are almost universally rendered via CSS pseudo-elements (`::before` / empty `content`) rather than as real DOM nodes, so assistive technology does not announce them as content. Bootstrap exposes this as a themeable custom property (`--bs-breadcrumb-divider`), which is a clean pattern worth adopting.
 
 ### Separators and Direction
 
-The separator is typically a greater-than symbol (`>`), a forward slash (`/`), or a chevron icon. Whatever the choice, it should be decorative (`aria-hidden`) and not part of the accessible name. RTL support matters: Bootstrap ships a flipped divider (`$breadcrumb-divider-flipped`) for right-to-left layouts, which is a good reminder that a chevron or slash must mirror in RTL contexts.
+The separator is typically a greater-than symbol (`>`), a forward slash (`/`), or a chevron icon. Whatever the choice, it should be decorative (`aria-hidden`) or CSS pseudo content (see previous paragraph) and not part of the accessible name. RTL support matters: Bootstrap ships a flipped divider (`$breadcrumb-divider-flipped`) for right-to-left layouts, which is a good reminder that a chevron or slash must mirror in RTL contexts.
 
 ### Truncation and Responsive Collapsing
 
@@ -94,7 +94,7 @@ A handful of systems (Grommet, MongoDB LeafyGreen, Washington Post WPDS) do not 
 
 To transfer an enterprise-level breadcrumb component into a custom design system, a step-by-step rollout increasing in complexity is recommended.
 
-### 🟢 V1 - Simple and basic features
+### 🟢 Phase 1 - Simple and basic features
 
 The first phase focuses on establishing a static, semantic, and accessible breadcrumb.
 
@@ -105,21 +105,23 @@ The first phase focuses on establishing a static, semantic, and accessible bread
 - **Micro-Interactions:** Subtle hover and focus indicators for keyboard use; sufficiently large touch targets (minimum 24x24 pixels).
 - **Internationalization (i18n):** Translatable labels for all screen-reader text and controls (e.g. the navigation `aria-label`).
 
-### 🔵 V2 - Intermediate features
+### 🔵 Phase 2 - Intermediate features
 
-The second phase adds responsiveness and framework integration.
+The second phase adds manual collapse and framework integration.
 
-- **Truncation (Collapse):** Prop-driven collapse (`maxItems`, `itemsBeforeCollapse`, `itemsAfterCollapse`) with an accessible, focusable expander that reveals the hidden middle items. Always keep the first and last crumb visible.
+- **Truncation (Collapse):** Consumer-driven collapse. The consumer explicitly wraps the crumbs to hide in a collapse container (see the `DBBreadcrumbCollapseItem` decision below), and the component renders an accessible, focusable control that reveals them. There is no prop-driven automatic selection of hidden crumbs and no width-aware measurement; the markup is the configuration. Always keep the first and last crumb visible.
 - **Icons in Items:** Optional leading icon per item (e.g. a "home" icon for the root), following SBB Lyne's icon/label slots.
 - **Routing and Framework Integration:** Slot/`as`-style injection so consumers can use framework-specific link components (router links) for SEO-friendly, SSR-compatible URLs without breaking styling.
 
-### 🔴 V3 - Advanced features
+### 🔴 Phase 3 - Advanced features
 
-The final phase targets robust, self-adjusting behavior.
+The final phase targets richer presentation and content modes, still within the manual-collapse model.
 
-- **Width-Aware Responsive Collapse:** Measure the available container width and automatically move overflowing items into an ellipsis element (as GitLab Pajamas and SBB Lyne do), collapsing before the layout breaks rather than relying only on a fixed `maxItems`.
+- **Collapse Presentations:** Offer the collapse control in more than one presentation (inline `<details>` disclosure and native popover overlay), including a responsive model that switches presentation per breakpoint (see the "Responsive angle" below). The consumer still chooses _which_ crumbs collapse; this only varies _how_ the hidden group is revealed.
 - **Overflow Menu:** Expose the collapsed items through an accessible dropdown/menu rather than only expanding inline, for very deep hierarchies.
 - **Path- vs. Location-based Modes:** Optional support for dynamically generated path-based trails in addition to the default location-based structure, following Carbon's documented distinction.
+
+> **Note on automatic truncation.** An earlier draft of this roadmap proposed prop-driven (`maxItems`) and width-aware automatic collapse in these phases. That direction was superseded by the manual-collapse decision below, which rules out automatic truncation. The width-aware / `ResizeObserver` approach and why it was dropped are documented in "Explored but not adopted" further down.
 
 ---
 
@@ -132,7 +134,7 @@ While prototyping the collapse behavior we explored a low-JS approach that leans
 Both variants treat the hidden middle crumbs as a distinct grouped set behind a single control. The difference is only how that set is revealed.
 
 - **Variant A - inline collapse with `<details>` / `<summary>`.** The `...` is the `<summary>` itself (styled, not hidden), and the hidden crumbs live in a nested `<ol>` inside the `<details>`. Advantages: no JavaScript for the toggle (the element owns its open/closed state), and browser "find in page" (Ctrl+F) can auto-expand a closed `<details>` when a match is inside it. The `<summary>` must stay visible and operable and carry an accessible label - hiding it (e.g. `display: none` or moving it off-screen) breaks keyboard operation and the find-in-page auto-expand, which are the very reasons to choose `<details>`.
-- **Variant B - overlay via the native Popover API.** The `...` is a `<button popovertarget="...">` that opens a popover listing the hidden crumbs. This also stays low-JS (the browser manages open state, light-dismiss, and focus) but trades away the Ctrl+F auto-expand, since the crumbs live in a closed popover.
+- **Variant B - overlay via the native Popover API.** The trigger is a `<button popovertarget="...">` that opens a popover listing the hidden crumbs. The visible `...` glyph must be decorative (CSS pseudo content or an `aria-hidden` span), and the button must carry a translatable accessible label such as "Show hidden breadcrumbs"; otherwise its accessible name is punctuation, which tells a screen-reader user nothing about what the control reveals (the same labelling requirement applies to the `<summary>` in Variant A). This stays low-JS (the browser manages open state, light-dismiss, and focus) but trades away the Ctrl+F auto-expand, since the crumbs live in a closed popover.
 
 ### Accepted trade-off: grouped screen-reader reading
 
@@ -148,15 +150,26 @@ A compositional API where the collapse container is a first-class child, so cons
 	<DBBreadcrumbCollapseItem>
 		<DBBreadcrumbItem><a href="/item">Item 1</a></DBBreadcrumbItem>
 	</DBBreadcrumbCollapseItem>
-	<DBBreadcrumbItem><a href="/item/current">Current</a></DBBreadcrumbItem>
+	<DBBreadcrumbItem aria-current="page">Current</DBBreadcrumbItem>
 </DBBreadcrumb>
 ```
+
+The final `Current` item is plain text (not a link) and carries `aria-current="page"`, matching the accessibility baseline established above - linking to the page the user is already on adds no value.
 
 Mapping to rendered markup:
 
 - `DBBreadcrumb` -> `<nav aria-label="..."><ol>`
 - `DBBreadcrumbItem` -> `<li>` (consumer slots the `<a>`; the current page renders as plain text with `aria-current="page"`)
-- `DBBreadcrumbCollapseItem` -> a `<li>` containing `<details><summary>...</summary><ol>...</ol></details>` (Variant A) or a `<li>` with a popover trigger + popover (Variant B). The collapse container is not itself a crumb; it wraps the hidden crumbs.
+- `DBBreadcrumbCollapseItem` -> the hidden crumbs stay in their own `<li>` elements inside the outer `<ol>`; the collapse control itself is rendered as chrome that is kept out of the breadcrumb count (see "Avoiding an inflated item count" below). It is not itself a crumb; it only reveals the hidden crumbs, whether via an inline `<details>` disclosure (Variant A) or a popover overlay (Variant B).
+
+### Avoiding an inflated item count
+
+The collapse control must not be counted as a breadcrumb. If the collapse container is emitted as a plain `<li>` child of the outer `<ol>`, assistive technology counts it as an outer item - a three-crumb trail is then announced as "list, four items" (three crumbs plus the disclosure chrome), recreating the inflated-count problem described in "Explored but not adopted" below. Two structures avoid this, each with a support risk to verify on a real screen reader:
+
+- **Control inside the `<ol>` with `role="presentation"` on its `<li>`**, so the disclosure `<li>` is not counted while the hidden crumbs remain real `<li>` items. Risk: AT support for a presentational `<li>` dropping from the count has historically varied.
+- **Control outside the `<ol>`** (a sibling inside the `<nav>`), so the `<ol>` contains exactly the crumbs. Risk: relies on the `<nav>` for structure and needs care so the control stays visually inline with the trail.
+
+Either way, the announced count must equal the number of crumbs (the hidden ones included, since they stay in the accessibility tree), never the number of crumbs plus the control. The grouped reading of the hidden set (from the `<details>` / popover region) is the separate, accepted trade-off discussed above.
 
 ### Open questions to resolve with design
 
@@ -184,23 +197,30 @@ This is a design decision to settle with the designer, since it changes the comp
 
 A different approach avoids the nested list (and its grouped screen-reader reading) entirely. The consumer authors **one flat `<ol>`** of all crumbs plus a single toggle `<li>` - no wrapper element. CSS lays the items out as a row (`display: flex`, or `display: grid` if a track-based layout is wanted later) and handles the truncation purely visually.
 
-No named areas are needed, and there is no need to special-case "last" or "rest": the items flow in DOM order, and the collapse rule is simply **"hide every item that is neither the first crumb, the last crumb, nor the toggle"** - that is the rest, by definition:
+No named areas are needed. The collapse rule is **"hide every item that is neither the first crumb, the last crumb, nor the toggle"** - the middle crumbs, by definition.
+
+The selector must not rely on the structural `:first-child` / `:last-child` pseudo-classes, though. As caveat 3 explains, the component can only emit the toggle as the **first or last** DOM child, and flex `order` merely moves it visually without changing its structural position. If the toggle is the first DOM child, `:first-child` matches the toggle rather than the leading crumb, so the actual first crumb falls into the "middle" set and is wrongly hidden (the trailing case is symmetrical). The rule therefore has to key off explicit markers on the edge crumbs and the toggle, not their DOM position:
 
 ```css
-.breadcrumb.is-collapsed > li:not(:first-child):not(:last-child):not(.toggle) {
+/* .is-first / .is-last mark the actual edge crumbs; .toggle marks the control.
+   Position-based :first-child/:last-child would break, because the toggle can
+   itself be the first or last DOM child. */
+.breadcrumb.is-collapsed > li:not(.is-first):not(.is-last):not(.toggle) {
 	/* clip visually, keep in the a11y tree */
 }
 ```
 
-Because there is no wrapper and no nested list, the accessibility tree is a single flat list and the screen reader reads all crumbs as one sequence. DOM order equals reading order (first, toggle, middle..., last), so visual and semantic order stay aligned.
+Because there is no wrapper and no nested list, the accessibility tree is a single flat list and the screen reader reads all crumbs as one sequence. Reading order follows DOM order; flex `order` only changes the visual sequence, so the class-based rule keeps visual and semantic order aligned regardless of which edge the toggle is emitted at.
 
 This is appealing but not free; the prototype surfaces three caveats:
 
 1. **Layout, not shared areas.** An early attempt assigned every middle crumb to one named grid area ("rest"); grid items in the same area stack and overlap (the middle `<li>` stretched across the full row in the inspector). The fix is to let the items flow in a single row (flex, or grid auto-flow) so each sits in its own column - do not collapse them into one shared cell.
-2. **Hiding must not remove from the a11y tree.** To preserve the flat-list benefit, collapsed middle crumbs must be hidden **visually only** (clip / off-screen / zero-size), never `display: none` or `visibility: hidden`, which would drop them from the accessibility tree and defeat the whole point.
+2. **Hiding visually only keeps the collapsed anchors focusable - a concrete accessibility failure.** To preserve the flat-list benefit, the collapsed middle crumbs would be hidden **visually only** (clip / off-screen / zero-size) rather than with `display: none` or `visibility: hidden`, so they stay in the accessibility tree. But an off-screen anchor is still in the **keyboard tab order**: a sighted keyboard user tabbing through the trail lands on invisible links _before_ the visible crumbs, with no focus indicator to show where focus went. That is a real WCAG failure (2.4.3 Focus Order, 2.4.7 Focus Visible), not merely noise, and it is the decisive reason this automatic approach was not adopted.
+    - Removing the links from the tab order while collapsed (`tabindex="-1"`, or `inert` on the group) fixes the focus problem - but then the links are not keyboard-reachable until the disclosure is expanded, which is exactly the disclosure-gated behavior the `<details>` / popover model provides natively. No benefit is left in the flat-list variant.
     - **The toggle itself must stay a real, operable control** - it must not be given `tabindex="-1"` or `aria-hidden`. A keyboard-only sighted user (not on a screen reader) has to be able to Tab to it and expand the crumbs; a focusable `aria-hidden` element is also an anti-pattern (focus lands on a control with no name/role, failing WCAG 4.1.2). Note that `aria-hidden` does **not** separate "screen-reader users" from "keyboard users" - it separates the accessibility tree from the focus order, so a screen-reader user who is also a keyboard user (most are) would still land on the hidden button and hear nothing.
-    - **Accepted trade-off:** because the collapsed crumbs stay in the a11y tree, a screen-reader user already reaches all the anchors and the toggle is redundant for them - they encounter one extra "Show hidden breadcrumbs, button" in the tab order that does nothing they need. That is mildly noisy but not harmful, and it is the fair price of keeping the toggle operable for keyboard-only sighted users. Keep the button fully accessible: a real `<button>` with an `aria-label` (e.g. "Show hidden breadcrumbs") and `aria-expanded` reflecting its state.
-3. **The toggle inflates the list item count, and the component can only emit it at an edge.** In a component the consumer slots the crumbs as children of the `<ol>`; the component renders its own chrome and therefore can only place the toggle as the **first or last** child - it cannot interleave the toggle between two consumer crumbs. A toggle wrapped in a counted `<li>` makes AT announce "list, 6 items" for 5 crumbs (verified in the prototype). Getting the toggle to _appear_ between the first crumb and the rest is a visual-order-vs-DOM-order problem, solved by **flex `order`** (or `grid-area` - `order` is simpler for a single row and grid buys nothing extra here). Two ways to keep the count correct, each with its own risk to verify on a real screen reader:
+    - **Residual redundancy even if focus is handled:** if the collapsed crumbs stay both in the a11y tree and in the tab order, a screen-reader user reaches all the anchors directly, so the toggle is redundant for them - they encounter one extra "Show hidden breadcrumbs, button" that does nothing they need. That redundancy is the minor cost; the focusable-invisible-links problem above is the disqualifying one. Whichever presentation is chosen, keep the toggle fully accessible: a real `<button>` with an `aria-label` (e.g. "Show hidden breadcrumbs") and `aria-expanded` reflecting its state.
+3. **The toggle inflates the list item count, and the component can only emit it at an edge.** In a component the consumer slots the crumbs as children of the `<ol>`; the component renders its own chrome and therefore can only place the toggle as the **first or last** child - it cannot interleave the toggle between two consumer crumbs. A toggle wrapped in a counted `<li>` makes AT announce "list, 6 items" for 5 crumbs (verified in the prototype).
+   Getting the toggle to _appear_ between the first crumb and the rest is a visual-order-vs-DOM-order problem, solved by **flex `order`** (or `grid-area` - `order` is simpler for a single row and grid buys nothing extra here). Two ways to keep the count correct, each with its own risk to verify on a real screen reader:
     - **Toggle inside the `<ol>` with `role="presentation"` on its `<li>`** so it is not counted. Everything stays a flex sibling, so `order` works with no `display: contents`. Risk: AT support for a presentational `<li>` dropping from the count has historically varied.
     - **Toggle outside the `<ol>`** (a sibling inside the `<nav>`), so the `<ol>` contains exactly the crumbs. To let `order` mix the button among the crumbs, the `<ol>` needs `display: contents`. Risk: `display: contents` has a history of AT bugs on lists.
 4. **CSS cannot decide when to collapse.** CSS cannot count items or detect overflow. A fixed rule (always collapse between first and last, like Porsche's deterministic model) is CSS-only; width-aware collapse still needs JS / container queries / `ResizeObserver`.
@@ -236,4 +256,4 @@ The `DBBreadcrumbCollapseItem` wraps the crumbs to hide and reveals them behind 
 - **Current-page default:** whether `DBBreadcrumbItem` gets a `current` prop that drops the link and sets `aria-current="page"`, or the consumer handles it.
 - **Mitosis output parity:** verify the collapse control (`<details>` toggle and/or popover) and any label wiring behave consistently across Angular, React, Vue, and Web Components.
 
-A static prototype of the collapse presentations (inline `<details>` collapse and native popover) lives in `test.html` at the repo root for screen-reader testing.
+The collapse presentations (inline `<details>` collapse and native popover) were validated during exploration with a static, throwaway HTML prototype for screen-reader testing; that scratchpad is intentionally not committed to the repository. The accessibility observations noted above (grouped reading, item-count behavior, focus order) should be re-verified against the real component once it is implemented.
