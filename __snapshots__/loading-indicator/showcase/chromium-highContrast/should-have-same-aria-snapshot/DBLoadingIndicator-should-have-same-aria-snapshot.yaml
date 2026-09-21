@@ -107,23 +107,23 @@
   - text: Successful
   - status:
     - text: Circular horizontal
-    - progressbar "Circular horizontal"
+    - progressbar "Success"
   - status:
     - text: Circular vertical
-    - progressbar "Circular vertical"
+    - progressbar "Success"
   - status:
     - text: Bar
-    - progressbar "Bar"
+    - progressbar "Success"
   - text: Critical
   - alert:
     - text: Circular horizontal
-    - progressbar "Circular horizontal"
+    - progressbar "Error"
   - alert:
     - text: Circular vertical
-    - progressbar "Circular vertical"
+    - progressbar "Error"
   - alert:
     - text: Bar
-    - progressbar "Bar"
+    - progressbar "Error"
   - 'link "State: Determinate"':
   - text: Inactive
   - status:
@@ -148,23 +148,23 @@
   - text: Successful
   - status:
     - text: Circular horizontal
-    - progressbar "Circular horizontal": 100 of 100
+    - progressbar "Success": 100 of 100
   - status:
     - text: Circular vertical
-    - progressbar "Circular vertical": 100%
+    - progressbar "Success": 100%
   - status:
     - text: Bar
-    - progressbar "Bar": 100 of 100
+    - progressbar "Success": 100 of 100
   - text: Critical
   - alert:
     - text: Circular horizontal
-    - progressbar "Circular horizontal": 100 of 100
+    - progressbar "Error": 100 of 100
   - alert:
     - text: Circular vertical
-    - progressbar "Circular vertical": 100%
+    - progressbar "Error": 100%
   - alert:
     - text: Bar
-    - progressbar "Bar": 100 of 100
+    - progressbar "Error": 100 of 100
   - link "Role"
   - text: Default (role derived from state)
   - status:
@@ -311,6 +311,90 @@
     - status:
       - text: Loading
       - progressbar "Loading"
+    - text: Button
+  - text: Successful
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - text: Successful with overlay
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - button "Button" [disabled]:
+    - status:
+      - text: Loading
+      - progressbar "Success"
+    - text: Button
+  - text: Critical
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - text: Critical with overlay
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
+    - text: Button
+  - button "Button" [disabled]:
+    - alert:
+      - text: Loading
+      - progressbar "Error"
     - text: Button
   - 'link "Example: Timeout"':
   - button "Start Timeout"
