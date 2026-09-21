@@ -276,29 +276,20 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 	// relative plus a second ::before/::after progress track.
 	&[data-size="small"] {
 		> .db-loading-indicator-content {
-			&::before,
-			&::after {
-				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-3xs};
-			}
+			--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-3xs};
 		}
 	}
 
 	&[data-size="large"] {
 		> .db-loading-indicator-content {
-			&::before,
-			&::after {
-				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-xs};
-			}
+			--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-xs};
 		}
 	}
 
 	&:not([data-size]),
 	&[data-size="medium"] {
 		> .db-loading-indicator-content {
-			&::before,
-			&::after {
-				--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-2xs};
-			}
+			--db-loading-indicator-progress-bar-track-block-size: #{variables.$db-sizing-2xs};
 		}
 	}
 
@@ -388,7 +379,8 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 
 		/** Provide space for the progress bar because it is absolute */
 		padding-block-start: calc(
-			#{variables.$db-sizing-2xs} + var(--db-indicator-gap)
+			var(--db-loading-indicator-progress-bar-track-block-size) +
+				var(--db-indicator-gap)
 		);
 		position: relative;
 		flex-direction: row;
