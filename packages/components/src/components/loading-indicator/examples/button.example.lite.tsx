@@ -139,7 +139,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -149,7 +149,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -159,7 +159,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -169,7 +169,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -187,7 +187,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -197,7 +197,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -207,7 +207,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -217,7 +217,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="successful"
-					propOverrides={{ label: { ariaLabel: 'Success' } }}
+					propOverrides={{ progress: { ariaLabel: 'Success' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -235,7 +235,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -245,7 +245,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -255,7 +255,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -265,7 +265,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={false}>
 					Loading
 				</DBLoadingIndicator>
@@ -283,7 +283,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -293,7 +293,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -303,7 +303,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>
@@ -313,7 +313,7 @@ export default function LoadingIndicatorButton() {
 				<DBLoadingIndicator
 					progressText="0 of 100"
 					state="critical"
-					propOverrides={{ label: { ariaLabel: 'Error' } }}
+					propOverrides={{ progress: { ariaLabel: 'Error' } }}
 					overlay={true}>
 					Loading
 				</DBLoadingIndicator>

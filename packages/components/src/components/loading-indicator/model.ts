@@ -106,7 +106,6 @@ export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 		 * Allows overriding specific props on nested elements or internal component structure
 		 */
 		propOverrides?: PropOverridesType & {
-			label?: { ariaLabel?: string };
 			progress?: { ariaLabel?: string };
 		};
 	};

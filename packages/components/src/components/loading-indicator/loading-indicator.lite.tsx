@@ -489,10 +489,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			</Show>
 
 			<div class="db-loading-indicator-content">
-				<label
-					id={state._labelId}
-					htmlFor={state._progressId}
-					aria-label={props.propOverrides?.label?.ariaLabel}>
+				<label id={state._labelId} htmlFor={state._progressId}>
 					<Show when={props.label} else={props.children}>
 						{props.label}
 					</Show>
