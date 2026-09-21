@@ -118,9 +118,10 @@
 
 	// The filled look marks the current page and nothing else, so it deliberately has
 	// no hover and no pressed background: the page one is already on is not somewhere
-	// to go. The cursor follows the same reasoning, and getPageHref drops the href for
-	// it, so link mode offers no link to it either - the ARIA APG treats the last
-	// breadcrumb item the same way.
+	// to go. The cursor follows the same reasoning. In link mode the current page stays
+	// an anchor, because swapping it for a button would cost it the keyboard focus, so
+	// this block is what keeps it from inviting a click - aria-current is what says the
+	// same to assistive technology.
 	&[data-variant="filled"] {
 		@include control {
 			// Two declarations, because two things set the cursor and only one of
@@ -132,9 +133,9 @@
 			--db-overwrite-cursor: default;
 
 			// The hook does nothing at rest, and there the two elements differ: a
-			// button already defaults to this cursor, a composed link with an href
-			// gets a pointer from the user agent. So the resting state needs saying
-			// outright, or the current page would invite a click in composition.
+			// button already defaults to this cursor, an anchor with an href gets a
+			// pointer from the user agent. So the resting state needs saying outright,
+			// or the current page would invite a click in link mode and in composition.
 			cursor: default;
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		}

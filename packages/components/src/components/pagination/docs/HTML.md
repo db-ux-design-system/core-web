@@ -238,12 +238,34 @@ so both look identical. Swap the element, keep the class, add the `href` and dro
 </li>
 ```
 
-**The current page stays a `<button>`.** It is not somewhere to go, so it gets no
-`href` - a link to the page one is already on promises a change and delivers none.
-It keeps its place in the tab order because it is the element that carries
-`aria-current="page"`, and it stops signalling that it leads somewhere: no pointer
-cursor, no hover and no pressed background. The ARIA APG treats the last breadcrumb
-item the same way.
+**The current page stays an `<a>` too.** What marks it is `aria-current="page"` on the
+control and `data-variant="filled"` on the `<li>`, not a different element - the same
+way the ARIA APG breadcrumb example keeps its last item a link and marks it with
+`aria-current`. Visually it stops signalling that it leads somewhere: no pointer
+cursor, no hover and no pressed background, all driven by that `data-variant`.
+
+```html index.html
+<li
+	class="db-pagination-item"
+	data-pagination-item="page"
+	data-page="5"
+	data-size="medium"
+	data-variant="filled"
+>
+	<a
+		class="db-pagination-page"
+		href="?page=5"
+		aria-current="page"
+		aria-label="Page 5 of 10"
+	>
+		5
+	</a>
+</li>
+```
+
+Keep the element stable if you re-render the list yourself. Turning the current page
+into a `<button>` replaces the focused node, so keyboard focus falls back to the
+document whenever someone pages with the keyboard.
 
 Previous and next additionally take `rel="prev"` and `rel="next"`. Google dropped
 them as an indexing signal in 2019, but they remain valid HTML, describe the

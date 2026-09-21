@@ -142,6 +142,42 @@ const testPagination = () => {
 		).toBeFocused();
 	});
 
+	test('should keep the focus when a linked page becomes current', async ({
+		mount,
+		page
+	}) => {
+		// The key alone is not enough in link mode. If the current page lost its href,
+		// the activated page would change from an anchor to a button, and a framework
+		// replaces a node whose element type changed even when the key survives - so
+		// the focus would fall back to the document. A fragment pattern keeps the test
+		// page from navigating away.
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="Results pages"
+				currentPage={5}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="#page={page}"
+			/>
+		);
+
+		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
+		await component.update(
+			<DBPagination
+				label="Results pages"
+				currentPage={6}
+				totalCount={100}
+				pageSize={10}
+				hrefPattern="#page={page}"
+			/>
+		);
+
+		await expect(
+			component.getByRole('link', { name: 'Page 6 of 10' })
+		).toBeFocused();
+	});
+
 	test('should let a consumer compose the items', async ({ mount }) => {
 		// Without totalCount the consumer owns the list. The item renders whatever it
 		// is given - here a plain anchor standing in for a router link - and the
@@ -867,9 +903,12 @@ const testSizes = () => {
 		// One rule styles both elements, so an anchor has to come out with the box of
 		// a button. Nothing declares this on the control any more - the item reads the
 		// size off the list item and applies it to whichever of the two it finds.
+		// Page 1, so that both element types are in this one rendering: every page is
+		// an anchor in link mode, including the current one, while previous stays a
+		// native disabled button at the boundary.
 		const component = await mount(
 			<DBPagination
-				currentPage={5}
+				currentPage={1}
 				totalCount={100}
 				pageSize={10}
 				hrefPattern="?page={page}"
@@ -888,18 +927,18 @@ const testSizes = () => {
 					};
 				});
 
-		// The current page stays a button, every other page becomes an anchor, so this
-		// compares the two element types against each other in one rendering.
-		expect(await box('a.db-pagination-previous')).toEqual({
-			width: 40,
-			height: 40
-		});
 		expect(await box('a.db-pagination-next')).toEqual({
 			width: 40,
 			height: 40
 		});
+		expect(await box('a.db-pagination-page')).toEqual({
+			width: 40,
+			height: 40
+		});
+		// The button at the boundary is the counterpart: same box from the same rule,
+		// different element.
 		expect(await box('a.db-pagination-page')).toEqual(
-			await box('button.db-pagination-page')
+			await box('button.db-pagination-previous')
 		);
 	});
 };
@@ -1077,17 +1116,18 @@ const testLinks = () => {
 			.evaluateAll((links: HTMLAnchorElement[]) =>
 				links.map((link) => link.getAttribute('href'))
 			);
-		// Page 5 is the current one, which gets no href and therefore stays a
-		// button - see "should not link the current page".
+		// Every page is linked, the current one included - see "should mark but not
+		// activate the current page".
 		expect(pageLinks).toEqual([
 			'?page=1',
 			'?page=4',
+			'?page=5',
 			'?page=6',
 			'?page=10'
 		]);
 		await expect(
 			component.locator('button.db-pagination-page')
-		).toHaveCount(1);
+		).toHaveCount(0);
 	});
 
 	test('should replace every occurrence of the page placeholder', async ({
@@ -1187,31 +1227,41 @@ const testLinks = () => {
 		);
 
 		await expect(
-			component.getByRole('button', { name: 'Page 5 of 10' })
+			component.getByRole('link', { name: 'Page 5 of 10' })
 		).toHaveAttribute('aria-current', 'page');
 		await expect(component.locator('[aria-current="page"]')).toHaveCount(1);
 	});
 
-	test('should not link the current page', async ({ mount, page }) => {
-		// The page one is already on is not somewhere to go, so it gets no href and
-		// none of the signals of a control that leads somewhere: no pointer cursor,
-		// no hover and no pressed background. It stays a focusable button,
-		// because that is the element carrying aria-current - the ARIA APG treats the
-		// last breadcrumb item the same way.
+	test('should mark but not activate the current page', async ({
+		mount,
+		page
+	}) => {
+		// The current page keeps its href, so the element does not change when a page
+		// becomes current - swapping the anchor for a button would replace the focused
+		// node and drop keyboard focus to the document. What marks it is aria-current,
+		// the way the ARIA APG breadcrumb example marks its last item, plus the filled
+		// look: no pointer cursor, no hover and no pressed background. And it reports
+		// nothing, because it is the page one is already on.
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
 			<DBPagination
 				currentPage={5}
 				totalCount={100}
 				pageSize={10}
-				hrefPattern="?page={page}"
+				hrefPattern="#page={page}"
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}
 			/>
 		);
 
-		await expect(
-			component.getByRole('link', { name: 'Page 5 of 10' })
-		).toHaveCount(0);
-		await expect(component.locator('a[href="?page=5"]')).toHaveCount(0);
+		const current = component.getByRole('link', { name: 'Page 5 of 10' });
+		await expect(current).toHaveAttribute('href', '#page=5');
+		await current.click();
+		expect(
+			requestedPage,
+			'the current page reports nothing'
+		).toBeUndefined();
 
 		const readState = async (target: any) => {
 			const resting = await target.evaluate(
@@ -1230,14 +1280,12 @@ const testLinks = () => {
 			);
 		};
 
-		const current = await readState(
-			component.getByRole('button', { name: 'Page 5 of 10' })
-		);
-		expect(current.cursor, 'the current page shows no pointer').toBe(
+		const currentState = await readState(current);
+		expect(currentState.cursor, 'the current page shows no pointer').toBe(
 			'default'
 		);
 		expect(
-			current.changed,
+			currentState.changed,
 			'hovering the current page keeps its background'
 		).toBe(false);
 
@@ -1266,14 +1314,14 @@ const testLinks = () => {
 
 		// The truncation is a pseudo element of the page that borders the gap, so there
 		// is nothing that could become a link and nothing that needs aria-hidden. What
-		// has to hold is that every item in the list is a page with exactly one control:
-		// a link, except for the current page, which is not linked.
+		// has to hold is that every item in the list is a page with exactly one control,
+		// and in link mode that control is an anchor for all of them.
 		expect(getShape(await readItems(component))).toBe('1 ... 4 5 6 ... 10');
 
 		const items = component.locator('li[data-pagination-item]');
 		await expect(items).toHaveCount(5);
 		await expect(items.locator(':is(a, button)')).toHaveCount(5);
-		await expect(items.locator('a')).toHaveCount(4);
+		await expect(items.locator('a')).toHaveCount(5);
 		await expect(
 			component.locator('li[data-pagination-item][aria-hidden]')
 		).toHaveCount(0);
@@ -1302,11 +1350,11 @@ const testLinks = () => {
 		await expect(
 			component.getByRole('link', { name: 'Page 1 of 10' })
 		).toBeFocused();
-		// The current page is a button here, not a link, and staying in the tab order
-		// is the point of that: it is the element that carries aria-current.
+		// The current page is a link here like every other page, which is what keeps it
+		// in the tab order and keeps the element stable across a page change.
 		await page.keyboard.press('Tab');
 		await expect(
-			component.getByRole('button', { name: 'Page 5 of 10' })
+			component.getByRole('link', { name: 'Page 5 of 10' })
 		).toBeFocused();
 	});
 

@@ -109,7 +109,6 @@ export type DBPaginationDefaultState = {
 		totalPages: number
 	) => PaginationEllipsisType | undefined;
 	getHref: (page: number) => string | undefined;
-	getPageHref: (page: number) => string | undefined;
 	getPreviousHref: () => string | undefined;
 	getNextHref: () => string | undefined;
 	stepToPage: (page: number) => void;

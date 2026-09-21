@@ -36,10 +36,12 @@ With `hrefPattern` the pages render as anchors instead of buttons. `{page}` is
 replaced with the page number, so the pagination becomes deep linkable, shareable
 and usable before hydration.
 
-The current page is the exception. It gets no `href`, because a link to the page one
-is already on promises a change and delivers none, so it stays a focusable
-`<button>` carrying `aria-current="page"` and shows neither a pointer cursor nor a
-hover or pressed state.
+The current page stays a link as well, carrying `aria-current="page"`. That is what
+tells assistive technology it leads nowhere new, and it is also what keeps keyboard
+focus: dropping the `href` would swap the anchor for a button the moment the page
+becomes current, and the framework replaces that node even though the item itself
+survives. Visually it stops inviting a click - no pointer cursor, no hover and no
+pressed state - and `onPageChange` never fires for it.
 
 ```html app.component.html
 <db-pagination

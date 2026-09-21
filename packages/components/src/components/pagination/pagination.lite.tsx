@@ -299,17 +299,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			// a query parameter.
 			return pattern.replaceAll('{page}', String(page));
 		},
-		// The current page gets no href. It is not somewhere to go, so a link to it
-		// promises a change and delivers none - the item keeps its focus and its
-		// aria-current, but stops being a link, the way the ARIA APG treats the last
-		// breadcrumb item. Previous and next keep using getHref, they can never point
-		// at the current page.
-		getPageHref: (page: number) => {
-			if (page === state.getCurrentPage()) {
-				return undefined;
-			}
-			return state.getHref(page);
-		},
 		getPreviousHref: () => {
 			return state.getHref(state.getCurrentPage() - 1);
 		},
@@ -508,7 +497,15 @@ export default function DBPagination(props: DBPaginationProps) {
 								layout={item.layout}
 								size={props.size}
 								active={state.getCurrentPage() === item.page}
-								href={state.getPageHref(item.page)}
+								// The current page keeps its href. Dropping it would
+								// swap the anchor for a button the moment the page
+								// becomes current, and a framework replaces that node
+								// even though the keyed item survives - which drops
+								// keyboard focus to the document. The APG breadcrumb
+								// example keeps the current item a link as well and
+								// marks it with aria-current, which is what tells
+								// assistive technology that it leads nowhere new.
+								href={state.getHref(item.page)}
 								label={state.getPageLabel(item.page)}
 								text={state.getPageText(item.page)}
 								wideEllipsis={item.wideEllipsis}
