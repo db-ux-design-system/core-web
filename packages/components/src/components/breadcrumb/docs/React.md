@@ -8,12 +8,7 @@ For general installation and configuration take a look at the [react-core-compon
 // App.tsx
 import { DBBreadcrumb } from "@db-ux/react-core-components";
 
-const App = () => (
-	<DBBreadcrumb>
-		Breadcrumb
-	</DBBreadcrumb>
-);
+const App = () => <DBBreadcrumb>Breadcrumb</DBBreadcrumb>;
 
 export default App;
 ```
-

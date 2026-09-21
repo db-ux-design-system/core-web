@@ -14,5 +14,3 @@ import { DBBreadcrumb } from "@db-ux/v-core-components";
 	<DBBreadcrumb>Breadcrumb</DBBreadcrumb>
 </template>
 ```
-
-

@@ -22,5 +22,3 @@ import { DBBreadcrumb } from '@db-ux/ngx-core-components';
 <!-- app.component.html -->
 <db-breadcrumb>Breadcrumb</db-breadcrumb>
 ```
-
-

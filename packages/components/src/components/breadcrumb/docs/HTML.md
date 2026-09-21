@@ -8,9 +8,6 @@ For general installation and configuration take a look at the [components](https
 <!-- index.html -->
 ...
 <body>
-	<div class="db-breadcrumb">
-		Breadcrumb
-	</div>
+	<div class="db-breadcrumb">Breadcrumb</div>
 </body>
 ```
-

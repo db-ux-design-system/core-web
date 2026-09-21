@@ -1,1 +1,1 @@
-export { default as DBBreadcrumbItem } from "./breadcrumb-item";
+export { default as DBBreadcrumbItem } from './breadcrumb-item';
