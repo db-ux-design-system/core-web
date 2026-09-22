@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/3017-pagination-initial-development/_next/static/css/f33dc7bd7d7f6099.css" as="style"/><link rel="stylesheet" href="/core-web/review/3017-pagination-initial-development/_next/static/css/f33dc7bd7d7f6099.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/webpack-92b34ee39ddf8dc9.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/main-0ba63a127ba51095.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/pages/_app-6ef8dd4708e427bd.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/pages/components/navigation/pagination/docs/React-f00d587a88291f60.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/TuebLEMNTaXljnv36iZrF/_buildManifest.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/TuebLEMNTaXljnv36iZrF/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/3017-pagination-initial-development/_next/static/css/f33dc7bd7d7f6099.css" as="style"/><link rel="stylesheet" href="/core-web/review/3017-pagination-initial-development/_next/static/css/f33dc7bd7d7f6099.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/webpack-92b34ee39ddf8dc9.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/main-0ba63a127ba51095.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/pages/_app-6ef8dd4708e427bd.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/chunks/pages/components/navigation/pagination/docs/React-851a2b4a8164046f.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/faQOuEjG1cZ6LL4bL7TqE/_buildManifest.js" defer=""></script><script src="/core-web/review/3017-pagination-initial-development/_next/static/faQOuEjG1cZ6LL4bL7TqE/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
 <p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
 <h3 id="use-component">Use component<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
 <p><code>DBPagination</code> is controlled. Update <code>currentPage</code> when <code>onPageChange</code> is called.</p>
@@ -20,119 +20,55 @@ const App = () =&gt; {
 
 export default App;
 </code></pre>
-<h3 id="page-links">Page links<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=page-links"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>page-links<!-- --> anchor link</a></h3>
-<p>With <code>hrefPattern</code> the pages render as anchors instead of buttons. <code>{page}</code> is
-replaced with the page number, so the pagination becomes deep linkable, shareable
-and usable before hydration.</p>
-<p>The current page stays a link as well, carrying <code>aria-current=&quot;page&quot;</code>. That is what
-tells assistive technology it leads nowhere new, and it is also what keeps keyboard
-focus: dropping the <code>href</code> would swap the anchor for a button the moment the page
-becomes current, and the framework replaces that node even though the item itself
-survives. Visually it stops inviting a click - no pointer cursor, no hover and no
-pressed state - and <code>onPageChange</code> never fires for it.</p>
+<h3 id="disabling-a-page">Disabling a page<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=disabling-a-page"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>disabling-a-page<!-- --> anchor link</a></h3>
+<p>Pass an <code>items</code> array, one entry per page, to drive the pagination from data instead
+of a bare count. It is what lets a single page be disabled - the count API cannot
+express that.</p>
 <pre><code class="language-tsx">import { DBPagination } from &quot;@db-ux/react-core-components&quot;;
 
 const App = () =&gt; (
 	&lt;DBPagination
-		currentPage={Number(
-			new URLSearchParams(location.search).get(&quot;page&quot;) ?? 1
-		)}
-		totalCount={100}
-		pageSize={10}
-		hrefPattern=&quot;?page={page}&quot;
+		currentPage={1}
+		items={[{}, { disabled: true }, {}]}
+		onPageChange={(page) =&gt; console.log(page)}
 	/&gt;
 );
 
 export default App;
 </code></pre>
-<p>The component does <strong>not</strong> call <code>preventDefault</code>, otherwise the plain href usage
-would be broken. <code>onPageChange</code> still fires, so it can be combined with
-<code>hrefPattern</code> to keep local state in sync.</p>
-<p>To hand the navigation to a client-side router, intercept the click on a wrapper
-instead. The component deliberately exposes no event object; see the Pagination
-documentation for the reasoning.</p>
-<pre><code class="language-tsx">&lt;div
-	onClick={(event) =&gt; {
-		const link = (event.target as HTMLElement).closest(&quot;a&quot;);
-		if (link) {
-			event.preventDefault();
-			navigate(link.getAttribute(&quot;href&quot;)!);
-		}
-	}}
-&gt;
-	&lt;DBPagination
-		currentPage={currentPage}
-		totalCount={100}
-		pageSize={10}
-		hrefPattern=&quot;?page={page}&quot;
-	/&gt;
-&lt;/div&gt;
-</code></pre>
-<h3 id="single-items">Single items<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=single-items"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>single-items<!-- --> anchor link</a></h3>
-<p><code>DBPaginationItem</code> is the <code>&lt;li&gt;</code> that <code>DBPagination</code> renders once per page. Use it
-directly only when you build the surrounding list yourself and want the item
-appearance and semantics of the design system.</p>
-<p><strong>It needs a <code>.db-pagination</code> ancestor.</strong> The item is not a standalone component: the
-size is one <code>data-size</code> on the <code>&lt;nav&gt;</code> and reaches the items from there, so an item
-outside that wrapper renders at the medium size whatever you do. Keep the
-<code>&lt;nav class=&quot;db-pagination&quot;&gt;</code> around your list, as the example below does.</p>
-<pre><code class="language-tsx">import { DBPaginationItem } from &quot;@db-ux/react-core-components&quot;;
-
-const App = () =&gt; (
-	&lt;nav className=&quot;db-pagination&quot; aria-label=&quot;Pagination&quot;&gt;
-		&lt;ul&gt;
-			&lt;DBPaginationItem page={1} text=&quot;1&quot; label=&quot;Page 1 of 2&quot; /&gt;
-			&lt;DBPaginationItem page={2} text=&quot;2&quot; label=&quot;Page 2 of 2&quot; active /&gt;
-		&lt;/ul&gt;
-	&lt;/nav&gt;
-);
-
-export default App;
-</code></pre>
-<p><code>text</code> is what the item renders. Without it the item renders its children instead, so
-an item with neither stays empty. Leave <code>page</code> out only for a control that is not a
-page, the way <code>DBPagination</code> wraps its previous and next buttons - the truncation is
-no item at all, it is drawn as a pseudo element on the page that borders the gap.
-Pass <code>href</code> to render an anchor instead of a button, and <code>layout</code> to place the item in
-one of the two responsive layouts: <code>wide</code> items disappear once the list collapses,
-<code>collapsed</code> items only appear there, and <code>always</code> items are part of both.</p>
 <h3 id="composition">Composition<a class="header-link" href="/core-web/review/3017-pagination-initial-development/components/navigation/pagination/docs/React?current=composition"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>composition<!-- --> anchor link</a></h3>
-<p>Leave <code>totalCount</code> out and pass the items yourself. The pagination then renders your
-children instead of computing the page list, which is what lets you bring a router
-link. It still reports the page: it listens on the list and reads <code>page</code> back from
-the item, so your child never gets a handler attached to it.</p>
+<p>Leave <code>totalCount</code> and <code>items</code> out and pass the items yourself. The pagination then
+renders your children instead of computing the page list, which is what lets you bring
+a router link. You set nothing on the item: the pagination derives each page from its
+position, writes <code>data-page</code> onto every <code>&lt;li&gt;</code>, marks the current page with
+<code>aria-current</code> and reports the page by reading <code>data-page</code> back, so your child never
+gets a handler attached to it.</p>
 <pre><code class="language-tsx">import { DBPagination, DBPaginationItem } from &quot;@db-ux/react-core-components&quot;;
 import { Link } from &quot;react-router-dom&quot;;
 
 const App = () =&gt; (
 	&lt;DBPagination currentPage={2} onPageChange={(page) =&gt; console.log(page)}&gt;
-		&lt;DBPaginationItem page={1} label=&quot;Page 1 of 2&quot;&gt;
-			&lt;Link to=&quot;/results/1&quot; aria-label=&quot;Page 1 of 2&quot;&gt;
-				1
-			&lt;/Link&gt;
+		&lt;DBPaginationItem&gt;
+			&lt;Link to=&quot;/results/1&quot;&gt;1&lt;/Link&gt;
 		&lt;/DBPaginationItem&gt;
-		&lt;DBPaginationItem page={2} label=&quot;Page 2 of 2&quot; active&gt;
-			&lt;Link to=&quot;/results/2&quot; aria-label=&quot;Page 2 of 2&quot;&gt;
-				2
-			&lt;/Link&gt;
+		&lt;DBPaginationItem&gt;
+			&lt;Link to=&quot;/results/2&quot;&gt;2&lt;/Link&gt;
 		&lt;/DBPaginationItem&gt;
 	&lt;/DBPagination&gt;
 );
 
 export default App;
 </code></pre>
-<p><code>page</code> is required on a composed item: it identifies the item rather than rendering
-it, and the pagination reads it back to know which page was activated. It is also
-what previous and next look for: as buttons they do not report a page themselves,
-they click the item of the neighbouring page. So your <code>&lt;Link&gt;</code> runs for the arrows
-too, and the router sees the same navigation it sees for a direct click. Where that
-neighbour is not in your list, the arrow falls back to reporting the page through
-<code>onPageChange</code>.</p>
-<p>Three things move to you in this mode. The truncation and the responsive collapsing
-are not applied, because the component cannot know which pages your children stand
-for. <code>aria-current</code> falls back to the <code>&lt;li&gt;</code>, since a child that you provide cannot be
-reached from inside the component - set it on your link as well if you want it where
-assistive technology expects it. And the accessible name is yours: <code>label</code> is only
-used for the control the item renders itself, so without an <code>aria-label</code> on your link
-it is announced as the bare number. The last page is unknown as well, so the next
-button stays enabled and an out of range request is yours to ignore.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/pagination/docs/React","query":{},"buildId":"TuebLEMNTaXljnv36iZrF","assetPrefix":"/core-web/review/3017-pagination-initial-development","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+<p>The page identity comes from the item position, so the first item is page 1, the
+second page 2, and <code>currentPage</code> marks which is current. Previous and next look that
+identity up: as buttons they do not report a page themselves, they click the item of
+the neighbouring page. So your <code>&lt;Link&gt;</code> runs for the arrows too, and the router sees
+the same navigation it sees for a direct click. Where that neighbour is not in your
+list, the arrow falls back to reporting the page through <code>onPageChange</code>.</p>
+<p>The numbering is automated: the pagination replaces your link&#x27;s text with the page
+number and moves whatever text you wrote into its <code>aria-label</code>, so a <code>&lt;Link&gt;</code> reading
+<code>Go to the results</code> is announced as written and displayed as <code>2</code>. Provide an
+<code>aria-label</code> yourself to override the name. The truncation and the responsive
+collapsing are not applied in this mode, because the component cannot know which pages
+your children stand for, and the last page is unknown as well, so the next button
+stays enabled and an out of range request is yours to ignore.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/pagination/docs/React","query":{},"buildId":"faQOuEjG1cZ6LL4bL7TqE","assetPrefix":"/core-web/review/3017-pagination-initial-development","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
