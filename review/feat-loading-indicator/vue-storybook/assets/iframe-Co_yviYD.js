@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-Dtamfol1.js";e();
