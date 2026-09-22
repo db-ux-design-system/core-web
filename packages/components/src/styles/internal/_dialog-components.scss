@@ -11,6 +11,18 @@
 // mixin below validates its $prefix against this set.
 $known-prefixes: "drawer", "dialog";
 
+// Shared horizontal Container_Size scale (inline axis), consumed by the dialog
+// (container-size-inline mixin in dialog.scss) and by the drawer's horizontal
+// directions (@each in drawer.scss). Only the inline axis is shared: the drawer's
+// vertical axis sizes as fractions of the block size, and the two components
+// differ only in which size is the fallback when data-container-size is absent
+// (dialog: medium, drawer: small), so the fallback stays in each consumer.
+$container-size-scale: (
+	"small": variables.$db-container-xs,
+	"medium": variables.$db-container-lg,
+	"large": variables.$db-container-3xl
+);
+
 // Fails the build when $prefix is missing or not one of $known-prefixes.
 // $mixin is only used to name the offending mixin in the error message.
 @mixin assert-prefix($prefix, $mixin) {

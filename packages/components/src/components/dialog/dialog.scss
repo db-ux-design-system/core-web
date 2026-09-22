@@ -5,14 +5,9 @@
 @use "../../styles/internal/dialog-ponyfill";
 @use "../../styles/dialog-init";
 
-// Horizontal Container_Size scale. Dialog-specific: the drawer has its own
-// two-axis sizing (inline + block, with backdrop-spacing) and cannot reuse this,
-// so it lives here rather than in the shared dialog/drawer layer.
-$container-size-scale: (
-	"small": variables.$db-container-xs,
-	"medium": variables.$db-container-lg,
-	"large": variables.$db-container-3xl
-);
+// Horizontal Container_Size scale, shared with the drawer's horizontal
+// directions (see `dialog-components.$container-size-scale`).
+$container-size-scale: dialog-components.$container-size-scale;
 
 // Emits the dialog's horizontal Container_Size custom properties and bounds.
 // $fallback-size  Container_Size applied when data-container-size is absent
