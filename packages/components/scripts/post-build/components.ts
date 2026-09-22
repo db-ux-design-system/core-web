@@ -88,8 +88,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'pagination',
 		config: {
-			// Not a native event despite the name, so it has no business on the
-			// <nav>. Same reason tabs filters onIndexChange.
 			react: {
 				propsPassingFilter: ['onPageChange']
 			}

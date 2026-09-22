@@ -136,10 +136,6 @@
 	}
 }
 
-// Last and scoped through .db-pagination on purpose: the padding reset for an
-// icon-only arrow has to match the small size rule on specificity and win on order,
-// so it carries the same ancestor. Moving it up into .db-pagination-item drops it to
-// (0,1,1) and the small size rule then widens the arrows past their square.
 .db-pagination .db-pagination-item {
 	@include control("[data-icon]") {
 		@include icons.is-icon-text-replace;

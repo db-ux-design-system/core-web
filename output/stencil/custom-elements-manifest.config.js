@@ -5,9 +5,6 @@ import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 
 const outdir = './dist';
 
-// Elements that are documented on another element's page, because they belong to a
-// component family. The Patternhub lists them there via `elements` in
-// `components.json`, so their own tag name resolves to no page.
 const FAMILY_DOCUMENTATION_PATHS = new Map([
 	['db-heading-h-1', 'data-display/heading'],
 	['db-heading-h-2', 'data-display/heading'],
