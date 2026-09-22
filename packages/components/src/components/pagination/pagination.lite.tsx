@@ -42,10 +42,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			fallback: number,
 			minimum: number
 		) => {
-			/* An empty string and null both convert to 0, which is finite and would
-			be clamped to the minimum instead of using the fallback. A blank value
-			means "not set" - reachable via an empty custom element attribute or a
-			template expression that resolves to an empty string. */
 			const parsedValue =
 				String(value ?? '').trim() === '' ? Number.NaN : Number(value);
 			return Number.isFinite(parsedValue)
@@ -58,11 +54,6 @@ export default function DBPagination(props: DBPaginationProps) {
 				(_, index: number) => start + index
 			);
 		},
-		/* Whether the pagination owns the page list: it does when totalCount is set or
-		an items array is passed. Otherwise the consumer composed the items and owns
-		them. Not a truthiness test on totalCount: a totalCount of 0 is a valid value,
-		the empty result set, and a custom element hands the same value over as the
-		string "0", which is truthy - so the question is whether the prop is set. */
 		isDataDriven: () => {
 			const items = props.items;
 			if (items) {
@@ -71,9 +62,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			return String(props.totalCount ?? '').trim() !== '';
 		},
 		getTotalPages: () => {
-			/* Local first: Angular rewrites every prop access into a signal call, so
-			guarding props.items and then reading its length are two calls and the
-			narrowing is lost. */
 			const items = props.items;
 			if (items) {
 				return Math.max(1, items.length);
@@ -84,17 +72,11 @@ export default function DBPagination(props: DBPaginationProps) {
 		},
 		getCurrentPage: () => {
 			const currentPage = state.getInteger(props.currentPage, 1, 1);
-			/* Clamped only when the pagination owns the list. With composition the
-			consumer owns it and getTotalPages falls back to a single page, so clamping
-			would pull every page down to 1. */
 			if (!state.isDataDriven()) {
 				return currentPage;
 			}
 			return Math.min(state.getTotalPages(), currentPage);
 		},
-		/* Only a data-driven pagination knows where the list ends. With composition
-		the length belongs to the consumer, so next stays enabled and an out of range
-		request is theirs to ignore. */
 		isLastPage: () => {
 			return (
 				state.isDataDriven() &&
@@ -136,9 +118,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			);
 			let pages: number[] = startPages;
 
-			/* Where the window leaves a single page next to the boundary, that page is
-			rendered instead of an ellipsis - an ellipsis standing in for one page would
-			take the same room while hiding information. */
 			if (
 				siblingsStart <= boundaryCount + 2 &&
 				boundaryCount + 1 < totalPages - boundaryCount
@@ -157,11 +136,6 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			return pages.concat(endPages);
 		},
-		/* The collapsed layout is not the wide algorithm with siblingCount 0. That one
-		keeps the item count constant by shifting its window towards the end, so at a
-		border three full-width pages end up next to each other (1 ... 9998 9999 10000).
-		Width is the only reason the collapsed layout exists, so it renders one page at
-		each end, the current page, and nothing else. */
 		getCollapsedPages: () => {
 			const totalPages = state.getTotalPages();
 			const currentPage = state.getCurrentPage();
@@ -202,8 +176,6 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			return pages;
 		},
-		/* Describes the items the data-driven API renders. syncItems writes the
-		description onto the DOM after the list has rendered. */
 		getPaginationItems: () => {
 			const totalPages = state.getTotalPages();
 			const widePages = state.getPages(
@@ -269,8 +241,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			return String(page);
 		},
 		getPageLabel: (page: number) => {
-			/* replaceAll, not replace: a translation may repeat a placeholder, and
-			replace with a string pattern only substitutes the first occurrence. */
 			return (props.pageLabel ?? 'Page {page} of {totalPages}')
 				.replaceAll('{page}', String(page))
 				.replaceAll('{totalPages}', String(state.getTotalPages()));
@@ -282,10 +252,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			item.setAttribute('data-page', String(page));
 			item.setAttribute('data-variant', isCurrent ? 'filled' : 'ghost');
 
-			/* The layout marker comes from the generated description: a page shown in
-			both layouts is "page", one only in the wide layout is "sibling", which the
-			stylesheet hides below the breakpoint. A composed child has no description,
-			so it stays "page" - the consumer laid out a flat list. */
 			const marker =
 				description && description.layout === 'wide'
 					? 'sibling'
@@ -304,11 +270,6 @@ export default function DBPagination(props: DBPaginationProps) {
 					control.removeAttribute('aria-current');
 				}
 
-				/* The accessible name is the page label. The visible text is only the
-				number: a generated control gets it from getPageText, and a composed
-				child that came in with its own text keeps that text as the label and
-				shows the number instead - which is what automates the numbering for a
-				consumer who wrote "Go to page five" or a router link with a word. */
 				const label = state.getPageLabel(page);
 				const number = state.getPageText(page);
 				if (description) {
@@ -360,10 +321,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 		},
 		_setupObserver: () => {
-			/* Only composition needs the observer: there the consumer owns the item
-			list and can add or remove children at runtime. The data-driven API renders
-			the items itself and re-syncs through onUpdate, so an observer there would
-			only race that sync when the For re-renders the list. */
 			if (!_ref || state.isDataDriven()) {
 				return;
 			}
@@ -392,10 +349,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			observer.observe(_ref, { childList: true, subtree: true });
 			state._observer = observer;
 		},
-		/* True when the browser is about to handle the activation somewhere other than
-		this document: a modifier key or a non-primary button on a link opens the
-		destination in a new tab, so reporting the page would move this pagination away
-		from the page the user still has in front of them. Only links are tested. */
 		isModifiedLinkClick: (event: any) => {
 			const target = event.target as HTMLElement;
 			if (!target || !target.closest('a[href]')) {
@@ -435,13 +388,7 @@ export default function DBPagination(props: DBPaginationProps) {
 			if (Number.isFinite(page)) {
 				state.handlePageChange(page);
 			}
-			/* No preventDefault: a composed anchor has to stay a working link. */
 		},
-		/* Previous and next report no page themselves: they find the item of the
-		neighbouring page and click the control inside it, so the arrow takes the same
-		path as a click on the page number - the generated button or a router link a
-		consumer composed. The click bubbles to the list, where handleClick reads
-		data-page back. */
 		stepToPage: (page: number) => {
 			if (!_ref) {
 				return;
@@ -478,10 +425,6 @@ export default function DBPagination(props: DBPaginationProps) {
 		state._setupObserver();
 	});
 
-	/* Re-write the page state after every render. A dependency list would be the
-	tighter hook, but the page state depends on several props at once and the sync is
-	cheap - it walks the rendered items and sets attributes - so running it on each
-	update keeps the DOM in step without a brittle dependency array. */
 	onUpdate(() => {
 		if (_ref) {
 			state.syncItems();
@@ -506,10 +449,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			class={cls('db-pagination', props.className)}
 			data-size={props.size}>
 			<ul onClick={(event: any) => state.handleClick(event)}>
-				{/* Previous and next are plain buttons that click the neighbouring
-				page's control, so a composed router link runs for the arrows too. They
-				carry no data-page, which keeps them out of the collapsing and the
-				delegation. */}
 				<li class="db-pagination-item">
 					<button
 						class="db-pagination-previous"
@@ -527,9 +466,6 @@ export default function DBPagination(props: DBPaginationProps) {
 						{props.previousLabel}
 					</button>
 				</li>
-				{/* The data-driven API renders one item per page from the computed
-				list, as a button holding the number. syncItems writes the rest of the
-				page state onto them after mount. */}
 				<Show when={state.isDataDriven()}>
 					<For each={state.getPaginationItems()}>
 						{(item: PaginationItemType, index: number) => (
@@ -540,8 +476,6 @@ export default function DBPagination(props: DBPaginationProps) {
 						)}
 					</For>
 				</Show>
-				{/* Composition: the consumer owns the item list, including any links.
-				syncItems wires each child up from its position. */}
 				<Show when={!state.isDataDriven()}>{props.children}</Show>
 				<li class="db-pagination-item">
 					<button

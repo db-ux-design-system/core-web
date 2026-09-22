@@ -4,8 +4,6 @@ import DBPagination from '../pagination.lite';
 import { StorybookPaginationArgTypes } from './_pagination.arg.types';
 
 useMetadata({
-	// Title Case: the generator strips the spaces when it derives the story export
-	// name, so lower-case words would end up as "Fourdigitpages".
 	storybookNames: ['Four Digit Pages', 'Short List'],
 	storybookTitle: 'Collapsing',
 	storybookArgTypes: StorybookPaginationArgTypes
@@ -22,12 +20,6 @@ export default function PaginationCollapsing() {
 	const state = useStore<PaginationCollapsingState>({
 		longPage: 5000,
 		shortPage: 3,
-		// Routed through state methods with an `any` parameter: an inline typed
-		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent. That event is
-		// also why the page is unwrapped before it is stored: Stencil turns
-		// onPageChange into an emitter, so the handler receives the event rather
-		// than the number it carries.
 		setLong(page: any) {
 			state.longPage = page?.detail ?? page;
 		},

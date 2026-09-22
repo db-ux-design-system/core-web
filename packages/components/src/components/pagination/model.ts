@@ -122,19 +122,7 @@ export type DBPaginationDefaultState = {
 	) => string[];
 	getPageText: (page: number) => string;
 	getPageLabel: (page: number) => string;
-	/**
-	 * Writes the page state onto one item and its control: `data-page`,
-	 * `data-pagination-item`, `data-ellipsis`, `data-variant`, `aria-current` and,
-	 * when the pagination owns the control, the accessible label and the visible
-	 * number. `description` comes from the generated list, or is undefined for a
-	 * composed child where only the identity and the current marker are applied.
-	 */
 	applyItem: (item: any, page: number, description: any) => void;
-	/**
-	 * Walks the page items and calls `applyItem` on each, so both a generated item and
-	 * a composed child are wired up without a consumer setting any of it. Called on
-	 * mount and whenever the inputs that decide the state change.
-	 */
 	syncItems: () => void;
 	_setupObserver: () => void;
 	_observer: any;

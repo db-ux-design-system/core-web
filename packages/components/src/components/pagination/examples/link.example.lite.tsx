@@ -5,8 +5,6 @@ import DBPagination from '../pagination.lite';
 import { StorybookPaginationArgTypes } from './_pagination.arg.types';
 
 useMetadata({
-	// Title Case: the generator strips the spaces when it derives the story export
-	// name, so lower-case words would end up as "Linkedpages".
 	storybookNames: ['Linked Pages'],
 	storybookTitle: 'Link',
 	storybookArgTypes: StorybookPaginationArgTypes
@@ -20,10 +18,6 @@ type PaginationLinkState = {
 export default function PaginationLink() {
 	const state = useStore<PaginationLinkState>({
 		linkedPage: 2,
-		// Routed through a state method with an `any` parameter: an inline typed
-		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent. That event is
-		// also why the page is unwrapped before it is stored.
 		setLinked(page: any) {
 			state.linkedPage = page?.detail ?? page;
 		}

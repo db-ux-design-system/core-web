@@ -9,15 +9,6 @@ useMetadata({
 	storybookArgTypes: StorybookPaginationArgTypes
 });
 
-// One scalar field per pagination instead of an indexed collection: Mitosis maps
-// state to useState in React, where assigning into an array by index does not
-// trigger a re-render. Both start at 5, so the initial render - and with it the
-// committed visual snapshots - stays unchanged.
-//
-// The setter methods must NOT be named set<Field>: for a state field `mediumPage`
-// Mitosis derives the React setter `setMediumPage`, so a method of that name
-// collides with it in the same scope - a duplicate declaration whose body also
-// calls itself. Hence `setMedium` next to `mediumPage`.
 type PaginationSizeState = {
 	mediumPage: number;
 	smallPage: number;
@@ -29,12 +20,6 @@ export default function PaginationSize() {
 	const state = useStore<PaginationSizeState>({
 		mediumPage: 5,
 		smallPage: 5,
-		// Routed through a state method with an `any` parameter: an inline typed
-		// callback breaks the Angular showcase, where $event is number | void, and
-		// the Stencil showcase, where the payload is a CustomEvent. That event is
-		// also why the page is unwrapped before it is stored: Stencil turns
-		// onPageChange into an emitter, so the handler receives the event rather
-		// than the number it carries.
 		setMedium(page: any) {
 			state.mediumPage = page?.detail ?? page;
 		},

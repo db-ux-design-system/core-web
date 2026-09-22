@@ -6,52 +6,22 @@
 @use "../../styles/internal/button-components";
 @use "../../styles/internal/component";
 
-// Two content declarations, not one: the second wins wherever the alternative text
-// syntax parses, and is dropped where it does not, leaving the first. An engine
-// without support therefore still shows the dots and only announces them, instead of
-// dropping the declaration and losing them altogether. Drop the first line once every
-// target in .browserslistrc is confirmed to support the syntax.
-// Three ASCII dots rather than an escaped ellipsis: Sass resolves "\2026" back to the
-// literal character and then emits @charset, see the SCSS rules in AGENTS.md. It is
-// also what the markup rendered before.
 @mixin ellipsis-content {
 	content: "...";
 	content: "..." / "";
 }
 
-// The control of an item. A direct child is enough now that the item renders a plain
-// button or anchor: DBButton used to put a custom element host in between in Angular
-// and Stencil, which forced every rule in here to carry a second selector.
-// The control is styled through the element rather than through a class on it, because
-// with composition the child is whatever the consumer passed - a plain anchor or a
-// framework link component. :is(a, button) covers the interactive elements a page can
-// reasonably be.
-// The suffix carries a state selector for the control, for example an attribute.
 @mixin control($suffix: "") {
 	> :is(a, button)#{$suffix} {
 		@content;
 	}
 }
 
-// The item owns its own box, but not its size - that comes from the data-size of the
-// surrounding .db-pagination, see the rules at the end of this file. The surrounding
-// layout stays with the pagination as well, because it depends on the list context.
 .db-pagination-item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	// The look of a button without the box of one. set-basic-button bundles the two,
-	// and the box is the half this component has to own: a page control is a square
-	// that grows with its digits, not a pill that hugs its text. Extending the
-	// placeholders takes the border, the radius, the focus indicator and the
-	// typography, and leaves block-size, min-inline-size and padding here - which is
-	// also what settles the padding for good. Including the mixin instead would keep
-	// .db-button[data-size="small"]:not([data-no-text="true"]) in the output, and that
-	// selector outscores anything this file can write about a direct child.
-	// Keying the look here rather than on a .db-button class also means a composed
-	// child inherits it: a consumer link used to come out with the box but none of the
-	// colours, because the class it lacked carried them.
 	@include control {
 		@extend %default-interactive-component;
 		@extend %default-button;
@@ -62,20 +32,8 @@
 		block-size: variables.$db-sizing-md;
 		min-inline-size: variables.$db-sizing-md;
 		padding: variables.$db-spacing-fixed-2xs;
-
-		// The control is an anchor in link mode and may be a router link in
-		// composition, so the underline has to go - the same reset set-basic-button
-		// applies for its own anchor use.
 		text-decoration: none;
 
-		// WCAG 2.2 SC 2.5.8 asks for a pointer target of at least 24 by 24 CSS
-		// pixels. At functional density the controls are only 20px, so the floor
-		// comes from an overlay rather than from a minimum size on the box: growing
-		// the box would break the density proportions the sizes are designed with.
-		// It has to sit on the control, not on the <li>: an overlay on the list item
-		// would cover the control and take the hit target away from it, which stops
-		// the browser from following the anchor in link mode. The cost is that a
-		// composed child cannot use its own ::after - DBLink puts its arrow there.
 		&::after {
 			content: "";
 			position: absolute;
@@ -85,9 +43,6 @@
 			inline-size: 100%;
 			block-size: 100%;
 
-			// max, not one of the two alone: the criterion is written in CSS pixels,
-			// so 24px is the floor, while the rem side keeps the target growing for
-			// someone who raises the font size.
 			// stylelint-disable-next-line db-ux/use-sizing
 			min-inline-size: max(24px, 1.5rem);
 			// stylelint-disable-next-line db-ux/use-sizing
@@ -95,63 +50,33 @@
 		}
 	}
 
-	// Both looks drop the adaptive border %default-interactive-component brings, the
-	// same way set-basic-button does for them.
 	&:is([data-variant="ghost"], [data-variant="filled"]) {
 		@include control {
 			@extend %transparent-border;
 		}
 	}
 
-	// Keyed on the presentation attribute of the list item, not on aria-current: the
-	// latter sits on the control where this component renders it and only falls back
-	// to the item for a composed child, so it is not a reliable hook for styling.
 	&[data-variant="ghost"] {
 		@include control {
 			@extend %button-outlined-ghost-colors;
 
-			// Lighter than the 700 of %default-button: an inactive page is not
-			// emphasised, only the current one is.
 			font-weight: 400;
 		}
 	}
 
-	// The filled look marks the current page and nothing else, so it deliberately has
-	// no hover and no pressed background: the page one is already on is not somewhere
-	// to go. The cursor follows the same reasoning. In link mode the current page stays
-	// an anchor, because swapping it for a button would cost it the keyboard focus, so
-	// this block is what keeps it from inviting a click - aria-current is what says the
-	// same to assistive technology.
 	&[data-variant="filled"] {
 		@include control {
-			// Two declarations, because two things set the cursor and only one of
-			// them can be beaten. The foundations carry a global
-			// :is(a[href], button):not(...):hover rule that resolves
-			// --db-overwrite-cursor, and at (0,3,1) it outscores anything this file
-			// writes about a direct child - so the hook is the only way to reach the
-			// hover state, which is what it exists for.
 			--db-overwrite-cursor: default;
 
-			// The hook does nothing at rest, and there the two elements differ: a
-			// button already defaults to this cursor, an anchor with an href gets a
-			// pointer from the user agent. So the resting state needs saying outright,
-			// or the current page would invite a click in link mode and in composition.
 			cursor: default;
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		}
 	}
 
-	// Carried by button.scss for DBButton, so it has to be repeated here: the previous
-	// and next controls are natively disabled at the boundaries.
 	@include control(':is(:disabled, [aria-disabled="true"])') {
 		opacity: variables.$db-opacity-md;
 	}
 
-	// The truncation is drawn by the page that borders the gap instead of by an
-	// element of its own, so the list contains nothing but pages and the dots never
-	// reach the accessibility tree. The typography and the box are set for every
-	// marker regardless of layout, because Sass cannot extend across a media query -
-	// only the content and the margin are switched below the breakpoint.
 	&[data-ellipsis]::before,
 	&[data-ellipsis]::after {
 		@extend %db-overwrite-font-size-md;
@@ -161,8 +86,6 @@
 		text-align: center;
 	}
 
-	// One token per side, so a page standing between two gaps carries both instead of
-	// a value that means both - which is what keeps each side a single selector.
 	&[data-ellipsis~="wide-before"]::before {
 		@include ellipsis-content;
 
@@ -176,8 +99,6 @@
 	}
 
 	@include screen-sizes.screen("sm", "max") {
-		// Reset both sides first: the wide tokens stay on the item below the
-		// breakpoint, they only stop being drawn there.
 		&[data-ellipsis]::before,
 		&[data-ellipsis]::after {
 			content: none;
@@ -198,11 +119,6 @@
 	}
 }
 
-// The small variant, keyed on the pagination around the item rather than on the item
-// itself. The <nav> already carries data-size for the whole component, and every
-// documented usage - the generated markup and a hand-written list alike - puts the
-// items inside it, so a per-item attribute would reach nothing this does not. It also
-// spares a hand-written list from repeating the value on every <li>.
 .db-pagination[data-size="small"] .db-pagination-item {
 	@include control {
 		@extend %db-overwrite-font-size-sm;
@@ -212,36 +128,18 @@
 		padding: variables.$db-spacing-fixed-3xs;
 	}
 
-	// Sizing token, not a spacing one: $db-spacing-fixed-lg happens to match
-	// $db-sizing-sm at regular density, but is narrower at functional and wider at
-	// expressive - so the marker ended up wider than the page button it sits next to.
-	// $db-sizing-xs stays below $db-sizing-sm in every density.
 	&[data-ellipsis]::before,
 	&[data-ellipsis]::after {
 		@extend %db-overwrite-font-size-sm;
 
 		min-inline-size: variables.$db-sizing-xs;
 	}
-
-	// The marker keeps the margin of the medium size on purpose, so this size overrides
-	// the width alone. The margin is one half of the space around the dots: the other
-	// half is the gap of the list, which the marker cannot reach because it is a pseudo
-	// element inside the item. That gap is $db-spacing-fixed-2xs for both sizes, so a
-	// smaller margin here made the space in front of the dots differ from the space
-	// behind them - and the concept spaces the truncation item evenly at 4px on either
-	// side.
 }
 
-// An arrow instead of a number: the icon replaces the label, so the text is hidden and
-// the glyph centred in the box the control already has. Keyed on the icon attribute of
-// the control rather than on a no-text flag, because a page control never carries an
-// icon and the arrows always do - which saves the item a property whose only job would
-// be to forward the distinction.
-// Last on purpose, and scoped through .db-pagination for the same reason. The padding
-// has to go for the glyph to fit inside the square, and both sizes declare one, so this
-// rule has to match them on specificity and win on order - which means it has to carry
-// the same ancestor the small size does. set-basic-button clears the padding the same
-// way for an icon-only button.
+// Last and scoped through .db-pagination on purpose: the padding reset for an
+// icon-only arrow has to match the small size rule on specificity and win on order,
+// so it carries the same ancestor. Moving it up into .db-pagination-item drops it to
+// (0,1,1) and the small size rule then widens the arrows past their square.
 .db-pagination .db-pagination-item {
 	@include control("[data-icon]") {
 		@include icons.is-icon-text-replace;

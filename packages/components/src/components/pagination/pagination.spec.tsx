@@ -6,9 +6,6 @@ import { DBPagination } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT, DESKTOP_VIEWPORT } from '../../shared/constants.ts';
 
-// The describe below runs at DEFAULT_VIEWPORT, which is 390px wide and therefore
-// below the collapsing breakpoint - every test sees the collapsed page list
-// unless it switches to DESKTOP_VIEWPORT first.
 let requestedPage: number | undefined;
 let requestedPages: number[] = [];
 
@@ -22,9 +19,6 @@ type PaginationItemSnapshot = {
 	ellipsis: string[];
 };
 
-// The truncation is drawn by the page that borders the gap, so it is read off the
-// rendered pseudo elements instead of from an element of its own. That also means the
-// active layout is taken into account without the test having to know the breakpoint.
 const readItems = async (component: any): Promise<PaginationItemSnapshot[]> =>
 	component
 		.locator('li[data-pagination-item]')
@@ -44,10 +38,8 @@ const readItems = async (component: any): Promise<PaginationItemSnapshot[]> =>
 						item.querySelector('[aria-current="page"]') !== null ||
 						item.getAttribute('aria-current') === 'page',
 					visible: window.getComputedStyle(item).display !== 'none',
-					// Rendered, so it reflects the active layout - used for the shape.
 					ellipsisBefore: hasMarker('::before'),
 					ellipsisAfter: hasMarker('::after'),
-					// Declared, so both layouts can be checked from one read.
 					ellipsis: (item.getAttribute('data-ellipsis') ?? '')
 						.split(' ')
 						.filter((token) => token !== '')
@@ -104,10 +96,6 @@ const testPagination = () => {
 	});
 
 	test('should report a page change exactly once', async ({ mount }) => {
-		// A click has exactly one path to the consumer: the item declares no handler
-		// of its own and DBPagination delegates once on the list. An onClick on the item
-		// next to that delegation reported the page twice, which is enough to send a
-		// request or an analytics event twice.
 		const component = await mount(comp);
 
 		await component.getByRole('button', { name: 'Page 1 of 10' }).click();
@@ -119,10 +107,6 @@ const testPagination = () => {
 		mount,
 		page
 	}) => {
-		// The items are keyed by page, not by position. Keyed by position, the
-		// element that holds the focus would be reused for whatever page moves into
-		// that slot: going from page 5 to 6 shifts the window from 1 ... 4 5 6 ... 10
-		// to 1 ... 5 6 7 ... 10, so the focus would end up on page 7.
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(comp);
 
@@ -136,7 +120,6 @@ const testPagination = () => {
 			/>
 		);
 
-		// The activated page becomes current, marked by the DOM sync after the render.
 		await component
 			.locator('li[data-page="6"][data-variant="filled"]')
 			.waitFor({ state: 'attached' });
@@ -149,8 +132,6 @@ const testPagination = () => {
 		mount,
 		page
 	}) => {
-		// A composed link stays the same element across a page change - the pagination
-		// only flips aria-current on it - so the keyed node survives and keeps focus.
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
 			<DBPagination label="Results pages" currentPage={1}>
@@ -180,10 +161,6 @@ const testPagination = () => {
 	});
 
 	test('should let a consumer compose the items', async ({ mount }) => {
-		// Without totalCount the consumer owns the list. The item renders whatever it
-		// is given - here a plain anchor standing in for a router link - and the
-		// pagination still reports the page, because it reads data-page off the item
-		// instead of attaching a handler to the child.
 		const component = await mount(
 			<DBPagination
 				label="Composed"
@@ -205,8 +182,6 @@ const testPagination = () => {
 			</DBPagination>
 		);
 
-		// The consumer sets no page state. The pagination derives it from the item
-		// position: data-page onto every <li>, aria-current onto the current control.
 		await expect(component.locator('li[data-page]')).toHaveCount(2);
 		await expect(component.getByRole('link', { name: '2' })).toBeVisible();
 		await expect(
@@ -220,10 +195,6 @@ const testPagination = () => {
 	test('should keep the requested page in composition mode', async ({
 		mount
 	}) => {
-		// Without totalCount getTotalPages falls back to a single page. Clamping
-		// currentPage against it made getCurrentPage always 1, so both arrows were
-		// disabled, the click on page 1 was swallowed as the current page and the click
-		// on the actually active page 2 was reported.
 		const component = await mount(
 			<DBPagination
 				label="Composed"
@@ -248,12 +219,9 @@ const testPagination = () => {
 			component.getByRole('button', { name: 'Next page' })
 		).toBeEnabled();
 
-		// The page comes from the item position: the first item is page 1, the second
-		// page 2, which currentPage marks current.
 		await component.locator('li[data-page="1"] a').click();
 		expect(requestedPages).toEqual([1]);
 
-		// The current page reports nothing, because it is the page one is already on.
 		await component.locator('li[data-page="2"] a').click();
 		expect(requestedPages).toEqual([1]);
 	});
@@ -261,10 +229,6 @@ const testPagination = () => {
 	test('should treat a zero totalCount as the option API', async ({
 		mount
 	}) => {
-		// Zero is a valid count, the empty result set, and used to be falsy enough to
-		// select composition - which rendered no page at all, although getTotalPages
-		// computes one. A custom element hands the same value over as the string "0"
-		// and took the opposite branch, so the behaviour differed per framework.
 		const component = await mount(
 			<DBPagination currentPage={1} totalCount={0} pageSize={10} />
 		);
@@ -305,10 +269,6 @@ const testPagination = () => {
 	test('should activate a composed child from previous and next', async ({
 		mount
 	}) => {
-		// The arrows hand their click to the item of the neighbouring page instead of
-		// reporting the number themselves. That is what reaches a router link a
-		// consumer composed: before, the arrows reported the page and left the child
-		// untouched, so the router of the consumer never ran.
 		const clicked: string[] = [];
 		const component = await mount(
 			<DBPagination
@@ -317,10 +277,6 @@ const testPagination = () => {
 				onPageChange={(page: number) => {
 					requestedPages.push(page);
 				}}>
-				{/* Fragment targets, so following the link does not reload the page
-				and unmount the component. preventDefault is not an option here:
-				component testing proxies a handler back to the test process, where a
-				synthetic event cannot be passed along. */}
 				<DBPaginationItem>
 					<a
 						href="#page-1"
@@ -361,9 +317,6 @@ const testPagination = () => {
 		mount,
 		page
 	}) => {
-		// With siblingCount 0 the window is the current page on its own, so there is
-		// no neighbour to hand the click to. The arrow then reports the page directly,
-		// which is what it did before the delegation existed.
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
 			<DBPagination
@@ -451,9 +404,6 @@ const testPagination = () => {
 			/>
 		);
 
-		// boundaryCount 0 drops the first/last page, siblingCount 0 leaves only the
-		// active page between the two ellipses. Both markers hang off that single
-		// page, so they are counted through the shape rather than through carriers.
 		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
 		expect(getShape(await readItems(component))).toBe('... 10 ...');
 		await expect(
@@ -594,9 +544,6 @@ const testCollapsing = () => {
 	test('should drop the sibling pages below the breakpoint', async ({
 		mount
 	}) => {
-		// At a border the collapsed layout keeps only the boundary page and the
-		// current one. The wide layout pads the row to a constant length instead, so
-		// it shows 1 2 3 ... 10 here - see the test above.
 		const start = await mount(
 			<DBPagination currentPage={1} totalCount={100} pageSize={10} />
 		);
@@ -624,9 +571,6 @@ const testCollapsing = () => {
 	test('should wire composed items up from their position', async ({
 		mount
 	}) => {
-		// The consumer sets no page state on a composed item. The pagination derives
-		// data-page from the item position and marks the current control with
-		// aria-current, so a composed child needs no props of its own.
 		const component = await mount(
 			<DBPagination label="Composed" currentPage={2}>
 				<DBPaginationItem>
@@ -659,10 +603,6 @@ const testCollapsing = () => {
 	test('should not put several wide pages next to each other when collapsed', async ({
 		mount
 	}) => {
-		// The reported case: on the last page of a five digit list the collapsed
-		// layout showed 1 ... 9998 9999 10000, because padding the row to a constant
-		// length pushes the window against the border. Three pages of that width do
-		// not fit a narrow column, so the next button wrapped into a second row.
 		const component = await mount(
 			<div style={{ inlineSize: '300px' }}>
 				<DBPagination
@@ -694,17 +634,6 @@ const testCollapsing = () => {
 	test('should pin one page per end when boundaryCount asks for more', async ({
 		mount
 	}) => {
-		// The reported case, boundaryCount 2 with 20 pages, two defects at once. On page
-		// 17 the collapsed layout drew 1 2 ... 17 18 19 20: six numbers that wrap into a
-		// second row next to the two arrows, measured at 360px and therefore wider than
-		// any supported viewport. And on page 20 it drew 1 2 ... 20, dropping page 19
-		// although the trailing boundary pinned it - the candidate list [1, 2] + [20] +
-		// [19, 20] is not ascending, so the duplicate check skipped 19.
-		//
-		// The column comes from a wrapper element, so every page is mounted on its own
-		// instead of through update(): the Vue harness refuses to update a mounted
-		// native element with "Updating a native HTML element is not supported", while
-		// React accepts it.
 		const mountAt = async (currentPage: number) =>
 			mount(
 				<div style={{ inlineSize: '300px' }}>
@@ -736,8 +665,6 @@ const testCollapsing = () => {
 		).toBe(1);
 		await middle.unmount();
 
-		// A gap of one page is still rendered instead of hidden, so 19 keeps its
-		// neighbor - this is the shape page 20 lost it from.
 		const beforeLast = await mountAt(19);
 		expect(getShape(await readItems(beforeLast))).toBe('1 ... 19 20');
 		await beforeLast.unmount();
@@ -750,9 +677,6 @@ const testCollapsing = () => {
 		mount,
 		page
 	}) => {
-		// Seven pages fit without truncation, so the wide layout has no ellipsis at
-		// all while the collapsed one needs two - they cannot be reused, they have
-		// to be rendered on top and stay hidden above the breakpoint.
 		const comp70: any = (
 			<DBPagination currentPage={4} totalCount={70} pageSize={10} />
 		);
@@ -774,8 +698,6 @@ const testCollapsing = () => {
 			<DBPagination currentPage={3} totalCount={50} pageSize={10} />
 		);
 
-		// Five pages are the collapsed layout already, so nothing may be hidden -
-		// hiding 2 and 4 here would claim a gap that does not exist.
 		expect(getShape(await readItems(component))).toBe('1 2 3 4 5');
 		await expect(
 			component.locator('li[data-ellipsis*="wide-"]')
@@ -803,9 +725,6 @@ const testCollapsing = () => {
 	}) => {
 		const component = await mount(comp);
 
-		// The sibling pages stay in the DOM so the wide layout does not need a
-		// re-render, but display: none takes them out of the accessibility tree and
-		// with it out of the tab order.
 		await expect(
 			component.locator('li[data-pagination-item="sibling"]')
 		).toHaveCount(2);
@@ -853,10 +772,6 @@ const testCollapsing = () => {
 
 						const context = `boundaryCount ${boundaryCount}, siblingCount ${siblingCount}, page ${currentPage} of ${totalPages}`;
 
-						// The page state is written onto the items after the render
-						// commits, and this loop fires many updates in a row, so poll
-						// until the DOM reflects this config - the current page marked
-						// and the last page present - before reading the layout back.
 						await expect
 							.poll(
 								async () => {
@@ -904,11 +819,6 @@ const testSizes = () => {
 	test('should give previous and next the size of the pagination', async ({
 		mount
 	}) => {
-		// Figma draws the previous and next buttons at the size of the page items,
-		// not at a fixed small - see the Pagination (Concept) component set.
-		// Measured rather than read off the control: the size is declared once on the
-		// nav, so asserting the attribute would only restate where it sits. The box is
-		// what the concept specifies, and both sizes are square there.
 		const boxOf = (target: any) =>
 			target.evaluate((element: HTMLElement) => {
 				const { width, height } = element.getBoundingClientRect();
@@ -947,8 +857,6 @@ const testSizes = () => {
 	test('should size a composed anchor like the buttons', async ({
 		mount
 	}) => {
-		// One rule styles both elements as descendants of the data-size on the nav, so
-		// a composed anchor comes out with the box of a generated button.
 		const component = await mount(
 			<DBPagination label="Linked" currentPage={1}>
 				<DBPaginationItem>
@@ -972,8 +880,6 @@ const testSizes = () => {
 					};
 				});
 
-		// The composed anchor and the previous button share one rule, so their box
-		// matches.
 		expect(await box('li[data-page="1"] a')).toEqual(
 			await box('button.db-pagination-previous')
 		);
@@ -985,12 +891,6 @@ const testTouchTargets = () => {
 		mount,
 		page
 	}) => {
-		// WCAG 2.2 SC 2.5.8. At functional density the controls themselves are only
-		// 20px, so the floor comes from elsewhere. A page item is itself the target -
-		// the pagination reads data-page off it - so the item carries a minimum size.
-		// Previous and next are not items, the button inside them is the target, so
-		// those keep an overlay. The density cannot be exercised here because the
-		// component test harness does not load the density stylesheets.
 		const component = await mount(
 			<DBPagination
 				currentPage={5}
@@ -1052,9 +952,6 @@ const testTouchTargets = () => {
 			).toBeGreaterThanOrEqual(24);
 		}
 
-		// The criterion is written in CSS pixels, so the floor has to survive a
-		// consumer that lowers the root font size. A plain rem value would follow it
-		// down - 1.5rem is 18px at a root of 12px.
 		await page.evaluate(() => {
 			document.documentElement.style.fontSize = '12px';
 		});
@@ -1084,10 +981,6 @@ const testTouchTargets = () => {
 	});
 
 	test('should not let two page targets overlap', async ({ mount }) => {
-		// Five pages need no truncation, so all page buttons are direct neighbors
-		// and none of them is hidden in either layout - with a truncated list the
-		// first two matches would be separated by an ellipsis, or hidden and
-		// therefore without a box to measure.
 		const component = await mount(
 			<DBPagination
 				currentPage={3}
@@ -1097,8 +990,6 @@ const testTouchTargets = () => {
 			/>
 		);
 
-		// An overlay wider than the distance between two origins would make a click
-		// near an edge land on the neighbor, which is worse than a small target.
 		const measurements = await component
 			.locator('.db-pagination-page')
 			.evaluateAll((buttons: HTMLElement[]) => {
@@ -1142,16 +1033,12 @@ const testComposedLinks = () => {
 			</DBPagination>
 		);
 
-		// The anchors stay anchors - links come from composition now, so they carry a
-		// real href and work without JavaScript.
 		await expect(component.locator('a[href="#page-1"]')).toBeVisible();
 		await expect(component.locator('li[data-page="3"] a')).toHaveAttribute(
 			'href',
 			'#page-3'
 		);
 
-		// The numbering is automated: the visible text becomes the page number and the
-		// text the consumer wrote moves into aria-label.
 		const second = component.getByRole('link', {
 			name: 'Go to the second page'
 		});
@@ -1180,7 +1067,6 @@ const testComposedLinks = () => {
 			</DBPagination>
 		);
 
-		// A label the consumer set wins over the automated one.
 		await expect(
 			component.getByRole('link', { name: 'First results page' })
 		).toBeVisible();
@@ -1207,9 +1093,6 @@ const testComposedLinks = () => {
 			</DBPagination>
 		);
 
-		// A modified click opens the destination elsewhere, so the pagination reports
-		// nothing. preventDefault on the document cancels the navigation without
-		// hiding the click from the delegated handler on the <ul>.
 		await page.evaluate(() => {
 			document.addEventListener('click', (event: MouseEvent) => {
 				event.preventDefault();
@@ -1247,7 +1130,6 @@ const testComposedLinks = () => {
 		const secondPage = component.locator('li[data-page="2"] button');
 		await expect(secondPage).toHaveAttribute('aria-disabled', 'true');
 
-		// A disabled page reports nothing.
 		await secondPage.click({ force: true });
 		expect(requestedPage).toBeUndefined();
 
@@ -1267,8 +1149,6 @@ const expectValidLayout = (
 	}
 ) => {
 	const { totalPages, currentPage, boundaryCount, layout, context } = setup;
-	// One token per side, so each side is one membership test instead of a value that
-	// may or may not stand for both.
 	const hasBefore = (item: PaginationItemSnapshot): boolean =>
 		item.ellipsis.includes(`${layout}-before`);
 	const hasAfter = (item: PaginationItemSnapshot): boolean =>
@@ -1290,11 +1170,6 @@ const expectValidLayout = (
 		pages.length
 	);
 
-	// The pinned pages are the ones a layout promises no matter where the current page
-	// is: boundaryCount per end in the wide layout, one per end in the collapsed one.
-	// Without this the marker walk below accepts a layout that simply drops a pinned
-	// page, which is how boundaryCount 2 lost page 19 on page 20 of 20 - hiding pages
-	// is what the collapsed layout is for, so nothing else here objected.
 	const pinnedCount =
 		layout === 'collapsed' ? Math.min(boundaryCount, 1) : boundaryCount;
 	const pinnedPages = Array.from(
@@ -1308,18 +1183,12 @@ const expectValidLayout = (
 	});
 
 	if (layout === 'collapsed') {
-		// One page per end, the current page, and at most one filled single page gap on
-		// either side of it. More than that is what pushed the row into a second line
-		// at boundaryCount 2, where four pinned pages plus the current one were drawn.
 		expect(
 			pages.length,
 			`${context}: renders at most five pages`
 		).toBeLessThanOrEqual(5);
 	}
 
-	// A gap is now a marker on the page that borders it, so the walk checks that every
-	// jump in the sequence is covered by exactly one marker and that no marker claims
-	// a gap that does not exist.
 	let previousPage = 0;
 	let previousHadTrailingMarker = false;
 	items.forEach((item) => {
@@ -1337,9 +1206,6 @@ const expectValidLayout = (
 				markedGap,
 				`${context}: the gap before page ${page} is marked`
 			).toBe(true);
-			// At a list border a marker may stand in for a single page: with
-			// boundaryCount 0 there is no page pinned outside it that could be
-			// rendered instead.
 			const minimumHiddenPages =
 				boundaryCount === 0 && previousPage === 0 ? 1 : 2;
 			expect(
@@ -1376,9 +1242,6 @@ const testA11y = () => {
 	test('should let a passed aria-label win over the label prop', async ({
 		mount
 	}) => {
-		// The React output spreads the aria-*/data-* pass-through right after
-		// `ref={_ref}`, so aria-label has to stay above it in pagination.lite.tsx.
-		// Moving it below silently turns aria-label into a no-op for React only.
 		const passed = await mount(
 			<DBPagination
 				aria-label="Consumer provided label"
