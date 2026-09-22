@@ -46,12 +46,14 @@ There is no built-in command to open a dialog non-modally (`backdrop="none"`). O
 
 `DBDialog` already ponyfills `request-close` and the backdrop click for [browser versions that haven't implemented Invoker Commands](https://caniuse.com/wf-invoker-commands) (see [Ponyfill files](#ponyfill-files) below), so you do not have to. Command-based _opening_ (`show-modal`) is not ponyfilled, though: if you need to open via a command in those browsers, use the `open` property (as in [Manage component by state](#manage-component-by-state)) or add the [polyfill `invokers-polyfill`](https://github.com/keithamus/invokers-polyfill).
 
+`commandfor` must reference the **native `<dialog>`**, which is nested inside the `<db-dialog>` custom-element host. Set that inner id with `propOverrides` (`[propOverrides]="{ id: 'my-dialog' }"`) and point `commandfor` at it. Do **not** use the host `id` for `commandfor`: it lands on the `<db-dialog>` host, which precedes the `<dialog>`, so `commandfor` would resolve to the host (not an `HTMLDialogElement`) and the command would be a no-op. Use the host `id` only for referencing the component from the outside (CSS, `querySelector`).
+
 ```html app.component.html
 <!-- app.component.html -->
 
 <db-button command="show-modal" commandfor="my-dialog">Open dialog</db-button>
 
-<db-dialog id="my-dialog">
+<db-dialog [propOverrides]="{ id: 'my-dialog' }">
 	<db-dialog-header header text="Dialog title" closeButtonText="Close">
 	</db-dialog-header>
 	My dialog content

@@ -54,6 +54,24 @@ describe('text-or-children-required', () => {
 			},
 			{ code: '<DBDialogHeader>{`Title ${suffix}`}</DBDialogHeader>' },
 			{
+				// A node array with a rendering element is content.
+				code: '<DBDialogHeader>{[<span key="t">Title</span>]}</DBDialogHeader>'
+			},
+			{
+				// A dynamic element in the array cannot be verified statically,
+				// so the array is treated as (possible) content.
+				code: '<DBDialogHeader>{[title]}</DBDialogHeader>'
+			},
+			{
+				// A fragment renders its descendants directly, so a fragment with
+				// text is content (React shows "Title").
+				code: '<DBDialogHeader><>Title</></DBDialogHeader>'
+			},
+			{
+				// A fragment with a rendering element descendant is content too.
+				code: '<DBDialogHeader><><span>Title</span></></DBDialogHeader>'
+			},
+			{
 				// A JSX spread may supply `text`; its contents are unverifiable,
 				// so the header is treated as unresolved rather than reported.
 				code: '<DBDialogHeader {...headerProps} />'
@@ -172,6 +190,17 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// A bare valueless `text` renders no text in React, so the header
+				// has no accessible name and must be reported.
+				code: '<DBDialogHeader text />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// Whitespace-only text is likewise not an accessible name.
 				code: '<DBDialogHeader text="   " />',
 				errors: [
@@ -228,6 +257,47 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// An empty array renders nothing, so it is not content.
+				code: '<DBDialogHeader>{[]}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An array of only non-rendering values renders nothing either.
+				code: '<DBDialogHeader>{[null, false]}</DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An empty fragment renders nothing, so the header still has no
+				// accessible name.
+				code: '<DBDialogHeader><></></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A fragment whose only child renders nothing is likewise empty.
+				code: '<DBDialogHeader><>{null}</></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// A spread before an explicit empty text does not determine the
 				// final value (the later explicit text wins), so it still reports.
 				code: '<DBDialogHeader {...headerProps} text="" />',
@@ -254,7 +324,19 @@ describe('text-or-children-required', () => {
 			{
 				code: '<db-dialog-header header>{{ title }}</db-dialog-header>'
 			},
-			{ code: '<db-drawer-header>{{ title }}</db-drawer-header>' }
+			{ code: '<db-drawer-header>{{ title }}</db-drawer-header>' },
+			// A heading nested in a structural directive (*ngIf) sits under a
+			// Template node; the rule must recurse into it rather than report empty.
+			{
+				code: '<db-dialog-header><h2 *ngIf="show">Title</h2></db-dialog-header>'
+			},
+			// Built-in control flow (@if / @for) wraps the heading in block nodes.
+			{
+				code: '<db-dialog-header>@if (show) { <h2>Title</h2> }</db-dialog-header>'
+			},
+			{
+				code: '<db-drawer-header>@for (item of items; track item) { <h2>{{ item }}</h2> }</db-drawer-header>'
+			}
 		],
 		invalid: [
 			{
@@ -270,6 +352,18 @@ describe('text-or-children-required', () => {
 				// `getAttributeValue` collapses `text=""` to boolean true; the raw
 				// read keeps it recognized as an empty title and reports it.
 				code: '<db-dialog-header text=""></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
+			},
+			{
+				// A bare valueless `text` supplies an empty string at runtime in
+				// Angular, so the header has no accessible name and is reported.
+				// (A dynamic `[text]="title"` binding is unverifiable and allowed.)
+				code: '<db-dialog-header text></db-dialog-header>',
 				errors: [
 					{
 						messageId: 'missingContent',
@@ -296,11 +390,63 @@ describe('text-or-children-required', () => {
 				// An object v-bind may supply `text`; its contents are
 				// unverifiable, so the header is treated as unresolved.
 				code: '<template><DBDialogHeader v-bind="headerProps" /></template>'
+			},
+			{
+				// A dynamic interpolation cannot be verified statically, so it
+				// counts as (possible) content.
+				code: '<template><DBDialogHeader>{{ title }}</DBDialogHeader></template>'
+			},
+			{
+				// Vue renders {{ false }} as the text "false" (unlike React),
+				// so it is a real accessible name and must not be reported.
+				code: '<template><DBDialogHeader>{{ false }}</DBDialogHeader></template>'
 			}
 		],
 		invalid: [
 			{
 				code: '<template><DBDialogHeader text="" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A bare valueless `text` yields an empty string in Vue, so the
+				// header has no accessible name and is reported. (A dynamic
+				// `:text="title"` binding is unverifiable and allowed.)
+				code: '<template><DBDialogHeader text /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// {{ null }} renders no text, so the aria-labelledby target stays empty.
+				code: '<template><DBDialogHeader>{{ null }}</DBDialogHeader></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// {{ '' }} likewise renders no accessible name.
+				code: "<template><DBDrawerHeader>{{ '' }}</DBDrawerHeader></template>",
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
+				// A whitespace-only template literal interpolation is not content.
+				code: '<template><DBDialogHeader>{{ `   ` }}</DBDialogHeader></template>',
 				errors: [
 					{
 						messageId: 'missingContent',

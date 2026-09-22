@@ -102,6 +102,55 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// A conditional header nested in a fragment wrapper: the expression
+		// container inside the fragment must be unwrapped so the logical
+		// expression is accepted exactly as it would be used directly.
+		shape: 'header prop, conditional header inside a fragment wrapper',
+		code: '<DBDialog header={<>{show && <DBDialogHeader>Title</DBDialogHeader>}</>}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		shape: 'header prop, statically resolvable header inside an expression in a wrapper',
+		code: '<DBDialog header={<div>{<DBDialogHeader>Title</DBDialogHeader>}</div>}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		shape: 'header prop, ternary header inside an element wrapper',
+		code: '<DBDialog header={<div>{show ? <DBDialogHeader>Title</DBDialogHeader> : null}</div>}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// React renders a node array, so an array holding the header resolves.
+		shape: 'header prop, node array containing the header',
+		code: '<DBDialog header={[<DBDialogHeader key="h">Title</DBDialogHeader>]}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// A statically empty array cannot contain the header, so it reports.
+		shape: 'header prop, array of plain markup without the header',
+		code: '<DBDialog header={[<div key="d">Title</div>]}>Content</DBDialog>',
+		reports: true
+	},
+	{
+		// A TypeScript `as` cast is transparent to what React renders, so the
+		// inner header component must be unwrapped and recognized.
+		shape: 'header prop, header wrapped in a TSAsExpression',
+		code: '<DBDialog header={(<DBDialogHeader>Title</DBDialogHeader>) as ReactNode}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// `satisfies` is likewise transparent and must be unwrapped.
+		shape: 'header prop, header wrapped in a TSSatisfiesExpression',
+		code: '<DBDialog header={(<DBDialogHeader>Title</DBDialogHeader>) satisfies ReactNode}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// A transparent TS wrapper around plain markup still reports (no header).
+		shape: 'header prop, TSAsExpression around plain markup without the header',
+		code: '<DBDialog header={(<div>Title</div>) as ReactNode}>Content</DBDialog>',
+		reports: true
+	},
+	{
 		// A spread may carry the header prop; its contents cannot be verified.
 		shape: 'JSX spread that may carry the header prop',
 		code: '<DBDialog {...dialogProps}>Content</DBDialog>',
@@ -195,6 +244,21 @@ const vueHeaderShapes: HeaderShape[] = [
 		shape: '#header template, element wrappers at depth 2',
 		code: '<template><DBDialog><template #header><div><span><DBDialogHeader>Title</DBDialogHeader></span></div></template>Content</DBDialog></template>',
 		reports: false
+	},
+	{
+		// A dynamic slot argument (#[slotName]) has an unresolvable destination,
+		// but its content is statically visible - a real header inside it is
+		// accepted (only where it lands is unknown).
+		shape: 'dynamic #[slotName] template with the header component',
+		code: '<template><DBDialog><template #[slotName]><DBDialogHeader>Title</DBDialogHeader></template>Content</DBDialog></template>',
+		reports: false
+	},
+	{
+		// The destination is unknown, but the content is not: a dynamic slot that
+		// holds only plain markup contains no header anywhere, so it must report.
+		shape: 'dynamic #[slotName] template holds plain markup',
+		code: '<template><DBDialog><template #[slotName]><div>Title</div></template>Content</DBDialog></template>',
+		reports: true
 	},
 	{
 		shape: 'no header slot',

@@ -60,6 +60,176 @@ const testA11y = () => {
 };
 
 const testAction = () => {
+	test(`should compose the heading into a consumer aria-labelledby`, async ({
+		mount,
+		page
+	}) => {
+		// The header contributes the visible heading to the accessible name and
+		// composes with a consumer-supplied id (aria-labelledby is a token list),
+		// so the dialog ends up referencing both.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				aria-labelledby="consumer-label"
+				header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		// The composition settles asynchronously: React applies the controlled
+		// aria-labelledby, then the header observer re-appends the heading token.
+		const dialogEl = page.locator('dialog.db-dialog');
+		await expect
+			.poll(async () => {
+				const labelledBy =
+					(await dialogEl.getAttribute('aria-labelledby')) ?? '';
+				return labelledBy.split(/\s+/).filter(Boolean);
+			})
+			.toEqual(
+				expect.arrayContaining([
+					'consumer-label',
+					expect.stringMatching(/-heading$/)
+				])
+			);
+	});
+
+	test(`should derive the heading id from a consumer header id`, async ({
+		mount,
+		page
+	}) => {
+		// The heading id is derived from the header's own id with a `-heading`
+		// suffix, so it is deterministic (not a random uuid) when the consumer
+		// sets an id, and the dialog references exactly that.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				header={<DBDialogHeader id="my-header" text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader id="my-header" text="Title" /></template>*/}
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const headingContent = page.locator('.db-dialog-header-content');
+		await expect(headingContent).toHaveAttribute('id', 'my-header-heading');
+		await expect(page.locator('dialog.db-dialog')).toHaveAttribute(
+			'aria-labelledby',
+			'my-header-heading'
+		);
+	});
+
+	test(`should let a consumer aria-label override the header naming`, async ({
+		mount,
+		page
+	}) => {
+		// aria-labelledby wins over aria-label in the accessible-name computation,
+		// so the header must NOT add its heading reference when the consumer set an
+		// aria-label - otherwise the label override would be silently defeated.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				aria-label="Consumer name"
+				header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const dialogEl = page.locator('dialog.db-dialog');
+		// No generated aria-labelledby, so the aria-label is the accessible name.
+		await expect(dialogEl).not.toHaveAttribute('aria-labelledby');
+		await expect(dialogEl).toHaveAccessibleName('Consumer name');
+	});
+
+	test(`should drop the generated label when an aria-label is added after mount`, async ({
+		mount,
+		page
+	}) => {
+		// Dynamic override: the header adds aria-labelledby at mount, then the
+		// consumer adds aria-label. The observer must strip our token so the
+		// lower-precedence aria-label becomes the accessible name (and not loop).
+		const dialog: any = (
+			<DBDialog open={true} header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const dialogEl = page.locator('dialog.db-dialog');
+		// Initially the header wired its heading reference.
+		await expect(dialogEl).toHaveAttribute('aria-labelledby', /-heading$/);
+		// The consumer adds an aria-label at runtime.
+		await page.evaluate(() => {
+			document
+				.querySelector('dialog.db-dialog')
+				?.setAttribute('aria-label', 'Consumer name');
+		});
+		// The generated reference is removed so the aria-label wins.
+		await expect(dialogEl).not.toHaveAttribute('aria-labelledby');
+		await expect(dialogEl).toHaveAccessibleName('Consumer name');
+	});
+
+	test(`should resync the close button commandfor when the dialog id changes`, async ({
+		mount,
+		page
+	}) => {
+		// The header close button targets the dialog id via commandfor. If the
+		// dialog id changes while mounted, a stale target could resolve to another
+		// dialog reusing the old id and close the wrong one - so it must resync.
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				propOverrides={{ id: 'dialog-initial' }}
+				header={<DBDialogHeader text="Title" />}>
+				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		await mount(dialog);
+		const closeButton = page.locator(
+			'.db-dialog-header [command="request-close"]'
+		);
+		await expect(closeButton).toHaveAttribute(
+			'commandfor',
+			'dialog-initial'
+		);
+		// Change the dialog id at runtime; the header observer must pick it up.
+		await page.evaluate(() => {
+			document
+				.querySelector('dialog.db-dialog')
+				?.setAttribute('id', 'dialog-renamed');
+		});
+		await expect(closeButton).toHaveAttribute(
+			'commandfor',
+			'dialog-renamed'
+		);
+	});
+
+	test(`should fall back to a generated id when a controlled id is cleared`, async ({
+		mount,
+		page
+	}) => {
+		// Clearing an explicit id must switch to the generated fallback, not keep
+		// the stale consumer id - otherwise reusing that id elsewhere yields
+		// duplicate ids and a misdirected commandfor.
+		const component = await mount(
+			<DBDialog open={true} id="dialog-controlled">
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		const dialogEl = page.locator('dialog.db-dialog');
+		await expect(dialogEl).toHaveAttribute('id', 'dialog-controlled');
+		// The consumer clears the id at runtime.
+		await component.update(
+			<DBDialog open={true} id={undefined}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		// The id must no longer be the cleared value; it falls back to the generated one.
+		await expect(dialogEl).not.toHaveAttribute('id', 'dialog-controlled');
+		await expect(dialogEl).toHaveAttribute('id', /^db-dialog-/);
+	});
+
 	test(`should close dialog via close button`, async ({ mount }) => {
 		let closeCount = 0;
 		const dialog: any = (
@@ -76,6 +246,25 @@ const testAction = () => {
 		await expect(testSpan).toBeVisible();
 		await component.getByRole('button').click();
 		await expect.poll(() => closeCount).toEqual(1);
+	});
+
+	test(`should invoke consumer onClick alongside the ponyfill`, async ({
+		mount
+	}) => {
+		// Regression guard: the ponyfill handleClick used to overwrite the
+		// consumer's forwarded onClick, so a native handler never fired.
+		let clickCount = 0;
+		const dialog: any = (
+			<DBDialog
+				open={true}
+				onClick={() => clickCount++}
+				header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
+		const component = await mount(dialog);
+		await component.getByTestId('test').click();
+		await expect.poll(() => clickCount).toEqual(1);
 	});
 
 	test(`should cancel and close dialog via escape`, async ({

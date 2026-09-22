@@ -72,6 +72,8 @@ const testAction = () => {
 		const testSpan = component.getByTestId('test');
 		await expect(testSpan).toBeVisible();
 		await component.getByRole('button').click();
+		// The close button uses command="request-close", so the native close
+		// (and onClose) fire asynchronously - poll instead of asserting once.
 		await expect.poll(() => test).toEqual('close');
 	});
 };

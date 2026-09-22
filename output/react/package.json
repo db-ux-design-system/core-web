@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {
@@ -18,11 +18,11 @@
   ],
   "scripts": {
     "build": "npm-run-all tsc mv:*",
-    "mv:agent": "cpr agent ../../build-outputs/react/agent --overwrite",
-    "mv:changelog": "cpr CHANGELOG.md ../../build-outputs/react/CHANGELOG.md --overwrite",
-    "mv:dist": "cpr dist ../../build-outputs/react/dist --overwrite",
-    "mv:package.json": "cpr package.json ../../build-outputs/react/package.json --overwrite",
-    "mv:readme": "cpr README.md ../../build-outputs/react/README.md --overwrite",
+    "mv:agent": "cpy agent ../../build-outputs/react --dot",
+    "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/react/CHANGELOG.md",
+    "mv:dist": "cpy dist ../../build-outputs/react --dot",
+    "mv:package.json": "cpy package.json ../../build-outputs/react/package.json",
+    "mv:readme": "cpy README.md ../../build-outputs/react/README.md",
     "open:report": "npx playwright show-report",
     "regenerate:screenshots": "playwright test --config playwright.config.ts --update-snapshots",
     "test:components": "playwright test --config playwright.config.ts",
@@ -36,12 +36,12 @@
   },
   "devDependencies": {
     "@playwright/experimental-ct-react": "1.62.1",
-    "@types/react": "19.2.18",
-    "cpr": "3.0.1",
+    "@types/react": "19.3.0",
+    "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "playwright": "1.62.1",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "typescript": "5.9.3"
   },
   "publishConfig": {

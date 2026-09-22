@@ -12,9 +12,9 @@ import { cls, getBoolean, uuid } from '../../utils';
 import { syncDialogOpenState } from '../../utils/dialog';
 // BEGIN: dialog ponyfill
 import {
+	commandForCloseFallback,
 	escapeCloseFallback,
-	markClosedByFallback,
-	requestCloseFallback
+	markClosedByFallback
 } from '../../utils/dialog/ponyfill';
 // END: dialog ponyfill
 import { DBDialogProps, DBDialogState } from './model';
@@ -26,7 +26,16 @@ useDefaultProps<DBDialogProps>({});
 export default function DBDialog(props: DBDialogProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDialogState>({
-		_id: 'db-dialog-' + uuid(),
+		// Left undefined at init so the uuid() fallback runs only on the client
+		// (in onMount, via resetId), not during SSR. Generating it at render time
+		// would produce different server/client ids and force a hydration mismatch
+		// (React warns and may keep stale server markup). Matches the id handling
+		// in the other components and in DBDialogHeader.
+		_id: undefined,
+		resetId: () => {
+			state._id =
+				props.id ?? props.propOverrides?.id ?? 'db-dialog-' + uuid();
+		},
 		isNotModal: () => {
 			return props.backdrop === 'none';
 		},
@@ -42,11 +51,24 @@ export default function DBDialog(props: DBDialogProps) {
 		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			requestCloseFallback(event, _ref);
+			// Native onClick forwarded by filterPassingProps is overwritten by
+			// this explicit listener, so invoke the consumer callback ourselves.
+			// Run it before the fallback so a consumer preventDefault() vetoes the
+			// close, matching native command activation (which happens after the
+			// click dispatch); commandForCloseFallback bails on defaultPrevented.
+			if (props.onClick) {
+				props.onClick(event);
+			}
+			commandForCloseFallback(event, _ref);
 		},
 		// Dismisses a non-modal dialog on Escape when the browser ignores closedby.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleKeyDown: (event: any) => {
+			// Consumer first (see handleClick): a preventDefault() on Escape must
+			// veto the fallback dismissal; escapeCloseFallback bails on defaultPrevented.
+			if (props.onKeyDown) {
+				props.onKeyDown(event);
+			}
 			escapeCloseFallback(event, _ref);
 		},
 		// END: dialog ponyfill
@@ -65,11 +87,20 @@ export default function DBDialog(props: DBDialogProps) {
 	});
 
 	onMount(() => {
+		state.resetId();
 		// BEGIN: dialog ponyfill
 		markClosedByFallback(_ref);
 		// END: dialog ponyfill
 		state.handleDialogOpen();
 	});
+
+	// Re-run on every id-dependency change, unguarded: resetId() falls back to
+	// the generated id when the consumer clears an explicit one, so state._id
+	// never stays pinned to a stale consumer id (which would leave a duplicate
+	// id in the document and let commandfor resolve to the wrong element).
+	onUpdate(() => {
+		state.resetId();
+	}, [props.id, props.propOverrides?.id]);
 
 	// Intentionally observes `open` only, not `backdrop`. Modality (showModal
 	// vs show) is an open-time decision of the native <dialog>; there is no way

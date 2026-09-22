@@ -25,6 +25,16 @@
 // and run its handler - turning a light-dismiss into a destructive action.
 // The header dismiss button is the only request-close control inside the
 // `.db-dialog-header` / `.db-drawer-header` container.
+
+// This ties the backdrop fallback to the built-in header dismiss button, which
+// is the documented, lint-enforced contract: `DBDialogHeader` / `DBDrawerHeader`
+// are required (`dialog-header-required` / `drawer-header-required`) and render
+// the `command="request-close"` control. A consumer who conditionally omits the
+// header (e.g. `header={show && <DBDialogHeader />}`) loses the backdrop fallback
+// in browsers without `closedby` - but only there, only while the header is
+// absent, and only for a non-modal dismissible dialog. The whole file is deleted
+// once Firefox ESR ships `closedby`, so an extra root-level target is not worth
+// its weight; keep the header present to keep backdrop-dismiss working everywhere.
 $header-dismiss: ".db-dialog-header, .db-drawer-header";
 
 @mixin backdrop-click-hit-area($absolute-variant: false) {

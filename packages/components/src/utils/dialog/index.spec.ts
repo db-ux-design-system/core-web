@@ -112,13 +112,66 @@ describe('setDialogAriaLabelledBy', () => {
 		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
 	});
 
-	it('never clobbers a consumer-supplied aria-labelledby', () => {
-		// aria-labelledby is a supported pass-through attribute; an explicit
-		// consumer value must win over the header's generated heading id.
+	it('appends the heading id to a consumer-supplied aria-labelledby', () => {
+		// aria-labelledby is a space-separated token list, so the visible heading
+		// composes with a consumer id rather than clobbering it.
 		const dialog = createDialogStub();
 		dialog.setAttribute('aria-labelledby', 'consumer-label');
 		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe(
+			'consumer-label heading-1'
+		);
+	});
+
+	it('does not add the heading reference when the consumer set an aria-label', () => {
+		// The accessible-name computation evaluates aria-labelledby before
+		// aria-label, so adding our reference would win and defeat the label.
+		// Leaving aria-labelledby off lets the aria-label be the naming override.
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+	});
+
+	it('removes the generated token when an aria-label is added after mount', () => {
+		// Dynamic path: the token is added at mount, then the consumer adds an
+		// aria-label. Re-running must strip our token so the label (lower
+		// precedence than aria-labelledby) actually becomes the accessible name.
+		const dialog = createDialogStub();
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+	});
+
+	it('keeps a consumer token but drops ours when an aria-label is added', () => {
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
+	});
+
+	it('restores the generated token when the aria-label is cleared again', () => {
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-label', 'Consumer name');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
+		dialog.removeAttribute('aria-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('heading-1');
+	});
+
+	it('does not duplicate the heading id when re-applied to a token list', () => {
+		const dialog = createDialogStub();
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe(
+			'consumer-label heading-1'
+		);
 	});
 
 	it('does not throw for an unresolved dialog', () => {
@@ -154,9 +207,18 @@ describe('removeDialogAriaLabelledBy', () => {
 		expect(dialog.getAttribute('aria-labelledby')).toBeNull();
 	});
 
+	it('removes only the heading token from a shared token list', () => {
+		// A consumer id and our heading coexist; cleanup strips only our token.
+		const dialog = createDialogStub({ id: 'my-dialog' });
+		dialog.setAttribute('aria-labelledby', 'consumer-label');
+		setDialogAriaLabelledBy(dialog, 'heading-1');
+		removeDialogAriaLabelledBy(dialog, 'heading-1');
+		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
+	});
+
 	it('leaves a foreign or absent value untouched', () => {
 		const dialog = createDialogStub({ id: 'my-dialog' });
-		setDialogAriaLabelledBy(dialog, 'foreign-id');
+		dialog.setAttribute('aria-labelledby', 'foreign-id');
 		removeDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe('foreign-id');
 

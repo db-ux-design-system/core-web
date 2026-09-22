@@ -21,20 +21,16 @@ $known-prefixes: "drawer", "dialog";
 
 // Grid shell shared by the drawer container element and the dialog element itself.
 // Emits no positioning and no sizing, so it stays usable for both element types.
-// $box-shadow gates the elevation: the dialog always carries it, but the drawer
-// applies its shadow only under [data-rounded="true"] (set in drawer.scss), so
-// it opts out here to keep the default square drawer shadow-free.
-@mixin container-layout($box-shadow: true) {
+// Both the dialog and every drawer (square or rounded) carry the md elevation to
+// stay separated from the backdrop.
+@mixin container-layout {
 	display: grid;
 	grid-template-rows:
 		[header] auto
 		[main] 1fr
 		[footer] auto;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-
-	@if $box-shadow {
-		box-shadow: variables.$db-elevation-md;
-	}
+	box-shadow: variables.$db-elevation-md;
 }
 
 // Scrollable middle row. $prefix composes the overridable padding custom property,
@@ -67,10 +63,13 @@ $known-prefixes: "drawer", "dialog";
 // Prefix-independent heading-container declarations, extended from the
 // per-prefix `.db-<prefix>-header-content` selector so both merge in the bundle.
 %dialog-header-content-shared {
-	display: flex;
-	align-items: center;
-	gap: variables.$db-spacing-fixed-xs;
 	margin-inline-end: auto;
+
+	// bold first semantic element or non-element/only textual content
+	&:not(:has(*)),
+	> :first-child {
+		font-weight: 700;
+	}
 
 	h1,
 	h2,
@@ -78,8 +77,7 @@ $known-prefixes: "drawer", "dialog";
 	h4,
 	h5,
 	h6 {
-		@extend %db-overwrite-headline-size-3xs;
-
+		font-size: inherit;
 		margin-block: 0;
 	}
 }

@@ -67,7 +67,7 @@ export const markClosedByFallback = (
  * native command can resolve its target. Shared by DBDialog and DBDrawer. Resolves the
  * target once per click, without retry.
  */
-export const requestCloseFallback = (
+export const commandForCloseFallback = (
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	event: any,
 	dialog?: HTMLDialogElement | null
@@ -94,18 +94,26 @@ export const requestCloseFallback = (
 	// Resolve the element the button actually targets. A request-close button may
 	// intentionally point at a different dialog than the one it sits in, so honor
 	// commandfor rather than assuming the closest dialog.
+	const targetElement =
+		(target && dialog.ownerDocument.getElementById(target)) || null;
+
+	// Only treat the resolved element as a dialog when it truly is one. In the
+	// Angular/Stencil outputs the `display: contents` custom-element host can share
+	// the consumer `id` with the nested <dialog> and precede it, so getElementById
+	// may return the host - which has no requestClose(). Guarding avoids calling a
+	// nonexistent method on it (and never closes the wrong element).
 	const targetDialog =
-		(target &&
-			(dialog.ownerDocument.getElementById(
-				target
-			) as HTMLDialogElement | null)) ||
-		null;
+		targetElement &&
+		typeof (targetElement as HTMLDialogElement).requestClose === 'function'
+			? (targetElement as HTMLDialogElement)
+			: null;
 
 	if (supportsCommandFor()) {
-		// Native Invoker Commands work. Only step in when commandfor cannot be
-		// resolved (empty or points at a missing id), so the native command is a
-		// no-op; then close the dialog the button sits in. When commandfor
-		// resolves, the native default action handles it - do nothing.
+		// Native Invoker Commands work. Only step in when commandfor does not
+		// resolve to a dialog (empty, a missing id, or the custom-element host),
+		// so the native command is a no-op; then close the dialog the button sits
+		// in. When commandfor resolves to a dialog, the native default action
+		// handles it - do nothing.
 		if (!targetDialog) {
 			dialog.requestClose();
 		}
@@ -121,7 +129,8 @@ export const requestCloseFallback = (
  * Dismisses a non-modal dialog on Escape when the browser ignores
  * `closedby="closerequest"`. Modal dialogs (opened via showModal) close on
  * Escape natively, so this only steps in for non-modal ones (backdrop="none",
- * opened via show). No-op when closedby is supported or the key is not Escape.
+ * opened via show). No-op when closedby is supported, the key is not Escape, or
+ * the event was already canceled (a consumer handler ran first and vetoed it).
  * Shared by DBDialog and DBDrawer.
  */
 export const escapeCloseFallback = (
@@ -131,6 +140,10 @@ export const escapeCloseFallback = (
 ): void => {
 	if (!dialog || supportsClosedBy()) return;
 	if (event?.key !== 'Escape') return;
+
+	// Honor a canceled keydown: a consumer handler that runs first and calls
+	// preventDefault() vetoes the dismissal, so the fallback must not close either.
+	if (event?.defaultPrevented) return;
 
 	// Modal dialogs already dismiss on Escape natively; only non-modal ones need help.
 	if (dialog.matches?.(':modal')) return;

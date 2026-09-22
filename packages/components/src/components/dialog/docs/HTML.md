@@ -194,6 +194,7 @@ Before, a possible hand-written modal:
 
 ```html index.html
 <!-- index.html -->
+<button type="button" class="my-modal-open">Open dialog</button>
 <div class="my-modal-overlay" hidden>
 	<div class="my-modal" role="dialog" aria-modal="true" aria-labelledby="t">
 		<h2 id="t">Dialog title</h2>
@@ -283,6 +284,19 @@ In plain HTML you wire these fallbacks yourself: mark the dialog when `closedby`
 	 */
 	if (!("closedBy" in HTMLDialogElement.prototype)) {
 		dialog?.setAttribute("data-closedby", "not-supported");
+
+		/*
+		 * A non-modal dialog (backdrop="none", opened via show()) does not
+		 * dismiss on Escape natively - only modal dialogs (showModal()) do -
+		 * and without `closedby` the browser adds no light-dismiss. Close it
+		 * on Escape yourself. Modal dialogs keep their native Escape behaviour,
+		 * so only step in when the dialog is not `:modal`.
+		 */
+		dialog?.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && !dialog.matches(":modal")) {
+				dialog.requestClose?.();
+			}
+		});
 	}
 
 	/*

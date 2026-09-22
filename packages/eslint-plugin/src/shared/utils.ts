@@ -158,6 +158,53 @@ export function getAttributeValue(
 }
 
 /**
+ * Whether `attrName` is present as a bare valueless attribute (e.g. `text`,
+ * `<DBDialogHeader text />`, `<db-dialog-header text>`) rather than a bound value.
+ *
+ * `getAttributeValue` collapses a bare attribute and a dynamic binding
+ * (`[text]="x"` / `:text="x"`) to the same `true`, which hides the difference:
+ * a bare attribute renders no text (React boolean) or an empty string
+ * (Angular/Vue), while a dynamic binding is unverifiable content. Call this when
+ * `getAttributeValue` returned `true` to distinguish the two - a bare attribute
+ * means "no accessible content", a binding means "leave it alone".
+ */
+export function isBareBooleanAttribute(
+	node: ElementNode,
+	attrName: string
+): boolean {
+	const kebabAttrName = toKebabCase(attrName);
+
+	if (isAngularElement(node)) {
+		const attr = node.attributes.find(
+			(a) => a.name === attrName || a.name === kebabAttrName
+		);
+		// A static attribute with no value is bare; a `[attr]` binding lives in
+		// `inputs`, so its presence means the `true` came from a binding.
+		return Boolean(attr && (attr.value === undefined || attr.value === ''));
+	}
+
+	if (isVElement(node)) {
+		const attr = node.startTag.attributes.find((a: any) => {
+			if (a.directive) {
+				return false;
+			}
+			const keyName =
+				typeof a.key?.name === 'string'
+					? a.key.name
+					: a.key?.name?.name;
+			return keyName === attrName || keyName === kebabAttrName;
+		});
+		return Boolean(attr && !attr.value);
+	}
+
+	// JSX: a bare attribute has no `value` (a binding is a JSXExpressionContainer).
+	const jsxAttr = (node.attributes as any[])?.find(
+		(a: any) => a.type === 'JSXAttribute' && a.name?.name === attrName
+	);
+	return Boolean(jsxAttr && !jsxAttr.value);
+}
+
+/**
  * Angular equivalent of isStaticallyEmptyExpression for parsed input bindings.
  * The Angular template AST exposes a string literal as `LiteralPrimitive` with a
  * string `value`; the raw `source` (e.g. `''`) is the quoted text. Only an empty
@@ -193,7 +240,7 @@ function isStaticallyEmptyAngularInput(value: any): boolean {
  * visible or accessible text. Anything else (identifiers, calls, member access,
  * non-empty literals) is treated as unresolvable dynamic content.
  */
-function isStaticallyEmptyExpression(expression: any): boolean {
+export function isStaticallyEmptyExpression(expression: any): boolean {
 	if (!expression) {
 		return false;
 	}
@@ -330,15 +377,60 @@ export function createAngularVisitors(
 		handler(node, parserServices);
 	};
 
+	// The Angular parser exposes elements as either `Element` or its fallback
+	// `Element$1` node type, so register both. Missing `Element$1` would let a
+	// rule silently skip a component the parser happened to emit as the fallback.
 	return {
 		[`Element[name="${kebabName}"]`]: wrappedHandler,
-		[`Element[name="${componentName}"]`]: wrappedHandler
+		[`Element[name="${componentName}"]`]: wrappedHandler,
+		[`Element$1[name="${kebabName}"]`]: wrappedHandler,
+		[`Element$1[name="${componentName}"]`]: wrappedHandler
 	};
 }
 
 /** @public */
 export function toKebabCase(string_: string): string {
 	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+/**
+ * Reads the slot argument off a Vue `v-slot` / `#slot` directive attribute.
+ *
+ * A static slot (`#header`) exposes a `VIdentifier` argument whose `name` is the
+ * literal slot name. A dynamic slot (`#[slotName]`) exposes a `VExpressionContainer`
+ * argument instead, whose name cannot be resolved statically - so it is reported as
+ * `dynamic`, and callers treat it as an unverifiable match rather than rejecting
+ * valid runtime markup (consistent with how identifier-valued React headers are
+ * accepted).
+ *
+ * @returns `undefined` when the attribute is not a slot directive; otherwise
+ * `{ dynamic }` for a dynamic argument, or `{ name }` for a static one (`name` is
+ * `undefined` for a bare `v-slot`/`#default`).
+ */
+export function getVueSlotArgument(
+	attr: any
+): { dynamic: boolean; name?: string } | undefined {
+	const keyName =
+		typeof attr.key?.name === 'string'
+			? attr.key.name
+			: attr.key?.name?.name;
+	if (keyName !== 'slot') {
+		return undefined;
+	}
+
+	const argument = attr.key?.argument;
+	// A dynamic argument (`#[slotName]`) is a VExpressionContainer - unresolvable.
+	if (argument?.type === 'VExpressionContainer') {
+		return { dynamic: true };
+	}
+
+	const name =
+		typeof argument === 'string'
+			? argument
+			: typeof argument?.name === 'string'
+				? argument.name
+				: argument?.name?.name;
+	return { dynamic: false, name };
 }
 
 /**

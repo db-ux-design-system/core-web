@@ -22,6 +22,8 @@ import { DBDrawer, DBDrawerHeader } from '@db-ux/ngx-core-components';
 
 ### Use component
 
+`commandfor` must reference the **native `<dialog>`**, which is nested inside the `<db-drawer>` custom-element host. Set that inner id with `propOverrides` (`[propOverrides]="{ id: 'my-drawer' }"`) and point `commandfor` at it. Do **not** use the host `id` for `commandfor`: it lands on the `<db-drawer>` host, which precedes the `<dialog>`, so `commandfor` would resolve to the host (not an `HTMLDialogElement`) and the command would be a no-op. Use the host `id` only for referencing the component from the outside (CSS, `querySelector`).
+
 ```html app.component.html
 <!-- app.component.html -->
 
@@ -32,7 +34,11 @@ import { DBDrawer, DBDrawerHeader } from '@db-ux/ngx-core-components';
 >
 	Open drawer
 </db-button>
-<db-drawer id="my-drawer" [open]="openDrawer" (close)="toggleDrawer(false)">
+<db-drawer
+	[propOverrides]="{ id: 'my-drawer' }"
+	[open]="openDrawer"
+	(close)="toggleDrawer(false)"
+>
 	<db-drawer-header header closeButtonText="Close">
 		<h2>Drawer Title</h2>
 	</db-drawer-header>

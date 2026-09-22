@@ -3,7 +3,8 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
-	GeneralEvent,
+	DialogDrawerDefaultState,
+	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState
 } from '../../shared/model';
@@ -45,21 +46,26 @@ export type DBDialogDefaultProps = {
 	 * The open attribute opens or closes the dialog based on the state.
 	 */
 	open?: boolean | string;
+
+	/**
+	 * React specific onClick to pass to forward ref. Composed with the
+	 * backdrop-close ponyfill, so a consumer handler still fires.
+	 */
+	onClick?: (event: ClickEvent<HTMLDialogElement>) => void;
+
+	/**
+	 * React specific onKeyDown to pass to forward ref. Composed with the
+	 * Escape-close ponyfill, so a consumer handler still fires.
+	 */
+	onKeyDown?: (event: GeneralKeyboardEvent<HTMLDialogElement>) => void;
 };
 
 export type DBDialogProps = DBDialogDefaultProps &
 	GlobalProps &
-	CancelEventProps &
+	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<Event>;
 
-export type DBDialogDefaultState = {
-	handleDialogOpen: () => void;
-	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleKeyDown: (event: any) => void;
-	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
-	isNotModal: () => boolean;
-};
+export type DBDialogDefaultState = DialogDrawerDefaultState;
 
 export type DBDialogState = DBDialogDefaultState &
 	GlobalState &

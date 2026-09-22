@@ -2,6 +2,7 @@ import {
 	angularChildNodes,
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
+	getVueSlotArgument,
 	isDBComponent,
 	toKebabCase
 } from './utils.js';
@@ -124,22 +125,22 @@ function hasVueHeaderSlot(node: any, header: string): boolean {
 		}
 
 		const attrs = child.startTag?.attributes || [];
-		const isHeaderSlot = attrs.some((attr: any) => {
-			const keyName =
-				typeof attr.key?.name === 'string'
-					? attr.key.name
-					: attr.key?.name?.name;
-			const argName = attr.key?.argument
-				? typeof attr.key.argument === 'string'
-					? attr.key.argument
-					: typeof attr.key.argument.name === 'string'
-						? attr.key.argument.name
-						: attr.key.argument.name?.name
-				: undefined;
+		const slotArgs = attrs
+			.map((attr: any) => getVueSlotArgument(attr))
+			.filter(Boolean);
 
-			return keyName === 'slot' && argName === 'header';
-		});
+		// A dynamic slot argument (`#[slotName]`) cannot be resolved to a slot
+		// name statically, so its destination is unknown. But its content is
+		// statically visible, so we still require the header component to appear
+		// inside it - only the destination, not the content, is treated as
+		// unverified. A dynamic slot holding a real header is accepted; one that
+		// holds plain markup falls through so the header must be found elsewhere.
+		const isDynamicSlot = slotArgs.some((arg: any) => arg.dynamic);
+		if (isDynamicSlot) {
+			return hasVueHeader(child, header);
+		}
 
+		const isHeaderSlot = slotArgs.some((arg: any) => arg.name === 'header');
 		if (!isHeaderSlot) {
 			return false;
 		}
@@ -149,30 +150,77 @@ function hasVueHeaderSlot(node: any, header: string): boolean {
 	});
 }
 
+// Expression kinds whose contents cannot be verified statically. When the header
+// resolves to one of these it may still contain the header component at runtime
+// (e.g. `header={show && <DBDialogHeader />}`), so it is accepted as unresolved -
+// both as a direct header value and when nested inside a fragment/element wrapper.
+const DYNAMIC_EXPRESSION_TYPES = new Set([
+	'Identifier',
+	'MemberExpression',
+	'CallExpression',
+	'ConditionalExpression',
+	'LogicalExpression'
+]);
+
 /**
- * Recursively checks if a JSX expression tree contains the header component.
+ * Recursively checks if a JSX expression tree contains the header component or a
+ * dynamic expression that we cannot statically verify (and therefore accept).
  */
 function hasJsxHeader(node: any, header: string): boolean {
 	if (!node) {
 		return false;
 	}
 
-	if (node.type === 'JSXElement') {
-		const opening = node.openingElement;
+	// A wrapper may nest the header in an expression container, e.g.
+	// `header={<>{show && <DBDialogHeader />}</>}`, or in a transparent TypeScript
+	// node that does not change what React renders, e.g.
+	// `header={(<DBDialogHeader />) as ReactNode}` (TSAsExpression),
+	// `... satisfies ReactNode` (TSSatisfiesExpression) or `header!` (TSNonNullExpression).
+	// Peel those wrappers up front so the inner expression is treated exactly like
+	// the same expression used directly (a dynamic expression is accepted, an
+	// element/fragment/array is searched).
+	let current = node;
+	while (
+		current &&
+		(current.type === 'JSXExpressionContainer' ||
+			current.type === 'TSAsExpression' ||
+			current.type === 'TSSatisfiesExpression' ||
+			current.type === 'TSNonNullExpression')
+	) {
+		current = current.expression;
+	}
+	if (!current) {
+		return false;
+	}
+
+	if (current.type === 'JSXElement') {
+		const opening = current.openingElement;
 		if (opening && isDBComponent(opening, header)) {
 			return true;
 		}
-		// Recursively check children of JSX elements (e.g. <div><DBDrawerHeader>...</DBDrawerHeader></div>)
-		const children = node.children || [];
-		return children.some((child: any) => hasJsxHeader(child, header));
+		// Recursively check children (e.g. <div><DBDrawerHeader>...</DBDrawerHeader></div>).
+		return (current.children || []).some((child: any) =>
+			hasJsxHeader(child, header)
+		);
 	}
 
-	if (node.type === 'JSXFragment') {
-		const children = node.children || [];
-		return children.some((child: any) => hasJsxHeader(child, header));
+	if (current.type === 'JSXFragment') {
+		return (current.children || []).some((child: any) =>
+			hasJsxHeader(child, header)
+		);
 	}
 
-	return false;
+	// React renders a node array normally, e.g. `header={[<DBDialogHeader />]}`,
+	// so recurse through its elements (skipping array holes/`null`) before
+	// falling through to the dynamic-type check.
+	if (current.type === 'ArrayExpression') {
+		return (current.elements || []).some((element: any) =>
+			hasJsxHeader(element, header)
+		);
+	}
+
+	// An unverifiable dynamic expression is accepted (may resolve to the header).
+	return DYNAMIC_EXPRESSION_TYPES.has(current.type);
 }
 
 /**
@@ -192,24 +240,8 @@ function isValidHeaderProp(headerAttr: any, header: string): boolean {
 		return false;
 	}
 
-	const expr = value.expression;
-
-	// Allow variable references (e.g. header={headerSlot})
-	// since we can't statically verify what the variable contains
-	const dynamicTypes = [
-		'Identifier',
-		'MemberExpression',
-		'CallExpression',
-		'ConditionalExpression',
-		'LogicalExpression'
-	];
-
-	if (dynamicTypes.includes(expr?.type)) {
-		return true;
-	}
-
-	// Check if expression contains the header component (recursively)
-	return hasJsxHeader(expr, header);
+	// Accept a dynamic value or an expression that (recursively) contains the header.
+	return hasJsxHeader(value.expression, header);
 }
 
 /**
@@ -326,7 +358,14 @@ export function createHeaderRequiredRule({
 
 			return defineTemplateBodyVisitor(
 				context,
-				{ VElement: checkParent, Element: checkParent },
+				// `Element$1` is the Vue parser's fallback element type; register
+				// it too so a DBDialog/DBDrawer root exposed as that node is still
+				// validated (the traversal helpers already recognize `Element$1`).
+				{
+					VElement: checkParent,
+					Element: checkParent,
+					Element$1: checkParent
+				},
 				{ JSXElement: checkParent }
 			);
 		}

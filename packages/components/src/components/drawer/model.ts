@@ -3,7 +3,8 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
-	GeneralEvent,
+	DialogDrawerDefaultState,
+	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
 	InitializedState
@@ -95,21 +96,26 @@ export type DBDrawerDefaultProps = {
 	 * Change the size of the drawer container.
 	 */
 	containerSize?: DrawerContainerSizeType;
+
+	/**
+	 * React specific onClick to pass to forward ref. Composed with the
+	 * backdrop-close ponyfill, so a consumer handler still fires.
+	 */
+	onClick?: (event: ClickEvent<HTMLDialogElement>) => void;
+
+	/**
+	 * React specific onKeyDown to pass to forward ref. Composed with the
+	 * Escape-close ponyfill, so a consumer handler still fires.
+	 */
+	onKeyDown?: (event: GeneralKeyboardEvent<HTMLDialogElement>) => void;
 };
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
-	CancelEventProps &
-	CloseEventProps<Event>;
+	CancelEventProps<HTMLDialogElement> &
+	CloseEventProps<HTMLDialogElement>;
 
-export type DBDrawerDefaultState = {
-	handleDialogOpen: () => void;
-	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	handleKeyDown: (event: any) => void;
-	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
-	isNotModal: () => boolean;
-};
+export type DBDrawerDefaultState = DialogDrawerDefaultState;
 
 export type DBDrawerState = DBDrawerDefaultState &
 	GlobalState &

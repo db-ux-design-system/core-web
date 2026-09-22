@@ -167,9 +167,9 @@
 	}
 
 	.db-drawer-container {
-		// Drawer keeps its shadow rounded-only (see &[data-rounded="true"] below),
-		// so it opts out of the shared shadow to preserve the square-drawer look.
-		@include dialog-components.container-layout($box-shadow: false);
+		// Every drawer (square or rounded) carries the shared md elevation, so it
+		// stays separated from the backdrop - matching the pre-refactor behavior.
+		@include dialog-components.container-layout;
 		@include dialog-components.safe-area("drawer");
 
 		inline-size: var(--db-drawer-inline-size);

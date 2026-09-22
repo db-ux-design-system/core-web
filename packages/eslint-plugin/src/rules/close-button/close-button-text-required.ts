@@ -1,4 +1,4 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -9,8 +9,8 @@ import {
 
 const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBNotification: 'closeButtonText',
-	DBDrawerHeader: 'closeButtonText',
-	DBDialogHeader: 'closeButtonText',
+	[COMPONENTS.DBDrawerHeader]: 'closeButtonText',
+	[COMPONENTS.DBDialogHeader]: 'closeButtonText',
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
@@ -269,7 +269,16 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkComponent, Element: checkComponent },
+			// `Element$1` is the Vue parser's fallback element type; register it
+			// too so a component exposed as that node (e.g. DBDialogHeader) still
+			// runs the close-button label check instead of bypassing this
+			// recommended accessibility rule (matches the header-required rules,
+			// text-or-children-required and sub-component-required-parent).
+			{
+				VElement: checkComponent,
+				Element: checkComponent,
+				Element$1: checkComponent
+			},
 			{ JSXElement: checkComponent }
 		);
 	}

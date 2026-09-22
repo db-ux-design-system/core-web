@@ -170,11 +170,33 @@ describe('sub-component-required-parent', () => {
 				valid: [
 					{
 						code: '<DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>'
+					},
+					{
+						// A transparent inline array renders its items directly
+						// inside DBAccordion, so a slot-less direct child through
+						// the array is a valid placement.
+						code: '<DBAccordion>{[<DBAccordionItem key="a" headlinePlain="Test">Content</DBAccordionItem>]}</DBAccordion>'
 					}
 				],
 				invalid: [
 					{
 						code: '<div><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></div>',
+						errors: [
+							{
+								messageId: 'subComponentRequiredParent',
+								data: {
+									component: 'DBAccordionItem',
+									parent: 'DBAccordion',
+									slot: ''
+								}
+							}
+						]
+					},
+					{
+						// The same inline array inside a plain element has a known
+						// placement (inside the div, not DBAccordion), so it is
+						// still reported rather than bypassed by the array wrapper.
+						code: '<div>{[<DBAccordionItem key="a" headlinePlain="Test">Content</DBAccordionItem>]}</div>',
 						errors: [
 							{
 								messageId: 'subComponentRequiredParent',
@@ -518,6 +540,34 @@ const reactPlacementShapes: PlacementShape[] = [
 		reports: false
 	},
 	{
+		// An inline array inside the header slot has a statically known, valid
+		// placement, so it must be accepted.
+		shape: 'sub-component in the header slot via an inline array',
+		code: '<DBDialog header={[<DBDialogHeader key="h">Title</DBDialogHeader>]}>Content</DBDialog>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// An array extracted into a variable is not inside a JSX tree, so its
+		// placement stays unverifiable and is allowed.
+		shape: 'sub-component in an array extracted into a variable (unverifiable placement)',
+		code: 'const headers = [<DBDialogHeader key="h">Title</DBDialogHeader>];',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// Unlike an array (rendered in place), a header inside an object-literal
+		// prop value is data whose rendering placement depends on the receiving
+		// component, so it stays unverifiable and must NOT be traversed/reported.
+		shape: 'sub-component inside an object-literal prop value (unverifiable placement)',
+		code: '<Foo cfg={{ header: <DBDialogHeader>Title</DBDialogHeader> }} />',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
 		shape: 'sub-component returned from an arrow function (unverifiable placement)',
 		code: 'const renderFooter = () => <DBDialogFooter>Actions</DBDialogFooter>;',
 		component: 'DBDialogFooter',
@@ -527,6 +577,16 @@ const reactPlacementShapes: PlacementShape[] = [
 	{
 		shape: 'no dialog ancestor at all',
 		code: '<div><DBDialogHeader>Title</DBDialogHeader></div>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
+	},
+	{
+		// An orphaned sub-component rendered through an inline array inside a
+		// plain element has a known placement (inside the div, no DBDialog slot),
+		// so it must still be reported rather than bypassed by the array wrapper.
+		shape: 'orphaned sub-component via an inline array inside a plain element',
+		code: '<div>{[<DBDialogHeader key="h">Title</DBDialogHeader>]}</div>',
 		component: 'DBDialogHeader',
 		slot: 'header',
 		reports: true
@@ -581,6 +641,16 @@ const vuePlacementShapes: PlacementShape[] = [
 		code: '<template><DBDialog><template v-slot:footer><DBDialogFooter>Actions</DBDialogFooter></template></DBDialog></template>',
 		component: 'DBDialogFooter',
 		slot: 'footer',
+		reports: false
+	},
+	{
+		// A dynamic slot argument (#[slotName]) may place the sub-component in the
+		// required slot at runtime; it cannot be verified statically, so it is
+		// accepted as unresolved rather than reported.
+		shape: 'dynamic #[slotName] template holds the sub-component',
+		code: '<template><DBDialog><template #[slotName]><DBDialogHeader>Title</DBDialogHeader></template></DBDialog></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
 		reports: false
 	},
 	{
@@ -655,6 +725,24 @@ const angularPlacementShapes: PlacementShape[] = [
 		component: 'db-dialog-footer',
 		slot: 'footer',
 		reports: false
+	},
+	{
+		// Angular projects the directly-projected <div> (no marker) into the
+		// default slot, so a footer marker on the nested sub-component does NOT
+		// reach the footer row - it must still be reported.
+		shape: 'footer marker on a sub-component nested in an unmarked wrapper',
+		code: '<db-dialog><div><db-dialog-footer footer>Actions</db-dialog-footer></div></db-dialog>',
+		component: 'db-dialog-footer',
+		slot: 'footer',
+		reports: true
+	},
+	{
+		// Same for the header: the marker must sit on the directly-projected node.
+		shape: 'header marker on a sub-component nested in an unmarked wrapper',
+		code: '<db-dialog><div><db-dialog-header header>Title</db-dialog-header></div></db-dialog>',
+		component: 'db-dialog-header',
+		slot: 'header',
+		reports: true
 	},
 	{
 		shape: 'no dialog ancestor at all',
