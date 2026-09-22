@@ -50,7 +50,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",
     "@stencil/core": "4.45.0",
-    "@types/node": "26.6.1",
+    "@types/node": "26.6.2",
     "cem-plugin-expanded-types": "1.4.0",
     "cpy-cli": "7.0.0",
     "custom-element-jet-brains-integration": "1.8.0",

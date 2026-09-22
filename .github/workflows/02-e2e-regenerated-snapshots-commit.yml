@@ -30,7 +30,7 @@ jobs:
     if: |
       (inputs.showcases || inputs.components || inputs.foundations || inputs.patternhub) &&
       (!contains(github.actor,'[bot]') || startsWith(github.head_ref,'renovate-'))
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
       pull-requests: write
