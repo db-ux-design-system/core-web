@@ -62,6 +62,11 @@ export default function DrawerShowcase(props: PatternhubProps) {
 					<DrawerExamples />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Events">
+				<CardWrapperShowcase>
+					<DrawerEvents />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }
