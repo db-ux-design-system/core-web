@@ -20,10 +20,13 @@ Three things are easy to miss when writing the markup by hand:
   decorative entries and the dots out of the accessibility tree, because a pseudo
   element with alternative text has no accessible name.
 - Every page `<li>` is a pagination item: it carries `class="db-pagination-item"`, a
-  `data-page` with the page number and a `data-pagination-item` attribute. `data-page` is what the component reads back to
-  know which page was activated, and `data-pagination-item` drives the collapsing
-  described below. In the framework packages this markup comes from
-  `DBPaginationItem`, which is documented together with `DBPagination`.
+  `data-page` with the page number and a `data-pagination-item` attribute. `data-page`
+  is what the component reads back to know which page was activated, and
+  `data-pagination-item` drives the collapsing described below. In the framework
+  packages the `<li>` comes from `DBPaginationItem` (a thin wrapper), and `DBPagination`
+  writes `data-page`, `data-pagination-item`, `data-ellipsis`, `data-variant` and
+  `aria-current` onto it through the DOM - so a consumer composing the items sets none
+  of that. Writing the markup by hand, you set these attributes yourself.
 - Previous and next sit in a pagination item as well, so the box and the pointer
   target come from one place, but they carry neither `data-page` nor
   `data-pagination-item`. That is what keeps them out of the collapsing and out of

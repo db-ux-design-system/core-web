@@ -126,7 +126,7 @@ const testPagination = () => {
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(comp);
 
-		await component.getByRole('button', { name: 'Page 6 of 10' }).click();
+		await component.locator('li[data-page="6"] button').click();
 		await component.update(
 			<DBPagination
 				label="Results pages"
@@ -136,45 +136,47 @@ const testPagination = () => {
 			/>
 		);
 
+		// The activated page becomes current, marked by the DOM sync after the render.
+		await component
+			.locator('li[data-page="6"][data-variant="filled"]')
+			.waitFor({ state: 'attached' });
 		await expect(
-			component.getByRole('button', { name: 'Page 6 of 10' })
+			component.locator('li[data-page="6"] button')
 		).toBeFocused();
 	});
 
-	test('should keep the focus when a linked page becomes current', async ({
+	test('should keep the focus on a composed link that becomes current', async ({
 		mount,
 		page
 	}) => {
-		// The key alone is not enough in link mode. If the current page lost its href,
-		// the activated page would change from an anchor to a button, and a framework
-		// replaces a node whose element type changed even when the key survives - so
-		// the focus would fall back to the document. A fragment pattern keeps the test
-		// page from navigating away.
+		// A composed link stays the same element across a page change - the pagination
+		// only flips aria-current on it - so the keyed node survives and keeps focus.
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
-			<DBPagination
-				label="Results pages"
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="#page={page}"
-			/>
+			<DBPagination label="Results pages" currentPage={1}>
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
 		);
 
-		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
+		await component.locator('li[data-page="2"] a').focus();
+		await component.locator('li[data-page="2"] a').click();
 		await component.update(
-			<DBPagination
-				label="Results pages"
-				currentPage={6}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="#page={page}"
-			/>
+			<DBPagination label="Results pages" currentPage={2}>
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
 		);
 
-		await expect(
-			component.getByRole('link', { name: 'Page 6 of 10' })
-		).toBeFocused();
+		await expect(component.locator('li[data-page="2"] a')).toBeFocused();
 	});
 
 	test('should let a consumer compose the items', async ({ mount }) => {
@@ -190,22 +192,26 @@ const testPagination = () => {
 					requestedPage = page;
 					requestedPages.push(page);
 				}}>
-				<DBPaginationItem page={1} label="Page 1" active>
-					<a href="?page=1">1</a>
+				<DBPaginationItem>
+					<a href="?page=1" aria-label="Page 1">
+						1
+					</a>
 				</DBPaginationItem>
-				<DBPaginationItem page={2} label="Page 2">
-					<a href="?page=2">2</a>
+				<DBPaginationItem>
+					<a href="?page=2" aria-label="Page 2">
+						2
+					</a>
 				</DBPaginationItem>
 			</DBPagination>
 		);
 
+		// The consumer sets no page state. The pagination derives it from the item
+		// position: data-page onto every <li>, aria-current onto the current control.
 		await expect(component.locator('li[data-page]')).toHaveCount(2);
 		await expect(component.getByRole('link', { name: '2' })).toBeVisible();
-		// The child is out of reach, so the state falls back to the list item.
-		await expect(component.locator('li[data-page="1"]')).toHaveAttribute(
-			'aria-current',
-			'page'
-		);
+		await expect(
+			component.getByRole('link', { name: '1' })
+		).toHaveAttribute('aria-current', 'page');
 
 		await component.getByRole('link', { name: '2' }).click();
 		expect(requestedPages).toEqual([2]);
@@ -226,8 +232,12 @@ const testPagination = () => {
 					requestedPage = page;
 					requestedPages.push(page);
 				}}>
-				<DBPaginationItem page={1} label="Page 1" text="1" />
-				<DBPaginationItem page={2} label="Page 2" text="2" active />
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
 			</DBPagination>
 		);
 
@@ -238,11 +248,13 @@ const testPagination = () => {
 			component.getByRole('button', { name: 'Next page' })
 		).toBeEnabled();
 
-		await component.getByRole('button', { name: 'Page 1' }).click();
+		// The page comes from the item position: the first item is page 1, the second
+		// page 2, which currentPage marks current.
+		await component.locator('li[data-page="1"] a').click();
 		expect(requestedPages).toEqual([1]);
 
-		// The active page reports nothing, because it is the page one is already on.
-		await component.getByRole('button', { name: 'Page 2' }).click();
+		// The current page reports nothing, because it is the page one is already on.
+		await component.locator('li[data-page="2"] a').click();
 		expect(requestedPages).toEqual([1]);
 	});
 
@@ -309,18 +321,27 @@ const testPagination = () => {
 				and unmount the component. preventDefault is not an option here:
 				component testing proxies a handler back to the test process, where a
 				synthetic event cannot be passed along. */}
-				<DBPaginationItem page={1} label="Page 1">
-					<a href="#page-1" onClick={() => clicked.push('1')}>
+				<DBPaginationItem>
+					<a
+						href="#page-1"
+						aria-label="Page 1"
+						onClick={() => clicked.push('1')}>
 						1
 					</a>
 				</DBPaginationItem>
-				<DBPaginationItem page={2} label="Page 2" active>
-					<a href="#page-2" onClick={() => clicked.push('2')}>
+				<DBPaginationItem>
+					<a
+						href="#page-2"
+						aria-label="Page 2"
+						onClick={() => clicked.push('2')}>
 						2
 					</a>
 				</DBPaginationItem>
-				<DBPaginationItem page={3} label="Page 3">
-					<a href="#page-3" onClick={() => clicked.push('3')}>
+				<DBPaginationItem>
+					<a
+						href="#page-3"
+						aria-label="Page 3"
+						onClick={() => clicked.push('3')}>
 						3
 					</a>
 				</DBPaginationItem>
@@ -600,34 +621,39 @@ const testCollapsing = () => {
 		).toBeDisabled();
 	});
 
-	test('should show a collapsed item only below the breakpoint', async ({
-		mount,
-		page
+	test('should wire composed items up from their position', async ({
+		mount
 	}) => {
-		// layout collapsed is the mirror image of a sibling and public API of the item.
-		// The component never emits it, because its own collapsed pages are a subset of
-		// the wide ones, so only a composed list reaches this value - it used to render
-		// the same marker as always and was therefore visible in both layouts.
-		await page.setViewportSize(DESKTOP_VIEWPORT);
+		// The consumer sets no page state on a composed item. The pagination derives
+		// data-page from the item position and marks the current control with
+		// aria-current, so a composed child needs no props of its own.
 		const component = await mount(
-			<DBPagination label="Composed" currentPage={1}>
-				<DBPaginationItem page={1} label="Page 1" text="1" active />
-				<DBPaginationItem
-					page={2}
-					label="Page 2"
-					text="2"
-					layout="collapsed"
-				/>
+			<DBPagination label="Composed" currentPage={2}>
+				<DBPaginationItem>
+					<a href="?page=1" aria-label="Page 1 of 3">
+						1
+					</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="?page=2" aria-label="Page 2 of 3">
+						2
+					</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="?page=3" aria-label="Page 3 of 3">
+						3
+					</a>
+				</DBPaginationItem>
 			</DBPagination>
 		);
 
-		const collapsedOnly = component.locator(
-			'li[data-pagination-item="collapsed"]'
-		);
-		await expect(collapsedOnly).toBeHidden();
-
-		await page.setViewportSize(DEFAULT_VIEWPORT);
-		await expect(collapsedOnly).toBeVisible();
+		await expect(component.locator('li[data-page="1"]')).toBeVisible();
+		await expect(component.locator('li[data-page="2"]')).toBeVisible();
+		await expect(component.locator('li[data-page="3"]')).toBeVisible();
+		await expect(
+			component.getByRole('link', { name: 'Page 2 of 3' })
+		).toHaveAttribute('aria-current', 'page');
+		await expect(component.locator('[aria-current="page"]')).toHaveCount(1);
 	});
 
 	test('should not put several wide pages next to each other when collapsed', async ({
@@ -825,8 +851,28 @@ const testCollapsing = () => {
 							/>
 						);
 
-						const items = await readItems(component);
 						const context = `boundaryCount ${boundaryCount}, siblingCount ${siblingCount}, page ${currentPage} of ${totalPages}`;
+
+						// The page state is written onto the items after the render
+						// commits, and this loop fires many updates in a row, so poll
+						// until the DOM reflects this config - the current page marked
+						// and the last page present - before reading the layout back.
+						await expect
+							.poll(
+								async () => {
+									const snapshot = await readItems(component);
+									const current = snapshot.find(
+										(item) => item.current
+									);
+									return current !== undefined
+										? Number(current.text)
+										: 0;
+								},
+								{ message: context }
+							)
+							.toBe(currentPage);
+
+						const items = await readItems(component);
 
 						expectValidLayout(items, {
 							totalPages,
@@ -898,20 +944,20 @@ const testSizes = () => {
 		}
 	});
 
-	test('should size the links like the buttons', async ({ mount }) => {
-		// One rule styles both elements, so an anchor has to come out with the box of
-		// a button. Nothing declares this on the control or on the item - both are styled
-		// as descendants of the data-size on the nav.
-		// Page 1, so that both element types are in this one rendering: every page is
-		// an anchor in link mode, including the current one, while previous stays a
-		// native disabled button at the boundary.
+	test('should size a composed anchor like the buttons', async ({
+		mount
+	}) => {
+		// One rule styles both elements as descendants of the data-size on the nav, so
+		// a composed anchor comes out with the box of a generated button.
 		const component = await mount(
-			<DBPagination
-				currentPage={1}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
+			<DBPagination label="Linked" currentPage={1}>
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
 		);
 
 		const box = async (selector: string) =>
@@ -926,17 +972,9 @@ const testSizes = () => {
 					};
 				});
 
-		expect(await box('a.db-pagination-next')).toEqual({
-			width: 40,
-			height: 40
-		});
-		expect(await box('a.db-pagination-page')).toEqual({
-			width: 40,
-			height: 40
-		});
-		// The button at the boundary is the counterpart: same box from the same rule,
-		// different element.
-		expect(await box('a.db-pagination-page')).toEqual(
+		// The composed anchor and the previous button share one rule, so their box
+		// matches.
+		expect(await box('li[data-page="1"] a')).toEqual(
 			await box('button.db-pagination-previous')
 		);
 	});
@@ -1079,328 +1117,99 @@ const testTouchTargets = () => {
 	});
 };
 
-const testLinks = () => {
-	test('should render buttons and no href without hrefPattern', async ({
-		mount,
-		page
-	}) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-		const component = await mount(comp);
-
-		await expect(component.locator('a')).toHaveCount(0);
-		await expect(component.locator('.db-pagination-page')).toHaveCount(5);
-		await expect(component.locator('[rel]')).toHaveCount(0);
-		await expect(
-			component.getByRole('button', { name: 'Page 5 of 10' })
-		).toHaveAttribute('aria-current', 'page');
-	});
-
-	test('should build the page links from the pattern', async ({
+const testComposedLinks = () => {
+	test('should number composed links and keep them working', async ({
 		mount,
 		page
 	}) => {
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
 			<DBPagination
-				label="Linked pages"
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
-		);
-
-		const pageLinks = await component
-			.locator('a.db-pagination-page')
-			.evaluateAll((links: HTMLAnchorElement[]) =>
-				links.map((link) => link.getAttribute('href'))
-			);
-		// Every page is linked, the current one included - see "should mark but not
-		// activate the current page".
-		expect(pageLinks).toEqual([
-			'?page=1',
-			'?page=4',
-			'?page=5',
-			'?page=6',
-			'?page=10'
-		]);
-		await expect(
-			component.locator('button.db-pagination-page')
-		).toHaveCount(0);
-	});
-
-	test('should replace every occurrence of the page placeholder', async ({
-		mount,
-		page
-	}) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-		const component = await mount(
-			<DBPagination
+				label="Linked"
 				currentPage={2}
-				totalCount={30}
-				pageSize={10}
-				hrefPattern="/list/{page}?page={page}"
-			/>
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}>
+				<DBPaginationItem>
+					<a href="#page-1">Go to the first page</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">Go to the second page</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-3">Go to the third page</a>
+				</DBPaginationItem>
+			</DBPagination>
 		);
 
-		await expect(
-			component.getByRole('link', { name: 'Page 3 of 3' })
-		).toHaveAttribute('href', '/list/3?page=3');
-	});
-
-	test('should link previous and next with rel', async ({ mount, page }) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-		const component = await mount(
-			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
-		);
-
-		const previous = component.locator('a.db-pagination-previous');
-		await expect(previous).toHaveAttribute('href', '?page=4');
-		await expect(previous).toHaveAttribute('rel', 'prev');
-
-		const next = component.locator('a.db-pagination-next');
-		await expect(next).toHaveAttribute('href', '?page=6');
-		await expect(next).toHaveAttribute('rel', 'next');
-
-		await expect(component.locator('[rel="prev"]')).toHaveCount(1);
-		await expect(component.locator('[rel="next"]')).toHaveCount(1);
-	});
-
-	test('should keep previous and next disabled buttons at the boundaries', async ({
-		mount,
-		page
-	}) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-
-		// No href to go to means no anchor: the element stays the native disabled
-		// button of the button mode instead of becoming an inert link.
-		const first = await mount(
-			<DBPagination
-				currentPage={1}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
-		);
-		await expect(
-			first.locator('button.db-pagination-previous')
-		).toBeDisabled();
-		await expect(first.locator('a.db-pagination-previous')).toHaveCount(0);
-		await expect(first.locator('a.db-pagination-next')).toHaveAttribute(
+		// The anchors stay anchors - links come from composition now, so they carry a
+		// real href and work without JavaScript.
+		await expect(component.locator('a[href="#page-1"]')).toBeVisible();
+		await expect(component.locator('li[data-page="3"] a')).toHaveAttribute(
 			'href',
-			'?page=2'
+			'#page-3'
 		);
-		await expect(first.locator('[rel="prev"]')).toHaveCount(0);
-		await first.unmount();
 
-		const last = await mount(
-			<DBPagination
-				currentPage={10}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
-		);
-		await expect(last.locator('button.db-pagination-next')).toBeDisabled();
-		await expect(last.locator('a.db-pagination-next')).toHaveCount(0);
-		await expect(last.locator('[rel="next"]')).toHaveCount(0);
+		// The numbering is automated: the visible text becomes the page number and the
+		// text the consumer wrote moves into aria-label.
+		const second = component.getByRole('link', {
+			name: 'Go to the second page'
+		});
+		await expect(second).toHaveText('2');
+		await expect(second).toHaveAttribute('aria-current', 'page');
+
+		await component.locator('li[data-page="3"] a').click();
+		expect(requestedPage).toBe(3);
 	});
 
-	test('should mark the current page with aria-current in link mode', async ({
-		mount,
-		page
+	test('should keep a consumer aria-label on a composed link', async ({
+		mount
 	}) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
-			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
+			<DBPagination label="Linked" currentPage={1}>
+				<DBPaginationItem>
+					<a href="#page-1" aria-label="First results page">
+						1
+					</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2" aria-label="Second results page">
+						2
+					</a>
+				</DBPaginationItem>
+			</DBPagination>
 		);
 
+		// A label the consumer set wins over the automated one.
 		await expect(
-			component.getByRole('link', { name: 'Page 5 of 10' })
-		).toHaveAttribute('aria-current', 'page');
-		await expect(component.locator('[aria-current="page"]')).toHaveCount(1);
+			component.getByRole('link', { name: 'First results page' })
+		).toBeVisible();
 	});
 
-	test('should mark but not activate the current page', async ({
+	test('should ignore a modified click on a composed link', async ({
 		mount,
 		page
 	}) => {
-		// The current page keeps its href, so the element does not change when a page
-		// becomes current - swapping the anchor for a button would replace the focused
-		// node and drop keyboard focus to the document. What marks it is aria-current,
-		// the way the ARIA APG breadcrumb example marks its last item, plus the filled
-		// look: no pointer cursor, no hover and no pressed background. And it reports
-		// nothing, because it is the page one is already on.
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
 			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="#page={page}"
+				label="Linked"
+				currentPage={1}
 				onPageChange={(requested: number) =>
 					(requestedPage = requested)
-				}
-			/>
+				}>
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
 		);
 
-		const current = component.getByRole('link', { name: 'Page 5 of 10' });
-		await expect(current).toHaveAttribute('href', '#page=5');
-		await current.click();
-		expect(
-			requestedPage,
-			'the current page reports nothing'
-		).toBeUndefined();
-
-		const readState = async (target: any) => {
-			const resting = await target.evaluate(
-				(element: HTMLElement) =>
-					window.getComputedStyle(element).backgroundColor
-			);
-			await target.hover();
-			return target.evaluate(
-				(element: HTMLElement, restingBackground: string) => ({
-					cursor: window.getComputedStyle(element).cursor,
-					changed:
-						window.getComputedStyle(element).backgroundColor !==
-						restingBackground
-				}),
-				resting
-			);
-		};
-
-		const currentState = await readState(current);
-		expect(currentState.cursor, 'the current page shows no pointer').toBe(
-			'default'
-		);
-		expect(
-			currentState.changed,
-			'hovering the current page keeps its background'
-		).toBe(false);
-
-		// The counter check: without it the assertions above would also pass if the
-		// harness loaded no button styles at all.
-		const other = await readState(
-			component.getByRole('link', { name: 'Page 4 of 10' })
-		);
-		expect(other.cursor, 'another page shows a pointer').toBe('pointer');
-		expect(
-			other.changed,
-			'hovering another page changes its background'
-		).toBe(true);
-	});
-
-	test('should not turn the ellipses into links', async ({ mount, page }) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-		const component = await mount(
-			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
-		);
-
-		// The truncation is a pseudo element of the page that borders the gap, so there
-		// is nothing that could become a link and nothing that needs aria-hidden. What
-		// has to hold is that every item in the list is a page with exactly one control,
-		// and in link mode that control is an anchor for all of them.
-		expect(getShape(await readItems(component))).toBe('1 ... 4 5 6 ... 10');
-
-		const items = component.locator('li[data-pagination-item]');
-		await expect(items).toHaveCount(5);
-		await expect(items.locator(':is(a, button)')).toHaveCount(5);
-		await expect(items.locator('a')).toHaveCount(5);
-		await expect(
-			component.locator('li[data-pagination-item][aria-hidden]')
-		).toHaveCount(0);
-	});
-
-	test('should keep the collapsed layout and its tab order in link mode', async ({
-		mount,
-		page
-	}) => {
-		const component = await mount(
-			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="?page={page}"
-			/>
-		);
-
-		expect(getShape(await readItems(component))).toBe('1 ... 5 ... 10');
-		await expect(
-			component.getByRole('link', { name: 'Page 4 of 10' })
-		).toHaveCount(0);
-
-		await component.locator('a.db-pagination-previous').focus();
-		await page.keyboard.press('Tab');
-		await expect(
-			component.getByRole('link', { name: 'Page 1 of 10' })
-		).toBeFocused();
-		// The current page is a link here like every other page, which is what keeps it
-		// in the tab order and keeps the element stable across a page change.
-		await page.keyboard.press('Tab');
-		await expect(
-			component.getByRole('link', { name: 'Page 5 of 10' })
-		).toBeFocused();
-	});
-
-	test('should report the requested page from a link click', async ({
-		mount,
-		page
-	}) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-		const component = await mount(
-			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="#page={page}"
-				onPageChange={(requested: number) =>
-					(requestedPage = requested)
-				}
-			/>
-		);
-
-		// A fragment href keeps the test page from navigating away while still
-		// proving that the component does not swallow the click.
-		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
-		expect(requestedPage).toBe(6);
-	});
-
-	test('should ignore a modified click on a page link', async ({
-		mount,
-		page
-	}) => {
-		await page.setViewportSize(DESKTOP_VIEWPORT);
-		const component = await mount(
-			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
-				hrefPattern="#page={page}"
-				onPageChange={(requested: number) =>
-					(requestedPage = requested)
-				}
-			/>
-		);
-
-		// A modified click opens the destination in another tab or window, which is
-		// not something this test run should do. preventDefault on the document
-		// cancels that default action without hiding the click from the component:
-		// its listener sits on the <ul> and therefore runs first.
+		// A modified click opens the destination elsewhere, so the pagination reports
+		// nothing. preventDefault on the document cancels the navigation without
+		// hiding the click from the delegated handler on the <ul>.
 		await page.evaluate(() => {
 			document.addEventListener('click', (event: MouseEvent) => {
 				event.preventDefault();
@@ -1408,46 +1217,42 @@ const testLinks = () => {
 		});
 
 		await component
-			.getByRole('link', { name: 'Page 6 of 10' })
+			.locator('li[data-page="2"] a')
 			.click({ modifiers: ['ControlOrMeta'] });
 		expect(
 			requestedPage,
 			'a ctrl/cmd click reports nothing'
 		).toBeUndefined();
 
-		await component
-			.getByRole('link', { name: 'Page 6 of 10' })
-			.click({ modifiers: ['Shift'] });
-		expect(requestedPage, 'a shift click reports nothing').toBeUndefined();
-
-		// The counter check: without it the assertions above would also pass if the
-		// guard rejected every click on a link.
-		await component.getByRole('link', { name: 'Page 6 of 10' }).click();
-		expect(requestedPage).toBe(6);
+		await component.locator('li[data-page="2"] a').click();
+		expect(requestedPage).toBe(2);
 	});
 
-	test('should still report a modified click on a page button', async ({
+	test('should disable a single page through the items API', async ({
 		mount,
 		page
 	}) => {
 		await page.setViewportSize(DESKTOP_VIEWPORT);
 		const component = await mount(
 			<DBPagination
-				currentPage={5}
-				totalCount={100}
-				pageSize={10}
+				label="With items"
+				currentPage={1}
+				items={[{}, { disabled: true }, {}]}
 				onPageChange={(requested: number) =>
 					(requestedPage = requested)
 				}
 			/>
 		);
 
-		// Only links are guarded. A modifier on a button carries no navigation the
-		// browser could take elsewhere, so it stays a plain activation.
-		await component
-			.getByRole('button', { name: 'Page 6 of 10' })
-			.click({ modifiers: ['ControlOrMeta'] });
-		expect(requestedPage).toBe(6);
+		const secondPage = component.locator('li[data-page="2"] button');
+		await expect(secondPage).toHaveAttribute('aria-disabled', 'true');
+
+		// A disabled page reports nothing.
+		await secondPage.click({ force: true });
+		expect(requestedPage).toBeUndefined();
+
+		await component.locator('li[data-page="3"] button').click();
+		expect(requestedPage).toBe(3);
 	});
 };
 
@@ -1617,6 +1422,6 @@ test.describe('DBPagination', () => {
 	testCollapsing();
 	testSizes();
 	testTouchTargets();
-	testLinks();
+	testComposedLinks();
 	testA11y();
 });

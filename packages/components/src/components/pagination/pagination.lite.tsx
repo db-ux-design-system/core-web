@@ -1,6 +1,9 @@
 import {
 	For,
 	Show,
+	onMount,
+	onUnMount,
+	onUpdate,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -32,15 +35,17 @@ export default function DBPagination(props: DBPaginationProps) {
 	const _ref = useRef<HTMLElement | any>(null);
 
 	const state: DBPaginationState = useStore<DBPaginationState>({
+		_observer: undefined,
+		_pendingRafId: null,
 		getInteger: (
 			value: number | string | undefined,
 			fallback: number,
 			minimum: number
 		) => {
-			// An empty string and null both convert to 0, which is finite and would
-			// therefore be clamped to `minimum` instead of using `fallback`. A blank
-			// value means "not set" - reachable via an empty custom element attribute
-			// or a template expression that resolves to an empty string.
+			/* An empty string and null both convert to 0, which is finite and would
+			be clamped to the minimum instead of using the fallback. A blank value
+			means "not set" - reachable via an empty custom element attribute or a
+			template expression that resolves to an empty string. */
 			const parsedValue =
 				String(value ?? '').trim() === '' ? Number.NaN : Number(value);
 			return Number.isFinite(parsedValue)
@@ -53,45 +58,49 @@ export default function DBPagination(props: DBPaginationProps) {
 				(_, index: number) => start + index
 			);
 		},
-		// Whether the option API is in use. Not a truthiness test on the prop: a
-		// totalCount of 0 is a valid value - the empty result set - and would select
-		// composition, while a custom element hands the same value over as the string
-		// "0", which is truthy. The question is therefore whether the prop is set at
-		// all, the same distinction getInteger draws for a blank value.
-		hasTotalCount: () => {
+		/* Whether the pagination owns the page list: it does when totalCount is set or
+		an items array is passed. Otherwise the consumer composed the items and owns
+		them. Not a truthiness test on totalCount: a totalCount of 0 is a valid value,
+		the empty result set, and a custom element hands the same value over as the
+		string "0", which is truthy - so the question is whether the prop is set. */
+		isDataDriven: () => {
+			const items = props.items;
+			if (items) {
+				return true;
+			}
 			return String(props.totalCount ?? '').trim() !== '';
 		},
 		getTotalPages: () => {
+			/* Local first: Angular rewrites every prop access into a signal call, so
+			guarding props.items and then reading its length are two calls and the
+			narrowing is lost. */
+			const items = props.items;
+			if (items) {
+				return Math.max(1, items.length);
+			}
 			const totalCount = state.getInteger(props.totalCount, 0, 0);
 			const pageSize = state.getInteger(props.pageSize, 10, 1);
 			return Math.max(1, Math.ceil(totalCount / pageSize));
 		},
 		getCurrentPage: () => {
 			const currentPage = state.getInteger(props.currentPage, 1, 1);
-			// Clamped in the option API only. With composition the consumer owns the
-			// list and getTotalPages falls back to a single page, so clamping pulled
-			// every page down to 1: both arrows ended up disabled and the guard in
-			// handlePageChange rejected the first page while letting the active one
-			// through.
-			if (!state.hasTotalCount()) {
+			/* Clamped only when the pagination owns the list. With composition the
+			consumer owns it and getTotalPages falls back to a single page, so clamping
+			would pull every page down to 1. */
+			if (!state.isDataDriven()) {
 				return currentPage;
 			}
 			return Math.min(state.getTotalPages(), currentPage);
 		},
-		// Only the option API knows where the list ends. With composition the length
-		// belongs to the consumer, so next stays enabled and an out of range request
-		// is theirs to ignore.
+		/* Only a data-driven pagination knows where the list ends. With composition
+		the length belongs to the consumer, so next stays enabled and an out of range
+		request is theirs to ignore. */
 		isLastPage: () => {
 			return (
-				state.hasTotalCount() &&
+				state.isDataDriven() &&
 				state.getCurrentPage() >= state.getTotalPages()
 			);
 		},
-		// Returns the visible page numbers for a given siblingCount, without any
-		// ellipsis. The ellipses are derived from the gaps in this list by
-		// getPaginationItems, which is what allows one DOM to carry the wide and
-		// the collapsed layout at the same time: an ellipsis is a property of the
-		// gap it spans, and the two layouts do not have the same gaps.
 		getPages: (siblingCount: number) => {
 			const totalPages = state.getTotalPages();
 			const currentPage = state.getCurrentPage();
@@ -127,9 +136,9 @@ export default function DBPagination(props: DBPaginationProps) {
 			);
 			let pages: number[] = startPages;
 
-			// Where the window leaves a single page next to the boundary, that page
-			// is rendered instead of an ellipsis - an ellipsis standing in for one
-			// page would take the same room while hiding information.
+			/* Where the window leaves a single page next to the boundary, that page is
+			rendered instead of an ellipsis - an ellipsis standing in for one page would
+			take the same room while hiding information. */
 			if (
 				siblingsStart <= boundaryCount + 2 &&
 				boundaryCount + 1 < totalPages - boundaryCount
@@ -148,31 +157,19 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			return pages.concat(endPages);
 		},
-		// The collapsed layout is not the wide algorithm run with siblingCount 0.
-		// That one keeps the number of rendered items constant by shifting its window
-		// towards the end of the list, so as soon as the current page sits at a
-		// border three pages of full width end up next to each other - 1 ... 9998
-		// 9999 10000. Width is the only reason the collapsed layout exists, so it
-		// gives up that stability and renders one page at each end, the current page,
-		// and nothing else.
+		/* The collapsed layout is not the wide algorithm with siblingCount 0. That one
+		keeps the item count constant by shifting its window towards the end, so at a
+		border three full-width pages end up next to each other (1 ... 9998 9999 10000).
+		Width is the only reason the collapsed layout exists, so it renders one page at
+		each end, the current page, and nothing else. */
 		getCollapsedPages: () => {
 			const totalPages = state.getTotalPages();
 			const currentPage = state.getCurrentPage();
-			// At most one page is pinned per end, whatever boundaryCount says. The
-			// collapsed layout already ignores siblingCount for the same reason: it
-			// exists to be narrow, and four pinned pages plus the current one is what
-			// pushed the row into a second line at boundaryCount 2.
-			// Capping also keeps the candidate list ascending, because the trailing
-			// boundary is then the last page and the current page can never sit behind
-			// it. With more than one pinned page it could, and the duplicate check
-			// below silently dropped the page in between.
 			const boundaryCount = Math.min(
 				state.getInteger(props.boundaryCount, 1, 0),
 				1
 			);
 
-			// Same exit as the wide layout: a list this short is the collapsed shape
-			// already, so hiding anything would claim a gap that does not exist.
 			if (totalPages <= boundaryCount * 2 + 3) {
 				return state.getRange(1, totalPages);
 			}
@@ -193,47 +190,30 @@ export default function DBPagination(props: DBPaginationProps) {
 			let lastPage = 0;
 
 			for (const candidate of candidates) {
-				// The current page can fall inside the boundaries, where it is part of
-				// the list already.
 				if (candidate <= lastPage) {
 					continue;
 				}
-
-				// A gap of exactly one page is rendered instead of hidden, the same
-				// rule the wide layout follows: an ellipsis would take the room of the
-				// page it replaces while hiding which page that is. The wide layout
-				// never leaves such a gap either, so the page filled in here is one it
-				// renders as well - that is what keeps these pages a subset of the wide
-				// ones, which is the condition for both layouts sharing one list.
 				if (lastPage > 0 && candidate - lastPage === 2) {
 					pages.push(lastPage + 1);
 				}
-
 				pages.push(candidate);
 				lastPage = candidate;
 			}
 
 			return pages;
 		},
-		// Only pages are items now. An ellipsis is drawn by the page it borders, which
-		// is why each layout marks its own gaps: a marker inherits the visibility of
-		// its carrier, so one attached to a page that the collapsing hides would
-		// disappear with it.
+		/* Describes the items the data-driven API renders. syncItems writes the
+		description onto the DOM after the list has rendered. */
 		getPaginationItems: () => {
 			const totalPages = state.getTotalPages();
 			const widePages = state.getPages(
 				state.getInteger(props.siblingCount, 1, 0)
 			);
-			// The collapsed pages are a subset of the wide ones, so the wide list is the
-			// list of items and the collapsed layout only decides which of them it shows.
 			const collapsedPages = state.getCollapsedPages();
 			const items: PaginationItemType[] = [];
 
 			for (const page of widePages) {
 				const inCollapsed = collapsedPages.includes(page);
-				// One attribute carries both layouts. A hidden page cannot draw a
-				// visible marker, so the collapsed tokens are only asked for where
-				// the collapsed layout shows this page.
 				const tokens = state
 					.getEllipsisTokens('wide', widePages, page, totalPages)
 					.concat(
@@ -246,22 +226,22 @@ export default function DBPagination(props: DBPaginationProps) {
 								)
 							: []
 					);
+				const itemOptions = props.items;
+				const option = itemOptions ? itemOptions[page - 1] : undefined;
 				items.push({
 					page,
 					layout: inCollapsed ? 'always' : 'wide',
-					key: 'page-' + page,
-					ellipsis: tokens.length > 0 ? tokens.join(' ') : undefined
+					ellipsis: tokens.length > 0 ? tokens.join(' ') : undefined,
+					disabled: option
+						? Boolean(option.disabled) &&
+							String(option.disabled) !== 'false'
+						: false,
+					key: 'page-' + page
 				});
 			}
 
 			return items;
 		},
-		// A page borders a gap before it when the previous page in that layout is more
-		// than one away, or when it is the first page shown and page 1 is missing. Only
-		// the last page can border a trailing gap. Both sides at once happens with
-		// boundaryCount 0, where a single page stands between two gaps - which is why
-		// this returns a list: one token per side, prefixed with the layout it belongs
-		// to, so the stylesheet needs no value standing for both.
 		getEllipsisTokens: (
 			layout: string,
 			pages: number[],
@@ -285,86 +265,137 @@ export default function DBPagination(props: DBPaginationProps) {
 
 			return tokens;
 		},
-		getHref: (page: number) => {
-			// The pattern has to go into a local first. Angular turns every prop
-			// access into a signal call, so guarding props.hrefPattern and then
-			// using it again are two separate calls and the narrowing is lost -
-			// which fails the Angular build with TS2532 while the other three
-			// targets compile.
-			const pattern = props.hrefPattern;
-			if (!pattern || page < 1) {
-				return undefined;
-			}
-			// The last page is known in the option API alone, so the upper bound is
-			// checked there only - otherwise the next link of a composed pagination
-			// would be dropped, because getTotalPages falls back to a single page.
-			if (state.hasTotalCount() && page > state.getTotalPages()) {
-				return undefined;
-			}
-			// replaceAll for the same reason as in getPageLabel: a pattern may
-			// legitimately repeat the placeholder, for example in a path segment and
-			// a query parameter.
-			return pattern.replaceAll('{page}', String(page));
-		},
-		getPreviousHref: () => {
-			return state.getHref(state.getCurrentPage() - 1);
-		},
-		getNextHref: () => {
-			return state.getHref(state.getCurrentPage() + 1);
-		},
-		// The conversion lives here because an Angular template cannot call String,
-		// the same reason the item parses its page in the store.
 		getPageText: (page: number) => {
 			return String(page);
 		},
 		getPageLabel: (page: number) => {
-			// replaceAll, not replace: a translation may legitimately repeat a
-			// placeholder, and replace with a string pattern only substitutes the
-			// first occurrence - leaving a literal {page} in the accessible name.
+			/* replaceAll, not replace: a translation may repeat a placeholder, and
+			replace with a string pattern only substitutes the first occurrence. */
 			return (props.pageLabel ?? 'Page {page} of {totalPages}')
 				.replaceAll('{page}', String(page))
 				.replaceAll('{totalPages}', String(state.getTotalPages()));
 		},
-		// What previous and next do when they are buttons. Instead of reporting the
-		// page themselves they hand the click to the item of that page, so the arrow
-		// takes the same path as a click on the page number - whatever that item
-		// renders: the button of this component, its anchor, or a router link a
-		// consumer composed. That last one is the reason this exists. An arrow used to
-		// report the number and nothing else, which left a composed link untouched and
-		// the router of the consumer out of the loop.
-		// The synthesised click bubbles to the list, where handleClick reads data-page
-		// back, so the page is reported through the one path every activation uses.
-		// The anchor branch never comes through here: it carries a real href, and
-		// turning it into a synthesised click would cost it rel, middle click and the
-		// ability to work without JavaScript.
-		stepToPage: (page: number) => {
+		applyItem: (item: any, page: number, description: any) => {
+			const control = item.querySelector('a, button');
+			const isCurrent = page === state.getCurrentPage();
+
+			item.setAttribute('data-page', String(page));
+			item.setAttribute('data-variant', isCurrent ? 'filled' : 'ghost');
+
+			/* The layout marker comes from the generated description: a page shown in
+			both layouts is "page", one only in the wide layout is "sibling", which the
+			stylesheet hides below the breakpoint. A composed child has no description,
+			so it stays "page" - the consumer laid out a flat list. */
+			const marker =
+				description && description.layout === 'wide'
+					? 'sibling'
+					: 'page';
+			item.setAttribute('data-pagination-item', marker);
+			if (description && description.ellipsis) {
+				item.setAttribute('data-ellipsis', description.ellipsis);
+			} else {
+				item.removeAttribute('data-ellipsis');
+			}
+
+			if (control) {
+				if (isCurrent) {
+					control.setAttribute('aria-current', 'page');
+				} else {
+					control.removeAttribute('aria-current');
+				}
+
+				/* The accessible name is the page label. The visible text is only the
+				number: a generated control gets it from getPageText, and a composed
+				child that came in with its own text keeps that text as the label and
+				shows the number instead - which is what automates the numbering for a
+				consumer who wrote "Go to page five" or a router link with a word. */
+				const label = state.getPageLabel(page);
+				const number = state.getPageText(page);
+				if (description) {
+					control.setAttribute('aria-label', label);
+				} else if (!control.getAttribute('aria-label')) {
+					const existing = (control.textContent ?? '').trim();
+					control.setAttribute(
+						'aria-label',
+						existing === '' ? label : existing
+					);
+				}
+				if (control.textContent !== number) {
+					control.textContent = number;
+				}
+
+				if (description && description.disabled) {
+					control.setAttribute('aria-disabled', 'true');
+				} else {
+					control.removeAttribute('aria-disabled');
+				}
+			}
+		},
+		syncItems: () => {
 			if (!_ref) {
 				return;
 			}
 
-			const item = _ref.querySelector('[data-page="' + page + '"]');
-			// Same guard as handleClick: a composed item may contain a nested
-			// pagination, whose pages are descendants of this one and would otherwise
-			// be the first match.
-			if (item && item.closest('.db-pagination') === _ref) {
-				const control = item.querySelector('a, button');
-				if (control) {
-					control.click();
-					return;
+			const optionItems = state.isDataDriven()
+				? state.getPaginationItems()
+				: [];
+			const allItems: any[] = Array.from(
+				_ref.querySelectorAll('li.db-pagination-item')
+			);
+			let pageIndex = 0;
+
+			for (let i = 0; i < allItems.length; i++) {
+				const item: any = allItems[i];
+				const isOwn = item.closest('.db-pagination') === _ref;
+				const isShell = item.querySelector(
+					'.db-pagination-previous, .db-pagination-next'
+				);
+
+				if (isOwn && !isShell) {
+					const description = optionItems[pageIndex];
+					const page = description ? description.page : pageIndex + 1;
+					state.applyItem(item, page, description);
+					pageIndex = pageIndex + 1;
 				}
 			}
-
-			// The neighbour is not always there to click. With siblingCount 0 the
-			// window is the current page alone, and with composition the list belongs
-			// to the consumer, who may render neither neighbour. Reporting the page
-			// directly keeps the arrow working in both cases.
-			state.handlePageChange(page);
 		},
-		// True when the browser is about to handle the activation somewhere other
-		// than this document: a modifier key or a non-primary button on a link opens
-		// the destination in a new tab or window, so reporting the page would move
-		// this pagination away from the page the user still has in front of them.
-		// Only links are tested - a modifier on a button is a plain activation.
+		_setupObserver: () => {
+			/* Only composition needs the observer: there the consumer owns the item
+			list and can add or remove children at runtime. The data-driven API renders
+			the items itself and re-syncs through onUpdate, so an observer there would
+			only race that sync when the For re-renders the list. */
+			if (!_ref || state.isDataDriven()) {
+				return;
+			}
+
+			const observer = new MutationObserver((mutations: any) => {
+				const hasListChange = mutations.some(
+					(mutation: any) =>
+						mutation.type === 'childList' &&
+						(mutation.addedNodes.length > 0 ||
+							mutation.removedNodes.length > 0)
+				);
+				if (!hasListChange) {
+					return;
+				}
+
+				const pendingRafId = state._pendingRafId;
+				if (pendingRafId !== null) {
+					cancelAnimationFrame(pendingRafId);
+				}
+				state._pendingRafId = requestAnimationFrame(() => {
+					state._pendingRafId = null;
+					state.syncItems();
+				});
+			});
+
+			observer.observe(_ref, { childList: true, subtree: true });
+			state._observer = observer;
+		},
+		/* True when the browser is about to handle the activation somewhere other than
+		this document: a modifier key or a non-primary button on a link opens the
+		destination in a new tab, so reporting the page would move this pagination away
+		from the page the user still has in front of them. Only links are tested. */
 		isModifiedLinkClick: (event: any) => {
 			const target = event.target as HTMLElement;
 			if (!target || !target.closest('a[href]')) {
@@ -379,20 +410,24 @@ export default function DBPagination(props: DBPaginationProps) {
 			);
 		},
 		handleClick: (event: any) => {
-			// A modified click on a page link belongs to the other tab, not to this
-			// pagination.
 			if (state.isModifiedLinkClick(event)) {
 				return;
 			}
 
 			const target = event.target as HTMLElement;
-			const item = target.closest('[data-page]');
+			const item = target.closest('li.db-pagination-item');
 			if (!item || !_ref) {
 				return;
 			}
-
-			// Guard against a nested pagination: only handle items of this instance.
 			if (item.closest('.db-pagination') !== _ref) {
+				return;
+			}
+			if (
+				target.closest('.db-pagination-previous, .db-pagination-next')
+			) {
+				return;
+			}
+			if (target.closest('[aria-disabled="true"]')) {
 				return;
 			}
 
@@ -400,32 +435,66 @@ export default function DBPagination(props: DBPaginationProps) {
 			if (Number.isFinite(page)) {
 				state.handlePageChange(page);
 			}
-			// No preventDefault: in link mode the anchor has to stay a working link,
-			// which is the whole point of hrefPattern.
+			/* No preventDefault: a composed anchor has to stay a working link. */
 		},
-		// Previous and next as anchors report their page themselves instead of going
-		// through the delegated handler, so they need the same modified-click guard.
-		handleStepClick: (event: any, page: number) => {
-			if (state.isModifiedLinkClick(event)) {
+		/* Previous and next report no page themselves: they find the item of the
+		neighbouring page and click the control inside it, so the arrow takes the same
+		path as a click on the page number - the generated button or a router link a
+		consumer composed. The click bubbles to the list, where handleClick reads
+		data-page back. */
+		stepToPage: (page: number) => {
+			if (!_ref) {
 				return;
 			}
 
+			const item = _ref.querySelector('[data-page="' + page + '"]');
+			if (item && item.closest('.db-pagination') === _ref) {
+				const control = item.querySelector('a, button');
+				if (control) {
+					control.click();
+					return;
+				}
+			}
+
+			/* The neighbour is not always rendered - siblingCount 0, or a composed
+			list that omits it. Reporting the page directly keeps the arrow working. */
 			state.handlePageChange(page);
 		},
 		handlePageChange: (page: number) => {
 			if (page < 1 || page === state.getCurrentPage()) {
 				return;
 			}
-
-			// The upper bound only exists in the option API. With composition the
-			// consumer owns the list and its length, so there is nothing to clamp
-			// against here.
-			if (state.hasTotalCount() && page > state.getTotalPages()) {
+			if (state.isDataDriven() && page > state.getTotalPages()) {
 				return;
 			}
 			if (props.onPageChange) {
 				props.onPageChange(page);
 			}
+		}
+	});
+
+	onMount(() => {
+		state.syncItems();
+		state._setupObserver();
+	});
+
+	/* Re-write the page state after every render. A dependency list would be the
+	tighter hook, but the page state depends on several props at once and the sync is
+	cheap - it walks the rendered items and sets attributes - so running it on each
+	update keeps the DOM in step without a brittle dependency array. */
+	onUpdate(() => {
+		if (_ref) {
+			state.syncItems();
+		}
+	});
+
+	onUnMount(() => {
+		if (state._observer) {
+			state._observer.disconnect();
+		}
+		const pendingRafId = state._pendingRafId;
+		if (pendingRafId !== null) {
+			cancelAnimationFrame(pendingRafId);
 		}
 	});
 
@@ -437,125 +506,56 @@ export default function DBPagination(props: DBPaginationProps) {
 			class={cls('db-pagination', props.className)}
 			data-size={props.size}>
 			<ul onClick={(event: any) => state.handleClick(event)}>
-				{/* Previous and next go through the same shell as the pages, so the
-				box and the pointer target come from one place. They pass no page,
-				which keeps them out of data-pagination-item and therefore out of the
-				collapsing - they belong to every layout. */}
-				<DBPaginationItem>
-					{/* Plain controls, for the same reason the item renders one: the
-					box comes from .db-pagination-item and the look from the shared
-					button placeholders, so both branches are identical without a line
-					of extra CSS. data-icon is the only thing an arrow declares - the
-					item hides the label and centres the glyph off that attribute -
-					while data-variant sits on the list item around it and the size comes
-					from the data-size of the nav. */}
-					<Show
-						when={state.getPreviousHref()}
-						else={
-							<button
-								class="db-pagination-previous"
-								type="button"
-								data-icon="chevron_left"
-								// true or nothing, never false. Without the
-								// prop DBButton declared for Angular this
-								// compiles to [attr.disabled], and Angular
-								// writes a false there as disabled="false" -
-								// which is a set boolean attribute and would
-								// disable the control for good. DBTabItem
-								// narrows its own disabled for the same reason.
-								disabled={
-									state.getCurrentPage() <= 1
-										? true
-										: undefined
-								}
-								aria-label={props.previousLabel}
-								onClick={() =>
-									state.stepToPage(state.getCurrentPage() - 1)
-								}>
-								{props.previousLabel}
-							</button>
+				{/* Previous and next are plain buttons that click the neighbouring
+				page's control, so a composed router link runs for the arrows too. They
+				carry no data-page, which keeps them out of the collapsing and the
+				delegation. */}
+				<li class="db-pagination-item">
+					<button
+						class="db-pagination-previous"
+						type="button"
+						data-icon="chevron_left"
+						disabled={
+							state.isDataDriven() && state.getCurrentPage() <= 1
+								? true
+								: undefined
+						}
+						aria-label={props.previousLabel}
+						onClick={() =>
+							state.stepToPage(state.getCurrentPage() - 1)
 						}>
-						<a
-							class="db-pagination-previous"
-							href={state.getPreviousHref()}
-							rel="prev"
-							data-icon="chevron_left"
-							aria-label={props.previousLabel}
-							onClick={(event: any) =>
-								state.handleStepClick(
-									event,
-									state.getCurrentPage() - 1
-								)
-							}>
-							{props.previousLabel}
-						</a>
-					</Show>
-				</DBPaginationItem>
-				{/* totalCount is the discriminator, not the presence of children.
-				Angular can only test inputs, never projected content, which is why the
-				accordion keys on its option prop as well. Without totalCount the
-				consumer owns the item list and with it the truncation, because the
-				component cannot know which pages the children stand for. */}
-				<Show when={state.hasTotalCount()}>
+						{props.previousLabel}
+					</button>
+				</li>
+				{/* The data-driven API renders one item per page from the computed
+				list, as a button holding the number. syncItems writes the rest of the
+				page state onto them after mount. */}
+				<Show when={state.isDataDriven()}>
 					<For each={state.getPaginationItems()}>
 						{(item: PaginationItemType, index: number) => (
 							<DBPaginationItem
 								key={item.key}
-								page={item.page}
-								layout={item.layout}
-								active={state.getCurrentPage() === item.page}
-								// The current page keeps its href. Dropping it would
-								// swap the anchor for a button the moment the page
-								// becomes current, and a framework replaces that node
-								// even though the keyed item survives - which drops
-								// keyboard focus to the document. The APG breadcrumb
-								// example keeps the current item a link as well and
-								// marks it with aria-current, which is what tells
-								// assistive technology that it leads nowhere new.
-								href={state.getHref(item.page)}
-								label={state.getPageLabel(item.page)}
 								text={state.getPageText(item.page)}
-								ellipsis={item.ellipsis}
 							/>
 						)}
 					</For>
 				</Show>
-				<Show when={!state.hasTotalCount()}>{props.children}</Show>
-				<DBPaginationItem>
-					<Show
-						when={state.getNextHref()}
-						else={
-							<button
-								class="db-pagination-next"
-								type="button"
-								data-icon="chevron_right"
-								// See the previous control: a false in
-								// [attr.disabled] would stick as
-								// disabled="false" in Angular.
-								disabled={state.isLastPage() ? true : undefined}
-								aria-label={props.nextLabel}
-								onClick={() =>
-									state.stepToPage(state.getCurrentPage() + 1)
-								}>
-								{props.nextLabel}
-							</button>
+				{/* Composition: the consumer owns the item list, including any links.
+				syncItems wires each child up from its position. */}
+				<Show when={!state.isDataDriven()}>{props.children}</Show>
+				<li class="db-pagination-item">
+					<button
+						class="db-pagination-next"
+						type="button"
+						data-icon="chevron_right"
+						disabled={state.isLastPage() ? true : undefined}
+						aria-label={props.nextLabel}
+						onClick={() =>
+							state.stepToPage(state.getCurrentPage() + 1)
 						}>
-						<a
-							class="db-pagination-next"
-							href={state.getNextHref()}
-							rel="next"
-							data-icon="chevron_right"
-							aria-label={props.nextLabel}
-							onClick={(event: any) =>
-								state.handleStepClick(
-									event,
-									state.getCurrentPage() + 1
-								)
-							}>
-							{props.nextLabel}
-						</a>
-					</Show>
-				</DBPaginationItem>
+						{props.nextLabel}
+					</button>
+				</li>
 			</ul>
 		</nav>
 	);

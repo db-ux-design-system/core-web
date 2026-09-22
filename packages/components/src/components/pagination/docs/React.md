@@ -26,103 +26,34 @@ const App = () => {
 export default App;
 ```
 
-### Page links
+### Disabling a page
 
-With `hrefPattern` the pages render as anchors instead of buttons. `{page}` is
-replaced with the page number, so the pagination becomes deep linkable, shareable
-and usable before hydration.
-
-The current page stays a link as well, carrying `aria-current="page"`. That is what
-tells assistive technology it leads nowhere new, and it is also what keeps keyboard
-focus: dropping the `href` would swap the anchor for a button the moment the page
-becomes current, and the framework replaces that node even though the item itself
-survives. Visually it stops inviting a click - no pointer cursor, no hover and no
-pressed state - and `onPageChange` never fires for it.
+Pass an `items` array, one entry per page, to drive the pagination from data instead
+of a bare count. It is what lets a single page be disabled - the count API cannot
+express that.
 
 ```tsx App.tsx
 import { DBPagination } from "@db-ux/react-core-components";
 
 const App = () => (
 	<DBPagination
-		currentPage={Number(
-			new URLSearchParams(location.search).get("page") ?? 1
-		)}
-		totalCount={100}
-		pageSize={10}
-		hrefPattern="?page={page}"
+		currentPage={1}
+		items={[{}, { disabled: true }, {}]}
+		onPageChange={(page) => console.log(page)}
 	/>
 );
 
 export default App;
 ```
-
-The component does **not** call `preventDefault`, otherwise the plain href usage
-would be broken. `onPageChange` still fires, so it can be combined with
-`hrefPattern` to keep local state in sync.
-
-To hand the navigation to a client-side router, intercept the click on a wrapper
-instead. The component deliberately exposes no event object; see the Pagination
-documentation for the reasoning.
-
-```tsx Router.tsx
-<div
-	onClick={(event) => {
-		const link = (event.target as HTMLElement).closest("a");
-		if (link) {
-			event.preventDefault();
-			navigate(link.getAttribute("href")!);
-		}
-	}}
->
-	<DBPagination
-		currentPage={currentPage}
-		totalCount={100}
-		pageSize={10}
-		hrefPattern="?page={page}"
-	/>
-</div>
-```
-
-### Single items
-
-`DBPaginationItem` is the `<li>` that `DBPagination` renders once per page. Use it
-directly only when you build the surrounding list yourself and want the item
-appearance and semantics of the design system.
-
-**It needs a `.db-pagination` ancestor.** The item is not a standalone component: the
-size is one `data-size` on the `<nav>` and reaches the items from there, so an item
-outside that wrapper renders at the medium size whatever you do. Keep the
-`<nav class="db-pagination">` around your list, as the example below does.
-
-```tsx App.tsx
-import { DBPaginationItem } from "@db-ux/react-core-components";
-
-const App = () => (
-	<nav className="db-pagination" aria-label="Pagination">
-		<ul>
-			<DBPaginationItem page={1} text="1" label="Page 1 of 2" />
-			<DBPaginationItem page={2} text="2" label="Page 2 of 2" active />
-		</ul>
-	</nav>
-);
-
-export default App;
-```
-
-`text` is what the item renders. Without it the item renders its children instead, so
-an item with neither stays empty. Leave `page` out only for a control that is not a
-page, the way `DBPagination` wraps its previous and next buttons - the truncation is
-no item at all, it is drawn as a pseudo element on the page that borders the gap.
-Pass `href` to render an anchor instead of a button, and `layout` to place the item in
-one of the two responsive layouts: `wide` items disappear once the list collapses,
-`collapsed` items only appear there, and `always` items are part of both.
 
 ### Composition
 
-Leave `totalCount` out and pass the items yourself. The pagination then renders your
-children instead of computing the page list, which is what lets you bring a router
-link. It still reports the page: it listens on the list and reads `page` back from
-the item, so your child never gets a handler attached to it.
+Leave `totalCount` and `items` out and pass the items yourself. The pagination then
+renders your children instead of computing the page list, which is what lets you bring
+a router link. You set nothing on the item: the pagination derives each page from its
+position, writes `data-page` onto every `<li>`, marks the current page with
+`aria-current` and reports the page by reading `data-page` back, so your child never
+gets a handler attached to it.
 
 ```tsx App.tsx
 import { DBPagination, DBPaginationItem } from "@db-ux/react-core-components";
@@ -130,15 +61,11 @@ import { Link } from "react-router-dom";
 
 const App = () => (
 	<DBPagination currentPage={2} onPageChange={(page) => console.log(page)}>
-		<DBPaginationItem page={1} label="Page 1 of 2">
-			<Link to="/results/1" aria-label="Page 1 of 2">
-				1
-			</Link>
+		<DBPaginationItem>
+			<Link to="/results/1">1</Link>
 		</DBPaginationItem>
-		<DBPaginationItem page={2} label="Page 2 of 2" active>
-			<Link to="/results/2" aria-label="Page 2 of 2">
-				2
-			</Link>
+		<DBPaginationItem>
+			<Link to="/results/2">2</Link>
 		</DBPaginationItem>
 	</DBPagination>
 );
@@ -146,19 +73,17 @@ const App = () => (
 export default App;
 ```
 
-`page` is required on a composed item: it identifies the item rather than rendering
-it, and the pagination reads it back to know which page was activated. It is also
-what previous and next look for: as buttons they do not report a page themselves,
-they click the item of the neighbouring page. So your `<Link>` runs for the arrows
-too, and the router sees the same navigation it sees for a direct click. Where that
-neighbour is not in your list, the arrow falls back to reporting the page through
-`onPageChange`.
+The page identity comes from the item position, so the first item is page 1, the
+second page 2, and `currentPage` marks which is current. Previous and next look that
+identity up: as buttons they do not report a page themselves, they click the item of
+the neighbouring page. So your `<Link>` runs for the arrows too, and the router sees
+the same navigation it sees for a direct click. Where that neighbour is not in your
+list, the arrow falls back to reporting the page through `onPageChange`.
 
-Three things move to you in this mode. The truncation and the responsive collapsing
-are not applied, because the component cannot know which pages your children stand
-for. `aria-current` falls back to the `<li>`, since a child that you provide cannot be
-reached from inside the component - set it on your link as well if you want it where
-assistive technology expects it. And the accessible name is yours: `label` is only
-used for the control the item renders itself, so without an `aria-label` on your link
-it is announced as the bare number. The last page is unknown as well, so the next
-button stays enabled and an out of range request is yours to ignore.
+The numbering is automated: the pagination replaces your link's text with the page
+number and moves whatever text you wrote into its `aria-label`, so a `<Link>` reading
+`Go to the results` is announced as written and displayed as `2`. Provide an
+`aria-label` yourself to override the name. The truncation and the responsive
+collapsing are not applied in this mode, because the component cannot know which pages
+your children stand for, and the last page is unknown as well, so the next button
+stays enabled and an out of range request is yours to ignore.

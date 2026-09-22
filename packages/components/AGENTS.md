@@ -351,6 +351,7 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
 - **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
+- **No multi-line `//` comments between statements inside a state method**: the same single-line inlining collapses a multi-line `//` block onto one line, and every statement that followed the comment ends up commented out with it — which silently drops closing braces and breaks generation with a misleading `'}' expected` at the end of the file. A `//` comment is safe on its own line before a method or before a `return`, but between two statements in a store method use a `/* */` block, which survives the collapse intact. This bit the `DBPagination` DOM-sync methods.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
 - **Narrowing an optional prop does not survive the Angular signal transform**: Angular rewrites every prop access into a signal call, so guarding `props.foo` and then using it are two separate `this.foo()` calls and TypeScript drops the narrowing. This fails the Angular build with `TS2532: Object is possibly 'undefined'` while React, Vue and Stencil compile — so it only shows up in `build-outputs`. Assign the prop to a local first.
 
@@ -405,9 +406,8 @@ not reach for `ResizeObserver` or `matchMedia` — see
 [Shift-left: HTML → CSS → JS](../../docs/shift-left-web-development.md).
 
 `DBPagination` is the reference. Its `<li>` elements carry
-`data-pagination-item` (`page`, `sibling`, `collapsed`) and `pagination.scss`
-toggles `display` per layout inside `screen-sizes.screen("sm", "max")`. Three
-things made it work:
+`data-pagination-item` (`page`, `sibling`) and `pagination.scss` toggles `display`
+per layout inside `screen-sizes.screen("sm", "max")`. What made it work:
 
 - **Give each layout its own list, and make one a subset of the other.**
   `getPages` produces the wide list and `getCollapsedPages` the narrow one. They
@@ -456,6 +456,23 @@ things made it work:
   so any rule that used to win on source order alone has to be scoped along with it.
   In `pagination-item.scss` that applies to the `[data-icon]` padding reset for the
   arrows.
+- **Keep the sub-component a wrapper and drive its state from the parent through the
+  DOM.** `DBPaginationItem` renders only its `<li>` and, from `text`, the button
+  inside it; everything a page needs - `data-page`, `data-pagination-item`,
+  `data-ellipsis`, `data-variant`, `aria-current` - `DBPagination` writes onto the
+  `<li>` and its control in a `syncItems` pass, the same way `DBTabs` drives its tab
+  buttons. That is what lets a consumer compose a router link without setting any of
+  it, and it keeps the item model at `text` plus `children`. Three things this needs:
+  run the sync in `onMount` and in a dependency-less `onUpdate` (a dependency array
+  keyed on the props did not re-fire reliably across the targets, and the sync is a
+  cheap attribute walk); set up the `MutationObserver` **only** in composition, where
+  the consumer owns the child list - in the data-driven API the `For` re-renders the
+  items and an observer would only race the `onUpdate` sync; and split the
+  per-element DOM writes into their own state method (`applyItem`), because Mitosis
+  mistranslates a store method that nests loops around the DOM calls. The cost is a
+  first-render frame before the sync runs, where `data-variant`/`aria-current` are not
+  yet set - acceptable for this component, but weigh it before reaching for the
+  pattern on something server-rendered and critical.
 
 Two consequences for the specs: `DEFAULT_VIEWPORT` from `src/shared/constants.ts`
 is 390px wide, so a spec that does not switch viewports tests the **narrow**

@@ -1,5 +1,4 @@
 import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
-import type { PaginationItemLayoutType } from '../pagination-item/model';
 
 /**
  * The gap tokens a page can carry. Every layout marks its own gaps, because a marker
@@ -15,25 +14,32 @@ export const PaginationEllipsisList = [
 ] as const;
 export type PaginationEllipsisType = (typeof PaginationEllipsisList)[number];
 
+/**
+ * A single item the option/`items` API generates. `page` is the one-based page
+ * number, `layout` decides whether the collapsing hides it, and `ellipsis` holds the
+ * gap tokens it borders. This describes what the pagination writes onto the DOM; it is
+ * not a prop the consumer sets.
+ */
 export type PaginationItemType = {
-	/**
-	 * One-based page number.
-	 */
 	page: number;
-	layout: PaginationItemLayoutType;
-	/**
-	 * Which gaps this page borders, as a space separated list of
-	 * `PaginationEllipsisType` tokens. The collapsed tokens are only set on pages the
-	 * collapsed layout shows, since a hidden page cannot carry a visible marker.
-	 */
+	layout: 'always' | 'wide';
 	ellipsis?: string;
+	disabled?: boolean;
 	/**
 	 * Identity of the item across page changes. Keying by list position instead
 	 * would move the focus to an adjacent page whenever the window shifts, because
-	 * the framework reuses the element for whatever page now sits at that
-	 * position.
+	 * the framework reuses the element for whatever page now sits at that position.
 	 */
 	key: string;
+};
+
+/**
+ * An entry of the `items` prop. A consumer who drives the pagination through data
+ * rather than composed children passes these; `disabled` greys a single page out,
+ * which the design otherwise cannot express.
+ */
+export type PaginationItemOption = {
+	disabled?: boolean | string;
 };
 
 export type DBPaginationDefaultProps = {
@@ -42,11 +48,12 @@ export type DBPaginationDefaultProps = {
 	 */
 	currentPage?: number | string;
 	/**
-	 * Total number of items across all pages. Defaults to `0`.
+	 * Total number of records across all pages. With `pageSize` it decides the page
+	 * count. Defaults to `0`.
 	 */
 	totalCount?: number | string;
 	/**
-	 * Number of items displayed on one page. Defaults to `10`.
+	 * Number of records on one page. Defaults to `10`.
 	 */
 	pageSize?: number | string;
 	/**
@@ -60,11 +67,11 @@ export type DBPaginationDefaultProps = {
 	 */
 	boundaryCount?: number | string;
 	/**
-	 * URL template that turns the pages into links, for example `?page={page}`.
-	 * `{page}` is replaced with the page number. Without it the component renders
-	 * buttons and stays fully controlled.
+	 * Per-page options for the data-driven API, one entry per page. Lets a single
+	 * page be disabled. When omitted the pagination derives the pages from
+	 * `totalCount` and `pageSize`.
 	 */
-	hrefPattern?: string;
+	items?: PaginationItemOption[];
 	/**
 	 * Accessible label for the pagination navigation landmark.
 	 */
@@ -78,7 +85,8 @@ export type DBPaginationDefaultProps = {
 	 */
 	nextLabel?: string;
 	/**
-	 * Accessible page-button label. `{page}` and `{totalPages}` are replaced.
+	 * Accessible page-button label. `{page}` and `{totalPages}` are replaced. The
+	 * visible text of a page is only its number, so the context lives in this label.
 	 */
 	pageLabel?: string;
 	/**
@@ -99,7 +107,7 @@ export type DBPaginationDefaultState = {
 		minimum: number
 	) => number;
 	getRange: (start: number, end: number) => number[];
-	hasTotalCount: () => boolean;
+	isDataDriven: () => boolean;
 	getTotalPages: () => number;
 	getCurrentPage: () => number;
 	isLastPage: () => boolean;
@@ -112,15 +120,28 @@ export type DBPaginationDefaultState = {
 		page: number,
 		totalPages: number
 	) => string[];
-	getHref: (page: number) => string | undefined;
-	getPreviousHref: () => string | undefined;
-	getNextHref: () => string | undefined;
-	stepToPage: (page: number) => void;
 	getPageText: (page: number) => string;
 	getPageLabel: (page: number) => string;
+	/**
+	 * Writes the page state onto one item and its control: `data-page`,
+	 * `data-pagination-item`, `data-ellipsis`, `data-variant`, `aria-current` and,
+	 * when the pagination owns the control, the accessible label and the visible
+	 * number. `description` comes from the generated list, or is undefined for a
+	 * composed child where only the identity and the current marker are applied.
+	 */
+	applyItem: (item: any, page: number, description: any) => void;
+	/**
+	 * Walks the page items and calls `applyItem` on each, so both a generated item and
+	 * a composed child are wired up without a consumer setting any of it. Called on
+	 * mount and whenever the inputs that decide the state change.
+	 */
+	syncItems: () => void;
+	_setupObserver: () => void;
+	_observer: any;
+	_pendingRafId: number | null;
 	isModifiedLinkClick: (event: any) => boolean;
 	handleClick: (event: any) => void;
-	handleStepClick: (event: any, page: number) => void;
+	stepToPage: (page: number) => void;
 	handlePageChange: (page: number) => void;
 };
 
