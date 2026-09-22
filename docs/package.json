@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Docs folder for DB UX Design System – Generation 3",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/db-ux-design-system/core-web.git"
-  },
+  "repository": "github:db-ux-design-system/core-web",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {

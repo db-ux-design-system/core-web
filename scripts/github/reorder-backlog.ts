@@ -1047,11 +1047,8 @@ const reorderBacklog = async () => {
 	console.log(`\n📦 Fetching backlog items from ${repo}...`);
 	const backlogItems = await fetchProjectItems(
 		(node) => {
-			if (!isOpenIssue(node)) {
-				return false;
-			}
-
 			if (
+				!isOpenIssue(node) ||
 				node.content?.repository?.nameWithOwner !== `${owner}/${repo}`
 			) {
 				return false;
@@ -1152,5 +1149,4 @@ const reorderBacklog = async () => {
 	);
 };
 
-// eslint-disable-next-line unicorn/prefer-top-level-await
 void reorderBacklog();

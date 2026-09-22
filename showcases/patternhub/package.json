@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Patternhub showcase",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/db-ux-design-system/core-web.git"
-  },
+  "repository": "github:db-ux-design-system/core-web",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
