@@ -36,7 +36,8 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 			}
 
 			if (_tooltipRef) {
-				(_tooltipRef as HTMLElement).innerHTML = link.textContent;
+				(_tooltipRef as HTMLElement).textContent =
+					link.textContent ?? '';
 			}
 		}
 	});
