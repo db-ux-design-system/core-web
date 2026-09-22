@@ -452,7 +452,10 @@ In the Angular and Stencil outputs the component renders a `display: contents` c
 
 Because a resolved `commandfor` target can therefore be a non-dialog host, `commandForCloseFallback` guards with a `typeof target.requestClose === 'function'` check before treating it as a dialog: it never calls `requestClose()` on the host (would throw) and instead closes the surrounding dialog. During code review, **keep that guard** — dropping it reintroduces the crash. The proper per-output id fix (keeping the consumer `id` off the inner `<dialog>`) is a breaking change deferred to an exclusive branch.
 
-Likewise, `DBDialogHeader` / `DBDialogFooter` (and the drawer equivalents) render their heading and action wrappers as neutral `<div>` elements, **not** `<header>` / `<footer>`: a `<header>`/`<footer>` inside a `<dialog>` is not scoped by sectioning content and would expose a stray `banner` / `contentinfo` landmark on the page (`<dialog>` is a sectioning _root_, which scopes the heading outline but does not suppress those roles). During code review, **do not suggest restoring the semantic `<header>`/`<footer>` elements** — the nested `<h2>` carries the heading semantics.
+The dialog and drawer differ here, on purpose:
+
+- `DBDialogHeader` / `DBDialogFooter` render their wrappers as neutral `<div>`, **not** `<header>` / `<footer>`. The dialog has no sectioning-content wrapper: its slots sit directly in the `<dialog>`, which is a sectioning _root_ (it scopes the heading outline) but is **not** sectioning content, so a `<header>`/`<footer>` there would still expose a stray page-level `banner` / `contentinfo` landmark. During code review, **do not suggest restoring `<header>`/`<footer>` for the dialog** — the nested `<h2>` carries the heading semantics.
+- `DBDrawerHeader` / `DBDrawerFooter` **do** use `<header>` / `<footer>`. The drawer wraps its slots in an `<article>` (`.db-drawer-container`), which **is** sectioning content, so per the HTML spec the header/footer are scoped to the article and get no landmark role — the semantically correct choice. Keep them; do not change them to `<div>` unless the `<article>` wrapper is also removed.
 
 ## Shared Props (`src/shared/model.ts`)
 

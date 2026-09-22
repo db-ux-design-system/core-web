@@ -8,7 +8,6 @@
 
 fix(DBDrawer): accessibility, dismissal and shared dialog layer
 
-- `DBDrawerHeader`/`DBDrawerFooter` render their heading and action wrappers as `<div>` instead of `<header>`/`<footer>`, removing the surplus `banner`/`contentinfo` landmarks; the `<h2>` and `aria-labelledby` relationship stay.
 - The header composes the drawer's `aria-labelledby` (appending its heading id, preserving a consumer value) instead of overwriting it; a consumer `aria-label` still wins.
 - Non-modal drawers (`backdrop="none"`, `variant="inside"`, `position="absolute"`) now dismiss on Escape and backdrop click in browsers without `closedby` support (e.g. Firefox ESR) via the ponyfill.
 - Generates the fallback `id` hydration-safely (via the framework `useId()`), re-syncing when the consumer `id` changes or is cleared, so the document never keeps a stale or duplicate id.

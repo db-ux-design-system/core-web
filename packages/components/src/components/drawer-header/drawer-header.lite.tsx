@@ -115,7 +115,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	});
 
 	return (
-		<div
+		<header
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-drawer-header', props.className)}>
@@ -137,6 +137,6 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 				{props.closeButtonText}
 				<DBTooltip>{props.closeButtonText}</DBTooltip>
 			</DBButton>
-		</div>
+		</header>
 	);
 }
