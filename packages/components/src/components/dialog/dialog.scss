@@ -36,18 +36,10 @@ $container-size-scale: dialog-components.$container-size-scale;
 		max-inline-size: $max-width;
 	}
 
-	@each $name, $value in $container-size-scale {
-		@if $name == $fallback-size {
-			&:not([data-container-size]),
-			&[data-container-size="#{$name}"] {
-				--db-dialog-max-width-horizontal: #{$value};
-			}
-		} @else {
-			&[data-container-size="#{$name}"] {
-				--db-dialog-max-width-horizontal: #{$value};
-			}
-		}
-	}
+	@include dialog-components.container-size-inline-scale(
+		"dialog",
+		$fallback-size
+	);
 
 	&[data-container-size="full"] {
 		--db-dialog-max-width-horizontal: var(--db-dialog-inline-size);

@@ -21,19 +21,8 @@
 
 	// Horizontal Container_Size shares the dialog's inline scale. The drawer
 	// falls back to "small" when data-container-size is absent (the dialog uses
-	// "medium"), so the no-attribute selector is attached to the small entry.
-	@each $name, $value in dialog-components.$container-size-scale {
-		@if $name == "small" {
-			&:not([data-container-size]),
-			&[data-container-size="#{$name}"] {
-				--db-drawer-max-width-horizontal: #{$value};
-			}
-		} @else {
-			&[data-container-size="#{$name}"] {
-				--db-drawer-max-width-horizontal: #{$value};
-			}
-		}
-	}
+	// "medium").
+	@include dialog-components.container-size-inline-scale("drawer", "small");
 }
 
 %container-size-vertical {
