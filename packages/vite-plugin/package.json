@@ -3,10 +3,7 @@
   "version": "5.5.0",
   "type": "module",
   "description": "Vite plugin for optimized DB UX Design System CSS imports",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/db-ux-design-system/core-web.git"
-  },
+  "repository": "github:db-ux-design-system/core-web",
   "license": "Apache-2.0",
   "exports": {
     ".": {
@@ -19,8 +16,7 @@
   "files": [
     "CHANGELOG.md",
     "build",
-    "index.css",
-    "LICENSE"
+    "index.css"
   ],
   "keywords": [
     "vite",
