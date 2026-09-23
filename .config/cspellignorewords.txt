@@ -262,4 +262,5 @@ pnpms
 renovatebot
 drilldown
 Drilldown
+recalc
 deconflict

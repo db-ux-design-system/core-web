@@ -33,6 +33,7 @@ import {
 	DBInfotext,
 	DBInput,
 	DBLink,
+	DBLoadingIndicator,
 	DBNotification,
 	DBPopover,
 	DBRadio,
@@ -452,6 +453,14 @@ const ComponentSwitch = ({
 			<Heading className={className} {...props}>
 				{resolvedContent}
 			</Heading>
+		);
+	}
+
+	if (type === 'loading-indicator') {
+		return (
+			<DBLoadingIndicator className={className} {...props}>
+				{resolvedContent}
+			</DBLoadingIndicator>
 		);
 	}
 

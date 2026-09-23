@@ -179,6 +179,15 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
+		name: 'loading-indicator',
+		config: {
+			react: {
+				propsPassingFilter: ['autoDisable', 'onTimeout', 'role']
+			}
+		}
+	},
+
+	{
 		name: 'stack'
 	},
 	{

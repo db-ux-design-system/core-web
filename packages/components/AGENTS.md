@@ -304,6 +304,25 @@ export type DBDrawerFooterState = DBDrawerFooterDefaultState & GlobalState;
 
 During code review, **do not flag empty `DefaultProps`/`DefaultState` types as dead code** — they are intentional for alignment with the component architecture.
 
+## Convention: Generate all element ids in one place
+
+When a component renders multiple elements that need related ids (e.g. a root id, a label id, a progress/message id), **derive them all in a single `resetIds` state method** rather than building ids inline with template strings in the JSX. Store each id in its own `_*Id` state field and reference the state field in the template.
+
+```ts
+resetIds: () => {
+	const mId = props.id || "loading-indicator-" + uuid();
+	state._id = mId;
+	state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+	state._progressId = mId + DEFAULT_PROGRESS_ID_SUFFIX;
+};
+```
+
+- Base every id on the same root id and append the shared suffix constants from `src/shared/constants.ts` (`DEFAULT_LABEL_ID_SUFFIX`, `DEFAULT_PROGRESS_ID_SUFFIX`, etc.).
+- Call `resetIds()` from `onMount`, and again from an `onUpdate` keyed on `props.id` so consumer-provided ids stay in sync.
+- Keep the consumer-provided `id` on the element carrying the `_ref` (the root), matching every other component.
+
+This keeps id logic in one place, avoids drift between the `id` and its `htmlFor`/`aria-*` references, and sidesteps a Mitosis pitfall where inline template-string ids in JSX attributes can generate invalid output. See `input.lite.tsx` and `loading-indicator.lite.tsx` for the pattern.
+
 ## Adding or Modifying Components
 
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually
@@ -350,7 +369,7 @@ in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
 Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
 
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
-- **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
+- **No apostrophes, backticks or other special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) or a backtick (e.g. a comment referencing `` `status` ``) breaks the generated code because prettier interprets it as an unterminated string/template literal — the symptom is a bogus `const [if, setIf] = useState(...)` line in the generated output that fails to parse. Avoid `'`, `` ` `` and similar quoting characters in comments; prefer plain ASCII and double quotes (e.g. `"status"`).
 - **No multi-line `//` comments between statements inside a state method**: the same single-line inlining collapses a multi-line `//` block onto one line, and every statement that followed the comment ends up commented out with it — which silently drops closing braces and breaks generation with a misleading `'}' expected` at the end of the file. A `//` comment is safe on its own line before a method or before a `return`, but between two statements in a store method use a `/* */` block, which survives the collapse intact. This bit the `DBPagination` DOM-sync methods.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
 - **Narrowing an optional prop does not survive the Angular signal transform**: Angular rewrites every prop access into a signal call, so guarding `props.foo` and then using it are two separate `this.foo()` calls and TypeScript drops the narrowing. This fails the Angular build with `TS2532: Object is possibly 'undefined'` while React, Vue and Stencil compile — so it only shows up in `build-outputs`. Assign the prop to a local first.
