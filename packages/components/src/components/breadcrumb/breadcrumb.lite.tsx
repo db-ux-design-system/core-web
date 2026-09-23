@@ -7,10 +7,9 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, parseItems } from '../../utils';
+import { cls, getBooleanAsString, parseItems } from '../../utils';
 import DBBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.lite';
 import { DBBreadcrumbItemDefaultProps } from '../breadcrumb-item/model';
-import DBButton from '../button/button.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
@@ -68,20 +67,22 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size ?? 'small'}
 			data-separator={props.separator}
-			data-collapsed={state._autoCollapse && !state._expanded}>
+			data-collapsed={getBooleanAsString(
+				state._autoCollapse && !state._expanded
+			)}>
 			<Show when={state._autoCollapse && !state._expanded}>
 				<div class="db-breadcrumb-truncation-item">
-					<DBButton
-						className="db-breadcrumb-truncation-item-button"
-						variant="ghost"
-						size={props.size ?? 'small'}
+					<button
+						className="db-button db-breadcrumb-truncation-item-button"
+						data-variant="ghost"
+						data-size={props.size ?? 'small'}
 						aria-label={props.expandText}
 						onClick={() => state.handleExpand()}>
 						{/* Visible ellipsis as text (design); accessible name */}
 						{/* comes from aria-label. Escaped so source stays ASCII. */}
 						<span aria-hidden="true">{'\u2026'}</span>
 						<DBTooltip>{props.expandText}</DBTooltip>
-					</DBButton>
+					</button>
 				</div>
 			</Show>
 			<ol>
