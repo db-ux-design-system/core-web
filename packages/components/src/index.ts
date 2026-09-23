@@ -137,6 +137,7 @@ export * from './shared/model';
 export * from './utils/dialog';
 export * from './utils/dialog/ponyfill';
 export * from './utils/document-click-listener';
+export * from './utils/document-keydown-listener';
 export * from './utils/document-scroll-listener';
 export * from './utils/floating-components';
 export * from './utils/index';

@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -16,6 +17,7 @@ import {
 	escapeCloseFallback,
 	markClosedByFallback
 } from '../../utils/dialog/ponyfill';
+import { DocumentKeydownListener } from '../../utils/document-keydown-listener';
 // END: dialog ponyfill
 import { DBDialogProps, DBDialogState } from './model';
 
@@ -32,6 +34,10 @@ export default function DBDialog(props: DBDialogProps) {
 		// (React warns and may keep stale server markup). Matches the id handling
 		// in the other components and in DBDialogHeader.
 		_id: undefined,
+		// BEGIN: dialog ponyfill
+		// Id of the document keydown callback (Escape fallback) while open.
+		_documentKeydownListenerCallbackId: undefined,
+		// END: dialog ponyfill
 		resetId: () => {
 			state._id =
 				props.id ?? props.propOverrides?.id ?? 'db-dialog-' + uuid();
@@ -61,16 +67,6 @@ export default function DBDialog(props: DBDialogProps) {
 			}
 			commandForCloseFallback(event, _ref);
 		},
-		// Dismisses a non-modal dialog on Escape when the browser ignores closedby.
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleKeyDown: (event: any) => {
-			// Consumer first (see handleClick): a preventDefault() on Escape must
-			// veto the fallback dismissal; escapeCloseFallback bails on defaultPrevented.
-			if (props.onKeyDown) {
-				props.onKeyDown(event);
-			}
-			escapeCloseFallback(event, _ref);
-		},
 		// END: dialog ponyfill
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
@@ -90,9 +86,29 @@ export default function DBDialog(props: DBDialogProps) {
 		state.resetId();
 		// BEGIN: dialog ponyfill
 		markClosedByFallback(_ref);
+		// A non-modal dialog does not trap focus, so an Escape can be dispatched to
+		// an element outside the dialog and would never reach a listener on the
+		// <dialog> itself. Register the Escape fallback at document scope for the
+		// mounted lifetime; escapeCloseFallback no-ops while the dialog is closed,
+		// modal, or when closedby is supported.
+		state._documentKeydownListenerCallbackId =
+			new DocumentKeydownListener().addCallback((event) =>
+				escapeCloseFallback(event, _ref)
+			);
 		// END: dialog ponyfill
 		state.handleDialogOpen();
 	});
+
+	// BEGIN: dialog ponyfill
+	onUnMount(() => {
+		if (state._documentKeydownListenerCallbackId) {
+			new DocumentKeydownListener().removeCallback(
+				state._documentKeydownListenerCallbackId
+			);
+			state._documentKeydownListenerCallbackId = undefined;
+		}
+	});
+	// END: dialog ponyfill
 
 	// Re-run on every id-dependency change, unguarded: resetId() falls back to
 	// the generated id when the consumer clears an explicit one, so state._id
@@ -121,7 +137,6 @@ export default function DBDialog(props: DBDialogProps) {
 			onClose={(event) => state.handleClose(event)}
 			// BEGIN: dialog ponyfill
 			onClick={(event) => state.handleClick(event)}
-			onKeyDown={(event) => state.handleKeyDown(event)}
 			// END: dialog ponyfill
 			data-backdrop={props.backdrop}
 			data-container-size={props.containerSize}

@@ -696,16 +696,19 @@ export type CancelEventProps<T> = {
 
 /**
  * Shared internal state for the native `<dialog>`-based components (DBDialog and
- * DBDrawer). Both drive the same open/click/keydown/cancel handlers and the id
- * fallback, so they extend this instead of duplicating the shape.
+ * DBDrawer). Both drive the same open/click/cancel handlers and the id fallback,
+ * so they extend this instead of duplicating the shape. The Escape-close fallback
+ * is registered at document scope (id held in `_documentKeydownListenerCallbackId`)
+ * rather than via an element `keydown` handler, so a non-modal dialog (which does
+ * not trap focus) still dismisses on Escape from an element outside it.
  */
 export type DialogDrawerDefaultState = {
 	resetId: () => void;
 	handleDialogOpen: () => void;
 	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
-	handleKeyDown: (event: any) => void;
 	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
 	isNotModal: () => boolean;
+	_documentKeydownListenerCallbackId?: string;
 };
 
 export const AlignmentList = ['start', 'center', 'end'] as const;

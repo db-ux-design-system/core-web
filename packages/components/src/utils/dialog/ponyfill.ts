@@ -125,12 +125,35 @@ export const commandForCloseFallback = (
 };
 
 /**
+ * Whether `dialog` is the topmost fallback-dismissible dialog: no other open,
+ * non-modal `<dialog>` carrying the fallback marker comes after it in DOM order.
+ * Non-modal dialogs are opened via `show()` and do not form a top-layer stack, so
+ * document order is the proxy for "frontmost". Used at document scope, where an
+ * Escape on an element outside every dialog would otherwise match all open
+ * non-modal dialogs at once; only the topmost one should close.
+ */
+const isTopmostFallbackDialog = (dialog: HTMLDialogElement): boolean => {
+	const openFallbackDialogs = Array.from(
+		dialog.ownerDocument.querySelectorAll<HTMLDialogElement>(
+			'dialog[open][data-closedby="not-supported"]'
+		)
+	).filter((candidate) => !candidate.matches(':modal'));
+
+	const last = openFallbackDialogs.at(-1);
+	return !last || last === dialog;
+};
+
+/**
  * @public
  * Dismisses a non-modal dialog on Escape when the browser ignores
  * `closedby="closerequest"`. Modal dialogs (opened via showModal) close on
  * Escape natively, so this only steps in for non-modal ones (backdrop="none",
  * opened via show). No-op when closedby is supported, the key is not Escape, or
  * the event was already canceled (a consumer handler ran first and vetoed it).
+ *
+ * Registered at document scope (via DocumentKeydownListener) while the dialog is
+ * open: a non-modal dialog does not trap focus, so an Escape can be dispatched to
+ * an element outside the dialog and would never reach an element-scoped listener.
  * Shared by DBDialog and DBDrawer.
  */
 export const escapeCloseFallback = (
@@ -141,6 +164,10 @@ export const escapeCloseFallback = (
 	if (!dialog || supportsClosedBy()) return;
 	if (event?.key !== 'Escape') return;
 
+	// The document listener lives for the dialog's mounted lifetime; do nothing
+	// while it is closed.
+	if (!dialog.open) return;
+
 	// Honor a canceled keydown: a consumer handler that runs first and calls
 	// preventDefault() vetoes the dismissal, so the fallback must not close either.
 	if (event?.defaultPrevented) return;
@@ -148,13 +175,16 @@ export const escapeCloseFallback = (
 	// Modal dialogs already dismiss on Escape natively; only non-modal ones need help.
 	if (dialog.matches?.(':modal')) return;
 
-	// Scope to the owning dialog. When a nested dialog is open inside this
-	// non-modal one, its Escape keydown bubbles up here; the browser dismisses
-	// the nested dialog itself, so closing this outer one too would collapse
-	// both layers. Only act when the closest dialog to the event target is this
-	// dialog, not a nested one. Edge case, but hey ...
+	// When the Escape lands inside a dialog, only the dialog it lands in should
+	// close (the browser handles a nested modal itself; a nested non-modal has its
+	// own document listener). When it lands outside every dialog, only the topmost
+	// open non-modal fallback dialog should close - otherwise every open one would.
 	const targetDialog = (event?.target as HTMLElement)?.closest?.('dialog');
-	if (targetDialog && targetDialog !== dialog) return;
+	if (targetDialog) {
+		if (targetDialog !== dialog) return;
+	} else if (!isTopmostFallbackDialog(dialog)) {
+		return;
+	}
 
 	dialog.requestClose();
 };
