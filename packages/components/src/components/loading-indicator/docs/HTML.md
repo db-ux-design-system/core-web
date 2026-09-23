@@ -46,9 +46,7 @@ here `0.42` for 42 of 100) because there is no JavaScript to calculate it.
 			<circle class="db-loading-indicator-circle-segment"></circle>
 		</svg>
 		<div class="db-loading-indicator-content">
-			<label for="loading-indicator-1-progress">
-				Loading
-			</label>
+			<label for="loading-indicator-1-progress"> Loading </label>
 			<progress id="loading-indicator-1-progress" value="42" max="100">
 				42 of 100
 			</progress>
