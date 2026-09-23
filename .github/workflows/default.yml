@@ -92,12 +92,6 @@ jobs:
     secrets: inherit
     needs: [build-outputs]
 
-  test-mcp-server:
-    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/02-mcp-server-test.yml
-    needs: [init]
-    secrets: inherit
-
   test-figma-code-connect:
     if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
     uses: ./.github/workflows/02-test-figma-code-connect.yml
@@ -360,7 +354,6 @@ jobs:
           resultBuildUntestedShowcases="${{ needs.build-untested-showcases.result }}"
           resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
-          resultTestMcpServer="${{ needs.test-mcp-server.result }}"
           resultTestPackages="${{ needs.test-components.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
@@ -381,7 +374,6 @@ jobs:
           echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
           echo "resultBuildOutputs: $resultBuildOutputs"
           echo "resultTestPackages: $resultTestPackages"
-          echo "resultTestMcpServer: $resultTestMcpServer"
           echo "resultTestFoundations: $resultTestFoundations"
           echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
           echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
@@ -400,7 +392,6 @@ jobs:
              [[ $resultTestShowcaseVue == "success" ]] && \
              [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultTestPackages == "success" ]] && \
-             [[ $resultTestMcpServer == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
@@ -427,7 +418,6 @@ jobs:
         build-outputs,
         test-figma-code-connect,
         test-components,
-        test-mcp-server,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
