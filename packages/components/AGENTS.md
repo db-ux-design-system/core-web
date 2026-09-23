@@ -427,7 +427,7 @@ When related utils grow beyond a single file, group them in a subfolder with an 
 
 | File          | What it covers                                                                                                                                                                          |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `getClosestDialogId`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                                            |
+| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                                                                  |
 | `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `commandForCloseFallback`, `escapeCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
 
 ### `DBDialog` / `DBDrawer` modality is an open-time decision (do not make `backdrop` reactive)

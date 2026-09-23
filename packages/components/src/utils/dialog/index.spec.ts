@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
 	connectCloseButton,
-	getClosestDialogId,
 	removeDialogAriaLabelledBy,
 	resolveClosestDialog,
 	setDialogAriaLabelledBy,
@@ -100,21 +99,6 @@ describe('resolveClosestDialog', () => {
 		expect(resolveClosestDialog(createElementStub())).toBeUndefined();
 		expect(resolveClosestDialog(undefined)).toBeUndefined();
 		expect(resolveClosestDialog({} as HTMLElement)).toBeUndefined();
-	});
-});
-
-describe('getClosestDialogId', () => {
-	it('returns the id of the closest dialog ancestor', () => {
-		expect(
-			getClosestDialogId(createElementStub(createDialogStub({ id: 'a' })))
-		).toBe('a');
-	});
-
-	it('returns undefined for an empty id or a missing dialog ancestor', () => {
-		expect(
-			getClosestDialogId(createElementStub(createDialogStub({ id: '' })))
-		).toBeUndefined();
-		expect(getClosestDialogId(createElementStub())).toBeUndefined();
 	});
 });
 

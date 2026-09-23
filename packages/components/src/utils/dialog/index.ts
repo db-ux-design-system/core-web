@@ -35,15 +35,6 @@ export const resolveClosestDialog = (
 ): HTMLDialogElement | undefined =>
 	(element?.closest?.('dialog') as HTMLDialogElement | null) ?? undefined;
 
-/**
- * @public
- * Returns the `id` of the closest `<dialog>` ancestor, or `undefined` when there is
- * no such ancestor or its `id` is empty.
- */
-export const getClosestDialogId = (
-	element?: HTMLElement | null
-): string | undefined => resolveClosestDialog(element)?.id || undefined;
-
 /** Splits an `aria-labelledby` value into its id tokens (whitespace-separated). */
 const labelledByTokens = (value: string | null): string[] =>
 	value ? value.split(/\s+/).filter(Boolean) : [];
