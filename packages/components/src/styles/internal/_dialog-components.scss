@@ -81,7 +81,7 @@ $container-size-scale: (
 	overscroll-behavior: contain;
 	padding: var(
 		--db-#{$prefix}-content-padding,
-		#{variables.$db-spacing-fixed-xs}
+		#{variables.$db-spacing-fixed-sm}
 			#{component.$drawer-content-padding-inline}
 	);
 }
