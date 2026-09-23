@@ -120,7 +120,11 @@ Put a `<form method="dialog">` in the dialog content. Submitting it closes the d
 >
 	Open dialog
 </db-button>
-<db-dialog id="my-dialog" [open]="openDialog" (close)="onClose($event)">
+<db-dialog
+	[propOverrides]="{ id: 'my-dialog' }"
+	[open]="openDialog"
+	(close)="onClose($event)"
+>
 	<db-dialog-header header text="Rename entry" closeButtonText="Close">
 	</db-dialog-header>
 	<form id="my-dialog-form" method="dialog">
