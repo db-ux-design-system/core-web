@@ -105,13 +105,19 @@ In plain HTML you wire these fallbacks yourself: mark the drawer when `closedby`
 		 * position="absolute", opened via show()) does not dismiss on Escape
 		 * natively - only modal drawers (showModal()) do - and without
 		 * `closedby` the browser adds no light-dismiss. Close it on Escape
-		 * yourself. Modal drawers keep their native Escape behaviour, so only
-		 * step in when the drawer is not `:modal`.
+		 * yourself. Register at DOCUMENT scope, not on the drawer: a non-modal
+		 * drawer does not trap focus, so once focus moves to a control outside
+		 * it, Escape fires on that element and an element-scoped listener would
+		 * never run. Guard so it acts only while the drawer is open, only when
+		 * it is not `:modal` (modal drawers keep their native Escape), and not
+		 * when the Escape landed inside another dialog.
 		 */
-		drawer?.addEventListener("keydown", (event) => {
-			if (event.key === "Escape" && !drawer.matches(":modal")) {
-				drawer.requestClose?.();
-			}
+		document.addEventListener("keydown", (event) => {
+			if (event.key !== "Escape" || !drawer?.open) return;
+			if (drawer.matches(":modal")) return;
+			const targetDialog = event.target?.closest?.("dialog");
+			if (targetDialog && targetDialog !== drawer) return;
+			drawer.requestClose?.();
 		});
 	}
 

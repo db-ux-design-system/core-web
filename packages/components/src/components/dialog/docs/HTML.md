@@ -310,13 +310,19 @@ In plain HTML you wire these fallbacks yourself: mark the dialog when `closedby`
 		 * A non-modal dialog (backdrop="none", opened via show()) does not
 		 * dismiss on Escape natively - only modal dialogs (showModal()) do -
 		 * and without `closedby` the browser adds no light-dismiss. Close it
-		 * on Escape yourself. Modal dialogs keep their native Escape behaviour,
-		 * so only step in when the dialog is not `:modal`.
+		 * on Escape yourself. Register at DOCUMENT scope, not on the dialog: a
+		 * non-modal dialog does not trap focus, so once focus moves to a control
+		 * outside it, Escape fires on that element and an element-scoped listener
+		 * would never run. Guard so it acts only while the dialog is open, only
+		 * when it is not `:modal` (modal dialogs keep their native Escape), and
+		 * not when the Escape landed inside another dialog.
 		 */
-		dialog?.addEventListener("keydown", (event) => {
-			if (event.key === "Escape" && !dialog.matches(":modal")) {
-				dialog.requestClose?.();
-			}
+		document.addEventListener("keydown", (event) => {
+			if (event.key !== "Escape" || !dialog?.open) return;
+			if (dialog.matches(":modal")) return;
+			const targetDialog = event.target?.closest?.("dialog");
+			if (targetDialog && targetDialog !== dialog) return;
+			dialog.requestClose?.();
 		});
 	}
 
