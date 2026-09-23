@@ -398,6 +398,37 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     }
     ```
 
+## Comments: put the "why" as TSDoc on the symbol, not as a block above the call site
+
+Long multi-line comments anywhere in a `.lite.tsx` — above a `useStore` method,
+a lifecycle hook (`onMount`, `onUpdate`), a ref or handler, or in the JSX/template
+itself — inflate the component and make the actual logic hard to scan. When a
+comment explains **what a symbol does or why it exists**, move it to a **TSDoc
+block on that symbol** — the `useStore` method, or its declaration in `model.ts`
+(including the shared `DialogDrawerDefaultState` in `src/shared/model.ts`) — so a
+reader hovers the symbol or jumps to the model for the detail, and the component
+body stays readable. Shared state methods (`handleDialogOpen`, `handleClick`, …)
+are declared once in `src/shared/model.ts`, so one TSDoc there documents every
+component that extends the type — do not repeat it inline in each `.lite.tsx`.
+
+Attribute the comment to what it actually describes. A note about **why an
+effect's dependency array is what it is** belongs at the `onUpdate` call site
+(that decision is local to the effect), not on the method the effect calls — but
+keep it to one line and point to the method's TSDoc for the reasoning. Example
+(see `dialog.lite.tsx` / `drawer.lite.tsx`):
+
+```tsx
+// Observes `open` only: `backdrop` is deliberately excluded (see handleDialogOpen).
+onUpdate(() => {
+	state.handleDialogOpen();
+}, [props.open]);
+```
+
+The full rationale (modality is fixed at open time, switching it would flicker
+and refire events) lives in the `handleDialogOpen` TSDoc. This does not override
+the "preserve comments during refactoring" rule in the root `AGENTS.md`: relocate
+the intent to TSDoc, never silently drop it.
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:

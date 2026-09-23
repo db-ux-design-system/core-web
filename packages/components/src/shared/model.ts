@@ -704,6 +704,15 @@ export type CancelEventProps<T> = {
  */
 export type DialogDrawerDefaultState = {
 	resetId: () => void;
+	/**
+	 * Syncs the native `<dialog>` open state to `props.open` via
+	 * `syncDialogOpenState`, opening modally (`showModal()`) or non-modally
+	 * (`show()`) per `isNotModal()`. Runs from an effect that observes `open`
+	 * only: modality is an open-time decision of the native `<dialog>` and cannot
+	 * be switched while open without a close()+reopen (which flickers, resets
+	 * focus and fires an extra close/cancel), so a `backdrop` change on an open
+	 * dialog updates only its appearance until the consumer closes and reopens.
+	 */
 	handleDialogOpen: () => void;
 	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
 	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
