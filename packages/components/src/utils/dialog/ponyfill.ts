@@ -66,6 +66,10 @@ export const markClosedByFallback = (
  * commandfor target rather than the closest dialog, and stays out of the way when the
  * native command can resolve its target. Shared by DBDialog and DBDrawer. Resolves the
  * target once per click, without retry.
+ *
+ * Bails on `event.defaultPrevented`, mirroring native command activation (which a
+ * consumer `preventDefault()` suppresses). Callers that also run a consumer `onClick`
+ * must invoke it before this fallback so that veto is honored.
  */
 export const commandForCloseFallback = (
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any

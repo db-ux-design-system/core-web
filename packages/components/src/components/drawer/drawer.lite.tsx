@@ -29,11 +29,6 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		// Left undefined at init so the uuid() fallback runs only on the client
-		// (in onMount, via resetId), not during SSR. Generating it at render time
-		// would produce different server/client ids and force a hydration mismatch
-		// (React warns and may keep stale server markup). Matches the id handling
-		// in the other components and in DBDrawerHeader.
 		_id: undefined,
 		// BEGIN: dialog ponyfill
 		// Id of the document keydown callback (Escape fallback) while open.
@@ -58,15 +53,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			);
 		},
 		// BEGIN: dialog ponyfill
-		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
-		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			// Native onClick forwarded by filterPassingProps is overwritten by
-			// this explicit listener, so invoke the consumer callback ourselves.
-			// Run it before the fallback so a consumer preventDefault() vetoes the
-			// close, matching native command activation (which happens after the
-			// click dispatch); commandForCloseFallback bails on defaultPrevented.
 			if (props.onClick) {
 				props.onClick(event);
 			}

@@ -53,15 +53,8 @@ export default function DBDialog(props: DBDialogProps) {
 			);
 		},
 		// BEGIN: dialog ponyfill
-		// Closes the drawer when the native command cannot do it: no commandfor support, or a target that no longer resolves.
-		// Shared by DBDialog and DBDrawer.
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
-			// Native onClick forwarded by filterPassingProps is overwritten by
-			// this explicit listener, so invoke the consumer callback ourselves.
-			// Run it before the fallback so a consumer preventDefault() vetoes the
-			// close, matching native command activation (which happens after the
-			// click dispatch); commandForCloseFallback bails on defaultPrevented.
 			if (props.onClick) {
 				props.onClick(event);
 			}
