@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-DCThrWP2.js";e();
