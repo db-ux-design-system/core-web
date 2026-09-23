@@ -130,6 +130,7 @@ export type DBPaginationDefaultState = {
 	_observer: any;
 	_pendingRafId: number | null;
 	isModifiedLinkClick: (event: any) => boolean;
+	preventCurrentPageNavigation: (event: any) => void;
 	handleClick: (event: any) => void;
 	stepToPage: (page: number) => void;
 	handlePageChange: (page: number) => void;
