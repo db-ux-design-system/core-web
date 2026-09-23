@@ -21,7 +21,7 @@ export default function BreadcrumbNoText() {
 				Composition
 			</DBInfotext>
 			<DBBreadcrumb
-				aria-label="Breadcrumb (Composition)"
+				aria-label="Breadcrumb No text (Composition)"
 				expandText="Show more">
 				<DBBreadcrumbItem noText icon="house" text="Home" href="/" />
 				<DBBreadcrumbItem
@@ -47,7 +47,7 @@ export default function BreadcrumbNoText() {
 				Options API
 			</DBInfotext>
 			<DBBreadcrumb
-				aria-label="Breadcrumb (Options API)"
+				aria-label="Breadcrumb No text (Options API)"
 				expandText="Show more"
 				items={[
 					{ noText: true, icon: 'house', text: 'Home', href: '/' },

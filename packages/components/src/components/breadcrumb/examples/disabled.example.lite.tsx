@@ -21,7 +21,7 @@ export default function BreadcrumbDisabled() {
 				Composition
 			</DBInfotext>
 			<DBBreadcrumb
-				aria-label="Breadcrumb (Composition)"
+				aria-label="Breadcrumb Disabled (Composition)"
 				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
@@ -45,7 +45,7 @@ export default function BreadcrumbDisabled() {
 				Options API
 			</DBInfotext>
 			<DBBreadcrumb
-				aria-label="Breadcrumb (Options API)"
+				aria-label="Breadcrumb Disabled (Options API)"
 				expandText="Show more"
 				items={[
 					{ text: 'Home', href: '/' },
