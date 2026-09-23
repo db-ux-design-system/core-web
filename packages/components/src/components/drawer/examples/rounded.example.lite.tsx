@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
@@ -14,22 +14,17 @@ useMetadata({
 });
 
 export default function DrawerRounded() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-rounded-false"
-					onClick={() => setOpenIndex(0)}>
+					commandfor="drawer-rounded-false">
 					Open: (Default) False
 				</DBButton>
 				<DBDrawer
 					id="drawer-rounded-false"
 					rounded={false}
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>(Default) False</h2>
@@ -39,17 +34,12 @@ export default function DrawerRounded() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="drawer-rounded-true"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="drawer-rounded-true">
 					Open: True
 				</DBButton>
 				<DBDrawer
 					id="drawer-rounded-true"
 					rounded={true}
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>True</h2>

@@ -3,6 +3,7 @@ import DBBadge from '../../badge/badge.lite';
 import DBButton from '../../button/button.lite';
 import DBDrawerFooter from '../../drawer-footer/drawer-footer.lite';
 import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
+import DBIcon from '../../icon/icon.lite';
 import DBLink from '../../link/link.lite';
 import DBDrawer from '../drawer.lite';
 import { StorybookDrawerArgTypes } from './_drawer.arg.types';
@@ -26,11 +27,15 @@ useMetadata({
 });
 
 export default function DrawerExamples() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
+	// The inside variant is non-modal (opens via show(), which has no native
+	// invoker command) and the events example demonstrates opening via the open
+	// property, so both are driven through the open prop.
+	const [insideOpen, setInsideOpen] = useState<boolean>(false);
+	const [eventsOpen, setEventsOpen] = useState<boolean>(false);
 	const state = useStore({
 		handleClose: () => {
 			console.log('onClose fired');
-			setOpenIndex(-1);
+			setEventsOpen(false);
 		},
 		handleCancel: () => {
 			console.log('onCancel fired');
@@ -42,15 +47,12 @@ export default function DrawerExamples() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-example-modal"
-					onClick={() => setOpenIndex(0)}>
+					commandfor="drawer-example-modal">
 					Open: (Default) As modal
 				</DBButton>
 				<DBDrawer
 					id="drawer-example-modal"
 					variant="modal"
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>(Default) As modal</h2>
@@ -60,14 +62,14 @@ export default function DrawerExamples() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton onClick={() => setOpenIndex(1)}>
+				<DBButton onClick={() => setInsideOpen(true)}>
 					Open: Inside
 				</DBButton>
 				<DBDrawer
 					id="drawer-example-inside"
 					variant="inside"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
+					open={insideOpen}
+					onClose={() => setInsideOpen(false)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>Inside</h2>
@@ -79,14 +81,11 @@ export default function DrawerExamples() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="drawer-example-slots"
-					onClick={() => setOpenIndex(2)}>
+					commandfor="drawer-example-slots">
 					Open: With slots
 				</DBButton>
 				<DBDrawer
 					id="drawer-example-slots"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
@@ -106,11 +105,11 @@ export default function DrawerExamples() {
 			<div>
 				<DBButton
 					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+					onClick={() => setEventsOpen(true)}>
 					Cancel and close Events in console
 				</DBButton>
 				<DBDrawer
-					open={openIndex === 3}
+					open={eventsOpen}
 					onClose={() => state.handleClose()}
 					onCancel={() => state.handleCancel()}
 					header={
@@ -122,16 +121,11 @@ export default function DrawerExamples() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="drawer-areas-text"
-					onClick={() => setOpenIndex(4)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-text">
 					Open: With text prop
 				</DBButton>
 				<DBDrawer
 					id="drawer-areas-text"
-					open={openIndex === 4}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader
 							text="With text prop"
@@ -142,16 +136,11 @@ export default function DrawerExamples() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="drawer-areas-start"
-					onClick={() => setOpenIndex(5)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-start">
 					Open: With header start slot
 				</DBButton>
 				<DBDrawer
 					id="drawer-areas-start"
-					open={openIndex === 5}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
@@ -163,16 +152,11 @@ export default function DrawerExamples() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="drawer-areas-end"
-					onClick={() => setOpenIndex(6)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-end">
 					Open: With header end slot
 				</DBButton>
 				<DBDrawer
 					id="drawer-areas-end"
-					open={openIndex === 6}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
@@ -184,16 +168,11 @@ export default function DrawerExamples() {
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="drawer-areas-footer"
-					onClick={() => setOpenIndex(7)}>
+				<DBButton command="show-modal" commandfor="drawer-areas-footer">
 					Open: With footer
 				</DBButton>
 				<DBDrawer
 					id="drawer-areas-footer"
-					open={openIndex === 7}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>With footer</h2>
