@@ -60,10 +60,11 @@ function hasDrawerHeader(node: any): boolean {
  */
 function hasVueHeaderSlot(node: any): boolean {
 	return (node.children || []).some((child: any) => {
-		if (
-			(child.type !== 'VElement' && child.type !== 'Element') ||
-			(child.rawName !== 'template' && child.name !== 'template')
-		) {
+		if (child.type !== 'VElement' && child.type !== 'Element') {
+			return false;
+		}
+
+		if (child.rawName !== 'template' && child.name !== 'template') {
 			return false;
 		}
 
@@ -120,11 +121,11 @@ function isValidHeaderProp(headerAttr: any): boolean {
 
 	// Boolean attribute (e.g. <DBDrawer header>) or string literal (e.g. <DBDrawer header="Title">)
 	// are NOT valid — the header prop must contain a DBDrawerHeader component
-	if (
-		!value ||
-		value.type === 'Literal' ||
-		value?.type !== 'JSXExpressionContainer'
-	) {
+	if (!value || value.type === 'Literal') {
+		return false;
+	}
+
+	if (value?.type !== 'JSXExpressionContainer') {
 		return false;
 	}
 

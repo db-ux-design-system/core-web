@@ -3,12 +3,15 @@
   "version": "5.5.0",
   "type": "module",
   "description": "CLI for DB UX Design System generate AI agent instructions",
-  "repository": "github:db-ux-design-system/core-web",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
   "license": "Apache-2.0",
   "bin": {
-    "agent-cli": "./build/index.js"
+    "agent-cli": "build/index.js"
   },
-  "main": "./build/index.js",
+  "main": "build/index.js",
   "files": [
     "CHANGELOG.md",
     "build",

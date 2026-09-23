@@ -1,5 +1,5 @@
-import { type ToolResult, withTimeout } from '../utils/index.ts';
-import { getManifest } from '../utils/manifest.ts';
+import { type ToolResult, withTimeout } from '../utils';
+import { getManifest } from '../utils/manifest';
 
 /**
  Whitelisted path prefixes for docs_search results (using forward slashes
@@ -14,9 +14,7 @@ const DOCS_ALLOWED_PREFIXES = [
 	'packages/foundations/docs/' // Foundation docs
 ];
 
-/**
-Returns true if the given manifest doc path is within the whitelist.
-*/
+/** Returns true if the given manifest doc path is within the whitelist. */
 function isAllowedDocPath(docPath: string): boolean {
 	return DOCS_ALLOWED_PREFIXES.some((prefix) => docPath.startsWith(prefix));
 }

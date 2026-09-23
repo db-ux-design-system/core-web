@@ -13,9 +13,7 @@ import { generateCSS } from './generator.js';
 import { removeUnusedStyles, type OptimizerContext } from './optimizer.js';
 import type { ColorScheme, Density, FontSize, PluginConfig } from './types.js';
 
-/**
-Default foundation features included unless overridden by user config.
-*/
+/** Default foundation features included unless overridden by user config. */
 const DEFAULT_FOUNDATIONS = [
 	'helpers',
 	'icons',

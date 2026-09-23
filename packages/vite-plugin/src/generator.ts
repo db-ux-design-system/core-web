@@ -2,9 +2,7 @@ import { readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { FoundationFeature, GenerateOptions } from './types.js';
 
-/**
-Maps foundation feature names to their CSS file paths relative to build/styles/.
-*/
+/** Maps foundation feature names to their CSS file paths relative to build/styles/. */
 const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
 	helpers: 'helpers/classes/all.css',
 	elevation: 'defaults/default-elevation.css',
@@ -13,9 +11,7 @@ const FOUNDATION_IMPORTS: Record<FoundationFeature, string> = {
 	code: 'defaults/default-code.css'
 };
 
-/**
-Theme package scopes to search for installed themes.
-*/
+/** Theme package scopes to search for installed themes. */
 const THEME_SCOPES = ['@db-ux', '@db-ux-inner-source'] as const;
 
 /**
