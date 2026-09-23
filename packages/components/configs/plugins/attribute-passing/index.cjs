@@ -115,6 +115,14 @@ module.exports = () => ({
 						"attr && attr.name !== 'data-density' &&"
 					)
 					.replace(
+						// Also forward the native `title` attribute. React forwards
+						// it via `reactHtmlAttributes` (see src/utils/react.ts), so
+						// the Angular/Stencil runtime allowlist has to match to keep
+						// attribute forwarding consistent across frameworks.
+						'attr.name.startsWith("aria-")',
+						'attr.name.startsWith("aria-") || attr.name === "title"'
+					)
+					.replace(
 						'element.setAttribute(attr.name, attr.value);\n' +
 							'          parent.removeAttribute(attr.name);',
 						// Remove attribute from child if value is empty, otherwise forward it

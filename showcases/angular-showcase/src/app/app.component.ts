@@ -7,6 +7,7 @@ import {
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
 	DBControlPanelNavigation,
+	DBControlPanelSkipNavigation,
 	DBShell,
 	DBShellContent,
 	DBShellSubNavigation,
@@ -44,6 +45,7 @@ import {
 		DBControlPanelDesktop,
 		DBControlPanelMobile,
 		DBControlPanelNavigation,
+		DBControlPanelSkipNavigation,
 		DBShellSubNavigation
 	],
 	templateUrl: './app.component.html'
