@@ -111,11 +111,18 @@ export const removeDialogAriaLabelledBy = (
  * @public
  * Points the dialog's own request-close button at the dialog via `commandfor`,
  * so the native command resolves to the correct element even when the consumer
- * supplied no `id` (the dialog then carries a generated one). Called by DBDialog
- * and DBDrawer whenever their id is (re)computed, which guarantees the button is
- * wired after the id lands on the `<dialog>` - unlike wiring it from the header,
- * which mounts before the dialog id is set. No-op until both the dialog and its
- * close button are resolved.
+ * supplied no `id` (the dialog then carries a generated one). Wired from the
+ * dialog/drawer rather than the header, which mounts before the dialog id is set.
+ * No-op until both the dialog and its close button are resolved.
+ *
+ * DBDialog / DBDrawer call this from BOTH `onMount` and the effect on `_id`, and
+ * both calls are required - they are not a redundant double-wire. The `onMount`
+ * call covers Vue and Stencil, whose watchers (`watch`, `@Watch`) are lazy and do
+ * not fire for the initial `_id` transition on mount; the `_id` effect covers
+ * React (whose effect runs on mount) and every later id change. Being idempotent,
+ * the extra call on React mount is a harmless no-op, so do not "optimize" either
+ * call away - dropping the `onMount` one leaves Vue/Stencil unwired at mount
+ * (the close button gets no `commandfor`).
  */
 export const connectCloseButton = (dialog?: HTMLDialogElement | null): void => {
 	const id = dialog?.id;

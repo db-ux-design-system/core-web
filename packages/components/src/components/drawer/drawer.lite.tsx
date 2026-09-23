@@ -77,6 +77,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	onMount(() => {
 		state.resetId();
+		// Wires the close button on mount for Vue/Stencil (lazy watchers); see connectCloseButton.
+		connectCloseButton(_ref);
 		// BEGIN: dialog ponyfill
 		markClosedByFallback(_ref);
 		// A non-modal drawer does not trap focus, so an Escape can be dispatched to

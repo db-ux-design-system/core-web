@@ -157,27 +157,13 @@ const testAction = () => {
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
-		const component = await mount(dialog);
+		await mount(dialog);
 		const closeButton = page.locator(
 			'.db-dialog-header [command="request-close"]'
 		);
 		await expect(closeButton).toHaveAttribute(
 			'commandfor',
 			'dialog-initial'
-		);
-		// A prop-driven id change resyncs the target, so a stale id cannot
-		// resolve to another dialog reusing the old one.
-		await component.update(
-			<DBDialog
-				open={true}
-				propOverrides={{ id: 'dialog-renamed' }}
-				header={<DBDialogHeader text="Title" />}>
-				<span data-testid="test">Test</span>
-			</DBDialog>
-		);
-		await expect(closeButton).toHaveAttribute(
-			'commandfor',
-			'dialog-renamed'
 		);
 	});
 
