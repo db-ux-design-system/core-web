@@ -1047,11 +1047,8 @@ const reorderBacklog = async () => {
 	console.log(`\n📦 Fetching backlog items from ${repo}...`);
 	const backlogItems = await fetchProjectItems(
 		(node) => {
-			if (!isOpenIssue(node)) {
-				return false;
-			}
-
 			if (
+				!isOpenIssue(node) ||
 				node.content?.repository?.nameWithOwner !== `${owner}/${repo}`
 			) {
 				return false;

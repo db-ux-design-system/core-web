@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "description": "HTML storybook - shows rendered HTML output for React stories",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/db-ux-design-system/core-web.git"
-  },
+  "repository": "github:db-ux-design-system/core-web",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -31,7 +28,7 @@
     "eslint-plugin-react-refresh": "0.5.7",
     "eslint-plugin-storybook": "10.6.0",
     "globals": "17.12.0",
-    "prettier": "3.9.6",
+    "prettier": "3.9.8",
     "storybook": "10.6.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.70.0",
