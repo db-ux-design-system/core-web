@@ -51,7 +51,7 @@ or wire a [custom command](https://developer.mozilla.org/en-US/docs/Web/API/Invo
 		aria-labelledby="my-drawer-heading"
 	>
 		<article class="db-drawer-container">
-			<div class="db-drawer-header">
+			<header class="db-drawer-header">
 				<div id="my-drawer-heading" class="db-drawer-header-content">
 					<h2>Drawer title</h2>
 				</div>
@@ -65,7 +65,7 @@ or wire a [custom command](https://developer.mozilla.org/en-US/docs/Web/API/Invo
 				>
 					Close
 				</button>
-			</div>
+			</header>
 			<div class="db-drawer-content">My Drawer content</div>
 		</article>
 	</dialog>
