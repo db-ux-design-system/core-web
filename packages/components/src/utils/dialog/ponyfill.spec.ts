@@ -25,14 +25,26 @@ type DialogStub = HTMLDialogElement & { _calls: string[]; _modal: boolean };
 // other stubs by id, mirroring how commandForCloseFallback resolves commandfor.
 let dialogRegistry: Record<string, DialogStub> = {};
 
-const createDialogStub = (id = 'test-dialog', modal = false): DialogStub => {
+const createDialogStub = (
+	id = 'test-dialog',
+	modal = false,
+	open = true
+): DialogStub => {
 	const stub = {
 		id,
+		open,
 		dataset: {},
 		_calls: [],
 		_modal: modal,
 		ownerDocument: {
-			getElementById: (lookup: string) => dialogRegistry[lookup] ?? null
+			getElementById: (lookup: string) => dialogRegistry[lookup] ?? null,
+			// isTopmostFallbackDialog queries open fallback dialogs in DOM order
+			// (`dialog[open][data-closedby="not-supported"]`); mirror that against
+			// the registry (insertion order). Modality is filtered by the caller.
+			querySelectorAll: (_selector: string) =>
+				Object.values(dialogRegistry).filter(
+					(candidate) => candidate.open
+				)
 		},
 		requestClose(this: DialogStub) {
 			this._calls.push('requestClose');
