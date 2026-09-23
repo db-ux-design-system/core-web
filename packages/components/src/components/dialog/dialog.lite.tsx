@@ -77,6 +77,7 @@ export default function DBDialog(props: DBDialogProps) {
 
 	onMount(() => {
 		state.resetId();
+		connectCloseButton(_ref);
 		// BEGIN: dialog ponyfill
 		markClosedByFallback(_ref);
 		// A non-modal dialog does not trap focus, so an Escape can be dispatched to
@@ -110,6 +111,13 @@ export default function DBDialog(props: DBDialogProps) {
 	onUpdate(() => {
 		state.resetId();
 	}, [props.id, props.propOverrides?.id]);
+
+	// Wire the close button's commandfor once the (possibly generated) id has
+	// landed on the <dialog>. Runs here rather than from the header because the
+	// header mounts before this id is set.
+	onUpdate(() => {
+		connectCloseButton(_ref);
+	}, [state._id]);
 
 	// Intentionally observes `open` only, not `backdrop`. Modality (showModal
 	// vs show) is an open-time decision of the native <dialog>; there is no way

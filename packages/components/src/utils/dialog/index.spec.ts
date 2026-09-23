@@ -12,10 +12,28 @@ type DialogStub = HTMLDialogElement & {
 	_attributes: Record<string, string>;
 };
 
+type ElementStub = HTMLElement & { _attributes: Record<string, string> };
+
+const createButtonStub = (
+	attributes: Record<string, string> = {}
+): ElementStub =>
+	({
+		_attributes: attributes,
+		getAttribute: (name: string) => attributes[name] ?? null,
+		setAttribute: (name: string, value: string) => {
+			attributes[name] = value;
+		}
+	}) as unknown as ElementStub;
+
 const createDialogStub = ({
 	open = false,
-	id = ''
-}: { open?: boolean; id?: string } = {}): DialogStub => {
+	id = '',
+	closeButton
+}: {
+	open?: boolean;
+	id?: string;
+	closeButton?: ElementStub | null;
+} = {}): DialogStub => {
 	const calls: string[] = [];
 	const attributes: Record<string, string> = {};
 
@@ -33,7 +51,8 @@ const createDialogStub = ({
 		getAttribute: (name: string) => attributes[name] ?? null,
 		removeAttribute: (name: string) => {
 			delete attributes[name]; // eslint-disable-line @typescript-eslint/no-dynamic-delete
-		}
+		},
+		querySelector: () => closeButton ?? null
 	} as unknown as DialogStub;
 };
 
@@ -247,5 +266,39 @@ describe('removeDialogAriaLabelledBy', () => {
 		setDialogAriaLabelledBy(dialog, 'heading-1');
 		removeDialogAriaLabelledBy(dialog, 'heading-1');
 		expect(dialog.getAttribute('aria-labelledby')).toBe('consumer-label');
+	});
+});
+
+describe('connectCloseButton', () => {
+	it('points the request-close button at the dialog id', () => {
+		const button = createButtonStub({ command: 'request-close' });
+		const dialog = createDialogStub({
+			id: 'my-dialog',
+			closeButton: button
+		});
+		connectCloseButton(dialog);
+		expect(button.getAttribute('commandfor')).toBe('my-dialog');
+	});
+
+	it('rewires a stale commandfor to the current dialog id', () => {
+		const button = createButtonStub({
+			command: 'request-close',
+			commandfor: 'old-id'
+		});
+		const dialog = createDialogStub({ id: 'new-id', closeButton: button });
+		connectCloseButton(dialog);
+		expect(button.getAttribute('commandfor')).toBe('new-id');
+	});
+
+	it('does nothing when the dialog has no id, no button, or is unresolved', () => {
+		const button = createButtonStub({ command: 'request-close' });
+		connectCloseButton(createDialogStub({ id: '', closeButton: button }));
+		expect(button.getAttribute('commandfor')).toBeNull();
+
+		expect(() =>
+			connectCloseButton(createDialogStub({ id: 'my-dialog' }))
+		).not.toThrow();
+		expect(() => connectCloseButton(undefined)).not.toThrow();
+		expect(() => connectCloseButton(null)).not.toThrow();
 	});
 });

@@ -115,3 +115,24 @@ export const removeDialogAriaLabelledBy = (
 		dialog.removeAttribute('aria-labelledby');
 	}
 };
+
+/**
+ * @public
+ * Points the dialog's own request-close button at the dialog via `commandfor`,
+ * so the native command resolves to the correct element even when the consumer
+ * supplied no `id` (the dialog then carries a generated one). Called by DBDialog
+ * and DBDrawer whenever their id is (re)computed, which guarantees the button is
+ * wired after the id lands on the `<dialog>` - unlike wiring it from the header,
+ * which mounts before the dialog id is set. No-op until both the dialog and its
+ * close button are resolved.
+ */
+export const connectCloseButton = (dialog?: HTMLDialogElement | null): void => {
+	const id = dialog?.id;
+	if (!dialog || !id) {
+		return;
+	}
+	const button = dialog.querySelector('[command="request-close"]');
+	if (button && button.getAttribute('commandfor') !== id) {
+		button.setAttribute('commandfor', id);
+	}
+};
