@@ -233,7 +233,9 @@ const testPagination = () => {
 			<DBPagination currentPage={1} totalCount={0} pageSize={10} />
 		);
 
-		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
+		await expect(
+			component.locator('li[data-page] > :is(a, button)')
+		).toHaveCount(1);
 		await expect(
 			component.getByRole('button', { name: 'Page 1 of 1' })
 		).toHaveAttribute('aria-current', 'page');
@@ -390,7 +392,9 @@ const testPagination = () => {
 		await expect(
 			component.locator('li[data-ellipsis*="wide-"]')
 		).toHaveCount(0);
-		await expect(component.locator('.db-pagination-page')).toHaveCount(5);
+		await expect(
+			component.locator('li[data-page] > :is(a, button)')
+		).toHaveCount(5);
 	});
 
 	test('should honor siblingCount and boundaryCount', async ({ mount }) => {
@@ -404,7 +408,9 @@ const testPagination = () => {
 			/>
 		);
 
-		await expect(component.locator('.db-pagination-page')).toHaveCount(1);
+		await expect(
+			component.locator('li[data-page] > :is(a, button)')
+		).toHaveCount(1);
 		expect(getShape(await readItems(component))).toBe('... 10 ...');
 		await expect(
 			component.getByRole('button', { name: 'Page 10 of 20' })
@@ -825,15 +831,21 @@ const testSizes = () => {
 				return { width: Math.round(width), height: Math.round(height) };
 			});
 
+		// A page control carries no class of its own, so it is located through the
+		// data-page on its list item; the arrows keep their own class.
+		const controls = [
+			['previous', '.db-pagination-previous'],
+			['next', '.db-pagination-next'],
+			['page', 'li[data-page] > :is(a, button)']
+		];
+
 		const medium = await mount(
 			<DBPagination currentPage={5} totalCount={100} pageSize={10} />
 		);
-		for (const control of ['previous', 'next', 'page']) {
+		for (const [name, selector] of controls) {
 			expect(
-				await boxOf(
-					medium.locator('.db-pagination-' + control).first()
-				),
-				control + ' at medium'
+				await boxOf(medium.locator(selector).first()),
+				name + ' at medium'
 			).toEqual({ width: 40, height: 40 });
 		}
 		await medium.unmount();
@@ -846,10 +858,10 @@ const testSizes = () => {
 				size="small"
 			/>
 		);
-		for (const control of ['previous', 'next', 'page']) {
+		for (const [name, selector] of controls) {
 			expect(
-				await boxOf(small.locator('.db-pagination-' + control).first()),
-				control + ' at small'
+				await boxOf(small.locator(selector).first()),
+				name + ' at small'
 			).toEqual({ width: 24, height: 24 });
 		}
 	});
@@ -991,7 +1003,7 @@ const testTouchTargets = () => {
 		);
 
 		const measurements = await component
-			.locator('.db-pagination-page')
+			.locator('li[data-page] > :is(a, button)')
 			.evaluateAll((buttons: HTMLElement[]) => {
 				const boxes = buttons.map((button) =>
 					button.getBoundingClientRect()

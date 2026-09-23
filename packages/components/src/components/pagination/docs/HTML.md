@@ -61,13 +61,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-page="1"
 			data-variant="ghost"
 		>
-			<button
-				class="db-pagination-page"
-				type="button"
-				aria-label="Page 1 of 10"
-			>
-				1
-			</button>
+			<button type="button" aria-label="Page 1 of 10">1</button>
 		</li>
 		<li
 			class="db-pagination-item"
@@ -76,13 +70,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-variant="ghost"
 			data-ellipsis="wide-before"
 		>
-			<button
-				class="db-pagination-page"
-				type="button"
-				aria-label="Page 4 of 10"
-			>
-				4
-			</button>
+			<button type="button" aria-label="Page 4 of 10">4</button>
 		</li>
 		<li
 			class="db-pagination-item"
@@ -91,12 +79,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-variant="filled"
 			data-ellipsis="collapsed-before"
 		>
-			<button
-				class="db-pagination-page"
-				type="button"
-				aria-current="page"
-				aria-label="Page 5 of 10"
-			>
+			<button type="button" aria-current="page" aria-label="Page 5 of 10">
 				5
 			</button>
 		</li>
@@ -106,13 +89,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-page="6"
 			data-variant="ghost"
 		>
-			<button
-				class="db-pagination-page"
-				type="button"
-				aria-label="Page 6 of 10"
-			>
-				6
-			</button>
+			<button type="button" aria-label="Page 6 of 10">6</button>
 		</li>
 		<li
 			class="db-pagination-item"
@@ -121,13 +98,7 @@ Three things are easy to miss when writing the markup by hand:
 			data-variant="ghost"
 			data-ellipsis="wide-before collapsed-before"
 		>
-			<button
-				class="db-pagination-page"
-				type="button"
-				aria-label="Page 10 of 10"
-			>
-				10
-			</button>
+			<button type="button" aria-label="Page 10 of 10">10</button>
 		</li>
 		<li class="db-pagination-item" data-variant="ghost">
 			<button
@@ -233,9 +204,7 @@ so both look identical. Swap the element, keep the class, add the `href` and dro
 	data-page="4"
 	data-variant="ghost"
 >
-	<a class="db-pagination-page" href="?page=4" aria-label="Page 4 of 10">
-		4
-	</a>
+	<a href="?page=4" aria-label="Page 4 of 10"> 4 </a>
 </li>
 ```
 
@@ -252,14 +221,7 @@ cursor, no hover and no pressed background, all driven by that `data-variant`.
 	data-page="5"
 	data-variant="filled"
 >
-	<a
-		class="db-pagination-page"
-		href="?page=5"
-		aria-current="page"
-		aria-label="Page 5 of 10"
-	>
-		5
-	</a>
+	<a href="?page=5" aria-current="page" aria-label="Page 5 of 10"> 5 </a>
 </li>
 ```
 

@@ -208,6 +208,7 @@ export default function DBPagination(props: DBPaginationProps) {
 						? Boolean(option.disabled) &&
 							String(option.disabled) !== 'false'
 						: false,
+					label: option ? option.label : undefined,
 					key: 'page-' + page
 				});
 			}
@@ -273,7 +274,10 @@ export default function DBPagination(props: DBPaginationProps) {
 				const label = state.getPageLabel(page);
 				const number = state.getPageText(page);
 				if (description) {
-					control.setAttribute('aria-label', label);
+					control.setAttribute(
+						'aria-label',
+						description.label ? description.label : label
+					);
 				} else if (!control.getAttribute('aria-label')) {
 					const existing = (control.textContent ?? '').trim();
 					control.setAttribute(
@@ -403,8 +407,6 @@ export default function DBPagination(props: DBPaginationProps) {
 				}
 			}
 
-			/* The neighbour is not always rendered - siblingCount 0, or a composed
-			list that omits it. Reporting the page directly keeps the arrow working. */
 			state.handlePageChange(page);
 		},
 		handlePageChange: (page: number) => {
@@ -449,7 +451,7 @@ export default function DBPagination(props: DBPaginationProps) {
 			class={cls('db-pagination', props.className)}
 			data-size={props.size}>
 			<ul onClick={(event: any) => state.handleClick(event)}>
-				<li class="db-pagination-item">
+				<li class="db-pagination-item" data-variant="ghost">
 					<button
 						class="db-pagination-previous"
 						type="button"
@@ -466,7 +468,7 @@ export default function DBPagination(props: DBPaginationProps) {
 						{props.previousLabel}
 					</button>
 				</li>
-				<Show when={state.isDataDriven()}>
+				<Show when={state.isDataDriven()} else={props.children}>
 					<For each={state.getPaginationItems()}>
 						{(item: PaginationItemType, index: number) => (
 							<DBPaginationItem
@@ -476,8 +478,7 @@ export default function DBPagination(props: DBPaginationProps) {
 						)}
 					</For>
 				</Show>
-				<Show when={!state.isDataDriven()}>{props.children}</Show>
-				<li class="db-pagination-item">
+				<li class="db-pagination-item" data-variant="ghost">
 					<button
 						class="db-pagination-next"
 						type="button"

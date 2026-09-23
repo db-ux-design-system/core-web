@@ -26,11 +26,11 @@ const App = () => {
 export default App;
 ```
 
-### Disabling a page
+### Per-page options
 
 Pass an `items` array, one entry per page, to drive the pagination from data instead
-of a bare count. It is what lets a single page be disabled - the count API cannot
-express that.
+of a bare count. An entry can disable its page or give it its own `label`, neither of
+which the count API can express. The visible text stays the page number.
 
 ```tsx App.tsx
 import { DBPagination } from "@db-ux/react-core-components";
@@ -38,7 +38,7 @@ import { DBPagination } from "@db-ux/react-core-components";
 const App = () => (
 	<DBPagination
 		currentPage={1}
-		items={[{}, { disabled: true }, {}]}
+		items={[{}, { disabled: true }, { label: "Last page" }]}
 		onPageChange={(page) => console.log(page)}
 	/>
 );

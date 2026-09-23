@@ -13,9 +13,7 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 			class={cls('db-pagination-item', props.className)}
 			ref={_ref}>
 			<Show when={props.text} else={props.children}>
-				<button class="db-pagination-page" type="button">
-					{props.text}
-				</button>
+				<button type="button">{props.text}</button>
 			</Show>
 		</li>
 	);

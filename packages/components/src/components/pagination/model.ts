@@ -25,6 +25,7 @@ export type PaginationItemType = {
 	layout: 'always' | 'wide';
 	ellipsis?: string;
 	disabled?: boolean;
+	label?: string;
 	/**
 	 * Identity of the item across page changes. Keying by list position instead
 	 * would move the focus to an adjacent page whenever the window shifts, because
@@ -40,6 +41,7 @@ export type PaginationItemType = {
  */
 export type PaginationItemOption = {
 	disabled?: boolean | string;
+	label?: string;
 };
 
 export type DBPaginationDefaultProps = {
