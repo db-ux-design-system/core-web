@@ -27,7 +27,7 @@ useDefaultProps<DBDrawerHeaderProps>({
 
 export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(null);
+	const _ref = useRef<HTMLElement | any>(null);
 
 	const state = useStore<DBDrawerHeaderState>({
 		// Left undefined at init so the uuid() runs only on the client (in
