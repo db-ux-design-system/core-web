@@ -96,7 +96,7 @@
         - link "Current"
   - link "API"
   - text: Composition
-  - navigation "Breadcrumb (Composition)":
+  - navigation "Breadcrumb API (Composition)":
     - list:
       - listitem:
         - link "Home"
@@ -107,7 +107,7 @@
       - listitem:
         - link "Current"
   - text: Options API
-  - navigation "Breadcrumb (Options API)":
+  - navigation "Breadcrumb API (Options API)":
     - list:
       - listitem:
         - link "Home"
@@ -119,7 +119,7 @@
         - link "Current"
   - link "Disabled"
   - text: Composition
-  - navigation "Breadcrumb (Composition)":
+  - navigation "Breadcrumb Disabled (Composition)":
     - list:
       - listitem:
         - link "Home"
@@ -130,7 +130,7 @@
       - listitem:
         - link "Current"
   - text: Options API
-  - navigation "Breadcrumb (Options API)":
+  - navigation "Breadcrumb Disabled (Options API)":
     - list:
       - listitem:
         - link "Home"
@@ -142,7 +142,7 @@
         - link "Current"
   - link "No text"
   - text: Composition
-  - navigation "Breadcrumb (Composition)":
+  - navigation "Breadcrumb No text (Composition)":
     - list:
       - listitem:
         - link "Home"
@@ -151,7 +151,7 @@
       - listitem:
         - link "Settings"
   - text: Options API
-  - navigation "Breadcrumb (Options API)":
+  - navigation "Breadcrumb No text (Options API)":
     - list:
       - listitem:
         - link "Home"
