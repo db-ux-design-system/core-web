@@ -22,7 +22,12 @@ const getDefaultScreenshotTest = async (
  * nothing. Checking `isHiddenInMenu` instead would also match accordion-item and
  * tab-item, which do have their own showcase and existing baselines.
  */
-const componentsWithoutOwnPages = new Set(['footer-content', 'footer-meta']);
+const componentsWithoutOwnPages = new Set([
+	'footer-content',
+	'footer-meta',
+	'breadcrumb-item',
+	'breadcrumb-truncation-item'
+]);
 
 for (const group of Components) {
 	for (const component of group.subNavigation) {

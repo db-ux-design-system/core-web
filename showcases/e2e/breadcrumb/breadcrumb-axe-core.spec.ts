@@ -9,10 +9,10 @@ import { lvl3 } from '../fixtures/variants';
 const isSkipAxe = hasWebComponentSyntax(process.env.showcase);
 
 test.describe('DBBreadcrumb', () => {
-	runAxeCoreTest({ path: 'breadcrumb', skipAxe: isSkipAxe });
-	runAxeCoreTest({ path: 'breadcrumb', color: lvl3, skipAxe: isSkipAxe });
+	runAxeCoreTest({ path: '05/breadcrumb', skipAxe: isSkipAxe });
+	runAxeCoreTest({ path: '05/breadcrumb', color: lvl3, skipAxe: isSkipAxe });
 	runAxeCoreTest({
-		path: 'breadcrumb',
+		path: '05/breadcrumb',
 		density: 'functional',
 		skipAxe: isSkipAxe
 	});
