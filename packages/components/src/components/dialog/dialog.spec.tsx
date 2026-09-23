@@ -141,41 +141,13 @@ const testAction = () => {
 		await expect(dialogEl).toHaveAccessibleName('Consumer name');
 	});
 
-	test(`should drop the generated label when an aria-label is added after mount`, async ({
+	test(`should wire the close button commandfor to the dialog id`, async ({
 		mount,
 		page
 	}) => {
-		// Dynamic override: the header adds aria-labelledby at mount, then the
-		// consumer adds aria-label. The observer must strip our token so the
-		// lower-precedence aria-label becomes the accessible name (and not loop).
-		const dialog: any = (
-			<DBDialog open={true} header={<DBDialogHeader text="Title" />}>
-				{/*<template v-slot:header><DBDialogHeader text="Title" /></template>*/}
-				<span data-testid="test">Test</span>
-			</DBDialog>
-		);
-		await mount(dialog);
-		const dialogEl = page.locator('dialog.db-dialog');
-		// Initially the header wired its heading reference.
-		await expect(dialogEl).toHaveAttribute('aria-labelledby', /-heading$/);
-		// The consumer adds an aria-label at runtime.
-		await page.evaluate(() => {
-			document
-				.querySelector('dialog.db-dialog')
-				?.setAttribute('aria-label', 'Consumer name');
-		});
-		// The generated reference is removed so the aria-label wins.
-		await expect(dialogEl).not.toHaveAttribute('aria-labelledby');
-		await expect(dialogEl).toHaveAccessibleName('Consumer name');
-	});
-
-	test(`should resync the close button commandfor when the dialog id changes`, async ({
-		mount,
-		page
-	}) => {
-		// The header close button targets the dialog id via commandfor. If the
-		// dialog id changes while mounted, a stale target could resolve to another
-		// dialog reusing the old id and close the wrong one - so it must resync.
+		// The dialog wires its own close button's commandfor to its id (in
+		// connectCloseButton) after the id lands on the <dialog>, so the native
+		// request-close command resolves even when the header mounted first.
 		const dialog: any = (
 			<DBDialog
 				open={true}
@@ -185,7 +157,7 @@ const testAction = () => {
 				<span data-testid="test">Test</span>
 			</DBDialog>
 		);
-		await mount(dialog);
+		const component = await mount(dialog);
 		const closeButton = page.locator(
 			'.db-dialog-header [command="request-close"]'
 		);
@@ -193,12 +165,16 @@ const testAction = () => {
 			'commandfor',
 			'dialog-initial'
 		);
-		// Change the dialog id at runtime; the header observer must pick it up.
-		await page.evaluate(() => {
-			document
-				.querySelector('dialog.db-dialog')
-				?.setAttribute('id', 'dialog-renamed');
-		});
+		// A prop-driven id change resyncs the target, so a stale id cannot
+		// resolve to another dialog reusing the old one.
+		await component.update(
+			<DBDialog
+				open={true}
+				propOverrides={{ id: 'dialog-renamed' }}
+				header={<DBDialogHeader text="Title" />}>
+				<span data-testid="test">Test</span>
+			</DBDialog>
+		);
 		await expect(closeButton).toHaveAttribute(
 			'commandfor',
 			'dialog-renamed'

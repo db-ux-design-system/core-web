@@ -10,7 +10,7 @@ import {
 } from '@builder.io/mitosis';
 import { ClickEvent, GeneralEvent } from '../../shared/model';
 import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
-import { syncDialogOpenState } from '../../utils/dialog';
+import { connectCloseButton, syncDialogOpenState } from '../../utils/dialog';
 // BEGIN: dialog ponyfill
 import {
 	commandForCloseFallback,
