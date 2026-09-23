@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState, useStore } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBCustomSelect from '../../custom-select/custom-select.lite';
 import DBDialogFooter from '../../dialog-footer/dialog-footer.lite';
@@ -21,11 +21,9 @@ useMetadata({
 });
 
 export default function DialogExamples() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
 	const state = useStore({
 		handleClose: () => {
 			console.log('onClose fired');
-			setOpenIndex(-1);
 		},
 		handleCancel: () => {
 			console.log('onCancel fired');
@@ -40,21 +38,33 @@ export default function DialogExamples() {
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="dialog-events"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="dialog-events">
 					Cancel and close Events in console
 				</DBButton>
 				<DBDialog
 					id="dialog-events"
-					open={openIndex === 0}
 					onClose={() => state.handleClose()}
 					onCancel={() => state.handleCancel()}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Events Test</h2>
 						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							<DBButton
+								variant="ghost"
+								command="request-close"
+								commandfor="dialog-events">
+								Cancel
+							</DBButton>
+							<DBButton
+								variant="brand"
+								command="request-close"
+								commandfor="dialog-events">
+								Confirm
+							</DBButton>
+						</DBDialogFooter>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -69,16 +79,11 @@ export default function DialogExamples() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="dialog-events-form"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="dialog-events-form">
 					Buttons type dialog event in console
 				</DBButton>
 				<DBDialog
 					id="dialog-events-form"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Submit form in content</h2>
@@ -111,18 +116,31 @@ export default function DialogExamples() {
 			<div>
 				<DBButton
 					command="show-modal"
-					commandfor="dialog-nested-overlays"
-					onClick={() => setOpenIndex(2)}>
+					commandfor="dialog-nested-overlays">
 					Open: Nested overlays
 				</DBButton>
 				<DBDialog
 					id="dialog-nested-overlays"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Nested overlays</h2>
 						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							<DBButton
+								variant="ghost"
+								command="request-close"
+								commandfor="dialog-nested-overlays">
+								Cancel
+							</DBButton>
+							<DBButton
+								variant="brand"
+								command="request-close"
+								commandfor="dialog-nested-overlays">
+								Confirm
+							</DBButton>
+						</DBDialogFooter>
 					}>
 					<p>
 						The tooltip and the custom-select dropdown must line up

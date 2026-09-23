@@ -1,5 +1,6 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBDialogFooter from '../../dialog-footer/dialog-footer.lite';
 import DBDialogHeader from '../../dialog-header/dialog-header.lite';
 import DBDialog from '../dialog.lite';
 import { StorybookDialogArgTypes } from './_dialog.arg.types';
@@ -14,26 +15,35 @@ useMetadata({
 });
 
 export default function DialogContainerSize() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="dialog-size-small"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="dialog-size-small">
 					Open: Small
 				</DBButton>
 				<DBDialog
 					id="dialog-size-small"
 					containerSize="small"
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Small</h2>
 						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							<DBButton
+								variant="ghost"
+								command="request-close"
+								commandfor="dialog-size-small">
+								Cancel
+							</DBButton>
+							<DBButton
+								variant="brand"
+								command="request-close"
+								commandfor="dialog-size-small">
+								Confirm
+							</DBButton>
+						</DBDialogFooter>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -48,21 +58,32 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="dialog-size-medium"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="dialog-size-medium">
 					Open: (Default) Medium
 				</DBButton>
 				<DBDialog
 					id="dialog-size-medium"
 					containerSize="medium"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>(Default) Medium</h2>
 						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							<DBButton
+								variant="ghost"
+								command="request-close"
+								commandfor="dialog-size-medium">
+								Cancel
+							</DBButton>
+							<DBButton
+								variant="brand"
+								command="request-close"
+								commandfor="dialog-size-medium">
+								Confirm
+							</DBButton>
+						</DBDialogFooter>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -77,21 +98,32 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="dialog-size-large"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="dialog-size-large">
 					Open: Large
 				</DBButton>
 				<DBDialog
 					id="dialog-size-large"
 					containerSize="large"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Large</h2>
 						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							<DBButton
+								variant="ghost"
+								command="request-close"
+								commandfor="dialog-size-large">
+								Cancel
+							</DBButton>
+							<DBButton
+								variant="brand"
+								command="request-close"
+								commandfor="dialog-size-large">
+								Confirm
+							</DBButton>
+						</DBDialogFooter>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
@@ -106,21 +138,32 @@ export default function DialogContainerSize() {
 				</DBDialog>
 			</div>
 			<div>
-				<DBButton
-					command="show-modal"
-					commandfor="dialog-size-full"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show-modal" commandfor="dialog-size-full">
 					Open: Full
 				</DBButton>
 				<DBDialog
 					id="dialog-size-full"
 					containerSize="full"
-					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Full</h2>
 						</DBDialogHeader>
+					}
+					footer={
+						<DBDialogFooter>
+							<DBButton
+								variant="ghost"
+								command="request-close"
+								commandfor="dialog-size-full">
+								Cancel
+							</DBButton>
+							<DBButton
+								variant="brand"
+								command="request-close"
+								commandfor="dialog-size-full">
+								Confirm
+							</DBButton>
+						</DBDialogFooter>
 					}>
 					<p>Lorem ipsum dolor sit amet.</p>
 					<p>Lorem ipsum dolor sit amet.</p>
