@@ -13,7 +13,11 @@ useMetadata({
 		'(Default) As modal',
 		'Inside',
 		'With slots',
-		'Close and Cancel'
+		'Close and Cancel',
+		'With text prop',
+		'With header start slot',
+		'With header end slot',
+		'With footer'
 	],
 	storybookArgTypes: StorybookDrawerArgTypes,
 	storybookOverwriteArgs: {
@@ -115,6 +119,93 @@ export default function DrawerExamples() {
 						</DBDrawerHeader>
 					}>
 					Press ESC or click backdrop to test events
+				</DBDrawer>
+			</div>
+			<div>
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-text"
+					onClick={() => setOpenIndex(4)}>
+					Open: With text prop
+				</DBButton>
+				<DBDrawer
+					id="drawer-areas-text"
+					open={openIndex === 4}
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader
+							text="With text prop"
+							closeButtonText="Close"
+						/>
+					}>
+					Lorem ipsum dolor sit amet.
+				</DBDrawer>
+			</div>
+			<div>
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-start"
+					onClick={() => setOpenIndex(5)}>
+					Open: With header start slot
+				</DBButton>
+				<DBDrawer
+					id="drawer-areas-start"
+					open={openIndex === 5}
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader
+							closeButtonText="Close"
+							startSlot={<DBIcon icon="person" />}>
+							<h2>With header start slot</h2>
+						</DBDrawerHeader>
+					}>
+					Lorem ipsum dolor sit amet.
+				</DBDrawer>
+			</div>
+			<div>
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-end"
+					onClick={() => setOpenIndex(6)}>
+					Open: With header end slot
+				</DBButton>
+				<DBDrawer
+					id="drawer-areas-end"
+					open={openIndex === 6}
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader
+							closeButtonText="Close"
+							endSlot={<DBBadge>New</DBBadge>}>
+							<h2>With header end slot</h2>
+						</DBDrawerHeader>
+					}>
+					Lorem ipsum dolor sit amet.
+				</DBDrawer>
+			</div>
+			<div>
+				<DBButton
+					command="show-modal"
+					commandfor="drawer-areas-footer"
+					onClick={() => setOpenIndex(7)}>
+					Open: With footer
+				</DBButton>
+				<DBDrawer
+					id="drawer-areas-footer"
+					open={openIndex === 7}
+					onClose={() => setOpenIndex(-1)}
+					header={
+						<DBDrawerHeader closeButtonText="Close">
+							<h2>With footer</h2>
+						</DBDrawerHeader>
+					}
+					footer={
+						<DBDrawerFooter>
+							<DBLink href="#">Link 1</DBLink>
+							<DBLink href="#">Link 2</DBLink>
+						</DBDrawerFooter>
+					}>
+					Lorem ipsum dolor sit amet.
 				</DBDrawer>
 			</div>
 		</Fragment>
