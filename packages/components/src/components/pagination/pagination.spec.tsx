@@ -1151,6 +1151,55 @@ const testComposedLinks = () => {
 		expect(requestedPage).toBe(2);
 	});
 
+	test('should not navigate when the current page link is clicked', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="Linked"
+				currentPage={2}
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}>
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
+		);
+
+		await page.evaluate(() => {
+			(window as any).__paginationDefaultPrevented = undefined;
+			document.addEventListener(
+				'click',
+				(event: MouseEvent) => {
+					(window as any).__paginationDefaultPrevented =
+						event.defaultPrevented;
+				},
+				{ once: true }
+			);
+		});
+
+		await component.locator('li[data-page="2"] a').click();
+
+		const defaultPrevented = await page.evaluate(
+			() => (window as any).__paginationDefaultPrevented
+		);
+
+		expect(
+			defaultPrevented,
+			'a click on the current page is prevented'
+		).toBe(true);
+		expect(
+			requestedPage,
+			'the current page reports no change'
+		).toBeUndefined();
+	});
+
 	test('should disable a single page through the items API', async ({
 		mount,
 		page

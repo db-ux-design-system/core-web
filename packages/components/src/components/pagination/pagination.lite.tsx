@@ -366,6 +366,31 @@ export default function DBPagination(props: DBPaginationProps) {
 				(typeof event.button === 'number' && event.button > 0)
 			);
 		},
+		preventCurrentPageNavigation: (event: any) => {
+			if (state.isModifiedLinkClick(event)) {
+				return;
+			}
+
+			const target = event.target as HTMLElement;
+			const item = target.closest('li.db-pagination-item');
+			if (!item || !_ref || item.closest('.db-pagination') !== _ref) {
+				return;
+			}
+			if (!target.closest('a[href]')) {
+				return;
+			}
+
+			const page = Number(item.getAttribute('data-page'));
+			/*
+			 * Runs in the capture phase so a consumer router link on the
+			 * current page is stopped before it navigates. The bubbling
+			 * handleClick catches plain anchors too, but arrives after the
+			 * router has already acted.
+			 */
+			if (Number.isFinite(page) && page === state.getCurrentPage()) {
+				event.preventDefault();
+			}
+		},
 		handleClick: (event: any) => {
 			if (state.isModifiedLinkClick(event)) {
 				return;
@@ -398,9 +423,21 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 
 			const page = Number(item.getAttribute('data-page'));
-			if (Number.isFinite(page)) {
-				state.handlePageChange(page);
+			if (!Number.isFinite(page)) {
+				return;
 			}
+
+			/*
+			 * Clicking the current page must not navigate. The control keeps
+			 * its href so the node survives a controlled update, so a plain
+			 * activation would still follow the link and reload the page.
+			 */
+			if (page === state.getCurrentPage()) {
+				event.preventDefault();
+				return;
+			}
+
+			state.handlePageChange(page);
 		},
 		stepToPage: (page: number) => {
 			if (!_ref) {
@@ -434,6 +471,13 @@ export default function DBPagination(props: DBPaginationProps) {
 	onMount(() => {
 		state.syncItems();
 		state._setupObserver();
+		if (_ref) {
+			_ref.addEventListener(
+				'click',
+				state.preventCurrentPageNavigation,
+				true
+			);
+		}
 	});
 
 	onUpdate(() => {
@@ -443,6 +487,13 @@ export default function DBPagination(props: DBPaginationProps) {
 	});
 
 	onUnMount(() => {
+		if (_ref) {
+			_ref.removeEventListener(
+				'click',
+				state.preventCurrentPageNavigation,
+				true
+			);
+		}
 		if (state._observer) {
 			state._observer.disconnect();
 		}
