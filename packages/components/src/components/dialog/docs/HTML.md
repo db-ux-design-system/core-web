@@ -17,8 +17,7 @@ including `full`, so that a clickable backdrop area always remains. Overwrite it
 
 Use [Invoker Commands](https://developer.mozilla.org/en-US/docs/Web/API/Invoker_Commands_API) (`command` and
 `commandfor` HTML attributes) to declaratively connect buttons with the `<dialog>` element via its `id`. The
-built-in commands for `<dialog>` are `show-modal`, `close` and `request-close` (`request-close` is recommended over
-`close`).
+built-in commands for `<dialog>` are `show-modal`, `close` and `request-close`.
 
 Prefer `request-close` for close buttons: it fires a `cancel` event before closing, so you can veto the close with
 `event.preventDefault()`. `close` dismisses the dialog immediately without that opportunity.
@@ -29,7 +28,7 @@ it from your own code (e.g. by toggling the native `open` HTML-attribute) or wir
 value starting with `--` dispatches a `command` event on the target that you handle yourself:
 
 ```html
-<button class="db-button" command="--show" commandfor="my-dialog">
+<button class="db-button" command="--show" commandfor="my-dialog" type="button">
 	Open dialog
 </button>
 <script>
@@ -47,7 +46,7 @@ value starting with `--` dispatches a `command` event on the target that you han
 <!-- index.html -->
 ...
 <body>
-	<button class="db-button" command="show-modal" commandfor="my-dialog">
+	<button class="db-button" command="show-modal" commandfor="my-dialog" type="button">
 		Open dialog
 	</button>
 	<dialog
@@ -69,7 +68,6 @@ value starting with `--` dispatches a `command` event on the target that you han
 				type="button"
 				command="request-close"
 				commandfor="my-dialog"
-				type="button"
 			>
 				Close
 			</button>
@@ -90,7 +88,7 @@ value starting with `--` dispatches a `command` event on the target that you han
 </body>
 ```
 
-Set `data-backdrop="none"` and `closedby="closerequest"` together to get a non-modal dialog: no dimmed backdrop, no
+Set `data-backdrop="none"` and `closedby="closerequest"` HTML attributes together to get a non-modal dialog: no dimmed backdrop, no
 focus trap, and clicks outside the dialog leave it open.
 
 ### Return a value
@@ -125,8 +123,8 @@ all of its submit buttons.
 	<div class="db-dialog-content">Delete this entry?</div>
 	<div class="db-dialog-footer">
 		<form method="dialog">
-			<button class="db-button" value="cancel">Cancel</button>
-			<button class="db-button" data-variant="brand" value="confirm">
+			<button class="db-button" value="cancel" type="submit">Cancel</button>
+			<button class="db-button" data-variant="brand" value="confirm" type="submit">
 				Confirm
 			</button>
 		</form>
@@ -164,7 +162,7 @@ and associate a footer submit button with it through the `form` attribute refere
 		</form>
 	</div>
 	<div class="db-dialog-footer">
-		<button class="db-button" form="my-dialog-form" value="cancel">
+		<button class="db-button" form="my-dialog-form" value="cancel" type="submit">
 			Cancel
 		</button>
 		<button
@@ -172,6 +170,7 @@ and associate a footer submit button with it through the `form` attribute refere
 			data-variant="brand"
 			form="my-dialog-form"
 			value="confirm"
+			 type="submit"
 		>
 			Save
 		</button>
@@ -225,7 +224,7 @@ After, with the dialog:
 
 ```html index.html
 <!-- index.html -->
-<button class="db-button" command="show-modal" commandfor="my-dialog">
+<button class="db-button" command="show-modal" commandfor="my-dialog" type="button">
 	Open dialog
 </button>
 <dialog
