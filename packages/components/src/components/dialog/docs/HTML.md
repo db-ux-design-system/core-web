@@ -46,7 +46,12 @@ value starting with `--` dispatches a `command` event on the target that you han
 <!-- index.html -->
 ...
 <body>
-	<button class="db-button" command="show-modal" commandfor="my-dialog" type="button">
+	<button
+		class="db-button"
+		command="show-modal"
+		commandfor="my-dialog"
+		type="button"
+	>
 		Open dialog
 	</button>
 	<dialog
@@ -123,8 +128,15 @@ all of its submit buttons.
 	<div class="db-dialog-content">Delete this entry?</div>
 	<div class="db-dialog-footer">
 		<form method="dialog">
-			<button class="db-button" value="cancel" type="submit">Cancel</button>
-			<button class="db-button" data-variant="brand" value="confirm" type="submit">
+			<button class="db-button" value="cancel" type="submit">
+				Cancel
+			</button>
+			<button
+				class="db-button"
+				data-variant="brand"
+				value="confirm"
+				type="submit"
+			>
 				Confirm
 			</button>
 		</form>
@@ -162,7 +174,12 @@ and associate a footer submit button with it through the `form` attribute refere
 		</form>
 	</div>
 	<div class="db-dialog-footer">
-		<button class="db-button" form="my-dialog-form" value="cancel" type="submit">
+		<button
+			class="db-button"
+			form="my-dialog-form"
+			value="cancel"
+			type="submit"
+		>
 			Cancel
 		</button>
 		<button
@@ -170,7 +187,7 @@ and associate a footer submit button with it through the `form` attribute refere
 			data-variant="brand"
 			form="my-dialog-form"
 			value="confirm"
-			 type="submit"
+			type="submit"
 		>
 			Save
 		</button>
@@ -224,7 +241,12 @@ After, with the dialog:
 
 ```html index.html
 <!-- index.html -->
-<button class="db-button" command="show-modal" commandfor="my-dialog" type="button">
+<button
+	class="db-button"
+	command="show-modal"
+	commandfor="my-dialog"
+	type="button"
+>
 	Open dialog
 </button>
 <dialog
