@@ -27,7 +27,7 @@ const timeout = async (): Promise<CommandExecResult> => ({
 	timedOut: true
 });
 
-const noChanges = async () => false;
+const hasNoChanges = async () => false;
 const hasChanges = async () => true;
 
 const check = (name: string, fixCommands: Command[] = []): CheckConfig => ({
@@ -44,7 +44,7 @@ describe('exit code 0 – all checks pass', () => {
 
 		const result = await orchestrate([check('lint'), check('test')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: hasNoChanges
 		});
 
 		expect(result.exitCode).toBe(exitAllPassed);
@@ -54,7 +54,7 @@ describe('exit code 0 – all checks pass', () => {
 	});
 
 	test('does not call detectChangesFn when all checks pass', async () => {
-		const detectFn = vi.fn().mockImplementation(noChanges);
+		const detectFn = vi.fn().mockImplementation(hasNoChanges);
 
 		await orchestrate([check('lint')], {
 			spawnFn: vi.fn().mockImplementation(pass),
@@ -77,7 +77,7 @@ describe('exit code 1 – unfixable', () => {
 
 		const result = await orchestrate(
 			[check('lint', [{ command: 'pnpm', args: ['run', 'lint:fix'] }])],
-			{ spawnFn, detectChangesFn: noChanges }
+			{ spawnFn, detectChangesFn: hasNoChanges }
 		);
 
 		expect(result.exitCode).toBe(exitUnfixable);
@@ -92,7 +92,7 @@ describe('exit code 1 – unfixable', () => {
 
 		const result = await orchestrate([check('test')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: hasNoChanges
 		});
 
 		expect(result.exitCode).toBe(exitUnfixable);
@@ -155,7 +155,7 @@ describe('timeout handling', () => {
 
 		const result = await orchestrate([check('lint')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: hasNoChanges
 		});
 
 		expect(result.checkResults[0].timedOut).toBe(true);
@@ -239,7 +239,7 @@ describe('abort signal propagation', () => {
 		// Use a very short total timeout so the orchestrator aborts quickly
 		const result = await orchestrate([check('lint')], {
 			spawnFn,
-			detectChangesFn: noChanges,
+			detectChangesFn: hasNoChanges,
 			totalTimeoutMs: 50
 		});
 
@@ -280,7 +280,7 @@ describe('change detection', () => {
 				.fn()
 				.mockImplementationOnce(fail)
 				.mockImplementationOnce(pass),
-			detectChangesFn: noChanges
+			detectChangesFn: hasNoChanges
 		});
 		expect(withoutChanges.filesChanged).toBe(false);
 	});
@@ -295,7 +295,7 @@ describe('checkResults shape', () => {
 
 		const result = await orchestrate(checks, {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: hasNoChanges
 		});
 
 		expect(result.checkResults).toHaveLength(3);
@@ -310,7 +310,7 @@ describe('checkResults shape', () => {
 		const spawnFn = vi.fn().mockImplementation(pass);
 		const result = await orchestrate([check('lint')], {
 			spawnFn,
-			detectChangesFn: noChanges
+			detectChangesFn: hasNoChanges
 		});
 
 		const r = result.checkResults[0];

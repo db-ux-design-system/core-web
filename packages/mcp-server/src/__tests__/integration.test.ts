@@ -24,14 +24,13 @@ vi.mock('node:child_process', () => ({
 	) {
 		const result = execMock(_cmd, _options);
 		if (result && typeof result.then === 'function') {
-			result.then(
-				(value: { stdout: string; stderr: string }) => {
+			result
+				.then((value: { stdout: string; stderr: string }) => {
 					cb(null, value);
-				},
-				(error: Error) => {
+				})
+				.catch((error: Error) => {
 					cb(error);
-				}
-			);
+				});
 		} else {
 			cb(null, { stdout: '', stderr: '' });
 		}

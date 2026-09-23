@@ -36,14 +36,16 @@ function buildResults(results: string[], query: string): ToolResult {
 	}
 
 	const content: Array<{ type: 'text'; text: string }> = [
-		{ type: 'text', text: results.slice(0, 3).join('\n\n') }
+		{ type: 'text', text: results.slice(0, 3).join('\n\n') },
+		...(results.length > 3
+			? [
+					{
+						type: 'text' as const,
+						text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
+					}
+				]
+			: [])
 	];
-	if (results.length > 3) {
-		content.push({
-			type: 'text',
-			text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
-		});
-	}
 
 	return { content };
 }
@@ -126,13 +128,15 @@ export async function handleDocsSearch({
 				const isMatch = searchTerms.every((term) =>
 					haystack.includes(term)
 				);
-				if (isMatch) {
-					const snippet =
-						content.length > 3000
-							? content.slice(0, 3000) + '\n... [TRUNCATED]'
-							: content;
-					results.push(`--- ${normalizedPath} ---\n${snippet}`);
+				if (!isMatch) {
+					continue;
 				}
+
+				const snippet =
+					content.length > 3000
+						? content.slice(0, 3000) + '\n... [TRUNCATED]'
+						: content;
+				results.push(`--- ${normalizedPath} ---\n${snippet}`);
 			}
 
 			return buildResults(results, query);
