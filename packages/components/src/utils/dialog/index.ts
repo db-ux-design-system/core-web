@@ -84,6 +84,14 @@ export const setDialogAriaLabelledBy = (
  * header's state) rather than re-resolving it, so cleanup works even when the
  * header is already detached from the DOM (e.g. during React effect cleanup) and
  * regardless of whether the dialog has an `id`.
+ *
+ * `headingId` is the id of the heading element the header itself renders (the
+ * `<h2>` wrapper), so removing it on unmount is correct even when the consumer's
+ * `aria-labelledby` already contained that exact token: the referenced element is
+ * removed together with the header, and a token pointing at a now-missing id
+ * contributes nothing to the accessible name. Ids are unique per document, so this
+ * token can only ever refer to the header's heading, never to an independent
+ * consumer element - those keep a different id and are preserved by the filter.
  */
 export const removeDialogAriaLabelledBy = (
 	dialog: HTMLDialogElement | undefined | null,
