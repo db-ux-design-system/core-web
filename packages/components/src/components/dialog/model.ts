@@ -4,6 +4,7 @@ import type {
 	CloseEventProps,
 	CloseEventState,
 	DialogDrawerDefaultState,
+	GeneralEvent,
 	GlobalProps,
 	GlobalState
 } from '../../shared/model';
@@ -56,10 +57,10 @@ export type DBDialogDefaultProps = {
 export type DBDialogProps = DBDialogDefaultProps &
 	GlobalProps &
 	CancelEventProps<HTMLDialogElement> &
-	CloseEventProps<Event>;
+	CloseEventProps<GeneralEvent<HTMLDialogElement>>;
 
 export type DBDialogDefaultState = DialogDrawerDefaultState;
 
 export type DBDialogState = DBDialogDefaultState &
 	GlobalState &
-	CloseEventState<Event>;
+	CloseEventState<GeneralEvent<HTMLDialogElement>>;
