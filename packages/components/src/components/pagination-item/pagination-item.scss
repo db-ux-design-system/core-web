@@ -69,6 +69,7 @@
 			--db-overwrite-cursor: default;
 
 			cursor: default;
+			font-weight: 700;
 			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 		}
 	}
@@ -126,6 +127,12 @@
 		block-size: variables.$db-sizing-sm;
 		min-inline-size: variables.$db-sizing-sm;
 		padding: variables.$db-spacing-fixed-3xs;
+	}
+
+	&[data-variant="filled"] {
+		@include control {
+			font-weight: 700;
+		}
 	}
 
 	&[data-ellipsis]::before,
