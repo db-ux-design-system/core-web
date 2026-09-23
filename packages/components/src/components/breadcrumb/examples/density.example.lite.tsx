@@ -20,7 +20,10 @@ export default function BreadcrumbDensity() {
 				data-sb-ignore="true">
 				Functional
 			</DBInfotext>
-			<DBBreadcrumb data-density="functional" expandText="Show more">
+			<DBBreadcrumb
+				data-density="functional"
+				aria-label="Breadcrumb (Functional)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -41,7 +44,10 @@ export default function BreadcrumbDensity() {
 				data-sb-ignore="true">
 				Regular
 			</DBInfotext>
-			<DBBreadcrumb data-density="regular" expandText="Show more">
+			<DBBreadcrumb
+				data-density="regular"
+				aria-label="Breadcrumb (Regular)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -62,7 +68,10 @@ export default function BreadcrumbDensity() {
 				data-sb-ignore="true">
 				Expressive
 			</DBInfotext>
-			<DBBreadcrumb data-density="expressive" expandText="Show more">
+			<DBBreadcrumb
+				data-density="expressive"
+				aria-label="Breadcrumb (Expressive)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>

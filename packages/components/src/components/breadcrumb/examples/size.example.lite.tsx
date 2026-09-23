@@ -20,7 +20,10 @@ export default function BreadcrumbSize() {
 				data-sb-ignore="true">
 				Small
 			</DBInfotext>
-			<DBBreadcrumb size="small" expandText="Show more">
+			<DBBreadcrumb
+				size="small"
+				aria-label="Breadcrumb (Small)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -41,7 +44,10 @@ export default function BreadcrumbSize() {
 				data-sb-ignore="true">
 				Medium
 			</DBInfotext>
-			<DBBreadcrumb size="medium" expandText="Show more">
+			<DBBreadcrumb
+				size="medium"
+				aria-label="Breadcrumb (Medium)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>

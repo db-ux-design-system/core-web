@@ -20,7 +20,10 @@ export default function BreadcrumbSeparator() {
 				data-sb-ignore="true">
 				Chevron
 			</DBInfotext>
-			<DBBreadcrumb separator="chevron" expandText="Show more">
+			<DBBreadcrumb
+				separator="chevron"
+				aria-label="Breadcrumb (Chevron)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -41,7 +44,10 @@ export default function BreadcrumbSeparator() {
 				data-sb-ignore="true">
 				Slash
 			</DBInfotext>
-			<DBBreadcrumb separator="slash" expandText="Show more">
+			<DBBreadcrumb
+				separator="slash"
+				aria-label="Breadcrumb (Slash)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>

@@ -13,7 +13,7 @@ useMetadata({
 export default function BreadcrumbTruncation() {
 	return (
 		<Fragment>
-			<DBBreadcrumb expandText="Show more">
+			<DBBreadcrumb aria-label="Breadcrumb" expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>

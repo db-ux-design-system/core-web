@@ -20,7 +20,9 @@ export default function BreadcrumbApi() {
 				data-sb-ignore="true">
 				Composition
 			</DBInfotext>
-			<DBBreadcrumb expandText="Show more">
+			<DBBreadcrumb
+				aria-label="Breadcrumb (Composition)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -45,6 +47,7 @@ export default function BreadcrumbApi() {
 				Options API
 			</DBInfotext>
 			<DBBreadcrumb
+				aria-label="Breadcrumb (Options API)"
 				expandText="Show more"
 				items={[
 					{ text: 'Home', href: '/' },

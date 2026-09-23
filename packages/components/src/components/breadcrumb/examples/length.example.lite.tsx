@@ -20,7 +20,9 @@ export default function BreadcrumbLength() {
 				data-sb-ignore="true">
 				4 Items
 			</DBInfotext>
-			<DBBreadcrumb expandText="Show more">
+			<DBBreadcrumb
+				aria-label="Breadcrumb (4 items)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -44,7 +46,9 @@ export default function BreadcrumbLength() {
 				data-sb-ignore="true">
 				7 Items
 			</DBInfotext>
-			<DBBreadcrumb expandText="Show more">
+			<DBBreadcrumb
+				aria-label="Breadcrumb (7 items)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
@@ -77,7 +81,9 @@ export default function BreadcrumbLength() {
 				data-sb-ignore="true">
 				10 Items
 			</DBInfotext>
-			<DBBreadcrumb expandText="Show more">
+			<DBBreadcrumb
+				aria-label="Breadcrumb (10 items)"
+				expandText="Show more">
 				<DBBreadcrumbItem>
 					<a href="/">Home</a>
 				</DBBreadcrumbItem>
