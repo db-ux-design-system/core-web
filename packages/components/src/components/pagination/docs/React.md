@@ -62,10 +62,14 @@ import { Link } from "react-router-dom";
 const App = () => (
 	<DBPagination currentPage={2} onPageChange={(page) => console.log(page)}>
 		<DBPaginationItem>
-			<Link to="/results/1">1</Link>
+			<Link to="/results/1" aria-label="Page 1 of 2">
+				1
+			</Link>
 		</DBPaginationItem>
 		<DBPaginationItem>
-			<Link to="/results/2">2</Link>
+			<Link to="/results/2" aria-label="Page 2 of 2">
+				2
+			</Link>
 		</DBPaginationItem>
 	</DBPagination>
 );
@@ -83,7 +87,8 @@ list, the arrow falls back to reporting the page through `onPageChange`.
 The numbering is automated: the pagination replaces your link's text with the page
 number and moves whatever text you wrote into its `aria-label`, so a `<Link>` reading
 `Go to the results` is announced as written and displayed as `2`. Provide an
-`aria-label` yourself to override the name. The truncation and the responsive
+`aria-label` yourself to override that name, as the example does, because a bare
+number does not name the page in context. The truncation and the responsive
 collapsing are not applied in this mode, because the component cannot know which pages
 your children stand for, and the last page is unknown as well, so the next button
 stays enabled and an out of range request is yours to ignore.

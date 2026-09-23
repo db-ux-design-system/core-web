@@ -103,6 +103,34 @@ const testPagination = () => {
 		expect(requestedPages).toEqual([1]);
 	});
 
+	test('should ignore a click on the decorative ellipsis', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(comp);
+
+		const ellipsisItem = component
+			.locator('li[data-ellipsis*="wide-"]')
+			.first();
+		await expect(ellipsisItem).toBeVisible();
+
+		// The ellipsis is a pseudo-element, so a click on it targets the li.
+		await ellipsisItem.evaluate((item: HTMLElement) => {
+			item.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+		});
+		expect(
+			requestedPage,
+			'a click on the ellipsis reports nothing'
+		).toBeUndefined();
+
+		const ellipsisPage = Number(
+			await ellipsisItem.getAttribute('data-page')
+		);
+		await ellipsisItem.locator('button').click();
+		expect(requestedPage).toBe(ellipsisPage);
+	});
+
 	test('should keep the focus on the page that was activated', async ({
 		mount,
 		page

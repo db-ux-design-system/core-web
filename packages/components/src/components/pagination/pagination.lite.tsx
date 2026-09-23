@@ -379,6 +379,15 @@ export default function DBPagination(props: DBPaginationProps) {
 			if (item.closest('.db-pagination') !== _ref) {
 				return;
 			}
+			/*
+			 * The ellipsis is a ::before/::after on the li, so clicking it
+			 * targets the li itself. Only a click that came from the control
+			 * may report a page.
+			 */
+			const control = target.closest('a, button');
+			if (!control || control.closest('li.db-pagination-item') !== item) {
+				return;
+			}
 			if (
 				target.closest('.db-pagination-previous, .db-pagination-next')
 			) {
