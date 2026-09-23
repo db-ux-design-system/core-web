@@ -25,6 +25,15 @@ const testComponent = () => {
 		await expect(component).toHaveAttribute('role', 'status');
 	});
 
+	test('should derive the alert role from a critical state', async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBLoadingIndicator state="critical">Test</DBLoadingIndicator>
+		);
+		await expect(component).toHaveAttribute('role', 'alert');
+	});
+
 	test('should allow overriding the role', async ({ mount }) => {
 		const component = await mount(
 			<DBLoadingIndicator role="alert">Test</DBLoadingIndicator>
