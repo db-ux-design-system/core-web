@@ -285,8 +285,15 @@ describe('MCP server — stdio transport (modern era, 2026-07-28)', () => {
 	 Guards the generated JSON Schemas, which no longer come from the SDK's own
 	 converter: wrapping the raw shapes in `z.object()` moved that job to zod's
 	 `~standard.jsonSchema`. A zod or SDK bump that drops `description` texts,
-	 changes `additionalProperties`, or falls back to the lossy converter shows up
-	 here instead of silently degrading what hosts see.
+	 loses a `maxLength` or an `enum`, changes which properties are `required`,
+	 or falls back to the lossy converter shows up here instead of silently
+	 degrading what hosts see.
+
+	 It does NOT guard `additionalProperties`: the emitted schemas carry no such
+	 key. `z.toJSONSchema` adds `additionalProperties: false` for a plain
+	 `z.object`, so the SDK's conversion path strips it — a change there would
+	 slip past this snapshot. Making it a real guard would mean rejecting unknown
+	 keys on purpose (`z.strictObject`), which is a separate decision.
 	 */
 	it('emits stable JSON Schemas for the tool inputs', async () => {
 		const { tools } = await client.listTools();
@@ -307,7 +314,7 @@ describe('MCP server — shipped bundle (dist/index.js)', () => {
 	beforeAll(async () => {
 		if (!existsSync(BUNDLE_ENTRY)) {
 			throw new Error(
-				`Bundle not found at ${BUNDLE_ENTRY}. Run "pnpm run build" first ("pnpm run test" does it for you).`
+				`Bundle not found at ${BUNDLE_ENTRY}. Run "pnpm run build" first - the test script no longer builds, so that "pnpm run test" stays read-only.`
 			);
 		}
 

@@ -18,6 +18,17 @@ const MAX_SCAN_SIZE = 5 * 1024 * 1024;
  */
 const REPORT_OVERHEAD = 500;
 
+/**
+ Characters the rendered list of unique component names may occupy in the
+ header.
+
+ The header has to be bounded, not just the findings: a large legacy stylesheet
+ can hold more distinct `cmp-*` / `elm-*` / `rea-*` names than
+ {@link MAX_JSON_OUTPUT} has room for, and an unbounded header would both blow
+ the response limit and eat the entire findings budget.
+ */
+const MAX_COMPONENT_LIST = 2000;
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -275,6 +286,60 @@ function findingsWithinBudget(
 }
 
 /**
+ Renders the note that explains why the findings array is shorter than the
+ count in the header.
+
+ `reported === 0` gets its own wording: telling the caller to "migrate the
+ first 0 findings" would be advice it cannot act on.
+ */
+function renderOmittedNote(reported: number, omitted: number): string {
+	if (reported === 0) {
+		return `> The report is too large to include a single finding; all ${omitted} were omitted. Split the file or migrate it manually, then scan again.`;
+	}
+
+	return `> Listing the first ${reported} findings (sorted by line number); ${omitted} more were omitted to stay within the response limit. Migrate these first, then scan the file again.`;
+}
+
+/**
+ Renders the unique component names for the header, bounded to
+ {@link MAX_COMPONENT_LIST} characters.
+
+ The full count stays in the header regardless, so a truncated list never
+ misrepresents how much the file contains.
+ */
+function renderComponentList(names: string[]): string {
+	if (names.length === 0) {
+		return 'none';
+	}
+
+	const rendered: string[] = [];
+	let size = 0;
+	for (const name of names) {
+		// ", " between two entries.
+		const next = size + name.length + (rendered.length > 0 ? 2 : 0);
+		if (next > MAX_COMPONENT_LIST) {
+			break;
+		}
+
+		rendered.push(name);
+		size = next;
+	}
+
+	const omitted = names.length - rendered.length;
+	if (omitted === 0) {
+		return rendered.join(', ');
+	}
+
+	// Every single name already exceeds the cap - report the count only rather
+	// than emitting a list that would have to be cut mid-identifier.
+	if (rendered.length === 0) {
+		return `${names.length} distinct names, too long to list`;
+	}
+
+	return `${rendered.join(', ')}, ... (+${omitted} more)`;
+}
+
+/**
  Renders the scan report: a summary header plus the findings as JSON.
  */
 function buildReport(
@@ -298,7 +363,7 @@ function buildReport(
 	const header = [
 		`## Migration Scan: ${absolutePath}`,
 		`**${findings.length} findings** in ${lineCount} lines:`,
-		`- ${componentCount} component(s): ${uniqueComponents.join(', ') || 'none'}`,
+		`- ${componentCount} component(s): ${renderComponentList(uniqueComponents)}`,
 		`- ${colorCount} color token(s)`,
 		`- ${iconCount} icon(s)`,
 		`- ${importCount} legacy import(s)`
@@ -308,19 +373,23 @@ function buildReport(
 	// the text would cut the JSON mid-object and leave the fenced block
 	// unterminated, so the caller could not parse a single finding while the
 	// header still claimed the full count.
+	//
+	// Clamped at 0: the header is bounded but not tiny, so a budget computed
+	// from it can still come out negative, and a negative budget must mean
+	// "no room" rather than wrap into nonsense.
 	const reported = findingsWithinBudget(
 		findings,
-		MAX_JSON_OUTPUT - header.join('\n').length - REPORT_OVERHEAD
+		Math.max(
+			0,
+			MAX_JSON_OUTPUT - header.join('\n').length - REPORT_OVERHEAD
+		)
 	);
 	const omitted = findings.length - reported.length;
 
 	const summary = [
 		...header,
 		...(omitted > 0
-			? [
-					'',
-					`> Listing the first ${reported.length} findings (sorted by line number); ${omitted} more were omitted to stay within the response limit. Migrate these first, then scan the file again.`
-				]
+			? ['', renderOmittedNote(reported.length, omitted)]
 			: []),
 		'',
 		'## Findings',

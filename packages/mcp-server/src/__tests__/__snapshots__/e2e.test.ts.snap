@@ -97,13 +97,12 @@ exports[`MCP server — stdio transport (modern era, 2026-07-28) > emits stable 
         "type": "string",
       },
       "framework": {
-        "description": "Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'",
+        "description": "Target framework: 'react', 'angular', 'vue' or 'web-components'",
         "enum": [
           "react",
           "angular",
           "vue",
           "web-components",
-          "html",
         ],
         "type": "string",
       },

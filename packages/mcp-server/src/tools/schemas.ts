@@ -46,17 +46,20 @@ export const listIconsSchema = {
 
 export const getExampleCodeSchema = {
 	description:
-		'Returns the generated framework-specific source code for a component example. For Angular, the template is inline inside the @Component decorator within the .ts file.',
+		'Returns the generated framework-specific source code for a component example. For Angular, the template is inline inside the @Component decorator within the .ts file. Plain HTML has no generated examples - use docs_search with docType "HTML" for that.',
 	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'"),
 		exampleName: z
 			.string()
 			.max(100)
 			.describe("Readable example name, e.g. 'Show Icon Leading'"),
+		// Narrowed to the frameworks that actually have generated examples
+		// (`ExampleCodeFramework`). Offering 'html' or 'vanilla' here would
+		// advertise a value the handler can only answer with an error.
 		framework: z
-			.enum(['react', 'angular', 'vue', 'web-components', 'html'])
+			.enum(['react', 'angular', 'vue', 'web-components'])
 			.describe(
-				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'"
+				"Target framework: 'react', 'angular', 'vue' or 'web-components'"
 			)
 	})
 };

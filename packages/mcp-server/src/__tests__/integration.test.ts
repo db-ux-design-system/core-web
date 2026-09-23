@@ -62,7 +62,7 @@ vi.mock('node:fs/promises', async (importOriginal) => {
 	};
 });
 
-const { resolveSafePath } = await import('../utils/index.js');
+const { resolveSafePath, MAX_JSON_OUTPUT } = await import('../utils/index.js');
 const { resetTokensCache } = await import('../tools/tokens.js');
 const {
 	handleListComponents,
@@ -1419,9 +1419,9 @@ describe('handleScanV2Migration', () => {
 	});
 
 	/**
-	 The scanner routes its input through resolveSafePath, which collapses
-	 percent-encoding before resolving. Its own former startsWith() check saw
-	 only the encoded literal and let it through as a filename.
+	 The scanner routes its input through resolveSafePath, which validates the
+	 percent-decoded form as well. Its own former startsWith() check saw only the
+	 encoded literal and let it through as a filename.
 	 */
 	it('🔒 rejects percent-encoded directory climbing', async () => {
 		const result = await handleScanV2Migration({
@@ -1447,6 +1447,66 @@ describe('handleScanV2Migration', () => {
 
 			expect(result.isError).toBeUndefined();
 			expect(text(result.content[0])).toContain('elm-button');
+		} finally {
+			unlinkSync(temporary);
+		}
+	});
+
+	/**
+	 Percent-decoding validates, it does not rewrite: a sequence that decodes to
+	 a *different valid* name must still address the file the caller named.
+	 Resolving the decoded form instead would silently turn 'a%20b' into 'a b'
+	 and report the file the caller asked for as missing.
+	 */
+	it('reads a filename whose percent sequence decodes to another valid name', async () => {
+		const { unlinkSync } = await import('node:fs');
+		const temporary = writeCwdTemporary(
+			'a%20b',
+			'<elm-button>Click</elm-button>'
+		);
+
+		try {
+			const result = await handleScanV2Migration({ filePath: temporary });
+
+			expect(result.isError).toBeUndefined();
+			expect(text(result.content[0])).toContain('elm-button');
+		} finally {
+			unlinkSync(temporary);
+		}
+	});
+
+	/**
+	 Regression guard: the header lists every unique component name, so a file
+	 with enough distinct ones used to push the whole response past the output
+	 limit on its own — and drive the findings budget negative, which produced a
+	 report advising the caller to "migrate the first 0 findings".
+	 */
+	it('bounds the report when the header lists a huge number of unique components', async () => {
+		const { unlinkSync } = await import('node:fs');
+		const distinct = 4000;
+		const temporary = writeCwdTemporary(
+			'unique',
+			Array.from(
+				{ length: distinct },
+				(_, index) =>
+					`<elm-widget-variant-${index}>x</elm-widget-variant-${index}>`
+			).join('\n')
+		);
+
+		try {
+			const result = await handleScanV2Migration({ filePath: temporary });
+			const report = text(result.content[0]);
+
+			expect(result.isError).toBeUndefined();
+			expect(report.length).toBeLessThanOrEqual(MAX_JSON_OUTPUT);
+			expect(report).toContain('more)');
+			expect(report).not.toContain('Listing the first 0 findings');
+
+			const json = report.slice(
+				report.indexOf('```json') + 7,
+				report.lastIndexOf('```')
+			);
+			expect(() => JSON.parse(json) as unknown).not.toThrow();
 		} finally {
 			unlinkSync(temporary);
 		}

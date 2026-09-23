@@ -152,6 +152,10 @@ export async function handleGetExampleCode({
 				if (!comp) {
 					return error(COMPONENT_NOT_FOUND_MSG(componentName));
 				}
+				// Unreachable through the tool schema, which only offers the four
+				// frameworks with generated examples. Kept because this handler is
+				// exported from the package root, so a library caller can still
+				// pass the two `Framework` values that have no example code.
 				if (framework === 'html' || framework === 'vanilla') {
 					return error(
 						"Error: HTML/vanilla examples are not available in the manifest. Refer to the component's docs/HTML.md file in the source repository for plain HTML usage."

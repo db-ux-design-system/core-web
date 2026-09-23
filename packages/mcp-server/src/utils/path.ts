@@ -45,45 +45,81 @@ function findPackageRoot(): string {
 	);
 }
 
+let assetsDir: string | undefined;
+
 /**
  Absolute path to the package's `assets/` directory.
 
- Runtime asset reads must go through this constant. Deriving the path with a
+ Runtime asset reads must go through this helper. Deriving the path with a
  fixed `../../assets` is correct for the sources but points one level outside
  the package once bundled — which made the visuals tools report an empty
  directory and the design-token tool silently fall back to raw SCSS.
+
+ Resolved lazily and memoised rather than computed at module scope: this module
+ is imported transitively by everything, including the publicly exported
+ {@link resolveSafePath}, so a module-level constant would put up to 8
+ `existsSync` calls and a possible throw into the import of any consumer —
+ before a handler exists that could turn the failure into a readable result.
+ Fail-fast behaviour is unchanged, it just moves to first use.
+
+ @throws {Error} When no package root is found within the search depth.
  */
-export const ASSETS_DIR = join(findPackageRoot(), 'assets');
+export function getAssetsDir(): string {
+	assetsDir ??= join(findPackageRoot(), 'assets');
+
+	return assetsDir;
+}
 
 /**
- Resolves a user-supplied path relative to a base directory and ensures the
- result stays strictly within that base (path traversal protection).
+ Collapses URL-encoded sequences repeatedly until stable, so double-encoding
+ (%252F -> %2F -> /) cannot hide a traversal from the containment check.
 
- Decodes URL-encoded sequences repeatedly until stable to defeat double-encoding
- bypass attempts (e.g. %252F → %2F → /).
-
- @throws {Error} When the resolved path escapes the base directory.
+ Returns the input unchanged when it contains a malformed escape sequence: a
+ literal '%' in a real filename makes decodeURIComponent throw, and that must
+ not be mistaken for an attack.
  */
-export function resolveSafePath(baseDir: string, userPath: string): string {
-	const absoluteBase = normalize(resolve(baseDir));
+function decodeFully(userPath: string): string {
 	let decoded = userPath;
 	try {
 		while (decoded !== decodeURIComponent(decoded)) {
 			decoded = decodeURIComponent(decoded);
 		}
 	} catch {
-		// A malformed escape sequence makes decodeURIComponent throw — a literal
-		// '%' in a real filename does exactly that. Treating it as a traversal
-		// attempt would reject legitimate paths, so the raw input is used and
-		// still has to pass the containment check below. An undecoded string can
-		// only ever name a file inside the base, never escape it.
-		decoded = userPath;
+		return userPath;
 	}
 
-	const absoluteRequested = normalize(resolve(baseDir, decoded));
+	return decoded;
+}
+
+/** Whether `candidate` is the base directory itself or sits below it. */
+function isContained(absoluteBase: string, candidate: string): boolean {
+	return (
+		candidate === absoluteBase || candidate.startsWith(absoluteBase + '/')
+	);
+}
+
+/**
+ Resolves a user-supplied path relative to a base directory and ensures the
+ result stays strictly within that base (path traversal protection).
+
+ The percent-decoded form is *validated* but never used for the returned path.
+ Decoding is a guard against a caller that hands over a URL-derived string, not
+ a path-rewriting step: at the filesystem layer `%2E%2E%2F` is a literal filename
+ inside the base, so rewriting it would turn a legitimate name such as
+ `report%20final.tsx` into a different file (`report final.tsx`) and report the
+ original as missing. Both forms therefore have to pass the containment check,
+ and the raw one is what gets returned.
+
+ @throws {Error} When the resolved path escapes the base directory.
+ */
+export function resolveSafePath(baseDir: string, userPath: string): string {
+	const absoluteBase = normalize(resolve(baseDir));
+	const absoluteRequested = normalize(resolve(baseDir, userPath));
+	const absoluteDecoded = normalize(resolve(baseDir, decodeFully(userPath)));
+
 	if (
-		!absoluteRequested.startsWith(absoluteBase + '/') &&
-		absoluteRequested !== absoluteBase
+		!isContained(absoluteBase, absoluteRequested) ||
+		!isContained(absoluteBase, absoluteDecoded)
 	) {
 		throw new Error('Path traversal detected');
 	}
