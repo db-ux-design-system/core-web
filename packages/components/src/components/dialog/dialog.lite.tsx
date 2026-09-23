@@ -77,7 +77,6 @@ export default function DBDialog(props: DBDialogProps) {
 
 	onMount(() => {
 		state.resetId();
-		connectCloseButton(_ref);
 		// BEGIN: dialog ponyfill
 		markClosedByFallback(_ref);
 		// A non-modal dialog does not trap focus, so an Escape can be dispatched to
