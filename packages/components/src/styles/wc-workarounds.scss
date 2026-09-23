@@ -7,6 +7,14 @@
 	}
 }
 
+// The overlay loading-indicator needs to inherit the border-radius through the
+// display: contents host. Scope this to db-loading-indicator only, so we don't
+// change how `border-radius: inherit` resolves for descendants of every other
+// custom element repo-wide.
+db-loading-indicator {
+	border-radius: inherit;
+}
+
 db-notification {
 	inline-size: inherit;
 }
