@@ -103,6 +103,18 @@ updates:
         patterns:
           - "vitest"
           - "@vitest*"
+      # MCP SDK: all v2 packages share one version number and pin
+      # @modelcontextprotocol/core to an exact version, so a one-sided bump
+      # resolves two incompatible core copies into the tree.
+      #
+      # zod belongs in the same group: the SDK declares "zod": "^4.2.0" while
+      # @db-ux/mcp-server pins it exactly. Bumping only one side lets the
+      # resolver put a second zod copy into the bundle, and the tool schemas
+      # must come from the same copy the SDK converts them with.
+      modelcontextprotocol:
+        patterns:
+          - "@modelcontextprotocol*"
+          - "zod"
       # Development tools
       typescript:
         patterns:
