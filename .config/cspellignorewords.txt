@@ -58,8 +58,13 @@ Telerik
 Mistica
 stylised
 colour
+colours
 summarised
 customised
+emphasised
+synthesised
+neighbour
+neighbouring
 selectpanel
 selectmultiple
 Dismissable

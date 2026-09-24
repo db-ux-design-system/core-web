@@ -9,6 +9,8 @@ export type ComponentType = {
 		| 'dialog-footer'
 		| 'dialog-header'
 		| 'dialog'
+		| 'pagination'
+		| 'pagination-item'
 		| 'footer'
 		| 'footer-meta'
 		| 'footer-content'

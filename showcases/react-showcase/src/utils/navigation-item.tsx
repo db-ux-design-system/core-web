@@ -25,6 +25,7 @@ import LoadingIndicatorShowcase from '@components/components/loading-indicator/s
 import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
 import SectionShowcase from '@components/components/section/showcase/section.showcase';
@@ -119,6 +120,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'navigation',
 				label: 'Navigation',
 				component: <NavigationShowcase />
+			},
+			{
+				path: 'pagination',
+				label: 'Pagination',
+				component: <PaginationShowcase />
 			},
 			{
 				path: 'brand',
