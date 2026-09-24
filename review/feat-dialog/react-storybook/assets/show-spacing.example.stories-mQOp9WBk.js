@@ -1,0 +1,31 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{n,t as r}from"./button-M35f1ZpF.js";import{n as i,t as a}from"./drawer-header-C-xbuqZa.js";import{n as o,t as s}from"./drawer-C_At2Azj.js";var c,l,u,d,f,p;function m(){return(m=e((()=>{n(),i(),o(),c=t(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBDrawer/Show Spacing`,component:s,parameters:{layout:`centered`},tags:[`autodocs`],args:{onClose:l(),onCancel:l()},argTypes:{open:{control:`boolean`},containerSize:{control:`select`,options:[`small`,`medium`,`large`,`full`]},rounded:{control:`boolean`},showSpacing:{control:`boolean`},backdrop:{control:`select`,options:[`none`,`strong`,`weak`,`invisible`]},direction:{control:`select`,options:[`to-left`,`to-right`,`up`,`down`]},variant:{control:`select`,options:[`modal`,`inside`]},position:{control:`select`,options:[`fixed`,`absolute`]},id:{control:`text`},autofocus:{control:`boolean`},onClose:{action:`onClose`},onCancel:{action:`onCancel`}}},d={args:{containerSize:`full`,propOverrides:{id:`drawer-spacing-with`},showSpacing:!0,header:(0,c.jsx)(a,{closeButtonText:`Close`,children:(0,c.jsx)(`h2`,{children:`(Default) With Spacing`})}),children:`(Default) With Spacing`},render:e=>(0,c.jsxs)(`div`,{children:[(0,c.jsx)(r,{command:`show-modal`,commandfor:`drawer-spacing-with`,children:`Open: (Default) With Spacing`}),(0,c.jsx)(s,{...e})]})},f={args:{containerSize:`full`,propOverrides:{id:`drawer-spacing-without`},showSpacing:!1,header:(0,c.jsx)(a,{closeButtonText:`Close`,children:(0,c.jsx)(`h2`,{children:`Without Spacing`})}),children:`Without Spacing`},render:e=>(0,c.jsxs)(`div`,{children:[(0,c.jsx)(r,{command:`show-modal`,commandfor:`drawer-spacing-without`,children:`Open: Without Spacing`}),(0,c.jsx)(s,{...e})]})},p=[`DefaultWithSpacing`,`WithoutSpacing`],d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "containerSize": "full",
+    "propOverrides": {
+      id: 'drawer-spacing-with'
+    },
+    "showSpacing": true,
+    "header": <DBDrawerHeader closeButtonText="Close">
+                            <h2>(Default) With Spacing</h2>
+                        </DBDrawerHeader>,
+    "children": "(Default) With Spacing"
+  },
+  render: (properties: any) => <div><DBButton command="show-modal" commandfor="drawer-spacing-with">
+                    Open: (Default) With Spacing
+                </DBButton><DBDrawer {...properties} /></div>
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "containerSize": "full",
+    "propOverrides": {
+      id: 'drawer-spacing-without'
+    },
+    "showSpacing": false,
+    "header": <DBDrawerHeader closeButtonText="Close">
+                            <h2>Without Spacing</h2>
+                        </DBDrawerHeader>,
+    "children": "Without Spacing"
+  },
+  render: (properties: any) => <div><DBButton command="show-modal" commandfor="drawer-spacing-without">
+                    Open: Without Spacing
+                </DBButton><DBDrawer {...properties} /></div>
+}`,...f.parameters?.docs?.source}}}})))()}m();export{d as DefaultWithSpacing,f as WithoutSpacing,p as __namedExportsOrder,u as default};

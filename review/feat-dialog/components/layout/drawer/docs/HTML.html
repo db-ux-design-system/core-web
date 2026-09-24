@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-dialog/_next/static/css/1e15c7a992010238.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-dialog/_next/static/css/1e15c7a992010238.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-dialog/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-dialog/_next/static/chunks/webpack-bb878476bc8feb93.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/main-baf3340bae6794e4.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/_app-b874b5b10c55f2d8.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/components/layout/drawer/docs/HTML-022478b2ce78db47.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/tp-O-huaHXUVaOmQfMHcw/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/tp-O-huaHXUVaOmQfMHcw/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-dialog/components/layout/drawer/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/feat-dialog/_next/static/css/7e7127317a660865.css" as="style"/><link rel="stylesheet" href="/core-web/review/feat-dialog/_next/static/css/7e7127317a660865.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/feat-dialog/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/feat-dialog/_next/static/chunks/webpack-bb878476bc8feb93.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/main-baf3340bae6794e4.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/_app-b874b5b10c55f2d8.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/chunks/pages/components/layout/drawer/docs/HTML-58fd9f4a0a89b2d0.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/_jf-_TT4IK1o7i2x-a9EQ/_buildManifest.js" defer=""></script><script src="/core-web/review/feat-dialog/_next/static/_jf-_TT4IK1o7i2x-a9EQ/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="html">HTML<a class="header-link" href="/core-web/review/feat-dialog/components/layout/drawer/docs/HTML?current=html"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>html<!-- --> anchor link</a></h2>
 <p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/core-components">components</a> package.</p>
 <h3 id="general">General<a class="header-link" href="/core-web/review/feat-dialog/components/layout/drawer/docs/HTML?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
 <p>If you use <code>containerSize !== full</code> you are able to overwrite the <code>max-width</code> with <code>--db-drawer-max-width:</code> CSS variable.</p>
@@ -40,7 +40,7 @@ or wire a <a target="_blank" referrerPolicy="no-referrer" href="https://develope
 		aria-labelledby=&quot;my-drawer-heading&quot;
 	&gt;
 		&lt;article class=&quot;db-drawer-container&quot;&gt;
-			&lt;div class=&quot;db-drawer-header&quot;&gt;
+			&lt;header class=&quot;db-drawer-header&quot;&gt;
 				&lt;div id=&quot;my-drawer-heading&quot; class=&quot;db-drawer-header-content&quot;&gt;
 					&lt;h2&gt;Drawer title&lt;/h2&gt;
 				&lt;/div&gt;
@@ -54,7 +54,7 @@ or wire a <a target="_blank" referrerPolicy="no-referrer" href="https://develope
 				&gt;
 					Close
 				&lt;/button&gt;
-			&lt;/div&gt;
+			&lt;/header&gt;
 			&lt;div class=&quot;db-drawer-content&quot;&gt;My Drawer content&lt;/div&gt;
 		&lt;/article&gt;
 	&lt;/dialog&gt;
@@ -64,6 +64,7 @@ or wire a <a target="_blank" referrerPolicy="no-referrer" href="https://develope
 <p>Two fallbacks ship for browser features that our <a target="_blank" referrerPolicy="no-referrer" href="https://browsersl.ist">Browserslist</a> targets do not fully cover yet
 (currently blocked by Firefox ESR). Both live in dedicated files so they can be deleted in one step.</p>
 <table class="static-table"><thead><tr><th>File</th><th>Missing feature</th><th>Deleted when</th><th>Behaviour without native support</th></tr></thead><tbody><tr><td><code>utils/dialog/ponyfill.ts</code></td><td><code>closedby</code> attribute and Invoker Commands</td><td>every Browserslist target supports both features</td><td><code>data-closedby=&quot;not-supported&quot;</code> is set on the drawer, and a click on a <code>command=&quot;request-close&quot;</code> button calls <code>requestClose()</code> on the drawer itself</td></tr><tr><td><code>styles/internal/_dialog-ponyfill.scss</code></td><td><code>closedby</code> attribute</td><td>every Browserslist target supports <code>closedby</code></td><td>the close button gets a hit area covering the area outside the drawer box, so clicking the backdrop still closes the drawer</td></tr></tbody></table>
+<p>The <code>utils/dialog/ponyfill.ts</code> fallback covers a <code>command=&quot;request-close&quot;</code> button that sits <strong>inside</strong> the drawer (the built-in close button and any request-close control you place in the header or content). It does <strong>not</strong> cover an external invoker placed outside the drawer (e.g. <code>&lt;button command=&quot;request-close&quot; commandfor=&quot;my-drawer&quot;&gt;</code> elsewhere on the page): its click never reaches the drawer&#x27;s listener, so in browsers without Invoker Commands support it does nothing. Native support handles external invokers, and for unsupported targets you wire them yourself with the feature-detection fallback shown below.</p>
 <p>If you do need to provide support for <a target="_blank" referrerPolicy="no-referrer" href="https://caniuse.com/wf-invoker-commands">browser versions that haven&#x27;t implemented Invoker Commands</a>, add a feature detection fallback in JavaScript (see example below) or the <a target="_blank" referrerPolicy="no-referrer" href="https://github.com/keithamus/invokers-polyfill">polyfill <code>invokers-polyfill</code></a>.</p>
 <p>In plain HTML you wire these fallbacks yourself: mark the drawer when <code>closedby</code> is unsupported (so the CSS backdrop fallback applies) and fall back to event handlers when Invoker Commands are unsupported:</p>
 <pre><code class="language-html">&lt;!-- index.html --&gt;
@@ -84,13 +85,19 @@ or wire a <a target="_blank" referrerPolicy="no-referrer" href="https://develope
 		 * position=&quot;absolute&quot;, opened via show()) does not dismiss on Escape
 		 * natively - only modal drawers (showModal()) do - and without
 		 * `closedby` the browser adds no light-dismiss. Close it on Escape
-		 * yourself. Modal drawers keep their native Escape behaviour, so only
-		 * step in when the drawer is not `:modal`.
+		 * yourself. Register at DOCUMENT scope, not on the drawer: a non-modal
+		 * drawer does not trap focus, so once focus moves to a control outside
+		 * it, Escape fires on that element and an element-scoped listener would
+		 * never run. Guard so it acts only while the drawer is open, only when
+		 * it is not `:modal` (modal drawers keep their native Escape), and not
+		 * when the Escape landed inside another dialog.
 		 */
-		drawer?.addEventListener(&quot;keydown&quot;, (event) =&gt; {
-			if (event.key === &quot;Escape&quot; &amp;&amp; !drawer.matches(&quot;:modal&quot;)) {
-				drawer.requestClose?.();
-			}
+		document.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+			if (event.key !== &quot;Escape&quot; || !drawer?.open) return;
+			if (drawer.matches(&quot;:modal&quot;)) return;
+			const targetDialog = event.target?.closest?.(&quot;dialog&quot;);
+			if (targetDialog &amp;&amp; targetDialog !== drawer) return;
+			drawer.requestClose?.();
 		});
 	}
 
@@ -118,4 +125,4 @@ or wire a <a target="_blank" referrerPolicy="no-referrer" href="https://develope
 			});
 	}
 &lt;/script&gt;
-</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/HTML","query":{},"buildId":"tp-O-huaHXUVaOmQfMHcw","assetPrefix":"/core-web/review/feat-dialog","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/HTML","query":{},"buildId":"_jf-_TT4IK1o7i2x-a9EQ","assetPrefix":"/core-web/review/feat-dialog","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
