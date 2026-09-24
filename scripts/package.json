@@ -90,8 +90,8 @@
     "publint": "0.3.24",
     "replace-in-file": "9.0.0",
     "typedoc": "0.28.20",
-    "typedoc-plugin-markdown": "4.13.0",
+    "typedoc-plugin-markdown": "4.13.1",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "5.0.0"
+    "vitest": "5.0.1"
   }
 }
