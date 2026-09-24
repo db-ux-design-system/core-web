@@ -21,7 +21,7 @@ export const applyShowModalFallback = async (
 
 		const id = button.getAttribute('commandfor') ?? '';
 		const referenced =
-			id === '' ? null : button.ownerDocument.getElementById(id);
+			id === '' ? null : button.ownerDocument.querySelector('#' + id);
 		// In the Angular/Stencil outputs `commandfor` may resolve to the
 		// `display: contents` custom-element host (`<db-dialog>`) rather than the
 		// native `<dialog>` it wraps, so `showModal` would be missing. Resolve the
