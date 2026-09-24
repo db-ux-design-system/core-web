@@ -12,12 +12,13 @@ Concrete use cases:
 
 ## Tech Stack
 
-| Technology                      | Purpose                                                                                  |
-| ------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Node.js** (≥ 22)              | Runtime environment                                                                      |
-| **TypeScript**                  | Type safety, consistent with the rest of the monorepo                                    |
-| **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
-| **`esbuild`**                   | Production build into a single standalone ESM bundle                                     |
+| Technology                         | Purpose                                                                                                    |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Node.js** (≥ 22)                 | Runtime environment                                                                                        |
+| **TypeScript**                     | Type safety, consistent with the rest of the monorepo                                                      |
+| **`@modelcontextprotocol/server`** | Official MCP TypeScript SDK v2 — provides `McpServer`, the stdio serving entry, and tool/prompt primitives |
+| **`@modelcontextprotocol/client`** | SDK v2 client, used by the stdio E2E test only (dev dependency)                                            |
+| **`esbuild`**                      | Production build into a single standalone ESM bundle                                                       |
 
 ## Monorepo Structure (relevant to this server)
 
@@ -203,7 +204,7 @@ Always normalize paths (convert `\` to `/`) before string comparisons like `.inc
 
 ## Communication
 
-The server uses `StdioServerTransport` from the MCP SDK. It is started as a child process by the MCP client:
+The server is served with `serveStdio` from the MCP SDK, which owns the stdio transport and decides each connection's protocol era from the opening exchange: the 2025 era (`initialize` handshake) and 2026-07-28 (`server/discover` probe) are both served from the same factory. It is started as a child process by the MCP client:
 
 ```json
 {

@@ -39,6 +39,14 @@ jobs:
       - name: 🏗️ Pre-build @db-ux/core-eslint-plugin
         run: pnpm --filter @db-ux/core-eslint-plugin run build
 
+      # The orchestrator's test:mcp-server check drives dist/index.js and the
+      # generated src/manifest.json, and the mcp-server test script no longer
+      # builds them. Build here rather than inside the check so the artifacts
+      # exist before the parallel checks start - a build during the checks would
+      # race check:format, which prettier-scans the whole tree.
+      - name: 🏗️ Pre-build @db-ux/mcp-server
+        run: pnpm --filter @db-ux/mcp-server run build
+
       - name: 🏗️ Pre-build nuxt-showcase (nuxt:prepare)
         run: pnpm --filter nuxt-showcase run nuxt:prepare
 
