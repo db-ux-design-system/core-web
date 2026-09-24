@@ -35,7 +35,13 @@ const undefinedValue = ref<string | undefined>("reset-me");
 	</FormWrapper>
 	<fieldset>
 		<legend>Reset to undefined</legend>
-		<DBInput label="Undefined reset" :value="undefinedValue" />
+		<!--
+			Two-way bound on purpose: with a one-way `:value` the typed value
+			would not flow back into `undefinedValue`, so a second reset would
+			assign `undefined` to a ref that already holds `undefined` and the
+			field would not be cleared.
+		-->
+		<DBInput label="Undefined reset" v-model:value="undefinedValue" />
 		<DBButton
 			data-testid="unset-value-button"
 			@click="undefinedValue = undefined"

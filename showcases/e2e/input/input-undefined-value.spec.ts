@@ -63,4 +63,25 @@ test.describe('DBInput undefined value', () => {
 
 		await expect(input).toHaveValue('');
 	});
+
+	test('keeps clearing on every reset, not just the first one', async ({
+		page
+	}) => {
+		const input = getInput(page);
+		const resetButton = page.getByTestId('unset-value-button');
+
+		await resetButton.click({ force: true });
+		await expect(input).toHaveValue('');
+
+		// The second round is the interesting one: it only works while the
+		// consumer's bound value follows the user's input, so that resetting it
+		// is an actual change. With a one-way binding the bound value would
+		// still hold the reset value from the first round and nothing would
+		// reach the element.
+		await input.fill('typed again');
+		await expect(input).toHaveValue('typed again');
+
+		await resetButton.click({ force: true });
+		await expect(input).toHaveValue('');
+	});
 });
