@@ -20,20 +20,14 @@ export const applyShowModalFallback = async (
 		}
 
 		const id = button.getAttribute('commandfor') ?? '';
-		const referenced =
-			id === '' ? null : button.ownerDocument.getElementById(id);
-		// In the Angular/Stencil outputs `commandfor` may resolve to the
-		// `display: contents` custom-element host (`<db-dialog>`) rather than the
-		// native `<dialog>` it wraps, so `showModal` would be missing. Resolve the
-		// native dialog: the referenced element itself if it is one, otherwise the
-		// nested `<dialog>`.
-		const dialog =
-			referenced instanceof HTMLDialogElement
-				? referenced
-				: (referenced?.querySelector<HTMLDialogElement>('dialog') ??
-					null);
-		if (dialog && !dialog.open) {
-			dialog.showModal();
+		const target =
+			id === ''
+				? null
+				: button.ownerDocument.querySelector<HTMLDialogElement>(
+						`#${id}`
+					);
+		if (target && typeof target.showModal === 'function' && !target.open) {
+			target.showModal();
 		}
 	});
 };
