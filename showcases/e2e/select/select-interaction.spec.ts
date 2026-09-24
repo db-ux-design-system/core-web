@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { runInteractionTest } from '../default.ts';
+import { getControlByRole, runInteractionTest } from '../default.ts';
 
 const path = '03/select';
 
@@ -8,15 +8,16 @@ test.describe('DBSelect', () => {
 		title: 'should change on select',
 		path,
 		example: 'Interaction',
-		async run({ content }) {
+		async run({ page, content }) {
 			// DBSelect's root is a wrapping <div>, the actual <select> is a
-			// sibling of the <label> inside it. In Vue, data-testid lands on
-			// that root div (single-root attrs fallthrough), not on the
-			// select - scope through the testid, then reach it by role.
-			await content
-				.getByTestId('select-change')
-				.getByRole('combobox')
-				.selectOption({ label: 'Test1' });
+			// sibling of the <label> inside it. Depending on the framework the
+			// data-testid lands on the wrapper (Vue) or on the select itself
+			// (React/Angular/Stencil), so resolve the control across both.
+			await getControlByRole(
+				page,
+				content.getByTestId('select-change'),
+				'combobox'
+			).selectOption({ label: 'Test1' });
 			await expect(content.getByTestId('select-result')).toHaveText(
 				'test1'
 			);
@@ -27,10 +28,12 @@ test.describe('DBSelect', () => {
 		title: 'should keep the selection while validating on input',
 		path,
 		example: 'Interaction',
-		async run({ content }) {
-			const select = content
-				.getByTestId('select-required')
-				.getByRole('combobox');
+		async run({ page, content }) {
+			const select = getControlByRole(
+				page,
+				content.getByTestId('select-required'),
+				'combobox'
+			);
 
 			// Validating on `input` flips internal state as soon as the value
 			// became valid. The re-render that follows re-applies the `value`

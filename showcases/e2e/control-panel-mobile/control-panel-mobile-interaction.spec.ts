@@ -16,11 +16,18 @@ test.describe('DBControlPanelMobile', () => {
 		await waitForDBShell(page);
 	});
 
+	// The showcase page renders many control panels (one per example), so the
+	// unscoped `dialog` / `.db-control-panel-mobile-button` locators would be
+	// strict-mode ambiguous. Scope every scenario to the first control panel
+	// rendered inside #main-content and reach its button and drawer from there.
 	test('clicking the burger button should open the drawer', async ({
 		page
 	}) => {
-		const burgerButton = page.locator('.db-control-panel-mobile-button');
-		const dialog = page.locator('dialog');
+		const panel = page
+			.locator('#main-content .db-control-panel-mobile')
+			.first();
+		const burgerButton = panel.locator('.db-control-panel-mobile-button');
+		const dialog = panel.locator('dialog');
 		await expect(dialog).not.toHaveAttribute('open');
 
 		await burgerButton.click();
@@ -29,8 +36,11 @@ test.describe('DBControlPanelMobile', () => {
 	});
 
 	test('pressing Escape should close the drawer', async ({ page }) => {
-		const burgerButton = page.locator('.db-control-panel-mobile-button');
-		const dialog = page.locator('dialog');
+		const panel = page
+			.locator('#main-content .db-control-panel-mobile')
+			.first();
+		const burgerButton = panel.locator('.db-control-panel-mobile-button');
+		const dialog = panel.locator('dialog');
 		await burgerButton.click();
 		await expect(dialog).toHaveAttribute('open');
 
@@ -41,15 +51,20 @@ test.describe('DBControlPanelMobile', () => {
 	test('clicking a navigation item should close the drawer', async ({
 		page
 	}) => {
-		const burgerButton = page.locator('.db-control-panel-mobile-button');
-		const dialog = page.locator('dialog');
+		const panel = page
+			.locator('#main-content .db-control-panel-mobile')
+			.first();
+		const burgerButton = panel.locator('.db-control-panel-mobile-button');
+		const dialog = panel.locator('dialog');
 		await burgerButton.click();
 		await expect(dialog).toHaveAttribute('open');
 
-		const navLink = page.locator(
-			'dialog .db-control-panel-navigation-item a'
-		);
+		const navLink = dialog.locator('.db-control-panel-navigation-item a');
 		await navLink.first().click();
-		await expect(dialog).not.toHaveAttribute('open');
+		// The drawer closes on navigation-item click. The showcase's demo link
+		// points at `#`, which also re-renders `#main-content`, so the drawer
+		// may be detached rather than just have its `open` attribute removed -
+		// `not.toBeVisible()` covers both a closed and a detached dialog.
+		await expect(dialog).not.toBeVisible();
 	});
 });

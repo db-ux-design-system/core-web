@@ -69,6 +69,39 @@ export type InteractionTestType = {
 	}) => Promise<void>;
 } & DefaultTestType;
 
+/**
+ Resolves a form control by role when the `data-testid` may sit on either the
+ control itself or a wrapping ancestor, depending on the framework output.
+
+ `data-*` attributes forward to the element carrying the component `_ref` - the
+ native control (`<input>`, `<select>`, `<textarea>`) in the React, Angular and
+ Stencil outputs. Vue's single-root attribute fallthrough instead lands them on
+ the component's wrapping root element, so the control is a descendant there.
+
+ `scope.getByRole(role)` matches the descendant control (Vue); the
+ `scope.and(page.getByRole(role))` branch matches `scope` itself when it is the
+ control (React/Angular/Stencil). Exactly one branch resolves in each output, so
+ the returned locator is unambiguous across every framework showcase.
+ */
+export const getControlByRole = (
+	page: Page,
+	scope: Locator,
+	role: Parameters<Locator['getByRole']>[0]
+): Locator => scope.getByRole(role).or(scope.and(page.getByRole(role)));
+
+/**
+ CSS-selector counterpart to `getControlByRole`, for controls matched by an
+ attribute selector (e.g. `input[type="file"]`) rather than an ARIA role.
+ Resolves the control whether the `data-testid` sits on it (React/Angular/
+ Stencil) or on a wrapping ancestor (Vue). See `getControlByRole` for the full
+ explanation of the per-framework attribute-forwarding difference.
+ */
+export const getControlBySelector = (
+	page: Page,
+	scope: Locator,
+	selector: string
+): Locator => scope.locator(selector).or(scope.and(page.locator(selector)));
+
 export const isStencil = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('stencil'));
 export const isAngular = (showcase?: string): boolean =>

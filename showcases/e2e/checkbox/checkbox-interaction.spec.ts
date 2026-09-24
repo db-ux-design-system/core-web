@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { runInteractionTest } from '../default.ts';
+import { getControlByRole, runInteractionTest } from '../default.ts';
 
 const path = '03/checkbox';
 
@@ -8,14 +8,16 @@ test.describe('DBCheckbox', () => {
 		title: 'should handle change',
 		path,
 		example: 'Interaction',
-		async run({ content }) {
+		async run({ page, content }) {
 			// DBCheckbox's root is a wrapping <div>, the actual <input> is
-			// nested inside a <label>. In Vue, data-testid lands on that
-			// root div (single-root attrs fallthrough), not on the input -
-			// scope through the testid, then reach the input by role.
-			const checkbox = content
-				.getByTestId('checkbox')
-				.getByRole('checkbox');
+			// nested inside a <label>. Depending on the framework the
+			// data-testid lands on the wrapper (Vue) or on the input itself
+			// (React/Angular/Stencil), so resolve the control across both.
+			const checkbox = getControlByRole(
+				page,
+				content.getByTestId('checkbox'),
+				'checkbox'
+			);
 			await expect(checkbox).not.toBeChecked();
 			await checkbox.check();
 			await expect(checkbox).toBeChecked();
