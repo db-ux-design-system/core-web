@@ -357,6 +357,8 @@ Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a poly
 
 Markup must describe the **structure and semantics** of the content, never its appearance. Do not add elements, wrappers, or attributes (like `style` or purely styling driven `class` attribute values) whose only purpose is to achieve a visual effect — handle styling in CSS instead. Choose elements for their meaning (e.g. a heading because it _is_ a heading, not because it renders large and bold), and reach for CSS (layout, spacing, pseudo-elements, etc.) rather than extra `<div>`/`<span>` wrappers or presentational markup. This keeps the DOM semantic, accessible, and maintainable.
 
+This rule carries extra weight for the Mitosis components in `packages/components`: a component's `.lite.tsx` template is compiled to the HTML every consumer copies, and a purely presentational wrapper also has to survive four framework outputs and the `display: contents` custom-element hosts, where an unnecessary wrapper misbehaves. Reach for the component's `.scss` (`:has()`, pseudo-elements, etc.) instead.
+
 ### No literal non-ASCII characters in SCSS
 
 Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.
