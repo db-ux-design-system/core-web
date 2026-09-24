@@ -353,6 +353,10 @@ Every fenced code block (` ``` `) **must** specify a language identifier (MD040)
 
 Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
 
+### HTML is for structure, not styling
+
+Markup must describe the **structure and semantics** of the content, never its appearance. Do not add elements, wrappers, or attributes (like `style` or purely styling driven `class` attribute values) whose only purpose is to achieve a visual effect — handle styling in CSS instead. Choose elements for their meaning (e.g. a heading because it _is_ a heading, not because it renders large and bold), and reach for CSS (layout, spacing, pseudo-elements, etc.) rather than extra `<div>`/`<span>` wrappers or presentational markup. This keeps the DOM semantic, accessible, and maintainable.
+
 ### No literal non-ASCII characters in SCSS
 
 Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.

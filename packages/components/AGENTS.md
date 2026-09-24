@@ -364,6 +364,19 @@ standalone files automatically while preserving the parser and docs metadata ent
 (`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
 in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
 
+## Markup is for structure, not styling
+
+The `.lite.tsx` template is compiled to the HTML every consumer copies, so keep it
+semantic: elements, wrappers, and attributes (like `style` or purely styling driven
+`class` attribute values) must exist for **structure and meaning**, never to achieve a visual
+effect. Reach for the component's `.scss` (layout, spacing, pseudo-elements, `:has()`, etc.)
+instead of adding presentational `<div>`/`<span>` wrappers or styling-only attributes. This
+is the repo-wide "HTML is for structure, not styling" rule from the
+[root `AGENTS.md`](../../AGENTS.md#html-is-for-structure-not-styling) — it applies with extra
+weight here because a purely presentational wrapper also has to survive four framework outputs
+and the `display: contents` custom-element hosts (see the Heading slots note above for why an
+unnecessary wrapper misbehaves).
+
 ## Mitosis Limitations
 
 Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
