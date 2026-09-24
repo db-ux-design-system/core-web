@@ -8,7 +8,10 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
+import {
+	DEFAULT_CLOSE_BUTTON,
+	DEFAULT_HEADING_ID_SUFFIX
+} from '../../shared/constants';
 import { cls, uuid } from '../../utils';
 import {
 	removeDialogAriaLabelledBy,
@@ -52,7 +55,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			 * assigning would see the old value.
 			 */
 			const baseId = props.id ?? props.propOverrides?.id;
-			const headingId = (baseId || uuid()) + '-heading';
+			const headingId = (baseId || uuid()) + DEFAULT_HEADING_ID_SUFFIX;
 			state._headingId = headingId;
 			// Hold the element itself for cleanup: the drawer may have no `id`,
 			// but aria-labelledby is still set on it.
