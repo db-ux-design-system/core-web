@@ -396,6 +396,30 @@ const testPagination = () => {
 		).toBeDisabled();
 	});
 
+	test('should disable previous on page one in composition mode', async ({
+		mount
+	}) => {
+		// The lower boundary is known in both modes, unlike the end of a
+		// composed list, so next stays enabled here.
+		const component = await mount(
+			<DBPagination label="Composed" currentPage={1}>
+				<DBPaginationItem>
+					<a href="#page-1">1</a>
+				</DBPaginationItem>
+				<DBPaginationItem>
+					<a href="#page-2">2</a>
+				</DBPaginationItem>
+			</DBPagination>
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Previous page' })
+		).toBeDisabled();
+		await expect(
+			component.getByRole('button', { name: 'Next page' })
+		).toBeEnabled();
+	});
+
 	test('should truncate large page ranges', async ({ mount }) => {
 		const component = await mount(comp);
 
@@ -1221,6 +1245,34 @@ const testComposedLinks = () => {
 
 		await secondPage.click({ force: true });
 		expect(requestedPage).toBeUndefined();
+
+		await component.locator('li[data-page="3"] button').click();
+		expect(requestedPage).toBe(3);
+	});
+
+	test('should normalize a string disabled option', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="With string items"
+				currentPage={1}
+				items={[{}, { disabled: '' }, { disabled: 'false' }]}
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}
+			/>
+		);
+
+		// An empty attribute value is how a web component spells true.
+		await expect(
+			component.locator('li[data-page="2"] button')
+		).toHaveAttribute('aria-disabled', 'true');
+		await expect(
+			component.locator('li[data-page="3"] button')
+		).not.toHaveAttribute('aria-disabled', 'true');
 
 		await component.locator('li[data-page="3"] button').click();
 		expect(requestedPage).toBe(3);

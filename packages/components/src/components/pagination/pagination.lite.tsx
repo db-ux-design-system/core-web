@@ -9,7 +9,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls } from '../../utils';
+import { cls, getBoolean } from '../../utils';
 import DBPaginationItem from '../pagination-item/pagination-item.lite';
 import type {
 	DBPaginationProps,
@@ -205,8 +205,7 @@ export default function DBPagination(props: DBPaginationProps) {
 					layout: inCollapsed ? 'always' : 'wide',
 					ellipsis: tokens.length > 0 ? tokens.join(' ') : undefined,
 					disabled: option
-						? Boolean(option.disabled) &&
-							String(option.disabled) !== 'false'
+						? Boolean(getBoolean(option.disabled, 'disabled'))
 						: false,
 					label: option ? option.label : undefined,
 					key: 'page-' + page
@@ -381,12 +380,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 
 			const page = Number(item.getAttribute('data-page'));
-			/*
-			 * Runs in the capture phase so a consumer router link on the
-			 * current page is stopped before it navigates. The bubbling
-			 * handleClick catches plain anchors too, but arrives after the
-			 * router has already acted.
-			 */
 			if (Number.isFinite(page) && page === state.getCurrentPage()) {
 				event.preventDefault();
 			}
@@ -426,12 +419,6 @@ export default function DBPagination(props: DBPaginationProps) {
 			if (!Number.isFinite(page)) {
 				return;
 			}
-
-			/*
-			 * Clicking the current page must not navigate. The control keeps
-			 * its href so the node survives a controlled update, so a plain
-			 * activation would still follow the link and reload the page.
-			 */
 			if (page === state.getCurrentPage()) {
 				event.preventDefault();
 				return;
@@ -517,9 +504,7 @@ export default function DBPagination(props: DBPaginationProps) {
 						type="button"
 						data-icon="chevron_left"
 						disabled={
-							state.isDataDriven() && state.getCurrentPage() <= 1
-								? true
-								: undefined
+							state.getCurrentPage() <= 1 ? true : undefined
 						}
 						aria-label={props.previousLabel}
 						onClick={() =>

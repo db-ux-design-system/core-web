@@ -1,20 +1,6 @@
 import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
 
 /**
- * The gap tokens a page can carry. Every layout marks its own gaps, because a marker
- * inherits the visibility of the page that carries it - one hidden below the
- * breakpoint would take its ellipsis with it. One token per side, so a page standing
- * between two gaps carries two of them instead of a value meaning both.
- */
-export const PaginationEllipsisList = [
-	'wide-before',
-	'wide-after',
-	'collapsed-before',
-	'collapsed-after'
-] as const;
-export type PaginationEllipsisType = (typeof PaginationEllipsisList)[number];
-
-/**
  * A single item the option/`items` API generates. `page` is the one-based page
  * number, `layout` decides whether the collapsing hides it, and `ellipsis` holds the
  * gap tokens it borders. This describes what the pagination writes onto the DOM; it is
@@ -23,6 +9,14 @@ export type PaginationEllipsisType = (typeof PaginationEllipsisList)[number];
 export type PaginationItemType = {
 	page: number;
 	layout: 'always' | 'wide';
+	/**
+	 * Space separated gap tokens (`wide-before`, `wide-after`,
+	 * `collapsed-before`, `collapsed-after`). Every layout marks its own gaps,
+	 * because a marker inherits the visibility of the page that carries it - one
+	 * hidden below the breakpoint would take its ellipsis with it. One token per
+	 * side, so a page standing between two gaps carries two of them instead of a
+	 * value meaning both.
+	 */
 	ellipsis?: string;
 	disabled?: boolean;
 	label?: string;

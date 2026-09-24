@@ -1,5 +1,11 @@
 import type { GlobalProps, GlobalState, TextProps } from '../../shared/model';
 
-export type DBPaginationItemProps = GlobalProps & TextProps;
+export type DBPaginationItemDefaultProps = {};
 
-export type DBPaginationItemState = GlobalState;
+export type DBPaginationItemProps = DBPaginationItemDefaultProps &
+	GlobalProps &
+	TextProps;
+
+export type DBPaginationItemDefaultState = {};
+
+export type DBPaginationItemState = DBPaginationItemDefaultState & GlobalState;
