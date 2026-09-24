@@ -418,6 +418,9 @@ describe('text-or-children-required', () => {
 				code: '<db-dialog-header header>{{ title }}</db-dialog-header>'
 			},
 			{ code: '<db-drawer-header>{{ title }}</db-drawer-header>' },
+			// Angular renders {{ false }} as the text "false" (like Vue, unlike
+			// React), so it is a real accessible name and must not be reported.
+			{ code: '<db-dialog-header>{{ false }}</db-dialog-header>' },
 			// A heading nested in a structural directive (*ngIf) sits under a
 			// Template node; the rule must recurse into it rather than report empty.
 			{
@@ -472,6 +475,26 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'db-dialog-header' }
+					}
+				]
+			},
+			{
+				// {{ null }} renders no text, so the heading container stays empty.
+				code: '<db-dialog-header closeButtonText="Close">{{ null }}</db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
+			},
+			{
+				// {{ '' }} likewise renders no accessible text.
+				code: `<db-drawer-header>{{ '' }}</db-drawer-header>`,
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-drawer-header' }
 					}
 				]
 			}

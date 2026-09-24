@@ -6,6 +6,7 @@ import {
 	getAttributeValue,
 	isBareBooleanAttribute,
 	isDBComponent,
+	isStaticallyEmptyAngularInput,
 	isStaticallyEmptyExpression,
 	isUnresolvedBySpread
 } from '../../shared/utils.js';
@@ -106,21 +107,46 @@ const isComponentElement = (child: any): boolean => {
 };
 
 /**
+ * Whether an Angular `BoundText` (`{{ ... }}`) statically renders no text. The
+ * interpolation exposes its literal segments in `value.ast.strings` and its
+ * expressions in `value.ast.expressions`. It renders nothing only when every
+ * static segment is whitespace and every expression is statically empty
+ * (`null`/`undefined` or an empty/whitespace string) - so `{{ null }}` and
+ * `{{ '' }}` are empty, while a dynamic `{{ title }}` (and Angular's text-
+ * rendering `{{ false }}`/`{{ 0 }}`) still counts as content.
+ */
+const isEmptyAngularBoundText = (child: any): boolean => {
+	const interpolation = child.value?.ast ?? child.value;
+	const expressions = interpolation?.expressions;
+	if (!Array.isArray(expressions)) {
+		// Shape we do not recognize - treat as (possible) content, not empty.
+		return false;
+	}
+	const strings: string[] = interpolation.strings ?? [];
+	return (
+		strings.every((s) => (s ?? '').trim() === '') &&
+		expressions.every((expression: any) =>
+			isStaticallyEmptyAngularInput(expression)
+		)
+	);
+};
+
+/**
  * Whether an Angular node has renderable content, recursing through wrapper nodes.
  * A structural directive (`*ngIf`) or built-in control flow (`@if`, `@for`, ...)
  * makes the header's title a descendant of a Template/block node rather than a
  * direct child, so a flat check would miss it. `angularChildNodes` flattens those
- * wrappers. A non-empty `Text` or a `BoundText` (dynamic `{{ }}`, unverifiable)
- * counts as content. An element child counts when it is a custom component
- * (`db-*`, opaque render) or a native element that itself renders content -
- * recurse into it so an empty native wrapper (`<span></span>`) is not mistaken
- * for an accessible name.
+ * wrappers. A non-empty `Text` or a `BoundText` (`{{ }}`) that does not statically
+ * render empty counts as content. An element child counts when it is a custom
+ * component (`db-*`, opaque render) or a native element that itself renders
+ * content - recurse into it so an empty native wrapper (`<span></span>`) is not
+ * mistaken for an accessible name.
  */
 const hasAngularContent = (node: any): boolean =>
 	angularChildNodes(node).some(
 		(child: any) =>
 			(child.type === 'Text' && child.value.trim() !== '') ||
-			child.type === 'BoundText' ||
+			(child.type === 'BoundText' && !isEmptyAngularBoundText(child)) ||
 			((child.type === 'Element' || child.type === 'Element$1') &&
 				isComponentElement(child)) ||
 			hasAngularContent(child)

@@ -211,7 +211,7 @@ export function isBareBooleanAttribute(
  * (or whitespace-only) string literal counts as empty; any other expression is
  * unresolvable dynamic content.
  */
-function isStaticallyEmptyAngularInput(value: any): boolean {
+export function isStaticallyEmptyAngularInput(value: any): boolean {
 	if (!value) {
 		return false;
 	}
