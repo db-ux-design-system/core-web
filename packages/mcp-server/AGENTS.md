@@ -2,6 +2,7 @@
 
 When working on the `@db-ux/mcp-server` package, these rules are **mandatory**:
 
+- **Binary name**: The published executable is **`db-ux-mcp-server`** (`npx @db-ux/mcp-server` or `pnpm exec db-ux-mcp-server`). Keep the `bin` key an explicit, plain command name so the executable is discoverable from `package.json` alone — don't fall back to a scoped key like `@db-ux/mcp-server`, which only works via implicit basename normalization.
 - **ESM only**: The package is `"type": "module"`. **NEVER use `require()`** — use `import` (top-level or dynamic `await import()`). Using `require()` will crash at runtime.
 - **MCP SDK v2 package split**: The single `@modelcontextprotocol/sdk` package is gone. Import `McpServer` from `@modelcontextprotocol/server`, the stdio serving entry from `@modelcontextprotocol/server/stdio` (the root barrel deliberately does not export it), and the test client from `@modelcontextprotocol/client` / `@modelcontextprotocol/client/stdio`. Never re-add `@modelcontextprotocol/sdk` — it is frozen on the 2025-era protocol.
 - **Zod 4 only, always wrapped**: SDK v2 dropped zod 3 support. **Never import from `zod/v3`** and never pass a raw `{ field: z.string() }` shape as `inputSchema` / `argsSchema` — wrap it in `z.object({ ... })`. A raw shape built with a foreign zod fails at registration or silently breaks the first `tools/list`; a zod-3 schema typechecks fine and only fails at runtime.
