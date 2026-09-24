@@ -21,3 +21,8 @@ showcases/patternhub/testing-table.ts
 packages/mcp-server/assets/**
 package-lock.json
 *.d.ts
+# Transient fixtures the mcp-server scanner tests write into the repo root /
+# package cwd and delete again; they can otherwise be caught mid-run by the
+# whole-tree `prettier --check .` while the tests run in parallel.
+.scan-alias-e2e-*
+**/.scan-test-*
