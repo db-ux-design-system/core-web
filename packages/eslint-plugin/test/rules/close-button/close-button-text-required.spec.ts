@@ -281,6 +281,12 @@ const reactAttributeShapes: AttributeShape[] = [
 		reports: true
 	},
 	{
+		// A whitespace-only static string renders no accessible label.
+		shape: 'whitespace-only static string attribute',
+		code: '<DBDialogHeader closeButtonText="   ">Title</DBDialogHeader>',
+		reports: true
+	},
+	{
 		// {null} renders no accessible label, same as an empty string.
 		shape: 'statically null expression container',
 		code: '<DBDialogHeader closeButtonText={null}>Title</DBDialogHeader>',
@@ -344,6 +350,12 @@ const vueAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'empty string',
 		code: '<template><DBDialogHeader close-button-text="">Title</DBDialogHeader></template>',
+		reports: true
+	},
+	{
+		// A whitespace-only static string renders no accessible label.
+		shape: 'whitespace-only static string, kebab-case attribute',
+		code: '<template><DBDialogHeader close-button-text="   ">Title</DBDialogHeader></template>',
 		reports: true
 	},
 	{
@@ -430,6 +442,17 @@ const angularAttributeShapes: AttributeShape[] = [
 	{
 		shape: 'empty string, camelCase attribute',
 		code: '<db-dialog-header closeButtonText="">Title</db-dialog-header>',
+		reports: true
+	},
+	{
+		// A whitespace-only static string renders no accessible label.
+		shape: 'whitespace-only static string, kebab-case attribute',
+		code: '<db-dialog-header close-button-text="   ">Title</db-dialog-header>',
+		reports: true
+	},
+	{
+		shape: 'whitespace-only static string, camelCase attribute',
+		code: '<db-dialog-header closeButtonText="   ">Title</db-dialog-header>',
 		reports: true
 	},
 	{

@@ -14,6 +14,16 @@ const COMPONENTS_WITH_CLOSE_BUTTON = {
 	DBCustomSelect: 'mobileCloseButtonText'
 };
 
+// A static string label that is only whitespace (e.g. closeButtonText="   ",
+// [closeButtonText]="'   '", :closeButtonText="'   '") renders an icon-only
+// close button with no meaningful accessible name, so treat it as empty. Only
+// static strings are trimmed; `true` (bare/dynamic attr) and `undefined`
+// (absent) pass through unchanged for the boolean/spread checks below.
+const normalizeLabelValue = (
+	value: string | boolean | undefined
+): string | boolean | undefined =>
+	typeof value === 'string' && value.trim() === '' ? '' : value;
+
 export default {
 	meta: {
 		type: 'problem' as const,
@@ -69,7 +79,9 @@ export default {
 				COMPONENTS_WITH_CLOSE_BUTTON[
 					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
 				];
-			const value = getAttributeValue(node, attribute);
+			const value = normalizeLabelValue(
+				getAttributeValue(node, attribute)
+			);
 
 			if (value === undefined || value === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
@@ -198,7 +210,9 @@ export default {
 				COMPONENTS_WITH_CLOSE_BUTTON[
 					component as keyof typeof COMPONENTS_WITH_CLOSE_BUTTON
 				];
-			const value = getAttributeValue(openingElement, attribute);
+			const value = normalizeLabelValue(
+				getAttributeValue(openingElement, attribute)
+			);
 
 			// A JSX spread (e.g. <DBDialogHeader {...headerProps} />) may supply
 			// closeButtonText, so its final value cannot be verified statically.
