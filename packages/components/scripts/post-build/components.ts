@@ -82,6 +82,18 @@ const controlPanelActionsComponents: Component[] = [
 }));
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'pagination-item'
+	},
+	{
+		name: 'pagination',
+		config: {
+			react: {
+				propsPassingFilter: ['onPageChange']
+			}
+		}
+	},
+
 	...headingComponents,
 	...controlPanelActionsComponents,
 
@@ -164,6 +176,15 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'custom-button'
+	},
+
+	{
+		name: 'loading-indicator',
+		config: {
+			react: {
+				propsPassingFilter: ['autoDisable', 'onTimeout', 'role']
+			}
+		}
 	},
 
 	{

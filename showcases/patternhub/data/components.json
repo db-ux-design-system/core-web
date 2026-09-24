@@ -131,6 +131,10 @@
 			{
 				"label": "DBBadge",
 				"name": "badge"
+			},
+			{
+				"label": "DBLoadingIndicator",
+				"name": "loading-indicator"
 			}
 		]
 	},
@@ -190,6 +194,11 @@
 		"path": "/components/navigation",
 		"name": "navigation",
 		"subNavigation": [
+			{
+				"label": "DBPagination",
+				"name": "pagination",
+				"elements": ["db-pagination", "db-pagination-item"]
+			},
 			{
 				"label": "DBControlPanelBrand",
 				"name": "control-panel-brand"

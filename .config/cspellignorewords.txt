@@ -58,8 +58,13 @@ Telerik
 Mistica
 stylised
 colour
+colours
 summarised
 customised
+emphasised
+synthesised
+neighbour
+neighbouring
 selectpanel
 selectmultiple
 Dismissable
@@ -257,6 +262,7 @@ pnpms
 renovatebot
 drilldown
 Drilldown
+recalc
 deconflict
 crumbtrail
 hrefs

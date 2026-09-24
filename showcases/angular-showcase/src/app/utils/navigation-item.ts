@@ -1,3 +1,5 @@
+import { PaginationComponent } from '../components/pagination.component';
+
 import { type Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
@@ -21,6 +23,7 @@ import { IconShowcase } from '@components/components/icon/showcase/icon.showcase
 import { InfotextShowcase } from '@components/components/infotext/showcase/infotext.showcase';
 import { InputShowcase } from '@components/components/input/showcase/input.showcase';
 import { LinkShowcase } from '@components/components/link/showcase/link.showcase';
+import { LoadingIndicatorShowcase } from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 import { NavigationItemShowcase } from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import { NavigationShowcase } from '@components/components/navigation/showcase/navigation.showcase';
 import { NotificationShowcase } from '@components/components/notification/showcase/notification.showcase';
@@ -61,7 +64,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'Notification',
 				component: NotificationShowcase
 			},
-			{ path: '06/badge', label: 'Badge', component: BadgeShowcase }
+			{ path: '06/badge', label: 'Badge', component: BadgeShowcase },
+			{
+				path: '06/loading-indicator',
+				label: 'LoadingIndicator',
+				component: LoadingIndicatorShowcase
+			}
 		])
 	},
 
@@ -109,6 +117,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '05/navigation',
 				label: 'Navigation',
 				component: NavigationShowcase
+			},
+			{
+				path: '05/pagination',
+				label: 'Pagination',
+				component: PaginationComponent
 			},
 			{
 				path: '05/brand',
