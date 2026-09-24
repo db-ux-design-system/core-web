@@ -72,6 +72,20 @@ describe('text-or-children-required', () => {
 				code: '<DBDialogHeader><><span>Title</span></></DBDialogHeader>'
 			},
 			{
+				// A native element wrapping text renders an accessible name.
+				code: '<DBDialogHeader><span>Title</span></DBDialogHeader>'
+			},
+			{
+				// A native element nesting another that renders text is content.
+				code: '<DBDialogHeader><span><b>Title</b></span></DBDialogHeader>'
+			},
+			{
+				// A DB/custom component child renders opaque content we cannot
+				// inspect, so it counts even when it looks empty. (DBBrand is not
+				// itself a content-required component, so only the header is checked.)
+				code: '<DBDialogHeader><DBBrand /></DBDialogHeader>'
+			},
+			{
 				// A JSX spread may supply `text`; its contents are unverifiable,
 				// so the header is treated as unresolved rather than reported.
 				code: '<DBDialogHeader {...headerProps} />'
@@ -346,6 +360,27 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// An empty native element renders no accessible text, so the
+				// aria-labelledby target stays empty.
+				code: '<DBDialogHeader><span /></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// Nested native elements that all render nothing are empty too.
+				code: '<DBDrawerHeader><span><i /></span></DBDrawerHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
 				// A spread before an explicit empty text does not determine the
 				// final value (the later explicit text wins), so it still reports.
 				code: '<DBDialogHeader {...headerProps} text="" />',
@@ -368,6 +403,16 @@ describe('text-or-children-required', () => {
 			{ code: '<db-drawer-header>Title</db-drawer-header>' },
 			// Dynamic binding cannot be verified statically, so it is allowed.
 			{ code: '<db-dialog-header [text]="title"></db-dialog-header>' },
+			// A native element wrapping text renders an accessible name; the rule
+			// recurses into it rather than counting the element unconditionally.
+			{
+				code: '<db-dialog-header><span>Title</span></db-dialog-header>'
+			},
+			// A DB/custom component child renders opaque content, so it counts.
+			// (db-brand is not itself content-required, so only the header is checked.)
+			{
+				code: '<db-dialog-header><db-brand></db-brand></db-dialog-header>'
+			},
 			// `{{ interpolation }}` is a BoundText child - dynamic content, allowed.
 			{
 				code: '<db-dialog-header header>{{ title }}</db-dialog-header>'
@@ -418,6 +463,17 @@ describe('text-or-children-required', () => {
 						data: { component: 'db-dialog-header' }
 					}
 				]
+			},
+			{
+				// An empty native element renders no accessible text, so the
+				// header's heading container stays empty and is reported.
+				code: '<db-dialog-header><span></span></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
 			}
 		]
 	});
@@ -448,9 +504,28 @@ describe('text-or-children-required', () => {
 				// Vue renders {{ false }} as the text "false" (unlike React),
 				// so it is a real accessible name and must not be reported.
 				code: '<template><DBDialogHeader>{{ false }}</DBDialogHeader></template>'
+			},
+			{
+				// A native element wrapping text renders an accessible name. The
+				// Vue parser may expose the <span> as an Element fallback node.
+				code: '<template><DBDialogHeader><span>Title</span></DBDialogHeader></template>'
+			},
+			{
+				// A DB/custom component child renders opaque content, so it counts.
+				code: '<template><DBDialogHeader><DBBrand /></DBDialogHeader></template>'
 			}
 		],
 		invalid: [
+			{
+				// An empty native element renders no accessible text.
+				code: '<template><DBDialogHeader><span /></DBDialogHeader></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
 			{
 				code: '<template><DBDialogHeader text="" /></template>',
 				errors: [

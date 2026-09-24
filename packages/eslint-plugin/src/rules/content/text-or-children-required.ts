@@ -80,20 +80,49 @@ const isEmptyJsxExpression = (container: any): boolean =>
 	isEmptyReactExpression(container.expression);
 
 /**
+ * Whether an element node is a custom component (React PascalCase, or a custom
+ * element with a hyphen such as `db-heading`) rather than a native HTML element.
+ * A component renders content we cannot inspect statically, so it is treated as
+ * (possible) content; a native element (`span`, `div`, `h2`) must be recursed
+ * into, since an empty one (`<span />`) renders no accessible text.
+ */
+const isComponentElement = (child: any): boolean => {
+	// JSX: the tag name lives on the opening element.
+	const jsxName = child.openingElement?.name;
+	if (jsxName) {
+		// A member expression (e.g. <Foo.Bar />) is always a component.
+		if (jsxName.type !== 'JSXIdentifier') {
+			return true;
+		}
+		// React treats an uppercase-initial tag as a component, lowercase as a
+		// native host element.
+		return /^[A-Z]/.test(jsxName.name);
+	}
+	// Vue/Angular: the tag name is on rawName (Vue) or name (Angular). A custom
+	// element / component contains a hyphen (`db-heading`) or starts uppercase
+	// (`DBIcon`); a plain lowercase tag with no hyphen is native.
+	const tagName: string = child.rawName ?? child.name ?? '';
+	return /^[A-Z]/.test(tagName) || tagName.includes('-');
+};
+
+/**
  * Whether an Angular node has renderable content, recursing through wrapper nodes.
  * A structural directive (`*ngIf`) or built-in control flow (`@if`, `@for`, ...)
  * makes the header's title a descendant of a Template/block node rather than a
  * direct child, so a flat check would miss it. `angularChildNodes` flattens those
- * wrappers; a non-empty `Text`, a `BoundText` (dynamic `{{ }}`, unverifiable) or
- * any `Element`/`Element$1` counts as content.
+ * wrappers. A non-empty `Text` or a `BoundText` (dynamic `{{ }}`, unverifiable)
+ * counts as content. An element child counts when it is a custom component
+ * (`db-*`, opaque render) or a native element that itself renders content -
+ * recurse into it so an empty native wrapper (`<span></span>`) is not mistaken
+ * for an accessible name.
  */
 const hasAngularContent = (node: any): boolean =>
 	angularChildNodes(node).some(
 		(child: any) =>
 			(child.type === 'Text' && child.value.trim() !== '') ||
 			child.type === 'BoundText' ||
-			child.type === 'Element' ||
-			child.type === 'Element$1' ||
+			((child.type === 'Element' || child.type === 'Element$1') &&
+				isComponentElement(child)) ||
 			hasAngularContent(child)
 	);
 
@@ -221,12 +250,18 @@ export default {
 			const isContentChild = (child: any): boolean =>
 				(child.type === 'JSXText' && child.value.trim() !== '') ||
 				(child.type === 'VText' && child.value.trim() !== '') ||
-				child.type === 'JSXElement' ||
-				child.type === 'VElement' ||
-				// The Vue parser may expose an element child as its fallback
-				// `Element`/`Element$1` node, so count both as content too.
-				child.type === 'Element' ||
-				child.type === 'Element$1' ||
+				// An element child. A custom/DB component renders opaque content
+				// we cannot inspect, so it counts (unresolved). A native element
+				// (<span>, <div>, <h2>, ...) only counts when it actually renders
+				// text - an empty <span /> leaves the aria-labelledby target with
+				// no accessible name - so recurse into its descendants. Covers the
+				// Vue `Element`/`Element$1` fallbacks as well as VElement/JSXElement.
+				((child.type === 'JSXElement' ||
+					child.type === 'VElement' ||
+					child.type === 'Element' ||
+					child.type === 'Element$1') &&
+					(isComponentElement(child) ||
+						(child.children || []).some(isContentChild))) ||
 				// A fragment renders no wrapper of its own, so React shows its
 				// descendants directly (e.g. <DBDialogHeader><>Title</></...>).
 				// Recurse with the same predicate; an empty fragment (or one with
