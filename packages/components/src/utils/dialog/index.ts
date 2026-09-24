@@ -117,11 +117,20 @@ export const removeDialogAriaLabelledBy = (
 
 /**
  * @public
- * Points the dialog's own request-close button at the dialog via `commandfor`,
+ * Points the dialog's own built-in close button at the dialog via `commandfor`,
  * so the native command resolves to the correct element even when the consumer
  * supplied no `id` (the dialog then carries a generated one). Wired from the
  * dialog/drawer rather than the header, which mounts before the dialog id is set.
  * No-op until both the dialog and its close button are resolved.
+ *
+ * Selects the built-in dismiss control by its `data-dialog-close-button` marker
+ * (set by DBDialogHeader / DBDrawerHeader), NOT by `[command="request-close"]`
+ * alone: a consumer may place their own request-close control in the header's
+ * `startSlot`/`endSlot` (or the content) that intentionally targets a different
+ * dialog, and a broad query would overwrite its `commandfor` and hijack it. A
+ * `data-*` marker (not a class) is used because Mitosis forwards data attributes
+ * uniformly across all four targets, whereas a `className` passed to the nested
+ * DBButton is dropped in the Vue output.
  *
  * DBDialog / DBDrawer call this from BOTH `onMount` and the effect on `_id`, and
  * both calls are required - they are not a redundant double-wire. The `onMount`
@@ -137,7 +146,7 @@ export const connectCloseButton = (dialog?: HTMLDialogElement | null): void => {
 	if (!dialog || !id) {
 		return;
 	}
-	const button = dialog.querySelector('[command="request-close"]');
+	const button = dialog.querySelector('[data-dialog-close-button]');
 	if (button && button.getAttribute('commandfor') !== id) {
 		button.setAttribute('commandfor', id);
 	}

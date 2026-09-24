@@ -25,17 +25,39 @@ const createButtonStub = (
 		}
 	}) as unknown as ElementStub;
 
+// Minimal matcher against a stub's attributes for `.class`, `[attr]` and
+// `[attr="value"]` selectors, so querySelector can honor the actual selector and
+// model DOM order.
+const matchesSelector = (element: ElementStub, selector: string): boolean => {
+	const classMatch = /^\.([\w-]+)$/.exec(selector);
+	if (classMatch) {
+		const classAttr = element.getAttribute('class') ?? '';
+		return classAttr.split(/\s+/).includes(classMatch[1]);
+	}
+	const attrMatch = /^\[([\w-]+)(?:="([^"]*)")?]$/.exec(selector);
+	if (!attrMatch) return false;
+	const [, name, value] = attrMatch;
+	const actual = element.getAttribute(name);
+	return value === undefined ? actual !== null : actual === value;
+};
+
 const createDialogStub = ({
 	open = false,
 	id = '',
-	closeButton
+	closeButton,
+	children
 }: {
 	open?: boolean;
 	id?: string;
+	// Single built-in close button (convenience for the common case).
 	closeButton?: ElementStub | null;
+	// Full child list in DOM order, to model slotted controls preceding the
+	// built-in close button.
+	children?: ElementStub[];
 } = {}): DialogStub => {
 	const calls: string[] = [];
 	const attributes: Record<string, string> = {};
+	const childList = children ?? (closeButton ? [closeButton] : []);
 
 	return {
 		open,
@@ -52,7 +74,8 @@ const createDialogStub = ({
 		removeAttribute: (name: string) => {
 			delete attributes[name]; // eslint-disable-line @typescript-eslint/no-dynamic-delete
 		},
-		querySelector: () => closeButton ?? null
+		querySelector: (selector: string) =>
+			childList.find((child) => matchesSelector(child, selector)) ?? null
 	} as unknown as DialogStub;
 };
 
@@ -255,8 +278,11 @@ describe('removeDialogAriaLabelledBy', () => {
 });
 
 describe('connectCloseButton', () => {
-	it('points the request-close button at the dialog id', () => {
-		const button = createButtonStub({ command: 'request-close' });
+	it('points the built-in close button at the dialog id', () => {
+		const button = createButtonStub({
+			'data-dialog-close-button': 'true',
+			command: 'request-close'
+		});
 		const dialog = createDialogStub({
 			id: 'my-dialog',
 			closeButton: button
@@ -267,6 +293,7 @@ describe('connectCloseButton', () => {
 
 	it('rewires a stale commandfor to the current dialog id', () => {
 		const button = createButtonStub({
+			'data-dialog-close-button': 'true',
 			command: 'request-close',
 			commandfor: 'old-id'
 		});
@@ -275,8 +302,33 @@ describe('connectCloseButton', () => {
 		expect(button.getAttribute('commandfor')).toBe('new-id');
 	});
 
+	it('does not touch a slotted request-close control targeting another dialog', () => {
+		// A consumer control in the header slot / content that intentionally
+		// targets a different dialog must keep its commandfor - only the built-in
+		// close button (data-dialog-close-button) may be rewired.
+		const slotted = createButtonStub({
+			command: 'request-close',
+			commandfor: 'other-dialog'
+		});
+		const builtIn = createButtonStub({
+			'data-dialog-close-button': 'true',
+			command: 'request-close'
+		});
+		// slotted precedes the built-in button in DOM order.
+		const dialog = createDialogStub({
+			id: 'my-dialog',
+			children: [slotted, builtIn]
+		});
+		connectCloseButton(dialog);
+		expect(slotted.getAttribute('commandfor')).toBe('other-dialog');
+		expect(builtIn.getAttribute('commandfor')).toBe('my-dialog');
+	});
+
 	it('does nothing when the dialog has no id, no button, or is unresolved', () => {
-		const button = createButtonStub({ command: 'request-close' });
+		const button = createButtonStub({
+			'data-dialog-close-button': 'true',
+			command: 'request-close'
+		});
 		connectCloseButton(createDialogStub({ id: '', closeButton: button }));
 		expect(button.getAttribute('commandfor')).toBeNull();
 

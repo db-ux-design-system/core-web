@@ -85,6 +85,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			</div>
 			<Slot name="endSlot" />
 			<DBButton
+				data-dialog-close-button="true"
 				command="request-close"
 				id={props.closeButtonId}
 				icon="cross"
