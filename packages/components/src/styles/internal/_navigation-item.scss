@@ -23,6 +23,69 @@
 	}
 }
 
+@mixin lock-scroll-while-drilldown-open {
+	.db-control-panel-navigation-item-group-back-button,
+	.db-control-panel-navigation-item,
+	.db-control-panel-navigation-item-group-expand-button {
+		@media (prefers-reduced-motion: no-preference) {
+			transition:
+				transform #{variables.$db-transition-duration-extra-slow}
+					#{variables.$db-transition-timing-emotional};
+		}
+	}
+
+	&:has(
+		.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+	) {
+		overflow: hidden;
+
+		.db-control-panel-navigation {
+			overflow: hidden;
+		}
+
+		menu:has(
+			.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+		) {
+			> .db-control-panel-navigation-item-group-back-button,
+			#{string.unquote(custom-elements.$control-panel-navigation-item)},
+			#{string.unquote(custom-elements.$control-panel-navigation-item-group)}
+				> .db-control-panel-navigation-item-group-expand-button {
+				transform: translateX(-100%);
+
+				// Collapse the slid-out box so it no longer occupies space
+				// behind the overlay. Delay the collapse by the slide duration
+				// so the size only snaps to 0 after the transform finishes
+				// (keeps the slide smooth). On close the ":has" no longer
+				// matches, so the base transition above restores the size
+				// immediately while the level slides back in.
+				padding: 0;
+				block-size: 0;
+				min-block-size: 0;
+
+
+				@media (prefers-reduced-motion: no-preference) {
+					// block-size collapses from an intrinsic value (fit-content)
+					// which is not interpolatable, so it needs allow-discrete to
+					// honor the delay and flip only at the end of the slide -
+					// otherwise the browser applies it immediately and the box
+					// collapses before the transform finishes.
+					transition:
+						transform
+							#{variables.$db-transition-duration-extra-slow}
+							#{variables.$db-transition-timing-emotional},
+						padding 0ms linear
+							#{variables.$db-transition-duration-extra-slow},
+						block-size 0ms linear
+							#{variables.$db-transition-duration-extra-slow},
+						min-block-size 0ms linear
+							#{variables.$db-transition-duration-extra-slow};
+					transition-behavior: allow-discrete;
+				}
+			}
+		}
+	}
+}
+
 @mixin active-navigation-item() {
 	&:has([aria-current="page"]),
 	&:has([data-active="true"]),

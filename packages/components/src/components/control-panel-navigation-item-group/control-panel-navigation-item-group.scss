@@ -5,7 +5,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/navigation-item";
 @use "control-panel-navigation-item-group-menu-popover";
-@use "../../styles/internal/icon-passing";
 
 .db-control-panel-navigation-item-group {
 	@extend %navigation-item;

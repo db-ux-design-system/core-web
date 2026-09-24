@@ -75,6 +75,12 @@
 				overflow-x: hidden;
 				position: relative;
 
+				// Pin the drilldown overlay to the visible scrollport by locking the
+				// scroll owner (this container) while a drilldown level is open.
+				&:has(.db-control-panel-navigation[data-variant="drilldown"]) {
+					@include navigation-item.lock-scroll-while-drilldown-open;
+				}
+
 				/* jscpd:ignore-start */
 				.db-control-panel-meta {
 					/* stylelint-disable-next-line db-ux/use-spacings */
