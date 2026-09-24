@@ -10,13 +10,11 @@ const axeDisableRules = [
 	// We have an axe-core false-positive with the `role=treeitem`
 	'aria-required-children',
 	'presentation-role-conflict',
-	'aria-required-parent'
-];
+	'aria-required-parent',
 
-if (hasWebComponentSyntax(process.env.showcase)) {
 	// For angular and stencil the <li> is wrapped inside <db-control-panel-item> which is a false-positive in axe-core
-	axeDisableRules.push('listitem');
-}
+	...(hasWebComponentSyntax(process.env.showcase) ? ['listitem'] : [])
+];
 
 test.describe('DBShell', () => {
 	runAxeCoreTest({

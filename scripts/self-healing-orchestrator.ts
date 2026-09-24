@@ -433,7 +433,7 @@ async function runFixes(
 
 // Detects file changes via `git status --porcelain`.
 // Returns true if there are uncommitted changes.
-export async function detectFileChanges(): Promise<boolean> {
+export async function hasFileChanges(): Promise<boolean> {
 	return new Promise((resolve) => {
 		let output = '';
 		let child: ChildProcess;
@@ -501,7 +501,7 @@ export async function orchestrate(
 		commandTimeoutMs?: number;
 		totalTimeoutMs?: number;
 		spawnFn?: typeof spawnCommand;
-		detectChangesFn?: typeof detectFileChanges;
+		detectChangesFn?: typeof hasFileChanges;
 	}
 ): Promise<OrchestratorResult> {
 	const timeout = options?.totalTimeoutMs ?? totalTimeoutMs;
@@ -589,7 +589,7 @@ export async function orchestrate(
 		}
 
 		// Phase 3: Detect file changes
-		const detectChanges = options?.detectChangesFn ?? detectFileChanges;
+		const detectChanges = options?.detectChangesFn ?? hasFileChanges;
 		const hasFilesChanged = await detectChanges();
 
 		if (!hasFilesChanged) {

@@ -51,19 +51,19 @@ function getReleaseNotes(): string {
 	for (const file of changelogFiles) {
 		const changelog = fs.readFileSync(file, 'utf8');
 		const section = extractChangelogForVersion(changelog);
-		if (section) {
-			const headline =
-				getFirstHeadline(changelog) || path.relative(repoRoot, file);
-			const entry = `# ${headline}\n${section}`;
-			// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
-			const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/m.test(
-				section
-			);
-			if (isVersionBump) {
-				notes.push(entry);
-			} else {
-				notes.unshift(entry);
-			}
+		if (!section) {
+			continue;
+		}
+
+		const headline =
+			getFirstHeadline(changelog) || path.relative(repoRoot, file);
+		const entry = `# ${headline}\n${section}`;
+		// Ensure a logical sequence, packages with Release notes first, packages that are only getting version bumped last
+		const isVersionBump = /^\s*[-*+]?\s*_version bump_\s*$/m.test(section);
+		if (isVersionBump) {
+			notes.push(entry);
+		} else {
+			notes.unshift(entry);
 		}
 	}
 

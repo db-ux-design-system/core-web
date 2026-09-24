@@ -15,10 +15,12 @@ export default function getHowToFile(componentName, displayName) {
 
 	for (const document of docs) {
 		const path = `${componentPath}/${componentName}/docs/${document}.md`;
-		if (FS.existsSync(path)) {
-			imports += `import ${document} from './docs/${document}.md';\n`;
-			components += `<${document}/>\n`;
+		if (!FS.existsSync(path)) {
+			continue;
 		}
+
+		imports += `import ${document} from './docs/${document}.md';\n`;
+		components += `<${document}/>\n`;
 	}
 
 	return `
