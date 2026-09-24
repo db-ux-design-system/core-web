@@ -1,6 +1,5 @@
 import { type Page, test } from '@playwright/test';
 import { getDefaultScreenshotTest } from '../default.ts';
-import { openViaShowModalCommand } from '../dialog-open-fallback.ts';
 
 const path = '01/dialog';
 
@@ -8,7 +7,10 @@ const path = '01/dialog';
 // buttons. Open a representative dialog (header + content + footer) before the
 // screenshot so visual regressions in the dialog itself are actually captured.
 const preScreenShot = async (page: Page) => {
-	await openViaShowModalCommand(page, 'Open: With text prop');
+	await page
+		.locator('main')
+		.getByRole('button', { name: 'Open: With text prop' })
+		.click();
 	await page.locator('dialog[open]').first().waitFor({ state: 'visible' });
 };
 
