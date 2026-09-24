@@ -9,7 +9,7 @@ import { lvl3 } from '../fixtures/variants';
 const preAxe = async (page: Page) => {
 	await page
 		.locator('main')
-		.getByRole('button', { name: 'Open: With footer' })
+		.getByRole('button', { name: 'Open: With text prop' })
 		.click();
 	await page.locator('dialog[open]').first().waitFor({ state: 'visible' });
 };

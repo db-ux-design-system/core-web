@@ -9,7 +9,7 @@ const path = '01/dialog';
 const preScreenShot = async (page: Page) => {
 	await page
 		.locator('main')
-		.getByRole('button', { name: 'Open: With footer' })
+		.getByRole('button', { name: 'Open: With text prop' })
 		.click();
 	await page.locator('dialog[open]').first().waitFor({ state: 'visible' });
 };
