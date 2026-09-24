@@ -1,5 +1,6 @@
 import { expect, type Page, test } from '@playwright/test';
 import { waitForDBShell } from '../default.ts';
+import { applyShowModalFallback } from '../dialog-open-fallback.ts';
 import { lvl1 } from '../fixtures/variants';
 
 const path = '01/drawer';
@@ -71,10 +72,11 @@ const openDrawerByDirection = async (page: Page, buttonIndex: number) => {
 		'Open: Down (Full)'
 	];
 
-	await page
+	const launcher = page
 		.locator('main')
-		.getByRole('button', { name: buttonTexts[buttonIndex], exact: true })
-		.click();
+		.getByRole('button', { name: buttonTexts[buttonIndex], exact: true });
+	await launcher.click();
+	await applyShowModalFallback(launcher);
 
 	// Wait for drawer animation to complete
 	await page.waitForTimeout(800);

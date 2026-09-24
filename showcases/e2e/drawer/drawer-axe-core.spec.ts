@@ -1,9 +1,12 @@
 import { type Page, test } from '@playwright/test';
 import { runAxeCoreTest } from '../default.ts';
+import { applyShowModalFallback } from '../dialog-open-fallback.ts';
 import { lvl3 } from '../fixtures/variants';
 
 const preAxe = async (page: Page) => {
-	await page.locator('main').getByRole('button').first().click();
+	const launcher = page.locator('main').getByRole('button').first();
+	await launcher.click();
+	await applyShowModalFallback(launcher);
 	await page.waitForTimeout(1000);
 };
 

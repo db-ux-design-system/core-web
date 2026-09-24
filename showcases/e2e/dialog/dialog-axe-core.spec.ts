@@ -1,5 +1,6 @@
 import { type Page, test } from '@playwright/test';
 import { runAxeCoreTest } from '../default.ts';
+import { openViaShowModalCommand } from '../dialog-open-fallback.ts';
 import { lvl3 } from '../fixtures/variants';
 
 // Every dialog example initializes closed, so the showcase renders only the
@@ -7,10 +8,7 @@ import { lvl3 } from '../fixtures/variants';
 // representative dialog (header + content + footer) before scanning so the
 // dialog itself gets meaningful accessibility coverage across all showcases.
 const preAxe = async (page: Page) => {
-	await page
-		.locator('main')
-		.getByRole('button', { name: 'Open: With text prop' })
-		.click();
+	await openViaShowModalCommand(page, 'Open: With text prop');
 	await page.locator('dialog[open]').first().waitFor({ state: 'visible' });
 };
 
