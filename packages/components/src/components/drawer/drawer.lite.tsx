@@ -98,8 +98,11 @@ export default function DBDrawer(props: DBDrawerProps) {
 	// BEGIN: dialog ponyfill
 	onUnMount(() => {
 		if (state._documentKeydownListenerCallbackId) {
+			// Non-null assertion: the guard above narrows this, but in the Angular
+			// signal output the state getter is re-invoked here and loses the
+			// narrowing, so assert to satisfy removeCallback(id: string).
 			new DocumentKeydownListener().removeCallback(
-				state._documentKeydownListenerCallbackId
+				state._documentKeydownListenerCallbackId!
 			);
 			state._documentKeydownListenerCallbackId = undefined;
 		}
