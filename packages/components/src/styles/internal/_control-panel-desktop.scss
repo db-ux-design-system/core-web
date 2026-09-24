@@ -393,10 +393,9 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		grid-template-areas: "navigation" "meta";
 		position: relative;
 
-
 		// Pin the drilldown overlay to the visible scrollport by locking the
 		// scroll owner (this container) while a drilldown level is open.
-		&:has(.db-control-panel-navigation[data-variant="drilldown"]){
+		&:has(.db-control-panel-navigation[data-variant="drilldown"]) {
 			@include navigation-item.lock-scroll-while-drilldown-open;
 		}
 

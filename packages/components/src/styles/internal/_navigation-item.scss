@@ -28,9 +28,9 @@
 	.db-control-panel-navigation-item,
 	.db-control-panel-navigation-item-group-expand-button {
 		@media (prefers-reduced-motion: no-preference) {
-			transition:
-				transform #{variables.$db-transition-duration-extra-slow}
-					#{variables.$db-transition-timing-emotional};
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
+				#{variables.$db-transition-timing-emotional};
 		}
 	}
 
@@ -61,7 +61,6 @@
 				padding: 0;
 				block-size: 0;
 				min-block-size: 0;
-
 
 				@media (prefers-reduced-motion: no-preference) {
 					// block-size collapses from an intrinsic value (fit-content)
