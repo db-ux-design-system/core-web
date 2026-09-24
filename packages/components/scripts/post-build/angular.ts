@@ -58,11 +58,18 @@ const setControlValueAccessorReplacements = (
 	replacements.push({
 		from: 'ngAfterViewInit()',
 		to: `
-		/** @legacy CVA - will be removed in a future major version */
-		writeValue(value: any) {
+		/** @internal Applies a value to the model signal, without writing it back into the DOM. */
+		_setModelValue(value: any) {
 			${valueAccessorRequired ? 'if(value){' : ''}
 		  this.${valueAccessor}.set(${valueAccessor === 'checked' ? '!!' : ''}value);
+			${valueAccessorRequired ? '}' : ''}
+		}
 
+		/** @legacy CVA - will be removed in a future major version */
+		writeValue(value: any) {
+		  this._setModelValue(value);
+
+			${valueAccessorRequired ? 'if(value){' : ''}
 		  if (this._ref()?.nativeElement) {
 			 this.renderer.setProperty(this._ref()?.nativeElement, '${valueAccessor}', ${valueAccessor === 'checked' ? '!!' : ''}value);
 		  }
