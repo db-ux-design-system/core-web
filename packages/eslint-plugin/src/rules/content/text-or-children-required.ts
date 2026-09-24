@@ -205,6 +205,19 @@ export default {
 			const text = isBareBooleanAttribute(openingElement, 'text')
 				? ''
 				: getAttributeValue(openingElement, 'text');
+
+			// React also accepts `children` as an explicit prop
+			// (`<DBDialogHeader children="Title" />` or `children={title}`), which
+			// renders as the component's content. Evaluate it the same way as
+			// `text`: a non-empty static string or a dynamic binding counts as
+			// content; a bare attribute, empty/whitespace string or empty
+			// expression does not.
+			const childrenAttr = isBareBooleanAttribute(
+				openingElement,
+				'children'
+			)
+				? ''
+				: getAttributeValue(openingElement, 'children');
 			const isContentChild = (child: any): boolean =>
 				(child.type === 'JSXText' && child.value.trim() !== '') ||
 				(child.type === 'VText' && child.value.trim() !== '') ||
@@ -233,27 +246,36 @@ export default {
 				(child.type === 'VExpressionContainer' &&
 					!isStaticallyEmptyExpression(child.expression));
 
-			const hasChildren = node.children?.some(isContentChild);
+			// Content is present when the `text` attribute, an explicit `children`
+			// attribute, or a rendered JSX/template child node carries it.
+			const hasContent =
+				hasTextContent(text) ||
+				hasTextContent(childrenAttr) ||
+				node.children?.some(isContentChild);
+
+			if (hasContent) {
+				return;
+			}
 
 			// A React spread (<DBDialogHeader {...headerProps} />) or Vue object
-			// v-bind may supply `text`, and its contents cannot be verified
-			// statically, so treat the header as unresolved rather than reporting -
-			// unless a later explicit `text` determines the final value.
+			// v-bind may supply `text` or `children`, and its contents cannot be
+			// verified statically, so treat the header as unresolved rather than
+			// reporting. `text` and `children` are alternative content sources, so
+			// the spread only rescues when it comes after the last explicit
+			// occurrence of BOTH - if either is explicitly pinned (e.g. `text=""`)
+			// after the spread, that empty value wins and the header is reported.
 			if (
-				!hasTextContent(text) &&
-				!hasChildren &&
-				isUnresolvedBySpread(openingElement, 'text')
+				isUnresolvedBySpread(openingElement, 'text') &&
+				isUnresolvedBySpread(openingElement, 'children')
 			) {
 				return;
 			}
 
-			if (!hasTextContent(text) && !hasChildren) {
-				context.report({
-					node: openingElement,
-					messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
-					data: { component: componentName }
-				});
-			}
+			context.report({
+				node: openingElement,
+				messageId: MESSAGE_IDS.TEXT_OR_CHILDREN_REQUIRED,
+				data: { component: componentName }
+			});
 		};
 
 		return defineTemplateBodyVisitor(

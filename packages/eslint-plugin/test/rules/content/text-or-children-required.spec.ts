@@ -84,6 +84,24 @@ describe('text-or-children-required', () => {
 				// (React later-wins) it may supply a valid text - unresolved.
 				code: '<DBDialogHeader text="" {...headerProps} />'
 			},
+			{
+				// React accepts `children` as an explicit prop; a non-empty
+				// static string renders as the header content.
+				code: '<DBDialogHeader children="Title" closeButtonText="Close" />'
+			},
+			{
+				// A dynamic `children` binding is unverifiable, so it counts as
+				// (possible) content.
+				code: '<DBDialogHeader children={title} />'
+			},
+			{
+				code: '<DBDrawerHeader children="Title" />'
+			},
+			{
+				// A spread after an empty explicit `children` may still supply a
+				// valid one (React later-wins), so it is unresolved, not reported.
+				code: '<DBDialogHeader children="" {...headerProps} />'
+			},
 			{ code: '<div />' }
 		],
 		invalid: [
@@ -207,6 +225,36 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An empty explicit `children` prop renders no content.
+				code: '<DBDialogHeader children="" closeButtonText="Close" />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A statically empty `children` expression renders nothing.
+				code: "<DBDialogHeader children={''} />",
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A bare valueless `children` attribute renders no content.
+				code: '<DBDrawerHeader children />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
 					}
 				]
 			},
