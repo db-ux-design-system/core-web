@@ -1,8 +1,10 @@
 import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
+import DBBadge from '../../badge/badge.lite';
 import DBButton from '../../button/button.lite';
 import DBCustomSelect from '../../custom-select/custom-select.lite';
 import DBDialogFooter from '../../dialog-footer/dialog-footer.lite';
 import DBDialogHeader from '../../dialog-header/dialog-header.lite';
+import DBIcon from '../../icon/icon.lite';
 import DBTooltip from '../../tooltip/tooltip.lite';
 import DBDialog from '../dialog.lite';
 import { StorybookDialogArgTypes } from './_dialog.arg.types';
