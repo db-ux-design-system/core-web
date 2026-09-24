@@ -52,18 +52,13 @@ export type EndSlotProps = {
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
-export type TempGlobalProps = {
-	material?: MaterialType;
-	color?: ColorType;
-	containerContrast?: ContrastType;
-	contentContrast?: ContrastType;
-};
-
 export const ContrastList = ['max', 'min'] as const;
 export type ContrastType = (typeof ContrastList)[number];
 
 export const MaterialList = [
-	'filled',
+	'filled-1',
+	'filled-2',
+	'filled-3',
 	'vibrant',
 	'origin',
 	'inverted',
@@ -72,7 +67,15 @@ export const MaterialList = [
 ] as const;
 export type MaterialType = (typeof MaterialList)[number];
 
-export const ColorList = ['neutral', 'red', 'brand', 'green'] as const;
+export const ColorList = [
+	'neutral',
+	'red',
+	'brand',
+	'green',
+	'blue',
+	'yellow',
+	'grey'
+] as const;
 export type ColorType = (typeof ColorList)[number];
 
 export type GlobalState = {
@@ -94,24 +97,6 @@ export type ActiveColorState = {
 export type ActiveMaterialProps = {
 	activeMaterial?: MaterialType;
 	activeColor?: ColorType;
-	activeContainerContrast?: ContrastType;
-	activeContentContrast?: ContrastType;
-};
-
-export type ContainerContrastState = {
-	_getContainerContrast: () => ContrastType | undefined;
-};
-
-export type ContentContrastState = {
-	_getContentContrast: () => ContrastType | undefined;
-};
-
-export type ActiveContainerContrastState = {
-	_getActiveContainerContrast: () => ContrastType | undefined;
-};
-
-export type ActiveContentContrastState = {
-	_getActiveContentContrast: () => ContrastType | undefined;
 };
 
 export const SemanticList = [
@@ -356,6 +341,26 @@ export type SizeProps = {
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
 	size?: SizeType | NextGenSizeType;
+};
+
+/**
+ * Shared next-generation props applied to every next-gen component.
+ * Currently exposes the next-gen `size` scale. Components that still support
+ * the legacy `SizeType` (`small`/`medium`) must widen `size` back to the union
+ * by overriding it after this type, e.g.:
+ *
+ * ```ts
+ * ... & NextGenDefaultProps & { size?: SizeType | NextGenSizeType };
+ * ```
+ */
+export type NextGenDefaultProps = {
+	/**
+	 * The size attribute changes the font-size and other related sizes of the component.
+	 */
+	size?: NextGenSizeType;
+
+	material?: MaterialType;
+	color?: ColorType;
 };
 
 export const EmphasisList = ['weak', 'strong'] as const;

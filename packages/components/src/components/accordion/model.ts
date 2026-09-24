@@ -2,7 +2,7 @@ import type {
 	GlobalProps,
 	InitializedState,
 	MaterialState,
-	TempGlobalProps
+	NextGenDefaultProps
 } from '../../shared/model';
 import type { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
@@ -47,7 +47,7 @@ export type DBAccordionDefaultProps = {
 
 export type DBAccordionProps = DBAccordionDefaultProps &
 	GlobalProps &
-	TempGlobalProps;
+	NextGenDefaultProps;
 
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;

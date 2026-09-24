@@ -7,43 +7,38 @@
 .db-accordion-item[data-generation="next"] {
 	@include helpers.display(flex);
 	flex-direction: column;
-	gap: var(--db-component-gap);
+	inline-size: 100%;
+	gap: var(
+		--db-layout-same-content-elements
+	); // We use this for the divider coming from db-accordion
 
-	&:has(> details[open]) {
-		border-color: var(--db-border);
+	&:has(> details[aria-disabled="true"]) {
+		@extend %disabled;
+
+		pointer-events: none;
 	}
 
 	> details {
 		@extend %default-material;
-		@extend %font;
 		@extend %default-border;
 
 		&[open] {
 			.db-accordion-item-content {
-				padding: component.$component-content-padding-block
-					component.$component-content-padding-inline;
 				block-size: auto;
 				/* stylelint-disable-next-line declaration-property-value-no-unknown, db-ux/use-sizing */
 				block-size: calc-size(auto, size);
 			}
 
-			> summary::after {
+			.db-accordion-item-header-containerless-component::after {
 				transform: form-components.$dropdown-icon-transform;
 			}
 		}
 
-		.db-accordion-item-summary-content {
-			@extend %content;
-		}
-
-		> summary {
-			@extend %next-icon;
-			@extend %dropdown-icon;
-			@extend %component;
-
-			gap: var(--db-component-gap);
-			justify-content: space-between;
+		.db-accordion-item-header {
+			@extend %layout;
 			list-style: none;
+			border-radius: var(--db-border-radius);
+			inline-size: 100%;
 
 			@include helpers.display(flex);
 
@@ -54,12 +49,31 @@
 			@include helpers.active {
 				background-color: var(--db-bg-pressed);
 			}
+
+			.db-accordion-item-header-containerless-component {
+				@extend %containerless-component;
+				@extend %dropdown-icon;
+				@extend %next-icon;
+
+				inline-size: 100%;
+				font-weight: bold;
+				align-items: center;
+
+				&:not(:has(:first-child))::after,
+				:first-child {
+					margin-inline-start: auto;
+				}
+			}
 		}
 
 		.db-accordion-item-content {
-			@extend %content;
+			@extend %layout;
+			@include helpers.display(flex);
+
+			flex-direction: column;
 			block-size: 0;
 			overflow: hidden;
+			inline-size: 100%;
 		}
 
 		@media (prefers-reduced-motion: no-preference) {

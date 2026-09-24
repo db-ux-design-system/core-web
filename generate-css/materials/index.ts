@@ -9,7 +9,6 @@ import {
 import {
 	type ContainerContrastProps,
 	type ContentContrastProps,
-	type ContrastLevel,
 	type MaterialConfig,
 	type MaterialName,
 	containerPropToCss,
@@ -21,8 +20,6 @@ import {
 
 type MaterialRule = {
 	material: MaterialName;
-	contrastType?: string;
-	contrastLevel?: ContrastLevel;
 	noMaterialFallback?: boolean;
 	props: ContainerContrastProps | ContentContrastProps;
 	cssMap: Record<string, string>;
@@ -30,15 +27,11 @@ type MaterialRule = {
 
 type HighContrastRule = {
 	material: MaterialName;
-	contrastType: string;
 	props: Partial<ContainerContrastProps> | Partial<ContentContrastProps>;
 	cssMap: Record<string, string>;
 };
 
 // --- Helpers ---
-
-const isContrastSide = (side: any): side is Record<ContrastLevel, any> =>
-	side && typeof side === 'object' && ('max' in side || 'min' in side);
 
 const renderProps = (
 	props: ContainerContrastProps | ContentContrastProps,
@@ -49,7 +42,7 @@ const renderProps = (
 	Object.entries(props)
 		.map(([prop, key]) => {
 			const [light, dark] = palette[key as keyof ColorPalette];
-			return `${indent}\t${cssMap[prop]}: light-dark(${light}, ${dark});`;
+			return `${indent}\t${cssMap[prop]}: color-mix(in srgb, light-dark(${light}, ${dark}) var(--db-color-transparency), transparent);`;
 		})
 		.join('\n');
 
@@ -62,15 +55,10 @@ const generateForPrefix = (prefix: string): string => {
 	const dataColor = `data-${p}color-next`;
 	const dataMaterial = `data-${p}material`;
 
-	const contrastDefaults: Record<string, ContrastLevel> = {
-		[`${p}container-contrast`]: 'min',
-		[`${p}content-contrast`]: 'max'
-	};
-
-	const contrastTypes = {
-		container: `${p}container-contrast`,
-		content: `${p}content-contrast`
-	};
+	const sides = {
+		container: containerCss,
+		content: contentCss
+	} as const;
 
 	// Flatten materials into rules
 	const flattenMaterials = (): MaterialRule[] => {
@@ -79,32 +67,15 @@ const generateForPrefix = (prefix: string): string => {
 			MaterialName,
 			MaterialConfig
 		][]) {
-			for (const [side, dataAttr] of Object.entries(contrastTypes) as [
-				keyof typeof contrastTypes,
-				string
+			for (const [side, cssMap] of Object.entries(sides) as [
+				keyof typeof sides,
+				Record<string, string>
 			][]) {
-				const cssMap = side === 'container' ? containerCss : contentCss;
-				const sideConfig = config[side];
-				if (isContrastSide(sideConfig)) {
-					for (const [level, props] of Object.entries(sideConfig) as [
-						ContrastLevel,
-						ContainerContrastProps | ContentContrastProps
-					][]) {
-						rules.push({
-							material: matName,
-							contrastType: dataAttr,
-							contrastLevel: level,
-							props,
-							cssMap
-						});
-					}
-				} else {
-					rules.push({
-						material: matName,
-						props: sideConfig,
-						cssMap
-					});
-				}
+				rules.push({
+					material: matName,
+					props: config[side],
+					cssMap
+				});
 			}
 		}
 		return rules;
@@ -120,25 +91,15 @@ const generateForPrefix = (prefix: string): string => {
 	][]) {
 		if (!config.highContrast) continue;
 		const hc = config.highContrast;
-		for (const [side, dataAttr] of Object.entries(contrastTypes) as [
-			keyof typeof contrastTypes,
-			string
+		for (const [side, cssMap] of Object.entries(sides) as [
+			keyof typeof sides,
+			Record<string, string>
 		][]) {
-			const hcSide = hc[side];
-			if (!hcSide) continue;
-			const cssMap = side === 'container' ? containerCss : contentCss;
-			const merged: Record<string, keyof ColorPalette> = {};
-			for (const level of ['max', 'min'] as ContrastLevel[]) {
-				const overrides = hcSide[level];
-				if (overrides) Object.assign(merged, overrides);
-			}
-			if (Object.keys(merged).length === 0) continue;
+			const overrides = hc[side];
+			if (!overrides || Object.keys(overrides).length === 0) continue;
 			highContrastDiffRules.push({
 				material: matName,
-				contrastType: dataAttr,
-				props: merged as
-					| Partial<ContainerContrastProps>
-					| Partial<ContentContrastProps>,
+				props: overrides,
 				cssMap
 			});
 		}
@@ -149,30 +110,13 @@ const generateForPrefix = (prefix: string): string => {
 		rule: MaterialRule,
 		selectorPrefix = ''
 	): string[] => {
-		const { material, contrastType, contrastLevel } = rule;
+		const { material } = rule;
 		const matSel = `${selectorPrefix}[${dataMaterial}="${material}"]`;
 
-		if (!contrastType || !contrastLevel) return [matSel];
-
-		const parts: string[] = [];
-
-		if (contrastLevel === contrastDefaults[contrastType]) {
-			parts.push(`${matSel}:not([data-${contrastType}])`);
-			parts.push(`${matSel}[data-${contrastType}="${contrastLevel}"]`);
-		} else {
-			parts.push(`${matSel}[data-${contrastType}="${contrastLevel}"]`);
-		}
+		const parts: string[] = [matSel];
 
 		if (rule.noMaterialFallback) {
-			if (contrastLevel === contrastDefaults[contrastType]) {
-				parts.push(
-					`${selectorPrefix}:not([${dataMaterial}]):not([data-${contrastType}])`
-				);
-			} else {
-				parts.push(
-					`${selectorPrefix}:not([${dataMaterial}])[data-${contrastType}="${contrastLevel}"]`
-				);
-			}
+			parts.push(`${selectorPrefix}:not([${dataMaterial}])`);
 		}
 
 		return parts;
@@ -196,12 +140,8 @@ const generateForPrefix = (prefix: string): string => {
 	// --- Defaults ---
 	const defaultPalette = colors[DEFAULT_COLOR];
 	const defaultConfig = materials.filled;
-	const defaultContainer = (
-		defaultConfig.container as Record<ContrastLevel, ContainerContrastProps>
-	).min;
-	const defaultContent = (
-		defaultConfig.content as Record<ContrastLevel, ContentContrastProps>
-	).max;
+	const defaultContainer = defaultConfig.container;
+	const defaultContent = defaultConfig.content;
 
 	let css = '';
 
@@ -275,7 +215,7 @@ const generateForPrefix = (prefix: string): string => {
 					Object.entries(rule.props).map(([prop, colorKey]) => {
 						const [light, dark] =
 							defaultPalette[colorKey as keyof ColorPalette];
-						return `${indent}\t${rule.cssMap[prop]}: light-dark(${light}, ${dark});`;
+						return `${indent}\t${rule.cssMap[prop]}: color-mix(in srgb, light-dark(${light}, ${dark}) var(--db-color-transparency), transparent);`;
 					})
 				)
 				.join('\n');
@@ -291,7 +231,7 @@ const generateForPrefix = (prefix: string): string => {
 						Object.entries(rule.props).map(([prop, colorKey]) => {
 							const [light, dark] =
 								palette[colorKey as keyof ColorPalette];
-							return `${indent}\t${rule.cssMap[prop]}: light-dark(${light}, ${dark});`;
+							return `${indent}\t${rule.cssMap[prop]}: color-mix(in srgb, light-dark(${light}, ${dark}) var(--db-color-transparency), transparent);`;
 						})
 					)
 					.join('\n');
@@ -337,11 +277,13 @@ export const generateMaterialsCss = (): string => {
 	const [focusLight, focusDark] = focusPalette[FOCUS_OUTLINE_COLOR.index];
 	const dividerPalette = colors[DIVIDER_BG_COLOR.color];
 	const [dividerLight, dividerDark] = dividerPalette[DIVIDER_BG_COLOR.index];
-	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: light-dark(${dividerLight}, ${dividerDark});\n}\n\n`;
+	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: light-dark(${dividerLight}, ${dividerDark});\n\t--db-color-transparency: 100%;\n\t--db-font-weight: normal;\n}\n\n`;
 
 	css += '@layer material {\n\n';
 	css += defaultSet.materialCss;
 	css += activeSet.materialCss;
+	css += '[data-emphasis="low"] {\n\t--db-color-transparency: 80%;\n}\n\n';
+	css += '[data-emphasis="high"] {\n\t--db-font-weight: bold;\n}\n\n';
 	css += '} /* @layer material */\n\n';
 
 	css += '@layer material-high-contrast {\n\n';

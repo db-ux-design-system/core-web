@@ -1,14 +1,19 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/next/component";
 @use "accordion";
 
 [data-generation="next"] .db-accordion,
 .db-accordion[data-generation="next"] {
+	@extend %font;
+
 	padding: 0;
 	margin: 0;
 	list-style-type: "";
-	@include helpers.display(flex);
 	flex-direction: column;
-	gap: var(--db-component-gap);
+	gap: var(--db-layout-same-content-elements);
+	inline-size: 100%;
+
+	@include helpers.display(flex);
 
 	&[data-variant="divider"],
 	&:not([data-variant]) {

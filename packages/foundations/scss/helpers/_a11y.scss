@@ -15,10 +15,13 @@
 // Hides text while keeping the element visible (e.g. for background images).
 // RTL-safe alternative to text-indent: -9999px.
 @mixin a11y-visually-hidden-text {
-	overflow: hidden;
-	text-indent: 200%;
-	white-space: nowrap;
-	position: fixed;
+	overflow: hidden !important;
+	text-indent: 200% !important;
+	white-space: nowrap !important;
+	position: fixed !important;
+	pointer-events: none !important;
+	inline-size: 1px !important;
+	block-size: 1px !important;
 }
 
 %a11y-visually-hidden-text {

@@ -13,13 +13,143 @@
 			Vibrant Color
 		</span>
 
-
 		<div>
 			<h2>Sizes</h2>
 			<button class="button"><span>Medium</span></button>
 			<button class="button" data-size="sm"><span>Small</span></button>
 		</div>
 
+		<div>
+			<h2>New materials: filled-1 / filled-2 / filled-3</h2>
+			<span class="tag" data-material="filled-1"> Filled 1 </span>
+			<span class="tag" data-material="filled-2"> Filled 2 </span>
+			<span class="tag" data-material="filled-3"> Filled 3 </span>
+			<span class="tag" data-material="filled-2" data-color-next="red">
+				Filled 2 Color
+			</span>
+		</div>
+
+		<div>
+			<h2>Emphasis (data-emphasis)</h2>
+			<span class="tag"> Default (100%) </span>
+			<span class="tag" data-emphasis="low">
+				Low (80% transparency)
+			</span>
+			<span class="tag" data-emphasis="high"> High (bold) </span>
+		</div>
+
+		<div>
+			<h2>High contrast (data-contrast="more")</h2>
+			<span class="tag"> Normal </span>
+			<span class="tag" data-material="vibrant"> Vibrant Normal </span>
+		</div>
+		<div data-contrast="more">
+			<h2>Same tags inside data-contrast="more"</h2>
+			<span class="tag"> More </span>
+			<span class="tag" data-material="vibrant"> Vibrant More </span>
+		</div>
+
+		<div>
+			<h2>New role variables</h2>
+			<p>
+				These read the generated <code>--db-border-vibrant</code>,
+				<code>--db-border-decorative</code> and
+				<code>--db-visual-vibrant</code> custom properties directly.
+			</p>
+			<div
+				style="
+					border: 2px solid var(--db-border-vibrant);
+					padding: 8px;
+					margin-block-end: 8px;
+				"
+			>
+				Box with border: var(--db-border-vibrant)
+			</div>
+			<div
+				style="
+					border: 2px solid var(--db-border-decorative);
+					padding: 8px;
+					margin-block-end: 8px;
+				"
+			>
+				Box with border: var(--db-border-decorative)
+			</div>
+			<div style="color: var(--db-visual-vibrant)">
+				Text using color: var(--db-visual-vibrant)
+			</div>
+		</div>
+
+		<div>
+			<h2>Layout density + composition spacing</h2>
+			<p>
+				Density switches the <code>--db-layout-*</code> scale via
+				<code>data-layout-density</code>. Each colored bar below uses
+				one composition token as its inline size.
+			</p>
+			<div
+				data-layout-density="compact"
+				style="
+					display: flex;
+					flex-direction: column;
+					gap: var(--db-layout-grouped);
+				"
+			>
+				<strong>Compact</strong>
+				<div
+					style="
+						block-size: 12px;
+						inline-size: var(--db-layout-same-kind);
+						background: var(--db-visual-default);
+					"
+				></div>
+				<div
+					style="
+						block-size: 12px;
+						inline-size: var(--db-layout-regular);
+						background: var(--db-visual-default);
+					"
+				></div>
+				<div
+					style="
+						block-size: 12px;
+						inline-size: var(--db-layout-block);
+						background: var(--db-visual-default);
+					"
+				></div>
+			</div>
+			<div
+				data-layout-density="airy"
+				style="
+					display: flex;
+					flex-direction: column;
+					gap: var(--db-layout-grouped);
+					margin-block-start: 16px;
+				"
+			>
+				<strong>Airy</strong>
+				<div
+					style="
+						block-size: 12px;
+						inline-size: var(--db-layout-same-kind);
+						background: var(--db-visual-default);
+					"
+				></div>
+				<div
+					style="
+						block-size: 12px;
+						inline-size: var(--db-layout-regular);
+						background: var(--db-visual-default);
+					"
+				></div>
+				<div
+					style="
+						block-size: 12px;
+						inline-size: var(--db-layout-block);
+						background: var(--db-visual-default);
+					"
+				></div>
+			</div>
+		</div>
 
 		<div data-material="vibrant">
 			<h2>Vibrant Container ohne Color</h2>
@@ -34,7 +164,9 @@
 				<h3>Double stacked</h3>
 				<span class="tag"> Filled Double</span>
 				<span class="tag" data-material="vibrant"> Vibrant Double</span>
-				<span class="tag" data-color-next="red"> Filled Double Color</span>
+				<span class="tag" data-color-next="red">
+					Filled Double Color</span
+				>
 				<span class="tag" data-color-next="red" data-material="vibrant">
 					Vibrant Double Color</span
 				>
@@ -49,7 +181,9 @@
 			<h2>Origin Container</h2>
 			<span class="tag"> Origin </span>
 			<span class="tag" data-color-next="red"> Origin Color </span>
-			<span class="tag" data-material="filled"> Filled inside Origin </span>
+			<span class="tag" data-material="filled">
+				Filled inside Origin
+			</span>
 		</div>
 		<div data-material="origin" data-color-next="red">
 			<h2>Origin Container mit Color</h2>
@@ -58,7 +192,9 @@
 		<div data-material="semi-transparent">
 			<h2>Semi-Transparent Container</h2>
 			<span class="tag"> Semi-Transparent </span>
-			<span class="tag" data-color-next="red"> Semi-Transparent Color </span>
+			<span class="tag" data-color-next="red">
+				Semi-Transparent Color
+			</span>
 		</div>
 		<div data-material="semi-transparent" data-color-next="red">
 			<h2>Semi-Transparent Container mit Color</h2>

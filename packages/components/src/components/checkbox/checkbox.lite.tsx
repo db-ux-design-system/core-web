@@ -99,32 +99,6 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			return undefined;
 		},
-		_getActiveContentContrast: () => {
-			const validationState = getValidationState(props, _ref);
-
-			if (validationState === 'valid' || validationState === 'invalid') {
-				return 'min';
-			}
-
-			if (props.activeContentContrast) {
-				return props.activeContentContrast;
-			}
-
-			return 'max';
-		},
-		_getContentContrast: () => {
-			const validationState = getValidationState(props, _ref);
-
-			if (validationState === 'valid' || validationState === 'invalid') {
-				return 'min';
-			}
-
-			if (props.contentContrast) {
-				return props.contentContrast;
-			}
-
-			return 'max';
-		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -294,14 +268,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			data-active-color-next={state._getActiveColor()}
 			data-material={props.material ?? 'filled'}
 			data-color-next={state._getColor()}
-			data-container-contrast={props.containerContrast ?? 'max'}
-			data-active-container-contrast={
-				props.activeContainerContrast ?? 'max'
-			}
-			data-content-contrast={state._getContentContrast()}
-			data-active-content-contrast={state._getActiveContentContrast()}
 			class={cls('db-checkbox', props.className)}
-			data-size={props.size}
+			data-size={props.size ?? "sm"}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label htmlFor={state._id}>
@@ -327,7 +295,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 					}
 					aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				/>
-				<div class="db-checkbox-content">
+				<div class="db-checkbox-containerless-component">
 					<Show when={props.label}>{props.label}</Show>
 					{props.children}
 				</div>

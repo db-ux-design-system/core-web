@@ -1,18 +1,20 @@
-import type {
+import {
 	ClickEventProps,
 	ColorState,
+	EndSlotProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
 	MaterialState,
+	NextGenDefaultProps,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
 	SizeProps,
-	TempGlobalProps,
+	StartSlotProps,
 	TextProps,
 	WidthProps,
 	WrapProps
@@ -76,7 +78,7 @@ export type DBButtonDefaultProps = {
 export type DBButtonProps = DBButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
-	TempGlobalProps &
+	NextGenDefaultProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
@@ -88,7 +90,9 @@ export type DBButtonProps = DBButtonDefaultProps &
 	IconLeadingProps &
 	IconTrailingProps &
 	WrapProps &
-	NoTextProps;
+	NoTextProps &
+	EndSlotProps &
+	StartSlotProps;
 
 export type DBButtonDefaultState = {
 	getButtonType: () => ButtonTypeType;

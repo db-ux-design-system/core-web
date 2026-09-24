@@ -1,5 +1,6 @@
 import {
 	Show,
+	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -52,7 +53,7 @@ export default function DBButton(props: DBButtonProps) {
 				return undefined;
 			}
 
-			return 'filled';
+			return 'filled-1';
 		},
 		_getColor: (): ColorType | undefined => {
 			if (props.color) {
@@ -71,37 +72,40 @@ export default function DBButton(props: DBButtonProps) {
 		<button
 			data-material={state._getMaterial()}
 			data-color-next={state._getColor()}
-			data-container-contrast={props.containerContrast}
-			data-content-contrast={props.contentContrast}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-button', props.className)}
 			type={state.getButtonType()}
 			disabled={getBoolean(props.disabled, 'disabled')}
-			data-icon={props.iconLeading ?? props.icon}
-			data-show-icon={
-				getBooleanAsString(props.showIconLeading, 'showIconLeading') ||
-				getBooleanAsString(props.showIcon, 'showIcon')
-			}
-			data-icon-trailing={props.iconTrailing}
-			data-show-icon-trailing={getBooleanAsString(
-				props.showIconTrailing,
-				'showIconTrailing'
-			)}
 			data-size={props.size}
 			data-width={props.width}
 			data-variant={props.variant}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
-			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			name={props.name}
 			form={props.form}
 			value={props.value}
 			command={props.command}
 			commandfor={props.commandfor}>
-			<div class="db-button-content">
+			<Slot name="startSlot" />
+			<div
+				class="db-button-content"
+				data-icon={props.iconLeading ?? props.icon}
+				data-no-text={getBooleanAsString(props.noText, 'noText')}
+				data-show-icon={
+					getBooleanAsString(
+						props.showIconLeading,
+						'showIconLeading'
+					) || getBooleanAsString(props.showIcon, 'showIcon')
+				}
+				data-icon-trailing={props.iconTrailing}
+				data-show-icon-trailing={getBooleanAsString(
+					props.showIconTrailing,
+					'showIconTrailing'
+				)}>
 				<Show when={props.text}>{props.text}</Show>
 				{props.children}
 			</div>
+			<Slot name="endSlot" />
 		</button>
 	);
 }

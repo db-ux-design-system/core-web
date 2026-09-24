@@ -1,63 +1,66 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/next/component";
 @use "../../styles/internal/form-components";
 
 %checkbox-materials {
 	> label {
-		color: var(--db-text-default);
+		color: var(--db-on-bg-default);
 	}
 
 	input {
 		&:not(:checked) {
 			background-color: var(--db-bg-default);
-			color: var(--db-text-default);
-			border-color: var(--db-visual-default);
+			color: var(--db-on-bg-default);
+			border-color: var(--db-on-bg-default);
 
 			&::before {
-				color: var(--db-visual-default);
+				color: var(--db-on-bg-default);
 			}
 		}
 
 		&:checked {
 			background-color: var(--db-active-bg-default);
-			color: var(--db-active-text-default);
-			border-color: var(--db-active-visual-default);
+			color: var(--db-active-on-bg-default);
+			border-color: var(--db-active-on-bg-default);
 
 			&::before {
-				color: var(--db-active-visual-default);
+				color: var(--db-active-on-bg-default);
 			}
 		}
 	}
 
-	@include helpers.hover {
-		> label {
-			color: var(--db-text-hovered);
-		}
-
-		input {
-			&:not(:checked) {
-				background-color: var(--db-bg-hovered);
+	&:not(:has(input:disabled)) {
+		@include helpers.hover {
+			> label {
+				color: var(--db-on-bg-hovered);
 			}
 
-			&:checked {
-				background-color: var(--db-active-bg-hovered);
+			input {
+				&:not(:checked) {
+					background-color: var(--db-bg-hovered);
+				}
+
+				&:checked {
+					background-color: var(--db-active-bg-hovered);
+				}
 			}
 		}
-	}
 
-	@include helpers.active {
-		> label {
-			color: var(--db-text-pressed);
-		}
-
-		input {
-			&:not(:checked) {
-				background-color: var(--db-bg-pressed);
+		@include helpers.active {
+			> label {
+				color: var(--db-on-bg-pressed);
 			}
 
-			:checked {
-				background-color: var(--db-active-bg-pressed);
+			input {
+				&:not(:checked) {
+					background-color: var(--db-bg-pressed);
+				}
+
+				:checked {
+					background-color: var(--db-active-bg-pressed);
+				}
 			}
 		}
 	}
@@ -66,11 +69,10 @@
 [data-generation="next"] .db-checkbox,
 .db-checkbox[data-generation="next"] {
 	@extend %checkbox-materials;
-	@extend %component;
 
 	@include helpers.display(flex);
 	flex-direction: column;
-	gap: var(--db-component-gap);
+	gap: var(--db-layout-grouped-content-elements);
 
 	> db-infotext > .db-infotext,
 	> .db-infotext {
@@ -93,13 +95,13 @@
 		label {
 			@include form-components.set-required-label(
 				input,
-				".db-checkbox-content"
+				".db-checkbox-containerless-component"
 			);
 		}
 	}
 
 	&[data-hide-label="true"] {
-		.db-checkbox-content {
+		.db-checkbox-containerless-component {
 			@extend %a11y-visually-hidden-text;
 		}
 	}
@@ -108,26 +110,48 @@
 	> label {
 		@include helpers.display(flex);
 
-		align-items: flex-start;
-		gap: var(--db-component-gap);
+		align-items: center;
+		gap: inherit;
 	}
 
-	.db-checkbox-content {
-		@extend %content;
+	.db-checkbox-containerless-component {
+		@extend %containerless-component;
+		@extend %default-fg-transition;
+
+		color: inherit;
+	}
+
+	&:has(input:disabled) {
+		@extend %disabled;
 	}
 
 	input {
-		@include helpers.display(flex);
+		@extend %container-component;
 
-		border: var(--db-border-width) solid var(--db-border);
-		border-radius: var(--db-border-radius);
 		align-items: center;
-		justify-content: center;
-		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
-		block-size: var(--db-content-height);
-		inline-size: var(--db-content-height);
+		position: relative;
+
+		&::before {
+			@extend %next-icon;
+
+			position: absolute;
+			inset-inline-start: 50%;
+			transform: translateX(-50%);
+		}
+
+		&::after {
+			// This Element fakes the content size
+			content: "";
+			aspect-ratio: 1;
+			block-size: var(--db-content-height);
+		}
+
+		&:not(:checked) {
+			// Empty icon
+			@include icons.set-icon("empty");
+		}
 
 		&:checked {
 			// Check icon

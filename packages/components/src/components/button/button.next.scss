@@ -3,27 +3,23 @@
 
 [data-generation="next"] .db-button,
 .db-button[data-generation="next"] {
-	@extend %component;
+	@extend %container-component;
 	@extend %interactive-materials;
 
 	display: inline-flex;
-	gap: var(--db-component-gap);
 	align-items: center;
+	justify-content: center;
 
-	.db-button-content {
-		@extend %content;
-	}
+	@include component.set-default-content("button");
 
-	&[data-no-text="true"] {
-		.db-button-content {
-			@extend %a11y-visually-hidden-text;
-		}
-	}
 
 	&[data-width="full"]:not([data-no-text="true"]) {
-		&,
-		.db-button-content {
+		& {
 			inline-size: 100%;
 		}
+	}
+
+	&:is(:disabled, [aria-disabled="true"]) {
+		@extend %disabled;
 	}
 }

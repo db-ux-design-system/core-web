@@ -11,6 +11,7 @@ import ButtonShowIconTrailing from '../examples/show-icon-trailing.example.lite'
 import ButtonSize from '../examples/size.example.lite';
 import ButtonVariant from '../examples/variant.example.lite';
 import ButtonWidth from '../examples/width.example.lite';
+import ButtonSlot from '../examples/slot.example.lite';
 
 export default function ButtonShowcase(props: PatternhubProps) {
 	return (
@@ -60,6 +61,11 @@ export default function ButtonShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Multi-line Text With Line Breaks">
 				<CardWrapperShowcase>
 					<ButtonMultiLineText />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Button Slot">
+				<CardWrapperShowcase>
+					<ButtonSlot />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

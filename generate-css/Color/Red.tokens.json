@@ -1,0 +1,1171 @@
+{
+  "active-color": {
+    "$type": "string",
+    "$value": "Red",
+    "$description": "Human-readable active Color mode.",
+    "$extensions": {
+      "com.figma.variableId": "VariableID:9:43",
+      "com.figma.hiddenFromPublishing": true,
+      "com.figma.type": "string"
+    }
+  },
+  "palette": {
+    "0": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.1568627506494522,
+          0,
+          0.003921568859368563
+        ],
+        "alpha": 1,
+        "hex": "#280001"
+      },
+      "$description": "Themebuilder palette step 0.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:8",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "1": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2235294133424759,
+          0,
+          0.003921568859368563
+        ],
+        "alpha": 1,
+        "hex": "#390001"
+      },
+      "$description": "Themebuilder palette step 1.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:9",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "2": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.3137255012989044,
+          0,
+          0.0117647061124444
+        ],
+        "alpha": 1,
+        "hex": "#500003"
+      },
+      "$description": "Themebuilder palette step 2.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:10",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "3": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.4117647111415863,
+          0,
+          0.01568627543747425
+        ],
+        "alpha": 1,
+        "hex": "#690004"
+      },
+      "$description": "Themebuilder palette step 3.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:11",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "4": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.5098039507865906,
+          0,
+          0.027450980618596077
+        ],
+        "alpha": 1,
+        "hex": "#820007"
+      },
+      "$description": "Themebuilder palette step 4.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:12",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "5": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.6117647290229797,
+          0,
+          0.03921568766236305
+        ],
+        "alpha": 1,
+        "hex": "#9C000A"
+      },
+      "$description": "Themebuilder palette step 5.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:13",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "6": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529411911964417,
+          0,
+          0.062745101749897
+        ],
+        "alpha": 1,
+        "hex": "#C00010"
+      },
+      "$description": "Themebuilder palette step 6.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:14",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "7": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.9372549057006836,
+          0,
+          0.08627451211214066
+        ],
+        "alpha": 1,
+        "hex": "#EF0016"
+      },
+      "$description": "Themebuilder palette step 7.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:15",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "8": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.32549020648002625,
+          0.34117648005485535
+        ],
+        "alpha": 1,
+        "hex": "#FF5357"
+      },
+      "$description": "Themebuilder palette step 8.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:16",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "9": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.5333333611488342,
+          0.5411764979362488
+        ],
+        "alpha": 1,
+        "hex": "#FF888A"
+      },
+      "$description": "Themebuilder palette step 9.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:17",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "10": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.7019608020782471,
+          0.7058823704719543
+        ],
+        "alpha": 1,
+        "hex": "#FFB3B4"
+      },
+      "$description": "Themebuilder palette step 10.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:18",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "11": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.8549019694328308,
+          0.8549019694328308
+        ],
+        "alpha": 1,
+        "hex": "#FFDADA"
+      },
+      "$description": "Themebuilder palette step 11.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:19",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "12": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.9137254953384399,
+          0.9137254953384399
+        ],
+        "alpha": 1,
+        "hex": "#FFE9E9"
+      },
+      "$description": "Themebuilder palette step 12.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:20",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "13": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.9411764740943909,
+          0.9411764740943909
+        ],
+        "alpha": 1,
+        "hex": "#FFF0F0"
+      },
+      "$description": "Themebuilder palette step 13.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:21",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "14": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.9725490212440491,
+          0.9725490212440491
+        ],
+        "alpha": 1,
+        "hex": "#FFF8F8"
+      },
+      "$description": "Themebuilder palette step 14.",
+      "$extensions": {
+        "com.figma.variableId": "VariableID:9:22",
+        "com.figma.hiddenFromPublishing": true
+      }
+    }
+  },
+  "on-origin": {
+    "dark": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#FFFFFF"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:23",
+          "com.figma.hiddenFromPublishing": true
+        }
+      }
+    },
+    "light": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#FFFFFF"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:24",
+          "com.figma.hiddenFromPublishing": true
+        }
+      }
+    }
+  },
+  "origin": {
+    "dark": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9254902005195618,
+            0,
+            0.08627451211214066
+          ],
+          "alpha": 1,
+          "hex": "#EC0016"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:25",
+          "com.figma.hiddenFromPublishing": true
+        }
+      },
+      "hovered": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7962713837623596,
+            0,
+            0.06797803938388824
+          ],
+          "alpha": 1,
+          "hex": "#CB0011"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:26",
+          "com.figma.hiddenFromPublishing": true
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6857972145080566,
+            0,
+            0.05233568698167801
+          ],
+          "alpha": 1,
+          "hex": "#AF000D"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:27",
+          "com.figma.hiddenFromPublishing": true
+        }
+      },
+      "decorative": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9477119445800781,
+            0.2982395887374878,
+            0.35878363251686096
+          ],
+          "alpha": 1,
+          "hex": "#F24C5B"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:113:4",
+          "com.figma.hiddenFromPublishing": true
+        }
+      }
+    },
+    "light": {
+      "default": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9254902005195618,
+            0,
+            0.08627451211214066
+          ],
+          "alpha": 1,
+          "hex": "#EC0016"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:28",
+          "com.figma.hiddenFromPublishing": true
+        }
+      },
+      "hovered": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7962713837623596,
+            0,
+            0.06797803938388824
+          ],
+          "alpha": 1,
+          "hex": "#CB0011"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:29",
+          "com.figma.hiddenFromPublishing": true
+        }
+      },
+      "pressed": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6857972145080566,
+            0,
+            0.05233568698167801
+          ],
+          "alpha": 1,
+          "hex": "#AF000D"
+        },
+        "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+        "$extensions": {
+          "com.figma.variableId": "VariableID:9:30",
+          "com.figma.hiddenFromPublishing": true
+        }
+      },
+      "decorative": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9477119445800781,
+            0.2982395887374878,
+            0.35878363251686096
+          ],
+          "alpha": 1,
+          "hex": "#F24C5B"
+        },
+        "$extensions": {
+          "com.figma.variableId": "VariableID:113:3",
+          "com.figma.hiddenFromPublishing": true
+        }
+      }
+    }
+  },
+  "transparent": {
+    "full": {
+      "dark": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5333333611488342,
+              0.5411764979362488
+            ],
+            "alpha": 0,
+            "hex": "#FF888A"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:31",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "hovered": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5333333611488342,
+              0.5411764979362488
+            ],
+            "alpha": 0.1599999964237213,
+            "hex": "#FF888A"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:32",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5333333611488342,
+              0.5411764979362488
+            ],
+            "alpha": 0.3199999928474426,
+            "hex": "#FF888A"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:33",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "light": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529411911964417,
+              0,
+              0.062745101749897
+            ],
+            "alpha": 0,
+            "hex": "#C00010"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:34",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "hovered": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529411911964417,
+              0,
+              0.062745101749897
+            ],
+            "alpha": 0.1599999964237213,
+            "hex": "#C00010"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:35",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529411911964417,
+              0,
+              0.062745101749897
+            ],
+            "alpha": 0.3199999928474426,
+            "hex": "#C00010"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:36",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      }
+    },
+    "semi": {
+      "dark": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5333333611488342,
+              0.5411764979362488
+            ],
+            "alpha": 0.1599999964237213,
+            "hex": "#FF888A"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:37",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "hovered": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5333333611488342,
+              0.5411764979362488
+            ],
+            "alpha": 0.23999999463558197,
+            "hex": "#FF888A"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:38",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.5333333611488342,
+              0.5411764979362488
+            ],
+            "alpha": 0.3199999928474426,
+            "hex": "#FF888A"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:39",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "light": {
+        "default": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529411911964417,
+              0,
+              0.062745101749897
+            ],
+            "alpha": 0.07999999821186066,
+            "hex": "#C00010"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:40",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "hovered": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529411911964417,
+              0,
+              0.062745101749897
+            ],
+            "alpha": 0.1599999964237213,
+            "hex": "#C00010"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:41",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "pressed": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529411911964417,
+              0,
+              0.062745101749897
+            ],
+            "alpha": 0.23999999463558197,
+            "hex": "#C00010"
+          },
+          "$description": "Exact Themebuilder origin or transparency primitive; independent of generated palette steps.",
+          "$extensions": {
+            "com.figma.variableId": "VariableID:9:42",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      }
+    }
+  },
+  "wcag-aaa": {
+    "origin": {
+      "light": {
+        "decorative": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6771408915519714,
+              0.16377055644989014,
+              0.19638259708881378
+            ],
+            "alpha": 1,
+            "hex": "#AD2A32"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:113:17",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.5}",
+            "$description": "WCAG AAA origin background. Keeps the exact origin when 7:1 is possible; otherwise aliases the nearest generated palette fallback.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:7",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "hovered": {
+            "$type": "color",
+            "$value": "{origin.light.hovered}",
+            "$description": "WCAG AAA origin background. Keeps the exact origin when 7:1 is possible; otherwise aliases the nearest generated palette fallback.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:9",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.5}",
+            "$description": "WCAG AAA origin background. Keeps the exact origin when 7:1 is possible; otherwise aliases the nearest generated palette fallback.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:11",
+              "com.figma.hiddenFromPublishing": true
+            }
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.14}",
+            "$description": "WCAG AAA foreground paired with the origin background at a minimum contrast ratio of 7:1.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:8",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "hovered": {
+            "$type": "color",
+            "$value": "{palette.14}",
+            "$description": "WCAG AAA foreground paired with the origin background at a minimum contrast ratio of 7:1.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:10",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.14}",
+            "$description": "WCAG AAA foreground paired with the origin background at a minimum contrast ratio of 7:1.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:12",
+              "com.figma.hiddenFromPublishing": true
+            }
+          }
+        }
+      },
+      "dark": {
+        "decorative": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6771408915519714,
+              0.16377055644989014,
+              0.19638259708881378
+            ],
+            "alpha": 1,
+            "hex": "#AD2A32"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:113:18",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "background": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.5}",
+            "$description": "WCAG AAA origin background. Keeps the exact origin when 7:1 is possible; otherwise aliases the nearest generated palette fallback.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:13",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "hovered": {
+            "$type": "color",
+            "$value": "{origin.dark.hovered}",
+            "$description": "WCAG AAA origin background. Keeps the exact origin when 7:1 is possible; otherwise aliases the nearest generated palette fallback.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:15",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.5}",
+            "$description": "WCAG AAA origin background. Keeps the exact origin when 7:1 is possible; otherwise aliases the nearest generated palette fallback.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:17",
+              "com.figma.hiddenFromPublishing": true
+            }
+          }
+        },
+        "text": {
+          "default": {
+            "$type": "color",
+            "$value": "{palette.14}",
+            "$description": "WCAG AAA foreground paired with the origin background at a minimum contrast ratio of 7:1.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:14",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "hovered": {
+            "$type": "color",
+            "$value": "{palette.14}",
+            "$description": "WCAG AAA foreground paired with the origin background at a minimum contrast ratio of 7:1.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:16",
+              "com.figma.hiddenFromPublishing": true
+            }
+          },
+          "pressed": {
+            "$type": "color",
+            "$value": "{palette.14}",
+            "$description": "WCAG AAA foreground paired with the origin background at a minimum contrast ratio of 7:1.",
+            "$extensions": {
+              "com.figma.variableId": "VariableID:15:18",
+              "com.figma.hiddenFromPublishing": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "border": {
+    "decorative": {
+      "filled-level-1": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9053927659988403,
+              0.8540510535240173,
+              0.8545288443565369
+            ],
+            "alpha": 1,
+            "hex": "#E7DADA"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:4",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.31590035557746887,
+              0.10869914293289185,
+              0.11215418577194214
+            ],
+            "alpha": 1,
+            "hex": "#511C1D"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:5",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "filled-level-2": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9046559929847717,
+              0.82560795545578,
+              0.8260895013809204
+            ],
+            "alpha": 1,
+            "hex": "#E7D3D3"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:6",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3971042335033417,
+              0.11101280897855759,
+              0.12134816497564316
+            ],
+            "alpha": 1,
+            "hex": "#651C1F"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:7",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "filled-level-3": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9039660692214966,
+              0.8007158637046814,
+              0.8012009263038635
+            ],
+            "alpha": 1,
+            "hex": "#E7CCCC"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:8",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.489092081785202,
+              0.12011516839265823,
+              0.1337393820285797
+            ],
+            "alpha": 1,
+            "hex": "#7D1F22"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:9",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "vibrant": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.888272225856781,
+              0.45659103989601135,
+              0.4638698995113373
+            ],
+            "alpha": 1,
+            "hex": "#E37476"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:10",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.888272225856781,
+              0.45659103989601135,
+              0.4638698995113373
+            ],
+            "alpha": 1,
+            "hex": "#E37476"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:11",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "inverted": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.31254085898399353,
+              0.11148907989263535,
+              0.11496109515428543
+            ],
+            "alpha": 1,
+            "hex": "#501C1D"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:12",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8975766897201538,
+              0.802727222442627,
+              0.8032035827636719
+            ],
+            "alpha": 1,
+            "hex": "#E5CDCD"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:13",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "transparent": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9053927659988403,
+              0.8540510535240173,
+              0.8545288443565369
+            ],
+            "alpha": 0,
+            "hex": "#E7DADA"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:14",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.31590035557746887,
+              0.10869914293289185,
+              0.11215418577194214
+            ],
+            "alpha": 0,
+            "hex": "#511C1D"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:15",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      },
+      "transparent-semi": {
+        "light": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.88653165102005,
+              0.7848825454711914,
+              0.7896795272827148
+            ],
+            "alpha": 0,
+            "hex": "#E2C8C9"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:16",
+            "com.figma.hiddenFromPublishing": true
+          }
+        },
+        "dark": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4166707396507263,
+              0.17253166437149048,
+              0.1766066551208496
+            ],
+            "alpha": 0,
+            "hex": "#6A2C2D"
+          },
+          "$extensions": {
+            "com.figma.variableId": "VariableID:121:17",
+            "com.figma.hiddenFromPublishing": true
+          }
+        }
+      }
+    }
+  },
+  "disabled": {
+    "on-background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.2235294133424759,
+          0,
+          0.003921568859368563
+        ],
+        "alpha": 0.4000000059604645,
+        "hex": "#390001"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:201:3"
+      }
+    },
+    "background": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          1,
+          0.9725490212440491,
+          0.9725490212440491
+        ],
+        "alpha": 0.4000000059604645,
+        "hex": "#FFF8F8"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:201:4"
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.7529411911964417,
+          0,
+          0.062745101749897
+        ],
+        "alpha": 0.4000000059604645,
+        "hex": "#C00010"
+      },
+      "$extensions": {
+        "com.figma.variableId": "VariableID:201:5"
+      }
+    }
+  },
+  "$extensions": {
+    "com.figma.modeName": "Red"
+  }
+}

@@ -40,7 +40,7 @@
 	}
 }
 
-.db-badge {
+html:not([data-generation="next"]) .db-badge {
 	--badge-size: #{variables.$db-spacing-fixed-xs};
 
 	@extend %component-border;

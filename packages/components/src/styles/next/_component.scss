@@ -1,10 +1,10 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 $component-content-padding-block: calc(
-	var(--db-component-padding-block) + var(--db-content-padding-block)
+	var(--db-component-padding) + var(--db-content-padding-block)
 );
 $component-content-padding-inline: calc(
-	var(--db-component-padding-inline) + var(--db-content-padding-inline)
+	var(--db-component-padding) + var(--db-content-padding-inline)
 );
 
 %font {
@@ -18,57 +18,150 @@ $component-content-padding-inline: calc(
 }
 
 %component-padding {
-	padding: var(--db-component-padding-block)
-		var(--db-component-padding-inline);
+	padding: var(--db-component-padding);
 }
 
-%component {
+%containerless-component {
 	@extend %font;
+	@include helpers.display(flex);
+
+	gap: var(--db-component-gap);
+}
+
+%container-component {
+	@extend %containerless-component;
 	@extend %default-border;
 	@extend %component-padding;
 }
 
-%content {
-	min-block-size: var(--db-content-height);
-	padding: var(--db-content-padding-block) var(--db-content-padding-inline);
+%layout {
+	padding: var(--db-layout-content-collection);
+	gap: var(--db-layout-same-content-elements);
 }
 
 %default-material {
 	background-color: var(--db-bg-default);
-	color: var(--db-text-default);
+	color: var(--db-on-bg-default);
 	border-color: var(--db-border);
+}
+
+%disabled {
+	--db-color-transparency: 40%;
+}
+
+// Nested size: adopt the smaller "nested" size by pointing each size variable
+// at its --db-*-nested companion (emitted per size in the generated CSS and
+// inherited from the nearest [data-size] ancestor). Mirrors the generated
+// [data-nested="true"] rule so it can be applied to elements that cannot carry
+// the attribute (e.g. ::before/::after icon pseudo-elements).
+%nested-size {
+	--db-component-padding: var(--db-component-padding-nested);
+	--db-content-height: var(--db-content-height-nested);
+	--db-content-padding-inline: var(--db-content-padding-inline-nested);
+	--db-content-padding-block: var(--db-content-padding-block-nested);
+	--db-font-size: var(--db-font-size-nested);
+	--db-line-height: var(--db-line-height-nested);
+	--db-icon-size-name: var(--db-icon-size-name-nested);
 }
 
 %interactive-materials {
 	@extend %default-material;
 
-	@include helpers.hover {
-		background-color: var(--db-bg-hovered);
-		border-color: var(--db-border);
-	}
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: var(--db-bg-hovered);
+			border-color: var(--db-border);
+		}
 
-	@include helpers.active {
-		background-color: var(--db-bg-pressed);
-		border-color: var(--db-border);
+		@include helpers.active {
+			background-color: var(--db-bg-pressed);
+			border-color: var(--db-border);
+		}
 	}
 }
 
 %next-icon {
 	&:not([data-show-icon="false"], [data-show-icon-leading="false"])::before,
 	&:not([data-show-icon-trailing="false"])::after {
-		block-size: var(--db-content-height) !important;
+		block-size: var(--db-icon-size) !important;
 		inline-size: var(--db-icon-size) !important;
 		font-weight: var(--db-icon-size-name, normal) !important;
 		font-size: var(--db-icon-size) !important;
 		place-content: center;
-		align-self: flex-start;
+		text-align: center;
 	}
 }
 
-[data-generation="next"]
-	:is(.db-button, .db-checkbox, .db-accordion, .db-accordion-item):is(
-		[data-icon],
-		[data-icon-trailing]
-	) {
-	@extend %next-icon;
+$no-icon-content-padding-inline: calc(
+	var(--db-content-padding-inline) + var(--db-text-padding-inline)
+);
+
+%content {
+	min-block-size: var(--db-content-height);
+	align-items: flex-start;
+	display: inline-flex;
+	padding-block: var(--db-content-padding-block);
+	gap: var(--db-content-gap);
+
+	&::before,
+	&::after {
+		margin-block-start: var(--db-icon-margin-block-start);
+	}
+
+	&:not([data-no-text="true"]) {
+		// No icon before was set
+		&:not(
+			[data-icon]:not([data-show-icon="false"]),
+			[data-icon-leading]:not([data-show-icon-leading="false"])
+		) {
+			padding-inline-start: $no-icon-content-padding-inline;
+		}
+
+		// icon before was set
+		&:is(
+			[data-icon]:not([data-show-icon="false"]),
+			[data-icon-leading]:not([data-show-icon-leading="false"])
+		) {
+			padding-inline-start: var(--db-content-padding-inline);
+
+			&::before {
+				margin-inline-end: var(--db-text-padding-inline);
+			}
+		}
+
+		// No icon after was set
+		&:not([data-icon-trailing]:not([data-show-icon-trailing="false"])) {
+			padding-inline-end: $no-icon-content-padding-inline;
+		}
+
+		// icon after was set
+		&:is([data-icon-trailing]:not([data-show-icon-trailing="false"])) {
+			padding-inline-end: var(--db-content-padding-inline);
+
+			&::after {
+				margin-inline-start: var(--db-text-padding-inline);
+			}
+		}
+	}
+
+	&[data-no-text="true"] {
+		font-size: 0;
+		gap: 0;
+		padding-inline: var(--db-content-padding-inline);
+	}
+}
+
+@mixin set-default-content($component) {
+	.db-#{$component}-content {
+		@extend %content;
+		@extend %next-icon;
+	}
+
+	:not(.db-#{$component}-content) {
+		@extend %nested-size;
+
+		.db-#{$component}-content > * {
+			@extend %nested-size;
+		}
+	}
 }

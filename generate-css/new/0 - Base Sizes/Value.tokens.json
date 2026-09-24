@@ -60,18 +60,6 @@
         }
       }
     },
-    "125": {
-      "$type": "number",
-      "$value": 5,
-      "$description": "125% of the 4 px base unit = 5 px. Arithmetic primitive; use role-based Component Size variables in components.",
-      "$extensions": {
-        "com.figma.variableId": "VariableID:3:8",
-        "com.figma.hiddenFromPublishing": true,
-        "com.figma.codeSyntax": {
-          "WEB": "--db-base-size-125"
-        }
-      }
-    },
     "150": {
       "$type": "number",
       "$value": 6,
@@ -81,18 +69,6 @@
         "com.figma.hiddenFromPublishing": true,
         "com.figma.codeSyntax": {
           "WEB": "--db-base-size-150"
-        }
-      }
-    },
-    "175": {
-      "$type": "number",
-      "$value": 7,
-      "$description": "175% of the 4 px base unit = 7 px. Arithmetic primitive; use role-based Component Size variables in components.",
-      "$extensions": {
-        "com.figma.variableId": "VariableID:3:10",
-        "com.figma.hiddenFromPublishing": true,
-        "com.figma.codeSyntax": {
-          "WEB": "--db-base-size-175"
         }
       }
     },
@@ -238,6 +214,46 @@
         "com.figma.codeSyntax": {
           "WEB": "--db-base-size-1200"
         }
+      }
+    },
+    "1400": {
+      "$type": "number",
+      "$value": 56,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:763:249",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "1600": {
+      "$type": "number",
+      "$value": 64,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:743:249",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "1800": {
+      "$type": "number",
+      "$value": 72,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:758:249",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "2000": {
+      "$type": "number",
+      "$value": 80,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:757:249",
+        "com.figma.hiddenFromPublishing": true
+      }
+    },
+    "2400": {
+      "$type": "number",
+      "$value": 96,
+      "$extensions": {
+        "com.figma.variableId": "VariableID:758:250",
+        "com.figma.hiddenFromPublishing": true
       }
     }
   },

@@ -1,0 +1,53 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/next/component";
+@use "badge";
+
+[data-generation="next"] .db-badge,
+.db-badge[data-generation="next"] {
+	@extend %container-component;
+	@extend %default-material;
+
+	display: inline-flex;
+	gap: var(--db-component-gap);
+	align-items: center;
+	justify-content: center;
+	border-radius: 9999px; // TODO: Token
+	border-color: var(--db-border-decorative);
+
+	@include component.set-default-content("badge");
+
+	&[data-emphasis="strong"] {
+		.db-badge-content {
+			font-weight: bold;
+		}
+	}
+
+	.db-badge-content {
+		&:not(:empty) {
+			min-inline-size: var(
+				--db-content-height
+			); // If the text has less characters (numbers) we don't want an asymmetrical badge
+			place-content: center;
+		}
+
+		&:empty {
+			min-block-size: 0;
+			aspect-ratio: 1;
+			padding-inline: var(
+				--db-content-padding-inline
+			) !important; // TODO: We should provide `noText` as property to be equal with other components
+		}
+	}
+
+	&[data-placement^="corner"] {
+		@extend %absolute-badge;
+
+		&[data-label] {
+			&::before {
+				content: attr(data-label);
+				position: fixed;
+				font-size: 0;
+			}
+		}
+	}
+}

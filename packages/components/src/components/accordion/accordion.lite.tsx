@@ -45,7 +45,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 			}
 
 			if (props.variant === 'card') {
-				return 'filled';
+				return 'filled-1';
 			}
 
 			return 'transparent';
@@ -122,9 +122,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-accordion', props.className)}
 			data-material={state._getMaterial()}
+			data-size={props.size}
 			data-color-next={props.color}
-			data-container-contrast={props.containerContrast ?? 'max'}
-			data-content-contrast={props.contentContrast}
 			data-variant={props.variant}>
 			<Show when={!props.items}>{props.children}</Show>
 			<Show when={props.items}>
