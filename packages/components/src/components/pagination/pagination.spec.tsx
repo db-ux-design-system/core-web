@@ -1277,6 +1277,50 @@ const testComposedLinks = () => {
 		await component.locator('li[data-page="3"] button').click();
 		expect(requestedPage).toBe(3);
 	});
+
+	test('should skip a disabled page with the step controls', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="With a disabled page"
+				currentPage={1}
+				items={[{}, { disabled: true }, {}]}
+				onPageChange={(requested: number) =>
+					(requestedPage = requested)
+				}
+			/>
+		);
+
+		const next = component.getByRole('button', { name: 'Next page' });
+		await expect(next).toBeEnabled();
+
+		await next.click();
+		expect(requestedPage, 'next skips the disabled page').toBe(3);
+	});
+
+	test('should disable a step control without a reachable page', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DESKTOP_VIEWPORT);
+		const component = await mount(
+			<DBPagination
+				label="With a disabled tail"
+				currentPage={1}
+				items={[{}, { disabled: true }, { disabled: true }]}
+			/>
+		);
+
+		await expect(
+			component.getByRole('button', { name: 'Next page' })
+		).toBeDisabled();
+		await expect(
+			component.getByRole('button', { name: 'Previous page' })
+		).toBeDisabled();
+	});
 };
 
 const expectValidLayout = (

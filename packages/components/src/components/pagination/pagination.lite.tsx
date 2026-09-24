@@ -77,11 +77,40 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 			return Math.min(state.getTotalPages(), currentPage);
 		},
-		isLastPage: () => {
-			return (
-				state.isDataDriven() &&
-				state.getCurrentPage() >= state.getTotalPages()
-			);
+		isPageDisabled: (page: number) => {
+			const itemOptions = props.items;
+			if (!itemOptions) {
+				return false;
+			}
+			const option = itemOptions[page - 1];
+			return option
+				? Boolean(getBoolean(option.disabled, 'disabled'))
+				: false;
+		},
+		/*
+		 * The page a step control moves to, skipping pages the items API
+		 * disabled. Returns 0 when no reachable page is left, which is what
+		 * disables the control. The end of a composed list is unknown, so only
+		 * the data driven mode has an upper bound here.
+		 */
+		getStepPage: (direction: number) => {
+			/*
+			 * Not named isDataDriven: Mitosis generates a plain function of
+			 * that name for React, and a local const would shadow it and throw
+			 * from its own initializer.
+			 */
+			const hasUpperBound = state.isDataDriven();
+			const totalPages = state.getTotalPages();
+			let page = state.getCurrentPage() + direction;
+
+			while (page >= 1 && (!hasUpperBound || page <= totalPages)) {
+				if (!state.isPageDisabled(page)) {
+					return page;
+				}
+				page = page + direction;
+			}
+
+			return 0;
 		},
 		getPages: (siblingCount: number) => {
 			const totalPages = state.getTotalPages();
@@ -204,9 +233,7 @@ export default function DBPagination(props: DBPaginationProps) {
 					page,
 					layout: inCollapsed ? 'always' : 'wide',
 					ellipsis: tokens.length > 0 ? tokens.join(' ') : undefined,
-					disabled: option
-						? Boolean(getBoolean(option.disabled, 'disabled'))
-						: false,
+					disabled: state.isPageDisabled(page),
 					label: option ? option.label : undefined,
 					key: 'page-' + page
 				});
@@ -427,7 +454,7 @@ export default function DBPagination(props: DBPaginationProps) {
 			state.handlePageChange(page);
 		},
 		stepToPage: (page: number) => {
-			if (!_ref) {
+			if (!_ref || page < 1) {
 				return;
 			}
 
@@ -503,13 +530,9 @@ export default function DBPagination(props: DBPaginationProps) {
 						class="db-pagination-previous"
 						type="button"
 						data-icon="chevron_left"
-						disabled={
-							state.getCurrentPage() <= 1 ? true : undefined
-						}
+						disabled={state.getStepPage(-1) < 1 ? true : undefined}
 						aria-label={props.previousLabel}
-						onClick={() =>
-							state.stepToPage(state.getCurrentPage() - 1)
-						}>
+						onClick={() => state.stepToPage(state.getStepPage(-1))}>
 						{props.previousLabel}
 					</button>
 				</li>
@@ -528,11 +551,9 @@ export default function DBPagination(props: DBPaginationProps) {
 						class="db-pagination-next"
 						type="button"
 						data-icon="chevron_right"
-						disabled={state.isLastPage() ? true : undefined}
+						disabled={state.getStepPage(1) < 1 ? true : undefined}
 						aria-label={props.nextLabel}
-						onClick={() =>
-							state.stepToPage(state.getCurrentPage() + 1)
-						}>
+						onClick={() => state.stepToPage(state.getStepPage(1))}>
 						{props.nextLabel}
 					</button>
 				</li>
