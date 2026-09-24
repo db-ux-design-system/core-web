@@ -1,16 +1,22 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { type ToolResult, error, MAX_JSON_OUTPUT, truncate } from '../utils';
+import {
+	type ToolResult,
+	error,
+	getAssetsDir,
+	MAX_JSON_OUTPUT,
+	truncate
+} from '../utils';
 import { getManifest } from '../utils/manifest';
 
 // ---------------------------------------------------------------------------
 // Structured tokens loaded from prebuild-generated JSON
 // ---------------------------------------------------------------------------
 
-const TOKENS_JSON_PATH = join(
-	import.meta.dirname,
-	'../../assets/tokens/tokens.json'
-);
+/**
+ Resolved on first read so nothing touches the filesystem at import time.
+ */
+const tokensJsonPath = () => join(getAssetsDir(), 'tokens/tokens.json');
 
 /** In-memory cache for the parsed tokens JSON. */
 let _tokensCache: Record<string, Record<string, unknown>> | undefined;
@@ -26,7 +32,7 @@ async function loadTokensJson(): Promise<
 		return _tokensCache;
 	}
 	try {
-		const raw = await readFile(TOKENS_JSON_PATH, 'utf-8');
+		const raw = await readFile(tokensJsonPath(), 'utf-8');
 		_tokensCache = JSON.parse(raw) as Record<
 			string,
 			Record<string, unknown>
