@@ -13,13 +13,13 @@
   - 'button "Open: (Default) Strong"'
   - 'button "Open: Weak"'
   - 'button "Open: No Backdrop"'
-  - link "Areas"
+  - link "Examples"
+  - button "Cancel and close Events in console"
+  - button "Buttons type dialog event in console"
+  - 'button "Open: Nested overlays"'
   - 'button "Open: With text prop"'
-  - 'button "Open: With start slot"'
-  - 'button "Open: With end slot"'
-  - 'button "Open: With footer"'
-  - dialog "With footer":
-    - heading "With footer" [level=2]
+  - dialog "With text prop":
+    - heading "With text prop" [level=2]
     - button "Close"
     - paragraph: Lorem ipsum dolor sit amet.
     - paragraph: Lorem ipsum dolor sit amet.
@@ -33,8 +33,7 @@
     - paragraph: Lorem ipsum dolor sit amet.
     - button "Cancel"
     - button "Confirm"
+  - 'button "Open: With header start slot"'
+  - 'button "Open: With header end slot"'
+  - 'button "Open: Without footer"'
   - 'button "Open: With header subtitle"'
-  - link "Examples"
-  - button "Cancel and close Events in console"
-  - button "Buttons type dialog event in console"
-  - 'button "Open: Nested overlays"'
