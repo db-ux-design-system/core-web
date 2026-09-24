@@ -368,10 +368,10 @@ in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
 
 For CVA components (`config.angular.controlValueAccessor` in `scripts/post-build/components.ts`) the generated class has two ways to apply a value, and they are not interchangeable:
 
-| Method                  | Who calls it                                                    | What it does                                   |
-| ----------------------- | --------------------------------------------------------------- | ---------------------------------------------- |
-| `_setModelValue(value)` | `handleFrameworkEventAngular` — values coming from the element  | model signal only                              |
-| `writeValue(value)`     | Angular forms (reactive forms, `ngModel`) — programmatic writes | model signal **and** `renderer.setProperty(…)` |
+| Method                  | Who calls it                                                                                                       | What it does                                   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
+| `_setModelValue(value)` | `handleFrameworkEventAngular` — user input coming from the element                                                 | model signal only                              |
+| `writeValue(value)`     | Angular forms (reactive forms, `ngModel`), and `handleFrameworkEventAngular` on a native form reset (`reset` flag) | model signal **and** `renderer.setProperty(…)` |
 
 Never route **user input** through `writeValue`. The value it would write is the one the element already holds, so the write is redundant — and for `input[type="date"]` it is destructive: while the browser cannot parse the current entry (`validity.badInput`, e.g. `29.02.0202` on the way to `29.02.2028`), it reports `value` as an empty string, and assigning an empty string clears the native editor with everything the user typed ([#7748](https://github.com/db-ux-design-system/core-web/issues/7748)).
 
@@ -387,7 +387,9 @@ value={useTarget({
 })}
 ```
 
-`state._value` mirrors `props.value` except while `validity.badInput` is set and the model is empty. Without that gap Angular would compare the new bound expression against the last one, see `"0020-02-29"` turn into `""` and write it to the element — the same reset through the binding instead of through `writeValue`. React binds `props.value` only (so the element stays a controlled component; falling back to `state._value` would pin it, because `state._value` is never updated from user input in React), Vue and Stencil read `props.value` first and their renderers skip a write when the element already holds the value, so all three are unaffected either way. This binding lives in each form component (`input`, `textarea`, `select`) as an explicit `useTarget`, not as a string replacement in `scripts/post-build/react.ts`.
+`state._value` mirrors `props.value` except while `validity.badInput` is set and the model is empty. Without that gap Angular would compare the new bound expression against the last one, see `"0020-02-29"` turn into `""` and write it to the element — the same reset through the binding instead of through `writeValue`.
+
+The other targets are unaffected either way: React binds `props.value` only, so the element stays a controlled component (falling back to `state._value` would pin it, because `state._value` is never updated from user input in React), and Vue and Stencil read `props.value` first while their renderers skip a write when the element already holds the value. This binding lives in each form component (`input`, `textarea`, `select`) as an explicit `useTarget`, not as a string replacement in `scripts/post-build/react.ts`.
 
 The condition itself lives in `shouldKeepDisplayValue` (`src/utils/form-components.ts`) so it can be unit tested. Keep it as narrow as it is: it may only hold while the element reports `badInput` **and** the incoming value is empty. Widening it breaks the `undefined` reset that consumers use to clear a field ([#6147](https://github.com/db-ux-design-system/core-web/issues/6147)), which is covered by `showcases/e2e/input/input-undefined-value.spec.ts`.
 
