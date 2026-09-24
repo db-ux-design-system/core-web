@@ -20,9 +20,11 @@ import IconShowcase from '@components/components/icon/showcase/icon.showcase';
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
 import SectionShowcase from '@components/components/section/showcase/section.showcase';
@@ -61,7 +63,12 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				label: 'Notification',
 				component: <NotificationShowcase />
 			},
-			{ path: 'badge', label: 'Badge', component: <BadgeShowcase /> }
+			{ path: 'badge', label: 'Badge', component: <BadgeShowcase /> },
+			{
+				path: 'loading-indicator',
+				label: 'LoadingIndicator',
+				component: <LoadingIndicatorShowcase />
+			}
 		])
 	},
 
@@ -112,6 +119,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'navigation',
 				label: 'Navigation',
 				component: <NavigationShowcase />
+			},
+			{
+				path: 'pagination',
+				label: 'Pagination',
+				component: <PaginationShowcase />
 			},
 			{
 				path: 'brand',

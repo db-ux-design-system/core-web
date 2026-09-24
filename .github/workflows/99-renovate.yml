@@ -1,0 +1,29 @@
+---
+# Renovate (self-hosted)
+#
+# Covers the three things Dependabot cannot handle for us:
+#   1. Node itself (the version defined in `.nvmrc` both for local and CI usage)
+#   2. pnpm itself (the `packageManager` field including its integrity hash)
+#   3. the `@db-ux/db-theme*` packages (manually triggered, w/o the need to
+#      check for all other dependencies)
+# Everything else stays with Dependabot, see `.github/dependabot.yml`.
+# Scope and grouping live in `.github/renovate.json`.
+
+name: Renovate
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-26.04
+    steps:
+      - name: 🤖 Self-hosted Renovate
+        uses: renovatebot/github-action@dcfba84a42d1b5d5e49bf131b1bf53511851a123 # v46.3.1
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          # Commit through the GitHub API so commits are signed by the app
+          RENOVATE_PLATFORM_COMMIT: "enabled"

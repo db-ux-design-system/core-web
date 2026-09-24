@@ -16,6 +16,7 @@ import HeaderShowcase from '@components/components/header/showcase/header.showca
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
@@ -39,6 +40,8 @@ import ControlPanelMobileShowcase from '@components/components/control-panel-mob
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -51,6 +54,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	pagination: <PaginationShowcase isPatternhub />,
+
 	heading: <HeadingShowcase isPatternhub />,
 
 	accordion: <AccordionShowcase isPatternhub />,
@@ -78,6 +83,7 @@ const nameComponentMap = {
 	infotext: <InfotextShowcase isPatternhub />,
 	input: <InputShowcase isPatternhub />,
 	link: <LinkShowcase isPatternhub />,
+	'loading-indicator': <LoadingIndicatorShowcase isPatternhub />,
 	navigation: <NavigationShowcase isPatternhub />,
 	'navigation-item': <NavigationItemShowcase isPatternhub />,
 	notification: <NotificationShowcase isPatternhub />,

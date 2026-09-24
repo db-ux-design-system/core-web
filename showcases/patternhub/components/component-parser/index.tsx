@@ -1,4 +1,9 @@
 import {
+	DBPagination,
+	DBPaginationItem
+} from '../../../../output/react/src/index';
+
+import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
@@ -28,6 +33,7 @@ import {
 	DBInfotext,
 	DBInput,
 	DBLink,
+	DBLoadingIndicator,
 	DBNotification,
 	DBPopover,
 	DBRadio,
@@ -447,6 +453,30 @@ const ComponentSwitch = ({
 			<Heading className={className} {...props}>
 				{resolvedContent}
 			</Heading>
+		);
+	}
+
+	if (type === 'loading-indicator') {
+		return (
+			<DBLoadingIndicator className={className} {...props}>
+				{resolvedContent}
+			</DBLoadingIndicator>
+		);
+	}
+
+	if (type === 'pagination-item') {
+		return (
+			<DBPaginationItem className={className} {...props}>
+				{resolvedContent}
+			</DBPaginationItem>
+		);
+	}
+
+	if (type === 'pagination') {
+		return (
+			<DBPagination className={className} {...props}>
+				{resolvedContent}
+			</DBPagination>
 		);
 	}
 

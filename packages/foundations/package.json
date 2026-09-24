@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System – Generation 3",
   "repository": {
@@ -37,7 +37,7 @@
     "copy-output:web": "cpy build ../../build-outputs/foundations --dot",
     "copy-prepare:icon-overview": "tsx scripts/local/generate-icon-overview.ts && prettier dev/icons.html --write",
     "copy-prepare:normalize": "cpy node_modules/@csstools/normalize.css/normalize.css scss/_normalize.scss",
-    "copy:scss": "cpy 'scss/**' build/styles --dot",
+    "copy:scss": "cpy \"scss/**\" build/styles --dot",
     "dev": "pnpm run copy-prepare:icon-overview && pnpm run copy-prepare:normalize && pnpm run dev:vite",
     "dev:vite": "vite --open",
     "generate:fallback-icon-font": "tsx scripts/local/generate-fallback-icon-font.ts",
@@ -53,16 +53,16 @@
     "@db-ux/icon-font-tools": "0.3.6",
     "@playwright/test": "1.62.1",
     "cpy-cli": "7.0.0",
-    "cssnano": "9.0.3",
+    "cssnano": "9.0.5",
     "glob": "13.0.6",
     "nodemon": "3.1.14",
     "postcss": "8.5.28",
     "postcss-cli": "12.0.0",
-    "prettier": "3.9.6",
-    "sass": "1.104.0",
-    "tsx": "4.23.13",
+    "prettier": "3.9.8",
+    "sass": "1.104.1",
+    "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vite": "8.2.2"
+    "vite": "8.3.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
