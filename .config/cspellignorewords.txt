@@ -259,6 +259,7 @@ ponyfill
 ponyfills
 descope
 pnpms
+checkmark
 renovatebot
 drilldown
 Drilldown
