@@ -23,7 +23,7 @@ export default function DrawerRounded() {
 					Open: (Default) False
 				</DBButton>
 				<DBDrawer
-					id="drawer-rounded-false"
+					propOverrides={{ id: 'drawer-rounded-false' }}
 					rounded={false}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -38,7 +38,7 @@ export default function DrawerRounded() {
 					Open: True
 				</DBButton>
 				<DBDrawer
-					id="drawer-rounded-true"
+					propOverrides={{ id: 'drawer-rounded-true' }}
 					rounded={true}
 					header={
 						<DBDrawerHeader closeButtonText="Close">

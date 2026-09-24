@@ -28,7 +28,7 @@ export default function DialogBackdrop() {
 					Open: (Default) Strong
 				</DBButton>
 				<DBDialog
-					id="dialog-backdrop-strong"
+					propOverrides={{ id: 'dialog-backdrop-strong' }}
 					backdrop="strong"
 					header={
 						<DBDialogHeader closeButtonText="Close">
@@ -70,7 +70,7 @@ export default function DialogBackdrop() {
 					Open: Weak
 				</DBButton>
 				<DBDialog
-					id="dialog-backdrop-weak"
+					propOverrides={{ id: 'dialog-backdrop-weak' }}
 					backdrop="weak"
 					header={
 						<DBDialogHeader closeButtonText="Close">
@@ -110,7 +110,7 @@ export default function DialogBackdrop() {
 					Open: No Backdrop
 				</DBButton>
 				<DBDialog
-					id="dialog-backdrop-none"
+					propOverrides={{ id: 'dialog-backdrop-none' }}
 					backdrop="none"
 					open={noBackdropOpen}
 					onClose={() => setNoBackdropOpen(false)}

@@ -21,7 +21,7 @@ export default function DrawerShowSpacing() {
 					Open: (Default) With Spacing
 				</DBButton>
 				<DBDrawer
-					id="drawer-spacing-with"
+					propOverrides={{ id: 'drawer-spacing-with' }}
 					showSpacing
 					containerSize="full"
 					header={
@@ -39,7 +39,7 @@ export default function DrawerShowSpacing() {
 					Open: Without Spacing
 				</DBButton>
 				<DBDrawer
-					id="drawer-spacing-without"
+					propOverrides={{ id: 'drawer-spacing-without' }}
 					showSpacing={false}
 					containerSize="full"
 					header={

@@ -32,7 +32,7 @@ export default function DrawerPosition() {
 					Open: Absolute
 				</DBButton>
 				<DBDrawer
-					id="drawer-position-absolute"
+					propOverrides={{ id: 'drawer-position-absolute' }}
 					position="absolute"
 					open={absoluteOpen}
 					onClose={() => setAbsoluteOpen(false)}

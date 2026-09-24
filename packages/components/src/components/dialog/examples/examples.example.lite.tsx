@@ -49,7 +49,7 @@ export default function DialogExamples() {
 					Cancel and close Events in console
 				</DBButton>
 				<DBDialog
-					id="dialog-events"
+					propOverrides={{ id: 'dialog-events' }}
 					onClose={() => state.handleClose()}
 					onCancel={() => state.handleCancel()}
 					header={
@@ -90,7 +90,7 @@ export default function DialogExamples() {
 					Buttons type dialog event in console
 				</DBButton>
 				<DBDialog
-					id="dialog-events-form"
+					propOverrides={{ id: 'dialog-events-form' }}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Submit form in content</h2>
@@ -127,7 +127,7 @@ export default function DialogExamples() {
 					Open: Nested overlays
 				</DBButton>
 				<DBDialog
-					id="dialog-nested-overlays"
+					propOverrides={{ id: 'dialog-nested-overlays' }}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Nested overlays</h2>
@@ -176,7 +176,7 @@ export default function DialogExamples() {
 					Open: With text prop
 				</DBButton>
 				<DBDialog
-					id="dialog-areas-text"
+					propOverrides={{ id: 'dialog-areas-text' }}
 					header={
 						<DBDialogHeader
 							text="With text prop"
@@ -216,7 +216,7 @@ export default function DialogExamples() {
 					Open: With header start slot
 				</DBButton>
 				<DBDialog
-					id="dialog-areas-start"
+					propOverrides={{ id: 'dialog-areas-start' }}
 					header={
 						<DBDialogHeader
 							closeButtonText="Close"
@@ -257,7 +257,7 @@ export default function DialogExamples() {
 					Open: With header end slot
 				</DBButton>
 				<DBDialog
-					id="dialog-areas-end"
+					propOverrides={{ id: 'dialog-areas-end' }}
 					header={
 						<DBDialogHeader
 							closeButtonText="Close"
@@ -300,7 +300,7 @@ export default function DialogExamples() {
 					Open: Without footer
 				</DBButton>
 				<DBDialog
-					id="dialog-areas-no-footer"
+					propOverrides={{ id: 'dialog-areas-no-footer' }}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Without footer</h2>
@@ -325,7 +325,7 @@ export default function DialogExamples() {
 					Open: With header subtitle
 				</DBButton>
 				<DBDialog
-					id="dialog-areas-subtitle"
+					propOverrides={{ id: 'dialog-areas-subtitle' }}
 					header={
 						<DBDialogHeader
 							className="showcase-header-top-aligned"

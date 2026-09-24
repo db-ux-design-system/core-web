@@ -30,7 +30,7 @@ export default function DrawerDirection() {
 					Open: (Default) To-Left
 				</DBButton>
 				<DBDrawer
-					id="drawer-direction-to-left"
+					propOverrides={{ id: 'drawer-direction-to-left' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>(Default) To-Left</h2>
@@ -46,7 +46,7 @@ export default function DrawerDirection() {
 					Open: To-Right
 				</DBButton>
 				<DBDrawer
-					id="drawer-direction-to-right"
+					propOverrides={{ id: 'drawer-direction-to-right' }}
 					direction="to-right"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -61,7 +61,7 @@ export default function DrawerDirection() {
 					Open: Up
 				</DBButton>
 				<DBDrawer
-					id="drawer-direction-up"
+					propOverrides={{ id: 'drawer-direction-up' }}
 					direction="up"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -78,7 +78,7 @@ export default function DrawerDirection() {
 					Open: Down
 				</DBButton>
 				<DBDrawer
-					id="drawer-direction-down"
+					propOverrides={{ id: 'drawer-direction-down' }}
 					direction="down"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -95,7 +95,7 @@ export default function DrawerDirection() {
 					Open: Up (Full)
 				</DBButton>
 				<DBDrawer
-					id="drawer-direction-up-full"
+					propOverrides={{ id: 'drawer-direction-up-full' }}
 					direction="up"
 					containerSize="full"
 					header={
@@ -113,7 +113,7 @@ export default function DrawerDirection() {
 					Open: Down (Full)
 				</DBButton>
 				<DBDrawer
-					id="drawer-direction-down-full"
+					propOverrides={{ id: 'drawer-direction-down-full' }}
 					direction="down"
 					containerSize="full"
 					header={

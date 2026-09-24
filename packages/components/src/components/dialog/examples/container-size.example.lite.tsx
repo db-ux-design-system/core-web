@@ -22,7 +22,7 @@ export default function DialogContainerSize() {
 					Open: Small
 				</DBButton>
 				<DBDialog
-					id="dialog-size-small"
+					propOverrides={{ id: 'dialog-size-small' }}
 					containerSize="small"
 					header={
 						<DBDialogHeader closeButtonText="Close">
@@ -62,7 +62,7 @@ export default function DialogContainerSize() {
 					Open: (Default) Medium
 				</DBButton>
 				<DBDialog
-					id="dialog-size-medium"
+					propOverrides={{ id: 'dialog-size-medium' }}
 					containerSize="medium"
 					header={
 						<DBDialogHeader closeButtonText="Close">
@@ -102,7 +102,7 @@ export default function DialogContainerSize() {
 					Open: Large
 				</DBButton>
 				<DBDialog
-					id="dialog-size-large"
+					propOverrides={{ id: 'dialog-size-large' }}
 					containerSize="large"
 					header={
 						<DBDialogHeader closeButtonText="Close">
@@ -142,7 +142,7 @@ export default function DialogContainerSize() {
 					Open: Full
 				</DBButton>
 				<DBDialog
-					id="dialog-size-full"
+					propOverrides={{ id: 'dialog-size-full' }}
 					containerSize="full"
 					header={
 						<DBDialogHeader closeButtonText="Close">

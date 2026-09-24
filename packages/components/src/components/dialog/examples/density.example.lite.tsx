@@ -24,7 +24,7 @@ export default function DialogDensity() {
 					Open: Functional
 				</DBButton>
 				<DBDialog
-					id="dialog-density-functional"
+					propOverrides={{ id: 'dialog-density-functional' }}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Functional</h2>
@@ -65,7 +65,7 @@ export default function DialogDensity() {
 					Open: (Default) Regular
 				</DBButton>
 				<DBDialog
-					id="dialog-density-regular"
+					propOverrides={{ id: 'dialog-density-regular' }}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>(Default) Regular</h2>
@@ -106,7 +106,7 @@ export default function DialogDensity() {
 					Open: Expressive
 				</DBButton>
 				<DBDialog
-					id="dialog-density-expressive"
+					propOverrides={{ id: 'dialog-density-expressive' }}
 					header={
 						<DBDialogHeader closeButtonText="Close">
 							<h2>Expressive</h2>

@@ -23,7 +23,7 @@ export default function DrawerDensity() {
 					Open: Functional
 				</DBButton>
 				<DBDrawer
-					id="drawer-density-functional"
+					propOverrides={{ id: 'drawer-density-functional' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>Functional</h2>
@@ -39,7 +39,7 @@ export default function DrawerDensity() {
 					Open: (Default) Regular
 				</DBButton>
 				<DBDrawer
-					id="drawer-density-regular"
+					propOverrides={{ id: 'drawer-density-regular' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>(Default) Regular</h2>
@@ -55,7 +55,7 @@ export default function DrawerDensity() {
 					Open: Expressive
 				</DBButton>
 				<DBDrawer
-					id="drawer-density-expressive"
+					propOverrides={{ id: 'drawer-density-expressive' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>Expressive</h2>

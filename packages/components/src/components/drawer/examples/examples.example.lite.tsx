@@ -51,7 +51,7 @@ export default function DrawerExamples() {
 					Open: (Default) As modal
 				</DBButton>
 				<DBDrawer
-					id="drawer-example-modal"
+					propOverrides={{ id: 'drawer-example-modal' }}
 					variant="modal"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -66,7 +66,7 @@ export default function DrawerExamples() {
 					Open: Inside
 				</DBButton>
 				<DBDrawer
-					id="drawer-example-inside"
+					propOverrides={{ id: 'drawer-example-inside' }}
 					variant="inside"
 					open={insideOpen}
 					onClose={() => setInsideOpen(false)}
@@ -85,7 +85,7 @@ export default function DrawerExamples() {
 					Open: With slots
 				</DBButton>
 				<DBDrawer
-					id="drawer-example-slots"
+					propOverrides={{ id: 'drawer-example-slots' }}
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
@@ -125,7 +125,7 @@ export default function DrawerExamples() {
 					Open: With text prop
 				</DBButton>
 				<DBDrawer
-					id="drawer-areas-text"
+					propOverrides={{ id: 'drawer-areas-text' }}
 					header={
 						<DBDrawerHeader
 							text="With text prop"
@@ -140,7 +140,7 @@ export default function DrawerExamples() {
 					Open: With header start slot
 				</DBButton>
 				<DBDrawer
-					id="drawer-areas-start"
+					propOverrides={{ id: 'drawer-areas-start' }}
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
@@ -156,7 +156,7 @@ export default function DrawerExamples() {
 					Open: With header end slot
 				</DBButton>
 				<DBDrawer
-					id="drawer-areas-end"
+					propOverrides={{ id: 'drawer-areas-end' }}
 					header={
 						<DBDrawerHeader
 							closeButtonText="Close"
@@ -172,7 +172,7 @@ export default function DrawerExamples() {
 					Open: With footer
 				</DBButton>
 				<DBDrawer
-					id="drawer-areas-footer"
+					propOverrides={{ id: 'drawer-areas-footer' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
 							<h2>With footer</h2>

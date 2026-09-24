@@ -38,7 +38,7 @@ export default function DrawerSize() {
 					Open: (Default) Small
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-small"
+					propOverrides={{ id: 'drawer-size-small' }}
 					containerSize="small"
 					direction="to-left"
 					header={
@@ -54,7 +54,7 @@ export default function DrawerSize() {
 					Open: Medium
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-medium"
+					propOverrides={{ id: 'drawer-size-medium' }}
 					containerSize="medium"
 					direction="to-left"
 					header={
@@ -70,7 +70,7 @@ export default function DrawerSize() {
 					Open: Large
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-large"
+					propOverrides={{ id: 'drawer-size-large' }}
 					containerSize="large"
 					direction="to-left"
 					header={
@@ -86,7 +86,7 @@ export default function DrawerSize() {
 					Open: Full
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-full"
+					propOverrides={{ id: 'drawer-size-full' }}
 					containerSize="full"
 					direction="to-left"
 					header={
@@ -112,7 +112,7 @@ export default function DrawerSize() {
 					Open: Small (Up)
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-small-up"
+					propOverrides={{ id: 'drawer-size-small-up' }}
 					containerSize="small"
 					direction="up"
 					header={
@@ -130,7 +130,7 @@ export default function DrawerSize() {
 					Open: Medium (Up)
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-medium-up"
+					propOverrides={{ id: 'drawer-size-medium-up' }}
 					containerSize="medium"
 					direction="up"
 					header={
@@ -148,7 +148,7 @@ export default function DrawerSize() {
 					Open: Large (Up)
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-large-up"
+					propOverrides={{ id: 'drawer-size-large-up' }}
 					containerSize="large"
 					direction="up"
 					header={
@@ -164,7 +164,7 @@ export default function DrawerSize() {
 					Open: Full (Up)
 				</DBButton>
 				<DBDrawer
-					id="drawer-size-full-up"
+					propOverrides={{ id: 'drawer-size-full-up' }}
 					containerSize="full"
 					direction="up"
 					header={

@@ -27,7 +27,7 @@ export default function DrawerBackdrop() {
 					Open: (Default) Strong
 				</DBButton>
 				<DBDrawer
-					id="drawer-backdrop-strong"
+					propOverrides={{ id: 'drawer-backdrop-strong' }}
 					backdrop="strong"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -44,7 +44,7 @@ export default function DrawerBackdrop() {
 					Open: Weak
 				</DBButton>
 				<DBDrawer
-					id="drawer-backdrop-weak"
+					propOverrides={{ id: 'drawer-backdrop-weak' }}
 					backdrop="weak"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -61,7 +61,7 @@ export default function DrawerBackdrop() {
 					Open: Invisible
 				</DBButton>
 				<DBDrawer
-					id="drawer-backdrop-invisible"
+					propOverrides={{ id: 'drawer-backdrop-invisible' }}
 					backdrop="invisible"
 					header={
 						<DBDrawerHeader closeButtonText="Close">
@@ -76,7 +76,7 @@ export default function DrawerBackdrop() {
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer
-					id="drawer-backdrop-none"
+					propOverrides={{ id: 'drawer-backdrop-none' }}
 					backdrop="none"
 					open={noBackdropOpen}
 					onClose={() => setNoBackdropOpen(false)}
