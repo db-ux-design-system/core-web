@@ -1,0 +1,40 @@
+import{n as e}from"./iframe-xskqea2F.js";import{n as t,t as n}from"./button-BUZiYKFa.js";import{n as r,t as i}from"./drawer-header-Dy10c_CJ.js";import{n as a,t as o}from"./drawer-8sKhWn9s.js";import{n as s}from"./rolldown-runtime-DkW27tQK.js";var c,l,u,d,f,p,m;function h(){return(h=s((()=>{t(),r(),a(),c=e(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBDrawer/Density`,component:o,parameters:{layout:`centered`},tags:[`autodocs`],args:{onClose:l(),onCancel:l()},argTypes:{open:{control:`boolean`},containerSize:{control:`select`,options:[`small`,`medium`,`large`,`full`]},rounded:{control:`boolean`},showSpacing:{control:`boolean`},backdrop:{control:`select`,options:[`none`,`strong`,`weak`,`invisible`]},direction:{control:`select`,options:[`to-left`,`to-right`,`up`,`down`]},variant:{control:`select`,options:[`modal`,`inside`]},position:{control:`select`,options:[`fixed`,`absolute`]},id:{control:`text`},autofocus:{control:`boolean`},onClose:{action:`onClose`},onCancel:{action:`onCancel`}}},d={args:{propOverrides:{id:`drawer-density-functional`},header:(0,c.jsx)(i,{closeButtonText:`Close`,children:(0,c.jsx)(`h2`,{children:`Functional`})}),children:`Functional`},render:e=>(0,c.jsxs)(`div`,{"data-density":`functional`,children:[(0,c.jsx)(n,{command:`show-modal`,commandfor:`drawer-density-functional`,children:`Open: Functional`}),(0,c.jsx)(o,{...e})]})},f={args:{propOverrides:{id:`drawer-density-regular`},header:(0,c.jsx)(i,{closeButtonText:`Close`,children:(0,c.jsx)(`h2`,{children:`(Default) Regular`})}),children:`(Default) Regular`},render:e=>(0,c.jsxs)(`div`,{"data-density":`regular`,children:[(0,c.jsx)(n,{command:`show-modal`,commandfor:`drawer-density-regular`,children:`Open: (Default) Regular`}),(0,c.jsx)(o,{...e})]})},p={args:{propOverrides:{id:`drawer-density-expressive`},header:(0,c.jsx)(i,{closeButtonText:`Close`,children:(0,c.jsx)(`h2`,{children:`Expressive`})}),children:`Expressive`},render:e=>(0,c.jsxs)(`div`,{"data-density":`expressive`,children:[(0,c.jsx)(n,{command:`show-modal`,commandfor:`drawer-density-expressive`,children:`Open: Expressive`}),(0,c.jsx)(o,{...e})]})},m=[`Functional`,`DefaultRegular`,`Expressive`],d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "propOverrides": {
+      id: 'drawer-density-functional'
+    },
+    "header": <DBDrawerHeader closeButtonText="Close">
+                            <h2>Functional</h2>
+                        </DBDrawerHeader>,
+    "children": "Functional"
+  },
+  render: (properties: any) => <div data-density="functional"><DBButton command="show-modal" commandfor="drawer-density-functional">
+                    Open: Functional
+                </DBButton><DBDrawer {...properties} /></div>
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "propOverrides": {
+      id: 'drawer-density-regular'
+    },
+    "header": <DBDrawerHeader closeButtonText="Close">
+                            <h2>(Default) Regular</h2>
+                        </DBDrawerHeader>,
+    "children": "(Default) Regular"
+  },
+  render: (properties: any) => <div data-density="regular"><DBButton command="show-modal" commandfor="drawer-density-regular">
+                    Open: (Default) Regular
+                </DBButton><DBDrawer {...properties} /></div>
+}`,...f.parameters?.docs?.source}}},p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`{
+  args: {
+    "propOverrides": {
+      id: 'drawer-density-expressive'
+    },
+    "header": <DBDrawerHeader closeButtonText="Close">
+                            <h2>Expressive</h2>
+                        </DBDrawerHeader>,
+    "children": "Expressive"
+  },
+  render: (properties: any) => <div data-density="expressive"><DBButton command="show-modal" commandfor="drawer-density-expressive">
+                    Open: Expressive
+                </DBButton><DBDrawer {...properties} /></div>
+}`,...p.parameters?.docs?.source}}}})))()}h();export{f as DefaultRegular,p as Expressive,d as Functional,m as __namedExportsOrder,u as default};
