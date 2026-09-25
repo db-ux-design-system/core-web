@@ -293,7 +293,6 @@
         - button "Level 1b"
       - listitem:
         - link "Simple Item"
-    - button "Scroll right"
   - link "Imprint"
   - link "Help"
   - button "Search"
