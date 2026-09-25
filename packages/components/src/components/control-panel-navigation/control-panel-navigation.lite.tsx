@@ -697,10 +697,9 @@ export default function DBControlPanelNavigation(
 			requestAnimationFrame(() => {
 				state._update();
 
-				// Set up ResizeObserver for scroll buttons and sub-nav positioning
 				if (!state._resizeObserverCallbackId) {
 					state._resizeObserverCallbackId =
-						new ResizeObserverListener().observe(menuRef, () => {
+						new ResizeObserverListener().observe(_ref, () => {
 							state._update();
 						});
 				}

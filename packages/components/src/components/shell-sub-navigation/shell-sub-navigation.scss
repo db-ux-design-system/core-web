@@ -7,6 +7,7 @@
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
+@use "../../styles/internal/navigation-item";
 
 .db-shell-sub-navigation {
 	grid-area: sub-navigation;
@@ -74,6 +75,7 @@
 			/* stylelint-disable-next-line db-ux/use-spacings */
 			padding: variables.$db-spacing-fixed-sm
 				component.$drawer-content-padding-inline;
+			position: relative;
 		}
 
 		/* jscpd:ignore-start */
@@ -86,7 +88,8 @@
 
 			/* jscpd:ignore-end */
 
-			.db-control-panel-navigation {
+			.db-control-panel-navigation,
+			> :not(.db-shell-sub-navigation-button) {
 				display: none;
 			}
 
@@ -121,6 +124,10 @@
 			.db-control-panel-navigation {
 				overflow: hidden auto;
 
+				&[data-variant="drilldown"] {
+					@include navigation-item.lock-scroll-while-drilldown-open;
+				}
+
 				@include control-panel-desktop.vertical-navigation(false);
 
 				> menu {
@@ -129,8 +136,9 @@
 			}
 
 			> .db-shell-sub-navigation-button {
-				padding-block: variables.$db-spacing-fixed-xs;
-				padding-inline: variables.$db-spacing-fixed-lg;
+				padding-block: variables.$db-spacing-fixed-sm;
+				padding-inline: control-panel-desktop.$control-panel-desktop-vertical-padding-inline-start
+					control-panel-desktop.$control-panel-desktop-vertical-padding-inline-end;
 				justify-content: flex-end;
 				margin-block-start: auto;
 

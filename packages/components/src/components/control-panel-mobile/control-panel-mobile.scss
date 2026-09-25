@@ -73,6 +73,13 @@
 				flex-direction: column;
 				block-size: 100%;
 				overflow-x: hidden;
+				position: relative;
+
+				// Pin the drilldown overlay to the visible scrollport by locking the
+				// scroll owner (this container) while a drilldown level is open.
+				&:has(.db-control-panel-navigation[data-variant="drilldown"]) {
+					@include navigation-item.lock-scroll-while-drilldown-open;
+				}
 
 				/* jscpd:ignore-start */
 				.db-control-panel-meta {
@@ -94,11 +101,15 @@
 
 					> menu {
 						@include navigation-item.direct-navigation-items {
-							@extend %indicator;
-							@include indicator.set-indicator-vertical;
+							@include navigation-item.navigation-indicator {
+								@extend %indicator;
+								@include indicator.set-indicator-vertical;
+							}
 
 							@include navigation-item.active-navigation-item {
-								@include indicator.show-indicator-vertical;
+								@include navigation-item.navigation-indicator {
+									@include indicator.show-indicator-vertical;
+								}
 							}
 
 							@include navigation-item.direct-navigation-items {

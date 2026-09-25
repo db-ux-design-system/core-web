@@ -69,6 +69,15 @@ export default function DBControlPanelNavigationItemGroup(
 			if (isDrilldown && state.isSubNavigationExpanded) {
 				state._setSiblingsInert(true);
 
+				// Reset the scroll offset of the container that this level lives
+				// in, so the absolutely positioned overlay (inset: 0) aligns
+				// with the top of the visible scrollport. Locking overflow in
+				// CSS only stops further scrolling; it does not clear an
+				// existing scrollTop, which would otherwise push the overlay up
+				// by that offset during the slide (resolves the scroll-offset
+				// review feedback). There is no CSS equivalent for this.
+				state._resetScrollOwner();
+
 				// Move focus to the first navigation item link inside the sub-menu
 				if (_menuRef) {
 					const firstLink = (_menuRef as HTMLElement).querySelector(
@@ -175,6 +184,28 @@ export default function DBControlPanelNavigationItemGroup(
 						child.removeAttribute('inert');
 					}
 				}
+			}
+		},
+		_resetScrollOwner: () => {
+			if (!_ref) return;
+
+			let current: HTMLElement | null = _ref as HTMLElement;
+			while (current) {
+				if (current.scrollTop > 0) {
+					current.scrollTop = 0;
+				}
+				if (
+					current.classList.contains(
+						'db-control-panel-desktop-scroll-container'
+					) ||
+					current.classList.contains(
+						'db-control-panel-mobile-drawer-scroll-container'
+					)
+				) {
+					// Reached the outermost scroll owner for this layout.
+					break;
+				}
+				current = current.parentElement;
 			}
 		},
 		_enablePopover: () => {
@@ -426,8 +457,6 @@ export default function DBControlPanelNavigationItemGroup(
 				'db-control-panel-navigation-item-group',
 				props.className
 			)}
-			data-icon={props.icon}
-			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 			data-active={getBooleanAsString(props.active, 'active')}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button
@@ -441,6 +470,8 @@ export default function DBControlPanelNavigationItemGroup(
 					state.isSubNavigationExpanded
 				)}
 				class="db-control-panel-navigation-item-group-expand-button"
+				data-icon={props.icon}
+				data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}
 				disabled={getBoolean(props.disabled, 'disabled')}
 				onClick={(event: ClickEvent<HTMLButtonElement>) =>
 					state.handleClick(event)
