@@ -289,6 +289,27 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// `children={undefined}` type-checks (children is optional) but
+				// React renders nothing, so the aria-labelledby target stays empty.
+				code: '<DBDialogHeader children={undefined} closeButtonText="Close" />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// `text={undefined}` likewise renders no accessible name.
+				code: '<DBDialogHeader text={undefined} />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// A bare valueless `children` attribute renders no content.
 				code: '<DBDrawerHeader children />',
 				errors: [
@@ -683,6 +704,17 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
+				// {{ undefined }} renders no text in Vue (like null), so the
+				// aria-labelledby target stays empty.
+				code: '<template><DBDialogHeader>{{ undefined }}</DBDialogHeader></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
 					}
 				]
 			},

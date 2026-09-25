@@ -234,15 +234,21 @@ export function isStaticallyEmptyAngularInput(value: any): boolean {
 }
 
 /**
- * Detects expressions that statically render no text: a `null` literal, an empty
- * string literal `''`/`""` or a template literal with no substitutions and empty
- * text (` `` `). Whitespace-only literals count as empty because they render no
- * visible or accessible text. Anything else (identifiers, calls, member access,
- * non-empty literals) is treated as unresolvable dynamic content.
+ * Detects expressions that statically render no text: a `null` literal, the
+ * `undefined` identifier, an empty string literal `''`/`""` or a template literal
+ * with no substitutions and empty text (` `` `). Whitespace-only literals count as
+ * empty because they render no visible or accessible text. Anything else (other
+ * identifiers, calls, member access, non-empty literals) is treated as
+ * unresolvable dynamic content.
  */
 export function isStaticallyEmptyExpression(expression: any): boolean {
 	if (!expression) {
 		return false;
+	}
+	// `undefined` is a plain identifier in the AST (not a Literal); React and Vue
+	// both render nothing for it, same as `null`.
+	if (expression.type === 'Identifier') {
+		return expression.name === 'undefined';
 	}
 	if (expression.type === 'Literal') {
 		// `null` renders no text, same as an empty string literal.
