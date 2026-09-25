@@ -14,23 +14,24 @@ useMetadata({
 });
 
 export default function DrawerBackdrop() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
+	// A non-modal drawer (backdrop none) opens via show(), which has no native
+	// invoker command, so only that drawer is driven through the open prop.
+	const [noBackdropOpen, setNoBackdropOpen] = useState<boolean>(false);
 
 	return (
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-strong">
 					Open: (Default) Strong
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-backdrop-strong' }}
 					backdrop="strong"
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Strong
+							<h2>(Default) Strong</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Strong
@@ -38,17 +39,16 @@ export default function DrawerBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-weak">
 					Open: Weak
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-backdrop-weak' }}
 					backdrop="weak"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Weak
+							<h2>Weak</h2>
 						</DBDrawerHeader>
 					}>
 					Weak
@@ -56,35 +56,33 @@ export default function DrawerBackdrop() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-backdrop-invisible">
 					Open: Invisible
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-backdrop-invisible' }}
 					backdrop="invisible"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Invisible
+							<h2>Invisible</h2>
 						</DBDrawerHeader>
 					}>
 					Invisible
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton onClick={() => setNoBackdropOpen(true)}>
 					Open: No Backdrop
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-backdrop-none' }}
 					backdrop="none"
-					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}
+					open={noBackdropOpen}
+					onClose={() => setNoBackdropOpen(false)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							No Backdrop
+							<h2>No Backdrop</h2>
 						</DBDrawerHeader>
 					}>
 					No Backdrop

@@ -6,6 +6,11 @@ export type ComponentType = {
 	index?: string | number;
 	type?:
 		/* Template hygen type */
+		| 'dialog-footer'
+		| 'dialog-header'
+		| 'dialog'
+		| 'pagination'
+		| 'pagination-item'
 		| 'breadcrumb-truncation-item'
 		| 'breadcrumb-item'
 		| 'breadcrumb'
@@ -22,6 +27,7 @@ export type ComponentType = {
 		| 'custom-button'
 		| 'table'
 		| 'control-panel-mobile'
+		| 'loading-indicator'
 		| 'stack'
 		| 'switch'
 		| 'custom-select'

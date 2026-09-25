@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/wc-core-components",
-  "version": "5.5.0",
+  "version": "5.6.0",
   "type": "module",
   "description": "Stencil components for @db-ux/core-components",
   "repository": {
@@ -50,7 +50,7 @@
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "0.11.0",
     "@stencil/core": "4.45.0",
-    "@types/node": "26.5.1",
+    "@types/node": "26.6.2",
     "cem-plugin-expanded-types": "1.4.0",
     "cpy-cli": "7.0.0",
     "custom-element-jet-brains-integration": "1.8.0",

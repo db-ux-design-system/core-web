@@ -9,6 +9,7 @@ import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
+import DialogShowcase from '@components/components/dialog/showcase/dialog.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
 import FooterShowcase from '@components/components/footer/showcase/footer.showcase';
@@ -16,6 +17,7 @@ import HeaderShowcase from '@components/components/header/showcase/header.showca
 import InfotextShowcase from '@components/components/infotext/showcase/infotext.showcase';
 import InputShowcase from '@components/components/input/showcase/input.showcase';
 import LinkShowcase from '@components/components/link/showcase/link.showcase';
+import LoadingIndicatorShowcase from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 import NavigationItemShowcase from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
@@ -39,6 +41,8 @@ import ControlPanelMobileShowcase from '@components/components/control-panel-mob
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
+
 import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 
 import Components from './components.json';
@@ -53,6 +57,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	pagination: <PaginationShowcase isPatternhub />,
+
 	breadcrumb: <BreadcrumbShowcase isPatternhub />,
 
 	heading: <HeadingShowcase isPatternhub />,
@@ -76,12 +82,14 @@ const nameComponentMap = {
 	checkbox: <CheckboxShowcase isPatternhub />,
 	'custom-button': <CustomButtonShowcase isPatternhub />,
 	'custom-select': <CustomSelectShowcase isPatternhub />,
+	dialog: <DialogShowcase isPatternhub />,
 	divider: <DividerShowcase isPatternhub />,
 	drawer: <DrawerShowcase isPatternhub />,
 	header: <HeaderShowcase isPatternhub />,
 	infotext: <InfotextShowcase isPatternhub />,
 	input: <InputShowcase isPatternhub />,
 	link: <LinkShowcase isPatternhub />,
+	'loading-indicator': <LoadingIndicatorShowcase isPatternhub />,
 	navigation: <NavigationShowcase isPatternhub />,
 	'navigation-item': <NavigationItemShowcase isPatternhub />,
 	notification: <NotificationShowcase isPatternhub />,

@@ -23,9 +23,9 @@
     "@angular/router": "21.2.23",
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*",
-    "@db-ux/db-theme": "6.2.0",
+    "@db-ux/db-theme": "6.3.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "4.2.0",
+    "@db-ux/db-theme-icons": "4.3.0",
     "@db-ux/ngx-core-components": "workspace:*",
     "@faker-js/faker": "10.6.0",
     "@tanstack/angular-table": "9.2.4",
@@ -42,7 +42,7 @@
     "@compodoc/compodoc": "2.0.0",
     "@storybook/addon-docs": "10.6.0",
     "@storybook/angular": "10.6.0",
-    "@types/node": "26.5.1",
+    "@types/node": "26.6.2",
     "eslint-plugin-storybook": "10.6.0",
     "storybook": "10.6.0"
   }

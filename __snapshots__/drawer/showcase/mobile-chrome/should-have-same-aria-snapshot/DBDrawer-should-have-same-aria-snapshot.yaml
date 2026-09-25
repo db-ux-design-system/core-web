@@ -35,7 +35,19 @@
   - 'button "Open: Down (Full)"'
   - link "Position"
   - 'button "Open: Absolute"'
-  - link "Example"
+  - link "Examples"
   - 'button "Open: (Default) As modal"'
   - 'button "Open: Inside"'
   - 'button "Open: With slots"'
+  - button "Cancel and close Events in console"
+  - 'button "Open: With text prop"'
+  - 'button "Open: With header start slot"'
+  - 'button "Open: With header end slot"'
+  - 'button "Open: With footer"'
+  - dialog "With footer":
+    - article:
+      - heading "With footer" [level=2]
+      - button "Close"
+      - text: Lorem ipsum dolor sit amet.
+      - link "Link 1"
+      - link "Link 2"

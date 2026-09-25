@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-eslint-plugin",
-  "version": "5.5.0",
+  "version": "5.6.0",
   "type": "module",
   "description": "ESLint plugin for DB UX Design System components",
   "repository": {
@@ -42,12 +42,12 @@
   "devDependencies": {
     "@angular-eslint/template-parser": "21.4.0",
     "@angular-eslint/test-utils": "21.4.0",
-    "@typescript-eslint/parser": "8.70.0",
-    "@typescript-eslint/rule-tester": "8.70.0",
+    "@typescript-eslint/parser": "8.70.1",
+    "@typescript-eslint/rule-tester": "8.70.1",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
     "typescript": "5.9.3",
-    "vitest": "5.0.0",
+    "vitest": "5.0.1",
     "vue-eslint-parser": "10.4.1"
   },
   "publishConfig": {

@@ -47,6 +47,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			{ path: '01/footer', label: 'Footer' },
 			{ path: '01/stack', label: 'Stack' },
 			{ path: '01/card', label: 'Card' },
+			{ path: '01/dialog', label: 'Dialog' },
 			{ path: '01/drawer', label: 'Drawer' },
 			{ path: '01/divider', label: 'Divider' },
 			{ path: '01/popover', label: 'Popover' },
@@ -125,6 +126,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			{ path: '05/breadcrumb', label: 'Breadcrumb' },
 			{ path: '05/navigation-item', label: 'NavigationItem' },
 			{ path: '05/navigation', label: 'Navigation' },
+			{ path: '05/pagination', label: 'Pagination' },
 			{ path: '05/brand', label: 'Brand' },
 			{ path: '05/header', label: 'Header' }
 		])
@@ -134,7 +136,8 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		label: '06 Feedback',
 		children: sortNavItems([
 			{ path: '06/notification', label: 'Notification' },
-			{ path: '06/badge', label: 'Badge' }
+			{ path: '06/badge', label: 'Badge' },
+			{ path: '06/loading-indicator', label: 'LoadingIndicator' }
 		])
 	}
 ]);

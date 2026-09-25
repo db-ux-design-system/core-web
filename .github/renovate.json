@@ -1,5 +1,5 @@
 {
-	"extends": ["config:recommended", ":disableDependencyDashboard"],
+	"extends": ["config:recommended"],
 	"branchPrefix": "renovate-",
 	"branchNameStrict": true,
 	"enabledManagers": ["npm", "nvm"],

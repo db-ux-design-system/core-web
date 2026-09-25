@@ -1,3 +1,5 @@
+import { PaginationComponent } from '../components/pagination.component';
+
 import { type Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
@@ -13,6 +15,7 @@ import { ControlPanelFlatIconShowcase } from '@components/components/control-pan
 import { ControlPanelMobileShowcase } from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
+import { DialogShowcase } from '@components/components/dialog/showcase/dialog.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
 import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
 import { FooterShowcase } from '@components/components/footer/showcase/footer.showcase';
@@ -22,6 +25,7 @@ import { IconShowcase } from '@components/components/icon/showcase/icon.showcase
 import { InfotextShowcase } from '@components/components/infotext/showcase/infotext.showcase';
 import { InputShowcase } from '@components/components/input/showcase/input.showcase';
 import { LinkShowcase } from '@components/components/link/showcase/link.showcase';
+import { LoadingIndicatorShowcase } from '@components/components/loading-indicator/showcase/loading-indicator.showcase';
 import { NavigationItemShowcase } from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import { NavigationShowcase } from '@components/components/navigation/showcase/navigation.showcase';
 import { NotificationShowcase } from '@components/components/notification/showcase/notification.showcase';
@@ -62,7 +66,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				label: 'Notification',
 				component: NotificationShowcase
 			},
-			{ path: '06/badge', label: 'Badge', component: BadgeShowcase }
+			{ path: '06/badge', label: 'Badge', component: BadgeShowcase },
+			{
+				path: '06/loading-indicator',
+				label: 'LoadingIndicator',
+				component: LoadingIndicatorShowcase
+			}
 		])
 	},
 
@@ -115,6 +124,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '05/navigation',
 				label: 'Navigation',
 				component: NavigationShowcase
+			},
+			{
+				path: '05/pagination',
+				label: 'Pagination',
+				component: PaginationComponent
 			},
 			{
 				path: '05/brand',
@@ -214,6 +228,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		subNavigation: getSortedNavigationItems([
 			{ path: '01/stack', label: 'Stack', component: StackShowcase },
 			{ path: '01/card', label: 'Card', component: CardShowcase },
+			{ path: '01/dialog', label: 'Dialog', component: DialogShowcase },
 			{ path: '01/drawer', label: 'Drawer', component: DrawerShowcase },
 			{
 				path: '01/divider',

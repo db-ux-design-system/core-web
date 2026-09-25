@@ -15,12 +15,12 @@ export default function DrawerHeaderSlots() {
 		<Fragment>
 			<div>
 				<DBDrawerHeader endSlot={<DBBadge>New</DBBadge>}>
-					With end slot
+					<h2>With end slot</h2>
 				</DBDrawerHeader>
 			</div>
 			<div>
 				<DBDrawerHeader startSlot={<DBIcon icon="account" />}>
-					With start slot
+					<h2>With start slot</h2>
 				</DBDrawerHeader>
 			</div>
 		</Fragment>

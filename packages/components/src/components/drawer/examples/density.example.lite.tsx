@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
@@ -14,22 +14,19 @@ useMetadata({
 });
 
 export default function DrawerDensity() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div data-density="functional">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-density-functional">
 					Open: Functional
 				</DBButton>
 				<DBDrawer
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
+					propOverrides={{ id: 'drawer-density-functional' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Functional
+							<h2>Functional</h2>
 						</DBDrawerHeader>
 					}>
 					Functional
@@ -37,16 +34,15 @@ export default function DrawerDensity() {
 			</div>
 			<div data-density="regular">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-density-regular">
 					Open: (Default) Regular
 				</DBButton>
 				<DBDrawer
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
+					propOverrides={{ id: 'drawer-density-regular' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Regular
+							<h2>(Default) Regular</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Regular
@@ -54,16 +50,15 @@ export default function DrawerDensity() {
 			</div>
 			<div data-density="expressive">
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+					command="show-modal"
+					commandfor="drawer-density-expressive">
 					Open: Expressive
 				</DBButton>
 				<DBDrawer
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
+					propOverrides={{ id: 'drawer-density-expressive' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Expressive
+							<h2>Expressive</h2>
 						</DBDrawerHeader>
 					}>
 					Expressive

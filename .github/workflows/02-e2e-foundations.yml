@@ -14,7 +14,7 @@ permissions:
 jobs:
   playwright-foundations:
     name: 🧪🎭 - foundations
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
