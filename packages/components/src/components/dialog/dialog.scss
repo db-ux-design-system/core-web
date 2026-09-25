@@ -164,10 +164,24 @@ $container-size-scale: dialog-components.$container-size-scale;
 	);
 	background-color: var(--db-adaptive-bg-basic-level-1-default);
 
+	// Clip the box while closed and during the entry/exit transition. Without it
+	// the zoom/fade box produces a spurious horizontal scrollbar on Windows (the
+	// content briefly exceeds the box before it settles). The open state below
+	// reverts to `visible` so nested `DBTooltip`/popover overlays can escape the
+	// dialog border once it has settled. Long content scrolls in
+	// `.db-dialog-content` (`overflow-y: auto`), not on the dialog element, so
+	// clipping here never suppresses the content scroll.
+	overflow: hidden;
+
 	// Scoped to the open state so the user agent rule
 	// `dialog:not([open]) { display: none }` keeps hiding a closed dialog.
 	&[open] {
 		@include dialog-components.container-layout;
+
+		// Let nested overlays (tooltip/popover) overflow the dialog border once
+		// open. During the *closing* transition `[open]` is gone, so the box
+		// falls back to the `overflow: hidden` above.
+		overflow: visible;
 	}
 
 	> .db-dialog-content {
