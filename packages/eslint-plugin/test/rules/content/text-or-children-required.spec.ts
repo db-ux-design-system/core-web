@@ -116,6 +116,18 @@ describe('text-or-children-required', () => {
 				// valid one (React later-wins), so it is unresolved, not reported.
 				code: '<DBDialogHeader children="" {...headerProps} />'
 			},
+			{
+				// `text` and `children` are alternatives. The spread comes after
+				// (the absent) `children`, so it may supply a non-empty one even
+				// though `text` is explicitly pinned empty - unresolved, not
+				// reported.
+				code: '<DBDialogHeader {...headerProps} text="" />'
+			},
+			{
+				// Mirror of the reviewer's case: the spread precedes the pinned
+				// empty `children` but can still supply a non-empty `text`.
+				code: '<DBDialogHeader text="" {...headerProps} children="" />'
+			},
 			{ code: '<div />' }
 		],
 		invalid: [
@@ -381,9 +393,10 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
-				// A spread before an explicit empty text does not determine the
-				// final value (the later explicit text wins), so it still reports.
-				code: '<DBDialogHeader {...headerProps} text="" />',
+				// A spread before an explicit empty text AND an explicit empty
+				// children pins both alternatives after the spread, so it cannot
+				// supply either - reported.
+				code: '<DBDialogHeader {...headerProps} text="" children="" />',
 				errors: [
 					{
 						messageId: 'missingContent',

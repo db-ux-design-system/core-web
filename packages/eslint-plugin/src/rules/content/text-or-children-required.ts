@@ -319,15 +319,21 @@ export default {
 			}
 
 			// A React spread (<DBDialogHeader {...headerProps} />) or Vue object
-			// v-bind may supply `text` or `children`, and its contents cannot be
-			// verified statically, so treat the header as unresolved rather than
-			// reporting. `text` and `children` are alternative content sources, so
-			// the spread only rescues when it comes after the last explicit
-			// occurrence of BOTH - if either is explicitly pinned (e.g. `text=""`)
-			// after the spread, that empty value wins and the header is reported.
+			// v-bind may supply content whose value cannot be verified statically,
+			// so treat the header as unresolved rather than reporting. `text` and
+			// `children` are alternative content sources, so a spread that can still
+			// supply EITHER (it comes after that attribute's last explicit
+			// occurrence) is enough to avoid a false positive - even if the other
+			// alternative is explicitly pinned empty after the spread (e.g.
+			// `text="" {...props} children=""`, where the spread may still provide a
+			// non-empty `text`). `children` is a React-only content prop, so only a
+			// JSX node (which carries an `attributes` array) treats it as a spread-
+			// supplied alternative; in Vue content comes through the slot, not a
+			// `children` prop.
+			const isJsxNode = Array.isArray(openingElement.attributes);
 			if (
-				isUnresolvedBySpread(openingElement, 'text') &&
-				isUnresolvedBySpread(openingElement, 'children')
+				isUnresolvedBySpread(openingElement, 'text') ||
+				(isJsxNode && isUnresolvedBySpread(openingElement, 'children'))
 			) {
 				return;
 			}
