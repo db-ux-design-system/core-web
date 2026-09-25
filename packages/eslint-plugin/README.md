@@ -277,7 +277,9 @@ Prefer using the `icon` attribute over `<DBIcon>` child component for components
 
 ### `text-or-children-required`
 
-Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBControlPanelNavigationItem, DBNavigationItem, DBNotification, DBDialogHeader, DBDrawerHeader) have either a `text` property or children content. For DBDialogHeader and DBDrawerHeader this guards the dialog's accessible name: the header content becomes the `aria-labelledby` target, so an empty header leaves the dialog unnamed.
+Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBInfotext, DBControlPanelNavigationItem, DBNavigationItem, DBNotification, DBDialogHeader, DBDrawerHeader) have either a `text` property or children content. For DBDialogHeader and DBDrawerHeader this guards the dialog's accessible name: the header content becomes the `aria-labelledby` target, so an empty header leaves the dialog unnamed.
+
+DBIcon is deliberately excluded: it always renders with `aria-hidden="true"`, so a `text` property or children would reach neither screen readers nor sighted users. A decorative icon needs no content, and an informative one needs a named wrapper around it.
 
 **❌ Invalid:**
 
@@ -292,7 +294,7 @@ Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBI
 <db-notification></db-notification>
 
 // Vue
-<DBIcon icon="test" />
+<DBInfotext />
 ```
 
 **✅ Valid:**
@@ -309,7 +311,9 @@ Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBI
 
 // Vue
 <DBBadge>New</DBBadge>
-<DBIcon icon="test">Label</DBIcon>
+
+// DBIcon is decorative and is never reported
+<DBIcon icon="test" />
 ```
 
 ### `no-interactive-tooltip-content`
