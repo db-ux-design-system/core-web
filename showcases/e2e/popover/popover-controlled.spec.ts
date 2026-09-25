@@ -9,7 +9,9 @@ test.describe('DBPopover', () => {
 		await waitForDBShell(page);
 
 		const toggle = page.getByRole('button', { name: 'Toggle popover' });
-		const trigger = page.getByRole('button', { name: 'Controlled popover' });
+		const trigger = page.getByRole('button', {
+			name: 'Controlled popover'
+		});
 		const content = page.locator('#popover-controlled article');
 
 		await expect(trigger).toHaveAttribute('aria-expanded', 'false');
