@@ -384,3 +384,23 @@ export class AppComponent {
 	};*/
 }
 ```
+
+## Moving the footer
+
+`db-shell` has no `footer` slot. Its grid only defines areas for the control panel, the sub-navigation, and the content, so a footer placed as a direct child of `db-shell` is auto-placed by the grid instead of ending up below the content. Move it into the `end-slot` of `db-shell-content`, which renders directly after `main`.
+
+```html
+<db-shell-content
+	>Main Page
+	<!-- the `footer` slot of db-page becomes the `end-slot` of db-shell-content -->
+	<div end-slot>Footer</div>
+</db-shell-content>
+```
+
+| Deprecated                                       | Replacement                                 |
+| ------------------------------------------------ | ------------------------------------------- |
+| `db-page` slot `footer`                          | `db-shell-content` slot `end-slot`          |
+| `db-page variant="fixed"` (footer stays visible) | `db-shell-content variant="fixed"`          |
+| `db-page variant="auto"`                         | `db-shell-content variant="auto"` (default) |
+
+`db-shell-content` also has a `start-slot` for content that should sit above `main`, which `db-page` had no equivalent for.
