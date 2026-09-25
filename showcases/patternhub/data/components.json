@@ -222,6 +222,20 @@
 			{
 				"label": "DBShell",
 				"name": "shell"
+			},
+			{
+				"label": "DBBreadcrumb",
+				"name": "breadcrumb"
+			},
+			{
+				"label": "DBBreadcrumbItem",
+				"name": "breadcrumb-item",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBBreadcrumbTruncationItem",
+				"name": "breadcrumb-truncation-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},

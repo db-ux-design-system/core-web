@@ -2,6 +2,7 @@ import AccordionItemShowcase from '@components/components/accordion-item/showcas
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase';
 import BadgeShowcase from '@components/components/badge/showcase/badge.showcase';
 import BrandShowcase from '@components/components/brand/showcase/brand.showcase';
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 import ButtonShowcase from '@components/components/button/showcase/button.showcase';
 import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -109,8 +110,13 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				])
 			},
 
-			// OLD
+			{
+				path: 'breadcrumb',
+				label: 'Breadcrumb',
+				component: <BreadcrumbShowcase />
+			},
 
+			// OLD
 			{
 				path: 'navigation-item',
 				label: 'NavigationItem',

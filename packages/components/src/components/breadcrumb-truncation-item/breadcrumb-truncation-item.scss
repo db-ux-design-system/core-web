@@ -1,0 +1,42 @@
+@charset "utf-8";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+.db-breadcrumb-truncation-item {
+	display: flex;
+	align-items: center;
+
+	// The DBPopover provides the hover/focus reveal, elevation, card
+	// background and placement. We only lay out the trigger and the list.
+	.db-breadcrumb-truncation-item-popover {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	// The toggle is a ghost DBButton showing the "..." ellipsis. It visually
+	// matches a square icon-only button so the ellipsis sits centered in a
+	// square target. The base button sets a min-block-size of sizing-md, so we
+	// override it (block-size alone is not enough) to collapse it to a square.
+	.db-breadcrumb-truncation-item-toggle {
+		inline-size: variables.$db-sizing-sm;
+		block-size: variables.$db-sizing-sm;
+		min-inline-size: variables.$db-sizing-sm;
+		min-block-size: variables.$db-sizing-sm;
+		padding: 0;
+	}
+
+	// The popover content holds the hidden breadcrumb items as a list.
+	.db-popover-content > ol {
+		display: flex;
+		flex-direction: column;
+		gap: variables.$db-spacing-fixed-2xs;
+		margin: 0;
+		padding: 0;
+		list-style-type: "";
+		min-inline-size: variables.$db-sizing-2xl;
+
+		.db-breadcrumb-item a {
+			inline-size: 100%;
+		}
+	}
+}

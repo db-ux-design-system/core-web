@@ -7,6 +7,9 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
+	DBBreadcrumb,
+	DBBreadcrumbItem,
+	DBBreadcrumbTruncationItem,
 	DBButton,
 	DBCard,
 	DBCheckbox,
@@ -506,6 +509,30 @@ const ComponentSwitch = ({
 			<DBPagination className={className} {...props}>
 				{resolvedContent}
 			</DBPagination>
+		);
+	}
+
+	if (type === 'breadcrumb') {
+		return (
+			<DBBreadcrumb className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumb>
+		);
+	}
+
+	if (type === 'breadcrumb-item') {
+		return (
+			<DBBreadcrumbItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbItem>
+		);
+	}
+
+	if (type === 'breadcrumb-truncation-item') {
+		return (
+			<DBBreadcrumbTruncationItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbTruncationItem>
 		);
 	}
 

@@ -6,6 +6,8 @@ export * from './components/badge';
 export * from './components/badge/model';
 export * from './components/brand';
 export * from './components/brand/model';
+export * from './components/breadcrumb';
+export * from './components/breadcrumb/model';
 export * from './components/button';
 export * from './components/button/model';
 export * from './components/card';
@@ -148,3 +150,9 @@ export * from './utils/document-scroll-listener';
 export * from './utils/floating-components';
 export * from './utils/index';
 export * from './utils/navigation';
+
+export * from './components/breadcrumb-item';
+export * from './components/breadcrumb-item/model';
+
+export * from './components/breadcrumb-truncation-item';
+export * from './components/breadcrumb-truncation-item/model';

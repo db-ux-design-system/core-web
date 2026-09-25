@@ -1,0 +1,172 @@
+- main:
+  - heading "DBBreadcrumb" [level=1]
+  - link "Density"
+  - text: Functional
+  - navigation "Breadcrumb (Functional)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Regular
+  - navigation "Breadcrumb (Regular)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Expressive
+  - navigation "Breadcrumb (Expressive)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - link "Size"
+  - text: Small
+  - navigation "Breadcrumb (Small)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Medium
+  - navigation "Breadcrumb (Medium)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - link "Separator"
+  - text: Chevron
+  - navigation "Breadcrumb (Chevron)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Slash
+  - navigation "Breadcrumb (Slash)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - link "Length"
+  - text: 4 Items
+  - navigation "Breadcrumb (4 items)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Current"
+  - text: 7 Items
+  - navigation "Breadcrumb (7 items)":
+    - button "Show more"
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Current"
+  - text: 10 Items
+  - navigation "Breadcrumb (10 items)":
+    - button "Show more"
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Current"
+  - link "API"
+  - text: Composition
+  - navigation "Breadcrumb API (Composition)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - text: Options API
+  - navigation "Breadcrumb API (Options API)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - link "Disabled"
+  - text: Composition
+  - navigation "Breadcrumb Disabled (Composition)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Disabled" [disabled]
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - text: Options API
+  - navigation "Breadcrumb Disabled (Options API)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Disabled" [disabled]
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - link "No text"
+  - text: Composition
+  - navigation "Breadcrumb No text (Composition)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Settings"
+  - text: Options API
+  - navigation "Breadcrumb No text (Options API)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Settings"
+  - link "Truncation"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Current"
