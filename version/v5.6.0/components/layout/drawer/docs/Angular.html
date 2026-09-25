@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/version/v5.6.0/_next/static/css/a40d1833113991cb.css" as="style"/><link rel="stylesheet" href="/core-web/version/v5.6.0/_next/static/css/a40d1833113991cb.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/version/v5.6.0/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/version/v5.6.0/_next/static/chunks/webpack-1d98b4ba9fece2b9.js" defer=""></script><script src="/core-web/version/v5.6.0/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/version/v5.6.0/_next/static/chunks/main-633ea479debd1ddf.js" defer=""></script><script src="/core-web/version/v5.6.0/_next/static/chunks/pages/_app-622437d9a6d60ce3.js" defer=""></script><script src="/core-web/version/v5.6.0/_next/static/chunks/pages/components/layout/drawer/docs/Angular-4cf731d209311a00.js" defer=""></script><script src="/core-web/version/v5.6.0/_next/static/bAKiL8V_joGT-WQ43qbSS/_buildManifest.js" defer=""></script><script src="/core-web/version/v5.6.0/_next/static/bAKiL8V_joGT-WQ43qbSS/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/version/v5.6.0/components/layout/drawer/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="general">General<a class="header-link" href="/core-web/version/v5.6.0/components/layout/drawer/docs/Angular?current=general"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>general<!-- --> anchor link</a></h3>
+<p>If you use <code>containerSize !== full</code> you are able to overwrite the <code>max-width</code> with <code>--db-drawer-max-width:</code> CSS variable.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/version/v5.6.0/components/layout/drawer/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">// app.component.ts
+import { DBDrawer, DBDrawerHeader } from &#x27;@db-ux/ngx-core-components&#x27;;
+
+@Component({
+  // ...
+  standalone: true,
+  imports: [..., DBDrawer, DBDrawerHeader],
+  // ...
+})
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/version/v5.6.0/components/layout/drawer/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<p><code>commandfor</code> must reference the <strong>native <code>&lt;dialog&gt;</code></strong>, which is nested inside the <code>&lt;db-drawer&gt;</code> custom-element host. Set that inner id with <code>propOverrides</code> (<code>[propOverrides]=&quot;{ id: &#x27;my-drawer&#x27; }&quot;</code>) and point <code>commandfor</code> at it. Do <strong>not</strong> use the host <code>id</code> for <code>commandfor</code>: it lands on the <code>&lt;db-drawer&gt;</code> host, which precedes the <code>&lt;dialog&gt;</code>, so <code>commandfor</code> would resolve to the host (not an <code>HTMLDialogElement</code>) and the command would be a no-op. Use the host <code>id</code> only for referencing the component from the outside (CSS, <code>querySelector</code>).</p>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+
+&lt;db-button
+	command=&quot;show-modal&quot;
+	commandfor=&quot;my-drawer&quot;
+	(click)=&quot;toggleDrawer(true)&quot;
+&gt;
+	Open drawer
+&lt;/db-button&gt;
+&lt;db-drawer
+	[propOverrides]=&quot;{ id: &#x27;my-drawer&#x27; }&quot;
+	[open]=&quot;openDrawer&quot;
+	(close)=&quot;toggleDrawer(false)&quot;
+&gt;
+	&lt;db-drawer-header header closeButtonText=&quot;Close&quot;&gt;
+		&lt;h2&gt;Drawer Title&lt;/h2&gt;
+	&lt;/db-drawer-header&gt;
+	My Drawer content
+&lt;/db-drawer&gt;
+</code></pre>
+<pre><code class="language-ts">// app.component.ts
+export class AppComponent {
+	openDrawer: boolean = false;
+	toggleDrawer = (open: boolean) =&gt; {
+		this.openDrawer = open;
+	};
+}
+</code></pre></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/drawer/docs/Angular","query":{},"buildId":"bAKiL8V_joGT-WQ43qbSS","assetPrefix":"/core-web/version/v5.6.0","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
