@@ -100,6 +100,12 @@ describe('text-or-children-required', () => {
 				code: '<DBDialogHeader><DBBrand /></DBDialogHeader>'
 			},
 			{
+				// DBIcon is always aria-hidden and does not count, but a real
+				// heading alongside it supplies the accessible name. (The icon
+				// carries its own child so it satisfies its own content rule.)
+				code: '<DBDialogHeader><DBIcon icon="info">Info</DBIcon><h2>Title</h2></DBDialogHeader>'
+			},
+			{
 				// A JSX spread may supply `text`; its contents are unverifiable,
 				// so the header is treated as unresolved rather than reported.
 				code: '<DBDialogHeader {...headerProps} />'
@@ -428,6 +434,28 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// DBIcon always renders inside aria-hidden="true", so an icon-only
+				// header has no accessible name and still needs an external label.
+				// The icon carries its own child so only the header is reported.
+				code: '<DBDialogHeader><DBIcon icon="info">Info</DBIcon></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// Same for the drawer header.
+				code: '<DBDrawerHeader><DBIcon icon="info">Info</DBIcon></DBDrawerHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
 				// Nested native elements that all render nothing are empty too.
 				code: '<DBDrawerHeader><span><i /></span></DBDrawerHeader>',
 				errors: [
@@ -510,6 +538,12 @@ describe('text-or-children-required', () => {
 			{
 				code: '<db-dialog-header><db-brand></db-brand></db-dialog-header>'
 			},
+			// db-icon is always aria-hidden and does not count, but a real heading
+			// alongside it supplies the accessible name. (The icon carries its own
+			// child so it satisfies its own content rule.)
+			{
+				code: '<db-dialog-header><db-icon icon="info">Info</db-icon><h2>Title</h2></db-dialog-header>'
+			},
 			// `{{ interpolation }}` is a BoundText child - dynamic content, allowed.
 			{
 				code: '<db-dialog-header header>{{ title }}</db-dialog-header>'
@@ -578,6 +612,18 @@ describe('text-or-children-required', () => {
 				// An empty native element renders no accessible text, so the
 				// header's heading container stays empty and is reported.
 				code: '<db-dialog-header><span></span></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
+			},
+			{
+				// db-icon is always aria-hidden, so an icon-only header has no
+				// accessible name and is reported. The icon carries its own child
+				// so only the header is reported.
+				code: '<db-dialog-header><db-icon icon="info">Info</db-icon></db-dialog-header>',
 				errors: [
 					{
 						messageId: 'missingContent',
@@ -662,12 +708,30 @@ describe('text-or-children-required', () => {
 			{
 				// A DB/custom component child renders opaque content, so it counts.
 				code: '<template><DBDialogHeader><DBBrand /></DBDialogHeader></template>'
+			},
+			{
+				// DBIcon is always aria-hidden and does not count, but a real
+				// heading alongside it supplies the accessible name. (The icon
+				// carries its own child so it satisfies its own content rule.)
+				code: '<template><DBDialogHeader><DBIcon icon="info">Info</DBIcon><h2>Title</h2></DBDialogHeader></template>'
 			}
 		],
 		invalid: [
 			{
 				// An empty native element renders no accessible text.
 				code: '<template><DBDialogHeader><span /></DBDialogHeader></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// DBIcon is always aria-hidden, so an icon-only header has no
+				// accessible name and is reported. The icon carries its own child
+				// so only the header is reported.
+				code: '<template><DBDialogHeader><DBIcon icon="info">Info</DBIcon></DBDialogHeader></template>',
 				errors: [
 					{
 						messageId: 'missingContent',

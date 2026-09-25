@@ -383,6 +383,16 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
     "severity": 2,
   },
   {
+    "column": 2,
+    "endColumn": 14,
+    "endLine": 110,
+    "line": 108,
+    "message": "db-button must have either a text property or children content",
+    "messageId": "missingContent",
+    "ruleId": "db-ux/text-or-children-required",
+    "severity": 2,
+  },
+  {
     "column": 3,
     "endColumn": 36,
     "endLine": 109,

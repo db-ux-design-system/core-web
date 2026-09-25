@@ -132,6 +132,32 @@ const isComponentElement = (child: any): boolean => {
 };
 
 /**
+ * The component tag name of an element child across the parsers: JSX
+ * `openingElement.name.name` (`DBIcon`), or Vue `rawName` / Angular `name`
+ * (`DBIcon` / `db-icon`). A JSX member expression (`<Foo.Bar />`) has no plain
+ * name and returns ''.
+ */
+const getComponentTagName = (child: any): string => {
+	const jsxName = child.openingElement?.name;
+	if (jsxName) {
+		return jsxName.type === 'JSXIdentifier' ? jsxName.name : '';
+	}
+	return child.rawName ?? child.name ?? '';
+};
+
+/**
+ * Whether a component child is a known always-hidden component whose subtree is
+ * excluded from the accessible name, so it must not count as content even though
+ * it is otherwise opaque. `DBIcon` (`db-icon`) always renders its content inside a
+ * `<span aria-hidden="true">` (see icon.lite.tsx), so a header containing only an
+ * icon still has no accessible text and must require an external label.
+ */
+const isHiddenComponent = (child: any): boolean => {
+	const tagName = getComponentTagName(child);
+	return tagName === COMPONENTS.DBIcon || tagName === 'db-icon';
+};
+
+/**
  * Reads a plain static attribute (e.g. `alt`, `aria-label`, `aria-hidden`) off a
  * native element child across the three parsers, returning its string value or
  * `undefined` when the attribute is absent, valueless, or a dynamic binding
@@ -257,15 +283,19 @@ const hasAngularContent = (node: any): boolean =>
 	angularChildNodes(node).some((child: any) => {
 		const isElement =
 			child.type === 'Element' || child.type === 'Element$1';
-		// A statically hidden native subtree (aria-hidden="true" / hidden) is
-		// excluded from the accessible name, so neither its text nor its
-		// descendants count.
-		if (
-			isElement &&
-			!isComponentElement(child) &&
-			isStaticallyHidden(child)
-		) {
-			return false;
+		if (isElement) {
+			// A known always-hidden component (db-icon) renders its subtree
+			// inside `aria-hidden="true"`, contributing no accessible name; do
+			// not count it and do not recurse into it.
+			if (isHiddenComponent(child)) {
+				return false;
+			}
+			// A statically hidden native subtree (aria-hidden="true" / hidden)
+			// is excluded from the accessible name, so neither its text nor its
+			// descendants count.
+			if (!isComponentElement(child) && isStaticallyHidden(child)) {
+				return false;
+			}
 		}
 		return (
 			(child.type === 'Text' && child.value.trim() !== '') ||
@@ -390,6 +420,12 @@ export default {
 				? resolveContentAttr(openingElement, 'children')
 				: undefined;
 			const isContentElement = (child: any): boolean => {
+				// A known always-hidden component (DBIcon) renders its whole
+				// subtree inside `aria-hidden="true"`, so it contributes no
+				// accessible name - never content, even as a leaf.
+				if (isHiddenComponent(child)) {
+					return false;
+				}
 				// A custom/DB component renders opaque content we cannot inspect,
 				// so it counts (unresolved).
 				if (isComponentElement(child)) {
