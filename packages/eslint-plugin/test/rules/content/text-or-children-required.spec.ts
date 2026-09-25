@@ -656,6 +656,28 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// `children` is a React-only content prop. In Vue the default slot
+				// carries content, and a `:children` binding does not populate it,
+				// so it must not count - the header stays unnamed.
+				code: '<template><DBDialogHeader :children="title" closeButtonText="Close" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// A static `children` attribute likewise does not fill the Vue slot.
+				code: '<template><DBDialogHeader children="Title" /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// aria-hidden="true" removes the subtree from the accessible name,
 				// so its text does not count - the header stays unnamed.
 				code: '<template><DBDialogHeader><span aria-hidden="true">Title</span></DBDialogHeader></template>',

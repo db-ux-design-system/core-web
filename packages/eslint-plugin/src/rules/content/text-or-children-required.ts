@@ -353,6 +353,12 @@ export default {
 			const componentName =
 				openingElement.name?.name || openingElement.rawName;
 
+			// `children` is a React-only content prop; a JSX node carries an
+			// `attributes` array. In Vue, content comes through the default slot,
+			// so a `children`/`:children` prop does NOT populate it and must not
+			// count - Vue still requires slot content or `text`.
+			const isJsxNode = Array.isArray(openingElement.attributes);
+
 			// A bare valueless `text` (React `<DBDialogHeader text />` renders no
 			// text; Vue `<DBDialogHeader text>` yields an empty string) is empty
 			// content. getAttributeValue collapses it to `true`, so map a bare
@@ -366,13 +372,12 @@ export default {
 			// renders as the component's content. Evaluate it the same way as
 			// `text`: a non-empty static string or a dynamic binding counts as
 			// content; a bare attribute, empty/whitespace string or empty
-			// expression does not.
-			const childrenAttr = isBareBooleanAttribute(
-				openingElement,
-				'children'
-			)
-				? ''
-				: getAttributeValue(openingElement, 'children');
+			// expression does not. Only for React - see `isJsxNode` above.
+			const childrenAttr = isJsxNode
+				? isBareBooleanAttribute(openingElement, 'children')
+					? ''
+					: getAttributeValue(openingElement, 'children')
+				: undefined;
 			const isContentElement = (child: any): boolean => {
 				// A custom/DB component renders opaque content we cannot inspect,
 				// so it counts (unresolved).
@@ -448,7 +453,6 @@ export default {
 			// JSX node (which carries an `attributes` array) treats it as a spread-
 			// supplied alternative; in Vue content comes through the slot, not a
 			// `children` prop.
-			const isJsxNode = Array.isArray(openingElement.attributes);
 			if (
 				isUnresolvedBySpread(openingElement, 'text') ||
 				(isJsxNode && isUnresolvedBySpread(openingElement, 'children'))
