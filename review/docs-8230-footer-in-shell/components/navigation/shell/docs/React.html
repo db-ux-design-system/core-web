@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" as="style"/><link rel="stylesheet" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/webpack-df1cc06b217ed904.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/main-8613f7b28172783d.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/_app-68766bec47c40012.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/components/navigation/shell/docs/React-98f1c36fe35b9180.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_buildManifest.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components">react-core-components</a> package.</p>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/React?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-tsx">// App.tsx
+import {
+	DBShell,
+	DBShellContent,
+	DBControlPanelDesktop,
+	DBControlPanelBrand
+} from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;DBShell&gt;
+		&lt;DBControlPanelDesktop
+			brand={&lt;DBControlPanelBrand&gt;My App&lt;/DBControlPanelBrand&gt;}
+		&gt;
+			{/* Navigation goes here */}
+		&lt;/DBControlPanelDesktop&gt;
+		&lt;DBShellContent&gt;Main Content&lt;/DBShellContent&gt;
+	&lt;/DBShell&gt;
+);
+
+export default App;
+</code></pre>
+<h3 id="add-a-footer">Add a footer<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/React?current=add-a-footer"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>add-a-footer<!-- --> anchor link</a></h3>
+<p><code>DBShell</code> lays its children out in a grid with areas for the control panel, the sub-navigation, and the content only. There is no footer area, so a footer must not be a direct child of <code>DBShell</code> — it would be auto-placed by the grid instead of ending up below the content. Pass it to the <code>endSlot</code> of <code>DBShellContent</code>:</p>
+<pre><code class="language-tsx">// App.tsx
+import {
+	DBShell,
+	DBShellContent,
+	DBControlPanelDesktop,
+	DBControlPanelBrand,
+	DBFooter,
+	DBFooterMeta
+} from &quot;@db-ux/react-core-components&quot;;
+
+const App = () =&gt; (
+	&lt;DBShell&gt;
+		&lt;DBControlPanelDesktop
+			brand={&lt;DBControlPanelBrand&gt;My App&lt;/DBControlPanelBrand&gt;}
+		&gt;
+			{/* Navigation goes here */}
+		&lt;/DBControlPanelDesktop&gt;
+		&lt;DBShellContent
+			endSlot={
+				&lt;DBFooter width=&quot;medium&quot;&gt;
+					&lt;DBFooterMeta copyright=&quot;My Company&quot; /&gt;
+				&lt;/DBFooter&gt;
+			}
+		&gt;
+			Main Content
+		&lt;/DBShellContent&gt;
+	&lt;/DBShell&gt;
+);
+
+export default App;
+</code></pre>
+<p>With the default <code>variant=&quot;auto&quot;</code> the whole content area scrolls, so the footer scrolls out of view and is pushed to the bottom edge whenever the content is shorter than the viewport. With <code>variant=&quot;fixed&quot;</code> only <code>main</code> scrolls, so the footer stays visible. The same slot also takes any other content that should sit below <code>main</code>, for example a cookie banner. Use <code>startSlot</code> for content above <code>main</code>.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/shell/docs/React","query":{},"buildId":"UWPEH_aZGBjoCtOPFkACt","assetPrefix":"/core-web/review/docs-8230-footer-in-shell","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>

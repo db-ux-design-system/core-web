@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" as="style"/><link rel="stylesheet" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/webpack-df1cc06b217ed904.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/main-8613f7b28172783d.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/_app-68766bec47c40012.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/components/navigation/shell/docs/Angular-5cab7d36a37700d6.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_buildManifest.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">//app.component.ts
+import { DBShell, DBControlPanelDesktop } from &#x27;@db-ux/ngx-core-components&#x27;;
+
+@Component({
+	// ...
+	imports: [
+		// ...,
+		DBShell, DBControlPanelDesktop
+    ],
+	// ...
+})
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+&lt;db-shell&gt;
+	&lt;db-control-panel-desktop&gt;
+		&lt;db-control-panel-brand brand&gt;My App&lt;/db-control-panel-brand&gt;
+		&lt;!-- Navigation goes here --&gt;
+	&lt;/db-control-panel-desktop&gt;
+	&lt;db-shell-content&gt;Main Content&lt;/db-shell-content&gt;
+&lt;/db-shell&gt;
+</code></pre>
+<h3 id="add-a-footer">Add a footer<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell/docs/Angular?current=add-a-footer"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>add-a-footer<!-- --> anchor link</a></h3>
+<p><code>db-shell</code> lays its children out in a grid with areas for the control panel, the sub-navigation, and the content only. There is no footer area, so a footer must not be a direct child of <code>db-shell</code> — it would be auto-placed by the grid instead of ending up below the content. Put it in the <code>end-slot</code> of <code>db-shell-content</code>:</p>
+<pre><code class="language-html">&lt;!-- app.component.html --&gt;
+&lt;db-shell&gt;
+	&lt;db-control-panel-desktop&gt;
+		&lt;db-control-panel-brand brand&gt;My App&lt;/db-control-panel-brand&gt;
+		&lt;!-- Navigation goes here --&gt;
+	&lt;/db-control-panel-desktop&gt;
+	&lt;db-shell-content
+		&gt;Main Content
+		&lt;db-footer end-slot width=&quot;medium&quot;&gt;
+			&lt;db-footer-meta copyright=&quot;My Company&quot;&gt;&lt;/db-footer-meta&gt;
+		&lt;/db-footer&gt;
+	&lt;/db-shell-content&gt;
+&lt;/db-shell&gt;
+</code></pre>
+<p>With the default <code>variant=&quot;auto&quot;</code> the whole content area scrolls, so the footer scrolls out of view and is pushed to the bottom edge whenever the content is shorter than the viewport. With <code>variant=&quot;fixed&quot;</code> only <code>main</code> scrolls, so the footer stays visible. The same slot also takes any other content that should sit below <code>main</code>, for example a cookie banner. Use <code>start-slot</code> for content above <code>main</code>.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/shell/docs/Angular","query":{},"buildId":"UWPEH_aZGBjoCtOPFkACt","assetPrefix":"/core-web/review/docs-8230-footer-in-shell","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" as="style"/><link rel="stylesheet" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/webpack-df1cc06b217ed904.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/main-8613f7b28172783d.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/_app-68766bec47c40012.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/components/layout/footer/docs/Migration-bd00bee6e570f6eb.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_buildManifest.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="migration">Migration<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/layout/footer/docs/Migration?current=migration"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>migration<!-- --> anchor link</a></h2>
+<p>DBFooter is a new composable wrapper for replacing custom footer implementations. Place it in the <code>endSlot</code> of <code>DBShellContent</code> and put <code>DBFooterContent</code> and <code>DBFooterMeta</code> inside it as needed. It deliberately does not collapse links into a mobile accordion, so links remain available to assistive technologies and browser search.</p>
+<h3 id="key-features">Key features<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/layout/footer/docs/Migration?current=key-features"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>key-features<!-- --> anchor link</a></h3>
+<ul>
+<li>Explicit <code>DBFooterContent</code> and <code>DBFooterMeta</code> visual areas</li>
+<li>Optional copyright text through <code>DBFooterMeta copyright</code></li>
+<li>Areas are omitted by leaving out their subcomponent</li>
+<li>Static inner content widths: <code>full</code>, <code>large</code>, <code>medium</code>, and <code>small</code></li>
+<li>Full-width outer footer and visual areas</li>
+</ul>
+<h3 id="example">Example<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/layout/footer/docs/Migration?current=example"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>example<!-- --> anchor link</a></h3>
+<pre><code class="language-tsx">&lt;DBShellContent
+	endSlot={
+		&lt;DBFooter width=&quot;medium&quot;&gt;
+			&lt;DBFooterContent&gt;
+				&lt;nav aria-label=&quot;Footer navigation&quot;&gt;
+					&lt;ul&gt;
+						&lt;li&gt;
+							&lt;a href=&quot;/about&quot;&gt;About us&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;a href=&quot;/contact&quot;&gt;Contact&lt;/a&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/nav&gt;
+			&lt;/DBFooterContent&gt;
+			&lt;DBFooterMeta copyright=&quot;Example Company&quot;&gt;
+				&lt;nav aria-label=&quot;Legal navigation&quot;&gt;
+					&lt;ul&gt;
+						&lt;li&gt;
+							&lt;a href=&quot;/privacy&quot;&gt;Privacy&lt;/a&gt;
+						&lt;/li&gt;
+						&lt;li&gt;
+							&lt;a href=&quot;/imprint&quot;&gt;Imprint&lt;/a&gt;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+				&lt;/nav&gt;
+			&lt;/DBFooterMeta&gt;
+		&lt;/DBFooter&gt;
+	}
+&gt;
+	Page content
+&lt;/DBShellContent&gt;
+</code></pre>
+<p>The <code>width</code> value only constrains and centres the inner content. It does not make the footer itself narrower and is not a responsive breakpoint switch.</p>
+<h3 id="coming-from-the-deprecated-dbpage">Coming from the deprecated DBPage<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/layout/footer/docs/Migration?current=coming-from-the-deprecated-dbpage"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>coming-from-the-deprecated-dbpage<!-- --> anchor link</a></h3>
+<p>In <code>DBPage variant=&quot;fixed&quot;</code> the footer was passed through the <code>footer</code> slot of <code>DBPage</code> itself. <code>DBShell</code> has no equivalent slot: its grid only defines areas for the control panel, the sub-navigation, and the content. Move the footer into the <code>endSlot</code> of <code>DBShellContent</code> instead.</p>
+<table class="static-table"><thead><tr><th>Deprecated</th><th>Replacement</th></tr></thead><tbody><tr><td><code>DBPage</code> slot <code>footer</code></td><td><code>DBShellContent</code> slot <code>endSlot</code></td></tr><tr><td><code>DBPage variant=&quot;fixed&quot;</code> (footer stays visible)</td><td><code>DBShellContent variant=&quot;fixed&quot;</code></td></tr><tr><td><code>DBPage variant=&quot;auto&quot;</code></td><td><code>DBShellContent variant=&quot;auto&quot;</code> (default)</td></tr></tbody></table></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/layout/footer/docs/Migration","query":{},"buildId":"UWPEH_aZGBjoCtOPFkACt","assetPrefix":"/core-web/review/docs-8230-footer-in-shell","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>

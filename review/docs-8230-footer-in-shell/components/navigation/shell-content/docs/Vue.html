@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" as="style"/><link rel="stylesheet" href="/core-web/review/docs-8230-footer-in-shell/_next/static/css/a5b22669dbd68325.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/webpack-df1cc06b217ed904.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/main-8613f7b28172783d.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/_app-68766bec47c40012.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/chunks/pages/components/navigation/shell-content/docs/Vue-545552f4c372f3bd.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_buildManifest.js" defer=""></script><script src="/core-web/review/docs-8230-footer-in-shell/_next/static/UWPEH_aZGBjoCtOPFkACt/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/docs-8230-footer-in-shell/components/navigation/shell-content/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<p>Use <code>DBShellContent</code> as the content area of <code>DBShell</code>. It owns the <code>shell-content</code> grid area and wraps a native <code>main</code>, which is the target of the skip-navigation link, so use only one per page.</p>
+<p>The <code>start-slot</code> renders above the content, <code>end-slot</code> below it — <code>end-slot</code> is where a <code>DBFooter</code> belongs. <code>DBShell</code> itself has no footer area, so a footer placed as a direct child of <code>DBShell</code> is auto-placed by the grid and does not end up below the content.</p>
+<pre><code class="language-vue">&lt;!-- App.vue --&gt;
+&lt;script&gt;
+import {
+	DBFooter,
+	DBNotification,
+	DBShell,
+	DBShellContent
+} from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBShell&gt;
+		&lt;!-- Control panels go here --&gt;
+		&lt;DBShellContent variant=&quot;fixed&quot;
+			&gt;Main content
+			&lt;template #start-slot&gt;
+				&lt;DBNotification&gt;Content above main&lt;/DBNotification&gt;
+			&lt;/template&gt;
+			&lt;template #end-slot&gt;
+				&lt;DBFooter&gt;...&lt;/DBFooter&gt;
+			&lt;/template&gt;
+		&lt;/DBShellContent&gt;
+	&lt;/DBShell&gt;
+&lt;/template&gt;
+</code></pre>
+<p><code>variant</code> controls the scrolling behaviour. With the default <code>auto</code> the whole content area scrolls, and <code>main</code> pushes the <code>end-slot</code> content to the bottom edge while the content is shorter than the viewport. With <code>fixed</code> only <code>main</code> scrolls, so both slots stay visible.</p>
+<p>Override <code>mainId</code> only when the default <code>main-content</code> clashes with an existing id, and keep it in sync with the skip-navigation target.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/shell-content/docs/Vue","query":{},"buildId":"UWPEH_aZGBjoCtOPFkACt","assetPrefix":"/core-web/review/docs-8230-footer-in-shell","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
