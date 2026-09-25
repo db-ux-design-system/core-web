@@ -142,6 +142,14 @@
 					content: "";
 					position: fixed;
 					inset: 0;
+
+					// Purely the visible backdrop during the close transition. It
+					// paints above the request-close button's negative-z-index
+					// backdrop-click hit area (dialog-ponyfill), so without this it
+					// would swallow backdrop clicks and stop the drawer dismissing
+					// in the browsers this fallback targets. Let clicks pass through
+					// to that hit area.
+					pointer-events: none;
 				}
 
 				// stylelint-disable-next-line a11y/media-prefers-reduced-motion -- This is even already encapsulated in a necessary media query on line 140
