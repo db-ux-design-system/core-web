@@ -145,10 +145,22 @@ export function getAttributeValue(
 		return attr.value.value as string;
 	}
 	if (attr.value.type === 'JSXExpressionContainer') {
-		// A statically empty expression (attr={''}, attr={``}) carries no
-		// accessible content, so surface it as an empty string rather than a
-		// dynamic sentinel.
-		if (isStaticallyEmptyExpression(attr.value.expression)) {
+		const { expression } = attr.value;
+		// A statically empty expression (attr={''}, attr={``}, attr={null},
+		// attr={undefined}) carries no accessible content, so surface it as an
+		// empty string rather than a dynamic sentinel.
+		if (isStaticallyEmptyExpression(expression)) {
+			return '';
+		}
+		// React-only: a boolean literal renders no text (React renders neither
+		// `false` nor `true`), so `attr={false}` is empty content. This is NOT in
+		// the shared isStaticallyEmptyExpression because Vue renders `{{ false }}`
+		// as the text "false". A numeric literal like `0` still renders and stays
+		// dynamic content.
+		if (
+			expression.type === 'Literal' &&
+			typeof expression.value === 'boolean'
+		) {
 			return '';
 		}
 		// Dynamic expressions (attr={expr}) — distinct from valueless true
@@ -216,20 +228,22 @@ export function isStaticallyEmptyAngularInput(value: any): boolean {
 		return false;
 	}
 	if (value.type === 'LiteralPrimitive') {
-		// `null` renders no text, same as an empty string literal.
-		if (value.value === null) {
+		// `null` and `undefined` render no text, same as an empty string literal.
+		if (value.value === null || value.value === undefined) {
 			return true;
 		}
 		if (typeof value.value === 'string' && value.value.trim() === '') {
 			return true;
 		}
 	}
-	// Some parser versions expose only the raw source for the binding.
+	// Some parser versions expose only the raw source for the binding. `undefined`
+	// is parsed as an identifier reference, so match its source alongside `null`.
 	return (
 		value.source === "''" ||
 		value.source === '""' ||
 		value.source === '``' ||
-		value.source === 'null'
+		value.source === 'null' ||
+		value.source === 'undefined'
 	);
 }
 
@@ -251,7 +265,10 @@ export function isStaticallyEmptyExpression(expression: any): boolean {
 		return expression.name === 'undefined';
 	}
 	if (expression.type === 'Literal') {
-		// `null` renders no text, same as an empty string literal.
+		// `null` renders no text, same as an empty string literal. Note: a boolean
+		// literal is deliberately NOT treated as empty here because this predicate
+		// is shared with Vue, where `{{ false }}`/`{{ true }}` DO render text; the
+		// React-only boolean-empty rule lives in getAttributeValue's JSX branch.
 		return (
 			expression.value === null ||
 			(typeof expression.value === 'string' &&
@@ -498,18 +515,21 @@ export function isUnresolvedBySpread(
 /**
  * Returns the traversable child nodes of an Angular template AST node, flattening
  * the collections that built-in control flow spreads its content across. `@if`
- * keeps its content under `branches[].children`, `@switch` under `groups[].children`,
- * and `@for` exposes an `empty` block alongside its `children`; plain elements and
- * `@for`/`@defer` blocks use `children` directly. Callers can therefore recurse
- * transparently through control-flow wrappers without enumerating every version-
- * specific block type.
+ * keeps its content under `branches[].children`, `@switch` under `cases[].children`
+ * (older parser versions used `groups`), and `@for` exposes an `empty` block
+ * alongside its `children`; plain elements and `@for`/`@defer` blocks use
+ * `children` directly. Callers can therefore recurse transparently through
+ * control-flow wrappers without enumerating every version-specific block type.
  */
 export function angularChildNodes(node: any): any[] {
 	if (!node) {
 		return [];
 	}
 	const nodes: any[] = Array.isArray(node.children) ? [...node.children] : [];
-	for (const collection of [node.branches, node.groups]) {
+	// `@switch` exposes its cases as `cases` in Angular 21+ and as `groups` in
+	// older parser versions; include both so a header/title inside an @switch is
+	// found regardless of parser version.
+	for (const collection of [node.branches, node.groups, node.cases]) {
 		if (Array.isArray(collection)) {
 			nodes.push(...collection);
 		}
