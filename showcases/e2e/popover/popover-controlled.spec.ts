@@ -8,7 +8,8 @@ test.describe('DBPopover', () => {
 		await page.goto(`./#/${path}`, { waitUntil: 'domcontentloaded' });
 		await waitForDBShell(page);
 
-		const trigger = page.getByRole('button', { name: 'Toggle popover' });
+		const toggle = page.getByRole('button', { name: 'Toggle popover' });
+		const trigger = page.getByRole('button', { name: 'Controlled popover' });
 		const content = page.locator('#popover-controlled article');
 
 		await expect(trigger).toHaveAttribute('aria-expanded', 'false');
@@ -20,11 +21,11 @@ test.describe('DBPopover', () => {
 
 		// A regression of the controlled handler can block the main thread in
 		// Angular, so this may time out instead of failing with a diff.
-		await trigger.click();
+		await toggle.click();
 		await expect(content).toBeVisible();
 		await expect(trigger).toHaveAttribute('aria-expanded', 'true');
 
-		await trigger.click();
+		await toggle.click();
 		await expect(content).toBeHidden();
 		await expect(trigger).toHaveAttribute('aria-expanded', 'false');
 	});

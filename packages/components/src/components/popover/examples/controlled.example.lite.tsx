@@ -1,4 +1,4 @@
-import { useMetadata, useStore } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBPopover from '../popover.lite';
 import { StorybookPopoverArgTypes } from './_popover.arg.types';
@@ -6,35 +6,31 @@ import { StorybookPopoverArgTypes } from './_popover.arg.types';
 useMetadata({
 	storybookTitle: 'Controlled',
 	storybookNames: ['Default'],
-	storybookArgTypes: StorybookPopoverArgTypes
+	storybookArgTypes: StorybookPopoverArgTypes,
+	storybookOverwriteArgs: {
+		open: false
+	}
 });
 
-type PopoverControlledState = {
-	isOpen: boolean;
-	toggle: () => void;
-};
-
 export default function PopoverControlled() {
-	const state = useStore<PopoverControlledState>({
-		isOpen: false,
-		toggle: () => {
-			state.isOpen = !state.isOpen;
-		}
-	});
+	const [open, setOpen] = useState<boolean>(false);
 
 	return (
-		<DBPopover
-			id="popover-controlled"
-			open={state.isOpen}
-			animation={false}
-			trigger={
+		<Fragment>
+			<div>
 				<DBButton
-					id="popover-controlled-trigger"
-					onClick={() => state.toggle()}>
+					data-sb-replace="Open DBPopover by switching open property"
+					onClick={() => setOpen(!open)}>
 					Toggle popover
 				</DBButton>
-			}>
-			The parent owns the open state
-		</DBPopover>
+				<DBPopover
+					id="popover-controlled"
+					open={open}
+					animation={false}
+					trigger={<DBButton>Controlled popover</DBButton>}>
+					The parent owns the open state
+				</DBPopover>
+			</div>
+		</Fragment>
 	);
 }
