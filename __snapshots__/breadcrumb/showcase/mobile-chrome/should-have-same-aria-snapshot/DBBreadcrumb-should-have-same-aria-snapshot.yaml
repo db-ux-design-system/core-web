@@ -165,7 +165,7 @@
       - listitem:
         - link "Home"
       - listitem:
-        - group
+        - button "Show more breadcrumbs"
       - listitem:
         - link "Level 4"
       - listitem:
