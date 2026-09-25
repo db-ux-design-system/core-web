@@ -44,7 +44,7 @@
     "zod": "4.6.5"
   },
   "devDependencies": {
-    "@db-ux/db-theme-icons": "4.2.0",
+    "@db-ux/db-theme-icons": "4.3.0",
     "@modelcontextprotocol/client": "2.0.0",
     "cpy-cli": "7.0.0",
     "esbuild": "0.28.2",
