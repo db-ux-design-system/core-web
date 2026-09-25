@@ -259,3 +259,5 @@ drilldown
 Drilldown
 recalc
 deconflict
+scrollport
+interpolatable

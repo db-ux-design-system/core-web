@@ -37,9 +37,27 @@
 	&:has(
 		.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
 	) {
+		// Locking overflow only disables further user scrolling; it does not
+		// reset an existing scroll offset (the element stays a scroll container
+		// and keeps its scrollTop). Resetting scrollTop to 0 so the inset:0
+		// overlay aligns with the visible scrollport is done in JS
+		// (control-panel-navigation-item-group.lite.tsx, on expand), because
+		// there is no CSS property that clears a scroll offset.
 		overflow: hidden;
 
 		.db-control-panel-navigation {
+			overflow: hidden;
+		}
+
+		// Lock intermediate drilldown menus that sit behind a deeper overlay.
+		// A menu that :has() an expanded button inside it has an open sub-level
+		// on top of it, so it must not keep its own scroll range - otherwise
+		// opening level 3 from a scrolled level 2 reproduces the scroll offset
+		// one level down, where the scroll-owner lock above cannot reach
+		// (the containing block is the scrolled level-2 overlay).
+		.db-control-panel-navigation-item-group-menu:has(
+			.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+		) {
 			overflow: hidden;
 		}
 

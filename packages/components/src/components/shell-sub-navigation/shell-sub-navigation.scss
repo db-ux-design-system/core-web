@@ -136,8 +136,9 @@
 			}
 
 			> .db-shell-sub-navigation-button {
-				padding-block: variables.$db-spacing-fixed-xs;
-				padding-inline: variables.$db-spacing-fixed-lg;
+				padding-block: variables.$db-spacing-fixed-sm;
+				padding-inline: control-panel-desktop.$control-panel-desktop-vertical-padding-inline-start
+					control-panel-desktop.$control-panel-desktop-vertical-padding-inline-end;
 				justify-content: flex-end;
 				margin-block-start: auto;
 

@@ -64,6 +64,20 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	_handleMouseEnter: () => void;
 	_handleMouseLeave: () => void;
 	_setSiblingsInert: (inert: boolean) => void;
+
+	/**
+	 * The overlay is position: absolute; inset: 0 and anchors to the
+	 * nearest positioned scroll owner. Which element scrolls depends on
+	 * the layout (desktop scroll container, mobile drawer scroll
+	 * container, or the left sub-navigation) and, for a nested level,
+	 * it is the parent drilldown overlay menu. Rather than guess the
+	 * owner per layout, walk up from this group and reset the scrollTop
+	 * of every ancestor that currently has one, up to the navigation
+	 * root. That clears the offset on whichever ancestor actually
+	 * scrolled so the inset:0 overlay aligns with the visible
+	 * scrollport.
+	 */
+	_resetScrollOwner: () => void;
 };
 
 export type DBControlPanelNavigationItemGroupState =
