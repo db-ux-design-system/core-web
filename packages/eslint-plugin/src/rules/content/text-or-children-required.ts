@@ -307,12 +307,18 @@ const hasAngularContent = (node: any): boolean =>
 		);
 	});
 
+// DBIcon is intentionally not listed here, for the same reason it is treated as
+// an always-hidden child above (see `isHiddenComponent`): it renders with
+// `aria-hidden="true"` and `font-size: 0`, so neither a `text` property nor
+// children can reach a screen reader or a sighted user. Requiring content on it
+// enforced markup that is guaranteed to be inert. An informative icon needs a
+// named wrapper instead.
+// See https://github.com/db-ux-design-system/core-web/issues/7126
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
 	'DBBadge',
 	'DBButton',
 	'DBLink',
-	'DBIcon',
 	'DBInfotext',
 	'DBControlPanelNavigationItem',
 	'DBNavigationItem',
