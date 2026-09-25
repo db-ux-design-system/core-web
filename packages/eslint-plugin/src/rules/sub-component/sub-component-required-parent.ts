@@ -104,15 +104,25 @@ function doesSlotNameMatch(actual: string, expected: string): boolean {
  * A marker on a deeper descendant (e.g. <db-dialog><div><db-dialog-footer footer>)
  * does NOT project: Angular matches the unmarked <div>, so the content lands in the
  * default slot, not the footer row - that case must still be reported.
+ *
+ * Structural directives (`*ngIf`, `*ngFor`) and built-in control flow (`@if`,
+ * `@for`, `@switch`, `@defer`) wrap the marked element in a `Template`/block node
+ * that projects transparently: Angular projects the element inside, carrying its
+ * marker, not the wrapper. Those wrapper nodes are therefore skipped when tracking
+ * the projected element, so `<db-dialog>@if (show) { <db-dialog-header header> }`
+ * and `<db-dialog><db-dialog-header *ngIf header>` are accepted - matching
+ * `dialog-header-required`, which accepts the same forms.
  */
 function isInsideAngularParent(
 	node: any,
 	parentName: string,
 	slotName: string | undefined
 ): boolean {
-	// Track the node one level below `current` so that, when we reach the parent,
-	// `projected` is the element Angular actually projects (the parent's direct
-	// child). The slot marker only counts when it sits on that projected node.
+	// Track the nearest real element below `current` so that, when we reach the
+	// parent, `projected` is the element Angular actually projects (the parent's
+	// direct child, or the marked element a transparent structural/control-flow
+	// wrapper projects on its behalf). The slot marker only counts when it sits
+	// on that projected node.
 	let projected = node;
 	let current = node.parent;
 
@@ -131,7 +141,14 @@ function isInsideAngularParent(
 			);
 		}
 
-		projected = current;
+		// Only real elements (and `ng-container`, which is an element) become the
+		// projected node. A `Template`/block control-flow wrapper is transparent -
+		// the marker stays on the element inside it - so do not let it overwrite
+		// `projected`, or the marker check would look at the attribute-less
+		// wrapper and wrongly report a valid conditional placement.
+		if (current.type === 'Element' || current.type === 'Element$1') {
+			projected = current;
+		}
 		current = current.parent;
 	}
 

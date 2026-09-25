@@ -822,6 +822,35 @@ const angularPlacementShapes: PlacementShape[] = [
 		component: 'db-dialog-footer',
 		slot: 'footer',
 		reports: true
+	},
+	{
+		// A structural directive (*ngIf) wraps the marked element in a Template
+		// that projects transparently, so the marker on the element still reaches
+		// the header slot - valid, matching dialog-header-required.
+		shape: 'header marker on a sub-component with a structural directive (*ngIf)',
+		code: '<db-dialog><db-dialog-header *ngIf="show" header>Title</db-dialog-header></db-dialog>',
+		component: 'db-dialog-header',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// Built-in control flow (@if) wraps the marked element in block nodes that
+		// project transparently - valid the same way.
+		shape: 'header marker on a sub-component inside an @if block',
+		code: '<db-dialog>@if (show) { <db-dialog-header header>Title</db-dialog-header> }</db-dialog>',
+		component: 'db-dialog-header',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// The transparent wrapper does not excuse a missing marker: a conditional
+		// sub-component without the projection attribute still lands in the
+		// default slot, so it must be reported.
+		shape: 'sub-component inside an @if block but without the slot marker',
+		code: '<db-dialog>@if (show) { <db-dialog-header>Title</db-dialog-header> }</db-dialog>',
+		component: 'db-dialog-header',
+		slot: 'header',
+		reports: true
 	}
 ];
 
