@@ -625,6 +625,50 @@ const reactPlacementShapes: PlacementShape[] = [
 		component: 'DBDialogHeader',
 		slot: 'header',
 		reports: true
+	},
+	{
+		// A logical-expression conditional inside the correct slot prop renders
+		// the header in the header slot, so it is valid.
+		shape: 'sub-component in the header slot via a logical-expression conditional',
+		code: '<DBDialog header={show && <DBDialogHeader>Title</DBDialogHeader>}>Content</DBDialog>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// A ternary inside the correct slot prop is valid the same way.
+		shape: 'sub-component in the header slot via a ternary conditional',
+		code: '<DBDialog header={cond ? <DBDialogHeader>Title</DBDialogHeader> : null}>Content</DBDialog>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// A conditional extracted into a variable is not inside a JSX tree, so
+		// its placement stays unverifiable and is allowed.
+		shape: 'sub-component in a conditional extracted into a variable (unverifiable placement)',
+		code: 'const header = show && <DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>;',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
+	},
+	{
+		// An inline logical-expression conditional inside a plain element has a
+		// known placement (inside the div, no DBDialog slot), so it must be
+		// reported rather than bypassed by the conditional wrapper.
+		shape: 'orphaned sub-component via a logical-expression conditional inside a plain element',
+		code: '<div>{show && <DBDialogHeader>Title</DBDialogHeader>}</div>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
+	},
+	{
+		// Same for a ternary inline in a plain element.
+		shape: 'orphaned sub-component via a ternary conditional inside a plain element',
+		code: '<div>{cond ? <DBDialogHeader>Title</DBDialogHeader> : null}</div>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
 	}
 ];
 

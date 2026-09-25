@@ -250,11 +250,22 @@ function isInsideJsxParent(
 	// wrappers to find the effective parent so the placement is verified rather
 	// than bypassed. An array/wrapper that is NOT inside a JSX tree (e.g.
 	// `const items = [<DBDialogHeader />]`) stays unverifiable and is allowed.
+	//
+	// Conditional rendering wrappers are transparent for placement too: a
+	// `LogicalExpression` (`{show && <DBDialogHeader />}`) and a
+	// `ConditionalExpression` (`{cond ? <DBDialogHeader /> : null}`) render the
+	// element in the position of the surrounding JSXExpressionContainer, so peel
+	// them to that container. This keeps invalid inline conditional placement
+	// (e.g. inside a `<div>`) reported while still allowing the same expression
+	// when the container is a slot prop value (`header={show && <DBDialogHeader />}`),
+	// which the JSXExpressionContainer + JSXAttribute check below accepts.
 	const transparentWrapperTypes = new Set([
 		'ArrayExpression',
 		'TSAsExpression',
 		'TSSatisfiesExpression',
-		'TSNonNullExpression'
+		'TSNonNullExpression',
+		'LogicalExpression',
+		'ConditionalExpression'
 	]);
 	let effectiveParent = node.parent;
 	while (
