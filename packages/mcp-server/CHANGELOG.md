@@ -5,7 +5,6 @@
 ### Minor Changes
 
 - feat(mcp-server): serve MCP protocol revision 2026-07-28 - [see commit 6c7efc2](https://github.com/db-ux-design-system/core-web/commit/6c7efc2f4057d97bf74f71b28b9f7d70a3c5bf05):
-
     - The server now answers on both protocol eras: the 2025 `initialize` handshake and the
     - new 2026-07-28 revision (`server/discover` probe). Hosts that have not adopted
     - 2026-07-28 keep working unchanged.
@@ -18,7 +17,6 @@
 ### Patch Changes
 
 - fix(mcp-server): correct `docs_search` matching and the `scan_v2_migration` report - [see commit 6c7efc2](https://github.com/db-ux-design-system/core-web/commit/6c7efc2f4057d97bf74f71b28b9f7d70a3c5bf05):
-
     - `docs_search` no longer answers a query whose terms are all shorter than three
     - characters with three arbitrary documents. Those terms were discarded before
     - matching, and an empty term list matched every document, so the result looked
@@ -44,9 +42,7 @@
     - legitimate name such as `report%20final.tsx` into a different file
     - (`report final.tsx`) and reported the requested one as missing. A literal `%` in
     - a filename is accepted as before.
-
 - fix(mcp-server): stop advertising `html` for `get_example_code`, fail fast on a dead transport - [see commit 6c7efc2](https://github.com/db-ux-design-system/core-web/commit/6c7efc2f4057d97bf74f71b28b9f7d70a3c5bf05):
-
     - The `framework` enum of `get_example_code` offered `html`, which the handler
     - could only answer with an error: plain HTML has no generated examples. Hosts were
     - shown a value that always failed. The enum is now narrowed to the four
@@ -59,9 +55,7 @@
     - rejection, which left the process alive with no transport and exiting `0`. The
     - server now exits `1` in that case. Errors that arrive once a connection has been
     - served are still only logged, so a single bad line does not end a live session.
-
 - fix(mcp-server): resolve `assets/` correctly in the published bundle - [see commit 6c7efc2](https://github.com/db-ux-design-system/core-web/commit/6c7efc2f4057d97bf74f71b28b9f7d70a3c5bf05):
-
     - The visuals and design-token tools derived their asset paths with a fixed
     - `../../assets`, which is correct for the sources but points one level outside the
     - package once esbuild flattens the server into `dist/index.js`. In the published
@@ -70,9 +64,7 @@
     - unresolved `var()` references instead of concrete values, and the `elevation`,
     - `border` and `opacity` categories failed outright. The path is now anchored on
     - the package root, which is the same in the sources, the bundle and the tarball.
-
 - fix(mcp-server): return a readable error when `get_example_code` fails - [see commit 6c7efc2](https://github.com/db-ux-design-system/core-web/commit/6c7efc2f4057d97bf74f71b28b9f7d70a3c5bf05):
-
     - The catch block in `handleGetExampleCode` named its parameter `error`, shadowing the
     - imported `error()` helper. On the error path it therefore called the caught exception as
     - a function and threw `TypeError: error is not a function`, so the host received an opaque

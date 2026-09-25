@@ -5,17 +5,15 @@
 ### Minor Changes
 
 - feat: dialog/drawer accessibility rules - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
-
-        - New `dialog-header-required` rule (recommended): reports a `DBDialog` whose `header` slot has no `DBDialogHeader`, across React, Angular and Vue. `drawer-header-required` shares the same implementation.
-        - `sub-component-required-parent` now covers `DBDialogHeader`/`DBDialogFooter`; `close-button-text-required` and `text-or-children-required` now cover `DBDialogHeader`/`DBDrawerHeader` (a header without an accessible name or close-button label is reported).
+    - New `dialog-header-required` rule (recommended): reports a `DBDialog` whose `header` slot has no `DBDialogHeader`, across React, Angular and Vue. `drawer-header-required` shares the same implementation.
+    - `sub-component-required-parent` now covers `DBDialogHeader`/`DBDialogFooter`; `close-button-text-required` and `text-or-children-required` now cover `DBDialogHeader`/`DBDrawerHeader` (a header without an accessible name or close-button label is reported).
 
 ### Patch Changes
 
 - fix: reduce false positives in the dialog/drawer accessibility rules - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
-
-        - The header/content/close-button rules treat statically unverifiable values (identifiers, calls, JSX spreads, Vue object `v-bind`, dynamic `<template #[slot]>` names, fragments, arrays) as unresolved instead of false-positives, while still reporting statically empty content (`text=""`, `{null}`, `{{ '' }}`, empty fragments/arrays, ...).
-        - Handles Angular structural directives / control flow and the Vue parser's `Element`/`Element$1` fallback nodes so valid conditional or fallback-exposed markup is not reported.
-        - Rules reference the shared `COMPONENTS` constants instead of hard-coded component names.
+    - The header/content/close-button rules treat statically unverifiable values (identifiers, calls, JSX spreads, Vue object `v-bind`, dynamic `<template #[slot]>` names, fragments, arrays) as unresolved instead of false-positives, while still reporting statically empty content (`text=""`, `{null}`, `{{ '' }}`, empty fragments/arrays, ...).
+    - Handles Angular structural directives / control flow and the Vue parser's `Element`/`Element$1` fallback nodes so valid conditional or fallback-exposed markup is not reported.
+    - Rules reference the shared `COMPONENTS` constants instead of hard-coded component names.
 
 ## 5.5.0
 
