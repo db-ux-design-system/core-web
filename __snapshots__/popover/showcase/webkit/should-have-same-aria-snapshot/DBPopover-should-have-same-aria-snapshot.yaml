@@ -196,3 +196,5 @@
     - textbox "Textarea":
       - /placeholder: " "
     - status
+  - link "Controlled"
+  - button "Toggle popover"
