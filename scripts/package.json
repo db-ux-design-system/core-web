@@ -77,9 +77,9 @@
     "update:icon-fonts": "pnpm run generate:icon-fonts && pnpm run generate:icon-types"
   },
   "dependencies": {
-    "@db-ux/db-theme": "6.2.0",
+    "@db-ux/db-theme": "6.3.0",
     "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "4.2.0",
+    "@db-ux/db-theme-icons": "4.3.0",
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
