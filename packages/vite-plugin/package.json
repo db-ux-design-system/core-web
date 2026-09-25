@@ -46,7 +46,7 @@
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {
-    "@db-ux/db-theme": "6.2.0",
+    "@db-ux/db-theme": "6.3.0",
     "@types/node": "26.6.2",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
