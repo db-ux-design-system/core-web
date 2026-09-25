@@ -171,13 +171,7 @@ The collapse control must not be counted as a breadcrumb. If the collapse contai
 
 Either way, the announced count must equal the number of crumbs (the hidden ones included, since they stay in the accessibility tree), never the number of crumbs plus the control. The grouped reading of the hidden set (from the `<details>` / popover region) is the separate, accepted trade-off discussed above.
 
-### Open questions to resolve with design
-
-- **Naming:** `DBBreadcrumbCollapseItem` describes a group container rather than a single crumb; consider `DBBreadcrumbCollapse` / `DBBreadcrumbCollapsible`. Renaming after release is a breaking change, so decide early.
-- **Current-page default:** whether `DBBreadcrumbItem` gets a `current` prop that drops the link and sets `aria-current="page"`, or the consumer handles it. Baking it into the component is recommended.
-- **Separator around the `...` boundary:** confirm the exact visual for the separator immediately before/after the collapse control in both the collapsed and expanded states.
-- **Default open state:** starting collapsed is required for the Ctrl+F auto-expand to be meaningful; expose an optional `open` / `defaultOpen` prop if consumer control is needed.
-- **Mitosis output parity:** since components are authored once and compiled to Angular, React, Vue, and Web Components, verify the `<details>` toggle and any label wiring behave consistently across all four outputs.
+All open questions and decisions raised while prototyping this API are collected in a single "Open decisions" list under the "Decision" section further down, so they can be resolved with design in one place.
 
 ### Responsive angle: popover as the mobile default
 
@@ -212,7 +206,7 @@ The selector must not rely on the structural `:first-child` / `:last-child` pseu
 
 Because there is no wrapper and no nested list, the accessibility tree is a single flat list and the screen reader reads all crumbs as one sequence. Reading order follows DOM order; flex `order` only changes the visual sequence, so the class-based rule keeps visual and semantic order aligned regardless of which edge the toggle is emitted at.
 
-This is appealing but not free; the prototype surfaces three caveats:
+This is appealing but not free; the prototype surfaces four caveats:
 
 1. **Layout, not shared areas.** An early attempt assigned every middle crumb to one named grid area ("rest"); grid items in the same area stack and overlap (the middle `<li>` stretched across the full row in the inspector). The fix is to let the items flow in a single row (flex, or grid auto-flow) so each sits in its own column - do not collapse them into one shared cell.
 2. **Hiding visually only keeps the collapsed anchors focusable - a concrete accessibility failure.** To preserve the flat-list benefit, the collapsed middle crumbs would be hidden **visually only** (clip / off-screen / zero-size) rather than with `display: none` or `visibility: hidden`, so they stay in the accessibility tree. But an off-screen anchor is still in the **keyboard tab order**: a sighted keyboard user tabbing through the trail lands on invisible links _before_ the visible crumbs, with no focus indicator to show where focus went. That is a real WCAG failure (2.4.3 Focus Order, 2.4.7 Focus Visible), not merely noise, and it is the decisive reason this automatic approach was not adopted.
@@ -253,7 +247,9 @@ The `DBBreadcrumbCollapseItem` wraps the crumbs to hide and reveals them behind 
 
 - **Collapse presentation:** whether the `DBBreadcrumbCollapseItem` presents as an inline `<details>` collapse, a popover, or both (selectable by a small prop on the collapse item itself, e.g. `variant="details" | "popover"`). This prop would only choose the _presentation_ of the collapse - it is not the auto/manual switch, since manual is the only mode.
 - **Naming:** `DBBreadcrumbCollapseItem` describes a group container rather than a single crumb; `DBBreadcrumbCollapse` / `DBBreadcrumbCollapsible` may read better. Renaming after release is breaking, so settle early.
-- **Current-page default:** whether `DBBreadcrumbItem` gets a `current` prop that drops the link and sets `aria-current="page"`, or the consumer handles it.
+- **Current-page default:** whether `DBBreadcrumbItem` gets a `current` prop that drops the link and sets `aria-current="page"`, or the consumer handles it. Baking it into the component is recommended.
+- **Separator around the `...` boundary:** confirm the exact visual for the separator immediately before/after the collapse control in both the collapsed and expanded states.
+- **Default open state:** starting collapsed is required for the Ctrl+F auto-expand to be meaningful; expose an optional `open` / `defaultOpen` prop if consumer control is needed.
 - **Mitosis output parity:** verify the collapse control (`<details>` toggle and/or popover) and any label wiring behave consistently across Angular, React, Vue, and Web Components.
 
 The collapse presentations (inline `<details>` collapse and native popover) were validated during exploration with a static, throwaway HTML prototype for screen-reader testing; that scratchpad is intentionally not committed to the repository. The accessibility observations noted above (grouped reading, item-count behavior, focus order) should be re-verified against the real component once it is implemented.
