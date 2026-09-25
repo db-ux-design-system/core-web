@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
@@ -14,41 +14,35 @@ useMetadata({
 });
 
 export default function DrawerRounded() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-rounded-false">
 					Open: (Default) False
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-rounded-false' }}
 					rounded={false}
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) False
+							<h2>(Default) False</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) False
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="drawer-rounded-true">
 					Open: True
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-rounded-true' }}
 					rounded={true}
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							True
+							<h2>True</h2>
 						</DBDrawerHeader>
 					}>
 					True
