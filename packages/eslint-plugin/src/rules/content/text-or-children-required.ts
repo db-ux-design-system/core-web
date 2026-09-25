@@ -107,6 +107,92 @@ const isComponentElement = (child: any): boolean => {
 };
 
 /**
+ * Reads a plain static attribute (e.g. `alt`, `aria-label`, `aria-hidden`) off a
+ * native element child across the three parsers, returning its string value or
+ * `undefined` when the attribute is absent, valueless, or a dynamic binding
+ * (which we cannot verify statically). Only static attributes are inspected -
+ * a bound `[alt]`/`:alt`/`alt={x}` is treated as absent here, since its value is
+ * unknown.
+ */
+const ATTR_ABSENT = Symbol('absent');
+
+const getNativeStaticAttr = (
+	child: any,
+	name: string
+): string | typeof ATTR_ABSENT => {
+	// JSX native element: attributes live on the opening element.
+	const jsxAttributes = child.openingElement?.attributes;
+	if (Array.isArray(jsxAttributes)) {
+		const attr = jsxAttributes.find(
+			(a: any) => a.type === 'JSXAttribute' && a.name?.name === name
+		);
+		if (!attr) {
+			return ATTR_ABSENT;
+		}
+		// A bare boolean attribute (`<span hidden>`) has no value node.
+		if (!attr.value) {
+			return '';
+		}
+		return attr.value.type === 'Literal'
+			? String(attr.value.value)
+			: ATTR_ABSENT;
+	}
+	// Vue native element: non-directive attributes live on the start tag.
+	const vueAttributes = child.startTag?.attributes;
+	if (Array.isArray(vueAttributes)) {
+		const attr = vueAttributes.find(
+			(a: any) => !a.directive && a.key?.name === name
+		);
+		if (!attr) {
+			return ATTR_ABSENT;
+		}
+		return typeof attr.value?.value === 'string' ? attr.value.value : '';
+	}
+	// Angular native element: static attributes live in `attributes`.
+	if (Array.isArray(child.attributes)) {
+		const attr = child.attributes.find((a: any) => a.name === name);
+		if (!attr) {
+			return ATTR_ABSENT;
+		}
+		return typeof attr.value === 'string' ? attr.value : '';
+	}
+	return ATTR_ABSENT;
+};
+
+/**
+ * Whether a native element is statically hidden from the accessibility tree, so
+ * its text must not count toward an accessible name. `aria-hidden="true"` and the
+ * boolean `hidden` attribute both remove the subtree from the accessible-name
+ * computation of the referencing container.
+ */
+const isStaticallyHidden = (child: any): boolean => {
+	// Aria-hidden is enumerated: only the literal "true" hides (a bare
+	// aria-hidden or aria-hidden="false" does not).
+	if (getNativeStaticAttr(child, 'aria-hidden') === 'true') {
+		return true;
+	}
+	// `hidden` is a boolean attribute: present (bare, `hidden=""` or
+	// `hidden="hidden"`) hides it. Only `hidden="until-found"` keeps the content
+	// findable, so it is the one present value that does not hide.
+	const hidden = getNativeStaticAttr(child, 'hidden');
+	return hidden !== ATTR_ABSENT && hidden !== 'until-found';
+};
+
+/**
+ * Whether a native element supplies its own accessible name via a text-
+ * alternative attribute, even without rendering child text. `<img alt="Save" />`
+ * and any element with a non-empty `aria-label`, or an `aria-labelledby`
+ * (references another element's text - an explicit naming intent we cannot
+ * resolve statically, so treat as content). An empty `alt=""`/`aria-label=""`
+ * supplies no name and does not count.
+ */
+const hasStaticTextAlternative = (child: any): boolean =>
+	['aria-labelledby', 'aria-label', 'alt'].some((name) => {
+		const value = getNativeStaticAttr(child, name);
+		return value !== ATTR_ABSENT && value.trim() !== '';
+	});
+
+/**
  * Whether an Angular `BoundText` (`{{ ... }}`) statically renders no text. The
  * interpolation exposes its literal segments in `value.ast.strings` and its
  * expressions in `value.ast.expressions`. It renders nothing only when every
@@ -143,14 +229,28 @@ const isEmptyAngularBoundText = (child: any): boolean => {
  * mistaken for an accessible name.
  */
 const hasAngularContent = (node: any): boolean =>
-	angularChildNodes(node).some(
-		(child: any) =>
+	angularChildNodes(node).some((child: any) => {
+		const isElement =
+			child.type === 'Element' || child.type === 'Element$1';
+		// A statically hidden native subtree (aria-hidden="true" / hidden) is
+		// excluded from the accessible name, so neither its text nor its
+		// descendants count.
+		if (
+			isElement &&
+			!isComponentElement(child) &&
+			isStaticallyHidden(child)
+		) {
+			return false;
+		}
+		return (
 			(child.type === 'Text' && child.value.trim() !== '') ||
 			(child.type === 'BoundText' && !isEmptyAngularBoundText(child)) ||
-			((child.type === 'Element' || child.type === 'Element$1') &&
-				isComponentElement(child)) ||
+			(isElement &&
+				(isComponentElement(child) ||
+					hasStaticTextAlternative(child))) ||
 			hasAngularContent(child)
-	);
+		);
+	});
 
 const COMPONENTS_REQUIRING_CONTENT = [
 	'DBAccordionItem',
@@ -273,21 +373,39 @@ export default {
 			)
 				? ''
 				: getAttributeValue(openingElement, 'children');
+			const isContentElement = (child: any): boolean => {
+				// A custom/DB component renders opaque content we cannot inspect,
+				// so it counts (unresolved).
+				if (isComponentElement(child)) {
+					return true;
+				}
+				// A statically hidden native subtree (aria-hidden="true" /
+				// hidden) is excluded from the accessible name, so neither its
+				// own text alternative nor its descendants count.
+				if (isStaticallyHidden(child)) {
+					return false;
+				}
+				// A native element with its own text alternative (<img alt="Save" />,
+				// aria-label) supplies an accessible name even with no child text.
+				if (hasStaticTextAlternative(child)) {
+					return true;
+				}
+				// Otherwise a native element (<span>, <div>, <h2>, ...) only
+				// counts when it actually renders text - an empty <span /> leaves
+				// the aria-labelledby target with no accessible name - so recurse
+				// into its descendants.
+				return (child.children || []).some(isContentChild);
+			};
 			const isContentChild = (child: any): boolean =>
 				(child.type === 'JSXText' && child.value.trim() !== '') ||
 				(child.type === 'VText' && child.value.trim() !== '') ||
-				// An element child. A custom/DB component renders opaque content
-				// we cannot inspect, so it counts (unresolved). A native element
-				// (<span>, <div>, <h2>, ...) only counts when it actually renders
-				// text - an empty <span /> leaves the aria-labelledby target with
-				// no accessible name - so recurse into its descendants. Covers the
-				// Vue `Element`/`Element$1` fallbacks as well as VElement/JSXElement.
+				// An element child. Covers the Vue `Element`/`Element$1` fallbacks
+				// as well as VElement/JSXElement.
 				((child.type === 'JSXElement' ||
 					child.type === 'VElement' ||
 					child.type === 'Element' ||
 					child.type === 'Element$1') &&
-					(isComponentElement(child) ||
-						(child.children || []).some(isContentChild))) ||
+					isContentElement(child)) ||
 				// A fragment renders no wrapper of its own, so React shows its
 				// descendants directly (e.g. <DBDialogHeader><>Title</></...>).
 				// Recurse with the same predicate; an empty fragment (or one with

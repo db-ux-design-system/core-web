@@ -80,6 +80,20 @@ describe('text-or-children-required', () => {
 				code: '<DBDialogHeader><span><b>Title</b></span></DBDialogHeader>'
 			},
 			{
+				// A native leaf with its own text alternative supplies the
+				// accessible name even though it renders no child text.
+				code: '<DBButton><img alt="Save" /></DBButton>'
+			},
+			{
+				// aria-label on a native child is a text alternative too.
+				code: '<DBDialogHeader><span aria-label="Title" /></DBDialogHeader>'
+			},
+			{
+				// aria-labelledby references another element's text (explicit
+				// naming intent we cannot resolve statically), so it counts.
+				code: '<DBDialogHeader><span aria-labelledby="other-id" /></DBDialogHeader>'
+			},
+			{
 				// A DB/custom component child renders opaque content we cannot
 				// inspect, so it counts even when it looks empty. (DBBrand is not
 				// itself a content-required component, so only the header is checked.)
@@ -393,6 +407,37 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// aria-hidden="true" removes the subtree from the accessible name,
+				// so its text does not count - the header stays unnamed.
+				code: '<DBDialogHeader><span aria-hidden="true">Title</span></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// The `hidden` boolean attribute hides the subtree too.
+				code: '<DBDialogHeader><span hidden>Title</span></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// An empty alt supplies no accessible name.
+				code: '<DBDialogHeader><img alt="" /></DBDialogHeader>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// A spread before an explicit empty text AND an explicit empty
 				// children pins both alternatives after the spread, so it cannot
 				// supply either - reported.
@@ -420,6 +465,14 @@ describe('text-or-children-required', () => {
 			// recurses into it rather than counting the element unconditionally.
 			{
 				code: '<db-dialog-header><span>Title</span></db-dialog-header>'
+			},
+			// A native leaf with a text alternative (alt / aria-label) supplies
+			// the accessible name even with no child text.
+			{
+				code: '<db-dialog-header><img alt="Title" /></db-dialog-header>'
+			},
+			{
+				code: '<db-dialog-header><span aria-label="Title"></span></db-dialog-header>'
 			},
 			// A DB/custom component child renders opaque content, so it counts.
 			// (db-brand is not itself content-required, so only the header is checked.)
@@ -492,6 +545,17 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// aria-hidden="true" removes the subtree from the accessible name,
+				// so its text does not count.
+				code: '<db-dialog-header><span aria-hidden="true">Title</span></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
+					}
+				]
+			},
+			{
 				// {{ null }} renders no text, so the heading container stays empty.
 				code: '<db-dialog-header closeButtonText="Close">{{ null }}</db-dialog-header>',
 				errors: [
@@ -547,6 +611,14 @@ describe('text-or-children-required', () => {
 				code: '<template><DBDialogHeader><span>Title</span></DBDialogHeader></template>'
 			},
 			{
+				// A native leaf with a text alternative (alt / aria-label)
+				// supplies the accessible name even with no child text.
+				code: '<template><DBDialogHeader><img alt="Title" /></DBDialogHeader></template>'
+			},
+			{
+				code: '<template><DBDialogHeader><span aria-label="Title" /></DBDialogHeader></template>'
+			},
+			{
 				// A DB/custom component child renders opaque content, so it counts.
 				code: '<template><DBDialogHeader><DBBrand /></DBDialogHeader></template>'
 			}
@@ -555,6 +627,17 @@ describe('text-or-children-required', () => {
 			{
 				// An empty native element renders no accessible text.
 				code: '<template><DBDialogHeader><span /></DBDialogHeader></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// aria-hidden="true" removes the subtree from the accessible name,
+				// so its text does not count - the header stays unnamed.
+				code: '<template><DBDialogHeader><span aria-hidden="true">Title</span></DBDialogHeader></template>',
 				errors: [
 					{
 						messageId: 'missingContent',
