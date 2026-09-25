@@ -26,8 +26,33 @@ const hasTextContent = (text: string | boolean | undefined): boolean => {
 	if (typeof text === 'string') {
 		return text.trim() !== '';
 	}
+	// Reaching here means an unresolved bound value (getAttributeValue returned
+	// boolean `true` for a dynamic binding). Bare valueless attributes must be
+	// mapped to '' by `resolveContentAttr` before this point - never rely on this
+	// branch to reject them, or a valueless `text`/`children` (which renders no
+	// accessible name) would be counted as content.
 	return true;
 };
+
+/**
+ * Resolves a content-bearing attribute (`text`, `children`) to a value
+ * `hasTextContent` can judge, collapsing the one case `getAttributeValue` cannot
+ * distinguish: a bare valueless attribute (`<DBDialogHeader text />`,
+ * `<db-dialog-header text>`) returns the same boolean `true` as a dynamic binding
+ * (`[text]="x"`), yet the former renders no accessible name (React: nothing;
+ * Angular/Vue: an empty string) while the latter is unverifiable content. Map a
+ * bare attribute to `''` (empty, will be reported) and leave every other value -
+ * static strings, empty strings, and the dynamic sentinel - untouched. Every
+ * `text`/`children` read must go through here so no caller re-introduces the
+ * boolean-`true`-counts-as-content trap.
+ */
+const resolveContentAttr = (
+	node: any,
+	attribute: string
+): string | boolean | undefined =>
+	isBareBooleanAttribute(node, attribute)
+		? ''
+		: getAttributeValue(node, attribute);
 
 /**
  * Whether a React expression renders nothing. React renders no output for `null`,
@@ -292,22 +317,12 @@ export default {
 				return;
 			}
 
-			// `getAttributeValue` collapses an empty Angular attribute value
-			// (`text=""`) to `true`, which would hide an empty title. Read the
-			// raw attribute so `text=""` is treated as empty, not as a boolean.
-			const rawTextAttr = node.attributes?.find(
-				(a: any) => a.name === 'text'
-			);
-			// A bare valueless attribute (`text`) renders an empty string in
-			// Angular, so treat it as empty content rather than boolean `true`.
-			// A dynamic `[text]="x"` binding also yields `true` but is unverifiable
-			// content, so it must not be forced to empty.
-			const text =
-				rawTextAttr?.value === undefined
-					? isBareBooleanAttribute(node, 'text')
-						? ''
-						: getAttributeValue(node, 'text')
-					: rawTextAttr.value;
+			// A bare valueless attribute (`text`) - and, in Angular, `text=""` -
+			// renders an empty string, so resolveContentAttr maps it to '' rather
+			// than the boolean `true` getAttributeValue returns. A dynamic
+			// `[text]="x"` binding also yields `true` but is unverifiable content,
+			// so it is left intact.
+			const text = resolveContentAttr(node, 'text');
 			// Recurse through Angular wrapper nodes (*ngIf Template, @if/@for/@switch
 			// blocks) so a title nested in conditional control flow still counts.
 			const hasChildren = hasAngularContent(node);
@@ -361,11 +376,9 @@ export default {
 
 			// A bare valueless `text` (React `<DBDialogHeader text />` renders no
 			// text; Vue `<DBDialogHeader text>` yields an empty string) is empty
-			// content. getAttributeValue collapses it to `true`, so map a bare
-			// attribute to '' while leaving dynamic values (DYNAMIC sentinel) intact.
-			const text = isBareBooleanAttribute(openingElement, 'text')
-				? ''
-				: getAttributeValue(openingElement, 'text');
+			// content; resolveContentAttr maps it to '' while leaving dynamic
+			// values (DYNAMIC sentinel) intact.
+			const text = resolveContentAttr(openingElement, 'text');
 
 			// React also accepts `children` as an explicit prop
 			// (`<DBDialogHeader children="Title" />` or `children={title}`), which
@@ -374,9 +387,7 @@ export default {
 			// content; a bare attribute, empty/whitespace string or empty
 			// expression does not. Only for React - see `isJsxNode` above.
 			const childrenAttr = isJsxNode
-				? isBareBooleanAttribute(openingElement, 'children')
-					? ''
-					: getAttributeValue(openingElement, 'children')
+				? resolveContentAttr(openingElement, 'children')
 				: undefined;
 			const isContentElement = (child: any): boolean => {
 				// A custom/DB component renders opaque content we cannot inspect,

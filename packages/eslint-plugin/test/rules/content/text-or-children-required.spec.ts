@@ -259,6 +259,16 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// Same for the drawer header (shared handler, distinct component).
+				code: '<DBDrawerHeader text />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
+					}
+				]
+			},
+			{
 				// Whitespace-only text is likewise not an accessible name.
 				code: '<DBDialogHeader text="   " />',
 				errors: [
@@ -555,6 +565,16 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// Same for the drawer header (shared handler, distinct component).
+				code: '<db-drawer-header text></db-drawer-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-drawer-header' }
+					}
+				]
+			},
+			{
 				// An empty native element renders no accessible text, so the
 				// header's heading container stays empty and is reported.
 				code: '<db-dialog-header><span></span></db-dialog-header>',
@@ -706,6 +726,16 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
+				// Same for the drawer header (shared handler, distinct component).
+				code: '<template><DBDrawerHeader text /></template>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDrawerHeader' }
 					}
 				]
 			},
