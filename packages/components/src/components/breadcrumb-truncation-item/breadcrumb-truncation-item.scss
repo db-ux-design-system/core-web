@@ -1,65 +1,42 @@
 @charset "utf-8";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
-@use "../../styles/internal/popover-component";
 
 .db-breadcrumb-truncation-item {
 	display: flex;
 	align-items: center;
 
-	> details {
-		position: relative;
+	// The DBPopover provides the hover/focus reveal, elevation, card
+	// background and placement. We only lay out the trigger and the list.
+	.db-breadcrumb-truncation-item-popover {
 		display: inline-flex;
 		align-items: center;
 	}
 
-	// The summary is the "..." toggle. Keep it operable; remove the default
-	// disclosure triangle so it renders as our marker. It shows a text
-	// ellipsis but visually matches a square icon-only button.
+	// The toggle is a ghost DBButton showing the "..." ellipsis. It visually
+	// matches a square icon-only button so the ellipsis sits centered in a
+	// square target. The base button sets a min-block-size of sizing-md, so we
+	// override it (block-size alone is not enough) to collapse it to a square.
 	.db-breadcrumb-truncation-item-toggle {
-		cursor: pointer;
-		list-style: none;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
 		inline-size: variables.$db-sizing-sm;
 		block-size: variables.$db-sizing-sm;
+		min-inline-size: variables.$db-sizing-sm;
+		min-block-size: variables.$db-sizing-sm;
 		padding: 0;
-		border-radius: variables.$db-border-radius-xs;
-
-		&::-webkit-details-marker {
-			display: none;
-		}
-
-		&:focus,
-		&:hover {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-		}
 	}
 
-	// The popover list of the hidden breadcrumb items reuses the shared popover
-	// look and placement (card background, elevation, radius, centering,
-	// hidden-until-shown). handleFixedPopover positions it and sets
-	// data-corrected-placement, which the shared styles react to.
-	.db-breadcrumb-truncation-item-popover {
-		@extend %popover-center;
-		@extend %default-popover;
-
+	// The popover content holds the hidden breadcrumb items as a list.
+	.db-popover-content > ol {
 		display: flex;
 		flex-direction: column;
 		gap: variables.$db-spacing-fixed-2xs;
-		padding: variables.$db-spacing-fixed-sm;
 		margin: 0;
+		padding: 0;
 		list-style-type: "";
 		min-inline-size: variables.$db-sizing-2xl;
 
 		.db-breadcrumb-item a {
 			inline-size: 100%;
 		}
-	}
-
-	// Reveal the popover while the disclosure is open.
-	> details[open] .db-breadcrumb-truncation-item-popover {
-		@extend %show-popover;
 	}
 }

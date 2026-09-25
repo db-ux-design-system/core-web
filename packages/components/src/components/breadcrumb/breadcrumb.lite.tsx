@@ -46,7 +46,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		if (_ref) {
 			requestAnimationFrame(() => {
 				const hasCollapseItem = (_ref as HTMLDivElement).querySelector(
-					'details'
+					'.db-breadcrumb-truncation-item-popover'
 				);
 				const breadCrumbItems = (
 					_ref as HTMLDivElement

@@ -149,6 +149,8 @@
 		.db-breadcrumb-truncation-item-toggle {
 			inline-size: variables.$db-sizing-md;
 			block-size: variables.$db-sizing-md;
+			min-inline-size: variables.$db-sizing-md;
+			min-block-size: variables.$db-sizing-md;
 		}
 	}
 }
