@@ -19,7 +19,6 @@ useDefaultProps<DBBreadcrumbItemProps>({});
 export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
-	const _tooltipRef = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBBreadcrumbItemState>({
 		_ariaObserver: undefined,
@@ -34,21 +33,21 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 			} else {
 				link.removeAttribute('tabindex');
 			}
-
-			if (_tooltipRef) {
-				(_tooltipRef as HTMLElement).textContent =
-					link.textContent ?? '';
-			}
 		}
 	});
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		const link = (_ref as HTMLElement)?.querySelector('a');
+		requestAnimationFrame(() => {
+			const link = (_ref as HTMLElement)?.querySelector('a');
 
-		if (link) {
-			link.ariaDisabled = getBooleanAsString(props.disabled, 'disabled');
-		}
+			if (link) {
+				link.ariaDisabled = getBooleanAsString(
+					props.disabled,
+					'disabled'
+				);
+			}
+		});
 	}, [props.disabled, _ref]);
 
 	onMount(() => {
@@ -105,9 +104,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 				</a>
 			</Show>
 
-			<DBTooltip placement="bottom-start" ref={_tooltipRef}>
-				{props.text}
-			</DBTooltip>
+			<DBTooltip placement="bottom-start">{props.text}</DBTooltip>
 		</li>
 	);
 }

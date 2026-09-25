@@ -46,4 +46,17 @@
 			padding: variables.$db-spacing-fixed-3xs;
 		}
 	}
+
+	.db-tooltip {
+		&::after {
+			// We set the arrow based on the middle of the icon-button width
+			--db-tooltip-arrow-inline-start: calc(
+				(
+						#{variables.$db-border-width-3xs} * 2 + 1lh + 2 *
+							#{variables.$db-spacing-fixed-3xs}
+					) /
+					2
+			);
+		}
+	}
 }
