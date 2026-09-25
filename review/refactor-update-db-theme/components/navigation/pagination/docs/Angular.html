@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/refactor-update-db-theme/_next/static/css/04d318c583a136d5.css" as="style"/><link rel="stylesheet" href="/core-web/review/refactor-update-db-theme/_next/static/css/04d318c583a136d5.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/refactor-update-db-theme/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/refactor-update-db-theme/_next/static/chunks/webpack-82e3a42b0fc7d7bc.js" defer=""></script><script src="/core-web/review/refactor-update-db-theme/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/refactor-update-db-theme/_next/static/chunks/main-086cc87b46135dda.js" defer=""></script><script src="/core-web/review/refactor-update-db-theme/_next/static/chunks/pages/_app-60b74aaf5c07761b.js" defer=""></script><script src="/core-web/review/refactor-update-db-theme/_next/static/chunks/pages/components/navigation/pagination/docs/Angular-a24317caddda0821.js" defer=""></script><script src="/core-web/review/refactor-update-db-theme/_next/static/BBm9rXKaIeTJ7uuRPpEM0/_buildManifest.js" defer=""></script><script src="/core-web/review/refactor-update-db-theme/_next/static/BBm9rXKaIeTJ7uuRPpEM0/_ssgManifest.js" defer=""></script></head><body><div id="__next"><h2 id="angular">Angular<a class="header-link" href="/core-web/review/refactor-update-db-theme/components/navigation/pagination/docs/Angular?current=angular"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>angular<!-- --> anchor link</a></h2>
+<p>For general installation and configuration take a look at the <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/ngx-core-components">ngx-core-components</a> package.</p>
+<h3 id="load-component">Load component<a class="header-link" href="/core-web/review/refactor-update-db-theme/components/navigation/pagination/docs/Angular?current=load-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>load-component<!-- --> anchor link</a></h3>
+<pre><code class="language-ts">import { Component } from &quot;@angular/core&quot;;
+import { DBPagination } from &quot;@db-ux/ngx-core-components&quot;;
+
+@Component({
+	selector: &quot;app-root&quot;,
+	templateUrl: &quot;./app.component.html&quot;,
+	imports: [DBPagination],
+	standalone: true
+})
+export class AppComponent {
+	currentPage = 1;
+}
+</code></pre>
+<h3 id="use-component">Use component<a class="header-link" href="/core-web/review/refactor-update-db-theme/components/navigation/pagination/docs/Angular?current=use-component"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>use-component<!-- --> anchor link</a></h3>
+<pre><code class="language-html">&lt;db-pagination
+	[currentPage]=&quot;currentPage&quot;
+	[totalCount]=&quot;100&quot;
+	[pageSize]=&quot;10&quot;
+	(pageChange)=&quot;currentPage = $event&quot;
+/&gt;
+</code></pre>
+<h3 id="per-page-options">Per-page options<a class="header-link" href="/core-web/review/refactor-update-db-theme/components/navigation/pagination/docs/Angular?current=per-page-options"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>per-page-options<!-- --> anchor link</a></h3>
+<p>Pass an <code>items</code> array, one entry per page, to drive the pagination from data instead
+of a bare count. An entry can disable its page or give it its own <code>label</code>, neither of
+which the count API can express. The visible text stays the page number.</p>
+<pre><code class="language-html">&lt;db-pagination
+	[currentPage]=&quot;1&quot;
+	[items]=&quot;[{}, { disabled: true }, { label: &#x27;Last page&#x27; }]&quot;
+	(pageChange)=&quot;onPageChange($event)&quot;
+/&gt;
+</code></pre>
+<h3 id="composition">Composition<a class="header-link" href="/core-web/review/refactor-update-db-theme/components/navigation/pagination/docs/Angular?current=composition"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>composition<!-- --> anchor link</a></h3>
+<p>Leave <code>totalCount</code> out and pass the items yourself. The pagination then projects your
+content instead of computing the page list, which is what lets you bring a router
+link. You set nothing on the item: the pagination derives each page from its position,
+writes <code>data-page</code> onto every <code>&lt;li&gt;</code> and marks the current page with <code>aria-current</code>,
+all through the DOM. It also reports the page by reading <code>data-page</code> back, so your
+child never gets a handler attached to it.</p>
+<p>A composed item is a child of your own component, so the directives it uses have to
+be imported there. <code>RouterLink</code> belongs in that list next to both components -
+without it <code>routerLink</code> is an inert attribute and the example below does not
+navigate:</p>
+<pre><code class="language-ts">import { Component } from &quot;@angular/core&quot;;
+import { RouterLink } from &quot;@angular/router&quot;;
+import { DBPagination, DBPaginationItem } from &quot;@db-ux/ngx-core-components&quot;;
+
+@Component({
+	selector: &quot;app-root&quot;,
+	templateUrl: &quot;./app.component.html&quot;,
+	imports: [DBPagination, DBPaginationItem, RouterLink],
+	standalone: true
+})
+export class AppComponent {
+	onPageChange(page: number) {
+		// Keep your own state in sync; the router handles the navigation itself.
+	}
+}
+</code></pre>
+<pre><code class="language-html">&lt;db-pagination [currentPage]=&quot;2&quot; (pageChange)=&quot;onPageChange($event)&quot;&gt;
+	&lt;db-pagination-item&gt;
+		&lt;a routerLink=&quot;/results/1&quot; aria-label=&quot;Page 1 of 2&quot;&gt;1&lt;/a&gt;
+	&lt;/db-pagination-item&gt;
+	&lt;db-pagination-item&gt;
+		&lt;a routerLink=&quot;/results/2&quot; aria-label=&quot;Page 2 of 2&quot;&gt;2&lt;/a&gt;
+	&lt;/db-pagination-item&gt;
+&lt;/db-pagination&gt;
+</code></pre>
+<p><code>totalCount</code> is what selects between the two modes, because Angular can only test
+inputs and never projected content.</p>
+<p>The page identity comes from the item position, so the first item is page 1, the
+second page 2, and <code>currentPage</code> marks which is current. Previous and next look that
+identity up: as buttons they do not report a page themselves, they click the item of
+the neighbouring page. So your router link runs for the arrows too, and the router
+sees the same navigation it sees for a direct click. Where that neighbour is not in
+your list, the arrow falls back to reporting the page through <code>pageChange</code>.</p>
+<p>The numbering is automated: the pagination replaces your link&#x27;s text with the page
+number and moves whatever text you wrote into its <code>aria-label</code>, so a link reading
+<code>Go to the results</code> is announced as written and displayed as <code>2</code>. Provide an
+<code>aria-label</code> yourself to override that name, as the example does, because a bare
+number does not name the page in context. The truncation and the responsive
+collapsing are not applied in this mode, because the component cannot know which pages
+your children stand for, and the last page is unknown as well, so the next button
+stays enabled and an out of range request is yours to ignore.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/navigation/pagination/docs/Angular","query":{},"buildId":"BBm9rXKaIeTJ7uuRPpEM0","assetPrefix":"/core-web/review/refactor-update-db-theme","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
