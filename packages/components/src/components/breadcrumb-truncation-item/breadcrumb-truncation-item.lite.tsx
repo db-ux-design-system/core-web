@@ -1,6 +1,5 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls } from '../../utils';
-import DBButton from '../button/button.lite';
 import DBPopover from '../popover/popover.lite';
 import type { DBBreadcrumbTruncationItemProps } from './model';
 
@@ -29,15 +28,15 @@ export default function DBBreadcrumbTruncationItem(
 				delay={props.delay}
 				width={props.width}
 				trigger={
-					<DBButton
-						class="db-breadcrumb-truncation-item-toggle"
-						variant="ghost"
+					<button
+						class="db-button db-breadcrumb-truncation-item-toggle"
+						data-variant="ghost"
 						aria-label={props.label}>
 						{/* Visible ellipsis as text (design); the accessible */}
 						{/* name comes from aria-label. Escaped so the source */}
 						{/* stays ASCII. */}
 						<span aria-hidden="true">{'\u2026'}</span>
-					</DBButton>
+					</button>
 				}>
 				<ol>{props.children}</ol>
 			</DBPopover>
