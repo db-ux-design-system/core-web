@@ -29,6 +29,7 @@ Popover is loosely depending on Anchor Positioning.
 | [`select[multiple][size="1"]` UI optimization on Desktop browsers](https://chromestatus.com/feature/5412736871825408) (planned)             | 142 (28.10.2025) | tbd              | tbd                                                                                                      |
 | [`aria-actions` HTML attribute](https://chromestatus.com/feature/5161589307867136) (planned)                                                | 151 (28.07.2026) | tbd              | tbd                                                                                                      |
 | [`text-decoration-skip` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip) (planned) | 154 (22.09.2026) | tbd              | tbd                                                                                                      |
+| [`link-parameters` CSS property (planned) 																								  | tbd				 | _Nightly_        | tbd                                                                                                      |
 
 ## Without graceful degradation
 
