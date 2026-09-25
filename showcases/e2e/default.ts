@@ -36,6 +36,15 @@ export type AxeCoreTestType = {
 	 * active for the rest of the page.
 	 */
 	axeExclude?: string;
+	/**
+	 * Drops a single known false-positive finding while keeping the element in
+	 * the scan for every other rule. Unlike `axeExclude` (which removes the node
+	 * and its descendants from ALL rules), this only filters out the given
+	 * `ruleId` violation on nodes matching `selector` - so a genuine, unrelated
+	 * defect on the same element (missing accessible name, invalid ARIA, ...) is
+	 * still reported.
+	 */
+	axeIgnoreFinding?: { ruleId: string; selector: string };
 	skipAxe?: boolean;
 	preAxe?: (page: Page) => Promise<void>;
 	color?: string;
@@ -166,6 +175,7 @@ export const runAxeCoreTest = ({
 	fixedHeight,
 	axeDisableRules,
 	axeExclude,
+	axeIgnoreFinding,
 	skipAxe,
 	preAxe,
 	color = lvl1,
@@ -217,8 +227,75 @@ export const runAxeCoreTest = ({
 		}
 		const accessibilityScanResults = await axeBuilder.analyze();
 
-		expect(accessibilityScanResults.violations).toEqual([]);
+		let { violations } = accessibilityScanResults;
+
+		if (axeIgnoreFinding) {
+			// Drop only the known false-positive finding: for the given rule,
+			// remove nodes whose element matches `selector` (resolved against the
+			// live DOM via the node's own target path), then drop the violation
+			// entirely if no offending node remains. Every other rule - and any
+			// other node of the same rule - still fails the assertion, so a real
+			// unrelated defect on the same element is not masked.
+			violations = await filterIgnoredFinding(
+				page,
+				violations,
+				axeIgnoreFinding
+			);
+		}
+
+		expect(violations).toEqual([]);
 	});
+};
+
+// Whether the element identified by an axe node target selector matches
+// `selector`. Resolves the node's own CSS path against the live DOM.
+const isNodeMatchingSelector = async (
+	page: Page,
+	node: NodeResult,
+	selector: string
+): Promise<boolean> => {
+	const target = node.target[0];
+
+	if (typeof target !== 'string') {
+		return false;
+	}
+
+	return page
+		.locator(target)
+		.first()
+		.evaluate((element, sel) => element.matches(sel), selector)
+		.catch(() => false);
+};
+
+// Drops the known false-positive `ruleId` finding on nodes matching `selector`,
+// keeping every other rule and node intact (see AxeCoreTestType.axeIgnoreFinding).
+const filterIgnoredFinding = async (
+	page: Page,
+	violations: Result[],
+	{ ruleId, selector }: { ruleId: string; selector: string }
+): Promise<Result[]> => {
+	const filtered = await Promise.all(
+		violations.map(async (violation) => {
+			if (violation.id !== ruleId) {
+				return violation;
+			}
+
+			const keptNodes = await Promise.all(
+				violation.nodes.map(async (node) =>
+					(await isNodeMatchingSelector(page, node, selector))
+						? undefined
+						: node
+				)
+			);
+
+			return {
+				...violation,
+				nodes: keptNodes.filter(Boolean) as NodeResult[]
+			};
+		})
+	);
+
+	return filtered.filter((violation) => violation.nodes.length > 0);
 };
 
 export const runA11yCheckerTest = ({
