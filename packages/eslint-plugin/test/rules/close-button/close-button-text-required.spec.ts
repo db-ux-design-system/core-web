@@ -293,6 +293,19 @@ const reactAttributeShapes: AttributeShape[] = [
 		reports: true
 	},
 	{
+		// React renders neither `false` nor `true` as text, so a boolean literal
+		// leaves the close button unlabeled.
+		shape: 'boolean literal expression container',
+		code: '<DBDialogHeader closeButtonText={false}>Title</DBDialogHeader>',
+		reports: true
+	},
+	{
+		// `undefined` is the statically known empty value, so it is empty too.
+		shape: 'undefined identifier expression container',
+		code: '<DBDialogHeader closeButtonText={undefined}>Title</DBDialogHeader>',
+		reports: true
+	},
+	{
 		shape: 'JSX spread may supply the label (unresolved, no explicit attribute)',
 		code: '<DBDialogHeader {...headerProps} text="Title" />',
 		reports: false
@@ -464,6 +477,12 @@ const angularAttributeShapes: AttributeShape[] = [
 		// A null binding renders no accessible label, same as an empty string.
 		shape: 'statically null binding, kebab-case input',
 		code: '<db-dialog-header [close-button-text]="null">Title</db-dialog-header>',
+		reports: true
+	},
+	{
+		// An undefined binding renders no accessible label, same as null.
+		shape: 'statically undefined binding, kebab-case input',
+		code: '<db-dialog-header [close-button-text]="undefined">Title</db-dialog-header>',
 		reports: true
 	},
 	{
