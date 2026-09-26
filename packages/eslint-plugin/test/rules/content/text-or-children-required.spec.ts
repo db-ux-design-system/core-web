@@ -326,6 +326,17 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// `text={false}` renders no text in React (it renders neither
+				// `false` nor `true`), so the header has no accessible name.
+				code: '<DBDialogHeader text={false} />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// A bare valueless `children` attribute renders no content.
 				code: '<DBDrawerHeader children />',
 				errors: [
@@ -563,6 +574,11 @@ describe('text-or-children-required', () => {
 			},
 			{
 				code: '<db-drawer-header>@for (item of items; track item) { <h2>{{ item }}</h2> }</db-drawer-header>'
+			},
+			// @switch exposes its cases under `cases` (Angular 21+); the rule must
+			// recurse into them so a heading inside a @case still counts.
+			{
+				code: "<db-dialog-header>@switch (kind) { @case ('a') { <h2>Title</h2> } }</db-dialog-header>"
 			}
 		],
 		invalid: [
@@ -605,6 +621,18 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'db-drawer-header' }
+					}
+				]
+			},
+			{
+				// `[text]="undefined"` binds the statically known empty value, so
+				// the header renders no accessible name and is reported (unlike a
+				// dynamic `[text]="title"`, which is allowed).
+				code: '<db-dialog-header [text]="undefined"></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
 					}
 				]
 			},
