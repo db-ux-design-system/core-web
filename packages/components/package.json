@@ -65,7 +65,7 @@
     "postcss": "8.5.28",
     "postcss-cli": "12.0.0",
     "replace-in-file": "9.0.0",
-    "sass": "1.104.1",
+    "sass": "1.105.0",
     "storybook": "10.6.0",
     "tsx": "4.23.15",
     "vitest": "5.0.1"
