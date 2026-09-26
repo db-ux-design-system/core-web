@@ -13,6 +13,9 @@ const paginationProps: Record<string, FigmaProp> = {
 };
 
 export const pagination: FigmaCodeConnect = {
-	urls: ['https://www.figma.com/design/FIGMA_FILE?node-id=17457-13260'],
+	urls: [
+		'https://www.figma.com/design/FIGMA_FILE?node-id=40157-4967',
+		'https://www.figma.com/design/FIGMA_FILE?node-id=40266-966'
+	],
 	props: paginationProps
 };
