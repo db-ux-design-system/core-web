@@ -1,32 +1,5 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/fonts";
+@use "../../styles/internal/dialog-components";
 
 .db-drawer-header {
-	display: flex;
-	gap: variables.$db-spacing-fixed-sm;
-	align-items: center;
-	padding: calc(
-			#{variables.$db-spacing-fixed-xs} +
-				var(--db-drawer-safe-area-inset-top, 0px)
-		)
-		variables.$db-spacing-fixed-sm variables.$db-spacing-fixed-xs;
-
-	@include helpers.divider("bottom");
-
-	.db-drawer-header-container {
-		font-weight: bold;
-		margin-inline-end: auto;
-
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			@extend %db-overwrite-headline-size-3xs;
-
-			margin: 0;
-		}
-	}
+	@include dialog-components.header-footer("header", "drawer");
 }

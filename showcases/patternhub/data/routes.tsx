@@ -9,6 +9,7 @@ import CardShowcase from '@components/components/card/showcase/card.showcase';
 import CheckboxShowcase from '@components/components/checkbox/showcase/checkbox.showcase';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase';
+import DialogShowcase from '@components/components/dialog/showcase/dialog.showcase';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase';
 import FooterShowcase from '@components/components/footer/showcase/footer.showcase';
@@ -40,6 +41,8 @@ import ControlPanelMobileShowcase from '@components/components/control-panel-mob
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
 
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -52,6 +55,8 @@ export type NavigationItem = {
 };
 
 const nameComponentMap = {
+	pagination: <PaginationShowcase isPatternhub />,
+
 	heading: <HeadingShowcase isPatternhub />,
 
 	accordion: <AccordionShowcase isPatternhub />,
@@ -73,6 +78,7 @@ const nameComponentMap = {
 	checkbox: <CheckboxShowcase isPatternhub />,
 	'custom-button': <CustomButtonShowcase isPatternhub />,
 	'custom-select': <CustomSelectShowcase isPatternhub />,
+	dialog: <DialogShowcase isPatternhub />,
 	divider: <DividerShowcase isPatternhub />,
 	drawer: <DrawerShowcase isPatternhub />,
 	header: <HeaderShowcase isPatternhub />,

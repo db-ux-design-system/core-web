@@ -47,6 +47,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			{ path: '01/footer', label: 'Footer' },
 			{ path: '01/stack', label: 'Stack' },
 			{ path: '01/card', label: 'Card' },
+			{ path: '01/dialog', label: 'Dialog' },
 			{ path: '01/drawer', label: 'Drawer' },
 			{ path: '01/divider', label: 'Divider' },
 			{ path: '01/popover', label: 'Popover' },
@@ -124,6 +125,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 			},
 			{ path: '05/navigation-item', label: 'NavigationItem' },
 			{ path: '05/navigation', label: 'Navigation' },
+			{ path: '05/pagination', label: 'Pagination' },
 			{ path: '05/brand', label: 'Brand' },
 			{ path: '05/header', label: 'Header' }
 		])

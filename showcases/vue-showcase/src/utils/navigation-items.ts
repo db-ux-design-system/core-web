@@ -1,3 +1,5 @@
+import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase.vue';
+
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase.vue';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
@@ -13,6 +15,7 @@ import ControlPanelFlatIcon from '@components/components/control-panel-flat-icon
 import ControlPanelMobile from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase.vue';
 import CustomButtonShowcase from '@components/components/custom-button/showcase/custom-button.showcase.vue';
 import CustomSelectShowcase from '@components/components/custom-select/showcase/custom-select.showcase.vue';
+import DialogShowcase from '@components/components/dialog/showcase/dialog.showcase.vue';
 import DividerShowcase from '@components/components/divider/showcase/divider.showcase.vue';
 import DrawerShowcase from '@components/components/drawer/showcase/drawer.showcase.vue';
 import FooterShowcase from '@components/components/footer/showcase/footer.showcase.vue';
@@ -121,6 +124,11 @@ export const navigationItems: NavItem[] = [
 				path: '/05/navigation',
 				label: 'Navigation',
 				component: markRaw(NavigationShowcase)
+			},
+			{
+				path: '/05/pagination',
+				label: 'Pagination',
+				component: markRaw(PaginationShowcase)
 			},
 			{
 				path: '/05/brand',
@@ -268,6 +276,11 @@ export const navigationItems: NavItem[] = [
 				path: '/01/card',
 				label: 'Card',
 				component: markRaw(CardShowcase)
+			},
+			{
+				path: '/01/dialog',
+				label: 'Dialog',
+				component: markRaw(DialogShowcase)
 			},
 			{
 				path: '/01/drawer',
