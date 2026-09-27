@@ -6,6 +6,9 @@
 @forward "../components/input/input";
 @forward "../components/brand/brand";
 @forward "../components/header/header";
+@forward "../components/footer/footer";
+@forward "../components/footer-content/footer-content";
+@forward "../components/footer-meta/footer-meta";
 @forward "../components/page/page";
 @forward "../components/control-panel-brand/control-panel-brand";
 @forward "../components/control-panel-desktop/control-panel-desktop";
@@ -52,6 +55,9 @@
 @forward "../components/table-header-cell/table-header-cell";
 @forward "../components/table-data-cell/table-data-cell";
 @forward "../components/custom-button/custom-button";
+@forward "../components/dialog/dialog";
+@forward "../components/dialog-header/dialog-header";
+@forward "../components/dialog-footer/dialog-footer";
 @forward "../components/control-panel-mobile/control-panel-mobile";
 @forward "../components/control-panel-meta/control-panel-meta";
 @forward "../components/control-panel-actions/control-panel-actions";
@@ -60,3 +66,6 @@
 @forward "../components/shell-content/shell-content";
 @forward "../components/control-panel-skip-navigation/control-panel-skip-navigation";
 @forward "../components/heading/heading";
+@forward "../components/loading-indicator/loading-indicator";
+@forward "../components/pagination-item/pagination-item";
+@forward "../components/pagination/pagination";

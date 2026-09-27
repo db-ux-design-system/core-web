@@ -3,9 +3,9 @@
 
 <picture><source srcset="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.avif" type="image/avif"><source srcset="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.webp" type="image/webp"><img src="https://design-system.deutschebahn.com/images/db-ux-design-system-v3-header.jpg" alt=""></picture>
 
-# DB UX Design System v3 🚂💖
+# DB UX Design System – Generation 3 🚂💖
 
-![Part of DB UX Design System (Version 3)](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System%20v3-d7dce1.svg)
+![Part of DB UX Design System](https://img.shields.io/badge/Part%20of-DB%20UX%20Design%20System-d7dce1.svg)
 [![Default Pipeline](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml/badge.svg)](https://github.com/db-ux-design-system/core-web/actions/workflows/default.yml)
 ![Apache 2.0 license badge](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
@@ -13,7 +13,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/db-ux-design-system/.github/blob/main/CODE-OF-CONDUCT.md)
 
-DB UX Design System v3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
+DB UX Design System – Generation 3 provides robust HTML UI components, reusable visual styles, and powerful tooling to help developers,
 designers, and content authors build, maintain, and scale best-of-class digital experiences.
 
 <figure>
@@ -65,7 +65,7 @@ We provide dedicated tooling to integrate the DB UX Design System directly into 
 
 ### Model Context Protocol (MCP) Server
 
-For IDEs and AI tools that support the [Model Context Protocol](https://modelcontextprotocol.io/) (e.g., Claude plugins, Cursor, Windsurf), we provide a standalone MCP server. It equips your AI with our official documentation, design tokens, and a powerful migration engine to automatically refactor legacy v2 code into modern v3 standards.
+For IDEs and AI tools that support the [Model Context Protocol](https://modelcontextprotocol.io/) (e.g., Claude plugins, Cursor, Windsurf), we provide a standalone MCP server. It equips your AI with our official documentation, design tokens, and a powerful migration engine to automatically refactor legacy DB UX Design System – Generation 2 (aka DB UI) code into modern Generation 3 standards.
 
 Add the server to your AI assistant's MCP configuration:
 
@@ -178,7 +178,7 @@ read- and understandable, lean, performant and so much easier to update.
 <details>
   <summary><strong>Evergreen</strong></summary>
 
-As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten) evolves, so does DB UX Design System version 3, meaning apps only need to keep their DB UX Design System Core Web package updated to ensure the latest look and feel.
+As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/DB-UX-Design-System/Design-fuer-Apps-Web/UI-Komponenten) evolves, so does DB UX Design System – Generation 3, meaning apps only need to keep their DB UX Design System Core Web package updated to ensure the latest look and feel.
 
 </details>
 
@@ -189,7 +189,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
 [Button migration](https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration).
 
-For a comprehensive overview of all DB-UI components and their migration status, including components that don't have direct equivalents in DB-UX Design System v3, see our [DB-UI to DB-UX Design System v3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui-to-db-ux-dsv3.md).
+For a comprehensive overview of all components and their migration status, including components that don't have direct equivalents in DB UX Design System – Generation 3, see our [DB UI to DB UX Design System – Generation 3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui/component-migration.md).
 
 ### In between DB UX Design System Core versions
 
@@ -211,7 +211,7 @@ Check our migration docs for breaking changes:
 
 ### Unexpected "new" colors
 
-> We've updated to the stable version of DB UX Design System (v3) version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
+> We've updated to the stable version of DB UX Design System – Generation 3 version >= 1.x, and now the colors that were supposed to be red, are colored in blue (`514ec7`).
 
 Please have a look at the [migration guide from version 0.6.x to version 0.7.x](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v0.6.x-to-v0.7.x.md#removed-brand-assets), you need to install and reference the DB Theme, if you're building a website or web application for Deutsche Bahn.
 

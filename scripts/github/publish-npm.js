@@ -101,7 +101,7 @@ for (const { dir, name: PACKAGE } of packages) {
 	console.log('📦 Create npm package');
 	try {
 		execSync(
-			'pnpm pack --quiet --config.ignore-scripts=true --ignore-workspace',
+			'pnpm pack --reporter silent --config.ignore-scripts=true --ignore-workspace',
 			{ cwd: path.join(buildOutputs, dir), stdio: 'inherit' }
 		);
 	} catch (error) {

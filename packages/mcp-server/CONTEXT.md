@@ -12,12 +12,13 @@ Concrete use cases:
 
 ## Tech Stack
 
-| Technology                      | Purpose                                                                                  |
-| ------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Node.js** (≥ 22)              | Runtime environment                                                                      |
-| **TypeScript**                  | Type safety, consistent with the rest of the monorepo                                    |
-| **`@modelcontextprotocol/sdk`** | Official MCP SDK — provides `McpServer`, transport classes, and tool/resource primitives |
-| **`esbuild`**                   | Production build into a single standalone ESM bundle                                     |
+| Technology                         | Purpose                                                                                                    |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Node.js** (≥ 22)                 | Runtime environment                                                                                        |
+| **TypeScript**                     | Type safety, consistent with the rest of the monorepo                                                      |
+| **`@modelcontextprotocol/server`** | Official MCP TypeScript SDK v2 — provides `McpServer`, the stdio serving entry, and tool/prompt primitives |
+| **`@modelcontextprotocol/client`** | SDK v2 client, used by the stdio E2E test only (dev dependency)                                            |
+| **`esbuild`**                      | Production build into a single standalone ESM bundle                                                       |
 
 ## Monorepo Structure (relevant to this server)
 
@@ -145,7 +146,7 @@ NPM lifecycle scripts (`prebuild`, `preinstall`) are **disabled** in this monore
 The prebuild script is executed via `tsx` to ensure Node.js 22+ compatibility. It is the central orchestrator that prepares all assets and metadata for standalone (npx) operation:
 
 ```text
-prebuild:migration      → cpr docs/migration/db-ui/ → assets/migration/
+prebuild:migration      → copy docs/migration/db-ui/ → assets/migration/
 prebuild:tokens         → parse CSS custom properties from @db-ux/db-theme/_default_variables.scss
                           + foundations/build/density/classes/all.css → assets/tokens/tokens.json
                           (internal --db-base-* tokens are filtered out to prevent LLM misuse)
@@ -196,14 +197,14 @@ Always normalize paths (convert `\` to `/`) before string comparisons like `.inc
 - **Do NOT** force-replace generic `<div>` elements with `DBStack`/`DBSection`/`DBCard` — plain `<div>` is valid HTML
 - Only replace native elements when they are explicitly used as UI components
 
-### DB UX v2 vs v3 Terminology
+### DB UX Design System – Generation 2 vs Generation 3 Terminology
 
-- **v2**: `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
-- **v3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
+- **Generation 2** (aka DB UI): `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
+- **Generation 3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
 
 ## Communication
 
-The server uses `StdioServerTransport` from the MCP SDK. It is started as a child process by the MCP client:
+The server is served with `serveStdio` from the MCP SDK, which owns the stdio transport and decides each connection's protocol era from the opening exchange: the 2025 era (`initialize` handshake) and 2026-07-28 (`server/discover` probe) are both served from the same factory. It is started as a child process by the MCP client:
 
 ```json
 {
@@ -233,22 +234,23 @@ During development inside the monorepo, you can run TypeScript source directly v
 
 ### Tools (LLM-callable functions)
 
-| Tool                           | Description                                                                                                                                                                                                            |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`              | Returns all available component names                                                                                                                                                                                  |
-| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                                                                     |
-| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                                                               |
-| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                                                                    |
-| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                                                       |
-| `list_design_token_categories` | Returns all available design token categories (incl. `elevation`)                                                                                                                                                      |
-| `get_design_tokens`            | Returns CSS custom properties for a token category. Reads from structured `assets/tokens/tokens.json` (prebuild-generated). Falls back to SCSS from manifest for categories not in JSON (e.g. animation, transitions). |
-| `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                                                                     |
-| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                                                            |
-| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                        |
-| `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                                                                  |
-| `scan_v2_migration`            | Scans a file for DB UI v2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.                                       |
-| `list_visuals`                 | Returns all available visual reference names (e.g. dashboard, form, table).                                                                                                                                            |
-| `get_visual_reference`         | Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a Base64-encoded MCP image block. No native dependencies at runtime.                                                                      |
+| Tool                           | Description                                                                                                                                                                                                                                                    |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `list_components`              | Returns all available component names                                                                                                                                                                                                                          |
+| `get_component_props`          | Returns the raw `model.ts` content for a component                                                                                                                                                                                                             |
+| `get_component_details`        | Returns the list of example names from the showcase file                                                                                                                                                                                                       |
+| `get_example_code`             | Returns generated framework-specific source for a component example                                                                                                                                                                                            |
+| `list_icons`                   | Returns all valid icon names from `all-icons.ts`                                                                                                                                                                                                               |
+| `list_design_token_categories` | Returns all available design token categories (incl. `elevation`)                                                                                                                                                                                              |
+| `get_design_tokens`            | Returns CSS custom properties for a token category. Reads from structured `assets/tokens/tokens.json` (prebuild-generated). Falls back to SCSS from manifest for categories not in JSON (e.g. animation, transitions).                                         |
+| `docs_search`                  | Searches component and foundation docs only (whitelisted). Migration guides, ADRs, and research docs are excluded.                                                                                                                                             |
+| `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`)                                                                                                                                                                    |
+| `get_migration_guide`          | Returns the full markdown content of a specific migration guide                                                                                                                                                                                                |
+| `verify_migrated_code`         | Instructs the LLM to verify changes using the project's own scripts (typecheck, lint, build) from package.json. No temp files or hardcoded compilers.                                                                                                          |
+| `scan_generation_2_migration`  | Scans a file for DB UX Design System – Generation 2 patterns (components, colors, icons) and returns a JSON report with line numbers and deterministic migration suggestions. Call FIRST before migrating.                                                     |
+| `scan_v2_migration`            | **Deprecated** alias of `scan_generation_2_migration` — kept so existing configs keep working; will be removed in the next major (6.0.0, tracked in [#8005](https://github.com/db-ux-design-system/core-web/pull/8005)). Prefer `scan_generation_2_migration`. |
+| `list_visuals`                 | Returns all available visual reference names (e.g. dashboard, form, table).                                                                                                                                                                                    |
+| `get_visual_reference`         | Returns a pre-optimised visual reference image (max 800×800 px, JPEG q75) as a Base64-encoded MCP image block. No native dependencies at runtime.                                                                                                              |
 
 ### Manifest (embedded data)
 
