@@ -4,12 +4,14 @@ export const DEFAULT_PLACEHOLDER: string = ' ';
 export const DEFAULT_MESSAGE: string = 'MESSAGE SHOULD BE SET';
 
 export const DEFAULT_LABEL_ID_SUFFIX: string = '-label';
+export const DEFAULT_HEADING_ID_SUFFIX: string = '-heading';
 export const DEFAULT_SELECT_ID_SUFFIX: string = '-select';
 export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
 export const DEFAULT_VALID_MESSAGE_ID_SUFFIX: string = '-valid-message';
 export const DEFAULT_INVALID_MESSAGE_ID_SUFFIX: string = '-invalid-message';
 export const DEFAULT_PLACEHOLDER_ID_SUFFIX: string = '-placeholder';
 export const DEFAULT_DATALIST_ID_SUFFIX: string = '-datalist';
+export const DEFAULT_PROGRESS_ID_SUFFIX: string = '-progress';
 
 export const DEFAULT_VALID_MESSAGE: string = 'TODO: Add a validMessage';
 export const DEFAULT_INVALID_MESSAGE: string = 'TODO: Add an invalidMessage';
@@ -25,6 +27,11 @@ export const DEFAULT_ICON: string = 'brand';
 
 export const DEFAULT_BURGER_MENU: string = 'Open navigation menu';
 export const DEFAULT_ROWS: number = 4;
+
+// Default onTimeout delays for the loading indicator (in milliseconds):
+// the active state waits longer than the terminal successful/critical states.
+export const DEFAULT_LOADING_TIMEOUT_ACTIVE: number = 5000;
+export const DEFAULT_LOADING_TIMEOUT: number = 2000;
 
 export const DEFAULT_CLOSE_BUTTON: string = 'Close';
 export const MAIN_CONTENT_ID: string = 'main-content';

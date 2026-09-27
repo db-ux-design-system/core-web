@@ -1,5 +1,15 @@
-import { type ToolResult, withTimeout } from '../utils';
+import { type ToolResult, error, withTimeout } from '../utils';
 import { getManifest } from '../utils/manifest';
+
+/**
+ Number of doc snippets returned to the caller.
+ */
+const MAX_DOC_RESULTS = 3;
+
+/**
+ Shortest search term that is not discarded as noise.
+ */
+const MIN_TERM_LENGTH = 3;
 
 /**
  Whitelisted path prefixes for docs_search results (using forward slashes
@@ -21,7 +31,10 @@ function isAllowedDocPath(docPath: string): boolean {
 
 /**
  Builds a ToolResult from a list of matched document snippets.
- Returns at most 3 results and appends a truncation notice when more were found.
+
+ Returns at most {@link MAX_DOC_RESULTS} results and appends a truncation notice
+ when more were found. The caller collects one result beyond the limit as a
+ lookahead, which is what makes that notice reachable at all.
  */
 function buildResults(results: string[], query: string): ToolResult {
 	if (results.length === 0) {
@@ -36,12 +49,12 @@ function buildResults(results: string[], query: string): ToolResult {
 	}
 
 	const content: Array<{ type: 'text'; text: string }> = [
-		{ type: 'text', text: results.slice(0, 3).join('\n\n') }
+		{ type: 'text', text: results.slice(0, MAX_DOC_RESULTS).join('\n\n') }
 	];
-	if (results.length > 3) {
+	if (results.length > MAX_DOC_RESULTS) {
 		content.push({
 			type: 'text',
-			text: 'Note: More than 3 results were found. Some results were truncated. Please refine your search query for more specific results.'
+			text: `Note: More than ${MAX_DOC_RESULTS} results were found. Some results were truncated. Please refine your search query for more specific results.`
 		});
 	}
 
@@ -77,16 +90,40 @@ export async function handleDocsSearch({
 	componentName?: string;
 	docType?: string;
 }): Promise<ToolResult> {
+	if (
+		category === 'component' &&
+		(componentName === undefined || componentName === '')
+	) {
+		return error(
+			"Error: 'componentName' is required when category is 'component'. Pass the component name (e.g. 'button'), or use category 'global' to search the foundation docs."
+		);
+	}
+
 	return withTimeout(
 		(async () => {
 			const manifest = await getManifest();
 			const searchTerms = query
 				.toLowerCase()
 				.split(' ')
-				.filter((t) => t.trim().length > 2);
+				.filter((t) => t.trim().length >= MIN_TERM_LENGTH);
+
+			// The filter above discards every term of a too-short query, and an
+			// empty term list makes every() vacuously true — so 'db' would match
+			// every document and the caller would get three arbitrary docs
+			// presented as search hits. An explicitly empty query is a different
+			// intent: the schema offers it as the way to list the docs in scope,
+			// so that one stays allowed.
+			if (searchTerms.length === 0 && query.trim() !== '') {
+				return error(
+					`Error: Query '${query}' contains no term of at least ${MIN_TERM_LENGTH} characters, so it would match every document. Use a longer term, or pass an empty query together with 'componentName' / 'docType' to list a specific doc.`
+				);
+			}
+
 			const results: string[] = [];
 			for (const [path, content] of Object.entries(manifest.docs)) {
-				if (results.length >= 3) {
+				// One past the limit: the extra hit is not returned, it only
+				// tells buildResults() that more documentation matched.
+				if (results.length > MAX_DOC_RESULTS) {
 					break;
 				}
 
@@ -97,11 +134,14 @@ export async function handleDocsSearch({
 					continue;
 				}
 
-				// Scope filter: when category is 'component' and componentName is given,
-				// only match docs within that component's directory.
+				// Scope filter: a 'component' search only matches docs within
+				// that component's directory. Deliberately NOT guarded by
+				// `componentName &&` — that would skip the filter entirely for a
+				// missing name and silently widen the search to every doc. The
+				// name is guaranteed by the check above; if it were ever absent
+				// this excludes everything, which fails visibly instead.
 				if (
 					category === 'component' &&
-					componentName &&
 					!normalizedPath.includes(`/components/${componentName}/`)
 				) {
 					continue;

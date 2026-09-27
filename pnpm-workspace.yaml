@@ -61,8 +61,25 @@ overrides:
   # different patches into separate node_modules paths, breaking TS compilation.
   # Force the entire dependency graph to resolve a single copy via catalog.
   postcss: "catalog:"
+  # The Angular toolchain (@angular-devkit/build-angular -> webpack-subresource-
+  # integrity -> html-webpack-plugin -> webpack) resolved its webpack/esbuild
+  # peers non-deterministically: webpack against either Angular's own 5.105.2 or
+  # the unrelated Storybook/Nuxt/Next webpack@5.111.0, and esbuild (an optional
+  # peer of webpack) against 0.28.1 vs 0.28.2. That produced multiple peer-hash
+  # variants of the same build-angular version, which `pnpm audit --fix=update`
+  # rewrote on every Dependabot PR (99-audit-fix-dependabot.yml). We collapse it
+  # deterministically with two minimal, scoped overrides:
+  #   1. Pin the html-webpack-plugin webpack edge to Angular's 5.105.2 so it never
+  #      drifts onto the Storybook webpack. Scoped, so both top-level webpack
+  #      copies stay intact.
+  #   2. Pin the whole esbuild 0.28.x line to a single patch (0.28.2, the version
+  #      `audit --fix` prefers, so the result is idempotent). The version-range
+  #      selector leaves the unrelated esbuild 0.12.x and 0.25.x copies untouched.
+  "html-webpack-plugin>webpack": "catalog:"
+  "esbuild@~0.28.0": 0.28.2
 
 catalog:
   postcss: 8.5.28
+  webpack: 5.111.1
 
 saveExact: true

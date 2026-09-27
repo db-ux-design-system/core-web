@@ -32,6 +32,31 @@ const testVariants = () => {
 	}
 };
 
+const testRole = () => {
+	test(`should default to the article role`, async ({ mount }) => {
+		const component = await mount(comp);
+		await expect(component).toHaveAttribute('role', 'article');
+	});
+
+	test(`should map a critical semantic to the alert role`, async ({
+		mount
+	}) => {
+		const component = await mount(
+			<DBNotification semantic="critical">Test</DBNotification>
+		);
+		await expect(component).toHaveAttribute('role', 'alert');
+	});
+
+	test(`should allow overriding the role`, async ({ mount }) => {
+		const component = await mount(
+			<DBNotification semantic="critical" role="status">
+				Test
+			</DBNotification>
+		);
+		await expect(component).toHaveAttribute('role', 'status');
+	});
+};
+
 const testAction = () => {
 	test(`should be closeable`, async ({ mount }) => {
 		let close = '';
@@ -69,6 +94,7 @@ test.describe('DBNotification', () => {
 	test.use({ viewport: DEFAULT_VIEWPORT });
 	testComponent();
 	testVariants();
+	testRole();
 	testA11y();
 	testAction();
 });

@@ -1,10 +1,15 @@
 ---
 name: "migrate-to-v3"
-description: "Migrates legacy DB UI v2 code (cmp-*, elm-*, rea-* classes, <db-*> Web Components, db-color-* tokens) to DB UX Design System v3."
+description: "Migrates legacy Generation 2 (aka DB UI) code (cmp-*, elm-*, rea-* classes, <db-*> Web Components, db-color-* tokens) to DB UX Design System – Generation 3."
 
 triggers:
+    - "migrate to generation 3"
+    - "upgrade from generation 2"
     - "migrate to v3"
+    - "migrate to Generation 3"
     - "upgrade from v2"
+    - "upgrade from Generation 2"
+    - "migrate from DB UI"
     - "convert legacy DB UI code"
     - "replace cmp-* classes"
     - "migrate db-color tokens"
@@ -24,7 +29,8 @@ requires:
       autoLoad: true
 
 tools:
-    - db-ux/scan_v2_migration
+    - db-ux/scan_generation_2_migration
+    - db-ux/scan_v2_migration # deprecated alias — fallback for older mcp-server installs
     - db-ux/list_migration_guides
     - db-ux/get_migration_guide
     - db-ux/list_components
@@ -45,7 +51,7 @@ on_error:
         - fallback: "If errors persist after 3 retries, report to user with full error output."
 ---
 
-# Migrate to v3
+# Migrate to DB UX Design System – Generation 3
 
 ## Pre-Conditions
 
@@ -58,9 +64,9 @@ on_error:
 
 ### Phase 1: Scan
 
-1. Call `scan_v2_migration({ filePath: "{file_path}" })`.
-2. Capture the full findings report: v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`), Web Components (`<db-*>`), color tokens (`db-color-*`), icon names.
-3. If the scan returns zero findings → file is already v3. Call `docs_search` to confirm if uncertain. STOP.
+1. Call `scan_generation_2_migration({ filePath: "{file_path}" })`. If the tool is unknown (the resolved `@db-ux/mcp-server` is an older cached install that predates the rename), retry once with the deprecated alias `scan_v2_migration({ filePath: "{file_path}" })`.
+2. Capture the full findings report: Generation 2 CSS classes (`cmp-*`, `elm-*`, `rea-*`), Web Components (`<db-*>`), color tokens (`db-color-*`), icon names.
+3. If the scan returns zero findings → file is already Generation 3. Call `docs_search` to confirm if uncertain. STOP.
 
 ### Phase 2: Load Migration Guides
 
@@ -74,7 +80,7 @@ on_error:
 ### Phase 3: Verify Target Components
 
 1. Call `list_components()`.
-2. For each v2 component being replaced, confirm the v3 equivalent exists.
+2. For each Generation 2 component being replaced, confirm the Generation 3 equivalent exists.
 3. For each confirmed component:
     - Call `get_component_props(componentName)`.
     - Call `get_component_details(componentName)`.
@@ -88,29 +94,29 @@ on_error:
 ### Phase 5: Apply Migration
 
 1. Apply ALL findings from the scan report. Do not skip any.
-2. Replace v2 Web Components with JS framework-native v3 components using verified props.
+2. Replace Generation 2 Web Components with JS framework-native Generation 3 components using verified props.
 3. Remove all `cmp-*`, `elm-*`, `rea-*` CSS classes.
-4. Replace all `db-color-*` tokens with verified v3 equivalents.
+4. Replace all `db-color-*` tokens with verified Generation 3 equivalents.
 5. Use exact icon names from `list_icons()` — never guess.
 6. Use `var(--db-*)` tokens for all colors and spacing — never hardcode.
 
 ### Phase 6: Verify
 
-1. Call `scan_v2_migration({ filePath: "{file_path}" })` again.
+1. Call `scan_generation_2_migration({ filePath: "{file_path}" })` again (or the `scan_v2_migration` alias if that was the one that resolved in Phase 1).
 2. If findings remain → address each individually, then re-scan.
 3. Repeat until the scan returns zero findings.
 
 ## Output Checklist
 
-- [ ] `scan_v2_migration` MCP tool called — full v2 pattern list obtained
+- [ ] `scan_generation_2_migration` MCP tool called — full Generation 2 pattern list obtained
 - [ ] All relevant migration guides loaded via `get_migration_guide` MCP tool
-- [ ] `list_components` MCP tool called — all v3 replacement components confirmed
+- [ ] `list_components` MCP tool called — all Generation 3 replacement components confirmed
 - [ ] `get_component_props` and `get_example_code` MCP tool called for each replacement
 - [ ] `list_icons` MCP tool called if icon names changed
 - [ ] `get_design_tokens` MCP tool called if color tokens changed
 - [ ] All `cmp-*`, `elm-*`, `rea-*` classes removed
-- [ ] All `db-color-*` tokens replaced with v3 equivalents
-- [ ] Re-scan confirms zero remaining v2 patterns
+- [ ] All `db-color-*` tokens replaced with Generation 3 equivalents
+- [ ] Re-scan confirms zero remaining Generation 2 patterns
 
 ## Red Flags & Anti-Rationalizations
 

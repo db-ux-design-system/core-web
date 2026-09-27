@@ -2,7 +2,7 @@
 
 We're [testing our components with playwright](../../foundations/test-table) on the latest browser versions of Google Chrome, Mozilla Firefox and Apple Safari. Since all of these browsers are supposed to be evergreen, we're using some newer browser features that have been added specifically as part of the [interop initiative](https://web.dev/blog/interop-2025), partly as progressive enhancements, but some may not even offer graceful degradation.
 
-This may leave some older browser versions behind. If you need to take care of these older browsers, you may not want to migrate to DB UX Design System v3 right now, but stay with DB UI Core or Elements for a little longer. In particular, the following features we use may be related to an evaluation of your browser strategy:
+This may leave some older browser versions behind. If you need to take care of these older browsers, you may not want to migrate to DB UX Design System – Generation 3 right now, but stay with DB UI Core or Elements for a little longer. In particular, the following features we use may be related to an evaluation of your browser strategy:
 
 ## Stable in evergreen browsers
 
@@ -29,6 +29,7 @@ Popover is loosely depending on Anchor Positioning.
 | [`select[multiple][size="1"]` UI optimization on Desktop browsers](https://chromestatus.com/feature/5412736871825408) (planned)             | 142 (28.10.2025) | tbd              | tbd                                                                                                      |
 | [`aria-actions` HTML attribute](https://chromestatus.com/feature/5161589307867136) (planned)                                                | 151 (28.07.2026) | tbd              | tbd                                                                                                      |
 | [`text-decoration-skip` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-decoration-skip) (planned) | 154 (22.09.2026) | tbd              | tbd                                                                                                      |
+| [`link-parameters` CSS property (planned)                                                                                                   | tbd              | _Nightly_        | tbd                                                                                                      |
 
 ## Without graceful degradation
 
@@ -41,7 +42,7 @@ The following functionality relies on JavaScript for support in browsers that do
 | [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark)                                                                         | 123 (19.03.2024) | 120 (21.11.2023) | 17.5 (13.05.2024)                                                                   |
 | [`style()` container queries for custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries#container_style_queries) | 111 (07.03.2023) | 151 (19.05.2026) | 18 (16.09.2024)                                                                     |
 | [Anchor Positioning](https://caniuse.com/css-anchor-positioning) (planned)                                                                                                     | 125 (14.05.2024) | 147 (13.01.2026) | 26 (15.09.2025)                                                                     |
-| [Invoker Commands](https://caniuse.com/mdn-html_elements_button_commandfor) (planned)                                                                                          | 135 (01.04.2025) | 144 (14.10.2025) | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/) |
+| [Invoker Commands](https://caniuse.com/mdn-html_elements_button_commandfor)                                                                                                    | 135 (01.04.2025) | 144 (14.10.2025) | [26.2 (12.12.2025)](https://webkit.org/blog/17640/webkit-features-for-safari-26-2/) |
 | [`attr()` CSS Values 5 extensions](https://developer.mozilla.org/en-US/docs/Web/CSS/attr) (planned)                                                                            | 133 (04.02.2025) | 155              | 27                                                                                  |
 | [`if()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/if) (planned)                                                                          | 137 (29.05.2025) | tbd              | Technology Preview 249                                                              |
 | [CSS Custom Functions](https://www.bram.us/2025/02/09/css-custom-functions-teaser/) (planned)                                                                                  | 139 (30.07.2025) | tbd              | Technology Preview 249                                                              |

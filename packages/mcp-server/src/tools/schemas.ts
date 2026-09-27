@@ -1,4 +1,4 @@
-import { z } from 'zod/v3';
+import { z } from 'zod';
 
 export const listComponentsSchema = {
 	description:
@@ -8,17 +8,17 @@ export const listComponentsSchema = {
 export const getComponentDetailsSchema = {
 	description:
 		'Returns the list of examples (e.g. Density, Variant) for a component by reading its showcase file.',
-	inputSchema: {
+	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'")
-	}
+	})
 };
 
 export const getComponentPropsSchema = {
 	description:
 		"Returns the raw TypeScript content of a component's model.ts, listing all interfaces and props.",
-	inputSchema: {
+	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'")
-	}
+	})
 };
 
 export const listDesignTokenCategoriesSchema = {
@@ -29,14 +29,14 @@ export const listDesignTokenCategoriesSchema = {
 export const getDesignTokensSchema = {
 	description:
 		'Returns CSS custom properties (--db-*) for a given design token category. For spacing, elevation, and density, returns compiled primitive values (rem, px, box-shadow). For colors, typography, animation, and transitions, returns SCSS variable declarations.',
-	inputSchema: {
+	inputSchema: z.object({
 		category: z
 			.string()
 			.max(100)
 			.describe(
 				"Token category, e.g. 'colors', 'spacing', 'typography', 'elevation', 'density'. Use list_design_token_categories to get available categories."
 			)
-	}
+	})
 };
 
 export const listIconsSchema = {
@@ -46,25 +46,28 @@ export const listIconsSchema = {
 
 export const getExampleCodeSchema = {
 	description:
-		'Returns the generated framework-specific source code for a component example. For Angular, the template is inline inside the @Component decorator within the .ts file.',
-	inputSchema: {
+		'Returns the generated framework-specific source code for a component example. For Angular, the template is inline inside the @Component decorator within the .ts file. Plain HTML has no generated examples - use docs_search with docType "HTML" for that.',
+	inputSchema: z.object({
 		componentName: z.string().max(100).describe("e.g. 'button'"),
 		exampleName: z
 			.string()
 			.max(100)
 			.describe("Readable example name, e.g. 'Show Icon Leading'"),
+		// Narrowed to the frameworks that actually have generated examples
+		// (`ExampleCodeFramework`). Offering 'html' or 'vanilla' here would
+		// advertise a value the handler can only answer with an error.
 		framework: z
-			.enum(['react', 'angular', 'vue', 'web-components', 'html'])
+			.enum(['react', 'angular', 'vue', 'web-components'])
 			.describe(
-				"Target framework: 'react', 'angular', 'vue', 'web-components', or 'html'"
+				"Target framework: 'react', 'angular', 'vue' or 'web-components'"
 			)
-	}
+	})
 };
 
 export const docsSearchSchema = {
 	description:
 		'Searches the DB UX component and foundation documentation (guidelines, Accessibility, framework-specific docs). Only docs from packages/components/ and packages/foundations/docs/ are included. For migration guides, use list_migration_guides and get_migration_guide instead.',
-	inputSchema: {
+	inputSchema: z.object({
 		query: z
 			.string()
 			.max(200)
@@ -89,7 +92,7 @@ export const docsSearchSchema = {
 			.describe(
 				"Optional: The specific doc file to read for a component (e.g., 'Accessibility'). For migration docs, use list_migration_guides / get_migration_guide instead."
 			)
-	}
+	})
 };
 
 export const listMigrationGuidesSchema = {
@@ -100,7 +103,7 @@ export const listMigrationGuidesSchema = {
 export const getMigrationGuideSchema = {
 	description:
 		'Returns the full markdown content of a specific DB UX migration guide. Use this to learn the exact syntax changes needed to refactor legacy "DB UI" code to "DB UX" code.',
-	inputSchema: {
+	inputSchema: z.object({
 		guideName: z
 			.string()
 			.max(100)
@@ -111,32 +114,57 @@ export const getMigrationGuideSchema = {
 			.describe(
 				"Exact guide name as returned by list_migration_guides, e.g. 'color-migration' or 'icon-migration'."
 			)
-	}
+	})
 };
 
 export const verifyMigratedCodeSchema = {
 	description:
-		'IMPORTANT: ALWAYS call this tool after generating or modifying v3 code and BEFORE showing it to the user. ' +
+		'IMPORTANT: ALWAYS call this tool after generating or modifying Generation 3 code and BEFORE showing it to the user. ' +
 		"The tool instructs you to verify the workspace using the project's own scripts (typecheck, lint, build) from package.json. " +
 		'If errors are found, fix the code and call the tool again (max 3 attempts).'
 };
 
-export const scanV2MigrationSchema = {
+// Shared by `scan_generation_2_migration` and its deprecated `scan_v2_migration`
+// alias, so both stay in lockstep. Wrapped in `z.object()` like every other input
+// schema: SDK v2 does not accept a raw shape.
+const scanMigrationInputSchema = z.object({
+	filePath: z
+		.string()
+		.max(500)
+		.describe(
+			'Absolute path or path relative to the workspace root of the file to scan.'
+		)
+});
+
+export const scanGeneration2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
-		'Scans a source file for DB UI v2 patterns (v2 CSS classes (cmp-*, elm-*, rea-*) and v2 Web Components (<db-*), ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*), ' +
 		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
 		'you start generating code — no guessing needed.',
-	inputSchema: {
-		filePath: z
-			.string()
-			.max(500)
-			.describe(
-				'Absolute path or path relative to the workspace root of the file to scan.'
-			)
-	}
+	inputSchema: scanMigrationInputSchema
+};
+
+/**
+ * Deprecated alias for `scan_generation_2_migration`.
+ *
+ * The tool was renamed to spell out the generation. The old `scan_v2_migration`
+ * name stays registered so existing consumer configs (whose `mcp.json` still lists
+ * it) keep working without changes. Prefer `scan_generation_2_migration`; this alias
+ * will be removed in the next major (6.0.0) — tracked in
+ * https://github.com/db-ux-design-system/core-web/pull/8005.
+ */
+export const scanV2MigrationDeprecatedSchema = {
+	description:
+		'DEPRECATED — renamed to `scan_generation_2_migration`. This alias still works but ' +
+		'will be removed in the next major version (6.0.0, tracked in ' +
+		'https://github.com/db-ux-design-system/core-web/pull/8005); call ' +
+		'`scan_generation_2_migration` instead. ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns and returns a JSON ' +
+		'migration report.',
+	inputSchema: scanMigrationInputSchema
 };
 
 export const listVisualsSchema = {
@@ -151,12 +179,12 @@ export const getVisualReferenceSchema = {
 		'Base64-encoded image block. Use this when you need visual context for complex layouts, ' +
 		'z-index reasoning, or verifying visual hierarchies. Call list_visuals first to see ' +
 		'available names.',
-	inputSchema: {
+	inputSchema: z.object({
 		name: z
 			.string()
 			.max(100)
 			.describe(
 				"Name of the visual reference (e.g. 'dashboard', 'form', 'table'). Call list_visuals to see all available names."
 			)
-	}
+	})
 };
