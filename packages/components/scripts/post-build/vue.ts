@@ -25,6 +25,8 @@ export default (tmp?: boolean) => {
 				to: `vue`
 			});
 
+			/* Imports in the Playwright component tests are rewired in
+			 * `copy-files.ts`, where every `*.spec.tsx` of a component is copied. */
 			const replacements: Overwrite[] = [
 				{
 					from: /immediate: true/g,

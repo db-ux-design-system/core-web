@@ -1,5 +1,6 @@
 import {
 	onMount,
+	onUnMount,
 	onUpdate,
 	Slot,
 	useDefaultProps,
@@ -7,13 +8,17 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ClickEvent, GeneralKeyboardEvent } from '../../shared/model';
+import { ClickEvent, GeneralEvent } from '../../shared/model';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
+import { connectCloseButton, syncDialogOpenState } from '../../utils/dialog';
+// BEGIN: dialog ponyfill
 import {
-	cls,
-	getBoolean,
-	getBooleanAsString,
-	isKeyboardEvent
-} from '../../utils';
+	commandForCloseFallback,
+	escapeCloseFallback,
+	markClosedByFallback
+} from '../../utils/dialog/ponyfill';
+import { DocumentKeydownListener } from '../../utils/document-keydown-listener';
+// END: dialog ponyfill
 import { DBDrawerProps, DBDrawerState } from './model';
 
 useMetadata({});
@@ -24,7 +29,15 @@ export default function DBDrawer(props: DBDrawerProps) {
 	const _ref = useRef<HTMLDialogElement | any>(null);
 	const state = useStore<DBDrawerState>({
 		initialized: false,
-		backdropPointerDown: false,
+		_id: undefined,
+		// BEGIN: dialog ponyfill
+		// Id of the document keydown callback (Escape fallback) while open.
+		_documentKeydownListenerCallbackId: undefined,
+		// END: dialog ponyfill
+		resetId: () => {
+			state._id =
+				props.id ?? props.propOverrides?.id ?? 'db-drawer-' + uuid();
+		},
 		isNotModal: () => {
 			return (
 				props.position === 'absolute' ||
@@ -32,80 +45,86 @@ export default function DBDrawer(props: DBDrawerProps) {
 				props.variant === 'inside'
 			);
 		},
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleBackdropPointerDown: (event: any) => {
-			// Remember whether the pointer interaction started on the backdrop
-			// (the DIALOG element itself) so we only close on a real backdrop
-			// click and not when a drag started inside the content and ended
-			// on the backdrop.
-			state.backdropPointerDown =
-				(event?.target as any)?.nodeName === 'DIALOG';
+		handleDialogOpen: () => {
+			syncDialogOpenState(
+				_ref,
+				getBoolean(props.open, 'open'),
+				state.isNotModal()
+			);
 		},
+		// BEGIN: dialog ponyfill
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		handleClose: (
-			event?:
-				| ClickEvent<HTMLButtonElement | HTMLDialogElement>
-				| GeneralKeyboardEvent<HTMLDialogElement>
-				| void
-		) => {
-			if (!event) return;
-
-			if (isKeyboardEvent<HTMLButtonElement | HTMLDialogElement>(event)) {
-				if (event.key === 'Escape') {
-					event.preventDefault();
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-			} else {
-				const isBackdrop =
-					(event.target as any)?.nodeName === 'DIALOG' &&
-					event.type === 'click' &&
-					props.backdrop !== 'none' &&
-					state.backdropPointerDown;
-				const isCloseButton = Boolean(
-					(event.target as HTMLElement)?.closest?.(
-						'[data-action="close"]'
-					)
-				);
-
-				if (isBackdrop || isCloseButton) {
-					if (isCloseButton) {
-						event.stopPropagation();
-					}
-
-					if (props.onClose) {
-						props.onClose(event);
-					}
-				}
-
-				// Reset after handling the click so the next interaction
-				// starts from a clean state.
-				state.backdropPointerDown = false;
+		handleClick: (event: ClickEvent<HTMLDialogElement> | any) => {
+			if (props.onClick) {
+				props.onClick(event);
+			}
+			commandForCloseFallback(event, _ref);
+		},
+		// END: dialog ponyfill
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => {
+			if (props.onCancel) {
+				props.onCancel(event);
 			}
 		},
-		handleDialogOpen: () => {
-			if (!_ref) return;
-
-			const dialogOpen = getBoolean(props.open, 'open');
-			if (dialogOpen && !_ref.open) {
-				if (state.isNotModal()) {
-					_ref.show();
-				} else {
-					_ref.showModal();
-				}
-			} else if (!dialogOpen && _ref.open) {
-				_ref.close();
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		handleClose: (event?: any) => {
+			if (props.onClose) {
+				props.onClose(event);
 			}
 		}
 	});
 
 	onMount(() => {
+		state.resetId();
+		// Wires the close button on mount for Vue/Stencil (lazy watchers); see connectCloseButton.
+		connectCloseButton(_ref);
+		// BEGIN: dialog ponyfill
+		markClosedByFallback(_ref);
+		// A non-modal drawer does not trap focus, so an Escape can be dispatched to
+		// an element outside the drawer and would never reach a listener on the
+		// <dialog> itself. Register the Escape fallback at document scope for the
+		// mounted lifetime; escapeCloseFallback no-ops while the drawer is closed,
+		// modal, or when closedby is supported.
+		state._documentKeydownListenerCallbackId =
+			new DocumentKeydownListener().addCallback((event) =>
+				escapeCloseFallback(event, _ref)
+			);
+		// END: dialog ponyfill
 		state.handleDialogOpen();
 		state.initialized = true;
 	});
 
+	// BEGIN: dialog ponyfill
+	onUnMount(() => {
+		if (state._documentKeydownListenerCallbackId) {
+			// Non-null assertion: the guard above narrows this, but in the Angular
+			// signal output the state getter is re-invoked here and loses the
+			// narrowing, so assert to satisfy removeCallback(id: string).
+			new DocumentKeydownListener().removeCallback(
+				state._documentKeydownListenerCallbackId!
+			);
+			state._documentKeydownListenerCallbackId = undefined;
+		}
+	});
+	// END: dialog ponyfill
+
+	// Re-run on every id-dependency change, unguarded: resetId() falls back to
+	// the generated id when the consumer clears an explicit one, so state._id
+	// never stays pinned to a stale consumer id (which would leave a duplicate
+	// id in the document and let commandfor resolve to the wrong element).
+	onUpdate(() => {
+		state.resetId();
+	}, [props.id, props.propOverrides?.id]);
+
+	// Wire the close button's commandfor once the (possibly generated) id has
+	// landed on the <dialog>. Runs here rather than from the header because the
+	// header mounts before this id is set.
+	onUpdate(() => {
+		connectCloseButton(_ref);
+	}, [state._id]);
+
+	// Observes `open` only: `backdrop` is deliberately excluded (see handleDialogOpen).
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
@@ -130,16 +149,19 @@ export default function DBDrawer(props: DBDrawerProps) {
 
 	return (
 		<dialog
-			id={props.id ?? props.propOverrides?.id}
+			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
 			class="db-drawer"
-			onClick={(event) => state.handleClose(event)}
-			onMouseDown={(event) => state.handleBackdropPointerDown(event)}
-			onKeyDown={(event) => state.handleClose(event)}
+			onCancel={(event: Event) => state.handleCancel(event)}
+			onClose={(event) => state.handleClose(event)}
+			// BEGIN: dialog ponyfill
+			onClick={(event) => state.handleClick(event)}
+			// END: dialog ponyfill
 			data-position={props.position}
 			data-backdrop={props.backdrop}
 			data-direction={props.direction}
-			data-variant={props.variant}>
+			data-variant={props.variant}
+			closedby={props.backdrop === 'none' ? 'closerequest' : 'any'}>
 			<article
 				class={cls('db-drawer-container', props.className)}
 				data-container-size={props.containerSize}
