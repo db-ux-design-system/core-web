@@ -1,6 +1,3 @@
-// TODO: Remove this when https://github.com/BuilderIO/mitosis/pull/1789 is merged
-
-const { getSlotKey } = require('../utils.cjs');
 /**
  *
  * @param node {import('@builder.io/mitosis').MitosisNode}

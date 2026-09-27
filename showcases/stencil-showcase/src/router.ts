@@ -2,8 +2,9 @@ import { renderHomePage } from './home';
 import { NAVIGATION_ITEMS } from './navigation';
 
 /**
- Parse the current hash to extract route information.
- Route format: #/{category_number}/{component_name}?density=...&color=...
+ * Parse the current hash to extract route information.
+ * Route format: #/{category_number}/{component_name}?density=...&color=...
+ * or: #/{category_number}/{parent_component}/{component_name}?density=...&color=...
  */
 function parseHash(hash: string): {
 	category: string | undefined;
@@ -19,6 +20,15 @@ function parseHash(hash: string): {
 	}
 
 	const segments = hashPath.split('/').filter(Boolean);
+
+	if (segments.length >= 3) {
+		// 3-segment path: category/parent/component -> treat full path as the route
+		return {
+			category: segments[0],
+			component: segments.slice(1).join('/'),
+			parameters
+		};
+	}
 
 	if (segments.length >= 2) {
 		return {
@@ -36,25 +46,20 @@ function parseHash(hash: string): {
 }
 
 /**
- Check if a route matches a known navigation item.
+ * Check if a route matches a known navigation item.
  */
 function isKnownRoute(category: string, component: string): boolean {
 	const path = `${category}/${component}`;
 	return NAVIGATION_ITEMS.some(
-		(item) => item.children?.some((child) => child.path === path) ?? false
+		(item) =>
+			item.children?.some(
+				(child) =>
+					child.path === path ||
+					child.children?.some(
+						(grandchild) => grandchild.path === path
+					)
+			) ?? false
 	);
-}
-
-/**
- Escape a string for safe use inside an HTML attribute value.
- */
-function escapeHtmlAttribute(value: string): string {
-	return value
-		.replaceAll('&', '&amp;')
-		.replaceAll('"', '&quot;')
-		.replaceAll("'", '&#x27;')
-		.replaceAll('<', '&lt;')
-		.replaceAll('>', '&gt;');
 }
 
 /**
@@ -67,6 +72,15 @@ function isValidAttributeName(name: string): boolean {
 }
 
 /**
+ Validate that a custom element tag name is safe for HTML interpolation.
+ Custom element names must contain only lowercase letters, digits, and hyphens,
+ and must include at least one hyphen (per the HTML spec for custom elements).
+ */
+function isValidCustomElementName(name: string): boolean {
+	return /^[a-z][\da-z]*(?:-[\da-z]+)+$/.test(name);
+}
+
+/**
  Render a component showcase page by inserting the corresponding
  custom element tag into the main content area.
  */
@@ -75,25 +89,38 @@ function renderShowcasePage(
 	component: string,
 	parameters: URLSearchParams
 ): void {
-	const showcaseTag = `${component}-showcase`;
+	// For nested paths like "shell/control-panel-desktop",
+	// use only the last segment for the showcase tag name
+	const componentName = component.includes('/')
+		? component.split('/').pop()!
+		: component;
+	const showcaseTag = `${componentName}-showcase`;
 
-	// Build attribute string from query params for Playwright compatibility,
-	// sanitizing to prevent XSS from user-controlled URL parameters.
-	const attributes = [...parameters]
-		.filter(([key]) => isValidAttributeName(key))
-		.map(([key, value]) => `${key}="${escapeHtmlAttribute(value)}"`)
-		.join(' ');
+	// Validate the tag name to prevent DOM injection even though
+	// callers gate this behind isKnownRoute().
+	if (!isValidCustomElementName(showcaseTag)) {
+		return;
+	}
 
-	container.innerHTML = attributes
-		? `<${showcaseTag} ${attributes}></${showcaseTag}>`
-		: `<${showcaseTag}></${showcaseTag}>`;
+	// Set attributes from query params for Playwright compatibility,
+	// using safe DOM APIs instead of innerHTML to prevent XSS.
+	const element = document.createElement(showcaseTag);
+	for (const [key, value] of parameters) {
+		if (key !== 'settings' && isValidAttributeName(key)) {
+			element.setAttribute(key, value);
+		}
+	}
+
+	container.replaceChildren(element);
 }
 
 /**
- Update aria-current="page" on the active navigation link.
+ * Update aria-current="page" on the active navigation link.
  */
 function updateActiveNavItem(): void {
-	const navLinks = document.querySelectorAll('db-navigation-item a');
+	const navLinks = document.querySelectorAll(
+		'db-control-panel-navigation-item a, db-navigation-item a'
+	);
 	const currentHash = (globalThis.location.hash || '#/').split('?', 1)[0];
 
 	for (const link of navLinks) {
@@ -108,7 +135,7 @@ function updateActiveNavItem(): void {
 }
 
 /**
- Handle route changes by rendering the appropriate content.
+ * Handle route changes by rendering the appropriate content.
  */
 function handleRoute(): void {
 	const container = document.querySelector<HTMLElement>('main');
@@ -140,30 +167,52 @@ function handleRoute(): void {
 }
 
 /**
- Initialize the hash-based router.
- Listens for hashchange events and handles the initial route on page load.
+ * Initialize the hash-based router.
+ * Listens for hashchange events and handles the initial route on page load.
  */
 export function initRouter(): void {
+	const shell = document.querySelector('db-shell');
 	const page = document.querySelector('db-page');
 
-	const observer = new MutationObserver(() => {
-		if (page?.classList.contains('hydrated')) {
-			observer.disconnect();
-			globalThis.addEventListener('hashchange', handleRoute);
-			handleRoute();
-		}
-	});
-
-	if (page?.classList.contains('hydrated')) {
+	const startRouting = () => {
 		globalThis.addEventListener('hashchange', handleRoute);
 		handleRoute();
+	};
+
+	if (shell) {
+		const observer = new MutationObserver(() => {
+			if (shell?.classList.contains('hydrated')) {
+				observer.disconnect();
+				startRouting();
+			}
+		});
+
+		if (shell?.classList.contains('hydrated')) {
+			startRouting();
+		} else {
+			observer.observe(shell, { attributeFilter: ['class'] });
+		}
 	} else if (page) {
-		observer.observe(page, { attributeFilter: ['class'] });
+		const observer = new MutationObserver(() => {
+			if (page?.classList.contains('hydrated')) {
+				observer.disconnect();
+				startRouting();
+			}
+		});
+
+		if (page?.classList.contains('hydrated')) {
+			startRouting();
+		} else {
+			observer.observe(page, { attributeFilter: ['class'] });
+		}
+	} else {
+		// Fallback: start routing immediately
+		startRouting();
 	}
 }
 
 /**
- Navigate programmatically to a given hash.
+ * Navigate programmatically to a given hash.
  */
 export function navigateTo(hash: string): void {
 	globalThis.location.hash = hash;

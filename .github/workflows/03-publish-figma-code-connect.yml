@@ -10,7 +10,7 @@ on:
 jobs:
   publish-figma-code-connect:
     name: Publish to figma code-connect
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:

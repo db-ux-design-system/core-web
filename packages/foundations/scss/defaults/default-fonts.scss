@@ -8,16 +8,7 @@ code {
 	@extend %db-overwrite-font-size-sm;
 }
 
-$headlines: (
-	"h1": "xl",
-	"h2": "lg",
-	"h3": "md",
-	"h4": "sm",
-	"h5": "xs",
-	"h6": "2xs"
-);
-
-@each $headline, $size in $headlines {
+@each $headline, $size in fonts.$headlines {
 	#{string.unquote($headline)} {
 		/* stylelint-disable custom-property-pattern */
 		font: var(--db-type-headline-#{string.unquote($size)});

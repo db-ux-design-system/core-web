@@ -21,9 +21,11 @@ export default function NavigationItemWrap() {
 					width: '200px'
 				}}>
 				<DBNavigationItem
+					text="This is a very long text that is broken into multiple lines."
 					subNavigation={
 						<>
 							<DBNavigationItem
+								text="Sub-Navi-Item 1"
 								subNavigation={
 									<>
 										<DBNavigationItem>
@@ -33,9 +35,7 @@ export default function NavigationItemWrap() {
 											<a href="#">Sub-Sub-Navi-Item 2</a>
 										</DBNavigationItem>
 									</>
-								}>
-								Sub-Navi-Item 1
-							</DBNavigationItem>
+								}></DBNavigationItem>
 							<DBNavigationItem>
 								<a href="#">Sub-Navi-Item 2</a>
 							</DBNavigationItem>
@@ -43,9 +43,7 @@ export default function NavigationItemWrap() {
 					}
 					icon="x_placeholder"
 					showIcon={true}
-					wrap={true}>
-					This is a very long text that is broken into multiple lines.
-				</DBNavigationItem>
+					wrap={true}></DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

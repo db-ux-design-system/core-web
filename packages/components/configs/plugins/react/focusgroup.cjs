@@ -30,7 +30,7 @@ const AUGMENTATION = `
 declare module "react" {
 	interface HTMLAttributes<T> {
 		focusgroup?: string | undefined;
-		focusgroupstart?: string | undefined;
+		focusgroupstart?: boolean | undefined;
 	}
 }
 `;

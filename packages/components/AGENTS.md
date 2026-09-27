@@ -55,6 +55,151 @@ scripts/
 └── post-build/                     # ⚠️ DEPRECATED — see note below
 ```
 
+## Heading component family
+
+`src/components/heading/` contains six native Mitosis components,
+`heading-h1.lite.tsx` through `heading-h6.lite.tsx`, plus
+`custom-heading.lite.tsx`. They form one documented component family with
+shared models, styles, examples, tests, and showcase. The six native components
+have fixed matching heading roots. All Heading components must remain free of
+runtime tag switching and named heading slots.
+
+### One folder, seven registry entries
+
+Every other component owns its folder, which is why `scripts/post-build/` can
+resolve them as `components/${name}/${name}.ext`. The Heading family shares a
+single folder, so that lookup misses it. Two optional fields on the registry
+entry bridge the gap and are set for all seven Heading components in
+`scripts/post-build/components.ts`:
+
+- **`folder`** — the shared `heading` directory.
+- **`spec`** — the shared `heading.spec.tsx`, declared on exactly one entry
+  because one spec covers all seven components.
+
+With those, Heading uses the same pipeline as every other component: the React
+`forwardRef` and root props, the Angular and Stencil barrel rewrite, and the spec
+copy including the `// VUE:` marker stripping in `copy-files.ts`. Do not
+reintroduce Heading-specific plugins for any of that.
+
+The one genuine difference is the Vue class alias, declared as an overwrite on
+each entry:
+
+```ts
+overwrites: {
+	vue: [{ from: "props.class", to: "props.className ?? props.class" }];
+}
+```
+
+It runs after the built-in `className` to `props.class` rewrite and is required
+because the shared spec runs against both the React and the Vue output and
+asserts the React `className` API. Removing it fails six
+`forwards native attributes` tests plus `composes class` on Vue.
+
+### Component names with a digit
+
+`DBHeadingH1` is the first component whose name ends in a digit, which two
+generators had to learn:
+
+- `configs/plugins/attribute-passing/index.cjs` derives the custom-element tag
+  from the component name. Without the digit boundary in its `dashCase` it
+  produces `db-heading-h1` while the element is `db-heading-h-1`, so the
+  MutationObserver never finds the host and attribute passing silently stops
+  working for the six native Heading components.
+- `configs/plugins/figma/index.cjs` injects the generated prop fragments after the
+  opening tag. Without digits in its tag regexes it matches `<DBHeadingH` and
+  inserts them in the wrong place, which breaks all three Code Connect snapshots.
+
+### `DBCustomHeading` is a styling wrapper, not a heading
+
+`DBCustomHeading` follows the same contract as every other `DBCustom*` component
+in this package: it mirrors the styling API of its regular counterpart and lets
+the consumer bring the semantics. Compare `DBCustomButton`, which mirrors
+`DBButton`'s styling props (`variant`, `size`, `icon*`, `width`, `noText`, `wrap`)
+and drops only the ones belonging to the native `<button>` (`type`, `disabled`,
+`form`, `name`, `value`, `command*`, click events, `text`).
+
+Applied to Heading: `size`, `fontWeight`, `paragraphSpacing` and `alignment` are
+styling and therefore live on the wrapper; `id` and everything else native lives
+on the heading the consumer writes.
+
+```html
+<div class="db-custom-heading" data-size="xl">
+	<h2>Installation</h2>
+	<button type="button">More options</button>
+</div>
+```
+
+It must **not** set `role="heading"` or `aria-level`. An earlier iteration did,
+which forced interactive sibling content into the heading's accessible name
+(`"Installation More options"`) and required per-target generator transforms
+to keep the derived semantics from being overridden. Keeping the heading native
+removes both problems.
+
+#### The default content is the heading, the slots are its siblings
+
+`startSlot` and `endSlot` (the shared `StartSlotProps` and `EndSlotProps`, as used
+by `DBDrawerHeader` and `DBTabItem`) render before and after the default content.
+That split is what keeps the accessible name clean: the same content nested
+_inside_ the heading would be part of its name and would hide an interactive
+control behind it.
+
+The slots are deliberately **not** wrapped in an element. The wrapper is already a
+flex row with `gap`, so projected content becomes a flex item directly and an
+unused slot contributes no box and therefore no gap. A wrapper element would also
+behave inconsistently against the `display: contents` custom-element hosts in the
+Angular and Stencil output.
+
+The CSS-only variant has no slot concept — there, plain DOM order is the
+equivalent, which is why `heading.scss` needs nothing for the slots.
+
+`custom-heading-single-heading` in `@db-ux/core-eslint-plugin` counts the slot
+content too, because it renders inside the wrapper. In React that content is a
+JSX attribute rather than a child, so the rule inspects the `startSlot` and
+`endSlot` attribute values in addition to the child walk; Vue and Angular project
+slot content as a real child and are covered by the walk alone.
+
+Three implementation details in `heading.scss` that should not be traded away:
+
+- **The child selectors exclude `.db-heading`.** A nested Heading component keeps
+  its own typography instead of fighting the wrapper's attributes, so the two
+  models never produce an ambiguous result.
+- **Only the headline font shorthand lands on the wrapper.** The wrapper needs
+  the matching line height so `1lh` for `data-paragraph-spacing` resolves from
+  the heading typography rather than the surrounding body text. Use
+  `fonts.set-headline-size` there; the full `%db-overwrite-headline-size-*`
+  placeholder additionally sets icon custom properties and must stay on the
+  nested heading, otherwise those properties leak into sibling slot components.
+  The nested heading also needs the full override because user-agent styles for
+  `h1`-`h6` block font inheritance. Without an explicit `data-size`, the wrapper
+  picks the level default via `:has(:where(h1))` etc.
+- **`data-alignment` sets `justify-content` on the wrapper and repeats
+  `text-align` on the child.** `%heading-base` sets an explicit
+  `text-align: start` on the child, which would otherwise block inheritance.
+
+The level-to-size mapping comes from `fonts.$headlines` in
+`@db-ux/core-foundations`, shared with the foundations'
+`defaults/default-fonts.scss` so the two cannot drift apart.
+
+### `useMetadata({ figma })` props must not be a chained identifier alias
+
+The `useMetadata` hook is parsed with JSON5, and the resolver does not follow a
+chained identifier reference. `const customHeadingProps = headingProps;` makes
+the whole `figma` metadata unresolvable, which **silently** skips the prop
+injection and leaves literal `props.size` in the generated Code Connect snippet
+instead of the selected Figma value. Use a spread (`{ ...headingProps }`) to
+reuse a map, and member access (`headingProps.alignment`) fails outright with
+`JSON5: invalid character`. After changing a `*.figma.ts` map, always check the
+regenerated snapshot for `props.` occurrences.
+
+### Props types must intersect the shared base directly
+
+Per-component props must be declared as
+`DBHeadingBaseDefaultProps & GlobalProps & AlignmentProps`, not via a bare alias
+hop such as `DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps`. The
+custom-elements analyzer stops resolving at the second alias hop, which publishes
+every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
+the real union and JSDoc.
+
 ## Examples (`src/components/**/examples/`)
 
 Examples are the **single source of truth** for component usage. They are used to generate:
@@ -70,12 +215,39 @@ When adding or modifying examples:
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Do NOT manually edit showcase files** — they are generated
 
+## Component tests (`src/components/**/*.spec.tsx`)
+
+One spec per component (or per component family, declared via `spec` in `components.ts`). `copy-files.ts` copies it into the React and Vue outputs only — Angular and Stencil have no Playwright component tests, they are covered by the showcase e2e suite. The `// VUE:` marker activates a line for Vue only, since it is stripped for that target.
+
+**Everything a spec needs belongs in the spec.** Do not add test-only components (harnesses, fixtures) under `src/components/`: the main Mitosis config compiles `src/**/*.{lite.tsx,ts}` for all four targets, so such a file ships in every framework output — in Stencil it even becomes a registered custom element in `custom-elements.json` and gets its own lazy-load chunk. Mount the component under test directly, as the other specs do, and re-mount with different props when a prop change is part of the scenario (see `custom-select.spec.tsx`).
+
+**`selectOption` cannot test what happens between `input` and `change`.** It dispatches both events in the same task, and React flushes the re-render triggered by the first handler only after the task — so a controlled `select` looks fine even when the internal state change during `input` discards the selection. That is how [#7554](https://github.com/db-ux-design-system/core-web/issues/7554) survived the suite. Drive the sequence explicitly and let the pending render land, then read the DOM inside the same `evaluate` — the assertion must happen while the DOM state is still the interesting one:
+
+```ts
+const valueAfterInput = await select.evaluate(
+	async (element: HTMLSelectElement) => {
+		element.value = "test2";
+		element.dispatchEvent(new Event("input", { bubbles: true }));
+		await Promise.resolve();
+		return element.value;
+	}
+);
+```
+
+Use a microtask, not `requestAnimationFrame` or a timer: one microtask is enough for the re-render to commit, while anything longer also lets deferred work (`delay(fn, 0)`) run and makes the test race with it.
+
+The same caveat applies in reverse: a direct `element.value = …` assignment on a **text** input or textarea does not reach React, because React's change plugin consults its value tracker for those elements and sees no change. Use `fill()` or `pressSequentially()` there — they go through the native setter. Only `select` and `input[type=file]` route `onChange` to the native `change` event and therefore ignore the tracker.
+
+**Always verify a regression test fails without the fix, repeatedly.** Regenerate the output with the fix reverted and run the test a few times (`--repeat-each=5`) on both states. A test that only sometimes fails without the fix is a flaky test, not a regression test.
+
 ## Figma Code Connect (`src/components/**/figma/`)
 
 Each component can have a `figma/` folder with Figma Code Connect definitions. These are generated into `figma-code-connect/` via `mitosis.figma.config.cjs` and the `configs/plugins/figma/` plugin.
 
 - Edit only the source files in `src/components/[name]/figma/`
 - Never edit files in `figma-code-connect/` directly — they are generated
+- **One code component per `*.figma.lite.tsx` file.** The plugin injects every prop fragment into the first opening tag, so a template that renders several components (e.g. via `Show`) would emit all branches verbatim and hand designers a snippet they have to edit by hand. When one Figma component set maps to a different code component per variant, add one file per variant group with its own `useMetadata({ figma: … })` and its own `FigmaCodeConnect` export — see `heading/figma/` (seven sets) and `tag/figma/` (three).
+- Enum props may map to numbers (`{ '1': 1 }`). Numeric and boolean maps are emitted as bound values (`prop={1}` / `[prop]="1"` / `:prop="1"`), string maps as attributes.
 
 ## ESM Import Extensions (`configs/plugins/esm-extensions.cjs`)
 
@@ -108,6 +280,15 @@ Stories are generated from the `examples/` folder via the `configs/plugins/story
 - `configs/plugins/storybook/get-stories.cjs` — builds individual story exports
 - `configs/plugins/storybook/storybook-plugin.cjs` — main Mitosis plugin entry
 
+### Sidebar category vs. reference component
+
+The sidebar category (`title: 'Components/<category>/<storybookTitle>'`) and the reference component are separate values — do not couple them.
+
+- **Category** defaults to the component folder name (`heading` -> `DBHeading`) and is overridable per example via `storybookCategory`. The default keeps level, size or variant components of one family in a single category (`DBHeadingH1`–`DBHeadingH6` all appear under `Components/DBHeading`). Override it when a folder also ships a component that is not a variant of that family — `heading/examples/slots.example.lite.tsx` sets `storybookCategory: 'DBCustomHeading'`.
+- **Reference component** is `storybookComponentName`, defaulting to the same folder-derived name. It drives `component:`, the `@components` import and the `Props` type, so it must be an actual export. `heading` has no `DBHeading` export, which is why every heading example names one explicitly.
+
+`storybookComponentNames` picks the component per story inside one example file — see `docs/creating-examples.md`.
+
 ## Model Convention: Always keep `DefaultProps` and `DefaultState`
 
 Every component's `model.ts` **must** export a `DB[ComponentName]DefaultProps` and `DB[ComponentName]DefaultState` type, even if they are empty (`{}`). This ensures consistency across all components and makes it straightforward to add default values later without restructuring the type hierarchy.
@@ -123,6 +304,25 @@ export type DBDrawerFooterState = DBDrawerFooterDefaultState & GlobalState;
 
 During code review, **do not flag empty `DefaultProps`/`DefaultState` types as dead code** — they are intentional for alignment with the component architecture.
 
+## Convention: Generate all element ids in one place
+
+When a component renders multiple elements that need related ids (e.g. a root id, a label id, a progress/message id), **derive them all in a single `resetIds` state method** rather than building ids inline with template strings in the JSX. Store each id in its own `_*Id` state field and reference the state field in the template.
+
+```ts
+resetIds: () => {
+	const mId = props.id || "loading-indicator-" + uuid();
+	state._id = mId;
+	state._labelId = mId + DEFAULT_LABEL_ID_SUFFIX;
+	state._progressId = mId + DEFAULT_PROGRESS_ID_SUFFIX;
+};
+```
+
+- Base every id on the same root id and append the shared suffix constants from `src/shared/constants.ts` (`DEFAULT_LABEL_ID_SUFFIX`, `DEFAULT_PROGRESS_ID_SUFFIX`, etc.).
+- Call `resetIds()` from `onMount`, and again from an `onUpdate` keyed on `props.id` so consumer-provided ids stay in sync.
+- Keep the consumer-provided `id` on the element carrying the `_ref` (the root), matching every other component.
+
+This keeps id logic in one place, avoids drift between the `id` and its `htmlFor`/`aria-*` references, and sidesteps a Mitosis pitfall where inline template-string ids in JSX attributes can generate invalid output. See `input.lite.tsx` and `loading-indicator.lite.tsx` for the pattern.
+
 ## Adding or Modifying Components
 
 1. Use `pnpm run generate:component` to scaffold — never create component folders manually
@@ -134,7 +334,7 @@ During code review, **do not flag empty `DefaultProps`/`DefaultState` types as d
 7. Edit the `.scss` for style changes
 8. Add or update examples in `src/components/[name]/examples/`
 9. Run `pnpm run build` to verify
-10. Add a changeset for `@db-ux/core-components` (only if the changes also affect styling: SCSS/CSS) and all framework output packages
+10. Add a changeset for `@db-ux/core-components` **and** all four framework output packages — always all five, whether SCSS, `model.ts` or the template changed (see Changeset Rules below)
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
@@ -169,8 +369,50 @@ in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
 Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constraints:
 
 - **No `switch` statements with block-scoped variables**: Mitosis cannot parse `case` blocks that use `const`/`let` inside `{ }`. Use `if/else if` chains instead.
-- **No apostrophes or special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) will break the generated code because prettier interprets it as an unterminated string. Avoid `'` in comments.
+- **No apostrophes, backticks or other special characters in comments**: Comments are inlined into a single line during generation. An apostrophe (e.g. `control-panel-mobile's`) or a backtick (e.g. a comment referencing `` `status` ``) breaks the generated code because prettier interprets it as an unterminated string/template literal — the symptom is a bogus `const [if, setIf] = useState(...)` line in the generated output that fails to parse. Avoid `'`, `` ` `` and similar quoting characters in comments; prefer plain ASCII and double quotes (e.g. `"status"`).
+- **Never name a local after a state method**: for React, Mitosis turns every state method into a plain function in the component scope, so `const isDataDriven = state.isDataDriven()` becomes `const isDataDriven = isDataDriven()` — the local shadows the function and throws a `ReferenceError` from its own initializer. The other targets keep a `this.` prefix and stay correct, so this only breaks React at runtime and no build catches it. Name the local something else.
+- **No multi-line `//` comments between statements inside a state method**: the same single-line inlining collapses a multi-line `//` block onto one line, and every statement that followed the comment ends up commented out with it — which silently drops closing braces and breaks generation with a misleading `'}' expected` at the end of the file. A `//` comment is safe on its own line before a method or before a `return`, but between two statements in a store method use a `/* */` block, which survives the collapse intact. This bit the `DBPagination` DOM-sync methods.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Never generate a fallback `id` (or any `uuid()`) at render time**: initializing state with a random value in the `useStore({...})` literal (e.g. `_id: 'db-dialog-' + uuid()`) runs once on the server and again during hydration, producing different ids each time. React then warns about the mismatch and may keep stale server markup, and any `aria-labelledby`/`commandfor` pointing at that id breaks. Initialize the id state to `undefined` in the store and assign the fallback in `onMount` (client-only) via a small state method, mirroring `input`/`select`/`tooltip` and `DBDialogHeader`:
+
+    ```tsx
+    const state = useStore({
+    	_id: undefined,
+    	resetId: () => {
+    		state._id = props.id ?? props.propOverrides?.id ?? "db-x-" + uuid();
+    	}
+    });
+    onMount(() => state.resetId());
+    // Re-run on every id-dependency change, UNGUARDED: resetId() falls back to
+    // the generated id when the consumer clears an explicit one, so state._id is
+    // never pinned to a stale consumer id (a guard like `if (props.id ?? ...)`
+    // would skip the reset on clear and leave a duplicate id in the document).
+    onUpdate(() => {
+    	state.resetId();
+    }, [props.id, props.propOverrides?.id]);
+    ```
+
+    The render uses `id={props.id ?? props.propOverrides?.id ?? state._id}`, so an id-less element renders no `id` on the server and gains the stable fallback after mount. Note: keep the id state member initialized in the store literal (`_id: undefined`) — a member only assigned later, never declared, is not emitted as state in the Vue output.
+
+- **Narrowing an optional prop does not survive the Angular signal transform**: Angular rewrites every prop access into a signal call, so guarding `props.foo` and then using it are two separate `this.foo()` calls and TypeScript drops the narrowing. This fails the Angular build with `TS2532: Object is possibly 'undefined'` while React, Vue and Stencil compile — so it only shows up in `build-outputs`. Assign the prop to a local first.
+
+    ```ts
+    // ✅ Correct — the local keeps the narrowing
+    const pattern = props.hrefPattern;
+    if (!pattern) {
+    	return undefined;
+    }
+    return pattern.replaceAll("{page}", String(page));
+
+    // ❌ Wrong — becomes two this.hrefPattern() calls in Angular
+    if (!props.hrefPattern) {
+    	return undefined;
+    }
+    return props.hrefPattern.replaceAll("{page}", String(page));
+    ```
+
+    A `??` fallback (`props.pageLabel ?? "default"`) is unaffected, because it needs no narrowing.
+
 - **Null-check refs inside async callbacks**: `delay()` timers, observer callbacks (`IntersectionObserver`, `ResizeObserver`), and listener callbacks (`DocumentClickListener`, `DocumentScrollListener`) can fire after a component unmounts, when refs are already null. Always re-check the ref inside the async callback body before accessing it. This is the only portable pattern — utility wrappers don't work reliably because Mitosis transforms ref names (e.g. `detailsRef` → `detailsRef.current` in React, `this.detailsRef()?.nativeElement` in Angular) and those transformations only apply to direct ref references in component code.
 
     ```tsx
@@ -196,26 +438,234 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     }
     ```
 
+## Comments: put the "why" as TSDoc on the symbol, not as a block above the call site
+
+Long multi-line comments anywhere in a `.lite.tsx` — above a `useStore` method,
+a lifecycle hook (`onMount`, `onUpdate`), a ref or handler, or in the JSX/template
+itself — inflate the component and make the actual logic hard to scan. When a
+comment explains **what a symbol does or why it exists**, move it to a **TSDoc
+block on that symbol** — the `useStore` method, or its declaration in `model.ts`
+(including the shared `DialogDrawerDefaultState` in `src/shared/model.ts`) — so a
+reader hovers the symbol or jumps to the model for the detail, and the component
+body stays readable. Shared state methods (`handleDialogOpen`, `handleClick`, …)
+are declared once in `src/shared/model.ts`, so one TSDoc there documents every
+component that extends the type — do not repeat it inline in each `.lite.tsx`.
+
+Attribute the comment to what it actually describes. A note about **why an
+effect's dependency array is what it is** belongs at the `onUpdate` call site
+(that decision is local to the effect), not on the method the effect calls — but
+keep it to one line and point to the method's TSDoc for the reasoning. Example
+(see `dialog.lite.tsx` / `drawer.lite.tsx`):
+
+```tsx
+// Observes `open` only: `backdrop` is deliberately excluded (see handleDialogOpen).
+onUpdate(() => {
+	state.handleDialogOpen();
+}, [props.open]);
+```
+
+The full rationale (modality is fixed at open time, switching it would flicker
+and refire events) lives in the `handleDialogOpen` TSDoc. This does not override
+the "preserve comments during refactoring" rule in the root `AGENTS.md`: relocate
+the intent to TSDoc, never silently drop it.
+
+## Responsive layouts belong in the DOM, not in a resize handler
+
+When a component has to render fewer items on narrow viewports, render **all**
+layouts into the DOM at once, tag each item with the layout it belongs to, and
+let CSS decide which ones are shown. Do not measure widths in `onUpdate` and do
+not reach for `ResizeObserver` or `matchMedia` — see
+[Shift-left: HTML → CSS → JS](../../docs/shift-left-web-development.md).
+
+`DBPagination` is the reference. Its `<li>` elements carry
+`data-pagination-item` (`page`, `sibling`) and `pagination.scss` toggles `display`
+per layout inside `screen-sizes.screen("sm", "max")`. What made it work:
+
+- **Give each layout its own list, and make one a subset of the other.**
+  `getPages` produces the wide list and `getCollapsedPages` the narrow one. They
+  are deliberately **not** the same function with a smaller `siblingCount`: the
+  wide algorithm keeps the number of rendered items constant by shifting its
+  window towards the opposite border, which puts three full-width pages next to
+  each other as soon as the current page sits at one end (`1 ... 9998 9999
+10000`). Width is the only reason the collapsed layout exists, so it renders one
+  page at each end, the current page, and nothing else - it ignores `boundaryCount`
+  above one for the same reason it ignores `siblingCount`. What both must share is
+  the set of invariants — ascending unique pages, the current page always present,
+  the pages a layout pins actually rendered, no ellipsis standing in for a single
+  page — and the collapsed pages must stay a subset of the wide ones, because that
+  is what lets one list of items carry both.
+  Assert those invariants for both layouts in the spec instead of deriving one
+  from the other.
+- **A gap belongs to a layout, not to the list.** Removing items opens gaps that
+  the other layout does not have, so a separator cannot be one shared element. Do
+  not emit an element per gap either: draw the gap as a pseudo element on the item
+  that borders it and prefix every marker with the layout it belongs to
+  (`data-ellipsis="wide-before collapsed-before"`, matched with `~=`). A marker then
+  inherits the visibility of its carrier, which is what makes it switch with the
+  layout, and `content: "..." / ""` keeps it out of the accessibility tree without an
+  `aria-hidden` element. One token per side rather than a value meaning both, so each
+  side stays a single selector.
+- **Hide with `display: none`.** Anything weaker keeps the hidden items in the
+  tab order and in the accessibility tree. Note that a focused element that gets
+  hidden loses focus to the document; that is the browser doing its job and
+  restoring it would need JavaScript.
+- **Let a step control activate the item it points at.** `DBPagination` gives its
+  previous and next buttons no page logic of their own: they look up the `<li>` with
+  the neighbouring `data-page` and click the control inside it, which bubbles back to
+  the one delegated handler on the list. That is what reaches a child a consumer
+  composed — reporting the page directly would leave a router link untouched and the
+  router of the consumer out of the loop. Two conditions come with it: fall back to
+  reporting the page when the neighbour is not rendered (`siblingCount: 0`, or a
+  composed list that omits it), and only do this where the control is a button. An
+  anchor with a real `href` has to stay one, or it loses `rel`, middle click and the
+  ability to work without JavaScript.
+- **Style a sub-component from the parent scope where the two are inseparable.** A
+  `DBPaginationItem` never appears outside a `.db-pagination`, so its size is one
+  `data-size` on the `<nav>` and the item is styled as a descendant of it - no
+  per-item prop that would only forward the same value. Two things to check before
+  doing this elsewhere: the parent has to be a documented requirement rather than a
+  convention, and the extra ancestor raises the specificity of every rule it scopes,
+  so any rule that used to win on source order alone has to be scoped along with it.
+  In `pagination-item.scss` that applies to the `[data-icon]` padding reset for the
+  arrows.
+- **Keep the sub-component a wrapper and drive its state from the parent through the
+  DOM.** `DBPaginationItem` renders only its `<li>` and, from `text`, the button
+  inside it; everything a page needs - `data-page`, `data-pagination-item`,
+  `data-ellipsis`, `data-variant`, `aria-current` - `DBPagination` writes onto the
+  `<li>` and its control in a `syncItems` pass, the same way `DBTabs` drives its tab
+  buttons. That is what lets a consumer compose a router link without setting any of
+  it, and it keeps the item model at `text` plus `children`. Three things this needs:
+  run the sync in `onMount` and in a dependency-less `onUpdate` (a dependency array
+  keyed on the props did not re-fire reliably across the targets, and the sync is a
+  cheap attribute walk); set up the `MutationObserver` **only** in composition, where
+  the consumer owns the child list - in the data-driven API the `For` re-renders the
+  items and an observer would only race the `onUpdate` sync; and split the
+  per-element DOM writes into their own state method (`applyItem`), because Mitosis
+  mistranslates a store method that nests loops around the DOM calls. The cost is a
+  first-render frame before the sync runs, where `data-variant`/`aria-current` are not
+  yet set - acceptable for this component, but weigh it before reaching for the
+  pattern on something server-rendered and critical.
+
+Two consequences for the specs: `DEFAULT_VIEWPORT` from `src/shared/constants.ts`
+is 390px wide, so a spec that does not switch viewports tests the **narrow**
+layout — use `DESKTOP_VIEWPORT` (or `TESTING_VIEWPORTS`) for the wide one. And
+`getByRole` does not match elements hidden with `display: none`, because they are
+gone from the accessibility tree; use a DOM locator when the assertion is about
+the item still being in the markup.
+
 ## Shared Styles (`src/styles/internal/`)
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File                      | What it covers                                          |
-| ------------------------- | ------------------------------------------------------- |
-| `_button-components.scss` | Ghost button appearance, button-like interactive states |
-| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas) |
-| `_link-components.scss`   | Link-like appearance and states                         |
-| `_tag-components.scss`    | Tag/badge/chip shared styles                            |
-| `_stack-components.scss`  | Stack/layout shared styles                              |
-| `_select-components.scss` | Select/dropdown shared styles                           |
-| `_popover-component.scss` | Popover/tooltip positioning and appearance              |
-| `_icon-passing.scss`      | Icon passing via data attributes                        |
-| `_custom-elements.scss`   | Custom element host/shadow styles                       |
-| `_component.scss`         | Base component resets and defaults                      |
-| `_indicator.scss`         | Indicator animation                                     |
-| `_scrollbar.scss`         | Scrollbar styling                                       |
+| File                      | What it covers                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| `_button-components.scss` | Ghost button appearance, button-like interactive states                        |
+| `_dialog-components.scss` | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
+| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`               |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                        |
+| `_link-components.scss`   | Link-like appearance and states                                                |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                                                   |
+| `_stack-components.scss`  | Stack/layout shared styles                                                     |
+| `_select-components.scss` | Select/dropdown shared styles                                                  |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance                                     |
+| `_icon-passing.scss`      | Icon passing via data attributes                                               |
+| `_custom-elements.scss`   | Custom element host/shadow styles                                              |
+| `_component.scss`         | Base component resets and defaults                                             |
+| `_indicator.scss`         | Indicator animation                                                            |
+| `_scrollbar.scss`         | Scrollbar styling                                                              |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+## Shared Utils (`src/utils/dialog/`)
+
+When related utils grow beyond a single file, group them in a subfolder with an `index.ts` barrel. Name sibling files without the folder prefix to keep import paths clean (e.g. `utils/dialog/ponyfill` instead of `utils/dialog/dialog-ponyfill`). The `utils/dialog/` folder holds the dialog/drawer shared logic:
+
+| File          | What it covers                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                                                                  |
+| `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `commandForCloseFallback`, `escapeCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
+
+### `DBDialog` / `DBDrawer` modality is an open-time decision (do not make `backdrop` reactive)
+
+The `onUpdate` effect in `dialog.lite.tsx` (and the drawer equivalent) intentionally observes **`open` only**, not `backdrop`. Native `<dialog>` fixes its modality when it opens (`showModal()` vs `show()`) and offers no way to switch it while open; simulating a switch would require `close()` + reopen, which flickers, resets focus and fires an extra `close`/`cancel`. So changing `backdrop` on an **open** dialog updates only its appearance, and the modality applied at open time stays until the consumer closes and reopens.
+
+During code review, **do not flag the missing `backdrop` dependency as a bug** — a site owner who wants to change modality should close and reopen the dialog themselves.
+
+### `closedby` ponyfill covers three dismiss paths (backdrop, request-close button, Escape)
+
+A non-modal dialog/drawer (`backdrop="none"`, opened via `show()`) sets `closedby="closerequest"`, which a browser without `closedby` support silently ignores. Native modal dialogs (`showModal()`) still dismiss on Escape, but non-modal ones do **not** — so all three light-dismiss paths need a fallback in unsupported browsers:
+
+- **Backdrop click** — CSS (`_dialog-ponyfill.scss`), gated by `data-closedby="not-supported"`. Intentionally excludes `backdrop="none"` (there is no backdrop to click).
+- **Header request-close button** — `commandForCloseFallback` on the dialog `click` handler.
+- **Escape key** — `escapeCloseFallback` on the dialog/drawer `keydown` handler. Guards on `!supportsClosedBy()` **and** `!dialog.matches(':modal')` so modal dialogs keep their native Escape behavior and supporting browsers stay untouched.
+
+During code review, **do not flag the non-modal Escape path as missing** — `escapeCloseFallback` handles it.
+
+#### `commandfor` targets the native `<dialog>`, not the custom-element host (Angular/Stencil)
+
+In the Angular and Stencil outputs the component renders a `display: contents` custom-element host (`<db-dialog>`) around the native `<dialog>`. The consumer `id` prop stays on the **host**, so a consumer must point `commandfor` at the **inner** `<dialog>` id via `propOverrides.id` (`[propOverrides]="{ id: 'my-dialog' }"`), not the host `id` — otherwise `getElementById`/`commandfor` resolves to the host (which precedes the dialog and is not an `HTMLDialogElement`), and the native command is a no-op. The `id` prop is for referencing the component from outside (CSS, `querySelector`). React and Vue have no host, so `id` on the `<dialog>` works directly there. This is documented in `dialog/docs/Angular.md`.
+
+Because a resolved `commandfor` target can therefore be a non-dialog host, `commandForCloseFallback` guards with a `typeof target.requestClose === 'function'` check before treating it as a dialog: it never calls `requestClose()` on the host (would throw) and instead closes the surrounding dialog. During code review, **keep that guard** — dropping it reintroduces the crash. The proper per-output id fix (keeping the consumer `id` off the inner `<dialog>`) is a breaking change deferred to an exclusive branch.
+
+The dialog and drawer differ here, on purpose:
+
+- `DBDialogHeader` / `DBDialogFooter` render their wrappers as neutral `<div>`, **not** `<header>` / `<footer>`. The dialog has no sectioning-content wrapper: its slots sit directly in the `<dialog>`, which is a sectioning _root_ (it scopes the heading outline) but is **not** sectioning content, so a `<header>`/`<footer>` there would still expose a stray page-level `banner` / `contentinfo` landmark. During code review, **do not suggest restoring `<header>`/`<footer>` for the dialog** — the nested `<h2>` carries the heading semantics.
+- `DBDrawerHeader` / `DBDrawerFooter` **do** use `<header>` / `<footer>`. The drawer wraps its slots in an `<article>` (`.db-drawer-container`), which **is** sectioning content, so per the HTML spec the header/footer are scoped to the article and get no landmark role — the semantically correct choice. Keep them; do not change them to `<div>` unless the `<article>` wrapper is also removed.
+
+### Want the look of a button but not its box? Extend the placeholders
+
+`set-basic-button` bundles two things: the appearance (border, radius, focus
+indicator, typography, variant colours) and the box (`padding`,
+`inline-size: fit-content`, `min-block-size`). Take it whole and you get both — which
+is right for `DBButton` and `DBCustomButton`, and wrong for a component whose box is
+its own, like a square pagination control.
+
+Do **not** nest `DBButton` to borrow the appearance, and do not include the mixin with
+the control as a child selector either. Both leave the shared rules in charge of the
+box, and they outrank you:
+
+```text
+.db-button[data-size="small"]:not([data-no-text="true"])            (0,3,0)
+.db-pagination-item > :is(a, button)                                (0,1,1)   loses
+```
+
+That is a real bug, not a theoretical one: the small pagination controls rendered
+33.8px wide instead of the 24px the concept specifies, because the 12px inline padding
+of a small text button won. Beating it needs the competing `:not()` repeated, which
+only holds until the shared file changes again.
+
+Instead extend the placeholders you actually want and keep the box local:
+
+```scss
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/component";
+
+> :is(a, button) {
+	@extend %default-interactive-component; // border + radius + focus
+	@extend %default-button; // inline-flex, centring, weight
+	@extend %db-overwrite-font-size-md;
+
+	block-size: variables.$db-sizing-md; // the box stays yours
+	padding: variables.$db-spacing-fixed-2xs;
+	text-decoration: none; // for anchor use
+}
+```
+
+Variant colours come from `%button-outlined-ghost-colors` (ghost/outlined) and a
+`background-color` for filled. Placeholders are not namespaced, so `@use`-ing the file
+is enough to extend them.
+
+Two things to keep in mind when you do this:
+
+- **Put the state attributes on the wrapper**, not on the control. `data-variant` and
+  `data-size` on the `<li>` (or whatever the shell is) means the control needs none,
+  and a child a consumer composed is styled from there too — a consumer link used to
+  come out with the box but none of the colours, because those hung on a class it did
+  not have.
+- **`--db-overwrite-cursor` is not optional.** The foundations carry a global
+  `:is(a[href], button):not(...):hover` rule that resolves it at (0,3,1). A plain
+  `cursor: default` on your control loses to it on hover, so set the custom property
+  for the hover state and `cursor` itself for the resting state.
 
 ## Shared Props (`src/shared/model.ts`)
 
@@ -262,6 +712,14 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
 - Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
 
+> Exception: registering a component in `components.ts` is not new logic, it is
+> configuration for transformations that already exist. When a component would
+> otherwise need a private copy of those transformations as a plugin, prefer the
+> registry entry — the Heading family reduced roughly 450 lines of duplicated
+> plugin code to about 30 lines of configuration that way. Migrate the
+> transformations themselves out of this folder, not individual components into
+> parallel implementations.
+>
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
 
 ### React `propsPassingFilter` and `default*` props
@@ -277,26 +735,16 @@ Alternatively, consider naming the prop without the `default` prefix (e.g. `init
 
 ## Changeset Rules
 
-Changes in `packages/components/src` require a changeset. Which packages to include depends on **what** changed:
+Consumer-facing changes in `packages/components/src` require a changeset. Which packages to list, which bump type to pick, and all exceptions (code-style-only changes, test/showcase-only changes, internal `_`-prefixed state properties) are defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets). That file always applies — do not duplicate its rules here.
 
-| What changed                                                                      | Packages to include                                                                                                                             |
-| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Only styling** (SCSS/CSS files)                                                 | `@db-ux/core-components`                                                                                                                        |
-| **Component logic or templates** (model.ts, component files processed by Mitosis) | `@db-ux/core-components`, `@db-ux/ngx-core-components`, `@db-ux/react-core-components`, `@db-ux/wc-core-components`, `@db-ux/v-core-components` |
-| **Both**                                                                          | All five packages                                                                                                                               |
+Only these package-specific details are added on top:
 
-**Scope the packages to what is actually affected:**
+- **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
+    - `components.ts` keys every entry by target: a changed `overwrites.angular` / `config.react` block hits that target only, an `overwrites.global` entry hits all four.
+    - `index.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
+    - `copy-files.ts` (and `frameworks.ts`, which only that file imports) copies spec and Playwright files, gated on `react`/`vue`. Those files are never published, so such a change usually needs no changeset at all; if it does become consumer-facing, it is React and Vue.
+    - For a changed shared helper, grep its callers: whichever of `angular.ts`, `react.ts`, `vue.ts`, `stencil.ts` reaches it defines the list.
 
-- Changes in shared code (components, `model.ts`, shared utils) → all framework packages
-- Changes in framework-specific code (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `configs/plugins/angular/`) → only the affected framework package
-- Changes in styling (SCSS/CSS) or HTML (template within the components) → `@db-ux/core-components` + all framework packages
+    Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
 
-Bump types:
-
-- `patch` — bug fix
-- `minor` — new feature or example, or any prop added in `model.ts`
-- `major` — any prop in `model.ts` removed, renamed, or retyped
-
-**No changeset needed for code-style-only changes.** If a change is purely cosmetic (formatting, linting fixes, comment rewording, import reordering, renaming internal variables without API impact), it does not require a changeset. Changesets are only necessary when the change affects logic, styling (SCSS/CSS), public APIs, or behavior visible to consumers.
-
-**Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT a major/breaking change. These are internal implementation details, not public API. The `_` prefix signals private/internal use, and as optional properties their removal cannot cause type errors in consumer code.
+- **Examples do not determine bump type** — changes in `src/components/*/examples/` do not inherently require a `minor` bump. The bump type is determined by the underlying change the example demonstrates (e.g. a bug fix with a new regression example is still `patch`; an example for a newly added prop is `minor` because the prop itself is the feature).

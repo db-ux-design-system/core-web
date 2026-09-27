@@ -1,5 +1,41 @@
 # @db-ux/core-stylelint
 
+## 5.6.0
+
+No changes in this release.
+
+## 5.5.0
+
+No changes in this release.
+
+## 5.4.0
+
+No changes in this release.
+
+## 5.3.0
+
+_version bump_
+
+## 5.2.1
+
+_version bump_
+
+## 5.2.0
+
+_version bump_
+
+## 5.1.6
+
+_version bump_
+
+## 5.1.5
+
+_version bump_
+
+## 5.1.4
+
+_version bump_
+
 ## 5.1.3
 
 _version bump_

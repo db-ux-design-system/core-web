@@ -1,5 +1,134 @@
 # @db-ux/ngx-core-components
 
+## 5.6.0
+
+### Minor Changes
+
+- feat(DBPagination): add controlled pagination component - [see commit 333d265](https://github.com/db-ux-design-system/core-web/commit/333d265974b64c159e68918d76565ef854f593b5)
+- feat(DBDialog): add `DBDialog`, `DBDialogHeader` and `DBDialogFooter` - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - Based on the native `<dialog>` element, using its centring and top-layer behaviour. Supports `backdrop` (`strong`, `weak`, `none`) and `containerSize` (`small`, `medium`, `large`, `full`).
+    - Open/close declaratively via `open`, natively via Invoker Commands (`command`/`commandfor`) or `<form method="dialog">`; reports `onClose` and `onCancel`.
+    - `DBDialogHeader` provides the heading, `startSlot`/`endSlot` and the close button, and composes the dialog's `aria-labelledby` (appending its heading id, preserving a consumer value; a consumer `aria-label` still wins). `DBDialogFooter` holds the actions.
+    - Adjust the max inline size with `--db-dialog-max-width` and the viewport distance with `--db-dialog-viewport-inset`.
+- feat(DBDrawer): new event props and renamed header content class - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - Adds the `onClick` and `onCancel` props to `DBDrawerProps` (matching `DBDialog`). They are composed with the internal ponyfill handlers, so a consumer callback fires and `onCancel` can veto a native close via `event.preventDefault()`.
+    - Renames the heading wrapper class `db-drawer-header-container` to `db-drawer-header-content` (same for `db-dialog-header-content`) and moves the start slot before it. Update selectors that target the old class.
+- feat(DBLoadingIndicator): add component to handle spinners, progress-bars etc. - [see commit a0f37cf](https://github.com/db-ux-design-system/core-web/commit/a0f37cf3531b94ace8be6bd606a08de2d7ee5f35)
+
+### Patch Changes
+
+- fix(DBDrawer): accessibility, dismissal and shared dialog layer - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - The header composes the drawer's `aria-labelledby` (appending its heading id, preserving a consumer value) instead of overwriting it; a consumer `aria-label` still wins.
+    - Non-modal drawers (`backdrop="none"`, `variant="inside"`, `position="absolute"`) now dismiss on Escape and backdrop click in browsers without `closedby` support (e.g. Firefox ESR) via the ponyfill.
+    - Generates the fallback `id` hydration-safely (via the framework `useId()`), re-syncing when the consumer `id` changes or is cleared, so the document never keeps a stale or duplicate id.
+    - `open={undefined}` no longer counts as "closed", so a natively opened drawer stays open until `open` is set explicitly.
+    - Now uses the shared dialog utils, style mixins and ponyfill module. Behaviour change: the header close button no longer calls `stopPropagation()`, so its click follows native bubbling like every other click in the drawer (identify it via `command="request-close"` on `event.target` if you relied on the old behaviour).
+    - Behaviour change: `onClose` now fires on the native `<dialog>` `close` event, so its argument is that `close` event rather than the originating `MouseEvent`/`KeyboardEvent`. The declared `DBDrawerProps["onClose"]` type still reflects the previous union. In the edge case of distinguishing Escape, backdrop and close-button dismissal via `event.key`/`event.type`/`event.target` inside `onClose`, read the initiating event from `onCancel` (Escape/cancel) or `onClick` (pointer) instead.
+
+## 5.5.0
+
+### Patch Changes
+
+- fix(DBCustomSelectListItem): make label bold when checked - [see commit 58df675](https://github.com/db-ux-design-system/core-web/commit/58df6754fde599346696e4e9372d97e13c384082)
+- fix(table): remove unwanted white background on component wrapper for `variant="spaced"` - [see commit 1524afe](https://github.com/db-ux-design-system/core-web/commit/1524afe64488b90e47c133594438182bb47a59e7)
+
+## 5.4.0
+
+### Minor Changes
+
+- feat(DBFooter): add the composable DBFooter, DBFooterContent and DBFooterMeta components - [see commit 7df9937](https://github.com/db-ux-design-system/core-web/commit/7df99378cb41c17ca818792918e7e8f18a96a2ec):
+
+    - `DBFooter` renders the native `contentinfo` landmark and the layout container with the
+    - optional `width` variants. `DBFooterContent` holds the primary area, `DBFooterMeta` the
+    - secondary one including an optional `copyright` holder, for which the component prepends
+    - the copyright symbol. Both areas are optional, so consumers compose only the parts they
+    - need and wrap navigational content in a labelled `nav` themselves.
+    - Inside `DBFooterMeta` the copyright and the secondary content sit side by side from a
+    - viewport width of 768 px upwards, with the copyright aligned to the top of the row, and
+    - stack below that. `data-force-mobile="true"` on the footer forces the stacked
+    - arrangement, for a footer placed in a region narrower than the viewport suggests.
+
+## 5.3.0
+
+### Minor Changes
+
+- feat: introduce control-panel shell architecture (deprecates DBPage, DBHeader, DBBrand, DBNavigation, DBNavigationItem) - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - New `DBShell` component (deprecates `DBPage`)
+    - New `DBControlPanelDesktop` and `DBControlPanelMobile` (deprecates `DBHeader`)
+    - New `DBControlPanelBrand` (deprecates `DBBrand`)
+    - New `DBControlPanelNavigation` (deprecates `DBNavigation`)
+    - New `DBControlPanelNavigationItem` (deprecates `DBNavigationItem`)
+    - New `DBControlPanelNavigationItemGroup` for sub-navigation
+    - New `DBShellContent` component for main content area
+    - New `DBShellSubNavigation` for secondary navigation panels
+    - New `DBControlPanelMeta`, `DBControlPanelActions1`, `DBControlPanelActions2` slot components
+    - New `DBControlPanelFlatIcon` for collapsed icon-only navigation
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
+### Patch Changes
+
+- fix(DBSelect): keep the user's selection when validation runs on `input` - [see commit 86d0feb](https://github.com/db-ux-design-system/core-web/commit/86d0feb14e3af59e170f08204fccf8c269e4c5fb):
+    - A browser dispatches `input` and `change` for a `select` in separate tasks. `DBSelect` validated synchronously on `input`, which changed internal state and triggered a re-render while the controlled `value` was still the previous one. Because React re-applies the `value` on every commit of a `select`, that re-render discarded the selection before `change` was dispatched — so controlled `required` selects never received the new value. Validation now runs once the value has been propagated.
+
+- fix(DBSwitch): icon no longer bleeds through a closed popover - [see commit 6d4deb5](https://github.com/db-ux-design-system/core-web/commit/6d4deb54cff50c36b45b3ea9b6331b333d072845)
+
+## 5.2.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): synchronize values and options when resetting - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(radio): checked state barely visible at `size="small"` with `density="functional"` - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBRadio): use `:user-valid`/`:user-invalid` instead of `:valid`/`:invalid` for radio inputs - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+- fix(DBCustomSelect): reset inline positioning when switching to mobile screen sizes - [see commit e39f57b](https://github.com/db-ux-design-system/core-web/commit/e39f57bdd2002c13e957cff01423c5d801f7c4b5)
+
+## 5.2.0
+
+### Minor Changes
+
+- feat: add static and custom Heading components (beta) - [see commit dfa8e2c](https://github.com/db-ux-design-system/core-web/commit/dfa8e2cf7c05d7bc42782a38b1eb3d65d971e156):
+
+    - `DBCustomHeading` takes the native heading as its default content and offers a
+    - `startSlot` and an `endSlot` for the content next to it, so that content stays out
+    - of the accessible heading name.
+
+### Patch Changes
+
+- fix: preserve component sizing inside custom headings - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+- fix(DBCustomSelect): initialize search value as empty string instead of undefined - [see commit 6f860bb](https://github.com/db-ux-design-system/core-web/commit/6f860bb13d99ea484030f3671f4c19993499a5d5)
+
+## 5.1.6
+
+### Patch Changes
+
+- fix: multiple issues for DBPopover - [see commit a1a575c](https://github.com/db-ux-design-system/core-web/commit/a1a575c893d0b54aff6bddcb56719e4f8c40197d):
+    - DBPopover hides when moving mouse too slow
+    - DBPopover changes aria-expanded independently of open state
+    - DBPopover - wrong content position on programmatic "open" prop
+- fix(select): move placeholder text to `::before` pseudo-element to avoid axe-core false positive - [see commit 5f1584d](https://github.com/db-ux-design-system/core-web/commit/5f1584d2488115ef9418ca24b8e04f7bddbca803)
+
+## 5.1.5
+
+### Patch Changes
+
+- fix: handle `env(safe-area-inset-*)` correctly for drawer `direction="up"` and `direction="down"` - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+- fix(`DBHeader`): react to `forceMobile` changes after the initial render - [see commit d2cbdf7](https://github.com/db-ux-design-system/core-web/commit/d2cbdf7b78195b57de2d9103f43431b9920d3a4f)
+
+## 5.1.4
+
+### Patch Changes
+
+- fix: use `dvh`/`dvw` instead of `lvh`/`lvw` for correct mobile viewport sizing in drawer - [see commit 630593c](https://github.com/db-ux-design-system/core-web/commit/630593c9c2a222d117b0644bb03d0dea5e194eea)
+
+- fix: re-run tooltip auto-placement when content changes - [see commit 32d9b9a](https://github.com/db-ux-design-system/core-web/commit/32d9b9a364cc525e3818c26b3c0eae1a05f2b550)
+
+- fix: allow auto-width tab items to fit their complete content - [see commit 7e4ae9a](https://github.com/db-ux-design-system/core-web/commit/7e4ae9adf2bd7dd1c00f03eac3a87c904bde75e7)
+
+- fix: support Angular RouterLink on DBLink - [see commit 43b9574](https://github.com/db-ux-design-system/core-web/commit/43b9574eadf9da598207aa5d0a10be5e1f0b5c6f)
+
+- fix: layout issue with sub-navigation-item inside the mobile drawer - [see commit bc079f0](https://github.com/db-ux-design-system/core-web/commit/bc079f055c02532334af4aaa295d08d104f92456)
+
 ## 5.1.3
 
 _version bump_

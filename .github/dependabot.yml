@@ -49,6 +49,8 @@ updates:
       # We currently need to ignore this for the actual (LTS) Angular version
       - dependency-name: "zone.js"
         update-types: ["version-update:semver-minor"]
+      # DB theme packages are handled by Renovate (see .github/renovate.json)
+      - dependency-name: "@db-ux/db-theme*"
     pull-request-branch-name:
       separator: "-"
     # https://github.com/dependabot/dependabot-core/issues/5226#issuecomment-1179434437
@@ -101,6 +103,18 @@ updates:
         patterns:
           - "vitest"
           - "@vitest*"
+      # MCP SDK: all v2 packages share one version number and pin
+      # @modelcontextprotocol/core to an exact version, so a one-sided bump
+      # resolves two incompatible core copies into the tree.
+      #
+      # zod belongs in the same group: the SDK declares "zod": "^4.2.0" while
+      # @db-ux/mcp-server pins it exactly. Bumping only one side lets the
+      # resolver put a second zod copy into the bundle, and the tool schemas
+      # must come from the same copy the SDK converts them with.
+      modelcontextprotocol:
+        patterns:
+          - "@modelcontextprotocol*"
+          - "zod"
       # Development tools
       typescript:
         patterns:
@@ -134,6 +148,9 @@ updates:
       tanstack:
         patterns:
           - "@tanstack/*"
+      changesets:
+        patterns:
+          - "@changesets/*"
       # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:

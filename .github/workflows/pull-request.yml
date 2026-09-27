@@ -12,8 +12,8 @@ permissions:
   security-events: write
 
 jobs:
-  dependabot:
-    uses: ./.github/workflows/99-auto-handle-dependabot.yml
+  bot-prs:
+    uses: ./.github/workflows/99-auto-handle-bot-prs.yml
 
   dependency-review:
     uses: ./.github/workflows/99-dependency-review.yml

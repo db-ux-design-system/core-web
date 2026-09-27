@@ -30,9 +30,11 @@ export default function NavigationDensity() {
 					})}
 					aria-labelledby="functional">
 					<DBNavigationItem
+						text="Navi-Item 1"
 						subNavigation={
 							<>
 								<DBNavigationItem
+									text="Sub-Navi-Item 1"
 									subNavigation={
 										<>
 											<DBNavigationItem>
@@ -46,16 +48,12 @@ export default function NavigationDensity() {
 												</a>
 											</DBNavigationItem>
 										</>
-									}>
-									Sub-Navi-Item 1
-								</DBNavigationItem>
+									}></DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Navi-Item 2</a>
 								</DBNavigationItem>
 							</>
-						}>
-						Navi-Item 1
-					</DBNavigationItem>
+						}></DBNavigationItem>
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
@@ -81,9 +79,11 @@ export default function NavigationDensity() {
 					})}
 					aria-labelledby="_default__regular">
 					<DBNavigationItem
+						text="Navi-Item 1"
 						subNavigation={
 							<>
 								<DBNavigationItem
+									text="Sub-Navi-Item 1"
 									subNavigation={
 										<>
 											<DBNavigationItem>
@@ -97,16 +97,12 @@ export default function NavigationDensity() {
 												</a>
 											</DBNavigationItem>
 										</>
-									}>
-									Sub-Navi-Item 1
-								</DBNavigationItem>
+									}></DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Navi-Item 2</a>
 								</DBNavigationItem>
 							</>
-						}>
-						Navi-Item 1
-					</DBNavigationItem>
+						}></DBNavigationItem>
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>
@@ -132,9 +128,11 @@ export default function NavigationDensity() {
 					})}
 					aria-labelledby="expressive">
 					<DBNavigationItem
+						text="Navi-Item 1"
 						subNavigation={
 							<>
 								<DBNavigationItem
+									text="Sub-Navi-Item 1"
 									subNavigation={
 										<>
 											<DBNavigationItem>
@@ -148,16 +146,12 @@ export default function NavigationDensity() {
 												</a>
 											</DBNavigationItem>
 										</>
-									}>
-									Sub-Navi-Item 1
-								</DBNavigationItem>
+									}></DBNavigationItem>
 								<DBNavigationItem>
 									<a href="#">Sub-Navi-Item 2</a>
 								</DBNavigationItem>
 							</>
-						}>
-						Navi-Item 1
-					</DBNavigationItem>
+						}></DBNavigationItem>
 					<DBNavigationItem icon="x_placeholder">
 						<a href="#">Navi-Item 2</a>
 					</DBNavigationItem>

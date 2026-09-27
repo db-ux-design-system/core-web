@@ -18,25 +18,23 @@ export default function NavigationItemExpanded() {
 			</ul>
 			<ul>
 				<DBNavigationItem
+					text="True"
 					subNavigation={
 						<>
 							<DBNavigationItem
+								text="Also a navigation item with longer label"
 								subNavigation={
 									<>
 										<DBNavigationItem>
 											<a href="#">Navigation-Item 2</a>
 										</DBNavigationItem>
 									</>
-								}>
-								Also a navigation item with longer label
-							</DBNavigationItem>
+								}></DBNavigationItem>
 							<DBNavigationItem>
 								<a href="#">Navigation-Item 1</a>
 							</DBNavigationItem>
 						</>
-					}>
-					True
-				</DBNavigationItem>
+					}></DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

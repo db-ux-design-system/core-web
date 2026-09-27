@@ -52,25 +52,27 @@ Verify each item:
 
 - [ ] Commit message follows conventional commits format (`feat:`, `fix:`, `chore:`, `docs:`, `refactor:`)
 - [ ] If architecture, structure, or conventions changed inside a `packages/*` folder, the corresponding `AGENTS.md` has been updated
-- [ ] Changeset added if changes affect `packages/components/src` or `packages/foundations/scss`
+- [ ] Changeset added if consumer-facing changes affect `packages/components/src` or `packages/foundations/scss` (not for test-, showcase- or code-style-only diffs)
 
 #### Changeset Validation
 
-If a changeset is required (changes in `packages/components/src` or `packages/foundations/scss`):
+If a changeset is required (consumer-facing changes in `packages/components/src` or `packages/foundations/scss`):
 
-- For `packages/components/src` changes, verify the changeset frontmatter includes **up to five** required packages:
+- For changes to **shared** component code in `packages/components/src` (SCSS, `model.ts`, `.lite.tsx`), verify the changeset frontmatter includes **all five** required packages:
     - `@db-ux/core-components`
     - `@db-ux/ngx-core-components`
     - `@db-ux/react-core-components`
     - `@db-ux/wc-core-components`
     - `@db-ux/v-core-components`
+- **The list does not depend on the kind of change.** Styling, template, logic or properties — for shared component code all five are required. A changeset that leaves some of them out is incomplete, also for a pure SCSS or markup change: consumers of a framework package do not read the CSS packages' changelogs, and a markup restructuring can break their custom styling (e.g. a `label + input` selector once the `<input>` moves inside the `<label>`).
+- **It does depend on which targets a file feeds.** A change confined to code that only one target consumes (`src/utils/react.ts`, `configs/plugins/react/`, `scripts/post-build/react.ts`) belongs to that framework package alone — the four frameworks are not interchangeable. Shared build code (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) counts for every target it feeds.
+- **Keep `@db-ux/core-components` for template-only changes.** It publishes CSS only, but its consumers hand-write the component HTML (copied from Patternhub and the Storybook "view code" output), so changed markup affects them without anything in their build noticing. Never remove it from a changeset by reasoning about the `files` array in `package.json`.
 - **Validate the bump level against the diff** — presence alone is not enough; an invalid `patch`/`minor` can publish a breaking change under a non-major version. For each affected package, confirm the declared bump matches the actual change:
-    - **`major`** — a breaking change. Per `packages/components/AGENTS.md`, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
+    - **`major`** — a breaking change. Per the repo-root `AGENTS.md` § Changesets, this is **required** whenever a prop in any `model.ts` is removed, renamed, or its type changed. Diff every changed `model.ts` to catch these.
     - **`minor`** — a new, backwards-compatible feature, e.g. of a prop is added in any `model.ts`
     - **`patch`** — a backwards-compatible bug fix
 - If the diff warrants a `major` bump but the changeset declares `patch`/`minor` (or vice versa), fix the changeset before committing.
-    - `@db-ux/v-core-components`
-- For `packages/foundations/scss` changes, verify the changeset includes `@db-ux/core-foundations`
+- For `packages/foundations/scss` changes, verify the changeset includes `@db-ux/core-foundations` **and** the five packages listed above
 
 ### Step 3: Design System Compliance
 
@@ -160,7 +162,7 @@ pnpm run build-outputs # ~2min — framework outputs build
 ## Common Pre-Commit Mistakes
 
 - Forgetting to add a changeset for component/foundation changes
-- Changeset missing required packages (component changes need all 5 framework packages)
+- Changeset missing required packages (shared component code — SCSS, `model.ts`, `.lite.tsx` — needs all 5 packages, styling and markup included; only files a single target consumes, e.g. `src/utils/react.ts`, are scoped to that one framework package)
 - Leaving `console.log` or debug statements
 - Committing generated `output/` files that should only change via `.lite.tsx`
 - Branch names with `/` (breaks CI preview URLs)

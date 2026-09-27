@@ -18,9 +18,19 @@ module.exports = () => ({
 			const targetMapItem = targetMapping[target].storyBookLib;
 
 			const componentNameLowercase = path.split('/')[2];
+			const folderComponentName = `DB${toPascalCase(componentNameLowercase)}`;
+			// The sidebar category defaults to the component folder, so that level or
+			// size variants of one component group together (heading -> DBHeadingH1..H6
+			// all live under DBHeading). Folders that also ship a distinct component
+			// override it via `storybookCategory` to get their own category.
+			const category =
+				meta?.useMetadata?.storybookCategory ?? folderComponentName;
+			// The reference component used for `component:`, the `@components` import
+			// and the Props type. Folders without a matching default export have to
+			// name one explicitly via `storybookComponentName`.
 			const componentName =
 				meta?.useMetadata?.storybookComponentName ??
-				`DB${toPascalCase(componentNameLowercase)}`;
+				folderComponentName;
 
 			const { allImports } = resolveImports(imports);
 			const dataImports = resolveDataImports(imports);
@@ -69,6 +79,7 @@ module.exports = () => ({
 				getMetaObject({
 					target,
 					componentName,
+					category,
 					name,
 					meta,
 					allImports

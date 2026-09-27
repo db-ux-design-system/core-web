@@ -50,15 +50,21 @@ const replaceChildren = (node) => {
  * @param {Object} overwritesArgs - Args object to overwrite
  */
 const processBindings = (json, example, target, args, overwritesArgs) => {
-	// Add other properties
-	for (const [key, value] of Object.entries(example.properties)) {
-		const overwriteValue = overwritesArgs[key] ?? value;
-		if (target === 'angular' && key.startsWith('data-')) {
-			args.push(`"attr.${key}": "${overwriteValue}"`);
-		} else {
-			args.push(`"${key}": "${overwriteValue}"`);
+	// Add other properties. Guard properties and bindings independently: an
+	// example may carry only static properties (and no bindings), in which case
+	// we must still emit its args.
+	if (example?.properties) {
+		for (const [key, value] of Object.entries(example.properties)) {
+			const overwriteValue = overwritesArgs[key] ?? value;
+			if (target === 'angular' && key.startsWith('data-')) {
+				args.push(`"attr.${key}": "${overwriteValue}"`);
+			} else {
+				args.push(`"${key}": "${overwriteValue}"`);
+			}
 		}
 	}
+
+	if (!example?.bindings) return;
 
 	for (const [key, value] of Object.entries(example.bindings)) {
 		if (value.type === 'spread') {
@@ -216,8 +222,11 @@ const getStories = ({
 			const exampleName =
 				(exampleNames && exampleNames[index]) || `${name}${index}`;
 			let args = [];
+			const storyComponentName =
+				meta?.useMetadata?.storybookComponentNames?.[index] ??
+				componentName;
 
-			const foundComponent = findComponent(example, componentName);
+			const foundComponent = findComponent(example, storyComponentName);
 
 			if (!foundComponent) {
 				throw Error(`something is wrong with: ${name}`);

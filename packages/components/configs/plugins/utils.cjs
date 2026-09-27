@@ -3,7 +3,7 @@
  * @param key {string}
  * @returns {string}
  */
-const getSlotKey = (key) => key.replace(/([A-Z])/g, '-$1').toLowerCase();
+const getSlotKey = (key) => key.replace(/([A-Z,0-9])/g, '-$1').toLowerCase();
 
 /**
  * Convert kebab-case to PascalCase

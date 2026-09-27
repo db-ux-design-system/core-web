@@ -2,7 +2,6 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/animation";
 @use "../../styles/internal/form-components";
 
 .db-custom-select-dropdown {
@@ -12,8 +11,8 @@
 	z-index: 32;
 	box-shadow: variables.$db-elevation-md;
 	min-inline-size: variables.$db-sizing-xl;
-	max-inline-size: calc(100vw - 2 * #{variables.$db-spacing-fixed-sm});
-	max-block-size: calc(100vh - 2 * #{variables.$db-spacing-fixed-sm});
+	max-inline-size: calc(100dvw - 2 * #{variables.$db-spacing-fixed-sm});
+	max-block-size: calc(100dvh - 2 * #{variables.$db-spacing-fixed-sm});
 
 	&:not([data-width]),
 	&[data-width="fixed"] {
@@ -79,18 +78,11 @@
 		}
 	}
 
+	> db-loading-indicator > .db-loading-indicator,
+	> .db-loading-indicator,
 	> db-infotext > .db-infotext,
 	> .db-infotext {
 		padding: variables.$db-spacing-fixed-lg variables.$db-spacing-fixed-md;
 		margin: auto;
-
-		&[data-icon="circular_arrows"] {
-			&::before {
-				@media (prefers-reduced-motion: no-preference) {
-					animation: rotate 1.5s linear 0s infinite normal none
-						running;
-				}
-			}
-		}
 	}
 }

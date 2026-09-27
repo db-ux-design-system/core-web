@@ -59,12 +59,20 @@ const getFnArgs = (argTypes) => {
  * @param {Object} params - Parameters object
  * @param {string} params.target - Target framework (react, angular, vue)
  * @param {string} params.componentName - Component name
+ * @param {string} params.category - Sidebar category name
  * @param {string} params.name - Story name
  * @param {Object} params.meta - Metadata object
  * @param {Array<string>} params.allImports - All imports
  * @returns {string} Generated meta object code
  */
-const getMetaObject = ({ target, componentName, name, meta, allImports }) => {
+const getMetaObject = ({
+	target,
+	componentName,
+	category,
+	name,
+	meta,
+	allImports
+}) => {
 	const { title, argTypes } = extractMetadata(target, name, meta);
 	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 
@@ -91,7 +99,7 @@ const getMetaObject = ({ target, componentName, name, meta, allImports }) => {
 
 	return `
 const meta: Meta<${metaType}> = {
-	title: 'Components/${componentName}/${title}',
+	title: 'Components/${category}/${title}',
 	component: ${componentName},
 	${decorators}
 	parameters: {

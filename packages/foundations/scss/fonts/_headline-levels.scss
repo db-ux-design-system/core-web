@@ -1,0 +1,13 @@
+/* Single source of truth for the default visual headline size per semantic
+ * level. Kept in its own partial because it is consumed both by
+ * `defaults/default-fonts.scss`, which styles bare `h1`-`h6`, and by the Heading
+ * component styles in `@db-ux/core-components`. Those must not pull in the
+ * emitted default-fonts CSS just to read the mapping. */
+$headlines: (
+	"h1": "xl",
+	"h2": "lg",
+	"h3": "md",
+	"h4": "sm",
+	"h5": "xs",
+	"h6": "2xs"
+);

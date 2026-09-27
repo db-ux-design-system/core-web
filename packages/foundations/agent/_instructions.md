@@ -97,7 +97,7 @@ The `@db-ux/core-stylelint` plugin enforces design token usage. Never use raw `p
 
 - Applies to: `margin`, `padding`, `gap` (and all sub-properties like `margin-top`, `padding-inline`, etc.)
 - Use `var(--db-spacing-fixed-xx)` or `var(--db-spacing-responsive-xx)` instead of `px`/`rem` values
-- `var(--db-sizing-xx)`, `%`, `vw`, `vh` are also allowed
+- `var(--db-sizing-xx)`, `%`, `vw`, `vh`, `dvw`, `dvh`, `lvw`, `lvh`, `svw`, `svh` are also allowed
 - Allowed exact values: `0px`, `0`, `auto`, `inherit`, `initial`, `unset`
 - ❌ `margin: 20px;` / `padding: 0.5rem;` / `margin-top: 8px;`
 - ✅ `margin: var(--db-spacing-fixed-md);` / `padding: var(--db-spacing-responsive-lg);`

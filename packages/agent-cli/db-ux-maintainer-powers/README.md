@@ -8,7 +8,7 @@ A [Kiro Power](https://www.promptz.dev/powers) / [Superpowers](https://github.co
 
 ## Quick Start
 
-1. Ensure Node.js 24+ and pnpm are installed.
+1. Ensure Node.js 26+ and pnpm are installed.
 2. Copy `.env.template` → `.env` and set `COMMIT_MAIL`.
 3. Run `pnpm install --ignore-scripts`.
 4. The Power activates automatically when an AI agent detects `power.yaml`.

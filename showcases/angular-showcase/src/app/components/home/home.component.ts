@@ -26,6 +26,7 @@ import { TextareasComponent } from '../form/textareas/textareas.component';
 		DBTabItem,
 		DBTabList,
 		DBTabPanel
-	]
+	],
+	schemas: []
 })
 export class HomeComponent {}

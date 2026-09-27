@@ -33,7 +33,13 @@ const allowedValues: AllowedType = {
 		'db-sizing',
 		'%',
 		'vw',
-		'vh'
+		'vh',
+		'dvw',
+		'dvh',
+		'lvw',
+		'lvh',
+		'svw',
+		'svh'
 	],
 	exact: defaultExact
 };
