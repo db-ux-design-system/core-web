@@ -1,8 +1,9 @@
-import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
 	getAngularComponentName,
+	getVueSlotArgument,
 	isDBComponent
 } from '../../shared/utils.js';
 
@@ -20,8 +21,18 @@ const SUB_COMPONENT_CONFIG: Record<
 	string,
 	{ parents: Array<{ name: string; slot: string | undefined }> }
 > = {
-	DBDrawerHeader: { parents: [{ name: 'DBDrawer', slot: 'header' }] },
-	DBDrawerFooter: { parents: [{ name: 'DBDrawer', slot: 'footer' }] },
+	[COMPONENTS.DBDrawerHeader]: {
+		parents: [{ name: COMPONENTS.DBDrawer, slot: 'header' }]
+	},
+	[COMPONENTS.DBDrawerFooter]: {
+		parents: [{ name: COMPONENTS.DBDrawer, slot: 'footer' }]
+	},
+	[COMPONENTS.DBDialogHeader]: {
+		parents: [{ name: COMPONENTS.DBDialog, slot: 'header' }]
+	},
+	[COMPONENTS.DBDialogFooter]: {
+		parents: [{ name: COMPONENTS.DBDialog, slot: 'footer' }]
+	},
 	DBAccordionItem: { parents: [{ name: 'DBAccordion', slot: undefined }] },
 	DBNavigationItem: {
 		parents: [
@@ -85,46 +96,59 @@ function doesSlotNameMatch(actual: string, expected: string): boolean {
 
 /**
  * Checks if an Angular node is inside the expected parent, optionally within a named slot.
- * For slot-based placement, the slot attribute can be on:
- * - The sub-component itself: <db-drawer-header header>
- * - A wrapper element: <ng-container header><db-drawer-header></ng-container>
+ * For slot-based placement, Angular projects with `<ng-content select="[slot]">`,
+ * which matches only the element that is a DIRECT child of the parent. So the slot
+ * attribute must be on that directly-projected node - either:
+ * - the sub-component itself when it is the direct child: <db-drawer-header header>
+ * - a directly-projected wrapper: <db-drawer><ng-container header><db-drawer-header>
+ * A marker on a deeper descendant (e.g. <db-dialog><div><db-dialog-footer footer>)
+ * does NOT project: Angular matches the unmarked <div>, so the content lands in the
+ * default slot, not the footer row - that case must still be reported.
+ *
+ * Structural directives (`*ngIf`, `*ngFor`) and built-in control flow (`@if`,
+ * `@for`, `@switch`, `@defer`) wrap the marked element in a `Template`/block node
+ * that projects transparently: Angular projects the element inside, carrying its
+ * marker, not the wrapper. Those wrapper nodes are therefore skipped when tracking
+ * the projected element, so `<db-dialog>@if (show) { <db-dialog-header header> }`
+ * and `<db-dialog><db-dialog-header *ngIf header>` are accepted - matching
+ * `dialog-header-required`, which accepts the same forms.
  */
 function isInsideAngularParent(
 	node: any,
 	parentName: string,
 	slotName: string | undefined
 ): boolean {
-	// First check if the node itself has the slot attribute
-	let hasSlotAttribute = false;
-	if (slotName) {
-		const selfAttrs = node.attributes || [];
-		if (selfAttrs.some((a: any) => doesSlotNameMatch(a.name, slotName))) {
-			hasSlotAttribute = true;
-		}
-	}
-
+	// Track the nearest real element below `current` so that, when we reach the
+	// parent, `projected` is the element Angular actually projects (the parent's
+	// direct child, or the marked element a transparent structural/control-flow
+	// wrapper projects on its behalf). The slot marker only counts when it sits
+	// on that projected node.
+	let projected = node;
 	let current = node.parent;
 
 	while (current) {
-		// Check if current node has the slot attribute
-		if (
-			slotName &&
-			!hasSlotAttribute &&
-			current.attributes?.some((a: any) =>
-				doesSlotNameMatch(a.name, slotName)
-			)
-		) {
-			hasSlotAttribute = true;
-		}
-
 		// Check if we reached the parent component
 		if (
 			(current.type === 'Element' || current.type === 'Element$1') &&
 			isDBComponent(current, parentName)
 		) {
-			return slotName ? hasSlotAttribute : true;
+			if (!slotName) {
+				return true;
+			}
+			const projectedAttrs = projected.attributes || [];
+			return projectedAttrs.some((a: any) =>
+				doesSlotNameMatch(a.name, slotName)
+			);
 		}
 
+		// Only real elements (and `ng-container`, which is an element) become the
+		// projected node. A `Template`/block control-flow wrapper is transparent -
+		// the marker stays on the element inside it - so do not let it overwrite
+		// `projected`, or the marker check would look at the attribute-less
+		// wrapper and wrongly report a valid conditional placement.
+		if (current.type === 'Element' || current.type === 'Element$1') {
+			projected = current;
+		}
 		current = current.parent;
 	}
 
@@ -143,8 +167,15 @@ function isInsideVueParent(
 	let hasSlotTemplate = false;
 
 	while (current) {
-		// Skip non-element nodes (text nodes, document fragments, etc.)
-		if (current.type !== 'VElement' && current.type !== 'Element') {
+		// Skip non-element nodes (text nodes, document fragments, etc.).
+		// `Element$1` is the Vue parser's fallback element type; it can expose the
+		// slot template or the parent component, so it must be walked like a real
+		// element rather than skipped.
+		if (
+			current.type !== 'VElement' &&
+			current.type !== 'Element' &&
+			current.type !== 'Element$1'
+		) {
 			current = current.parent;
 			continue;
 		}
@@ -156,22 +187,19 @@ function isInsideVueParent(
 		) {
 			const attrs = current.startTag?.attributes || [];
 			const matchesSlot = attrs.some((attr: any) => {
-				const keyName =
-					typeof attr.key?.name === 'string'
-						? attr.key.name
-						: attr.key?.name?.name;
-				const argName = attr.key?.argument
-					? typeof attr.key.argument === 'string'
-						? attr.key.argument
-						: typeof attr.key.argument.name === 'string'
-							? attr.key.argument.name
-							: attr.key.argument.name?.name
-					: undefined;
-
+				const slotArg = getVueSlotArgument(attr);
+				if (!slotArg) {
+					return false;
+				}
+				// A dynamic slot argument (`#[slotName]`) cannot be resolved
+				// statically, so it may place the sub-component in the required
+				// slot at runtime - accept it as unverified rather than reporting.
+				if (slotArg.dynamic) {
+					return true;
+				}
 				return (
-					keyName === 'slot' &&
-					argName !== undefined &&
-					doesSlotNameMatch(argName, slotName)
+					slotArg.name !== undefined &&
+					doesSlotNameMatch(slotArg.name, slotName)
 				);
 			});
 			if (matchesSlot) {
@@ -194,6 +222,25 @@ function isInsideVueParent(
 }
 
 /**
+ * Whether `node` is a direct child of `parentElement`, counting a transparent
+ * inline array/TS wrapper as direct: `<DBAccordion>{[<DBAccordionItem />]}</DBAccordion>`
+ * renders the item directly inside DBAccordion. `effectiveParent` is the JSX
+ * container that holds the node after peeling those wrappers, so the node itself
+ * (unwrapped), that container, or the container's parent must be `parentElement`.
+ */
+function isDirectChild(
+	node: any,
+	effectiveParent: any,
+	parentElement: any
+): boolean {
+	return (
+		node.parent === parentElement ||
+		effectiveParent === parentElement ||
+		effectiveParent?.parent === parentElement
+	);
+}
+
+/**
  * Checks if a JSX node is inside the expected parent, or is passed as a slot prop value.
  */
 function isInsideJsxParent(
@@ -201,14 +248,63 @@ function isInsideJsxParent(
 	parentName: string,
 	slotName: string | undefined
 ): boolean {
+	// Conservatively allow indirectly composed sub-components. When the element
+	// is not rendered inline inside another JSX tree - e.g. it is extracted into
+	// a variable (`const header = <DBDialogHeader />`), returned from a function,
+	// or stored in an array/object - its placement cannot be verified statically.
+	// This mirrors dialog-header-required, which accepts identifier and
+	// call-expression slot values as unverifiable, so normal React component
+	// extraction does not fail lint.
+	const jsxContainerTypes = new Set([
+		'JSXElement',
+		'JSXFragment',
+		'JSXExpressionContainer'
+	]);
+
+	// An inline array (or transparent TS wrapper) inside a JSX expression still
+	// has a statically known placement, e.g. `<div>{[<DBDialogHeader />]}</div>`
+	// renders the header inside the div, not in a DBDialog header slot. Peel such
+	// wrappers to find the effective parent so the placement is verified rather
+	// than bypassed. An array/wrapper that is NOT inside a JSX tree (e.g.
+	// `const items = [<DBDialogHeader />]`) stays unverifiable and is allowed.
+	//
+	// Conditional rendering wrappers are transparent for placement too: a
+	// `LogicalExpression` (`{show && <DBDialogHeader />}`) and a
+	// `ConditionalExpression` (`{cond ? <DBDialogHeader /> : null}`) render the
+	// element in the position of the surrounding JSXExpressionContainer, so peel
+	// them to that container. This keeps invalid inline conditional placement
+	// (e.g. inside a `<div>`) reported while still allowing the same expression
+	// when the container is a slot prop value (`header={show && <DBDialogHeader />}`),
+	// which the JSXExpressionContainer + JSXAttribute check below accepts.
+	const transparentWrapperTypes = new Set([
+		'ArrayExpression',
+		'TSAsExpression',
+		'TSSatisfiesExpression',
+		'TSNonNullExpression',
+		'LogicalExpression',
+		'ConditionalExpression'
+	]);
+	let effectiveParent = node.parent;
+	while (
+		effectiveParent &&
+		transparentWrapperTypes.has(effectiveParent.type)
+	) {
+		effectiveParent = effectiveParent.parent;
+	}
+
+	if (!jsxContainerTypes.has(effectiveParent?.type)) {
+		return true;
+	}
+
 	let current = node.parent;
 
 	while (current) {
 		if (current.type === 'JSXElement') {
 			const opening = current.openingElement;
 			if (opening && isDBComponent(opening, parentName) && !slotName) {
-				// If no slot is required, only accept direct children of the parent
-				return node.parent === current;
+				// If no slot is required, only accept direct children of the
+				// parent - counting a transparent inline array/wrapper as direct.
+				return isDirectChild(node, effectiveParent, current);
 			}
 			// If a slot IS required, only accept if passed through the named slot prop
 			// (handled by the JSXExpressionContainer check below).
@@ -359,7 +455,16 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkComponent, Element: checkComponent },
+			// `Element$1` is the Vue parser's fallback element type; register it
+			// too so a sub-component (e.g. DBDialogHeader/DBDialogFooter) exposed
+			// as that node is still validated. Walking `Element$1` ancestors does
+			// not help when the root sub-component itself is skipped (matches the
+			// header-required rules and text-or-children-required).
+			{
+				VElement: checkComponent,
+				Element: checkComponent,
+				Element$1: checkComponent
+			},
 			{ JSXElement: checkComponent }
 		);
 	}

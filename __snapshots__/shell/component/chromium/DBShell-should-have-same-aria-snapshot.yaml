@@ -1,0 +1,14 @@
+- banner:
+  - navigation "Main Navigation":
+    - list:
+      - listitem:
+        - link "Item":
+          - /url: "#"
+      - listitem: Disabled
+  - link "Imprint":
+    - /url: "#"
+  - link "Help":
+    - /url: "#"
+  - button "Search"
+  - button "Profile"
+- main "Main Content": Shell content

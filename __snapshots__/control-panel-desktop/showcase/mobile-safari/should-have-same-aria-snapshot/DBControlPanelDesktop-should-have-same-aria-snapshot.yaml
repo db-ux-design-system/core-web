@@ -1,0 +1,88 @@
+- main:
+  - heading "DBControlPanelDesktop" [level=1]
+  - link "Density"
+  - text: "Orientation: Horizontal"
+  - navigation "Functional":
+    - list:
+      - listitem:
+        - link "Functional"
+      - listitem: Functional disabled
+    - button "Scroll right"
+  - navigation "(Default) Regular":
+    - list:
+      - listitem:
+        - link "(Default) Regular"
+      - listitem: (Default) Regular disabled
+    - button "Scroll right"
+  - navigation "Expressive":
+    - list:
+      - listitem:
+        - link "Expressive"
+      - listitem: Expressive disabled
+    - button "Scroll right"
+  - text: "Orientation: Vertical"
+  - navigation "Functional Vertical":
+    - list:
+      - listitem:
+        - link "Functional"
+      - listitem: Functional disabled
+  - button "Collapse" [expanded]
+  - navigation "(Default) Regular Vertical":
+    - list:
+      - listitem:
+        - link "(Default) Regular"
+      - listitem: (Default) Regular disabled
+  - button "Collapse" [expanded]
+  - navigation "Expressive Vertical":
+    - list:
+      - listitem:
+        - link "Expressive"
+      - listitem: Expressive disabled
+  - button "Collapse" [expanded]
+  - link "Width"
+  - navigation "Full":
+    - list:
+      - listitem:
+        - link "Full"
+  - navigation "Medium":
+    - list:
+      - listitem:
+        - link "Medium"
+  - navigation "Large":
+    - list:
+      - listitem:
+        - link "Large"
+  - link "Orientation"
+  - navigation "(Default) Horizontal":
+    - list:
+      - listitem:
+        - link "(Default) Horizontal"
+      - listitem: (Default) Horizontal disabled
+    - button "Scroll right"
+  - navigation "Vertical":
+    - list:
+      - listitem:
+        - link "Vertical"
+      - listitem: Vertical disabled
+  - button "Collapse" [expanded]
+  - link "Examples"
+  - navigation "With Application Name + Navigation":
+    - list:
+      - listitem:
+        - link "With Application Name + Navigation"
+      - listitem: With Application Name disabled
+    - button "Scroll right"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - button "Search"
+  - button "Profile"
+  - button "Notification"
+  - button "Help"
+  - navigation "Without Application Name":
+    - list:
+      - listitem:
+        - link "Without Application Name"
+      - listitem: Without Application Name disabled
+    - button "Scroll right"

@@ -37,19 +37,29 @@ export default function NavigationDensity() {
 									text="Sub-Navi-Item 1"
 									subNavigation={
 										<>
-											<DBNavigationItem text="Sub-Sub-Navi-Item 1"></DBNavigationItem>
-											<DBNavigationItem text="Sub-Sub-Navi-Item 2"></DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#" aria-current="page">
+													Sub-Sub-Navi-Item 1
+												</a>
+											</DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#">
+													Sub-Sub-Navi-Item 2
+												</a>
+											</DBNavigationItem>
 										</>
 									}></DBNavigationItem>
-								<DBNavigationItem text="Sub-Navi-Item 2"></DBNavigationItem>
+								<DBNavigationItem>
+									<a href="#">Sub-Navi-Item 2</a>
+								</DBNavigationItem>
 							</>
 						}></DBNavigationItem>
-					<DBNavigationItem
-						icon="x_placeholder"
-						text="Navi-Item 2"></DBNavigationItem>
-					<DBNavigationItem
-						disabled
-						text="Navi-Item 3"></DBNavigationItem>
+					<DBNavigationItem icon="x_placeholder">
+						<a href="#">Navi-Item 2</a>
+					</DBNavigationItem>
+					<DBNavigationItem disabled>
+						<a href="#">Navi-Item 3</a>
+					</DBNavigationItem>
 				</DBNavigation>
 			</div>
 			<div class="fit-content-container" data-density="regular">
@@ -76,19 +86,29 @@ export default function NavigationDensity() {
 									text="Sub-Navi-Item 1"
 									subNavigation={
 										<>
-											<DBNavigationItem text="Sub-Sub-Navi-Item 1"></DBNavigationItem>
-											<DBNavigationItem text="Sub-Sub-Navi-Item 2"></DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#" aria-current="page">
+													Sub-Sub-Navi-Item 1
+												</a>
+											</DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#">
+													Sub-Sub-Navi-Item 2
+												</a>
+											</DBNavigationItem>
 										</>
 									}></DBNavigationItem>
-								<DBNavigationItem text="Sub-Navi-Item 2"></DBNavigationItem>
+								<DBNavigationItem>
+									<a href="#">Sub-Navi-Item 2</a>
+								</DBNavigationItem>
 							</>
 						}></DBNavigationItem>
-					<DBNavigationItem
-						icon="x_placeholder"
-						text="Navi-Item 2"></DBNavigationItem>
-					<DBNavigationItem
-						disabled
-						text="Navi-Item 3"></DBNavigationItem>
+					<DBNavigationItem icon="x_placeholder">
+						<a href="#">Navi-Item 2</a>
+					</DBNavigationItem>
+					<DBNavigationItem disabled>
+						<a href="#">Navi-Item 3</a>
+					</DBNavigationItem>
 				</DBNavigation>
 			</div>
 			<div class="fit-content-container" data-density="expressive">
@@ -115,19 +135,29 @@ export default function NavigationDensity() {
 									text="Sub-Navi-Item 1"
 									subNavigation={
 										<>
-											<DBNavigationItem text="Sub-Sub-Navi-Item 1"></DBNavigationItem>
-											<DBNavigationItem text="Sub-Sub-Navi-Item 2"></DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#" aria-current="page">
+													Sub-Sub-Navi-Item 1
+												</a>
+											</DBNavigationItem>
+											<DBNavigationItem>
+												<a href="#">
+													Sub-Sub-Navi-Item 2
+												</a>
+											</DBNavigationItem>
 										</>
 									}></DBNavigationItem>
-								<DBNavigationItem text="Sub-Navi-Item 2"></DBNavigationItem>
+								<DBNavigationItem>
+									<a href="#">Sub-Navi-Item 2</a>
+								</DBNavigationItem>
 							</>
 						}></DBNavigationItem>
-					<DBNavigationItem
-						icon="x_placeholder"
-						text="Navi-Item 2"></DBNavigationItem>
-					<DBNavigationItem
-						disabled
-						text="Navi-Item 3"></DBNavigationItem>
+					<DBNavigationItem icon="x_placeholder">
+						<a href="#">Navi-Item 2</a>
+					</DBNavigationItem>
+					<DBNavigationItem disabled>
+						<a href="#">Navi-Item 3</a>
+					</DBNavigationItem>
 				</DBNavigation>
 			</div>
 		</Fragment>

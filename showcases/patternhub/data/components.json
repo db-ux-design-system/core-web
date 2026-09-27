@@ -24,8 +24,17 @@
 		"name": "data-display",
 		"subNavigation": [
 			{
-				"label": "DBBrand",
-				"name": "brand"
+				"label": "DBHeading",
+				"name": "heading",
+				"elements": [
+					"db-heading-h-1",
+					"db-heading-h-2",
+					"db-heading-h-3",
+					"db-heading-h-4",
+					"db-heading-h-5",
+					"db-heading-h-6",
+					"db-custom-heading"
+				]
 			},
 			{
 				"label": "DBTooltip",
@@ -122,6 +131,10 @@
 			{
 				"label": "DBBadge",
 				"name": "badge"
+			},
+			{
+				"label": "DBLoadingIndicator",
+				"name": "loading-indicator"
 			}
 		]
 	},
@@ -135,6 +148,10 @@
 				"name": "card"
 			},
 			{
+				"label": "DBDialog",
+				"name": "dialog"
+			},
+			{
 				"label": "DBDivider",
 				"name": "divider"
 			},
@@ -143,8 +160,28 @@
 				"name": "drawer"
 			},
 			{
-				"label": "DBHeader",
-				"name": "header"
+				"label": "DBFooter",
+				"name": "footer",
+				"subNavigation": [
+					{
+						"label": "DBFooterContent Properties",
+						"path": "/components/footer-content/properties"
+					},
+					{
+						"label": "DBFooterMeta Properties",
+						"path": "/components/footer-meta/properties"
+					}
+				]
+			},
+			{
+				"label": "DBFooterContent",
+				"name": "footer-content",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBFooterMeta",
+				"name": "footer-meta",
+				"isHiddenInMenu": true
 			},
 			{
 				"label": "DBSection",
@@ -162,19 +199,29 @@
 		"name": "navigation",
 		"subNavigation": [
 			{
-				"label": "DBNavigation",
-				"name": "navigation",
-				"subNavigation": [
-					{
-						"label": "DBNavigationItem Properties",
-						"path": "/components/navigation-item/properties"
-					}
-				]
+				"label": "DBPagination",
+				"name": "pagination",
+				"elements": ["db-pagination", "db-pagination-item"]
 			},
 			{
-				"label": "DBNavigationItem",
-				"name": "navigation-item",
-				"isHiddenInMenu": true
+				"label": "DBControlPanelBrand",
+				"name": "control-panel-brand"
+			},
+			{
+				"label": "DBControlPanelFlatIcon",
+				"name": "control-panel-flat-icon"
+			},
+			{
+				"label": "DBControlPanelDesktop",
+				"name": "control-panel-desktop"
+			},
+			{
+				"label": "DBControlPanelMobile",
+				"name": "control-panel-mobile"
+			},
+			{
+				"label": "DBShell",
+				"name": "shell"
 			}
 		]
 	},

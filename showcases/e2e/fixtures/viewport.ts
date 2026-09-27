@@ -7,14 +7,14 @@ export const setScrollViewport =
 		// height grows with each new component added to the navigation,
 		// causing inconsistent viewport sizes across test runs.
 		const headerHeight = 200;
-		const main = await page.waitForSelector('.db-main');
+		const main = await page.waitForSelector('.db-shell-content');
 		const mainHeight: number = await main.evaluate((node) =>
 			Number(node?.scrollHeight ?? 2500)
 		);
 
 		const width = page.viewportSize()?.width ?? 0;
-		// eslint-disable-next-line @stylistic/no-mixed-operators
-		const height = fixedHeight ?? headerHeight + mainHeight;
+
+		const height = headerHeight + (fixedHeight ?? mainHeight);
 
 		await page.setViewportSize({
 			width,

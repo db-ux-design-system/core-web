@@ -1,10 +1,5 @@
+import { DBIcon, DBInfotext, DBSection, DBSwitch } from '@components';
 import { useState } from 'react';
-import {
-	DBIcon,
-	DBInfotext,
-	DBSection,
-	DBSwitch
-} from '../../../../../output/react/src';
 import DefaultPage from '../../../components/default-page';
 import IntrinsicElements = React.JSX.IntrinsicElements;
 

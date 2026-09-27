@@ -5,6 +5,20 @@ import { resolveTypesPlugin } from './scripts/resolveTypes.js';
 
 const outdir = './dist';
 
+const FAMILY_DOCUMENTATION_PATHS = new Map([
+	['db-heading-h-1', 'data-display/heading'],
+	['db-heading-h-2', 'data-display/heading'],
+	['db-heading-h-3', 'data-display/heading'],
+	['db-heading-h-4', 'data-display/heading'],
+	['db-heading-h-5', 'data-display/heading'],
+	['db-heading-h-6', 'data-display/heading'],
+	['db-custom-heading', 'data-display/heading'],
+	['db-pagination-item', 'navigation/pagination']
+]);
+
+const getDocumentationPath = (tag) =>
+	FAMILY_DOCUMENTATION_PATHS.get(tag) ?? tag.replace('db-', '');
+
 const vsCodeOptions = {
 	outdir,
 	cssFileName: null
@@ -15,7 +29,7 @@ const intellijOptions = {
 	excludeCss: true,
 	referenceTemplate: (name, tag) => ({
 		name: 'Documentation',
-		url: `https://design-system.deutschebahn.com/core-web/review/main/components/${tag.replace('db-', '')}/properties`
+		url: `https://design-system.deutschebahn.com/core-web/review/main/components/${getDocumentationPath(tag)}/properties`
 	})
 };
 

@@ -84,7 +84,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		&::after {
 			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
 
-			visibility: hidden;
+			opacity: 0;
 			align-self: center;
 			aspect-ratio: 1;
 
@@ -123,8 +123,6 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 					block-size variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional,
 					transform variables.$db-transition-duration-fast
-						variables.$db-transition-timing-emotional,
-					visibility variables.$db-transition-duration-fast
 						variables.$db-transition-timing-emotional;
 			}
 
@@ -209,7 +207,7 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 	&[data-visual-aid="true"] {
 		input {
 			&::after {
-				visibility: visible;
+				opacity: 1;
 				block-size: $switch-active-thumb-size;
 
 				@media (prefers-reduced-motion: no-preference) {

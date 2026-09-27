@@ -13,7 +13,7 @@ inputs:
     - name: component_slug
       type: string
       required: true
-      description: "Component directory name in kebab-case (e.g. 'button', 'navigation-item')"
+      description: "Component directory name in kebab-case (e.g. 'button', 'control-panel-navigation-item')"
     - name: component_name
       type: string
       required: false
@@ -57,14 +57,14 @@ on_error:
 
 Throughout this skill:
 
-- `{component_slug}` = kebab-case directory/file name (e.g. `navigation-item`)
-- `{component_name}` = PascalCase symbol name (e.g. `NavigationItem`)
-- `DB{component_name}` = full component class name used in grep (e.g. `DBNavigationItem`)
+- `{component_slug}` = kebab-case directory/file name (e.g. `control-panel-navigation-item`)
+- `{component_name}` = PascalCase symbol name (e.g. `ControlPanelNavigationItem`)
+- `DB{component_name}` = full component class name used in grep (e.g. `DBControlPanelNavigationItem`)
 
 **Name Derivation:** Convert `component_slug` to PascalCase to get `component_name`:
 
 - `button` -> `Button` -> grep target: `DBButton`
-- `navigation-item` -> `NavigationItem` -> grep target: `DBNavigationItem`
+- `control-panel-navigation-item` -> `ControlPanelNavigationItem` -> grep target: `DBControlPanelNavigationItem`
 - `custom-select` -> `CustomSelect` -> grep target: `DBCustomSelect`
 
 If `component_name` is not explicitly provided, derive it deterministically from `component_slug` by capitalizing each segment after splitting on `-`.
@@ -98,7 +98,7 @@ Alternatively, run all component tests:
 cd output/react && pnpm run test:components
 ```
 
-**Example:** For `component_slug = navigation-item`, convert to `component_name = NavigationItem`, then grep for `DBNavigationItem`.
+**Example:** For `component_slug = control-panel-navigation-item`, convert to `component_name = ControlPanelNavigationItem`, then grep for `DBControlPanelNavigationItem`.
 
 Capture the FULL output (pass/fail, error messages, diff output).
 

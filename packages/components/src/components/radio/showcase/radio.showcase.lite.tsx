@@ -5,6 +5,7 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import RadioChecked from '../examples/checked.example.lite';
 import RadioDensity from '../examples/density.example.lite';
 import RadioDisabled from '../examples/disabled.example.lite';
+import RadioExamples from '../examples/examples.example.lite';
 import RadioRequired from '../examples/required.example.lite';
 import RadioShowLabel from '../examples/show-label.example.lite';
 import RadioShowRequiredAsterisk from '../examples/show-required-asterisk.example.lite';
@@ -54,6 +55,11 @@ export default function RadioShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Show Required Asterisk">
 				<CardWrapperShowcase>
 					<RadioShowRequiredAsterisk />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Examples">
+				<CardWrapperShowcase>
+					<RadioExamples />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
