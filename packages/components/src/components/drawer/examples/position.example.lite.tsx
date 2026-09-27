@@ -14,7 +14,9 @@ useMetadata({
 });
 
 export default function DrawerPosition() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
+	// An absolute-positioned drawer is non-modal and opens via show(), which has
+	// no native invoker command, so it is driven through the open prop.
+	const [absoluteOpen, setAbsoluteOpen] = useState<boolean>(false);
 
 	return (
 		<Fragment>
@@ -26,18 +28,17 @@ export default function DrawerPosition() {
 					border: '2px dashed currentColor',
 					overflow: 'hidden'
 				}}>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton onClick={() => setAbsoluteOpen(true)}>
 					Open: Absolute
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-position-absolute' }}
 					position="absolute"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
+					open={absoluteOpen}
+					onClose={() => setAbsoluteOpen(false)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Absolute
+							<h2>Absolute</h2>
 						</DBDrawerHeader>
 					}>
 					Absolute
