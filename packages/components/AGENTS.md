@@ -373,6 +373,27 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
 - **Never name a local after a state method**: for React, Mitosis turns every state method into a plain function in the component scope, so `const isDataDriven = state.isDataDriven()` becomes `const isDataDriven = isDataDriven()` — the local shadows the function and throws a `ReferenceError` from its own initializer. The other targets keep a `this.` prefix and stay correct, so this only breaks React at runtime and no build catches it. Name the local something else.
 - **No multi-line `//` comments between statements inside a state method**: the same single-line inlining collapses a multi-line `//` block onto one line, and every statement that followed the comment ends up commented out with it — which silently drops closing braces and breaks generation with a misleading `'}' expected` at the end of the file. A `//` comment is safe on its own line before a method or before a `return`, but between two statements in a store method use a `/* */` block, which survives the collapse intact. This bit the `DBPagination` DOM-sync methods.
 - **Keep lifecycle callback logic simple**: Complex closures inside `onUpdate` (e.g. deeply nested arrow functions with state mutations) may generate invalid output. Extract logic into state methods and call them from the callback.
+- **Never generate a fallback `id` (or any `uuid()`) at render time**: initializing state with a random value in the `useStore({...})` literal (e.g. `_id: 'db-dialog-' + uuid()`) runs once on the server and again during hydration, producing different ids each time. React then warns about the mismatch and may keep stale server markup, and any `aria-labelledby`/`commandfor` pointing at that id breaks. Initialize the id state to `undefined` in the store and assign the fallback in `onMount` (client-only) via a small state method, mirroring `input`/`select`/`tooltip` and `DBDialogHeader`:
+
+    ```tsx
+    const state = useStore({
+    	_id: undefined,
+    	resetId: () => {
+    		state._id = props.id ?? props.propOverrides?.id ?? "db-x-" + uuid();
+    	}
+    });
+    onMount(() => state.resetId());
+    // Re-run on every id-dependency change, UNGUARDED: resetId() falls back to
+    // the generated id when the consumer clears an explicit one, so state._id is
+    // never pinned to a stale consumer id (a guard like `if (props.id ?? ...)`
+    // would skip the reset on clear and leave a duplicate id in the document).
+    onUpdate(() => {
+    	state.resetId();
+    }, [props.id, props.propOverrides?.id]);
+    ```
+
+    The render uses `id={props.id ?? props.propOverrides?.id ?? state._id}`, so an id-less element renders no `id` on the server and gains the stable fallback after mount. Note: keep the id state member initialized in the store literal (`_id: undefined`) — a member only assigned later, never declared, is not emitted as state in the Vue output.
+
 - **Narrowing an optional prop does not survive the Angular signal transform**: Angular rewrites every prop access into a signal call, so guarding `props.foo` and then using it are two separate `this.foo()` calls and TypeScript drops the narrowing. This fails the Angular build with `TS2532: Object is possibly 'undefined'` while React, Vue and Stencil compile — so it only shows up in `build-outputs`. Assign the prop to a local first.
 
     ```ts
@@ -416,6 +437,37 @@ Mitosis compiles `.lite.tsx` to multiple frameworks. Be aware of these constrain
     	}, 1);
     }
     ```
+
+## Comments: put the "why" as TSDoc on the symbol, not as a block above the call site
+
+Long multi-line comments anywhere in a `.lite.tsx` — above a `useStore` method,
+a lifecycle hook (`onMount`, `onUpdate`), a ref or handler, or in the JSX/template
+itself — inflate the component and make the actual logic hard to scan. When a
+comment explains **what a symbol does or why it exists**, move it to a **TSDoc
+block on that symbol** — the `useStore` method, or its declaration in `model.ts`
+(including the shared `DialogDrawerDefaultState` in `src/shared/model.ts`) — so a
+reader hovers the symbol or jumps to the model for the detail, and the component
+body stays readable. Shared state methods (`handleDialogOpen`, `handleClick`, …)
+are declared once in `src/shared/model.ts`, so one TSDoc there documents every
+component that extends the type — do not repeat it inline in each `.lite.tsx`.
+
+Attribute the comment to what it actually describes. A note about **why an
+effect's dependency array is what it is** belongs at the `onUpdate` call site
+(that decision is local to the effect), not on the method the effect calls — but
+keep it to one line and point to the method's TSDoc for the reasoning. Example
+(see `dialog.lite.tsx` / `drawer.lite.tsx`):
+
+```tsx
+// Observes `open` only: `backdrop` is deliberately excluded (see handleDialogOpen).
+onUpdate(() => {
+	state.handleDialogOpen();
+}, [props.open]);
+```
+
+The full rationale (modality is fixed at open time, switching it would flicker
+and refire events) lives in the `handleDialogOpen` TSDoc. This does not override
+the "preserve comments during refactoring" rule in the root `AGENTS.md`: relocate
+the intent to TSDoc, never silently drop it.
 
 ## Responsive layouts belong in the DOM, not in a resize handler
 
@@ -505,22 +557,60 @@ the item still being in the markup.
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File                      | What it covers                                          |
-| ------------------------- | ------------------------------------------------------- |
-| `_button-components.scss` | Ghost button appearance, button-like interactive states |
-| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas) |
-| `_link-components.scss`   | Link-like appearance and states                         |
-| `_tag-components.scss`    | Tag/badge/chip shared styles                            |
-| `_stack-components.scss`  | Stack/layout shared styles                              |
-| `_select-components.scss` | Select/dropdown shared styles                           |
-| `_popover-component.scss` | Popover/tooltip positioning and appearance              |
-| `_icon-passing.scss`      | Icon passing via data attributes                        |
-| `_custom-elements.scss`   | Custom element host/shadow styles                       |
-| `_component.scss`         | Base component resets and defaults                      |
-| `_indicator.scss`         | Indicator animation                                     |
-| `_scrollbar.scss`         | Scrollbar styling                                       |
+| File                      | What it covers                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------ |
+| `_button-components.scss` | Ghost button appearance, button-like interactive states                        |
+| `_dialog-components.scss` | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
+| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`               |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                        |
+| `_link-components.scss`   | Link-like appearance and states                                                |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                                                   |
+| `_stack-components.scss`  | Stack/layout shared styles                                                     |
+| `_select-components.scss` | Select/dropdown shared styles                                                  |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance                                     |
+| `_icon-passing.scss`      | Icon passing via data attributes                                               |
+| `_custom-elements.scss`   | Custom element host/shadow styles                                              |
+| `_component.scss`         | Base component resets and defaults                                             |
+| `_indicator.scss`         | Indicator animation                                                            |
+| `_scrollbar.scss`         | Scrollbar styling                                                              |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+## Shared Utils (`src/utils/dialog/`)
+
+When related utils grow beyond a single file, group them in a subfolder with an `index.ts` barrel. Name sibling files without the folder prefix to keep import paths clean (e.g. `utils/dialog/ponyfill` instead of `utils/dialog/dialog-ponyfill`). The `utils/dialog/` folder holds the dialog/drawer shared logic:
+
+| File          | What it covers                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.ts`    | `syncDialogOpenState`, `resolveClosestDialog`, `setDialogAriaLabelledBy`, `removeDialogAriaLabelledBy`                                                                                  |
+| `ponyfill.ts` | `supportsClosedBy`, `supportsCommandFor`, `markClosedByFallback`, `commandForCloseFallback`, `escapeCloseFallback` (deletable once Browserslist covers `closedby` and Invoker Commands) |
+
+### `DBDialog` / `DBDrawer` modality is an open-time decision (do not make `backdrop` reactive)
+
+The `onUpdate` effect in `dialog.lite.tsx` (and the drawer equivalent) intentionally observes **`open` only**, not `backdrop`. Native `<dialog>` fixes its modality when it opens (`showModal()` vs `show()`) and offers no way to switch it while open; simulating a switch would require `close()` + reopen, which flickers, resets focus and fires an extra `close`/`cancel`. So changing `backdrop` on an **open** dialog updates only its appearance, and the modality applied at open time stays until the consumer closes and reopens.
+
+During code review, **do not flag the missing `backdrop` dependency as a bug** — a site owner who wants to change modality should close and reopen the dialog themselves.
+
+### `closedby` ponyfill covers three dismiss paths (backdrop, request-close button, Escape)
+
+A non-modal dialog/drawer (`backdrop="none"`, opened via `show()`) sets `closedby="closerequest"`, which a browser without `closedby` support silently ignores. Native modal dialogs (`showModal()`) still dismiss on Escape, but non-modal ones do **not** — so all three light-dismiss paths need a fallback in unsupported browsers:
+
+- **Backdrop click** — CSS (`_dialog-ponyfill.scss`), gated by `data-closedby="not-supported"`. Intentionally excludes `backdrop="none"` (there is no backdrop to click).
+- **Header request-close button** — `commandForCloseFallback` on the dialog `click` handler.
+- **Escape key** — `escapeCloseFallback` on the dialog/drawer `keydown` handler. Guards on `!supportsClosedBy()` **and** `!dialog.matches(':modal')` so modal dialogs keep their native Escape behavior and supporting browsers stay untouched.
+
+During code review, **do not flag the non-modal Escape path as missing** — `escapeCloseFallback` handles it.
+
+#### `commandfor` targets the native `<dialog>`, not the custom-element host (Angular/Stencil)
+
+In the Angular and Stencil outputs the component renders a `display: contents` custom-element host (`<db-dialog>`) around the native `<dialog>`. The consumer `id` prop stays on the **host**, so a consumer must point `commandfor` at the **inner** `<dialog>` id via `propOverrides.id` (`[propOverrides]="{ id: 'my-dialog' }"`), not the host `id` — otherwise `getElementById`/`commandfor` resolves to the host (which precedes the dialog and is not an `HTMLDialogElement`), and the native command is a no-op. The `id` prop is for referencing the component from outside (CSS, `querySelector`). React and Vue have no host, so `id` on the `<dialog>` works directly there. This is documented in `dialog/docs/Angular.md`.
+
+Because a resolved `commandfor` target can therefore be a non-dialog host, `commandForCloseFallback` guards with a `typeof target.requestClose === 'function'` check before treating it as a dialog: it never calls `requestClose()` on the host (would throw) and instead closes the surrounding dialog. During code review, **keep that guard** — dropping it reintroduces the crash. The proper per-output id fix (keeping the consumer `id` off the inner `<dialog>`) is a breaking change deferred to an exclusive branch.
+
+The dialog and drawer differ here, on purpose:
+
+- `DBDialogHeader` / `DBDialogFooter` render their wrappers as neutral `<div>`, **not** `<header>` / `<footer>`. The dialog has no sectioning-content wrapper: its slots sit directly in the `<dialog>`, which is a sectioning _root_ (it scopes the heading outline) but is **not** sectioning content, so a `<header>`/`<footer>` there would still expose a stray page-level `banner` / `contentinfo` landmark. During code review, **do not suggest restoring `<header>`/`<footer>` for the dialog** — the nested `<h2>` carries the heading semantics.
+- `DBDrawerHeader` / `DBDrawerFooter` **do** use `<header>` / `<footer>`. The drawer wraps its slots in an `<article>` (`.db-drawer-container`), which **is** sectioning content, so per the HTML spec the header/footer are scoped to the article and get no landmark role — the semantically correct choice. Keep them; do not change them to `<div>` unless the `<article>` wrapper is also removed.
 
 ### Want the look of a button but not its box? Extend the placeholders
 

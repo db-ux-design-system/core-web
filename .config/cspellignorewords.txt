@@ -262,5 +262,14 @@ pnpms
 renovatebot
 drilldown
 Drilldown
+unstub
+closebuttontext
+neutralise
+neutralises
+ponyfilled
+argumentless
 recalc
 deconflict
+renderable
+frontmost
+unwired
