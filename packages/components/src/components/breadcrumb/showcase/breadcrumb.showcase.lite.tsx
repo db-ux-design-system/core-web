@@ -3,6 +3,7 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import BreadcrumbApi from '../examples/api.example.lite';
+import BreadcrumbBadge from '../examples/badge.example.lite';
 import BreadcrumbDensity from '../examples/density.example.lite';
 import BreadcrumbDisabled from '../examples/disabled.example.lite';
 import BreadcrumbLength from '../examples/length.example.lite';
@@ -54,6 +55,11 @@ export default function BreadcrumbShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Truncation">
 				<CardWrapperShowcase>
 					<BreadcrumbTruncation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Badge">
+				<CardWrapperShowcase>
+					<BreadcrumbBadge />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

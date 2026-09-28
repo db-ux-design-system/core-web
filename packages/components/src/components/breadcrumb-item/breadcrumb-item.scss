@@ -20,8 +20,12 @@
 		@extend %default-interactive-component;
 		@extend %transparent-border;
 
+		gap: variables.$db-spacing-fixed-xs;
+		align-items: center;
 		padding: variables.$db-spacing-fixed-3xs variables.$db-spacing-fixed-2xs;
 		text-decoration: none;
+
+		@include helpers.display(inline-flex);
 
 		&:not([aria-current="page"]) {
 			@extend %button-outlined-ghost-colors;

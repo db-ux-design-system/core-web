@@ -73,7 +73,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			<Show when={state._autoCollapse && !state._expanded}>
 				<div class="db-breadcrumb-truncation-item">
 					<button
-						className="db-button db-breadcrumb-truncation-item-button"
+						className="db-button db-breadcrumb-auto-truncation-item-button"
 						data-variant="ghost"
 						data-size={props.size ?? 'small'}
 						aria-label={props.expandText}
