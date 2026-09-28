@@ -272,6 +272,8 @@ recalc
 deconflict
 scrollport
 interpolatable
+crumbtrail
+hrefs
 renderable
 frontmost
 unwired
