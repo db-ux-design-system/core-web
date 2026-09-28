@@ -30,12 +30,6 @@ export type DefaultSnapshotTestType = {
 
 export type AxeCoreTestType = {
 	axeDisableRules?: string[];
-	/**
-	 * CSS selector(s) excluded from the scan (axe `.exclude()`). Use to skip a
-	 * node whose finding is a tooling false positive, while keeping the rule
-	 * active for the rest of the page.
-	 */
-	axeExclude?: string;
 	skipAxe?: boolean;
 	preAxe?: (page: Page) => Promise<void>;
 	color?: string;
@@ -165,7 +159,6 @@ export const runAxeCoreTest = ({
 	path,
 	fixedHeight,
 	axeDisableRules,
-	axeExclude,
 	skipAxe,
 	preAxe,
 	color = lvl1,
@@ -209,12 +202,9 @@ export const runAxeCoreTest = ({
 			await preAxe(page);
 		}
 
-		let axeBuilder = new AxeBuilder({ page })
+		const axeBuilder = new AxeBuilder({ page })
 			.include('#main-content')
 			.disableRules(axeDisableRules ?? []);
-		if (axeExclude) {
-			axeBuilder = axeBuilder.exclude(axeExclude);
-		}
 		const accessibilityScanResults = await axeBuilder.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
