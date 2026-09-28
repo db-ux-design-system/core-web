@@ -160,16 +160,16 @@ Mapping to rendered markup:
 
 - `DBBreadcrumb` -> `<nav aria-label="..."><ol>`
 - `DBBreadcrumbItem` -> `<li>` (consumer slots the `<a>`; the current page renders as plain text with `aria-current="page"`)
-- `DBBreadcrumbCollapseItem` -> the hidden crumbs stay in their own `<li>` elements inside the outer `<ol>`; the collapse control itself is rendered as chrome that is kept out of the breadcrumb count (see "Avoiding an inflated item count" below). It is not itself a crumb; it only reveals the hidden crumbs, whether via an inline `<details>` disclosure (Variant A) or a popover overlay (Variant B).
+- `DBBreadcrumbCollapseItem` -> the hidden crumbs stay in their own `<li>` elements inside a nested `<ol>` that lives in the collapse region (the `<details>` in Variant A, the popover in Variant B), matching the grouped reading described above. The collapse control itself is rendered as chrome that is kept out of the breadcrumb count (see "Avoiding an inflated item count" below). It is not itself a crumb; it only reveals the hidden crumbs, whether via an inline `<details>` disclosure (Variant A) or a popover overlay (Variant B).
 
 ### Avoiding an inflated item count
 
-The collapse control must not be counted as a breadcrumb. If the collapse container is emitted as a plain `<li>` child of the outer `<ol>`, assistive technology counts it as an outer item - a three-crumb trail is then announced as "list, four items" (three crumbs plus the disclosure chrome), recreating the inflated-count problem described in "Explored but not adopted" below. Two structures avoid this, each with a support risk to verify on a real screen reader:
+The collapse control must not be counted as a breadcrumb. The hidden crumbs live in a nested `<ol>` inside the collapse region, so the outer `<ol>` holds the visible crumbs plus the control that reveals the hidden set. If that control is emitted as a plain `<li>` child of the outer `<ol>`, assistive technology counts it as an outer item - a trail of two visible crumbs plus the control is then announced as "list, three items" (two crumbs plus the disclosure chrome), recreating the inflated-count problem described in "Explored but not adopted" below. Two structures avoid this, each with a support risk to verify on a real screen reader:
 
-- **Control inside the `<ol>` with `role="presentation"` on its `<li>`**, so the disclosure `<li>` is not counted while the hidden crumbs remain real `<li>` items. Risk: AT support for a presentational `<li>` dropping from the count has historically varied.
-- **Control outside the `<ol>`** (a sibling inside the `<nav>`), so the `<ol>` contains exactly the crumbs. Risk: relies on the `<nav>` for structure and needs care so the control stays visually inline with the trail.
+- **Control inside the `<ol>` with `role="presentation"` on its `<li>`**, so the disclosure `<li>` is not counted while the visible crumbs remain real `<li>` items. Risk: AT support for a presentational `<li>` dropping from the count has historically varied.
+- **Control outside the `<ol>`** (a sibling inside the `<nav>`), so the outer `<ol>` contains exactly the visible crumbs. Risk: relies on the `<nav>` for structure and needs care so the control stays visually inline with the trail.
 
-Either way, the announced count must equal the number of crumbs (the hidden ones included, since they stay in the accessibility tree), never the number of crumbs plus the control. The grouped reading of the hidden set (from the `<details>` / popover region) is the separate, accepted trade-off discussed above.
+Either way, the outer list's announced count must equal the number of visible crumbs, never the visible crumbs plus the control. The hidden crumbs are counted separately, within the nested `<ol>` of the collapse region, and that grouped reading is the separate, accepted trade-off discussed above.
 
 All open questions and decisions raised while prototyping this API are collected in a single "Open decisions" list under the "Decision" section further down, so they can be resolved with design in one place.
 
