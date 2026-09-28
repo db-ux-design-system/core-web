@@ -30,21 +30,6 @@ export type DefaultSnapshotTestType = {
 
 export type AxeCoreTestType = {
 	axeDisableRules?: string[];
-	/**
-	 * CSS selector(s) excluded from the scan (axe `.exclude()`). Use to skip a
-	 * node whose finding is a tooling false positive, while keeping the rule
-	 * active for the rest of the page.
-	 */
-	axeExclude?: string;
-	/**
-	 * Drops a single known false-positive finding while keeping the element in
-	 * the scan for every other rule. Unlike `axeExclude` (which removes the node
-	 * and its descendants from ALL rules), this only filters out the given
-	 * `ruleId` violation on nodes matching `selector` - so a genuine, unrelated
-	 * defect on the same element (missing accessible name, invalid ARIA, ...) is
-	 * still reported.
-	 */
-	axeIgnoreFinding?: { ruleId: string; selector: string };
 	skipAxe?: boolean;
 	preAxe?: (page: Page) => Promise<void>;
 	color?: string;
@@ -89,9 +74,6 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
-	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
-	await page.evaluate(async () => document.fonts.ready);
-
 	await waitForDBShell(page);
 	await setScrollViewport(page, fixedHeight)();
 };
@@ -174,8 +156,6 @@ export const runAxeCoreTest = ({
 	path,
 	fixedHeight,
 	axeDisableRules,
-	axeExclude,
-	axeIgnoreFinding,
 	skipAxe,
 	preAxe,
 	color = lvl1,
@@ -219,29 +199,12 @@ export const runAxeCoreTest = ({
 			await preAxe(page);
 		}
 
-		let axeBuilder = new AxeBuilder({ page })
+		const axeBuilder = new AxeBuilder({ page })
 			.include('#main-content')
 			.disableRules(axeDisableRules ?? []);
-		if (axeExclude) {
-			axeBuilder = axeBuilder.exclude(axeExclude);
-		}
 		const accessibilityScanResults = await axeBuilder.analyze();
 
-		let { violations } = accessibilityScanResults;
-
-		if (axeIgnoreFinding) {
-			// Drop only the known false-positive finding: for the given rule,
-			// remove nodes whose element matches `selector` (resolved against the
-			// live DOM via the node's own target path), then drop the violation
-			// entirely if no offending node remains. Every other rule - and any
-			// other node of the same rule - still fails the assertion, so a real
-			// unrelated defect on the same element is not masked.
-			violations = await filterIgnoredFinding(
-				page,
-				violations,
-				axeIgnoreFinding
-			);
-		}
+		const { violations } = accessibilityScanResults;
 
 		expect(violations).toEqual([]);
 	});
