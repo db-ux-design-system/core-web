@@ -15,11 +15,13 @@ import { DBBreadcrumbProps, DBBreadcrumbState } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBBreadcrumbProps>({});
+useDefaultProps<DBBreadcrumbProps>({
+	expandText: 'Show more breadcrumbs'
+});
 
 export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	// This is used as forwardRef
-	const _ref = useRef<HTMLDivElement | any>(null);
+	const _ref = useRef<HTMLElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBBreadcrumbState>({
 		_autoCollapse: false,
@@ -45,20 +47,23 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	onUpdate(() => {
 		if (_ref) {
 			requestAnimationFrame(() => {
-				const hasCollapseItem = (_ref as HTMLDivElement).querySelector(
+				const hasCollapseItem = (_ref as HTMLElement).querySelector(
 					'.db-breadcrumb-truncation-item-toggle'
 				);
-				const breadCrumbItems = (
-					_ref as HTMLDivElement
-				).querySelectorAll('.db-breadcrumb-item');
-				if (!hasCollapseItem) {
-					state._autoCollapse =
-						breadCrumbItems.length >
-						Math.max(props.maxItems ?? 4, 2);
+				const breadCrumbItems = (_ref as HTMLElement).querySelectorAll(
+					'.db-breadcrumb-item'
+				);
+				const shouldCollapse =
+					!hasCollapseItem &&
+					breadCrumbItems.length > Math.max(props.maxItems ?? 4, 2);
+				state._autoCollapse = shouldCollapse;
+				/* Reset expansion when the trail no longer needs collapsing, so a shrinking list returns to its uncollapsed state. */
+				if (!shouldCollapse) {
+					state._expanded = false;
 				}
 			});
 		}
-	}, [_ref]);
+	}, [_ref, props.items, props.maxItems]);
 
 	return (
 		<nav
@@ -70,9 +75,11 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			data-collapsed={getBooleanAsString(
 				state._autoCollapse && !state._expanded
 			)}>
+			{/* Toggle kept outside the <ol> on purpose (see breadcrumb.scss). */}
 			<Show when={state._autoCollapse && !state._expanded}>
 				<div class="db-breadcrumb-truncation-item">
 					<button
+						type="button"
 						className="db-button db-breadcrumb-auto-truncation-item-button"
 						data-variant="ghost"
 						data-size={props.size ?? 'small'}

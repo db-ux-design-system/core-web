@@ -16,6 +16,11 @@ export default function DBBreadcrumbTruncationItem(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const _ref = useRef<HTMLLIElement | any>(null);
 
+	function satisfyReact(event: any) {
+		// This is a function to satisfy React
+		event.stopPropagation();
+	}
+
 	return (
 		<li
 			ref={_ref}
@@ -28,9 +33,11 @@ export default function DBBreadcrumbTruncationItem(
 				width={props.width}
 				trigger={
 					<button
+						type="button"
 						class="db-button db-breadcrumb-truncation-item-toggle"
 						data-variant="ghost"
-						aria-label={props.label}>
+						aria-label={props.label}
+						onClick={(event) => satisfyReact(event)}>
 						{/* Visible ellipsis as text (design); the accessible */}
 						{/* name comes from aria-label. Escaped so the source */}
 						{/* stays ASCII. */}

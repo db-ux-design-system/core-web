@@ -5,11 +5,32 @@ export const BreadcrumbSeparatorList = ['chevron', 'slash'] as const;
 export type BreadcrumbSeparatorType = (typeof BreadcrumbSeparatorList)[number];
 
 export type DBBreadcrumbDefaultProps = {
+	/**
+	 * Visual separator rendered between the crumbs.
+	 *
+	 * Default: `chevron`.
+	 */
 	separator?: BreadcrumbSeparatorType;
 
+	/**
+	 * Accessible label for the auto-collapse toggle that expands the trail.
+	 *
+	 * Default: `Show more breadcrumbs`.
+	 */
 	expandText?: string;
 
+	/**
+	 * Breadcrumb items for the options API. When set, the trail is rendered
+	 * from this array instead of slotted `DBBreadcrumbItem` children.
+	 */
 	items?: DBBreadcrumbItemDefaultProps[];
+
+	/**
+	 * Maximum number of crumbs to show before the trail auto-collapses the
+	 * middle items behind an expand toggle. Values below `2` are treated as `2`.
+	 *
+	 * Default: `4`.
+	 */
 	maxItems?: number;
 };
 
