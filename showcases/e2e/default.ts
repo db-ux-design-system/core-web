@@ -74,6 +74,9 @@ const gotoPage = async (
 			waitUntil: 'domcontentloaded'
 		}
 	);
+	// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
+	await page.evaluate(async () => document.fonts.ready);
+
 	await waitForDBShell(page);
 	await setScrollViewport(page, fixedHeight)();
 };
@@ -204,61 +207,8 @@ export const runAxeCoreTest = ({
 			.disableRules(axeDisableRules ?? []);
 		const accessibilityScanResults = await axeBuilder.analyze();
 
-		const { violations } = accessibilityScanResults;
-
-		expect(violations).toEqual([]);
+		expect(accessibilityScanResults.violations).toEqual([]);
 	});
-};
-
-// Whether the element identified by an axe node target selector matches
-// `selector`. Resolves the node's own CSS path against the live DOM.
-const isNodeMatchingSelector = async (
-	page: Page,
-	node: NodeResult,
-	selector: string
-): Promise<boolean> => {
-	const target = node.target[0];
-
-	if (typeof target !== 'string') {
-		return false;
-	}
-
-	return page
-		.locator(target)
-		.first()
-		.evaluate((element, sel) => element.matches(sel), selector)
-		.catch(() => false);
-};
-
-// Drops the known false-positive `ruleId` finding on nodes matching `selector`,
-// keeping every other rule and node intact (see AxeCoreTestType.axeIgnoreFinding).
-const filterIgnoredFinding = async (
-	page: Page,
-	violations: Result[],
-	{ ruleId, selector }: { ruleId: string; selector: string }
-): Promise<Result[]> => {
-	const filtered = await Promise.all(
-		violations.map(async (violation) => {
-			if (violation.id !== ruleId) {
-				return violation;
-			}
-
-			const keptNodes = await Promise.all(
-				violation.nodes.map(async (node) =>
-					(await isNodeMatchingSelector(page, node, selector))
-						? undefined
-						: node
-				)
-			);
-
-			return {
-				...violation,
-				nodes: keptNodes.filter(Boolean) as NodeResult[]
-			};
-		})
-	);
-
-	return filtered.filter((violation) => violation.nodes.length > 0);
 };
 
 export const runA11yCheckerTest = ({
