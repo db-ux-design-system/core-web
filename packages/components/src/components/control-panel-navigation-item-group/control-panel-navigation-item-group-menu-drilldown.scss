@@ -39,13 +39,7 @@
 			min: "sm"
 		)
 	) {
-		inline-size: calc(
-			var(
-					--db-control-panel-desktop-inline-size,
-					#{variables.$db-container-xs}
-				) -
-				#{variables.$db-border-width-3xs} * 2
-		); // Remove the border from fixed menu
+		inline-size: 100%;
 
 		// Match the vertical desktop navigation padding-inline so the overlay
 		// content stays horizontally aligned with the level behind it during

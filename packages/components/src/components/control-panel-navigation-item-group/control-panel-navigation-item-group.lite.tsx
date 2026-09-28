@@ -200,7 +200,8 @@ export default function DBControlPanelNavigationItemGroup(
 					) ||
 					current.classList.contains(
 						'db-control-panel-mobile-drawer-scroll-container'
-					)
+					) ||
+					current.classList.contains('db-control-panel-navigation')
 				) {
 					// Reached the outermost scroll owner for this layout.
 					break;
