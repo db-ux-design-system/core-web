@@ -16,28 +16,6 @@
 	}
 }
 
-// Default template without a sub-navigation row, used as the base for the
-// sub-navigation positions so that no empty grid row is left over when the
-// shell has no sub-navigation.
-@mixin shell-content-only {
-	grid-template-areas:
-		"control-panel"
-		"shell-content";
-	grid-template-rows:
-		[control-panel] auto
-		[shell-content] 1fr;
-}
-
-// Same as `shell-content-only`, but with the control panel below the content.
-@mixin control-panel-bottom-shell-content-only {
-	grid-template-areas:
-		"shell-content"
-		"control-panel";
-	grid-template-rows:
-		[shell-content] 1fr
-		[control-panel] auto;
-}
-
 .db-shell {
 	// MOBILE
 	@include screen-sizes.screen-min-max(
@@ -49,23 +27,26 @@
 			:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})
 		) {
 			&[data-control-panel-mobile-position="top"] {
+				grid-template-areas:
+					"control-panel"
+					"shell-content";
+				grid-template-rows:
+					[control-panel] auto
+					[shell-content] 1fr;
+
 				&:not([data-sub-navigation-mobile-position]),
 				&[data-sub-navigation-mobile-position="none"] {
-					@include shell-content-only;
-
 					#{string.unquote(custom-elements.$shell-sub-navigation)} {
 						display: none;
 					}
 				}
 
+				// Only reserve the sub-navigation row when a sub-navigation is
+				// actually present, mirroring the desktop templates. An
+				// unconditional empty row would capture any additional child of
+				// `.db-shell` via grid auto-placement and render it between the
+				// control panel and the content.
 				&[data-sub-navigation-mobile-position="top"] {
-					@include shell-content-only;
-
-					// Only reserve the sub-navigation row when a sub-navigation
-					// is actually present, mirroring the desktop templates. An
-					// unconditional empty row would capture any additional child
-					// of `.db-shell` via grid auto-placement and render it
-					// between the control panel and the content.
 					&:has(
 						#{string.unquote(
 								custom-elements.$shell-sub-navigation
@@ -85,9 +66,6 @@
 				}
 
 				&[data-sub-navigation-mobile-position="bottom"] {
-					@include shell-content-only;
-
-					// See the comment on the `top` position above.
 					&:has(
 						#{string.unquote(
 								custom-elements.$shell-sub-navigation
@@ -114,20 +92,23 @@
 
 		&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
 		&[data-control-panel-mobile-position="bottom"] {
+			grid-template-areas:
+				"shell-content"
+				"control-panel";
+			grid-template-rows:
+				[shell-content] 1fr
+				[control-panel] auto;
+
 			&:not([data-sub-navigation-mobile-position]),
 			&[data-sub-navigation-mobile-position="bottom"],
 			&[data-sub-navigation-mobile-position="none"] {
-				@include control-panel-bottom-shell-content-only;
-
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
 					display: none;
 				}
 			}
 
+			// See the comment on the `top` position further up.
 			&[data-sub-navigation-mobile-position="top"] {
-				@include control-panel-bottom-shell-content-only;
-
-				// See the comment on the `top` position further up.
 				&:has(
 					#{string.unquote(custom-elements.$shell-sub-navigation)}
 				) {
