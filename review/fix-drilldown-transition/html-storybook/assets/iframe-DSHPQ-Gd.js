@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-Buy6IsGa.js";e();
