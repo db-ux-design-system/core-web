@@ -22,7 +22,6 @@ export default function DBBreadcrumbTruncationItem(
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-breadcrumb-truncation-item', props.className)}>
 			<DBPopover
-				className="db-breadcrumb-truncation-item-popover"
 				placement={props.placement ?? 'bottom'}
 				animation={props.animation}
 				delay={props.delay}
