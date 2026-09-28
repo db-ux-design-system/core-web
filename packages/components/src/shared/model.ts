@@ -684,6 +684,45 @@ export type CloseEventState<T> = {
 	handleClose: (event?: T | void, forceClose?: boolean) => void;
 };
 
+export type CancelEventProps<T> = {
+	/**
+	 * Called when the native cancel event fires (e.g. Escape key on a dialog).
+	 * Call event.preventDefault() to veto the native close.
+	 */
+	onCancel?: (event: GeneralEvent<T>) => void;
+	/**
+	 * Called when the native cancel event fires (e.g. Escape key on a dialog).
+	 * Call event.preventDefault() to veto the native close.
+	 */
+	cancel?: (event: GeneralEvent<T>) => void;
+};
+
+/**
+ * Shared internal state for the native `<dialog>`-based components (DBDialog and
+ * DBDrawer). Both drive the same open/click/cancel handlers and the id fallback,
+ * so they extend this instead of duplicating the shape. The Escape-close fallback
+ * is registered at document scope (id held in `_documentKeydownListenerCallbackId`)
+ * rather than via an element `keydown` handler, so a non-modal dialog (which does
+ * not trap focus) still dismisses on Escape from an element outside it.
+ */
+export type DialogDrawerDefaultState = {
+	resetId: () => void;
+	/**
+	 * Syncs the native `<dialog>` open state to `props.open` via
+	 * `syncDialogOpenState`, opening modally (`showModal()`) or non-modally
+	 * (`show()`) per `isNotModal()`. Runs from an effect that observes `open`
+	 * only: modality is an open-time decision of the native `<dialog>` and cannot
+	 * be switched while open without a close()+reopen (which flickers, resets
+	 * focus and fires an extra close/cancel), so a `backdrop` change on an open
+	 * dialog updates only its appearance until the consumer closes and reopens.
+	 */
+	handleDialogOpen: () => void;
+	handleClick: (event: ClickEvent<HTMLDialogElement> | any) => void;
+	handleCancel: (event: GeneralEvent<HTMLDialogElement> | any) => void;
+	isNotModal: () => boolean;
+	_documentKeydownListenerCallbackId?: string;
+};
+
 export const AlignmentList = ['start', 'center', 'end'] as const;
 export type AlignmentType = (typeof AlignmentList)[number];
 export type AlignmentProps = {
