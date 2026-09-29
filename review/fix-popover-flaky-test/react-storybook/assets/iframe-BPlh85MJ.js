@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-DDid2qpf.js";e();

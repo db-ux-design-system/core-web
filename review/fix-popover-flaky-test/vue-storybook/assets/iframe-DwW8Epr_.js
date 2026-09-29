@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-DXtly-T4.js";e();
