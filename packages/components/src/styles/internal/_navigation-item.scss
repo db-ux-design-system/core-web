@@ -16,6 +16,93 @@
 	}
 }
 
+@mixin navigation-indicator {
+	> a,
+	> .db-control-panel-navigation-item-group-expand-button {
+		@content;
+	}
+}
+
+@mixin lock-scroll-while-drilldown-open {
+	.db-control-panel-navigation-item-group-back-button,
+	.db-control-panel-navigation-item,
+	.db-control-panel-navigation-item-group-expand-button {
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
+				#{variables.$db-transition-timing-emotional};
+		}
+	}
+
+	&:has(
+		.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+	) {
+		// Locking overflow only disables further user scrolling; it does not
+		// reset an existing scroll offset (the element stays a scroll container
+		// and keeps its scrollTop). Resetting scrollTop to 0 so the inset:0
+		// overlay aligns with the visible scrollport is done in JS
+		// (control-panel-navigation-item-group.lite.tsx, on expand), because
+		// there is no CSS property that clears a scroll offset.
+		overflow: hidden;
+
+		.db-control-panel-navigation {
+			overflow: hidden;
+		}
+
+		// Lock intermediate drilldown menus that sit behind a deeper overlay.
+		// A menu that :has() an expanded button inside it has an open sub-level
+		// on top of it, so it must not keep its own scroll range - otherwise
+		// opening level 3 from a scrolled level 2 reproduces the scroll offset
+		// one level down, where the scroll-owner lock above cannot reach
+		// (the containing block is the scrolled level-2 overlay).
+		.db-control-panel-navigation-item-group-menu:has(
+			.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+		) {
+			overflow: hidden;
+		}
+
+		menu:has(
+			.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+		) {
+			> .db-control-panel-navigation-item-group-back-button,
+			#{string.unquote(custom-elements.$control-panel-navigation-item)},
+			#{string.unquote(custom-elements.$control-panel-navigation-item-group)}
+				> .db-control-panel-navigation-item-group-expand-button {
+				transform: translateX(-100%);
+
+				// Collapse the slid-out box so it no longer occupies space
+				// behind the overlay. Delay the collapse by the slide duration
+				// so the size only snaps to 0 after the transform finishes
+				// (keeps the slide smooth). On close the ":has" no longer
+				// matches, so the base transition above restores the size
+				// immediately while the level slides back in.
+				padding: 0;
+				block-size: 0;
+				min-block-size: 0;
+
+				@media (prefers-reduced-motion: no-preference) {
+					// block-size collapses from an intrinsic value (fit-content)
+					// which is not interpolatable, so it needs allow-discrete to
+					// honor the delay and flip only at the end of the slide -
+					// otherwise the browser applies it immediately and the box
+					// collapses before the transform finishes.
+					transition:
+						transform
+							#{variables.$db-transition-duration-extra-slow}
+							#{variables.$db-transition-timing-emotional},
+						padding 0ms linear
+							#{variables.$db-transition-duration-extra-slow},
+						block-size 0ms linear
+							#{variables.$db-transition-duration-extra-slow},
+						min-block-size 0ms linear
+							#{variables.$db-transition-duration-extra-slow};
+					transition-behavior: allow-discrete;
+				}
+			}
+		}
+	}
+}
+
 @mixin active-navigation-item() {
 	&:has([aria-current="page"]),
 	&:has([data-active="true"]),
@@ -71,7 +158,7 @@
 	text-align: start;
 	align-items: center; // Centering the content vertically and horizontally
 	min-block-size: variables.$db-sizing-md;
-	gap: variables.$db-spacing-fixed-sm;
+	gap: variables.$db-spacing-fixed-xs;
 
 	@include helpers.hover {
 		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
@@ -85,9 +172,20 @@
 %navigation-item {
 	@extend %db-overwrite-font-size-md;
 
+	// The item is the positioning context for its own icon-passing "::before"
+	// (icon-passing emits position: absolute). The drilldown variant opts back
+	// out to "static" on the group so its inset:0 overlay can anchor to the
+	// nav scroll container instead of the group box.
 	position: relative;
 	display: flex;
 	block-size: fit-content;
+
+	// The interactive child additionally establishes its own context so the
+	// indicator "::after" (attached to > a / > expand-button by mobile and
+	// desktop navigation) anchors to the link/button, not the item.
+	@include navigation-indicator {
+		position: relative;
+	}
 
 	// Mobile
 	@include screen-sizes.screen-min-max(
