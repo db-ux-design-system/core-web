@@ -49,14 +49,16 @@ function buildResults(results: string[], query: string): ToolResult {
 	}
 
 	const content: Array<{ type: 'text'; text: string }> = [
-		{ type: 'text', text: results.slice(0, MAX_DOC_RESULTS).join('\n\n') }
+		{ type: 'text', text: results.slice(0, MAX_DOC_RESULTS).join('\n\n') },
+		...(results.length > MAX_DOC_RESULTS
+			? [
+					{
+						type: 'text' as const,
+						text: `Note: More than ${MAX_DOC_RESULTS} results were found. Some results were truncated. Please refine your search query for more specific results.`
+					}
+				]
+			: [])
 	];
-	if (results.length > MAX_DOC_RESULTS) {
-		content.push({
-			type: 'text' as const,
-			text: `Note: More than ${MAX_DOC_RESULTS} results were found. Some results were truncated. Please refine your search query for more specific results.`
-		});
-	}
 
 	return { content };
 }
