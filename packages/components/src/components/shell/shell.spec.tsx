@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBShell } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
-import { TESTING_VIEWPORTS } from '../../shared/constants.ts';
+import { DEFAULT_VIEWPORT, TESTING_VIEWPORTS } from '../../shared/constants.ts';
 import { DBButton } from '../button';
 import {
 	DBControlPanelActions1,
@@ -16,6 +16,8 @@ import { DBControlPanelMobile } from '../control-panel-mobile';
 import { DBControlPanelNavigation } from '../control-panel-navigation';
 import { DBControlPanelNavigationItem } from '../control-panel-navigation-item';
 import { DBControlPanelSkipNavigation } from '../control-panel-skip-navigation';
+import { DBFooter } from '../footer';
+import { DBFooterMeta } from '../footer-meta';
 import { DBShellContent } from '../shell-content';
 
 // template v-slot is used for vue component tests
@@ -217,10 +219,110 @@ const testSkipLink = () => {
 	});
 };
 
+const footerComp: any = (
+	<DBShell>
+		<DBControlPanelMobile
+			drawerHeaderText="Footer Test"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Footer Test Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelMobile>
+		<DBShellContent
+			mainLabel="Footer Test Content"
+			endSlot={
+				<DBFooter>
+					<DBFooterMeta copyright="Example Company" />
+				</DBFooter>
+			}>
+			{/*<template v-slot:end-slot>
+				<DBFooter>
+					<DBFooterMeta copyright="Example Company" />
+				</DBFooter>
+			</template>*/}
+			Shell content
+		</DBShellContent>
+	</DBShell>
+);
+
+// The unsupported composition from the issue: the footer is not a child of
+// DBShellContent but of DBShell, which has no grid area for it.
+const strayFooterComp: any = (
+	<DBShell>
+		<DBControlPanelMobile
+			drawerHeaderText="Stray Footer Test"
+			brand={<DBControlPanelBrand data-logo="db-systel" />}>
+			{/*<template v-slot:brand>
+				<DBControlPanelBrand data-logo="db-systel" />
+			</template>*/}
+			<DBControlPanelNavigation aria-label="Stray Footer Test Navigation">
+				<DBControlPanelNavigationItem icon="x_placeholder">
+					<a href="#">Item</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigation>
+		</DBControlPanelMobile>
+		<DBShellContent mainLabel="Stray Footer Test Content">
+			Shell content
+		</DBShellContent>
+		<DBFooter>
+			<DBFooterMeta copyright="Example Company" />
+		</DBFooter>
+	</DBShell>
+);
+
+/*
+ * The shell grid has no footer area, so a footer belongs in the `endSlot` of
+ * DBShellContent. On mobile the grid must not reserve a row for a sub-navigation
+ * that is not there either, because the empty row would capture any unplaced
+ * child and render it between the control panel and the content.
+ * See https://github.com/db-ux-design-system/core-web/issues/8230
+ */
+const testFooter = () => {
+	test('footer in endSlot should be placed below the main content', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DEFAULT_VIEWPORT);
+		const component = await mount(footerComp);
+		const mainBox = await component.locator('.db-main').boundingBox();
+		const footerBox = await component.locator('.db-footer').boundingBox();
+
+		expect(mainBox).not.toBeNull();
+		expect(footerBox).not.toBeNull();
+		expect(footerBox!.y).toBeGreaterThanOrEqual(
+			mainBox!.y + mainBox!.height
+		);
+	});
+
+	test('unplaced child should not be rendered above the content on mobile', async ({
+		mount,
+		page
+	}) => {
+		await page.setViewportSize(DEFAULT_VIEWPORT);
+		const component = await mount(strayFooterComp);
+		const contentBox = await component
+			.locator('.db-shell-content')
+			.boundingBox();
+		const footerBox = await component.locator('.db-footer').boundingBox();
+
+		expect(contentBox).not.toBeNull();
+		expect(footerBox).not.toBeNull();
+		expect(footerBox!.y).toBeGreaterThanOrEqual(
+			contentBox!.y + contentBox!.height
+		);
+	});
+};
+
 test.describe('DBShell', () => {
 	TESTING_VIEWPORTS.forEach((viewport) => {
 		testComponent(viewport);
 	});
 	testA11y();
 	testSkipLink();
+	testFooter();
 });

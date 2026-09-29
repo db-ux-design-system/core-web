@@ -1,6 +1,6 @@
 ## Migration
 
-DBFooter is a new composable wrapper for replacing custom footer implementations. Use it inside `DBPage variant="fixed"` and place `DBFooterContent` and `DBFooterMeta` inside it as needed. It deliberately does not collapse links into a mobile accordion, so links remain available to assistive technologies and browser search.
+DBFooter is a new composable wrapper for replacing custom footer implementations. Place it in the `endSlot` of `DBShellContent` and put `DBFooterContent` and `DBFooterMeta` inside it as needed. It deliberately does not collapse links into a mobile accordion, so links remain available to assistive technologies and browser search.
 
 ### Key features
 
@@ -13,9 +13,8 @@ DBFooter is a new composable wrapper for replacing custom footer implementations
 ### Example
 
 ```tsx
-<DBPage
-	variant="fixed"
-	footer={
+<DBShellContent
+	endSlot={
 		<DBFooter width="medium">
 			<DBFooterContent>
 				<nav aria-label="Footer navigation">
@@ -45,7 +44,17 @@ DBFooter is a new composable wrapper for replacing custom footer implementations
 	}
 >
 	Page content
-</DBPage>
+</DBShellContent>
 ```
 
 The `width` value only constrains and centres the inner content. It does not make the footer itself narrower and is not a responsive breakpoint switch.
+
+### Coming from the deprecated DBPage
+
+In `DBPage variant="fixed"` the footer was passed through the `footer` slot of `DBPage` itself. `DBShell` has no equivalent slot: its grid only defines areas for the control panel, the sub-navigation, and the content. Move the footer into the `endSlot` of `DBShellContent` instead.
+
+| Deprecated                                      | Replacement                               |
+| ----------------------------------------------- | ----------------------------------------- |
+| `DBPage` slot `footer`                          | `DBShellContent` slot `endSlot`           |
+| `DBPage variant="fixed"` (footer stays visible) | `DBShellContent variant="fixed"`          |
+| `DBPage variant="auto"`                         | `DBShellContent variant="auto"` (default) |
