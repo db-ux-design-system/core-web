@@ -116,7 +116,9 @@ $container-size-scale: (
 	h4,
 	h5,
 	h6 {
+		// Even if using the semantics of a headline, this text should get rendered in the regular text font-family
 		font-size: inherit;
+		font-family: inherit;
 		margin-block: 0;
 	}
 }

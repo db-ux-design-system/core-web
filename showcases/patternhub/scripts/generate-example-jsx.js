@@ -28,26 +28,28 @@ const generateExampleJSX = () => {
 		const componentName = getComponentName(name);
 		imports.push(`DB${transformToUpperComponentName(componentName)}`);
 		const path = `${sharedPath}/${componentName}.json`;
-		if (FS.existsSync(path)) {
-			const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
+		if (!FS.existsSync(path)) {
+			continue;
+		}
 
-			for (const variant of variants) {
-				for (const example of variant.examples) {
-					const code = getCodeByFramework(
-						componentName,
-						'react',
-						example,
-						true,
-						variant.children
-					);
+		const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
 
-					const exampleKey = generateExampleKey(
-						componentName,
-						variant.name,
-						example.name
-					);
-					examples.push(`"${exampleKey}":renderToString(${[code]})`);
-				}
+		for (const variant of variants) {
+			for (const example of variant.examples) {
+				const code = getCodeByFramework(
+					componentName,
+					'react',
+					example,
+					true,
+					variant.children
+				);
+
+				const exampleKey = generateExampleKey(
+					componentName,
+					variant.name,
+					example.name
+				);
+				examples.push(`"${exampleKey}":renderToString(${[code]})`);
 			}
 		}
 	}
