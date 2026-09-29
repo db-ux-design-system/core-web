@@ -17,12 +17,17 @@ const getDefaultScreenshotTest = async (
 };
 
 /*
- * DBFooterContent and DBFooterMeta are documented on the DBFooter page and have no
- * entry in the Patternhub `nameComponentMap`, so their overview page would render
- * nothing. Checking `isHiddenInMenu` instead would also match accordion-item and
- * tab-item, which do have their own showcase and existing baselines.
+ * DBFooterContent, DBFooterMeta and DBShellContent are documented alongside their
+ * parent component and have no entry in the Patternhub `nameComponentMap`, so their
+ * overview page would render nothing. Checking `isHiddenInMenu` instead would also
+ * match accordion-item and tab-item, which do have their own showcase and existing
+ * baselines.
  */
-const componentsWithoutOwnPages = new Set(['footer-content', 'footer-meta']);
+const componentsWithoutOwnPages = new Set([
+	'footer-content',
+	'footer-meta',
+	'shell-content'
+]);
 
 for (const group of Components) {
 	for (const component of group.subNavigation) {
