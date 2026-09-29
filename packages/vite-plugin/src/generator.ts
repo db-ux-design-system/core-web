@@ -156,17 +156,19 @@ export function generateCSS(options: GenerateOptions): string {
 	for (const [key, path] of Object.entries(FOUNDATION_IMPORTS)) {
 		const feature = key as FoundationFeature;
 		if (
-			foundations?.includes(feature) &&
-			!exclude.foundations?.includes(feature)
+			!foundations?.includes(feature) ||
+			exclude.foundations?.includes(feature)
 		) {
-			const basePath =
-				feature === 'animations'
-					? '@db-ux/core-components'
-					: '@db-ux/core-foundations';
-			imports.push(
-				`@import "${basePath}/build/styles/${path}" layer(db-ux);`
-			);
+			continue;
 		}
+
+		const basePath =
+			feature === 'animations'
+				? '@db-ux/core-components'
+				: '@db-ux/core-foundations';
+		imports.push(
+			`@import "${basePath}/build/styles/${path}" layer(db-ux);`
+		);
 	}
 
 	// Color schemes
@@ -193,7 +195,7 @@ export function generateCSS(options: GenerateOptions): string {
 			continue;
 		}
 
-		const [category, size] = fontSize.split('-');
+		const [category, size] = fontSize.split('-', 2);
 		imports.push(
 			`@import "@db-ux/core-foundations/build/styles/fonts/classes/${category}/${size}.css" layer(db-ux);`
 		);

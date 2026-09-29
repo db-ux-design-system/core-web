@@ -28,20 +28,24 @@ export function ensureChangelogHasContent() {
 		const header = headerMatch[0];
 		const afterHeader = latestSection.slice(header.length).trim();
 
-		// If no content after header, add italicized 'version bump'
-		if (!afterHeader) {
-			// Find the position of the first '##' header in the file
-			const fileHeaderMatch = /^##\s.*$/m.exec(content);
-			if (!fileHeaderMatch) {
-				continue;
-			}
-			const insertPos = fileHeaderMatch.index + fileHeaderMatch[0].length;
-			const newContent =
-				content.slice(0, insertPos) +
-				'\n\n_version bump_\n' +
-				content.slice(insertPos);
-			fs.writeFileSync(file, newContent, 'utf8');
+		// If there is content after the header, nothing to do
+		if (afterHeader) {
+			continue;
 		}
+
+		// No content after header, add italicized 'version bump'.
+		// Find the position of the first '##' header in the file
+		const fileHeaderMatch = /^##\s.*$/m.exec(content);
+		if (!fileHeaderMatch) {
+			continue;
+		}
+
+		const insertPos = fileHeaderMatch.index + fileHeaderMatch[0].length;
+		const newContent =
+			content.slice(0, insertPos) +
+			'\n\n_version bump_\n' +
+			content.slice(insertPos);
+		fs.writeFileSync(file, newContent, 'utf8');
 	}
 }
 

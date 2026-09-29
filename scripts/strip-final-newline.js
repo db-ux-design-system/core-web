@@ -34,21 +34,23 @@ let hasIssues = false;
 
 for (const file of files) {
 	const content = readFileSync(file);
-	if (content.length > 0 && content.at(-1) === 0x0a) {
-		let end = content.length;
-		while (
-			end > 0 &&
-			(content[end - 1] === 0x0a || content[end - 1] === 0x0d)
-		) {
-			end--;
-		}
+	if (content.length === 0 || content.at(-1) !== 0x0a) {
+		continue;
+	}
 
-		if (fix) {
-			writeFileSync(file, content.subarray(0, end));
-		} else {
-			console.error(`${file}: has trailing newline`);
-			hasIssues = true;
-		}
+	let end = content.length;
+	while (
+		end > 0 &&
+		(content[end - 1] === 0x0a || content[end - 1] === 0x0d)
+	) {
+		end--;
+	}
+
+	if (fix) {
+		writeFileSync(file, content.subarray(0, end));
+	} else {
+		console.error(`${file}: has trailing newline`);
+		hasIssues = true;
 	}
 }
 
