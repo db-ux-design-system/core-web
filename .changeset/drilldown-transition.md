@@ -13,3 +13,4 @@ fix(DBControlPanel): open drilldown with a transition instead of a clip-path
 - restore the flat-icon navigation indicator and the drilldown group icons
 - recompute the navigation variant on viewport resize so it no longer sticks to popover after switching from drilldown
 - reduce the navigation item and expand button gap to fix wrong icon spacing
+- move `data-icon` / `data-show-icon` for a navigation item group from the group `<li>` to its expand button (CSS-only consumers who hand-write the markup have to move these attributes onto the `.db-control-panel-navigation-item-group-expand-button`)

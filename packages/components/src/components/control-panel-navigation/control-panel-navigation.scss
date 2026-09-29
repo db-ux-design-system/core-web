@@ -4,7 +4,6 @@
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/icon-passing";
 @use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover";
 @use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-tree";
 @use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown";
@@ -126,10 +125,6 @@
 	.db-control-panel-navigation-item-group {
 		display: flex;
 		flex-direction: column;
-
-		&::before {
-			content: none;
-		}
 
 		.db-control-panel-navigation-item-group-expand-button {
 			@include icons.set-icon("chevron_right");

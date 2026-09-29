@@ -6,7 +6,6 @@
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
-@use "../../styles/internal/component";
 @use "../../styles/internal/navigation-item";
 
 .db-shell-sub-navigation {
@@ -72,9 +71,14 @@
 
 		.db-control-panel-navigation {
 			max-inline-size: screen-sizes.$db-breakpoint-xs;
-			/* stylelint-disable-next-line db-ux/use-spacings */
-			padding: variables.$db-spacing-fixed-sm
-				component.$drawer-content-padding-inline;
+
+			// Use the same safe-area-aware padding-inline as the drilldown
+			// overlay so the two stay in lockstep on devices with a safe-area
+			// inset. Mixing max(...) drawer padding here with calc(sm + inset)
+			// on the overlay drifts by up to sm once a left inset exists.
+			padding-block: variables.$db-spacing-fixed-sm;
+			padding-inline: control-panel-desktop.$control-panel-desktop-vertical-padding-inline-start
+				control-panel-desktop.$control-panel-desktop-vertical-padding-inline-end;
 			position: relative;
 		}
 
