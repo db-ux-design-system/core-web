@@ -252,7 +252,7 @@ export default function DBInput(props: DBInputProps) {
 	onUpdate(() => {
 		// Angular renders from state._value. Keep the last parsable value while
 		// the entry is unparsable, otherwise the empty model value would clear
-		// the native date editor. See `shouldKeepDisplayValue`.
+		// the native date editor. See "shouldKeepDisplayValue".
 		const keepDisplayValue = useTarget({
 			angular: shouldKeepDisplayValue(_ref, props.value),
 			default: false
