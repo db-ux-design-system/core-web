@@ -4,13 +4,22 @@ import { initRouter } from './router';
 import './styles.css';
 
 function getHashParameters(): URLSearchParams {
-	const [, queryString = ''] = (globalThis.location.hash || '#/').split('?');
+	const [, queryString = ''] = (globalThis.location.hash || '#/').split(
+		'?',
+		2
+	);
 	return new URLSearchParams(queryString);
 }
 
 // TODO: Remove shell state and `showcases/stencil-showcase/src/page.ts` after v6.0.0
 function isShellEnabled(): boolean {
-	return getHashParameters().get('shell') !== 'false';
+	const [, queryString = ''] = (globalThis.location.hash || '#/').split(
+		'?',
+		2
+	);
+	const parameters = new URLSearchParams(queryString);
+	const shell = parameters.get('shell');
+	return shell !== 'false';
 }
 
 // When a single example is requested via `?page=` (or `?fullscreen=`) we render

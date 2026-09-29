@@ -962,7 +962,10 @@
   - status
   - text: "True"
   - group:
-    - article: Loading
+    - article:
+      - status:
+        - text: Loading
+        - progressbar "Loading"
   - status
   - link "Show Search"
   - text: (Default) False

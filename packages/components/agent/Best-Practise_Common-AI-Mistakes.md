@@ -18,7 +18,19 @@
 
 ## `DBPage` or `db-page`
 
-- If you use `DBHeader` or a footer use `<DBPage variant="fixed">`, without a header use `DBPage variant="auto"`
+- `DBPage`/`db-page` is deprecated — use `DBShell`/`db-shell` with `DBShellContent`/`db-shell-content` instead
+- If you still use it: with `DBHeader` or a footer use `<DBPage variant="fixed">`, without a header use `DBPage variant="auto"`
+
+## `DBShell` or `db-shell`
+
+- only `DBControlPanelDesktop`, `DBControlPanelMobile`, `DBControlPanelFlatIcon`, `DBShellSubNavigation` and `DBShellContent` belong as direct children — the grid has no area for anything else
+- a footer does not go into `DBShell`; there is no `footer` slot. Put `DBFooter`/`db-footer` into the `endSlot`/`end-slot` of `DBShellContent`/`db-shell-content`
+
+## `DBShellContent` or `db-shell-content`
+
+- use only one per page, because it renders the `main` landmark that the skip-navigation link targets
+- `startSlot`/`start-slot` renders above `main`, `endSlot`/`end-slot` below it — a footer belongs in the end slot
+- use `variant="fixed"` when the footer should stay visible, `variant="auto"` (default) lets the whole content area scroll
 
 ## `DBAccordion` or `db-accordion`
 

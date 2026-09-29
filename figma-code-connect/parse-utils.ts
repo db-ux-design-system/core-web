@@ -12,7 +12,7 @@ try {
 
 /**
  * Parses figma connect output and removes fields that vary across environments
- * (_codeConnectFilePath, metadata, figmaNode) to keep snapshots stable in CI.
+ * (_codeConnectFilePath, _batchTemplateFilePath, metadata, figmaNode) to keep snapshots stable in CI.
  */
 export const getParsedFigmaConnect = (): string => {
 	const result = execSync(
@@ -23,6 +23,7 @@ export const getParsedFigmaConnect = (): string => {
 	const parsed = JSON.parse(result) as Array<Record<string, unknown>>;
 	for (const entry of parsed) {
 		delete entry._codeConnectFilePath;
+		delete entry._batchTemplateFilePath;
 		delete entry.metadata;
 		delete entry.figmaNode;
 		delete entry.url;

@@ -278,12 +278,10 @@ export const runAxeCoreTest = ({
 			await preAxe(page);
 		}
 
-		const accessibilityScanResults = await new AxeBuilder({
-			page
-		})
+		const axeBuilder = new AxeBuilder({ page })
 			.include('#main-content')
-			.disableRules(axeDisableRules ?? [])
-			.analyze();
+			.disableRules(axeDisableRules ?? []);
+		const accessibilityScanResults = await axeBuilder.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
 	});

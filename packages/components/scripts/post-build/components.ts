@@ -74,9 +74,42 @@ const controlPanelActionsComponents: Component[] = [
 }));
 
 export const getComponents = (): Component[] => [
+	{
+		name: 'pagination-item'
+	},
+	{
+		name: 'pagination',
+		config: {
+			react: {
+				propsPassingFilter: ['onPageChange']
+			}
+		}
+	},
+
 	...headingComponents,
 	...controlPanelActionsComponents,
 
+	{
+		name: 'dialog-footer'
+	},
+
+	{
+		name: 'dialog-header'
+	},
+
+	{
+		name: 'dialog',
+		config: {
+			react: {
+				/* Keeps the consumer callbacks out of the `filterPassingProps`
+				 * DOM spread, same configuration key the `drawer` entry uses.
+				 * This cannot move into a Mitosis plugin yet: the spread itself
+				 * is injected by `scripts/post-build/react.ts` after every
+				 * plugin hook has run. */
+				propsPassingFilter: ['onClose', 'onCancel']
+			}
+		}
+	},
 	{
 		name: 'control-panel-skip-navigation'
 	},
@@ -156,6 +189,15 @@ export const getComponents = (): Component[] => [
 
 	{
 		name: 'custom-button'
+	},
+
+	{
+		name: 'loading-indicator',
+		config: {
+			react: {
+				propsPassingFilter: ['autoDisable', 'onTimeout', 'role']
+			}
+		}
 	},
 
 	{
