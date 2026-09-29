@@ -72,10 +72,22 @@ export type DBControlPanelNavigationItemGroupDefaultState = {
 	 * container, or the left sub-navigation) and, for a nested level,
 	 * it is the parent drilldown overlay menu. Rather than guess the
 	 * owner per layout, walk up from this group and reset the scrollTop
-	 * of every ancestor that currently has one, up to the navigation
-	 * root. That clears the offset on whichever ancestor actually
-	 * scrolled so the inset:0 overlay aligns with the visible
-	 * scrollport.
+	 * of every ancestor that currently has one. That clears the offset
+	 * on whichever ancestor actually scrolled so the inset:0 overlay
+	 * aligns with the visible scrollport.
+	 *
+	 * The walk stops at the outermost element for the current layout:
+	 * - desktop main panel: the desktop scroll container
+	 * - mobile drawer: the mobile drawer scroll container
+	 * - left sub-navigation: the shell-sub-navigation wrapper, which
+	 *   sits directly above the scroll owner
+	 *   (.db-control-panel-navigation)
+	 *
+	 * .db-control-panel-navigation is intentionally NOT a boundary: in
+	 * the desktop/mobile layouts it is only a descendant of the real
+	 * scroll container, so stopping there would miss the element that
+	 * actually scrolled. The document body is the hard backstop and is
+	 * never itself reset, so the walk can never touch page-level scroll.
 	 */
 	_resetScrollOwner: () => void;
 };

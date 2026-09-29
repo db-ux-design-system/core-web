@@ -189,21 +189,24 @@ export default function DBControlPanelNavigationItemGroup(
 		_resetScrollOwner: () => {
 			if (!_ref) return;
 
+			const scrollBoundaryClasses = [
+				'db-control-panel-desktop-scroll-container',
+				'db-control-panel-mobile-drawer-scroll-container',
+				'db-shell-sub-navigation'
+			];
+
 			let current: HTMLElement | null = _ref as HTMLElement;
-			while (current) {
+			while (current && current !== document.body) {
 				if (current.scrollTop > 0) {
 					current.scrollTop = 0;
 				}
 				if (
-					current.classList.contains(
-						'db-control-panel-desktop-scroll-container'
-					) ||
-					current.classList.contains(
-						'db-control-panel-mobile-drawer-scroll-container'
-					) ||
-					current.classList.contains('db-control-panel-navigation')
+					scrollBoundaryClasses.some((boundaryClass) =>
+						(current as HTMLElement).classList.contains(
+							boundaryClass
+						)
+					)
 				) {
-					// Reached the outermost scroll owner for this layout.
 					break;
 				}
 				current = current.parentElement;

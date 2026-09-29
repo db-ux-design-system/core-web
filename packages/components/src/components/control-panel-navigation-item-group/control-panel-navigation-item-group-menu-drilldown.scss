@@ -13,8 +13,7 @@
 	overflow: hidden auto;
 	position: absolute;
 	inset: 0;
-
-	/* jscpd:ignore-start */
+	inline-size: 100%;
 
 	// Mobile
 	@include screen-sizes.screen-min-max(
@@ -24,14 +23,7 @@
 	) {
 		padding: variables.$db-spacing-fixed-2xs
 			component.$drawer-content-padding-inline;
-		inline-size: var(--db-drawer-width-horizontal, 100%);
-		max-inline-size: var(
-			--db-drawer-max-width,
-			var(--db-drawer-max-width-horizontal)
-		);
 	}
-
-	/* jscpd:ignore-end */
 
 	// Desktop
 	@include screen-sizes.screen-min-max(
@@ -39,8 +31,6 @@
 			min: "sm"
 		)
 	) {
-		inline-size: 100%;
-
 		// Match the vertical desktop navigation padding-inline so the overlay
 		// content stays horizontally aligned with the level behind it during
 		// the slide, including the safe-area insets the level uses.
