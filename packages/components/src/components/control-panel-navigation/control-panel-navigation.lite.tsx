@@ -256,7 +256,7 @@ export default function DBControlPanelNavigation(
 							) ?? parentGroup?.parentElement;
 						if (parentContainer) {
 							// Second selector arm: WC (Stencil) host wrapper pattern.
-							// No `:scope >` on the custom element tag — it already scopes itself.
+							// No ":scope >" on the custom element tag — it already scopes itself.
 							const siblingButtons =
 								parentContainer.querySelectorAll(
 									':scope > .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button, ' +
