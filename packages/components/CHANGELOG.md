@@ -13,12 +13,7 @@
     - move `data-icon` / `data-show-icon` for a navigation item group from the group `<li>` to its expand button (CSS-only consumers who hand-write the markup have to move these attributes onto the `.db-control-panel-navigation-item-group-expand-button`)
 - fix(DBPopover): a controlled `open` no longer freezes the page in Angular - [see commit 2f14f69](https://github.com/db-ux-design-system/core-web/commit/2f14f69919bd57853661e90edc8f36915974e306)
 - fix(DBFooterMeta): remove double space before the copyright holder in Angular - [see commit bc83f12](https://github.com/db-ux-design-system/core-web/commit/bc83f1280911791ff8c4a7ab611589825109f332):
-    - The copyright sign and its non-breaking space were a text node next to the
-    `copyright` interpolation. For Angular that generated
-    `©&nbsp; {{copyright()}}`, and Angular does not collapse whitespace next to a
-    `&nbsp;`, so the Angular output rendered the line about 3px wider than React and
-    Vue. Sign and space are now part of the interpolated expression, so every target
-    renders the same text.
+    - The copyright sign and its non-breaking space were a text node next to the `copyright` interpolation. For Angular that generated `©&nbsp; {{copyright()}}`, and Angular does not collapse whitespace next to a `&nbsp;`, so the Angular output rendered the line about 3px wider than React and Vue. Sign and space are now part of the interpolated expression, so every target renders the same text.
 - docs(DBIcon): document that the icon is always decorative - [see commit 6d48a36](https://github.com/db-ux-design-system/core-web/commit/6d48a366bf7078e52e029e73103d686a36198bb8):
     - The usage examples showed `<DBIcon icon="x_placeholder">Icon</DBIcon>`, which suggests the child text is rendered somewhere. It is not: the component renders `aria-hidden="true"` and `font-size: 0`, so `text` and children are hidden both visually and from the accessibility tree, and `role` / `aria-label` on the component have no effect either. The examples now show the icon without content, and a new accessibility page explains how to label an informative icon (named wrapper, the parent component's `icon` property, or the `data-icon` attribute).
 - fix(DBShell): stop reserving an empty sub-navigation row on mobile - [see commit bc83f12](https://github.com/db-ux-design-system/core-web/commit/bc83f1280911791ff8c4a7ab611589825109f332):
