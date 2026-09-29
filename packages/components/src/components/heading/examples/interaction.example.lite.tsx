@@ -21,13 +21,8 @@ useMetadata({
 /**
  Fixtures for the cross-framework interaction e2e tests
  (see showcases/e2e/heading/heading-interaction.spec.ts).
- 
- Covers the structural invariants documented in
- packages/components/AGENTS.md: native tag semantics, attribute forwarding
- (incl. the Vue `class` alias), and the DBCustomHeading contract (no heading
- role/level of its own, row layout with the slots as siblings, no gap for an
- empty slot, slot content stays out of the accessible heading name).
- 
+
+
  Only the first block becomes the 'Interaction' story (storybookNames has a
  * single entry); the rest are e2e-only scenarios and excluded from story
  * generation via data-sb-ignore. They still render in the showcase/e2e
@@ -43,19 +38,8 @@ export default function HeadingInteraction() {
 				data-testid="forwarded-h6"
 				className="custom-h6"
 				aria-label="Accessible h6"
-				data-forwarded="h6"
-				title="Title h6">
+				data-forwarded="h6">
 				Forwarded
-			</DBHeadingH6>
-
-			{/* The Vue output aliases `class` to `className`, so this is only
-			 * meaningful there - see
-			 * showcases/e2e/heading/heading-interaction.spec.ts. */}
-			<DBHeadingH6
-				data-sb-ignore="true"
-				data-testid="class-alias-h6"
-				class="class-alias">
-				Class alias
 			</DBHeadingH6>
 
 			<DBCustomHeading

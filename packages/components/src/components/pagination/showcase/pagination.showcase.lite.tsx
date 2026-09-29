@@ -56,6 +56,11 @@ export default function PaginationShowcase(props: PatternhubProps) {
 					<PaginationSize />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<PaginationInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }

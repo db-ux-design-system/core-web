@@ -32,6 +32,11 @@ export default function DialogShowcase(props: PatternhubProps) {
 					<DialogExamples />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<DialogInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }

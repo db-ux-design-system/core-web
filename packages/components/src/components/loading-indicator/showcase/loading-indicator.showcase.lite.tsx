@@ -80,6 +80,11 @@ export default function LoadingIndicatorShowcase(props: PatternhubProps) {
 					<LoadingIndicatorTimeout />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<LoadingIndicatorInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }

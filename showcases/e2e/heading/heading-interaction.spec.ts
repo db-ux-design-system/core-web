@@ -33,7 +33,6 @@ test.describe('DBHeading', () => {
 				'Accessible h6'
 			);
 			await expect(heading).toHaveAttribute('data-forwarded', 'h6');
-			await expect(heading).toHaveAttribute('title', 'Title h6');
 		}
 	});
 

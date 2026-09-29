@@ -24,8 +24,18 @@ useMetadata({
  * - "nested" verifies bubbled `input`/`change` events from a nested control
  *   inside a tab panel do not change the active tab (regression).
  * - "alignment" verifies the `tabItemAlignment` prop forwards to the root.
+ *
+ * Stencil note: the `onValueChange` / `onIndexChange` callback props are not
+ * wired up by the Stencil JSX runtime - on a web component it emits the
+ * `valueChange` / `indexChange` DOM CustomEvent (via Stencil EventEmitter)
+ * instead. So for Stencil we attach the listeners on the host ref in onMount
+ * and read the payload from `event.detail`, while React, Vue and Angular keep
+ * using the callback prop directly (Angular binds it to the same output).
  */
 export default function TabsInteraction() {
+	const valueTabsRef = useRef<any>(null);
+	const nestedTabsRef = useRef<any>(null);
+
 	const state = useStore({
 		selectedValue: 'initial',
 		nestedActiveIndex: 'initial',
@@ -35,6 +45,26 @@ export default function TabsInteraction() {
 		handleNestedIndexChange(index: any) {
 			state.nestedActiveIndex = String(index);
 		}
+	});
+
+	onMount(() => {
+		useTarget({
+			stencil: () => {
+				if (valueTabsRef) {
+					valueTabsRef.addEventListener('valueChange', (event: any) =>
+						state.handleValueChange(event?.detail)
+					);
+				}
+
+				if (nestedTabsRef) {
+					nestedTabsRef.addEventListener(
+						'indexChange',
+						(event: any) =>
+							state.handleNestedIndexChange(event?.detail)
+					);
+				}
+			}
+		});
 	});
 
 	return (
@@ -52,6 +82,7 @@ export default function TabsInteraction() {
 
 			<div class="fit-content-container" data-testid="value-tabs">
 				<DBTabs
+					ref={valueTabsRef}
 					onValueChange={(value: any) =>
 						state.handleValueChange(value)
 					}>
@@ -67,6 +98,7 @@ export default function TabsInteraction() {
 
 			<div class="fit-content-container" data-testid="nested-tabs">
 				<DBTabs
+					ref={nestedTabsRef}
 					onIndexChange={(index: any) =>
 						state.handleNestedIndexChange(index)
 					}>
