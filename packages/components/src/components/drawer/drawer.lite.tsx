@@ -124,7 +124,7 @@ export default function DBDrawer(props: DBDrawerProps) {
 		connectCloseButton(_ref);
 	}, [state._id]);
 
-	// Observes `open` only: `backdrop` is deliberately excluded (see handleDialogOpen).
+	// Observes "open" only: "backdrop" is deliberately excluded (see handleDialogOpen).
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);

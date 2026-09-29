@@ -123,7 +123,7 @@ export default function DBDialog(props: DBDialogProps) {
 		connectCloseButton(_ref);
 	}, [state._id]);
 
-	// Observes `open` only: `backdrop` is deliberately excluded (see handleDialogOpen).
+	// Observes "open" only: "backdrop" is deliberately excluded (see handleDialogOpen).
 	onUpdate(() => {
 		state.handleDialogOpen();
 	}, [props.open]);
