@@ -1,5 +1,40 @@
 # @db-ux/core-components
 
+## 5.6.1
+
+### Patch Changes
+
+- fix(DBControlPanel): open drilldown with a transition instead of a clip-path - [see commit b4165ee](https://github.com/db-ux-design-system/core-web/commit/b4165ee83c5c8ae14bfd3b4755c48d8b99bae1a6):
+
+        - open the navigation drilldown with a transition instead of a `clip-path`
+        - pin the drilldown overlay to the scroll viewport so it is not shifted up by an existing scroll offset
+        - restore the flat-icon navigation indicator and the drilldown group icons
+        - recompute the navigation variant on viewport resize so it no longer sticks to popover after switching from drilldown
+        - reduce the navigation item and expand button gap to fix wrong icon spacing
+        - move `data-icon` / `data-show-icon` for a navigation item group from the group `<li>` to its expand button (CSS-only consumers who hand-write the markup have to move these attributes onto the `.db-control-panel-navigation-item-group-expand-button`)
+
+- fix(DBPopover): a controlled `open` no longer freezes the page in Angular - [see commit 2f14f69](https://github.com/db-ux-design-system/core-web/commit/2f14f69919bd57853661e90edc8f36915974e306)
+- fix(DBFooterMeta): remove double space before the copyright holder in Angular - [see commit bc83f12](https://github.com/db-ux-design-system/core-web/commit/bc83f1280911791ff8c4a7ab611589825109f332):
+
+    - The copyright sign and its non-breaking space were a text node next to the
+    - `copyright` interpolation. For Angular that generated
+    - `©&nbsp; {{copyright()}}`, and Angular does not collapse whitespace next to a
+    - `&nbsp;`, so the Angular output rendered the line about 3px wider than React and
+    - Vue. Sign and space are now part of the interpolated expression, so every target
+    - renders the same text.
+
+- docs(DBIcon): document that the icon is always decorative - [see commit 6d48a36](https://github.com/db-ux-design-system/core-web/commit/6d48a366bf7078e52e029e73103d686a36198bb8):
+
+    - The usage examples showed `<DBIcon icon="x_placeholder">Icon</DBIcon>`, which suggests the child text is rendered somewhere. It is not: the component renders `aria-hidden="true"` and `font-size: 0`, so `text` and children are hidden both visually and from the accessibility tree, and `role` / `aria-label` on the component have no effect either. The examples now show the icon without content, and a new accessibility page explains how to label an informative icon (named wrapper, the parent component's `icon` property, or the `data-icon` attribute).
+
+- fix(DBShell): stop reserving an empty sub-navigation row on mobile - [see commit bc83f12](https://github.com/db-ux-design-system/core-web/commit/bc83f1280911791ff8c4a7ab611589825109f332):
+
+    - The mobile grid templates declared the `sub-navigation` row unconditionally, while the desktop templates guard it with `:has()`. Without a sub-navigation the empty row captured any unplaced child of `DBShell` -- a `DBFooter` added as a direct child was rendered between the control panel and the content instead of below it. The mobile templates now add the row only when a sub-navigation is present, matching desktop.
+    - Also documents the supported composition: a footer belongs in the `endSlot` of `DBShellContent`, not in `DBShell`.
+
+- fix(DBShell): prevent logo position jump between expanded and collapsed state - [see commit 2fe98a8](https://github.com/db-ux-design-system/core-web/commit/2fe98a82a6a52f40f41593bd437945795f30a7b8)
+- style(Dialog & Drawer): corrected the headlines `font-family` (regular, instead of heading) - [see commit 2938761](https://github.com/db-ux-design-system/core-web/commit/29387612c7834664dbd93102dc09141c021fa159)
+
 ## 5.6.0
 
 ### Minor Changes
