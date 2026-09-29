@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-DMxtckA4.js";e();
