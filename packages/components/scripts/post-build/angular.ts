@@ -65,6 +65,7 @@ const setControlValueAccessorReplacements = (
 			${valueAccessorRequired ? '}' : ''}
 		}
 
+		/* TODO: Remove with a future major version */
 		/** @legacy CVA - will be removed in a future major version */
 		writeValue(value: any) {
 		  this._setModelValue(value);
