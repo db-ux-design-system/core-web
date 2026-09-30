@@ -61,7 +61,6 @@ const EXPECTED_TOOLS = [
 	'list_migration_guides',
 	'list_visuals',
 	'scan_generation_2_migration',
-	'scan_v2_migration',
 	'verify_migrated_code'
 ];
 

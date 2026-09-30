@@ -1435,7 +1435,7 @@ describe('handleScanGeneration2Migration', () => {
 	 encoded literal and let it through as a filename.
 	 */
 	it('🔒 rejects percent-encoded directory climbing', async () => {
-		const result = await handleScanV2Migration({
+		const result = await handleScanGeneration2Migration({
 			filePath: '%2E%2E%2F%2E%2E%2F%2E%2E%2Fetc%2Fpasswd'
 		});
 		expect(result.isError).toBe(true);
@@ -1454,7 +1454,9 @@ describe('handleScanGeneration2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 
 			expect(result.isError).toBeUndefined();
 			expect(text(result.content[0])).toContain('elm-button');
@@ -1477,7 +1479,9 @@ describe('handleScanGeneration2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 
 			expect(result.isError).toBeUndefined();
 			expect(text(result.content[0])).toContain('elm-button');
@@ -1505,7 +1509,9 @@ describe('handleScanGeneration2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const report = text(result.content[0]);
 
 			expect(result.isError).toBeUndefined();
@@ -1541,7 +1547,9 @@ describe('handleScanGeneration2Migration', () => {
 		);
 
 		try {
-			const result = await handleScanV2Migration({ filePath: temporary });
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
 			const output = text(result.content[0]);
 
 			const json =
