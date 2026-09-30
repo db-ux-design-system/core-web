@@ -71,8 +71,8 @@
     "rm:builds": "pnpm --filter scripts run rm:builds",
     "start": "pnpm --filter patternhub run start",
     "test": "pnpm --filter scripts run test",
-    "test:react-core-components": "playwright test --config output/react/playwright.config.ts --ui",
-    "test:vue-components": "playwright test --config output/vue/playwright.config.ts --ui",
+    "test:react-core-components": "pnpm --filter react-showcase run test:interaction",
+    "test:vue-components": "pnpm --filter vue-showcase run test:interaction",
     "update:dependency:playwright": "node scripts/github/update-playwright.js",
     "validate": "tsx scripts/self-healing-orchestrator.ts"
   },

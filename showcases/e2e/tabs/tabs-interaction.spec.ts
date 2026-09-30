@@ -34,6 +34,19 @@ test.describe('DBTabs', () => {
 	});
 
 	runInteractionTest({
+		title: 'should fire onValueChange with undefined when tabs have no value props',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('no-value-tabs');
+			await tabs.getByRole('tab', { name: 'Tab 2' }).click();
+			await expect(content.getByTestId('no-value-result')).toHaveText(
+				'undefined'
+			);
+		}
+	});
+
+	runInteractionTest({
 		title: 'should ignore bubbled change events from nested controls in tab panels',
 		path,
 		example: 'Interaction',

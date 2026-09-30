@@ -34,13 +34,18 @@ useMetadata({
  */
 export default function TabsInteraction() {
 	const valueTabsRef = useRef<any>(null);
+	const noValueTabsRef = useRef<any>(null);
 	const nestedTabsRef = useRef<any>(null);
 
 	const state = useStore({
 		selectedValue: 'initial',
+		noValueSelected: 'initial',
 		nestedActiveIndex: 'initial',
 		handleValueChange(value: any) {
 			state.selectedValue = value ?? 'undefined';
+		},
+		handleNoValueChange(value: any) {
+			state.noValueSelected = value ?? 'undefined';
 		},
 		handleNestedIndexChange(index: any) {
 			state.nestedActiveIndex = String(index);
@@ -53,6 +58,13 @@ export default function TabsInteraction() {
 				if (valueTabsRef) {
 					valueTabsRef.addEventListener('valueChange', (event: any) =>
 						state.handleValueChange(event?.detail)
+					);
+				}
+
+				if (noValueTabsRef) {
+					noValueTabsRef.addEventListener(
+						'valueChange',
+						(event: any) => state.handleNoValueChange(event?.detail)
 					);
 				}
 
@@ -98,6 +110,27 @@ export default function TabsInteraction() {
 				</DBTabs>
 				<span data-testid="value-result" data-sb-replace="initial">
 					{state.selectedValue}
+				</span>
+			</div>
+
+			<div
+				class="fit-content-container"
+				data-testid="no-value-tabs"
+				data-sb-ignore="true">
+				<DBTabs
+					ref={noValueTabsRef}
+					onValueChange={(value: any) =>
+						state.handleNoValueChange(value)
+					}>
+					<DBTabList>
+						<DBTabItem>Tab 1</DBTabItem>
+						<DBTabItem>Tab 2</DBTabItem>
+					</DBTabList>
+					<DBTabPanel>Panel 1</DBTabPanel>
+					<DBTabPanel>Panel 2</DBTabPanel>
+				</DBTabs>
+				<span data-testid="no-value-result" data-sb-replace="initial">
+					{state.noValueSelected}
 				</span>
 			</div>
 
