@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-CS40TIUy.js";e();
