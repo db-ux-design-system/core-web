@@ -1,1 +1,0 @@
-(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[16171],{72812:(_,n,o)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/components/layout/dialog/docs/Vue",function(){return o(53368)}])}},_=>{_.O(0,[53368,90636,46593,38792],()=>_(_.s=72812)),_N_E=_.O()}]);
