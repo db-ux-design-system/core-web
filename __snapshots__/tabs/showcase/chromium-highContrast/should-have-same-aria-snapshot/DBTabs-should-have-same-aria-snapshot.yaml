@@ -205,6 +205,11 @@
   - tablist:
     - tab "Tab 1" [selected]
     - tab "Tab 2"
+  - tabpanel "Tab 1": Panel 1
+  - text: initial
+  - tablist:
+    - tab "Tab 1" [selected]
+    - tab "Tab 2"
   - tabpanel "Tab 1":
     - checkbox "Nested control"
     - text: Nested control
