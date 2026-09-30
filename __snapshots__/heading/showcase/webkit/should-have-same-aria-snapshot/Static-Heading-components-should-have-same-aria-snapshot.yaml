@@ -46,7 +46,6 @@
   - link "Interaction"
   - heading "Native H1" [level=1]
   - heading "Accessible h6" [level=6]: Forwarded
-  - heading "Class alias" [level=6]
   - heading "Nested heading" [level=2]
   - text: Section
   - heading "Installation" [level=2]
