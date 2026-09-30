@@ -207,9 +207,26 @@ const App = () => (
 		>
 			<Navigation />
 		</DBControlPanelMobile>
-		<DBShellContent>Main Page</DBShellContent>
+		<DBShellContent
+			// the `footer` slot of DBPage becomes the `endSlot` of DBShellContent
+			endSlot={<div>Footer</div>}
+		>
+			Main Page
+		</DBShellContent>
 	</DBShell>
 );
 
 export default App;
 ```
+
+## Moving the footer
+
+`DBShell` has no `footer` slot. Its grid only defines areas for the control panel, the sub-navigation, and the content, so a footer passed as a direct child of `DBShell` is auto-placed by the grid instead of ending up below the content. Move it into the `endSlot` of `DBShellContent`, which renders directly after `main`.
+
+| Deprecated                                      | Replacement                               |
+| ----------------------------------------------- | ----------------------------------------- |
+| `DBPage` slot `footer`                          | `DBShellContent` slot `endSlot`           |
+| `DBPage variant="fixed"` (footer stays visible) | `DBShellContent variant="fixed"`          |
+| `DBPage variant="auto"`                         | `DBShellContent variant="auto"` (default) |
+
+`DBShellContent` also has a `startSlot` for content that should sit above `main`, which `DBPage` had no equivalent for.

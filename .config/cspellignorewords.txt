@@ -270,6 +270,11 @@ ponyfilled
 argumentless
 recalc
 deconflict
+extensionless
+scrollport
+interpolatable
+crumbtrail
+hrefs
 renderable
 frontmost
 unwired

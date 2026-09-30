@@ -58,7 +58,7 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 			const baseId = props.id ?? props.propOverrides?.id;
 			const headingId = (baseId || uuid()) + DEFAULT_HEADING_ID_SUFFIX;
 			state._headingId = headingId;
-			// Hold the element itself for cleanup, independent of the dialog `id`.
+			// Hold the element itself for cleanup, independent of the dialog "id".
 			state._dialog = dialog;
 			setDialogAriaLabelledBy(dialog, headingId);
 		},
