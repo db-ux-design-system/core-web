@@ -58,7 +58,7 @@ function getDensity(): string {
 	const density = getQueryParameters().get('density') ?? 'regular';
 
 	// Only ever return a known-safe value: the density is interpolated into
-	// innerHTML below, so an unvalidated URL param would be a DOM-based XSS
+	// innerHTML below, so an unchecked URL param would be a DOM-based XSS
 	// sink (CodeQL js/xss-through-dom).
 	return DENSITIES.includes(density) ? density : 'regular';
 }
