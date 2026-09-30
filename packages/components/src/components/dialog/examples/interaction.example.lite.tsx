@@ -151,13 +151,19 @@ export default function DialogInteraction() {
 					header={<DBDialogHeader text="Title" />}>
 					<span data-testid="events-content">Test</span>
 				</DBDialog>
-				<span data-testid="events-close-readout">
+				<span
+					data-testid="events-close-readout"
+					data-sb-replace="close: 0">
 					{state.getCloseReadout()}
 				</span>
-				<span data-testid="events-cancel-readout">
+				<span
+					data-testid="events-cancel-readout"
+					data-sb-replace="cancel: 0">
 					{state.getCancelReadout()}
 				</span>
-				<span data-testid="events-click-readout">
+				<span
+					data-testid="events-click-readout"
+					data-sb-replace="click: 0">
 					{state.getClickReadout()}
 				</span>
 			</div>

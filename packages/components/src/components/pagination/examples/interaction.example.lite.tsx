@@ -67,7 +67,11 @@ export default function PaginationInteraction() {
 					pageSize={10}
 					onPageChange={(page: any) => state.handlePageChange(page)}
 				/>
-				<span data-testid="default-readout">{state.getReadout()}</span>
+				<span
+					data-testid="default-readout"
+					data-sb-replace="requested: 0">
+					{state.getReadout()}
+				</span>
 			</div>
 
 			<div data-testid="first-pagination">
@@ -135,7 +139,9 @@ export default function PaginationInteraction() {
 						</a>
 					</DBPaginationItem>
 				</DBPagination>
-				<span data-testid="composed-readout">
+				<span
+					data-testid="composed-readout"
+					data-sb-replace="composed requested: 0">
 					{state.getComposedReadout()}
 				</span>
 			</div>
@@ -149,7 +155,9 @@ export default function PaginationInteraction() {
 						state.handleItemsPageChange(page)
 					}
 				/>
-				<span data-testid="items-readout">
+				<span
+					data-testid="items-readout"
+					data-sb-replace="items requested: 0">
 					{state.getItemsReadout()}
 				</span>
 			</div>

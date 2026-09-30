@@ -6,6 +6,7 @@ import DialogBackdrop from '../examples/backdrop.example.lite';
 import DialogContainerSize from '../examples/container-size.example.lite';
 import DialogDensity from '../examples/density.example.lite';
 import DialogExamples from '../examples/examples.example.lite';
+import DialogInteraction from '../examples/interaction.example.lite';
 
 export default function DialogShowcase(props: PatternhubProps) {
 	return (

@@ -80,7 +80,10 @@ export default function TabsInteraction() {
 				</DBTabs>
 			</div>
 
-			<div class="fit-content-container" data-testid="value-tabs">
+			<div
+				class="fit-content-container"
+				data-testid="value-tabs"
+				data-sb-ignore="true">
 				<DBTabs
 					ref={valueTabsRef}
 					onValueChange={(value: any) =>
@@ -93,10 +96,15 @@ export default function TabsInteraction() {
 					<DBTabPanel>Panel A</DBTabPanel>
 					<DBTabPanel>Panel B</DBTabPanel>
 				</DBTabs>
-				<span data-testid="value-result">{state.selectedValue}</span>
+				<span data-testid="value-result" data-sb-replace="initial">
+					{state.selectedValue}
+				</span>
 			</div>
 
-			<div class="fit-content-container" data-testid="nested-tabs">
+			<div
+				class="fit-content-container"
+				data-testid="nested-tabs"
+				data-sb-ignore="true">
 				<DBTabs
 					ref={nestedTabsRef}
 					onIndexChange={(index: any) =>
@@ -117,7 +125,7 @@ export default function TabsInteraction() {
 					</DBTabPanel>
 					<DBTabPanel>Panel 2</DBTabPanel>
 				</DBTabs>
-				<span data-testid="nested-result">
+				<span data-testid="nested-result" data-sb-replace="initial">
 					{state.nestedActiveIndex}
 				</span>
 			</div>
