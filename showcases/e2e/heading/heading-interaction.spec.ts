@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { isVue, runInteractionTest } from '../default.ts';
+import { runInteractionTest } from '../default.ts';
 
 const path = '04/heading';
 
