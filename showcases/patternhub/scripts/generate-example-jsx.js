@@ -28,26 +28,28 @@ const generateExampleJSX = () => {
 		const componentName = getComponentName(name);
 		imports.push(`DB${transformToUpperComponentName(componentName)}`);
 		const path = `${sharedPath}/${componentName}.json`;
-		if (FS.existsSync(path)) {
-			const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
+		if (!FS.existsSync(path)) {
+			continue;
+		}
 
-			for (const variant of variants) {
-				for (const example of variant.examples) {
-					const code = getCodeByFramework(
-						componentName,
-						'react',
-						example,
-						true,
-						variant.children
-					);
+		const variants = JSON.parse(FS.readFileSync(path, 'utf8'));
 
-					const exampleKey = generateExampleKey(
-						componentName,
-						variant.name,
-						example.name
-					);
-					examples.push(`"${exampleKey}":renderToString(${[code]})`);
-				}
+		for (const variant of variants) {
+			for (const example of variant.examples) {
+				const code = getCodeByFramework(
+					componentName,
+					'react',
+					example,
+					true,
+					variant.children
+				);
+
+				const exampleKey = generateExampleKey(
+					componentName,
+					variant.name,
+					example.name
+				);
+				examples.push(`"${exampleKey}":renderToString(${[code]})`);
 			}
 		}
 	}
@@ -60,7 +62,7 @@ const generateExampleJSX = () => {
 		'./scripts/generated/index.jsx',
 		"import { renderToString } from 'react-dom/server';\n" +
 			"import React from 'react';\n" +
-			`import {${imports.join(',')}} from '../../../../output/react/src';\n\n` +
+			`import {${imports.join(',')}} from '@components';\n\n` +
 			`export const allExamples = {${examples.join(',\n')}}`
 	);
 };

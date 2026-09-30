@@ -10,7 +10,7 @@ on:
 jobs:
   build-stencil-targets:
     name: Build Packages
-    runs-on: ubuntu-24.04 # Use Ubuntu 24.04 explicitly
+    runs-on: ubuntu-26.04
     steps:
       - name: ⏬ Checkout repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -80,3 +80,24 @@ jobs:
           name: db-ux-mcp-server-build
           path: packages/mcp-server/dist
           retention-days: 1
+
+      # Run the vite-plugin tests here rather than in a separate job. `pnpm run
+      # build` above already produced everything they need in-tree: the
+      # packages/{components,foundations}/build styles and the output/* framework
+      # packages that the integration-test fixtures reference via file: deps.
+      # Testing in-place avoids a whole extra job (Init Cache + artifact
+      # downloads) - valuable under the org's 20-runner cap. This step runs
+      # after all uploads so a test failure still leaves the packages/*/build
+      # and output/ artifacts downloadable for debugging.
+      - name: 🧪 Run Vite Plugin Tests
+        run: pnpm --filter @db-ux/core-vite-plugin run test
+
+      # Same rationale as the vite-plugin tests above: `pnpm run build` already
+      # produced packages/mcp-server/dist, and the mcp-server test script is
+      # read-only, so bundle.test.ts (which drives dist/index.js rather than the
+      # sources) has everything it needs in-tree. Running here saves the extra
+      # Init-Cache + checkout job that a standalone 02-mcp-server-test.yml would
+      # cost under the org's runner cap. Runs after all uploads so a failure
+      # still leaves the artifacts downloadable for debugging.
+      - name: 🧪 Run MCP Server Tests
+        run: pnpm --filter @db-ux/mcp-server run test

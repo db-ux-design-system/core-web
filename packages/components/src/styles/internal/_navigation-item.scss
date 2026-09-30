@@ -1,0 +1,221 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/icons";
+@use "../../styles/internal/custom-elements";
+@use "../../styles/internal/icon-passing";
+@use "../../styles/internal/component";
+
+@mixin direct-navigation-items {
+	#{string.unquote(custom-elements.$control-panel-navigation-item)},
+	#{string.unquote(custom-elements.$control-panel-navigation-item-group)} {
+		@content;
+	}
+}
+
+@mixin navigation-indicator {
+	> a,
+	> .db-control-panel-navigation-item-group-expand-button {
+		@content;
+	}
+}
+
+@mixin lock-scroll-while-drilldown-open {
+	.db-control-panel-navigation-item-group-back-button,
+	.db-control-panel-navigation-item,
+	.db-control-panel-navigation-item-group-expand-button {
+		@media (prefers-reduced-motion: no-preference) {
+			transition: transform
+				#{variables.$db-transition-duration-extra-slow}
+				#{variables.$db-transition-timing-emotional};
+		}
+	}
+
+	&:has(
+		.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+	) {
+		// Locking overflow only disables further user scrolling; it does not
+		// reset an existing scroll offset (the element stays a scroll container
+		// and keeps its scrollTop). Resetting scrollTop to 0 so the inset:0
+		// overlay aligns with the visible scrollport is done in JS
+		// (control-panel-navigation-item-group.lite.tsx, on expand), because
+		// there is no CSS property that clears a scroll offset.
+		overflow: hidden;
+
+		.db-control-panel-navigation {
+			overflow: hidden;
+		}
+
+		// Lock intermediate drilldown menus that sit behind a deeper overlay.
+		// A menu that :has() an expanded button inside it has an open sub-level
+		// on top of it, so it must not keep its own scroll range - otherwise
+		// opening level 3 from a scrolled level 2 reproduces the scroll offset
+		// one level down, where the scroll-owner lock above cannot reach
+		// (the containing block is the scrolled level-2 overlay).
+		.db-control-panel-navigation-item-group-menu:has(
+			.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+		) {
+			overflow: hidden;
+		}
+
+		menu:has(
+			.db-control-panel-navigation-item-group-expand-button[aria-expanded="true"]
+		) {
+			> .db-control-panel-navigation-item-group-back-button,
+			#{string.unquote(custom-elements.$control-panel-navigation-item)},
+			#{string.unquote(custom-elements.$control-panel-navigation-item-group)}
+				> .db-control-panel-navigation-item-group-expand-button {
+				transform: translateX(-100%);
+
+				// Collapse the slid-out box so it no longer occupies space
+				// behind the overlay. Delay the collapse by the slide duration
+				// so the size only snaps to 0 after the transform finishes
+				// (keeps the slide smooth). On close the ":has" no longer
+				// matches, so the base transition above restores the size
+				// immediately while the level slides back in.
+				padding: 0;
+				block-size: 0;
+				min-block-size: 0;
+
+				@media (prefers-reduced-motion: no-preference) {
+					// block-size collapses from an intrinsic value (fit-content)
+					// which is not interpolatable, so it needs allow-discrete to
+					// honor the delay and flip only at the end of the slide -
+					// otherwise the browser applies it immediately and the box
+					// collapses before the transform finishes.
+					transition:
+						transform
+							#{variables.$db-transition-duration-extra-slow}
+							#{variables.$db-transition-timing-emotional},
+						padding 0ms linear
+							#{variables.$db-transition-duration-extra-slow},
+						block-size 0ms linear
+							#{variables.$db-transition-duration-extra-slow},
+						min-block-size 0ms linear
+							#{variables.$db-transition-duration-extra-slow};
+					transition-behavior: allow-discrete;
+				}
+			}
+		}
+	}
+}
+
+@mixin active-navigation-item() {
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
+		@content;
+	}
+}
+
+@mixin navigation-item-group-menu-triangle-vertical() {
+	&::before {
+		content: "";
+		position: absolute;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		block-size: 100%;
+		inline-size: var(--db-control-panel-navigation-item-inline-size, 100%);
+		background-color: transparent;
+		transform: translateX(-100%);
+		clip-path: var(
+			--db-control-panel-navigation-item-clip-path,
+			polygon(
+				10% calc(1lh + #{variables.$db-spacing-fixed-2xs}),
+				100% 0,
+				100% 100%
+			)
+		);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		padding: variables.$db-spacing-fixed-xs;
+
+		// #{$db-spacing-fixed-3xs} for box shadow
+		inset-block-start: #{variables.$db-spacing-fixed-3xs};
+		inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
+		block-size: calc(100% - 2 * #{variables.$db-spacing-fixed-3xs});
+		inline-size: variables.$db-spacing-fixed-xs;
+	}
+}
+
+%navigation-item-interactive-element {
+	@extend %transparent-border;
+	@extend %db-overwrite-font-size-md;
+
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	cursor: pointer;
+	inline-size: 100%;
+	display: inline-flex;
+	border-radius: variables.$db-border-radius-xs;
+	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
+	text-align: start;
+	align-items: center; // Centering the content vertically and horizontally
+	min-block-size: variables.$db-sizing-md;
+	gap: variables.$db-spacing-fixed-xs;
+
+	@include helpers.hover {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	}
+
+	@include helpers.active {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+	}
+}
+
+%navigation-item {
+	@extend %db-overwrite-font-size-md;
+
+	// The item is the positioning context for its own icon-passing "::before"
+	// (icon-passing emits position: absolute). The drilldown variant opts back
+	// out to "static" on the group so its inset:0 overlay can anchor to the
+	// nav scroll container instead of the group box.
+	position: relative;
+	display: flex;
+	block-size: fit-content;
+
+	// The interactive child additionally establishes its own context so the
+	// indicator "::after" (attached to > a / > expand-button by mobile and
+	// desktop navigation) anchors to the link/button, not the item.
+	@include navigation-indicator {
+		position: relative;
+	}
+
+	// Mobile
+	@include screen-sizes.screen-min-max(
+		(
+			max: "sm"
+		)
+	) {
+		inline-size: 100%;
+	}
+
+	// Desktop
+	@include screen-sizes.screen-min-max(
+		(
+			min: "sm"
+		)
+	) {
+		inline-size: fit-content;
+	}
+
+	&:has([aria-current="page"]),
+	&:has([data-active="true"]),
+	&[aria-current="page"],
+	&[data-active="true"] {
+		> :is(a, button) {
+			font-weight: 700;
+		}
+	}
+
+	&[aria-disabled="true"] {
+		opacity: variables.$db-opacity-md;
+		pointer-events: none;
+	}
+}

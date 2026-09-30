@@ -1,5 +1,5 @@
 import { expect, type Page, test } from '@playwright/test';
-import { waitForDBPage } from '../default.ts';
+import { waitForDBShell } from '../default.ts';
 import { lvl1 } from '../fixtures/variants';
 
 const path = '01/drawer';
@@ -123,7 +123,7 @@ test.describe('DBDrawer Safe Area Insets', () => {
 				waitUntil: 'domcontentloaded'
 			});
 			await waitForFonts(page);
-			await waitForDBPage(page);
+			await waitForDBShell(page);
 
 			await page.addStyleTag({ content: safeAreaStyles });
 			// Portrait viewport (iPhone 14 Pro)
@@ -150,7 +150,7 @@ test.describe('DBDrawer Safe Area Insets (landscape)', () => {
 				waitUntil: 'domcontentloaded'
 			});
 			await waitForFonts(page);
-			await waitForDBPage(page);
+			await waitForDBShell(page);
 
 			await page.addStyleTag({ content: safeAreaStyles });
 			// Landscape viewport (iPhone 14 Pro rotated)

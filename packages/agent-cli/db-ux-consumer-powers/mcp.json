@@ -15,6 +15,7 @@
 				"verify_migrated_code",
 				"list_migration_guides",
 				"get_migration_guide",
+				"scan_generation_2_migration",
 				"scan_v2_migration"
 			]
 		}

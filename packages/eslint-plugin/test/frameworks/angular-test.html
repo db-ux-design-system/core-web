@@ -16,14 +16,27 @@
 	<db-notification [closeable]="false">Test</db-notification>
 	<db-notification>Test</db-notification>
 	<db-drawer-header>Test</db-drawer-header>
+	<db-dialog-header>Test</db-dialog-header>
 	<db-custom-select [label]="'Select'"></db-custom-select>
 
 	<!-- db-ux/drawer-header-required -->
 	<db-drawer>Content without header</db-drawer>
 
+	<!-- db-ux/dialog-header-required -->
+	<db-dialog>Content without header</db-dialog>
+	<db-dialog>
+		<db-dialog-header header close-button-text="Close"
+			>Title</db-dialog-header
+		>
+		Valid dialog
+		<db-dialog-footer footer>Actions</db-dialog-footer>
+	</db-dialog>
+
 	<!-- db-ux/sub-component-required-parent -->
 	<db-drawer-header>Outside drawer</db-drawer-header>
 	<db-drawer-footer>Outside drawer</db-drawer-footer>
+	<db-dialog-header>Outside dialog</db-dialog-header>
+	<db-dialog-footer>Outside dialog</db-dialog-footer>
 	<db-navigation-item>Outside navigation</db-navigation-item>
 	<db-tab-list><db-tab-item>Outside tabs</db-tab-item></db-tab-list>
 	<db-tab-panel>Outside tabs</db-tab-panel>
@@ -62,8 +75,8 @@
 	<!-- db-ux/form-validation-message-required -->
 	<db-input [label]="'Email'" required></db-input>
 
-	<!-- db-ux/header-burger-menu-label-required -->
-	<db-header></db-header>
+	<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
+	<db-control-panel-mobile></db-control-panel-mobile>
 
 	<!-- db-ux/input-type-required -->
 	<db-input [label]="'Test'"></db-input>
@@ -72,9 +85,11 @@
 	<db-link href="https://example.com" target="_blank">External link</db-link>
 
 	<!-- db-ux/navigation-item-back-button-text-required -->
-	<db-navigation-item>
-		<div slot="subNavigation">Sub nav</div>
-	</db-navigation-item>
+	<db-control-panel-navigation-item-group>
+		<db-control-panel-navigation-item
+			>Item</db-control-panel-navigation-item
+		>
+	</db-control-panel-navigation-item-group>
 
 	<!-- db-ux/no-interactive-tooltip-content -->
 	<db-tooltip>

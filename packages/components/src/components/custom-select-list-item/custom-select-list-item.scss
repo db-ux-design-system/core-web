@@ -36,7 +36,7 @@ db-custom-select-list-item:not(:last-of-type) {
 		@extend %focus-placeholder;
 	}
 
-	span {
+	span:not(.db-custom-select-list-item-label) {
 		@extend %db-overwrite-font-size-md;
 
 		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;

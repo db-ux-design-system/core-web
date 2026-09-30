@@ -61,6 +61,7 @@ import DBCustomSelectListItem from '../custom-select-list-item/custom-select-lis
 import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
 import DBInfotext from '../infotext/infotext.lite';
 import DBInput from '../input/input.lite';
+import DBLoadingIndicator from '../loading-indicator/loading-indicator.lite';
 import DBTag from '../tag/tag.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
@@ -494,7 +495,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							!detailsRef.contains(relatedTarget) &&
 							relatedTarget.localName !== 'dialog'
 						) {
-							// We need to use delay here because the combination of `contains`
+							// We need to use delay here because the combination of "contains"
 							// and changing the DOM element causes a race condition inside browser
 							void delay(() => {
 								if (detailsRef) {
@@ -887,7 +888,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 		if (state._selectedOptions?.length) {
 			if (props.transformSelectedLabels) {
-				// We need to add this to another ``const`` for Angular generated output to work
+				// We need to add this to another "const" for Angular generated output to work
 				const selectedOptions = state._selectedOptions;
 				const transformFn = props.transformSelectedLabels!;
 				state._selectedLabels = transformFn!(selectedOptions);
@@ -1206,22 +1207,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 									</DBCustomSelectList>
 								</>
 							}>
-							<DBInfotext
-								id={state._infoTextId}
-								icon={
-									props.showLoading
-										? 'circular_arrows'
-										: undefined
-								}
-								semantic={
-									props.showLoading
-										? 'informational'
-										: 'warning'
+							<Show
+								when={props.showLoading}
+								else={
+									<DBInfotext
+										id={state._infoTextId}
+										semantic="warning">
+										{props.noResultsText ?? DEFAULT_MESSAGE}
+									</DBInfotext>
 								}>
-								{(props.showLoading
-									? props.loadingText
-									: props.noResultsText) ?? DEFAULT_MESSAGE}
-							</DBInfotext>
+								<DBLoadingIndicator id={state._infoTextId}>
+									{props.loadingText ?? DEFAULT_MESSAGE}
+								</DBLoadingIndicator>
+							</Show>
 						</Show>
 
 						<div>

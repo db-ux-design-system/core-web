@@ -1,0 +1,30 @@
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "@db-ux/core-foundations/build/styles/variables";
+
+.db-pagination {
+	inline-size: fit-content;
+
+	> ul {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: variables.$db-spacing-fixed-2xs;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	li[data-pagination-item="collapsed"] {
+		display: none;
+	}
+
+	@include screen-sizes.screen("sm", "max") {
+		li[data-pagination-item="sibling"] {
+			display: none;
+		}
+
+		li[data-pagination-item="collapsed"] {
+			display: flex;
+		}
+	}
+}

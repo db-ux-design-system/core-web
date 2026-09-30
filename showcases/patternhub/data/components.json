@@ -37,10 +37,6 @@
 				]
 			},
 			{
-				"label": "DBBrand",
-				"name": "brand"
-			},
-			{
 				"label": "DBTooltip",
 				"name": "tooltip"
 			},
@@ -135,6 +131,10 @@
 			{
 				"label": "DBBadge",
 				"name": "badge"
+			},
+			{
+				"label": "DBLoadingIndicator",
+				"name": "loading-indicator"
 			}
 		]
 	},
@@ -148,6 +148,10 @@
 				"name": "card"
 			},
 			{
+				"label": "DBDialog",
+				"name": "dialog"
+			},
+			{
 				"label": "DBDivider",
 				"name": "divider"
 			},
@@ -156,8 +160,28 @@
 				"name": "drawer"
 			},
 			{
-				"label": "DBHeader",
-				"name": "header"
+				"label": "DBFooter",
+				"name": "footer",
+				"subNavigation": [
+					{
+						"label": "DBFooterContent Properties",
+						"path": "/components/footer-content/properties"
+					},
+					{
+						"label": "DBFooterMeta Properties",
+						"path": "/components/footer-meta/properties"
+					}
+				]
+			},
+			{
+				"label": "DBFooterContent",
+				"name": "footer-content",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBFooterMeta",
+				"name": "footer-meta",
+				"isHiddenInMenu": true
 			},
 			{
 				"label": "DBSection",
@@ -175,18 +199,43 @@
 		"name": "navigation",
 		"subNavigation": [
 			{
-				"label": "DBNavigation",
-				"name": "navigation",
+				"label": "DBPagination",
+				"name": "pagination",
+				"elements": ["db-pagination", "db-pagination-item"]
+			},
+			{
+				"label": "DBControlPanelBrand",
+				"name": "control-panel-brand"
+			},
+			{
+				"label": "DBControlPanelFlatIcon",
+				"name": "control-panel-flat-icon"
+			},
+			{
+				"label": "DBControlPanelDesktop",
+				"name": "control-panel-desktop"
+			},
+			{
+				"label": "DBControlPanelMobile",
+				"name": "control-panel-mobile"
+			},
+			{
+				"label": "DBShell",
+				"name": "shell",
 				"subNavigation": [
 					{
-						"label": "DBNavigationItem Properties",
-						"path": "/components/navigation-item/properties"
+						"label": "DBShellContent How to use",
+						"path": "/components/navigation/shell-content/how-to-use"
+					},
+					{
+						"label": "DBShellContent Properties",
+						"path": "/components/navigation/shell-content/properties"
 					}
 				]
 			},
 			{
-				"label": "DBNavigationItem",
-				"name": "navigation-item",
+				"label": "DBShellContent",
+				"name": "shell-content",
 				"isHiddenInMenu": true
 			}
 		]

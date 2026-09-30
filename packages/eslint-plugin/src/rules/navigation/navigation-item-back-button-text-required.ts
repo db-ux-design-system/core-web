@@ -1,4 +1,4 @@
-import { COMPONENTS, MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
+import { MESSAGES, MESSAGE_IDS } from '../../shared/constants.js';
 import {
 	createAngularVisitors,
 	defineTemplateBodyVisitor,
@@ -6,12 +6,17 @@ import {
 	isDBComponent
 } from '../../shared/utils.js';
 
+const TARGET_COMPONENTS = [
+	'DBControlPanelNavigationItemGroup',
+	'DBNavigationItem'
+];
+
 export default {
 	meta: {
 		type: 'problem' as const,
 		docs: {
 			description:
-				'Ensure DBNavigationItem has backButtonText for accessibility',
+				'Ensure DBControlPanelNavigationItemGroup has backButtonText for accessibility',
 			url: 'https://github.com/db-ux-design-system/core-web/blob/main/packages/eslint-plugin/README.md#navigation-item-back-button-text-required'
 		},
 		messages: {
@@ -23,6 +28,9 @@ export default {
 	create(context: any) {
 		const angularHandler = (node: any, parserServices: any) => {
 			const backButtonText = getAttributeValue(node, 'backButtonText');
+			// For Angular: getAttributeValue returns true for both valueless
+			// static attributes AND dynamic bindings ([backButtonText]="expr").
+			// Only reject undefined/empty — dynamic bindings are valid.
 			if (backButtonText === undefined || backButtonText === '') {
 				const loc = parserServices.convertNodeSourceSpanToLoc(
 					node.sourceSpan
@@ -35,18 +43,28 @@ export default {
 			}
 		};
 
-		const angularVisitors = createAngularVisitors(
-			context,
-			COMPONENTS.DBNavigationItem,
-			angularHandler
-		);
-		if (angularVisitors) {
+		const angularVisitors: any = {};
+		for (const comp of TARGET_COMPONENTS) {
+			const visitors = createAngularVisitors(
+				context,
+				comp,
+				angularHandler
+			);
+			if (visitors) {
+				Object.assign(angularVisitors, visitors);
+			}
+		}
+
+		if (Object.keys(angularVisitors).length > 0) {
 			return angularVisitors;
 		}
 
-		const checkNavigationItem = (node: any) => {
+		const checkNavigationItemGroup = (node: any) => {
 			const openingElement = node.openingElement || node;
-			if (!isDBComponent(openingElement, COMPONENTS.DBNavigationItem)) {
+			const isTarget = TARGET_COMPONENTS.some((comp) =>
+				isDBComponent(openingElement, comp)
+			);
+			if (!isTarget) {
 				return;
 			}
 
@@ -55,7 +73,11 @@ export default {
 				'backButtonText'
 			);
 
-			if (backButtonText === undefined || backButtonText === '') {
+			if (
+				backButtonText === undefined ||
+				backButtonText === '' ||
+				backButtonText === true
+			) {
 				context.report({
 					node: openingElement,
 					messageId:
@@ -66,8 +88,11 @@ export default {
 
 		return defineTemplateBodyVisitor(
 			context,
-			{ VElement: checkNavigationItem, Element: checkNavigationItem },
-			{ JSXElement: checkNavigationItem }
+			{
+				VElement: checkNavigationItemGroup,
+				Element: checkNavigationItemGroup
+			},
+			{ JSXElement: checkNavigationItemGroup }
 		);
 	}
 };

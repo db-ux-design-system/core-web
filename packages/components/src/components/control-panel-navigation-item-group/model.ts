@@ -1,0 +1,100 @@
+import {
+	ClickEvent,
+	ClickEventProps,
+	ClickEventState,
+	DisabledProps,
+	GlobalProps,
+	GlobalState,
+	IconProps,
+	InitializedState,
+	NavigationBackButtonProps,
+	NavigationBehaviorState,
+	NavigationItemGroupVariantType,
+	ShowIconProps
+} from '../../shared/model';
+import { NavigationItemSafeTriangle } from '../../utils/navigation';
+import { DBControlPanelNavigationItemDefaultProps } from '../control-panel-navigation-item/model';
+
+export type DBControlPanelNavigationItemGroupDefaultProps = {
+	/**
+	 * This is for mobile navigation only, if it is set the sub-navigation is a static overlay
+	 */
+	expanded?: boolean | string;
+
+	/**
+	 * Change id for db-control-panel-navigation-item-group-menu
+	 */
+	menuId?: string;
+};
+
+export type DBControlPanelNavigationItemGroupProps =
+	DBControlPanelNavigationItemGroupDefaultProps &
+		NavigationBackButtonProps &
+		ClickEventProps<HTMLButtonElement> &
+		GlobalProps &
+		IconProps &
+		ShowIconProps &
+		DBControlPanelNavigationItemDefaultProps &
+		DisabledProps;
+
+export type DBControlPanelNavigationItemGroupDefaultState = {
+	handleBackClick: (event: ClickEvent<HTMLButtonElement>) => void;
+	isSubNavigationExpanded: boolean;
+	_itemGroupMenuId: string;
+	_intersectionObserverCallbackId?: string;
+	_attributeObserver?: MutationObserver;
+	_variantObserver?: MutationObserver;
+	_role?: string;
+	_popoverListenersAttached: boolean;
+
+	/**
+	 * Internal state property to show/hide sub-navigation button
+	 */
+	_variant?: NavigationItemGroupVariantType;
+	navigationItemSafeTriangle?: NavigationItemSafeTriangle;
+	autoClose?: boolean;
+	onScroll: () => void;
+	handleEscape: (event: any) => void;
+	forceClose: () => void;
+	_enablePopover: () => void;
+	_teardownPopover: () => void;
+	_update: () => void;
+	_handleFocusIn: () => void;
+	_handleFocusOut: (event: any) => void;
+	_handleMouseEnter: () => void;
+	_handleMouseLeave: () => void;
+	_setSiblingsInert: (inert: boolean) => void;
+
+	/**
+	 * The overlay is position: absolute; inset: 0 and anchors to the
+	 * nearest positioned scroll owner. Which element scrolls depends on
+	 * the layout (desktop scroll container, mobile drawer scroll
+	 * container, or the left sub-navigation) and, for a nested level,
+	 * it is the parent drilldown overlay menu. Rather than guess the
+	 * owner per layout, walk up from this group and reset the scrollTop
+	 * of every ancestor that currently has one. That clears the offset
+	 * on whichever ancestor actually scrolled so the inset:0 overlay
+	 * aligns with the visible scrollport.
+	 *
+	 * The walk stops at the outermost element for the current layout:
+	 * - desktop main panel: the desktop scroll container
+	 * - mobile drawer: the mobile drawer scroll container
+	 * - left sub-navigation: the shell-sub-navigation wrapper, which
+	 *   sits directly above the scroll owner
+	 *   (.db-control-panel-navigation)
+	 *
+	 * .db-control-panel-navigation is intentionally NOT a boundary: in
+	 * the desktop/mobile layouts it is only a descendant of the real
+	 * scroll container, so stopping there would miss the element that
+	 * actually scrolled. The document body is the hard backstop and is
+	 * never itself reset, so the walk can never touch page-level scroll.
+	 */
+	_resetScrollOwner: () => void;
+};
+
+export type DBControlPanelNavigationItemGroupState =
+	DBControlPanelNavigationItemGroupDefaultState &
+		ClickEventState<HTMLButtonElement> &
+		GlobalState &
+		NavigationBehaviorState &
+		InitializedState;

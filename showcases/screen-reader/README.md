@@ -17,13 +17,13 @@ Start a test with these commands (ensure a build or start a watcher previous to 
 ### MacOS
 
 ```shell
-npm run test-sr:macos --workspace=react-showcase -- --ui
+pnpm run --filter=react-showcase test-sr:macos-- --ui
 ```
 
 ### Windows
 
 ```shell
-npm run test-sr:windows --workspace=react-showcase -- --ui
+pnpm run --filter=react-showcase test-sr:windows --ui
 ```
 
 ## Navigation commands: don't only step with `next()`

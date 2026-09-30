@@ -1,5 +1,30 @@
 # @db-ux/core-foundations
 
+## 5.6.1
+
+No changes in this release.
+
+## 5.6.0
+
+### Minor Changes
+
+- feat(DBLoadingIndicator): add component to handle spinners, progress-bars etc. - [see commit a0f37cf](https://github.com/db-ux-design-system/core-web/commit/a0f37cf3531b94ace8be6bd606a08de2d7ee5f35)
+
+## 5.5.0
+
+No changes in this release.
+
+## 5.4.0
+
+No changes in this release.
+
+## 5.3.0
+
+### Minor Changes
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
 ## 5.2.1
 
 _version bump_

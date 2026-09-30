@@ -28,8 +28,23 @@ ReactDOM.createRoot(document.querySelector('#root')!).render(
 										<Route
 											key={`router-${subItem.path}`}
 											path={subItem.path}
-											element={subItem.component}
-										/>
+											element={subItem.component}>
+											{subItem.subNavigation
+												? subItem.subNavigation.map(
+														(subSubItem) => (
+															<Route
+																key={`router-${subSubItem.path}`}
+																path={
+																	subSubItem.path
+																}
+																element={
+																	subSubItem.component
+																}
+															/>
+														)
+													)
+												: null}
+										</Route>
 									))
 								: null}
 						</Route>
