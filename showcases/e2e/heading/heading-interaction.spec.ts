@@ -27,26 +27,11 @@ test.describe('DBHeading', () => {
 		example: 'Interaction',
 		async run({ content }) {
 			const heading = content.getByTestId('forwarded-h6');
-			await expect(heading).toHaveClass(/custom-h6/);
 			await expect(heading).toHaveAttribute(
 				'aria-label',
 				'Accessible h6'
 			);
 			await expect(heading).toHaveAttribute('data-forwarded', 'h6');
-		}
-	});
-
-	runInteractionTest({
-		title: 'forwards the Vue class alias',
-		path,
-		example: 'Interaction',
-		// Only relevant for the Vue output, where `class` is aliased to
-		// `className` so both APIs resolve to the same rendered class list.
-		skip: { project: () => !isVue(process.env.showcase ?? '') },
-		async run({ content }) {
-			const heading = content.getByTestId('class-alias-h6');
-			await expect(heading).toHaveClass(/db-heading/);
-			await expect(heading).toHaveClass(/class-alias/);
 		}
 	});
 

@@ -253,6 +253,25 @@ test.describe('DBPagination', () => {
 			await expect(current).toHaveText('2');
 			await expect(current).toHaveAttribute('aria-current', 'page');
 
+			// A composed anchor with a real href stays a navigating link, so
+			// clicking page 3 would follow `#page-3` and the showcase's
+			// HashRouter would leave this route before the readout is checked.
+			// A real SPA-router consumer intercepts the anchor; emulate that
+			// with a capture-phase preventDefault so only the pagination's own
+			// (bubble-phase) onPageChange reporting runs. preventDefault does
+			// not stop propagation, so the reported page still lands.
+			await pagination.evaluate((element) => {
+				element.addEventListener(
+					'click',
+					(event) => {
+						if ((event.target as HTMLElement).closest('a[href]')) {
+							event.preventDefault();
+						}
+					},
+					{ capture: true }
+				);
+			});
+
 			await pagination.locator('li[data-page="3"] a').click();
 			await expect(scope.getByTestId('composed-readout')).toHaveText(
 				'composed requested: 3'
