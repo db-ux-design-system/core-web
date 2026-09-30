@@ -138,27 +138,31 @@ ${
 					continue;
 				}
 
-				if (isDirectory) {
-					const instructionsPath = join(
-						packagePath,
-						'agent',
-						'_instructions.md'
-					);
-					if (existsSync(instructionsPath)) {
-						let content = readFileSync(instructionsPath, 'utf8');
-						const relativePath = relative(rootPath, packagePath);
-						content = content
-							.replaceAll(
-								'__agent-path__',
-								relativePath.replaceAll('\\', '/')
-							)
-							.replaceAll(
-								'**agent-path**',
-								relativePath.replaceAll('\\', '/')
-							);
-						copilotInstructionsContent += `\n# ${basename(databaseUxPath)}/${package_.name}\n${content}\n`;
-					}
+				if (!isDirectory) {
+					continue;
 				}
+
+				const instructionsPath = join(
+					packagePath,
+					'agent',
+					'_instructions.md'
+				);
+				if (!existsSync(instructionsPath)) {
+					continue;
+				}
+
+				let content = readFileSync(instructionsPath, 'utf8');
+				const relativePath = relative(rootPath, packagePath);
+				content = content
+					.replaceAll(
+						'__agent-path__',
+						relativePath.replaceAll('\\', '/')
+					)
+					.replaceAll(
+						'**agent-path**',
+						relativePath.replaceAll('\\', '/')
+					);
+				copilotInstructionsContent += `\n# ${basename(databaseUxPath)}/${package_.name}\n${content}\n`;
 			}
 		}
 	}

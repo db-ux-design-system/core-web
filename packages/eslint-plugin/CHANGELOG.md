@@ -1,5 +1,31 @@
 # @db-ux/core-eslint-plugin
 
+## 5.6.1
+
+### Patch Changes
+
+- fix(text-or-children-required): stop requiring content on `DBIcon` - [see commit 6d48a36](https://github.com/db-ux-design-system/core-web/commit/6d48a366bf7078e52e029e73103d686a36198bb8):
+    - `DBIcon` renders with `aria-hidden="true"` and `font-size: 0`, so a `text` property or children reach neither screen readers nor sighted users. The rule nevertheless demanded one of them, which forced consumers to write markup that is guaranteed to be inert -- while `aria-label`, the only attribute that could name an icon, did not satisfy it. The rule already treated `DBIcon` as an always-hidden child when computing the accessible name of `DBDialogHeader` / `DBDrawerHeader`; it now applies the same reasoning to the icon itself and no longer reports it.
+
+## 5.6.0
+
+### Minor Changes
+
+- feat: dialog/drawer accessibility rules - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - New `dialog-header-required` rule (recommended): reports a `DBDialog` whose `header` slot has no `DBDialogHeader`, across React, Angular and Vue. `drawer-header-required` shares the same implementation.
+    - `sub-component-required-parent` now covers `DBDialogHeader`/`DBDialogFooter`; `close-button-text-required` and `text-or-children-required` now cover `DBDialogHeader`/`DBDrawerHeader` (a header without an accessible name or close-button label is reported).
+
+### Patch Changes
+
+- fix: reduce false positives in the dialog/drawer accessibility rules - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - The header/content/close-button rules treat statically unverifiable values (identifiers, calls, JSX spreads, Vue object `v-bind`, dynamic `<template #[slot]>` names, fragments, arrays) as unresolved instead of false-positives, while still reporting statically empty content (`text=""`, `{null}`, `{{ '' }}`, empty fragments/arrays, ...).
+    - Handles Angular structural directives / control flow and the Vue parser's `Element`/`Element$1` fallback nodes so valid conditional or fallback-exposed markup is not reported.
+    - Rules reference the shared `COMPONENTS` constants instead of hard-coded component names.
+
+## 5.5.0
+
+No changes in this release.
+
 ## 5.4.0
 
 No changes in this release.

@@ -1,5 +1,4 @@
 import ignoreFolders from './.config/ignores.js';
-
 /** @type {import('xo').FlatXoConfig} */
 const xoConfig = [
 	{
@@ -8,6 +7,12 @@ const xoConfig = [
 			'**/*.vue',
 			// Tsconfig files use JSONC (comments/trailing commas) which XO's strict JSON parser rejects
 			'**/tsconfig*.json',
+			// The package.json linting (eslint-package-json) was added in XO 5. Its
+			// formatting fixer fights Prettier (which owns package.json formatting
+			// via prettier-plugin-pkg), and its dependency-range rule contradicts
+			// our exact-version pinning policy. Semantic checks are handled by
+			// `lint:package-json` (npmPkgJsonLint), so XO ignores these files.
+			'**/package.json',
 			// We don't need to check for stories - they will be generated
 			'storybooks/*/src/**',
 			'scripts/check-docs.js',
@@ -16,11 +21,20 @@ const xoConfig = [
 		]
 	},
 	{
-		prettier: 'compat',
+		// `prettier` is a global-only option in XO 5 — it must live in its own
+		// config item (no `files`/`ignores`/`basePath`), otherwise XO throws.
+		prettier: 'compat'
+	},
+	{
 		rules: {
 			'n/prefer-global/process': 0,
 			'unicorn/prefer-module': 0,
 			'import-x/order': 0, // We use a prettier plugin to organize imports,
+			// XO 5 enabled this rule (replacing import-x/extensions). Its auto-fix
+			// rewrites clean extensionless imports like './prompts' into
+			// './prompts/index.ts', which is noisy and even breaks runtime dynamic
+			// imports resolved by Vitest/esbuild. We keep extensionless imports.
+			'n/file-extension-in-import': 0,
 			'@typescript-eslint/no-unsafe-type-assertion': 0, // We don't need this tsc will handle it anyway
 			'@typescript-eslint/no-unsafe-member-access': 0, // We don't need this tsc will handle it anyway
 			'@typescript-eslint/no-unsafe-enum-comparison': 0, // We don't need this tsc will handle it anyway
@@ -28,7 +42,6 @@ const xoConfig = [
 			// New rules introduced in XO 3 — to be addressed in follow-up PRs
 			'@typescript-eslint/strict-boolean-expressions': 0, // 307 violations — requires explicit boolean coercion
 			'regexp/prefer-named-capture-group': 0, // 41 violations — named regex groups
-			'markdown/no-missing-label-refs': 0, // 41 violations — false positives on non-standard markdown syntax
 			'jsdoc/require-param-description': 0, // 27 violations — JSDoc param descriptions
 			'jsdoc/require-param-type': 0, // 14 violations — JSDoc param types (redundant with TypeScript)
 			'jsdoc/require-returns-description': 0, // 8 violations — JSDoc returns descriptions
@@ -82,8 +95,27 @@ const xoConfig = [
 			'@typescript-eslint/naming-convention': 0, // 4 violations
 			'@typescript-eslint/no-unnecessary-type-conversion': 0, // 3 violations
 			'no-shadow': 0, // 3 violations — covered by @typescript-eslint/no-shadow
-			'@html-eslint/require-form-method': 0, // 1 violation — Angular forms use (submit)
-			'@html-eslint/no-inline-styles': 0 // 1 violation — acceptable in showcases
+			// New rules introduced in XO 5 (eslint-plugin-unicorn 75) — opinionated
+			// stylistic reorderings to be addressed in follow-up PRs. Reordering
+			// `&&`/`||` operands or merging commented guards can change short-circuit
+			// behavior and hurt readability, so these are deferred rather than mass-fixed.
+			'unicorn/prefer-simple-condition-first': 0, // 11 violations — operand reordering (short-circuit safety must be verified per site)
+			'unicorn/prefer-combined-guards': 0, // 4 violations — merges individually-commented guard clauses
+			// This rule's auto-fix converts single-line `/** ... */` JSDoc into a
+			// multiline block WITHOUT the leading `*` on the middle line, producing
+			// malformed-looking comments across the codebase. We keep our existing
+			// single-line block comment style instead.
+			'unicorn/single-line-block-comment-style': 0
+		}
+	},
+	{
+		// Markdown files are not covered by the JS-scoped rules item above, so
+		// markdown rule overrides need their own explicitly-scoped config item.
+		files: ['**/*.md'],
+		rules: {
+			// False positives on non-standard markdown syntax such as
+			// `/components/[slug]`, which the rule misreads as a label reference.
+			'markdown/no-missing-label-refs': 0
 		}
 	},
 	{
@@ -112,7 +144,11 @@ const xoConfig = [
 			'@html-eslint/require-open-graph-protocol': 0,
 			// Self-closing tags (e.g. <meta />) and spacing before /> are standard in frameworks
 			'@html-eslint/require-closing-tags': 0,
-			'@html-eslint/no-extra-spacing-tags': 0
+			'@html-eslint/no-extra-spacing-tags': 0,
+			// Angular forms submit via (ngSubmit)/reactive bindings, not a method attribute
+			'@html-eslint/require-form-method': 0,
+			// Inline styles are acceptable in showcase demo markup
+			'@html-eslint/no-inline-styles': 0
 		}
 	},
 	{
@@ -179,6 +215,14 @@ const xoConfig = [
 		rules: {
 			// Node.js environment
 			'no-console': 'off'
+		}
+	},
+	{
+		files: ['./scripts/**/*.spec.ts'],
+		rules: {
+			// Test files dynamically import untyped build helpers, which resolve to `any`
+			'@typescript-eslint/no-unsafe-assignment': 0,
+			'@typescript-eslint/no-unsafe-call': 0
 		}
 	},
 	{

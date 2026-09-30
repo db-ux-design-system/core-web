@@ -73,21 +73,11 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 			const nextQuery: Record<string, string> = {
 				density,
 				color,
-				settings: JSON.stringify(settings)
+				settings: JSON.stringify(settings),
+				...(page && { page }),
+				shell: shell ? 'true' : 'false',
+				...(fullscreen && { fullscreen: 'true' })
 			};
-			if (page) {
-				nextQuery.page = page;
-			}
-
-			if (shell) {
-				nextQuery.shell = 'true';
-			} else {
-				nextQuery.shell = 'false';
-			}
-
-			if (fullscreen) {
-				nextQuery.fullscreen = 'true';
-			}
 
 			if (shouldRedirectURLSearchParameters) {
 				setSearchParameters(nextQuery);

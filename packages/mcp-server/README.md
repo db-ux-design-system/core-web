@@ -327,14 +327,14 @@ packages/mcp-server/
 │   ├── prebuild.ts          # Central orchestrator: migration assets, tokens, manifest (runs via tsx)
 │   └── build-manifest.ts    # Build-time script — generates src/manifest.json
 ├── src/
-│   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
-│   ├── server.ts           # McpServer singleton and lifecycle handlers
+│   ├── index.ts            # Bootstrap — serves the factory over stdio via serveStdio
+│   ├── server.ts           # buildServer() factory (registers tools/prompts) and lifecycle handlers
 │   ├── types.ts            # Framework type and FRAMEWORK_PKG mapping
 │   ├── tools/              # Tool handler implementations
 │   ├── prompts/            # Prompt handler implementations
 │   ├── utils/              # Shared utilities (path, manifest, formatting, async)
 │   └── manifest.json       # Generated — do not edit manually
-├── build/
+├── dist/
 │   └── index.js            # Compiled standalone bundle (gitignored)
 ├── esbuild.js              # Build script: bundles src/index.ts into standalone dist/index.js
 ├── package.json

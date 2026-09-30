@@ -39,7 +39,7 @@ function renderPageNavItems(items: NavItem[], parentPath = ''): string {
 }
 
 function getQueryParameters(): URLSearchParams {
-	const [, queryString = ''] = globalThis.location.hash.split('?');
+	const [, queryString = ''] = globalThis.location.hash.split('?', 2);
 
 	return new URLSearchParams(queryString);
 }
@@ -54,7 +54,7 @@ function getColor(): string {
 
 function setUrlParameters(updates: Record<string, string>): void {
 	const hash = globalThis.location.hash || '#/';
-	const [path, queryString] = hash.split('?');
+	const [path, queryString] = hash.split('?', 2);
 	const parameters = new URLSearchParams(queryString ?? '');
 
 	for (const [key, value] of Object.entries(updates)) {
