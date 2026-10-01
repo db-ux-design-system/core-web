@@ -23,8 +23,6 @@ export type Component = {
 			vModel?: { modelValue: string; binding: string }[];
 		};
 		angular?: {
-			controlValueAccessor?: string;
-			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
@@ -208,9 +206,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -228,9 +223,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'values', binding: ':values' }]
-			},
-			angular: {
-				controlValueAccessor: 'values'
 			},
 			react: {
 				propsPassingFilter: [
@@ -269,9 +261,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -334,9 +323,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		},
 		overwrites: {
@@ -425,9 +411,6 @@ export const getComponents = (): Component[] => [
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
-			angular: {
-				controlValueAccessor: 'value'
-			},
 			react: {
 				containsFragmentMap: true
 			}
@@ -465,9 +448,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -482,10 +462,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value',
-				controlValueAccessorRequired: true
 			}
 		}
 	},
@@ -585,9 +561,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		}
 	},
