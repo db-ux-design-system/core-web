@@ -140,8 +140,15 @@ test.describe('DBInput', () => {
 		path,
 		example,
 		skip: {
-			// Firefox doesn't support [type=time] in combination with <datalist>
-			project: (project) => project.name.startsWith('firefox')
+			project: (project) =>
+				// Firefox doesn't support [type=time] in combination with
+				// <datalist>.
+				project.name.startsWith('firefox') ||
+				// Mobile Safari renders a native time picker (spinner wheels)
+				// instead of a keyboard-navigable <datalist>, and WebKit mobile
+				// emulation does not move focus/selection via synthetic key
+				// events - so the Space/Tab/Enter sequence never applies a value.
+				project.name.startsWith('mobile')
 		},
 		async run({ page, content }) {
 			const input = getControlBySelector(
