@@ -40,8 +40,9 @@
 	@include helpers.display(flex);
 
 	// The <ol> is transparent to layout so its crumbs and the expand button
-	// (a direct child of the nav) become siblings in the same flex row. This
-	// lets `order` position the button relative to the crumbs.
+	// (a direct child of the nav, rendered after the <ol> so it comes last in
+	// DOM/tab order) become siblings in the same flex row. This lets `order`
+	// position the button visually between the first crumb and the rest.
 	> ol {
 		display: contents;
 		list-style: none;
@@ -90,7 +91,7 @@
 	&[data-collapsed="true"] {
 		> ol > li:not(:first-child, :last-child),
 		> ol > db-breadcrumb-item:not(:first-child, :last-child) > li {
-			display: none;
+			@extend %a11y-visually-hidden;
 		}
 	}
 

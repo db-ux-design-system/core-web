@@ -48,6 +48,7 @@
 	&[data-no-text="true"] {
 		a {
 			padding: variables.$db-spacing-fixed-3xs;
+			gap: 0;
 		}
 	}
 

@@ -57,6 +57,12 @@ export type DBBreadcrumbDefaultState = {
 		item: DBBreadcrumbItemDefaultProps,
 		index: number
 	) => DBBreadcrumbItemDefaultProps['ariaCurrent'] | undefined;
+	/**
+	 * Keeps the tab order of the auto-collapsed trail predictable (home,
+	 * expand toggle, then the remaining crumbs) and takes disabled, current
+	 * and collapsed-hidden crumbs out of the tab order.
+	 */
+	syncTabindex: () => void;
 };
 
 export type DBBreadcrumbState = DBBreadcrumbDefaultState & GlobalState;
