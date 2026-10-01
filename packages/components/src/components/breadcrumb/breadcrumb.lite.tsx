@@ -159,7 +159,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			{/* Rendered after the <ol> so the toggle sits last in DOM/tab order; CSS `order` places it visually after the first crumb (see breadcrumb.scss). */}
 			<Show when={state._autoCollapse && !state._expanded}>
 				{/* We hide this for screen-reader users they can access the links with the screen-reader anyways */}
-				<div class="db-breadcrumb-truncation-item" aria-hidden="true">
+				<div class="db-breadcrumb-truncation-item">
 					<button
 						type="button"
 						className="db-button db-breadcrumb-auto-truncation-item-button"
