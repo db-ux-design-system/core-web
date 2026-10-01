@@ -36,6 +36,11 @@ describe('text-or-children-required', () => {
 			{ code: '<DBLink text="Click here" />' },
 			{ code: '<DBLink>Click here</DBLink>' },
 			{ code: '<DBBadge>New</DBBadge>' },
+			// DBIcon is always decorative (aria-hidden + font-size: 0), so it
+			// must not be reported -- with or without content.
+			// See https://github.com/db-ux-design-system/core-web/issues/7126
+			{ code: '<DBIcon icon="test" />' },
+			{ code: '<DBIcon icon="test" aria-label="Search" />' },
 			{ code: '<DBIcon icon="test">Label</DBIcon>' },
 			{
 				code: '<DBNotification><span>Message</span></DBNotification>'
@@ -101,9 +106,8 @@ describe('text-or-children-required', () => {
 			},
 			{
 				// DBIcon is always aria-hidden and does not count, but a real
-				// heading alongside it supplies the accessible name. (The icon
-				// carries its own child so it satisfies its own content rule.)
-				code: '<DBDialogHeader><DBIcon icon="info">Info</DBIcon><h2>Title</h2></DBDialogHeader>'
+				// heading alongside it supplies the accessible name.
+				code: '<DBDialogHeader><DBIcon icon="info" /><h2>Title</h2></DBDialogHeader>'
 			},
 			{
 				// A JSX spread may supply `text`; its contents are unverifiable,
@@ -175,15 +179,6 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'DBBadge' }
-					}
-				]
-			},
-			{
-				code: '<DBIcon icon="test" />',
-				errors: [
-					{
-						messageId: 'missingContent',
-						data: { component: 'DBIcon' }
 					}
 				]
 			},
@@ -447,8 +442,8 @@ describe('text-or-children-required', () => {
 			{
 				// DBIcon always renders inside aria-hidden="true", so an icon-only
 				// header has no accessible name and still needs an external label.
-				// The icon carries its own child so only the header is reported.
-				code: '<DBDialogHeader><DBIcon icon="info">Info</DBIcon></DBDialogHeader>',
+				// Only the header is reported -- the icon itself requires no content.
+				code: '<DBDialogHeader><DBIcon icon="info" /></DBDialogHeader>',
 				errors: [
 					{
 						messageId: 'missingContent',
@@ -458,7 +453,7 @@ describe('text-or-children-required', () => {
 			},
 			{
 				// Same for the drawer header.
-				code: '<DBDrawerHeader><DBIcon icon="info">Info</DBIcon></DBDrawerHeader>',
+				code: '<DBDrawerHeader><DBIcon icon="info" /></DBDrawerHeader>',
 				errors: [
 					{
 						messageId: 'missingContent',
@@ -527,6 +522,7 @@ describe('text-or-children-required', () => {
 			{ code: '<db-button text="Save"></db-button>' },
 			{ code: '<db-button>Save</db-button>' },
 			{ code: '<db-button [text]="myText"></db-button>' },
+			{ code: '<db-icon icon="search"></db-icon>' },
 			{ code: '<db-dialog-header text="Title"></db-dialog-header>' },
 			{ code: '<db-drawer-header>Title</db-drawer-header>' },
 			// Dynamic binding cannot be verified statically, so it is allowed.
@@ -550,10 +546,9 @@ describe('text-or-children-required', () => {
 				code: '<db-dialog-header><db-brand></db-brand></db-dialog-header>'
 			},
 			// db-icon is always aria-hidden and does not count, but a real heading
-			// alongside it supplies the accessible name. (The icon carries its own
-			// child so it satisfies its own content rule.)
+			// alongside it supplies the accessible name.
 			{
-				code: '<db-dialog-header><db-icon icon="info">Info</db-icon><h2>Title</h2></db-dialog-header>'
+				code: '<db-dialog-header><db-icon icon="info"></db-icon><h2>Title</h2></db-dialog-header>'
 			},
 			// `{{ interpolation }}` is a BoundText child - dynamic content, allowed.
 			{
@@ -649,9 +644,9 @@ describe('text-or-children-required', () => {
 			},
 			{
 				// db-icon is always aria-hidden, so an icon-only header has no
-				// accessible name and is reported. The icon carries its own child
-				// so only the header is reported.
-				code: '<db-dialog-header><db-icon icon="info">Info</db-icon></db-dialog-header>',
+				// accessible name and is reported. Only the header is reported --
+				// the icon itself requires no content.
+				code: '<db-dialog-header><db-icon icon="info"></db-icon></db-dialog-header>',
 				errors: [
 					{
 						messageId: 'missingContent',
@@ -739,9 +734,8 @@ describe('text-or-children-required', () => {
 			},
 			{
 				// DBIcon is always aria-hidden and does not count, but a real
-				// heading alongside it supplies the accessible name. (The icon
-				// carries its own child so it satisfies its own content rule.)
-				code: '<template><DBDialogHeader><DBIcon icon="info">Info</DBIcon><h2>Title</h2></DBDialogHeader></template>'
+				// heading alongside it supplies the accessible name.
+				code: '<template><DBDialogHeader><DBIcon icon="info" /><h2>Title</h2></DBDialogHeader></template>'
 			}
 		],
 		invalid: [
@@ -757,9 +751,9 @@ describe('text-or-children-required', () => {
 			},
 			{
 				// DBIcon is always aria-hidden, so an icon-only header has no
-				// accessible name and is reported. The icon carries its own child
-				// so only the header is reported.
-				code: '<template><DBDialogHeader><DBIcon icon="info">Info</DBIcon></DBDialogHeader></template>',
+				// accessible name and is reported. Only the header is reported --
+				// the icon itself requires no content.
+				code: '<template><DBDialogHeader><DBIcon icon="info" /></DBDialogHeader></template>',
 				errors: [
 					{
 						messageId: 'missingContent',
