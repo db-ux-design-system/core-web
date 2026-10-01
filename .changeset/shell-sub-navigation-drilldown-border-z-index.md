@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(DBShell): prevent logo position jump between expanded and collapsed state
+fix(DBShellSubNavigation): keep the left border above the drilldown navigation overlay

@@ -5,7 +5,10 @@ import './styles.css';
 
 // TODO: Remove shell state and `showcases/stencil-showcase/src/page.ts` after v6.0.0
 function isShellEnabled(): boolean {
-	const [, queryString = ''] = (globalThis.location.hash || '#/').split('?');
+	const [, queryString = ''] = (globalThis.location.hash || '#/').split(
+		'?',
+		2
+	);
 	const parameters = new URLSearchParams(queryString);
 	const shell = parameters.get('shell');
 

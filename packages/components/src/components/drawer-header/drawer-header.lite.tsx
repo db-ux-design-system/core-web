@@ -57,7 +57,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			const baseId = props.id ?? props.propOverrides?.id;
 			const headingId = (baseId || uuid()) + DEFAULT_HEADING_ID_SUFFIX;
 			state._headingId = headingId;
-			// Hold the element itself for cleanup: the drawer may have no `id`,
+			// Hold the element itself for cleanup: the drawer may have no "id",
 			// but aria-labelledby is still set on it.
 			state._dialog = dialog;
 			setDialogAriaLabelledBy(dialog, headingId);
