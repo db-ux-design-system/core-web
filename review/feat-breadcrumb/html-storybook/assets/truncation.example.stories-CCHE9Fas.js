@@ -1,0 +1,10 @@
+import{n as e}from"./iframe-DgMPl3qj.js";import{i as t,n,r,t as i}from"./breadcrumb-BXo-Y_2l.js";import{n as a,t as o}from"./breadcrumb-truncation-item-D4eEs9U2.js";import{n as s}from"./rolldown-runtime-DkW27tQK.js";var c,l,u,d,f;function p(){return(p=s((()=>{t(),a(),n(),c=e(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBBreadcrumb/Truncation`,component:i,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`small`,`medium`]},separator:{control:`select`,options:[`chevron`,`slash`]},id:{control:`text`}}},d={args:{"aria-label":`Breadcrumb`,expandText:`Show more`,children:(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(r,{children:(0,c.jsx)(`a`,{href:`/`,children:`Home`})}),(0,c.jsxs)(o,{label:`Show more breadcrumbs`,children:[(0,c.jsx)(r,{children:(0,c.jsx)(`a`,{href:`/1`,children:`Level 1`})}),(0,c.jsx)(r,{children:(0,c.jsx)(`a`,{href:`/1/2`,children:`Level 2`})}),(0,c.jsx)(r,{children:(0,c.jsx)(`a`,{href:`/1/2/3`,children:`Level 3`})})]}),(0,c.jsx)(r,{children:(0,c.jsx)(`a`,{href:`/1/2/3/4`,children:`Level 4`})}),(0,c.jsx)(r,{children:(0,c.jsx)(`a`,{href:`/1/2/3/4/current`,"aria-current":`page`,children:`Current`})})]})},render:e=>(0,c.jsx)(i,{...e})},f=[`Popover`],d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "aria-label": "Breadcrumb",
+    "expandText": "Show more",
+    "children": <><DBBreadcrumbItem><a href="/">Home</a></DBBreadcrumbItem><DBBreadcrumbTruncationItem label="Show more breadcrumbs"><DBBreadcrumbItem><a href="/1">Level 1</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2">Level 2</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3">Level 3</a></DBBreadcrumbItem></DBBreadcrumbTruncationItem><DBBreadcrumbItem><a href="/1/2/3/4">Level 4</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3/4/current" aria-current="page">
+                        Current
+                    </a></DBBreadcrumbItem></>
+  },
+  render: (properties: any) => <DBBreadcrumb {...properties} />
+}`,...d.parameters?.docs?.source}}}})))()}p();export{d as Popover,f as __namedExportsOrder,u as default};
