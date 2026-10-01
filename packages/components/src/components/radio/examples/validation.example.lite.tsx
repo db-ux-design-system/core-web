@@ -10,16 +10,47 @@ useMetadata({
 
 export default function RadioValidation() {
 	return (
-		<div role="radiogroup" aria-label="Validation">
-			<DBRadio name="No validation" validation="no-validation">
-				(Default) No validation
-			</DBRadio>
-			<DBRadio name="invalid" validation="invalid">
-				Invalid
-			</DBRadio>
-			<DBRadio name="valid" validation="valid" checked={true}>
-				Valid
-			</DBRadio>
-		</div>
+		<>
+			<fieldset>
+				<legend>(Default) No validation - choose a language</legend>
+				<DBRadio name="LanguageNone" value="de">
+					German
+				</DBRadio>
+				<DBRadio name="LanguageNone" value="en">
+					English
+				</DBRadio>
+				<DBRadio name="LanguageNone" value="fr">
+					French
+				</DBRadio>
+			</fieldset>
+			<fieldset>
+				<legend>Invalid - choose a language</legend>
+				<DBRadio name="LanguageInvalid" value="de" validation="invalid">
+					German
+				</DBRadio>
+				<DBRadio name="LanguageInvalid" value="en" validation="invalid">
+					English
+				</DBRadio>
+				<DBRadio name="LanguageInvalid" value="fr" validation="invalid">
+					French
+				</DBRadio>
+			</fieldset>
+			<fieldset>
+				<legend>Valid - choose a language</legend>
+				<DBRadio name="LanguageValid" value="de" validation="valid">
+					German
+				</DBRadio>
+				<DBRadio
+					name="LanguageValid"
+					value="en"
+					validation="valid"
+					checked={true}>
+					English
+				</DBRadio>
+				<DBRadio name="LanguageValid" value="fr" validation="valid">
+					French
+				</DBRadio>
+			</fieldset>
+		</>
 	);
 }

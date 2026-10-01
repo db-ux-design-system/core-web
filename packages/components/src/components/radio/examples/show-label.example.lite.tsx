@@ -11,18 +11,34 @@ useMetadata({
 
 export default function RadioShowLabel() {
 	return (
-		<div role="radiogroup" aria-label="Show Label">
-			<DBRadio name="Content" showLabel={true}>
-				(Default) True
-			</DBRadio>
-			<div>
-				<DBRadio name="Content" showLabel={false}>
-					False
+		<>
+			<fieldset>
+				<legend>(Default) True - rate your experience</legend>
+				<DBRadio name="RatingVisible" value="good" showLabel={true}>
+					Good
+				</DBRadio>
+				<DBRadio name="RatingVisible" value="neutral" showLabel={true}>
+					Neutral
+				</DBRadio>
+				<DBRadio name="RatingVisible" value="bad" showLabel={true}>
+					Bad
+				</DBRadio>
+			</fieldset>
+			<fieldset>
+				<legend>False - rate your experience</legend>
+				<DBRadio name="RatingHidden" value="good" showLabel={false}>
+					Good
+				</DBRadio>
+				<DBRadio name="RatingHidden" value="neutral" showLabel={false}>
+					Neutral
+				</DBRadio>
+				<DBRadio name="RatingHidden" value="bad" showLabel={false}>
+					Bad
 				</DBRadio>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					False
+					Labels are visually hidden but still read by screen readers.
 				</DBInfotext>
-			</div>
-		</div>
+			</fieldset>
+		</>
 	);
 }

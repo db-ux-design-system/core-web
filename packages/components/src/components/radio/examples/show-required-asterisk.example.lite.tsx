@@ -10,19 +10,55 @@ useMetadata({
 
 export default function RadioShowRequiredAsterisk() {
 	return (
-		<div role="radiogroup" aria-label="Show Required Asterisk">
-			<DBRadio
-				name="Asterisk"
-				required={true}
-				showRequiredAsterisk={true}>
-				(Default) True
-			</DBRadio>
-			<DBRadio
-				name="Asterisk"
-				required={true}
-				showRequiredAsterisk={false}>
-				False
-			</DBRadio>
-		</div>
+		<>
+			<fieldset>
+				<legend>(Default) True - pick a ticket type *</legend>
+				<DBRadio
+					name="TicketAsterisk"
+					value="single"
+					required={true}
+					showRequiredAsterisk={true}>
+					Single
+				</DBRadio>
+				<DBRadio
+					name="TicketAsterisk"
+					value="return"
+					required={true}
+					showRequiredAsterisk={true}>
+					Return
+				</DBRadio>
+				<DBRadio
+					name="TicketAsterisk"
+					value="day"
+					required={true}
+					showRequiredAsterisk={true}>
+					Day pass
+				</DBRadio>
+			</fieldset>
+			<fieldset>
+				<legend>False - pick a ticket type *</legend>
+				<DBRadio
+					name="TicketNoAsterisk"
+					value="single"
+					required={true}
+					showRequiredAsterisk={false}>
+					Single
+				</DBRadio>
+				<DBRadio
+					name="TicketNoAsterisk"
+					value="return"
+					required={true}
+					showRequiredAsterisk={false}>
+					Return
+				</DBRadio>
+				<DBRadio
+					name="TicketNoAsterisk"
+					value="day"
+					required={true}
+					showRequiredAsterisk={false}>
+					Day pass
+				</DBRadio>
+			</fieldset>
+		</>
 	);
 }

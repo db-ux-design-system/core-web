@@ -4,17 +4,39 @@ import { StorybookRadioArgTypes } from './_radio.arg.types';
 
 useMetadata({
 	storybookTitle: 'Checked',
-	storybookNames: ['(Default) False', 'True'],
+	storybookNames: ['(Default) Nothing checked', 'One option checked'],
 	storybookArgTypes: StorybookRadioArgTypes
 });
 
 export default function RadioChecked() {
 	return (
-		<div role="radiogroup" aria-label="Checked">
-			<DBRadio name="Checked">(Default) False</DBRadio>
-			<DBRadio name="Checked" checked={true}>
-				True
-			</DBRadio>
-		</div>
+		<>
+			<fieldset>
+				<legend>
+					(Default) false, nothing checked - choose a newsletter
+				</legend>
+				<DBRadio name="Newsletter" value="daily">
+					Daily digest
+				</DBRadio>
+				<DBRadio name="Newsletter" value="weekly">
+					Weekly summary
+				</DBRadio>
+				<DBRadio name="Newsletter" value="none">
+					No newsletter
+				</DBRadio>
+			</fieldset>
+			<fieldset>
+				<legend>True, one option checked - choose a newsletter</legend>
+				<DBRadio name="NewsletterChecked" value="daily">
+					Daily digest
+				</DBRadio>
+				<DBRadio name="NewsletterChecked" value="weekly" checked={true}>
+					Weekly summary
+				</DBRadio>
+				<DBRadio name="NewsletterChecked" value="none">
+					No newsletter
+				</DBRadio>
+			</fieldset>
+		</>
 	);
 }

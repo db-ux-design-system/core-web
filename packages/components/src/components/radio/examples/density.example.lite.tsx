@@ -10,22 +10,43 @@ useMetadata({
 
 export default function RadioDensity() {
 	return (
-		<div role="radiogroup" aria-label="Density">
-			<DBRadio
-				data-density="functional"
-				name="Density"
-				value="functional">
-				Functional
-			</DBRadio>
-			<DBRadio data-density="regular" name="Density" value="regular">
-				(Default) Regular
-			</DBRadio>
-			<DBRadio
-				data-density="expressive"
-				name="Density"
-				value="expressive">
-				Expressive
-			</DBRadio>
-		</div>
+		<>
+			<fieldset data-density="functional">
+				<legend>Functional - choose a contact method</legend>
+				<DBRadio name="ContactFunctional" value="email">
+					Email
+				</DBRadio>
+				<DBRadio name="ContactFunctional" value="phone">
+					Phone
+				</DBRadio>
+				<DBRadio name="ContactFunctional" value="post">
+					Post
+				</DBRadio>
+			</fieldset>
+			<fieldset data-density="regular">
+				<legend>(Default) Regular - choose a contact method</legend>
+				<DBRadio name="ContactRegular" value="email">
+					Email
+				</DBRadio>
+				<DBRadio name="ContactRegular" value="phone">
+					Phone
+				</DBRadio>
+				<DBRadio name="ContactRegular" value="post">
+					Post
+				</DBRadio>
+			</fieldset>
+			<fieldset data-density="expressive">
+				<legend>Expressive - choose a contact method</legend>
+				<DBRadio name="ContactExpressive" value="email">
+					Email
+				</DBRadio>
+				<DBRadio name="ContactExpressive" value="phone">
+					Phone
+				</DBRadio>
+				<DBRadio name="ContactExpressive" value="post">
+					Post
+				</DBRadio>
+			</fieldset>
+		</>
 	);
 }
