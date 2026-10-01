@@ -95,6 +95,7 @@
         - link "Level 5"
       - listitem:
         - link "Current"
+    - button "Show more": …
   - text: 10 Items
   - navigation "Breadcrumb (10 items)":
     - list:
@@ -118,6 +119,7 @@
         - link "Level 8"
       - listitem:
         - link "Current"
+    - button "Show more": …
   - link "API"
   - text: Composition
   - navigation "Breadcrumb API (Composition)":
