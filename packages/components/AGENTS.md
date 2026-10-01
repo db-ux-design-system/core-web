@@ -710,7 +710,7 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
-- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
+- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms to `configs/plugins/angular/signal-forms.cjs`, and the Angular `ControlValueAccessor` to `configs/plugins/angular/control-value-accessor.cjs`)
 
 > Exception: registering a component in `components.ts` is not new logic, it is
 > configuration for transformations that already exist. When a component would
@@ -721,6 +721,14 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 > parallel implementations.
 >
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
+
+### Angular form components
+
+Which components take part in Angular forms is configured once, in `configs/plugins/angular/form-components.cjs`. Two plugins read it: `control-value-accessor.cjs` generates the legacy CVA members, `signal-forms.cjs` adds the Signal Forms layer on top. Register a new form component there, not in `scripts/post-build/components.ts`.
+
+The plugin order in `configs/angular/index.cjs` matters — the CVA plugin runs before Signal Forms. Both patch the same `} from "@angular/core";` anchor, so an insertion has to end with a comma to survive the next plugin.
+
+The generated member names are a contract: `select.lite.tsx` calls `this.writeValue?.(…)` and `src/utils/form-components.ts` calls `propagateChange`. Renaming them breaks the component sources, not just the output.
 
 ### React `propsPassingFilter` and `default*` props
 
