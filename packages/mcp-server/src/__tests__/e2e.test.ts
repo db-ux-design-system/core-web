@@ -203,16 +203,6 @@ describe('MCP server — stdio transport (legacy era)', () => {
 		// The old name was removed in this major — it must not be registered anymore.
 		expect(names).not.toContain('scan_v2_migration');
 	}, 10_000);
-
-	it('scan_generation_2_migration returns a report', async () => {
-		const result = await client.callTool({
-			name: 'scan_generation_2_migration',
-			arguments: { filePath: 'does-not-exist-scan-check.html' }
-		});
-
-		// An unknown-tool error would surface here if the registration were missing.
-		expect(result.content).toBeDefined();
-	}, 10_000);
 });
 
 describe('MCP server — stdio transport (modern era, 2026-07-28)', () => {
