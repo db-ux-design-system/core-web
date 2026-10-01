@@ -1,7 +1,18 @@
 import { expect, test, type Page } from '@playwright/test';
-import { runInteractionTest } from '../default.ts';
+import { runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
+
+// Keyboard navigation (ArrowUp/Down, Enter, Space) is a desktop affordance.
+// Playwright's WebKit mobile emulation (`mobile_safari`, a touch device) does
+// not move DOM focus in response to synthetic key events the way iOS Safari
+// behaves for a real user, so `document.activeElement` never updates to the
+// focused option and the focus-based assertions below time out. Skip the
+// keyboard-driven scenarios on every mobile project, mirroring
+// `navigation-interaction.spec.ts`.
+const skipKeyboardOnMobile: SkipType = {
+	project: (project) => project.name.startsWith('mobile')
+};
 
 // Waits for the active element's value to match, instead of a hard-coded
 // timeout - mirrors the helper from the removed component test.
@@ -25,6 +36,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'click on single item',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
@@ -42,6 +54,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'click on multiple item',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
@@ -79,6 +92,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'test select all',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('select-all-select');
 			const summary = select.locator('summary');
@@ -99,6 +113,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'select single item with Enter key',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
@@ -118,6 +133,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'select multiple item with Enter key',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
@@ -138,6 +154,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'select first filtered item with Enter key from search field',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
@@ -163,6 +180,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'select first available option with Enter when only one option remains after filtering',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
@@ -188,6 +206,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'option groups keyboard navigation should skip group titles (#4920)',
 		path,
 		example: 'Interaction',
+		skip: skipKeyboardOnMobile,
 		async run({ page, content }) {
 			const select = content.getByTestId('option-groups-select');
 			const summary = select.locator('summary');

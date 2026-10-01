@@ -29,6 +29,7 @@ export default function SelectInteraction() {
 			<DBSelect
 				data-testid="select-change"
 				label="Label"
+				placeholder="Placeholder"
 				onInput={(event: any) => state.handleInput(event)}>
 				<option value="test1">Test1</option>
 				<option value="test2">Test2</option>
