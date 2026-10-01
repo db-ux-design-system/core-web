@@ -78,10 +78,16 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			await summary.click({ force: true });
 
+			// On mobile the dropdown opens as a fixed bottom-sheet overlay; the
+			// search input only becomes visible once that layout settles, so
+			// wait for it before interacting instead of racing the open.
+			const searchInput = select.locator('input[type="search"]');
+			await expect(searchInput).toBeVisible();
+
 			const inputs = await select.locator('input').all();
 			expect(inputs.length).toBe(7);
 
-			await inputs[0].fill('test');
+			await searchInput.fill('test');
 			for (const input of inputs.slice(1)) {
 				await expect(input).not.toBeVisible();
 			}
