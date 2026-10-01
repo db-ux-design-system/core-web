@@ -140,15 +140,22 @@ test.describe('DBInput', () => {
 		path,
 		example,
 		skip: {
+			// This test drives a keyboard-navigable <datalist> on a
+			// [type=time] input (Space/Tab/Enter to pick a suggestion), which
+			// only Chromium on desktop supports:
+			// - Firefox does not support [type=time] combined with <datalist>.
+			// - WebKit (desktop Safari) and mobile Safari render a native time
+			//   picker instead of a keyboard-navigable datalist.
+			// - Mobile emulation (Chrome/Safari) does not move focus/selection
+			//   via synthetic key events.
+			// In all of these the Space/Tab/Enter sequence never applies the
+			// expected value, so restrict the test to the desktop Chromium
+			// projects.
 			project: (project) =>
-				// Firefox doesn't support [type=time] in combination with
-				// <datalist>.
-				project.name.startsWith('firefox') ||
-				// Mobile Safari renders a native time picker (spinner wheels)
-				// instead of a keyboard-navigable <datalist>, and WebKit mobile
-				// emulation does not move focus/selection via synthetic key
-				// events - so the Space/Tab/Enter sequence never applies a value.
-				project.name.startsWith('mobile')
+				!(
+					project.name === 'chromium' ||
+					project.name === 'chromium-highContrast'
+				)
 		},
 		async run({ page, content }) {
 			const input = getControlBySelector(
