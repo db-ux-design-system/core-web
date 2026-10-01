@@ -2,11 +2,9 @@ import { test } from '@playwright/test';
 import { hasWebComponentSyntax, runAxeCoreTest } from '../default.ts';
 import { lvl3 } from '../fixtures/variants';
 
-const axeDisableRules = [];
-if (hasWebComponentSyntax(process.env.showcase)) {
+const axeDisableRules =
 	// For angular and stencil the <li> is wrapped inside <db-control-panel-item> which is a false-positive in axe-core
-	axeDisableRules.push('listitem');
-}
+	hasWebComponentSyntax(process.env.showcase) ? ['listitem'] : [];
 
 test.describe('DBControlPanelFlatIcon', () => {
 	runAxeCoreTest({

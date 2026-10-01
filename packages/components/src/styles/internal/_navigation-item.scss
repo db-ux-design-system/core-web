@@ -9,6 +9,9 @@
 @use "../../styles/internal/icon-passing";
 @use "../../styles/internal/component";
 
+$z-index-popover: 70;
+$z-index-above-popover: 71;
+
 @mixin direct-navigation-items {
 	#{string.unquote(custom-elements.$control-panel-navigation-item)},
 	#{string.unquote(custom-elements.$control-panel-navigation-item-group)} {
