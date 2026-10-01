@@ -167,6 +167,7 @@ overrides:
   html-webpack-plugin>webpack: 5.111.1
   esbuild@~0.28.0: 0.28.2
   serialize-javascript@>=7.1.1 <7.1.2: 7.1.2
+  devalue@<=5.9.2: 5.9.3
 
 importers:
 
@@ -9002,8 +9003,8 @@ packages:
   detect-node@2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
 
-  devalue@5.9.2:
-    resolution: {integrity: sha512-po4PAY5c53tw5XMocSnf8A/5OHhbbUftpr93aEN6BBoAdntUmK7vu7wOATqvt7cXO7m1Cl4gMVn6p7n6n4mj0w==}
+  devalue@5.9.3:
+    resolution: {integrity: sha512-xRumYOCUZN/EesqHEU3WOXanOZNvfZFZ/o1AHVFDX1yI0UAkZkOgDXt341CzKoBVIkgQba55/+DjGBKrIoKcHw==}
 
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
@@ -20413,7 +20414,7 @@ snapshots:
       consola: 3.4.2
       defu: 6.1.7
       destr: 2.0.5
-      devalue: 5.9.2
+      devalue: 5.9.3
       errx: 0.1.2
       escape-string-regexp: 5.0.0
       exsolve: 1.1.1
@@ -24668,7 +24669,7 @@ snapshots:
 
   detect-node@2.1.0: {}
 
-  devalue@5.9.2: {}
+  devalue@5.9.3: {}
 
   devlop@1.1.0:
     dependencies:
@@ -29174,7 +29175,7 @@ snapshots:
       consola: 3.4.2
       cookie-es: 3.1.1
       defu: 6.1.7
-      devalue: 5.9.2
+      devalue: 5.9.3
       errx: 0.1.2
       escape-string-regexp: 5.0.0
       exsolve: 1.1.1
