@@ -80,18 +80,42 @@
         - link "Current"
   - text: 7 Items
   - navigation "Breadcrumb (7 items)":
-    - button "Show more"
     - list:
       - listitem:
         - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Level 3"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Level 5"
       - listitem:
         - link "Current"
   - text: 10 Items
   - navigation "Breadcrumb (10 items)":
-    - button "Show more"
     - list:
       - listitem:
         - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Level 3"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Level 5"
+      - listitem:
+        - link "Level 6"
+      - listitem:
+        - link "Level 7"
+      - listitem:
+        - link "Level 8"
       - listitem:
         - link "Current"
   - link "API"
