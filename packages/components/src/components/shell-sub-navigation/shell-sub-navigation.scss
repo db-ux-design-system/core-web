@@ -149,6 +149,10 @@
 				@include helpers.divider("top");
 			}
 		}
+
+		&::after {
+			z-index: 9999; // Border should be above a drilldown navigation-item-menu
+		}
 	}
 }
 
