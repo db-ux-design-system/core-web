@@ -565,7 +565,6 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                        |
 | `_link-components.scss`   | Link-like appearance and states                                                |
 | `_tag-components.scss`    | Tag/badge/chip shared styles                                                   |
-| `_stack-components.scss`  | Stack/layout shared styles                                                     |
 | `_select-components.scss` | Select/dropdown shared styles                                                  |
 | `_popover-component.scss` | Popover/tooltip positioning and appearance                                     |
 | `_icon-passing.scss`      | Icon passing via data attributes                                               |

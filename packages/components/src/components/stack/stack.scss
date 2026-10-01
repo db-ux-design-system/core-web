@@ -69,6 +69,13 @@ $stack-gaps: (
 		block-size: 100%;
 	}
 
+	// Default is content-based height. `fit-content` keeps the stack sized to
+	// its children even as a stretch-aligned flex/grid child, where plain `auto`
+	// would stretch to the container instead.
+	&:is([data-height="auto"], :not([data-height])) {
+		block-size: fit-content;
+	}
+
 	&:is([data-direction="column"], :not([data-direction])) {
 		flex-direction: column;
 	}
