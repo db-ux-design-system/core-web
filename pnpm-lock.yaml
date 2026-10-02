@@ -576,11 +576,11 @@ importers:
         specifier: 0.0.17
         version: 0.0.17(eslint@10.11.0(jiti@2.7.0)(supports-color@5.5.0))
       '@builder.io/mitosis':
-        specifier: 0.14.0
-        version: 0.14.0(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)
+        specifier: 0.14.1
+        version: 0.14.1(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)
       '@builder.io/mitosis-cli':
-        specifier: 0.14.0
-        version: 0.14.0(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)(typescript@5.9.3)
+        specifier: 0.14.1
+        version: 0.14.1(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)(typescript@5.9.3)
       '@prettier/sync':
         specifier: 0.6.1
         version: 0.6.1(prettier@3.9.9)
@@ -2673,12 +2673,12 @@ packages:
     peerDependencies:
       eslint: '>=0.8.0'
 
-  '@builder.io/mitosis-cli@0.14.0':
-    resolution: {integrity: sha512-fK53Frxk8jAkd0Zzowv8BOSZkfFmAowartjPNg4HgtjRbka3cRjUO5YABswLuFGOQM0REBrlBLGUD4ibABdwAg==}
+  '@builder.io/mitosis-cli@0.14.1':
+    resolution: {integrity: sha512-DE23egtvBLL3RMeUKnXyUu3cWd5dyUHCjpqGjQc4xUFBKYDrF+wy+xTSYD3J5caCnsq7iilpEgqgs0HCHJ63dA==}
     hasBin: true
 
-  '@builder.io/mitosis@0.14.0':
-    resolution: {integrity: sha512-ju9RGsuYYWxekHN/VIihRJG1eD2dvTk0Hd/cEBoqv28+7bwKkYEROeIHD8WFDUxJRubI1pyEP8NgbWMalpWobA==}
+  '@builder.io/mitosis@0.14.1':
+    resolution: {integrity: sha512-gpZK/tQrbsKgfjuNjst4qiIeEQRyCYBfvuNCGuuj4opIuKIqgwbgfG4sa5KqNhNIIThtVJAzkZpCCGBzKkTqJg==}
 
   '@builder.io/sdk@2.2.9':
     resolution: {integrity: sha512-B9DUNKYIkGXzvEm4ciZNjTQ6cdfuZXZ0gViKEXeAiIR/L6aDXdCyIlcPFtBOepVZQiI5fZNQAlbWY1pDgaW4BA==}
@@ -17691,9 +17691,9 @@ snapshots:
       eslint: 10.11.0(jiti@2.7.0)(supports-color@5.5.0)
       ts-pattern: 3.3.5
 
-  '@builder.io/mitosis-cli@0.14.0(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)(typescript@5.9.3)':
+  '@builder.io/mitosis-cli@0.14.1(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)(typescript@5.9.3)':
     dependencies:
-      '@builder.io/mitosis': 0.14.0(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)
+      '@builder.io/mitosis': 0.14.1(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)
       cosmiconfig: 9.0.0(typescript@5.9.3)
       debug: 4.4.3(supports-color@5.5.0)
       dedent: 0.7.0
@@ -17720,7 +17720,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@builder.io/mitosis@0.14.0(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)':
+  '@builder.io/mitosis@0.14.1(encoding@0.1.13)(less@4.9.0(supports-color@5.5.0))(postcss@8.5.28)(pug@3.0.4)(sass@1.105.0)(supports-color@5.5.0)':
     dependencies:
       '@angular/compiler': 11.2.14
       '@babel/core': 7.14.5(supports-color@5.5.0)
