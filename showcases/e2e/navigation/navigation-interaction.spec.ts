@@ -10,8 +10,13 @@ test.describe('DBNavigation', () => {
 		example: 'Interaction',
 		skip: { project: (project) => project.name.startsWith('mobile') },
 		async run({ content }) {
+			const toggle = content.getByTestId('test1').getByRole('button');
+			// The expand button only reacts once the navigation-item's
+			// post-mount effect has detected the slotted sub-navigation and
+			// set aria-haspopup. Wait for that so the hover does not race init.
+			await expect(toggle).toHaveAttribute('aria-haspopup', 'true');
 			await expect(content.getByTestId('sub1')).toBeHidden();
-			await content.getByTestId('test1').getByRole('button').hover();
+			await toggle.hover();
 			await expect(content.getByTestId('sub1')).toBeVisible();
 		}
 	});
@@ -23,8 +28,14 @@ test.describe('DBNavigation', () => {
 		skip: { project: (project) => !project.name.startsWith('mobile') },
 		async run({ content }) {
 			const sub = content.getByTestId('sub1');
+			const toggle = content.getByTestId('test1').getByRole('button');
+			// The expand button toggles the sub-navigation only after the
+			// navigation-item's post-mount effect has detected the slotted
+			// sub-navigation and set aria-haspopup. Wait for that so the click
+			// does not race init and become a no-op.
+			await expect(toggle).toHaveAttribute('aria-haspopup', 'true');
 			await expect(sub).toBeHidden();
-			await content.getByTestId('test1').getByRole('button').click();
+			await toggle.click();
 			await expect(sub).toBeVisible();
 			await content.getByText('Back').click();
 			await expect(sub).toBeHidden();
