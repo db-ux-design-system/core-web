@@ -26,7 +26,9 @@ const getDefaultScreenshotTest = async (
 const componentsWithoutOwnPages = new Set([
 	'footer-content',
 	'footer-meta',
-	'shell-content'
+	'shell-content',
+	'breadcrumb-item',
+	'breadcrumb-truncation-item'
 ]);
 
 for (const group of Components) {
