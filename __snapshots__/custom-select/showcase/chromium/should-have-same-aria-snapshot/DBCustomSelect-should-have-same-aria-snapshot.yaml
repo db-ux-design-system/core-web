@@ -1473,7 +1473,6 @@
   - status
   - text: Custom Selected Label
   - group:
-    - text: "Selected: Label controlled"
     - article:
       - radiogroup "id-10aasds4-Custom Selected Label":
         - list:
