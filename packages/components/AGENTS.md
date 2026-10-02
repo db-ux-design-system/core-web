@@ -200,6 +200,31 @@ custom-elements analyzer stops resolving at the second alias hop, which publishe
 every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
 the real union and JSDoc.
 
+## Text component family
+
+`src/components/text/` contains `text.lite.tsx` (renders a `span`),
+`paragraph.lite.tsx` (renders a `p`) and `paragraph-group.lite.tsx` (renders a
+`div`). It shares one folder, model, stylesheet, spec and showcase, and is
+registered with the same `folder` / `spec` / Vue-class-alias fields as the
+Heading family above. Like Heading, it must stay free of runtime tag switching:
+Mitosis cannot emit a dynamic element, which is why there are three components
+instead of one with an `as` property.
+
+Three decisions in the styles look like oversights and are not:
+
+- **`size` has no default on any of the three.** Without `data-size` the
+  typography is inherited, and that is the entire mechanism by which a `size` on
+  `.db-paragraph-group` reaches its children. Giving `.db-paragraph` a default
+  step would silently override the group.
+- **`.db-paragraph` resets `margin-block`.** The foundations'
+  `defaults/default-fonts.scss` gives every `p` a margin. Left in place it adds
+  to the `gap` of a surrounding group and doubles the spacing, so spacing is the
+  container's job exclusively.
+- **`.db-paragraph` sets no blanket `text-align`, unlike `.db-heading`.** An
+  unconditional `text-align: start` would block a paragraph from inheriting the
+  `alignment` of its group. `start` is therefore emitted as an explicit
+  `data-alignment` value instead.
+
 ## Examples (`src/components/**/examples/`)
 
 Examples are the **single source of truth** for component usage. They are used to generate:
@@ -557,22 +582,22 @@ the item still being in the markup.
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File                      | What it covers                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------ |
-| `_button-components.scss` | Ghost button appearance, button-like interactive states                        |
-| `_dialog-components.scss` | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
-| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`               |
-| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                        |
-| `_link-components.scss`   | Link-like appearance and states                                                |
-| `_tag-components.scss`    | Tag/badge/chip shared styles                                                   |
-| `_stack-components.scss`  | Stack/layout shared styles                                                     |
-| `_select-components.scss` | Select/dropdown shared styles                                                  |
-| `_popover-component.scss` | Popover/tooltip positioning and appearance                                     |
-| `_icon-passing.scss`      | Icon passing via data attributes                                               |
-| `_custom-elements.scss`   | Custom element host/shadow styles                                              |
-| `_component.scss`         | Base component resets and defaults                                             |
-| `_indicator.scss`         | Indicator animation                                                            |
-| `_scrollbar.scss`         | Scrollbar styling                                                              |
+| File                      | What it covers                                                                                |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| `_button-components.scss` | Ghost button appearance, button-like interactive states                                       |
+| `_dialog-components.scss` | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes)                |
+| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`                              |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                                       |
+| `_link-components.scss`   | Link-like appearance and states                                                               |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                                                                  |
+| `_stack-components.scss`  | Stack/layout shared styles, plus `get-stack-gaps()` for any component using `GapSpacingProps` |
+| `_select-components.scss` | Select/dropdown shared styles                                                                 |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance                                                    |
+| `_icon-passing.scss`      | Icon passing via data attributes                                                              |
+| `_custom-elements.scss`   | Custom element host/shadow styles                                                             |
+| `_component.scss`         | Base component resets and defaults                                                            |
+| `_indicator.scss`         | Indicator animation                                                                           |
+| `_scrollbar.scss`         | Scrollbar styling                                                                             |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
 
