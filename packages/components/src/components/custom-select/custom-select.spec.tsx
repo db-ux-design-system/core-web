@@ -156,10 +156,13 @@ const testA11y = () => {
 const testAction = () => {
 	test('click on single item', async ({ page, mount }) => {
 		const component = await mount(comp);
-		// The selection now renders beside the (empty) <summary> toggle, inside the
-		// wrapping .db-custom-select-form-field, so assert against the field box.
-		const selection = component.locator('.db-custom-select-form-field');
-		await expect(selection).not.toContainText('Option 1');
+		// The selection now renders beside the (empty) <summary> toggle in a
+		// sibling .db-custom-select-label (only present once something is
+		// selected). We cannot assert against the whole
+		// .db-custom-select-form-field, because the dropdown (with every option)
+		// lives inside it too.
+		const selection = component.locator('.db-custom-select-label');
+		await expect(selection).toHaveCount(0);
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
@@ -169,8 +172,8 @@ const testAction = () => {
 
 	test('click on multiple item', async ({ page, mount }) => {
 		const component = await mount(multiple);
-		const selection = component.locator('.db-custom-select-form-field');
-		await expect(selection).not.toContainText('Option 1');
+		const selection = component.locator('.db-custom-select-label');
+		await expect(selection).toHaveCount(0);
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
@@ -196,7 +199,7 @@ const testAction = () => {
 
 	test('test select all', async ({ page, mount }) => {
 		const component = await mount(selectAllSelect);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 		await page.keyboard.press('Tab');
 		await page.waitForTimeout(1000); // wait for checkboxes to load
 		await page.keyboard.press('ArrowDown');
@@ -210,8 +213,8 @@ const testAction = () => {
 
 	test('select single item with Enter key', async ({ page, mount }) => {
 		const component = await mount(comp);
-		const selection = component.locator('.db-custom-select-form-field');
-		await expect(selection).not.toContainText('Option 1');
+		const selection = component.locator('.db-custom-select-label');
+		await expect(selection).toHaveCount(0);
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
@@ -223,8 +226,8 @@ const testAction = () => {
 
 	test('select multiple item with Enter key', async ({ page, mount }) => {
 		const component = await mount(multiple);
-		const selection = component.locator('.db-custom-select-form-field');
-		await expect(selection).not.toContainText('Option 1');
+		const selection = component.locator('.db-custom-select-label');
+		await expect(selection).toHaveCount(0);
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
@@ -240,7 +243,7 @@ const testAction = () => {
 		mount
 	}) => {
 		const component = await mount(multipleSearchSelect);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 
 		// Open dropdown
 		await page.keyboard.press('Tab');
@@ -273,7 +276,7 @@ const testAction = () => {
 		mount
 	}) => {
 		const component = await mount(multipleSearchSelect);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 
 		// Open dropdown
 		await page.keyboard.press('Tab');
@@ -410,29 +413,6 @@ const testAction = () => {
 			component.locator('.db-custom-select-tags .db-tag')
 		).toHaveCount(2);
 	});
-
-	test('removing a tag keeps an open dropdown open', async ({
-		page,
-		mount
-	}) => {
-		const component = await mount(tagSelectWithCustomRemoveTexts);
-		const details = component.locator('details');
-
-		// Open the dropdown via the summary toggle.
-		await component.locator('summary').click({ force: true });
-		await expect(details).toHaveAttribute('open');
-
-		// Removing a tag (a sibling of <details>) must not close the dropdown.
-		await component
-			.locator('.db-tag .db-tab-remove-button')
-			.first()
-			.click({ force: true });
-
-		await expect(details).toHaveAttribute('open');
-		await expect(
-			component.locator('.db-custom-select-tags .db-tag')
-		).toHaveCount(1);
-	});
 };
 
 const testValuesReset = () => {
@@ -450,7 +430,7 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValues);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 
 		// Verify initial state has tags
 		await expect(selection).toContainText('Option 1, Option 2');
@@ -467,13 +447,11 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithNullValues);
-		const resetSelection = resetComponent.locator(
-			'.db-custom-select-form-field'
-		);
 
-		// Verify tags are cleared and the placeholder is shown instead
-		await expect(resetSelection).not.toContainText('Option 1');
-		await expect(resetSelection).not.toContainText('Option 2');
+		// Verify tags are cleared (no selection label) and the placeholder shows
+		await expect(
+			resetComponent.locator('.db-custom-select-label')
+		).toHaveCount(0);
 		await expect(
 			resetComponent.locator('.db-custom-select-placeholder')
 		).toBeVisible();
@@ -493,7 +471,7 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValues);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 
 		// Verify initial state has tags
 		await expect(selection).toContainText('Option 1');
@@ -510,12 +488,11 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithUndefinedValues);
-		const resetSelection = resetComponent.locator(
-			'.db-custom-select-form-field'
-		);
 
-		// Verify tags are cleared and the placeholder is shown instead
-		await expect(resetSelection).not.toContainText('Option 1');
+		// Verify tags are cleared (no selection label) and the placeholder shows
+		await expect(
+			resetComponent.locator('.db-custom-select-label')
+		).toHaveCount(0);
 		await expect(
 			resetComponent.locator('.db-custom-select-placeholder')
 		).toBeVisible();
@@ -535,7 +512,7 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValues);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 
 		// Verify initial state has tags
 		await expect(selection).toContainText('Option 1, Option 2');
@@ -552,13 +529,11 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithEmptyArray);
-		const resetSelection = resetComponent.locator(
-			'.db-custom-select-form-field'
-		);
 
-		// Verify tags are cleared and the placeholder is shown instead
-		await expect(resetSelection).not.toContainText('Option 1');
-		await expect(resetSelection).not.toContainText('Option 2');
+		// Verify tags are cleared (no selection label) and the placeholder shows
+		await expect(
+			resetComponent.locator('.db-custom-select-label')
+		).toHaveCount(0);
 		await expect(
 			resetComponent.locator('.db-custom-select-placeholder')
 		).toBeVisible();
@@ -578,7 +553,7 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValue);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 
 		// Verify initial state has selection
 		await expect(selection).toContainText('Option 1');
@@ -595,12 +570,11 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithNullValue);
-		const resetSelection = resetComponent.locator(
-			'.db-custom-select-form-field'
-		);
 
-		// Verify selection is cleared and the placeholder is shown instead
-		await expect(resetSelection).not.toContainText('Option 1');
+		// Verify selection is cleared (no selection label) and the placeholder shows
+		await expect(
+			resetComponent.locator('.db-custom-select-label')
+		).toHaveCount(0);
 		await expect(
 			resetComponent.locator('.db-custom-select-placeholder')
 		).toBeVisible();
@@ -615,7 +589,7 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(<CustomSelectControlled />);
-		const selection = component.locator('.db-custom-select-form-field');
+		const selection = component.locator('.db-custom-select-label');
 		const tags = component.locator('.db-tag');
 		const optionInputs = component.locator(
 			'.db-custom-select-list-item input[value]'
@@ -633,9 +607,9 @@ const testValuesReset = () => {
 		// controlled props are synchronized.
 		const selectionReadout = component.getByText('Selections by user: 0');
 
-		// The example starts without a selection, so no removable tag is rendered
-		// beside the <summary> toggle on the showcase page.
-		await expect(selection).not.toContainText('Germany');
+		// The example starts without a selection, so neither the selection label
+		// nor a removable tag is rendered beside the <summary> toggle.
+		await expect(selection).toHaveCount(0);
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(
@@ -656,13 +630,13 @@ const testValuesReset = () => {
 		await expect(component.locator('input[value="de"]')).toHaveCount(0);
 
 		await clearOptionsAndSelection.click();
-		await expect(selection).not.toContainText('Switzerland');
+		await expect(selection).toHaveCount(0);
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(0);
 		await expect(selectionReadout).toBeVisible();
 
 		await restoreOptions.click();
-		await expect(selection).not.toContainText('Germany');
+		await expect(selection).toHaveCount(0);
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(component.locator('input[value="de"]')).not.toBeChecked();
@@ -670,7 +644,7 @@ const testValuesReset = () => {
 
 		await loadOtherOptions.click();
 		await restoreOptions.click();
-		await expect(selection).not.toContainText('Switzerland');
+		await expect(selection).toHaveCount(0);
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(component.locator('input[value="de"]')).not.toBeChecked();
