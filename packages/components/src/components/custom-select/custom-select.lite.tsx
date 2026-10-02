@@ -27,12 +27,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import {
-	ClickEvent,
-	GeneralEvent,
-	InputEvent,
-	InteractionEvent
-} from '../../shared/model';
+import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -57,6 +52,7 @@ import { IntersectionObserverListener } from '../../utils/intersection-observer-
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
+import DBCustomSelectFormField from '../custom-select-form-field/custom-select-form-field.lite';
 import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
 import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
 import DBInfotext from '../infotext/infotext.lite';
@@ -284,14 +280,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			// Fallback to default behavior
 			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
-		handleTagRemove: (
-			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | Event | void
-		) => {
-			if (event) {
-				event.stopPropagation();
-			}
-
+		handleTagRemove: (option: CustomSelectOptionType) => {
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
 		},
@@ -1027,30 +1016,191 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</Show>
 				</select>
 			</label>
-			<details
-				ref={detailsRef}
-				open={props.open}
-				/* @ts-expect-error details as an event named onToggle */
-				onToggle={(event) => state.handleDropdownToggle(event)}
-				onKeyDown={(event) => state.handleKeyboardPress(event)}>
-				{props.children}
-				<Show when={props.options}>
-					{/* We use this because we cannot wrap summary for Angular... */}
+			<DBCustomSelectFormField>
+				<details
+					ref={detailsRef}
+					open={props.open}
+					/* @ts-expect-error details as an event named onToggle */
+					onToggle={(event) => state.handleDropdownToggle(event)}
+					onKeyDown={(event) => state.handleKeyboardPress(event)}>
 					<summary
 						id={state._summaryId}
-						class="db-custom-select-form-field"
+						class="db-custom-select-summary"
 						aria-disabled={getBooleanAsString(
 							props.disabled,
 							'disabled'
 						)}
 						tabIndex={props.disabled ? -1 : undefined}
-						aria-labelledby={state._labelId}>
-						<Show when={state._selectedLabels?.length}>
+						aria-labelledby={state._labelId}></summary>
+					<Show when={props.options} else={props.children}>
+						<DBCustomSelectDropdown width={props.dropdownWidth}>
+							<Show when={state.searchEnabled}>
+								<div>
+									<DBInput
+										ref={searchInputRef}
+										name={state._id}
+										form={state._id}
+										type="search"
+										showLabel={false}
+										value={state._searchValue}
+										label={
+											props.searchLabel ?? DEFAULT_LABEL
+										}
+										placeholder={
+											props.searchPlaceholder ??
+											props.searchLabel
+										}
+										ariaDescribedBy={
+											state._hasNoOptions ||
+											props.showLoading
+												? state._infoTextId
+												: undefined
+										}
+										onInput={(
+											event: InputEvent<HTMLInputElement>
+										) => state.handleSearch(event)}
+									/>
+								</div>
+							</Show>
+
+							<Show
+								when={state._hasNoOptions || props.showLoading}
+								else={
+									<>
+										<Show when={state.selectAllEnabled}>
+											<div>
+												<div className="db-checkbox db-custom-select-list-item">
+													<label>
+														{/* We set a form name based on id for not sending checkboxes to a wrapping form */}
+														<input
+															ref={selectAllRef}
+															form={state._id}
+															type="checkbox"
+															value="select-all"
+															checked={
+																state.selectAllChecked
+															}
+															onChange={(event) =>
+																state.handleSelectAll(
+																	event
+																)
+															}
+														/>
+														{state.getSelectAllLabel()}
+													</label>
+												</div>
+											</div>
+										</Show>
+										<DBCustomSelectList
+											multiple={getBoolean(
+												props.multiple,
+												'multiple'
+											)}
+											label={
+												props.listLabel ??
+												props.label ??
+												DEFAULT_LABEL
+											}>
+											<For each={state._options}>
+												{(
+													option: CustomSelectOptionType
+												) => (
+													<DBCustomSelectListItem
+														key={useTarget({
+															vue: undefined,
+															stencil: undefined,
+															default:
+																getOptionKey(
+																	option,
+																	'custom-select-list-item-'
+																)
+														})}
+														type={
+															props.multiple
+																? 'checkbox'
+																: 'radio'
+														}
+														showDivider={
+															option.showDivider
+														}
+														icon={option.icon}
+														isGroupTitle={
+															option.isGroupTitle
+														}
+														groupTitle={state.getOptionLabel(
+															option
+														)}
+														name={state._id}
+														checked={state.getOptionChecked(
+															option.value
+														)}
+														disabled={
+															option.disabled
+														}
+														value={option.value}
+														onChange={() =>
+															state.handleSelect(
+																option.value
+															)
+														}>
+														{!option.isGroupTitle &&
+															state.getOptionLabel(
+																option
+															)}
+													</DBCustomSelectListItem>
+												)}
+											</For>
+										</DBCustomSelectList>
+									</>
+								}>
+								<Show
+									when={props.showLoading}
+									else={
+										<DBInfotext
+											id={state._infoTextId}
+											semantic="warning">
+											{props.noResultsText ??
+												DEFAULT_MESSAGE}
+										</DBInfotext>
+									}>
+									<DBLoadingIndicator id={state._infoTextId}>
+										{props.loadingText ?? DEFAULT_MESSAGE}
+									</DBLoadingIndicator>
+								</Show>
+							</Show>
+
+							<div>
+								<DBButton
+									variant="ghost"
+									width="full"
+									icon="cross"
+									size="small"
+									name={state._id}
+									form={state._id}
+									onClick={() =>
+										state.handleClose(undefined, true)
+									}>
+									{props.mobileCloseButtonText ??
+										DEFAULT_CLOSE_BUTTON}
+								</DBButton>
+							</div>
+						</DBCustomSelectDropdown>
+					</Show>
+				</details>
+				<Show
+					when={state._values?.length}
+					else={
+						<span
+							data-placeholder={props.placeholder ?? props.label}
+							class="db-custom-select-placeholder"
+							aria-hidden="true"
+							id={state._placeholderId}></span>
+					}>
+					<Show
+						when={props.selectedType === 'tag'}
+						else={
 							<span
-								data-visually-hidden={getBooleanAsString(
-									props.selectedType === 'tag',
-									'selectedType'
-								)}
+								class="db-custom-select-label"
 								id={state._selectedLabelsId}>
 								<Show when={props.selectedPrefix}>
 									<span data-visually-hidden="true">
@@ -1059,212 +1209,62 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								</Show>
 								{state._selectedLabels}
 							</span>
-						</Show>
-						<Show when={props.selectedType === 'tag'}>
-							<div>
-								<For each={state._selectedOptions}>
-									{(option: CustomSelectOptionType) => (
-										<DBTag
-											key={useTarget({
-												vue: undefined,
-												stencil: undefined,
-												default: getOptionKey(
-													option,
-													'tag-'
-												)
-											})}
-											removeButton={state.getTagRemoveLabel(
-												option
-											)}
-											onRemove={(
-												event?: ClickEvent<HTMLButtonElement> | void
-											) =>
-												state.handleTagRemove(
-													option,
-													event
-												)
-											}
-											emphasis="strong"
-											behavior="removable">
-											{state.getOptionLabel(option)}
-										</DBTag>
-									)}
-								</For>
-							</div>
-						</Show>
-					</summary>
-					<DBCustomSelectDropdown width={props.dropdownWidth}>
-						<Show when={state.searchEnabled}>
-							<div>
-								<DBInput
-									ref={searchInputRef}
-									name={state._id}
-									form={state._id}
-									type="search"
-									showLabel={false}
-									value={state._searchValue}
-									label={props.searchLabel ?? DEFAULT_LABEL}
-									placeholder={
-										props.searchPlaceholder ??
-										props.searchLabel
-									}
-									ariaDescribedBy={
-										state._hasNoOptions || props.showLoading
-											? state._infoTextId
-											: undefined
-									}
-									onInput={(
-										event: InputEvent<HTMLInputElement>
-									) => state.handleSearch(event)}
-								/>
-							</div>
-						</Show>
-
-						<Show
-							when={state._hasNoOptions || props.showLoading}
-							else={
-								<>
-									<Show when={state.selectAllEnabled}>
-										<div>
-											<div className="db-checkbox db-custom-select-list-item">
-												<label>
-													{/* We set a form name based on id for not sending checkboxes to a wrapping form */}
-													<input
-														ref={selectAllRef}
-														form={state._id}
-														type="checkbox"
-														value="select-all"
-														checked={
-															state.selectAllChecked
-														}
-														onChange={(event) =>
-															state.handleSelectAll(
-																event
-															)
-														}
-													/>
-													{state.getSelectAllLabel()}
-												</label>
-											</div>
-										</div>
-									</Show>
-									<DBCustomSelectList
-										multiple={getBoolean(
-											props.multiple,
-											'multiple'
-										)}
-										label={
-											props.listLabel ??
-											props.label ??
-											DEFAULT_LABEL
-										}>
-										<For each={state._options}>
-											{(
-												option: CustomSelectOptionType
-											) => (
-												<DBCustomSelectListItem
-													key={useTarget({
-														vue: undefined,
-														stencil: undefined,
-														default: getOptionKey(
-															option,
-															'custom-select-list-item-'
-														)
-													})}
-													type={
-														props.multiple
-															? 'checkbox'
-															: 'radio'
-													}
-													showDivider={
-														option.showDivider
-													}
-													icon={option.icon}
-													isGroupTitle={
-														option.isGroupTitle
-													}
-													groupTitle={state.getOptionLabel(
-														option
-													)}
-													name={state._id}
-													checked={state.getOptionChecked(
-														option.value
-													)}
-													disabled={option.disabled}
-													value={option.value}
-													onChange={() =>
-														state.handleSelect(
-															option.value
-														)
-													}>
-													{!option.isGroupTitle &&
-														state.getOptionLabel(
-															option
-														)}
-												</DBCustomSelectListItem>
-											)}
-										</For>
-									</DBCustomSelectList>
-								</>
-							}>
-							<Show
-								when={props.showLoading}
-								else={
-									<DBInfotext
-										id={state._infoTextId}
-										semantic="warning">
-										{props.noResultsText ?? DEFAULT_MESSAGE}
-									</DBInfotext>
-								}>
-								<DBLoadingIndicator id={state._infoTextId}>
-									{props.loadingText ?? DEFAULT_MESSAGE}
-								</DBLoadingIndicator>
+						}>
+						<span
+							class="db-custom-select-label"
+							data-visually-hidden="true"
+							id={state._selectedLabelsId}>
+							<Show when={props.selectedPrefix}>
+								{props.selectedPrefix}
 							</Show>
-						</Show>
-
-						<div>
-							<DBButton
-								variant="ghost"
-								width="full"
-								icon="cross"
-								size="small"
-								name={state._id}
-								form={state._id}
-								onClick={() =>
-									state.handleClose(undefined, true)
-								}>
-								{props.mobileCloseButtonText ??
-									DEFAULT_CLOSE_BUTTON}
-							</DBButton>
+							{state._selectedLabels}
+						</span>
+						<div class="db-custom-select-tags">
+							<For each={state._selectedOptions}>
+								{(option: CustomSelectOptionType) => (
+									<DBTag
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'tag-'
+											)
+										})}
+										removeButton={state.getTagRemoveLabel(
+											option
+										)}
+										onRemove={() =>
+											state.handleTagRemove(option)
+										}
+										emphasis="strong"
+										behavior="removable">
+										{state.getOptionLabel(option)}
+									</DBTag>
+								)}
+							</For>
 						</div>
-					</DBCustomSelectDropdown>
+					</Show>
+					<Show when={props.showClearSelection ?? true}>
+						<button
+							class="db-button db-custom-select-clear"
+							data-icon="cross"
+							data-variant="ghost"
+							data-no-text="true"
+							data-size="small"
+							name={state._id}
+							form={state._id}
+							disabled={getBoolean(props.disabled, 'disabled')}
+							onClick={(event) => state.handleClearAll(event)}>
+							{props.clearSelectionText}
+							<DBTooltip placement="top">
+								{props.clearSelectionText}
+							</DBTooltip>
+						</button>
+					</Show>
 				</Show>
-			</details>
+			</DBCustomSelectFormField>
 
-			<Show
-				when={
-					(props.showClearSelection ?? true) && state._values?.length
-				}>
-				<DBButton
-					icon="cross"
-					variant="ghost"
-					noText
-					size="small"
-					name={state._id}
-					form={state._id}
-					disabled={getBoolean(props.disabled, 'disabled')}
-					onClick={(event) => state.handleClearAll(event)}>
-					{props.clearSelectionText}
-					<DBTooltip placement="top">
-						{props.clearSelectionText}
-					</DBTooltip>
-				</DBButton>
-			</Show>
-			<span
-				data-placeholder={props.placeholder ?? props.label}
-				class="db-custom-select-placeholder"
-				aria-hidden="true"
-				id={state._placeholderId}></span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"
