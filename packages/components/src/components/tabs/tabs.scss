@@ -115,7 +115,15 @@ $focus-outline-reach: calc(
 			.db-tab-list {
 				display: flex;
 				align-items: stretch;
-				overflow: auto;
+
+				/*
+				Scroll on the horizontal axis only. The selected tab's indicator ends
+				flush with the bottom edge of the content box, so at fractional layout
+				sizes (browser zoom of e.g. 150%) the scrollable overflow rounds 1px
+				past the client box. With "auto" on both axes that rounding is enough
+				for a stray vertical scrollbar, see #7760.
+				 */
+				overflow: auto hidden;
 				inline-size: 100%;
 			}
 		}
