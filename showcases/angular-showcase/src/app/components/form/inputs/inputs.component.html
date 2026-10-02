@@ -34,3 +34,20 @@
 		<app-signal-forms-input [formField]="signalForm.value" />
 	</fieldset>
 </app-form-wrapper>
+<!--
+	Regression fixture for
+	https://github.com/db-ux-design-system/core-web/issues/6147 -- a consumer
+	resets a field by binding `value` to `undefined`.
+
+	Two-way bound on purpose: with a one-way `[value]` the model signal the
+	component writes on user input would drift away from `undefinedValue`, so a
+	second reset would assign `undefined` to an expression that already holds
+	`undefined` -- Angular then propagates nothing and the field is not cleared.
+-->
+<fieldset>
+	<legend>Reset to undefined</legend>
+	<db-input [(value)]="undefinedValue" label="Undefined reset" />
+	<db-button (click)="unsetValue()" data-testid="unset-value-button">
+		Set value to undefined
+	</db-button>
+</fieldset>
