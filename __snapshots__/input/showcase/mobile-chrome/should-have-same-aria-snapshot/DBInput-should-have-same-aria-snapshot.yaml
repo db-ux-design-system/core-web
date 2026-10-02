@@ -165,6 +165,9 @@
     - /placeholder: URL
   - status
   - text: Label
+  - spinbutton "Label"
+  - status
+  - text: Label
   - textbox "Label":
     - /placeholder: Date
   - status
