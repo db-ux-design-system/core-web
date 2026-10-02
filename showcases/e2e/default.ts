@@ -246,7 +246,7 @@ export const runAxeCoreTest = ({
 		// We don't need to check color contrast for every project (just for chrome)
 		if (
 			skipAxe ||
-			shouldSkip(skip) ||
+			shouldSkip(project, skip) ||
 			(!isLevelOne && shouldSkipA11yTest(project))
 		) {
 			test.skip();
@@ -296,7 +296,11 @@ export const runA11yCheckerTest = ({
 	skip
 }: A11yCheckerTestType) => {
 	test('test with accessibility checker', async ({ page }, { project }) => {
-		if (skipChecker || shouldSkip(skip) || shouldSkipA11yTest(project)) {
+		if (
+			skipChecker ||
+			shouldSkip(project, skip) ||
+			shouldSkipA11yTest(project)
+		) {
 			// Checking complete DOM in Firefox and Webkit takes very long, we skip this test
 			// we don't need to check for mobile device - it just changes the viewport
 			test.skip();
@@ -361,7 +365,7 @@ export const runAriaSnapshotTest = ({
 		project,
 		title
 	}) => {
-		if (shouldSkip(skip)) {
+		if (shouldSkip(project, skip)) {
 			// There is an issue with Webkit and Stencil for new playwright version
 			test.skip();
 		}
