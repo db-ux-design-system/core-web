@@ -69,7 +69,7 @@
 				);
 			}
 
-			// Outspecify the shared raised-state placeholder rule from
+			// Override the shared raised-state placeholder rule from
 			// set-floating-label-overwrites (which forces 2xs padding)
 			> .db-custom-select-placeholder[id$="-placeholder"][aria-hidden] {
 				padding-block-start: variables.$db-spacing-fixed-3xs;
