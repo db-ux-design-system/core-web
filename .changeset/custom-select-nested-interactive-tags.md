@@ -15,6 +15,10 @@ violation (WCAG 4.1.2). The field box moved onto a wrapping
 absolutely positioned toggle behind the visible selection, and the chevron and
 clear button are now flex items inside the field.
 
+The public API (props, events, custom-element tags) is unchanged — only the
+rendered HTML structure moved. Consumers who copied the markup or styled the
+internal structure should update to match the table below.
+
 Changed HTML elements:
 
 | Before                                          | After                                                                            |

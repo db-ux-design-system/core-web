@@ -24,7 +24,6 @@ For general installation and configuration take a look at the [components](https
 		<label>Label</label>
 		<div class="db-custom-select-form-field">
 			<details>
-				Functional
 				<summary class="db-custom-select-summary"></summary>
 				<article
 					data-spacing="none"
@@ -113,10 +112,21 @@ For general installation and configuration take a look at the [components](https
 					</div>
 				</article>
 			</details>
-			<!-- Add selected options (labels or tags) here with JS -->
+			<!--
+				Add the visible selection here with JS. When nothing is selected,
+				render the placeholder below; when there is a selection, replace it
+				with the selected labels/tags and the clear button, e.g.:
+				<span class="db-custom-select-label" id="...-selected-labels">Option 1</span>
+				<button type="button" class="db-button db-custom-select-clear" data-icon="cross" data-variant="ghost" data-no-text="true" data-size="small">Clear selection</button>
+			-->
+			<span
+				class="db-custom-select-placeholder"
+				data-placeholder="Placeholder"
+				aria-hidden="true"
+				id="custom-select-placeholder"
+			></span>
 		</div>
-		<span aria-hidden="true">Placeholder</span
-		><span class="db-infotext" data-semantic="successful" data-size="small"
+		<span class="db-infotext" data-semantic="successful" data-size="small"
 			>TODO: Add a validMessage</span
 		><span class="db-infotext" data-semantic="critical" data-size="small"
 			>TODO: Add an invalidMessage</span

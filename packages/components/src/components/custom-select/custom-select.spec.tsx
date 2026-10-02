@@ -156,25 +156,27 @@ const testA11y = () => {
 const testAction = () => {
 	test('click on single item', async ({ page, mount }) => {
 		const component = await mount(comp);
-		const summary = component.locator('summary');
-		await expect(summary).not.toContainText('Option 1');
+		// The selection now renders beside the (empty) <summary> toggle, inside the
+		// wrapping .db-custom-select-form-field, so assert against the field box.
+		const selection = component.locator('.db-custom-select-form-field');
+		await expect(selection).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
 		await page.keyboard.press('Space');
-		await expect(summary).toContainText('Option 1');
+		await expect(selection).toContainText('Option 1');
 	});
 
 	test('click on multiple item', async ({ page, mount }) => {
 		const component = await mount(multiple);
-		const summary = component.locator('summary');
-		await expect(summary).not.toContainText('Option 1');
+		const selection = component.locator('.db-custom-select-form-field');
+		await expect(selection).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
-		await expect(summary).toContainText('Option 1');
+		await expect(selection).toContainText('Option 1');
 	});
 
 	test('test search', async ({ mount }) => {
@@ -194,35 +196,35 @@ const testAction = () => {
 
 	test('test select all', async ({ page, mount }) => {
 		const component = await mount(selectAllSelect);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 		await page.keyboard.press('Tab');
 		await page.waitForTimeout(1000); // wait for checkboxes to load
 		await page.keyboard.press('ArrowDown');
 		await page.waitForTimeout(1000); // wait for focus to apply
 		await page.keyboard.press('Space');
 		await page.keyboard.press('Escape');
-		await expect(summary).toContainText(
+		await expect(selection).toContainText(
 			'Option 1, Option 2, Option 3, Option 4, Option 5'
 		);
 	});
 
 	test('select single item with Enter key', async ({ page, mount }) => {
 		const component = await mount(comp);
-		const summary = component.locator('summary');
-		await expect(summary).not.toContainText('Option 1');
+		const selection = component.locator('.db-custom-select-form-field');
+		await expect(selection).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
 		await page.keyboard.press('Enter');
-		await expect(summary).toContainText('Option 1');
+		await expect(selection).toContainText('Option 1');
 		// For single select, dropdown should be closed after Enter
 		await expect(component.locator('details')).not.toHaveAttribute('open');
 	});
 
 	test('select multiple item with Enter key', async ({ page, mount }) => {
 		const component = await mount(multiple);
-		const summary = component.locator('summary');
-		await expect(summary).not.toContainText('Option 1');
+		const selection = component.locator('.db-custom-select-form-field');
+		await expect(selection).not.toContainText('Option 1');
 		await page.keyboard.press('Tab');
 		await page.keyboard.press('ArrowDown');
 		await waitForFocusChange(page, 'Option 1');
@@ -230,7 +232,7 @@ const testAction = () => {
 		// For multiple select, dropdown should remain open after Enter
 		await expect(component.locator('details')).toHaveAttribute('open');
 		await page.keyboard.press('Escape');
-		await expect(summary).toContainText('Option 1');
+		await expect(selection).toContainText('Option 1');
 	});
 
 	test('select first filtered item with Enter key from search field', async ({
@@ -238,7 +240,7 @@ const testAction = () => {
 		mount
 	}) => {
 		const component = await mount(multipleSearchSelect);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 
 		// Open dropdown
 		await page.keyboard.press('Tab');
@@ -263,7 +265,7 @@ const testAction = () => {
 		await page.keyboard.press('Escape');
 
 		// Verify Option 2 was selected
-		await expect(summary).toContainText('Option 2');
+		await expect(selection).toContainText('Option 2');
 	});
 
 	test('select first available option with Enter when only one option remains after filtering', async ({
@@ -271,7 +273,7 @@ const testAction = () => {
 		mount
 	}) => {
 		const component = await mount(multipleSearchSelect);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 
 		// Open dropdown
 		await page.keyboard.press('Tab');
@@ -296,7 +298,7 @@ const testAction = () => {
 		await page.keyboard.press('Escape');
 
 		// Verify Option 3 was selected
-		await expect(summary).toContainText('Option 3');
+		await expect(selection).toContainText('Option 3');
 	});
 
 	test('option groups keyboard navigation: should navigate between option groups correctly', async ({
@@ -386,6 +388,51 @@ const testAction = () => {
 		const secondTooltip = secondRemoveButton.locator('.db-tooltip');
 		await expect(secondTooltip).toContainText('Remove Green Color');
 	});
+
+	test('removable tags are not nested inside the interactive summary', async ({
+		mount
+	}) => {
+		const component = await mount(tagSelectWithCustomRemoveTexts);
+
+		// Regression guard for the nested-interactive (WCAG 4.1.2) fix: the tags and
+		// their remove buttons must render beside the <summary> toggle, never inside
+		// it, so no interactive element is nested within another.
+		const tagsInsideSummary = component.locator('summary .db-tag');
+		await expect(tagsInsideSummary).toHaveCount(0);
+
+		const removeButtonsInsideSummary = component.locator(
+			'summary .db-tab-remove-button'
+		);
+		await expect(removeButtonsInsideSummary).toHaveCount(0);
+
+		// The tags do render, just outside the summary.
+		await expect(
+			component.locator('.db-custom-select-tags .db-tag')
+		).toHaveCount(2);
+	});
+
+	test('removing a tag keeps an open dropdown open', async ({
+		page,
+		mount
+	}) => {
+		const component = await mount(tagSelectWithCustomRemoveTexts);
+		const details = component.locator('details');
+
+		// Open the dropdown via the summary toggle.
+		await component.locator('summary').click({ force: true });
+		await expect(details).toHaveAttribute('open');
+
+		// Removing a tag (a sibling of <details>) must not close the dropdown.
+		await component
+			.locator('.db-tag .db-tab-remove-button')
+			.first()
+			.click({ force: true });
+
+		await expect(details).toHaveAttribute('open');
+		await expect(
+			component.locator('.db-custom-select-tags .db-tag')
+		).toHaveCount(1);
+	});
 };
 
 const testValuesReset = () => {
@@ -403,10 +450,10 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValues);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 
 		// Verify initial state has tags
-		await expect(summary).toContainText('Option 1, Option 2');
+		await expect(selection).toContainText('Option 1, Option 2');
 
 		// Reset values to null
 		const componentWithNullValues: any = (
@@ -420,12 +467,16 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithNullValues);
-		const resetSummary = resetComponent.locator('summary');
+		const resetSelection = resetComponent.locator(
+			'.db-custom-select-form-field'
+		);
 
-		// Verify tags are cleared
-		await expect(resetSummary).not.toContainText('Option 1');
-		await expect(resetSummary).not.toContainText('Option 2');
-		await expect(resetSummary).toContainText('');
+		// Verify tags are cleared and the placeholder is shown instead
+		await expect(resetSelection).not.toContainText('Option 1');
+		await expect(resetSelection).not.toContainText('Option 2');
+		await expect(
+			resetComponent.locator('.db-custom-select-placeholder')
+		).toBeVisible();
 	});
 
 	test('should clear tags when values prop is set to undefined', async ({
@@ -442,10 +493,10 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValues);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 
 		// Verify initial state has tags
-		await expect(summary).toContainText('Option 1');
+		await expect(selection).toContainText('Option 1');
 
 		// Reset values to undefined
 		const componentWithUndefinedValues: any = (
@@ -459,11 +510,15 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithUndefinedValues);
-		const resetSummary = resetComponent.locator('summary');
+		const resetSelection = resetComponent.locator(
+			'.db-custom-select-form-field'
+		);
 
-		// Verify tags are cleared
-		await expect(resetSummary).not.toContainText('Option 1');
-		await expect(resetSummary).toContainText('');
+		// Verify tags are cleared and the placeholder is shown instead
+		await expect(resetSelection).not.toContainText('Option 1');
+		await expect(
+			resetComponent.locator('.db-custom-select-placeholder')
+		).toBeVisible();
 	});
 
 	test('should clear tags when values prop is set to empty array', async ({
@@ -480,10 +535,10 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValues);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 
 		// Verify initial state has tags
-		await expect(summary).toContainText('Option 1, Option 2');
+		await expect(selection).toContainText('Option 1, Option 2');
 
 		// Reset values to empty array
 		const componentWithEmptyArray: any = (
@@ -497,12 +552,16 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithEmptyArray);
-		const resetSummary = resetComponent.locator('summary');
+		const resetSelection = resetComponent.locator(
+			'.db-custom-select-form-field'
+		);
 
-		// Verify tags are cleared
-		await expect(resetSummary).not.toContainText('Option 1');
-		await expect(resetSummary).not.toContainText('Option 2');
-		await expect(resetSummary).toContainText('');
+		// Verify tags are cleared and the placeholder is shown instead
+		await expect(resetSelection).not.toContainText('Option 1');
+		await expect(resetSelection).not.toContainText('Option 2');
+		await expect(
+			resetComponent.locator('.db-custom-select-placeholder')
+		).toBeVisible();
 	});
 
 	test('should handle single select values reset to null', async ({
@@ -519,10 +578,10 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(componentWithValue);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 
 		// Verify initial state has selection
-		await expect(summary).toContainText('Option 1');
+		await expect(selection).toContainText('Option 1');
 
 		// Reset values to null
 		const componentWithNullValue: any = (
@@ -536,11 +595,15 @@ const testValuesReset = () => {
 
 		await component.unmount();
 		const resetComponent = await mount(componentWithNullValue);
-		const resetSummary = resetComponent.locator('summary');
+		const resetSelection = resetComponent.locator(
+			'.db-custom-select-form-field'
+		);
 
-		// Verify selection is cleared
-		await expect(resetSummary).not.toContainText('Option 1');
-		await expect(resetSummary).toContainText('');
+		// Verify selection is cleared and the placeholder is shown instead
+		await expect(resetSelection).not.toContainText('Option 1');
+		await expect(
+			resetComponent.locator('.db-custom-select-placeholder')
+		).toBeVisible();
 	});
 
 	test('should synchronize controlled values and options on the same instance', async ({
@@ -552,7 +615,7 @@ const testValuesReset = () => {
 		);
 
 		const component = await mount(<CustomSelectControlled />);
-		const summary = component.locator('summary');
+		const selection = component.locator('.db-custom-select-form-field');
 		const tags = component.locator('.db-tag');
 		const optionInputs = component.locator(
 			'.db-custom-select-list-item input[value]'
@@ -571,8 +634,8 @@ const testValuesReset = () => {
 		const selectionReadout = component.getByText('Selections by user: 0');
 
 		// The example starts without a selection, so no removable tag is rendered
-		// inside the interactive <summary> on the showcase page.
-		await expect(summary).not.toContainText('Germany');
+		// beside the <summary> toggle on the showcase page.
+		await expect(selection).not.toContainText('Germany');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(
@@ -584,8 +647,8 @@ const testValuesReset = () => {
 
 		// Options and values change in the same render: the reported bug.
 		await loadOtherOptions.click();
-		await expect(summary).toContainText('Switzerland');
-		await expect(summary).not.toContainText('Germany');
+		await expect(selection).toContainText('Switzerland');
+		await expect(selection).not.toContainText('Germany');
 		await expect(tags).toHaveCount(1);
 		await expect(tags).toContainText('Switzerland');
 		await expect(optionInputs).toHaveCount(2);
@@ -593,13 +656,13 @@ const testValuesReset = () => {
 		await expect(component.locator('input[value="de"]')).toHaveCount(0);
 
 		await clearOptionsAndSelection.click();
-		await expect(summary).not.toContainText('Switzerland');
+		await expect(selection).not.toContainText('Switzerland');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(0);
 		await expect(selectionReadout).toBeVisible();
 
 		await restoreOptions.click();
-		await expect(summary).not.toContainText('Germany');
+		await expect(selection).not.toContainText('Germany');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(component.locator('input[value="de"]')).not.toBeChecked();
@@ -607,7 +670,7 @@ const testValuesReset = () => {
 
 		await loadOtherOptions.click();
 		await restoreOptions.click();
-		await expect(summary).not.toContainText('Switzerland');
+		await expect(selection).not.toContainText('Switzerland');
 		await expect(tags).toHaveCount(0);
 		await expect(optionInputs).toHaveCount(2);
 		await expect(component.locator('input[value="de"]')).not.toBeChecked();

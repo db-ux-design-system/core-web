@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/select-components";
 
@@ -12,7 +11,7 @@
 
 	position: relative;
 
-	// Leading icon flag (consumed by %select-placeholder padding math)
+	// Leading icon flag (consumed by select-components.$has-before-padding math)
 	&[data-icon]:not([data-show-icon="false"]) {
 		--db-form-has-before: 1;
 		--db-form-component-min-inline-size: #{variables.$db-sizing-2xl};
@@ -77,7 +76,6 @@
 			}
 
 			> .db-custom-select-clear,
-			> db-button,
 			&::after {
 				align-self: center;
 			}

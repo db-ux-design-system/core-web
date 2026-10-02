@@ -168,7 +168,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				state.setDescById(state._placeholderId);
+				// The placeholder span only renders while nothing is selected, so
+				// only reference it then - otherwise aria-describedby would point at
+				// a non-existent id (the selected-labels id is still appended by
+				// setDescById when a selection exists).
+				state.setDescById(
+					state._values?.length ? undefined : state._placeholderId
+				);
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
@@ -477,11 +483,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					if (event.relatedTarget) {
 						const relatedTarget =
 							event.relatedTarget as HTMLElement;
-						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
+						// We close if the focus moves to something like a <button> etc. which is not inside the field (<details> or the tags/clear beside it)
 						// Inside a <dialog> there is some focus problem because of the top-layer
 						// We do not want to focus <dialog> itself
 						if (
-							!detailsRef.contains(relatedTarget) &&
+							!state.fieldContains(relatedTarget) &&
 							relatedTarget.localName !== 'dialog'
 						) {
 							// We need to use delay here because the combination of "contains"
@@ -507,10 +513,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					default: event.target
 				});
 
-				if (detailsRef?.open && !detailsRef.contains(target)) {
+				if (detailsRef?.open && !state.fieldContains(target)) {
 					detailsRef.open = false;
 				}
 			}
+		},
+		fieldContains: (target?: EventTarget | null) => {
+			if (!detailsRef) {
+				return false;
+			}
+			if (detailsRef.contains(target)) {
+				return true;
+			}
+			// The tags and clear button render as siblings of <details> inside the
+			// wrapping .db-custom-select-form-field, so interacting with them must
+			// not count as a click/focus outside the field (which would close the
+			// dropdown or steal the summary focus).
+			const field = detailsRef.closest('.db-custom-select-form-field');
+			return Boolean(field && field.contains(target as Node));
 		},
 		handleOptionSelected: (values: string[]) => {
 			const skip =
@@ -1032,7 +1052,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						)}
 						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}></summary>
-					<Show when={props.options} else={props.children}>
+					{/* Composition API: a consumer-provided dropdown is rendered as-is.
+					    It stays a sibling of the empty <summary> toggle rather than
+					    wrapping it, because the summary cannot be wrapped in Angular. */}
+					{props.children}
+					<Show when={props.options}>
 						<DBCustomSelectDropdown width={props.dropdownWidth}>
 							<Show when={state.searchEnabled}>
 								<div>
@@ -1247,6 +1271,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</Show>
 					<Show when={props.showClearSelection ?? true}>
 						<button
+							type="button"
 							class="db-button db-custom-select-clear"
 							data-icon="cross"
 							data-variant="ghost"

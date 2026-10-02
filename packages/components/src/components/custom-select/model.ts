@@ -286,6 +286,13 @@ export type DBCustomSelectDefaultState = {
 	handleClearAll: (event: any) => void;
 	handleDropdownToggle: (event: any) => void;
 	handleDocumentClose: (event: any) => void;
+	/**
+	 * Whether the given event target is inside the custom select field. The tags
+	 * and clear button render as siblings of the `<details>` element inside the
+	 * wrapping `.db-custom-select-form-field`, so a plain `detailsRef.contains`
+	 * check would wrongly treat them as outside and close the open dropdown.
+	 */
+	fieldContains: (target?: EventTarget | null) => boolean;
 	handleOpenByKeyboardFocus: () => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;

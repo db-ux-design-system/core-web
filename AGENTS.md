@@ -139,6 +139,12 @@ Use the following bump types for changeset entries:
 
 **Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
 
+**Changing the inner HTML or JS of a `.lite.tsx` component is not a breaking change.** The contract we version is the public API of the generated framework and web-component packages — component props (`model.ts`), events, and the custom-element tags/attributes. The internal DOM structure and logic of a component are implementation details: restructuring the markup inside a component, moving elements around, or rewriting its internal logic does **not** warrant a `major` bump on its own, even though consumers can see the rendered HTML. Classify such changes by their effect on the public API (`patch` for a fix, `minor` for an added prop), not by the fact that the markup moved.
+
+The one exception is a change that alters the public API itself — a prop/event removed, renamed, or retyped in `model.ts`, or a changed custom-element tag/attribute — which stays `major` regardless of how small the template change looks.
+
+**When a change modifies the rendered HTML of a component, add a table to the changeset that summarizes the markup changes** (a `Before` / `After` column, as in the migration-guide examples). CSS-only consumers and anyone who copied the markup from the Patternhub examples or a Storybook "view code" output rely on that structure, so the changelog has to tell them what moved — even when the bump itself is only `patch` or `minor`. Keep the table focused on the elements, classes, and attributes that actually changed.
+
 ### How to Add a Changeset
 
 Run the following command and follow the interactive prompts:

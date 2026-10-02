@@ -10,6 +10,7 @@
 	@extend %db-overwrite-font-size-md;
 	@extend %default-interactive-component;
 	@extend %form-component-border;
+
 	// Trailing chevron rendered as the last flex item (::after)
 	@extend %dropdown-icon;
 
@@ -19,6 +20,7 @@
 
 	position: relative;
 	align-items: center;
+
 	// Tight gap keeps the trailing cluster (clear button + divider + chevron)
 	// together; the selection's flex:1 pushes the controls to the inline end.
 	gap: variables.$db-spacing-fixed-xs;
@@ -58,10 +60,17 @@
 		gap: variables.$db-spacing-fixed-sm;
 	}
 
-	// Labels and placeholder are non-interactive: clicks fall through to the toggle
+	// Labels, placeholder and the empty space around tags are non-interactive:
+	// clicks fall through to the toggle underneath. The tags themselves re-enable
+	// pointer events so their remove buttons stay clickable.
 	> .db-custom-select-label,
-	> .db-custom-select-placeholder {
+	> .db-custom-select-placeholder,
+	> .db-custom-select-tags {
 		pointer-events: none;
+	}
+
+	.db-custom-select-tags > * {
+		pointer-events: auto;
 	}
 
 	// Placeholder is a static flex item, only rendered when nothing is selected
@@ -90,8 +99,11 @@
 		z-index: 1;
 	}
 
-	// Hover hits the overlay summary, not the box, so forward it to the field
-	&:has(.db-custom-select-summary:hover:not(:disabled)) {
+	// Hover hits the overlay summary, not the box, so forward it to the field.
+	// Focus is handled by the summary itself (it carries the native focus ring
+	// from %default-interactive-component), so no focus companion is needed here.
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
+	&:has(.db-custom-select-summary:hover:not([aria-disabled="true"])) {
 		background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
 	}
 
@@ -109,6 +121,10 @@
 		background-color: transparent;
 		list-style: none;
 
+		// Keep the summary transparent on hover; the hovered background is painted
+		// on the field box instead (see the :has(...:hover) rule above). This is a
+		// visual reset only and does not affect the summary's own focus ring.
+		/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
 		&:hover {
 			background-color: transparent;
 		}
@@ -140,8 +156,7 @@
 		}
 	}
 
-	.db-custom-select-clear,
-	.db-custom-select-clear > .db-button {
+	.db-custom-select-clear {
 		position: relative;
 		z-index: 1;
 		margin-inline-end: variables.$db-spacing-fixed-xs;
