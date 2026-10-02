@@ -240,9 +240,21 @@ test.describe('DBParagraph', () => {
 		});
 	});
 
-	test('wraps text with the pretty strategy', async ({ mount }) => {
+	test('wraps text with the pretty strategy where it is supported', async ({
+		mount
+	}) => {
+		// `text-wrap: pretty` is a progressive enhancement: Firefox ESR is a
+		// Browserslist target and drops the declaration, computing `wrap`. So the
+		// assertion is gated on support instead of being skipped, which keeps it
+		// meaningful wherever the feature exists.
 		const component = await mount(<DBParagraph>Body</DBParagraph>);
-		await expect(component).toHaveCSS('text-wrap', 'pretty');
+		const isSupported = await component.evaluate(() =>
+			CSS.supports('text-wrap', 'pretty')
+		);
+		await expect(component).toHaveCSS(
+			'text-wrap',
+			isSupported ? 'pretty' : 'wrap'
+		);
 	});
 
 	for (const size of sizes) {
