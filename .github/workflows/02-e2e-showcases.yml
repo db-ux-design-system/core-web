@@ -85,6 +85,18 @@ jobs:
         run: |
           pnpm --filter ${{ inputs.showcase }} run test:aria-snapshots --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
+      # Run the migrated interaction tests independently of the aria-snapshot
+      # result: they replaced the standalone component-test job, so a failing
+      # (or drifted) aria snapshot must not suppress this behavioral coverage.
+      # `!cancelled()` keeps it from running only when the workflow is
+      # cancelled, per the repo convention (never `always()`).
+      - name: 👩🔬 Test interaction with Playwright 🎭
+        id: interaction
+        shell: bash
+        if: github.event.pull_request != null && !cancelled()
+        run: |
+          pnpm --filter ${{ inputs.showcase }} run test:interaction --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
       - name: 👩🔬 Test visual-snapshots with Playwright 🎭
         id: visual-snapshots
         shell: bash

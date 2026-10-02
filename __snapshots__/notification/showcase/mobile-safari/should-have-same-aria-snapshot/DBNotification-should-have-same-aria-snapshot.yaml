@@ -125,3 +125,7 @@
     - text: Headline Text & Icon & Headline & Timed & Closeable
     - time: 10 min ago
     - button "Close"
+  - link "Interaction"
+  - article:
+    - text: Test
+    - button "Close"

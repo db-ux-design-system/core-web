@@ -28,3 +28,10 @@
         - link "Navi-Item 2"
       - listitem:
         - link "Navi-Item 3" [disabled]
+  - link "Interaction"
+  - navigation:
+    - list:
+      - listitem:
+        - button "Test1"
+      - listitem:
+        - link "Test2"
