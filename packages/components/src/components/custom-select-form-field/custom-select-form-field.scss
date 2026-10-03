@@ -1,27 +1,163 @@
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/component";
+@use "../../styles/dialog-init";
 
 .db-custom-select-form-field {
-	&:is(summary) {
-		list-style: none;
+	@extend %db-overwrite-font-size-md;
+	@extend %default-interactive-component;
+	@extend %form-component-border;
 
+	// Trailing chevron rendered as the last flex item (::after)
+	@extend %dropdown-icon;
+
+	list-style: none;
+
+	@include helpers.display(flex);
+
+	position: relative;
+	align-items: center;
+
+	// Tight gap keeps the trailing cluster (clear button + divider + chevron)
+	// together; the selection's flex:1 pushes the controls to the inline end.
+	gap: variables.$db-spacing-fixed-xs;
+	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+	block-size: variables.$db-sizing-md;
+
+	@include form-components.set-form-component-padding-inline;
+
+	span {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		text-wrap: nowrap;
+	}
+
+	// The visible selection and placeholder take the free space, paint above the
+	// overlay, and can ellipsis/wrap
+	> .db-custom-select-label,
+	> .db-custom-select-placeholder,
+	> .db-custom-select-tags {
+		flex: 1;
+		min-inline-size: 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.db-custom-select-tags {
 		@include helpers.display(flex);
 
-		align-items: center;
-		justify-content: space-between;
 		gap: variables.$db-spacing-fixed-sm;
+	}
 
-		span {
-			text-overflow: ellipsis;
-			overflow: hidden;
-			text-wrap: nowrap;
+	// Labels, placeholder and the empty space around tags are non-interactive:
+	// clicks fall through to the toggle underneath. The tags themselves re-enable
+	// pointer events so their remove buttons stay clickable.
+	> .db-custom-select-label,
+	> .db-custom-select-placeholder,
+	> .db-custom-select-tags {
+		pointer-events: none;
+	}
+
+	.db-custom-select-tags > * {
+		pointer-events: auto;
+	}
+
+	// Placeholder is a static flex item, only rendered when nothing is selected
+	.db-custom-select-placeholder {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		opacity: variables.$db-opacity-xl;
+		font-style: italic;
+
+		&::before {
+			content: attr(data-placeholder);
+		}
+	}
+
+	// Clear button and chevron never shrink when tags fill the field
+	.db-custom-select-clear,
+	&::after {
+		flex-shrink: 0;
+	}
+
+	&::after {
+		@extend %db-overwrite-font-size-sm;
+
+		position: relative;
+		z-index: 1;
+	}
+
+	// Hover hits the overlay summary, not the box, so forward it to the field.
+	// Focus is handled by the summary itself (it carries the native focus ring
+	// from %default-interactive-component), so no focus companion is needed here.
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
+	&:has(.db-custom-select-summary:hover:not([aria-disabled="true"])) {
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+	}
+
+	details {
+		position: absolute;
+		inset: 0;
+	}
+
+	.db-custom-select-summary {
+		inline-size: 100%;
+		block-size: 100%;
+		padding: 0;
+		border: 0;
+		border-radius: variables.$db-border-radius-xs;
+		background-color: transparent;
+		list-style: none;
+
+		// Keep the summary transparent on hover; the hovered background is painted
+		// on the field box instead (see the :has(...:hover) rule above). This is a
+		// visual reset only and does not affect the summary's own focus ring.
+		/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
+		&:hover {
+			background-color: transparent;
 		}
 
-		> div {
-			@include helpers.display(flex);
+		&::-webkit-details-marker {
+			@include helpers.display(none);
+		}
+	}
 
-			gap: variables.$db-spacing-fixed-sm;
+	// Mobile: dim the page behind the open dropdown
+	details[open] > summary {
+		@include screen-sizes.screen("sm", "max") {
+			&::before {
+				position: fixed;
+				z-index: 9998;
+				inset: 0;
+				content: "";
+				cursor: default;
+				background-color: dialog-init.$backdrop-color-strong;
+				opacity: variables.$db-opacity-lg;
+			}
+		}
+	}
+
+	// ": " separator between selected prefix and labels while the dropdown is open
+	&:has(details[open]) {
+		.db-custom-select-label > span::after {
+			content: ": ";
+		}
+	}
+
+	.db-custom-select-clear {
+		position: relative;
+		z-index: 1;
+		margin-inline-end: variables.$db-spacing-fixed-xs;
+
+		@include helpers.divider("right", "after");
+
+		// Place the divider within the gap between the clear button and chevron
+		&::after {
+			inset-inline-end: calc(-1 * #{variables.$db-spacing-fixed-xs});
 		}
 	}
 }

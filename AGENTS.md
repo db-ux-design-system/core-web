@@ -139,6 +139,18 @@ Use the following bump types for changeset entries:
 
 **Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
 
+**Changing the inner HTML or JS of a `.lite.tsx` component is not a breaking change.** The contract we version is the public API of the generated framework and web-component packages — component props (`model.ts`), events, and the custom-element tags/attributes. The internal DOM structure and logic of a component are implementation details: restructuring the markup inside a component, moving elements around, or rewriting its internal logic does **not** warrant a `major` bump on its own, even though consumers can see the rendered HTML. Classify such changes by their effect on the public API (`patch` for a fix, `minor` for an added prop), not by the fact that the markup moved.
+
+The one exception is a change that alters the public API itself — a prop/event removed, renamed, or retyped in `model.ts`, or a changed custom-element tag/attribute — which stays `major` regardless of how small the template change looks.
+
+**When a change modifies the rendered HTML of a component, summarize the markup changes in the changeset** so CSS-only consumers and anyone who copied the markup from the Patternhub examples or a Storybook "view code" output know what moved — even when the bump itself is only `patch` or `minor`. Keep the summary focused on the elements, classes, and attributes that actually changed.
+
+**Write that summary as a flat bullet list, never a Markdown table or multi-paragraph prose.** The custom changelog formatter (`scripts/github/changesets/create-changelog.js`) turns the changeset body into list items: the first line becomes the top-level entry, and **every** subsequent non-empty line becomes its own bullet. A table's rows and its `| --- |` separator each become a separate broken bullet, and a wrapped paragraph is split into one bullet per source line. So:
+
+- Keep the first line as the conventional-commit summary (`type(scope): description`).
+- Put each distinct point on a **single, non-wrapped line**. A line starting with `-` / `*` / `+` is emitted as a nested sub-item (double-indented); any other line becomes a top-level sub-bullet. Phrase a "before -> after" change inline per bullet (e.g. "the clear button is now `<button class="db-custom-select-clear">` (previously positioned over the field)") instead of in table columns.
+- Verify the rendered result with `pnpm run ci:version`, inspect the generated `CHANGELOG.md`, then revert the version bump (`git checkout -- .` / restore the consumed changeset) before committing.
+
 ### How to Add a Changeset
 
 Run the following command and follow the interactive prompts:
