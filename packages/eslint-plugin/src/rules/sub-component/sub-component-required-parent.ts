@@ -215,6 +215,21 @@ function isInsideVueParent(
 			return slotName ? hasSlotTemplate : true;
 		}
 
+		// A slot template binds to the component that directly encloses it. If we
+		// cross a non-template *component* boundary that is not the target parent,
+		// any `#header`/`#footer` template recorded so far belongs to that inner
+		// component's scope, not the outer parent - reset the match so a
+		// sub-component in another component's identically named slot is still
+		// reported. A plain HTML element (div, span) is not a component boundary
+		// and does not reset.
+		const tagName: string = current.rawName ?? current.name ?? '';
+		const isComponent =
+			tagName !== 'template' &&
+			(/^[A-Z]/.test(tagName) || tagName.includes('-'));
+		if (isComponent) {
+			hasSlotTemplate = false;
+		}
+
 		current = current.parent;
 	}
 

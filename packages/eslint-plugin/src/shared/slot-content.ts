@@ -176,18 +176,27 @@ function hasJsxHeader(node: any, header: string): boolean {
 	// node that does not change what React renders, e.g.
 	// `header={(<DBDialogHeader />) as ReactNode}` (TSAsExpression),
 	// `... satisfies ReactNode` (TSSatisfiesExpression) or `header!` (TSNonNullExpression).
-	// Peel those wrappers up front so the inner expression is treated exactly like
-	// the same expression used directly (a dynamic expression is accepted, an
-	// element/fragment/array is searched).
+	// A `ChainExpression` wraps an optional chain (`header={slots?.header}`) around
+	// its inner Member/Call expression, and a `SpreadElement` wraps a spread
+	// (`header={[...headers]}`) around its argument - both are transparent for what
+	// value flows through. Peel all of these up front so the inner expression is
+	// treated exactly like the same expression used directly (a dynamic expression
+	// is accepted, an element/fragment/array is searched).
 	let current = node;
-	while (
-		current &&
-		(current.type === 'JSXExpressionContainer' ||
+	while (current) {
+		if (
+			current.type === 'JSXExpressionContainer' ||
 			current.type === 'TSAsExpression' ||
 			current.type === 'TSSatisfiesExpression' ||
-			current.type === 'TSNonNullExpression')
-	) {
-		current = current.expression;
+			current.type === 'TSNonNullExpression' ||
+			current.type === 'ChainExpression'
+		) {
+			current = current.expression;
+		} else if (current.type === 'SpreadElement') {
+			current = current.argument;
+		} else {
+			break;
+		}
 	}
 	if (!current) {
 		return false;
@@ -217,6 +226,15 @@ function hasJsxHeader(node: any, header: string): boolean {
 		return (current.elements || []).some((element: any) =>
 			hasJsxHeader(element, header)
 		);
+	}
+
+	// `undefined` is an Identifier, but it is the statically known empty value:
+	// React renders no header for `header={undefined}`, so it must NOT be accepted
+	// as an unresolved dynamic expression - the dialog would lack its close
+	// control and accessible name. (A `null` literal is already rejected: it is a
+	// Literal, not in DYNAMIC_EXPRESSION_TYPES.)
+	if (current.type === 'Identifier' && current.name === 'undefined') {
+		return false;
 	}
 
 	// An unverifiable dynamic expression is accepted (may resolve to the header).
