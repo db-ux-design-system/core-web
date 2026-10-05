@@ -18,14 +18,7 @@ useMetadata({
 		'DBHeadingH5',
 		'DBHeadingH6'
 	],
-	storybookNames: [
-		'h1 (largest)',
-		'h2',
-		'h3',
-		'h4',
-		'h5',
-		'h6 (smallest)'
-	],
+	storybookNames: ['h1 (largest)', 'h2', 'h3', 'h4', 'h5', 'h6 (smallest)'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 

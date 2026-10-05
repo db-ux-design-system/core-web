@@ -12,7 +12,9 @@ Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never fr
 import { DBHeadingH6 } from "@db-ux/react-core-components";
 
 export const ArticleHeading = () => (
-	<DBHeadingH6 visualSize="h1">A level-six heading displayed as an h1</DBHeadingH6>
+	<DBHeadingH6 visualSize="h1">
+		A level-six heading displayed as an h1
+	</DBHeadingH6>
 );
 ```
 
