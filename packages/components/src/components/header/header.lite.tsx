@@ -126,7 +126,6 @@ export default function DBHeader(props: DBHeaderProps) {
 					/>
 				}
 				className="db-header-drawer"
-				rounded
 				open={getBoolean(props.drawerOpen)}
 				onClose={() => state.handleToggle()}
 				footer={

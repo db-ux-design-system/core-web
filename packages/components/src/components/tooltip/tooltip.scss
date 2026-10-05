@@ -51,8 +51,6 @@
 				calc(100% + #{variables.$db-sizing-2xs})
 					calc(100% + #{variables.$db-sizing-2xs})
 			);
-			/* stylelint-disable-next-line db-ux/use-border-radius */
-			border-radius: 0 2px;
 			transform: skew(-8deg, -8deg);
 		}
 	}

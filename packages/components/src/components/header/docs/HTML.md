@@ -17,7 +17,6 @@ If you do need to provide support for [browser versions that haven't implemented
 			<article
 				class="db-drawer-container db-header-drawer"
 				data-spacing="small"
-				data-rounded="true"
 			>
 				<header class="db-drawer-header">
 					<div class="db-drawer-header-text"></div>

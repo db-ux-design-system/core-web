@@ -76,6 +76,7 @@ export type DBDrawerDefaultProps = {
 	 */
 	open?: boolean | string;
 	/**
+	 * @deprecated Rounded shouldn't be used anymore
 	 * The rounded attribute changes the border radius of the corners on the "end" of the drawer.
 	 * The "end" depends on which direction you use.
 	 */

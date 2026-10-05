@@ -7,7 +7,6 @@ import DrawerDensity from '../examples/density.example.lite';
 import DrawerDirection from '../examples/direction.example.lite';
 import DrawerExamples from '../examples/examples.example.lite';
 import DrawerPosition from '../examples/position.example.lite';
-import DrawerRounded from '../examples/rounded.example.lite';
 import DrawerShowSpacing from '../examples/show-spacing.example.lite';
 import DrawerSize from '../examples/size.example.lite';
 
@@ -29,11 +28,6 @@ export default function DrawerShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Show Spacing">
 				<CardWrapperShowcase>
 					<DrawerShowSpacing />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Rounded">
-				<CardWrapperShowcase>
-					<DrawerRounded />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Backdrop">

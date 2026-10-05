@@ -60,7 +60,7 @@ $container-size-scale: (
 
 // Grid shell shared by the drawer container element and the dialog element itself.
 // Emits no positioning and no sizing, so it stays usable for both element types.
-// Both the dialog and every drawer (square or rounded) carry the md elevation to
+// Both the dialog and every drawer carry the md elevation to
 // stay separated from the backdrop.
 @mixin container-layout {
 	display: grid;
