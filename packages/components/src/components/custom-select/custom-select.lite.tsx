@@ -1212,7 +1212,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</Show>
 				</details>
 				<Show
-					when={state._values?.length}
+					when={state._values?.length || state._selectedLabels}
 					else={
 						<span
 							data-placeholder={props.placeholder ?? props.label}
@@ -1269,7 +1269,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							</For>
 						</div>
 					</Show>
-					<Show when={props.showClearSelection ?? true}>
+					<Show
+						when={
+							state._values?.length &&
+							(props.showClearSelection ?? true)
+						}>
 						<button
 							type="button"
 							class="db-button db-custom-select-clear"
