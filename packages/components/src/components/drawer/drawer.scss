@@ -109,6 +109,12 @@
 	// Shared `<dialog>` reset + native modal `::backdrop` tint (see base-reset).
 	@include dialog-components.base-reset;
 
+	// Drawer-only: the full-viewport `<dialog>` carries no border - the visible
+	// panel is `.db-drawer-container`, which draws its own edges. This resets the
+	// border colour the shared base-reset sets for the dialog box.
+	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+	border: 0;
+
 	// Drawer-only: the UA `margin: auto` centring is unwanted - the drawer pins
 	// itself to a viewport edge. (The dialog keeps the UA centring, which is why
 	// this stays here and not in the shared reset.)

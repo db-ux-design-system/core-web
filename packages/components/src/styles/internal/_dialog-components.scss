@@ -69,7 +69,7 @@ $container-size-scale: (
 // drawer, since only the drawer renders a `::before` backdrop.
 @mixin base-reset {
 	padding: 0;
-	border-color: transparent;
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	color: inherit;
 
 	&:not([data-backdrop="none"])::backdrop {
