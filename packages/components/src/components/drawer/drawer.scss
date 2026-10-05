@@ -106,8 +106,48 @@
 	--db-drawer-inline-size: 100dvw;
 	--db-drawer-block-size: 100dvh;
 
+	// Shared `<dialog>` reset + native modal `::backdrop` tint (see base-reset).
+	@include dialog-components.base-reset;
+
+	// Drawer-only: the UA `margin: auto` centring is unwanted - the drawer pins
+	// itself to a viewport edge. (The dialog keeps the UA centring, which is why
+	// this stays here and not in the shared reset.)
+	/* stylelint-disable-next-line db-ux/use-spacings */
+	margin: 0;
 	position: fixed;
 	inset: 0;
+
+	// Drawer-only: `data-backdrop="invisible"` (not a dialog value) hides the
+	// native modal backdrop. The visible `::before` overlays below are the
+	// drawer's own; the dialog never renders a backdrop `::before`.
+	&[data-backdrop="invisible"]::backdrop {
+		background-color: transparent;
+	}
+
+	// Drawer-only: the `inside` variant is non-modal (opened via `show()`), so it
+	// has no native `::backdrop`. A persistent `::before` overlay provides its
+	// backdrop in browsers that support `overlay` (the `@supports not (overlay)`
+	// block below is skipped there). `data-variant` is drawer-only, so this never
+	// applied to the dialog.
+	&:not([data-position="absolute"])[data-variant="inside"]:not(
+			[data-backdrop="none"]
+		)::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+	}
+
+	&:not([data-backdrop="none"], [data-backdrop="invisible"])::before {
+		background-color: dialog-init.$backdrop-color-strong;
+	}
+
+	&[data-backdrop="invisible"]::before {
+		background-color: transparent;
+	}
+
+	&[data-backdrop="weak"]::before {
+		background-color: dialog-init.$backdrop-color-weak;
+	}
 
 	// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`

@@ -5,6 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
+@use "../dialog-init";
 
 // The components that share this layer. $prefix composes custom-property and
 // selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-content),
@@ -55,6 +56,36 @@ $container-size-scale: (
 				--db-#{$prefix}-max-width-horizontal: #{$value};
 			}
 		}
+	}
+}
+
+// Shared reset + native modal backdrop tint for the `<dialog>` element of both
+// DBDialog and DBDrawer. Applied on `.db-dialog` / `.db-drawer` (never the bare
+// `dialog` type selector, so unrelated components that only need the backdrop
+// colour variables do not inherit these rules). Positioning is intentionally NOT
+// set here: the dialog keeps the user-agent modal centring, while the drawer
+// pins itself (`position: fixed; inset: 0`) in its own stylesheet.
+// The `::backdrop` tint covers the modal case in every browser (both components
+// open `showModal()` for strong/weak). `backdrop="none"` is non-modal (no
+// `::backdrop`), so it is excluded. The `::before` overlay variants live with the
+// drawer, since only the drawer renders a `::before` backdrop.
+@mixin base-reset {
+	padding: 0;
+	border: 0;
+	color: inherit;
+
+	// Both components always carry `data-backdrop`, so under the old bare-`dialog`
+	// rules they resolved to the `[data-backdrop]` branch's 9995 (not the 9996
+	// base); keep that value. The drawer's `[data-position="absolute"]` branch
+	// still overrides this with its own lower z-index.
+	z-index: 9995;
+
+	&:not([data-backdrop="none"])::backdrop {
+		background-color: dialog-init.$backdrop-color-strong;
+	}
+
+	&[data-backdrop="weak"]::backdrop {
+		background-color: dialog-init.$backdrop-color-weak;
 	}
 }
 

@@ -142,6 +142,7 @@ $container-size-scale: dialog-components.$container-size-scale;
 
 	@extend %default-card;
 	@extend %dialog-transition;
+	@include dialog-components.base-reset;
 	@include container-size-inline(
 		"medium",
 		calc(var(--db-dialog-inline-size) - 2 * var(--db-dialog-viewport-inset))
@@ -154,11 +155,6 @@ $container-size-scale: dialog-components.$container-size-scale;
 	// dialog always occupies the full max-inline-size (capped by the viewport).
 	// stylelint-disable-next-line db-ux/use-sizing
 	inline-size: 100%;
-
-	// dialog-init.scss resets `margin: 0` on every dialog for the drawer.
-	// `revert` restores the user agent `margin: auto` that centres the box.
-	/* stylelint-disable-next-line db-ux/use-spacings */
-	margin: revert;
 	max-block-size: calc(
 		var(--db-dialog-block-size) - 2 * var(--db-dialog-viewport-inset)
 	);
@@ -174,15 +170,14 @@ $container-size-scale: dialog-components.$container-size-scale;
 	> .db-dialog-content {
 		@include dialog-components.content("dialog");
 	}
-}
 
-// Specificity note: dialog-init.scss applies `position: fixed; inset: 0` to
-// `dialog:not([data-position="absolute"])[data-backdrop]` -> (0,2,1).
-// Three class/attribute selectors -> (0,3,0) win without `!important`.
-// `revert` hands positioning back to the user agent, which places a modal
-// dialog with `position: fixed`, `inset: 0` and `margin: auto`, so the box
-// is content sized, centred, and the remaining area stays a clickable backdrop.
-.db-dialog[open]:not([data-backdrop="none"]) {
-	position: revert;
-	inset: revert;
+	// A modal dialog (backdrop strong/weak, opened via `showModal()`) keeps the
+	// user-agent centring (`position: fixed; inset: 0; margin: auto`). A non-modal
+	// dialog (`backdrop="none"`, opened via `show()`) is not centred by the UA, so
+	// pin it to the viewport explicitly - this is the one positioning the dialog
+	// needs and the reason the shared reset emits no positioning.
+	&[data-backdrop="none"] {
+		position: fixed;
+		inset: 0;
+	}
 }
