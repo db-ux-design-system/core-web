@@ -92,10 +92,10 @@ typography utility classes from the foundations apply to it if needed.
   `heading.scss` plus `default-fonts.scss` use literals too.
 - **`alignment` sits on the group only.** The paragraphs inherit it, so it cannot drift between siblings of one
   block. `.db-paragraph` therefore sets no blanket `text-align`, because that would block exactly this inheritance.
-- **`textSpacing` gives every child `margin-block: 0.5lh`**, so two adjacent children end up `1lh` apart while the
+- **`textSpacing` gives every child `0.5lh` above and below**, so two adjacent children end up `1lh` apart while the
   group keeps half a line height at its outer edges, which sets it against whatever precedes or follows. The value
   follows the computed line height rather than a spacing token, mirroring `paragraphSpacing` on `DBHeading`, and
-  because it resolves against each child's own typography a smaller paragraph gets a proportionally smaller spacing.
+  resolves against the group's typography, so the rhythm does not change with a child's `size`.
 - **No `size` on the group.** The children set it themselves.
 - **No `fontWeight` on the group**, and none on a text primitive beyond the two variants: emphasis is semantic and
   belongs to the element (`strong`, `em`), while the foundations' `[data-font]` covers the presentational case.
@@ -152,16 +152,24 @@ across four Mitosis targets:
 
 ```scss
 .db-text-group[data-text-spacing="true"] {
-	> *,
-	> * > .db-paragraph {
-		margin-block: 0.5lh;
-	}
+	row-gap: 1lh;
+	padding-block: 0.5lh;
 }
 ```
 
-The second selector is required because `wc-workarounds.scss` sets every custom-element host to `display: contents`.
-Such a host generates no box, so in the Angular and Stencil output a margin on it would be silently ignored and the
-inner element is the actual flex item.
+The two declarations express the same `0.5lh` per child: the gap is the sum of the two halves that meet between two
+children, the padding the half that has no sibling to meet at the group's edges.
+
+Spacing sits on the container, never as a margin on the children, which is what keeps it framework-neutral.
+`wc-workarounds.scss` sets every custom-element host to `display: contents`, so in the Angular and Stencil output a
+margin on the host would be silently ignored while the host itself is not the box being laid out. `display: contents`
+is resolved before the flex items are determined, so gap and padding address the same elements in all four outputs,
+without the stylesheet having to know how deep a framework wraps its content. The gap also applies to children that
+carry no class of ours, so the group does not need to enumerate child types.
+
+The reset `.db-paragraph { margin-block: 0 }` complements this: the margin the foundations give every `p` would add
+to the gap. The group thus remains the only source of spacing, at the price of a standalone `DBParagraph` and a group
+without `textSpacing` rendering flush.
 
 `text-wrap: pretty` is the default for body copy, mirroring `text-wrap: balance` on headings - pure CSS, progressive
 enhancement, no fallback needed, per the [shift-left rule](../shift-left-web-development.md). Firefox ESR is a
@@ -217,10 +225,12 @@ closed before the stable release rather than carried into it.
 
 ### Implementation
 
-- The size placeholders apply the `font` shorthand, which resets `font-weight`, so the weight rules have to stay
-  below the size rules. Both selectors carry the same specificity, so only the source order keeps the variant. The
-  same collision exists between `data-size` and the foundations' `[data-font]`, and there the losing side is not ours
-  to fix.
+- The size placeholders apply the `font` shorthand, which resets `font-weight`, and carry the same specificity as the
+  weight rules. `@extend` emits them at the placeholder's definition site rather than at the extending block, which
+  puts them above `.db-paragraph` in the compiled output no matter where the `@include` sits, so the variant survives.
+  Source order would only start to matter if the sizes were switched to `fonts.set-font-size()`, which is why
+  `heading.scss` argues over `:where()` specificity instead. The same collision exists between `data-size` and the
+  foundations' `[data-font]`, and there the losing side is not ours to fix.
 - Still an inconsistency in the repository: `DBHeading` uses `data-font-weight` with `black`/`light` while the
   foundations use `data-font` with `digital`/`regular`/`medium`/`semibold`/`bold`, and `DBParagraph` now adds
   `data-font-weight` with `black`/`regular`. Aligning them would break `DBHeading`.

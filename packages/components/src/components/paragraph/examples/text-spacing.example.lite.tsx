@@ -24,16 +24,15 @@ export default function TextGroupTextSpacing() {
 					paragraphs themselves.
 				</DBParagraph>
 			</DBTextGroup>
-			{/* Every child gets half a line height on both sides, so two adjacent
-			 * ones end up a full line height apart and the group keeps spacing at
-			 * its own outer edges. */}
+			{/* Half a line height per child, so a full one between two of them. */}
 			<DBTextGroup textSpacing>
 				<DBParagraph>
 					With text spacing every child gets half a line height above
 					and below.
 				</DBParagraph>
 				<DBParagraph size="sm">
-					A smaller paragraph gets a proportionally smaller spacing.
+					Two adjacent children are a full line height apart, and the
+					group keeps half of one at its outer edges.
 				</DBParagraph>
 			</DBTextGroup>
 		</Fragment>

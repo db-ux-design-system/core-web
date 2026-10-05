@@ -34,11 +34,11 @@ export const Intro = () => (
 
 ### Spacing
 
-Spacing belongs to `DBTextGroup` and is switched on with `textSpacing`. It gives every child `0.5lh` at block-start and block-end, so two adjacent children end up `1lh` apart while the group keeps half a line height at its own outer edges, which sets it against whatever precedes or follows it.
+Spacing belongs to `DBTextGroup` and is switched on with `textSpacing`. It gives every child `0.5lh` of breathing room above and below, which amounts to `1lh` between two adjacent children and `0.5lh` at the group's own outer edges, setting it against whatever precedes or follows it.
 
-The value follows the computed line height rather than a spacing token, the same way `paragraphSpacing` does on `DBHeading`. Because it resolves against each child's own typography, a smaller paragraph also gets a proportionally smaller spacing.
+The value follows the computed line height rather than a spacing token, the same way `paragraphSpacing` does on `DBHeading`. It resolves against the typography of the group, so the distance stays the same no matter which `size` a child carries.
 
-`DBParagraph` resets the `margin-block` the foundations give a `p`, so the group's spacing is the only source of spacing.
+Spacing sits on the group as `row-gap` and `padding-block`, never as a margin on the children, which is what makes it behave identically in all frameworks. `DBParagraph` additionally resets the `margin-block` the foundations give a `p`, so the group stays the only source of spacing. The price is that a standalone `DBParagraph` and a group without `textSpacing` render flush.
 
 The group is intended for paragraphs. Other children are laid out and spaced the same way, since the gap belongs to the container, but a heading is better placed outside the group where it can use its own `paragraphSpacing`.
 

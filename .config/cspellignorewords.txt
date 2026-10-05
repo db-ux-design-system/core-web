@@ -280,8 +280,3 @@ frontmost
 unwired
 # Design system identifiers referenced in docs/research
 leafygreen
-esta
-xcss
-xsmall
-designmetier
-Exclusify

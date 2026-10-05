@@ -19,7 +19,7 @@ export type DBParagraphProps = DBParagraphDefaultProps & GlobalProps;
 
 /** Groups block-level text. Intended for `DBParagraph` children. */
 export type DBTextGroupDefaultProps = {
-	/** Adds `0.5lh` of margin above and below every child when enabled. */
+	/** Gives every child `0.5lh` of spacing above and below when enabled. */
 	textSpacing?: boolean | string;
 };
 export type DBTextGroupProps = DBTextGroupDefaultProps &

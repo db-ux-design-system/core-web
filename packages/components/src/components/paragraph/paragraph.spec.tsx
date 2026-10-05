@@ -68,8 +68,9 @@ test.describe('DBParagraph', () => {
 		mount
 	}) => {
 		// default-fonts.scss sets a margin-block on every p. Left in place it
-		// would add to the spacing of a surrounding group, so spacing stays the
-		// container's job exclusively.
+		// would add to the row-gap of a surrounding group, so the group stays
+		// the only spacing source. The price is that a standalone paragraph
+		// renders flush.
 		const component = await mount(<DBParagraph>Body</DBParagraph>);
 		expect(await readLogicalMargins(component)).toMatchObject({
 			blockStart: '0px',
@@ -135,8 +136,8 @@ test.describe('DBParagraph', () => {
 		mount
 	}) => {
 		// The size placeholders apply the `font` shorthand, which resets
-		// `font-weight`. Both selectors carry the same specificity, so only the
-		// source order keeps the variant from being silently dropped.
+		// `font-weight`. They are emitted above the weight rules, which is what
+		// keeps the variant from being silently dropped.
 		const component = await mount(
 			<DBParagraph size="lg" fontWeight="black">
 				Both
@@ -265,9 +266,12 @@ test.describe('DBTextGroup', () => {
 		).toMatchObject({ blockStart: '0px', blockEnd: '0px' });
 	});
 
-	test('gives every child half a line height on both sides', async ({
+	test('carries the spacing itself instead of on its children', async ({
 		mount
 	}) => {
+		// Gap and padding on the container, not margin on the children: the
+		// Angular and Stencil hosts are `display: contents` and would swallow a
+		// child margin.
 		const component = await mount(
 			<DBTextGroup textSpacing>
 				<DBParagraph data-testid="child">Child</DBParagraph>
@@ -275,42 +279,43 @@ test.describe('DBTextGroup', () => {
 		);
 		await expect(component).toHaveAttribute('data-text-spacing', 'true');
 
-		const { blockStart, blockEnd, lineHeight } = await component
-			.getByTestId('child')
-			.evaluate((element: HTMLElement) => {
+		const { rowGap, blockStart, blockEnd, lineHeight } =
+			await component.evaluate((element: HTMLElement) => {
 				const style = getComputedStyle(element);
 				return {
-					blockStart: style.marginBlockStart,
-					blockEnd: style.marginBlockEnd,
+					rowGap: style.rowGap,
+					blockStart: style.paddingBlockStart,
+					blockEnd: style.paddingBlockEnd,
 					lineHeight: style.lineHeight
 				};
 			});
-		const half = Number.parseFloat(lineHeight) / 2;
-		// `0.5lh` has to resolve against the child's own line height, not the
-		// group's, so a smaller paragraph gets a smaller spacing.
-		expect(Number.parseFloat(blockStart)).toBeCloseTo(half, 1);
-		expect(Number.parseFloat(blockEnd)).toBeCloseTo(half, 1);
+		// Half a line height per child: `1lh` between two of them, half of one
+		// at the group's outer edges.
+		const line = Number.parseFloat(lineHeight);
+		expect(Number.parseFloat(rowGap)).toBeCloseTo(line, 1);
+		expect(Number.parseFloat(blockStart)).toBeCloseTo(line / 2, 1);
+		expect(Number.parseFloat(blockEnd)).toBeCloseTo(line / 2, 1);
+
+		expect(
+			await readLogicalMargins(component.getByTestId('child'))
+		).toMatchObject({ blockStart: '0px', blockEnd: '0px' });
 	});
 
 	test('puts one line height between two adjacent children', async ({
 		mount
 	}) => {
-		// Flex items do not collapse margins, so the two half line heights add
-		// up. This is the reason for the half-and-half split instead of a gap:
-		// the group additionally keeps the spacing at its outer edges.
 		const component = await mount(
 			<DBTextGroup textSpacing>
 				<DBParagraph data-testid="first">First</DBParagraph>
 				<DBParagraph data-testid="second">Second</DBParagraph>
 			</DBTextGroup>
 		);
+		// The line height resolves against the group's own typography, not the
+		// children's, so the rhythm does not change with a child's size.
 		const lineHeight = Number.parseFloat(
-			await component
-				.getByTestId('first')
-				.evaluate(
-					(element: HTMLElement) =>
-						getComputedStyle(element).lineHeight
-				)
+			await component.evaluate(
+				(element: HTMLElement) => getComputedStyle(element).lineHeight
+			)
 		);
 		const [groupBox, firstBox, secondBox] = await Promise.all([
 			component.boundingBox(),
@@ -329,19 +334,27 @@ test.describe('DBTextGroup', () => {
 	});
 
 	test('spaces foreign children as well', async ({ mount }) => {
-		// The selector is `> *`, so the group does not need to know the child
-		// types and content without our own class is spaced the same way.
+		// The gap applies to every flex item, so the group does not need to know
+		// the child types and content without our own class is spaced the same
+		// way.
 		const component = await mount(
 			<DBTextGroup textSpacing>
 				<DBParagraph data-testid="paragraph">Paragraph</DBParagraph>
 				<div data-testid="foreign">Foreign child</div>
 			</DBTextGroup>
 		);
-		const margins = await readLogicalMargins(
-			component.getByTestId('foreign')
+		const lineHeight = Number.parseFloat(
+			await component.evaluate(
+				(element: HTMLElement) => getComputedStyle(element).lineHeight
+			)
 		);
-		expect(Number.parseFloat(margins.blockStart)).toBeGreaterThan(0);
-		expect(Number.parseFloat(margins.blockEnd)).toBeGreaterThan(0);
+		const [paragraphBox, foreignBox] = await Promise.all([
+			component.getByTestId('paragraph').boundingBox(),
+			component.getByTestId('foreign').boundingBox()
+		]);
+		expect(
+			foreignBox!.y - (paragraphBox!.y + paragraphBox!.height)
+		).toBeCloseTo(lineHeight, 0);
 	});
 
 	for (const alignment of alignments) {
