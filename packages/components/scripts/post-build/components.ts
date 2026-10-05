@@ -28,8 +28,6 @@ export type Component = {
 			vModel?: { modelValue: string; binding: string }[];
 		};
 		angular?: {
-			controlValueAccessor?: string;
-			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
@@ -97,6 +95,27 @@ export const getComponents = (): Component[] => [
 	...headingComponents,
 	...controlPanelActionsComponents,
 
+	{
+		name: 'dialog-footer'
+	},
+
+	{
+		name: 'dialog-header'
+	},
+
+	{
+		name: 'dialog',
+		config: {
+			react: {
+				/* Keeps the consumer callbacks out of the `filterPassingProps`
+				 * DOM spread, same configuration key the `drawer` entry uses.
+				 * This cannot move into a Mitosis plugin yet: the spread itself
+				 * is injected by `scripts/post-build/react.ts` after every
+				 * plugin hook has run. */
+				propsPassingFilter: ['onClose', 'onCancel']
+			}
+		}
+	},
 	{
 		name: 'control-panel-skip-navigation'
 	},
@@ -195,9 +214,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -215,9 +231,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'values', binding: ':values' }]
-			},
-			angular: {
-				controlValueAccessor: 'values'
 			},
 			react: {
 				propsPassingFilter: [
@@ -256,9 +269,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -321,9 +331,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		},
 		overwrites: {
@@ -412,9 +419,6 @@ export const getComponents = (): Component[] => [
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
-			angular: {
-				controlValueAccessor: 'value'
-			},
 			react: {
 				containsFragmentMap: true
 			}
@@ -452,9 +456,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -469,10 +470,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value',
-				controlValueAccessorRequired: true
 			}
 		}
 	},
@@ -572,9 +569,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		}
 	},

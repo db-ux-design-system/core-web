@@ -148,6 +148,10 @@
 				"name": "card"
 			},
 			{
+				"label": "DBDialog",
+				"name": "dialog"
+			},
+			{
 				"label": "DBDivider",
 				"name": "divider"
 			},
@@ -217,7 +221,22 @@
 			},
 			{
 				"label": "DBShell",
-				"name": "shell"
+				"name": "shell",
+				"subNavigation": [
+					{
+						"label": "DBShellContent How to use",
+						"path": "/components/navigation/shell-content/how-to-use"
+					},
+					{
+						"label": "DBShellContent Properties",
+						"path": "/components/navigation/shell-content/properties"
+					}
+				]
+			},
+			{
+				"label": "DBShellContent",
+				"name": "shell-content",
+				"isHiddenInMenu": true
 			}
 		]
 	},

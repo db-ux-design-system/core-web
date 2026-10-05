@@ -7,5 +7,9 @@ test.describe('DBHeader', () => {
 		test.skip();
 	}
 
-	getDefaultScreenshotTest({ path });
+	getDefaultScreenshotTest({
+		path,
+		// There is some flakiness we set a fixed height
+		fixedHeight: 2500
+	});
 });

@@ -1,5 +1,19 @@
 # @db-ux/core-foundations
 
+## 5.6.2
+
+No changes in this release.
+
+## 5.6.1
+
+No changes in this release.
+
+## 5.6.0
+
+### Minor Changes
+
+- feat(DBLoadingIndicator): add component to handle spinners, progress-bars etc. - [see commit a0f37cf](https://github.com/db-ux-design-system/core-web/commit/a0f37cf3531b94ace8be6bd606a08de2d7ee5f35)
+
 ## 5.5.0
 
 No changes in this release.
