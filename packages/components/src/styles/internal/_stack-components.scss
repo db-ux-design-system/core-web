@@ -68,6 +68,15 @@ $stack-gaps: (
 	}
 }
 
+// Deliberately no `overflow` here. Any value other than `visible` turns the
+// stack into a scroll container, which clips to its padding box and therefore
+// cuts off the focus ring of its children: the ring sits 5-6px outside their
+// border box (`outline-offset` + `outline-width`, see
+// `foundations/scss/helpers/_focus.scss`) and outlines are not part of the
+// scrollable overflow region. Since the stack has no padding, every child is
+// flush with that edge, so a stack sized to its content hides the ring
+// completely. The same clip applies to overlays rendered inside the stack, such
+// as the plain-HTML/CSS path of tooltip and popover. See #7964.
 %default-stack {
 	@include helpers.display(flex);
 
@@ -75,7 +84,6 @@ $stack-gaps: (
 	justify-content: flex-start;
 	block-size: 100%;
 	inline-size: 100%;
-	overflow: auto;
 
 	&:is([data-direction="column"], :not([data-direction])) {
 		flex-direction: column;
