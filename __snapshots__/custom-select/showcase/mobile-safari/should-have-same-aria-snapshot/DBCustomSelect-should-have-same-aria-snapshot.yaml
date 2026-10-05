@@ -1561,6 +1561,7 @@
             - radio "Option 5"
             - text: Option 5
       - button "Close"
+  - text: "Selected: Label controlled"
   - status
   - text: Transform Selected Label
   - group:
