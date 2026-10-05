@@ -62,126 +62,131 @@ CSS-only path `.db-heading` with `data-size`, `data-font-weight`, `data-alignmen
 same constraint is what makes the split into several components below necessary rather than a single component with
 `as`.
 
-## Proposed model
+## Implemented model
 
-Working model as agreed in the team discussion. It ships as **beta** first, so the open questions below are
-deliberately left to be validated in real usage rather than settled up front.
+Shipped as **beta**, so the open questions below are deliberately left to be validated in real usage.
 
-| Component          | Renders | Job                                                    |
-| ------------------ | ------- | ------------------------------------------------------ |
-| `DBText`           | `span`  | inline text inside a sentence or next to other content |
-| `DBParagraph`      | `p`     | block-level body copy                                  |
-| `DBParagraphGroup` | `div`   | groups paragraphs and spaces them with a shared `gap`  |
+| Component     | Renders | Job                                   |
+| ------------- | ------- | ------------------------------------- |
+| `DBParagraph` | `p`     | block-level body copy                 |
+| `DBTextGroup` | `div`   | groups block-level text and spaces it |
 
-| Property            | `DBText` | `DBParagraph` | `DBParagraphGroup` |
-| ------------------- | :------: | :-----------: | :----------------: |
-| `size`              |    x     |       x       |         x          |
-| `alignment`         |    -     |       x       |         x          |
-| `gap`               |    -     |       -       |         x          |
-| `paragraphSpacing`  |    -     |       x       |         -          |
-| measure (max width) |    -     |       x       |         x          |
-| `visuallyHidden`    |    x     |       -       |         -          |
+| Property      | `DBParagraph` | `DBTextGroup` |
+| ------------- | :-----------: | :-----------: |
+| `size`        |       x       |       -       |
+| `fontWeight`  |       x       |       -       |
+| `alignment`   |       -       |       x       |
+| `textSpacing` |       -       |       x       |
 
-Content always comes through children. There is no `fontWeight` property.
+Content always comes through children. There is no component for inline text: a plain `span` covers that, and the
+typography utility classes from the foundations apply to it if needed.
 
 ### Why the properties sit where they do
 
-- **`size` on all three, with no default anywhere.** `font-size` inherits natively in CSS, so a size set on
-  `DBParagraphGroup` cascades downwards without any context or propagation logic, and a paragraph without an explicit
-  size simply looks like body text. Primer and Polaris both ship `size` with no default. It also removes an
-  asymmetry: an absolute default step on the paragraph would silently override the group. An explicit `inherit`
-  value, as Porsche has it, can be added on top.
-- **Measure only where a block box is guaranteed.** `max-width` does not apply to non-replaced inline boxes, so it
-  would be inert on `DBText`. No precedence rule is needed when group and paragraph both set it: the boxes nest and
-  the narrower one wins.
-- **`visuallyHidden` on `DBText` only.** `%a11y-visually-hidden` positions absolutely and clips, so the
-  block-versus-inline distinction becomes meaningless and the property would add nothing on the paragraph. The real
-  gain is structural: since `DBText` has neither `paragraphSpacing` nor a measure, hidden text combined with spacing
-  and a maximum width is impossible to express. Polaris does the same and forces `span` when the flag is set.
-- **The group spaces its children with `gap`, not by propagating `paragraphSpacing`.** A gap applies only _between_
-  items, so there is no trailing space to strip with `:last-child` and no margin collapsing to reason about, since
-  flex and grid containers do not collapse margins. It also needs no propagation at all: the container owns the
-  spacing, so nothing has to be written onto the children. `gap` is already shared as `GapSpacingProps` (`none`,
-  `3x-small` to `3x-large`) and used by `DBStack`. `paragraphSpacing` stays on `DBParagraph` for the standalone case
-  outside a group.
-- **`alignment` not on `DBText`**, because aligning an inline box within a line is not what `text-align` does.
-- **No `fontWeight`**, although 10 of 16 systems have one. Weight is already controlled twice here: semantically
-  through the element (`strong`, `em`) and visually through the foundations' `[data-font]`. A third spelling would
-  compete with both.
+- **`size` (`lg`, `md`, `sm`) and `fontWeight` (`black`, `regular`) have no default.** Without the attribute the
+  typography is inherited, which keeps a paragraph consistent with its surroundings instead of forcing a step.
+  Primer and Polaris both ship `size` with no default. The sizes are a deliberate subset of the nine foundation
+  steps.
+- **`fontWeight` names font variants, not numeric weights**, resolving to 900 and 400. The values are numeric
+  literals because the foundations have no font-weight tokens for text - only icon weights are tokenized - and
+  `heading.scss` plus `default-fonts.scss` use literals too.
+- **`alignment` sits on the group only.** The paragraphs inherit it, so it cannot drift between siblings of one
+  block. `.db-paragraph` therefore sets no blanket `text-align`, because that would block exactly this inheritance.
+- **`textSpacing` gives every child `0.5lh` above and below**, so two adjacent children end up `1lh` apart while the
+  group keeps half a line height at its outer edges, which sets it against whatever precedes or follows. The value
+  follows the computed line height rather than a spacing token, mirroring `paragraphSpacing` on `DBHeading`, and
+  resolves against the group's typography, so the rhythm does not change with a child's `size`.
+- **No `size` on the group.** The children set it themselves.
+- **No `fontWeight` on the group**, and none on a text primitive beyond the two variants: emphasis is semantic and
+  belongs to the element (`strong`, `em`), while the foundations' `[data-font]` covers the presentational case.
 - **No `text` property.** The shared `TextProps` exists for components where text is a **label** competing with other
   structure such as an icon, and its own documentation warns that combining it with children produces a duplicate
   label. The components that
   [`text-or-children-required`](../../packages/eslint-plugin/src/rules/content/text-or-children-required.ts) covers
   are exactly those label-bearing cases, and `DBHeading` is not among them. In a text component the text is the
-  entire content, so the property adds an either/or pitfall without adding capability.
+  entire content.
+- **No `visuallyHidden`.** The global `data-visually-hidden` annotation in
+  [`styles/visually-hidden.scss`](../../packages/components/src/styles/visually-hidden.scss) is the single
+  mechanism and needs no property, since all `data-*` attributes are forwarded to the rendered element. Scoping a
+  global concept to one component would have been the outlier - seven of the researched systems solve
+  screen-reader-only as a sibling concern, and only Polaris has it as a property.
 
 ### A dedicated group instead of a `DBStack` variant
 
 `heading.md` proposed a `DBStack variant="paragraph"` for spacing between text blocks, and
 [`stack/model.ts`](../../packages/components/src/components/stack/model.ts) shows it was never built, containing only
-`simple` and `divider`. **That proposal is retired in favour of `DBParagraphGroup`** - it should not be built later
-from the older document, or there would be two mechanisms for one effect.
+`simple` and `divider`. **That proposal is retired in favour of `DBTextGroup`** - it should not be built later from
+the older document, or there would be two mechanisms for one effect.
 
 The reason is the property surface. `DBStack` has `variant`, `direction`, `wrap`, `alignment`, `justifyContent` and
 `gap`, and for body copy four of those six are meaningless or actively wrong: `direction="row"` places paragraphs
 side by side, `justifyContent="space-between"` distributes them in space, `wrap` does nothing in a column, and
 `alignment` wants to be `stretch` in practice. A component whose API is two thirds inapplicable is poor guidance, and
 every future `DBStack` feature would have to be reasoned about for the prose case as well. Conversely, with only
-`gap`, the measure and the typography defaults, `DBParagraphGroup` is small enough not to read as a competing layout
-primitive.
+`alignment` and `textSpacing`, `DBTextGroup` is small enough not to read as a competing layout primitive.
 
 ### Structure and nesting
 
-`DBParagraphGroup` renders a `div` because it is presentational. `section` would create a region and collide with the
+`DBTextGroup` renders a `div` because it is presentational. `section` would create a region and collide with the
 existing `DBSection`, `hgroup` permits only `h1`-`h6` and `p` per spec, and `figure`, `blockquote` and `dl` each carry
 a specific meaning. Anyone needing a labelled region uses `DBSection` and puts the group inside.
 
 The group is intended for `DBParagraph` children. A heading stays outside it and keeps its own `paragraphSpacing`,
 which is what makes the name accurate; the price is that spacing within one visual block then comes from two sources
-and the heading's `1lh` has to match the group's `gap` by hand.
+and the heading's `1lh` has to match the group's rhythm by hand.
 
-This is an intention, not a prohibition. It cannot be expressed in types across four framework outputs, and `gap`
-spaces whatever it is given without knowing the child types, so the restriction can only ever be documentation or an
-advisory lint rule, as in
+This is an intention, not a prohibition. It cannot be expressed in types across four framework outputs, and the
+spacing applies to whatever the group contains, so the restriction can only ever be documentation or an advisory lint
+rule, as in
 [`custom-heading-single-heading`](../../packages/eslint-plugin/src/rules/heading/custom-heading-single-heading.ts).
 Treating it as absolute would create a worse problem than it solves: a list between two paragraphs would have to
 leave the group, which splits it in two and leaves the spacing around the list unmanaged.
 
-`DBText` renders phrasing content, so it is valid inside `dt`, `dd`, `legend`, `figcaption`, `blockquote`, `li`,
-`td`, `th`, `caption`, `label`, `summary` and `button`. `DBParagraph` renders flow content, valid in `dd`,
-`figcaption`, `blockquote`, `li` and `td`, but **not** in `legend`, `label`, `summary` or `button`, which accept
-phrasing content only.
+`DBParagraph` renders flow content, valid in `dd`, `figcaption`, `blockquote`, `li` and `td`, but **not** in `legend`,
+`label`, `summary` or `button`, which accept phrasing content only. A `span` covers those.
 
 ### CSS level, no property needed
 
-Whatever the group does must be expressible in CSS rather than through a framework context, which is not something to
-build on across four Mitosis targets. `gap` satisfies that by itself, with no descendant selector and nothing written
-onto the children:
+The spacing must be expressible in CSS rather than through a framework context, which is not something to build on
+across four Mitosis targets:
 
 ```scss
-.db-paragraph-group {
-	display: flex;
-	flex-direction: column;
+.db-text-group[data-text-spacing="true"] {
+	row-gap: 1lh;
+	padding-block: 0.5lh;
 }
 ```
 
-One consequence to handle deliberately: in the Angular and Stencil outputs a text component is a custom-element host
-wrapping the native element, so the host becomes the flex item. `heading.scss` already documents this for
-`.db-custom-heading` and solves it with `display: contents`.
+The two declarations express the same `0.5lh` per child: the gap is the sum of the two halves that meet between two
+children, the padding the half that has no sibling to meet at the group's edges.
 
-`text-wrap: pretty` becomes the default for the text styles, mirroring `text-wrap: balance` on headings - pure CSS,
-progressive enhancement, no fallback needed, per the [shift-left rule](../shift-left-web-development.md).
-`overflow-wrap: anywhere` should **not** be carried over from `DBHeading`, where it exists because headings are often
-long compound nouns; body copy would lose readability.
+Spacing sits on the container, never as a margin on the children, which is what keeps it framework-neutral.
+`wc-workarounds.scss` sets every custom-element host to `display: contents`, so in the Angular and Stencil output a
+margin on the host would be silently ignored while the host itself is not the box being laid out. `display: contents`
+is resolved before the flex items are determined, so gap and padding address the same elements in all four outputs,
+without the stylesheet having to know how deep a framework wraps its content. The gap also applies to children that
+carry no class of ours, so the group does not need to enumerate child types.
+
+The reset `.db-paragraph { margin-block: 0 }` complements this: the margin the foundations give every `p` would add
+to the gap. The group thus remains the only source of spacing, at the price of a standalone `DBParagraph` and a group
+without `textSpacing` rendering flush.
+
+`text-wrap: pretty` is the default for body copy, mirroring `text-wrap: balance` on headings - pure CSS, progressive
+enhancement, no fallback needed, per the [shift-left rule](../shift-left-web-development.md). Firefox ESR is a
+Browserslist target and drops the declaration, which is accepted. `overflow-wrap: anywhere` is **not** carried over
+from `DBHeading`, where it exists because headings are often long compound nouns; body copy would lose readability.
 
 ### Deliberately out of scope for now
 
-- **A custom wrapper (`DBCustomText`).** Dropped for the first iteration. It would have been the 1:1 styling wrapper
-  for a consumer-authored element, in the vein of `DBCustomHeading`. What it costs: `text-wrap: pretty` only takes
-  effect on a block container, and the measure and `paragraphSpacing` are inert on an inline box, so a `DBText`
-  nested in a `dd`, `legend`, `figcaption` or `caption` inherits the typography but not the block-level behaviour.
-  Component consumers therefore have no equivalent of simply putting the class on the `dd`, which the CSS-only path
-  allows. Worth revisiting once there is demand.
+- **A custom wrapper (`DBCustomText`).** It would have been the 1:1 styling wrapper for a consumer-authored element,
+  in the vein of `DBCustomHeading`. What it costs: `text-wrap: pretty` only takes effect on a block container, so a
+  `span` nested in a `dd`, `legend`, `figcaption` or `caption` inherits the typography but not the block-level
+  behaviour. Component consumers therefore have no equivalent of simply putting the class on the `dd`, which the
+  CSS-only path allows. Worth revisiting once there is demand.
+- **A measure (max width).** `max-width` would belong on the paragraph and the group, never on inline text, where it
+  does not apply. Left out because the name and unit are unresolved, see the open questions.
+- **A per-element spacing property.** Spacing is a relationship between siblings, which argues for the container
+  owning it exclusively. Adding it later is additive; shipping and removing it would be breaking.
 - **`color`/`tone`** - semantic text colour touches contrast requirements and the adaptive colour system, so it needs
   its own design decision.
 - **Truncation** - cheap in CSS, but it creates the accessibility obligation only GitLab and Grommet honour. Without
@@ -205,40 +210,43 @@ closed before the stable release rather than carried into it.
 
 ### Naming and boundaries
 
-- The measure property must **not** reuse `ContainerWidthProps` (`width?: 'full' | 'medium' | 'large' | 'small'`,
-  used by `DBSection`). That is layout width, tied to grid and breakpoints; a typographic measure is tied to the font
-  size and wants `ch`, and WCAG 1.4.8 (AAA) asks for no more than 80 characters per line. Sharing the name `width`
-  would make one property mean two different things.
+- A measure property must **not** reuse `ContainerWidthProps` (`width?: 'full' | 'medium' | 'large' | 'small'`, used
+  by `DBSection`). That is layout width, tied to grid and breakpoints; a typographic measure is tied to the font size
+  and wants `ch`, and WCAG 1.4.8 (AAA) asks for no more than 80 characters per line. Sharing the name `width` would
+  make one property mean two different things.
 - `DBSection` is `GlobalProps + SpacingProps + ContainerWidthProps`, so spacing plus maximum width on a container -
-  close to what `DBParagraphGroup` does. The distinction (page layout versus typesetting) is plausible but thin and
-  needs to be written down, otherwise the group reads as a duplicate.
-- Should the gap reuse the token values of `GapSpacingProps`, or be typography-relative? The tokens are consistent
-  with `DBStack` but are fixed spacings that do not scale with the font size, whereas `DBHeading` deliberately uses
-  `1lh` for `paragraphSpacing` so that the spacing follows the computed line height. For a text rhythm that coupling
-  is the more valuable property.
-- Is `paragraphSpacing` on `DBParagraph` still needed once the group handles spacing? Spacing is a relationship
-  between siblings, which argues for the container owning it exclusively; a single element without siblings has
-  nothing to space against. Keeping both means two mechanisms for one effect.
-- One CSS class for both the inline and the block case, rather than a separate `.db-paragraph`? The typography is
-  identical and block-only properties are inert on inline boxes. `DBHeading` uses a single `.db-heading` for all six
-  levels. Against it: the component names no longer share a stem, so a single class name would fit neither well.
+  close to what `DBTextGroup` does. The distinction (page layout versus typesetting) is plausible but thin and needs
+  to be written down, otherwise the group reads as a duplicate.
+- `textSpacing` is a boolean, so there is exactly one rhythm. If a second one is ever needed, it has to become an
+  enum without breaking the boolean, or a separate property.
+- One CSS class for both the paragraph and inline text, rather than only `.db-paragraph`? Against it: the inline case
+  has no component, so there is nothing to name consistently, and the block-only properties would be inert on an
+  inline box anyway.
 
 ### Implementation
 
-- The size mixin applies the `font` shorthand, which also resets `font-weight`. Dropping `fontWeight` does not remove
-  the trap, it moves it: `data-size` and the foundations' `[data-font]` on the same element collide the same way.
-- Still an inconsistency in the repository, though no longer this component's question: `DBHeading` uses
-  `data-font-weight` (`black`, `light`) while the foundations use `data-font`. Aligning them would break `DBHeading`.
-- `DBHeading` mixes in `TextProps` while the text components deliberately do not, so two neighbouring typography
+- The size placeholders apply the `font` shorthand, which resets `font-weight`, and carry the same specificity as the
+  weight rules. `@extend` emits them at the placeholder's definition site rather than at the extending block, which
+  puts them above `.db-paragraph` in the compiled output no matter where the `@include` sits, so the variant survives.
+  Source order would only start to matter if the sizes were switched to `fonts.set-font-size()`, which is why
+  `heading.scss` argues over `:where()` specificity instead. The same collision exists between `data-size` and the
+  foundations' `[data-font]`, and there the losing side is not ours to fix.
+- Still an inconsistency in the repository: `DBHeading` uses `data-font-weight` with `black`/`light` while the
+  foundations use `data-font` with `digital`/`regular`/`medium`/`semibold`/`bold`, and `DBParagraph` now adds
+  `data-font-weight` with `black`/`regular`. Aligning them would break `DBHeading`.
+- There are no font-weight tokens for text in the foundations, only icon weights. Introducing them belongs in the
+  foundations and would let `heading.scss`, `default-fonts.scss` and `paragraph.scss` stop repeating literals.
+- `DBHeading` mixes in `TextProps` while the paragraph components deliberately do not, so two neighbouring typography
   components differ in how content is passed. Acceptable, but it should be a recorded decision.
-- Does `paragraphSpacing` on a `p` replace or add to the `margin-block` the foundations already apply to `p`?
-- How do the group's `gap` and a heading's `paragraphSpacing` stay visually consistent, given the heading sits outside
-  the group and the two values are set independently?
+- How do the group's spacing and a heading's `paragraphSpacing` stay visually consistent, given the heading sits
+  outside the group and the two values are set independently?
+- The open-source fallback font has no 900 face for the body family, so `black` renders like bold without the DB
+  theme fonts. Acceptable for DB products, but it makes the showcases misleading.
 
 ### Design
 
-- Which of the nine size steps are legitimate for body copy? Porsche's scale is the widest in the field, everyone
-  else offers three to six. A smaller sanctioned subset may be better guidance than exposing all nine.
+- Are `lg`, `md` and `sm` the right three steps for body copy? Porsche's ten-step scale is the widest in the field,
+  everyone else offers three to six, so three is defensible - but the choice was made without a documented rationale.
 - Is there a need for semantic text colours (`success`, `warning`, `error`, `subdued`), or is that `DBInfotext` and
   `DBBadge` territory?
 - `font-variant-numeric: tabular-nums` appears in three systems and matters for tables and prices. Text concern or

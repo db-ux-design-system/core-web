@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-CgBGn04-.js";e();
