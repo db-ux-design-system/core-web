@@ -5,7 +5,17 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
-@use "../dialog-init";
+
+// Shared backdrop colours for the dialog/drawer family (and the overlay-style
+// scrims in loading-indicator and custom-select).
+$backdrop-color-strong: color(
+	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
+		#{variables.$db-opacity-lg}
+);
+$backdrop-color-weak: color(
+	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
+		#{variables.$db-opacity-sm}
+);
 
 // The components that share this layer. $prefix composes custom-property and
 // selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-content),
@@ -73,11 +83,11 @@ $container-size-scale: (
 	color: inherit;
 
 	&:not([data-backdrop="none"])::backdrop {
-		background-color: dialog-init.$backdrop-color-strong;
+		background-color: $backdrop-color-strong;
 	}
 
 	&[data-backdrop="weak"]::backdrop {
-		background-color: dialog-init.$backdrop-color-weak;
+		background-color: $backdrop-color-weak;
 	}
 }
 

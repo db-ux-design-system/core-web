@@ -2,7 +2,6 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/dialog-ponyfill";
-@use "../../styles/dialog-init";
 
 %container-size-horizontal {
 	--db-drawer-width-horizontal: calc(
@@ -120,8 +119,8 @@
 	// this stays here and not in the shared reset.)
 	/* stylelint-disable-next-line db-ux/use-spacings */
 	margin: 0;
-	position: fixed;
 	inset: 0;
+	position: fixed;
 
 	// Unlike the dialog, the drawer needs `z-index` even when modal: the
 	// `allow-discrete`/Firefox fallback below renders it with `display: block`
@@ -154,7 +153,7 @@
 	}
 
 	&:not([data-backdrop="none"], [data-backdrop="invisible"])::before {
-		background-color: dialog-init.$backdrop-color-strong;
+		background-color: dialog-components.$backdrop-color-strong;
 	}
 
 	&[data-backdrop="invisible"]::before {
@@ -162,7 +161,7 @@
 	}
 
 	&[data-backdrop="weak"]::before {
-		background-color: dialog-init.$backdrop-color-weak;
+		background-color: dialog-components.$backdrop-color-weak;
 	}
 
 	// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
@@ -217,12 +216,12 @@
 
 				&:not([data-backdrop="invisible"]) {
 					&::before {
-						background-color: dialog-init.$backdrop-color-strong;
+						background-color: dialog-components.$backdrop-color-strong;
 					}
 				}
 
 				&[data-backdrop="weak"]::before {
-					background-color: dialog-init.$backdrop-color-weak;
+					background-color: dialog-components.$backdrop-color-weak;
 				}
 			}
 		}
