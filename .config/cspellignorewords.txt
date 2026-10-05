@@ -278,5 +278,3 @@ hrefs
 renderable
 frontmost
 unwired
-# Design system identifiers referenced in docs/research
-leafygreen
