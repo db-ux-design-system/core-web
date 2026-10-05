@@ -1,5 +1,5 @@
 ---
-to: "<%= subComponent ? null : `../../showcases/e2e/${name}/${name}-interaction.spec.ts` %>"
+to: "<%= (!subComponent && showcases) ? `../../showcases/e2e/${name}/${name}-interaction.spec.ts` : null %>"
 ---
 import { test } from '@playwright/test';
 import { runInteractionTest } from '../default.ts';
@@ -22,8 +22,8 @@ test.describe('DB<%= h.changeCase.pascal(name) %>', () => {
 		path,
 		example: 'Interaction',
 		async run({ content }) {
-			// await content.getByTestId('...').click();
-			// await expect(content.getByTestId('...')).toBeVisible();
+			// Example: await content.getByTestId('...').click();
+			// Example: await expect(content.getByTestId('...')).toBeVisible();
 		}
 	});
 });

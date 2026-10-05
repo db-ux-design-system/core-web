@@ -34,6 +34,12 @@ export type DefaultSnapshotTestType = {
 
 export type AxeCoreTestType = {
 	axeDisableRules?: string[];
+	/**
+	 CSS selector(s) excluded from the scan. Use this to drop a single known
+	 element from coverage instead of disabling a rule for the whole page, so
+	 every other example on the page keeps enforcing that rule.
+	 */
+	axeExclude?: string | string[];
 	skipAxe?: boolean;
 	preAxe?: (page: Page) => Promise<void>;
 	color?: string;
@@ -233,6 +239,7 @@ export const runAxeCoreTest = ({
 	path,
 	fixedHeight,
 	axeDisableRules,
+	axeExclude,
 	skipAxe,
 	preAxe,
 	color = lvl1,
@@ -281,6 +288,13 @@ export const runAxeCoreTest = ({
 		const axeBuilder = new AxeBuilder({ page })
 			.include('#main-content')
 			.disableRules(axeDisableRules ?? []);
+		if (axeExclude) {
+			for (const selector of Array.isArray(axeExclude)
+				? axeExclude
+				: [axeExclude]) {
+				axeBuilder.exclude(selector);
+			}
+		}
 		const accessibilityScanResults = await axeBuilder.analyze();
 
 		expect(accessibilityScanResults.violations).toEqual([]);
