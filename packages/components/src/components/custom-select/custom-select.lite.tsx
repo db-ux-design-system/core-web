@@ -168,12 +168,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				// The placeholder span only renders while nothing is selected, so
-				// only reference it then - otherwise aria-describedby would point at
-				// a non-existent id (the selected-labels id is still appended by
-				// setDescById when a selection exists).
 				state.setDescById(
-					state._values?.length ? undefined : state._placeholderId
+					state._values?.length || state._selectedLabels
+						? undefined
+						: state._placeholderId
 				);
 				state._validity = props.validation ?? 'no-validation';
 			}
@@ -740,10 +738,21 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (detailsRef) {
-			detailsRef.addEventListener(
-				'focusout',
-				(event: InteractionEvent<HTMLDetailsElement>) =>
-					state.handleClose(event)
+			// The tags and clear button are siblings of <details> inside the
+			// wrapping .db-custom-select-form-field, so keydown (Escape) and
+			// focusout must be observed on the field wrapper - on <details> they
+			// would miss a tag remove button (Escape) and never fire when focus
+			// leaves the component from a tag (focusout keeping the dropdown open).
+			const field =
+				detailsRef.closest('.db-custom-select-form-field') ??
+				detailsRef;
+			field.addEventListener('keydown', (event: KeyboardEvent) =>
+				state.handleKeyboardPress(event)
+			);
+			field.addEventListener('focusout', (event: FocusEvent) =>
+				state.handleClose(
+					event as unknown as InteractionEvent<HTMLDetailsElement>
+				)
 			);
 		}
 	}, [detailsRef]);
@@ -1041,8 +1050,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={detailsRef}
 					open={props.open}
 					/* @ts-expect-error details as an event named onToggle */
-					onToggle={(event) => state.handleDropdownToggle(event)}
-					onKeyDown={(event) => state.handleKeyboardPress(event)}>
+					onToggle={(event) => state.handleDropdownToggle(event)}>
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-summary"

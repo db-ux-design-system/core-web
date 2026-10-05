@@ -52,16 +52,13 @@
 		gap: variables.$db-spacing-fixed-sm;
 	}
 
-	// Labels, placeholder and the empty space around tags are non-interactive:
-	// clicks fall through to the toggle underneath. The tags themselves re-enable
-	// pointer events so their remove buttons stay clickable.
 	> .db-custom-select-label,
 	> .db-custom-select-placeholder,
 	> .db-custom-select-tags {
 		pointer-events: none;
 	}
 
-	.db-custom-select-tags > * {
+	.db-custom-select-tags .db-tab-remove-button {
 		pointer-events: auto;
 	}
 
