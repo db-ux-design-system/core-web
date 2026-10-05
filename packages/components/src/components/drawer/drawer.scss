@@ -105,32 +105,8 @@
 	--db-drawer-inline-size: 100dvw;
 	--db-drawer-block-size: 100dvh;
 
-	// Shared `<dialog>` reset + native modal `::backdrop` tint (see base-reset).
-	@include dialog-components.base-reset;
-
-	// Drawer-only: the full-viewport `<dialog>` carries no border - the visible
-	// panel is `.db-drawer-container`, which draws its own edges. This resets the
-	// border colour the shared base-reset sets for the dialog box.
-	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
-	border: 0;
-
-	// Drawer-only: the UA `margin: auto` centring is unwanted - the drawer pins
-	// itself to a viewport edge. (The dialog keeps the UA centring, which is why
-	// this stays here and not in the shared reset.)
-	/* stylelint-disable-next-line db-ux/use-spacings */
-	margin: 0;
-	inset: 0;
-	position: fixed;
-
-	// Unlike the dialog, the drawer needs `z-index` even when modal: the
-	// `allow-discrete`/Firefox fallback below renders it with `display: block`
-	// and `visibility` instead of the top layer during the close transition, so
-	// it stacks as a normal fixed element and must sit above page content. 9996
-	// keeps the value an attribute-less default drawer resolved to under the old
-	// global rules (and stays above the non-modal dialog's 9995), so a closing
-	// drawer is not painted over during that fallback window. The
-	// `[data-position="absolute"]` branch overrides this with its own z-index.
-	z-index: 9996;
+	// Native `<dialog>` reset, box styling and modal `::backdrop` tint.
+	@include dialog-components.base-reset("drawer");
 
 	// Drawer-only: `data-backdrop="invisible"` (not a dialog value) hides the
 	// native modal backdrop. The visible `::before` overlays below are the

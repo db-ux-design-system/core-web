@@ -69,17 +69,21 @@ $container-size-scale: (
 	}
 }
 
-// Shared reset + native modal backdrop tint for the `<dialog>` element of both
-// DBDialog and DBDrawer. Applied on `.db-dialog` / `.db-drawer` (never the bare
-// `dialog` type selector, so unrelated components that only need the backdrop
-// colour variables do not inherit these rules).
-// The `::backdrop` tint covers the modal case in every browser (both components
-// open `showModal()` for strong/weak). `backdrop="none"` is non-modal (no
-// `::backdrop`), so it is excluded. The `::before` overlay variants live with the
-// drawer, since only the drawer renders a `::before` backdrop.
-@mixin base-reset {
+// Resets the native `<dialog>` user-agent styling and sets the box styling that
+// does not depend on the top layer, for `.db-dialog` / `.db-drawer` (never the
+// bare `dialog` selector). The shared part strips UA padding and inherits text
+// colour, and tints the modal `::backdrop` (strong/weak; `backdrop="none"` is
+// non-modal and has none). The rest differs per component:
+//   - dialog: a centred, bordered box - keep the UA modal centring and top-layer
+//     stacking, only add the box border.
+//   - drawer: a transparent, viewport-pinned shell (its visible panel is
+//     `.db-drawer-container`) - no border, pinned to the edges, and kept above
+//     page content with an explicit `z-index` for the Firefox close-transition
+//     fallback that renders it outside the top layer.
+@mixin base-reset($prefix) {
+	@include assert-prefix($prefix, "base-reset");
+
 	padding: 0;
-	border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 	color: inherit;
 
 	&:not([data-backdrop="none"])::backdrop {
@@ -88,6 +92,21 @@ $container-size-scale: (
 
 	&[data-backdrop="weak"]::backdrop {
 		background-color: $backdrop-color-weak;
+	}
+
+	@if $prefix == "dialog" {
+		border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	} @else {
+		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+		border: 0;
+		// stylelint-disable-next-line db-ux/use-spacings
+		margin: 0;
+		position: fixed;
+		inset: 0;
+
+		// Above the non-modal dialog (9995) and the value an attribute-less
+		// drawer resolved to before. `[data-position="absolute"]` lowers it.
+		z-index: 9996;
 	}
 }
 

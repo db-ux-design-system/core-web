@@ -141,7 +141,7 @@ $container-size-scale: dialog-components.$container-size-scale;
 
 	@extend %default-card;
 	@extend %dialog-transition;
-	@include dialog-components.base-reset;
+	@include dialog-components.base-reset("dialog");
 	@include container-size-inline(
 		"medium",
 		calc(var(--db-dialog-inline-size) - 2 * var(--db-dialog-viewport-inset))
