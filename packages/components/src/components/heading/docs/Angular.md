@@ -21,7 +21,7 @@ export class ExampleComponent {}
 
 ### Semantics and visual size
 
-Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never from appearance. `visualSize` changes only visual size. Without `visualSize`, each heading keeps its own level default (`h1` is the largest, `h6` the smallest).
+Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never from appearance. A heading-level `visualSize` (`h1`-`h6`) changes the visual headline size; a paragraph `visualSize` (`p-small`, `p-medium`, `p-large`) switches the heading to the matching body typography (face, size and weight) so it reads as running text. Without `visualSize`, each heading keeps its own level default (`h1` is the largest, `h6` the smallest).
 
 ```html
 <db-heading-h-6 visual-size="h1">

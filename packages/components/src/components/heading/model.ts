@@ -27,7 +27,12 @@ export type HeadingFontWeightType = (typeof HeadingFontWeightList)[number];
 
 /** @public */
 export type DBHeadingBaseDefaultProps = {
-	/** Sets the visual size independently from the fixed semantic level. */
+	/**
+	 * Sets the visual size independently from the fixed semantic level. A
+	 * heading level (`h1`-`h6`) changes the headline size; a paragraph size
+	 * (`p-small`/`p-medium`/`p-large`) switches to the matching body typography
+	 * (face, size and weight) so the heading reads as running text.
+	 */
 	visualSize?: HeadingVisualSizeType;
 	/** Sets the headline font weight. Defaults to `black`. */
 	fontWeight?: HeadingFontWeightType;

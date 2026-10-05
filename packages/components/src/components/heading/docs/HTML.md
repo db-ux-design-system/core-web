@@ -15,7 +15,7 @@ Use `db-heading` on a native heading and choose the element from the document hi
 </h6>
 ```
 
-`data-visual-size` changes only the visual size. It accepts a heading level (`h1`-`h6`) or a paragraph size (`p-small`, `p-medium`, `p-large`). Use `data-font-weight="light"` as needed. Density tokens provide responsive typography.
+`data-visual-size` accepts a heading level (`h1`-`h6`) or a paragraph size (`p-small`, `p-medium`, `p-large`). A heading level changes the visual headline size; a paragraph size switches the heading to the matching body typography (face, size and weight) so it reads as running text. Use `data-font-weight="light"` as needed. Density tokens provide responsive typography.
 
 Block-level text elements carry no `margin-block` by default. To add the default spacing of `1lh / 2` back, set `data-text-spacing="true"` on an ancestor (or the element itself).
 

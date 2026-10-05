@@ -6,7 +6,7 @@ For installation and configuration, see [`@db-ux/react-core-components`](https:/
 
 ### Semantics and visual size
 
-Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never from the desired appearance. `visualSize` changes only the visual headline size. Without `visualSize`, each heading keeps its own level default (`h1` is the largest, `h6` the smallest).
+Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never from the desired appearance. A heading-level `visualSize` (`h1`-`h6`) changes the visual headline size; a paragraph `visualSize` (`p-small`, `p-medium`, `p-large`) switches the heading to the matching body typography (face, size and weight) so it reads as running text. Without `visualSize`, each heading keeps its own level default (`h1` is the largest, `h6` the smallest).
 
 ```tsx
 import { DBHeadingH6 } from "@db-ux/react-core-components";

@@ -33,6 +33,11 @@ $nested-heading: ":where(h1, h2, h3, h4, h5, h6):not(.db-heading)";
 	}
 }
 
+/* The paragraph `visualSize`s deliberately switch the heading to the full body
+ * typography - face, size, line height and the body `normal` weight - via the
+ * `%db-overwrite-font-size-*` placeholder, so a heading can read as running
+ * text. This is intentional, not just a size swap. `data-font-weight="light"`
+ * still applies on top (same specificity, written later). */
 #{styled-heading('data-visual-size="p-small"')} {
 	@extend %db-overwrite-font-size-sm;
 }

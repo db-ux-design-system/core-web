@@ -52,23 +52,25 @@ body {
 
 $block-text-elements: "h1, h2, h3, h4, h5, h6, p";
 
-/* Block-level text carries no `margin-block` by default. Every selector keeps
- * the element matcher in `:where()` so it stays at the specificity of its
- * `data-text-spacing` ancestor (or zero for the default), and the cascade is
- * decided by source order: the `true` opt-in overrides the default reset, and
- * the `false` opt-out comes last so it wins over a `true` ancestor in a nested
- * subtree. */
+/* Block-level text carries no `margin-block` by default. The opt-in is driven
+ * through the inheriting `--db-text-spacing` custom property rather than
+ * descendant selectors, so the nearest `data-text-spacing` ancestor - or the
+ * element itself - wins by proximity instead of by source order. That makes
+ * `true` win when it is the closer ancestor and `false` opt a subtree back out,
+ * and it covers the attribute sitting on the block-text element itself. The
+ * property only carries the half-line-height multiplier; `1lh` is resolved on
+ * the text element in `margin-block`, so the spacing stays derived from each
+ * element's own line height rather than the ancestor's. */
+[data-text-spacing="true"] {
+	--db-text-spacing: 0.5;
+}
+
+[data-text-spacing="false"] {
+	--db-text-spacing: 0;
+}
+
 :where(#{$block-text-elements}) {
-	margin-block: 0;
-}
-
-[data-text-spacing="true"] :where(#{$block-text-elements}) {
-	/* Derived from the element's line height, not a fixed value. */
-	margin-block: calc(1lh / 2);
-}
-
-[data-text-spacing="false"] :where(#{$block-text-elements}) {
-	margin-block: 0;
+	margin-block: calc(1lh * var(--db-text-spacing, 0));
 }
 
 @each $headline, $size in fonts.$headlines {
