@@ -39,6 +39,7 @@ export default function HeadingSizes() {
 			<DBHeadingH2 visualSize="h4">Visual h4</DBHeadingH2>
 			<DBHeadingH2 visualSize="h5">Visual h5</DBHeadingH2>
 			<DBHeadingH2 visualSize="h6">Visual h6</DBHeadingH2>
+			<i class="line-break" data-sb-ignore="true" />
 			<DBHeadingH2 visualSize="p-large">Paragraph large</DBHeadingH2>
 			<DBHeadingH2 visualSize="p-medium">Paragraph medium</DBHeadingH2>
 			<DBHeadingH2 visualSize="p-small">Paragraph small</DBHeadingH2>

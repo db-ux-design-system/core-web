@@ -1,5 +1,5 @@
 /* Required styles to normalize default css */
-
+@use "sass:string";
 @use "../variables";
 @use "../colors";
 @use "../helpers";
@@ -50,8 +50,53 @@ body {
 	padding: 0;
 }
 
+$block-text-elements: "h1, h2, h3, h4, h5, h6, p";
+
+/* Block-level text carries no `margin-block` by default. Every selector keeps
+ * the element matcher in `:where()` so it stays at the specificity of its
+ * `data-text-spacing` ancestor (or zero for the default), and the cascade is
+ * decided by source order: the `true` opt-in overrides the default reset, and
+ * the `false` opt-out comes last so it wins over a `true` ancestor in a nested
+ * subtree. */
+:where(#{$block-text-elements}) {
+	margin-block: 0;
+}
+
+[data-text-spacing="true"] :where(#{$block-text-elements}) {
+	/* Derived from the element's line height, not a fixed value. */
+	margin-block: calc(1lh / 2);
+}
+
+[data-text-spacing="false"] :where(#{$block-text-elements}) {
+	margin-block: 0;
+}
+
+@each $headline, $size in fonts.$headlines {
+	:where(#{string.unquote($headline)}) {
+		/* stylelint-disable custom-property-pattern */
+		font: var(--db-type-headline-#{string.unquote($size)});
+
+		&::before,
+		&::after {
+			--db-icon-font-size: var(
+				--db-base-headline-icon-font-size-#{string.unquote($size)}
+			);
+			--db-icon-font-weight: var(
+				--db-base-headline-icon-weight-#{string.unquote($size)}
+			);
+		}
+		/* stylelint-enable custom-property-pattern */
+	}
+}
+
 body {
 	font-family: var(--db-font-family-sans);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--db-font-family-head);
+	font-weight: bolder;
+	text-wrap: balance;
 }
 
 html {

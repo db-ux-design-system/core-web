@@ -3,6 +3,12 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
 
+$nested-heading: ":where(h1, h2, h3, h4, h5, h6):not(.db-heading)";
+
+@function styled-heading($attribute) {
+	@return ".db-heading[#{$attribute}], .db-custom-heading[#{$attribute}] #{$nested-heading}";
+}
+
 .db-custom-heading,
 .db-heading {
 	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
@@ -12,34 +18,37 @@
 	overflow-wrap: anywhere;
 	text-align: start;
 	text-wrap: balance;
+}
 
-	@each $headline, $size in fonts.$headlines {
-		&[data-visual-size="#{$headline}"] {
-			@extend %db-overwrite-headline-size-#{$size};
-		}
+@each $headline, $size in fonts.$headlines {
+	.db-heading:not([data-visual-size]):where(#{$headline}),
+	.db-custom-heading:not([data-visual-size]):has(:where(#{$headline}))
+		#{$nested-heading}:where(#{$headline}) {
+		@extend %db-overwrite-headline-size-#{$size};
 	}
 
-	&[data-visual-size="p-small"] {
-		@extend %db-overwrite-font-size-sm;
-	}
-
-	&[data-visual-size="p-medium"] {
-		@extend %db-overwrite-font-size-md;
-	}
-
-	&[data-visual-size="p-large"] {
-		@extend %db-overwrite-font-size-lg;
-	}
-
-	&[data-font-weight="light"] {
-		font-weight: 300;
+	/* Explicit heading-level `visualSize` (`h1`-`h6`). */
+	#{styled-heading('data-visual-size="#{$headline}"')} {
+		@extend %db-overwrite-headline-size-#{$size};
 	}
 }
 
-/* Styling wrapper for a consumer-authored native heading plus optional sibling
- * content. It mirrors the Heading styling API
- * the same way `.db-custom-button` mirrors `.db-button`: the wrapper carries the
- * styling attributes and applies them to a plain nested `h1`-`h6`. */
+#{styled-heading('data-visual-size="p-small"')} {
+	@extend %db-overwrite-font-size-sm;
+}
+
+#{styled-heading('data-visual-size="p-medium"')} {
+	@extend %db-overwrite-font-size-md;
+}
+
+#{styled-heading('data-visual-size="p-large"')} {
+	@extend %db-overwrite-font-size-lg;
+}
+
+#{styled-heading('data-font-weight="light"')} {
+	font-weight: 300;
+}
+
 .db-custom-heading {
 	@include helpers.display(flex);
 

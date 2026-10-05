@@ -15,7 +15,7 @@ export default function HeadingShowcase(props: PatternhubProps) {
 		<ContainerWrapperShowcase
 			title="DBHeading"
 			isPatternhub={props.isPatternhub}>
-			<div class="heading-showcase">
+			<div class="heading-showcase" data-text-spacing="false">
 				<LinkWrapperShowcase exampleName="Semantic Levels And Default Mapping">
 					<CardWrapperShowcase>
 						<HeadingSemanticLevels />
