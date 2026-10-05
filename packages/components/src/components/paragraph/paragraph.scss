@@ -1,0 +1,79 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
+
+/* Prefixed names: every component stylesheet is `@forward`ed into
+ * `styles/index.scss`, where plain names would collide with `heading.scss`. */
+$text-group-alignment-values: (
+	"start": start,
+	"center": center,
+	"end": end
+);
+
+/* A deliberate subset of the nine steps in `fonts.$font-sizes`. */
+$paragraph-sizes: "lg", "md", "sm";
+
+/* The open-source fallback font has no 900 face, so `black` renders like bold
+ * in builds without the DB theme fonts. */
+$paragraph-font-weights: (
+	"black": 900,
+	"regular": 400
+);
+
+/* Only explicit sizes are emitted, so omitting `data-size` inherits. */
+@mixin paragraph-font-sizes {
+	@each $size in $paragraph-sizes {
+		&[data-size="#{$size}"] {
+			@extend %db-overwrite-font-size-#{$size};
+		}
+	}
+}
+
+/* Must stay below `paragraph-font-sizes`: the size placeholders apply the
+ * `font` shorthand, which resets `font-weight`, and both selectors carry the
+ * same specificity, so only source order keeps the variant. */
+@mixin paragraph-font-weights {
+	@each $name, $weight in $paragraph-font-weights {
+		&[data-font-weight="#{$name}"] {
+			font-weight: $weight;
+		}
+	}
+}
+
+.db-paragraph {
+	/* The foundations give every `p` a margin, which would add to the spacing
+	 * of a surrounding `.db-text-group`. Spacing is the container's job. No
+	 * `text-align` here on purpose, so the group's `alignment` is inherited. */
+	margin-block: 0;
+
+	/* Body-copy counterpart to `text-wrap: balance` on headings. */
+	text-wrap: pretty;
+
+	@include paragraph-font-sizes;
+	@include paragraph-font-weights;
+}
+
+.db-text-group {
+	@include helpers.display(flex);
+
+	flex-direction: column;
+
+	@each $alignment, $value in $text-group-alignment-values {
+		&[data-alignment="#{$alignment}"] {
+			text-align: $value;
+		}
+	}
+
+	/* Half on each side, so two adjacent children are `1lh` apart and the group
+	 * keeps `0.5lh` at its outer edges. Resolves against each child's own line
+	 * height, so a smaller paragraph gets a smaller spacing.
+	 *
+	 * The second selector is required because the Angular and Stencil hosts are
+	 * `display: contents` and generate no box, so a margin on them is ignored. */
+	&[data-text-spacing="true"] {
+		> *,
+		> * > .db-paragraph {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			margin-block: 0.5lh;
+		}
+	}
+}

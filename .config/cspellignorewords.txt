@@ -278,9 +278,6 @@ hrefs
 renderable
 frontmost
 unwired
-# German proper nouns used in component examples
-Hauptbahnhof
-Schienenersatzverkehr
 # Design system identifiers referenced in docs/research
 leafygreen
 esta

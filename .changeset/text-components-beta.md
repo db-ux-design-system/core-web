@@ -6,6 +6,6 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat(DBText): add beta Text, Paragraph and ParagraphGroup components
+feat(DBParagraph): add beta Paragraph and TextGroup components
 
-`DBText` renders a `span` for inline text and takes `visuallyHidden`, `DBParagraph` renders a `p` for body copy, and `DBParagraphGroup` renders a `div` that spaces its paragraphs with a shared `gap`. `size` spans `3xl` to `3xs` on all three and has no default, so omitting it inherits from the surrounding typography and a size on the group cascades to its paragraphs.
+`DBParagraph` renders a `p` for body copy and takes `size` (`lg`, `md`, `sm`) and `fontWeight` (`black`, `regular`). `DBTextGroup` renders a `div` that groups block-level text, takes `alignment` and switches spacing on with `textSpacing`, which gives every child `0.5lh` at block-start and block-end so two adjacent children end up `1lh` apart. Neither `size` nor `fontWeight` has a default, so omitting them inherits from the surrounding typography. Inline text is covered by a plain `span`, there is no component for it.

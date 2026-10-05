@@ -1,17 +1,16 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBParagraph from '../paragraph.lite';
-import DBText from '../text.lite';
-import { StorybookParagraphArgTypes } from './_text.arg.types';
+import { StorybookParagraphArgTypes } from './_paragraph.arg.types';
 
 useMetadata({
 	storybookTitle: 'Forwarded attributes',
 	storybookComponentName: 'DBParagraph',
-	storybookComponentNames: ['DBParagraph', 'DBText'],
-	storybookNames: ['Paragraph with lang', 'Text with a translation'],
+	storybookComponentNames: ['DBParagraph', 'DBParagraph'],
+	storybookNames: ['Paragraph with lang', 'Visually hidden paragraph'],
 	storybookArgTypes: StorybookParagraphArgTypes
 });
 
-export default function TextAttributeForwarding() {
+export default function ParagraphAttributeForwarding() {
 	return (
 		<Fragment>
 			{/* data-* and aria-* attributes are forwarded to the rendered element
@@ -19,10 +18,10 @@ export default function TextAttributeForwarding() {
 			<DBParagraph lang="en" data-testid="forwarded-paragraph">
 				Native attributes land on the paragraph element.
 			</DBParagraph>
-			<DBParagraph>
-				The German term is{' '}
-				<DBText lang="de">Schienenersatzverkehr</DBText>, announced in
-				the correct language.
+			{/* The global `data-visually-hidden` annotation needs no property of
+			 * its own. It requires the `visually-hidden` stylesheet. */}
+			<DBParagraph data-visually-hidden="true">
+				Only announced by assistive technology.
 			</DBParagraph>
 		</Fragment>
 	);

@@ -2,47 +2,41 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
-import TextAlignment from '../examples/alignment.example.lite';
-import TextAttributeForwarding from '../examples/attribute-forwarding.example.lite';
-import TextGroup from '../examples/group.example.lite';
-import TextInline from '../examples/inline.example.lite';
-import TextSizes from '../examples/sizes.example.lite';
-import TextVisuallyHidden from '../examples/visually-hidden.example.lite';
+import TextGroupAlignment from '../examples/alignment.example.lite';
+import ParagraphAttributeForwarding from '../examples/attribute-forwarding.example.lite';
+import ParagraphFontWeight from '../examples/font-weight.example.lite';
+import ParagraphSizes from '../examples/sizes.example.lite';
+import TextGroupTextSpacing from '../examples/text-spacing.example.lite';
 
-export default function TextShowcase(props: PatternhubProps) {
+export default function ParagraphShowcase(props: PatternhubProps) {
 	return (
 		<ContainerWrapperShowcase
-			title="DBText"
+			title="DBParagraph"
 			isPatternhub={props.isPatternhub}>
-			<div class="text-showcase">
+			<div class="paragraph-showcase">
 				<LinkWrapperShowcase exampleName="Sizes">
 					<CardWrapperShowcase>
-						<TextSizes />
+						<ParagraphSizes />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Inline Text">
+				<LinkWrapperShowcase exampleName="Font Weight">
 					<CardWrapperShowcase>
-						<TextInline />
+						<ParagraphFontWeight />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Paragraph Group">
+				<LinkWrapperShowcase exampleName="Text Spacing">
 					<CardWrapperShowcase>
-						<TextGroup />
+						<TextGroupTextSpacing />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 				<LinkWrapperShowcase exampleName="Logical Alignment">
 					<CardWrapperShowcase>
-						<TextAlignment />
-					</CardWrapperShowcase>
-				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Visually Hidden">
-					<CardWrapperShowcase>
-						<TextVisuallyHidden />
+						<TextGroupAlignment />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 				<LinkWrapperShowcase exampleName="Forwarded Attributes">
 					<CardWrapperShowcase>
-						<TextAttributeForwarding />
+						<ParagraphAttributeForwarding />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 			</div>

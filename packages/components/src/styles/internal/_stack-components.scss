@@ -50,18 +50,6 @@ $stack-gaps: (
 	}
 }
 
-// Shared by `%default-stack` and `.db-paragraph-group`, which both resolve the
-// same `GapSpacingProps` values onto the same spacing tokens. Silent comment on
-// purpose: this documents the partial, it does not belong in the emitted CSS.
-@mixin get-stack-gaps() {
-	@each $name, $gap in $stack-gaps {
-		&[data-gap="#{$name}"] {
-			/* stylelint-disable-next-line db-ux/use-spacings */
-			gap: #{$gap};
-		}
-	}
-}
-
 @mixin get-stack-justify-contents() {
 	&[data-justify-content="start"] {
 		justify-content: flex-start;
@@ -108,5 +96,11 @@ $stack-gaps: (
 
 	@include get-stack-alignments;
 	@include get-stack-justify-contents;
-	@include get-stack-gaps;
+
+	@each $name, $gap in $stack-gaps {
+		&[data-gap="#{$name}"] {
+			/* stylelint-disable-next-line db-ux/use-spacings */
+			gap: #{$gap};
+		}
+	}
 }
