@@ -153,9 +153,7 @@ test.describe('Static Heading components', () => {
 		});
 	}
 
-	test('keeps h6 semantics when the visual size is h1', async ({
-		mount
-	}) => {
+	test('keeps h6 semantics when the visual size is h1', async ({ mount }) => {
 		const component = await mount(
 			<DBHeadingH6 visualSize="h1">Oversized h6</DBHeadingH6>
 		);
