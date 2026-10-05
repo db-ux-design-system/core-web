@@ -117,6 +117,13 @@
 	position: fixed;
 	inset: 0;
 
+	// Unlike the dialog, the drawer needs `z-index` even when modal: the
+	// `allow-discrete`/Firefox fallback below renders it with `display: block`
+	// and `visibility` instead of the top layer during the close transition, so
+	// it stacks as a normal fixed element and must sit above page content. The
+	// `[data-position="absolute"]` branch overrides this with its own z-index.
+	z-index: 9995;
+
 	// Drawer-only: `data-backdrop="invisible"` (not a dialog value) hides the
 	// native modal backdrop. The visible `::before` overlays below are the
 	// drawer's own; the dialog never renders a backdrop `::before`.

@@ -171,13 +171,16 @@ $container-size-scale: dialog-components.$container-size-scale;
 		@include dialog-components.content("dialog");
 	}
 
-	// A modal dialog (backdrop strong/weak, opened via `showModal()`) keeps the
-	// user-agent centring (`position: fixed; inset: 0; margin: auto`). A non-modal
-	// dialog (`backdrop="none"`, opened via `show()`) is not centred by the UA, so
-	// pin it to the viewport explicitly - this is the one positioning the dialog
-	// needs and the reason the shared reset emits no positioning.
+	// A modal dialog (backdrop strong/weak, opened via `showModal()`) is promoted
+	// to the top layer: the user agent centres it (`position: fixed; inset: 0;
+	// margin: auto`) and manages its stacking, so neither positioning nor
+	// `z-index` is needed. A non-modal dialog (`backdrop="none"`, opened via
+	// `show()`) stays in normal flow, so pin it to the viewport and give it an
+	// explicit stacking context - this is the only dialog state that needs them,
+	// which is why the shared reset emits neither.
 	&[data-backdrop="none"] {
 		position: fixed;
 		inset: 0;
+		z-index: 9995;
 	}
 }
