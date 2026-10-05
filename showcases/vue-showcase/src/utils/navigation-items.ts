@@ -1,6 +1,7 @@
 import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase.vue';
 
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase.vue';
+import ParagraphShowcase from '@components/components/paragraph/showcase/paragraph.showcase.vue';
 
 import AccordionItemShowcase from '@components/components/accordion-item/showcase/accordion-item.showcase.vue';
 import AccordionShowcase from '@components/components/accordion/showcase/accordion.showcase.vue';
@@ -151,6 +152,11 @@ export const navigationItems: NavItem[] = [
 				path: '/04/heading',
 				label: 'Heading',
 				component: markRaw(HeadingShowcase)
+			},
+			{
+				path: '/04/paragraph',
+				label: 'Paragraph',
+				component: markRaw(ParagraphShowcase)
 			},
 			{
 				path: '/04/brand',
