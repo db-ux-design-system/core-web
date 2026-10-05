@@ -1491,6 +1491,7 @@
           - listitem:
             - radio "Option 5"
             - text: Option 5
+  - text: "Selected: Label controlled"
   - status
   - text: Transform Selected Label
   - group:
