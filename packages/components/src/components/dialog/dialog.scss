@@ -155,7 +155,7 @@ $container-size-scale: dialog-components.$container-size-scale;
 	// dialog always occupies the full max-inline-size (capped by the viewport).
 	// stylelint-disable-next-line db-ux/use-sizing
 	inline-size: 100%;
-	
+
 	// `revert` restores the user agent `margin: auto` that centres the box, in case that somebody has overwritten this globally by an author-level reset
 	/* stylelint-disable-next-line db-ux/use-spacings */
 	margin: revert;
