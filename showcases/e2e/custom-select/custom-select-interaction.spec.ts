@@ -76,11 +76,22 @@ test.describe('DBCustomSelect', () => {
 		async run({ content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
-			await summary.click({ force: true });
+			const details = select.locator('details');
 
-			// On mobile the dropdown opens as a fixed bottom-sheet overlay; the
-			// search input only becomes visible once that layout settles, so
-			// wait for it before interacting instead of racing the open.
+			// The search input has no show/hide of its own - it is a child of
+			// the native <details>, so it is only visible once <details open>
+			// is set. On WebKit a synthetic `summary.click()` does not reliably
+			// trigger the native toggle default action, leaving the input in
+			// the DOM but hidden. Open the <details> directly and wait for the
+			// `open` attribute instead of racing a click, so the assertion only
+			// runs once the dropdown (and its bottom-sheet layout on mobile)
+			// has actually opened.
+			await summary.click({ force: true });
+			await details.evaluate((element: HTMLDetailsElement) => {
+				element.open = true;
+			});
+			await expect(details).toHaveAttribute('open', '');
+
 			const searchInput = select.locator('input[type="search"]');
 			await expect(searchInput).toBeVisible();
 
