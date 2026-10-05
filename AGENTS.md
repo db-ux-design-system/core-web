@@ -353,6 +353,14 @@ Every fenced code block (` ``` `) **must** specify a language identifier (MD040)
 
 Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
 
+### HTML is for structure, not styling
+
+Markup must describe the **structure and semantics** of the content, never its appearance. Do not add inline `style` attributes, presentational utility classes (values whose name describes a visual effect, e.g. `mt-4`, `text-red`, `flex-center`), or elements and wrappers whose only purpose is to achieve a visual effect; handle styling in CSS instead. Choose elements for their meaning (e.g. a heading because it _is_ a heading, not because it renders large and bold), and reach for CSS (layout, spacing, pseudo-elements, pseudo-classes, etc.) rather than extra `<div>`/`<span>` wrappers or presentational markup. This keeps the DOM semantic, accessible, maintainable and themeable.
+
+A stable, semantic class used as a **stylesheet hook** is allowed and often required; e.g. `button.lite.tsx` carries `db-button` so `button.scss` can select it. The test is the name: a class that identifies what the element _is_ or its state (`db-button`, `db-button--loading`, `.db-input input:user-invalid`) is fine; a class that names how it should _look_ is not. Prefer such a hook over a brittle structural selector.
+
+This rule carries extra weight for the Mitosis components in `packages/components`: a component's `.lite.tsx` template is compiled to the HTML every consumer copies, and a purely presentational wrapper also has to survive four framework outputs and the `display: contents` custom-element hosts, where an unnecessary wrapper misbehaves. Reach for the component's `.scss` (`:has()`, pseudo-elements, etc.) instead.
+
 ### No literal non-ASCII characters in SCSS
 
 Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.
