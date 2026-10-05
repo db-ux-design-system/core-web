@@ -1220,7 +1220,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</Show>
 				</details>
 				<Show
-					when={state._values?.length || state._selectedLabels}
+					when={
+						state._values?.length || state._selectedLabels?.length
+					}
 					else={
 						<span
 							data-placeholder={props.placeholder ?? props.label}
