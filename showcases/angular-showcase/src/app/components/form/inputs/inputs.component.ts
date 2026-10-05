@@ -1,7 +1,7 @@
 import { Component, input, NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { form, FormField } from '@angular/forms/signals';
-import { DBInput } from '@components';
+import { DBButton, DBInput } from '@components';
 import { WrapperComponent } from '../wrapper/wrapper.component';
 
 /**
@@ -32,6 +32,7 @@ export class SignalFormsInputComponent {
 	imports: [
 		WrapperComponent,
 		DBInput,
+		DBButton,
 		FormsModule,
 		ReactiveFormsModule,
 		SignalFormsInputComponent
@@ -41,6 +42,12 @@ export class SignalFormsInputComponent {
 })
 export class InputsComponent {
 	plain = 'test1';
+	/**
+	 * Regression fixture for
+	 * https://github.com/db-ux-design-system/core-web/issues/6147 -- typed as
+	 * `any` because the generated `value` model does not accept `undefined`.
+	 */
+	undefinedValue: any = 'reset-me';
 	ngModel = 'test2';
 	formControl: FormControl = new FormControl('test3');
 	signalModel = signal({ value: 'test4' });
@@ -50,5 +57,9 @@ export class InputsComponent {
 			return;
 		}
 		this.plain = (event.target as HTMLInputElement).value;
+	}
+
+	public unsetValue() {
+		this.undefinedValue = undefined;
 	}
 }
