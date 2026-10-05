@@ -200,49 +200,6 @@ custom-elements analyzer stops resolving at the second alias hop, which publishe
 every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
 the real union and JSDoc.
 
-## Paragraph component family
-
-`src/components/paragraph/` contains `paragraph.lite.tsx` (renders a `p`) and
-`text-group.lite.tsx` (renders a `div`). It shares one folder, model,
-stylesheet, spec and showcase, and is registered with the same `folder` /
-`spec` / Vue-class-alias fields as the Heading family above. There is
-deliberately no component for inline text: a plain `span` covers that.
-
-The properties are split between the two on purpose — `size` and `fontWeight`
-belong to the paragraph, `alignment` and `textSpacing` to the group — so each
-concern has exactly one home. Four details in the styles look like oversights
-and are not:
-
-- **`size` and `fontWeight` have no default.** Without the attribute the
-  typography is inherited, which keeps a paragraph consistent with its
-  surroundings instead of forcing a step.
-- **`.db-paragraph` resets `margin-block`.** The foundations'
-  `defaults/default-fonts.scss` gives every `p` a margin. Left in place it adds
-  to the spacing of a surrounding `.db-text-group` and doubles it, so spacing is
-  the container's job exclusively.
-- **`.db-paragraph` sets no blanket `text-align`, unlike `.db-heading`.** An
-  unconditional `text-align: start` would block a paragraph from inheriting the
-  `alignment` of its group, and inheritance is how the group reaches its
-  children.
-- **The font-weight rules must stay below the font-size rules.** The size
-  placeholders apply the `font` shorthand, which resets `font-weight`. Both
-  selectors carry the same specificity, so only the source order keeps
-  `data-font-weight` from being silently dropped. `heading.scss` documents the
-  same trap.
-
-`textSpacing` gives every child `margin-block: 0.5lh` rather than using a
-spacing token, so two adjacent children end up `1lh` apart and the group keeps
-half a line height at its outer edges. The rhythm follows the computed line
-height, mirroring `paragraphSpacing` on `.db-heading`, and because it resolves
-against each child's own typography a smaller paragraph gets a proportionally
-smaller spacing.
-
-The rule needs two selectors. `> *` covers the React, Vue and CSS-only output,
-where the element is a direct child. In the Angular and Stencil output the
-element sits inside its custom-element host, which `wc-workarounds.scss` sets to
-`display: contents` — that host generates no box, so a margin on it is silently
-ignored and the rule has to reach one level deeper as well.
-
 ## Examples (`src/components/**/examples/`)
 
 Examples are the **single source of truth** for component usage. They are used to generate:
