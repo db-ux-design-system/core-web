@@ -25,18 +25,17 @@ const headings = [
 	['h6', DBHeadingH6]
 ] as const;
 const sizes = [
-	'3xl',
-	'2xl',
-	'xl',
-	'lg',
-	'md',
-	'sm',
-	'xs',
-	'2xs',
-	'3xs'
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'p-small',
+	'p-medium',
+	'p-large'
 ] as const;
 const weights = ['black', 'light'] as const;
-const alignments = ['start', 'center', 'end'] as const;
 
 const semanticHeadings: any = (
 	<div>
@@ -62,7 +61,7 @@ const customHeadingRows: any = (
 			<h2>Default row</h2>
 		</DBCustomHeading>
 		<DBCustomHeading
-			size="3xs"
+			visualSize="h6"
 			fontWeight="light"
 			startSlot={<span aria-hidden="true">*</span>}
 			endSlot={<button type="button">More options</button>}>
@@ -79,15 +78,15 @@ const customHeadingRows: any = (
 
 const keyVariants: any = (
 	<div style={{ display: 'grid', gap: '16px', width: '720px' }}>
-		<DBHeadingH1 size="3xl">h1 / 3xl / black</DBHeadingH1>
-		<DBHeadingH2 size="xl" fontWeight="light">
-			h2 / xl / light
+		<DBHeadingH1 visualSize="h1">h1 / visual h1 / black</DBHeadingH1>
+		<DBHeadingH2 visualSize="h1" fontWeight="light">
+			h2 / visual h1 / light
 		</DBHeadingH2>
-		<DBHeadingH3 alignment="center">h3 / centered</DBHeadingH3>
-		<DBHeadingH4 alignment="end">h4 / end</DBHeadingH4>
-		<DBHeadingH5 paragraphSpacing>h5 / paragraph spacing</DBHeadingH5>
-		<DBHeadingH6 size="2xl" data-density="expressive">
-			h6 / 2xl / expressive
+		<DBHeadingH3>h3 / default</DBHeadingH3>
+		<DBHeadingH4 visualSize="p-large">h4 / p-large</DBHeadingH4>
+		<DBHeadingH5 fontWeight="light">h5 / light</DBHeadingH5>
+		<DBHeadingH6 visualSize="h1" data-density="expressive">
+			h6 / visual h1 / expressive
 		</DBHeadingH6>
 	</div>
 );
@@ -154,13 +153,13 @@ test.describe('Static Heading components', () => {
 		});
 	}
 
-	test('keeps h6 semantics when the visual size is 2xl', async ({
+	test('keeps h6 semantics when the visual size is h1', async ({
 		mount
 	}) => {
 		const component = await mount(
-			<DBHeadingH6 size="2xl">Oversized h6</DBHeadingH6>
+			<DBHeadingH6 visualSize="h1">Oversized h6</DBHeadingH6>
 		);
-		await expect(component).toHaveAttribute('data-size', '2xl');
+		await expect(component).toHaveAttribute('data-visual-size', 'h1');
 		expect(
 			await component.evaluate((element) => element.tagName.toLowerCase())
 		).toBe('h6');
@@ -169,17 +168,17 @@ test.describe('Static Heading components', () => {
 	test('resolves the default size mapping to real typography', async ({
 		mount
 	}) => {
-		// The `data-size` assertions above only prove prop plumbing. This checks
-		// that omitting `size` actually applies the mapped headline size.
+		// The `data-visual-size` assertions above only prove prop plumbing. This checks
+		// that omitting `visualSize` actually applies the mapped headline size.
 		const defaultH1 = await mount(<DBHeadingH1>Default h1</DBHeadingH1>);
 		const h1FontSize = await readFontSize(defaultH1);
 		await defaultH1.unmount();
 
-		const explicitXl = await mount(
-			<DBHeadingH2 size="xl">Explicit xl</DBHeadingH2>
+		const explicitH1 = await mount(
+			<DBHeadingH2 visualSize="h1">Explicit h1</DBHeadingH2>
 		);
-		expect(await readFontSize(explicitXl)).toBe(h1FontSize);
-		await explicitXl.unmount();
+		expect(await readFontSize(explicitH1)).toBe(h1FontSize);
+		await explicitH1.unmount();
 
 		const defaultH2 = await mount(<DBHeadingH2>Default h2</DBHeadingH2>);
 		expect(await readFontSize(defaultH2)).not.toBe(h1FontSize);
@@ -188,9 +187,9 @@ test.describe('Static Heading components', () => {
 	for (const size of sizes) {
 		test(`supports visual size ${size}`, async ({ mount }) => {
 			const component = await mount(
-				<DBHeadingH2 size={size}>{size}</DBHeadingH2>
+				<DBHeadingH2 visualSize={size}>{size}</DBHeadingH2>
 			);
-			await expect(component).toHaveAttribute('data-size', size);
+			await expect(component).toHaveAttribute('data-visual-size', size);
 		});
 	}
 
@@ -205,49 +204,15 @@ test.describe('Static Heading components', () => {
 		});
 	}
 
-	for (const alignment of alignments) {
-		test(`supports logical alignment ${alignment}`, async ({ mount }) => {
-			const component = await mount(
-				<DBHeadingH2 alignment={alignment}>{alignment}</DBHeadingH2>
-			);
-			await expect(component).toHaveAttribute(
-				'data-alignment',
-				alignment
-			);
-			await expect(component).toHaveCSS('text-align', alignment);
-		});
-	}
-
-	test('supports paragraph spacing states', async ({ mount }) => {
-		const omitted = await mount(<DBHeadingH2>Omitted</DBHeadingH2>);
-		await expect(omitted).not.toHaveAttribute('data-paragraph-spacing');
-		expect(await readLogicalMargins(omitted)).toMatchObject({
+	test('carries no block margin of its own', async ({ mount }) => {
+		// Block spacing is no longer a Heading property. The foundations strip the
+		// `margin-block` from block-level text by default and only add it back under
+		// `[data-text-spacing="true"]`, so the component itself stays flush.
+		const heading = await mount(<DBHeadingH2>No spacing</DBHeadingH2>);
+		expect(await readLogicalMargins(heading)).toMatchObject({
 			blockStart: '0px',
 			blockEnd: '0px'
 		});
-		await omitted.unmount();
-
-		const disabled = await mount(
-			<DBHeadingH2 paragraphSpacing={false}>False</DBHeadingH2>
-		);
-		await expect(disabled).toHaveAttribute(
-			'data-paragraph-spacing',
-			'false'
-		);
-		expect(await readLogicalMargins(disabled)).toMatchObject({
-			blockStart: '0px',
-			blockEnd: '0px'
-		});
-		await disabled.unmount();
-
-		const enabled = await mount(
-			<DBHeadingH2 paragraphSpacing>True</DBHeadingH2>
-		);
-		const margins = await readLogicalMargins(enabled);
-		expect(Number.parseFloat(margins.blockEnd)).toBeCloseTo(
-			Number.parseFloat(margins.lineHeight),
-			2
-		);
 	});
 
 	test('composes class and resolves direct and overridden ids', async ({
@@ -559,20 +524,20 @@ test.describe('DBCustomHeading', () => {
 	test('applies the wrapper size to a plain nested heading', async ({
 		mount
 	}) => {
-		// The wrapper mirrors the Heading styling API, so `size` on the wrapper has
+		// The wrapper mirrors the Heading styling API, so `visualSize` on the wrapper has
 		// to override the default level mapping of the nested heading.
 		const reference = await mount(
-			<DBHeadingH2 size="3xl">Ref</DBHeadingH2>
+			<DBHeadingH2 visualSize="h1">Ref</DBHeadingH2>
 		);
 		const referenceFontSize = await readFontSize(reference);
 		await reference.unmount();
 
 		const component = await mount(
-			<DBCustomHeading size="3xl">
+			<DBCustomHeading visualSize="h1">
 				<h2>Nested</h2>
 			</DBCustomHeading>
 		);
-		await expect(component).toHaveAttribute('data-size', '3xl');
+		await expect(component).toHaveAttribute('data-visual-size', 'h1');
 		expect(await readFontSize(component.locator('h2'))).toBe(
 			referenceFontSize
 		);
@@ -597,52 +562,20 @@ test.describe('DBCustomHeading', () => {
 		});
 	}
 
-	test('resolves paragraph spacing from the heading line height', async ({
-		mount
-	}) => {
-		// The wrapper carries the headline font as well, so `1lh` on the wrapper
-		// resolves from the heading typography and not from the surrounding body
-		// text.
-		const omitted = await mount(
-			<DBCustomHeading>
-				<h2>Omitted</h2>
-			</DBCustomHeading>
-		);
-		await expect(omitted).not.toHaveAttribute('data-paragraph-spacing');
-		expect(await readLogicalMargins(omitted)).toMatchObject({
-			blockEnd: '0px'
-		});
-		await omitted.unmount();
-
-		const enabled = await mount(
-			<DBCustomHeading paragraphSpacing>
-				<h2>Enabled</h2>
-			</DBCustomHeading>
-		);
-		const wrapperMargins = await readLogicalMargins(enabled);
-		const headingMargins = await readLogicalMargins(enabled.locator('h2'));
-		expect(Number.parseFloat(wrapperMargins.blockEnd)).toBeCloseTo(
-			Number.parseFloat(wrapperMargins.lineHeight),
-			2
-		);
-		// Proves the headline font landed on the wrapper, not just on the heading.
-		expect(wrapperMargins.lineHeight).toBe(headingMargins.lineHeight);
-	});
-
 	test('leaves a nested Heading component in charge of its own typography', async ({
 		mount
 	}) => {
 		// The child selectors exclude `.db-heading`, so a Heading component inside
 		// the wrapper never fights the wrapper's attributes.
 		const reference = await mount(
-			<DBHeadingH2 size="3xs">Ref</DBHeadingH2>
+			<DBHeadingH2 visualSize="h6">Ref</DBHeadingH2>
 		);
 		const referenceFontSize = await readFontSize(reference);
 		await reference.unmount();
 
 		const component = await mount(
-			<DBCustomHeading size="3xl">
-				<DBHeadingH2 size="3xs">Nested</DBHeadingH2>
+			<DBCustomHeading visualSize="h1">
+				<DBHeadingH2 visualSize="h6">Nested</DBHeadingH2>
 			</DBCustomHeading>
 		);
 		expect(await readFontSize(component.locator('h2'))).toBe(
@@ -658,13 +591,13 @@ test.describe('DBCustomHeading', () => {
 		// hosts only become flex items through `display: contents` and are never a
 		// DOM child of the wrapper, so the wrapper must not use a child selector.
 		const explicitReference = await mount(
-			<DBHeadingH2 size="3xl">Ref</DBHeadingH2>
+			<DBHeadingH2 visualSize="h1">Ref</DBHeadingH2>
 		);
 		const explicitFontSize = await readFontSize(explicitReference);
 		await explicitReference.unmount();
 
 		const explicit = await mount(
-			<DBCustomHeading size="3xl">
+			<DBCustomHeading visualSize="h1">
 				<div style={{ display: 'contents' }}>
 					<h2>Below a host</h2>
 				</div>
@@ -720,37 +653,6 @@ test.describe('DBCustomHeading', () => {
 		);
 		expect(await component.locator('h2 button').count()).toBe(0);
 	});
-
-	for (const alignment of alignments) {
-		test(`aligns the row with alignment ${alignment}`, async ({
-			mount
-		}) => {
-			const component = await mount(
-				<DBCustomHeading alignment={alignment}>
-					<h2>{alignment}</h2>
-				</DBCustomHeading>
-			);
-			await expect(component).toHaveAttribute(
-				'data-alignment',
-				alignment
-			);
-			const expectedJustify = {
-				start: 'normal',
-				center: 'center',
-				end: 'flex-end'
-			};
-			await expect(component).toHaveCSS(
-				'justify-content',
-				expectedJustify[alignment]
-			);
-			// `%heading-base` sets `text-align: start` on the nested heading, so the
-			// wrapper alignment has to be repeated there instead of inherited.
-			await expect(component.locator('h2')).toHaveCSS(
-				'text-align',
-				alignment
-			);
-		});
-	}
 
 	test('forwards native attributes and resolves ids', async ({ mount }) => {
 		const component = await mount(

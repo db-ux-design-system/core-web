@@ -1,5 +1,4 @@
 import type {
-	AlignmentProps,
 	EndSlotProps,
 	GlobalProps,
 	GlobalState,
@@ -8,19 +7,19 @@ import type {
 } from '../../shared/model';
 
 /** @public */
-export const HeadingSizeList = [
-	'3xl',
-	'2xl',
-	'xl',
-	'lg',
-	'md',
-	'sm',
-	'xs',
-	'2xs',
-	'3xs'
+export const HeadingVisualSizeList = [
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'p-small',
+	'p-medium',
+	'p-large'
 ] as const;
 /** @public */
-export type HeadingSizeType = (typeof HeadingSizeList)[number];
+export type HeadingVisualSizeType = (typeof HeadingVisualSizeList)[number];
 /** @public */
 export const HeadingFontWeightList = ['black', 'light'] as const;
 /** @public */
@@ -29,16 +28,12 @@ export type HeadingFontWeightType = (typeof HeadingFontWeightList)[number];
 /** @public */
 export type DBHeadingBaseDefaultProps = {
 	/** Sets the visual size independently from the fixed semantic level. */
-	size?: HeadingSizeType;
+	visualSize?: HeadingVisualSizeType;
 	/** Sets the headline font weight. Defaults to `black`. */
 	fontWeight?: HeadingFontWeightType;
-	/** Adds exactly `1lh` of margin at block-end when enabled. */
-	paragraphSpacing?: boolean | string;
 };
 /** @public */
-export type DBHeadingBaseProps = DBHeadingBaseDefaultProps &
-	GlobalProps &
-	AlignmentProps;
+export type DBHeadingBaseProps = DBHeadingBaseDefaultProps & GlobalProps;
 
 /**
  * Styling wrapper for a consumer-authored native heading plus optional sibling
@@ -56,7 +51,6 @@ export type DBCustomHeadingDefaultProps = DBHeadingBaseDefaultProps;
 /** @public */
 export type DBCustomHeadingProps = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	StartSlotProps &
 	EndSlotProps;
 
@@ -64,37 +58,31 @@ export type DBCustomHeadingProps = DBHeadingBaseDefaultProps &
 export type DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH1Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	TextProps;
 /** @public */
 export type DBHeadingH2DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH2Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	TextProps;
 /** @public */
 export type DBHeadingH3DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH3Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	TextProps;
 /** @public */
 export type DBHeadingH4DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH4Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	TextProps;
 /** @public */
 export type DBHeadingH5DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH5Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	TextProps;
 /** @public */
 export type DBHeadingH6DefaultProps = DBHeadingBaseDefaultProps;
 /** @public */ export type DBHeadingH6Props = DBHeadingBaseDefaultProps &
 	GlobalProps &
-	AlignmentProps &
 	TextProps;
 
 export type DBCustomHeadingDefaultState = {};

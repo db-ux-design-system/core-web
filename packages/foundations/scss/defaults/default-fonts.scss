@@ -3,6 +3,32 @@
 @use "../variables";
 @use "../fonts";
 
+$text-spacing: calc(1lh / 2);
+
+@mixin block-text-elements {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		@content;
+	}
+}
+
+body:not([data-text-spacing="true"]) {
+	@include block-text-elements {
+		margin-block: 0;
+	}
+}
+
+[data-text-spacing="true"] {
+	@include block-text-elements {
+		margin-block: $text-spacing;
+	}
+}
+
 small,
 code {
 	@extend %db-overwrite-font-size-sm;
@@ -12,7 +38,6 @@ code {
 	#{string.unquote($headline)} {
 		/* stylelint-disable custom-property-pattern */
 		font: var(--db-type-headline-#{string.unquote($size)});
-		margin-block: var(--db-spacing-fixed-#{string.unquote($size)});
 
 		&::before,
 		&::after {
@@ -39,10 +64,6 @@ code {
 	&[data-variant="regular"] {
 		font-weight: 400;
 	}
-}
-
-p {
-	margin-block: variables.$db-spacing-fixed-md;
 }
 
 [data-font="digital"] {

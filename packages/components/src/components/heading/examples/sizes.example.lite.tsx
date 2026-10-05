@@ -16,18 +16,16 @@ useMetadata({
 		'DBHeadingH2',
 		'DBHeadingH2'
 	],
-	// Prefixed on purpose: a name starting with a digit is not a valid JavaScript
-	// identifier and could not be used as a Storybook story export.
 	storybookNames: [
-		'Size 3xl',
-		'Size 2xl',
-		'Size xl',
-		'Size lg',
-		'Size md',
-		'Size sm',
-		'Size xs',
-		'Size 2xs',
-		'Size 3xs'
+		'Visual h1',
+		'Visual h2',
+		'Visual h3',
+		'Visual h4',
+		'Visual h5',
+		'Visual h6',
+		'Paragraph large',
+		'Paragraph medium',
+		'Paragraph small'
 	],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
@@ -35,15 +33,15 @@ useMetadata({
 export default function HeadingSizes() {
 	return (
 		<Fragment>
-			<DBHeadingH2 size="3xl">3xl</DBHeadingH2>
-			<DBHeadingH2 size="2xl">2xl</DBHeadingH2>
-			<DBHeadingH2 size="xl">xl</DBHeadingH2>
-			<DBHeadingH2 size="lg">lg</DBHeadingH2>
-			<DBHeadingH2 size="md">md</DBHeadingH2>
-			<DBHeadingH2 size="sm">sm</DBHeadingH2>
-			<DBHeadingH2 size="xs">xs</DBHeadingH2>
-			<DBHeadingH2 size="2xs">2xs</DBHeadingH2>
-			<DBHeadingH2 size="3xs">3xs</DBHeadingH2>
+			<DBHeadingH2 visualSize="h1">Visual h1</DBHeadingH2>
+			<DBHeadingH2 visualSize="h2">Visual h2</DBHeadingH2>
+			<DBHeadingH2 visualSize="h3">Visual h3</DBHeadingH2>
+			<DBHeadingH2 visualSize="h4">Visual h4</DBHeadingH2>
+			<DBHeadingH2 visualSize="h5">Visual h5</DBHeadingH2>
+			<DBHeadingH2 visualSize="h6">Visual h6</DBHeadingH2>
+			<DBHeadingH2 visualSize="p-large">Paragraph large</DBHeadingH2>
+			<DBHeadingH2 visualSize="p-medium">Paragraph medium</DBHeadingH2>
+			<DBHeadingH2 visualSize="p-small">Paragraph small</DBHeadingH2>
 		</Fragment>
 	);
 }

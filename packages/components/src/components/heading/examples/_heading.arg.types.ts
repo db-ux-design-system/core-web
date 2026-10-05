@@ -1,13 +1,21 @@
 import type { InputType } from 'storybook/internal/csf';
 
 export const StorybookHeadingArgTypes: Record<string, InputType> = {
-	size: {
+	visualSize: {
 		control: 'select',
-		options: ['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs', '3xs']
+		options: [
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6',
+			'p-small',
+			'p-medium',
+			'p-large'
+		]
 	},
 	fontWeight: { control: 'select', options: ['black', 'light'] },
-	alignment: { control: 'select', options: ['start', 'center', 'end'] },
-	paragraphSpacing: { control: 'boolean' },
 	children: { control: 'text' },
 	className: { control: 'text' },
 	id: { control: 'text' }

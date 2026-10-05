@@ -6,22 +6,26 @@ For CSS installation, see [`@db-ux/core-components`](https://www.npmjs.com/packa
 
 ### Native HTML and CSS class
 
-Use `db-heading` on a native heading and choose the element from the document hierarchy. Omitting `data-size` maps `h1` to `xl`, `h2` to `lg`, `h3` to `md`, `h4` to `sm`, `h5` to `xs`, and `h6` to `2xs`.
+Use `db-heading` on a native heading and choose the element from the document hierarchy. Omitting `data-visual-size` keeps each heading at its own level default (`h1` is the largest, `h6` the smallest).
 
 ```html
-<h1 class="db-heading">A level-one heading with the default xl size</h1>
-<h6 class="db-heading" data-size="2xl">A level-six heading displayed at 2xl</h6>
+<h1 class="db-heading">A level-one heading at its default size</h1>
+<h6 class="db-heading" data-visual-size="h1">
+	A level-six heading displayed as an h1
+</h6>
 ```
 
-`data-size` changes only visual size. Use `data-font-weight="light"`, logical `data-alignment="start|center|end"`, and `data-paragraph-spacing="true"` as needed. Density tokens provide responsive typography.
+`data-visual-size` changes only the visual size. It accepts a heading level (`h1`-`h6`) or a paragraph size (`p-small`, `p-medium`, `p-large`). Use `data-font-weight="light"` as needed. Density tokens provide responsive typography.
+
+Block-level text elements carry no `margin-block` by default. To add the default spacing of `1lh / 2` back, set `data-text-spacing="true"` on an ancestor (or the element itself).
 
 ### Web Components
 
 Choose `db-heading-h-1` through `db-heading-h-6` from the document hierarchy.
 
 ```html
-<db-heading-h-6 size="2xl" paragraph-spacing>
-	A level-six heading displayed at 2xl
+<db-heading-h-6 visual-size="h1">
+	A level-six heading displayed as an h1
 </db-heading-h-6>
 ```
 
@@ -44,7 +48,7 @@ Native headings accept standard attributes directly. On the custom elements, `ar
 Put a plain `h1`-`h6` in the default slot. It needs no `db-heading` class, the wrapper styles it. Content that belongs next to the heading goes into the `startSlot` and `endSlot`:
 
 ```html
-<db-custom-heading size="xl" font-weight="light">
+<db-custom-heading visual-size="h1" font-weight="light">
 	<h2>Installation</h2>
 	<db-button slot="endSlot" variant="ghost">More options</db-button>
 </db-custom-heading>
@@ -55,7 +59,7 @@ Note the casing: the Web Component slot names are `startSlot` and `endSlot`, whi
 The equivalent CSS-only markup has no slots. Write the elements in the order you want them, the wrapper lays them out as a row:
 
 ```html
-<div class="db-custom-heading" data-size="xl" data-font-weight="light">
+<div class="db-custom-heading" data-visual-size="h1" data-font-weight="light">
 	<h2>Installation</h2>
 	<button class="db-button" data-variant="ghost" type="button">
 		More options
@@ -65,6 +69,6 @@ The equivalent CSS-only markup has no slots. Write the elements in the order you
 
 Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.
 
-`size`, `font-weight` and `paragraph-spacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text. An unused slot adds no spacing.
+`visual-size` and `font-weight` behave exactly as on the Heading components, and omitting `visual-size` applies the same default level mapping. An unused slot adds no spacing.
 
 A nested heading that already carries `db-heading`, for example a Heading component, keeps its own typography and ignores the wrapper's styling attributes. Use one or the other, not both.
