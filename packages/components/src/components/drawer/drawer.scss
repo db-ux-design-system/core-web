@@ -108,18 +108,17 @@
 	// Native `<dialog>` reset, box styling and modal `::backdrop` tint.
 	@include dialog-components.base-reset("drawer");
 
-	// Drawer-only: `data-backdrop="invisible"` (not a dialog value) hides the
-	// native modal backdrop. The visible `::before` overlays below are the
-	// drawer's own; the dialog never renders a backdrop `::before`.
+	// BEGIN: backdrop ponyfill - a `::before` substitute for the native
+	// `::backdrop`, which only a modal (`showModal()`) dialog gets. It covers two
+	// cases: the permanent non-modal `variant="inside"` (opened via `show()`), and
+	// - paired with the `allow-discrete` block below - the Firefox close
+	// transition. Only the `[data-variant="inside"]` overlay is permanent; the
+	// rest is removable once `::backdrop` is available for every open path.
+	// Drawer-only: the dialog never renders a backdrop `::before`.
 	&[data-backdrop="invisible"]::backdrop {
 		background-color: transparent;
 	}
 
-	// Drawer-only: the `inside` variant is non-modal (opened via `show()`), so it
-	// has no native `::backdrop`. A persistent `::before` overlay provides its
-	// backdrop in browsers that support `overlay` (the `@supports not (overlay)`
-	// block below is skipped there). `data-variant` is drawer-only, so this never
-	// applied to the dialog.
 	&:not([data-position="absolute"])[data-variant="inside"]:not(
 			[data-backdrop="none"]
 		)::before {
@@ -139,6 +138,8 @@
 	&[data-backdrop="weak"]::before {
 		background-color: dialog-components.$backdrop-color-weak;
 	}
+
+	// END: backdrop ponyfill
 
 	// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
