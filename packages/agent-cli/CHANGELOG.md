@@ -1,5 +1,9 @@
 # @db-ux/agent-cli
 
+## 5.6.2
+
+No changes in this release.
+
 ## 5.6.1
 
 No changes in this release.
