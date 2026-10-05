@@ -86,7 +86,7 @@
     - paragraph: Auto-Top position content
     - paragraph: Auto-Top position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - button "Search"
   - button "Open navigation menu"
   - article: Test Test
@@ -98,7 +98,7 @@
     - paragraph: Fixed-Top position content
     - paragraph: Fixed-Top position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - button "Search"
   - button "Open navigation menu"
   - article: Test Test
@@ -110,7 +110,7 @@
     - paragraph: Auto-Left position content
     - paragraph: Auto-Left position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - button "Search"
   - button "Open navigation menu"
   - article: Test Test
@@ -122,7 +122,7 @@
     - paragraph: Fixed-Left position content
     - paragraph: Fixed-Left position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - link "Sub Navigation"
   - button "Search"
   - button "Open navigation menu"
