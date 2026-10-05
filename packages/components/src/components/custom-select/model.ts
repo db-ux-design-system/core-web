@@ -296,6 +296,7 @@ export type DBCustomSelectDefaultState = {
 	handleOpenByKeyboardFocus: () => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;
+	handleFieldKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
 	handleSearch: (event: any) => void;
 	handleOptionSelected: (_values: string[]) => void;

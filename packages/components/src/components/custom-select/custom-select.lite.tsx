@@ -469,6 +469,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleArrowDownUp(event);
 			}
 		},
+		handleFieldKeyboardPress: (event: any) => {
+			/* Keydown originating inside <details> (summary + dropdown) is already
+			   handled by the onKeyDown bound on <details> itself, which React
+			   re-binds every render so it reads the current _options/_searchValue.
+			   This wrapper-level listener only has to cover the tag remove buttons
+			   and clear button, which render as siblings of <details> and would
+			   otherwise never reach handleKeyboardPress (e.g. Escape on a tag). */
+			if (detailsRef?.contains(event.target)) {
+				return;
+			}
+
+			state.handleKeyboardPress(event);
+		},
 		handleClose: (
 			event?: InteractionEvent<HTMLDetailsElement> | void,
 			forceClose?: boolean
@@ -739,15 +752,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onUpdate(() => {
 		if (detailsRef) {
 			// The tags and clear button are siblings of <details> inside the
-			// wrapping .db-custom-select-form-field, so keydown (Escape) and
-			// focusout must be observed on the field wrapper - on <details> they
-			// would miss a tag remove button (Escape) and never fire when focus
-			// leaves the component from a tag (focusout keeping the dropdown open).
+			// wrapping .db-custom-select-form-field, so keydown (Escape on a tag)
+			// and focusout (focus leaving the component from a tag) must be
+			// observed on the field wrapper - on <details> they would miss those
+			// siblings. In-dropdown keyboard handling stays on <details> via its
+			// onKeyDown prop, so React re-binds a fresh closure each render and
+			// handleKeyboardPress reads the current _options/_searchValue instead
+			// of a stale snapshot captured once when this listener was attached.
 			const field =
 				detailsRef.closest('.db-custom-select-form-field') ??
 				detailsRef;
 			field.addEventListener('keydown', (event: KeyboardEvent) =>
-				state.handleKeyboardPress(event)
+				state.handleFieldKeyboardPress(event)
 			);
 			field.addEventListener('focusout', (event: FocusEvent) =>
 				state.handleClose(
@@ -1050,7 +1066,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					ref={detailsRef}
 					open={props.open}
 					/* @ts-expect-error details as an event named onToggle */
-					onToggle={(event) => state.handleDropdownToggle(event)}>
+					onToggle={(event) => state.handleDropdownToggle(event)}
+					onKeyDown={(event) => state.handleKeyboardPress(event)}>
 					<summary
 						id={state._summaryId}
 						class="db-custom-select-summary"
