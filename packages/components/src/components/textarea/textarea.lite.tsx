@@ -121,7 +121,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 				}
 			});
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value,
+						reset
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -147,7 +154,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value,
+						reset
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -287,7 +301,14 @@ export default function DBTextarea(props: DBTextareaProps) {
 				onFocus={(event: InteractionEvent<HTMLTextAreaElement>) =>
 					state.handleFocus(event)
 				}
-				value={props.value ?? state._value ?? ''}
+				value={useTarget({
+					// React needs the raw prop so the element stays a
+					// controlled component; falling back to state._value would
+					// pin it because state._value is never updated from user
+					// input in React.
+					react: props.value,
+					default: props.value ?? state._value ?? ''
+				})}
 				aria-describedby={props.ariaDescribedBy ?? state._descByIds}
 				placeholder={props.placeholder ?? DEFAULT_PLACEHOLDER}
 				rows={getNumber(props.rows, DEFAULT_ROWS)}
