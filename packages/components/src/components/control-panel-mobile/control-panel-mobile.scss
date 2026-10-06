@@ -58,6 +58,11 @@
 		}
 	}
 
+	.db-control-panel-actions-1,
+	.db-control-panel-actions-2{
+		flex-wrap: wrap;
+	}
+
 	.db-control-panel-mobile-drawer {
 		&:not(:has(.db-control-panel-actions-2)) {
 			.db-drawer-footer {
