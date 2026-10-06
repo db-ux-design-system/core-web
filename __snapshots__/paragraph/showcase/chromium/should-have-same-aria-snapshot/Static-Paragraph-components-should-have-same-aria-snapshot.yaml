@@ -1,0 +1,38 @@
+- main:
+  - heading "DBParagraph" [level=1]
+  - link "Sizes"
+  - paragraph: (Default) Inherited
+  - paragraph: Size lg
+  - paragraph: Size md
+  - paragraph: Size sm
+  - link "Font Weight"
+  - paragraph: Black
+  - paragraph: Regular
+  - link "Text Spacing"
+  - paragraph: Without text spacing the paragraphs sit directly on top of each other, because the paragraph margins are reset.
+  - paragraph: Spacing is the group's job, so nothing has to be set on the paragraphs themselves.
+  - paragraph: With text spacing every child gets half a line height above and below.
+  - paragraph: Two adjacent children are a full line height apart, and the group keeps half of one at its outer edges.
+  - link "Logical Alignment"
+  - paragraph: (Default) Start
+  - paragraph: Inherited by every paragraph
+  - paragraph: Center
+  - paragraph: Inherited by every paragraph
+  - paragraph: End
+  - paragraph: Inherited by every paragraph
+  - link "Mixed Content"
+  - paragraph: The gap belongs to the group, so a child does not have to be a paragraph to be spaced.
+  - text: A plain div without any of our classes, spaced like every other child.
+  - paragraph: A list keeps the block margin the browser gives it, and that margin adds to the gap below.
+  - list:
+    - listitem: Reset it to keep a single rhythm
+    - listitem: The list items are unaffected
+  - paragraph: Only our own components reset their block margin, so the group stays their single source of spacing.
+  - link "Nested Groups"
+  - paragraph: Start-aligned block
+  - paragraph: Alignment is set once per group and inherited by every paragraph in it.
+  - paragraph: Centred block
+  - paragraph: A nested group can differ from its parent, and the spacing of the outer group stays the same.
+  - link "Forwarded Attributes"
+  - paragraph: Native attributes land on the paragraph element.
+  - paragraph: Only announced by assistive technology.
