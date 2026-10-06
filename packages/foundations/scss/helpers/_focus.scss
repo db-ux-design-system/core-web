@@ -1,6 +1,11 @@
 @use "../variables";
 @use "../colors";
 
+// Room the focus ring needs outside the border box, for scroll containers to reserve.
+$db-focus-outline-reach: calc(
+	#{variables.$db-border-width-xs} + #{variables.$db-border-width-2xs}
+);
+
 @mixin get-focus-placeholder {
 	outline: #{variables.$db-border-width-2xs} solid
 		var(
