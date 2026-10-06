@@ -171,23 +171,35 @@ Two implementation details in `heading.scss` that should not be traded away:
   so the two models never produce an ambiguous result. They are descendant (not
   child) selectors so they still reach a heading behind a `display: contents`
   custom-element host.
-- **Only the headline font shorthand lands on the wrapper.** The wrapper gets the
-  matching headline typography (and therefore line height) via
-  `fonts.set-headline-size` / `fonts.set-font-size`; the full
-  `%db-overwrite-headline-size-*` / `%db-overwrite-font-size-*` placeholder
-  additionally sets icon custom properties and must stay on the nested heading,
-  otherwise those properties leak into sibling slot components. The nested heading
-  also needs the full override because user-agent styles for `h1`-`h6` block font
-  inheritance. Without an explicit `data-visual-size`, the wrapper picks the level
-  default via `:has(:where(h1))` etc.
+- **The typography always lands on the heading element, never on the
+  `.db-custom-heading` wrapper.** The `styled-heading()` selector helper targets
+  `.db-heading[data-visual-size="…"]` directly and, for the custom variant, the
+  nested heading inside the wrapper (`.db-custom-heading[data-visual-size="…"]
+:where(h1, h2, h3, h4, h5, h6):not(.db-heading)`) — the wrapper itself gets no
+  `%db-overwrite-*` placeholder. That is deliberate: `%db-overwrite-headline-size-*`
+  / `%db-overwrite-font-size-*` also set icon custom properties, so applying them to
+  the wrapper would leak those properties into sibling slot components. Keeping them
+  on the nested heading also satisfies the user-agent styles for `h1`-`h6`, which
+  block font inheritance from the wrapper. Without an explicit `data-visual-size`,
+  the level default is picked via `.db-custom-heading:not([data-visual-size])
+:has(:where(h1))` etc. — again landing the placeholder on the nested heading, not
+  the wrapper.
 
-`%heading-base` sets an explicit `text-align: start` on both `.db-heading` and the
-nested heading, so a consumer aligns a heading with `text-align` on the element
-itself rather than from an ancestor.
+The `.db-custom-heading, .db-heading` rule sets an explicit `text-align: start` on
+both the wrapper and `.db-heading`, so a consumer aligns a heading with
+`text-align` on the element itself rather than from an ancestor.
 
 The level-to-size mapping comes from `fonts.$headlines` in
 `@db-ux/core-foundations`, shared with the foundations'
-`defaults/default-fonts.scss` so the two cannot drift apart.
+`defaults/default-required.scss` so the two cannot drift apart. The bare-`h1`-`h6`
+headline typography loop lives in `default-required.scss` (the **required**
+defaults), not in the optional `default-fonts.scss`: the DB headline typography is
+mandatory, so native headings get it from the required stylesheet regardless of
+whether `default-fonts` is imported. `heading.scss` additionally runs that same
+loop for `.db-heading:not([data-visual-size])` (and the `:has()` custom-heading
+variant), so a default-size component heading keeps its level size and stays
+`data-density`-responsive even when only the component styles are loaded (test
+harness, or consumers importing just `@db-ux/core-components`).
 
 ### `useMetadata({ figma })` props must not be a chained identifier alias
 
