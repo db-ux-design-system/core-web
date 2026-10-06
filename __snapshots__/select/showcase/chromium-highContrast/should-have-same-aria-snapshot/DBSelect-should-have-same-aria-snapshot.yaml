@@ -286,3 +286,18 @@
     - option "Option 5"
   - text: showEmptyOption=false
   - status
+  - link "Interaction"
+  - text: Label
+  - combobox "Label":
+    - option [selected]
+    - option "Test1"
+    - option "Test2"
+  - text: Placeholder
+  - status
+  - text: Label
+  - combobox "Label":
+    - option [selected]
+    - option "Test1"
+    - option "Test2"
+  - text: Choose an option
+  - status

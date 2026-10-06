@@ -1,5 +1,0 @@
-- banner:
-  - button "Profile"
-  - button "Notification"
-  - button "Help"
-- main "Main": Content
