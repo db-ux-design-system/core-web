@@ -169,7 +169,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state._validity = props.validation ?? 'no-validation';
 			} else {
 				state.setDescById(
-					state._values?.length || state._selectedLabels
+					state._values?.length || state._selectedLabels?.length
 						? undefined
 						: state._placeholderId
 				);
@@ -835,7 +835,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		if (selectRef) {
 			state.handleValidation();
 		}
-	}, [state._values, selectRef]);
+	}, [state._values, selectRef, state._selectedLabels]);
 
 	onUpdate(() => {
 		if (selectRef) {
