@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, type Locator, test } from '@playwright/test';
 import { runInteractionTest } from '../default.ts';
 
 const path = '01/stack';
@@ -14,12 +14,13 @@ const focusOutlineReach = 6;
  edge the stack would clip at. A scroll container clips to its padding box, so
  anything less than the ring reach cuts the focus ring off.
  */
-const getRoomForFocusRing = async (stack: {
-	evaluate: (fn: (element: HTMLElement) => number) => Promise<number>;
-}) =>
+const getRoomForFocusRing = async (stack: Locator) =>
 	stack.evaluate((element: HTMLElement) => {
-		const child = element.firstElementChild as HTMLElement | null;
-		if (!child) return -1;
+		const child = element.firstElementChild;
+		if (!(child instanceof HTMLElement)) {
+			return -1;
+		}
+
 		const stackRect = element.getBoundingClientRect();
 		const childRect = child.getBoundingClientRect();
 		const styles = getComputedStyle(element);
