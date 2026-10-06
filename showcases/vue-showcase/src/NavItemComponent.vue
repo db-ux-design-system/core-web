@@ -3,6 +3,7 @@ import {
 	DBControlPanelNavigationItem,
 	DBControlPanelNavigationItemGroup
 } from "@components";
+import { defineProps } from "vue";
 import { type NavItem } from "./utils/navigation-items";
 
 defineProps<{
