@@ -135,8 +135,6 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	speak: never; // Hiding icon from screenreaders
 	text-transform: none;
 	overflow: clip;
-
-	// Baseline from the border box, not the glyph metrics: prevents a layout shift when the icon font replaces the fallback (webkit), see https://github.com/db-ux-design-system/core-web/issues/5558
 	contain: layout;
 	vertical-align: var(--db-icon-vertical-align, middle);
 	/* stylelint-disable-next-line db-ux/use-sizing */
