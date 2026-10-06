@@ -386,9 +386,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		@include helpers.divider("top");
 	}
 
-
 	.db-control-panel-actions-1,
-	.db-control-panel-actions-2{
+	.db-control-panel-actions-2 {
 		flex-wrap: wrap;
 	}
 
