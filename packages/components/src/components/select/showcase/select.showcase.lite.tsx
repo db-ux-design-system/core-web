@@ -7,6 +7,7 @@ import SelectDensity from '../examples/density.example.lite';
 import SelectDisabled from '../examples/disabled.example.lite';
 import SelectExamplesFloatingLabel from '../examples/examples-floating-label.example.lite';
 import SelectExamplesShowEmptyOption from '../examples/examples-show-empty-option.example.lite';
+import SelectInteraction from '../examples/interaction.example.lite';
 import SelectOptionGroups from '../examples/option-groups.example.lite';
 import SelectRequired from '../examples/required.example.lite';
 import SelectShowLabel from '../examples/show-label.example.lite';
@@ -84,6 +85,11 @@ export default function SelectShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples showEmptyOption property">
 				<CardWrapperShowcase>
 					<SelectExamplesShowEmptyOption />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<SelectInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

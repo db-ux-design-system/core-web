@@ -10,5 +10,11 @@ test.describe('DBControlPanelDesktop', () => {
 		}
 	});
 
-	getDefaultScreenshotTest({ path });
+	// The Interaction example renders navigation item groups whose popover
+	// menus are position: absolute; visibility: hidden until their placement
+	// JS runs. While in flow they inflate the measured scrollHeight, so the
+	// dynamically-sized viewport flips by ~90px between runs. Pin a fixed
+	// height matching the settled page (200px header + 3685) so the viewport
+	// is deterministic, as header/divider/tooltip do.
+	getDefaultScreenshotTest({ path, fixedHeight: 3685 });
 });
