@@ -5,6 +5,8 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import TextGroupAlignment from '../examples/alignment.example.lite';
 import ParagraphAttributeForwarding from '../examples/attribute-forwarding.example.lite';
 import ParagraphFontWeight from '../examples/font-weight.example.lite';
+import TextGroupMixedContent from '../examples/mixed-content.example.lite';
+import TextGroupNestedGroups from '../examples/nested-groups.example.lite';
 import ParagraphSizes from '../examples/sizes.example.lite';
 import TextGroupTextSpacing from '../examples/text-spacing.example.lite';
 
@@ -32,6 +34,16 @@ export default function ParagraphShowcase(props: PatternhubProps) {
 				<LinkWrapperShowcase exampleName="Logical Alignment">
 					<CardWrapperShowcase>
 						<TextGroupAlignment />
+					</CardWrapperShowcase>
+				</LinkWrapperShowcase>
+				<LinkWrapperShowcase exampleName="Mixed Content">
+					<CardWrapperShowcase>
+						<TextGroupMixedContent />
+					</CardWrapperShowcase>
+				</LinkWrapperShowcase>
+				<LinkWrapperShowcase exampleName="Nested Groups">
+					<CardWrapperShowcase>
+						<TextGroupNestedGroups />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 				<LinkWrapperShowcase exampleName="Forwarded Attributes">

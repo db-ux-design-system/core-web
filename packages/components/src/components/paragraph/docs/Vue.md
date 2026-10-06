@@ -42,7 +42,7 @@ The value follows the computed line height rather than a spacing token, the same
 
 Spacing sits on the group as `row-gap` and `padding-block`, never as a margin on the children, which is what makes it behave identically in all frameworks. `DBParagraph` additionally resets the `margin-block` the foundations give a `p`, so the group stays the only source of spacing. The price is that a standalone `DBParagraph` and a group without `text-spacing` render flush.
 
-The group is intended for paragraphs. Other children are laid out and spaced the same way, since the gap belongs to the container, but a heading is better placed outside the group where it can use its own `paragraph-spacing`.
+The group is intended for paragraphs, but since the gap belongs to the container it reaches every child, including one that carries none of our classes. Only `DBParagraph` resets its own block margin, so a foreign element that brings one — a `ul` for instance — adds it to the gap. Set `margin-block: 0` on such a child to keep a single rhythm. A heading is better placed outside the group, where it can use its own `paragraph-spacing`.
 
 ### Alignment
 

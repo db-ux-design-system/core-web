@@ -51,7 +51,7 @@ The value follows the computed line height rather than a spacing token, the same
 
 Spacing sits on the group as `row-gap` and `padding-block`, never as a margin on the children, which is what makes it behave identically in all frameworks: the custom element hosts of the Angular and Web Components output are `display: contents` and would swallow a child margin. `db-paragraph` additionally resets the `margin-block` the foundations' default styles give a `p`, so the group stays the only source of spacing. The price is that a standalone `db-paragraph` and a group without `text-spacing` render flush.
 
-The group is intended for paragraphs. Other content is laid out and spaced just the same, since the gap belongs to the container, but a heading is better placed outside the group where it can use its own `paragraph-spacing`.
+The group is intended for paragraphs, but since the gap belongs to the container it reaches every child, including one that carries none of our classes. Only `db-paragraph` resets its own block margin, so a foreign element that brings one — a `ul` for instance — adds it to the gap. Set `margin-block: 0` on such a child to keep a single rhythm. A heading is better placed outside the group, where it can use its own `paragraph-spacing`.
 
 ### Alignment
 
