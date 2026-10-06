@@ -10,25 +10,17 @@ const path = '01/stack';
 const focusOutlineReach = 6;
 
 /**
- Measures the smallest distance between the first child's border box and the
- edge the stack would clip at. A scroll container clips to its padding box, so
- anything less than the ring reach cuts the focus ring off.
+ Smallest amount the stack reserves inside its clip. Read from the stack rather
+ than measured against a child, because the first flex child differs per output
+ (the Stencil output nests a `db-button` host there), which makes child
+ geometry an unreliable yardstick across showcases.
  */
-const getRoomForFocusRing = async (stack: Locator) =>
+const getReservedSpace = async (stack: Locator) =>
 	stack.evaluate((element: HTMLElement) => {
-		const child = element.firstElementChild;
-		if (!(child instanceof HTMLElement)) {
-			return -1;
-		}
-
-		const stackRect = element.getBoundingClientRect();
-		const childRect = child.getBoundingClientRect();
 		const styles = getComputedStyle(element);
 		return Math.min(
-			childRect.top -
-				(stackRect.top + Number.parseFloat(styles.borderTopWidth)),
-			childRect.left -
-				(stackRect.left + Number.parseFloat(styles.borderLeftWidth))
+			Number.parseFloat(styles.paddingTop),
+			Number.parseFloat(styles.paddingLeft)
 		);
 	});
 
@@ -58,10 +50,12 @@ test.describe('DBStack', () => {
 			const stack = content.getByTestId('wrap-stack');
 
 			// Wrapping overflows along the cross axis by design, so `wrap`
-			// keeps the scroll container that holds the wrapped content - and
-			// has to reserve the ring space the clip would otherwise eat.
+			// keeps the scroll container that holds the wrapped content. A
+			// scroll container clips to its padding box, so the stack has to
+			// reserve the room the focus ring of its children needs outside
+			// their border box - otherwise #7964 returns through `wrap`.
 			await expect(stack).toHaveCSS('overflow', 'auto');
-			expect(await getRoomForFocusRing(stack)).toBeGreaterThanOrEqual(
+			expect(await getReservedSpace(stack)).toBeGreaterThanOrEqual(
 				focusOutlineReach
 			);
 		}
