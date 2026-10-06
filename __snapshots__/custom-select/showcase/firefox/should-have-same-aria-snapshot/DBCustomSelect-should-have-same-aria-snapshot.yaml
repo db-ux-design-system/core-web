@@ -1693,10 +1693,6 @@
   - status
   - text: Colors
   - group:
-    - text: Blue Color, Green Color Blue Color
-    - button "Remove Blue Color"
-    - text: Green Color
-    - button "Remove Green Color"
     - article:
       - group "Colors":
         - list:
@@ -1709,6 +1705,10 @@
           - listitem:
             - checkbox "Green Color" [checked]
             - text: Green Color
+  - text: Blue Color, Green Color Blue Color
+  - button "Remove Blue Color"
+  - text: Green Color
+  - button "Remove Green Color"
   - button "Clear selection"
   - status
   - button "Set values"
@@ -1717,7 +1717,6 @@
   - button "Reset to empty array"
   - text: Values reset
   - group:
-    - text: Option 1, Option 2
     - article:
       - group "Values reset":
         - list:
@@ -1727,5 +1726,6 @@
           - listitem:
             - checkbox "Option 2" [checked]
             - text: Option 2
+  - text: Option 1, Option 2
   - button "Clear selection"
   - status
