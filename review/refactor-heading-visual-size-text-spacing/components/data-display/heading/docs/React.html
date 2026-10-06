@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/css/39c20aa86a3ad0ab.css" as="style"/><link rel="stylesheet" href="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/css/39c20aa86a3ad0ab.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/chunks/webpack-89d9914a877bd0e6.js" defer=""></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/chunks/framework-e8a7da49d98b8907.js" defer=""></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/chunks/main-677871bb0bebb5c0.js" defer=""></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/chunks/pages/_app-e7a361e57f63ed4e.js" defer=""></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/chunks/pages/components/data-display/heading/docs/React-f19b437ff33ac7fa.js" defer=""></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/vfoJD4uDFCpTngragHcUx/_buildManifest.js" defer=""></script><script src="/core-web/review/refactor-heading-visual-size-text-spacing/_next/static/vfoJD4uDFCpTngragHcUx/_ssgManifest.js" defer=""></script></head><body data-text-spacing="true"><div id="__next"><h2 id="react">React<a class="header-link" href="/core-web/review/refactor-heading-visual-size-text-spacing/components/data-display/heading/docs/React?current=react"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>react<!-- --> anchor link</a></h2>
+<blockquote>
+<p><strong>Beta:</strong> The Heading components are available as beta components. Their API and visual design may change before the stable release.</p>
+</blockquote>
+<p>For installation and configuration, see <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/react-core-components"><code>@db-ux/react-core-components</code></a>.</p>
+<h3 id="semantics-and-visual-size">Semantics and visual size<a class="header-link" href="/core-web/review/refactor-heading-visual-size-text-spacing/components/data-display/heading/docs/React?current=semantics-and-visual-size"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>semantics-and-visual-size<!-- --> anchor link</a></h3>
+<p>Choose <code>DBHeadingH1</code> through <code>DBHeadingH6</code> from the document hierarchy, never from the desired appearance. A heading-level <code>visualSize</code> (<code>h1</code>-<code>h6</code>) changes the visual headline size; a paragraph <code>visualSize</code> (<code>p-small</code>, <code>p-medium</code>, <code>p-large</code>) switches the heading to the matching body typography (face, size and weight) so it reads as running text. Without <code>visualSize</code>, each heading keeps its own level default (<code>h1</code> is the largest, <code>h6</code> the smallest).</p>
+<pre><code class="language-tsx">import { DBHeadingH6 } from &quot;@db-ux/react-core-components&quot;;
+
+export const ArticleHeading = () =&gt; (
+	&lt;DBHeadingH6 visualSize=&quot;h1&quot;&gt;
+		A level-six heading displayed as an h1
+	&lt;/DBHeadingH6&gt;
+);
+</code></pre>
+<p><code>visualSize</code> accepts a heading level (<code>h1</code>-<code>h6</code>) or a paragraph size (<code>p-small</code>, <code>p-medium</code>, <code>p-large</code>) and works with every semantic level. <code>fontWeight</code> accepts <code>black</code> (default) and <code>light</code>. Density tokens provide responsive typography.</p>
+<pre><code class="language-tsx">&lt;DBHeadingH2 fontWeight=&quot;light&quot; data-density=&quot;expressive&quot;&gt;
+	Responsive heading
+&lt;/DBHeadingH2&gt;
+</code></pre>
+<p>Block-level text elements carry no <code>margin-block</code> by default. To add the default spacing of <code>1lh / 2</code> back, set <code>data-text-spacing=&quot;true&quot;</code> on an ancestor (or the element itself).</p>
+<h3 id="content-attributes-and-accessibility">Content, attributes and accessibility<a class="header-link" href="/core-web/review/refactor-heading-visual-size-text-spacing/components/data-display/heading/docs/React?current=content-attributes-and-accessibility"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>content-attributes-and-accessibility<!-- --> anchor link</a></h3>
+<p>Children must be phrasing content and define the accessible heading name. Keep decorative children in their intended order and mark them with <code>aria-hidden=&quot;true&quot;</code>. Avoid interactive controls inside headings unless the interaction receives a dedicated accessibility review.</p>
+<pre><code class="language-tsx">&lt;DBHeadingH2 id=&quot;account-heading&quot; data-track-id=&quot;account&quot;&gt;
+	&lt;span aria-hidden=&quot;true&quot;&gt;[&lt;/span&gt;Account&lt;span aria-hidden=&quot;true&quot;&gt;]&lt;/span&gt;
+&lt;/DBHeadingH2&gt;
+</code></pre>
+<p>Native <code>aria-*</code>, <code>data-*</code>, <code>title</code>, <code>style</code>, <code>className</code>, and <code>id</code> attributes are forwarded to the native heading.</p>
+<h3 id="heading-with-sibling-content">Heading with sibling content<a class="header-link" href="/core-web/review/refactor-heading-visual-size-text-spacing/components/data-display/heading/docs/React?current=heading-with-sibling-content"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>heading-with-sibling-content<!-- --> anchor link</a></h3>
+<p><code>DBCustomHeading</code> is the styling wrapper for a heading you write yourself, optionally next to sibling content. It relates to the Heading components the same way <code>DBCustomButton</code> relates to <code>DBButton</code>: it renders a plain <code>div</code> with no semantics of its own, you bring the native element, and the wrapper applies the styling.</p>
+<p>The children are the heading. Content that belongs next to it goes into <code>startSlot</code> or <code>endSlot</code>, which render before and after the children:</p>
+<pre><code class="language-tsx">import { DBButton, DBCustomHeading } from &quot;@db-ux/react-core-components&quot;;
+
+export const SectionHeading = () =&gt; (
+	&lt;DBCustomHeading
+		visualSize=&quot;h1&quot;
+		fontWeight=&quot;light&quot;
+		endSlot={&lt;DBButton variant=&quot;ghost&quot;&gt;More options&lt;/DBButton&gt;}
+	&gt;
+		&lt;h2&gt;Installation&lt;/h2&gt;
+	&lt;/DBCustomHeading&gt;
+);
+</code></pre>
+<p>The nested heading needs no class of its own, the wrapper styles it. Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.</p>
+<p><code>visualSize</code> and <code>fontWeight</code> behave exactly as on the Heading components, and omitting <code>visualSize</code> applies the same default level mapping. An unused slot adds no spacing.</p>
+<p>A nested heading that already carries the <code>db-heading</code> class, for example a Heading component, keeps its own typography and ignores the wrapper&#x27;s properties. Use one or the other, not both.</p>
+<p><code>id</code>, <code>className</code>, <code>data-*</code>, <code>title</code> and <code>style</code> are forwarded to the wrapper <code>div</code>.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/heading/docs/React","query":{},"buildId":"vfoJD4uDFCpTngragHcUx","assetPrefix":"/core-web/review/refactor-heading-visual-size-text-spacing","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
