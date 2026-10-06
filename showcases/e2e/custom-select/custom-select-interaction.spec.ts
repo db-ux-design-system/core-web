@@ -40,13 +40,14 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			await expect(selectedLabel).not.toContainText('Option 1');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Space');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -58,14 +59,15 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			await expect(selectedLabel).not.toContainText('Option 1');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -113,6 +115,7 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('select-all-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -120,7 +123,7 @@ test.describe('DBCustomSelect', () => {
 			await page.waitForTimeout(1000); // Wait for focus to apply
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText(
+			await expect(selectedLabel).toContainText(
 				'Option 1, Option 2, Option 3, Option 4, Option 5'
 			);
 		}
@@ -134,13 +137,14 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			await expect(selectedLabel).not.toContainText('Option 1');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Enter');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 			// For single select, the dropdown closes after Enter.
 			await expect(select.locator('details')).not.toHaveAttribute('open');
 		}
@@ -154,7 +158,8 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			await expect(selectedLabel).not.toContainText('Option 1');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -163,7 +168,7 @@ test.describe('DBCustomSelect', () => {
 			// For multiple select, the dropdown stays open after Enter.
 			await expect(select.locator('details')).toHaveAttribute('open');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -175,6 +180,7 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -189,7 +195,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 2');
+			await expect(selectedLabel).toContainText('Option 2');
 		}
 	});
 
@@ -201,6 +207,7 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -215,7 +222,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 3');
+			await expect(selectedLabel).toContainText('Option 3');
 		}
 	});
 
@@ -284,27 +291,27 @@ test.describe('DBCustomSelect', () => {
 		path,
 		example: 'Interaction',
 		async run({ content }) {
-			const summary = content
+			const selectedLabel = content
 				.getByTestId('values-reset-select')
-				.locator('summary');
+				.locator('.db-custom-select-label');
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 
 			await content.getByTestId('values-reset-null').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).not.toContainText('Option 1');
+			await expect(selectedLabel).not.toContainText('Option 2');
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-undefined').click();
-			await expect(summary).not.toContainText('Option 1');
+			await expect(selectedLabel).not.toContainText('Option 1');
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-empty').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).not.toContainText('Option 1');
+			await expect(selectedLabel).not.toContainText('Option 2');
 		}
 	});
 
@@ -318,7 +325,7 @@ test.describe('DBCustomSelect', () => {
 			project: () => !(process.env.showcase ?? '').startsWith('react')
 		},
 		async run({ content }) {
-			const summary = content.locator('summary');
+			const selectedLabel = content.locator('.db-custom-select-label');
 			const tags = content.locator('.db-tag');
 			const optionInputs = content.locator(
 				'.db-custom-select-list-item input[value]'
@@ -334,7 +341,7 @@ test.describe('DBCustomSelect', () => {
 			});
 			const selectionReadout = content.getByText('Selections by user: 0');
 
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).not.toContainText('Germany');
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -348,8 +355,8 @@ test.describe('DBCustomSelect', () => {
 
 			// Options and values change in the same render: the reported bug.
 			await loadOtherOptions.click();
-			await expect(summary).toContainText('Switzerland');
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toContainText('Switzerland');
+			await expect(selectedLabel).not.toContainText('Germany');
 			await expect(tags).toHaveCount(1);
 			await expect(tags).toContainText('Switzerland');
 			await expect(optionInputs).toHaveCount(2);
@@ -357,13 +364,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(content.locator('input[value="de"]')).toHaveCount(0);
 
 			await clearOptionsAndSelection.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).not.toContainText('Switzerland');
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(0);
 			await expect(selectionReadout).toBeVisible();
 
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).not.toContainText('Germany');
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -373,7 +380,7 @@ test.describe('DBCustomSelect', () => {
 
 			await loadOtherOptions.click();
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).not.toContainText('Switzerland');
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
