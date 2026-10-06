@@ -48,3 +48,5 @@
       - text: Lorem ipsum dolor sit amet.
       - link "Link 1"
       - link "Link 2"
+  - link "Interaction"
+  - button "Open"

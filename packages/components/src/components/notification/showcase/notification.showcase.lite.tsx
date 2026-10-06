@@ -7,6 +7,7 @@ import NotificationDensity from '../examples/density.example.lite';
 import NotificationExamplesVariantDocked from '../examples/examples-variant-docked.example.lite';
 import NotificationExamplesVariantOverlay from '../examples/examples-variant-overlay.example.lite';
 import NotificationExamplesVariantStandalone from '../examples/examples-variant-standalone.example.lite';
+import NotificationInteraction from '../examples/interaction.example.lite';
 import NotificationLinkVariant from '../examples/link-variant.example.lite';
 import NotificationSemantic from '../examples/semantic.example.lite';
 import NotificationShowHeadline from '../examples/show-headline.example.lite';
@@ -78,6 +79,11 @@ export default function NotificationShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples - Variant:Overlay">
 				<CardWrapperShowcase>
 					<NotificationExamplesVariantOverlay />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<NotificationInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
