@@ -1,5 +1,12 @@
 # @db-ux/core-components
 
+## 5.6.2
+
+### Patch Changes
+
+- fix(DBControlPanelNavigationItemGroup): correct drilldown and popover z-index layering - [see commit 1e855b9](https://github.com/db-ux-design-system/core-web/commit/1e855b9cc207d82458bb27033f642a79f480b7ee)
+- fix(DBShellSubNavigation): keep the left border above the drilldown navigation overlay - [see commit 8992130](https://github.com/db-ux-design-system/core-web/commit/89921307a2f5fe928302d3d9eab0cbc9f11b0c4a)
+
 ## 5.6.1
 
 ### Patch Changes
