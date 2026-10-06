@@ -738,6 +738,25 @@ const vuePlacementShapes: PlacementShape[] = [
 		component: 'DBDialogHeader',
 		slot: 'header',
 		reports: true
+	},
+	{
+		// The #header template belongs to the intervening SomeWrapper component,
+		// not to the outer DBDialog, so the header lands in SomeWrapper's slot -
+		// it must be reported for DBDialog rather than accepted.
+		shape: "sub-component in another component's #header slot nested in the dialog",
+		code: '<template><DBDialog><SomeWrapper><template #header><DBDialogHeader>Title</DBDialogHeader></template></SomeWrapper></DBDialog></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
+	},
+	{
+		// A DBDialogHeader in a foreign component's #header slot with no DBDialog
+		// ancestor at all is likewise reported.
+		shape: "sub-component in another component's #header slot, no dialog ancestor",
+		code: '<template><SomeWrapper><template #header><DBDialogHeader>Title</DBDialogHeader></template></SomeWrapper></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
 	}
 ];
 
