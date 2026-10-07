@@ -65,6 +65,7 @@ jobs:
           pnpm --filter angular-storybook run build
           pnpm --filter react-storybook run build
           pnpm --filter vue-storybook run build
+          pnpm --filter stencil-storybook run build
           pnpm --filter html-storybook run build
 
       - name: ⏫ Upload composition-storybook
@@ -90,6 +91,12 @@ jobs:
         with:
           name: db-ux-vue-storybook
           path: build-storybooks/vue-storybook
+
+      - name: ⏫ Upload stencil-storybook
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: db-ux-stencil-storybook
+          path: build-storybooks/stencil-storybook
 
       - name: ⏫ Upload html-storybook
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
