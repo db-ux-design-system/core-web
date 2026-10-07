@@ -79,6 +79,41 @@ You can combine both weight and variant attributes for precise icon control:
 
 You could use the CSS Custom Property `--db-icon-color` to overwrite the icons color, be it icon fonts or when using the SVG files directly. Or `--db-icon-pulse-color` for the illustrative icons pulse color.
 
+### Passing parameters into SVG icons (`link-parameters`)
+
+How much of the embedding page's CSS reaches an SVG icon depends on _how_ you reference it:
+
+- **Inline SVG and `<use href>`**: the referenced content is cloned into the host document (as a shadow tree) and the style cascade runs on it from the `<use>` site. Inherited values such as `currentColor` and CSS Custom Properties (e.g. `--db-icon-color`) therefore reach the icon, so `fill: var(--db-icon-color, currentColor)` just works — no `link-parameters` needed.
+- **`<img>`, `background-image: url(…)`, `<object>`**: the SVG is loaded as an isolated, independent document. Nothing cascades in from the embedding page, so neither `currentColor` nor custom properties are visible inside the icon.
+
+`link-parameters` closes that second gap. Our SVG icon files declare their customizable values as [custom environment variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env) using the `env()` function, for example `fill: env(--db-icon-color, currentColor);`. The second argument is a fallback that keeps the icon rendering correctly when no value is passed in.
+
+From the embedding page you supply those values with the [`link-parameters` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/link-parameters) (or the equivalent `param()` directive inside the URL fragment / `url()` modifier). The parameter name matches the environment variable the SVG reads:
+
+```html
+<img
+	src="@db-ux/db-theme-icons/.../user.svg"
+	alt="user"
+	class="icon"
+	width="…"
+	height="…"
+/>
+```
+
+```css
+.icon {
+	/* Pass the color into the referenced SVG's env(--db-icon-color) */
+	link-parameters: param(
+		--db-icon-color,
+		var(--db-adaptive-icon-color, currentColor)
+	);
+}
+```
+
+This gives isolated SVG icons (`<img>`, `background-image`, `<object>`) the same color customization that `--db-icon-color` already provides for the icon fonts, for inline SVGs, and for `<use href>` references.
+
+> **Progressive enhancement:** `link-parameters` is a newer web feature that is not yet available in all evergreen browsers (see [Browser Support](./BrowserSupport.md)). Because the `env()` declarations in the SVG files always carry a fallback value, icons stay correctly colored in browsers without support — the custom color is simply applied once the feature is available.
+
 ## Custom Icons
 
 If you have custom icons and want to use them for foundations and/or in components, you need to generate a **woff2** file.
