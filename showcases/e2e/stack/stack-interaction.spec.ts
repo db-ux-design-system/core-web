@@ -2,6 +2,7 @@ import { expect, type Locator, test } from '@playwright/test';
 import { runInteractionTest } from '../default.ts';
 
 const path = '01/stack';
+const example = 'Focus Container';
 
 /**
  Space the focus ring needs outside a child's border box: `outline-offset`
@@ -10,9 +11,9 @@ const path = '01/stack';
 const focusOutlineReach = 6;
 
 /**
- Smallest amount the stack reserves inside its clip. Read from the stack rather
- than measured against a child, because the first flex child differs per output
- (the Stencil output nests a `db-button` host there), which makes child
+ Smallest amount a stack reserves inside its clip. Read from the stack itself
+ rather than measured against a child, because the first flex child differs per
+ output (the Stencil output nests a `db-button` host there), which makes child
  geometry an unreliable yardstick across showcases.
  */
 const getReservedSpace = async (stack: Locator) =>
@@ -28,13 +29,9 @@ test.describe('DBStack', () => {
 	runInteractionTest({
 		title: 'should not clip the focus ring of its children',
 		path,
-		example: 'Interaction',
+		example,
 		async run({ content }) {
-			// Regression guard for
-			// https://github.com/db-ux-design-system/core-web/issues/7964:
-			// a plain stack must not become a scroll container, otherwise it
-			// clips to its padding box and cuts off the focus ring of every
-			// child flush with that edge.
+			// A scroll container would clip the focus ring of its children.
 			await expect(content.getByTestId('default-stack')).toHaveCSS(
 				'overflow',
 				'visible'
@@ -43,17 +40,26 @@ test.describe('DBStack', () => {
 	});
 
 	runInteractionTest({
-		title: 'should keep room for the focus ring while wrapping',
+		title: 'should not bring any spacing of its own while wrapping',
 		path,
-		example: 'Interaction',
+		example,
 		async run({ content }) {
 			const stack = content.getByTestId('wrap-stack');
 
-			// Wrapping overflows along the cross axis by design, so `wrap`
-			// keeps the scroll container that holds the wrapped content. A
-			// scroll container clips to its padding box, so the stack has to
-			// reserve the room the focus ring of its children needs outside
-			// their border box - otherwise #7964 returns through `wrap`.
+			// A stack holds wrapped items but stays free of spacings itself.
+			await expect(stack).toHaveCSS('overflow', 'auto');
+			expect(await getReservedSpace(stack)).toBe(0);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should reserve room for the focus ring as a focus container',
+		path,
+		example,
+		async run({ content }) {
+			const stack = content.getByTestId('focus-container-stack');
+
+			// Opt-in for the clipping combination: a clip plus focusable children.
 			await expect(stack).toHaveCSS('overflow', 'auto');
 			expect(await getReservedSpace(stack)).toBeGreaterThanOrEqual(
 				focusOutlineReach

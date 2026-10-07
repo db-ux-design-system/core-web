@@ -68,15 +68,7 @@ $stack-gaps: (
 	}
 }
 
-// No `overflow` on the stack itself. Any value other than `visible` makes it a
-// scroll container, which clips to its padding box and so cuts off the focus
-// ring of its children: the ring sits `$db-focus-outline-reach` outside their
-// border box and outlines are not part of the scrollable overflow region. The
-// stack has no padding, so every child is flush with that edge and a stack
-// sized to its content hid the ring entirely. See #7964.
-
-// The clip therefore only exists where a feature needs it - see `data-wrap`
-// below - and wherever it exists, the ring space is reserved along with it.
+// No `overflow` here: it would clip the focus ring of the children.
 %default-stack {
 	@include helpers.display(flex);
 
@@ -101,19 +93,8 @@ $stack-gaps: (
 	&[data-wrap="true"] {
 		flex-wrap: wrap;
 
-		// Wrapping moves items onto a new line along the cross axis, which
-		// overflows the stack by design. Without a scroll container that
-		// content would be painted outside the stack and bleed into its
-		// surroundings, so `wrap` keeps the clip - and reserves the room the
-		// focus ring of its children needs outside their border box, which a
-		// scroll container would otherwise cut off. The negative margin
-		// compensates the padding so the stack stays visually in place.
-		// Same pattern as `.db-tab-list` in `tabs.scss`.
+		// Keeps wrapped items inside; `data-focus-container` adds ring space.
 		overflow: auto;
-		// stylelint-disable-next-line db-ux/use-spacings
-		padding: helpers.$db-focus-outline-reach;
-		// stylelint-disable-next-line db-ux/use-spacings
-		margin: calc(-1 * #{helpers.$db-focus-outline-reach});
 	}
 
 	@include get-stack-alignments;

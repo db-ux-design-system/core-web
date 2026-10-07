@@ -26,3 +26,15 @@ $db-focus-outline-reach: calc(
 		}
 	}
 }
+
+// Reserves ring space inside a clipping container, margin compensating it.
+@mixin get-focus-container {
+	// stylelint-disable-next-line db-ux/use-spacings
+	padding: $db-focus-outline-reach;
+	// stylelint-disable-next-line db-ux/use-spacings
+	margin: calc(-1 * #{$db-focus-outline-reach});
+}
+
+%focus-container-placeholder {
+	@include get-focus-container;
+}

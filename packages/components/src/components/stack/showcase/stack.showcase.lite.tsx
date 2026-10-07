@@ -6,8 +6,8 @@ import StackAlignmentColumn from '../examples/alignment-column.example.lite';
 import StackAlignmentRow from '../examples/alignment-row.example.lite';
 import StackDensity from '../examples/density.example.lite';
 import StackDirection from '../examples/direction.example.lite';
+import StackFocusContainer from '../examples/focus-container.example.lite';
 import StackGap from '../examples/gap.example.lite';
-import StackInteraction from '../examples/interaction.example.lite';
 import StackJustifyContentColumn from '../examples/justify-content-column.example.lite';
 import StackJustifyContentRow from '../examples/justify-content-row.example.lite';
 import StackVariant from '../examples/variant.example.lite';
@@ -63,9 +63,9 @@ export default function StackShowcase(props: PatternhubProps) {
 					<StackJustifyContentRow />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Interaction">
+			<LinkWrapperShowcase exampleName="Focus Container">
 				<CardWrapperShowcase>
-					<StackInteraction />
+					<StackFocusContainer />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
