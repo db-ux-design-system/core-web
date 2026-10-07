@@ -248,8 +248,8 @@
 				"isHiddenInMenu": true
 			},
 			{
-				"label": "DBBreadcrumbTruncationItem",
-				"name": "breadcrumb-truncation-item",
+				"label": "DBBreadcrumbPopoverItem",
+				"name": "breadcrumb-popover-item",
 				"isHiddenInMenu": true
 			}
 		]

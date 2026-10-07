@@ -6,7 +6,7 @@
 "@db-ux/v-core-components": patch
 ---
 
-refactor(DBBreadcrumbTruncationItem): use DBButton and DBPopover for hover reveal
+refactor(DBBreadcrumbPopoverItem): use DBButton and DBPopover for hover reveal
 
 Replaces the native `details`/`summary` disclosure with a ghost `DBButton`
 trigger inside a `DBPopover`, so the hidden breadcrumb items now reveal on

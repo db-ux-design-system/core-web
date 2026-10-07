@@ -9,7 +9,7 @@ import {
 	DBBadge,
 	DBBreadcrumb,
 	DBBreadcrumbItem,
-	DBBreadcrumbTruncationItem,
+	DBBreadcrumbPopoverItem,
 	DBButton,
 	DBCard,
 	DBCheckbox,
@@ -528,11 +528,11 @@ const ComponentSwitch = ({
 		);
 	}
 
-	if (type === 'breadcrumb-truncation-item') {
+	if (type === 'breadcrumb-popover-item') {
 		return (
-			<DBBreadcrumbTruncationItem className={className} {...props}>
+			<DBBreadcrumbPopoverItem className={className} {...props}>
 				{resolvedContent}
-			</DBBreadcrumbTruncationItem>
+			</DBBreadcrumbPopoverItem>
 		);
 	}
 

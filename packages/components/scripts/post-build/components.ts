@@ -93,7 +93,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'breadcrumb-truncation-item'
+		name: 'breadcrumb-popover-item'
 	},
 
 	{

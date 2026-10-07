@@ -1,10 +1,10 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBBadge from '../../badge/badge.lite';
 import DBBreadcrumbItem from '../../breadcrumb-item/breadcrumb-item.lite';
-import DBBreadcrumbTruncationItem from '../../breadcrumb-truncation-item/breadcrumb-truncation-item.lite';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBBreadcrumb from '../breadcrumb.lite';
 import { StorybookBreadcrumbArgTypes } from './_breadcrumb.arg.types';
+import DBBreadcrumbPopoverItem from '../../breadcrumb-popover-item/breadcrumb-popover-item.lite';
 
 useMetadata({
 	storybookTitle: 'Badge',
@@ -126,7 +126,7 @@ export default function BreadcrumbBadge() {
 						<DBBadge semantic="informational">1</DBBadge>
 					</a>
 				</DBBreadcrumbItem>
-				<DBBreadcrumbTruncationItem label="Show more breadcrumbs">
+				<DBBreadcrumbPopoverItem label="Show more breadcrumbs">
 					<DBBreadcrumbItem>
 						<a href="/1">
 							Level 1<DBBadge semantic="successful">2</DBBadge>
@@ -142,7 +142,7 @@ export default function BreadcrumbBadge() {
 							Level 3<DBBadge semantic="critical">4</DBBadge>
 						</a>
 					</DBBreadcrumbItem>
-				</DBBreadcrumbTruncationItem>
+				</DBBreadcrumbPopoverItem>
 				<DBBreadcrumbItem>
 					<a href="/1/2/3/4">
 						Level 4<DBBadge semantic="neutral">5</DBBadge>
@@ -177,7 +177,7 @@ export default function BreadcrumbBadge() {
 						</DBBadge>
 					</a>
 				</DBBreadcrumbItem>
-				<DBBreadcrumbTruncationItem label="Show more breadcrumbs">
+				<DBBreadcrumbPopoverItem label="Show more breadcrumbs">
 					<DBBreadcrumbItem>
 						<a href="/1">
 							Level 1
@@ -211,7 +211,7 @@ export default function BreadcrumbBadge() {
 							</DBBadge>
 						</a>
 					</DBBreadcrumbItem>
-				</DBBreadcrumbTruncationItem>
+				</DBBreadcrumbPopoverItem>
 				<DBBreadcrumbItem>
 					<a href="/1/2/3/4">
 						Level 4

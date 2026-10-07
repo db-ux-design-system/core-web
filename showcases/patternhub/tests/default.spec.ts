@@ -28,7 +28,7 @@ const componentsWithoutOwnPages = new Set([
 	'footer-meta',
 	'shell-content',
 	'breadcrumb-item',
-	'breadcrumb-truncation-item'
+	'breadcrumb-popover-item'
 ]);
 
 for (const group of Components) {

@@ -2,7 +2,6 @@ import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/experimental-ct-react';
 
 import { DBBreadcrumbItem } from '../breadcrumb-item';
-import { DBBreadcrumbTruncationItem } from '../breadcrumb-truncation-item';
 import { DBBreadcrumb } from './index';
 // @ts-ignore - vue can only find it with .ts as file ending
 import { DEFAULT_VIEWPORT } from '../../shared/constants.ts';
@@ -41,14 +40,14 @@ const truncationBreadcrumb: any = (
 		<DBBreadcrumbItem>
 			<a href="/">Home</a>
 		</DBBreadcrumbItem>
-		<DBBreadcrumbTruncationItem label="Show more breadcrumbs">
+		<DBBreadcrumbPopoverItem label="Show more breadcrumbs">
 			<DBBreadcrumbItem>
 				<a href="/1">Level 1</a>
 			</DBBreadcrumbItem>
 			<DBBreadcrumbItem>
 				<a href="/1/2">Level 2</a>
 			</DBBreadcrumbItem>
-		</DBBreadcrumbTruncationItem>
+		</DBBreadcrumbPopoverItem>
 		<DBBreadcrumbItem>
 			<a href="/1/2/current" aria-current="page">
 				Current
@@ -100,7 +99,7 @@ const testComponent = () => {
 	}) => {
 		const component = await mount(truncationBreadcrumb);
 		await expect(
-			component.locator('.db-breadcrumb-truncation-item-toggle')
+			component.locator('.db-breadcrumb-popover-item-toggle')
 		).toBeVisible();
 		// All crumbs (including the truncated ones) stay in the DOM.
 		await expect(component.locator('li a')).toHaveCount(4);

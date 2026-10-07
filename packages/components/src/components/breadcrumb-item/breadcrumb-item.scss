@@ -12,7 +12,7 @@
 
 	@include helpers.display(flex);
 	@include icon-passing.icon-passing(
-		variables.$db-spacing-fixed-3xs,
+		variables.$db-spacing-fixed-2xs,
 		variables.$db-spacing-fixed-3xs
 	);
 
@@ -47,7 +47,6 @@
 
 	&[data-no-text="true"] {
 		a {
-			padding: variables.$db-spacing-fixed-3xs;
 			gap: 0;
 		}
 	}
@@ -58,7 +57,7 @@
 			--db-tooltip-arrow-inline-start: calc(
 				(
 						#{variables.$db-border-width-3xs} * 2 + 1lh + 2 *
-							#{variables.$db-spacing-fixed-3xs}
+							#{variables.$db-spacing-fixed-2xs}
 					) /
 					2
 			);

@@ -8,9 +8,9 @@ import BreadcrumbDensity from '../examples/density.example.lite';
 import BreadcrumbDisabled from '../examples/disabled.example.lite';
 import BreadcrumbLength from '../examples/length.example.lite';
 import BreadcrumbNoText from '../examples/no-text.example.lite';
+import BreadcrumbPopover from '../examples/popover.example.lite';
 import BreadcrumbSeparator from '../examples/separator.example.lite';
 import BreadcrumbSize from '../examples/size.example.lite';
-import BreadcrumbTruncation from '../examples/truncation.example.lite';
 
 export default function BreadcrumbShowcase(props: PatternhubProps) {
 	return (
@@ -52,9 +52,9 @@ export default function BreadcrumbShowcase(props: PatternhubProps) {
 					<BreadcrumbNoText />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Truncation">
+			<LinkWrapperShowcase exampleName="Popover">
 				<CardWrapperShowcase>
-					<BreadcrumbTruncation />
+					<BreadcrumbPopover />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Badge">

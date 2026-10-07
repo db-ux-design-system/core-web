@@ -154,5 +154,5 @@ export * from './utils/navigation';
 export * from './components/breadcrumb-item';
 export * from './components/breadcrumb-item/model';
 
-export * from './components/breadcrumb-truncation-item';
-export * from './components/breadcrumb-truncation-item/model';
+export * from './components/breadcrumb-popover-item';
+export * from './components/breadcrumb-popover-item/model';

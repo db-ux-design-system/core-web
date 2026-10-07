@@ -1,16 +1,16 @@
 import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
 import { cls } from '../../utils';
 import DBPopover from '../popover/popover.lite';
-import type { DBBreadcrumbTruncationItemProps } from './model';
+import type { DBBreadcrumbPopoverItemProps } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBBreadcrumbTruncationItemProps>({
+useDefaultProps<DBBreadcrumbPopoverItemProps>({
 	label: 'Show more breadcrumbs'
 });
 
-export default function DBBreadcrumbTruncationItem(
-	props: DBBreadcrumbTruncationItemProps
+export default function DBBreadcrumbPopoverItem(
+	props: DBBreadcrumbPopoverItemProps
 ) {
 	// This is used as forwardRef
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,16 +25,14 @@ export default function DBBreadcrumbTruncationItem(
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-breadcrumb-truncation-item', props.className)}>
+			class={cls('db-breadcrumb-popover-item', props.className)}>
 			<DBPopover
-				placement={props.placement ?? 'bottom'}
-				animation={props.animation}
-				delay={props.delay}
-				width={props.width}
+				placement="bottom-start"
+				gap
 				trigger={
 					<button
 						type="button"
-						class="db-button db-breadcrumb-truncation-item-toggle"
+						class="db-button db-breadcrumb-popover-item-toggle"
 						data-variant="ghost"
 						aria-label={props.label}
 						onClick={(event) => satisfyReact(event)}>

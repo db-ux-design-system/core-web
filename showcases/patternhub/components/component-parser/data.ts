@@ -11,7 +11,7 @@ export type ComponentType = {
 		| 'dialog'
 		| 'pagination'
 		| 'pagination-item'
-		| 'breadcrumb-truncation-item'
+		| 'breadcrumb-popover-item'
 		| 'breadcrumb-item'
 		| 'breadcrumb'
 		| 'footer'
