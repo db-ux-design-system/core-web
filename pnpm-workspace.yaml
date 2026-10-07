@@ -82,8 +82,15 @@ overrides:
   "@simple-git/argv-parser@<2.0.1": 2.0.1
   sharp@<0.35.5: 0.35.5
   shell-quote@>=1.8.4 <1.11.0: 1.11.0
-  simple-git@<=3.36.0: 4.0.0
-  simple-git@>=3.15.0 <4.0.1: 4.0.1
+  # simple-git@4.0.0 is a broken release: its published package.json has
+  # "main": "index.ts" (a TS source that is not even in the tarball, which ships
+  # only dist/), with the correct main/module/exports stuck in an unread
+  # "publish" block. Node 26 refuses to type-strip .ts files under node_modules,
+  # so Nuxt's `nuxt prepare` crashes loading @nuxt/devtools' simple-git dep.
+  # 4.0.1 is the first correctly published 4.x (proper dist/index.cjs + exports)
+  # and still satisfies the security bump. A single range covers the whole
+  # vulnerable span; do NOT reintroduce a <=3.36.0 -> 4.0.0 override.
+  simple-git@<4.0.1: 4.0.1
   source-map-js@>=1.0.0 <1.2.2: 1.2.2
 
 catalog:
