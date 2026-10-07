@@ -11,6 +11,7 @@ useMetadata({
 		'E-Mail',
 		'Tel',
 		'URL',
+		'Number',
 		'Date',
 		'Datetime Local',
 		'Month',
@@ -32,6 +33,12 @@ export default function InputExampleTypeswithminandmax() {
 			<DBInput label="Label" type="email" placeholder="E-Mail"></DBInput>
 			<DBInput label="Label" type="tel" placeholder="Tel"></DBInput>
 			<DBInput label="Label" type="url" placeholder="URL"></DBInput>
+			<DBInput
+				label="Label"
+				type="number"
+				min="0"
+				max="10"
+				placeholder="Number"></DBInput>
 			<DBInput
 				label="Label"
 				type="date"

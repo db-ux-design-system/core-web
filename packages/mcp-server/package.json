@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/mcp-server",
-  "version": "5.6.1",
+  "version": "5.6.2",
   "type": "module",
   "description": "MCP server for DB UX Design System – gives LLMs access to UI components and code examples",
   "repository": {
@@ -40,12 +40,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@modelcontextprotocol/server": "2.1.0",
+    "@modelcontextprotocol/server": "2.2.0",
     "zod": "4.6.5"
   },
   "devDependencies": {
     "@db-ux/db-theme-icons": "4.3.0",
-    "@modelcontextprotocol/client": "2.1.0",
+    "@modelcontextprotocol/client": "2.2.0",
     "cpy-cli": "7.0.0",
     "esbuild": "0.28.2",
     "npm-run-all2": "9.0.3",
