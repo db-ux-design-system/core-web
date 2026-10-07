@@ -164,6 +164,17 @@ $focus-outline-reach: calc(
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
+
+				/*
+				A vertical tabs instance nested inside a horizontal one is also a
+				descendant of `.db-tabs:not([data-orientation="vertical"])`, so the
+				horizontal rule above matches its tab list too (equal specificity,
+				and this block declares no overflow of its own). Restate the initial
+				value so a nested vertical list behaves like a standalone one instead
+				of becoming a scroll container that clips the vertical indicator -
+				its `::after` sits 1px outside the padding box.
+				 */
+				overflow: visible;
 			}
 
 			.db-tab-item-label {
