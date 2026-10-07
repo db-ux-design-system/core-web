@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { DBInput } from "@components";
-import { ref, watch } from "vue";
+import { defineEmits, defineProps, ref, watch, withDefaults } from "vue";
 
 interface Props {
 	label: string;
