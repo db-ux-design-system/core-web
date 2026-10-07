@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/button-components";
 
 @mixin not-first-breadcrumb-item {
@@ -91,10 +92,31 @@
 		}
 	}
 
-	&[data-collapsed="true"] {
-		> ol > li:not(:first-child, :last-child),
-		> ol > db-breadcrumb-item:not(:first-child, :last-child) > li {
-			@extend %a11y-visually-hidden;
+	// Auto-collapse only from the "sm" breakpoint up. On mobile the trail
+	// shows only the last two crumbs instead (see below), so the first+last
+	// collapse layout must not apply there.
+	@include screen-sizes.screen("sm", "min") {
+		&[data-collapsed="true"] {
+			> ol > li:not(:first-child, :last-child),
+			> ol > db-breadcrumb-item:not(:first-child, :last-child) > li {
+				@include helpers.a11y-visually-hidden;
+			}
+		}
+	}
+
+	// Mobile without a manual popover item: never auto-truncate (no `...`
+	// toggle), regardless of the number of crumbs. Show only the last two
+	// crumbs; every other crumb and the auto-truncation toggle are removed.
+	@include screen-sizes.screen("sm", "max") {
+		&:not(:has(.db-breadcrumb-popover-item)) {
+			> ol > li:not(:nth-last-child(-n + 2)),
+			> ol > db-breadcrumb-item:not(:nth-last-child(-n + 2)) > li {
+				display: none;
+			}
+
+			> .db-breadcrumb-auto-truncation-item {
+				display: none;
+			}
 		}
 	}
 
