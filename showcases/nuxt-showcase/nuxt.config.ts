@@ -6,12 +6,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineNuxtConfig({
 	telemetry: false,
-	// Nuxt DevTools is intentionally disabled and excluded from the dependency
-	// tree (see the "nuxt>@nuxt/devtools" override in pnpm-workspace.yaml). It
-	// pulls in simple-git, whose only security-patched line (4.x) is published
-	// incorrectly / is incompatible with Node's native type-stripping, which
-	// breaks `nuxt prepare`.
-	// The showcase does not need the DevTools panel, so we drop it entirely.
+	// Disabled: @nuxt/devtools@3.x does `import Git from 'simple-git'` (default
+	// import), but the security override forces simple-git >=4.0.1, which is
+	// named-exports-only ESM with no default export. Enabling devtools crashes
+	// `nuxt prepare`/`dev`. DevTools adds nothing to this static showcase build.
 	devtools: { enabled: false },
 	generate: {
 		routes: ['/']

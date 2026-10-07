@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const props = defineProps(["plain", "vmodel"]);
 import { DBButton } from "@components";
+import { defineProps } from "vue";
 </script>
 
 <template>
