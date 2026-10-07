@@ -41,11 +41,6 @@ $default-icon-font-size: var(--db-icon-font-size, #{$default-icon-size-rem});
 	}
 }
 
-// Resolves the font family of an icon variant via the themeable
-// `--db-icon-<variant>-font-family` custom property. Themes (e.g.
-// `@db-ux/db-theme-icons`) register that property with their own font, so the
-// generic variant names keep working on top of a theme. The hard-coded
-// `db-ux-<variant>` family is only the whitelabel fallback.
 @mixin icon-font-family($variant) {
 	--db-icon-font-family: var(
 		--db-icon-#{$variant}-font-family,

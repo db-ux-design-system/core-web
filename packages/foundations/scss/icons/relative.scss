@@ -35,7 +35,3 @@
 		}
 	}
 }
-
-// The `[data-icon-variant]` family mapping deliberately lives in
-// `defaults/default-icons.scss` and not here: themed setups replace this theme
-// CSS with `@db-ux/db-theme`, but always load the defaults bundle.

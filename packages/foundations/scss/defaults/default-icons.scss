@@ -18,10 +18,6 @@
 	}
 }
 
-// Generic, theme-agnostic icon variant (family) names.
-// They have to be part of this defaults bundle - and not of the foundations
-// theme CSS - because a themed project loads `@db-ux/db-theme` instead of the
-// foundations theme CSS, but always loads these defaults.
 @each $variant in icons.$default-icon-variants {
 	[data-icon-variant="#{$variant}"],
 	[data-icon-variant-before="#{$variant}"] {
