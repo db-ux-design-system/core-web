@@ -291,27 +291,29 @@ test.describe('DBCustomSelect', () => {
 		path,
 		example: 'Interaction',
 		async run({ content }) {
-			const selectedLabel = content
-				.getByTestId('values-reset-select')
-				.locator('.db-custom-select-label');
+			const select = content.getByTestId('values-reset-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
+			// When nothing is selected the component renders the placeholder
+			// instead of `.db-custom-select-label`, so a cleared selection
+			// means the label is removed from the DOM entirely. Assert on its
+			// absence rather than `.not.toContainText(...)`, which would fail
+			// with "element(s) not found" once the label is detached.
 			await content.getByTestId('values-reset-set').click();
 			await expect(selectedLabel).toContainText('Option 1, Option 2');
 
 			await content.getByTestId('values-reset-null').click();
-			await expect(selectedLabel).not.toContainText('Option 1');
-			await expect(selectedLabel).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
 			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-undefined').click();
-			await expect(selectedLabel).not.toContainText('Option 1');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
 			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-empty').click();
-			await expect(selectedLabel).not.toContainText('Option 1');
-			await expect(selectedLabel).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 		}
 	});
 
@@ -341,7 +343,12 @@ test.describe('DBCustomSelect', () => {
 			});
 			const selectionReadout = content.getByText('Selections by user: 0');
 
-			await expect(selectedLabel).not.toContainText('Germany');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so an empty selection means the label
+			// is detached. Assert `toHaveCount(0)` for the empty states instead
+			// of `.not.toContainText(...)`, which errors with "element(s) not
+			// found" on a missing element.
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -364,13 +371,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(content.locator('input[value="de"]')).toHaveCount(0);
 
 			await clearOptionsAndSelection.click();
-			await expect(selectedLabel).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(0);
 			await expect(selectionReadout).toBeVisible();
 
 			await restoreOptions.click();
-			await expect(selectedLabel).not.toContainText('Germany');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -380,7 +387,7 @@ test.describe('DBCustomSelect', () => {
 
 			await loadOtherOptions.click();
 			await restoreOptions.click();
-			await expect(selectedLabel).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
