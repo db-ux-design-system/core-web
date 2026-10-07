@@ -116,7 +116,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				component: <BreadcrumbShowcase />
 			},
 
-			// OLD
+			// Deprecated. TODO: Remove with one of the next major releases
 			{
 				path: 'navigation-item',
 				label: 'NavigationItem',

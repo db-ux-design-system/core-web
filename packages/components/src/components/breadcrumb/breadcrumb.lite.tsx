@@ -107,7 +107,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 					!hasCollapseItem &&
 					breadCrumbItems.length > Math.max(props.maxItems ?? 4, 2);
 
-				/* Reset expansion when the trail no longer needs collapsing, so a shrinking list returns to its uncollapsed state. */
+				/* Reset expansion when the trail no longer needs collapsing, so a shrinking list returns to its expanded state. */
 				if (!shouldCollapse) {
 					state._expanded = false;
 				}
@@ -145,7 +145,9 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 								target={item.target}
 								rel={item.rel}
 								hreflang={item.hreflang}
-								referrerPolicy={item.referrerPolicy}
+								referrerPolicy={
+									item.referrerPolicy ?? item.referrerpolicy
+								}
 								icon={item.icon}
 								showIcon={item.showIcon}
 								noText={item.noText}

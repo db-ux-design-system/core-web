@@ -46,8 +46,10 @@ export type DBBreadcrumbItemDefaultState = {
 	 */
 	_ariaObserver?: MutationObserver;
 	/**
-	 * Applies or removes tabindex="-1" on the link depending on whether it is
-	 * disabled or marks the current page (both must not be focusable).
+	 * Applies or removes `tabindex="-1"` on the link depending on whether it is
+	 * disabled or marks the current page (both must not be focusable). The tab
+	 * order is fully managed by the breadcrumb; consumers must not set
+	 * `tabindex` on the crumb themselves.
 	 */
 	_syncLinkTabindex: (link: HTMLAnchorElement) => void;
 };

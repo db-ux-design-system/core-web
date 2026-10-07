@@ -6,11 +6,11 @@ For general installation and configuration take a look at the [ngx-core-componen
 
 ```ts app.component.ts
 // app.component.ts
-import { DBBreadcrumb } from '@db-ux/ngx-core-components';
+import { DBBreadcrumb, DBBreadcrumbItem } from '@db-ux/ngx-core-components';
 
 @Component({
   // ...
-  imports: [..., DBBreadcrumb],
+  imports: [..., DBBreadcrumb, DBBreadcrumbItem],
   standalone: true
   // ...
 })
@@ -20,5 +20,15 @@ import { DBBreadcrumb } from '@db-ux/ngx-core-components';
 
 ```html app.component.html
 <!-- app.component.html -->
-<db-breadcrumb>Breadcrumb</db-breadcrumb>
+<db-breadcrumb aria-label="Breadcrumb">
+	<db-breadcrumb-item>
+		<a href="/">Home</a>
+	</db-breadcrumb-item>
+	<db-breadcrumb-item>
+		<a href="/section">Section</a>
+	</db-breadcrumb-item>
+	<db-breadcrumb-item>
+		<a href="/section/page" aria-current="page">Page</a>
+	</db-breadcrumb-item>
+</db-breadcrumb>
 ```

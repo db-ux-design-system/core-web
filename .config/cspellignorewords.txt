@@ -279,4 +279,3 @@ hrefs
 renderable
 frontmost
 unwired
-uncollapsed

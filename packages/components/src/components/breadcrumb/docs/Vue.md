@@ -7,10 +7,20 @@ For general installation and configuration take a look at the [v-core-components
 ```vue App.vue
 <!-- App.vue -->
 <script>
-import { DBBreadcrumb } from "@db-ux/v-core-components";
+import { DBBreadcrumb, DBBreadcrumbItem } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBBreadcrumb>Breadcrumb</DBBreadcrumb>
+	<DBBreadcrumb aria-label="Breadcrumb">
+		<DBBreadcrumbItem>
+			<a href="/">Home</a>
+		</DBBreadcrumbItem>
+		<DBBreadcrumbItem>
+			<a href="/section">Section</a>
+		</DBBreadcrumbItem>
+		<DBBreadcrumbItem>
+			<a href="/section/page" aria-current="page">Page</a>
+		</DBBreadcrumbItem>
+	</DBBreadcrumb>
 </template>
 ```

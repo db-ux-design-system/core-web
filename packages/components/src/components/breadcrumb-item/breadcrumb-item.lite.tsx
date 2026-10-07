@@ -22,8 +22,6 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBBreadcrumbItemState>({
 		_ariaObserver: undefined,
-		// A disabled link or the current page (aria-current="page") must not be
-		// focusable. Keep tabindex in sync without clobbering a consumer set one.
 		_syncLinkTabindex: (link: HTMLAnchorElement) => {
 			const isDisabled = link.getAttribute('aria-disabled') === 'true';
 			const isCurrentPage = link.getAttribute('aria-current') === 'page';
@@ -46,9 +44,13 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					props.disabled,
 					'disabled'
 				);
+
+				if (props.ariaCurrent && !link.hasAttribute('aria-current')) {
+					link.setAttribute('aria-current', props.ariaCurrent);
+				}
 			}
 		});
-	}, [props.disabled, _ref]);
+	}, [props.disabled, props.ariaCurrent, _ref]);
 
 	onMount(() => {
 		if (_ref) {
@@ -98,7 +100,9 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					target={props.target}
 					rel={props.rel}
 					hrefLang={props.hreflang}
-					referrerPolicy={props.referrerPolicy}
+					referrerPolicy={
+						props.referrerPolicy ?? props.referrerpolicy
+					}
 					aria-current={props.ariaCurrent}>
 					{props.text}
 				</a>
