@@ -295,7 +295,7 @@ export type DBCustomSelectDefaultState = {
 	handleKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
 	handleSearch: (event: any) => void;
-	handleOptionSelected: (_values: string[]) => void;
+	handleOptionSelected: (_values: string[], skipDebounce?: boolean) => void;
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;

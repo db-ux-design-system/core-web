@@ -520,8 +520,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 			}
 		},
-		handleOptionSelected: (values: string[]) => {
+		handleOptionSelected: (values: string[], skipDebounce?: boolean) => {
+			// skipDebounce is for changes that provably cannot loop back here (e.g. an autofill of the native select); a caller-side timestamp reset would not work, as it is a state setter in the React output.
 			const skip =
+				!skipDebounce &&
 				new Date().getTime() - state._internalChangeTimestamp < 200;
 			if (skip) return;
 
@@ -959,9 +961,42 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	});
 
-	function satisfyReact(event: any) {
-		// This is a function to satisfy React
+	function handleNativeSelectChange(event: any) {
+		// The backing <select> is hidden and otherwise only written to
+		// imperatively by handleValidation(), which does not fire `change`.
+		// So a `change` arriving here comes from the outside: browser autofill
+		// or a password manager acting on the advertised `autocomplete`.
+		// Mirror it into our state, otherwise the summary, the option states
+		// and onOptionSelected stay stale while the submitted form value has
+		// already changed - and the next handleValidation() would silently
+		// overwrite the autofilled value again.
+		// stopPropagation keeps the native event from surfacing as a component
+		// event (this also satisfies React).
 		event.stopPropagation();
+
+		const select = event.target as HTMLSelectElement;
+		const values =
+			select.selectedIndex < 0
+				? []
+				: Array.from(select.selectedOptions).map(
+						(option) => option.value
+					);
+
+		const currentValues = state._values ?? [];
+		const unchanged =
+			values.length === currentValues.length &&
+			values.every(
+				(value: string, index: number) => value === currentValues[index]
+			);
+
+		if (unchanged) {
+			return;
+		}
+
+		// An autofill is a genuine external change, so it must not be swallowed
+		// by the internal-change debounce. Writing selectRef.value does not
+		// fire `change`, so this cannot loop back into this handler.
+		state.handleOptionSelected(values, true);
 	}
 
 	return (
@@ -988,7 +1023,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
-				{/* ponytail: browser autofill will set the native value but state._values / summary would not sync; follow-up needed to wire onChange into handleOptionSelected */}
+				{/* This select is the form-submitted value. It is hidden, but
+				    `autocomplete` is advertised on it, so browser autofill and
+				    password managers can write to it - see
+				    handleNativeSelectChange for the sync back into our state. */}
 				<select
 					role="none"
 					hidden
@@ -1002,7 +1040,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					onChange={(event) => satisfyReact(event)}>
+					onChange={(event) => handleNativeSelectChange(event)}>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (

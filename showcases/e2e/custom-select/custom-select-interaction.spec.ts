@@ -309,6 +309,34 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should synchronize a value autofilled into the native select (#7466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('single-select');
+			const summary = select.locator('summary');
+			const nativeSelect = select.locator('select');
+			const optionInput = select.locator('input[value="Option 3"]');
+
+			await expect(summary).not.toContainText('Option 3');
+			await expect(optionInput).not.toBeChecked();
+
+			// Browser autofill and password managers write to the hidden backing <select> and fire `change`; Playwright cannot trigger real autofill, so drive the exact same DOM path directly.
+			await nativeSelect.evaluate((element: HTMLSelectElement) => {
+				element.value = 'Option 3';
+				element.dispatchEvent(new Event('change', { bubbles: true }));
+			});
+
+			// The visible summary and the option state have to follow the native value instead of staying stale.
+			await expect(summary).toContainText('Option 3');
+			await expect(optionInput).toBeChecked();
+
+			// And handleValidation() must not overwrite the autofilled value with a stale one on the way back.
+			await expect(nativeSelect).toHaveValue('Option 3');
+		}
+	});
+
+	runInteractionTest({
 		title: 'should synchronize controlled values and options on the same instance',
 		path,
 		example: 'Controlled',
