@@ -92,8 +92,10 @@
   - text: Content 2 Content 3 Space-Between
   - link "Content 1"
   - text: Content 2 Content 3
-  - link "Interaction"
+  - link "Focus Container"
   - button "Focusable"
   - text: Content 2
+  - button "Focusable"
+  - text: Content 2 Content 3
   - button "Focusable"
   - text: Content 2 Content 3
