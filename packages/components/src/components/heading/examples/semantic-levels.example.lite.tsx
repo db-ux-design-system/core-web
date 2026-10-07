@@ -18,26 +18,19 @@ useMetadata({
 		'DBHeadingH5',
 		'DBHeadingH6'
 	],
-	storybookNames: [
-		'h1 / xl',
-		'h2 / lg',
-		'h3 / md',
-		'h4 / sm',
-		'h5 / xs',
-		'h6 / 2xs'
-	],
+	storybookNames: ['h1 (largest)', 'h2', 'h3', 'h4', 'h5', 'h6 (smallest)'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
 export default function HeadingSemanticLevels() {
 	return (
 		<Fragment>
-			<DBHeadingH1>h1 maps to xl</DBHeadingH1>
-			<DBHeadingH2>h2 maps to lg</DBHeadingH2>
-			<DBHeadingH3>h3 maps to md</DBHeadingH3>
-			<DBHeadingH4>h4 maps to sm</DBHeadingH4>
-			<DBHeadingH5>h5 maps to xs</DBHeadingH5>
-			<DBHeadingH6>h6 maps to 2xs</DBHeadingH6>
+			<DBHeadingH1>h1 at its level default</DBHeadingH1>
+			<DBHeadingH2>h2 at its level default</DBHeadingH2>
+			<DBHeadingH3>h3 at its level default</DBHeadingH3>
+			<DBHeadingH4>h4 at its level default</DBHeadingH4>
+			<DBHeadingH5>h5 at its level default</DBHeadingH5>
+			<DBHeadingH6>h6 at its level default</DBHeadingH6>
 		</Fragment>
 	);
 }

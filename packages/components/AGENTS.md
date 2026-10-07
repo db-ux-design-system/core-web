@@ -158,47 +158,68 @@ JSX attribute rather than a child, so the rule inspects the `startSlot` and
 `endSlot` attribute values in addition to the child walk; Vue and Angular project
 slot content as a real child and are covered by the walk alone.
 
-Three implementation details in `heading.scss` that should not be traded away:
+The styling API is `visualSize` (`data-visual-size`, values `h1`-`h6` or
+`p-small`/`p-medium`/`p-large`) and `fontWeight` (`data-font-weight`, `black` or
+`light`). There is no `alignment` or `paragraphSpacing` property: block spacing
+is controlled by the foundations' `data-text-spacing` opt-in, and alignment is
+set with `text-align` on the heading itself.
 
-- **The child selectors exclude `.db-heading`.** A nested Heading component keeps
-  its own typography instead of fighting the wrapper's attributes, so the two
-  models never produce an ambiguous result.
-- **Only the headline font shorthand lands on the wrapper.** The wrapper needs
-  the matching line height so `1lh` for `data-paragraph-spacing` resolves from
-  the heading typography rather than the surrounding body text. Use
-  `fonts.set-headline-size` there; the full `%db-overwrite-headline-size-*`
-  placeholder additionally sets icon custom properties and must stay on the
-  nested heading, otherwise those properties leak into sibling slot components.
-  The nested heading also needs the full override because user-agent styles for
-  `h1`-`h6` block font inheritance. Without an explicit `data-size`, the wrapper
-  picks the level default via `:has(:where(h1))` etc.
-- **`data-alignment` sets `justify-content` on the wrapper and repeats
-  `text-align` on the child.** `%heading-base` sets an explicit
-  `text-align: start` on the child, which would otherwise block inheritance.
+Two implementation details in `heading.scss` that should not be traded away:
+
+- **The nested-heading selectors exclude `.db-heading`.** A nested Heading
+  component keeps its own typography instead of fighting the wrapper's attributes,
+  so the two models never produce an ambiguous result. They are descendant (not
+  child) selectors so they still reach a heading behind a `display: contents`
+  custom-element host.
+- **The typography always lands on the heading element, never on the
+  `.db-custom-heading` wrapper.** The `styled-heading()` selector helper targets
+  `.db-heading[data-visual-size="…"]` directly and, for the custom variant, the
+  nested heading inside the wrapper (`.db-custom-heading[data-visual-size="…"]
+:where(h1, h2, h3, h4, h5, h6):not(.db-heading)`) — the wrapper itself gets no
+  `%db-overwrite-*` placeholder. That is deliberate: `%db-overwrite-headline-size-*`
+  / `%db-overwrite-font-size-*` also set icon custom properties, so applying them to
+  the wrapper would leak those properties into sibling slot components. Keeping them
+  on the nested heading also satisfies the user-agent styles for `h1`-`h6`, which
+  block font inheritance from the wrapper. Without an explicit `data-visual-size`,
+  the level default is picked via `.db-custom-heading:not([data-visual-size])
+:has(:where(h1))` etc. — again landing the placeholder on the nested heading, not
+  the wrapper.
+
+The `.db-custom-heading, .db-heading` rule sets an explicit `text-align: start` on
+both the wrapper and `.db-heading`, so a consumer aligns a heading with
+`text-align` on the element itself rather than from an ancestor.
 
 The level-to-size mapping comes from `fonts.$headlines` in
 `@db-ux/core-foundations`, shared with the foundations'
-`defaults/default-fonts.scss` so the two cannot drift apart.
+`defaults/default-required.scss` so the two cannot drift apart. The bare-`h1`-`h6`
+headline typography loop lives in `default-required.scss` (the **required**
+defaults), not in the optional `default-fonts.scss`: the DB headline typography is
+mandatory, so native headings get it from the required stylesheet regardless of
+whether `default-fonts` is imported. `heading.scss` additionally runs that same
+loop for `.db-heading:not([data-visual-size])` (and the `:has()` custom-heading
+variant), so a default-size component heading keeps its level size and stays
+`data-density`-responsive even when only the component styles are loaded (test
+harness, or consumers importing just `@db-ux/core-components`).
 
 ### `useMetadata({ figma })` props must not be a chained identifier alias
 
 The `useMetadata` hook is parsed with JSON5, and the resolver does not follow a
 chained identifier reference. `const customHeadingProps = headingProps;` makes
 the whole `figma` metadata unresolvable, which **silently** skips the prop
-injection and leaves literal `props.size` in the generated Code Connect snippet
-instead of the selected Figma value. Use a spread (`{ ...headingProps }`) to
-reuse a map, and member access (`headingProps.alignment`) fails outright with
+injection and leaves literal `props.visualSize` in the generated Code Connect
+snippet instead of the selected Figma value. Use a spread (`{ ...headingProps }`)
+to reuse a map, and member access (`headingProps.visualSize`) fails outright with
 `JSON5: invalid character`. After changing a `*.figma.ts` map, always check the
 regenerated snapshot for `props.` occurrences.
 
 ### Props types must intersect the shared base directly
 
 Per-component props must be declared as
-`DBHeadingBaseDefaultProps & GlobalProps & AlignmentProps`, not via a bare alias
+`DBHeadingBaseDefaultProps & GlobalProps & TextProps`, not via a bare alias
 hop such as `DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps`. The
 custom-elements analyzer stops resolving at the second alias hop, which publishes
-every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
-the real union and JSDoc.
+every inherited prop as `DBHeadingH1Props["visualSize"]` with no description
+instead of the real union and JSDoc.
 
 ## Examples (`src/components/**/examples/`)
 

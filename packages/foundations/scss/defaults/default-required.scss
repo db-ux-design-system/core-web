@@ -1,5 +1,5 @@
 /* Required styles to normalize default css */
-
+@use "sass:string";
 @use "../variables";
 @use "../colors";
 @use "../helpers";
@@ -50,8 +50,55 @@ body {
 	padding: 0;
 }
 
+$block-text-elements: "h1, h2, h3, h4, h5, h6, p";
+
+/* Block-level text carries no `margin-block` by default. The opt-in is driven
+ * through the inheriting `--db-text-spacing` custom property rather than
+ * descendant selectors, so the nearest `data-text-spacing` ancestor - or the
+ * element itself - wins by proximity instead of by source order. That makes
+ * `true` win when it is the closer ancestor and `false` opt a subtree back out,
+ * and it covers the attribute sitting on the block-text element itself. The
+ * property only carries the half-line-height multiplier; `1lh` is resolved on
+ * the text element in `margin-block`, so the spacing stays derived from each
+ * element's own line height rather than the ancestor's. */
+[data-text-spacing="true"] {
+	--db-text-spacing: 0.5;
+}
+
+[data-text-spacing="false"] {
+	--db-text-spacing: 0;
+}
+
+:where(#{$block-text-elements}) {
+	margin-block: calc(1lh * var(--db-text-spacing, 0));
+}
+
+@each $headline, $size in fonts.$headlines {
+	:where(#{string.unquote($headline)}) {
+		/* stylelint-disable custom-property-pattern */
+		font: var(--db-type-headline-#{string.unquote($size)});
+
+		&::before,
+		&::after {
+			--db-icon-font-size: var(
+				--db-base-headline-icon-font-size-#{string.unquote($size)}
+			);
+			--db-icon-font-weight: var(
+				--db-base-headline-icon-weight-#{string.unquote($size)}
+			);
+		}
+		/* stylelint-enable custom-property-pattern */
+	}
+}
+
 body {
 	font-family: var(--db-font-family-sans);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+	font-family: var(--db-font-family-head);
+	font-weight: bolder;
+	text-wrap: balance;
 }
 
 html {

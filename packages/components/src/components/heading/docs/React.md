@@ -6,28 +6,27 @@ For installation and configuration, see [`@db-ux/react-core-components`](https:/
 
 ### Semantics and visual size
 
-Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never from the desired appearance. `size` changes only the visual headline size. Without `size`, the mapping is `h1`/`xl`, `h2`/`lg`, `h3`/`md`, `h4`/`sm`, `h5`/`xs`, and `h6`/`2xs`.
+Choose `DBHeadingH1` through `DBHeadingH6` from the document hierarchy, never from the desired appearance. A heading-level `visualSize` (`h1`-`h6`) changes the visual headline size; a paragraph `visualSize` (`p-small`, `p-medium`, `p-large`) switches the heading to the matching body typography (face, size and weight) so it reads as running text. Without `visualSize`, each heading keeps its own level default (`h1` is the largest, `h6` the smallest).
 
 ```tsx
 import { DBHeadingH6 } from "@db-ux/react-core-components";
 
 export const ArticleHeading = () => (
-	<DBHeadingH6 size="2xl">A level-six heading displayed at 2xl</DBHeadingH6>
+	<DBHeadingH6 visualSize="h1">
+		A level-six heading displayed as an h1
+	</DBHeadingH6>
 );
 ```
 
-All visual sizes (`3xl` through `3xs`) work with every semantic level. `fontWeight` accepts `black` (default) and `light`. Logical `alignment` values follow the writing direction. `paragraphSpacing` adds exactly `1lh` at block-end when enabled. Density tokens provide responsive typography.
+`visualSize` accepts a heading level (`h1`-`h6`) or a paragraph size (`p-small`, `p-medium`, `p-large`) and works with every semantic level. `fontWeight` accepts `black` (default) and `light`. Density tokens provide responsive typography.
 
 ```tsx
-<DBHeadingH2
-	alignment="end"
-	fontWeight="light"
-	paragraphSpacing
-	data-density="expressive"
->
+<DBHeadingH2 fontWeight="light" data-density="expressive">
 	Responsive heading
 </DBHeadingH2>
 ```
+
+Block-level text elements carry no `margin-block` by default. To add the default spacing of `1lh / 2` back, set `data-text-spacing="true"` on an ancestor (or the element itself).
 
 ### Content, attributes and accessibility
 
@@ -52,7 +51,7 @@ import { DBButton, DBCustomHeading } from "@db-ux/react-core-components";
 
 export const SectionHeading = () => (
 	<DBCustomHeading
-		size="xl"
+		visualSize="h1"
 		fontWeight="light"
 		endSlot={<DBButton variant="ghost">More options</DBButton>}
 	>
@@ -63,7 +62,7 @@ export const SectionHeading = () => (
 
 The nested heading needs no class of its own, the wrapper styles it. Because the slot content sits next to the heading instead of inside it, the accessible heading name stays clean and interactive content is separately reachable.
 
-`size`, `fontWeight` and `paragraphSpacing` behave exactly as on the Heading components, and omitting `size` applies the same default level mapping. `alignment` aligns the items in the row together with the heading text. An unused slot adds no spacing.
+`visualSize` and `fontWeight` behave exactly as on the Heading components, and omitting `visualSize` applies the same default level mapping. An unused slot adds no spacing.
 
 A nested heading that already carries the `db-heading` class, for example a Heading component, keeps its own typography and ignores the wrapper's properties. Use one or the other, not both.
 
