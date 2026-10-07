@@ -28,6 +28,7 @@ const toEventName = (key: string): string =>
  */
 class SpreadArgsDirective extends Directive {
 	private appliedEvents = new Map<string, EventListener>();
+	private appliedProps = new Map<string, unknown>();
 
 	constructor(partInfo: PartInfo) {
 		super(partInfo);
@@ -47,8 +48,34 @@ class SpreadArgsDirective extends Directive {
 		[args]: [Record<string, unknown>]
 	): typeof noChange {
 		const element = part.element as HTMLElement & Record<string, unknown>;
+		const resolvedArgs = args ?? {};
 
-		for (const [key, value] of Object.entries(args ?? {})) {
+		// Reset properties and event listeners that were applied on a previous
+		// update but are now absent (an Args control was reset or cleared). Without
+		// this, the stale value lingers on the element instead of returning to its
+		// default. Collect first, then mutate, so we do not edit the maps mid-iteration.
+		for (const key of [...this.appliedProps.keys()]) {
+			const value = resolvedArgs[key];
+			if (value === undefined || value === null) {
+				const defaultValue = this.appliedProps.get(key);
+				element[key] = defaultValue;
+				this.appliedProps.delete(key);
+			}
+		}
+
+		for (const [eventName, previous] of [...this.appliedEvents.entries()]) {
+			const matchingKey = Object.keys(resolvedArgs).find(
+				(argKey) =>
+					argKey.startsWith('on') && toEventName(argKey) === eventName
+			);
+			const value = matchingKey ? resolvedArgs[matchingKey] : undefined;
+			if (typeof value !== 'function') {
+				element.removeEventListener(eventName, previous);
+				this.appliedEvents.delete(eventName);
+			}
+		}
+
+		for (const [key, value] of Object.entries(resolvedArgs)) {
 			if (value === undefined || value === null) {
 				continue;
 			}
@@ -64,6 +91,11 @@ class SpreadArgsDirective extends Directive {
 				continue;
 			}
 
+			// Capture the element's default for this property the first time we
+			// set it, so a later reset can restore it instead of leaving the arg value.
+			if (!this.appliedProps.has(key)) {
+				this.appliedProps.set(key, element[key]);
+			}
 			// Set as a property so camelCase names and non-string values work.
 			element[key] = value;
 		}

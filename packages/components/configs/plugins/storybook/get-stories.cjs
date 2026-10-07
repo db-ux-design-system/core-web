@@ -435,32 +435,37 @@ const getStories = ({
 				);
 			} else if (target === 'stencil') {
 				// Web components render via lit-html. The reference element's
-				// slotted content is serialized to an HTML string and passed as
-				// the `children` arg; the render function injects it with
-				// `unsafeHTML(children)`. The element keeps the `properties="replace"`
-				// placeholder (set above) which the render turns into a lit
-				// property spread (`spreadArgs(args)`), so camelCase props like
-				// `showIcon` are set as properties instead of broken attributes.
+				// slotted content is serialized to an HTML string and baked into
+				// the render template as a build-time `unsafeHTML` literal. The
+				// element keeps the `properties="replace"` placeholder (set above)
+				// which the render turns into a lit property spread
+				// (`spreadArgs(args)`), so camelCase props like `showIcon` are set
+				// as properties instead of broken attributes.
+				//
+				// The markup is NOT emitted as a mutable `children` story arg:
+				// Storybook args are editable via Controls and the URL, so routing
+				// a user-controllable string into `unsafeHTML` would be an XSS sink
+				// (`<img src=x onerror=...>`). Keeping it a static literal mirrors
+				// the Angular/Vue renders, which also bake their children into the
+				// template rather than reading them from the live args.
 				const children = foundComponent.children
 					.map((child) => nodeToWebComponent(child, allImports))
 					.join('')
 					.trim();
 
-				if (children.length) {
-					args.push(`"children":\`${children}\``);
-				}
-
 				foundComponent.slots = {};
-				foundComponent.children = [
-					{
-						name: 'div',
-						properties: {
-							_text: '${unsafeHTML(children ?? "")}'
-						},
-						bindings: {},
-						children: []
-					}
-				];
+				foundComponent.children = children.length
+					? [
+							{
+								name: 'div',
+								properties: {
+									_text: `\${unsafeHTML(\`${children}\`)}`
+								},
+								bindings: {},
+								children: []
+							}
+						]
+					: [];
 
 				template = nodeToWebComponent(example, allImports);
 			}
