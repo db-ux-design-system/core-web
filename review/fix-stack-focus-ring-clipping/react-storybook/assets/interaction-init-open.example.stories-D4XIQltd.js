@@ -1,9 +1,0 @@
-import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{n,t as r}from"./accordion-item-Biv5y-04.js";import{n as i,t as a}from"./accordion-Cr5U6ZYW.js";var o,s,c,l,u;function d(){return(d=e((()=>{n(),i(),o=t(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBAccordion/Interaction Init Open`,component:a,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{behavior:{control:`select`,options:[`multiple`,`single`]},variant:{control:`select`,options:[`divider`,`card`]},initOpenIndex:{control:`object`},items:{control:`object`},name:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},l={args:{initOpenIndex:[1,2],children:(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(r,{headlinePlain:`Test`,children:`Content 1`}),(0,o.jsx)(r,{headlinePlain:`Test 2`,children:(0,o.jsx)(`span`,{"data-testid":`item2`,children:`Test2`})}),(0,o.jsx)(r,{headlinePlain:`Test 3`,children:(0,o.jsx)(`span`,{"data-testid":`item3`,children:`Test3`})})]})},render:e=>(0,o.jsx)(a,{...e})},u=[`InitOpen`],l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
-  args: {
-    "initOpenIndex": [1, 2],
-    "children": <><DBAccordionItem headlinePlain="Test">
-                    Content 1
-                </DBAccordionItem><DBAccordionItem headlinePlain="Test 2"><span data-testid="item2">Test2</span></DBAccordionItem><DBAccordionItem headlinePlain="Test 3"><span data-testid="item3">Test3</span></DBAccordionItem></>
-  },
-  render: (properties: any) => <DBAccordion {...properties} />
-}`,...l.parameters?.docs?.source}}}})))()}d();export{l as InitOpen,u as __namedExportsOrder,c as default};
