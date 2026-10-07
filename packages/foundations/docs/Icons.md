@@ -92,7 +92,7 @@ From the embedding page you supply those values with the [`link-parameters` CSS 
 
 ```html
 <img
-	src="@db-ux/db-theme-icons/.../user.svg"
+	src="assets/business-payment/generic-card/outlined/20.svg"
 	alt="user"
 	class="icon"
 	width="…"
@@ -103,10 +103,7 @@ From the embedding page you supply those values with the [`link-parameters` CSS 
 ```css
 .icon {
 	/* Pass the color into the referenced SVG's env(--db-icon-color) */
-	link-parameters: param(
-		--db-icon-color,
-		var(--db-adaptive-icon-color, currentColor)
-	);
+	link-parameters: param(--db-icon-color, currentColor);
 }
 ```
 
