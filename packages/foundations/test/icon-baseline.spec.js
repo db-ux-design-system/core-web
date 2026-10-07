@@ -1,35 +1,13 @@
 import { expect, test } from '@playwright/test';
 
-/*
- Regression guard for the icon baseline (issue #5558).
-
- Icons are rendered as a pseudo-element whose content is a ligature name. The
- baseline of that box follows the metrics of whatever font currently renders
- the ligature, so while the icon font is still loading the box - and every
- inline-level container that inherits its baseline from it - can sit at a
- different position than it will once the font arrives. Webkit is affected
- because it uses a system font during the block period of `font-display:
- block` instead of the declared `icon-font-fallback`, which is metrically
- identical.
-
- `contain: layout` on the icon placeholder makes the box count as having no
- baseline for `vertical-align`, so it is synthesized from the fixed-size
- border box and stops depending on the font. This test fails if that
- declaration is removed.
-
- Deliberately a geometry assertion, not a screenshot: no snapshots to
- maintain and no platform-dependent font rendering. Note that aborting the
- request instead of delaying it would NOT reproduce the problem, because a
- failed load falls straight through to the metrically identical fallback.
-*/
+// The icon box takes its baseline from the font rendering the ligature, so it
+// can sit elsewhere while the icon font is still loading. `contain: layout` on
+// %icon decouples it; this test fails if that declaration is removed.
 
 const ICON_FONTS = '**/assets/icons/fonts/**';
 
-/**
- Distance from the row's text baseline to the top of the icon box, plus the
- row height. `.baseline-marker` is a content-less inline-block, so its bottom
- edge is the text baseline regardless of font metrics.
- */
+// `.baseline-marker` is a content-less inline-block, so its bottom edge is the
+// text baseline regardless of font metrics - a stable zero point.
 const measureRows = () =>
 	[...document.querySelectorAll('.row')].map((row) => {
 		const marker = row
@@ -54,7 +32,8 @@ test.describe('Icon baseline', () => {
 		});
 		let heldBack = 0;
 
-		// Delay, never abort: an aborted request would fall back immediately.
+		// Delay, never abort: an aborted request falls straight through to the
+		// metrically identical fallback and hides the problem.
 		await page.route(ICON_FONTS, async (route) => {
 			heldBack++;
 			await fontGate;
