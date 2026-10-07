@@ -77,7 +77,7 @@ export function removeUnusedStyles(
 	}
 
 	for (const fontSize of unusedFontSizes) {
-		const [type, size] = fontSize.split('-');
+		const [type, size] = fontSize.split('-', 2);
 		css = css.replaceAll(
 			new RegExp(`--db-type-${fontSize}:[^;}]+;?`, 'g'),
 			''

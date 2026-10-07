@@ -8,6 +8,6 @@ const path = '01/popover';
 test.describe('DBPopover', () => {
 	runAriaSnapshotTest({
 		path,
-		preScreenShot: async (page) => hoverPre(page, selector)
+		preScreenShot: async (page) => hoverPre(page, true)
 	});
 });

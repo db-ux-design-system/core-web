@@ -324,47 +324,44 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							activeElement.getAttribute('type') === 'radio';
 
 						if (isCheckbox) {
-							const listElement = activeElement?.closest('li');
+							// We navigate over the flat list of option inputs instead
+							// of walking li siblings: in the Angular and Stencil output
+							// every li is wrapped in a custom-element host
+							// (db-custom-select-list-item), so an li has no sibling li
+							// and sibling traversal would break. Group titles render no
+							// input and are therefore skipped for free.
+							const optionInputs: HTMLInputElement[] = Array.from(
+								detailsRef.querySelectorAll(
+									`input.db-custom-select-list-item-checkbox`
+								)
+							);
+							const currentIndex = optionInputs.indexOf(
+								activeElement as HTMLInputElement
+							);
 							if (
 								event.key === 'ArrowDown' ||
 								event.key === 'ArrowRight'
 							) {
-								// Find next element with input, skipping group titles
-								let nextElement =
-									listElement?.nextElementSibling;
-								while (nextElement) {
-									const nextInput =
-										nextElement.querySelector('input');
-									if (nextInput) {
-										nextInput.focus();
-										break;
-									}
-									nextElement =
-										nextElement.nextElementSibling;
-								}
-
-								if (!nextElement) {
+								const nextInput =
+									currentIndex >= 0
+										? optionInputs.at(currentIndex + 1)
+										: undefined;
+								if (nextInput) {
+									nextInput.focus();
+								} else {
 									// We are on the last checkbox we move to the top checkbox
 									state.handleFocusFirstDropdownCheckbox(
 										activeElement
 									);
 								}
 							} else {
-								// Find previous element with input, skipping group titles
-								let prevElement =
-									listElement?.previousElementSibling;
-								while (prevElement) {
-									const prevInput =
-										prevElement.querySelector('input');
-									if (prevInput) {
-										prevInput.focus();
-										break;
-									}
-									prevElement =
-										prevElement.previousElementSibling;
-								}
-
-								if (!prevElement) {
+								const prevInput =
+									currentIndex > 0
+										? optionInputs.at(currentIndex - 1)
+										: undefined;
+								if (prevInput) {
+									prevInput.focus();
+								} else {
 									// Check if we have a "select all" checkbox (only relevant for multi-select)
 									const selectAllCheckbox =
 										detailsRef.querySelector(
@@ -495,7 +492,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							!detailsRef.contains(relatedTarget) &&
 							relatedTarget.localName !== 'dialog'
 						) {
-							// We need to use delay here because the combination of `contains`
+							// We need to use delay here because the combination of "contains"
 							// and changing the DOM element causes a race condition inside browser
 							void delay(() => {
 								if (detailsRef) {
@@ -888,7 +885,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 		if (state._selectedOptions?.length) {
 			if (props.transformSelectedLabels) {
-				// We need to add this to another ``const`` for Angular generated output to work
+				// We need to add this to another "const" for Angular generated output to work
 				const selectedOptions = state._selectedOptions;
 				const transformFn = props.transformSelectedLabels!;
 				state._selectedLabels = transformFn!(selectedOptions);

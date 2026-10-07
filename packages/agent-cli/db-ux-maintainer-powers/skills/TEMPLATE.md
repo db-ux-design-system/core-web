@@ -26,6 +26,7 @@ tools:
 
 outputs:
     - "packages/components/src/components/{component_slug}/"
+    - "showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts"
 
 on_error:
     max_retries: 3
@@ -50,13 +51,11 @@ on_error:
 
 ### Phase 1: RED – Write Failing Test First
 
-1. Create `<component_slug>.spec.tsx` in the component directory.
-2. Write test cases covering:
-    - Default rendering
-    - All variants from `<ComponentName>VariantList`
-    - Accessibility (axe-core)
-    - Edge cases
-3. Run the isolated test command and capture the failing output. The RED phase is only complete if the command exits non-zero and the failing test names are observed.
+Behavior is tested cross-framework against the running showcase, not by mounting an isolated component. Visual regression, aria-snapshot, and axe-core coverage come for free once the showcase page exists — write an interaction spec only for components with actual gestures.
+
+1. If the component has clicks, keyboard input, focus, open/close, or value-change behavior: create `<component_slug>/examples/interaction.example.lite.tsx` (reflecting the behavior into observable DOM) and `showcases/e2e/<component_slug>/<component_slug>-interaction.spec.ts` using `runInteractionTest` from `showcases/e2e/default.ts`.
+2. Write test cases covering the component's interactive behavior and edge cases. Accessibility and variant screenshots are covered separately by the existing per-showcase axe-core/visual-snapshot/aria-snapshot suites once the showcase example exists — do not duplicate them here.
+3. Run the isolated test command (`cd showcases/react-showcase && pnpm exec playwright test -g "DB<ComponentName>"`) and capture the failing output. The RED phase is only complete if the command exits non-zero and the failing test names are observed.
 
 ### Phase 2: GREEN – Minimal Implementation
 
@@ -98,7 +97,7 @@ on_error:
 - [ ] `model.ts` exists with `DB<ComponentName>Props` and `DB<ComponentName>State`
 - [ ] `<component_slug>.lite.tsx` exists and uses Mitosis patterns
 - [ ] `<component_slug>.scss` exists and uses SCSS variables (`variables.$db-*`) for tokens
-- [ ] `<component_slug>.spec.tsx` exists with variant + a11y tests
+- [ ] `showcases/e2e/<component_slug>/<component_slug>-interaction.spec.ts` exists (if the component is interactive)
 - [ ] `index.ts` re-exports component (NO type re-exports from `./model`)
 - [ ] All tests pass
 - [ ] `pnpm run build` passes
@@ -109,20 +108,20 @@ on_error:
 
 HALT IMMEDIATELY if you catch yourself thinking:
 
-| Thought                                    | Response                                                                          |
-| ------------------------------------------ | --------------------------------------------------------------------------------- |
-| "I'll write tests later"                   | STOP. Write tests NOW. Phase 1 is non-negotiable.                                 |
-| "This is simple enough to skip model.ts"   | STOP. Every component gets typed props. No exceptions.                            |
-| "I'll just use a quick inline style"       | STOP. Use SCSS variables (`variables.$db-*`). Check MCP with `get_design_tokens`. |
-| "I'll hardcode this color for now"         | STOP. Call `get_design_tokens` from MCP. Use the SCSS variable.                   |
-| "The output/ files need a quick fix"       | STOP. NEVER edit output/. Fix the `.lite.tsx` source.                             |
-| "I don't need to check the icon name"      | STOP. Call `list_icons` from MCP. Use the exact name.                             |
-| "I'll skip accessibility testing"          | STOP. Add axe-core assertions. Accessibility is mandatory.                        |
-| "This variant isn't worth testing"         | STOP. Test ALL variants in `VariantList`.                                         |
-| "I don't need a changeset for a small fix" | STOP. All logic changes in `src/` require a changeset.                            |
-| "I'll read the ref in onMount"             | STOP. Use `onUpdate` with the initialized-pattern.                                |
-| "I'll call this function in JSX bindings"  | STOP. Store the value in `state`, update via `onUpdate`.                          |
-| "I'll add aria-disabled to this button"    | STOP. Native `disabled` is sufficient. Don't duplicate state.                     |
-| "I'll use border: none for a clean look"   | STOP. Use `@extend %transparent-border` for HCM support.                          |
-| "I'll add cursor: pointer manually"        | STOP. Use `@include helpers.hover { ... }` mixin.                                 |
-| "I'll exclude this file from storybook"    | STOP. Fix the example to be Mitosis-compatible instead.                           |
+| Thought                                    | Response                                                                                                                                           |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "I'll write tests later"                   | STOP. Write tests NOW. Phase 1 is non-negotiable.                                                                                                  |
+| "This is simple enough to skip model.ts"   | STOP. Every component gets typed props. No exceptions.                                                                                             |
+| "I'll just use a quick inline style"       | STOP. Use SCSS variables (`variables.$db-*`). Check MCP with `get_design_tokens`.                                                                  |
+| "I'll hardcode this color for now"         | STOP. Call `get_design_tokens` from MCP. Use the SCSS variable.                                                                                    |
+| "The output/ files need a quick fix"       | STOP. NEVER edit output/. Fix the `.lite.tsx` source.                                                                                              |
+| "I don't need to check the icon name"      | STOP. Call `list_icons` from MCP. Use the exact name.                                                                                              |
+| "I'll skip accessibility testing"          | STOP. Accessibility is covered by the per-showcase axe-core suite once the showcase example exists — verify it renders, don't suppress or skip it. |
+| "This interaction isn't worth testing"     | STOP. Every user-facing gesture (click, keyboard, focus, open/close, value change) needs an assertion in the interaction spec.                     |
+| "I don't need a changeset for a small fix" | STOP. All logic changes in `src/` require a changeset.                                                                                             |
+| "I'll read the ref in onMount"             | STOP. Use `onUpdate` with the initialized-pattern.                                                                                                 |
+| "I'll call this function in JSX bindings"  | STOP. Store the value in `state`, update via `onUpdate`.                                                                                           |
+| "I'll add aria-disabled to this button"    | STOP. Native `disabled` is sufficient. Don't duplicate state.                                                                                      |
+| "I'll use border: none for a clean look"   | STOP. Use `@extend %transparent-border` for HCM support.                                                                                           |
+| "I'll add cursor: pointer manually"        | STOP. Use `@include helpers.hover { ... }` mixin.                                                                                                  |
+| "I'll exclude this file from storybook"    | STOP. Fix the example to be Mitosis-compatible instead.                                                                                            |

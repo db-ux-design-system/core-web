@@ -138,7 +138,14 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value,
+						reset
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			/* `handleValidation` must not run synchronously here: it changes
@@ -173,7 +180,14 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value,
+						reset
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -321,7 +335,14 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._id}
 				name={props.name}
 				size={props.size}
-				value={props.value ?? state._value ?? ''}
+				value={useTarget({
+					// React needs the raw prop so the element stays a
+					// controlled component; falling back to state._value would
+					// pin it because state._value is never updated from user
+					// input in React.
+					react: props.value,
+					default: props.value ?? state._value ?? ''
+				})}
 				autocomplete={props.autoComplete ?? props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>

@@ -18,6 +18,7 @@
     "test:aria-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.aria-snapshots.ts",
     "test:axe-core": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.axe-core.ts",
     "test:e2e": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts",
+    "test:interaction": "cross-env showcase=stencil-showcase pnpm exec playwright test --config=../playwright.interaction.ts",
     "test:ui": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.config.ts --ui",
     "test:visual-snapshots": "cross-env showcase=stencil-showcase npx playwright test --config=../playwright.visual-snapshots.ts"
   },
@@ -33,7 +34,7 @@
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.3.0",
+    "vite": "8.3.2",
     "vite-plugin-static-copy": "4.1.1"
   }
 }

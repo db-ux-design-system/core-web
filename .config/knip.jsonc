@@ -15,10 +15,6 @@
 		// Same pattern: two ControlPanelActions components share one folder.
 		"packages/components/src/components/control-panel-actions/index.ts": [
 			"unresolved"
-		],
-		// The spec mounts the generated example, which Mitosis emits without the .lite suffix.
-		"packages/components/src/components/custom-select/custom-select.spec.tsx": [
-			"unresolved"
 		]
 	},
 
@@ -49,12 +45,17 @@
 			"entry": [".config/*.{js,ts}"],
 			"project": [".config/**/*.{js,ts}"],
 			"ignoreDependencies": [
+				// Used only by the e2e suite under showcases/e2e (an ignored
+				// workspace), so Knip cannot see the import and would otherwise
+				// auto-remove it. playwright-core is @axe-core/playwright's
+				// peerDependency and is never imported directly.
+				"@axe-core/playwright",
+				"playwright-core",
 				"@figma/code-connect",
 				"@guidepup/guidepup",
 				"@guidepup/playwright",
 				"@guidepup/record",
 				"@guidepup/setup",
-				"@playwright/experimental-ct-core",
 				"accessibility-checker-engine",
 				"validate-branch-name"
 			]
@@ -106,7 +107,7 @@
 			],
 			// react.ts is injected as an import string by scripts/post-build/react.ts
 			"ignoreFiles": ["src/utils/react.ts"],
-			"ignoreDependencies": ["react", "@playwright/experimental-ct-react"]
+			"ignoreDependencies": ["react"]
 		},
 
 		// Vite plugin: test fixtures are mock apps with their own unlisted deps

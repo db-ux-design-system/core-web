@@ -85,6 +85,7 @@ referrerpolicy
 haspopup
 arialive
 screenreader
+spinbutton
 snackbars
 bday
 untick
@@ -270,6 +271,11 @@ ponyfilled
 argumentless
 recalc
 deconflict
+extensionless
+scrollport
+interpolatable
+crumbtrail
+hrefs
 renderable
 frontmost
 unwired
