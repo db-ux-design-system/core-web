@@ -97,3 +97,7 @@
   - switch "Required + Visual Aid"
   - text: Required + Visual Aid
   - status
+  - link "Interaction"
+  - switch "Test Switch"
+  - text: Test Switch
+  - status

@@ -59,3 +59,19 @@
       - group: Item 2
     - listitem:
       - group: Item 3
+  - link "Init Open"
+  - list:
+    - listitem:
+      - group: Test
+    - listitem:
+      - group: Test 2 Test2
+    - listitem:
+      - group: Test 3 Test3
+  - link "Action"
+  - list:
+    - listitem:
+      - group: Test
+    - listitem:
+      - group: Test 2
+    - listitem:
+      - group [disabled]: Test 3

@@ -1,6 +1,6 @@
 ---
 name: test-component
-description: "Runs, analyzes, and fixes Playwright and accessibility tests for a specific DB UX component."
+description: "Runs, analyzes, and fixes cross-framework interaction, visual-snapshot, aria-snapshot, and accessibility tests for a specific DB UX component's showcase pages."
 
 triggers:
     - "test <component> component"
@@ -42,7 +42,7 @@ tools:
     - figma/download_figma_images
 
 outputs:
-    - "packages/components/src/components/{component_slug}/{component_slug}.spec.tsx"
+    - "showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts"
 
 on_error:
     max_retries: 3
@@ -74,28 +74,30 @@ If `component_name` is not explicitly provided, derive it deterministically from
 1. `context/architecture.md` IS in context.
 2. `component_slug` IS provided and component EXISTS (verify via `list_components`). If missing: do NOT infer or guess. Ask the user.
 3. `pnpm install --ignore-scripts` has been run.
-4. Build is current: run `pnpm run build` before testing.
+4. Build is current: run `pnpm run build && pnpm run build-outputs` before testing.
 
 ## Execution
 
 ### Step 0: Validate Environment
 
 1. Call `list_components` to confirm the component exists.
-2. Read `packages/components/src/components/{component_slug}/{component_slug}.spec.tsx` to understand existing tests.
-3. Run `pnpm run build && pnpm run build-outputs` to ensure the component and all generated framework files are up to date.
+2. Read `showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts` if it exists, plus the sibling `*-visual-snapshot.spec.ts` / `*-aria-snapshot.spec.ts` for the component's route, to understand existing coverage.
+3. Run `pnpm run build && pnpm run build-outputs` to ensure the component and all generated framework showcases are up to date.
 
 ### Step 1: Run Tests
 
-Execute the component's tests from `output/react` (specs are generated there after `pnpm run build-outputs`):
+Behavior tests run against the built showcase apps, one suite per test kind. Run from the relevant `showcases/<framework>-showcase` directory (start with `react-showcase`; only cross-check other frameworks if the failure looks framework-specific):
 
 ```bash
-cd output/react && pnpm exec playwright test --config playwright.config.ts -g "DB{component_name}"
+cd showcases/react-showcase && pnpm exec playwright test --config=../playwright.config.ts -g "DB{component_name}"
 ```
 
-Alternatively, run all component tests:
+That single `test:e2e`-style run covers interaction, aria-snapshot, visual-snapshot and axe-core specs matching the grep. To isolate one kind:
 
 ```bash
-cd output/react && pnpm run test:components
+cd showcases/react-showcase && pnpm run test:aria-snapshots -- -g "DB{component_name}"
+cd showcases/react-showcase && pnpm run test:visual-snapshots -- -g "DB{component_name}"
+cd showcases/react-showcase && pnpm run test:axe-core -- -g "DB{component_name}"
 ```
 
 **Example:** For `component_slug = control-panel-navigation-item`, convert to `component_name = ControlPanelNavigationItem`, then grep for `DBControlPanelNavigationItem`.
@@ -106,23 +108,33 @@ Capture the FULL output (pass/fail, error messages, diff output).
 
 For EACH failing test, classify the failure:
 
-| Failure Type               | Indicator                     | Action        |
-| -------------------------- | ----------------------------- | ------------- |
-| **Screenshot mismatch**    | `toHaveScreenshot()` diff     | Go to Step 3a |
-| **Aria snapshot mismatch** | `toMatchSnapshot()` diff      | Go to Step 3b |
-| **A11y violation**         | Axe-core `violations` array   | Go to Step 3c |
-| **Component error**        | Runtime error, missing export | Go to Step 3d |
-| **Test code error**        | TypeScript error in spec      | Go to Step 3e |
+| Failure Type                      | Indicator                                                                       | Action        |
+| --------------------------------- | ------------------------------------------------------------------------------- | ------------- |
+| **Interaction assertion failure** | Failing `expect(...)` in `*-interaction.spec.ts` (DOM state, testid, attribute) | Go to Step 3a |
+| **Screenshot mismatch**           | `toHaveScreenshot()` diff                                                       | Go to Step 3b |
+| **Aria snapshot mismatch**        | `toMatchSnapshot()` diff                                                        | Go to Step 3c |
+| **A11y violation**                | Axe-core `violations` array                                                     | Go to Step 3d |
+| **Component error**               | Runtime error, missing export                                                   | Go to Step 3e |
+| **Test code error**               | TypeScript error in spec                                                        | Go to Step 3f |
 
 ### Step 3: Fix Failures
 
-#### 3a: Screenshot Mismatch
+#### 3a: Interaction Assertion Failure
+
+1. Read `showcases/e2e/{component_slug}/{component_slug}-interaction.spec.ts` and the fixture it drives (`packages/components/src/components/{component_slug}/examples/interaction.example.lite.tsx`).
+2. Determine if the behavior change is intentional (part of the current modification) or a regression.
+3. **If intentional**: update the assertion to reflect the new expected DOM state.
+4. **If unintentional**: fix `.lite.tsx` to restore the expected behavior.
+5. If the failure is framework-specific (only fails on `vue-showcase`/`angular-showcase`/`stencil-showcase`), branch the assertion with `isVue`/`isAngular`/`isStencil` from `../default.ts` rather than changing the shared assertion — see `// VUE:`-style precedent in already-migrated specs.
+6. Re-run tests to confirm fix.
+
+#### 3b: Screenshot Mismatch
 
 **If `update_snapshots` is true:**
 
 Only update when the rendered delta is intentional and explicitly explained. Before running the update command, state WHY the visual change is expected (e.g. "variant X was added in the previous modification step"). If you cannot explain the delta, treat it as unintentional and go to the "false" path below.
 
-**Note:** Do NOT run `regenerate:screenshots` node script locally. Snapshots are generated automatically in CI/CD.
+**Note:** Do NOT run `regenerate:visual-snapshots` locally. Snapshots are generated automatically in CI/CD.
 
 **If `update_snapshots` is false (default):**
 
@@ -131,14 +143,14 @@ Only update when the rendered delta is intentional and explicitly explained. Bef
 3. Fix the component code to restore expected visual output.
 4. Re-run tests to confirm fix.
 
-#### 3b: Aria Snapshot Mismatch
+#### 3c: Aria Snapshot Mismatch
 
 1. Read the updated component markup in `.lite.tsx`.
 2. Determine if the aria structure change is intentional.
-3. **If intentional** (and you can explicitly explain why): update snapshots.
+3. **If intentional** (and you can explicitly explain why): update snapshots via `regenerate:aria-snapshots` — but note this is normally left to CI, same as visual snapshots.
 4. **If unintentional**: fix the component to restore correct aria structure.
 
-#### 3c: A11y Violation (Axe-Core)
+#### 3d: A11y Violation (Axe-Core)
 
 1. Read the violation details: `id`, `impact`, `nodes`, `help`.
 2. Identify the DOM element causing the violation.
@@ -149,18 +161,18 @@ Only update when the rendered delta is intentional and explicitly explained. Bef
 4. NEVER suppress axe-core rules. Fix the underlying issue.
 5. Re-run tests.
 
-#### 3d: Component Runtime Error
+#### 3e: Component Runtime Error
 
 1. Read the error stack trace.
 2. Fix the source file (`.lite.tsx`, `model.ts`, or `index.ts`).
-3. Run `pnpm run build` to recompile.
+3. Run `pnpm run build && pnpm run build-outputs` to recompile.
 4. Re-run tests.
 
-#### 3e: Test Code Error
+#### 3f: Test Code Error
 
-1. Read the TypeScript error in the spec file.
-2. Common causes: importing from `.lite`, missing `// @ts-ignore`, prop API changed.
-3. Fix the `.spec.tsx` file.
+1. Read the TypeScript error in the spec or fixture file.
+2. Common causes: importing from `.lite` without the suffix stripped correctly, wrong `data-testid`, prop API changed.
+3. Fix the `*-interaction.spec.ts` file or the `interaction.example.lite.tsx` fixture.
 4. Re-run tests.
 
 ### Step 4: Verification Loop
