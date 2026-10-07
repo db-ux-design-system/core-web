@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Icon baseline stability</title>
+		<link rel="stylesheet" href="/dev/index.css" />
+		<link rel="stylesheet" href="/build/styles/icons/absolute.css" />
+		<style>
+			.row {
+				border: 1px solid grey;
+				margin-block: var(--db-spacing-fixed-2xs);
+			}
+
+			/*
+			 A content-less inline-block has no in-flow line boxes, so its baseline
+			 is its bottom margin edge. That edge therefore marks the text baseline
+			 of the row and does not move when a font swaps in - which makes it a
+			 stable zero point for measuring the icon box against.
+			*/
+			.baseline-marker {
+				display: inline-block;
+				inline-size: var(--db-sizing-3xs);
+				block-size: var(--db-sizing-3xs);
+				vertical-align: baseline;
+				background-color: currentColor;
+			}
+		</style>
+	</head>
+
+	<body style="padding: var(--db-spacing-fixed-md)">
+		<h1>Icon baseline stability</h1>
+		<p>
+			Fixture for <code>icon-baseline.spec.js</code>. The icon box must
+			keep its position relative to the text baseline while the icon font
+			is still loading. Icons only shift in an inline formatting context,
+			so every row places the icon next to text rather than in a flex
+			container.
+		</p>
+
+		<div class="row" id="leading">
+			<span class="baseline-marker"></span
+			><span data-icon="calendar"></span> leading icon
+		</div>
+		<div class="row" id="trailing">
+			<span class="baseline-marker"></span
+			><span data-icon-trailing="calendar"></span> trailing icon
+		</div>
+		<div class="row" id="both">
+			<span class="baseline-marker"></span
+			><span data-icon="calendar" data-icon-trailing="calendar"></span>
+			leading and trailing icon
+		</div>
+		<div class="row" id="weight-20">
+			<span class="baseline-marker"></span
+			><span data-icon="calendar" data-icon-weight="20"></span> icon
+			weight 20
+		</div>
+		<div class="row" id="variant-filled">
+			<span class="baseline-marker"></span
+			><span data-icon="calendar" data-icon-variant="filled"></span>
+			filled variant
+		</div>
+		<div class="row" id="in-paragraph">
+			<span class="baseline-marker"></span>Running text with an
+			<span data-icon="calendar"></span> icon in the middle of the line.
+		</div>
+	</body>
+</html>

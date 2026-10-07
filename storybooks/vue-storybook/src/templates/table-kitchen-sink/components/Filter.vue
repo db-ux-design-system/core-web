@@ -6,7 +6,7 @@ import type {
 	StockFeatures,
 	Table
 } from "@tanstack/vue-table";
-import { computed } from "vue";
+import { computed, defineProps } from "vue";
 import DebouncedInput from "./DebouncedInput.vue";
 
 interface Props {
