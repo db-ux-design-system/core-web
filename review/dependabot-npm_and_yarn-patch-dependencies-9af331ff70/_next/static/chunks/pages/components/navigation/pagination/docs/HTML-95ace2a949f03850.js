@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[58126],{13510:(n,_,o)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/components/navigation/pagination/docs/HTML",function(){return o(26106)}])}},n=>{n.O(0,[26106,90636,46593,38792],()=>n(n.s=13510)),_N_E=n.O()}]);
