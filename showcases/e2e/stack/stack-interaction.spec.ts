@@ -64,6 +64,8 @@ test.describe('DBStack', () => {
 			expect(await getReservedSpace(stack)).toBeGreaterThanOrEqual(
 				focusOutlineReach
 			);
+			// `border-box` would absorb the padding instead of reserving it.
+			await expect(stack).toHaveCSS('box-sizing', 'content-box');
 		}
 	});
 });

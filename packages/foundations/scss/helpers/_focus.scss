@@ -29,6 +29,8 @@ $db-focus-outline-reach: calc(
 
 // Reserves ring space inside a clipping container, margin compensating it.
 @mixin get-focus-container {
+	// `border-box` would absorb the padding, leaving the margin to displace.
+	box-sizing: content-box;
 	// stylelint-disable-next-line db-ux/use-spacings
 	padding: $db-focus-outline-reach;
 	// stylelint-disable-next-line db-ux/use-spacings

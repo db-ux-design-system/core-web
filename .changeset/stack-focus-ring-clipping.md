@@ -1,10 +1,10 @@
 ---
-"@db-ux/core-foundations": minor
-"@db-ux/core-components": minor
-"@db-ux/ngx-core-components": minor
-"@db-ux/react-core-components": minor
-"@db-ux/wc-core-components": minor
-"@db-ux/v-core-components": minor
+"@db-ux/core-foundations": major
+"@db-ux/core-components": major
+"@db-ux/ngx-core-components": major
+"@db-ux/react-core-components": major
+"@db-ux/wc-core-components": major
+"@db-ux/v-core-components": major
 ---
 
 feat(DBStack): `overflow: auto` removed - a stack no longer scrolls
