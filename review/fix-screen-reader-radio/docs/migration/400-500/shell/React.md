@@ -1,0 +1,232 @@
+# Migration DBPage, DBHeader, DBNavigation
+
+## Original Example
+
+```tsx
+import { useState } from "react";
+import {
+	DBPage,
+	DBHeader,
+	DBBrand,
+	DBLink,
+	DBNavigation,
+	DBNavigationItem
+} from "@db-ux/react-core-components";
+
+const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+
+const MetaNavigation = () => (
+	<>
+		<DBLink href="#">Imprint</DBLink>
+		<DBLink href="#">Help</DBLink>
+	</>
+);
+
+const PrimaryActions = () => (
+	<DBButton icon="magnifying_glass" variant="ghost" noText>
+		Search
+	</DBButton>
+);
+
+const SecondaryActions = () => (
+	<>
+		<DBButton icon="x_placeholder" variant="ghost" noText>
+			Profile
+		</DBButton>
+		<DBButton icon="alert" variant="ghost" noText>
+			Notification
+		</DBButton>
+		<DBButton icon="help" variant="ghost" noText>
+			Help
+		</DBButton>
+	</>
+);
+
+const Navigation = () => (
+	<DBNavigation>
+		<DBNavigationItem
+			slotSubNavigation={
+				<>
+					<DBNavigationItem
+						subNavigation={
+							<>
+								<DBNavigationItem>
+									<a href="#" aria-current="page">
+										Sub-Sub-Navi-Item 1
+									</a>
+								</DBNavigationItem>
+								<DBNavigationItem>
+									<a href="#">Sub-Sub-Navi-Item 2</a>
+								</DBNavigationItem>
+							</>
+						}
+					>
+						Sub-Navi-Item 1
+					</DBNavigationItem>
+					<DBNavigationItem>
+						<a href="#">Sub-Navi-Item 2</a>
+					</DBNavigationItem>
+				</>
+			}
+		>
+			Navi-Item 1
+		</DBNavigationItem>
+		<DBNavigationItem icon="x_placeholder">
+			<a href="#">Navi-Item 2</a>
+		</DBNavigationItem>
+		<DBNavigationItem disabled>
+			<a href="#">Navi-Item 3</a>
+		</DBNavigationItem>
+	</DBNavigation>
+);
+
+const App = () => (
+	<DBPage
+		fadeIn
+		documentOverflow="hidden"
+		variant="fixed"
+		header={
+			<DBHeader
+				drawerOpen={drawerOpen}
+				onToggle={setDrawerOpen}
+				brand={<DBBrand>My Awesome App</DBBrand>}
+				metaNavigation={<MetaNavigation />}
+				primaryAction={<PrimaryActions />}
+				secondaryAction={<SecondaryActions />}
+			>
+				<Navigation />
+			</DBHeader>
+		}
+		footer={<div>Footer</div>}
+	>
+		Main Page
+	</DBPage>
+);
+
+export default App;
+```
+
+## Refactored Example
+
+```tsx
+import {
+	DBShell, // previously: DBPage
+	DBShellContent, // new
+	DBControlPanelDesktop, // previously: DBHeader
+	DBControlPanelMobile, // previously: DBHeader
+	DBControlPanelBrand, // previously: DBBrand
+	DBControlPanelMeta, // new
+	DBControlPanelActions1, // new
+	DBControlPanelActions2, // new
+	DBLink,
+	DBControlPanelNavigation,
+	DBControlPanelNavigationItem,
+	DBControlPanelNavigationItemGroup, // new
+	DBButton
+} from "@db-ux/react-core-components";
+
+// No need for own drawer state
+/*const [drawerOpen, setDrawerOpen] = useState<boolean>(false);*/
+
+const MetaNavigation = () => (
+	<DBControlPanelMeta>
+		{/* added DBControlPanelMeta */}
+		<DBLink href="#">Imprint</DBLink>
+		<DBLink href="#">Help</DBLink>
+	</DBControlPanelMeta>
+);
+
+const PrimaryActions = () => (
+	<DBControlPanelActions1>
+		{/* added DBControlPanelActions1 */}
+		<DBButton icon="magnifying_glass" variant="ghost" noText>
+			Search
+		</DBButton>
+	</DBControlPanelActions1>
+);
+
+const SecondaryActions = () => (
+	<DBControlPanelActions2>
+		{/* added DBControlPanelActions2 */}
+		<DBButton icon="x_placeholder" variant="ghost" noText>
+			Profile
+		</DBButton>
+		<DBButton icon="alert" variant="ghost" noText>
+			Notification
+		</DBButton>
+		<DBButton icon="help" variant="ghost" noText>
+			Help
+		</DBButton>
+	</DBControlPanelActions2>
+);
+
+const Navigation = () => (
+	<DBControlPanelNavigation>
+		<DBControlPanelNavigationItemGroup text="Navi-Item 1">
+			{/* replaced DBControlPanelNavigationItem with `subNavigation` */}
+			<DBControlPanelNavigationItemGroup text="Sub-Navi-Item 1">
+				{/* replaced DBControlPanelNavigationItem with `subNavigation` */}
+				<DBControlPanelNavigationItem>
+					<a href="#" aria-current="page">
+						Sub-Sub-Navi-Item 1
+					</a>
+				</DBControlPanelNavigationItem>
+				<DBControlPanelNavigationItem>
+					<a href="#">Sub-Sub-Navi-Item 2</a>
+				</DBControlPanelNavigationItem>
+			</DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>
+				<a href="#">Sub-Navi-Item 2</a>
+			</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
+		<DBControlPanelNavigationItem icon="x_placeholder">
+			<a href="#">Navi-Item 2</a>
+		</DBControlPanelNavigationItem>
+		<DBControlPanelNavigationItem disabled>
+			<a href="#">Navi-Item 3</a>
+		</DBControlPanelNavigationItem>
+	</DBControlPanelNavigation>
+);
+
+const App = () => (
+	<DBShell fadeIn>
+		<DBControlPanelDesktop
+			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
+			meta={<MetaNavigation />}
+			actions1={<PrimaryActions />}
+			actions2={<SecondaryActions />}
+		>
+			<Navigation />
+		</DBControlPanelDesktop>
+		<DBControlPanelMobile
+			drawerHeaderText="My Awesome App"
+			brand={<DBControlPanelBrand>My Awesome App</DBControlPanelBrand>}
+			meta={<MetaNavigation />}
+			actions1={<PrimaryActions />}
+			actions2={<SecondaryActions />}
+		>
+			<Navigation />
+		</DBControlPanelMobile>
+		<DBShellContent
+			// the `footer` slot of DBPage becomes the `endSlot` of DBShellContent
+			endSlot={<div>Footer</div>}
+		>
+			Main Page
+		</DBShellContent>
+	</DBShell>
+);
+
+export default App;
+```
+
+## Moving the footer
+
+`DBShell` has no `footer` slot. Its grid only defines areas for the control panel, the sub-navigation, and the content, so a footer passed as a direct child of `DBShell` is auto-placed by the grid instead of ending up below the content. Move it into the `endSlot` of `DBShellContent`, which renders directly after `main`.
+
+| Deprecated                                      | Replacement                               |
+| ----------------------------------------------- | ----------------------------------------- |
+| `DBPage` slot `footer`                          | `DBShellContent` slot `endSlot`           |
+| `DBPage variant="fixed"` (footer stays visible) | `DBShellContent variant="fixed"`          |
+| `DBPage variant="auto"`                         | `DBShellContent variant="auto"` (default) |
+
+`DBShellContent` also has a `startSlot` for content that should sit above `main`, which `DBPage` had no equivalent for.
