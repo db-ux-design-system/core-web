@@ -58,7 +58,7 @@
     "@builder.io/mitosis-cli": "0.14.1",
     "@prettier/sync": "0.6.1",
     "cpy-cli": "7.0.0",
-    "cssnano": "9.1.2",
+    "cssnano": "9.2.2",
     "hygen": "6.2.11",
     "nodemon": "3.1.14",
     "npm-run-all2": "9.0.3",
@@ -68,7 +68,7 @@
     "sass": "1.105.1",
     "storybook": "10.6.1",
     "tsx": "4.23.15",
-    "vitest": "5.0.2"
+    "vitest": "5.0.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
