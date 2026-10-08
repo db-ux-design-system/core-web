@@ -1,5 +1,11 @@
 # @db-ux/core-foundations
 
+## 5.7.0
+
+### Patch Changes
+
+- fix(icons): prevent layout shift while the icon font is loading in webkit - [see commit 6fba5a6](https://github.com/db-ux-design-system/core-web/commit/6fba5a6b128e5de8f98d84862a97c44490112a89)
+
 ## 5.6.2
 
 No changes in this release.
