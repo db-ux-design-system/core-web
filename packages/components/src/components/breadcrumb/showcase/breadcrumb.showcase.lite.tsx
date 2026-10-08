@@ -62,6 +62,11 @@ export default function BreadcrumbShowcase(props: PatternhubProps) {
 					<BreadcrumbBadge />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<BreadcrumbInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }
