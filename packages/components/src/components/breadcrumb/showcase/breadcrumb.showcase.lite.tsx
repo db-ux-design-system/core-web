@@ -6,6 +6,7 @@ import BreadcrumbApi from '../examples/api.example.lite';
 import BreadcrumbBadge from '../examples/badge.example.lite';
 import BreadcrumbDensity from '../examples/density.example.lite';
 import BreadcrumbDisabled from '../examples/disabled.example.lite';
+import BreadcrumbInteraction from '../examples/interaction.example.lite';
 import BreadcrumbLength from '../examples/length.example.lite';
 import BreadcrumbNoText from '../examples/no-text.example.lite';
 import BreadcrumbPopover from '../examples/popover.example.lite';
