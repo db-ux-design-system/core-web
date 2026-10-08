@@ -41,7 +41,12 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
-			await expect(selectedLabel).not.toContainText('Option 1');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -60,7 +65,12 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
-			await expect(selectedLabel).not.toContainText('Option 1');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -138,7 +148,12 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
-			await expect(selectedLabel).not.toContainText('Option 1');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
@@ -159,7 +174,12 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
-			await expect(selectedLabel).not.toContainText('Option 1');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
