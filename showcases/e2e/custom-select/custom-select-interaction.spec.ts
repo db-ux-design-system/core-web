@@ -40,13 +40,26 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Space');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -58,14 +71,27 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -113,14 +139,24 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('select-all-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
-			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.waitForTimeout(1000); // Wait for focus to apply
+			// Wait for focus to actually land on the "select all" checkbox
+			// before toggling it, instead of racing a fixed timeout. On Stencil
+			// the dropdown hydrates and moves focus asynchronously, so a fixed
+			// wait is sometimes too short and Space toggles the wrong control,
+			// selecting fewer than all options. The select-all checkbox is the
+			// only input with value="select-all".
+			await page.waitForFunction(() => {
+				const activeElement =
+					document.activeElement as HTMLInputElement;
+				return activeElement?.value === 'select-all';
+			});
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText(
+			await expect(selectedLabel).toContainText(
 				'Option 1, Option 2, Option 3, Option 4, Option 5'
 			);
 		}
@@ -134,13 +170,26 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Enter');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 			// For single select, the dropdown closes after Enter.
 			await expect(select.locator('details')).not.toHaveAttribute('open');
 		}
@@ -154,16 +203,29 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Enter');
 			// For multiple select, the dropdown stays open after Enter.
 			await expect(select.locator('details')).toHaveAttribute('open');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -175,8 +237,17 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the search input,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and the `type === 'search'` wait times out. Mirrors
+			// the settle wait the "test select all" and "option groups" specs
+			// use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await page.waitForFunction(() => {
 				const activeElement =
@@ -189,7 +260,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 2');
+			await expect(selectedLabel).toContainText('Option 2');
 		}
 	});
 
@@ -201,8 +272,17 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the search input,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and the `type === 'search'` wait times out. Mirrors
+			// the settle wait the "test select all" and "option groups" specs
+			// use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await page.waitForFunction(() => {
 				const activeElement =
@@ -215,7 +295,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 3');
+			await expect(selectedLabel).toContainText('Option 3');
 		}
 	});
 
@@ -284,27 +364,29 @@ test.describe('DBCustomSelect', () => {
 		path,
 		example: 'Interaction',
 		async run({ content }) {
-			const summary = content
-				.getByTestId('values-reset-select')
-				.locator('summary');
+			const select = content.getByTestId('values-reset-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
+			// When nothing is selected the component renders the placeholder
+			// instead of `.db-custom-select-label`, so a cleared selection
+			// means the label is removed from the DOM entirely. Assert on its
+			// absence rather than `.not.toContainText(...)`, which would fail
+			// with "element(s) not found" once the label is detached.
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 
 			await content.getByTestId('values-reset-null').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-undefined').click();
-			await expect(summary).not.toContainText('Option 1');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-empty').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 		}
 	});
 
@@ -318,7 +400,7 @@ test.describe('DBCustomSelect', () => {
 			project: () => !(process.env.showcase ?? '').startsWith('react')
 		},
 		async run({ content }) {
-			const summary = content.locator('summary');
+			const selectedLabel = content.locator('.db-custom-select-label');
 			const tags = content.locator('.db-tag');
 			const optionInputs = content.locator(
 				'.db-custom-select-list-item input[value]'
@@ -334,7 +416,12 @@ test.describe('DBCustomSelect', () => {
 			});
 			const selectionReadout = content.getByText('Selections by user: 0');
 
-			await expect(summary).not.toContainText('Germany');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so an empty selection means the label
+			// is detached. Assert `toHaveCount(0)` for the empty states instead
+			// of `.not.toContainText(...)`, which errors with "element(s) not
+			// found" on a missing element.
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -348,8 +435,8 @@ test.describe('DBCustomSelect', () => {
 
 			// Options and values change in the same render: the reported bug.
 			await loadOtherOptions.click();
-			await expect(summary).toContainText('Switzerland');
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toContainText('Switzerland');
+			await expect(selectedLabel).not.toContainText('Germany');
 			await expect(tags).toHaveCount(1);
 			await expect(tags).toContainText('Switzerland');
 			await expect(optionInputs).toHaveCount(2);
@@ -357,13 +444,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(content.locator('input[value="de"]')).toHaveCount(0);
 
 			await clearOptionsAndSelection.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(0);
 			await expect(selectionReadout).toBeVisible();
 
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -373,7 +460,7 @@ test.describe('DBCustomSelect', () => {
 
 			await loadOtherOptions.click();
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
