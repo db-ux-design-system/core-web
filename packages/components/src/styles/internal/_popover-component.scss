@@ -81,12 +81,9 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
+	&:is(.db-tooltip),
 	&[data-gap="true"] {
 		--db-popover-gap: 1;
-		--db-popover-distance: #{variables.$db-spacing-fixed-md};
-	}
-
-	&:is(.db-tooltip) {
 		--db-popover-distance: #{variables.$db-spacing-fixed-sm};
 	}
 

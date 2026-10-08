@@ -68,7 +68,7 @@
     "sass": "1.105.1",
     "storybook": "10.6.1",
     "tsx": "4.23.15",
-    "vitest": "5.0.2"
+    "vitest": "5.0.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
