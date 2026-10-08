@@ -215,11 +215,11 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.34.0
-        version: 0.34.0(supports-color@10.2.2)
+        specifier: 0.35.0
+        version: 0.35.0(supports-color@10.2.2)
       '@guidepup/playwright':
         specifier: 0.19.1
-        version: 0.19.1(@guidepup/guidepup@0.34.0(supports-color@10.2.2))(@playwright/test@1.63.0)
+        version: 0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)
       '@guidepup/record':
         specifier: 0.2.0
         version: 0.2.0(supports-color@10.2.2)
@@ -3684,8 +3684,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.34.0':
-    resolution: {integrity: sha512-nMLsvHXXNZg+/9okHvSOuMEKMGxs0U8o/sT1pKERh37ETB16X4geomIHjXJ/HRTfpue9gs9yRTLK5azHZV92iw==}
+  '@guidepup/guidepup@0.35.0':
+    resolution: {integrity: sha512-US64a++RucCtLfoq/DqnjzaHYpKzERVYmhtsWViz38MyklICICDpb50AKLn9sbxUwTceK2rS0fjDy7fYpWK/QA==}
 
   '@guidepup/playwright@0.19.1':
     resolution: {integrity: sha512-d0FMH6LFbRbV71l2NGzv2gqV3vQbHDfTVctXsKm6d1ZahpS2/Ozq1WCEoZ7QTAR6iuNzwy03tZfvyijGH+zUDw==}
@@ -18640,16 +18640,16 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.34.0(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.35.0(supports-color@10.2.2)':
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
       plist: 4.0.0
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.34.0(supports-color@10.2.2))(@playwright/test@1.63.0)':
+  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)':
     dependencies:
-      '@guidepup/guidepup': 0.34.0(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.35.0(supports-color@10.2.2)
       '@playwright/test': 1.63.0
 
   '@guidepup/record@0.2.0(supports-color@10.2.2)':
