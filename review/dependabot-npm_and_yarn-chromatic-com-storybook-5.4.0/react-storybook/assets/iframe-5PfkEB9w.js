@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-SWUPN_wd.js";e();
