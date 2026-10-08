@@ -215,11 +215,11 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.34.0
-        version: 0.34.0(supports-color@10.2.2)
+        specifier: 0.35.0
+        version: 0.35.0(supports-color@10.2.2)
       '@guidepup/playwright':
         specifier: 0.19.1
-        version: 0.19.1(@guidepup/guidepup@0.34.0(supports-color@10.2.2))(@playwright/test@1.63.0)
+        version: 0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)
       '@guidepup/record':
         specifier: 0.2.0
         version: 0.2.0(supports-color@10.2.2)
@@ -3684,8 +3684,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.34.0':
-    resolution: {integrity: sha512-nMLsvHXXNZg+/9okHvSOuMEKMGxs0U8o/sT1pKERh37ETB16X4geomIHjXJ/HRTfpue9gs9yRTLK5azHZV92iw==}
+  '@guidepup/guidepup@0.35.0':
+    resolution: {integrity: sha512-US64a++RucCtLfoq/DqnjzaHYpKzERVYmhtsWViz38MyklICICDpb50AKLn9sbxUwTceK2rS0fjDy7fYpWK/QA==}
 
   '@guidepup/playwright@0.19.1':
     resolution: {integrity: sha512-d0FMH6LFbRbV71l2NGzv2gqV3vQbHDfTVctXsKm6d1ZahpS2/Ozq1WCEoZ7QTAR6iuNzwy03tZfvyijGH+zUDw==}
@@ -8569,12 +8569,6 @@ packages:
   cssnano-utils@6.0.4:
     resolution: {integrity: sha512-j1z2mW4MqtcGM4I8TxXAdOXUifp1DZ5/bZnyYnCpHlzQ/ilCj2voLxE0aqEKnBDA5hF6HahSY13JU8kyZ1s8Mg==}
     engines: {node: ^22.11.0 || ^24.11.0 || >=26.0}
-    peerDependencies:
-      postcss: 8.5.28
-
-  cssnano-utils@8.0.1:
-    resolution: {integrity: sha512-KF2NfGI/na0wEemV8X7KQbisJS0QY77vaGCJ/3RuXfWrgg/qlq8vHcfSAtzrCrOHwaGHW02Ra1anDyuQ7M520A==}
-    engines: {node: ^22.22.3 || ^24.15.0 || >=26.0}
     peerDependencies:
       postcss: 8.5.28
 
@@ -18646,16 +18640,16 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.34.0(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.35.0(supports-color@10.2.2)':
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
       plist: 4.0.0
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.34.0(supports-color@10.2.2))(@playwright/test@1.63.0)':
+  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)':
     dependencies:
-      '@guidepup/guidepup': 0.34.0(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.35.0(supports-color@10.2.2)
       '@playwright/test': 1.63.0
 
   '@guidepup/record@0.2.0(supports-color@10.2.2)':
@@ -23822,11 +23816,6 @@ snapshots:
 
   cssnano-utils@6.0.4(postcss@8.5.28):
     dependencies:
-      postcss: 8.5.28
-
-  cssnano-utils@8.0.1(postcss@8.5.28):
-    dependencies:
-      '@csstools/css-tokenizer': 4.0.2
       postcss: 8.5.28
 
   cssnano-utils@8.1.0(postcss@8.5.28):
@@ -29503,7 +29492,7 @@ snapshots:
   postcss-normalize-display-values@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-positions@8.0.4(postcss@8.5.28):
@@ -29523,7 +29512,7 @@ snapshots:
 
   postcss-normalize-repeat-style@9.0.5(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-string@8.0.4(postcss@8.5.28):
@@ -29544,7 +29533,7 @@ snapshots:
   postcss-normalize-timing-functions@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-unicode@8.0.4(postcss@8.5.28):
@@ -29568,7 +29557,7 @@ snapshots:
   postcss-normalize-url@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-whitespace@8.0.5(postcss@8.5.28):
@@ -29579,7 +29568,7 @@ snapshots:
   postcss-normalize-whitespace@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-ordered-values@8.0.5(postcss@8.5.28):
@@ -29612,7 +29601,7 @@ snapshots:
 
   postcss-reduce-transforms@9.0.4(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-reporter@7.1.0(postcss@8.5.28):
@@ -29645,7 +29634,7 @@ snapshots:
   postcss-svgo@9.0.4(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.0.1(postcss@8.5.28)
+      cssnano-utils: 8.1.0(postcss@8.5.28)
       postcss: 8.5.28
       svgo: 4.1.0
 
