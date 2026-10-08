@@ -49,6 +49,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Space');
@@ -73,6 +80,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Space');
@@ -129,8 +143,17 @@ test.describe('DBCustomSelect', () => {
 
 			await summary.focus();
 			await page.keyboard.press('ArrowDown');
-			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.waitForTimeout(1000); // Wait for focus to apply
+			// Wait for focus to actually land on the "select all" checkbox
+			// before toggling it, instead of racing a fixed timeout. On Stencil
+			// the dropdown hydrates and moves focus asynchronously, so a fixed
+			// wait is sometimes too short and Space toggles the wrong control,
+			// selecting fewer than all options. The select-all checkbox is the
+			// only input with value="select-all".
+			await page.waitForFunction(() => {
+				const activeElement =
+					document.activeElement as HTMLInputElement;
+				return activeElement?.value === 'select-all';
+			});
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
 			await expect(selectedLabel).toContainText(
@@ -156,6 +179,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Enter');
@@ -182,6 +212,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(selectedLabel).toHaveCount(0);
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the first option,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and `waitForFocusChange` times out. Mirrors the
+			// settle wait the "test select all" and "option groups" specs use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await waitForFocusChange(page, 'Option 1');
 			await page.keyboard.press('Enter');
@@ -203,6 +240,14 @@ test.describe('DBCustomSelect', () => {
 			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the search input,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and the `type === 'search'` wait times out. Mirrors
+			// the settle wait the "test select all" and "option groups" specs
+			// use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await page.waitForFunction(() => {
 				const activeElement =
@@ -230,6 +275,14 @@ test.describe('DBCustomSelect', () => {
 			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await summary.focus();
+			// Give the dropdown time to render and hydrate before driving it
+			// with the keyboard. On Stencil the first ArrowDown opens the
+			// <details> and schedules the delayed focus() of the search input,
+			// but the custom-element dropdown is not populated yet, so focus
+			// never lands and the `type === 'search'` wait times out. Mirrors
+			// the settle wait the "test select all" and "option groups" specs
+			// use.
+			await page.waitForTimeout(1000);
 			await page.keyboard.press('ArrowDown');
 			await page.waitForFunction(() => {
 				const activeElement =
