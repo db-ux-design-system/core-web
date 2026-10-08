@@ -5,8 +5,6 @@
   - navigation "Breadcrumb (Functional)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
         - link "Next"
       - listitem:
         - link "Current"
@@ -14,16 +12,12 @@
   - navigation "Breadcrumb (Regular)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
         - link "Next"
       - listitem:
         - link "Current"
   - text: Expressive
   - navigation "Breadcrumb (Expressive)":
     - list:
-      - listitem:
-        - link "Home"
       - listitem:
         - link "Next"
       - listitem:
@@ -33,16 +27,12 @@
   - navigation "Breadcrumb (Small)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
         - link "Next"
       - listitem:
         - link "Current"
   - text: Medium
   - navigation "Breadcrumb (Medium)":
     - list:
-      - listitem:
-        - link "Home"
       - listitem:
         - link "Next"
       - listitem:
@@ -52,16 +42,12 @@
   - navigation "Breadcrumb (Chevron)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
         - link "Next"
       - listitem:
         - link "Current"
   - text: Slash
   - navigation "Breadcrumb (Slash)":
     - list:
-      - listitem:
-        - link "Home"
       - listitem:
         - link "Next"
       - listitem:
@@ -71,10 +57,6 @@
   - navigation "Breadcrumb (4 items)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
-        - link "Level 1"
-      - listitem:
         - link "Level 2"
       - listitem:
         - link "Current"
@@ -82,52 +64,20 @@
   - navigation "Breadcrumb (7 items)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
-        - link "Level 1"
-      - listitem:
-        - link "Level 2"
-      - listitem:
-        - link "Level 3"
-      - listitem:
-        - link "Level 4"
-      - listitem:
         - link "Level 5"
       - listitem:
         - link "Current"
-    - button "Show more": …
   - text: 10 Items
   - navigation "Breadcrumb (10 items)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
-        - link "Level 1"
-      - listitem:
-        - link "Level 2"
-      - listitem:
-        - link "Level 3"
-      - listitem:
-        - link "Level 4"
-      - listitem:
-        - link "Level 5"
-      - listitem:
-        - link "Level 6"
-      - listitem:
-        - link "Level 7"
-      - listitem:
         - link "Level 8"
       - listitem:
         - link "Current"
-    - button "Show more": …
   - link "API"
   - text: Composition
   - navigation "Breadcrumb API (Composition)":
     - list:
-      - listitem:
-        - link "Home"
-      - listitem:
-        - link "Next"
       - listitem:
         - link "NextNext"
       - listitem:
@@ -135,10 +85,6 @@
   - text: Options API
   - navigation "Breadcrumb API (Options API)":
     - list:
-      - listitem:
-        - link "Home"
-      - listitem:
-        - link "Next"
       - listitem:
         - link "NextNext"
       - listitem:
@@ -148,20 +94,12 @@
   - navigation "Breadcrumb Disabled (Composition)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
-        - link "Disabled" [disabled]
-      - listitem:
         - link "NextNext"
       - listitem:
         - link "Current"
   - text: Options API
   - navigation "Breadcrumb Disabled (Options API)":
     - list:
-      - listitem:
-        - link "Home"
-      - listitem:
-        - link "Disabled" [disabled]
       - listitem:
         - link "NextNext"
       - listitem:
@@ -171,8 +109,6 @@
   - navigation "Breadcrumb No text (Composition)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
         - link "Profile"
       - listitem:
         - link "Settings"
@@ -180,12 +116,10 @@
   - navigation "Breadcrumb No text (Options API)":
     - list:
       - listitem:
-        - link "Home"
-      - listitem:
         - link "Profile"
       - listitem:
         - link "Settings"
-  - link "Truncation"
+  - link "Popover"
   - navigation "Breadcrumb":
     - list:
       - listitem:
@@ -201,20 +135,12 @@
   - navigation "Breadcrumb (inline badges, 4 items)":
     - list:
       - listitem:
-        - link "Home 1"
-      - listitem:
-        - link "Level 1 2"
-      - listitem:
         - link "Level 2 3"
       - listitem:
         - link "Current 4"
   - text: Corner badges (4 items)
   - navigation "Breadcrumb (corner badges, 4 items)":
     - list:
-      - listitem:
-        - link "Home 1 update 1"
-      - listitem:
-        - link "Level 1 2 updates 2"
       - listitem:
         - link "Level 2 3 updates 3"
       - listitem:
@@ -241,3 +167,18 @@
         - link "Level 4 5 updates 5"
       - listitem:
         - link "Current 6 updates 6"
+  - link "Interaction"
+  - navigation "Breadcrumb (auto collapse)":
+    - list:
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Current"
+  - navigation "Breadcrumb (manual popover)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Current"

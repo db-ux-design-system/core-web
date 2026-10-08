@@ -185,7 +185,7 @@
         - link "Profile"
       - listitem:
         - link "Settings"
-  - link "Truncation"
+  - link "Popover"
   - navigation "Breadcrumb":
     - list:
       - listitem:
@@ -241,3 +241,27 @@
         - link "Level 4 5 updates 5"
       - listitem:
         - link "Current 6 updates 6"
+  - link "Interaction"
+  - navigation "Breadcrumb (auto collapse)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Level 3"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Current"
+    - button "Show more breadcrumbs": …
+  - navigation "Breadcrumb (manual popover)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Current"
