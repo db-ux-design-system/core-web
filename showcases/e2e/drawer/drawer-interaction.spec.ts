@@ -20,7 +20,7 @@ test.describe('DBDrawer', () => {
 			// reach the container and resolve to the db-border-radius-sm token
 			// as a non-zero corner radius. There is no public "Rounded"
 			// showcase example, so this is the only coverage of the styling.
-			const container = page.locator('.db-drawer-container');
+			const container = content.locator('.db-drawer-container');
 			await expect(container).toHaveAttribute('data-rounded', 'true');
 			const borderRadius = await container.evaluate(
 				(element) => getComputedStyle(element).borderStartStartRadius
