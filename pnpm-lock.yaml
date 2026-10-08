@@ -1383,8 +1383,8 @@ importers:
         specifier: 10.6.1
         version: 10.6.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.12.0
-        version: 17.12.0
+        specifier: 17.13.0
+        version: 17.13.0
       storybook:
         specifier: 10.6.1
         version: 10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0)
@@ -1538,8 +1538,8 @@ importers:
         specifier: 10.6.1
         version: 10.6.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.12.0
-        version: 17.12.0
+        specifier: 17.13.0
+        version: 17.13.0
       prettier:
         specifier: 3.9.9
         version: 3.9.9
@@ -1617,8 +1617,8 @@ importers:
         specifier: 10.6.1
         version: 10.6.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.12.0
-        version: 17.12.0
+        specifier: 17.13.0
+        version: 17.13.0
       storybook:
         specifier: 10.6.1
         version: 10.6.1(@types/react@19.3.0)(prettier@3.9.9)(react@19.3.0)
