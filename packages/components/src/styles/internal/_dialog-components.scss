@@ -23,6 +23,21 @@ $backdrop-color-weak: color(
 // mixin below validates its $prefix against this set.
 $known-prefixes: "drawer", "dialog";
 
+// Stacking order for the non-modal dialog/drawer family, shared so the relative order
+// stays correct when a value changes.
+//   - $z-index-dialog (9995): a non-modal dialog (`backdrop="none"`, opened via
+//     `show()`) stays in normal flow and needs an explicit stacking context.
+//   - $z-index-drawer (9996): one above the dialog. It is the value an
+//     attribute-less drawer resolved to before this refactor, and it also backs
+//     the Firefox close-transition fallback that renders the drawer outside the
+//     top layer.
+//   - $z-index-position-absolute (3): a `[data-position="absolute"]` drawer is
+//     scoped inside page content rather than pinned to the viewport, so it drops
+//     out of the family stacking order down to a local level.
+$z-index-dialog: 9995;
+$z-index-drawer: 9996;
+$z-index-position-absolute: 3;
+
 // Shared horizontal Container_Size scale (inline axis), consumed by the dialog
 // (container-size-inline mixin in dialog.scss) and by the drawer's horizontal
 // directions (@each in drawer.scss). Only the inline axis is shared: the drawer's
@@ -104,9 +119,8 @@ $container-size-scale: (
 		position: fixed;
 		inset: 0;
 
-		// Above the non-modal dialog (9995) and the value an attribute-less
-		// drawer resolved to before. `[data-position="absolute"]` lowers it.
-		z-index: 9996;
+		// `[data-position="absolute"]` lowers it (see $z-index-* at the top).
+		z-index: $z-index-drawer;
 	}
 }
 

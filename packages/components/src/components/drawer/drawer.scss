@@ -313,7 +313,7 @@
 		--db-drawer-block-size: 100%;
 
 		position: absolute;
-		z-index: 3;
+		z-index: dialog-components.$z-index-position-absolute;
 		background-color: transparent;
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);

@@ -185,6 +185,6 @@ $container-size-scale: dialog-components.$container-size-scale;
 	&[data-backdrop="none"] {
 		position: fixed;
 		inset: 0;
-		z-index: 9995;
+		z-index: dialog-components.$z-index-dialog;
 	}
 }
