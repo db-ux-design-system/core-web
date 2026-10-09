@@ -699,8 +699,8 @@ importers:
   packages/mcp-server:
     dependencies:
       '@modelcontextprotocol/server':
-        specifier: 2.3.0
-        version: 2.3.0
+        specifier: 2.3.1
+        version: 2.3.1
       zod:
         specifier: 4.6.5
         version: 4.6.5
@@ -709,8 +709,8 @@ importers:
         specifier: 4.3.0
         version: 4.3.0
       '@modelcontextprotocol/client':
-        specifier: 2.3.0
-        version: 2.3.0
+        specifier: 2.3.1
+        version: 2.3.1
       cpy-cli:
         specifier: 7.0.0
         version: 7.0.0
@@ -4617,12 +4617,12 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@modelcontextprotocol/client@2.3.0':
-    resolution: {integrity: sha512-pbHtGj6EeFCHngFE8gtNPaKrsj8Mb1IMw45BLcaPML/m2WTxI7pyYmeNQvaux88Lw8BSO5r7nyRbUyIkICmGrg==}
+  '@modelcontextprotocol/client@2.3.1':
+    resolution: {integrity: sha512-mIGZXpHsjnZ6lD+gD/WCMpR5k8yVQQ8nNFH1N0Srf7AvnwTUMYD6pvTY8ng2+He5FfV7YMZLmrjL7cLa/cc3dQ==}
     engines: {node: '>=20'}
 
-  '@modelcontextprotocol/core@2.3.0':
-    resolution: {integrity: sha512-09BHFaNVBe5pB2AhzCfLj0cqmsKLERvZQ4FblzP90UMGLaXVqdZPByFjURwsUYCmxonUW2yAwgTTvle+8O2/8w==}
+  '@modelcontextprotocol/core@2.3.1':
+    resolution: {integrity: sha512-laVmIhPGpWi7rG9q+0UigblRN0Hws/Yjlb6qLFtVqryXVLkc4h+yN8z731POD2LnAGQlFe7/tXhUm7Bi0YB91g==}
     engines: {node: '>=20'}
 
   '@modelcontextprotocol/sdk@1.30.0':
@@ -4635,8 +4635,8 @@ packages:
       '@cfworker/json-schema':
         optional: true
 
-  '@modelcontextprotocol/server@2.3.0':
-    resolution: {integrity: sha512-+6b0LdsQLmHsvS7J6sQJ4weTpzUn61fU1JKS+321/+IyDYoHW5CR2Tgqcs6GgAAQvlesCo6yX3xttgmx+XGtJw==}
+  '@modelcontextprotocol/server@2.3.1':
+    resolution: {integrity: sha512-e59MfWuSssj6DoQ96JCTqdW1AXT5/XtnTl0WWd6MU1Ka434fFUGGosCLJbGNySDhHGvxQWoRWK137FXYFkYNWw==}
     engines: {node: '>=20'}
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4':
@@ -8569,12 +8569,6 @@ packages:
   cssnano-utils@6.0.4:
     resolution: {integrity: sha512-j1z2mW4MqtcGM4I8TxXAdOXUifp1DZ5/bZnyYnCpHlzQ/ilCj2voLxE0aqEKnBDA5hF6HahSY13JU8kyZ1s8Mg==}
     engines: {node: ^22.11.0 || ^24.11.0 || >=26.0}
-    peerDependencies:
-      postcss: 8.5.28
-
-  cssnano-utils@8.1.0:
-    resolution: {integrity: sha512-Mzcc0ju/a19+qiqwPk+b6ieJa+tFVNNnrD2gLbk7CmENdJvlUtCuII+sIRZnfl1shHEKGQpmG2rwRpNaqe43xA==}
-    engines: {node: ^22.22.3 || ^24.15.0 || >=26.0}
     peerDependencies:
       postcss: 8.5.28
 
@@ -19615,9 +19609,9 @@ snapshots:
       '@types/react': 19.3.0
       react: 19.3.0
 
-  '@modelcontextprotocol/client@2.3.0':
+  '@modelcontextprotocol/client@2.3.1':
     dependencies:
-      '@modelcontextprotocol/core': 2.3.0
+      '@modelcontextprotocol/core': 2.3.1
       cross-spawn: 7.0.6
       eventsource: 3.0.7
       eventsource-parser: 3.1.1
@@ -19625,7 +19619,7 @@ snapshots:
       pkce-challenge: 5.0.1
       zod: 4.6.5
 
-  '@modelcontextprotocol/core@2.3.0':
+  '@modelcontextprotocol/core@2.3.1':
     dependencies:
       zod: 4.6.5
 
@@ -19651,9 +19645,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@modelcontextprotocol/server@2.3.0':
+  '@modelcontextprotocol/server@2.3.1':
     dependencies:
-      '@modelcontextprotocol/core': 2.3.0
+      '@modelcontextprotocol/core': 2.3.1
       zod: 4.6.5
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4':
@@ -23822,11 +23816,6 @@ snapshots:
 
   cssnano-utils@6.0.4(postcss@8.5.28):
     dependencies:
-      postcss: 8.5.28
-
-  cssnano-utils@8.1.0(postcss@8.5.28):
-    dependencies:
-      '@csstools/css-tokenizer': 4.0.2
       postcss: 8.5.28
 
   cssnano-utils@8.2.0(postcss@8.5.28):
@@ -29302,7 +29291,7 @@ snapshots:
       '@csstools/css-tokenizer': 4.0.2
       browserslist: 4.29.3
       caniuse-api: 4.0.0
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-convert-values@8.0.4(postcss@8.5.28):
@@ -29314,7 +29303,7 @@ snapshots:
   postcss-convert-values@9.0.7(postcss@8.5.28):
     dependencies:
       browserslist: 4.29.3
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-discard-comments@8.0.4(postcss@8.5.28):
@@ -29325,7 +29314,7 @@ snapshots:
   postcss-discard-comments@9.0.6(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-discard-duplicates@8.0.4(postcss@8.5.28):
@@ -29334,7 +29323,7 @@ snapshots:
 
   postcss-discard-duplicates@9.0.5(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-discard-empty@8.0.5(postcss@8.5.28):
@@ -29343,7 +29332,7 @@ snapshots:
 
   postcss-discard-empty@9.0.6(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-discard-overridden@8.0.4(postcss@8.5.28):
@@ -29392,7 +29381,7 @@ snapshots:
   postcss-merge-longhand@9.2.0(postcss@8.5.28):
     dependencies:
       browserslist: 4.29.3
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
       stylehacks: 9.0.7(postcss@8.5.28)
 
@@ -29421,7 +29410,7 @@ snapshots:
   postcss-minify-font-values@9.0.7(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-minify-gradients@8.0.6(postcss@8.5.28):
@@ -29435,7 +29424,7 @@ snapshots:
     dependencies:
       '@colordx/core': 7.2.0
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-minify-params@8.0.4(postcss@8.5.28):
@@ -29448,7 +29437,7 @@ snapshots:
   postcss-minify-params@9.0.6(postcss@8.5.28):
     dependencies:
       browserslist: 4.29.3
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-minify-selectors@8.0.5(postcss@8.5.28):
@@ -29464,7 +29453,7 @@ snapshots:
       browserslist: 4.29.3
       caniuse-api: 4.0.0
       cssesc: 3.0.0
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-modules-extract-imports@3.1.0(postcss@8.5.28):
@@ -29504,7 +29493,7 @@ snapshots:
   postcss-normalize-display-values@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-positions@8.0.4(postcss@8.5.28):
@@ -29514,7 +29503,7 @@ snapshots:
 
   postcss-normalize-positions@9.0.6(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-repeat-style@8.0.4(postcss@8.5.28):
@@ -29524,7 +29513,7 @@ snapshots:
 
   postcss-normalize-repeat-style@9.0.5(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-string@8.0.4(postcss@8.5.28):
@@ -29545,7 +29534,7 @@ snapshots:
   postcss-normalize-timing-functions@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-unicode@8.0.4(postcss@8.5.28):
@@ -29558,7 +29547,7 @@ snapshots:
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
       browserslist: 4.29.3
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-url@8.0.4(postcss@8.5.28):
@@ -29569,7 +29558,7 @@ snapshots:
   postcss-normalize-url@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-normalize-whitespace@8.0.5(postcss@8.5.28):
@@ -29580,7 +29569,7 @@ snapshots:
   postcss-normalize-whitespace@9.0.5(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-ordered-values@8.0.5(postcss@8.5.28):
@@ -29591,7 +29580,7 @@ snapshots:
 
   postcss-ordered-values@9.0.6(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-reduce-initial@8.0.5(postcss@8.5.28):
@@ -29613,7 +29602,7 @@ snapshots:
 
   postcss-reduce-transforms@9.0.4(postcss@8.5.28):
     dependencies:
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
 
   postcss-reporter@7.1.0(postcss@8.5.28):
@@ -29646,7 +29635,7 @@ snapshots:
   postcss-svgo@9.0.4(postcss@8.5.28):
     dependencies:
       '@csstools/css-tokenizer': 4.0.2
-      cssnano-utils: 8.1.0(postcss@8.5.28)
+      cssnano-utils: 8.2.0(postcss@8.5.28)
       postcss: 8.5.28
       svgo: 4.1.0
 
