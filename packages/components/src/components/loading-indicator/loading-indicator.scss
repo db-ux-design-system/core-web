@@ -7,11 +7,23 @@
 @use "../../styles/dialog-init";
 @use "../../styles/internal/loading";
 
-$stroke-dasharray-horizontal: calc(var(--circle) * 2 - var(--stroke-width));
-$stroke-dasharray-vertical: calc(
-	var(--circle) * 2 + var(--stroke-width) + var(--radius)
-);
-$stroke-segment-length: calc((var(--circle) / 2 - var(--stroke-width)));
+/**
+ * The visible arc is driven by one value: the full circumference of the
+ * circle (C = 2 * pi * r). `stroke-dasharray` is set to C, and the segment
+ * length is controlled purely via `stroke-dashoffset`:
+ *
+ *   stroke-dashoffset = C * (1 - fraction)   =>   visible arc = C * fraction
+ *
+ * - determinate: fraction = var(--db-loading-indicator-percentage)
+ * - indeterminate: fraction = $stroke-segment-fraction (fixed 25%)
+ *
+ * This keeps a single `stroke-dasharray` that works whether or not a
+ * percentage is set, instead of hand-tuned per-orientation dash lengths.
+ */
+$stroke-circumference: calc(2 * pi * var(--radius));
+
+/** Fixed visible fraction of the circle shown while indeterminate (25%). */
+$stroke-segment-fraction: 0.25;
 $db-loading-indicator-track-color: color(
 	from var(--db-loading-indicator-segment-color) srgb r g b /
 		#{variables.$db-opacity-2xs}
@@ -126,42 +138,19 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 				}
 			}
 
-			&[data-orientation="horizontal"] {
-				.db-loading-indicator-circle-segment {
-					stroke-dashoffset: calc(
-						#{$stroke-dasharray-horizontal} -
-							#{$stroke-segment-length}
-					);
-				}
-			}
-
-			&[data-orientation="vertical"] {
-				.db-loading-indicator-circle-segment {
-					stroke-dashoffset: calc(
-						#{$stroke-dasharray-vertical} -
-							#{$stroke-segment-length}
-					);
-				}
+			.db-loading-indicator-circle-segment {
+				stroke-dashoffset: calc(
+					#{$stroke-circumference} * (1 - #{$stroke-segment-fraction})
+				);
 			}
 		}
 
 		&[data-indeterminate="false"] {
-			&[data-orientation="horizontal"] {
-				.db-loading-indicator-circle-segment {
-					stroke-dashoffset: calc(
-						(1 - var(--db-loading-indicator-percentage, 0)) *
-							#{$stroke-dasharray-horizontal}
-					);
-				}
-			}
-
-			&[data-orientation="vertical"] {
-				.db-loading-indicator-circle-segment {
-					stroke-dashoffset: calc(
-						(1 - var(--db-loading-indicator-percentage, 0)) *
-							#{$stroke-dasharray-vertical}
-					);
-				}
+			.db-loading-indicator-circle-segment {
+				stroke-dashoffset: calc(
+					#{$stroke-circumference} *
+						(1 - var(--db-loading-indicator-percentage, 0))
+				);
 			}
 		}
 	}
@@ -185,10 +174,6 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			--stroke-width: 4px;
 
 			align-self: flex-start;
-		}
-
-		.db-loading-indicator-circle-segment {
-			stroke-dasharray: $stroke-dasharray-horizontal;
 		}
 
 		&[data-size="small"] {
@@ -215,12 +200,6 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 	}
 
 	&[data-orientation="vertical"] {
-		&:not([data-percentage-full="true"]) {
-			.db-loading-indicator-circle-segment {
-				stroke-dasharray: $stroke-dasharray-vertical;
-			}
-		}
-
 		svg {
 			--radius: 27px; /* This is the size based on the viewBox of the <svg> */
 			--circle: 64px; /* This is the size based on the viewBox of the <svg> */
@@ -253,7 +232,6 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		cy: var(--circle);
 		r: var(--radius);
 		stroke-width: var(--stroke-width);
-		stroke-linecap: round;
 		fill: none;
 	}
 
@@ -263,6 +241,15 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 
 	.db-loading-indicator-circle-segment {
 		stroke: var(--db-loading-indicator-segment-color);
+
+		/**
+		 * One dash spanning the full circumference. The visible arc length is
+		 * then controlled solely via stroke-dashoffset (see %spinner), which
+		 * works both when a percentage is set (determinate) and for the fixed
+		 * 0.25% segment while indeterminate. --radius is defined per
+		 * orientation, so this single rule covers both.
+		 */
+		stroke-dasharray: $stroke-circumference;
 	}
 }
 

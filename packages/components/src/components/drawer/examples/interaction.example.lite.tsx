@@ -18,6 +18,11 @@ useMetadata({
  (see showcases/e2e/drawer/drawer-interaction.spec.ts).
  A drawer whose open state is controlled by external buttons, so opening and
  closing (via the header close button, which fires onClose) is observable.
+
+ It also sets the deprecated `rounded` property so the e2e spec can assert the
+ `data-rounded` styling still applies. `rounded` has no public showcase example
+ (it is deprecated and should not be advertised to consumers), so this fixture
+ is the only place that keeps it under regression coverage.
  */
 export default function DrawerInteraction() {
 	const [open, setOpen] = useState<boolean>(false);
@@ -35,6 +40,7 @@ export default function DrawerInteraction() {
 			</DBButton>
 			<DBDrawer
 				open={open}
+				rounded
 				onClose={() => setOpen(false)}
 				header={
 					<DBDrawerHeader closeButtonText="Close">
