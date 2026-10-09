@@ -25,8 +25,8 @@
 		{
 			"id": "footer-content",
 			"headline": {
-				"de": "Inhalt des Footers",
-				"en": "Footer Content"
+				"de": "Inhalt",
+				"en": "Content"
 			},
 			"text": {
 				"de": "Der Dialog Footer scrollt nicht mit. Er ist deshalb für Aktionen und für Hinweise gedacht, die dauerhaft sichtbar bleiben müssen, etwa einen Sternchentext.",
@@ -100,7 +100,7 @@
 		{
 			"id": "action-order",
 			"headline": {
-				"de": "Reihenfolge der Aktionen",
+				"de": "Aktionsreihenfolge",
 				"en": "Action Order"
 			},
 			"text": {
@@ -124,12 +124,5 @@
 		}
 	],
 	"faq": [],
-	"related": [
-		{
-			"component": "dialog"
-		},
-		{
-			"component": "dialog-header"
-		}
-	]
+	"related": []
 }

@@ -4,12 +4,7 @@
 		{
 			"name": "backdrop",
 			"type": "enum",
-			"values": [
-				"none",
-				"strong",
-				"weak",
-				"invisible"
-			],
+			"values": ["none", "strong", "weak", "invisible"],
 			"default": "strong",
 			"description": "Changes the opacity of the backdrop",
 			"code": {
@@ -19,21 +14,14 @@
 			"design": {
 				"name": "⚙️ Backdrop",
 				"codeConnect": true,
-				"values": [
-					"strong"
-				]
+				"values": ["strong"]
 			}
 		},
 		{
 			"name": "direction",
 			"type": "enum",
-			"values": [
-				"to-left",
-				"to-right",
-				"up",
-				"down"
-			],
-			"default": "down",
+			"values": ["to-left", "to-right", "up", "down"],
+			"default": "to-left",
 			"description": "Position and animation direction of the drawer",
 			"code": {
 				"prop": "direction",
@@ -42,12 +30,7 @@
 			"design": {
 				"name": "⚙️ Direction",
 				"codeConnect": true,
-				"values": [
-					"up",
-					"to-left",
-					"to-right",
-					"down"
-				],
+				"values": ["up", "to-left", "to-right", "down"],
 				"note": "In Figma, direction is expressed via separate Component Sets (Drawer → Right, Left, Bottom, Top). Code Connect maps the active set to the direction prop."
 			}
 		},
@@ -63,21 +46,13 @@
 			"design": {
 				"name": "⚙️ Rounded",
 				"codeConnect": true,
-				"values": [
-					"true",
-					"false"
-				]
+				"values": ["true", "false"]
 			}
 		},
 		{
 			"name": "containerSize",
 			"type": "enum",
-			"values": [
-				"small",
-				"medium",
-				"large",
-				"full"
-			],
+			"values": ["small", "medium", "large", "full"],
 			"default": "small",
 			"description": "Size of the drawer container",
 			"code": {
@@ -87,13 +62,7 @@
 			"design": {
 				"name": "⚙️ Size",
 				"codeConnect": true,
-				"values": [
-					"small",
-					"medium",
-					"large",
-					"full",
-					"custom"
-				]
+				"values": ["small", "medium", "large", "full", "custom"]
 			}
 		},
 		{
@@ -148,10 +117,7 @@
 		{
 			"name": "variant",
 			"type": "enum",
-			"values": [
-				"modal",
-				"inside"
-			],
+			"values": ["modal", "inside"],
 			"default": "modal",
 			"description": "Set the variant modal or inside",
 			"code": {
@@ -163,10 +129,7 @@
 		{
 			"name": "position",
 			"type": "enum",
-			"values": [
-				"fixed",
-				"absolute"
-			],
+			"values": ["fixed", "absolute"],
 			"default": "fixed",
 			"description": "CSS position of the drawer (fixed uses showModal, absolute uses show)",
 			"code": {

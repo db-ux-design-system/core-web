@@ -1,12 +1,12 @@
 # Drawer Footer
 
-Subkomponente für den unteren Bereich des Drawers — enthält primäre Aktionen, Bestätigungen oder ergänzende Controls und bleibt beim Scrollen sichtbar.
+Subkomponente für den unteren Bereich des Drawers. Nimmt Aktionen und zugehörige Hinweise auf und bleibt beim Scrollen sichtbar.
 
 ## Regeln
 
-1. Footer nur verwenden, wenn Nutzer dauerhaften Zugriff auf Aktionen brauchen (z. B. Speichern, Übernehmen, Abbrechen).
-2. Keine inhaltlichen Informationen im Footer, er ist ausschließlich für Aktionen und Bestätigungen vorgesehen.
+1. Nur Aktionen und Hinweise aufnehmen, die zu diesen Aktionen gehören. Weiterer Inhalt gehört in den Inhaltsbereich, weil der Footer nicht mitscrollt.
 
 ## Zusätzliche Informationen
 
-- Der Footer bleibt sticky am unteren Rand, während der Drawer-Body scrollt. So bleiben wichtige Aktionen immer erreichbar.
+- Der Drawer Footer stapelt seine Inhalte standardmäßig vertikal über die volle Breite. Für eine horizontale Anordnung lassen sie sich in einem zusätzlichen Element gruppieren. _(Example-Kandidat)_
+- Der Drawer Footer bleibt am unteren Rand sichtbar, während der Inhaltsbereich des Drawers scrollt.

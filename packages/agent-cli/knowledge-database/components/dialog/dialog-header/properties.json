@@ -69,20 +69,10 @@
 			}
 		},
 		{
-			"name": "closeable",
-			"type": "boolean",
-			"default": true,
-			"code": null,
-			"design": {
-				"name": "🔀 Closeable",
-				"note": "Design-only. In code the close button is always rendered, a matching prop is under discussion."
-			}
-		},
-		{
 			"name": "closeButtonText",
 			"type": "string",
 			"default": "Close",
-			"description": "Accessible label for the close button",
+			"description": "The closeButtonText attribute changes the text inside the close button.",
 			"code": {
 				"prop": "closeButtonText",
 				"type": "string"
@@ -92,7 +82,7 @@
 		{
 			"name": "closeButtonId",
 			"type": "string",
-			"description": "Id of the close button",
+			"description": "The closeButtonId attribute changes the id inside the close button.",
 			"code": {
 				"prop": "closeButtonId",
 				"type": "string"

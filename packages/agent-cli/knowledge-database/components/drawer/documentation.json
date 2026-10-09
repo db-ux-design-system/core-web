@@ -1,0 +1,201 @@
+{
+	"component": "drawer",
+	"figmaFileKey": "y9c3hlB0PMdDYj3xLUCRWH",
+	"description": {
+		"de": "Der Drawer erscheint von einem Rand des Viewports und zeigt ergänzende Inhalte oder einfache Interaktionen, während der aktuelle Kontext erhalten bleibt.",
+		"en": "The drawer appears from one edge of the viewport and shows additional content or simple interactions while the current context stays in place."
+	},
+	"shortDescription": {
+		"de": "Herausfahrendes Panel für ergänzende Inhalte oder einfache Interaktionen.",
+		"en": "Sliding panel for additional content or simple interactions."
+	},
+	"useCases": {
+		"de": [
+			"Ergänzende Details ohne Seitenwechsel anzeigen",
+			"Kurze Eingabe im Kontext ermöglichen",
+			"Sekundäre Navigation bei begrenztem Platz bereitstellen"
+		],
+		"en": [
+			"Show additional details without leaving the page",
+			"Enable a short input in context",
+			"Provide secondary navigation in tight layouts"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "optional-content",
+			"headline": {
+				"de": "Verwendung",
+				"en": "Usage"
+			},
+			"text": {
+				"de": "Der Drawer blockiert die Weiterarbeit nicht. Er ist deshalb für Inhalte gedacht, die hilfreich, aber nicht erforderlich sind.",
+				"en": "The drawer does not block further work. It is therefore meant for content that is helpful but not required."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Setze den Drawer für kontextbezogene Inhalte ein, die ergänzende Details liefern.",
+					"en": "Use the drawer for contextual content that provides additional details."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Setze den Drawer nicht für kritische oder blockierende Informationen ein. Nutze dafür den Dialog oder eine eigene Seite, weil eine Aufgabe im Drawer nicht erzwingbar ist.",
+					"en": "Don't use the drawer for critical or blocking information. Use a dialog or a dedicated page instead, because a task in the drawer cannot be enforced."
+				}
+			}
+		},
+		{
+			"id": "simple-content",
+			"headline": {
+				"de": "Inhalt",
+				"en": "Content"
+			},
+			"text": {
+				"de": "Der Drawer bietet begrenzten Platz. Mehrstufige Abläufe und umfangreiche Validierungen lassen sich darin schwer abschließen und überprüfen.",
+				"en": "The drawer offers limited space. Multi-step flows and extensive validation are hard to complete and review inside it."
+			},
+			"do": {
+				"figmaNodeId": "3-1110",
+				"description": {
+					"de": "Nimm in den Drawer kurze, optionale Formulare und klare Aktionen auf.",
+					"en": "Place short, optional forms and clear actions in the drawer."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-1112",
+				"description": {
+					"de": "Bilde mehrstufige Prozesse und komplexe Validierungen nicht im Drawer ab. Auf dem begrenzten Platz geht der Überblick über den Ablauf verloren.",
+					"en": "Don't run multi-step processes or complex validation inside the drawer. The limited space hides the overall flow."
+				}
+			}
+		},
+		{
+			"id": "placement",
+			"headline": {
+				"de": "Platzierung",
+				"en": "Placement"
+			},
+			"text": {
+				"de": "Der Drawer überlagert die gesamte Seite, unabhängig davon, von welchem Rand er erscheint. Damit erhält er die Aufmerksamkeit, die sein Inhalt braucht.",
+				"en": "The drawer overlays the entire page, regardless of the edge it appears from. That gives it the attention its content needs."
+			},
+			"do": {
+				"figmaNodeId": "3-1113",
+				"description": {
+					"de": "Lass den Drawer die gesamte Seitenbreite und -höhe überlagern, einschließlich des Headers.",
+					"en": "Let the drawer overlay the entire page width and height, including the header."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "3-1114",
+				"description": {
+					"de": "Beschränke den Drawer nicht auf einen bestimmten Seitenbereich. Als Teilfläche wirkt er wie ein eingebetteter Bereich und nicht wie eine eigene Ebene.",
+					"en": "Don't limit the drawer to a specific page region. As a partial area it reads like an embedded section rather than its own layer."
+				}
+			}
+		},
+		{
+			"id": "direction",
+			"headline": {
+				"de": "Richtung",
+				"en": "Direction"
+			},
+			"text": {
+				"de": "`direction` legt fest, von welchem Rand der Drawer erscheint. Auf Mobile entscheidet die Wahl darüber, ob der Inhalt im Greifbereich des Daumens liegt.",
+				"en": "`direction` defines the edge the drawer appears from. On mobile, that choice decides whether the content sits within thumb reach."
+			},
+			"do": {
+				"figmaNodeId": "5011-2",
+				"description": {
+					"de": "Wähle auf Mobile `up` für kurze, interaktive Inhalte.",
+					"en": "Choose `up` on mobile for short, interactive content."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "5011-3",
+				"description": {
+					"de": "Bei voller Höhe verteilen sich wenige Bedienelemente über den ganzen Bildschirm, die oberen liegen dann außerhalb des Daumen-Greifbereichs. Bei langen, scrollbaren Inhalten fällt das nicht ins Gewicht.",
+					"en": "Across the full height, a few controls spread over the whole screen and the upper ones fall outside thumb reach. For long, scrollable content this does not matter."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "size",
+			"headline": {
+				"de": "Größenstufen",
+				"en": "Size Steps"
+			},
+			"text": {
+				"de": "Die vier Stufen decken unterschiedliche Inhaltsarten ab. Passend ist die kleinste Stufe, die den Inhalt trägt.",
+				"en": "The four steps cover different kinds of content. The right one is the smallest step that carries the content."
+			},
+			"items": [
+				{
+					"id": "small",
+					"headline": {
+						"de": "Small",
+						"en": "Small"
+					},
+					"figmaNodeId": "4984-2",
+					"description": {
+						"de": "Die kleinste Stufe und der Default bei horizontaler Richtung, für kurze, fokussierte Aufgaben.",
+						"en": "The smallest step and the default for horizontal directions, for short, focused tasks."
+					}
+				},
+				{
+					"id": "medium",
+					"headline": {
+						"de": "Medium",
+						"en": "Medium"
+					},
+					"figmaNodeId": "4984-3",
+					"description": {
+						"de": "Für Formulare, Listen und detailliertere Inhalte.",
+						"en": "For forms, lists and more detailed content."
+					}
+				},
+				{
+					"id": "large",
+					"headline": {
+						"de": "Large",
+						"en": "Large"
+					},
+					"figmaNodeId": "5005-6765",
+					"description": {
+						"de": "Die größte feste Stufe für breite Inhalte, etwa eine Table mit mehreren Spalten.",
+						"en": "The largest fixed step for wide content, such as a table with several columns."
+					}
+				},
+				{
+					"id": "full",
+					"headline": {
+						"de": "Full",
+						"en": "Full"
+					},
+					"figmaNodeId": "4984-4",
+					"description": {
+						"de": "Ohne Begrenzung, wenn der Drawer den Seitenkontext vorübergehend ersetzt.",
+						"en": "Without a limit, when the drawer temporarily replaces the page context."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": [
+		{
+			"component": "dialog"
+		},
+		{
+			"component": "popover"
+		},
+		{
+			"component": "backdrop"
+		}
+	]
+}

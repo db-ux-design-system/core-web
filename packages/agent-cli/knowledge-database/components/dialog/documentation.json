@@ -202,12 +202,12 @@
 		{
 			"id": "size",
 			"headline": {
-				"de": "Größe",
-				"en": "Size"
+				"de": "Größenstufen",
+				"en": "Size Steps"
 			},
 			"text": {
-				"de": "`containerSize` setzt die Maximalbreite des Dialogs. Welche Stufe passt, hängt von der Art des Inhalts ab. Der Default ist `medium`.",
-				"en": "`containerSize` sets the maximum width of the dialog. Which step fits depends on the type of content. The default is `medium`."
+				"de": "Die vier Stufen setzen die Maximalbreite des Dialogs. Passend ist die kleinste Stufe, die den Inhalt trägt. Der Default ist `medium`.",
+				"en": "The four steps set the maximum width of the dialog. The right one is the smallest step that carries the content. The default is `medium`."
 			},
 			"items": [
 				{
@@ -263,12 +263,6 @@
 	],
 	"faq": [],
 	"related": [
-		{
-			"component": "dialog-header"
-		},
-		{
-			"component": "dialog-footer"
-		},
 		{
 			"component": "popover"
 		},

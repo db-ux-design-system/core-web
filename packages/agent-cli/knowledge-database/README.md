@@ -249,6 +249,12 @@ Damit existiert jede Beschreibung genau einmal, in der `documentation.json` der 
 
 Trägt ein Verweis Beziehungswissen, das über die `shortDescription` des Ziels hinausgeht — etwa in welcher Position oder Ebene eine Subkomponente erscheint —, gehört diese Aussage in die `guidelines.md` der Komponente, nicht in einen Verweistext.
 
+#### `related[]` nennt bevorzugt fremde Komponenten
+
+`related[]` verweist standardmäßig nur auf Komponenten außerhalb der eigenen Eltern-Kind-Linie. Die Beziehung zwischen einer Hauptkomponente und ihren Subkomponenten sowie zwischen Geschwistern derselben Elternkomponente zeigt die Tree-Navigation der Platform-Seite bereits über die Ordnerstruktur (`subParent` im Frontmatter, Verschachtelung im Navigationsbaum). Ein zusätzlicher Verweis in `related[]` wäre dort redundant.
+
+Eine Ausnahme ist zulässig, wenn der Verweis eine Verwendungsbeziehung trägt, die über die reine Nähe im Baum hinausgeht — etwa wenn eine Komponente eine andere intern einsetzt oder beide dieselbe Aufgabe für unterschiedliche Kontexte lösen. Die Ausnahme muss im PR oder in der betroffenen `guidelines.md` begründet sein.
+
 #### Guideline-Expansion (pro Regel)
 
 Jede Regel wird zu einem Guideline-Objekt expandiert:

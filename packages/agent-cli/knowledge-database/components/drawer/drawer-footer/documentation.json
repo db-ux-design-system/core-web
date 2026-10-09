@@ -1,0 +1,92 @@
+{
+	"component": "drawer-footer",
+	"figmaFileKey": "y9c3hlB0PMdDYj3xLUCRWH",
+	"description": {
+		"de": "Der Drawer Footer bildet den unteren Bereich des Drawers, nimmt die Aktionen und die dazugehörigen Hinweise auf und bleibt beim Scrollen sichtbar.",
+		"en": "The drawer footer forms the lower area of the drawer, holds the actions and their related notes, and stays visible while scrolling."
+	},
+	"shortDescription": {
+		"de": "Unterer Bereich des Drawers mit den Aktionen.",
+		"en": "Lower area of the drawer with the actions."
+	},
+	"useCases": {
+		"de": [
+			"Aktionen zum Drawer-Inhalt anbieten",
+			"Hinweis zu einer Aktion sichtbar halten",
+			"Erreichbarkeit beim Scrollen sichern"
+		],
+		"en": [
+			"Offer actions for the drawer content",
+			"Keep a note about an action visible",
+			"Secure reachability while scrolling"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "footer-content",
+			"headline": {
+				"de": "Inhalt",
+				"en": "Content"
+			},
+			"text": {
+				"de": "Der Drawer Footer scrollt nicht mit. Er ist deshalb für die Aktionen gedacht und für Hinweise, die zu diesen Aktionen gehören.",
+				"en": "The drawer footer does not scroll along. It is therefore meant for the actions and for notes that belong to those actions."
+			},
+			"do": {
+				"figmaNodeId": "4947-14",
+				"description": {
+					"de": "Nimm in den Drawer Footer nur Aktionen und Hinweise auf, die zu diesen Aktionen gehören.",
+					"en": "Only place actions and notes that belong to those actions in the drawer footer."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4947-15",
+				"description": {
+					"de": "Lege weiteren Inhalt nicht in den Drawer Footer, er gehört in den Inhaltsbereich. Der Footer scrollt nicht mit und verkleinert den scrollbaren Bereich.",
+					"en": "Don't put further content in the drawer footer, it belongs in the content area. The footer does not scroll along and shrinks the scrollable area."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "arrangement",
+			"headline": {
+				"de": "Anordnung",
+				"en": "Arrangement"
+			},
+			"text": {
+				"de": "Der Drawer Footer stapelt seine Inhalte standardmäßig vertikal. Für eine horizontale Anordnung lassen sie sich gruppieren. Beide Anordnungen sind zulässig.",
+				"en": "The drawer footer stacks its content vertically by default. For a horizontal arrangement the content can be grouped. Both arrangements are valid."
+			},
+			"items": [
+				{
+					"id": "vertical",
+					"headline": {
+						"de": "Vertikal",
+						"en": "Vertical"
+					},
+					"figmaNodeId": "4947-17",
+					"description": {
+						"de": "Die Standardanordnung: Die Inhalte stehen untereinander über die volle Breite.",
+						"en": "The default arrangement: the content sits one below the other across the full width."
+					}
+				},
+				{
+					"id": "horizontal",
+					"headline": {
+						"de": "Horizontal",
+						"en": "Horizontal"
+					},
+					"figmaNodeId": "4947-18",
+					"description": {
+						"de": "Die Inhalte sind in einem zusätzlichen Element gruppiert und stehen dadurch nebeneinander.",
+						"en": "The content is grouped in an additional element and therefore sits side by side."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": []
+}

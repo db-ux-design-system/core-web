@@ -69,11 +69,22 @@
 			}
 		},
 		{
-			"name": "closeButtonLabel",
+			"name": "closeButtonText",
 			"type": "string",
-			"description": "Accessible label for the close button",
+			"default": "Close",
+			"description": "The closeButtonText attribute changes the text inside the close button.",
 			"code": {
-				"prop": "closeButtonLabel",
+				"prop": "closeButtonText",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "closeButtonId",
+			"type": "string",
+			"description": "The closeButtonId attribute changes the id inside the close button.",
+			"code": {
+				"prop": "closeButtonId",
 				"type": "string"
 			},
 			"design": null

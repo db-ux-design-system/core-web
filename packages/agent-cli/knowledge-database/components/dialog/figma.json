@@ -8,7 +8,7 @@
 			"name": "Dialog (Beta)",
 			"nodeId": "38776:30067",
 			"type": "COMPONENT_SET",
-			"key": "f00999d624807dd885995a9d3d66afb84df302bd"
+			"key": "c83055df5732316d01496f98d9093fec9705126b"
 		}
 	],
 	"subComponents": ["dialog-header", "dialog-footer"]
