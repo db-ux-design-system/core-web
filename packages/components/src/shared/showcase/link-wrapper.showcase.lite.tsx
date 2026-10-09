@@ -50,7 +50,7 @@ export default function LinkWrapperShowcase(props: Props) {
 	return (
 		<Fragment>
 			<Show when={pageParam === null || pageParam === getPage()}>
-				<div>
+				<div data-example={getPage()}>
 					<Show when={pageParam === null}>
 						<DBDivider></DBDivider>
 						<DBLink

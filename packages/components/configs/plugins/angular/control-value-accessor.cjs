@@ -6,13 +6,13 @@
  *
  * - the NG_VALUE_ACCESSOR provider
  * - the `Renderer2` injection and the ControlValueAccessor interface clause
- * - `writeValue`, `registerOnChange`, `registerOnTouched`, `propagateChange`,
- *   `propagateTouched` and `setDisabledState`
+ * - `_setModelValue`, `writeValue`, `registerOnChange`, `registerOnTouched`,
+ *   `propagateChange`, `propagateTouched` and `setDisabledState`
  *
  * This used to live in `scripts/post-build/angular.ts`, which is deprecated.
  * The members are part of the public Angular surface: `select.lite.tsx` calls
  * `this.writeValue?.(...)` and `src/utils/form-components.ts` calls
- * `propagateChange`, so the names must not change.
+ * `propagateChange` and `_setModelValue`, so the names must not change.
  *
  * Runs before `signal-forms.cjs`, which adds the Signal Forms layer on top.
  */
@@ -67,11 +67,18 @@ const injectMembers = (code, { valueAccessor, valueAccessorRequired }) => {
 	return code.replace(
 		'ngAfterViewInit()',
 		`
-		/** @legacy CVA - will be removed in a future major version */
-		writeValue(value: any) {
+		/** @internal Applies a value to the model signal, without writing it back into the DOM. */
+		_setModelValue(value: any) {
 			${guardStart}
 			this.${valueAccessor}.set(${coerce}value);
+			${guardEnd}
+		}
 
+		/** @legacy CVA - will be removed in a future major version */
+		writeValue(value: any) {
+			this._setModelValue(value);
+
+			${guardStart}
 			if (this._ref()?.nativeElement) {
 				this.renderer.setProperty(this._ref()?.nativeElement, "${valueAccessor}", ${coerce}value);
 			}

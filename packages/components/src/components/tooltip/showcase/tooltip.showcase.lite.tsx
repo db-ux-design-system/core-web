@@ -6,6 +6,7 @@ import TooltipAnimation from '../examples/animation.example.lite';
 import TooltipDelay from '../examples/delay.example.lite';
 import TooltipDensity from '../examples/density.example.lite';
 import TooltipEmphasis from '../examples/emphasis.example.lite';
+import TooltipInteraction from '../examples/interaction.example.lite';
 import TooltipPlacement from '../examples/placement.example.lite';
 import TooltipShowArrow from '../examples/show-arrow.example.lite';
 import TooltipWidth from '../examples/width.example.lite';
@@ -48,6 +49,11 @@ export default function TooltipShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Delay">
 				<CardWrapperShowcase>
 					<TooltipDelay />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<TooltipInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
