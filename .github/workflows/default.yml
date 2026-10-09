@@ -259,7 +259,9 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       needs.init.outputs.test-ally == 'true' ||
       github.event.pull_request == null ||
-      contains(github.head_ref, 'guidepup')
+      contains(github.head_ref, 'guidepup') ||
+      contains(github.head_ref, 'playwright') ||
+      contains(github.head_ref, 'screen-reader')
     uses: ./.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
     secrets: inherit

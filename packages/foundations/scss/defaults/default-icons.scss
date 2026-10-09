@@ -18,6 +18,21 @@
 	}
 }
 
+@each $variant in icons.$default-icon-variants {
+	[data-icon-variant="#{$variant}"],
+	[data-icon-variant-before="#{$variant}"] {
+		&::before {
+			@include icons.icon-font-family($variant);
+		}
+	}
+
+	[data-icon-variant-after="#{$variant}"] {
+		&::after {
+			@include icons.icon-font-family($variant);
+		}
+	}
+}
+
 [data-show-icon="false"],
 [data-show-icon-leading="false"],
 [data-icon="none"],
