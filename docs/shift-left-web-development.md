@@ -18,7 +18,7 @@ The beauty of this paradigm is that we develop our system as declarative boilerp
 
 ## Why this matters for a design system
 
-- **Stability**: HTML attributes and CSS properties are standardized, backwards-compatible, and have no runtime failure modes. JavaScript is the most fragile technology in this stack.
+- **Stability**: HTML attributes and CSS properties are standardized, backwards-compatible, and have no runtime failure modes (CSS and HTML are forgiving). JavaScript is the most fragile technology in this stack.
 - **Performance**: The browser's rendering pipeline is optimized for declarative HTML/CSS. JS-driven DOM manipulation forces layout recalculations and blocks the main thread.
 - **Bundle size**: Every line of JS ships to every user and must be parsed, compiled, and executed. CSS that browsers don't support is simply ignored; there's no equivalent of "dead CSS crashing your app."
 - **SSR/SSG compatibility**: HTML and CSS work without JavaScript execution. Components that rely on JS for rendering or state transitions break in server-rendered or statically-generated environments until hydration completes.
