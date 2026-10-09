@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/stencil-storybook",
-    "storybook": "storybook dev -p 6009"
+    "build": "pnpm --filter @db-ux/wc-core-components run dev-build && storybook build --output-dir ../../build-storybooks/stencil-storybook",
+    "storybook": "pnpm --filter @db-ux/wc-core-components run dev-build && storybook dev -p 6009"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
