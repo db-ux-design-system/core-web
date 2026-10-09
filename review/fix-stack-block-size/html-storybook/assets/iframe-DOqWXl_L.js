@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-mbG8nre2.js";e();
