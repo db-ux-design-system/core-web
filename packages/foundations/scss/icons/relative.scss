@@ -34,17 +34,4 @@
 			}
 		}
 	}
-
-	[data-icon-variant="#{$variant}"],
-	[data-icon-variant-before="#{$variant}"] {
-		&::before {
-			--db-icon-font-family: "db-ux-#{$variant}";
-		}
-	}
-
-	[data-icon-variant-after="#{$variant}"] {
-		&::after {
-			--db-icon-font-family: "db-ux-#{$variant}";
-		}
-	}
 }

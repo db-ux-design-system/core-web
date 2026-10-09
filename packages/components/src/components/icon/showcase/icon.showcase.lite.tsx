@@ -3,6 +3,7 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import IconDensity from '../examples/density.example.lite';
+import IconVariant from '../examples/variant.example.lite';
 
 export default function IconShowcase(props: PatternhubProps) {
 	return (
@@ -12,6 +13,11 @@ export default function IconShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<IconDensity />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Variant">
+				<CardWrapperShowcase>
+					<IconVariant />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
