@@ -16,6 +16,14 @@ const testFormComponents = async (
 	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group' | 'switch'
 ) => {
 	await page.goto('./');
+
+	// DBTabs selects its first tab ("All") in an onMount effect that runs after
+	// the markup is already present. A fast click on another tab can land before
+	// that effect runs and then get discarded when it re-selects "All". Wait for
+	// "All" to be selected before interacting further.
+	const allTab = page.getByTestId('tabs').getByRole('tab').first();
+	await expect(allTab).toHaveAttribute('aria-selected', 'true');
+
 	const tab = page.getByTestId(testId);
 	await expect(tab).toBeVisible();
 	await tab.click({ force: true });

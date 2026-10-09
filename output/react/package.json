@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "5.6.2",
+  "version": "5.7.0",
   "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {
@@ -23,10 +23,6 @@
     "mv:dist": "cpy dist ../../build-outputs/react --dot",
     "mv:package.json": "cpy package.json ../../build-outputs/react/package.json",
     "mv:readme": "cpy README.md ../../build-outputs/react/README.md",
-    "open:report": "npx playwright show-report",
-    "regenerate:screenshots": "playwright test --config playwright.config.ts --update-snapshots",
-    "test:components": "playwright test --config playwright.config.ts",
-    "test:components:ui": "playwright test --config playwright.config.ts --ui",
     "test:windows": "playwright test --config playwright.screen-reader.win.ts",
     "tsc": "tsc --project . --sourceMap false"
   },
@@ -35,11 +31,10 @@
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@playwright/experimental-ct-react": "1.62.1",
     "@types/react": "19.3.0",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
-    "playwright": "1.62.1",
+    "playwright": "1.63.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "typescript": "5.9.3"
