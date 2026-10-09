@@ -10,13 +10,17 @@ const unlistedComponents = new Set([
 	'footer-content',
 	'footer-meta'
 ]);
-const unlistedSubComponentsPrefixes = new Set([
+const unlistedSubComponentsSuffixes = new Set([
 	'-list',
 	'-panel',
 	'-item',
 	'-handle',
 	'-menu'
 ]);
+// Sub-components grouped under a parent that has no standalone element of its
+// own (e.g. control-panel-brand, control-panel-mobile). They are internal parts
+// of DBControlPanel and must not appear as their own validation rows.
+const unlistedSubComponentsPrefixes = new Set(['control-panel-']);
 
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
@@ -34,20 +38,27 @@ const generateTestTable = () => {
 	);
 	const data = [];
 	for (const { name } of elements) {
+		// Only real components carry the `db-` prefix. Everything else in the
+		// web-types (badge-examples, control-panel-mobile-showcase, ...) is an
+		// example/showcase element and must never appear in the table.
+		if (!name.startsWith('db-')) {
+			continue;
+		}
+
 		const componentName = getComponentName(name);
 		if (
 			unlistedComponents.has(componentName) ||
-			[...unlistedSubComponentsPrefixes].some((suffix) =>
+			[...unlistedSubComponentsSuffixes].some((suffix) =>
 				componentName.endsWith(suffix)
+			) ||
+			[...unlistedSubComponentsPrefixes].some((prefix) =>
+				componentName.startsWith(prefix)
 			)
 		) {
 			// We don't want to add something like accordion-item
 			continue;
 		}
 
-		const hasComponentTest = FS.existsSync(
-			`./../../packages/components/src/components/${componentName}/${componentName}.spec.tsx`
-		);
 		const hasShowcaseVisuals = FS.existsSync(
 			`./../../showcases/e2e/${componentName}/${componentName}-visual-snapshot.spec.ts`
 		);
@@ -60,8 +71,6 @@ const generateTestTable = () => {
 
 		data.push({
 			name: componentName,
-			singleComponentVisuals: hasComponentTest,
-			singleComponentAxe: hasComponentTest,
 			showcaseVisuals: hasShowcaseVisuals,
 			showcaseAxe: hasShowcaseTest,
 			showcaseAria: hasShowcaseTest,
