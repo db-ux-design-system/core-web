@@ -1,0 +1,17 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{t}from"./jsx-runtime-DeHZSEgm.js";import{i as n,n as r,r as i,t as a}from"./breadcrumb-BsAyVrsK.js";import{n as o,t as s}from"./breadcrumb-popover-item-ywRqw0x9.js";var c,l,u,d,f,p;function m(){return(m=e((()=>{n(),o(),r(),c=t(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBBreadcrumb/Interaction`,component:a,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`small`,`medium`]},separator:{control:`select`,options:[`chevron`,`slash`]},id:{control:`text`}}},d={args:{"aria-label":`Breadcrumb (auto collapse)`,children:(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/`,children:`Home`})}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1`,children:`Level 1`})}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1/2`,children:`Level 2`})}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1/2/3`,children:`Level 3`})}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1/2/3/4`,children:`Level 4`})}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1/2/3/4/current`,"aria-current":`page`,children:`Current`})})]})},render:e=>(0,c.jsx)(`div`,{"data-testid":`auto-collapse-breadcrumb`,children:(0,c.jsx)(a,{...e})})},f={args:{"aria-label":`Breadcrumb (manual popover)`,children:(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/`,children:`Home`})}),(0,c.jsxs)(s,{label:`Show more breadcrumbs`,children:[(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1`,children:`Level 1`})}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1/2`,children:`Level 2`})})]}),(0,c.jsx)(i,{children:(0,c.jsx)(`a`,{href:`/1/2/current`,"aria-current":`page`,children:`Current`})})]})},render:e=>(0,c.jsx)(`div`,{"data-testid":`popover-breadcrumb`,children:(0,c.jsx)(a,{...e})})},p=[`Interaction`,`BreadcrumbInteraction1`],d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "aria-label": "Breadcrumb (auto collapse)",
+    "children": <><DBBreadcrumbItem><a href="/">Home</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1">Level 1</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2">Level 2</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3">Level 3</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3/4">Level 4</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3/4/current" aria-current="page">
+                            Current
+                        </a></DBBreadcrumbItem></>
+  },
+  render: (properties: any) => <div data-testid="auto-collapse-breadcrumb"><DBBreadcrumb {...properties} /></div>
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "aria-label": "Breadcrumb (manual popover)",
+    "children": <><DBBreadcrumbItem><a href="/">Home</a></DBBreadcrumbItem><DBBreadcrumbPopoverItem label="Show more breadcrumbs"><DBBreadcrumbItem><a href="/1">Level 1</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2">Level 2</a></DBBreadcrumbItem></DBBreadcrumbPopoverItem><DBBreadcrumbItem><a href="/1/2/current" aria-current="page">
+                            Current
+                        </a></DBBreadcrumbItem></>
+  },
+  render: (properties: any) => <div data-testid="popover-breadcrumb"><DBBreadcrumb {...properties} /></div>
+}`,...f.parameters?.docs?.source}}}})))()}m();export{f as BreadcrumbInteraction1,d as Interaction,p as __namedExportsOrder,u as default};
