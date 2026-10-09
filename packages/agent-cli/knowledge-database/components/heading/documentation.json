@@ -1,6 +1,6 @@
 {
 	"component": "heading",
-	"figmaFileKey": "mlJ6R0GkfR15a93KSlqXtB",
+	"figmaFileKey": "GAQwQI1UNW8HRMXnr4q8DC",
 	"description": {
 		"de": "Heading strukturiert Inhalte mit sechs semantischen Stufen (H1–H6). Custom Heading ergänzt Start und End Slot für zusätzliche Elemente wie Links oder Badges neben dem Text.",
 		"en": "Heading structures content with six semantic levels (H1–H6). Custom Heading adds start and end slots for additional elements like links or badges alongside the text."
@@ -73,27 +73,27 @@
 			}
 		},
 		{
-			"id": "visual-hierarchy-size",
+			"id": "visual-hierarchy",
 			"headline": {
-				"de": "Visuelle Hierarchie bei Size",
-				"en": "Visual hierarchy with size"
+				"de": "Visuelle Hierarchie",
+				"en": "Visual hierarchy"
 			},
 			"text": {
-				"de": "Behalte bei abweichender Size die visuelle Hierarchie von H1 bis H6 bei. Jede Stufe muss gleich groß oder kleiner als die vorherige sein.",
-				"en": "When overriding size, maintain the visual hierarchy from H1 to H6. Each level must be equal to or smaller than the previous one."
+				"de": "Behalte bei abweichender Visual Size die visuelle Hierarchie von H1 bis H6 bei. Jede Stufe muss gleich groß oder kleiner als die vorherige sein.",
+				"en": "When overriding the visual size, maintain the visual hierarchy from H1 to H6. Each level must be equal to or smaller than the previous one."
 			},
 			"do": {
 				"figmaNodeId": "4117-10",
 				"description": {
-					"de": "Stelle sicher, dass H1 visuell größer oder gleich groß wie H2 bleibt, auch bei überschriebener Size.",
-					"en": "Ensure H1 remains visually larger than or equal to H2, even when overriding size."
+					"de": "Stelle sicher, dass H1 visuell größer oder gleich groß wie H2 bleibt, auch bei überschriebener Visual Size.",
+					"en": "Ensure H1 remains visually larger than or equal to H2, even when overriding the visual size."
 				}
 			},
 			"caution": {
 				"figmaNodeId": "4117-12",
 				"description": {
-					"de": "Eine invertierte Größenreihenfolge (H2 größer als H1) widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur.",
-					"en": "An inverted size order (H2 larger than H1) contradicts reading expectations and makes it harder to grasp page structure."
+					"de": "Eine invertierte Größenreihenfolge (H2 größer als H1) widerspricht der Leseerwartung und erschwert das Erfassen der Seitenstruktur. Weiche davon nur ab, wenn die Gestaltung es bewusst vorgibt.",
+					"en": "An inverted size order (H2 larger than H1) contradicts reading expectations and makes it harder to grasp page structure. Only deviate when the design deliberately calls for it."
 				}
 			}
 		},
@@ -146,6 +146,33 @@
 					"en": "Too many actions alongside a heading distract from the actual content and make the area cluttered."
 				}
 			}
+		}
+	],
+	"examples": [
+		{
+			"id": "decoupled-visual-size",
+			"headline": {
+				"de": "Entkoppelte Visual Size",
+				"en": "Decoupled visual size"
+			},
+			"text": {
+				"de": "Die semantische Stufe folgt der Dokumenthierarchie, die Visual Size dem visuellen Entwurf. Beide können bewusst voneinander abweichen.",
+				"en": "The semantic level follows the document hierarchy, the visual size follows the visual design. The two can intentionally differ."
+			},
+			"items": [
+				{
+					"id": "topline",
+					"headline": {
+						"de": "Topline über der Hauptüberschrift",
+						"en": "Topline above the main heading"
+					},
+					"figmaNodeId": "4161-483",
+					"description": {
+						"de": "Zeichne die H1 als Topline visuell kleiner aus als die nachfolgende H2. Für Screenreader bleibt die H1 die oberste Ebene.",
+						"en": "Mark the H1 as a topline visually smaller than the following H2. For screen readers the H1 remains the top level."
+					}
+				}
+			]
 		}
 	],
 	"faq": [],

@@ -1,75 +1,55 @@
 {
 	"component": "heading",
-	"note": "Heading H1–H6 und Custom Heading teilen sich dieselben Properties. Custom Heading ergänzt zusätzlich einen Start und End Slot.",
+	"note": "Heading H1-H6 and Custom Heading share the same properties. Custom Heading adds a Start Slot and an End Slot.",
 	"properties": [
 		{
-			"name": "size",
+			"name": "visualSize",
 			"type": "enum",
 			"values": [
-				"3xl",
-				"2xl",
-				"xl",
-				"lg",
-				"md",
-				"sm",
-				"xs",
-				"2xs",
-				"3xs"
+				"h1",
+				"h2",
+				"h3",
+				"h4",
+				"h5",
+				"h6",
+				"p-small",
+				"p-medium",
+				"p-large"
 			],
-			"default": "pro Stufe: H1=xl, H2=lg, H3=md, H4=sm, H5=xs, H6=2xs",
+			"default": "per level: H1=h1, H2=h2, H3=h3, H4=h4, H5=h5, H6=h6",
 			"code": null,
 			"design": {
-				"name": "🔀 Size",
+				"name": "🔀 Visual Size",
 				"values": [
-					"(Def) xl [H1]",
-					"(Def) lg [H2]",
-					"(Def) md [H3]",
-					"(Def) sm [H4]",
-					"(Def) xs [H5]",
-					"(Def) 2xs [H6]",
-					"3xl",
-					"2xl",
-					"xl",
-					"lg",
-					"md",
-					"sm",
-					"xs",
-					"2xs",
-					"3xs"
+					"(Def) h1 [H1]",
+					"(Def) h2 [H2]",
+					"(Def) h3 [H3]",
+					"(Def) h4 [H4]",
+					"(Def) h5 [H5]",
+					"(Def) h6 [H6]",
+					"h1",
+					"h2",
+					"h3",
+					"h4",
+					"h5",
+					"h6",
+					"p-small",
+					"p-medium",
+					"p-large"
 				],
-				"note": "Jede Heading-Stufe hat einen eigenen Default-Wert für Size."
+				"note": "Each heading level has its own default value for Visual Size. The levels h1-h6 map to the headline font sizes, p-small, p-medium and p-large to the body font sizes sm, md and lg."
 			}
 		},
 		{
 			"name": "fontWeight",
 			"type": "enum",
-			"values": ["Black", "Light"],
+			"values": ["Black", "Light", "Regular"],
 			"default": "Black",
 			"code": null,
 			"design": {
 				"name": "🔀 Font Weight",
-				"values": ["(Def) Black", "Light"]
-			}
-		},
-		{
-			"name": "alignment",
-			"type": "enum",
-			"values": ["Left", "Right", "Center"],
-			"default": "Left",
-			"code": null,
-			"design": {
-				"name": "🔀 Alignment",
-				"values": ["(Def) Left", "Right", "Center"]
-			}
-		},
-		{
-			"name": "paragraphSpacing",
-			"type": "boolean",
-			"default": false,
-			"code": null,
-			"design": {
-				"name": "Paragraph Spacing",
-				"note": "Erzeugt einen Abstand von 1lh unterhalb der Heading."
+				"values": ["(Def) Black", "Light", "Regular"],
+				"note": "Regular is intended for the paragraph sizes p-small, p-medium and p-large."
 			}
 		},
 		{
@@ -79,7 +59,7 @@
 			"design": {
 				"name": "📦 Start",
 				"type": "slot",
-				"note": "Nur bei Custom Heading. Slot für Content vor dem Heading-Text (z. B. ein Icon).",
+				"note": "Only on Custom Heading. Slot for content before the heading text, for example an icon.",
 				"componentSet": ["custom-heading"]
 			}
 		},
@@ -90,7 +70,7 @@
 			"design": {
 				"name": "📦 End",
 				"type": "slot",
-				"note": "Nur bei Custom Heading. Slot für Content nach dem Heading-Text (z. B. Links, Badges).",
+				"note": "Only on Custom Heading. Slot for content after the heading text, for example links or badges.",
 				"componentSet": ["custom-heading"]
 			}
 		}
