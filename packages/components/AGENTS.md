@@ -68,18 +68,18 @@ runtime tag switching and named heading slots.
 
 Every other component owns its folder, which is why `scripts/post-build/` can
 resolve them as `components/${name}/${name}.ext`. The Heading family shares a
-single folder, so that lookup misses it. Two optional fields on the registry
-entry bridge the gap and are set for all seven Heading components in
+single folder, so that lookup misses it. An optional field on the registry
+entry bridges the gap and is set for all seven Heading components in
 `scripts/post-build/components.ts`:
 
 - **`folder`** — the shared `heading` directory.
-- **`spec`** — the shared `heading.spec.tsx`, declared on exactly one entry
-  because one spec covers all seven components.
 
-With those, Heading uses the same pipeline as every other component: the React
-`forwardRef` and root props, the Angular and Stencil barrel rewrite, and the spec
-copy including the `// VUE:` marker stripping in `copy-files.ts`. Do not
-reintroduce Heading-specific plugins for any of that.
+With that, Heading uses the same pipeline as every other component: the React
+`forwardRef` and root props, and the Angular and Stencil barrel rewrite. Do not
+reintroduce Heading-specific plugins for any of that. Interaction behavior for
+the family is covered by a single `showcases/e2e/heading/heading-interaction.spec.ts`
+plus `examples/interaction.example.lite.tsx`, wired into `heading.showcase.lite.tsx`
+like any other example — there is no per-target spec-copy step anymore.
 
 The one genuine difference is the Vue class alias, declared as an overwrite on
 each entry:
@@ -213,13 +213,22 @@ When adding or modifying examples:
 - Place example files inside `src/components/[name]/examples/`
 - Use `data-sb-*` attributes to control Storybook story generation (e.g. controls, args, decorators)
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
-- **Do NOT manually edit showcase files** — they are generated
+- **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in Patternhub, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
 
-## Component tests (`src/components/**/*.spec.tsx`)
+## Component tests (`showcases/e2e/**/*-interaction.spec.ts`)
 
-One spec per component (or per component family, declared via `spec` in `components.ts`). `copy-files.ts` copies it into the React and Vue outputs only — Angular and Stencil have no Playwright component tests, they are covered by the showcase e2e suite. The `// VUE:` marker activates a line for Vue only, since it is stripped for that target.
+Component behavior is tested cross-framework, against the running showcase apps, not by mounting an isolated component instance. See the root [`AGENTS.md`](../../AGENTS.md) for the full picture of the showcase e2e suite (aria-snapshot, visual-snapshot, axe-core, a11y-checker); this section covers the interaction layer only, which is authored inside this package.
 
-**Everything a spec needs belongs in the spec.** Do not add test-only components (harnesses, fixtures) under `src/components/`: the main Mitosis config compiles `src/**/*.{lite.tsx,ts}` for all four targets, so such a file ships in every framework output — in Stencil it even becomes a registered custom element in `custom-elements.json` and gets its own lazy-load chunk. Mount the component under test directly, as the other specs do, and re-mount with different props when a prop change is part of the scenario (see `custom-select.spec.tsx`).
+**Two files, one per component with interactive behavior:**
+
+- `src/components/<name>/examples/interaction.example.lite.tsx` — the fixture. Reflects the behavior under test into observable DOM (state + conditional render, or a readout element with a `data-testid`) — the e2e test only sees rendered DOM, never a JS callback variable. Wire it into `<name>.showcase.lite.tsx` like any other example, via `LinkWrapperShowcase exampleName="Interaction"`.
+- `showcases/e2e/<name>/<name>-interaction.spec.ts` — the spec, using `runInteractionTest` from `showcases/e2e/default.ts`. It drives the real showcase page (React by default in CI; Vue/Angular/Stencil run the same spec against their own showcase) and asserts on the DOM the fixture exposes.
+
+Not every component needs one: a sub-component with no interaction of its own (e.g. `accordion-item`) can rely on its parent's interaction spec, and a purely presentational component with no gestures needs no interaction spec at all — its accessibility and visual coverage already comes from the per-showcase aria-snapshot/visual-snapshot/axe-core suites once the showcase example exists.
+
+**When fixing a bug:** check whether an existing interaction spec already exercises the broken path before adding a new one. If it does, extend that spec's assertions (and the fixture, if it does not yet expose what the fix needs to verify). Only add a new `interaction.example.lite.tsx` / spec pair when no existing coverage touches the behavior.
+
+**When creating a new component:** add a minimal interaction spec covering its basic interactive features (the primary gesture(s) a consumer would exercise — click, toggle, open/close, value change) even if the initial implementation is small. Purely structural/presentational new components (no interaction) do not need one, per the rule above.
 
 **`selectOption` cannot test what happens between `input` and `change`.** It dispatches both events in the same task, and React flushes the re-render triggered by the first handler only after the task — so a controlled `select` looks fine even when the internal state change during `input` discards the selection. That is how [#7554](https://github.com/db-ux-design-system/core-web/issues/7554) survived the suite. Drive the sequence explicitly and let the pending render land, then read the DOM inside the same `evaluate` — the assertion must happen while the DOM state is still the interesting one:
 
@@ -343,7 +352,7 @@ This keeps id logic in one place, avoids drift between the `id` and its `htmlFor
 Sub-components (e.g. `accordion-item`, `navigation-item`, `tab-item`) are child components that
 are always used inside a parent component. They do **not** have standalone:
 
-- Spec test files (`*.spec.tsx`) — tested within the parent component's spec
+- Interaction specs (`showcases/e2e/**/*-interaction.spec.ts`) — tested within the parent component's interaction spec
 - Density example files — demonstrated within the parent's examples
 - Showcase files — showcased within the parent's showcase page
 - E2E test files — covered by the parent's e2e tests
@@ -363,6 +372,37 @@ standalone files automatically while preserving the parser and docs metadata ent
 **Sub-component suffix convention:** The test-table generator
 (`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
 in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
+
+## Angular form value flow: user input never writes back to the DOM
+
+For CVA components (configured in `configs/plugins/angular/form-components.cjs`, generated by `configs/plugins/angular/control-value-accessor.cjs`) the generated class has two ways to apply a value, and they are not interchangeable:
+
+| Method                  | Who calls it                                                                                                       | What it does                                   |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
+| `_setModelValue(value)` | `handleFrameworkEventAngular` — user input coming from the element                                                 | model signal only                              |
+| `writeValue(value)`     | Angular forms (reactive forms, `ngModel`), and `handleFrameworkEventAngular` on a native form reset (`reset` flag) | model signal **and** `renderer.setProperty(…)` |
+
+Never route **user input** through `writeValue`. The value it would write is the one the element already holds, so the write is redundant — and for `input[type="date"]` it is destructive: while the browser cannot parse the current entry (`validity.badInput`, e.g. `29.02.0202` on the way to `29.02.2028`), it reports `value` as an empty string, and assigning an empty string clears the native editor with everything the user typed ([#7748](https://github.com/db-ux-design-system/core-web/issues/7748)).
+
+A **native form reset** is the exception: it is a programmatic write, not user input, so `handleFrameworkEventAngular` receives a `reset` flag and routes it through `writeValue`. The model alone is not enough here — the reset value often equals the value the model already holds (e.g. `[value]` bound to the last typed value), so the bound expression would not change and nothing would reach the DOM, leaving the field empty after the native reset cleared it ([#6147](https://github.com/db-ux-design-system/core-web/issues/6147)). This is covered by the DOM-value assertion after reset in `showcases/e2e/home/showcase-home.spec.ts`.
+
+The same reasoning applies to the display binding in `input.lite.tsx`. For Angular the element renders from `state._value`, not from `props.value`:
+
+```tsx
+value={useTarget({
+	angular: state._value ?? props.value ?? '',
+	react: props.value,
+	default: props.value ?? state._value ?? ''
+})}
+```
+
+`state._value` mirrors `props.value` except while `validity.badInput` is set and the model is empty. Without that gap Angular would compare the new bound expression against the last one, see `"0020-02-29"` turn into `""` and write it to the element — the same reset through the binding instead of through `writeValue`.
+
+The other targets are unaffected either way: React binds `props.value` only, so the element stays a controlled component (falling back to `state._value` would pin it, because `state._value` is never updated from user input in React), and Vue and Stencil read `props.value` first while their renderers skip a write when the element already holds the value. This binding lives in each form component (`input`, `textarea`, `select`) as an explicit `useTarget`, not as a string replacement in `scripts/post-build/react.ts`.
+
+The condition itself lives in `shouldKeepDisplayValue` (`src/utils/form-components.ts`) so it can be unit tested. Keep it as narrow as it is: it may only hold while the element reports `badInput` **and** the incoming value is empty. Widening it breaks the `undefined` reset that consumers use to clear a field ([#6147](https://github.com/db-ux-design-system/core-web/issues/6147)), which is covered by `showcases/e2e/input/input-undefined-value.spec.ts`.
+
+The consequence to be aware of: while the entry is unparsable, `state._value` holds the last parsable value while the element holds none. A programmatic write through a direct `[value]` binding does not reach the element, because the Angular template renders from `state._value` and `shouldKeepDisplayValue` keeps it while `badInput` is set. Reactive forms and `ngModel` are unaffected — they write through `writeValue`, which also sets the property directly.
 
 ## Mitosis Limitations
 
@@ -709,7 +749,7 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 
 - Do **not** add new code here
 - New transformations must be implemented as Mitosis plugins in `configs/plugins/`
-- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms were moved to `configs/plugins/angular/signal-forms.cjs`)
+- Existing post-build logic will be migrated to plugins over time (e.g. ESM import extensions were moved to `configs/plugins/esm-extensions.cjs`, Signal Forms transforms to `configs/plugins/angular/signal-forms.cjs`, and the Angular `ControlValueAccessor` to `configs/plugins/angular/control-value-accessor.cjs`)
 
 > Exception: registering a component in `components.ts` is not new logic, it is
 > configuration for transformations that already exist. When a component would
@@ -720,6 +760,14 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 > parallel implementations.
 >
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
+
+### Angular form components
+
+Which components take part in Angular forms is configured once, in `configs/plugins/angular/form-components.cjs`. Two plugins read it: `control-value-accessor.cjs` generates the legacy CVA members, `signal-forms.cjs` adds the Signal Forms layer on top. Register a new form component there, not in `scripts/post-build/components.ts`.
+
+The plugin order in `configs/angular/index.cjs` matters — the CVA plugin runs before Signal Forms. Both patch the same `} from "@angular/core";` anchor, so an insertion has to end with a comma to survive the next plugin.
+
+The generated member names are a contract: `select.lite.tsx` calls `this.writeValue?.(…)` and `src/utils/form-components.ts` calls `propagateChange` and `_setModelValue`. Renaming them breaks the component sources, not just the output.
 
 ### React `propsPassingFilter` and `default*` props
 
@@ -738,11 +786,11 @@ Consumer-facing changes in `packages/components/src` require a changeset. Which 
 
 Only these package-specific details are added on top:
 
-- **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `copy-files.ts`, `frameworks.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
+- **Shared build code** — files that feed several targets (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`). The affected targets are readable from the diff itself, no build needed:
     - `components.ts` keys every entry by target: a changed `overwrites.angular` / `config.react` block hits that target only, an `overwrites.global` entry hits all four.
     - `index.ts` and `mitosis.config.cjs` orchestrate all four targets — a change there is all four.
-    - `copy-files.ts` (and `frameworks.ts`, which only that file imports) copies spec and Playwright files, gated on `react`/`vue`. Those files are never published, so such a change usually needs no changeset at all; if it does become consumer-facing, it is React and Vue.
     - For a changed shared helper, grep its callers: whichever of `angular.ts`, `react.ts`, `vue.ts`, `stencil.ts` reaches it defines the list.
+    - Files under `showcases/e2e/**` and `examples/interaction.example.lite.tsx` fixtures are test-only and never ship in a published package — no changeset needed for changes confined to those, per the repo-root exceptions.
 
     Only if that stays inconclusive, verify empirically: regenerate with `pnpm run build` (not `build-outputs`, which does not re-run Mitosis) and diff `output/*/src` against a copy taken before your change — `output/**/src` is git-ignored, so `git diff output/` shows nothing.
 

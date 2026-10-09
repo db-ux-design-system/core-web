@@ -11,11 +11,6 @@ export type Component = {
 	 * Heading components in `components/heading/`.
 	 */
 	folder?: string;
-	/**
-	 * Base name of the Playwright component spec, when it is not the component
-	 * name itself. Set it on exactly one member of a family that shares a spec.
-	 */
-	spec?: string;
 	overwrites?: {
 		global?: Overwrite[];
 		angular?: Overwrite[];
@@ -28,8 +23,6 @@ export type Component = {
 			vModel?: { modelValue: string; binding: string }[];
 		};
 		angular?: {
-			controlValueAccessor?: string;
-			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
@@ -40,12 +33,11 @@ export type Component = {
 };
 
 /*
- * The seven Heading components share one folder, one model, one stylesheet and
- * one spec, so every entry points at the `heading` folder and only the first one
- * declares the shared spec.
+ * The seven Heading components share one folder, one model and one stylesheet,
+ * so every entry points at the `heading` folder.
  *
  * The vue overwrite runs after the built-in `className` -> `props.class`
- * rewrite and restores the alias, so the shared spec can assert both the react
+ * rewrite and restores the alias, so consumers can assert both the react
  * `className` and the vue `class` API.
  */
 const headingComponents: Component[] = [
@@ -56,26 +48,24 @@ const headingComponents: Component[] = [
 	'heading-h4',
 	'heading-h5',
 	'heading-h6'
-].map((name, index) => ({
+].map((name) => ({
 	name,
 	folder: 'heading',
-	spec: index === 0 ? 'heading' : undefined,
 	overwrites: {
 		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
 	}
 }));
 
 /*
- * The two ControlPanelActions components share one folder, one model, one
- * stylesheet and one spec, following the same pattern as the Heading family.
+ * The two ControlPanelActions components share one folder, one model and one
+ * stylesheet, following the same pattern as the Heading family.
  */
 const controlPanelActionsComponents: Component[] = [
 	'control-panel-actions-1',
 	'control-panel-actions-2'
-].map((name, index) => ({
+].map((name) => ({
 	name,
 	folder: 'control-panel-actions',
-	spec: index === 0 ? 'control-panel-actions' : undefined,
 	overwrites: {
 		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
 	}
@@ -216,9 +206,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -236,9 +223,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'values', binding: ':values' }]
-			},
-			angular: {
-				controlValueAccessor: 'values'
 			},
 			react: {
 				propsPassingFilter: [
@@ -277,9 +261,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -342,9 +323,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		},
 		overwrites: {
@@ -433,9 +411,6 @@ export const getComponents = (): Component[] => [
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
-			angular: {
-				controlValueAccessor: 'value'
-			},
 			react: {
 				containsFragmentMap: true
 			}
@@ -473,9 +448,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -490,10 +462,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value',
-				controlValueAccessorRequired: true
 			}
 		}
 	},
@@ -593,9 +561,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		}
 	},

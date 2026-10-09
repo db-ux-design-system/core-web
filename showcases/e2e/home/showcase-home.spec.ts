@@ -16,6 +16,14 @@ const testFormComponents = async (
 	role: 'textbox' | 'combobox' | 'checkbox' | 'radio' | 'group' | 'switch'
 ) => {
 	await page.goto('./');
+
+	// DBTabs selects its first tab ("All") in an onMount effect that runs after
+	// the markup is already present. A fast click on another tab can land before
+	// that effect runs and then get discarded when it re-selects "All". Wait for
+	// "All" to be selected before interacting further.
+	const allTab = page.getByTestId('tabs').getByRole('tab').first();
+	await expect(allTab).toHaveAttribute('aria-selected', 'true');
+
 	const tab = page.getByTestId(testId);
 	await expect(tab).toBeVisible();
 	await tab.click({ force: true });
@@ -133,6 +141,16 @@ const testFormComponents = async (
 
 			case 'textbox': {
 				expect(text).toEqual(`test${index + 1}`);
+				// The bound model above is not enough: a reset must also reach
+				// the element. In Angular the reset value often equals the value
+				// the model already holds, so nothing would be written back and
+				// the field would stay empty after the native reset cleared it
+				// (https://github.com/db-ux-design-system/core-web/issues/6147).
+				const input = components[index];
+				if (input) {
+					await expect(input).toHaveValue(`test${index + 1}`);
+				}
+
 				break;
 			}
 		}
