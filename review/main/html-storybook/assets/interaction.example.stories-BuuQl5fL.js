@@ -1,7 +1,0 @@
-import{n as e}from"./iframe-D-RbzQux.js";import{n as t,t as n}from"./checkbox-DIUpju1N.js";import{n as r}from"./rolldown-runtime-DkW27tQK.js";var i,a,o,s,c;function l(){return(l=r((()=>{t(),i=e(),{fn:a}=__STORYBOOK_MODULE_TEST__,o={title:`Components/DBCheckbox/Interaction`,component:n,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{name:{control:`text`},disabled:{control:`boolean`},checked:{control:`boolean`},indeterminate:{control:`boolean`},validation:{control:`select`,options:[`invalid`,`valid`,`no-validation`]},invalidMessage:{control:`text`},validMessage:{control:`text`},message:{control:`text`},showMessage:{control:`boolean`},size:{control:`select`,options:[`small`,`medium`]},required:{control:`boolean`},showLabel:{control:`boolean`},showRequiredAsterisk:{control:`boolean`},label:{control:`text`},placeholder:{control:`text`},variant:{control:`select`,options:[`above`,`floating`]},value:{control:`text`},form:{control:`text`},ariaDescribedBy:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},s={args:{"data-testid":`checkbox`,children:`Test`},render:e=>(0,i.jsx)(n,{...e})},c=[`Interaction`],s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
-  args: {
-    "data-testid": "checkbox",
-    "children": "Test"
-  },
-  render: (properties: any) => <DBCheckbox {...properties} />
-}`,...s.parameters?.docs?.source}}}})))()}l();export{s as Interaction,c as __namedExportsOrder,o as default};
