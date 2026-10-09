@@ -6,6 +6,7 @@ const {
 	blockToVue
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
 const prettier = require('@prettier/sync');
+const { nodeToWebComponent } = require('./node-to-web-component.cjs');
 /**
  * Recursively finds a component by name in the node tree
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to search
@@ -71,6 +72,19 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 			continue;
 		}
 
+		// Web components can only carry string attributes here. A binding whose
+		// value is JSX markup (a slot-prop such as `brand={<DBControlPanelBrand />}`
+		// on DBControlPanelDesktop) has no attribute form -- emitting its raw code
+		// would produce invalid `.ts`. Skip it; the element still renders, just
+		// without that projected slot.
+		if (
+			target === 'stencil' &&
+			typeof value.code === 'string' &&
+			/<[A-Za-z]/.test(value.code)
+		) {
+			continue;
+		}
+
 		if (key.startsWith('on')) {
 			let bindingKey = key;
 			if (target === 'angular') {
@@ -95,6 +109,20 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 					overwriteValue = json.state[replacedStateValue].code;
 				} else if (target === 'vue' && json.state[overwriteValue]) {
 					overwriteValue = json.state[overwriteValue].code;
+				} else if (
+					target === 'stencil' &&
+					/^(this|state)\./.test(overwriteValue)
+				) {
+					// The stencil output accesses store values via `this.` (and
+					// examples via `state.`), e.g. `columnSizes={state.columnSizes}`
+					// becomes `this.columnSizes`. A story arg must be a concrete
+					// value, so resolve it to the store's initial code
+					// (`{ 0: 'min-content', 6: 'min-content' }`).
+					const replacedStateValue = overwriteValue.replace(
+						/^(this|state)\./,
+						''
+					);
+					overwriteValue = json.state[replacedStateValue].code;
 				}
 			} catch (e) {
 				console.error(
@@ -177,6 +205,21 @@ const getRenderFunction = (
 		},
 		template: \`${replaced}\`,
 	}),`;
+	}
+
+	if (target === 'stencil') {
+		// Web components render as real `<db-*>` custom elements via lit-html.
+		// `args` and `children` are kept separate (like the React render):
+		// `spreadArgs` sets each arg as a property on the reference element (so
+		// camelCase props work), and `unsafeHTML(children)` injects the slotted
+		// markup. The `properties="replace"` placeholder becomes the lit spread.
+		const replaced = exampleCode.replace(
+			'properties="replace"',
+			'${spreadArgs(args)}'
+		);
+
+		return `
+	render: ({ children, ...args }: any) => html\`${replaced}\`,`;
 	}
 };
 
@@ -390,6 +433,41 @@ const getStories = ({
 					},
 					{ isRootNode: true }
 				);
+			} else if (target === 'stencil') {
+				// Web components render via lit-html. The reference element's
+				// slotted content is serialized to an HTML string and baked into
+				// the render template as a build-time `unsafeHTML` literal. The
+				// element keeps the `properties="replace"` placeholder (set above)
+				// which the render turns into a lit property spread
+				// (`spreadArgs(args)`), so camelCase props like `showIcon` are set
+				// as properties instead of broken attributes.
+				//
+				// The markup is NOT emitted as a mutable `children` story arg:
+				// Storybook args are editable via Controls and the URL, so routing
+				// a user-controllable string into `unsafeHTML` would be an XSS sink
+				// (`<img src=x onerror=...>`). Keeping it a static literal mirrors
+				// the Angular/Vue renders, which also bake their children into the
+				// template rather than reading them from the live args.
+				const children = foundComponent.children
+					.map((child) => nodeToWebComponent(child, allImports))
+					.join('')
+					.trim();
+
+				foundComponent.slots = {};
+				foundComponent.children = children.length
+					? [
+							{
+								name: 'div',
+								properties: {
+									_text: `\${unsafeHTML(\`${children}\`)}`
+								},
+								bindings: {},
+								children: []
+							}
+						]
+					: [];
+
+				template = nodeToWebComponent(example, allImports);
 			}
 
 			if (template.includes('getImage')) {
