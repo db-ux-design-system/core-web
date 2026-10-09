@@ -27,6 +27,8 @@ export default function DBStack(props: DBStackProps) {
 			data-direction={props.direction}
 			data-alignment={props.alignment}
 			data-justify-content={props.justifyContent}
+			data-width={props.width}
+			data-height={props.height}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}>
 			{props.children}
 		</div>
