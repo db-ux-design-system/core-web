@@ -1,0 +1,10 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBTabs/Controlled`,component:`db-tabs`,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:o(),onTabSelect:o()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},tabItemWidth:{control:`select`,options:[`full`,`auto`]},tabItemAlignment:{control:`select`,options:[`start`,`center`,`end`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},label:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onTabSelect:{action:`onTabSelect`}}},c={args:{activeIndex:0,onIndexChange:o()},render:({children:e,...n})=>t`<div>Use external buttons to control active tab<db-tabs ${i(n)}>${r(`<db-tab-list><db-tab-item>Tab 1</db-tab-item><db-tab-item>Tab 2</db-tab-item><db-tab-item>Tab 3</db-tab-item></db-tab-list><db-tab-panel>Content of Tab 1</db-tab-panel><db-tab-panel>Content of Tab 2</db-tab-panel><db-tab-panel>Content of Tab 3</db-tab-panel>`)}</db-tabs></div>`},l=[`ControlledTabsExternalState`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "activeIndex": 0,
+    "onIndexChange": fn()
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div>Use external buttons to control active tab<db-tabs \${spreadArgs(args)}>\${unsafeHTML(\`<db-tab-list><db-tab-item>Tab 1</db-tab-item><db-tab-item>Tab 2</db-tab-item><db-tab-item>Tab 3</db-tab-item></db-tab-list><db-tab-panel>Content of Tab 1</db-tab-panel><db-tab-panel>Content of Tab 2</db-tab-panel><db-tab-panel>Content of Tab 3</db-tab-panel>\`)}</db-tabs></div>\`
+}`,...c.parameters?.docs?.source}}}})))()}u();export{c as ControlledTabsExternalState,l as __namedExportsOrder,s as default};

@@ -1,0 +1,17 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l,u;function d(){return(d=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBControlPanelDesktop/Orientation`,component:`db-control-panel-desktop`,parameters:{layout:`centered`},tags:[`autodocs`],args:{onExpandButtonTooltipFn:o()},argTypes:{width:{control:`select`,options:[`full`,`medium`,`large`,`small`]},orientation:{control:`select`,options:[`horizontal`,`vertical`]},expanded:{control:`boolean`},expandButtonTooltip:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`},onExpandButtonTooltipFn:{action:`onExpandButtonTooltipFn`}}},c={args:{orientation:`horizontal`},render:({children:e,...n})=>t`<div><db-control-panel-desktop ${i(n)}>${r(`<db-control-panel-navigation aria-label="(Default) Horizontal"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">(Default) Horizontal</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder" disabled><a href="#">(Default) Horizontal disabled</a></db-control-panel-navigation-item></db-control-panel-navigation>`)}</db-control-panel-desktop></div>`},l={args:{orientation:`vertical`},render:({children:e,...n})=>t`<div><db-control-panel-desktop ${i(n)}>${r(`<db-control-panel-navigation aria-label="Vertical"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Vertical</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder" disabled><a href="#">Vertical disabled</a></db-control-panel-navigation-item></db-control-panel-navigation>`)}</db-control-panel-desktop></div>`},u=[`DefaultHorizontal`,`Vertical`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "horizontal"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-control-panel-desktop \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-navigation aria-label="(Default) Horizontal"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">(Default) Horizontal</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder" disabled><a href="#">(Default) Horizontal disabled</a></db-control-panel-navigation-item></db-control-panel-navigation>\`)}</db-control-panel-desktop></div>\`
+}`,...c.parameters?.docs?.source}}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "vertical"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-control-panel-desktop \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-navigation aria-label="Vertical"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Vertical</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder" disabled><a href="#">Vertical disabled</a></db-control-panel-navigation-item></db-control-panel-navigation>\`)}</db-control-panel-desktop></div>\`
+}`,...l.parameters?.docs?.source}}}})))()}d();export{c as DefaultHorizontal,l as Vertical,u as __namedExportsOrder,s as default};

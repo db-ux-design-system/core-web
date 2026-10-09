@@ -1,0 +1,19 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l,u,d;function f(){return(f=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBAccordion/Density`,component:`db-accordion`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{behavior:{control:`select`,options:[`multiple`,`single`]},variant:{control:`select`,options:[`divider`,`card`]},initOpenIndex:{control:`object`},items:{control:`object`},name:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},c={args:{},render:({children:e,...n})=>t`<div data-density="functional"><db-infotext size="small" semantic="informational" icon="none">Functional</db-infotext><db-accordion ${i(n)}>${r(`<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item><db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item><db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>`)}</db-accordion></div>`},l={args:{},render:({children:e,...n})=>t`<div data-density="regular"><db-infotext size="small" semantic="informational" icon="none">(Default) Regular</db-infotext><db-accordion ${i(n)}>${r(`<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item><db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item><db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>`)}</db-accordion></div>`},u={args:{},render:({children:e,...n})=>t`<div data-density="expressive"><db-infotext size="small" semantic="informational" icon="none">Expressive</db-infotext><db-accordion ${i(n)}>${r(`<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item><db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item><db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>`)}</db-accordion></div>`},d=[`Functional`,`Regular`,`Expressive`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {},
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div data-density="functional"><db-infotext size="small" semantic="informational" icon="none">Functional</db-infotext><db-accordion \${spreadArgs(args)}>\${unsafeHTML(\`<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item><db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item><db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>\`)}</db-accordion></div>\`
+}`,...c.parameters?.docs?.source}}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {},
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div data-density="regular"><db-infotext size="small" semantic="informational" icon="none">(Default) Regular</db-infotext><db-accordion \${spreadArgs(args)}>\${unsafeHTML(\`<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item><db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item><db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>\`)}</db-accordion></div>\`
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {},
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div data-density="expressive"><db-infotext size="small" semantic="informational" icon="none">Expressive</db-infotext><db-accordion \${spreadArgs(args)}>\${unsafeHTML(\`<db-accordion-item headline-plain="Item 1">Content 1</db-accordion-item><db-accordion-item headline-plain="Item 2">Content 2</db-accordion-item><db-accordion-item headline-plain="Item 3">Content 3</db-accordion-item>\`)}</db-accordion></div>\`
+}`,...u.parameters?.docs?.source}}}})))()}f();export{u as Expressive,c as Functional,l as Regular,d as __namedExportsOrder,s as default};

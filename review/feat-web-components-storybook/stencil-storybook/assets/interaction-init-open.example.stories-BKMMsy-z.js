@@ -1,0 +1,9 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBAccordion/Interaction Init Open`,component:`db-accordion`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{behavior:{control:`select`,options:[`multiple`,`single`]},variant:{control:`select`,options:[`divider`,`card`]},initOpenIndex:{control:`object`},items:{control:`object`},name:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},c={args:{initOpenIndex:[1,2]},render:({children:e,...n})=>t`<db-accordion ${i(n)}>${r(`<db-accordion-item headline-plain="Test">Content 1</db-accordion-item><db-accordion-item headline-plain="Test 2"><span data-testid="item2">Test2</span></db-accordion-item><db-accordion-item headline-plain="Test 3"><span data-testid="item3">Test3</span></db-accordion-item>`)}</db-accordion>`},l=[`InitOpen`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "initOpenIndex": [1, 2]
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-accordion \${spreadArgs(args)}>\${unsafeHTML(\`<db-accordion-item headline-plain="Test">Content 1</db-accordion-item><db-accordion-item headline-plain="Test 2"><span data-testid="item2">Test2</span></db-accordion-item><db-accordion-item headline-plain="Test 3"><span data-testid="item3">Test3</span></db-accordion-item>\`)}</db-accordion>\`
+}`,...c.parameters?.docs?.source}}}})))()}u();export{c as InitOpen,l as __namedExportsOrder,s as default};

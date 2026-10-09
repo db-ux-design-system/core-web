@@ -1,0 +1,20 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l,u;function d(){return(d=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBTabs/Initial Selection`,component:`db-tabs`,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:o(),onTabSelect:o()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},tabItemWidth:{control:`select`,options:[`full`,`auto`]},tabItemAlignment:{control:`select`,options:[`start`,`center`,`end`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},label:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onTabSelect:{action:`onTabSelect`}}},c={args:{id:`initial-selection`,label:`initial-selection`,initialSelectedIndex:2},render:({children:e,...n})=>t`<div><db-infotext icon="none" size="small" semantic="informational">3rd tab pre-selected via initialSelectedIndex (also supports deep linking via URL hash, e.g. #initial-selection-tab-1):</db-infotext><db-tabs ${i(n)}>${r(`<db-tab-list><db-tab-item>Overview</db-tab-item><db-tab-item>Details</db-tab-item><db-tab-item>Settings</db-tab-item></db-tab-list><db-tab-panel>Overview content</db-tab-panel><db-tab-panel>Details content</db-tab-panel><db-tab-panel>Settings content</db-tab-panel>`)}</db-tabs></div>`},l={args:{label:`value-selection`,initialSelectedIndex:1},render:({children:e,...n})=>t`<div><db-infotext icon="none" size="small" semantic="informational">2nd tab pre-selected with value props and 'onValueChange':</db-infotext><db-tabs ${i(n)}>${r(`<db-tab-list><db-tab-item value="overview">Overview</db-tab-item><db-tab-item value="details">Details</db-tab-item><db-tab-item value="settings">Settings</db-tab-item></db-tab-list><db-tab-panel>Overview content</db-tab-panel><db-tab-panel>Details content</db-tab-panel><db-tab-panel>Settings content</db-tab-panel>`)}</db-tabs></div>`},u=[`PreselectedviainitialSelectedIndex`,`Preselectedwithvalueprops`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "id": "initial-selection",
+    "label": "initial-selection",
+    "initialSelectedIndex": 2
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-infotext icon="none" size="small" semantic="informational">3rd tab pre-selected via initialSelectedIndex (also supports deep linking via URL hash, e.g. #initial-selection-tab-1):</db-infotext><db-tabs \${spreadArgs(args)}>\${unsafeHTML(\`<db-tab-list><db-tab-item>Overview</db-tab-item><db-tab-item>Details</db-tab-item><db-tab-item>Settings</db-tab-item></db-tab-list><db-tab-panel>Overview content</db-tab-panel><db-tab-panel>Details content</db-tab-panel><db-tab-panel>Settings content</db-tab-panel>\`)}</db-tabs></div>\`
+}`,...c.parameters?.docs?.source}}},l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "value-selection",
+    "initialSelectedIndex": 1
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-infotext icon="none" size="small" semantic="informational">2nd tab pre-selected with value props and 'onValueChange':</db-infotext><db-tabs \${spreadArgs(args)}>\${unsafeHTML(\`<db-tab-list><db-tab-item value="overview">Overview</db-tab-item><db-tab-item value="details">Details</db-tab-item><db-tab-item value="settings">Settings</db-tab-item></db-tab-list><db-tab-panel>Overview content</db-tab-panel><db-tab-panel>Details content</db-tab-panel><db-tab-panel>Settings content</db-tab-panel>\`)}</db-tabs></div>\`
+}`,...l.parameters?.docs?.source}}}})))()}d();export{c as PreselectedviainitialSelectedIndex,l as Preselectedwithvalueprops,u as __namedExportsOrder,s as default};

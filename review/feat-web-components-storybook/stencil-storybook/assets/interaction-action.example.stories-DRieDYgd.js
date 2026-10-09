@@ -1,0 +1,9 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBAccordion/Interaction Action`,component:`db-accordion`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{behavior:{control:`select`,options:[`multiple`,`single`]},variant:{control:`select`,options:[`divider`,`card`]},initOpenIndex:{control:`object`},items:{control:`object`},name:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},c={args:{behavior:`single`},render:({children:e,...n})=>t`<db-accordion ${i(n)}>${r(`<db-accordion-item data-testid="item1" headline-plain="Test"><db-button data-testid="button">Click me</db-button></db-accordion-item><db-accordion-item data-testid="item2" headline-plain="Test 2"><db-textarea data-testid="textarea" label="Label"></db-textarea></db-accordion-item><db-accordion-item data-testid="item3" headline-plain="Test 3" disabled><db-button data-testid="button2">Click me</db-button></db-accordion-item>`)}</db-accordion>`},l=[`Action`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "behavior": "single"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-accordion \${spreadArgs(args)}>\${unsafeHTML(\`<db-accordion-item data-testid="item1" headline-plain="Test"><db-button data-testid="button">Click me</db-button></db-accordion-item><db-accordion-item data-testid="item2" headline-plain="Test 2"><db-textarea data-testid="textarea" label="Label"></db-textarea></db-accordion-item><db-accordion-item data-testid="item3" headline-plain="Test 3" disabled><db-button data-testid="button2">Click me</db-button></db-accordion-item>\`)}</db-accordion>\`
+}`,...c.parameters?.docs?.source}}}})))()}u();export{c as Action,l as __namedExportsOrder,s as default};

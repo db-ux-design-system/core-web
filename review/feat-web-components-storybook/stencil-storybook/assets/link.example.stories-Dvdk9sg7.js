@@ -1,0 +1,11 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-B9kWor2y.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1PNRnpa.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBPagination/Link`,component:`db-pagination`,parameters:{layout:`centered`},tags:[`autodocs`],args:{onPageChange:o()},argTypes:{currentPage:{control:`number`},totalCount:{control:`number`},pageSize:{control:`number`},siblingCount:{control:`number`},boundaryCount:{control:`number`},size:{control:`select`,options:[`small`,`medium`]},label:{control:`text`},previousLabel:{control:`text`},nextLabel:{control:`text`},pageLabel:{control:`text`},onPageChange:{action:`onPageChange`},id:{control:`text`}}},c={args:{label:`Linked pagination`,currentPage:2,onPageChange:o()},render:({children:e,...n})=>t`<div><db-infotext icon="none" size="small" semantic="informational">Links come from composition: pass an anchor per item and it stays a working link. The pagination numbers the items and reports the page.</db-infotext><db-pagination ${i(n)}>${r(`<db-pagination-item><a href="#linked-page=1">1</a></db-pagination-item><db-pagination-item><a href="#linked-page=2">2</a></db-pagination-item><db-pagination-item><a href="#linked-page=3">3</a></db-pagination-item>`)}</db-pagination></div>`},l=[`LinkedPages`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Linked pagination",
+    "currentPage": 2,
+    "onPageChange": fn()
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-infotext icon="none" size="small" semantic="informational">Links come from composition: pass an anchor per item and it stays a working link. The pagination numbers the items and reports the page.</db-infotext><db-pagination \${spreadArgs(args)}>\${unsafeHTML(\`<db-pagination-item><a href="#linked-page=1">1</a></db-pagination-item><db-pagination-item><a href="#linked-page=2">2</a></db-pagination-item><db-pagination-item><a href="#linked-page=3">3</a></db-pagination-item>\`)}</db-pagination></div>\`
+}`,...c.parameters?.docs?.source}}}})))()}u();export{c as LinkedPages,l as __namedExportsOrder,s as default};
