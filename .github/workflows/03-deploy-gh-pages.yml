@@ -68,6 +68,12 @@ jobs:
           name: db-ux-vue-storybook
           path: build-storybooks/vue-storybook
 
+      - name: ⏬ Download stencil-storybook
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: db-ux-stencil-storybook
+          path: build-storybooks/stencil-storybook
+
       - name: ⏬ Download html-storybook
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
@@ -83,6 +89,7 @@ jobs:
           mv build-storybooks/html-storybook out/html-storybook
           mv build-storybooks/react-storybook out/react-storybook
           mv build-storybooks/vue-storybook out/vue-storybook
+          mv build-storybooks/stencil-storybook out/stencil-storybook
 
       # Compute which gh-pages subdirectory this deploy owns (review/<branch>,
       # version/<name>, or version/latest for a release). Publishing into a
