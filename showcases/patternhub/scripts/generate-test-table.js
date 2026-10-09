@@ -22,6 +22,7 @@ const unlistedSubComponentsSuffixes = new Set([
 	'-sub-navigation',
 	'-cell',
 	'-row',
+	'-caption',
 	'-body'
 ]);
 // Sub-components grouped under a parent that has no standalone element of its
