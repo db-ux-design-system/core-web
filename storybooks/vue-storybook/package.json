@@ -20,8 +20,8 @@
     "@db-ux/db-theme-icons": "4.3.0",
     "@db-ux/v-core-components": "workspace:*",
     "@faker-js/faker": "10.6.0",
-    "@tanstack/match-sorter-utils": "9.1.2",
-    "@tanstack/vue-table": "9.2.4",
+    "@tanstack/match-sorter-utils": "9.2.6",
+    "@tanstack/vue-table": "9.2.6",
     "vue": "3.5.43"
   },
   "devDependencies": {
