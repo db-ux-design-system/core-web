@@ -15,7 +15,14 @@ const unlistedSubComponentsSuffixes = new Set([
 	'-panel',
 	'-item',
 	'-handle',
-	'-menu'
+	'-menu',
+	'-footer',
+	'-header',
+	'-content',
+	'-sub-navigation',
+	'-cell',
+	'-row',
+	'-body'
 ]);
 // Sub-components grouped under a parent that has no standalone element of its
 // own (e.g. control-panel-brand, control-panel-mobile). They are internal parts
