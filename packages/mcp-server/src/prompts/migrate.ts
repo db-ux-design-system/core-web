@@ -7,7 +7,7 @@ import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
  @param legacy_code - The source code of the outdated component.
  @param legacy_code.legacy_code
- @param source_context - The origin/context of the legacy code (e.g. 'db-ui-v2', 'bootstrap-4').
+ @param source_context - The origin/context of the legacy code (e.g. 'db-ui-generation-2', 'bootstrap-4').
  @param legacy_code.source_context
  @param target_framework - The target framework (react, angular, vue, web-components, html).
  @param legacy_code.target_framework

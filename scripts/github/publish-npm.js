@@ -57,8 +57,13 @@ const packages = [
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
 	{ dir: 'postcss-plugin', name: 'core-postcss-plugin' },
-	{ dir: 'agent-cli', name: 'agent-cli' },
-	{ dir: 'mcp-server', name: 'mcp-server' }
+	// Publish mcp-server before agent-cli: the agent-cli consumer bundle ships an
+	// mcp.json that launches the floating `npx --yes @db-ux/mcp-server` command and a
+	// skill that calls the current scanner tool name. If agent-cli were published
+	// first, a fresh install during the gap (or after a failed server publish) would
+	// launch the previous server release, which does not yet register the new tool.
+	{ dir: 'mcp-server', name: 'mcp-server' },
+	{ dir: 'agent-cli', name: 'agent-cli' }
 ];
 
 const packagesWithFoundationsDep = new Set([

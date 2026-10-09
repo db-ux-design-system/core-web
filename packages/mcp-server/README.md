@@ -134,7 +134,6 @@ Amazon Q can automatically load the project's `CONTEXT.md` as a persistent syste
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                                                                                              |
 | `verify_migrated_code`         | Instructs the AI to verify its changes using the project's own scripts (`typecheck`, `lint`, `build`) from `package.json`. No temp files or hardcoded compilers — works with any toolchain (JS, TS, Vite, Angular CLI).                                                                                                                                                                                          |
 | `scan_generation_2_migration`  | **Call FIRST when migrating a file.** Scans a source file for DB UX Design System – Generation 2 (aka DB UI) patterns (Generation 2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and Generation 2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.      |
-| `scan_v2_migration`            | **Deprecated** alias of `scan_generation_2_migration` — kept so existing configs keep working; will be removed in the next major (6.0.0, tracked in [#8005](https://github.com/db-ux-design-system/core-web/pull/8005)). Prefer `scan_generation_2_migration`.                                                                                                                                                   |
 | `list_visuals`                 | Returns all available visual reference names (e.g. `dashboard`, `form`, `table`). Call this to discover which visuals exist before requesting one.                                                                                                                                                                                                                                                               |
 | `get_visual_reference`         | Returns a pre-optimised static visual reference image (JPEG) as a Base64-encoded MCP image block. No build-time or runtime image processing dependencies — images are committed as pre-optimised assets.                                                                                                                                                                                                         |
 
@@ -176,11 +175,11 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI Generation 1 or 2
 
 **Parameters:**
 
-| Parameter          | Required | Description                                                                                                            |
-| ------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `legacy_code`      | Yes      | The outdated source code to migrate (DB UI, Bootstrap, raw HTML/CSS). Max 10,000 chars                                 |
-| `source_context`   | Yes      | Origin of the legacy code: `db-ui-v1`, `db-ui-v2`, `db-ux-v1`, `db-ux-v2`, `db-ux-v3`, `bootstrap-4`, or `native-html` |
-| `target_framework` | Yes      | Target framework: `react`, `angular`, `vue`, `web-components`, or `html`                                               |
+| Parameter          | Required | Description                                                                                                                                                              |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `legacy_code`      | Yes      | The outdated source code to migrate (DB UI, Bootstrap, raw HTML/CSS). Max 10,000 chars                                                                                   |
+| `source_context`   | Yes      | Origin of the legacy code: `db-ui-generation-1`, `db-ui-generation-2`, `db-ux-generation-1`, `db-ux-generation-2`, `db-ux-generation-3`, `bootstrap-4`, or `native-html` |
+| `target_framework` | Yes      | Target framework: `react`, `angular`, `vue`, `web-components`, or `html`                                                                                                 |
 
 **Full workflow (5 mandatory steps):**
 
@@ -231,7 +230,7 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI Generation 1 or 2
 Trigger the prompt with these parameters:
 
 - `legacy_code`: your old React component source code
-- `source_context`: `db-ui-v2`
+- `source_context`: `db-ui-generation-2`
 - `target_framework`: `react`
 
 The AI will then autonomously:

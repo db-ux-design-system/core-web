@@ -3,7 +3,7 @@ version: 1.0.0
 description: "Official AI integration for consuming the DB UX Design System – Generation 3 in applications."
 author: DB UX Core Team
 skills:
-  - skills/migrate-to-v3/SKILL.md
+  - skills/migrate-to-generation-3/SKILL.md
   - skills/implement-component/SKILL.md
 
 mcp:
