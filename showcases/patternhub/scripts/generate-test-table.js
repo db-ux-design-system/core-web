@@ -18,6 +18,7 @@ const unlistedSubComponentsSuffixes = new Set([
 	'-menu',
 	'-footer',
 	'-header',
+	'-head',
 	'-content',
 	'-sub-navigation',
 	'-cell',
