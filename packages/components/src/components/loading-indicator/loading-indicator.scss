@@ -4,7 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/dialog-init";
+@use "../../styles/internal/dialog-components";
 @use "../../styles/internal/loading";
 
 $stroke-dasharray-horizontal: calc(var(--circle) * 2 - var(--stroke-width));
@@ -506,7 +506,7 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 			position: absolute;
 			inset: 0;
 			border-radius: inherit;
-			background-color: dialog-init.$backdrop-color-strong;
+			background-color: dialog-components.$backdrop-color-strong;
 		}
 
 		&[data-variant="bar"] {

@@ -6,11 +6,37 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "component";
 
+// Shared backdrop colours for the dialog/drawer family (and the overlay-style
+// scrims in loading-indicator and custom-select).
+$backdrop-color-strong: color(
+	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
+		#{variables.$db-opacity-lg}
+);
+$backdrop-color-weak: color(
+	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
+		#{variables.$db-opacity-sm}
+);
+
 // The components that share this layer. $prefix composes custom-property and
 // selector names (e.g. "drawer" -> --db-drawer-*, .db-drawer-header-content),
 // so a typo would silently emit wrong-but-valid CSS instead of failing. Every
 // mixin below validates its $prefix against this set.
 $known-prefixes: "drawer", "dialog";
+
+// Stacking order for the non-modal dialog/drawer family, shared so the relative order
+// stays correct when a value changes.
+//   - $z-index-dialog (9995): a non-modal dialog (`backdrop="none"`, opened via
+//     `show()`) stays in normal flow and needs an explicit stacking context.
+//   - $z-index-drawer (9996): one above the dialog. It is the value an
+//     attribute-less drawer resolved to before this refactor, and it also backs
+//     the Firefox close-transition fallback that renders the drawer outside the
+//     top layer.
+//   - $z-index-position-absolute (3): a `[data-position="absolute"]` drawer is
+//     scoped inside page content rather than pinned to the viewport, so it drops
+//     out of the family stacking order down to a local level.
+$z-index-dialog: 9995;
+$z-index-drawer: 9996;
+$z-index-position-absolute: 3;
 
 // Shared horizontal Container_Size scale (inline axis), consumed by the dialog
 // (container-size-inline mixin in dialog.scss) and by the drawer's horizontal
@@ -55,6 +81,46 @@ $container-size-scale: (
 				--db-#{$prefix}-max-width-horizontal: #{$value};
 			}
 		}
+	}
+}
+
+// Resets the native `<dialog>` user-agent styling and sets the box styling that
+// does not depend on the top layer, for `.db-dialog` / `.db-drawer` (never the
+// bare `dialog` selector). The shared part strips UA padding and inherits text
+// colour, and tints the modal `::backdrop` (strong/weak; `backdrop="none"` is
+// non-modal and has none). The rest differs per component:
+//   - dialog: a centred, bordered box - keep the UA modal centring and top-layer
+//     stacking, only add the box border.
+//   - drawer: a transparent, viewport-pinned shell (its visible panel is
+//     `.db-drawer-container`) - no border, pinned to the edges, and kept above
+//     page content with an explicit `z-index` for the Firefox close-transition
+//     fallback that renders it outside the top layer.
+@mixin base-reset($prefix) {
+	@include assert-prefix($prefix, "base-reset");
+
+	padding: 0;
+	color: inherit;
+
+	&:not([data-backdrop="none"])::backdrop {
+		background-color: $backdrop-color-strong;
+	}
+
+	&[data-backdrop="weak"]::backdrop {
+		background-color: $backdrop-color-weak;
+	}
+
+	@if $prefix == "dialog" {
+		border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	} @else {
+		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+		border: 0;
+		// stylelint-disable-next-line db-ux/use-spacings
+		margin: 0;
+		position: fixed;
+		inset: 0;
+
+		// `[data-position="absolute"]` lowers it (see $z-index-* at the top).
+		z-index: $z-index-drawer;
 	}
 }
 

@@ -2,7 +2,6 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/dialog-ponyfill";
-@use "../../styles/dialog-init";
 
 %container-size-horizontal {
 	--db-drawer-width-horizontal: calc(
@@ -106,8 +105,41 @@
 	--db-drawer-inline-size: 100dvw;
 	--db-drawer-block-size: 100dvh;
 
-	position: fixed;
-	inset: 0;
+	// Native `<dialog>` reset, box styling and modal `::backdrop` tint.
+	@include dialog-components.base-reset("drawer");
+
+	// BEGIN: backdrop ponyfill - a `::before` substitute for the native
+	// `::backdrop`, which only a modal (`showModal()`) dialog gets. It covers two
+	// cases: the permanent non-modal `variant="inside"` (opened via `show()`), and
+	// - paired with the `allow-discrete` block below - the Firefox close
+	// transition. Only the `[data-variant="inside"]` overlay is permanent; the
+	// rest is removable once `::backdrop` is available for every open path.
+	// Drawer-only: the dialog never renders a backdrop `::before`.
+	&[data-backdrop="invisible"]::backdrop {
+		background-color: transparent;
+	}
+
+	&:not([data-position="absolute"])[data-variant="inside"]:not(
+			[data-backdrop="none"]
+		)::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+	}
+
+	&:not([data-backdrop="none"], [data-backdrop="invisible"])::before {
+		background-color: dialog-components.$backdrop-color-strong;
+	}
+
+	&[data-backdrop="invisible"]::before {
+		background-color: transparent;
+	}
+
+	&[data-backdrop="weak"]::before {
+		background-color: dialog-components.$backdrop-color-weak;
+	}
+
+	// END: backdrop ponyfill
 
 	// BEGIN: allow-discrete ponyfill - Firefox doesn't support allow-discrete for `display`: https://bugzilla.mozilla.org/show_bug.cgi?id=1882408
 	// Override UA `dialog:not([open]) { display: none }` so that `visibility`
@@ -161,12 +193,12 @@
 
 				&:not([data-backdrop="invisible"]) {
 					&::before {
-						background-color: dialog-init.$backdrop-color-strong;
+						background-color: dialog-components.$backdrop-color-strong;
 					}
 				}
 
 				&[data-backdrop="weak"]::before {
-					background-color: dialog-init.$backdrop-color-weak;
+					background-color: dialog-components.$backdrop-color-weak;
 				}
 			}
 		}
@@ -281,7 +313,7 @@
 		--db-drawer-block-size: 100%;
 
 		position: absolute;
-		z-index: 3;
+		z-index: dialog-components.$z-index-position-absolute;
 		background-color: transparent;
 		inline-size: var(--db-drawer-inline-size);
 		block-size: var(--db-drawer-block-size);
