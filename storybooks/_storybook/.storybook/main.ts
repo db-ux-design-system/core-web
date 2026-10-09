@@ -76,7 +76,10 @@ const config: StorybookConfig = {
 					url: 'http://localhost:6007',
 					expanded: false
 				},
-				webComponents: {
+				// Storybook lowercases ref ids, so a camelCase key would be
+				// emitted twice (once without a normalized id), crashing the
+				// composition manager. Keep this key lowercase.
+				webcomponents: {
 					title: 'Web Components',
 					url: 'http://localhost:6009',
 					expanded: false
@@ -104,7 +107,10 @@ const config: StorybookConfig = {
 				url: `${baseUrl}/vue-storybook`,
 				expanded: false
 			},
-			webComponents: {
+			// Storybook lowercases ref ids, so a camelCase key would be
+			// emitted twice (once without a normalized id), crashing the
+			// composition manager. Keep this key lowercase.
+			webcomponents: {
 				title: 'Web Components',
 				url: `${baseUrl}/stencil-storybook`,
 				expanded: false
