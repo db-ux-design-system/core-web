@@ -90,6 +90,8 @@ export * from './components/pagination';
 export * from './components/pagination-item';
 export * from './components/pagination-item/model';
 export * from './components/pagination/model';
+export * from './components/paragraph';
+export * from './components/paragraph/model';
 export * from './components/popover';
 export * from './components/popover/model';
 export * from './components/radio';

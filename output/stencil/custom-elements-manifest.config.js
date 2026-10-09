@@ -13,6 +13,7 @@ const FAMILY_DOCUMENTATION_PATHS = new Map([
 	['db-heading-h-5', 'data-display/heading'],
 	['db-heading-h-6', 'data-display/heading'],
 	['db-custom-heading', 'data-display/heading'],
+	['db-text-group', 'data-display/paragraph'],
 	['db-pagination-item', 'navigation/pagination']
 ]);
 

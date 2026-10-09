@@ -57,6 +57,20 @@ const headingComponents: Component[] = [
 }));
 
 /*
+ * The two Paragraph components share one folder, one model and one stylesheet,
+ * following the same pattern as the Heading family.
+ */
+const paragraphComponents: Component[] = ['paragraph', 'text-group'].map(
+	(name) => ({
+		name,
+		folder: 'paragraph',
+		overwrites: {
+			vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
+		}
+	})
+);
+
+/*
  * The two ControlPanelActions components share one folder, one model and one
  * stylesheet, following the same pattern as the Heading family.
  */
@@ -85,6 +99,7 @@ export const getComponents = (): Component[] => [
 	},
 
 	...headingComponents,
+	...paragraphComponents,
 	...controlPanelActionsComponents,
 
 	{

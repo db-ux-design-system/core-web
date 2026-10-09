@@ -1,0 +1,68 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/fonts";
+
+/* Prefixed: `@forward`ed into `index.scss`, where plain names would collide. */
+$text-group-alignment-values: (
+	"start": start,
+	"center": center,
+	"end": end
+);
+
+/* A deliberate subset of the nine steps in `fonts.$font-sizes`. */
+$paragraph-sizes: "lg", "md", "sm";
+
+/* The open-source fallback font has no 900 face, so `black` renders as bold. */
+$paragraph-font-weights: (
+	"black": 900,
+	"regular": 400
+);
+
+/* Only explicit sizes are emitted, so omitting `data-size` inherits. */
+@mixin paragraph-font-sizes {
+	@each $size in $paragraph-sizes {
+		&[data-size="#{$size}"] {
+			@extend %db-overwrite-font-size-#{$size};
+		}
+	}
+}
+
+/* `@extend` emits the size rules above this block, so the weight survives. */
+@mixin paragraph-font-weights {
+	@each $name, $weight in $paragraph-font-weights {
+		&[data-font-weight="#{$name}"] {
+			font-weight: $weight;
+		}
+	}
+}
+
+.db-paragraph {
+	/* The group owns spacing, and `text-align` stays unset so it inherits. */
+	margin-block: 0;
+
+	/* Body-copy counterpart to `text-wrap: balance` on headings. */
+	text-wrap: pretty;
+
+	@include paragraph-font-sizes;
+	@include paragraph-font-weights;
+}
+
+.db-text-group {
+	@include helpers.display(flex);
+
+	flex-direction: column;
+
+	@each $alignment, $value in $text-group-alignment-values {
+		&[data-alignment="#{$alignment}"] {
+			text-align: $value;
+		}
+	}
+
+	/* On the container: the Angular and Stencil hosts swallow a child margin. */
+	&[data-text-spacing="true"] {
+		/* `0.5lh` per child, so `1lh` between two of them. */
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		row-gap: 1lh;
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		padding-block: 0.5lh;
+	}
+}
