@@ -1,5 +1,52 @@
 # @db-ux/ngx-core-components
 
+## 5.7.0
+
+### Minor Changes
+
+- refactor(DBSelect): hide the empty option with the native `hidden` attribute - [see commit 6003ff8](https://github.com/db-ux-design-system/core-web/commit/6003ff8c007e6be1e97dcf1be6d1c62fd0c76ec7):
+
+    - The empty option of a `placeholder` or floating label select was hidden through CSS that reacted to `option[data-show-empty-option="false"]` combined with `:has()` and `:open`. It now carries the native `hidden` attribute instead, so the state lives in the markup rather than in a conditional style rule.
+    - Consumers who wrote the markup by hand and relied on `data-show-empty-option="false"` being hidden by our stylesheet need to set `hidden` on that option instead.
+
+- feat(DBTooltip): allow customizing the appear delay via `--db-animation-delay` - [see commit 0abcc96](https://github.com/db-ux-design-system/core-web/commit/0abcc96f3920f62918ceec67a35040631cbf807d)
+
+### Patch Changes
+
+- fix(DBPopover): align tooltip and popover gap distance to `sm` - [see commit 014af2c](https://github.com/db-ux-design-system/core-web/commit/014af2cbde7cae2a1a68257c701cc6fb5a17193c):
+
+    - The popover gap distance now matches the tooltip, using `$db-spacing-fixed-sm` for both instead of `$db-spacing-fixed-md` for the popover. This keeps the spacing consistent with the design.
+
+- fix(DBControlPanel): wrap full-width action groups instead of overflowing - [see commit f656073](https://github.com/db-ux-design-system/core-web/commit/f656073957338818d328947c26ed912574cde3ca):
+
+    - Full-width control panel action groups relied on the default `flex-wrap: nowrap`, so their items overflowed horizontally once they ran out of space. `flex-wrap: wrap` now lets them wrap onto the next line in the mobile drawer footer (`.db-control-panel-actions-2`) and in the desktop vertical orientation (`.db-control-panel-actions-1` / `.db-control-panel-actions-2`). The mobile `actions-1` group stays unwrapped because it lives in a `min-content` grid track, and the desktop horizontal orientation is unchanged.
+
+- fix(DBCustomSelect): skip group titles during keyboard navigation on all frameworks - [see commit 130f6dc](https://github.com/db-ux-design-system/core-web/commit/130f6dcddb9ee241edc8c4697ccb2d70d9f45461):
+
+    - Option-group keyboard navigation walked `<li>` siblings, which broke on the Angular and Stencil outputs where every list item is wrapped in a `db-custom-select-list-item` custom-element host and therefore has no sibling `<li>`. Navigation now iterates the flat list of option inputs, so arrow keys skip group titles consistently across React, Vue, Angular and Web Components (#4920).
+    - fix(DBDialogHeader): compose dialog aria-labelledby after attribute forwarding
+    - `DBDialogHeader` linked the surrounding dialog to its heading via `aria-labelledby` in `onMount`, which on the Angular and Web Component outputs ran before the attribute-passing observer forwarded a consumer `aria-label` / `aria-labelledby` from the `db-dialog` host onto the inner `<dialog>`. The two writes fell out of sync, so the heading token could be clobbered or a stale token could defeat a consumer `aria-label`. The composition is now deferred with `requestAnimationFrame` so it runs after forwarding has landed.
+
+- fix(icons): prevent layout shift while the icon font is loading in webkit - [see commit 6fba5a6](https://github.com/db-ux-design-system/core-web/commit/6fba5a6b128e5de8f98d84862a97c44490112a89)
+- fix(DBTabs): no stray vertical scrollbar in the tab list at fractional browser zoom - [see commit 12dcc47](https://github.com/db-ux-design-system/core-web/commit/12dcc474728aff834b9cb7a2130be0183d0ecf81):
+
+    - A vertical tab list nested inside a horizontal `DBTabs` no longer inherits the horizontal list's overflow and is no longer a scroll container, matching a standalone vertical tab list.
+
+## 5.6.2
+
+### Patch Changes
+
+- fix(DBInput): keep a partially typed date that the browser cannot parse - [see commit 4ab2aaa](https://github.com/db-ux-design-system/core-web/commit/4ab2aaa9cc652823f0b467d6d8048b6a48d36748)
+- fix(DBInput): restore the value on a native form reset in Angular - [see commit 4ab2aaa](https://github.com/db-ux-design-system/core-web/commit/4ab2aaa9cc652823f0b467d6d8048b6a48d36748):
+
+    - A native form reset is a programmatic write, so it now goes through `writeValue`
+    - again and reaches the element, instead of only updating the model signal (which
+    - stayed unchanged when the reset value matched the last typed value, leaving the
+    - field empty). Applies to `DBInput`, `DBTextarea` and `DBSelect`.
+
+- fix(DBControlPanelNavigationItemGroup): correct drilldown and popover z-index layering - [see commit 1e855b9](https://github.com/db-ux-design-system/core-web/commit/1e855b9cc207d82458bb27033f642a79f480b7ee)
+- fix(DBShellSubNavigation): keep the left border above the drilldown navigation overlay - [see commit 8992130](https://github.com/db-ux-design-system/core-web/commit/89921307a2f5fe928302d3d9eab0cbc9f11b0c4a)
+
 ## 5.6.1
 
 ### Patch Changes

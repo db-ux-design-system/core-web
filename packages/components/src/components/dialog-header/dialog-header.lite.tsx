@@ -68,7 +68,9 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 	});
 
 	onMount(() => {
-		state._resolveDialog();
+		requestAnimationFrame(() => {
+			state._resolveDialog();
+		});
 	});
 
 	onUnMount(() => {
