@@ -1,5 +1,13 @@
 # @db-ux/core-foundations
 
+## 5.7.1
+
+### Patch Changes
+
+- fix(icons): make `data-icon-variant="filled"` work in themed projects - [see commit cab6ff5](https://github.com/db-ux-design-system/core-web/commit/cab6ff57916d5b986ef9ac6d39357494be9797b4):
+
+    - The generic `default` / `filled` variant names were only emitted in the foundations theme CSS and hard-coded the whitelabel `db-ux-*` font families. Themed projects load `@db-ux/db-theme` instead of the foundations theme CSS, so the selectors never shipped and `data-icon-variant="filled"` silently fell back to the default icon font. The mapping now lives in the always-loaded defaults bundle and resolves through the themeable `--db-icon-<variant>-font-family` custom property.
+
 ## 5.7.0
 
 ### Patch Changes
