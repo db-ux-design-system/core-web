@@ -123,6 +123,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 					}
 				])
 			},
+			{ path: '05/breadcrumb', label: 'Breadcrumb' },
 			{ path: '05/navigation-item', label: 'NavigationItem' },
 			{ path: '05/navigation', label: 'Navigation' },
 			{ path: '05/pagination', label: 'Pagination' },

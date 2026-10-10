@@ -1,0 +1,267 @@
+- main:
+  - heading "DBBreadcrumb" [level=1]
+  - link "Density"
+  - text: Functional
+  - navigation "Breadcrumb (Functional)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Regular
+  - navigation "Breadcrumb (Regular)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Expressive
+  - navigation "Breadcrumb (Expressive)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - link "Size"
+  - text: Small
+  - navigation "Breadcrumb (Small)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Medium
+  - navigation "Breadcrumb (Medium)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - link "Separator"
+  - text: Chevron
+  - navigation "Breadcrumb (Chevron)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - text: Slash
+  - navigation "Breadcrumb (Slash)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "Current"
+  - link "Length"
+  - text: 4 Items
+  - navigation "Breadcrumb (4 items)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Current"
+  - text: 7 Items
+  - navigation "Breadcrumb (7 items)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Level 3"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Level 5"
+      - listitem:
+        - link "Current"
+    - button "Show more": …
+  - text: 10 Items
+  - navigation "Breadcrumb (10 items)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Level 3"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Level 5"
+      - listitem:
+        - link "Level 6"
+      - listitem:
+        - link "Level 7"
+      - listitem:
+        - link "Level 8"
+      - listitem:
+        - link "Current"
+    - button "Show more": …
+  - link "API"
+  - text: Composition
+  - navigation "Breadcrumb API (Composition)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - text: Options API
+  - navigation "Breadcrumb API (Options API)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Next"
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - link "Disabled"
+  - text: Composition
+  - navigation "Breadcrumb Disabled (Composition)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Disabled" [disabled]
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - text: Options API
+  - navigation "Breadcrumb Disabled (Options API)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Disabled" [disabled]
+      - listitem:
+        - link "NextNext"
+      - listitem:
+        - link "Current"
+  - link "No text"
+  - text: Composition
+  - navigation "Breadcrumb No text (Composition)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Settings"
+  - text: Options API
+  - navigation "Breadcrumb No text (Options API)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Settings"
+  - link "Popover"
+  - navigation "Breadcrumb":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Current"
+  - link "Badge"
+  - text: Inline badges (4 items)
+  - navigation "Breadcrumb (inline badges, 4 items)":
+    - list:
+      - listitem:
+        - link "Home 1"
+      - listitem:
+        - link "Level 1 2"
+      - listitem:
+        - link "Level 2 3"
+      - listitem:
+        - link "Current 4"
+  - text: Corner badges (4 items)
+  - navigation "Breadcrumb (corner badges, 4 items)":
+    - list:
+      - listitem:
+        - link "Home 1 update 1"
+      - listitem:
+        - link "Level 1 2 updates 2"
+      - listitem:
+        - link "Level 2 3 updates 3"
+      - listitem:
+        - link "Current 4 updates 4"
+  - text: Inline badges with truncation popover
+  - navigation "Breadcrumb (inline badges, truncation popover)":
+    - list:
+      - listitem:
+        - link "Home 1"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Level 4 5"
+      - listitem:
+        - link "Current 6"
+  - text: Corner badges with truncation popover
+  - navigation "Breadcrumb (corner badges, truncation popover)":
+    - list:
+      - listitem:
+        - link "Home 1 update 1"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Level 4 5 updates 5"
+      - listitem:
+        - link "Current 6 updates 6"
+  - link "Interaction"
+  - navigation "Breadcrumb (auto collapse)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Level 1"
+      - listitem:
+        - link "Level 2"
+      - listitem:
+        - link "Level 3"
+      - listitem:
+        - link "Level 4"
+      - listitem:
+        - link "Current"
+    - button "Show more breadcrumbs": …
+  - navigation "Breadcrumb (manual popover)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - button "Show more breadcrumbs"
+      - listitem:
+        - link "Current"
