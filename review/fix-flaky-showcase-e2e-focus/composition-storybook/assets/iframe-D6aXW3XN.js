@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-DGZ08Fpl.js";e();
