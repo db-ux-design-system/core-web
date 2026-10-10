@@ -68,6 +68,7 @@ $stack-gaps: (
 	}
 }
 
+// No `overflow` here: it would clip the focus ring of the children.
 %default-stack {
 	@include helpers.display(flex);
 
@@ -75,7 +76,6 @@ $stack-gaps: (
 	justify-content: flex-start;
 	block-size: 100%;
 	inline-size: 100%;
-	overflow: auto;
 
 	&:is([data-direction="column"], :not([data-direction])) {
 		flex-direction: column;
@@ -92,6 +92,9 @@ $stack-gaps: (
 
 	&[data-wrap="true"] {
 		flex-wrap: wrap;
+
+		// Keeps wrapped items inside; `data-focus-container` adds ring space.
+		overflow: auto;
 	}
 
 	@include get-stack-alignments;

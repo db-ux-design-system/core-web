@@ -4,3 +4,8 @@
 [data-focus="default"] {
 	@extend %focus-placeholder;
 }
+
+.db-focus-container,
+[data-focus-container="true"] {
+	@extend %focus-container-placeholder;
+}

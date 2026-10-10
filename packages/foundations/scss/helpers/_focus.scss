@@ -1,6 +1,11 @@
 @use "../variables";
 @use "../colors";
 
+// Room the focus ring needs outside the border box, for scroll containers to reserve.
+$db-focus-outline-reach: calc(
+	#{variables.$db-border-width-xs} + #{variables.$db-border-width-2xs}
+);
+
 @mixin get-focus-placeholder {
 	outline: #{variables.$db-border-width-2xs} solid
 		var(
@@ -20,4 +25,18 @@
 			border-radius: variables.$db-border-radius-xs;
 		}
 	}
+}
+
+// Reserves ring space inside a clipping container, margin compensating it.
+@mixin get-focus-container {
+	// `border-box` would absorb the padding, leaving the margin to displace.
+	box-sizing: content-box;
+	// stylelint-disable-next-line db-ux/use-spacings
+	padding: $db-focus-outline-reach;
+	// stylelint-disable-next-line db-ux/use-spacings
+	margin: calc(-1 * #{$db-focus-outline-reach});
+}
+
+%focus-container-placeholder {
+	@include get-focus-container;
 }

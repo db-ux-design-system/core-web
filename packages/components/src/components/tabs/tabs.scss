@@ -8,10 +8,9 @@ $indicator-gap-offset: calc(
 	#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
 );
 
-// Space the focus outline needs outside the tab box: outline-offset + outline width.
-$focus-outline-reach: calc(
-	#{variables.$db-border-width-xs} + #{variables.$db-border-width-2xs}
-);
+// Space the focus outline needs outside the tab box. Shared with every other
+// scroll container that has to reserve room for it, see `helpers/_focus.scss`.
+$focus-outline-reach: helpers.$db-focus-outline-reach;
 
 %horizontal-indicator {
 	.db-tab-item {
