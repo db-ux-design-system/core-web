@@ -118,12 +118,14 @@ the consumer bring the semantics. Compare `DBCustomButton`, which mirrors
 and drops only the ones belonging to the native `<button>` (`type`, `disabled`,
 `form`, `name`, `value`, `command*`, click events, `text`).
 
-Applied to Heading: `size`, `fontWeight`, `paragraphSpacing` and `alignment` are
-styling and therefore live on the wrapper; `id` and everything else native lives
-on the heading the consumer writes.
+Applied to Heading: `visualSize` and `fontWeight` are styling and therefore live
+on the wrapper; `id` and everything else native lives on the heading the consumer
+writes. There is no `alignment` or `paragraphSpacing` property: block spacing is
+controlled by the foundations' `data-text-spacing` opt-in, and alignment is set
+with `text-align` on the heading itself.
 
 ```html
-<div class="db-custom-heading" data-size="xl">
+<div class="db-custom-heading" data-visual-size="h3">
 	<h2>Installation</h2>
 	<button type="button">More options</button>
 </div>
