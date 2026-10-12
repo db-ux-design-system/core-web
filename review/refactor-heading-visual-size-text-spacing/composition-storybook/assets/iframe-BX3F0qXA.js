@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-CmZp6FTP.js";e();
