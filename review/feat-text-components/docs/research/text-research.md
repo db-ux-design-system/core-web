@@ -131,16 +131,21 @@ every future `DBStack` feature would have to be reasoned about for the prose cas
 existing `DBSection`, `hgroup` permits only `h1`-`h6` and `p` per spec, and `figure`, `blockquote` and `dl` each carry
 a specific meaning. Anyone needing a labelled region uses `DBSection` and puts the group inside.
 
-The group is intended for `DBParagraph` children. A heading stays outside it and keeps its own `paragraphSpacing`,
-which is what makes the name accurate; the price is that spacing within one visual block then comes from two sources
-and the heading's `1lh` has to match the group's rhythm by hand.
+**The two components live in separate folders.** An earlier revision put them together, following the Heading
+family, and that was wrong: the Heading family members are seven variants of one concept, while a text element and a
+layout container are two concepts. Only `heading` and `control-panel-actions` share a folder in the whole repository,
+so the precedent is thin, and a shared folder forces one `model.ts`, one stylesheet and one documentation page onto
+two independent APIs.
 
-This is an intention, not a prohibition. It cannot be expressed in types across four framework outputs, and the
-spacing applies to whatever the group contains, so the restriction can only ever be documentation or an advisory lint
-rule, as in
-[`custom-heading-single-heading`](../../packages/eslint-plugin/src/rules/heading/custom-heading-single-heading.ts).
-Treating it as absolute would create a worse problem than it solves: a list between two paragraphs would have to
-leave the group, which splits it in two and leaves the spacing around the list unmanaged.
+The group takes any child. `DBParagraph` and `DBHeading` both reset their own `margin-block`, so they share one
+rhythm out of the box; a child that brings its own block margin adds it to the gap. That applies to plain `h1`-`h6`
+and `p` elements too, because the foundations' `defaults/default-fonts.scss` gives those a `margin-block` - measured
+at the default density, a native pair ends up `56px` apart where the gap alone is `24px`. Until that reset moves into
+the foundations (see the open questions), native block text in a group needs `margin-block: 0`.
+
+Restricting the children to paragraphs by type is not possible across four framework outputs, and it would create a
+worse problem than it solves: a list between two paragraphs would have to leave the group, which splits it in two and
+leaves the spacing around the list unmanaged.
 
 `DBParagraph` renders flow content, valid in `dd`, `figcaption`, `blockquote`, `li` and `td`, but **not** in `legend`,
 `label`, `summary` or `button`, which accept phrasing content only. A `span` covers those.
