@@ -95,8 +95,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 	// jscpd:ignore-end
 
 	onUpdate(() => {
-		if (_ref) {
-			requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			if (_ref) {
 				const hasCollapseItem = (_ref as HTMLElement).querySelector(
 					'.db-breadcrumb-popover-item-toggle'
 				);
@@ -113,8 +113,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 				}
 
 				state._autoCollapse = shouldCollapse;
-			});
-		}
+			}
+		});
 	}, [_ref, props.items, props.maxItems]);
 
 	onUpdate(() => {

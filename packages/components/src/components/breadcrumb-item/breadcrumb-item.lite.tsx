@@ -45,8 +45,10 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 					'disabled'
 				);
 
-				if (props.ariaCurrent && !link.hasAttribute('aria-current')) {
-					link.setAttribute('aria-current', props.ariaCurrent ?? '');
+				if (props.ariaCurrent) {
+					link.setAttribute('aria-current', props.ariaCurrent);
+				} else if (link.hasAttribute('aria-current')) {
+					link.removeAttribute('aria-current');
 				}
 			}
 		});

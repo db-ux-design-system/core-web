@@ -1,4 +1,5 @@
 ---
+"@db-ux/core-foundations": minor
 "@db-ux/core-components": minor
 "@db-ux/ngx-core-components": minor
 "@db-ux/react-core-components": minor
