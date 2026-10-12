@@ -28,17 +28,14 @@ $db-focus-outline-reach: calc(
 }
 
 // Reserves ring space inside a clipping container, margin compensating it.
-//
 // This owns the `padding` and `margin` of the element it sits on. CSS cannot
 // read an existing value, so there is nothing to add to: the shorthands either
 // replace all four sides of a container's own spacing, or lose against a more
-// specific selector and silently reserve nothing. Both the padding and the
+// specific selector and silently reserve nothing. The padding and the
 // `content-box` are also what keeps the reserve layout-neutral, and that only
-// works out while the padding is ours alone.
-//
-// So this belongs on a container without spacing or a fixed size of its own.
-// For anything else, move the clip to a wrapper and put this on the wrapper,
-// keeping the spacing on the element inside it.
+// works out while the padding is ours alone. So this belongs on a container
+// without spacing or a fixed size of its own; for anything else, move the clip
+// to a wrapper and put this on the wrapper, keeping the spacing inside.
 @mixin get-focus-container {
 	// `border-box` would absorb the padding, leaving the margin to displace.
 	box-sizing: content-box;
