@@ -9,10 +9,12 @@ const preScreenShot = async (page: Page) => {
 			'main .db-custom-select details'
 		);
 		for (const detailsElement of detailsElements) {
-			if (detailsElement instanceof HTMLDetailsElement) {
-				detailsElement.dataset.test = 'true';
-				detailsElement.open = true;
+			if (!(detailsElement instanceof HTMLDetailsElement)) {
+				continue;
 			}
+
+			detailsElement.dataset.test = 'true';
+			detailsElement.open = true;
 		}
 	});
 };
