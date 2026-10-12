@@ -50,10 +50,7 @@ const headingComponents: Component[] = [
 	'heading-h6'
 ].map((name) => ({
 	name,
-	folder: 'heading',
-	overwrites: {
-		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
-	}
+	folder: 'heading'
 }));
 
 /*
@@ -65,10 +62,7 @@ const controlPanelActionsComponents: Component[] = [
 	'control-panel-actions-2'
 ].map((name) => ({
 	name,
-	folder: 'control-panel-actions',
-	overwrites: {
-		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
-	}
+	folder: 'control-panel-actions'
 }));
 
 export const getComponents = (): Component[] => [
@@ -85,16 +79,10 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
-		name: 'paragraph',
-		overwrites: {
-			vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
-		}
+		name: 'paragraph'
 	},
 	{
-		name: 'text-group',
-		overwrites: {
-			vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
-		}
+		name: 'text-group'
 	},
 
 	...headingComponents,
