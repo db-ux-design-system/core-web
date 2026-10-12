@@ -136,6 +136,8 @@ export * from './components/tabs';
 export * from './components/tabs/model';
 export * from './components/tag';
 export * from './components/tag/model';
+export * from './components/text-group';
+export * from './components/text-group/model';
 export * from './components/textarea';
 export * from './components/textarea/model';
 export * from './components/tooltip';

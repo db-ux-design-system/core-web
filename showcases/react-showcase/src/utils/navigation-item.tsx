@@ -38,6 +38,7 @@ import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.s
 import TableShowcase from '@components/components/table/showcase/table.showcase';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
+import TextGroupShowcase from '@components/components/text-group/showcase/text-group.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import Home from '../components/home';
@@ -153,6 +154,11 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'paragraph',
 				label: 'Paragraph',
 				component: <ParagraphShowcase />
+			},
+			{
+				path: 'text-group',
+				label: 'TextGroup',
+				component: <TextGroupShowcase />
 			},
 			{
 				path: 'brand',

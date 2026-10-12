@@ -1,8 +1,4 @@
-import type {
-	AlignmentProps,
-	GlobalProps,
-	GlobalState
-} from '../../shared/model';
+import type { GlobalProps, GlobalState } from '../../shared/model';
 
 export const ParagraphSizeList = ['lg', 'md', 'sm'] as const;
 export type ParagraphSizeType = (typeof ParagraphSizeList)[number];
@@ -17,16 +13,5 @@ export type DBParagraphDefaultProps = {
 };
 export type DBParagraphProps = DBParagraphDefaultProps & GlobalProps;
 
-/** Groups block-level text. Intended for `DBParagraph` children. */
-export type DBTextGroupDefaultProps = {
-	/** Gives every child `0.5lh` of spacing above and below when enabled. */
-	textSpacing?: boolean | string;
-};
-export type DBTextGroupProps = DBTextGroupDefaultProps &
-	GlobalProps &
-	AlignmentProps;
-
 export type DBParagraphDefaultState = {};
 export type DBParagraphState = DBParagraphDefaultState & GlobalState;
-export type DBTextGroupDefaultState = {};
-export type DBTextGroupState = DBTextGroupDefaultState & GlobalState;

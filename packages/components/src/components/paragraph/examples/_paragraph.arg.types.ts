@@ -9,10 +9,3 @@ export const StorybookParagraphArgTypes: Record<string, InputType> = {
 	className: { control: 'text' },
 	id: { control: 'text' }
 };
-
-export const StorybookTextGroupArgTypes: Record<string, InputType> = {
-	alignment: { control: 'select', options: ['start', 'center', 'end'] },
-	textSpacing: { control: 'boolean' },
-	className: { control: 'text' },
-	id: { control: 'text' }
-};

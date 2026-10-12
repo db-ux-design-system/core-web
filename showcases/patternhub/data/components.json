@@ -38,8 +38,11 @@
 			},
 			{
 				"label": "DBParagraph",
-				"name": "paragraph",
-				"elements": ["db-paragraph", "db-text-group"]
+				"name": "paragraph"
+			},
+			{
+				"label": "DBTextGroup",
+				"name": "text-group"
 			},
 			{
 				"label": "DBTooltip",

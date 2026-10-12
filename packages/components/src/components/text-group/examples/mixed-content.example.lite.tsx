@@ -1,7 +1,7 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
-import DBParagraph from '../paragraph.lite';
+import DBParagraph from '../../paragraph/paragraph.lite';
 import DBTextGroup from '../text-group.lite';
-import { StorybookTextGroupArgTypes } from './_paragraph.arg.types';
+import { StorybookTextGroupArgTypes } from './_text-group.arg.types';
 
 useMetadata({
 	storybookTitle: 'Mixed content',

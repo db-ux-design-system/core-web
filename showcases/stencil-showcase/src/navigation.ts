@@ -82,6 +82,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		children: sortNavItems([
 			{ path: '04/heading', label: 'Heading' },
 			{ path: '04/paragraph', label: 'Paragraph' },
+			{ path: '04/text-group', label: 'TextGroup' },
 			{ path: '04/icon', label: 'Icon' },
 			{ path: '04/brand', label: 'Brand' },
 			{ path: '04/tooltip', label: 'Tooltip' },
