@@ -46,6 +46,18 @@ export type DBBreadcrumbItemDefaultState = {
 	 */
 	_ariaObserver?: MutationObserver;
 	/**
+	 * Tracks whether the component itself set `aria-current` on the link
+	 * (via the `ariaCurrent` prop / options API). When true the onUpdate
+	 * is allowed to remove the attribute on prop clear; when false a
+	 * consumer-owned value on the slotted anchor is left untouched.
+	 */
+	_componentSetAriaCurrent?: boolean;
+	/**
+	 * Resolved tooltip label: `props.text` for the text/options API,
+	 * or the slotted anchor's `innerText` for the composition API.
+	 */
+	_tooltipText?: string;
+	/**
 	 * Applies or removes `tabindex="-1"` on the link depending on whether it is
 	 * disabled or marks the current page (both must not be focusable). The tab
 	 * order is fully managed by the breadcrumb; consumers must not set

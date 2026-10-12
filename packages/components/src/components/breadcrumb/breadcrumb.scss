@@ -104,9 +104,11 @@
 		}
 	}
 
-	// Mobile without a manual popover item: never auto-truncate (no `...`
-	// toggle), regardless of the number of crumbs. Show only the last two
-	// crumbs; every other crumb and the auto-truncation toggle are removed.
+	// Mobile without a manual popover item: show only the last two crumbs.
+	// `display: none` is intentional here (not `a11y-visually-hidden`):
+	// on small screens there is no expand toggle, so hidden crumbs would
+	// be unreachable dead ends in the tab order. Removing them entirely
+	// keeps the focused UI clean and the list count accurate.
 	@include screen-sizes.screen("sm", "max") {
 		&:not(:has(.db-breadcrumb-popover-item)) {
 			> ol > li:not(:nth-last-child(-n + 2)),

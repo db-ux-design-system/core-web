@@ -22,6 +22,8 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 	// jscpd:ignore-start
 	const state = useStore<DBBreadcrumbItemState>({
 		_ariaObserver: undefined,
+		_componentSetAriaCurrent: false,
+		_tooltipText: undefined,
 		_syncLinkTabindex: (link: HTMLAnchorElement) => {
 			const isDisabled = link.getAttribute('aria-disabled') === 'true';
 			const isCurrentPage = link.getAttribute('aria-current') === 'page';
@@ -46,13 +48,22 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 				);
 
 				if (props.ariaCurrent) {
-					link.setAttribute('aria-current', props.ariaCurrent ?? '');
-				} else if (link.hasAttribute('aria-current')) {
+					link.setAttribute('aria-current', props.ariaCurrent);
+					state._componentSetAriaCurrent = true;
+				} else if (state._componentSetAriaCurrent) {
+					/* Only remove aria-current when the component itself
+					 * previously set it, not when the consumer placed it
+					 * on the slotted anchor (composition API). */
 					link.removeAttribute('aria-current');
+					state._componentSetAriaCurrent = false;
 				}
+
+				/* Resolve tooltip label: props.text for the text/options
+				 * API, anchor innerText for the composition API. */
+				state._tooltipText = props.text || link.innerText || '';
 			}
 		});
-	}, [props.disabled, props.ariaCurrent, _ref]);
+	}, [props.disabled, props.ariaCurrent, props.text, _ref]);
 
 	onMount(() => {
 		if (_ref) {
@@ -110,7 +121,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 				</a>
 			</Show>
 
-			<DBTooltip placement="bottom-start">{props.text}</DBTooltip>
+			<DBTooltip placement="bottom-start">{state._tooltipText}</DBTooltip>
 		</li>
 	);
 }

@@ -6,7 +6,7 @@ import { StorybookBreadcrumbArgTypes } from './_breadcrumb.arg.types';
 
 useMetadata({
 	storybookTitle: 'No text',
-	storybookNames: ['Composition', 'Options API'],
+	storybookNames: ['Composition', 'Options API', 'Composition (slotted)'],
 	storybookArgTypes: StorybookBreadcrumbArgTypes
 });
 
@@ -65,6 +65,29 @@ export default function BreadcrumbNoText() {
 					}
 				]}
 			/>
+			<i class="line-break" data-sb-ignore="true" />
+			<DBInfotext
+				semantic="informational"
+				size="small"
+				icon="none"
+				data-sb-ignore="true">
+				Composition (slotted)
+			</DBInfotext>
+			<DBBreadcrumb
+				aria-label="Breadcrumb No text (Composition slotted)"
+				expandText="Show more">
+				<DBBreadcrumbItem noText icon="house">
+					<a href="/">Home</a>
+				</DBBreadcrumbItem>
+				<DBBreadcrumbItem noText icon="person">
+					<a href="/profile">Profile</a>
+				</DBBreadcrumbItem>
+				<DBBreadcrumbItem noText icon="gear">
+					<a href="/profile/settings" aria-current="page">
+						Settings
+					</a>
+				</DBBreadcrumbItem>
+			</DBBreadcrumb>
 		</Fragment>
 	);
 }
