@@ -1,5 +1,17 @@
 # @db-ux/react-core-components
 
+## 5.7.1
+
+### Patch Changes
+
+- fix(icons): make `data-icon-variant="filled"` work in themed projects - [see commit cab6ff5](https://github.com/db-ux-design-system/core-web/commit/cab6ff57916d5b986ef9ac6d39357494be9797b4):
+
+    - The generic `default` / `filled` variant names were only emitted in the foundations theme CSS and hard-coded the whitelabel `db-ux-*` font families. Themed projects load `@db-ux/db-theme` instead of the foundations theme CSS, so the selectors never shipped and `data-icon-variant="filled"` silently fell back to the default icon font. The mapping now lives in the always-loaded defaults bundle and resolves through the themeable `--db-icon-<variant>-font-family` custom property.
+
+- fix(DBTag): add accessible text to the removable tag button - [see commit 2956aab](https://github.com/db-ux-design-system/core-web/commit/2956aabbf2926c64d0a6fc7aff52f59e64999ae6):
+
+    - The removable tag button only rendered a `DBTooltip` with the remove label and had no text content of its own, leaving the button without an accessible name. This surfaced on the tags in `DBCustomSelect`. The remove label is now also rendered as the button's text content so the button has a reliable accessible name.
+
 ## 5.7.0
 
 ### Minor Changes
