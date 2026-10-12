@@ -63,12 +63,14 @@ Content always comes through the default content, there is no `text` input.
 
 `db-paragraph` renders a `p`, which is flow content, so it fits in `dd`, `figcaption`, `blockquote`, `li` and `td`, but **not** in `legend`, `label`, `summary` or `button`. Use a `span` there.
 
-Standard `aria-*`, `data-*`, `lang`, `class` and `style` attributes are forwarded from the host element to the rendered element. That also covers the global `data-visually-hidden` annotation, which needs no input of its own and requires the `visually-hidden` stylesheet:
+Standard `aria-*`, `data-*`, `role`, `title`, `class` and `style` attributes are forwarded from the host element to the rendered element. That also covers the global `data-visually-hidden` annotation, which needs no input of its own and requires the `visually-hidden` stylesheet:
 
 ```html
 <db-paragraph data-visually-hidden="true">
 	Only announced by assistive technology.
 </db-paragraph>
 ```
+
+`lang` is **not** forwarded. It stays on the `<db-paragraph>` host, which the `<p>` inherits it from, so rendering and assistive technology are unaffected but a selector such as `p[lang]` does not match.
 
 `id` is a regular input, not a forwarded attribute, and is rendered on the element.
