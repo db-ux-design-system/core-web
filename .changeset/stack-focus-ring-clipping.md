@@ -14,4 +14,6 @@ stack instead of being scrollable; set `overflow` on the stack yourself if you r
 `wrap` keeps the scroll container, since wrapped items overflow by design.
 
 New `data-focus-container` / `.db-focus-container` helper reserves the room a focus ring needs
-inside any clipping container, for the cases where that combination is needed.
+inside any clipping container, for the cases where that combination is needed. It owns the
+padding and margin of the element it sits on, so it belongs on a container that brings no
+spacing of its own.
