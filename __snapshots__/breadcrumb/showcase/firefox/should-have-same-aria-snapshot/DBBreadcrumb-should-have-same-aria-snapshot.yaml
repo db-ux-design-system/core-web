@@ -185,6 +185,15 @@
         - link "Profile"
       - listitem:
         - link "Settings"
+  - text: Composition (slotted)
+  - navigation "Breadcrumb No text (Composition slotted)":
+    - list:
+      - listitem:
+        - link "Home"
+      - listitem:
+        - link "Profile"
+      - listitem:
+        - link "Settings"
   - link "Popover"
   - navigation "Breadcrumb":
     - list:
