@@ -54,8 +54,8 @@
 				"en": "Content"
 			},
 			"text": {
-				"de": "Der Drawer ist auf Verwerfen angelegt: Escape und der Klick außerhalb schließen ihn jederzeit. Ein Ablauf über mehrere Schritte baut dagegen darauf, dass er zu Ende geführt wird.",
-				"en": "The drawer is built for dismissal: Escape and a click outside close it at any moment. A flow across several steps, by contrast, relies on being carried through."
+				"de": "Der Drawer ist auf Verwerfen angelegt: Escape und der Klick außerhalb schließen ihn jederzeit. Ein Ablauf, der zu Ende geführt werden muss, passt dazu nicht.",
+				"en": "The drawer is built for dismissal: Escape and a click outside close it at any moment. A flow that has to be carried through does not fit that."
 			},
 			"do": {
 				"figmaNodeId": "3-1110",
@@ -67,8 +67,8 @@
 			"dont": {
 				"figmaNodeId": "3-1112",
 				"description": {
-					"de": "Bilde mehrstufige Prozesse und komplexe Validierungen nicht im Drawer ab. Ein Klick außerhalb unterbricht den Ablauf, und mehr Breite über `containerSize` ändert daran nichts.",
-					"en": "Don't run multi-step processes or complex validation inside the drawer. A click outside interrupts the flow, and more width through `containerSize` does not change that."
+					"de": "Bilde Abläufe über mehrere Schritte nicht im Drawer ab, auch nicht mit blockierender Validierung. Ein Klick außerhalb unterbricht den Ablauf, und mehr Breite über `containerSize` ändert daran nichts.",
+					"en": "Don't run flows across several steps inside the drawer, not even with blocking validation. A click outside interrupts the flow, and more width through `containerSize` does not change that."
 				}
 			}
 		},
@@ -143,8 +143,8 @@
 					},
 					"figmaNodeId": "4984-2",
 					"description": {
-						"de": "Die kleinste Stufe und der Default bei horizontaler Richtung, für kurze, fokussierte Aufgaben.",
-						"en": "The smallest step and the default for horizontal directions, for short, focused tasks."
+						"de": "Die kleinste Stufe und der Default bei horizontaler Richtung, für kompakte Detailansichten und kurze Aufgaben.",
+						"en": "The smallest step and the default for horizontal directions, for compact detail views and short tasks."
 					}
 				},
 				{
@@ -167,8 +167,8 @@
 					},
 					"figmaNodeId": "5005-6765",
 					"description": {
-						"de": "Die größte feste Stufe für breite Inhalte, etwa eine Table mit mehreren Spalten.",
-						"en": "The largest fixed step for wide content, such as a table with several columns."
+						"de": "Die größte feste Stufe für breite Inhalte, etwa eine Table mit mehreren Spalten und Filterung.",
+						"en": "The largest fixed step for wide content, such as a table with several columns and filtering."
 					}
 				},
 				{

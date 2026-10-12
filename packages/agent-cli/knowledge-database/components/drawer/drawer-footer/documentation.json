@@ -56,32 +56,32 @@
 				"en": "Arrangement"
 			},
 			"text": {
-				"de": "Der Drawer Footer stapelt seine Inhalte standardmäßig vertikal. Für eine horizontale Anordnung lassen sie sich gruppieren. Beide Anordnungen sind zulässig.",
-				"en": "The drawer footer stacks its content vertically by default. For a horizontal arrangement the content can be grouped. Both arrangements are valid."
+				"de": "Beide Anordnungen sind zulässig. Für die horizontale werden die Inhalte in einem zusätzlichen Element gruppiert. Ohne Gruppierung stapelt der Footer sie vertikal.",
+				"en": "Both arrangements are valid. For the horizontal one the content is grouped in an additional element. Without grouping the footer stacks it vertically."
 			},
 			"items": [
-				{
-					"id": "vertical",
-					"headline": {
-						"de": "Vertikal",
-						"en": "Vertical"
-					},
-					"figmaNodeId": "4947-17",
-					"description": {
-						"de": "Die Standardanordnung: Die Inhalte stehen untereinander über die volle Breite.",
-						"en": "The default arrangement: the content sits one below the other across the full width."
-					}
-				},
 				{
 					"id": "horizontal",
 					"headline": {
 						"de": "Horizontal",
 						"en": "Horizontal"
 					},
-					"figmaNodeId": "4947-18",
+					"figmaNodeId": "4947-17",
 					"description": {
 						"de": "Die Inhalte sind in einem zusätzlichen Element gruppiert und stehen dadurch nebeneinander.",
 						"en": "The content is grouped in an additional element and therefore sits side by side."
+					}
+				},
+				{
+					"id": "vertical",
+					"headline": {
+						"de": "Vertikal",
+						"en": "Vertical"
+					},
+					"figmaNodeId": "4947-18",
+					"description": {
+						"de": "Die Standardanordnung: Die Inhalte stehen untereinander über die volle Breite.",
+						"en": "The default arrangement: the content sits one below the other across the full width."
 					}
 				}
 			]
