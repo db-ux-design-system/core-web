@@ -48,7 +48,7 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 				);
 
 				if (props.ariaCurrent) {
-					link.setAttribute('aria-current', props.ariaCurrent);
+					link.setAttribute('aria-current', props.ariaCurrent ?? '');
 					state._componentSetAriaCurrent = true;
 				} else if (state._componentSetAriaCurrent) {
 					/* Only remove aria-current when the component itself
