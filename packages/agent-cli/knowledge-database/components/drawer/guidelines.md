@@ -5,7 +5,7 @@ Herausfahrendes Panel, das von einem Rand des Viewports erscheint und ergänzend
 ## Regeln
 
 1. Drawer nur für optionale Inhalte verwenden. Wenn die Information kritisch oder blockierend ist, stattdessen [Dialog](../dialog/guidelines.md) oder eine eigene Seite nutzen.
-2. Inhalt auf einfache Aktionen beschränken, keine mehrstufigen Prozesse oder komplexen Validierungen abbilden.
+2. Inhalt auf einfache Aktionen beschränken, keine mehrstufigen Prozesse oder komplexen Validierungen abbilden. Der Drawer lässt sich jederzeit schließen, auch mitten im Ablauf.
 3. Der Drawer überlagert immer die gesamte Seitenbreite und -höhe inklusive Header. Nicht auf einen bestimmten Seitenbereich beschränken.
 4. **sollte** Auf Mobile `direction` `up` wählen, wenn der Inhalt kurz und interaktiv ist. Bei voller Höhe liegen die oberen Elemente außerhalb des Daumen-Greifbereichs.
 

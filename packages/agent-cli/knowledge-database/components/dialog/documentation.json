@@ -206,8 +206,8 @@
 				"en": "Size Steps"
 			},
 			"text": {
-				"de": "Die vier Stufen setzen die Maximalbreite des Dialogs. Passend ist die kleinste Stufe, die den Inhalt trägt. Der Default ist `medium`.",
-				"en": "The four steps set the maximum width of the dialog. The right one is the smallest step that carries the content. The default is `medium`."
+				"de": "Die vier Stufen setzen die Maximalbreite des Dialogs. Mehr Breite als nötig erzeugt nur Leerraum. Der Default ist `medium`.",
+				"en": "The four steps set the maximum width of the dialog. More width than needed only creates empty space. The default is `medium`."
 			},
 			"items": [
 				{

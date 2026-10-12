@@ -54,8 +54,8 @@
 				"en": "Content"
 			},
 			"text": {
-				"de": "Der Drawer bietet begrenzten Platz. Mehrstufige Abläufe und umfangreiche Validierungen lassen sich darin schwer abschließen und überprüfen.",
-				"en": "The drawer offers limited space. Multi-step flows and extensive validation are hard to complete and review inside it."
+				"de": "Der Drawer ist auf Verwerfen angelegt: Escape und der Klick außerhalb schließen ihn jederzeit. Ein Ablauf über mehrere Schritte baut dagegen darauf, dass er zu Ende geführt wird.",
+				"en": "The drawer is built for dismissal: Escape and a click outside close it at any moment. A flow across several steps, by contrast, relies on being carried through."
 			},
 			"do": {
 				"figmaNodeId": "3-1110",
@@ -67,8 +67,8 @@
 			"dont": {
 				"figmaNodeId": "3-1112",
 				"description": {
-					"de": "Bilde mehrstufige Prozesse und komplexe Validierungen nicht im Drawer ab. Auf dem begrenzten Platz geht der Überblick über den Ablauf verloren.",
-					"en": "Don't run multi-step processes or complex validation inside the drawer. The limited space hides the overall flow."
+					"de": "Bilde mehrstufige Prozesse und komplexe Validierungen nicht im Drawer ab. Ein Klick außerhalb unterbricht den Ablauf, und mehr Breite über `containerSize` ändert daran nichts.",
+					"en": "Don't run multi-step processes or complex validation inside the drawer. A click outside interrupts the flow, and more width through `containerSize` does not change that."
 				}
 			}
 		},
@@ -131,8 +131,8 @@
 				"en": "Size Steps"
 			},
 			"text": {
-				"de": "Die vier Stufen decken unterschiedliche Inhaltsarten ab. Passend ist die kleinste Stufe, die den Inhalt trägt.",
-				"en": "The four steps cover different kinds of content. The right one is the smallest step that carries the content."
+				"de": "Die vier Stufen decken unterschiedliche Inhaltsarten ab. Mehr Fläche als nötig verdeckt nur mehr vom Seitenkontext.",
+				"en": "The four steps cover different kinds of content. More area than needed only covers more of the page context."
 			},
 			"items": [
 				{
