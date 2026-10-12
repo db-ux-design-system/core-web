@@ -3,7 +3,7 @@ import type { DBHeadingBaseProps } from '../model';
 
 export type FigmaHeadingProps = Pick<
 	DBHeadingBaseProps,
-	'size' | 'fontWeight' | 'alignment' | 'paragraphSpacing'
+	'visualSize' | 'fontWeight'
 > & {
 	text?: string;
 };
@@ -14,44 +14,36 @@ const sizeProp: FigmaProp = {
 	type: 'enum',
 	key: 'Size',
 	value: {
-		'3xl': '3xl',
-		'2xl': '2xl',
-		xl: 'xl',
-		lg: 'lg',
-		md: 'md',
-		sm: 'sm',
-		xs: 'xs',
-		'2xs': '2xs',
-		'3xs': '3xs',
-		// DBHeadingH1 to DBHeadingH6 label their level default `(Def) <size>`.
+		h1: 'h1',
+		h2: 'h2',
+		h3: 'h3',
+		h4: 'h4',
+		h5: 'h5',
+		h6: 'h6',
+		'p-small': 'p-small',
+		'p-medium': 'p-medium',
+		'p-large': 'p-large',
+		// DBHeadingH1 to DBHeadingH6 label their level default `(Def) <level>`.
 		// It equals the CSS default mapping, so the attribute stays out of the
 		// snippet. DBCustomHeading has no default and never hits these keys.
-		'(Def) xl': 'undefined',
-		'(Def) lg': 'undefined',
-		'(Def) md': 'undefined',
-		'(Def) sm': 'undefined',
-		'(Def) xs': 'undefined',
-		'(Def) 2xs': 'undefined'
+		'(Def) h1': 'undefined',
+		'(Def) h2': 'undefined',
+		'(Def) h3': 'undefined',
+		'(Def) h4': 'undefined',
+		'(Def) h5': 'undefined',
+		'(Def) h6': 'undefined'
 	}
-};
-
-const alignmentProp: FigmaProp = {
-	type: 'enum',
-	key: 'Alignment',
-	value: { '(Def) Left': 'start', Center: 'center', Right: 'end' }
 };
 
 const textProp: FigmaProp = { type: 'textContent', key: 'Text' };
 
 const headingProps: Record<string, FigmaProp> = {
-	size: sizeProp,
+	visualSize: sizeProp,
 	fontWeight: {
 		type: 'enum',
 		key: 'Font Weight',
 		value: { '(Def) Black': 'black', Light: 'light' }
 	},
-	alignment: alignmentProp,
-	paragraphSpacing: { type: 'boolean', key: 'Show Paragraph Spacing' },
 	text: textProp
 };
 
@@ -68,7 +60,7 @@ const headingProps: Record<string, FigmaProp> = {
  */
 // Spread instead of a plain alias: the `useMetadata` resolver does not follow a
 // chained identifier reference, which would silently skip the prop injection and
-// leave literal `props.size` in the generated snippet.
+// leave literal `props.visualSize` in the generated snippet.
 const customHeadingProps: Record<string, FigmaProp> = { ...headingProps };
 
 export const headingH1: FigmaCodeConnect = {
