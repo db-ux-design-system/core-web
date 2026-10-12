@@ -79,9 +79,17 @@ overrides:
   "esbuild@~0.28.0": 0.28.2
   serialize-javascript@>=7.1.1 <7.1.2: 7.1.2
   devalue@<=5.9.2: 5.9.3
+  # Drop Nuxt DevTools (dev-only tool, not needed by the showcase). It is the sole
+  # consumer of simple-git, whose only security-patched line (4.x) is published
+  # incorrectly and is incompatible with Node's native type-stripping, which broke
+  # `nuxt prepare`. Removing the edge keeps simple-git out of the tree entirely.
+  # The nuxt-showcase also sets `devtools: { enabled: false }` so Nuxt never
+  # tries to import it.
+  "nuxt>@nuxt/devtools": "-"
+  source-map-js@>=1.0.0 <1.2.2: 1.2.2
 
 catalog:
-  postcss: 8.5.28
+  postcss: 8.5.29
   webpack: 5.111.1
 
 saveExact: true

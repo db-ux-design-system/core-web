@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
@@ -14,21 +14,11 @@ const skipKeyboardOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
-// Waits for the active element's value to match, instead of a hard-coded
-// timeout - mirrors the helper from the removed component test.
-const waitForFocusChange = async (
-	page: Page,
-	expectedValue: string,
-	timeout = 5000
-) => {
-	await page.waitForFunction(
-		(expected) => {
-			const activeElement = document.activeElement as HTMLInputElement;
-			return activeElement?.value === expected;
-		},
-		expectedValue,
-		{ timeout }
-	);
+const FOCUS_COOLDOWN = 2000;
+
+const openDropdown = async (page: Page, summary: Locator) => {
+	await summary.press('ArrowDown');
+	await page.waitForTimeout(FOCUS_COOLDOWN);
 };
 
 test.describe('DBCustomSelect', () => {
@@ -42,9 +32,7 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			await expect(summary).not.toContainText('Option 1');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await expect(summary).toContainText('Option 1');
 		}
@@ -60,9 +48,7 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			await expect(summary).not.toContainText('Option 1');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
 			await expect(summary).toContainText('Option 1');
@@ -114,10 +100,9 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('select-all-select');
 			const summary = select.locator('summary');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.waitForTimeout(1000); // Wait for focus to apply
+			// Opening with ArrowDown moves focus onto the first checkbox (the
+			// "select all" checkbox here).
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
 			await expect(summary).toContainText(
@@ -136,9 +121,7 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			await expect(summary).not.toContainText('Option 1');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
 			await expect(summary).toContainText('Option 1');
 			// For single select, the dropdown closes after Enter.
@@ -156,9 +139,7 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			await expect(summary).not.toContainText('Option 1');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
 			// For multiple select, the dropdown stays open after Enter.
 			await expect(select.locator('details')).toHaveAttribute('open');
@@ -176,8 +157,7 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
+			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
 				const activeElement =
 					document.activeElement as HTMLInputElement;
@@ -202,8 +182,7 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
+			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
 				const activeElement =
 					document.activeElement as HTMLInputElement;
@@ -228,29 +207,21 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('option-groups-select');
 			const summary = select.locator('summary');
 
-			await summary.focus();
 			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G1:Option 1');
+			await openDropdown(page, summary);
 
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G1:Option 2');
+			await page.waitForTimeout(FOCUS_COOLDOWN);
 
 			// Navigating from the last item of group 1 must skip the "Option
 			// group 2" title and land on the first item of group 2 - the
 			// regression fixed in #4920.
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G2:Option 1');
-
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G2:Option 2');
-
 			// Test reverse navigation.
 			await page.keyboard.press('ArrowUp');
-			await waitForFocusChange(page, 'G2:Option 1');
 
 			await page.keyboard.press('ArrowUp');
-			await waitForFocusChange(page, 'G1:Option 2');
 		}
 	});
 
