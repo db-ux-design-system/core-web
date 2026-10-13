@@ -34,7 +34,10 @@ export default function TextGroupMixedContent() {
 					A list is not one of the block-text elements, so it keeps
 					whatever margin it brings.
 				</DBParagraph>
-				<ul style="margin-block: calc(1lh * var(--db-text-spacing, 0))">
+				<ul
+					style={{
+						marginBlock: 'calc(1lh * var(--db-text-spacing, 0))'
+					}}>
 					<li>Opted into the same rhythm</li>
 					<li>The list items are unaffected</li>
 				</ul>
