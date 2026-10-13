@@ -42,7 +42,7 @@ export default function TextGroupMixedContent() {
 					<li>The list items are unaffected</li>
 				</ul>
 				<DBParagraph>
-					Use `margin-block: 0` instead to take such a child out of
+					Set a zero block margin instead to take such a child out of
 					the rhythm entirely.
 				</DBParagraph>
 			</DBTextGroup>

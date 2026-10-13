@@ -21,8 +21,8 @@ export default function TextGroupComponents() {
 				<DBHeadingH3>A heading starts the block</DBHeadingH3>
 				<DBParagraph>
 					Neither component carries spacing of its own. The group sets
-					`data-text-spacing`, and the foundations apply the margin to
-					each element.
+					the text spacing attribute, and the foundations apply the
+					margin to each element.
 				</DBParagraph>
 				<DBParagraph size="sm">
 					Because the margin resolves against the element's own line
