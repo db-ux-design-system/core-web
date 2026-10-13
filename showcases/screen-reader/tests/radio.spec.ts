@@ -9,8 +9,6 @@ test.describe('DBRadio', () => {
 		url: './#/03/radio?page=density',
 		async testFn(voiceOver, nvda) {
 			if (nvda) {
-				await nvda?.next();
-				await nvda?.clearSpokenPhraseLog();
 				await nvda?.previous();
 				await nvda?.next();
 				await nvda?.next();
@@ -36,9 +34,6 @@ test.describe('DBRadio', () => {
 				// Voiceover isn't working with tab in pipeline
 				test.skip();
 			}
-
-			await nvda?.press('Left');
-			await nvda?.clearSpokenPhraseLog();
 			await nvda?.press('Left');
 			await nvda?.press('Right');
 			await nvda?.press('Right');

@@ -81,12 +81,9 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 	}
 
+	&:is(.db-tooltip),
 	&[data-gap="true"] {
 		--db-popover-gap: 1;
-		--db-popover-distance: #{variables.$db-spacing-fixed-md};
-	}
-
-	&:is(.db-tooltip) {
 		--db-popover-distance: #{variables.$db-spacing-fixed-sm};
 	}
 
@@ -185,11 +182,17 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 				#{variables.$db-transition-straight-emotional} normal both;
 
 			&[data-delay="slow"] {
-				animation-delay: variables.$db-transition-duration-extra-slow;
+				animation-delay: var(
+					--db-animation-delay,
+					#{variables.$db-transition-duration-extra-slow}
+				);
 			}
 
 			&[data-delay="fast"] {
-				animation-delay: variables.$db-transition-duration-medium;
+				animation-delay: var(
+					--db-animation-delay,
+					#{variables.$db-transition-duration-medium}
+				);
 			}
 
 			@include screen-sizes.screen-min-max(
