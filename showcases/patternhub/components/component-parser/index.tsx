@@ -527,8 +527,8 @@ const ComponentSwitch = ({
 			<DBTextGroup className={className} {...props}>
 				{resolvedContent}
 			</DBTextGroup>
-     );
-  }
+		);
+	}
 	if (type === 'breadcrumb') {
 		return (
 			<DBBreadcrumb className={className} {...props}>
