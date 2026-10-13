@@ -6,19 +6,23 @@ import { StorybookTextGroupArgTypes } from './_text-group.arg.types';
 useMetadata({
 	storybookTitle: 'Text spacing',
 	storybookComponentName: 'DBTextGroup',
-	storybookComponentNames: ['DBTextGroup', 'DBTextGroup'],
-	storybookNames: ['(Default) Without spacing', 'With text spacing'],
+	storybookComponentNames: ['DBTextGroup', 'DBTextGroup', 'DBTextGroup'],
+	storybookNames: [
+		'False: without spacing',
+		'True: with spacing',
+		'(Default) Unset: inherited'
+	],
 	storybookArgTypes: StorybookTextGroupArgTypes
 });
 
 export default function TextGroupTextSpacing() {
 	return (
 		<Fragment>
-			<DBTextGroup>
+			{/* `false` opts out, which is what makes this variant reliable even on a
+			 * page that opted in further up, like the Patternhub body does. */}
+			<DBTextGroup textSpacing={false}>
 				<DBParagraph>
-					Without text spacing the paragraphs sit directly on top of
-					each other: block text carries no margin unless the opt-in
-					is set.
+					False: the paragraphs sit directly on top of each other.
 				</DBParagraph>
 				<DBParagraph>
 					Nothing has to be set on the paragraphs themselves.
@@ -27,14 +31,26 @@ export default function TextGroupTextSpacing() {
 			{/* Half a line height per child, so a full one between two of them. */}
 			<DBTextGroup textSpacing>
 				<DBParagraph>
-					With text spacing every child gets half a line height above
-					and below.
+					True: every child gets half a line height above and below.
 				</DBParagraph>
 				<DBParagraph>
 					Two adjacent children are a full line height apart, and the
 					group keeps half of one at its outer edges.
 				</DBParagraph>
 			</DBTextGroup>
+			{/* Omitting the property is not the same as false: the group inherits
+			 * from whatever opted in above it, here the wrapping div. */}
+			<div data-text-spacing="true">
+				<DBTextGroup>
+					<DBParagraph>
+						Unset: this group sets nothing, so it follows the
+						surrounding element that opted in.
+					</DBParagraph>
+					<DBParagraph>
+						Use false to switch the spacing off for certain.
+					</DBParagraph>
+				</DBTextGroup>
+			</div>
 		</Fragment>
 	);
 }

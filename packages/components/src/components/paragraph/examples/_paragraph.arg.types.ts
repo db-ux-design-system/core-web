@@ -4,7 +4,6 @@ import type { InputType } from 'storybook/internal/csf';
  * into with JSON5, which cannot resolve a reference or a spread. */
 export const StorybookParagraphArgTypes: Record<string, InputType> = {
 	size: { control: 'select', options: ['lg', 'md', 'sm'] },
-	fontWeight: { control: 'select', options: ['black', 'regular'] },
 	children: { control: 'text' },
 	className: { control: 'text' },
 	id: { control: 'text' }

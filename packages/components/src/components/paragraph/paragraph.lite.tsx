@@ -14,8 +14,7 @@ export default function DBParagraph(props: DBParagraphProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-paragraph', props.className)}
-			data-size={props.size}
-			data-font-weight={props.fontWeight}>
+			data-size={props.size}>
 			{props.children}
 		</p>
 	);

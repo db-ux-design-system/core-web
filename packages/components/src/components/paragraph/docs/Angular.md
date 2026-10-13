@@ -23,20 +23,32 @@ export class ExampleComponent {}
 
 ```html
 <db-paragraph>A paragraph of body copy.</db-paragraph>
-<db-paragraph size="sm" font-weight="black">
-	A smaller, bolder paragraph with an <span>inline passage</span>.
+<db-paragraph size="sm">
+	A smaller paragraph with an <span>inline passage</span>.
 </db-paragraph>
 ```
 
-### Size and font weight
+### Size
 
-`size` accepts `lg`, `md` and `sm` and has **no default**. Omitting it inherits the size from the surrounding typography. Density tokens provide responsive typography, so there is no breakpoint-specific size input.
+`size` accepts `lg`, `md` and `sm` and has **no default**: omitting it inherits the size from the surrounding typography.
 
-`font-weight` selects the font variant: `black` resolves to a weight of 900 and `regular` to 400. It also has no default. Note that the open-source fallback font ships no 900 face for the body family, so without the DB theme fonts `black` renders like bold.
+In a default context that is the same as `md`, because the foundations set the root to the medium step - an unset paragraph measures 16px with a 24px line height, exactly like `size="md"`. The difference only shows inside a container that changed the type scale, where an unset paragraph follows it and a fixed `md` would not. Density tokens provide responsive typography, so there is no breakpoint-specific size input.
+
+### Font weight
+
+There is no font-weight property. Emphasis is semantic and belongs to the element, so use `strong` inside the paragraph. That works at any size, because the weight sits on the `strong` rather than on the paragraph:
+
+```html
+<db-paragraph>
+	A paragraph with an <strong>emphasised passage</strong>.
+</db-paragraph>
+```
+
+For a presentational weight on the whole paragraph the foundations' global `data-font` annotation covers `digital` (300), `regular` (400), `medium` (500), `semibold` (600) and `bold` (700). It is forwarded like any other `data-*` attribute, but it only takes effect while `size` is unset: a set size applies the `font` shorthand at a higher specificity and resets the weight. Measured, `data-font="bold"` alone computes to 700, and combined with `size="sm"` it falls back to 400.
 
 ### Spacing and alignment
 
-`db-paragraph` renders a `p`, so block spacing comes from the foundations' `data-text-spacing` opt-in: without it the paragraph renders flush, with it on the element or any ancestor it gets `0.5lh` above and below. A surrounding [`db-text-group`](../text-group/properties) sets that attribute for a whole block.
+`db-paragraph` renders a `p`, so block spacing comes from the foundations' `data-text-spacing` opt-in: with the attribute on the element or any ancestor it gets `0.5lh` above and below, without it anywhere above it renders flush, and `data-text-spacing="false"` switches it back off. A surrounding [`db-text-group`](../text-group/properties) sets that attribute for a whole block.
 
 There is deliberately no `text-align`, which is what lets the `alignment` of a `db-text-group` reach the paragraph by inheritance.
 

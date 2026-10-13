@@ -3,7 +3,6 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ParagraphAttributeForwarding from '../examples/attribute-forwarding.example.lite';
-import ParagraphFontWeight from '../examples/font-weight.example.lite';
 import ParagraphSizes from '../examples/sizes.example.lite';
 
 export default function ParagraphShowcase(props: PatternhubProps) {
@@ -11,15 +10,10 @@ export default function ParagraphShowcase(props: PatternhubProps) {
 		<ContainerWrapperShowcase
 			title="DBParagraph"
 			isPatternhub={props.isPatternhub}>
-			<div class="paragraph-showcase">
+			<div class="paragraph-showcase" data-text-spacing="false">
 				<LinkWrapperShowcase exampleName="Sizes">
 					<CardWrapperShowcase>
 						<ParagraphSizes />
-					</CardWrapperShowcase>
-				</LinkWrapperShowcase>
-				<LinkWrapperShowcase exampleName="Font Weight">
-					<CardWrapperShowcase>
-						<ParagraphFontWeight />
 					</CardWrapperShowcase>
 				</LinkWrapperShowcase>
 				<LinkWrapperShowcase exampleName="Forwarded Attributes">

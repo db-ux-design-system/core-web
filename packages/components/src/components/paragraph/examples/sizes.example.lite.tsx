@@ -11,16 +11,21 @@ useMetadata({
 		'DBParagraph',
 		'DBParagraph'
 	],
-	storybookNames: ['(Default) Inherited', 'Size lg', 'Size md', 'Size sm'],
+	storybookNames: [
+		'(Default) Inherited, same as md',
+		'Size lg',
+		'Size md',
+		'Size sm'
+	],
 	storybookArgTypes: StorybookParagraphArgTypes
 });
 
 export default function ParagraphSizes() {
 	return (
 		<Fragment>
-			{/* Omitting size inherits from the surrounding typography, so there is
-			 * no default step to override. */}
-			<DBParagraph>(Default) Inherited</DBParagraph>
+			{/* Omitting size inherits, which in a default context is the medium step,
+			 * so this renders like the md variant below. */}
+			<DBParagraph>(Default) Inherited, same as md</DBParagraph>
 			<DBParagraph size="lg">Size lg</DBParagraph>
 			<DBParagraph size="md">Size md</DBParagraph>
 			<DBParagraph size="sm">Size sm</DBParagraph>

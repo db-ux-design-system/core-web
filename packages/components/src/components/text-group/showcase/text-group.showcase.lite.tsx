@@ -13,7 +13,7 @@ export default function TextGroupShowcase(props: PatternhubProps) {
 		<ContainerWrapperShowcase
 			title="DBTextGroup"
 			isPatternhub={props.isPatternhub}>
-			<div class="text-group-showcase">
+			<div class="text-group-showcase" data-text-spacing="false">
 				<LinkWrapperShowcase exampleName="Text Spacing">
 					<CardWrapperShowcase>
 						<TextGroupTextSpacing />

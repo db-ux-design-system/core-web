@@ -24,13 +24,15 @@ export const Intro = () => (
 
 ### Spacing
 
-`textSpacing` gives every block-text child `0.5lh` of breathing room above and below, which amounts to about `1lh` between two adjacent children and `0.5lh` at the group's own outer edges. Without it the group adds no spacing at all.
+`textSpacing` gives every block-text child `0.5lh` of breathing room above and below, which amounts to about `1lh` between two adjacent children and `0.5lh` at the group's own outer edges.
+
+`textSpacing={false}` switches the spacing off, and omitting the prop is **not** the same thing: the group then neither opts in nor out and follows whatever an ancestor set. The Patternhub, for instance, opts in on `<body>`, so an unset group is spaced there. Use `false` when it has to be off for certain.
 
 The spacing is not the group's own: `textSpacing` renders `data-text-spacing`, and the foundations' required styles turn that into a `margin-block` on every `h1`-`h6` and `p` below it. The group only needs to set the attribute, which is why it works the same in every framework output.
 
 Because the margin sits on the text element, `1lh` resolves against that element's own line height. A child with a smaller `size` therefore gets proportionally less spacing, and two children of different sizes end up somewhat closer than `1lh`.
 
-`data-text-spacing="false"` opts a subtree back out, and the attribute also works on a block-text element itself, so a single paragraph can carry it without a group.
+The attribute also works on a block-text element itself, so a single paragraph can carry it without a group.
 
 ### Which children to use
 

@@ -74,7 +74,6 @@ Shipped as **beta**, so the open questions below are deliberately left to be val
 | Property      | `DBParagraph` | `DBTextGroup` |
 | ------------- | :-----------: | :-----------: |
 | `size`        |       x       |       -       |
-| `fontWeight`  |       x       |       -       |
 | `alignment`   |       -       |       x       |
 | `textSpacing` |       -       |       x       |
 
@@ -83,21 +82,31 @@ typography utility classes from the foundations apply to it if needed.
 
 ### Why the properties sit where they do
 
-- **`size` (`lg`, `md`, `sm`) and `fontWeight` (`black`, `regular`) have no default.** Without the attribute the
-  typography is inherited, which keeps a paragraph consistent with its surroundings instead of forcing a step.
-  Primer and Polaris both ship `size` with no default. The sizes are a deliberate subset of the nine foundation
-  steps.
-- **`fontWeight` names font variants, not numeric weights**, resolving to 900 and 400. The values are numeric
-  literals because the foundations have no font-weight tokens for text - only icon weights are tokenized - and
-  `heading.scss` plus `default-fonts.scss` use literals too.
+- **`size` (`lg`, `md`, `sm`) has no default.** Without the attribute the typography is inherited, which keeps a
+  paragraph consistent with its surroundings instead of forcing a step. Primer and Polaris both ship `size` with no
+  default. The sizes are a deliberate subset of the nine foundation steps. Note that inheriting is not visually
+  distinct from `md` in a default context, because `defaults/default-required.scss` puts the root on the medium step:
+  measured against theme and foundations, an unset paragraph and `size="md"` both come out at 16px with a 24px line
+  height. The distinction only matters inside a container that changed the type scale.
+- **No `fontWeight`.** An earlier revision had one with `black` (900) and `regular` (400). It is gone for two
+  reasons. The design has no weight property on a paragraph at all - weight is part of the text style itself - and
+  it has no `black` either, only `bold` and `regular`, so the 900 value was never backed by a token. On top of that
+  `regular` was measurably a no-op: a paragraph without the attribute and one with `regular` both computed to weight
+  400, leaving a property where only one of two values did anything. Emphasis is semantic and belongs to the element
+  (`strong`, `em`), which also works at any size because the weight sits on the inner element.
+- **The removal has one cost, worth recording.** The foundations' global `[data-font]` covers `digital` (300) through
+  `bold` (700) and is forwarded like any other `data-*` attribute, but it loses against `data-size`:
+  `.db-paragraph[data-size="sm"]` is (0,2,0) and applies the `font` shorthand, which resets the weight, while
+  `[data-font]` is only (0,1,0). Measured, `data-font="bold"` alone computes to 700 and combined with `data-size="sm"`
+  falls back to 400. So a whole paragraph can be given a weight only at the inherited size; for anything else the
+  weight has to sit on an inner `strong`. The former `fontWeight` property did not have this limitation, because its
+  rule carried the same specificity as the size rules and was emitted after them.
 - **`alignment` sits on the group only.** The paragraphs inherit it, so it cannot drift between siblings of one
   block. `.db-paragraph` therefore sets no blanket `text-align`, because that would block exactly this inheritance.
 - **`textSpacing` only sets an attribute.** It renders `data-text-spacing`, which the foundations turn into a
   `margin-block` of half a line height on every `h1`-`h6` and `p` below it. The component ships no spacing rule, so
   the value cannot drift from the rest of the system, and `data-text-spacing="false"` opts a subtree back out.
 - **No `size` on the group.** The children set it themselves.
-- **No `fontWeight` on the group**, and none on a text primitive beyond the two variants: emphasis is semantic and
-  belongs to the element (`strong`, `em`), while the foundations' `[data-font]` covers the presentational case.
 - **No `text` property.** The shared `TextProps` exists for components where text is a **label** competing with other
   structure such as an icon, and its own documentation warns that combining it with children produces a duplicate
   label. The components that
@@ -176,8 +185,10 @@ sit on a single element without a group.
 
 Because the margin sits on the text element, `1lh` resolves against that element's own line height. Measured at the
 default density, a `24px` child gets `12px` and an `18px` child `9px`, so two children of different sizes end up
-`21px` apart rather than `24px`. A standalone `DBParagraph` and a group without `textSpacing` render flush, since
-`--db-text-spacing` defaults to `0`.
+`21px` apart rather than `24px`. A standalone `DBParagraph` and a group without `textSpacing` render flush only when nothing above them opted in.
+The property is a three-state one in practice: `true` opts in, `false` opts out, and omitting it inherits. The
+Patternhub sets the attribute on `<body>`, so an unset group is spaced there - which is why the showcase example
+demonstrates `false` explicitly rather than relying on the absence of the property.
 
 Only `h1`-`h6` and `p` are covered. A `ul`, `ol` or `blockquote` in the group keeps the margin it brings; reading the
 same custom property opts it into the rhythm.
@@ -236,21 +247,12 @@ closed before the stable release rather than carried into it.
 
 ### Implementation
 
-- The size placeholders apply the `font` shorthand, which resets `font-weight`, and carry the same specificity as the
-  weight rules. `@extend` emits them at the placeholder's definition site rather than at the extending block, which
-  puts them above `.db-paragraph` in the compiled output no matter where the `@include` sits, so the variant survives.
-  Source order would only start to matter if the sizes were switched to `fonts.set-font-size()`, which is why
-  `heading.scss` argues over `:where()` specificity instead. The same collision exists between `data-size` and the
-  foundations' `[data-font]`, and there the losing side is not ours to fix.
-- Still an inconsistency in the repository: `DBHeading` uses `data-font-weight` with `black`/`light` while the
-  foundations use `data-font` with `digital`/`regular`/`medium`/`semibold`/`bold`, and `DBParagraph` now adds
-  `data-font-weight` with `black`/`regular`. Aligning them would break `DBHeading`.
-- There are no font-weight tokens for text in the foundations, only icon weights. Introducing them belongs in the
-  foundations and would let `heading.scss`, `default-fonts.scss` and `paragraph.scss` stop repeating literals.
+- Still an inconsistency in the repository, now on the Heading side alone: `DBHeading` carries
+  `data-font-weight` with `black`/`light` while the foundations use `data-font` with
+  `digital`/`regular`/`medium`/`semibold`/`bold`. `DBParagraph` no longer adds a third spelling. Aligning Heading
+  would be a breaking change.
 - `DBHeading` mixes in `TextProps` while the paragraph components deliberately do not, so two neighbouring typography
   components differ in how content is passed. Acceptable, but it should be a recorded decision.
-- The open-source fallback font has no 900 face for the body family, so `black` renders like bold without the DB
-  theme fonts. Acceptable for DB products, but it makes the showcases misleading.
 
 ### Design
 
