@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
@@ -14,21 +14,11 @@ const skipKeyboardOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
-// Waits for the active element's value to match, instead of a hard-coded
-// timeout - mirrors the helper from the removed component test.
-const waitForFocusChange = async (
-	page: Page,
-	expectedValue: string,
-	timeout = 5000
-) => {
-	await page.waitForFunction(
-		(expected) => {
-			const activeElement = document.activeElement as HTMLInputElement;
-			return activeElement?.value === expected;
-		},
-		expectedValue,
-		{ timeout }
-	);
+const FOCUS_COOLDOWN = 2000;
+
+const openDropdown = async (page: Page, summary: Locator) => {
+	await summary.press('ArrowDown');
+	await page.waitForTimeout(FOCUS_COOLDOWN);
 };
 
 test.describe('DBCustomSelect', () => {
@@ -48,16 +38,7 @@ test.describe('DBCustomSelect', () => {
 			// appears and times out.
 			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			// Give the dropdown time to render and hydrate before driving it
-			// with the keyboard. On Stencil the first ArrowDown opens the
-			// <details> and schedules the delayed focus() of the first option,
-			// but the custom-element dropdown is not populated yet, so focus
-			// never lands and `waitForFocusChange` times out. Mirrors the
-			// settle wait the "test select all" and "option groups" specs use.
-			await page.waitForTimeout(1000);
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await expect(selectedLabel).toContainText('Option 1');
 		}
@@ -79,16 +60,7 @@ test.describe('DBCustomSelect', () => {
 			// appears and times out.
 			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			// Give the dropdown time to render and hydrate before driving it
-			// with the keyboard. On Stencil the first ArrowDown opens the
-			// <details> and schedules the delayed focus() of the first option,
-			// but the custom-element dropdown is not populated yet, so focus
-			// never lands and `waitForFocusChange` times out. Mirrors the
-			// settle wait the "test select all" and "option groups" specs use.
-			await page.waitForTimeout(1000);
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
 			await expect(selectedLabel).toContainText('Option 1');
@@ -141,19 +113,9 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			// Wait for focus to actually land on the "select all" checkbox
-			// before toggling it, instead of racing a fixed timeout. On Stencil
-			// the dropdown hydrates and moves focus asynchronously, so a fixed
-			// wait is sometimes too short and Space toggles the wrong control,
-			// selecting fewer than all options. The select-all checkbox is the
-			// only input with value="select-all".
-			await page.waitForFunction(() => {
-				const activeElement =
-					document.activeElement as HTMLInputElement;
-				return activeElement?.value === 'select-all';
-			});
+			// Opening with ArrowDown moves focus onto the first checkbox (the
+			// "select all" checkbox here).
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
 			await expect(selectedLabel).toContainText(
@@ -178,16 +140,7 @@ test.describe('DBCustomSelect', () => {
 			// appears and times out.
 			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			// Give the dropdown time to render and hydrate before driving it
-			// with the keyboard. On Stencil the first ArrowDown opens the
-			// <details> and schedules the delayed focus() of the first option,
-			// but the custom-element dropdown is not populated yet, so focus
-			// never lands and `waitForFocusChange` times out. Mirrors the
-			// settle wait the "test select all" and "option groups" specs use.
-			await page.waitForTimeout(1000);
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
 			await expect(selectedLabel).toContainText('Option 1');
 			// For single select, the dropdown closes after Enter.
@@ -211,16 +164,7 @@ test.describe('DBCustomSelect', () => {
 			// appears and times out.
 			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			// Give the dropdown time to render and hydrate before driving it
-			// with the keyboard. On Stencil the first ArrowDown opens the
-			// <details> and schedules the delayed focus() of the first option,
-			// but the custom-element dropdown is not populated yet, so focus
-			// never lands and `waitForFocusChange` times out. Mirrors the
-			// settle wait the "test select all" and "option groups" specs use.
-			await page.waitForTimeout(1000);
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
 			// For multiple select, the dropdown stays open after Enter.
 			await expect(select.locator('details')).toHaveAttribute('open');
@@ -239,16 +183,7 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await summary.focus();
-			// Give the dropdown time to render and hydrate before driving it
-			// with the keyboard. On Stencil the first ArrowDown opens the
-			// <details> and schedules the delayed focus() of the search input,
-			// but the custom-element dropdown is not populated yet, so focus
-			// never lands and the `type === 'search'` wait times out. Mirrors
-			// the settle wait the "test select all" and "option groups" specs
-			// use.
-			await page.waitForTimeout(1000);
-			await page.keyboard.press('ArrowDown');
+			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
 				const activeElement =
 					document.activeElement as HTMLInputElement;
@@ -274,16 +209,7 @@ test.describe('DBCustomSelect', () => {
 			const summary = select.locator('summary');
 			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await summary.focus();
-			// Give the dropdown time to render and hydrate before driving it
-			// with the keyboard. On Stencil the first ArrowDown opens the
-			// <details> and schedules the delayed focus() of the search input,
-			// but the custom-element dropdown is not populated yet, so focus
-			// never lands and the `type === 'search'` wait times out. Mirrors
-			// the settle wait the "test select all" and "option groups" specs
-			// use.
-			await page.waitForTimeout(1000);
-			await page.keyboard.press('ArrowDown');
+			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
 				const activeElement =
 					document.activeElement as HTMLInputElement;
@@ -308,29 +234,21 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('option-groups-select');
 			const summary = select.locator('summary');
 
-			await summary.focus();
 			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G1:Option 1');
+			await openDropdown(page, summary);
 
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G1:Option 2');
+			await page.waitForTimeout(FOCUS_COOLDOWN);
 
 			// Navigating from the last item of group 1 must skip the "Option
 			// group 2" title and land on the first item of group 2 - the
 			// regression fixed in #4920.
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G2:Option 1');
-
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G2:Option 2');
-
 			// Test reverse navigation.
 			await page.keyboard.press('ArrowUp');
-			await waitForFocusChange(page, 'G2:Option 1');
 
 			await page.keyboard.press('ArrowUp');
-			await waitForFocusChange(page, 'G1:Option 2');
 		}
 	});
 

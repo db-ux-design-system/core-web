@@ -115,7 +115,9 @@ $focus-outline-reach: calc(
 			.db-tab-list {
 				display: flex;
 				align-items: stretch;
-				overflow: auto;
+
+				// Inline axis only: on both axes fractional zoom rounds the overflow 1px past the client box and paints a stray vertical scrollbar, see #7760.
+				overflow: auto hidden;
 				inline-size: 100%;
 			}
 		}
@@ -156,6 +158,9 @@ $focus-outline-reach: calc(
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
+
+				// Reset: the horizontal clamp above also matches a vertical list nested inside a horizontal instance, where scrolling would clip the indicator.
+				overflow: visible;
 			}
 
 			.db-tab-item-label {
