@@ -83,8 +83,8 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'text-group'
-  },
-  {
+	},
+	{
 		name: 'breadcrumb-popover-item'
 	},
 
