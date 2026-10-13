@@ -1,0 +1,8 @@
+{
+	"id": "text-group",
+	"name": "Text Group",
+	"type": "component",
+	"status": "beta",
+	"owner": "core-team",
+	"since": null
+}

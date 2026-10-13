@@ -1,0 +1,43 @@
+{
+	"component": "text-group",
+	"properties": [
+		{
+			"name": "textSpacing",
+			"type": "boolean",
+			"default": false,
+			"description": "Gives every child `0.5lh` of spacing above and below when enabled.",
+			"code": {
+				"prop": "textSpacing",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "👁️ Text Spacing",
+				"values": ["False", "True"]
+			}
+		},
+		{
+			"name": "alignment",
+			"type": "enum",
+			"values": ["start", "center", "end"],
+			"default": "start",
+			"description": "Define the content alignment",
+			"code": {
+				"prop": "alignment",
+				"type": "AlignmentType | string"
+			},
+			"design": {
+				"name": "🔀 Alignment",
+				"values": ["(Def) Start", "Center", "End"]
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot"
+			}
+		}
+	]
+}

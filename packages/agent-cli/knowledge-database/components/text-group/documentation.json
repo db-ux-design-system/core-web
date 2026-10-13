@@ -1,0 +1,114 @@
+{
+	"component": "text-group",
+	"figmaFileKey": "osMRGfMob0Zg1Oib7E7bob",
+	"description": {
+		"de": "Die Text Group stapelt mehrere Textblöcke und leitet den Abstand zwischen ihnen automatisch aus der jeweiligen Zeilenhöhe ab.",
+		"en": "The text group stacks several text blocks and derives the spacing between them automatically from their respective line height."
+	},
+	"shortDescription": {
+		"de": "Container für mehrere Textblöcke mit automatischem Abstand.",
+		"en": "Container for several text blocks with automatic spacing."
+	},
+	"useCases": {
+		"de": [
+			"Mehrere Paragraphen und Headings zu einem Textabschnitt gruppieren",
+			"Abstand zwischen Blöcken aus der Zeilenhöhe ableiten",
+			"Lesehierarchie aus Headings und Paragraphen aufbauen"
+		],
+		"en": [
+			"Group several paragraphs and headings into one text section",
+			"Derive the spacing between blocks from the line height",
+			"Build a reading hierarchy from headings and paragraphs"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "spacing",
+			"headline": {
+				"de": "Abstand",
+				"en": "Spacing"
+			},
+			"text": {
+				"de": "Der Abstand zwischen Textblöcken entsteht auf zwei Wegen. Die Text Group leitet ihn aus der Zeilenhöhe ab, ein Container oder Stack setzt ihn als festen Gap über ein `spacing`-Token.",
+				"en": "The spacing between text blocks comes from one of two mechanisms. The text group derives it from the line height, while a container or stack sets it as a fixed gap through a `spacing` token."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Verwende die Text Group, wenn sich der Abstand zwischen Headings und Paragraphen aus der Zeilenhöhe ableiten soll.",
+					"en": "Use the text group when the spacing between headings and paragraphs should derive from the line height."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Überschreibe den automatischen Abstand innerhalb einer Text Group nicht mit einem manuellen Gap. Ein fester Gap gilt für alle Elemente gleich und skaliert nicht mit deren Zeilenhöhe. Verwende dafür einen Container oder Stack mit einem `spacing`-Token.",
+					"en": "Don't override the automatic spacing inside a text group with a manual gap. A fixed gap applies to every element alike and does not scale with their line height. Use a container or stack with a `spacing` token instead."
+				}
+			}
+		},
+		{
+			"id": "hierarchy",
+			"headline": {
+				"de": "Hierarchie",
+				"en": "Hierarchy"
+			},
+			"text": {
+				"de": "Überschriften und Paragraphen bilden zusammen die Lesehierarchie des Textabschnitts. Jede Überschrift führt ihren Abschnitt ein, und die Ebenen steigen von oben nach unten ab.",
+				"en": "Headings and paragraphs together form the reading hierarchy of the text section. Each heading introduces its section, and the levels descend from top to bottom."
+			},
+			"do": {
+				"figmaNodeId": "4003-12",
+				"description": {
+					"de": "Ordne die Überschriftenebenen in klarer Folge an und stelle die zugehörigen Paragraphen dahinter.",
+					"en": "Structure the section with a clear order of heading levels followed by their paragraphs."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4003-13",
+				"description": {
+					"de": "Setze die Überschriftenebenen nicht in beliebiger Reihenfolge ein. Eine unklare Hierarchie macht den Abschnitt schwer erfassbar.",
+					"en": "Don't mix heading levels without a logical order. An unclear hierarchy makes the section hard to scan."
+				}
+			}
+		},
+		{
+			"id": "single-h1",
+			"headline": {
+				"de": "Ein H1 pro Seite",
+				"en": "One H1 per Page"
+			},
+			"text": {
+				"de": "Das `h1` benennt die Seite als Ganzes und kommt deshalb nur einmal vor, auch bei mehreren Text Groups.",
+				"en": "The `h1` names the page as a whole and therefore appears only once, even with several text groups."
+			},
+			"do": {
+				"figmaNodeId": "4003-15",
+				"description": {
+					"de": "Verwende ein einzelnes `h1` als Seitentitel und `h2` bis `h6` für die Abschnitte innerhalb der Text Groups.",
+					"en": "Use a single `h1` as the page title and `h2` to `h6` for the sections within the text groups."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4003-16",
+				"description": {
+					"de": "Verteile mehrere `h1` nicht über die Text Groups einer Seite. Mehrere oberste Ebenen brechen die Dokumentstruktur und erschweren die Navigation mit Screenreadern.",
+					"en": "Don't place multiple `h1` elements across the text groups of a page. Several top-level headings break the document structure and impair screen reader navigation."
+				}
+			}
+		}
+	],
+	"examples": [],
+	"faq": [],
+	"related": [
+		{
+			"component": "heading"
+		},
+		{
+			"component": "paragraph"
+		},
+		{
+			"component": "stack"
+		}
+	]
+}

@@ -1,0 +1,58 @@
+{
+	"component": "paragraph",
+	"figmaFileKey": "uQWIOez4kH98MCBTiZRjGp",
+	"description": {
+		"de": "Der Paragraph gibt einen fortlaufenden Block Bodytext aus, in dem sich einzelne Wörter oder Passagen betonen lassen.",
+		"en": "The paragraph renders a continuous block of body text in which single words or passages can be emphasized."
+	},
+	"shortDescription": {
+		"de": "Einzelner Block Bodytext.",
+		"en": "Single block of body text."
+	},
+	"useCases": {
+		"de": [
+			"Fortlaufenden Bodytext als einzelnen Block ausgeben",
+			"Einzelne Wörter oder Passagen betonen",
+			"Mehrere Paragraphen in einer Text Group stapeln"
+		],
+		"en": [
+			"Render continuous body text as a single block",
+			"Emphasize individual words or passages",
+			"Stack several paragraphs inside a text group"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "emphasis",
+			"headline": {
+				"de": "Betonung",
+				"en": "Emphasis"
+			},
+			"text": {
+				"de": "Betonung wirkt über Kontrast. Fett und Kursiv heben einzelne Stellen heraus, solange der übrige Text unverändert bleibt.",
+				"en": "Emphasis works through contrast. Bold and italic make single spots stand out as long as the rest of the text stays unchanged."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Betone einzelne Wörter oder kurze Passagen, um das Wichtige im Text hervorzuheben.",
+					"en": "Emphasize single words or short phrases to highlight what matters within the text."
+				}
+			},
+			"caution": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Ein ganzer Paragraph in Fett oder Kursiv nimmt den Kontrast, dann sticht nichts mehr heraus. Lange Passagen werden dadurch außerdem schwerer zu lesen. Beschränke Fett und Kursiv auf die Stellen, die Betonung brauchen.",
+					"en": "Setting a whole paragraph in bold or italic removes the contrast, so nothing stands out any more. Long passages also become harder to read. Limit bold and italic to the spots that need emphasis."
+				}
+			}
+		}
+	],
+	"examples": [],
+	"faq": [],
+	"related": [
+		{
+			"component": "text-group"
+		}
+	]
+}

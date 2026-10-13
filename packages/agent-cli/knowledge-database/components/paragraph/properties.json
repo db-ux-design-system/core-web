@@ -1,0 +1,47 @@
+{
+	"component": "paragraph",
+	"properties": [
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["lg", "md", "sm"],
+			"default": "md",
+			"description": "Sets the visual size. Inherits from the surrounding typography when omitted.",
+			"code": {
+				"prop": "size",
+				"type": "ParagraphSizeType"
+			},
+			"design": {
+				"name": "🔀 Size",
+				"values": ["lg", "(Def) md", "sm"],
+				"note": "The code sets no prop default and inherits the size from the surrounding typography instead, which resolves to md in a default context."
+			}
+		},
+		{
+			"name": "fontWeight",
+			"type": "enum",
+			"values": ["black", "regular"],
+			"default": "regular",
+			"description": "Sets the font variant: `black` is weight 900, `regular` is 400.",
+			"code": {
+				"prop": "fontWeight",
+				"type": "ParagraphFontWeightType"
+			},
+			"design": {
+				"name": null,
+				"note": "Figma does not offer black yet, so the component only covers the regular default there. Inline emphasis in bold or italic is set directly on the text layer."
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "✏️ Text",
+				"type": "text",
+				"defaultValue": "Text",
+				"note": "Figma carries the content in a text property. In code the content always comes through children, there is no text property."
+			}
+		}
+	]
+}

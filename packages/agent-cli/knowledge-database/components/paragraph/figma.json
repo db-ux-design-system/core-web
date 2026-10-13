@@ -1,0 +1,15 @@
+{
+	"component": "paragraph",
+	"library": "core-components",
+	"pageId": "41423:16",
+	"pageName": "Paragraph (Beta)",
+	"componentSets": [
+		{
+			"name": "Paragraph (Beta)",
+			"nodeId": "41423:93",
+			"type": "COMPONENT_SET",
+			"key": "0190a605abea7c7a7f67af7bd189339607f3eb3b"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--paragraph---text-group-beta' (fileKey Pa2VnEqbnbkTmDEC8i6Gz1, Branch von core-components mlJ6R0GkfR15a93KSlqXtB) und dem Umsetzungsstand aus dem noch offenen Pull Request #8328 (Branch 'feat-text-components'). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst gemeinsam mit Text Group den Concept-Eintrag 'Text' aus Core Lab ab, der mit dem Anlegen dieser Komponenten entfernt wurde. Einzige Variantenachse ist 🔀 Size mit drei Werten, also drei Varianten. Die Komponente ist keine Slot-Komponente: der Inhalt steckt in Figma in der Text-Property ✏️ Text, im Code kommt er über Children."
+}

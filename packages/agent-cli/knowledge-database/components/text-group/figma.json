@@ -1,0 +1,15 @@
+{
+	"component": "text-group",
+	"library": "core-components",
+	"pageId": "41553:3476",
+	"pageName": "Text Group (Beta)",
+	"componentSets": [
+		{
+			"name": "Text Group (Beta)",
+			"nodeId": "41423:13883",
+			"type": "COMPONENT_SET",
+			"key": "c48bab74c835c75a98b00ee7e017a94f7a127b7e"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--paragraph---text-group-beta' (fileKey Pa2VnEqbnbkTmDEC8i6Gz1, Branch von core-components mlJ6R0GkfR15a93KSlqXtB) und dem Umsetzungsstand aus dem noch offenen Pull Request #8328 (Branch 'feat-text-components'). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst gemeinsam mit Paragraph den Concept-Eintrag 'Text' aus Core Lab ab, der mit dem Anlegen dieser Komponenten entfernt wurde. Sechs Varianten aus den zwei Achsen 🔀 Alignment und 👁️ Text Spacing. Die Komponente ist eine Slot-Komponente: der Children-Slot nimmt die Textblöcke auf und begrenzt sie nicht auf bestimmte Komponenten, weil im Code jedes 'h1' bis 'h6' und jedes 'p' unterhalb der Gruppe vom Abstand erfasst wird."
+}
