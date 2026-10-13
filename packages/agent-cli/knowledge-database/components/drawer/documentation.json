@@ -128,11 +128,11 @@
 			"id": "size",
 			"headline": {
 				"de": "Größenstufen",
-				"en": "Size Steps"
+				"en": "Sizes"
 			},
 			"text": {
 				"de": "Die vier Stufen decken unterschiedliche Inhaltsarten ab. Mehr Fläche als nötig verdeckt nur mehr vom Seitenkontext.",
-				"en": "The four steps cover different kinds of content. More area than needed only covers more of the page context."
+				"en": "The four sizes cover different kinds of content. More area than needed only covers more of the page context."
 			},
 			"items": [
 				{
