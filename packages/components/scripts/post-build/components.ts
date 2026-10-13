@@ -83,6 +83,17 @@ export const getComponents = (): Component[] => [
 	},
 	{
 		name: 'text-group'
+  },
+  {
+		name: 'breadcrumb-popover-item'
+	},
+
+	{
+		name: 'breadcrumb-item'
+	},
+
+	{
+		name: 'breadcrumb'
 	},
 
 	...headingComponents,

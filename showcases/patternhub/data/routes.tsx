@@ -45,6 +45,8 @@ import TextGroupShowcase from '@components/components/text-group/showcase/text-g
 
 import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
 
+import BreadcrumbShowcase from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
+
 import Components from './components.json';
 
 export type NavigationItem = {
@@ -58,6 +60,8 @@ export type NavigationItem = {
 
 const nameComponentMap = {
 	pagination: <PaginationShowcase isPatternhub />,
+
+	breadcrumb: <BreadcrumbShowcase isPatternhub />,
 
 	heading: <HeadingShowcase isPatternhub />,
 

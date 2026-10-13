@@ -7,6 +7,9 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
+	DBBreadcrumb,
+	DBBreadcrumbItem,
+	DBBreadcrumbPopoverItem,
 	DBButton,
 	DBCard,
 	DBCheckbox,
@@ -524,6 +527,29 @@ const ComponentSwitch = ({
 			<DBTextGroup className={className} {...props}>
 				{resolvedContent}
 			</DBTextGroup>
+     );
+  }
+	if (type === 'breadcrumb') {
+		return (
+			<DBBreadcrumb className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumb>
+		);
+	}
+
+	if (type === 'breadcrumb-item') {
+		return (
+			<DBBreadcrumbItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbItem>
+		);
+	}
+
+	if (type === 'breadcrumb-popover-item') {
+		return (
+			<DBBreadcrumbPopoverItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbPopoverItem>
 		);
 	}
 
