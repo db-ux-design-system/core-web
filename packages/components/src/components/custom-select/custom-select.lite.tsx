@@ -1074,11 +1074,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						)}
 						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}></summary>
-					{/* Composition API: a consumer-provided dropdown is rendered as-is.
-					    It stays a sibling of the empty <summary> toggle rather than
-					    wrapping it, because the summary cannot be wrapped in Angular. */}
-					{props.children}
-					<Show when={props.options}>
+					<Show when={props.options} else={props.children}>
 						<DBCustomSelectDropdown width={props.dropdownWidth}>
 							<Show when={state.searchEnabled}>
 								<div>

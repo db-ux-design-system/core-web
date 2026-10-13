@@ -29,7 +29,13 @@
 
 	@include form-components.set-form-component-padding-inline;
 
-	span {
+	.db-custom-select-label,
+	.db-custom-select-tags span {
+		// The selected value lives here, next to the (empty) summary. The shared
+		// get-validity-color() mixin only recolors the summary and placeholder, so
+		// pick up the valid/invalid color via the adaptive token it remaps on the
+		// .db-custom-select root - default color otherwise.
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		text-overflow: ellipsis;
 		overflow: hidden;
 		text-wrap: nowrap;
@@ -82,6 +88,8 @@
 	}
 
 	&::after {
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+
 		@extend %db-overwrite-font-size-sm;
 
 		position: relative;
