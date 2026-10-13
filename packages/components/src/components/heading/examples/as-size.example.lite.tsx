@@ -7,15 +7,15 @@ useMetadata({
 	storybookTitle: 'Semantic and visual decoupling',
 	storybookComponentName: 'DBHeadingH2',
 	storybookComponentNames: ['DBHeadingH6', 'DBHeadingH2'],
-	storybookNames: ['h6 rendered at 2xl', 'h2 rendered at 3xs'],
+	storybookNames: ['h6 rendered as h1', 'h2 rendered as h6'],
 	storybookArgTypes: StorybookHeadingArgTypes
 });
 
 export default function HeadingAsSize() {
 	return (
 		<Fragment>
-			<DBHeadingH6 size="2xl">Semantic h6, visual 2xl</DBHeadingH6>
-			<DBHeadingH2 size="3xs">Semantic h2, visual 3xs</DBHeadingH2>
+			<DBHeadingH6 visualSize="h1">Semantic h6, visual h1</DBHeadingH6>
+			<DBHeadingH2 visualSize="h6">Semantic h2, visual h6</DBHeadingH2>
 		</Fragment>
 	);
 }
