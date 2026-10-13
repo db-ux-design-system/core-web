@@ -1540,7 +1540,7 @@
             - text: Option 1
       - button "Close"
   - status
-  - text: Custom Selected Label
+  - text: "Custom Selected Label Selected: Label controlled"
   - group:
     - article:
       - radiogroup "id-10aasds4-Custom Selected Label":
@@ -1561,7 +1561,6 @@
             - radio "Option 5"
             - text: Option 5
       - button "Close"
-  - text: "Selected: Label controlled"
   - status
   - text: Transform Selected Label
   - group:
@@ -1770,7 +1769,11 @@
             - text: G2:Option 2
       - button "Close"
   - status
-  - text: Colors
+  - text: Colors Blue Color, Green Color Blue Color
+  - button "Remove Blue Color"
+  - text: Green Color
+  - button "Remove Green Color"
+  - button "Clear selection"
   - group:
     - article:
       - group "Colors":
@@ -1785,17 +1788,13 @@
             - checkbox "Green Color" [checked]
             - text: Green Color
       - button "Close"
-  - text: Blue Color, Green Color Blue Color
-  - button "Remove Blue Color"
-  - text: Green Color
-  - button "Remove Green Color"
-  - button "Clear selection"
   - status
   - button "Set values"
   - button "Reset to null"
   - button "Reset to undefined"
   - button "Reset to empty array"
-  - text: Values reset
+  - text: Values reset Option 1, Option 2
+  - button "Clear selection"
   - group:
     - article:
       - group "Values reset":
@@ -1807,6 +1806,4 @@
             - checkbox "Option 2" [checked]
             - text: Option 2
       - button "Close"
-  - text: Option 1, Option 2
-  - button "Clear selection"
   - status
