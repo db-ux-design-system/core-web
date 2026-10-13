@@ -84,6 +84,18 @@ export const getComponents = (): Component[] => [
 		}
 	},
 
+	{
+		name: 'breadcrumb-popover-item'
+	},
+
+	{
+		name: 'breadcrumb-item'
+	},
+
+	{
+		name: 'breadcrumb'
+	},
+
 	...headingComponents,
 	...controlPanelActionsComponents,
 
