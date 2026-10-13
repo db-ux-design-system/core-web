@@ -55,7 +55,6 @@ $stack-gaps: (
 
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-start;
-	overflow: auto;
 
 	&:is([data-width="full"], :not([data-width])) {
 		inline-size: 100%;
@@ -91,6 +90,7 @@ $stack-gaps: (
 
 	&[data-wrap="true"] {
 		flex-wrap: wrap;
+		overflow: auto;
 
 		// Column wrap requires explicit block-size to function correctly
 		&:not([data-direction="row"])[data-height="full"] {
