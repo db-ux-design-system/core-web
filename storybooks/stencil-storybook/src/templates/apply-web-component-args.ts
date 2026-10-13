@@ -16,6 +16,14 @@ const toEventName = (key: string): string =>
 	key.replace(/^on/, '').toLowerCase();
 
 /**
+ * Whether an arg key addresses an HTML attribute rather than a DOM property.
+ * Dash-prefixed keys (`data-density`, `data-logo`, `aria-label`, ...) exist only
+ * as attributes on custom elements -- they are never reflected to a camelCase
+ * property -- so they must be set with `setAttribute`, not a property assignment.
+ */
+const isAttributeKey = (key: string): boolean => key.includes('-');
+
+/**
  * Lit element directive that applies Storybook args onto a custom element.
  *
  * Used as an element binding in the generated story templates
@@ -50,15 +58,23 @@ class SpreadArgsDirective extends Directive {
 		const element = part.element as HTMLElement & Record<string, unknown>;
 		const resolvedArgs = args ?? {};
 
-		// Reset properties and event listeners that were applied on a previous
-		// update but are now absent (an Args control was reset or cleared). Without
-		// this, the stale value lingers on the element instead of returning to its
-		// default. Collect first, then mutate, so we do not edit the maps mid-iteration.
+		// Reset properties/attributes and event listeners that were applied on a
+		// previous update but are now absent (an Args control was reset or
+		// cleared). Without this, the stale value lingers on the element instead
+		// of returning to its default. Collect first, then mutate, so we do not
+		// edit the maps mid-iteration.
 		for (const key of [...this.appliedProps.keys()]) {
 			const value = resolvedArgs[key];
 			if (value === undefined || value === null) {
 				const defaultValue = this.appliedProps.get(key);
-				element[key] = defaultValue;
+				// A dash-prefixed key (data-*, aria-*) lives only as an attribute,
+				// so it has no property default to restore -- remove the attribute
+				// instead. Everything else is restored to its captured property default.
+				if (isAttributeKey(key)) {
+					element.removeAttribute(key);
+				} else {
+					element[key] = defaultValue;
+				}
 				this.appliedProps.delete(key);
 			}
 		}
@@ -91,13 +107,21 @@ class SpreadArgsDirective extends Directive {
 				continue;
 			}
 
-			// Capture the element's default for this property the first time we
-			// set it, so a later reset can restore it instead of leaving the arg value.
+			// Track that we applied this key so a later reset can clear it.
 			if (!this.appliedProps.has(key)) {
 				this.appliedProps.set(key, element[key]);
 			}
-			// Set as a property so camelCase names and non-string values work.
-			element[key] = value;
+
+			// A dash-prefixed key (data-*, aria-*) only exists as an attribute --
+			// web components do not expose it as a DOM property, so a property
+			// assignment would silently do nothing. Route it through
+			// setAttribute. camelCase props keep the property path so non-string
+			// values and reflected props work.
+			if (isAttributeKey(key)) {
+				element.setAttribute(key, String(value));
+			} else {
+				element[key] = value;
+			}
 		}
 
 		return noChange;

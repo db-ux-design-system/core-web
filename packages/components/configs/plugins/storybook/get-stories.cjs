@@ -6,7 +6,10 @@ const {
 	blockToVue
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
 const prettier = require('@prettier/sync');
-const { nodeToWebComponent } = require('./node-to-web-component.cjs');
+const {
+	nodeToWebComponent,
+	nodeToWebComponentSlots
+} = require('./node-to-web-component.cjs');
 /**
  * Recursively finds a component by name in the node tree
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to search
@@ -25,10 +28,21 @@ const findComponent = (node, componentName) => {
 };
 
 /**
- * Recursively filters out children with data-db-ignore="true"
+ * Rewrites every `data-sb-replace` node into a `<div>` carrying the replacement
+ * text, so a readout element (`<p data-sb-replace="Selections by user: 0">`)
+ * renders its static placeholder text in the story.
+ *
+ * For the web-components target the `nodeToWebComponent` serializer treats a
+ * `_text` node as a bare text carrier (it never wraps it), which would collapse
+ * this block element to inline text -- unlike Angular/Vue, which emit
+ * `<div>text</div>`. Tagging the rewritten node with `data-sb-wrap-text` tells
+ * that serializer to keep the wrapper. The marker is only added for stencil so
+ * it cannot leak into the other targets' output as a real attribute.
+ *
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to process
+ * @param {string} target - Target framework
  */
-const replaceChildren = (node) => {
+const replaceChildren = (node, target) => {
 	if (!node.children) return;
 	for (const child of node.children) {
 		const replaceNode = child.properties?.['data-sb-replace'];
@@ -37,8 +51,11 @@ const replaceChildren = (node) => {
 			child.bindings = {};
 			child.slots = {};
 			child.properties = { _text: replaceNode };
+			if (target === 'stencil') {
+				child.properties['data-sb-wrap-text'] = 'true';
+			}
 		}
-		replaceChildren(child);
+		replaceChildren(child, target);
 	}
 };
 
@@ -75,8 +92,9 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 		// Web components can only carry string attributes here. A binding whose
 		// value is JSX markup (a slot-prop such as `brand={<DBControlPanelBrand />}`
 		// on DBControlPanelDesktop) has no attribute form -- emitting its raw code
-		// would produce invalid `.ts`. Skip it; the element still renders, just
-		// without that projected slot.
+		// would produce invalid `.ts`. The JSX value is projected as a slotted
+		// child instead (see `nodeToWebComponentSlots`), so skip the attribute
+		// form here.
 		if (
 			target === 'stencil' &&
 			typeof value.code === 'string' &&
@@ -281,7 +299,7 @@ const getStories = ({
 			foundComponent.properties = { properties: 'replace' };
 			foundComponent.bindings = {};
 
-			replaceChildren(example);
+			replaceChildren(example, target);
 
 			let template = '';
 			if (target === 'angular') {
@@ -448,16 +466,24 @@ const getStories = ({
 				// (`<img src=x onerror=...>`). Keeping it a static literal mirrors
 				// the Angular/Vue renders, which also bake their children into the
 				// template rather than reading them from the live args.
-				const children = foundComponent.children
-					.map((child) => nodeToWebComponent(child, allImports))
-					.join('')
-					.trim();
+				const children = (
+					nodeToWebComponentSlots(foundComponent, allImports) +
+					foundComponent.children
+						.map((child) => nodeToWebComponent(child, allImports))
+						.join('')
+				).trim();
 
 				foundComponent.slots = {};
+				// Carry the `unsafeHTML` placeholder on a transparent `Fragment`
+				// node, NOT a `<div>`: the serialized markup must become a DIRECT
+				// child of the reference custom element. A wrapping `<div>` would
+				// push every `slot="..."` child one level too deep, and scoped/
+				// shadow slot projection only relocates direct children -- so named
+				// slots (brand, startSlot, endSlot, ...) would silently not render.
 				foundComponent.children = children.length
 					? [
 							{
-								name: 'div',
+								name: 'Fragment',
 								properties: {
 									_text: `\${unsafeHTML(\`${children}\`)}`
 								},

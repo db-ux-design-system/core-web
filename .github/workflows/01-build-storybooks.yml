@@ -11,7 +11,7 @@ on:
         required: true
         type: string
 
-# One job generates the stories and builds all five storybooks. Previously this
+# One job generates the stories and builds all six storybooks. Previously this
 # was a separate build-stories job (uploading stories artifacts) fanning out to
 # five parameterized build-storybook jobs. Collapsing them removes six jobs'
 # worth of Init Cache + artifact round-trips down to one, which matters under the

@@ -9,8 +9,6 @@ const __dirname = path.dirname(__filename).replaceAll('\\', '/');
 export default defineConfig({
 	resolve: {
 		alias: {
-			// Weird issue with storybook vite-builder inside monorepo
-			vue: path.resolve(__dirname, '../../node_modules/vue'),
 			// Web components reference the element by tag; the generated stories
 			// only import the Props types from the stencil output source.
 			'@components': path.resolve(__dirname, '../../output/stencil/src')

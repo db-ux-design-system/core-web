@@ -18,8 +18,10 @@ const toPascalCase = (str) =>
 
 /**
  * Convert a PascalCase string to dash-case, splitting on the letter->digit
- * boundary too (`HeadingH1` -> `heading-h-1`). Kept identical to the `dashCase`
- * in `plugins/attribute-passing/index.cjs` so derived values stay in sync.
+ * boundary too (`HeadingH1` -> `heading-h-1`). This is the single source for the
+ * derived custom-element tag: `plugins/attribute-passing/index.cjs` imports it
+ * from here so the registered element tag and the generated story tags cannot
+ * drift apart.
  * @param str {string}
  * @returns {string}
  */
