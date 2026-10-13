@@ -83,7 +83,8 @@ export default function StackWrap() {
 				</DBInfotext>
 				<DBStack
 					style={{ padding: 'var(--db-spacing-fixed-xs)' }}
-					wrap={true}>
+					wrap={true}
+					height="full">
 					<span class="dummy-component">
 						<a href="#">Content 1</a>
 					</span>
