@@ -30,6 +30,7 @@ export default function StackAlignmentRow() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					alignment="stretch"
 					direction="row">
 					<span class="dummy-component">
@@ -59,6 +60,7 @@ export default function StackAlignmentRow() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					alignment="start"
 					direction="row">
 					<span class="dummy-component">
@@ -88,6 +90,7 @@ export default function StackAlignmentRow() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					alignment="center"
 					direction="row">
 					<span class="dummy-component">
@@ -117,6 +120,7 @@ export default function StackAlignmentRow() {
 						padding: 'var(--db-spacing-fixed-xs)',
 						border: 'var(--db-border-width-3xs) dashed var(--db-adaptive-on-bg-basic-emphasis-60-default)'
 					}}
+					height="full"
 					alignment="end"
 					direction="row">
 					<span class="dummy-component">
