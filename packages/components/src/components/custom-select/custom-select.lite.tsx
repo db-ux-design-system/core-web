@@ -1059,6 +1059,89 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				</select>
 			</label>
 			<DBCustomSelectFormField>
+				<Show
+					when={
+						state._values?.length || state._selectedLabels?.length
+					}
+					else={
+						<span
+							data-placeholder={props.placeholder ?? props.label}
+							class="db-custom-select-placeholder"
+							aria-hidden="true"
+							id={state._placeholderId}></span>
+					}>
+					<Show
+						when={props.selectedType === 'tag'}
+						else={
+							<span
+								class="db-custom-select-label"
+								id={state._selectedLabelsId}>
+								<Show when={props.selectedPrefix}>
+									<span data-visually-hidden="true">
+										{props.selectedPrefix}
+									</span>
+								</Show>
+								{state._selectedLabels}
+							</span>
+						}>
+						<span
+							class="db-custom-select-label"
+							data-visually-hidden="true"
+							id={state._selectedLabelsId}>
+							<Show when={props.selectedPrefix}>
+								{props.selectedPrefix}
+							</Show>
+							{state._selectedLabels}
+						</span>
+						<div class="db-custom-select-tags">
+							<For each={state._selectedOptions}>
+								{(option: CustomSelectOptionType) => (
+									<DBTag
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'tag-'
+											)
+										})}
+										removeButton={state.getTagRemoveLabel(
+											option
+										)}
+										onRemove={() =>
+											state.handleTagRemove(option)
+										}
+										emphasis="strong"
+										behavior="removable">
+										{state.getOptionLabel(option)}
+									</DBTag>
+								)}
+							</For>
+						</div>
+					</Show>
+					<Show
+						when={
+							state._values?.length &&
+							(props.showClearSelection ?? true)
+						}>
+						<button
+							type="button"
+							class="db-button db-custom-select-clear"
+							data-icon="cross"
+							data-variant="ghost"
+							data-no-text="true"
+							data-size="small"
+							name={state._id}
+							form={state._id}
+							disabled={getBoolean(props.disabled, 'disabled')}
+							onClick={(event) => state.handleClearAll(event)}>
+							{props.clearSelectionText}
+							<DBTooltip placement="top">
+								{props.clearSelectionText}
+							</DBTooltip>
+						</button>
+					</Show>
+				</Show>
 				<details
 					ref={detailsRef}
 					open={props.open}
@@ -1229,89 +1312,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						</DBCustomSelectDropdown>
 					</Show>
 				</details>
-				<Show
-					when={
-						state._values?.length || state._selectedLabels?.length
-					}
-					else={
-						<span
-							data-placeholder={props.placeholder ?? props.label}
-							class="db-custom-select-placeholder"
-							aria-hidden="true"
-							id={state._placeholderId}></span>
-					}>
-					<Show
-						when={props.selectedType === 'tag'}
-						else={
-							<span
-								class="db-custom-select-label"
-								id={state._selectedLabelsId}>
-								<Show when={props.selectedPrefix}>
-									<span data-visually-hidden="true">
-										{props.selectedPrefix}
-									</span>
-								</Show>
-								{state._selectedLabels}
-							</span>
-						}>
-						<span
-							class="db-custom-select-label"
-							data-visually-hidden="true"
-							id={state._selectedLabelsId}>
-							<Show when={props.selectedPrefix}>
-								{props.selectedPrefix}
-							</Show>
-							{state._selectedLabels}
-						</span>
-						<div class="db-custom-select-tags">
-							<For each={state._selectedOptions}>
-								{(option: CustomSelectOptionType) => (
-									<DBTag
-										key={useTarget({
-											vue: undefined,
-											stencil: undefined,
-											default: getOptionKey(
-												option,
-												'tag-'
-											)
-										})}
-										removeButton={state.getTagRemoveLabel(
-											option
-										)}
-										onRemove={() =>
-											state.handleTagRemove(option)
-										}
-										emphasis="strong"
-										behavior="removable">
-										{state.getOptionLabel(option)}
-									</DBTag>
-								)}
-							</For>
-						</div>
-					</Show>
-					<Show
-						when={
-							state._values?.length &&
-							(props.showClearSelection ?? true)
-						}>
-						<button
-							type="button"
-							class="db-button db-custom-select-clear"
-							data-icon="cross"
-							data-variant="ghost"
-							data-no-text="true"
-							data-size="small"
-							name={state._id}
-							form={state._id}
-							disabled={getBoolean(props.disabled, 'disabled')}
-							onClick={(event) => state.handleClearAll(event)}>
-							{props.clearSelectionText}
-							<DBTooltip placement="top">
-								{props.clearSelectionText}
-							</DBTooltip>
-						</button>
-					</Show>
-				</Show>
 			</DBCustomSelectFormField>
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
