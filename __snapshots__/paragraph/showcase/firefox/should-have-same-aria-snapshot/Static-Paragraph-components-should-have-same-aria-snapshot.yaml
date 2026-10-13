@@ -1,0 +1,10 @@
+- main:
+  - heading "DBParagraph" [level=1]
+  - link "Sizes"
+  - paragraph: (Default) Inherited, same as md
+  - paragraph: Size lg
+  - paragraph: Size md
+  - paragraph: Size sm
+  - link "Forwarded Attributes"
+  - paragraph: Native attributes land on the paragraph element.
+  - paragraph: Only announced by assistive technology.

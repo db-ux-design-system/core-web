@@ -120,6 +120,21 @@
 	}
 }
 
+/* Full width for block text. Must stay top level, the wrapper is not nested. */
+.paragraph-showcase,
+.text-group-showcase {
+	display: contents;
+}
+
+/* `> * >` covers the extra element level the Angular/Stencil hosts add. */
+.paragraph-showcase .variants-list,
+.paragraph-showcase .variants-list > div:not([class^="db-"], [data-area]),
+.text-group-showcase .variants-list,
+.text-group-showcase .variants-list > div:not([class^="db-"], [data-area]),
+.text-group-showcase .variants-list > * > div:not([class^="db-"], [data-area]) {
+	display: block;
+}
+
 .variants-list > db-popover > .db-popover > db-button > button,
 .variants-list > .db-popover > button,
 .variants-list > * > db-button > button,

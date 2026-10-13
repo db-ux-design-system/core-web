@@ -39,7 +39,9 @@ import ControlPanelDesktopShowcase from '@components/components/control-panel-de
 import ControlPanelFlatIconShowcase from '@components/components/control-panel-flat-icon/showcase/control-panel-flat-icon.showcase';
 import ControlPanelMobileShowcase from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import HeadingShowcase from '@components/components/heading/showcase/heading.showcase';
+import ParagraphShowcase from '@components/components/paragraph/showcase/paragraph.showcase';
 import ShellShowcase from '@components/components/shell/showcase/shell.showcase';
+import TextGroupShowcase from '@components/components/text-group/showcase/text-group.showcase';
 
 import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
 
@@ -62,6 +64,9 @@ const nameComponentMap = {
 	breadcrumb: <BreadcrumbShowcase isPatternhub />,
 
 	heading: <HeadingShowcase isPatternhub />,
+
+	paragraph: <ParagraphShowcase isPatternhub />,
+	'text-group': <TextGroupShowcase isPatternhub />,
 
 	accordion: <AccordionShowcase isPatternhub />,
 
