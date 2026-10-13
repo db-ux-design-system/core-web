@@ -521,7 +521,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		handleOptionSelected: (values: string[], skipDebounce?: boolean) => {
-			// skipDebounce is for changes that provably cannot loop back here (e.g. an autofill of the native select); a caller-side timestamp reset would not work, as it is a state setter in the React output.
+			// skipDebounce: for external changes that cannot loop back
+			// here. A caller-side timestamp reset would not work, it is
+			// a state setter in the React output.
 			const skip =
 				!skipDebounce &&
 				new Date().getTime() - state._internalChangeTimestamp < 200;
@@ -962,8 +964,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	});
 
 	function handleNativeSelectChange(event: any) {
-		// The backing <select> is hidden and otherwise only written to imperatively by handleValidation(), which does not fire `change`. So a `change` arriving here comes from the outside: browser autofill or a password manager acting on the advertised `autocomplete`. Mirror it into our state, otherwise the summary, the option states and onOptionSelected stay stale while the submitted form value has already changed - and the next handleValidation() would silently overwrite the autofilled value again. stopPropagation keeps the native event from surfacing as a component event (this also satisfies React).
-		event.stopPropagation();
+		// The hidden select advertises `autocomplete`, so a `change` here
+		// is an autofill. Mirror it, otherwise the summary stays stale
+		// while the submitted value has changed - and the next
+		// handleValidation() would overwrite the autofilled value again.
+		event.stopPropagation(); // Also satisfies React.
 
 		const select = event.target as HTMLSelectElement;
 		const values =
@@ -984,7 +989,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return;
 		}
 
-		// An autofill is a genuine external change, so it must not be swallowed by the internal-change debounce. Writing selectRef.value does not fire `change`, so this cannot loop back into this handler.
+		// Autofill must bypass the internal-change debounce. Writing
+		// selectRef.value fires no `change`, so this cannot loop back.
 		state.handleOptionSelected(values, true);
 	}
 
@@ -1012,7 +1018,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
-				{/* This select is the form-submitted value. It is hidden, but `autocomplete` is advertised on it, so browser autofill and password managers can write to it - see handleNativeSelectChange for the sync back into our state. */}
+				{/* The form-submitted value. Hidden, but advertises
+				    `autocomplete`, so autofill can write to it - see
+				    handleNativeSelectChange. */}
 				<select
 					role="none"
 					hidden
