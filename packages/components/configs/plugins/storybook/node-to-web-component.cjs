@@ -247,6 +247,25 @@ const escapeTemplateLiteral = (text) =>
 	text.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
 
 /**
+ * Collapse the whitespace of a text node the way JSX/esbuild does, so a
+ * web-components story keeps the same spacing as the React/Angular/Vue outputs.
+ * Interior whitespace runs collapse to a single space. The leading and trailing
+ * runs are newline-aware: a run containing a newline is pure source-layout
+ * formatting (the element sits on its own indented line) and is dropped, while a
+ * same-line run is author-intended spacing next to an inline sibling and is kept
+ * as a single space. Caller guarantees the input is not whitespace-only.
+ * @param {string} text
+ * @returns {string}
+ */
+const collapseJsxWhitespace = (text) => {
+	const match = text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+	const [, leading, inner, trailing] = match;
+	const lead = leading && !leading.includes('\n') ? ' ' : '';
+	const trail = trailing && !trailing.includes('\n') ? ' ' : '';
+	return lead + inner.replace(/\s+/g, ' ') + trail;
+};
+
+/**
  * Serialize a node's named slots (JSX slot-props such as
  * `brand={<DBControlPanelBrand />}`, `endSlot={<DBBadge>New</DBBadge>}`,
  * `header={<DBDialogHeader text="Title" />}`) into slotted custom-element
@@ -315,21 +334,26 @@ const nodeToWebComponent = (node, childComponents = []) => {
 	// carrying its text in `_text`; it is a text carrier, not a real element, so
 	// emit the bare text and do not wrap it. In the source markup each element
 	// sits on its own indented line, so the whitespace around a text node
-	// (`\n\t\t\tCheck All\n\t\t`) is mostly formatting: collapse runs of
-	// whitespace to a single space, drop a whitespace-only node entirely, but
-	// keep a single leading/trailing space on real text -- it is semantic next to
-	// an inline sibling (`<img/> Custom Logo`, `text <db-link>...</db-link> text`)
-	// and dropping it would glue the words together. The injected
-	// `${unsafeHTML(...)}` placeholder is passed through verbatim; everything else
-	// is escaped so a literal backtick or `${` cannot break the template literal.
+	// (`\n\t\t\tCheck All\n\t\t`) is mostly formatting. Mirror JSX/esbuild
+	// whitespace handling: collapse interior runs to a single space, drop a
+	// whitespace-only node entirely, and for the leading/trailing run drop it
+	// when it contains a newline (formatting from the source layout) but keep a
+	// single space when it is same-line -- that space is semantic next to an
+	// inline sibling (`<img/> Custom Logo`, `text <db-link>...</db-link> text`)
+	// and dropping it would glue the words together, while a newline run would
+	// otherwise pad every element (`<db-button> Functional </db-button>`). The
+	// injected `${unsafeHTML(...)}` placeholder is passed through verbatim;
+	// everything else is escaped so a literal backtick or `${` cannot break the
+	// template literal.
 	if (node.properties && typeof node.properties._text === 'string') {
 		const raw = node.properties._text;
 		if (INJECTED_PLACEHOLDER.test(raw)) {
 			return raw;
 		}
-		const collapsed = raw.replace(/\s+/g, ' ');
 		const content =
-			collapsed.trim() === '' ? '' : escapeTemplateLiteral(collapsed);
+			raw.trim() === ''
+				? ''
+				: escapeTemplateLiteral(collapseJsxWhitespace(raw));
 		// A `data-sb-replace` readout node is rewritten by `get-stories.cjs` into
 		// a text carrier tagged with `data-sb-wrap-text`. Keep its wrapper so
 		// stencil emits `<div>text</div>` like Angular/Vue, instead of dropping

@@ -16,26 +16,58 @@ const toEventName = (key: string): string =>
 	key.replace(/^on/, '').toLowerCase();
 
 /**
- * Whether an arg key addresses an HTML attribute rather than a DOM property.
- * Dash-prefixed keys (`data-density`, `data-logo`, `aria-label`, ...) exist only
- * as attributes on custom elements -- they are never reflected to a camelCase
- * property -- so they must be set with `setAttribute`, not a property assignment.
+ * Whether an arg key is already an HTML attribute name rather than a camelCase
+ * property. Dash-prefixed keys (`data-density`, `data-logo`, `aria-label`, ...)
+ * exist only as attributes on custom elements and are passed through verbatim.
  */
-const isAttributeKey = (key: string): boolean => key.includes('-');
+const isDashKey = (key: string): boolean => key.includes('-');
+
+/**
+ * Kebab-case a camelCase prop key to the attribute name the custom element
+ * reads (`showIcon` -> `show-icon`, `size` -> `size`), matching the attribute
+ * casing the generated story markup uses (`toAttributeName` in
+ * `configs/plugins/storybook/node-to-web-component.cjs`). Dash keys are already
+ * attribute names and are returned unchanged.
+ */
+const toAttributeName = (key: string): string =>
+	isDashKey(key)
+		? key
+		: key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+
+/**
+ * Whether a value should be applied as a kebab-cased attribute rather than a DOM
+ * property. Serializable primitives (string/number/boolean) go on as attributes
+ * so they appear in the DOM and in Storybook's copyable "Show code" markup --
+ * none of the Stencil props reflect, so a property assignment would leave the
+ * snippet incomplete. Objects, arrays and functions cannot round-trip through an
+ * attribute string, so they keep the property path.
+ */
+const isAttributeValue = (value: unknown): boolean =>
+	typeof value === 'string' ||
+	typeof value === 'number' ||
+	typeof value === 'boolean';
 
 /**
  * Lit element directive that applies Storybook args onto a custom element.
  *
  * Used as an element binding in the generated story templates
  * (`<db-accordion ${spreadArgs(args)}>`), it keeps `args` and `children`
- * separate (children are injected by the render via `unsafeHTML`). Each arg is
- * set as a DOM **property** rather than an attribute, so camelCase props such as
- * `showIcon` / `headlinePlain` reach the component (custom elements do not
- * reflect camelCase attributes to properties). `on*` function args are attached
- * as event listeners.
+ * separate (children are injected by the render via `unsafeHTML`).
+ *
+ * Serializable args (string/number/boolean) are set as kebab-cased **attributes**
+ * so they land in the DOM and in Storybook's copyable "Show code" markup -- the
+ * Stencil props do not reflect, so a property assignment would leave that snippet
+ * incomplete. Non-serializable args (objects/arrays) keep the DOM **property**
+ * path, since they cannot round-trip through an attribute string. `on*` function
+ * args are attached as event listeners.
  */
 class SpreadArgsDirective extends Directive {
 	private appliedEvents = new Map<string, EventListener>();
+	// Keys applied as kebab-cased attributes; the value is the attribute name so
+	// a reset can remove the right attribute.
+	private appliedAttributes = new Map<string, string>();
+	// Keys applied as DOM properties, mapped to the property default captured
+	// before the first assignment so a reset can restore it.
 	private appliedProps = new Map<string, unknown>();
 
 	constructor(partInfo: PartInfo) {
@@ -63,18 +95,23 @@ class SpreadArgsDirective extends Directive {
 		// cleared). Without this, the stale value lingers on the element instead
 		// of returning to its default. Collect first, then mutate, so we do not
 		// edit the maps mid-iteration.
+		for (const [key, attributeName] of [
+			...this.appliedAttributes.entries()
+		]) {
+			const value = resolvedArgs[key];
+			if (value === undefined || value === null) {
+				// An attribute-applied key has no property default to restore --
+				// remove the attribute so the element returns to its default.
+				element.removeAttribute(attributeName);
+				this.appliedAttributes.delete(key);
+			}
+		}
+
 		for (const key of [...this.appliedProps.keys()]) {
 			const value = resolvedArgs[key];
 			if (value === undefined || value === null) {
-				const defaultValue = this.appliedProps.get(key);
-				// A dash-prefixed key (data-*, aria-*) lives only as an attribute,
-				// so it has no property default to restore -- remove the attribute
-				// instead. Everything else is restored to its captured property default.
-				if (isAttributeKey(key)) {
-					element.removeAttribute(key);
-				} else {
-					element[key] = defaultValue;
-				}
+				// Restore the property to the default captured before we assigned it.
+				element[key] = this.appliedProps.get(key);
 				this.appliedProps.delete(key);
 			}
 		}
@@ -107,19 +144,22 @@ class SpreadArgsDirective extends Directive {
 				continue;
 			}
 
-			// Track that we applied this key so a later reset can clear it.
-			if (!this.appliedProps.has(key)) {
-				this.appliedProps.set(key, element[key]);
-			}
-
-			// A dash-prefixed key (data-*, aria-*) only exists as an attribute --
-			// web components do not expose it as a DOM property, so a property
-			// assignment would silently do nothing. Route it through
-			// setAttribute. camelCase props keep the property path so non-string
-			// values and reflected props work.
-			if (isAttributeKey(key)) {
-				element.setAttribute(key, String(value));
+			// A dash key (data-*, aria-*) or any serializable primitive is set as
+			// a kebab-cased attribute, so it is visible in the DOM and in the
+			// copyable "Show code" markup (Stencil props do not reflect). A
+			// non-serializable value (object/array) keeps the property path,
+			// because it cannot round-trip through an attribute string.
+			if (isDashKey(key) || isAttributeValue(value)) {
+				const attributeName = toAttributeName(key);
+				if (!this.appliedAttributes.has(key)) {
+					this.appliedAttributes.set(key, attributeName);
+				}
+				element.setAttribute(attributeName, String(value));
 			} else {
+				// Track the property default before overwriting so a reset restores it.
+				if (!this.appliedProps.has(key)) {
+					this.appliedProps.set(key, element[key]);
+				}
 				element[key] = value;
 			}
 		}
