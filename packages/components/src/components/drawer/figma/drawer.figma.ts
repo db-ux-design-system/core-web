@@ -3,7 +3,6 @@ import { FigmaCodeConnect, FigmaProp } from '../../../shared/figma';
 export type FigmaDrawerProps = {
 	direction?: string;
 	containerSize?: string;
-	rounded?: boolean;
 	showSpacing?: boolean;
 	showBackdrop?: boolean;
 	_drawerHeader?: any;
@@ -31,7 +30,6 @@ const drawerProps: Record<string, FigmaProp> = {
 			Full: 'full'
 		}
 	},
-	rounded: { type: 'boolean', key: 'Rounded' },
 	showSpacing: { type: 'boolean', key: 'Show Spacing' },
 	showBackdrop: { type: 'boolean', key: 'Show Backdrop' },
 	_drawerHeader: {
