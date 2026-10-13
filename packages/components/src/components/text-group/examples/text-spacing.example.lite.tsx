@@ -17,11 +17,11 @@ export default function TextGroupTextSpacing() {
 			<DBTextGroup>
 				<DBParagraph>
 					Without text spacing the paragraphs sit directly on top of
-					each other, because the paragraph margins are reset.
+					each other: block text carries no margin unless the opt-in
+					is set.
 				</DBParagraph>
 				<DBParagraph>
-					Spacing is the group's job, so nothing has to be set on the
-					paragraphs themselves.
+					Nothing has to be set on the paragraphs themselves.
 				</DBParagraph>
 			</DBTextGroup>
 			{/* Half a line height per child, so a full one between two of them. */}
@@ -30,7 +30,7 @@ export default function TextGroupTextSpacing() {
 					With text spacing every child gets half a line height above
 					and below.
 				</DBParagraph>
-				<DBParagraph size="sm">
+				<DBParagraph>
 					Two adjacent children are a full line height apart, and the
 					group keeps half of one at its outer edges.
 				</DBParagraph>

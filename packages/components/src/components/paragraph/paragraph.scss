@@ -27,10 +27,8 @@ $paragraph-font-weights: (
 	}
 }
 
+/* No spacing and no `text-align`: both come from outside, so they inherit. */
 .db-paragraph {
-	/* `.db-text-group` owns spacing, and `text-align` stays unset so it inherits. */
-	margin-block: 0;
-
 	/* Body-copy counterpart to `text-wrap: balance` on headings. */
 	text-wrap: pretty;
 

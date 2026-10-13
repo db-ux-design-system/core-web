@@ -58,7 +58,7 @@ Several properties other systems expose would be duplicates here.
 `DBHeading` is the precedent to follow, and it deliberately did **not** ship the `as` property that `heading.md`
 proposed, because Mitosis could not handle a dynamic element. Instead: one component per element
 (`DBHeadingH1`-`DBHeadingH6`), plus `DBCustomHeading` as a styling wrapper for a consumer-authored element, plus the
-CSS-only path `.db-heading` with `data-size`, `data-font-weight`, `data-alignment` and `data-paragraph-spacing`. That
+CSS-only path `.db-heading` with `data-visual-size` and `data-font-weight`. That
 same constraint is what makes the split into several components below necessary rather than a single component with
 `as`.
 
@@ -92,10 +92,9 @@ typography utility classes from the foundations apply to it if needed.
   `heading.scss` plus `default-fonts.scss` use literals too.
 - **`alignment` sits on the group only.** The paragraphs inherit it, so it cannot drift between siblings of one
   block. `.db-paragraph` therefore sets no blanket `text-align`, because that would block exactly this inheritance.
-- **`textSpacing` gives every child `0.5lh` above and below**, so two adjacent children end up `1lh` apart while the
-  group keeps half a line height at its outer edges, which sets it against whatever precedes or follows. The value
-  follows the computed line height rather than a spacing token, mirroring `paragraphSpacing` on `DBHeading`, and
-  resolves against the group's typography, so the rhythm does not change with a child's `size`.
+- **`textSpacing` only sets an attribute.** It renders `data-text-spacing`, which the foundations turn into a
+  `margin-block` of half a line height on every `h1`-`h6` and `p` below it. The component ships no spacing rule, so
+  the value cannot drift from the rest of the system, and `data-text-spacing="false"` opts a subtree back out.
 - **No `size` on the group.** The children set it themselves.
 - **No `fontWeight` on the group**, and none on a text primitive beyond the two variants: emphasis is semantic and
   belongs to the element (`strong`, `em`), while the foundations' `[data-font]` covers the presentational case.
@@ -137,11 +136,10 @@ layout container are two concepts. Only `heading` and `control-panel-actions` sh
 so the precedent is thin, and a shared folder forces one `model.ts`, one stylesheet and one documentation page onto
 two independent APIs.
 
-The group takes any child. `DBParagraph` and `DBHeading` both reset their own `margin-block`, so they share one
-rhythm out of the box; a child that brings its own block margin adds it to the gap. That applies to plain `h1`-`h6`
-and `p` elements too, because the foundations' `defaults/default-fonts.scss` gives those a `margin-block` - measured
-at the default density, a native pair ends up `56px` apart where the gap alone is `24px`. Until that reset moves into
-the foundations (see the open questions), native block text in a group needs `margin-block: 0`.
+The group takes any child, and every `h1`-`h6` and `p` below it is spaced by the foundations rule, whether it carries
+one of our classes or not. Plain markup and components therefore mix freely, which is what the "With components" and
+"Mixed content" examples show. Only elements outside that list - a `ul`, `ol` or `blockquote` - keep the margin they
+bring.
 
 Restricting the children to paragraphs by type is not possible across four framework outputs, and it would create a
 worse problem than it solves: a list between two paragraphs would have to leave the group, which splits it in two and
@@ -153,28 +151,36 @@ leaves the spacing around the list unmanaged.
 ### CSS level, no property needed
 
 The spacing must be expressible in CSS rather than through a framework context, which is not something to build on
-across four Mitosis targets:
+across four Mitosis targets. It is, and it does not even belong to the component: the foundations' required
+`defaults/default-required.scss` drives block spacing through an inheriting custom property.
 
 ```scss
-.db-text-group[data-text-spacing="true"] {
-	row-gap: 1lh;
-	padding-block: 0.5lh;
+[data-text-spacing="true"] {
+	--db-text-spacing: 0.5;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p) {
+	margin-block: calc(1lh * var(--db-text-spacing, 0));
 }
 ```
 
-The two declarations express the same `0.5lh` per child: the gap is the sum of the two halves that meet between two
-children, the padding the half that has no sibling to meet at the group's edges.
+`DBTextGroup` therefore ships no spacing rule at all. `textSpacing` renders `data-text-spacing`, and the foundations
+do the rest. An earlier revision put `row-gap` and `padding-block` on the container instead, which worked but was
+redundant once the foundations rule landed in [#8352](https://github.com/db-ux-design-system/core-web/pull/8352).
 
-Spacing sits on the container, never as a margin on the children, which is what keeps it framework-neutral.
-`wc-workarounds.scss` sets every custom-element host to `display: contents`, so in the Angular and Stencil output a
-margin on the host would be silently ignored while the host itself is not the box being laid out. `display: contents`
-is resolved before the flex items are determined, so gap and padding address the same elements in all four outputs,
-without the stylesheet having to know how deep a framework wraps its content. The gap also applies to children that
-carry no class of ours, so the group does not need to enumerate child types.
+Two properties of the custom-property approach are worth recording, because a descendant selector would have neither.
+Inheritance passes through `display: contents`, so the margin reaches the paragraph inside the Angular and Stencil
+custom-element hosts, where a selector like `> :where(p)` would miss it. And the nearest `data-text-spacing` ancestor
+wins by proximity rather than source order, which is what lets `false` opt a subtree back out and lets the attribute
+sit on a single element without a group.
 
-The reset `.db-paragraph { margin-block: 0 }` complements this: the margin the foundations give every `p` would add
-to the gap. The group thus remains the only source of spacing, at the price of a standalone `DBParagraph` and a group
-without `textSpacing` rendering flush.
+Because the margin sits on the text element, `1lh` resolves against that element's own line height. Measured at the
+default density, a `24px` child gets `12px` and an `18px` child `9px`, so two children of different sizes end up
+`21px` apart rather than `24px`. A standalone `DBParagraph` and a group without `textSpacing` render flush, since
+`--db-text-spacing` defaults to `0`.
+
+Only `h1`-`h6` and `p` are covered. A `ul`, `ol` or `blockquote` in the group keeps the margin it brings; reading the
+same custom property opts it into the rhythm.
 
 `text-wrap: pretty` is the default for body copy, mirroring `text-wrap: balance` on headings - pure CSS, progressive
 enhancement, no fallback needed, per the [shift-left rule](../shift-left-web-development.md). Firefox ESR is a
@@ -243,8 +249,6 @@ closed before the stable release rather than carried into it.
   foundations and would let `heading.scss`, `default-fonts.scss` and `paragraph.scss` stop repeating literals.
 - `DBHeading` mixes in `TextProps` while the paragraph components deliberately do not, so two neighbouring typography
   components differ in how content is passed. Acceptable, but it should be a recorded decision.
-- How do the group's spacing and a heading's `paragraphSpacing` stay visually consistent, given the heading sits
-  outside the group and the two values are set independently?
 - The open-source fallback font has no 900 face for the body family, so `black` renders like bold without the DB
   theme fonts. Acceptable for DB products, but it makes the showcases misleading.
 

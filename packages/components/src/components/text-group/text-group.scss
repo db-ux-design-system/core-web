@@ -7,6 +7,7 @@ $text-group-alignment-values: (
 	"end": end
 );
 
+/* No spacing here: `data-text-spacing` is handled by the foundations. */
 .db-text-group {
 	@include helpers.display(flex);
 
@@ -16,14 +17,5 @@ $text-group-alignment-values: (
 		&[data-alignment="#{$alignment}"] {
 			text-align: $value;
 		}
-	}
-
-	/* On the container: the Angular and Stencil hosts swallow a child margin. */
-	&[data-text-spacing="true"] {
-		/* `0.5lh` per child, so `1lh` between two of them. */
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		row-gap: 1lh;
-		/* stylelint-disable-next-line db-ux/use-spacings */
-		padding-block: 0.5lh;
 	}
 }

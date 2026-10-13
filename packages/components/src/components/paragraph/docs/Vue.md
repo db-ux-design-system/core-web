@@ -27,9 +27,9 @@ import { DBParagraph } from "@db-ux/v-core-components";
 
 ### Spacing and alignment
 
-`DBParagraph` resets the `margin-block` the foundations give a `p`, so a standalone paragraph renders flush and a surrounding `DBTextGroup` stays the only source of spacing.
+`DBParagraph` renders a `p`, so block spacing comes from the foundations' `data-text-spacing` opt-in: without it the paragraph renders flush, with it on the element or any ancestor it gets `0.5lh` above and below. A surrounding [`DBTextGroup`](../text-group/properties) sets that attribute for a whole block.
 
-There is deliberately no `text-align` either, which is what lets the `alignment` of a `DBTextGroup` reach the paragraph by inheritance.
+There is deliberately no `text-align`, which is what lets the `alignment` of a `DBTextGroup` reach the paragraph by inheritance.
 
 ### Content, attributes and accessibility
 

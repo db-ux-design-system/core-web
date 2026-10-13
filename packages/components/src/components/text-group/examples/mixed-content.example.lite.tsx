@@ -7,44 +7,40 @@ useMetadata({
 	storybookTitle: 'Mixed content',
 	storybookComponentName: 'DBTextGroup',
 	storybookComponentNames: ['DBTextGroup', 'DBTextGroup'],
-	storybookNames: [
-		'Children without a block margin',
-		'A child that brings its own block margin'
-	],
+	storybookNames: ['Native block text', 'A child outside the text elements'],
 	storybookArgTypes: StorybookTextGroupArgTypes
 });
 
 export default function TextGroupMixedContent() {
 	return (
 		<Fragment>
-			{/* The spacing is a gap on the container, so it reaches every child
-			 * regardless of its type, including one that carries none of our
-			 * classes. */}
+			{/* The foundations space every `h1`-`h6` and `p` below the attribute, so
+			 * native elements need nothing of their own. */}
 			<DBTextGroup textSpacing>
+				<h3>A native heading</h3>
+				<p>
+					A native paragraph. The opt-in reaches it just like it
+					reaches our components, so plain markup and components can
+					be mixed freely.
+				</p>
 				<DBParagraph>
-					The gap belongs to the group, so a child does not have to be
-					a paragraph to be spaced.
+					A component paragraph, spaced by exactly the same rule.
 				</DBParagraph>
-				<div>
-					A plain div without any of our classes, spaced like every
-					other child.
-				</div>
 			</DBTextGroup>
-			{/* `.db-paragraph` resets its own block margin, a foreign element does
-			 * not. Its margin adds to the gap, so set `margin-block: 0` on such a
-			 * child to keep one rhythm. */}
+			{/* A list is not block text, so it keeps its own margin. The custom
+			 * property is the documented way to join the rhythm. */}
 			<DBTextGroup textSpacing>
 				<DBParagraph>
-					A list keeps the block margin the browser gives it, and that
-					margin adds to the gap below.
+					A list is not one of the block-text elements, so it keeps
+					whatever margin it brings.
 				</DBParagraph>
-				<ul>
-					<li>Reset it to keep a single rhythm</li>
+				<ul style="margin-block: calc(1lh * var(--db-text-spacing, 0))">
+					<li>Opted into the same rhythm</li>
 					<li>The list items are unaffected</li>
 				</ul>
 				<DBParagraph>
-					Only our own components reset their block margin, so the
-					group stays their single source of spacing.
+					Use `margin-block: 0` instead to take such a child out of
+					the rhythm entirely.
 				</DBParagraph>
 			</DBTextGroup>
 		</Fragment>

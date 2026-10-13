@@ -34,9 +34,9 @@ Note that the open-source fallback font ships no 900 face for the body family, s
 
 ### Spacing and alignment
 
-`db-paragraph` resets the `margin-block` that the foundations' default styles give a `p`, so a standalone paragraph renders flush and a surrounding `db-text-group` stays the only source of spacing.
+`db-paragraph` renders a `p`, so block spacing comes from the foundations' `data-text-spacing` opt-in: without it the paragraph renders flush, with it on the element or any ancestor it gets `0.5lh` above and below. A surrounding [`db-text-group`](../text-group/properties) sets that attribute for a whole block.
 
-There is deliberately no `text-align` either, which is what lets the `alignment` of a `db-text-group` reach the paragraph by inheritance.
+There is deliberately no `text-align`, which is what lets the `alignment` of a `db-text-group` reach the paragraph by inheritance.
 
 ### Content and accessibility
 
