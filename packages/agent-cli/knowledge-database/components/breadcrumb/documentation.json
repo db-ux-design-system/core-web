@@ -1,0 +1,180 @@
+{
+	"component": "breadcrumb",
+	"figmaFileKey": "o2INCfqNJAbAIvNuHwgxsg",
+	"description": {
+		"de": "Die Breadcrumb zeigt die Position der aktuellen Seite in der Seitenhierarchie und öffnet den Weg zurück zu den übergeordneten Ebenen.",
+		"en": "The breadcrumb shows the position of the current page within the site hierarchy and opens the path back to the higher-level pages."
+	},
+	"shortDescription": {
+		"de": "Sekundäre Navigation, die den Pfad zur aktuellen Seite zeigt.",
+		"en": "Secondary navigation that shows the path to the current page."
+	},
+	"useCases": {
+		"de": [
+			"Übergeordnete Ebenen direkt ansteuern",
+			"Orientierung neben der Hauptnavigation geben",
+			"Lange Pfade über eine Truncation einklappen"
+		],
+		"en": [
+			"Jump directly to a higher-level page",
+			"Provide orientation alongside the main navigation",
+			"Collapse long paths behind a truncation"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "secondary-navigation",
+			"headline": {
+				"de": "Verwendung",
+				"en": "Usage"
+			},
+			"text": {
+				"de": "Die Breadcrumb ergänzt die Wegfindung, bildet die Navigationsstruktur aber nicht vollständig ab. Sie steht deshalb neben der Hauptnavigation und nicht an deren Stelle.",
+				"en": "The breadcrumb supplements wayfinding but does not represent the full navigation structure. It therefore sits alongside the main navigation rather than in its place."
+			},
+			"do": {
+				"figmaNodeId": "4014-32",
+				"description": {
+					"de": "Setze die Breadcrumb zusätzlich zur Hauptnavigation ein, um den Pfad zur aktuellen Seite zu zeigen.",
+					"en": "Use the breadcrumb in addition to the main navigation to show the path to the current page."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4014-33",
+				"description": {
+					"de": "Setze die Breadcrumb nicht als einzige Navigation ein. Über sie erreichen Nutzer:innen nur die eigene Hierarchie und nicht alle Bereiche der Website.",
+					"en": "Don't use the breadcrumb as the only means of navigation. It only reaches its own hierarchy and not all areas of the site."
+				}
+			}
+		},
+		{
+			"id": "hierarchy-path",
+			"headline": {
+				"de": "Pfad",
+				"en": "Path"
+			},
+			"text": {
+				"de": "Die Breadcrumb bildet die Hierarchie ab, nicht den Verlauf. Der Pfad bleibt damit für eine Seite immer gleich, unabhängig davon, wie Nutzer:innen dorthin gekommen sind.",
+				"en": "The breadcrumb represents the hierarchy, not the history. The path therefore stays the same for a given page, regardless of how users got there."
+			},
+			"do": {
+				"figmaNodeId": "4016-35",
+				"description": {
+					"de": "Zeige den hierarchischen Pfad zur aktuellen Seite, unabhängig vom Weg dorthin.",
+					"en": "Show the hierarchical path to the current page, regardless of how the user got there."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4017-38",
+				"description": {
+					"de": "Baue die Breadcrumb nicht aus dem Klickverlauf auf. Wiederholte und zurückführende Schritte machen den Pfad unverständlich.",
+					"en": "Don't reconstruct the breadcrumb from the user's click history. Repeated and back-and-forth steps make the path confusing."
+				}
+			}
+		},
+		{
+			"id": "item-labels",
+			"headline": {
+				"de": "Benennung",
+				"en": "Labeling"
+			},
+			"text": {
+				"de": "Das Breadcrumb Item und die Seite, auf die es verweist, tragen denselben Namen. Diese Übereinstimmung macht erkennbar, wo im Pfad die Seite liegt.",
+				"en": "A breadcrumb item and the page it links to carry the same name. That match makes the page's place in the path recognizable."
+			},
+			"do": {
+				"figmaNodeId": "1-1132",
+				"description": {
+					"de": "Übernimm den Seitentitel als Label des Breadcrumb Items, damit Item und Zielseite erkennbar zusammengehören.",
+					"en": "Use the page title as the breadcrumb label so item and target page are clearly linked."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "1-1133",
+				"description": {
+					"de": "Benenne das Breadcrumb Item nicht anders als den Seitentitel. Abweichende Labels erschweren das Verständnis des Pfads.",
+					"en": "Don't give the breadcrumb item a different name than the page title. Mismatched labels make the path harder to understand."
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"id": "truncation-max-items",
+			"headline": {
+				"de": "Truncation über Max Items",
+				"en": "Truncation with Max Items"
+			},
+			"text": {
+				"de": "`maxItems` legt fest, wie viele Items höchstens erscheinen; der Default ist `4`. Überschreitet der Pfad die Grenze, klappen die mittleren Items hinter einer Truncation zusammen.",
+				"en": "`maxItems` defines how many items are shown at most; the default is `4`. Once the path exceeds the limit, the middle items collapse behind a truncation."
+			},
+			"items": [
+				{
+					"id": "max-items-4",
+					"headline": {
+						"de": "Max Items 4",
+						"en": "Max Items 4"
+					},
+					"figmaNodeId": "4016-36",
+					"description": {
+						"de": "Die mittleren Items sind eingeklappt. Ein Klick auf die Truncation klappt sie aus.",
+						"en": "The middle items are collapsed. A click on the truncation expands them."
+					}
+				}
+			]
+		},
+		{
+			"id": "truncation-popover",
+			"headline": {
+				"de": "Truncation über das Popover Item",
+				"en": "Truncation with the Popover Item"
+			},
+			"text": {
+				"de": "Das Breadcrumb Popover Item wird manuell gesetzt und zeigt die eingeklappten Ebenen beim Hover in einem Popover. Die Länge des Pfads bleibt dabei unverändert.",
+				"en": "The breadcrumb popover item is placed manually and shows the collapsed levels in a popover on hover. The length of the path stays unchanged."
+			},
+			"items": [
+				{
+					"id": "popover-item",
+					"headline": {
+						"de": "Popover Item",
+						"en": "Popover Item"
+					},
+					"figmaNodeId": "4016-37",
+					"description": {
+						"de": "Manuelle Truncation durch ein eingesetztes Breadcrumb Popover Item.",
+						"en": "Manual truncation by inserting a breadcrumb popover item."
+					}
+				}
+			]
+		},
+		{
+			"id": "mobile",
+			"headline": {
+				"de": "Reduktion auf Mobile",
+				"en": "Reduction on Mobile"
+			},
+			"text": {
+				"de": "Auf Mobile reduziert sich die Breadcrumb automatisch auf die aktuelle Seite und die Ebene direkt darüber. Der Pfad bleibt damit auf kleinen Viewports lesbar.",
+				"en": "On mobile the breadcrumb automatically reduces to the current page and the level directly before it. That keeps the path readable on small viewports."
+			},
+			"items": [
+				{
+					"id": "mobile",
+					"headline": {
+						"de": "Mobile",
+						"en": "Mobile"
+					},
+					"figmaNodeId": "4017-39",
+					"description": {
+						"de": "Sichtbar sind nur die übergeordnete Ebene und die aktuelle Seite. Das vorangestellte Item führt eine Ebene nach oben.",
+						"en": "Only the parent level and the current page are visible. The preceding item leads one level up."
+					}
+				}
+			]
+		}
+	],
+	"faq": [],
+	"related": []
+}

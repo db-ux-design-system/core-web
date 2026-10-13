@@ -1,0 +1,104 @@
+{
+	"component": "breadcrumb-item",
+	"figmaFileKey": "o2INCfqNJAbAIvNuHwgxsg",
+	"description": {
+		"de": "Das Breadcrumb Item bildet eine Ebene innerhalb der Breadcrumb ab und verweist als Link auf die zugehörige Seite.",
+		"en": "The breadcrumb item represents one level within the breadcrumb and links to its page."
+	},
+	"shortDescription": {
+		"de": "Einzelne Ebene innerhalb der Breadcrumb.",
+		"en": "Single level within the breadcrumb."
+	},
+	"useCases": {
+		"de": [
+			"Ebene im Pfad abbilden",
+			"Übergeordnete Seite verlinken",
+			"Icon zur schnelleren Wiedererkennung ergänzen"
+		],
+		"en": [
+			"Represent one level in the path",
+			"Link to a higher-level page",
+			"Add an icon for faster recognition"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "icons",
+			"headline": {
+				"de": "Icons",
+				"en": "Icons"
+			},
+			"text": {
+				"de": "Icons sind in der Breadcrumb optional. Sobald ein Item ein Icon trägt, wirkt der Pfad nur mit einem durchgehenden Muster einheitlich.",
+				"en": "Icons are optional in the breadcrumb. As soon as one item carries an icon, the path only reads consistently with a continuous pattern."
+			},
+			"do": {
+				"figmaNodeId": "4009-20",
+				"description": {
+					"de": "Gib entweder allen Breadcrumb Items ein Icon oder keinem, damit der Pfad einheitlich bleibt.",
+					"en": "Give either all items an icon or none, so the breadcrumb stays visually consistent."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4009-21",
+				"description": {
+					"de": "Gib einem einzelnen Breadcrumb Item kein Icon, wenn die übrigen keines tragen. Der Pfad wirkt dann unausgewogen und überladen. Das erste Item ist davon ausgenommen.",
+					"en": "Don't add an icon to just one item while the others have none. The path looks unbalanced and cluttered. The first item is excluded from this rule."
+				}
+			}
+		},
+		{
+			"id": "no-text",
+			"headline": {
+				"de": "No Text",
+				"en": "No Text"
+			},
+			"text": {
+				"de": "`noText` blendet das Label aus und zeigt das Item als reines Icon. Das funktioniert nur, wenn das Icon die Ebene allein identifiziert.",
+				"en": "`noText` hides the label and shows the item as an icon only. That works only when the icon identifies the level on its own."
+			},
+			"do": {
+				"figmaNodeId": "4017-42",
+				"description": {
+					"de": "Setze `noText` nur am ersten Item des Pfads und kombiniere es mit einem eindeutig erkennbaren Icon wie `house`.",
+					"en": "Use `noText` only on the first item of the path, paired with a clearly recognizable icon such as `house`."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4017-43",
+				"description": {
+					"de": "Blende das Label an den übrigen Items nicht aus. Ohne Text sind diese Ebenen nicht mehr identifizierbar.",
+					"en": "Don't hide the label on the remaining items. Without text these levels become unidentifiable."
+				}
+			}
+		},
+		{
+			"id": "separator",
+			"headline": {
+				"de": "Separator",
+				"en": "Separator"
+			},
+			"text": {
+				"de": "Der `separator` steht zwischen den Items und ist rein visuell. Er zieht keine Aufmerksamkeit von den Items ab.",
+				"en": "The `separator` sits between the items and is purely visual. It does not draw attention away from the items."
+			},
+			"do": {
+				"figmaNodeId": "4017-40",
+				"description": {
+					"de": "Verwende einen `separator` einheitlich über alle Items, entweder `chevron` oder `slash`.",
+					"en": "Use one separator style consistently across all items, either `chevron` or `slash`."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4017-41",
+				"description": {
+					"de": "Mische `chevron` und `slash` nicht innerhalb eines Pfads. Wechselnde Separatoren wirken unbeabsichtigt und stören den Pfad.",
+					"en": "Don't mix chevron and slash in the same breadcrumb. Alternating separators look unintentional and disturb the path."
+				}
+			}
+		}
+	],
+	"examples": [],
+	"faq": [],
+	"related": []
+}

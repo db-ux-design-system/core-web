@@ -1,0 +1,21 @@
+{
+	"component": "breadcrumb-item",
+	"library": "core-components",
+	"pageId": "41209:4692",
+	"pageName": "Breadcrumb (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ Breadcrumb Item → (Def) Small",
+			"nodeId": "41880:70263",
+			"type": "COMPONENT_SET",
+			"key": "e0d57824246f35efc01692e31caeba0b2e5278c9"
+		},
+		{
+			"name": "↳ Breadcrumb Item → Medium",
+			"nodeId": "41902:72274",
+			"type": "COMPONENT_SET",
+			"key": "9defdca9abb25ff7c9b908c0ba6c58afe0eeeb51"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--breadcrumb-beta' (fileKey zFGhOx7Lt6gkJsvQXO3ZNe). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Small und Medium sind getrennte Component Sets mit je 20 Varianten aus den vier Achsen Variant, Interaction State, No Text und Disabled, die nicht vollständig kombiniert sind; der Children-Slot der Elternkomponente schlägt über preferredValues das passende Set vor. Eine Size-Property tragen die Sets nicht, im Code erbt das Item die Größe von der Breadcrumb. Die Achse 🔀 Variant mit (Def) Path, Root, Current und Truncation hat im Code keine Entsprechung: dort ergibt sich die Rolle aus der Position und aus 'ariaCurrent', und die Truncation entsteht über 'maxItems' oder das Breadcrumb Popover Item. Je Variante gibt es ein eigenes Textfeld (✏️ Root, ✏️ Path, ✏️ Current), im Code ist das eine Property 'text'. Der Separator wird über 🔄 Separator aus den Helper-Komponenten der Elternkomponente getauscht (siehe deren figma.json)."
+}

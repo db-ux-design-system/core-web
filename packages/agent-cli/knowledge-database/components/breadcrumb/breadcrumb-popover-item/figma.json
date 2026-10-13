@@ -1,0 +1,35 @@
+{
+	"component": "breadcrumb-popover-item",
+	"library": "core-components",
+	"pageId": "41209:4692",
+	"pageName": "Breadcrumb (Beta)",
+	"componentSets": [
+		{
+			"name": "↳ Breadcrumb Popover Item → (Def) Small",
+			"nodeId": "41209:6678",
+			"type": "COMPONENT_SET",
+			"key": "b7a64bbc99a6b05b6350373fa2170f745e1fc348"
+		},
+		{
+			"name": "↳ Breadcrumb Popover Item → Medium",
+			"nodeId": "41670:65984",
+			"type": "COMPONENT_SET",
+			"key": "072b7b20eb1a67c465a071d6b92a9f459c877e0e"
+		}
+	],
+	"helperComponents": [
+		{
+			"name": "🛟 Breadcrumb Popover List Item → (Def) Small",
+			"nodeId": "41209:6609",
+			"type": "COMPONENT_SET",
+			"key": "7eb4ccf684d343fd633e94d916d3d7ea9a5b8c55"
+		},
+		{
+			"name": "🛟 Breadcrumb Popover List Item → Medium",
+			"nodeId": "41670:65907",
+			"type": "COMPONENT_SET",
+			"key": "959e5f0ccec8198e2119762543d6f1eca3657927"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--breadcrumb-beta' (fileKey zFGhOx7Lt6gkJsvQXO3ZNe). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Small und Medium sind getrennte Component Sets mit je vier Varianten auf der einzigen Achse Interaction State; der Children-Slot der Elternkomponente schlägt über preferredValues das passende Set vor. Eine Size-Property tragen die Sets nicht, im Code erbt das Item die Größe von der Breadcrumb. Der Inhalt des Popovers wird in Figma aus der Helper-Komponente 🛟 Breadcrumb Popover List Item aufgebaut (je fünf Varianten pro Größe) und nicht über einen Slot an dieser Komponente; im Code liegen die eingeklappten Breadcrumb Items im Default-Slot und werden in die Liste des Popovers gerendert. Der Separator wird über 🔄 Separator aus den Helper-Komponenten der Elternkomponente getauscht (siehe deren figma.json). Helper-Komponenten werden wie in allen anderen Komponenten nicht eigens dokumentiert."
+}

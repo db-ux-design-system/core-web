@@ -153,6 +153,14 @@ Ohne dieses Feld wäre bei flacher Ablage nicht erkennbar, welche Property zu we
 - `guidelines.md` — Nutzungsrichtlinien — normative Regeln für Agents und Generatoren. Quelle: manuell (Authoring).
 - `documentation.json` — Platform-Dokumentation — zweisprachige Texte für die Doku-Website. Quelle: generiert aus `guidelines.md`.
 
+### Vollständiges Set bei neuen Komponenten
+
+Eine neu angelegte Komponente mit Status `beta` oder `stable` erhält immer alle fünf Dateien, und zwar für die Elternkomponente **und** jede Haupt- und Unterkomponente mit eigenem Ordner: `meta.json`, `figma.json`, `properties.json`, `guidelines.md` und `documentation.json`.
+
+Das gilt auch dann, wenn nur ein Teil davon angefragt wurde. Ein Ordner mit fehlenden Dateien ist für Generatoren nicht von einem bewusst leeren Zustand zu unterscheiden: ohne `meta.json` fehlt der Status, ohne `figma.json` der `figmaFileKey` der `documentation.json`, ohne `properties.json` die Property-Fläche. Die Ausnahmen sind in `meta.json` ausgezeichnet, nicht durch eine fehlende Datei — `guidelines: "pending"` für eine noch leere `guidelines.md`, `deprecation: "deprecated"` für Komponenten ohne `documentation.json`.
+
+Für Komponenten aus einem offenen Figma Feature Branch oder einem offenen Pull Request gilt das genauso. Node IDs, Keys und Property-Namen werden mit dem Stand des Branch gefüllt, als vorläufig in der `note` der `figma.json` vermerkt und mit einem Eintrag in `TODO.md` zur Verifikation nach dem Merge versehen.
+
 ### Zusammenhang der Dateien
 
 ```text

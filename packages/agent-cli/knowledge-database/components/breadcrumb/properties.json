@@ -1,0 +1,77 @@
+{
+	"component": "breadcrumb",
+	"properties": [
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["small", "medium"],
+			"default": "small",
+			"description": "The size attribute changes the font-size and other related sizes of the component.",
+			"code": {
+				"prop": "size",
+				"type": "SizeType"
+			},
+			"design": {
+				"name": "🔀 Size",
+				"values": ["(Def) Small", "Medium"]
+			}
+		},
+		{
+			"name": "separator",
+			"type": "enum",
+			"values": ["chevron", "slash"],
+			"default": "chevron",
+			"description": "Visual separator rendered between the crumbs.",
+			"code": {
+				"prop": "separator",
+				"type": "BreadcrumbSeparatorType"
+			},
+			"design": {
+				"name": null,
+				"note": "In Figma the separator is an instance swap on each Breadcrumb Item (🔄 Separator, Chevron Right or Slash), not a property of the parent. In code a single prop on the breadcrumb governs the whole trail; the chevron default comes from the stylesheet, the template passes the prop through unchanged as data-separator."
+			}
+		},
+		{
+			"name": "maxItems",
+			"type": "number",
+			"default": "4",
+			"description": "Maximum number of crumbs to show before the trail auto-collapses the middle items behind an expand toggle. Values below `2` are treated as `2`.",
+			"code": {
+				"prop": "maxItems",
+				"type": "number"
+			},
+			"design": null
+		},
+		{
+			"name": "expandText",
+			"type": "string",
+			"default": "Show more breadcrumbs",
+			"description": "Accessible label for the auto-collapse toggle that expands the trail.",
+			"code": {
+				"prop": "expandText",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "items",
+			"type": "array",
+			"description": "Breadcrumb items for the options API. When set, the trail is rendered from this array instead of slotted `DBBreadcrumbItem` children.",
+			"code": {
+				"prop": "items",
+				"type": "DBBreadcrumbItemDefaultProps[]"
+			},
+			"design": null
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"note": "Two slots in Figma (📦 Children and 📦 Children2) that both accept only ↳ Breadcrumb Item and ↳ Breadcrumb Popover Item via preferredValues. In code it is a single default slot."
+			}
+		}
+	]
+}

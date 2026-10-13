@@ -1,9 +1,9 @@
 {
 	"id": "breadcrumb-item",
-	"name": "BreadcrumbItem",
-	"type": "lab-component",
+	"name": "Breadcrumb Item",
+	"type": "component",
 	"parent": "breadcrumb",
-	"status": "concept",
+	"status": "beta",
 	"owner": "core-team",
 	"since": null
 }

@@ -1,0 +1,212 @@
+{
+	"component": "breadcrumb-item",
+	"properties": [
+		{
+			"name": "text",
+			"type": "string",
+			"description": "Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.",
+			"code": {
+				"prop": "text",
+				"type": "string"
+			},
+			"design": {
+				"name": "✏️ Path",
+				"type": "text",
+				"defaultValue": "Path",
+				"note": "Figma carries one text property per variant: ✏️ Root (default `Home`), ✏️ Path (default `Path`) and ✏️ Current (default `Current`). In code it is a single `text` prop for every role."
+			}
+		},
+		{
+			"name": "href",
+			"type": "string",
+			"description": "The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).",
+			"code": {
+				"prop": "href",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "variant",
+			"type": "enum",
+			"values": ["path", "root", "current", "truncation"],
+			"default": "path",
+			"code": null,
+			"design": {
+				"name": "🔀 Variant",
+				"values": ["(Def) Path", "Root", "Current", "Truncation"],
+				"note": "Figma-only. In code the role follows from the position and from `ariaCurrent`: the first item is the root, `ariaCurrent` marks the current page, and the truncation is produced by `maxItems` on the breadcrumb or by the Breadcrumb Popover Item."
+			}
+		},
+		{
+			"name": "ariaCurrent",
+			"type": "enum",
+			"values": [
+				"page",
+				"step",
+				"location",
+				"date",
+				"time",
+				"true",
+				"false"
+			],
+			"description": "Marks the item as the current page/step, forwarded as `aria-current` to the rendered link or text. The last item of a trail should use `page`.",
+			"code": {
+				"prop": "ariaCurrent",
+				"type": "BreadcrumbItemAriaCurrentType"
+			},
+			"design": {
+				"name": null,
+				"note": "Figma models the current page as the variant value `Current` instead of a dedicated property. Without an explicit value the breadcrumb defaults the last item of the trail to `page`."
+			}
+		},
+		{
+			"name": "icon",
+			"type": "enum",
+			"description": "Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.",
+			"code": {
+				"prop": "icon",
+				"type": "IconTypes"
+			},
+			"design": {
+				"name": "🔄 Icon",
+				"type": "instance-swap"
+			}
+		},
+		{
+			"name": "showIcon",
+			"type": "boolean",
+			"default": false,
+			"description": "Enables or disables the visibility of the icon. The default value depends on the component. For many components this property is optional to reflect Figma properties.",
+			"code": {
+				"prop": "showIcon",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "👁️ Show Icon"
+			}
+		},
+		{
+			"name": "iconLeading",
+			"type": "enum",
+			"description": "Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.",
+			"code": {
+				"prop": "iconLeading",
+				"type": "IconTypes"
+			},
+			"design": null
+		},
+		{
+			"name": "showIconLeading",
+			"type": "boolean",
+			"description": "Enables or disables the visibility of the leading icon. For many components this property is optional to reflect Figma properties.",
+			"code": {
+				"prop": "showIconLeading",
+				"type": "boolean | string"
+			},
+			"design": null
+		},
+		{
+			"name": "noText",
+			"type": "boolean",
+			"default": false,
+			"description": "Define the text next to the icon specified via the icon Property to get hidden.",
+			"code": {
+				"prop": "noText",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 No Text",
+				"values": ["False", "True"]
+			}
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"default": false,
+			"description": "Disables the link.",
+			"code": {
+				"prop": "disabled",
+				"type": "boolean | string"
+			},
+			"design": {
+				"name": "🔀 Disabled",
+				"values": ["False", "True"]
+			}
+		},
+		{
+			"name": "separator",
+			"type": "enum",
+			"values": ["chevron", "slash"],
+			"default": "chevron",
+			"code": null,
+			"design": {
+				"name": "🔄 Separator",
+				"type": "instance-swap",
+				"note": "Figma swaps the separator per item (🛟 Breadcrumb Separator, Chevron Right or Slash, each in a Small and a Medium variant). In code there is no item-level property; `separator` is set once on the breadcrumb and applies to the whole trail."
+			}
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["small", "medium"],
+			"default": "small",
+			"code": null,
+			"design": {
+				"name": null,
+				"note": "No variant property in Figma. Small and Medium are modelled as separate component sets (↳ Breadcrumb Item → (Def) Small and → Medium). In code the item inherits the size from the breadcrumb, which writes it as data-size."
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": ["enabled", "hovered", "pressed", "focused", "none"],
+			"default": "enabled",
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused", "None"],
+				"note": "Figma-only. Documents the visual states of the item; in code these are the native interaction states of the underlying anchor and are not a property."
+			}
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": "📦 Children",
+				"type": "slot",
+				"note": "In code the composition API places the anchor in the default slot; the tooltip label is then read from the slotted anchor."
+			}
+		},
+		{
+			"name": "showChildrenSlot",
+			"type": "boolean",
+			"default": false,
+			"code": null,
+			"design": {
+				"name": "👁️ Show Children Slot"
+			}
+		},
+		{
+			"name": "target",
+			"type": "enum",
+			"description": "Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).",
+			"code": {
+				"prop": "target",
+				"type": "LinkTargetType"
+			},
+			"design": null
+		},
+		{
+			"name": "rel",
+			"type": "string",
+			"description": "The relationship of the linked URL as space-separated link types.",
+			"code": {
+				"prop": "rel",
+				"type": "string"
+			},
+			"design": null
+		}
+	]
+}

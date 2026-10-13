@@ -1,0 +1,108 @@
+{
+	"component": "breadcrumb-popover-item",
+	"figmaFileKey": "o2INCfqNJAbAIvNuHwgxsg",
+	"description": {
+		"de": "Das Breadcrumb Popover Item klappt die Zwischenebenen der Breadcrumb zu einer Truncation zusammen und zeigt sie beim Hover in einem Popover.",
+		"en": "The breadcrumb popover item collapses the intermediate levels of the breadcrumb into a truncation and shows them in a popover on hover."
+	},
+	"shortDescription": {
+		"de": "Truncation der Breadcrumb mit den eingeklappten Ebenen im Popover.",
+		"en": "Breadcrumb truncation holding the collapsed levels in a popover."
+	},
+	"useCases": {
+		"de": [
+			"Zwischenebenen zu einer Truncation einklappen",
+			"Eingeklappte Ebenen im Popover einsehen",
+			"Platz auf schmalen Viewports sparen"
+		],
+		"en": [
+			"Collapse intermediate levels into a truncation",
+			"Review the collapsed levels in a popover",
+			"Save space on narrow viewports"
+		]
+	},
+	"guidelines": [
+		{
+			"id": "usage",
+			"headline": {
+				"de": "Verwendung",
+				"en": "Usage"
+			},
+			"text": {
+				"de": "Das Breadcrumb Popover Item wird manuell gesetzt und erscheint nicht automatisch wie die Truncation über `maxItems`. Es hält die Länge des Pfads konstant, weil die eingeklappten Ebenen im Popover bleiben.",
+				"en": "The breadcrumb popover item is placed manually and does not appear automatically like the `maxItems` truncation. It keeps the length of the path constant because the collapsed levels stay inside the popover."
+			},
+			"do": {
+				"figmaNodeId": "4009-25",
+				"description": {
+					"de": "Setze das Breadcrumb Popover Item manuell, um auf schmalen Viewports Platz zu sparen und die Zwischenebenen erreichbar zu halten.",
+					"en": "Place the popover item manually to save space on narrow screens while intermediate levels stay reachable."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4009-26",
+				"description": {
+					"de": "Verwende die automatische Truncation über `maxItems` nicht, wenn der Pfad für einen schmalen Viewport zu lang ist. Ihre ausgeklappten Items schieben die Breadcrumb über den Viewport hinaus.",
+					"en": "Don't use the automatic `maxItems` truncation when the path is too long for a narrow screen. Its expanded items push the breadcrumb beyond the viewport."
+				}
+			}
+		},
+		{
+			"id": "no-mixing",
+			"headline": {
+				"de": "Keine Kombination",
+				"en": "No Mixing"
+			},
+			"text": {
+				"de": "Beide Mechanismen klappen denselben Pfad ein, aber auf unterschiedliche Weise. Werden beide gemeinsam eingesetzt, wird das Verhalten unvorhersehbar.",
+				"en": "Both mechanisms collapse the same path, but in different ways. When both are used together, the behavior becomes unpredictable."
+			},
+			"do": {
+				"figmaNodeId": "4017-44",
+				"description": {
+					"de": "Wähle je Breadcrumb einen Mechanismus, entweder das Breadcrumb Popover Item oder `maxItems`.",
+					"en": "Decide on one truncation approach per breadcrumb, either the popover item or `maxItems`."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4017-46",
+				"description": {
+					"de": "Kombiniere das Breadcrumb Popover Item und `maxItems` nicht in derselben Breadcrumb. Zwei Mechanismen für dasselbe Einklappen machen das Verhalten unvorhersehbar.",
+					"en": "Don't combine the popover item with the `maxItems` truncation in the same breadcrumb. Two mechanisms for collapsing the same path make the behavior unpredictable."
+				}
+			}
+		},
+		{
+			"id": "path-anchors",
+			"headline": {
+				"de": "Anker im Pfad",
+				"en": "Path Anchors"
+			},
+			"text": {
+				"de": "Das erste Item und die aktuelle Seite begrenzen den Pfad und tragen die Orientierung. Nur die Ebenen dazwischen sind entbehrlich.",
+				"en": "The first item and the current page frame the path and carry the orientation. Only the levels in between are dispensable."
+			},
+			"do": {
+				"figmaNodeId": "4017-45",
+				"description": {
+					"de": "Lass das erste Item und die aktuelle Seite sichtbar und klappe nur die Ebenen dazwischen in das Popover.",
+					"en": "Keep the first item and the current page visible, and collapse only the levels in between into the popover."
+				}
+			},
+			"dont": {
+				"figmaNodeId": "4017-47",
+				"description": {
+					"de": "Verschiebe das erste Item und die aktuelle Seite nicht in das Popover. Ohne die beiden Anker verlieren Nutzer:innen die Orientierung.",
+					"en": "Don't move the first item or the current page into the popover. Hiding the anchors removes the user's orientation."
+				}
+			}
+		}
+	],
+	"examples": [],
+	"faq": [],
+	"related": [
+		{
+			"component": "popover"
+		}
+	]
+}

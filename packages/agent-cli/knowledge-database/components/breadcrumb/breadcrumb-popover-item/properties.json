@@ -1,0 +1,60 @@
+{
+	"component": "breadcrumb-popover-item",
+	"properties": [
+		{
+			"name": "label",
+			"type": "string",
+			"default": "Show more breadcrumbs",
+			"description": "Accessible label for the truncation toggle that opens the popover with the hidden breadcrumb items.",
+			"code": {
+				"prop": "label",
+				"type": "string"
+			},
+			"design": null
+		},
+		{
+			"name": "children",
+			"type": "slot",
+			"code": null,
+			"design": {
+				"name": null,
+				"note": "In code the collapsed Breadcrumb Items are placed in the default slot and rendered inside the popover's list. In Figma the popover content is built from the helper component 🛟 Breadcrumb Popover List Item instead of a slot on this component."
+			}
+		},
+		{
+			"name": "separator",
+			"type": "enum",
+			"values": ["chevron", "slash"],
+			"default": "chevron",
+			"code": null,
+			"design": {
+				"name": "🔄 Separator",
+				"type": "instance-swap",
+				"note": "Figma swaps the separator on the item (🛟 Breadcrumb Separator, Chevron Right or Slash). In code there is no item-level property; `separator` is set once on the breadcrumb and applies to the whole trail."
+			}
+		},
+		{
+			"name": "size",
+			"type": "enum",
+			"values": ["small", "medium"],
+			"default": "small",
+			"code": null,
+			"design": {
+				"name": null,
+				"note": "No variant property in Figma. Small and Medium are modelled as separate component sets (↳ Breadcrumb Popover Item → (Def) Small and → Medium). In code the item inherits the size from the breadcrumb, which writes it as data-size."
+			}
+		},
+		{
+			"name": "interactionState",
+			"type": "enum",
+			"values": ["enabled", "hovered", "pressed", "focused"],
+			"default": "enabled",
+			"code": null,
+			"design": {
+				"name": "🔀 Interaction State",
+				"values": ["(Def) Enabled", "Hovered", "Pressed", "Focused"],
+				"note": "Figma-only. Documents the visual states of the truncation; in code these are the native interaction states of the underlying button and are not a property."
+			}
+		}
+	]
+}

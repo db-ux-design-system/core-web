@@ -1,0 +1,42 @@
+{
+	"component": "breadcrumb",
+	"library": "core-components",
+	"pageId": "41209:4692",
+	"pageName": "Breadcrumb (Beta)",
+	"componentSets": [
+		{
+			"name": "Breadcrumb (Beta)",
+			"nodeId": "41209:6440",
+			"type": "COMPONENT_SET",
+			"key": "3a310fb65c86da4c8e7cadc099085f119440c188"
+		}
+	],
+	"subComponents": ["breadcrumb-item", "breadcrumb-popover-item"],
+	"helperComponents": [
+		{
+			"name": "🛟 Breadcrumb Separator → (Def) Chevron Right - Small",
+			"nodeId": "41209:7003",
+			"type": "COMPONENT",
+			"key": "75f725d30d9950b4836b3254d69b1f9f6dd9fb42"
+		},
+		{
+			"name": "🛟 Breadcrumb Separator → Slash - Small",
+			"nodeId": "41209:7006",
+			"type": "COMPONENT",
+			"key": "3606ac5d9f103fc674bf1ffd2a8109f511e9a9ed"
+		},
+		{
+			"name": "🛟 Breadcrumb Separator → (Def) Chevron Right - Medium",
+			"nodeId": "41209:7010",
+			"type": "COMPONENT",
+			"key": "e630e0acc8f86e1caed92f0b11cba0f0bdfd941d"
+		},
+		{
+			"name": "🛟 Breadcrumb Separator → Slash - Medium",
+			"nodeId": "41209:7013",
+			"type": "COMPONENT",
+			"key": "67cd52c3015fea165b04065658b7ba7d1a98d88f"
+		}
+	],
+	"note": "Ausgelesen aus dem Figma Feature Branch 'feat--breadcrumb-beta' (fileKey zFGhOx7Lt6gkJsvQXO3ZNe, Branch von core-components mlJ6R0GkfR15a93KSlqXtB) und dem Umsetzungsstand aus dem noch offenen Pull Request #8191 (Branch 'feat-breadcrumb'). Node IDs, Property-Keys und Namen sind vorläufig bis zum Merge und Release, siehe TODO.md. Löst den Concept-Eintrag aus Core Lab ab, der mit dem Anlegen dieser Komponente entfernt wurde. Anders als bei Pagination sind die beiden Größen hier eine Variantenachse einer Hauptkomponente (🔀 Size mit (Def) Small und Medium) und keine getrennten Hauptkomponenten. Die Hauptkomponente ist eine Slot-Komponente mit zwei Children-Slots, die über allowPreferredValuesOnly ausschließlich ↳ Breadcrumb Item und ↳ Breadcrumb Popover Item zulassen; im Code berechnet DBBreadcrumb den Pfad entweder aus den Children oder aus der Property 'items'. Die Truncation über 'maxItems' hat in Figma keine Entsprechung, dort wird nur das manuelle Breadcrumb Popover Item modelliert. Der Separator ist in Figma eine Helper-Komponente, die je Item getauscht wird (je eine Chevron-Right- und Slash-Variante pro Größe); im Code ist er eine Property der Breadcrumb und gilt für den ganzen Pfad. Helper-Komponenten werden wie in allen anderen Komponenten nicht eigens dokumentiert."
+}
