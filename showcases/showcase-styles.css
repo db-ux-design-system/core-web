@@ -126,10 +126,12 @@
 	display: contents;
 }
 
+/* `> * >` covers the extra element level the Angular/Stencil hosts add. */
 .paragraph-showcase .variants-list,
 .paragraph-showcase .variants-list > div:not([class^="db-"], [data-area]),
 .text-group-showcase .variants-list,
-.text-group-showcase .variants-list > div:not([class^="db-"], [data-area]) {
+.text-group-showcase .variants-list > div:not([class^="db-"], [data-area]),
+.text-group-showcase .variants-list > * > div:not([class^="db-"], [data-area]) {
 	display: block;
 }
 
