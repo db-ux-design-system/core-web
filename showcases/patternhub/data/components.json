@@ -237,6 +237,20 @@
 				"label": "DBShellContent",
 				"name": "shell-content",
 				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBBreadcrumb",
+				"name": "breadcrumb"
+			},
+			{
+				"label": "DBBreadcrumbItem",
+				"name": "breadcrumb-item",
+				"isHiddenInMenu": true
+			},
+			{
+				"label": "DBBreadcrumbPopoverItem",
+				"name": "breadcrumb-popover-item",
+				"isHiddenInMenu": true
 			}
 		]
 	},

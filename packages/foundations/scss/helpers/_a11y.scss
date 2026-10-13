@@ -1,5 +1,5 @@
 // stylelint-disable property-no-deprecated, db-ux/use-sizing
-%a11y-visually-hidden {
+@mixin a11y-visually-hidden {
 	position: absolute !important;
 	inset-block-start: 0 !important;
 	inline-size: 1px !important;
@@ -10,6 +10,10 @@
 	border: 0 !important;
 	padding: 0 !important;
 	pointer-events: none !important;
+}
+
+%a11y-visually-hidden {
+	@include a11y-visually-hidden;
 }
 
 // Hides text while keeping the element visible (e.g. for background images).
