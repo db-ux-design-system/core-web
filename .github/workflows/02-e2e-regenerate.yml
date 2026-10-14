@@ -85,7 +85,7 @@ jobs:
 
       - name: 🆙 Upload foundations
         if: ${{ !cancelled() && inputs.type == 'foundations' }}
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/foundations
@@ -93,7 +93,7 @@ jobs:
 
       - name: 🆙 Upload patternhub
         if: ${{ !cancelled() && inputs.type == 'patternhub' }}
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/patternhub
@@ -101,7 +101,7 @@ jobs:
 
       - name: 🆙 Upload showcase
         if: ${{ !cancelled() && inputs.type == 'showcases' }}
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/*/showcase
