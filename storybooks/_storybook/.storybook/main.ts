@@ -35,7 +35,10 @@ const config: StorybookConfig = {
 			react: isDev
 				? 'http://localhost:6005'
 				: `${baseUrl}/react-storybook`,
-			vue: isDev ? 'http://localhost:6007' : `${baseUrl}/vue-storybook`
+			vue: isDev ? 'http://localhost:6007' : `${baseUrl}/vue-storybook`,
+			webComponents: isDev
+				? 'http://localhost:6009'
+				: `${baseUrl}/stencil-storybook`
 		};
 
 		return mergeConfig(config, {
@@ -72,6 +75,14 @@ const config: StorybookConfig = {
 					title: 'Vue',
 					url: 'http://localhost:6007',
 					expanded: false
+				},
+				// Storybook lowercases ref ids, so a camelCase key would be
+				// emitted twice (once without a normalized id), crashing the
+				// composition manager. Keep this key lowercase.
+				webcomponents: {
+					title: 'Web Components',
+					url: 'http://localhost:6009',
+					expanded: false
 				}
 			};
 		}
@@ -94,6 +105,14 @@ const config: StorybookConfig = {
 			vue: {
 				title: 'Vue',
 				url: `${baseUrl}/vue-storybook`,
+				expanded: false
+			},
+			// Storybook lowercases ref ids, so a camelCase key would be
+			// emitted twice (once without a normalized id), crashing the
+			// composition manager. Keep this key lowercase.
+			webcomponents: {
+				title: 'Web Components',
+				url: `${baseUrl}/stencil-storybook`,
 				expanded: false
 			}
 		};
