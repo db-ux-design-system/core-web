@@ -68,6 +68,7 @@ const getFnArgs = (argTypes) => {
 const getMetaObject = ({
 	target,
 	componentName,
+	customElementTag,
 	category,
 	name,
 	meta,
@@ -76,10 +77,18 @@ const getMetaObject = ({
 	const { title, argTypes } = extractMetadata(target, name, meta);
 	const filteredImports = allImports?.filter((imp) => imp !== componentName);
 
+	// Angular and web components type the meta against the Props interface rather
+	// than `typeof <component>`: Angular has no component value in scope, and web
+	// components reference the element by its tag string, not an imported symbol.
 	const metaType =
-		target === 'angular'
+		target === 'angular' || target === 'stencil'
 			? `${componentName}Props`
 			: `typeof ${componentName}`;
+
+	// Web components use the custom-element tag string as the Storybook
+	// `component`; every other target uses the imported component symbol.
+	const metaComponent =
+		target === 'stencil' ? `'${customElementTag}'` : componentName;
 
 	let decorators = '';
 
@@ -100,7 +109,7 @@ const getMetaObject = ({
 	return `
 const meta: Meta<${metaType}> = {
 	title: 'Components/${category}/${title}',
-	component: ${componentName},
+	component: ${metaComponent},
 	${decorators}
 	parameters: {
 		layout: 'centered'
