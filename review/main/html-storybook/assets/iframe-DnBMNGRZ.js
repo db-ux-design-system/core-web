@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BAZ2V3ly.js";e();
