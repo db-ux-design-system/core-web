@@ -20,10 +20,6 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser.
-  // Registered as middleware (not a `*.*` route) because Express 5's router no
-  // longer accepts unnamed `*` wildcards. express.static falls through to the
-  // next handler when no file matches, so the Angular catch-all below still runs.
-  // See https://expressjs.com/en/guide/migrating-5.html#path-syntax
   server.use(
     express.static(browserDistFolder, {
       maxAge: '1y',
@@ -32,8 +28,6 @@ export function app(): express.Express {
   );
 
   // All regular routes use the Angular engine.
-  // `/{*splat}` is the Express 5 named-wildcard replacement for `*` and also
-  // matches the root path. See https://expressjs.com/en/guide/migrating-5.html#path-syntax
   server.get('/{*splat}', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
 
