@@ -19,9 +19,16 @@ export default (tmp?: boolean) => {
 					from: /:key="undefined"/g,
 					to: ''
 				},
+				/* Mitosis emits the shared `className` prop into the Vue template,
+				 * where `class` is the idiomatic name. Vue consumes a declared
+				 * `className` as a prop instead of letting it fall through as an
+				 * attribute, so reading only `props.class` would silently drop it.
+				 * Accepting both keeps `className` working as the models promise it
+				 * for every component, not just the few that used to patch this
+				 * replacement afterwards. Applied once, to the template occurrence. */
 				{
 					from: 'className',
-					to: 'props.class'
+					to: 'props.className ?? props.class'
 				}
 			];
 

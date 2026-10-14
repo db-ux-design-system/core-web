@@ -41,6 +41,7 @@ import {
 	DBLink,
 	DBLoadingIndicator,
 	DBNotification,
+	DBParagraph,
 	DBPopover,
 	DBRadio,
 	DBSection,
@@ -54,6 +55,7 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea,
+	DBTextGroup,
 	DBTooltip
 } from '@components';
 import { type ReactNode, useEffect, useState } from 'react';
@@ -512,6 +514,21 @@ const ComponentSwitch = ({
 		);
 	}
 
+	if (type === 'paragraph') {
+		return (
+			<DBParagraph className={className} {...props}>
+				{resolvedContent}
+			</DBParagraph>
+		);
+	}
+
+	if (type === 'text-group') {
+		return (
+			<DBTextGroup className={className} {...props}>
+				{resolvedContent}
+			</DBTextGroup>
+		);
+	}
 	if (type === 'breadcrumb') {
 		return (
 			<DBBreadcrumb className={className} {...props}>
