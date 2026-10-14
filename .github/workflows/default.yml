@@ -438,7 +438,7 @@ jobs:
     uses: ./.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
-    if: ${{ !cancelled() && needs.checks-done.result == 'success' }}
+    if: ${{ !cancelled() && needs.init.outputs.isChangesetRelease != 'true' && needs.checks-done.result == 'success' }}
     uses: ./.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit

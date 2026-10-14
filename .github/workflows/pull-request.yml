@@ -5,6 +5,26 @@ on:
   pull_request:
     branches: ["main"]
 
+# We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
+# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
+# NOTE: Concurrency is disabled for release events as they should always run to completion
+concurrency:
+  # Creates a unique concurrency group identifier for release events using the git reference
+  group: >-
+    ${{
+      github.event_name == 'release' &&
+      format('release-{0}', github.ref) ||
+      github.actor == 'dependabot[bot]' &&
+      'dependabot' ||
+      format('{0}-{1}', github.workflow, github.ref)
+    }}
+  cancel-in-progress: >-
+    ${{
+      github.event_name != 'release' &&
+      github.actor != 'dependabot[bot]' &&
+      github.ref != 'refs/heads/main'
+    }}
+
 permissions:
   pull-requests: write
   contents: write
