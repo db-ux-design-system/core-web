@@ -221,11 +221,11 @@ importers:
         specifier: 0.19.1
         version: 0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)
       '@guidepup/record':
-        specifier: 0.2.0
-        version: 0.2.0(supports-color@10.2.2)
+        specifier: 0.3.0
+        version: 0.3.0(supports-color@10.2.2)
       '@guidepup/setup':
-        specifier: 0.29.1
-        version: 0.29.1(supports-color@10.2.2)
+        specifier: 0.29.2
+        version: 0.29.2(supports-color@10.2.2)
       '@playwright/test':
         specifier: 1.63.0
         version: 1.63.0
@@ -3747,11 +3747,11 @@ packages:
       '@guidepup/guidepup': '>=0.33.0'
       '@playwright/test': ^1.57.0
 
-  '@guidepup/record@0.2.0':
-    resolution: {integrity: sha512-wmSbuomWYNvAghgH+MlSdMkkXvSW44SvMA+D0XdMXzI6iTgMbpb4iijUtIF8moiX+wl0SbeNGsY0sXqxQm6nyQ==}
+  '@guidepup/record@0.3.0':
+    resolution: {integrity: sha512-0PyoVl9yt/k34oYCWoo3WUKy452zsJDrz1xOq0SKeQM0RDD8M1emTRNEjuFU7+/BpZHisWaNXRRGIrnGvEkizg==}
 
-  '@guidepup/setup@0.29.1':
-    resolution: {integrity: sha512-fCbLxqCIH9RW3NlcZQcDWOYwTuUshW5YIeSDvwNlQ2d4qDUBzd/o/b4cJ3P4iD6OEFAnafqJdyx81TlVQE7Aqw==}
+  '@guidepup/setup@0.29.2':
+    resolution: {integrity: sha512-RSAuCTd3LVTnxvv1+A33bu2y0h5Q6//Q+RoJI73JuVydRhpNd+jz62ElJT6oqgmzURKKEaM2tO572z33wyWcow==}
     hasBin: true
 
   '@harperfast/extended-iterable@1.0.3':
@@ -15075,10 +15075,6 @@ packages:
     resolution: {integrity: sha512-RYONW2MeafgYlkVOKYKkA/Ag7BmXqgIWCa8t1m0JcxrQg9pI9lEqRhAOruOBCbAohOa/gkCF+iPi9hrgvTzu6Q==}
     engines: {node: '>=20.18.1'}
 
-  undici@8.10.2:
-    resolution: {integrity: sha512-/y4/bH9YNU5hi9NIrpOuvGXFcxrj3CMrV+/AYpowAYTpHn8gX/XPFjNy766FPoYY0miQhdW977JFWKGNhBdwyQ==}
-    engines: {node: '>=22.19.0'}
-
   undici@8.11.2:
     resolution: {integrity: sha512-u4UB2/IrKdU6lFxumHmmo1a3fCQO5tzQllRorfoRS63txhrB7xTpSn1PftwC4qEHkOaqP95fCWW4lJzwErwzhQ==}
     engines: {node: '>=22.19.0'}
@@ -18934,21 +18930,21 @@ snapshots:
       '@guidepup/guidepup': 0.35.0(supports-color@10.2.2)
       '@playwright/test': 1.63.0
 
-  '@guidepup/record@0.2.0(supports-color@10.2.2)':
+  '@guidepup/record@0.3.0(supports-color@10.2.2)':
     dependencies:
       ffmpeg-static: 5.3.0(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/setup@0.29.1(supports-color@10.2.2)':
+  '@guidepup/setup@0.29.2(supports-color@10.2.2)':
     dependencies:
       chalk: 4.1.2
       commander: 15.0.0
       semver: 7.8.5
-      undici: 8.10.2
+      undici: 8.11.2
       unzipper: 0.12.5
     optionalDependencies:
-      '@guidepup/record': 0.2.0(supports-color@10.2.2)
+      '@guidepup/record': 0.3.0(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -32342,8 +32338,6 @@ snapshots:
   undici@6.28.1: {}
 
   undici@7.29.1: {}
-
-  undici@8.10.2: {}
 
   undici@8.11.2: {}
 
