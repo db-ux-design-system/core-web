@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-BtbKruN8.js";e();
