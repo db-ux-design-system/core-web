@@ -1,5 +1,7 @@
 import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
+import DBInfotext from '../../infotext/infotext.lite';
+import DBInput from '../../input/input.lite';
 import DBCustomSelect from '../custom-select.lite';
 import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
 
@@ -23,6 +25,10 @@ type CustomSelectAutoCompleteState = {
  * [`autocomplete` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete)).
  * The token and the option values have to be real as well - no browser fills a
  * country field with "Option 1".
+ *
+ * The address input is the anchor for a manual check: a browser offers its
+ * suggestions in a visible field and fills the rest of the form from there,
+ * the hidden select included.
  */
 export default function CustomSelectAutoComplete() {
 	const state = useStore<CustomSelectAutoCompleteState>({
@@ -44,6 +50,21 @@ export default function CustomSelectAutoComplete() {
 		<Fragment>
 			<form onSubmit={(event) => state.handleSubmit(event)}>
 				<div class="db-stack" data-gap="fixed-md">
+					<DBInfotext semantic="informational" size="small">
+						Needs address autofill switched on in your browser and
+						an address saved, set to one of the countries below.
+						Pick it in the address field: the browser then fills the
+						whole form, including the hidden select that carries the
+						country, so the selection below has to follow.
+					</DBInfotext>
+					<div style={{ width: '200px' }}>
+						<DBInput
+							autoComplete="street-address"
+							name="street-address"
+							label="Address"
+							placeholder="Street and number"
+						/>
+					</div>
 					<div style={{ width: '200px' }}>
 						<DBCustomSelect
 							autoComplete="country"
