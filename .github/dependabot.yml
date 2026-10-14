@@ -135,13 +135,14 @@ updates:
       # @db-ux/mcp-server pins it exactly. Bumping only one side lets the
       # resolver put a second zod copy into the bundle, and the tool schemas
       # must come from the same copy the SDK converts them with.
+      # Patch updates stay in this group (not the catch-all patch-dependencies)
+      # so the coupled MCP packages and zod always move together, even on a
+      # patch bump. Dependabot assigns an update to the first matching group,
+      # and this group is declared before patch-dependencies.
       modelcontextprotocol:
         patterns:
           - "@modelcontextprotocol*"
           - "zod"
-        update-types:
-          - "major"
-          - "minor"
       # Development tools
       typescript:
         patterns:
