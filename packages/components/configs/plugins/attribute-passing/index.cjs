@@ -1,9 +1,6 @@
 // TODO: Remove when https://github.com/BuilderIO/mitosis/pull/1792 is merged
 
-const dashCase = (str) =>
-	str
-		.replace(/[A-Z]/g, (m, i) => (i > 0 ? '-' : '') + m.toLowerCase())
-		.replace(/([a-z])([0-9])/g, '$1-$2');
+const { dashCase } = require('../utils.cjs');
 
 /**
  * @type {import('@builder.io/mitosis').MitosisPlugin}

@@ -2,7 +2,7 @@ const { targetMapping } = require('./target-mapping.cjs');
 const { resolveImports, resolveDataImports } = require('./resolve-imports.cjs');
 const { getMetaObject } = require('./get-meta-object.cjs');
 const { getStories } = require('./get-stories.cjs');
-const { toPascalCase } = require('../utils.cjs');
+const { toPascalCase, componentNameToTag } = require('../utils.cjs');
 
 /**
  * Mitosis plugin for generating Storybook stories
@@ -46,6 +46,11 @@ module.exports = () => ({
 				);
 			}
 
+			// Web components render by tag, not by an imported component symbol.
+			// Derive the custom-element tag (e.g. `db-button`, `db-heading-h-1`)
+			// via the shared helper, matching the registered Stencil element.
+			const customElementTag = componentNameToTag(componentName);
+
 			// Validate component import
 			if (!componentName)
 				throw new Error(
@@ -67,18 +72,32 @@ module.exports = () => ({
 					!example.properties || !example.properties['data-sb-ignore']
 			);
 
+			// Web components are referenced by tag, so the generated story only
+			// needs the Props type (for argTypes typing) plus the helper that
+			// turns the Storybook args into an attribute string. Every other
+			// target imports the component value(s) from `@components`.
+			const componentsImport =
+				target === 'stencil'
+					? `import type { ${componentName}Props } from '@components';`
+					: `import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`;
+
 			// Generate Storybook file content
 			return [
 				`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
 				target === 'angular'
 					? `import { argsToTemplate, moduleMetadata, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
 					: '',
-				`import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`,
+				target === 'stencil' ? `import { html } from 'lit';` : '',
+				target === 'stencil'
+					? `import { spreadArgs, unsafeHTML } from '../../../templates/apply-web-component-args';`
+					: '',
+				componentsImport,
 				dataImports,
 				"import { fn } from 'storybook/test';",
 				getMetaObject({
 					target,
 					componentName,
+					customElementTag,
 					category,
 					name,
 					meta,
