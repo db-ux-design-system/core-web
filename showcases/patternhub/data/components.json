@@ -37,6 +37,14 @@
 				]
 			},
 			{
+				"label": "DBParagraph",
+				"name": "paragraph"
+			},
+			{
+				"label": "DBTextGroup",
+				"name": "text-group"
+			},
+			{
 				"label": "DBTooltip",
 				"name": "tooltip"
 			},

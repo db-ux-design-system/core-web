@@ -24,6 +24,8 @@ export type ComponentType = {
 		| 'heading-h5'
 		| 'heading-h6'
 		| 'custom-heading'
+		| 'paragraph'
+		| 'text-group'
 		| 'custom-button'
 		| 'table'
 		| 'control-panel-mobile'

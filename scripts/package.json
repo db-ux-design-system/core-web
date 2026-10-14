@@ -41,6 +41,7 @@
     "build-storybooks:angular": "pnpm --filter angular-storybook run build",
     "build-storybooks:composition": "pnpm --filter composition-storybook run build",
     "build-storybooks:react": "pnpm --filter react-storybook run build",
+    "build-storybooks:stencil": "pnpm --filter stencil-storybook run build",
     "build-storybooks:vue": "pnpm --filter vue-storybook run build",
     "build:agent-cli": "pnpm --filter @db-ux/agent-cli run build",
     "build:components": "pnpm --filter @db-ux/core-components run build",

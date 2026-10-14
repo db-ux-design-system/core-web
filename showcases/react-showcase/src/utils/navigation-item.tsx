@@ -27,6 +27,7 @@ import NavigationItemShowcase from '@components/components/navigation-item/showc
 import NavigationShowcase from '@components/components/navigation/showcase/navigation.showcase';
 import NotificationShowcase from '@components/components/notification/showcase/notification.showcase';
 import PaginationShowcase from '@components/components/pagination/showcase/pagination.showcase';
+import ParagraphShowcase from '@components/components/paragraph/showcase/paragraph.showcase';
 import PopoverShowcase from '@components/components/popover/showcase/popover.showcase';
 import RadioShowcase from '@components/components/radio/showcase/radio.showcase';
 import SectionShowcase from '@components/components/section/showcase/section.showcase';
@@ -38,6 +39,7 @@ import TabItemShowcase from '@components/components/tab-item/showcase/tab-item.s
 import TableShowcase from '@components/components/table/showcase/table.showcase';
 import TabsShowcase from '@components/components/tabs/showcase/tabs.showcase';
 import TagShowcase from '@components/components/tag/showcase/tag.showcase';
+import TextGroupShowcase from '@components/components/text-group/showcase/text-group.showcase';
 import TextareaShowcase from '@components/components/textarea/showcase/textarea.showcase';
 import TooltipShowcase from '@components/components/tooltip/showcase/tooltip.showcase';
 import Home from '../components/home';
@@ -153,6 +155,16 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
 				path: 'heading',
 				label: 'Heading',
 				component: <HeadingShowcase />
+			},
+			{
+				path: 'paragraph',
+				label: 'Paragraph',
+				component: <ParagraphShowcase />
+			},
+			{
+				path: 'text-group',
+				label: 'TextGroup',
+				component: <TextGroupShowcase />
 			},
 			{
 				path: 'brand',

@@ -10,6 +10,9 @@ const targetMapping = {
 	},
 	vue: {
 		storyBookLib: 'vue3-vite'
+	},
+	stencil: {
+		storyBookLib: 'web-components-vite'
 	}
 };
 
