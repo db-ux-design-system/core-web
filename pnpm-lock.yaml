@@ -209,8 +209,8 @@ importers:
         specifier: 4.3.0
         version: 4.3.0
       '@double-great/stylelint-a11y':
-        specifier: 3.5.4
-        version: 3.5.4(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))
+        specifier: 3.8.1
+        version: 3.8.1(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))
       '@figma/code-connect':
         specifier: 2.0.1
         version: 2.0.1(supports-color@10.2.2)
@@ -3259,11 +3259,11 @@ packages:
     resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
     engines: {node: '>=14.17.0'}
 
-  '@double-great/stylelint-a11y@3.5.4':
-    resolution: {integrity: sha512-KkDMMW1HegHOrhW+cyFNo81yXfA8y0066r5BFjr5clxDQvlpWU7NkAxiECYbSigw5oIANu8xQ4JDf8bIq/UT2A==}
+  '@double-great/stylelint-a11y@3.8.1':
+    resolution: {integrity: sha512-UpqFwJJXFBVevkQg2PpgiieTiwCR86y3q5AlW5eq+n5EdibjHISb4Iah4+ywVSUsLEMwKUH8m5ny+tDp+EV3Hw==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
-      stylelint: '>=16.0.0'
+      stylelint: '>=16.7.0'
 
   '@dxup/nuxt@0.5.10':
     resolution: {integrity: sha512-54Vehb7LmR7qYpC6KFwjDTSm6CB1CayBu+JXdHrPLrIjjr5xAgb43jvgOU+mnB+tsRh414fSsEy0QjBMKILQ8g==}
@@ -18378,9 +18378,10 @@ snapshots:
 
   '@discoveryjs/json-ext@0.6.3': {}
 
-  '@double-great/stylelint-a11y@3.5.4(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))':
+  '@double-great/stylelint-a11y@3.8.1(stylelint@17.16.0(supports-color@10.2.2)(typescript@5.9.3))':
     dependencies:
       postcss: 8.5.29
+      postcss-selector-parser: 7.1.6
       stylelint: 17.16.0(supports-color@10.2.2)(typescript@5.9.3)
 
   '@dxup/nuxt@0.5.10(@nuxt/schema@4.6.1)(confbox@0.3.1)(dotenv@17.4.2)(esbuild@0.28.2)(giget@3.3.1)(jiti@2.7.0)(mlly@1.8.2)(oxc-parser@0.153.0)(rolldown@1.2.11)(rollup@4.63.3)(vite@8.3.3(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.0(supports-color@10.2.2))(sass@1.105.0)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1))(webpack@5.111.0(clean-css@5.3.3)(cssnano@9.3.2(postcss@8.5.29))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.29)(sharp@0.35.5(@types/node@26.6.5))(svgo@4.1.0)(uglify-js@3.19.3))':
