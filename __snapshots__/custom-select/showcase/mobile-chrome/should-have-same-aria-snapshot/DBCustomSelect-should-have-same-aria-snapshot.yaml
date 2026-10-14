@@ -1810,3 +1810,25 @@
       - button "Close"
   - button "Clear selection"
   - status
+  - link "Auto Complete"
+  - text: Country
+  - group:
+    - article:
+      - radiogroup "Country":
+        - list:
+          - listitem:
+            - radio "Germany"
+            - text: Germany
+          - listitem:
+            - radio "Austria"
+            - text: Austria
+          - listitem:
+            - radio "Switzerland"
+            - text: Switzerland
+          - listitem:
+            - radio "France"
+            - text: France
+      - button "Close"
+  - status
+  - button "Submit"
+  - paragraph: "Submitted country: -"

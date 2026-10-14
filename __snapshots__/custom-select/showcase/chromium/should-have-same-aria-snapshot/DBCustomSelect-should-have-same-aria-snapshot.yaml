@@ -1729,3 +1729,24 @@
             - text: Option 2
   - button "Clear selection"
   - status
+  - link "Auto Complete"
+  - text: Country
+  - group:
+    - article:
+      - radiogroup "Country":
+        - list:
+          - listitem:
+            - radio "Germany"
+            - text: Germany
+          - listitem:
+            - radio "Austria"
+            - text: Austria
+          - listitem:
+            - radio "Switzerland"
+            - text: Switzerland
+          - listitem:
+            - radio "France"
+            - text: France
+  - status
+  - button "Submit"
+  - paragraph: "Submitted country: -"
