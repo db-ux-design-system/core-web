@@ -1,6 +1,5 @@
 import type {
 	BaseFormProps,
-	ClickEvent,
 	CloseEventState,
 	CustomFormProps,
 	DocumentScrollState,
@@ -280,19 +279,24 @@ export type DBCustomSelectDefaultState = {
 	searchEnabled: boolean;
 	amountOptions: number;
 	setDescById: (descId?: string) => void;
-	handleTagRemove: (
-		option: CustomSelectOptionType,
-		event?: ClickEvent<HTMLButtonElement> | Event | void | any
-	) => void;
+	handleTagRemove: (option: CustomSelectOptionType) => void;
 	handleSummaryFocus: () => void;
 	handleSelect: (value?: string) => void;
 	handleSelectAll: (event: any) => void;
 	handleClearAll: (event: any) => void;
 	handleDropdownToggle: (event: any) => void;
 	handleDocumentClose: (event: any) => void;
+	/**
+	 * Whether the given event target is inside the custom select field. The tags
+	 * and clear button render as siblings of the `<details>` element inside the
+	 * wrapping `.db-custom-select-form-field`, so a plain `detailsRef.contains`
+	 * check would wrongly treat them as outside and close the open dropdown.
+	 */
+	fieldContains: (target?: EventTarget | null) => boolean;
 	handleOpenByKeyboardFocus: () => void;
 	handleFocusFirstDropdownCheckbox: (activeElement?: Element) => void;
 	handleKeyboardPress: (event: any) => void;
+	handleFieldKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
 	handleSearch: (event: any) => void;
 	handleOptionSelected: (_values: string[]) => void;
