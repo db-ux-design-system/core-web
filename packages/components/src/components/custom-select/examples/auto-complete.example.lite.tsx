@@ -28,7 +28,10 @@ type CustomSelectAutoCompleteState = {
  *
  * The address input is the anchor for a manual check: a browser offers its
  * suggestions in a visible field and fills the rest of the form from there,
- * the hidden select included.
+ * the hidden select included. It carries `address-line1` rather than
+ * `street-address`, because the latter is a multiline token that the spec only
+ * allows on a `textarea` - on an `input` a11y-checker reports it as
+ * `input_autocomplete_valid`.
  */
 export default function CustomSelectAutoComplete() {
 	const state = useStore<CustomSelectAutoCompleteState>({
@@ -59,8 +62,8 @@ export default function CustomSelectAutoComplete() {
 					</DBInfotext>
 					<div style={{ width: '200px' }}>
 						<DBInput
-							autoComplete="street-address"
-							name="street-address"
+							autoComplete="address-line1"
+							name="address-line1"
 							label="Address"
 							placeholder="Street and number"
 						/>
