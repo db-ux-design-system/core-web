@@ -1729,3 +1729,28 @@
             - text: Option 2
   - button "Clear selection"
   - status
+  - link "Auto Complete"
+  - text: "Needs address autofill switched on in your browser and an address saved, set to one of the countries below. Pick it in the address field: the browser then fills the whole form, including the hidden select that carries the country, so the selection below has to follow. Address"
+  - textbox "Address":
+    - /placeholder: Street and number
+  - status
+  - text: Country
+  - group:
+    - article:
+      - radiogroup "Country":
+        - list:
+          - listitem:
+            - radio "Germany"
+            - text: Germany
+          - listitem:
+            - radio "Austria"
+            - text: Austria
+          - listitem:
+            - radio "Switzerland"
+            - text: Switzerland
+          - listitem:
+            - radio "France"
+            - text: France
+  - status
+  - button "Submit"
+  - paragraph: "Submitted country: -"
