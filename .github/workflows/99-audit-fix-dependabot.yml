@@ -44,7 +44,7 @@ jobs:
           fetch-depth: 1
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/pnpm-cache
+        uses: $/.github/actions/pnpm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
@@ -83,7 +83,7 @@ jobs:
 
       - name: 📝 Commit and push changes
         if: ${{ steps.audit.outputs.fixed == 'true' }}
-        uses: ./.github/actions/auto-commit
+        uses: $/.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-audit-fix"
           commit-message: "fix: resolve additional audit vulnerabilities"
