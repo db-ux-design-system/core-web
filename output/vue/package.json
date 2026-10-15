@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "5.7.1",
+  "version": "6.0.0",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {

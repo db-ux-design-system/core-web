@@ -31,8 +31,8 @@
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*",
-    "@db-ux/db-theme": "6.3.0",
-    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme": "7.0.0",
+    "@db-ux/db-theme-fonts": "2.1.0",
     "@db-ux/db-theme-icons": "4.3.0",
     "next": "16.4.0",
     "react": "19.3.0",

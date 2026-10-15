@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/mcp-server",
-  "version": "5.7.1",
+  "version": "6.0.0",
   "type": "module",
   "description": "MCP server for DB UX Design System – gives LLMs access to UI components and code examples",
   "repository": {
@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.3.1",
-    "zod": "4.6.5"
+    "zod": "4.6.6"
   },
   "devDependencies": {
     "@db-ux/db-theme-icons": "4.3.0",
