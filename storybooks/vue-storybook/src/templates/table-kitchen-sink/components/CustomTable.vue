@@ -16,6 +16,7 @@ import {
 	type StockFeatures,
 	type Table
 } from "@tanstack/vue-table";
+import { defineProps } from "vue";
 import Filter from "./Filter.vue";
 
 interface Props {

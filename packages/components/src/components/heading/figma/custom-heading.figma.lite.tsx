@@ -7,10 +7,8 @@ useMetadata({ figma: customHeading });
 export default function CustomHeadingFigmaLite(props: FigmaCustomHeadingProps) {
 	return (
 		<DBCustomHeading
-			size={props.size}
-			fontWeight={props.fontWeight}
-			alignment={props.alignment}
-			paragraphSpacing={props.paragraphSpacing}>
+			visualSize={props.visualSize}
+			fontWeight={props.fontWeight}>
 			<h2>{props.text}</h2>
 		</DBCustomHeading>
 	);

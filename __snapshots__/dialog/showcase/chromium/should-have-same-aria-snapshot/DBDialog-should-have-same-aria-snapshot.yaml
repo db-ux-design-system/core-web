@@ -37,3 +37,11 @@
   - 'button "Open: With header end slot"'
   - 'button "Open: Without footer"'
   - 'button "Open: With header subtitle"'
+  - link "Interaction"
+  - 'button "Open: text and heading"'
+  - 'button "Open: aria-labelledby composition"'
+  - 'button "Open: derived heading id"'
+  - 'button "Open: aria-label override"'
+  - 'button "Open: close button commandfor"'
+  - 'button "Open: events"'
+  - text: "close: 0 cancel: 0 click: 0"

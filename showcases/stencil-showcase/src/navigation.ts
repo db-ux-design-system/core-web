@@ -81,6 +81,8 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 		label: '04 Data-Display',
 		children: sortNavItems([
 			{ path: '04/heading', label: 'Heading' },
+			{ path: '04/paragraph', label: 'Paragraph' },
+			{ path: '04/text-group', label: 'TextGroup' },
 			{ path: '04/icon', label: 'Icon' },
 			{ path: '04/brand', label: 'Brand' },
 			{ path: '04/tooltip', label: 'Tooltip' },
@@ -123,6 +125,7 @@ export const NAVIGATION_ITEMS: NavItem[] = sortNavItems([
 					}
 				])
 			},
+			{ path: '05/breadcrumb', label: 'Breadcrumb' },
 			{ path: '05/navigation-item', label: 'NavigationItem' },
 			{ path: '05/navigation', label: 'Navigation' },
 			{ path: '05/pagination', label: 'Pagination' },
@@ -170,7 +173,7 @@ function renderNavigationTree(ariaLabel: string, variant: string): string {
 let settings: DefaultSettings = { ...defaultSettings };
 
 function getQueryParameters(): URLSearchParams {
-	const [, queryString = ''] = globalThis.location.hash.split('?');
+	const [, queryString = ''] = globalThis.location.hash.split('?', 2);
 
 	return new URLSearchParams(queryString);
 }
@@ -199,7 +202,7 @@ function getColor(): string {
 
 function setUrlParameters(updates: Record<string, string>): void {
 	const hash = globalThis.location.hash || '#/';
-	const [path, queryString] = hash.split('?');
+	const [path, queryString] = hash.split('?', 2);
 	const parameters = new URLSearchParams(queryString ?? '');
 
 	for (const [key, value] of Object.entries(updates)) {

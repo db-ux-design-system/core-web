@@ -79,20 +79,22 @@ const startReplacement = (filesToReplace: Replacement[]) => {
 			}
 		});
 
-		if (!fs.existsSync(pathNameSvg)) {
-			const fileStream = fs.createWriteStream(pathNameSvg);
-
-			https.get(svgUrl, (incomingMessage) => {
-				incomingMessage.pipe(fileStream);
-				fileStream.on('finish', () => {
-					fileStream.close();
-					fs.writeFileSync(
-						`${pathname}.licence`,
-						`retrieved from URL: ${svgUrl}`
-					);
-				});
-			});
+		if (fs.existsSync(pathNameSvg)) {
+			continue;
 		}
+
+		const fileStream = fs.createWriteStream(pathNameSvg);
+
+		https.get(svgUrl, (incomingMessage) => {
+			incomingMessage.pipe(fileStream);
+			fileStream.on('finish', () => {
+				fileStream.close();
+				fs.writeFileSync(
+					`${pathname}.licence`,
+					`retrieved from URL: ${svgUrl}`
+				);
+			});
+		});
 	}
 };
 

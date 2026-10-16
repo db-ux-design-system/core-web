@@ -236,20 +236,29 @@ export default function DBPopover(props: DBPopoverProps) {
 		}
 	}, [_ref, state.isExpanded, props.open]);
 
-	// Controlled open state handler.
-	// Transitioning from controlled (open={true|false}) to uncontrolled
-	// (open={undefined|null}) at runtime is not supported. Components should
-	// be either always controlled or always uncontrolled.
+	/*
+	 * Controlled open state handler. Switching between controlled
+	 * (open={true|false}) and uncontrolled (open={undefined|null}) at runtime is
+	 * not supported.
+	 *
+	 * The handlers run deferred because they read and write the same state:
+	 * Angular tracks every signal read inside an effect, so a synchronous call
+	 * would let those writes re-trigger this effect endlessly. The timeout leaves
+	 * the reactive context.
+	 */
 	onUpdate(() => {
 		if (props.open == null) {
 			return;
 		}
 
-		if (getBoolean(props.open, 'open')) {
-			state.handleEnter(undefined, true);
-		} else {
-			state.handleLeave(undefined, true);
-		}
+		const shouldOpen = getBoolean(props.open, 'open');
+		void utilsDelay(() => {
+			if (shouldOpen) {
+				state.handleEnter(undefined, true);
+			} else {
+				state.handleLeave(undefined, true);
+			}
+		}, 1);
 	}, [props.open]);
 
 	// jscpd:ignore-end

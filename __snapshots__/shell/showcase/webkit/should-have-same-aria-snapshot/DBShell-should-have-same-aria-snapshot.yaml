@@ -114,7 +114,7 @@
     - paragraph: Auto-Top position content
     - paragraph: Auto-Top position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - navigation "content-position-fixed-top":
     - list:
       - listitem:
@@ -135,7 +135,7 @@
     - paragraph: Fixed-Top position content
     - paragraph: Fixed-Top position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - navigation "content-position-auto-left":
     - list:
       - listitem:
@@ -157,7 +157,7 @@
     - paragraph: Auto-Left position content
     - paragraph: Auto-Left position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - navigation "content-position-fixed-left":
     - list:
       - listitem:
@@ -179,7 +179,7 @@
     - paragraph: Fixed-Left position content
     - paragraph: Fixed-Left position content
     - button "Action"
-  - article: Test Test
+  - paragraph: © Example Company
   - link "Sub Navigation"
   - navigation "shell-top-sub-top-main":
     - list:

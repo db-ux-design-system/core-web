@@ -403,16 +403,6 @@ exports[`Framework ESLint Integration > should lint Angular test file > angular-
     "severity": 1,
   },
   {
-    "column": 3,
-    "endColumn": 36,
-    "endLine": 109,
-    "line": 109,
-    "message": "db-icon must have either a text property or children content",
-    "messageId": "missingContent",
-    "ruleId": "db-ux/text-or-children-required",
-    "severity": 2,
-  },
-  {
     "column": 2,
     "endColumn": 53,
     "endLine": 113,

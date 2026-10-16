@@ -1,4 +1,0 @@
-- dialog "Title":
-  - heading "Title" [level=2]
-  - button "Close"
-  - text: Test
