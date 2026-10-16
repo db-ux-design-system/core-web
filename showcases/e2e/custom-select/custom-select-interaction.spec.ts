@@ -28,10 +28,8 @@ const openDropdown = async (page: Page, summary: Locator) => {
 		.waitForFunction(
 			() => {
 				const { activeElement } = document;
-				const type = activeElement?.getAttribute('type');
-				return (
-					type === 'checkbox' || type === 'radio' || type === 'search'
-				);
+				const type = activeElement?.getAttribute('type') ?? '';
+				return ['checkbox', 'radio', 'search'].includes(type);
 			},
 			{ timeout: FOCUS_COOLDOWN }
 		)
