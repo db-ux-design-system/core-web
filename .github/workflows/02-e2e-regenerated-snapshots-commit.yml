@@ -59,7 +59,7 @@ jobs:
           path: ./__snapshots__/
 
       - name: 🚘 Auto commit
-        uses: ./.github/actions/auto-commit
+        uses: $/.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-auto"
           commit-message: "auto update snapshots"

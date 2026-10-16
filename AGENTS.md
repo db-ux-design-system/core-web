@@ -411,6 +411,7 @@ pnpm exec tsx scripts/my-script.ts
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
 - **Pin all third-party Actions to full commit SHAs** (not tags) for supply-chain security. Dependabot manages updates. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Reference our own actions and reusable workflows with the self-repository `$/` syntax** (e.g. `uses: $/.github/actions/pnpm-cache`, `uses: $/.github/workflows/00-init.yml`), which is GitHub new recommended way of how to reference same repository actions from workflows.
 
 ## Additional Resources
 

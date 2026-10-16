@@ -28,7 +28,7 @@ jobs:
           fetch-depth: 1
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/pnpm-cache
+        uses: $/.github/actions/pnpm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
@@ -65,7 +65,7 @@ jobs:
 
       - name: 🚘 Auto-commit fixes
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'github-actions[bot]@users.noreply.github.com') }}
-        uses: ./.github/actions/auto-commit
+        uses: $/.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
           commit-message: "style: auto-fix codestyle issues"
