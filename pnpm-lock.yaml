@@ -702,8 +702,8 @@ importers:
         specifier: 2.3.1
         version: 2.3.1
       zod:
-        specifier: 4.6.6
-        version: 4.6.6
+        specifier: 4.6.7
+        version: 4.6.7
     devDependencies:
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
@@ -1446,8 +1446,8 @@ importers:
         specifier: 10.6.0
         version: 10.6.0
       '@tanstack/angular-table':
-        specifier: 9.2.8
-        version: 9.2.8(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
+        specifier: 9.3.1
+        version: 9.3.1(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
       '@tanstack/match-sorter-utils':
         specifier: 9.2.6
         version: 9.2.6
@@ -1580,8 +1580,8 @@ importers:
         specifier: 9.2.6
         version: 9.2.6
       '@tanstack/react-table':
-        specifier: 9.2.8
-        version: 9.2.8(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        specifier: 9.3.1
+        version: 9.3.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -1711,8 +1711,8 @@ importers:
         specifier: 9.2.6
         version: 9.2.6
       '@tanstack/vue-table':
-        specifier: 9.2.8
-        version: 9.2.8(vue@3.5.43(typescript@5.9.3))
+        specifier: 9.3.1
+        version: 9.3.1(vue@3.5.43(typescript@5.9.3))
       vue:
         specifier: 3.5.43
         version: 3.5.43(typescript@5.9.3)
@@ -6682,8 +6682,8 @@ packages:
       '@angular/common': '>=19.0.0'
       '@angular/core': '>=19.0.0'
 
-  '@tanstack/angular-table@9.2.8':
-    resolution: {integrity: sha512-ofZSykhLrcKAJa+8q1Oxabk1sqO0tiZCAD2uguubgpJr4gPl6pHFpc651uIck2OTE8xPUxuPUStqjiNdw6fHxA==}
+  '@tanstack/angular-table@9.3.1':
+    resolution: {integrity: sha512-/BQJXAZde3XSRxD4O4bskaUGd5WxkBRbM4rNsXT9cCnKwRLWcFkofAXZRJQ+FXy1Bnh03GzLxmCfExSIOW3q3w==}
     engines: {node: '>=20'}
     peerDependencies:
       '@angular/core': '>=19'
@@ -6698,8 +6698,8 @@ packages:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  '@tanstack/react-table@9.2.8':
-    resolution: {integrity: sha512-cJxgratJm3uMm2sXnmY3PCTvcvIEFleCJ2uSOM2nxCmIY8RWA1KjXt5fsWGlYisL7DODr2w9YpLRQ3i/7MdIsQ==}
+  '@tanstack/react-table@9.3.1':
+    resolution: {integrity: sha512-E6Ya5TnY6EaGyZYIUqig/29Lr/gJSAubQkLJFqiWkUl5nRCr0Xr9hvJot+NiRTtG+TzGxHTiqUW3bnLtQxlHug==}
     engines: {node: '>=20'}
     peerDependencies:
       react: '>=18'
@@ -6707,12 +6707,12 @@ packages:
   '@tanstack/store@0.11.2':
     resolution: {integrity: sha512-sJ4mjol8uQsHV0gOJzzjwXfh2Fwm+Sz0+8deqiTm4jGbMdjzNSW+xZCFm0kUa870uhd8yi+DpKnZb5Kc4apa0Q==}
 
-  '@tanstack/table-core@9.2.8':
-    resolution: {integrity: sha512-M4D6fY5jnc7z7TaoD3Pjvz5R+8MbhzCGYdkcFf2T1AgjigwLinvFWZh6mtqfN016A7yGIroOL0GiTlVGsTh6Vg==}
+  '@tanstack/table-core@9.3.1':
+    resolution: {integrity: sha512-zQvlxSNi2qGM3L4jh85Z6hqMfdIR5qOfD9KHOU32nuKFJGN0RlJ7UvV1lsPb1fPVhpFYI0VP3jJGxLdLDpTKjQ==}
     engines: {node: '>=20'}
 
-  '@tanstack/vue-table@9.2.8':
-    resolution: {integrity: sha512-1X/hstF4Il82jCpel5Ew1CSUSeMLxf+KkQLJVQ2GIsL9VVV2FuwtlfcvEBhTq7QrEDcz8LNEEQEugYEUAtztvQ==}
+  '@tanstack/vue-table@9.3.1':
+    resolution: {integrity: sha512-7z7nS4UP91rLZ01suGxQBT611ogfBrs7/E+lsKeYS9XdHSRUAzclFvQ4B10F0bC/Q8BrzgXiNH3QzumK7b0Tow==}
     engines: {node: '>=20'}
     peerDependencies:
       vue: '>=3.2'
@@ -16084,11 +16084,11 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
-  zod@4.6.5:
-    resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
-
   zod@4.6.6:
     resolution: {integrity: sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA==}
+
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
   zone.js@0.15.1:
     resolution: {integrity: sha512-XE96n56IQpJM7NAoXswY3XRLcWFW83xe0BiAOeMD7K5k5xecOeul3Qcpx6GqEeeHNkW5DWL5zOyTbEfB4eti8w==}
@@ -19731,11 +19731,11 @@ snapshots:
       eventsource-parser: 3.1.1
       jose: 6.2.12
       pkce-challenge: 5.0.1
-      zod: 4.6.6
+      zod: 4.6.7
 
   '@modelcontextprotocol/core@2.3.1':
     dependencies:
-      zod: 4.6.6
+      zod: 4.6.7
 
   '@modelcontextprotocol/sdk@1.31.0(supports-color@10.2.2)(zod@4.3.6)':
     dependencies:
@@ -19762,7 +19762,7 @@ snapshots:
   '@modelcontextprotocol/server@2.3.1':
     dependencies:
       '@modelcontextprotocol/core': 2.3.1
-      zod: 4.6.6
+      zod: 4.6.7
 
   '@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4':
     optional: true
@@ -21500,11 +21500,11 @@ snapshots:
       '@angular/core': 21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1)
       '@tanstack/store': 0.11.2
 
-  '@tanstack/angular-table@9.2.8(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))':
+  '@tanstack/angular-table@9.3.1(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))':
     dependencies:
       '@angular/core': 21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1)
       '@tanstack/angular-store': 0.11.2(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))
-      '@tanstack/table-core': 9.2.8
+      '@tanstack/table-core': 9.3.1
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@angular/common'
@@ -21520,24 +21520,24 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
       use-sync-external-store: 1.7.0(react@19.3.0)
 
-  '@tanstack/react-table@9.2.8(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@tanstack/react-table@9.3.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@tanstack/react-store': 0.11.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
-      '@tanstack/table-core': 9.2.8
+      '@tanstack/table-core': 9.3.1
       react: 19.3.0
     transitivePeerDependencies:
       - react-dom
 
   '@tanstack/store@0.11.2': {}
 
-  '@tanstack/table-core@9.2.8':
+  '@tanstack/table-core@9.3.1':
     dependencies:
       '@tanstack/store': 0.11.2
 
-  '@tanstack/vue-table@9.2.8(vue@3.5.43(typescript@5.9.3))':
+  '@tanstack/vue-table@9.3.1(vue@3.5.43(typescript@5.9.3))':
     dependencies:
       '@tanstack/store': 0.11.2
-      '@tanstack/table-core': 9.2.8
+      '@tanstack/table-core': 9.3.1
       vue: 3.5.43(typescript@5.9.3)
 
   '@testing-library/dom@10.4.2':
@@ -26992,7 +26992,7 @@ snapshots:
       tinyglobby: 0.2.17
       unbash: 5.0.0
       yaml: 2.9.1
-      zod: 4.6.5
+      zod: 4.6.6
 
   knitwork@1.3.0: {}
 
@@ -33337,9 +33337,9 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zod@4.6.5: {}
-
   zod@4.6.6: {}
+
+  zod@4.6.7: {}
 
   zone.js@0.15.1: {}
 
