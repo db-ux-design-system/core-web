@@ -151,7 +151,7 @@ workflows:
         - 'peaceiris/actions-gh-pages@v4.1.0'
     '.github/workflows/codeql.yml':
         - 'actions/checkout@v7.0.1'
-        - 'github/codeql-action@v4.38.2'
+        - 'github/codeql-action@v4.38.3'
     '.github/workflows/copilot-setup-steps.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.1.0'
@@ -230,9 +230,9 @@ dependencies:
         commit: 'sha1-25dd0e34f4fe68f24cc83900b1fe3fe149efef98'
         owner_id: 27347476
         repo_id: 371068214
-    'github/codeql-action@v4.38.2':
-        ref: 'v4.38.2'
-        commit: 'sha1-2892aa5e19bbd11bc0cff5427e3b750a04d9e3c2'
+    'github/codeql-action@v4.38.3':
+        ref: 'v4.38.3'
+        commit: 'sha1-24c54180a607b1449ed407dd24f251e4e9147c8d'
         owner_id: 9919
         repo_id: 259445878
     'mfranzke/dependabot-review-action@v0.2.1':
