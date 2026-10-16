@@ -1,0 +1,10 @@
+import{n as e}from"./rolldown-runtime-DkW27tQK.js";import{l as t,o as n}from"./iframe-DdFqzS0m.js";import{i as r,n as i,t as a}from"./apply-web-component-args-B1p_kTyp.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBBreadcrumb/Popover`,component:`db-breadcrumb`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`small`,`medium`]},separator:{control:`select`,options:[`chevron`,`slash`]},id:{control:`text`}}},c={args:{"aria-label":`Breadcrumb`,expandText:`Show more`},render:({children:e,...n})=>t`<db-breadcrumb ${i(n)}>${r(`<db-breadcrumb-item><a href="/">Home</a></db-breadcrumb-item><db-breadcrumb-popover-item label="Show more breadcrumbs"><db-breadcrumb-item><a href="/1">Level 1</a></db-breadcrumb-item><db-breadcrumb-item><a href="/1/2">Level 2</a></db-breadcrumb-item><db-breadcrumb-item><a href="/1/2/3">Level 3</a></db-breadcrumb-item></db-breadcrumb-popover-item><db-breadcrumb-item><a href="/1/2/3/4">Level 4</a></db-breadcrumb-item><db-breadcrumb-item><a href="/1/2/3/4/current" aria-current="page">Current</a></db-breadcrumb-item>`)}</db-breadcrumb>`},l=[`Popover`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "aria-label": "Breadcrumb",
+    "expandText": "Show more"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-breadcrumb \${spreadArgs(args)}>\${unsafeHTML(\`<db-breadcrumb-item><a href="/">Home</a></db-breadcrumb-item><db-breadcrumb-popover-item label="Show more breadcrumbs"><db-breadcrumb-item><a href="/1">Level 1</a></db-breadcrumb-item><db-breadcrumb-item><a href="/1/2">Level 2</a></db-breadcrumb-item><db-breadcrumb-item><a href="/1/2/3">Level 3</a></db-breadcrumb-item></db-breadcrumb-popover-item><db-breadcrumb-item><a href="/1/2/3/4">Level 4</a></db-breadcrumb-item><db-breadcrumb-item><a href="/1/2/3/4/current" aria-current="page">Current</a></db-breadcrumb-item>\`)}</db-breadcrumb>\`
+}`,...c.parameters?.docs?.source}}}})))()}u();export{c as Popover,l as __namedExportsOrder,s as default};
