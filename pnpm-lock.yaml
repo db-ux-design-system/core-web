@@ -215,11 +215,11 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.35.0
-        version: 0.35.0(supports-color@10.2.2)
+        specifier: 0.36.0
+        version: 0.36.0(supports-color@10.2.2)
       '@guidepup/playwright':
         specifier: 0.19.1
-        version: 0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)
+        version: 0.19.1(@guidepup/guidepup@0.36.0(supports-color@10.2.2))(@playwright/test@1.63.0)
       '@guidepup/record':
         specifier: 0.3.0
         version: 0.3.0(supports-color@10.2.2)
@@ -3744,8 +3744,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.35.0':
-    resolution: {integrity: sha512-US64a++RucCtLfoq/DqnjzaHYpKzERVYmhtsWViz38MyklICICDpb50AKLn9sbxUwTceK2rS0fjDy7fYpWK/QA==}
+  '@guidepup/guidepup@0.36.0':
+    resolution: {integrity: sha512-pCkxqDr7TApqHqQvgRltdSOIYqgLZKHdDLy07MsQCddTEi8Xmt13QAjdL4SeQUwddGPD1/gOBu9WnmKhhhbW8g==}
 
   '@guidepup/playwright@0.19.1':
     resolution: {integrity: sha512-d0FMH6LFbRbV71l2NGzv2gqV3vQbHDfTVctXsKm6d1ZahpS2/Ozq1WCEoZ7QTAR6iuNzwy03tZfvyijGH+zUDw==}
@@ -8881,6 +8881,11 @@ packages:
         optional: true
       sqlite3:
         optional: true
+
+  dbus-native@0.15.2:
+    resolution: {integrity: sha512-J1IBi4LmbqrFhroN66Dj1tCCTP6TVbZgUKhWQZf3uS6t93yRWEcRRDjOZV9N6boGRhOp/BOjLliFm9vWu1QZOA==}
+    engines: {node: '>=22.12.0'}
+    hasBin: true
 
   debounce@1.2.1:
     resolution: {integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==}
@@ -18783,16 +18788,17 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.35.0(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.36.0(supports-color@10.2.2)':
     dependencies:
+      dbus-native: 0.15.2
       debug: 4.4.3(supports-color@10.2.2)
       plist: 4.0.0
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.35.0(supports-color@10.2.2))(@playwright/test@1.63.0)':
+  '@guidepup/playwright@0.19.1(@guidepup/guidepup@0.36.0(supports-color@10.2.2))(@playwright/test@1.63.0)':
     dependencies:
-      '@guidepup/guidepup': 0.35.0(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.36.0(supports-color@10.2.2)
       '@playwright/test': 1.63.0
 
   '@guidepup/record@0.3.0(supports-color@10.2.2)':
@@ -24102,6 +24108,10 @@ snapshots:
       is-data-view: 1.0.2
 
   db0@0.3.4: {}
+
+  dbus-native@0.15.2:
+    dependencies:
+      xml2js: 0.6.2
 
   debounce@1.2.1: {}
 
