@@ -1,11 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/select-components";
-@use "../../styles/internal/dialog-components";
-
-.db-custom-select-placeholder {
-	@extend %select-absolute-placeholder;
-}
 
 .db-custom-select {
 	--db-form-component-padding-inline-start: calc(
