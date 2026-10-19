@@ -17,6 +17,12 @@ updates:
       codeql:
         patterns:
           - "github/codeql-action/*"
+      # Automatically group all patch updates to reduce PR noise
+      patch-dependencies:
+        update-types:
+          - "patch"
+        patterns:
+          - "*"
 
   # Daily: Check minor and patch updates
   - package-ecosystem: "npm"
@@ -82,27 +88,45 @@ updates:
         patterns:
           - "eslint*"
           - "@eslint*"
+        update-types:
+          - "major"
+          - "minor"
       typescript-eslint:
         patterns:
           - "@typescript-eslint/eslint-plugin"
           - "@typescript-eslint*"
           - "typescript-eslint*"
+        update-types:
+          - "major"
+          - "minor"
       stylelint:
         patterns:
           - "stylelint*"
           - "@double-great/stylelint-a11y"
+        update-types:
+          - "major"
+          - "minor"
       prettier:
         patterns:
           - "prettier*"
+        update-types:
+          - "major"
+          - "minor"
       # Build tools and bundlers
       vite:
         patterns:
           - "vite*"
+        update-types:
+          - "major"
+          - "minor"
       # Test tools
       vitest:
         patterns:
           - "vitest"
           - "@vitest*"
+        update-types:
+          - "major"
+          - "minor"
       # MCP SDK: all v2 packages share one version number and pin
       # @modelcontextprotocol/core to an exact version, so a one-sided bump
       # resolves two incompatible core copies into the tree.
@@ -111,6 +135,10 @@ updates:
       # @db-ux/mcp-server pins it exactly. Bumping only one side lets the
       # resolver put a second zod copy into the bundle, and the tool schemas
       # must come from the same copy the SDK converts them with.
+      # Patch updates stay in this group (not the catch-all patch-dependencies)
+      # so the coupled MCP packages and zod always move together, even on a
+      # patch bump. Dependabot assigns an update to the first matching group,
+      # and this group is declared before patch-dependencies.
       modelcontextprotocol:
         patterns:
           - "@modelcontextprotocol*"
@@ -121,6 +149,9 @@ updates:
           - "typescript"
           - "tsx"
           - "tslib"
+        update-types:
+          - "major"
+          - "minor"
       # Other grouped dependencies
       builder.io:
         patterns:
@@ -130,27 +161,48 @@ updates:
           - "storybook"
           - "@storybook*"
           - "*-storybook"
+        update-types:
+          - "major"
+          - "minor"
       inquirer:
         patterns:
           - "@inquirer/*"
           - "inquirer"
+        update-types:
+          - "major"
+          - "minor"
       mdx-js:
         patterns:
           - "@mdx-js/*"
+        update-types:
+          - "major"
+          - "minor"
       guidepup:
         patterns:
           - "@guidepup/*"
+        update-types:
+          - "major"
+          - "minor"
       next:
         patterns:
           - "@next*"
           - "eslint-config-next"
           - "next"
+        update-types:
+          - "major"
+          - "minor"
       tanstack:
         patterns:
           - "@tanstack/*"
+        update-types:
+          - "major"
+          - "minor"
       changesets:
         patterns:
           - "@changesets/*"
+        update-types:
+          - "major"
+          - "minor"
       # Automatically group all patch updates to reduce PR noise
       patch-dependencies:
         update-types:
