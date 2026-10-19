@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-3-FMVorK.js";e();
