@@ -6,7 +6,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 > **Naming convention:** In human-readable prose and naming, spell out the design-system generation as **"DB UX Design System – Generation 3"** (the current generation) and **"DB UX Design System – Generation 2"** (the previous one, formerly "DB UI"). Do not use the shorthand "v2" / "v3" / "version 2" / "version 3" in prose. On the **first** mention of Generation 2 in a document, add the clarifier **"(aka DB UI)"** once so readers who know the product as "DB UI" recognize the rename; keep later mentions short.
 >
-> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version pins (e.g. `# v3.2.0`). Rewriting those breaks links and tooling.
+> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version references (the tag in `uses: actions/checkout@v3.2.0`, or a `# v3.2.0` comment on a legacy SHA pin). Rewriting those breaks links and tooling.
 
 ## Working Effectively
 
@@ -410,7 +410,11 @@ pnpm exec tsx scripts/my-script.ts
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
-- **Pin all third-party Actions to full commit SHAs** (not tags) for supply-chain security. Dependabot manages updates. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Pin third-party Actions via the lockfile, not inline SHAs.** Onboarded workflows reference Actions by **tag** (e.g. `actions/checkout@v7.0.1`); the commit each tag resolves to is recorded in [`.github/workflows/actions.lock`](.github/workflows/actions.lock) and enforced at job start, so a moved tag cannot change what runs.
+    - After adding, changing, or removing an Action reference, regenerate the lockfile with `gh actions-lock` and commit it alongside the workflow change. The self-healing validation step verifies (and, if stale, regenerates) it in CI.
+    - Do **not** rewrite existing tag references to inline SHAs — the lockfile already provides the immutability guarantee, so doing so only causes churn against it. Pre-existing inline SHA pins may stay as they are.
+    - Dependabot keeps both the tags and their lockfile entries up to date. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Reference our own actions and reusable workflows with the self-repository `$/` syntax** (e.g. `uses: $/.github/actions/pnpm-cache`, `uses: $/.github/workflows/00-init.yml`), which is GitHubs new recommended way of how to reference same repository actions from workflows.
 
 ## Additional Resources
 

@@ -22,13 +22,13 @@ jobs:
       pull-requests: write
     steps:
       - name: ⏬️ Checkout repo
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 1
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/pnpm-cache
+        uses: $/.github/actions/pnpm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
@@ -50,8 +50,21 @@ jobs:
       - name: 🏗️ Pre-build nuxt-showcase (nuxt:prepare)
         run: pnpm --filter nuxt-showcase run nuxt:prepare
 
+      # The orchestrator's check:actions-lockfile check shells out to the
+      # `gh actions-lock` extension to verify (and, as a fix, regenerate) the
+      # GitHub Actions dependency lockfile. `gh` ships on the runner but the
+      # extension does not, so install it here. Pinned to a release tag for
+      # supply-chain safety (v0.2.0 -> d5dca22a06ff8590d50b41612038996800cfb336).
+      - name: 🔒 Install gh actions-lock extension
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh extension install github/gh-actions-lock --pin v0.2.0
+
       - name: 🚀 Run validation orchestrator
         id: orchestrator
+        env:
+          # `gh actions-lock --verify` resolves action refs against GitHub.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pnpm run validate && exit_code=0 || exit_code=$?
           echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
@@ -65,7 +78,7 @@ jobs:
 
       - name: 🚘 Auto-commit fixes
         if: ${{ steps.orchestrator.outputs.exit_code == '2' && github.event_name == 'pull_request' && !contains(steps.commit_author.outputs.email, 'github-actions[bot]@users.noreply.github.com') }}
-        uses: ./.github/actions/auto-commit
+        uses: $/.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-codestyle-fixes"
           commit-message: "style: auto-fix codestyle issues"
