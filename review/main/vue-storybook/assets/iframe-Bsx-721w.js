@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-CYK22KvU.js";e();
