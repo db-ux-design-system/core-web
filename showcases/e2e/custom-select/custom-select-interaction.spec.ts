@@ -18,7 +18,26 @@ const FOCUS_COOLDOWN = 2000;
 
 const openDropdown = async (page: Page, summary: Locator) => {
 	await summary.press('ArrowDown');
-	await page.waitForTimeout(FOCUS_COOLDOWN);
+	// Opening with ArrowDown moves focus into the dropdown (onto the search
+	// field, or the first checkbox/radio) via an async `delay()` in the
+	// component. The subsequent Space/Enter presses only select an option once
+	// that focus has landed. A fixed cooldown races this on WebKit under CI
+	// load, so wait for the focused element to actually be a dropdown input
+	// before returning; fall back to the cooldown as an upper bound.
+	await page
+		.waitForFunction(
+			() => {
+				const { activeElement } = document;
+				const type = activeElement?.getAttribute('type') ?? '';
+				return ['checkbox', 'radio', 'search'].includes(type);
+			},
+			{ timeout: FOCUS_COOLDOWN }
+		)
+		.catch(() => {
+			// Ponytail: swallow the timeout and let the caller's assertion
+			// report the real failure, preserving the pre-existing behaviour
+			// where the cooldown was only an upper bound on the wait.
+		});
 };
 
 test.describe('DBCustomSelect', () => {

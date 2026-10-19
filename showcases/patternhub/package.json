@@ -34,7 +34,7 @@
     "@db-ux/db-theme": "7.0.0",
     "@db-ux/db-theme-fonts": "2.1.0",
     "@db-ux/db-theme-icons": "4.3.0",
-    "dompurify": "3.4.16",
+    "dompurify": "3.4.17",
     "highlight.js": "11.12.0",
     "next": "16.4.0",
     "react": "19.3.0",
