@@ -279,3 +279,6 @@ hrefs
 renderable
 frontmost
 unwired
+webcomponents
+codegen
+xlink

@@ -3,7 +3,6 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/dialog-ponyfill";
-@use "../../styles/dialog-init";
 
 // Horizontal Container_Size scale, shared with the drawer's horizontal
 // directions (see `dialog-components.$container-size-scale`).
@@ -142,6 +141,7 @@ $container-size-scale: dialog-components.$container-size-scale;
 
 	@extend %default-card;
 	@extend %dialog-transition;
+	@include dialog-components.base-reset("dialog");
 	@include container-size-inline(
 		"medium",
 		calc(var(--db-dialog-inline-size) - 2 * var(--db-dialog-viewport-inset))
@@ -155,8 +155,8 @@ $container-size-scale: dialog-components.$container-size-scale;
 	// stylelint-disable-next-line db-ux/use-sizing
 	inline-size: 100%;
 
-	// dialog-init.scss resets `margin: 0` on every dialog for the drawer.
-	// `revert` restores the user agent `margin: auto` that centres the box.
+	// `revert` restores the user agent `margin: auto` that centres the box, in case
+	// that somebody has overwritten this globally by an author-level reset
 	/* stylelint-disable-next-line db-ux/use-spacings */
 	margin: revert;
 	max-block-size: calc(
@@ -174,15 +174,17 @@ $container-size-scale: dialog-components.$container-size-scale;
 	> .db-dialog-content {
 		@include dialog-components.content("dialog");
 	}
-}
 
-// Specificity note: dialog-init.scss applies `position: fixed; inset: 0` to
-// `dialog:not([data-position="absolute"])[data-backdrop]` -> (0,2,1).
-// Three class/attribute selectors -> (0,3,0) win without `!important`.
-// `revert` hands positioning back to the user agent, which places a modal
-// dialog with `position: fixed`, `inset: 0` and `margin: auto`, so the box
-// is content sized, centred, and the remaining area stays a clickable backdrop.
-.db-dialog[open]:not([data-backdrop="none"]) {
-	position: revert;
-	inset: revert;
+	// A modal dialog (backdrop strong/weak, opened via `showModal()`) is promoted
+	// to the top layer: the user agent centres it (`position: fixed; inset: 0;
+	// margin: auto`) and manages its stacking, so neither positioning nor
+	// `z-index` is needed. A non-modal dialog (`backdrop="none"`, opened via
+	// `show()`) stays in normal flow, so pin it to the viewport and give it an
+	// explicit stacking context - this is the only dialog state that needs them,
+	// which is why the shared reset emits neither.
+	&[data-backdrop="none"] {
+		position: fixed;
+		inset: 0;
+		z-index: dialog-components.$z-index-dialog;
+	}
 }

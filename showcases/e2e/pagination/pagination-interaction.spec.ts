@@ -290,13 +290,29 @@ test.describe('DBPagination', () => {
 				'.db-pagination li[data-page="2"] a'
 			);
 
+			// The showcase shell normalizes the URL hash after mount (adding
+			// its serialized `settings`/`shell` params) in an async effect.
+			// That write can land between the two reads below and would show
+			// up as a spurious hash change unrelated to the click, so wait for
+			// the hash to settle before capturing the baseline.
+			const readHash = async (): Promise<string> =>
+				page.evaluate(
+					// eslint-disable-next-line unicorn/isolated-functions -- location is available in browser context
+					() => location.hash
+				);
+			let hashBefore = await readHash();
+			await expect
+				.poll(async () => {
+					const current = await readHash();
+					const isStable = current === hashBefore;
+					hashBefore = current;
+					return isStable;
+				})
+				.toBe(true);
+
 			// The click on the current page must be prevented, so the browser
 			// neither follows the href (the location hash stays put) nor does
 			// the pagination report a change.
-			const hashBefore = await page.evaluate(
-				// eslint-disable-next-line unicorn/isolated-functions -- location is available in browser context
-				() => location.hash
-			);
 			await currentLink.click();
 
 			await expect(scope.getByTestId('composed-readout')).toHaveText(

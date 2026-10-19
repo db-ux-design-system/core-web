@@ -76,6 +76,11 @@ export type DBDrawerDefaultProps = {
 	 */
 	open?: boolean | string;
 	/**
+	 * @deprecated Do not set `rounded` anymore. The drawer's corner radius is
+	 * now driven by the `db-border-radius` design tokens from the DB Theme, so
+	 * no per-instance opt-in is needed. The property still works for now but
+	 * will be removed in a future major release.
+	 *
 	 * The rounded attribute changes the border radius of the corners on the "end" of the drawer.
 	 * The "end" depends on which direction you use.
 	 */

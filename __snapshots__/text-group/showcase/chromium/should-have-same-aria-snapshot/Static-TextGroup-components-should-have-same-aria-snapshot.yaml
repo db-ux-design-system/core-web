@@ -1,0 +1,36 @@
+- main:
+  - heading "DBTextGroup" [level=1]
+  - link "Text Spacing"
+  - paragraph: "False: the paragraphs sit directly on top of each other."
+  - paragraph: Nothing has to be set on the paragraphs themselves.
+  - paragraph: "True: every child gets half a line height above and below."
+  - paragraph: Two adjacent children are a full line height apart, and the group keeps half of one at its outer edges.
+  - paragraph: "Unset: this group sets nothing, so it follows the surrounding element that opted in."
+  - paragraph: Use false to switch the spacing off for certain.
+  - link "Logical Alignment"
+  - paragraph: (Default) Start
+  - paragraph: Inherited by every paragraph
+  - paragraph: Center
+  - paragraph: Inherited by every paragraph
+  - paragraph: End
+  - paragraph: Inherited by every paragraph
+  - link "With Components"
+  - heading "A heading starts the block" [level=3]
+  - paragraph: Neither component carries spacing of its own. The group sets the text spacing attribute, and the foundations apply the margin to each element.
+  - paragraph: Because the margin resolves against the element's own line height, a smaller paragraph gets proportionally less spacing.
+  - link "Mixed Content"
+  - heading "A native heading" [level=3]
+  - paragraph: A native paragraph. The opt-in reaches it just like it reaches our components, so plain markup and components can be mixed freely.
+  - paragraph: A component paragraph, spaced by exactly the same rule.
+  - paragraph: A list is not one of the block-text elements, so it keeps whatever margin it brings.
+  - list:
+    - listitem: Opted into the same rhythm
+    - listitem: The list items are unaffected
+  - paragraph: Set a zero block margin instead to take such a child out of the rhythm entirely.
+  - link "Nested Groups"
+  - paragraph:
+    - strong: Start-aligned block
+  - paragraph: Alignment is set once per group and inherited by every paragraph in it.
+  - paragraph:
+    - strong: Centred block
+  - paragraph: A nested group can differ from its parent, and the spacing keeps coming from the outer one.
