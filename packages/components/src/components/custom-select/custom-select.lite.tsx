@@ -540,8 +540,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			const field = detailsRef.closest('.db-custom-select-form-field');
 			return Boolean(field && field.contains(target as Node));
 		},
-		handleOptionSelected: (values: string[]) => {
+		handleOptionSelected: (values: string[], skipDebounce?: boolean) => {
 			const skip =
+				!skipDebounce &&
 				new Date().getTime() - state._internalChangeTimestamp < 200;
 			if (skip) return;
 
@@ -570,6 +571,33 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					)
 			});
 			state._internalChangeTimestamp = new Date().getTime();
+		},
+		handleNativeSelectChange: (event: any) => {
+			event.stopPropagation(); // Also satisfies React.
+
+			const select = event.target as HTMLSelectElement;
+			const values =
+				select.selectedIndex < 0
+					? []
+					: Array.from(select.selectedOptions).map(
+							(option: HTMLOptionElement) => option.value
+						);
+
+			const currentValues = state._values ?? [];
+			const unchanged =
+				values.length === currentValues.length &&
+				values.every(
+					(value: string, index: number) =>
+						value === currentValues[index]
+				);
+
+			if (unchanged) {
+				return;
+			}
+
+			// Autofill must bypass the internal-change debounce. Writing
+			// selectRef.value fires no `change`, so this cannot loop back.
+			state.handleOptionSelected(values, true);
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
@@ -993,11 +1021,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	});
 
-	function satisfyReact(event: any) {
-		// This is a function to satisfy React
-		event.stopPropagation();
-	}
-
 	return (
 		<div
 			id={state._id}
@@ -1022,7 +1045,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
-				{/* ponytail: browser autofill will set the native value but state._values / summary would not sync; follow-up needed to wire onChange into handleOptionSelected */}
+				{/* The form-submitted value. Hidden, but advertises
+				    `autocomplete`, so autofill can write to it - see
+				    state.handleNativeSelectChange. */}
 				<select
 					role="none"
 					hidden
@@ -1036,7 +1061,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					onChange={(event) => satisfyReact(event)}>
+					onChange={(event) => state.handleNativeSelectChange(event)}>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (

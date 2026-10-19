@@ -78,8 +78,8 @@
     "update:icon-fonts": "pnpm run generate:icon-fonts && pnpm run generate:icon-types"
   },
   "dependencies": {
-    "@db-ux/db-theme": "6.3.0",
-    "@db-ux/db-theme-fonts": "2.0.5",
+    "@db-ux/db-theme": "7.0.0",
+    "@db-ux/db-theme-fonts": "2.1.0",
     "@db-ux/db-theme-icons": "4.3.0",
     "postcss-scss": "4.0.9"
   },
@@ -91,8 +91,8 @@
     "publint": "0.3.25",
     "replace-in-file": "9.0.0",
     "typedoc": "0.28.20",
-    "typedoc-plugin-markdown": "4.13.1",
+    "typedoc-plugin-markdown": "4.14.0",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "5.0.3"
+    "vitest": "5.0.5"
   }
 }

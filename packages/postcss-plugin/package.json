@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-postcss-plugin",
-  "version": "5.7.1",
+  "version": "6.0.0",
   "type": "module",
   "description": "PostCSS plugins for DB UX Design System",
   "repository": {
@@ -41,9 +41,9 @@
   "devDependencies": {
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
-    "postcss": "8.5.29",
+    "postcss": "8.5.30",
     "typescript": "5.9.3",
-    "vitest": "5.0.3"
+    "vitest": "5.0.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

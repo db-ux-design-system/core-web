@@ -299,7 +299,10 @@ export type DBCustomSelectDefaultState = {
 	handleFieldKeyboardPress: (event: any) => void;
 	handleArrowDownUp: (event: any) => void;
 	handleSearch: (event: any) => void;
-	handleOptionSelected: (_values: string[]) => void;
+	/** Applies a selection. `skipDebounce` is for external changes like autofill. */
+	handleOptionSelected: (_values: string[], skipDebounce?: boolean) => void;
+	/** Mirrors a value autofilled into the hidden native select into the state. */
+	handleNativeSelectChange: (event: any) => void;
 	getSelectAllLabel: () => string;
 	selectAllChecked: boolean;
 	selectAllIndeterminate: boolean;

@@ -1471,8 +1471,9 @@
             - checkbox "Option 1"
             - text: Option 1
   - status
-  - text: "Custom Selected Label Selected: Label controlled"
+  - text: Custom Selected Label
   - group:
+    - text: "Selected: Label controlled"
     - article:
       - radiogroup "id-10aasds4-Custom Selected Label":
         - list:
@@ -1690,12 +1691,12 @@
             - radio "G2:Option 2"
             - text: G2:Option 2
   - status
-  - text: Colors Blue Color, Green Color Blue Color
-  - button "Remove Blue Color"
-  - text: Green Color
-  - button "Remove Green Color"
-  - button "Clear selection"
+  - text: Colors
   - group:
+    - text: Blue Color, Green Color Blue Color
+    - button "Remove Blue Color"
+    - text: Green Color
+    - button "Remove Green Color"
     - article:
       - group "Colors":
         - list:
@@ -1708,14 +1709,15 @@
           - listitem:
             - checkbox "Green Color" [checked]
             - text: Green Color
+  - button "Clear selection"
   - status
   - button "Set values"
   - button "Reset to null"
   - button "Reset to undefined"
   - button "Reset to empty array"
-  - text: Values reset Option 1, Option 2
-  - button "Clear selection"
+  - text: Values reset
   - group:
+    - text: Option 1, Option 2
     - article:
       - group "Values reset":
         - list:
@@ -1725,4 +1727,30 @@
           - listitem:
             - checkbox "Option 2" [checked]
             - text: Option 2
+  - button "Clear selection"
   - status
+  - link "Auto Complete"
+  - text: "Needs address autofill switched on in your browser and an address saved, set to one of the countries below. Pick it in the address field: the browser then fills the whole form, including the hidden select that carries the country, so the selection below has to follow. Address"
+  - textbox "Address":
+    - /placeholder: Street and number
+  - status
+  - text: Country
+  - group:
+    - article:
+      - radiogroup "Country":
+        - list:
+          - listitem:
+            - radio "Germany"
+            - text: Germany
+          - listitem:
+            - radio "Austria"
+            - text: Austria
+          - listitem:
+            - radio "Switzerland"
+            - text: Switzerland
+          - listitem:
+            - radio "France"
+            - text: France
+  - status
+  - button "Submit"
+  - paragraph: "Submitted country: -"

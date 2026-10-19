@@ -5,12 +5,6 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  pull-requests: write
-  contents: write
-  actions: read
-  security-events: write
-
 jobs:
   bot-prs:
     uses: ./.github/workflows/99-auto-handle-bot-prs.yml
