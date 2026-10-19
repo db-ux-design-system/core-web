@@ -24,6 +24,7 @@ export const StorybookCustomSelectArgTypes: Record<string, InputType> = {
 	disabled: { control: 'boolean' },
 	name: { control: 'text' },
 	form: { control: 'text' },
+	autoComplete: { control: 'text' },
 	ariaDescribedBy: { control: 'text' },
 	formFieldWidth: { control: 'select', options: ['full', 'auto'] },
 	dropdownWidth: { control: 'select', options: ['auto', 'fixed'] },
