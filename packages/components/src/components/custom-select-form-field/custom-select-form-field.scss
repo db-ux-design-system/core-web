@@ -155,7 +155,6 @@
 
 	.db-custom-select-clear {
 		position: relative;
-		z-index: 1;
 		margin-inline-end: variables.$db-spacing-fixed-xs;
 
 		@include helpers.divider("right", "after");
