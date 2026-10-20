@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-CQIPSV50.js";e();

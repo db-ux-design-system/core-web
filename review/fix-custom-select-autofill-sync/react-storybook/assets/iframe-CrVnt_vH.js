@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-CHXG23Av.js";e();

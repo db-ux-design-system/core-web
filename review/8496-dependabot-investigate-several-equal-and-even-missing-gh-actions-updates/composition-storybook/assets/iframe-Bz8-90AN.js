@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-CIXgs1v1.js";e();
