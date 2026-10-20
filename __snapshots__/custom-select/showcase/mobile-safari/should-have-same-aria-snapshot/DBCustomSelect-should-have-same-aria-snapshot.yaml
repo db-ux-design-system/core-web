@@ -495,7 +495,7 @@
           - listitem:
             - checkbox "Option 5"
             - text: Option 5
-      - button "Close"
+      - button "Close" [disabled]
   - status
   - link "Form Field Width"
   - text: (Default) Full
@@ -1788,6 +1788,26 @@
             - checkbox "Green Color" [checked]
             - text: Green Color
       - button "Close"
+  - status
+  - text: Disabled colors Blue Color, Green Color Blue Color
+  - button "Remove Blue Color" [disabled]
+  - text: Green Color
+  - button "Remove Green Color" [disabled]
+  - button "Clear selection" [disabled]
+  - group:
+    - article:
+      - group "Disabled colors":
+        - list:
+          - listitem:
+            - checkbox "Red Color"
+            - text: Red Color
+          - listitem:
+            - checkbox "Blue Color" [checked]
+            - text: Blue Color
+          - listitem:
+            - checkbox "Green Color" [checked]
+            - text: Green Color
+      - button "Close" [disabled]
   - status
   - button "Set values"
   - button "Reset to null"

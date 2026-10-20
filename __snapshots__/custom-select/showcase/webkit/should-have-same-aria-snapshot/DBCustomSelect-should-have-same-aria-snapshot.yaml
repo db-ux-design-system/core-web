@@ -1709,6 +1709,25 @@
             - checkbox "Green Color" [checked]
             - text: Green Color
   - status
+  - text: Disabled colors Blue Color, Green Color Blue Color
+  - button "Remove Blue Color" [disabled]
+  - text: Green Color
+  - button "Remove Green Color" [disabled]
+  - button "Clear selection" [disabled]
+  - group:
+    - article:
+      - group "Disabled colors":
+        - list:
+          - listitem:
+            - checkbox "Red Color"
+            - text: Red Color
+          - listitem:
+            - checkbox "Blue Color" [checked]
+            - text: Blue Color
+          - listitem:
+            - checkbox "Green Color" [checked]
+            - text: Green Color
+  - status
   - button "Set values"
   - button "Reset to null"
   - button "Reset to undefined"
