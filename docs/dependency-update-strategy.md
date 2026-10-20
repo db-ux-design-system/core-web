@@ -173,17 +173,17 @@ Workspace packages reference the catalog in their `devDependencies`:
 2. Delete stale `tsconfig.tsbuildinfo` files in the affected package.
 3. Verify with `pnpm --filter <package> run build`.
 
-## Renovate for pnpm and the DB theme packages
+## Renovate for the Node version, pnpm and the DB theme packages
 
-Dependabot handles everything **except** three cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)):
+Dependabot handles everything **except** three cases, which are covered by a self-hosted Renovate run ([`.github/workflows/99-renovate.yml`](../.github/workflows/99-renovate.yml), scope in [`.github/renovate.json`](../.github/renovate.json)). The scope is limited to two managers (`"enabledManagers": ["npm", "nvm"]`) and everything else is disabled, so these are the only updates Renovate opens:
 
 | Covered by Renovate                            | Why not Dependabot                                                                                                                                                                                                                                                                        |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.nvmrc` (Node version)                        | Dependabot does not update the Node version, so the Node version used both locally and in CI isn't controlled at all (besides Major level)                                                                                                                                                |
+| `.nvmrc` (Node version)                        | Dependabot does not update `.nvmrc` at all, so the Node version used both locally and in CI would otherwise only ever change by hand. Renovate keeps it current via the `nvm` manager (`matchManagers: ["nvm"]`).                                                                         |
 | `packageManager` (the pnpm version + its hash) | Dependabot does not update the `packageManager` field, so the pnpm version used by CI and Corepack drifts and has to be bumped by hand                                                                                                                                                    |
 | `@db-ux/db-theme*`                             | Theme releases should land as one reviewable PR across all manifests (including the vite-plugin test fixtures, which are outside the pnpm workspace and therefore invisible to Dependabot); plus we'd like to trigger this manually, without the need to check for all other dependencies |
 
-The latter is ignored in `.github/dependabot.yml` so the two bots never open competing PRs (`pnpm` version isn't even supported by `dependabot`). Everything else is disabled in the Renovate config (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
+The two bots never open competing PRs. For the Node version and pnpm there is nothing to deconflict, because Dependabot updates neither `.nvmrc` nor the `packageManager` field in the first place. Only the theme packages are npm dependencies Dependabot _would_ pick up, so they are explicitly ignored in `.github/dependabot.yml` (`dependency-name: "@db-ux/db-theme*"`). On the Renovate side everything else is disabled (`matchPackageNames: ["*"], enabled: false`) — if you want a new dependency automated, add it to Dependabot, not to Renovate.
 
 ### `ignorePaths` has to be spelled out
 
@@ -193,9 +193,9 @@ Watch out for one consequence: the fixtures are plain npm projects with `file:` 
 
 ### Scheduling
 
-The workflow runs daily at **22:30 Europe/Berlin**, ahead of the Dependabot window at 23:00, so a pnpm lands first and Dependabot's PRs are rebased onto it instead of the other way around. It can also be started manually via _Run workflow_ (`workflow_dispatch`). GitHub cron expressions are UTC-only, so the workflow triggers at both possible offsets (20:30 and 21:30 UTC) and Renovate's own `schedule` — evaluated in `Europe/Berlin` — turns the out-of-window invocation into a no-op.
+The workflow runs daily via a single GitHub Actions cron at **20:17 UTC** (22:17 Europe/Berlin in CEST, 21:17 in CET). Both are ahead of the Dependabot window at 23:00 Berlin, so a pnpm bump lands first and Dependabot's PRs are rebased onto it instead of the other way around. The minute is deliberately off `:00`: GitHub warns that jobs scheduled at the top of the hour sit in the busiest queue and can be dropped under load. It can also be started manually via _Run workflow_ (`workflow_dispatch`).
 
-That second part needs one non-default option: `schedule` on its own only gates **branch creation**, while `updateNotScheduled` defaults to `true`, which lets an out-of-window run rebase existing Renovate branches and retrigger their pipelines at the wrong hour. The config therefore sets `"updateNotScheduled": false`. A manual run bypasses the whole gate through `RENOVATE_FORCE`.
+The GitHub Actions cron is the **only** scheduling gate. Renovate deliberately has no internal `schedule` in `.github/renovate.json`: an internal window is evaluated after the container starts, so image-pull and init drift (~1–2 min) could push the invocation past the window and turn the run into a no-op that never opens PRs. Letting the cron decide _when_ and Renovate always act removes that failure mode. A single cron line (rather than one per DST offset) keeps it to one run per day.
 
 ### Branches, commits and PRs
 

@@ -9,7 +9,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { MaterialType } from '../../shared/model';
-import { cls, uuid } from '../../utils';
+import { cls, parseItems, uuid } from '../../utils';
 import DBAccordionItem from '../accordion-item/accordion-item.lite';
 import { DBAccordionItemDefaultProps } from '../accordion-item/model';
 import { DBAccordionProps, DBAccordionState } from './model';
@@ -25,20 +25,6 @@ export default function DBAccordion(props: DBAccordionProps) {
 		_name: '',
 		initialized: false,
 		_initOpenIndexDone: false,
-		convertItems(): DBAccordionItemDefaultProps[] {
-			try {
-				if (typeof props.items === 'string') {
-					return JSON.parse(props.items as string);
-				}
-
-				return props.items as DBAccordionItemDefaultProps[];
-			} catch (error) {
-				console.error(error);
-			}
-
-			return [];
-		},
-
 		_getMaterial: (): MaterialType | undefined => {
 			if (props.material) {
 				return props.material;
@@ -125,9 +111,8 @@ export default function DBAccordion(props: DBAccordionProps) {
 			data-size={props.size}
 			data-color-next={props.color}
 			data-variant={props.variant}>
-			<Show when={!props.items}>{props.children}</Show>
-			<Show when={props.items}>
-				<For each={state.convertItems()}>
+			<Show when={props.items} else={props.children}>
+				<For each={parseItems(props.items)}>
 					{(item: DBAccordionItemDefaultProps, index: number) => (
 						<DBAccordionItem
 							key={`accordion-item-${index}`}

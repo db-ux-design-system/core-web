@@ -18,6 +18,13 @@ Ensure you are using Node.js v22+ and have access to the DB UX packages. The ser
 npx --yes @db-ux/mcp-server
 ```
 
+Or with pnpm:
+
+```bash
+pnpm i @db-ux/mcp-server --save-dev
+pnpm exec db-ux-mcp-server
+```
+
 > **Crucial Concept:** You do **not** run this command manually in your terminal for daily usage. If you do, it will look like the terminal is hanging because it is waiting for JSON-RPC messages over standard input (`stdio`). Instead, you will configure your IDE (Cursor, VS Code, IntelliJ) to run this command automatically in the background.
 
 ### 2. Configure your IDE
@@ -91,7 +98,7 @@ This will copy the correct rules for DB UX component usage and design token refe
 
 ### 5. Optimize Amazon Q for this Project (Recommended)
 
-Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the v3 component API — without any manual onboarding or repeated context-setting by the developer.
+Amazon Q can automatically load the project's `CONTEXT.md` as a persistent system prompt ("Rules") for every session. This means the agent **already knows** the MCP server architecture, all available tools, design token sources, migration workflows, and the Generation 3 component API — without any manual onboarding or repeated context-setting by the developer.
 
 **Why this matters:**
 
@@ -133,7 +140,7 @@ Amazon Q can automatically load the project's `CONTEXT.md` as a persistent syste
 | `list_migration_guides`        | Returns all available migration guide names (e.g. `color-migration`, `component-migration`). Call this first before any migration task.                                                                                                                                                                                                                                                                          |
 | `get_migration_guide`          | Returns the full markdown content of a specific migration guide. Use this to load official package renames, prop changes, and component workarounds before refactoring legacy code.                                                                                                                                                                                                                              |
 | `verify_migrated_code`         | Instructs the AI to verify its changes using the project's own scripts (`typecheck`, `lint`, `build`) from `package.json`. No temp files or hardcoded compilers — works with any toolchain (JS, TS, Vite, Angular CLI).                                                                                                                                                                                          |
-| `scan_v2_migration`            | **Call FIRST when migrating a file.** Scans a source file for DB UI v2 patterns (v2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and v2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.                                                                |
+| `scan_generation_2_migration`  | **Call FIRST when migrating a file.** Scans a source file for DB UX Design System – Generation 2 (aka DB UI) patterns (Generation 2 CSS classes (`cmp-*`, `elm-*`, `rea-*`) and Generation 2 Web Components (`<db-*>`), `db-color-*` tokens, legacy icon names) and returns a JSON report with exact line numbers and deterministic migration suggestions from the official guides. No LLM guessing needed.      |
 | `list_visuals`                 | Returns all available visual reference names (e.g. `dashboard`, `form`, `table`). Call this to discover which visuals exist before requesting one.                                                                                                                                                                                                                                                               |
 | `get_visual_reference`         | Returns a pre-optimised static visual reference image (JPEG) as a Base64-encoded MCP image block. No build-time or runtime image processing dependencies — images are committed as pre-optimised assets.                                                                                                                                                                                                         |
 
@@ -171,27 +178,27 @@ Performs a strict multi-layered QA, accessibility, and DB UX compliance audit on
 
 ### `migrate_component` (Legacy Refactoring)
 
-Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the modern DB UX v3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
+Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI Generation 1 or 2) into the modern Generation 3 architecture. This is the most complex prompt — it orchestrates **10 different MCP tools** across 5 mandatory steps, including a verification loop.
 
 **Parameters:**
 
-| Parameter          | Required | Description                                                                                                            |
-| ------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `legacy_code`      | Yes      | The outdated source code to migrate (DB UI, Bootstrap, raw HTML/CSS). Max 10,000 chars                                 |
-| `source_context`   | Yes      | Origin of the legacy code: `db-ui-v1`, `db-ui-v2`, `db-ux-v1`, `db-ux-v2`, `db-ux-v3`, `bootstrap-4`, or `native-html` |
-| `target_framework` | Yes      | Target framework: `react`, `angular`, `vue`, `web-components`, or `html`                                               |
+| Parameter          | Required | Description                                                                                                                                                              |
+| ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `legacy_code`      | Yes      | The outdated source code to migrate (DB UI, Bootstrap, raw HTML/CSS). Max 10,000 chars                                                                                   |
+| `source_context`   | Yes      | Origin of the legacy code: `db-ui-generation-1`, `db-ui-generation-2`, `db-ux-generation-1`, `db-ux-generation-2`, `db-ux-generation-3`, `bootstrap-4`, or `native-html` |
+| `target_framework` | Yes      | Target framework: `react`, `angular`, `vue`, `web-components`, or `html`                                                                                                 |
 
 **Full workflow (5 mandatory steps):**
 
 ```text
 ┌──────────────────────────────────────────────────────────────────┐
 │ STEP 0: FILE SCAN (NEW — deterministic, no guessing)             │
-│  scan_v2_migration → JSON report with line numbers,           │
-│  v2 patterns, and migration suggestions                          │
+│  scan_generation_2_migration → JSON report with line numbers, │
+│  Generation 2 patterns, and migration suggestions                │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 1: MIGRATION ANALYSIS                                       │
 │  list_migration_guides → get_migration_guide → docs_search       │
-│  Output: Legacy Element → DB UX v3 Component mapping table       │
+│  Output: Legacy Element → Generation 3 Component mapping table   │
 ├──────────────────────────────────────────────────────────────────┤
 │ STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL                    │
 │  list_components → get_component_props → get_component_details   │
@@ -210,7 +217,7 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 
 **Step-by-step details:**
 
-1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` to load official migration rules (package renames, prop changes, removed components). Calls `docs_search` for component-specific migration docs. Produces a mapping table: Legacy Element → DB UX v3 Component → Rationale.
+1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` to load official migration rules (package renames, prop changes, removed components). Calls `docs_search` for component-specific migration docs. Produces a mapping table: Legacy Element → Generation 3 Component → Rationale.
 2. **Component Discovery & Props Retrieval** — Calls `list_components` to verify every mapped component exists. For each: `get_component_props` (TypeScript API), `get_component_details` (examples), `get_example_code` (canonical source to adapt). Calls `get_design_tokens` to replace hardcoded colors/spacing. Calls `list_icons` to verify icon names.
 3. **Code Generation** — Generates the complete migrated code with correct `@db-ux/*` imports, verified design tokens, and verified icon names. **Does NOT output this to the user yet.**
 4. **Code Verification & Self-Correction** — Calls `verify_migrated_code` which instructs the AI to run the project's own verification scripts (typecheck, lint, build from package.json). If errors are found, the AI fixes the code and retries — up to **3 attempts maximum**. This step applies to all framework targets.
@@ -225,12 +232,12 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI v1/v2) into the m
 | `icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)    |
 | `general-migration`   | Typography tokens, spacing tokens, elevation, inline style removal |
 
-**Example: migrating a DB UI v2 React component**
+**Example: migrating a Generation 2 React component**
 
 Trigger the prompt with these parameters:
 
 - `legacy_code`: your old React component source code
-- `source_context`: `db-ui-v2`
+- `source_context`: `db-ui-generation-2`
 - `target_framework`: `react`
 
 The AI will then autonomously:
@@ -327,14 +334,14 @@ packages/mcp-server/
 │   ├── prebuild.ts          # Central orchestrator: migration assets, tokens, manifest (runs via tsx)
 │   └── build-manifest.ts    # Build-time script — generates src/manifest.json
 ├── src/
-│   ├── index.ts            # Bootstrap — connects transport, registers tools/prompts
-│   ├── server.ts           # McpServer singleton and lifecycle handlers
+│   ├── index.ts            # Bootstrap — serves the factory over stdio via serveStdio
+│   ├── server.ts           # buildServer() factory (registers tools/prompts) and lifecycle handlers
 │   ├── types.ts            # Framework type and FRAMEWORK_PKG mapping
 │   ├── tools/              # Tool handler implementations
 │   ├── prompts/            # Prompt handler implementations
 │   ├── utils/              # Shared utilities (path, manifest, formatting, async)
 │   └── manifest.json       # Generated — do not edit manually
-├── build/
+├── dist/
 │   └── index.js            # Compiled standalone bundle (gitignored)
 ├── esbuild.js              # Build script: bundles src/index.ts into standalone dist/index.js
 ├── package.json
@@ -416,7 +423,7 @@ Open that **full URL including the token** in your browser — the token is requ
 1. Run the command above — the Inspector starts a local web server
 2. Open the **full URL with token** printed in the terminal (e.g. `http://localhost:6274/?MCP_PROXY_AUTH_TOKEN=...`)
 3. Click **"Connect"** to establish the stdio connection to the server
-4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_v2_migration`) and inspect their responses
+4. Navigate to the **"Tools"** tab to call individual tools (e.g. `list_components`, `scan_generation_2_migration`) and inspect their responses
 5. Navigate to the **"Prompts"** tab to browse and execute interactive prompts like `scaffold_page`
 
 > **Tip:** The Inspector is framework- and IDE-agnostic. It communicates with the server over stdio exactly as a real MCP client would, making it the most reliable way to catch issues before they surface in an AI agent session.
@@ -438,4 +445,4 @@ Open that **full URL including the token** in your browser — the token is requ
 | **File system safety**           | Always call `stats.isFile()` after `stat()` before `readFile()` to prevent `EISDIR` crashes on directories.                                                                                      |
 | **Cross-platform paths**         | Normalize backslashes to forward slashes before path comparisons. Windows manifest keys contain `\`.                                                                                             |
 
-> **Note:** AI-specific behavioral rules (gentle migration, v2/v3 terminology, icon verification, etc.) are maintained in `CONTEXT.md` (shipped with the package for consumer AI agents) and in `.github/copilot-instructions.md` (for agents working inside this monorepo). They are intentionally not duplicated here.
+> **Note:** AI-specific behavioral rules (gentle migration, Generation 2 / Generation 3 terminology, icon verification, etc.) are maintained in `CONTEXT.md` (shipped with the package for consumer AI agents) and in `.github/copilot-instructions.md` (for agents working inside this monorepo). They are intentionally not duplicated here.

@@ -38,11 +38,7 @@ const withExtensionAlias = (mdxWebpack) => (webpackConfig, options) => {
 const config = {
 	output: 'export',
 	basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
-	transpilePackages: [
-		'../../output/react/src',
-		'../react-showcase/',
-		'@db-ux'
-	],
+	transpilePackages: ['../react-showcase/', '@db-ux'],
 	...mdxConfig,
 	webpack: withExtensionAlias(mdxConfig.webpack),
 	env: {

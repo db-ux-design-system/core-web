@@ -8,6 +8,8 @@ import buttonSingleIconAttribute from './rules/button/button-single-icon-attribu
 import buttonTypeRequired from './rules/button/button-type-required.js';
 import closeButtonTextRequired from './rules/close-button/close-button-text-required.js';
 import textOrChildrenRequired from './rules/content/text-or-children-required.js';
+import controlPanelMobileBurgerMenuLabelRequired from './rules/control-panel-mobile/control-panel-mobile-burger-menu-label-required.js';
+import dialogHeaderRequired from './rules/dialog/dialog-header-required.js';
 import drawerHeaderRequired from './rules/drawer/drawer-header-required.js';
 import formLabelRequired from './rules/form/form-label-required.js';
 import formValidationMessageRequired from './rules/form/form-validation-message-required.js';
@@ -34,12 +36,14 @@ const recommended = {
 		'db-ux/button-single-icon-attribute': 'error',
 		'db-ux/button-type-required': 'error',
 		'db-ux/close-button-text-required': 'error',
+		'db-ux/dialog-header-required': 'error',
 		'db-ux/custom-heading-single-heading': 'error',
 		'db-ux/drawer-header-required': 'error',
 		'db-ux/sub-component-required-parent': 'error',
 		'db-ux/custom-select-tags-remove-text-required': 'error',
 		'db-ux/form-label-required': 'error',
 		'db-ux/form-validation-message-required': 'warn',
+		'db-ux/control-panel-mobile-burger-menu-label-required': 'error',
 		'db-ux/header-burger-menu-label-required': 'error',
 		'db-ux/input-file-type-validation': 'error',
 		'db-ux/input-type-required': 'warn',
@@ -79,10 +83,13 @@ const plugin = {
 		'custom-select-tags-remove-text-required':
 			customSelectTagsRemoveTextRequired,
 		'close-button-text-required': closeButtonTextRequired,
+		'dialog-header-required': dialogHeaderRequired,
 		'custom-heading-single-heading': customHeadingSingleHeading,
 		'drawer-header-required': drawerHeaderRequired,
 		'sub-component-required-parent': subComponentRequiredParent,
 		'header-burger-menu-label-required': headerBurgerMenuLabelRequired,
+		'control-panel-mobile-burger-menu-label-required':
+			controlPanelMobileBurgerMenuLabelRequired,
 		'navigation-item-back-button-text-required':
 			navigationItemBackButtonTextRequired,
 		'tag-removable-remove-button-required':

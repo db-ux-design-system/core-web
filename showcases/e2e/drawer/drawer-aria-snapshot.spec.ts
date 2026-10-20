@@ -1,7 +1,26 @@
-import { test } from '@playwright/test';
+import { type Page, test } from '@playwright/test';
 import { runAriaSnapshotTest } from '../default.ts';
 
 const path = '01/drawer';
+
+// Every drawer example initializes closed, so the showcase renders only the
+// launcher buttons. Open a representative drawer (header + content + footer)
+// before snapshotting so cross-framework ARIA regressions in the drawer itself
+// are actually captured.
+const preScreenShot = async (page: Page) => {
+	await page
+		.locator('main')
+		.getByRole('button', { name: 'Open: With footer' })
+		.click();
+	// The drawer's <dialog> is a 0x0 box (it sizes to fit-content and the visible
+	// panel is the fixed `.db-drawer-container` inside it), so it never counts as
+	// "visible". Wait for the panel that actually renders instead.
+	await page
+		.locator('dialog[open] .db-drawer-container')
+		.first()
+		.waitFor({ state: 'visible' });
+};
+
 test.describe('DBDrawer', () => {
-	runAriaSnapshotTest({ path });
+	runAriaSnapshotTest({ path, preScreenShot });
 });

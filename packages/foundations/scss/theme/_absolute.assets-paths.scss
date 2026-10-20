@@ -1,5 +1,6 @@
 // If you serve your assets and your css on root level you might need those paths.
 @use "default.assets-paths" as assets-paths with (
 	$icons-path: "/assets/icons/",
-	$fonts-path: "/assets/fonts/"
+	$fonts-path: "/assets/fonts/",
+	$images-path: "/assets/images/"
 );

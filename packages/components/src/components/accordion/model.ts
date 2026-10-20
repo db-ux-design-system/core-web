@@ -1,4 +1,5 @@
-import type {
+import {
+	CollapsibleBehaviorProps,
 	GlobalProps,
 	InitializedState,
 	MaterialState,
@@ -9,14 +10,7 @@ import type { DBAccordionItemDefaultProps } from '../accordion-item/model';
 export const AccordionVariantList = ['divider', 'card'] as const;
 export type AccordionVariantType = (typeof AccordionVariantList)[number];
 
-export const AccordionBehaviorList = ['multiple', 'single'] as const;
-export type AccordionBehaviorType = (typeof AccordionBehaviorList)[number];
-
 export type DBAccordionDefaultProps = {
-	/**
-	 * To allow multiple items open at the same time or only 1 item
-	 */
-	behavior?: AccordionBehaviorType;
 	/**
 	 * The index of items which should be open when loading the accordion
 	 */
@@ -47,12 +41,12 @@ export type DBAccordionDefaultProps = {
 
 export type DBAccordionProps = DBAccordionDefaultProps &
 	GlobalProps &
+	CollapsibleBehaviorProps &
 	NextGenDefaultProps;
 
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;
 	_name?: string;
-	convertItems: () => DBAccordionItemDefaultProps[];
 };
 
 export type DBAccordionState = DBAccordionDefaultState &

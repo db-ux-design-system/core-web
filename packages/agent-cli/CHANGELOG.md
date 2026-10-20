@@ -1,5 +1,54 @@
 # @db-ux/agent-cli
 
+## 6.0.0
+
+### Major Changes
+
+- refactor: rename `bin` executable from `agent-cli` to `db-ux-agent-cli` (e.g. `pnpm exec db-ux-agent-cli`) - [see commit f6e649d](https://github.com/db-ux-design-system/core-web/commit/f6e649d4c33b1610f59d2ab18c165b955c6c242d)
+- refactor!: rename the migration API to the generation naming - [see commit d5ebb91](https://github.com/db-ux-design-system/core-web/commit/d5ebb912e6ca19816275ac335301d89159ca7624):
+
+    - Renames the consumer-facing identifiers that used the old `v2` / `v3` shorthand tokens to the spelled-out generation naming (DB UX Design System – Generation 2 / Generation 3). **Breaking** for anyone referencing these by name:
+        - MCP tool `scan_v2_migration` → `scan_generation_2_migration` (update `autoApprove` lists and any direct `callTool` invocations). The old `scan_v2_migration` name is **removed** in this major.
+        - `migrate_component` prompt `source_context` documented values now spell out the generation, keeping the product prefix: `db-ui-v1` / `db-ui-v2` → `db-ui-generation-1` / `db-ui-generation-2` (DB UI's own generations) and `db-ux-v1` / `db-ux-v2` / `db-ux-v3` → `db-ux-generation-1` / `db-ux-generation-2` / `db-ux-generation-3`.
+        - Exported handler `handleScanV2Migration` → `handleScanGeneration2Migration`.
+        - Consumer power skill `migrate-to-v3` → `migrate-to-generation-3` (folder, `name`, and `power.yaml` reference). The skill's user-utterance triggers keep both the new "generation" phrasings and the legacy "v3" ones, so no invocation recall is lost.
+
+## 5.7.1
+
+No changes in this release.
+
+## 5.7.0
+
+No changes in this release.
+
+## 5.6.2
+
+No changes in this release.
+
+## 5.6.1
+
+No changes in this release.
+
+## 5.6.0
+
+No changes in this release.
+
+## 5.5.0
+
+### Patch Changes
+
+- feat: add `scan_generation_2_migration` tool, deprecate `scan_v2_migration` - [see commit 0abe126](https://github.com/db-ux-design-system/core-web/commit/0abe1268a5a7aa836012b939ceffc0746141dbd1):
+
+    - Adds `scan_generation_2_migration` as the canonical name for the migration scanner, aligning it with the DB UX Design System – Generation 2 / Generation 3 naming. The previous `scan_v2_migration` name is now **deprecated**: it still delegates to the same handler so existing MCP configurations keep working, but it is scheduled for removal in the next major release — prefer `scan_generation_2_migration` going forward. The consumer power bundle (`mcp.json` and the migration skill) out of `@db-ux/agent-cli` node package now references the new name.
+
+## 5.4.0
+
+No changes in this release.
+
+## 5.3.0
+
+_version bump_
+
 ## 5.2.1
 
 _version bump_

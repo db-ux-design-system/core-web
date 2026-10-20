@@ -1,5 +1,72 @@
 # @db-ux/core-foundations
 
+## 6.0.0
+
+### Major Changes
+
+- refactor(DBHeading): strip block spacing by default, remove `alignment` and `paragraphSpacing`, rename `size` to `visualSize` - [see commit 56cf6f9](https://github.com/db-ux-design-system/core-web/commit/56cf6f9ae9dba4d8e17c1f84d6deae994260c619):
+
+    - Block-level text elements (`h1`-`h6`, `p`) no longer carry a `margin-block` by default. Set `data-text-spacing="true"` on an ancestor or on the element itself to add the spacing (`calc(1lh / 2)`, derived from each element's own line height) back. The Heading `paragraphSpacing` and `alignment` properties were removed, and `size` was renamed to `visualSize`.
+
+- feat(DBStack): `overflow: auto` removed - a stack no longer scrolls - [see commit 6da172d](https://github.com/db-ux-design-system/core-web/commit/6da172d5ff05cd3c44b93c430c77664b43d25a5f):
+
+    - It clipped the focus ring of its children. Content that does not fit is now visible outside the
+    - stack instead of being scrollable; set `overflow` on the stack yourself if you relied on it.
+    - `wrap` keeps the scroll container, since wrapped items overflow by design.
+    - New `data-focus-container` / `.db-focus-container` helper reserves the room a focus ring needs
+    - inside any clipping container, for the cases where that combination is needed. It owns the
+    - padding and margin of the element it sits on, so it belongs on a container that brings no
+    - spacing of its own.
+
+### Minor Changes
+
+- feat(DBBreadcrumb): add breadcrumb (`DBBreadcrumb`, `DBBreadcrumbItem` and `DBBreadcrumbPopoverItem`) components with truncation - [see commit 592bf6a](https://github.com/db-ux-design-system/core-web/commit/592bf6aebb76bc58e9f8e05daf5d5f7bb04330de):
+
+    - Supports composition (slotted items) and options API (`items`), `size` and `separator` variants, disabled and icon-only (`noText`) items, automatic collapsing, and manual truncation via `DBBreadcrumbPopoverItem` which reveals the hidden items in a popover. Also refactors `DBAccordion` to reuse the shared `parseItems` utility.
+
+## 5.7.1
+
+### Patch Changes
+
+- fix(icons): make `data-icon-variant="filled"` work in themed projects - [see commit cab6ff5](https://github.com/db-ux-design-system/core-web/commit/cab6ff57916d5b986ef9ac6d39357494be9797b4):
+
+    - The generic `default` / `filled` variant names were only emitted in the foundations theme CSS and hard-coded the whitelabel `db-ux-*` font families. Themed projects load `@db-ux/db-theme` instead of the foundations theme CSS, so the selectors never shipped and `data-icon-variant="filled"` silently fell back to the default icon font. The mapping now lives in the always-loaded defaults bundle and resolves through the themeable `--db-icon-<variant>-font-family` custom property.
+
+## 5.7.0
+
+### Patch Changes
+
+- fix(icons): prevent layout shift while the icon font is loading in webkit - [see commit 6fba5a6](https://github.com/db-ux-design-system/core-web/commit/6fba5a6b128e5de8f98d84862a97c44490112a89)
+
+## 5.6.2
+
+No changes in this release.
+
+## 5.6.1
+
+No changes in this release.
+
+## 5.6.0
+
+### Minor Changes
+
+- feat(DBLoadingIndicator): add component to handle spinners, progress-bars etc. - [see commit a0f37cf](https://github.com/db-ux-design-system/core-web/commit/a0f37cf3531b94ace8be6bd606a08de2d7ee5f35)
+
+## 5.5.0
+
+No changes in this release.
+
+## 5.4.0
+
+No changes in this release.
+
+## 5.3.0
+
+### Minor Changes
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
 ## 5.2.1
 
 _version bump_

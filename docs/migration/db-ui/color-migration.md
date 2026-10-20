@@ -2,7 +2,7 @@
 
 Use the **BG** column for `background-color` / `background`. Use the **FG** column for `color` / `border-color` / `outline-color` / `fill` / `stroke` / `caret-color`. For `box-shadow`, use `--db-elevation-*` tokens instead.
 
-| DB UI v2 Token                    | Background (BG)                                        | Foreground (FG)                                      |
+| Generation 2 (aka DB UI) Token    | Background (BG)                                        | Foreground (FG)                                      |
 | --------------------------------- | ------------------------------------------------------ | ---------------------------------------------------- |
 | `db-color-yellow-100`             | `--db-yellow-bg-basic-level-2-default`                 | `--db-successful-on-bg-inverted-default`             |
 | `db-color-yellow-200`             | `--db-yellow-bg-basic-level-3-default`                 | `--db-successful-on-bg-inverted-default`             |

@@ -1,14 +1,18 @@
-# DB UX Design System v3 Core Web
+# DB UX Design System – Generation 3 Core Web
 
-DB UX Design System v3 Core Web is a monorepo containing CSS/SCSS styles, components, and framework-specific implementations (Angular, React, Vue, Web Components) for the Deutsche Bahn design system.
+DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS styles, components, and framework-specific implementations (Angular, React, Vue, Web Components) for the Deutsche Bahn design system.
 
 **Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
+
+> **Naming convention:** In human-readable prose and naming, spell out the design-system generation as **"DB UX Design System – Generation 3"** (the current generation) and **"DB UX Design System – Generation 2"** (the previous one, formerly "DB UI"). Do not use the shorthand "v2" / "v3" / "version 2" / "version 3" in prose. On the **first** mention of Generation 2 in a document, add the clarifier **"(aka DB UI)"** once so readers who know the product as "DB UI" recognize the rename; keep later mentions short.
+>
+> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version pins (e.g. `# v3.2.0`). Rewriting those breaks links and tooling.
 
 ## Working Effectively
 
 ### Required Prerequisites
 
-- **Node.js 24**: Check `.nvmrc` file. Use `node --version` to verify current version.
+- **Node.js 26**: Check `.nvmrc` file. Use `node --version` to verify current version.
 - **pnpm**: Package manager for dependency management and build scripts.
 
 ### Bootstrap and Setup
@@ -210,7 +214,7 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 
 - **Full guide**: See ["How to Connect Figma Components" documentation](packages/components/docs/how-to-figma-connect.md) for setup, property types, and publishing.
 - **Generate Figma files** (must run before updating snapshots): `pnpm --filter=@db-ux/core-components run generate:figma`
-- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks::
+- **Update snapshots** after any change to `.figma.ts` or `.figma.lite.tsx` files, first regenerate the Figma outputs, then update the snapshots for all three frameworks:
     ```bash
     pnpm --filter=@db-ux/core-components run generate:figma
     pnpm --filter=react-figma run test:update
@@ -328,7 +332,7 @@ If possible, start by writing a test that you could use to verify your solution,
 
 ### Debugging Build Issues
 
-1. **Check Node.js version**: Must be v24 (see `.nvmrc`)
+1. **Check Node.js version**: Must be v26 (see `.nvmrc`)
 2. **Clean rebuild**: `pnpm run clean && pnpm run build`
 3. **Check dependencies**: `pnpm install --ignore-scripts`
 4. **Isolate issue**: Build individual packages using workspace commands
@@ -393,7 +397,7 @@ The `bin` field keys should be explicit, plain command names — **prefer a shor
 
 ### TypeScript execution
 
-Node.js 24 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
+Node.js 26 supports running TypeScript files directly. **Prefer `node <file>.ts` over `tsx <file>.ts`** for executing TypeScript scripts. This removes the need for `tsx` as a dev dependency and keeps the toolchain minimal.
 
 ```bash
 # ✅ Preferred

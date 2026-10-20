@@ -19,6 +19,9 @@ useMetadata({});
 
 useDefaultProps<DBNavigationItemProps>({});
 
+/**
+ * @deprecated Use DBControlPanelNavigationItem instead
+ */
 export default function DBNavigationItem(props: DBNavigationItemProps) {
 	const _ref = useRef<HTMLLIElement | any>(null);
 

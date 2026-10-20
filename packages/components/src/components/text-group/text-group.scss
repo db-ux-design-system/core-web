@@ -1,0 +1,21 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+/* Prefixed: `@forward`ed into `index.scss`, where plain names would collide. */
+$text-group-alignment-values: (
+	"start": start,
+	"center": center,
+	"end": end
+);
+
+/* No spacing here: `data-text-spacing` is handled by the foundations. */
+.db-text-group {
+	@include helpers.display(flex);
+
+	flex-direction: column;
+
+	@each $alignment, $value in $text-group-alignment-values {
+		&[data-alignment="#{$alignment}"] {
+			text-align: $value;
+		}
+	}
+}

@@ -10,7 +10,7 @@ export {
 	handleGetMigrationGuide,
 	handleListMigrationGuides
 } from './migration.js';
-export { handleScanV2Migration } from './scanner.js';
+export { handleScanGeneration2Migration } from './scanner.js';
 export {
 	handleGetDesignTokens,
 	handleListDesignTokenCategories

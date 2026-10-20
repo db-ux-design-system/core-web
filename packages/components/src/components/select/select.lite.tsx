@@ -46,7 +46,9 @@ import { DBSelectOptionType, DBSelectProps, DBSelectState } from './model';
 
 useMetadata({
 	angular: {
-		nativeAttributes: ['disabled', 'required', 'value'],
+		// `hidden` needs the native property binding: [attr.hidden]="false"
+		// would still hide the empty option.
+		nativeAttributes: ['disabled', 'required', 'value', 'hidden'],
 		signals: {
 			writeable: ['disabled', 'value']
 		}
@@ -136,10 +138,26 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value,
+						reset
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
-			state.handleValidation();
+			/* `handleValidation` must not run synchronously here: it changes
+			 * internal state (`_descByIds` flips as soon as the value became
+			 * valid). React re-applies the controlled `value` to the `select` on
+			 * every commit, and while the `input` event is being handled that
+			 * prop is still the previous value - so the re-render would discard
+			 * the selection the user just made, before `change` is even
+			 * dispatched. Deferring keeps the DOM authoritative until the value
+			 * has been propagated; `handleChange` validates the settled value.
+			 * https://github.com/db-ux-design-system/core-web/issues/7554 */
+			void delay(() => state.handleValidation(), 0);
 		},
 		handleChange: (
 			event: ChangeEvent<HTMLSelectElement> | any,
@@ -162,7 +180,14 @@ export default function DBSelect(props: DBSelectProps) {
 			});
 
 			useTarget({
-				angular: () => handleFrameworkEventAngular(state, event),
+				angular: () =>
+					handleFrameworkEventAngular(
+						state,
+						event,
+						'value',
+						state._value,
+						reset
+					),
 				vue: () => handleFrameworkEventVue(() => {}, event)
 			});
 			state.handleValidation();
@@ -310,7 +335,14 @@ export default function DBSelect(props: DBSelectProps) {
 				id={state._id}
 				name={props.name}
 				size={props.size}
-				value={props.value ?? state._value ?? ''}
+				value={useTarget({
+					// React needs the raw prop so the element stays a
+					// controlled component; falling back to state._value would
+					// pin it because state._value is never updated from user
+					// input in React.
+					react: props.value,
+					default: props.value ?? state._value ?? ''
+				})}
 				autocomplete={props.autoComplete ?? props.autocomplete}
 				multiple={props.multiple}
 				onInput={(event: ChangeEvent<HTMLSelectElement>) =>
@@ -335,10 +367,7 @@ export default function DBSelect(props: DBSelectProps) {
 					<option
 						class="placeholder"
 						value=""
-						data-show-empty-option={getBooleanAsString(
-							state.shouldShowEmptyOption(),
-							'showEmptyOption'
-						)}></option>
+						hidden={!state.shouldShowEmptyOption()}></option>
 				</Show>
 				<Show when={props.options?.length} else={props.children}>
 					<For each={props.options}>

@@ -1,5 +1,200 @@
 # @db-ux/ngx-core-components
 
+## 6.0.0
+
+### Major Changes
+
+- feat(DBStack)!: add `width` and `height` properties and remove default `block-size: 100%` - [see commit 5d3c1d2](https://github.com/db-ux-design-system/core-web/commit/5d3c1d2956f3f88c25c67f80970573a4ec018b90):
+
+    - BREAKING CHANGE: `DBStack` no longer forces `block-size: 100%`. The default height is now `auto`, so a stack shrinks around its children instead of stretching to a definite-height parent. Add `height="full"` to any stack that relied on the previous full-height behavior (e.g. column `justifyContent`/`alignment` layouts). See the v5 ➡ v6 migration guide.
+
+- refactor(DBHeading): strip block spacing by default, remove `alignment` and `paragraphSpacing`, rename `size` to `visualSize` - [see commit 56cf6f9](https://github.com/db-ux-design-system/core-web/commit/56cf6f9ae9dba4d8e17c1f84d6deae994260c619):
+
+    - Block-level text elements (`h1`-`h6`, `p`) no longer carry a `margin-block` by default. Set `data-text-spacing="true"` on an ancestor or on the element itself to add the spacing (`calc(1lh / 2)`, derived from each element's own line height) back. The Heading `paragraphSpacing` and `alignment` properties were removed, and `size` was renamed to `visualSize`.
+
+- refactor(DBDialog)!: scope the native `dialog` element styles to the components - [see commit 08dabda](https://github.com/db-ux-design-system/core-web/commit/08dabda8e003c03ffef5b345ab899db183042e33):
+
+    - Breaking change: styling is no longer applied to the bare `dialog` element - only to `.db-dialog` and `.db-drawer`. If you relied on the design system styling native `<dialog>` elements that are not DB components, scope your own styles to those elements. The rendered output of `DBDialog` and `DBDrawer` themselves is unchanged.
+    - The `styles/dialog-init` Sass entry point was also removed. If you imported it for its global `dialog` reset, drop the import; if you used its `$backdrop-color-strong` / `$backdrop-color-weak` variables, they moved to the internal `styles/internal/dialog-components` partial (no stability guarantee - prefer defining your own tokens). See the [v5 → v6 migration guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/v5.x.x-to-v6.0.0.md).
+
+- feat(DBStack): `overflow: auto` removed - a stack no longer scrolls - [see commit 6da172d](https://github.com/db-ux-design-system/core-web/commit/6da172d5ff05cd3c44b93c430c77664b43d25a5f):
+
+    - It clipped the focus ring of its children. Content that does not fit is now visible outside the stack instead of being scrollable; set `overflow` on the stack yourself if you relied on it.
+      `wrap` keeps the scroll container, since wrapped items overflow by design.
+    - New `data-focus-container` / `.db-focus-container` helper reserves the room a focus ring needs inside any clipping container, for the cases where that combination is needed. It owns the padding and margin of the element it sits on, so it belongs on a container that brings no spacing of its own.
+
+### Minor Changes
+
+- feat(DBBreadcrumb): add breadcrumb (`DBBreadcrumb`, `DBBreadcrumbItem` and `DBBreadcrumbPopoverItem`) components with truncation - [see commit 592bf6a](https://github.com/db-ux-design-system/core-web/commit/592bf6aebb76bc58e9f8e05daf5d5f7bb04330de):
+
+    - Supports composition (slotted items) and options API (`items`), `size` and `separator` variants, disabled and icon-only (`noText`) items, automatic collapsing, and manual truncation via `DBBreadcrumbPopoverItem` which reveals the hidden items in a popover. Also refactors `DBAccordion` to reuse the shared `parseItems` utility.
+
+- refactor: remove roundness not controlled by `db-border-radius` variables in preparation for the new DB Theme - [see commit af0901e](https://github.com/db-ux-design-system/core-web/commit/af0901e2d01449b01210bc468e1296d721bc3b0e):
+
+        - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
+        - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
+        - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
+
+- feat(DBParagraph): add beta Paragraph and TextGroup components - [see commit 600aa2d](https://github.com/db-ux-design-system/core-web/commit/600aa2dc2706f964a0f368bca2286e4f2811ed0f):
+
+    - `DBParagraph` renders a `p` for body copy and takes `size` (`lg`, `md`, `sm`). It has no default, so omitting it inherits from the surrounding typography, which in a default context is the medium step. There is no font-weight property: emphasis belongs to `strong`, and a presentational weight comes from the foundations' `data-font` annotation. Inline text is covered by a plain `span`, there is no component for it.
+    - `DBTextGroup` is a separate component in its own folder. It renders a presentational `div` that groups block-level text and takes `alignment` plus `textSpacing`. `textSpacing` renders the foundations' `data-text-spacing` attribute, which gives every `h1`-`h6` and `p` below it half a line height above and below, so plain markup and components share one rhythm. Omitting it inherits from an ancestor, `false` opts out.
+
+## 5.7.1
+
+### Patch Changes
+
+- fix(icons): make `data-icon-variant="filled"` work in themed projects - [see commit cab6ff5](https://github.com/db-ux-design-system/core-web/commit/cab6ff57916d5b986ef9ac6d39357494be9797b4):
+
+    - The generic `default` / `filled` variant names were only emitted in the foundations theme CSS and hard-coded the whitelabel `db-ux-*` font families. Themed projects load `@db-ux/db-theme` instead of the foundations theme CSS, so the selectors never shipped and `data-icon-variant="filled"` silently fell back to the default icon font. The mapping now lives in the always-loaded defaults bundle and resolves through the themeable `--db-icon-<variant>-font-family` custom property.
+
+- fix(DBTag): add accessible text to the removable tag button - [see commit 2956aab](https://github.com/db-ux-design-system/core-web/commit/2956aabbf2926c64d0a6fc7aff52f59e64999ae6):
+
+    - The removable tag button only rendered a `DBTooltip` with the remove label and had no text content of its own, leaving the button without an accessible name. This surfaced on the tags in `DBCustomSelect`. The remove label is now also rendered as the button's text content so the button has a reliable accessible name.
+
+## 5.7.0
+
+### Minor Changes
+
+- refactor(DBSelect): hide the empty option with the native `hidden` attribute - [see commit 6003ff8](https://github.com/db-ux-design-system/core-web/commit/6003ff8c007e6be1e97dcf1be6d1c62fd0c76ec7):
+
+    - The empty option of a `placeholder` or floating label select was hidden through CSS that reacted to `option[data-show-empty-option="false"]` combined with `:has()` and `:open`. It now carries the native `hidden` attribute instead, so the state lives in the markup rather than in a conditional style rule.
+    - Consumers who wrote the markup by hand and relied on `data-show-empty-option="false"` being hidden by our stylesheet need to set `hidden` on that option instead.
+
+- feat(DBTooltip): allow customizing the appear delay via `--db-animation-delay` - [see commit 0abcc96](https://github.com/db-ux-design-system/core-web/commit/0abcc96f3920f62918ceec67a35040631cbf807d)
+
+### Patch Changes
+
+- fix(DBPopover): align tooltip and popover gap distance to `sm` - [see commit 014af2c](https://github.com/db-ux-design-system/core-web/commit/014af2cbde7cae2a1a68257c701cc6fb5a17193c):
+
+    - The popover gap distance now matches the tooltip, using `$db-spacing-fixed-sm` for both instead of `$db-spacing-fixed-md` for the popover. This keeps the spacing consistent with the design.
+
+- fix(DBControlPanel): wrap full-width action groups instead of overflowing - [see commit f656073](https://github.com/db-ux-design-system/core-web/commit/f656073957338818d328947c26ed912574cde3ca):
+
+    - Full-width control panel action groups relied on the default `flex-wrap: nowrap`, so their items overflowed horizontally once they ran out of space. `flex-wrap: wrap` now lets them wrap onto the next line in the mobile drawer footer (`.db-control-panel-actions-2`) and in the desktop vertical orientation (`.db-control-panel-actions-1` / `.db-control-panel-actions-2`). The mobile `actions-1` group stays unwrapped because it lives in a `min-content` grid track, and the desktop horizontal orientation is unchanged.
+
+- fix(DBCustomSelect): skip group titles during keyboard navigation on all frameworks - [see commit 130f6dc](https://github.com/db-ux-design-system/core-web/commit/130f6dcddb9ee241edc8c4697ccb2d70d9f45461):
+
+    - Option-group keyboard navigation walked `<li>` siblings, which broke on the Angular and Stencil outputs where every list item is wrapped in a `db-custom-select-list-item` custom-element host and therefore has no sibling `<li>`. Navigation now iterates the flat list of option inputs, so arrow keys skip group titles consistently across React, Vue, Angular and Web Components (#4920).
+    - fix(DBDialogHeader): compose dialog aria-labelledby after attribute forwarding
+    - `DBDialogHeader` linked the surrounding dialog to its heading via `aria-labelledby` in `onMount`, which on the Angular and Web Component outputs ran before the attribute-passing observer forwarded a consumer `aria-label` / `aria-labelledby` from the `db-dialog` host onto the inner `<dialog>`. The two writes fell out of sync, so the heading token could be clobbered or a stale token could defeat a consumer `aria-label`. The composition is now deferred with `requestAnimationFrame` so it runs after forwarding has landed.
+
+- fix(icons): prevent layout shift while the icon font is loading in webkit - [see commit 6fba5a6](https://github.com/db-ux-design-system/core-web/commit/6fba5a6b128e5de8f98d84862a97c44490112a89)
+- fix(DBTabs): no stray vertical scrollbar in the tab list at fractional browser zoom - [see commit 12dcc47](https://github.com/db-ux-design-system/core-web/commit/12dcc474728aff834b9cb7a2130be0183d0ecf81):
+
+    - A vertical tab list nested inside a horizontal `DBTabs` no longer inherits the horizontal list's overflow and is no longer a scroll container, matching a standalone vertical tab list.
+
+## 5.6.2
+
+### Patch Changes
+
+- fix(DBInput): keep a partially typed date that the browser cannot parse - [see commit 4ab2aaa](https://github.com/db-ux-design-system/core-web/commit/4ab2aaa9cc652823f0b467d6d8048b6a48d36748)
+- fix(DBInput): restore the value on a native form reset in Angular - [see commit 4ab2aaa](https://github.com/db-ux-design-system/core-web/commit/4ab2aaa9cc652823f0b467d6d8048b6a48d36748):
+
+    - A native form reset is a programmatic write, so it now goes through `writeValue`
+    - again and reaches the element, instead of only updating the model signal (which
+    - stayed unchanged when the reset value matched the last typed value, leaving the
+    - field empty). Applies to `DBInput`, `DBTextarea` and `DBSelect`.
+
+- fix(DBControlPanelNavigationItemGroup): correct drilldown and popover z-index layering - [see commit 1e855b9](https://github.com/db-ux-design-system/core-web/commit/1e855b9cc207d82458bb27033f642a79f480b7ee)
+- fix(DBShellSubNavigation): keep the left border above the drilldown navigation overlay - [see commit 8992130](https://github.com/db-ux-design-system/core-web/commit/89921307a2f5fe928302d3d9eab0cbc9f11b0c4a)
+
+## 5.6.1
+
+### Patch Changes
+
+- fix(DBControlPanel): open drilldown with a transition instead of a clip-path - [see commit b4165ee](https://github.com/db-ux-design-system/core-web/commit/b4165ee83c5c8ae14bfd3b4755c48d8b99bae1a6):
+    - open the navigation drilldown with a transition instead of a `clip-path`
+    - pin the drilldown overlay to the scroll viewport so it is not shifted up by an existing scroll offset
+    - restore the flat-icon navigation indicator and the drilldown group icons
+    - recompute the navigation variant on viewport resize so it no longer sticks to popover after switching from drilldown
+    - reduce the navigation item and expand button gap to fix wrong icon spacing
+    - move `data-icon` / `data-show-icon` for a navigation item group from the group `<li>` to its expand button (CSS-only consumers who hand-write the markup have to move these attributes onto the `.db-control-panel-navigation-item-group-expand-button`)
+- fix(DBPopover): a controlled `open` no longer freezes the page in Angular - [see commit 2f14f69](https://github.com/db-ux-design-system/core-web/commit/2f14f69919bd57853661e90edc8f36915974e306)
+- fix(DBFooterMeta): remove double space before the copyright holder in Angular - [see commit bc83f12](https://github.com/db-ux-design-system/core-web/commit/bc83f1280911791ff8c4a7ab611589825109f332):
+    - The copyright sign and its non-breaking space were a text node next to the `copyright` interpolation. For Angular that generated `©&nbsp; {{copyright()}}`, and Angular does not collapse whitespace next to a `&nbsp;`, so the Angular output rendered the line about 3px wider than React and Vue. Sign and space are now part of the interpolated expression, so every target renders the same text.
+- docs(DBIcon): document that the icon is always decorative - [see commit 6d48a36](https://github.com/db-ux-design-system/core-web/commit/6d48a366bf7078e52e029e73103d686a36198bb8):
+    - The usage examples showed `<DBIcon icon="x_placeholder">Icon</DBIcon>`, which suggests the child text is rendered somewhere. It is not: the component renders `aria-hidden="true"` and `font-size: 0`, so `text` and children are hidden both visually and from the accessibility tree, and `role` / `aria-label` on the component have no effect either. The examples now show the icon without content, and a new accessibility page explains how to label an informative icon (named wrapper, the parent component's `icon` property, or the `data-icon` attribute).
+- fix(DBShell): stop reserving an empty sub-navigation row on mobile - [see commit bc83f12](https://github.com/db-ux-design-system/core-web/commit/bc83f1280911791ff8c4a7ab611589825109f332):
+    - The mobile grid templates declared the `sub-navigation` row unconditionally, while the desktop templates guard it with `:has()`. Without a sub-navigation the empty row captured any unplaced child of `DBShell` -- a `DBFooter` added as a direct child was rendered between the control panel and the content instead of below it. The mobile templates now add the row only when a sub-navigation is present, matching desktop.
+    - Also documents the supported composition: a footer belongs in the `endSlot` of `DBShellContent`, not in `DBShell`.
+- fix(DBShell): prevent logo position jump between expanded and collapsed state - [see commit 2fe98a8](https://github.com/db-ux-design-system/core-web/commit/2fe98a82a6a52f40f41593bd437945795f30a7b8)
+- style(Dialog & Drawer): corrected the headlines `font-family` (regular, instead of heading) - [see commit 2938761](https://github.com/db-ux-design-system/core-web/commit/29387612c7834664dbd93102dc09141c021fa159)
+
+## 5.6.0
+
+### Minor Changes
+
+- feat(DBPagination): add controlled pagination component - [see commit 333d265](https://github.com/db-ux-design-system/core-web/commit/333d265974b64c159e68918d76565ef854f593b5)
+- feat(DBDialog): add `DBDialog`, `DBDialogHeader` and `DBDialogFooter` - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - Based on the native `<dialog>` element, using its centring and top-layer behaviour. Supports `backdrop` (`strong`, `weak`, `none`) and `containerSize` (`small`, `medium`, `large`, `full`).
+    - Open/close declaratively via `open`, natively via Invoker Commands (`command`/`commandfor`) or `<form method="dialog">`; reports `onClose` and `onCancel`.
+    - `DBDialogHeader` provides the heading, `startSlot`/`endSlot` and the close button, and composes the dialog's `aria-labelledby` (appending its heading id, preserving a consumer value; a consumer `aria-label` still wins). `DBDialogFooter` holds the actions.
+    - Adjust the max inline size with `--db-dialog-max-width` and the viewport distance with `--db-dialog-viewport-inset`.
+- feat(DBDrawer): new event props and renamed header content class - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - Adds the `onClick` and `onCancel` props to `DBDrawerProps` (matching `DBDialog`). They are composed with the internal ponyfill handlers, so a consumer callback fires and `onCancel` can veto a native close via `event.preventDefault()`.
+    - Renames the heading wrapper class `db-drawer-header-container` to `db-drawer-header-content` (same for `db-dialog-header-content`) and moves the start slot before it. Update selectors that target the old class.
+- feat(DBLoadingIndicator): add component to handle spinners, progress-bars etc. - [see commit a0f37cf](https://github.com/db-ux-design-system/core-web/commit/a0f37cf3531b94ace8be6bd606a08de2d7ee5f35)
+
+### Patch Changes
+
+- fix(DBDrawer): accessibility, dismissal and shared dialog layer - [see commit 477e716](https://github.com/db-ux-design-system/core-web/commit/477e71630bee91ab280462857a5921777a02e8fd):
+    - The header composes the drawer's `aria-labelledby` (appending its heading id, preserving a consumer value) instead of overwriting it; a consumer `aria-label` still wins.
+    - Non-modal drawers (`backdrop="none"`, `variant="inside"`, `position="absolute"`) now dismiss on Escape and backdrop click in browsers without `closedby` support (e.g. Firefox ESR) via the ponyfill.
+    - Generates the fallback `id` hydration-safely (via the framework `useId()`), re-syncing when the consumer `id` changes or is cleared, so the document never keeps a stale or duplicate id.
+    - `open={undefined}` no longer counts as "closed", so a natively opened drawer stays open until `open` is set explicitly.
+    - Now uses the shared dialog utils, style mixins and ponyfill module. Behaviour change: the header close button no longer calls `stopPropagation()`, so its click follows native bubbling like every other click in the drawer (identify it via `command="request-close"` on `event.target` if you relied on the old behaviour).
+    - Behaviour change: `onClose` now fires on the native `<dialog>` `close` event, so its argument is that `close` event rather than the originating `MouseEvent`/`KeyboardEvent`. The declared `DBDrawerProps["onClose"]` type still reflects the previous union. In the edge case of distinguishing Escape, backdrop and close-button dismissal via `event.key`/`event.type`/`event.target` inside `onClose`, read the initiating event from `onCancel` (Escape/cancel) or `onClick` (pointer) instead.
+
+## 5.5.0
+
+### Patch Changes
+
+- fix(DBCustomSelectListItem): make label bold when checked - [see commit 58df675](https://github.com/db-ux-design-system/core-web/commit/58df6754fde599346696e4e9372d97e13c384082)
+- fix(table): remove unwanted white background on component wrapper for `variant="spaced"` - [see commit 1524afe](https://github.com/db-ux-design-system/core-web/commit/1524afe64488b90e47c133594438182bb47a59e7)
+
+## 5.4.0
+
+### Minor Changes
+
+- feat(DBFooter): add the composable DBFooter, DBFooterContent and DBFooterMeta components - [see commit 7df9937](https://github.com/db-ux-design-system/core-web/commit/7df99378cb41c17ca818792918e7e8f18a96a2ec):
+
+    - `DBFooter` renders the native `contentinfo` landmark and the layout container with the
+    - optional `width` variants. `DBFooterContent` holds the primary area, `DBFooterMeta` the
+    - secondary one including an optional `copyright` holder, for which the component prepends
+    - the copyright symbol. Both areas are optional, so consumers compose only the parts they
+    - need and wrap navigational content in a labelled `nav` themselves.
+    - Inside `DBFooterMeta` the copyright and the secondary content sit side by side from a
+    - viewport width of 768 px upwards, with the copyright aligned to the top of the row, and
+    - stack below that. `data-force-mobile="true"` on the footer forces the stacked
+    - arrangement, for a footer placed in a region narrower than the viewport suggests.
+
+## 5.3.0
+
+### Minor Changes
+
+- feat: introduce control-panel shell architecture (deprecates DBPage, DBHeader, DBBrand, DBNavigation, DBNavigationItem) - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - New `DBShell` component (deprecates `DBPage`)
+    - New `DBControlPanelDesktop` and `DBControlPanelMobile` (deprecates `DBHeader`)
+    - New `DBControlPanelBrand` (deprecates `DBBrand`)
+    - New `DBControlPanelNavigation` (deprecates `DBNavigation`)
+    - New `DBControlPanelNavigationItem` (deprecates `DBNavigationItem`)
+    - New `DBControlPanelNavigationItemGroup` for sub-navigation
+    - New `DBShellContent` component for main content area
+    - New `DBShellSubNavigation` for secondary navigation panels
+    - New `DBControlPanelMeta`, `DBControlPanelActions1`, `DBControlPanelActions2` slot components
+    - New `DBControlPanelFlatIcon` for collapsed icon-only navigation
+
+- feat: add logo token variables - [see commit eafd85b](https://github.com/db-ux-design-system/core-web/commit/eafd85bc0d1692e9124a7599fe1397f9ff68a759):
+    - Providing `--db-logo-url`, `--db-logo-aspect-ratio`, `--db-logo-url-short`, and `--db-logo-aspect-ratio-short` tokens.
+
+### Patch Changes
+
+- fix(DBSelect): keep the user's selection when validation runs on `input` - [see commit 86d0feb](https://github.com/db-ux-design-system/core-web/commit/86d0feb14e3af59e170f08204fccf8c269e4c5fb):
+    - A browser dispatches `input` and `change` for a `select` in separate tasks. `DBSelect` validated synchronously on `input`, which changed internal state and triggered a re-render while the controlled `value` was still the previous one. Because React re-applies the `value` on every commit of a `select`, that re-render discarded the selection before `change` was dispatched — so controlled `required` selects never received the new value. Validation now runs once the value has been propagated.
+
+- fix(DBSwitch): icon no longer bleeds through a closed popover - [see commit 6d4deb5](https://github.com/db-ux-design-system/core-web/commit/6d4deb54cff50c36b45b3ea9b6331b333d072845)
+
 ## 5.2.1
 
 ### Patch Changes

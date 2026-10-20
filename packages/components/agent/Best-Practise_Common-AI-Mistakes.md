@@ -18,7 +18,19 @@
 
 ## `DBPage` or `db-page`
 
-- If you use `DBHeader` or a footer use `<DBPage variant="fixed">`, without a header use `DBPage variant="auto"`
+- `DBPage`/`db-page` is deprecated — use `DBShell`/`db-shell` with `DBShellContent`/`db-shell-content` instead
+- If you still use it: with `DBHeader` or a footer use `<DBPage variant="fixed">`, without a header use `DBPage variant="auto"`
+
+## `DBShell` or `db-shell`
+
+- only `DBControlPanelDesktop`, `DBControlPanelMobile`, `DBControlPanelFlatIcon`, `DBShellSubNavigation` and `DBShellContent` belong as direct children — the grid has no area for anything else
+- a footer does not go into `DBShell`; there is no `footer` slot. Put `DBFooter`/`db-footer` into the `endSlot`/`end-slot` of `DBShellContent`/`db-shell-content`
+
+## `DBShellContent` or `db-shell-content`
+
+- use only one per page, because it renders the `main` landmark that the skip-navigation link targets
+- `startSlot`/`start-slot` renders above `main`, `endSlot`/`end-slot` below it — a footer belongs in the end slot
+- use `variant="fixed"` when the footer should stay visible, `variant="auto"` (default) lets the whole content area scroll
 
 ## `DBAccordion` or `db-accordion`
 
@@ -69,7 +81,7 @@
 
 - always provide `burgerMenuLabel` attribute for accessibility
 
-## `DBNavigationItem` or `db-navigation-item`
+## `DBControlPanelNavigationItem` or `db-control-panel-navigation-item`
 
 - always provide `backButtonText` attribute for accessibility
 - must have children content (text or child elements)
@@ -81,7 +93,7 @@
 ## `DBTooltip` or `db-tooltip`
 
 - must not contain interactive elements (buttons, links, inputs, etc.) — use `DBPopover` for interactive content
-- must be a child of an interactive element (`button`, `a`, `DBButton`, `DBLink`, `DBNavigationItem`, `DBTabItem`, `input`, `select`, `textarea`, etc.) for accessibility
+- must be a child of an interactive element (`button`, `a`, `DBButton`, `DBLink`, `DBControlPanelNavigationItem`, `DBTabItem`, `input`, `select`, `textarea`, etc.) for accessibility
 
 ## `DBIcon` or `db-icon`
 
@@ -92,6 +104,6 @@
 - always provide a `label` attribute for accessibility (for `DBCheckbox`, `DBRadio`, `DBSwitch` children text content also counts as label)
 - when using validation attributes (`required`, `minLength`, `maxLength`, `min`, `max`, `pattern`), always provide an `invalidMessage` attribute for better UX (exception: `DBRadio` with `required` does not need `invalidMessage`)
 
-## Content components (`DBButton`, `DBLink`, `DBBadge`, `DBIcon`, `DBInfotext`, `DBNavigationItem`, `DBNotification`, `DBAccordionItem`)
+## Content components (`DBButton`, `DBLink`, `DBBadge`, `DBIcon`, `DBInfotext`, `DBControlPanelNavigationItem`, `DBNotification`, `DBAccordionItem`)
 
 - must have either a `text` property or children content — never leave them empty

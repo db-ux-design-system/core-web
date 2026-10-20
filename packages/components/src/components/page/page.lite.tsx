@@ -14,6 +14,9 @@ import { DBPageProps, DBPageState } from './model';
 useMetadata({});
 useDefaultProps<DBPageProps>({});
 
+/**
+ * @deprecated Use DBShell instead
+ */
 export default function DBPage(props: DBPageProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
@@ -29,7 +32,7 @@ export default function DBPage(props: DBPageProps) {
 				(props.variant === 'fixed' &&
 					props.documentOverflow !== 'auto'))
 		) {
-			// We need to set this to `html` element that the flex-box solution works
+			// We need to set this to "html" element that the flex-box solution works
 			// See https://stackoverflow.com/a/43710216 - Approach 1 - flexbox
 			document.documentElement.classList.add('db-page-document');
 		}

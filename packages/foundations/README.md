@@ -5,7 +5,7 @@
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
-A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System v3](https://github.com/db-ux-design-system/core-web).
+A library containing all tokens (colors, spacings, font formatting, etc.) and assets (icons) of [DB UX Design System – Generation 3](https://github.com/db-ux-design-system/core-web).
 
 ## When to use this package
 
@@ -274,11 +274,11 @@ If you want to optimize the size of the loaded styles, you might want to skip lo
 You are able to optimize the initial settings as well:
 
 ```css
-/* The required styles will normalize css and add focus and default font to body */
+/* The required styles normalize css, add focus, set the default body font, and apply the mandatory headline typography (font-sizes & line-heights) to h1-h6. */
 @import "@db-ux/core-foundations/build/styles/defaults/default-required.css";
 /* The default setting for :root, adds a color space (neutral-bg-basic-level-1) and a density (regular). */
 @import "@db-ux/core-foundations/build/styles/defaults/default-root.css";
-/* Adds font-sizes & line-heights to headlines and paragraph tags. You probably need this, but you might strip some styles if you don't need the range of h1-h6. */
+/* Adds the optional font-weight utilities ([data-font], heading [data-variant]) and the small/code font-size. The headline h1-h6 typography is no longer here - it moved to default-required.css. */
 @import "@db-ux/core-foundations/build/styles/defaults/default-fonts.css";
 /* Adds "[data-icon]" and other icon related styles. If you don't need icons in your application you could skip this. */
 @import "@db-ux/core-foundations/build/styles/defaults/default-icons.css";

@@ -345,25 +345,25 @@ describe('getFloatingProps placement flip matrix', () => {
 describe('handleFixedPopover', () => {
 	it('does not throw when element or parent is null', () => {
 		expect(() =>
-			handleFixedPopover(
-				null as unknown as HTMLElement,
-				{} as HTMLElement,
-				'bottom'
-			)
+			handleFixedPopover({
+				element: null as unknown as HTMLElement,
+				parent: {} as HTMLElement,
+				placement: 'bottom'
+			})
 		).not.toThrow();
 		expect(() =>
-			handleFixedPopover(
-				{} as HTMLElement,
-				null as unknown as HTMLElement,
-				'bottom'
-			)
+			handleFixedPopover({
+				element: {} as HTMLElement,
+				parent: null as unknown as HTMLElement,
+				placement: 'bottom'
+			})
 		).not.toThrow();
 		expect(() =>
-			handleFixedPopover(
-				null as unknown as HTMLElement,
-				null as unknown as HTMLElement,
-				'bottom'
-			)
+			handleFixedPopover({
+				element: null as unknown as HTMLElement,
+				parent: null as unknown as HTMLElement,
+				placement: 'bottom'
+			})
 		).not.toThrow();
 	});
 });

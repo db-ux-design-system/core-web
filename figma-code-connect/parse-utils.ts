@@ -1,4 +1,4 @@
-import { execFileSync } from 'node:child_process';
+import { execSync } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,18 +12,18 @@ try {
 
 /**
  * Parses figma connect output and removes fields that vary across environments
- * (_codeConnectFilePath, metadata, figmaNode) to keep snapshots stable in CI.
+ * (_codeConnectFilePath, _batchTemplateFilePath, metadata, figmaNode) to keep snapshots stable in CI.
  */
 export const getParsedFigmaConnect = (): string => {
-	const result = execFileSync(
-		'npx',
-		['figma', 'connect', 'parse', '--exit-on-unreadable-files'],
+	const result = execSync(
+		'pnpm exec figma connect parse --exit-on-unreadable-files',
 		{ maxBuffer: 50 * 1024 * 1024 }
 	).toString();
 
 	const parsed = JSON.parse(result) as Array<Record<string, unknown>>;
 	for (const entry of parsed) {
 		delete entry._codeConnectFilePath;
+		delete entry._batchTemplateFilePath;
 		delete entry.metadata;
 		delete entry.figmaNode;
 		delete entry.url;

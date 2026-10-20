@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import CustomSelectAutoComplete from '../examples/auto-complete.example.lite';
 import CustomSelectControlled from '../examples/controlled.example.lite';
 import CustomSelectDensity from '../examples/density.example.lite';
 import CustomSelectDisabled from '../examples/disabled.example.lite';
@@ -13,6 +14,7 @@ import CustomSelectExamplesFloatinglabel from '../examples/examples-floating-lab
 import CustomSelectExamplesMultiple from '../examples/examples-multiple.example.lite';
 import CustomSelectExamplesSingle from '../examples/examples-single.example.lite';
 import CustomSelectFormFieldWidth from '../examples/form-field-width.example.lite';
+import CustomSelectInteraction from '../examples/interaction.example.lite';
 import CustomSelectMultiple from '../examples/multiple.example.lite';
 import CustomSelectPlacement from '../examples/placement.example.lite';
 import CustomSelectRequired from '../examples/required.example.lite';
@@ -162,6 +164,16 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples Floating label">
 				<CardWrapperShowcase>
 					<CustomSelectExamplesFloatinglabel />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<CustomSelectInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Auto Complete">
+				<CardWrapperShowcase>
+					<CustomSelectAutoComplete />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

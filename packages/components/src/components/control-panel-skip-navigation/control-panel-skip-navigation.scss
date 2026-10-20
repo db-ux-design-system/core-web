@@ -1,0 +1,25 @@
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+.db-control-panel-skip-navigation {
+	position: absolute;
+	inset-block-start: variables.$db-spacing-fixed-xs;
+	inset-inline-start: variables.$db-spacing-fixed-xs;
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	border-radius: variables.$db-border-radius-sm;
+	z-index: 9999;
+	transform: translateX(-110%);
+
+	&:not(:empty) {
+		padding: variables.$db-spacing-fixed-3xs;
+	}
+
+	&:focus-within {
+		transform: none;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition: transform #{variables.$db-transition-duration-extra-slow}
+			#{variables.$db-transition-timing-emotional};
+	}
+}

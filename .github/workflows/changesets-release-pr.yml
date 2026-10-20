@@ -18,7 +18,7 @@ permissions:
 jobs:
   release_pr:
     name: 🧩 Create/Update Release PR (and cut tags/releases)
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     if: github.event_name == 'push' || (github.event_name == 'delete' && github.event.ref_type == 'tag' && startsWith(github.event.ref, 'v') && !contains(github.event.ref, '-')) # Only run on push to main or when a tag starting with "v" is deleted, but do not run for pre-releases (containing a hyphen)
     concurrency:
       group: changesets-main-${{ github.ref }}
@@ -37,7 +37,7 @@ jobs:
 
       - name: 🧬 Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
@@ -46,7 +46,7 @@ jobs:
       - name: 🧩 Changesets Action
         id: changesets
         if: github.event_name == 'push'
-        uses: changesets/action@8488615a623b1b9c987934bb89eae8af6a946ac1 # v2.1.1
+        uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
         with:
           github-token: ${{ steps.generate-token.outputs.token }}
           commit-message: "chore(release): version packages"

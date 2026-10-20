@@ -16,7 +16,7 @@ const nextConfig = {
 		return config;
 	},
 	env: {
-		NEXT_SHOWCASE_VARIANT: 'next',
+		NEXT_SHOWCASE_VARIANT: 'next-ssr',
 		BASE_PATH: '/next-showcase'
 	}
 };

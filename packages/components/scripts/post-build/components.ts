@@ -1,5 +1,5 @@
 export type Overwrite = {
-	from: string | RegExp;
+	from: string | string[] | RegExp;
 	to: string;
 };
 
@@ -11,11 +11,6 @@ export type Component = {
 	 * Heading components in `components/heading/`.
 	 */
 	folder?: string;
-	/**
-	 * Base name of the Playwright component spec, when it is not the component
-	 * name itself. Set it on exactly one member of a family that shares a spec.
-	 */
-	spec?: string;
 	overwrites?: {
 		global?: Overwrite[];
 		angular?: Overwrite[];
@@ -28,8 +23,6 @@ export type Component = {
 			vModel?: { modelValue: string; binding: string }[];
 		};
 		angular?: {
-			controlValueAccessor?: string;
-			controlValueAccessorRequired?: boolean;
 			directives?: { name: string; ngContentName?: string }[];
 		};
 		react?: {
@@ -40,12 +33,11 @@ export type Component = {
 };
 
 /*
- * The seven Heading components share one folder, one model, one stylesheet and
- * one spec, so every entry points at the `heading` folder and only the first one
- * declares the shared spec.
+ * The seven Heading components share one folder, one model and one stylesheet,
+ * so every entry points at the `heading` folder.
  *
  * The vue overwrite runs after the built-in `className` -> `props.class`
- * rewrite and restores the alias, so the shared spec can assert both the react
+ * rewrite and restores the alias, so consumers can assert both the react
  * `className` and the vue `class` API.
  */
 const headingComponents: Component[] = [
@@ -56,18 +48,123 @@ const headingComponents: Component[] = [
 	'heading-h4',
 	'heading-h5',
 	'heading-h6'
-].map((name, index) => ({
+].map((name) => ({
 	name,
-	folder: 'heading',
-	spec: index === 0 ? 'heading' : undefined,
-	overwrites: {
-		vue: [{ from: 'props.class', to: 'props.className ?? props.class' }]
-	}
+	folder: 'heading'
+}));
+
+/*
+ * The two ControlPanelActions components share one folder, one model and one
+ * stylesheet, following the same pattern as the Heading family.
+ */
+const controlPanelActionsComponents: Component[] = [
+	'control-panel-actions-1',
+	'control-panel-actions-2'
+].map((name) => ({
+	name,
+	folder: 'control-panel-actions'
 }));
 
 export const getComponents = (): Component[] => [
-	...headingComponents,
+	{
+		name: 'pagination-item'
+	},
+	{
+		name: 'pagination',
+		config: {
+			react: {
+				propsPassingFilter: ['onPageChange']
+			}
+		}
+	},
 
+	{
+		name: 'paragraph'
+	},
+	{
+		name: 'text-group'
+	},
+	{
+		name: 'breadcrumb-popover-item'
+	},
+
+	{
+		name: 'breadcrumb-item'
+	},
+
+	{
+		name: 'breadcrumb'
+	},
+
+	...headingComponents,
+	...controlPanelActionsComponents,
+
+	{
+		name: 'dialog-footer'
+	},
+
+	{
+		name: 'dialog-header'
+	},
+
+	{
+		name: 'dialog',
+		config: {
+			react: {
+				/* Keeps the consumer callbacks out of the `filterPassingProps`
+				 * DOM spread, same configuration key the `drawer` entry uses.
+				 * This cannot move into a Mitosis plugin yet: the spread itself
+				 * is injected by `scripts/post-build/react.ts` after every
+				 * plugin hook has run. */
+				propsPassingFilter: ['onClose', 'onCancel']
+			}
+		}
+	},
+	{
+		name: 'control-panel-skip-navigation'
+	},
+
+	{
+		name: 'drawer-footer'
+	},
+
+	{
+		name: 'drawer-header'
+	},
+
+	{
+		name: 'shell-content'
+	},
+
+	{
+		name: 'control-panel-flat-icon'
+	},
+
+	{
+		name: 'shell-sub-navigation',
+		config: {
+			react: {
+				propsPassingFilter: ['onExpandButtonTooltipFn']
+			}
+		}
+	},
+
+	{
+		name: 'control-panel-navigation-item-group'
+	},
+
+	{
+		name: 'control-panel-meta'
+	},
+
+	{
+		name: 'control-panel-mobile',
+		config: {
+			react: {
+				propsPassingFilter: ['onToggle']
+			}
+		}
+	},
 	{
 		name: 'table-data-cell'
 	},
@@ -105,6 +202,15 @@ export const getComponents = (): Component[] => [
 	},
 
 	{
+		name: 'loading-indicator',
+		config: {
+			react: {
+				propsPassingFilter: ['autoDisable', 'onTimeout', 'role']
+			}
+		}
+	},
+
+	{
 		name: 'stack'
 	},
 	{
@@ -112,9 +218,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -132,9 +235,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'values', binding: ':values' }]
-			},
-			angular: {
-				controlValueAccessor: 'values'
 			},
 			react: {
 				propsPassingFilter: [
@@ -173,9 +273,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -238,9 +335,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		},
 		overwrites: {
@@ -301,6 +395,12 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
+		name: 'control-panel-navigation'
+	},
+	{
+		name: 'control-panel-navigation-item'
+	},
+	{
 		name: 'select',
 		overwrites: {
 			angular: [{ from: '<HTMLElement>', to: '<HTMLSelectElement>' }],
@@ -323,9 +423,6 @@ export const getComponents = (): Component[] => [
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
 			},
-			angular: {
-				controlValueAccessor: 'value'
-			},
 			react: {
 				containsFragmentMap: true
 			}
@@ -342,15 +439,6 @@ export const getComponents = (): Component[] => [
 			}
 		}
 	},
-
-	{
-		name: 'drawer-header'
-	},
-
-	{
-		name: 'drawer-footer'
-	},
-
 	{
 		name: 'tag',
 		overwrites: {
@@ -372,9 +460,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'checked', binding: ':checked' }]
-			},
-			angular: {
-				controlValueAccessor: 'checked'
 			}
 		}
 	},
@@ -389,10 +474,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value',
-				controlValueAccessorRequired: true
 			}
 		}
 	},
@@ -420,7 +501,6 @@ export const getComponents = (): Component[] => [
 	{
 		name: 'section'
 	},
-
 	{
 		name: 'page'
 	},
@@ -456,7 +536,30 @@ export const getComponents = (): Component[] => [
 		}
 	},
 	{
+		name: 'footer-content'
+	},
+	{
+		name: 'footer-meta'
+	},
+	{
+		name: 'footer'
+	},
+	{
 		name: 'brand'
+	},
+	{
+		name: 'shell'
+	},
+	{
+		name: 'control-panel-desktop',
+		config: {
+			react: {
+				propsPassingFilter: ['onExpandButtonTooltipFn']
+			}
+		}
+	},
+	{
+		name: 'control-panel-brand'
 	},
 	{
 		name: 'input',
@@ -470,9 +573,6 @@ export const getComponents = (): Component[] => [
 		config: {
 			vue: {
 				vModel: [{ modelValue: 'value', binding: ':value' }]
-			},
-			angular: {
-				controlValueAccessor: 'value'
 			}
 		}
 	},

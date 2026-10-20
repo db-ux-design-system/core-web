@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBInfotext from '../../infotext/infotext.lite';
@@ -24,8 +24,6 @@ useMetadata({
 });
 
 export default function DrawerSize() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<DBInfotext
@@ -36,76 +34,64 @@ export default function DrawerSize() {
 			</DBInfotext>
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+				<DBButton command="show-modal" commandfor="drawer-size-small">
 					Open: (Default) Small
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-small' }}
 					containerSize="small"
 					direction="to-left"
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) Small
+							<h2>(Default) Small</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) Small
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+				<DBButton command="show-modal" commandfor="drawer-size-medium">
 					Open: Medium
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-medium' }}
 					containerSize="medium"
 					direction="to-left"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Medium
+							<h2>Medium</h2>
 						</DBDrawerHeader>
 					}>
 					Medium
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="drawer-size-large">
 					Open: Large
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-large' }}
 					containerSize="large"
 					direction="to-left"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Large
+							<h2>Large</h2>
 						</DBDrawerHeader>
 					}>
 					Large
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+				<DBButton command="show-modal" commandfor="drawer-size-full">
 					Open: Full
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-full' }}
 					containerSize="full"
 					direction="to-left"
-					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Full
+							<h2>Full</h2>
 						</DBDrawerHeader>
 					}>
 					Full
@@ -121,18 +107,17 @@ export default function DrawerSize() {
 			<i class="line-break" data-sb-ignore="true" />
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(4)}>
+					command="show-modal"
+					commandfor="drawer-size-small-up">
 					Open: Small (Up)
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-small-up' }}
 					containerSize="small"
 					direction="up"
-					open={openIndex === 4}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Small (Up)
+							<h2>Small (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Small (Up)
@@ -140,18 +125,17 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(5)}>
+					command="show-modal"
+					commandfor="drawer-size-medium-up">
 					Open: Medium (Up)
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-medium-up' }}
 					containerSize="medium"
 					direction="up"
-					open={openIndex === 5}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Medium (Up)
+							<h2>Medium (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Medium (Up)
@@ -159,37 +143,33 @@ export default function DrawerSize() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(6)}>
+					command="show-modal"
+					commandfor="drawer-size-large-up">
 					Open: Large (Up)
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-large-up' }}
 					containerSize="large"
 					direction="up"
-					open={openIndex === 6}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Large (Up)
+							<h2>Large (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Large (Up)
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(7)}>
+				<DBButton command="show-modal" commandfor="drawer-size-full-up">
 					Open: Full (Up)
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-size-full-up' }}
 					containerSize="full"
 					direction="up"
-					open={openIndex === 7}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Full (Up)
+							<h2>Full (Up)</h2>
 						</DBDrawerHeader>
 					}>
 					Full (Up)

@@ -1,0 +1,1 @@
+["same page, link, With Application Name plus Navigation","With Application Name disabled","out of list, banner landmark, button, Search"]

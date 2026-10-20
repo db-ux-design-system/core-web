@@ -17,14 +17,31 @@
 		<DBNotification :closeable="false">Test</DBNotification>
 		<DBNotification>Test</DBNotification>
 		<DBDrawerHeader>Test</DBDrawerHeader>
+		<DBDialogHeader>Test</DBDialogHeader>
 		<DBCustomSelect label="Select"></DBCustomSelect>
 
 		<!-- db-ux/drawer-header-required -->
 		<DBDrawer>Content without header</DBDrawer>
 
+		<!-- db-ux/dialog-header-required -->
+		<DBDialog>Content without header</DBDialog>
+		<DBDialog>
+			<template #header>
+				<!-- kebab-case attribute: a static camelCase attribute is
+				lowercased by vue-eslint-parser and therefore not resolvable -->
+				<DBDialogHeader close-button-text="Close">Title</DBDialogHeader>
+			</template>
+			Valid dialog
+			<template #footer>
+				<DBDialogFooter>Actions</DBDialogFooter>
+			</template>
+		</DBDialog>
+
 		<!-- db-ux/sub-component-required-parent -->
 		<DBDrawerHeader>Outside drawer</DBDrawerHeader>
 		<DBDrawerFooter>Outside drawer</DBDrawerFooter>
+		<DBDialogHeader>Outside dialog</DBDialogHeader>
+		<DBDialogFooter>Outside dialog</DBDialogFooter>
 		<DBNavigationItem>Outside navigation</DBNavigationItem>
 		<DBTabList><DBTabItem>Outside tabs</DBTabItem></DBTabList>
 		<DBTabPanel>Outside tabs</DBTabPanel>
@@ -63,8 +80,8 @@
 		<!-- db-ux/form-validation-message-required -->
 		<DBInput label="Email" required />
 
-		<!-- db-ux/header-burger-menu-label-required -->
-		<DBHeader></DBHeader>
+		<!-- db-ux/control-panel-mobile-burger-menu-label-required -->
+		<DBControlPanelMobile></DBControlPanelMobile>
 
 		<!-- db-ux/input-type-required -->
 		<DBInput label="Test" />
@@ -75,9 +92,9 @@
 		>
 
 		<!-- db-ux/navigation-item-back-button-text-required -->
-		<DBNavigationItem>
-			<template #subNavigation>Sub nav</template>
-		</DBNavigationItem>
+		<DBControlPanelNavigationItemGroup>
+			<DBControlPanelNavigationItem>Item</DBControlPanelNavigationItem>
+		</DBControlPanelNavigationItemGroup>
 
 		<!-- db-ux/no-interactive-tooltip-content -->
 		<DBTooltip>
@@ -126,16 +143,19 @@ import {
 	DBAccordionItem,
 	DBBadge,
 	DBButton,
+	DBControlPanelMobile,
+	DBControlPanelNavigationItem,
 	DBCustomHeading,
 	DBCustomSelect,
+	DBDialog,
+	DBDialogFooter,
+	DBDialogHeader,
 	DBDrawer,
 	DBDrawerFooter,
 	DBDrawerHeader,
-	DBHeader,
 	DBIcon,
 	DBInput,
 	DBLink,
-	DBNavigationItem,
 	DBNotification,
 	DBSelect,
 	DBTabItem,

@@ -14,6 +14,8 @@ export const INTERACTIVE_ELEMENTS = [
 	'DBCheckbox',
 	'DBRadio',
 	'DBSwitch',
+	'DBControlPanelNavigationItem',
+	'DBControlPanelNavigationItemGroup',
 	'DBNavigationItem',
 	'DBTabItem',
 	'DBTag'
@@ -48,6 +50,9 @@ export const COMPONENTS: Record<string, string> = {
 	DBDrawer: 'DBDrawer',
 	DBDrawerHeader: 'DBDrawerHeader',
 	DBDrawerFooter: 'DBDrawerFooter',
+	DBDialog: 'DBDialog',
+	DBDialogHeader: 'DBDialogHeader',
+	DBDialogFooter: 'DBDialogFooter',
 	DBCustomHeading: 'DBCustomHeading',
 	DBHeader: 'DBHeader',
 	DBNavigation: 'DBNavigation',
@@ -67,7 +72,9 @@ export const COMPONENTS: Record<string, string> = {
 	DBTableHeaderCell: 'DBTableHeaderCell',
 	DBTableDataCell: 'DBTableDataCell',
 	DBTableCaption: 'DBTableCaption',
-	DBTag: 'DBTag'
+	DBTag: 'DBTag',
+	DBControlPanelMobile: 'DBControlPanelMobile',
+	DBControlPanelNavigationItem: 'DBControlPanelNavigationItem'
 };
 
 export const MESSAGES = {
@@ -113,11 +120,13 @@ export const MESSAGES = {
 	LINK_MISSING_CONTENT_EXTERNAL:
 		'DBLink with target="_blank" should have content="external"',
 	NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT:
-		'DBNavigationItem must have backButtonText attribute for accessibility',
+		'DBControlPanelNavigationItemGroup must have backButtonText attribute for accessibility',
 	SELECT_MISSING_OPTIONS:
 		'DBSelect must have either an options property or <option> children',
 	CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS:
 		'DBCustomSelect with selectedType="tag" must have removeTagsTexts attribute for accessibility',
+	CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL:
+		'DBControlPanelMobile must have burgerMenuLabel attribute for accessibility',
 	HEADER_MISSING_BURGER_MENU_LABEL:
 		'DBHeader must have burgerMenuLabel attribute for accessibility',
 	ICON_PREFER_ATTRIBUTE:
@@ -128,6 +137,8 @@ export const MESSAGES = {
 		'DBTooltip must be a child of an interactive element (button, link, etc.) for accessibility',
 	DRAWER_HEADER_REQUIRED:
 		'{{component}} must have a DBDrawerHeader for accessibility (provides close button and aria-labelledby)',
+	DIALOG_HEADER_REQUIRED:
+		'{{component}} must have a DBDialogHeader in its header slot for accessibility (provides close button and aria-labelledby)',
 	SUB_COMPONENT_REQUIRED_PARENT:
 		'{{component}} must be used inside {{parent}}{{slot}}',
 	CUSTOM_HEADING_MISSING_HEADING:
@@ -161,11 +172,13 @@ export const MESSAGE_IDS = {
 	NAVIGATION_ITEM_MISSING_BACK_BUTTON_TEXT: 'missingBackButtonText',
 	SELECT_MISSING_OPTIONS: 'missingOptions',
 	CUSTOM_SELECT_MISSING_REMOVE_TAGS_TEXTS: 'missingRemoveTagsTexts',
+	CONTROL_PANEL_MOBILE_MISSING_BURGER_MENU_LABEL: 'missingBurgerMenuLabel',
 	HEADER_MISSING_BURGER_MENU_LABEL: 'missingBurgerMenuLabel',
 	ICON_PREFER_ATTRIBUTE: 'preferAttribute',
 	TOOLTIP_NO_INTERACTIVE: 'noInteractive',
 	TOOLTIP_REQUIRES_INTERACTIVE: 'requiresInteractive',
 	DRAWER_HEADER_REQUIRED: 'drawerHeaderRequired',
+	DIALOG_HEADER_REQUIRED: 'dialogHeaderRequired',
 	SUB_COMPONENT_REQUIRED_PARENT: 'subComponentRequiredParent',
 	CUSTOM_HEADING_MISSING_HEADING: 'missingHeading',
 	CUSTOM_HEADING_MULTIPLE_HEADINGS: 'multipleHeadings'

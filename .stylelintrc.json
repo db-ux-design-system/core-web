@@ -1,5 +1,6 @@
 {
 	"extends": ["stylelint-config-standard-scss"],
+	"ignoreFiles": ["**/node_modules/**", "scripts/**"],
 	"plugins": [
 		"stylelint-use-logical",
 		"@double-great/stylelint-a11y",
@@ -14,6 +15,7 @@
 					"includes": [
 						"-calc",
 						"$default-icon-margin",
+						"$control-panel-desktop",
 						"form-components.",
 						"section-padding-inline",
 						"component.$",

@@ -5,9 +5,9 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import DrawerBackdrop from '../examples/backdrop.example.lite';
 import DrawerDensity from '../examples/density.example.lite';
 import DrawerDirection from '../examples/direction.example.lite';
-import DrawerExample from '../examples/example.example.lite';
+import DrawerExamples from '../examples/examples.example.lite';
+import DrawerInteraction from '../examples/interaction.example.lite';
 import DrawerPosition from '../examples/position.example.lite';
-import DrawerRounded from '../examples/rounded.example.lite';
 import DrawerShowSpacing from '../examples/show-spacing.example.lite';
 import DrawerSize from '../examples/size.example.lite';
 
@@ -31,11 +31,6 @@ export default function DrawerShowcase(props: PatternhubProps) {
 					<DrawerShowSpacing />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Rounded">
-				<CardWrapperShowcase>
-					<DrawerRounded />
-				</CardWrapperShowcase>
-			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Backdrop">
 				<CardWrapperShowcase>
 					<DrawerBackdrop />
@@ -51,9 +46,14 @@ export default function DrawerShowcase(props: PatternhubProps) {
 					<DrawerPosition />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-			<LinkWrapperShowcase exampleName="Example">
+			<LinkWrapperShowcase exampleName="Examples">
 				<CardWrapperShowcase>
-					<DrawerExample />
+					<DrawerExamples />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<DrawerInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

@@ -8,10 +8,9 @@ $indicator-gap-offset: calc(
 	#{variables.$db-border-width-xs} + #{variables.$db-spacing-fixed-2xs}
 );
 
-// Space the focus outline needs outside the tab box: outline-offset + outline width.
-$focus-outline-reach: calc(
-	#{variables.$db-border-width-xs} + #{variables.$db-border-width-2xs}
-);
+// Space the focus outline needs outside the tab box. Shared with every other
+// scroll container that has to reserve room for it, see `helpers/_focus.scss`.
+$focus-outline-reach: helpers.$db-focus-outline-reach;
 
 %horizontal-indicator {
 	.db-tab-item {
@@ -115,7 +114,9 @@ $focus-outline-reach: calc(
 			.db-tab-list {
 				display: flex;
 				align-items: stretch;
-				overflow: auto;
+
+				// Inline axis only: on both axes fractional zoom rounds the overflow 1px past the client box and paints a stray vertical scrollbar, see #7760.
+				overflow: auto hidden;
 				inline-size: 100%;
 			}
 		}
@@ -156,6 +157,9 @@ $focus-outline-reach: calc(
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
+
+				// Reset: the horizontal clamp above also matches a vertical list nested inside a horizontal instance, where scrolling would clip the indicator.
+				overflow: visible;
 			}
 
 			.db-tab-item-label {

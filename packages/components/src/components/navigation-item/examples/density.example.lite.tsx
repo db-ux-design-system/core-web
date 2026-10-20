@@ -12,19 +12,19 @@ export default function NavigationItemDensity() {
 	return (
 		<Fragment>
 			<ul>
-				<DBNavigationItem
-					data-density="functional"
-					text="Functional"></DBNavigationItem>
+				<DBNavigationItem data-density="functional">
+					<a href="#">Functional</a>
+				</DBNavigationItem>
 			</ul>
 			<ul>
-				<DBNavigationItem
-					data-density="regular"
-					text="(Default) Regular"></DBNavigationItem>
+				<DBNavigationItem data-density="regular">
+					<a href="#">(Default) Regular</a>
+				</DBNavigationItem>
 			</ul>
 			<ul>
-				<DBNavigationItem
-					data-density="expressive"
-					text="Expressive"></DBNavigationItem>
+				<DBNavigationItem data-density="expressive">
+					<a href="#">Expressive</a>
+				</DBNavigationItem>
 			</ul>
 		</Fragment>
 	);

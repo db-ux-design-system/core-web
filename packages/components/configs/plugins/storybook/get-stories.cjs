@@ -6,6 +6,10 @@ const {
 	blockToVue
 } = require('@builder.io/mitosis/lib/generators/vue/blocks.js');
 const prettier = require('@prettier/sync');
+const {
+	nodeToWebComponent,
+	nodeToWebComponentSlots
+} = require('./node-to-web-component.cjs');
 /**
  * Recursively finds a component by name in the node tree
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to search
@@ -24,10 +28,21 @@ const findComponent = (node, componentName) => {
 };
 
 /**
- * Recursively filters out children with data-db-ignore="true"
+ * Rewrites every `data-sb-replace` node into a `<div>` carrying the replacement
+ * text, so a readout element (`<p data-sb-replace="Selections by user: 0">`)
+ * renders its static placeholder text in the story.
+ *
+ * For the web-components target the `nodeToWebComponent` serializer treats a
+ * `_text` node as a bare text carrier (it never wraps it), which would collapse
+ * this block element to inline text -- unlike Angular/Vue, which emit
+ * `<div>text</div>`. Tagging the rewritten node with `data-sb-wrap-text` tells
+ * that serializer to keep the wrapper. The marker is only added for stencil so
+ * it cannot leak into the other targets' output as a real attribute.
+ *
  * @param {import('@builder.io/mitosis').MitosisNode} node - Node to process
+ * @param {string} target - Target framework
  */
-const replaceChildren = (node) => {
+const replaceChildren = (node, target) => {
 	if (!node.children) return;
 	for (const child of node.children) {
 		const replaceNode = child.properties?.['data-sb-replace'];
@@ -36,8 +51,11 @@ const replaceChildren = (node) => {
 			child.bindings = {};
 			child.slots = {};
 			child.properties = { _text: replaceNode };
+			if (target === 'stencil') {
+				child.properties['data-sb-wrap-text'] = 'true';
+			}
 		}
-		replaceChildren(child);
+		replaceChildren(child, target);
 	}
 };
 
@@ -50,18 +68,38 @@ const replaceChildren = (node) => {
  * @param {Object} overwritesArgs - Args object to overwrite
  */
 const processBindings = (json, example, target, args, overwritesArgs) => {
-	// Add other properties
-	for (const [key, value] of Object.entries(example.properties)) {
-		const overwriteValue = overwritesArgs[key] ?? value;
-		if (target === 'angular' && key.startsWith('data-')) {
-			args.push(`"attr.${key}": "${overwriteValue}"`);
-		} else {
-			args.push(`"${key}": "${overwriteValue}"`);
+	// Add other properties. Guard properties and bindings independently: an
+	// example may carry only static properties (and no bindings), in which case
+	// we must still emit its args.
+	if (example?.properties) {
+		for (const [key, value] of Object.entries(example.properties)) {
+			const overwriteValue = overwritesArgs[key] ?? value;
+			if (target === 'angular' && key.startsWith('data-')) {
+				args.push(`"attr.${key}": "${overwriteValue}"`);
+			} else {
+				args.push(`"${key}": "${overwriteValue}"`);
+			}
 		}
 	}
 
+	if (!example?.bindings) return;
+
 	for (const [key, value] of Object.entries(example.bindings)) {
 		if (value.type === 'spread') {
+			continue;
+		}
+
+		// Web components can only carry string attributes here. A binding whose
+		// value is JSX markup (a slot-prop such as `brand={<DBControlPanelBrand />}`
+		// on DBControlPanelDesktop) has no attribute form -- emitting its raw code
+		// would produce invalid `.ts`. The JSX value is projected as a slotted
+		// child instead (see `nodeToWebComponentSlots`), so skip the attribute
+		// form here.
+		if (
+			target === 'stencil' &&
+			typeof value.code === 'string' &&
+			/<[A-Za-z]/.test(value.code)
+		) {
 			continue;
 		}
 
@@ -89,6 +127,20 @@ const processBindings = (json, example, target, args, overwritesArgs) => {
 					overwriteValue = json.state[replacedStateValue].code;
 				} else if (target === 'vue' && json.state[overwriteValue]) {
 					overwriteValue = json.state[overwriteValue].code;
+				} else if (
+					target === 'stencil' &&
+					/^(this|state)\./.test(overwriteValue)
+				) {
+					// The stencil output accesses store values via `this.` (and
+					// examples via `state.`), e.g. `columnSizes={state.columnSizes}`
+					// becomes `this.columnSizes`. A story arg must be a concrete
+					// value, so resolve it to the store's initial code
+					// (`{ 0: 'min-content', 6: 'min-content' }`).
+					const replacedStateValue = overwriteValue.replace(
+						/^(this|state)\./,
+						''
+					);
+					overwriteValue = json.state[replacedStateValue].code;
 				}
 			} catch (e) {
 				console.error(
@@ -172,6 +224,21 @@ const getRenderFunction = (
 		template: \`${replaced}\`,
 	}),`;
 	}
+
+	if (target === 'stencil') {
+		// Web components render as real `<db-*>` custom elements via lit-html.
+		// `args` and `children` are kept separate (like the React render):
+		// `spreadArgs` sets each arg as a property on the reference element (so
+		// camelCase props work), and `unsafeHTML(children)` injects the slotted
+		// markup. The `properties="replace"` placeholder becomes the lit spread.
+		const replaced = exampleCode.replace(
+			'properties="replace"',
+			'${spreadArgs(args)}'
+		);
+
+		return `
+	render: ({ children, ...args }: any) => html\`${replaced}\`,`;
+	}
 };
 
 /**
@@ -232,7 +299,7 @@ const getStories = ({
 			foundComponent.properties = { properties: 'replace' };
 			foundComponent.bindings = {};
 
-			replaceChildren(example);
+			replaceChildren(example, target);
 
 			let template = '';
 			if (target === 'angular') {
@@ -384,6 +451,49 @@ const getStories = ({
 					},
 					{ isRootNode: true }
 				);
+			} else if (target === 'stencil') {
+				// Web components render via lit-html. The reference element's
+				// slotted content is serialized to an HTML string and baked into
+				// the render template as a build-time `unsafeHTML` literal. The
+				// element keeps the `properties="replace"` placeholder (set above)
+				// which the render turns into a lit property spread
+				// (`spreadArgs(args)`), so camelCase props like `showIcon` are set
+				// as properties instead of broken attributes.
+				//
+				// The markup is NOT emitted as a mutable `children` story arg:
+				// Storybook args are editable via Controls and the URL, so routing
+				// a user-controllable string into `unsafeHTML` would be an XSS sink
+				// (`<img src=x onerror=...>`). Keeping it a static literal mirrors
+				// the Angular/Vue renders, which also bake their children into the
+				// template rather than reading them from the live args.
+				const children = (
+					nodeToWebComponentSlots(foundComponent, allImports) +
+					foundComponent.children
+						.map((child) => nodeToWebComponent(child, allImports))
+						.join('')
+				).trim();
+
+				foundComponent.slots = {};
+				// Carry the `unsafeHTML` placeholder on a transparent `Fragment`
+				// node, NOT a `<div>`: the serialized markup must become a DIRECT
+				// child of the reference custom element. A wrapping `<div>` would
+				// push every `slot="..."` child one level too deep, and scoped/
+				// shadow slot projection only relocates direct children -- so named
+				// slots (brand, startSlot, endSlot, ...) would silently not render.
+				foundComponent.children = children.length
+					? [
+							{
+								name: 'Fragment',
+								properties: {
+									_text: `\${unsafeHTML(\`${children}\`)}`
+								},
+								bindings: {},
+								children: []
+							}
+						]
+					: [];
+
+				template = nodeToWebComponent(example, allImports);
 			}
 
 			if (template.includes('getImage')) {

@@ -1,0 +1,1 @@
+["button, Open navigation menu","button. DB Control Panel, dialog. document. clickable, Close, button. DB Control Panel, dialog. button, Close","clickable, With Application Name plus Navigation, navigation landmark, list, with 2 items, link, With Application Name plus Navigation","With Application Name plus Navigation disabled"]

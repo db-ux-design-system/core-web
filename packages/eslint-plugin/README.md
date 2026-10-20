@@ -277,7 +277,9 @@ Prefer using the `icon` attribute over `<DBIcon>` child component for components
 
 ### `text-or-children-required`
 
-Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBInfotext, DBNavigationItem, DBNotification) have either a `text` property or children content.
+Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBInfotext, DBControlPanelNavigationItem, DBNavigationItem, DBNotification, DBDialogHeader, DBDrawerHeader) have either a `text` property or children content. For DBDialogHeader and DBDrawerHeader this guards the dialog's accessible name: the header content becomes the `aria-labelledby` target, so an empty header leaves the dialog unnamed.
+
+DBIcon is deliberately excluded: it always renders with `aria-hidden="true"`, so a `text` property or children would reach neither screen readers nor sighted users. A decorative icon needs no content, and an informative one needs a named wrapper around it.
 
 **❌ Invalid:**
 
@@ -292,7 +294,7 @@ Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBI
 <db-notification></db-notification>
 
 // Vue
-<DBIcon icon="test" />
+<DBInfotext />
 ```
 
 **✅ Valid:**
@@ -309,7 +311,9 @@ Ensures that components (DBAccordionItem, DBBadge, DBButton, DBLink, DBIcon, DBI
 
 // Vue
 <DBBadge>New</DBBadge>
-<DBIcon icon="test">Label</DBIcon>
+
+// DBIcon is decorative and is never reported
+<DBIcon icon="test" />
 ```
 
 ### `no-interactive-tooltip-content`
@@ -587,15 +591,18 @@ Ensures components with close buttons have appropriate text attributes for acces
 // React
 <DBNotification closeable>Message</DBNotification>
 <DBDrawerHeader>Title</DBDrawerHeader>
+<DBDialogHeader>Title</DBDialogHeader>
 <DBCustomSelect label="Select" />
 
 // Angular
 <db-notification closeable>Message</db-notification>
 <db-drawer-header>Title</db-drawer-header>
+<db-dialog-header>Title</db-dialog-header>
 
 // Vue
 <DBCustomSelect label="Select" />
 <DBDrawerHeader>Title</DBDrawerHeader>
+<DBDialogHeader>Title</DBDialogHeader>
 ```
 
 **✅ Valid:**
@@ -604,15 +611,18 @@ Ensures components with close buttons have appropriate text attributes for acces
 // React
 <DBNotification closeButtonText="Close">Message</DBNotification>
 <DBDrawerHeader closeButtonText="Close drawer">Title</DBDrawerHeader>
+<DBDialogHeader closeButtonText="Close dialog">Title</DBDialogHeader>
 <DBCustomSelect mobileCloseButtonText="Close" label="Select" />
 
 // Angular
 <db-notification closeButtonText="Close">Message</db-notification>
 <db-drawer-header [closeButtonText]="closeText">Title</db-drawer-header>
+<db-dialog-header closeButtonText="Close dialog">Title</db-dialog-header>
 
 // Vue
 <DBCustomSelect :mobileCloseButtonText="closeText" label="Select" />
 <DBDrawerHeader :closeButtonText="closeText">Title</DBDrawerHeader>
+<DBDialogHeader :closeButtonText="closeText">Title</DBDialogHeader>
 ```
 
 ### `drawer-header-required`
@@ -700,6 +710,41 @@ Content that cannot be resolved statically (JSX expressions, `<slot>`, `<ng-cont
 <DBCustomHeading><slot /></DBCustomHeading>
 ```
 
+### `dialog-header-required`
+
+Ensures DBDialog has a DBDialogHeader in its `header` slot for accessibility. The header provides the close button and `aria-labelledby` for the dialog.
+
+**❌ Invalid:**
+
+```jsx
+// React
+<DBDialog>Content</DBDialog>
+<DBDialog open={true}>Content</DBDialog>
+
+// Angular - missing `header` attribute for slot projection
+<db-dialog><db-dialog-header>Title</db-dialog-header>Content</db-dialog>
+<db-dialog>Content</db-dialog>
+
+// Vue - missing named slot
+<DBDialog><DBDialogHeader>Title</DBDialogHeader>Content</DBDialog>
+<DBDialog>Content</DBDialog>
+```
+
+**✅ Valid:**
+
+```jsx
+// React
+<DBDialog header={<DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>}>Content</DBDialog>
+
+// Angular - uses `header` attribute for ng-content projection
+<db-dialog><db-dialog-header header closeButtonText="Close">Title</db-dialog-header>Content</db-dialog>
+<db-dialog><ng-container header><db-dialog-header closeButtonText="Close">Title</db-dialog-header></ng-container>Content</db-dialog>
+
+// Vue - uses named slot
+<DBDialog><template v-slot:header><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></template>Content</DBDialog>
+<DBDialog><template #header><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></template>Content</DBDialog>
+```
+
 ### `sub-component-required-parent`
 
 Ensures sub-components are used inside their required parent component and slot.
@@ -710,6 +755,8 @@ Ensures sub-components are used inside their required parent component and slot.
 | ----------------- | --------------- | -------------- |
 | `DBDrawerHeader`  | `DBDrawer`      | `header`       |
 | `DBDrawerFooter`  | `DBDrawer`      | `footer`       |
+| `DBDialogHeader`  | `DBDialog`      | `header`       |
+| `DBDialogFooter`  | `DBDialog`      | `footer`       |
 | `DBAccordionItem` | `DBAccordion`   | (direct child) |
 
 **❌ Invalid:**
@@ -717,15 +764,18 @@ Ensures sub-components are used inside their required parent component and slot.
 ```jsx
 // React
 <div><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></div>
+<div><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></div>
 <div><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></div>
 
 // Angular - missing slot attribute or wrong parent
 <div><db-drawer-header closeButtonText="Close">Title</db-drawer-header></div>
 <db-drawer><db-drawer-header closeButtonText="Close">Title</db-drawer-header></db-drawer>
+<db-dialog><db-dialog-header closeButtonText="Close">Title</db-dialog-header></db-dialog>
 
 // Vue - missing named slot or wrong parent
 <div><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></div>
 <DBDrawer><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></DBDrawer>
+<DBDialog><DBDialogFooter>Actions</DBDialogFooter></DBDialog>
 ```
 
 **✅ Valid:**
@@ -733,82 +783,85 @@ Ensures sub-components are used inside their required parent component and slot.
 ```jsx
 // React
 <DBDrawer header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}>Content</DBDrawer>
+<DBDialog header={<DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>}>Content</DBDialog>
 <DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 
 // Angular - with slot attribute
 <db-drawer><db-drawer-header header closeButtonText="Close">Title</db-drawer-header></db-drawer>
 <db-drawer><ng-container header><db-drawer-header closeButtonText="Close">Title</db-drawer-header></ng-container></db-drawer>
+<db-dialog><db-dialog-header header closeButtonText="Close">Title</db-dialog-header></db-dialog>
+<db-dialog><db-dialog-footer footer>Actions</db-dialog-footer></db-dialog>
 <db-accordion><db-accordion-item headlinePlain="Test">Content</db-accordion-item></db-accordion>
 
 // Vue - with named slot
 <DBDrawer><template #header><DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader></template></DBDrawer>
+<DBDialog><template #header><DBDialogHeader closeButtonText="Close">Title</DBDialogHeader></template></DBDialog>
+<DBDialog><template #footer><DBDialogFooter>Actions</DBDialogFooter></template></DBDialog>
 <DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 ```
 
-### `header-burger-menu-label-required`
+### `control-panel-mobile-burger-menu-label-required`
 
-Ensures DBHeader has burgerMenuLabel attribute for accessibility.
+Ensures DBControlPanelMobile has burgerMenuLabel attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBHeader>Content</DBHeader>
-<DBHeader closeButtonText="Close">Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 
 // Angular
-<db-header>Content</db-header>
+<db-control-panel-mobile>Content</db-control-panel-mobile>
 
 // Vue
-<DBHeader>Content</DBHeader>
+<DBControlPanelMobile>Content</DBControlPanelMobile>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBHeader burgerMenuLabel="Menu">Content</DBHeader>
-<DBHeader burgerMenuLabel="Open navigation">Content</DBHeader>
+<DBControlPanelMobile burgerMenuLabel="Menu">Content</DBControlPanelMobile>
 
 // Angular
-<db-header burgerMenuLabel="Menu">Content</db-header>
-<db-header [burgerMenuLabel]="menuLabel">Content</db-header>
+<db-control-panel-mobile burgerMenuLabel="Menu">Content</db-control-panel-mobile>
+<db-control-panel-mobile [burgerMenuLabel]="menuLabel">Content</db-control-panel-mobile>
 
 // Vue
-<DBHeader :burgerMenuLabel="label">Content</DBHeader>
+<DBControlPanelMobile :burgerMenuLabel="label">Content</DBControlPanelMobile>
 ```
 
 ### `navigation-item-back-button-text-required`
 
-Ensures DBNavigationItem has backButtonText attribute for accessibility.
+Ensures DBControlPanelNavigationItemGroup has backButtonText attribute for accessibility.
 
 **❌ Invalid:**
 
 ```jsx
 // React
-<DBNavigationItem>Item</DBNavigationItem>
-<DBNavigationItem icon="home">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup icon="home">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-navigation-item>Item</db-navigation-item>
+<db-control-panel-navigation-item-group>Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBNavigationItem>Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup>Item</DBControlPanelNavigationItemGroup>
 ```
 
 **✅ Valid:**
 
 ```jsx
 // React
-<DBNavigationItem backButtonText="Back">Item</DBNavigationItem>
-<DBNavigationItem backButtonText="Go back">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup backButtonText="Back">Item</DBControlPanelNavigationItemGroup>
+<DBControlPanelNavigationItemGroup backButtonText="Go back">Item</DBControlPanelNavigationItemGroup>
 
 // Angular
-<db-navigation-item backButtonText="Back">Item</db-navigation-item>
-<db-navigation-item [backButtonText]="backText">Item</db-navigation-item>
+<db-control-panel-navigation-item-group backButtonText="Back">Item</db-control-panel-navigation-item-group>
+<db-control-panel-navigation-item-group [backButtonText]="backText">Item</db-control-panel-navigation-item-group>
 
 // Vue
-<DBNavigationItem :backButtonText="text">Item</DBNavigationItem>
+<DBControlPanelNavigationItemGroup :backButtonText="text">Item</DBControlPanelNavigationItemGroup>
 ```
 
 ### `custom-select-tags-remove-text-required`

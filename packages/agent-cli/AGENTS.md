@@ -9,7 +9,7 @@ This package has two responsibilities:
 
 - **ESM only** (`"type": "module"`)
 - CLI entry point: `src/cli.ts`, built to `build/index.js` via `esbuild.js`
-- Published as a binary: `npx @db-ux/agent-cli`
+- Published as a binary named **`db-ux-agent-cli`** (`npx @db-ux/agent-cli` or `pnpm exec db-ux-agent-cli`). Keep the `bin` key an explicit, plain command name so the executable is discoverable from `package.json` alone — don't fall back to a scoped key like `@db-ux/agent-cli`, which only works via implicit basename normalization.
 - Only `db-ux-consumer-powers` is published (included in `files`). `db-ux-maintainer-powers` is for internal DB UX maintainers and not distributed.
 
 ## Scripts
@@ -34,7 +34,7 @@ db-ux-consumer-powers/        # Published powers bundle (consumers / app develop
 │   │   guidelines.md         # Auto-loaded steering file for consumer skills
 │   skills/
 │       implement-component/  # Skill: implement UI with DB UX components
-│       migrate-to-v3/        # Skill: migrate legacy DB UI v2 → v3
+│       migrate-to-generation-3/  # Skill: migrate DB UX Design System - Generation 2 (aka DB UI) -> Generation 3
 db-ux-maintainer-powers/      # Internal powers bundle (DB UX component authors)
 │   power.yaml                # Bundle manifest
 │   mcp.json                  # MCP config for @db-ux/mcp-server + figma-developer-mcp

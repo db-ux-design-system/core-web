@@ -1,0 +1,7 @@
+- main:
+  - heading "DBControlPanelBrand" [level=1]
+  - link "Density"
+  - text: Functional (Default) Regular Expressive
+  - link "Variant"
+  - text: (Default) With Logo Logo Variant As Link
+  - link "Home"

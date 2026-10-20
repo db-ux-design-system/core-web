@@ -1,0 +1,53 @@
+%shell-content-overflow {
+	overflow-y: auto;
+	/* stylelint-disable-next-line db-ux/use-spacings */
+	padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+}
+
+.db-shell-content {
+	grid-area: shell-content;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+
+	&:not([data-variant="fixed"]) {
+		@extend %shell-content-overflow;
+
+		.db-main {
+			margin-block-end: auto;
+		}
+	}
+
+	&[data-variant="fixed"] {
+		overflow-y: hidden;
+
+		.db-main {
+			@extend %shell-content-overflow;
+
+			flex: 1 1 0;
+			min-block-size: 0;
+		}
+
+		@media all and (display-mode: standalone) {
+			&:not(:has(.db-main + *)) {
+				.db-main {
+					// jscpd:ignore-start
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					margin-block-end: env(safe-area-inset-bottom);
+
+					// jscpd:ignore-end
+				}
+			}
+		}
+	}
+
+	@media all and (display-mode: standalone) {
+		&:has(.db-main + *) {
+			// in this case there is some footer etc.
+			.db-main + *:last-child {
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-block-end: env(safe-area-inset-bottom);
+			}
+		}
+	}
+}

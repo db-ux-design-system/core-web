@@ -5,7 +5,7 @@ import { lvl3 } from '../fixtures/variants';
 
 const selector = '.db-popover';
 
-const preAxe = async (page: Page) => hoverPre(page, selector);
+const preAxe = async (page: Page) => hoverPre(page, true);
 
 test.describe('DBPopover', () => {
 	runAxeCoreTest({ path: '01/popover', preAxe });

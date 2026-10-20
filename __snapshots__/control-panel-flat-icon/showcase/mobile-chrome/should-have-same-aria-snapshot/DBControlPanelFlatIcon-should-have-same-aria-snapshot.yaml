@@ -1,0 +1,44 @@
+- main:
+  - heading "DBControlPanel FlatIcon" [level=1]
+  - link "Density"
+  - navigation "Functional":
+    - list:
+      - listitem:
+        - link "Functional"
+      - listitem:
+        - link "Functional"
+      - listitem:
+        - link "Functional"
+  - navigation "Regular":
+    - list:
+      - listitem:
+        - link "Regular"
+      - listitem:
+        - link "Regular"
+      - listitem:
+        - link "Regular"
+  - navigation "Expressive":
+    - list:
+      - listitem:
+        - link "Expressive"
+      - listitem:
+        - link "Expressive"
+      - listitem:
+        - link "Expressive"
+  - link "No Text"
+  - navigation "(Default) With Text":
+    - list:
+      - listitem:
+        - link "(Default) With Text"
+      - listitem:
+        - link "(Default) With Text"
+      - listitem:
+        - link "(Default) With Text"
+  - navigation "No Text":
+    - list:
+      - listitem:
+        - link "No Text"
+      - listitem:
+        - link "No Text"
+      - listitem:
+        - link "No Text"

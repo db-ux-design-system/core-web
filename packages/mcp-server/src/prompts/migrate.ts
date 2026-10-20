@@ -7,7 +7,7 @@ import { type Framework, FRAMEWORK_PKG } from '../types.js';
 
  @param legacy_code - The source code of the outdated component.
  @param legacy_code.legacy_code
- @param source_context - The origin/context of the legacy code (e.g. 'db-ui-v2', 'bootstrap-4').
+ @param source_context - The origin/context of the legacy code (e.g. 'db-ui-generation-2', 'bootstrap-4').
  @param legacy_code.source_context
  @param target_framework - The target framework (react, angular, vue, web-components, html).
  @param legacy_code.target_framework
@@ -29,13 +29,13 @@ export function handleMigrateComponentPrompt({
 
 	return {
 		description:
-			'Migrates legacy UI code to DB UX v3 using the full MCP discovery and verification workflow',
+			'Migrates legacy UI code to DB UX Design System – Generation 3 using the full MCP discovery and verification workflow',
 		messages: [
 			{
 				role: 'user' as const,
 				content: {
 					type: 'text' as const,
-					text: `You are an Expert Migration Engineer specializing in the DB UX Design System. Your objective is to transform legacy UI code into modern, production-ready DB UX v3 code for the "${target_framework}" framework.
+					text: `You are an Expert Migration Engineer specializing in the DB UX Design System. Your objective is to transform legacy UI code into modern, production-ready DB UX Design System – Generation 3 code for the "${target_framework}" framework.
 
 Source Context: ${source_context}
 Target Framework: ${target_framework}
@@ -64,7 +64,7 @@ a. Identify every UI element in the legacy code (buttons, inputs, selects, layou
 b. Call 'list_migration_guides' and check if a dedicated migration guide exists for the source context "${source_context}".
 c. If a guide exists, call 'get_migration_guide' and use its rules as the PRIMARY migration reference.
 d. Call 'docs_search' with category 'component' for each identified element to find component-specific migration docs.
-e. Produce a mapping table: Legacy Element → DB UX v3 Component → Rationale.
+e. Produce a mapping table: Legacy Element → Generation 3 Component → Rationale.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 STEP 2: COMPONENT DISCOVERY & PROPS RETRIEVAL

@@ -7,6 +7,7 @@ import CheckboxDensity from '../examples/density.example.lite';
 import CheckboxDisabled from '../examples/disabled.example.lite';
 import CheckboxExample from '../examples/example.example.lite';
 import CheckboxIndeterminate from '../examples/indeterminate.example.lite';
+import CheckboxInteraction from '../examples/interaction.example.lite';
 import CheckboxRequired from '../examples/required.example.lite';
 import CheckboxShowLabel from '../examples/show-label.example.lite';
 import CheckboxShowRequiredAsterisk from '../examples/show-required-asterisk.example.lite';
@@ -66,6 +67,11 @@ export default function CheckboxShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Show Required Asterisk">
 				<CardWrapperShowcase>
 					<CheckboxShowRequiredAsterisk />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<CheckboxInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

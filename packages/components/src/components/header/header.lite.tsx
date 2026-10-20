@@ -25,6 +25,9 @@ useDefaultProps<DBHeaderProps>({
 	closeButtonText: DEFAULT_CLOSE_BUTTON
 });
 
+/**
+ * @deprecated Use DBControlPanelDesktop/Mobile instead
+ */
 export default function DBHeader(props: DBHeaderProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
@@ -123,7 +126,6 @@ export default function DBHeader(props: DBHeaderProps) {
 					/>
 				}
 				className="db-header-drawer"
-				rounded
 				open={getBoolean(props.drawerOpen)}
 				onClose={() => state.handleToggle()}
 				footer={

@@ -55,7 +55,7 @@ export default function DBTabs(props: DBTabsProps) {
 			state._id = props.id ?? props.propOverrides?.id ?? `tabs-${uuid()}`;
 		},
 
-		// Avoid emitting `undefined-tab-x` ids during the first (pre-mount)
+		// Avoid emitting "undefined-tab-x" ids during the first (pre-mount)
 		// render when no explicit id was provided. initTabs() assigns the
 		// generated ids after mount once state._id is set.
 		getTabId(index: number | string) {
@@ -64,7 +64,7 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// See getTabId: returns undefined until a base id is available so the
-		// pre-mount render does not emit `undefined-tab-panel-x` ids.
+		// pre-mount render does not emit "undefined-tab-panel-x" ids.
 		getPanelId(index: number | string) {
 			const baseId: string | undefined =
 				props.id ?? props.propOverrides?.id ?? state._id;
@@ -443,8 +443,8 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// Composition-API fallback: when tabs are provided as DBTabItem children
-		// (no `tabs` prop), getInitialIndex() cannot see their `active` prop.
-		// After initTabs() has cached the buttons, a child marked `active` has
+		// (no "tabs" prop), getInitialIndex() cannot see their "active" prop.
+		// After initTabs() has cached the buttons, a child marked "active" has
 		// already reflected aria-selected="true" onto its button, so we read it
 		// back here. Returns -1 when no child is active. Only consulted for the
 		// composition path and when no explicit index/mode prop was set.
@@ -458,7 +458,7 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// Whether the active-child fallback should be consulted: only for the
-		// composition API (no `tabs` prop), when no explicit selection prop and
+		// composition API (no "tabs" prop), when no explicit selection prop and
 		// no URL hash determined the start index.
 		shouldUseActiveChild(hashApplied: boolean): boolean {
 			return (
@@ -589,10 +589,10 @@ export default function DBTabs(props: DBTabsProps) {
 		},
 
 		// True only for panels that belong directly to this DBTabs instance.
-		// We look at the nearest ancestor that is either a `.db-tabs` root or
-		// another `[role="tabpanel"]`: if it is this instance root (_ref) the
+		// We look at the nearest ancestor that is either a ".db-tabs" root or
+		// another [role="tabpanel"]: if it is this instance root (_ref) the
 		// panel is a direct child; if an intervening tabpanel (foreign tabpanel
-		// rendered inside a panel content) or a nested `.db-tabs` is hit
+		// rendered inside a panel content) or a nested ".db-tabs" is hit
 		// first, the panel is not ours and must not shift the index mapping.
 		_isOwnedPanel(panel: HTMLElement): boolean {
 			const owner = panel.parentElement?.closest(
