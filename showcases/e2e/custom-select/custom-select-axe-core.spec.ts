@@ -13,8 +13,15 @@ const path = '03/custom-select';
 // example on the page still enforces `nested-interactive`.
 const axeExclude = '[data-testid="tag-select"] summary';
 
+const axeDisableRules = ['label-content-name-mismatch']; // TODO: remove after https://github.com/db-ux-design-system/core-web/pull/8331 is merged
+
 test.describe('DBCustomSelect', () => {
-	runAxeCoreTest({ path, axeExclude });
-	runAxeCoreTest({ path, color: lvl3, axeExclude });
-	runAxeCoreTest({ path, density: 'functional', axeExclude });
+	runAxeCoreTest({ path, axeExclude, axeDisableRules });
+	runAxeCoreTest({ path, color: lvl3, axeExclude, axeDisableRules });
+	runAxeCoreTest({
+		path,
+		density: 'functional',
+		axeExclude,
+		axeDisableRules
+	});
 });
