@@ -24,21 +24,21 @@ export type HeadingVisualSizeType = (typeof HeadingVisualSizeList)[number];
 /** @public */
 export const HeadingFontWeightList = ['black', 'light'] as const;
 /** @public */
-export type HeadingFontWeightType = (typeof HeadingFontWeightList)[number];
+export type BaseHeadingFontWeightType = (typeof HeadingFontWeightList)[number];
 
 /**
  * This interface is empty because it is meant to be extended by the consuming app or from a theme.
  */
-export interface OverwriteHeadingFontWeight {}
+export interface OverwriteHeadingFontWeights {}
 
 type InternalHeadingFontWeights = Assign<
 	{
-		types: HeadingFontWeightType | LooseAutocomplete;
+		types: BaseHeadingFontWeightType | LooseAutocomplete;
 	},
-	OverwriteHeadingFontWeight
+	OverwriteHeadingFontWeights
 >;
 
-export type HeadingFontWeightsTypes = InternalHeadingFontWeights['types'];
+export type HeadingFontWeightType = InternalHeadingFontWeights['types'];
 
 /** @public */
 export type DBHeadingBaseDefaultProps = {
@@ -50,7 +50,7 @@ export type DBHeadingBaseDefaultProps = {
 	 */
 	visualSize?: HeadingVisualSizeType;
 	/** Sets the headline font weight. Defaults to `black`. */
-	fontWeight?: HeadingFontWeightsTypes;
+	fontWeight?: HeadingFontWeightType;
 };
 /** @public */
 export type DBHeadingBaseProps = DBHeadingBaseDefaultProps & GlobalProps;
