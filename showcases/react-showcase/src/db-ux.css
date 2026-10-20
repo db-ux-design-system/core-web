@@ -1,3 +1,6 @@
-@layer db-theme, db-ux;
+@layer db-ux, db-theme, db-ux-next;
+@import "@db-ux/core-components/build/styles/rollup.css" layer(db-ux);
 @import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "./../../../generated-colors.css" layer(db-ux-next);
+@import "@db-ux/core-components/build/styles/components-next.css"
+layer(db-ux-next);

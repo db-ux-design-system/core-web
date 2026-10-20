@@ -1,0 +1,16 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/next/component";
+@use "badge";
+
+[data-generation="next"] .db-badge,
+.db-badge[data-generation="next"] {
+	@extend %default-material;
+
+	border-color: var(--db-border-decorative);
+
+	&[data-emphasis="strong"] {
+		.db-badge-content {
+			font-weight: bold;
+		}
+	}
+}

@@ -28,6 +28,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -64,6 +65,40 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getActiveColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.activeColor) {
+				return props.activeColor;
+			}
+
+			return undefined;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -229,6 +264,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	return (
 		<div
+			data-active-material={props.activeMaterial ?? 'inverted'}
+			data-active-adaptive-color={state._getActiveColor()}
+			data-material={props.material ?? 'filled'}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

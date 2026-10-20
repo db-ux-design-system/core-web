@@ -1,0 +1,27 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+%default-material {
+	background-color: var(--db-bg-default);
+	color: var(--db-on-bg-default);
+	border-color: var(--db-border);
+}
+
+%disabled {
+	--db-color-transparency: 40%;
+}
+
+%interactive-materials {
+	@extend %default-material;
+
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: var(--db-bg-hovered);
+			border-color: var(--db-border);
+		}
+
+		@include helpers.active {
+			background-color: var(--db-bg-pressed);
+			border-color: var(--db-border);
+		}
+	}
+}

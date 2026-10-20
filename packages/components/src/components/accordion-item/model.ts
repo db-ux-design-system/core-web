@@ -1,8 +1,10 @@
 import type {
+	EndSlotProps,
 	GlobalProps,
 	InitializedState,
 	NameProps,
 	NameState,
+	StartSlotProps,
 	TextProps,
 	ToggleEventProps,
 	ToggleEventState
@@ -29,7 +31,9 @@ export type DBAccordionItemDefaultProps = {
 	 * Title of the accordion-item as plain text
 	 */
 	headlinePlain?: string;
-} & TextProps;
+} & TextProps &
+	StartSlotProps &
+	EndSlotProps;
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &

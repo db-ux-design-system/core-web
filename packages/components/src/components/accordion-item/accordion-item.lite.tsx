@@ -90,7 +90,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				ref={_ref}
 				name={state._name}
 				open={state._open}>
-				<summary onClick={(event) => state.handleToggle(event)}>
+				<summary
+					class="db-accordion-item-header"
+					onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}
 					</Show>

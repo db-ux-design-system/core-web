@@ -8,6 +8,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_LABEL } from '../../shared/constants';
+import { ColorType, MaterialType } from '../../shared/model';
 import { cls, getBooleanAsString } from '../../utils';
 import { DBBadgeProps, DBBadgeState } from './model';
 
@@ -18,7 +19,41 @@ useDefaultProps<DBBadgeProps>({});
 export default function DBBadge(props: DBBadgeProps) {
 	const _ref = useRef<HTMLSpanElement | any>(null);
 	const state = useStore<DBBadgeState>({
-		initialized: false
+		initialized: false,
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
+			if (props.emphasis === 'strong') {
+				return 'vibrant';
+			}
+
+			return 'filled-1';
+		},
+		_getColor: (): ColorType | undefined => {
+			if (props.color) {
+				return props.color;
+			}
+
+			if (props.semantic === 'informational') {
+				return 'blue';
+			}
+
+			if (props.semantic === 'critical') {
+				return 'red';
+			}
+
+			if (props.semantic === 'warning') {
+				return 'yellow';
+			}
+
+			if (props.semantic === 'successful') {
+				return 'green';
+			}
+
+			return 'grey';
+		}
 	});
 
 	onMount(() => {
@@ -44,6 +79,8 @@ export default function DBBadge(props: DBBadgeProps) {
 
 	return (
 		<span
+			data-material={state._getMaterial()}
+			data-adaptive-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-badge', props.className)}

@@ -52,8 +52,51 @@ export type EndSlotProps = {
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
+export const ContrastList = ['max', 'min'] as const;
+export type ContrastType = (typeof ContrastList)[number];
+
+export const MaterialList = [
+	'filled-1',
+	'filled-2',
+	'filled-3',
+	'vibrant',
+	'origin',
+	'inverted',
+	'semi-transparent',
+	'transparent'
+] as const;
+export type MaterialType = (typeof MaterialList)[number];
+
+export const ColorList = [
+	'neutral',
+	'red',
+	'brand',
+	'green',
+	'blue',
+	'yellow',
+	'grey'
+] as const;
+export type ColorType = (typeof ColorList)[number];
+
 export type GlobalState = {
 	_id?: string;
+};
+
+export type MaterialState = {
+	_getMaterial: () => MaterialType | undefined;
+};
+export type ColorState = {
+	_getColor: () => ColorType | undefined;
+};
+export type ActiveMaterialState = {
+	_getActiveMaterial: () => MaterialType | undefined;
+};
+export type ActiveColorState = {
+	_getActiveColor: () => ColorType | undefined;
+};
+export type ActiveMaterialProps = {
+	activeMaterial?: MaterialType;
+	activeColor?: ColorType;
 };
 
 export const SemanticList = [
@@ -306,11 +349,43 @@ export type ContentSlotProps = {
 
 export const SizeList = ['small', 'medium'] as const;
 export type SizeType = (typeof SizeList)[number];
+
+export const NextGenSizeList = [
+	'3xs',
+	'2xs',
+	'xs',
+	'sm',
+	'md',
+	'lg',
+	'xl',
+	'2xl'
+] as const;
+export type NextGenSizeType = (typeof NextGenSizeList)[number];
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
-	size?: SizeType;
+	size?: SizeType | NextGenSizeType;
+};
+
+/**
+ * Shared next-generation props applied to every next-gen component.
+ * Currently exposes the next-gen `size` scale. Components that still support
+ * the legacy `SizeType` (`small`/`medium`) must widen `size` back to the union
+ * by overriding it after this type, e.g.:
+ *
+ * ```ts
+ * ... & NextGenDefaultProps & { size?: SizeType | NextGenSizeType };
+ * ```
+ */
+export type NextGenDefaultProps = {
+	/**
+	 * The size attribute changes the font-size and other related sizes of the component.
+	 */
+	size?: NextGenSizeType;
+
+	material?: MaterialType;
+	color?: ColorType;
 };
 
 export const EmphasisList = ['weak', 'strong'] as const;
