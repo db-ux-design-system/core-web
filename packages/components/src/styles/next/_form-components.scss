@@ -1,0 +1,200 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "component";
+@use "../internal/form-components";
+
+// Shared next-gen materials for form components. Two shapes of form control
+// share these helpers:
+//   * check elements (checkbox, radio, switch) - a styled `input` with a
+//     checked/active state, driving both the default roles (`--db-bg-*`,
+//     `--db-on-bg-*`) and the active roles (`--db-active-bg-*`,
+//     `--db-active-on-bg-*`).
+//   * value fields (input, textarea, select) - a text/value element with no
+//     checked state, driving only the default roles.
+
+// Shared base for check elements (checkbox, radio, switch). The input renders
+// the box/track, so the default roles drive `:not(:checked)` and the active
+// roles drive `:checked`. Hover/pressed are applied to the *unchecked* state
+// here; the checked-state hover/pressed is added only by components whose
+// checked state is interactive (see `%check-element-materials`).
+%check-element-base {
+	&:is(label),
+	> label {
+		color: var(--db-on-bg-default);
+	}
+
+	input {
+		&:not(:checked) {
+			background-color: var(--db-bg-default);
+			color: var(--db-on-bg-default);
+			border-color: var(--db-on-bg-default);
+
+			&::before {
+				color: var(--db-on-bg-default);
+			}
+		}
+
+		&:checked {
+			background-color: var(--db-active-bg-default);
+			color: var(--db-active-on-bg-default);
+			border-color: var(--db-active-border);
+
+			&::before {
+				color: var(--db-active-on-bg-default);
+			}
+		}
+	}
+
+	&:not(:has(input:disabled)) {
+		@include helpers.hover {
+			&:is(label),
+			> label {
+				color: var(--db-on-bg-hovered);
+			}
+
+			input:not(:checked) {
+				background-color: var(--db-bg-hovered);
+			}
+		}
+
+		@include helpers.active {
+			&:is(label),
+			> label {
+				color: var(--db-on-bg-pressed);
+			}
+
+			input:not(:checked) {
+				background-color: var(--db-bg-pressed);
+			}
+		}
+	}
+}
+
+// Check elements whose checked state is interactive and can be toggled back
+// (checkbox, switch): the checked background also reacts to hover/pressed.
+%check-element-materials {
+	@extend %check-element-base;
+
+	&:not(:has(input:disabled)) {
+		@include helpers.hover {
+			input:checked {
+				background-color: var(--db-active-bg-hovered);
+			}
+		}
+
+		@include helpers.active {
+			input:checked {
+				background-color: var(--db-active-bg-pressed);
+			}
+		}
+	}
+}
+
+// Check elements whose checked state is NOT interactive (radio): selecting the
+// control can only move the selection, never toggle it off, so the checked
+// state has no hover/pressed background of its own. Use the base only.
+%radio-check-element-materials {
+	@extend %check-element-base;
+}
+
+// Validity + disabled wiring for check elements. `$selector` is the validity
+// keyword understood by `form-components.get-validity` (`check`, `radio`,
+// `switch`).
+@mixin check-element-validity($selector) {
+	@include form-components.get-validity($selector) {
+		&:is(label),
+		> label {
+			color: var(--db-text-vibrant);
+		}
+
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include form-components.get-validity-message("valid");
+		}
+	}
+
+	@include form-components.get-validity($selector, "invalid") {
+		&:is(label),
+		> label {
+			color: var(--db-text-vibrant);
+		}
+
+		input {
+			border-color: var(--db-border-vibrant);
+		}
+
+		@include form-components.get-validity-message("invalid");
+	}
+
+	&:has(input:disabled) {
+		@extend %disabled;
+
+		opacity: 1;
+	}
+}
+
+// Appearance for value fields (input, textarea, select). `$selector` is the
+// inner element (`input`, `textarea`, `select`). Text fields keep the text
+// cursor on hover (`$revert-cursor: true`); select is pointer-driven and also
+// gets a pressed state (`$pressed: true`).
+@mixin field-materials($selector, $revert-cursor: true, $pressed: false) {
+	&::before,
+	&::after,
+	[id$="-placeholder"],
+	> label {
+		color: var(--db-on-bg-default);
+	}
+
+	#{$selector} {
+		background-color: var(--db-bg-default);
+		color: var(--db-on-bg-default);
+		border-color: var(--db-border);
+
+		@if $revert-cursor {
+			caret-color: var(--db-on-bg-default);
+		}
+
+		@include helpers.not-disabled {
+			@if $revert-cursor {
+				@include helpers.hover(revert) {
+					background-color: var(--db-bg-hovered);
+				}
+				/* stylelint-disable-next-line at-rule-empty-line-before */
+			} @else {
+				@include helpers.hover {
+					background-color: var(--db-bg-hovered);
+				}
+			}
+
+			@if $pressed {
+				@include helpers.active {
+					background-color: var(--db-bg-pressed);
+				}
+			}
+		}
+	}
+}
+
+// Validity + disabled wiring for value fields. `$selector` is the inner element
+// (`input`, `textarea`, `select`).
+@mixin field-validity($selector) {
+	@include form-components.get-validity($selector) {
+		#{$selector} {
+			border-color: var(--db-border-vibrant);
+		}
+
+		@include form-components.get-validity-message("valid");
+	}
+
+	@include form-components.get-validity($selector, "invalid") {
+		#{$selector} {
+			border-color: var(--db-border-vibrant);
+		}
+
+		@include form-components.get-validity-message("invalid");
+	}
+
+	&:has(#{$selector}:disabled) {
+		@extend %disabled;
+
+		opacity: 1;
+	}
+}

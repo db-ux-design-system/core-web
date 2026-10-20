@@ -18,6 +18,40 @@ useDefaultProps<DBTagProps>({});
 export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
+			if (props.emphasis === 'strong') {
+				return 'vibrant';
+			}
+
+			return 'filled-1';
+		},
+		_getColor: (): ColorType | undefined => {
+			if (props.color) {
+				return props.color;
+			}
+
+			if (props.semantic === 'informational') {
+				return 'blue';
+			}
+
+			if (props.semantic === 'critical') {
+				return 'red';
+			}
+
+			if (props.semantic === 'warning') {
+				return 'yellow';
+			}
+
+			if (props.semantic === 'successful') {
+				return 'green';
+			}
+
+			return 'grey';
+		},
 		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
 			if (!event) return;
 
@@ -38,6 +72,8 @@ export default function DBTag(props: DBTagProps) {
 
 	return (
 		<div
+			data-material={state._getMaterial()}
+			data-adaptive-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-tag', props.className)}

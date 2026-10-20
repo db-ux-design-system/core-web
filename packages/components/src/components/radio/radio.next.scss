@@ -1,0 +1,7 @@
+@use "../../styles/next/form-components";
+
+[data-generation="next"] .db-radio,
+.db-radio[data-generation="next"] {
+	@extend %radio-check-element-materials;
+	@include form-components.check-element-validity(radio);
+}

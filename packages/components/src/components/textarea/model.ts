@@ -1,6 +1,7 @@
 import type {
 	ChangeEventProps,
 	ChangeEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
@@ -11,7 +12,8 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InputEventProps,
-	InputEventState
+	InputEventState,
+	MaterialProps
 } from '../../shared/model';
 
 export const TextareaResizeList = [
@@ -61,6 +63,7 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	FocusEventProps<HTMLTextAreaElement> &
 	FormProps &
 	GlobalProps &
+	MaterialProps &
 	FormTextProps &
 	FormMessageProps;
 
@@ -72,4 +75,5 @@ export type DBTextareaState = DBTextareaDefaultState &
 	FocusEventState<HTMLTextAreaElement> &
 	FormState &
 	GlobalState &
+	ColorState &
 	FromValidState;

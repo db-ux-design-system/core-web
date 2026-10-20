@@ -1,0 +1,9 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/next/component";
+
+[data-generation="next"] .db-tag,
+.db-tag[data-generation="next"] {
+	@extend %default-material;
+
+	border-color: var(--db-border-decorative);
+}

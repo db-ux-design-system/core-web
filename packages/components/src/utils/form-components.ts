@@ -162,7 +162,8 @@ export const addValueResetEventListener = (
 
 export const getValidationState = (
 	props: { validMessage?: string; validation?: ValidationType },
-	element?: HTMLElement
+	element?: HTMLElement,
+	isRadio?: boolean
 ): ValidationType => {
 	let userValid: boolean = false;
 	let userInvalid: boolean = false;
@@ -174,7 +175,7 @@ export const getValidationState = (
 	}
 
 	if (
-		props.validMessage &&
+		(isRadio || props.validMessage) &&
 		(props.validation === 'valid' || (!props.validation && userValid))
 	) {
 		return 'valid';

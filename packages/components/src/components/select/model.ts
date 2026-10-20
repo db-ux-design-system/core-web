@@ -3,6 +3,7 @@ import type {
 	ChangeEventState,
 	ClickEventProps,
 	ClickEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
@@ -16,6 +17,7 @@ import type {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
+	MaterialProps,
 	ShowIconProps
 } from '../../shared/model';
 
@@ -74,6 +76,7 @@ export type DBSelectOptionType = {
 };
 
 export type DBSelectProps = GlobalProps &
+	MaterialProps &
 	ClickEventProps<HTMLSelectElement> &
 	ChangeEventProps<HTMLSelectElement> &
 	FocusEventProps<HTMLSelectElement> &
@@ -93,6 +96,7 @@ export type DBSelectDefaultState = {
 
 export type DBSelectState = DBSelectDefaultState &
 	GlobalState &
+	ColorState &
 	ClickEventState<HTMLSelectElement> &
 	ChangeEventState<HTMLSelectElement> &
 	FocusEventState<HTMLSelectElement> &

@@ -32,6 +32,7 @@ import {
 } from '../../utils';
 import {
 	addValueResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -62,6 +63,23 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_value: '',
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -261,11 +279,17 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 	return (
 		<div
+			data-material={props.material}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<label
+				data-adaptive-color={props.color ?? 'neutral'}
+				htmlFor={state._id}>
+				{props.label ?? DEFAULT_LABEL}
+			</label>
 
 			<textarea
 				aria-invalid={props.validation === 'invalid'}

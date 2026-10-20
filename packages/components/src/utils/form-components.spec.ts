@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue,
 	shouldKeepDisplayValue
@@ -378,5 +379,51 @@ describe('shouldKeepDisplayValue', () => {
 	it('does not keep the display value before the element exists', () => {
 		expect(shouldKeepDisplayValue(undefined, undefined)).toBe(false);
 		expect(shouldKeepDisplayValue({}, undefined)).toBe(false);
+	});
+});
+
+/**
+ * `getValidationState` maps a form component's props (and its `:user-valid` /
+ * `:user-invalid` state, read from CSS custom properties on the element) to a
+ * `valid` / `invalid` / `no-validation` result that drives the next-gen
+ * adaptive color.
+ *
+ * The `isRadio` flag exists because radio has no validation message: the valid
+ * branch is normally gated on `validMessage` (the other form components only
+ * show a valid state when they have a message to show), but radio must be able
+ * to reach `valid` without one. See the DBRadio next-gen materials.
+ */
+describe('getValidationState', () => {
+	it('returns no-validation by default', () => {
+		expect(getValidationState({})).toBe('no-validation');
+	});
+
+	it('returns invalid for an explicit invalid prop (no message needed)', () => {
+		expect(getValidationState({ validation: 'invalid' })).toBe('invalid');
+	});
+
+	it('gates the valid state on validMessage for non-radio components', () => {
+		// Without a message there is no valid state ...
+		expect(getValidationState({ validation: 'valid' })).toBe(
+			'no-validation'
+		);
+		// ... with one, the valid state is reported.
+		expect(
+			getValidationState({ validation: 'valid', validMessage: 'ok' })
+		).toBe('valid');
+	});
+
+	it('reports valid for radio without a validMessage (isRadio)', () => {
+		// This is the radio fix: radio has no validation message, so the valid
+		// branch must not require validMessage.
+		expect(
+			getValidationState({ validation: 'valid' }, undefined, true)
+		).toBe('valid');
+	});
+
+	it('still reports invalid for radio', () => {
+		expect(
+			getValidationState({ validation: 'invalid' }, undefined, true)
+		).toBe('invalid');
 	});
 });

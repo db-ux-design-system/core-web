@@ -1,0 +1,16 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/next/component";
+
+[data-generation="next"] .db-custom-button,
+.db-custom-button[data-generation="next"] {
+	@extend %interactive-materials;
+
+	&:has(
+		:is(input, button):disabled,
+		:is(input, button, a)[aria-disabled="true"]
+	) {
+		@extend %disabled;
+
+		opacity: 1;
+	}
+}

@@ -1,6 +1,7 @@
 import type {
 	ChangeEventProps,
 	ChangeEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
@@ -16,6 +17,7 @@ import type {
 	IconTrailingProps,
 	InputEventProps,
 	InputEventState,
+	MaterialProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
@@ -114,6 +116,7 @@ export type DBInputDefaultProps = {
 
 export type DBInputProps = DBInputDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	FormTextProps &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &
@@ -135,6 +138,7 @@ export type DBInputDefaultState = {
 
 export type DBInputState = DBInputDefaultState &
 	GlobalState &
+	ColorState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &

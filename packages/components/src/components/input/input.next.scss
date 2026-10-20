@@ -1,0 +1,7 @@
+@use "../../styles/next/form-components";
+
+[data-generation="next"] .db-input,
+.db-input[data-generation="next"] {
+	@include form-components.field-materials(input);
+	@include form-components.field-validity(input);
+}

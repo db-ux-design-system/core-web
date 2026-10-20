@@ -1,9 +1,12 @@
 import type {
+	ColorState,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	MaterialState,
+	NextGenDefaultProps,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
@@ -19,6 +22,7 @@ export type DBCustomButtonDefaultProps = {};
 export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
+	NextGenDefaultProps &
 	IconProps &
 	WidthProps &
 	SizeProps &
@@ -32,4 +36,7 @@ export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 
 export type DBCustomButtonDefaultState = {};
 
-export type DBCustomButtonState = DBCustomButtonDefaultState & GlobalState;
+export type DBCustomButtonState = DBCustomButtonDefaultState &
+	GlobalState &
+	MaterialState &
+	ColorState;

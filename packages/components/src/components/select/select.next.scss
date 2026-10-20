@@ -1,0 +1,11 @@
+@use "../../styles/next/form-components";
+
+[data-generation="next"] .db-select,
+.db-select[data-generation="next"] {
+	@include form-components.field-materials(
+		select,
+		$revert-cursor: false,
+		$pressed: true
+	);
+	@include form-components.field-validity(select);
+}

@@ -34,6 +34,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -69,6 +70,40 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getActiveColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.activeColor) {
+				return props.activeColor;
+			}
+
+			return undefined;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -231,6 +266,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	return (
 		<div
+			data-active-material={props.activeMaterial ?? 'inverted'}
+			data-active-adaptive-color={state._getActiveColor()}
+			data-material={props.material ?? 'filled'}
+			data-adaptive-color={state._getColor()}
 			data-visual-aid={getBooleanAsString(props.visualAid, 'visualAid')}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}

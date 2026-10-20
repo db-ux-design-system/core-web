@@ -1,6 +1,9 @@
 import type {
+	ActiveColorState,
+	ActiveMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
@@ -15,6 +18,7 @@ import type {
 	IconProps,
 	IconTrailingProps,
 	LabelVariantHorizontalType,
+	NextGenDefaultProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -31,6 +35,8 @@ export type DBSwitchDefaultProps = {
 };
 
 export type DBSwitchProps = GlobalProps &
+	NextGenDefaultProps &
+	ActiveMaterialProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
@@ -48,6 +54,8 @@ export type DBSwitchDefaultState = {
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
+	ColorState &
+	ActiveColorState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &

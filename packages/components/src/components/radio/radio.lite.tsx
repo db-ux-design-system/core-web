@@ -13,6 +13,7 @@ import { ChangeEvent, InteractionEvent } from '../../shared/model';
 import { cls, delay, getBoolean, getHideProp, uuid } from '../../utils';
 import {
 	addResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -41,6 +42,40 @@ export default function DBRadio(props: DBRadioProps) {
 		initialized: false,
 		_id: undefined,
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState(props, _ref, true);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getActiveColor: () => {
+			const validationState = getValidationState(props, _ref, true);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.activeColor) {
+				return props.activeColor;
+			}
+
+			return undefined;
+		},
 		handleInput: (
 			event: ChangeEvent<HTMLInputElement> | any,
 			reset?: boolean
@@ -177,6 +212,10 @@ export default function DBRadio(props: DBRadioProps) {
 
 	return (
 		<label
+			data-active-material={props.activeMaterial ?? 'filled'}
+			data-active-adaptive-color={state._getActiveColor()}
+			data-material={props.material ?? 'filled'}
+			data-adaptive-color={state._getColor()}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

@@ -1,0 +1,8 @@
+[data-generation="next"] .db-infotext,
+.db-infotext[data-generation="next"] {
+	color: var(--db-text-vibrant);
+
+	&::before {
+		--db-icon-color: var(--db-visual-vibrant);
+	}
+}

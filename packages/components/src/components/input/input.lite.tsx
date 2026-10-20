@@ -44,6 +44,7 @@ import {
 } from '../../utils';
 import {
 	addValueResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue,
 	shouldKeepDisplayValue
@@ -76,6 +77,23 @@ export default function DBInput(props: DBInputProps) {
 		_value: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState(props, _ref);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -301,6 +319,8 @@ export default function DBInput(props: DBInputProps) {
 
 	return (
 		<div
+			data-material={props.material}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
@@ -315,7 +335,11 @@ export default function DBInput(props: DBInputProps) {
 				props.showIconTrailing,
 				'showIconTrailing'
 			)}>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<label
+				data-adaptive-color={props.color ?? 'neutral'}
+				htmlFor={state._id}>
+				{props.label ?? DEFAULT_LABEL}
+			</label>
 			<input
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}

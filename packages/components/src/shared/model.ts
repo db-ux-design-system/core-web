@@ -369,6 +369,20 @@ export type SizeProps = {
 };
 
 /**
+ * Next-gen appearance props: the `material` and adaptive `color` that drive the
+ * generated role variables (`--db-bg-*`, `--db-on-bg-*`, `--db-border*`, ...).
+ *
+ * Use this on its own for components whose `size` is not the next-gen scale
+ * (e.g. the form fields `input`/`select`, whose `size` is the native numeric
+ * attribute). Components on the next-gen `size` scale use `NextGenDefaultProps`,
+ * which bundles `size` with these props.
+ */
+export type MaterialProps = {
+	material?: MaterialType;
+	color?: ColorType;
+};
+
+/**
  * Shared next-generation props applied to every next-gen component.
  * Currently exposes the next-gen `size` scale. Components that still support
  * the legacy `SizeType` (`small`/`medium`) must widen `size` back to the union
@@ -378,14 +392,11 @@ export type SizeProps = {
  * ... & NextGenDefaultProps & { size?: SizeType | NextGenSizeType };
  * ```
  */
-export type NextGenDefaultProps = {
+export type NextGenDefaultProps = MaterialProps & {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
 	size?: NextGenSizeType;
-
-	material?: MaterialType;
-	color?: ColorType;
 };
 
 export const EmphasisList = ['weak', 'strong'] as const;

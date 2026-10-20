@@ -1,0 +1,7 @@
+@use "../../styles/next/form-components";
+
+[data-generation="next"] .db-textarea,
+.db-textarea[data-generation="next"] {
+	@include form-components.field-materials(textarea);
+	@include form-components.field-validity(textarea);
+}

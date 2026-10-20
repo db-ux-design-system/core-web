@@ -1,10 +1,13 @@
 import type {
 	ClickEvent,
+	ColorState,
 	ContentSlotProps,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	MaterialState,
+	NextGenDefaultProps,
 	NoTextProps,
 	OverflowProps,
 	SemanticProps,
@@ -54,6 +57,7 @@ export type DBTagDefaultProps = {
 
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
+	NextGenDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
@@ -68,4 +72,7 @@ export type DBTagDefaultState = {
 	handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => void;
 };
 
-export type DBTagState = DBTagDefaultState & GlobalState;
+export type DBTagState = DBTagDefaultState &
+	GlobalState &
+	MaterialState &
+	ColorState;
