@@ -29,7 +29,7 @@ export default function CustomSelectControlled() {
 		],
 		// Starts without a selection on purpose: with selectedType="tag" every
 		// selected option renders a removable DBTag inside the interactive
-		// <summary>, which axe-core reports as `nested-interactive`. The buttons
+		// <summary>, which axe-core reports as "nested-interactive". The buttons
 		// below drive the selection, so the controlled synchronization is still
 		// demonstrated without shipping that violation on page load.
 		values: undefined,

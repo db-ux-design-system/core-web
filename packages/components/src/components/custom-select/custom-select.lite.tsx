@@ -324,47 +324,44 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							activeElement.getAttribute('type') === 'radio';
 
 						if (isCheckbox) {
-							const listElement = activeElement?.closest('li');
+							// We navigate over the flat list of option inputs instead
+							// of walking li siblings: in the Angular and Stencil output
+							// every li is wrapped in a custom-element host
+							// (db-custom-select-list-item), so an li has no sibling li
+							// and sibling traversal would break. Group titles render no
+							// input and are therefore skipped for free.
+							const optionInputs: HTMLInputElement[] = Array.from(
+								detailsRef.querySelectorAll(
+									`input.db-custom-select-list-item-checkbox`
+								)
+							);
+							const currentIndex = optionInputs.indexOf(
+								activeElement as HTMLInputElement
+							);
 							if (
 								event.key === 'ArrowDown' ||
 								event.key === 'ArrowRight'
 							) {
-								// Find next element with input, skipping group titles
-								let nextElement =
-									listElement?.nextElementSibling;
-								while (nextElement) {
-									const nextInput =
-										nextElement.querySelector('input');
-									if (nextInput) {
-										nextInput.focus();
-										break;
-									}
-									nextElement =
-										nextElement.nextElementSibling;
-								}
-
-								if (!nextElement) {
+								const nextInput =
+									currentIndex >= 0
+										? optionInputs.at(currentIndex + 1)
+										: undefined;
+								if (nextInput) {
+									nextInput.focus();
+								} else {
 									// We are on the last checkbox we move to the top checkbox
 									state.handleFocusFirstDropdownCheckbox(
 										activeElement
 									);
 								}
 							} else {
-								// Find previous element with input, skipping group titles
-								let prevElement =
-									listElement?.previousElementSibling;
-								while (prevElement) {
-									const prevInput =
-										prevElement.querySelector('input');
-									if (prevInput) {
-										prevInput.focus();
-										break;
-									}
-									prevElement =
-										prevElement.previousElementSibling;
-								}
-
-								if (!prevElement) {
+								const prevInput =
+									currentIndex > 0
+										? optionInputs.at(currentIndex - 1)
+										: undefined;
+								if (prevInput) {
+									prevInput.focus();
+								} else {
 									// Check if we have a "select all" checkbox (only relevant for multi-select)
 									const selectAllCheckbox =
 										detailsRef.querySelector(
@@ -495,7 +492,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							!detailsRef.contains(relatedTarget) &&
 							relatedTarget.localName !== 'dialog'
 						) {
-							// We need to use delay here because the combination of `contains`
+							// We need to use delay here because the combination of "contains"
 							// and changing the DOM element causes a race condition inside browser
 							void delay(() => {
 								if (detailsRef) {
@@ -523,8 +520,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				}
 			}
 		},
-		handleOptionSelected: (values: string[]) => {
+		handleOptionSelected: (values: string[], skipDebounce?: boolean) => {
 			const skip =
+				!skipDebounce &&
 				new Date().getTime() - state._internalChangeTimestamp < 200;
 			if (skip) return;
 
@@ -553,6 +551,33 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					)
 			});
 			state._internalChangeTimestamp = new Date().getTime();
+		},
+		handleNativeSelectChange: (event: any) => {
+			event.stopPropagation(); // Also satisfies React.
+
+			const select = event.target as HTMLSelectElement;
+			const values =
+				select.selectedIndex < 0
+					? []
+					: Array.from(select.selectedOptions).map(
+							(option: HTMLOptionElement) => option.value
+						);
+
+			const currentValues = state._values ?? [];
+			const unchanged =
+				values.length === currentValues.length &&
+				values.every(
+					(value: string, index: number) =>
+						value === currentValues[index]
+				);
+
+			if (unchanged) {
+				return;
+			}
+
+			// Autofill must bypass the internal-change debounce. Writing
+			// selectRef.value fires no `change`, so this cannot loop back.
+			state.handleOptionSelected(values, true);
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
@@ -888,7 +913,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 		if (state._selectedOptions?.length) {
 			if (props.transformSelectedLabels) {
-				// We need to add this to another ``const`` for Angular generated output to work
+				// We need to add this to another "const" for Angular generated output to work
 				const selectedOptions = state._selectedOptions;
 				const transformFn = props.transformSelectedLabels!;
 				state._selectedLabels = transformFn!(selectedOptions);
@@ -962,11 +987,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	});
 
-	function satisfyReact(event: any) {
-		// This is a function to satisfy React
-		event.stopPropagation();
-	}
-
 	return (
 		<div
 			id={state._id}
@@ -991,7 +1011,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
-				{/* ponytail: browser autofill will set the native value but state._values / summary would not sync; follow-up needed to wire onChange into handleOptionSelected */}
+				{/* The form-submitted value. Hidden, but advertises
+				    `autocomplete`, so autofill can write to it - see
+				    state.handleNativeSelectChange. */}
 				<select
 					role="none"
 					hidden
@@ -1005,7 +1027,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					onChange={(event) => satisfyReact(event)}>
+					onChange={(event) => state.handleNativeSelectChange(event)}>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (

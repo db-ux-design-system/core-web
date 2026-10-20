@@ -7,10 +7,8 @@ useMetadata({ figma: headingH5 });
 export default function HeadingH5FigmaLite(props: FigmaHeadingProps) {
 	return (
 		<DBHeadingH5
-			size={props.size}
-			fontWeight={props.fontWeight}
-			alignment={props.alignment}
-			paragraphSpacing={props.paragraphSpacing}>
+			visualSize={props.visualSize}
+			fontWeight={props.fontWeight}>
 			{props.text}
 		</DBHeadingH5>
 	);

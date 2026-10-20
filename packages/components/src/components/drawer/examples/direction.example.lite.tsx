@@ -1,4 +1,4 @@
-import { Fragment, useMetadata, useState } from '@builder.io/mitosis';
+import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBButton from '../../button/button.lite';
 import DBDrawerHeader from '../../drawer-header/drawer-header.lite';
 import DBDrawer from '../drawer.lite';
@@ -21,22 +21,19 @@ useMetadata({
 });
 
 export default function DrawerDirection() {
-	const [openIndex, setOpenIndex] = useState<number>(-1);
-
 	return (
 		<Fragment>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(0)}>
+					command="show-modal"
+					commandfor="drawer-direction-to-left">
 					Open: (Default) To-Left
 				</DBButton>
 				<DBDrawer
-					open={openIndex === 0}
-					onClose={() => setOpenIndex(-1)}
+					propOverrides={{ id: 'drawer-direction-to-left' }}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							(Default) To-Left
+							<h2>(Default) To-Left</h2>
 						</DBDrawerHeader>
 					}>
 					(Default) To-Left
@@ -44,35 +41,31 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(1)}>
+					command="show-modal"
+					commandfor="drawer-direction-to-right">
 					Open: To-Right
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-direction-to-right' }}
 					direction="to-right"
-					open={openIndex === 1}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							To-Right
+							<h2>To-Right</h2>
 						</DBDrawerHeader>
 					}>
 					To-Right
 				</DBDrawer>
 			</div>
 			<div>
-				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(2)}>
+				<DBButton command="show-modal" commandfor="drawer-direction-up">
 					Open: Up
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-direction-up' }}
 					direction="up"
-					open={openIndex === 2}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Up
+							<h2>Up</h2>
 						</DBDrawerHeader>
 					}>
 					Up
@@ -80,17 +73,16 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(3)}>
+					command="show-modal"
+					commandfor="drawer-direction-down">
 					Open: Down
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-direction-down' }}
 					direction="down"
-					open={openIndex === 3}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Down
+							<h2>Down</h2>
 						</DBDrawerHeader>
 					}>
 					Down
@@ -98,18 +90,17 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(4)}>
+					command="show-modal"
+					commandfor="drawer-direction-up-full">
 					Open: Up (Full)
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-direction-up-full' }}
 					direction="up"
 					containerSize="full"
-					open={openIndex === 4}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Up (Full)
+							<h2>Up (Full)</h2>
 						</DBDrawerHeader>
 					}>
 					Up (Full)
@@ -117,18 +108,17 @@ export default function DrawerDirection() {
 			</div>
 			<div>
 				<DBButton
-					data-sb-replace="Open DBDrawer by switching open property"
-					onClick={() => setOpenIndex(5)}>
+					command="show-modal"
+					commandfor="drawer-direction-down-full">
 					Open: Down (Full)
 				</DBButton>
 				<DBDrawer
+					propOverrides={{ id: 'drawer-direction-down-full' }}
 					direction="down"
 					containerSize="full"
-					open={openIndex === 5}
-					onClose={() => setOpenIndex(-1)}
 					header={
 						<DBDrawerHeader closeButtonText="Close">
-							Down (Full)
+							<h2>Down (Full)</h2>
 						</DBDrawerHeader>
 					}>
 					Down (Full)

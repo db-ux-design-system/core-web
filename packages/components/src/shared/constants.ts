@@ -4,6 +4,7 @@ export const DEFAULT_PLACEHOLDER: string = ' ';
 export const DEFAULT_MESSAGE: string = 'MESSAGE SHOULD BE SET';
 
 export const DEFAULT_LABEL_ID_SUFFIX: string = '-label';
+export const DEFAULT_HEADING_ID_SUFFIX: string = '-heading';
 export const DEFAULT_SELECT_ID_SUFFIX: string = '-select';
 export const DEFAULT_MESSAGE_ID_SUFFIX: string = '-message';
 export const DEFAULT_VALID_MESSAGE_ID_SUFFIX: string = '-valid-message';

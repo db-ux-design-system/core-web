@@ -6,6 +6,7 @@ import LoadingIndicatorButton from '../examples/button.example.lite';
 import LoadingIndicatorDelay from '../examples/delay.example.lite';
 import LoadingIndicatorDensity from '../examples/density.example.lite';
 import LoadingIndicatorIndeterminate from '../examples/indeterminate.example.lite';
+import LoadingIndicatorInteraction from '../examples/interaction.example.lite';
 import LoadingIndicatorOverlay from '../examples/overlay.example.lite';
 import LoadingIndicatorRole from '../examples/role.example.lite';
 import LoadingIndicatorShowLabel from '../examples/show-label.example.lite';
@@ -78,6 +79,11 @@ export default function LoadingIndicatorShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Example: Timeout">
 				<CardWrapperShowcase>
 					<LoadingIndicatorTimeout />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<LoadingIndicatorInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

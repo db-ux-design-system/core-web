@@ -39,10 +39,12 @@ const MetaNavigation = ({
 				onDensityChange(value);
 			}
 
-			if (key === COLOR_CONST && color !== value) {
-				setColor(value);
-				onColorChange(value);
+			if (key !== COLOR_CONST || color === value) {
+				continue;
 			}
+
+			setColor(value);
+			onColorChange(value);
 		}
 	}, [searchParameters]);
 

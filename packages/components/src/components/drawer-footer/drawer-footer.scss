@@ -1,11 +1,5 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/dialog-components";
 
 .db-drawer-footer {
-	display: flex;
-	flex-direction: column;
-	gap: variables.$db-spacing-fixed-sm;
-	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-sm;
-
-	@include helpers.divider("top");
+	@include dialog-components.header-footer("footer", "drawer");
 }

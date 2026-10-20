@@ -40,7 +40,8 @@ const flakyExpressions: Record<string, string> = {
 	'checked. checked': 'checked',
 	'selected. selected': 'selected',
 	'expanded. expanded': 'expanded',
-	'not checked. not checked': 'not checked'
+	'not checked. not checked': 'not checked',
+	'banner landmark. button.': 'button.'
 };
 
 const cleanSpeakInstructions = (phraseLog: string[]): string[] =>
@@ -175,7 +176,7 @@ export const runTest = async ({
 	});
 	const pageTitle = await page.title();
 
-	let recorder: (() => void) | undefined;
+	let recorder: (() => Promise<void>) | undefined;
 
 	if (retry > 0) {
 		const path = `./recordings/${title}-${retry}-${Date.now()}.mp4`;
@@ -202,7 +203,7 @@ export const runTest = async ({
 
 	await testFn?.(voiceOver, nvda, page);
 	await postTestFn?.(voiceOver, nvda, retry);
-	recorder?.();
+	await recorder?.();
 };
 
 export const testDefault = (defaultTestType: DefaultTestType) => {

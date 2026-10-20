@@ -8,6 +8,6 @@ const path = '04/tooltip';
 test.describe('DBTooltip', () => {
 	runAriaSnapshotTest({
 		path,
-		preScreenShot: async (page) => hoverPre(page, selector)
+		preScreenShot: async (page) => hoverPre(page)
 	});
 });

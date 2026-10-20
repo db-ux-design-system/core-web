@@ -8,7 +8,7 @@ const path = '01/popover';
 test.describe('DBPopover', () => {
 	getDefaultScreenshotTest({
 		path,
-		preScreenShot: async (page) => hoverPre(page, selector),
+		preScreenShot: async (page) => hoverPre(page, true),
 		// The fixed popover may differ slightly in different browsers
 		ratio: isStencil(process.env.showcase) ? '0.05' : '0.01',
 		skip: {

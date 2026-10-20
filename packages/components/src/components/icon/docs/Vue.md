@@ -11,6 +11,6 @@ import { DBIcon } from "@db-ux/v-core-components";
 </script>
 
 <template>
-	<DBIcon icon="x_placeholder">Icon</DBIcon>
+	<DBIcon icon="x_placeholder" />
 </template>
 ```

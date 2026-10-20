@@ -98,3 +98,17 @@
       - listitem:
         - link "Without Application Name"
       - listitem: Without Application Name disabled
+  - link "Interaction"
+  - navigation "Interaction":
+    - list:
+      - listitem:
+        - button "Group"
+      - listitem: Disabled
+  - navigation "Tree Interaction":
+    - list:
+      - listitem:
+        - button "Tree Group"
+      - listitem:
+        - link "Item 2"
+      - listitem:
+        - link "Item 3"

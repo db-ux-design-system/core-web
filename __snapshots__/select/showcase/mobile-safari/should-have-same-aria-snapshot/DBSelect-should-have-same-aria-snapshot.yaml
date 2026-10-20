@@ -190,7 +190,6 @@
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -201,7 +200,6 @@
   - link "Show Required Asterisk"
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -211,7 +209,6 @@
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
@@ -223,21 +220,12 @@
   - text: Label
   - combobox "Label":
     - option [selected]
-    - group:
-      - option "Option 1"
-      - option "Option 2"
-    - group:
-      - option "Option 3"
-      - option "Option 4"
   - text: Using optgroups
   - status
   - text: Label
   - combobox "Label":
     - option [selected]
     - option "Single Option"
-    - group:
-      - option "Group Option 1"
-      - option "Group Option 2"
     - option "Another Single Option"
   - text: Mixed options and groups
   - status
@@ -287,11 +275,24 @@
   - status
   - text: Label
   - combobox "Label":
-    - option [selected]
     - option "Option 1"
     - option "Option 2"
     - option "Option 3"
     - option "Option 4"
     - option "Option 5"
   - text: showEmptyOption=false
+  - status
+  - link "Interaction"
+  - text: Label
+  - combobox "Label":
+    - option [selected]
+    - option "Test1"
+    - option "Test2"
+  - text: Placeholder
+  - status
+  - text: Label
+  - combobox "Label":
+    - option "Test1"
+    - option "Test2"
+  - text: Choose an option
   - status

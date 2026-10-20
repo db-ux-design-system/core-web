@@ -10,28 +10,14 @@
  * - Value alias + bidirectional sync for components using 'values' (e.g. DBCustomSelect)
  *
  * This plugin runs AFTER the standard Angular plugin so it can transform
- * the Mitosis-generated output. It does NOT depend on post-build/angular.ts.
+ * the Mitosis-generated output, and after `control-value-accessor.cjs`, whose
+ * members it builds on.
+ *
+ * The component list lives in `form-components.cjs`, shared with the
+ * ControlValueAccessor plugin.
  */
+const { FORM_COMPONENTS } = require('./form-components.cjs');
 
-/**
- * Component configurations for Signal Forms support.
- * Maps component names to their Signal Forms requirements.
- */
-const SIGNAL_FORMS_CONFIG = {
-	DBInput: { valueAccessor: 'value', hasPattern: true },
-	DBTextarea: { valueAccessor: 'value' },
-	DBSelect: { valueAccessor: 'value' },
-	DBCheckbox: { valueAccessor: 'checked' },
-	DBSwitch: { valueAccessor: 'checked' },
-	DBCustomSelect: { valueAccessor: 'values', valueAlias: true },
-	// These have CVA but no handleValidation — only duck-typing fields
-	DBRadio: { valueAccessor: 'value', skipValidationBridge: true },
-	DBTabItem: { valueAccessor: 'checked', skipValidationBridge: true },
-	DBCustomSelectListItem: {
-		valueAccessor: 'checked',
-		skipValidationBridge: true
-	}
-};
 /**
  * Injects Signal Forms duck-typing fields and @HostBinding into a CVA component.
  */
@@ -431,7 +417,7 @@ function injectPropagateTouched(code) {
 module.exports = () => ({
 	code: {
 		post: (code, json) => {
-			const config = SIGNAL_FORMS_CONFIG[json.name];
+			const config = FORM_COMPONENTS[json.name];
 			if (!config) return code;
 
 			// 1. Inject duck-typing fields (hidden, errors, @HostBinding)

@@ -430,13 +430,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		if (_ref) {
 			const loadingIndicator = _ref as HTMLElement;
 			const percentage = state.getPercentage();
-
-			// Set the percentage custom property on the root element. It
-			// inherits down to both consumers -- the circular segment
-			// (.db-loading-indicator-circle-segment) and the bar segment
-			// (div::after) -- so it does not need to be repeated on each of
-			// them, and it lands on the element carrying the _ref, matching
-			// data-percentage-full below.
 			if (percentage === undefined) {
 				loadingIndicator.style.removeProperty(
 					'--db-loading-indicator-percentage'
@@ -446,12 +439,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					'--db-loading-indicator-percentage',
 					percentage
 				);
-			}
-
-			if (percentage === '1.00') {
-				loadingIndicator.dataset['percentageFull'] = 'true';
-			} else {
-				delete loadingIndicator.dataset['percentageFull'];
 			}
 		}
 	}, [props.indeterminate, props.value, props.max, _ref]);

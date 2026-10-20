@@ -35,7 +35,7 @@ const App = () => {
 				}}
 				header={
 					<DBDrawerHeader closeButtonText="Close">
-						Drawer Title
+						<h2>Drawer Title</h2>
 					</DBDrawerHeader>
 				}
 			>

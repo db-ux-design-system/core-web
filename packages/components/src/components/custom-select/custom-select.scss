@@ -5,7 +5,7 @@
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
-@use "../../styles/dialog-init";
+@use "../../styles/internal/dialog-components";
 
 .db-custom-select-placeholder {
 	@extend %select-absolute-placeholder;
@@ -116,7 +116,7 @@
 					inset: 0;
 					content: "";
 					cursor: default;
-					background-color: dialog-init.$backdrop-color-strong;
+					background-color: dialog-components.$backdrop-color-strong;
 					opacity: variables.$db-opacity-lg;
 				}
 			}

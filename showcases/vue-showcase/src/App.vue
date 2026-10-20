@@ -4,6 +4,7 @@ import {
 	DBControlPanelDesktop,
 	DBControlPanelMobile,
 	DBControlPanelNavigation,
+	DBControlPanelSkipNavigation,
 	DBShell,
 	DBShellContent,
 	DBShellSubNavigation
@@ -48,6 +49,11 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 			</DBControlPanelNavigation>
 		</DBShellSubNavigation>
 		<DBControlPanelDesktop>
+			<template v-slot:skip-navigation>
+				<DBControlPanelSkipNavigation>
+					<a href="#main-content">Skip navigation</a>
+				</DBControlPanelSkipNavigation>
+			</template>
 			<template v-slot:brand>
 				<DBControlPanelBrand>Showcase</DBControlPanelBrand>
 			</template>
@@ -70,6 +76,11 @@ const { page, fullscreen, classNames, sortedNavigation, settings, shell } =
 			</template>
 		</DBControlPanelDesktop>
 		<DBControlPanelMobile drawerHeaderText="Showcase">
+			<template v-slot:skip-navigation>
+				<DBControlPanelSkipNavigation>
+					<a href="#main-content">Skip navigation</a>
+				</DBControlPanelSkipNavigation>
+			</template>
 			<template v-slot:brand>
 				<DBControlPanelBrand>Showcase</DBControlPanelBrand>
 			</template>

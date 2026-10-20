@@ -12,7 +12,7 @@ function parseHash(hash: string): {
 	parameters: URLSearchParams;
 } {
 	// Split hash from query parameters
-	const [hashPath, queryString] = hash.replace(/^#\/?/, '').split('?');
+	const [hashPath, queryString] = hash.replace(/^#\/?/, '').split('?', 2);
 	const parameters = new URLSearchParams(queryString ?? '');
 
 	if (!hashPath || hashPath === '/') {

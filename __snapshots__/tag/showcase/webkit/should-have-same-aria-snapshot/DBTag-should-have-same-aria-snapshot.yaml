@@ -53,3 +53,7 @@
     - text: Interactive Strong Radio 1 with Icon
     - radio "Interactive Strong Radio 2 with Icon"
     - text: Interactive Strong Radio 2 with Icon
+  - link "Interaction"
+  - button "Test"
+  - text: Remove me
+  - button "Remove"

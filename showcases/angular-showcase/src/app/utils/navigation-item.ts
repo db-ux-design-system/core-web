@@ -1,8 +1,11 @@
+import { PaginationComponent } from '../components/pagination.component';
+
 import { type Routes } from '@angular/router';
 import { AccordionItemShowcase } from '@components/components/accordion-item/showcase/accordion-item.showcase';
 import { AccordionShowcase } from '@components/components/accordion/showcase/accordion.showcase';
 import { BadgeShowcase } from '@components/components/badge/showcase/badge.showcase';
 import { BrandShowcase } from '@components/components/brand/showcase/brand.showcase';
+import { BreadcrumbShowcase } from '@components/components/breadcrumb/showcase/breadcrumb.showcase';
 import { ButtonShowcase } from '@components/components/button/showcase/button.showcase';
 import { CardShowcase } from '@components/components/card/showcase/card.showcase';
 import { CheckboxShowcase } from '@components/components/checkbox/showcase/checkbox.showcase';
@@ -12,6 +15,7 @@ import { ControlPanelFlatIconShowcase } from '@components/components/control-pan
 import { ControlPanelMobileShowcase } from '@components/components/control-panel-mobile/showcase/control-panel-mobile.showcase';
 import { CustomButtonShowcase } from '@components/components/custom-button/showcase/custom-button.showcase';
 import { CustomSelectShowcase } from '@components/components/custom-select/showcase/custom-select.showcase';
+import { DialogShowcase } from '@components/components/dialog/showcase/dialog.showcase';
 import { DividerShowcase } from '@components/components/divider/showcase/divider.showcase';
 import { DrawerShowcase } from '@components/components/drawer/showcase/drawer.showcase';
 import { FooterShowcase } from '@components/components/footer/showcase/footer.showcase';
@@ -25,6 +29,7 @@ import { LoadingIndicatorShowcase } from '@components/components/loading-indicat
 import { NavigationItemShowcase } from '@components/components/navigation-item/showcase/navigation-item.showcase';
 import { NavigationShowcase } from '@components/components/navigation/showcase/navigation.showcase';
 import { NotificationShowcase } from '@components/components/notification/showcase/notification.showcase';
+import { ParagraphShowcase } from '@components/components/paragraph/showcase/paragraph.showcase';
 import { PopoverShowcase } from '@components/components/popover/showcase/popover.showcase';
 import { RadioShowcase } from '@components/components/radio/showcase/radio.showcase';
 import { SectionShowcase } from '@components/components/section/showcase/section.showcase';
@@ -36,6 +41,7 @@ import { TabItemShowcase } from '@components/components/tab-item/showcase/tab-it
 import { TableShowcase } from '@components/components/table/showcase/table.showcase';
 import { TabsShowcase } from '@components/components/tabs/showcase/tabs.showcase';
 import { TagShowcase } from '@components/components/tag/showcase/tag.showcase';
+import { TextGroupShowcase } from '@components/components/text-group/showcase/text-group.showcase';
 import { TextareaShowcase } from '@components/components/textarea/showcase/textarea.showcase';
 import { TooltipShowcase } from '@components/components/tooltip/showcase/tooltip.showcase';
 import { HomeComponent } from '../components/home/home.component';
@@ -75,6 +81,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		path: '05',
 		label: '05 Navigation',
 		subNavigation: getSortedNavigationItems([
+			{
+				path: '05/breadcrumb',
+				label: 'Breadcrumb',
+				component: BreadcrumbShowcase
+			},
 			{
 				path: '05/shell',
 				label: 'Shell related',
@@ -117,6 +128,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				component: NavigationShowcase
 			},
 			{
+				path: '05/pagination',
+				label: 'Pagination',
+				component: PaginationComponent
+			},
+			{
 				path: '05/brand',
 				label: 'Brand',
 				component: BrandShowcase
@@ -137,6 +153,16 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 				path: '04/heading',
 				label: 'Heading',
 				component: HeadingShowcase
+			},
+			{
+				path: '04/paragraph',
+				label: 'Paragraph',
+				component: ParagraphShowcase
+			},
+			{
+				path: '04/text-group',
+				label: 'TextGroup',
+				component: TextGroupShowcase
 			},
 			{ path: '04/icon', label: 'Icon', component: IconShowcase },
 			{
@@ -214,6 +240,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 		subNavigation: getSortedNavigationItems([
 			{ path: '01/stack', label: 'Stack', component: StackShowcase },
 			{ path: '01/card', label: 'Card', component: CardShowcase },
+			{ path: '01/dialog', label: 'Dialog', component: DialogShowcase },
 			{ path: '01/drawer', label: 'Drawer', component: DrawerShowcase },
 			{
 				path: '01/divider',

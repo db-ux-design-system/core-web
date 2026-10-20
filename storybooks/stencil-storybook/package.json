@@ -1,0 +1,37 @@
+{
+  "name": "stencil-storybook",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Web components storybook",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @db-ux/wc-core-components run dev-build && storybook build --output-dir ../../build-storybooks/stencil-storybook",
+    "storybook": "pnpm --filter @db-ux/wc-core-components run dev-build && storybook dev -p 6009"
+  },
+  "dependencies": {
+    "@db-ux/core-components": "workspace:*",
+    "@db-ux/db-theme": "7.0.0",
+    "@db-ux/db-theme-fonts": "2.1.0",
+    "@db-ux/db-theme-icons": "4.3.0",
+    "@db-ux/wc-core-components": "workspace:*",
+    "lit": "3.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@storybook/addon-docs": "10.6.2",
+    "@storybook/web-components-vite": "10.6.2",
+    "eslint": "10.13.0",
+    "eslint-plugin-storybook": "10.6.2",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
+    "storybook": "10.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.2",
+    "vite": "8.3.4"
+  }
+}

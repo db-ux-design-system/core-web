@@ -6,7 +6,6 @@ export const StorybookDrawerArgTypes: Record<string, InputType> = {
 		control: 'select',
 		options: ['small', 'medium', 'large', 'full']
 	},
-	rounded: { control: 'boolean' },
 	showSpacing: { control: 'boolean' },
 	backdrop: {
 		control: 'select',
@@ -20,5 +19,6 @@ export const StorybookDrawerArgTypes: Record<string, InputType> = {
 	position: { control: 'select', options: ['fixed', 'absolute'] },
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' },
-	onClose: { action: 'onClose' }
+	onClose: { action: 'onClose' },
+	onCancel: { action: 'onCancel' }
 };

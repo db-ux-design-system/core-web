@@ -90,15 +90,12 @@ useMetadata({
 
 ### data-sb-replace
 
-Replace a component/element with a description in Storybook. Useful for interactive elements that shouldn't be interactive in the docs.
+Replace a component/element with a description in Storybook. Useful for interactive wiring (external state controls, event readouts) that would only add framework-specific noise to the generated code snippet.
 
 ```tsx
-<DBButton
-	data-sb-replace="Open DBDrawer by switching open property"
-	onClick={() => setOpenIndex(0)}
->
-	Open Drawer
-</DBButton>
+<div data-sb-replace="Use external buttons to change options and selection">
+	{/* controls that drive the example via local state */}
+</div>
 ```
 
 ### data-sb-ignore

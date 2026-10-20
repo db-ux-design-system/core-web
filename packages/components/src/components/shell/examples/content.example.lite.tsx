@@ -8,6 +8,8 @@ import DBControlPanelMeta from '../../control-panel-meta/control-panel-meta.lite
 import DBControlPanelMobile from '../../control-panel-mobile/control-panel-mobile.lite';
 import DBControlPanelNavigationItem from '../../control-panel-navigation-item/control-panel-navigation-item.lite';
 import DBControlPanelNavigation from '../../control-panel-navigation/control-panel-navigation.lite';
+import DBFooterMeta from '../../footer-meta/footer-meta.lite';
+import DBFooter from '../../footer/footer.lite';
 import DBLink from '../../link/link.lite';
 import DBNotification from '../../notification/notification.lite';
 import DBShellContent from '../../shell-content/shell-content.lite';
@@ -152,9 +154,9 @@ export default function ShellContent() {
 							</DBNotification>
 						}
 						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
+							<DBFooter>
+								<DBFooterMeta copyright="Example Company" />
+							</DBFooter>
 						}
 						mainId="main-content-auto-top"
 						mainLabel="shell-position-auto-top">
@@ -293,9 +295,9 @@ export default function ShellContent() {
 							</DBNotification>
 						}
 						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
+							<DBFooter>
+								<DBFooterMeta copyright="Example Company" />
+							</DBFooter>
 						}
 						mainId="main-content-fixed-top"
 						mainLabel="shell-position-fixed-top">
@@ -434,9 +436,9 @@ export default function ShellContent() {
 							</DBNotification>
 						}
 						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
+							<DBFooter>
+								<DBFooterMeta copyright="Example Company" />
+							</DBFooter>
 						}
 						mainId="main-content-auto-left"
 						mainLabel="shell-position-auto-left">
@@ -576,9 +578,9 @@ export default function ShellContent() {
 							</DBNotification>
 						}
 						endSlot={
-							<DBNotification headline="Test">
-								Test
-							</DBNotification>
+							<DBFooter>
+								<DBFooterMeta copyright="Example Company" />
+							</DBFooter>
 						}
 						mainId="main-content-fixed-left"
 						mainLabel="shell-position-fixed-left">
