@@ -333,12 +333,13 @@ test.describe('DBCustomSelect', () => {
 		example: 'Interaction',
 		async run({ content }) {
 			const select = content.getByTestId('single-select');
-			const summary = select.locator('summary');
 			const nativeSelect = select.locator('select');
 			const optionInput = select.locator('input[value="Option 3"]');
+
+			const placeholder = select.locator('.db-custom-select-placeholder');
 			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await expect(selectedLabel).not.toContainText('Option 3');
+			await expect(placeholder).toBeVisible();
 			await expect(optionInput).not.toBeChecked();
 
 			// Browser autofill and password managers write to the hidden backing <select> and fire `change`; Playwright cannot trigger real autofill, so drive the exact same DOM path directly.
@@ -348,6 +349,7 @@ test.describe('DBCustomSelect', () => {
 			});
 
 			// The visible summary and the option state have to follow the native value instead of staying stale.
+			await expect(placeholder).not.toBeVisible();
 			await expect(selectedLabel).toContainText('Option 3');
 			await expect(optionInput).toBeChecked();
 
