@@ -735,6 +735,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state.handleOptionSelected([]);
 			state.handleSummaryFocus();
 		},
+		syncDisabledButtons: () => {
+			if (!_ref) {
+				return;
+			}
+			const disabled = getBoolean(props.disabled, 'disabled');
+			const buttons: HTMLButtonElement[] = Array.from(
+				_ref.querySelectorAll('.db-custom-select-form-field button')
+			);
+			for (const button of buttons) {
+				if (disabled) {
+					button.setAttribute('tabindex', '-1');
+					button.setAttribute('aria-disabled', 'true');
+				} else {
+					button.removeAttribute('tabindex');
+					button.removeAttribute('aria-disabled');
+				}
+			}
+		},
 		handleSummaryFocus: () => {
 			if (detailsRef) {
 				(detailsRef as HTMLDetailsElement)
@@ -766,6 +784,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onMount(() => {
 		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		state.syncDisabledButtons();
 	});
 
 	onUpdate(() => {
@@ -981,6 +1000,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			props.onAmountChange(state._selectedOptions?.length ?? 0);
 		}
 	}, [state._selectedOptions]);
+
+	// Re-run when the disabled state flips or when the set of tags/clear button
+	// changes (selection changes re-render them), see syncDisabledButtons.
+	onUpdate(() => {
+		state.syncDisabledButtons();
+	}, [props.disabled, state._selectedOptions]);
 
 	onUpdate(() => {
 		if (selectAllRef) {

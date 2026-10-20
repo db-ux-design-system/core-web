@@ -6,6 +6,10 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/dialog-components";
 
+// Field content stacked above the absolute <details> overlay; tags outrank the clear button so a tag's remove tooltip paints over it.
+$clear-button-z-index: 1;
+$tags-z-index: 2;
+
 .db-custom-select-form-field {
 	@extend %db-overwrite-font-size-md;
 	@extend %default-interactive-component;
@@ -56,6 +60,7 @@
 		@include helpers.display(flex);
 
 		gap: variables.$db-spacing-fixed-sm;
+		z-index: $tags-z-index;
 	}
 
 	> .db-custom-select-label,
@@ -64,7 +69,9 @@
 		pointer-events: none;
 	}
 
-	.db-custom-select-tags .db-tab-remove-button {
+	&:has(.db-custom-select-summary:not([aria-disabled="true"]))
+		.db-custom-select-tags
+		.db-tab-remove-button {
 		pointer-events: auto;
 	}
 
@@ -118,11 +125,8 @@
 		background-color: transparent;
 		list-style: none;
 
-		// Keep the summary transparent on hover; the hovered background is painted
-		// on the field box instead (see the :has(...:hover) rule above). This is a
-		// visual reset only and does not affect the summary's own focus ring.
 		/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
-		&:hover {
+		&:not([aria-disabled="true"]):hover {
 			background-color: transparent;
 		}
 
@@ -155,6 +159,7 @@
 
 	.db-custom-select-clear {
 		position: relative;
+		z-index: $clear-button-z-index;
 		margin-inline-end: variables.$db-spacing-fixed-xs;
 
 		@include helpers.divider("right", "after");

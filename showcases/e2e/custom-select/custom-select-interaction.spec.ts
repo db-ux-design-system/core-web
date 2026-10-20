@@ -297,6 +297,36 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should take tag remove buttons and clear button out of the tab order when disabled',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('disabled-tag-select');
+
+			const removeButtons = select.locator(
+				'.db-tag .db-tab-remove-button'
+			);
+			await expect(removeButtons).toHaveCount(2);
+
+			const clearButton = select.locator('.db-custom-select-clear');
+			await expect(clearButton).toHaveCount(1);
+
+			// A disabled custom select must expose no keyboard- or
+			// pointer-reachable controls: the tag remove buttons (rendered by
+			// DBTag, which has no disabled state of its own) and the clear
+			// button are taken out of the tab order and marked aria-disabled.
+			for (const button of [
+				removeButtons.first(),
+				removeButtons.last(),
+				clearButton
+			]) {
+				await expect(button).toHaveAttribute('tabindex', '-1');
+				await expect(button).toHaveAttribute('aria-disabled', 'true');
+			}
+		}
+	});
+
+	runInteractionTest({
 		title: 'should clear tags when values is reset to null, undefined or an empty array',
 		path,
 		example: 'Interaction',

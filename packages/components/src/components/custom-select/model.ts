@@ -284,6 +284,12 @@ export type DBCustomSelectDefaultState = {
 	handleSelect: (value?: string) => void;
 	handleSelectAll: (event: any) => void;
 	handleClearAll: (event: any) => void;
+	/**
+	 * Toggles `tabindex`/`aria-disabled` on every `<button>` inside the field
+	 * (tag remove buttons + clear button) based on `props.disabled`, so a
+	 * disabled custom select exposes no keyboard- or pointer-reachable controls.
+	 */
+	syncDisabledButtons: () => void;
 	handleDropdownToggle: (event: any) => void;
 	handleDocumentClose: (event: any) => void;
 	/**
