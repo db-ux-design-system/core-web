@@ -581,8 +581,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
       cssnano:
-        specifier: 9.8.0
-        version: 9.8.0(postcss@8.5.30)
+        specifier: 9.9.0
+        version: 9.9.0(postcss@8.5.30)
       hygen:
         specifier: 6.2.11
         version: 6.2.11(supports-color@5.5.0)
@@ -666,8 +666,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0
       cssnano:
-        specifier: 9.8.0
-        version: 9.8.0(postcss@8.5.30)
+        specifier: 9.9.0
+        version: 9.9.0(postcss@8.5.30)
       glob:
         specifier: 13.0.6
         version: 13.0.6
@@ -8713,6 +8713,12 @@ packages:
 
   cssnano@9.8.0:
     resolution: {integrity: sha512-sNgrmVv7rtwR3j6VwjlgoDPq52ptYAKbsBQBm3SR1rEAg0e1feS8N2OqkPp1ZKmyGkpNr80kerYNCCbdQXhDtg==}
+    engines: {node: ^22.22.3 || ^24.15.0 || >=26.0}
+    peerDependencies:
+      postcss: 8.5.30
+
+  cssnano@9.9.0:
+    resolution: {integrity: sha512-JS914Th2NRk2979JHJvbE3UjPtLmyXtPnr23NNul9BOQwEt9r/A2aM1STrKtKHAPc3XRaUDwMoqkXnjEpgHkAw==}
     engines: {node: ^22.22.3 || ^24.15.0 || >=26.0}
     peerDependencies:
       postcss: 8.5.30
@@ -23848,6 +23854,15 @@ snapshots:
     dependencies:
       cssnano-preset-default: 9.8.0(postcss@8.5.30)
       postcss: 8.5.30
+
+  cssnano@9.9.0(postcss@8.5.30):
+    dependencies:
+      '@colordx/core': 7.3.0
+      '@csstools/css-tokenizer': 4.0.2
+      browserslist: 4.29.3
+      caniuse-api: 4.0.0
+      postcss: 8.5.30
+      postcss-calc: 11.2.2(postcss@8.5.30)
 
   csso@5.0.5:
     dependencies:
