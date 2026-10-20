@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": minor
 ---
 
-feat(DBHeading): allow theme-overridable `fontWeight` values via `OverwriteHeadingFontWeight`
+feat(DBHeading): allow theme-overridable `fontWeight` values via `OverwriteHeadingFontWeights`
