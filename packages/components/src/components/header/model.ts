@@ -1,4 +1,5 @@
 import type {
+	CloseEventState,
 	ContainerWidthProps,
 	GlobalProps,
 	GlobalState,
@@ -69,5 +70,6 @@ export type DBHeaderDefaultState = {
 export type DBHeaderState = DBHeaderDefaultState &
 	GlobalState &
 	ToggleEventState<HTMLElement> &
+	CloseEventState<Event> &
 	InitializedState &
 	NavigationBehaviorState;
