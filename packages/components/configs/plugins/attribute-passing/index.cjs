@@ -38,7 +38,12 @@ module.exports = () => ({
 					json.hooks.onUnMount = { code: '' };
 				}
 				json.hooks.onUnMount = {
-					code: `${json.hooks.onUnMount.code};\nthis.observer${target === 'angular' ? '()' : ''}?.disconnect();`
+					code:
+						`${json.hooks.onUnMount.code};\nthis.observer${target === 'angular' ? '()' : ''}?.disconnect();` +
+						// Reset so `connectedCallback` can re-attach the observer after a DOM move
+						(target === 'stencil'
+							? '\nthis.observer = undefined;'
+							: '')
 				};
 
 				if (!json.state) {
@@ -146,6 +151,26 @@ module.exports = () => ({
 						'`${currentClass ? `${currentClass} ` : ""}${value}`',
 						'`${currentClass ? currentClass : ""}${value ? ` ${value}`: ""}`'
 					);
+			}
+
+			if (
+				target === 'stencil' &&
+				changedCode.includes('setupObserver(') &&
+				!/(?<!dis)connectedCallback\(\)/.test(changedCode) &&
+				changedCode.includes('disconnectedCallback() {')
+			) {
+				const componentTagName = `db-${dashCase(json.name.replace('DB', ''))}`;
+				// Re-run attribute passing after a DOM move, `componentDidLoad` runs only once
+				changedCode = changedCode.replace(
+					'disconnectedCallback() {',
+					`connectedCallback() {
+    if (this._ref) {
+      this.enableAttributePassing(this._ref, "${componentTagName}");
+      this.setupObserver(this._ref);
+    }
+  }
+  disconnectedCallback() {`
+				);
 			}
 
 			return changedCode;
