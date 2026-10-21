@@ -67,8 +67,48 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 	position: absolute;
 }
 
+%tab-panels {
+	// SSR / no-JS fallback for the composed API path:
+	// When DBTabs renders children directly, panels do not receive the `hidden`
+	// prop. Before JS sets `hidden` via syncSelection(), hide all panels except
+	// the first to prevent a flash of all content at once.
+	// The :not(:has(...[hidden])) guard ensures this rule is inert after
+	// hydration - once JS sets `hidden` on at least one panel, native hidden
+	// behavior takes over.
+	// When initialSelectedMode="manually", hide ALL panels (no tab is active).
+	:has(> .db-tab-panel ~ .db-tab-panel, > db-tab-panel ~ db-tab-panel) {
+		&[data-initial-selected-mode="manually"]:not(
+				:has(
+					> .db-tab-panel[hidden],
+					> db-tab-panel .db-tab-panel[hidden]
+				)
+			)
+			> db-tab-panel
+			> .db-tab-panel,
+		> .db-tab-panel {
+			display: none;
+		}
+
+		&:not(
+				[data-initial-selected-mode="manually"],
+				:has(
+					> .db-tab-panel[hidden],
+					> db-tab-panel .db-tab-panel[hidden]
+				)
+			)
+			> db-tab-panel
+			> .db-tab-panel
+			~ db-tab-panel
+			> .db-tab-panel,
+		> .db-tab-panel ~ .db-tab-panel {
+			display: none;
+		}
+	}
+}
+
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
+	@extend %tab-panels;
 
 	@include helpers.display(flex);
 
