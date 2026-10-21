@@ -108,8 +108,8 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 
 .db-tabs {
 	$db-tabs-z-index-tab-list: 20;
-	@extend %tab-panels;
 
+	@extend %tab-panels;
 	@include helpers.display(flex);
 
 	inline-size: 100%;
