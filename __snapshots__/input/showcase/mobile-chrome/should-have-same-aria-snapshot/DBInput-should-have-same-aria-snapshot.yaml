@@ -50,8 +50,18 @@
   - status
   - text: Label
   - textbox "Label":
+    - /placeholder: Message with icon
+  - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
     - /placeholder: Message without icon
   - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message with wrap
+  - text: A longer message that wraps when the container is too small
   - status
   - text: Label
   - textbox "Label":
