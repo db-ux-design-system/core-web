@@ -10,12 +10,7 @@
 
 - fix(DBHeader): always report the closed state when the drawer closes - [see commit 4f63880](https://github.com/db-ux-design-system/core-web/commit/4f638806a2955dd95c28690af2cc0da1a8f0bcbe):
 
-    - The drawer's close event was routed through the toggle handler, which derives
-    - its value by inverting `drawerOpen`. When the drawer was closed via the state
-    - (a navigation item click, or a consumer calling `setDrawerOpen(false)`), the
-    - dialog closed only after `drawerOpen` was already `false`, so the inverted
-    - value reported "open" and reopened the drawer immediately. `onToggle` now
-    - always receives `false` on close.
+    - The drawer's close event was routed through the toggle handler, which derives its value by inverting `drawerOpen`. When the drawer was closed via the state (a navigation item click, or a consumer calling `setDrawerOpen(false)`), the dialog closed only after `drawerOpen` was already `false`, so the inverted value reported "open" and reopened the drawer immediately. `onToggle` now always receives `false` on close.
 
 ## 6.0.0
 
