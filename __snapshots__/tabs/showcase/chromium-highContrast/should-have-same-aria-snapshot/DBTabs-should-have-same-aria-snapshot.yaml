@@ -217,6 +217,9 @@
   - tablist:
     - tab "Test 1" [selected]
   - tabpanel "Test 1": Content 1
+  - button "Toggle dynamic tab"
+  - tablist:
+    - tab "Dynamic 1"
   - tablist:
     - tab "Tab item with a very long label that must not be cut off" [selected]
     - tab "Short"
