@@ -33,6 +33,10 @@ export type DBButtonSharedProps = {
 	variant?: ButtonVariantType | string;
 };
 
+export type FormMethodType = 'post' | 'get' | 'dialog';
+export type FormEncType =
+	'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
+
 export type DBButtonDefaultProps = {
 	/**
 	 * The [command](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#command) attribute specifies the action to perform on the element controlled by a `<button>` element.
@@ -67,6 +71,56 @@ export type DBButtonDefaultProps = {
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
+
+	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
+	 */
+	formAction?: any;
+
+	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
+	 */
+	formaction?: any;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formEncType?: FormEncType;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formenctype?: FormEncType;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formMethod?: FormMethodType;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formmethod?: FormMethodType;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formNoValidate?: boolean | string;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formnovalidate?: boolean | string;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formTarget?: string;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formtarget?: string;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &
