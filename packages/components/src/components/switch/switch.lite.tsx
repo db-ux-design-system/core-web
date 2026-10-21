@@ -34,6 +34,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getMessageConfig,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -69,6 +70,15 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
 		abortController: undefined,
+		getMessageProps: () => {
+			return getMessageConfig(props.messageProps, props.messageIcon);
+		},
+		getValidMessageProps: () => {
+			return getMessageConfig(props.validMessageProps);
+		},
+		getInvalidMessageProps: () => {
+			return getMessageConfig(props.invalidMessageProps);
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -276,11 +286,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					id={state._messageId}
-					size={props.messageProps?.size || 'small'}
-					icon={props.messageProps?.icon || props.messageIcon}
-					showIcon={props.messageProps?.showIcon}
-					wrap={props.messageProps?.wrap}
-					className={props.messageProps?.className}
+					size={state.getMessageProps().size}
+					icon={state.getMessageProps().icon}
+					showIcon={state.getMessageProps().showIcon}
+					wrap={state.getMessageProps().wrap}
+					className={state.getMessageProps().className}
 					semantic="adaptive">
 					{props.message}
 				</DBInfotext>
@@ -288,22 +298,22 @@ export default function DBSwitch(props: DBSwitchProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size={props.validMessageProps?.size || 'small'}
-					icon={props.validMessageProps?.icon}
-					showIcon={props.validMessageProps?.showIcon}
-					wrap={props.validMessageProps?.wrap}
-					className={props.validMessageProps?.className}
+					size={state.getValidMessageProps().size}
+					icon={state.getValidMessageProps().icon}
+					showIcon={state.getValidMessageProps().showIcon}
+					wrap={state.getValidMessageProps().wrap}
+					className={state.getValidMessageProps().className}
 					semantic="successful">
 					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 			<DBInfotext
 				id={state._invalidMessageId}
-				size={props.invalidMessageProps?.size || 'small'}
-				icon={props.invalidMessageProps?.icon}
-				showIcon={props.invalidMessageProps?.showIcon}
-				wrap={props.invalidMessageProps?.wrap}
-				className={props.invalidMessageProps?.className}
+				size={state.getInvalidMessageProps().size}
+				icon={state.getInvalidMessageProps().icon}
+				showIcon={state.getInvalidMessageProps().showIcon}
+				wrap={state.getInvalidMessageProps().wrap}
+				className={state.getInvalidMessageProps().className}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>

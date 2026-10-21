@@ -44,6 +44,7 @@ import {
 } from '../../utils';
 import {
 	addValueResetEventListener,
+	getMessageConfig,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue,
 	shouldKeepDisplayValue
@@ -76,6 +77,27 @@ export default function DBInput(props: DBInputProps) {
 		_value: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		getMessageProps: () => {
+			return getMessageConfig(
+				props.messageProps,
+				props.messageIcon,
+				props.messageSize
+			);
+		},
+		getValidMessageProps: () => {
+			return getMessageConfig(
+				props.validMessageProps,
+				undefined,
+				props.validMessageSize
+			);
+		},
+		getInvalidMessageProps: () => {
+			return getMessageConfig(
+				props.invalidMessageProps,
+				undefined,
+				props.invalidMessageSize
+			);
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -407,13 +429,11 @@ export default function DBInput(props: DBInputProps) {
 			{props.children}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size={
-						props.messageProps?.size || props.messageSize || 'small'
-					}
-					icon={props.messageProps?.icon || props.messageIcon}
-					showIcon={props.messageProps?.showIcon}
-					wrap={props.messageProps?.wrap}
-					className={props.messageProps?.className}
+					size={state.getMessageProps().size}
+					icon={state.getMessageProps().icon}
+					showIcon={state.getMessageProps().showIcon}
+					wrap={state.getMessageProps().wrap}
+					className={state.getMessageProps().className}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
@@ -422,15 +442,11 @@ export default function DBInput(props: DBInputProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size={
-						props.validMessageProps?.size ||
-						props.validMessageSize ||
-						'small'
-					}
-					icon={props.validMessageProps?.icon}
-					showIcon={props.validMessageProps?.showIcon}
-					wrap={props.validMessageProps?.wrap}
-					className={props.validMessageProps?.className}
+					size={state.getValidMessageProps().size}
+					icon={state.getValidMessageProps().icon}
+					showIcon={state.getValidMessageProps().showIcon}
+					wrap={state.getValidMessageProps().wrap}
+					className={state.getValidMessageProps().className}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -438,15 +454,11 @@ export default function DBInput(props: DBInputProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size={
-					props.invalidMessageProps?.size ||
-					props.invalidMessageSize ||
-					'small'
-				}
-				icon={props.invalidMessageProps?.icon}
-				showIcon={props.invalidMessageProps?.showIcon}
-				wrap={props.invalidMessageProps?.wrap}
-				className={props.invalidMessageProps?.className}
+				size={state.getInvalidMessageProps().size}
+				icon={state.getInvalidMessageProps().icon}
+				showIcon={state.getInvalidMessageProps().showIcon}
+				wrap={state.getInvalidMessageProps().wrap}
+				className={state.getInvalidMessageProps().className}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>

@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+	getMessageConfig,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue,
 	shouldKeepDisplayValue
@@ -378,5 +379,94 @@ describe('shouldKeepDisplayValue', () => {
 	it('does not keep the display value before the element exists', () => {
 		expect(shouldKeepDisplayValue(undefined, undefined)).toBe(false);
 		expect(shouldKeepDisplayValue({}, undefined)).toBe(false);
+	});
+});
+
+describe('getMessageConfig (#4791)', () => {
+	it('defaults to size small without any config', () => {
+		expect(getMessageConfig()).toEqual({
+			size: 'small',
+			icon: undefined,
+			showIcon: undefined,
+			wrap: undefined,
+			className: undefined
+		});
+	});
+
+	it('passes all values of the config object through', () => {
+		expect(
+			getMessageConfig({
+				size: 'medium',
+				icon: 'user',
+				showIcon: false,
+				wrap: true,
+				className: 'custom'
+			})
+		).toEqual({
+			size: 'medium',
+			icon: 'user',
+			showIcon: false,
+			wrap: true,
+			className: 'custom'
+		});
+	});
+
+	it('uses the deprecated single props as fallback', () => {
+		const config = getMessageConfig(undefined, 'user', 'medium');
+		expect(config.size).toBe('medium');
+		expect(config.icon).toBe('user');
+	});
+
+	it('prefers the config object over the deprecated single props', () => {
+		const config = getMessageConfig(
+			{ size: 'small', icon: 'information_circle' },
+			'user',
+			'medium'
+		);
+		expect(config.size).toBe('small');
+		expect(config.icon).toBe('information_circle');
+	});
+
+	it('falls back to small for an empty size', () => {
+		expect(getMessageConfig(undefined, undefined, '' as never).size).toBe(
+			'small'
+		);
+	});
+
+	it('parses a JSON string, e.g. from a Web Component attribute', () => {
+		const config = getMessageConfig(
+			'{"size":"medium","showIcon":false,"wrap":true,"class":"custom"}'
+		);
+		expect(config).toEqual({
+			size: 'medium',
+			icon: undefined,
+			showIcon: false,
+			wrap: true,
+			className: 'custom'
+		});
+	});
+
+	it('resolves class when className is not set, className wins otherwise', () => {
+		expect(getMessageConfig({ class: 'from-class' }).className).toBe(
+			'from-class'
+		);
+		expect(
+			getMessageConfig({
+				className: 'from-className',
+				class: 'from-class'
+			}).className
+		).toBe('from-className');
+	});
+
+	it('ignores invalid JSON and non-object values', () => {
+		for (const value of ['{invalid', '', '"medium"', '[1,2]', 'null']) {
+			expect(getMessageConfig(value, 'user', 'medium')).toEqual({
+				size: 'medium',
+				icon: 'user',
+				showIcon: undefined,
+				wrap: undefined,
+				className: undefined
+			});
+		}
 	});
 });

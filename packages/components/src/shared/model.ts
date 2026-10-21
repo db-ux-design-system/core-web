@@ -519,15 +519,15 @@ export type FormMessageConfig = SizeProps &
 	IconProps &
 	ShowIconProps &
 	WrapProps &
-	Pick<GlobalProps, 'className'>;
+	Pick<GlobalProps, 'className' | 'class'>;
 
 export type FormMessageProps = {
-	/** Props for the helper message (DBInfotext): size, icon, showIcon, wrap and className. */
-	messageProps?: FormMessageConfig;
-	/** Props for the valid message (DBInfotext): size, icon, showIcon, wrap and className. */
-	validMessageProps?: FormMessageConfig;
-	/** Props for the invalid message (DBInfotext): size, icon, showIcon, wrap and className. */
-	invalidMessageProps?: FormMessageConfig;
+	/** Props for the helper message (DBInfotext): size, icon, showIcon, wrap and className/class. Accepts an object or a JSON string. */
+	messageProps?: FormMessageConfig | string;
+	/** Props for the valid message (DBInfotext): size, icon, showIcon, wrap and className/class. Accepts an object or a JSON string. */
+	validMessageProps?: FormMessageConfig | string;
+	/** Props for the invalid message (DBInfotext): size, icon, showIcon, wrap and className/class. Accepts an object or a JSON string. */
+	invalidMessageProps?: FormMessageConfig | string;
 	/**
 	 * Change the variant of the label to float or hidden
 	 */
@@ -551,9 +551,7 @@ export type FormMessageProps = {
 	 */
 	invalidMessage?: string;
 
-	/**
-	 * Set/overwrite icon for helper message for form components
-	 */
+	/** @deprecated Use `messageProps.icon` instead. Set/overwrite icon for helper message for form components */
 	messageIcon?: IconTypes;
 
 	/**
@@ -569,6 +567,21 @@ export type FormMessageProps = {
 	 * Enables or disables the visibility of the message.
 	 */
 	showMessage?: boolean | string;
+};
+
+/** Message config with all fallbacks applied, as passed to DBInfotext. */
+export type ResolvedMessageConfig = {
+	size: SizeType;
+	icon?: IconTypes;
+	showIcon?: boolean | string;
+	wrap?: boolean | string;
+	className?: string;
+};
+
+export type FormMessageState = {
+	getMessageProps: () => ResolvedMessageConfig;
+	getValidMessageProps: () => ResolvedMessageConfig;
+	getInvalidMessageProps: () => ResolvedMessageConfig;
 };
 
 export type FromValidState = {

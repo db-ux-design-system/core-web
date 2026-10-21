@@ -6,7 +6,9 @@ useMetadata({
 	storybookTitle: 'Message Props',
 	storybookNames: [
 		'Message size medium',
+		'Message with icon',
 		'Message without icon',
+		'Message with wrap',
 		'Valid message size medium',
 		'Invalid message size medium'
 	],
@@ -24,9 +26,18 @@ export default function InputMessageProps() {
 			<DBInput
 				label="Label"
 				message="Message"
-				messageIcon="information_circle"
-				messageProps={{ showIcon: false }}
+				messageProps={{ icon: 'information_circle' }}
+				placeholder="Message with icon"></DBInput>
+			<DBInput
+				label="Label"
+				message="Message"
+				messageProps={{ icon: 'information_circle', showIcon: false }}
 				placeholder="Message without icon"></DBInput>
+			<DBInput
+				label="Label"
+				message="A longer message that wraps when the container is too small"
+				messageProps={{ wrap: true }}
+				placeholder="Message with wrap"></DBInput>
 			<DBInput
 				label="Label"
 				validation="valid"

@@ -4,6 +4,7 @@ import type {
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormSizeProps,
 	FormState,
@@ -133,4 +134,5 @@ export type DBInputState = DBInputDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
+	FormMessageState &
 	FromValidState;
