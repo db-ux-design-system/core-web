@@ -42,6 +42,27 @@
     - /placeholder: "True"
   - text: Message
   - status
+  - link "Message Props"
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message size medium
+  - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message without icon
+  - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Valid message size medium
+  - text: Valid message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Invalid message size medium
+  - text: Invalid message
+  - status
   - link "State"
   - text: Label
   - textbox "Label":
