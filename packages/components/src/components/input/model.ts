@@ -98,17 +98,11 @@ export type DBInputDefaultProps = {
 		| 'search'
 		| 'email'
 		| 'url';
-	/**
-	 * The size of the message infotext. Defaults to "small".
-	 */
+	/** @deprecated Use `messageProps.size` instead. The size of the message infotext. Defaults to "small". */
 	messageSize?: SizeType;
-	/**
-	 * The size of the valid message infotext. Defaults to "small".
-	 */
+	/** @deprecated Use `validMessageProps.size` instead. The size of the valid message infotext. Defaults to "small". */
 	validMessageSize?: SizeType;
-	/**
-	 * The size of the invalid message infotext. Defaults to "small".
-	 */
+	/** @deprecated Use `invalidMessageProps.size` instead. The size of the invalid message infotext. Defaults to "small". */
 	invalidMessageSize?: SizeType;
 };
 

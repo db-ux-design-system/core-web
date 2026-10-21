@@ -513,7 +513,21 @@ export const AutoCompleteList = [
 	'webauthn'
 ] as const;
 export type AutoCompleteType = (typeof AutoCompleteList)[number];
+
+/** DBInfotext props that can be configured for the messages of form components. */
+export type FormMessageConfig = SizeProps &
+	IconProps &
+	ShowIconProps &
+	WrapProps &
+	Pick<GlobalProps, 'className'>;
+
 export type FormMessageProps = {
+	/** Props for the helper message (DBInfotext): size, icon, showIcon, wrap and className. */
+	messageProps?: FormMessageConfig;
+	/** Props for the valid message (DBInfotext): size, icon, showIcon, wrap and className. */
+	validMessageProps?: FormMessageConfig;
+	/** Props for the invalid message (DBInfotext): size, icon, showIcon, wrap and className. */
+	invalidMessageProps?: FormMessageConfig;
 	/**
 	 * Change the variant of the label to float or hidden
 	 */

@@ -11,6 +11,9 @@ export const StorybookCustomSelectArgTypes: Record<string, InputType> = {
 	values: { control: 'object' },
 	showLabel: { control: 'boolean' },
 	message: { control: 'text' },
+	messageProps: { control: 'object' },
+	validMessageProps: { control: 'object' },
+	invalidMessageProps: { control: 'object' },
 	showMessage: { control: 'boolean' },
 	...StorybookIconArgTypes,
 	validation: {

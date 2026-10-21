@@ -272,11 +272,15 @@ export default function DBSwitch(props: DBSwitchProps) {
 				{props.children}
 			</label>
 
+			{/* jscpd:ignore-start */}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					id={state._messageId}
-					size="small"
-					icon={props.messageIcon}
+					size={props.messageProps?.size || 'small'}
+					icon={props.messageProps?.icon || props.messageIcon}
+					showIcon={props.messageProps?.showIcon}
+					wrap={props.messageProps?.wrap}
+					className={props.messageProps?.className}
 					semantic="adaptive">
 					{props.message}
 				</DBInfotext>
@@ -284,17 +288,26 @@ export default function DBSwitch(props: DBSwitchProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={props.validMessageProps?.size || 'small'}
+					icon={props.validMessageProps?.icon}
+					showIcon={props.validMessageProps?.showIcon}
+					wrap={props.validMessageProps?.wrap}
+					className={props.validMessageProps?.className}
 					semantic="successful">
 					{props.validMessage ?? DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
 			</Show>
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={props.invalidMessageProps?.size || 'small'}
+				icon={props.invalidMessageProps?.icon}
+				showIcon={props.invalidMessageProps?.showIcon}
+				wrap={props.invalidMessageProps?.wrap}
+				className={props.invalidMessageProps?.className}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
+			{/* jscpd:ignore-end */}
 			<span data-visually-hidden="true" role="status">
 				{state._voiceOverFallback}
 			</span>

@@ -317,8 +317,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
-					icon={props.messageIcon}
+					size={props.messageProps?.size || 'small'}
+					icon={props.messageProps?.icon || props.messageIcon}
+					showIcon={props.messageProps?.showIcon}
+					wrap={props.messageProps?.wrap}
+					className={props.messageProps?.className}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
@@ -326,7 +329,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={props.validMessageProps?.size || 'small'}
+					icon={props.validMessageProps?.icon}
+					showIcon={props.validMessageProps?.showIcon}
+					wrap={props.validMessageProps?.wrap}
+					className={props.validMessageProps?.className}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -334,7 +341,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={props.invalidMessageProps?.size || 'small'}
+				icon={props.invalidMessageProps?.icon}
+				showIcon={props.invalidMessageProps?.showIcon}
+				wrap={props.invalidMessageProps?.wrap}
+				className={props.invalidMessageProps?.className}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
