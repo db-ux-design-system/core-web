@@ -238,7 +238,13 @@ When adding or modifying examples:
 - **For one-off, showcase-only layout, use an inline `style` object instead of a bespoke CSS class.** The example's markup is emitted verbatim into Storybook's "Show code" view, so a layout class defined only in the showcase stylesheet (e.g. `badge-inline-container`) leaves consumers copying a class they cannot resolve ([#7023](https://github.com/db-ux-design-system/core-web/issues/7023)). An inline `style` is self-explanatory in the snippet and renders identically in the showcase. Prefer design-token custom properties in the value (e.g. `gap: 'var(--db-spacing-fixed-sm)'`) so the demo stays on-brand:
 
     ```tsx
-    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--db-spacing-fixed-sm)' }}>
+    <div
+    	style={{
+    		display: "flex",
+    		alignItems: "center",
+    		gap: "var(--db-spacing-fixed-sm)"
+    	}}
+    >
     	{/* ... */}
     </div>
     ```
@@ -250,6 +256,7 @@ When adding or modifying examples:
     - **Shared showcase helpers reused across many examples** (e.g. `fit-content-container`). Converting these to repeated inline styles in every example only trades one problem for dozens of copies that drift; leave them in the shared stylesheet.
 
     Inline `style` also only reaches the element it sits on — it cannot express descendant or pseudo-element rules. When a one-off demo needs those, prefer dropping the fine-tuning over reintroducing a mystery class; keep it in the shared stylesheet only if the layout genuinely depends on it.
+
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in Patternhub, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
 
