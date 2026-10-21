@@ -14,7 +14,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **badge** — New component
 
-**brand** — `cmp-brand`->`db-brand`. All anchor-related props removed (`siteNameLink`,`alt`,`anchorRef`,`anchorTitle`,`anchorRelation`,`src`->[removed]). Wrap with your own `<a>` if needed. New: `hideLogo`.
+**brand** — `cmp-brand`->`db-control-panel-brand` (the former `db-brand` is deprecated). Use it inside the `db-control-panel-*` / `db-shell` family. Wrap with your own `<a>` if a link is needed.
 
 **breadcrumb** — `cmp-breadcrumb`->`db-breadcrumb` (with `db-breadcrumb-item` children, or the `items` array prop). Props: `separator` (`chevron`/`slash`), `maxItems` (default 4), `expandText`, `size`. Each item uses `db-link`-style props (`href`, `text`, `icon`) plus `ariaCurrent`.
 
@@ -32,25 +32,25 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **footer** — `rea-footer`->`db-footer` (with `db-footer-content` / `db-footer-meta` sub-parts). Previously a custom `<footer>` + `db-link` composition was needed; the component now ships.
 
-**header** — `rea-header`->`db-header`. `mobile`->`forceMobile`.
+**header** — `rea-header`->`db-control-panel-desktop` / `db-control-panel-mobile` (the former `db-header` is deprecated). Pick the desktop or mobile control panel depending on the breakpoint; both are part of the `db-shell` family.
 
 **icon** — ->`db-icon`. Props: `icon` (name, see icon-migration), `variant` (custom icon font family), `weight` (`16`/`20`/`24`/`32`/`48`/`64`). Most consumers pass icons via the `icon` prop on other components rather than using `db-icon` directly.
 
 **infotext** — New component
 
-**input** — `elm-input`->`db-input`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. New variants: `adaptive`,`neutral`,`critical`,`informational`,`warning`,`successful`. `description`->`message`. ⚠️ Behavior change: In Generation 2, `description` was hidden by default (tooltip/hint). In Generation 3, `message` is ALWAYS visible by default. To restore the Generation 2 hidden behavior, set `showMessage={false}` explicitly.
+**input** — `elm-input`->`db-input`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. `variant` now controls the label layout only (`above`/`floating`). Validation state is set via `validation` (`valid`/`invalid`/`no-validation`), not via colour variants. `description`->`message`. ⚠️ Behavior change: In Generation 2, `description` was hidden by default (tooltip/hint). In Generation 3, `message` is ALWAYS visible by default. To restore the Generation 2 hidden behavior, set `showMessage={false}` explicitly.
 
 **link** — `elm-link`->`db-link`. `icon`,`icononly`,`iconVariant`->[removed] (use `content` for arrow icon).
 
 **loading-indicator** — `elm-loadingindicator` and `elm-progress`->`db-loading-indicator`. Props: `variant` (`bar`/`circular`), `state` (`inactive`/`active`/`successful`/`critical`), `value`/`max`/`progressText`/`showProgressText` (determinate progress), `indeterminate`, `label`, `overlay`, `size`. Covers both the former loading spinner and the progress bar; no custom CSS spinner or native `<progress>` needed.
 
-**navigation** — `cmp-mainnavigation`->`db-navigation`. `data`,`siteName`->[removed] (use children/slot, features moved to `db-header`).
+**navigation** — `cmp-mainnavigation`->`db-control-panel-navigation` (the former `db-navigation` is deprecated). `data`,`siteName`->[removed] (use `db-control-panel-navigation-item` children, features moved to the `db-control-panel-desktop`/`db-control-panel-mobile` shell).
 
-**navigation-item** — New component
+**navigation-item** — New component (`db-control-panel-navigation-item`; the former `db-navigation-item` is deprecated)
 
 **notification** — `elm-notification`->`db-notification`. Semantic colour moves to the `semantic` prop (`adaptive`/`neutral`/`critical`/`informational`/`warning`/`successful`): `error`->`semantic="critical"`, `informative`->`semantic="informational"`, `warning`->`semantic="warning"`, `success`->`semantic="successful"`. The `variant` prop now controls layout only (`docked`/`standalone`/`overlay`), not colour.
 
-**page** — `rea-page`->`db-page`.
+**page** — `rea-page`->`db-shell` (the former `db-page` is deprecated). `db-shell` wraps the control panels and `db-shell-content`.
 
 **pagination** — `cmp-pagination`->`db-pagination`. Props: `totalCount`, `pageSize`, `currentPage`, `siblingCount`, `boundaryCount`, `onPageChange`, `label`/`previousLabel`/`nextLabel`/`pageLabel`, or a composed `items` array. Accessible previous/next and page controls are built in; no custom `db-button` + ARIA composition needed.
 
@@ -78,7 +78,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **tag** — `elm-tag`->`db-tag`. Chip+tag merged into tag only. Interactive tags: wrap `db-button`,`db-link`,`db-checkbox`,`db-radio` inside `db-tag`. `small`->[removed] (use density; `emphasis="strong"` for emphasis). Semantic colour moves to the `semantic` prop: `error`->`semantic="critical"`, `informative`->`semantic="informational"`, `success`->`semantic="successful"`; `poi-*`->[removed], `track`->[removed]. Icons: use the leading `icon` prop; there is no trailing-icon prop.
 
-**textarea** — `elm-textarea`->`db-textarea`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. New: `adaptive`,`critical`,`informational`,`warning`,`successful`. `description`->`message`. ⚠️ Behavior change: In Generation 2, `description` was hidden by default (tooltip/hint). In Generation 3, `message` is ALWAYS visible by default. To restore the Generation 2 hidden behavior, set `showMessage={false}` explicitly.
+**textarea** — `elm-textarea`->`db-textarea`. Old variants removed: `semitransparent`,`white`,`solid`,`outline`->[removed]. `variant` now controls the label layout only (`above`/`floating`). Validation state is set via `validation` (`valid`/`invalid`/`no-validation`), not via colour variants. `description`->`message`. ⚠️ Behavior change: In Generation 2, `description` was hidden by default (tooltip/hint). In Generation 3, `message` is ALWAYS visible by default. To restore the Generation 2 hidden behavior, set `showMessage={false}` explicitly.
 
 **tooltip** — New component
 
@@ -103,7 +103,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 `elm-headline` -> `<db-heading-h1>Title</db-heading-h1>` + `<db-infotext>Subtitle</db-infotext>`
 
-`cmp-sidenavi` -> `<db-control-panel-mobile><db-navigation><db-navigation-item><db-link href="/page">Item</db-link></db-navigation-item></db-navigation></db-control-panel-mobile>` (burger menu toggles a drawer; part of the `db-shell` family)
+`cmp-sidenavi` -> `<db-control-panel-mobile><db-control-panel-navigation><db-control-panel-navigation-item><db-link href="/page">Item</db-link></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-mobile>` (burger menu toggles a drawer; part of the `db-shell` family)
 
 ## A11y for Custom Solutions
 
