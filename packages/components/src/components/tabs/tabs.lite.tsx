@@ -33,6 +33,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 	const state: DBTabsState = useStore<DBTabsState>({
 		_activeIndex: 0,
+		_synced: false,
 		initialized: false,
 		showScrollStart: false,
 		showScrollEnd: false,
@@ -183,6 +184,8 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				panel.hidden = !isSelected;
 			});
+
+			state._synced = true;
 		},
 
 		handleClick(event: any) {
@@ -927,6 +930,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-tab-item-alignment={props.tabItemAlignment}
 			data-tab-item-width={props.tabItemWidth}
 			data-initial-selected-mode={props.initialSelectedMode}
+			data-synced={state._synced}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>
