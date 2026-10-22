@@ -89,7 +89,7 @@ overrides:
   source-map-js@>=1.0.0 <1.2.2: 1.2.2
 
 catalog:
-  postcss: 8.5.30
+  postcss: 8.5.31
   webpack: 5.112.0
 
 saveExact: true
