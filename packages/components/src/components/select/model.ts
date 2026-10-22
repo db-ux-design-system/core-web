@@ -6,6 +6,7 @@ import type {
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormSizeProps,
 	FormState,
@@ -99,4 +100,5 @@ export type DBSelectState = DBSelectDefaultState &
 	InputEventState<HTMLSelectElement> &
 	FormState &
 	InitializedState &
+	FormMessageState &
 	FromValidState;

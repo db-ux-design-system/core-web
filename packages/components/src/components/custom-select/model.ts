@@ -5,6 +5,7 @@ import type {
 	CustomFormProps,
 	DocumentScrollState,
 	FormMessageProps,
+	FormMessageState,
 	FormState,
 	FromValidState,
 	GeneralEvent,
@@ -308,6 +309,7 @@ export type DBCustomSelectDefaultState = {
 export type DBCustomSelectState = DBCustomSelectDefaultState &
 	GlobalState &
 	FormState &
+	FormMessageState &
 	FromValidState &
 	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
 	DocumentScrollState;

@@ -50,6 +50,7 @@ import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
 	addResetEventListener,
+	getMessageConfig,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -135,6 +136,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 		},
 		_searchValue: '',
+		getMessageProps: () => {
+			return getMessageConfig(props.messageProps, props.messageIcon);
+		},
+		getValidMessageProps: () => {
+			return getMessageConfig(props.validMessageProps);
+		},
+		getInvalidMessageProps: () => {
+			return getMessageConfig(props.invalidMessageProps);
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -1287,10 +1297,14 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				class="db-custom-select-placeholder"
 				aria-hidden="true"
 				id={state._placeholderId}></span>
+			{/* jscpd:ignore-start */}
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
-					icon={props.messageIcon}
+					size={state.getMessageProps().size}
+					icon={state.getMessageProps().icon}
+					showIcon={state.getMessageProps().showIcon}
+					wrap={state.getMessageProps().wrap}
+					className={state.getMessageProps().className}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
@@ -1299,7 +1313,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={state.getValidMessageProps().size}
+					icon={state.getValidMessageProps().icon}
+					showIcon={state.getValidMessageProps().showIcon}
+					wrap={state.getValidMessageProps().wrap}
+					className={state.getValidMessageProps().className}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -1307,10 +1325,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={state.getInvalidMessageProps().size}
+				icon={state.getInvalidMessageProps().icon}
+				showIcon={state.getInvalidMessageProps().showIcon}
+				wrap={state.getInvalidMessageProps().wrap}
+				className={state.getInvalidMessageProps().className}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>
+			{/* jscpd:ignore-end */}
 
 			{/* * https://www.davidmacd.com/blog/test-aria-describedby-errormessage-aria-live.html
 			 * Currently VoiceOver isn't supporting changes from aria-describedby.
