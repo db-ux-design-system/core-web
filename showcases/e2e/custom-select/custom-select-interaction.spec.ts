@@ -315,14 +315,14 @@ test.describe('DBCustomSelect', () => {
 			// A disabled custom select must expose no keyboard- or
 			// pointer-reachable controls: the tag remove buttons (rendered by
 			// DBTag, which has no disabled state of its own) and the clear
-			// button are taken out of the tab order and marked aria-disabled.
+			// button are taken out of the tab order and marked disabled.
 			for (const button of [
 				removeButtons.first(),
 				removeButtons.last(),
 				clearButton
 			]) {
 				await expect(button).toHaveAttribute('tabindex', '-1');
-				await expect(button).toHaveAttribute('aria-disabled', 'true');
+				await expect(button).toHaveAttribute('disabled', 'true');
 			}
 		}
 	});
