@@ -1,4 +1,4 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
@@ -9,9 +9,25 @@ useMetadata({
 });
 
 export default function ButtonFormAttributes() {
+	const state = useStore({
+		/**
+		 * The form only exists to demonstrate the `form*` attribute
+		 * forwarding - a real submission would navigate the showcase/Storybook
+		 * iframe (dropping its query params) and 405 on the static review
+		 * deployment, so the submit is cancelled.
+		 */
+		handleSubmit: (event: any) => {
+			event.preventDefault();
+		}
+	});
+
 	return (
 		<Fragment>
-			<form id="demo-form" action="#default-action" method="get">
+			<form
+				id="demo-form"
+				action="#default-action"
+				method="get"
+				onSubmit={(event) => state.handleSubmit(event)}>
 				<DBButton
 					data-testid="form-default-button"
 					type="submit"
