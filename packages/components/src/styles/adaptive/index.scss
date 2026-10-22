@@ -1,0 +1,26 @@
+@use "component";
+
+// Generic opt-in selectors: a consumer can apply any adaptive-coloring role to
+// an arbitrary element via `data-adaptive-coloring="<role>"`. Component styles
+// extend the placeholders in `_component.scss` directly; these cover ad-hoc
+// usage. Emitted once from the `components-adaptive` bundle (not per component)
+// to avoid duplicating the rules across every component output.
+[data-adaptive-coloring="container"] {
+	@extend %adaptive-coloring-container;
+}
+
+[data-adaptive-coloring="interactive-container"] {
+	@extend %adaptive-coloring-interactive-container;
+}
+
+[data-adaptive-coloring="text"] {
+	@extend %adaptive-coloring-text;
+}
+
+[data-adaptive-coloring="interactive-text"] {
+	@extend %adaptive-coloring-interactive-text;
+}
+
+[data-adaptive-coloring-disabled="true"] {
+	@extend %disabled;
+}

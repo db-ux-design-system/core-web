@@ -1,0 +1,10 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-footer-meta,
+.db-footer-meta[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+
+	.db-footer-copyright {
+		color: var(--db-text-default);
+	}
+}

@@ -1,4 +1,5 @@
 import type {
+	AdaptiveDefaultProps,
 	ColorState,
 	GlobalProps,
 	GlobalState,
@@ -6,7 +7,6 @@ import type {
 	IconProps,
 	IconTrailingProps,
 	MaterialState,
-	NextGenDefaultProps,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
@@ -22,7 +22,7 @@ export type DBCustomButtonDefaultProps = {};
 export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
-	NextGenDefaultProps &
+	AdaptiveDefaultProps &
 	IconProps &
 	WidthProps &
 	SizeProps &

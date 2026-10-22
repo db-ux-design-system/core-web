@@ -1,9 +1,9 @@
 import {
+	AdaptiveDefaultProps,
 	CollapsibleBehaviorProps,
 	GlobalProps,
 	InitializedState,
-	MaterialState,
-	NextGenDefaultProps
+	MaterialState
 } from '../../shared/model';
 import type { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
@@ -42,7 +42,7 @@ export type DBAccordionDefaultProps = {
 export type DBAccordionProps = DBAccordionDefaultProps &
 	GlobalProps &
 	CollapsibleBehaviorProps &
-	NextGenDefaultProps;
+	AdaptiveDefaultProps;
 
 export type DBAccordionDefaultState = {
 	_initOpenIndexDone: boolean;

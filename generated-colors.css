@@ -3,6 +3,10 @@
 :is(:root,:host) {
 	--db-focus-outline-color: light-dark(#257FA8, #257FA8);
 	--db-divider-bg-color: var(--db-border-default);
+	--db-backdrop-color-weak: color-mix(in srgb, light-dark(#16181B, #EDEEF0) 32%, transparent);
+	--db-backdrop-color-strong: color-mix(in srgb, light-dark(#16181B, #EDEEF0) 68%, transparent);
+	--db-indicator-color: light-dark(#EF0016, #EF0016);
+	--db-indicator-background: linear-gradient(135deg, var(--db-pride-red, var(--db-indicator-color)) 16.7%, var(--db-pride-orange, var(--db-indicator-color)) 0, var(--db-pride-orange, var(--db-indicator-color)) 33.4%, var(--db-pride-yellow, var(--db-indicator-color)) 0, var(--db-pride-yellow, var(--db-indicator-color)) 50.1%, var(--db-pride-green, var(--db-indicator-color)) 0, var(--db-pride-green, var(--db-indicator-color)) 66.8%, var(--db-pride-blue, var(--db-indicator-color)) 0, var(--db-pride-blue, var(--db-indicator-color)) 83.5%, var(--db-pride-violet, var(--db-indicator-color)) 0);
 	--db-font-weight: normal;
 }
 
@@ -10,6 +14,15 @@
 :host {
 	background: var(--db-bg-default);
 	color: var(--db-text-default);
+}
+
+[data-pride="true"] {
+	--db-pride-red: light-dark(#EC0016, #EC0016);
+	--db-pride-orange: light-dark(#F69400, #F69400);
+	--db-pride-yellow: light-dark(#FFD800, #FFD800);
+	--db-pride-green: light-dark(#408335, #408335);
+	--db-pride-blue: light-dark(#1455C0, #1455C0);
+	--db-pride-violet: light-dark(#814997, #814997);
 }
 
 @layer material {

@@ -3,7 +3,7 @@
 
 [data-adaptive-coloring="true"] .db-custom-button,
 .db-custom-button[data-adaptive-coloring="true"] {
-	@extend %interactive-materials;
+	@extend %adaptive-coloring-interactive-container;
 
 	&:has(
 		:is(input, button):disabled,

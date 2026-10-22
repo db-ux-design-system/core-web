@@ -1,6 +1,7 @@
 import {
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	ShellControlPanelDesktopPositionType,
 	ShellControlPanelMobilePositionType
 } from '../../shared/model';
@@ -43,7 +44,7 @@ export type DBShellDefaultProps = {
 	showSubNavigation?: boolean | string;
 };
 
-export type DBShellProps = DBShellDefaultProps & GlobalProps;
+export type DBShellProps = DBShellDefaultProps & GlobalProps & MaterialProps;
 
 export type DBShellDefaultState = {
 	fontsLoaded?: boolean;

@@ -1,17 +1,19 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 
-%default-material {
+%disabled {
+	--db-adaptive-transparency: 40%;
+}
+
+// Full surface: background, text and border. Static (no hover/pressed).
+%adaptive-coloring-container {
 	background-color: var(--db-bg-default);
 	color: var(--db-text-default);
 	border-color: var(--db-border-default);
 }
 
-%disabled {
-	--db-adaptive-transparency: 40%;
-}
-
-%interactive-materials {
-	@extend %default-material;
+// Surface that reacts to hover/pressed on its background (buttons, interactive cards, ...).
+%adaptive-coloring-interactive-container {
+	@extend %adaptive-coloring-container;
 
 	@include helpers.not-disabled {
 		@include helpers.hover {
@@ -22,6 +24,26 @@
 		@include helpers.active {
 			background-color: var(--db-bg-pressed);
 			border-color: var(--db-border-default);
+		}
+	}
+}
+
+// Text color only, no background or border. Static (no hover/pressed).
+%adaptive-coloring-text {
+	color: var(--db-text-default);
+}
+
+// Text-only color that reacts to hover/pressed (links, ...).
+%adaptive-coloring-interactive-text {
+	@extend %adaptive-coloring-text;
+
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			color: var(--db-text-hovered);
+		}
+
+		@include helpers.active {
+			color: var(--db-text-pressed);
 		}
 	}
 }

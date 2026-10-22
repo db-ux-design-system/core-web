@@ -152,7 +152,10 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 %control-panel-desktop-horizontal-orientation {
 	border-block-end: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		var(
+			--db-control-panel-border-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+		);
 	column-gap: $control-panel-desktop-horizontal-padding-inline;
 	grid-template:
 		[meta]
@@ -225,12 +228,18 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		border-end-end-radius: variables.$db-border-radius-xs;
 		border-end-start-radius: variables.$db-border-radius-xs;
 		border-inline: variables.$db-border-width-3xs solid
-			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+			var(
+				--db-control-panel-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+			);
 	}
 
 	.db-control-panel-meta {
 		border-block-end: variables.$db-border-width-3xs solid
-			colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+			var(
+				--db-control-panel-border-color,
+				#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+			);
 	}
 
 	.db-control-panel-navigation {
@@ -279,7 +288,10 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 %control-panel-desktop-vertical-orientation {
 	border-inline-end: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+		var(
+			--db-control-panel-border-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+		);
 	block-size: 100%;
 	grid-template:
 		[brand] "brand" auto

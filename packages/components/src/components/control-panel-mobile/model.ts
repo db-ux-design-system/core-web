@@ -26,6 +26,7 @@ export type DBControlPanelMobileDefaultProps = {
 
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ToggleEventProps &
 	ControlPanelProps;
 

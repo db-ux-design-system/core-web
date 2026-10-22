@@ -90,6 +90,8 @@ export default function DB<%= h.changeCase.pascal(name) %>(props: DB<%= h.change
     	ref={_ref}
     	id={props.id ?? props.propOverrides?.id}
     	class={cls('db-<%= name %>', props.className)}
+    	data-material={props.material}
+    	data-adaptive-color={props.color}
 <% if(formValue!=="no"){   -%>
 		onChange={(event: ChangeEvent<HTMLInputElement>) => state.handleChange(event)}
 		onBlur={(event: InteractionEvent<HTMLInputElement>) => state.handleBlur(event)}

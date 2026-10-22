@@ -42,6 +42,26 @@ export const FOCUS_OUTLINE_COLOR: { color: ColorName; index: ColorIndex } = {
 	index: 7
 };
 
+// Backdrop (dialog/drawer overlay) is a dimmed neutral. Base color is
+// neutral/1; the weak and strong variants apply the alpha via color-mix.
+export const BACKDROP_COLOR: {
+	color: ColorName;
+	index: ColorIndex;
+	weakAlpha: number;
+	strongAlpha: number;
+} = {
+	color: 'neutral',
+	index: 1,
+	weakAlpha: 0.32,
+	strongAlpha: 0.68
+};
+
+// Indicator (active tab/navigation marker) is based on brand/7.
+export const INDICATOR_COLOR: { color: ColorName; index: ColorIndex } = {
+	color: 'brand',
+	index: 7
+};
+
 export const colors: Record<ColorName, ColorPalette> = {
 	red: {
 		0: ['#280001', '#FFF8F8'],

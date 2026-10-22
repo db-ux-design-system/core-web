@@ -12,7 +12,7 @@
 	}
 
 	> details {
-		@extend %default-material;
+		@extend %adaptive-coloring-container;
 
 		.db-accordion-item-header {
 			@include helpers.hover {

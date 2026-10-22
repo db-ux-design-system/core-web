@@ -1,4 +1,5 @@
 import type {
+	AdaptiveDefaultProps,
 	ClickEvent,
 	ColorState,
 	ContentSlotProps,
@@ -7,7 +8,6 @@ import type {
 	GlobalState,
 	IconProps,
 	MaterialState,
-	NextGenDefaultProps,
 	NoTextProps,
 	OverflowProps,
 	SemanticProps,
@@ -57,7 +57,7 @@ export type DBTagDefaultProps = {
 
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
-	NextGenDefaultProps &
+	AdaptiveDefaultProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &

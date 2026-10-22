@@ -102,11 +102,17 @@ $container-size-scale: (
 	color: inherit;
 
 	&:not([data-backdrop="none"])::backdrop {
-		background-color: $backdrop-color-strong;
+		background-color: var(
+			--db-backdrop-color-strong,
+			#{$backdrop-color-strong}
+		);
 	}
 
 	&[data-backdrop="weak"]::backdrop {
-		background-color: $backdrop-color-weak;
+		background-color: var(
+			--db-backdrop-color-weak,
+			#{$backdrop-color-weak}
+		);
 	}
 
 	@if $prefix == "dialog" {

@@ -111,6 +111,7 @@ export type DBDrawerDefaultProps = {
 
 export type DBDrawerProps = DBDrawerDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<
 		| ClickEvent<HTMLButtonElement | HTMLDialogElement>

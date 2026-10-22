@@ -3,7 +3,7 @@
 
 [data-adaptive-coloring="true"] .db-badge,
 .db-badge[data-adaptive-coloring="true"] {
-	@extend %default-material;
+	@extend %adaptive-coloring-container;
 
 	border-color: var(--db-border-decorative);
 

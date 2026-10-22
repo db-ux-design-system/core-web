@@ -15,7 +15,7 @@ export type DBControlPanelSkipNavigationDefaultProps = {
 };
 
 export type DBControlPanelSkipNavigationProps =
-	DBControlPanelSkipNavigationDefaultProps & GlobalProps;
+	DBControlPanelSkipNavigationDefaultProps & GlobalProps & MaterialProps;
 
 export type DBControlPanelSkipNavigationDefaultState = {};
 

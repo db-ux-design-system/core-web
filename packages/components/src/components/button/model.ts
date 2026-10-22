@@ -1,4 +1,5 @@
 import {
+	AdaptiveDefaultProps,
 	ClickEventProps,
 	ColorState,
 	EndSlotProps,
@@ -8,7 +9,6 @@ import {
 	IconProps,
 	IconTrailingProps,
 	MaterialState,
-	NextGenDefaultProps,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
@@ -78,7 +78,7 @@ export type DBButtonDefaultProps = {
 export type DBButtonProps = DBButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
-	NextGenDefaultProps &
+	AdaptiveDefaultProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &

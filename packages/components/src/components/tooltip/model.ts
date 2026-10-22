@@ -31,6 +31,7 @@ export type DBTooltipDefaultProps = {
 
 export type DBTooltipProps = DBTooltipDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	EmphasisProps &
 	PlacementProps &
 	PopoverProps &

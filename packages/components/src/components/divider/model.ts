@@ -25,6 +25,7 @@ export type DBDividerDefaultProps = {
 
 export type DBDividerProps = DBDividerDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	EmphasisProps &
 	MarginProps &
 	WidthProps;

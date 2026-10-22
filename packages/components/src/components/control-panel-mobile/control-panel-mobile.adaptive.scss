@@ -1,0 +1,8 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-control-panel-mobile,
+.db-control-panel-mobile[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+
+	--db-control-panel-border-color: var(--db-border-default);
+}

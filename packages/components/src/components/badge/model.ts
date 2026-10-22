@@ -1,11 +1,11 @@
 import {
+	AdaptiveDefaultProps,
 	ColorState,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
 	MaterialState,
-	NextGenDefaultProps,
 	SemanticProps,
 	SizeProps,
 	TextProps,
@@ -37,7 +37,7 @@ export type DBBadgeDefaultProps = {
 
 export type DBBadgeProps = DBBadgeDefaultProps &
 	GlobalProps &
-	NextGenDefaultProps &
+	AdaptiveDefaultProps &
 	SemanticProps &
 	SizeProps &
 	EmphasisProps &

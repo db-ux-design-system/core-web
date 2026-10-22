@@ -1,0 +1,16 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-control-panel-navigation-item-group,
+.db-control-panel-navigation-item-group[data-adaptive-coloring="true"] {
+	.db-control-panel-navigation-item-group-menu {
+		@extend %adaptive-coloring-container;
+	}
+
+	.db-control-panel-navigation-item-group-back-button {
+		@extend %adaptive-coloring-container;
+
+		span {
+			color: var(--db-text-default);
+		}
+	}
+}

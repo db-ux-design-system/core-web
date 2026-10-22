@@ -370,6 +370,59 @@ This keeps id logic in one place, avoids drift between the `id` and its `htmlFor
 
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
+### Every component must expose `material` and `color`
+
+Every component — not just the obviously "colored" ones — **must** accept a
+`material` and a `color` prop so a consumer can opt it into adaptive coloring.
+These come from the shared `MaterialProps` type; do not redeclare them per
+component.
+
+Wire them in every component:
+
+1. **`model.ts`** — intersect the props with `MaterialProps`. A component on the
+   adaptive `size` scale uses `AdaptiveDefaultProps` (which already bundles
+   `MaterialProps`) instead of adding `MaterialProps` directly — do not add both.
+
+    ```ts
+    export type DBExampleProps = DBExampleDefaultProps &
+    	GlobalProps &
+    	MaterialProps;
+    ```
+
+2. **`.lite.tsx`** — bind the props on the element carrying the `_ref` (the root):
+
+    ```tsx
+    data-material={props.material}
+    data-adaptive-color={props.color}
+    ```
+
+**Only add a `_getMaterial` / `_getColor` store method (and the matching
+`MaterialState` / `ColorState` on the state type) when the component actually
+derives the value** — i.e. it needs a default or maps another prop onto it.
+A pure passthrough does not need a getter; binding `props.material` /
+`props.color` directly is clearer and avoids a no-op store method. Example where
+a getter _is_ warranted — `card` maps `elevationLevel` onto the material:
+
+```tsx
+_getMaterial: (): MaterialType | undefined => {
+	if (props.material) return props.material;
+	if (props.elevationLevel === "2") return "filled-2";
+	if (props.elevationLevel === "3") return "filled-3";
+	return "filled-1";
+};
+```
+
+```tsx
+data-material={state._getMaterial()}
+```
+
+`card` still binds `data-adaptive-color={props.color}` directly, because it does
+not derive the color — so it carries `MaterialState` but not `ColorState`.
+
+The scaffold produced by `pnpm run generate:component` wires the direct
+passthrough form (no getters). The adaptive SCSS (`<name>.adaptive.scss`, gated
+by `[data-adaptive-coloring="true"]`) then reads the resulting `--db-*` tokens.
+
 ### Sub-Components
 
 Sub-components (e.g. `accordion-item`, `navigation-item`, `tab-item`) are child components that
@@ -739,6 +792,7 @@ Before adding a new prop to a component's `model.ts`, **always check `src/shared
 - `ShowIconProps` / `ShowIconLeadingProps` / `ShowIconTrailingProps` — icon visibility toggles
 - `SpacingProps` / `MarginProps` / `GapSpacingProps` — spacing and gap
 - `SizeProps` — `size` (small, medium)
+- `MaterialProps` — `material` and `color`; **required on every component** (see "Every component must expose `material` and `color`" above). `AdaptiveDefaultProps` bundles these with the adaptive `size` scale.
 - `EmphasisProps` — `emphasis` (weak, strong)
 - `OrientationProps` — `orientation` (horizontal, vertical)
 - `WidthProps` / `ContainerWidthProps` — width variants

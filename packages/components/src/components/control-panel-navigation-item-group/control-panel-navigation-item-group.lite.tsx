@@ -461,6 +461,8 @@ export default function DBControlPanelNavigationItemGroup(
 				'db-control-panel-navigation-item-group',
 				props.className
 			)}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			data-active={getBooleanAsString(props.active, 'active')}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button

@@ -3,7 +3,7 @@
 
 [data-adaptive-coloring="true"] .db-button,
 .db-button[data-adaptive-coloring="true"] {
-	@extend %interactive-materials;
+	@extend %adaptive-coloring-interactive-container;
 
 	&:is(:disabled, [aria-disabled="true"]) {
 		@extend %disabled;

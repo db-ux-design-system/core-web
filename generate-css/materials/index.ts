@@ -1,9 +1,11 @@
 import {
 	type ColorName,
 	type ColorPalette,
+	BACKDROP_COLOR,
 	colors,
 	DEFAULT_COLOR,
-	FOCUS_OUTLINE_COLOR
+	FOCUS_OUTLINE_COLOR,
+	INDICATOR_COLOR
 } from './color.ts';
 import {
 	type ContainerContrastProps,
@@ -288,11 +290,64 @@ export const generateMaterialsCss = (): string => {
 
 	const focusPalette = colors[FOCUS_OUTLINE_COLOR.color];
 	const [focusLight, focusDark] = focusPalette[FOCUS_OUTLINE_COLOR.index];
-	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: var(--db-border-default);\n\t--db-font-weight: normal;\n}\n\n`;
+
+	// Backdrop: a dimmed neutral, alpha applied via color-mix on the light-dark value.
+	const backdropPalette = colors[BACKDROP_COLOR.color];
+	const [backdropLight, backdropDark] = backdropPalette[BACKDROP_COLOR.index];
+	const backdrop = (alpha: number): string =>
+		`color-mix(in srgb, light-dark(${backdropLight}, ${backdropDark}) ${alpha * 100}%, transparent)`;
+
+	// Indicator (active tab/navigation marker), based on brand/7. Pride gradient:
+	// each stop falls back to `--db-indicator-color` until the consumer sets the
+	// `--db-pride-*` custom properties.
+	const indicatorPalette = colors[INDICATOR_COLOR.color];
+	const [indicatorLight, indicatorDark] =
+		indicatorPalette[INDICATOR_COLOR.index];
+	const indicatorColor = `light-dark(${indicatorLight}, ${indicatorDark})`;
+
+	const prideStops: [string, string][] = [
+		['--db-pride-red', '16.7%'],
+		['--db-pride-orange', '0'],
+		['--db-pride-orange', '33.4%'],
+		['--db-pride-yellow', '0'],
+		['--db-pride-yellow', '50.1%'],
+		['--db-pride-green', '0'],
+		['--db-pride-green', '66.8%'],
+		['--db-pride-blue', '0'],
+		['--db-pride-blue', '83.5%'],
+		['--db-pride-violet', '0']
+	];
+	const indicatorBackground = `linear-gradient(135deg, ${prideStops
+		.map(
+			([prop, stop]) => `var(${prop}, var(--db-indicator-color)) ${stop}`
+		)
+		.join(', ')})`;
+
+	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: var(--db-border-default);\n\t--db-backdrop-color-weak: ${backdrop(BACKDROP_COLOR.weakAlpha)};\n\t--db-backdrop-color-strong: ${backdrop(BACKDROP_COLOR.strongAlpha)};\n\t--db-indicator-color: ${indicatorColor};\n\t--db-indicator-background: ${indicatorBackground};\n\t--db-font-weight: normal;\n}\n\n`;
 
 	// Apply the base surface to the root/host itself so an unstyled document
 	// (or a custom-element host) picks up the adaptive background and text color.
 	css += `:root,\n:host {\n\tbackground: var(--db-bg-default);\n\tcolor: var(--db-text-default);\n}\n\n`;
+
+	// `[data-pride="true"]` opt-in: set the `--db-pride-*` stops to the adaptive
+	// origin colors so the indicator (and anything using them) renders the pride
+	// gradient. Uses `green` for the green stop (the former `light-green` is not
+	// part of the adaptive palette).
+	const prideMap: [string, ColorName][] = [
+		['--db-pride-red', 'red'],
+		['--db-pride-orange', 'orange'],
+		['--db-pride-yellow', 'yellow'],
+		['--db-pride-green', 'green'],
+		['--db-pride-blue', 'blue'],
+		['--db-pride-violet', 'violet']
+	];
+	const prideProps = prideMap
+		.map(([prop, color]) => {
+			const [light, dark] = colors[color]['origin-default'];
+			return `\t${prop}: light-dark(${light}, ${dark});`;
+		})
+		.join('\n');
+	css += `[data-pride="true"] {\n${prideProps}\n}\n\n`;
 
 	css += '@layer material {\n\n';
 	css += defaultSet.materialCss;

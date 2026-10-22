@@ -380,9 +380,9 @@ export type SizeProps = {
  * Next-gen appearance props: the `material` and adaptive `color` that drive the
  * generated role variables (`--db-bg-*`, `--db-on-bg-*`, `--db-border*`, ...).
  *
- * Use this on its own for components whose `size` is not the next-gen scale
+ * Use this on its own for components whose `size` is not the adaptive scale
  * (e.g. the form fields `input`/`select`, whose `size` is the native numeric
- * attribute). Components on the next-gen `size` scale use `NextGenDefaultProps`,
+ * attribute). Components on the adaptive `size` scale use `AdaptiveDefaultProps`,
  * which bundles `size` with these props.
  */
 export type MaterialProps = {
@@ -391,16 +391,16 @@ export type MaterialProps = {
 };
 
 /**
- * Shared next-generation props applied to every next-gen component.
- * Currently exposes the next-gen `size` scale. Components that still support
+ * Shared adaptive props applied to every adaptive component.
+ * Currently exposes the adaptive `size` scale. Components that still support
  * the legacy `SizeType` (`small`/`medium`) must widen `size` back to the union
  * by overriding it after this type, e.g.:
  *
  * ```ts
- * ... & NextGenDefaultProps & { size?: SizeType | NextGenSizeType };
+ * ... & AdaptiveDefaultProps & { size?: SizeType | NextGenSizeType };
  * ```
  */
-export type NextGenDefaultProps = MaterialProps & {
+export type AdaptiveDefaultProps = MaterialProps & {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */

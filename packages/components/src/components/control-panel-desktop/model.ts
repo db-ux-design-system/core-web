@@ -14,6 +14,7 @@ export type DBControlPanelDesktopDefaultProps = {};
 
 export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ContainerWidthProps &
 	ControlPanelProps &
 	OrientationProps &

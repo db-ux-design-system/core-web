@@ -1,0 +1,10 @@
+[data-adaptive-coloring="true"] .db-drawer,
+.db-drawer[data-adaptive-coloring="true"] {
+	// The visible panel is `.db-drawer-container`, which gets its background
+	// from the shared `container-layout` mixin - override it with the adaptive
+	// surface here (the `.db-drawer` host itself stays transparent).
+	.db-drawer-container {
+		background-color: var(--db-bg-default);
+		color: var(--db-text-default);
+	}
+}

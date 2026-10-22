@@ -1,4 +1,5 @@
 import type {
+	AdaptiveDefaultProps,
 	ChangeEventProps,
 	ChangeEventState,
 	ColorState,
@@ -16,7 +17,6 @@ import type {
 	IconProps,
 	IconTrailingProps,
 	LabelVariantHorizontalType,
-	NextGenDefaultProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -33,7 +33,7 @@ export type DBSwitchDefaultProps = {
 };
 
 export type DBSwitchProps = GlobalProps &
-	NextGenDefaultProps &
+	AdaptiveDefaultProps &
 	AltStateMaterialProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
