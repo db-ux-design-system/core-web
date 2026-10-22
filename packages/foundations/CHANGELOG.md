@@ -1,5 +1,14 @@
 # @db-ux/core-foundations
 
+## 6.1.0
+
+### Minor Changes
+
+- fix(foundations): resolve assets in `relative.css` from the package root - [see commit 1ef7e4a](https://github.com/db-ux-design-system/core-web/commit/1ef7e4a5bce0ffadbe56c186bc561cf69aaa8b41):
+
+    - The default asset path in `theme/relative.css`, `fonts/relative.css` and `icons/relative.css` changes from `../../assets/` to `../../../assets/`. The CSS now finds fonts and icon fonts directly in the package, e.g. when loaded from a CDN.
+    - **Action required** if you copy `build/styles/` and `assets/` side by side into your `public` folder: keep the package structure (`build/styles/` next to `assets/`) or override `$icons-path`, `$fonts-path` and `$images-path`.
+
 ## 6.0.1
 
 No changes in this release.
