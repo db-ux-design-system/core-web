@@ -17,6 +17,9 @@ const skipKeyboardOnMobile: SkipType = {
 const FOCUS_COOLDOWN = 2000;
 
 const openDropdown = async (page: Page, summary: Locator) => {
+	// Wait for the page to finish loading before driving keyboard input, so the
+	// ArrowDown below is not sent before the component is interactive.
+	await page.waitForTimeout(FOCUS_COOLDOWN);
 	await summary.press('ArrowDown');
 	// Opening with ArrowDown moves focus into the dropdown (onto the search
 	// field, or the first checkbox/radio) via an async `delay()` in the

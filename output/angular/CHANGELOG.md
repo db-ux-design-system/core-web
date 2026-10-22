@@ -1,5 +1,17 @@
 # @db-ux/ngx-core-components
 
+## 6.0.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): synchronize values autofilled into the native select - [see commit 6e43646](https://github.com/db-ux-design-system/core-web/commit/6e43646f7d369e91b56162a471ce67d3a8bc4ecf):
+
+    - Browser autofill and password managers write to the hidden backing `<select>` that carries the advertised `autocomplete`. Its `change` handler previously only stopped propagation, so the visible summary, the option states and `onOptionSelected` stayed stale while the submitted form value had already changed - and the next validation run silently overwrote the autofilled value again. The handler now mirrors the native selection back into the component state.
+
+- fix(DBHeader): always report the closed state when the drawer closes - [see commit 4f63880](https://github.com/db-ux-design-system/core-web/commit/4f638806a2955dd95c28690af2cc0da1a8f0bcbe):
+
+    - The drawer's close event was routed through the toggle handler, which derives its value by inverting `drawerOpen`. When the drawer was closed via the state (a navigation item click, or a consumer calling `setDrawerOpen(false)`), the dialog closed only after `drawerOpen` was already `false`, so the inverted value reported "open" and reopened the drawer immediately. `onToggle` now always receives `false` on close.
+
 ## 6.0.0
 
 ### Major Changes
