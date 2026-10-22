@@ -32,6 +32,12 @@
 
 	@include form-components.set-default-form-component(summary);
 
+	&:has(summary[aria-disabled="true"]) {
+		.db-button {
+			opacity: 1;
+		}
+	}
+
 	// Field box, overlay toggle, hover, mobile backdrop and the open-state label
 	// separator live in custom-select-form-field.scss
 

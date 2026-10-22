@@ -746,11 +746,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				);
 				for (const button of buttons) {
 					if (disabled) {
-						button.setAttribute('tabindex', '-1');
-						button.setAttribute('aria-disabled', 'true');
+						button.tabIndex = -1;
+						button.disabled = true;
 					} else {
 						button.removeAttribute('tabindex');
-						button.removeAttribute('aria-disabled');
+						button.disabled = false;
 					}
 				}
 			});
