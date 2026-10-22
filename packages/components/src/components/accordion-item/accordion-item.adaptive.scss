@@ -1,10 +1,10 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "../../styles/next/component";
+@use "../../styles/adaptive/component";
 @use "../../styles/internal/form-components";
 
-[data-generation="next"] .db-accordion-item,
-.db-accordion-item[data-generation="next"] {
+[data-adaptive-coloring="true"] .db-accordion-item,
+.db-accordion-item[data-adaptive-coloring="true"] {
 	&:has(> details[aria-disabled="true"]) {
 		@extend %disabled;
 

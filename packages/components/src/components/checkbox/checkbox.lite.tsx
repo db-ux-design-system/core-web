@@ -82,7 +82,7 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			return undefined;
 		},
-		_getActiveColor: () => {
+		_getAltStateColor: () => {
 			const validationState = getValidationState(props, _ref);
 
 			if (validationState === 'valid') {
@@ -93,8 +93,8 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 				return 'red';
 			}
 
-			if (props.activeColor) {
-				return props.activeColor;
+			if (props.altStateColor) {
+				return props.altStateColor;
 			}
 
 			return undefined;
@@ -264,9 +264,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	return (
 		<div
-			data-active-material={props.activeMaterial ?? 'inverted'}
-			data-active-adaptive-color={state._getActiveColor()}
-			data-material={props.material ?? 'filled'}
+			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
+			data-material={props.material ?? 'filled-1'}
 			data-adaptive-color={state._getColor()}
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}

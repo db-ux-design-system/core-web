@@ -6,8 +6,8 @@
 // share these helpers:
 //   * check elements (checkbox, radio, switch) - a styled `input` with a
 //     checked/active state, driving both the default roles (`--db-bg-*`,
-//     `--db-on-bg-*`) and the active roles (`--db-active-bg-*`,
-//     `--db-active-on-bg-*`).
+//     `--db-text-*`) and the alt-state roles (`--db-alt-state-bg-*`,
+//     `--db-alt-state-text-*`).
 //   * value fields (input, textarea, select) - a text/value element with no
 //     checked state, driving only the default roles.
 
@@ -19,27 +19,27 @@
 %check-element-base {
 	&:is(label),
 	> label {
-		color: var(--db-on-bg-default);
+		color: var(--db-text-default);
 	}
 
 	input {
 		&:not(:checked) {
 			background-color: var(--db-bg-default);
-			color: var(--db-on-bg-default);
-			border-color: var(--db-on-bg-default);
+			color: var(--db-text-default);
+			border-color: var(--db-text-default);
 
 			&::before {
-				color: var(--db-on-bg-default);
+				color: var(--db-text-default);
 			}
 		}
 
 		&:checked {
-			background-color: var(--db-active-bg-default);
-			color: var(--db-active-on-bg-default);
-			border-color: var(--db-active-border);
+			background-color: var(--db-alt-state-bg-default);
+			color: var(--db-alt-state-text-default);
+			border-color: var(--db-alt-state-border-default);
 
 			&::before {
-				color: var(--db-active-on-bg-default);
+				color: var(--db-alt-state-text-default);
 			}
 		}
 	}
@@ -48,7 +48,7 @@
 		@include helpers.hover {
 			&:is(label),
 			> label {
-				color: var(--db-on-bg-hovered);
+				color: var(--db-text-hovered);
 			}
 
 			input:not(:checked) {
@@ -59,7 +59,7 @@
 		@include helpers.active {
 			&:is(label),
 			> label {
-				color: var(--db-on-bg-pressed);
+				color: var(--db-text-pressed);
 			}
 
 			input:not(:checked) {
@@ -77,13 +77,13 @@
 	&:not(:has(input:disabled)) {
 		@include helpers.hover {
 			input:checked {
-				background-color: var(--db-active-bg-hovered);
+				background-color: var(--db-alt-state-bg-hovered);
 			}
 		}
 
 		@include helpers.active {
 			input:checked {
-				background-color: var(--db-active-bg-pressed);
+				background-color: var(--db-alt-state-bg-pressed);
 			}
 		}
 	}
@@ -140,16 +140,16 @@
 	&::after,
 	[id$="-placeholder"],
 	> label {
-		color: var(--db-on-bg-default);
+		color: var(--db-text-default);
 	}
 
 	#{$selector} {
 		background-color: var(--db-bg-default);
-		color: var(--db-on-bg-default);
-		border-color: var(--db-border);
+		color: var(--db-text-default);
+		border-color: var(--db-border-default);
 
 		@if $revert-cursor {
-			caret-color: var(--db-on-bg-default);
+			caret-color: var(--db-text-default);
 		}
 
 		@include helpers.not-disabled {

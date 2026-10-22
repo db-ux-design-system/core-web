@@ -1,8 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 
-[data-generation="next"] .db-link,
-.db-link[data-generation="next"] {
-	color: var(--db-on-bg-default);
+[data-adaptive-coloring="true"] .db-link,
+.db-link[data-adaptive-coloring="true"] {
+	color: var(--db-text-default);
 
 	&[data-variant="brand"] {
 		color: var(--db-text-vibrant);
@@ -10,11 +10,11 @@
 
 	@include helpers.not-disabled {
 		@include helpers.hover {
-			color: var(--db-on-bg-hovered);
+			color: var(--db-text-hovered);
 		}
 
 		@include helpers.active {
-			color: var(--db-on-bg-pressed);
+			color: var(--db-text-pressed);
 		}
 	}
 }

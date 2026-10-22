@@ -1,8 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/next/component";
+@use "../../styles/adaptive/component";
 
-[data-generation="next"] .db-custom-button,
-.db-custom-button[data-generation="next"] {
+[data-adaptive-coloring="true"] .db-custom-button,
+.db-custom-button[data-adaptive-coloring="true"] {
 	@extend %interactive-materials;
 
 	&:has(

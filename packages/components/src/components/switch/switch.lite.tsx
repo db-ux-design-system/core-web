@@ -87,7 +87,7 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 			return undefined;
 		},
-		_getActiveColor: () => {
+		_getAltStateColor: () => {
 			const validationState = getValidationState(props, _ref);
 
 			if (validationState === 'valid') {
@@ -98,8 +98,8 @@ export default function DBSwitch(props: DBSwitchProps) {
 				return 'red';
 			}
 
-			if (props.activeColor) {
-				return props.activeColor;
+			if (props.altStateColor) {
+				return props.altStateColor;
 			}
 
 			return undefined;
@@ -266,9 +266,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	return (
 		<div
-			data-active-material={props.activeMaterial ?? 'inverted'}
-			data-active-adaptive-color={state._getActiveColor()}
-			data-material={props.material ?? 'filled'}
+			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
+			data-material={props.material ?? 'filled-1'}
 			data-adaptive-color={state._getColor()}
 			data-visual-aid={getBooleanAsString(props.visualAid, 'visualAid')}
 			data-size={props.size}

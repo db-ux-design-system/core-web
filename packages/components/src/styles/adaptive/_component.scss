@@ -2,12 +2,12 @@
 
 %default-material {
 	background-color: var(--db-bg-default);
-	color: var(--db-on-bg-default);
-	border-color: var(--db-border);
+	color: var(--db-text-default);
+	border-color: var(--db-border-default);
 }
 
 %disabled {
-	--db-color-transparency: 40%;
+	--db-adaptive-transparency: 40%;
 }
 
 %interactive-materials {
@@ -16,12 +16,12 @@
 	@include helpers.not-disabled {
 		@include helpers.hover {
 			background-color: var(--db-bg-hovered);
-			border-color: var(--db-border);
+			border-color: var(--db-border-default);
 		}
 
 		@include helpers.active {
 			background-color: var(--db-bg-pressed);
-			border-color: var(--db-border);
+			border-color: var(--db-border-default);
 		}
 	}
 }

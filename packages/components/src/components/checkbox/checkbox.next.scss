@@ -1,7 +1,0 @@
-@use "../../styles/next/form-components";
-
-[data-generation="next"] .db-checkbox,
-.db-checkbox[data-generation="next"] {
-	@extend %check-element-materials;
-	@include form-components.check-element-validity(check);
-}

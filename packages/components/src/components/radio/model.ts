@@ -1,6 +1,4 @@
 import type {
-	ActiveColorState,
-	ActiveMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
 	ColorState,
@@ -23,7 +21,7 @@ export type DBRadioDefaultProps = {};
 export type DBRadioProps = DBRadioDefaultProps &
 	GlobalProps &
 	NextGenDefaultProps &
-	ActiveMaterialProps &
+	AltStateMaterialProps &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
@@ -36,7 +34,7 @@ export type DBRadioDefaultState = {};
 export type DBRadioState = DBRadioDefaultState &
 	GlobalState &
 	ColorState &
-	ActiveColorState &
+	AltStateColorState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &

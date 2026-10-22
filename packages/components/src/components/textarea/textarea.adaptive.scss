@@ -1,0 +1,7 @@
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-textarea,
+.db-textarea[data-adaptive-coloring="true"] {
+	@include form-components.field-materials(textarea);
+	@include form-components.field-validity(textarea);
+}

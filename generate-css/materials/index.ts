@@ -3,7 +3,6 @@ import {
 	type ColorPalette,
 	colors,
 	DEFAULT_COLOR,
-	DIVIDER_BG_COLOR,
 	FOCUS_OUTLINE_COLOR
 } from './color.ts';
 import {
@@ -33,6 +32,17 @@ type HighContrastRule = {
 
 // --- Helpers ---
 
+/**
+ * Transparency expression for a generated token. Container roles (bg, border)
+ * only honour the adaptive transparency; text/visual content roles additionally
+ * fall back to the emphasis transparency so `[data-emphasis="low"]` can dim text
+ * without touching backgrounds.
+ */
+const transparencyFor = (cssProp: string): string =>
+	/(?:^|-)(?:text|visual)-/.test(cssProp)
+		? 'var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%))'
+		: 'var(--db-adaptive-transparency, 100%)';
+
 const renderProps = (
 	props: ContainerContrastProps | ContentContrastProps,
 	cssMap: Record<string, string>,
@@ -42,7 +52,8 @@ const renderProps = (
 	Object.entries(props)
 		.map(([prop, key]) => {
 			const [light, dark] = palette[key as keyof ColorPalette];
-			return `${indent}\t${cssMap[prop]}: color-mix(in srgb, light-dark(${light}, ${dark}) var(--db-color-transparency), transparent);`;
+			const cssProp = cssMap[prop];
+			return `${indent}\t${cssProp}: color-mix(in srgb, light-dark(${light}, ${dark}) ${transparencyFor(cssProp)}, transparent);`;
 		})
 		.join('\n');
 
@@ -139,7 +150,7 @@ const generateForPrefix = (prefix: string): string => {
 
 	// --- Defaults ---
 	const defaultPalette = colors[DEFAULT_COLOR];
-	const defaultConfig = materials.filled;
+	const defaultConfig = materials['filled-1'];
 	const defaultContainer = defaultConfig.container;
 	const defaultContent = defaultConfig.content;
 
@@ -207,7 +218,7 @@ const generateForPrefix = (prefix: string): string => {
 		};
 
 		const filledHcRules = highContrastDiffRules.filter(
-			(r) => r.material === 'filled'
+			(r) => r.material === 'filled-1'
 		);
 		if (filledHcRules.length > 0) {
 			const hcRootProps = filledHcRules
@@ -215,7 +226,8 @@ const generateForPrefix = (prefix: string): string => {
 					Object.entries(rule.props).map(([prop, colorKey]) => {
 						const [light, dark] =
 							defaultPalette[colorKey as keyof ColorPalette];
-						return `${indent}\t${rule.cssMap[prop]}: color-mix(in srgb, light-dark(${light}, ${dark}) var(--db-color-transparency), transparent);`;
+						const cssProp = rule.cssMap[prop];
+						return `${indent}\t${cssProp}: color-mix(in srgb, light-dark(${light}, ${dark}) ${transparencyFor(cssProp)}, transparent);`;
 					})
 				)
 				.join('\n');
@@ -231,7 +243,8 @@ const generateForPrefix = (prefix: string): string => {
 						Object.entries(rule.props).map(([prop, colorKey]) => {
 							const [light, dark] =
 								palette[colorKey as keyof ColorPalette];
-							return `${indent}\t${rule.cssMap[prop]}: color-mix(in srgb, light-dark(${light}, ${dark}) var(--db-color-transparency), transparent);`;
+							const cssProp = rule.cssMap[prop];
+							return `${indent}\t${cssProp}: color-mix(in srgb, light-dark(${light}, ${dark}) ${transparencyFor(cssProp)}, transparent);`;
 						})
 					)
 					.join('\n');
@@ -269,20 +282,22 @@ const generateForPrefix = (prefix: string): string => {
 
 export const generateMaterialsCss = (): string => {
 	const defaultSet = generateForPrefix('');
-	const activeSet = generateForPrefix('active');
+	const activeSet = generateForPrefix('alt-state');
 
 	let css = '@layer material, material-high-contrast, size;\n\n';
 
 	const focusPalette = colors[FOCUS_OUTLINE_COLOR.color];
 	const [focusLight, focusDark] = focusPalette[FOCUS_OUTLINE_COLOR.index];
-	const dividerPalette = colors[DIVIDER_BG_COLOR.color];
-	const [dividerLight, dividerDark] = dividerPalette[DIVIDER_BG_COLOR.index];
-	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: light-dark(${dividerLight}, ${dividerDark});\n\t--db-color-transparency: 100%;\n\t--db-font-weight: normal;\n}\n\n`;
+	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: var(--db-border-default);\n\t--db-font-weight: normal;\n}\n\n`;
+
+	// Apply the base surface to the root/host itself so an unstyled document
+	// (or a custom-element host) picks up the adaptive background and text color.
+	css += `:root,\n:host {\n\tbackground: var(--db-bg-default);\n\tcolor: var(--db-text-default);\n}\n\n`;
 
 	css += '@layer material {\n\n';
 	css += defaultSet.materialCss;
 	css += activeSet.materialCss;
-	css += '[data-emphasis="low"] {\n\t--db-color-transparency: 80%;\n}\n\n';
+	css += '[data-emphasis="low"] {\n\t--db-emphasis-transparency: 75%;\n}\n\n';
 	css += '[data-emphasis="high"] {\n\t--db-font-weight: bold;\n}\n\n';
 	css += '} /* @layer material */\n\n';
 

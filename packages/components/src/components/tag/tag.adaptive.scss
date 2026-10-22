@@ -1,8 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/next/component";
+@use "../../styles/adaptive/component";
 
-[data-generation="next"] .db-tag,
-.db-tag[data-generation="next"] {
+[data-adaptive-coloring="true"] .db-tag,
+.db-tag[data-adaptive-coloring="true"] {
 	@extend %default-material;
 
 	border-color: var(--db-border-decorative);

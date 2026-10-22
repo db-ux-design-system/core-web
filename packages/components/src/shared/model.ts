@@ -88,15 +88,23 @@ export type MaterialState = {
 export type ColorState = {
 	_getColor: () => ColorType | undefined;
 };
-export type ActiveMaterialState = {
-	_getActiveMaterial: () => MaterialType | undefined;
+export type AltStateMaterialState = {
+	_getAltStateMaterial: () => MaterialType | undefined;
 };
-export type ActiveColorState = {
-	_getActiveColor: () => ColorType | undefined;
+export type AltStateColorState = {
+	_getAltStateColor: () => ColorType | undefined;
 };
-export type ActiveMaterialProps = {
-	activeMaterial?: MaterialType;
-	activeColor?: ColorType;
+export type AltStateMaterialProps = {
+	/**
+	 * The material of the alternative state (e.g. the checked state of a
+	 * checkbox, radio or switch).
+	 */
+	altStateMaterial?: MaterialType;
+	/**
+	 * The color of the alternative state (e.g. the checked state of a
+	 * checkbox, radio or switch).
+	 */
+	altStateColor?: ColorType;
 };
 
 export const SemanticList = [

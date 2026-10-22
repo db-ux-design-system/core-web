@@ -1,6 +1,4 @@
 import type {
-	ActiveColorState,
-	ActiveMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
 	ColorState,
@@ -36,7 +34,7 @@ export type DBSwitchDefaultProps = {
 
 export type DBSwitchProps = GlobalProps &
 	NextGenDefaultProps &
-	ActiveMaterialProps &
+	AltStateMaterialProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
@@ -55,7 +53,7 @@ export type DBSwitchDefaultState = {
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
 	ColorState &
-	ActiveColorState &
+	AltStateColorState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &

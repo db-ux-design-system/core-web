@@ -1,7 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "accordion";
 
-[data-generation="next"] .db-accordion,
-.db-accordion[data-generation="next"] {
+[data-adaptive-coloring="true"] .db-accordion,
+.db-accordion[data-adaptive-coloring="true"] {
 	/* No color changes for now */
 }

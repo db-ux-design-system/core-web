@@ -1,7 +1,6 @@
 import type { ColorPalette } from './color.ts';
 
 export type MaterialName =
-	| 'filled'
 	| 'filled-1'
 	| 'filled-2'
 	| 'filled-3'
@@ -43,7 +42,7 @@ export type MaterialConfig = {
 export const containerPropToCss = (
 	prefix = ''
 ): Record<ContainerProp, string> => ({
-	border: `--db-${prefix}border`,
+	border: `--db-${prefix}border-default`,
 	borderVibrant: `--db-${prefix}border-vibrant`,
 	borderDecorative: `--db-${prefix}border-decorative`,
 	bgDefault: `--db-${prefix}bg-default`,
@@ -52,9 +51,9 @@ export const containerPropToCss = (
 });
 
 export const contentPropToCss = (prefix = ''): Record<ContentProp, string> => ({
-	onBgDefault: `--db-${prefix}on-bg-default`,
-	onBgHovered: `--db-${prefix}on-bg-hovered`,
-	onBgPressed: `--db-${prefix}on-bg-pressed`,
+	onBgDefault: `--db-${prefix}text-default`,
+	onBgHovered: `--db-${prefix}text-hovered`,
+	onBgPressed: `--db-${prefix}text-pressed`,
 	textVibrant: `--db-${prefix}text-vibrant`,
 	visualVibrant: `--db-${prefix}visual-vibrant`
 });
@@ -100,27 +99,13 @@ const filledContent: ContentContrastProps = {
 };
 
 export const materials: Record<MaterialName, MaterialConfig> = {
-	filled: {
-		container: {
-			// bg/basic/level-1 token: default palette/14, hovered palette/11,
-			// pressed palette/10.
-			border: 1,
-			bgDefault: 14,
-			bgHovered: 11,
-			bgPressed: 10,
-			...sharedContainerRoles
-		},
-		highContrast: {
-			container: { border: 6, ...sharedContainerRolesHc },
-			content: { ...sharedContentRolesHc }
-		},
-		content: filledContent
-	},
 	'filled-1': {
 		container: {
+			// bg/basic/level-1 token (from Scheme): default palette/14,
+			// hovered palette/12, pressed palette/10.
 			border: 11,
 			bgDefault: 14,
-			bgHovered: 11,
+			bgHovered: 12,
 			bgPressed: 10,
 			...sharedContainerRoles
 		},

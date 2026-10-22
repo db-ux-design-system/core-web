@@ -1,6 +1,4 @@
 import {
-	ActiveColorState,
-	ActiveMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
 	ColorState,
@@ -28,7 +26,7 @@ export type DBCheckboxDefaultProps = {
 export type DBCheckboxProps = DBCheckboxDefaultProps &
 	GlobalProps &
 	NextGenDefaultProps &
-	ActiveMaterialProps &
+	AltStateMaterialProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
@@ -41,7 +39,7 @@ export type DBCheckboxDefaultState = {};
 export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &
 	ColorState &
-	ActiveColorState &
+	AltStateColorState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &

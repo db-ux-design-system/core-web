@@ -1,8 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/next/component";
+@use "../../styles/adaptive/component";
 
-[data-generation="next"] .db-button,
-.db-button[data-generation="next"] {
+[data-adaptive-coloring="true"] .db-button,
+.db-button[data-adaptive-coloring="true"] {
 	@extend %interactive-materials;
 
 	&:is(:disabled, [aria-disabled="true"]) {
