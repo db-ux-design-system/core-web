@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-Bnk9myN4.js";e();
