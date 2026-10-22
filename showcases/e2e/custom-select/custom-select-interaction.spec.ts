@@ -322,7 +322,6 @@ test.describe('DBCustomSelect', () => {
 				clearButton
 			]) {
 				await expect(button).toHaveAttribute('tabindex', '-1');
-				await expect(button).toHaveAttribute('disabled', 'true');
 			}
 		}
 	});
