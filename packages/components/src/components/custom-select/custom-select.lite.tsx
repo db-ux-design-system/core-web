@@ -739,19 +739,21 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (!_ref) {
 				return;
 			}
-			const disabled = getBoolean(props.disabled, 'disabled');
-			const buttons: HTMLButtonElement[] = Array.from(
-				_ref.querySelectorAll('.db-custom-select-form-field button')
-			);
-			for (const button of buttons) {
-				if (disabled) {
-					button.setAttribute('tabindex', '-1');
-					button.setAttribute('aria-disabled', 'true');
-				} else {
-					button.removeAttribute('tabindex');
-					button.removeAttribute('aria-disabled');
+			requestAnimationFrame(() => {
+				const disabled = getBoolean(props.disabled, 'disabled');
+				const buttons: HTMLButtonElement[] = Array.from(
+					_ref.querySelectorAll('.db-custom-select-form-field button')
+				);
+				for (const button of buttons) {
+					if (disabled) {
+						button.setAttribute('tabindex', '-1');
+						button.setAttribute('aria-disabled', 'true');
+					} else {
+						button.removeAttribute('tabindex');
+						button.removeAttribute('aria-disabled');
+					}
 				}
-			}
+			});
 		},
 		handleSummaryFocus: () => {
 			if (detailsRef) {

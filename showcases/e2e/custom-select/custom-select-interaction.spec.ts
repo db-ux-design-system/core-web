@@ -306,9 +306,7 @@ test.describe('DBCustomSelect', () => {
 		async run({ content }) {
 			const select = content.getByTestId('disabled-tag-select');
 
-			const removeButtons = select.locator(
-				'.db-tag .db-tab-remove-button'
-			);
+			const removeButtons = select.locator('.db-tab-remove-button');
 			await expect(removeButtons).toHaveCount(2);
 
 			const clearButton = select.locator('.db-custom-select-clear');
