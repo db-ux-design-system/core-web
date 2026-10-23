@@ -24,6 +24,72 @@ test.describe('DBSelect', () => {
 		}
 	});
 
+	// The empty option of a `placeholder` or floating label select carries the
+	// native `hidden` attribute. `required` hides it by default,
+	// `showEmptyOption` overrides that.
+	runInteractionTest({
+		title: 'should hide the empty option of a required select',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const select = getControlByRole(
+				page,
+				content.getByTestId('select-required'),
+				'combobox'
+			);
+			const emptyOption = select.locator('option[value=""]');
+
+			// Hidden, but still the selected option: the select has to keep
+			// reporting `valueMissing` until a real option is picked.
+			await expect(emptyOption).toHaveJSProperty('hidden', true);
+			await expect(emptyOption).toHaveJSProperty('selected', true);
+			await expect(select).toHaveValue('');
+			await expect(select).toHaveJSProperty('selectedIndex', 0);
+			expect(
+				await select.evaluate(
+					(element: HTMLSelectElement) =>
+						element.validity.valueMissing
+				)
+			).toBe(true);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should show the empty option of an optional select',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const select = getControlByRole(
+				page,
+				content.getByTestId('select-change'),
+				'combobox'
+			);
+
+			await expect(select.locator('option[value=""]')).toHaveJSProperty(
+				'hidden',
+				false
+			);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should hide the empty option with showEmptyOption=false',
+		path,
+		// Two optional selects: the first one relies on the default, the
+		// second one sets `showEmptyOption={false}`.
+		example: 'Examples showEmptyOption property',
+		async run({ content }) {
+			const selects = content.locator('select');
+
+			await expect(
+				selects.nth(0).locator('option[value=""]')
+			).toHaveJSProperty('hidden', false);
+			await expect(
+				selects.nth(1).locator('option[value=""]')
+			).toHaveJSProperty('hidden', true);
+		}
+	});
+
 	runInteractionTest({
 		title: 'should keep the selection while validating on input',
 		path,

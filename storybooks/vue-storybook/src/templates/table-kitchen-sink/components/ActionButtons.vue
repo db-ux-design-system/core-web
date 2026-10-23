@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { DBButton, DBSelect, DBStack, DBTooltip } from "@components";
+import { defineProps } from "vue";
 
 interface Props {
 	hasNextPage: boolean;

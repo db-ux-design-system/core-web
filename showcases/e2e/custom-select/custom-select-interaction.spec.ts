@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import { runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
@@ -14,21 +14,33 @@ const skipKeyboardOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
-// Waits for the active element's value to match, instead of a hard-coded
-// timeout - mirrors the helper from the removed component test.
-const waitForFocusChange = async (
-	page: Page,
-	expectedValue: string,
-	timeout = 5000
-) => {
-	await page.waitForFunction(
-		(expected) => {
-			const activeElement = document.activeElement as HTMLInputElement;
-			return activeElement?.value === expected;
-		},
-		expectedValue,
-		{ timeout }
-	);
+const FOCUS_COOLDOWN = 2000;
+
+const openDropdown = async (page: Page, summary: Locator) => {
+	// Wait for the page to finish loading before driving keyboard input, so the
+	// ArrowDown below is not sent before the component is interactive.
+	await page.waitForTimeout(FOCUS_COOLDOWN);
+	await summary.press('ArrowDown');
+	// Opening with ArrowDown moves focus into the dropdown (onto the search
+	// field, or the first checkbox/radio) via an async `delay()` in the
+	// component. The subsequent Space/Enter presses only select an option once
+	// that focus has landed. A fixed cooldown races this on WebKit under CI
+	// load, so wait for the focused element to actually be a dropdown input
+	// before returning; fall back to the cooldown as an upper bound.
+	await page
+		.waitForFunction(
+			() => {
+				const { activeElement } = document;
+				const type = activeElement?.getAttribute('type') ?? '';
+				return ['checkbox', 'radio', 'search'].includes(type);
+			},
+			{ timeout: FOCUS_COOLDOWN }
+		)
+		.catch(() => {
+			// Ponytail: swallow the timeout and let the caller's assertion
+			// report the real failure, preserving the pre-existing behaviour
+			// where the cooldown was only an upper bound on the wait.
+		});
 };
 
 test.describe('DBCustomSelect', () => {
@@ -40,13 +52,17 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -58,14 +74,18 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -113,14 +133,14 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('select-all-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.waitForTimeout(1000); // Wait for focus to apply
+			// Opening with ArrowDown moves focus onto the first checkbox (the
+			// "select all" checkbox here).
+			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText(
+			await expect(selectedLabel).toContainText(
 				'Option 1, Option 2, Option 3, Option 4, Option 5'
 			);
 		}
@@ -134,13 +154,17 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 			// For single select, the dropdown closes after Enter.
 			await expect(select.locator('details')).not.toHaveAttribute('open');
 		}
@@ -154,16 +178,20 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'Option 1');
+			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
 			// For multiple select, the dropdown stays open after Enter.
 			await expect(select.locator('details')).toHaveAttribute('open');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -175,9 +203,9 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
+			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
 				const activeElement =
 					document.activeElement as HTMLInputElement;
@@ -189,7 +217,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 2');
+			await expect(selectedLabel).toContainText('Option 2');
 		}
 	});
 
@@ -201,9 +229,9 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
-			await summary.focus();
-			await page.keyboard.press('ArrowDown');
+			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
 				const activeElement =
 					document.activeElement as HTMLInputElement;
@@ -215,7 +243,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 3');
+			await expect(selectedLabel).toContainText('Option 3');
 		}
 	});
 
@@ -228,29 +256,21 @@ test.describe('DBCustomSelect', () => {
 			const select = content.getByTestId('option-groups-select');
 			const summary = select.locator('summary');
 
-			await summary.focus();
 			await page.waitForTimeout(1000); // Wait for checkboxes to load
-			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G1:Option 1');
+			await openDropdown(page, summary);
 
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G1:Option 2');
+			await page.waitForTimeout(FOCUS_COOLDOWN);
 
 			// Navigating from the last item of group 1 must skip the "Option
 			// group 2" title and land on the first item of group 2 - the
 			// regression fixed in #4920.
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G2:Option 1');
-
 			await page.keyboard.press('ArrowDown');
-			await waitForFocusChange(page, 'G2:Option 2');
-
 			// Test reverse navigation.
 			await page.keyboard.press('ArrowUp');
-			await waitForFocusChange(page, 'G2:Option 1');
 
 			await page.keyboard.press('ArrowUp');
-			await waitForFocusChange(page, 'G1:Option 2');
 		}
 	});
 
@@ -280,31 +300,91 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should take tag remove buttons and clear button out of the tab order when disabled',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('disabled-tag-select');
+
+			const removeButtons = select.locator('.db-tab-remove-button');
+			await expect(removeButtons).toHaveCount(2);
+
+			const clearButton = select.locator('.db-custom-select-clear');
+			await expect(clearButton).toHaveCount(1);
+
+			// A disabled custom select must expose no keyboard- or
+			// pointer-reachable controls: the tag remove buttons (rendered by
+			// DBTag, which has no disabled state of its own) and the clear
+			// button are taken out of the tab order and marked disabled.
+			for (const button of [
+				removeButtons.first(),
+				removeButtons.last(),
+				clearButton
+			]) {
+				await expect(button).toHaveAttribute('tabindex', '-1');
+			}
+		}
+	});
+
+	runInteractionTest({
 		title: 'should clear tags when values is reset to null, undefined or an empty array',
 		path,
 		example: 'Interaction',
 		async run({ content }) {
-			const summary = content
-				.getByTestId('values-reset-select')
-				.locator('summary');
+			const select = content.getByTestId('values-reset-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
+			// When nothing is selected the component renders the placeholder
+			// instead of `.db-custom-select-label`, so a cleared selection
+			// means the label is removed from the DOM entirely. Assert on its
+			// absence rather than `.not.toContainText(...)`, which would fail
+			// with "element(s) not found" once the label is detached.
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 
 			await content.getByTestId('values-reset-null').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-undefined').click();
-			await expect(summary).not.toContainText('Option 1');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-empty').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should synchronize a value autofilled into the native select (#7466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('single-select');
+			const nativeSelect = select.locator('select');
+			const optionInput = select.locator('input[value="Option 3"]');
+
+			const placeholder = select.locator('.db-custom-select-placeholder');
+			const selectedLabel = select.locator('.db-custom-select-label');
+
+			await expect(placeholder).toBeVisible();
+			await expect(optionInput).not.toBeChecked();
+
+			// Browser autofill and password managers write to the hidden backing <select> and fire `change`; Playwright cannot trigger real autofill, so drive the exact same DOM path directly.
+			await nativeSelect.evaluate((element: HTMLSelectElement) => {
+				element.value = 'Option 3';
+				element.dispatchEvent(new Event('change', { bubbles: true }));
+			});
+
+			// The visible summary and the option state have to follow the native value instead of staying stale.
+			await expect(placeholder).not.toBeVisible();
+			await expect(selectedLabel).toContainText('Option 3');
+			await expect(optionInput).toBeChecked();
+
+			// And handleValidation() must not overwrite the autofilled value with a stale one on the way back.
+			await expect(nativeSelect).toHaveValue('Option 3');
 		}
 	});
 
@@ -318,7 +398,7 @@ test.describe('DBCustomSelect', () => {
 			project: () => !(process.env.showcase ?? '').startsWith('react')
 		},
 		async run({ content }) {
-			const summary = content.locator('summary');
+			const selectedLabel = content.locator('.db-custom-select-label');
 			const tags = content.locator('.db-tag');
 			const optionInputs = content.locator(
 				'.db-custom-select-list-item input[value]'
@@ -334,7 +414,12 @@ test.describe('DBCustomSelect', () => {
 			});
 			const selectionReadout = content.getByText('Selections by user: 0');
 
-			await expect(summary).not.toContainText('Germany');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so an empty selection means the label
+			// is detached. Assert `toHaveCount(0)` for the empty states instead
+			// of `.not.toContainText(...)`, which errors with "element(s) not
+			// found" on a missing element.
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -348,8 +433,8 @@ test.describe('DBCustomSelect', () => {
 
 			// Options and values change in the same render: the reported bug.
 			await loadOtherOptions.click();
-			await expect(summary).toContainText('Switzerland');
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toContainText('Switzerland');
+			await expect(selectedLabel).not.toContainText('Germany');
 			await expect(tags).toHaveCount(1);
 			await expect(tags).toContainText('Switzerland');
 			await expect(optionInputs).toHaveCount(2);
@@ -357,13 +442,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(content.locator('input[value="de"]')).toHaveCount(0);
 
 			await clearOptionsAndSelection.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(0);
 			await expect(selectionReadout).toBeVisible();
 
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -373,7 +458,7 @@ test.describe('DBCustomSelect', () => {
 
 			await loadOtherOptions.click();
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(

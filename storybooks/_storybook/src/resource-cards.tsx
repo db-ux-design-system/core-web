@@ -5,6 +5,7 @@ declare const __FRAMEWORK_URLS__: {
 	angular: string;
 	react: string;
 	vue: string;
+	webComponents: string;
 };
 
 const RESOURCES = [
@@ -34,6 +35,13 @@ const RESOURCES = [
 		description: 'Native Vue 3 components',
 		url: `${__FRAMEWORK_URLS__.vue}/?path=/docs/getting-started--docs`,
 		icon: 'vue.svg',
+		label: 'View Storybook'
+	},
+	{
+		title: 'Web Components',
+		description: 'Framework-agnostic custom elements',
+		url: `${__FRAMEWORK_URLS__.webComponents}/?path=/docs/getting-started--docs`,
+		icon: 'webcomponents.svg',
 		label: 'View Storybook'
 	}
 ];

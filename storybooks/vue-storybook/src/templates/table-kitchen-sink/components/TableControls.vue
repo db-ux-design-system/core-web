@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends RowData">
 import { DBCard, DBCustomSelect, DBStack } from "@components";
-import type { StockFeatures, Table } from "@tanstack/vue-table";
-import { computed } from "vue";
+import type { RowData, StockFeatures, Table } from "@tanstack/vue-table";
+import { computed, defineEmits, defineProps } from "vue";
 import DebouncedInput from "./DebouncedInput.vue";
 
 interface Props {
-	table: Table<StockFeatures, any>;
+	table: Table<StockFeatures, T>;
 	globalFilter: string;
 }
 
