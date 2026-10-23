@@ -49,7 +49,10 @@
 		@include helpers.hover {
 			&:is(label),
 			> label {
-				color: var(--db-check-element-label-color, #{adaptive.$db-text-hovered});
+				color: var(
+					--db-check-element-label-color,
+					#{adaptive.$db-text-hovered}
+				);
 			}
 
 			input:not(:checked) {
@@ -60,7 +63,10 @@
 		@include helpers.active {
 			&:is(label),
 			> label {
-				color: var(--db-check-element-label-color, #{adaptive.$db-text-pressed});
+				color: var(
+					--db-check-element-label-color,
+					#{adaptive.$db-text-pressed}
+				);
 			}
 
 			input:not(:checked) {
@@ -132,16 +138,35 @@
 	}
 }
 
-// Appearance for value fields (input, textarea, select). `$selector` is the
-// inner element (`input`, `textarea`, `select`). Text fields keep the text
-// cursor on hover (`$revert-cursor: true`); select is pointer-driven and also
-// gets a pressed state (`$pressed: true`).
-@mixin field-materials($selector, $revert-cursor: true, $pressed: false) {
+@mixin field-content {
 	&::before,
 	&::after,
 	[id$="-placeholder"],
 	> label {
+		@content;
+	}
+}
+
+// Appearance for value fields (input, textarea, select). `$selector` is the
+// inner element (`input`, `textarea`, `select`). Text fields keep the text
+// cursor on hover (`$revert-cursor: true`); select is pointer-driven and also
+// gets a pressed state (`$pressed: true`).
+@mixin field-materials(
+	$selector,
+	$revert-cursor: true,
+	$pressed: false,
+	$read-only-alt-state: false
+) {
+	@include field-content {
 		color: adaptive.$db-text-default;
+	}
+
+	@if $read-only-alt-state {
+		&:has(#{$selector}:read-only:not(:disabled)) {
+			@include field-content {
+				color: adaptive.$db-alt-state-text-default;
+			}
+		}
 	}
 
 	#{$selector} {
@@ -170,6 +195,36 @@
 					background-color: adaptive.$db-bg-pressed;
 				}
 			}
+		}
+
+		@if $read-only-alt-state {
+			--db-#{$selector}-read-only: #{adaptive.$db-alt-state-bg-default};
+
+			&::placeholder {
+				color: adaptive.$db-text-default;
+			}
+
+			&:read-only:not(:disabled) {
+				color: adaptive.$db-alt-state-text-default;
+				border-color: adaptive.$db-alt-state-border-default;
+
+				&::placeholder {
+					color: adaptive.$db-alt-state-text-default;
+				}
+
+				@if $revert-cursor {
+					caret-color: adaptive.$db-alt-state-text-default;
+				}
+			}
+		}
+	}
+
+	// Floating variant: the label sits on top of the field, so over a read-only
+	// (alt-state) surface it has to use the alt-state text color too.
+	@if $read-only-alt-state {
+		&[data-variant="floating"]:has(#{$selector}:read-only:not(:disabled))
+			> label {
+			color: adaptive.$db-alt-state-text-default;
 		}
 	}
 }

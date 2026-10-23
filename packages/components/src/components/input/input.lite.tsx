@@ -321,6 +321,8 @@ export default function DBInput(props: DBInputProps) {
 		<div
 			data-material={props.material}
 			data-color={state._getColor()}
+			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+			data-alt-state-color={props.altStateColor}
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
@@ -335,9 +337,7 @@ export default function DBInput(props: DBInputProps) {
 				props.showIconTrailing,
 				'showIconTrailing'
 			)}>
-			<label
-				data-color={props.color ?? 'neutral'}
-				htmlFor={state._id}>
+			<label data-color={props.color ?? 'neutral'} htmlFor={state._id}>
 				{props.label ?? DEFAULT_LABEL}
 			</label>
 			<input

@@ -64,6 +64,7 @@ export type DBTextareaProps = DBTextareaDefaultProps &
 	FormProps &
 	GlobalProps &
 	MaterialProps &
+	AltStateMaterialProps &
 	FormTextProps &
 	FormMessageProps;
 

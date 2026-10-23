@@ -117,6 +117,7 @@ export type DBInputDefaultProps = {
 export type DBInputProps = DBInputDefaultProps &
 	GlobalProps &
 	MaterialProps &
+	AltStateMaterialProps &
 	FormTextProps &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &
