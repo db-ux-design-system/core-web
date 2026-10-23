@@ -82,6 +82,69 @@ test.describe('DBTabs', () => {
 		}
 	});
 
+	// Regression guard for
+	// https://github.com/db-ux-design-system/core-web/issues/8336: a single tab
+	// in manual mode must become selected (and show its panel) on click.
+	runInteractionTest({
+		title: 'should select a single tab on click',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('dynamic-tabs');
+			const tab1 = tabs.getByRole('tab', { name: 'Dynamic 1' });
+			const panel1 = tabs.getByRole('tabpanel', {
+				name: 'Dynamic 1'
+			});
+
+			// Manual mode: nothing selected initially, panel hidden.
+			await expect(tab1).toHaveAttribute('aria-selected', 'false');
+			await expect(panel1).toBeHidden();
+
+			await tab1.click();
+			await expect(tab1).toHaveAttribute('aria-selected', 'true');
+			await expect(panel1).toBeVisible();
+		}
+	});
+
+	// Regression guard for
+	// https://github.com/db-ux-design-system/core-web/issues/8336: a tab added
+	// at runtime (composition API) must be wired up (ARIA) and selectable, and
+	// a freshly added panel must not be visible while nothing is selected.
+	runInteractionTest({
+		title: 'should wire up and select a dynamically added tab',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('dynamic-tabs');
+			await content.getByTestId('dynamic-toggle').click();
+
+			const tab2 = tabs.getByRole('tab', { name: 'Dynamic 2' });
+			const panel2 = tabs.getByRole('tabpanel', {
+				name: 'Dynamic 2'
+			});
+
+			// Added in manual mode: still nothing selected, the new panel must
+			// stay hidden instead of defaulting to visible.
+			await expect(tab2).toHaveAttribute('aria-selected', 'false');
+			await expect(tab2).toHaveAttribute('aria-controls', /tab-panel/);
+			await expect(panel2).toBeHidden();
+
+			// The new tab must be selectable.
+			await tab2.click();
+			await expect(tab2).toHaveAttribute('aria-selected', 'true');
+			await expect(panel2).toBeVisible();
+
+			// Removing the selected tab must not leave the tabs empty: the
+			// selection falls back to the remaining tab and its panel shows.
+			const tab1 = tabs.getByRole('tab', { name: 'Dynamic 1' });
+			const panel1 = tabs.getByRole('tabpanel', { name: 'Dynamic 1' });
+			await content.getByTestId('dynamic-toggle').click();
+			await expect(tab2).toHaveCount(0);
+			await expect(tab1).toHaveAttribute('aria-selected', 'true');
+			await expect(panel1).toBeVisible();
+		}
+	});
+
 	// Note: the URL-hash deep-linking test from the removed component test is
 	// not portable here. DBTabs reads the entire `window.location.hash`, which
 	// the showcase app itself owns for its own hash-based routing

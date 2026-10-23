@@ -11,6 +11,7 @@ import {
 import {
 	cls,
 	getBoolean,
+	getBooleanAsString,
 	hasFocusgroupSupport,
 	NAVIGATION_KEYS,
 	uuid
@@ -33,6 +34,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 	const state: DBTabsState = useStore<DBTabsState>({
 		_activeIndex: 0,
+		_synced: false,
 		initialized: false,
 		showScrollStart: false,
 		showScrollEnd: false,
@@ -183,6 +185,8 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				panel.hidden = !isSelected;
 			});
+
+			state._synced = true;
 		},
 
 		handleClick(event: any) {
@@ -673,13 +677,41 @@ export default function DBTabs(props: DBTabsProps) {
 				if (!hasTabChange && !hasContentChange && !hasDisabledChange)
 					return;
 
+				// Hide any just-inserted owned panel synchronously (before paint)
+				// so it does not flash visible for a frame while the RAF-batched
+				// re-init is still pending. A freshly added panel is never the
+				// active one at insertion time, so hiding it is always safe here.
+				if (hasTabChange) {
+					for (const mutation of mutations) {
+						for (const node of Array.from(mutation.addedNodes)) {
+							const element = node as HTMLElement;
+							if (!element.querySelectorAll) continue;
+							const addedPanels =
+								element.getAttribute?.('role') === 'tabpanel'
+									? [element]
+									: Array.from<HTMLElement>(
+											element.querySelectorAll(
+												'[role="tabpanel"]'
+											)
+										);
+							for (const panel of addedPanels) {
+								if (state._isOwnedPanel(panel)) {
+									panel.hidden = true;
+								}
+							}
+						}
+					}
+				}
+
 				const rafId = state._pendingRafId;
 				if (rafId !== null) cancelAnimationFrame(rafId);
 				state._pendingRafId = requestAnimationFrame(() => {
 					state._pendingRafId = null;
 					state.initTabList();
 					if (hasTabChange) {
+						/* initTabs preserves the selected index by element identity so a structural change that shifts indices keeps the right tab selected. */
 						state.initTabs();
+						state.syncSelection(state._activeIndex);
 					}
 					if (hasDisabledChange) {
 						state.syncSelection(state._activeIndex);
@@ -703,7 +735,8 @@ export default function DBTabs(props: DBTabsProps) {
 		// MutationObserver detects structural changes, and when props.tabs changes.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		initTabs() {
-			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
+			const baseId =
+				props.id ?? props.propOverrides?.id ?? state._id ?? _ref?.id;
 			if (!baseId || !_ref) return;
 
 			const tabListEl = state._getScrollContainer();
@@ -713,12 +746,31 @@ export default function DBTabs(props: DBTabsProps) {
 
 			if (!tabListEl) return;
 
+			// Capture the button that is selected right now, before re-querying,
+			// so a structural change that shifts indices (a tab inserted or
+			// removed before the selected one) can preserve the selection by
+			// element identity instead of re-applying the stale numeric index.
+			const previousSelectedButton = state._tabButtons.find(
+				(button: HTMLElement) =>
+					button.getAttribute('aria-selected') === 'true'
+			);
+
 			const buttons = Array.from<HTMLElement>(
 				tabListEl.querySelectorAll('[role="tab"]')
 			);
 
 			state._tabButtons = buttons;
 			state._tabPanels = panels;
+
+			// If the previously selected tab still exists, keep it selected at
+			// its new index; only fall back to the numeric index when it was
+			// actually removed (syncSelection then clamps to the first enabled).
+			if (previousSelectedButton) {
+				const preservedIndex = buttons.indexOf(previousSelectedButton);
+				if (preservedIndex !== -1 && props.activeIndex === undefined) {
+					state._activeIndex = preservedIndex;
+				}
+			}
 
 			buttons.forEach((button: HTMLElement, index: number) => {
 				const panel = panels[index];
@@ -732,6 +784,10 @@ export default function DBTabs(props: DBTabsProps) {
 					panel.id = panelId;
 					button.setAttribute('aria-controls', panelId);
 					panel.setAttribute('aria-labelledby', buttonId);
+
+					/* Hide a freshly added panel on the same commit (no flash); syncSelection then resolves the authoritative state. */
+					panel.hidden =
+						button.getAttribute('aria-selected') !== 'true';
 				}
 			});
 		}
@@ -895,6 +951,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-tab-item-alignment={props.tabItemAlignment}
 			data-tab-item-width={props.tabItemWidth}
 			data-initial-selected-mode={props.initialSelectedMode}
+			data-synced={getBooleanAsString(state._synced)}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>
