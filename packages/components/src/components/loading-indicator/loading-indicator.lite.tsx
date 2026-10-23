@@ -365,12 +365,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					clearTimeout(state._timeoutId);
 				}
 
-				/*
-				 * Cast to the DOM `number` handle type so the field never
-				 * resolves to Node's `NodeJS.Timeout` in the Angular output
-				 * (see model.ts / #7792). clearTimeout accepts a number in
-				 * both the DOM and Node lib.
-				 */
+				// Cast the handle to the DOM number type (see model.ts / #7792).
 				const timeoutId = setTimeout(
 					() => {
 						state._timeoutId = undefined;
