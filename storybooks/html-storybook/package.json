@@ -14,8 +14,8 @@
     "storybook": "storybook dev -p 6008"
   },
   "dependencies": {
-    "@db-ux/db-theme": "7.0.0",
-    "@db-ux/db-theme-fonts": "2.1.0",
+    "@db-ux/db-theme": "7.1.0",
+    "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.3.0",
     "react": "19.3.1",
     "react-dom": "19.3.1"
@@ -34,7 +34,7 @@
     "prettier": "3.9.10",
     "storybook": "10.6.2",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.71.2",
+    "typescript-eslint": "^8.72.0",
     "vite": "8.3.4"
   }
 }

@@ -19,21 +19,6 @@ $select-icon-padding: calc(
 		#{variables.$db-spacing-fixed-xs}
 );
 
-%select-absolute-placeholder {
-	position: absolute;
-	inset-block-start: 0;
-	inset-inline-start: 0;
-	opacity: 0;
-
-	@media (prefers-reduced-motion: no-preference) {
-		transition:
-			opacity #{variables.$db-transition-straight-emotional},
-			outline #{variables.$db-transition-duration-extra-fast},
-			border-color #{variables.$db-transition-straight-emotional},
-			background-color #{variables.$db-transition-straight-emotional};
-	}
-}
-
 %select-placeholder {
 	[id$="-placeholder"] {
 		--label-block-start: calc(
