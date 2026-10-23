@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
 [data-adaptive-coloring="true"] .db-control-panel-navigation-item-group,
@@ -10,7 +11,7 @@
 		@extend %adaptive-coloring-container;
 
 		span {
-			color: var(--db-text-default);
+			color: adaptive.$db-text-default;
 		}
 	}
 }

@@ -2,6 +2,7 @@ import {
 	ControlPanelProps,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	NavigationBehaviorState,
 	ShellControlPanelMobilePositionType,
 	ToggleEventProps,

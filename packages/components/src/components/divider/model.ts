@@ -3,6 +3,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	MarginProps,
+	MaterialProps,
 	WidthProps
 } from '../../shared/model';
 

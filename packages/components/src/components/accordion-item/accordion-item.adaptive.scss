@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 @use "../../styles/internal/form-components";
 
@@ -16,11 +17,11 @@
 
 		.db-accordion-item-header {
 			@include helpers.hover {
-				background-color: var(--db-bg-hovered);
+				background-color: adaptive.$db-bg-hovered;
 			}
 
 			@include helpers.active {
-				background-color: var(--db-bg-pressed);
+				background-color: adaptive.$db-bg-pressed;
 			}
 		}
 	}

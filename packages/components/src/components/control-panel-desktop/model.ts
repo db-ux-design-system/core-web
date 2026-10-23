@@ -3,6 +3,7 @@ import {
 	ControlPanelProps,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	OrientationProps,
 	ResetIdState,
 	SidebarProps,

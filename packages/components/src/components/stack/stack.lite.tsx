@@ -21,6 +21,8 @@ export default function DBStack(props: DBStackProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-stack', props.className)}
 			data-gap={props.gap}
 			data-variant={props.variant}

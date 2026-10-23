@@ -191,6 +191,8 @@ export default function DBTabItem(props: DBTabItemProps) {
 	return (
 		<button
 			ref={_ref}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			type="button"
 			role="tab"
 			class={cls('db-tab-item', props.className)}

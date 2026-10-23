@@ -3,6 +3,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
 	PlacementProps,
 	PopoverProps,
 	PopoverState,

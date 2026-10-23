@@ -6,6 +6,7 @@ import type {
 	GlobalState,
 	IconProps,
 	InitializedState,
+	MaterialProps,
 	ShowIconProps,
 	TextProps
 } from '../../shared/model';
@@ -23,6 +24,7 @@ export type DBControlPanelNavigationItemDefaultProps = {
 export type DBControlPanelNavigationItemProps =
 	DBControlPanelNavigationItemDefaultProps &
 		GlobalProps &
+		MaterialProps &
 		IconProps &
 		ShowIconProps &
 		DisabledProps;

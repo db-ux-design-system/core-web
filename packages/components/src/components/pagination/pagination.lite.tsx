@@ -522,6 +522,8 @@ export default function DBPagination(props: DBPaginationProps) {
 			aria-label={props.label}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-pagination', props.className)}
 			data-size={props.size}>
 			<ul onClick={(event: any) => state.handleClick(event)}>

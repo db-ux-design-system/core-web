@@ -1,8 +1,9 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
 [data-adaptive-coloring="true"] .db-control-panel-desktop,
 .db-control-panel-desktop[data-adaptive-coloring="true"] {
 	@extend %adaptive-coloring-container;
 
-	--db-control-panel-border-color: var(--db-border-default);
+	--db-control-panel-border-color: #{adaptive.$db-border-default};
 }

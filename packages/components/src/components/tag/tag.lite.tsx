@@ -1,4 +1,7 @@
 import {
+	onMount,
+	onUnMount,
+	onUpdate,
 	Show,
 	Slot,
 	useDefaultProps,
@@ -7,7 +10,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_REMOVE } from '../../shared/constants';
-import { ClickEvent } from '../../shared/model';
+import { ClickEvent, ColorType } from '../../shared/model';
 import { cls, getBooleanAsString } from '../../utils';
 import DBTooltip from '../tooltip/tooltip.lite';
 import { DBTagProps, DBTagState } from './model';
@@ -18,16 +21,32 @@ useDefaultProps<DBTagProps>({});
 export default function DBTag(props: DBTagProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	const state = useStore<DBTagState>({
-		_getMaterial: (): MaterialType | undefined => {
+		initialized: false,
+		_hasInput: false,
+		_inputObserver: undefined,
+		_material: 'filled-1',
+		_altStateMaterial: undefined,
+		_checkForInput: () => {
+			if (_ref) {
+				state._hasInput = !!_ref.querySelector('input');
+			}
+		},
+		_syncMaterials: () => {
 			if (props.material) {
-				return props.material;
+				state._material = props.material;
+			} else if (props.emphasis === 'strong' && !state._hasInput) {
+				// A tag wrapping an `<input>` keeps a `filled-1` base so its
+				// checked state can switch to the vibrant alt-state material - a
+				// vibrant base would leave the checked state visually identical.
+				state._material = 'vibrant';
+			} else {
+				state._material = 'filled-1';
 			}
 
-			if (props.emphasis === 'strong') {
-				return 'vibrant';
-			}
-
-			return 'filled-1';
+			// Only a tag that wraps an `<input>` has a checked state to style.
+			state._altStateMaterial =
+				props.altStateMaterial ??
+				(state._hasInput ? 'vibrant' : undefined);
 		},
 		_getColor: (): ColorType | undefined => {
 			if (props.color) {
@@ -50,7 +69,10 @@ export default function DBTag(props: DBTagProps) {
 				return 'green';
 			}
 
-			return 'grey';
+			return undefined;
+		},
+		_getAltStateColor: (): ColorType | undefined => {
+			return props.altStateColor ?? state._getColor();
 		},
 		handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => {
 			if (!event) return;
@@ -70,10 +92,46 @@ export default function DBTag(props: DBTagProps) {
 		}
 	});
 
+	onMount(() => {
+		state.initialized = true;
+		state._checkForInput();
+		state._syncMaterials();
+	});
+
+	onUpdate(() => {
+		if (!state.initialized || !_ref || state._inputObserver) return;
+
+		const observer = new MutationObserver(() => {
+			state._checkForInput();
+		});
+		observer.observe(_ref, { childList: true, subtree: true });
+		state._inputObserver = observer;
+
+		state._checkForInput();
+	}, [_ref, state.initialized]);
+
+	// Recompute the resolved materials into state whenever an input is detected
+
+	onUpdate(() => {
+		state._syncMaterials();
+	}, [
+		state._hasInput,
+		props.material,
+		props.altStateMaterial,
+		props.emphasis
+	]);
+
+	onUnMount(() => {
+		state._inputObserver?.disconnect();
+		state._inputObserver = undefined;
+	});
+
 	return (
 		<div
-			data-material={state._getMaterial()}
+			data-material={state._material}
 			data-adaptive-color={state._getColor()}
+			data-alt-state-material={state._altStateMaterial}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-tag', props.className)}
@@ -100,6 +158,7 @@ export default function DBTag(props: DBTagProps) {
 					data-size="small"
 					data-no-text="true"
 					data-variant="ghost"
+					data-material="transparent"
 					type="button">
 					{state.getRemoveButtonText()}
 					<DBTooltip variant="label">

@@ -6,6 +6,7 @@ import type {
 	GlobalState,
 	IconProps,
 	InitializedState,
+	MaterialProps,
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
 	ShowIconProps,
@@ -45,6 +46,7 @@ export type DBNavigationItemDefaultProps = {
 
 export type DBNavigationItemProps = DBNavigationItemDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &

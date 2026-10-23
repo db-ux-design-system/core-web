@@ -5,6 +5,8 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
+	MaterialState,
 	PlacementProps,
 	PopoverProps,
 	PopoverState,
@@ -55,6 +57,7 @@ export type DBTooltipDefaultState = {
 
 export type DBTooltipState = DBTooltipDefaultState &
 	GlobalState &
+	MaterialState &
 	ClickEventState<HTMLElement> &
 	PopoverState &
 	InitializedState &

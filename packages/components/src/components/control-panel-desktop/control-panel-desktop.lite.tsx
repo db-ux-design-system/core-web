@@ -117,6 +117,7 @@ export default function DBControlPanelDesktop(
 					onClick={(event) => state.handleToggle(event)}
 					class="db-button"
 					data-variant="ghost"
+					data-material="transparent"
 					aria-controls={state._id}
 					aria-expanded={getBooleanAsString(state._open)}
 					data-no-text="true"

@@ -1,4 +1,25 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
 [data-adaptive-coloring="true"] .db-loading-indicator,
 .db-loading-indicator[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	// Segment color is the visual-vibrant role; the overlay segment uses the
+	// strong backdrop color so it reads against the dimmed overlay scrim.
+	--db-loading-indicator-segment-color: #{adaptive.$db-visual-vibrant};
+	--db-loading-indicator-segment-color-overlay: var(
+		--db-backdrop-color-strong
+	);
+
+	// Label + progress text use the vibrant text role.
+	> .db-loading-indicator-content {
+		> span,
+		> label {
+			color: adaptive.$db-text-vibrant;
+		}
+	}
+
+	// The state (successful/critical) icon follows the visual-vibrant role.
+	> .db-loading-indicator-content::before,
+	> .db-loading-indicator-content > label::before {
+		--db-icon-color: #{adaptive.$db-visual-vibrant};
+	}
 }

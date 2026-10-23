@@ -15,6 +15,7 @@ import {
 	DEFAULT_LOADING_TIMEOUT_ACTIVE,
 	DEFAULT_PROGRESS_ID_SUFFIX
 } from '../../shared/constants';
+import { ColorType, MaterialType } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -52,6 +53,24 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		// concurrent work that must not be cleared).
 		_didSetAriaBusy: false,
 		initialized: false,
+		_getMaterial: (): MaterialType | undefined => {
+			return props.material;
+		},
+		_getColor: (): ColorType | undefined => {
+			if (props.color) {
+				return props.color;
+			}
+
+			if (state._loadingState === 'successful') {
+				return 'green';
+			}
+
+			if (state._loadingState === 'critical') {
+				return 'red';
+			}
+
+			return undefined;
+		},
 		resetIds: () => {
 			const mId =
 				props.id ||
@@ -453,6 +472,8 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			id={state._id}
 			class={cls('db-loading-indicator', props.className)}
 			role={state.getRole()}
+			data-material={state._getMaterial()}
+			data-adaptive-color={state._getColor()}
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}

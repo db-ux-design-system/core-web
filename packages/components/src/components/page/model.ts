@@ -1,4 +1,8 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export const PageVariantList = ['auto', 'fixed'] as const;
 export type PageVariantType = (typeof PageVariantList)[number];
@@ -37,7 +41,7 @@ export type DBPageDefaultProps = {
 	variant?: PageVariantType;
 };
 
-export type DBPageProps = DBPageDefaultProps & GlobalProps;
+export type DBPageProps = DBPageDefaultProps & GlobalProps & MaterialProps;
 
 export type DBPageDefaultState = {
 	fontsLoaded?: boolean;

@@ -34,3 +34,13 @@ $db-alt-state-text-hovered: var(--db-alt-state-text-hovered);
 $db-alt-state-text-pressed: var(--db-alt-state-text-pressed);
 $db-alt-state-text-vibrant: var(--db-alt-state-text-vibrant);
 $db-alt-state-visual-vibrant: var(--db-alt-state-visual-vibrant);
+
+// Indicator (active tab/navigation marker): a solid color and a pride-aware
+// gradient background that falls back to the solid color.
+$db-indicator-color: var(--db-indicator-color);
+$db-indicator-background: var(--db-indicator-background);
+
+// Backdrop scrims (modal dialog/drawer ::backdrop, overlay scrims in
+// loading-indicator and custom-select).
+$db-backdrop-color-weak: var(--db-backdrop-color-weak);
+$db-backdrop-color-strong: var(--db-backdrop-color-strong);

@@ -4,6 +4,7 @@ import type {
 	GlobalState,
 	InitializedState,
 	InnerCloseButtonProps,
+	MaterialProps,
 	NavigationBehaviorState,
 	ToggleEventProps,
 	ToggleEventState
@@ -59,6 +60,7 @@ export type DBHeaderDefaultProps = {
 export type DBHeaderProps = DBHeaderDefaultProps &
 	InnerCloseButtonProps &
 	GlobalProps &
+	MaterialProps &
 	ToggleEventProps &
 	ContainerWidthProps;
 

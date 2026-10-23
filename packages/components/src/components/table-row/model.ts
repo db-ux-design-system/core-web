@@ -1,4 +1,8 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 import type { DBLinkProps } from '../link/model';
 import type { DBTableDataCellProps } from '../table-data-cell/model';
 import type { DBTableHeaderCellProps } from '../table-header-cell/model';
@@ -33,7 +37,9 @@ export type DBTableRowDefaultProps = {
 	interactive?: boolean | string;
 };
 
-export type DBTableRowProps = DBTableRowDefaultProps & GlobalProps;
+export type DBTableRowProps = DBTableRowDefaultProps &
+	GlobalProps &
+	MaterialProps;
 
 export type DBTableRowDefaultState = {
 	getHeaderCell: (cell: DBTableRowCell) => DBTableHeaderCellProps | undefined;

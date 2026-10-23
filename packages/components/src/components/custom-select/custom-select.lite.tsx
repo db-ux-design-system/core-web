@@ -991,6 +991,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		<div
 			id={state._id}
 			ref={_ref}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-custom-select', props.className)}
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}

@@ -1,9 +1,14 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export type DBCustomSelectFormFieldDefaultProps = {};
 
 export type DBCustomSelectFormFieldProps = DBCustomSelectFormFieldDefaultProps &
-	GlobalProps;
+	GlobalProps &
+	MaterialProps;
 
 export type DBCustomSelectFormFieldDefaultState = {};
 

@@ -1,5 +1,7 @@
 import type {
 	AdaptiveDefaultProps,
+	AltStateColorState,
+	AltStateMaterialProps,
 	ClickEvent,
 	ColorState,
 	ContentSlotProps,
@@ -7,7 +9,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	IconProps,
-	MaterialState,
+	MaterialType,
 	NoTextProps,
 	OverflowProps,
 	SemanticProps,
@@ -58,6 +60,7 @@ export type DBTagDefaultProps = {
 export type DBTagProps = DBTagDefaultProps &
 	GlobalProps &
 	AdaptiveDefaultProps &
+	AltStateMaterialProps &
 	IconProps &
 	SemanticProps &
 	OverflowProps &
@@ -70,9 +73,32 @@ export type DBTagProps = DBTagDefaultProps &
 export type DBTagDefaultState = {
 	getRemoveButtonText: () => string;
 	handleRemove: (event?: ClickEvent<HTMLButtonElement> | void) => void;
+
+	initialized?: boolean;
+
+	/**
+	 * Whether the tag wraps an `<input>` (checkbox/radio). A MutationObserver
+	 * keeps it in sync with the projected children, because the slotted input is
+	 * not yet in the DOM on the first render and `querySelector` at render time
+	 * would miss it. Drives the base and alt-state material: a tag with an input
+	 * must not be `vibrant` at rest so its checked state can switch to the
+	 * vibrant alt-state material.
+	 */
+	_hasInput?: boolean;
+	_inputObserver?: MutationObserver;
+	_checkForInput: () => void;
+
+	/**
+	 * Resolved materials, recomputed whenever `_hasInput` (or the relevant props)
+	 * change. Stored in state - not derived in the template via a getter - so the
+	 * change propagates in every framework output.
+	 */
+	_material?: MaterialType;
+	_altStateMaterial?: MaterialType;
+	_syncMaterials: () => void;
 };
 
 export type DBTagState = DBTagDefaultState &
 	GlobalState &
-	MaterialState &
-	ColorState;
+	ColorState &
+	AltStateColorState;

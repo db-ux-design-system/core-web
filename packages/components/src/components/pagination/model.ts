@@ -1,4 +1,9 @@
-import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps,
+	SizeProps
+} from '../../shared/model';
 
 /**
  * A single item the option/`items` API generates. `page` is the one-based page
@@ -94,6 +99,7 @@ export type DBPaginationDefaultProps = {
 
 export type DBPaginationProps = DBPaginationDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	SizeProps;
 
 export type DBPaginationDefaultState = {

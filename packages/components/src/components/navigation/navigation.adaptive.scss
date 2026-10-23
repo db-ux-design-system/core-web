@@ -1,4 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
 [data-adaptive-coloring="true"] .db-navigation,
 .db-navigation[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	// The active-item indicator uses the adaptive indicator background (brand/7,
+	// or the pride gradient when `data-pride` is set).
+	.db-navigation-item::after {
+		background-color: adaptive.$db-indicator-color;
+		background-image: adaptive.$db-indicator-background;
+	}
 }

@@ -6,7 +6,8 @@ import type {
 	DialogDrawerDefaultState,
 	GeneralEvent,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	MaterialProps
 } from '../../shared/model';
 
 export const DialogBackdropList = ['none', 'strong', 'weak'] as const;

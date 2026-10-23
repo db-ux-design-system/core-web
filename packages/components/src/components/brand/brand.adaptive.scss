@@ -1,4 +1,8 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
 [data-adaptive-coloring="true"] .db-brand,
 .db-brand[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	&::before {
+		--db-icon-color: #{adaptive.$db-visual-vibrant};
+	}
 }

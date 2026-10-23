@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
 [data-adaptive-coloring="true"] .db-dialog,
@@ -7,6 +8,6 @@
 	// `container-layout` sets the background again on the open state, so the
 	// adaptive surface has to override it there too.
 	&[open] {
-		background-color: var(--db-bg-default);
+		background-color: adaptive.$db-bg-default;
 	}
 }

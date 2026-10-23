@@ -7,7 +7,8 @@ import type {
 	GeneralKeyboardEvent,
 	GlobalProps,
 	GlobalState,
-	InitializedState
+	InitializedState,
+	MaterialProps
 } from '../../shared/model';
 
 export const DrawerBackdropList = [

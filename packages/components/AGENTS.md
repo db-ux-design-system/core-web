@@ -368,6 +368,18 @@ This keeps id logic in one place, avoids drift between the `id` and its `htmlFor
 9. Run `pnpm run build` to verify
 10. Add a changeset for `@db-ux/core-components` **and** all four framework output packages — always all five, whether SCSS, `model.ts` or the template changed (see Changeset Rules below)
 
+> **⚠️ Always keep imports in sync with the symbols you use.** When you add a
+> type to a Props/State intersection in `model.ts`, add a store method, or
+> reference a type/value in a `.lite.tsx` (e.g. `MaterialProps`, `MaterialState`,
+> `ColorState`, `MaterialType`, `ColorType`, `onMount`, `onUpdate`,
+> `MutationObserver`), **add the matching `import` in the same edit** — and
+> conversely remove imports that are no longer used. A type referenced but not
+> imported compiles to a `Cannot find name` / `is not defined` error that only
+> surfaces at build time. After editing any `.ts`/`.tsx` file, re-read its import
+> block and confirm every newly used symbol is imported and every removed symbol
+> is dropped. Shared types come from `../../shared/model`; Mitosis lifecycle/
+> store helpers from `@builder.io/mitosis`.
+
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
 
 ### Every component must expose `material` and `color`
@@ -422,6 +434,41 @@ not derive the color — so it carries `MaterialState` but not `ColorState`.
 The scaffold produced by `pnpm run generate:component` wires the direct
 passthrough form (no getters). The adaptive SCSS (`<name>.adaptive.scss`, gated
 by `[data-adaptive-coloring="true"]`) then reads the resulting `--db-*` tokens.
+
+#### Prefer the adaptive SCSS variables over bare `var(--db-*)`
+
+Adaptive `--db-*` tokens are also exposed as Sass variables in
+[`packages/foundations/scss/_variables.adaptive.scss`](../foundations/scss/_variables.adaptive.scss)
+(`$db-bg-default`, `$db-text-default`, `$db-border-default`, the `$db-alt-state-*`
+variants, etc.). In adaptive SCSS, **reference the Sass variable, not a bare
+`var(--db-*)` string**, whenever the value is used on its own:
+
+```scss
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+.db-example {
+	// a value used on its own -> use the Sass variable
+	color: adaptive.$db-text-default;
+	background-color: adaptive.$db-bg-default;
+}
+```
+
+The **only** time a raw `var(--db-*)` is correct is when the token is **not used
+on its own** — i.e. it is wrapped inside another expression such as another
+`var()` fallback, a `color-mix()`, or a `linear-gradient()`:
+
+```scss
+// wrapped inside another var() fallback -> keep the raw custom property
+--db-icon-color: var(--db-pride-red, var(--db-visual-vibrant));
+
+// composed inside color-mix / gradients -> keep the raw custom property
+background: color-mix(in srgb, var(--db-bg-default) 50%, transparent);
+```
+
+Rule of thumb: if you would write exactly `property: var(--db-x);`, write
+`property: adaptive.$db-x;` instead. Only drop to the raw `var(--db-x)` when it
+is nested in a larger value. Prefer the Sass variable for sharability and so a
+token rename surfaces as a Sass compile error rather than a silent typo.
 
 ### Sub-Components
 

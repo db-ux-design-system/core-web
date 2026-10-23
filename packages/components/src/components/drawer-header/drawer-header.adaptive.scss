@@ -1,4 +1,5 @@
 [data-adaptive-coloring="true"] .db-drawer-header,
 .db-drawer-header[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	/* No adaptive color changes for now. The divider re-points to the adaptive
+	border globally via --db-divider-bg-color in generated-colors.css. */
 }

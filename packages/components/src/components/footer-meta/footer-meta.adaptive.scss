@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
 [data-adaptive-coloring="true"] .db-footer-meta,
@@ -5,6 +6,6 @@
 	@extend %adaptive-coloring-container;
 
 	.db-footer-copyright {
-		color: var(--db-text-default);
+		color: adaptive.$db-text-default;
 	}
 }

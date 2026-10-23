@@ -1,8 +1,10 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
 [data-adaptive-coloring="true"] .db-infotext,
 .db-infotext[data-adaptive-coloring="true"] {
-	color: var(--db-text-vibrant);
+	color: adaptive.$db-text-vibrant;
 
 	&::before {
-		--db-icon-color: var(--db-visual-vibrant);
+		--db-icon-color: #{adaptive.$db-visual-vibrant};
 	}
 }

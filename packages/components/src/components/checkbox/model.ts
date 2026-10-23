@@ -1,5 +1,7 @@
 import {
 	AdaptiveDefaultProps,
+	AltStateColorState,
+	AltStateMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
 	ColorState,

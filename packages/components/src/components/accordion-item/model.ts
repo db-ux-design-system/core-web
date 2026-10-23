@@ -2,6 +2,7 @@ import type {
 	EndSlotProps,
 	GlobalProps,
 	InitializedState,
+	MaterialProps,
 	NameProps,
 	NameState,
 	StartSlotProps,
@@ -37,6 +38,7 @@ export type DBAccordionItemDefaultProps = {
 
 export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ToggleEventProps &
 	NameProps;
 

@@ -1,4 +1,9 @@
-import { GlobalProps, GlobalState, MaterialProps } from '../../shared/model';
+import {
+	GlobalProps,
+	GlobalState,
+	MaterialProps,
+	MaterialState
+} from '../../shared/model';
 
 export type DBControlPanelMetaDefaultProps = {};
 
@@ -9,4 +14,5 @@ export type DBControlPanelMetaProps = DBControlPanelMetaDefaultProps &
 export type DBControlPanelMetaDefaultState = {};
 
 export type DBControlPanelMetaState = DBControlPanelMetaDefaultState &
-	GlobalState;
+	GlobalState &
+	MaterialState;

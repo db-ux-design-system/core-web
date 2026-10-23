@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
 [data-adaptive-coloring="true"] .db-link,
@@ -5,6 +6,6 @@
 	@extend %adaptive-coloring-interactive-text;
 
 	&[data-variant="brand"] {
-		color: var(--db-text-vibrant);
+		color: adaptive.$db-text-vibrant;
 	}
 }

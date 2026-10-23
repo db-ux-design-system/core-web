@@ -1,4 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "component";
 @use "../internal/form-components";
 
@@ -19,27 +20,27 @@
 %check-element-base {
 	&:is(label),
 	> label {
-		color: var(--db-text-default);
+		color: adaptive.$db-text-default;
 	}
 
 	input {
 		&:not(:checked) {
-			background-color: var(--db-bg-default);
-			color: var(--db-text-default);
-			border-color: var(--db-text-default);
+			background-color: adaptive.$db-bg-default;
+			color: adaptive.$db-text-default;
+			border-color: adaptive.$db-text-default;
 
 			&::before {
-				color: var(--db-text-default);
+				color: adaptive.$db-text-default;
 			}
 		}
 
 		&:checked {
-			background-color: var(--db-alt-state-bg-default);
-			color: var(--db-alt-state-text-default);
-			border-color: var(--db-alt-state-border-default);
+			background-color: adaptive.$db-alt-state-bg-default;
+			color: adaptive.$db-alt-state-text-default;
+			border-color: adaptive.$db-alt-state-border-default;
 
 			&::before {
-				color: var(--db-alt-state-text-default);
+				color: adaptive.$db-alt-state-text-default;
 			}
 		}
 	}
@@ -48,22 +49,22 @@
 		@include helpers.hover {
 			&:is(label),
 			> label {
-				color: var(--db-text-hovered);
+				color: adaptive.$db-text-hovered;
 			}
 
 			input:not(:checked) {
-				background-color: var(--db-bg-hovered);
+				background-color: adaptive.$db-bg-hovered;
 			}
 		}
 
 		@include helpers.active {
 			&:is(label),
 			> label {
-				color: var(--db-text-pressed);
+				color: adaptive.$db-text-pressed;
 			}
 
 			input:not(:checked) {
-				background-color: var(--db-bg-pressed);
+				background-color: adaptive.$db-bg-pressed;
 			}
 		}
 	}
@@ -77,13 +78,13 @@
 	&:not(:has(input:disabled)) {
 		@include helpers.hover {
 			input:checked {
-				background-color: var(--db-alt-state-bg-hovered);
+				background-color: adaptive.$db-alt-state-bg-hovered;
 			}
 		}
 
 		@include helpers.active {
 			input:checked {
-				background-color: var(--db-alt-state-bg-pressed);
+				background-color: adaptive.$db-alt-state-bg-pressed;
 			}
 		}
 	}
@@ -103,7 +104,7 @@
 	@include form-components.get-validity($selector) {
 		&:is(label),
 		> label {
-			color: var(--db-text-vibrant);
+			color: adaptive.$db-text-vibrant;
 		}
 
 		&:has(.db-infotext[data-semantic="successful"]) {
@@ -114,11 +115,11 @@
 	@include form-components.get-validity($selector, "invalid") {
 		&:is(label),
 		> label {
-			color: var(--db-text-vibrant);
+			color: adaptive.$db-text-vibrant;
 		}
 
 		input {
-			border-color: var(--db-border-vibrant);
+			border-color: adaptive.$db-border-vibrant;
 		}
 
 		@include form-components.get-validity-message("invalid");
@@ -140,33 +141,33 @@
 	&::after,
 	[id$="-placeholder"],
 	> label {
-		color: var(--db-text-default);
+		color: adaptive.$db-text-default;
 	}
 
 	#{$selector} {
-		background-color: var(--db-bg-default);
-		color: var(--db-text-default);
-		border-color: var(--db-border-default);
+		background-color: adaptive.$db-bg-default;
+		color: adaptive.$db-text-default;
+		border-color: adaptive.$db-border-default;
 
 		@if $revert-cursor {
-			caret-color: var(--db-text-default);
+			caret-color: adaptive.$db-text-default;
 		}
 
 		@include helpers.not-disabled {
 			@if $revert-cursor {
 				@include helpers.hover(revert) {
-					background-color: var(--db-bg-hovered);
+					background-color: adaptive.$db-bg-hovered;
 				}
 				/* stylelint-disable-next-line at-rule-empty-line-before */
 			} @else {
 				@include helpers.hover {
-					background-color: var(--db-bg-hovered);
+					background-color: adaptive.$db-bg-hovered;
 				}
 			}
 
 			@if $pressed {
 				@include helpers.active {
-					background-color: var(--db-bg-pressed);
+					background-color: adaptive.$db-bg-pressed;
 				}
 			}
 		}
@@ -178,7 +179,7 @@
 @mixin field-validity($selector) {
 	@include form-components.get-validity($selector) {
 		#{$selector} {
-			border-color: var(--db-border-vibrant);
+			border-color: adaptive.$db-border-vibrant;
 		}
 
 		@include form-components.get-validity-message("valid");
@@ -186,7 +187,7 @@
 
 	@include form-components.get-validity($selector, "invalid") {
 		#{$selector} {
-			border-color: var(--db-border-vibrant);
+			border-color: adaptive.$db-border-vibrant;
 		}
 
 		@include form-components.get-validity-message("invalid");

@@ -1,4 +1,17 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
 [data-adaptive-coloring="true"] .db-notification,
 .db-notification[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	// The notification renders a `filled-2` surface (set via `data-material` in
+	// the template), replacing the hardcoded `bg-basic-level-2` background.
+	@extend %adaptive-coloring-container;
+
+	&::before {
+		--db-icon-color: #{adaptive.$db-visual-vibrant};
+	}
+
+	a[data-variant="brand"] {
+		color: adaptive.$db-text-default;
+	}
 }

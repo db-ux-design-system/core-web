@@ -3,6 +3,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	HeightProps,
+	MaterialProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -53,6 +54,7 @@ export type DBStackDefaultProps = {
 
 export type DBStackProps = DBStackDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	GapSpacingProps &
 	WidthProps &
 	HeightProps;

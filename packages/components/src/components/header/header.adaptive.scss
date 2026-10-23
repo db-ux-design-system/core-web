@@ -1,4 +1,13 @@
+@use "../../styles/adaptive/component";
+
 [data-adaptive-coloring="true"] .db-header,
 .db-header[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	@extend %adaptive-coloring-container;
+
+	// The meta navigation is a slightly elevated strip - it carries
+	// `data-material="filled-2"` in the template, so the container surface
+	// resolves to the filled-2 level.
+	.db-header-meta-navigation {
+		@extend %adaptive-coloring-container;
+	}
 }

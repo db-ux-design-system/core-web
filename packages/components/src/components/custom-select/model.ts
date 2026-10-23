@@ -13,6 +13,7 @@ import type {
 	IconProps,
 	InputEvent,
 	InteractionEvent,
+	MaterialProps,
 	PlacementVerticalType,
 	RequiredProps,
 	ShowIconProps,
@@ -240,6 +241,7 @@ export type DBCustomSelectDefaultProps = {
 };
 
 export type DBCustomSelectProps = GlobalProps &
+	MaterialProps &
 	CustomFormProps &
 	BaseFormProps &
 	RequiredProps &

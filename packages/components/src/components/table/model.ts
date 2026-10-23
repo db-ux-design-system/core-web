@@ -1,4 +1,9 @@
-import type { GlobalProps, GlobalState, WidthProps } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps,
+	WidthProps
+} from '../../shared/model';
 import type { DBTableRowDefaultProps } from '../table-row/model';
 
 export const DBTableRowSizeList = [
@@ -102,7 +107,10 @@ export type DBTableDefaultProps = {
 	columnSizes?: Record<number, DBTableColumnsSizeType | string>;
 };
 
-export type DBTableProps = DBTableDefaultProps & GlobalProps & WidthProps;
+export type DBTableProps = DBTableDefaultProps &
+	GlobalProps &
+	MaterialProps &
+	WidthProps;
 
 export type DBTableDefaultState = {
 	_data?: DBTableData;

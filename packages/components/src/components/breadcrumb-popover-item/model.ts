@@ -1,4 +1,8 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export type DBBreadcrumbPopoverItemDefaultProps = {
 	/**
@@ -11,7 +15,8 @@ export type DBBreadcrumbPopoverItemDefaultProps = {
 };
 
 export type DBBreadcrumbPopoverItemProps = DBBreadcrumbPopoverItemDefaultProps &
-	GlobalProps;
+	GlobalProps &
+	MaterialProps;
 
 export type DBBreadcrumbPopoverItemDefaultState = {};
 

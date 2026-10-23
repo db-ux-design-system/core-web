@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/form-components";
 
 [data-adaptive-coloring="true"] .db-switch,
@@ -6,6 +7,6 @@
 	@include form-components.check-element-validity(switch);
 
 	input:checked {
-		border-color: var(--db-alt-state-bg-default);
+		border-color: adaptive.$db-alt-state-bg-default;
 	}
 }
