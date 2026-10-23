@@ -68,3 +68,56 @@ test.describe('DBControlPanelMobile', () => {
 		await expect(dialog).not.toBeVisible();
 	});
 });
+
+// Regression guard for #8605 on the mobile control panel. The mobile navigation
+// always renders as a drilldown inside the drawer, so opening a group must
+// reveal its sliding sub-navigation overlay on screen. A transform on the group
+// <li> (the previous-level slide-out) must not become the overlay's containing
+// block, or the overlay is dragged off-screen and its sub-items collapse to
+// zero height (empty navigation after the drilldown tap).
+test.describe('DBControlPanelMobile drilldown', () => {
+	test.beforeEach(async ({ page }, { project }) => {
+		if (!project.name.startsWith('mobile')) {
+			test.skip();
+		}
+
+		await page.goto(
+			`./#/${path}?density=regular&color=neutral-bg-basic-level-1&page=${getExampleParameter(
+				'Interaction'
+			)}`,
+			{ waitUntil: 'domcontentloaded' }
+		);
+		await waitForDBShell(page);
+	});
+
+	test('opening a group should reveal its sub-item overlay on screen', async ({
+		page
+	}) => {
+		const panel = page
+			.locator('#main-content .db-control-panel-mobile')
+			.first();
+		const burgerButton = panel.locator('.db-control-panel-mobile-button');
+		const dialog = panel.locator('dialog');
+
+		await burgerButton.click();
+		await expect(dialog).toHaveAttribute('open');
+
+		const expandButton = dialog.locator(
+			'.db-control-panel-navigation-item-group-expand-button'
+		);
+		const subItem = dialog.getByTestId('drilldown-sub1');
+
+		await expandButton.click();
+		await expect(expandButton).toHaveAttribute('aria-expanded', 'true');
+
+		// Without the fix the overlay slides off-screen and its sub-items
+		// collapse to block-size:0, so toBeVisible() fails here.
+		await expect(subItem).toBeVisible();
+		await expect(subItem.locator('a')).toBeVisible();
+
+		const box = await subItem.boundingBox();
+		expect(box).not.toBeNull();
+		expect(box!.height).toBeGreaterThan(0);
+		expect(box!.x).toBeGreaterThanOrEqual(0);
+	});
+});
