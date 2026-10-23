@@ -23,7 +23,7 @@ export default function DBShellContent(props: DBShellContentProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-shell-content', props.className)}
 			data-variant={props.variant}>
 			<Slot name="startSlot" />

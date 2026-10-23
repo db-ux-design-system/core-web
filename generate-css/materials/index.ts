@@ -65,7 +65,7 @@ const generateForPrefix = (prefix: string): string => {
 	const p = prefix ? `${prefix}-` : '';
 	const containerCss = containerPropToCss(prefix ? `${prefix}-` : '');
 	const contentCss = contentPropToCss(prefix ? `${prefix}-` : '');
-	const dataColor = `data-${p}adaptive-color`;
+	const dataColor = `data-${p}color`;
 	const dataMaterial = `data-${p}material`;
 
 	const sides = {
@@ -327,7 +327,18 @@ export const generateMaterialsCss = (): string => {
 
 	// Apply the base surface to the root/host itself so an unstyled document
 	// (or a custom-element host) picks up the adaptive background and text color.
-	css += `:root,\n:host {\n\tbackground: var(--db-bg-default);\n\tcolor: var(--db-text-default);\n}\n\n`;
+	css += `:root,\n:host {\n\tbackground-color: var(--db-bg-default);\n\tcolor: var(--db-text-default);\n}\n\n`;
+
+	// Neutralize the legacy color-class declarations on `[data-color]` elements.
+	// The legacy `_get-class.scss` rule sets `color`/`background-color` from the
+	// old `--db-adaptive-on-bg-basic-emphasis-100-default` /
+	// `--db-adaptive-bg-basic-level-1-default` tokens and is unlayered, so it
+	// wins over the adaptive `@layer material` tokens. Assigning those tokens an
+	// invalid `<color>` (`1`) makes the legacy declarations invalid at
+	// computed-value time, so they drop out and the component's own adaptive
+	// styling takes over. FIXME: temporary workaround - the real fix is to stop
+	// the legacy color classes from matching `[data-color]` (adaptive attribute).
+	css += `[data-color] {\n\t--db-adaptive-on-bg-basic-emphasis-100-default: 1;\n\t--db-adaptive-bg-basic-level-1-default: 1;\n}\n\n`;
 
 	// `[data-pride="true"]` opt-in: set the `--db-pride-*` stops to the adaptive
 	// origin colors so the indicator (and anything using them) renders the pride

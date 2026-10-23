@@ -213,9 +213,9 @@ export default function DBRadio(props: DBRadioProps) {
 	return (
 		<label
 			data-alt-state-material={props.altStateMaterial ?? 'filled-1'}
-			data-alt-state-adaptive-color={state._getAltStateColor()}
+			data-alt-state-color={state._getAltStateColor()}
 			data-material={props.material ?? 'filled-1'}
-			data-adaptive-color={state._getColor()}
+			data-color={state._getColor()}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

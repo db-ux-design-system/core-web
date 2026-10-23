@@ -14,7 +14,7 @@ export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-table-header-cell', props.className)}
 			data-horizontal-alignment={props.horizontalAlignment}
 			data-vertical-alignment={props.verticalAlignment}

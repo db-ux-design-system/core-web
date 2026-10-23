@@ -26,7 +26,7 @@ export default function DBControlPanelMeta(props: DBControlPanelMetaProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={state._getMaterial()}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-control-panel-meta', props.className)}>
 			{props.children}
 		</div>

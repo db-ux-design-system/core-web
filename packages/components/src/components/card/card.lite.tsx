@@ -46,7 +46,7 @@ export default function DBCard(props: DBCardProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-card', props.className)}
 			data-material={state._getMaterial()}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			data-behavior={props.behavior}
 			data-elevation-level={props.elevationLevel}
 			data-spacing={props.spacing}

@@ -320,7 +320,7 @@ export default function DBInput(props: DBInputProps) {
 	return (
 		<div
 			data-material={props.material}
-			data-adaptive-color={state._getColor()}
+			data-color={state._getColor()}
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
@@ -336,7 +336,7 @@ export default function DBInput(props: DBInputProps) {
 				'showIconTrailing'
 			)}>
 			<label
-				data-adaptive-color={props.color ?? 'neutral'}
+				data-color={props.color ?? 'neutral'}
 				htmlFor={state._id}>
 				{props.label ?? DEFAULT_LABEL}
 			</label>

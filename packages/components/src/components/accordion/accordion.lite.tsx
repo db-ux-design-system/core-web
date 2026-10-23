@@ -109,7 +109,7 @@ export default function DBAccordion(props: DBAccordionProps) {
 			class={cls('db-accordion', props.className)}
 			data-material={state._getMaterial()}
 			data-size={props.size}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			data-variant={props.variant}>
 			<Show when={props.items} else={props.children}>
 				<For each={parseItems(props.items)}>

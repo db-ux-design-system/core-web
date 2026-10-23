@@ -14,7 +14,7 @@ export default function DBParagraph(props: DBParagraphProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-paragraph', props.className)}
 			data-size={props.size}>
 			{props.children}

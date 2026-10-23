@@ -73,7 +73,7 @@ export default function DBCustomSelectListItem(
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
 				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle

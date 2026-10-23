@@ -27,7 +27,7 @@ export default function DBFooterMeta(props: DBFooterMetaProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-footer-meta', props.className)}
 			data-material={state._getMaterial()}
-			data-adaptive-color={props.color}>
+			data-color={props.color}>
 			<div class="db-footer-container">
 				<Show when={props.copyright}>
 					{/*

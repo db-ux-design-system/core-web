@@ -80,7 +80,7 @@ export default function DBBadge(props: DBBadgeProps) {
 	return (
 		<span
 			data-material={state._getMaterial()}
-			data-adaptive-color={state._getColor()}
+			data-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-badge', props.className)}

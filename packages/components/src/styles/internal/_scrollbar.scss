@@ -22,46 +22,70 @@ $scrollbar-width: helpers.px-to-rem(8);
 		z-index: 3;
 		inline-size: $scrollbar-width;
 		block-size: $scrollbar-width;
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-level-1-default}
+		);
 		border-start-end-radius: variables.$db-border-radius-xs;
 	}
 
 	&:is(:hover, :focus) {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+			background-color: var(
+				--db-bg-hovered,
+				#{colors.$db-adaptive-bg-basic-transparent-full-hovered}
+			);
 		}
 	}
 
 	&:read-only {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			background-color: var(
+				--db-bg-default,
+				#{colors.$db-adaptive-bg-basic-level-1-default}
+			);
 		}
 	}
 
 	&::-webkit-scrollbar-track {
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+		);
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		background-color: var(
+			--db-bg-pressed,
+			#{colors.$db-adaptive-bg-basic-transparent-full-pressed}
+		);
 	}
 
 	/* Buttons */
 	&::-webkit-scrollbar-button:single-button {
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+		);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
 		block-size: form-components.$floating-label-size-calc;
 
 		&:is(:hover, :focus) {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+			background-color: var(
+				--db-bg-hovered,
+				#{colors.$db-adaptive-bg-basic-transparent-full-hovered}
+			);
 		}
 
 		&:active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+			background-color: var(
+				--db-bg-pressed,
+				#{colors.$db-adaptive-bg-basic-transparent-full-pressed}
+			);
 		}
 	}
 
@@ -88,16 +112,25 @@ $scrollbar-width: helpers.px-to-rem(8);
 
 	&[data-variant="floating"] {
 		&::-webkit-resizer {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			background-color: var(
+				--db-bg-default,
+				#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+			);
 		}
 
 		&::-webkit-scrollbar-corner {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			background-color: var(
+				--db-bg-default,
+				#{colors.$db-adaptive-bg-basic-level-1-default}
+			);
 		}
 	}
 
 	&::-webkit-resizer {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-transparent-full-default}
+		);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -127,7 +160,10 @@ $db-overflow-scroll-buttons-button: 22;
 	&::after {
 		position: absolute;
 		z-index: $db-overflow-scroll-buttons-background;
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-level-1-default}
+		);
 		inline-size: variables.$db-sizing-md;
 		block-size: calc(
 			var(

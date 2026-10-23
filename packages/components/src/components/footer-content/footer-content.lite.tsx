@@ -14,7 +14,7 @@ export default function DBFooterContent(props: DBFooterContentProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-footer-content', props.className)}>
 			<div class="db-footer-container">{props.children}</div>
 		</div>

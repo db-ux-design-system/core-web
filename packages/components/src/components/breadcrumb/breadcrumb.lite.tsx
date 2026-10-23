@@ -126,7 +126,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size ?? 'small'}
 			data-separator={props.separator}

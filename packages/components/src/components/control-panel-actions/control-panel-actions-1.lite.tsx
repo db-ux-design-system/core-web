@@ -17,7 +17,7 @@ export default function DBControlPanelActions1(
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-control-panel-actions-1', props.className)}>
 			{props.children}
 		</div>

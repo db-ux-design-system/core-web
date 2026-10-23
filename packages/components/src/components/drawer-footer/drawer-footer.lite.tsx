@@ -15,7 +15,7 @@ export default function DBDrawerFooter(props: DBDrawerFooterProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-drawer-footer', props.className)}>
 			{props.children}
 		</footer>

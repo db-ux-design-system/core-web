@@ -1076,7 +1076,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			id={state._id}
 			ref={_ref}
 			data-material={props.material}
-			data-adaptive-color={state._getColor()}
+			data-color={state._getColor()}
 			class={cls('db-custom-select', props.className)}
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}
@@ -1095,7 +1095,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
-			<label id={state._labelId}>
+			<label data-color={props.color ?? 'neutral'} id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				{/* The form-submitted value. Hidden, but advertises
 				    `autocomplete`, so autofill can write to it - see

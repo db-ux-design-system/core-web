@@ -357,7 +357,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
 			data-material={state._getMaterial()}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			data-emphasis={props.emphasis}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			data-animation={getBooleanAsString(

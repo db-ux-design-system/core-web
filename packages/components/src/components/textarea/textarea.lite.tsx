@@ -280,13 +280,13 @@ export default function DBTextarea(props: DBTextareaProps) {
 	return (
 		<div
 			data-material={props.material}
-			data-adaptive-color={state._getColor()}
+			data-color={state._getColor()}
 			class={cls('db-textarea', props.className)}
 			data-variant={props.variant}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-hide-label={getHideProp(props.showLabel)}>
 			<label
-				data-adaptive-color={props.color ?? 'neutral'}
+				data-color={props.color ?? 'neutral'}
 				htmlFor={state._id}>
 				{props.label ?? DEFAULT_LABEL}
 			</label>

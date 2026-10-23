@@ -19,7 +19,7 @@ export default function DBCustomHeading(props: DBCustomHeadingProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-custom-heading', props.className)}
 			data-visual-size={props.visualSize}
 			data-font-weight={props.fontWeight}>

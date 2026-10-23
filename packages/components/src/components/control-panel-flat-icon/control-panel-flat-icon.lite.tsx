@@ -74,7 +74,7 @@ export default function DBControlPanelFlatIcon(
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			data-no-text={getBooleanAsString(props.noText, 'noText')}
 			class={cls('db-control-panel-flat-icon', props.className)}>
 			<Slot name="skipNavigation" />

@@ -20,7 +20,7 @@ export default function DBControlPanelBrand(props: DBControlPanelBrandProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-control-panel-brand', props.className)}>
 			<div
 				class="db-control-panel-brand-text-container"

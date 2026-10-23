@@ -83,7 +83,7 @@ export default function DBDialogHeader(props: DBDialogHeaderProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-color={props.color}
 			class={cls('db-dialog-header', props.className)}>
 			<Slot name="startSlot" />
 			<div id={state._headingId} class="db-dialog-header-content">
