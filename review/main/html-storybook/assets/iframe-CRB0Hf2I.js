@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-D_JFKyre.js";e();
