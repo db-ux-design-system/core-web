@@ -84,12 +84,9 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 			display: contents;
 		}
 	}
-
-	// When initialSelectedMode="manually", hide ALL panels to avoid layout shift
-	&[data-initial-selected-mode="manually"]:not([data-synced="true"]) {
-		.db-tab-panel {
-			display: none;
-		}
+	
+	&[data-synced="false"] .db-tab-panel {
+		display: none;
 	}
 
 	&:not([data-orientation="vertical"]) {

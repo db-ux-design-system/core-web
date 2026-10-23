@@ -11,6 +11,7 @@ import {
 import {
 	cls,
 	getBoolean,
+	getBooleanAsString,
 	hasFocusgroupSupport,
 	NAVIGATION_KEYS,
 	uuid
@@ -708,6 +709,7 @@ export default function DBTabs(props: DBTabsProps) {
 					state._pendingRafId = null;
 					state.initTabList();
 					if (hasTabChange) {
+						/* initTabs preserves the selected index by element identity so a structural change that shifts indices keeps the right tab selected. */
 						state.initTabs();
 						state.syncSelection(state._activeIndex);
 					}
@@ -744,12 +746,31 @@ export default function DBTabs(props: DBTabsProps) {
 
 			if (!tabListEl) return;
 
+			// Capture the button that is selected right now, before re-querying,
+			// so a structural change that shifts indices (a tab inserted or
+			// removed before the selected one) can preserve the selection by
+			// element identity instead of re-applying the stale numeric index.
+			const previousSelectedButton = state._tabButtons.find(
+				(button: HTMLElement) =>
+					button.getAttribute('aria-selected') === 'true'
+			);
+
 			const buttons = Array.from<HTMLElement>(
 				tabListEl.querySelectorAll('[role="tab"]')
 			);
 
 			state._tabButtons = buttons;
 			state._tabPanels = panels;
+
+			// If the previously selected tab still exists, keep it selected at
+			// its new index; only fall back to the numeric index when it was
+			// actually removed (syncSelection then clamps to the first enabled).
+			if (previousSelectedButton) {
+				const preservedIndex = buttons.indexOf(previousSelectedButton);
+				if (preservedIndex !== -1 && props.activeIndex === undefined) {
+					state._activeIndex = preservedIndex;
+				}
+			}
 
 			buttons.forEach((button: HTMLElement, index: number) => {
 				const panel = panels[index];
@@ -930,7 +951,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-tab-item-alignment={props.tabItemAlignment}
 			data-tab-item-width={props.tabItemWidth}
 			data-initial-selected-mode={props.initialSelectedMode}
-			data-synced={state._synced}
+			data-synced={getBooleanAsString(state._synced)}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>
