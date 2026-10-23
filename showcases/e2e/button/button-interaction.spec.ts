@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { runInteractionTest } from '../default.ts';
+import { getControlByRole, runInteractionTest } from '../default.ts';
 
 const path = '02/button';
 
@@ -35,6 +35,31 @@ test.describe('DBButton', () => {
 			const button = content.getByTestId('default-button');
 			await expect(button).not.toHaveAttribute('command');
 			await expect(button).not.toHaveAttribute('commandfor');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should forward native form-submission attributes to the button',
+		path,
+		example: 'Form Attributes',
+		async run({ page, content }) {
+			const scope = content.getByTestId('form-override-button');
+			const button = getControlByRole(page, scope, 'button');
+
+			await expect(button).toHaveAttribute(
+				'formaction',
+				'#override-action'
+			);
+			await expect(button).toHaveAttribute('formmethod', 'post');
+			await expect(button).toHaveAttribute(
+				'formenctype',
+				'multipart/form-data'
+			);
+			await expect(button).toHaveAttribute('formtarget', '_self');
+			// Boolean attribute: assert presence only. Its rendered value
+			// differs per framework (empty string vs "true"), but any value
+			// means the attribute reached the button.
+			await expect(button).toHaveAttribute('formnovalidate');
 		}
 	});
 });
