@@ -92,8 +92,8 @@ From the embedding page you supply those values with the [`link-parameters` CSS 
 
 ```html
 <img
-	src="assets/business-payment/generic-card/outlined/20.svg"
-	alt="user"
+	src="build/assets/business-payment/generic_card_20.svg"
+	alt=""
 	class="icon"
 	width="…"
 	height="…"
