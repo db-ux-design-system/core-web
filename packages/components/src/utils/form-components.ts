@@ -175,8 +175,8 @@ export const getValidationState = (
 	}
 
 	if (
-		(isRadio || props.validMessage) &&
-		(props.validation === 'valid' || (!props.validation && userValid))
+		props.validation === 'valid' ||
+		((isRadio || props.validMessage) && !props.validation && userValid)
 	) {
 		return 'valid';
 	}

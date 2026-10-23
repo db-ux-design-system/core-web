@@ -27,7 +27,12 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import {
+	ColorType,
+	GeneralEvent,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -45,6 +50,7 @@ import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
 	addResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -105,6 +111,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_validity: 'no-validation',
 		_userInteraction: false,
 		abortController: undefined,
+		_getColor: (): ColorType | undefined => {
+			const validationState = getValidationState(props, selectRef);
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_selectedLabels: '',
@@ -1053,7 +1076,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			id={state._id}
 			ref={_ref}
 			data-material={props.material}
-			data-adaptive-color={props.color}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-custom-select', props.className)}
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}
@@ -1182,6 +1205,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							type="button"
 							class="db-button db-custom-select-clear"
 							data-icon="cross"
+							data-material="transparent"
 							data-variant="ghost"
 							data-no-text="true"
 							data-size="small"
@@ -1212,7 +1236,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}></summary>
 					<Show when={props.options} else={props.children}>
-						<DBCustomSelectDropdown width={props.dropdownWidth}>
+						<DBCustomSelectDropdown
+							material="filled-1"
+							width={props.dropdownWidth}>
 							<Show when={state.searchEnabled}>
 								<div>
 									<DBInput

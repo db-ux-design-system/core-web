@@ -1,4 +1,15 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
 [data-adaptive-coloring="true"] .db-custom-select-form-field,
 .db-custom-select-form-field[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	--db-icon-color: #{adaptive.$db-text-default};
+
+	@extend %adaptive-coloring-container;
+
+	// Selected value / tag labels and the trailing chevron.
+	.db-custom-select-label,
+	.db-custom-select-tags span {
+		color: adaptive.$db-text-default;
+	}
 }

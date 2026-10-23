@@ -7,14 +7,22 @@
 @use "component";
 
 // Shared backdrop colours for the dialog/drawer family (and the overlay-style
-// scrims in loading-indicator and custom-select).
-$backdrop-color-strong: color(
-	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
-		#{variables.$db-opacity-lg}
+// scrims in loading-indicator and custom-select). The adaptive
+// `--db-backdrop-color-*` tokens take over when `data-adaptive-coloring="true"`
+// is set; the `emphasis-100`-based value is the fallback everywhere else.
+$backdrop-color-strong: var(
+	--db-backdrop-color-strong,
+	color(
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-lg}
+	)
 );
-$backdrop-color-weak: color(
-	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
-		#{variables.$db-opacity-sm}
+$backdrop-color-weak: var(
+	--db-backdrop-color-weak,
+	color(
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-sm}
+	)
 );
 
 // The components that share this layer. $prefix composes custom-property and
@@ -102,17 +110,11 @@ $container-size-scale: (
 	color: inherit;
 
 	&:not([data-backdrop="none"])::backdrop {
-		background-color: var(
-			--db-backdrop-color-strong,
-			#{$backdrop-color-strong}
-		);
+		background-color: $backdrop-color-strong;
 	}
 
 	&[data-backdrop="weak"]::backdrop {
-		background-color: var(
-			--db-backdrop-color-weak,
-			#{$backdrop-color-weak}
-		);
+		background-color: $backdrop-color-weak;
 	}
 
 	@if $prefix == "dialog" {

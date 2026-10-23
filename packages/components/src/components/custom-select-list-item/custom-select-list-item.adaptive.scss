@@ -1,4 +1,36 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
 [data-adaptive-coloring="true"] .db-custom-select-list-item,
 .db-custom-select-list-item[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	&:has(.db-custom-select-list-item-group-title) {
+		@extend %adaptive-coloring-container;
+
+		.db-custom-select-list-item-group-title {
+			color: adaptive.$db-text-vibrant;
+		}
+	}
+
+	&:not(:has(.db-custom-select-list-item-group-title)) {
+		// Unchecked option: a selectable (interactive) row.
+		&:not(:has(input[type="radio"]:checked)) {
+			--db-check-element-label-color: #{adaptive.$db-text-default};
+
+			@extend %adaptive-coloring-interactive-container;
+		}
+
+		// Selected option: the alt (checked) state.
+		&:has(input:checked) {
+			--db-check-element-label-color: #{adaptive.$db-alt-state-text-default};
+
+			// A checked radio is not interactive; a checked checkbox still is.
+			&:has(input[type="radio"]:checked) {
+				@extend %adaptive-coloring-alt-state-container;
+			}
+
+			&:has(input[type="checkbox"]:checked) {
+				@extend %adaptive-coloring-alt-state-interactive-container;
+			}
+		}
+	}
 }

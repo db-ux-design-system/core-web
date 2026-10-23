@@ -27,7 +27,7 @@
 		&:not(:checked) {
 			background-color: adaptive.$db-bg-default;
 			color: adaptive.$db-text-default;
-			border-color: adaptive.$db-text-default;
+			border-color: adaptive.$db-border-vibrant;
 
 			&::before {
 				color: adaptive.$db-text-default;
@@ -49,7 +49,7 @@
 		@include helpers.hover {
 			&:is(label),
 			> label {
-				color: adaptive.$db-text-hovered;
+				color: var(--db-check-element-label-color, #{adaptive.$db-text-hovered});
 			}
 
 			input:not(:checked) {
@@ -60,7 +60,7 @@
 		@include helpers.active {
 			&:is(label),
 			> label {
-				color: adaptive.$db-text-pressed;
+				color: var(--db-check-element-label-color, #{adaptive.$db-text-pressed});
 			}
 
 			input:not(:checked) {

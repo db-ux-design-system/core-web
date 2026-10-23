@@ -47,4 +47,10 @@
 			color: adaptive.$db-alt-state-text-default;
 		}
 	}
+
+	.db-tab-remove-button {
+		&::before {
+			color: adaptive.$db-text-default;
+		}
+	}
 }

@@ -322,4 +322,5 @@ export type DBCustomSelectState = DBCustomSelectDefaultState &
 	FormState &
 	FromValidState &
 	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
-	DocumentScrollState;
+	DocumentScrollState &
+	ColorState;
