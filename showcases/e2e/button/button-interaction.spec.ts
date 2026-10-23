@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { runInteractionTest } from '../default.ts';
+import { isStencil, runInteractionTest } from '../default.ts';
 
 const path = '02/button';
 
@@ -35,6 +35,34 @@ test.describe('DBButton', () => {
 			const button = content.getByTestId('default-button');
 			await expect(button).not.toHaveAttribute('command');
 			await expect(button).not.toHaveAttribute('commandfor');
+		}
+	});
+
+	// Web Components only: attribute passing must survive a DOM move (#7066)
+	runInteractionTest({
+		title: 'should pass attributes to the inner button after a DOM move',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			test.skip(
+				!isStencil(process.env.showcase),
+				'Attribute passing via host element only exists in Web Components'
+			);
+
+			const button = content.getByTestId('default-button');
+			await expect(button).toBeVisible();
+
+			await button.evaluate((element) => {
+				const host = element.closest<HTMLElement>('db-button')!;
+				// Re-appending triggers disconnectedCallback + connectedCallback
+				host.parentElement!.append(host);
+				host.dataset.moved = 'true';
+			});
+
+			await expect(button).toHaveAttribute('data-moved', 'true');
+			const host = button.locator('xpath=ancestor::db-button[1]');
+			await expect(host).not.toHaveAttribute('data-moved');
+			await expect(host.locator('button')).toHaveCount(1);
 		}
 	});
 });
