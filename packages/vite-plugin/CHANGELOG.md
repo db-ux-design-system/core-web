@@ -1,5 +1,13 @@
 # @db-ux/core-vite-plugin
 
+## 6.1.0
+
+No changes in this release.
+
+## 6.0.1
+
+No changes in this release.
+
 ## 6.0.0
 
 No changes in this release.
