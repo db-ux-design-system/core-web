@@ -200,11 +200,11 @@ importers:
         specifier: workspace:*
         version: link:packages/stylelint
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -399,8 +399,8 @@ importers:
         specifier: 21.2.25
         version: 21.2.25(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@21.2.25(@angular/animations@21.2.23(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@21.2.25(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@21.2.25(@angular/compiler@21.2.25)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@types/node':
         specifier: 26.6.5
         version: 26.6.5
@@ -786,8 +786,8 @@ importers:
         version: 3.3.3
     devDependencies:
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@types/node':
         specifier: 26.6.5
         version: 26.6.5
@@ -810,11 +810,11 @@ importers:
   scripts:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -886,11 +886,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -971,11 +971,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1026,11 +1026,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1072,11 +1072,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1099,11 +1099,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1199,11 +1199,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1257,11 +1257,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1294,11 +1294,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1337,11 +1337,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1431,11 +1431,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/foundations
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1495,11 +1495,11 @@ importers:
   storybooks/html-storybook:
     dependencies:
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1562,11 +1562,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1638,11 +1638,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -1693,11 +1693,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/components
       '@db-ux/db-theme':
-        specifier: 7.0.0
-        version: 7.0.0
+        specifier: 7.1.0
+        version: 7.1.0
       '@db-ux/db-theme-fonts':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 2.2.0
+        version: 2.2.0
       '@db-ux/db-theme-icons':
         specifier: 4.3.0
         version: 4.3.0
@@ -3241,14 +3241,14 @@ packages:
   '@custom-elements-manifest/find-dependencies@0.0.7':
     resolution: {integrity: sha512-icHEBPHcOXSrpDOFkQhvM7vljEbqrEReW251RBxSzDctXzYWIL0Hk2yMDINn3d6mZ4KSsqLZlaFiGFp/2nn9rA==}
 
-  '@db-ux/db-theme-fonts@2.1.0':
-    resolution: {integrity: sha512-fY0xO6/x89wQsobpMSw2QGYqzOAA756xg4npJQEwgiYj6b1hm4urcqTMbjkUwL3nvDsL6erVKuH0WbEQG4QZEA==}
+  '@db-ux/db-theme-fonts@2.2.0':
+    resolution: {integrity: sha512-RTgOUo6eNhRXiaZj+7XbqYLyPorZd6muebGT8PQF81Zw56EQN/GvaTaYOH8pMMAVhO8HyEi22P7H7qh3/eBnNQ==}
 
   '@db-ux/db-theme-icons@4.3.0':
     resolution: {integrity: sha512-hklUeB6IUa8J3tEQEtlQXdt7KT4jTL83KmZ4Q3IgmPtfj9vOJ2PRFuwC77s3g4oNRIxQl78uEtlNbJY47s04Tg==}
 
-  '@db-ux/db-theme@7.0.0':
-    resolution: {integrity: sha512-dGdnC04tDLC5Fymh7P1QGnZNEP5HfsSkrMv2LrP4nUq2P4tqFhZZAxuWOyPcnq8S1QUVwr3hsVS8mchnlxxoRg==}
+  '@db-ux/db-theme@7.1.0':
+    resolution: {integrity: sha512-ni1IHRHM+f82QSfiOHRivGeRHuUNqrJBGrGmo7XK3nNQe6x340Qado3VHI/g+j6syzoYjNPe3wsaAn0peXHLPg==}
 
   '@db-ux/icon-font-tools@0.3.6':
     resolution: {integrity: sha512-JvQqwJ8x6afUdw8pvsjUp64m5jcabbZXny0MNU7J20obOzPfGBFEewJfg5baNhqycTkdAyj8RhShNE4CNu14gg==}
@@ -18168,13 +18168,13 @@ snapshots:
       oxc-resolver: 11.24.2
       rs-module-lexer: 2.9.0
 
-  '@db-ux/db-theme-fonts@2.1.0': {}
+  '@db-ux/db-theme-fonts@2.2.0': {}
 
   '@db-ux/db-theme-icons@4.3.0': {}
 
-  '@db-ux/db-theme@7.0.0':
+  '@db-ux/db-theme@7.1.0':
     dependencies:
-      '@db-ux/db-theme-fonts': 2.1.0
+      '@db-ux/db-theme-fonts': 2.2.0
       '@db-ux/db-theme-icons': 4.3.0
 
   '@db-ux/icon-font-tools@0.3.6(@types/node@26.6.5)(chokidar@3.6.0)(debug@4.4.3(supports-color@10.2.2))(encoding@0.1.13)(supports-color@10.2.2)(typescript@5.9.3)':
