@@ -83,7 +83,7 @@ You could use the CSS Custom Property `--db-icon-color` to overwrite the icons c
 
 How much of the embedding page's CSS reaches an SVG icon depends on _how_ you reference it:
 
-- **Inline SVG and `<use href>`**: the referenced content is cloned into the host document (as a shadow tree) and the style cascade runs on it from the `<use>` site. Inherited values such as `currentColor` and CSS Custom Properties (e.g. `--db-icon-color`) therefore reach the icon, so `fill: var(--db-icon-color, currentColor)` just works — no `link-parameters` needed.
+- **Inline SVG and `<use href>`**: the icon lives in the host document, so the style cascade reaches it. Inline SVG is part of the DOM directly; `<use href>` clones the referenced content into a shadow tree at the `<use>` site. Either way, inherited values such as `currentColor` and CSS Custom Properties (e.g. `--db-icon-color`) reach the icon, so if you define e.g. `fill: var(--db-icon-color, light-dark(#16181B, #EDEEF0))` on the outside, it just works — no `link-parameters` needed.
 - **`<img>`, `background-image: url(…)`, `<object>`**: the SVG is loaded as an isolated, independent document. Nothing cascades in from the embedding page, so neither `currentColor` nor custom properties are visible inside the icon.
 
 `link-parameters` closes that second gap. Our SVG icon files declare their customizable values as [custom environment variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/env) using the `env()` function, for example `fill: env(--db-icon-color, currentColor);`. The second argument is a fallback that keeps the icon rendering correctly when no value is passed in.
