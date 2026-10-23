@@ -5,6 +5,7 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import ControlPanelMobileExamplesBottom from '../examples/examples-bottom.example.lite';
 import ControlPanelMobileExamples from '../examples/examples.example.lite';
 import ControlPanelMobilePosition from '../examples/position.example.lite';
+import ControlPanelMobileInteraction from '../examples/interaction.example.lite';
 
 export default function ControlPanelMobileShowcase(props: PatternhubProps) {
 	return (
@@ -24,6 +25,11 @@ export default function ControlPanelMobileShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples Bottom">
 				<CardWrapperShowcase>
 					<ControlPanelMobileExamplesBottom />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<ControlPanelMobileInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
