@@ -32,7 +32,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **footer** — `rea-footer`->`db-footer` (with `db-footer-content` / `db-footer-meta` sub-parts). Previously a custom `<footer>` + `db-link` composition was needed; the component now ships.
 
-**header** — `rea-header`->`db-control-panel-desktop` / `db-control-panel-mobile` (the former `db-header` is deprecated). Pick the desktop or mobile control panel depending on the breakpoint; both are part of the `db-shell` family.
+**header** — `rea-header`->`db-control-panel-desktop` / `db-control-panel-mobile` (the former `db-header` is deprecated). Render **both** as siblings inside `db-shell` for a responsive shell; the shell styles hide `db-control-panel-desktop` below the `sm` breakpoint and `db-control-panel-mobile` at and above it, so each one shows at the right viewport size. Both are part of the `db-shell` family.
 
 **icon** — ->`db-icon`. Props: `icon` (name, see icon-migration), `variant` (custom icon font family), `weight` (`16`/`20`/`24`/`32`/`48`/`64`). Most consumers pass icons via the `icon` prop on other components rather than using `db-icon` directly.
 
@@ -88,7 +88,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 | ---------------------- | :-----------: | --------------------------------------------------------- |
 | `rea-main`             | [replacement] | `db-shell-content` (renders the `<main>` region)          |
 | `rea-grid`             |   [removed]   | CSS Grid or `db-stack`                                    |
-| `elm-headline`         | [replacement] | Semantic headings (`db-heading-h1`-`h6`)                  |
+| `elm-headline`         | [replacement] | Semantic headings (`db-heading-h-1`-`h-6`)                |
 | `elm-headline` (pulse) |   [removed]   | Heading + CSS animation                                   |
 | `elm-chip`             | [replacement] | `db-tag` with `db-button`/`db-checkbox`/`db-radio` inside |
 | `cmp-sidenavi`         | [replacement] | `db-control-panel-mobile` (burger menu + drawer nav)      |
@@ -101,7 +101,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 `elm-chip` -> `<db-tag><db-button variant="ghost">Text</db-button></db-tag>`
 
-`elm-headline` -> `<db-heading-h1>Title</db-heading-h1>` + `<db-infotext>Subtitle</db-infotext>`
+`elm-headline` -> `<db-heading-h-1>Title</db-heading-h-1>` + `<db-infotext>Subtitle</db-infotext>`
 
 `cmp-sidenavi` -> `<db-control-panel-mobile><db-control-panel-navigation><db-control-panel-navigation-item><db-link href="/page">Item</db-link></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-mobile>` (burger menu toggles a drawer; part of the `db-shell` family)
 

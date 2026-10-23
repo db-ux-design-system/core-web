@@ -7,9 +7,9 @@
 
 ### class
 
-| Before      | Status | After      | Description |
-| ----------- | :----: | ---------- | ----------- |
-| `cmp-brand` |   🔁   | `db-brand` |             |
+| Before      | Status | After                    | Description                                                    |
+| ----------- | :----: | ------------------------ | -------------------------------------------------------------- |
+| `cmp-brand` |   🔁   | `db-control-panel-brand` | `db-brand` is deprecated; use it inside the `db-shell` family. |
 
 ### properties
 
