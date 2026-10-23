@@ -115,7 +115,13 @@ export type DBLoadingIndicatorDefaultState = {
 	_previousLoadingState?: LoadingIndicatorStateType | string;
 	_labelId?: string;
 	_progressId?: string;
-	_timeoutId?: ReturnType<typeof setTimeout>;
+	// Browser timer handle. Typed as `number` (the DOM `setTimeout` return
+	// type) on purpose: `ReturnType<typeof setTimeout>` resolves to the
+	// Node-only `NodeJS.Timeout` when `@types/node` is present during the
+	// Angular output compile, which leaks an non-declarable `NodeJS` namespace
+	// into the published typings (#7792). The handle is only ever cleared or
+	// coerced with `Number()`, so `number` is accurate for the browser.
+	_timeoutId?: number;
 	_didDisableParent?: boolean;
 	_didSetAriaBusy?: boolean;
 	getPercentage: () => string | undefined;
