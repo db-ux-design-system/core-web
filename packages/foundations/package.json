@@ -62,7 +62,7 @@
     "sass": "1.105.2",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vite": "8.3.4"
+    "vite": "8.3.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
