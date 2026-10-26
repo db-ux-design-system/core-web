@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-components",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "type": "module",
   "description": "General technical components (styling, fonts and icons) out of DB UX Design System – Generation 3",
   "repository": {
@@ -62,11 +62,11 @@
     "hygen": "6.2.11",
     "nodemon": "3.1.14",
     "npm-run-all2": "9.0.3",
-    "postcss": "8.5.30",
+    "postcss": "8.5.31",
     "postcss-cli": "12.0.0",
     "replace-in-file": "9.0.0",
     "sass": "1.105.2",
-    "storybook": "10.6.2",
+    "storybook": "10.6.3",
     "tsx": "4.23.15",
     "vitest": "5.0.5"
   },
