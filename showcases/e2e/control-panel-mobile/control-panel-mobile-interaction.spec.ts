@@ -1,4 +1,4 @@
-import { expect, type FullProject, test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { runInteractionTest } from '../default.ts';
 
 const path = '05/shell/control-panel-mobile';
@@ -7,14 +7,12 @@ const path = '05/shell/control-panel-mobile';
 // scenario skips the non-mobile projects via `skip.project`. `content` is the
 // `Interaction` example container, so `.db-control-panel-mobile` and its drawer
 // resolve unambiguously without an extra `#main-content … .first()` scope.
-const mobileOnly = (project: FullProject) => !project.name.startsWith('mobile');
-
 test.describe('DBControlPanelMobile', () => {
 	runInteractionTest({
 		title: 'clicking the burger button should open the drawer',
 		path,
 		example: 'Interaction',
-		skip: { project: mobileOnly },
+		skip: { project: (project) => !project.name.startsWith('mobile') },
 		async run({ content }) {
 			const panel = content.locator('.db-control-panel-mobile');
 			const burgerButton = panel.locator(
@@ -34,7 +32,7 @@ test.describe('DBControlPanelMobile', () => {
 		title: 'pressing Escape should close the drawer',
 		path,
 		example: 'Interaction',
-		skip: { project: mobileOnly },
+		skip: { project: (project) => !project.name.startsWith('mobile') },
 		async run({ page, content }) {
 			const panel = content.locator('.db-control-panel-mobile');
 			const burgerButton = panel.locator(
@@ -54,7 +52,7 @@ test.describe('DBControlPanelMobile', () => {
 		title: 'clicking a navigation item should close the drawer',
 		path,
 		example: 'Interaction',
-		skip: { project: mobileOnly },
+		skip: { project: (project) => !project.name.startsWith('mobile') },
 		async run({ content }) {
 			const panel = content.locator('.db-control-panel-mobile');
 			const burgerButton = panel.locator(
@@ -93,7 +91,7 @@ test.describe('DBControlPanelMobile', () => {
 		title: 'opening a group should reveal its sub-item overlay on screen',
 		path,
 		example: 'Interaction',
-		skip: { project: mobileOnly },
+		skip: { project: (project) => !project.name.startsWith('mobile') },
 		async run({ content }) {
 			const panel = content.locator('.db-control-panel-mobile');
 			const burgerButton = panel.locator(
