@@ -326,6 +326,27 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
+## Stencil `onInit` -> `componentWillLoad` (`configs/plugins/stencil/index.cjs`)
+
+The Mitosis Stencil generator maps `onMount` to `componentDidLoad`, `onUnMount`
+to `disconnectedCallback` and `onUpdate` to `@Watch`/`componentDidUpdate`, but it
+never reads `json.hooks.onInit` — so any logic a component places in `onInit` is
+parsed into the Mitosis JSON and then **silently dropped** from the Stencil
+output (no warning, no build error). Every other target honors the hook (Angular
+emits it into `ngOnInit`).
+
+The Stencil plugin closes this gap in its `code.pre` phase: it reads
+`json.hooks.onInit.code` and injects a `componentWillLoad()` method — Stencil's
+run-once-before-first-render lifecycle, the semantic equivalent of `onInit` —
+directly before the generated `componentDidLoad() {` block. `code.pre` runs
+before the generator formats the class with prettier, so the injected method is
+formatted with the rest of the output; anchoring before `componentDidLoad() {`
+keeps the plugin's own `code.post` surgery (which also keys off that string)
+matching unchanged.
+
+Components relying on this: `DBPage`, `DBControlPanelDesktop`, `DBShell`,
+`DBShellSubNavigation`. Unit tests live in `configs/plugins/stencil/index.spec.ts`.
+
 ## Storybook Generation
 
 Stories are generated from the `examples/` folder via the `configs/plugins/storybook/` plugin. The plugin reads `data-sb-*` attributes from example components to configure story metadata, controls, and args.
@@ -416,7 +437,11 @@ standalone files automatically while preserving the parser and docs metadata ent
 
 **Sub-component suffix convention:** The test-table generator
 (`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
-in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
+in `-list`, `-panel`, `-item`, `-handle`, `-menu`, `-footer`, `-header`, `-head`, `-content`, `-sub-navigation`, `-cell`, `-row`, `-caption` or `-body` from the validation table, components
+starting with `control-panel-` (sub-components of `DBControlPanel`, which has no standalone
+element of its own) except the standalone variants `control-panel-desktop`, `control-panel-mobile`
+and `control-panel-flat-icon` (they have their own test suites), and any element without a `db-`
+prefix (example/showcase elements).
 
 ## Angular form value flow: user input never writes back to the DOM
 
