@@ -103,7 +103,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 `elm-headline` -> `<db-heading-h-1>Title</db-heading-h-1>` + `<db-infotext>Subtitle</db-infotext>`
 
-`cmp-sidenavi` -> `<db-control-panel-desktop orientation="vertical"><db-control-panel-navigation><db-control-panel-navigation-item><a href="/page">Item</a></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-desktop>` (desktop side navigation; part of the `db-shell` family)
+`cmp-sidenavi` -> `<db-shell controlPanelDesktopPosition="left"><db-control-panel-desktop><db-control-panel-navigation><db-control-panel-navigation-item><a href="/page">Item</a></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-desktop><db-shell-content>…</db-shell-content></db-shell>` (desktop side navigation; the shell places the panel on the left and applies the vertical layout)
 
 ## A11y for Custom Solutions
 
