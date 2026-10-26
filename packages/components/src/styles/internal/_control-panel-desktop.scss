@@ -25,43 +25,16 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 @mixin horizontal-navigation($scroll-buttons: true) {
 	@if $scroll-buttons {
 		@include scrollbar.set-overflow-scroll-buttons;
-
-		&:has(.overflow-scroll-left-button) {
-			> menu {
-				&::before {
-					content: "";
-				}
-			}
-		}
-
-		&:has(.overflow-scroll-right-button) {
-			> menu {
-				&::after {
-					content: "";
-				}
-			}
-		}
 	}
 
 	&:has(.db-button) {
 		> menu {
-			@if $scroll-buttons {
-				@include scrollbar.set-overflow-scroll-button-backgrounds;
-			}
-
 			@supports (scrollbar-width: none) {
 				scrollbar-width: none;
 			}
 
 			&::-webkit-scrollbar {
 				display: none;
-			}
-
-			&::before,
-			&::after {
-				block-size: calc(100% - #{variables.$db-border-width-3xs});
-				inset-block: 0;
-				flex: none;
 			}
 		}
 	}

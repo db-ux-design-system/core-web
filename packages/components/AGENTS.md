@@ -734,9 +734,46 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_custom-elements.scss`   | Custom element host/shadow styles                                                                                                                                                                      |
 | `_component.scss`         | Base component resets and defaults                                                                                                                                                                     |
 | `_indicator.scss`         | Indicator animation                                                                                                                                                                                    |
-| `_scrollbar.scss`         | Scrollbar styling                                                                                                                                                                                      |
+| `_scrollbar.scss`         | Scrollbar styling + the shared **overflow-scroll-button** pattern (see below)                                                                                                                          |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+### Overflow scroll buttons (always share the pattern)
+
+Any horizontally scrolling list that shows "scroll left / right" buttons over its
+edges (`DBTabs` arrow mode, `DBControlPanelNavigation`) **must** use the shared
+pattern in [`_scrollbar.scss`](src/styles/internal/_scrollbar.scss) — do not
+hand-roll per-component button backgrounds. The pattern keeps the buttons from
+letting the scrolling content show through, and makes the backing follow
+adaptive coloring automatically.
+
+Each button is wrapped in a positioned **container** div that carries the opaque
+background. The wrapper (rather than a backing on the button's own `::before`) is
+required because an adaptive consumer may set the button material to
+`transparent`, which would make `--db-bg-default` transparent on the button
+element itself — the container has no material, so it keeps the ambient surface.
+
+**Markup (`.lite.tsx`):** for each side render a wrapper div around a `DBButton`:
+
+- wrapper `class="overflow-scroll-left-button-container"` /
+  `"overflow-scroll-right-button-container"`,
+- button `class="overflow-scroll-left-button"` / `"overflow-scroll-right-button"`,
+  `noText`, chevron via `icon` (leading), e.g. `icon="chevron_left"`.
+
+**Styling (`.scss`):** on the positioned, non-scrolling element that holds the
+containers, `@include scrollbar.set-overflow-scroll-buttons;`. It positions both
+containers and gives them an opaque `background-color: var(--db-bg-default,
+<legacy level-1>)`. Tune placement with `--db-overflow-scroll-button-inset-block`
+/ `--db-overflow-scroll-button-inset-inline-start`; layer component-specific
+sizing on the `.overflow-scroll-*-button-container` (position/size) or
+`.overflow-scroll-*-button` (button-internal) selectors after the include.
+
+**Adaptive:** because the container background already uses
+`var(--db-bg-default, …)`, the `*.adaptive.scss` needs **no** re-point for the
+buttons — only for unrelated chrome (e.g. the tab track line).
+
+The mixin also owns the RTL chevron flip (via `--db-icon`), so a consumer never
+writes a per-side `:dir(rtl)` swap itself.
 
 ## Shared Utils (`src/utils/dialog/`)
 

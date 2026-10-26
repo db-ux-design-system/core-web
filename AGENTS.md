@@ -360,6 +360,18 @@ Remember: This is a design system used by Deutsche Bahn applications. Always ens
 
 When refactoring or restructuring code, **always migrate existing comments** to their new location. Do not silently drop comments — they document intent, workarounds, and context that is hard to reconstruct. If a comment no longer applies after the refactoring, explicitly remove it with a note in the commit message explaining why.
 
+### Multi-line comments use block syntax
+
+In **SCSS and TS/TSX**, a comment that spans more than one line **must** use the block form `/* ... */`, not stacked single-line `//` comments. Single-line `//` is fine for a one-line comment. This keeps multi-line notes as one unit (and in `.lite.tsx` avoids the Mitosis pitfall where stacked `//` lines collapse onto one line — see the Mitosis Limitations section in `packages/components/AGENTS.md`).
+
+```scss
+// single line is fine
+
+/*
+ * More than one line -> block comment.
+ */
+```
+
 ### Fenced code blocks require a language
 
 Every fenced code block (` ``` `) **must** specify a language identifier (MD040). Use `text` for plain output, error messages, or terminal logs that have no specific syntax.

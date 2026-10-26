@@ -1,18 +1,27 @@
-@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 
 [data-adaptive-coloring="true"] .db-tabs,
 .db-tabs[data-adaptive-coloring="true"] {
-	// The inactive track/baseline behind the active indicator is a thin
-	// divider-like line (transparent-semi in the base) -> adaptive border.
+	/*
+	 * The inactive track/baseline behind the active indicator is a thin
+	 * divider-like line (transparent-semi in the base) -> adaptive border.
+	 */
 
 	// Vertical indicator track (`%indicator-track` on `.db-tab-list::before`).
 	.db-tab-list::before {
 		background-color: adaptive.$db-border-default;
 	}
 
-	// Horizontal baseline (drawn as a gradient on the tab-list).
-	&:not([data-orientation="vertical"]) .db-tab-list {
+	/*
+	 * Horizontal baseline (drawn as a gradient on the tab-list). Only in the
+	 * default behavior - arrow/scrollbar modes disable this gradient in the
+	 * base and draw their track on `.db-tabs::before` instead (re-pointed
+	 * below), so re-adding the gradient here would double the track.
+	 */
+	&:not([data-orientation="vertical"]):not(
+			[data-scroll-behavior="arrows"]
+		):not([data-scroll-behavior="scrollbar"])
+		.db-tab-list {
 		background-image: linear-gradient(
 			adaptive.$db-border-default,
 			adaptive.$db-border-default
@@ -24,22 +33,6 @@
 	&[data-scroll-behavior="arrows"] {
 		&:not([data-orientation="vertical"])::before {
 			background-color: adaptive.$db-border-default;
-		}
-	}
-
-	// Arrow-mode scroll buttons carry a level-1 fill in the base.
-	&[data-scroll-behavior="arrows"] {
-		.tabs-scroll-start,
-		.tabs-scroll-end {
-			background-color: adaptive.$db-bg-default;
-
-			@include helpers.hover {
-				background-color: adaptive.$db-bg-hovered;
-			}
-
-			@include helpers.active {
-				background-color: adaptive.$db-bg-pressed;
-			}
 		}
 	}
 }

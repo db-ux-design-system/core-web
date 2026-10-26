@@ -219,8 +219,10 @@
 		}
 	}
 
-	// Floating variant: the label sits on top of the field, so over a read-only
-	// (alt-state) surface it has to use the alt-state text color too.
+	/*
+	 * Floating variant: the label sits on top of the field, so over a read-only
+	 * (alt-state) surface it has to use the alt-state text color too.
+	 */
 	@if $read-only-alt-state {
 		&[data-variant="floating"]:has(#{$selector}:read-only:not(:disabled))
 			> label {

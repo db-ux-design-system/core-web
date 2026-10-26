@@ -3,9 +3,11 @@
 
 [data-adaptive-coloring="true"] .db-table,
 .db-table[data-adaptive-coloring="true"] {
-	// Component borders (emphasis-60 in the base) -> adaptive border. Covers the
-	// divider lines, the table frame, the caption rule and the sticky column
-	// separator.
+	/*
+	 * Component borders (emphasis-60 in the base) -> adaptive border. Covers the
+	 * divider lines, the table frame, the caption rule and the sticky column
+	 * separator.
+	 */
 	table,
 	thead,
 	tr,
@@ -25,10 +27,12 @@
 		}
 	}
 
-	// Zebra: the striped rows get `data-material="filled-2"` from the table's
-	// MutationObserver (see table.lite.tsx), so their surface comes from that
-	// material. The base sets a hardcoded `level-2` background on odd rows that
-	// would override it, so re-point it to the row's own adaptive surface.
+	/*
+	 * Zebra: the striped rows get `data-material="filled-2"` from the table's
+	 * MutationObserver (see table.lite.tsx), so their surface comes from that
+	 * material. The base sets a hardcoded `level-2` background on odd rows that
+	 * would override it, so re-point it to the row's own adaptive surface.
+	 */
 	&[data-variant="zebra"] {
 		tbody {
 			> db-table-row:nth-child(odd) > tr,
@@ -37,15 +41,19 @@
 			}
 		}
 
-		// The base promotes a zebra weak sub-header to the strong (vibrant)
-		// surface -> alt-state role.
+		/*
+		 * The base promotes a zebra weak sub-header to the strong (vibrant)
+		 * surface -> alt-state role.
+		 */
 		thead tr[data-sub-header-emphasis="weak"] {
 			@extend %adaptive-coloring-alt-state-container;
 		}
 	}
 
-	// Sticky header/column keep a solid backing so scrolled content does not
-	// bleed through (level-1 in the base).
+	/*
+	 * Sticky header/column keep a solid backing so scrolled content does not
+	 * bleed through (level-1 in the base).
+	 */
 	&[data-sticky-header="both"],
 	&[data-sticky-header="horizontal"] {
 		thead {

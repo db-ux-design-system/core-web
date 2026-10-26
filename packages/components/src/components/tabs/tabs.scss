@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/indicator";
+@use "../../styles/internal/scrollbar";
 @use "@db-ux/core-foundations/build/styles/helpers";
 
 $indicator-gap-offset: calc(
@@ -248,8 +249,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 	}
 
 	&[data-scroll-behavior="arrows"] {
-		$db-tabs-z-index-button-background: 21;
-		$db-tabs-z-index-button: 22;
 		$db-tabs-z-index-track: 19;
 
 		.db-tab-list {
@@ -315,11 +314,27 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 				}
 			}
 
-			.tabs-scroll-start,
-			.tabs-scroll-end {
-				position: absolute;
-				z-index: $db-tabs-z-index-button;
+			// Shared overflow-scroll-button pattern: positions the button
+			// containers and gives them the opaque backing (see scrollbar
+			// mixin). Tab-specific layout (header-aligned top, indicator-gap
+			// padding, density) is layered on top.
+			@include scrollbar.set-overflow-scroll-buttons;
+
+			.overflow-scroll-left-button-container,
+			.overflow-scroll-right-button-container {
 				inset-block-start: 0;
+
+				@media screen and (forced-colors: active) {
+					border-block: variables.$db-border-width-xs solid
+						transparent;
+					inset-block-start: calc(
+						-1 * #{variables.$db-border-width-xs}
+					);
+				}
+			}
+
+			.overflow-scroll-left-button,
+			.overflow-scroll-right-button {
 				aspect-ratio: unset;
 				min-block-size: unset;
 				border-block-width: 0;
@@ -329,23 +344,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 							#{$indicator-gap-offset}
 					);
 				align-items: flex-start;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
-
-				@include helpers.hover {
-					background-color: colors.$db-adaptive-bg-basic-level-1-hovered;
-				}
-
-				@include helpers.active {
-					background-color: colors.$db-adaptive-bg-basic-level-1-pressed;
-				}
-
-				@media screen and (forced-colors: active) {
-					border-block: variables.$db-border-width-xs solid
-						transparent;
-					inset-block-start: calc(
-						-1 * #{variables.$db-border-width-xs}
-					);
-				}
 
 				[data-density="functional"] & {
 					padding-block: variables.$db-spacing-fixed-2xs
@@ -361,22 +359,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 							#{variables.$db-spacing-fixed-sm} +
 								#{$indicator-gap-offset}
 						);
-				}
-			}
-
-			.tabs-scroll-start {
-				inset-inline-start: 0;
-
-				&:dir(rtl) {
-					--db-icon: "chevron_right";
-				}
-			}
-
-			.tabs-scroll-end {
-				inset-inline-end: 0;
-
-				&:dir(rtl) {
-					--db-icon: "chevron_left";
 				}
 			}
 		}

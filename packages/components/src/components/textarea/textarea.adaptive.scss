@@ -9,9 +9,11 @@
 	);
 	@include form-components.field-validity(textarea);
 
-	// Floating variant: the `::before`/`::after` pseudo elements cover the
-	// scroll area behind the floating label. Re-point their fill and border to
-	// the adaptive tokens (the `textarea` itself is handled by field-materials).
+	/*
+	 * Floating variant: the `::before`/`::after` pseudo elements cover the
+	 * scroll area behind the floating label. Re-point their fill and border to
+	 * the adaptive tokens (the `textarea` itself is handled by field-materials).
+	 */
 	&[data-variant="floating"] {
 		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {
@@ -23,9 +25,11 @@
 				border-color: adaptive.$db-border-default;
 			}
 
-			// Read-only (but not disabled) textarea renders the alt-state
-			// surface, so the cover matches it. `:disabled` also matches
-			// `:read-only`, so it is excluded.
+			/*
+			 * Read-only (but not disabled) textarea renders the alt-state
+			 * surface, so the cover matches it. `:disabled` also matches
+			 * `:read-only`, so it is excluded.
+			 */
 			&:has(textarea:read-only:not(:disabled))::after {
 				background-color: adaptive.$db-alt-state-bg-default !important;
 			}
