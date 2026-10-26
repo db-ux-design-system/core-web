@@ -10,12 +10,29 @@ const unlistedComponents = new Set([
 	'footer-content',
 	'footer-meta'
 ]);
-const unlistedSubComponentsPrefixes = new Set([
+const unlistedSubComponentsSuffixes = new Set([
 	'-list',
 	'-panel',
 	'-item',
 	'-handle',
-	'-menu'
+	'-menu',
+	'-footer',
+	'-header',
+	'-head',
+	'-content',
+	'-sub-navigation',
+	'-cell',
+	'-row',
+	'-caption',
+	'-body'
+]);
+// Internal parts of DBControlPanel (e.g. control-panel-brand), no own validation rows.
+const unlistedSubComponentsPrefixes = new Set(['control-panel-']);
+// Exceptions to the prefixes above: standalone variants with their own test suites.
+const listedPrefixedComponents = new Set([
+	'control-panel-desktop',
+	'control-panel-mobile',
+	'control-panel-flat-icon'
 ]);
 
 const webTypesPath = './../../output/stencil/dist/web-types.json';
@@ -34,20 +51,28 @@ const generateTestTable = () => {
 	);
 	const data = [];
 	for (const { name } of elements) {
+		// Only real components carry the `db-` prefix. Everything else in the
+		// web-types (badge-examples, control-panel-mobile-showcase, ...) is an
+		// example/showcase element and must never appear in the table.
+		if (!name.startsWith('db-')) {
+			continue;
+		}
+
 		const componentName = getComponentName(name);
 		if (
 			unlistedComponents.has(componentName) ||
-			[...unlistedSubComponentsPrefixes].some((suffix) =>
+			[...unlistedSubComponentsSuffixes].some((suffix) =>
 				componentName.endsWith(suffix)
-			)
+			) ||
+			([...unlistedSubComponentsPrefixes].some((prefix) =>
+				componentName.startsWith(prefix)
+			) &&
+				!listedPrefixedComponents.has(componentName))
 		) {
 			// We don't want to add something like accordion-item
 			continue;
 		}
 
-		const hasComponentTest = FS.existsSync(
-			`./../../packages/components/src/components/${componentName}/${componentName}.spec.tsx`
-		);
 		const hasShowcaseVisuals = FS.existsSync(
 			`./../../showcases/e2e/${componentName}/${componentName}-visual-snapshot.spec.ts`
 		);
@@ -60,8 +85,6 @@ const generateTestTable = () => {
 
 		data.push({
 			name: componentName,
-			singleComponentVisuals: hasComponentTest,
-			singleComponentAxe: hasComponentTest,
 			showcaseVisuals: hasShowcaseVisuals,
 			showcaseAxe: hasShowcaseTest,
 			showcaseAria: hasShowcaseTest,

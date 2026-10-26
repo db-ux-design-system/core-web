@@ -437,7 +437,11 @@ standalone files automatically while preserving the parser and docs metadata ent
 
 **Sub-component suffix convention:** The test-table generator
 (`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
-in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
+in `-list`, `-panel`, `-item`, `-handle`, `-menu`, `-footer`, `-header`, `-head`, `-content`, `-sub-navigation`, `-cell`, `-row`, `-caption` or `-body` from the validation table, components
+starting with `control-panel-` (sub-components of `DBControlPanel`, which has no standalone
+element of its own) except the standalone variants `control-panel-desktop`, `control-panel-mobile`
+and `control-panel-flat-icon` (they have their own test suites), and any element without a `db-`
+prefix (example/showcase elements).
 
 ## Angular form value flow: user input never writes back to the DOM
 
