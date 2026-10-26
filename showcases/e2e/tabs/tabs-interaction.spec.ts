@@ -82,6 +82,107 @@ test.describe('DBTabs', () => {
 		}
 	});
 
+	// Regression guard for
+	// https://github.com/db-ux-design-system/core-web/issues/8336: a single tab
+	// in manual mode must become selected (and show its panel) on click.
+	runInteractionTest({
+		title: 'should select a single tab on click',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('dynamic-tabs');
+			const tab1 = tabs.getByRole('tab', { name: 'Dynamic 1' });
+			const panel1 = tabs.getByRole('tabpanel', {
+				name: 'Dynamic 1'
+			});
+
+			// Manual mode: nothing selected initially, panel hidden.
+			await expect(tab1).toHaveAttribute('aria-selected', 'false');
+			await expect(panel1).toBeHidden();
+
+			await tab1.click();
+			await expect(tab1).toHaveAttribute('aria-selected', 'true');
+			await expect(panel1).toBeVisible();
+		}
+	});
+
+	// Regression guard for
+	// https://github.com/db-ux-design-system/core-web/issues/8336: a tab added
+	// at runtime (composition API) must be wired up (ARIA) and selectable, and
+	// a freshly added panel must not be visible while nothing is selected.
+	runInteractionTest({
+		title: 'should wire up and select a dynamically added tab',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('dynamic-tabs');
+			await content.getByTestId('dynamic-toggle').click();
+
+			const tab2 = tabs.getByRole('tab', { name: 'Dynamic 2' });
+			const panel2 = tabs.getByRole('tabpanel', {
+				name: 'Dynamic 2'
+			});
+
+			// Added in manual mode: still nothing selected, the new panel must
+			// stay hidden instead of defaulting to visible.
+			await expect(tab2).toHaveAttribute('aria-selected', 'false');
+			await expect(tab2).toHaveAttribute('aria-controls', /tab-panel/);
+			await expect(panel2).toBeHidden();
+
+			// The new tab must be selectable.
+			await tab2.click();
+			await expect(tab2).toHaveAttribute('aria-selected', 'true');
+			await expect(panel2).toBeVisible();
+
+			// Removing the selected tab must not leave the tabs empty: the
+			// selection falls back to the remaining tab and its panel shows.
+			const tab1 = tabs.getByRole('tab', { name: 'Dynamic 1' });
+			const panel1 = tabs.getByRole('tabpanel', { name: 'Dynamic 1' });
+			await content.getByTestId('dynamic-toggle').click();
+			await expect(tab2).toHaveCount(0);
+			await expect(tab1).toHaveAttribute('aria-selected', 'true');
+			await expect(panel1).toBeVisible();
+		}
+	});
+
+	// Regression guard for the React-specific follow-up to
+	// https://github.com/db-ux-design-system/core-web/issues/8336: selecting
+	// the last tab and then removing a tab *before* it must keep the selected
+	// tab selected at its shifted index. Before the fix, the MutationObserver
+	// callback (a mount-render closure in React) re-applied the stale numeric
+	// _activeIndex instead of the index initTabs preserved, so the formerly
+	// second tab got selected.
+	runInteractionTest({
+		title: 'should preserve the selected tab when a preceding tab is removed',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('preserve-selection-tabs');
+			const tab3 = tabs.getByRole('tab', { name: 'Preserve 3' });
+			const panel3 = tabs.getByRole('tabpanel', { name: 'Preserve 3' });
+
+			// Select the last of the three tabs.
+			await tab3.click();
+			await expect(tab3).toHaveAttribute('aria-selected', 'true');
+			await expect(panel3).toBeVisible();
+
+			// Remove the first tab: three tabs become two, so the selected tab
+			// shifts from index 2 to index 1 but stays the same element.
+			await content.getByTestId('preserve-remove-toggle').click();
+			await expect(
+				tabs.getByRole('tab', { name: 'Preserve 1' })
+			).toHaveCount(0);
+
+			// The still-present "Preserve 3" tab must remain selected, and
+			// "Preserve 2" must not be selected in its place.
+			await expect(tab3).toHaveAttribute('aria-selected', 'true');
+			await expect(panel3).toBeVisible();
+			await expect(
+				tabs.getByRole('tab', { name: 'Preserve 2' })
+			).toHaveAttribute('aria-selected', 'false');
+		}
+	});
+
 	// Note: the URL-hash deep-linking test from the removed component test is
 	// not portable here. DBTabs reads the entire `window.location.hash`, which
 	// the showcase app itself owns for its own hash-based routing
