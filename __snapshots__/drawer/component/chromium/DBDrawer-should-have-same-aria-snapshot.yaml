@@ -1,5 +1,0 @@
-- dialog "Title":
-  - article:
-    - text: Title
-    - button "Close"
-    - text: Test

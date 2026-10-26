@@ -6,7 +6,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 > **Naming convention:** In human-readable prose and naming, spell out the design-system generation as **"DB UX Design System – Generation 3"** (the current generation) and **"DB UX Design System – Generation 2"** (the previous one, formerly "DB UI"). Do not use the shorthand "v2" / "v3" / "version 2" / "version 3" in prose. On the **first** mention of Generation 2 in a document, add the clarifier **"(aka DB UI)"** once so readers who know the product as "DB UI" recognize the rename; keep later mentions short.
 >
-> The `v2` / `v3` tokens remain valid — and must be kept unchanged — inside URLs, slugs, filenames, badge link URLs, programmatic identifiers (e.g. `migrate-to-v3`, `scan_v2_migration`, `V2_PACKAGE_MAP`, `db-ui-v2` context values, regex patterns), and semantic versions (e.g. an Action pin `# v3.2.0`). Rewriting those breaks links and tooling.
+> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version pins (e.g. `# v3.2.0`). Rewriting those breaks links and tooling.
 
 ## Working Effectively
 
@@ -133,11 +133,26 @@ So the only thing that narrows the list is **which targets a file feeds**, never
 
 Use the following bump types for changeset entries:
 
-- **`patch`** — for bug fixes
-- **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
+- **`patch`** — for bug fixes that leave the rendered HTML structure intact (see the markup-change rule below — a fix that restructures a component's HTML is `minor`, not `patch`)
+- **`minor`** — for new features (e.g. a property in any `model.ts` has been added) or a change to a component's rendered HTML that consumers can observe
 - **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
 **Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
+
+**Changing the inner HTML or JS of a `.lite.tsx` component is not a breaking change, but a visible markup change is at least `minor`.**
+The contract we version is the public API of the generated framework and web-component packages — component props (`model.ts`), events, and the custom-element tags/attributes. The internal DOM structure and logic of a component are implementation details in the sense that they do **not** warrant a `major` bump on their own — restructuring the markup, moving elements around, or rewriting internal logic never breaks that versioned contract. But the rendered HTML _is_ observable by consumers: CSS-only consumers style it, and consumers who copied the markup from the Patternhub examples or a Storybook "view code" output depend on its structure. So bump as follows:
+
+- **`major`** only when the public API itself changes — a prop/event removed, renamed, or retyped in `model.ts`, or a changed custom-element tag/attribute — regardless of how small the template change looks.
+- **`minor`** when the change alters the rendered HTML a consumer can observe (elements, classes, attributes, or their nesting moved), **or** when a prop is added. A markup restructure is `minor` even when it is motivated by a bug fix, because a CSS-only consumer can still be broken by the moved structure.
+- **`patch`** only for a fix that leaves the rendered HTML structure intact (logic-only change, or a style/value fix).
+
+**When a change modifies the rendered HTML of a component, summarize the markup changes in a separated changeset for `@db-ux/core-components` node package** so CSS-only consumers and anyone who copied the markup from the Patternhub examples or a Storybook "view code" output know what moved — even when the bump itself is only `patch` or `minor`. Keep the summary focused on the elements, classes, and attributes that actually changed.
+
+**Write any further information after the initial one-liner summary as a flat bullet list, never a Markdown table or multi-paragraph prose.** The custom changelog formatter (`scripts/github/changesets/create-changelog.js`) turns the changeset body into list items: the first line becomes the top-level entry, and **every** subsequent non-empty line becomes its own bullet. A table's rows and its `| --- |` separator each become a separate broken bullet, and a wrapped paragraph is split into one bullet per source line. So:
+
+- Keep the first line as the conventional-commit summary (`type(scope): description`).
+- Put each distinct point on a **single, non-wrapped line**. A line starting with `-` / `*` / `+` is emitted as a nested sub-item (double-indented); any other line becomes a top-level sub-bullet. Phrase a "before -> after" change inline per bullet (e.g. "the clear button is now `<button class="db-custom-select-clear">` (previously positioned over the field)") instead of in table columns.
+- Verify the rendered result with `pnpm run ci:version`, inspect the generated `CHANGELOG.md`, then revert the version bump (`git checkout -- .` / restore the consumed changeset) before committing.
 
 ### How to Add a Changeset
 
@@ -352,6 +367,14 @@ Every fenced code block (` ``` `) **must** specify a language identifier (MD040)
 ### Shift-left: HTML → CSS → JS
 
 Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
+
+### HTML is for structure, not styling
+
+Markup must describe the **structure and semantics** of the content, never its appearance. Do not add inline `style` attributes, presentational utility classes (values whose name describes a visual effect, e.g. `mt-4`, `text-red`, `flex-center`), or elements and wrappers whose only purpose is to achieve a visual effect; handle styling in CSS instead. Choose elements for their meaning (e.g. a heading because it _is_ a heading, not because it renders large and bold), and reach for CSS (layout, spacing, pseudo-elements, pseudo-classes, etc.) rather than extra `<div>`/`<span>` wrappers or presentational markup. This keeps the DOM semantic, accessible, maintainable and themeable.
+
+A stable, semantic class used as a **stylesheet hook** is allowed and often required; e.g. `button.lite.tsx` carries `db-button` so `button.scss` can select it. The test is the name: a selector that targets what the element _is_ or its state (the `db-button` hook, `button[data-variant="brand"]`, `.db-input input:user-invalid`) is fine; a class that names how it should _look_ is not. Prefer such a hook over a brittle structural selector.
+
+This rule carries extra weight for the Mitosis components in `packages/components`: a component's `.lite.tsx` template is compiled to the HTML every consumer copies, and a purely presentational wrapper also has to survive four framework outputs and the `display: contents` custom-element hosts, where an unnecessary wrapper misbehaves. Reach for the component's `.scss` (`:has()`, pseudo-elements, etc.) instead.
 
 ### No literal non-ASCII characters in SCSS
 

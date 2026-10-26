@@ -151,7 +151,7 @@
 		}
 
 		&::after {
-			z-index: navigation-item.$z-index-above-popover; // Border should be above a drilldown navigation-item-menu
+			z-index: navigation-item.$z-index-above-drilldown; // Border should be above a drilldown navigation-item-menu
 		}
 	}
 }

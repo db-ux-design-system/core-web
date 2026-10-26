@@ -7,6 +7,9 @@ import {
 	DBAccordion,
 	DBAccordionItem,
 	DBBadge,
+	DBBreadcrumb,
+	DBBreadcrumbItem,
+	DBBreadcrumbPopoverItem,
 	DBButton,
 	DBCard,
 	DBCheckbox,
@@ -38,6 +41,7 @@ import {
 	DBLink,
 	DBLoadingIndicator,
 	DBNotification,
+	DBParagraph,
 	DBPopover,
 	DBRadio,
 	DBSection,
@@ -51,6 +55,7 @@ import {
 	DBTabs,
 	DBTag,
 	DBTextarea,
+	DBTextGroup,
 	DBTooltip
 } from '@components';
 import { type ReactNode, useEffect, useState } from 'react';
@@ -506,6 +511,45 @@ const ComponentSwitch = ({
 			<DBPagination className={className} {...props}>
 				{resolvedContent}
 			</DBPagination>
+		);
+	}
+
+	if (type === 'paragraph') {
+		return (
+			<DBParagraph className={className} {...props}>
+				{resolvedContent}
+			</DBParagraph>
+		);
+	}
+
+	if (type === 'text-group') {
+		return (
+			<DBTextGroup className={className} {...props}>
+				{resolvedContent}
+			</DBTextGroup>
+		);
+	}
+	if (type === 'breadcrumb') {
+		return (
+			<DBBreadcrumb className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumb>
+		);
+	}
+
+	if (type === 'breadcrumb-item') {
+		return (
+			<DBBreadcrumbItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbItem>
+		);
+	}
+
+	if (type === 'breadcrumb-popover-item') {
+		return (
+			<DBBreadcrumbPopoverItem className={className} {...props}>
+				{resolvedContent}
+			</DBBreadcrumbPopoverItem>
 		);
 	}
 

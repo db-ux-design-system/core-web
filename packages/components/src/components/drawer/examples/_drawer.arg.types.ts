@@ -6,7 +6,6 @@ export const StorybookDrawerArgTypes: Record<string, InputType> = {
 		control: 'select',
 		options: ['small', 'medium', 'large', 'full']
 	},
-	rounded: { control: 'boolean' },
 	showSpacing: { control: 'boolean' },
 	backdrop: {
 		control: 'select',

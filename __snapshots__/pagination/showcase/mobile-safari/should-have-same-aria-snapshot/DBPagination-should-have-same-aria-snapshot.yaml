@@ -246,3 +246,86 @@
         - button "Page 10 of 10": "10"
       - listitem:
         - button "Next page"
+  - link "Interaction"
+  - navigation "Results pages":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 5 of 10": "5"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
+  - text: "requested: 0"
+  - navigation "First page":
+    - list:
+      - listitem:
+        - button "Previous page" [disabled]
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page"
+  - navigation "Last page":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 1 of 10": "1"
+      - listitem:
+        - button "Page 10 of 10": "10"
+      - listitem:
+        - button "Next page" [disabled]
+  - navigation "Without siblings":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - button "Page 10 of 20": "10"
+      - listitem:
+        - button "Next page"
+  - navigation "Results pagination":
+    - list:
+      - listitem:
+        - button "Go to previous page"
+      - listitem:
+        - button "Result page 1 of 3": "1"
+      - listitem:
+        - button "Result page 2 of 3": "2"
+      - listitem:
+        - button "Result page 3 of 3": "3"
+      - listitem:
+        - button "Go to next page"
+  - navigation "Composed":
+    - list:
+      - listitem:
+        - button "Previous page"
+      - listitem:
+        - link "Page 1"
+          - text: "1"
+      - listitem:
+        - link "Page 2"
+          - text: "2"
+      - listitem:
+        - link "Page 3"
+          - text: "3"
+      - listitem:
+        - button "Next page"
+  - text: "composed requested: 0"
+  - navigation "With a disabled page":
+    - list:
+      - listitem:
+        - button "Previous page" [disabled]
+      - listitem:
+        - button "Page 1 of 3": "1"
+      - listitem:
+        - button "Page 2 of 3" [disabled]: "2"
+      - listitem:
+        - button "Page 3 of 3": "3"
+      - listitem:
+        - button "Next page"
+  - text: "items requested: 0"

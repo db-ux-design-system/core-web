@@ -14,7 +14,7 @@ export {
 	handleListIcons,
 	handleListMigrationGuides,
 	handleListVisuals,
-	handleScanV2Migration,
+	handleScanGeneration2Migration,
 	handleVerifyMigratedCode
 } from './tools/index.js';
 export { resolveSafePath } from './utils/index.js';

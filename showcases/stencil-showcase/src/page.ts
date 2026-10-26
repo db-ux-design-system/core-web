@@ -44,12 +44,31 @@ function getQueryParameters(): URLSearchParams {
 	return new URLSearchParams(queryString);
 }
 
+const DENSITIES = ['functional', 'regular', 'expressive'];
+const COLORS = [
+	'neutral',
+	'critical',
+	'informational',
+	'warning',
+	'successful',
+	'adaptive'
+];
+
 function getDensity(): string {
-	return getQueryParameters().get('density') ?? 'regular';
+	const density = getQueryParameters().get('density') ?? 'regular';
+
+	// Only ever return a known-safe value: the density is interpolated into
+	// innerHTML below, so an unchecked URL param would be a DOM-based XSS
+	// sink (CodeQL js/xss-through-dom).
+	return DENSITIES.includes(density) ? density : 'regular';
 }
 
 function getColor(): string {
-	return getQueryParameters().get('color') ?? 'neutral';
+	const color = getQueryParameters().get('color') ?? 'neutral';
+
+	// Same reasoning as getDensity(): restrict to the known color list so the
+	// value is safe to interpolate into innerHTML.
+	return COLORS.includes(color) ? color : 'neutral';
 }
 
 function setUrlParameters(updates: Record<string, string>): void {
@@ -68,15 +87,28 @@ function setUrlParameters(updates: Record<string, string>): void {
 	);
 }
 
-const DENSITIES = ['functional', 'regular', 'expressive'];
-const COLORS = [
-	'neutral',
-	'critical',
-	'informational',
-	'warning',
-	'successful',
-	'adaptive'
-];
+/**
+ * Renders the bare content container without any shell / control-panel chrome.
+ * Used when a `?page=` (single example) or `?fullscreen=` query param is
+ * present, mirroring the fullscreen branch of the React showcase's `App`.
+ * The router injects the showcase element into the `<main>` element.
+ */
+export function renderFullscreen(): void {
+	const app = document.querySelector('#app');
+
+	if (!app) {
+		return;
+	}
+
+	const density = getDensity();
+	const color = getColor();
+
+	app.innerHTML = `
+		<div data-density="${density}" class="fullscreen-container db-color-${color}">
+			<main></main>
+		</div>
+	`;
+}
 
 export function renderPage(): void {
 	const app = document.querySelector('#app');
@@ -122,7 +154,7 @@ export function renderPage(): void {
 					${renderPageNavItems(NAVIGATION_ITEMS)}
 				</db-navigation>
 			</db-header>
-			<div data-density="${density}" class="db-${color}">
+			<div data-density="${density}" class="db-color-${color}">
 				<main></main>
 			</div>
 		</db-page>
@@ -183,6 +215,6 @@ function applyPageDensityColor(density: string, color: string): void {
 
 	if (contentDiv) {
 		contentDiv.dataset.density = density;
-		contentDiv.className = `db-${color}`;
+		contentDiv.className = `db-color-${color}`;
 	}
 }

@@ -7,10 +7,6 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
 
-.db-select-placeholder {
-	@extend %select-absolute-placeholder;
-}
-
 .db-select {
 	--db-form-component-padding-inline-end: #{select-components.$select-icon-padding};
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
@@ -37,13 +33,6 @@
 
 		// Hide the placeholder once a non-placeholder option is selected
 		&:has(option:checked:not(.placeholder)) ~ [id$="-placeholder"] {
-			display: none;
-		}
-
-		// Hide an inserted empty `option` with `data-show-empty-option="false"`
-		// once a non-placeholder option is selected or the `select` is open
-		&:is(:has(option:checked:not(.placeholder)), :open)
-			option[data-show-empty-option="false"] {
 			display: none;
 		}
 	}

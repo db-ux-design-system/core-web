@@ -41,6 +41,7 @@
     "build-storybooks:angular": "pnpm --filter angular-storybook run build",
     "build-storybooks:composition": "pnpm --filter composition-storybook run build",
     "build-storybooks:react": "pnpm --filter react-storybook run build",
+    "build-storybooks:stencil": "pnpm --filter stencil-storybook run build",
     "build-storybooks:vue": "pnpm --filter vue-storybook run build",
     "build:agent-cli": "pnpm --filter @db-ux/agent-cli run build",
     "build:components": "pnpm --filter @db-ux/core-components run build",
@@ -77,21 +78,21 @@
     "update:icon-fonts": "pnpm run generate:icon-fonts && pnpm run generate:icon-types"
   },
   "dependencies": {
-    "@db-ux/db-theme": "6.3.0",
-    "@db-ux/db-theme-fonts": "2.0.5",
-    "@db-ux/db-theme-icons": "4.3.0",
+    "@db-ux/db-theme": "7.2.0",
+    "@db-ux/db-theme-fonts": "2.2.0",
+    "@db-ux/db-theme-icons": "4.4.0",
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
-    "@inquirer/prompts": "8.7.2",
+    "@inquirer/prompts": "8.7.4",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
     "npm-run-all2": "9.0.3",
-    "publint": "0.3.24",
+    "publint": "0.3.25",
     "replace-in-file": "9.0.0",
     "typedoc": "0.28.20",
-    "typedoc-plugin-markdown": "4.13.1",
+    "typedoc-plugin-markdown": "4.14.1",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "5.0.2"
+    "vitest": "5.0.5"
   }
 }

@@ -120,6 +120,21 @@
 	}
 }
 
+/* Full width for block text. Must stay top level, the wrapper is not nested. */
+.paragraph-showcase,
+.text-group-showcase {
+	display: contents;
+}
+
+/* `> * >` covers the extra element level the Angular/Stencil hosts add. */
+.paragraph-showcase .variants-list,
+.paragraph-showcase .variants-list > div:not([class^="db-"], [data-area]),
+.text-group-showcase .variants-list,
+.text-group-showcase .variants-list > div:not([class^="db-"], [data-area]),
+.text-group-showcase .variants-list > * > div:not([class^="db-"], [data-area]) {
+	display: block;
+}
+
 .variants-list > db-popover > .db-popover > db-button > button,
 .variants-list > .db-popover > button,
 .variants-list > * > db-button > button,
@@ -186,24 +201,6 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--db-spacing-fixed-md);
-}
-
-.badge-inline-container {
-	display: flex;
-	align-items: center;
-	gap: var(--db-spacing-fixed-sm);
-	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
-	background-color: var(--db-adaptive-bg-basic-level-2-default);
-
-	[data-icon="x_placeholder"] {
-		&::before {
-			margin-inline-end: var(--db-spacing-fixed-xs);
-		}
-	}
-}
-
-.badge-inline-container .db-badge {
-	margin-inline-start: var(--db-spacing-responsive-md);
 }
 
 .fit-content-container {
@@ -303,7 +300,9 @@ app-nav-item {
 
 /* Dialog header with a multi-line (title + subtitle) content: top-align the
    row so the start icon and close button sit next to the title, not centered
-   against the taller content block. */
+   against the taller content block. Kept as a showcase class (not inline
+   style) because it needs descendant rules on the header's children, which an
+   inline style on DBDialogHeader cannot express. */
 .showcase-header-top-aligned.db-dialog-header {
 	align-items: flex-start;
 

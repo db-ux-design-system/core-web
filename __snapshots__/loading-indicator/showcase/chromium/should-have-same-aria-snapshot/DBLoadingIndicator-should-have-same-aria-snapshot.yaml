@@ -398,3 +398,25 @@
     - text: Button
   - 'link "Example: Timeout"':
   - button "Start Timeout"
+  - link "Interaction"
+  - status:
+    - text: Test
+    - progressbar "Test"
+  - alert:
+    - text: Test
+    - progressbar "Test"
+  - alert:
+    - text: Test
+    - progressbar "Test"
+  - status:
+    - text: Test
+    - progressbar "Test"
+  - status:
+    - text: Test
+    - progressbar "Test": 42 of 100
+  - status:
+    - text: Test
+    - progressbar "Test"
+  - status:
+    - text: Test
+    - progressbar "Test"

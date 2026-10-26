@@ -199,3 +199,8 @@
   - link "Controlled"
   - button "Toggle popover"
   - button "Controlled popover"
+  - link "Interaction"
+  - button "Button"
+  - article: Test
+  - button "Toggle"
+  - button "Button"

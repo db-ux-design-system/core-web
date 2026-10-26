@@ -27,12 +27,7 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import {
-	ClickEvent,
-	GeneralEvent,
-	InputEvent,
-	InteractionEvent
-} from '../../shared/model';
+import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -57,6 +52,7 @@ import { IntersectionObserverListener } from '../../utils/intersection-observer-
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
 import DBCustomSelectDropdown from '../custom-select-dropdown/custom-select-dropdown.lite';
+import DBCustomSelectFormField from '../custom-select-form-field/custom-select-form-field.lite';
 import DBCustomSelectListItem from '../custom-select-list-item/custom-select-list-item.lite';
 import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
 import DBInfotext from '../infotext/infotext.lite';
@@ -172,7 +168,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.setDescById(state._messageId);
 				state._validity = props.validation ?? 'no-validation';
 			} else {
-				state.setDescById(state._placeholderId);
+				state.setDescById(
+					state._values?.length || state._selectedLabels?.length
+						? undefined
+						: state._placeholderId
+				);
 				state._validity = props.validation ?? 'no-validation';
 			}
 		},
@@ -284,14 +284,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			// Fallback to default behavior
 			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
-		handleTagRemove: (
-			option: CustomSelectOptionType,
-			event?: ClickEvent<HTMLButtonElement> | Event | void
-		) => {
-			if (event) {
-				event.stopPropagation();
-			}
-
+		handleTagRemove: (option: CustomSelectOptionType) => {
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
 		},
@@ -324,47 +317,44 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							activeElement.getAttribute('type') === 'radio';
 
 						if (isCheckbox) {
-							const listElement = activeElement?.closest('li');
+							// We navigate over the flat list of option inputs instead
+							// of walking li siblings: in the Angular and Stencil output
+							// every li is wrapped in a custom-element host
+							// (db-custom-select-list-item), so an li has no sibling li
+							// and sibling traversal would break. Group titles render no
+							// input and are therefore skipped for free.
+							const optionInputs: HTMLInputElement[] = Array.from(
+								detailsRef.querySelectorAll(
+									`input.db-custom-select-list-item-checkbox`
+								)
+							);
+							const currentIndex = optionInputs.indexOf(
+								activeElement as HTMLInputElement
+							);
 							if (
 								event.key === 'ArrowDown' ||
 								event.key === 'ArrowRight'
 							) {
-								// Find next element with input, skipping group titles
-								let nextElement =
-									listElement?.nextElementSibling;
-								while (nextElement) {
-									const nextInput =
-										nextElement.querySelector('input');
-									if (nextInput) {
-										nextInput.focus();
-										break;
-									}
-									nextElement =
-										nextElement.nextElementSibling;
-								}
-
-								if (!nextElement) {
+								const nextInput =
+									currentIndex >= 0
+										? optionInputs.at(currentIndex + 1)
+										: undefined;
+								if (nextInput) {
+									nextInput.focus();
+								} else {
 									// We are on the last checkbox we move to the top checkbox
 									state.handleFocusFirstDropdownCheckbox(
 										activeElement
 									);
 								}
 							} else {
-								// Find previous element with input, skipping group titles
-								let prevElement =
-									listElement?.previousElementSibling;
-								while (prevElement) {
-									const prevInput =
-										prevElement.querySelector('input');
-									if (prevInput) {
-										prevInput.focus();
-										break;
-									}
-									prevElement =
-										prevElement.previousElementSibling;
-								}
-
-								if (!prevElement) {
+								const prevInput =
+									currentIndex > 0
+										? optionInputs.at(currentIndex - 1)
+										: undefined;
+								if (prevInput) {
+									prevInput.focus();
+								} else {
 									// Check if we have a "select all" checkbox (only relevant for multi-select)
 									const selectAllCheckbox =
 										detailsRef.querySelector(
@@ -476,6 +466,19 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				state.handleArrowDownUp(event);
 			}
 		},
+		handleFieldKeyboardPress: (event: any) => {
+			/* Keydown originating inside <details> (summary + dropdown) is already
+			   handled by the onKeyDown bound on <details> itself, which React
+			   re-binds every render so it reads the current _options/_searchValue.
+			   This wrapper-level listener only has to cover the tag remove buttons
+			   and clear button, which render as siblings of <details> and would
+			   otherwise never reach handleKeyboardPress (e.g. Escape on a tag). */
+			if (detailsRef?.contains(event.target)) {
+				return;
+			}
+
+			state.handleKeyboardPress(event);
+		},
 		handleClose: (
 			event?: InteractionEvent<HTMLDetailsElement> | void,
 			forceClose?: boolean
@@ -488,11 +491,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					if (event.relatedTarget) {
 						const relatedTarget =
 							event.relatedTarget as HTMLElement;
-						// We close if the focus is on something like a <button> etc. which is not inside the <details> element
+						// We close if the focus moves to something like a <button> etc. which is not inside the field (<details> or the tags/clear beside it)
 						// Inside a <dialog> there is some focus problem because of the top-layer
 						// We do not want to focus <dialog> itself
 						if (
-							!detailsRef.contains(relatedTarget) &&
+							!state.fieldContains(relatedTarget) &&
 							relatedTarget.localName !== 'dialog'
 						) {
 							// We need to use delay here because the combination of "contains"
@@ -518,13 +521,28 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					default: event.target
 				});
 
-				if (detailsRef?.open && !detailsRef.contains(target)) {
+				if (detailsRef?.open && !state.fieldContains(target)) {
 					detailsRef.open = false;
 				}
 			}
 		},
-		handleOptionSelected: (values: string[]) => {
+		fieldContains: (target?: EventTarget | null) => {
+			if (!detailsRef) {
+				return false;
+			}
+			if (detailsRef.contains(target)) {
+				return true;
+			}
+			// The tags and clear button render as siblings of <details> inside the
+			// wrapping .db-custom-select-form-field, so interacting with them must
+			// not count as a click/focus outside the field (which would close the
+			// dropdown or steal the summary focus).
+			const field = detailsRef.closest('.db-custom-select-form-field');
+			return Boolean(field && field.contains(target as Node));
+		},
+		handleOptionSelected: (values: string[], skipDebounce?: boolean) => {
 			const skip =
+				!skipDebounce &&
 				new Date().getTime() - state._internalChangeTimestamp < 200;
 			if (skip) return;
 
@@ -553,6 +571,33 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					)
 			});
 			state._internalChangeTimestamp = new Date().getTime();
+		},
+		handleNativeSelectChange: (event: any) => {
+			event.stopPropagation(); // Also satisfies React.
+
+			const select = event.target as HTMLSelectElement;
+			const values =
+				select.selectedIndex < 0
+					? []
+					: Array.from(select.selectedOptions).map(
+							(option: HTMLOptionElement) => option.value
+						);
+
+			const currentValues = state._values ?? [];
+			const unchanged =
+				values.length === currentValues.length &&
+				values.every(
+					(value: string, index: number) =>
+						value === currentValues[index]
+				);
+
+			if (unchanged) {
+				return;
+			}
+
+			// Autofill must bypass the internal-change debounce. Writing
+			// selectRef.value fires no `change`, so this cannot loop back.
+			state.handleOptionSelected(values, true);
 		},
 		handleSelect: (value?: string) => {
 			if (value) {
@@ -690,6 +735,26 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			state.handleOptionSelected([]);
 			state.handleSummaryFocus();
 		},
+		syncDisabledButtons: () => {
+			if (!_ref) {
+				return;
+			}
+			requestAnimationFrame(() => {
+				const disabled = getBoolean(props.disabled, 'disabled');
+				const buttons: HTMLButtonElement[] = Array.from(
+					_ref.querySelectorAll('.db-custom-select-form-field button')
+				);
+				for (const button of buttons) {
+					if (disabled) {
+						button.tabIndex = -1;
+						button.disabled = true;
+					} else {
+						button.removeAttribute('tabindex');
+						button.disabled = false;
+					}
+				}
+			});
+		},
 		handleSummaryFocus: () => {
 			if (detailsRef) {
 				(detailsRef as HTMLDetailsElement)
@@ -721,6 +786,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 	onMount(() => {
 		state.resetIds();
 		state._invalidMessage = props.invalidMessage || DEFAULT_INVALID_MESSAGE;
+		state.syncDisabledButtons();
 	});
 
 	onUpdate(() => {
@@ -731,10 +797,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 
 	onUpdate(() => {
 		if (detailsRef) {
-			detailsRef.addEventListener(
-				'focusout',
-				(event: InteractionEvent<HTMLDetailsElement>) =>
-					state.handleClose(event)
+			// The tags and clear button are siblings of <details> inside the
+			// wrapping .db-custom-select-form-field, so keydown (Escape on a tag)
+			// and focusout (focus leaving the component from a tag) must be
+			// observed on the field wrapper - on <details> they would miss those
+			// siblings. In-dropdown keyboard handling stays on <details> via its
+			// onKeyDown prop, so React re-binds a fresh closure each render and
+			// handleKeyboardPress reads the current _options/_searchValue instead
+			// of a stale snapshot captured once when this listener was attached.
+			const field =
+				detailsRef.closest('.db-custom-select-form-field') ??
+				detailsRef;
+			field.addEventListener('keydown', (event: KeyboardEvent) =>
+				state.handleFieldKeyboardPress(event)
+			);
+			field.addEventListener('focusout', (event: FocusEvent) =>
+				state.handleClose(
+					event as unknown as InteractionEvent<HTMLDetailsElement>
+				)
 			);
 		}
 	}, [detailsRef]);
@@ -804,7 +884,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		if (selectRef) {
 			state.handleValidation();
 		}
-	}, [state._values, selectRef]);
+	}, [state._values, selectRef, state._selectedLabels]);
 
 	onUpdate(() => {
 		if (selectRef) {
@@ -923,6 +1003,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state._selectedOptions]);
 
+	// Re-run when the disabled state flips or when the set of tags/clear button
+	// changes (selection changes re-render them), see syncDisabledButtons.
+	onUpdate(() => {
+		state.syncDisabledButtons();
+	}, [props.disabled, state._selectedOptions]);
+
 	onUpdate(() => {
 		if (selectAllRef) {
 			selectAllRef.indeterminate = Boolean(state.selectAllIndeterminate);
@@ -962,11 +1048,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	});
 
-	function satisfyReact(event: any) {
-		// This is a function to satisfy React
-		event.stopPropagation();
-	}
-
 	return (
 		<div
 			id={state._id}
@@ -991,7 +1072,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
-				{/* ponytail: browser autofill will set the native value but state._values / summary would not sync; follow-up needed to wire onChange into handleOptionSelected */}
+				{/* The form-submitted value. Hidden, but advertises
+				    `autocomplete`, so autofill can write to it - see
+				    state.handleNativeSelectChange. */}
 				<select
 					role="none"
 					hidden
@@ -1005,7 +1088,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					multiple={getBoolean(props.multiple, 'multiple')}
 					disabled={getBoolean(props.disabled, 'disabled')}
 					required={getBoolean(props.required, 'required')}
-					onChange={(event) => satisfyReact(event)}>
+					onChange={(event) => state.handleNativeSelectChange(event)}>
 					<Show when={props.options?.length}>
 						<For each={props.options}>
 							{(option: CustomSelectOptionType) => (
@@ -1027,30 +1110,23 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					</Show>
 				</select>
 			</label>
-			<details
-				ref={detailsRef}
-				open={props.open}
-				/* @ts-expect-error details as an event named onToggle */
-				onToggle={(event) => state.handleDropdownToggle(event)}
-				onKeyDown={(event) => state.handleKeyboardPress(event)}>
-				{props.children}
-				<Show when={props.options}>
-					{/* We use this because we cannot wrap summary for Angular... */}
-					<summary
-						id={state._summaryId}
-						class="db-custom-select-form-field"
-						aria-disabled={getBooleanAsString(
-							props.disabled,
-							'disabled'
-						)}
-						tabIndex={props.disabled ? -1 : undefined}
-						aria-labelledby={state._labelId}>
-						<Show when={state._selectedLabels?.length}>
+			<DBCustomSelectFormField>
+				<Show
+					when={
+						state._values?.length || state._selectedLabels?.length
+					}
+					else={
+						<span
+							data-placeholder={props.placeholder ?? props.label}
+							class="db-custom-select-placeholder"
+							aria-hidden="true"
+							id={state._placeholderId}></span>
+					}>
+					<Show
+						when={props.selectedType === 'tag'}
+						else={
 							<span
-								data-visually-hidden={getBooleanAsString(
-									props.selectedType === 'tag',
-									'selectedType'
-								)}
+								class="db-custom-select-label"
 								id={state._selectedLabelsId}>
 								<Show when={props.selectedPrefix}>
 									<span data-visually-hidden="true">
@@ -1059,212 +1135,237 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 								</Show>
 								{state._selectedLabels}
 							</span>
-						</Show>
-						<Show when={props.selectedType === 'tag'}>
-							<div>
-								<For each={state._selectedOptions}>
-									{(option: CustomSelectOptionType) => (
-										<DBTag
-											key={useTarget({
-												vue: undefined,
-												stencil: undefined,
-												default: getOptionKey(
-													option,
-													'tag-'
-												)
-											})}
-											removeButton={state.getTagRemoveLabel(
-												option
-											)}
-											onRemove={(
-												event?: ClickEvent<HTMLButtonElement> | void
-											) =>
-												state.handleTagRemove(
-													option,
-													event
-												)
-											}
-											emphasis="strong"
-											behavior="removable">
-											{state.getOptionLabel(option)}
-										</DBTag>
-									)}
-								</For>
-							</div>
-						</Show>
-					</summary>
-					<DBCustomSelectDropdown width={props.dropdownWidth}>
-						<Show when={state.searchEnabled}>
-							<div>
-								<DBInput
-									ref={searchInputRef}
-									name={state._id}
-									form={state._id}
-									type="search"
-									showLabel={false}
-									value={state._searchValue}
-									label={props.searchLabel ?? DEFAULT_LABEL}
-									placeholder={
-										props.searchPlaceholder ??
-										props.searchLabel
-									}
-									ariaDescribedBy={
-										state._hasNoOptions || props.showLoading
-											? state._infoTextId
-											: undefined
-									}
-									onInput={(
-										event: InputEvent<HTMLInputElement>
-									) => state.handleSearch(event)}
-								/>
-							</div>
-						</Show>
-
-						<Show
-							when={state._hasNoOptions || props.showLoading}
-							else={
-								<>
-									<Show when={state.selectAllEnabled}>
-										<div>
-											<div className="db-checkbox db-custom-select-list-item">
-												<label>
-													{/* We set a form name based on id for not sending checkboxes to a wrapping form */}
-													<input
-														ref={selectAllRef}
-														form={state._id}
-														type="checkbox"
-														value="select-all"
-														checked={
-															state.selectAllChecked
-														}
-														onChange={(event) =>
-															state.handleSelectAll(
-																event
-															)
-														}
-													/>
-													{state.getSelectAllLabel()}
-												</label>
-											</div>
-										</div>
-									</Show>
-									<DBCustomSelectList
-										multiple={getBoolean(
-											props.multiple,
-											'multiple'
+						}>
+						<span
+							class="db-custom-select-label"
+							data-visually-hidden="true"
+							id={state._selectedLabelsId}>
+							<Show when={props.selectedPrefix}>
+								{props.selectedPrefix}
+							</Show>
+							{state._selectedLabels}
+						</span>
+						<div class="db-custom-select-tags">
+							<For each={state._selectedOptions}>
+								{(option: CustomSelectOptionType) => (
+									<DBTag
+										key={useTarget({
+											vue: undefined,
+											stencil: undefined,
+											default: getOptionKey(
+												option,
+												'tag-'
+											)
+										})}
+										removeButton={state.getTagRemoveLabel(
+											option
 										)}
+										onRemove={() =>
+											state.handleTagRemove(option)
+										}
+										emphasis="strong"
+										behavior="removable">
+										{state.getOptionLabel(option)}
+									</DBTag>
+								)}
+							</For>
+						</div>
+					</Show>
+					<Show
+						when={
+							state._values?.length &&
+							(props.showClearSelection ?? true)
+						}>
+						<button
+							type="button"
+							class="db-button db-custom-select-clear"
+							data-icon="cross"
+							data-variant="ghost"
+							data-no-text="true"
+							data-size="small"
+							name={state._id}
+							form={state._id}
+							disabled={getBoolean(props.disabled, 'disabled')}
+							onClick={(event) => state.handleClearAll(event)}>
+							{props.clearSelectionText}
+							<DBTooltip placement="top">
+								{props.clearSelectionText}
+							</DBTooltip>
+						</button>
+					</Show>
+				</Show>
+				<details
+					ref={detailsRef}
+					open={props.open}
+					/* @ts-expect-error details as an event named onToggle */
+					onToggle={(event) => state.handleDropdownToggle(event)}
+					onKeyDown={(event) => state.handleKeyboardPress(event)}>
+					<summary
+						id={state._summaryId}
+						class="db-custom-select-summary"
+						aria-disabled={getBooleanAsString(
+							props.disabled,
+							'disabled'
+						)}
+						tabIndex={props.disabled ? -1 : undefined}
+						aria-labelledby={state._labelId}></summary>
+					<Show when={props.options} else={props.children}>
+						<DBCustomSelectDropdown width={props.dropdownWidth}>
+							<Show when={state.searchEnabled}>
+								<div>
+									<DBInput
+										ref={searchInputRef}
+										name={state._id}
+										form={state._id}
+										type="search"
+										showLabel={false}
+										value={state._searchValue}
 										label={
-											props.listLabel ??
-											props.label ??
-											DEFAULT_LABEL
-										}>
-										<For each={state._options}>
-											{(
-												option: CustomSelectOptionType
-											) => (
-												<DBCustomSelectListItem
-													key={useTarget({
-														vue: undefined,
-														stencil: undefined,
-														default: getOptionKey(
-															option,
-															'custom-select-list-item-'
-														)
-													})}
-													type={
-														props.multiple
-															? 'checkbox'
-															: 'radio'
-													}
-													showDivider={
-														option.showDivider
-													}
-													icon={option.icon}
-													isGroupTitle={
-														option.isGroupTitle
-													}
-													groupTitle={state.getOptionLabel(
-														option
-													)}
-													name={state._id}
-													checked={state.getOptionChecked(
-														option.value
-													)}
-													disabled={option.disabled}
-													value={option.value}
-													onChange={() =>
-														state.handleSelect(
-															option.value
-														)
-													}>
-													{!option.isGroupTitle &&
-														state.getOptionLabel(
+											props.searchLabel ?? DEFAULT_LABEL
+										}
+										placeholder={
+											props.searchPlaceholder ??
+											props.searchLabel
+										}
+										ariaDescribedBy={
+											state._hasNoOptions ||
+											props.showLoading
+												? state._infoTextId
+												: undefined
+										}
+										onInput={(
+											event: InputEvent<HTMLInputElement>
+										) => state.handleSearch(event)}
+									/>
+								</div>
+							</Show>
+
+							<Show
+								when={state._hasNoOptions || props.showLoading}
+								else={
+									<>
+										<Show when={state.selectAllEnabled}>
+											<div>
+												<div className="db-checkbox db-custom-select-list-item">
+													<label>
+														{/* We set a form name based on id for not sending checkboxes to a wrapping form */}
+														<input
+															ref={selectAllRef}
+															form={state._id}
+															type="checkbox"
+															value="select-all"
+															checked={
+																state.selectAllChecked
+															}
+															onChange={(event) =>
+																state.handleSelectAll(
+																	event
+																)
+															}
+														/>
+														{state.getSelectAllLabel()}
+													</label>
+												</div>
+											</div>
+										</Show>
+										<DBCustomSelectList
+											multiple={getBoolean(
+												props.multiple,
+												'multiple'
+											)}
+											label={
+												props.listLabel ??
+												props.label ??
+												DEFAULT_LABEL
+											}>
+											<For each={state._options}>
+												{(
+													option: CustomSelectOptionType
+												) => (
+													<DBCustomSelectListItem
+														key={useTarget({
+															vue: undefined,
+															stencil: undefined,
+															default:
+																getOptionKey(
+																	option,
+																	'custom-select-list-item-'
+																)
+														})}
+														type={
+															props.multiple
+																? 'checkbox'
+																: 'radio'
+														}
+														showDivider={
+															option.showDivider
+														}
+														icon={option.icon}
+														isGroupTitle={
+															option.isGroupTitle
+														}
+														groupTitle={state.getOptionLabel(
 															option
 														)}
-												</DBCustomSelectListItem>
-											)}
-										</For>
-									</DBCustomSelectList>
-								</>
-							}>
-							<Show
-								when={props.showLoading}
-								else={
-									<DBInfotext
-										id={state._infoTextId}
-										semantic="warning">
-										{props.noResultsText ?? DEFAULT_MESSAGE}
-									</DBInfotext>
+														name={state._id}
+														checked={state.getOptionChecked(
+															option.value
+														)}
+														disabled={
+															option.disabled
+														}
+														value={option.value}
+														onChange={() =>
+															state.handleSelect(
+																option.value
+															)
+														}>
+														{!option.isGroupTitle &&
+															state.getOptionLabel(
+																option
+															)}
+													</DBCustomSelectListItem>
+												)}
+											</For>
+										</DBCustomSelectList>
+									</>
 								}>
-								<DBLoadingIndicator id={state._infoTextId}>
-									{props.loadingText ?? DEFAULT_MESSAGE}
-								</DBLoadingIndicator>
+								<Show
+									when={props.showLoading}
+									else={
+										<DBInfotext
+											id={state._infoTextId}
+											semantic="warning">
+											{props.noResultsText ??
+												DEFAULT_MESSAGE}
+										</DBInfotext>
+									}>
+									<DBLoadingIndicator id={state._infoTextId}>
+										{props.loadingText ?? DEFAULT_MESSAGE}
+									</DBLoadingIndicator>
+								</Show>
 							</Show>
-						</Show>
 
-						<div>
-							<DBButton
-								variant="ghost"
-								width="full"
-								icon="cross"
-								size="small"
-								name={state._id}
-								form={state._id}
-								onClick={() =>
-									state.handleClose(undefined, true)
-								}>
-								{props.mobileCloseButtonText ??
-									DEFAULT_CLOSE_BUTTON}
-							</DBButton>
-						</div>
-					</DBCustomSelectDropdown>
-				</Show>
-			</details>
+							<div>
+								<DBButton
+									variant="ghost"
+									width="full"
+									icon="cross"
+									size="small"
+									name={state._id}
+									form={state._id}
+									onClick={() =>
+										state.handleClose(undefined, true)
+									}>
+									{props.mobileCloseButtonText ??
+										DEFAULT_CLOSE_BUTTON}
+								</DBButton>
+							</div>
+						</DBCustomSelectDropdown>
+					</Show>
+				</details>
+			</DBCustomSelectFormField>
 
-			<Show
-				when={
-					(props.showClearSelection ?? true) && state._values?.length
-				}>
-				<DBButton
-					icon="cross"
-					variant="ghost"
-					noText
-					size="small"
-					name={state._id}
-					form={state._id}
-					disabled={getBoolean(props.disabled, 'disabled')}
-					onClick={(event) => state.handleClearAll(event)}>
-					{props.clearSelectionText}
-					<DBTooltip placement="top">
-						{props.clearSelectionText}
-					</DBTooltip>
-				</DBButton>
-			</Show>
-			<span
-				data-placeholder={props.placeholder ?? props.label}
-				class="db-custom-select-placeholder"
-				aria-hidden="true"
-				id={state._placeholderId}></span>
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
 					size="small"

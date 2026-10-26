@@ -1,5 +1,29 @@
 # @db-ux/core-postcss-plugin
 
+## 6.1.0
+
+No changes in this release.
+
+## 6.0.1
+
+No changes in this release.
+
+## 6.0.0
+
+No changes in this release.
+
+## 5.7.1
+
+No changes in this release.
+
+## 5.7.0
+
+No changes in this release.
+
+## 5.6.2
+
+No changes in this release.
+
 ## 5.6.1
 
 No changes in this release.

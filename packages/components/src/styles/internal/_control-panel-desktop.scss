@@ -387,6 +387,11 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 	}
 
 	.db-control-panel-actions-1,
+	.db-control-panel-actions-2 {
+		flex-wrap: wrap;
+	}
+
+	.db-control-panel-actions-1,
 	.db-control-panel-actions-2,
 	> .db-control-panel-desktop-button {
 		padding-block: $control-panel-desktop-vertical-padding-block;

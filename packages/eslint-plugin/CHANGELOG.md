@@ -1,5 +1,33 @@
 # @db-ux/core-eslint-plugin
 
+## 6.1.0
+
+### Patch Changes
+
+- fix(select-requires-options): recognize options rendered through control flow, loops and `<optgroup>` - [see commit 28ab4d5](https://github.com/db-ux-design-system/core-web/commit/28ab4d555d2dec0f49f985d566cf141dc9326cd8):
+
+    - `DBSelect` was reported as missing options when its `<option>` elements were not direct children. The rule now also finds options inside Angular `@for`/`@if`/`@switch`, `*ngFor`/`*ngIf` and `ng-container`, Vue `<template v-for>`, React fragments, `&&`/ternary expressions and `.map()`, and inside `<optgroup>` in all frameworks (#7117).
+
+## 6.0.1
+
+No changes in this release.
+
+## 6.0.0
+
+No changes in this release.
+
+## 5.7.1
+
+No changes in this release.
+
+## 5.7.0
+
+No changes in this release.
+
+## 5.6.2
+
+No changes in this release.
+
 ## 5.6.1
 
 ### Patch Changes
