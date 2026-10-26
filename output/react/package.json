@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/react-core-components",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "type": "module",
   "description": "React components for @db-ux/core-components",
   "repository": {
@@ -34,9 +34,9 @@
     "@types/react": "19.3.0",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.3",
-    "playwright": "1.63.0",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "playwright": "1.64.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "typescript": "5.9.3"
   },
   "publishConfig": {

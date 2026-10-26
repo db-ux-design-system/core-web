@@ -32,7 +32,7 @@ jobs:
 
       - name: 🧬 Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@v3.3.0
         with:
           client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
           private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}

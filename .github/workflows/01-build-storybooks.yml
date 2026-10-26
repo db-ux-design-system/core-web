@@ -93,7 +93,7 @@ jobs:
           path: build-storybooks/vue-storybook
 
       - name: ⏫ Upload stencil-storybook
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: db-ux-stencil-storybook
           path: build-storybooks/stencil-storybook
