@@ -131,6 +131,27 @@ export default function CustomSelectInteraction() {
 					placeholder="Select colors"
 				/>
 			</div>
+			<div style={{ width: '200px' }}>
+				<DBCustomSelect
+					data-testid="disabled-tag-select"
+					options={[
+						{ value: 'Red', label: 'Red Color' },
+						{ value: 'Blue', label: 'Blue Color' },
+						{ value: 'Green', label: 'Green Color' }
+					]}
+					label="Disabled colors"
+					multiple={true}
+					disabled={true}
+					selectedType="tag"
+					removeTagsTexts={[
+						'Remove Red Color',
+						'Remove Blue Color',
+						'Remove Green Color'
+					]}
+					values={['Blue', 'Green']}
+					placeholder="Select colors"
+				/>
+			</div>
 
 			{/* Test-only scenario for the interaction e2e spec: buttons drive
 			 * the DBCustomSelect `values` prop through null / undefined / empty

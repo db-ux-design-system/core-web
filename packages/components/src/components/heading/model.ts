@@ -1,3 +1,4 @@
+import { Assign, LooseAutocomplete } from '@db-ux/core-foundations';
 import type {
 	EndSlotProps,
 	GlobalProps,
@@ -23,7 +24,21 @@ export type HeadingVisualSizeType = (typeof HeadingVisualSizeList)[number];
 /** @public */
 export const HeadingFontWeightList = ['black', 'light'] as const;
 /** @public */
-export type HeadingFontWeightType = (typeof HeadingFontWeightList)[number];
+export type BaseHeadingFontWeightType = (typeof HeadingFontWeightList)[number];
+
+/**
+ * This interface is empty because it is meant to be extended by the consuming app or from a theme.
+ */
+export interface OverwriteHeadingFontWeights {}
+
+type InternalHeadingFontWeights = Assign<
+	{
+		types: BaseHeadingFontWeightType | LooseAutocomplete;
+	},
+	OverwriteHeadingFontWeights
+>;
+
+export type HeadingFontWeightType = InternalHeadingFontWeights['types'];
 
 /** @public */
 export type DBHeadingBaseDefaultProps = {
