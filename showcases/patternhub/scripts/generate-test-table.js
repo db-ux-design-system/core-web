@@ -26,10 +26,14 @@ const unlistedSubComponentsSuffixes = new Set([
 	'-caption',
 	'-body'
 ]);
-// Sub-components grouped under a parent that has no standalone element of its
-// own (e.g. control-panel-brand, control-panel-mobile). They are internal parts
-// of DBControlPanel and must not appear as their own validation rows.
+// Internal parts of DBControlPanel (e.g. control-panel-brand), no own validation rows.
 const unlistedSubComponentsPrefixes = new Set(['control-panel-']);
+// Exceptions to the prefixes above: standalone variants with their own test suites.
+const listedPrefixedComponents = new Set([
+	'control-panel-desktop',
+	'control-panel-mobile',
+	'control-panel-flat-icon'
+]);
 
 const webTypesPath = './../../output/stencil/dist/web-types.json';
 
@@ -60,9 +64,10 @@ const generateTestTable = () => {
 			[...unlistedSubComponentsSuffixes].some((suffix) =>
 				componentName.endsWith(suffix)
 			) ||
-			[...unlistedSubComponentsPrefixes].some((prefix) =>
+			([...unlistedSubComponentsPrefixes].some((prefix) =>
 				componentName.startsWith(prefix)
-			)
+			) &&
+				!listedPrefixedComponents.has(componentName))
 		) {
 			// We don't want to add something like accordion-item
 			continue;
