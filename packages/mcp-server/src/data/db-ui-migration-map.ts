@@ -65,7 +65,7 @@ export const migrationData: MigrationData = {
 		'cmp-pagination': 'db-pagination',
 		'elm-radio': 'db-radio',
 		'elm-select': 'db-select',
-		'cmp-sidenavi': 'db-control-panel-mobile',
+		'cmp-sidenavi': 'db-control-panel-desktop',
 		'elm-toggle': 'db-switch',
 		'cmp-db-tab': 'db-tab-item',
 		'cmp-table': 'db-table',

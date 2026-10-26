@@ -15,7 +15,7 @@
 
 > **Note**
 > We removed all old properties, because brand hasn't a wrapping anchor tag (`<a>`) anymore.
-> If you want to use a link around `db-brand`, do it by yourself.
+> If you want to use a link around `db-control-panel-brand`, do it by yourself.
 
 | Before           | Status | After | Description                                                                                           |
 | ---------------- | :----: | :---: | ----------------------------------------------------------------------------------------------------- |

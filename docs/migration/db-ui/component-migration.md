@@ -91,7 +91,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 | `elm-headline`         | [replacement] | Semantic headings (`db-heading-h-1`-`h-6`)                |
 | `elm-headline` (pulse) |   [removed]   | Heading + CSS animation                                   |
 | `elm-chip`             | [replacement] | `db-tag` with `db-button`/`db-checkbox`/`db-radio` inside |
-| `cmp-sidenavi`         | [replacement] | `db-control-panel-mobile` (burger menu + drawer nav)      |
+| `cmp-sidenavi`         | [replacement] | `db-control-panel-desktop` with `orientation="vertical"`  |
 
 ## Key Migration Examples
 
@@ -103,7 +103,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 `elm-headline` -> `<db-heading-h-1>Title</db-heading-h-1>` + `<db-infotext>Subtitle</db-infotext>`
 
-`cmp-sidenavi` -> `<db-control-panel-mobile><db-control-panel-navigation><db-control-panel-navigation-item><db-link href="/page">Item</db-link></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-mobile>` (burger menu toggles a drawer; part of the `db-shell` family)
+`cmp-sidenavi` -> `<db-control-panel-desktop orientation="vertical"><db-control-panel-navigation><db-control-panel-navigation-item><a href="/page">Item</a></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-desktop>` (desktop side navigation; part of the `db-shell` family)
 
 ## A11y for Custom Solutions
 
