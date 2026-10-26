@@ -54,7 +54,7 @@ Because the lockfile already binds each tag to an immutable commit, re-pinning a
 
 Run `gh actions-lock` whenever a workflow adds, changes, or removes an Action reference. It rescans every workflow, re-pins dependencies, prunes entries for deleted workflows, and rewrites `actions.lock`. Two safety nets enforce this:
 
-- a local **pre-commit hook** (via `lint-staged`) regenerates the lockfile when a `.github/workflows/**` or `.github/actions/**` file is staged;
+- a local **pre-commit hook** (via `lint-staged`) regenerates the lockfile when a `.github/workflows/**` or `.github/actions/**` file is staged. It requires the [`gh actions-lock`](https://github.com/github/gh-actions-lock) extension (`gh extension install github/gh-actions-lock --pin v0.2.0`); if the extension is missing, the hook skips with a warning instead of blocking the commit;
 - the **self-healing validation step** in CI runs `gh actions-lock --verify` and, on a stale lockfile, regenerates and auto-commits it to the PR for review — so a bypassed local hook (`--no-verify`, the GitHub web editor, automation) cannot merge a workflow with a missing or drifted entry.
 
 ### Dependabot keeps us up-to-date
