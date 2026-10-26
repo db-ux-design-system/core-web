@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { waitForDBShell } from '../default.ts';
+import { getExampleParameter, waitForDBShell } from '../default.ts';
 
 const path = '05/shell/control-panel-mobile';
 
