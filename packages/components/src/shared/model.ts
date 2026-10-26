@@ -72,9 +72,14 @@ export const ColorList = [
 	'red',
 	'brand',
 	'green',
-	'blue',
 	'yellow',
-	'grey'
+	'orange',
+	'burgundy',
+	'pink',
+	'violet',
+	'blue',
+	'cyan',
+	'turquoise'
 ] as const;
 export type ColorType = (typeof ColorList)[number];
 

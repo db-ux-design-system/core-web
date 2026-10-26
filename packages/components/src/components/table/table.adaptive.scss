@@ -1,4 +1,63 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
 [data-adaptive-coloring="true"] .db-table,
 .db-table[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	// Component borders (emphasis-60 in the base) -> adaptive border. Covers the
+	// divider lines, the table frame, the caption rule and the sticky column
+	// separator.
+	table,
+	thead,
+	tr,
+	caption,
+	tr > :is(td, th),
+	tbody th,
+	tfoot th {
+		border-color: adaptive.$db-border-default;
+	}
+
+	// Default / flat / zebra table surface (level-1 in the base).
+	&:not([data-variant]),
+	&[data-variant="flat"],
+	&[data-variant="zebra"] {
+		table {
+			background-color: adaptive.$db-bg-default;
+		}
+	}
+
+	// Zebra: the striped rows get `data-material="filled-2"` from the table's
+	// MutationObserver (see table.lite.tsx), so their surface comes from that
+	// material. The base sets a hardcoded `level-2` background on odd rows that
+	// would override it, so re-point it to the row's own adaptive surface.
+	&[data-variant="zebra"] {
+		tbody {
+			> db-table-row:nth-child(odd) > tr,
+			> tr:nth-child(odd) {
+				background-color: adaptive.$db-bg-default;
+			}
+		}
+
+		// The base promotes a zebra weak sub-header to the strong (vibrant)
+		// surface -> alt-state role.
+		thead tr[data-sub-header-emphasis="weak"] {
+			@extend %adaptive-coloring-alt-state-container;
+		}
+	}
+
+	// Sticky header/column keep a solid backing so scrolled content does not
+	// bleed through (level-1 in the base).
+	&[data-sticky-header="both"],
+	&[data-sticky-header="horizontal"] {
+		thead {
+			background-color: adaptive.$db-bg-default;
+		}
+	}
+
+	&[data-sticky-header="both"],
+	&[data-sticky-header="vertical"] {
+		tfoot th,
+		tbody th {
+			background-color: adaptive.$db-bg-default;
+		}
+	}
 }

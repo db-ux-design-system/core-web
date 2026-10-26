@@ -1,4 +1,51 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+$interactive-row-action: '[data-table-row-trigger="true"]';
+$interactive-nested-child: "#{$interactive-row-action} :is(input, textarea, select)";
+$interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-elements}),#{$interactive-nested-child})";
+
+@mixin table-row-interactive-state($state: "hover") {
+	&:has(
+		#{$interactive-child}:#{$state}:not(
+				:disabled,
+				[aria-disabled="true"],
+				[tabindex="-1"]
+			)
+	) {
+		@content;
+	}
+}
+
 [data-adaptive-coloring="true"] .db-table-row,
 .db-table-row[data-adaptive-coloring="true"] {
-	/* No adaptive color changes for now. */
+	background-color: adaptive.$db-bg-default;
+
+	&[data-interactive="true"] {
+		// A checked row is the selected (alt) state.
+		&:has(
+			input:is(
+					[type="radio"],
+					[type="checkbox"]
+				)#{$interactive-child}:checked
+		) {
+			background-color: adaptive.$db-alt-state-bg-default;
+
+			@include table-row-interactive-state {
+				background-color: adaptive.$db-alt-state-bg-hovered;
+			}
+
+			@include table-row-interactive-state("active") {
+				background-color: adaptive.$db-alt-state-bg-pressed;
+			}
+		}
+
+		@include table-row-interactive-state {
+			background-color: adaptive.$db-bg-hovered;
+		}
+
+		@include table-row-interactive-state("active") {
+			background-color: adaptive.$db-bg-pressed;
+		}
+	}
 }

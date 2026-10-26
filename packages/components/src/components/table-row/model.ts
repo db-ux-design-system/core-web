@@ -1,7 +1,11 @@
 import type {
+	AltStateColorState,
+	AltStateMaterialProps,
+	AltStateMaterialState,
 	GlobalProps,
 	GlobalState,
-	MaterialProps
+	MaterialProps,
+	MaterialState
 } from '../../shared/model';
 import type { DBLinkProps } from '../link/model';
 import type { DBTableDataCellProps } from '../table-data-cell/model';
@@ -39,10 +43,15 @@ export type DBTableRowDefaultProps = {
 
 export type DBTableRowProps = DBTableRowDefaultProps &
 	GlobalProps &
-	MaterialProps;
+	MaterialProps &
+	AltStateMaterialProps;
 
 export type DBTableRowDefaultState = {
 	getHeaderCell: (cell: DBTableRowCell) => DBTableHeaderCellProps | undefined;
 };
 
-export type DBTableRowState = DBTableRowDefaultState & GlobalState;
+export type DBTableRowState = DBTableRowDefaultState &
+	GlobalState &
+	MaterialState &
+	AltStateMaterialState &
+	AltStateColorState;

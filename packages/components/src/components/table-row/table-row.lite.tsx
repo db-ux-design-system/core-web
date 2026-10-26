@@ -6,7 +6,8 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { cls, getBooleanAsString, uuid } from '../../utils';
+import { ColorType, MaterialType } from '../../shared/model';
+import { cls, getBoolean, getBooleanAsString, uuid } from '../../utils';
 import DBLink from '../link/link.lite';
 import DBTableDataCell from '../table-data-cell/table-data-cell.lite';
 import { DBTableHeaderCellProps } from '../table-header-cell/model';
@@ -30,6 +31,45 @@ export default function DBTableRow(props: DBTableRowProps) {
 			}
 
 			return undefined;
+		},
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
+			if (props.subHeaderEmphasis === 'weak') {
+				return 'filled-3';
+			}
+
+			return undefined;
+		},
+		_getAltStateMaterial: (): MaterialType | undefined => {
+			if (props.altStateMaterial) {
+				return props.altStateMaterial;
+			}
+
+			// An interactive (selectable) row renders its checked state as the
+			// alt-state surface.
+			if (getBoolean(props.interactive, 'interactive')) {
+				return 'filled-2';
+			}
+
+			if (props.subHeaderEmphasis === 'weak') {
+				return 'filled-3';
+			}
+
+			return undefined;
+		},
+		_getAltStateColor: (): ColorType | undefined => {
+			if (props.altStateColor) {
+				return props.altStateColor;
+			}
+
+			if (getBoolean(props.interactive, 'interactive')) {
+				return 'cyan';
+			}
+
+			return undefined;
 		}
 	});
 
@@ -39,8 +79,10 @@ export default function DBTableRow(props: DBTableRowProps) {
 		<tr
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			data-material={props.material}
+			data-material={state._getMaterial()}
 			data-color={props.color}
+			data-alt-state-material={state._getAltStateMaterial()}
+			data-alt-state-color={state._getAltStateColor()}
 			class={cls('db-table-row', props.className)}
 			data-interactive={getBooleanAsString(props.interactive)}
 			data-sub-header-emphasis={props.subHeaderEmphasis}>

@@ -116,6 +116,23 @@ export type DBTableDefaultState = {
 	_data?: DBTableData;
 	_style?: any; // We use any here because the style prop may differ in frameworks
 	convertData: () => DBTableData;
+	/**
+	 * MutationObserver that keeps the zebra striping in sync when rows are
+	 * added/removed. Only active while `variant="zebra"`.
+	 */
+	_zebraObserver?: MutationObserver;
+	/**
+	 * Applies the zebra striping: sets `data-material="filled-2"` on every
+	 * second body row and clears it from the others. No-op unless
+	 * `variant="zebra"`, so `variant="flat"` leaves row materials to the
+	 * consumer.
+	 */
+	syncZebra: () => void;
+	/**
+	 * Sets up `_zebraObserver` to re-run `syncZebra` when the row list changes.
+	 * Only called for `variant="zebra"`.
+	 */
+	setupZebraObserver: () => void;
 };
 
 export type DBTableState = DBTableDefaultState & GlobalState;

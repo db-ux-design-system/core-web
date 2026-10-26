@@ -2,7 +2,4 @@
 
 [data-adaptive-coloring="true"] .db-brand,
 .db-brand[data-adaptive-coloring="true"] {
-	&::before {
-		--db-icon-color: #{adaptive.$db-visual-vibrant};
-	}
 }
