@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-AkzaT__x.js";e();
