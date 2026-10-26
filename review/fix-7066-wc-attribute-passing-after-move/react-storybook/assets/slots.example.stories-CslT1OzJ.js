@@ -1,0 +1,13 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{t}from"./jsx-runtime-MKhVqBIO.js";import{n,t as r}from"./badge-Xh_Sv872.js";import{n as i,t as a}from"./drawer-header-DOwKBEXF.js";import{n as o,t as s}from"./icon-EwMZoyLR.js";var c,l,u,d,f,p;function m(){return(m=e((()=>{n(),o(),i(),c=t(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBDrawerHeader/Slots`,component:a,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{text:{control:`text`},closeButtonText:{control:`text`},closeButtonId:{control:`text`},id:{control:`text`}}},d={args:{endSlot:(0,c.jsx)(r,{children:`New`}),children:(0,c.jsx)(`h2`,{children:`With end slot`})},render:e=>(0,c.jsx)(`div`,{children:(0,c.jsx)(a,{...e})})},f={args:{startSlot:(0,c.jsx)(s,{icon:`account`}),children:(0,c.jsx)(`h2`,{children:`With start slot`})},render:e=>(0,c.jsx)(`div`,{children:(0,c.jsx)(a,{...e})})},p=[`Withendslot`,`Withstartslot`],d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "endSlot": <DBBadge>New</DBBadge>,
+    "children": <h2>With end slot</h2>
+  },
+  render: (properties: any) => <div><DBDrawerHeader {...properties} /></div>
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "startSlot": <DBIcon icon="account" />,
+    "children": <h2>With start slot</h2>
+  },
+  render: (properties: any) => <div><DBDrawerHeader {...properties} /></div>
+}`,...f.parameters?.docs?.source}}}})))()}m();export{d as Withendslot,f as Withstartslot,p as __namedExportsOrder,u as default};
