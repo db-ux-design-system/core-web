@@ -141,4 +141,41 @@ test.describe('DBControlPanelNavigation', () => {
 			await expect(items.first()).toBeFocused();
 		}
 	});
+
+	// Regression guard for #8605: opening a drilldown group must reveal its
+	// sliding sub-navigation overlay on screen. The overlay is position:absolute
+	// and escapes to the scroll container; a transform on the group <li> (the
+	// previous-level slide-out) must not become its containing block, or the
+	// overlay is dragged off-screen and its items collapse to zero height.
+	runInteractionTest({
+		title: 'drilldown variant should reveal the sub-item overlay on screen when a group is opened',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const group = content.getByTestId('drilldown-group');
+			const expandButton = group.locator(
+				'.db-control-panel-navigation-item-group-expand-button'
+			);
+			const subItem = content.getByTestId('drilldown-sub1');
+
+			await expect(expandButton).toHaveAttribute(
+				'aria-expanded',
+				'false'
+			);
+
+			await expandButton.click();
+			await expect(expandButton).toHaveAttribute('aria-expanded', 'true');
+
+			// The sub-item must be visible (non-empty box, inside the viewport).
+			// Without the fix it collapses to block-size:0 and slides to a
+			// negative x, so toBeVisible() fails.
+			await expect(subItem).toBeVisible();
+			await expect(subItem.locator('a')).toBeVisible();
+
+			const box = await subItem.boundingBox();
+			expect(box).not.toBeNull();
+			expect(box!.height).toBeGreaterThan(0);
+			expect(box!.x).toBeGreaterThanOrEqual(0);
+		}
+	});
 });
