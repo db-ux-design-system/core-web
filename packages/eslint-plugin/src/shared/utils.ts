@@ -515,20 +515,25 @@ export function isUnresolvedBySpread(
 /**
  * Returns the traversable child nodes of an Angular template AST node, flattening
  * the collections that built-in control flow spreads its content across. `@if`
- * keeps its content under `branches[].children`, `@switch` under `cases[].children`
- * (older parser versions used `groups`), and `@for` exposes an `empty` block
- * alongside its `children`; plain elements and `@for`/`@defer` blocks use
- * `children` directly. Callers can therefore recurse transparently through
- * control-flow wrappers without enumerating every version-specific block type.
+ * keeps its content under `branches[].children`, `@switch` under `groups[].children`
+ * (`@angular/compiler` 21.1+) or `cases[].children` (up to 21.0), and `@for`
+ * exposes an `empty` block alongside its `children`; plain elements and
+ * `@for`/`@defer` blocks use `children` directly. Callers can therefore recurse
+ * transparently through control-flow wrappers without enumerating every
+ * version-specific block type.
  */
 export function angularChildNodes(node: any): any[] {
 	if (!node) {
 		return [];
 	}
 	const nodes: any[] = Array.isArray(node.children) ? [...node.children] : [];
-	// `@switch` exposes its cases as `cases` in Angular 21+ and as `groups` in
-	// older parser versions; include both so a header/title inside an @switch is
-	// found regardless of parser version.
+	// `@angular/compiler` 21.1 groups consecutive `@case` blocks: `SwitchBlock`
+	// exposes `groups` (`SwitchBlockCaseGroup` with `children`) instead of
+	// `cases`. Up to 21.0, `SwitchBlock.cases` holds `SwitchBlockCase` nodes that
+	// carry the `children` themselves. Consumers bring their own
+	// `@angular-eslint/template-parser`, so both shapes are traversed. On 21.1+,
+	// `SwitchBlockCaseGroup.cases` adds its `SwitchBlockCase` nodes as well; they
+	// have no `children` there and therefore contribute nothing.
 	for (const collection of [node.branches, node.groups, node.cases]) {
 		if (Array.isArray(collection)) {
 			nodes.push(...collection);

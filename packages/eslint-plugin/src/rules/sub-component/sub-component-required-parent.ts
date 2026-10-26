@@ -165,6 +165,8 @@ function isInsideVueParent(
 ): boolean {
 	let current = node.parent;
 	let hasSlotTemplate = false;
+	// Set after a matching slot template; the next element up is its owner.
+	let isAwaitingSlotOwner = false;
 
 	while (current) {
 		// Skip non-element nodes (text nodes, document fragments, etc.).
@@ -180,11 +182,26 @@ function isInsideVueParent(
 			continue;
 		}
 
+		const isTemplate =
+			current.rawName === 'template' || current.name === 'template';
+		const isParent =
+			!isTemplate && isMatchingComponentName(current.rawName, parentName);
+
+		// A slot template binds to the element that directly encloses it, so the
+		// recorded match only counts if that element is the target parent. Any
+		// other element in between - a component (`<SomeWrapper>`), a Vue built-in
+		// (`<transition>`, `<teleport>`, `<suspense>`) or a plain HTML element
+		// (`<div>`) - owns the template instead, so the sub-component does not land
+		// in the parent's slot and must still be reported.
+		if (isAwaitingSlotOwner) {
+			isAwaitingSlotOwner = false;
+			if (!isParent) {
+				hasSlotTemplate = false;
+			}
+		}
+
 		// Check if current is a <template v-slot:[slotName]> or <template #[slotName]>
-		if (
-			slotName &&
-			(current.rawName === 'template' || current.name === 'template')
-		) {
+		if (slotName && isTemplate) {
 			const attrs = current.startTag?.attributes || [];
 			const matchesSlot = attrs.some((attr: any) => {
 				const slotArg = getVueSlotArgument(attr);
@@ -204,30 +221,13 @@ function isInsideVueParent(
 			});
 			if (matchesSlot) {
 				hasSlotTemplate = true;
+				isAwaitingSlotOwner = true;
 			}
 		}
 
 		// Check if we reached the parent component (skip template elements)
-		if (
-			current.rawName !== 'template' &&
-			isMatchingComponentName(current.rawName, parentName)
-		) {
+		if (isParent) {
 			return slotName ? hasSlotTemplate : true;
-		}
-
-		// A slot template binds to the component that directly encloses it. If we
-		// cross a non-template *component* boundary that is not the target parent,
-		// any `#header`/`#footer` template recorded so far belongs to that inner
-		// component's scope, not the outer parent - reset the match so a
-		// sub-component in another component's identically named slot is still
-		// reported. A plain HTML element (div, span) is not a component boundary
-		// and does not reset.
-		const tagName: string = current.rawName ?? current.name ?? '';
-		const isComponent =
-			tagName !== 'template' &&
-			(/^[A-Z]/.test(tagName) || tagName.includes('-'));
-		if (isComponent) {
-			hasSlotTemplate = false;
 		}
 
 		current = current.parent;

@@ -757,6 +757,26 @@ const vuePlacementShapes: PlacementShape[] = [
 		component: 'DBDialogHeader',
 		slot: 'header',
 		reports: true
+	},
+	// Any element between DBDialog and the #header template owns the slot.
+	...['div', 'transition', 'teleport to="body"', 'suspense', 'wrapper'].map(
+		(wrapper): PlacementShape => {
+			const tag = wrapper.split(' ')[0];
+			return {
+				shape: `#header template owned by an intervening <${tag}>`,
+				code: `<template><DBDialog><${wrapper}><template #header><DBDialogHeader>Title</DBDialogHeader></template></${tag}></DBDialog></template>`,
+				component: 'DBDialogHeader',
+				slot: 'header',
+				reports: true
+			};
+		}
+	),
+	{
+		shape: '#header template, component wrapper inside the slot content',
+		code: '<template><DBDialog><template #header><SomeWrapper><DBDialogHeader>Title</DBDialogHeader></SomeWrapper></template></DBDialog></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
 	}
 ];
 
