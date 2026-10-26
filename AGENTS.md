@@ -14,6 +14,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 - **Node.js 26**: Check `.nvmrc` file. Use `node --version` to verify current version.
 - **pnpm**: Package manager for dependency management and build scripts.
+- **GitHub CLI with the `gh actions-lock` extension** (only needed when changing files in `.github/workflows/` or `.github/actions/`): regenerates the Actions lockfile in the pre-commit hook. Install it with `gh extension install github/gh-actions-lock --pin v0.2.0`. Without it, the hook skips with a warning and CI fixes a stale lockfile.
 
 ### Bootstrap and Setup
 

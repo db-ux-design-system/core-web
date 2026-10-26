@@ -55,6 +55,7 @@ jobs:
       # GitHub Actions dependency lockfile. `gh` ships on the runner but the
       # extension does not, so install it here. Pinned to a release tag for
       # supply-chain safety (v0.2.0 -> d5dca22a06ff8590d50b41612038996800cfb336).
+      # Keep in sync with scripts/actions-lock-staged.js and the docs.
       - name: 🔒 Install gh actions-lock extension
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
