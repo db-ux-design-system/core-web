@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/ngx-core-components",
-  "version": "6.0.1",
+  "version": "6.1.0",
   "type": "module",
   "description": "Angular components @db-ux/core-components",
   "repository": {
@@ -35,7 +35,7 @@
     "@angular/platform-browser": "21.2.25",
     "@angular/platform-browser-dynamic": "21.2.23",
     "@angular/router": "21.2.25",
-    "@db-ux/db-theme": "7.0.0",
+    "@db-ux/db-theme": "7.2.0",
     "@types/node": "26.6.5",
     "cpy-cli": "7.0.0",
     "ng-packagr": "21.2.7",
