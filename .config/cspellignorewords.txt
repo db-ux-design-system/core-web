@@ -282,4 +282,6 @@ unwired
 webcomponents
 codegen
 xlink
+rescans
+lockfiles
 autofilled
