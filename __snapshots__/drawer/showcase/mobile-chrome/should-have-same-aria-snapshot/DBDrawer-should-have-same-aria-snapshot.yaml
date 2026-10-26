@@ -18,9 +18,6 @@
   - link "Show Spacing"
   - 'button "Open: (Default) With Spacing"'
   - 'button "Open: Without Spacing"'
-  - link "Rounded"
-  - 'button "Open: (Default) False"'
-  - 'button "Open: True"'
   - link "Backdrop"
   - 'button "Open: (Default) Strong"'
   - 'button "Open: Weak"'

@@ -365,6 +365,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					clearTimeout(state._timeoutId);
 				}
 
+				// Cast the handle to the DOM number type (see model.ts / #7792).
 				const timeoutId = setTimeout(
 					() => {
 						state._timeoutId = undefined;
@@ -387,7 +388,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 								props.timeoutDuration ?? DEFAULT_LOADING_TIMEOUT
 							)
 				);
-				state._timeoutId = timeoutId;
+				state._timeoutId = timeoutId as unknown as number;
 
 				// Mirror the timer handle onto the DOM so the unmount cleanup
 				// can clear it even though the React unmount closure captures a
@@ -430,13 +431,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 		if (_ref) {
 			const loadingIndicator = _ref as HTMLElement;
 			const percentage = state.getPercentage();
-
-			// Set the percentage custom property on the root element. It
-			// inherits down to both consumers -- the circular segment
-			// (.db-loading-indicator-circle-segment) and the bar segment
-			// (div::after) -- so it does not need to be repeated on each of
-			// them, and it lands on the element carrying the _ref, matching
-			// data-percentage-full below.
 			if (percentage === undefined) {
 				loadingIndicator.style.removeProperty(
 					'--db-loading-indicator-percentage'
@@ -446,12 +440,6 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					'--db-loading-indicator-percentage',
 					percentage
 				);
-			}
-
-			if (percentage === '1.00') {
-				loadingIndicator.dataset['percentageFull'] = 'true';
-			} else {
-				delete loadingIndicator.dataset['percentageFull'];
 			}
 		}
 	}, [props.indeterminate, props.value, props.max, _ref]);

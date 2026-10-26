@@ -118,12 +118,14 @@ the consumer bring the semantics. Compare `DBCustomButton`, which mirrors
 and drops only the ones belonging to the native `<button>` (`type`, `disabled`,
 `form`, `name`, `value`, `command*`, click events, `text`).
 
-Applied to Heading: `size`, `fontWeight`, `paragraphSpacing` and `alignment` are
-styling and therefore live on the wrapper; `id` and everything else native lives
-on the heading the consumer writes.
+Applied to Heading: `visualSize` and `fontWeight` are styling and therefore live
+on the wrapper; `id` and everything else native lives on the heading the consumer
+writes. There is no `alignment` or `paragraphSpacing` property: block spacing is
+controlled by the foundations' `data-text-spacing` opt-in, and alignment is set
+with `text-align` on the heading itself.
 
 ```html
-<div class="db-custom-heading" data-size="xl">
+<div class="db-custom-heading" data-visual-size="h3">
 	<h2>Installation</h2>
 	<button type="button">More options</button>
 </div>
@@ -158,47 +160,68 @@ JSX attribute rather than a child, so the rule inspects the `startSlot` and
 `endSlot` attribute values in addition to the child walk; Vue and Angular project
 slot content as a real child and are covered by the walk alone.
 
-Three implementation details in `heading.scss` that should not be traded away:
+The styling API is `visualSize` (`data-visual-size`, values `h1`-`h6` or
+`p-small`/`p-medium`/`p-large`) and `fontWeight` (`data-font-weight`, `black` or
+`light`). There is no `alignment` or `paragraphSpacing` property: block spacing
+is controlled by the foundations' `data-text-spacing` opt-in, and alignment is
+set with `text-align` on the heading itself.
 
-- **The child selectors exclude `.db-heading`.** A nested Heading component keeps
-  its own typography instead of fighting the wrapper's attributes, so the two
-  models never produce an ambiguous result.
-- **Only the headline font shorthand lands on the wrapper.** The wrapper needs
-  the matching line height so `1lh` for `data-paragraph-spacing` resolves from
-  the heading typography rather than the surrounding body text. Use
-  `fonts.set-headline-size` there; the full `%db-overwrite-headline-size-*`
-  placeholder additionally sets icon custom properties and must stay on the
-  nested heading, otherwise those properties leak into sibling slot components.
-  The nested heading also needs the full override because user-agent styles for
-  `h1`-`h6` block font inheritance. Without an explicit `data-size`, the wrapper
-  picks the level default via `:has(:where(h1))` etc.
-- **`data-alignment` sets `justify-content` on the wrapper and repeats
-  `text-align` on the child.** `%heading-base` sets an explicit
-  `text-align: start` on the child, which would otherwise block inheritance.
+Two implementation details in `heading.scss` that should not be traded away:
+
+- **The nested-heading selectors exclude `.db-heading`.** A nested Heading
+  component keeps its own typography instead of fighting the wrapper's attributes,
+  so the two models never produce an ambiguous result. They are descendant (not
+  child) selectors so they still reach a heading behind a `display: contents`
+  custom-element host.
+- **The typography always lands on the heading element, never on the
+  `.db-custom-heading` wrapper.** The `styled-heading()` selector helper targets
+  `.db-heading[data-visual-size="…"]` directly and, for the custom variant, the
+  nested heading inside the wrapper (`.db-custom-heading[data-visual-size="…"]
+:where(h1, h2, h3, h4, h5, h6):not(.db-heading)`) — the wrapper itself gets no
+  `%db-overwrite-*` placeholder. That is deliberate: `%db-overwrite-headline-size-*`
+  / `%db-overwrite-font-size-*` also set icon custom properties, so applying them to
+  the wrapper would leak those properties into sibling slot components. Keeping them
+  on the nested heading also satisfies the user-agent styles for `h1`-`h6`, which
+  block font inheritance from the wrapper. Without an explicit `data-visual-size`,
+  the level default is picked via `.db-custom-heading:not([data-visual-size])
+:has(:where(h1))` etc. — again landing the placeholder on the nested heading, not
+  the wrapper.
+
+The `.db-custom-heading, .db-heading` rule sets an explicit `text-align: start` on
+both the wrapper and `.db-heading`, so a consumer aligns a heading with
+`text-align` on the element itself rather than from an ancestor.
 
 The level-to-size mapping comes from `fonts.$headlines` in
 `@db-ux/core-foundations`, shared with the foundations'
-`defaults/default-fonts.scss` so the two cannot drift apart.
+`defaults/default-required.scss` so the two cannot drift apart. The bare-`h1`-`h6`
+headline typography loop lives in `default-required.scss` (the **required**
+defaults), not in the optional `default-fonts.scss`: the DB headline typography is
+mandatory, so native headings get it from the required stylesheet regardless of
+whether `default-fonts` is imported. `heading.scss` additionally runs that same
+loop for `.db-heading:not([data-visual-size])` (and the `:has()` custom-heading
+variant), so a default-size component heading keeps its level size and stays
+`data-density`-responsive even when only the component styles are loaded (test
+harness, or consumers importing just `@db-ux/core-components`).
 
 ### `useMetadata({ figma })` props must not be a chained identifier alias
 
 The `useMetadata` hook is parsed with JSON5, and the resolver does not follow a
 chained identifier reference. `const customHeadingProps = headingProps;` makes
 the whole `figma` metadata unresolvable, which **silently** skips the prop
-injection and leaves literal `props.size` in the generated Code Connect snippet
-instead of the selected Figma value. Use a spread (`{ ...headingProps }`) to
-reuse a map, and member access (`headingProps.alignment`) fails outright with
+injection and leaves literal `props.visualSize` in the generated Code Connect
+snippet instead of the selected Figma value. Use a spread (`{ ...headingProps }`)
+to reuse a map, and member access (`headingProps.visualSize`) fails outright with
 `JSON5: invalid character`. After changing a `*.figma.ts` map, always check the
 regenerated snapshot for `props.` occurrences.
 
 ### Props types must intersect the shared base directly
 
 Per-component props must be declared as
-`DBHeadingBaseDefaultProps & GlobalProps & AlignmentProps`, not via a bare alias
+`DBHeadingBaseDefaultProps & GlobalProps & TextProps`, not via a bare alias
 hop such as `DBHeadingH1DefaultProps = DBHeadingBaseDefaultProps`. The
 custom-elements analyzer stops resolving at the second alias hop, which publishes
-every inherited prop as `DBHeadingH1Props["size"]` with no description instead of
-the real union and JSDoc.
+every inherited prop as `DBHeadingH1Props["visualSize"]` with no description
+instead of the real union and JSDoc.
 
 ## Examples (`src/components/**/examples/`)
 
@@ -212,6 +235,28 @@ When adding or modifying examples:
 
 - Place example files inside `src/components/[name]/examples/`
 - Use `data-sb-*` attributes to control Storybook story generation (e.g. controls, args, decorators)
+- **For one-off, showcase-only layout, use an inline `style` object instead of a bespoke CSS class.** The example's markup is emitted verbatim into Storybook's "Show code" view, so a layout class defined only in the showcase stylesheet (e.g. `badge-inline-container`) leaves consumers copying a class they cannot resolve ([#7023](https://github.com/db-ux-design-system/core-web/issues/7023)). An inline `style` is self-explanatory in the snippet and renders identically in the showcase. Prefer design-token custom properties in the value (e.g. `gap: 'var(--db-spacing-fixed-sm)'`) so the demo stays on-brand:
+
+    ```tsx
+    <div
+    	style={{
+    		display: "flex",
+    		alignItems: "center",
+    		gap: "var(--db-spacing-fixed-sm)"
+    	}}
+    >
+    	{/* ... */}
+    </div>
+    ```
+
+    This applies to **bespoke, single-use** showcase layout only. Three things are **not** covered by this rule and stay as classes:
+
+    - **Real design-system classes** that are public API — e.g. `db-stack` (the CSS-only form of `DBStack`, with `data-gap`/`data-direction`). These are exactly what a consumer _should_ copy, so keep them.
+    - **Elements already hidden from the snippet** via `data-sb-ignore` (e.g. `<i class="line-break" data-sb-ignore="true" />`) — they never reach the code view, so their class is harmless.
+    - **Shared showcase helpers reused across many examples** (e.g. `fit-content-container`). Converting these to repeated inline styles in every example only trades one problem for dozens of copies that drift; leave them in the shared stylesheet.
+
+    Inline `style` also only reaches the element it sits on — it cannot express descendant or pseudo-element rules. When a one-off demo needs those, prefer dropping the fine-tuning over reintroducing a mystery class; keep it in the shared stylesheet only if the layout genuinely depends on it.
+
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in Patternhub, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
 
@@ -599,22 +644,21 @@ the item still being in the markup.
 
 Before writing new SCSS for a component, **always check `src/styles/internal/`** for existing shared styles:
 
-| File                      | What it covers                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------ |
-| `_button-components.scss` | Ghost button appearance, button-like interactive states                        |
-| `_dialog-components.scss` | Shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
-| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`               |
-| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                        |
-| `_link-components.scss`   | Link-like appearance and states                                                |
-| `_tag-components.scss`    | Tag/badge/chip shared styles                                                   |
-| `_stack-components.scss`  | Stack/layout shared styles                                                     |
-| `_select-components.scss` | Select/dropdown shared styles                                                  |
-| `_popover-component.scss` | Popover/tooltip positioning and appearance                                     |
-| `_icon-passing.scss`      | Icon passing via data attributes                                               |
-| `_custom-elements.scss`   | Custom element host/shadow styles                                              |
-| `_component.scss`         | Base component resets and defaults                                             |
-| `_indicator.scss`         | Indicator animation                                                            |
-| `_scrollbar.scss`         | Scrollbar styling                                                              |
+| File                      | What it covers                                                                                                                                                                                         |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `_button-components.scss` | Ghost button appearance, button-like interactive states                                                                                                                                                |
+| `_dialog-components.scss` | Shared native-`<dialog>` reset + modal `::backdrop` tint (`base-reset` mixin, applied on `.db-dialog`/`.db-drawer`) and shared dialog/drawer layout (grid, header, footer, safe area, container sizes) |
+| `_dialog-ponyfill.scss`   | Backdrop-click hit area fallback for browsers without `closedby`                                                                                                                                       |
+| `_form-components.scss`   | Shared form element styles (inputs, selects, textareas)                                                                                                                                                |
+| `_link-components.scss`   | Link-like appearance and states                                                                                                                                                                        |
+| `_tag-components.scss`    | Tag/badge/chip shared styles                                                                                                                                                                           |
+| `_select-components.scss` | Select/dropdown shared styles                                                                                                                                                                          |
+| `_popover-component.scss` | Popover/tooltip positioning and appearance                                                                                                                                                             |
+| `_icon-passing.scss`      | Icon passing via data attributes                                                                                                                                                                       |
+| `_custom-elements.scss`   | Custom element host/shadow styles                                                                                                                                                                      |
+| `_component.scss`         | Base component resets and defaults                                                                                                                                                                     |
+| `_indicator.scss`         | Indicator animation                                                                                                                                                                                    |
+| `_scrollbar.scss`         | Scrollbar styling                                                                                                                                                                                      |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
 
