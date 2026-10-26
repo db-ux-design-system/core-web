@@ -220,6 +220,11 @@
   - button "Toggle dynamic tab"
   - tablist:
     - tab "Dynamic 1"
+  - button "Toggle first tab"
+  - tablist:
+    - tab "Preserve 1"
+    - tab "Preserve 2"
+    - tab "Preserve 3"
   - tablist:
     - tab "Tab item with a very long label that must not be cut off" [selected]
     - tab "Short"
