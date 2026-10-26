@@ -746,17 +746,13 @@ export default function DBTabs(props: DBTabsProps) {
 
 			if (!tabListEl) return;
 
-			// Capture the button that is selected right now, before re-querying,
-			// so a structural change that shifts indices (a tab inserted or
-			// removed before the selected one) can preserve the selection by
-			// element identity instead of re-applying the stale numeric index.
-			const previousSelectedButton = state._tabButtons.find(
-				(button: HTMLElement) =>
-					button.getAttribute('aria-selected') === 'true'
-			);
-
 			const buttons = Array.from<HTMLElement>(
 				tabListEl.querySelectorAll('[role="tab"]')
+			);
+
+			const previousSelectedButton = buttons.find(
+				(button: HTMLElement) =>
+					button.getAttribute('aria-selected') === 'true'
 			);
 
 			state._tabButtons = buttons;
