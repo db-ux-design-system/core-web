@@ -91,7 +91,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 | `elm-headline`         | [replacement] | Semantic headings (`db-heading-h-1`-`h-6`)                |
 | `elm-headline` (pulse) |   [removed]   | Heading + CSS animation                                   |
 | `elm-chip`             | [replacement] | `db-tag` with `db-button`/`db-checkbox`/`db-radio` inside |
-| `cmp-sidenavi`         | [replacement] | `db-control-panel-desktop` with `orientation="vertical"`  |
+| `cmp-sidenavi`         | [replacement] | `db-shell` with `controlPanelDesktopPosition="left"`      |
 
 ## Key Migration Examples
 
