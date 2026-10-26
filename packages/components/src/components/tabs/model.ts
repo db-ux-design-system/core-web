@@ -140,7 +140,7 @@ export type DBTabsDefaultState = {
 	_teardownScrollHandlers: () => void;
 	_resolveHashIndex: () => { startIndex: number; hashApplied: boolean };
 	_setupObserver: () => void;
-	initTabs: () => void;
+	initTabs: () => number;
 	syncSelection: (activeIndex?: number) => void;
 	_tabButtons: HTMLElement[];
 	_tabPanels: HTMLElement[];

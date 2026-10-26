@@ -709,9 +709,9 @@ export default function DBTabs(props: DBTabsProps) {
 					state._pendingRafId = null;
 					state.initTabList();
 					if (hasTabChange) {
-						/* initTabs preserves the selected index by element identity so a structural change that shifts indices keeps the right tab selected. */
-						state.initTabs();
-						state.syncSelection(state._activeIndex);
+						/* initTabs preserves the selected index by element identity and returns it, so a structural change that shifts indices keeps the right tab selected even in React, where state._activeIndex is stale inside this observer closure. */
+						const resolvedIndex = state.initTabs();
+						state.syncSelection(resolvedIndex);
 					}
 					if (hasDisabledChange) {
 						state.syncSelection(state._activeIndex);
@@ -737,14 +737,14 @@ export default function DBTabs(props: DBTabsProps) {
 		initTabs() {
 			const baseId =
 				props.id ?? props.propOverrides?.id ?? state._id ?? _ref?.id;
-			if (!baseId || !_ref) return;
+			if (!baseId || !_ref) return state._activeIndex;
 
 			const tabListEl = state._getScrollContainer();
 			const panels = Array.from<HTMLElement>(
 				_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 			).filter((panel) => state._isOwnedPanel(panel));
 
-			if (!tabListEl) return;
+			if (!tabListEl) return state._activeIndex;
 
 			const buttons = Array.from<HTMLElement>(
 				tabListEl.querySelectorAll('[role="tab"]')
@@ -758,6 +758,15 @@ export default function DBTabs(props: DBTabsProps) {
 			state._tabButtons = buttons;
 			state._tabPanels = panels;
 
+			// Resolve the index the caller should sync to and return it, rather
+			// than relying on state._activeIndex afterwards: in the React output
+			// the MutationObserver callback is a mount-render closure, so a write
+			// to state._activeIndex here is not visible to the syncSelection call
+			// that follows in the same closure (it would re-apply the stale index
+			// and drop the preserved selection). The caller passes this return
+			// value straight into syncSelection instead.
+			let resolvedIndex = state._activeIndex;
+
 			// If the previously selected tab still exists, keep it selected at
 			// its new index; only fall back to the numeric index when it was
 			// actually removed (syncSelection then clamps to the first enabled).
@@ -765,6 +774,7 @@ export default function DBTabs(props: DBTabsProps) {
 				const preservedIndex = buttons.indexOf(previousSelectedButton);
 				if (preservedIndex !== -1 && props.activeIndex === undefined) {
 					state._activeIndex = preservedIndex;
+					resolvedIndex = preservedIndex;
 				}
 			}
 
@@ -786,6 +796,8 @@ export default function DBTabs(props: DBTabsProps) {
 						button.getAttribute('aria-selected') !== 'true';
 				}
 			});
+
+			return resolvedIndex;
 		}
 	});
 
@@ -797,8 +809,8 @@ export default function DBTabs(props: DBTabsProps) {
 	onUpdate(() => {
 		if (state.initialized && props.tabs) {
 			state.initTabList();
-			state.initTabs();
-			state.syncSelection(state._activeIndex);
+			const resolvedIndex = state.initTabs();
+			state.syncSelection(resolvedIndex);
 		}
 	}, [props.tabs, state.initialized]);
 

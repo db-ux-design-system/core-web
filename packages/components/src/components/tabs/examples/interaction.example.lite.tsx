@@ -43,6 +43,7 @@ export default function TabsInteraction() {
 		noValueSelected: 'initial',
 		nestedActiveIndex: 'initial',
 		dynamicTabAdded: false,
+		firstTabRemoved: false,
 		handleValueChange(value: any) {
 			state.selectedValue = value ?? 'undefined';
 		},
@@ -202,6 +203,41 @@ export default function TabsInteraction() {
 					<Show when={state.dynamicTabAdded}>
 						<DBTabPanel>Dynamic Panel 2</DBTabPanel>
 					</Show>
+				</DBTabs>
+			</div>
+
+			{/* Regression guard for
+			https://github.com/db-ux-design-system/core-web/issues/8336
+			(follow-up, React-specific): selecting the last tab and then
+			removing a tab *before* it (composition API) must keep the selected
+			tab selected at its shifted index, rather than falling back to a
+			stale numeric index. */}
+			<div
+				class="fit-content-container"
+				data-testid="preserve-selection-tabs"
+				data-sb-ignore="true">
+				<DBButton
+					data-testid="preserve-remove-toggle"
+					type="button"
+					size="small"
+					onClick={() =>
+						(state.firstTabRemoved = !state.firstTabRemoved)
+					}>
+					Toggle first tab
+				</DBButton>
+				<DBTabs initialSelectedMode="manually">
+					<DBTabList>
+						<Show when={!state.firstTabRemoved}>
+							<DBTabItem>Preserve 1</DBTabItem>
+						</Show>
+						<DBTabItem>Preserve 2</DBTabItem>
+						<DBTabItem>Preserve 3</DBTabItem>
+					</DBTabList>
+					<Show when={!state.firstTabRemoved}>
+						<DBTabPanel>Preserve Panel 1</DBTabPanel>
+					</Show>
+					<DBTabPanel>Preserve Panel 2</DBTabPanel>
+					<DBTabPanel>Preserve Panel 3</DBTabPanel>
 				</DBTabs>
 			</div>
 

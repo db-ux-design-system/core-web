@@ -145,6 +145,44 @@ test.describe('DBTabs', () => {
 		}
 	});
 
+	// Regression guard for the React-specific follow-up to
+	// https://github.com/db-ux-design-system/core-web/issues/8336: selecting
+	// the last tab and then removing a tab *before* it must keep the selected
+	// tab selected at its shifted index. Before the fix, the MutationObserver
+	// callback (a mount-render closure in React) re-applied the stale numeric
+	// _activeIndex instead of the index initTabs preserved, so the formerly
+	// second tab got selected.
+	runInteractionTest({
+		title: 'should preserve the selected tab when a preceding tab is removed',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const tabs = content.getByTestId('preserve-selection-tabs');
+			const tab3 = tabs.getByRole('tab', { name: 'Preserve 3' });
+			const panel3 = tabs.getByRole('tabpanel', { name: 'Preserve 3' });
+
+			// Select the last of the three tabs.
+			await tab3.click();
+			await expect(tab3).toHaveAttribute('aria-selected', 'true');
+			await expect(panel3).toBeVisible();
+
+			// Remove the first tab: three tabs become two, so the selected tab
+			// shifts from index 2 to index 1 but stays the same element.
+			await content.getByTestId('preserve-remove-toggle').click();
+			await expect(
+				tabs.getByRole('tab', { name: 'Preserve 1' })
+			).toHaveCount(0);
+
+			// The still-present "Preserve 3" tab must remain selected, and
+			// "Preserve 2" must not be selected in its place.
+			await expect(tab3).toHaveAttribute('aria-selected', 'true');
+			await expect(panel3).toBeVisible();
+			await expect(
+				tabs.getByRole('tab', { name: 'Preserve 2' })
+			).toHaveAttribute('aria-selected', 'false');
+		}
+	});
+
 	// Note: the URL-hash deep-linking test from the removed component test is
 	// not portable here. DBTabs reads the entire `window.location.hash`, which
 	// the showcase app itself owns for its own hash-based routing
