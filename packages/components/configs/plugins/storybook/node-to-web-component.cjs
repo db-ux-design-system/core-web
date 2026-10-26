@@ -148,6 +148,70 @@ const unwrapLiteral = (code) => {
 };
 
 /**
+ * Convert a camelCase CSS property name to its kebab-case form
+ * (`alignItems` -> `align-items`, `backgroundColor` -> `background-color`).
+ * A custom property (`--db-*`) or already-kebab-case name is left untouched.
+ * @param {string} key
+ * @returns {string}
+ */
+const cssPropertyToKebab = (key) =>
+	key.startsWith('--')
+		? key
+		: key.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+
+/**
+ * Serialize an inline-`style` object binding (`style={{ display: 'flex', gap:
+ * 'var(--db-spacing-fixed-sm)' }}`) into a CSS declaration string for the
+ * `style` attribute (`display: flex; gap: var(--db-spacing-fixed-sm)`). Example
+ * layout authored as an object style (the recommended form for one-off showcase
+ * layout, see packages/components/AGENTS.md) would otherwise be dropped from the
+ * web-component story, because an object literal is not a simple attribute value
+ * -- which silently strips the intended layout from the Stencil "Show code"
+ * output (#7023 / #8577).
+ *
+ * The parser only accepts an object literal of `key: <string | number literal>`
+ * pairs -- every showcase style is written that way. A value that is not a plain
+ * literal (a computed expression, nested object, etc.) aborts the whole
+ * conversion by returning `undefined`, so the caller falls back to the existing
+ * drop behaviour rather than emitting a half-serialized style.
+ * @param {string} code - the trimmed binding code, including the outer braces
+ * @returns {string | undefined} the CSS string, or `undefined` when not a plain object literal
+ */
+const objectStyleToCss = (code) => {
+	const inner = code.replace(/^\{/, '').replace(/\}$/, '').trim();
+	if (inner === '') {
+		return '';
+	}
+
+	const declarations = [];
+	// Match `key: value` pairs where the key is an identifier, a custom property
+	// ('--db-x') or a quoted string, and the value is a string or number literal.
+	// The trailing `,\s*` also swallows the whitespace before the next pair so
+	// consecutive matches stay contiguous (the gap check below relies on that).
+	const pairPattern =
+		/(?:(['"`])((?:--)?[\w-]+)\1|((?:--)?[A-Za-z_][\w-]*))\s*:\s*(?:(['"`])([\s\S]*?)\4|(-?\d+(?:\.\d+)?))\s*(?:,\s*|$)/g;
+	let lastIndex = 0;
+	let match;
+	while ((match = pairPattern.exec(inner)) !== null) {
+		// A gap between the previous match and this one means an entry did not
+		// fit the literal pattern -> bail out so the caller drops the style.
+		if (match.index !== lastIndex) {
+			return undefined;
+		}
+		const key = match[2] ?? match[3];
+		const value = match[5] !== undefined ? match[5] : match[6];
+		declarations.push(`${cssPropertyToKebab(key)}: ${value}`);
+		lastIndex = pairPattern.lastIndex;
+	}
+
+	// Trailing content that never matched -> not a plain literal object.
+	if (lastIndex !== inner.length) {
+		return undefined;
+	}
+	return declarations.length > 0 ? declarations.join('; ') : undefined;
+};
+
+/**
  * Serialize a node's bindings into an attribute string. Bindings carry the bare
  * boolean shorthands and bound values authored on nested example elements
  * (`noText`, `showLabel={false}`, `interactive`), which `node.properties` does
@@ -211,6 +275,17 @@ const serializeBindings = (node, isCustomElement) => {
 			// placeholder image path for every target.
 			if (/\bgetImage\(\)$/.test(code)) {
 				return ` ${attribute}="getImage"`;
+			}
+
+			// An inline `style` object (`style={{ display: 'flex', ... }}`) is
+			// not a simple literal, so it would be dropped below -- flattening
+			// it into a CSS string keeps the showcase layout in the
+			// web-component story (see objectStyleToCss, #7023 / #8577).
+			if (key === 'style' && code.startsWith('{')) {
+				const css = objectStyleToCss(code);
+				return css === undefined || css === ''
+					? ''
+					: ` ${attribute}="${escapeAttributeValue(css)}"`;
 			}
 
 			const literal = unwrapLiteral(code);
