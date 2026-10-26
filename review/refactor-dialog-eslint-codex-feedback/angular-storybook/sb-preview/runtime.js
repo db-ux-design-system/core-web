@@ -12655,288 +12655,6 @@ function invariant(condition, message) {
   }
 }
 
-// src/channels/postmessage/getEventSourceUrl.ts
-var pickFrameByRefId = (candidates, refId) => {
-  if (candidates.length === 1)
-    return candidates[0];
-  if (!(candidates.length === 0 || !refId))
-    return candidates.find(
-      (el) => (el.getAttribute("src") ?? "").includes(`refId=${encodeURIComponent(refId)}`)
-    );
-}, getEventSourceUrl = (event, refId) => {
-  let candidates = Array.from(
-    document.querySelectorAll("iframe[data-is-storybook]")
-  ).filter((element) => {
-    try {
-      return element.contentWindow?.location.origin === event.source.location.origin && element.contentWindow?.location.pathname === event.source.location.pathname;
-    } catch {
-    }
-    try {
-      return element.contentWindow === event.source;
-    } catch {
-    }
-    let src2 = element.getAttribute("src"), origin;
-    try {
-      if (!src2)
-        return !1;
-      ({ origin } = new URL(src2, document.location.toString()));
-    } catch {
-      return !1;
-    }
-    return origin === event.origin;
-  }), src = pickFrameByRefId(candidates, refId)?.getAttribute("src");
-  if (src) {
-    let { protocol, host, pathname } = new URL(src, document.location.toString());
-    return `${protocol}//${host}${pathname}`;
-  }
-  return candidates.length > 1 && logger.error("found multiple candidates for event source"), null;
-};
-
-// src/channels/postmessage/index.ts
-var { document: document2, location } = globalThis, KEY = "storybook-channel", CHANNEL_OPTIONS = globalThis.CHANNEL_OPTIONS || {}, defaultEventOptions = { maxDepth: 25 }, PostMessageTransport = class {
-  constructor(config4) {
-    this.config = config4;
-    this.connected = !1;
-    if (this.buffer = [], typeof globalThis.addEventListener == "function" && globalThis.addEventListener("message", this.handleEvent.bind(this), !1), config4.page !== "manager" && config4.page !== "preview")
-      throw new Error(`postmsg-channel: "config.page" cannot be "${config4.page}"`);
-  }
-  setHandler(handler) {
-    this.handler = (...args) => {
-      handler.apply(this, args), !this.connected && this.getLocalFrame().length && (this.flush(), this.connected = !0);
-    };
-  }
-  /**
-   * Sends `event` to the associated window. If the window does not yet exist the event will be
-   * stored in a buffer and sent when the window exists.
-   *
-   * @param event
-   */
-  send(event, options) {
-    let {
-      target,
-      // telejson options
-      allowRegExp,
-      allowSymbol,
-      allowDate,
-      allowError,
-      allowUndefined,
-      maxDepth,
-      space
-    } = options || {}, eventOptions = Object.fromEntries(
-      Object.entries({
-        allowRegExp,
-        allowSymbol,
-        allowDate,
-        allowError,
-        allowUndefined,
-        maxDepth,
-        space
-      }).filter(([k, v3]) => typeof v3 < "u")
-    ), stringifyOptions = {
-      ...defaultEventOptions,
-      ...CHANNEL_OPTIONS,
-      ...eventOptions
-    }, frames = this.getFrames(target), query = new URLSearchParams(location?.search || ""), data = stringify(
-      {
-        key: KEY,
-        event,
-        refId: query.get("refId")
-      },
-      stringifyOptions
-    );
-    return frames.length ? (this.buffer.length && this.flush(), frames.forEach((f6) => {
-      try {
-        f6.postMessage(data, "*");
-      } catch {
-        logger.error("sending over postmessage fail");
-      }
-    }), Promise.resolve(null)) : new Promise((resolve, reject) => {
-      this.buffer.push({ event, resolve, reject });
-    });
-  }
-  flush() {
-    let { buffer } = this;
-    this.buffer = [], buffer.forEach((item) => {
-      this.send(item.event).then(item.resolve).catch(item.reject);
-    });
-  }
-  getFrames(target) {
-    if (this.config.page === "manager") {
-      let list = Array.from(
-        document2.querySelectorAll("iframe[data-is-storybook][data-is-loaded]")
-      ).flatMap((e2) => {
-        try {
-          return e2.contentWindow && e2.dataset.isStorybook !== void 0 && e2.id === target ? [e2.contentWindow] : [];
-        } catch {
-          return [];
-        }
-      });
-      return list?.length ? list : this.getCurrentFrames();
-    }
-    return globalThis.parent && globalThis.parent !== globalThis.self ? [globalThis.parent] : [];
-  }
-  getCurrentFrames() {
-    return this.config.page === "manager" ? Array.from(
-      document2.querySelectorAll('[data-is-storybook="true"]')
-    ).flatMap((e2) => e2.contentWindow ? [e2.contentWindow] : []) : globalThis.parent ? [globalThis.parent] : [];
-  }
-  getLocalFrame() {
-    return this.config.page === "manager" ? Array.from(
-      document2.querySelectorAll("#storybook-preview-iframe")
-    ).flatMap((e2) => e2.contentWindow ? [e2.contentWindow] : []) : globalThis.parent ? [globalThis.parent] : [];
-  }
-  handleEvent(rawEvent) {
-    try {
-      let { data } = rawEvent, { key, event, refId } = typeof data == "string" && isJSON(data) ? parse(data, CHANNEL_OPTIONS) : data;
-      if (key === KEY) {
-        let pageString = this.config.page === "manager" ? '<span style="color: #37D5D3; background: black"> manager </span>' : '<span style="color: #1EA7FD; background: black"> preview </span>', eventString = Object.values(core_events_exports).includes(event.type) ? `<span style="color: #FF4785">${event.type}</span>` : `<span style="color: #FFAE00">${event.type}</span>`;
-        if (refId && (event.refId = refId), event.source = this.config.page === "preview" ? rawEvent.origin : getEventSourceUrl(rawEvent, refId), !event.source) {
-          pretty.error(
-            `${pageString} received ${eventString} but was unable to determine the source of the event`
-          );
-          return;
-        }
-        let message = `${pageString} received ${eventString} (${data.length})`;
-        pretty.debug(
-          location.origin !== event.source ? message : `${message} <span style="color: gray">(on ${location.origin} from ${event.source})</span>`,
-          ...event.args
-        ), invariant(this.handler, "ChannelHandler should be set"), this.config.page === "manager" && this.buffer.length && this.flush(), this.handler(event);
-      }
-    } catch (error) {
-      logger.error(error);
-    }
-  }
-};
-
-// src/channels/websocket/index.ts
-var HEARTBEAT_INTERVAL = 15e3, HEARTBEAT_MAX_LATENCY = 5e3, SERVER_CHANNEL_PATH = "/storybook-server-channel", CHANNEL_OPTIONS2 = globalThis.CHANNEL_OPTIONS || {}, WebsocketTransport = class {
-  constructor({
-    url,
-    onError,
-    page,
-    createSocket,
-    enableHeartbeat = !0
-  }) {
-    this.buffer = [];
-    this.isReady = !1;
-    this.isClosed = !1;
-    this.pingTimeout = 0;
-    this.heartbeatPaused = !1;
-    this.enableHeartbeat = !0;
-    this.enableHeartbeat = enableHeartbeat, this.socket = createSocket ? createSocket(url) : new WebSocket(url), this.socket.onopen = () => {
-      this.isReady = !0, this.heartbeat(), this.flush();
-    }, this.socket.onmessage = ({ data }) => {
-      let event = typeof data == "string" && isJSON(data) ? parse(data) : data;
-      if (invariant(this.handler, "WebsocketTransport handler should be set"), this.heartbeat(), event.type === "ping") {
-        this.send({ type: "pong" });
-        return;
-      }
-      this.handler(event);
-    }, this.socket.onerror = (e2) => {
-      onError && onError(e2);
-    }, this.socket.onclose = (ev) => {
-      invariant(this.handler, "WebsocketTransport handler should be set"), this.handler({
-        type: CHANNEL_WS_DISCONNECT,
-        args: [{ reason: ev.reason, code: ev.code }],
-        from: page || "preview"
-      }), this.isClosed = !0, clearTimeout(this.pingTimeout);
-    };
-  }
-  heartbeat() {
-    clearTimeout(this.pingTimeout), !(!this.enableHeartbeat || this.heartbeatPaused || this.isClosed) && (this.pingTimeout = setTimeout(() => {
-      this.socket.close(3008, "timeout");
-    }, HEARTBEAT_INTERVAL + HEARTBEAT_MAX_LATENCY));
-  }
-  pauseHeartbeat() {
-    this.heartbeatPaused = !0, clearTimeout(this.pingTimeout);
-  }
-  resumeHeartbeat() {
-    this.heartbeatPaused = !1, this.isReady && this.heartbeat();
-  }
-  setHandler(handler) {
-    this.handler = handler;
-  }
-  send(event) {
-    this.isClosed || (this.isReady ? this.sendNow(event) : this.sendLater(event));
-  }
-  sendLater(event) {
-    this.buffer.push(event);
-  }
-  sendNow(event) {
-    let data = stringify(event, {
-      maxDepth: 15,
-      ...CHANNEL_OPTIONS2
-    });
-    this.socket.send(data);
-  }
-  flush() {
-    let { buffer } = this;
-    this.buffer = [], buffer.forEach((event) => this.send(event));
-  }
-};
-
-// src/channels/channel-slot.ts
-var channel;
-function syncGlobalSlot(next) {
-  globalThis.__STORYBOOK_ADDONS_CHANNEL__ = next;
-}
-function getChannel() {
-  let fromGlobal = globalThis.__STORYBOOK_ADDONS_CHANNEL__;
-  return fromGlobal && (channel = fromGlobal), channel ?? null;
-}
-function requireChannel() {
-  let installed = getChannel();
-  if (!installed)
-    throw new Error(
-      "Storybook addons channel is not installed in this runtime. Install it via setChannel() or addons.setChannel() at the runtime entry point before registering services or emitting events."
-    );
-  return installed;
-}
-function setChannel(next) {
-  channel = next ?? void 0, syncGlobalSlot(channel);
-}
-function clearChannel() {
-  setChannel(null);
-}
-function installNoopChannel() {
-  setChannel(new Channel({}));
-}
-function ensureChannel() {
-  getChannel() || installNoopChannel();
-}
-typeof window > "u" && ensureChannel();
-
-// src/channels/index.ts
-var channels_default = Channel;
-function createBrowserChannel({ page, extraTransports = [] }) {
-  let transports = [new PostMessageTransport({ page }), ...extraTransports];
-  if (globalThis.CONFIG_TYPE === "DEVELOPMENT") {
-    let protocol = window.location.protocol === "http:" ? "ws" : "wss", { hostname, port } = window.location, { wsToken } = globalThis.CHANNEL_OPTIONS || {}, channelUrl = `${protocol}://${hostname}:${port}${SERVER_CHANNEL_PATH}?token=${wsToken}`;
-    transports.push(new WebsocketTransport({ url: channelUrl, onError: () => {
-    }, page }));
-  }
-  let channel2 = new Channel({ transports });
-  return UniversalStore.__prepare(
-    channel2,
-    page === "manager" ? UniversalStore.Environment.MANAGER : UniversalStore.Environment.PREVIEW
-  ), channel2;
-}
-
-// src/preview/globals/globals.ts
-var globalsNameReferenceMap = {
-  "@storybook/global": "__STORYBOOK_MODULE_GLOBAL__",
-  "storybook/test": "__STORYBOOK_MODULE_TEST__",
-  "storybook/actions": "__STORYBOOK_MODULE_ACTIONS__",
-  "storybook/preview-api": "__STORYBOOK_MODULE_PREVIEW_API__",
-  "storybook/internal/channels": "__STORYBOOK_MODULE_CHANNELS__",
-  "storybook/internal/client-logger": "__STORYBOOK_MODULE_CLIENT_LOGGER__",
-  "storybook/internal/core-events": "__STORYBOOK_MODULE_CORE_EVENTS__",
-  "storybook/internal/preview-errors": "__STORYBOOK_MODULE_CORE_EVENTS_PREVIEW_ERRORS__",
-  "storybook/internal/types": "__STORYBOOK_MODULE_TYPES__",
-  // @deprecated TODO: Remove in 9.1 or some point in the future, I guess
-  "storybook/internal/preview-api": "__STORYBOOK_MODULE_PREVIEW_API__"
-}, globalPackages = Object.keys(globalsNameReferenceMap);
-
 // src/preview-errors.ts
 var preview_errors_exports = {};
 __export(preview_errors_exports, {
@@ -12947,6 +12665,7 @@ __export(preview_errors_exports, {
   EmptyIndexError: () => EmptyIndexError,
   ImplicitActionsDuringRendering: () => ImplicitActionsDuringRendering,
   InvalidBlockOfPropError: () => InvalidBlockOfPropError,
+  InvalidChannelPageError: () => InvalidChannelPageError,
   MdxFileWithNoCsfReferencesError: () => MdxFileWithNoCsfReferencesError,
   MissingRenderToCanvasError: () => MissingRenderToCanvasError,
   MissingStoryAfterHmrError: () => MissingStoryAfterHmrError,
@@ -12963,7 +12682,17 @@ __export(preview_errors_exports, {
   UnknownArgTypesError: () => UnknownArgTypesError,
   UnsupportedViewportDimensionError: () => UnsupportedViewportDimensionError
 });
-var Category = /* @__PURE__ */ ((Category2) => (Category2.BLOCKS = "BLOCKS", Category2.DOCS_TOOLS = "DOCS-TOOLS", Category2.PREVIEW_CLIENT_LOGGER = "PREVIEW_CLIENT-LOGGER", Category2.PREVIEW_CHANNELS = "PREVIEW_CHANNELS", Category2.PREVIEW_CORE_EVENTS = "PREVIEW_CORE-EVENTS", Category2.PREVIEW_INSTRUMENTER = "PREVIEW_INSTRUMENTER", Category2.PREVIEW_API = "PREVIEW_API", Category2.PREVIEW_REACT_DOM_SHIM = "PREVIEW_REACT-DOM-SHIM", Category2.PREVIEW_ROUTER = "PREVIEW_ROUTER", Category2.PREVIEW_THEMING = "PREVIEW_THEMING", Category2.RENDERER_HTML = "RENDERER_HTML", Category2.RENDERER_PREACT = "RENDERER_PREACT", Category2.RENDERER_REACT = "RENDERER_REACT", Category2.RENDERER_SERVER = "RENDERER_SERVER", Category2.RENDERER_SVELTE = "RENDERER_SVELTE", Category2.RENDERER_VUE = "RENDERER_VUE", Category2.RENDERER_VUE3 = "RENDERER_VUE3", Category2.RENDERER_WEB_COMPONENTS = "RENDERER_WEB-COMPONENTS", Category2.FRAMEWORK_NEXTJS = "FRAMEWORK_NEXTJS", Category2.ADDON_VITEST = "ADDON_VITEST", Category2.ADDON_A11Y = "ADDON_A11Y", Category2))(Category || {}), MissingStoryAfterHmrError = class extends StorybookError {
+var Category = /* @__PURE__ */ ((Category2) => (Category2.BLOCKS = "BLOCKS", Category2.DOCS_TOOLS = "DOCS-TOOLS", Category2.PREVIEW_CLIENT_LOGGER = "PREVIEW_CLIENT-LOGGER", Category2.PREVIEW_CHANNELS = "PREVIEW_CHANNELS", Category2.PREVIEW_CORE_EVENTS = "PREVIEW_CORE-EVENTS", Category2.PREVIEW_INSTRUMENTER = "PREVIEW_INSTRUMENTER", Category2.PREVIEW_API = "PREVIEW_API", Category2.PREVIEW_REACT_DOM_SHIM = "PREVIEW_REACT-DOM-SHIM", Category2.PREVIEW_ROUTER = "PREVIEW_ROUTER", Category2.PREVIEW_THEMING = "PREVIEW_THEMING", Category2.RENDERER_HTML = "RENDERER_HTML", Category2.RENDERER_PREACT = "RENDERER_PREACT", Category2.RENDERER_REACT = "RENDERER_REACT", Category2.RENDERER_SERVER = "RENDERER_SERVER", Category2.RENDERER_SVELTE = "RENDERER_SVELTE", Category2.RENDERER_VUE = "RENDERER_VUE", Category2.RENDERER_VUE3 = "RENDERER_VUE3", Category2.RENDERER_WEB_COMPONENTS = "RENDERER_WEB-COMPONENTS", Category2.FRAMEWORK_NEXTJS = "FRAMEWORK_NEXTJS", Category2.ADDON_VITEST = "ADDON_VITEST", Category2.ADDON_A11Y = "ADDON_A11Y", Category2))(Category || {}), InvalidChannelPageError = class extends StorybookError {
+  constructor(data) {
+    super({
+      name: "InvalidChannelPageError",
+      category: "PREVIEW_CHANNELS" /* PREVIEW_CHANNELS */,
+      code: 1,
+      message: `The postMessage channel transport needs "config.page" to be "manager" or "preview", but received "${data.page}".`
+    });
+    this.data = data;
+  }
+}, MissingStoryAfterHmrError = class extends StorybookError {
   constructor(data) {
     super({
       name: "MissingStoryAfterHmrError",
@@ -13297,6 +13026,377 @@ This is deprecated and won't work in Storybook 8 anymore.
     });
   }
 };
+
+// src/shared/utils/local-hosts.ts
+var LOOPBACK_HOSTNAMES = ["localhost", "*.localhost", "127.0.0.1"], matchesHostname = (hostname, patterns) => patterns.some(
+  (pattern) => pattern.startsWith("*.") ? hostname.endsWith(pattern.slice(1)) : hostname === pattern
+);
+
+// src/channels/postmessage/getEventSourceUrl.ts
+var pickFrameByRefId = (candidates, refId) => {
+  if (candidates.length === 1)
+    return candidates[0];
+  if (!(candidates.length === 0 || !refId))
+    return candidates.find(
+      (el) => (el.getAttribute("src") ?? "").includes(`refId=${encodeURIComponent(refId)}`)
+    );
+}, getEventSourceUrl = (event, refId) => {
+  let candidates = Array.from(
+    document.querySelectorAll("iframe[data-is-storybook]")
+  ).filter((element) => {
+    try {
+      return element.contentWindow?.location.origin === event.source.location.origin && element.contentWindow?.location.pathname === event.source.location.pathname;
+    } catch {
+    }
+    try {
+      return element.contentWindow === event.source;
+    } catch {
+    }
+    let src2 = element.getAttribute("src"), origin;
+    try {
+      if (!src2)
+        return !1;
+      ({ origin } = new URL(src2, document.location.toString()));
+    } catch {
+      return !1;
+    }
+    return origin === event.origin;
+  }), src = pickFrameByRefId(candidates, refId)?.getAttribute("src");
+  if (src) {
+    let { protocol, host, pathname } = new URL(src, document.location.toString());
+    return `${protocol}//${host}${pathname}`;
+  }
+  return candidates.length > 1 && logger.error("found multiple candidates for event source"), null;
+};
+
+// src/channels/postmessage/index.ts
+var { document: document2, location } = globalThis, KEY = "storybook-channel", CHANNEL_OPTIONS = globalThis.CHANNEL_OPTIONS || {}, defaultEventOptions = { maxDepth: 25 }, getReferrerOrigin = () => {
+  try {
+    let origin = document2?.referrer && new URL(document2.referrer).origin;
+    return origin && origin !== "null" ? origin : null;
+  } catch {
+    return null;
+  }
+}, isOnInitialBlankDocument = (frame) => {
+  try {
+    return frame.location.href === "about:blank";
+  } catch {
+    return !1;
+  }
+}, getOriginValidator = () => {
+  let own = location?.origin;
+  return globalThis.CONFIG_TYPE !== "DEVELOPMENT" || !own || own === "null" ? null : (origin) => {
+    if (origin === own)
+      return !0;
+    try {
+      return matchesHostname(new URL(origin).hostname, LOOPBACK_HOSTNAMES);
+    } catch {
+      return !1;
+    }
+  };
+}, PostMessageTransport = class {
+  constructor(config4) {
+    this.config = config4;
+    this.connected = !1;
+    this.rejectedOrigins = /* @__PURE__ */ new Set();
+    if (this.buffer = [], this.originValidator = getOriginValidator(), this.insecureIframeMessaging = globalThis.INSECURE_IFRAME_MESSAGING === !0, this.pinsTargetOrigin = globalThis.CONFIG_TYPE === "DEVELOPMENT" && !this.insecureIframeMessaging, typeof globalThis.addEventListener == "function" && globalThis.addEventListener("message", this.handleEvent.bind(this), !1), config4.page !== "manager" && config4.page !== "preview")
+      throw new InvalidChannelPageError({ page: config4.page });
+  }
+  setHandler(handler) {
+    this.handler = (...args) => {
+      handler.apply(this, args), !this.connected && this.getLocalFrame().length && (this.flush(), this.connected = !0);
+    };
+  }
+  /**
+   * Sends `event` to the associated window. If the window does not yet exist the event will be
+   * stored in a buffer and sent when the window exists.
+   *
+   * @param event
+   */
+  send(event, options) {
+    let {
+      target,
+      // telejson options
+      allowRegExp,
+      allowSymbol,
+      allowDate,
+      allowError,
+      allowUndefined,
+      maxDepth,
+      space
+    } = options || {}, eventOptions = Object.fromEntries(
+      Object.entries({
+        allowRegExp,
+        allowSymbol,
+        allowDate,
+        allowError,
+        allowUndefined,
+        maxDepth,
+        space
+      }).filter(([k, v3]) => typeof v3 < "u")
+    ), stringifyOptions = {
+      ...defaultEventOptions,
+      ...CHANNEL_OPTIONS,
+      ...eventOptions
+    }, frames = this.getFrames(target), query = new URLSearchParams(location?.search || ""), data = stringify(
+      {
+        key: KEY,
+        event,
+        refId: query.get("refId")
+      },
+      stringifyOptions
+    );
+    return frames.length ? (this.buffer.length && this.flush(), frames.forEach(({ contentWindow, targetOrigin }) => {
+      if (!(this.config.page === "manager" && isOnInitialBlankDocument(contentWindow)))
+        try {
+          contentWindow.postMessage(data, this.pinsTargetOrigin ? targetOrigin : "*");
+        } catch {
+          logger.error("sending over postmessage fail");
+        }
+    }), Promise.resolve(null)) : new Promise((resolve, reject) => {
+      this.buffer.push({ event, resolve, reject });
+    });
+  }
+  flush() {
+    let { buffer } = this;
+    this.buffer = [], buffer.forEach((item) => {
+      this.send(item.event).then(item.resolve).catch(item.reject);
+    });
+  }
+  getFrames(target) {
+    if (this.config.page === "manager") {
+      let list = Array.from(
+        document2.querySelectorAll("iframe[data-is-storybook][data-is-loaded]")
+      ).flatMap((e2) => {
+        try {
+          return e2.contentWindow && e2.dataset.isStorybook !== void 0 && e2.id === target ? [
+            { contentWindow: e2.contentWindow, targetOrigin: this.getIframeTargetOrigin(e2) }
+          ] : [];
+        } catch {
+          return [];
+        }
+      });
+      return list?.length ? list : this.getCurrentFrames();
+    }
+    return globalThis.parent && globalThis.parent !== globalThis.self ? [{ contentWindow: globalThis.parent, targetOrigin: this.getManagerTargetOrigin() }] : [];
+  }
+  getCurrentFrames() {
+    return this.config.page === "manager" ? Array.from(
+      document2.querySelectorAll('[data-is-storybook="true"]')
+    ).flatMap(
+      (e2) => e2.contentWindow ? [{ contentWindow: e2.contentWindow, targetOrigin: this.getIframeTargetOrigin(e2) }] : []
+    ) : globalThis.parent ? [{ contentWindow: globalThis.parent, targetOrigin: this.getManagerTargetOrigin() }] : [];
+  }
+  getIframeTargetOrigin(element) {
+    let src = element.getAttribute("src");
+    if (src)
+      try {
+        let { origin } = new URL(src, document2.location.toString());
+        if (origin !== "null")
+          return origin;
+      } catch {
+      }
+    return location?.origin && location.origin !== "null" ? location.origin : "*";
+  }
+  // In composition the manager lives on a different origin than this preview; the referrer
+  // identifies which host embedded it.
+  getManagerTargetOrigin() {
+    let referrerOrigin = getReferrerOrigin();
+    return this.originValidator ? referrerOrigin !== null && this.originValidator(referrerOrigin) ? referrerOrigin : location.origin : referrerOrigin ?? "*";
+  }
+  getLocalFrame() {
+    return this.config.page === "manager" ? Array.from(
+      document2.querySelectorAll("#storybook-preview-iframe")
+    ).flatMap((e2) => e2.contentWindow ? [e2.contentWindow] : []) : globalThis.parent ? [globalThis.parent] : [];
+  }
+  isAllowedSender(rawEvent) {
+    return this.insecureIframeMessaging ? !0 : this.config.page === "manager" ? this.isAllowedToContactManager(rawEvent) : this.config.page === "preview" ? this.isAllowedToContactPreview(rawEvent) : !1;
+  }
+  // A dev-mode preview only accepts messages from its own origin and from local hosts. A built
+  // preview, or one served from an opaque origin, has no validator and accepts any message.
+  isAllowedToContactPreview(rawEvent) {
+    return !this.originValidator || this.originValidator(rawEvent.origin) ? !0 : (this.warnOnceAboutRejectedSender(
+      rawEvent,
+      `Ignored Storybook channel message from unexpected origin "${rawEvent.origin}". While it runs in dev mode, this preview only accepts messages from local hosts and its own origin. To accept messages from any origin, set "security.insecureIframeMessaging" to true in the main config of the Storybook serving this preview.`
+    ), !1);
+  }
+  // A channel message reaches the manager only from a preview iframe it rendered itself: the local
+  // preview or a composed ref. `event.source` is set by the browser and cannot be forged, but it
+  // survives navigation, so in dev mode the message must also come from the origin the iframe was given.
+  isAllowedToContactManager(rawEvent) {
+    let senderFrame = rawEvent.source ? Array.from(document2.querySelectorAll("iframe")).find(
+      (frame) => frame.contentWindow === rawEvent.source
+    ) : void 0;
+    if (senderFrame?.hasAttribute("data-is-storybook")) {
+      if (!this.pinsTargetOrigin)
+        return !0;
+      let expectedOrigin = this.getIframeTargetOrigin(senderFrame);
+      return expectedOrigin === "*" || expectedOrigin === rawEvent.origin ? !0 : (this.warnOnceAboutRejectedSender(
+        rawEvent,
+        `Ignored Storybook channel message from a registered preview iframe that is on origin "${rawEvent.origin}" instead of "${expectedOrigin}". While it runs in dev mode, the manager only accepts channel messages from the origin each preview iframe was given, so a page the iframe navigated to cannot send them. To accept messages from any origin, set "security.insecureIframeMessaging" to true.`
+      ), !1);
+    }
+    return senderFrame?.hasAttribute("data-is-storybook-thumbnail") || this.warnOnceAboutRejectedSender(
+      rawEvent,
+      `Ignored Storybook channel message from a window that is not a registered preview iframe (origin "${rawEvent.origin}"). The manager only accepts channel messages from its own preview and composed Storybook iframes, never from a page that embeds it. To accept messages from any window, set "security.insecureIframeMessaging" to true.`
+    ), !1;
+  }
+  warnOnceAboutRejectedSender(rawEvent, message) {
+    (typeof rawEvent.data == "string" ? rawEvent.data.includes(KEY) : rawEvent.data?.key === KEY) && !this.rejectedOrigins.has(rawEvent.origin) && (this.rejectedOrigins.add(rawEvent.origin), logger.warn(message));
+  }
+  handleEvent(rawEvent) {
+    try {
+      if (!this.isAllowedSender(rawEvent))
+        return;
+      let { data } = rawEvent, { key, event, refId } = typeof data == "string" && isJSON(data) ? parse(data, CHANNEL_OPTIONS) : data;
+      if (key === KEY) {
+        let pageString = this.config.page === "manager" ? '<span style="color: #37D5D3; background: black"> manager </span>' : '<span style="color: #1EA7FD; background: black"> preview </span>', eventString = Object.values(core_events_exports).includes(event.type) ? `<span style="color: #FF4785">${event.type}</span>` : `<span style="color: #FFAE00">${event.type}</span>`;
+        if (refId && (event.refId = refId), event.source = this.config.page === "preview" ? rawEvent.origin : getEventSourceUrl(rawEvent, refId), !event.source) {
+          pretty.error(
+            `${pageString} received ${eventString} but was unable to determine the source of the event`
+          );
+          return;
+        }
+        let message = `${pageString} received ${eventString} (${data.length})`;
+        pretty.debug(
+          location.origin !== event.source ? message : `${message} <span style="color: gray">(on ${location.origin} from ${event.source})</span>`,
+          ...event.args
+        ), invariant(this.handler, "ChannelHandler should be set"), this.config.page === "manager" && this.buffer.length && this.flush(), this.handler(event);
+      }
+    } catch (error) {
+      logger.error(error);
+    }
+  }
+};
+
+// src/channels/websocket/index.ts
+var HEARTBEAT_INTERVAL = 15e3, HEARTBEAT_MAX_LATENCY = 5e3, SERVER_CHANNEL_PATH = "/storybook-server-channel", CHANNEL_OPTIONS2 = globalThis.CHANNEL_OPTIONS || {}, WebsocketTransport = class {
+  constructor({
+    url,
+    onError,
+    page,
+    createSocket,
+    enableHeartbeat = !0
+  }) {
+    this.buffer = [];
+    this.isReady = !1;
+    this.isClosed = !1;
+    this.pingTimeout = 0;
+    this.heartbeatPaused = !1;
+    this.enableHeartbeat = !0;
+    this.enableHeartbeat = enableHeartbeat, this.socket = createSocket ? createSocket(url) : new WebSocket(url), this.socket.onopen = () => {
+      this.isReady = !0, this.heartbeat(), this.flush();
+    }, this.socket.onmessage = ({ data }) => {
+      let event = typeof data == "string" && isJSON(data) ? parse(data) : data;
+      if (invariant(this.handler, "WebsocketTransport handler should be set"), this.heartbeat(), event.type === "ping") {
+        this.send({ type: "pong" });
+        return;
+      }
+      this.handler(event);
+    }, this.socket.onerror = (e2) => {
+      onError && onError(e2);
+    }, this.socket.onclose = (ev) => {
+      invariant(this.handler, "WebsocketTransport handler should be set"), this.handler({
+        type: CHANNEL_WS_DISCONNECT,
+        args: [{ reason: ev.reason, code: ev.code }],
+        from: page || "preview"
+      }), this.isClosed = !0, clearTimeout(this.pingTimeout);
+    };
+  }
+  heartbeat() {
+    clearTimeout(this.pingTimeout), !(!this.enableHeartbeat || this.heartbeatPaused || this.isClosed) && (this.pingTimeout = setTimeout(() => {
+      this.socket.close(3008, "timeout");
+    }, HEARTBEAT_INTERVAL + HEARTBEAT_MAX_LATENCY));
+  }
+  pauseHeartbeat() {
+    this.heartbeatPaused = !0, clearTimeout(this.pingTimeout);
+  }
+  resumeHeartbeat() {
+    this.heartbeatPaused = !1, this.isReady && this.heartbeat();
+  }
+  setHandler(handler) {
+    this.handler = handler;
+  }
+  send(event) {
+    this.isClosed || (this.isReady ? this.sendNow(event) : this.sendLater(event));
+  }
+  sendLater(event) {
+    this.buffer.push(event);
+  }
+  sendNow(event) {
+    let data = stringify(event, {
+      maxDepth: 15,
+      ...CHANNEL_OPTIONS2
+    });
+    this.socket.send(data);
+  }
+  flush() {
+    let { buffer } = this;
+    this.buffer = [], buffer.forEach((event) => this.send(event));
+  }
+};
+
+// src/channels/channel-slot.ts
+var channel;
+function syncGlobalSlot(next) {
+  globalThis.__STORYBOOK_ADDONS_CHANNEL__ = next;
+}
+function getChannel() {
+  let fromGlobal = globalThis.__STORYBOOK_ADDONS_CHANNEL__;
+  return fromGlobal && (channel = fromGlobal), channel ?? null;
+}
+function requireChannel() {
+  let installed = getChannel();
+  if (!installed)
+    throw new Error(
+      "Storybook addons channel is not installed in this runtime. Install it via setChannel() or addons.setChannel() at the runtime entry point before registering services or emitting events."
+    );
+  return installed;
+}
+function setChannel(next) {
+  channel = next ?? void 0, syncGlobalSlot(channel);
+}
+function clearChannel() {
+  setChannel(null);
+}
+function installNoopChannel() {
+  setChannel(new Channel({}));
+}
+function ensureChannel() {
+  getChannel() || installNoopChannel();
+}
+typeof window > "u" && ensureChannel();
+
+// src/channels/index.ts
+var channels_default = Channel;
+function createBrowserChannel({ page, extraTransports = [] }) {
+  let transports = [new PostMessageTransport({ page }), ...extraTransports];
+  if (globalThis.CONFIG_TYPE === "DEVELOPMENT") {
+    let protocol = window.location.protocol === "http:" ? "ws" : "wss", { hostname, port } = window.location, { wsToken } = globalThis.CHANNEL_OPTIONS || {}, channelUrl = `${protocol}://${hostname}:${port}${SERVER_CHANNEL_PATH}?token=${wsToken}&page=${page}`;
+    transports.push(new WebsocketTransport({ url: channelUrl, onError: () => {
+    }, page }));
+  }
+  let channel2 = new Channel({ transports });
+  return UniversalStore.__prepare(
+    channel2,
+    page === "manager" ? UniversalStore.Environment.MANAGER : UniversalStore.Environment.PREVIEW
+  ), channel2;
+}
+
+// src/preview/globals/globals.ts
+var globalsNameReferenceMap = {
+  "@storybook/global": "__STORYBOOK_MODULE_GLOBAL__",
+  "storybook/test": "__STORYBOOK_MODULE_TEST__",
+  "storybook/actions": "__STORYBOOK_MODULE_ACTIONS__",
+  "storybook/preview-api": "__STORYBOOK_MODULE_PREVIEW_API__",
+  "storybook/internal/channels": "__STORYBOOK_MODULE_CHANNELS__",
+  "storybook/internal/client-logger": "__STORYBOOK_MODULE_CLIENT_LOGGER__",
+  "storybook/internal/core-events": "__STORYBOOK_MODULE_CORE_EVENTS__",
+  "storybook/internal/preview-errors": "__STORYBOOK_MODULE_CORE_EVENTS_PREVIEW_ERRORS__",
+  "storybook/internal/types": "__STORYBOOK_MODULE_TYPES__",
+  // @deprecated TODO: Remove in 9.1 or some point in the future, I guess
+  "storybook/internal/preview-api": "__STORYBOOK_MODULE_PREVIEW_API__"
+}, globalPackages = Object.keys(globalsNameReferenceMap);
 
 // src/types/index.ts
 var types_exports = {};
@@ -30886,7 +30986,7 @@ var isEmptyRender = (element) => {
 }, test_annotations_default = () => ({ afterEach });
 
 // src/highlight/constants.ts
-var ADDON_ID3 = "storybook/highlight", HIGHLIGHT = `${ADDON_ID3}/add`, REMOVE_HIGHLIGHT = `${ADDON_ID3}/remove`, RESET_HIGHLIGHT = `${ADDON_ID3}/reset`, SCROLL_INTO_VIEW = `${ADDON_ID3}/scroll-into-view`, MAX_Z_INDEX = 2147483647, MIN_TOUCH_AREA_SIZE = 28;
+var ADDON_ID3 = "storybook/highlight", HIGHLIGHT = `${ADDON_ID3}/add`, REMOVE_HIGHLIGHT = `${ADDON_ID3}/remove`, RESET_HIGHLIGHT = `${ADDON_ID3}/reset`, SCROLL_INTO_VIEW = `${ADDON_ID3}/scroll-into-view`, HIGHLIGHT_MENU_CLICK = `${ADDON_ID3}/menu-click`, MAX_Z_INDEX = 2147483647, MIN_TOUCH_AREA_SIZE = 28;
 
 // src/highlight/icons.ts
 var iconPaths = {
@@ -30936,7 +31036,7 @@ var svgElements = "svg,path,rect,circle,line,polyline,polygon,ellipse,text".spli
   if ("elements" in options) {
     let { elements, color, style } = options;
     return {
-      id: void 0,
+      id: `legacy-${Math.random().toString(36).substring(2, 15)}`,
       priority: 0,
       selectors: elements,
       styles: {
@@ -30949,7 +31049,6 @@ var svgElements = "svg,path,rect,circle,line,polyline,polygon,ellipse,text".spli
   }
   let { menu, ...rest } = options;
   return {
-    id: void 0,
     priority: 0,
     styles: {
       outline: "2px dashed #029cfd"
@@ -31000,10 +31099,11 @@ var svgElements = "svg,path,rect,circle,line,polyline,polygon,ellipse,text".spli
     }
   }
   return map2;
-}, mapBoxes = (elements) => Array.from(elements.entries()).map(([element, { selectors, styles: styles3, hoverStyles, focusStyles, menu }]) => {
+}, mapBoxes = (elements) => Array.from(elements.entries()).map(([element, { id, selectors, styles: styles3, hoverStyles, focusStyles, menu }]) => {
   let { top, left, width, height } = element.getBoundingClientRect(), { position } = getComputedStyle(element);
   return {
     element,
+    id,
     selectors,
     styles: styles3,
     hoverStyles,
@@ -31047,12 +31147,8 @@ var svgElements = "svg,path,rect,circle,line,polyline,polygon,ellipse,text".spli
   height: target.height,
   selectors: target.selectors,
   element: {
-    attributes: Object.fromEntries(
-      Array.from(target.element.attributes).map((attr) => [attr.name, attr.value])
-    ),
     localName: target.element.localName,
-    tagName: target.element.tagName,
-    outerHTML: target.element.outerHTML
+    tagName: target.element.tagName
   }
 });
 
@@ -31065,11 +31161,11 @@ var menuId = "storybook-highlights-menu", rootId = "storybook-highlights-root", 
   highlights.subscribe(() => {
     root2 || (root2 = createElement("div", { id: rootId }), document7.body.appendChild(root2));
   }), highlights.subscribe((value) => {
-    let storybookRoot = document7.getElementById(storybookRootId);
-    if (!storybookRoot)
-      return;
+    let storybookRoot = document7.getElementById(storybookRootId) ?? document7.body;
     elements.set(mapElements(value));
-    let observer = new MutationObserver(() => elements.set(mapElements(value)));
+    let observer = new MutationObserver((records) => {
+      records.some((record2) => !root2?.contains(record2.target)) && elements.set(mapElements(value));
+    });
     return observer.observe(storybookRoot, { subtree: !0, childList: !0 }), () => {
       observer.disconnect();
     };
@@ -31349,25 +31445,23 @@ var menuId = "storybook-highlights-menu", rootId = "storybook-highlights-root", 
               createElement(
                 "ul",
                 { class: "menu-items" },
-                menuItems.map(
-                  ({ id, title, description, iconLeft, iconRight, clickEvent: event }) => {
-                    let onClick = event && (() => channel2.emit(event, id, getEventDetails(target)));
-                    return createElement("li", {}, [
-                      createElement(
-                        onClick ? "button" : "div",
-                        onClick ? { class: "menu-item", type: "button", onClick } : { class: "menu-item" },
-                        [
-                          iconLeft ? createIcon(iconLeft) : null,
-                          createElement("div", { class: "menu-item-content" }, [
-                            createElement(description ? "strong" : "span", {}, [title]),
-                            description && createElement("span", {}, [description])
-                          ]),
-                          iconRight ? createIcon(iconRight) : null
-                        ]
-                      )
-                    ]);
-                  }
-                )
+                menuItems.map(({ id, title, description, iconLeft, iconRight, clickable }) => {
+                  let onClick = clickable && (() => channel2.emit(HIGHLIGHT_MENU_CLICK, target.id, id, getEventDetails(target)));
+                  return createElement("li", {}, [
+                    createElement(
+                      onClick ? "button" : "div",
+                      onClick ? { class: "menu-item", type: "button", onClick } : { class: "menu-item" },
+                      [
+                        iconLeft ? createIcon(iconLeft) : null,
+                        createElement("div", { class: "menu-item-content" }, [
+                          createElement(description ? "strong" : "span", {}, [title]),
+                          description && createElement("span", {}, [description])
+                        ]),
+                        iconRight ? createIcon(iconRight) : null
+                      ]
+                    )
+                  ]);
+                })
               )
             ])
           )
@@ -31383,9 +31477,13 @@ var menuId = "storybook-highlights-menu", rootId = "storybook-highlights-root", 
   };
   targets.subscribe(renderMenu), selected.subscribe(renderMenu);
   let addHighlight = (highlight) => {
-    let info = normalizeOptions(highlight);
+    let info = highlight && normalizeOptions(highlight);
+    if (typeof info?.id != "string" || !info.id) {
+      logger.warn("Ignoring highlight without an id", highlight);
+      return;
+    }
     highlights.set((value) => {
-      let others = info.id ? value.filter((h4) => h4.id !== info.id) : value;
+      let others = value.filter((h4) => h4.id !== info.id);
       return info.selectors?.length ? [...others, info] : others;
     });
   }, removeHighlight = (id) => {
@@ -31397,7 +31495,7 @@ var menuId = "storybook-highlights-menu", rootId = "storybook-highlights-root", 
     clearTimeout(removeTimeout), removeHighlight(id);
     let element = document7.querySelector(target);
     if (!element) {
-      console.warn(`Cannot scroll into view: ${target} not found`);
+      logger.warn(`Cannot scroll into view: ${target} not found`);
       return;
     }
     element.scrollIntoView({ behavior: "smooth", block: "center", ...options });
