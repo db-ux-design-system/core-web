@@ -93,6 +93,6 @@ overrides:
 
 catalog:
   postcss: 8.5.31
-  webpack: 5.112.0
+  webpack: 5.112.2
 
 saveExact: true
