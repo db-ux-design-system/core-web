@@ -1,0 +1,664 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{n as t,p as n}from"./iframe-D15YIX-r.js";import{C as r,T as i,_ as a,i as o,o as s,r as c,u as l,w as u}from"./utils-u-Vdavx5.js";import{n as d,t as f}from"./link-BUwiXzBJ.js";function p(e,t){let n=t||(0,m.useRef)(t);return(0,h.jsx)(`td`,{ref:n,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table-data-cell`,e.className),"data-horizontal-alignment":e.horizontalAlignment,"data-vertical-alignment":e.verticalAlignment,colSpan:l(e.colSpan,e.colspan),rowSpan:l(e.rowSpan,e.rowspan),headers:e.headers,children:e.children})}var m,h,g;function _(){return(_=e((()=>{n(),i(),m=n(),a(),h=t(),g=(0,m.forwardRef)(p),g.__docgenInfo={description:``,methods:[],displayName:`DBTableDataCell`,props:{children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`},colSpan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:`The **\`colSpan\`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)`},colspan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:"Lowercase HTML attribute alternative to `colSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).\nIf both `colSpan` and `colspan` are provided, `colSpan` takes precedence.\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)"},headers:{required:!1,tsType:{name:`string`},description:`The **\`headers\`** property of the HTMLTableCellElement interface contains a list of IDs of th elements that are _headers_ for this specific cell.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/headers)`},rowSpan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:`The **\`rowSpan\`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)`},rowspan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:"Lowercase HTML attribute alternative to `rowSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).\nIf both `rowSpan` and `rowspan` are provided, `rowSpan` takes precedence.\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)"},horizontalAlignment:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof AlignmentList)[number]`},description:`Set the horizontal alignment of the cell content.`},verticalAlignment:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof AlignmentList)[number]`},description:`Set the vertical alignment of the cell content.`}}}})))()}function v(e,t){let n=t||(0,y.useRef)(t);return(0,b.jsx)(`th`,{ref:n,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table-header-cell`,e.className),"data-horizontal-alignment":e.horizontalAlignment,"data-vertical-alignment":e.verticalAlignment,"data-no-text":s(e.noText),scope:e.scope,colSpan:l(e.colSpan,e.colspan),rowSpan:l(e.rowSpan,e.rowspan),headers:e.headers,abbr:e.abbr,children:e.children})}var y,b,x;function S(){return(S=e((()=>{n(),i(),y=n(),a(),b=t(),x=(0,y.forwardRef)(v),x.__docgenInfo={description:``,methods:[],displayName:`DBTableHeaderCell`,props:{abbr:{required:!1,tsType:{name:`string`},description:`The **\`abbr\`** property of the HTMLTableCellElement interface indicates an abbreviation associated with the cell.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/abbr)`},scope:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableHeaderCellScopeList)[number]`},description:`The **\`scope\`** property of the HTMLTableCellElement interface indicates the scope of a th cell.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/scope)`},noText:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Hide the text content of the cell.`},children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`},colSpan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:`The **\`colSpan\`** read-only property of the HTMLTableCellElement interface represents the number of columns this cell must span; this lets the cell occupy space across multiple columns of the table.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)`},colspan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:"Lowercase HTML attribute alternative to `colSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).\nIf both `colSpan` and `colspan` are provided, `colSpan` takes precedence.\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/colSpan)"},headers:{required:!1,tsType:{name:`string`},description:`The **\`headers\`** property of the HTMLTableCellElement interface contains a list of IDs of th elements that are _headers_ for this specific cell.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/headers)`},rowSpan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:`The **\`rowSpan\`** read-only property of the HTMLTableCellElement interface represents the number of rows this cell must span; this lets the cell occupy space across multiple rows of the table.
+
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)`},rowspan:{required:!1,tsType:{name:`union`,raw:`number | string`,elements:[{name:`number`},{name:`string`}]},description:"Lowercase HTML attribute alternative to `rowSpan`. Use this in template languages that require lowercase attributes (e.g. Angular, Vue).\nIf both `rowSpan` and `rowspan` are provided, `rowSpan` takes precedence.\n\n[MDN Reference](https://developer.mozilla.org/docs/Web/API/HTMLTableCellElement/rowSpan)"},horizontalAlignment:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof AlignmentList)[number]`},description:`Set the horizontal alignment of the cell content.`},verticalAlignment:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof AlignmentList)[number]`},description:`Set the vertical alignment of the cell content.`}}}})))()}function C(e,t){let n=(0,w.useId)(),i=t||(0,w.useRef)(t);function a(e){if(e.headerCell)return e}return(0,T.jsx)(`tr`,{ref:i,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table-row`,e.className),"data-interactive":s(e.interactive),"data-sub-header-emphasis":e.subHeaderEmphasis,children:e.cells?(0,T.jsx)(T.Fragment,{children:e.cells?.map((t,r)=>t.headerCell?(0,T.jsx)(x,{id:t.id,abbr:a(t)?.abbr,scope:a(t)?.scope,noText:a(t)?.noText,className:t.className??t.class,horizontalAlignment:t.horizontalAlignment,verticalAlignment:t.verticalAlignment,headers:t.headers,colSpan:t.colSpan,colspan:t.colspan,rowSpan:t.rowSpan,rowspan:t.rowspan,children:t.link?(0,T.jsx)(f,{content:t.link?.content,size:t.link?.size,variant:t.link?.variant,className:t.link?.className??t.link?.class,id:t.link?.id,autofocus:t.link?.autofocus,disabled:t.link?.disabled,href:t.link?.href,hreflang:t.link?.hreflang,target:t.link?.target,rel:t.link?.rel,referrerPolicy:t.link?.referrerPolicy,role:t.link?.role,showIcon:t.link?.showIcon,text:t.link?.text,wrap:t.link?.wrap,children:t.link?.children}):(0,T.jsx)(T.Fragment,{children:t.content})},`${t.id??e.id??n}-table-row-header-cell-${r}`):(0,T.jsx)(g,{id:t.id,className:t.className??t.class,horizontalAlignment:t.horizontalAlignment,verticalAlignment:t.verticalAlignment,headers:t.headers,colSpan:t.colSpan,colspan:t.colspan,rowSpan:t.rowSpan,rowspan:t.rowspan,children:t.link?(0,T.jsx)(f,{content:t.link?.content,size:t.link?.size,variant:t.link?.variant,className:t.link?.className??t.link?.class,id:t.link?.id,autofocus:t.link?.autofocus,disabled:t.link?.disabled,href:t.link?.href,hreflang:t.link?.hreflang,target:t.link?.target,rel:t.link?.rel,referrerPolicy:t.link?.referrerPolicy,role:t.link?.role,showIcon:t.link?.showIcon,text:t.link?.text,wrap:t.link?.wrap,children:t.link?.children}):(0,T.jsx)(T.Fragment,{children:t.content})},`${t.id??e.id??n}-table-row-data-cell-${r}`))}):(0,T.jsx)(T.Fragment,{children:e.children})})}var w,T,E;function D(){return(D=e((()=>{n(),i(),w=n(),a(),d(),_(),S(),T=t(),E=(0,w.forwardRef)(C),E.__docgenInfo={description:``,methods:[],displayName:`DBTableRow`,props:{cells:{required:!1,tsType:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`},description:`All cells of the row`},subHeaderEmphasis:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`},description:`Change styling of row only if it is inside thead`},interactive:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`},children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`}}}})))()}function O(e,t){let n=(0,k.useId)(),i=t||(0,k.useRef)(t);return(0,A.jsx)(`tbody`,{ref:i,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table-body`,e.className),children:e.rows?(0,A.jsx)(A.Fragment,{children:e.rows?.map((t,r)=>(0,A.jsx)(E,{cells:t.cells,className:t.className??t.class,interactive:t.interactive,id:t.id},`${t.id??e.id??n}-table-body-row-${r}`))}):(0,A.jsx)(A.Fragment,{children:e.children})})}var k,A,j;function M(){return(M=e((()=>{n(),i(),k=n(),a(),D(),A=t(),j=(0,k.forwardRef)(O),j.__docgenInfo={description:``,methods:[],displayName:`DBTableBody`,props:{rows:{required:!1,tsType:{name:`Array`,elements:[{name:`intersection`,raw:`DBTableRowDefaultProps & GlobalProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * All cells of the row
+   */
+  cells?: DBTableRowCell[];
+  /**
+   * Change styling of row only if it is inside thead
+   */
+  subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+  /**
+   * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
+   */
+  interactive?: boolean | string;
+}`,signature:{properties:[{key:`cells`,value:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`,required:!1},description:`All cells of the row`},{key:`subHeaderEmphasis`,value:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`,required:!1},description:`Change styling of row only if it is inside thead`},{key:`interactive`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`}]}},{name:`GlobalProps`}]}],raw:`DBTableRowProps[]`},description:``},children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`}}}})))()}function N(e,t){let n=(0,P.useId)(),i=t||(0,P.useRef)(t);return(0,F.jsx)(`tfoot`,{ref:i,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table-footer`,e.className),children:e.rows?(0,F.jsx)(F.Fragment,{children:e.rows?.map((t,r)=>(0,F.jsx)(E,{cells:t.cells,className:t.className??t.class,interactive:t.interactive,id:t.id},`${t.id??e.id??n}-table-footer-row-${r}`))}):(0,F.jsx)(F.Fragment,{children:e.children})})}var P,F,I;function L(){return(L=e((()=>{n(),i(),P=n(),a(),D(),F=t(),I=(0,P.forwardRef)(N),I.__docgenInfo={description:``,methods:[],displayName:`DBTableFooter`,props:{rows:{required:!1,tsType:{name:`Array`,elements:[{name:`intersection`,raw:`DBTableRowDefaultProps & GlobalProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * All cells of the row
+   */
+  cells?: DBTableRowCell[];
+  /**
+   * Change styling of row only if it is inside thead
+   */
+  subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+  /**
+   * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
+   */
+  interactive?: boolean | string;
+}`,signature:{properties:[{key:`cells`,value:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`,required:!1},description:`All cells of the row`},{key:`subHeaderEmphasis`,value:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`,required:!1},description:`Change styling of row only if it is inside thead`},{key:`interactive`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`}]}},{name:`GlobalProps`}]}],raw:`DBTableRowProps[]`},description:``},children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`}}}})))()}function R(e,t){let n=(0,z.useId)(),i=t||(0,z.useRef)(t);function a(e){return e?.map(e=>({...e,headerCell:!0}))}return(0,B.jsx)(`thead`,{ref:i,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table-head`,e.className),children:e.rows?(0,B.jsx)(B.Fragment,{children:e.rows?.map((t,r)=>(0,B.jsx)(E,{cells:a(t.cells),className:t.className??t.class,subHeaderEmphasis:t.subHeaderEmphasis,interactive:t.interactive,id:t.id},`${t.id??e.id??n}-table-head-row-${r}`))}):(0,B.jsx)(B.Fragment,{children:e.children})})}var z,B,V;function H(){return(H=e((()=>{n(),i(),z=n(),a(),D(),B=t(),V=(0,z.forwardRef)(R),V.__docgenInfo={description:``,methods:[],displayName:`DBTableHead`,props:{rows:{required:!1,tsType:{name:`Array`,elements:[{name:`intersection`,raw:`DBTableRowDefaultProps & GlobalProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * All cells of the row
+   */
+  cells?: DBTableRowCell[];
+  /**
+   * Change styling of row only if it is inside thead
+   */
+  subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+  /**
+   * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
+   */
+  interactive?: boolean | string;
+}`,signature:{properties:[{key:`cells`,value:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`,required:!1},description:`All cells of the row`},{key:`subHeaderEmphasis`,value:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`,required:!1},description:`Change styling of row only if it is inside thead`},{key:`interactive`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`}]}},{name:`GlobalProps`}]}],raw:`DBTableRowProps[]`},description:``},children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`}}}})))()}function U(e,t){let n=t||(0,W.useRef)(t),[i,a]=(0,W.useState)(()=>void 0),[l,d]=(0,W.useState)(()=>void 0);function f(){try{return typeof e.data==`string`?JSON.parse(e.data):e.data}catch(e){console.error(e)}return{}}return(0,W.useEffect)(()=>{e.data?a(f()):a(void 0)},[e.data]),(0,W.useEffect)(()=>{n.current&&e.mobileVariant===`list`&&o(()=>{let e=n.current;if(!e)return;let t=e.querySelectorAll(`thead tr th`);t.length&&e.querySelectorAll(`:is(tbody,tfoot) tr`).forEach(e=>{e.querySelectorAll(`:is(td,th)`).forEach((e,n)=>{let r=t[n];if(r){let t=Array.from(r.childNodes).filter(e=>e.nodeType===Node.TEXT_NODE).map(e=>e.textContent?.trim()).filter(Boolean).join(` `);t&&(e.dataset.header=t)}})})},1)},[e.mobileVariant,n.current,i]),(0,W.useEffect)(()=>{if(e.columnSizes){let t={};Object.entries(e.columnSizes).forEach(([e,n])=>{t[`--db-table-column-size-${e}`]=n}),d(t)}else d(void 0)},[e.columnSizes]),(0,G.jsx)(`div`,{...u(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),className:c(`db-table`,e.className),style:l,"data-width":e.width,"data-size":e.size,"data-divider":e.divider,"data-variant":e.variant,"data-mobile-variant":e.mobileVariant,"data-show-caption":s(e.showCaption),"data-sticky-header":e.stickyHeader,children:(0,G.jsxs)(`table`,{ref:n,...r(e,[`data-icon-variant`,`data-icon-variant-before`,`data-icon-variant-after`,`data-icon-weight`,`data-icon-weight-before`,`data-icon-weight-after`,`data-interactive`,`data-force-mobile`,`data-color`,`data-container-color`,`data-bg-color`,`data-on-bg-color`,`data-color-scheme`,`data-font-size`,`data-headline-size`,`data-divider`,`data-focus`,`data-font`,`data-density`]),id:e.id??e.propOverrides?.id,children:[e.captionPlain?(0,G.jsx)(`caption`,{children:e.captionPlain}):(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(G.Fragment,{children:e.caption})}),i?(0,G.jsxs)(G.Fragment,{children:[i?.header?(0,G.jsx)(V,{rows:i?.header}):null,i?.body?(0,G.jsx)(j,{rows:i?.body}):null,i?.footer?(0,G.jsx)(I,{rows:i?.footer}):null]}):(0,G.jsx)(G.Fragment,{children:e.children})]})})}var W,G,K;function q(){return(q=e((()=>{n(),i(),W=n(),a(),M(),L(),H(),G=t(),K=(0,W.forwardRef)(U),K.__docgenInfo={description:``,methods:[],displayName:`DBTable`,props:{caption:{required:!1,tsType:{name:`any`},description:`Slot for table caption`},captionPlain:{required:!1,tsType:{name:`string`},description:`String alternative for table caption slot`},data:{required:!1,tsType:{name:`union`,raw:`DBTableData | string`,elements:[{name:`signature`,type:`object`,raw:`{
+  header?: DBTableRowDefaultProps[];
+  body?: DBTableRowDefaultProps[];
+  footer?: DBTableRowDefaultProps[];
+}`,signature:{properties:[{key:`header`,value:{name:`Array`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * All cells of the row
+   */
+  cells?: DBTableRowCell[];
+  /**
+   * Change styling of row only if it is inside thead
+   */
+  subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+  /**
+   * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
+   */
+  interactive?: boolean | string;
+}`,signature:{properties:[{key:`cells`,value:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`,required:!1},description:`All cells of the row`},{key:`subHeaderEmphasis`,value:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`,required:!1},description:`Change styling of row only if it is inside thead`},{key:`interactive`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`}]}}],raw:`DBTableRowDefaultProps[]`,required:!1}},{key:`body`,value:{name:`Array`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * All cells of the row
+   */
+  cells?: DBTableRowCell[];
+  /**
+   * Change styling of row only if it is inside thead
+   */
+  subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+  /**
+   * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
+   */
+  interactive?: boolean | string;
+}`,signature:{properties:[{key:`cells`,value:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`,required:!1},description:`All cells of the row`},{key:`subHeaderEmphasis`,value:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`,required:!1},description:`Change styling of row only if it is inside thead`},{key:`interactive`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`}]}}],raw:`DBTableRowDefaultProps[]`,required:!1}},{key:`footer`,value:{name:`Array`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * All cells of the row
+   */
+  cells?: DBTableRowCell[];
+  /**
+   * Change styling of row only if it is inside thead
+   */
+  subHeaderEmphasis?: DBTableRowSubHeaderEmphasisType;
+
+  /**
+   * If true marks the row as interactive, which checks for child with data-table-row-trigger="true"
+   */
+  interactive?: boolean | string;
+}`,signature:{properties:[{key:`cells`,value:{name:`Array`,elements:[{name:`intersection`,raw:`(DBTableHeaderCellProps | DBTableDataCellProps) & {
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,elements:[{name:`unknown`},{name:`signature`,type:`object`,raw:`{
+  headerCell?: boolean;
+  content?: any;
+  link?: DBLinkProps;
+}`,signature:{properties:[{key:`headerCell`,value:{name:`boolean`,required:!1}},{key:`content`,value:{name:`any`,required:!1}},{key:`link`,value:{name:`intersection`,raw:`DBLinkDefaultProps & GlobalProps & ClickEventProps<HTMLAnchorElement> & LinkProps & RoleProps & ShowIconProps & TextProps & WrapProps`,elements:[{name:`signature`,type:`object`,raw:`{
+  /**
+   * Adds a different arrow after the link to indicate external or internal link
+   */
+  content?: LinkContentType;
+  /**
+   * Change the size of the link
+   */
+  size?: LinkSizeType;
+  /**
+   * Change the styling of the link. \`inline\` will remove the arrow. Defaults to adaptive.
+   */
+  variant?: LinkVariantType;
+}`,signature:{properties:[{key:`content`,value:{name:`unknown[number]`,raw:`(typeof LinkContentList)[number]`,required:!1},description:`Adds a different arrow after the link to indicate external or internal link`},{key:`size`,value:{name:`unknown[number]`,raw:`(typeof LinkSizeList)[number]`,required:!1},description:`Change the size of the link`},{key:`variant`,value:{name:`unknown[number]`,raw:`(typeof LinkVariantList)[number]`,required:!1},description:"Change the styling of the link. `inline` will remove the arrow. Defaults to adaptive."}]}},{name:`GlobalProps`},{name:`signature`,type:`object`,raw:`{
+  /**
+   * React specific onClick to pass to forward ref.
+   */
+  onClick?: (event: ClickEvent<T>) => void;
+  click?: (event: ClickEvent<T>) => void;
+}`,signature:{properties:[{key:`onClick`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1},description:`React specific onClick to pass to forward ref.`},{key:`click`,value:{name:`signature`,type:`function`,raw:`(event: ClickEvent<T>) => void`,signature:{arguments:[{type:{name:`ReactMouseEvent`,raw:`React.MouseEvent<T, MouseEvent>`,elements:[{name:`HTMLAnchorElement`},{name:`MouseEvent`}]},name:`event`}],return:{name:`void`}},required:!1}}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Disables the link.
+   */
+  disabled?: boolean | string;
+  /**
+   * The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).
+   */
+  href?: string;
+  /**
+   * Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).
+   */
+  hreflang?: string;
+  /**
+   * Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).
+   */
+  target?: LinkTargetType;
+  /**
+   * The relationship of the linked URL as space-separated link types.
+   */
+  rel?: string;
+  /**
+   * How much of the referrer to send when following the link.
+   * @deprecated use \`referrerPolicy\` instead
+   */
+  referrerpolicy?: LinkReferrerPolicyType;
+  /**
+   * How much of the referrer to send when following the link.
+   */
+  referrerPolicy?: LinkReferrerPolicyType;
+}`,signature:{properties:[{key:`disabled`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Disables the link.`},{key:`href`,value:{name:`string`,required:!1},description:`The [URL that the hyperlink points to](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#href).`},{key:`hreflang`,value:{name:`string`,required:!1},description:`Hints for the human [language of the linked page or document](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#hreflang).`},{key:`target`,value:{name:`unknown[number]`,raw:`(typeof LinkTargetList)[number]`,required:!1},description:`Where to open the linked URL, as the name for a [browsing context](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target).`},{key:`rel`,value:{name:`string`,required:!1},description:`The relationship of the linked URL as space-separated link types.`},{key:`referrerpolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:"How much of the referrer to send when following the link.\n@deprecated use `referrerPolicy` instead"},{key:`referrerPolicy`,value:{name:`unknown[number]`,raw:`(typeof LinkReferrerPolicyList)[number]`,required:!1},description:`How much of the referrer to send when following the link.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Sets aria role based on [\`aria-role\`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles).
+   */
+  role?: string;
+}`,signature:{properties:[{key:`role`,value:{name:`string`,required:!1},description:"Sets aria role based on [`aria-role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles)."}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Enables or disables the visibility of the icon. The default value depends on the component.
+   * For many components this property is optional to reflect Figma properties.
+   */
+  showIcon?: boolean | string;
+}`,signature:{properties:[{key:`showIcon`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Enables or disables the visibility of the icon. The default value depends on the component.
+For many components this property is optional to reflect Figma properties.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.
+   */
+  text?: string;
+}`,signature:{properties:[{key:`text`,value:{name:`string`,required:!1},description:`Alternative for default slot/children. Do not use together with a text children/slot, as both will be rendered and result in duplicate labels.`}]}},{name:`signature`,type:`object`,raw:`{
+  /**
+   * Determines whether the text should wrap when its parent container is too small, preventing overflow.
+   */
+  wrap?: boolean | string;
+}`,signature:{properties:[{key:`wrap`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`Determines whether the text should wrap when its parent container is too small, preventing overflow.`}]}}],required:!1}}]}}]}],raw:`DBTableRowCell[]`,required:!1},description:`All cells of the row`},{key:`subHeaderEmphasis`,value:{name:`unknown[number]`,raw:`(typeof DBTableRowSubHeaderEmphasisList)[number]`,required:!1},description:`Change styling of row only if it is inside thead`},{key:`interactive`,value:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}],required:!1},description:`If true marks the row as interactive, which checks for child with data-table-row-trigger="true"`}]}}],raw:`DBTableRowDefaultProps[]`,required:!1}}]}},{name:`string`}]},description:`Table data if you don't use default slot/children`},divider:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableDividerList)[number]`},description:`Show the divider between the rows and cells`},showCaption:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Show caption above table default is hidden`},size:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableRowSizeList)[number]`},description:`Size of the table rows`},variant:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableVariantList)[number]`},description:`Change the layout of the table
+spaced: card style table
+flat: classic table`},mobileVariant:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableMobileVariantList)[number]`},description:`Change the layout of the table on mobile
+list: list style
+table: classic table`},stickyHeader:{required:!1,tsType:{name:`unknown[number]`,raw:`(typeof DBTableStickyHeaderList)[number]`},description:`Change the header cells to be sticky when scrolling the table`},columnSizes:{required:!1,tsType:{name:`Record`,elements:[{name:`number`},{name:`union`,raw:`DBTableColumnsSizeType | string`,elements:[{name:`unknown[number]`,raw:`(typeof DBTableColumnsSizeList)[number]`},{name:`string`}]}],raw:`Record<number, DBTableColumnsSizeType | string>`},description:`Set the width of the columns based in their index.
+Alternative: Use \`--db-table-column-size-$index\` inside CSS to control it.
+See: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid-template-columns`},children:{required:!1,tsType:{name:`any`},description:`default slot`},className:{required:!1,tsType:{name:`string`},description:`React specific for adding className to the component.`},class:{required:!1,tsType:{name:`union`,raw:`string | any`,elements:[{name:`string`},{name:`any`}]},description:`Workaround for TypeScript using class for all components.`},id:{required:!1,tsType:{name:`string`},description:`[ID](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id) of the component, generated automatically for some components as a fallback if unset.`},autofocus:{required:!1,tsType:{name:`union`,raw:`boolean | string`,elements:[{name:`boolean`},{name:`string`}]},description:`Before using please check for the [accessibility concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus#accessibility_concerns)`},propOverrides:{required:!1,tsType:{name:`Pick`,elements:[{name:`GlobalProps`},{name:`literal`,value:`'id'`}],raw:`Pick<GlobalProps, 'id'>`},description:`Allows overriding specific props on nested elements or internal component structure. Currently only supports propOverrides.id`},width:{required:!1,tsType:{name:`union`,raw:`WidthType | string`,elements:[{name:`unknown[number]`,raw:`(typeof WidthList)[number]`},{name:`string`}]},description:`Width of the component. Auto width based on children size, full width based on parent elements width.`}}}})))()}export{I as a,M as c,x as d,S as f,H as i,E as l,_ as m,q as n,L as o,g as p,V as r,j as s,K as t,D as u};
