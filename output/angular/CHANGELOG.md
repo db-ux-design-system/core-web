@@ -62,9 +62,9 @@
 
 - refactor: remove roundness not controlled by `db-border-radius` variables in preparation for the new DB Theme - [see commit af0901e](https://github.com/db-ux-design-system/core-web/commit/af0901e2d01449b01210bc468e1296d721bc3b0e):
 
-        - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
-        - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
-        - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
+    - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
+    - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
+    - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
 
 - feat(DBParagraph): add beta Paragraph and TextGroup components - [see commit 600aa2d](https://github.com/db-ux-design-system/core-web/commit/600aa2dc2706f964a0f368bca2286e4f2811ed0f):
 
