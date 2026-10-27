@@ -42,9 +42,9 @@
     "zone.js": "0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.27",
-    "@angular/build": "21.2.27",
-    "@angular/cli": "21.2.27",
+    "@angular-devkit/build-angular": "21.2.28",
+    "@angular/build": "21.2.28",
+    "@angular/cli": "21.2.28",
     "@angular/compiler-cli": "21.2.25",
     "@db-ux/core-postcss-plugin": "workspace:*",
     "@types/node": "26.6.5",
