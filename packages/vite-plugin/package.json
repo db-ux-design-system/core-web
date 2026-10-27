@@ -49,7 +49,7 @@
     "@db-ux/db-theme": "7.2.0",
     "@types/node": "26.6.5",
     "cpy-cli": "7.0.0",
-    "npm-run-all2": "9.0.3",
+    "npm-run-all2": "9.0.4",
     "typescript": "5.9.3",
     "vite": "8.3.5",
     "vitest": "5.0.5"
