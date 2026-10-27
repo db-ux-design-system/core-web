@@ -1,5 +1,3 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/component";
 
@@ -13,57 +11,12 @@
 		padding: unset;
 		font: inherit;
 	}
-
-	@include helpers.not-disabled {
-		@include helpers.hover {
-			> .db-card,
-			> db-card > .db-card {
-				background-color: var(--db-card-background-color-hovered);
-			}
-		}
-
-		@include helpers.active {
-			> .db-card,
-			> db-card > .db-card {
-				background-color: var(--db-card-background-color-pressed);
-			}
-		}
-	}
 }
 
 .db-card {
-	--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-1-default};
-	--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-1-hovered};
-	--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-1-pressed};
-
 	@extend %default-card;
 	@include component.get-data-spacing;
 	@include helpers.display(flex);
 
 	flex-direction: column;
-	background-color: var(--db-card-background-color-default);
-
-	&[data-behavior="interactive"] {
-		@include helpers.not-disabled {
-			@include helpers.hover {
-				background-color: var(--db-card-background-color-hovered);
-			}
-
-			@include helpers.active {
-				background-color: var(--db-card-background-color-pressed);
-			}
-		}
-	}
-
-	&[data-elevation-level="2"] {
-		--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-2-default};
-		--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-2-hovered};
-		--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-2-pressed};
-	}
-
-	&[data-elevation-level="3"] {
-		--db-card-background-color-default: #{colors.$db-adaptive-bg-basic-level-3-default};
-		--db-card-background-color-hovered: #{colors.$db-adaptive-bg-basic-level-3-hovered};
-		--db-card-background-color-pressed: #{colors.$db-adaptive-bg-basic-level-3-pressed};
-	}
 }

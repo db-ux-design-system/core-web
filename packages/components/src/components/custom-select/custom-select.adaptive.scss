@@ -1,11 +1,70 @@
-@use "../../styles/adaptive/form-components";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/internal/form-components";
 
+/*
+ * Adaptive coloring for custom-select. Unlike input/select/textarea - whose
+ * inner element IS the painted field box - the custom-select toggle is a
+ * transparent full-size `<summary>` overlay, and the visible field box is the
+ * `.db-custom-select-form-field` wrapper (see custom-select-form-field.scss,
+ * which extends `%default-interactive-component` for the legacy hover/pressed).
+ * So the adaptive surface, border and hover/pressed states must paint that
+ * wrapper, not the `summary`; painting `summary` (as the shared
+ * `field-materials(summary)` did) had no visible effect and never reacted to
+ * hover/pressed.
+ */
 [data-adaptive-coloring="true"] .db-custom-select,
 .db-custom-select[data-adaptive-coloring="true"] {
-	@include form-components.field-materials(
-		summary,
-		$revert-cursor: false,
-		$pressed: true
-	);
-	@include form-components.field-validity(summary);
+	// Field content (selection label, placeholder, chevron) uses the default
+	// text role.
+	.db-custom-select-label,
+	.db-custom-select-placeholder,
+	.db-custom-select-form-field::after,
+	> label {
+		color: adaptive.$db-text-default;
+	}
+
+	.db-custom-select-form-field {
+		background-color: adaptive.$db-bg-default;
+		color: adaptive.$db-text-default;
+		border-color: adaptive.$db-border-default;
+	}
+
+	&:not(:has(summary:disabled, summary[aria-disabled="true"])) {
+		@include helpers.hover {
+			.db-custom-select-form-field {
+				background-color: adaptive.$db-bg-hovered;
+			}
+		}
+
+		@include helpers.active {
+			.db-custom-select-form-field {
+				background-color: adaptive.$db-bg-pressed;
+			}
+		}
+	}
+
+	// Validity: vibrant border on valid/invalid, plus the validity message
+	// colors. The border paints on the field box wrapper.
+	@include form-components.get-validity(summary) {
+		.db-custom-select-form-field {
+			border-color: adaptive.$db-border-vibrant;
+		}
+
+		@include form-components.get-validity-message("valid");
+	}
+
+	@include form-components.get-validity(summary, "invalid") {
+		.db-custom-select-form-field {
+			border-color: adaptive.$db-border-vibrant;
+		}
+
+		@include form-components.get-validity-message("invalid");
+	}
+
+	&:has(summary:disabled, summary[aria-disabled="true"]) {
+		--db-adaptive-transparency: 40%;
+
+		opacity: 1;
+	}
 }

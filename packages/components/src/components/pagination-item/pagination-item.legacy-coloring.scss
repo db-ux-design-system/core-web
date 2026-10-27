@@ -1,0 +1,36 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/component";
+
+/*
+ * Legacy color layer for `pagination-item`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+// Private (leading `_`) so it does not collide with the base's `control`
+// mixin when both files are `@forward`ed into the bundle.
+@mixin _control($suffix: "") {
+	> :is(a, button)#{$suffix} {
+		@content;
+	}
+}
+
+.db-pagination-item {
+	@include _control {
+		@extend %default-interactive-component-colors;
+
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	}
+
+	&[data-variant="ghost"] {
+		@include _control {
+			@extend %button-outlined-ghost-colors;
+		}
+	}
+
+	&[data-variant="filled"] {
+		@include _control {
+			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		}
+	}
+}

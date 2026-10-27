@@ -1,4 +1,6 @@
 import {
+	onMount,
+	onUpdate,
 	useDefaultProps,
 	useMetadata,
 	useRef,
@@ -17,46 +19,57 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 	const _ref = useRef<HTMLDivElement | null>(null);
 
 	const state = useStore<DBCustomButtonState>({
-		_getMaterial: (): MaterialType | undefined => {
-			if (props.material) {
-				return props.material;
+		initialized: false,
+		_getAltStateMaterial: (): MaterialType | undefined => {
+			if (props.altStateMaterial) {
+				return props.altStateMaterial;
 			}
 
-			if (props.variant === 'brand') {
-				return 'origin';
-			}
-
-			if (props.variant === 'ghost') {
-				return 'transparent';
-			}
-
-			if (props.variant === 'filled') {
-				return 'semi-transparent';
-			}
-
-			if (props.variant === 'adaptive') {
-				return undefined;
-			}
-
-			return 'filled-1';
+			return 'inverted';
 		},
-		_getColor: (): ColorType | undefined => {
-			if (props.color) {
-				return props.color;
-			}
-
-			if (props.variant === 'brand') {
-				return 'brand';
-			}
-
-			return undefined;
+		_getAltStateColor: (): ColorType | undefined => {
+			return props.altStateColor;
 		}
 	});
 
+	onMount(() => {
+		state.initialized = true;
+	});
+
+	onUpdate(() => {
+		if (state.initialized) {
+			const hasInput = !!_ref?.querySelector('input');
+
+			if (props.material) {
+				state._material = props.material;
+			} else if (props.variant === 'brand') {
+				state._material = hasInput ? 'filled-1' : 'origin';
+			} else if (props.variant === 'ghost') {
+				state._material = 'transparent';
+			} else if (props.variant === 'filled') {
+				state._material = 'semi-transparent';
+			} else if (props.variant === 'adaptive') {
+				state._material = undefined;
+			} else {
+				state._material = 'filled-1';
+			}
+
+			if (props.color) {
+				state._color = props.color;
+			} else if (props.variant === 'brand') {
+				state._color = hasInput ? undefined : 'brand';
+			} else {
+				state._color = undefined;
+			}
+		}
+	}, [_ref, state.initialized]);
+
 	return (
 		<div
-			data-material={state._getMaterial()}
-			data-color={state._getColor()}
+			data-material={state._material}
+			data-adaptive-color={state._color}
+			data-alt-state-material={state._getAltStateMaterial()}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-button', props.className)}

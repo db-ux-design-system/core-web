@@ -1,6 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/button-components";
 @use "../../styles/internal/icon-passing";
 
@@ -36,36 +34,9 @@ $icon-padding-custom-button: calc(
 		opacity: variables.$db-opacity-md;
 	}
 
-	&[data-variant="brand"] {
-		label {
-			@extend %button-outlined-ghost-colors;
-		}
-
-		:is(a, button) {
-			@extend %button-brand-colors;
-		}
-	}
-
 	&[data-no-text="true"] {
 		--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
 		--db-icon-passing-padding-inline-start: 0;
-	}
-
-	label:has(input:checked) {
-		color: colors.$db-adaptive-on-bg-inverted-default;
-		background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
-	}
-
-	label:has(input[type="checkbox"]:checked) {
-		@include helpers.not-disabled {
-			@include helpers.hover {
-				background-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
-			}
-
-			@include helpers.active {
-				background-color: colors.$db-adaptive-bg-inverted-contrast-max-pressed;
-			}
-		}
 	}
 
 	a[tabindex="-1"] {

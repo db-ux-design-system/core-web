@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/indicator";
 @use "../../styles/internal/scrollbar";
@@ -62,7 +61,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 }
 
 %indicator-track {
-	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 	content: "";
 	border-radius: variables.$db-border-radius-xs;
 	position: absolute;
@@ -95,10 +93,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 
 			@extend %horizontal-indicator;
 
-			background-image: linear-gradient(
-				colors.$db-adaptive-bg-basic-transparent-semi-default,
-				colors.$db-adaptive-bg-basic-transparent-semi-default
-			);
 			background-position: left bottom;
 			background-repeat: no-repeat;
 
@@ -211,7 +205,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 				);
 				inset-inline: variables.$db-spacing-fixed-xs;
 				block-size: variables.$db-border-width-xs;
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 				pointer-events: none;
 			}
 
@@ -267,7 +260,6 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 				);
 				inset-inline: 0;
 				block-size: variables.$db-border-width-xs;
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
 			}
 
 			[data-density="functional"] &::before {

@@ -1,12 +1,9 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
 
 .db-custom-select-dropdown {
-	@extend %db-neutral-variables;
-
 	position: absolute;
 	z-index: 32;
 	box-shadow: variables.$db-elevation-md;

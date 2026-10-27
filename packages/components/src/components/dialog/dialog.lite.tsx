@@ -134,7 +134,7 @@ export default function DBDialog(props: DBDialogProps) {
 			ref={_ref}
 			class={cls('db-dialog', props.className)}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			onCancel={(event: Event) => state.handleCancel(event)}
 			onClose={(event) => state.handleClose(event)}
 			// BEGIN: dialog ponyfill

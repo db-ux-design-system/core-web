@@ -23,7 +23,7 @@ export default function DBDivider(props: DBDividerProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			data-margin={props.margin}
 			data-variant={props.variant}
 			data-emphasis={props.emphasis}

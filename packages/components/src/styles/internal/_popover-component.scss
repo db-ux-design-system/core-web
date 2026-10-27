@@ -247,7 +247,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	@extend %popover-placement;
 
 	position: absolute;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	box-shadow: variables.$db-elevation-md;
 	visibility: hidden;
 	z-index: 1337;
@@ -265,4 +264,15 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		inline-size: max-content;
 		text-align: initial;
 	}
+}
+
+/*
+ * Legacy color companion for `%default-popover`: the level-1 background and the
+ * card border-color. Consumers @extend this from their `*.legacy-coloring.scss`;
+ * the adaptive bundle colors the popover instead.
+ */
+%default-popover-colors {
+	@extend %default-card-colors;
+
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 }

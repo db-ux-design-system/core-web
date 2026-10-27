@@ -60,7 +60,7 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			data-position={props.position}
 			data-density="regular"
 			class={cls('db-control-panel-mobile', props.className)}>

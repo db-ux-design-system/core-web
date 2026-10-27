@@ -1,0 +1,24 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `accordion-item`. The base `.scss` is color-free
+ * (structure only); these declarations are forwarded by
+ * `components-legacy-coloring` into the legacy bundle. The adaptive bundle
+ * omits this file and colors the summary via `accordion-item.adaptive.scss`.
+ */
+.db-accordion-item {
+	> details {
+		> summary {
+			// Default (divider) variant: the summary blends into the page.
+			// The "card" variant overrides this with a level-1 fill in
+			// accordion.legacy-coloring.scss.
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+
+			@include helpers.interactive-bg(
+				colors.$db-adaptive-bg-basic-transparent-full-hovered,
+				colors.$db-adaptive-bg-basic-transparent-full-pressed
+			);
+		}
+	}
+}

@@ -33,11 +33,6 @@
 	padding: variables.$db-spacing-fixed-md;
 	gap: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-md;
 	inline-size: inherit;
-	background-color: colors.$db-adaptive-bg-basic-level-2-default;
-
-	&::before {
-		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
-	}
 
 	a {
 		@extend %db-default-link;
@@ -47,10 +42,6 @@
 		&::after {
 			content: none !important;
 			margin: 0 !important;
-		}
-
-		&[data-variant="brand"] {
-			@extend %db-link-default-color;
 		}
 
 		&[data-size="small"] {
@@ -189,7 +180,6 @@
 
 	@each $name in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
-			@extend %db-#{$name}-variables;
 			@include icons.variant-icons($name);
 
 			&::before {

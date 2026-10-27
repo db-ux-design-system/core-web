@@ -1,9 +1,27 @@
 @use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
+@use "../../styles/internal/navigation-item";
 
 [data-adaptive-coloring="true"] .db-control-panel-mobile,
 .db-control-panel-mobile[data-adaptive-coloring="true"] {
 	@extend %adaptive-coloring-container;
 
 	--db-control-panel-border-color: #{adaptive.$db-border-default};
+
+	// The active-item indicator uses the adaptive indicator background (brand/7,
+	// or the pride gradient when `data-pride` is set).
+	.db-control-panel-mobile-drawer
+		.db-drawer-content
+		.db-control-panel-mobile-drawer-scroll-container
+		.db-control-panel-navigation
+		> menu {
+		@include navigation-item.direct-navigation-items {
+			@include navigation-item.navigation-indicator {
+				&::after {
+					background-color: adaptive.$db-indicator-color;
+					background-image: adaptive.$db-indicator-background;
+				}
+			}
+		}
+	}
 }

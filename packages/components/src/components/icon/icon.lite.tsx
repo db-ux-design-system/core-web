@@ -24,7 +24,7 @@ export default function DBIcon(props: DBIconProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-icon', props.className)}
 			data-icon={props.icon}
 			data-icon-weight={props.weight}

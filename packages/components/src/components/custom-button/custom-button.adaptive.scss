@@ -1,16 +1,27 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/adaptive/component";
+@use "../../styles/internal/icon-passing";
 
 [data-adaptive-coloring="true"] .db-custom-button,
 .db-custom-button[data-adaptive-coloring="true"] {
-	@extend %adaptive-coloring-interactive-container;
+	:is(#{icon-passing.$interactive-button-selectors}) {
+		@extend %adaptive-coloring-interactive-container;
+	}
+
+	/*
+	 * When the custom-button wraps a checked toggle (`<label><input
+	 * type="checkbox|radio" checked>`), the label surface switches to the
+	 * alt-state interactive roles - the same checked treatment the native
+	 * checkbox/radio/switch use for their box.
+	 */
+	label:has(input:checked) {
+		@extend %adaptive-coloring-alt-state-interactive-container;
+	}
 
 	&:has(
 		:is(input, button):disabled,
 		:is(input, button, a)[aria-disabled="true"]
 	) {
 		@extend %disabled;
-
-		opacity: 1;
 	}
 }

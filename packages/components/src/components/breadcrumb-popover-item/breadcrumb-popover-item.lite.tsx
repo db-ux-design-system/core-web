@@ -26,7 +26,7 @@ export default function DBBreadcrumbPopoverItem(
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-breadcrumb-popover-item', props.className)}>
 			<DBPopover
 				placement="bottom-start"

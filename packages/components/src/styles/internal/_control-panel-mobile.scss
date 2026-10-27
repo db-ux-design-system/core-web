@@ -15,11 +15,8 @@
 }
 
 %control-panel-mobile-position-top {
-	border-block-end: variables.$db-border-width-3xs solid
-		var(
-			--db-control-panel-border-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-		);
+	border-block-end-width: variables.$db-border-width-3xs;
+	border-block-end-style: solid;
 	grid-template-areas: var(
 		--db-control-panel-mobile-position-top-grid-areas,
 		"brand actions-1 drawer-button"
@@ -47,11 +44,8 @@
 }
 
 %control-panel-mobile-position-bottom {
-	border-block-start: variables.$db-border-width-3xs solid
-		var(
-			--db-control-panel-border-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-		);
+	border-block-start-width: variables.$db-border-width-3xs;
+	border-block-start-style: solid;
 	grid-template-areas: "brand drawer-button actions-1";
 	grid-template-columns:
 		minmax(#{variables.$db-sizing-md}, min-content)
@@ -88,7 +82,9 @@
 		> .db-drawer-container {
 			@extend %direction-from-bottom-to-top;
 
-			border-block-start: component.$component-border;
+			// stylelint-disable-next-line db-ux/use-border-width
+			border-block-start-width: variables.$db-border-width-3xs;
+			border-block-start-style: solid;
 			border-inline-end: 0; // revert the default setting
 			inline-size: 100dvw;
 			max-inline-size: 100dvw;
@@ -106,6 +102,33 @@
 			.db-drawer-container {
 				transform: translateY(0);
 			}
+		}
+	}
+}
+
+/*
+ * Legacy color companions for the mobile position placeholders: the panel's
+ * divider border-color (falls back to the adaptive emphasis-60 color) and the
+ * bottom drawer-container top border-color. Consumers @extend these from their
+ * `*.legacy-coloring.scss`; the adaptive bundle colors them instead.
+ */
+%control-panel-mobile-position-top-colors {
+	border-block-end-color: var(
+		--db-control-panel-border-color,
+		#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+	);
+}
+
+%control-panel-mobile-position-bottom-colors {
+	border-block-start-color: var(
+		--db-control-panel-border-color,
+		#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+	);
+
+	.db-drawer:has(.db-control-panel-mobile-drawer-scroll-container) {
+		> .db-drawer-container {
+			// stylelint-disable-next-line db-ux/use-border-color
+			border-block-start-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 		}
 	}
 }

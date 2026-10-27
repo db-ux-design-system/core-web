@@ -6,7 +6,22 @@
 	@extend %check-element-materials;
 	@include form-components.check-element-validity(switch);
 
-	input:checked {
-		border-color: adaptive.$db-alt-state-bg-default;
+	input {
+		// The thumb (`::before`) is the content color against the track: the
+		// default text role on the unchecked track, the alt-state text role on
+		// the checked track.
+		&::before {
+			background-color: adaptive.$db-text-default;
+			color: adaptive.$db-text-default;
+		}
+
+		&:checked {
+			border-color: adaptive.$db-alt-state-bg-default;
+
+			&::before {
+				background-color: adaptive.$db-alt-state-text-default;
+				color: adaptive.$db-alt-state-text-default;
+			}
+		}
 	}
 }

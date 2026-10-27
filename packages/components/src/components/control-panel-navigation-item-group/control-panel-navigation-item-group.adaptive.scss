@@ -3,6 +3,12 @@
 
 [data-adaptive-coloring="true"] .db-control-panel-navigation-item-group,
 .db-control-panel-navigation-item-group[data-adaptive-coloring="true"] {
+	// The expand button is an interactive container: transparent at rest (via
+	// the `transparent` material), tinting on hover/pressed.
+	.db-control-panel-navigation-item-group-expand-button {
+		@extend %adaptive-coloring-interactive-container;
+	}
+
 	.db-control-panel-navigation-item-group-menu {
 		@extend %adaptive-coloring-container;
 	}

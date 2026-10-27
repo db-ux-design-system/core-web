@@ -1,0 +1,17 @@
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/component";
+
+/*
+ * Legacy color layer for `breadcrumb-item`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-breadcrumb-item {
+	a {
+		@extend %default-interactive-component-colors;
+
+		&:not([aria-current="page"]) {
+			@extend %button-outlined-ghost-colors;
+		}
+	}
+}

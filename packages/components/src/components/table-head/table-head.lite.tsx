@@ -34,7 +34,7 @@ export default function DBTableHead(props: DBTableHeadProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-table-head', props.className)}>
 			<Show when={props.rows} else={props.children}>
 				<For each={props.rows}>

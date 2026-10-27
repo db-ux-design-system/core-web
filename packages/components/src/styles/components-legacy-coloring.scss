@@ -1,0 +1,54 @@
+/*
+ * Legacy color layer: the color declarations extracted out of the component
+ * base `.scss` files so the base stays color-free (structure only). Forwarded
+ * into the legacy `bundle.scss` only; the adaptive `bundle.adaptive.scss` omits
+ * it so no legacy color tokens leak into the adaptive output.
+ */
+@forward "../components/accordion/accordion.legacy-coloring";
+@forward "../components/accordion-item/accordion-item.legacy-coloring";
+@forward "../components/badge/badge.legacy-coloring";
+@forward "../components/brand/brand.legacy-coloring";
+@forward "../components/breadcrumb-item/breadcrumb-item.legacy-coloring";
+@forward "../components/button/button.legacy-coloring";
+@forward "../components/card/card.legacy-coloring";
+@forward "../components/checkbox/checkbox.legacy-coloring";
+@forward "../components/control-panel-desktop/control-panel-desktop.legacy-coloring";
+@forward "../components/control-panel-flat-icon/control-panel-flat-icon.legacy-coloring";
+@forward "../components/control-panel-meta/control-panel-meta.legacy-coloring";
+@forward "../components/control-panel-mobile/control-panel-mobile.legacy-coloring";
+@forward "../components/control-panel-navigation/control-panel-navigation.legacy-coloring";
+@forward "../components/control-panel-navigation-item/control-panel-navigation-item.legacy-coloring";
+@forward "../components/control-panel-navigation-item-group/control-panel-navigation-item-group.legacy-coloring";
+@forward "../components/control-panel-skip-navigation/control-panel-skip-navigation.legacy-coloring";
+@forward "../components/custom-button/custom-button.legacy-coloring";
+@forward "../components/custom-select/custom-select.legacy-coloring";
+@forward "../components/custom-select-dropdown/custom-select-dropdown.legacy-coloring";
+@forward "../components/custom-select-form-field/custom-select-form-field.legacy-coloring";
+@forward "../components/custom-select-list-item/custom-select-list-item.legacy-coloring";
+@forward "../components/dialog/dialog.legacy-coloring";
+@forward "../components/drawer/drawer.legacy-coloring";
+@forward "../components/footer-content/footer-content.legacy-coloring";
+@forward "../components/footer-meta/footer-meta.legacy-coloring";
+@forward "../components/header/header.legacy-coloring";
+@forward "../components/heading/heading.legacy-coloring";
+@forward "../components/infotext/infotext.legacy-coloring";
+@forward "../components/input/input.legacy-coloring";
+@forward "../components/link/link.legacy-coloring";
+@forward "../components/loading-indicator/loading-indicator.legacy-coloring";
+@forward "../components/navigation/navigation.legacy-coloring";
+@forward "../components/navigation-item/navigation-item.legacy-coloring";
+@forward "../components/notification/notification.legacy-coloring";
+@forward "../components/pagination-item/pagination-item.legacy-coloring";
+@forward "../components/popover/popover.legacy-coloring";
+@forward "../components/radio/radio.legacy-coloring";
+@forward "../components/select/select.legacy-coloring";
+@forward "../components/shell/shell.legacy-coloring";
+@forward "../components/switch/switch.legacy-coloring";
+@forward "../components/tab-item/tab-item.legacy-coloring";
+@forward "../components/table/table.legacy-coloring";
+@forward "../components/table-head/table-head.legacy-coloring";
+@forward "../components/table-row/table-row.legacy-coloring";
+@forward "../components/tabs/tabs.legacy-coloring";
+@forward "../components/tag/tag.legacy-coloring";
+@forward "../components/textarea/textarea.legacy-coloring";
+@forward "../components/tooltip/tooltip.legacy-coloring";

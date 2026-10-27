@@ -19,7 +19,7 @@ export default function DBHeadingH6(props: DBHeadingH6Props) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-heading', props.className)}
 			data-visual-size={props.visualSize}
 			data-font-weight={props.fontWeight}>

@@ -129,9 +129,9 @@ export default function DBTag(props: DBTagProps) {
 	return (
 		<div
 			data-material={state._material}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			data-alt-state-material={state._altStateMaterial}
-			data-alt-state-color={state._getAltStateColor()}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-tag', props.className)}

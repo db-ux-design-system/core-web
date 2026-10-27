@@ -1,0 +1,28 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `loading-indicator`. The base `.scss` is color-free
+ * for the clear palette values (structure only); forwarded by
+ * `components-legacy-coloring` into the legacy bundle. The adaptive bundle
+ * omits this file.
+ *
+ * Only the declarations that reference a `colors.$db-*` palette token are moved
+ * here. The runtime variant tokens (`var(--db-<name>-*)`) and the track color
+ * derived from `--db-loading-indicator-segment-color` stay in the base, as they
+ * are not plain palette colors.
+ */
+.db-loading-indicator {
+	/* Was part of the local `%text-container` placeholder. */
+	> .db-loading-indicator-content {
+		> span,
+		> label {
+			color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+		}
+	}
+
+	/* Was part of the local `%states` placeholder. */
+	&:not([data-state="successful"], [data-state="critical"]) {
+		--db-loading-indicator-segment-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+		--db-loading-indicator-segment-color-overlay: #{colors.$db-adaptive-on-bg-inverted-default};
+	}
+}

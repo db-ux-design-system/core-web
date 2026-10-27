@@ -1,3 +1,4 @@
+@use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
@@ -5,7 +6,15 @@
 .db-notification[data-adaptive-coloring="true"] {
 	// The notification renders a `filled-2` surface (set via `data-material` in
 	// the template), replacing the hardcoded `bg-basic-level-2` background.
+	// `%adaptive-coloring-container` also sets `border-color`; the standalone /
+	// overlay variants get their border width/style from `%default-card`, but
+	// the docked variant has none - add it so the adaptive border is visible.
 	@extend %adaptive-coloring-container;
+
+	&[data-variant="docked"] {
+		border-width: variables.$db-border-width-3xs;
+		border-style: solid;
+	}
 
 	&::before {
 		--db-icon-color: #{adaptive.$db-visual-vibrant};

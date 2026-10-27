@@ -1,9 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/icons";
-@use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/internal/component";
 @use "../../styles/internal/form-components";
 
 %center-icon {
@@ -28,24 +25,6 @@
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
-	&:not(:has(input:disabled)) {
-		@include form-components.get-state;
-		@include form-components.get-state("active");
-	}
-
-	// jscpd:ignore-start
-	@include form-components.get-validity(check) {
-		&:has(.db-infotext[data-semantic="successful"]) {
-			@include form-components.get-validity-color-checkbox("valid");
-		}
-	}
-
-	@include form-components.get-validity(check, "invalid") {
-		@include form-components.get-validity-color-checkbox("invalid");
-	}
-
-	// jscpd:ignore-end
-
 	input {
 		@include helpers.display(flex);
 
@@ -54,22 +33,6 @@
 		justify-content: center;
 
 		&:checked {
-			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
-
-			// jscpd:ignore-start
-			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-adaptive-bg-inverted-contrast-max-default
-			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-adaptive-bg-inverted-contrast-max-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-adaptive-bg-inverted-contrast-max-pressed
-			);
-
-			// jscpd:ignore-end
-
 			@extend %center-icon;
 
 			// Check icon
@@ -87,8 +50,6 @@
 		@media (forced-colors: active) {
 			&:indeterminate,
 			&:checked {
-				--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-
 				border-width: form-components.$check-border-size;
 
 				&:not([data-show-icon-leading="false"])::before {

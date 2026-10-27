@@ -17,6 +17,7 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 	const [fullscreen, setFullscreen] = useState(false);
 	// TODO: Remove shell state and `showcases/react-showcase/src/page` folder after v6.0.0
 	const [shell, setShell] = useState<boolean>(true);
+	const [adaptiveColoring, setAdaptiveColoring] = useState<boolean>(false);
 	const [searchRead, setSearchRead] = useState(false);
 
 	const [settings, setSettings] = useState(() => {
@@ -52,6 +53,13 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 				setShell(value === 'true');
 			}
 
+			if (
+				key === 'adaptive-coloring' &&
+				adaptiveColoring !== (value === 'true')
+			) {
+				setAdaptiveColoring(value === 'true');
+			}
+
 			if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
 				setFullscreen(value === 'true');
 			}
@@ -76,6 +84,7 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 				settings: JSON.stringify(settings),
 				...(page && { page }),
 				shell: shell ? 'true' : 'false',
+				'adaptive-coloring': adaptiveColoring ? 'true' : 'false',
 				...(fullscreen && { fullscreen: 'true' })
 			};
 
@@ -83,7 +92,16 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 				setSearchParameters(nextQuery);
 			}
 		}
-	}, [color, density, page, fullscreen, searchRead, settings, shell]);
+	}, [
+		color,
+		density,
+		page,
+		fullscreen,
+		searchRead,
+		settings,
+		shell,
+		adaptiveColoring
+	]);
 
 	return {
 		density,
@@ -93,6 +111,8 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 		page,
 		shell,
 		setShell,
+		adaptiveColoring,
+		setAdaptiveColoring,
 		fullscreen,
 		settings,
 		setSettings

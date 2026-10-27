@@ -46,7 +46,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 	return (
 		<span
 			data-material={props.material}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-infotext', props.className)}

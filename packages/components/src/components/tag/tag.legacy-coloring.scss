@@ -1,0 +1,39 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/tag-components";
+@use "../../styles/internal/component";
+
+/*
+ * Legacy color layer for `tag`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ *
+ * The tag coloring lived in the local `%db-tag` placeholder, which only
+ * `.db-tag` extends, so the concrete `.db-tag` selectors are re-opened here.
+ */
+.db-tag {
+	&:not(:has(#{tag-components.$interactive-selectors})),
+	&:has(.db-tab-remove-button) {
+		@extend %component-border-colors;
+		@include tag-components.get-tag-colors;
+	}
+
+	&:has(#{tag-components.$interactive-selectors}) {
+		@include tag-components.get-tag-colors-interactive;
+	}
+
+	button,
+	a,
+	label {
+		@extend %component-border-colors;
+	}
+
+	.db-tab-remove-button {
+		&:is(button),
+		button {
+			// overwrite to transparent
+			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+			// stylelint-disable-next-line db-ux/use-border-color
+			border-color: var(--db-tag-border-color);
+		}
+	}
+}

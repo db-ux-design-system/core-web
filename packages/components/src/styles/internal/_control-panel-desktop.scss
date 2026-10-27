@@ -124,11 +124,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 }
 
 %control-panel-desktop-horizontal-orientation {
-	border-block-end: variables.$db-border-width-3xs solid
-		var(
-			--db-control-panel-border-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-		);
+	border-block-end-width: variables.$db-border-width-3xs;
+	border-block-end-style: solid;
 	column-gap: $control-panel-desktop-horizontal-padding-inline;
 	grid-template:
 		[meta]
@@ -200,23 +197,20 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 	&:not(:not([data-width]), [data-width="full"]) {
 		border-end-end-radius: variables.$db-border-radius-xs;
 		border-end-start-radius: variables.$db-border-radius-xs;
-		border-inline: variables.$db-border-width-3xs solid
-			var(
-				--db-control-panel-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-			);
+		border-inline-width: variables.$db-border-width-3xs;
+		border-inline-style: solid;
 	}
 
 	.db-control-panel-meta {
-		border-block-end: variables.$db-border-width-3xs solid
-			var(
-				--db-control-panel-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-			);
+		border-block-end-width: variables.$db-border-width-3xs;
+		border-block-end-style: solid;
 	}
 
 	.db-control-panel-navigation {
-		--db-overflow-scroll-button-inset-block: #{$control-panel-desktop-horizontal-padding-block};
+		--db-overflow-scroll-button-inset-block: calc(
+			#{$control-panel-desktop-horizontal-padding-block} +
+				#{variables.$db-border-width-3xs}
+		);
 		--db-overflow-scroll-button-inset-inline-start: calc(
 			#{$control-panel-desktop-horizontal-padding-inline} / 2
 		);
@@ -260,11 +254,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 }
 
 %control-panel-desktop-vertical-orientation {
-	border-inline-end: variables.$db-border-width-3xs solid
-		var(
-			--db-control-panel-border-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
-		);
+	border-inline-end-width: variables.$db-border-width-3xs;
+	border-inline-end-style: solid;
 	block-size: 100%;
 	grid-template:
 		[brand] "brand" auto
@@ -457,4 +448,53 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 
 		/* jscpd:ignore-end */
 	}
+}
+
+/*
+ * Legacy color companions for the desktop orientation placeholders: the panel
+ * divider/outline border-colors (falling back to the adaptive emphasis-60
+ * color) and the active-item indicator fill. Consumers @extend these from their
+ * `*.legacy-coloring.scss`; the adaptive bundle colors them instead.
+ */
+%control-panel-desktop-horizontal-orientation-colors {
+	border-block-end-color: var(
+		--db-control-panel-border-color,
+		#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+	);
+
+	&:not(:not([data-width]), [data-width="full"]) {
+		// stylelint-disable-next-line db-ux/use-border-color
+		border-inline-color: var(
+			--db-control-panel-border-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+		);
+	}
+
+	.db-control-panel-meta {
+		border-block-end-color: var(
+			--db-control-panel-border-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+		);
+	}
+
+	/*
+	 * The active-item indicator fill is carried by the shared `%indicator` base
+	 * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a
+	 * legacy brand fallback, so it renders in both bundles and needs nothing
+	 * here.
+	 */
+}
+
+%control-panel-desktop-vertical-orientation-colors {
+	border-inline-end-color: var(
+		--db-control-panel-border-color,
+		#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
+	);
+
+	/*
+	 * The active-item indicator fill is carried by the shared `%indicator` base
+	 * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a
+	 * legacy brand fallback, so it renders in both bundles and needs nothing
+	 * here.
+	 */
 }

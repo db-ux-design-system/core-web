@@ -85,7 +85,7 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 		<li
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}

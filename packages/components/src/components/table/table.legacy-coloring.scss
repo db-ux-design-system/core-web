@@ -1,0 +1,139 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "./../../styles/internal/component";
+@use "./../../styles/internal/table-components";
+
+/*
+ * Legacy color layer for `table`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ *
+ * The selectors mirror the structure placeholders in the base `.scss`
+ * (%divider, %variant, %sticky-header) so the same borders/backgrounds are
+ * re-opened here with only the coloring.
+ */
+%divider-colors {
+	&:is([data-divider="none"], [data-divider="vertical"]) {
+		table {
+			border-block-end-color: component.$component-border-color;
+		}
+	}
+
+	&:not([data-divider="none"]) {
+		&:not([data-variant="spaced"]) {
+			&[data-divider="both"],
+			&[data-divider="vertical"] {
+				tr {
+					> :is(td, th):not(:last-child) {
+						border-inline-end-color: component.$component-border-color;
+					}
+
+					> :is(db-table-header-cell, db-table-data-cell):not(
+							:last-child
+						) {
+						td,
+						th {
+							border-inline-end-color: component.$component-border-color;
+						}
+					}
+				}
+			}
+		}
+
+		&:not([data-divider]),
+		&[data-divider="both"],
+		&[data-divider="horizontal"] {
+			tr {
+				border-block-end-color: component.$component-border-color;
+			}
+		}
+	}
+}
+
+%variant-colors {
+	&:not([data-variant]),
+	&[data-variant="flat"],
+	&[data-variant="zebra"] {
+		table {
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			border-inline-color: component.$component-border-color;
+		}
+
+		thead {
+			border-block-start-color: component.$component-border-color;
+		}
+	}
+
+	&[data-variant="zebra"] {
+		tbody {
+			> db-table-row:nth-child(odd) > tr,
+			> tr:nth-child(odd) {
+				background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			}
+		}
+
+		thead {
+			tr[data-sub-header-emphasis="weak"] {
+				@extend %sub-header-strong;
+			}
+		}
+	}
+
+	&[data-variant="spaced"] {
+		@extend %spaced-table-variant-colors;
+	}
+
+	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
+		&[data-mobile-variant="list"] {
+			@extend %spaced-table-variant-colors;
+		}
+	}
+}
+
+%spaced-table-variant-colors {
+	:is(tfoot, tbody) {
+		tr {
+			@extend %default-card-colors;
+		}
+	}
+
+	thead {
+		tr {
+			&[data-sub-header-emphasis] {
+				@extend %default-card-colors;
+			}
+		}
+	}
+}
+
+%sticky-header-colors {
+	&[data-sticky-header="both"],
+	&[data-sticky-header="horizontal"] {
+		thead {
+			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		}
+	}
+
+	&[data-sticky-header="both"],
+	&[data-sticky-header="vertical"] {
+		tfoot,
+		tbody {
+			th {
+				border-inline-end-color: component.$component-border-color;
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+		}
+	}
+}
+
+.db-table {
+	@extend %divider-colors;
+	@extend %variant-colors;
+	@extend %sticky-header-colors;
+
+	table {
+		caption {
+			border-block-start-color: component.$component-border-color;
+		}
+	}
+}

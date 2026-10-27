@@ -80,7 +80,7 @@ export default function DBDrawerHeader(props: DBDrawerHeaderProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-drawer-header', props.className)}>
 			<Slot name="startSlot" />
 			<div id={state._headingId} class="db-drawer-header-content">

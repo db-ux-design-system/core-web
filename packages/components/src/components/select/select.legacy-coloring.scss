@@ -1,0 +1,11 @@
+@use "../../styles/internal/form-components";
+
+/*
+ * Legacy color layer for `select`: the field surface, border, caret, icon and
+ * validity colors from `set-default-form-component`. Forwarded only into the
+ * legacy bundle; the adaptive bundle colors the select via
+ * `select.adaptive.scss`.
+ */
+.db-select {
+	@include form-components.set-default-form-component-colors(select);
+}

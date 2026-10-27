@@ -473,7 +473,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 			class={cls('db-loading-indicator', props.className)}
 			role={state.getRole()}
 			data-material={state._getMaterial()}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			data-indeterminate={getBooleanAsString(props.indeterminate)}
 			data-size={props.size}
 			data-variant={props.variant}

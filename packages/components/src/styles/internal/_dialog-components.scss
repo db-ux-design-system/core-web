@@ -117,9 +117,14 @@ $container-size-scale: (
 		background-color: $backdrop-color-weak;
 	}
 
-	@if $prefix == "dialog" {
-		border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-	} @else {
+	// The dialog box border color is color-layer specific and must not live in
+	// this shared base mixin: it is applied by `dialog.legacy-coloring.scss`
+	// (via `%default-card-colors`) for the legacy bundle and by
+	// `dialog.adaptive.scss` (via `%adaptive-coloring-container`) for the
+	// adaptive bundle. Keeping it here leaked the legacy
+	// `--db-adaptive-on-bg-basic-emphasis-60-default` token into the adaptive
+	// bundle, where it is undefined and the border fell back to `currentColor`.
+	@if $prefix != "dialog" {
 		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
 		border: 0;
 		// stylelint-disable-next-line db-ux/use-spacings

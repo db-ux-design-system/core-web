@@ -4,9 +4,10 @@
 [data-adaptive-coloring="true"] .db-table,
 .db-table[data-adaptive-coloring="true"] {
 	/*
-	 * Component borders (emphasis-60 in the base) -> adaptive border. Covers the
-	 * divider lines, the table frame, the caption rule and the sticky column
-	 * separator.
+	 * Component borders (emphasis-60 in the base) -> adaptive decorative border.
+	 * These are structural separators (divider lines, the table frame, the
+	 * caption rule and the sticky column separator), so they use the decorative
+	 * border role rather than the default interactive border.
 	 */
 	table,
 	thead,
@@ -15,7 +16,7 @@
 	tr > :is(td, th),
 	tbody th,
 	tfoot th {
-		border-color: adaptive.$db-border-default;
+		border-color: adaptive.$db-border-decorative;
 	}
 
 	// Default / flat / zebra table surface (level-1 in the base).

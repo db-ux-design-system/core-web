@@ -9,7 +9,7 @@ export default function DBTabPanel(props: DBTabPanelProps) {
 		<div
 			ref={_ref}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-tab-panel', props.className)}
 			role="tabpanel"
 			hidden={props.hidden}

@@ -69,7 +69,7 @@ export default function DBNotification(props: DBNotificationProps) {
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-notification', props.className)}
 			data-material={state._getMaterial()}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			role={getNotificationRole({
 				semantic: props.semantic,
 				role: props.role,

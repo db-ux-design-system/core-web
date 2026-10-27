@@ -71,7 +71,7 @@ export default function DBButton(props: DBButtonProps) {
 	return (
 		<button
 			data-material={state._getMaterial()}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-button', props.className)}

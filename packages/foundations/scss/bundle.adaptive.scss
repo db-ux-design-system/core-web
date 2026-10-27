@@ -1,0 +1,14 @@
+/*
+ * Adaptive-coloring foundation bundle. Mirrors `bundle.scss` but omits the
+ * legacy color layer: there is no `[data-mode] { @extend
+ * %db-neutral-bg-basic-level-1 }` because the base surface comes from the
+ * adaptive `--db-bg-default` / `--db-text-default` tokens
+ * (`generated-colors.css`, imported alongside this bundle) instead of the old
+ * `--db-adaptive-*` neutral palette.
+ */
+@forward "defaults/default-required.base";
+@forward "defaults/default-root.adaptive";
+@forward "defaults/default-elevation";
+@forward "defaults/default-fonts";
+@forward "defaults/default-icons";
+@forward "defaults/default-container-properties";

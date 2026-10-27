@@ -24,7 +24,7 @@ export default function DBTabList(props: DBTabListProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id ?? state._id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-tab-list', props.className)}
 			role="tablist"
 			aria-orientation={props.orientation ?? 'horizontal'}

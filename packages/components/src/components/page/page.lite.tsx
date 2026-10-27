@@ -67,7 +67,7 @@ export default function DBPage(props: DBPageProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-page', props.className)}
 			data-variant={props.variant}
 			data-fade-in={getBooleanAsString(props.fadeIn, 'fadeIn')}

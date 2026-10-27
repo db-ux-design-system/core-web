@@ -1,8 +1,9 @@
-import { DBButton, DBControlPanelActions2, DBSwitch } from '@components';
+import { DBControlPanelActions2, DBSwitch } from '@components';
 import useQuery from '../hooks/use-query';
 
 export default function Actions2() {
-	const { shell, setShell } = useQuery();
+	const { shell, setShell, adaptiveColoring, setAdaptiveColoring } =
+		useQuery();
 
 	return (
 		<DBControlPanelActions2>
@@ -13,12 +14,13 @@ export default function Actions2() {
 				}}>
 				Shell
 			</DBSwitch>
-			<DBButton icon="x_placeholder" variant="ghost" noText>
-				Notification
-			</DBButton>
-			<DBButton icon="x_placeholder" variant="ghost" noText>
-				Help
-			</DBButton>
+			<DBSwitch
+				checked={adaptiveColoring}
+				onChange={() => {
+					setAdaptiveColoring(!adaptiveColoring);
+				}}>
+				Adaptive coloring
+			</DBSwitch>
 		</DBControlPanelActions2>
 	);
 }

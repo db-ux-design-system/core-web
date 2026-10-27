@@ -1,50 +1,37 @@
-@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "./table-row";
 
-$interactive-row-action: '[data-table-row-trigger="true"]';
-$interactive-nested-child: "#{$interactive-row-action} :is(input, textarea, select)";
-$interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-elements}),#{$interactive-nested-child})";
-
-@mixin table-row-interactive-state($state: "hover") {
-	&:has(
-		#{$interactive-child}:#{$state}:not(
-				:disabled,
-				[aria-disabled="true"],
-				[tabindex="-1"]
-			)
-	) {
-		@content;
-	}
-}
-
+/*
+ * The interactive-child selector and the interactive-state/checked mixins are
+ * reused from the base `table-row` module (via `@use`) so the same selectors
+ * are re-opened here with only the coloring - a single source of truth, no
+ * duplicated selector strings. `@use` keeps them namespaced rather than
+ * re-exporting them, so there is no collision when both the base and this file
+ * are `@forward`ed into the bundle.
+ */
 [data-adaptive-coloring="true"] .db-table-row,
 .db-table-row[data-adaptive-coloring="true"] {
 	background-color: adaptive.$db-bg-default;
 
 	&[data-interactive="true"] {
 		// A checked row is the selected (alt) state.
-		&:has(
-			input:is(
-					[type="radio"],
-					[type="checkbox"]
-				)#{$interactive-child}:checked
-		) {
+		@include table-row.table-row-interactive-checked {
 			background-color: adaptive.$db-alt-state-bg-default;
 
-			@include table-row-interactive-state {
+			@include table-row.table-row-interactive-state {
 				background-color: adaptive.$db-alt-state-bg-hovered;
 			}
 
-			@include table-row-interactive-state("active") {
+			@include table-row.table-row-interactive-state("active") {
 				background-color: adaptive.$db-alt-state-bg-pressed;
 			}
 		}
 
-		@include table-row-interactive-state {
+		@include table-row.table-row-interactive-state {
 			background-color: adaptive.$db-bg-hovered;
 		}
 
-		@include table-row-interactive-state("active") {
+		@include table-row.table-row-interactive-state("active") {
 			background-color: adaptive.$db-bg-pressed;
 		}
 	}

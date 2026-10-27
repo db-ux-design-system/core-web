@@ -267,9 +267,9 @@ export default function DBSwitch(props: DBSwitchProps) {
 	return (
 		<div
 			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
-			data-alt-state-color={state._getAltStateColor()}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
 			data-material={props.material ?? 'filled-1'}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			data-visual-aid={getBooleanAsString(props.visualAid, 'visualAid')}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}

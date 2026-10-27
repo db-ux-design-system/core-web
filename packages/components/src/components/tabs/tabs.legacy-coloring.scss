@@ -1,0 +1,46 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `tabs`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ *
+ * Only the tab-list baseline/track backgrounds live here; the active-indicator
+ * fill is colored by `tab-item.legacy-coloring.scss` via `%indicator-colors`.
+ */
+.db-tabs {
+	&:not([data-orientation="vertical"]) {
+		.db-tab-list {
+			// The baseline under the horizontal tab row.
+			background-image: linear-gradient(
+				colors.$db-adaptive-bg-basic-transparent-semi-default,
+				colors.$db-adaptive-bg-basic-transparent-semi-default
+			);
+		}
+	}
+
+	&[data-orientation="vertical"] {
+		.db-tab-list {
+			// The vertical track (`%indicator-track` on `.db-tab-list::before`).
+			&::before {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			}
+		}
+	}
+
+	&[data-scroll-behavior="scrollbar"] {
+		&:not([data-orientation="vertical"]) {
+			&::before {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			}
+		}
+	}
+
+	&[data-scroll-behavior="arrows"] {
+		&:not([data-orientation="vertical"]) {
+			&::before {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			}
+		}
+	}
+}

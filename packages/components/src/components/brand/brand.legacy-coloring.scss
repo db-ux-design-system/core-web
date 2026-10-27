@@ -1,0 +1,12 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `brand`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ */
+.db-brand {
+	&::before {
+		--db-icon-color: #{colors.$db-brand-origin-default};
+	}
+}

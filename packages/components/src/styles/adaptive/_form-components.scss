@@ -133,17 +133,24 @@
 
 	&:has(input:disabled) {
 		@extend %disabled;
-
-		opacity: 1;
 	}
 }
 
-@mixin field-content {
-	&::before,
-	&::after,
-	[id$="-placeholder"],
-	> label {
-		@content;
+@mixin field-content($include-label: true) {
+	@if $include-label {
+		&::before,
+		&::after,
+		[id$="-placeholder"],
+		> label {
+			@content;
+		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
+	} @else {
+		&::before,
+		&::after,
+		[id$="-placeholder"] {
+			@content;
+		}
 	}
 }
 
@@ -162,8 +169,16 @@
 	}
 
 	@if $read-only-alt-state {
+		/*
+		 * Read-only field content sits on the alt-state surface, so the
+		 * placeholder text and icons use the alt-state text color. The label is
+		 * deliberately excluded here: for the "above" variant it sits outside
+		 * the field box and must keep the default text color. Only the
+		 * "floating" variant - where the label overlaps the read-only surface -
+		 * gets the alt-state label color, handled by the dedicated rule below.
+		 */
 		&:has(#{$selector}:read-only:not(:disabled)) {
-			@include field-content {
+			@include field-content($include-label: false) {
 				color: adaptive.$db-alt-state-text-default;
 			}
 		}
@@ -205,6 +220,14 @@
 			}
 
 			&:read-only:not(:disabled) {
+				/*
+				 * The read-only field renders on the alt-state surface. In the
+				 * legacy bundle a `background-color: var(--db-#{$selector}-read-only)`
+				 * rule consumes the custom property above; the adaptive bundle
+				 * does not ship that rule, so the alt-state background has to be
+				 * applied here directly.
+				 */
+				background-color: adaptive.$db-alt-state-bg-default;
 				color: adaptive.$db-alt-state-text-default;
 				border-color: adaptive.$db-alt-state-border-default;
 
@@ -252,7 +275,5 @@
 
 	&:has(#{$selector}:disabled) {
 		@extend %disabled;
-
-		opacity: 1;
 	}
 }

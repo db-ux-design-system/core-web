@@ -20,15 +20,6 @@
 		@extend %db-overwrite-font-size-xs;
 	}
 
-	&[data-semantic="adaptive"],
-	&:not([data-semantic]) {
-		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
-
-		&::before {
-			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
-		}
-	}
-
 	&[data-wrap="false"] {
 		white-space: nowrap;
 	}
@@ -36,14 +27,6 @@
 	@each $name, $colors in colors.$variant-colors {
 		&[data-semantic="#{$name}"] {
 			@include icons.variant-icons($name);
-
-			color: var(--db-#{$name}-on-bg-basic-emphasis-80-default);
-
-			&::before {
-				--db-icon-color: var(
-					--db-#{$name}-on-bg-basic-emphasis-70-default
-				);
-			}
 		}
 	}
 

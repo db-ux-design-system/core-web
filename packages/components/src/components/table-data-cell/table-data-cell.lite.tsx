@@ -14,7 +14,7 @@ export default function DBTableDataCell(props: DBTableDataCellProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-table-data-cell', props.className)}
 			data-horizontal-alignment={props.horizontalAlignment}
 			data-vertical-alignment={props.verticalAlignment}

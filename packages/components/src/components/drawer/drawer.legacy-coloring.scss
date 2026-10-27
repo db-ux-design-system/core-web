@@ -1,0 +1,31 @@
+@use "../../styles/internal/component";
+
+/*
+ * Legacy color layer for `drawer`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file and colors the drawer spacing border via
+ * `drawer.adaptive.scss`.
+ *
+ * Only the `data-show-spacing` panel border carries color; its width/style come
+ * from the base `.scss`.
+ */
+.db-drawer {
+	.db-drawer-container[data-show-spacing="true"] {
+		&:not([data-direction]),
+		&[data-direction="to-left"] {
+			border-inline-start-color: component.$component-border-color;
+		}
+
+		&[data-direction="to-right"] {
+			border-inline-end-color: component.$component-border-color;
+		}
+
+		&[data-direction="up"] {
+			border-block-start-color: component.$component-border-color;
+		}
+
+		&[data-direction="down"] {
+			border-block-end-color: component.$component-border-color;
+		}
+	}
+}

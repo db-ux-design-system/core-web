@@ -14,7 +14,7 @@ export default function DBFooter(props: DBFooterProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={props.material}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			class={cls('db-footer', props.className)}
 			data-width={props.width}>
 			{props.children}

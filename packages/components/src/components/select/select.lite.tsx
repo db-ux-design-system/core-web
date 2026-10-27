@@ -338,7 +338,7 @@ export default function DBSelect(props: DBSelectProps) {
 	return (
 		<div
 			data-material={props.material}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-select', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
@@ -346,7 +346,7 @@ export default function DBSelect(props: DBSelectProps) {
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
 			<label
-				data-color={props.color ?? 'neutral'}
+				data-adaptive-color={props.color ?? 'neutral'}
 				htmlFor={state._id}>
 				{props.label ?? DEFAULT_LABEL}
 			</label>

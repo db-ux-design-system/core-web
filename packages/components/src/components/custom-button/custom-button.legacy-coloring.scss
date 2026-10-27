@@ -1,0 +1,46 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/internal/button-components";
+@use "../../styles/internal/icon-passing";
+
+/*
+ * Legacy color layer for `custom-button`: the basic-button variant colors plus
+ * the checked-label inverted fill. Forwarded only into the legacy bundle; the
+ * adaptive bundle colors it via `custom-button.adaptive.scss`.
+ */
+.db-custom-button {
+	@include button-components.set-basic-button-colors(
+		icon-passing.$interactive-button-selectors
+	);
+
+	// `set-basic-button-colors` only wires the brand variant for the `&`
+	// selector (plain button), so custom-button colors its brand variant
+	// itself: the label behaves like a ghost surface, the interactive
+	// elements get the brand colors.
+	&[data-variant="brand"] {
+		label {
+			@extend %button-outlined-ghost-colors;
+		}
+
+		:is(a, button) {
+			@extend %button-brand-colors;
+		}
+	}
+
+	label:has(input:checked) {
+		color: colors.$db-adaptive-on-bg-inverted-default;
+		background-color: colors.$db-adaptive-bg-inverted-contrast-max-default;
+	}
+
+	label:has(input[type="checkbox"]:checked) {
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				background-color: colors.$db-adaptive-bg-inverted-contrast-max-hovered;
+			}
+
+			@include helpers.active {
+				background-color: colors.$db-adaptive-bg-inverted-contrast-max-pressed;
+			}
+		}
+	}
+}

@@ -7,7 +7,5 @@
 
 	&:is(:disabled, [aria-disabled="true"]) {
 		@extend %disabled;
-
-		opacity: 1;
 	}
 }

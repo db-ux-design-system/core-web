@@ -80,9 +80,9 @@ export default function DBTableRow(props: DBTableRowProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			data-material={state._getMaterial()}
-			data-color={props.color}
+			data-adaptive-color={props.color}
 			data-alt-state-material={state._getAltStateMaterial()}
-			data-alt-state-color={state._getAltStateColor()}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
 			class={cls('db-table-row', props.className)}
 			data-interactive={getBooleanAsString(props.interactive)}
 			data-sub-header-emphasis={props.subHeaderEmphasis}>

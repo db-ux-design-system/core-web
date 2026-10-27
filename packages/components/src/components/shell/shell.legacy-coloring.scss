@@ -1,0 +1,42 @@
+@use "sass:string";
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/control-panel-desktop";
+@use "../../styles/internal/control-panel-mobile";
+@use "../../styles/internal/custom-elements";
+
+/*
+ * Legacy color layer for `shell`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ *
+ * The control-panel orientation/position border-colors are forwarded here,
+ * mirroring the structure placeholders the base extends on the custom-element
+ * hosts.
+ */
+.db-shell {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	&[data-control-panel-desktop-position="left"] {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			@extend %control-panel-desktop-vertical-orientation-colors;
+		}
+	}
+
+	&[data-control-panel-desktop-position="top"] {
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			@extend %control-panel-desktop-horizontal-orientation-colors;
+		}
+	}
+
+	&[data-control-panel-mobile-position="top"] {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
+			@extend %control-panel-mobile-position-top-colors;
+		}
+	}
+
+	&[data-control-panel-mobile-position="bottom"] {
+		#{string.unquote(custom-elements.$control-panel-mobile)} {
+			@extend %control-panel-mobile-position-bottom-colors;
+		}
+	}
+}

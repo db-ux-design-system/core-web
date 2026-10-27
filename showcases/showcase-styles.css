@@ -85,7 +85,10 @@
 
 	.db-shell {
 		border: var(--db-border-width-3xs) dashed
-			var(--db-adaptive-on-bg-basic-emphasis-100-default);
+			var(
+				--db-border-default,
+				var(--db-adaptive-on-bg-basic-emphasis-100-default)
+			);
 
 		&:is(
 			:not([data-control-panel-desktop-position]),
@@ -208,7 +211,10 @@
 	align-items: center;
 	gap: var(--db-spacing-fixed-sm);
 	padding: var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm);
-	background-color: var(--db-adaptive-bg-basic-level-2-default);
+	background-color: var(
+		--db-bg-default,
+		var(--db-adaptive-bg-basic-level-2-default)
+	);
 
 	[data-icon="x_placeholder"] {
 		&::before {
@@ -254,9 +260,18 @@
 .dummy-component {
 	border-radius: var(--db-border-radius-md);
 	border: var(--db-border-width-3xs) solid
-		var(--db-adaptive-on-bg-basic-emphasis-60-default);
-	background-color: var(--db-adaptive-bg-basic-level-3-default);
-	color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		var(
+			--db-border-default,
+			var(--db-adaptive-on-bg-basic-emphasis-60-default)
+		);
+	background-color: var(
+		--db-bg-default,
+		var(--db-adaptive-bg-basic-level-3-default)
+	);
+	color: var(
+		--db-text-default,
+		var(--db-adaptive-on-bg-basic-emphasis-80-default)
+	);
 	display: flex;
 	padding: var(--db-spacing-fixed-3xs) var(--db-spacing-fixed-xs);
 	justify-content: center;

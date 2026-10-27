@@ -265,9 +265,9 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 	return (
 		<div
 			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
-			data-alt-state-color={state._getAltStateColor()}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
 			data-material={props.material ?? 'filled-1'}
-			data-color={state._getColor()}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

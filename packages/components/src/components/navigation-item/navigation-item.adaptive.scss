@@ -1,23 +1,14 @@
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
 
 [data-adaptive-coloring="true"] .db-navigation-item,
 .db-navigation-item[data-adaptive-coloring="true"] {
-	// The item surfaces (link + expand button) stay transparent at rest - like a
-	// ghost button - and only tint the background on hover/pressed.
+	// The item surfaces (link + expand button) are interactive containers:
+	// transparent at rest (via the `transparent` material) and tinting on
+	// hover/pressed.
 	a,
 	.db-navigation-item-expand-button:is(button),
 	.db-navigation-item-expand-button > button {
-		@include helpers.not-disabled {
-			@include helpers.hover {
-				background-color: adaptive.$db-bg-hovered;
-			}
-
-			@include helpers.active {
-				background-color: adaptive.$db-bg-pressed;
-			}
-		}
+		@extend %adaptive-coloring-interactive-container;
 	}
 
 	// The sub-navigation popover and the mobile back row are base surfaces.

@@ -1,0 +1,12 @@
+@use "../../styles/internal/component";
+
+/*
+ * Legacy color layer for `dialog`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ */
+.db-dialog {
+	@extend %default-card-colors;
+
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+}
