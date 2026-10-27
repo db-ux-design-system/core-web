@@ -794,6 +794,22 @@ export type InnerCloseButtonProps = {
 	closeButtonText?: string;
 };
 
+export type DrawerHeaderSlotProps = {
+	/**
+	 * Text to pass in a headline for the drawer header.
+	 */
+	drawerHeaderText?: string;
+
+	/**
+	 * Slot to fully replace the drawer header, e.g. to add action elements or a
+	 * subtitle next to the close button. Used as a fallback when `drawerHeaderText`
+	 * is not set. When this slot is used, you must provide the close button
+	 * yourself (e.g. via `DBDrawerHeader`), and `closeButtonId` / `closeButtonText`
+	 * have no effect.
+	 */
+	drawerHeader?: any;
+};
+
 export type NavigationBackButtonProps = {
 	/**
 	 * The backButtonId attribute changes the id inside the back button.

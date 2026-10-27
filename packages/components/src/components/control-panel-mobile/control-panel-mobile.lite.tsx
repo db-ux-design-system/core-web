@@ -1,4 +1,5 @@
 import {
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -64,7 +65,20 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			class={cls('db-control-panel-mobile', props.className)}>
 			<Slot name="skipNavigation" />
 			<DBDrawer
-				header={<DBDrawerHeader text={props.drawerHeaderText} />}
+				header={
+					<>
+						<Show when={props.drawerHeaderText}>
+							<DBDrawerHeader
+								text={props.drawerHeaderText}
+								closeButtonText={props.closeButtonText}
+								closeButtonId={props.closeButtonId}
+							/>
+						</Show>
+						<Show when={!props.drawerHeaderText}>
+							<Slot name="drawerHeader" />
+						</Show>
+					</>
+				}
 				class="db-control-panel-mobile-drawer"
 				open={state.open}
 				onClose={(event) => state.handleClose(event)}
