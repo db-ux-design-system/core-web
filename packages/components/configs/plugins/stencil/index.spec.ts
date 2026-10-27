@@ -3,7 +3,8 @@ import { describe, expect, it, vi } from 'vitest';
 // The plugin is CommonJS; import its named exports for unit testing.
 const {
 	extractOnInitCode,
-	injectComponentWillLoad
+	injectComponentWillLoad,
+	addDrawerHeaderSlot
 	// eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./index.cjs');
 
@@ -70,6 +71,66 @@ describe('injectComponentWillLoad', () => {
 		expect(result).toBe(code);
 		expect(warn).toHaveBeenCalledOnce();
 		warn.mockRestore();
+	});
+});
+
+describe('addDrawerHeaderSlot', () => {
+	const cpm = { name: 'DBControlPanelMobile' };
+
+	it('adds slot="header" to the internal db-drawer-header branch', () => {
+		const code = [
+			'{this.drawerHeaderText ? (',
+			'  <db-drawer-header',
+			'    text={this.drawerHeaderText}',
+			'    closeButtonText={this.closeButtonText}',
+			'  ></db-drawer-header>',
+			') : null}'
+		].join('\n');
+
+		const result = addDrawerHeaderSlot(code, cpm);
+
+		expect(result).toContain('<db-drawer-header\nslot="header"');
+	});
+
+	it('adds a matching slot="header" to the forwarding header slot branch', () => {
+		const code =
+			'{!this.drawerHeaderText ? <slot name="header"></slot> : null}';
+
+		const result = addDrawerHeaderSlot(code, cpm);
+
+		// name and slot must match: the Stencil runtime cannot forward to a
+		// differently named slot.
+		expect(result).toContain('<slot name="header" slot="header"></slot>');
+	});
+
+	it('is idempotent and does not add a second slot attribute', () => {
+		const code = [
+			'<db-drawer-header slot="header" text={this.drawerHeaderText}></db-drawer-header>',
+			'<slot name="header" slot="header"></slot>'
+		].join('\n');
+
+		expect(addDrawerHeaderSlot(code, cpm)).toBe(code);
+	});
+
+	it('does not touch components other than DBControlPanelMobile', () => {
+		// DBDrawer declares its own <slot name="header">; it must stay a plain
+		// slot declaration and never become a self-forwarding slot.
+		const drawerCode = '<slot name="header"></slot>';
+		expect(addDrawerHeaderSlot(drawerCode, { name: 'DBDrawer' })).toBe(
+			drawerCode
+		);
+
+		// DBHeader's drawer is stripped for Stencil, so it is intentionally skipped.
+		const headerCode =
+			'{!this.drawerHeaderText ? <slot name="header"></slot> : null}';
+		expect(addDrawerHeaderSlot(headerCode, { name: 'DBHeader' })).toBe(
+			headerCode
+		);
+	});
+
+	it('leaves a component without a drawer header untouched', () => {
+		const code = '<div class="db-page"><slot></slot></div>';
+		expect(addDrawerHeaderSlot(code, cpm)).toBe(code);
 	});
 });
 

@@ -50,7 +50,7 @@ export default function HeaderCustomHeader() {
 				drawerOpen={state.drawerOpen}
 				onToggle={(open) => state.updateDrawerOpen(open)}
 				brand={<DBBrand>DBHeader</DBBrand>}
-				drawerHeader={
+				header={
 					<DBDrawerHeader
 						text="Menu"
 						closeButtonText="Close"

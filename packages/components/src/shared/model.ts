@@ -806,8 +806,13 @@ export type DrawerHeaderSlotProps = {
 	 * is not set. When this slot is used, you must provide the close button
 	 * yourself (e.g. via `DBDrawerHeader`), and `closeButtonId` / `closeButtonText`
 	 * have no effect.
+	 *
+	 * Named `header` so it matches the `DBDrawer` `header` slot it forwards into:
+	 * the Stencil runtime cannot forward slotted content to a differently named
+	 * slot (`<slot name="a" slot="b">`), so the names are kept consistent across
+	 * the forwarding chain.
 	 */
-	drawerHeader?: any;
+	header?: any;
 };
 
 export type NavigationBackButtonProps = {

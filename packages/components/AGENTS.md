@@ -347,6 +347,44 @@ matching unchanged.
 Components relying on this: `DBPage`, `DBControlPanelDesktop`, `DBShell`,
 `DBShellSubNavigation`. Unit tests live in `configs/plugins/stencil/index.spec.ts`.
 
+## Stencil conditional slot assignment (`addDrawerHeaderSlot`)
+
+When a component passes **conditional** content to another component's named
+slot prop (e.g. `DBControlPanelMobile` passing the drawer header to `DBDrawer`'s
+`header` prop via a paired `<Show when={props.drawerHeaderText}>` / `<Show
+when={!props.drawerHeaderText}>`), Mitosis wraps the branches in a fragment. For
+Vue and Angular that fragment becomes a slot-assigning container (`<template
+v-slot:header>` / `<ng-container header>`), so every branch lands in the target
+slot. Web components have no such wrapper: Stencil emits each branch with **no
+`slot` attribute**, so both get projected into the host's default slot
+(`.db-drawer-content`) instead of the header, silently breaking existing usage.
+
+Two constraints shape the fix:
+
+- **The consumer slot is named `header`, not `drawerHeader`.** The Stencil
+  runtime cannot forward slotted content to a differently named slot
+  (`<slot name="a" slot="b">`). The slot forwards into `DBDrawer`'s `header`
+  slot, so the public slot (shared `DrawerHeaderSlotProps.header`) carries the
+  same name and the generated forward is the supported `<slot name="header"
+slot="header">`.
+- **The transform is gated to `DBControlPanelMobile` by component name.** It must
+  NOT run on `DBDrawer`, whose own `<slot name="header">` declaration would
+  otherwise become an invalid self-forwarding `<slot name="header"
+slot="header">`. `DBHeader` is intentionally skipped too: its entire
+  `<db-drawer>` is stripped from the Stencil output (the mobile drawer is handled
+  by `db-shell`), so its drawer header never ships as a web component.
+
+The Stencil plugin's `code.post` phase re-adds `slot="header"` to the two
+drawer-header branches (the internal `<db-drawer-header>` and the forwarding
+`<slot name="header">`) via `addDrawerHeaderSlot(code, json)`. Both replacements
+are guarded against an already-present `slot=`, so they are idempotent. Unit
+tests live in `configs/plugins/stencil/index.spec.ts`.
+
+**This kind of Stencil-only output surgery belongs in this plugin, not in the
+deprecated `scripts/post-build/`.** `post-build` (and its `components.ts`
+`overwrites`) is legacy; prefer a Mitosis plugin `code`/`json` phase for any new
+per-target transform so it runs as part of generation and is unit-testable.
+
 ## Storybook Generation
 
 Stories are generated from the `examples/` folder via the `configs/plugins/storybook/` plugin. The plugin reads `data-sb-*` attributes from example components to configure story metadata, controls, and args.

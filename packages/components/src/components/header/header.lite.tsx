@@ -138,7 +138,7 @@ export default function DBHeader(props: DBHeaderProps) {
 							/>
 						</Show>
 						<Show when={!props.drawerHeaderText}>
-							<Slot name="drawerHeader" />
+							<Slot name="header" />
 						</Show>
 					</>
 				}
