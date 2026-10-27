@@ -1,9 +1,0 @@
-import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{l as t,o as n}from"./iframe-Bb73BtMZ.js";import{i as r,n as i,t as a}from"./apply-web-component-args-QYzoFG2k.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBTextGroup/Nested groups`,component:`db-text-group`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{alignment:{control:`select`,options:[`start`,`center`,`end`]},textSpacing:{control:`boolean`},className:{control:`text`},id:{control:`text`}}},c={args:{textSpacing:!0},render:({children:e,...n})=>t`<db-text-group ${i(n)}>${r(`<db-text-group alignment="start"><db-paragraph><strong>Start-aligned block</strong></db-paragraph><db-paragraph>Alignment is set once per group and inherited by every paragraph in it.</db-paragraph></db-text-group><db-text-group alignment="center"><db-paragraph><strong>Centred block</strong></db-paragraph><db-paragraph size="sm">A nested group can differ from its parent, and the spacing keeps coming from the outer one.</db-paragraph></db-text-group>`)}</db-text-group>`},l=[`Outergroupspacingnestedgroups`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
-  args: {
-    "textSpacing": true
-  },
-  render: ({
-    children,
-    ...args
-  }: any) => html\`<db-text-group \${spreadArgs(args)}>\${unsafeHTML(\`<db-text-group alignment="start"><db-paragraph><strong>Start-aligned block</strong></db-paragraph><db-paragraph>Alignment is set once per group and inherited by every paragraph in it.</db-paragraph></db-text-group><db-text-group alignment="center"><db-paragraph><strong>Centred block</strong></db-paragraph><db-paragraph size="sm">A nested group can differ from its parent, and the spacing keeps coming from the outer one.</db-paragraph></db-text-group>\`)}</db-text-group>\`
-}`,...c.parameters?.docs?.source}}}})))()}u();export{c as Outergroupspacingnestedgroups,l as __namedExportsOrder,s as default};
