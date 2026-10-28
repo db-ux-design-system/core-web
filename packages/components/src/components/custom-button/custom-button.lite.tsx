@@ -20,6 +20,8 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 
 	const state = useStore<DBCustomButtonState>({
 		initialized: false,
+		_material: undefined,
+		_color: undefined,
 		_getAltStateMaterial: (): MaterialType | undefined => {
 			if (props.altStateMaterial) {
 				return props.altStateMaterial;

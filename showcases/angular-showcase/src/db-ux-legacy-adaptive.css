@@ -1,0 +1,11 @@
+/*
+ * "Legacy + adaptive" mode: loads BOTH the legacy and the adaptive component
+ * bundles plus the adaptive color definitions. Legacy components render with
+ * the legacy colors by default, while any `[data-adaptive-coloring="true"]`
+ * subtree opts into the adaptive coloring - so both systems coexist on one page.
+ */
+@layer db-ux, db-theme, db-ux-adaptive;
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+@import "@db-ux/core-components/build/styles/bundle.adaptive.css" layer(db-ux);
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "./../../../generated-colors.css" layer(db-ux-adaptive);

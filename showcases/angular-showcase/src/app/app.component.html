@@ -1,5 +1,8 @@
 @if (page) {
-	<div [class]="getFullscreenClasses()">
+	<div
+		[class]="getFullscreenClasses()"
+		[attr.data-adaptive-coloring]="getRootAdaptive()"
+	>
 		<router-outlet></router-outlet>
 	</div>
 }
@@ -8,6 +11,7 @@
 }
 @if (!page && shell) {
 	<db-shell
+		[attr.data-adaptive-coloring]="getRootAdaptive()"
 		[controlPanelDesktopPosition]="settings.controlPanelDesktopPosition"
 		[controlPanelMobilePosition]="settings.controlPanelMobilePosition"
 		[fadeIn]="true"

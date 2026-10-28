@@ -1,7 +1,15 @@
 import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import { useEffect, useState } from 'react';
-import { defaultSettings } from '../../../settings';
+import {
+	type ColoringMode,
+	COLORING_MODES,
+	defaultColoringMode,
+	defaultSettings
+} from '../../../settings';
 import useUniversalSearchParameters from './use-universal-search-parameters';
+
+const isColoringMode = (value: string): value is ColoringMode =>
+	(COLORING_MODES as readonly string[]).includes(value);
 
 const useQuery = (shouldRedirectURLSearchParameters = true) => {
 	const [searchParameters, setSearchParameters] =
@@ -17,7 +25,8 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 	const [fullscreen, setFullscreen] = useState(false);
 	// TODO: Remove shell state and `showcases/react-showcase/src/page` folder after v6.0.0
 	const [shell, setShell] = useState<boolean>(true);
-	const [adaptiveColoring, setAdaptiveColoring] = useState<boolean>(false);
+	const [coloringMode, setColoringMode] =
+		useState<ColoringMode>(defaultColoringMode);
 	const [searchRead, setSearchRead] = useState(false);
 
 	const [settings, setSettings] = useState(() => {
@@ -54,10 +63,11 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 			}
 
 			if (
-				key === 'adaptive-coloring' &&
-				adaptiveColoring !== (value === 'true')
+				key === 'coloring' &&
+				isColoringMode(value) &&
+				coloringMode !== value
 			) {
-				setAdaptiveColoring(value === 'true');
+				setColoringMode(value);
 			}
 
 			if (key === 'fullscreen' && fullscreen !== (value === 'true')) {
@@ -84,7 +94,7 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 				settings: JSON.stringify(settings),
 				...(page && { page }),
 				shell: shell ? 'true' : 'false',
-				'adaptive-coloring': adaptiveColoring ? 'true' : 'false',
+				coloring: coloringMode,
 				...(fullscreen && { fullscreen: 'true' })
 			};
 
@@ -100,7 +110,7 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 		searchRead,
 		settings,
 		shell,
-		adaptiveColoring
+		coloringMode
 	]);
 
 	return {
@@ -111,8 +121,8 @@ const useQuery = (shouldRedirectURLSearchParameters = true) => {
 		page,
 		shell,
 		setShell,
-		adaptiveColoring,
-		setAdaptiveColoring,
+		coloringMode,
+		setColoringMode,
 		fullscreen,
 		settings,
 		setSettings

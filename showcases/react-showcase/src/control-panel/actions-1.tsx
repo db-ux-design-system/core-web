@@ -5,32 +5,49 @@ import {
 	DBDrawer,
 	DBDrawerHeader,
 	DBSelect,
+	DBSwitch,
 	DBTooltip,
 	DENSITIES,
 	SEMANTICS
 } from '@components';
 import { Fragment, useState } from 'react';
 import {
+	COLORING_MODES,
+	type ColoringMode,
 	type DefaultSettings,
 	defaultSettingsMapping
 } from '../../../settings';
+
+const COLORING_MODE_LABELS: Record<ColoringMode, string> = {
+	legacy: 'Legacy',
+	adaptive: 'Adaptive',
+	'legacy-adaptive': 'Legacy + Adaptive'
+};
 
 export type Actions1Props = {
 	color: string;
 	density: string;
 	settings: DefaultSettings;
+	shell: boolean;
+	coloringMode: ColoringMode;
 	onDensityChange: (density: string) => void;
 	onColorChange: (color: string) => void;
 	onSettingsChange: (settings: DefaultSettings) => void;
+	onShellChange: (shell: boolean) => void;
+	onColoringModeChange: (coloringMode: ColoringMode) => void;
 };
 
 const Actions1 = ({
 	onSettingsChange,
 	onDensityChange,
 	onColorChange,
+	onShellChange,
+	onColoringModeChange,
 	color,
 	density,
-	settings
+	settings,
+	shell,
+	coloringMode
 }: Actions1Props) => {
 	const [open, setOpen] = useState<boolean>(false);
 
@@ -95,6 +112,29 @@ const Actions1 = ({
 						</Fragment>
 					)
 				)}
+				<DBDivider />
+				<DBSelect
+					label="Coloring"
+					variant="floating"
+					value={coloringMode}
+					onChange={(event) => {
+						onColoringModeChange(
+							event.target.value as ColoringMode
+						);
+					}}>
+					{COLORING_MODES.map((mode) => (
+						<option key={`coloring-option-${mode}`} value={mode}>
+							{COLORING_MODE_LABELS[mode]}
+						</option>
+					))}
+				</DBSelect>
+				<DBSwitch
+					checked={shell}
+					onChange={() => {
+						onShellChange(!shell);
+					}}>
+					Shell
+				</DBSwitch>
 			</DBDrawer>
 			<DBButton
 				icon="gear_wheel"

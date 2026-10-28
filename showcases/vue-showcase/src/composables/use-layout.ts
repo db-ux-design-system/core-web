@@ -1,11 +1,19 @@
 import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { defaultSettings } from '../../../settings';
+import {
+	type ColoringMode,
+	COLORING_MODES,
+	defaultColoringMode,
+	defaultSettings
+} from '../../../settings';
 import {
 	getSortedNavigationItems,
 	navigationItems
 } from '../utils/navigation-items';
+
+const isColoringMode = (value: string): value is ColoringMode =>
+	(COLORING_MODES as readonly string[]).includes(value);
 
 export const useLayout = () => {
 	const router = useRouter();
@@ -22,6 +30,7 @@ export const useLayout = () => {
 	};
 	// TODO: Remove shell state and `showcases/vue-showcase/src/page` folder after v6.0.0
 	const shell = ref<boolean>(true);
+	const coloringMode = ref<ColoringMode>(defaultColoringMode);
 
 	const classNames = computed(
 		() => `db-density-${density.value} db-color-${color.value}`
@@ -54,6 +63,13 @@ export const useLayout = () => {
 
 					break;
 				}
+
+				case 'coloring': {
+					coloringMode.value = inputEvent.target
+						.value as ColoringMode;
+
+					break;
+				}
 				// No default
 			}
 		}
@@ -65,6 +81,7 @@ export const useLayout = () => {
 				[DENSITY_CONST]: density.value,
 				[COLOR_CONST]: color.value,
 				shell: String(shell.value),
+				coloring: coloringMode.value,
 				settings: JSON.stringify(settings.value)
 			}
 		});
@@ -97,6 +114,14 @@ export const useLayout = () => {
 			}
 
 			if (
+				query.coloring &&
+				isColoringMode(query.coloring) &&
+				coloringMode.value !== query.coloring
+			) {
+				coloringMode.value = query.coloring;
+			}
+
+			if (
 				query.settings &&
 				JSON.stringify(settings.value) !== query.settings
 			) {
@@ -118,6 +143,7 @@ export const useLayout = () => {
 		density,
 		color,
 		shell,
+		coloringMode,
 		classNames,
 		onChange,
 		sortedNavigation,

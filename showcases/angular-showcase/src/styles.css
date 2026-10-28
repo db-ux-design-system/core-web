@@ -1,4 +1,9 @@
-@import "./db-ux.css";
+/*
+ * The db-ux + theme bundles are emitted as separate non-injected stylesheets
+ * (`db-ux-legacy.css`, `db-ux-adaptive.css`, `db-ux-legacy-adaptive.css`, see
+ * angular.json). The active one is injected at runtime based on the `coloring`
+ * URL param (see `app.component.ts`). This file keeps only the showcase rules.
+ */
 @import "../../showcase-styles.css";
 
 .variants-list > * > div:not([class^="db-"]) {

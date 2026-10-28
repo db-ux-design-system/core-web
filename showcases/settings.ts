@@ -1,3 +1,11 @@
+export const COLORING_MODES = [
+	'legacy',
+	'adaptive',
+	'legacy-adaptive'
+] as const;
+export type ColoringMode = (typeof COLORING_MODES)[number];
+export const defaultColoringMode: ColoringMode = 'legacy';
+
 export type DefaultSettings = {
 	controlPanelDesktopPosition: 'top' | 'left';
 	controlPanelMobilePosition: 'bottom' | 'top';

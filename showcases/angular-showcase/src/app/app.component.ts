@@ -15,7 +15,13 @@ import {
 	DENSITY_CONST,
 	SEMANTIC
 } from '@components';
-import { defaultSettings, DefaultSettings } from '../../../settings';
+import {
+	type ColoringMode,
+	COLORING_MODES,
+	defaultColoringMode,
+	defaultSettings,
+	DefaultSettings
+} from '../../../settings';
 import { Actions1Component } from './control-panel/actions-1/actions-1.component';
 import { Actions2Component } from './control-panel/actions-2/actions-2.component';
 import { MetaNavigationComponent } from './control-panel/meta-navigation/meta-navigation.component';
@@ -62,6 +68,7 @@ export class AppComponent implements OnInit {
 	fullscreen = false;
 	// TODO: Remove shell state and `showcases/angular-showcase/src/app/page` folder after v6.0.0
 	shell = true;
+	coloringMode: ColoringMode = defaultColoringMode;
 
 	constructor(private readonly route: ActivatedRoute) {}
 
@@ -88,6 +95,17 @@ export class AppComponent implements OnInit {
 			}
 
 			if (
+				parameters['coloring'] &&
+				(COLORING_MODES as readonly string[]).includes(
+					parameters['coloring']
+				)
+			) {
+				this.coloringMode = parameters['coloring'];
+			}
+
+			this.applyColoring();
+
+			if (
 				parameters['settings'] &&
 				JSON.stringify(this.settings) !== parameters['settings']
 			) {
@@ -95,6 +113,34 @@ export class AppComponent implements OnInit {
 			}
 		});
 	}
+
+	/**
+	 * Swap the active DB-UX stylesheet based on the `coloring` URL param. The
+	 * three bundles are emitted as non-injected stylesheets (see angular.json)
+	 * served next to the app, so a runtime `<link>` can point at them by name.
+	 * "adaptive" additionally drives the root `data-adaptive-coloring` (see the
+	 * template); "legacy-adaptive" loads both bundles so a subtree can opt in.
+	 */
+	applyColoring(): void {
+		const id = 'db-ux-stylesheet';
+		let link = document.querySelector<HTMLLinkElement>(`#${id}`);
+		if (!link) {
+			link = document.createElement('link');
+			link.id = id;
+			link.rel = 'stylesheet';
+			document.head.appendChild(link);
+		}
+
+		const fileByMode: Record<ColoringMode, string> = {
+			legacy: 'db-ux-legacy.css',
+			adaptive: 'db-ux-adaptive.css',
+			'legacy-adaptive': 'db-ux-legacy-adaptive.css'
+		};
+		link.href = `./${fileByMode[this.coloringMode]}`;
+	}
+
+	getRootAdaptive = () =>
+		this.coloringMode === 'adaptive' ? 'true' : undefined;
 
 	getChangeableClasses = () =>
 		`db-density-${this.density} db-color-${this.color}`;

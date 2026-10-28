@@ -1,3 +1,4 @@
+import { applyColoring } from './coloring';
 import { renderNavigation } from './navigation';
 import { renderFullscreen, renderPage } from './page';
 import { initRouter } from './router';
@@ -40,6 +41,8 @@ function render(): void {
 	}
 
 	initRouter();
+	// Apply the stylesheet swap + root attribute after the chrome is (re)built.
+	applyColoring();
 }
 
 // Initial render
@@ -67,7 +70,11 @@ globalThis.addEventListener('hashchange', () => {
 		Boolean(mode === 'page' && pageElement && !fullscreenElement);
 
 	// Only re-render the chrome if the mode changed.
-	if (!isAlreadyRendered) {
+	if (isAlreadyRendered) {
+		// Mode unchanged, but the `coloring` param may have: re-apply it without
+		// rebuilding the chrome.
+		applyColoring();
+	} else {
 		render();
 	}
 });

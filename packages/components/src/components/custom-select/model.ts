@@ -1,6 +1,7 @@
 import type {
 	BaseFormProps,
 	CloseEventState,
+	ColorState,
 	CustomFormProps,
 	DocumentScrollState,
 	FormMessageProps,

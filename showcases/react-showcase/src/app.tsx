@@ -12,11 +12,15 @@ import { Outlet } from 'react-router-dom';
 import Actions1 from './control-panel/actions-1';
 import Actions2 from './control-panel/actions-2';
 import MetaNavigation from './control-panel/meta-navigation';
-// Both DB-UX stylesheets are emitted as assets (`?url`); the active one is
-// swapped at runtime via the "Adaptive coloring" switch (see the effect below).
-// `db-ux.css` is the legacy color build, `db-ux-adaptive.css` drops the old
-// colors and drives everything through the adaptive system.
+// The DB-UX stylesheets are emitted as assets (`?url`); the active one is
+// swapped at runtime via the "Coloring" select (see the effect below).
+// - `db-ux.css`: the legacy color build.
+// - `db-ux-adaptive.css`: drops the legacy colors and drives everything through
+//   the adaptive system.
+// - `db-ux-legacy-adaptive.css`: loads both bundles so legacy and adaptive can
+//   coexist on one page (`[data-adaptive-coloring="true"]` opts a subtree in).
 import dbUxAdaptiveStyleUrl from './db-ux-adaptive.css?url';
+import dbUxLegacyAdaptiveStyleUrl from './db-ux-legacy-adaptive.css?url';
 import dbUxStyleUrl from './db-ux.css?url';
 import useQuery from './hooks/use-query';
 import Navigation from './navigation';
@@ -33,8 +37,16 @@ export default function App() {
 		setSettings,
 		settings,
 		shell,
-		adaptiveColoring
+		setShell,
+		coloringMode,
+		setColoringMode
 	} = useQuery();
+
+	// "adaptive" forces the whole document into adaptive coloring. "legacy" and
+	// "legacy-adaptive" render legacy by default; "legacy-adaptive" additionally
+	// loads the adaptive bundle so a `[data-adaptive-coloring="true"]` subtree
+	// can opt in.
+	const rootAdaptive = coloringMode === 'adaptive' ? 'true' : undefined;
 
 	useEffect(() => {
 		const id = 'db-ux-stylesheet';
@@ -46,14 +58,20 @@ export default function App() {
 			document.head.appendChild(link);
 		}
 
-		link.href = adaptiveColoring ? dbUxAdaptiveStyleUrl : dbUxStyleUrl;
-	}, [adaptiveColoring]);
+		if (coloringMode === 'adaptive') {
+			link.href = dbUxAdaptiveStyleUrl;
+		} else if (coloringMode === 'legacy-adaptive') {
+			link.href = dbUxLegacyAdaptiveStyleUrl;
+		} else {
+			link.href = dbUxStyleUrl;
+		}
+	}, [coloringMode]);
 
 	if (page ?? fullscreen) {
 		return (
 			<div
 				data-density={density}
-				data-adaptive-coloring={adaptiveColoring ? 'true' : undefined}
+				data-adaptive-coloring={rootAdaptive}
 				className={`fullscreen-container db-color-${color}`}>
 				<Outlet />
 			</div>
@@ -67,7 +85,7 @@ export default function App() {
 	return (
 		<DBShell
 			fadeIn
-			data-adaptive-coloring={adaptiveColoring ? 'true' : undefined}
+			data-adaptive-coloring={rootAdaptive}
 			controlPanelDesktopPosition={settings.controlPanelDesktopPosition}
 			controlPanelMobilePosition={settings.controlPanelMobilePosition}
 			subNavigationDesktopPosition={settings.subNavigationDesktopPosition}
@@ -91,9 +109,13 @@ export default function App() {
 						color={color}
 						settings={settings}
 						density={density}
+						shell={shell}
+						coloringMode={coloringMode}
 						onSettingsChange={setSettings}
 						onColorChange={setColor}
 						onDensityChange={setDensity}
+						onShellChange={setShell}
+						onColoringModeChange={setColoringMode}
 					/>
 				}
 				actions2={<Actions2 />}
@@ -116,9 +138,13 @@ export default function App() {
 						color={color}
 						settings={settings}
 						density={density}
+						shell={shell}
+						coloringMode={coloringMode}
 						onSettingsChange={setSettings}
 						onColorChange={setColor}
 						onDensityChange={setDensity}
+						onShellChange={setShell}
+						onColoringModeChange={setColoringMode}
 					/>
 				}
 				actions2={<Actions2 />}>
