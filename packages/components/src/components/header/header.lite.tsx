@@ -130,14 +130,14 @@ export default function DBHeader(props: DBHeaderProps) {
 			<DBDrawer
 				header={
 					<>
-						<Show when={props.drawerHeaderText}>
+						<Show when={!getBoolean(props.showDrawerHeaderSlot)}>
 							<DBDrawerHeader
 								text={props.drawerHeaderText}
 								closeButtonText={props.closeButtonText}
 								closeButtonId={props.closeButtonId}
 							/>
 						</Show>
-						<Show when={!props.drawerHeaderText}>
+						<Show when={getBoolean(props.showDrawerHeaderSlot)}>
 							<Slot name="header" />
 						</Show>
 					</>

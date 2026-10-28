@@ -20,6 +20,7 @@ export default function ControlPanelMobileCustomHeader() {
 				<DBControlPanelMobile
 					position="top"
 					brand={<DBControlPanelBrand data-logo="db-systel" />}
+					showDrawerHeaderSlot
 					header={
 						<DBDrawerHeader
 							text="DBControlPanel"

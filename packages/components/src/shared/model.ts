@@ -813,6 +813,11 @@ export type DrawerHeaderSlotProps = {
 	 * the forwarding chain.
 	 */
 	header?: any;
+
+	/**
+	 * Disables the default drawer header and enables you to pass in a custom DBDrawerHeader
+	 */
+	showDrawerHeaderSlot?: string | boolean;
 };
 
 export type NavigationBackButtonProps = {

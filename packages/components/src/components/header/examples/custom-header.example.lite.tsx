@@ -47,6 +47,7 @@ export default function HeaderCustomHeader() {
 			<DBHeader
 				forceMobile="true"
 				burgerMenuLabel="Open menu"
+				showDrawerHeaderSlot
 				drawerOpen={state.drawerOpen}
 				onToggle={(open) => state.updateDrawerOpen(open)}
 				brand={<DBBrand>DBHeader</DBBrand>}

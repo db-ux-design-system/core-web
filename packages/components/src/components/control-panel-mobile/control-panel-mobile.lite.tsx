@@ -10,7 +10,7 @@ import {
 	DEFAULT_BURGER_MENU,
 	DEFAULT_CLOSE_BUTTON
 } from '../../shared/constants';
-import { cls } from '../../utils';
+import { cls, getBoolean } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import DBDrawerFooter from '../drawer-footer/drawer-footer.lite';
@@ -72,14 +72,14 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			<DBDrawer
 				header={
 					<>
-						<Show when={props.drawerHeaderText}>
+						<Show when={!getBoolean(props.showDrawerHeaderSlot)}>
 							<DBDrawerHeader
 								text={props.drawerHeaderText}
 								closeButtonText={props.closeButtonText}
 								closeButtonId={props.closeButtonId}
 							/>
 						</Show>
-						<Show when={!props.drawerHeaderText}>
+						<Show when={getBoolean(props.showDrawerHeaderSlot)}>
 							<Slot name="header" />
 						</Show>
 					</>
