@@ -38,13 +38,13 @@ jobs:
       pull-requests: write
     steps:
       - name: ⏬ Checkout PR branch
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 1
 
       - name: 🔄 Init Cache
-        uses: ./.github/actions/pnpm-cache
+        uses: $/.github/actions/pnpm-cache
         env:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
@@ -83,7 +83,7 @@ jobs:
 
       - name: 📝 Commit and push changes
         if: ${{ steps.audit.outputs.fixed == 'true' }}
-        uses: ./.github/actions/auto-commit
+        uses: $/.github/actions/auto-commit
         with:
           branch-name: "${{ github.head_ref }}-audit-fix"
           commit-message: "fix: resolve additional audit vulnerabilities"

@@ -11,6 +11,7 @@ import {
 import {
 	cls,
 	getBoolean,
+	getBooleanAsString,
 	hasFocusgroupSupport,
 	NAVIGATION_KEYS,
 	uuid
@@ -33,6 +34,7 @@ export default function DBTabs(props: DBTabsProps) {
 
 	const state: DBTabsState = useStore<DBTabsState>({
 		_activeIndex: 0,
+		_synced: false,
 		initialized: false,
 		showScrollStart: false,
 		showScrollEnd: false,
@@ -183,6 +185,8 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				panel.hidden = !isSelected;
 			});
+
+			state._synced = true;
 		},
 
 		handleClick(event: any) {
@@ -673,13 +677,41 @@ export default function DBTabs(props: DBTabsProps) {
 				if (!hasTabChange && !hasContentChange && !hasDisabledChange)
 					return;
 
+				// Hide any just-inserted owned panel synchronously (before paint)
+				// so it does not flash visible for a frame while the RAF-batched
+				// re-init is still pending. A freshly added panel is never the
+				// active one at insertion time, so hiding it is always safe here.
+				if (hasTabChange) {
+					for (const mutation of mutations) {
+						for (const node of Array.from(mutation.addedNodes)) {
+							const element = node as HTMLElement;
+							if (!element.querySelectorAll) continue;
+							const addedPanels =
+								element.getAttribute?.('role') === 'tabpanel'
+									? [element]
+									: Array.from<HTMLElement>(
+											element.querySelectorAll(
+												'[role="tabpanel"]'
+											)
+										);
+							for (const panel of addedPanels) {
+								if (state._isOwnedPanel(panel)) {
+									panel.hidden = true;
+								}
+							}
+						}
+					}
+				}
+
 				const rafId = state._pendingRafId;
 				if (rafId !== null) cancelAnimationFrame(rafId);
 				state._pendingRafId = requestAnimationFrame(() => {
 					state._pendingRafId = null;
 					state.initTabList();
 					if (hasTabChange) {
-						state.initTabs();
+						/* initTabs preserves the selected index by element identity and returns it, so a structural change that shifts indices keeps the right tab selected even in React, where state._activeIndex is stale inside this observer closure. */
+						const resolvedIndex = state.initTabs();
+						state.syncSelection(resolvedIndex);
 					}
 					if (hasDisabledChange) {
 						state.syncSelection(state._activeIndex);
@@ -703,22 +735,48 @@ export default function DBTabs(props: DBTabsProps) {
 		// MutationObserver detects structural changes, and when props.tabs changes.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		initTabs() {
-			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
-			if (!baseId || !_ref) return;
+			const baseId =
+				props.id ?? props.propOverrides?.id ?? state._id ?? _ref?.id;
+			if (!baseId || !_ref) return state._activeIndex;
 
 			const tabListEl = state._getScrollContainer();
 			const panels = Array.from<HTMLElement>(
 				_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 			).filter((panel) => state._isOwnedPanel(panel));
 
-			if (!tabListEl) return;
+			if (!tabListEl) return state._activeIndex;
 
 			const buttons = Array.from<HTMLElement>(
 				tabListEl.querySelectorAll('[role="tab"]')
 			);
 
+			const previousSelectedButton = buttons.find(
+				(button: HTMLElement) =>
+					button.getAttribute('aria-selected') === 'true'
+			);
+
 			state._tabButtons = buttons;
 			state._tabPanels = panels;
+
+			// Resolve the index the caller should sync to and return it, rather
+			// than relying on state._activeIndex afterwards: in the React output
+			// the MutationObserver callback is a mount-render closure, so a write
+			// to state._activeIndex here is not visible to the syncSelection call
+			// that follows in the same closure (it would re-apply the stale index
+			// and drop the preserved selection). The caller passes this return
+			// value straight into syncSelection instead.
+			let resolvedIndex = state._activeIndex;
+
+			// If the previously selected tab still exists, keep it selected at
+			// its new index; only fall back to the numeric index when it was
+			// actually removed (syncSelection then clamps to the first enabled).
+			if (previousSelectedButton) {
+				const preservedIndex = buttons.indexOf(previousSelectedButton);
+				if (preservedIndex !== -1 && props.activeIndex === undefined) {
+					state._activeIndex = preservedIndex;
+					resolvedIndex = preservedIndex;
+				}
+			}
 
 			buttons.forEach((button: HTMLElement, index: number) => {
 				const panel = panels[index];
@@ -732,8 +790,14 @@ export default function DBTabs(props: DBTabsProps) {
 					panel.id = panelId;
 					button.setAttribute('aria-controls', panelId);
 					panel.setAttribute('aria-labelledby', buttonId);
+
+					/* Hide a freshly added panel on the same commit (no flash); syncSelection then resolves the authoritative state. */
+					panel.hidden =
+						button.getAttribute('aria-selected') !== 'true';
 				}
 			});
+
+			return resolvedIndex;
 		}
 	});
 
@@ -745,8 +809,8 @@ export default function DBTabs(props: DBTabsProps) {
 	onUpdate(() => {
 		if (state.initialized && props.tabs) {
 			state.initTabList();
-			state.initTabs();
-			state.syncSelection(state._activeIndex);
+			const resolvedIndex = state.initTabs();
+			state.syncSelection(resolvedIndex);
 		}
 	}, [props.tabs, state.initialized]);
 
@@ -895,6 +959,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-tab-item-alignment={props.tabItemAlignment}
 			data-tab-item-width={props.tabItemWidth}
 			data-initial-selected-mode={props.initialSelectedMode}
+			data-synced={getBooleanAsString(state._synced)}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>

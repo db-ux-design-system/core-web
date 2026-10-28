@@ -235,6 +235,28 @@ When adding or modifying examples:
 
 - Place example files inside `src/components/[name]/examples/`
 - Use `data-sb-*` attributes to control Storybook story generation (e.g. controls, args, decorators)
+- **For one-off, showcase-only layout, use an inline `style` object instead of a bespoke CSS class.** The example's markup is emitted verbatim into Storybook's "Show code" view, so a layout class defined only in the showcase stylesheet (e.g. `badge-inline-container`) leaves consumers copying a class they cannot resolve ([#7023](https://github.com/db-ux-design-system/core-web/issues/7023)). An inline `style` is self-explanatory in the snippet and renders identically in the showcase. Prefer design-token custom properties in the value (e.g. `gap: 'var(--db-spacing-fixed-sm)'`) so the demo stays on-brand:
+
+    ```tsx
+    <div
+    	style={{
+    		display: "flex",
+    		alignItems: "center",
+    		gap: "var(--db-spacing-fixed-sm)"
+    	}}
+    >
+    	{/* ... */}
+    </div>
+    ```
+
+    This applies to **bespoke, single-use** showcase layout only. Three things are **not** covered by this rule and stay as classes:
+
+    - **Real design-system classes** that are public API — e.g. `db-stack` (the CSS-only form of `DBStack`, with `data-gap`/`data-direction`). These are exactly what a consumer _should_ copy, so keep them.
+    - **Elements already hidden from the snippet** via `data-sb-ignore` (e.g. `<i class="line-break" data-sb-ignore="true" />`) — they never reach the code view, so their class is harmless.
+    - **Shared showcase helpers reused across many examples** (e.g. `fit-content-container`). Converting these to repeated inline styles in every example only trades one problem for dozens of copies that drift; leave them in the shared stylesheet.
+
+    Inline `style` also only reaches the element it sits on — it cannot express descendant or pseudo-element rules. When a one-off demo needs those, prefer dropping the fine-tuning over reintroducing a mystery class; keep it in the shared stylesheet only if the layout genuinely depends on it.
+
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in Patternhub, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
 
@@ -303,6 +325,27 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 - This is a temporary workaround — remove the plugin once React's type definitions support these attributes natively
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
+
+## Stencil `onInit` -> `componentWillLoad` (`configs/plugins/stencil/index.cjs`)
+
+The Mitosis Stencil generator maps `onMount` to `componentDidLoad`, `onUnMount`
+to `disconnectedCallback` and `onUpdate` to `@Watch`/`componentDidUpdate`, but it
+never reads `json.hooks.onInit` — so any logic a component places in `onInit` is
+parsed into the Mitosis JSON and then **silently dropped** from the Stencil
+output (no warning, no build error). Every other target honors the hook (Angular
+emits it into `ngOnInit`).
+
+The Stencil plugin closes this gap in its `code.pre` phase: it reads
+`json.hooks.onInit.code` and injects a `componentWillLoad()` method — Stencil's
+run-once-before-first-render lifecycle, the semantic equivalent of `onInit` —
+directly before the generated `componentDidLoad() {` block. `code.pre` runs
+before the generator formats the class with prettier, so the injected method is
+formatted with the rest of the output; anchoring before `componentDidLoad() {`
+keeps the plugin's own `code.post` surgery (which also keys off that string)
+matching unchanged.
+
+Components relying on this: `DBPage`, `DBControlPanelDesktop`, `DBShell`,
+`DBShellSubNavigation`. Unit tests live in `configs/plugins/stencil/index.spec.ts`.
 
 ## Storybook Generation
 
@@ -394,7 +437,11 @@ standalone files automatically while preserving the parser and docs metadata ent
 
 **Sub-component suffix convention:** The test-table generator
 (`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
-in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
+in `-list`, `-panel`, `-item`, `-handle`, `-menu`, `-footer`, `-header`, `-head`, `-content`, `-sub-navigation`, `-cell`, `-row`, `-caption` or `-body` from the validation table, components
+starting with `control-panel-` (sub-components of `DBControlPanel`, which has no standalone
+element of its own) except the standalone variants `control-panel-desktop`, `control-panel-mobile`
+and `control-panel-flat-icon` (they have their own test suites), and any element without a `db-`
+prefix (example/showcase elements).
 
 ## Angular form value flow: user input never writes back to the DOM
 

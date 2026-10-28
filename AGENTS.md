@@ -6,7 +6,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 > **Naming convention:** In human-readable prose and naming, spell out the design-system generation as **"DB UX Design System – Generation 3"** (the current generation) and **"DB UX Design System – Generation 2"** (the previous one, formerly "DB UI"). Do not use the shorthand "v2" / "v3" / "version 2" / "version 3" in prose. On the **first** mention of Generation 2 in a document, add the clarifier **"(aka DB UI)"** once so readers who know the product as "DB UI" recognize the rename; keep later mentions short.
 >
-> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version pins (e.g. `# v3.2.0`). Rewriting those breaks links and tooling.
+> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version references (the tag in `uses: actions/checkout@v3.2.0`, or a `# v3.2.0` comment on a legacy SHA pin). Rewriting those breaks links and tooling.
 
 ## Working Effectively
 
@@ -14,6 +14,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 - **Node.js 26**: Check `.nvmrc` file. Use `node --version` to verify current version.
 - **pnpm**: Package manager for dependency management and build scripts.
+- **GitHub CLI with the `gh actions-lock` extension** (only needed when changing files in `.github/workflows/` or `.github/actions/`): regenerates the Actions lockfile in the pre-commit hook. Install it with `gh extension install github/gh-actions-lock --pin v0.2.0`. Without it, the hook skips with a warning and CI fixes a stale lockfile.
 
 ### Bootstrap and Setup
 
@@ -148,10 +149,11 @@ The contract we version is the public API of the generated framework and web-com
 
 **When a change modifies the rendered HTML of a component, summarize the markup changes in a separated changeset for `@db-ux/core-components` node package** so CSS-only consumers and anyone who copied the markup from the Patternhub examples or a Storybook "view code" output know what moved — even when the bump itself is only `patch` or `minor`. Keep the summary focused on the elements, classes, and attributes that actually changed.
 
-**Write any further information after the initial one-liner summary as a flat bullet list, never a Markdown table or multi-paragraph prose.** The custom changelog formatter (`scripts/github/changesets/create-changelog.js`) turns the changeset body into list items: the first line becomes the top-level entry, and **every** subsequent non-empty line becomes its own bullet. A table's rows and its `| --- |` separator each become a separate broken bullet, and a wrapped paragraph is split into one bullet per source line. So:
+**Write any further information after the initial one-liner summary as a flat bullet list, never a Markdown table or multi-paragraph prose.** The custom changelog formatter (`scripts/github/changesets/create-changelog.js`) turns the changeset body into list items: the first line becomes the top-level entry, and **every** subsequent non-empty line becomes its own sub-item at one level of nesting (rendered as four spaces by prettier). A table's rows and its `| --- |` separator each become a separate broken bullet, and a hard-wrapped paragraph is split into one sub-item per source line. So:
 
 - Keep the first line as the conventional-commit summary (`type(scope): description`).
-- Put each distinct point on a **single, non-wrapped line**. A line starting with `-` / `*` / `+` is emitted as a nested sub-item (double-indented); any other line becomes a top-level sub-bullet. Phrase a "before -> after" change inline per bullet (e.g. "the clear button is now `<button class="db-custom-select-clear">` (previously positioned over the field)") instead of in table columns.
+- Put each distinct point on a **single, non-wrapped line**. Both plain-prose lines and a Markdown bullet list (lines starting with `-` / `*` / `+`) are accepted and render identically as four-space list sub-items — the formatter strips any leading marker, so you never get the deeper eight-space code-style indentation. Prefer the bullet-list form; it is the most readable in the raw changeset. Phrase a "before -> after" change inline per bullet (e.g. "the clear button is now `<button class="db-custom-select-clear">` (previously positioned over the field)") instead of in table columns.
+- **Never hard-wrap a single point across multiple lines.** The formatter cannot tell a wrapped sentence from two separate points, so each physical line becomes its own sub-item. Keep one point on one line, however long — let your editor soft-wrap it.
 - Verify the rendered result with `pnpm run ci:version`, inspect the generated `CHANGELOG.md`, then revert the version bump (`git checkout -- .` / restore the consumed changeset) before committing.
 
 ### How to Add a Changeset
@@ -433,7 +435,11 @@ pnpm exec tsx scripts/my-script.ts
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
-- **Pin all third-party Actions to full commit SHAs** (not tags) for supply-chain security. Dependabot manages updates. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Pin third-party Actions via the lockfile, not inline SHAs.** Onboarded workflows reference Actions by **tag** (e.g. `actions/checkout@v7.0.1`); the commit each tag resolves to is recorded in [`.github/workflows/actions.lock`](.github/workflows/actions.lock) and enforced at job start, so a moved tag cannot change what runs.
+    - After adding, changing, or removing an Action reference, regenerate the lockfile with `gh actions-lock` and commit it alongside the workflow change. The self-healing validation step verifies (and, if stale, regenerates) it in CI.
+    - Do **not** rewrite existing tag references to inline SHAs — the lockfile already provides the immutability guarantee, so doing so only causes churn against it. Pre-existing inline SHA pins may stay as they are.
+    - Dependabot keeps both the tags and their lockfile entries up to date. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Reference our own actions and reusable workflows with the self-repository `$/` syntax** (e.g. `uses: $/.github/actions/pnpm-cache`, `uses: $/.github/workflows/00-init.yml`), which is GitHubs new recommended way of how to reference same repository actions from workflows.
 
 ## Additional Resources
 

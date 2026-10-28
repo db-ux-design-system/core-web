@@ -7,6 +7,6 @@
 
 ### class
 
-| Before     | Status | After     | Description |
-| ---------- | :----: | --------- | ----------- |
-| `rea-page` |   🔁   | `db-page` |             |
+| Before     | Status | After      | Description                                                                          |
+| ---------- | :----: | ---------- | ------------------------------------------------------------------------------------ |
+| `rea-page` |   🔁   | `db-shell` | `db-page` is deprecated. `db-shell` wraps the control panels and `db-shell-content`. |

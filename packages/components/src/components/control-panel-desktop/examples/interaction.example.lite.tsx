@@ -21,7 +21,9 @@ useMetadata({
  *
  * The "tree" variant instance covers ARIA tree roles and arrow-key
  * navigation; the default instance covers the item group's expand button and
- * the disabled item's ARIA state.
+ * the disabled item's ARIA state; the "drilldown" instance covers the sliding
+ * overlay revealing its sub-items (regression guard for #8605, where the
+ * overlay was dragged off-screen on the web component output).
  */
 export default function ControlPanelDesktopInteraction() {
 	return (
@@ -68,6 +70,23 @@ export default function ControlPanelDesktopInteraction() {
 					<DBControlPanelNavigationItem data-testid="tree-item3">
 						<a href="#">Item 3</a>
 					</DBControlPanelNavigationItem>
+				</DBControlPanelNavigation>
+			</DBControlPanelDesktop>
+
+			<DBControlPanelDesktop
+				data-testid="drilldown-panel"
+				orientation="vertical"
+				brand={<DBControlPanelBrand data-logo="db-systel" />}>
+				<DBControlPanelNavigation
+					aria-label="Drilldown Interaction"
+					variant="drilldown">
+					<DBControlPanelNavigationItemGroup
+						text="Drilldown Group"
+						data-testid="drilldown-group">
+						<DBControlPanelNavigationItem data-testid="drilldown-sub1">
+							<a href="#">Drilldown Sub 1</a>
+						</DBControlPanelNavigationItem>
+					</DBControlPanelNavigationItemGroup>
 				</DBControlPanelNavigation>
 			</DBControlPanelDesktop>
 		</div>

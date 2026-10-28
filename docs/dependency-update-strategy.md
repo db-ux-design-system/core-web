@@ -24,35 +24,50 @@ We want to actively decide when to adopt new capabilities rather than silently a
 
 Patch versions are bug fixes and security patches with minimal behavioral changes — hence they are auto-approved. Minor versions can alter behavior in subtle ways — new defaults, new warnings, new peer dependency requirements — that deserve human judgement before approval.
 
-## Why GitHub Actions are pinned to commit SHAs
+## Why GitHub Actions are locked to immutable commits
 
-All third-party GitHub Actions in our workflows are pinned to their **full commit SHA** rather than a mutable tag (e.g., `v4`). A version comment is added for human readability:
+Every third-party GitHub Action our workflows run is bound to an **immutable commit**. We no longer encode that commit inline as a SHA on every `uses:` line. Instead, onboarded workflows keep a readable **tag** reference and record the resolved commit in a lockfile:
 
 ```yaml
-uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+uses: actions/checkout@v7.0.1
 ```
 
-This is a **supply-chain security measure**.
+```text
+# .github/workflows/actions.lock
+'.github/workflows/00-cancel-workflow.yml':
+    - 'actions/checkout@v7.0.1'
+```
 
-### Tags are mutable
+The lockfile ([`.github/workflows/actions.lock`](../.github/workflows/actions.lock)) pins each referenced tag to a verified commit, including transitive dependencies, and GitHub Actions executes the recorded commit at job start even if the tag later moves. This keeps the same supply-chain guarantee the old inline-SHA convention gave us, with a more readable workflow and a single auditable inventory of what runs. See [workflow dependency lockfiles](https://gh.io/actions-lockfile) for the mechanism.
 
-A tag like `v4` or `v4.1.0` can be force-pushed to point to a completely different commit at any time. If an action maintainer's account is compromised, an attacker could silently replace the action code behind the same tag, and every repository referencing that tag would execute the malicious code on the next workflow run — without any PR, review, or notification.
+### Tags are mutable — the lockfile is not
 
-### SHAs are immutable
+A tag like `v4` or `v4.1.0` can be force-pushed to point to a completely different commit at any time. If an action maintainer's account is compromised, an attacker could silently replace the action code behind the same tag.
+Before lockfiles, the defense was to never reference a tag at all and encode the commit SHA inline. The lockfile achieves the same thing differently: the tag may stay in the workflow for readability, but the runner uses the **commit recorded in `actions.lock`**, not whatever the tag currently points to.
+A moved tag therefore cannot change what executes, and the lockfile additionally verifies at generation time that the recorded commit still exists in the ref it was locked under (an anti-forgery check).
 
-A commit SHA is a cryptographic hash of the exact content. It cannot be changed without producing a different hash. Pinning to a SHA guarantees that the code running in our pipeline is always the code we reviewed and approved.
+### Do not rewrite tags back to inline SHAs
+
+Because the lockfile already binds each tag to an immutable commit, re-pinning a `uses:` line to a full SHA adds no security and creates churn: the next `gh actions-lock` run (local hook or the self-healing CI step) has to reconcile the inline SHA against the lockfile entry. Leave onboarded references as tags. Pre-existing inline SHA pins that have not been migrated are still safe and may remain; they do not need to be converted either direction in bulk.
+
+### Keeping the lockfile in sync
+
+Run `gh actions-lock` whenever a workflow adds, changes, or removes an Action reference. It rescans every workflow, re-pins dependencies, prunes entries for deleted workflows, and rewrites `actions.lock`. Two safety nets enforce this:
+
+- a local **pre-commit hook** (via `lint-staged`) regenerates the lockfile when a `.github/workflows/**` or `.github/actions/**` file is staged. It requires the [`gh actions-lock`](https://github.com/github/gh-actions-lock) extension (`gh extension install github/gh-actions-lock --pin v0.2.0`); if the extension is missing, the hook skips with a warning instead of blocking the commit;
+- the **self-healing validation step** in CI runs `gh actions-lock --verify` and, on a stale lockfile, regenerates and auto-commits it to the PR for review — so a bypassed local hook (`--no-verify`, the GitHub web editor, automation) cannot merge a workflow with a missing or drifted entry.
 
 ### Dependabot keeps us up-to-date
 
-Because we [configure Dependabot](../.github/dependabot.yml) for the `github-actions` package ecosystem, we still get automated PRs when new action versions are published. Dependabot resolves the new version's SHA for us, so we review the version bump (with its changelog) in a PR — the same workflow as our npm dependencies. This gives us the security of immutable references without the maintenance burden of manually tracking SHAs.
+Because we [configure Dependabot](../.github/dependabot.yml) for the `github-actions` package ecosystem, we still get automated PRs when new action versions are published. When Dependabot bumps an Action in an onboarded workflow, it regenerates the matching lockfile entry in the same PR, so the tag reference and its locked commit stay in sync — the same reviewable workflow as our npm dependencies, with no manual SHA tracking.
 
 ### Industry best practice
 
-GitHub's own [security hardening guide](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions) recommends pinning to full-length commit SHAs as the most secure option for third-party actions.
+GitHub's [security hardening guide](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions) recommends pinning third-party actions to an immutable commit. Workflow dependency lockfiles are GitHub's own mechanism for doing that while keeping tag references in the workflow.
 
 ### In short
 
-Pinning to SHAs turns a mutable, trust-based reference into an auditable, immutable one — while Dependabot ensures we still stay up-to-date with new releases through reviewable pull requests.
+Locking turns a mutable, trust-based tag into an auditable, immutable reference — the lockfile records the exact commit, CI verifies it hasn't drifted, and Dependabot keeps it current through reviewable pull requests.
 
 ## Why npm dependencies use exact versions
 

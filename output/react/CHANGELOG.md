@@ -1,5 +1,21 @@
 # @db-ux/react-core-components
 
+## 6.1.1
+
+### Patch Changes
+
+- fix(DBControlPanel): reveal drilldown sub-navigation on the web component output - [see commit 841ce66](https://github.com/db-ux-design-system/core-web/commit/841ce669f0e2f1892b6e0c7b9b66db921d601673):
+
+    - The previous-level slide-out transform was applied to the whole navigation item group element on the host-wrapped (web component) output, turning it into the open overlay's containing block and dragging the sub-navigation off-screen (sub-items collapsed to zero height).
+    - The slide-out now always targets the group's expand button, never the group element that wraps the overlay, so the drilldown overlay stays anchored to the scroll container across all framework outputs.
+
+- fix(DBLoadingIndicator): keep `NodeJS.Timeout` out of the published typings - [see commit 0fb5c8d](https://github.com/db-ux-design-system/core-web/commit/0fb5c8d69db433a9dd6adfdf39994d99633b744a):
+
+    - Type the internal `_timeoutId` state field as `number` instead of `ReturnType<typeof setTimeout>`, which resolved to the Node-only `NodeJS.Timeout` during the Angular output compile and leaked an non-declarable `NodeJS` namespace into `@db-ux/ngx-core-components` typings.
+    - Browser-only Angular apps can now import the package without `@types/node` or `skipLibCheck`.
+
+- fix(DBTabs): wire up and select tabs added at runtime - [see commit b29e435](https://github.com/db-ux-design-system/core-web/commit/b29e435947b736fb108b4ffb77adcfbd9f653591)
+
 ## 6.1.0
 
 ### Minor Changes
@@ -62,9 +78,9 @@
 
 - refactor: remove roundness not controlled by `db-border-radius` variables in preparation for the new DB Theme - [see commit af0901e](https://github.com/db-ux-design-system/core-web/commit/af0901e2d01449b01210bc468e1296d721bc3b0e):
 
-        - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
-        - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
-        - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
+    - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
+    - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
+    - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
 
 - feat(DBParagraph): add beta Paragraph and TextGroup components - [see commit 600aa2d](https://github.com/db-ux-design-system/core-web/commit/600aa2dc2706f964a0f368bca2286e4f2811ed0f):
 
