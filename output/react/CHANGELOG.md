@@ -1,5 +1,21 @@
 # @db-ux/react-core-components
 
+## 6.1.1
+
+### Patch Changes
+
+- fix(DBControlPanel): reveal drilldown sub-navigation on the web component output - [see commit 841ce66](https://github.com/db-ux-design-system/core-web/commit/841ce669f0e2f1892b6e0c7b9b66db921d601673):
+
+    - The previous-level slide-out transform was applied to the whole navigation item group element on the host-wrapped (web component) output, turning it into the open overlay's containing block and dragging the sub-navigation off-screen (sub-items collapsed to zero height).
+    - The slide-out now always targets the group's expand button, never the group element that wraps the overlay, so the drilldown overlay stays anchored to the scroll container across all framework outputs.
+
+- fix(DBLoadingIndicator): keep `NodeJS.Timeout` out of the published typings - [see commit 0fb5c8d](https://github.com/db-ux-design-system/core-web/commit/0fb5c8d69db433a9dd6adfdf39994d99633b744a):
+
+    - Type the internal `_timeoutId` state field as `number` instead of `ReturnType<typeof setTimeout>`, which resolved to the Node-only `NodeJS.Timeout` during the Angular output compile and leaked an non-declarable `NodeJS` namespace into `@db-ux/ngx-core-components` typings.
+    - Browser-only Angular apps can now import the package without `@types/node` or `skipLibCheck`.
+
+- fix(DBTabs): wire up and select tabs added at runtime - [see commit b29e435](https://github.com/db-ux-design-system/core-web/commit/b29e435947b736fb108b4ffb77adcfbd9f653591)
+
 ## 6.1.0
 
 ### Minor Changes

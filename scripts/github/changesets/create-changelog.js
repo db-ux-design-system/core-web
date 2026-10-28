@@ -16,15 +16,15 @@ const getReleaseLine = async (changeset, _type, options) => {
 
 	if (futureLines.length > 0) {
 		returnValue += ':\n\n';
+		// Every non-empty line after the first becomes a single list sub-item at
+		// one level of nesting (rendered as four spaces by prettier). An author
+		// may write the lines as plain prose or as a Markdown bullet list - we
+		// strip any leading `-`/`*`/`+` marker so both styles render identically
+		// and a hand-written bullet never ends up at the deeper code-style
+		// (eight-space) indentation.
 		returnValue += `\n${futureLines
 			.filter((l) => l.length)
-			.map((l) =>
-				l.trim().startsWith('* ') ||
-				l.trim().startsWith('- ') ||
-				l.trim().startsWith('+ ')
-					? `\t\t${l}`
-					: `\t- ${l}`
-			)
+			.map((l) => `\t- ${l.trim().replace(/^[-*+]\s+/, '')}`)
 			.join('\n')}`;
 	}
 
