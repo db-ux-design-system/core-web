@@ -1,7 +1,9 @@
 import {
 	ControlPanelProps,
+	DrawerHeaderSlotProps,
 	GlobalProps,
 	GlobalState,
+	InnerCloseButtonProps,
 	NavigationBehaviorState,
 	ShellControlPanelMobilePositionType,
 	ToggleEventProps,
@@ -9,11 +11,6 @@ import {
 } from '../../shared/model';
 
 export type DBControlPanelMobileDefaultProps = {
-	/**
-	 * Text to pass in a headline for the drawer header.
-	 */
-	drawerHeaderText?: string;
-
 	/**
 	 * Sets the accessible label for the burger menu button of the mobile control panel.
 	 */
@@ -26,6 +23,8 @@ export type DBControlPanelMobileDefaultProps = {
 
 export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 	GlobalProps &
+	DrawerHeaderSlotProps &
+	InnerCloseButtonProps &
 	ToggleEventProps &
 	ControlPanelProps;
 

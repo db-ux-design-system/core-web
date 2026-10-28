@@ -9,6 +9,61 @@ const deleteConnectedElement = () => {
 };
 
 /**
+ * Components whose conditional drawer header needs `slot="header"` re-added for
+ * Stencil. `DBControlPanelMobile` is the only one: `DBHeader` has its entire
+ * `<db-drawer>` stripped from the Stencil output (the mobile drawer is handled
+ * by `db-shell`), so its drawer header never ships as a web component and needs
+ * no fix.
+ */
+const DRAWER_HEADER_SLOT_COMPONENTS = new Set(['DBControlPanelMobile']);
+
+/**
+ * Re-adds `slot="header"` to the conditional drawer-header branches of
+ * `DBControlPanelMobile`.
+ *
+ * The component passes the drawer header to `DBDrawer` through its `header`
+ * prop, but the content is conditional (the internal `DBDrawerHeader` when
+ * `drawerHeaderText` is set, otherwise the `header` slot). Mitosis wraps the two
+ * branches in a fragment, and for the Vue/Angular outputs that fragment becomes
+ * a slot-assigning container (`<template v-slot:header>` / `<ng-container
+ * header>`), so both branches end up in the drawer's header area. Web components
+ * have no such wrapper, so Stencil emits the two branches with no `slot`
+ * attribute and both get projected into the drawer's default slot
+ * (`.db-drawer-content`) instead of the header, breaking every existing
+ * `drawerHeaderText` usage.
+ *
+ * The public slot is named `header` (not `drawerHeader`) so it matches the
+ * `DBDrawer` `header` slot it forwards into: the Stencil runtime cannot forward
+ * slotted content to a differently named slot (`<slot name="a" slot="b">`), so
+ * the forwarding `<slot name="header">` only gets a matching `slot="header"`.
+ *
+ * This is gated by component name and must NOT run on `DBDrawer` itself, whose
+ * own `<slot name="header">` declaration would otherwise be turned into an
+ * invalid self-forwarding `<slot name="header" slot="header">`. Within
+ * `DBControlPanelMobile` the only `<db-drawer-header>` and `<slot name="header">`
+ * are the two conditional branches. Both replacements are idempotent (guarded
+ * against an already-present `slot=`).
+ *
+ * @param {string} code - the generated Stencil component source
+ * @param {import('@builder.io/mitosis').MitosisComponent} json
+ * @returns {string} the code with `slot="header"` restored on both branches
+ */
+const addDrawerHeaderSlot = (code, json) => {
+	if (!DRAWER_HEADER_SLOT_COMPONENTS.has(json?.name)) {
+		return code;
+	}
+	return code
+		.replace(
+			/<db-drawer-header(?![^>]*\sslot=)/,
+			'<db-drawer-header\nslot="header"'
+		)
+		.replace(
+			/<slot name="header"(?![^>]*\sslot=)/,
+			'<slot name="header" slot="header"'
+		);
+};
+
+/**
  * Reads the `onInit` hook body from a Mitosis component JSON.
  *
  * The Mitosis Stencil generator maps `onMount` to `componentDidLoad`,
@@ -76,29 +131,33 @@ module.exports = () => ({
 			}
 			return injectComponentWillLoad(code, onInitCode);
 		},
-		post: (code) => {
+		post: (code, json) => {
 			if (!code.includes('componentDidLoad() {')) {
 				console.warn(
 					'[stencil plugin] componentDidLoad() { not found — skipping deleteConnectedElement injection'
 				);
 			}
-			return code
-				.replaceAll(/(?<!\w)for={/g, 'htmlFor={')
-				.replaceAll(
-					'componentDidLoad() {',
-					`componentDidLoad() {${deleteConnectedElement()}\n`
-				)
-				.replaceAll(
-					'} from "@stencil/core"',
-					', Element } from "@stencil/core"'
-				)
-				.replaceAll(
-					'private _ref',
-					'@Element() rootElement: HTMLElement;\nprivate _ref'
-				);
+			return addDrawerHeaderSlot(
+				code
+					.replaceAll(/(?<!\w)for={/g, 'htmlFor={')
+					.replaceAll(
+						'componentDidLoad() {',
+						`componentDidLoad() {${deleteConnectedElement()}\n`
+					)
+					.replaceAll(
+						'} from "@stencil/core"',
+						', Element } from "@stencil/core"'
+					)
+					.replaceAll(
+						'private _ref',
+						'@Element() rootElement: HTMLElement;\nprivate _ref'
+					),
+				json
+			);
 		}
 	}
 });
 
 module.exports.extractOnInitCode = extractOnInitCode;
 module.exports.injectComponentWillLoad = injectComponentWillLoad;
+module.exports.addDrawerHeaderSlot = addDrawerHeaderSlot;

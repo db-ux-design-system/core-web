@@ -1,12 +1,16 @@
 import {
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { DEFAULT_BURGER_MENU } from '../../shared/constants';
-import { cls } from '../../utils';
+import {
+	DEFAULT_BURGER_MENU,
+	DEFAULT_CLOSE_BUTTON
+} from '../../shared/constants';
+import { cls, getBoolean } from '../../utils';
 import { isEventTargetNavigationItem } from '../../utils/navigation';
 import DBButton from '../button/button.lite';
 import DBDrawerFooter from '../drawer-footer/drawer-footer.lite';
@@ -16,7 +20,9 @@ import { DBControlPanelMobileProps, DBControlPanelMobileState } from './model';
 
 useMetadata({});
 
-useDefaultProps<DBControlPanelMobileProps>({});
+useDefaultProps<DBControlPanelMobileProps>({
+	closeButtonText: DEFAULT_CLOSE_BUTTON
+});
 
 export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 	// This is used as forwardRef
@@ -64,7 +70,20 @@ export default function DBControlPanelMobile(props: DBControlPanelMobileProps) {
 			class={cls('db-control-panel-mobile', props.className)}>
 			<Slot name="skipNavigation" />
 			<DBDrawer
-				header={<DBDrawerHeader text={props.drawerHeaderText} />}
+				header={
+					<>
+						<Show when={!getBoolean(props.showDrawerHeaderSlot)}>
+							<DBDrawerHeader
+								text={props.drawerHeaderText}
+								closeButtonText={props.closeButtonText}
+								closeButtonId={props.closeButtonId}
+							/>
+						</Show>
+						<Show when={getBoolean(props.showDrawerHeaderSlot)}>
+							<Slot name="header" />
+						</Show>
+					</>
+				}
 				class="db-control-panel-mobile-drawer"
 				open={state.open}
 				onClose={(event) => state.handleClose(event)}
