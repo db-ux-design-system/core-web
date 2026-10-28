@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import ControlPanelMobileCustomHeader from '../examples/custom-header.example.lite';
 import ControlPanelMobileExamplesBottom from '../examples/examples-bottom.example.lite';
 import ControlPanelMobileExamples from '../examples/examples.example.lite';
 import ControlPanelMobileInteraction from '../examples/interaction.example.lite';
@@ -30,6 +31,11 @@ export default function ControlPanelMobileShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Interaction">
 				<CardWrapperShowcase>
 					<ControlPanelMobileInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Custom Header">
+				<CardWrapperShowcase>
+					<ControlPanelMobileCustomHeader />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
