@@ -23,25 +23,25 @@ export default function SectionDensity() {
 				data-density="functional"
 				id="test-id-123">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Functional
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Functional
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Functional
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Functional
@@ -57,25 +57,25 @@ export default function SectionDensity() {
 				}}
 				data-density="regular">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Regular
@@ -91,25 +91,25 @@ export default function SectionDensity() {
 				}}
 				data-density="expressive">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Expressive
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Expressive
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Expressive
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Expressive

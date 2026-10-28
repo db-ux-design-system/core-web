@@ -130,7 +130,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return undefined;
 		},
 		_getLabelColor: (): ColorType | undefined => {
-			return props.variant === 'floating' ? undefined : 'neutral';
+			return props.variant === 'floating' ? state._getColor() : 'grey';
 		},
 		_getLabelMaterial: (): MaterialType | undefined => {
 			return props.variant === 'floating' ? undefined : 'filled-1';

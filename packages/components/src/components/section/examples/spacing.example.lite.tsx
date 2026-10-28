@@ -22,25 +22,25 @@ export default function SectionSpacing() {
 				}}
 				spacing="medium">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Medium
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Medium
 				</DBCard>{' '}
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Medium
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					(Default) Medium
@@ -56,25 +56,25 @@ export default function SectionSpacing() {
 				}}
 				spacing="large">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Large
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Large
 				</DBCard>{' '}
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Large
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Large
@@ -90,25 +90,25 @@ export default function SectionSpacing() {
 				}}
 				spacing="small">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Small
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Small
 				</DBCard>{' '}
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Small
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					Small
@@ -124,25 +124,25 @@ export default function SectionSpacing() {
 				}}
 				spacing="none">
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					None
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					None
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					None
 				</DBCard>
 				<DBCard
-					color="neutral"
+					color="grey"
 					material="filled-1"
 					style={{ inlineSize: '100%' }}>
 					None

@@ -95,7 +95,7 @@ export default function DBInput(props: DBInputProps) {
 			return undefined;
 		},
 		_getLabelColor: () => {
-			return props.variant === 'floating' ? state._getColor() : 'neutral';
+			return props.variant === 'floating' ? state._getColor() : 'grey';
 		},
 		_getLabelMaterial: () => {
 			return props.variant === 'floating' ? props.material : 'filled-1';

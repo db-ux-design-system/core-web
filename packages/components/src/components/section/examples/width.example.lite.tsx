@@ -22,25 +22,25 @@ export default function SectionWidth() {
 						gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
 					}}>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						(Default) Full
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						(Default) Full
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						(Default) Full
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						(Default) Full
@@ -58,25 +58,25 @@ export default function SectionWidth() {
 					}}
 					width="small">
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Small
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Small
 					</DBCard>{' '}
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Small
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Small
@@ -94,25 +94,25 @@ export default function SectionWidth() {
 					}}
 					width="medium">
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Medium
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Medium
 					</DBCard>{' '}
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Medium
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Medium
@@ -130,25 +130,25 @@ export default function SectionWidth() {
 					}}
 					width="large">
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Large
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Large
 					</DBCard>{' '}
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Large
 					</DBCard>
 					<DBCard
-						color="neutral"
+						color="grey"
 						material="filled-1"
 						style={{ inlineSize: '100%' }}>
 						Large

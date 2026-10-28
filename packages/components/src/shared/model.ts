@@ -96,7 +96,7 @@ export const TextMaterialList = MaterialList.filter(
 );
 
 export const ColorList = [
-	'neutral',
+	'grey',
 	'red',
 	'brand',
 	'green',
@@ -129,9 +129,8 @@ export type AltStateColorState = {
 };
 /**
  * Adaptive color/material for a form component's `<label>`. The "above" label
- * is a standalone block pinned to `neutral`/`filled-1`; the "floating" label
- * overlaps the field and inherits its color/material from the parent scope
- * (both getters return `undefined`).
+ * is a standalone block pinned to `grey`/`filled-1`; the "floating" label
+ * takes the field's color/material (so it sits correctly on the field surface).
  */
 export type LabelAdaptiveState = {
 	_getLabelColor: () => ColorType | undefined;

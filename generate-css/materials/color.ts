@@ -23,7 +23,7 @@ export type ColorPalette = {
 
 export type ColorName =
 	| 'red'
-	| 'neutral'
+	| 'grey'
 	| 'brand'
 	| 'green'
 	| 'yellow'
@@ -35,22 +35,22 @@ export type ColorName =
 	| 'cyan'
 	| 'turquoise';
 
-export const DEFAULT_COLOR: ColorName = 'neutral';
+export const DEFAULT_COLOR: ColorName = 'grey';
 
 export const FOCUS_OUTLINE_COLOR: { color: ColorName; index: ColorIndex } = {
 	color: 'cyan',
 	index: 7
 };
 
-// Backdrop (dialog/drawer overlay) is a dimmed neutral. Base color is
-// neutral/1; the weak and strong variants apply the alpha via color-mix.
+// Backdrop (dialog/drawer overlay) is a dimmed grey. Base color is
+// grey/1; the weak and strong variants apply the alpha via color-mix.
 export const BACKDROP_COLOR: {
 	color: ColorName;
 	index: ColorIndex;
 	weakAlpha: number;
 	strongAlpha: number;
 } = {
-	color: 'neutral',
+	color: 'grey',
 	index: 1,
 	weakAlpha: 0.32,
 	strongAlpha: 0.68
@@ -110,7 +110,7 @@ export const colors: Record<ColorName, ColorPalette> = {
 			'rgba(255, 136, 138, 0.32)'
 		]
 	},
-	neutral: {
+	grey: {
 		0: ['#000000', '#FFFFFF'],
 		1: ['#16181B', '#EDEEF0'],
 		2: ['#1E2023', '#E1E2E6'],

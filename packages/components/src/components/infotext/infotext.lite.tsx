@@ -38,7 +38,7 @@ export default function DBInfotext(props: DBInfotextProps) {
 				return 'green';
 			}
 
-			return 'neutral';
+			return 'grey';
 		}
 	});
 	// jscpd:ignore-end

@@ -65,7 +65,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#EF0016, #EF0016) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-adaptive-color="neutral"]:not([data-material]) {
+[data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -491,7 +491,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#EF0016, #EF0016) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="filled-1"][data-adaptive-color="neutral"] {
+[data-material="filled-1"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -500,7 +500,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="filled-1"][data-adaptive-color="neutral"] {
+[data-material="filled-1"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -508,7 +508,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="filled-2"][data-adaptive-color="neutral"] {
+[data-material="filled-2"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -517,7 +517,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="filled-2"][data-adaptive-color="neutral"] {
+[data-material="filled-2"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -525,7 +525,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="filled-3"][data-adaptive-color="neutral"] {
+[data-material="filled-3"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
@@ -534,7 +534,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="filled-3"][data-adaptive-color="neutral"] {
+[data-material="filled-3"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -542,7 +542,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="semi-transparent"][data-adaptive-color="neutral"] {
+[data-material="semi-transparent"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.08), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.24)) var(--db-adaptive-transparency, 100%), transparent);
@@ -551,7 +551,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="semi-transparent"][data-adaptive-color="neutral"] {
+[data-material="semi-transparent"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -559,7 +559,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="transparent"][data-adaptive-color="neutral"] {
+[data-material="transparent"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
@@ -568,7 +568,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="transparent"][data-adaptive-color="neutral"] {
+[data-material="transparent"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -576,7 +576,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="vibrant"][data-adaptive-color="neutral"] {
+[data-material="vibrant"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#A6ABB6, #484B53) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -585,7 +585,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="vibrant"][data-adaptive-color="neutral"] {
+[data-material="vibrant"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -593,7 +593,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="inverted"][data-adaptive-color="neutral"] {
+[data-material="inverted"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
@@ -602,7 +602,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="inverted"][data-adaptive-color="neutral"] {
+[data-material="inverted"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -610,7 +610,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="origin"][data-adaptive-color="neutral"] {
+[data-material="origin"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#646973, #646973) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#545861, #545861) var(--db-adaptive-transparency, 100%), transparent);
@@ -619,7 +619,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="origin"][data-adaptive-color="neutral"] {
+[data-material="origin"][data-adaptive-color="grey"] {
 	--db-text-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2123,7 +2123,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#EF0016, #EF0016) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="filled-1"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="filled-1"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -2132,7 +2132,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="filled-1"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="filled-1"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2140,7 +2140,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="filled-2"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="filled-2"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -2149,7 +2149,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="filled-2"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="filled-2"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2157,7 +2157,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="filled-3"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="filled-3"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
@@ -2166,7 +2166,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="filled-3"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="filled-3"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2174,7 +2174,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="semi-transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="semi-transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.08), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.24)) var(--db-adaptive-transparency, 100%), transparent);
@@ -2183,7 +2183,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="semi-transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="semi-transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2191,7 +2191,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
@@ -2200,7 +2200,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2208,7 +2208,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="vibrant"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="vibrant"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#A6ABB6, #484B53) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -2217,7 +2217,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="vibrant"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="vibrant"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2225,7 +2225,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="inverted"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="inverted"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
@@ -2234,7 +2234,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="inverted"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="inverted"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -2242,7 +2242,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-material="origin"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="origin"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-default: color-mix(in srgb, light-dark(#646973, #646973) var(--db-adaptive-transparency, 100%), transparent);
 	--db-bg-hovered: color-mix(in srgb, light-dark(#545861, #545861) var(--db-adaptive-transparency, 100%), transparent);
@@ -2251,7 +2251,7 @@ html {
 	--db-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-material="origin"] [data-adaptive-color="neutral"]:not([data-material]) {
+[data-material="origin"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-hovered: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-text-pressed: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -3647,7 +3647,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#EF0016, #EF0016) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -4073,7 +4073,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#EF0016, #EF0016) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -4082,7 +4082,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4090,7 +4090,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -4099,7 +4099,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4107,7 +4107,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
@@ -4116,7 +4116,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4124,7 +4124,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.08), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.24)) var(--db-adaptive-transparency, 100%), transparent);
@@ -4133,7 +4133,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4141,7 +4141,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="transparent"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
@@ -4150,7 +4150,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="transparent"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4158,7 +4158,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#A6ABB6, #484B53) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -4167,7 +4167,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4175,7 +4175,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="inverted"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="inverted"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
@@ -4184,7 +4184,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="inverted"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="inverted"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -4192,7 +4192,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="origin"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="origin"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#646973, #646973) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#545861, #545861) var(--db-adaptive-transparency, 100%), transparent);
@@ -4201,7 +4201,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="origin"][data-alt-state-adaptive-color="neutral"] {
+[data-alt-state-material="origin"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5705,7 +5705,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#EF0016, #EF0016) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -5714,7 +5714,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5722,7 +5722,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -5731,7 +5731,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5739,7 +5739,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
@@ -5748,7 +5748,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5756,7 +5756,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.08), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.24)) var(--db-adaptive-transparency, 100%), transparent);
@@ -5765,7 +5765,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5773,7 +5773,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0), rgba(166, 171, 182, 0)) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(rgba(90, 94, 104, 0.16), rgba(166, 171, 182, 0.16)) var(--db-adaptive-transparency, 100%), transparent);
@@ -5782,7 +5782,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5790,7 +5790,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#A6ABB6, #484B53) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#E1E2E6, #1E2023) var(--db-adaptive-transparency, 100%), transparent);
@@ -5799,7 +5799,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#1E2023, #E1E2E6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5807,7 +5807,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
@@ -5816,7 +5816,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#FFFFFF, #000000) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#EDEEF0, #16181B) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -5824,7 +5824,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#727782, #727782) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-[data-alt-state-material="origin"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="origin"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-default: color-mix(in srgb, light-dark(#646973, #646973) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-bg-hovered: color-mix(in srgb, light-dark(#545861, #545861) var(--db-adaptive-transparency, 100%), transparent);
@@ -5833,7 +5833,7 @@ html {
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#D5D7DC, #2A2C31) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-[data-alt-state-material="origin"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+[data-alt-state-material="origin"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-default: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-hovered: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-text-pressed: color-mix(in srgb, light-dark(#F9F9FA, #F9F9FA) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
@@ -7229,7 +7229,7 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
@@ -7489,88 +7489,88 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-1"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-1"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-1"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-1"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-2"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-2"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-2"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-2"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-3"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-3"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-3"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-3"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="transparent"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="transparent"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="transparent"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="transparent"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="vibrant"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="vibrant"][data-adaptive-color="grey"] {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="vibrant"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="vibrant"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="inverted"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="inverted"][data-adaptive-color="grey"] {
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="inverted"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="inverted"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="origin"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="origin"][data-adaptive-color="grey"] {
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="origin"][data-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-material="origin"][data-adaptive-color="grey"] {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
@@ -8521,88 +8521,88 @@ html {
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-1"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-1"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-1"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-1"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-2"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-2"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-2"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-2"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-3"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-3"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="filled-3"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="filled-3"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="semi-transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="vibrant"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="vibrant"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="vibrant"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="vibrant"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="inverted"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="inverted"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="inverted"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="inverted"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="origin"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="origin"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-material="origin"] [data-adaptive-color="neutral"]:not([data-material]) {
+:is(:root,:host)[data-contrast="more"] [data-material="origin"] [data-adaptive-color="grey"]:not([data-material]) {
 	--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
@@ -9483,7 +9483,7 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
@@ -9743,88 +9743,88 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"][data-alt-state-adaptive-color="neutral"] {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"][data-alt-state-adaptive-color="grey"] {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
@@ -10775,88 +10775,88 @@ html {
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="inverted"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 	--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 }
 
-:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+:is(:root,:host)[data-contrast="more"] [data-alt-state-material="origin"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 	--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 }
@@ -11738,7 +11738,7 @@ html {
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-adaptive-color="neutral"]:not([data-material]) {
+	[data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
@@ -11998,88 +11998,88 @@ html {
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="filled-1"][data-adaptive-color="neutral"] {
+	[data-material="filled-1"][data-adaptive-color="grey"] {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="filled-1"][data-adaptive-color="neutral"] {
+	[data-material="filled-1"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="filled-2"][data-adaptive-color="neutral"] {
+	[data-material="filled-2"][data-adaptive-color="grey"] {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="filled-2"][data-adaptive-color="neutral"] {
+	[data-material="filled-2"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="filled-3"][data-adaptive-color="neutral"] {
+	[data-material="filled-3"][data-adaptive-color="grey"] {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="filled-3"][data-adaptive-color="neutral"] {
+	[data-material="filled-3"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="semi-transparent"][data-adaptive-color="neutral"] {
+	[data-material="semi-transparent"][data-adaptive-color="grey"] {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="semi-transparent"][data-adaptive-color="neutral"] {
+	[data-material="semi-transparent"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="transparent"][data-adaptive-color="neutral"] {
+	[data-material="transparent"][data-adaptive-color="grey"] {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="transparent"][data-adaptive-color="neutral"] {
+	[data-material="transparent"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="vibrant"][data-adaptive-color="neutral"] {
+	[data-material="vibrant"][data-adaptive-color="grey"] {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="vibrant"][data-adaptive-color="neutral"] {
+	[data-material="vibrant"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="inverted"][data-adaptive-color="neutral"] {
+	[data-material="inverted"][data-adaptive-color="grey"] {
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="inverted"][data-adaptive-color="neutral"] {
+	[data-material="inverted"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="origin"][data-adaptive-color="neutral"] {
+	[data-material="origin"][data-adaptive-color="grey"] {
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="origin"][data-adaptive-color="neutral"] {
+	[data-material="origin"][data-adaptive-color="grey"] {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
@@ -13030,88 +13030,88 @@ html {
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="filled-1"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="filled-1"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="filled-1"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="filled-1"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="filled-2"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="filled-2"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="filled-2"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="filled-2"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="filled-3"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="filled-3"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="filled-3"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="filled-3"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="semi-transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="semi-transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="semi-transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="semi-transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="transparent"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="transparent"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="vibrant"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="vibrant"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="vibrant"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="vibrant"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="inverted"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="inverted"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="inverted"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="inverted"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-material="origin"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="origin"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-material="origin"] [data-adaptive-color="neutral"]:not([data-material]) {
+	[data-material="origin"] [data-adaptive-color="grey"]:not([data-material]) {
 		--db-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
@@ -13992,7 +13992,7 @@ html {
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
@@ -14252,88 +14252,88 @@ html {
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="filled-1"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="filled-2"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="filled-3"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="semi-transparent"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="transparent"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="transparent"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="transparent"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="transparent"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="vibrant"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="inverted"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="inverted"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="inverted"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="inverted"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="origin"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="origin"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="origin"][data-alt-state-adaptive-color="neutral"] {
+	[data-alt-state-material="origin"][data-alt-state-adaptive-color="grey"] {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
@@ -15284,88 +15284,88 @@ html {
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#9C000A, #FF888A) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="filled-1"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="filled-2"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="filled-3"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="semi-transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="transparent"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-default: color-mix(in srgb, light-dark(#5A5E68, #8A919E) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="vibrant"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="inverted"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}
 
-	[data-alt-state-material="origin"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="origin"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-border-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, 100%), transparent);
 		--db-alt-state-border-decorative: color-mix(in srgb, light-dark(#16181B, #EDEEF0) var(--db-adaptive-transparency, 100%), transparent);
 	}
 
-	[data-alt-state-material="origin"] [data-alt-state-adaptive-color="neutral"]:not([data-alt-state-material]) {
+	[data-alt-state-material="origin"] [data-alt-state-adaptive-color="grey"]:not([data-alt-state-material]) {
 		--db-alt-state-text-vibrant: color-mix(in srgb, light-dark(#36393F, #BDC1C9) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 		--db-alt-state-visual-vibrant: color-mix(in srgb, light-dark(#484B53, #A6ABB6) var(--db-adaptive-transparency, var(--db-emphasis-transparency, 100%)), transparent);
 	}

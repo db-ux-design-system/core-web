@@ -291,7 +291,7 @@ export const generateMaterialsCss = (): string => {
 	const focusPalette = colors[FOCUS_OUTLINE_COLOR.color];
 	const [focusLight, focusDark] = focusPalette[FOCUS_OUTLINE_COLOR.index];
 
-	// Backdrop: a dimmed neutral, alpha applied via color-mix on the light-dark value.
+	// Backdrop: a dimmed grey, alpha applied via color-mix on the light-dark value.
 	const backdropPalette = colors[BACKDROP_COLOR.color];
 	const [backdropLight, backdropDark] = backdropPalette[BACKDROP_COLOR.index];
 	const backdrop = (alpha: number): string =>
