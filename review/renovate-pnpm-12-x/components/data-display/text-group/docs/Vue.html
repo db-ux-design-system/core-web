@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8" data-next-head=""/><meta name="viewport" content="width=device-width" data-next-head=""/><title data-next-head="">DB UX</title><link data-next-font="size-adjust" rel="preconnect" href="/" crossorigin="anonymous"/><link rel="preload" href="/core-web/review/renovate-pnpm-12-x/_next/static/css/9f5216ae3b4d0a3a.css" as="style"/><link rel="stylesheet" href="/core-web/review/renovate-pnpm-12-x/_next/static/css/9f5216ae3b4d0a3a.css" data-n-g=""/><noscript data-n-css=""></noscript><script defer="" noModule="" src="/core-web/review/renovate-pnpm-12-x/_next/static/chunks/polyfills-42372ed130431b0a.js"></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/chunks/webpack-7db1ed3c951c1b11.js" defer=""></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/chunks/framework-6a4094b0ce871ec1.js" defer=""></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/chunks/main-88557c85776b92b4.js" defer=""></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/chunks/pages/_app-58671832390204a0.js" defer=""></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/chunks/pages/components/data-display/text-group/docs/Vue-666a7a4f815ab384.js" defer=""></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/UDiEr6b2-ERrB2JMn5BpE/_buildManifest.js" defer=""></script><script src="/core-web/review/renovate-pnpm-12-x/_next/static/UDiEr6b2-ERrB2JMn5BpE/_ssgManifest.js" defer=""></script></head><body data-text-spacing="true"><div id="__next"><h2 id="vue">Vue<a class="header-link" href="/core-web/review/renovate-pnpm-12-x/components/data-display/text-group/docs/Vue?current=vue"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>vue<!-- --> anchor link</a></h2>
+<blockquote>
+<p><strong>Beta:</strong> TextGroup is available as a beta component. Its API and visual design may change before the stable release.</p>
+</blockquote>
+<p>For installation and configuration, see <a target="_blank" referrerPolicy="no-referrer" href="https://www.npmjs.com/package/@db-ux/v-core-components"><code>@db-ux/v-core-components</code></a>.</p>
+<p><code>DBTextGroup</code> renders a presentational <code>div</code> that groups block-level text and owns the spacing and alignment of its children. It carries no semantics of its own: for a labelled region use <code>DBSection</code> and put the group inside.</p>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import {
+	DBHeadingH3,
+	DBParagraph,
+	DBTextGroup
+} from &quot;@db-ux/v-core-components&quot;;
+&lt;/script&gt;
+
+&lt;template&gt;
+	&lt;DBTextGroup :text-spacing=&quot;true&quot; alignment=&quot;center&quot;&gt;
+		&lt;DBHeadingH3&gt;A heading starts the block&lt;/DBHeadingH3&gt;
+		&lt;DBParagraph&gt;A paragraph of body copy.&lt;/DBParagraph&gt;
+		&lt;DBParagraph size=&quot;sm&quot;&gt;A smaller paragraph.&lt;/DBParagraph&gt;
+	&lt;/DBTextGroup&gt;
+&lt;/template&gt;
+</code></pre>
+<h3 id="spacing">Spacing<a class="header-link" href="/core-web/review/renovate-pnpm-12-x/components/data-display/text-group/docs/Vue?current=spacing"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>spacing<!-- --> anchor link</a></h3>
+<p><code>text-spacing</code> gives every block-text child <code>0.5lh</code> of breathing room above and below, which amounts to about <code>1lh</code> between two adjacent children and <code>0.5lh</code> at the group&#x27;s own outer edges.</p>
+<p><code>:text-spacing=&quot;false&quot;</code> switches the spacing off, and omitting the prop is <strong>not</strong> the same thing: the group then neither opts in nor out and follows whatever an ancestor set. The Patternhub, for instance, opts in on <code>&lt;body&gt;</code>, so an unset group is spaced there. Use <code>false</code> when it has to be off for certain.</p>
+<p>The spacing is not the group&#x27;s own: <code>text-spacing</code> renders <code>data-text-spacing</code>, and the foundations&#x27; required styles turn that into a <code>margin-block</code> on every <code>h1</code>-<code>h6</code> and <code>p</code> below it. The group only needs to set the attribute, which is why it works the same in every framework output.</p>
+<p>Because the margin sits on the text element, <code>1lh</code> resolves against that element&#x27;s own line height. A child with a smaller <code>size</code> therefore gets proportionally less spacing, and two children of different sizes end up somewhat closer than <code>1lh</code>.</p>
+<p>The attribute also works on a block-text element itself, so a single paragraph can carry it without a group.</p>
+<h3 id="which-children-to-use">Which children to use<a class="header-link" href="/core-web/review/renovate-pnpm-12-x/components/data-display/text-group/docs/Vue?current=which-children-to-use"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>which-children-to-use<!-- --> anchor link</a></h3>
+<p>The group knows nothing about its child types. Every <code>h1</code>-<code>h6</code> and <code>p</code> below it is spaced, whether it carries one of our classes or not, so plain <code>&lt;h2&gt;</code> and <code>&lt;p&gt;</code> elements work exactly like <code>DBParagraph</code> and <code>DBHeading</code>.</p>
+<p>Other block elements are not covered: a <code>ul</code>, <code>ol</code> or <code>blockquote</code> keeps whatever margin it brings. Give it <code>margin-block: calc(1lh * var(--db-text-spacing, 0))</code> to join the rhythm, or <code>margin-block: 0</code> to take it out.</p>
+<h3 id="alignment">Alignment<a class="header-link" href="/core-web/review/renovate-pnpm-12-x/components/data-display/text-group/docs/Vue?current=alignment"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>alignment<!-- --> anchor link</a></h3>
+<p><code>alignment</code> takes the logical values <code>start</code>, <code>center</code> and <code>end</code>. The children inherit it, so it does not have to be repeated on each one. A nested <code>DBTextGroup</code> can set its own.</p>
+<h3 id="content-attributes-and-accessibility">Content, attributes and accessibility<a class="header-link" href="/core-web/review/renovate-pnpm-12-x/components/data-display/text-group/docs/Vue?current=content-attributes-and-accessibility"><span aria-hidden="true" class="db-icon" data-icon="paper_clip"></span>content-attributes-and-accessibility<!-- --> anchor link</a></h3>
+<p>Content always comes through the default slot, there is no <code>text</code> prop. The <code>div</code> adds no role, so the group is invisible to assistive technology and only its children carry meaning.</p>
+<p>Native <code>aria-*</code>, <code>data-*</code>, <code>lang</code>, <code>title</code>, <code>style</code>, <code>class</code> and <code>id</code> attributes are forwarded to the rendered element.</p></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{}},"page":"/components/data-display/text-group/docs/Vue","query":{},"buildId":"UDiEr6b2-ERrB2JMn5BpE","assetPrefix":"/core-web/review/renovate-pnpm-12-x","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}</script></body></html>
