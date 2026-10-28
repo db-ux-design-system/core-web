@@ -1,0 +1,11 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{l as t,o as n}from"./iframe-C5KeZ1jB.js";import{i as r,n as i,t as a}from"./apply-web-component-args-YZAtuaXo.js";var o,s,c,l;function u(){return(u=e((()=>{n(),a(),{fn:o}=__STORYBOOK_MODULE_TEST__,s={title:`Components/DBControlPanelMobile/Interaction`,component:`db-control-panel-mobile`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{position:{control:`select`,options:[`top`,`bottom`]},drawerHeaderText:{control:`text`},burgerMenuLabel:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},c={args:{"data-testid":`drilldown-panel`,position:`top`,drawerHeaderText:`DBControlPanel`},render:({children:e,...n})=>t`<div style="width: 100%; display: block"><db-control-panel-mobile ${i(n)}>${r(`<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand><db-control-panel-navigation aria-label="Drilldown Interaction"><db-control-panel-navigation-item-group text="Drilldown Group" data-testid="drilldown-group"><db-control-panel-navigation-item data-testid="drilldown-sub1"><a href="#">Drilldown Sub 1</a></db-control-panel-navigation-item></db-control-panel-navigation-item-group></db-control-panel-navigation>`)}</db-control-panel-mobile></div>`},l=[`Interaction`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-testid": "drilldown-panel",
+    "position": "top",
+    "drawerHeaderText": "DBControlPanel"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 100%; display: block"><db-control-panel-mobile \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand><db-control-panel-navigation aria-label="Drilldown Interaction"><db-control-panel-navigation-item-group text="Drilldown Group" data-testid="drilldown-group"><db-control-panel-navigation-item data-testid="drilldown-sub1"><a href="#">Drilldown Sub 1</a></db-control-panel-navigation-item></db-control-panel-navigation-item-group></db-control-panel-navigation>\`)}</db-control-panel-mobile></div>\`
+}`,...c.parameters?.docs?.source}}}})))()}u();export{c as Interaction,l as __namedExportsOrder,s as default};
