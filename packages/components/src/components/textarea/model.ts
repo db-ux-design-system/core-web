@@ -14,6 +14,7 @@ import type {
 	GlobalState,
 	InputEventProps,
 	InputEventState,
+	LabelAdaptiveState,
 	MaterialProps
 } from '../../shared/model';
 
@@ -78,4 +79,5 @@ export type DBTextareaState = DBTextareaDefaultState &
 	FormState &
 	GlobalState &
 	ColorState &
+	LabelAdaptiveState &
 	FromValidState;

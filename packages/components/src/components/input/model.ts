@@ -18,6 +18,7 @@ import type {
 	IconTrailingProps,
 	InputEventProps,
 	InputEventState,
+	LabelAdaptiveState,
 	MaterialProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
@@ -141,6 +142,7 @@ export type DBInputDefaultState = {
 export type DBInputState = DBInputDefaultState &
 	GlobalState &
 	ColorState &
+	LabelAdaptiveState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &

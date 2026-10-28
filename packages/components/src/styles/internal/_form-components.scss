@@ -131,7 +131,10 @@ $db-min-inline-size: var(
 		> label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: variables.$db-opacity-xl;
+			opacity: var(
+				--db-opacity-emphasis-low,
+				#{variables.$db-opacity-xl}
+			);
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -197,7 +200,10 @@ $db-min-inline-size: var(
 			}
 
 			@include placeholder-content($selector) {
-				opacity: variables.$db-opacity-xl;
+				opacity: var(
+					--db-opacity-emphasis-low,
+					#{variables.$db-opacity-xl}
+				);
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
 
@@ -405,7 +411,11 @@ $input-valid-types:
 	@include set-floating-label-overwrites($selector);
 
 	@include placeholder-content($selector) {
-		opacity: variables.$db-opacity-xl;
+		// Adaptive overrides the placeholder de-emphasis via
+		// `--db-opacity-emphasis-low` (0.75, defined in generated-colors.css).
+		// The legacy bundle never defines that token, so it falls back to the
+		// generic `--db-opacity-xl` (0.76) and keeps its current appearance.
+		opacity: var(--db-opacity-emphasis-low, #{variables.$db-opacity-xl});
 		font-family: var(--db-font-family-sans);
 		font-style: italic;
 	}

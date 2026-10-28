@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import TagAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import TagBehavior from '../examples/behavior.example.lite';
 import TagChecked from '../examples/checked.example.lite';
 import TagDensity from '../examples/density.example.lite';
@@ -86,6 +87,11 @@ export default function TagShowcase(props: PatternhubProps) {
 					<TagInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<TagAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }

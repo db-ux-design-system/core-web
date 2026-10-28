@@ -13,6 +13,7 @@ import type {
 	IconProps,
 	InputEvent,
 	InteractionEvent,
+	LabelAdaptiveState,
 	MaterialProps,
 	PlacementVerticalType,
 	RequiredProps,
@@ -324,4 +325,5 @@ export type DBCustomSelectState = DBCustomSelectDefaultState &
 	FromValidState &
 	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
 	DocumentScrollState &
-	ColorState;
+	ColorState &
+	LabelAdaptiveState;

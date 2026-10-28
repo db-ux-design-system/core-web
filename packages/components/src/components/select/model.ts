@@ -17,6 +17,7 @@ import type {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
+	LabelAdaptiveState,
 	MaterialProps,
 	ShowIconProps
 } from '../../shared/model';
@@ -97,6 +98,7 @@ export type DBSelectDefaultState = {
 export type DBSelectState = DBSelectDefaultState &
 	GlobalState &
 	ColorState &
+	LabelAdaptiveState &
 	ClickEventState<HTMLSelectElement> &
 	ChangeEventState<HTMLSelectElement> &
 	FocusEventState<HTMLSelectElement> &

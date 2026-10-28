@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import InputAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import InputDatalistTypeaheadExamples from '../examples/datalist-typeahead-examples.example.lite';
 import InputDensity from '../examples/density.example.lite';
 import InputDisabled from '../examples/disabled.example.lite';
@@ -122,6 +123,11 @@ export default function InputShowcase(props: PatternhubProps) {
 					<InputInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<InputAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }

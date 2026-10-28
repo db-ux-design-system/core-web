@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import CustomSelectAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import CustomSelectAutoComplete from '../examples/auto-complete.example.lite';
 import CustomSelectControlled from '../examples/controlled.example.lite';
 import CustomSelectDensity from '../examples/density.example.lite';
@@ -176,6 +177,11 @@ export default function CustomSelectShowcase(props: PatternhubProps) {
 					<CustomSelectAutoComplete />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<CustomSelectAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }

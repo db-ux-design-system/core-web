@@ -323,7 +323,7 @@ export const generateMaterialsCss = (): string => {
 		)
 		.join(', ')})`;
 
-	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: var(--db-border-decorative);\n\t--db-backdrop-color-weak: ${backdrop(BACKDROP_COLOR.weakAlpha)};\n\t--db-backdrop-color-strong: ${backdrop(BACKDROP_COLOR.strongAlpha)};\n\t--db-indicator-color: ${indicatorColor};\n\t--db-indicator-background: ${indicatorBackground};\n\t--db-font-weight: normal;\n}\n\n`;
+	css += `:is(:root,:host) {\n\t--db-focus-outline-color: light-dark(${focusLight}, ${focusDark});\n\t--db-divider-bg-color: var(--db-border-decorative);\n\t--db-backdrop-color-weak: ${backdrop(BACKDROP_COLOR.weakAlpha)};\n\t--db-backdrop-color-strong: ${backdrop(BACKDROP_COLOR.strongAlpha)};\n\t--db-indicator-color: ${indicatorColor};\n\t--db-indicator-background: ${indicatorBackground};\n\t--db-font-weight: normal;\n\t--db-opacity-disabled: 0.4;\n\t--db-opacity-emphasis-low: 0.75;\n}\n\n`;
 
 	// Apply the base surface to the root/host itself so an unstyled document
 	// (or a custom-element host) picks up the adaptive background and text color.

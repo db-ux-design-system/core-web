@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import TextareaAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import TextareaDensity from '../examples/density.example.lite';
 import TextareaDisabled from '../examples/disabled.example.lite';
 import TextareaExamplesFloatingLabel from '../examples/examples-floating-label.example.lite';
@@ -98,6 +99,11 @@ export default function TextareaShowcase(props: PatternhubProps) {
 					<TextareaInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<TextareaAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }

@@ -9,6 +9,7 @@ import BadgeExamples from '../examples/examples.example.lite';
 import BadgePlacement from '../examples/placement.example.lite';
 import BadgeSemantic from '../examples/semantic.example.lite';
 import BadgeSize from '../examples/size.example.lite';
+import BadgeAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 
 export default function BadgeShowcase(props: PatternhubProps) {
 	return (
@@ -48,6 +49,11 @@ export default function BadgeShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples">
 				<CardWrapperShowcase>
 					<BadgeExamples />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<BadgeAdaptiveMatrix />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

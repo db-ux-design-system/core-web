@@ -94,6 +94,12 @@ export default function DBInput(props: DBInputProps) {
 
 			return undefined;
 		},
+		_getLabelColor: () => {
+			return props.variant === 'floating' ? state._getColor() : 'neutral';
+		},
+		_getLabelMaterial: () => {
+			return props.variant === 'floating' ? props.material : 'filled-1';
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -319,10 +325,6 @@ export default function DBInput(props: DBInputProps) {
 
 	return (
 		<div
-			data-material={props.material}
-			data-adaptive-color={state._getColor()}
-			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
-			data-alt-state-adaptive-color={props.altStateColor}
 			class={cls('db-input', props.className)}
 			data-variant={props.variant}
 			data-hide-label={getHideProp(props.showLabel)}
@@ -337,10 +339,17 @@ export default function DBInput(props: DBInputProps) {
 				props.showIconTrailing,
 				'showIconTrailing'
 			)}>
-			<label data-adaptive-color={props.color ?? 'neutral'} htmlFor={state._id}>
+			<label
+				data-adaptive-color={state._getLabelColor()}
+				data-material={state._getLabelMaterial()}
+				htmlFor={state._id}>
 				{props.label ?? DEFAULT_LABEL}
 			</label>
 			<input
+				data-material={props.material}
+				data-adaptive-color={state._getColor()}
+				data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+				data-alt-state-adaptive-color={props.altStateColor}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				data-field-sizing={props.fieldSizing}

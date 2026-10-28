@@ -31,7 +31,8 @@ import {
 	ColorType,
 	GeneralEvent,
 	InputEvent,
-	InteractionEvent
+	InteractionEvent,
+	MaterialType
 } from '../../shared/model';
 import {
 	cls,
@@ -127,6 +128,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			return undefined;
+		},
+		_getLabelColor: (): ColorType | undefined => {
+			return props.variant === 'floating' ? undefined : 'neutral';
+		},
+		_getLabelMaterial: (): MaterialType | undefined => {
+			return props.variant === 'floating' ? undefined : 'filled-1';
 		},
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
@@ -1095,7 +1102,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
-			<label data-adaptive-color={props.color ?? 'neutral'} id={state._labelId}>
+			<label
+				data-adaptive-color={state._getLabelColor()}
+				data-material={state._getLabelMaterial()}
+				id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				{/* The form-submitted value. Hidden, but advertises
 				    `autocomplete`, so autofill can write to it - see

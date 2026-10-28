@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import RadioAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import RadioChecked from '../examples/checked.example.lite';
 import RadioDensity from '../examples/density.example.lite';
 import RadioDisabled from '../examples/disabled.example.lite';
@@ -68,6 +69,11 @@ export default function RadioShowcase(props: PatternhubProps) {
 					<RadioInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<RadioAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }

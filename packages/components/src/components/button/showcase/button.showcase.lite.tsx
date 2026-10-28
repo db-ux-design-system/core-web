@@ -12,6 +12,7 @@ import ButtonShowIconTrailing from '../examples/show-icon-trailing.example.lite'
 import ButtonSize from '../examples/size.example.lite';
 import ButtonVariant from '../examples/variant.example.lite';
 import ButtonWidth from '../examples/width.example.lite';
+import ButtonAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 
 export default function ButtonShowcase(props: PatternhubProps) {
 	return (
@@ -66,6 +67,11 @@ export default function ButtonShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Interaction">
 				<CardWrapperShowcase>
 					<ButtonInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<ButtonAdaptiveMatrix />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

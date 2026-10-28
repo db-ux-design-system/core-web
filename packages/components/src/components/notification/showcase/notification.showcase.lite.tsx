@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import NotificationAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import NotificationCloseable from '../examples/closeable.example.lite';
 import NotificationDensity from '../examples/density.example.lite';
 import NotificationExamplesVariantDocked from '../examples/examples-variant-docked.example.lite';
@@ -86,6 +87,11 @@ export default function NotificationShowcase(props: PatternhubProps) {
 					<NotificationInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<NotificationAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }

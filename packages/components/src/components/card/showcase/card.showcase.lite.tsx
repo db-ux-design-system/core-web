@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import CardAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import CardBehavior from '../examples/behavior.example.lite';
 import CardDensity from '../examples/density.example.lite';
 import CardElevationLevel from '../examples/elevation-level.example.lite';
@@ -38,6 +39,11 @@ export default function CardShowcase(props: PatternhubProps) {
 					<CardExample />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-		</ContainerWrapperShowcase>
+<LinkWrapperShowcase exampleName="Adaptive Matrix">
+<CardWrapperShowcase>
+<CardAdaptiveMatrix />
+</CardWrapperShowcase>
+</LinkWrapperShowcase>
+</ContainerWrapperShowcase>
 	);
 }
