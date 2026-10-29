@@ -1,41 +1,166 @@
-import { ArgTypes, Canvas, Markdown, Meta } from "@storybook/addon-docs/blocks";
+import {
+	ArgTypes,
+	Canvas,
+	Controls,
+	Markdown,
+	Meta,
+	Source
+} from "@storybook/addon-docs/blocks";
 import * as OverviewStories from "./button.overview.stories";
+import * as DensityStories from "../../components/button/examples/density.example.stories";
+import * as DisabledStories from "../../components/button/examples/disabled.example.stories";
+import * as InteractionStories from "../../components/button/examples/interaction.example.stories";
+import * as MultiLineTextStories from "../../components/button/examples/multi-line-text.example.stories";
+import * as NoTextStories from "../../components/button/examples/no-text.example.stories";
+import * as ShowIconLeadingStories from "../../components/button/examples/show-icon-leading.example.stories";
+import * as ShowIconTrailingStories from "../../components/button/examples/show-icon-trailing.example.stories";
+import * as SizeStories from "../../components/button/examples/size.example.stories";
+import * as WidthStories from "../../components/button/examples/width.example.stories";
 import Usage from "../../../../../packages/components/src/components/button/docs/React.md?raw";
 import Migration from "../../../../../packages/components/src/components/button/docs/Migration.md?raw";
 
-{/* PROTOTYPE – overview page per component, see button.overview.stories.tsx */}
+{/* PROTOTYPE – see button.overview.stories.tsx. The "Source:" lines separate existing from new content; remove them once the page is generated. */}
 
 <Meta of={OverviewStories} />
 
 # DBButton
 
-Buttons initiate actions and confirm decisions.
-Usage guidelines and accessibility notes are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/button).
+> **Prototype for discussion.** This page bundles the developer documentation of a component in one place. Each section names its source. If the structure is agreed on, the page is generated for every component.
+
+Buttons initiate actions and confirm decisions. Use them to guide users through key tasks and flows.
+
+- Trigger an action (e.g. Send, Save, Delete)
+- Indicate that interaction or confirmation is expected
+- Highlight a primary or secondary action
+
+**Status:** Stable · **Accessibility review:** done (2024-04-22)
+
+**Design guidelines** (hierarchy, labels, icons, layout, Button vs. Link) are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/button).
+
+_Source: description and use cases from the platform page, review status from `showcases/patternhub/data/_accessibility-review.json`._
+
+## Playground
+
+<Canvas of={OverviewStories.Playground} />
+
+<Controls of={OverviewStories.Playground} />
+
+_Source: new story `Playground`; the controls come from the generated argTypes (`examples/_button.arg.types.ts`)._
+
+## Installation
+
+<Source
+	language="shell"
+	dark
+	code="pnpm add @db-ux/react-core-components @db-ux/core-components @db-ux/core-foundations"
+/>
+
+Styles, Vite and PostCSS plugins and the theme are covered in [Getting Started](?path=/docs/getting-started--docs) and on the [platform setup page for React](https://design-system.deutschebahn.com/documentation/learn/react-setup).
+
+_Source: install command from `output/react/README.md`._
+
+## Usage
+
+{/* The docs file starts with "## React"; the section heading above replaces it. */}
+
+<Markdown>{Usage.replace(/^##\s+React\s*\n/, "")}</Markdown>
+
+_Source: `packages/components/src/components/button/docs/React.md` – until now only in the Patternhub ("How to use")._
+
+## Examples
+
+Every example is a generated story with live preview. Open **Show code** below a preview for the snippet, or follow the link to the example page with controls.
+
+_Source: generated stories from `packages/components/src/components/button/examples/*.example.lite.tsx` – unchanged, only placed on this page._
+
+### Variant
+
+Only use one primary button (**Brand**) as a CTA on a page; otherwise, use one of the adaptive buttons (**Outlined**, **Filled**, **Ghost**).
 
 <Canvas of={OverviewStories.Variants} />
 
-<Markdown>{Usage}</Markdown>
+[All variants with controls](?path=/docs/components-dbbutton-variant--docs)
+
+### Size
+
+<Canvas of={SizeStories.Medium} />
+<Canvas of={SizeStories.Small} />
+
+### Width
+
+Auto width follows the content, full width follows the parent element.
+
+<Canvas of={WidthStories.Auto} />
+<Canvas of={WidthStories.Full} />
+
+### Icons
+
+Use at most one icon per button, either leading or trailing.
+
+<Canvas of={ShowIconLeadingStories.True} />
+<Canvas of={ShowIconTrailingStories.True} />
+
+### Icon only
+
+`noText` hides the text visually; it stays in the markup as the accessible name. Always pass a text and add a tooltip.
+
+<Canvas of={NoTextStories.True} />
+
+### Disabled
+
+<Canvas of={DisabledStories.True} />
+
+### Density
+
+<Canvas of={DensityStories.Functional} />
+<Canvas of={DensityStories.Regular} />
+<Canvas of={DensityStories.Expressive} />
+
+### Multi line text
+
+<Canvas of={MultiLineTextStories.AutomaticLineBreaks} />
+
+### Interaction
+
+<Canvas of={InteractionStories.Interaction} />
+
+More: [Form Attributes](?path=/docs/components-dbbutton-form-attributes--docs) · [Multi Line Text](?path=/docs/components-dbbutton-multi-line-text--docs) · [Show Icon Leading](?path=/docs/components-dbbutton-show-icon-leading--docs) · [Show Icon Trailing](?path=/docs/components-dbbutton-show-icon-trailing--docs)
+
+_Source: section texts from the property descriptions in `model.ts` and the platform guidelines._
 
 ## Properties
 
 <ArgTypes of={OverviewStories} />
 
-## Examples
+_Source: generated by Storybook (react-docgen) from the types and JSDoc in `model.ts` – already on every example page, here once for the component._
 
-All examples with live preview, controls and code:
+## Accessibility
 
-- [Density](?path=/docs/components-dbbutton-density--docs)
-- [Disabled](?path=/docs/components-dbbutton-disabled--docs)
-- [Form Attributes](?path=/docs/components-dbbutton-form-attributes--docs)
-- [Interaction](?path=/docs/components-dbbutton-interaction--docs)
-- [Multi Line Text](?path=/docs/components-dbbutton-multi-line-text--docs)
-- [No Text](?path=/docs/components-dbbutton-no-text--docs)
-- [Show Icon Leading](?path=/docs/components-dbbutton-show-icon-leading--docs)
-- [Show Icon Trailing](?path=/docs/components-dbbutton-show-icon-trailing--docs)
-- [Size](?path=/docs/components-dbbutton-size--docs)
-- [Variant](?path=/docs/components-dbbutton-variant--docs)
-- [Width](?path=/docs/components-dbbutton-width--docs)
+- DBButton renders a native `<button>`: focus, keyboard activation and the disabled state come from the browser.
+- Without `type`, the button is `button` if it has `onClick` or `commandfor`, otherwise `submit`. Set `type` explicitly inside forms.
+- Icon only (`noText`): the text is the accessible name. Never leave it empty.
+- The small button in functional density is 20 px high. Keep a clickable area of at least 24 × 24 px with surrounding space, and don't let other controls overlap it.
+
+_Source: behaviour from `button.lite.tsx` and `_button-components.scss`, target size from the platform guideline "Accessibility". New on this page._
 
 ## Migration
 
-<Markdown>{Migration}</Markdown>
+{/* Nest the headings of the docs file below the section heading. */}
+
+<Markdown>
+	{Migration.replace(/^## /gm, "### ").replace(
+		/^### (sizes|variants|icons|class)$/gm,
+		"#### $1"
+	)}
+</Markdown>
+
+_Source: `packages/components/src/components/button/docs/Migration.md` – until now only in the Patternhub ("Migration")._
+
+## Resources
+
+- [Design guidelines on the platform](https://design-system.deutschebahn.com/documentation/components/button)
+- npm: [@db-ux/react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) · [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components)
+- [Source code on GitHub](https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/button)
+- [Changelog](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md)
+
+_Source: new._
