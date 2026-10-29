@@ -1,0 +1,41 @@
+import { ArgTypes, Canvas, Markdown, Meta } from "@storybook/addon-docs/blocks";
+import * as OverviewStories from "./button.overview.stories";
+import Usage from "../../../../../packages/components/src/components/button/docs/React.md?raw";
+import Migration from "../../../../../packages/components/src/components/button/docs/Migration.md?raw";
+
+{/* PROTOTYPE – overview page per component, see button.overview.stories.tsx */}
+
+<Meta of={OverviewStories} />
+
+# DBButton
+
+Buttons initiate actions and confirm decisions.
+Usage guidelines and accessibility notes are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/button).
+
+<Canvas of={OverviewStories.Variants} />
+
+<Markdown>{Usage}</Markdown>
+
+## Properties
+
+<ArgTypes of={OverviewStories} />
+
+## Examples
+
+All examples with live preview, controls and code:
+
+- [Density](?path=/docs/components-dbbutton-density--docs)
+- [Disabled](?path=/docs/components-dbbutton-disabled--docs)
+- [Form Attributes](?path=/docs/components-dbbutton-form-attributes--docs)
+- [Interaction](?path=/docs/components-dbbutton-interaction--docs)
+- [Multi Line Text](?path=/docs/components-dbbutton-multi-line-text--docs)
+- [No Text](?path=/docs/components-dbbutton-no-text--docs)
+- [Show Icon Leading](?path=/docs/components-dbbutton-show-icon-leading--docs)
+- [Show Icon Trailing](?path=/docs/components-dbbutton-show-icon-trailing--docs)
+- [Size](?path=/docs/components-dbbutton-size--docs)
+- [Variant](?path=/docs/components-dbbutton-variant--docs)
+- [Width](?path=/docs/components-dbbutton-width--docs)
+
+## Migration
+
+<Markdown>{Migration}</Markdown>
