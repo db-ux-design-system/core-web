@@ -1,0 +1,152 @@
+import { Canvas, Markdown, Meta, Source } from "@storybook/addon-docs/blocks";
+import * as OverviewStories from "./button.overview.stories";
+import * as DensityStories from "../../../../react-storybook/src/components/button/examples/density.example.stories";
+import * as DisabledStories from "../../../../react-storybook/src/components/button/examples/disabled.example.stories";
+import * as InteractionStories from "../../../../react-storybook/src/components/button/examples/interaction.example.stories";
+import * as MultiLineTextStories from "../../../../react-storybook/src/components/button/examples/multi-line-text.example.stories";
+import * as NoTextStories from "../../../../react-storybook/src/components/button/examples/no-text.example.stories";
+import * as ShowIconLeadingStories from "../../../../react-storybook/src/components/button/examples/show-icon-leading.example.stories";
+import * as ShowIconTrailingStories from "../../../../react-storybook/src/components/button/examples/show-icon-trailing.example.stories";
+import * as SizeStories from "../../../../react-storybook/src/components/button/examples/size.example.stories";
+import * as VariantStories from "../../../../react-storybook/src/components/button/examples/variant.example.stories";
+import * as WidthStories from "../../../../react-storybook/src/components/button/examples/width.example.stories";
+import Intro from "../../../../_shared/overview/button/intro.md?raw";
+import Usage from "../../../../../packages/components/src/components/button/docs/HTML.md?raw";
+import Accessibility from "../../../../../packages/components/src/components/button/docs/Accessibility.md?raw";
+import Migration from "../../../../../packages/components/src/components/button/docs/Migration.md?raw";
+
+{/* PROTOTYPE – see button.overview.stories.tsx (HTML Storybook). The "Source:" lines separate existing from new content; remove them once the page is generated. */}
+
+<Meta of={OverviewStories} />
+
+# DBButton
+
+> **Prototype for discussion.** This page bundles the developer documentation of a component in one place. Each section names its source. If the structure is agreed on, the page is generated for every component.
+
+<Markdown>{Intro}</Markdown>
+
+_Source: `storybooks/_shared/overview/button/intro.md` (shared by all Storybooks) – description and use cases from the platform page, review status from `showcases/patternhub/data/_accessibility-review.json`._
+
+## Playground
+
+<Canvas of={OverviewStories.Playground} />
+
+_Source: new story `Playground`. The HTML Storybook has no controls; **Show code** shows the markup._
+
+## Installation
+
+<Source
+	language="shell"
+	dark
+	code="pnpm add @db-ux/core-components @db-ux/core-foundations"
+/>
+
+Styles, Vite and PostCSS plugins and the theme are covered in [Getting Started](?path=/docs/getting-started--docs) and on the [platform setup page for HTML/CSS](https://design-system.deutschebahn.com/documentation/learn/html-css-setup).
+
+_Source: install command from `packages/components/README.md`._
+
+## Usage
+
+{/* The docs file starts with "## HTML"; the section heading above replaces it. */}
+
+<Markdown>{Usage.replace(/^##\s+HTML\s*\n/, "")}</Markdown>
+
+_Source: `packages/components/src/components/button/docs/HTML.md` – until now only in the Patternhub ("How to use")._
+
+## Examples
+
+Every example is a generated story with live preview. Open **Show code** below a preview for the HTML markup, or follow the link to the example page.
+
+_Source: generated stories from `packages/components/src/components/button/examples/*.example.lite.tsx` – unchanged, only placed on this page._
+
+### Variant
+
+Only use one primary button (**Brand**) as a CTA on a page; otherwise, use one of the adaptive buttons (**Outlined**, **Filled**, **Ghost**).
+
+<Canvas of={VariantStories.Outlined} />
+<Canvas of={VariantStories.Filled} />
+<Canvas of={VariantStories.Ghost} />
+<Canvas of={VariantStories.Brand} />
+
+[All variants](?path=/docs/components-dbbutton-variant--docs)
+
+### Size
+
+<Canvas of={SizeStories.Medium} />
+<Canvas of={SizeStories.Small} />
+
+### Width
+
+Auto width follows the content, full width follows the parent element.
+
+<Canvas of={WidthStories.Auto} />
+<Canvas of={WidthStories.Full} />
+
+### Icons
+
+Use at most one icon per button, either leading or trailing.
+
+<Canvas of={ShowIconLeadingStories.True} />
+<Canvas of={ShowIconTrailingStories.True} />
+
+### Icon only
+
+`noText` hides the text visually; it stays in the markup as the accessible name. Always pass a text and add a tooltip.
+
+<Canvas of={NoTextStories.True} />
+
+### Disabled
+
+<Canvas of={DisabledStories.True} />
+
+### Density
+
+<Canvas of={DensityStories.Functional} />
+<Canvas of={DensityStories.Regular} />
+<Canvas of={DensityStories.Expressive} />
+
+### Multi line text
+
+<Canvas of={MultiLineTextStories.AutomaticLineBreaks} />
+
+### Interaction
+
+<Canvas of={InteractionStories.Interaction} />
+
+More: [Form Attributes](?path=/docs/components-dbbutton-form-attributes--docs) · [Multi Line Text](?path=/docs/components-dbbutton-multi-line-text--docs) · [Show Icon Leading](?path=/docs/components-dbbutton-show-icon-leading--docs) · [Show Icon Trailing](?path=/docs/components-dbbutton-show-icon-trailing--docs)
+
+_Source: section texts from the property descriptions in `model.ts` and the platform guidelines._
+
+## Attributes
+
+In HTML the component is a `<button>` with the class `db-button`. Variants and options are `data-` attributes, for example `data-variant="brand"`, `data-size="small"` or `data-width="full"`. **Show code** below each example shows the complete markup.
+
+_Source: new; the attribute names come from the rendered markup of the examples._
+
+{/* The docs file starts with "## Accessibility"; it is the section heading. */}
+
+<Markdown>{Accessibility}</Markdown>
+
+_Source: `packages/components/src/components/button/docs/Accessibility.md` (new, shared by all Storybooks) – behaviour from `button.lite.tsx` and `_button-components.scss`, target size from the platform guideline "Accessibility"._
+
+## Migration
+
+{/* Nest the headings of the docs file below the section heading. */}
+
+<Markdown>
+	{Migration.replace(/^## /gm, "### ").replace(
+		/^### (sizes|variants|icons|class)$/gm,
+		"#### $1"
+	)}
+</Markdown>
+
+_Source: `packages/components/src/components/button/docs/Migration.md` – until now only in the Patternhub ("Migration")._
+
+## Resources
+
+- [Design guidelines on the platform](https://design-system.deutschebahn.com/documentation/components/button)
+- npm: [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components)
+- [Source code on GitHub](https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/button)
+- [Changelog](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md)
+
+_Source: new._
