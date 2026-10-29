@@ -21,7 +21,16 @@ const meta: Meta<typeof DBButton> = {
 	title: 'Components/DBButton/Overview',
 	component: DBButton,
 	parameters: {
-		layout: 'centered'
+		layout: 'centered',
+		docs: {
+			// The global TOC lists h1 and h3, which fits the generated example
+			// pages (story names are h3). The overview structures its sections
+			// with h2, so it lists h2 and h3.
+			toc: {
+				headingSelector: 'h2, h3',
+				title: 'Table of Contents'
+			}
+		}
 	},
 	argTypes: VariantMeta.argTypes,
 	args: {
