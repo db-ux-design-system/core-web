@@ -392,25 +392,6 @@ export default function DBPagination(props: DBPaginationProps) {
 				(typeof event.button === 'number' && event.button > 0)
 			);
 		},
-		preventCurrentPageNavigation: (event: any) => {
-			if (state.isModifiedLinkClick(event)) {
-				return;
-			}
-
-			const target = event.target as HTMLElement;
-			const item = target.closest('li.db-pagination-item');
-			if (!item || !_ref || item.closest('.db-pagination') !== _ref) {
-				return;
-			}
-			if (!target.closest('a[href]')) {
-				return;
-			}
-
-			const page = Number(item.getAttribute('data-page'));
-			if (Number.isFinite(page) && page === state.getCurrentPage()) {
-				event.preventDefault();
-			}
-		},
 		handleClick: (event: any) => {
 			if (state.isModifiedLinkClick(event)) {
 				return;
@@ -447,7 +428,14 @@ export default function DBPagination(props: DBPaginationProps) {
 				return;
 			}
 			if (page === state.getCurrentPage()) {
-				event.preventDefault();
+				/*
+				 * Re-selecting the current page is a no-op. Suppress default
+				 * navigation only for a real link, so a composed anchor does
+				 * not follow its href; a <button> has no default to cancel.
+				 */
+				if (target.closest('a[href]')) {
+					event.preventDefault();
+				}
 				return;
 			}
 
@@ -485,13 +473,6 @@ export default function DBPagination(props: DBPaginationProps) {
 	onMount(() => {
 		state.syncItems();
 		state._setupObserver();
-		if (_ref) {
-			_ref.addEventListener(
-				'click',
-				state.preventCurrentPageNavigation,
-				true
-			);
-		}
 	});
 
 	onUpdate(() => {
@@ -501,13 +482,6 @@ export default function DBPagination(props: DBPaginationProps) {
 	});
 
 	onUnMount(() => {
-		if (_ref) {
-			_ref.removeEventListener(
-				'click',
-				state.preventCurrentPageNavigation,
-				true
-			);
-		}
 		if (state._observer) {
 			state._observer.disconnect();
 		}
