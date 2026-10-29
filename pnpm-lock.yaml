@@ -175,6 +175,8 @@ overrides:
   serialize-javascript@<7.1.3: 7.1.3
   node-forge@<=1.4.0: 1.4.1
   qs@>=6.7.0 <=6.16.0: 6.16.1
+  seroval@>=1.5.5 <1.6.10: 1.6.10
+  seroval@>=1.6.0 <1.6.11: 1.6.11
 
 importers:
 
@@ -13870,8 +13872,8 @@ packages:
     resolution: {integrity: sha512-GL2BWwVa6JydKO6l/ljVgjAZF4QJ3S7dWDWi53s5GZT8PJzD2fNxi67HANQGKAqPrwEpL5ba7gUBGi0Ls/sEoQ==}
     engines: {node: '>=20.0.0'}
 
-  seroval@1.6.9:
-    resolution: {integrity: sha512-UeEzHwAK+yl0YLbsvROV1t5yMYEwZZ0CfKYxDvUgS2fO9Vxdf8djqVIB+OuVpuawRNPqw68LE1Du/GMsW2ZPqA==}
+  seroval@1.6.10:
+    resolution: {integrity: sha512-GKZbsOHLV6GToR1rNQc9CZ+s8HZTS5X5N9D++z/xUh4SV9UwepLzqc60pKJTEEfEHzGdtWTXHpp+GhLoGLT1UA==}
     engines: {node: '>=10'}
 
   serve-index@1.9.2:
@@ -20364,7 +20366,7 @@ snapshots:
       pkg-types: 2.3.3
       postcss: 8.5.31
       rolldown-string: 0.3.1(rolldown@1.2.14)
-      seroval: 1.6.9
+      seroval: 1.6.10
       std-env: 4.3.0
       ufo: 1.6.4
       unenv: 2.0.0-rc.24
@@ -30718,7 +30720,7 @@ snapshots:
 
   serialize-javascript@7.1.2: {}
 
-  seroval@1.6.9: {}
+  seroval@1.6.10: {}
 
   serve-index@1.9.2(supports-color@10.2.2):
     dependencies:
