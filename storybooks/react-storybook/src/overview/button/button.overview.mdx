@@ -15,6 +15,7 @@ import * as NoTextStories from "../../components/button/examples/no-text.example
 import * as ShowIconLeadingStories from "../../components/button/examples/show-icon-leading.example.stories";
 import * as ShowIconTrailingStories from "../../components/button/examples/show-icon-trailing.example.stories";
 import * as SizeStories from "../../components/button/examples/size.example.stories";
+import * as VariantStories from "../../components/button/examples/variant.example.stories";
 import * as WidthStories from "../../components/button/examples/width.example.stories";
 import Usage from "../../../../../packages/components/src/components/button/docs/React.md?raw";
 import Migration from "../../../../../packages/components/src/components/button/docs/Migration.md?raw";
@@ -77,7 +78,10 @@ _Source: generated stories from `packages/components/src/components/button/examp
 
 Only use one primary button (**Brand**) as a CTA on a page; otherwise, use one of the adaptive buttons (**Outlined**, **Filled**, **Ghost**).
 
-<Canvas of={OverviewStories.Variants} />
+<Canvas of={VariantStories.Outlined} />
+<Canvas of={VariantStories.Filled} />
+<Canvas of={VariantStories.Ghost} />
+<Canvas of={VariantStories.Brand} />
 
 [All variants with controls](?path=/docs/components-dbbutton-variant--docs)
 

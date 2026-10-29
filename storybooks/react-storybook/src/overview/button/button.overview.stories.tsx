@@ -12,9 +12,10 @@ import VariantMeta from '../../components/button/examples/variant.example.storie
  * Mitosis Storybook plugin generates this file (and the MDX next to it) for
  * every component, like the example stories today.
  *
- * - `Playground`: one button with all controls
- * - `Variants`: all variants in one canvas. It is the story the platform
- *   embeds, because a single generated story only shows one button.
+ * `Playground` is the only story here: the overview needs one story for its
+ * Canvas and Controls blocks. It is tagged `!dev`, so it stays out of the
+ * sidebar and the group only shows the docs page. All examples on the page
+ * are the generated stories.
  */
 const meta: Meta<typeof DBButton> = {
 	title: 'Components/DBButton/Overview',
@@ -32,46 +33,9 @@ export default meta;
 type Story = StoryObj<typeof DBButton>;
 
 export const Playground: Story = {
+	tags: ['!dev'],
 	args: {
 		children: 'Button',
 		variant: 'brand'
 	}
-};
-
-export const Variants: Story = {
-	parameters: {
-		controls: { disable: true },
-		docs: {
-			// The render function spreads the args; show the code a consumer writes.
-			source: {
-				code: [
-					'<DBButton variant="outlined">Outlined</DBButton>',
-					'<DBButton variant="filled">Filled</DBButton>',
-					'<DBButton variant="ghost">Ghost</DBButton>',
-					'<DBButton variant="brand">Brand</DBButton>'
-				].join('\n')
-			}
-		}
-	},
-	render: (properties) => (
-		<div
-			style={{
-				display: 'flex',
-				flexWrap: 'wrap',
-				gap: 'var(--db-spacing-fixed-md)'
-			}}>
-			<DBButton {...properties} variant="outlined">
-				Outlined
-			</DBButton>
-			<DBButton {...properties} variant="filled">
-				Filled
-			</DBButton>
-			<DBButton {...properties} variant="ghost">
-				Ghost
-			</DBButton>
-			<DBButton {...properties} variant="brand">
-				Brand
-			</DBButton>
-		</div>
-	)
 };
