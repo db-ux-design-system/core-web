@@ -1,5 +1,13 @@
 # @db-ux/core-foundations
 
+## 6.2.0
+
+No changes in this release.
+
+## 6.1.1
+
+No changes in this release.
+
 ## 6.1.0
 
 ### Minor Changes

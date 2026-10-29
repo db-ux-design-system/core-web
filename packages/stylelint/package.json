@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-stylelint",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "type": "module",
   "description": "Ensures DB UX styles are used correctly",
   "repository": {
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "cpy-cli": "7.0.0",
-    "npm-run-all2": "9.0.3",
+    "npm-run-all2": "9.0.4",
     "postcss": "8.5.31",
     "stylelint-config-standard": "40.0.0",
     "stylelint-config-standard-scss": "17.0.0",

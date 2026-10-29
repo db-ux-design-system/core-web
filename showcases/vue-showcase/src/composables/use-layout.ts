@@ -1,6 +1,11 @@
 import { COLOR_CONST, DENSITY, DENSITY_CONST, SEMANTIC } from '@components';
 import { computed, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import {
+	type LocationQuery,
+	type LocationQueryValue,
+	useRoute,
+	useRouter
+} from 'vue-router';
 import {
 	type ColoringMode,
 	COLORING_MODES,
@@ -89,28 +94,39 @@ export const useLayout = () => {
 
 	watch(
 		() => route.query,
-		async (query: Record<string, string>) => {
-			if (query[COLOR_CONST] && query[COLOR_CONST] !== color.value) {
-				color.value = query[COLOR_CONST];
+		async (query: LocationQuery) => {
+			// LocationQuery values are `string | null | (string | null)[]`.
+			// These params are always written as single strings (see `onChange`),
+			// so collapse any array to its last entry (last value wins).
+			const single = (
+				value: LocationQueryValue | LocationQueryValue[]
+			): string | undefined => {
+				const resolved = Array.isArray(value) ? value.at(-1) : value;
+				return resolved ?? undefined;
+			};
+
+			const nextColor = single(query[COLOR_CONST]);
+			const nextDensity = single(query[DENSITY_CONST]);
+			const nextSettings = single(query.settings);
+
+			if (nextColor && nextColor !== color.value) {
+				color.value = nextColor;
 			}
 
-			if (
-				query[DENSITY_CONST] &&
-				query[DENSITY_CONST] !== density.value
-			) {
-				density.value = query[DENSITY_CONST];
+			if (nextDensity && nextDensity !== density.value) {
+				density.value = nextDensity;
 			}
 
 			if (query.page) {
-				page.value = query.page;
+				page.value = single(query.page);
 			}
 
 			if (query.fullscreen) {
-				fullscreen.value = query.fullscreen;
+				fullscreen.value = single(query.fullscreen);
 			}
 
 			if (query.shell !== undefined) {
-				shell.value = query.shell === 'true';
+				shell.value = single(query.shell) === 'true';
 			}
 
 			if (
@@ -122,11 +138,11 @@ export const useLayout = () => {
 			}
 
 			if (
-				query.settings &&
-				JSON.stringify(settings.value) !== query.settings
+				nextSettings &&
+				JSON.stringify(settings.value) !== nextSettings
 			) {
 				try {
-					settings.value = JSON.parse(query.settings);
+					settings.value = JSON.parse(nextSettings);
 				} catch {
 					// Ignore malformed settings JSON in URL
 				}

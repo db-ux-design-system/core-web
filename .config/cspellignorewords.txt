@@ -282,7 +282,11 @@ unwired
 webcomponents
 codegen
 xlink
+rescans
+lockfiles
 autofilled
 sharability
 longhands
 surfaceless
+novalidate
+formnovalidate

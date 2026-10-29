@@ -31,7 +31,7 @@
 	select {
 		text-indent: select-components.$has-before-padding;
 
-		// Hide the placeholder once a non-placeholder option is selected
+		&:open ~ [id$="-placeholder"],
 		&:has(option:checked:not(.placeholder)) ~ [id$="-placeholder"] {
 			display: none;
 		}

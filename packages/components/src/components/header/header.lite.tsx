@@ -1,6 +1,7 @@
 import {
 	onMount,
 	onUpdate,
+	Show,
 	Slot,
 	useDefaultProps,
 	useMetadata,
@@ -130,11 +131,18 @@ export default function DBHeader(props: DBHeaderProps) {
 
 			<DBDrawer
 				header={
-					<DBDrawerHeader
-						closeButtonId={props.closeButtonId}
-						closeButtonText={props.closeButtonText}
-						text={props.drawerHeaderText}
-					/>
+					<>
+						<Show when={!getBoolean(props.showDrawerHeaderSlot)}>
+							<DBDrawerHeader
+								text={props.drawerHeaderText}
+								closeButtonText={props.closeButtonText}
+								closeButtonId={props.closeButtonId}
+							/>
+						</Show>
+						<Show when={getBoolean(props.showDrawerHeaderSlot)}>
+							<Slot name="header" />
+						</Show>
+					</>
 				}
 				className="db-header-drawer"
 				open={getBoolean(props.drawerOpen)}

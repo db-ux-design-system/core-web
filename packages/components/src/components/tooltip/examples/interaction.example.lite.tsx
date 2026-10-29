@@ -18,7 +18,7 @@ useMetadata({
  */
 export default function TooltipInteraction() {
 	return (
-		<div class="padding-box">
+		<div>
 			<DBButton
 				aria-describedby="interaction-tooltip"
 				data-testid="button">

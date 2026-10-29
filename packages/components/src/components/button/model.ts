@@ -1,4 +1,5 @@
-import {
+import { LooseAutocomplete } from '@db-ux/core-foundations';
+import type {
 	ClickEventProps,
 	ColorState,
 	EndSlotProps,
@@ -7,6 +8,7 @@ import {
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	LinkTargetType,
 	MaterialProps,
 	MaterialState,
 	NoTextProps,
@@ -38,6 +40,16 @@ export type DBButtonSharedProps = {
 	 */
 	variant?: ButtonVariantType | string;
 };
+
+export const ButtonFormMethodList = ['post', 'get', 'dialog'] as const;
+export type ButtonFormMethodType = (typeof ButtonFormMethodList)[number];
+
+export const ButtonFormEncTypeList = [
+	'application/x-www-form-urlencoded',
+	'multipart/form-data',
+	'text/plain'
+] as const;
+export type ButtonFormEncTypeType = (typeof ButtonFormEncTypeList)[number];
 
 export type DBButtonDefaultProps = {
 	/**
@@ -73,6 +85,56 @@ export type DBButtonDefaultProps = {
 	 * The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value).
 	 */
 	value?: string;
+
+	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button. Typed as `any` to also accept a React 19 form action function without breaking the native string attribute on the other framework outputs.
+	 */
+	formAction?: any;
+
+	/**
+	 * The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form's `action` for this button.
+	 */
+	formaction?: any;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formEncType?: ButtonFormEncTypeType | LooseAutocomplete;
+
+	/**
+	 * The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form's `enctype` for this button.
+	 */
+	formenctype?: ButtonFormEncTypeType | LooseAutocomplete;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formMethod?: ButtonFormMethodType | LooseAutocomplete;
+
+	/**
+	 * The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form's `method` for this button (e.g. `"dialog"` to close a dialog).
+	 */
+	formmethod?: ButtonFormMethodType | LooseAutocomplete;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formNoValidate?: boolean | string;
+
+	/**
+	 * The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form's `novalidate` for this button.
+	 */
+	formnovalidate?: boolean | string;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formTarget?: LinkTargetType | LooseAutocomplete;
+
+	/**
+	 * The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form's `target` for this button.
+	 */
+	formtarget?: LinkTargetType | LooseAutocomplete;
 };
 
 export type DBButtonProps = DBButtonDefaultProps &

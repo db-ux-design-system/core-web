@@ -84,6 +84,10 @@ $focus-outline-reach: helpers.$db-focus-outline-reach;
 		}
 	}
 
+	&[data-synced="false"] .db-tab-panel {
+		display: none;
+	}
+
 	&:not([data-orientation="vertical"]) {
 		flex-flow: column wrap;
 

@@ -1,5 +1,50 @@
 # @db-ux/wc-core-components
 
+## 6.2.0
+
+### Minor Changes
+
+- feat(DBButton): forward native form submission attributes - [see commit 4e0662c](https://github.com/db-ux-design-system/core-web/commit/4e0662cee7bfe8bfef728fc2d6584032867dc1e5):
+
+    - Adds the native `<button>` form-submission attributes (`formAction`, `formEncType`, `formMethod`, `formNoValidate`, `formTarget`) as properties on `DBButton` and renders them on the inner `<button>`, so a submit button can override its owning `<form>` (most notably `formMethod="dialog"` to close a `<dialog>`). Previously these never reached the native button for the Angular and Web Component outputs, so `<db-button formmethod="dialog">` silently submitted the form normally. Each attribute accepts both the camelCase React DOM spelling and the native lowercase spelling.
+
+- feat(DBControlPanelMobile): expose the drawer header for customization - [see commit b8ec490](https://github.com/db-ux-design-system/core-web/commit/b8ec490fa423889b4140c76ccbf4968a11833946):
+
+    - add `closeButtonText` and `closeButtonId` properties, forwarded to the internal drawer header, so the close button tooltip is configurable (i18n)
+    - add a `header` slot that replaces the internal drawer header when `showDrawerHeaderSlot` is set, so action elements or a subtitle can be placed next to the close button (the consumer then provides the close button, e.g. via `DBDrawerHeader`)
+    - when `showDrawerHeaderSlot` is not set, the internal drawer header is rendered as before, so existing usage is unchanged
+
+- feat(DBHeader): add `header` slot to replace the internal drawer header - [see commit b8ec490](https://github.com/db-ux-design-system/core-web/commit/b8ec490fa423889b4140c76ccbf4968a11833946):
+
+    - the `header` slot replaces the internal drawer header when `showDrawerHeaderSlot` is set, so action elements or a subtitle can be placed next to the close button (the consumer then provides the close button, e.g. via `DBDrawerHeader`, and `closeButtonId` / `closeButtonText` have no effect)
+    - when `showDrawerHeaderSlot` is not set, the internal drawer header is rendered as before, so existing usage is unchanged
+    - note: `@db-ux/wc-core-components` strips the internal `db-drawer` from `db-header` (the mobile drawer is handled by `db-shell`), so the `header` slot has no effect there; use `db-control-panel-mobile` for the web-component mobile drawer header
+
+### Patch Changes
+
+- fix(DBSelect): hide placeholder overlay while the dropdown is open - [see commit 35e4713](https://github.com/db-ux-design-system/core-web/commit/35e47134cfc763285735f54f11b5bfb1878f1b9b)
+
+## 6.1.1
+
+### Patch Changes
+
+- fix(DBControlPanel): reveal drilldown sub-navigation on the web component output - [see commit 841ce66](https://github.com/db-ux-design-system/core-web/commit/841ce669f0e2f1892b6e0c7b9b66db921d601673):
+
+    - The previous-level slide-out transform was applied to the whole navigation item group element on the host-wrapped (web component) output, turning it into the open overlay's containing block and dragging the sub-navigation off-screen (sub-items collapsed to zero height).
+    - The slide-out now always targets the group's expand button, never the group element that wraps the overlay, so the drilldown overlay stays anchored to the scroll container across all framework outputs.
+
+- fix(DBLoadingIndicator): keep `NodeJS.Timeout` out of the published typings - [see commit 0fb5c8d](https://github.com/db-ux-design-system/core-web/commit/0fb5c8d69db433a9dd6adfdf39994d99633b744a):
+
+    - Type the internal `_timeoutId` state field as `number` instead of `ReturnType<typeof setTimeout>`, which resolved to the Node-only `NodeJS.Timeout` during the Angular output compile and leaked an non-declarable `NodeJS` namespace into `@db-ux/ngx-core-components` typings.
+    - Browser-only Angular apps can now import the package without `@types/node` or `skipLibCheck`.
+
+- fix(stencil): emit `onInit` logic as `componentWillLoad` - [see commit 16ac858](https://github.com/db-ux-design-system/core-web/commit/16ac858bb15fbd5e84c1de796ac879a72f19ad92):
+
+    - The Mitosis Stencil generator never read `json.hooks.onInit`, so any logic a component placed in `onInit` was silently dropped from the Web Components output. The Stencil plugin now injects a `componentWillLoad()` method carrying the `onInit` body (the semantic equivalent, running once before the first render), restoring the missing behavior for `DBPage`, `DBControlPanelDesktop`, `DBShell` and `DBShellSubNavigation`.
+
+- fix(DBTabs): wire up and select tabs added at runtime - [see commit b29e435](https://github.com/db-ux-design-system/core-web/commit/b29e435947b736fb108b4ffb77adcfbd9f653591)
+- fix: keep passing `data-*`, `aria-*`, `class` and `style` attributes to the inner element after a component has been moved in the DOM - [see commit 39ea2fb](https://github.com/db-ux-design-system/core-web/commit/39ea2fb9de5ef03108e61791c0b6e62d29576a40)
+
 ## 6.1.0
 
 ### Minor Changes

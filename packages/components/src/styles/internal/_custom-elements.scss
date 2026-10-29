@@ -30,6 +30,16 @@ $custom-elements: //hygen-insert
 	@return "> * > #{$selector} > .#{$selector}, > #{$selector} > .#{$selector}, > .#{$selector}";
 }
 
+// Like get-sub-component, but appends a child combinator ("> #{$child}") to
+// EVERY arm of the comma-separated list. Writing `#{get-sub-component(x)} >
+// .child` in a selector only binds the trailing `> .child` to the last arm of
+// the list, so the host-wrapped arms would end at the component root instead of
+// reaching the intended child (resolves the drilldown overlay containing-block
+// bug, see control-panel-navigation-item-group-menu-drilldown).
+@function get-sub-component-child($selector, $child) {
+	@return "> * > #{$selector} > .#{$selector} > #{$child}, > #{$selector} > .#{$selector} > #{$child}, > .#{$selector} > #{$child}";
+}
+
 $control-panel-desktop: get-sub-component(db-control-panel-desktop);
 $control-panel-flat-icon: get-sub-component(db-control-panel-flat-icon);
 $control-panel-mobile: get-sub-component(db-control-panel-mobile);

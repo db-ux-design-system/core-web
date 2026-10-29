@@ -121,6 +121,7 @@ export type DBTabsProps = DBTabsDefaultProps &
 
 export type DBTabsDefaultState = {
 	_id?: string;
+	_synced: boolean;
 	_appliedLabel?: string;
 	resetIds: () => void;
 	_getScrollContainer: () => Element | null;
@@ -141,7 +142,7 @@ export type DBTabsDefaultState = {
 	_teardownScrollHandlers: () => void;
 	_resolveHashIndex: () => { startIndex: number; hashApplied: boolean };
 	_setupObserver: () => void;
-	initTabs: () => void;
+	initTabs: () => number;
 	syncSelection: (activeIndex?: number) => void;
 	_tabButtons: HTMLElement[];
 	_tabPanels: HTMLElement[];

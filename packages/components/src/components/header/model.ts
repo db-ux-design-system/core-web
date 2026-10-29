@@ -1,6 +1,7 @@
 import type {
 	CloseEventState,
 	ContainerWidthProps,
+	DrawerHeaderSlotProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
@@ -48,17 +49,13 @@ export type DBHeaderDefaultProps = {
 	forceMobile?: boolean | string;
 
 	/**
-	 * Text to pass in a headline for the drawer header.
-	 */
-	drawerHeaderText?: string;
-
-	/**
 	 * Sets the accessible label for the burger menu button of the mobile control panel.
 	 */
 	burgerMenuLabel?: string;
 };
 
 export type DBHeaderProps = DBHeaderDefaultProps &
+	DrawerHeaderSlotProps &
 	InnerCloseButtonProps &
 	GlobalProps &
 	MaterialProps &
