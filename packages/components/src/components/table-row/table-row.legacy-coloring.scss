@@ -4,15 +4,22 @@
 /*
  * Legacy color layer for `table-row`. The base `.scss` is color-free (structure
  * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
- * adaptive bundle omits this file.
- *
- * The interactive-child selector and the interactive-state/checked mixins are
- * reused from the base `table-row` module (via `@use`) so the same selectors
- * are re-opened here with only the coloring - a single source of truth, no
- * duplicated selector strings. `@use` keeps them namespaced rather than
- * re-exporting them, so there is no collision when both the base and this file
- * are `@forward`ed into the bundle.
+ * adaptive bundle omits this file. Re-opens the base interactive-row selectors
+ * with legacy coloring (see the mixin comment in `table-row.scss`).
  */
+
+// Hover/pressed backgrounds for an interactive row on the level-2 surface.
+// Shared by the checked row and the plain interactive row below.
+@mixin interactive-level-2-states {
+	@include table-row.table-row-interactive-state {
+		background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
+	}
+
+	@include table-row.table-row-interactive-state("active") {
+		background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
+	}
+}
+
 .db-table-row {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
@@ -22,21 +29,9 @@
 
 			background-color: colors.$db-adaptive-bg-basic-level-2-default;
 
-			@include table-row.table-row-interactive-state {
-				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
-			}
-
-			@include table-row.table-row-interactive-state("active") {
-				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
-			}
+			@include interactive-level-2-states;
 		}
 
-		@include table-row.table-row-interactive-state {
-			background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
-		}
-
-		@include table-row.table-row-interactive-state("active") {
-			background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
-		}
+		@include interactive-level-2-states;
 	}
 }

@@ -416,14 +416,14 @@ describe('getValidationState', () => {
 	it('reports valid for radio without a validMessage (isRadio)', () => {
 		// This is the radio fix: radio has no validation message, so the valid
 		// branch must not require validMessage.
-		expect(
-			getValidationState({ validation: 'valid' }, undefined, true)
-		).toBe('valid');
+		expect(getValidationState({ validation: 'valid', isRadio: true })).toBe(
+			'valid'
+		);
 	});
 
 	it('still reports invalid for radio', () => {
 		expect(
-			getValidationState({ validation: 'invalid' }, undefined, true)
+			getValidationState({ validation: 'invalid', isRadio: true })
 		).toBe('invalid');
 	});
 });

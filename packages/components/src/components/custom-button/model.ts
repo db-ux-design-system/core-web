@@ -1,9 +1,7 @@
 import {
-	AdaptiveDefaultProps,
 	AltStateColorState,
 	AltStateMaterialProps,
 	AltStateMaterialState,
-	ColorState,
 	ColorType,
 	GlobalProps,
 	GlobalState,
@@ -11,7 +9,7 @@ import {
 	IconProps,
 	IconTrailingProps,
 	InitializedState,
-	MaterialState,
+	MaterialProps,
 	MaterialType,
 	NoTextProps,
 	ShowIconLeadingProps,
@@ -28,7 +26,7 @@ export type DBCustomButtonDefaultProps = {};
 export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
-	AdaptiveDefaultProps &
+	MaterialProps &
 	AltStateMaterialProps &
 	IconProps &
 	WidthProps &
@@ -49,4 +47,5 @@ export type DBCustomButtonDefaultState = {
 export type DBCustomButtonState = DBCustomButtonDefaultState &
 	GlobalState &
 	AltStateMaterialState &
-	AltStateColorState & InitializedState;
+	AltStateColorState &
+	InitializedState;

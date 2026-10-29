@@ -55,7 +55,7 @@ export default function App() {
 			link = document.createElement('link');
 			link.id = id;
 			link.rel = 'stylesheet';
-			document.head.appendChild(link);
+			document.head.append(link);
 		}
 
 		if (coloringMode === 'adaptive') {

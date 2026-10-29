@@ -69,7 +69,7 @@ const sharedContainerRoles: Pick<
 	borderDecorative: 11
 };
 
-// text-vibrant (WCAG text/vibrant, darker than visual-vibrant) and
+// Text-vibrant (WCAG text/vibrant, darker than visual-vibrant) and
 // visual-vibrant (WCAG visual/vibrant) are distinct roles.
 const sharedContentRoles: Pick<
 	ContentContrastProps,
@@ -90,7 +90,7 @@ const sharedContentRolesHc: Partial<ContentContrastProps> = {
 	visualVibrant: 5
 };
 
-// on-bg/basic token: default palette/1, hovered palette/5, pressed palette/2.
+// On-bg/basic token: default palette/1, hovered palette/5, pressed palette/2.
 const filledContent: ContentContrastProps = {
 	onBgDefault: 1,
 	onBgHovered: 5,
@@ -101,7 +101,7 @@ const filledContent: ContentContrastProps = {
 export const materials: Record<MaterialName, MaterialConfig> = {
 	'filled-1': {
 		container: {
-			// bg/basic/level-1 token (from Scheme): default palette/14,
+			// Bg/basic/level-1 token (from Scheme): default palette/14,
 			// hovered palette/12, pressed palette/10.
 			border: 11,
 			bgDefault: 14,
@@ -173,7 +173,7 @@ export const materials: Record<MaterialName, MaterialConfig> = {
 	},
 	vibrant: {
 		container: {
-			// bg/vibrant token: default palette/9, hovered palette/12,
+			// Bg/vibrant token: default palette/9, hovered palette/12,
 			// pressed palette/10.
 			border: 1,
 			bgDefault: 9,
@@ -186,7 +186,7 @@ export const materials: Record<MaterialName, MaterialConfig> = {
 			content: { ...sharedContentRolesHc }
 		},
 		content: {
-			// on-bg/vibrant token: default palette/1, hovered palette/4,
+			// On-bg/vibrant token: default palette/1, hovered palette/4,
 			// pressed palette/2.
 			onBgDefault: 1,
 			onBgHovered: 4,
@@ -196,7 +196,7 @@ export const materials: Record<MaterialName, MaterialConfig> = {
 	},
 	inverted: {
 		container: {
-			// bg/inverted token: default palette/1, hovered palette/5,
+			// Bg/inverted token: default palette/1, hovered palette/5,
 			// pressed palette/2.
 			border: 4,
 			bgDefault: 1,
@@ -209,7 +209,7 @@ export const materials: Record<MaterialName, MaterialConfig> = {
 			content: { ...sharedContentRolesHc }
 		},
 		content: {
-			// on-bg/inverted token: default palette/14, hovered palette/11,
+			// On-bg/inverted token: default palette/14, hovered palette/11,
 			// pressed palette/13.
 			onBgDefault: 14,
 			onBgHovered: 11,

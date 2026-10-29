@@ -10,6 +10,8 @@ import { StorybookTagArgTypes } from './_tag.arg.types';
 
 useMetadata({
 	storybookTitle: 'Adaptive Matrix',
+	// Loop-rendered matrix: no single reference instance -> skip Storybook story.
+	storybookSkip: true,
 	storybookNames: ['(Default) Adaptive Matrix'],
 	storybookArgTypes: StorybookTagArgTypes
 });
@@ -43,7 +45,9 @@ export default function TagAdaptiveMatrix() {
 							<For each={ColorList}>
 								{(color: ColorType) => (
 									<td key={`cell-${material}-${color}`}>
-										<DBTag color={color} material={material}>
+										<DBTag
+											color={color}
+											material={material}>
 											{color}
 										</DBTag>
 									</td>

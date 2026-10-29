@@ -4,9 +4,7 @@ export type LightDark = [string, string];
 export type ColorIndex =
 	0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
 
-export type ColorPalette = {
-	[K in ColorIndex]: LightDark;
-} & {
+export type ColorPalette = Record<ColorIndex, LightDark> & {
 	'origin-default': LightDark;
 	'origin-hovered': LightDark;
 	'origin-pressed': LightDark;

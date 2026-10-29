@@ -19,7 +19,12 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { ChangeEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import {
+	ChangeEvent,
+	ColorType,
+	InputEvent,
+	InteractionEvent
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -64,7 +69,11 @@ export default function DBTextarea(props: DBTextareaProps) {
 		_voiceOverFallback: '',
 		abortController: undefined,
 		_getColor: () => {
-			const validationState = getValidationState(props, _ref);
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
 
 			if (validationState === 'valid') {
 				return 'green';
@@ -80,7 +89,7 @@ export default function DBTextarea(props: DBTextareaProps) {
 
 			return undefined;
 		},
-		_getLabelColor: () => {
+		_getLabelColor: (): ColorType | undefined => {
 			return props.variant === 'floating' ? state._getColor() : 'grey';
 		},
 		_getLabelMaterial: () => {

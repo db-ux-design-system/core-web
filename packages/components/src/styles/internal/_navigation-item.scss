@@ -1,6 +1,7 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
@@ -24,6 +25,24 @@ $z-index-popover: 71;
 	> a,
 	> .db-control-panel-navigation-item-group-expand-button {
 		@content;
+	}
+}
+
+/*
+ * Adaptive active-item indicator color for a control-panel navigation `menu`.
+ * Shared by control-panel-desktop and control-panel-mobile (they only differ
+ * in the selector path to the `> menu`, so each applies this inside its own
+ * scope). Paints the indicator `::after` with the adaptive indicator
+ * background (brand/7, or the pride gradient when `data-pride` is set).
+ */
+@mixin adaptive-navigation-indicator {
+	@include direct-navigation-items {
+		@include navigation-indicator {
+			&::after {
+				background-color: adaptive.$db-indicator-color;
+				background-image: adaptive.$db-indicator-background;
+			}
+		}
 	}
 }
 

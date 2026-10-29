@@ -128,7 +128,7 @@ export class AppComponent implements OnInit {
 			link = document.createElement('link');
 			link.id = id;
 			link.rel = 'stylesheet';
-			document.head.appendChild(link);
+			document.head.append(link);
 		}
 
 		const fileByMode: Record<ColoringMode, string> = {

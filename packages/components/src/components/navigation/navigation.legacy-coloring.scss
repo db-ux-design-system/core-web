@@ -1,10 +1,6 @@
 /*
- * Legacy color layer for `navigation`. The base `.scss` is color-free
- * (structure only); forwarded by `components-legacy-coloring` into the legacy
- * bundle. The adaptive bundle omits this file.
- *
- * The active-item indicator fill is carried by the shared `%indicator` base
- * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a legacy
- * brand fallback, so it renders in both bundles and needs nothing here. The
- * item background/border coloring lives in `navigation-item.legacy-coloring.scss`.
+ * Legacy color layer for `navigation` - intentionally empty. Item
+ * background/border coloring lives in `navigation-item.legacy-coloring.scss`,
+ * and the active-item indicator fill comes from the shared `%indicator` base.
+ * File kept so `components-legacy-coloring` can `@forward` it.
  */

@@ -1,14 +1,8 @@
 @use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "./table-row";
 
-/*
- * The interactive-child selector and the interactive-state/checked mixins are
- * reused from the base `table-row` module (via `@use`) so the same selectors
- * are re-opened here with only the coloring - a single source of truth, no
- * duplicated selector strings. `@use` keeps them namespaced rather than
- * re-exporting them, so there is no collision when both the base and this file
- * are `@forward`ed into the bundle.
- */
+// Re-opens the base interactive-row selectors with adaptive coloring (see the
+// mixin comment in `table-row.scss`).
 [data-adaptive-coloring="true"] .db-table-row,
 .db-table-row[data-adaptive-coloring="true"] {
 	background-color: adaptive.$db-bg-default;

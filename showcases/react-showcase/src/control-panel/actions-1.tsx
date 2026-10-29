@@ -33,7 +33,7 @@ export type Actions1Props = {
 	onDensityChange: (density: string) => void;
 	onColorChange: (color: string) => void;
 	onSettingsChange: (settings: DefaultSettings) => void;
-	onShellChange: (shell: boolean) => void;
+	onShellChange: (isEnabled: boolean) => void;
 	onColoringModeChange: (coloringMode: ColoringMode) => void;
 };
 

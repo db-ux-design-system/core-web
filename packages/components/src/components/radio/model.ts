@@ -1,5 +1,4 @@
-import type {
-	AdaptiveDefaultProps,
+import {
 	AltStateColorState,
 	AltStateMaterialProps,
 	ChangeEventProps,
@@ -15,6 +14,7 @@ import type {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
+	MaterialProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -22,7 +22,7 @@ export type DBRadioDefaultProps = {};
 
 export type DBRadioProps = DBRadioDefaultProps &
 	GlobalProps &
-	AdaptiveDefaultProps &
+	MaterialProps &
 	AltStateMaterialProps &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &

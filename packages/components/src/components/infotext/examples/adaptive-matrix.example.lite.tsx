@@ -10,6 +10,8 @@ import { StorybookInfotextArgTypes } from './_infotext.arg.types';
 
 useMetadata({
 	storybookTitle: 'Adaptive Matrix',
+	// Loop-rendered matrix: no single reference instance -> skip Storybook story.
+	storybookSkip: true,
 	storybookNames: ['(Default) Adaptive Matrix'],
 	storybookArgTypes: StorybookInfotextArgTypes
 });

@@ -1,9 +1,7 @@
 /*
- * Legacy color layer for `control-panel-flat-icon`. The base `.scss` is
- * color-free (structure only); forwarded by `components-legacy-coloring` into
- * the legacy bundle. The adaptive bundle omits this file.
- *
- * The active-item indicator fill is carried by the shared `%indicator` base
- * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a legacy
- * brand fallback, so it renders in both bundles and needs nothing here.
+ * Legacy color layer for `control-panel-flat-icon` - intentionally empty. The
+ * active-item indicator fill comes from the shared `%indicator` base via
+ * `--db-indicator-color` (legacy brand fallback), so it renders in both bundles
+ * with nothing to add here. File kept so `components-legacy-coloring` can
+ * `@forward` it alongside the other color layers.
  */

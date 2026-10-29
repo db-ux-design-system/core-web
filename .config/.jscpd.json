@@ -87,7 +87,13 @@
 		"**/showcases/stencil-showcase/src/navigation.ts",
 		"**/showcases/stencil-showcase/src/page.ts",
 		"**/showcases/vue-showcase/src/control-panel/PrimaryActions.vue",
-		"**/showcases/vue-showcase/src/page/Page.vue"
+		"**/showcases/vue-showcase/src/page/Page.vue",
+		"**/showcases/*-showcase/src/db-ux-adaptive.css",
+		"**/showcases/*-showcase/src/db-ux-legacy-adaptive.css",
+		"**/generate-css/materials/color.ts",
+		"**/packages/components/src/components/badge/badge.lite.tsx",
+		"**/packages/components/src/components/tag/tag.lite.tsx",
+		"**/packages/components/src/components/table/table.legacy-coloring.scss"
 	],
 	"ignorePattern": ["<option value=\"test5\">Test5</option>"],
 	"absolute": true,

@@ -17,7 +17,7 @@ const STYLE_BY_MODE: Record<ColoringMode, string> = {
 	'legacy-adaptive': dbUxLegacyAdaptiveStyleUrl
 };
 
-const isColoringMode = (value: string | null): value is ColoringMode =>
+const isColoringMode = (value: string | undefined): value is ColoringMode =>
 	Boolean(value) && (COLORING_MODES as readonly string[]).includes(value!);
 
 export function getColoringMode(): ColoringMode {
@@ -45,7 +45,7 @@ export function applyColoring(): void {
 		link = document.createElement('link');
 		link.id = id;
 		link.rel = 'stylesheet';
-		document.head.appendChild(link);
+		document.head.append(link);
 	}
 
 	link.href = STYLE_BY_MODE[mode];
@@ -56,9 +56,9 @@ export function applyColoring(): void {
 
 	if (root) {
 		if (mode === 'adaptive') {
-			root.setAttribute('data-adaptive-coloring', 'true');
+			root.dataset.adaptiveColoring = 'true';
 		} else {
-			root.removeAttribute('data-adaptive-coloring');
+			delete root.dataset.adaptiveColoring;
 		}
 	}
 }

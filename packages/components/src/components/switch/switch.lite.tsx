@@ -71,7 +71,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_voiceOverFallback: '' as string,
 		abortController: undefined,
 		_getColor: () => {
-			const validationState = getValidationState(props, _ref);
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
 
 			if (validationState === 'valid') {
 				return 'green';
@@ -88,7 +92,11 @@ export default function DBSwitch(props: DBSwitchProps) {
 			return undefined;
 		},
 		_getAltStateColor: () => {
-			const validationState = getValidationState(props, _ref);
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
 
 			if (validationState === 'valid') {
 				return 'green';

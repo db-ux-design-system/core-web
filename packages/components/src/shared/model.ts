@@ -400,22 +400,11 @@ export type ContentSlotProps = {
 export const SizeList = ['small', 'medium'] as const;
 export type SizeType = (typeof SizeList)[number];
 
-export const NextGenSizeList = [
-	'3xs',
-	'2xs',
-	'xs',
-	'sm',
-	'md',
-	'lg',
-	'xl',
-	'2xl'
-] as const;
-export type NextGenSizeType = (typeof NextGenSizeList)[number];
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
-	size?: SizeType | NextGenSizeType;
+	size?: SizeType;
 };
 
 /**
@@ -430,23 +419,6 @@ export type SizeProps = {
 export type MaterialProps = {
 	material?: MaterialType;
 	color?: ColorType;
-};
-
-/**
- * Shared adaptive props applied to every adaptive component.
- * Currently exposes the adaptive `size` scale. Components that still support
- * the legacy `SizeType` (`small`/`medium`) must widen `size` back to the union
- * by overriding it after this type, e.g.:
- *
- * ```ts
- * ... & AdaptiveDefaultProps & { size?: SizeType | NextGenSizeType };
- * ```
- */
-export type AdaptiveDefaultProps = MaterialProps & {
-	/**
-	 * The size attribute changes the font-size and other related sizes of the component.
-	 */
-	size?: NextGenSizeType;
 };
 
 export const EmphasisList = ['weak', 'strong'] as const;

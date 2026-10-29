@@ -17,10 +17,5 @@
 		@extend %control-panel-mobile-position-bottom-colors;
 	}
 
-	/*
-	 * The active-item indicator fill is carried by the shared `%indicator` base
-	 * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a
-	 * legacy brand fallback, so it renders in both bundles and needs nothing
-	 * here.
-	 */
+	// Active-item indicator fill: handled by the shared `%indicator` base.
 }

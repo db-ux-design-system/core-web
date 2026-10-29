@@ -160,11 +160,17 @@ export const addValueResetEventListener = (
 	);
 };
 
-export const getValidationState = (
-	props: { validMessage?: string; validation?: ValidationType },
-	element?: HTMLElement,
-	isRadio?: boolean
-): ValidationType => {
+export const getValidationState = ({
+	validation,
+	validMessage,
+	element,
+	isRadio
+}: {
+	validation?: ValidationType;
+	validMessage?: string;
+	element?: HTMLElement;
+	isRadio?: boolean;
+}): ValidationType => {
 	let userValid: boolean = false;
 	let userInvalid: boolean = false;
 	if (typeof window !== 'undefined' && element) {
@@ -174,14 +180,17 @@ export const getValidationState = (
 			!!getComputedStyle(element).getPropertyValue('--db-user-invalid');
 	}
 
+	// The valid state requires a `validMessage` for non-radio components (radio
+	// has no message, so `isRadio` stands in): an explicit `validation="valid"`
+	// as well as the `:user-valid` fallback are both gated on it.
 	if (
-		props.validation === 'valid' ||
-		((isRadio || props.validMessage) && !props.validation && userValid)
+		(isRadio || validMessage) &&
+		(validation === 'valid' || (!validation && userValid))
 	) {
 		return 'valid';
 	}
 
-	if (props.validation === 'invalid' || (!props.validation && userInvalid)) {
+	if (validation === 'invalid' || (!validation && userInvalid)) {
 		return 'invalid';
 	}
 

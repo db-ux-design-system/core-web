@@ -113,7 +113,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_userInteraction: false,
 		abortController: undefined,
 		_getColor: (): ColorType | undefined => {
-			const validationState = getValidationState(props, selectRef);
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: selectRef
+			});
 
 			if (validationState === 'valid') {
 				return 'green';

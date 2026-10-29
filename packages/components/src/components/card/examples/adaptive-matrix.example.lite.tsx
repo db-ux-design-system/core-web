@@ -10,6 +10,8 @@ import { StorybookCardArgTypes } from './_card.arg.types';
 
 useMetadata({
 	storybookTitle: 'Adaptive Matrix',
+	// Loop-rendered matrix: no single reference instance -> skip Storybook story.
+	storybookSkip: true,
 	storybookNames: ['(Default) Adaptive Matrix'],
 	storybookArgTypes: StorybookCardArgTypes
 });
@@ -43,7 +45,9 @@ export default function CardAdaptiveMatrix() {
 							<For each={ColorList}>
 								{(color: ColorType) => (
 									<td key={`cell-${material}-${color}`}>
-										<DBCard color={color} material={material}>
+										<DBCard
+											color={color}
+											material={material}>
 											{color}
 										</DBCard>
 									</td>

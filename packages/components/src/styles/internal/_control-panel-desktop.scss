@@ -477,12 +477,7 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		);
 	}
 
-	/*
-	 * The active-item indicator fill is carried by the shared `%indicator` base
-	 * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a
-	 * legacy brand fallback, so it renders in both bundles and needs nothing
-	 * here.
-	 */
+	// Active-item indicator fill: handled by the shared `%indicator` base.
 }
 
 %control-panel-desktop-vertical-orientation-colors {
@@ -491,10 +486,5 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		#{colors.$db-adaptive-on-bg-basic-emphasis-60-default}
 	);
 
-	/*
-	 * The active-item indicator fill is carried by the shared `%indicator` base
-	 * (`styles/internal/_indicator.scss`) via `--db-indicator-color` with a
-	 * legacy brand fallback, so it renders in both bundles and needs nothing
-	 * here.
-	 */
+	// Active-item indicator fill: handled by the shared `%indicator` base.
 }

@@ -43,7 +43,11 @@ export default function DBRadio(props: DBRadioProps) {
 		_id: undefined,
 		abortController: undefined,
 		_getColor: () => {
-			const validationState = getValidationState(props, _ref, true);
+			const validationState = getValidationState({
+				validation: props.validation,
+				element: _ref,
+				isRadio: true
+			});
 
 			if (validationState === 'valid') {
 				return 'green';
@@ -60,7 +64,11 @@ export default function DBRadio(props: DBRadioProps) {
 			return undefined;
 		},
 		_getAltStateColor: () => {
-			const validationState = getValidationState(props, _ref, true);
+			const validationState = getValidationState({
+				validation: props.validation,
+				element: _ref,
+				isRadio: true
+			});
 
 			if (validationState === 'valid') {
 				return 'green';

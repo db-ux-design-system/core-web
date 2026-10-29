@@ -10,6 +10,9 @@ import { StorybookBadgeArgTypes } from './_badge.arg.types';
 
 useMetadata({
 	storybookTitle: 'Adaptive Matrix',
+	// The matrix renders every color x material via loops, so there is no single
+	// reference instance for Storybook to derive args from - skip story generation.
+	storybookSkip: true,
 	storybookNames: ['(Default) Adaptive Matrix'],
 	storybookArgTypes: StorybookBadgeArgTypes
 });

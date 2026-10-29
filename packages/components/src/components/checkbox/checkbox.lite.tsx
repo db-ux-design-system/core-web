@@ -66,7 +66,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_voiceOverFallback: '',
 		abortController: undefined,
 		_getColor: () => {
-			const validationState = getValidationState(props, _ref);
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
 
 			if (validationState === 'valid') {
 				return 'green';
@@ -83,7 +87,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			return undefined;
 		},
 		_getAltStateColor: () => {
-			const validationState = getValidationState(props, _ref);
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
 
 			if (validationState === 'valid') {
 				return 'green';

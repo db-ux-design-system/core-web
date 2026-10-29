@@ -53,7 +53,7 @@ const renderProps = (
 ): string =>
 	Object.entries(props)
 		.map(([prop, key]) => {
-			const [light, dark] = palette[key as keyof ColorPalette];
+			const [light, dark] = palette[key];
 			const cssProp = cssMap[prop];
 			return `${indent}\t${cssProp}: color-mix(in srgb, light-dark(${light}, ${dark}) ${transparencyFor(cssProp)}, transparent);`;
 		})
@@ -61,7 +61,12 @@ const renderProps = (
 
 // --- Generate CSS for a given prefix ---
 
-const generateForPrefix = (prefix: string): string => {
+const generateForPrefix = (
+	prefix: string
+): {
+	materialCss: string;
+	generateAllHcCss: (hcSelectorPrefix: string, indent?: string) => string;
+} => {
 	const p = prefix ? `${prefix}-` : '';
 	const containerCss = containerPropToCss(prefix ? `${prefix}-` : '');
 	const contentCss = contentPropToCss(prefix ? `${prefix}-` : '');
@@ -76,14 +81,12 @@ const generateForPrefix = (prefix: string): string => {
 	// Flatten materials into rules
 	const flattenMaterials = (): MaterialRule[] => {
 		const rules: MaterialRule[] = [];
-		for (const [matName, config] of Object.entries(materials) as [
-			MaterialName,
-			MaterialConfig
-		][]) {
-			for (const [side, cssMap] of Object.entries(sides) as [
-				keyof typeof sides,
-				Record<string, string>
-			][]) {
+		for (const [matName, config] of Object.entries(materials) as Array<
+			[MaterialName, MaterialConfig]
+		>) {
+			for (const [side, cssMap] of Object.entries(sides) as Array<
+				[keyof typeof sides, Record<string, string>]
+			>) {
 				rules.push({
 					material: matName,
 					props: config[side],
@@ -98,18 +101,20 @@ const generateForPrefix = (prefix: string): string => {
 
 	// Collect highContrast overrides
 	const highContrastDiffRules: HighContrastRule[] = [];
-	for (const [matName, config] of Object.entries(materials) as [
-		MaterialName,
-		MaterialConfig
-	][]) {
-		if (!config.highContrast) continue;
+	for (const [matName, config] of Object.entries(materials) as Array<
+		[MaterialName, MaterialConfig]
+	>) {
+		if (!config.highContrast) {
+			continue;
+		}
 		const hc = config.highContrast;
-		for (const [side, cssMap] of Object.entries(sides) as [
-			keyof typeof sides,
-			Record<string, string>
-		][]) {
+		for (const [side, cssMap] of Object.entries(sides) as Array<
+			[keyof typeof sides, Record<string, string>]
+		>) {
 			const overrides = hc[side];
-			if (!overrides || Object.keys(overrides).length === 0) continue;
+			if (!overrides || Object.keys(overrides).length === 0) {
+				continue;
+			}
 			highContrastDiffRules.push({
 				material: matName,
 				props: overrides,
@@ -126,13 +131,9 @@ const generateForPrefix = (prefix: string): string => {
 		const { material } = rule;
 		const matSel = `${selectorPrefix}[${dataMaterial}="${material}"]`;
 
-		const parts: string[] = [matSel];
-
-		if (rule.noMaterialFallback) {
-			parts.push(`${selectorPrefix}:not([${dataMaterial}])`);
-		}
-
-		return parts;
+		return rule.noMaterialFallback
+			? [matSel, `${selectorPrefix}:not([${dataMaterial}])`]
+			: [matSel];
 	};
 
 	const generateRulesForPalette = (
@@ -162,10 +163,9 @@ const generateForPrefix = (prefix: string): string => {
 	css += `:is(:root,:host) {\n${renderProps(defaultContainer, containerCss, defaultPalette)}\n${renderProps(defaultContent, contentCss, defaultPalette)}\n}\n\n`;
 
 	// 1b. data-color set but no data-material
-	for (const [colorName, palette] of Object.entries(colors) as [
-		ColorName,
-		ColorPalette
-	][]) {
+	for (const [colorName, palette] of Object.entries(colors) as Array<
+		[ColorName, ColorPalette]
+	>) {
 		css += `[${dataColor}="${colorName}"]:not([${dataMaterial}]) {\n${renderProps(defaultContainer, containerCss, palette)}\n${renderProps(defaultContent, contentCss, palette)}\n}\n\n`;
 	}
 
@@ -177,10 +177,9 @@ const generateForPrefix = (prefix: string): string => {
 	);
 
 	// 3. Explicit color on the material element
-	for (const [colorName, palette] of Object.entries(colors) as [
-		ColorName,
-		ColorPalette
-	][]) {
+	for (const [colorName, palette] of Object.entries(colors) as Array<
+		[ColorName, ColorPalette]
+	>) {
 		css += generateRulesForPalette(
 			materialRules,
 			palette,
@@ -189,10 +188,9 @@ const generateForPrefix = (prefix: string): string => {
 	}
 
 	// 4. Child with data-color inside a material parent
-	for (const [colorName, palette] of Object.entries(colors) as [
-		ColorName,
-		ColorPalette
-	][]) {
+	for (const [colorName, palette] of Object.entries(colors) as Array<
+		[ColorName, ColorPalette]
+	>) {
 		css += generateRulesForPalette(
 			materialRules,
 			palette,
@@ -226,8 +224,7 @@ const generateForPrefix = (prefix: string): string => {
 			const hcRootProps = filledHcRules
 				.flatMap((rule) =>
 					Object.entries(rule.props).map(([prop, colorKey]) => {
-						const [light, dark] =
-							defaultPalette[colorKey as keyof ColorPalette];
+						const [light, dark] = defaultPalette[colorKey];
 						const cssProp = rule.cssMap[prop];
 						return `${indent}\t${cssProp}: color-mix(in srgb, light-dark(${light}, ${dark}) ${transparencyFor(cssProp)}, transparent);`;
 					})
@@ -236,15 +233,13 @@ const generateForPrefix = (prefix: string): string => {
 			const rootSel = hcSelectorPrefix.trimEnd() || ':is(:root,:host)';
 			out += `${indent}${rootSel} {\n${hcRootProps}\n${indent}}\n\n`;
 
-			for (const [colorName, palette] of Object.entries(colors) as [
-				ColorName,
-				ColorPalette
-			][]) {
+			for (const [colorName, palette] of Object.entries(colors) as Array<
+				[ColorName, ColorPalette]
+			>) {
 				const props = filledHcRules
 					.flatMap((rule) =>
 						Object.entries(rule.props).map(([prop, colorKey]) => {
-							const [light, dark] =
-								palette[colorKey as keyof ColorPalette];
+							const [light, dark] = palette[colorKey];
 							const cssProp = rule.cssMap[prop];
 							return `${indent}\t${cssProp}: color-mix(in srgb, light-dark(${light}, ${dark}) ${transparencyFor(cssProp)}, transparent);`;
 						})
@@ -257,17 +252,15 @@ const generateForPrefix = (prefix: string): string => {
 
 		out += generateHcRules(defaultPalette, `:not([${dataColor}])`);
 
-		for (const [colorName, palette] of Object.entries(colors) as [
-			ColorName,
-			ColorPalette
-		][]) {
+		for (const [colorName, palette] of Object.entries(colors) as Array<
+			[ColorName, ColorPalette]
+		>) {
 			out += generateHcRules(palette, `[${dataColor}="${colorName}"]`);
 		}
 
-		for (const [colorName, palette] of Object.entries(colors) as [
-			ColorName,
-			ColorPalette
-		][]) {
+		for (const [colorName, palette] of Object.entries(colors) as Array<
+			[ColorName, ColorPalette]
+		>) {
 			out += generateHcRules(
 				palette,
 				` [${dataColor}="${colorName}"]:not([${dataMaterial}])`
@@ -305,7 +298,7 @@ export const generateMaterialsCss = (): string => {
 		indicatorPalette[INDICATOR_COLOR.index];
 	const indicatorColor = `light-dark(${indicatorLight}, ${indicatorDark})`;
 
-	const prideStops: [string, string][] = [
+	const prideStops: Array<[string, string]> = [
 		['--db-pride-red', '16.7%'],
 		['--db-pride-orange', '0'],
 		['--db-pride-orange', '33.4%'],
@@ -333,7 +326,7 @@ export const generateMaterialsCss = (): string => {
 	// origin colors so the indicator (and anything using them) renders the pride
 	// gradient. Uses `green` for the green stop (the former `light-green` is not
 	// part of the adaptive palette).
-	const prideMap: [string, ColorName][] = [
+	const prideMap: Array<[string, ColorName]> = [
 		['--db-pride-red', 'red'],
 		['--db-pride-orange', 'orange'],
 		['--db-pride-yellow', 'yellow'],

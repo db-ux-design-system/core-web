@@ -1,5 +1,4 @@
-@use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/button-components";
 
 /*
  * Legacy color layer for `accordion-item`. The base `.scss` is color-free
@@ -10,15 +9,10 @@
 .db-accordion-item {
 	> details {
 		> summary {
-			// Default (divider) variant: the summary blends into the page.
-			// The "card" variant overrides this with a level-1 fill in
-			// accordion.legacy-coloring.scss.
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
-
-			@include helpers.interactive-bg(
-				colors.$db-adaptive-bg-basic-transparent-full-hovered,
-				colors.$db-adaptive-bg-basic-transparent-full-pressed
-			);
+			// Default (divider) variant: the summary blends into the page like
+			// a ghost button. The "card" variant overrides this with a level-1
+			// fill in accordion.legacy-coloring.scss.
+			@extend %button-outlined-ghost-colors;
 		}
 	}
 }

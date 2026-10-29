@@ -8,20 +8,11 @@
 
 	--db-control-panel-border-color: #{adaptive.$db-border-default};
 
-	// The active-item indicator uses the adaptive indicator background (brand/7,
-	// or the pride gradient when `data-pride` is set).
 	.db-control-panel-mobile-drawer
 		.db-drawer-content
 		.db-control-panel-mobile-drawer-scroll-container
 		.db-control-panel-navigation
 		> menu {
-		@include navigation-item.direct-navigation-items {
-			@include navigation-item.navigation-indicator {
-				&::after {
-					background-color: adaptive.$db-indicator-color;
-					background-image: adaptive.$db-indicator-background;
-				}
-			}
-		}
+		@include navigation-item.adaptive-navigation-indicator;
 	}
 }
