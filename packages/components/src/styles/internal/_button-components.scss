@@ -63,6 +63,10 @@
 		text-decoration: none;
 	}
 
+	.db-loading-indicator-circle {
+		font: var(--db-type-body-md) !important; // Force this size for loading indicators
+	}
+
 	// Square icon only buttons
 	&[data-no-text="true"] {
 		#{$selector} {
@@ -108,6 +112,10 @@
 				inline-size: variables.$db-sizing-sm;
 				block-size: variables.$db-sizing-sm;
 			}
+		}
+
+		.db-loading-indicator-circle {
+			font: var(--db-type-body-sm) !important; // Force this size for loading indicators
 		}
 	}
 

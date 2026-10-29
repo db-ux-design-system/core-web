@@ -4,6 +4,8 @@
 
 %hide-label-and-progress-text {
 	> .db-loading-indicator-content {
+		--db-indicator-gap: 0;
+
 		/**
 		 * Keep the label in the accessibility tree so screen readers still
 		 * announce the loading state in overlay/button mode. Only the
