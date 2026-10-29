@@ -1,0 +1,8 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n}from"./iframe-DpkWNTDv.js";import{n as r,t as i}from"./button-hBG4kh5L.js";var a=t({Interaction:()=>l,__namedExportsOrder:()=>u,default:()=>c}),o,s,c,l,u;function d(){return(d=e((()=>{r(),o=n(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBButton/Interaction`,component:i,parameters:{layout:`centered`},tags:[`autodocs`],args:{onClick:s()},argTypes:{variant:{control:`select`,options:[`outlined`,`brand`,`ghost`,`filled`]},disabled:{control:`boolean`},form:{control:`text`},name:{control:`text`},noText:{control:`boolean`},wrap:{control:`boolean`},type:{control:`select`,options:[`button`,`reset`,`submit`]},value:{control:`text`},showIcon:{control:`boolean`},showIconLeading:{control:`boolean`},showIconTrailing:{control:`boolean`},width:{control:`select`,options:[`full`,`auto`]},size:{control:`select`,options:[`small`,`medium`]},text:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`},onClick:{action:`onClick`}}},l={args:{"data-testid":`click-button`,onClick:s(),children:`Click me`},render:e=>(0,o.jsx)(i,{...e})},u=[`Interaction`],l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-testid": "click-button",
+    "onClick": fn(),
+    "children": "Click me"
+  },
+  render: (properties: any) => <DBButton {...properties} />
+}`,...l.parameters?.docs?.source}}}})))()}export{d as n,a as r,l as t};
