@@ -7,8 +7,12 @@
 @use "../../styles/internal/control-panel-mobile";
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
-@forward "shell-desktop";
+
+// Mobile-first: the mobile baseline must be forwarded before the desktop
+// overrides so the desktop container-query rules win by source order at equal
+// specificity (container queries add no specificity).
 @forward "shell-mobile";
+@forward "shell-desktop";
 
 %fade-in-loading-fonts {
 	&[data-fade-in="true"] {
@@ -32,6 +36,7 @@ body:not(.sb-show-main):has(.db-shell) {
 
 .db-shell {
 	@extend %fade-in-loading-fonts;
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	block-size: 100dvh;
 	inline-size: 100dvw;

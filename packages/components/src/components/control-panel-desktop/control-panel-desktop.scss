@@ -2,10 +2,13 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/density";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/component";
 @use "../../styles/internal/control-panel-desktop";
 
 .db-control-panel-desktop {
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
+
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	display: grid;
 	position: relative;

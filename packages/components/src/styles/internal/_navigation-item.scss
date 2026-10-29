@@ -201,21 +201,11 @@ $z-index-popover: 71;
 		position: relative;
 	}
 
-	// Mobile
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
-		inline-size: 100%;
-	}
+	// Mobile (unconditional baseline)
+	inline-size: 100%;
 
-	// Desktop
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
+	// Desktop (overrides the mobile baseline above the breakpoint)
+	@include screen-sizes.screen-desktop-min {
 		inline-size: fit-content;
 	}
 

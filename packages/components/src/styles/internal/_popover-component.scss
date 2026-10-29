@@ -195,11 +195,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 				);
 			}
 
-			@include screen-sizes.screen-min-max(
-				(
-					max: "md"
-				)
-			) {
+			@include screen-sizes.screen-desktop-max {
 				// If we are in mobile and have no delay set we force some delay to avoid layout shift
 				&:not([data-delay]) {
 					animation-delay: variables.$db-transition-duration-medium;
@@ -245,6 +241,11 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 %default-popover {
 	@extend %default-card;
 	@extend %popover-placement;
+
+	// On the overlay itself: the mobile animation-delay query in
+	// `get-popover-show` is extended onto this same element, and a style query
+	// can read a property the element sets on itself.
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	position: absolute;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;

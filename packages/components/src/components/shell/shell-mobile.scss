@@ -1,6 +1,5 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
@@ -17,12 +16,9 @@
 }
 
 .db-shell {
-	// MOBILE
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
+	// MOBILE (unconditional baseline; shell-desktop.scss overrides above the
+	// customizable breakpoint via screen-sizes.screen-desktop-min)
+	& {
 		&:not(
 			:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})
 		) {

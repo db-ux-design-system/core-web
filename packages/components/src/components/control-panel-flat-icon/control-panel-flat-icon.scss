@@ -9,11 +9,7 @@
 @use "../../styles/internal/indicator";
 
 %control-panel-flat-icon-desktop {
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
+	@include screen-sizes.screen-desktop-min {
 		inline-size: fit-content;
 
 		@include helpers.divider("right", after);
@@ -108,11 +104,8 @@
 }
 
 %control-panel-flat-icon-mobile {
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
+	// Mobile (unconditional baseline; desktop overrides via `screen-desktop`)
+	& {
 		--db-control-panel-flat-icon-mobile: 1;
 
 		@include helpers.divider("top");
@@ -210,6 +203,7 @@
 .db-control-panel-flat-icon {
 	@extend %control-panel-flat-icon-mobile;
 	@extend %control-panel-flat-icon-desktop;
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	grid-area: control-panel;
 

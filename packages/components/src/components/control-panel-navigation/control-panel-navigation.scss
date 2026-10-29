@@ -174,7 +174,7 @@
 .db-control-panel-navigation {
 	inline-size: 100%;
 
-	@include screen-sizes.screen("md") {
+	@include screen-sizes.screen-desktop-min {
 		inline-size: auto;
 	}
 
@@ -187,14 +187,11 @@
 	}
 
 	&:not([data-variant="tree"]) {
-		// MOBILE Sliding
-		@include screen-sizes.screen-min-max(
-			(
-				max: "sm"
-			)
-		) {
+		// Mobile sliding navigation: remove the tap highlight because sub-
+		// navigations open in an overlay. Scoped to the mobile side of the
+		// customizable breakpoint.
+		@include screen-sizes.screen-desktop-max {
 			.db-control-panel-navigation-item-group-expand-button {
-				/* Remove the highlight here because we have an overlay for sub-navigations */
 				-webkit-tap-highlight-color: transparent;
 			}
 		}

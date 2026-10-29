@@ -16,22 +16,12 @@
 	inline-size: 100%;
 	z-index: navigation-item.$z-index-drilldown;
 
-	// Mobile
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
-		padding: variables.$db-spacing-fixed-2xs
-			component.$drawer-content-padding-inline;
-	}
+	// Mobile (unconditional baseline)
+	padding: variables.$db-spacing-fixed-2xs
+		component.$drawer-content-padding-inline;
 
-	// Desktop
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
+	// Desktop (overrides the mobile baseline above the breakpoint)
+	@include screen-sizes.screen-desktop-min {
 		// Match the vertical desktop navigation padding-inline so the overlay
 		// content stays horizontally aligned with the level behind it during
 		// the slide, including the safe-area insets the level uses.
