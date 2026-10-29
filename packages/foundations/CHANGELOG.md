@@ -1,5 +1,46 @@
 # @db-ux/core-foundations
 
+## 6.1.1
+
+No changes in this release.
+
+## 6.1.0
+
+### Minor Changes
+
+- fix(foundations): resolve assets in `relative.css` from the package root - [see commit 1ef7e4a](https://github.com/db-ux-design-system/core-web/commit/1ef7e4a5bce0ffadbe56c186bc561cf69aaa8b41):
+
+    - The default asset path in `theme/relative.css`, `fonts/relative.css` and `icons/relative.css` changes from `../../assets/` to `../../../assets/`. The CSS now finds fonts and icon fonts directly in the package, e.g. when loaded from a CDN.
+    - **Action required** if you copy `build/styles/` and `assets/` side by side into your `public` folder: keep the package structure (`build/styles/` next to `assets/`) or override `$icons-path`, `$fonts-path` and `$images-path`.
+
+## 6.0.1
+
+No changes in this release.
+
+## 6.0.0
+
+### Major Changes
+
+- refactor(DBHeading): strip block spacing by default, remove `alignment` and `paragraphSpacing`, rename `size` to `visualSize` - [see commit 56cf6f9](https://github.com/db-ux-design-system/core-web/commit/56cf6f9ae9dba4d8e17c1f84d6deae994260c619):
+
+    - Block-level text elements (`h1`-`h6`, `p`) no longer carry a `margin-block` by default. Set `data-text-spacing="true"` on an ancestor or on the element itself to add the spacing (`calc(1lh / 2)`, derived from each element's own line height) back. The Heading `paragraphSpacing` and `alignment` properties were removed, and `size` was renamed to `visualSize`.
+
+- feat(DBStack): `overflow: auto` removed - a stack no longer scrolls - [see commit 6da172d](https://github.com/db-ux-design-system/core-web/commit/6da172d5ff05cd3c44b93c430c77664b43d25a5f):
+
+    - It clipped the focus ring of its children. Content that does not fit is now visible outside the
+    - stack instead of being scrollable; set `overflow` on the stack yourself if you relied on it.
+    - `wrap` keeps the scroll container, since wrapped items overflow by design.
+    - New `data-focus-container` / `.db-focus-container` helper reserves the room a focus ring needs
+    - inside any clipping container, for the cases where that combination is needed. It owns the
+    - padding and margin of the element it sits on, so it belongs on a container that brings no
+    - spacing of its own.
+
+### Minor Changes
+
+- feat(DBBreadcrumb): add breadcrumb (`DBBreadcrumb`, `DBBreadcrumbItem` and `DBBreadcrumbPopoverItem`) components with truncation - [see commit 592bf6a](https://github.com/db-ux-design-system/core-web/commit/592bf6aebb76bc58e9f8e05daf5d5f7bb04330de):
+
+    - Supports composition (slotted items) and options API (`items`), `size` and `separator` variants, disabled and icon-only (`noText`) items, automatic collapsing, and manual truncation via `DBBreadcrumbPopoverItem` which reveals the hidden items in a popover. Also refactors `DBAccordion` to reuse the shared `parseItems` utility.
+
 ## 5.7.1
 
 ### Patch Changes

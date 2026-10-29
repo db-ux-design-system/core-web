@@ -32,3 +32,11 @@
   - button "Open navigation menu"
   - text: DBHeader
   - button "Open navigation menu"
+  - link "Interaction"
+  - button "Open"
+  - text: "Drawer state: closed DBHeader"
+  - button "Open menu"
+  - link "Custom Header"
+  - button "Open"
+  - text: DBHeader
+  - button "Open menu"

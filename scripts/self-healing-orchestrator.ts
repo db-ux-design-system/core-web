@@ -221,6 +221,20 @@ export const checkFixMap: CheckConfig[] = [
 		fixCommands: []
 	},
 	{
+		// Server-side gate for the GitHub Actions dependency lockfile. The local
+		// pre-commit hook can be bypassed (--no-verify, the GitHub web editor,
+		// automation), so a workflow can be merged without a lockfile entry and
+		// run tag-based deps outside the pinned inventory. `--verify` writes
+		// nothing and fails when the lockfile is stale; the fix regenerates it,
+		// and the orchestrator's git-status check then auto-commits the result
+		// for review in the PR. A fix that errors or produces no change (e.g. a
+		// suspicious moved pin that needs --accept-moved) leaves the tree clean,
+		// so the orchestrator reports it as unfixable (exit 1).
+		name: 'check:actions-lockfile',
+		checkCommand: { command: 'gh', args: ['actions-lock', '--verify'] },
+		fixCommands: [{ command: 'gh', args: ['actions-lock'] }]
+	},
+	{
 		name: 'check:snapshot-newlines',
 		checkCommand: {
 			command: 'node',

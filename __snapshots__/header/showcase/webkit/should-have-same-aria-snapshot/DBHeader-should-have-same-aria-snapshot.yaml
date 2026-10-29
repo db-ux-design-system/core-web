@@ -112,3 +112,11 @@
         - link "Without Application Name"
       - listitem:
         - link "Without Application Name disabled" [disabled]
+  - link "Interaction"
+  - button "Open"
+  - text: "Drawer state: closed DBHeader"
+  - button "Open menu"
+  - link "Custom Header"
+  - button "Open"
+  - text: DBHeader
+  - button "Open menu"

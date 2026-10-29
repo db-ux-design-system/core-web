@@ -3,8 +3,10 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import HeaderBehavior from '../examples/behavior.example.lite';
+import HeaderCustomHeader from '../examples/custom-header.example.lite';
 import HeaderDensity from '../examples/density.example.lite';
 import HeaderExamples from '../examples/examples.example.lite';
+import HeaderInteraction from '../examples/interaction.example.lite';
 import HeaderWidth from '../examples/width.example.lite';
 
 export default function HeaderShowcase(props: PatternhubProps) {
@@ -30,6 +32,16 @@ export default function HeaderShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Examples">
 				<CardWrapperShowcase>
 					<HeaderExamples />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Interaction">
+				<CardWrapperShowcase>
+					<HeaderInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Custom Header">
+				<CardWrapperShowcase>
+					<HeaderCustomHeader />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
