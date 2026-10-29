@@ -78,21 +78,21 @@
     "update:icon-fonts": "pnpm run generate:icon-fonts && pnpm run generate:icon-types"
   },
   "dependencies": {
-    "@db-ux/db-theme": "7.0.0",
-    "@db-ux/db-theme-fonts": "2.1.0",
-    "@db-ux/db-theme-icons": "4.3.0",
+    "@db-ux/db-theme": "7.2.0",
+    "@db-ux/db-theme-fonts": "2.2.0",
+    "@db-ux/db-theme-icons": "4.4.0",
     "postcss-scss": "4.0.9"
   },
   "devDependencies": {
-    "@inquirer/prompts": "8.7.3",
+    "@inquirer/prompts": "8.7.4",
     "find-versions": "6.0.0",
     "glob": "13.0.6",
-    "npm-run-all2": "9.0.3",
+    "npm-run-all2": "9.0.4",
     "publint": "0.3.25",
     "replace-in-file": "9.0.0",
     "typedoc": "0.28.20",
-    "typedoc-plugin-markdown": "4.13.1",
+    "typedoc-plugin-markdown": "4.14.1",
     "typedoc-plugin-merge-modules": "7.0.0",
-    "vitest": "5.0.3"
+    "vitest": "5.0.5"
   }
 }

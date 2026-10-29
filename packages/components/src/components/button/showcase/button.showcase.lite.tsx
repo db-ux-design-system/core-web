@@ -4,6 +4,7 @@ import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ButtonDensity from '../examples/density.example.lite';
 import ButtonDisabled from '../examples/disabled.example.lite';
+import ButtonFormAttributes from '../examples/form-attributes.example.lite';
 import ButtonInteraction from '../examples/interaction.example.lite';
 import ButtonMultiLineText from '../examples/multi-line-text.example.lite';
 import ButtonNoText from '../examples/no-text.example.lite';
@@ -66,6 +67,11 @@ export default function ButtonShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Interaction">
 				<CardWrapperShowcase>
 					<ButtonInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Form Attributes">
+				<CardWrapperShowcase>
+					<ButtonFormAttributes />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

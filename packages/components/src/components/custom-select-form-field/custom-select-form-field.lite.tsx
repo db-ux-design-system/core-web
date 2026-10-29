@@ -13,11 +13,11 @@ export default function DBCustomSelectFormField(
 	const _ref = useRef<HTMLDivElement | any>(null);
 
 	return (
-		<summary
+		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-custom-select-form-field', props.className)}>
 			{props.children}
-		</summary>
+		</div>
 	);
 }

@@ -23,14 +23,14 @@
 | Before              | Status | After      | Description                                                  |
 | ------------------- | :----: | ---------- | ------------------------------------------------------------ |
 | `primary`           |   ❌   | ❌         | not valid anymore, use `outlined` buttons for those purposes |
-| `brand-primary`     |   🔁   | `primary`  |                                                              |
+| `brand-primary`     |   🔁   | `brand`    |                                                              |
 | `secondary-outline` |   🔁   | `outlined` |                                                              |
-| `secondary-solid`   |   🔁   | `solid`    |                                                              |
-| `tertiary-plain`    |   🔁   | `text`     |                                                              |
+| `secondary-solid`   |   🔁   | `filled`   |                                                              |
+| `tertiary-plain`    |   🔁   | `ghost`    |                                                              |
 
 ### icons
 
-| Before         | Status | After    | Description                                                       |
-| -------------- | :----: | -------- | ----------------------------------------------------------------- |
-| `iconTrailing` |   ❌   | ❌       | not valid anymore, for buttons only icons before text are allowed |
-| `iconOnly`     |   🔁   | `noText` |                                                                   |
+| Before         | Status | After          | Description                                           |
+| -------------- | :----: | -------------- | ----------------------------------------------------- |
+| `iconTrailing` |   🔁   | `iconTrailing` | trailing icons are supported again via `iconTrailing` |
+| `iconOnly`     |   🔁   | `noText`       |                                                       |

@@ -1,18 +1,18 @@
 import { DBCard, DBCustomSelect, DBStack } from '@components';
-import type { StockFeatures, Table } from '@tanstack/react-table';
+import type { ReactTable, RowData, StockFeatures } from '@tanstack/react-table';
 import DebouncedInput from './DebouncedInput';
 
-interface TableControlsProps {
-	table: Table<StockFeatures, any>;
+interface TableControlsProps<T extends RowData, TSelected> {
+	table: ReactTable<StockFeatures, T, TSelected>;
 	globalFilter: string;
 	setGlobalFilter: (value: string) => void;
 }
 
-export const TableControls = ({
+export const TableControls = <T extends RowData, TSelected>({
 	table,
 	globalFilter,
 	setGlobalFilter
-}: TableControlsProps) => {
+}: TableControlsProps<T, TSelected>) => {
 	return (
 		<DBCard>
 			<DBStack>

@@ -19,6 +19,27 @@ on:
   schedule:
     - cron: "23 2 * * 2"
 
+# We'd like to run the pipeline for Dependabot PRs sequentially, and all other PRs in parallel, but still only one action run for each PR.
+# TODO: We won't need this anymore as soon as we get Merge Groups and could remove the concurrency again, which currently brings us pain regarding unstarted, non-self-healing dependabot pipelines
+# NOTE: Concurrency is disabled for release events as they should always run to completion
+# NOTE: All Dependabot runs share a single global 'dependabot' concurrency group ON PURPOSE. Dependabot PRs merge into main sequentially, and every PR must be validated against the latest main. Serializing them globally means that once one Dependabot PR merges, the others re-run against the updated main instead of passing on a stale base. The group is intentionally NOT namespaced per workflow or per ref, because that would let two different Dependabot PRs (or the same PR's Default/On-PR/CodeQL workflows) run in parallel and go stale relative to each other.
+concurrency:
+  # Creates a unique concurrency group identifier for release events using the git reference
+  group: >-
+    ${{
+      github.event_name == 'release' &&
+      format('release-{0}', github.ref) ||
+      github.actor == 'dependabot[bot]' &&
+      'dependabot' ||
+      format('{0}-{1}', github.workflow, github.ref)
+    }}
+  cancel-in-progress: >-
+    ${{
+      github.event_name != 'release' &&
+      github.actor != 'dependabot[bot]' &&
+      github.ref != 'refs/heads/main'
+    }}
+
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
@@ -57,7 +78,7 @@ jobs:
         # your codebase is analyzed, see https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages
     steps:
       - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        uses: actions/checkout@v7.0.1
 
       # Add any setup steps before running the `github/codeql-action/init` action.
       # This includes steps like installing compilers or runtimes (`actions/setup-node`
@@ -67,7 +88,7 @@ jobs:
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
+        uses: github/codeql-action/init@v4.39.1
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
@@ -95,6 +116,6 @@ jobs:
           exit 1
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
+        uses: github/codeql-action/analyze@v4.39.1
         with:
           category: "/language:${{matrix.language}}"
