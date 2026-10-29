@@ -1,5 +1,29 @@
 # @db-ux/ngx-core-components
 
+## 6.2.0
+
+### Minor Changes
+
+- feat(DBButton): forward native form submission attributes - [see commit 4e0662c](https://github.com/db-ux-design-system/core-web/commit/4e0662cee7bfe8bfef728fc2d6584032867dc1e5):
+
+    - Adds the native `<button>` form-submission attributes (`formAction`, `formEncType`, `formMethod`, `formNoValidate`, `formTarget`) as properties on `DBButton` and renders them on the inner `<button>`, so a submit button can override its owning `<form>` (most notably `formMethod="dialog"` to close a `<dialog>`). Previously these never reached the native button for the Angular and Web Component outputs, so `<db-button formmethod="dialog">` silently submitted the form normally. Each attribute accepts both the camelCase React DOM spelling and the native lowercase spelling.
+
+- feat(DBControlPanelMobile): expose the drawer header for customization - [see commit b8ec490](https://github.com/db-ux-design-system/core-web/commit/b8ec490fa423889b4140c76ccbf4968a11833946):
+
+    - add `closeButtonText` and `closeButtonId` properties, forwarded to the internal drawer header, so the close button tooltip is configurable (i18n)
+    - add a `header` slot that replaces the internal drawer header when `showDrawerHeaderSlot` is set, so action elements or a subtitle can be placed next to the close button (the consumer then provides the close button, e.g. via `DBDrawerHeader`)
+    - when `showDrawerHeaderSlot` is not set, the internal drawer header is rendered as before, so existing usage is unchanged
+
+- feat(DBHeader): add `header` slot to replace the internal drawer header - [see commit b8ec490](https://github.com/db-ux-design-system/core-web/commit/b8ec490fa423889b4140c76ccbf4968a11833946):
+
+    - the `header` slot replaces the internal drawer header when `showDrawerHeaderSlot` is set, so action elements or a subtitle can be placed next to the close button (the consumer then provides the close button, e.g. via `DBDrawerHeader`, and `closeButtonId` / `closeButtonText` have no effect)
+    - when `showDrawerHeaderSlot` is not set, the internal drawer header is rendered as before, so existing usage is unchanged
+    - note: `@db-ux/wc-core-components` strips the internal `db-drawer` from `db-header` (the mobile drawer is handled by `db-shell`), so the `header` slot has no effect there; use `db-control-panel-mobile` for the web-component mobile drawer header
+
+### Patch Changes
+
+- fix(DBSelect): hide placeholder overlay while the dropdown is open - [see commit 35e4713](https://github.com/db-ux-design-system/core-web/commit/35e47134cfc763285735f54f11b5bfb1878f1b9b)
+
 ## 6.1.1
 
 ### Patch Changes
