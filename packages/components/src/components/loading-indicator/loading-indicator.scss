@@ -115,7 +115,7 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 		}
 
 		&[data-show-progress-text="false"],
-		&:not(:has(span)){
+		&:not(:has(span)) {
 			--db-indicator-gap: 0;
 		}
 	}
