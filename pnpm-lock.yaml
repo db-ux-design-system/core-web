@@ -222,11 +222,11 @@ importers:
         specifier: 2.0.2
         version: 2.0.2(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.36.4
-        version: 0.36.4(supports-color@10.2.2)
+        specifier: 0.38.0
+        version: 0.38.0(supports-color@10.2.2)
       '@guidepup/playwright':
-        specifier: 0.20.0
-        version: 0.20.0(@guidepup/guidepup@0.36.4(supports-color@10.2.2))(@playwright/test@1.64.1)
+        specifier: 0.21.0
+        version: 0.21.0(@guidepup/guidepup@0.38.0(supports-color@10.2.2))(@playwright/test@1.64.1)
       '@guidepup/record':
         specifier: 0.3.0
         version: 0.3.0(supports-color@10.2.2)
@@ -3776,13 +3776,13 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.36.4':
-    resolution: {integrity: sha512-LgF945tl7dYQmUwD8wRgBcUM0sM5SWJd2M4Mmefq6ly7nXwopHre1Xd82DL8luWninvuTHQLrW97viOzgM5ovg==}
+  '@guidepup/guidepup@0.38.0':
+    resolution: {integrity: sha512-BESjF92DTIaw451unpFxzIfd39WwfqY9x3UUs0f+0r20KotR7u5Q+s3B4IwWAsMKHc7e3G7X47JKjMes8sxMHw==}
 
-  '@guidepup/playwright@0.20.0':
-    resolution: {integrity: sha512-F1tIzewyVwUjLR+GHcgQAjbkruS40Uqvzax69VcQBvAT82g+5DZD+vXSYSP3MVgt6eJ03pDrPgeniHkx5gdHxA==}
+  '@guidepup/playwright@0.21.0':
+    resolution: {integrity: sha512-1sXOcSgfTz8pNEfGWcpeihmc6I+jr9CTbBnwypLlFHlHxDA5im3dJk6QJp8GBhh31K/VOtiwZ3/ZZy6hDYxi5w==}
     peerDependencies:
-      '@guidepup/guidepup': '>=0.36.1'
+      '@guidepup/guidepup': '>=0.38.0'
       '@playwright/test': '>=1.62.1'
 
   '@guidepup/record@0.3.0':
@@ -18813,7 +18813,7 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.36.4(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.38.0(supports-color@10.2.2)':
     dependencies:
       dbus-native: 0.15.2
       debug: 4.4.3(supports-color@10.2.2)
@@ -18821,9 +18821,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.20.0(@guidepup/guidepup@0.36.4(supports-color@10.2.2))(@playwright/test@1.64.1)':
+  '@guidepup/playwright@0.21.0(@guidepup/guidepup@0.38.0(supports-color@10.2.2))(@playwright/test@1.64.1)':
     dependencies:
-      '@guidepup/guidepup': 0.36.4(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.38.0(supports-color@10.2.2)
       '@playwright/test': 1.64.1
 
   '@guidepup/record@0.3.0(supports-color@10.2.2)':
