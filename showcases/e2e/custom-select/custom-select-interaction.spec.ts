@@ -16,37 +16,20 @@ const checkOption = async (page: Page, select: Locator, value: string) => {
 // Reads the submitted FormData, using a temporary form if needed
 const getSubmittedValues = async (nativeSelect: Locator) =>
 	nativeSelect.evaluate((element: HTMLSelectElement) => {
-		const name = element.name || 'db-e2e-submitted';
-		let { form } = element;
-		let cleanup = () => {};
-
-		if (!form) {
-			const previousForm = element.getAttribute('form');
-			const previousName = element.getAttribute('name');
-			form = document.createElement('form');
-			form.id = 'db-e2e-submitted-form';
-			document.body.append(form);
-			element.setAttribute('form', form.id);
-			element.setAttribute('name', name);
-			cleanup = () => {
-				if (previousForm === null) {
-					element.removeAttribute('form');
-				} else {
-					element.setAttribute('form', previousForm);
-				}
-
-				if (previousName === null) {
-					element.removeAttribute('name');
-				} else {
-					element.setAttribute('name', previousName);
-				}
-
-				form?.remove();
-			};
+		if (element.form) {
+			return new FormData(element.form).getAll(element.name);
 		}
 
+		const name = 'db-e2e-submitted';
+		const form = document.createElement('form');
+		form.id = 'db-e2e-submitted-form';
+		document.body.append(form);
+		element.setAttribute('form', form.id);
+		element.setAttribute('name', name);
 		const values = new FormData(form).getAll(name);
-		cleanup();
+		element.removeAttribute('form');
+		element.removeAttribute('name');
+		form.remove();
 		return values;
 	});
 
