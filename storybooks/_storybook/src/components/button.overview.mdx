@@ -1,0 +1,50 @@
+import { Markdown, Meta } from "@storybook/addon-docs/blocks";
+import Intro from "../../../_shared/overview/button/intro.md?raw";
+import Accessibility from "../../../../packages/components/src/components/button/docs/Accessibility.md?raw";
+import Migration from "../../../../packages/components/src/components/button/docs/Migration.md?raw";
+
+{/* PROTOTYPE – framework-independent entry for a component in the composition Storybook. The framework Storybooks (refs) carry the framework-specific overview pages. */}
+
+<Meta title="Components/DBButton" />
+
+# DBButton
+
+> **Prototype for discussion.** Entry page in the composition Storybook. It holds everything that is the same for every framework and leads to the overview page of your framework. Each section names its source.
+
+<Markdown>{Intro}</Markdown>
+
+_Source: `storybooks/_shared/overview/button/intro.md` (shared with the framework Storybooks)._
+
+## Choose your framework
+
+Installation, usage, examples with code and properties are framework-specific:
+
+- [React](?path=/docs/react_components-dbbutton-overview--docs)
+- [Angular](?path=/docs/angular_components-dbbutton-overview--docs)
+- [Vue](?path=/docs/vue_components-dbbutton-overview--docs)
+- [HTML](?path=/docs/html_components-dbbutton-overview--docs)
+
+_Source: new. The links open the overview pages of the framework Storybooks, which the composition Storybook includes as refs._
+
+{/* The docs file starts with "## Accessibility"; it is the section heading. */}
+
+<Markdown>{Accessibility}</Markdown>
+
+_Source: `packages/components/src/components/button/docs/Accessibility.md` (shared with the framework Storybooks)._
+
+## Migration
+
+{/* Nest the headings of the docs file below the section heading. */}
+
+<Markdown>{Migration.replace(/^## /gm, "### ").replace(/^### (sizes|variants|icons|class)$/gm, "#### $1")}</Markdown>
+
+_Source: `packages/components/src/components/button/docs/Migration.md` – until now only in the Patternhub ("Migration"). The migration from DB UX Design System – Generation 2 (aka DB UI) is the same for every framework._
+
+## Resources
+
+- [Design guidelines on the platform](https://design-system.deutschebahn.com/documentation/components/button)
+- npm: [@db-ux/core-components](https://www.npmjs.com/package/@db-ux/core-components) · [@db-ux/react-core-components](https://www.npmjs.com/package/@db-ux/react-core-components) · [@db-ux/ngx-core-components](https://www.npmjs.com/package/@db-ux/ngx-core-components) · [@db-ux/v-core-components](https://www.npmjs.com/package/@db-ux/v-core-components)
+- [Source code on GitHub](https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/button)
+- [Changelog](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md)
+
+_Source: new._
