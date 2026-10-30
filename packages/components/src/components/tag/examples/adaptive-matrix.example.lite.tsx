@@ -1,11 +1,10 @@
-import { For, useMetadata, useTarget } from '@builder.io/mitosis';
+import { For, useMetadata } from '@builder.io/mitosis';
 import {
 	ColorList,
 	type ColorType,
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
-import { uuid } from '../../../utils';
 import DBTag from '../tag.lite';
 import { StorybookTagArgTypes } from './_tag.arg.types';
 
@@ -43,13 +42,9 @@ export default function TagAdaptiveMatrix() {
 					{(material: MaterialType) => (
 						<tr key={`row-${material}`}>
 							<th scope="row">{material}</th>
-							<For each={ColorList}>
+							<For each={ColorList} key={`cells-${material}`}>
 								{(color: ColorType) => (
-									<td
-										key={useTarget({
-											angular: uuid(),
-											default: `cell-${material}-${color}`
-										})}>
+									<td>
 										<DBTag
 											color={color}
 											material={material}>

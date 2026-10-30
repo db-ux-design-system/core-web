@@ -1,11 +1,10 @@
-import { For, useMetadata, useTarget } from '@builder.io/mitosis';
+import { For, useMetadata } from '@builder.io/mitosis';
 import {
 	ColorList,
 	type ColorType,
 	TextMaterialList,
 	type TextMaterialType
 } from '../../../shared/model';
-import { uuid } from '../../../utils';
 import DBInfotext from '../infotext.lite';
 import { StorybookInfotextArgTypes } from './_infotext.arg.types';
 
@@ -43,13 +42,9 @@ export default function InfotextAdaptiveMatrix() {
 					{(material: TextMaterialType) => (
 						<tr key={`row-${material}`}>
 							<th scope="row">{material}</th>
-							<For each={ColorList}>
+							<For each={ColorList} key={`cells-${material}`}>
 								{(color: ColorType) => (
-									<td
-										key={useTarget({
-											angular: uuid(),
-											default: `cell-${material}-${color}`
-										})}>
+									<td>
 										<DBInfotext
 											color={color}
 											material={material}>
