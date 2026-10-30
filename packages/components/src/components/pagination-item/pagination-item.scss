@@ -74,7 +74,6 @@
 		}
 	}
 
-
 	// The current page is a dead end: block pointer activation so a click
 	// cannot follow a composed link to the current URL. Keyed off
 	// aria-current="page" (the control's own current marker, set in JS and by
