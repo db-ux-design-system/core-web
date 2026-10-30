@@ -96,8 +96,16 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
  */
 @mixin get-layout-breakpoint-defaults() {
 	:root {
-		--db-tablet-breakpoint: #{$db-breakpoint-sm};
-		--db-desktop-breakpoint: #{$db-breakpoint-md};
+		// rem, not em: in a container style query an `em` resolves against the
+		// FONT SIZE OF THE QUERIED ELEMENT, so the switch point would drift
+		// whenever a component (or a consumer) changes its font size - the bug
+		// that made `DBFooterMeta` switch at 672px under a 14px font, and that
+		// makes the min/max comparison fail outright when the declaring and
+		// queried elements have different font sizes. `rem` is always relative
+		// to the root, so the switch stays a fixed 768px / 1024px at the default
+		// root size and still scales with a user's root font-size zoom.
+		--db-tablet-breakpoint: #{helpers.px-to-rem($db-screen-size-sm)};
+		--db-desktop-breakpoint: #{helpers.px-to-rem($db-screen-size-md)};
 
 		@include set-layout-breakpoint-inline-sizes;
 	}
