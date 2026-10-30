@@ -37,13 +37,13 @@
     "eslint": ">=9.0.0"
   },
   "dependencies": {
-    "@typescript-eslint/utils": "^8.72.0"
+    "@typescript-eslint/utils": "^8.72.1"
   },
   "devDependencies": {
     "@angular-eslint/template-parser": "21.4.0",
     "@angular-eslint/test-utils": "21.4.0",
-    "@typescript-eslint/parser": "8.72.0",
-    "@typescript-eslint/rule-tester": "8.72.0",
+    "@typescript-eslint/parser": "8.72.1",
+    "@typescript-eslint/rule-tester": "8.72.1",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.4",
     "typescript": "5.9.3",
