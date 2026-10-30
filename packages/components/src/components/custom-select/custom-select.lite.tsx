@@ -135,9 +135,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
 		handleValidation: () => {
-			if (selectRef) {
-				selectRef.value = state.getNativeSelectValue();
-			}
+			state.syncNativeSelect();
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
 				state.setDescById(state._invalidMessageId);
@@ -243,6 +241,29 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			return '';
+		},
+		syncNativeSelect: () => {
+			if (!selectRef) {
+				return;
+			}
+
+			if (getBoolean(props.multiple, 'multiple')) {
+				// Assigning a string to `<select multiple>.value` selects at
+				// most one option, so every option has to be marked on its own
+				// for the form to submit the full selection.
+				for (const option of Array.from(
+					selectRef.options as HTMLOptionsCollection
+				)) {
+					option.selected = Boolean(
+						state.getOptionChecked(option.value)
+					);
+				}
+			} else {
+				// Setting `option.selected = false` on a single select with
+				// display size 1 would let the browser select the first
+				// option again, so the single select is written via `value`.
+				selectRef.value = state.getNativeSelectValue();
+			}
 		},
 		setDescById: (descId?: string) => {
 			const descByIds: string[] = [];
@@ -886,6 +907,13 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state._values, selectRef, state._selectedLabels]);
 
+	// Sync the native select after every render: options can be (re)rendered
+	// after `values` was applied - e.g. both set via JS on the Web Component,
+	// where Stencil watchers run before render and reuse unkeyed <option>s.
+	onUpdate(() => {
+		state.syncNativeSelect();
+	});
+
 	onUpdate(() => {
 		if (selectRef) {
 			let controller = state.abortController;
@@ -900,9 +928,15 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				() => {
 					const resetValue = initialValues
 						? initialValues
-						: selectRef.value
-							? [selectRef.value]
-							: [];
+						: getBoolean(props.multiple, 'multiple')
+							? Array.from(
+									selectRef.selectedOptions as HTMLCollectionOf<HTMLOptionElement>
+								).map(
+									(option: HTMLOptionElement) => option.value
+								)
+							: selectRef.value
+								? [selectRef.value]
+								: [];
 					state.handleOptionSelected(resetValue);
 					state.handleValidation();
 				},

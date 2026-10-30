@@ -300,6 +300,72 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should reflect every selected value onto the native multiple select (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const nativeSelect = select.locator('select');
+			const getNativeValues = async () =>
+				nativeSelect.evaluate((element: HTMLSelectElement) =>
+					Array.from(element.selectedOptions).map(
+						(option) => option.value
+					)
+				);
+
+			// Preselected via `values`, without any user interaction.
+			await expect.poll(getNativeValues).toEqual(['Blue', 'Green']);
+
+			await select.locator('summary').click();
+			await select.locator('input[value="Red"]').check({ force: true });
+
+			await expect
+				.poll(getNativeValues)
+				.toEqual(['Red', 'Blue', 'Green']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should reflect values set via JS before options are rendered onto the native multiple select (#8465)',
+		path,
+		example: 'Interaction',
+		// Reproduces the reported Web Components timing: `options` and
+		// `values` are assigned as properties in the same task.
+		skip: {
+			project: () => !(process.env.showcase ?? '').startsWith('stencil')
+		},
+		async run({ content }) {
+			// `data-testid` is forwarded to the inner element, so walk up to
+			// the custom element host that owns the `options`/`values` props.
+			const host = content
+				.getByTestId('tag-select')
+				.locator('xpath=ancestor-or-self::db-custom-select');
+			const nativeSelect = content
+				.getByTestId('tag-select')
+				.locator('select');
+
+			await host.evaluate((element: any) => {
+				element.options = [
+					{ value: 'red', label: 'Red' },
+					{ value: 'green', label: 'Green' },
+					{ value: 'blue', label: 'Blue' }
+				];
+				element.values = ['red', 'green'];
+			});
+
+			await expect
+				.poll(async () =>
+					nativeSelect.evaluate((element: HTMLSelectElement) =>
+						Array.from(element.selectedOptions).map(
+							(option) => option.value
+						)
+					)
+				)
+				.toEqual(['red', 'green']);
+		}
+	});
+
+	runInteractionTest({
 		title: 'should take tag remove buttons and clear button out of the tab order when disabled',
 		path,
 		example: 'Interaction',
