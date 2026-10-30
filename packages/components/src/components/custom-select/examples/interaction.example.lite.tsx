@@ -155,6 +155,7 @@ export default function CustomSelectInteraction() {
 
 			{/* Test-only: FormData and form reset (#8465) */}
 			<form
+				aria-label="Form colors"
 				style={{ width: '200px' }}
 				data-testid="native-form"
 				data-sb-ignore="true">
