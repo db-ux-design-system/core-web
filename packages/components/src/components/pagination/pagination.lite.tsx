@@ -294,9 +294,9 @@ export default function DBPagination(props: DBPaginationProps) {
 				/*
 				 * The current page is a dead end: aria-current announces it,
 				 * tabindex="-1" drops it from the tab order, and the filled
-				 * control is made unclickable via pointer-events in
-				 * pagination-item.scss - so there is no link default to
-				 * cancel and no preventDefault racing a consumer router.
+				 * control blocks pointer-events in pagination-item.scss - so
+				 * there is no link default to cancel and no preventDefault
+				 * racing a consumer router.
 				 */
 				if (isCurrent) {
 					control.setAttribute('aria-current', 'page');

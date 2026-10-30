@@ -306,8 +306,9 @@ test.describe('DBPagination', () => {
 			await expect(otherLink).not.toHaveAttribute('tabindex', '-1');
 			await expect(otherLink).not.toHaveCSS('pointer-events', 'none');
 
-			// pointer-events: none makes the current link non-actionable, so a
-			// real click cannot land on it and the pagination reports nothing.
+			// Blocking pointer-events makes the current link non-actionable,
+			// so a real click cannot land on it and the pagination reports
+			// nothing.
 			await expect(scope.getByTestId('composed-readout')).toHaveText(
 				'composed requested: 0'
 			);
