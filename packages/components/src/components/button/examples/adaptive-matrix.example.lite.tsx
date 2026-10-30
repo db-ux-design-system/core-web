@@ -6,6 +6,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBButton from '../button.lite';
 import { StorybookButtonArgTypes } from './_button.arg.types';
 
@@ -45,7 +46,7 @@ export default function ButtonAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBButton
 											onClick={fn}
 											color={color}

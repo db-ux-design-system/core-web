@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBSwitch from '../switch.lite';
 import { StorybookSwitchArgTypes } from './_switch.arg.types';
 
@@ -45,7 +46,7 @@ export default function SwitchAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBSwitch
 											color={color}
 											material={material}

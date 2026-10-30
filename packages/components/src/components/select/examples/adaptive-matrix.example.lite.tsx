@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBSelect from '../select.lite';
 import { StorybookSelectArgTypes } from './_select.arg.types';
 
@@ -44,7 +45,7 @@ export default function SelectAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBSelect
 											color={color}
 											material={material}

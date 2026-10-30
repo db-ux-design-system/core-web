@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBBadge from '../badge.lite';
 import { StorybookBadgeArgTypes } from './_badge.arg.types';
 
@@ -45,7 +46,7 @@ export default function BadgeAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBBadge
 											color={color}
 											material={material}>

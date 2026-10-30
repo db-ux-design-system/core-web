@@ -5,6 +5,7 @@ import {
 	TextMaterialList,
 	type TextMaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBInfotext from '../infotext.lite';
 import { StorybookInfotextArgTypes } from './_infotext.arg.types';
 
@@ -44,7 +45,7 @@ export default function InfotextAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBInfotext
 											color={color}
 											material={material}>

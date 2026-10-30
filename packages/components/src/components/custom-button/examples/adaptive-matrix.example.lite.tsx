@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBCustomButton from '../custom-button.lite';
 import { StorybookCustomButtonArgTypes } from './_custom-button.arg.types';
 
@@ -49,7 +50,7 @@ export default function CustomButtonAdaptiveMatrix() {
 								<th scope="row">{material}</th>
 								<For each={ColorList}>
 									{(color: ColorType) => (
-										<td key={`cell-${material}-${color}`}>
+										<td key={uuid()}>
 											<DBCustomButton
 												color={color}
 												material={material}>
@@ -83,8 +84,7 @@ export default function CustomButtonAdaptiveMatrix() {
 								<th scope="row">{material}</th>
 								<For each={ColorList}>
 									{(color: ColorType) => (
-										<td
-											key={`check-cell-${material}-${color}`}>
+										<td key={uuid()}>
 											<DBCustomButton
 												color={color}
 												material={material}>

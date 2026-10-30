@@ -5,6 +5,7 @@ import {
 	TextMaterialList,
 	type TextMaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBLink from '../link.lite';
 import { StorybookLinkArgTypes } from './_link.arg.types';
 
@@ -44,7 +45,7 @@ export default function LinkAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBLink
 											color={color}
 											material={material}

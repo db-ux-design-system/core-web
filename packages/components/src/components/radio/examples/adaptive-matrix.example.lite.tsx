@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBRadio from '../radio.lite';
 import { StorybookRadioArgTypes } from './_radio.arg.types';
 
@@ -45,7 +46,7 @@ export default function RadioAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBRadio
 											color={color}
 											material={material}

@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBCard from '../card.lite';
 import { StorybookCardArgTypes } from './_card.arg.types';
 
@@ -44,7 +45,7 @@ export default function CardAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBCard
 											color={color}
 											material={material}>

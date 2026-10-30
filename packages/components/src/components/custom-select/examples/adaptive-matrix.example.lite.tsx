@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBCustomSelect from '../custom-select.lite';
 import { StorybookCustomSelectArgTypes } from './_custom-select.arg.types';
 
@@ -44,7 +45,7 @@ export default function CustomSelectAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBCustomSelect
 											color={color}
 											material={material}

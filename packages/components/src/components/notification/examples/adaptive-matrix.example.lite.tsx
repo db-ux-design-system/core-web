@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBNotification from '../notification.lite';
 import { StorybookNotificationArgTypes } from './_notification.arg.types';
 
@@ -44,7 +45,7 @@ export default function NotificationAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBNotification
 											color={color}
 											material={material}

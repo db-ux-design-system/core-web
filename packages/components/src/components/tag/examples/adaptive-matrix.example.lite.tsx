@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBTag from '../tag.lite';
 import { StorybookTagArgTypes } from './_tag.arg.types';
 
@@ -44,7 +45,7 @@ export default function TagAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBTag
 											color={color}
 											material={material}>

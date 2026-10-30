@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBCheckbox from '../checkbox.lite';
 import { StorybookCheckboxArgTypes } from './_checkbox.arg.types';
 
@@ -45,7 +46,7 @@ export default function CheckboxAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBCheckbox
 											color={color}
 											material={material}

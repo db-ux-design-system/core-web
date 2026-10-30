@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBTextarea from '../textarea.lite';
 import { StorybookTextareaArgTypes } from './_textarea.arg.types';
 
@@ -44,7 +45,7 @@ export default function TextareaAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBTextarea
 											color={color}
 											material={material}

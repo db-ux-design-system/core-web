@@ -5,6 +5,7 @@ import {
 	MaterialList,
 	type MaterialType
 } from '../../../shared/model';
+import { uuid } from '../../../utils';
 import DBInput from '../input.lite';
 import { StorybookInputArgTypes } from './_input.arg.types';
 
@@ -44,7 +45,7 @@ export default function InputAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={`cell-${material}-${color}`}>
+									<td key={uuid()}>
 										<DBInput
 											color={color}
 											material={material}
