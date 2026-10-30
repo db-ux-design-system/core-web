@@ -42,7 +42,7 @@ export default function InfotextAdaptiveMatrix() {
 					{(material: TextMaterialType) => (
 						<tr key={`row-${material}`}>
 							<th scope="row">{material}</th>
-							<For each={ColorList} key={`cells-${material}`}>
+							<For each={ColorList}>
 								{(color: ColorType) => (
 									<td>
 										<DBInfotext
