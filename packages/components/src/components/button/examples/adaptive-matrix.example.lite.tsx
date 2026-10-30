@@ -46,7 +46,11 @@ export default function ButtonAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={uuid()}>
+									<td
+										key={useTarget({
+											angular: uuid(),
+											default: `cell-${material}-${color}`
+										})}>
 										<DBButton
 											onClick={fn}
 											color={color}

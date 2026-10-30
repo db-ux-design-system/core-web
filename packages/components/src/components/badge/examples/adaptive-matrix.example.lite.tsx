@@ -1,4 +1,4 @@
-import { For, useMetadata } from '@builder.io/mitosis';
+import { For, useMetadata, useTarget } from '@builder.io/mitosis';
 import {
 	ColorList,
 	type ColorType,
@@ -46,7 +46,11 @@ export default function BadgeAdaptiveMatrix() {
 							<th scope="row">{material}</th>
 							<For each={ColorList}>
 								{(color: ColorType) => (
-									<td key={uuid()}>
+									<td
+										key={useTarget({
+											angular: uuid(),
+											default: `cell-${material}-${color}`
+										})}>
 										<DBBadge
 											color={color}
 											material={material}>

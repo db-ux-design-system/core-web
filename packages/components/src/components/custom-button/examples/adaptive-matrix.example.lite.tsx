@@ -1,4 +1,4 @@
-import { For, useMetadata } from '@builder.io/mitosis';
+import { For, useMetadata, useTarget } from '@builder.io/mitosis';
 import {
 	ColorList,
 	type ColorType,
@@ -50,7 +50,11 @@ export default function CustomButtonAdaptiveMatrix() {
 								<th scope="row">{material}</th>
 								<For each={ColorList}>
 									{(color: ColorType) => (
-										<td key={uuid()}>
+										<td
+											key={useTarget({
+												angular: uuid(),
+												default: `cell-${material}-${color}`
+											})}>
 											<DBCustomButton
 												color={color}
 												material={material}>
@@ -84,7 +88,11 @@ export default function CustomButtonAdaptiveMatrix() {
 								<th scope="row">{material}</th>
 								<For each={ColorList}>
 									{(color: ColorType) => (
-										<td key={uuid()}>
+										<td
+											key={useTarget({
+												angular: uuid(),
+												default: `check-cell-${material}-${color}`
+											})}>
 											<DBCustomButton
 												color={color}
 												material={material}>
