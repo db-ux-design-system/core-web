@@ -1,12 +1,15 @@
 ---
-"@db-ux/core-components": patch
-"@db-ux/ngx-core-components": patch
-"@db-ux/react-core-components": patch
-"@db-ux/wc-core-components": patch
-"@db-ux/v-core-components": patch
+"@db-ux/core-components": minor
+"@db-ux/ngx-core-components": minor
+"@db-ux/react-core-components": minor
+"@db-ux/wc-core-components": minor
+"@db-ux/v-core-components": minor
 ---
 
-fix(DBPagination): prevent current-page navigation without throwing on click
+fix(DBPagination): make the current page a non-interactive dead end
 
-- A click inside `db-pagination` no longer throws `TypeError: this.isModifiedLinkClick is not a function` in the Web Component output - the capture-phase listener that lost its binding was removed, and the current-page `preventDefault` now lives in the single delegated `handleClick` on the `<ul>`.
-- Default navigation is still suppressed only for a real link (`a[href]`) on the current page, so a composed anchor does not follow its href while a `<button>` keeps its no-op click.
+- A click inside `db-pagination` no longer throws `TypeError: this.isModifiedLinkClick is not a function` in the Web Component output: the capture-phase `click` listener that lost its binding is gone, and so is the `preventDefault` that ran in the delegated `handleClick`.
+- Instead, the current page control is taken out of play: it renders with `tabindex="-1"` and `pagination-item.scss` sets `pointer-events: none` on the filled control, so a pointer click cannot land on it and there is no link default to cancel.
+- This also fixes a keyboard/screen-reader issue: the current page is no longer a tab stop that announces an actionable control which does nothing, while `aria-current="page"` still marks it as the current page.
+- Because the current link is unclickable rather than prevented, a composed router link (React Router `<Link>`, Vue `<RouterLink>`) no longer navigates to the current URL again - the earlier bubble-phase `preventDefault` ran after the router handler and was not seen.
+- Markup change: the current page control (`a`/`button` inside `li[data-variant="filled"]`) now carries `tabindex="-1"`; non-current controls carry no `tabindex`.

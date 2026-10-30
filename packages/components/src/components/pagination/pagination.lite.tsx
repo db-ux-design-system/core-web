@@ -291,10 +291,19 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 
 			if (control) {
+				/*
+				 * The current page is a dead end: aria-current announces it,
+				 * tabindex="-1" drops it from the tab order, and the filled
+				 * control is made unclickable via pointer-events in
+				 * pagination-item.scss - so there is no link default to
+				 * cancel and no preventDefault racing a consumer router.
+				 */
 				if (isCurrent) {
 					control.setAttribute('aria-current', 'page');
+					control.setAttribute('tabindex', '-1');
 				} else {
 					control.removeAttribute('aria-current');
+					control.removeAttribute('tabindex');
 				}
 
 				const label = state.getPageLabel(page);
@@ -429,13 +438,12 @@ export default function DBPagination(props: DBPaginationProps) {
 			}
 			if (page === state.getCurrentPage()) {
 				/*
-				 * Re-selecting the current page is a no-op. Suppress default
-				 * navigation only for a real link, so a composed anchor does
-				 * not follow its href; a <button> has no default to cancel.
+				 * Re-selecting the current page is a no-op and reports no
+				 * change. A pointer click cannot reach the current control
+				 * (pagination-item.scss sets pointer-events: none on the
+				 * filled control, and applyItem sets tabindex="-1"), so
+				 * nothing is left to prevent here.
 				 */
-				if (target.closest('a[href]')) {
-					event.preventDefault();
-				}
 				return;
 			}
 
