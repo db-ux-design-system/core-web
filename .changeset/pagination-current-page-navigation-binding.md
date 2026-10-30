@@ -8,7 +8,7 @@
 
 fix(DBPagination): make the current page a non-interactive dead end
 
-- A click inside `db-pagination` no longer throws `TypeError: this.isModifiedLinkClick is not a function` in the Web Component output: the capture-phase `click` listener that lost its binding is gone, and so is the `preventDefault` that ran in the delegated `handleClick`.
+- A click inside `db-pagination` no longer throws `TypeError: this.isModifiedLinkClick is not a function` in the Web Component output: the capture-phase `click` listener that lost its binding is gone.
 - Instead, the current page control is taken out of play: it renders with `tabindex="-1"` and `pagination-item.scss` sets `pointer-events: none` on the filled control, so a pointer click cannot land on it and there is no link default to cancel.
 - This also fixes a keyboard/screen-reader issue: the current page is no longer a tab stop that announces an actionable control which does nothing, while `aria-current="page"` still marks it as the current page.
 - Because a pointer click can no longer reach the current link instead of being prevented after the fact, a composed router link (React Router `<Link>`, Vue `<RouterLink>`) no longer navigates to the current URL again - the earlier bubble-phase `preventDefault` ran after the router handler and was not seen.
