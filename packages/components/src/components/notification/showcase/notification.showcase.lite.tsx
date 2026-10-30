@@ -87,11 +87,11 @@ export default function NotificationShowcase(props: PatternhubProps) {
 					<NotificationInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-<LinkWrapperShowcase exampleName="Adaptive Matrix">
-<CardWrapperShowcase>
-<NotificationAdaptiveMatrix />
-</CardWrapperShowcase>
-</LinkWrapperShowcase>
-</ContainerWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<NotificationAdaptiveMatrix />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+		</ContainerWrapperShowcase>
 	);
 }

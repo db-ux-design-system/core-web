@@ -87,11 +87,11 @@ export default function TagShowcase(props: PatternhubProps) {
 					<TagInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-<LinkWrapperShowcase exampleName="Adaptive Matrix">
-<CardWrapperShowcase>
-<TagAdaptiveMatrix />
-</CardWrapperShowcase>
-</LinkWrapperShowcase>
-</ContainerWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<TagAdaptiveMatrix />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+		</ContainerWrapperShowcase>
 	);
 }

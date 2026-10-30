@@ -39,11 +39,11 @@ export default function CardShowcase(props: PatternhubProps) {
 					<CardExample />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-<LinkWrapperShowcase exampleName="Adaptive Matrix">
-<CardWrapperShowcase>
-<CardAdaptiveMatrix />
-</CardWrapperShowcase>
-</LinkWrapperShowcase>
-</ContainerWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<CardAdaptiveMatrix />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+		</ContainerWrapperShowcase>
 	);
 }

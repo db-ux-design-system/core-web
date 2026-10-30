@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import BadgeAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import BadgeContent from '../examples/content.example.lite';
 import BadgeDensity from '../examples/density.example.lite';
 import BadgeEmphasis from '../examples/emphasis.example.lite';
@@ -9,7 +10,6 @@ import BadgeExamples from '../examples/examples.example.lite';
 import BadgePlacement from '../examples/placement.example.lite';
 import BadgeSemantic from '../examples/semantic.example.lite';
 import BadgeSize from '../examples/size.example.lite';
-import BadgeAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 
 export default function BadgeShowcase(props: PatternhubProps) {
 	return (

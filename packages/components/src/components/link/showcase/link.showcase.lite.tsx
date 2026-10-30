@@ -57,11 +57,11 @@ export default function LinkShowcase(props: PatternhubProps) {
 					<LinkExamples />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-<LinkWrapperShowcase exampleName="Adaptive Matrix">
-<CardWrapperShowcase>
-<LinkAdaptiveMatrix />
-</CardWrapperShowcase>
-</LinkWrapperShowcase>
-</ContainerWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<LinkAdaptiveMatrix />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+		</ContainerWrapperShowcase>
 	);
 }

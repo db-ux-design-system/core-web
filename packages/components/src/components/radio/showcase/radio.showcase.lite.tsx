@@ -69,11 +69,11 @@ export default function RadioShowcase(props: PatternhubProps) {
 					<RadioInteraction />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
-<LinkWrapperShowcase exampleName="Adaptive Matrix">
-<CardWrapperShowcase>
-<RadioAdaptiveMatrix />
-</CardWrapperShowcase>
-</LinkWrapperShowcase>
-</ContainerWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<RadioAdaptiveMatrix />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+		</ContainerWrapperShowcase>
 	);
 }
