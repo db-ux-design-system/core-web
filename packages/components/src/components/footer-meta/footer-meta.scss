@@ -59,20 +59,8 @@
 	 * upwards, stacked below it. The switch is driven by the customizable
 	 * `--db-tablet-breakpoint` (see screen-sizes.screen-tablet-max), so a
 	 * consumer can move it in CSS.
-	 *
-	 * The `[data-force-mobile="true"]` arm is kept as an explicit escape hatch:
-	 * this element carries the `_ref`, so a consumer reaches it (`data-*`
-	 * attributes on `DBFooterMeta` are forwarded here) to force the stacked
-	 * layout for a footer placed in a region narrower than the viewport
-	 * suggests, which the viewport-based query cannot detect.
 	 */
 	@include screen-sizes.screen-tablet-max {
-		.db-footer-container {
-			flex-direction: column;
-		}
-	}
-
-	&[data-force-mobile="true"] {
 		.db-footer-container {
 			flex-direction: column;
 		}

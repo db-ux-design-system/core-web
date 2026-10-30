@@ -201,10 +201,14 @@ $z-index-popover: 71;
 		position: relative;
 	}
 
-	// Mobile (unconditional baseline)
-	inline-size: 100%;
+	// Mobile (scoped to the mobile side of the customizable breakpoint;
+	// screen-desktop-min owns the desktop side, so the two are mutually
+	// exclusive and neither relies on source order or specificity)
+	@include screen-sizes.screen-desktop-max {
+		inline-size: 100%;
+	}
 
-	// Desktop (overrides the mobile baseline above the breakpoint)
+	// Desktop (the mutually exclusive other side of the breakpoint)
 	@include screen-sizes.screen-desktop-min {
 		inline-size: fit-content;
 	}
