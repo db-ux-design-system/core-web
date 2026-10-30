@@ -1,6 +1,5 @@
 import type {
 	ClickEventProps,
-	ClickEventState,
 	ColorState,
 	GlobalProps,
 	GlobalState,

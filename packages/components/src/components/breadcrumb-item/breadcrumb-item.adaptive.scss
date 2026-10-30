@@ -3,7 +3,7 @@
 [data-adaptive-coloring="true"] .db-breadcrumb-item,
 .db-breadcrumb-item[data-adaptive-coloring="true"] {
 	a {
-		&[aria-current= "page"] {
+		&[aria-current="page"] {
 			@extend %adaptive-coloring-container;
 		}
 
