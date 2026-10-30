@@ -439,11 +439,13 @@ export default function DBPagination(props: DBPaginationProps) {
 			if (page === state.getCurrentPage()) {
 				/*
 				 * Re-selecting the current page is a no-op and reports no
-				 * change. A pointer click cannot reach the current control
-				 * (pagination-item.scss sets pointer-events: none on the
-				 * filled control, and applyItem sets tabindex="-1"), so
-				 * nothing is left to prevent here.
+				 * change. pointer-events: none only blocks the mouse; keyboard
+				 * and screen-reader activation still fire a click, so a real
+				 * link must not follow its href here.
 				 */
+				if (target.closest('a[href]')) {
+					event.preventDefault();
+				}
 				return;
 			}
 
