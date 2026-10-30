@@ -209,3 +209,23 @@
   - main "shell-tree-nav-multiple":
     - paragraph: Tree Navigation - Multiple Behavior (multiple groups can be open simultaneously)
     - button "Action"
+  - link "Custom Breakpoint"
+  - button "Search"
+  - button "Open navigation menu"
+  - main "shell-custom-breakpoint-force-mobile":
+    - paragraph:
+      - text: This shell uses
+      - code: "--db-desktop-breakpoint: 2000px"
+      - text: ", so it stays in its mobile layout until the viewport is at least 2000px wide."
+  - navigation "shell-custom-breakpoint-force-desktop":
+    - list:
+      - listitem:
+        - link "Item"
+    - button "Scroll right"
+  - button "Search"
+  - button "Profile"
+  - main "shell-custom-breakpoint-force-desktop":
+    - paragraph:
+      - text: This shell uses
+      - code: "--db-desktop-breakpoint: 400px"
+      - text: ", so it switches to its desktop layout on almost every viewport."
