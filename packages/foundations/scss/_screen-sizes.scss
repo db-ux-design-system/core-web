@@ -84,11 +84,22 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
  * `:root` so every layout component inherits the same switch points. Consumers
  * override `--db-tablet-breakpoint` / `--db-desktop-breakpoint` at any scope
  * (`:root`, a component root, or any ancestor) to move a switch.
+ *
+ * The `-min`/`-max` helpers are derived here too, not only on each component
+ * root. A `@container style()` query reads custom properties from an element's
+ * ANCESTORS, never from the element itself, so a `screen-*-min`/`-max` rule
+ * that targets the same root that runs `set-layout-breakpoint-inline-sizes`
+ * (e.g. `.db-shell`, `.db-control-panel-desktop`) would query itself and never
+ * match on any engine. Deriving the helpers at `:root` gives those
+ * self-targeting rules an ancestor to resolve against; the per-root derivation
+ * still re-runs for descendant queries and for per-scope breakpoint overrides.
  */
 @mixin get-layout-breakpoint-defaults() {
 	:root {
 		--db-tablet-breakpoint: #{$db-breakpoint-sm};
 		--db-desktop-breakpoint: #{$db-breakpoint-md};
+
+		@include set-layout-breakpoint-inline-sizes;
 	}
 }
 
@@ -97,7 +108,9 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
  * values. A layout component includes this on the root that contains the
  * elements switched by the `screen-tablet-*` / `screen-desktop-*` mixins, so
  * the derivation re-runs wherever a consumer overrides a breakpoint (on
- * `:root`, the component root, or an ancestor).
+ * `:root`, the component root, or an ancestor). The `:root` default derivation
+ * lives in `get-layout-breakpoint-defaults`; this mixin is what a component
+ * root includes directly.
  *
  * - The "min" helper clamps the breakpoint with `min(bp, 100vi)`, so it equals
  *   the breakpoint exactly once the viewport reaches it (matches at/above).
