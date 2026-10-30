@@ -928,12 +928,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				() => {
 					const resetValue = initialValues
 						? initialValues
-						: getBoolean(props.multiple, 'multiple')
-							? Array.from(
-									selectRef.selectedOptions as HTMLCollectionOf<HTMLOptionElement>
-								).map(
-									(option: HTMLOptionElement) => option.value
-								)
+						: // `reset` fires before the browser resets the
+							// controls, so the native select still holds the
+							// current selection here. A multiple select has no
+							// default selection, so it resets to empty.
+							getBoolean(props.multiple, 'multiple')
+							? []
 							: selectRef.value
 								? [selectRef.value]
 								: [];
@@ -1136,6 +1136,27 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										)
 									})}
 									disabled={option.disabled}
+									/* Angular only: component effects run before
+									   the template refresh, so options rendered
+									   after `values` (e.g. loaded via HTTP) are
+									   not reached by state.syncNativeSelect.
+									   Angular binds this as an attribute, so it
+									   must be `true` or `undefined` - `false`
+									   would still render `selected="false"`.
+									   Not used for other targets: Stencil reuses
+									   unkeyed options (the binding gets stuck)
+									   and React warns about `selected`. */
+									selected={useTarget({
+										angular:
+											getBoolean(
+												props.multiple,
+												'multiple'
+											) &&
+											state.getOptionChecked(option.value)
+												? true
+												: undefined,
+										default: undefined
+									})}
 									value={option.value}>
 									{state.getOptionLabel(option)}
 								</option>

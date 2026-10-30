@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(DBCustomSelect): submit every selected value of a `multiple` custom select, including values preselected via `values`
+fix(DBCustomSelect): submit every selected value of a `multiple` custom select, including values preselected via `values`, and clear a `multiple` custom select without initial `values` on form reset instead of keeping the current selection

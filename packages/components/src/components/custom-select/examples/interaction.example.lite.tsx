@@ -153,6 +153,28 @@ export default function CustomSelectInteraction() {
 				/>
 			</div>
 
+			{/* Test-only scenario for the interaction e2e spec: a named
+			 * multiple select without initial `values` inside a <form>, to
+			 * assert the submitted FormData and the form reset (#8465).
+			 * Excluded from story generation via data-sb-ignore. */}
+			<form
+				style={{ width: '200px' }}
+				data-testid="native-form"
+				data-sb-ignore="true">
+				<DBCustomSelect
+					data-testid="native-form-select"
+					name="colors"
+					options={[
+						{ value: 'red', label: 'Red' },
+						{ value: 'green', label: 'Green' },
+						{ value: 'blue', label: 'Blue' }
+					]}
+					label="Form colors"
+					multiple={true}
+					placeholder="Placeholder"
+				/>
+			</form>
+
 			{/* Test-only scenario for the interaction e2e spec: buttons drive
 			 * the DBCustomSelect `values` prop through null / undefined / empty
 			 * array / a real selection. Its `values` binds to component state
