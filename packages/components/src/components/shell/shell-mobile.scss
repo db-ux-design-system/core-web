@@ -1,5 +1,6 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
@@ -15,120 +16,135 @@
 	}
 }
 
-// MOBILE (unconditional baseline; shell-desktop.scss overrides above the
-// customizable breakpoint via screen-sizes.screen-desktop-min)
+// MOBILE (scoped to the mobile side of the customizable breakpoint via
+// screen-sizes.screen-desktop-max; shell-desktop.scss owns the desktop side via
+// screen-desktop-min). The two queries are mutually exclusive, so neither
+// branch relies on source order or specificity to beat the other - several
+// mobile selectors below (`:has()`, multi-attribute) are more specific than the
+// desktop `[data-control-panel-desktop-position]` rules and would otherwise win
+// above the breakpoint once the desktop query matched.
 .db-shell {
-	&:not(:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})) {
-		&[data-control-panel-mobile-position="top"] {
+	@include screen-sizes.screen-desktop-max {
+		&:not(
+			:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})
+		) {
+			&[data-control-panel-mobile-position="top"] {
+				grid-template-areas:
+					"control-panel"
+					"shell-content";
+				grid-template-rows:
+					[control-panel] auto
+					[shell-content] 1fr;
+
+				&:not([data-sub-navigation-mobile-position]),
+				&[data-sub-navigation-mobile-position="none"] {
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						display: none;
+					}
+				}
+
+				// Only reserve the sub-navigation row when a sub-navigation is
+				// actually present, mirroring the desktop templates. An
+				// unconditional empty row would capture any additional child of
+				// `.db-shell` via grid auto-placement and render it between the
+				// control panel and the content.
+				&[data-sub-navigation-mobile-position="top"] {
+					&:has(
+						#{string.unquote(
+								custom-elements.$shell-sub-navigation
+							)}
+					) {
+						grid-template-areas:
+							"control-panel"
+							"sub-navigation"
+							"shell-content";
+						grid-template-rows:
+							[control-panel] auto
+							[sub-navigation] auto
+							[shell-content] 1fr;
+					}
+
+					@include shell-control-panel-bottom-sub-navigation-top;
+				}
+
+				&[data-sub-navigation-mobile-position="bottom"] {
+					&:has(
+						#{string.unquote(
+								custom-elements.$shell-sub-navigation
+							)}
+					) {
+						grid-template-areas:
+							"control-panel"
+							"shell-content"
+							"sub-navigation";
+						grid-template-rows:
+							[control-panel] auto
+							[shell-content] 1fr
+							[sub-navigation] auto;
+					}
+
+					#{string.unquote(custom-elements.$shell-sub-navigation)} {
+						@include helpers.divider("top");
+
+						padding-block-end: env(safe-area-inset-bottom);
+					}
+				}
+			}
+		}
+
+		&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
+		&[data-control-panel-mobile-position="bottom"] {
 			grid-template-areas:
-				"control-panel"
-				"shell-content";
+				"shell-content"
+				"control-panel";
 			grid-template-rows:
-				[control-panel] auto
-				[shell-content] 1fr;
+				[shell-content] 1fr
+				[control-panel] auto;
 
 			&:not([data-sub-navigation-mobile-position]),
+			&[data-sub-navigation-mobile-position="bottom"],
 			&[data-sub-navigation-mobile-position="none"] {
 				#{string.unquote(custom-elements.$shell-sub-navigation)} {
 					display: none;
 				}
 			}
 
-			// Only reserve the sub-navigation row when a sub-navigation is
-			// actually present, mirroring the desktop templates. An
-			// unconditional empty row would capture any additional child of
-			// `.db-shell` via grid auto-placement and render it between the
-			// control panel and the content.
+			// See the comment on the `top` position further up.
 			&[data-sub-navigation-mobile-position="top"] {
 				&:has(
 					#{string.unquote(custom-elements.$shell-sub-navigation)}
 				) {
 					grid-template-areas:
-						"control-panel"
 						"sub-navigation"
-						"shell-content";
+						"shell-content"
+						"control-panel";
 					grid-template-rows:
-						[control-panel] auto
 						[sub-navigation] auto
-						[shell-content] 1fr;
+						[shell-content] 1fr
+						[control-panel] auto;
 				}
 
 				@include shell-control-panel-bottom-sub-navigation-top;
 			}
-
-			&[data-sub-navigation-mobile-position="bottom"] {
-				&:has(
-					#{string.unquote(custom-elements.$shell-sub-navigation)}
-				) {
-					grid-template-areas:
-						"control-panel"
-						"shell-content"
-						"sub-navigation";
-					grid-template-rows:
-						[control-panel] auto
-						[shell-content] 1fr
-						[sub-navigation] auto;
-				}
-
-				#{string.unquote(custom-elements.$shell-sub-navigation)} {
-					@include helpers.divider("top");
-
-					padding-block-end: env(safe-area-inset-bottom);
-				}
-			}
 		}
-	}
 
-	&:has(#{string.unquote(custom-elements.$control-panel-flat-icon)}),
-	&[data-control-panel-mobile-position="bottom"] {
-		grid-template-areas:
-			"shell-content"
-			"control-panel";
-		grid-template-rows:
-			[shell-content] 1fr
-			[control-panel] auto;
+		@include shell-sub-navigation.sub-navigation-mobile;
 
-		&:not([data-sub-navigation-mobile-position]),
-		&[data-sub-navigation-mobile-position="bottom"],
-		&[data-sub-navigation-mobile-position="none"] {
-			#{string.unquote(custom-elements.$shell-sub-navigation)} {
+		// Hide desktop control panel
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			display: none;
+		}
+
+		// Hide desktop control-panel-flat-icon
+		&:has(
+			> db-control-panel-flat-icon:nth-of-type(2),
+			> .db-control-panel-flat-icon:nth-of-type(2)
+		) {
+			> db-control-panel-flat-icon:nth-of-type(1)
+				> .db-control-panel-flat-icon,
+			> .db-control-panel-flat-icon:nth-of-type(1) {
 				display: none;
 			}
-		}
-
-		// See the comment on the `top` position further up.
-		&[data-sub-navigation-mobile-position="top"] {
-			&:has(#{string.unquote(custom-elements.$shell-sub-navigation)}) {
-				grid-template-areas:
-					"sub-navigation"
-					"shell-content"
-					"control-panel";
-				grid-template-rows:
-					[sub-navigation] auto
-					[shell-content] 1fr
-					[control-panel] auto;
-			}
-
-			@include shell-control-panel-bottom-sub-navigation-top;
-		}
-	}
-
-	@include shell-sub-navigation.sub-navigation-mobile;
-
-	// Hide desktop control panel
-	#{string.unquote(custom-elements.$control-panel-desktop)} {
-		display: none;
-	}
-
-	// Hide desktop control-panel-flat-icon
-	&:has(
-		> db-control-panel-flat-icon:nth-of-type(2),
-		> .db-control-panel-flat-icon:nth-of-type(2)
-	) {
-		> db-control-panel-flat-icon:nth-of-type(1)
-			> .db-control-panel-flat-icon,
-		> .db-control-panel-flat-icon:nth-of-type(1) {
-			display: none;
 		}
 	}
 }
