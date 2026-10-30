@@ -23,6 +23,7 @@ import {
 } from '../../shared/constants';
 import {
 	ChangeEvent,
+	ColorType,
 	InputEvent,
 	InteractionEvent,
 	ValueLabelType
@@ -44,6 +45,7 @@ import {
 } from '../../utils';
 import {
 	addValueResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue,
 	shouldKeepDisplayValue
@@ -76,6 +78,33 @@ export default function DBInput(props: DBInputProps) {
 		_value: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getLabelColor: (): ColorType | undefined => {
+			return props.variant === 'floating' ? state._getColor() : 'grey';
+		},
+		_getLabelMaterial: () => {
+			return props.variant === 'floating' ? props.material : 'filled-1';
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -315,8 +344,17 @@ export default function DBInput(props: DBInputProps) {
 				props.showIconTrailing,
 				'showIconTrailing'
 			)}>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<label
+				data-adaptive-color={state._getLabelColor()}
+				data-material={state._getLabelMaterial()}
+				htmlFor={state._id}>
+				{props.label ?? DEFAULT_LABEL}
+			</label>
 			<input
+				data-material={props.material}
+				data-adaptive-color={state._getColor()}
+				data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+				data-alt-state-adaptive-color={props.altStateColor}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				data-field-sizing={props.fieldSizing}

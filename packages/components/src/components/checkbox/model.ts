@@ -1,6 +1,9 @@
-import type {
+import {
+	AltStateColorState,
+	AltStateMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
@@ -11,6 +14,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -23,6 +27,8 @@ export type DBCheckboxDefaultProps = {
 
 export type DBCheckboxProps = DBCheckboxDefaultProps &
 	GlobalProps &
+	MaterialProps &
+	AltStateMaterialProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
@@ -34,6 +40,8 @@ export type DBCheckboxDefaultState = {};
 
 export type DBCheckboxState = DBCheckboxDefaultState &
 	GlobalState &
+	ColorState &
+	AltStateColorState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &

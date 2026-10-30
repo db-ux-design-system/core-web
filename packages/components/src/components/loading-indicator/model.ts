@@ -1,8 +1,11 @@
 import {
+	ColorState,
 	DelayProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
+	MaterialState,
 	OrientationProps,
 	PropOverridesType,
 	ShowLabelProps,
@@ -99,6 +102,7 @@ export type DBLoadingIndicatorDefaultProps = {
 
 export type DBLoadingIndicatorProps = DBLoadingIndicatorDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ShowLabelProps &
 	OrientationProps &
 	DelayProps & {
@@ -136,4 +140,6 @@ export type DBLoadingIndicatorDefaultState = {
 
 export type DBLoadingIndicatorState = DBLoadingIndicatorDefaultState &
 	GlobalState &
-	InitializedState;
+	InitializedState &
+	MaterialState &
+	ColorState;

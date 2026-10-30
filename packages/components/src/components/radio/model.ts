@@ -1,6 +1,9 @@
-import type {
+import {
+	AltStateColorState,
+	AltStateMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
@@ -11,6 +14,7 @@ import type {
 	InitializedState,
 	InputEventProps,
 	InputEventState,
+	MaterialProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -18,6 +22,8 @@ export type DBRadioDefaultProps = {};
 
 export type DBRadioProps = DBRadioDefaultProps &
 	GlobalProps &
+	MaterialProps &
+	AltStateMaterialProps &
 	InputEventProps<HTMLInputElement> &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
@@ -29,6 +35,8 @@ export type DBRadioDefaultState = {};
 
 export type DBRadioState = DBRadioDefaultState &
 	GlobalState &
+	ColorState &
+	AltStateColorState &
 	InputEventState<HTMLInputElement> &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &

@@ -2,10 +2,12 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
+	useStore
 } from '@builder.io/mitosis';
+import { MaterialType } from '../../shared/model';
 import { cls } from '../../utils';
-import { DBFooterMetaProps } from './model';
+import { DBFooterMetaProps, DBFooterMetaState } from './model';
 
 useMetadata({});
 useDefaultProps<DBFooterMetaProps>({});
@@ -13,12 +15,19 @@ useDefaultProps<DBFooterMetaProps>({});
 export default function DBFooterMeta(props: DBFooterMetaProps) {
 	// This is used as forwardRef
 	const _ref = useRef<HTMLDivElement | any>(null);
+	const state = useStore<DBFooterMetaState>({
+		_getMaterial: (): MaterialType | undefined => {
+			return props.material ?? 'filled-2';
+		}
+	});
 
 	return (
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-footer-meta', props.className)}>
+			class={cls('db-footer-meta', props.className)}
+			data-material={state._getMaterial()}
+			data-adaptive-color={props.color}>
 			<div class="db-footer-container">
 				<Show when={props.copyright}>
 					{/*

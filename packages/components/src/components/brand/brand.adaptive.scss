@@ -1,0 +1,5 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+[data-adaptive-coloring="true"] .db-brand,
+.db-brand[data-adaptive-coloring="true"] {
+}

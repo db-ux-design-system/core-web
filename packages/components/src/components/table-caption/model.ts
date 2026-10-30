@@ -1,8 +1,14 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export type DBTableCaptionDefaultProps = {};
 
-export type DBTableCaptionProps = DBTableCaptionDefaultProps & GlobalProps;
+export type DBTableCaptionProps = DBTableCaptionDefaultProps &
+	GlobalProps &
+	MaterialProps;
 
 export type DBTableCaptionDefaultState = {};
 

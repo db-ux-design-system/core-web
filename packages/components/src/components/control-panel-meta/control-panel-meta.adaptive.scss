@@ -1,0 +1,6 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-control-panel-meta,
+.db-control-panel-meta[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+}

@@ -1,0 +1,29 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `infotext`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ */
+.db-infotext {
+	&[data-semantic="adaptive"],
+	&:not([data-semantic]) {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+
+		&::before {
+			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+		}
+	}
+
+	@each $name, $colors in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			color: var(--db-#{$name}-on-bg-basic-emphasis-80-default);
+
+			&::before {
+				--db-icon-color: var(
+					--db-#{$name}-on-bg-basic-emphasis-70-default
+				);
+			}
+		}
+	}
+}

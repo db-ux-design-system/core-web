@@ -953,6 +953,8 @@ export default function DBTabs(props: DBTabsProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id ?? state._id}
+			data-material={props.material ?? 'transparent'}
+			data-adaptive-color={props.color}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}
 			data-scroll-behavior={props.behavior}
@@ -963,15 +965,17 @@ export default function DBTabs(props: DBTabsProps) {
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>
-				<DBButton
-					class="tabs-scroll-start"
-					variant="ghost"
-					icon="chevron_left"
-					type="button"
-					noText
-					onClick={() => state.scroll(true)}>
-					{props.scrollStartLabel}
-				</DBButton>
+				<div class="overflow-scroll-left-button-container">
+					<DBButton
+						class="overflow-scroll-left-button"
+						variant="ghost"
+						icon="chevron_left"
+						type="button"
+						noText
+						onClick={() => state.scroll(true)}>
+						{props.scrollStartLabel}
+					</DBButton>
+				</div>
 			</Show>
 			<Show when={state.getTabs().length} else={props.children}>
 				<DBTabList
@@ -1009,14 +1013,16 @@ export default function DBTabs(props: DBTabsProps) {
 				</For>
 			</Show>
 			<Show when={state.showScrollEnd}>
-				<DBButton
-					class="tabs-scroll-end"
-					variant="ghost"
-					icon="chevron_right"
-					noText
-					onClick={() => state.scroll(false)}>
-					{props.scrollEndLabel}
-				</DBButton>
+				<div class="overflow-scroll-right-button-container">
+					<DBButton
+						class="overflow-scroll-right-button"
+						variant="ghost"
+						icon="chevron_right"
+						noText
+						onClick={() => state.scroll(false)}>
+						{props.scrollEndLabel}
+					</DBButton>
+				</div>
 			</Show>
 		</div>
 	);

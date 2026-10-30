@@ -1,6 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 
@@ -26,9 +25,7 @@
 	 */
 	--footer-list-row-gap: #{variables.$db-spacing-fixed-xs};
 
-	background-color: colors.$db-adaptive-bg-basic-level-2-default;
-	border-block-start: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	border-block-start: variables.$db-border-width-3xs solid;
 	inline-size: 100%;
 	padding: variables.$db-spacing-fixed-xs variables.$db-spacing-fixed-lg;
 
@@ -96,7 +93,6 @@
 
 	/* The font comes from the strip above, `p` carries no size of its own. */
 	.db-footer-copyright {
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		margin: 0;
 		max-inline-size: 100%;
 		overflow-wrap: anywhere;

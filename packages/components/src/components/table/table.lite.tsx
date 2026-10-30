@@ -1,4 +1,5 @@
 import {
+	onUnMount,
 	onUpdate,
 	Show,
 	Slot,
@@ -24,6 +25,7 @@ export default function DBTable(props: DBTableProps) {
 	const state = useStore<DBTableState>({
 		_data: undefined,
 		_style: undefined,
+		_zebraObserver: undefined,
 		convertData: (): DBTableData => {
 			try {
 				if (typeof props.data === 'string') {
@@ -36,6 +38,37 @@ export default function DBTable(props: DBTableProps) {
 			}
 
 			return {};
+		},
+		syncZebra: () => {
+			if (!_ref) {
+				return;
+			}
+
+			const table = _ref as HTMLTableElement;
+			const rows = table.querySelectorAll<HTMLElement>(
+				':scope > tbody > tr, :scope > tbody > db-table-row > tr'
+			);
+
+			rows.forEach((row, index) => {
+				/* Stripe every second row with a filled-2 surface. Odd rows
+				 * (0-based even index + 1) stay on the base material. */
+				if (index % 2 === 1) {
+					row.dataset['material'] = 'filled-2';
+				} else {
+					delete row.dataset['material'];
+				}
+			});
+		},
+		setupZebraObserver: () => {
+			if (!_ref) {
+				return;
+			}
+
+			const observer = new MutationObserver(() => {
+				state.syncZebra();
+			});
+			observer.observe(_ref, { childList: true, subtree: true });
+			state._zebraObserver = observer;
 		}
 	});
 
@@ -102,6 +135,28 @@ export default function DBTable(props: DBTableProps) {
 		}
 	}, [props.columnSizes]);
 
+	onUpdate(() => {
+		// Zebra striping is applied by walking the rows and tagging every
+		// second one with `data-material="filled-2"`, plus an observer to keep
+		// it in sync when rows change. Other variants (e.g. `flat`) leave the
+		// row materials to the consumer, so the observer only runs for zebra.
+		state._zebraObserver?.disconnect();
+		state._zebraObserver = undefined;
+
+		if (_ref && props.variant === 'zebra') {
+			// Delay for angular
+			void delay(() => {
+				state.syncZebra();
+				state.setupZebraObserver();
+			}, 1);
+		}
+	}, [props.variant, _ref, state._data]);
+
+	onUnMount(() => {
+		state._zebraObserver?.disconnect();
+		state._zebraObserver = undefined;
+	});
+
 	return (
 		<div
 			class={cls('db-table', props.className)}
@@ -113,7 +168,11 @@ export default function DBTable(props: DBTableProps) {
 			data-mobile-variant={props.mobileVariant}
 			data-show-caption={getBooleanAsString(props.showCaption)}
 			data-sticky-header={props.stickyHeader}>
-			<table ref={_ref} id={props.id ?? props.propOverrides?.id}>
+			<table
+				ref={_ref}
+				id={props.id ?? props.propOverrides?.id}
+				data-material={props.material}
+				data-adaptive-color={props.color}>
 				<Show when={props.captionPlain} else={<Slot name="caption" />}>
 					<caption>{props.captionPlain}</caption>
 				</Show>

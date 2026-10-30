@@ -3,6 +3,7 @@ import {
 	ControlPanelProps,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	OrientationProps,
 	ResetIdState,
 	SidebarProps,
@@ -14,6 +15,7 @@ export type DBControlPanelDesktopDefaultProps = {};
 
 export type DBControlPanelDesktopProps = DBControlPanelDesktopDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ContainerWidthProps &
 	ControlPanelProps &
 	OrientationProps &

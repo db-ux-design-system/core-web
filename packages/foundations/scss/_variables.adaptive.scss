@@ -1,0 +1,46 @@
+// SCSS variable aliases for the adaptive-coloring custom properties generated
+// into `generated-colors.css` (see `generate-css/materials/`). Mirrors
+// `_variables.scss`: each `--db-*` custom property is exposed as a `$db-*`
+// SCSS variable so component styles can reference the adaptive tokens through
+// the Sass module system (`@use "../variables.adaptive"`) for better
+// shareability instead of repeating the `var(--db-*)` string.
+
+// Base surface (container roles)
+$db-border-default: var(--db-border-default);
+$db-border-vibrant: var(--db-border-vibrant);
+$db-border-decorative: var(--db-border-decorative);
+$db-bg-default: var(--db-bg-default);
+$db-bg-hovered: var(--db-bg-hovered);
+$db-bg-pressed: var(--db-bg-pressed);
+
+// Base content (text / visual roles)
+$db-text-default: var(--db-text-default);
+$db-text-hovered: var(--db-text-hovered);
+$db-text-pressed: var(--db-text-pressed);
+$db-text-vibrant: var(--db-text-vibrant);
+$db-visual-vibrant: var(--db-visual-vibrant);
+
+// Alternative-state surface (e.g. the checked state of checkbox/radio/switch)
+$db-alt-state-border-default: var(--db-alt-state-border-default);
+$db-alt-state-border-vibrant: var(--db-alt-state-border-vibrant);
+$db-alt-state-border-decorative: var(--db-alt-state-border-decorative);
+$db-alt-state-bg-default: var(--db-alt-state-bg-default);
+$db-alt-state-bg-hovered: var(--db-alt-state-bg-hovered);
+$db-alt-state-bg-pressed: var(--db-alt-state-bg-pressed);
+
+// Alternative-state content
+$db-alt-state-text-default: var(--db-alt-state-text-default);
+$db-alt-state-text-hovered: var(--db-alt-state-text-hovered);
+$db-alt-state-text-pressed: var(--db-alt-state-text-pressed);
+$db-alt-state-text-vibrant: var(--db-alt-state-text-vibrant);
+$db-alt-state-visual-vibrant: var(--db-alt-state-visual-vibrant);
+
+// Indicator (active tab/navigation marker): a solid color and a pride-aware
+// gradient background that falls back to the solid color.
+$db-indicator-color: var(--db-indicator-color);
+$db-indicator-background: var(--db-indicator-background);
+
+// Backdrop scrims (modal dialog/drawer ::backdrop, overlay scrims in
+// loading-indicator and custom-select).
+$db-backdrop-color-weak: var(--db-backdrop-color-weak);
+$db-backdrop-color-strong: var(--db-backdrop-color-strong);

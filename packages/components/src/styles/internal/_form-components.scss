@@ -131,7 +131,10 @@ $db-min-inline-size: var(
 		> label {
 			@extend %db-overwrite-font-size-md;
 
-			opacity: variables.$db-opacity-xl;
+			opacity: var(
+				--db-opacity-emphasis-low,
+				#{variables.$db-opacity-xl}
+			);
 			position: absolute;
 			z-index: 2;
 			inset-block-start: calc(
@@ -197,7 +200,10 @@ $db-min-inline-size: var(
 			}
 
 			@include placeholder-content($selector) {
-				opacity: variables.$db-opacity-xl;
+				opacity: var(
+					--db-opacity-emphasis-low,
+					#{variables.$db-opacity-xl}
+				);
 				font-family: var(--db-font-family-sans);
 				font-style: italic;
 
@@ -337,6 +343,8 @@ $input-valid-types:
 		&:has(
 			#{$selector}:not([data-custom-validity]):required:#{$user}#{$key}
 		) {
+			--db-#{$user}#{$key}: 1;
+
 			@content;
 		}
 		/* stylelint-disable-next-line at-rule-empty-line-before */
@@ -357,11 +365,11 @@ $input-valid-types:
 	}
 }
 
-@mixin set-required-label($selector) {
+@mixin set-required-label($selector, $element: label) {
 	&:has(#{$selector}:required),
 	&[data-required="true"] {
-		&:is(label),
-		> label {
+		&:is(#{$element}),
+		> #{$element} {
 			&::after {
 				// We're using 1px instead of a token here on purpose, as this is an edge case
 				/* stylelint-disable-next-line db-ux/use-spacings */
@@ -402,16 +410,12 @@ $input-valid-types:
 
 	@include set-floating-label-overwrites($selector);
 
-	@include get-validity($selector, "valid") {
-		@include get-validity-color($selector, "valid");
-	}
-
-	@include get-validity($selector, "invalid") {
-		@include get-validity-color($selector, "invalid");
-	}
-
 	@include placeholder-content($selector) {
-		opacity: variables.$db-opacity-xl;
+		// Adaptive overrides the placeholder de-emphasis via
+		// `--db-opacity-emphasis-low` (0.75, defined in generated-colors.css).
+		// The legacy bundle never defines that token, so it falls back to the
+		// generic `--db-opacity-xl` (0.76) and keeps its current appearance.
+		opacity: var(--db-opacity-emphasis-low, #{variables.$db-opacity-xl});
 		font-family: var(--db-font-family-sans);
 		font-style: italic;
 	}
@@ -419,23 +423,13 @@ $input-valid-types:
 	#{$selector} {
 		@extend %db-overwrite-font-size-md;
 		@extend %default-interactive-component;
-		@extend %form-component-border;
 
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
-		caret-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		appearance: none;
 		max-inline-size: 100%;
 		inline-size: 100%;
 		min-inline-size: $db-min-inline-size;
 
 		@include set-form-component-padding-inline;
-
-		@include helpers.not-disabled {
-			// cursor: revert - text/textarea inputs should use the text cursor, not pointer
-			@include helpers.hover(revert) {
-				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
-			}
-		}
 
 		@if list.index($valid-field-sizing-form-fields, $selector) {
 			/* see https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing */
@@ -445,15 +439,6 @@ $input-valid-types:
 
 			&[data-field-sizing="fixed"] {
 				field-sizing: fixed;
-			}
-		}
-
-		@if list.index($valid-read-only-form-fields, $selector) {
-			&:not(:disabled):read-only {
-				background-color: var(
-					--db-#{$selector}-read-only,
-					#{colors.$db-adaptive-bg-basic-transparent-full-default}
-				) !important;
 			}
 		}
 	}
@@ -498,7 +483,6 @@ $input-valid-types:
 		position: absolute;
 		pointer-events: none;
 		inset-block-start: $icon-inline-block-start;
-		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 		transform: translateY(-50%);
 		z-index: 1;
 	}
@@ -518,6 +502,53 @@ $input-valid-types:
 			block-size: variables.$db-sizing-md;
 			text-overflow: ellipsis;
 		}
+	}
+}
+
+/*
+ * Legacy color companion for `set-default-form-component`. Holds every color
+ * declaration that used to live in that mixin (field surface, caret, hover,
+ * read-only, form-component border, icon color) plus the validity coloring.
+ * The base mixin is color-free; consumers call this from their
+ * `*.legacy-coloring.scss` so the adaptive bundle stays color-free.
+ */
+@mixin set-default-form-component-colors($selector) {
+	@include get-validity($selector, "valid") {
+		@include get-validity-color($selector, "valid");
+	}
+
+	@include get-validity($selector, "invalid") {
+		@include get-validity-color($selector, "invalid");
+	}
+
+	#{$selector} {
+		@extend %default-interactive-component-colors;
+		@extend %form-component-border-colors;
+
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		caret-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+		@include helpers.not-disabled {
+			// cursor: revert - text/textarea inputs should use the text cursor, not pointer
+			@include helpers.hover(revert) {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
+		}
+
+		@if list.index($valid-read-only-form-fields, $selector) {
+			&:not(:disabled):read-only {
+				background-color: var(
+					--db-#{$selector}-read-only,
+					#{colors.$db-adaptive-bg-basic-transparent-full-default}
+				) !important;
+			}
+		}
+	}
+
+	// icons
+	&::after,
+	&::before {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	}
 }
 
@@ -636,23 +667,15 @@ $input-valid-types:
 		@include helpers.display(flex);
 
 		align-items: flex-start;
-		color: var(
-			--db-check-element-label-color,
-			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-		);
 	}
 
 	input {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 		place-content: center center;
 		appearance: none;
 		aspect-ratio: 1;
 		/* stylelint-disable-next-line db-ux/use-border-width */
-		border: #{$check-border-size} solid
-			var(
-				--db-check-element-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-			);
+		border-width: #{$check-border-size};
+		border-style: solid;
 		block-size: $font-size-height;
 		inline-size: $font-size-height;
 		padding: 0;
@@ -674,5 +697,29 @@ $input-valid-types:
 		input {
 			margin-inline-end: 0;
 		}
+	}
+}
+
+/*
+ * Legacy color companion for `set-default-check-element`: the label color and
+ * the check input's fill + border color. Consumers call this from their
+ * `*.legacy-coloring.scss`; the adaptive layer colors the check element via
+ * `%check-element-base` instead.
+ */
+@mixin set-default-check-element-colors() {
+	&:is(label),
+	> label {
+		color: var(
+			--db-check-element-label-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
+	}
+
+	input {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		border-color: var(
+			--db-check-element-border-color,
+			#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
+		);
 	}
 }

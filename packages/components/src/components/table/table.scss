@@ -1,6 +1,5 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
@@ -37,7 +36,7 @@
 %divider {
 	&:is([data-divider="none"], [data-divider="vertical"]) {
 		table {
-			border-block-end: component.$component-border;
+			@include component.component-border-structure(block-end);
 		}
 	}
 
@@ -47,7 +46,9 @@
 			&[data-divider="vertical"] {
 				tr {
 					> :is(td, th):not(:last-child) {
-						border-inline-end: component.$component-border;
+						@include component.component-border-structure(
+							inline-end
+						);
 					}
 
 					> :is(db-table-header-cell, db-table-data-cell):not(
@@ -55,7 +56,9 @@
 						) {
 						td,
 						th {
-							border-inline-end: component.$component-border;
+							@include component.component-border-structure(
+								inline-end
+							);
 						}
 					}
 				}
@@ -66,7 +69,7 @@
 		&[data-divider="both"],
 		&[data-divider="horizontal"] {
 			tr {
-				border-block-end: component.$component-border;
+				@include component.component-border-structure(block-end);
 			}
 		}
 	}
@@ -150,27 +153,11 @@
 	&[data-variant="flat"],
 	&[data-variant="zebra"] {
 		table {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			border-inline: component.$component-border;
+			@include component.component-border-structure(inline);
 		}
 
 		thead {
-			border-block-start: component.$component-border;
-		}
-	}
-
-	&[data-variant="zebra"] {
-		tbody {
-			> db-table-row:nth-child(odd) > tr,
-			> tr:nth-child(odd) {
-				background-color: colors.$db-adaptive-bg-basic-level-2-default;
-			}
-		}
-
-		thead {
-			tr[data-sub-header-emphasis="weak"] {
-				@extend %sub-header-strong;
-			}
+			@include component.component-border-structure(block-start);
 		}
 	}
 
@@ -226,9 +213,6 @@
 			position: sticky;
 			inset-block-start: calc(-1 * #{variables.$db-border-width-xs});
 			z-index: 4;
-
-			// Background needed so underlying elements don't show through when scrolling
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 		}
 
 		&[data-variant="spaced"] {
@@ -246,8 +230,7 @@
 				position: sticky;
 				inset-inline-start: calc(-1 * #{variables.$db-border-width-xs});
 				z-index: 3;
-				border-inline-end: component.$component-border;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+				@include component.component-border-structure(inline-end);
 			}
 		}
 
@@ -314,7 +297,7 @@
 		caption {
 			grid-column: span var(--db-table-grid-cells, 1);
 			padding: variables.$db-spacing-fixed-sm;
-			border-block-start: component.$component-border;
+			@include component.component-border-structure(block-start);
 			font-weight: bold;
 		}
 	}

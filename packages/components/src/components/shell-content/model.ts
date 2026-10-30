@@ -2,6 +2,7 @@ import type {
 	EndSlotProps,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	StartSlotProps
 } from '../../shared/model';
 
@@ -36,6 +37,7 @@ export type DBShellContentDefaultProps = {
 
 export type DBShellContentProps = DBShellContentDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	StartSlotProps &
 	EndSlotProps;
 

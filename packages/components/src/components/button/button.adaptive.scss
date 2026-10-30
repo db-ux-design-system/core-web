@@ -1,0 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-button,
+.db-button[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-interactive-container;
+
+	&:is(:disabled, [aria-disabled="true"]) {
+		@extend %disabled;
+	}
+}

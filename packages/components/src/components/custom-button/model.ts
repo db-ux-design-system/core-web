@@ -1,9 +1,16 @@
-import type {
+import {
+	AltStateColorState,
+	AltStateMaterialProps,
+	AltStateMaterialState,
+	ColorType,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
+	InitializedState,
+	MaterialProps,
+	MaterialType,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
@@ -19,6 +26,8 @@ export type DBCustomButtonDefaultProps = {};
 export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
+	MaterialProps &
+	AltStateMaterialProps &
 	IconProps &
 	WidthProps &
 	SizeProps &
@@ -30,6 +39,13 @@ export type DBCustomButtonProps = DBCustomButtonDefaultProps &
 	NoTextProps &
 	WrapProps;
 
-export type DBCustomButtonDefaultState = {};
+export type DBCustomButtonDefaultState = {
+	_material?: MaterialType | undefined;
+	_color?: ColorType | undefined;
+};
 
-export type DBCustomButtonState = DBCustomButtonDefaultState & GlobalState;
+export type DBCustomButtonState = DBCustomButtonDefaultState &
+	GlobalState &
+	AltStateMaterialState &
+	AltStateColorState &
+	InitializedState;

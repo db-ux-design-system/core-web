@@ -3,6 +3,9 @@
 // Bundle all components
 @forward "./index";
 
+// Legacy color layer (color extracted out of the component base styles)
+@forward "./components-legacy-coloring";
+
 // Bundle foundation defaults
 @forward "@db-ux/core-foundations/build/styles/bundle";
 

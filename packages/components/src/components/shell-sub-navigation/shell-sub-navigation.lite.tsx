@@ -71,6 +71,8 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 		<aside
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id ?? state._id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			data-open={getBooleanAsString(state._open)}
 			class={cls('db-shell-sub-navigation', props.className)}>
 			{props.children}
@@ -79,6 +81,7 @@ export default function DBShellSubNavigation(props: DBShellSubNavigationProps) {
 					onClick={(event) => state.handleToggle(event)}
 					class="db-button"
 					data-variant="ghost"
+					data-material="transparent"
 					aria-controls={
 						props.id ?? props.propOverrides?.id ?? state._id
 					}

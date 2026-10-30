@@ -84,13 +84,17 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 	return (
 		<li
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-accordion-item', props.className)}>
 			<details
 				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 				ref={_ref}
 				name={state._name}
 				open={state._open}>
-				<summary onClick={(event) => state.handleToggle(event)}>
+				<summary
+					class="db-accordion-item-header"
+					onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}
 					</Show>

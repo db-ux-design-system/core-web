@@ -99,7 +99,6 @@
 				position: absolute;
 				inset: 0;
 				border-radius: inherit;
-				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 
 			> svg,
@@ -109,6 +108,22 @@
 
 			&[data-orientation="horizontal"][data-variant="circular"] svg {
 				align-self: center;
+			}
+		}
+	}
+}
+
+/*
+ * Legacy color companion for `%interactive-element-with-loading`: the level-1
+ * backing behind the overlay loading indicator. Consumers @extend this from
+ * their `*.legacy-coloring.scss` (button forwards it via
+ * `set-basic-button-colors`); the adaptive bundle colors it instead.
+ */
+%interactive-element-with-loading-colors {
+	.db-loading-indicator {
+		&[data-overlay="true"] {
+			&::after {
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			}
 		}
 	}

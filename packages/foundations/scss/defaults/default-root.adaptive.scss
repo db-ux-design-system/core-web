@@ -1,0 +1,13 @@
+/*
+ * Adaptive variant of `default-root`: sets the default density on the root but
+ * NOT the legacy `%db-neutral-bg-basic-level-1` surface - in adaptive coloring
+ * the base surface comes from `--db-bg-default` / `--db-text-default`
+ * (generated-colors.css), so seeding the legacy `--db-adaptive-*` neutral
+ * palette here would leak it into the adaptive output.
+ */
+@forward "../density";
+
+:root,
+:host {
+	@extend %db-density-regular;
+}

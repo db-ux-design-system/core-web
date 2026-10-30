@@ -1,0 +1,38 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+[data-adaptive-coloring="true"] .db-tabs,
+.db-tabs[data-adaptive-coloring="true"] {
+	/*
+	 * The inactive track/baseline behind the active indicator is a thin
+	 * divider-like line (transparent-semi in the base) -> adaptive border.
+	 */
+
+	// Vertical indicator track (`%indicator-track` on `.db-tab-list::before`).
+	.db-tab-list::before {
+		background-color: adaptive.$db-border-decorative;
+	}
+
+	/*
+	 * Horizontal baseline (drawn as a gradient on the tab-list). Only in the
+	 * decorative behavior - arrow/scrollbar modes disable this gradient in the
+	 * base and draw their track on `.db-tabs::before` instead (re-pointed
+	 * below), so re-adding the gradient here would double the track.
+	 */
+	&:not([data-orientation="vertical"]):not(
+			[data-scroll-behavior="arrows"]
+		):not([data-scroll-behavior="scrollbar"])
+		.db-tab-list {
+		background-image: linear-gradient(
+			adaptive.$db-border-decorative,
+			adaptive.$db-border-decorative
+		);
+	}
+
+	// Scrollbar-/arrow-mode tracks (drawn as a pseudo element on the tabs root).
+	&[data-scroll-behavior="scrollbar"],
+	&[data-scroll-behavior="arrows"] {
+		&:not([data-orientation="vertical"])::before {
+			background-color: adaptive.$db-border-decorative;
+		}
+	}
+}

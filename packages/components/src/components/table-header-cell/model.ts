@@ -1,7 +1,8 @@
 import type {
 	DBTableCellProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	MaterialProps
 } from '../../shared/model';
 
 export const DBTableHeaderCellScopeList = [
@@ -35,6 +36,7 @@ export type DBTableHeaderCellDefaultProps = {
 
 export type DBTableHeaderCellProps = DBTableHeaderCellDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	DBTableCellProps;
 
 export type DBTableHeaderCellDefaultState = {};

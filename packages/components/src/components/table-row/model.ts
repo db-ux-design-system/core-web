@@ -1,4 +1,12 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	AltStateColorState,
+	AltStateMaterialProps,
+	AltStateMaterialState,
+	GlobalProps,
+	GlobalState,
+	MaterialProps,
+	MaterialState
+} from '../../shared/model';
 import type { DBLinkProps } from '../link/model';
 import type { DBTableDataCellProps } from '../table-data-cell/model';
 import type { DBTableHeaderCellProps } from '../table-header-cell/model';
@@ -33,10 +41,17 @@ export type DBTableRowDefaultProps = {
 	interactive?: boolean | string;
 };
 
-export type DBTableRowProps = DBTableRowDefaultProps & GlobalProps;
+export type DBTableRowProps = DBTableRowDefaultProps &
+	GlobalProps &
+	MaterialProps &
+	AltStateMaterialProps;
 
 export type DBTableRowDefaultState = {
 	getHeaderCell: (cell: DBTableRowCell) => DBTableHeaderCellProps | undefined;
 };
 
-export type DBTableRowState = DBTableRowDefaultState & GlobalState;
+export type DBTableRowState = DBTableRowDefaultState &
+	GlobalState &
+	MaterialState &
+	AltStateMaterialState &
+	AltStateColorState;

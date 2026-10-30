@@ -1,6 +1,7 @@
 import {
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	SidebarProps,
 	SidebarState,
 	ToggleEventState
@@ -10,6 +11,7 @@ export type DBShellSubNavigationDefaultProps = {};
 
 export type DBShellSubNavigationProps = DBShellSubNavigationDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	SidebarProps;
 
 export type DBShellSubNavigationDefaultState = {

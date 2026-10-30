@@ -22,46 +22,70 @@ $scrollbar-width: helpers.px-to-rem(8);
 		z-index: 3;
 		inline-size: $scrollbar-width;
 		block-size: $scrollbar-width;
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-level-1-default}
+		);
 		border-start-end-radius: variables.$db-border-radius-xs;
 	}
 
 	&:is(:hover, :focus) {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+			background-color: var(
+				--db-bg-hovered,
+				#{colors.$db-adaptive-bg-basic-transparent-full-hovered}
+			);
 		}
 	}
 
 	&:read-only {
 		&::-webkit-scrollbar-track,
 		&::-webkit-scrollbar-button:single-button {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			background-color: var(
+				--db-bg-default,
+				#{colors.$db-adaptive-bg-basic-level-1-default}
+			);
 		}
 	}
 
 	&::-webkit-scrollbar-track {
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+		);
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+		background-color: var(
+			--db-bg-pressed,
+			#{colors.$db-adaptive-bg-basic-transparent-full-pressed}
+		);
 	}
 
 	/* Buttons */
 	&::-webkit-scrollbar-button:single-button {
-		background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+		);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
 		block-size: form-components.$floating-label-size-calc;
 
 		&:is(:hover, :focus) {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+			background-color: var(
+				--db-bg-hovered,
+				#{colors.$db-adaptive-bg-basic-transparent-full-hovered}
+			);
 		}
 
 		&:active {
-			background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+			background-color: var(
+				--db-bg-pressed,
+				#{colors.$db-adaptive-bg-basic-transparent-full-pressed}
+			);
 		}
 	}
 
@@ -88,16 +112,25 @@ $scrollbar-width: helpers.px-to-rem(8);
 
 	&[data-variant="floating"] {
 		&::-webkit-resizer {
-			background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			background-color: var(
+				--db-bg-default,
+				#{colors.$db-adaptive-bg-basic-transparent-semi-default}
+			);
 		}
 
 		&::-webkit-scrollbar-corner {
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			background-color: var(
+				--db-bg-default,
+				#{colors.$db-adaptive-bg-basic-level-1-default}
+			);
 		}
 	}
 
 	&::-webkit-resizer {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-transparent-full-default}
+		);
 		background-size: $scrollbar-width;
 		background-repeat: no-repeat;
 		background-position: center;
@@ -119,66 +152,64 @@ $scrollbar-width: helpers.px-to-rem(8);
 	}
 }
 
-$db-overflow-scroll-buttons-background: 21;
 $db-overflow-scroll-buttons-button: 22;
 
-@mixin set-overflow-scroll-button-backgrounds {
-	&::before,
-	&::after {
-		position: absolute;
-		z-index: $db-overflow-scroll-buttons-background;
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-		inline-size: variables.$db-sizing-md;
-		block-size: calc(
-			var(
-					--db-overflow-scroll-button-background-block-size,
-					#{variables.$db-spacing-fixed-sm}
-				) +
-				#{variables.$db-sizing-md}
-		);
-		flex: 0 0 auto;
-	}
-
-	&::before {
+/*
+ * Shared scroll-left/right button pattern (DBTabs, DBControlPanelNavigation).
+ * Each button sits in a positioned `.overflow-scroll-*-button-container` that
+ * carries the opaque `--db-bg-default` backing (a wrapper, not the button's
+ * own `::before`, because a `transparent` button material would make that
+ * transparent too). See packages/components/AGENTS.md for the full contract.
+ */
+@mixin set-overflow-scroll-buttons {
+	// Scroll left / right button containers
+	.overflow-scroll-left-button-container {
 		inset-inline-start: var(
 			--db-overflow-scroll-button-inset-inline-start,
 			0
 		);
+
+		// The chevron is the leading icon (`::before`); flip it for RTL.
+		.overflow-scroll-left-button {
+			@include angular-button-workaround {
+				&:dir(rtl) {
+					--db-icon: "chevron_right";
+				}
+			}
+		}
 	}
 
-	&::after {
+	.overflow-scroll-right-button-container {
 		inset-inline-end: 0;
-	}
-}
 
-@mixin set-overflow-scroll-buttons {
-	/*
-	 * Scroll left / right buttons
-	 */
-	.overflow-scroll-left-button {
-		@include angular-button-workaround {
-			inset-inline-start: var(
-				--db-overflow-scroll-button-inset-inline-start,
-				0
-			);
+		.overflow-scroll-right-button {
+			@include angular-button-workaround {
+				&:dir(rtl) {
+					--db-icon: "chevron_left";
+				}
+			}
 		}
 	}
 
-	.overflow-scroll-right-button {
-		@include angular-button-workaround {
-			inset-inline-end: 0;
-		}
-	}
+	.overflow-scroll-left-button-container,
+	.overflow-scroll-right-button-container {
+		position: absolute;
+		z-index: $db-overflow-scroll-buttons-button;
+		inset-block: var(
+			--db-overflow-scroll-button-inset-block,
+			#{variables.$db-spacing-fixed-xs}
+		);
 
-	.overflow-scroll-left-button,
-	.overflow-scroll-right-button {
-		@include angular-button-workaround {
-			position: absolute;
-			z-index: $db-overflow-scroll-buttons-button;
-			inset-block: var(
-				--db-overflow-scroll-button-inset-block,
-				#{variables.$db-spacing-fixed-xs}
-			);
-		}
+		// Hug the button so the container does not overlap the content below
+		// the scroll row (consumers can override, e.g. control-panel pins it to
+		// the full row height).
+		block-size: fit-content;
+
+		// Opaque backing so the scrolling content does not show through the
+		// (possibly transparent) button.
+		background-color: var(
+			--db-bg-default,
+			#{colors.$db-adaptive-bg-basic-level-1-default}
+		);
 	}
 }

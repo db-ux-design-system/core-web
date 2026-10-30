@@ -1,0 +1,54 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/component";
+
+/*
+ * Legacy color layer for `navigation-item`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ *
+ * `%navigation-item` colors (the interactive border + transparent-full
+ * background states) are re-applied via this mixin on the same selectors the
+ * base extends the structure placeholder on.
+ */
+@mixin _navigation-item-colors {
+	@extend %default-interactive-component-colors;
+
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+
+	@include helpers.interactive-bg(
+		colors.$db-adaptive-bg-basic-transparent-full-hovered,
+		colors.$db-adaptive-bg-basic-transparent-full-pressed
+	);
+
+	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	}
+}
+
+.db-navigation-item {
+	a {
+		@include _navigation-item-colors;
+	}
+
+	.db-navigation-item-expand-button {
+		&:is(button),
+		> button {
+			@include _navigation-item-colors;
+		}
+	}
+}
+
+.db-sub-navigation {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	@include screen-sizes.screen("md") {
+		// stylelint-disable-next-line db-ux/use-border-color
+		border-color: component.$component-border-color;
+	}
+}
+
+.db-mobile-navigation-back {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+}

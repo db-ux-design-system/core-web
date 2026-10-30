@@ -1,7 +1,6 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
@@ -36,7 +35,6 @@ body:not(.sb-show-main):has(.db-shell) {
 	block-size: 100dvh;
 	inline-size: 100dvw;
 	display: grid;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
 	&[data-control-panel-desktop-position="left"] {
 		#{string.unquote(custom-elements.$control-panel-desktop)} {

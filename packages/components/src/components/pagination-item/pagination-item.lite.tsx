@@ -10,8 +10,10 @@ export default function DBPaginationItem(props: DBPaginationItemProps) {
 	return (
 		<li
 			id={props.id ?? props.propOverrides?.id}
-			class={cls('db-pagination-item', props.className)}
-			ref={_ref}>
+			ref={_ref}
+			data-material={props.material}
+			data-adaptive-color={props.color}
+			class={cls('db-pagination-item', props.className)}>
 			<Show when={props.text} else={props.children}>
 				<button type="button">{props.text}</button>
 			</Show>

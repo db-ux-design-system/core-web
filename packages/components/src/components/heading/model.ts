@@ -3,6 +3,7 @@ import type {
 	EndSlotProps,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	StartSlotProps,
 	TextProps
 } from '../../shared/model';
@@ -51,7 +52,7 @@ export type DBHeadingBaseDefaultProps = {
 	visualSize?: HeadingVisualSizeType;
 	/** Sets the headline font weight. Defaults to `black`. */
 	fontWeight?: HeadingFontWeightType;
-};
+} & MaterialProps;
 /** @public */
 export type DBHeadingBaseProps = DBHeadingBaseDefaultProps & GlobalProps;
 

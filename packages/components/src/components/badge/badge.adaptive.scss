@@ -1,0 +1,16 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-badge,
+.db-badge[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+
+	border-color: adaptive.$db-border-decorative;
+
+	&[data-emphasis="strong"] {
+		.db-badge-content {
+			font-weight: bold;
+		}
+	}
+}

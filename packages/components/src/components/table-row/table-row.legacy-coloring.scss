@@ -1,0 +1,37 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "./table-row";
+
+/*
+ * Legacy color layer for `table-row`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file. Re-opens the base interactive-row selectors
+ * with legacy coloring (see the mixin comment in `table-row.scss`).
+ */
+
+// Hover/pressed backgrounds for an interactive row on the level-2 surface.
+// Shared by the checked row and the plain interactive row below.
+@mixin interactive-level-2-states {
+	@include table-row.table-row-interactive-state {
+		background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
+	}
+
+	@include table-row.table-row-interactive-state("active") {
+		background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
+	}
+}
+
+.db-table-row {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	&[data-interactive="true"] {
+		@include table-row.table-row-interactive-checked {
+			@extend %db-informational-variables;
+
+			background-color: colors.$db-adaptive-bg-basic-level-2-default;
+
+			@include interactive-level-2-states;
+		}
+
+		@include interactive-level-2-states;
+	}
+}

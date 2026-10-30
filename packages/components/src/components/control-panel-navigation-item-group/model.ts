@@ -7,6 +7,7 @@ import {
 	GlobalState,
 	IconProps,
 	InitializedState,
+	MaterialProps,
 	NavigationBackButtonProps,
 	NavigationBehaviorState,
 	NavigationItemGroupVariantType,
@@ -32,6 +33,7 @@ export type DBControlPanelNavigationItemGroupProps =
 		NavigationBackButtonProps &
 		ClickEventProps<HTMLButtonElement> &
 		GlobalProps &
+		MaterialProps &
 		IconProps &
 		ShowIconProps &
 		DBControlPanelNavigationItemDefaultProps &

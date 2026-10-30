@@ -1,0 +1,35 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+
+/*
+ * Legacy color layer for `textarea`: the field surface, border, caret and
+ * validity colors from `set-default-form-component`, plus the floating-variant
+ * scroll-cover colors. Forwarded only into the legacy bundle; the adaptive
+ * bundle colors the textarea via `textarea.adaptive.scss`.
+ */
+.db-textarea {
+	@include form-components.set-default-form-component-colors(textarea);
+
+	&[data-variant="floating"] {
+		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
+			&::before {
+				background-color: colors.$db-adaptive-bg-basic-level-1-default;
+			}
+
+			&::after {
+				@extend %form-component-border-colors;
+
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+			}
+
+			&:has(textarea:read-only)::after {
+				background-color: colors.$db-adaptive-bg-basic-level-1-default !important;
+			}
+
+			&:has(textarea:not(:disabled):is(:hover, :focus))::after {
+				background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+			}
+		}
+	}
+}

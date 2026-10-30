@@ -1,0 +1,279 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "component";
+@use "../internal/form-components";
+
+// Shared next-gen materials for form components. Two shapes of form control
+// share these helpers:
+//   * check elements (checkbox, radio, switch) - a styled `input` with a
+//     checked/active state, driving both the default roles (`--db-bg-*`,
+//     `--db-text-*`) and the alt-state roles (`--db-alt-state-bg-*`,
+//     `--db-alt-state-text-*`).
+//   * value fields (input, textarea, select) - a text/value element with no
+//     checked state, driving only the default roles.
+
+// Shared base for check elements (checkbox, radio, switch). The input renders
+// the box/track, so the default roles drive `:not(:checked)` and the active
+// roles drive `:checked`. Hover/pressed are applied to the *unchecked* state
+// here; the checked-state hover/pressed is added only by components whose
+// checked state is interactive (see `%check-element-materials`).
+%check-element-base {
+	&:is(label),
+	> label {
+		color: adaptive.$db-text-default;
+	}
+
+	input {
+		&:not(:checked) {
+			background-color: adaptive.$db-bg-default;
+			color: adaptive.$db-text-default;
+			border-color: adaptive.$db-border-vibrant;
+
+			&::before {
+				color: adaptive.$db-text-default;
+			}
+		}
+
+		&:checked {
+			background-color: adaptive.$db-alt-state-bg-default;
+			color: adaptive.$db-alt-state-text-default;
+			border-color: adaptive.$db-alt-state-border-default;
+
+			&::before {
+				color: adaptive.$db-alt-state-text-default;
+			}
+		}
+	}
+
+	&:not(:has(input:disabled)) {
+		@include helpers.hover {
+			&:is(label),
+			> label {
+				color: var(
+					--db-check-element-label-color,
+					#{adaptive.$db-text-hovered}
+				);
+			}
+
+			input:not(:checked) {
+				background-color: adaptive.$db-bg-hovered;
+			}
+		}
+
+		@include helpers.active {
+			&:is(label),
+			> label {
+				color: var(
+					--db-check-element-label-color,
+					#{adaptive.$db-text-pressed}
+				);
+			}
+
+			input:not(:checked) {
+				background-color: adaptive.$db-bg-pressed;
+			}
+		}
+	}
+}
+
+// Check elements whose checked state is interactive and can be toggled back
+// (checkbox, switch): the checked background also reacts to hover/pressed.
+%check-element-materials {
+	@extend %check-element-base;
+
+	&:not(:has(input:disabled)) {
+		@include helpers.hover {
+			input:checked {
+				background-color: adaptive.$db-alt-state-bg-hovered;
+			}
+		}
+
+		@include helpers.active {
+			input:checked {
+				background-color: adaptive.$db-alt-state-bg-pressed;
+			}
+		}
+	}
+}
+
+// Check elements whose checked state is NOT interactive (radio): selecting the
+// control can only move the selection, never toggle it off, so the checked
+// state has no hover/pressed background of its own. Use the base only.
+%radio-check-element-materials {
+	@extend %check-element-base;
+}
+
+// Validity + disabled wiring for check elements. `$selector` is the validity
+// keyword understood by `form-components.get-validity` (`check`, `radio`,
+// `switch`).
+@mixin check-element-validity($selector) {
+	@include form-components.get-validity($selector) {
+		&:is(label),
+		> label {
+			color: adaptive.$db-text-vibrant;
+		}
+
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include form-components.get-validity-message("valid");
+		}
+	}
+
+	@include form-components.get-validity($selector, "invalid") {
+		&:is(label),
+		> label {
+			color: adaptive.$db-text-vibrant;
+		}
+
+		input {
+			border-color: adaptive.$db-border-vibrant;
+		}
+
+		@include form-components.get-validity-message("invalid");
+	}
+
+	&:has(input:disabled) {
+		@extend %disabled;
+	}
+}
+
+@mixin field-content($include-label: true) {
+	@if $include-label {
+		&::before,
+		&::after,
+		[id$="-placeholder"],
+		> label {
+			@content;
+		}
+		/* stylelint-disable-next-line at-rule-empty-line-before */
+	} @else {
+		&::before,
+		&::after,
+		[id$="-placeholder"] {
+			@content;
+		}
+	}
+}
+
+// Appearance for value fields (input, textarea, select). `$selector` is the
+// inner element (`input`, `textarea`, `select`). Text fields keep the text
+// cursor on hover (`$revert-cursor: true`); select is pointer-driven and also
+// gets a pressed state (`$pressed: true`).
+@mixin field-materials(
+	$selector,
+	$revert-cursor: true,
+	$pressed: false,
+	$read-only-alt-state: false
+) {
+	@include field-content {
+		color: adaptive.$db-text-default;
+	}
+
+	@if $read-only-alt-state {
+		/*
+		 * Read-only field content sits on the alt-state surface, so the
+		 * placeholder text and icons use the alt-state text color. The label is
+		 * deliberately excluded here: for the "above" variant it sits outside
+		 * the field box and must keep the default text color. Only the
+		 * "floating" variant - where the label overlaps the read-only surface -
+		 * gets the alt-state label color, handled by the dedicated rule below.
+		 */
+		&:has(#{$selector}:read-only:not(:disabled)) {
+			@include field-content($include-label: false) {
+				color: adaptive.$db-alt-state-text-default;
+			}
+		}
+	}
+
+	#{$selector} {
+		background-color: adaptive.$db-bg-default;
+		color: adaptive.$db-text-default;
+		border-color: adaptive.$db-border-default;
+
+		@if $revert-cursor {
+			caret-color: adaptive.$db-text-default;
+		}
+
+		@include helpers.not-disabled {
+			@if $revert-cursor {
+				@include helpers.hover(revert) {
+					background-color: adaptive.$db-bg-hovered;
+				}
+				/* stylelint-disable-next-line at-rule-empty-line-before */
+			} @else {
+				@include helpers.hover {
+					background-color: adaptive.$db-bg-hovered;
+				}
+			}
+
+			@if $pressed {
+				@include helpers.active {
+					background-color: adaptive.$db-bg-pressed;
+				}
+			}
+		}
+
+		@if $read-only-alt-state {
+			--db-#{$selector}-read-only: #{adaptive.$db-alt-state-bg-default};
+
+			&::placeholder {
+				color: adaptive.$db-text-default;
+			}
+
+			&:read-only:not(:disabled) {
+				/*
+				 * The read-only field renders on the alt-state surface. In the
+				 * legacy bundle a `background-color: var(--db-#{$selector}-read-only)`
+				 * rule consumes the custom property above; the adaptive bundle
+				 * does not ship that rule, so the alt-state background has to be
+				 * applied here directly.
+				 */
+				background-color: adaptive.$db-alt-state-bg-default;
+				color: adaptive.$db-alt-state-text-default;
+				border-color: adaptive.$db-alt-state-border-default;
+
+				&::placeholder {
+					color: adaptive.$db-alt-state-text-default;
+				}
+
+				@if $revert-cursor {
+					caret-color: adaptive.$db-alt-state-text-default;
+				}
+			}
+		}
+	}
+
+	/*
+	 * Floating variant: the label sits on top of the field, so over a read-only
+	 * (alt-state) surface it has to use the alt-state text color too.
+	 */
+	@if $read-only-alt-state {
+		&[data-variant="floating"]:has(#{$selector}:read-only:not(:disabled))
+			> label {
+			color: adaptive.$db-alt-state-text-default;
+		}
+	}
+}
+
+// Validity + disabled wiring for value fields. `$selector` is the inner element
+// (`input`, `textarea`, `select`).
+@mixin field-validity($selector) {
+	@include form-components.get-validity($selector) {
+		#{$selector} {
+			border-color: adaptive.$db-border-vibrant;
+		}
+
+		@include form-components.get-validity-message("valid");
+	}
+
+	@include form-components.get-validity($selector, "invalid") {
+		#{$selector} {
+			border-color: adaptive.$db-border-vibrant;
+		}
+
+		@include form-components.get-validity-message("invalid");
+	}
+
+	&:has(#{$selector}:disabled) {
+		@extend %disabled;
+	}
+}

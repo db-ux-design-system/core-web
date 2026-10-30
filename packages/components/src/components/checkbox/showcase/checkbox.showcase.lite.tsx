@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import CheckboxAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import CheckboxChecked from '../examples/checked.example.lite';
 import CheckboxDensity from '../examples/density.example.lite';
 import CheckboxDisabled from '../examples/disabled.example.lite';
@@ -72,6 +73,11 @@ export default function CheckboxShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Interaction">
 				<CardWrapperShowcase>
 					<CheckboxInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<CheckboxAdaptiveMatrix />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

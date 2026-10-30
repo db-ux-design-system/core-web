@@ -1,0 +1,99 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+%disabled {
+	--db-adaptive-transparency: 40%;
+
+	opacity: 1;
+}
+
+// Full surface: background, text and border. Static (no hover/pressed).
+%adaptive-coloring-container {
+	background-color: adaptive.$db-bg-default;
+	color: adaptive.$db-text-default;
+	border-color: adaptive.$db-border-default;
+}
+
+// Surface that reacts to hover/pressed on its background (buttons, interactive cards, ...).
+%adaptive-coloring-interactive-container {
+	@extend %adaptive-coloring-container;
+
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: adaptive.$db-bg-hovered;
+			border-color: adaptive.$db-border-default;
+		}
+
+		@include helpers.active {
+			background-color: adaptive.$db-bg-pressed;
+			border-color: adaptive.$db-border-default;
+		}
+	}
+}
+
+// Text color only, no background or border. Static (no hover/pressed).
+%adaptive-coloring-text {
+	color: adaptive.$db-text-default;
+}
+
+// Text-only color that reacts to hover/pressed (links, ...).
+%adaptive-coloring-interactive-text {
+	@extend %adaptive-coloring-text;
+
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			color: adaptive.$db-text-hovered;
+		}
+
+		@include helpers.active {
+			color: adaptive.$db-text-pressed;
+		}
+	}
+}
+
+// Alternative-state roles (e.g. the checked state of a checkbox/radio/switch),
+// mirroring the base roles above but driven by the `--db-alt-state-*` tokens.
+
+// Full alt-state surface: background, text and border. Static (no hover/pressed).
+%adaptive-coloring-alt-state-container {
+	background-color: adaptive.$db-alt-state-bg-default;
+	color: adaptive.$db-alt-state-text-default;
+	border-color: adaptive.$db-alt-state-border-default;
+}
+
+// Alt-state surface that reacts to hover/pressed on its background.
+%adaptive-coloring-alt-state-interactive-container {
+	@extend %adaptive-coloring-alt-state-container;
+
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			background-color: adaptive.$db-alt-state-bg-hovered;
+			border-color: adaptive.$db-alt-state-border-default;
+		}
+
+		@include helpers.active {
+			background-color: adaptive.$db-alt-state-bg-pressed;
+			border-color: adaptive.$db-alt-state-border-default;
+		}
+	}
+}
+
+// Alt-state text color only, no background or border. Static (no hover/pressed).
+%adaptive-coloring-alt-state-text {
+	color: adaptive.$db-alt-state-text-default;
+}
+
+// Alt-state text-only color that reacts to hover/pressed.
+%adaptive-coloring-alt-state-interactive-text {
+	@extend %adaptive-coloring-alt-state-text;
+
+	@include helpers.not-disabled {
+		@include helpers.hover {
+			color: adaptive.$db-alt-state-text-hovered;
+		}
+
+		@include helpers.active {
+			color: adaptive.$db-alt-state-text-pressed;
+		}
+	}
+}

@@ -1,0 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+[data-adaptive-coloring="true"] .db-control-panel-flat-icon,
+.db-control-panel-flat-icon[data-adaptive-coloring="true"] {
+	// The active-item indicator uses the adaptive indicator background.
+	.db-control-panel-navigation-item::after,
+	.db-control-panel-navigation-item-end-slot-container::after {
+		background-color: adaptive.$db-indicator-color;
+		background-image: adaptive.$db-indicator-background;
+	}
+}

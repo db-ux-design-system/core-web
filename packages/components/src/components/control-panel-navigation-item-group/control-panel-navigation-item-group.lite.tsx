@@ -461,6 +461,8 @@ export default function DBControlPanelNavigationItemGroup(
 				'db-control-panel-navigation-item-group',
 				props.className
 			)}
+			data-material={props.material ?? 'transparent'}
+			data-adaptive-color={props.color}
 			data-active={getBooleanAsString(props.active, 'active')}
 			aria-disabled={getBooleanAsString(props.disabled, 'disabled')}>
 			<button
@@ -489,6 +491,7 @@ export default function DBControlPanelNavigationItemGroup(
 
 			<menu
 				ref={_menuRef}
+				data-material="filled-1"
 				class="db-control-panel-navigation-item-group-menu"
 				data-initialized={getBooleanAsString(state.initialized)}
 				data-force-close={getBooleanAsString(state.autoClose)}

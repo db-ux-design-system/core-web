@@ -85,7 +85,10 @@
 
 	.db-shell {
 		border: var(--db-border-width-3xs) dashed
-			var(--db-adaptive-on-bg-basic-emphasis-100-default);
+			var(
+				--db-border-default,
+				var(--db-adaptive-on-bg-basic-emphasis-100-default)
+			);
 
 		&:is(
 			:not([data-control-panel-desktop-position]),
@@ -236,9 +239,18 @@
 .dummy-component {
 	border-radius: var(--db-border-radius-md);
 	border: var(--db-border-width-3xs) solid
-		var(--db-adaptive-on-bg-basic-emphasis-60-default);
-	background-color: var(--db-adaptive-bg-basic-level-3-default);
-	color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		var(
+			--db-border-default,
+			var(--db-adaptive-on-bg-basic-emphasis-60-default)
+		);
+	background-color: var(
+		--db-bg-default,
+		var(--db-adaptive-bg-basic-level-3-default)
+	);
+	color: var(
+		--db-text-default,
+		var(--db-adaptive-on-bg-basic-emphasis-80-default)
+	);
 	display: flex;
 	padding: var(--db-spacing-fixed-3xs) var(--db-spacing-fixed-xs);
 	justify-content: center;
@@ -322,4 +334,50 @@ app-nav-item {
    variants, so we cap it to a fixed width here (showcase-only). */
 .variants-list .db-loading-indicator[data-variant="bar"] {
 	max-inline-size: var(--db-sizing-3xl);
+}
+
+/*
+ * Adaptive color x material matrix examples. These only make sense while
+ * adaptive coloring is active, so the whole example block is hidden by default
+ * and revealed only inside a `[data-adaptive-coloring="true"]` subtree (the
+ * showcase sets that on the shell / fullscreen root in adaptive mode). This
+ * keeps them out of the legacy screenshots while showing the full matrix in the
+ * adaptive ones - including the section's divider + headline.
+ */
+[data-example="adaptive+matrix"] {
+	display: none;
+}
+
+[data-adaptive-coloring="true"] [data-example="adaptive+matrix"] {
+	display: block;
+}
+
+.adaptive-matrix {
+	border-collapse: separate;
+	border-spacing: var(--db-spacing-fixed-sm);
+	inline-size: 100%;
+}
+
+.adaptive-matrix th {
+	font: var(--db-type-body-2xs);
+	font-weight: 700;
+	text-transform: capitalize;
+	white-space: nowrap;
+}
+
+/* Row headers (the material name) are right-aligned next to their row. */
+.adaptive-matrix tbody th {
+	text-align: end;
+}
+
+.adaptive-matrix td {
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* Stacks multiple matrices (e.g. custom-button text + checkbox variants). */
+.adaptive-matrix-group {
+	display: flex;
+	flex-direction: column;
+	gap: var(--db-spacing-fixed-lg);
 }

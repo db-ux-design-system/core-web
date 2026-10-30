@@ -1,0 +1,11 @@
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-select,
+.db-select[data-adaptive-coloring="true"] {
+	@include form-components.field-materials(
+		select,
+		$revert-cursor: false,
+		$pressed: true
+	);
+	@include form-components.field-validity(select);
+}

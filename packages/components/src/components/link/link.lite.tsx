@@ -2,10 +2,12 @@ import {
 	Show,
 	useDefaultProps,
 	useMetadata,
-	useRef
+	useRef,
+	useStore
 } from '@builder.io/mitosis';
+import { ColorType, MaterialType } from '../../shared/model';
 import { cls, getBooleanAsString } from '../../utils';
-import { DBLinkProps } from './model';
+import { DBLinkProps, DBLinkState } from './model';
 
 useMetadata({});
 
@@ -14,8 +16,35 @@ useDefaultProps<DBLinkProps>({});
 export default function DBLink(props: DBLinkProps) {
 	const _ref = useRef<HTMLAnchorElement | any>(null);
 
+	const state = useStore<DBLinkState>({
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
+			if (props.variant === 'brand') {
+				return 'origin';
+			}
+
+			return undefined;
+		},
+		_getColor: (): ColorType | undefined => {
+			if (props.color) {
+				return props.color;
+			}
+
+			if (props.variant === 'brand') {
+				return 'brand';
+			}
+
+			return undefined;
+		}
+	});
+
 	return (
 		<a
+			data-material={state._getMaterial()}
+			data-adaptive-color={state._getColor()}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-link', props.className)}

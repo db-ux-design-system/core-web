@@ -7,6 +7,7 @@ import {
 	IconProps,
 	IconTrailingProps,
 	InitializedState,
+	MaterialProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
@@ -41,6 +42,7 @@ export type DBTabItemDefaultProps = {
 
 export type DBTabItemProps = DBTabItemDefaultProps &
 	Omit<GlobalProps, 'id' | 'propOverrides'> &
+	MaterialProps &
 	IconProps &
 	ShowIconProps &
 	IconTrailingProps &

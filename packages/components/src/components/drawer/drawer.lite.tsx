@@ -152,6 +152,8 @@ export default function DBDrawer(props: DBDrawerProps) {
 			id={props.id ?? props.propOverrides?.id ?? state._id}
 			ref={_ref}
 			class="db-drawer"
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			onCancel={(event: Event) => state.handleCancel(event)}
 			onClose={(event) => state.handleClose(event)}
 			// BEGIN: dialog ponyfill

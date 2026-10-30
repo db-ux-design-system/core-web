@@ -28,6 +28,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -64,6 +65,48 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getAltStateColor: () => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.altStateColor) {
+				return props.altStateColor;
+			}
+
+			return undefined;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -229,6 +272,10 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 	return (
 		<div
+			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
+			data-material={props.material ?? 'filled-1'}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-checkbox', props.className)}
 			data-size={props.size}
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}

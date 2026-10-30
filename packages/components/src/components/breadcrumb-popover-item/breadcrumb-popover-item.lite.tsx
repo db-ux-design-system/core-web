@@ -25,6 +25,8 @@ export default function DBBreadcrumbPopoverItem(
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-breadcrumb-popover-item', props.className)}>
 			<DBPopover
 				placement="bottom-start"
@@ -34,6 +36,7 @@ export default function DBBreadcrumbPopoverItem(
 						type="button"
 						class="db-button db-breadcrumb-popover-item-toggle"
 						data-variant="ghost"
+						data-material="transparent"
 						aria-label={props.label}
 						onClick={(event) => satisfyReact(event)}>
 						{/* Visible ellipsis as text (design); the accessible */}

@@ -95,6 +95,8 @@ export default function DBControlPanelDesktop(
 			ref={_ref}
 			class={cls('db-control-panel-desktop', props.className)}
 			id={state._id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			data-width={props.width}
 			data-orientation={props.orientation}
 			data-open={getBooleanAsString(state._open)}>
@@ -115,6 +117,7 @@ export default function DBControlPanelDesktop(
 					onClick={(event) => state.handleToggle(event)}
 					class="db-button"
 					data-variant="ghost"
+					data-material="transparent"
 					aria-controls={state._id}
 					aria-expanded={getBooleanAsString(state._open)}
 					data-no-text="true"

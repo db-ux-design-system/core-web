@@ -2,7 +2,8 @@ import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import '../../showcase-styles.css';
 import App from './App.vue';
-import './db-ux.css';
+// `db-ux*.css` is no longer imported statically here; `App.vue` swaps the active
+// stylesheet at runtime based on the `coloring` mode.
 import { getRoutes } from './utils/navigation-items';
 
 const routes = getRoutes();

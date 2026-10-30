@@ -13,7 +13,8 @@ export default function SectionDensity() {
 	return (
 		<Fragment>
 			<DBSection
-				class="db-color-informational db-bg-color-basic-level-2"
+				color="blue"
+				material="filled-2"
 				style={{
 					display: 'grid',
 					gap: 'var(--db-spacing-fixed-sm)',
@@ -21,44 +22,98 @@ export default function SectionDensity() {
 				}}
 				data-density="functional"
 				id="test-id-123">
-				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>Functional</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Functional
+				</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Functional
+				</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Functional
+				</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Functional
+				</DBCard>
 			</DBSection>
 			<DBSection
-				class="db-color-informational db-bg-color-basic-level-2"
+				color="blue"
+				material="filled-2"
 				style={{
 					display: 'grid',
 					gap: 'var(--db-spacing-fixed-sm)',
 					gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
 				}}
 				data-density="regular">
-				<DBCard style={{ inlineSize: '100%' }}>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
 					(Default) Regular
 				</DBCard>
 			</DBSection>
 			<DBSection
-				class="db-color-informational db-bg-color-basic-level-2"
+				color="blue"
+				material="filled-2"
 				style={{
 					display: 'grid',
 					gap: 'var(--db-spacing-fixed-sm)',
 					gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'
 				}}
 				data-density="expressive">
-				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
-				<DBCard style={{ inlineSize: '100%' }}>Expressive</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Expressive
+				</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Expressive
+				</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Expressive
+				</DBCard>
+				<DBCard
+					color="grey"
+					material="filled-1"
+					style={{ inlineSize: '100%' }}>
+					Expressive
+				</DBCard>
 			</DBSection>
 		</Fragment>
 	);

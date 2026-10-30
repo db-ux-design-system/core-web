@@ -19,9 +19,38 @@ $drawer-content-padding-inline: get-safe-area-horizontal-padding(
 $component-border: variables.$db-border-width-3xs solid
 	colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 
+// Structure-only (width + style) and color-only companions of
+// `$component-border`, so a base `.scss` can set the border geometry while the
+// matching `*.legacy-coloring.scss` applies only the border-color.
+$component-border-structure: variables.$db-border-width-3xs solid;
+$component-border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+
+// Per-side border structure as LONGHANDS (width + style), never the
+// `border-<side>` shorthand. A shorthand resets the omitted `border-<side>-color`
+// longhand to its initial value (`currentColor`), which overrides the
+// `border-color` the color layer sets and makes the border follow the text
+// color (e.g. near-white in dark mode). Emitting only the width/style longhands
+// leaves the color untouched so the legacy `*-colors` companion and the
+// adaptive `border-color` win. Pass logical sides, e.g.
+// `block-end`, `inline-end`, `inline`, `block-start`.
+@mixin component-border-structure($sides...) {
+	@each $side in $sides {
+		border-#{$side}-width: variables.$db-border-width-3xs;
+		border-#{$side}-style: solid;
+	}
+}
+
+// Border placeholders are split into a structure part (width + style, stays in
+// the base) and a `*-colors` color part (border-color, forwarded only into the
+// legacy bundle). The adaptive layer sets its own border-color, so the base
+// must not carry a legacy color.
 %default-adaptive-border {
-	border: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	border-width: variables.$db-border-width-3xs;
+	border-style: solid;
+}
+
+%default-adaptive-border-colors {
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 }
 
 %transparent-border {
@@ -29,19 +58,35 @@ $component-border: variables.$db-border-width-3xs solid
 }
 
 %component-border {
-	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
-	border: $component-border;
+	border-width: variables.$db-border-width-3xs;
+	border-style: solid;
+}
+
+%component-border-colors {
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
 }
 
 %form-component-border {
-	border: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-70-default;
+	border-width: variables.$db-border-width-3xs;
+	border-style: solid;
+}
+
+%form-component-border-colors {
+	border-color: colors.$db-adaptive-on-bg-basic-emphasis-70-default;
 }
 
 %default-interactive-component {
 	@extend %default-adaptive-border;
 
 	border-radius: variables.$db-border-radius-xs;
+}
+
+%default-interactive-component-colors {
+	@extend %default-adaptive-border-colors;
+}
+
+%default-card-colors {
+	@extend %component-border-colors;
 }
 
 %default-card {

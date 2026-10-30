@@ -1,4 +1,9 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps,
+	MaterialState
+} from '../../shared/model';
 
 export type DBFooterMetaDefaultProps = {
 	/**
@@ -9,7 +14,11 @@ export type DBFooterMetaDefaultProps = {
 	copyright?: string;
 };
 
-export type DBFooterMetaProps = DBFooterMetaDefaultProps & GlobalProps;
+export type DBFooterMetaProps = DBFooterMetaDefaultProps &
+	GlobalProps &
+	MaterialProps;
 
 export type DBFooterMetaDefaultState = {};
-export type DBFooterMetaState = DBFooterMetaDefaultState & GlobalState;
+export type DBFooterMetaState = DBFooterMetaDefaultState &
+	GlobalState &
+	MaterialState;

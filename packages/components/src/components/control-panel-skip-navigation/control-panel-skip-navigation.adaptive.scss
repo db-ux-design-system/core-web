@@ -1,0 +1,6 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-control-panel-skip-navigation,
+.db-control-panel-skip-navigation[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+}

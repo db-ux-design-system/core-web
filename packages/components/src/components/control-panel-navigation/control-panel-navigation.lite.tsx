@@ -732,6 +732,8 @@ export default function DBControlPanelNavigation(
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			data-variant={state._variant}
 			data-behavior={props.behavior}
 			data-show-tree-line={getBooleanAsString(
@@ -740,15 +742,17 @@ export default function DBControlPanelNavigation(
 			)}
 			class={cls('db-control-panel-navigation', props.className)}>
 			<Show when={state.showScrollLeft}>
-				<DBButton
-					class="overflow-scroll-left-button"
-					variant="filled"
-					icon="chevron_left"
-					type="button"
-					noText
-					onClick={() => state.scroll(true)}>
-					{props.scrollLeftText ?? DEFAULT_SCROLL_LEFT}
-				</DBButton>
+				<div class="overflow-scroll-left-button-container">
+					<DBButton
+						class="overflow-scroll-left-button"
+						variant="ghost"
+						icon="chevron_left"
+						type="button"
+						noText
+						onClick={() => state.scroll(true)}>
+						{props.scrollLeftText ?? DEFAULT_SCROLL_LEFT}
+					</DBButton>
+				</div>
 			</Show>
 			<menu
 				role={state._variant === 'tree' ? 'tree' : undefined}
@@ -758,15 +762,17 @@ export default function DBControlPanelNavigation(
 				{props.children}
 			</menu>
 			<Show when={state.showScrollRight}>
-				<DBButton
-					class="overflow-scroll-right-button"
-					variant="filled"
-					icon="chevron_right"
-					type="button"
-					noText
-					onClick={() => state.scroll()}>
-					{props.scrollRightText ?? DEFAULT_SCROLL_RIGHT}
-				</DBButton>
+				<div class="overflow-scroll-right-button-container">
+					<DBButton
+						class="overflow-scroll-right-button"
+						variant="ghost"
+						icon="chevron_right"
+						type="button"
+						noText
+						onClick={() => state.scroll()}>
+						{props.scrollRightText ?? DEFAULT_SCROLL_RIGHT}
+					</DBButton>
+				</div>
 			</Show>
 		</nav>
 	);

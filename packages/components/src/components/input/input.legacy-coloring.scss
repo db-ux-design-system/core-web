@@ -1,0 +1,30 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/form-components";
+
+/*
+ * Legacy color layer for `input`: the field surface, border, caret, icon and
+ * validity colors from `set-default-form-component`, plus the file-selector
+ * button colors. Forwarded only into the legacy bundle; the adaptive bundle
+ * colors the input via `input.adaptive.scss`.
+ */
+.db-input {
+	@include form-components.set-default-form-component-colors(input);
+
+	input {
+		&::file-selector-button {
+			@extend %default-interactive-component-colors;
+
+			color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+			&:hover,
+			&:focus {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+			}
+
+			&:active {
+				background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+			}
+		}
+	}
+}

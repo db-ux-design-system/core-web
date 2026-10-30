@@ -1,4 +1,8 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export type DBControlPanelSkipNavigationDefaultProps = {
 	/**
@@ -15,7 +19,7 @@ export type DBControlPanelSkipNavigationDefaultProps = {
 };
 
 export type DBControlPanelSkipNavigationProps =
-	DBControlPanelSkipNavigationDefaultProps & GlobalProps;
+	DBControlPanelSkipNavigationDefaultProps & GlobalProps & MaterialProps;
 
 export type DBControlPanelSkipNavigationDefaultState = {};
 

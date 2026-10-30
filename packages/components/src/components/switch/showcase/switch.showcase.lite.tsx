@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import SwitchAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import SwitchChecked from '../examples/checked.example.lite';
 import SwitchDensity from '../examples/density.example.lite';
 import SwitchDisabled from '../examples/disabled.example.lite';
@@ -84,6 +85,11 @@ export default function SwitchShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Interaction">
 				<CardWrapperShowcase>
 					<SwitchInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<SwitchAdaptiveMatrix />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

@@ -1,0 +1,20 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `tab-item`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ */
+.db-tab-item {
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+
+	&:not(:disabled):hover,
+	&:not(:disabled):focus {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
+	}
+
+	&:not(:disabled):active {
+		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
+	}
+}

@@ -1,0 +1,57 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/form-components";
+
+/*
+ * Legacy color layer for `checkbox`: the check-element label/box/border colors,
+ * hover/pressed states, validity colors and the checked-state inverted fill.
+ * Forwarded only into the legacy bundle; the adaptive bundle colors the
+ * checkbox via `checkbox.adaptive.scss`.
+ */
+.db-checkbox {
+	@include form-components.set-default-check-element-colors;
+
+	&:not(:has(input:disabled)) {
+		@include form-components.get-state;
+		@include form-components.get-state("active");
+	}
+
+	// jscpd:ignore-start
+	@include form-components.get-validity(check) {
+		&:has(.db-infotext[data-semantic="successful"]) {
+			@include form-components.get-validity-color-checkbox("valid");
+		}
+	}
+
+	@include form-components.get-validity(check, "invalid") {
+		@include form-components.get-validity-color-checkbox("invalid");
+	}
+
+	// jscpd:ignore-end
+
+	input {
+		&:checked {
+			--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+
+			// jscpd:ignore-start
+			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
+			--db-adaptive-bg-basic-transparent-full-default: var(
+				--db-adaptive-bg-inverted-contrast-max-default
+			);
+			--db-adaptive-bg-basic-transparent-full-hovered: var(
+				--db-adaptive-bg-inverted-contrast-max-hovered
+			);
+			--db-adaptive-bg-basic-transparent-full-pressed: var(
+				--db-adaptive-bg-inverted-contrast-max-pressed
+			);
+
+			// jscpd:ignore-end
+		}
+
+		@media (forced-colors: active) {
+			&:indeterminate,
+			&:checked {
+				--db-check-element-border-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+			}
+		}
+	}
+}

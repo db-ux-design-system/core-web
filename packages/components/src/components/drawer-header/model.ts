@@ -3,6 +3,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	InnerCloseButtonProps,
+	MaterialProps,
 	StartSlotProps,
 	TextProps
 } from '../../shared/model';
@@ -13,6 +14,7 @@ export type DBDrawerHeaderProps = DBDrawerHeaderDefaultProps &
 	InnerCloseButtonProps &
 	TextProps &
 	GlobalProps &
+	MaterialProps &
 	StartSlotProps &
 	EndSlotProps;
 

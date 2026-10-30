@@ -52,8 +52,101 @@ export type EndSlotProps = {
 // We just use id for now, maybe we extend this in the future to provide overrides for inner HTML Tags
 export type PropOverridesType = Pick<GlobalProps, 'id'>;
 
+export const ContrastList = ['max', 'min'] as const;
+export type ContrastType = (typeof ContrastList)[number];
+
+export const MaterialList = [
+	'filled-1',
+	'filled-2',
+	'filled-3',
+	'vibrant',
+	'origin',
+	'inverted',
+	'semi-transparent',
+	'transparent'
+] as const;
+export type MaterialType = (typeof MaterialList)[number];
+
+/**
+ * Materials that paint no surface of their own and therefore give text no
+ * guaranteed background to sit on. Excluded from the text-component matrix so
+ * plain text (e.g. link, infotext) is never rendered without accessible
+ * contrast.
+ */
+const NON_TEXT_SAFE_MATERIALS = ['origin', 'inverted'] as const;
+
+/**
+ * Material of a text-only component (e.g. link, infotext). Derived from
+ * `MaterialType` by excluding the surfaceless materials, so it stays in sync
+ * when `MaterialList` changes.
+ */
+export type TextMaterialType = Exclude<
+	MaterialType,
+	(typeof NON_TEXT_SAFE_MATERIALS)[number]
+>;
+
+/**
+ * Materials safe for text-only components. Derived from `MaterialList` (not a
+ * re-typed literal) so a change to the source list propagates automatically.
+ * Used by the adaptive color x material matrix examples.
+ */
+export const TextMaterialList = MaterialList.filter(
+	(material): material is TextMaterialType =>
+		!(NON_TEXT_SAFE_MATERIALS as readonly string[]).includes(material)
+);
+
+export const ColorList = [
+	'grey',
+	'red',
+	'brand',
+	'green',
+	'yellow',
+	'orange',
+	'burgundy',
+	'pink',
+	'violet',
+	'blue',
+	'cyan',
+	'turquoise'
+] as const;
+export type ColorType = (typeof ColorList)[number];
+
 export type GlobalState = {
 	_id?: string;
+};
+
+export type MaterialState = {
+	_getMaterial: () => MaterialType | undefined;
+};
+export type ColorState = {
+	_getColor: () => ColorType | undefined;
+};
+export type AltStateMaterialState = {
+	_getAltStateMaterial: () => MaterialType | undefined;
+};
+export type AltStateColorState = {
+	_getAltStateColor: () => ColorType | undefined;
+};
+/**
+ * Adaptive color/material for a form component's `<label>`. The "above" label
+ * is a standalone block pinned to `grey`/`filled-1`; the "floating" label
+ * takes the field's color/material (so it sits correctly on the field surface).
+ */
+export type LabelAdaptiveState = {
+	_getLabelColor: () => ColorType | undefined;
+	_getLabelMaterial: () => MaterialType | undefined;
+};
+export type AltStateMaterialProps = {
+	/**
+	 * The material of the alternative state (e.g. the checked state of a
+	 * checkbox, radio or switch).
+	 */
+	altStateMaterial?: MaterialType;
+	/**
+	 * The color of the alternative state (e.g. the checked state of a
+	 * checkbox, radio or switch).
+	 */
+	altStateColor?: ColorType;
 };
 
 export const SemanticList = [
@@ -306,11 +399,26 @@ export type ContentSlotProps = {
 
 export const SizeList = ['small', 'medium'] as const;
 export type SizeType = (typeof SizeList)[number];
+
 export type SizeProps = {
 	/**
 	 * The size attribute changes the font-size and other related sizes of the component.
 	 */
 	size?: SizeType;
+};
+
+/**
+ * Next-gen appearance props: the `material` and adaptive `color` that drive the
+ * generated role variables (`--db-bg-*`, `--db-on-bg-*`, `--db-border*`, ...).
+ *
+ * Use this on its own for components whose `size` is not the adaptive scale
+ * (e.g. the form fields `input`/`select`, whose `size` is the native numeric
+ * attribute). Components on the adaptive `size` scale use `AdaptiveDefaultProps`,
+ * which bundles `size` with these props.
+ */
+export type MaterialProps = {
+	material?: MaterialType;
+	color?: ColorType;
 };
 
 export const EmphasisList = ['weak', 'strong'] as const;

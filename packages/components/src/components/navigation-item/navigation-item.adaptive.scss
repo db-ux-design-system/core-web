@@ -1,0 +1,19 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-navigation-item,
+.db-navigation-item[data-adaptive-coloring="true"] {
+	// The item surfaces (link + expand button) are interactive containers:
+	// transparent at rest (via the `transparent` material) and tinting on
+	// hover/pressed.
+	a,
+	.db-navigation-item-expand-button:is(button),
+	.db-navigation-item-expand-button > button {
+		@extend %adaptive-coloring-interactive-container;
+	}
+
+	// The sub-navigation popover and the mobile back row are base surfaces.
+	.db-sub-navigation,
+	.db-mobile-navigation-back {
+		@extend %adaptive-coloring-container;
+	}
+}
