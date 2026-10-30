@@ -153,10 +153,7 @@ export default function CustomSelectInteraction() {
 				/>
 			</div>
 
-			{/* Test-only scenario for the interaction e2e spec: a named
-			 * multiple select without initial `values` inside a <form>, to
-			 * assert the submitted FormData and the form reset (#8465).
-			 * Excluded from story generation via data-sb-ignore. */}
+			{/* Test-only: FormData and form reset (#8465) */}
 			<form
 				style={{ width: '200px' }}
 				data-testid="native-form"

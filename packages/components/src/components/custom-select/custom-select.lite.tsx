@@ -248,9 +248,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			if (getBoolean(props.multiple, 'multiple')) {
-				// Assigning a string to `<select multiple>.value` selects at
-				// most one option, so every option has to be marked on its own
-				// for the form to submit the full selection.
+				// `select.value` selects only one option, so mark each one
 				for (const option of Array.from(
 					selectRef.options as HTMLOptionsCollection
 				)) {
@@ -259,9 +257,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					);
 				}
 			} else {
-				// Setting `option.selected = false` on a single select with
-				// display size 1 would let the browser select the first
-				// option again, so the single select is written via `value`.
+				// `option.selected = false` would reselect the first option here
 				selectRef.value = state.getNativeSelectValue();
 			}
 		},
@@ -907,9 +903,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state._values, selectRef, state._selectedLabels]);
 
-	// Sync the native select after every render: options can be (re)rendered
-	// after `values` was applied - e.g. both set via JS on the Web Component,
-	// where Stencil watchers run before render and reuse unkeyed <option>s.
+	// Options may render after `values` was applied (e.g. Stencil)
 	onUpdate(() => {
 		state.syncNativeSelect();
 	});
@@ -928,10 +922,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				() => {
 					const resetValue = initialValues
 						? initialValues
-						: // `reset` fires before the browser resets the
-							// controls, so the native select still holds the
-							// current selection here. A multiple select has no
-							// default selection, so it resets to empty.
+						: // `reset` fires before the controls are reset
 							getBoolean(props.multiple, 'multiple')
 							? []
 							: selectRef.value
@@ -1136,16 +1127,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										)
 									})}
 									disabled={option.disabled}
-									/* Angular only: component effects run before
-									   the template refresh, so options rendered
-									   after `values` (e.g. loaded via HTTP) are
-									   not reached by state.syncNativeSelect.
-									   Angular binds this as an attribute, so it
-									   must be `true` or `undefined` - `false`
-									   would still render `selected="false"`.
-									   Not used for other targets: Stencil reuses
-									   unkeyed options (the binding gets stuck)
-									   and React warns about `selected`. */
+									/* Angular effects run before render; attribute binding, so no `false` */
 									selected={useTarget({
 										angular:
 											getBoolean(

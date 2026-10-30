@@ -3,9 +3,7 @@ import { isStencil, runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
 
-// The component ignores selection changes within 200ms of the previous one
-// (internal-change debounce in handleOptionSelected), so consecutive picks
-// need to be spaced.
+// Spaces picks past the 200ms internal-change debounce
 const SELECTION_DEBOUNCE = 250;
 
 const checkOption = async (page: Page, select: Locator, value: string) => {
@@ -15,12 +13,7 @@ const checkOption = async (page: Page, select: Locator, value: string) => {
 	await page.waitForTimeout(SELECTION_DEBOUNCE);
 };
 
-/**
- * Reads what a form submit would serialize for the hidden native select.
- * Selects without a form/name are attached to a temporary form via the
- * `form` attribute, so the check runs from the consumer's perspective
- * (FormData) instead of inspecting `selectedOptions`.
- */
+// Reads the submitted FormData, using a temporary form if needed
 const getSubmittedValues = async (nativeSelect: Locator) =>
 	nativeSelect.evaluate((element: HTMLSelectElement) => {
 		const name = element.name || 'db-e2e-submitted';
@@ -415,8 +408,7 @@ test.describe('DBCustomSelect', () => {
 				element.reset();
 			});
 
-			// Without a selection the label is removed in favor of the
-			// placeholder, see the "values reset" test above.
+			// Empty selection renders the placeholder instead of the label
 			await expect(selectedLabel).toHaveCount(0);
 			await expect
 				.poll(async () =>
@@ -432,9 +424,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'should submit the values of options and values changed in the same render (#8465)',
 		path,
 		example: 'Controlled',
-		// New <option> elements are rendered after `values` changed - in
-		// Angular this is not covered by the effect-based sync (see the
-		// `selected` binding in custom-select.lite.tsx).
+		// New options render after `values` changed (Angular regression)
 		async run({ content }) {
 			const nativeSelect = content.locator('select');
 
@@ -452,15 +442,13 @@ test.describe('DBCustomSelect', () => {
 		title: 'should submit values set via JS before options are rendered (#8465)',
 		path,
 		example: 'Interaction',
-		// Reproduces the reported Web Components timing: `options` and
-		// `values` are assigned as properties in the same task.
+		// Repro from the issue: `options` and `values` set via JS together
 		skip: {
 			project: () => !isStencil(process.env.showcase)
 		},
 		async run({ content }) {
 			const select = content.getByTestId('tag-select');
-			// `data-testid` is forwarded to the inner element, so walk up to
-			// the custom element host that owns the `options`/`values` props.
+			// `data-testid` sits on the inner element, the props on the host
 			const host = select.locator(
 				'xpath=ancestor-or-self::db-custom-select'
 			);
