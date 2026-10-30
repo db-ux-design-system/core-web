@@ -24,7 +24,7 @@ const checkOption = async (page: Page, select: Locator, value: string) => {
 const getSubmittedValues = async (nativeSelect: Locator) =>
 	nativeSelect.evaluate((element: HTMLSelectElement) => {
 		const name = element.name || 'db-e2e-submitted';
-		let form = element.form;
+		let { form } = element;
 		let cleanup = () => {};
 
 		if (!form) {
@@ -363,14 +363,14 @@ test.describe('DBCustomSelect', () => {
 
 			// Preselected via `values`, without any user interaction.
 			await expect
-				.poll(() => getSubmittedValues(nativeSelect))
+				.poll(async () => getSubmittedValues(nativeSelect))
 				.toEqual(['Blue', 'Green']);
 
 			await select.locator('summary').click();
 			await select.locator('input[value="Red"]').check({ force: true });
 
 			await expect
-				.poll(() => getSubmittedValues(nativeSelect))
+				.poll(async () => getSubmittedValues(nativeSelect))
 				.toEqual(['Red', 'Blue', 'Green']);
 		}
 	});
@@ -419,7 +419,7 @@ test.describe('DBCustomSelect', () => {
 			// placeholder, see the "values reset" test above.
 			await expect(selectedLabel).toHaveCount(0);
 			await expect
-				.poll(() =>
+				.poll(async () =>
 					form.evaluate((element: HTMLFormElement) =>
 						new FormData(element).getAll('colors')
 					)
@@ -443,7 +443,7 @@ test.describe('DBCustomSelect', () => {
 				.click();
 
 			await expect
-				.poll(() => getSubmittedValues(nativeSelect))
+				.poll(async () => getSubmittedValues(nativeSelect))
 				.toEqual(['ch']);
 		}
 	});
@@ -482,7 +482,7 @@ test.describe('DBCustomSelect', () => {
 			);
 
 			await expect
-				.poll(() => getSubmittedValues(select.locator('select')))
+				.poll(async () => getSubmittedValues(select.locator('select')))
 				.toEqual(['red', 'green']);
 		}
 	});
