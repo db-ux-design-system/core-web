@@ -9,11 +9,7 @@
 @use "../../styles/internal/indicator";
 
 %control-panel-flat-icon-desktop {
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
+	@include screen-sizes.screen-desktop-min {
 		inline-size: fit-content;
 
 		@include helpers.divider("right", after);
@@ -107,12 +103,14 @@
 	}
 }
 
+// Mobile (scoped to the mobile side of the customizable breakpoint via
+// screen-sizes.screen-desktop-max; the desktop placeholder owns the other side
+// via screen-desktop-min). Gating is required, not just for mutual exclusion:
+// `--db-control-panel-flat-icon-mobile` is read by `hasCssFlag` in
+// control-panel-flat-icon.lite.tsx to force `data-density="regular"`, so an
+// unconditional flag would pin the density to regular on desktop too.
 %control-panel-flat-icon-mobile {
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
+	@include screen-sizes.screen-desktop-max {
 		--db-control-panel-flat-icon-mobile: 1;
 
 		@include helpers.divider("top");
@@ -210,6 +208,7 @@
 .db-control-panel-flat-icon {
 	@extend %control-panel-flat-icon-mobile;
 	@extend %control-panel-flat-icon-desktop;
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	grid-area: control-panel;
 

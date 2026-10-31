@@ -323,3 +323,17 @@ app-nav-item {
 .variants-list .db-loading-indicator[data-variant="bar"] {
 	max-inline-size: var(--db-sizing-3xl);
 }
+
+/* DBShell custom breakpoint demos (showcase-only): override the customizable
+   `--db-desktop-breakpoint` so the two example shells force a layout regardless
+   of the showcase viewport. A large value keeps the shell in its mobile layout
+   (the viewport never reaches it); a small value switches it to desktop almost
+   immediately. Set here rather than inline because a CSS custom-property key is
+   not valid in a React inline-style literal. */
+.db-shell[data-test-id="shell-custom-breakpoint-force-mobile"] {
+	--db-desktop-breakpoint: 2000px;
+}
+
+.db-shell[data-test-id="shell-custom-breakpoint-force-desktop"] {
+	--db-desktop-breakpoint: 400px;
+}

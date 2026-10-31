@@ -102,7 +102,13 @@ export const transformRoot = (
 	if (shouldRemoveAtProperty) {
 		root.walkAtRules('property', (atRule: AtRule) => {
 			const propName = atRule.params.trim();
-			if (!referencedVars.has(propName)) {
+			// Keep the registration when the variable is still referenced by a
+			// surviving var(), or when it is dynamic. A dynamic variable is
+			// deliberately left live (never inlined), so its registration must
+			// survive too - e.g. a registered `<length-percentage>` whose value
+			// is only ever read by a container style query, not by a var() in a
+			// declaration, and so never appears in referencedVars.
+			if (!referencedVars.has(propName) && !dynamicVars.has(propName)) {
 				atRule.remove();
 			}
 		});
