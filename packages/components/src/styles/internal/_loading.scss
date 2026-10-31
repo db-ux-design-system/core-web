@@ -4,6 +4,12 @@
 
 %hide-label-and-progress-text {
 	> .db-loading-indicator-content {
+		// "0px" (not a unitless 0): the gap is consumed inside the bar's
+		// `padding-block-start: calc(track-size + var(--db-indicator-gap))`,
+		// where a bare 0 is invalid and collapses the padding to 0, so an
+		// overlay bar would lose its vertical centering.
+		--db-indicator-gap: 0px;
+
 		/**
 		 * Keep the label in the accessibility tree so screen readers still
 		 * announce the loading state in overlay/button mode. Only the

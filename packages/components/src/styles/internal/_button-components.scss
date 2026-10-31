@@ -63,6 +63,20 @@
 		text-decoration: none;
 	}
 
+	// A loading indicator inside a button always takes the button's icon size,
+	// so swapping the icon for a spinner never resizes the button and no manual
+	// size="large" is needed. --db-icon-font-size is the exact value the
+	// button's own icon uses (24px for a default button, 20px for small via the
+	// data-size="small" font overwrite below), so the spinner tracks the icon
+	// automatically. This intentionally wins over both an explicit size on the
+	// indicator and the overlay spinner: inside a button the icon size always
+	// applies. Setting the spinner-size custom property (not the svg font) keeps
+	// it to one declaration and does not compete with %spinner's per-size `svg`
+	// font rules.
+	.db-loading-indicator {
+		--db-loading-indicator-spinner-inline-size: var(--db-icon-font-size);
+	}
+
 	// Square icon only buttons
 	&[data-no-text="true"] {
 		#{$selector} {
