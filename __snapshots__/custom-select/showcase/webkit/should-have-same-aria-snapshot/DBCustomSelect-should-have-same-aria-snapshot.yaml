@@ -1728,6 +1728,22 @@
             - checkbox "Green Color" [checked]
             - text: Green Color
   - status
+  - form "Form colors":
+    - text: Form colors
+    - group:
+      - article:
+        - group "Form colors":
+          - list:
+            - listitem:
+              - checkbox "Red"
+              - text: Red
+            - listitem:
+              - checkbox "Green"
+              - text: Green
+            - listitem:
+              - checkbox "Blue"
+              - text: Blue
+    - status
   - button "Set values"
   - button "Reset to null"
   - button "Reset to undefined"

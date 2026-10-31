@@ -135,9 +135,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
 		handleValidation: () => {
-			if (selectRef) {
-				selectRef.value = state.getNativeSelectValue();
-			}
+			state.syncNativeSelect();
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!selectRef?.validity.valid || props.validation === 'invalid') {
 				state.setDescById(state._invalidMessageId);
@@ -243,6 +241,25 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			}
 
 			return '';
+		},
+		syncNativeSelect: () => {
+			if (!selectRef) {
+				return;
+			}
+
+			if (getBoolean(props.multiple, 'multiple')) {
+				// `select.value` selects only one option, so mark each one
+				for (const option of Array.from(
+					selectRef.options as HTMLOptionsCollection
+				)) {
+					option.selected = Boolean(
+						state.getOptionChecked(option.value)
+					);
+				}
+			} else {
+				// `option.selected = false` would reselect the first option here
+				selectRef.value = state.getNativeSelectValue();
+			}
 		},
 		setDescById: (descId?: string) => {
 			const descByIds: string[] = [];
@@ -886,6 +903,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state._values, selectRef, state._selectedLabels]);
 
+	// Options may render after `values` was applied (e.g. Stencil)
+	onUpdate(() => {
+		state.syncNativeSelect();
+	});
+
 	onUpdate(() => {
 		if (selectRef) {
 			let controller = state.abortController;
@@ -900,9 +922,12 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 				() => {
 					const resetValue = initialValues
 						? initialValues
-						: selectRef.value
-							? [selectRef.value]
-							: [];
+						: // `reset` fires before the controls are reset
+							getBoolean(props.multiple, 'multiple')
+							? []
+							: selectRef.value
+								? [selectRef.value]
+								: [];
 					state.handleOptionSelected(resetValue);
 					state.handleValidation();
 				},
@@ -1102,6 +1127,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 										)
 									})}
 									disabled={option.disabled}
+									/* Angular effects run before render; attribute binding, so no `false` */
+									selected={useTarget({
+										angular:
+											getBoolean(
+												props.multiple,
+												'multiple'
+											) &&
+											state.getOptionChecked(option.value)
+												? true
+												: undefined,
+										default: undefined
+									})}
 									value={option.value}>
 									{state.getOptionLabel(option)}
 								</option>

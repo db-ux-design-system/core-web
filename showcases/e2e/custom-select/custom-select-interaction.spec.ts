@@ -1,7 +1,37 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { runInteractionTest, type SkipType } from '../default.ts';
+import { isStencil, runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
+
+// Spaces picks past the 200ms internal-change debounce
+const SELECTION_DEBOUNCE = 250;
+
+const checkOption = async (page: Page, select: Locator, value: string) => {
+	const input = select.locator(`input[value="${value}"]`);
+	await input.check({ force: true });
+	await expect(input).toBeChecked();
+	await page.waitForTimeout(SELECTION_DEBOUNCE);
+};
+
+// Reads the submitted FormData, using a temporary form if needed
+const getSubmittedValues = async (nativeSelect: Locator) =>
+	nativeSelect.evaluate((element: HTMLSelectElement) => {
+		if (element.form) {
+			return new FormData(element.form).getAll(element.name);
+		}
+
+		const name = 'db-e2e-submitted';
+		const form = document.createElement('form');
+		form.id = 'db-e2e-submitted-form';
+		document.body.append(form);
+		element.setAttribute('form', form.id);
+		element.setAttribute('name', name);
+		const values = new FormData(form).getAll(name);
+		element.removeAttribute('form');
+		element.removeAttribute('name');
+		form.remove();
+		return values;
+	});
 
 // Keyboard navigation (ArrowUp/Down, Enter, Space) is a desktop affordance.
 // Playwright's WebKit mobile emulation (`mobile_safari`, a touch device) does
@@ -296,6 +326,135 @@ test.describe('DBCustomSelect', () => {
 			await expect(
 				removeButtons.last().locator('.db-tooltip')
 			).toContainText('Remove Green Color');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit every selected value of a multiple select (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const nativeSelect = select.locator('select');
+
+			// Preselected via `values`, without any user interaction.
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['Blue', 'Green']);
+
+			await select.locator('summary').click();
+			await select.locator('input[value="Red"]').check({ force: true });
+
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['Red', 'Blue', 'Green']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit every selected value from a named multiple select inside a form (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const form = content.getByTestId('native-form');
+			const select = content.getByTestId('native-form-select');
+			const getFormValues = async () =>
+				form.evaluate((element: HTMLFormElement) =>
+					new FormData(element).getAll('colors')
+				);
+
+			await expect.poll(getFormValues).toEqual([]);
+
+			await select.locator('summary').click();
+			await checkOption(page, select, 'red');
+			await checkOption(page, select, 'blue');
+
+			await expect.poll(getFormValues).toEqual(['red', 'blue']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should clear a multiple select without initial values on form reset (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const form = content.getByTestId('native-form');
+			const select = content.getByTestId('native-form-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
+
+			await select.locator('summary').click();
+			await checkOption(page, select, 'red');
+			await checkOption(page, select, 'green');
+			await expect(selectedLabel).toContainText('Red, Green');
+
+			await form.evaluate((element: HTMLFormElement) => {
+				element.reset();
+			});
+
+			// Empty selection renders the placeholder instead of the label
+			await expect(selectedLabel).toHaveCount(0);
+			await expect
+				.poll(async () =>
+					form.evaluate((element: HTMLFormElement) =>
+						new FormData(element).getAll('colors')
+					)
+				)
+				.toEqual([]);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit the values of options and values changed in the same render (#8465)',
+		path,
+		example: 'Controlled',
+		// New options render after `values` changed (Angular regression)
+		async run({ content }) {
+			const nativeSelect = content.locator('select');
+
+			await content
+				.getByRole('button', { name: 'Load other options' })
+				.click();
+
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['ch']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit values set via JS before options are rendered (#8465)',
+		path,
+		example: 'Interaction',
+		// Repro from the issue: `options` and `values` set via JS together
+		skip: {
+			project: () => !isStencil(process.env.showcase)
+		},
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			// `data-testid` sits on the inner element, the props on the host
+			const host = select.locator(
+				'xpath=ancestor-or-self::db-custom-select'
+			);
+
+			await host.evaluate(
+				(
+					element: HTMLElement & {
+						options: Array<{ value: string; label: string }>;
+						values: string[];
+					}
+				) => {
+					element.options = [
+						{ value: 'red', label: 'Red' },
+						{ value: 'green', label: 'Green' },
+						{ value: 'blue', label: 'Blue' }
+					];
+					element.values = ['red', 'green'];
+				}
+			);
+
+			await expect
+				.poll(async () => getSubmittedValues(select.locator('select')))
+				.toEqual(['red', 'green']);
 		}
 	});
 
