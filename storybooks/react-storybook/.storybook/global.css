@@ -26,3 +26,9 @@
 #storybook-root:has(.db-shell) {
 	padding: 0 !important;
 }
+
+/* Single story view (also used for embeds): follow the selected mode. */
+.sb-show-main {
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+}
