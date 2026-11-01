@@ -15,6 +15,7 @@ These are the features that we use or plan to integrate, which are stable in the
 | [Popover](https://caniuse.com/mdn-api_htmlelement_popover) (planned)                                                                            | 114 (30.05.2023) | 125 (16.04.2024) | 17 (26.09.2023)   |
 | [`requestClose()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/requestClose#browser_compatibility)                       | 134 (04.03.2025) | 139 (27.05.2025) | 18.4 (31.03.2025) |
 | [`:open` CSS pseudo class](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:open#browser_compatibility)                    | 133 (04.02.2025) | 136 (04.03.2025) | 26.5 (11.05.2026) |
+| [CSS scroll-driven animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations)                    | 115 (18.07.2023) | 159 (27.10.2026) | 26 (15.09.2025) |
 
 Popover is loosely depending on Anchor Positioning.
 
