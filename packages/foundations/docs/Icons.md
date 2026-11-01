@@ -102,7 +102,7 @@ From the embedding page you supply those values with the [`link-parameters` CSS 
 
 ```css
 .icon {
-	/* Pass --db-icon-color into the referenced SVG, falling back to the host's currentColor */
+	/* Pass --db-icon-color CSS Custom Property as a value into the referenced SVG, falling back to the host's currentColor */
 	link-parameters: param(
 		--db-icon-color <color>,
 		var(--db-icon-color, currentColor)
@@ -110,7 +110,7 @@ From the embedding page you supply those values with the [`link-parameters` CSS 
 }
 ```
 
-This gives isolated SVG icons (`<img>`, `background-image`, `<object>`) the same color customization that `--db-icon-color` already provides for the icon fonts, for inline SVGs, and for `<use href>` references.
+This gives isolated SVG icons (`<img>`, `background-image`, `<object>`) the same color customization that CSS Custom Properties like `--db-icon-color` already provides for the icon fonts, for inline SVGs, and for `<use href>` references.
 
 > **Progressive enhancement:** `link-parameters` is a newer web feature that is not yet available in all evergreen browsers (see [Browser Support](../browser-support)). Because the `env()` declarations in the SVG files always carry a fallback value, icons stay correctly colored in browsers without support — the custom color is simply applied once the feature is available.
 
