@@ -6,7 +6,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 > **Naming convention:** In human-readable prose and naming, spell out the design-system generation as **"DB UX Design System – Generation 3"** (the current generation) and **"DB UX Design System – Generation 2"** (the previous one, formerly "DB UI"). Do not use the shorthand "v2" / "v3" / "version 2" / "version 3" in prose. On the **first** mention of Generation 2 in a document, add the clarifier **"(aka DB UI)"** once so readers who know the product as "DB UI" recognize the rename; keep later mentions short.
 >
-> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version pins (e.g. `# v3.2.0`). Rewriting those breaks links and tooling.
+> The `v2` / `v3` tokens must be kept unchanged only where they are **not ours to rename**: external URLs, slugs, badge link URLs, semver migration-guide filenames (e.g. `v2.x.x-to-v3.0.0.md`), and third-party Action version references (the tag in `uses: actions/checkout@v3.2.0`, or a `# v3.2.0` comment on a legacy SHA pin). Rewriting those breaks links and tooling.
 
 ## Working Effectively
 
@@ -14,6 +14,7 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
 
 - **Node.js 26**: Check `.nvmrc` file. Use `node --version` to verify current version.
 - **pnpm**: Package manager for dependency management and build scripts.
+- **GitHub CLI with the `gh actions-lock` extension** (only needed when changing files in `.github/workflows/` or `.github/actions/`): regenerates the Actions lockfile in the pre-commit hook. Install it with `gh extension install github/gh-actions-lock --pin v0.2.0`. Without it, the hook skips with a warning and CI fixes a stale lockfile.
 
 ### Bootstrap and Setup
 
@@ -133,11 +134,27 @@ So the only thing that narrows the list is **which targets a file feeds**, never
 
 Use the following bump types for changeset entries:
 
-- **`patch`** — for bug fixes
-- **`minor`** — for new features (e.g. a property in any `model.ts` has been added)
+- **`patch`** — for bug fixes that leave the rendered HTML structure intact (see the markup-change rule below — a fix that restructures a component's HTML is `minor`, not `patch`)
+- **`minor`** — for new features (e.g. a property in any `model.ts` has been added) or a change to a component's rendered HTML that consumers can observe
 - **`major`** — for breaking changes (e.g. a property in any `model.ts` has been removed, renamed, or its type has changed)
 
 **Internal state properties are not breaking changes.** Removing or renaming optional state properties prefixed with `_` (e.g. `_closeTimeoutId?`) from `*DefaultState` types is NOT major. These are internal implementation details — the `_` prefix signals private use, and optional properties cannot cause type errors when removed.
+
+**Changing the inner HTML or JS of a `.lite.tsx` component is not a breaking change, but a visible markup change is at least `minor`.**
+The contract we version is the public API of the generated framework and web-component packages — component props (`model.ts`), events, and the custom-element tags/attributes. The internal DOM structure and logic of a component are implementation details in the sense that they do **not** warrant a `major` bump on their own — restructuring the markup, moving elements around, or rewriting internal logic never breaks that versioned contract. But the rendered HTML _is_ observable by consumers: CSS-only consumers style it, and consumers who copied the markup from the Patternhub examples or a Storybook "view code" output depend on its structure. So bump as follows:
+
+- **`major`** only when the public API itself changes — a prop/event removed, renamed, or retyped in `model.ts`, or a changed custom-element tag/attribute — regardless of how small the template change looks.
+- **`minor`** when the change alters the rendered HTML a consumer can observe (elements, classes, attributes, or their nesting moved), **or** when a prop is added. A markup restructure is `minor` even when it is motivated by a bug fix, because a CSS-only consumer can still be broken by the moved structure.
+- **`patch`** only for a fix that leaves the rendered HTML structure intact (logic-only change, or a style/value fix).
+
+**When a change modifies the rendered HTML of a component, summarize the markup changes in a separated changeset for `@db-ux/core-components` node package** so CSS-only consumers and anyone who copied the markup from the Patternhub examples or a Storybook "view code" output know what moved — even when the bump itself is only `patch` or `minor`. Keep the summary focused on the elements, classes, and attributes that actually changed.
+
+**Write any further information after the initial one-liner summary as a flat bullet list, never a Markdown table or multi-paragraph prose.** The custom changelog formatter (`scripts/github/changesets/create-changelog.js`) turns the changeset body into list items: the first line becomes the top-level entry, and **every** subsequent non-empty line becomes its own sub-item at one level of nesting (rendered as four spaces by prettier). A table's rows and its `| --- |` separator each become a separate broken bullet, and a hard-wrapped paragraph is split into one sub-item per source line. So:
+
+- Keep the first line as the conventional-commit summary (`type(scope): description`).
+- Put each distinct point on a **single, non-wrapped line**. Both plain-prose lines and a Markdown bullet list (lines starting with `-` / `*` / `+`) are accepted and render identically as four-space list sub-items — the formatter strips any leading marker, so you never get the deeper eight-space code-style indentation. Prefer the bullet-list form; it is the most readable in the raw changeset. Phrase a "before -> after" change inline per bullet (e.g. "the clear button is now `<button class="db-custom-select-clear">` (previously positioned over the field)") instead of in table columns.
+- **Never hard-wrap a single point across multiple lines.** The formatter cannot tell a wrapped sentence from two separate points, so each physical line becomes its own sub-item. Keep one point on one line, however long — let your editor soft-wrap it.
+- Verify the rendered result with `pnpm run ci:version`, inspect the generated `CHANGELOG.md`, then revert the version bump (`git checkout -- .` / restore the consumed changeset) before committing.
 
 ### How to Add a Changeset
 
@@ -353,6 +370,14 @@ Every fenced code block (` ``` `) **must** specify a language identifier (MD040)
 
 Always prioritise native HTML/CSS over JavaScript. Use JavaScript only as a polyfill for features or parts of features that are not yet supported, or for bugs related to these features, based on the project's [Browserslist](.browserslistrc). Remove it once support lands. If a native HTML/CSS feature could replace existing JavaScript logic, but lacks full browser support, suggest this to the developer and ask whether they want to adopt it as a progressive enhancement (with no JavaScript fallback) or implement a temporary polyfill. See [Shift-left: HTML → CSS → JS documentation](docs/shift-left-web-development.md) for the full rationale and examples.
 
+### HTML is for structure, not styling
+
+Markup must describe the **structure and semantics** of the content, never its appearance. Do not add inline `style` attributes, presentational utility classes (values whose name describes a visual effect, e.g. `mt-4`, `text-red`, `flex-center`), or elements and wrappers whose only purpose is to achieve a visual effect; handle styling in CSS instead. Choose elements for their meaning (e.g. a heading because it _is_ a heading, not because it renders large and bold), and reach for CSS (layout, spacing, pseudo-elements, pseudo-classes, etc.) rather than extra `<div>`/`<span>` wrappers or presentational markup. This keeps the DOM semantic, accessible, maintainable and themeable.
+
+A stable, semantic class used as a **stylesheet hook** is allowed and often required; e.g. `button.lite.tsx` carries `db-button` so `button.scss` can select it. The test is the name: a selector that targets what the element _is_ or its state (the `db-button` hook, `button[data-variant="brand"]`, `.db-input input:user-invalid`) is fine; a class that names how it should _look_ is not. Prefer such a hook over a brittle structural selector.
+
+This rule carries extra weight for the Mitosis components in `packages/components`: a component's `.lite.tsx` template is compiled to the HTML every consumer copies, and a purely presentational wrapper also has to survive four framework outputs and the `display: contents` custom-element hosts, where an unnecessary wrapper misbehaves. Reach for the component's `.scss` (`:has()`, pseudo-elements, etc.) instead.
+
 ### No literal non-ASCII characters in SCSS
 
 Sass emits `@charset "UTF-8"` whenever it encounters **any** non-ASCII byte in a `.scss` file — this includes comments, not just property values. Characters like `→`, `•`, ` `, or `–` anywhere in the file (even inside `//` or `/* */` comments) trigger the charset marker, which causes downstream BOM-conversion issues.
@@ -410,7 +435,11 @@ pnpm exec tsx scripts/my-script.ts
 ### GitHub Actions / Pipelines
 
 - Use `!cancelled()` instead of `always()` for controlling the step execution in GitHub Actions. This ensures that steps are skipped if the workflow run has been cancelled, preventing unnecessary execution and resource usage.
-- **Pin all third-party Actions to full commit SHAs** (not tags) for supply-chain security. Dependabot manages updates. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Pin third-party Actions via the lockfile, not inline SHAs.** Onboarded workflows reference Actions by **tag** (e.g. `actions/checkout@v7.0.1`); the commit each tag resolves to is recorded in [`.github/workflows/actions.lock`](.github/workflows/actions.lock) and enforced at job start, so a moved tag cannot change what runs.
+    - After adding, changing, or removing an Action reference, regenerate the lockfile with `gh actions-lock` and commit it alongside the workflow change. The self-healing validation step verifies (and, if stale, regenerates) it in CI.
+    - Do **not** rewrite existing tag references to inline SHAs — the lockfile already provides the immutability guarantee, so doing so only causes churn against it. Pre-existing inline SHA pins may stay as they are.
+    - Dependabot keeps both the tags and their lockfile entries up to date. See `docs/dependency-update-strategy.md` for the full rationale.
+- **Reference our own actions and reusable workflows with the self-repository `$/` syntax** (e.g. `uses: $/.github/actions/pnpm-cache`, `uses: $/.github/workflows/00-init.yml`), which is GitHubs new recommended way of how to reference same repository actions from workflows.
 
 ## Additional Resources
 

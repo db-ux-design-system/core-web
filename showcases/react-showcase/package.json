@@ -31,13 +31,13 @@
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
     "@db-ux/core-foundations": "workspace:*",
-    "@db-ux/db-theme": "7.0.0",
-    "@db-ux/db-theme-fonts": "2.1.0",
-    "@db-ux/db-theme-icons": "4.3.0",
-    "next": "16.4.2",
+    "@db-ux/db-theme": "7.2.0",
+    "@db-ux/db-theme-fonts": "2.2.0",
+    "@db-ux/db-theme-icons": "4.4.0",
+    "next": "16.4.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "react-router-dom": "7.18.4"
+    "react-router-dom": "7.18.5"
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
@@ -48,6 +48,6 @@
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.3.4"
+    "vite": "8.3.5"
   }
 }

@@ -321,6 +321,17 @@ describe('text-or-children-required', () => {
 				]
 			},
 			{
+				// `text={false}` renders no text in React (it renders neither
+				// `false` nor `true`), so the header has no accessible name.
+				code: '<DBDialogHeader text={false} />',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'DBDialogHeader' }
+					}
+				]
+			},
+			{
 				// A bare valueless `children` attribute renders no content.
 				code: '<DBDrawerHeader children />',
 				errors: [
@@ -558,6 +569,10 @@ describe('text-or-children-required', () => {
 			},
 			{
 				code: '<db-drawer-header>@for (item of items; track item) { <h2>{{ item }}</h2> }</db-drawer-header>'
+			},
+			// @switch content under `groups[].children` (@angular/compiler 21.1+).
+			{
+				code: "<db-dialog-header>@switch (kind) { @case ('a') { <h2>Title</h2> } }</db-dialog-header>"
 			}
 		],
 		invalid: [
@@ -600,6 +615,18 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'db-drawer-header' }
+					}
+				]
+			},
+			{
+				// `[text]="undefined"` binds the statically known empty value, so
+				// the header renders no accessible name and is reported (unlike a
+				// dynamic `[text]="title"`, which is allowed).
+				code: '<db-dialog-header [text]="undefined"></db-dialog-header>',
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
 					}
 				]
 			},
@@ -846,6 +873,83 @@ describe('text-or-children-required', () => {
 					{
 						messageId: 'missingContent',
 						data: { component: 'DBDialogHeader' }
+					}
+				]
+			}
+		]
+	});
+});
+
+// Simulates the @switch AST of @angular/compiler <= 21.0 (`cases[].children`).
+const toLegacySwitchShape = (node: any, seen = new Set<any>()): void => {
+	if (!node || typeof node !== 'object' || seen.has(node)) {
+		return;
+	}
+	seen.add(node);
+	if (node.type === 'SwitchBlock' && Array.isArray(node.groups)) {
+		node.cases = node.groups.flatMap((group: any) =>
+			group.cases.map((switchCase: any, index: number) =>
+				Object.assign(switchCase, {
+					children:
+						index === group.cases.length - 1 ? group.children : []
+				})
+			)
+		);
+		delete node.groups;
+	}
+	for (const [key, value] of Object.entries(node)) {
+		if (key === 'parent') {
+			continue;
+		}
+		if (Array.isArray(value)) {
+			for (const child of value) {
+				toLegacySwitchShape(child, seen);
+			}
+		} else {
+			toLegacySwitchShape(value, seen);
+		}
+	}
+};
+
+const legacySwitchParser = {
+	...angularTemplateParser,
+	parseForESLint(code: string, options: any) {
+		const result = angularTemplateParser.parseForESLint(code, options);
+		toLegacySwitchShape(result.ast);
+		return result;
+	}
+};
+
+describe('text-or-children-required (legacy @switch AST)', () => {
+	it('rewrites @switch into the legacy cases[].children shape', () => {
+		const { ast } = legacySwitchParser.parseForESLint(
+			"<db-dialog-header>@switch (kind) { @case ('a') { <h2>Title</h2> } }</db-dialog-header>",
+			{ filePath: 'legacy-switch.html' }
+		) as any;
+		const switchBlock = ast.templateNodes[0].children[0];
+		expect(switchBlock.type).toBe('SwitchBlock');
+		expect(switchBlock.groups).toBeUndefined();
+		expect(switchBlock.cases[0].children.length).toBeGreaterThan(0);
+	});
+
+	new AngularRuleTester({
+		languageOptions: { parser: legacySwitchParser }
+	}).run('text-or-children-required (legacy @switch AST)', rule, {
+		valid: [
+			{
+				code: "<db-dialog-header>@switch (kind) { @case ('a') { <h2>Title</h2> } }</db-dialog-header>"
+			},
+			{
+				code: "<db-dialog-header>@switch (kind) { @case ('a') { } @default { <h2>Title</h2> } }</db-dialog-header>"
+			}
+		],
+		invalid: [
+			{
+				code: "<db-dialog-header>@switch (kind) { @case ('a') { } }</db-dialog-header>",
+				errors: [
+					{
+						messageId: 'missingContent',
+						data: { component: 'db-dialog-header' }
 					}
 				]
 			}

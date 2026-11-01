@@ -1,5 +1,76 @@
 # @db-ux/react-core-components
 
+## 6.2.0
+
+### Minor Changes
+
+- feat(DBButton): forward native form submission attributes - [see commit 4e0662c](https://github.com/db-ux-design-system/core-web/commit/4e0662cee7bfe8bfef728fc2d6584032867dc1e5):
+
+    - Adds the native `<button>` form-submission attributes (`formAction`, `formEncType`, `formMethod`, `formNoValidate`, `formTarget`) as properties on `DBButton` and renders them on the inner `<button>`, so a submit button can override its owning `<form>` (most notably `formMethod="dialog"` to close a `<dialog>`). Previously these never reached the native button for the Angular and Web Component outputs, so `<db-button formmethod="dialog">` silently submitted the form normally. Each attribute accepts both the camelCase React DOM spelling and the native lowercase spelling.
+
+- feat(DBControlPanelMobile): expose the drawer header for customization - [see commit b8ec490](https://github.com/db-ux-design-system/core-web/commit/b8ec490fa423889b4140c76ccbf4968a11833946):
+
+    - add `closeButtonText` and `closeButtonId` properties, forwarded to the internal drawer header, so the close button tooltip is configurable (i18n)
+    - add a `header` slot that replaces the internal drawer header when `showDrawerHeaderSlot` is set, so action elements or a subtitle can be placed next to the close button (the consumer then provides the close button, e.g. via `DBDrawerHeader`)
+    - when `showDrawerHeaderSlot` is not set, the internal drawer header is rendered as before, so existing usage is unchanged
+
+- feat(DBHeader): add `header` slot to replace the internal drawer header - [see commit b8ec490](https://github.com/db-ux-design-system/core-web/commit/b8ec490fa423889b4140c76ccbf4968a11833946):
+
+    - the `header` slot replaces the internal drawer header when `showDrawerHeaderSlot` is set, so action elements or a subtitle can be placed next to the close button (the consumer then provides the close button, e.g. via `DBDrawerHeader`, and `closeButtonId` / `closeButtonText` have no effect)
+    - when `showDrawerHeaderSlot` is not set, the internal drawer header is rendered as before, so existing usage is unchanged
+    - note: `@db-ux/wc-core-components` strips the internal `db-drawer` from `db-header` (the mobile drawer is handled by `db-shell`), so the `header` slot has no effect there; use `db-control-panel-mobile` for the web-component mobile drawer header
+
+### Patch Changes
+
+- fix(DBSelect): hide placeholder overlay while the dropdown is open - [see commit 35e4713](https://github.com/db-ux-design-system/core-web/commit/35e47134cfc763285735f54f11b5bfb1878f1b9b)
+
+## 6.1.1
+
+### Patch Changes
+
+- fix(DBControlPanel): reveal drilldown sub-navigation on the web component output - [see commit 841ce66](https://github.com/db-ux-design-system/core-web/commit/841ce669f0e2f1892b6e0c7b9b66db921d601673):
+
+    - The previous-level slide-out transform was applied to the whole navigation item group element on the host-wrapped (web component) output, turning it into the open overlay's containing block and dragging the sub-navigation off-screen (sub-items collapsed to zero height).
+    - The slide-out now always targets the group's expand button, never the group element that wraps the overlay, so the drilldown overlay stays anchored to the scroll container across all framework outputs.
+
+- fix(DBLoadingIndicator): keep `NodeJS.Timeout` out of the published typings - [see commit 0fb5c8d](https://github.com/db-ux-design-system/core-web/commit/0fb5c8d69db433a9dd6adfdf39994d99633b744a):
+
+    - Type the internal `_timeoutId` state field as `number` instead of `ReturnType<typeof setTimeout>`, which resolved to the Node-only `NodeJS.Timeout` during the Angular output compile and leaked an non-declarable `NodeJS` namespace into `@db-ux/ngx-core-components` typings.
+    - Browser-only Angular apps can now import the package without `@types/node` or `skipLibCheck`.
+
+- fix(DBTabs): wire up and select tabs added at runtime - [see commit b29e435](https://github.com/db-ux-design-system/core-web/commit/b29e435947b736fb108b4ffb77adcfbd9f653591)
+
+## 6.1.0
+
+### Minor Changes
+
+- fix(DBCustomSelect): remove nested-interactive violation for removable tags - [see commit 57cd3f1](https://github.com/db-ux-design-system/core-web/commit/57cd3f1ef22fd0553bdfaf194a95bcfe0e35142b):
+
+    - The removable tags in `selectedType="tag"` mode no longer render inside the interactive `<summary>`, resolving the `nested-interactive` accessibility violation (WCAG 4.1.2). The public API (props, events, custom-element tags) is unchanged — only the rendered HTML structure moved, so CSS-only consumers who copied the markup should update it:
+        - the field box is now a wrapping `<div class="db-custom-select-form-field">` around the `<details>` (previously the `<summary>` carried that class)
+        - the toggle is an empty `<summary class="db-custom-select-summary">`, with the selection rendered beside it instead of inside it
+        - selected labels now render in `<span class="db-custom-select-label">`
+        - tags now render in `<div class="db-custom-select-tags">`
+        - the clear button is now `<button class="db-custom-select-clear">` as a flex item inside the field (previously positioned over it)
+
+- feat(DBHeading): allow theme-overridable `fontWeight` values via `OverwriteHeadingFontWeights` - [see commit fe0dbd6](https://github.com/db-ux-design-system/core-web/commit/fe0dbd6b43a51c13b201d6ab362aa47678fda133)
+- fix(foundations): resolve assets in `relative.css` from the package root - [see commit 1ef7e4a](https://github.com/db-ux-design-system/core-web/commit/1ef7e4a5bce0ffadbe56c186bc561cf69aaa8b41):
+
+    - The default asset path in `theme/relative.css`, `fonts/relative.css` and `icons/relative.css` changes from `../../assets/` to `../../../assets/`. The CSS now finds fonts and icon fonts directly in the package, e.g. when loaded from a CDN.
+    - **Action required** if you copy `build/styles/` and `assets/` side by side into your `public` folder: keep the package structure (`build/styles/` next to `assets/`) or override `$icons-path`, `$fonts-path` and `$images-path`.
+
+## 6.0.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): synchronize values autofilled into the native select - [see commit 6e43646](https://github.com/db-ux-design-system/core-web/commit/6e43646f7d369e91b56162a471ce67d3a8bc4ecf):
+
+    - Browser autofill and password managers write to the hidden backing `<select>` that carries the advertised `autocomplete`. Its `change` handler previously only stopped propagation, so the visible summary, the option states and `onOptionSelected` stayed stale while the submitted form value had already changed - and the next validation run silently overwrote the autofilled value again. The handler now mirrors the native selection back into the component state.
+
+- fix(DBHeader): always report the closed state when the drawer closes - [see commit 4f63880](https://github.com/db-ux-design-system/core-web/commit/4f638806a2955dd95c28690af2cc0da1a8f0bcbe):
+
+    - The drawer's close event was routed through the toggle handler, which derives its value by inverting `drawerOpen`. When the drawer was closed via the state (a navigation item click, or a consumer calling `setDrawerOpen(false)`), the dialog closed only after `drawerOpen` was already `false`, so the inverted value reported "open" and reopened the drawer immediately. `onToggle` now always receives `false` on close.
+
 ## 6.0.0
 
 ### Major Changes
@@ -31,9 +102,9 @@
 
 - refactor: remove roundness not controlled by `db-border-radius` variables in preparation for the new DB Theme - [see commit af0901e](https://github.com/db-ux-design-system/core-web/commit/af0901e2d01449b01210bc468e1296d721bc3b0e):
 
-        - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
-        - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
-        - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
+    - `DBTooltip`: drop the hardcoded `border-radius` on the tooltip arrow
+    - `DBLoadingIndicator`: remove the rounded line caps (`stroke-linecap: round`) from the circular segment; the segment length is now driven by the true circumference so it still works with a percentage and shows a fixed 25% arc while indeterminate. **Visible change:** the indeterminate arc is now a fixed 25% for both orientations. The horizontal spinner is roughly unchanged, but the vertical spinner's arc grows from about 19% to 25% because the removed round line caps no longer add visual length to the segment.
+    - `DBDrawer`: deprecate the `rounded` property (`@deprecated`) and stop setting it internally in `DBHeader` and `DBControlPanelMobile`; the property still works for now. **Visible change:** the `DBHeader` and `DBControlPanelMobile` drawers lose their rounded corners (they no longer pass `rounded` to the drawer). Their corner radius is now governed by the `db-border-radius` tokens from the DB Theme instead of this hardcoded opt-in.
 
 - feat(DBParagraph): add beta Paragraph and TextGroup components - [see commit 600aa2d](https://github.com/db-ux-design-system/core-web/commit/600aa2dc2706f964a0f368bca2286e4f2811ed0f):
 
