@@ -16,13 +16,15 @@
 	}
 }
 
+// MOBILE (scoped to the mobile side of the customizable breakpoint via
+// screen-sizes.screen-desktop-max; shell-desktop.scss owns the desktop side via
+// screen-desktop-min). The two queries are mutually exclusive, so neither
+// branch relies on source order or specificity to beat the other - several
+// mobile selectors below (`:has()`, multi-attribute) are more specific than the
+// desktop `[data-control-panel-desktop-position]` rules and would otherwise win
+// above the breakpoint once the desktop query matched.
 .db-shell {
-	// MOBILE
-	@include screen-sizes.screen-min-max(
-		(
-			max: "sm"
-		)
-	) {
+	@include screen-sizes.screen-desktop-max {
 		&:not(
 			:has(#{string.unquote(custom-elements.$control-panel-flat-icon)})
 		) {

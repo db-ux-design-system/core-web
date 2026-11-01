@@ -36,6 +36,8 @@
 }
 
 .db-breadcrumb {
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
+
 	align-items: center;
 	list-style: none;
 	gap: variables.$db-spacing-fixed-3xs;
@@ -95,7 +97,7 @@
 	// Auto-collapse only from the "sm" breakpoint up. On mobile the trail
 	// shows only the last two crumbs instead (see below), so the first+last
 	// collapse layout must not apply there.
-	@include screen-sizes.screen("sm", "min") {
+	@include screen-sizes.screen-tablet-min {
 		&[data-collapsed="true"] {
 			> ol > li:not(:first-child, :last-child),
 			> ol > db-breadcrumb-item:not(:first-child, :last-child) > li {
@@ -109,7 +111,7 @@
 	// on small screens there is no expand toggle, so hidden crumbs would
 	// be unreachable dead ends in the tab order. Removing them entirely
 	// keeps the focused UI clean and the list count accurate.
-	@include screen-sizes.screen("sm", "max") {
+	@include screen-sizes.screen-tablet-max {
 		&:not(:has(.db-breadcrumb-popover-item)) {
 			> ol > li:not(:nth-last-child(-n + 2)),
 			> ol > db-breadcrumb-item:not(:nth-last-child(-n + 2)) > li {

@@ -3,6 +3,7 @@ import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ShellContent from '../examples/content.example.lite';
+import ShellCustomBreakpoint from '../examples/custom-breakpoint.example.lite';
 import ShellDeepNavigation from '../examples/deep-navigation.example.lite';
 import ShellFlatIcon from '../examples/flat-icon.example.lite';
 import ShellPosition from '../examples/position.example.lite';
@@ -48,6 +49,11 @@ export default function ShellShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Tree Navigation">
 				<CardWrapperShowcase>
 					<ShellTreeNavigation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Custom Breakpoint">
+				<CardWrapperShowcase>
+					<ShellCustomBreakpoint />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

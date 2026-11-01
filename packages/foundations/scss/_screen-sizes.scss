@@ -43,6 +43,106 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 		inherits: true;
 		initial-value: #{$db-breakpoint-xl};
 	}
+
+	/**
+	 * Registered helper properties for the two customizable layout
+	 * breakpoints (`--db-tablet-breakpoint` = sm, `--db-desktop-breakpoint`
+	 * = md). Each breakpoint has a "min" helper (matches at/above the
+	 * breakpoint) and a "max" helper (matches strictly below it), both typed
+	 * as a length so a container style query can compare them against the
+	 * breakpoint value; the untyped `--db-screen-*` properties above cannot be
+	 * compared this way. The initial value `100vi` is a sensible default for an
+	 * element that is not inside a declaring ancestor.
+	 */
+	@property --db-tablet-breakpoint-min {
+		syntax: "<length-percentage>";
+		inherits: true;
+		initial-value: 100vi;
+	}
+
+	@property --db-tablet-breakpoint-max {
+		syntax: "<length-percentage>";
+		inherits: true;
+		initial-value: 100vi;
+	}
+
+	@property --db-desktop-breakpoint-min {
+		syntax: "<length-percentage>";
+		inherits: true;
+		initial-value: 100vi;
+	}
+
+	@property --db-desktop-breakpoint-max {
+		syntax: "<length-percentage>";
+		inherits: true;
+		initial-value: 100vi;
+	}
+}
+
+/**
+ * Global defaults for the two customizable layout breakpoints, emitted at
+ * `:root` so every layout component inherits the same switch points. Consumers
+ * override `--db-tablet-breakpoint` / `--db-desktop-breakpoint` at any scope
+ * (`:root`, a component root, or any ancestor) to move a switch.
+ *
+ * The `-min`/`-max` helpers are derived here too, not only on each component
+ * root. A `@container style()` query reads custom properties from an element's
+ * ANCESTORS, never from the element itself, so a `screen-*-min`/`-max` rule
+ * that targets the same root that runs `set-layout-breakpoint-inline-sizes`
+ * (e.g. `.db-shell`, `.db-control-panel-desktop`) would query itself and never
+ * match on any engine. Deriving the helpers at `:root` gives those
+ * self-targeting rules an ancestor to resolve against; the per-root derivation
+ * still re-runs for descendant queries and for per-scope breakpoint overrides.
+ */
+@mixin get-layout-breakpoint-defaults() {
+	:root {
+		// rem, not em: in a container style query an `em` resolves against the
+		// FONT SIZE OF THE QUERIED ELEMENT, so the switch point would drift
+		// whenever a component (or a consumer) changes its font size - the bug
+		// that made `DBFooterMeta` switch at 672px under a 14px font, and that
+		// makes the min/max comparison fail outright when the declaring and
+		// queried elements have different font sizes. `rem` is always relative
+		// to the root, so the switch stays a fixed 768px / 1024px at the default
+		// root size and still scales with a user's root font-size zoom.
+		--db-tablet-breakpoint: #{helpers.px-to-rem($db-screen-size-sm)};
+		--db-desktop-breakpoint: #{helpers.px-to-rem($db-screen-size-md)};
+
+		@include set-layout-breakpoint-inline-sizes;
+	}
+}
+
+/**
+ * Derives the internal "min"/"max" helpers from the current breakpoint
+ * values. A layout component includes this on the root that contains the
+ * elements switched by the `screen-tablet-*` / `screen-desktop-*` mixins, so
+ * the derivation re-runs wherever a consumer overrides a breakpoint (on
+ * `:root`, the component root, or an ancestor). The `:root` default derivation
+ * lives in `get-layout-breakpoint-defaults`; this mixin is what a component
+ * root includes directly.
+ *
+ * - The "min" helper clamps the breakpoint with `min(bp, 100vi)`, so it equals
+ *   the breakpoint exactly once the viewport reaches it (matches at/above).
+ * - The "max" helper uses `max(calc(bp - 1px), 100vi)`, so it equals
+ *   `calc(bp - 1px)` only while the viewport is strictly below the breakpoint
+ *   (matches below). The 1px offset makes the min/max split non-overlapping at
+ *   the exact breakpoint pixel; `not()` negation of a style query does not
+ *   invert cleanly across engines, which is why the max side needs its own
+ *   helper rather than negating the min query.
+ *
+ * Consumers set `--db-tablet-breakpoint` / `--db-desktop-breakpoint`, never the
+ * `-min` / `-max` helpers.
+ */
+@mixin set-layout-breakpoint-inline-sizes() {
+	--db-tablet-breakpoint-min: min(var(--db-tablet-breakpoint), 100vi);
+	--db-tablet-breakpoint-max: max(
+		calc(var(--db-tablet-breakpoint) - 1px),
+		100vi
+	);
+	--db-desktop-breakpoint-min: min(var(--db-desktop-breakpoint), 100vi);
+	--db-desktop-breakpoint-max: max(
+		calc(var(--db-desktop-breakpoint) - 1px),
+		100vi
+	);
 }
 
 @function get-screen-size($size) {
@@ -63,6 +163,28 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	@return $screen;
 }
 
+/**
+ * Legacy media-query breakpoint with `data-force-mobile` support.
+ *
+ * Prefer the customizable `screen-tablet-*` / `screen-desktop-*` container
+ * style queries above for NEW code: those let a consumer move the switch point
+ * at runtime via `--db-tablet-breakpoint` / `--db-desktop-breakpoint`, while
+ * this mixin bakes the breakpoint into a `@media` rule that cannot be
+ * overridden.
+ *
+ * `screen` is intentionally kept for two things the container-query mixins do
+ * not do, and should only be used there:
+ *   1. The deprecated `DBPage`, `DBHeader`, `DBNavigation` and
+ *      `DBNavigationItem` - left on this mechanism on purpose, not migrated.
+ *   2. The `data-force-mobile` escape hatch: besides the `@media` rule this
+ *      emits a `[data-force-mobile="true"]` arm (max) and guards the min branch
+ *      with `:not([data-force-mobile])`, so `DBHeader`'s `forceMobile` prop can
+ *      force the mobile layout regardless of viewport width. The container
+ *      style queries only react to the viewport, so they cannot replace this.
+ *
+ * @param $size one of xs/sm/md/lg/xl (the breakpoint, default "sm")
+ * @param $width "min" (at/above the breakpoint) or "max" (below it)
+ */
 @mixin screen($size: "sm", $width: "min") {
 	$screen: get-screen-size($size);
 
@@ -87,8 +209,28 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 	}
 }
 
-// @mixin screen-min-max
-// @param $data an object like (min:"sm", max:"lg") or (min: "sm")
+/**
+ * Legacy media-query range between two named breakpoints.
+ *
+ * Prefer the customizable `screen-tablet-*` / `screen-desktop-*` container
+ * style queries above for NEW code (runtime-overridable switch point). This
+ * mixin bakes a fixed `@media` range and cannot be overridden by a consumer.
+ *
+ * It is kept because it expresses a BAND bounded by two different breakpoints
+ * (e.g. "from sm up to md"), which the single-breakpoint container-query
+ * mixins do not. Its only remaining uses are the global responsive token
+ * cascades in `density/_scaling-placeholder.scss` and
+ * `density/_typography-placeholder.scss`, which pick a mobile / tablet /
+ * desktop value per range for every element via inheritance. Those were left
+ * on media queries on purpose: routing the design-system-wide spacing and
+ * typography scale through container style queries would require the breakpoint
+ * helpers to be derived at `:root` and would couple the whole scale to the
+ * customizable breakpoints - a far larger surface than the per-component
+ * mobile/desktop switch the container-query mixins cover. Do not migrate them
+ * without that deliberate decision.
+ *
+ * @param $data a map like (min:"sm", max:"md"), (max: "sm") or (min: "md")
+ */
 @mixin screen-min-max($data) {
 	$min: "";
 	$max: "";
@@ -103,6 +245,59 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
 
 	/* stylelint-disable-next-line media-query-no-invalid */
 	@media (#{$min}width#{$max}) {
+		@content;
+	}
+	/* stylelint-disable-next-line at-rule-empty-line-before */
+}
+
+/**
+ * Customizable layout breakpoints via container style queries.
+ *
+ * Unlike `@media (min-width)`, a container style query can compare a custom
+ * property, so these switch points are customizable at runtime through
+ * `--db-tablet-breakpoint` (sm, 768px) and `--db-desktop-breakpoint` (md,
+ * 1024px). See `set-layout-breakpoint-inline-sizes` for how the `-min`/`-max`
+ * helpers these query against are derived and why the max side is non-trivial.
+ *
+ * Each breakpoint has a mirrored min/max pair, matching the old
+ * `screen($size, "min"|"max")` API:
+ * - `*-min` matches at/above the breakpoint (the desktop/tablet-and-up side)
+ * - `*-max` matches strictly below it (the mobile/below side)
+ * The pair is non-overlapping at the exact breakpoint pixel.
+ */
+@mixin screen-tablet-min() {
+	/* stylelint-disable-next-line at-rule-no-unknown */
+	@container style(--db-tablet-breakpoint-min: var(--db-tablet-breakpoint)) {
+		@content;
+	}
+	/* stylelint-disable-next-line at-rule-empty-line-before */
+}
+
+@mixin screen-tablet-max() {
+	/* stylelint-disable-next-line at-rule-no-unknown */
+	@container style(
+			--db-tablet-breakpoint-max: calc(var(--db-tablet-breakpoint) - 1px)
+		) {
+		@content;
+	}
+	/* stylelint-disable-next-line at-rule-empty-line-before */
+}
+
+@mixin screen-desktop-min() {
+	/* stylelint-disable-next-line at-rule-no-unknown */
+	@container style(--db-desktop-breakpoint-min: var(--db-desktop-breakpoint)) {
+		@content;
+	}
+	/* stylelint-disable-next-line at-rule-empty-line-before */
+}
+
+@mixin screen-desktop-max() {
+	/* stylelint-disable-next-line at-rule-no-unknown */
+	@container style(
+			--db-desktop-breakpoint-max: calc(
+					var(--db-desktop-breakpoint) - 1px
+				)
+		) {
 		@content;
 	}
 	/* stylelint-disable-next-line at-rule-empty-line-before */

@@ -195,11 +195,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 				);
 			}
 
-			@include screen-sizes.screen-min-max(
-				(
-					max: "md"
-				)
-			) {
+			@include screen-sizes.screen-desktop-max {
 				// If we are in mobile and have no delay set we force some delay to avoid layout shift
 				&:not([data-delay]) {
 					animation-delay: variables.$db-transition-duration-medium;
@@ -245,6 +241,15 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 %default-popover {
 	@extend %default-card;
 	@extend %popover-placement;
+
+	// The `screen-desktop-max` query in `get-popover-show` is extended onto
+	// this same element, so it is a self-targeting style query. A style query
+	// reads custom properties from an element's ANCESTORS, not the element
+	// itself, so this derivation alone is not what makes the self-query match -
+	// the `:root` default derivation in `get-layout-breakpoint-defaults` is the
+	// ancestor it resolves against. This per-element derivation still covers
+	// descendant queries and per-scope breakpoint overrides.
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	position: absolute;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
