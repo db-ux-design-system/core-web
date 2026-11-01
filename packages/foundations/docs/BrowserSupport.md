@@ -30,7 +30,7 @@ Popover is loosely depending on Anchor Positioning.
 | [`aria-actions` HTML attribute](https://chromestatus.com/feature/5161589307867136) (planned)                                            | 151 (28.07.2026)        | tbd              | tbd                                                                                                      |
 | [`text-decoration-skip-spaces` CSS property](https://drafts.csswg.org/css-text-decor-4/#text-decoration-skip-spaces-property) (planned) | 154 (22.09.2026)        | tbd              | tbd                                                                                                      |
 | [`link-parameters` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/link-parameters) (planned)       | _in active development_ | 161              | Technology Preview 254                                                                                   |
-| [CSS scroll-driven animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations)                    | 115 (18.07.2023) | 159 (27.10.2026) | 26 (15.09.2025) |
+| [CSS scroll-driven animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations)                        | 115 (18.07.2023)        | 159 (27.10.2026) | 26 (15.09.2025)                                                                                          |
 
 ## Without graceful degradation
 
