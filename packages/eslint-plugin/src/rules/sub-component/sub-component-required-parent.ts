@@ -22,7 +22,11 @@ const SUB_COMPONENT_CONFIG: Record<
 	{ parents: Array<{ name: string; slot: string | undefined }> }
 > = {
 	[COMPONENTS.DBDrawerHeader]: {
-		parents: [{ name: COMPONENTS.DBDrawer, slot: 'header' }]
+		parents: [
+			{ name: COMPONENTS.DBDrawer, slot: 'header' },
+			{ name: COMPONENTS.DBHeader, slot: 'header' },
+			{ name: COMPONENTS.DBControlPanelMobile, slot: 'header' }
+		]
 	},
 	[COMPONENTS.DBDrawerFooter]: {
 		parents: [{ name: COMPONENTS.DBDrawer, slot: 'footer' }]
