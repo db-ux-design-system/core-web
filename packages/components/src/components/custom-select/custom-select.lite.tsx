@@ -1150,9 +1150,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							 * markup instead of the DBTag component. As a Stencil
 							 * custom element, <db-tag> is a scoped-slot host;
 							 * removing one from this shrinking list crashes
-							 * Stencil's scoped-slot relocation in removeVnodes
-							 * ("elm.remove is not a function" / nodeType on null)
-							 * (#8466). Plain DOM has no slot host to relocate.
+							 * Stencil's scoped-slot relocation ("elm.remove is
+							 * not a function" / nodeType on null) (#8466). Plain
+							 * DOM has no slot host to relocate.
 							 */}
 							<For each={state._selectedOptions}>
 								{(option: CustomSelectOptionType) => (
