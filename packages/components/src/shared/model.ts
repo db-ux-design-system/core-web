@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { IconTypes } from '@db-ux/core-foundations';
+import { Assign, IconTypes, LooseAutocomplete } from '@db-ux/core-foundations';
 
 export interface GlobalProps {
 	/**
@@ -109,7 +109,30 @@ export const ColorList = [
 	'cyan',
 	'turquoise'
 ] as const;
-export type ColorType = (typeof ColorList)[number];
+
+/** The built-in adaptive color names. */
+export type BaseColorType = (typeof ColorList)[number];
+
+/**
+ * Empty by design: a theme or consuming app augments this interface with its
+ * own custom color names so they autocomplete on the `color` prop. Mirrors
+ * `OverwriteIcons` in `@db-ux/core-foundations`.
+ */
+export interface OverwriteColors {}
+
+type InternalColors = Assign<
+	{
+		types: BaseColorType | LooseAutocomplete;
+	},
+	OverwriteColors
+>;
+
+/**
+ * Adaptive color for the `color` prop. The built-in `BaseColorType` names
+ * autocomplete, while any custom color string (from a consumer's theme) is
+ * still accepted via `LooseAutocomplete`. Uses the same pattern as `IconTypes`.
+ */
+export type ColorType = InternalColors['types'];
 
 export type GlobalState = {
 	_id?: string;

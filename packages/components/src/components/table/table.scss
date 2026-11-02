@@ -230,6 +230,7 @@
 				position: sticky;
 				inset-inline-start: calc(-1 * #{variables.$db-border-width-xs});
 				z-index: 3;
+
 				@include component.component-border-structure(inline-end);
 			}
 		}
@@ -297,7 +298,9 @@
 		caption {
 			grid-column: span var(--db-table-grid-cells, 1);
 			padding: variables.$db-spacing-fixed-sm;
+
 			@include component.component-border-structure(block-start);
+
 			font-weight: bold;
 		}
 	}

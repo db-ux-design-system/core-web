@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../../styles/internal/form-components";
+
 /* component is loaded so %default-interactive-component / %form-component-border resolve */
 @use "../../styles/internal/component";
 

@@ -290,3 +290,12 @@ longhands
 surfaceless
 novalidate
 formnovalidate
+# Build tooling / token standards (adaptive theme tooling evaluation)
+DTCG
+unjs
+Rspack
+Rsbuild
+Rolldown
+rolldown
+invokable
+uxrc

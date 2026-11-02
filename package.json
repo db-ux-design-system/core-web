@@ -63,7 +63,7 @@
     "lint:knip": "knip --config .config/knip.jsonc",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:package-json": "npmPkgJsonLint ./packages ./output --configFile .config/.npmpackagejsonlintrc.json",
-    "lint:stylelint": "stylelint **/*.{css,scss}",
+    "lint:stylelint": "stylelint packages/**/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
     "regenerate:screenshots": "pnpm run build && pnpm --filter react-showcase run build && pnpm --filter react-showcase run regenerate:visual-snapshots && pnpm --filter react-showcase run regenerate:aria-snapshots",
