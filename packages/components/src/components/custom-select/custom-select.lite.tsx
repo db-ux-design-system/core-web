@@ -283,7 +283,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			// Fallback to default behavior
 			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
-		handleTagRemove: (option: CustomSelectOptionType) => {
+		handleTagRemove: (option: CustomSelectOptionType, event?: any) => {
+			/*
+			 * Stop the click from reaching the DocumentClickListener. Removing
+			 * the tag detaches event.target, so fieldContains returns false and
+			 * an open dropdown would close. DBTag.handleRemove used to stop it;
+			 * handleTagRemove has not since #8331. handleClearAll does the same
+			 * for the same reason.
+			 */
+			if (event) {
+				event.stopPropagation();
+			}
+
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
 		},
@@ -1175,8 +1186,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 											data-size="small"
 											data-no-text="true"
 											data-variant="ghost"
-											onClick={() =>
-												state.handleTagRemove(option)
+											onClick={(event) =>
+												state.handleTagRemove(
+													option,
+													event
+												)
 											}>
 											{state.getTagRemoveLabel(option)}
 											<DBTooltip variant="label">
