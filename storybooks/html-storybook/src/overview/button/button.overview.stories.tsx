@@ -2,13 +2,14 @@ import { DBButton } from '@components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 /*
- * PROTOTYPE – overview page per component, HTML counterpart of
- * storybooks/react-storybook/src/overview/button/button.overview.stories.tsx.
+ * PROTOTYPE – overview page per component. If it is adopted, the Mitosis
+ * Storybook plugin generates this file and the MDX next to it for every
+ * component.
  *
- * The HTML Storybook renders the React stories and shows the resulting markup
- * as code. `Playground` is the only story here: the overview needs one story
- * to attach to. It is tagged `!dev`, so it stays out of the sidebar. Controls
- * are disabled in the HTML Storybook, so it is a plain preview.
+ * The MDX page needs a CSF file to attach to: it provides the component for
+ * the properties table and the TOC parameters. `Default` only exists because
+ * a CSF file needs a story; it is tagged `!dev` and not shown anywhere. The
+ * interactive playground is on the Design System Platform.
  */
 const meta: Meta<typeof DBButton> = {
 	title: 'Components/DBButton/Overview',
@@ -28,7 +29,7 @@ const meta: Meta<typeof DBButton> = {
 export default meta;
 type Story = StoryObj<typeof DBButton>;
 
-export const Playground: Story = {
+export const Default: Story = {
 	tags: ['!dev'],
 	args: {
 		children: 'Button',

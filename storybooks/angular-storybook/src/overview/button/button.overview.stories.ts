@@ -6,12 +6,14 @@ import { argsToTemplate } from '@storybook/angular';
 import VariantMeta from '../../components/button/examples/variant.example.stories';
 
 /*
- * PROTOTYPE – overview page per component, Angular counterpart of
- * storybooks/react-storybook/src/overview/button/button.overview.stories.tsx.
+ * PROTOTYPE – overview page per component. If it is adopted, the Mitosis
+ * Storybook plugin generates this file and the MDX next to it for every
+ * component.
  *
- * `Playground` is the only story here: the overview needs one story for its
- * Canvas and Controls blocks. It is tagged `!dev`, so it stays out of the
- * sidebar.
+ * The MDX page needs a CSF file to attach to: it provides the component for
+ * the properties table and the TOC parameters. `Default` only exists because
+ * a CSF file needs a story; it is tagged `!dev` and not shown anywhere. The
+ * interactive playground is on the Design System Platform.
  */
 const meta: Meta<DBButtonProps> = {
 	title: 'Components/DBButton/Overview',
@@ -32,7 +34,7 @@ const meta: Meta<DBButtonProps> = {
 export default meta;
 type Story = StoryObj<DBButtonProps & { children?: string }>;
 
-export const Playground: Story = {
+export const Default: Story = {
 	tags: ['!dev'],
 	args: {
 		variant: 'brand',

@@ -1,5 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from '@storybook/react-vite';
+import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 
@@ -14,6 +15,63 @@ function getAbsolutePath(value: string): any {
 }
 
 const baseUrl = process.env.BASE_URL || '';
+
+/** Deployment root of the released Storybooks on GitHub Pages. */
+const VERSION_ROOT = 'https://design-system.deutschebahn.com/core-web/version';
+
+/**
+ * PROTOTYPE – version dropdown for the framework refs (replaces the version
+ * switcher of the Patternhub).
+ *
+ * Lists the latest patch of every minor release since v5.0.0, the first
+ * release with the framework Storybooks. Tags are read with `git ls-remote`,
+ * which works in the shallow CI checkout as well. Without network access the
+ * dropdown just stays empty.
+ */
+const getReleaseVersions = (): string[] => {
+	try {
+		const output = execFileSync(
+			'git',
+			['ls-remote', '--tags', '--refs', 'origin', 'v*'],
+			{
+				encoding: 'utf8',
+				stdio: ['ignore', 'pipe', 'ignore'],
+				timeout: 10_000
+			}
+		);
+		const latestPerMinor = new Map<string, number[]>();
+		for (const match of output.matchAll(
+			/refs\/tags\/v(\d+)\.(\d+)\.(\d+)$/gm
+		)) {
+			const [major, minor, patch] = match.slice(1).map(Number);
+			if (major < 5) continue;
+			const key = `${major}.${minor}`;
+			const current = latestPerMinor.get(key);
+			if (!current || patch > current[2]) {
+				latestPerMinor.set(key, [major, minor, patch]);
+			}
+		}
+		return [...latestPerMinor.values()]
+			.sort((a, b) => b[0] - a[0] || b[1] - a[1])
+			.map((version) => `v${version.join('.')}`);
+	} catch {
+		return [];
+	}
+};
+
+const releaseVersions = getReleaseVersions();
+
+/** `versions` of a ref: this build first, then latest and every release. */
+const getVersions = (storybook: string): Record<string, string> => ({
+	'This build': `${baseUrl}/${storybook}`,
+	latest: `${VERSION_ROOT}/latest/${storybook}`,
+	...Object.fromEntries(
+		releaseVersions.map((version) => [
+			version,
+			`${VERSION_ROOT}/${version}/${storybook}`
+		])
+	)
+});
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -90,22 +148,26 @@ const config: StorybookConfig = {
 			angular: {
 				title: 'Angular',
 				url: `${baseUrl}/angular-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('angular-storybook')
 			},
 			html: {
 				title: 'HTML',
 				url: `${baseUrl}/html-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('html-storybook')
 			},
 			react: {
 				title: 'React',
 				url: `${baseUrl}/react-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('react-storybook')
 			},
 			vue: {
 				title: 'Vue',
 				url: `${baseUrl}/vue-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('vue-storybook')
 			},
 			// Storybook lowercases ref ids, so a camelCase key would be
 			// emitted twice (once without a normalized id), crashing the
