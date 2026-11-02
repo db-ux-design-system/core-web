@@ -6,4 +6,4 @@
 "@db-ux/v-core-components": patch
 ---
 
-fix(DBDivider): `variant="vertical"` is now visible outside of a stretching flex container
+fix(DBDivider): `variant="vertical"` now stretches to the height of its flex or grid container, also with `align-items: center` or `width="full"`

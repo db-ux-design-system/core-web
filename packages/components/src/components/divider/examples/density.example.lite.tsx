@@ -1,12 +1,12 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBDivider from '../divider.lite';
-import { StorybookDividerArgTypes } from './_divider.arg.types';
+import { StorybookDividerHorizontalArgTypes } from './_divider.arg.types';
 
 useMetadata({
 	storybookTitle: 'Density',
 	storybookNames: ['Functional', '(Default) Regular', 'Expressive'],
-	storybookArgTypes: StorybookDividerArgTypes
+	storybookArgTypes: StorybookDividerHorizontalArgTypes
 });
 
 export default function DividerDensity() {

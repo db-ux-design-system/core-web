@@ -1,12 +1,12 @@
 import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBDivider from '../divider.lite';
-import { StorybookDividerArgTypes } from './_divider.arg.types';
+import { StorybookDividerHorizontalArgTypes } from './_divider.arg.types';
 
 useMetadata({
 	storybookTitle: 'Emphasis',
 	storybookNames: ['(Default) Weak', 'Strong'],
-	storybookArgTypes: StorybookDividerArgTypes
+	storybookArgTypes: StorybookDividerHorizontalArgTypes
 });
 
 export default function DividerEmphasis() {

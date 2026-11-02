@@ -1,50 +1,76 @@
-import { expect, test, type Locator } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { runInteractionTest } from '../default.ts';
 
 const path = '01/divider';
 
-const getHeight = async (divider: Locator) =>
-	divider.evaluate((element) => element.getBoundingClientRect().height);
+/**
+ * Renders a plain vertical `.db-divider` next to some text inside a container
+ * and returns the heights of both. The markup is appended to the page instead
+ * of mutating the showcase, so no framework re-render can interfere.
+ */
+const measureVerticalDivider = async (
+	page: Page,
+	containerStyle: string,
+	dividerAttributes = ''
+) =>
+	page.evaluate(
+		({ containerStyle, dividerAttributes }) => {
+			/* eslint-disable unicorn/isolated-functions -- document is available in the browser context */
+			const container = document.createElement('div');
+			container.setAttribute('style', containerStyle);
+			container.innerHTML = `<span>Text</span><div class="db-divider" data-variant="vertical" ${dividerAttributes}></div>`;
+			document.body.append(container);
+			/* eslint-enable unicorn/isolated-functions */
+			const result = {
+				container: container.getBoundingClientRect().height,
+				divider: container
+					.querySelector('.db-divider')!
+					.getBoundingClientRect().height
+			};
+			container.remove();
+			return result;
+		},
+		{ containerStyle, dividerAttributes }
+	);
 
-// Regression tests for #8613: a vertical divider has no intrinsic height and
-// collapsed to 0px outside of a stretching flex container.
+// Regression tests for #8613: a vertical divider takes the height of its
+// flex container, but never exceeds it.
 test.describe('DBDivider', () => {
 	runInteractionTest({
-		title: 'should render a vertical divider with a height in block layout',
+		title: 'should stretch a vertical divider in a centered flex container',
 		path,
-		example: 'Density',
-		async run({ content }) {
-			// The density example renders the divider inside a block wrapper
-			// without height, same as switching the Storybook control.
-			const divider = content.locator('.db-divider').first();
-			await divider.evaluate((element) => {
-				element.dataset.variant = 'vertical';
-			});
-
-			expect(await getHeight(divider)).toBeGreaterThan(0);
+		async run({ page }) {
+			const { divider } = await measureVerticalDivider(
+				page,
+				'display: flex; align-items: center; height: 80px'
+			);
+			expect(divider).toBe(80);
 		}
 	});
 
 	runInteractionTest({
-		title: 'should stretch a vertical divider in a centered flex container',
+		title: 'should stretch a full-width vertical divider in a flex container without height',
 		path,
-		example: 'Density',
-		async run({ content }) {
-			const divider = content.locator('.db-divider').first();
-			await divider.evaluate((element) => {
-				element.dataset.variant = 'vertical';
-				// Without width="full" there is no block-size: 100%, so only
-				// align-self: stretch can give the divider its height here.
-				delete element.dataset.width;
-				// Direct parent: the wrapper (React/Vue) or the host element
-				// (Angular/Stencil), so the divider itself is the flex item.
-				const parent = element.parentElement!;
-				parent.style.display = 'flex';
-				parent.style.alignItems = 'center';
-				parent.style.height = '80px';
-			});
+		async run({ page }) {
+			const { container, divider } = await measureVerticalDivider(
+				page,
+				'display: flex',
+				'data-width="full"'
+			);
+			expect(divider).toBeGreaterThan(0);
+			expect(divider).toBe(container);
+		}
+	});
 
-			expect(await getHeight(divider)).toBe(80);
+	runInteractionTest({
+		title: 'should not exceed the height of a small container',
+		path,
+		async run({ page }) {
+			const { divider } = await measureVerticalDivider(
+				page,
+				'display: flex; align-items: center; height: 16px'
+			);
+			expect(divider).toBe(16);
 		}
 	});
 });
