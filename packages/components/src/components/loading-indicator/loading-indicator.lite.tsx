@@ -501,6 +501,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				</progress>
 				<Show when={!getBoolean(props.indeterminate)}>
 					<span
+						class="db-loading-indicator-progress-text"
 						aria-hidden="true"
 						data-show-progress-text={getBooleanAsString(
 							props.showProgressText
