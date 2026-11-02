@@ -18,7 +18,7 @@ export default function DividerVariant() {
 				</DBInfotext>
 				<DBDivider width="full"></DBDivider>
 			</div>
-			<div style={{ display: 'flex', height: '100px' }}>
+			<div style={{ height: '100px' }}>
 				<DBInfotext size="small" semantic="informational">
 					Adaptive - Vertical
 				</DBInfotext>
