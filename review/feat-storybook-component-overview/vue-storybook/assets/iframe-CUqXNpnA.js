@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-BgrSDs-3.js";e();
