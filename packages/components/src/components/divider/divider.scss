@@ -26,6 +26,8 @@
 
 	&[data-variant="vertical"] {
 		inline-size: variables.$db-border-width-3xs;
+		min-block-size: variables.$db-sizing-sm;
+		align-self: stretch;
 
 		@include helpers.divider("left");
 
