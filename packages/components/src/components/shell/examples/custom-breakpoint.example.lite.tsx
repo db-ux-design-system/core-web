@@ -100,7 +100,7 @@ export default function ShellCustomBreakpoint() {
 						mainId="main-content-custom-breakpoint-force-mobile"
 						mainLabel="shell-custom-breakpoint-force-mobile">
 						<p>
-							This shell uses{' '}
+							This shell uses&nbsp;
 							<code>--db-desktop-breakpoint: 2000px</code>, so it
 							stays in its mobile layout until the viewport is at
 							least 2000px wide.
@@ -185,7 +185,7 @@ export default function ShellCustomBreakpoint() {
 						mainId="main-content-custom-breakpoint-force-desktop"
 						mainLabel="shell-custom-breakpoint-force-desktop">
 						<p>
-							This shell uses{' '}
+							This shell uses&nbsp;
 							<code>--db-desktop-breakpoint: 400px</code>, so it
 							switches to its desktop layout on almost every
 							viewport.

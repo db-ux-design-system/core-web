@@ -330,10 +330,12 @@ app-nav-item {
    (the viewport never reaches it); a small value switches it to desktop almost
    immediately. Set here rather than inline because a CSS custom-property key is
    not valid in a React inline-style literal. */
-.db-shell[data-test-id="shell-custom-breakpoint-force-mobile"] {
-	--db-desktop-breakpoint: 2000px;
-}
+.db-shell {
+	&[data-test-id="shell-custom-breakpoint-force-mobile"] {
+		--db-desktop-breakpoint: 2000px;
+	}
 
-.db-shell[data-test-id="shell-custom-breakpoint-force-desktop"] {
-	--db-desktop-breakpoint: 400px;
+	&[data-test-id="shell-custom-breakpoint-force-desktop"] {
+		--db-desktop-breakpoint: 400px;
+	}
 }
