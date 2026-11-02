@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-B4vnvy_2.js";e();
