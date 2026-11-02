@@ -28,7 +28,9 @@ const VERSION_ROOT = 'https://design-system.deutschebahn.com/core-web/version';
  * which works in the shallow CI checkout as well. Without network access the
  * dropdown just stays empty.
  */
-const getReleaseVersions = (): string[] => {
+type Version = [major: number, minor: number, patch: number];
+
+const getReleaseVersions = (): Version[] => {
 	try {
 		const output = execFileSync(
 			'git',
@@ -39,7 +41,7 @@ const getReleaseVersions = (): string[] => {
 				timeout: 10_000
 			}
 		);
-		const latestPerMinor = new Map<string, number[]>();
+		const latestPerMinor = new Map<string, Version>();
 		for (const match of output.matchAll(
 			/refs\/tags\/v(\d+)\.(\d+)\.(\d+)$/gm
 		)) {
@@ -51,9 +53,9 @@ const getReleaseVersions = (): string[] => {
 				latestPerMinor.set(key, [major, minor, patch]);
 			}
 		}
-		return [...latestPerMinor.values()]
-			.sort((a, b) => b[0] - a[0] || b[1] - a[1])
-			.map((version) => `v${version.join('.')}`);
+		return [...latestPerMinor.values()].sort(
+			(a, b) => b[0] - a[0] || b[1] - a[1]
+		);
 	} catch {
 		return [];
 	}
@@ -61,17 +63,46 @@ const getReleaseVersions = (): string[] => {
 
 const releaseVersions = getReleaseVersions();
 
-/** `versions` of a ref: this build first, then latest and every release. */
-const getVersions = (storybook: string): Record<string, string> => ({
-	'This build': `${baseUrl}/${storybook}`,
-	latest: `${VERSION_ROOT}/latest/${storybook}`,
-	...Object.fromEntries(
-		releaseVersions.map((version) => [
-			version,
-			`${VERSION_ROOT}/${version}/${storybook}`
-		])
-	)
-});
+/**
+ * Label of this build in the dropdown: the version name for a release
+ * (`/core-web/version/v6.2.0`), "This build (<branch>)" for a review build
+ * (`/core-web/review/<branch>`), "This build" locally.
+ */
+const getCurrentLabel = (): string => {
+	const [, kind, name] = /\/(version|review)\/([^/]+)$/.exec(baseUrl) ?? [];
+	if (kind === 'version') return name;
+	if (kind === 'review') return `This build (${name})`;
+	return 'This build';
+};
+
+const currentLabel = getCurrentLabel();
+
+/**
+ * `versions` of a ref: this build first, then latest and every release from
+ * `since` on (the first release that contains this Storybook).
+ */
+const getVersions = (
+	storybook: string,
+	since: Version = [5, 0, 0]
+): Record<string, string> => {
+	const versions: Record<string, string> = {
+		[currentLabel]: `${baseUrl}/${storybook}`
+	};
+	if (currentLabel !== 'latest') {
+		versions['latest'] = `${VERSION_ROOT}/latest/${storybook}`;
+	}
+	for (const version of releaseVersions) {
+		const comparison =
+			version[0] - since[0] ||
+			version[1] - since[1] ||
+			version[2] - since[2];
+		const name = `v${version.join('.')}`;
+		if (comparison >= 0 && name !== currentLabel) {
+			versions[name] = `${VERSION_ROOT}/${name}/${storybook}`;
+		}
+	}
+	return versions;
+};
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -175,7 +206,9 @@ const config: StorybookConfig = {
 			webcomponents: {
 				title: 'Web Components',
 				url: `${baseUrl}/stencil-storybook`,
-				expanded: false
+				expanded: false,
+				// The Web Components Storybook exists since v6.0.0.
+				versions: getVersions('stencil-storybook', [6, 0, 0])
 			}
 		};
 	}

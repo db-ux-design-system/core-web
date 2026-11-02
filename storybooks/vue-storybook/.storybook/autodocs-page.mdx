@@ -1,0 +1,40 @@
+import {
+	Description,
+	Primary,
+	Stories,
+	Subtitle,
+	Title,
+	useOf
+} from "@storybook/addon-docs/blocks";
+
+{/* Docs page of the generated example stories, without the properties table (it is on the Overview page). Copied into every Storybook by storybooks/_shared/storybook-config/sync.ts – edit the shared file. */}
+
+export const OverviewLink = () => {
+	const { preparedMeta } = useOf("meta");
+	const group = preparedMeta.title.split("/").slice(0, -1).join("/");
+	const id = `${group}/Overview`
+		.toLowerCase()
+		.replace(/\//g, "-")
+		.replace(/\s+/g, "-");
+	return (
+		<p>
+			Properties, usage and all examples of the component are on its{" "}
+			<a href={`?path=/docs/${id}--docs`} target="_top">
+				Overview
+			</a>{" "}
+			page.
+		</p>
+	);
+};
+
+<Title />
+
+<Subtitle />
+
+<Description />
+
+<OverviewLink />
+
+<Primary />
+
+<Stories />

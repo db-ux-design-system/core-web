@@ -1,44 +1,16 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
+import AutodocsPage from './autodocs-page.mdx';
 import './global.css';
+import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
 
-/**
- * Light/dark mode of the stories, switchable in the toolbar and via the
- * `globals=mode:dark` URL parameter. The URL parameter lets embedding pages
- * (e.g. the Design System Platform) pass their own mode into an iframe.
- *
- * `auto` sets no `data-mode`, so the stories follow `prefers-color-scheme`
- * as before.
- */
 const withMode: Decorator = (Story, { globals }) => {
-	const mode = globals['mode'];
-	if (mode === 'light' || mode === 'dark') {
-		document.documentElement.dataset['mode'] = mode;
-	} else {
-		delete document.documentElement.dataset['mode'];
-	}
-
+	applyMode(globals);
 	return Story();
 };
 
 const preview: Preview = {
-	globalTypes: {
-		mode: {
-			description: 'Light/dark mode',
-			toolbar: {
-				title: 'Mode',
-				icon: 'contrast',
-				items: [
-					{ value: 'auto', title: 'System' },
-					{ value: 'light', title: 'Light Mode' },
-					{ value: 'dark', title: 'Dark Mode' }
-				],
-				dynamicTitle: true
-			}
-		}
-	},
-	initialGlobals: {
-		mode: 'auto'
-	},
+	globalTypes: modeGlobalTypes,
+	initialGlobals: modeInitialGlobals,
 	decorators: [withMode],
 	parameters: {
 		actions: { argTypesRegex: '^on.*' },
@@ -49,6 +21,8 @@ const preview: Preview = {
 			}
 		},
 		docs: {
+			// Example pages without the properties table, see autodocs-page.mdx.
+			page: AutodocsPage,
 			toc: {
 				headingSelector: 'h1, h3',
 				title: 'Table of Contents'

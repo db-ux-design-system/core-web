@@ -1,9 +1,16 @@
 import { defineCustomElements } from '@db-ux/wc-core-components/bundle/index.js';
-import type { Preview } from '@storybook/web-components-vite';
+import type { Decorator, Preview } from '@storybook/web-components-vite';
 import * as prettierHtml from 'prettier/plugins/html';
 import * as prettier from 'prettier/standalone';
+import AutodocsPage from './autodocs-page.mdx';
 import './global.css';
 import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
+import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
+
+const withMode: Decorator = (storyFn, { globals }) => {
+	applyMode(globals);
+	return storyFn();
+};
 
 // Register every `<db-*>` custom element once for the whole Storybook, the same
 // way the stencil-showcase does in its index.html. Stories only reference the
@@ -11,8 +18,20 @@ import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
 defineCustomElements();
 
 const preview: Preview = {
-	decorators: [htmlCaptureDecorator],
+	globalTypes: modeGlobalTypes,
+	initialGlobals: modeInitialGlobals,
+	decorators: [htmlCaptureDecorator, withMode],
 	parameters: {
+		options: {
+			// The component overview page comes first in every component group.
+			storySort: {
+				order: [
+					'Getting Started',
+					'Components',
+					['*', ['Overview', '*']]
+				]
+			}
+		},
 		actions: { argTypesRegex: '^on.*' },
 		controls: {
 			matchers: {
@@ -21,6 +40,8 @@ const preview: Preview = {
 			}
 		},
 		docs: {
+			// Example pages without the properties table, see autodocs-page.mdx.
+			page: AutodocsPage,
 			toc: {
 				headingSelector: 'h1, h3',
 				title: 'Table of Contents'

@@ -1,10 +1,30 @@
 import { setCompodocJson } from '@storybook/addon-docs/angular';
-import type { Preview, StoryContext } from '@storybook/angular';
+import type { Decorator, Preview, StoryContext } from '@storybook/angular';
 import docJson from '../src/components/documentation.json';
+import AutodocsPage from './autodocs-page.mdx';
+import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
 setCompodocJson(docJson);
 
+const withMode: Decorator = (storyFn, { globals }) => {
+	applyMode(globals);
+	return storyFn();
+};
+
 const preview: Preview = {
+	globalTypes: modeGlobalTypes,
+	initialGlobals: modeInitialGlobals,
+	decorators: [withMode],
 	parameters: {
+		options: {
+			// The component overview page comes first in every component group.
+			storySort: {
+				order: [
+					'Getting Started',
+					'Components',
+					['*', ['Overview', '*']]
+				]
+			}
+		},
 		controls: {
 			matchers: {
 				color: /(background|color)$/i,
@@ -13,6 +33,8 @@ const preview: Preview = {
 		},
 		actions: { argTypesRegex: '^on.*' },
 		docs: {
+			// Example pages without the properties table, see autodocs-page.mdx.
+			page: AutodocsPage,
 			toc: {
 				headingSelector: 'h1, h3',
 				title: 'Table of Contents'
