@@ -121,7 +121,7 @@ export type DBTabsHandles = {
 	resizeObserver: ResizeObserver | null;
 	observer: MutationObserver | null;
 	pendingRafId: number | null;
-	scrollListener: { fn: () => void } | null;
+	scrollListener: { fn: () => void; container: Element } | null;
 };
 
 export type DBTabsDefaultState = {

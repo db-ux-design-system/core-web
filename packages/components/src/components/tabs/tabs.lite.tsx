@@ -575,7 +575,7 @@ export default function DBTabs(props: DBTabsProps) {
 							const onScroll = () =>
 								state.evaluateScrollButtons(container);
 							state._setHandles({
-								scrollListener: { fn: onScroll }
+								scrollListener: { fn: onScroll, container }
 							});
 							container.addEventListener('scroll', onScroll);
 						}
@@ -595,10 +595,7 @@ export default function DBTabs(props: DBTabsProps) {
 		// Removes the scroll listener + resize observer and hides the scroll buttons (arrows behavior teardown).
 		_teardownScrollHandlers() {
 			const _listener = state._handles.scrollListener;
-			const _container = state._getScrollContainer();
-			if (_listener && _container) {
-				_container.removeEventListener('scroll', _listener.fn);
-			}
+			_listener?.container.removeEventListener('scroll', _listener.fn);
 			state._handles.resizeObserver?.disconnect();
 			state._setHandles({ scrollListener: null, resizeObserver: null });
 			state.showScrollStart = false;
