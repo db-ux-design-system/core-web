@@ -144,15 +144,15 @@ const write = (path: string, content: string): void => {
 };
 
 const pascal = (value: string): string =>
-	value.replace(/(^|[-_ ])(\w)/g, (_, __, char: string) =>
+	value.replaceAll(/(^|[-_ ])(\w)/g, (_, __, char: string) =>
 		char.toUpperCase()
 	);
 
 const escapeCell = (value: string): string =>
 	value
-		.replace(/\s*\n\s*/g, ' ')
-		.replace(/\|/g, '\\|')
-		.replace(/[{}<>]/g, (char) => `&#${char.charCodeAt(0)};`);
+		.replaceAll(/\s*\n\s*/g, ' ')
+		.replaceAll('|', String.raw`\|`)
+		.replaceAll(/[{}<>]/g, (char) => `&#${char.charCodeAt(0)};`);
 
 type ExampleGroup = {
 	file: string;
@@ -174,11 +174,13 @@ const getExamples = (name: string, storybook: string): ExampleGroup[] => {
 		.map((file) => {
 			const source = read(join(dir, file));
 			const title = /title:\s*'[^']*\/([^'/]+)'/.exec(source)?.[1];
-			if (!title) throw new Error(`[overviews] no title in ${file}`);
+			if (!title) {
+				throw new Error(`[overviews] no title in ${file}`);
+			}
 			const stories = [
 				...source.matchAll(/^export const (\w+): Story/gm)
 			].map((match) => match[1]);
-			const id = title.toLowerCase().replace(/\s+/g, '-');
+			const id = title.toLowerCase().replaceAll(/\s+/g, '-');
 			return { file: file.replace(/\.tsx?$/, ''), title, id, stories };
 		})
 		.sort((a, b) =>
@@ -193,24 +195,27 @@ const getExamples = (name: string, storybook: string): ExampleGroup[] => {
 type WebTypesProperty = { name: string; description?: string; type?: string };
 type WebTypesElement = {
 	name: string;
-	attributes?: {
+	attributes?: Array<{
 		name: string;
 		description?: string;
 		value?: { type?: string };
-	}[];
+	}>;
 	js?: { properties?: WebTypesProperty[] };
 };
 
 const getWebTypes = (name: string): WebTypesElement => {
 	const path = join(ROOT, 'output/stencil/dist/web-types.json');
-	if (!existsSync(path))
+	if (!existsSync(path)) {
 		throw new Error(
 			`[overviews] ${path} is missing – build the outputs first`
 		);
+	}
 	const element = JSON.parse(read(path)).contributions.html.elements.find(
 		(entry: WebTypesElement) => entry.name === `db-${name}`
 	);
-	if (!element) throw new Error(`[overviews] db-${name} not in web-types`);
+	if (!element) {
+		throw new Error(`[overviews] db-${name} not in web-types`);
+	}
 	return element;
 };
 
@@ -237,11 +242,13 @@ const getHtmlAttributes = (name: string, webTypes: WebTypesElement): string => {
 	);
 
 	const rows: string[] = [];
-	for (const match of root.matchAll(/(?:^|\n)\s*([a-zA-Z-]+)=\{/g)) {
+	for (const match of root.matchAll(/(?:^|\n)\s*([a-z-]+)=\{/gi)) {
 		const attribute = match[1];
-		if (['ref', 'id', 'class', 'type'].includes(attribute)) continue;
+		if (['ref', 'id', 'class', 'type'].includes(attribute)) {
+			continue;
+		}
 		const start = (match.index ?? 0) + match[0].length;
-		const next = root.slice(start).search(/\n\s*[a-zA-Z-]+=\{/);
+		const next = root.slice(start).search(/\n\s*[a-z-]+=\{/i);
 		const value =
 			next === -1 ? root.slice(start) : root.slice(start, start + next);
 		const props = [
@@ -251,7 +258,7 @@ const getHtmlAttributes = (name: string, webTypes: WebTypesElement): string => {
 		];
 		const first = properties.get(props[0] ?? '');
 		const isData = attribute.startsWith('data-');
-		const isBoolean = /getBoolean/.test(value);
+		const isBoolean = value.includes('getBoolean');
 		// Framework-only types (e.g. `any` for a React form action) are a string in HTML.
 		const type =
 			!first?.type || first.type === 'any' ? 'string' : first.type;
@@ -328,7 +335,9 @@ const buildOverviewMdx = (
 	);
 
 	const blocks = ['Canvas', 'Markdown', 'Meta', 'Source'];
-	if (fw.api === 'argtypes') blocks.unshift('ArgTypes');
+	if (fw.api === 'argtypes') {
+		blocks.unshift('ArgTypes');
+	}
 
 	const imports = [
 		`import { ${blocks.join(', ')} } from "@storybook/addon-docs/blocks";`,
@@ -338,21 +347,24 @@ const buildOverviewMdx = (
 				`import * as ${pascal(group.id)}Stories from "${examplesBase}/${name}/examples/${group.file}";`
 		)
 	];
-	const usage = hasDoc(name, fw.docs);
-	const accessibility = hasDoc(name, 'Accessibility');
-	const migration = hasDoc(name, 'Migration');
-	if (usage)
+	const isUsage = hasDoc(name, fw.docs);
+	const isAccessibility = hasDoc(name, 'Accessibility');
+	const isMigration = hasDoc(name, 'Migration');
+	if (isUsage) {
 		imports.push(
 			`import Usage from "${toRoot}${docsPath(name, fw.docs)}?raw";`
 		);
-	if (accessibility)
+	}
+	if (isAccessibility) {
 		imports.push(
 			`import Accessibility from "${toRoot}${docsPath(name, 'Accessibility')}?raw";`
 		);
-	if (migration)
+	}
+	if (isMigration) {
 		imports.push(
 			`import Migration from "${toRoot}${docsPath(name, 'Migration')}?raw";`
 		);
+	}
 
 	const webTypes = fw.api === 'argtypes' ? undefined : getWebTypes(name);
 	const api =
@@ -375,11 +387,11 @@ const buildOverviewMdx = (
 		`<Source language="shell" dark code="${fw.install}" />`,
 		`Styles, plugins and the theme: [${fw.label} setup on the Design System Platform](${PLATFORM}/learn/${fw.setup}).`
 	];
-	if (usage) {
+	if (isUsage) {
 		sections.push(
 			'## Usage',
 			`{/* The docs file starts with "## ${fw.label}"; the section heading above replaces it. */}`,
-			`<Markdown>{Usage.replace(/^##[^\\n]*\\n/, "")}</Markdown>`
+			String.raw`<Markdown>{Usage.replace(/^##[^\n]*\n/, "")}</Markdown>`
 		);
 	}
 	sections.push(
@@ -401,13 +413,13 @@ const buildOverviewMdx = (
 		);
 	}
 	sections.push(api);
-	if (accessibility) {
+	if (isAccessibility) {
 		sections.push(
 			'{/* The docs file starts with "## Accessibility"; it is the section heading. */}',
 			'<Markdown>{Accessibility}</Markdown>'
 		);
 	}
-	if (migration) {
+	if (isMigration) {
 		sections.push(
 			'## Migration',
 			'{/* Nest the headings of the docs file below the section heading. */}',
@@ -452,7 +464,7 @@ const buildStories = (
 	const argTypesImport = `// Generated example stories, reused for the argTypes.
 import FirstExample from '../../components/${name}/examples/${firstExample}';`;
 	switch (fw.key) {
-		case 'react':
+		case 'react': {
 			return `import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ${component} } from '@components';
 ${argTypesImport}
@@ -471,7 +483,8 @@ export default meta;
 
 export const Default: StoryObj<typeof ${component}> = { tags: ['!dev'] };
 `;
-		case 'html':
+		}
+		case 'html': {
 			return `import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ${component} } from '@components';
 
@@ -488,7 +501,8 @@ export default meta;
 
 export const Default: StoryObj<typeof ${component}> = { tags: ['!dev'] };
 `;
-		case 'angular':
+		}
+		case 'angular': {
 			return `import type { Meta, StoryObj } from '@storybook/angular';
 import { ${component}, type ${component}Props } from '@components';
 ${argTypesImport}
@@ -510,7 +524,8 @@ export const Default: StoryObj<${component}Props> = {
 	render: () => ({ template: '<${tag}></${tag}>' })
 };
 `;
-		case 'vue':
+		}
+		case 'vue': {
 			return `import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { ${component} } from '@components';
 ${argTypesImport}
@@ -529,7 +544,8 @@ export default meta;
 
 export const Default: StoryObj<typeof ${component}> = { tags: ['!dev'] };
 `;
-		case 'webcomponents':
+		}
+		case 'webcomponents': {
 			return `import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 
@@ -549,8 +565,10 @@ export const Default: StoryObj = {
 	render: () => html\`<${tag}></${tag}>\`
 };
 `;
-		default:
+		}
+		default: {
 			throw new Error(`[overviews] unknown framework ${fw.key}`);
+		}
 	}
 };
 
@@ -585,16 +603,18 @@ const buildGettingStarted = (fw: Framework): string =>
 	].join('\n\n') + '\n';
 
 const components = process.argv.slice(2);
-if (components.length === 0)
+if (components.length === 0) {
 	throw new Error('[overviews] pass at least one component, e.g. "button"');
+}
 const allMeta = JSON.parse(
 	read(join(import.meta.dirname, 'components.json'))
 ) as Record<string, ComponentMeta>;
 
 for (const name of components) {
 	const meta = allMeta[name];
-	if (!meta)
+	if (!meta) {
 		throw new Error(`[overviews] ${name} is missing in components.json`);
+	}
 	for (const fw of FRAMEWORKS) {
 		const dir = join(STORYBOOKS, fw.storybook, 'src/overview', name);
 		const firstExample = getExamples(name, fw.examplesFrom)[0].file;
