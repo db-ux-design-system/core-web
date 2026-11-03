@@ -1,0 +1,23 @@
+/* cspell:ignore sbdocs blockquotes */
+
+/*
+ * Docs pages: links with enough contrast.
+ *
+ * Storybook's docs theme colors links #006deb, which has too little contrast
+ * on its grey table rows and blockquotes (WCAG 1.4.3). The DB link color with
+ * an underline replaces it. The docs page stays light in every mode, so
+ * `color-scheme: light` pins the `light-dark()` token to its light value,
+ * also when the mode switch sets `data-mode="dark"` for the stories.
+ *
+ * Copied into `.storybook/docs.css` of every Storybook by
+ * `storybooks/_shared/storybook-config/sync.ts`. Edit this file, not the copies.
+ */
+.sbdocs-content a:not(.db-card, .db-link, .db-button) {
+	color-scheme: light;
+	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+	text-decoration: underline;
+}
+
+.sbdocs-content a:not(.db-card, .db-link, .db-button) > span {
+	color: inherit;
+}

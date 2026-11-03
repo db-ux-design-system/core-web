@@ -84,3 +84,7 @@ packages/mcp-server/src/manifest.json
 showcases/next-showcase/.browserslistrc
 /.kiro/specs/
 /.kiro/settings/
+
+# Snippet files of the Storybook docs tests (storybooks/_shared/tests/snippets.spec.ts)
+storybooks/*/.snippet-check
+build-storybooks-serve

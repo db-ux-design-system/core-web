@@ -72,6 +72,7 @@
     "start": "pnpm --filter patternhub run start",
     "test": "pnpm --filter scripts run test",
     "test:react-core-components": "pnpm --filter react-showcase run test:interaction",
+    "test:storybooks": "playwright test -c storybooks/_shared/tests/playwright.config.ts",
     "test:vue-components": "pnpm --filter vue-showcase run test:interaction",
     "update:dependency:playwright": "node scripts/github/update-playwright.js",
     "validate": "tsx scripts/self-healing-orchestrator.ts"

@@ -63,19 +63,26 @@ const angular = (code: string): string => {
 		(name) => `${name}Directive`
 	);
 	const imports = unique([...components, ...directives]);
+	// Directives of @angular/common used in the template, e.g. `[ngStyle]` -> NgStyle
+	const common = unique(
+		matches(code, /\[ng(Style|Class)\]/g).map((name) => `Ng${name}`)
+	);
+	const commonImport = common.length
+		? `import { ${common.join(', ')} } from '@angular/common';\n`
+		: '';
 	// Event bindings like `(click)="click($event)"` need a method on the class.
 	const handlers = matches(code, /\(\w+\)="(\w+)\(/g);
 	const body = handlers
 		.map((handler) => `\t${handler}(event: unknown): void {\n\t\t// …\n\t}`)
 		.join('\n\n');
 	const template = code.replaceAll('`', '\\`').replaceAll('${', '\\${');
-	return `import { Component } from '@angular/core';
+	return `${commonImport}import { Component } from '@angular/core';
 import { ${imports.join(', ')} } from '@db-ux/ngx-core-components';
 
 @Component({
 	selector: 'app-example',
 	standalone: true,
-	imports: [${imports.join(', ')}],
+	imports: [${[...common, ...imports].join(', ')}],
 	template: \`
 ${indent(template, 2)}
 	\`

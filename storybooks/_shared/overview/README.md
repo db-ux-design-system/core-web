@@ -21,3 +21,18 @@ Each kind of content has one source:
 The generated files are committed and carry a "do not edit" note. If the approach is adopted, the generator moves into the Mitosis Storybook plugin and runs with `generate:stories`.
 
 The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
+
+## Tests
+
+`../tests/` tests the built Storybooks. The pages are discovered from each build's `index.json`, so new components and Foundations pages are tested without changes.
+
+- `docs.spec.ts`: Getting Started, every component overview and every Foundations page. Checks for uncaught errors, heading levels, internal links and axe (WCAG AA). Overview pages are also checked for their sections, non-empty previews, guideline links to the platform and axe in dark mode.
+- `snippets.spec.ts`: expands every "Show code" of the overview pages and compiles the React (tsc), Angular (ngc with `strictTemplates`) and Vue (vue-tsc) snippets. Web Components and HTML snippets are checked for registration and stylesheet.
+
+```shell
+pnpm run build-outputs
+pnpm run build-storybooks
+pnpm run test:storybooks
+```
+
+In CI the tests run in `.github/workflows/02-e2e-storybooks.yml`.

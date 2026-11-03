@@ -1,6 +1,8 @@
 /**
  * PROTOTYPE – copies the shared Storybook config files into every framework
- * Storybook (`.storybook/mode.ts`, `.storybook/autodocs-page.mdx`).
+ * Storybook (`.storybook/mode.ts`, `.storybook/autodocs-page.mdx`,
+ * `.storybook/source-imports.ts`, `.storybook/docs.css`). The composition
+ * Storybook gets `docs.css` only.
  *
  * Copies instead of imports, because the Angular build only compiles files
  * inside its own project. Run after editing a file in this folder:
@@ -11,7 +13,7 @@ import { copyFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
-const FILES = ['mode.ts', 'autodocs-page.mdx', 'source-imports.ts'];
+const FILES = ['mode.ts', 'autodocs-page.mdx', 'source-imports.ts', 'docs.css'];
 const TARGETS = [
 	'react-storybook',
 	'angular-storybook',
@@ -20,8 +22,14 @@ const TARGETS = [
 	'html-storybook'
 ];
 
-for (const target of TARGETS) {
-	for (const file of FILES) {
+// The composition Storybook has no component stories, it only needs the docs styles.
+const COMPOSITION = { target: '_storybook', files: ['docs.css'] };
+
+for (const { target, files } of [
+	...TARGETS.map((name) => ({ target: name, files: FILES })),
+	COMPOSITION
+]) {
+	for (const file of files) {
 		copyFileSync(
 			join(import.meta.dirname, file),
 			join(STORYBOOKS, target, '.storybook', file)

@@ -2,6 +2,7 @@ import type { Decorator, Preview } from '@storybook/react-vite';
 import * as prettierHtml from 'prettier/plugins/html';
 import * as prettier from 'prettier/standalone';
 import AutodocsPage from './autodocs-page.mdx';
+import './docs.css';
 import './global.css';
 import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
