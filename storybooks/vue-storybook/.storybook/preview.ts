@@ -3,6 +3,7 @@ import { StoryContext } from 'storybook/internal/csf';
 import AutodocsPage from './autodocs-page.mdx';
 import './global.css';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
+import { addSourceImports } from './source-imports';
 
 const withMode: Decorator = (storyFn, { globals }) => {
 	applyMode(globals);
@@ -40,7 +41,8 @@ const preview: Preview = {
 			},
 			source: {
 				transform: (code: string, context: StoryContext) => {
-					return code
+					// "Show code" as a single-file component with its imports.
+					const named = code
 						.replaceAll(
 							`<${context.component.__name}`,
 							`<${context.component.name}`
@@ -49,6 +51,7 @@ const preview: Preview = {
 							`</${context.component.__name}`,
 							`</${context.component.name}`
 						);
+					return addSourceImports(named, 'vue');
 				}
 			}
 		}

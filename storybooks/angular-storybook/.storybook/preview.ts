@@ -3,6 +3,7 @@ import type { Decorator, Preview, StoryContext } from '@storybook/angular';
 import docJson from '../src/components/documentation.json';
 import AutodocsPage from './autodocs-page.mdx';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
+import { addSourceImports } from './source-imports';
 setCompodocJson(docJson);
 
 const withMode: Decorator = (storyFn, { globals }) => {
@@ -57,8 +58,10 @@ const preview: Preview = {
 							.replaceAll(`this['${key}']`, `'${value}'`);
 					}
 
-					return result;
-				}
+					// "Show code" as a standalone component with its imports.
+					return addSourceImports(result, 'angular');
+				},
+				language: 'typescript'
 			}
 		}
 	}

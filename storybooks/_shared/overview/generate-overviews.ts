@@ -8,8 +8,8 @@
  *
  * Inputs (one source per kind of content):
  * - `components.json` next to this file: summary, status, accessibility review
- * - `packages/components/src/components/<name>/docs/*.md`: usage per
- *   framework, accessibility, migration
+ * - `packages/components/src/components/<name>/docs/*.md`: accessibility,
+ *   migration (the usage is the examples, see storybook-config/source-imports.ts)
  * - the generated example stories (`pnpm --filter @db-ux/core-components run
  *   generate:stories` must have run): story groups and story names
  * - `<name>.lite.tsx` and `output/stencil/dist/web-types.json`: attributes for
@@ -52,7 +52,6 @@ type Framework = {
 	storiesExt: 'ts' | 'tsx';
 	/** Storybook whose generated example stories this one renders. */
 	examplesFrom: string;
-	docs: string;
 	install: string;
 	setup: string;
 	npm: string;
@@ -69,7 +68,6 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'react',
 		storiesExt: 'tsx',
 		examplesFrom: 'react-storybook',
-		docs: 'React',
 		install: `pnpm add @db-ux/react-core-components ${CORE}`,
 		setup: 'react-setup',
 		npm: '@db-ux/react-core-components',
@@ -82,7 +80,6 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'angular',
 		storiesExt: 'ts',
 		examplesFrom: 'angular-storybook',
-		docs: 'Angular',
 		install: `pnpm add @db-ux/ngx-core-components ${CORE}`,
 		setup: 'angular-setup',
 		npm: '@db-ux/ngx-core-components',
@@ -95,7 +92,6 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'vue',
 		storiesExt: 'ts',
 		examplesFrom: 'vue-storybook',
-		docs: 'Vue',
 		install: `pnpm add @db-ux/v-core-components ${CORE}`,
 		setup: 'vue-setup',
 		npm: '@db-ux/v-core-components',
@@ -108,7 +104,6 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'webcomponents',
 		storiesExt: 'ts',
 		examplesFrom: 'stencil-storybook',
-		docs: 'WebComponents',
 		install: `pnpm add @db-ux/wc-core-components ${CORE}`,
 		setup: 'web-components-setup',
 		npm: '@db-ux/wc-core-components',
@@ -122,7 +117,6 @@ const FRAMEWORKS: Framework[] = [
 		storiesExt: 'tsx',
 		// The HTML Storybook renders the React stories and shows their markup.
 		examplesFrom: 'react-storybook',
-		docs: 'HTML',
 		install: `pnpm add ${CORE}`,
 		setup: 'html-css-setup',
 		npm: '@db-ux/core-components',
@@ -345,14 +339,8 @@ const buildOverviewMdx = (
 				`import * as ${pascal(group.id)}Stories from "${examplesBase}/${name}/examples/${group.file}";`
 		)
 	];
-	const isUsage = hasDoc(name, fw.docs);
 	const isAccessibility = hasDoc(name, 'Accessibility');
 	const isMigration = hasDoc(name, 'Migration');
-	if (isUsage) {
-		imports.push(
-			`import Usage from "${toRoot}${docsPath(name, fw.docs)}?raw";`
-		);
-	}
 	if (isAccessibility) {
 		imports.push(
 			`import Accessibility from "${toRoot}${docsPath(name, 'Accessibility')}?raw";`
@@ -385,18 +373,15 @@ const buildOverviewMdx = (
 		`<Source language="shell" dark code="${fw.install}" />`,
 		`Styles, plugins and the theme: [${fw.label} setup on the Design System Platform](${PLATFORM}/learn/${fw.setup}).`
 	];
-	if (isUsage) {
-		sections.push(
-			'## Usage',
-			`{/* The docs file starts with "## ${fw.label}"; the section heading above replaces it. */}`,
-			String.raw`<Markdown>{Usage.replace(/^##[^\n]*\n/, "")}</Markdown>`
-		);
-	}
+	// The examples are the usage: "Show code" contains the imports as well
+	// (see storybooks/_shared/storybook-config/source-imports.ts), so the
+	// handwritten docs/<Framework>.md is not shown here. It stays for npm, the
+	// MCP server and the Patternhub.
 	sections.push(
-		'## Examples',
+		'## Usage',
 		fw.api === 'argtypes'
-			? 'Open **Show code** below a preview for the snippet. The example pages linked below each group have controls.'
-			: 'Open **Show code** below a preview for the markup.'
+			? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
+			: 'Open **Show code** below a preview for the markup you can copy, including what it needs to load.'
 	);
 	for (const group of examples) {
 		sections.push(

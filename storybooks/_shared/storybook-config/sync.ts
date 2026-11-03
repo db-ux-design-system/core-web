@@ -11,7 +11,7 @@ import { copyFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
-const FILES = ['mode.ts', 'autodocs-page.mdx'];
+const FILES = ['mode.ts', 'autodocs-page.mdx', 'source-imports.ts'];
 const TARGETS = [
 	'react-storybook',
 	'angular-storybook',

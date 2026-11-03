@@ -6,6 +6,7 @@ import AutodocsPage from './autodocs-page.mdx';
 import './global.css';
 import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
+import { addSourceImports } from './source-imports';
 
 const withMode: Decorator = (storyFn, { globals }) => {
 	applyMode(globals);
@@ -58,7 +59,7 @@ const preview: Preview = {
 					if (!renderedHtml) {
 						return '<!-- HTML output not available -->';
 					}
-					return prettier.format(renderedHtml, {
+					const formatted = await prettier.format(renderedHtml, {
 						parser: 'html',
 						plugins: [prettierHtml],
 						useTabs: true,
@@ -70,6 +71,8 @@ const preview: Preview = {
 						// whitespace-sensitive).
 						htmlWhitespaceSensitivity: 'strict'
 					});
+					// "Show code" with the script that registers the elements.
+					return addSourceImports(formatted, 'webcomponents');
 				},
 				language: 'html'
 			}

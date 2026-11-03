@@ -2,6 +2,7 @@ import type { Decorator, Preview } from '@storybook/react-vite';
 import AutodocsPage from './autodocs-page.mdx';
 import './global.css';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
+import { addSourceImports } from './source-imports';
 
 const withMode: Decorator = (Story, { globals }) => {
 	applyMode(globals);
@@ -26,6 +27,10 @@ const preview: Preview = {
 			toc: {
 				headingSelector: 'h1, h3',
 				title: 'Table of Contents'
+			},
+			// "Show code" with the imports of the components used.
+			source: {
+				transform: (code: string) => addSourceImports(code, 'react')
 			}
 		},
 		options: {

@@ -30,7 +30,7 @@ export const modeInitialGlobals: Globals = { mode: 'auto' };
 
 /** Sets `data-mode` on `<html>` for the selected mode. */
 export const applyMode = (globals: Globals): void => {
-	const mode = globals['mode'];
+	const { mode } = globals;
 	if (mode === 'light' || mode === 'dark') {
 		document.documentElement.dataset['mode'] = mode;
 	} else {

@@ -5,6 +5,7 @@ import AutodocsPage from './autodocs-page.mdx';
 import './global.css';
 import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
+import { addSourceImports } from './source-imports';
 
 const withMode: Decorator = (Story, { globals }) => {
 	applyMode(globals);
@@ -63,12 +64,14 @@ const preview: Preview = {
 					if (!html) {
 						return '<!-- HTML output not available -->';
 					}
-					return prettier.format(html, {
+					const formatted = await prettier.format(html, {
 						parser: 'html',
 						plugins: [prettierHtml],
 						useTabs: true,
 						printWidth: 80
 					});
+					// "Show code" with the stylesheet the markup relies on.
+					return addSourceImports(formatted, 'html');
 				},
 				language: 'html'
 			}

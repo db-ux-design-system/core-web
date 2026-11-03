@@ -9,14 +9,14 @@ node storybooks/_shared/overview/generate-overviews.ts button
 
 Each kind of content has one source:
 
-| Content                                       | Source                                                          |
-| --------------------------------------------- | --------------------------------------------------------------- |
-| Summary, status, accessibility review         | `components.json` in this folder                                |
-| Usage per framework, accessibility, migration | `packages/components/src/components/<component>/docs/*.md`      |
-| Examples                                      | the generated example stories                                   |
-| Properties (React, Angular, Vue)              | Storybook docgen                                                |
-| Attributes (HTML, Web Components)             | `<component>.lite.tsx` and `output/stencil/dist/web-types.json` |
-| Design guidelines                             | the Design System Platform, linked                              |
+| Content                                                | Source                                                                 |
+| ------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Summary, status, accessibility review                  | `components.json` in this folder                                       |
+| Accessibility, migration                               | `packages/components/src/components/<component>/docs/*.md`             |
+| Usage (the examples; "Show code" includes the imports) | the generated example stories, `../storybook-config/source-imports.ts` |
+| Properties (React, Angular, Vue)                       | Storybook docgen                                                       |
+| Attributes (HTML, Web Components)                      | `<component>.lite.tsx` and `output/stencil/dist/web-types.json`        |
+| Design guidelines                                      | the Design System Platform, linked                                     |
 
 The generated files are committed and carry a "do not edit" note. If the approach is adopted, the generator moves into the Mitosis Storybook plugin and runs with `generate:stories`.
 
