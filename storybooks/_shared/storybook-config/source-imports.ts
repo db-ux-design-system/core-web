@@ -40,7 +40,17 @@ const react = (code: string): string => {
 	}
 	// Storybook prints the action spies as named empty functions.
 	const cleaned = code.replaceAll(/function \w*\(\)\s*\{\s*\}/g, '() => {}');
-	return `import { ${components.join(', ')} } from '@db-ux/react-core-components';\n\n${cleaned}`;
+	// JSX is only valid inside an expression, so the snippet becomes a
+	// component module, like the Angular and Vue snippets.
+	return `import { ${components.join(', ')} } from '@db-ux/react-core-components';
+
+export const Example = () => (
+${cleaned
+	.trim()
+	.split('\n')
+	.map((line) => `  ${line}`)
+	.join('\n')}
+);`;
 };
 
 const angular = (code: string): string => {
@@ -56,7 +66,7 @@ const angular = (code: string): string => {
 	// Event bindings like `(click)="click($event)"` need a method on the class.
 	const handlers = matches(code, /\(\w+\)="(\w+)\(/g);
 	const body = handlers
-		.map((handler) => `\t${handler}(event: Event): void {\n\t\t// …\n\t}`)
+		.map((handler) => `\t${handler}(event: unknown): void {\n\t\t// …\n\t}`)
 		.join('\n\n');
 	const template = code.replaceAll('`', '\\`').replaceAll('${', '\\${');
 	return `import { Component } from '@angular/core';

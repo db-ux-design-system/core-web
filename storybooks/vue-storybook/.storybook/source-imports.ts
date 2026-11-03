@@ -35,15 +35,29 @@ const matches = (code: string, pattern: RegExp): string[] =>
 
 const react = (code: string): string => {
 	const components = matches(code, /<(DB[A-Za-z]+)/g);
-	if (components.length === 0) return code;
+	if (components.length === 0) {
+		return code;
+	}
 	// Storybook prints the action spies as named empty functions.
-	const cleaned = code.replace(/function \w*\(\)\s*\{\s*\}/g, '() => {}');
-	return `import { ${components.join(', ')} } from '@db-ux/react-core-components';\n\n${cleaned}`;
+	const cleaned = code.replaceAll(/function \w*\(\)\s*\{\s*\}/g, '() => {}');
+	// JSX is only valid inside an expression, so the snippet becomes a
+	// component module, like the Angular and Vue snippets.
+	return `import { ${components.join(', ')} } from '@db-ux/react-core-components';
+
+export const Example = () => (
+${cleaned
+	.trim()
+	.split('\n')
+	.map((line) => `  ${line}`)
+	.join('\n')}
+);`;
 };
 
 const angular = (code: string): string => {
 	const components = matches(code, /<(db-[a-z-]+)/g).map(tagToClass);
-	if (components.length === 0) return code;
+	if (components.length === 0) {
+		return code;
+	}
 	// Structural slot directives, e.g. `*dbNavigationContent` -> NavigationContentDirective
 	const directives = matches(code, /[\s*]db([A-Z][A-Za-z]*)(?=[\s=>])/g).map(
 		(name) => `${name}Directive`
@@ -52,9 +66,9 @@ const angular = (code: string): string => {
 	// Event bindings like `(click)="click($event)"` need a method on the class.
 	const handlers = matches(code, /\(\w+\)="(\w+)\(/g);
 	const body = handlers
-		.map((handler) => `\t${handler}(event: Event): void {\n\t\t// …\n\t}`)
+		.map((handler) => `\t${handler}(event: unknown): void {\n\t\t// …\n\t}`)
 		.join('\n\n');
-	const template = code.replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+	const template = code.replaceAll('`', '\\`').replaceAll('${', '\\${');
 	return `import { Component } from '@angular/core';
 import { ${imports.join(', ')} } from '@db-ux/ngx-core-components';
 
@@ -70,9 +84,13 @@ export class ExampleComponent {${body ? `\n${body}\n` : ''}}`;
 };
 
 const vue = (code: string): string => {
-	if (code.includes('<script')) return code;
+	if (code.includes('<script')) {
+		return code;
+	}
 	const components = matches(code, /<(DB[A-Za-z]+)/g);
-	if (components.length === 0) return code;
+	if (components.length === 0) {
+		return code;
+	}
 	const template = code.trimStart().startsWith('<template>')
 		? code
 		: `<template>\n${indent(code)}\n</template>`;
@@ -84,7 +102,9 @@ ${template}`;
 };
 
 const webComponents = (code: string): string => {
-	if (!/<db-[a-z-]+/.test(code)) return code;
+	if (!/<db-[a-z-]+/.test(code)) {
+		return code;
+	}
 	return `<script type="module">
 	// Registers all <db-*> elements once per app.
 	import { defineCustomElements } from '@db-ux/wc-core-components';
@@ -95,7 +115,9 @@ ${code}`;
 };
 
 const html = (code: string): string => {
-	if (!/class="[^"]*\bdb-/.test(code)) return code;
+	if (!/class="[^"]*\bdb-/.test(code)) {
+		return code;
+	}
 	return `<!-- index.css loads the DB UX theme and component styles, see Getting Started -->
 <link rel="stylesheet" href="index.css" />
 
