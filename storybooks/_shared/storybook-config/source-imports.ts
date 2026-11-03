@@ -67,9 +67,10 @@ const angular = (code: string): string => {
 	const common = unique(
 		matches(code, /\[ng(Style|Class)\]/g).map((name) => `Ng${name}`)
 	);
-	const commonImport = common.length
-		? `import { ${common.join(', ')} } from '@angular/common';\n`
-		: '';
+	const commonImport =
+		common.length > 0
+			? `import { ${common.join(', ')} } from '@angular/common';\n`
+			: '';
 	// Event bindings like `(click)="click($event)"` need a method on the class.
 	const handlers = matches(code, /\(\w+\)="(\w+)\(/g);
 	const body = handlers

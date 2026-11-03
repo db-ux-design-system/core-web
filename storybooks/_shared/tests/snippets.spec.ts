@@ -46,14 +46,15 @@ const run = (command: string, args: string[], cwd: string) => {
 	}
 };
 
-const writeJson = (file: string, value: unknown) =>
+const writeJson = (file: string, value: unknown) => {
 	writeFileSync(file, JSON.stringify(value, null, '\t'));
+};
 
 const CHECKS: Check[] = [
 	{
 		storybook: 'react-storybook',
 		extension: 'tsx',
-		compile: (dir) => {
+		compile(dir) {
 			writeJson(join(dir, 'tsconfig.json'), {
 				compilerOptions: {
 					strict: true,
@@ -76,7 +77,7 @@ const CHECKS: Check[] = [
 	{
 		storybook: 'angular-storybook',
 		extension: 'ts',
-		compile: (dir) => {
+		compile(dir) {
 			writeJson(join(dir, 'tsconfig.json'), {
 				extends: '../tsconfig.app.json',
 				compilerOptions: {
@@ -105,7 +106,7 @@ const CHECKS: Check[] = [
 	{
 		storybook: 'vue-storybook',
 		extension: 'vue',
-		compile: (dir) => {
+		compile(dir) {
 			writeJson(join(dir, 'tsconfig.json'), {
 				compilerOptions: {
 					strict: true,
@@ -127,7 +128,7 @@ const CHECKS: Check[] = [
 	},
 	{
 		storybook: 'stencil-storybook',
-		expectations: (snippet) => {
+		expectations(snippet) {
 			expect(snippet).toContain(
 				"import { defineCustomElements } from '@db-ux/wc-core-components'"
 			);
@@ -136,7 +137,7 @@ const CHECKS: Check[] = [
 	},
 	{
 		storybook: 'html-storybook',
-		expectations: (snippet) => {
+		expectations(snippet) {
 			expect(snippet).toContain(
 				'<link rel="stylesheet" href="index.css" />'
 			);
@@ -188,7 +189,7 @@ for (const check of CHECKS) {
 			await openDocs(page, check.storybook, id);
 			const snippets = await collectSnippets(page);
 			expect(snippets.length, `${id}: snippets`).toBeGreaterThan(0);
-			snippets.forEach((snippet, index) => {
+			for (const [index, snippet] of snippets.entries()) {
 				expect(
 					snippet,
 					`${id} #${index}: rendered output`
@@ -202,11 +203,11 @@ for (const check of CHECKS) {
 				);
 				check.expectations?.(snippet);
 				if (check.extension) {
-					const name = `${id.replace(/--docs$/, '').replace(/[^a-z0-9]+/g, '_')}_${index}.${check.extension}`;
+					const name = `${id.replace(/--docs$/, '').replaceAll(/[^a-z0-9]+/g, '_')}_${index}.${check.extension}`;
 					writeFileSync(join(dir, name), snippet);
 					files++;
 				}
-			});
+			}
 		}
 
 		if (check.compile) {
