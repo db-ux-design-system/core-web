@@ -4,8 +4,6 @@
  * Writes per component:
  * - `<framework>-storybook/src/overview/<name>/<name>.overview.mdx` and the
  *   CSF file it attaches to, for React, Angular, Vue, HTML and Web Components
- * - `_storybook/src/components/<name>.overview.mdx`, the entry page in the
- *   composition Storybook that leads to the framework overviews
  * - the "Getting Started" page of every framework Storybook
  *
  * Inputs (one source per kind of content):
@@ -572,22 +570,6 @@ export const Default: StoryObj = {
 	}
 };
 
-const buildCompositionEntry = (name: string, meta: ComponentMeta): string =>
-	[
-		'import { Meta } from "@storybook/addon-docs/blocks";',
-		GENERATED_NOTE,
-		`<Meta title="Components/${meta.title}" />`,
-		`# ${meta.title}`,
-		`${meta.summary} When to use it and how to design with it: [${meta.title.replace(/^DB/, '')} guidelines on the Design System Platform](${meta.platformUrl}).`,
-		'## Choose your framework',
-		'Installation, usage, examples with code, properties, accessibility and migration:',
-		FRAMEWORKS.map(
-			(fw) =>
-				`- [${fw.label}](?path=/docs/${fw.ref}_components-${meta.title.toLowerCase()}-overview--docs)`
-		).join('\n'),
-		'Use the version dropdown next to each framework in the sidebar to open an earlier release.'
-	].join('\n\n') + '\n';
-
 const buildGettingStarted = (fw: Framework): string =>
 	[
 		'import { Meta, Source } from "@storybook/addon-docs/blocks";',
@@ -627,10 +609,6 @@ for (const name of components) {
 			buildStories(name, meta, fw, firstExample)
 		);
 	}
-	write(
-		join(STORYBOOKS, '_storybook/src/components', `${name}.overview.mdx`),
-		buildCompositionEntry(name, meta)
-	);
 }
 for (const fw of FRAMEWORKS) {
 	write(

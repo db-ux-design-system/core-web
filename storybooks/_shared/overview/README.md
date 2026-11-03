@@ -1,6 +1,6 @@
 # Component overview pages (prototype)
 
-`generate-overviews.ts` writes the overview page of a component for every Storybook (React, Angular, Vue, Web Components, HTML), the entry page in the composition Storybook and the "Getting Started" page of every framework Storybook.
+`generate-overviews.ts` writes the overview page of a component for every Storybook (React, Angular, Vue, Web Components, HTML) and the "Getting Started" page of every framework Storybook.
 
 ```shell
 pnpm --filter @db-ux/core-components run generate:stories
