@@ -21,7 +21,7 @@ import {
 	writeFileSync
 } from 'node:fs';
 import { join } from 'node:path';
-import { BUILD_DIR, openDocs, ROOT, type StorybookName } from './storybooks';
+import { BUILD_DIR, openDocs, ROOT, type StorybookName } from './storybooks.ts';
 
 const STORYBOOKS = join(ROOT, 'storybooks');
 
@@ -42,7 +42,9 @@ const run = (command: string, args: string[], cwd: string) => {
 			stdout?: string;
 			stderr?: string;
 		};
-		throw new Error(`${command} failed:\n${stdout}${stderr}`);
+		throw new Error(`${command} failed:\n${stdout}${stderr}`, {
+			cause: error
+		});
 	}
 };
 
@@ -157,7 +159,8 @@ const collectSnippets = async (page: Page): Promise<string[]> => {
 		await toggles.nth(i).click();
 	}
 	await expect(code).toHaveCount(before + count);
-	return (await code.allInnerTexts()).slice(before);
+	const texts = await code.allInnerTexts();
+	return texts.slice(before);
 };
 
 const overviewIds = (storybook: StorybookName): string[] => {
@@ -202,11 +205,12 @@ for (const check of CHECKS) {
 					'[object Object]'
 				);
 				check.expectations?.(snippet);
-				if (check.extension) {
-					const name = `${id.replace(/--docs$/, '').replaceAll(/[^a-z0-9]+/g, '_')}_${index}.${check.extension}`;
-					writeFileSync(join(dir, name), snippet);
-					files++;
+				if (!check.extension) {
+					continue;
 				}
+				const name = `${id.replace(/--docs$/, '').replaceAll(/[^a-z0-9]+/g, '_')}_${index}.${check.extension}`;
+				writeFileSync(join(dir, name), snippet);
+				files++;
 			}
 		}
 

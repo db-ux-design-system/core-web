@@ -14,6 +14,8 @@
 export type SourceFramework =
 	'react' | 'angular' | 'vue' | 'webcomponents' | 'html';
 
+// `toSorted()` is ES2023; the Angular Storybook compiles this file with ES2022.
+// eslint-disable-next-line unicorn/no-array-sort -- sorts a fresh copy
 const unique = (values: string[]): string[] => [...new Set(values)].sort();
 
 const indent = (code: string, tabs = 1): string =>
@@ -54,7 +56,9 @@ ${cleaned
 };
 
 const angular = (code: string): string => {
-	const components = matches(code, /<(db-[a-z-]+)/g).map(tagToClass);
+	const components = matches(code, /<(db-[a-z-]+)/g).map((tag) =>
+		tagToClass(tag)
+	);
 	if (components.length === 0) {
 		return code;
 	}

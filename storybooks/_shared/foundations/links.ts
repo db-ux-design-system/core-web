@@ -36,19 +36,23 @@ for (const page of PAGES) {
 }
 
 const resolveLink = (href: string, route: string): string => {
-	if (href.startsWith('#') || href.startsWith('?')) return href;
+	if (href.startsWith('#') || href.startsWith('?')) {
+		return href;
+	}
 	if (/^https?:\/\//.test(href)) {
 		return href.replace(`${ORIGIN}/core-web/review/main`, PATTERNHUB);
 	}
 	const { pathname, hash } = new URL(href, `${ORIGIN}${route}`);
 	const target = ROUTES[pathname.toLowerCase()];
-	if (target) return `${target}${target.startsWith('?') ? '' : hash}`;
+	if (target) {
+		return `${target}${target.startsWith('?') ? '' : hash}`;
+	}
 	return `${PATTERNHUB}${pathname}${hash}`;
 };
 
 /** Rewrites Markdown links (`[text](href)`) of a foundations docs file. */
 export const rewriteDocsLinks = (markdown: string, route: string): string =>
-	markdown.replace(
+	markdown.replaceAll(
 		/\]\(([^)\s]+)\)/g,
 		(_, href: string) => `](${resolveLink(href, route)})`
 	);

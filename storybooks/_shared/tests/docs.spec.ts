@@ -19,7 +19,7 @@ import {
 	getEntries,
 	openDocs,
 	type StorybookName
-} from './storybooks';
+} from './storybooks.ts';
 
 const PLATFORM = 'https://design-system.deutschebahn.com/';
 
@@ -76,9 +76,8 @@ const checkInternalLinks = async (
 
 const testPage = (storybook: StorybookName, id: string, title: string) => {
 	test(`${storybook} › ${title}`, async ({ page }) => {
-		const ids = new Set(
-			(await getEntries(page, storybook)).map((e) => e.id)
-		);
+		const entries = await getEntries(page, storybook);
+		const ids = new Set(entries.map((entry) => entry.id));
 		const errors = await openDocs(page, storybook, id);
 		expect(errors, 'uncaught errors').toEqual([]);
 		await checkHeadings(page);

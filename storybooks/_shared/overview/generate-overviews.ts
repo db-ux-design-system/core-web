@@ -158,7 +158,7 @@ const escapeCell = (value: string): string =>
 	value
 		.replaceAll(/\s*\n\s*/g, ' ')
 		.replaceAll('|', String.raw`\|`)
-		.replaceAll(/[{}<>]/g, (char) => `&#${char.charCodeAt(0)};`);
+		.replaceAll(/[{}<>]/g, (char) => `&#${char.codePointAt(0)};`);
 
 type ExampleGroup = {
 	file: string;
@@ -189,7 +189,7 @@ const getExamples = (name: string, storybook: string): ExampleGroup[] => {
 			const id = title.toLowerCase().replaceAll(/\s+/g, '-');
 			return { file: file.replace(/\.tsx?$/, ''), title, id, stories };
 		})
-		.sort((a, b) =>
+		.toSorted((a, b) =>
 			a.id === 'variant'
 				? -1
 				: b.id === 'variant'
@@ -216,8 +216,11 @@ const getWebTypes = (name: string): WebTypesElement => {
 			`[overviews] ${path} is missing – build the outputs first`
 		);
 	}
-	const element = JSON.parse(read(path)).contributions.html.elements.find(
-		(entry: WebTypesElement) => entry.name === `db-${name}`
+	const webTypes = JSON.parse(read(path)) as {
+		contributions: { html: { elements: WebTypesElement[] } };
+	};
+	const element = webTypes.contributions.html.elements.find(
+		(entry) => entry.name === `db-${name}`
 	);
 	if (!element) {
 		throw new Error(`[overviews] db-${name} not in web-types`);
@@ -389,14 +392,12 @@ const buildOverviewMdx = (
 	);
 
 	const blocks = [
+		...(fw.api === 'argtypes' ? ['ArgTypes'] : []),
 		'Canvas',
 		'Markdown',
 		'Meta',
 		...(meta.requires?.length ? ['Source'] : [])
 	];
-	if (fw.api === 'argtypes') {
-		blocks.unshift('ArgTypes');
-	}
 
 	const imports = [
 		`import { ${blocks.join(', ')} } from "@storybook/addon-docs/blocks";`,
@@ -642,16 +643,14 @@ const buildGettingStarted = (fw: Framework): string => {
 		'## 2. Load the styles',
 		`The whitelabel theme comes first, the component styles after it. The \`@layer\` line fixes this order.`,
 		source({ language: 'css', code: whitelabelStyles(setup.stylesFile) }),
-		setup.stylesNote
-	];
-	if (setup.extraStep) {
-		sections.push(
-			`## 3. ${setup.extraStep.heading}`,
-			setup.extraStep.text,
-			source(setup.extraStep.block)
-		);
-	}
-	sections.push(
+		setup.stylesNote,
+		...(setup.extraStep
+			? [
+					`## 3. ${setup.extraStep.heading}`,
+					setup.extraStep.text,
+					source(setup.extraStep.block)
+				]
+			: []),
 		`## ${setup.extraStep ? 4 : 3}. Check the setup`,
 		'A button with an icon shows in one place whether styles, font and icons load:',
 		source(setup.check),
@@ -669,14 +668,10 @@ const buildGettingStarted = (fw: Framework): string => {
 		`Replace the styles of step 2: the DB Theme overrides the defaults, so it comes last.`,
 		source({ language: 'css', code: dbThemeStyles(setup.stylesFile) }),
 		`Details, manual decryption and the license: [DB Theme setup on the Design System Platform](${PLATFORM}/learn/db-theme-setup).`,
-		'## Find a component'
-	);
-	return (
-		[
-			...sections,
-			'Every component has an **Overview** page with usage, examples with code, properties, accessibility and migration, for example **Components → DBButton → Overview**. Design guidelines are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/overview).'
-		].join('\n\n') + '\n'
-	);
+		'## Find a component',
+		'Every component has an **Overview** page with usage, examples with code, properties, accessibility and migration, for example **Components → DBButton → Overview**. Design guidelines are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/overview).'
+	];
+	return sections.join('\n\n') + '\n';
 };
 
 const components = process.argv.slice(2);

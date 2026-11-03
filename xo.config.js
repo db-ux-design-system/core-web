@@ -188,6 +188,15 @@ const xoConfig = [
 		}
 	},
 	{
+		// Shared Storybook config, copied into `storybooks/*/.storybook/` by
+		// sync.ts. `storybook` resolves there, not from this folder.
+		files: ['./storybooks/_shared/storybook-config/**'],
+		rules: {
+			'import-x/no-extraneous-dependencies': 0,
+			'@typescript-eslint/no-unsafe-assignment': 0
+		}
+	},
+	{
 		files: ['./**/vite.config.ts'],
 		rules: {
 			'@typescript-eslint/no-unsafe-call': 0, // We don't need this tsc will handle it anyway
