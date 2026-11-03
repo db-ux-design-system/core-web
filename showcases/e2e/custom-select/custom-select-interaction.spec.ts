@@ -14,6 +14,16 @@ const skipKeyboardOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
+// On mobile the open dropdown becomes a modal bottom-sheet with a full-viewport
+// backdrop (summary::before, z-index 9998) painted over the field, so a tag's
+// remove button in the field is deliberately unreachable while the dropdown is
+// open. Removing a tag mid-open is therefore a desktop-only affordance: the
+// backdrop intercepts the pointer and the click never lands. Skip such
+// scenarios on every mobile project.
+const skipTagRemoveWhileOpenOnMobile: SkipType = {
+	project: (project) => project.name.startsWith('mobile')
+};
+
 const FOCUS_COOLDOWN = 2000;
 
 const openDropdown = async (page: Page, summary: Locator) => {
@@ -327,6 +337,7 @@ test.describe('DBCustomSelect', () => {
 		title: 'should keep the dropdown open when a tag is removed while it is open',
 		path,
 		example: 'Interaction',
+		skip: skipTagRemoveWhileOpenOnMobile,
 		async run({ content }) {
 			const select = content.getByTestId('tag-select');
 			const tags = select.locator('.db-tag');
