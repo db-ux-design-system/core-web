@@ -148,7 +148,7 @@ const discover = (storybook: StorybookName) => {
 			(entry.id === 'getting-started--docs' ||
 				entry.id.endsWith('-overview--docs') ||
 				(storybook === 'composition-storybook' &&
-					entry.title.startsWith('Foundations/')))
+					/^(Foundations|Guides)\//.test(entry.title)))
 	);
 };
 

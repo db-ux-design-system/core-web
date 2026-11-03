@@ -88,3 +88,5 @@ showcases/next-showcase/.browserslistrc
 # Snippet files of the Storybook docs tests (storybooks/_shared/tests/snippets.spec.ts)
 storybooks/*/.snippet-check
 build-storybooks-serve
+# Test table of the composition Storybook, generated on every build
+storybooks/_storybook/src/generated
