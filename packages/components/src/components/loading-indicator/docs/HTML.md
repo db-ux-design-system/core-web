@@ -7,7 +7,9 @@ For general installation and configuration take a look at the [components](https
 The `db-loading-indicator` root carries the live-region role (`status`) and
 wraps an inner content wrapper (`<div class="db-loading-indicator-content">`)
 containing a `<label>`, its associated native `<progress>` and an `aria-hidden`
-span for the visible progress text. The role sits on the root (not the inner
+span for the visible progress text. The progress text span must carry the
+`db-loading-indicator-progress-text` class, because the stylesheet keys the
+"hide the gap when there is no visible progress text" rule off it. The role sits on the root (not the inner
 wrapper) so the whole component is the live region, matching the framework
 output. The inner wrapper must carry the `db-loading-indicator-content` class,
 because the stylesheet targets it directly (`> .db-loading-indicator-content`)
@@ -50,7 +52,9 @@ here `0.42` for 42 of 100) because there is no JavaScript to calculate it.
 			<progress id="loading-indicator-1-progress" value="42" max="100">
 				42 of 100
 			</progress>
-			<span aria-hidden="true">42 of 100</span>
+			<span class="db-loading-indicator-progress-text" aria-hidden="true"
+				>42 of 100</span
+			>
 		</div>
 	</div>
 </body>
