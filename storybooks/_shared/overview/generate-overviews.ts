@@ -636,6 +636,7 @@ const buildGettingStarted = (fw: Framework): string => {
 		'<Meta title="Getting Started" />',
 		`# Getting Started with ${fw.label}`,
 		`The minimum to render the first component. The [${fw.label} setup page on the Design System Platform](${setupUrl}) explains every step in detail, with the Vite and PostCSS plugins, linting and troubleshooting.`,
+		`To try the components first, or to share a reproducible example in an issue, open an [example project](${PLATFORM}/learn/examples) in StackBlitz – no local setup needed.`,
 		'## 1. Install',
 		source({ language: 'shell', code: fw.install }),
 		'## 2. Load the styles',
