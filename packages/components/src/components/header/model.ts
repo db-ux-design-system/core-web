@@ -6,6 +6,7 @@ import type {
 	GlobalState,
 	InitializedState,
 	InnerCloseButtonProps,
+	MaterialProps,
 	NavigationBehaviorState,
 	ToggleEventProps,
 	ToggleEventState
@@ -57,6 +58,7 @@ export type DBHeaderProps = DBHeaderDefaultProps &
 	DrawerHeaderSlotProps &
 	InnerCloseButtonProps &
 	GlobalProps &
+	MaterialProps &
 	ToggleEventProps &
 	ContainerWidthProps;
 

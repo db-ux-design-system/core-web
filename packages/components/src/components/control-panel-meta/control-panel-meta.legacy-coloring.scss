@@ -1,0 +1,10 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `control-panel-meta`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-control-panel-meta {
+	background-color: colors.$db-adaptive-bg-basic-level-2-default;
+}

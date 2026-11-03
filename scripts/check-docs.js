@@ -221,8 +221,14 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 		const variations = [originalPath];
 		const dir = path.dirname(originalPath);
 		const basename = path.basename(originalPath);
-		const ext = path.extname(basename);
-		const nameWithoutExt = path.basename(basename, ext);
+		// Only treat `.scss`/`.css` as a real style extension. A dotted name
+		// segment like `variables.adaptive` is NOT an extension (SCSS resolves it
+		// to `_variables.adaptive.scss`), so `path.extname` must not strip it —
+		// otherwise the `.scss`/`.css` and underscore-partial variations below are
+		// never generated and a valid reference is reported as broken.
+		const rawExt = path.extname(basename);
+		const ext = rawExt === '.scss' || rawExt === '.css' ? rawExt : '';
+		const nameWithoutExt = ext ? path.basename(basename, ext) : basename;
 
 		// Add variations with SCSS extensions if no extension provided
 		if (!ext) {

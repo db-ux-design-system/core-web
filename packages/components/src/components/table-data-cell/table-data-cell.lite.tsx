@@ -13,6 +13,8 @@ export default function DBTableDataCell(props: DBTableDataCellProps) {
 		<td
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-table-data-cell', props.className)}
 			data-horizontal-alignment={props.horizontalAlignment}
 			data-vertical-alignment={props.verticalAlignment}

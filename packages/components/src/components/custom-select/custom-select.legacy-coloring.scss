@@ -1,0 +1,16 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/form-components";
+
+/*
+ * Legacy color layer for `custom-select`: the field (summary) surface, border,
+ * caret, icon and validity colors from `set-default-form-component`, plus the
+ * tooltip's legacy neutral palette seed. Forwarded only into the legacy bundle;
+ * the adaptive bundle colors it via `custom-select.adaptive.scss`.
+ */
+.db-custom-select {
+	@include form-components.set-default-form-component-colors(summary);
+
+	.db-tooltip {
+		@extend %db-neutral-variables;
+	}
+}

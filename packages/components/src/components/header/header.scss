@@ -2,19 +2,15 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/density";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 
 .db-header {
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-
 	@include helpers.display(flex);
 
 	flex-direction: column;
 	position: relative;
 	min-block-size: component.$min-mobile-header-height;
-	border-block-end: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	border-block-end: variables.$db-border-width-3xs solid;
 
 	@include screen-sizes.screen("md") {
 		--db-drawer-max-width: #{screen-sizes.$db-breakpoint-sm};
@@ -97,7 +93,6 @@
 	flex-direction: column;
 	gap: variables.$db-spacing-fixed-sm;
 	justify-content: flex-end;
-	background-color: colors.$db-adaptive-bg-basic-level-2-default;
 	padding: variables.$db-spacing-fixed-md;
 
 	@include helpers.divider("top");

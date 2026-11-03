@@ -1,0 +1,7 @@
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-checkbox,
+.db-checkbox[data-adaptive-coloring="true"] {
+	@extend %check-element-materials;
+	@include form-components.check-element-validity(check);
+}

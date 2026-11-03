@@ -5,6 +5,7 @@ import type {
 	FormCheckProps,
 	GlobalProps,
 	IconProps,
+	MaterialProps,
 	ShowIconProps,
 	ValueProps
 } from '../../shared/model';
@@ -38,6 +39,7 @@ export type DBCustomSelectListItemDefaultProps = {
 
 export type DBCustomSelectListItemProps = DBCustomSelectListItemDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	BaseFormProps &
 	ValueProps &
 	FormCheckProps &

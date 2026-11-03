@@ -1,0 +1,12 @@
+@use "../../styles/internal/navigation-item";
+
+/*
+ * Legacy color layer for `control-panel-navigation-item`. The base `.scss` is
+ * color-free (structure only); forwarded by `components-legacy-coloring` into
+ * the legacy bundle. The adaptive bundle omits this file.
+ */
+.db-control-panel-navigation-item {
+	a {
+		@extend %navigation-item-interactive-element-colors;
+	}
+}

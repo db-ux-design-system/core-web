@@ -1,6 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
-@use "../../styles/internal/button-components";
 @use "../../styles/internal/component";
 @use "../../styles/internal/icon-passing";
 
@@ -26,10 +25,6 @@
 		text-decoration: none;
 
 		@include helpers.display(inline-flex);
-
-		&:not([aria-current="page"]) {
-			@extend %button-outlined-ghost-colors;
-		}
 
 		&[aria-current="page"] {
 			font-weight: bold;

@@ -6,7 +6,8 @@ import type {
 	DialogDrawerDefaultState,
 	GeneralEvent,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	MaterialProps
 } from '../../shared/model';
 
 export const DialogBackdropList = ['none', 'strong', 'weak'] as const;
@@ -56,6 +57,7 @@ export type DBDialogDefaultProps = {
 
 export type DBDialogProps = DBDialogDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	CancelEventProps<HTMLDialogElement> &
 	CloseEventProps<GeneralEvent<HTMLDialogElement>>;
 

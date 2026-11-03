@@ -1,0 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `custom-select-dropdown`: seeds the legacy neutral
+ * palette (`%db-neutral-variables`). Forwarded only into the legacy bundle; in
+ * adaptive mode the dropdown surface comes from its `data-material`, so the
+ * legacy palette seed must not leak into the adaptive output.
+ */
+.db-custom-select-dropdown {
+	@extend %db-neutral-variables;
+}

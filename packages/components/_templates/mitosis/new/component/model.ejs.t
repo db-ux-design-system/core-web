@@ -11,6 +11,7 @@ import type {
 	FormProps,
 	FormState,
 <% } -%>
+	MaterialProps,
 GlobalProps,
 GlobalState } from '../../shared/model';
 
@@ -19,7 +20,8 @@ export type DB<%= h.changeCase.pascal(name) %>DefaultProps = {
 
 export type DB<%= h.changeCase.pascal(name) %>Props =
 	DB<%= h.changeCase.pascal(name) %>DefaultProps  &
-	GlobalProps
+	GlobalProps &
+	MaterialProps
 <% if(formValue!=="no"){   -%>
 	&
 	ChangeEventProps &

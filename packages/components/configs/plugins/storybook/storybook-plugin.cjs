@@ -15,6 +15,16 @@ module.exports = () => ({
 		post: (code, json) => {
 			const { imports, pluginData, name, children, meta } = json;
 			const { target, path } = pluginData;
+
+			// Examples that render their component via a loop (e.g. the adaptive
+			// color x material matrices) have no single reference instance to
+			// extract Storybook args from, so they opt out of story generation
+			// with `useMetadata({ storybookSkip: true })`. Return the source
+			// untouched so no `.stories` file is emitted for them.
+			if (meta?.useMetadata?.storybookSkip) {
+				return code;
+			}
+
 			const targetMapItem = targetMapping[target].storyBookLib;
 
 			const componentNameLowercase = path.split('/')[2];

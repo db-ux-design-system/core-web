@@ -1,0 +1,15 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-tooltip,
+.db-tooltip[data-adaptive-coloring="true"] {
+	--db-adaptive-transparency: 100%; // We don't want to disable the tooltip
+
+	@extend %adaptive-coloring-container;
+
+	// Keep the arrow in sync with the adaptive surface.
+	&::after {
+		background-color: adaptive.$db-bg-default;
+		border-color: adaptive.$db-border-default;
+	}
+}

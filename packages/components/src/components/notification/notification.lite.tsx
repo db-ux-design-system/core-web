@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { ClickEvent } from '../../shared/model';
+import { ClickEvent, MaterialType } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -26,6 +26,32 @@ export default function DBNotification(props: DBNotificationProps) {
 	const _ref = useRef<HTMLDivElement | any>(null);
 	// jscpd:ignore-start
 	const state = useStore<DBNotificationState>({
+		_getMaterial: (): MaterialType | undefined => {
+			return props.material ?? 'filled-2';
+		},
+		_getColor: (): ColorType | undefined => {
+			if (props.color) {
+				return props.color;
+			}
+
+			if (props.semantic === 'informational') {
+				return 'blue';
+			}
+
+			if (props.semantic === 'critical') {
+				return 'red';
+			}
+
+			if (props.semantic === 'warning') {
+				return 'yellow';
+			}
+
+			if (props.semantic === 'successful') {
+				return 'green';
+			}
+
+			return undefined;
+		},
 		handleClose: (event?: ClickEvent<HTMLButtonElement> | void) => {
 			if (!event) return;
 
@@ -42,6 +68,8 @@ export default function DBNotification(props: DBNotificationProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-notification', props.className)}
+			data-material={state._getMaterial()}
+			data-adaptive-color={state._getColor()}
 			role={getNotificationRole({
 				semantic: props.semantic,
 				role: props.role,

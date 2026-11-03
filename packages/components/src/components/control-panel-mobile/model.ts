@@ -4,6 +4,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	InnerCloseButtonProps,
+	MaterialProps,
 	NavigationBehaviorState,
 	ShellControlPanelMobilePositionType,
 	ToggleEventProps,
@@ -25,6 +26,7 @@ export type DBControlPanelMobileProps = DBControlPanelMobileDefaultProps &
 	GlobalProps &
 	DrawerHeaderSlotProps &
 	InnerCloseButtonProps &
+	MaterialProps &
 	ToggleEventProps &
 	ControlPanelProps;
 

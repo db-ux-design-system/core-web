@@ -49,6 +49,10 @@
 				<db-divider></db-divider>
 			}
 		}
+		<db-divider></db-divider>
+		<db-switch (change)="onShellToggle()" [checked]="shell()">
+			Shell
+		</db-switch>
 	</db-drawer>
 	<db-button
 		(click)="open.set(true)"

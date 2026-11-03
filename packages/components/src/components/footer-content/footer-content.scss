@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 
 /*
  * The wrapping row for navigation lists is shared with the meta area and lives in
@@ -9,9 +8,7 @@
  * does locally.
  */
 .db-footer-content {
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	border-block-start: variables.$db-border-width-3xs solid
-		colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+	border-block-start: variables.$db-border-width-3xs solid;
 	inline-size: 100%;
 	padding: variables.$db-spacing-fixed-lg;
 }

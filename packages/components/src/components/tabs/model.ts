@@ -2,6 +2,7 @@ import type {
 	AlignmentType,
 	GlobalProps,
 	InitializedState,
+	MaterialProps,
 	OrientationProps,
 	WidthType
 } from '../../shared/model';
@@ -113,6 +114,7 @@ export type DBTabsEventProps = {
 
 export type DBTabsProps = DBTabsDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	OrientationProps &
 	TabItemAlignmentProps &
 	DBTabsEventProps;

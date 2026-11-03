@@ -1,0 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `footer-content`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-footer-content {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+	border-block-start-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+}

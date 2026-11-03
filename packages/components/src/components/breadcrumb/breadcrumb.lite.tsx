@@ -125,6 +125,8 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 		<nav
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-breadcrumb', props.className)}
 			data-size={props.size ?? 'small'}
 			data-separator={props.separator}
@@ -166,6 +168,7 @@ export default function DBBreadcrumb(props: DBBreadcrumbProps) {
 						type="button"
 						className="db-button db-breadcrumb-auto-truncation-item-button"
 						data-variant="ghost"
+						data-material="transparent"
 						data-size={props.size ?? 'small'}
 						aria-label={props.expandText}
 						onClick={() => state.handleExpand()}>

@@ -1,0 +1,34 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/helpers";
+
+/*
+ * Legacy color layer for `custom-select-list-item`. The base `.scss` is
+ * color-free (structure only); forwarded by `components-legacy-coloring` into
+ * the legacy bundle. The adaptive bundle omits this file.
+ */
+.db-custom-select-list-item {
+	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
+
+	&:has(> label) {
+		&:not(:has(input[type="radio"]:checked)) {
+			@include helpers.interactive-bg(
+				colors.$db-adaptive-bg-basic-transparent-full-hovered,
+				colors.$db-adaptive-bg-basic-transparent-full-pressed
+			);
+		}
+	}
+
+	span:not(.db-custom-select-list-item-label) {
+		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+	}
+
+	> label {
+		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+
+		> input {
+			// We revert interaction states for checkbox
+			--db-adaptive-bg-basic-transparent-full-hovered: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+			--db-adaptive-bg-basic-transparent-full-pressed: #{colors.$db-adaptive-bg-basic-transparent-full-default};
+		}
+	}
+}

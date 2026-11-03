@@ -1,0 +1,56 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+@use "../../styles/internal/tag-components";
+
+[data-adaptive-coloring="true"] .db-tag,
+.db-tag[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+
+	border-color: adaptive.$db-border-decorative;
+
+	@include tag-components.get-interactive-selectors {
+		@extend %adaptive-coloring-interactive-container;
+	}
+
+	&:not(:has(input:checked)) {
+		label {
+			@extend %adaptive-coloring-interactive-container;
+
+			&::after {
+				color: adaptive.$db-text-default;
+			}
+		}
+
+		&::before {
+			color: adaptive.$db-text-default;
+		}
+	}
+
+	&:has(input:checked) {
+		label {
+			&::after {
+				color: adaptive.$db-alt-state-text-default;
+			}
+		}
+
+		// Checked radio is not interactive
+		label:has(input[type="radio"]) {
+			@extend %adaptive-coloring-alt-state-container;
+		}
+
+		label:has(input[type="checkbox"]) {
+			@extend %adaptive-coloring-alt-state-interactive-container;
+		}
+
+		&::before {
+			color: adaptive.$db-alt-state-text-default;
+		}
+	}
+
+	.db-tab-remove-button {
+		&::before {
+			color: adaptive.$db-text-default;
+		}
+	}
+}

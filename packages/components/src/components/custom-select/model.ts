@@ -1,6 +1,7 @@
 import type {
 	BaseFormProps,
 	CloseEventState,
+	ColorState,
 	CustomFormProps,
 	DocumentScrollState,
 	FormMessageProps,
@@ -12,6 +13,8 @@ import type {
 	IconProps,
 	InputEvent,
 	InteractionEvent,
+	LabelAdaptiveState,
+	MaterialProps,
 	PlacementVerticalType,
 	RequiredProps,
 	ShowIconProps,
@@ -239,6 +242,7 @@ export type DBCustomSelectDefaultProps = {
 };
 
 export type DBCustomSelectProps = GlobalProps &
+	MaterialProps &
 	CustomFormProps &
 	BaseFormProps &
 	RequiredProps &
@@ -320,4 +324,6 @@ export type DBCustomSelectState = DBCustomSelectDefaultState &
 	FormState &
 	FromValidState &
 	CloseEventState<InteractionEvent<HTMLDetailsElement>> &
-	DocumentScrollState;
+	DocumentScrollState &
+	ColorState &
+	LabelAdaptiveState;

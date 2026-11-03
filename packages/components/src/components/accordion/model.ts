@@ -1,7 +1,9 @@
 import {
 	CollapsibleBehaviorProps,
 	GlobalProps,
-	InitializedState
+	InitializedState,
+	MaterialProps,
+	MaterialState
 } from '../../shared/model';
 import type { DBAccordionItemDefaultProps } from '../accordion-item/model';
 
@@ -39,6 +41,7 @@ export type DBAccordionDefaultProps = {
 
 export type DBAccordionProps = DBAccordionDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	CollapsibleBehaviorProps;
 
 export type DBAccordionDefaultState = {
@@ -46,4 +49,6 @@ export type DBAccordionDefaultState = {
 	_name?: string;
 };
 
-export type DBAccordionState = DBAccordionDefaultState & InitializedState;
+export type DBAccordionState = DBAccordionDefaultState &
+	InitializedState &
+	MaterialState;

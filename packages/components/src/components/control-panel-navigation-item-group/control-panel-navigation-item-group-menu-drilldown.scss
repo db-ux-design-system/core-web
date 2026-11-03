@@ -40,3 +40,12 @@
 			control-panel-desktop.$control-panel-desktop-vertical-padding-inline-end;
 	}
 }
+
+/*
+ * Legacy color companion for the drilldown menu: the non-tree menu background.
+ * Consumers @extend this from their `*.legacy-coloring.scss`; the adaptive
+ * bundle colors the menu instead.
+ */
+%db-control-panel-navigation-item-group-menu-drilldown-colors {
+	@extend %db-control-panel-navigation-item-group-menu-non-tree-colors;
+}

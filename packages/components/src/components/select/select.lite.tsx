@@ -22,6 +22,7 @@ import {
 import {
 	ChangeEvent,
 	ClickEvent,
+	ColorType,
 	InputEvent,
 	InteractionEvent
 } from '../../shared/model';
@@ -38,6 +39,7 @@ import {
 } from '../../utils';
 import {
 	addValueResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -71,6 +73,33 @@ export default function DBSelect(props: DBSelectProps) {
 		initialized: false,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getLabelColor: (): ColorType | undefined => {
+			return props.variant === 'floating' ? state._getColor() : 'grey';
+		},
+		_getLabelMaterial: () => {
+			return props.variant === 'floating' ? props.material : 'filled-1';
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -325,8 +354,15 @@ export default function DBSelect(props: DBSelectProps) {
 			data-hide-asterisk={getHideProp(props.showRequiredAsterisk)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
-			<label htmlFor={state._id}>{props.label ?? DEFAULT_LABEL}</label>
+			<label
+				data-adaptive-color={state._getLabelColor()}
+				data-material={state._getLabelMaterial()}
+				htmlFor={state._id}>
+				{props.label ?? DEFAULT_LABEL}
+			</label>
 			<select
+				data-material={props.material}
+				data-adaptive-color={state._getColor()}
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				ref={_ref}

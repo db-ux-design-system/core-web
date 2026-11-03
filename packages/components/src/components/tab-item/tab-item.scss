@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
@@ -8,7 +7,6 @@
 
 .db-tab-item {
 	position: relative;
-	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	padding: variables.$db-spacing-fixed-xs;
 	margin: 0;
 	overflow: visible;
@@ -17,7 +15,6 @@
 	white-space: nowrap;
 	border-radius: variables.$db-border-radius-sm;
 	font: inherit;
-	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
 	flex-shrink: 0;
 
 	@extend %transparent-border;
@@ -114,11 +111,9 @@
 	&:not(:disabled):hover,
 	&:not(:disabled):focus {
 		cursor: pointer;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
 	}
 
 	&:not(:disabled):active {
 		cursor: pointer;
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-pressed;
 	}
 }

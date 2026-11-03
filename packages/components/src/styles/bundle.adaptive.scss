@@ -1,0 +1,24 @@
+/*
+ * Adaptive-coloring component bundle. Like `bundle.scss` but drives coloring
+ * through the adaptive system only - it omits the legacy color classes
+ * (`colors/classes/all`) and uses the adaptive foundation bundle. Import the
+ * generated adaptive tokens (`generated-colors.css`) alongside this bundle; the
+ * per-component adaptive overrides come from `components-adaptive`.
+ */
+
+// Bundle all components
+@forward "./index";
+
+// Bundle foundation defaults (adaptive variant, no legacy color layer)
+@forward "@db-ux/core-foundations/build/styles/bundle.adaptive";
+
+// Per-component adaptive-coloring overrides (gated by data-adaptive-coloring)
+@forward "./components-adaptive";
+
+// Bundle optionals (no legacy `colors/classes/all` - adaptive coloring is
+// driven by `[data-material]` / `[data-color]` from `generated-colors.css`)
+@forward "component-animations";
+@forward "wc-workarounds";
+@forward "@db-ux/core-foundations/build/styles/helpers/classes/all";
+@forward "@db-ux/core-foundations/build/styles/density/classes/all";
+@forward "@db-ux/core-foundations/build/styles/fonts/classes/all";

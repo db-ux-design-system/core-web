@@ -1,7 +1,8 @@
 import type {
 	AlignmentProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	MaterialProps
 } from '../../shared/model';
 
 /** Groups block-level text and owns the spacing between its children. */
@@ -11,6 +12,7 @@ export type DBTextGroupDefaultProps = {
 };
 export type DBTextGroupProps = DBTextGroupDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	AlignmentProps;
 
 export type DBTextGroupDefaultState = {};

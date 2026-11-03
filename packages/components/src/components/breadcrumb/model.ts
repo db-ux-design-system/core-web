@@ -1,4 +1,9 @@
-import type { GlobalProps, GlobalState, SizeProps } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps,
+	SizeProps
+} from '../../shared/model';
 import { DBBreadcrumbItemDefaultProps } from '../breadcrumb-item/model';
 
 export const BreadcrumbSeparatorList = ['chevron', 'slash'] as const;
@@ -36,6 +41,7 @@ export type DBBreadcrumbDefaultProps = {
 
 export type DBBreadcrumbProps = DBBreadcrumbDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	SizeProps;
 
 export type DBBreadcrumbDefaultState = {

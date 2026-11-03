@@ -1,4 +1,8 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export const CustomSelectDropdownWidthList = ['fixed', 'auto', 'full'] as const;
 export type CustomSelectDropdownWidthType =
@@ -15,7 +19,8 @@ export type DBCustomSelectDropdownDefaultProps = {
 };
 
 export type DBCustomSelectDropdownProps = DBCustomSelectDropdownDefaultProps &
-	GlobalProps;
+	GlobalProps &
+	MaterialProps;
 
 export type DBCustomSelectDropdownDefaultState = {};
 

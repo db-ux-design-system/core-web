@@ -13,6 +13,8 @@ export default function DBFooter(props: DBFooterProps) {
 		<footer
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-footer', props.className)}
 			data-width={props.width}>
 			{props.children}

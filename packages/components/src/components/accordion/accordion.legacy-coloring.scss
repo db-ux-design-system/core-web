@@ -1,0 +1,22 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `accordion`. Only the card variant carries color (a
+ * level-1 fill on the item + its interactive summary, and the component
+ * border). The adaptive bundle omits this file; see `accordion.adaptive.scss`.
+ */
+.db-accordion[data-variant="card"] {
+	.db-accordion-item {
+		// The whole card (summary + expanded content) is filled with a level-1
+		// background, so an open item stays level-1 throughout.
+		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+		> details > summary {
+			@include helpers.interactive-bg(
+				colors.$db-adaptive-bg-basic-level-1-hovered,
+				colors.$db-adaptive-bg-basic-level-1-pressed
+			);
+		}
+	}
+}

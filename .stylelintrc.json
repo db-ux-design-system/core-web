@@ -60,6 +60,7 @@
 		"a11y/selector-pseudo-class-focus": true,
 		"csstools/use-logical": ["always", { "except": ["float"] }],
 		"selector-type-no-unknown": [true, { "ignoreTypes": ["/^db/"] }],
+		"scss/at-mixin-pattern": "^_?[a-z]([a-z0-9-]*[a-z0-9])?$",
 		"no-descending-specificity": null,
 		"number-max-precision": null,
 		"scss/operator-no-newline-after": null

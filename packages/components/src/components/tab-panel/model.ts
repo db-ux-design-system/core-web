@@ -1,4 +1,4 @@
-import type { GlobalProps } from '../../shared/model';
+import type { GlobalProps, MaterialProps } from '../../shared/model';
 
 export type DBTabPanelDefaultProps = {
 	/**
@@ -12,4 +12,5 @@ export type DBTabPanelDefaultProps = {
 };
 
 export type DBTabPanelProps = DBTabPanelDefaultProps &
-	Omit<GlobalProps, 'id' | 'propOverrides'>;
+	Omit<GlobalProps, 'id' | 'propOverrides'> &
+	MaterialProps;

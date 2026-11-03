@@ -1,0 +1,7 @@
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-input,
+.db-input[data-adaptive-coloring="true"] {
+	@include form-components.field-materials(input, $read-only-alt-state: true);
+	@include form-components.field-validity(input);
+}

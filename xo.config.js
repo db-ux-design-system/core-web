@@ -218,6 +218,22 @@ const xoConfig = [
 		}
 	},
 	{
+		// The adaptive color/material CSS generator is a Node.js build script
+		// (run via `node generate-css/index.ts`). Like `scripts/**` it is not
+		// covered by a tsconfig that wires up `@types/node`, so `node:fs` and
+		// friends resolve to `any`. Mirror the Node-script rule relaxations used
+		// elsewhere and allow console output.
+		files: ['./generate-css/**'],
+		rules: {
+			'no-console': 'off',
+			'@typescript-eslint/no-unsafe-call': 0,
+			'@typescript-eslint/no-unsafe-assignment': 0,
+			'@typescript-eslint/no-unsafe-argument': 0,
+			'@typescript-eslint/no-unsafe-return': 0,
+			'@typescript-eslint/restrict-plus-operands': 0
+		}
+	},
+	{
 		files: ['./scripts/**/*.spec.ts'],
 		rules: {
 			// Test files dynamically import untyped build helpers, which resolve to `any`

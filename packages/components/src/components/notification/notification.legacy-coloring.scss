@@ -1,0 +1,37 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
+@use "../../styles/internal/link-components";
+
+/*
+ * Legacy color layer for `notification`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-notification {
+	// Base extends the structure-only `%default-card`; restore its border color.
+	@extend %default-card-colors;
+
+	background-color: colors.$db-adaptive-bg-basic-level-2-default;
+
+	/*
+	 * Notification links are always default-colored (the base forwards the
+	 * default color here; the `brand` variant is pulled back to it as well).
+	 */
+	a {
+		@extend %db-default-link-colors;
+	}
+
+	&::before {
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-70-default};
+	}
+
+	// Per-semantic legacy palette seed (`%db-neutral-variables` etc.). Lives in
+	// the legacy layer only; adaptive mode drives the semantic color via its
+	// own tokens, so this must not seed the legacy palette into the adaptive
+	// output.
+	@each $name in colors.$variant-colors {
+		&[data-semantic="#{$name}"] {
+			@extend %db-#{$name}-variables;
+		}
+	}
+}

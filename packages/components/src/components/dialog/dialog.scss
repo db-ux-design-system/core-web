@@ -162,7 +162,6 @@ $container-size-scale: dialog-components.$container-size-scale;
 	max-block-size: calc(
 		var(--db-dialog-block-size) - 2 * var(--db-dialog-viewport-inset)
 	);
-	background-color: var(--db-adaptive-bg-basic-level-1-default);
 	overflow: hidden;
 
 	// Scoped to the open state so the user agent rule

@@ -1,0 +1,6 @@
+/*
+ * Legacy color layer for `navigation` - intentionally empty. Item
+ * background/border coloring lives in `navigation-item.legacy-coloring.scss`,
+ * and the active-item indicator fill comes from the shared `%indicator` base.
+ * File kept so `components-legacy-coloring` can `@forward` it.
+ */

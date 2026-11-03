@@ -113,6 +113,22 @@ export const isStencil = (showcase?: string): boolean =>
 export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
+export const isReact = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('react'));
+
+/*
+ * Coloring modes mirror the react-showcase "Coloring" select (see
+ * `showcases/settings.ts` / `use-query`): the legacy color system, the adaptive
+ * system, and both loaded together. Only the react-showcase wires the `coloring`
+ * URL param to a stylesheet swap, so the adaptive modes only produce distinct
+ * screenshots there - the other framework showcases render legacy regardless.
+ */
+export const COLORING_MODES = [
+	'legacy',
+	'legacy-adaptive',
+	'adaptive'
+] as const;
+export type ColoringMode = (typeof COLORING_MODES)[number];
 
 export const hasWebComponentSyntax = (showcase?: string): boolean =>
 	isAngular(showcase) || isStencil(showcase);
@@ -141,13 +157,15 @@ const gotoPage = async (
 	color: string,
 	fixedHeight?: number,
 	otherDensity?: 'functional' | 'regular' | 'expressive',
-	example?: string
+	example?: string,
+	coloring?: ColoringMode
 ) => {
 	const pageParameter = example
 		? `&page=${getExampleParameter(example)}`
 		: '';
+	const coloringParameter = coloring ? `&coloring=${coloring}` : '';
 	await page.goto(
-		`./#/${path}?density=${otherDensity ?? density}&color=${color}${pageParameter}`,
+		`./#/${path}?density=${otherDensity ?? density}&color=${color}${coloringParameter}${pageParameter}`,
 		{
 			waitUntil: 'domcontentloaded'
 		}
@@ -187,15 +205,29 @@ export const getDefaultScreenshotTest = ({
 	skip,
 	ratio
 }: DefaultSnapshotTestType) => {
-	test('should match screenshot', async ({ page }, { project }) => {
+	/*
+	 * Every framework showcase renders the coloring modes (each wires the
+	 * `coloring` URL param to a stylesheet swap). The visual baselines are
+	 * framework-agnostic (shared across react/vue/angular/stencil), so all
+	 * showcases must produce the same rendering per mode.
+	 *
+	 * There are only TWO baseline images: `legacy` and `adaptive`. The
+	 * `legacy-adaptive` mode (both bundles loaded) MUST render identically to
+	 * pure `adaptive` - a `data-adaptive-coloring` page looks the same whether
+	 * or not the legacy bundle is also loaded, UNLESS a legacy color leaks
+	 * through. Instead of its own baseline, `legacy-adaptive` is compared
+	 * against the SAME `adaptive.png` within the adaptive test (a second
+	 * `toHaveScreenshot('adaptive.png')` call). So regeneration only produces
+	 * the `adaptive` image, and the second assertion fails if any old color
+	 * leaks into the combined bundle.
+	 */
+	const buildConfig = (
+		project: FullProject
+	): PageAssertionsToHaveScreenshotOptions => {
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio = process.env.ratio ?? ratio;
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
-
-		if (shouldSkip(project, skip)) {
-			test.skip();
-		}
 
 		const config: PageAssertionsToHaveScreenshotOptions = {};
 
@@ -211,22 +243,69 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixelRatio = 0.0123;
 		}
 
-		if (typeof fixedHeight === 'function') {
-			fixedHeight = fixedHeight(project);
-		}
+		return config;
+	};
 
-		await gotoPage(page, path, lvl1, fixedHeight);
+	const gotoAndPrepare = async (
+		page: Page,
+		project: FullProject,
+		coloring: ColoringMode,
+		config: PageAssertionsToHaveScreenshotOptions
+	) => {
+		const resolvedFixedHeight =
+			typeof fixedHeight === 'function'
+				? fixedHeight(project)
+				: fixedHeight;
 
-		const headerDesktop = page.locator('.db-control-panel-desktop').first();
-		const headerMobile = page.locator('.db-control-panel-mobile').first();
+		await gotoPage(
+			page,
+			path,
+			lvl1,
+			resolvedFixedHeight,
+			undefined,
+			undefined,
+			coloring
+		);
 
-		config.mask = [headerDesktop, headerMobile];
+		config.mask = [
+			page.locator('.db-control-panel-desktop').first(),
+			page.locator('.db-control-panel-mobile').first()
+		];
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
 		}
+	};
 
-		await expect(page).toHaveScreenshot(config);
+	test('should match screenshot - legacy', async ({ page }, { project }) => {
+		if (shouldSkip(project, skip)) {
+			test.skip();
+		}
+
+		const config = buildConfig(project);
+		await gotoAndPrepare(page, project, 'legacy', config);
+		await expect(page).toHaveScreenshot('legacy.png', config);
+	});
+
+	test('should match screenshot - adaptive', async ({ page }, {
+		project
+	}) => {
+		if (shouldSkip(project, skip)) {
+			test.skip();
+		}
+
+		const config = buildConfig(project);
+
+		// Legacy + adaptive bundle loaded together: must match the pure adaptive
+		// baseline exactly, otherwise a legacy color is leaking through. Asserted
+		// FIRST so that on `--update-snapshots` the pure-adaptive render below is
+		// the final write and therefore the source of truth for `adaptive.png`.
+		await gotoAndPrepare(page, project, 'legacy-adaptive', config);
+		await expect(page).toHaveScreenshot('adaptive.png', config);
+
+		// Pure adaptive: the source-of-truth baseline (written last on update).
+		await gotoAndPrepare(page, project, 'adaptive', config);
+		await expect(page).toHaveScreenshot('adaptive.png', config);
 	});
 };
 

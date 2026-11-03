@@ -1,0 +1,7 @@
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-radio,
+.db-radio[data-adaptive-coloring="true"] {
+	@extend %radio-check-element-materials;
+	@include form-components.check-element-validity(radio);
+}

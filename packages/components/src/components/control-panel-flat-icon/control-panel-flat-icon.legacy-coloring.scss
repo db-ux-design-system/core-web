@@ -1,0 +1,7 @@
+/*
+ * Legacy color layer for `control-panel-flat-icon` - intentionally empty. The
+ * active-item indicator fill comes from the shared `%indicator` base via
+ * `--db-indicator-color` (legacy brand fallback), so it renders in both bundles
+ * with nothing to add here. File kept so `components-legacy-coloring` can
+ * `@forward` it alongside the other color layers.
+ */

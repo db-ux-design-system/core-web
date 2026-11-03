@@ -1,0 +1,27 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-switch,
+.db-switch[data-adaptive-coloring="true"] {
+	@extend %check-element-materials;
+	@include form-components.check-element-validity(switch);
+
+	input {
+		// The thumb (`::before`) is the content color against the track: the
+		// default text role on the unchecked track, the alt-state text role on
+		// the checked track.
+		&::before {
+			background-color: adaptive.$db-text-default;
+			color: adaptive.$db-text-default;
+		}
+
+		&:checked {
+			border-color: adaptive.$db-alt-state-bg-default;
+
+			&::before {
+				background-color: adaptive.$db-alt-state-text-default;
+				color: adaptive.$db-alt-state-text-default;
+			}
+		}
+	}
+}

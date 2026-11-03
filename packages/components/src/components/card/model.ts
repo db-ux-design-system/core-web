@@ -3,6 +3,8 @@ import type {
 	ClickEventState,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
+	MaterialState,
 	SpacingProps
 } from '../../shared/model';
 
@@ -26,6 +28,7 @@ export type DBCardDefaultProps = {
 
 export type DBCardProps = DBCardDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ClickEventProps<HTMLElement> &
 	SpacingProps;
 
@@ -33,4 +36,5 @@ export type DBCardDefaultState = {};
 
 export type DBCardState = DBCardDefaultState &
 	GlobalState &
+	MaterialState &
 	ClickEventState<HTMLElement>;

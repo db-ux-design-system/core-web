@@ -1,7 +1,9 @@
 import type {
+	ColorState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	MaterialProps,
 	SemanticProps,
 	ShowIconProps,
 	SizeProps,
@@ -13,6 +15,7 @@ export type DBInfotextDefaultProps = {};
 
 export type DBInfotextProps = DBInfotextDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	SemanticProps &
 	IconProps &
 	SizeProps &
@@ -22,4 +25,4 @@ export type DBInfotextProps = DBInfotextDefaultProps &
 
 export type DBInfotextDefaultState = {};
 
-export type DBInfotextState = DBInfotextDefaultState & GlobalState;
+export type DBInfotextState = DBInfotextDefaultState & GlobalState & ColorState;

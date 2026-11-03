@@ -1,5 +1,3 @@
-@use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "./../../styles/internal/table-components";
 
@@ -13,6 +11,15 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 	inset: 0;
 }
 
+/*
+ * `table-row-interactive-checked` and `table-row-interactive-state` are the
+ * selector-only building blocks for the interactive-row states. The color
+ * layers (`table-row.legacy-coloring.scss` and `table-row.adaptive.scss`)
+ * `@use` this module and re-open these same selectors with only the coloring,
+ * so the selector strings live in a single source of truth. `@use` keeps them
+ * namespaced rather than re-exported, so there is no collision when the base
+ * and a color layer are both `@forward`ed into the bundle.
+ */
 @mixin table-row-interactive-checked {
 	&:has(
 		input:is([type="radio"], [type="checkbox"])#{$interactive-child}:checked
@@ -37,42 +44,17 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 .db-table-row {
 	@extend %table-section-grid;
 
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-
 	&[data-interactive="true"] {
 		position: relative;
 
 		@include table-row-interactive-checked {
-			@extend %db-informational-variables;
-
-			background-color: colors.$db-adaptive-bg-basic-level-2-default;
-
 			&,
 			span,
 			p,
 			a {
 				font-weight: bold;
 			}
-
-			@include table-row-interactive-state {
-				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
-			}
-
-			@include table-row-interactive-state("active") {
-				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
-			}
 		}
-
-		// jscpd:ignore-start
-		@include table-row-interactive-state {
-			background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
-		}
-
-		@include table-row-interactive-state("active") {
-			background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
-		}
-
-		// jscpd:ignore-end
 
 		&:has(#{$interactive-child}:focus-visible) {
 			&::after {

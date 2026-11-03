@@ -232,21 +232,27 @@
 			// We use the size of a button for this spacing to make sure backdrop is clickable
 			--db-drawer-container-backdrop-spacing: #{variables.$db-sizing-md};
 
+			// Structure only (width + style longhands). The border COLOR is
+			// applied by the color layer: `drawer.legacy-coloring.scss` for the
+			// legacy bundle and `drawer.adaptive.scss` for the adaptive bundle.
+			// A `border-<side>` shorthand (or the color-carrying
+			// `$component-border`) would reset `border-<side>-color` to
+			// currentColor and leak the legacy token into the adaptive bundle.
 			&:not([data-direction]),
 			&[data-direction="to-left"] {
-				border-inline-start: component.$component-border;
+				@include component.component-border-structure(inline-start);
 			}
 
 			&[data-direction="to-right"] {
-				border-inline-end: component.$component-border;
+				@include component.component-border-structure(inline-end);
 			}
 
 			&[data-direction="up"] {
-				border-block-start: component.$component-border;
+				@include component.component-border-structure(block-start);
 			}
 
 			&[data-direction="down"] {
-				border-block-end: component.$component-border;
+				@include component.component-border-structure(block-end);
 			}
 		}
 

@@ -1,6 +1,5 @@
 @use "@db-ux/core-foundations/build/styles/helpers/functions";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/popover-component";
 @use "../../styles/internal/component";
@@ -13,19 +12,12 @@
 	@extend %popover-center;
 	@extend %default-popover;
 
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-
 	// i HTML tags browsers default styling reset
 	font-style: normal;
 
 	// surrounding tags styling reset
 	font-weight: initial;
 	padding: variables.$db-spacing-fixed-2xs variables.$db-spacing-fixed-xs;
-
-	&::after {
-		background-color: colors.$db-adaptive-bg-basic-level-1-default;
-	}
 
 	// Only for testing
 	&[data-e2e-hover="true"] {
@@ -40,7 +32,6 @@
 			content: "";
 			box-shadow: variables.$db-elevation-md;
 			position: absolute;
-			background-color: colors.$db-adaptive-bg-basic-level-1-default;
 			inline-size: variables.$db-sizing-2xs;
 			aspect-ratio: 1;
 			clip-path: polygon(
@@ -93,19 +84,6 @@
 			inset-inline-end: 0;
 			translate: 50% -50%;
 			rotate: 45deg;
-		}
-	}
-
-	&[data-emphasis="strong"] {
-		background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
-		color: colors.$db-adaptive-on-bg-inverted-default;
-
-		&::before {
-			--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
-		}
-
-		&::after {
-			background-color: colors.$db-adaptive-bg-inverted-contrast-high-default;
 		}
 	}
 

@@ -1,0 +1,18 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-table-head,
+.db-table-head[data-adaptive-coloring="true"] {
+	tr {
+		// Weak sub-header: a subtly filled band with muted text.
+		&[data-sub-header-emphasis="weak"] {
+			background-color: adaptive.$db-bg-default;
+			color: adaptive.$db-text-vibrant;
+		}
+
+		// Strong sub-header: the emphasized (vibrant) surface -> alt-state role.
+		&[data-sub-header-emphasis="strong"] {
+			@extend %adaptive-coloring-alt-state-container;
+		}
+	}
+}

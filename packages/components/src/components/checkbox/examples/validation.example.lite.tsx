@@ -21,6 +21,7 @@ export default function CheckboxValidation() {
 				Invalid
 			</DBCheckbox>
 			<DBCheckbox
+				checked
 				name="Validation"
 				validation="valid"
 				validMessage="Valid message">

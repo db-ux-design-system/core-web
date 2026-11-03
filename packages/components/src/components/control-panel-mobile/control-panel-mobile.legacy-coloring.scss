@@ -1,0 +1,21 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/control-panel-mobile";
+
+/*
+ * Legacy color layer for `control-panel-mobile`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-control-panel-mobile {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	&[data-position="top"] {
+		@extend %control-panel-mobile-position-top-colors;
+	}
+
+	&[data-position="bottom"] {
+		@extend %control-panel-mobile-position-bottom-colors;
+	}
+
+	// Active-item indicator fill: handled by the shared `%indicator` base.
+}

@@ -1,6 +1,9 @@
-import type {
+import {
+	AltStateColorState,
+	AltStateMaterialProps,
 	ChangeEventProps,
 	ChangeEventState,
+	ColorState,
 	FocusEventProps,
 	FocusEventState,
 	FormCheckProps,
@@ -15,6 +18,7 @@ import type {
 	IconProps,
 	IconTrailingProps,
 	LabelVariantHorizontalType,
+	MaterialProps,
 	SizeProps
 } from '../../shared/model';
 
@@ -31,6 +35,8 @@ export type DBSwitchDefaultProps = {
 };
 
 export type DBSwitchProps = GlobalProps &
+	MaterialProps &
+	AltStateMaterialProps &
 	ChangeEventProps<HTMLInputElement> &
 	FocusEventProps<HTMLInputElement> &
 	FormProps &
@@ -48,6 +54,8 @@ export type DBSwitchDefaultState = {
 
 export type DBSwitchState = DBSwitchDefaultState &
 	GlobalState &
+	ColorState &
+	AltStateColorState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &

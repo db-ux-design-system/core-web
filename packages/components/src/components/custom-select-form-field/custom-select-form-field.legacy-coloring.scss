@@ -1,0 +1,45 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "@db-ux/core-foundations/build/styles/variables";
+@use "@db-ux/core-foundations/build/styles/screen-sizes";
+@use "../../styles/internal/component";
+@use "../../styles/internal/dialog-components";
+
+/*
+ * Legacy color layer for `custom-select-form-field`. The base `.scss` is
+ * color-free (structure only); forwarded by `components-legacy-coloring` into
+ * the legacy bundle. The adaptive bundle omits this file.
+ */
+.db-custom-select-form-field {
+	@extend %default-interactive-component-colors;
+	@extend %form-component-border-colors;
+
+	background-color: colors.$db-adaptive-bg-basic-transparent-semi-default;
+
+	.db-custom-select-label,
+	.db-custom-select-tags span {
+		// The selected value lives here, next to the (empty) summary. The shared
+		// get-validity-color() mixin only recolors the summary and placeholder, so
+		// pick up the valid/invalid color via the adaptive token it remaps on the
+		// .db-custom-select root - default color otherwise.
+		color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+	}
+
+	&::after {
+		--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
+	}
+
+	// Hover hits the overlay summary, not the box, so forward it to the field.
+	/* stylelint-disable-next-line a11y/selector-pseudo-class-focus */
+	&:has(.db-custom-select-summary:hover:not([aria-disabled="true"])) {
+		background-color: colors.$db-adaptive-bg-basic-transparent-semi-hovered;
+	}
+
+	// Mobile: dim the page behind the open dropdown
+	details[open] > summary {
+		@include screen-sizes.screen("sm", "max") {
+			&::before {
+				background-color: dialog-components.$backdrop-color-strong;
+			}
+		}
+	}
+}

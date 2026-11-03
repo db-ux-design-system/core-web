@@ -1,0 +1,42 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/form-components";
+
+[data-adaptive-coloring="true"] .db-textarea,
+.db-textarea[data-adaptive-coloring="true"] {
+	@include form-components.field-materials(
+		textarea,
+		$read-only-alt-state: true
+	);
+	@include form-components.field-validity(textarea);
+
+	/*
+	 * Floating variant: the `::before`/`::after` pseudo elements cover the
+	 * scroll area behind the floating label. Re-point their fill and border to
+	 * the adaptive tokens (the `textarea` itself is handled by field-materials).
+	 */
+	&[data-variant="floating"] {
+		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
+			&::before {
+				background-color: adaptive.$db-bg-default;
+			}
+
+			&::after {
+				background-color: adaptive.$db-bg-default;
+				border-color: adaptive.$db-border-default;
+			}
+
+			/*
+			 * Read-only (but not disabled) textarea renders the alt-state
+			 * surface, so the cover matches it. `:disabled` also matches
+			 * `:read-only`, so it is excluded.
+			 */
+			&:has(textarea:read-only:not(:disabled))::after {
+				background-color: adaptive.$db-alt-state-bg-default !important;
+			}
+
+			&:has(textarea:not(:disabled):is(:hover, :focus))::after {
+				background-color: adaptive.$db-bg-hovered;
+			}
+		}
+	}
+}

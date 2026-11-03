@@ -72,6 +72,8 @@ export default function DBCustomSelectListItem(
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-custom-select-list-item', props.className, {
 				'db-checkbox': props.type === 'checkbox' && !props.isGroupTitle,
 				'db-radio': props.type !== 'checkbox' && !props.isGroupTitle
@@ -79,7 +81,11 @@ export default function DBCustomSelectListItem(
 			data-divider={getBooleanAsString(state.hasDivider, 'hasDivider')}>
 			<Show
 				when={!props.isGroupTitle}
-				else={<span>{props.groupTitle}</span>}>
+				else={
+					<span class="db-custom-select-list-item-group-title">
+						{props.groupTitle}
+					</span>
+				}>
 				<label
 					data-icon={
 						props.type !== 'checkbox' && props.icon
@@ -90,6 +96,10 @@ export default function DBCustomSelectListItem(
 						props.showIcon,
 						'showIcon'
 					)}
+					data-material="filled-1"
+					data-alt-state-material={
+						props.type === 'checkbox' ? 'inverted' : 'filled-1'
+					}
 					data-icon-trailing={state.getIconTrailing()}>
 					<input
 						class="db-custom-select-list-item-checkbox"

@@ -449,7 +449,107 @@ This keeps id logic in one place, avoids drift between the `id` and its `htmlFor
 9. Run `pnpm run build` to verify
 10. Add a changeset for `@db-ux/core-components` **and** all four framework output packages — always all five, whether SCSS, `model.ts` or the template changed (see Changeset Rules below)
 
+> **⚠️ Always keep imports in sync with the symbols you use.** When you add a
+> type to a Props/State intersection in `model.ts`, add a store method, or
+> reference a type/value in a `.lite.tsx` (e.g. `MaterialProps`, `MaterialState`,
+> `ColorState`, `MaterialType`, `ColorType`, `onMount`, `onUpdate`,
+> `MutationObserver`), **add the matching `import` in the same edit** — and
+> conversely remove imports that are no longer used. A type referenced but not
+> imported compiles to a `Cannot find name` / `is not defined` error that only
+> surfaces at build time. After editing any `.ts`/`.tsx` file, re-read its import
+> block and confirm every newly used symbol is imported and every removed symbol
+> is dropped. Shared types come from `../../shared/model`; Mitosis lifecycle/
+> store helpers from `@builder.io/mitosis`.
+
 **Do NOT manually edit showcase files** — they are generated from examples via Mitosis.
+
+### Every component must expose `material` and `color`
+
+Every component — not just the obviously "colored" ones — **must** accept a
+`material` and a `color` prop so a consumer can opt it into adaptive coloring.
+These come from the shared `MaterialProps` type; do not redeclare them per
+component.
+
+Wire them in every component:
+
+1. **`model.ts`** — intersect the props with `MaterialProps`. A component on the
+   adaptive `size` scale uses `AdaptiveDefaultProps` (which already bundles
+   `MaterialProps`) instead of adding `MaterialProps` directly — do not add both.
+
+    ```ts
+    export type DBExampleProps = DBExampleDefaultProps &
+    	GlobalProps &
+    	MaterialProps;
+    ```
+
+2. **`.lite.tsx`** — bind the props on the element carrying the `_ref` (the root):
+
+    ```tsx
+    data-material={props.material}
+    data-adaptive-color={props.color}
+    ```
+
+**Only add a `_getMaterial` / `_getColor` store method (and the matching
+`MaterialState` / `ColorState` on the state type) when the component actually
+derives the value** — i.e. it needs a default or maps another prop onto it.
+A pure passthrough does not need a getter; binding `props.material` /
+`props.color` directly is clearer and avoids a no-op store method. Example where
+a getter _is_ warranted — `card` maps `elevationLevel` onto the material:
+
+```tsx
+_getMaterial: (): MaterialType | undefined => {
+	if (props.material) return props.material;
+	if (props.elevationLevel === "2") return "filled-2";
+	if (props.elevationLevel === "3") return "filled-3";
+	return "filled-1";
+};
+```
+
+```tsx
+data-material={state._getMaterial()}
+```
+
+`card` still binds `data-adaptive-color={props.color}` directly, because it does
+not derive the color — so it carries `MaterialState` but not `ColorState`.
+
+The scaffold produced by `pnpm run generate:component` wires the direct
+passthrough form (no getters). The adaptive SCSS (`<name>.adaptive.scss`, gated
+by `[data-adaptive-coloring="true"]`) then reads the resulting `--db-*` tokens.
+
+#### Prefer the adaptive SCSS variables over bare `var(--db-*)`
+
+Adaptive `--db-*` tokens are also exposed as Sass variables in
+[`packages/foundations/scss/_variables.adaptive.scss`](../foundations/scss/_variables.adaptive.scss)
+(`$db-bg-default`, `$db-text-default`, `$db-border-default`, the `$db-alt-state-*`
+variants, etc.). In adaptive SCSS, **reference the Sass variable, not a bare
+`var(--db-*)` string**, whenever the value is used on its own:
+
+```scss
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+.db-example {
+	// a value used on its own -> use the Sass variable
+	color: adaptive.$db-text-default;
+	background-color: adaptive.$db-bg-default;
+}
+```
+
+The **only** time a raw `var(--db-*)` is correct is when the token is **not used
+on its own** — i.e. it is wrapped inside another expression such as another
+`var()` fallback, a `color-mix()`, or a `linear-gradient()`:
+
+```scss
+// wrapped inside another var() fallback -> keep the raw custom property
+--db-icon-color: var(--db-pride-red, var(--db-visual-vibrant));
+
+// composed inside color-mix / gradients -> keep the raw custom property
+background: color-mix(in srgb, var(--db-bg-default) 50%, transparent);
+```
+
+Rule of thumb: if you would write exactly `property: var(--db-x);`, write
+`property: adaptive.$db-x;` instead. Only drop to the raw `var(--db-x)` when it
+is nested in a larger value. Prefer the Sass variable for sharability and so a
+token rename surfaces as a Sass compile error rather than a silent typo.
 
 ### Sub-Components
 
@@ -719,9 +819,46 @@ Before writing new SCSS for a component, **always check `src/styles/internal/`**
 | `_custom-elements.scss`   | Custom element host/shadow styles                                                                                                                                                                      |
 | `_component.scss`         | Base component resets and defaults                                                                                                                                                                     |
 | `_indicator.scss`         | Indicator animation                                                                                                                                                                                    |
-| `_scrollbar.scss`         | Scrollbar styling                                                                                                                                                                                      |
+| `_scrollbar.scss`         | Scrollbar styling + the shared **overflow-scroll-button** pattern (see below)                                                                                                                          |
 
 If a new component visually resembles an existing one (e.g. looks like a ghost button, a form field, or a tag), **use the shared internal styles** rather than duplicating the CSS. If a pattern appears in multiple components but has no shared file yet, **create a new `_[pattern].scss`** in `src/styles/internal/` and refactor the existing components to use it.
+
+### Overflow scroll buttons (always share the pattern)
+
+Any horizontally scrolling list that shows "scroll left / right" buttons over its
+edges (`DBTabs` arrow mode, `DBControlPanelNavigation`) **must** use the shared
+pattern in [`_scrollbar.scss`](src/styles/internal/_scrollbar.scss) — do not
+hand-roll per-component button backgrounds. The pattern keeps the buttons from
+letting the scrolling content show through, and makes the backing follow
+adaptive coloring automatically.
+
+Each button is wrapped in a positioned **container** div that carries the opaque
+background. The wrapper (rather than a backing on the button's own `::before`) is
+required because an adaptive consumer may set the button material to
+`transparent`, which would make `--db-bg-default` transparent on the button
+element itself — the container has no material, so it keeps the ambient surface.
+
+**Markup (`.lite.tsx`):** for each side render a wrapper div around a `DBButton`:
+
+- wrapper `class="overflow-scroll-left-button-container"` /
+  `"overflow-scroll-right-button-container"`,
+- button `class="overflow-scroll-left-button"` / `"overflow-scroll-right-button"`,
+  `noText`, chevron via `icon` (leading), e.g. `icon="chevron_left"`.
+
+**Styling (`.scss`):** on the positioned, non-scrolling element that holds the
+containers, `@include scrollbar.set-overflow-scroll-buttons;`. It positions both
+containers and gives them an opaque `background-color: var(--db-bg-default,
+<legacy level-1>)`. Tune placement with `--db-overflow-scroll-button-inset-block`
+/ `--db-overflow-scroll-button-inset-inline-start`; layer component-specific
+sizing on the `.overflow-scroll-*-button-container` (position/size) or
+`.overflow-scroll-*-button` (button-internal) selectors after the include.
+
+**Adaptive:** because the container background already uses
+`var(--db-bg-default, …)`, the `*.adaptive.scss` needs **no** re-point for the
+buttons — only for unrelated chrome (e.g. the tab track line).
+
+The mixin also owns the RTL chevron flip (via `--db-icon`), so a consumer never
+writes a per-side `:dir(rtl)` swap itself.
 
 ## Shared Utils (`src/utils/dialog/`)
 
@@ -824,6 +961,7 @@ Before adding a new prop to a component's `model.ts`, **always check `src/shared
 - `ShowIconProps` / `ShowIconLeadingProps` / `ShowIconTrailingProps` — icon visibility toggles
 - `SpacingProps` / `MarginProps` / `GapSpacingProps` — spacing and gap
 - `SizeProps` — `size` (small, medium)
+- `MaterialProps` — `material` and `color`; **required on every component** (see "Every component must expose `material` and `color`" above). `AdaptiveDefaultProps` bundles these with the adaptive `size` scale.
 - `EmphasisProps` — `emphasis` (weak, strong)
 - `OrientationProps` — `orientation` (horizontal, vertical)
 - `WidthProps` / `ContainerWidthProps` — width variants

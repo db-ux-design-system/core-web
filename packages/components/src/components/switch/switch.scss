@@ -1,6 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
-@use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "../../styles/internal/form-components";
@@ -39,26 +37,13 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 	@extend %helper-message;
 	@include form-components.set-default-check-element;
 
+	// Structure of the pressed (active) thumb. The matching color lives in
+	// switch.legacy-coloring.scss via `get-state`.
 	&:not(:has(input:disabled)) {
-		@include form-components.get-state;
-
-		@include form-components.get-state("active") {
+		&:has(input:active, > label:active, :is(label):active) {
 			@extend %active-transition;
 		}
 	}
-
-	// jscpd:ignore-start
-	@include form-components.get-validity(check) {
-		&:has(.db-infotext[data-semantic="successful"]) {
-			@include form-components.get-validity-color-checkbox("valid");
-		}
-	}
-
-	@include form-components.get-validity(check, "invalid") {
-		@include form-components.get-validity-color-checkbox("invalid");
-	}
-
-	// jscpd:ignore-end
 
 	input {
 		--thumb-offset-x: #{$switch-fixed-padding};
@@ -82,8 +67,6 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		@include icons.set-icon("cross", "after");
 
 		&::after {
-			--db-icon-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-
 			opacity: 0;
 			align-self: center;
 			aspect-ratio: 1;
@@ -100,14 +83,6 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 			align-content: center;
 			aspect-ratio: 1;
 			block-size: $switch-inactive-thumb-size;
-			background-color: var(
-				--db-check-element-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-			);
-			color: var(
-				--db-check-element-border-color,
-				#{colors.$db-adaptive-on-bg-basic-emphasis-100-default}
-			);
 			border-radius: variables.$db-border-radius-full;
 			transform: translateX(var(--thumb-offset-x));
 			margin-inline-end: calc(
@@ -137,28 +112,8 @@ $switch-inline-size: calc(2lh + #{$switch-fixed-padding});
 		&:checked {
 			--thumb-offset-x: calc(100% + #{$switch-fixed-padding});
 
-			// jscpd:ignore-start
-			--db-icon-color: var(--db-adaptive-on-bg-inverted-default);
-			--db-adaptive-bg-basic-transparent-full-default: var(
-				--db-adaptive-bg-inverted-contrast-max-default
-			);
-			--db-adaptive-bg-basic-transparent-full-hovered: var(
-				--db-adaptive-bg-inverted-contrast-max-hovered
-			);
-			--db-adaptive-bg-basic-transparent-full-pressed: var(
-				--db-adaptive-bg-inverted-contrast-max-pressed
-			);
-
-			// jscpd:ignore-end
-
-			&::after {
-				--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
-			}
-
 			&::before {
 				block-size: $switch-active-thumb-size;
-				background-color: colors.$db-adaptive-on-bg-inverted-default;
-				color: colors.$db-adaptive-on-bg-inverted-default;
 				margin: 0;
 
 				// This is a workaround for forced-colors mode from browser
