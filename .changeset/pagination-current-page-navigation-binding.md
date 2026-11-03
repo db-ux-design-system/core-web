@@ -1,9 +1,9 @@
 ---
-"@db-ux/core-components": minor
-"@db-ux/ngx-core-components": minor
-"@db-ux/react-core-components": minor
-"@db-ux/wc-core-components": minor
-"@db-ux/v-core-components": minor
+"@db-ux/core-components": patch
+"@db-ux/ngx-core-components": patch
+"@db-ux/react-core-components": patch
+"@db-ux/wc-core-components": patch
+"@db-ux/v-core-components": patch
 ---
 
 fix(DBPagination): make the current page a non-interactive dead end
