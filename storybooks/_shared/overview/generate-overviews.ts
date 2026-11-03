@@ -345,7 +345,10 @@ const buildGuidelines = (meta: ComponentMeta): string => {
 	// Inline styles: the cards appear in five Storybooks with different global CSS files.
 	// `data-mode="light"`: the Storybook docs page stays light, also when the
 	// mode switch sets the stories to dark; the cards follow the page.
+	// cspell:ignore Richtlinien Einsatz Varianten Gestaltungsregeln
 	return `## Guidelines
+
+{/* cspell:ignore Richtlinien Einsatz Varianten Gestaltungsregeln */}
 
 How and when to use the component is documented on the Design System Platform:
 
