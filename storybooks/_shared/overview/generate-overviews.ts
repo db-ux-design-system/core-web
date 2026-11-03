@@ -371,18 +371,16 @@ const buildOverviewMdx = (
 		statusLine(meta),
 		'## Installation',
 		`<Source language="shell" dark code="${fw.install}" />`,
-		`Styles, plugins and the theme: [${fw.label} setup on the Design System Platform](${PLATFORM}/learn/${fw.setup}).`
+		`Styles, plugins and the theme: [${fw.label} setup on the Design System Platform](${PLATFORM}/learn/${fw.setup}).`,
+		'## Usage',
+		fw.api === 'argtypes'
+			? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
+			: 'Open **Show code** below a preview for the markup you can copy, including what it needs to load.'
 	];
 	// The examples are the usage: "Show code" contains the imports as well
 	// (see storybooks/_shared/storybook-config/source-imports.ts), so the
 	// handwritten docs/<Framework>.md is not shown here. It stays for npm, the
 	// MCP server and the Patternhub.
-	sections.push(
-		'## Usage',
-		fw.api === 'argtypes'
-			? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
-			: 'Open **Show code** below a preview for the markup you can copy, including what it needs to load.'
-	);
 	for (const group of examples) {
 		sections.push(
 			`### ${group.title}`,
