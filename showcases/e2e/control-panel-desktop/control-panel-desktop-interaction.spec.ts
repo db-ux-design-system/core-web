@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 import { isStencil, runInteractionTest, waitForDBShell } from '../default.ts';
 import { lvl1 } from '../fixtures/variants';
 
@@ -177,5 +177,188 @@ test.describe('DBControlPanelNavigation', () => {
 			expect(box!.height).toBeGreaterThan(0);
 			expect(box!.x).toBeGreaterThanOrEqual(0);
 		}
+	});
+});
+
+// Regression guard for #8659
+test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
+	const topSettings = encodeURIComponent(
+		JSON.stringify({
+			controlPanelDesktopPosition: 'top',
+			controlPanelMobilePosition: 'top',
+			navigationDesktopVariant: 'popover',
+			navigationMobileVariant: 'drilldown',
+			subNavigation: 'false',
+			subNavigationDesktopPosition: 'top',
+			subNavigationMobilePosition: 'none',
+			subNavigationVariant: 'popover'
+		})
+	);
+	const navigationSelector =
+		'.db-control-panel-desktop .db-control-panel-navigation';
+
+	test.beforeEach(async ({ page }, { project }) => {
+		// Settings are not supported by the Stencil showcase.
+		if (isStencil(process.env.showcase)) {
+			test.skip();
+		}
+
+		// Horizontal overflow buttons are a desktop-only affordance.
+		if (project.name.startsWith('mobile')) {
+			test.skip();
+		}
+
+		// Wide enough so the showcase navigation does not overflow initially.
+		await page.setViewportSize({ width: 1920, height: 800 });
+		await page.goto(
+			`./#/?shell=true&density=regular&color=${lvl1}&settings=${topSettings}`,
+			{ waitUntil: 'domcontentloaded' }
+		);
+		await waitForDBShell(page);
+		await expect(page.locator(navigationSelector)).toHaveAttribute(
+			'data-variant',
+			'popover'
+		);
+	});
+
+	const hasOverflow = async (page: Page): Promise<boolean> =>
+		page
+			.locator(`${navigationSelector} > menu`)
+			.evaluate((menu) => menu.scrollWidth > menu.clientWidth);
+
+	test('should update the scroll buttons right after the navigation geometry changes', async ({
+		page
+	}) => {
+		const navigation = page.locator(navigationSelector);
+		const rightButton = navigation.locator('.overflow-scroll-right-button');
+
+		expect(await hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+
+		await page.setViewportSize({ width: 900, height: 800 });
+		await expect.poll(async () => hasOverflow(page)).toBe(true);
+		await expect(rightButton).toHaveCount(1);
+
+		// Measure in the page, independent of the runner polling interval
+		await navigation.evaluate((nav) => {
+			const menu = nav.querySelector(':scope > menu')!;
+			const timings = { fitsAt: 0, removedAt: 0 };
+			(globalThis as any).__scrollButtonTimings = timings;
+			new ResizeObserver(() => {
+				if (!timings.fitsAt && menu.scrollWidth <= menu.clientWidth) {
+					timings.fitsAt = performance.now();
+				}
+			}).observe(menu);
+			new MutationObserver(() => {
+				if (
+					!timings.removedAt &&
+					!nav.querySelector('.overflow-scroll-right-button')
+				) {
+					timings.removedAt = performance.now();
+				}
+			}).observe(nav, { childList: true, subtree: true });
+		});
+
+		await page.setViewportSize({ width: 1920, height: 800 });
+		await expect.poll(async () => hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+
+		const { fitsAt, removedAt } = await page.evaluate(
+			() => (globalThis as any).__scrollButtonTimings
+		);
+		expect(fitsAt).toBeGreaterThan(0);
+		// Below the former fixed 500 ms delay
+		expect(removedAt - fitsAt).toBeLessThan(250);
+	});
+
+	test('should update the scroll buttons when the menu content grows or shrinks', async ({
+		page
+	}) => {
+		const navigation = page.locator(navigationSelector);
+		const rightButton = navigation.locator('.overflow-scroll-right-button');
+
+		expect(await hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+
+		// Let evaluations pending from page load settle
+		await page.waitForTimeout(1000);
+
+		// Style-only size change without DOM mutation (like a font swap)
+		const setItemPadding = async (padding: string) =>
+			navigation.locator('> menu').evaluate((menu, value) => {
+				for (const element of menu.querySelectorAll<HTMLElement>(
+					':scope .db-control-panel-navigation-item > a, :scope .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
+				)) {
+					if (
+						!element.closest(
+							'.db-control-panel-navigation-item-group-menu'
+						)
+					) {
+						element.style.setProperty(
+							'padding-inline',
+							value,
+							value ? 'important' : ''
+						);
+					}
+				}
+			}, padding);
+
+		await setItemPadding('120px');
+		await expect.poll(async () => hasOverflow(page)).toBe(true);
+		await expect(rightButton).toHaveCount(1);
+
+		await setItemPadding('');
+		await expect.poll(async () => hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+	});
+
+	test('should update the scroll buttons when top-level items are added or removed', async ({
+		page
+	}) => {
+		const navigation = page.locator(navigationSelector);
+		const rightButton = navigation.locator('.overflow-scroll-right-button');
+
+		expect(await hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+
+		// Let evaluations pending from page load settle
+		await page.waitForTimeout(1000);
+
+		await navigation.locator('> menu').evaluate((menu) => {
+			const template = menu.firstElementChild!;
+			for (let index = 0; index < 8; index++) {
+				const clone = template.cloneNode(true) as HTMLElement;
+				clone.dataset.testid = 'added-item';
+				menu.append(clone);
+			}
+		});
+		await expect.poll(async () => hasOverflow(page)).toBe(true);
+		await expect(rightButton).toHaveCount(1);
+
+		await navigation.locator('> menu').evaluate((menu) => {
+			for (const item of menu.querySelectorAll(
+				':scope > [data-testid="added-item"]'
+			)) {
+				item.remove();
+			}
+		});
+		await expect.poll(async () => hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+	});
+
+	test('should show the left scroll button after scrolling with the right scroll button', async ({
+		page
+	}) => {
+		const navigation = page.locator(navigationSelector);
+		const leftButton = navigation.locator('.overflow-scroll-left-button');
+		const rightButton = navigation.locator('.overflow-scroll-right-button');
+
+		await page.setViewportSize({ width: 900, height: 800 });
+		await expect(rightButton).toHaveCount(1);
+		await expect(leftButton).toHaveCount(0);
+
+		await rightButton.locator('button').or(rightButton).first().click();
+
+		await expect(leftButton).toHaveCount(1);
 	});
 });
