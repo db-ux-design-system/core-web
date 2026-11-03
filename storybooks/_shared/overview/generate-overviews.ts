@@ -39,6 +39,12 @@ type ComponentMeta = {
 	platformUrl: string;
 	status: string;
 	accessibilityReview?: { status: string; date: string };
+	/**
+	 * Packages the component needs beyond the framework installation on the
+	 * Getting Started page, e.g. `["@db-ux/db-theme-illustrative-icons"]`.
+	 * Shown as a note on the overview; most components have none.
+	 */
+	requires?: string[];
 };
 
 type Api = 'argtypes' | 'html' | 'webcomponents';
@@ -326,7 +332,12 @@ const buildOverviewMdx = (
 		)
 	);
 
-	const blocks = ['Canvas', 'Markdown', 'Meta', 'Source'];
+	const blocks = [
+		'Canvas',
+		'Markdown',
+		'Meta',
+		...(meta.requires?.length ? ['Source'] : [])
+	];
 	if (fw.api === 'argtypes') {
 		blocks.unshift('ArgTypes');
 	}
@@ -369,9 +380,11 @@ const buildOverviewMdx = (
 		`# ${meta.title}`,
 		`${meta.summary} When to use it and how to design with it: [${meta.title.replace(/^DB/, '')} guidelines on the Design System Platform](${meta.platformUrl}).`,
 		statusLine(meta),
-		'## Installation',
-		`<Source language="shell" dark code="${fw.install}" />`,
-		`Styles, plugins and the theme: [${fw.label} setup on the Design System Platform](${PLATFORM}/learn/${fw.setup}).`,
+		// The installation is the same for every component of a framework, so it
+		// is on the Getting Started page once. Only extra packages show up here.
+		meta.requires?.length
+			? `Installed as described in [Getting Started](?path=/docs/getting-started--docs), plus:\n\n<Source language="shell" dark code="pnpm add ${meta.requires.join(' ')}" />`
+			: `Installation and setup: [Getting Started](?path=/docs/getting-started--docs).`,
 		'## Usage',
 		fw.api === 'argtypes'
 			? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
