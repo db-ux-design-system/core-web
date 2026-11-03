@@ -38,7 +38,7 @@
     "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.4.0",
     "rxjs": "7.8.2",
-    "tslib": "2.8.1",
+    "tslib": "2.9.1",
     "zone.js": "0.15.1"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "@angular/cli": "21.2.29",
     "@angular/compiler-cli": "21.2.25",
     "@db-ux/core-postcss-plugin": "workspace:*",
-    "@types/node": "26.6.5",
+    "@types/node": "26.6.6",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3"
