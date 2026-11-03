@@ -6,17 +6,87 @@ import { Meta, Source } from "@storybook/addon-docs/blocks";
 
 # Getting Started with Web Components
 
-## Install
+The minimum to render the first component. The [Web Components setup page on the Design System Platform](https://design-system.deutschebahn.com/documentation/learn/web-components-setup) explains every step in detail, with the Vite and PostCSS plugins, linting and troubleshooting.
+
+## 1. Install
 
 <Source
 	language="shell"
 	dark
-	code="pnpm add @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations"
+	code={
+		"pnpm add @db-ux/wc-core-components @db-ux/core-components @db-ux/core-foundations"
+	}
 />
 
-## Set up styles and theme
+## 2. Load the styles
 
-Styles, plugins, the theme and fonts are explained step by step on the [Web Components setup page of the Design System Platform](https://design-system.deutschebahn.com/documentation/learn/web-components-setup).
+The whitelabel theme comes first, the component styles after it. The `@layer` line fixes this order.
+
+<Source
+	language="css"
+	dark
+	code={
+		"/* index.css */\n@layer whitelabel-theme, db-ux;\n@import '@db-ux/core-foundations/build/styles/theme/rollup.css' layer(whitelabel-theme);\n@import '@db-ux/core-components/build/styles/bundle.css' layer(db-ux);"
+	}
+/>
+
+Load the file once, with your bundler or with `<link rel="stylesheet" href="index.css" />`.
+
+## 3. Register the custom elements once
+
+The bundle entry point is self-contained, so `@stencil/core` is not needed:
+
+<Source
+	language="js"
+	dark
+	code={
+		"// main.js\nimport { defineCustomElements } from '@db-ux/wc-core-components/bundle/index.js';\n\ndefineCustomElements();"
+	}
+/>
+
+## 4. Check the setup
+
+A button with an icon shows in one place whether styles, font and icons load:
+
+<Source
+	language="html"
+	dark
+	code={
+		'<db-button variant="brand" icon="arrow_right">Add item to cart</db-button>'
+	}
+/>
+
+## Products of Deutsche Bahn: DB Theme
+
+Products of Deutsche Bahn use the DB Theme instead of the whitelabel theme. Its files are encrypted for legal reasons: get `ASSET_PASSWORD` and `ASSET_INIT_VECTOR` from the [Marketing Portal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and store them in a `.env` file that is never committed (in CI/CD as secret environment variables).
+
+<Source
+	language="dotenv"
+	dark
+	code={
+		"ASSET_PASSWORD=<value from the Marketing Portal>\nASSET_INIT_VECTOR=<value from the Marketing Portal>"
+	}
+/>
+
+Install the theme; it decrypts itself and brings the fonts and icons. With pnpm, allow the install scripts of the four `@db-ux/db-theme*` packages when `pnpm approve-builds` asks.
+
+<Source
+	language="shell"
+	dark
+	code={"pnpm add @db-ux/db-theme\npnpm approve-builds"}
+/>
+
+Replace the styles of step 2: the DB Theme overrides the defaults, so it comes last.
+
+<Source
+	language="css"
+	dark
+	code={
+		"/* index.css */\n@layer db-ux, db-theme;\n@import '@db-ux/core-components/build/styles/rollup.css' layer(db-ux);\n@import '@db-ux/db-theme/build/styles/rollup.css' layer(db-theme);"
+	}
+/>
+
+Details, manual decryption and the license: [DB Theme setup on the Design System Platform](https://design-system.deutschebahn.com/documentation/learn/db-theme-setup).
 
 ## Find a component
 

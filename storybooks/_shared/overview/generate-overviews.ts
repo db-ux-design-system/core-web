@@ -28,6 +28,12 @@ import {
 	writeFileSync
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import {
+	type CodeBlock,
+	SETUP,
+	dbThemeStyles,
+	whitelabelStyles
+} from './getting-started.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
 const ROOT = resolve(STORYBOOKS, '..');
@@ -37,6 +43,8 @@ type ComponentMeta = {
 	title: string;
 	summary: string;
 	platformUrl: string;
+	/** German page on the platform; the slugs differ per language. */
+	platformUrlDe?: string;
 	status: string;
 	accessibilityReview?: { status: string; date: string };
 	/**
@@ -301,6 +309,51 @@ const docsPath = (name: string, file: string) =>
 const hasDoc = (name: string, file: string) =>
 	existsSync(join(ROOT, docsPath(name, file)));
 
+/**
+ * "Guidelines" section with cards to the platform page of the component, in
+ * English and German. Plain `db-card` markup, because the MDX pages of the
+ * Angular, Vue and Web Components Storybooks cannot import the React
+ * components; the core component CSS is loaded in every Storybook.
+ */
+const buildGuidelines = (meta: ComponentMeta): string => {
+	const name = meta.title.replace(/^DB/, '');
+	const cards = [
+		{
+			title: `${name} guidelines`,
+			text: 'When to use it, variants, Do and Don’t, design rules for accessibility.',
+			url: meta.platformUrl,
+			lang: 'en'
+		},
+		{
+			title: `Richtlinien ${name}`,
+			text: 'Einsatz, Varianten, Do und Don’t, Gestaltungsregeln zur Barrierefreiheit.',
+			url: meta.platformUrlDe,
+			lang: 'de'
+		}
+	].filter((card) => card.url);
+	const items = cards
+		.map(
+			(
+				card
+			) => `<a className="db-card" data-behavior="interactive" data-spacing="small" href="${card.url}" target="_blank" rel="noopener noreferrer" lang="${card.lang}" style={{ flex: '1 1 16rem', display: 'flex', flexDirection: 'column', gap: 'var(--db-spacing-fixed-xs)', textDecoration: 'none', color: 'inherit' }}>
+	<strong>${card.title}</strong>
+	<span>${card.text}</span>
+	<span>Design System Platform ↗</span>
+</a>`
+		)
+		.join('\n');
+	// Inline styles: the cards appear in five Storybooks with different global CSS files.
+	// `data-mode="light"`: the Storybook docs page stays light, also when the
+	// mode switch sets the stories to dark; the cards follow the page.
+	return `## Guidelines
+
+How and when to use the component is documented on the Design System Platform:
+
+<div data-mode="light" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--db-spacing-fixed-md)' }}>
+${items}
+</div>`;
+};
+
 const statusLine = (meta: ComponentMeta): string => {
 	const status = meta.status.charAt(0).toUpperCase() + meta.status.slice(1);
 	const review = meta.accessibilityReview
@@ -378,8 +431,9 @@ const buildOverviewMdx = (
 		GENERATED_NOTE,
 		'<Meta of={OverviewStories} />',
 		`# ${meta.title}`,
-		`${meta.summary} When to use it and how to design with it: [${meta.title.replace(/^DB/, '')} guidelines on the Design System Platform](${meta.platformUrl}).`,
+		meta.summary,
 		statusLine(meta),
+		buildGuidelines(meta),
 		// The installation is the same for every component of a framework, so it
 		// is on the Getting Started page once. Only extra packages show up here.
 		meta.requires?.length
@@ -566,19 +620,60 @@ export const Default: StoryObj = {
 	}
 };
 
-const buildGettingStarted = (fw: Framework): string =>
-	[
+/** A Source block; the code is a JSON string, so nothing in it needs MDX escaping. */
+const source = ({ language, code }: CodeBlock): string =>
+	`<Source language="${language}" dark code={${JSON.stringify(code)}} />`;
+
+const buildGettingStarted = (fw: Framework): string => {
+	const setup = SETUP[fw.key];
+	const setupUrl = `${PLATFORM}/learn/${fw.setup}`;
+	const sections = [
 		'import { Meta, Source } from "@storybook/addon-docs/blocks";',
 		GENERATED_NOTE,
 		'<Meta title="Getting Started" />',
 		`# Getting Started with ${fw.label}`,
-		'## Install',
-		`<Source language="shell" dark code="${fw.install}" />`,
-		'## Set up styles and theme',
-		`Styles, plugins, the theme and fonts are explained step by step on the [${fw.label} setup page of the Design System Platform](${PLATFORM}/learn/${fw.setup}).`,
-		'## Find a component',
-		'Every component has an **Overview** page with usage, examples with code, properties, accessibility and migration, for example **Components → DBButton → Overview**. Design guidelines are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/overview).'
-	].join('\n\n') + '\n';
+		`The minimum to render the first component. The [${fw.label} setup page on the Design System Platform](${setupUrl}) explains every step in detail, with the Vite and PostCSS plugins, linting and troubleshooting.`,
+		'## 1. Install',
+		source({ language: 'shell', code: fw.install }),
+		'## 2. Load the styles',
+		`The whitelabel theme comes first, the component styles after it. The \`@layer\` line fixes this order.`,
+		source({ language: 'css', code: whitelabelStyles(setup.stylesFile) }),
+		setup.stylesNote
+	];
+	if (setup.extraStep) {
+		sections.push(
+			`## 3. ${setup.extraStep.heading}`,
+			setup.extraStep.text,
+			source(setup.extraStep.block)
+		);
+	}
+	sections.push(
+		`## ${setup.extraStep ? 4 : 3}. Check the setup`,
+		'A button with an icon shows in one place whether styles, font and icons load:',
+		source(setup.check),
+		'## Products of Deutsche Bahn: DB Theme',
+		`Products of Deutsche Bahn use the DB Theme instead of the whitelabel theme. Its files are encrypted for legal reasons: get \`ASSET_PASSWORD\` and \`ASSET_INIT_VECTOR\` from the [Marketing Portal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and store them in a \`.env\` file that is never committed (in CI/CD as secret environment variables).`,
+		source({
+			language: 'dotenv',
+			code: 'ASSET_PASSWORD=<value from the Marketing Portal>\nASSET_INIT_VECTOR=<value from the Marketing Portal>'
+		}),
+		'Install the theme; it decrypts itself and brings the fonts and icons. With pnpm, allow the install scripts of the four `@db-ux/db-theme*` packages when `pnpm approve-builds` asks.',
+		source({
+			language: 'shell',
+			code: 'pnpm add @db-ux/db-theme\npnpm approve-builds'
+		}),
+		`Replace the styles of step 2: the DB Theme overrides the defaults, so it comes last.`,
+		source({ language: 'css', code: dbThemeStyles(setup.stylesFile) }),
+		`Details, manual decryption and the license: [DB Theme setup on the Design System Platform](${PLATFORM}/learn/db-theme-setup).`,
+		'## Find a component'
+	);
+	return (
+		[
+			...sections,
+			'Every component has an **Overview** page with usage, examples with code, properties, accessibility and migration, for example **Components → DBButton → Overview**. Design guidelines are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/overview).'
+		].join('\n\n') + '\n'
+	);
+};
 
 const components = process.argv.slice(2);
 if (components.length === 0) {
