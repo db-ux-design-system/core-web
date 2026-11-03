@@ -1,9 +1,66 @@
 import { expect, test } from '@playwright/test';
-import { runInteractionTest } from '../default.ts';
+import { getExampleParameter, runInteractionTest } from '../default.ts';
+import { lvl1 } from '../fixtures/variants.ts';
 
 const path = '04/tabs';
 
 test.describe('DBTabs', () => {
+	test('should never hide all panels while mounting', async ({ page }) => {
+		await page.addInitScript(() => {
+			const win = globalThis as unknown as { allPanelsHidden: boolean };
+			win.allPanelsHidden = false;
+			const check = () => {
+				for (const tabs of document.querySelectorAll<HTMLElement>(
+					'[data-example="interaction"] .db-tabs:not([data-initial-selected-mode="manually"])'
+				)) {
+					const panels = [
+						...tabs.querySelectorAll<HTMLElement>(
+							'[role="tabpanel"]'
+						)
+					].filter(
+						(panel) =>
+							panel.parentElement?.closest(
+								'.db-tabs, [role="tabpanel"]'
+							) === tabs
+					);
+					if (
+						panels.length > 0 &&
+						panels.every((panel) => panel.hidden)
+					) {
+						win.allPanelsHidden = true;
+					}
+				}
+			};
+
+			new MutationObserver(check).observe(document, {
+				subtree: true,
+				childList: true,
+				attributes: true,
+				attributeFilter: ['hidden', 'aria-selected']
+			});
+		});
+
+		await page.goto(
+			`./#/${path}?density=regular&color=${lvl1}&page=${getExampleParameter('Interaction')}`,
+			{ waitUntil: 'domcontentloaded' }
+		);
+
+		const tabs = page.getByTestId('click-tabs');
+		await expect(tabs.getByRole('tab', { name: 'Test 1' })).toHaveAttribute(
+			'aria-selected',
+			'true'
+		);
+		await expect(tabs.getByRole('tabpanel')).toBeVisible();
+
+		expect(
+			await page.evaluate(
+				() =>
+					(globalThis as unknown as { allPanelsHidden: boolean })
+						.allPanelsHidden
+			)
+		).toBe(false);
+	});
+
 	runInteractionTest({
 		title: 'should be clickable',
 		path,
