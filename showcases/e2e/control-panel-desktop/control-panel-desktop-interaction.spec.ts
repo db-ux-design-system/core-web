@@ -180,9 +180,7 @@ test.describe('DBControlPanelNavigation', () => {
 	});
 });
 
-// Regression guard for #8659: the overflow scroll buttons of the horizontal
-// (popover) navigation must follow the menu geometry without a fixed delay,
-// and must also react to content size changes that do not resize the <nav>.
+// Regression guard for #8659
 test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 	const topSettings = encodeURIComponent(
 		JSON.stringify({
@@ -237,15 +235,11 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 		expect(await hasOverflow(page)).toBe(false);
 		await expect(rightButton).toHaveCount(0);
 
-		// Phase 1: make the navigation overflow and wait for the button. This
-		// also lets evaluations still pending from page load settle, so they
-		// cannot distort the measurement in phase 2.
 		await page.setViewportSize({ width: 900, height: 800 });
 		await expect.poll(async () => hasOverflow(page)).toBe(true);
 		await expect(rightButton).toHaveCount(1);
 
-		// Phase 2: record in the page when the overflow ends and when the
-		// button is removed, independent of the polling interval of the runner.
+		// Measure in the page, independent of the runner polling interval
 		await navigation.evaluate((nav) => {
 			const menu = nav.querySelector(':scope > menu')!;
 			const timings = { fitsAt: 0, removedAt: 0 };
@@ -273,8 +267,7 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 			() => (globalThis as any).__scrollButtonTimings
 		);
 		expect(fitsAt).toBeGreaterThan(0);
-		// Previously the evaluation was scheduled with a fixed 500 ms delay.
-		// The budget stays well below that, with headroom for slow CI runners.
+		// Below the former fixed 500 ms delay
 		expect(removedAt - fitsAt).toBeLessThan(250);
 	});
 
@@ -287,38 +280,68 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 		expect(await hasOverflow(page)).toBe(false);
 		await expect(rightButton).toHaveCount(0);
 
-		// Let evaluations still pending from page load settle. Otherwise a late
-		// evaluation could pick up the change below by chance and hide a
-		// missing content observation.
+		// Let evaluations pending from page load settle
 		await page.waitForTimeout(1000);
 
-		// Grow a top-level label without resizing the <nav> itself (e.g. late
-		// font swap, translated labels). Previously only the <nav> was
-		// observed, so the button never appeared in this case.
-		await navigation.locator('> menu').evaluate((menu) => {
-			const label = [
-				...menu.querySelectorAll<HTMLElement>(
+		// Style-only size change without DOM mutation (like a font swap)
+		const setItemPadding = async (padding: string) =>
+			navigation.locator('> menu').evaluate((menu, value) => {
+				for (const element of menu.querySelectorAll<HTMLElement>(
 					':scope .db-control-panel-navigation-item > a, :scope .db-control-panel-navigation-item-group > .db-control-panel-navigation-item-group-expand-button'
-				)
-			].find(
-				(element) =>
-					!element.closest(
-						'.db-control-panel-navigation-item-group-menu'
-					)
-			);
-			const extension = document.createElement('span');
-			extension.dataset.testid = 'label-extension';
-			extension.textContent = ' with a very long label text '.repeat(12);
-			label?.append(extension);
-		});
+				)) {
+					if (
+						!element.closest(
+							'.db-control-panel-navigation-item-group-menu'
+						)
+					) {
+						element.style.setProperty(
+							'padding-inline',
+							value,
+							value ? 'important' : ''
+						);
+					}
+				}
+			}, padding);
 
+		await setItemPadding('120px');
 		await expect.poll(async () => hasOverflow(page)).toBe(true);
 		await expect(rightButton).toHaveCount(1);
 
-		await page.getByTestId('label-extension').evaluate((element) => {
-			element.remove();
-		});
+		await setItemPadding('');
+		await expect.poll(async () => hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+	});
 
+	test('should update the scroll buttons when top-level items are added or removed', async ({
+		page
+	}) => {
+		const navigation = page.locator(navigationSelector);
+		const rightButton = navigation.locator('.overflow-scroll-right-button');
+
+		expect(await hasOverflow(page)).toBe(false);
+		await expect(rightButton).toHaveCount(0);
+
+		// Let evaluations pending from page load settle
+		await page.waitForTimeout(1000);
+
+		await navigation.locator('> menu').evaluate((menu) => {
+			const template = menu.firstElementChild!;
+			for (let index = 0; index < 8; index++) {
+				const clone = template.cloneNode(true) as HTMLElement;
+				clone.dataset.testid = 'added-item';
+				menu.append(clone);
+			}
+		});
+		await expect.poll(async () => hasOverflow(page)).toBe(true);
+		await expect(rightButton).toHaveCount(1);
+
+		await navigation.locator('> menu').evaluate((menu) => {
+			for (const item of menu.querySelectorAll(
+				':scope > [data-testid="added-item"]'
+			)) {
+				item.remove();
+			}
+		});
 		await expect.poll(async () => hasOverflow(page)).toBe(false);
 		await expect(rightButton).toHaveCount(0);
 	});
