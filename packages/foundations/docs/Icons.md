@@ -104,7 +104,7 @@ From the embedding page you supply those values with the [`link-parameters` CSS 
 .icon {
 	/* Pass --db-icon-color CSS Custom Property as a value into the referenced SVG, falling back to the host's currentColor */
 	link-parameters: param(
-		--db-icon-color <color>,
+		--db-icon-color <color>:
 		var(--db-icon-color, currentColor)
 	);
 }
