@@ -36,6 +36,17 @@ build/          # Compiled output — never commit
 - `elevation` — box-shadow levels
 - `density` — functional / regular / expressive scaling
 
+## Icon fonts
+
+Icon fonts are generated from SVGs by `@db-ux/icon-font-tools` via `pnpm run generate:icons` (`scripts/local/generate-icon-font.ts`). The font is split into one `_<size>` folder per icon weight, and the base `default` / `filled` folder for the normal weight.
+
+**The set of sizes has a single source of truth: `ICON_FONT_SIZES` in `scripts/local/icon-font-sizes.ts`.** Two consumers read it, and they must agree or consumers get a `@font-face` pointing at a font folder that was never generated:
+
+- `generate-icon-font.ts` passes it as the `sizes` option, which decides which `_<size>` folders exist (and skips the unused `all` folder).
+- `scss/icons/relative.scss` loops over `$sizes` from `scss/icons/_sizes.scss` to emit the `@font-face` and `data-icon-weight` rules that load those folders.
+
+`_sizes.scss` is **generated** from `ICON_FONT_SIZES` by `generate:icons` — never edit it by hand. To change the weights: edit `ICON_FONT_SIZES`, keep it aligned with the documented weights in [`docs/Icons.md`](docs/Icons.md), run `pnpm run generate:icons`, and commit the regenerated `_sizes.scss` and font folders together. `generate:icons` is not part of `pnpm run build`, so the partial and the `assets/` fonts are committed, not rebuilt on every build.
+
 ## Changeset Rules
 
 Consumer-facing changes in `packages/foundations/scss` require a changeset. Which packages to list and when no changeset is needed is defined once in the [repo-root `AGENTS.md`](../../AGENTS.md#changesets) — that file always applies, so the rules are not repeated here.
