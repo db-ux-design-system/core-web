@@ -40,7 +40,7 @@ const rootProps = [
  * therefore called unconditionally and the forwarded ref is picked afterwards.
  */
 export const forwardedRefReplacement: Overwrite = {
-	// Mitosis initialises the root ref with `null` or `undefined`, keep it as is.
+	// Mitosis initializes the root ref with `null` or `undefined`, keep it as is.
 	from: /const _ref = useRef<(.*?)>\((.*?)\);/,
 	to: 'const _internalRef = useRef<$1>($2);\n  const _ref = component || _internalRef;'
 };

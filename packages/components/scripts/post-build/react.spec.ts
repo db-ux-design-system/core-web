@@ -36,7 +36,7 @@ describe('forwardedRefReplacement', () => {
 	});
 
 	it('keeps an `undefined` initial value', () => {
-		// DBLoadingIndicator initialises its root ref with `undefined`.
+		// DBLoadingIndicator initializes its root ref with `undefined`.
 		const result = applyReplacement(
 			'const _ref = useRef<HTMLDivElement | any>(undefined);'
 		);
