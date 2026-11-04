@@ -1,9 +1,14 @@
 import type { Preview } from '@storybook/react-vite';
 import './docs.css';
 import './global.css';
+import { docsTheme } from './theme';
 
 const preview: Preview = {
 	parameters: {
+		docs: {
+			// Colors and fonts of the design system, see theme.ts.
+			theme: docsTheme
+		},
 		controls: {
 			matchers: {
 				color: /(background|color)$/i,

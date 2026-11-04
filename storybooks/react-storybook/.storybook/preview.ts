@@ -4,6 +4,7 @@ import './docs.css';
 import './global.css';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
 import { addSourceImports } from './source-imports';
+import { docsTheme } from './theme';
 
 const withMode: Decorator = (Story, { globals }) => {
 	applyMode(globals);
@@ -23,6 +24,8 @@ const preview: Preview = {
 			}
 		},
 		docs: {
+			// Colors and fonts of the design system, see theme.ts.
+			theme: docsTheme,
 			// Example pages without the properties table, see autodocs-page.mdx.
 			page: AutodocsPage,
 			toc: {

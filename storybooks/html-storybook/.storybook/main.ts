@@ -21,7 +21,18 @@ const config: StorybookConfig = {
 		'../src/overview/**/*.stories.tsx'
 	],
 	addons: ['@storybook/addon-docs'],
-	staticDirs: ['../../react-storybook/public'],
+	staticDirs: [
+		'../../react-storybook/public',
+		// Logo and fonts of the Storybook UI, see manager-head.html.
+		{
+			from: '../../../packages/foundations/assets/images',
+			to: '/brand/images'
+		},
+		{
+			from: '../node_modules/@db-ux/db-theme-fonts/build/assets',
+			to: '/brand/fonts'
+		}
+	],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {}

@@ -1,0 +1,13 @@
+{
+	"brand": "#ec0016",
+	"onBrand": "#ffffff",
+	"background": "#ffffff",
+	"backgroundLevel2": "#f3f3f5",
+	"backgroundLevel3": "#edeef0",
+	"text": "#16181b",
+	"textMuted": "#5a5e68",
+	"border": "#edeef0",
+	"fontSans": "\"DB Neo Screen Sans\", helvetica, arial, sans-serif",
+	"fontHead": "\"DB Neo Screen Head\", helvetica, arial, sans-serif",
+	"fontCode": "ui-monospace, monospace"
+}
