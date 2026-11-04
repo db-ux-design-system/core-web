@@ -246,5 +246,12 @@ const getColumnCountTable = (columns: number): DBTableData => {
 	};
 };
 
+export const columnCount21Style: any = {
+	inlineSize: '100%',
+	display: 'flex',
+	flexDirection: 'column',
+	'--db-table-grid-template-columns': 'repeat(21, 1fr)'
+};
+
+export const columnCount20Table: DBTableData = getColumnCountTable(20);
 export const columnCount21Table: DBTableData = getColumnCountTable(21);
-export const columnCount50Table: DBTableData = getColumnCountTable(50);

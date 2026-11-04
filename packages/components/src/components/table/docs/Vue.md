@@ -41,3 +41,19 @@ import {
 	</DBTable>
 </template>
 ```
+
+### More than 20 columns
+
+The table detects up to 20 columns automatically. For wider tables, set `--db-table-grid-template-columns` on an ancestor of `DBTable`:
+
+```vue App.vue
+<template>
+	<div
+		:style="{
+			'--db-table-grid-template-columns': `repeat(${columnCount}, 1fr)`
+		}"
+	>
+		<DBTable :data="data" />
+	</div>
+</template>
+```

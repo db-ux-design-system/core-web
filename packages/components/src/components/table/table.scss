@@ -321,7 +321,9 @@
 		display: grid;
 
 		caption {
-			grid-column: span var(--db-table-grid-cells, 1);
+			// Spans all explicit tracks, including a custom
+			// `--db-table-grid-template-columns` beyond the detected column counts
+			grid-column: 1 / -1;
 			padding: variables.$db-spacing-fixed-sm;
 			border-block-start: component.$component-border;
 			font-weight: bold;

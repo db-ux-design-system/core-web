@@ -2,19 +2,23 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
 import { StorybookTableArgTypes } from './_table.arg.types';
-import { columnCount21Table, columnCount50Table } from './data';
+import {
+	columnCount20Table,
+	columnCount21Style,
+	columnCount21Table
+} from './data';
 
 // Story names become export identifiers, so they must not start with a digit
 useMetadata({
 	storybookTitle: 'Column Count',
-	storybookNames: ['Columns 21', 'Columns 50'],
+	storybookNames: ['Columns 20', 'Columns 21'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
 /**
- Tables with more than 20 columns (see #8576). Also used as fixture for
- showcases/e2e/table/table-interaction.spec.ts, which verifies that every
- column gets its own grid track up to the supported maximum of 50.
+ The grid detects up to 20 columns automatically. Wider tables define their
+ grid tracks with `--db-table-grid-template-columns` (see #8576). Also used as
+ fixture for showcases/e2e/table/table-interaction.spec.ts.
  */
 export default function TableColumnCount() {
 	return (
@@ -26,27 +30,24 @@ export default function TableColumnCount() {
 					flexDirection: 'column'
 				}}>
 				<DBInfotext semantic="informational" size="small" icon="none">
-					21 Columns
+					Columns 20
+				</DBInfotext>
+				<DBTable
+					data-testid="table-20-columns"
+					data={columnCount20Table}
+					captionPlain="Columns 20"
+					showCaption
+				/>
+			</div>
+			<div style={columnCount21Style}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Columns 21
 				</DBInfotext>
 				<DBTable
 					data-testid="table-21-columns"
 					data={columnCount21Table}
-					captionPlain="21 Columns"
-				/>
-			</div>
-			<div
-				style={{
-					inlineSize: '100%',
-					display: 'flex',
-					flexDirection: 'column'
-				}}>
-				<DBInfotext semantic="informational" size="small" icon="none">
-					50 Columns
-				</DBInfotext>
-				<DBTable
-					data-testid="table-50-columns"
-					data={columnCount50Table}
-					captionPlain="50 Columns"
+					captionPlain="Columns 21"
+					showCaption
 				/>
 			</div>
 		</Fragment>

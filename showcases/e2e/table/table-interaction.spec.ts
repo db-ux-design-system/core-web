@@ -5,9 +5,10 @@ const path = '04/table';
 const example = 'Column Count';
 
 /**
- Reads the grid layout of a table: the number of resolved column tracks and
- the distinct rows its header cells landed on. Without a matching column
- count rule the grid falls back to a single track and every cell is stacked.
+ Reads the grid layout of a table: the number of resolved column tracks, the
+ distinct rows its header cells landed on, and whether the caption spans the
+ full header row. Without matching tracks the grid falls back to a single
+ track and every cell is stacked.
  */
 const getGridLayout = async (table: Locator) =>
 	table.evaluate((testElement: HTMLElement) => {
@@ -20,10 +21,10 @@ const getGridLayout = async (table: Locator) =>
 			throw new Error('No <table> found for the test id');
 		}
 
-		const headerCells = [
-			// No child combinator: Angular/Stencil wrap <thead> in a host element
-			...element.querySelectorAll(':scope thead th')
-		];
+		// No child combinator: Angular/Stencil wrap <thead> in a host element
+		const headerRow = element.querySelector(':scope thead tr');
+		const caption = element.querySelector(':scope caption');
+		const headerCells = [...element.querySelectorAll(':scope thead th')];
 		return {
 			headerCells: headerCells.length,
 			tracks: getComputedStyle(element)
@@ -33,14 +34,25 @@ const getGridLayout = async (table: Locator) =>
 				headerCells.map((cell) =>
 					Math.round(cell.getBoundingClientRect().top)
 				)
-			).size
+			).size,
+			captionSpansAllColumns:
+				Math.abs(
+					(caption?.getBoundingClientRect().width ?? 0) -
+						(headerRow?.getBoundingClientRect().width ?? -1)
+				) <= 1
 		};
 	});
 
 test.describe('DBTable', () => {
-	for (const columns of [21, 50]) {
+	for (const { columns, title } of [
+		{ columns: 20, title: 'should detect up to 20 columns' },
+		{
+			columns: 21,
+			title: 'should apply --db-table-grid-template-columns beyond 20 columns'
+		}
+	]) {
 		runInteractionTest({
-			title: `should lay out ${columns} columns side by side`,
+			title,
 			path,
 			example,
 			async run({ content }) {
@@ -50,7 +62,8 @@ test.describe('DBTable', () => {
 				expect(await getGridLayout(table)).toEqual({
 					headerCells: columns,
 					tracks: columns,
-					rows: 1
+					rows: 1,
+					captionSpansAllColumns: true
 				});
 			}
 		});
