@@ -1,0 +1,74 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{c as t,n,p as r,s as i}from"./blocks-DbWjxpBK.js";import{t as a}from"./jsx-runtime-MKhVqBIO.js";import{i as o,r as s}from"./react-DITjJg24.js";import{n as c,t as l}from"./button.overview.stories-BzlESAaR.js";import{a as u,i as d,n as f,r as p,t as m}from"./variant.example.stories-CIfCd7pF.js";import{a as h,n as g,r as _,t as v}from"./density.example.stories-BPoMKRZ_.js";import{i as y,n as b,t as x}from"./disabled.example.stories-CRsQw82S.js";import{i as S,n as C,t as w}from"./form-attributes.example.stories-E56XfDIw.js";import{n as T,t as E}from"./interaction.example.stories-DKfXd2GQ.js";import{i as D,n as O,r as k,t as A}from"./multi-line-text.example.stories-CnnCzbNM.js";import{n as j,r as M,t as N}from"./no-text.example.stories-D5B0li86.js";import{n as P,r as F,t as I}from"./show-icon-leading.example.stories-Ca4TYFT8.js";import{n as L,r as R,t as z}from"./show-icon-trailing.example.stories-Ca4Epz93.js";import{n as B,r as V,t as H}from"./size.example.stories-BE24Bj7J.js";import{n as U,r as W,t as G}from"./width.example.stories-D2KtIw1r.js";var K;function q(){return(q=e((()=>{K="## Accessibility\n\n- DBButton renders a native `<button>`: focus, keyboard activation and the disabled state come from the browser.\n- Without `type`, the button is `button` if it has a click handler or `commandfor`, otherwise `submit`. Set `type` explicitly inside forms.\n- Icon only (`noText`): the text stays in the markup as the accessible name. Never leave it empty.\n\nDesign rules for accessibility, such as the minimum target size and tooltips for icon-only buttons, are in the [guidelines on the Design System Platform](https://design-system.deutschebahn.com/documentation/components/button).\n"})))()}var J;function Y(){return(Y=e((()=>{J="## General\n\n> **Note**\n> For a general installation or migration process check out this [documentation](https://www.npmjs.com/package/@db-ux/core-components).\n\n## DB UI Core ➡ DB UX Design System Core components\n\n### class\n\n| Before       | Status | After       | Description |\n| ------------ | :----: | ----------- | ----------- |\n| `elm-button` |   🔁   | `db-button` |             |\n\n### sizes\n\n| Before    | Status | After | Description                                                                                                                                                                                   |\n| --------- | :----: | :---: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| `large`   |   ❌   |  ❌   | it became obsolete mainly due to our [density](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/principles/densities) introduction |\n| `regular` |   ❌   |  ❌   | there is a default (`medium`) now                                                                                                                                                             |\n\n### variants\n\n| Before              | Status | After      | Description                                                  |\n| ------------------- | :----: | ---------- | ------------------------------------------------------------ |\n| `primary`           |   ❌   | ❌         | not valid anymore, use `outlined` buttons for those purposes |\n| `brand-primary`     |   🔁   | `brand`    |                                                              |\n| `secondary-outline` |   🔁   | `outlined` |                                                              |\n| `secondary-solid`   |   🔁   | `filled`   |                                                              |\n| `tertiary-plain`    |   🔁   | `ghost`    |                                                              |\n\n### icons\n\n| Before         | Status | After          | Description                                           |\n| -------------- | :----: | -------------- | ----------------------------------------------------- |\n| `iconTrailing` |   🔁   | `iconTrailing` | trailing icons are supported again via `iconTrailing` |\n| `iconOnly`     |   🔁   | `noText`       |                                                       |\n"})))()}function X(e){let r={a:`a`,code:`code`,h1:`h1`,h2:`h2`,h3:`h3`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...o(),...e.components};return(0,Q.jsxs)(Q.Fragment,{children:[`
+`,(0,Q.jsx)(t,{of:l}),`
+`,(0,Q.jsx)(r.h1,{id:`dbbutton`,children:`DBButton`}),`
+`,(0,Q.jsx)(r.p,{children:`Buttons initiate actions and confirm decisions.`}),`
+`,(0,Q.jsxs)(r.p,{children:[(0,Q.jsx)(r.strong,{children:`Status:`}),` Stable · `,(0,Q.jsx)(r.strong,{children:`Accessibility review:`}),` done (2024-04-22)`]}),`
+`,(0,Q.jsx)(r.h2,{id:`guidelines`,children:`Guidelines`}),`
+`,(0,Q.jsx)(r.p,{children:`How and when to use the component is documented on the Design System Platform:`}),`
+`,(0,Q.jsx)(`div`,{"data-mode":`light`,children:(0,Q.jsxs)(`a`,{className:`db-card`,"data-behavior":`interactive`,"data-spacing":`small`,href:`https://design-system.deutschebahn.com/documentation/components/button`,target:`_blank`,rel:`noopener noreferrer`,style:{maxInlineSize:`32rem`,display:`flex`,flexDirection:`column`,gap:`var(--db-spacing-fixed-xs)`,textDecoration:`none`,color:`inherit`},children:[(0,Q.jsx)(`strong`,{children:`Button guidelines`}),(0,Q.jsx)(`span`,{children:(0,Q.jsx)(r.p,{children:`When to use it, variants, Do and Don’t, design rules for
+accessibility.`})}),(0,Q.jsx)(`span`,{children:`Design System Platform ↗`})]})}),`
+`,(0,Q.jsxs)(r.p,{children:[`Setup: `,(0,Q.jsx)(r.a,{href:`https://design-system.deutschebahn.com/documentation/learn/html-css-setup`,rel:`nofollow`,children:`Use the components with HTML and CSS`}),` on the Design System Platform.`]}),`
+`,(0,Q.jsx)(r.h2,{id:`usage`,children:`Usage`}),`
+`,(0,Q.jsxs)(r.p,{children:[`Open `,(0,Q.jsx)(r.strong,{children:`Show code`}),` below a preview for the markup you can copy, including what it needs to load.`]}),`
+`,(0,Q.jsx)(r.h3,{id:`variant`,children:`Variant`}),`
+`,(0,Q.jsx)(n,{of:d}),`
+`,(0,Q.jsx)(n,{of:f}),`
+`,(0,Q.jsx)(n,{of:p}),`
+`,(0,Q.jsx)(n,{of:m}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-variant--docs`,children:`Open the Variant examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`density`,children:`Density`}),`
+`,(0,Q.jsx)(n,{of:g}),`
+`,(0,Q.jsx)(n,{of:_}),`
+`,(0,Q.jsx)(n,{of:v}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-density--docs`,children:`Open the Density examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`disabled`,children:`Disabled`}),`
+`,(0,Q.jsx)(n,{of:x}),`
+`,(0,Q.jsx)(n,{of:b}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-disabled--docs`,children:`Open the Disabled examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`form-attributes`,children:`Form Attributes`}),`
+`,(0,Q.jsx)(n,{of:C}),`
+`,(0,Q.jsx)(n,{of:w}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-form-attributes--docs`,children:`Open the Form Attributes examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`interaction`,children:`Interaction`}),`
+`,(0,Q.jsx)(n,{of:E}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-interaction--docs`,children:`Open the Interaction examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`multi-line-text`,children:`Multi Line Text`}),`
+`,(0,Q.jsx)(n,{of:A}),`
+`,(0,Q.jsx)(n,{of:O}),`
+`,(0,Q.jsx)(n,{of:k}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-multi-line-text--docs`,children:`Open the Multi Line Text examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`no-text`,children:`No Text`}),`
+`,(0,Q.jsx)(n,{of:N}),`
+`,(0,Q.jsx)(n,{of:j}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-no-text--docs`,children:`Open the No Text examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`show-icon-leading`,children:`Show Icon Leading`}),`
+`,(0,Q.jsx)(n,{of:I}),`
+`,(0,Q.jsx)(n,{of:P}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-show-icon-leading--docs`,children:`Open the Show Icon Leading examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`show-icon-trailing`,children:`Show Icon Trailing`}),`
+`,(0,Q.jsx)(n,{of:z}),`
+`,(0,Q.jsx)(n,{of:L}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-show-icon-trailing--docs`,children:`Open the Show Icon Trailing examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`size`,children:`Size`}),`
+`,(0,Q.jsx)(n,{of:H}),`
+`,(0,Q.jsx)(n,{of:B}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-size--docs`,children:`Open the Size examples`})}),`
+`,(0,Q.jsx)(r.h3,{id:`width`,children:`Width`}),`
+`,(0,Q.jsx)(n,{of:G}),`
+`,(0,Q.jsx)(n,{of:U}),`
+`,(0,Q.jsx)(r.p,{children:(0,Q.jsx)(r.a,{href:`?path=/docs/components-dbbutton-width--docs`,children:`Open the Width examples`})}),`
+`,(0,Q.jsx)(r.h2,{id:`attributes`,children:`Attributes`}),`
+`,(0,Q.jsxs)(r.p,{children:[`In HTML the component is a `,(0,Q.jsx)(r.code,{children:`<button>`}),` with the class `,(0,Q.jsx)(r.code,{children:`db-button`}),`. Options are `,(0,Q.jsx)(r.code,{children:`data-`}),` attributes next to the native attributes of the element.`]}),`
+`,(0,Q.jsx)(i,{children:'| Attribute | Values | Description |\n| --- | --- | --- |\n| `type` | `"button" \\| "reset" \\| "submit"` | The type attribute specifies the [type of button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type). Without it, the browser uses `submit`. |\n| `disabled` | boolean attribute (present or absent) | The disabled attribute can be set to [keep a user from clicking on the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#disabled). |\n| `data-icon` | `IconTypes` | Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content. |\n| `data-show-icon` | `true` \\| `false` | Enables or disables the visibility of the leading icon. For many components this property is optional to reflect Figma properties. |\n| `data-icon-trailing` | `IconTypes` | Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content. |\n| `data-show-icon-trailing` | `true` \\| `false` | Enables or disables the visibility of the trailing icon. For many components this property is optional to reflect Figma properties. |\n| `data-size` | `"small" \\| "medium"` | The size attribute changes the font-size and other related sizes of the component. |\n| `data-width` | `"full" \\| "auto" \\| string` | Width of the component. Auto width based on children size, full width based on parent elements width. |\n| `data-variant` | `"outlined" \\| "brand" \\| "filled" \\| "ghost" \\| string` | Variant of the button. Only use one primary button as a CTA on a page; otherwise, use one of the adaptive buttons. |\n| `data-wrap` | `true` \\| `false` | Determines whether the text should wrap when its parent container is too small, preventing overflow. |\n| `data-no-text` | `true` \\| `false` | Define the text next to the icon specified via the icon Property to get hidden. |\n| `name` | `string` | The name attribute specifies a [name attributes value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#name) for the button. |\n| `form` | `string` | Associates the control with a form element |\n| `formaction` | `string` | The [formaction](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formaction) attribute overrides the form\'s `action` for this button. Typed as `any` to also accept a React 19 form action function without breaking the native string attribute on the other framework outputs. |\n| `formenctype` | `"application/x-www-form-urlencoded" \\| "multipart/form-data" \\| "text/plain" \\| LooseAutocomplete` | The [formenctype](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formenctype) attribute overrides the form\'s `enctype` for this button. |\n| `formmethod` | `"post" \\| "get" \\| "dialog" \\| LooseAutocomplete` | The [formmethod](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formmethod) attribute overrides the form\'s `method` for this button (e.g. `"dialog"` to close a dialog). |\n| `formnovalidate` | boolean attribute (present or absent) | The [formnovalidate](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formnovalidate) attribute overrides the form\'s `novalidate` for this button. |\n| `formtarget` | `"_self" \\| "_blank" \\| "_parent" \\| "_top" \\| LooseAutocomplete` | The [formtarget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#formtarget) attribute overrides the form\'s `target` for this button. |\n| `value` | `string` | The value attribute specifies an initial [value for the button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#value). |\n| `command` | `string` | The [command](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#command) attribute specifies the action to perform on the element controlled by a `&#60;button&#62;` element. |\n| `commandfor` | `string` | The [commandfor](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#commandfor) attribute turns a `&#60;button&#62;` into a command button that controls the given interactive element referenced by `id`. |'}),`
+`,`
+`,(0,Q.jsx)(i,{children:K}),`
+`,(0,Q.jsx)(r.h2,{id:`migration`,children:`Migration`}),`
+`,`
+`,(0,Q.jsx)(i,{children:J.replace(/^(#{2,4}) /gm,`#$1 `)}),`
+`,(0,Q.jsx)(r.h2,{id:`resources`,children:`Resources`}),`
+`,(0,Q.jsxs)(r.ul,{children:[`
+`,(0,Q.jsx)(r.li,{children:(0,Q.jsx)(r.a,{href:`https://design-system.deutschebahn.com/documentation/components/button`,rel:`nofollow`,children:`Guidelines on the Design System Platform`})}),`
+`,(0,Q.jsxs)(r.li,{children:[`npm: `,(0,Q.jsx)(r.a,{href:`https://www.npmjs.com/package/@db-ux/core-components`,rel:`nofollow`,children:`@db-ux/core-components`})]}),`
+`,(0,Q.jsx)(r.li,{children:(0,Q.jsx)(r.a,{href:`https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/button`,rel:`nofollow`,children:`Source code on GitHub`})}),`
+`,(0,Q.jsx)(r.li,{children:(0,Q.jsx)(r.a,{href:`https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md`,rel:`nofollow`,children:`Changelog`})}),`
+`]})]})}function Z(e={}){let{wrapper:t}={...o(),...e.components};return t?(0,Q.jsx)(t,{...e,children:(0,Q.jsx)(X,{...e})}):X(e)}var Q;function $(){return($=e((()=>{Q=a(),s(),r(),c(),u(),h(),y(),S(),T(),D(),M(),F(),R(),V(),W(),q(),Y()})))()}$();export{Z as default};
