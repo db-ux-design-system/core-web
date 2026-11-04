@@ -1,17 +1,3 @@
-/*
- * Color-free subset of `default-required`. Everything in here normalizes the
- * document WITHOUT depending on the legacy `--db-adaptive-*` color layer, so it
- * can be shared by both the legacy bundle (via `default-required`) and the
- * adaptive bundle (`bundle.adaptive`), which pulls its colors from
- * `generated-colors.css` instead.
- *
- * Color-dependent normalization (pride palette, `li::marker` color, the
- * `-webkit-tap-highlight-color` and the `default-color-mappings` layer) lives
- * in `default-required` for the legacy bundle and is emitted by the adaptive
- * generator (`generated-colors.css`) for the adaptive bundle. The focus outline
- * stays here because it reads `--db-focus-outline-color`, which both bundles
- * define, so it needs no color layer of its own.
- */
 @use "sass:string";
 @use "../variables";
 @use "../helpers";
@@ -144,10 +130,6 @@ iframe {
 	border: 0;
 }
 
-/* Override default focus visible. The outline color reads from
- * `--db-focus-outline-color`, which both bundles define (legacy color mappings
- * for `bundle.scss`, `generated-colors.css` for `bundle.adaptive`), so this is
- * color-layer agnostic and belongs in the shared base. */
 :focus-visible {
 	@extend %focus-placeholder;
 }

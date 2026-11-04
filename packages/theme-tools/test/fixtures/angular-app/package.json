@@ -1,0 +1,32 @@
+{
+  "name": "theme-tools-angular-fixture",
+  "version": "0.0.0",
+  "description": "Angular fixture for the @db-ux/core-theme-tools CLI-first flow",
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "prebuild": "pnpm run generate:theme",
+    "build": "ng build",
+    "dev": "ng serve",
+    "generate:theme": "db-ux-theme-tools generate",
+    "prestart": "pnpm run generate:theme",
+    "start": "ng serve"
+  },
+  "dependencies": {
+    "@angular/common": "21.2.25",
+    "@angular/compiler": "21.2.25",
+    "@angular/core": "21.2.25",
+    "@angular/platform-browser": "21.2.25",
+    "@db-ux/core-theme-tools": "workspace:*",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1",
+    "zone.js": "0.15.1"
+  },
+  "devDependencies": {
+    "@angular/build": "21.2.28",
+    "@angular/cli": "21.2.28",
+    "@angular/compiler-cli": "21.2.25",
+    "@types/node": "26.6.5",
+    "typescript": "5.9.3"
+  }
+}

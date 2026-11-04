@@ -23,7 +23,7 @@ export default function DBTabList(props: DBTabListProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id ?? state._id}
-			data-material={props.material}
+			data-material={props.material ?? 'transparent'}
 			data-adaptive-color={props.color}
 			class={cls('db-tab-list', props.className)}
 			role="tablist"

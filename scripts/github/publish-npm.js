@@ -57,6 +57,9 @@ const packages = [
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
 	{ dir: 'postcss-plugin', name: 'core-postcss-plugin' },
+	// theme-tools depends on core-foundations (published first above), so its
+	// workspace:* foundations dep is pinned to the release version below.
+	{ dir: 'theme-tools', name: 'core-theme-tools' },
 	// Publish mcp-server before agent-cli: the agent-cli consumer bundle ships an
 	// mcp.json that launches the floating `npx --yes @db-ux/mcp-server` command and a
 	// skill that calls the current scanner tool name. If agent-cli were published
@@ -71,7 +74,8 @@ const packagesWithFoundationsDep = new Set([
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
+	'core-theme-tools'
 ]);
 
 const packagesWithComponentsDep = new Set([

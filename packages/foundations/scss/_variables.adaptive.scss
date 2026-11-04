@@ -1,10 +1,3 @@
-// SCSS variable aliases for the adaptive-coloring custom properties generated
-// into `generated-colors.css` (see `generate-css/materials/`). Mirrors
-// `_variables.scss`: each `--db-*` custom property is exposed as a `$db-*`
-// SCSS variable so component styles can reference the adaptive tokens through
-// the Sass module system (`@use "../variables.adaptive"`) for better
-// shareability instead of repeating the `var(--db-*)` string.
-
 // Base surface (container roles)
 $db-border-default: var(--db-border-default);
 $db-border-vibrant: var(--db-border-vibrant);

@@ -953,7 +953,7 @@ export default function DBTabs(props: DBTabsProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id ?? state._id}
-			data-material={props.material ?? 'transparent'}
+			data-material={props.material}
 			data-adaptive-color={props.color}
 			class={cls('db-tabs', props.className)}
 			data-orientation={props.orientation}

@@ -2,4 +2,4 @@
 @import "@db-ux/core-components/build/styles/bundle.adaptive.css"
 	layer(db-ux-adaptive);
 @import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
-@import "./../../../generated-colors.css" layer(db-ux-adaptive);
+@import "@db-ux/core-foundations/build/styles/theme/whitelabel.adaptive.css" layer(db-ux-adaptive);

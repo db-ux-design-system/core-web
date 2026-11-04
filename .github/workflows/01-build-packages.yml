@@ -68,6 +68,12 @@ jobs:
           name: db-ux-vite-plugin-build
           path: packages/vite-plugin/build
 
+      - name: ⏫ Upload theme-tools build
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: db-ux-theme-tools-build
+          path: packages/theme-tools/build
+
       - name: ⏫ Upload agent-cli build
         uses: actions/upload-artifact@v7.0.2
         with:
@@ -101,3 +107,15 @@ jobs:
       # still leaves the artifacts downloadable for debugging.
       - name: 🧪 Run MCP Server Tests
         run: pnpm --filter @db-ux/mcp-server run test
+
+      # Same rationale as the vite-plugin tests above. `pnpm run build` already
+      # built theme-tools (it runs first, before foundations, which consumes its
+      # output) and linked the workspace-member fixtures under
+      # packages/theme-tools/test/fixtures/*. The theme-tools suite includes the
+      # bundler-plugin and CLI-first integration tests, which build those vite /
+      # webpack / angular fixtures in place - so everything they need is already
+      # in-tree. Running here (after all uploads) saves a standalone Init-Cache +
+      # checkout job under the org's runner cap and keeps artifacts downloadable
+      # on failure.
+      - name: 🧪 Run Theme Tools Tests
+        run: pnpm --filter @db-ux/core-theme-tools run test

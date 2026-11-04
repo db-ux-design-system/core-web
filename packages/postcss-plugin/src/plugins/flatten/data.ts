@@ -6,6 +6,14 @@ export type FlattenOptions = {
 	/**
 	 Variable prefixes that are always treated as dynamic (never resolved).
 	 Default: ['--db-adaptive-']
+
+	 When flattening a stylesheet that combines legacy CSS with the adaptive
+	 coloring output of `@db-ux/core-theme-tools`, pass every runtime-dynamic
+	 prefix so the adaptive tokens stay as `var()` while legacy tokens flatten:
+	 `['--db-adaptive-', '--db-emphasis-transparency', '--db-pride-']`.
+	 Any prefix omitted from this list is still left unresolved rather than
+	 flattened to a fixed value, because the plugin only inlines prefixes it is
+	 told are static.
 	 */
 	dynamicPrefixes?: string[];
 };

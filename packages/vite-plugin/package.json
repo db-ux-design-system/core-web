@@ -43,6 +43,7 @@
     "vite": ">=4.0.0"
   },
   "dependencies": {
+    "@db-ux/core-theme-tools": "workspace:*",
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {

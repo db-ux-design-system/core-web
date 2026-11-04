@@ -1,5 +1,6 @@
 packages:
   - "packages/*"
+  - "packages/theme-tools/test/fixtures/*"
   - "output/*"
   - "showcases/*"
   - "storybooks/*"

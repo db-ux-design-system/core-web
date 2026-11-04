@@ -1,11 +1,3 @@
-/*
- * Legacy-coloring entry for the required document normalization. Reuses the
- * color-free base (`default-required.base`) and adds the declarations that
- * depend on the legacy `--db-adaptive-*` color layer: the color mappings, the
- * pride palette, the list-marker color, the tap-highlight and the focus
- * outline. The adaptive bundle forwards only `default-required.base` and lets
- * `generated-colors.css` supply these same colors from the adaptive palette.
- */
 @use "../colors";
 @forward "default-required.base";
 @forward "../colors/default-color-mappings";
