@@ -246,6 +246,22 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Component styles**: `packages/components/src/styles/`
 - **Build artifacts**: `packages/foundations/build/` and `packages/components/build/`
 
+### Where documentation lives
+
+The documentation is split between two places. The Patternhub (`showcases/patternhub`) is being replaced by them; do not add new content there.
+
+| Place                                                                              | Content                                                                                                                                                                                                                                       | Language, versions                  |
+| ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Storybook** (generated from this repository)                                     | Everything technical: properties and attributes, examples with "Show code", Getting Started per framework, technical accessibility behaviour, migration, technical Foundations pages, guides (router, testing, validation, …), the test table | English only, versioned per release |
+| **[Design System Platform](https://design-system.deutschebahn.com/documentation)** | Everything about content and design: guidelines with Do/Dont, when to use a component, the playground, design topics, setup articles, example projects                                                                                        | German and English, current version |
+
+Rules:
+
+- **Technical → Storybook, content → Platform.** If a text explains how to use a component in code, it belongs in Storybook. If it explains when or why to use it, it belongs on the platform.
+- **One source per content.** Storybook pages are generated from files in this repository (`docs/*.md` of a component, `packages/foundations/docs/`, `packages/components/docs/`, the example stories). Edit the source, never the generated page. The generators and their sources are listed in `storybooks/_shared/overview/README.md`.
+- **Link, don't copy.** Storybook links to the platform guidelines, the platform links to the Storybook overview of each framework. Do not repeat content of the other place.
+- **Versions only in Storybook.** The platform describes the current release; older versions are reachable through the version dropdown of the composition Storybook.
+
 ### Key Repository Locations
 
 ```text

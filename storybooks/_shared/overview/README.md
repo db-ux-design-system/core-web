@@ -7,7 +7,7 @@ pnpm --filter @db-ux/core-components run generate:stories
 node storybooks/_shared/overview/generate-overviews.ts button
 ```
 
-Each kind of content has one source:
+What belongs in Storybook and what on the Design System Platform is described in "Where documentation lives" in the root [`AGENTS.md`](../../../AGENTS.md#where-documentation-lives). Each kind of content has one source:
 
 | Content                                                | Source                                                                 |
 | ------------------------------------------------------ | ---------------------------------------------------------------------- |
