@@ -4,7 +4,8 @@
  * Writes per component:
  * - `<framework>-storybook/src/overview/<name>/<name>.overview.mdx` and the
  *   CSF file it attaches to, for React, Angular, Vue, HTML and Web Components
- * - the "Getting Started" page of every framework Storybook
+ * - the "Getting Started" page of every framework Storybook (links the setup
+ *   articles of the platform; the setup is documented there only)
  *
  * Inputs (one source per kind of content):
  * - `components.json` next to this file: summary, status, accessibility review
@@ -28,12 +29,6 @@ import {
 	writeFileSync
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import {
-	type CodeBlock,
-	SETUP,
-	dbThemeStyles,
-	whitelabelStyles
-} from './getting-started.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
 const ROOT = resolve(STORYBOOKS, '..');
@@ -46,8 +41,8 @@ type ComponentMeta = {
 	status: string;
 	accessibilityReview?: { status: string; date: string };
 	/**
-	 * Packages the component needs beyond the framework installation on the
-	 * Getting Started page, e.g. `["@db-ux/db-theme-illustrative-icons"]`.
+	 * Packages the component needs beyond the framework setup on the
+	 * platform, e.g. `["@db-ux/db-theme-illustrative-icons"]`.
 	 * Shown as a note on the overview; most components have none.
 	 */
 	requires?: string[];
@@ -64,13 +59,12 @@ type Framework = {
 	storiesExt: 'ts' | 'tsx';
 	/** Storybook whose generated example stories this one renders. */
 	examplesFrom: string;
-	install: string;
 	setup: string;
+	/** Title of the setup article on the platform, used as link text. */
+	setupTitle: string;
 	npm: string;
 	api: Api;
 };
-
-const CORE = '@db-ux/core-components @db-ux/core-foundations';
 
 const FRAMEWORKS: Framework[] = [
 	{
@@ -80,8 +74,8 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'react',
 		storiesExt: 'tsx',
 		examplesFrom: 'react-storybook',
-		install: `pnpm add @db-ux/react-core-components ${CORE}`,
 		setup: 'react-setup',
+		setupTitle: 'Add the components to React',
 		npm: '@db-ux/react-core-components',
 		api: 'argtypes'
 	},
@@ -92,8 +86,8 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'angular',
 		storiesExt: 'ts',
 		examplesFrom: 'angular-storybook',
-		install: `pnpm add @db-ux/ngx-core-components ${CORE}`,
 		setup: 'angular-setup',
+		setupTitle: 'Add the components to Angular',
 		npm: '@db-ux/ngx-core-components',
 		api: 'argtypes'
 	},
@@ -104,8 +98,8 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'vue',
 		storiesExt: 'ts',
 		examplesFrom: 'vue-storybook',
-		install: `pnpm add @db-ux/v-core-components ${CORE}`,
 		setup: 'vue-setup',
+		setupTitle: 'Add the components to Vue',
 		npm: '@db-ux/v-core-components',
 		api: 'argtypes'
 	},
@@ -116,8 +110,8 @@ const FRAMEWORKS: Framework[] = [
 		ref: 'webcomponents',
 		storiesExt: 'ts',
 		examplesFrom: 'stencil-storybook',
-		install: `pnpm add @db-ux/wc-core-components ${CORE}`,
 		setup: 'web-components-setup',
+		setupTitle: 'Use the components as Web Components',
 		npm: '@db-ux/wc-core-components',
 		api: 'webcomponents'
 	},
@@ -129,8 +123,8 @@ const FRAMEWORKS: Framework[] = [
 		storiesExt: 'tsx',
 		// The HTML Storybook renders the React stories and shows their markup.
 		examplesFrom: 'react-storybook',
-		install: `pnpm add ${CORE}`,
 		setup: 'html-css-setup',
+		setupTitle: 'Use the components with HTML and CSS',
 		npm: '@db-ux/core-components',
 		api: 'html'
 	}
@@ -412,11 +406,11 @@ const buildOverviewMdx = (
 		meta.summary,
 		statusLine(meta),
 		buildGuidelines(meta),
-		// The installation is the same for every component of a framework, so it
-		// is on the Getting Started page once. Only extra packages show up here.
+		// The setup is the same for every component of a framework and is
+		// documented once on the platform. Only extra packages show up here.
 		meta.requires?.length
-			? `Installed as described in [Getting Started](?path=/docs/getting-started--docs), plus:\n\n<Source language="shell" dark code="pnpm add ${meta.requires.join(' ')}" />`
-			: `Installation and setup: [Getting Started](?path=/docs/getting-started--docs).`,
+			? `Set up your project as described in [${fw.setupTitle}](${PLATFORM}/learn/${fw.setup}), plus:\n\n<Source language="shell" dark code="pnpm add ${meta.requires.join(' ')}" />`
+			: `Setup: [${fw.setupTitle}](${PLATFORM}/learn/${fw.setup}) on the Design System Platform.`,
 		'## Usage',
 		fw.api === 'argtypes'
 			? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
@@ -598,55 +592,28 @@ export const Default: StoryObj = {
 	}
 };
 
-/** A Source block; the code is a JSON string, so nothing in it needs MDX escaping. */
-const source = ({ language, code }: CodeBlock): string =>
-	`<Source language="${language}" dark code={${JSON.stringify(code)}} />`;
-
-const buildGettingStarted = (fw: Framework): string => {
-	const setup = SETUP[fw.key];
-	const setupUrl = `${PLATFORM}/learn/${fw.setup}`;
-	const sections = [
-		'import { Meta, Source } from "@storybook/addon-docs/blocks";',
+/**
+ * "Getting Started" page of a framework Storybook: a short entry page. The
+ * setup itself (installation, styles, DB Theme) is documented once, in the
+ * Learn articles of the Design System Platform, and linked from here.
+ */
+const buildGettingStarted = (fw: Framework): string =>
+	[
+		'import { Meta } from "@storybook/addon-docs/blocks";',
 		GENERATED_NOTE,
 		'<Meta title="Getting Started" />',
 		`# Getting Started with ${fw.label}`,
-		`The minimum to render the first component. The [${fw.label} setup page on the Design System Platform](${setupUrl}) explains every step in detail, with the Vite and PostCSS plugins, linting and troubleshooting.`,
-		`To try the components first, or to share a reproducible example in an issue, open an [example project](${PLATFORM}/learn/examples) in StackBlitz – no local setup needed.`,
-		'## 1. Install',
-		source({ language: 'shell', code: fw.install }),
-		'## 2. Load the styles',
-		`The whitelabel theme comes first, the component styles after it. The \`@layer\` line fixes this order.`,
-		source({ language: 'css', code: whitelabelStyles(setup.stylesFile) }),
-		setup.stylesNote,
-		...(setup.extraStep
-			? [
-					`## 3. ${setup.extraStep.heading}`,
-					setup.extraStep.text,
-					source(setup.extraStep.block)
-				]
-			: []),
-		`## ${setup.extraStep ? 4 : 3}. Check the setup`,
-		'A button with an icon shows in one place whether styles, font and icons load:',
-		source(setup.check),
-		'## Products of Deutsche Bahn: DB Theme',
-		`Products of Deutsche Bahn use the DB Theme instead of the whitelabel theme. Its files are encrypted for legal reasons: get \`ASSET_PASSWORD\` and \`ASSET_INIT_VECTOR\` from the [Marketing Portal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and store them in a \`.env\` file that is never committed (in CI/CD as secret environment variables).`,
-		source({
-			language: 'dotenv',
-			code: 'ASSET_PASSWORD=<value from the Marketing Portal>\nASSET_INIT_VECTOR=<value from the Marketing Portal>'
-		}),
-		'Install the theme; it decrypts itself and brings the fonts and icons. With pnpm, allow the install scripts of the four `@db-ux/db-theme*` packages when `pnpm approve-builds` asks.',
-		source({
-			language: 'shell',
-			code: 'pnpm add @db-ux/db-theme\npnpm approve-builds'
-		}),
-		`Replace the styles of step 2: the DB Theme overrides the defaults, so it comes last.`,
-		source({ language: 'css', code: dbThemeStyles(setup.stylesFile) }),
-		`Details, manual decryption and the license: [DB Theme setup on the Design System Platform](${PLATFORM}/learn/db-theme-setup).`,
-		'## Find a component',
-		'Every component has an **Overview** page with usage, examples with code, properties, accessibility and migration, for example **Components → DBButton → Overview**. Design guidelines are on the [Design System Platform](https://design-system.deutschebahn.com/documentation/components/overview).'
-	];
-	return sections.join('\n\n') + '\n';
-};
+		`This Storybook is the technical reference of the ${fw.label} components: every component has an **Overview** page with usage, examples, properties, accessibility and migration, for example **Components → DBButton → Overview**. "Show code" includes the imports, so you can copy an example into a project that is set up.`,
+		'## Set up your project',
+		`Installation, styles and the first component are explained step by step on the Design System Platform: [${fw.setupTitle}](${PLATFORM}/learn/${fw.setup}).`,
+		`Products of Deutsche Bahn also need the DB Theme with the brand colors, fonts and icons: [Add the DB Theme for DB products](${PLATFORM}/learn/db-theme-setup).`,
+		'## Try it without a setup',
+		`The [example projects](${PLATFORM}/learn/examples) open in StackBlitz, no local setup needed. Use them to try the components or to share a reproducible example in an issue.`,
+		'## Versions',
+		'This Storybook shows one release. The version dropdown next to each framework in the composition Storybook opens earlier releases. When you update across a Major version, check the [Migration Guides](https://design-system.deutschebahn.com/documentation/releases/migration-guides).',
+		'## Design guidelines',
+		`When and how to use a component is documented on the [Design System Platform](${PLATFORM}/components/overview).`
+	].join('\n\n') + '\n';
 
 const components = process.argv.slice(2);
 if (components.length === 0) {
