@@ -288,3 +288,5 @@ autofilled
 novalidate
 formnovalidate
 Breaksand
+headingreset
+headingoffset
