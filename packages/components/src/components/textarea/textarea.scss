@@ -44,6 +44,26 @@
 	transform: none;
 }
 
+// `minRows` sets a floor of visible text lines. Because the textarea is
+// `border-box`, the floor must also reserve the actual block padding and both
+// borders, otherwise the requested lines are clipped - most visibly on the
+// floating variant, whose larger label padding ($floating-label-size-calc)
+// replaces the default padding-block-start. The default here is the fallback
+// of the --db-form-component-min-block-size override: when data-min-rows is
+// absent the invalid attr()/calc() makes min-block-size resolve to its initial
+// value auto, i.e. no floor. padding-block-end stays fixed-xs in both variants.
+@mixin get-row-floor($padding-block-start: variables.$db-spacing-fixed-xs) {
+	/* stylelint-disable-next-line db-ux/use-sizing */
+	min-block-size: var(
+		--db-form-component-min-block-size,
+		calc(
+			attr(data-min-rows type(<number>)) * 1lh + #{$padding-block-start} +
+				#{variables.$db-spacing-fixed-xs} +
+				#{variables.$db-border-width-3xs} * 2
+		)
+	);
+}
+
 .db-textarea {
 	@include form-components.set-default-form-component(textarea);
 
@@ -61,22 +81,14 @@
 		// `minRows` / `minCols` set a minimum size via the data attributes.
 		// Unlike the native `rows` / `cols` this also constrains a
 		// `field-sizing: content` textarea. 1lh/1ch map a line/character to the
-		// box, plus the block/inline padding so the floor counts visible text
+		// box, plus the block/inline chrome so the floor counts visible text
 		// lines. attr() has no fallback, so an absent attribute makes the
 		// calc() invalid; a consumer can instead set the --db-form-component-*
 		// custom property (also the only path on browsers without attr()).
 
-		// Block: calc() is the fallback of the override property. When the
-		// attribute is absent the invalid calc() makes min-block-size resolve
-		// to its initial value auto - the no-floor default we want.
-		/* stylelint-disable-next-line db-ux/use-sizing */
-		min-block-size: var(
-			--db-form-component-min-block-size,
-			calc(
-				attr(data-min-rows type(<number>)) * 1lh +
-					#{variables.$db-spacing-fixed-xs} * 2
-			)
-		);
+		// Block: default variant; the floating variant overrides this below
+		// with its larger padding-block-start.
+		@include get-row-floor;
 
 		// Inline: the default is $db-sizing-lg, not auto, so the invalid calc()
 		// must not reach the declaration. A private property traps its
@@ -98,6 +110,14 @@
 	}
 
 	&[data-variant="floating"] {
+		textarea {
+			// Floating swaps padding-block-start for the label space
+			// ($floating-label-size-calc, set in set-floating-label-overwrites);
+			// the row floor has to reserve that larger space, not the default
+			// padding-block-start.
+			@include get-row-floor(form-components.$floating-label-size-calc);
+		}
+
 		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {
 				@extend %default-transition;
