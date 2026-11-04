@@ -84,6 +84,24 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 		await checkInternalLinks(page, storybook, ids);
 		await checkAccessibility(page);
 
+		// Markdown tables must render as tables: Storybook's MDX has no GFM, so a
+		// table outside the Markdown block shows up as plain text with pipes.
+		const pipeRows = await page
+			.locator('.sbdocs-content p')
+			.evaluateAll(
+				(paragraphs) =>
+					paragraphs.filter((paragraph) =>
+						/\|\s*-{3,}\s*\|/.test(paragraph.textContent ?? '')
+					).length
+			);
+		expect(pipeRows, 'Markdown tables rendered as text').toBe(0);
+
+		if (id === 'foundations-test-table--docs') {
+			await expect(
+				page.locator('.sbdocs-content table tbody tr')
+			).not.toHaveCount(0);
+		}
+
 		if (id.endsWith('-overview--docs')) {
 			const sections = await page
 				.locator('.sbdocs-content h2')
