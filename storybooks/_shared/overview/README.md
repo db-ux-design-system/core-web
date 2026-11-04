@@ -12,7 +12,7 @@ What belongs in Storybook and what on the Design System Platform is described in
 | Content                                                | Source                                                                 |
 | ------------------------------------------------------ | ---------------------------------------------------------------------- |
 | Summary, status, accessibility review                  | `components.json` in this folder                                       |
-| Accessibility                                          | `packages/components/src/components/<component>/docs/Accessibility.md` |
+| Accessibility, migration                               | `packages/components/src/components/<component>/docs/*.md`             |
 | Usage (the examples; "Show code" includes the imports) | the generated example stories, `../storybook-config/source-imports.ts` |
 | Properties (React, Angular, Vue)                       | Storybook docgen                                                       |
 | Attributes (HTML, Web Components)                      | `<component>.lite.tsx` and `output/stencil/dist/web-types.json`        |

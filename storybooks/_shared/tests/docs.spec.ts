@@ -106,7 +106,12 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 			const sections = await page
 				.locator('.sbdocs-content h2')
 				.allTextContents();
-			for (const section of ['Guidelines', 'Usage', 'Resources']) {
+			for (const section of [
+				'Guidelines',
+				'Usage',
+				'Migration',
+				'Resources'
+			]) {
 				expect(sections, `section ${section}`).toContain(section);
 			}
 			expect(

@@ -9,8 +9,8 @@
  *
  * Inputs (one source per kind of content):
  * - `components.json` next to this file: summary, status, accessibility review
- * - `packages/components/src/components/<name>/docs/Accessibility.md`: accessibility
- *   (the usage is the examples, see storybook-config/source-imports.ts)
+ * - `packages/components/src/components/<name>/docs/*.md`: accessibility,
+ *   migration (the usage is the examples, see storybook-config/source-imports.ts)
  * - the generated example stories (`pnpm --filter @db-ux/core-components run
  *   generate:stories` must have run): story groups and story names
  * - `<name>.lite.tsx` and `output/stencil/dist/web-types.json`: attributes for
@@ -376,9 +376,15 @@ const buildOverviewMdx = (
 		)
 	];
 	const isAccessibility = hasDoc(name, 'Accessibility');
+	const isMigration = hasDoc(name, 'Migration');
 	if (isAccessibility) {
 		imports.push(
 			`import Accessibility from "${toRoot}${docsPath(name, 'Accessibility')}?raw";`
+		);
+	}
+	if (isMigration) {
+		imports.push(
+			`import Migration from "${toRoot}${docsPath(name, 'Migration')}?raw";`
 		);
 	}
 
@@ -433,17 +439,20 @@ const buildOverviewMdx = (
 			'<Markdown>{Accessibility}</Markdown>'
 		);
 	}
+	if (isMigration) {
+		sections.push(
+			'## Migration',
+			'{/* Nest the headings of the docs file below the section heading. */}',
+			'<Markdown>{Migration.replace(/^(#{2,4}) /gm, "#$1 ")}</Markdown>'
+		);
+	}
 	sections.push(
 		'## Resources',
 		[
 			`- [Guidelines on the Design System Platform](${meta.platformUrl})`,
 			`- npm: [${fw.npm}](https://www.npmjs.com/package/${fw.npm})`,
 			`- [Source code on GitHub](https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/${name})`,
-			'- [Changelog](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md)',
-			// Migration is documented on the platform. The docs/Migration.md files stay
-			// for the MCP server (component migration from DB UI).
-			`- Coming from DB UI? [Move from DB UI to Generation 3](${PLATFORM}/learn/migration)`,
-			'- Updating across a Major version? [Migration Guides](https://design-system.deutschebahn.com/documentation/releases/migration-guides)'
+			'- [Changelog](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md)'
 		].join('\n')
 	);
 	return `${sections.join('\n\n')}\n`;
@@ -594,7 +603,7 @@ const buildGettingStarted = (fw: Framework): string =>
 		GENERATED_NOTE,
 		'<Meta title="Getting Started" />',
 		`# Getting Started with ${fw.label}`,
-		`This Storybook is the technical reference of the ${fw.label} components: every component has an **Overview** page with usage, examples, properties and accessibility, for example **Components → DBButton → Overview**. "Show code" includes the imports, so you can copy an example into a project that is set up.`,
+		`This Storybook is the technical reference of the ${fw.label} components: every component has an **Overview** page with usage, examples, properties, accessibility and migration, for example **Components → DBButton → Overview**. "Show code" includes the imports, so you can copy an example into a project that is set up.`,
 		'## Set up your project',
 		`Installation, styles and the first component are explained step by step on the Design System Platform: [${fw.setupTitle}](${PLATFORM}/learn/${fw.setup}).`,
 		`Products of Deutsche Bahn also need the DB Theme with the brand colors, fonts and icons: [Add the DB Theme for DB products](${PLATFORM}/learn/db-theme-setup).`,
