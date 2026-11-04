@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./button-CA1fg1TP.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{n(),a={title:`Components/DBButton/Overview`,component:r,parameters:{docs:{toc:{headingSelector:`h2, h3`,title:`Table of Contents`}}}},o={tags:[`!dev`]},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...o.parameters?.docs?.source}}}})))()}export{c as n,i as t};
