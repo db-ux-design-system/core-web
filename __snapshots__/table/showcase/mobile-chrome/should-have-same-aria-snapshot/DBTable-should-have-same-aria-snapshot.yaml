@@ -2693,7 +2693,8 @@
         - cell "18"
         - cell "19"
         - cell "20"
-        - cell "21"
+        - cell "21":
+          - link "21"
   - text: 50 Columns
   - table "50 Columns":
     - caption: 50 Columns
@@ -2800,4 +2801,5 @@
         - cell "47"
         - cell "48"
         - cell "49"
-        - cell "50"
+        - cell "50":
+          - link "50"
