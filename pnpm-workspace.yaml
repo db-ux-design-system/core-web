@@ -12,7 +12,6 @@ allowBuilds:
   "@db-ux/db-theme": true
   "@db-ux/db-theme-fonts": true
   "@db-ux/db-theme-icons": true
-  "@db-ux/db-theme-illustrative-icons": true
   "@parcel/watcher": false
   accessibility-checker: false
   chromedriver: false
@@ -34,7 +33,6 @@ minimumReleaseAgeExclude:
   - "@db-ux/db-theme"
   - "@db-ux/db-theme-fonts"
   - "@db-ux/db-theme-icons"
-  - "@db-ux/db-theme-illustrative-icons"
   - got@11.8.5
   - marked@0.7.0 || 4.0.10
   - semver-regex@3.1.3 || 3.1.4
