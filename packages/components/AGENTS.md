@@ -868,6 +868,15 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 > parallel implementations.
 >
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
+>
+> Note: React forwarded refs. `scripts/post-build/react.ts` wraps every component in `forwardRef` and receives the forwarded ref as the second argument `component`. The root ref is generated as
+>
+> ```tsx
+> const _internalRef = useRef<HTMLDivElement | any>(null);
+> const _ref = component || _internalRef;
+> ```
+>
+> `useRef` has to run on every render (rules of hooks). Do not shorten this back to `component || useRef(...)`: the `||` skips the hook whenever a ref is forwarded, so a parent switching `ref` between `null` and a ref object changes the hook order and React throws ([#7849](https://github.com/db-ux-design-system/core-web/issues/7849)). Passing `component` as the initial value of `useRef` does not help, the hook call itself is what is skipped. The replacement is `forwardedRefReplacement` and covered by `scripts/post-build/react.spec.ts`.
 
 ### Angular form components
 
