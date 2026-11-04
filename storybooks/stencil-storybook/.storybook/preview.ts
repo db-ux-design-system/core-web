@@ -48,8 +48,9 @@ const preview: Preview = {
 			// Example pages without the properties table, see autodocs-page.mdx.
 			page: AutodocsPage,
 			toc: {
-				headingSelector: 'h1, h3',
-				title: 'Table of Contents'
+				// No visible title, like the platform TOC. Without a title Storybook
+				// keeps a visually hidden "Table of contents" heading.
+				headingSelector: 'h1, h3'
 			},
 			source: {
 				// Show the real rendered custom-element markup (captured by the

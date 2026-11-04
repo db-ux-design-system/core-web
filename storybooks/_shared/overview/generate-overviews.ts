@@ -469,7 +469,8 @@ const ANCHOR_COMMENT = `/*
 
 const TOC = `docs: {
 			// The overview structures its sections with h2 (global TOC: h1, h3).
-			toc: { headingSelector: 'h2, h3', title: 'Table of Contents' }
+			// No visible title, like the platform TOC.
+			toc: { headingSelector: 'h2, h3' }
 		}`;
 
 const buildStories = (

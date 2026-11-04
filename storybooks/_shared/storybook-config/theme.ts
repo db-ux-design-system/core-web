@@ -14,6 +14,26 @@ import values from './theme-values.json';
  */
 const PLATFORM = 'https://design-system.deutschebahn.com';
 
+/** Name in the sidebar header and in the browser tab title (manager.ts). */
+export const BRAND_NAME = 'DB UX Design System';
+
+/*
+ * Storybook shows either `brandImage` or `brandTitle`. With `brandImage: null`
+ * it renders `brandTitle` as HTML, so logo and name can stand side by side.
+ * The logo is decorative (empty alt), the name is the link text.
+ */
+const BRAND_HTML = [
+	'<span style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:700;font-size:1rem">',
+	`<img src="${values.brandLogo}" alt="" width="32" height="32">`,
+	// Fixed line break after "DB UX". The space between the lines keeps the
+	// link text "DB UX Design System".
+	'<span style="line-height:1.2;white-space:nowrap">',
+	'<span style="display:block">DB UX</span> ',
+	'<span style="display:block">Design System</span>',
+	'</span>',
+	'</span>'
+].join('');
+
 const shared = {
 	base: 'light',
 	colorPrimary: values.brand,
@@ -26,15 +46,20 @@ const shared = {
 	appBorderColor: values.border,
 	appBorderRadius: 4,
 	inputBorderRadius: 4,
-	brandTitle: 'DB UX Design System',
+	brandTitle: BRAND_HTML,
 	brandUrl: PLATFORM,
-	brandImage: './brand/images/logo.svg',
+	// Logo and name come from BRAND_HTML; the logo is generated from logo.svg
+	// with a fixed Light Mode color, see generate-theme.ts.
+	// `null` is supported at runtime but missing in the ThemeVars type.
+	brandImage: null as unknown as string,
 	brandTarget: '_top'
 } as const;
 
 export const managerTheme = create({
 	...shared,
-	appBg: values.backgroundLevel2,
+	// Sidebar on level 1 with a border, like DBControlPanelDesktop.
+	appBg: values.background,
+	appHoverBg: values.itemHovered,
 	appContentBg: values.background,
 	appPreviewBg: values.background,
 	barBg: values.background,
