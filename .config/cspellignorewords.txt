@@ -287,3 +287,5 @@ lockfiles
 autofilled
 novalidate
 formnovalidate
+headingreset
+headingoffset
