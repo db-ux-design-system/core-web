@@ -130,7 +130,7 @@ export default [
 
 For developers looking to create custom components that extend the design system in their applications, we provide comprehensive guidance:
 
-📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
+📖 **[Build your own components](https://design-system.deutschebahn.com/documentation/learn/custom-components)** - Learn how to build your own components using design system foundations
 
 This guide covers:
 

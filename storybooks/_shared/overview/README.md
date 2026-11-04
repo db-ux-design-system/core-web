@@ -24,9 +24,9 @@ The shared Storybook configuration (light/dark mode, docs page of the example st
 
 ## Tests
 
-`../tests/` tests the built Storybooks. The pages are discovered from each build's `index.json`, so new components, Foundations and Guides pages are tested without changes.
+`../tests/` tests the built Storybooks. The pages are discovered from each build's `index.json`, so new components and Foundations pages are tested without changes.
 
-- `docs.spec.ts`: Getting Started, every component overview and every Foundations and Guides page (incl. the test table). Checks for uncaught errors, heading levels, internal links and axe (WCAG AA). Overview pages are also checked for their sections, non-empty previews, guideline links to the platform and axe in dark mode.
+- `docs.spec.ts`: Getting Started, every component overview and every Foundations page (incl. the test table). Checks for uncaught errors, heading levels, internal links and axe (WCAG AA). Overview pages are also checked for their sections, non-empty previews, guideline links to the platform and axe in dark mode.
 - `snippets.spec.ts`: expands every "Show code" of the overview pages and compiles the React (tsc), Angular (ngc with `strictTemplates`) and Vue (vue-tsc) snippets. Web Components and HTML snippets are checked for registration and stylesheet.
 
 ```shell
@@ -37,9 +37,9 @@ pnpm run test:storybooks
 
 In CI the tests run in `.github/workflows/02-e2e-storybooks.yml`.
 
-## Composition Storybook: Foundations and Guides
+## Composition Storybook: Foundations
 
 `../foundations/` generates the Markdown pages of the composition Storybook:
 
-- `generate-foundations.ts` writes the Foundations pages (`packages/foundations/docs/*.md`) and the Guides pages (router usage, custom components, testing, validation, backdrop – the "Misc" pages of the Patternhub). The list is `pages.ts`. Run it when a page is added or renamed; content changes show up without it.
+- `generate-foundations.ts` writes the Foundations pages (`packages/foundations/docs/*.md`). The guides of the Patternhub ("Misc": router usage, custom components, testing, validation, backdrop) are Learn articles on the Design System Platform. The list is `pages.ts`. Run it when a page is added or renamed; content changes show up without it.
 - `generate-test-table.ts` writes `Foundations/Test Table` from the test files in `showcases/` and the accessibility reviews. It runs on every build and start of the composition Storybook, the output is git-ignored.

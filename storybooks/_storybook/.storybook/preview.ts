@@ -11,8 +11,8 @@ const preview: Preview = {
 			}
 		},
 		options: {
-			// Getting Started first, then the Foundations and Guides pages in the
-			// order of storybooks/_shared/foundations/pages.ts. The framework refs follow.
+			// Getting Started first, then the Foundations pages in the order of
+			// storybooks/_shared/foundations/pages.ts. The framework refs follow.
 			storySort: {
 				order: [
 					'Getting Started',
@@ -28,14 +28,6 @@ const preview: Preview = {
 						'Performance',
 						'Browser Support',
 						'Test Table'
-					],
-					'Guides',
-					[
-						'Router Usage',
-						'Custom Components',
-						'Testing',
-						'Validation',
-						'Backdrop'
 					]
 				]
 			}

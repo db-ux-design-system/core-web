@@ -1,30 +1,26 @@
 /**
- * PROTOTYPE – Markdown pages of the composition Storybook, in sidebar order.
+ * PROTOTYPE – Foundations pages of the composition Storybook, in sidebar order.
  *
- * - `group`: sidebar group, part of the Storybook id (`<group>-<id>--docs`)
  * - `source`: Markdown file, relative to the repository root
- * - `route`: route of the file in the Patternhub. Links of other docs to this
- *   route point to the Storybook page instead.
- * - `relativeLinks`: what relative links in the file were written against:
- *   its Patternhub route (the foundations docs) or its place in the
- *   repository (the guides, they are read on GitHub too)
+ * - `route`: route of the file in the Patternhub, the base its relative links
+ *   were written against. Links of other docs to this route point to the
+ *   Storybook page instead.
  * - `platform`: design-side page on the Design System Platform, if there is one
- * - `note`: shown above the content
+ *
+ * The guides (router usage, custom components, testing, validation, backdrop)
+ * are Learn articles on the Design System Platform, see links.ts.
  */
 export type DocsPage = {
-	group: 'Foundations' | 'Guides';
 	id: string;
 	title: string;
 	source: string;
 	route: string;
-	relativeLinks?: 'patternhub' | 'repository';
 	platform?: { label: string; url: string; text: string };
-	note?: string;
 };
 
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
 
-const FOUNDATIONS: Array<Omit<DocsPage, 'group'>> = [
+const FOUNDATIONS: DocsPage[] = [
 	{
 		id: 'colors',
 		title: 'Colors',
@@ -101,50 +97,8 @@ const FOUNDATIONS: Array<Omit<DocsPage, 'group'>> = [
 	}
 ];
 
-/** The "Misc" pages of the Patternhub components section. */
-const GUIDES: Array<Omit<DocsPage, 'group'>> = [
-	{
-		id: 'router-usage',
-		title: 'Router Usage',
-		source: 'packages/components/docs/router-usage.md',
-		route: '/components/misc/router-usage'
-	},
-	{
-		id: 'custom-components',
-		title: 'Custom Components',
-		source: 'packages/components/docs/creating-custom-components.md',
-		route: '/components/misc/custom-components'
-	},
-	{
-		id: 'testing',
-		title: 'Testing',
-		source: 'docs/how-to-test-with-db-ux-components.md',
-		route: '/components/misc/testing'
-	},
-	{
-		id: 'validation',
-		title: 'Validation',
-		source: 'packages/components/docs/Validation.md',
-		route: '/components/misc/validation',
-		note: 'The examples of the form components (DBInput, DBSelect, DBTextarea, DBCheckbox, DBRadio, DBSwitch) in each framework Storybook show the validation states.'
-	},
-	{
-		id: 'backdrop',
-		title: 'Backdrop',
-		source: 'packages/components/docs/Backdrop.md',
-		route: '/components/misc/backdrop'
-	}
-];
+export const PAGES: DocsPage[] = FOUNDATIONS;
 
-export const PAGES: DocsPage[] = [
-	...FOUNDATIONS.map((page) => ({ ...page, group: 'Foundations' as const })),
-	...GUIDES.map((page) => ({
-		...page,
-		group: 'Guides' as const,
-		relativeLinks: 'repository' as const
-	}))
-];
-
-/** Storybook id of a page, e.g. `?path=/docs/guides-testing--docs`. */
-export const storybookPath = (group: string, id: string): string =>
-	`?path=/docs/${group.toLowerCase()}-${id}--docs`;
+/** Storybook path of a Foundations page, e.g. `?path=/docs/foundations-colors--docs`. */
+export const storybookPath = (id: string): string =>
+	`?path=/docs/foundations-${id}--docs`;
