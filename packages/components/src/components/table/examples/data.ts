@@ -233,9 +233,14 @@ const getColumnCountTable = (columns: number): DBTableData => {
 		],
 		body: [
 			{
-				cells: columnIndexes.map((index) => ({
-					content: `${index + 1}`
-				}))
+				cells: [
+					...columnIndexes.slice(0, -1).map((index) => ({
+						content: `${index + 1}`
+					})),
+					// Wide tables scroll horizontally: a focusable element keeps the
+					// scroll container reachable by keyboard (axe: scrollable-region-focusable)
+					{ link: { text: `${columns}`, href: '#' } }
+				]
 			}
 		]
 	};

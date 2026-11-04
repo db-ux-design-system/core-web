@@ -4,9 +4,10 @@ import DBTable from '../table.lite';
 import { StorybookTableArgTypes } from './_table.arg.types';
 import { columnCount21Table, columnCount50Table } from './data';
 
+// Story names become export identifiers, so they must not start with a digit
 useMetadata({
 	storybookTitle: 'Column Count',
-	storybookNames: ['21 Columns', '50 Columns'],
+	storybookNames: ['Columns 21', 'Columns 50'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
