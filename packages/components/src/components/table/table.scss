@@ -1,4 +1,3 @@
-@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
@@ -73,11 +72,28 @@
 }
 
 %set-grid-cells {
+	// Applies to every column count, including tables wider than
+	// `table-components.$max-columns`, which the detection below can't cover.
+	grid-template-columns: var(--db-table-grid-template-columns, none);
+
+	// Track lists for 1..n columns, each one built on its predecessor.
+	// This keeps the generated CSS linear in the column count instead of
+	// repeating the full track list in every column count rule.
+	@for $index from 1 through table-components.$max-columns {
+		$tracks: "var(--db-table-column-size-#{$index - 1},var(--db-table-columns-size, 1fr))";
+
+		@if $index > 1 {
+			$tracks: "var(--db-table-tracks-#{$index - 1}) #{$tracks}";
+		}
+
+		--db-table-tracks-#{$index}: #{$tracks};
+	}
+
 	// NOTE: This selector counts DOM child elements per row to determine column count.
 	// When cells use colSpan, the logical column count is higher than the child count.
 	// For tables with colSpan, use the `columnSizes` prop or set
 	// `--db-table-grid-template-columns` directly to define the correct grid tracks.
-	@for $num from 1 through 20 {
+	@for $num from 1 through table-components.$max-columns {
 		&:has(
 				tr
 					> :is(
@@ -99,16 +115,9 @@
 			) {
 			--db-table-grid-cells: #{$num};
 
-			$track-size: "";
-
-			@for $index from 0 through $num - 1 {
-				$track-size: $track-size +
-					" var(--db-table-column-size-#{$index},var(--db-table-columns-size, 1fr))";
-			}
-
 			grid-template-columns: var(
 				--db-table-grid-template-columns,
-				#{string.unquote($track-size)}
+				var(--db-table-tracks-#{$num})
 			);
 		}
 	}
