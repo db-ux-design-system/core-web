@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    
     <style>
       @font-face {
         font-family: 'Nunito Sans';
@@ -49,7 +47,38 @@
     <link href="./sb-addons/storybook-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
     
     <link href="./sb-addons/docs-1/manager-bundle.js" rel="modulepreload" />
-       
+    
+    <link href="./sb-addons/storybook-2/manager-bundle.js" rel="modulepreload" />
+      <!--
+	PROTOTYPE – favicon and fonts of the Storybook UI.
+	Copied into `.storybook/manager-head.html` of every Storybook by sync.ts.
+	`brand/` is a static directory (main.ts): the design system logo, and in the
+	composition Storybook the DB Theme fonts. Without the fonts, the UI falls
+	back to helvetica and arial.
+-->
+<link type="image/svg+xml" href="./brand/images/logo.svg" rel="icon" />
+<style>
+	/* The logo is square; without a limit it fills the sidebar header. */
+	img[src$="brand/images/logo.svg"] {
+		max-block-size: 2rem;
+		inline-size: auto;
+	}
+
+	@font-face {
+		font-family: "DB Neo Screen Sans";
+		font-weight: 400;
+		font-display: swap;
+		src: url("./brand/fonts/dbneoscreensans-regular.woff2") format("woff2");
+	}
+
+	@font-face {
+		font-family: "DB Neo Screen Sans";
+		font-weight: 700;
+		font-display: swap;
+		src: url("./brand/fonts/dbneoscreensans-bold.woff2") format("woff2");
+	}
+</style>
+ 
 
     <style>
       #storybook-root[hidden] {
@@ -243,6 +272,8 @@
         import './sb-addons/storybook-core-server-presets-0/common-manager-bundle.js';
       
         import './sb-addons/docs-1/manager-bundle.js';
+      
+        import './sb-addons/storybook-2/manager-bundle.js';
       
 
       import './sb-manager/runtime.js';
