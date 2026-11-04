@@ -4,7 +4,7 @@ import { StorybookTextareaArgTypes } from './_textarea.arg.types';
 
 useMetadata({
 	storybookTitle: 'Field Sizing',
-	storybookNames: ['(Default) Fixed', 'Content'],
+	storybookNames: ['(Default) Fixed', 'Content', 'Content with min-rows'],
 	storybookArgTypes: StorybookTextareaArgTypes
 });
 
@@ -23,6 +23,14 @@ export default function TextareaFieldSizing() {
 					label="Label"
 					fieldSizing="content"
 					placeholder="Content"
+				/>
+			</div>
+			<div style={{ width: '300px' }}>
+				<DBTextarea
+					label="Label"
+					fieldSizing="content"
+					minRows={3}
+					placeholder="Content with min-rows"
 				/>
 			</div>
 		</Fragment>

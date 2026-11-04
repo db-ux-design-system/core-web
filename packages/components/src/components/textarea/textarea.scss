@@ -57,6 +57,44 @@
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
 			variables.$db-spacing-fixed-xs;
+
+		// `minRows` / `minCols` set a minimum size via the data attributes.
+		// Unlike the native `rows` / `cols` this also constrains a
+		// `field-sizing: content` textarea. 1lh/1ch map a line/character to the
+		// box, plus the block/inline padding so the floor counts visible text
+		// lines. attr() has no fallback, so an absent attribute makes the
+		// calc() invalid; a consumer can instead set the --db-form-component-*
+		// custom property (also the only path on browsers without attr()).
+
+		// Block: calc() is the fallback of the override property. When the
+		// attribute is absent the invalid calc() makes min-block-size resolve
+		// to its initial value auto - the no-floor default we want.
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		min-block-size: var(
+			--db-form-component-min-block-size,
+			calc(
+				attr(data-min-rows type(<number>)) * 1lh +
+					#{variables.$db-spacing-fixed-xs} * 2
+			)
+		);
+
+		// Inline: the default is $db-sizing-lg, not auto, so the invalid calc()
+		// must not reach the declaration. A private property traps its
+		// invalidity (collapsing to unset) so the var() chain falls through:
+		// the shared override, then the calc(), then the $db-sizing-lg default
+		// (reused via the split parts of $db-min-inline-size, not duplicated).
+		--db-textarea-min-inline-size: calc(
+			attr(data-min-cols type(<number>)) * 1ch +
+				#{variables.$db-spacing-fixed-sm} * 2
+		);
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		min-inline-size: var(
+			#{form-components.$db-min-inline-size-custom-property},
+			var(
+				--db-textarea-min-inline-size,
+				#{form-components.$db-min-inline-size-default}
+			)
+		);
 	}
 
 	&[data-variant="floating"] {

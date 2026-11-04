@@ -271,6 +271,8 @@ export default function DBTextarea(props: DBTextareaProps) {
 				aria-invalid={props.validation === 'invalid'}
 				data-custom-validity={props.validation}
 				data-field-sizing={props.fieldSizing}
+				data-min-rows={props.minRows}
+				data-min-cols={props.minCols}
 				ref={_ref}
 				id={state._id}
 				data-resize={props.resize}

@@ -38,9 +38,15 @@ $input-types:
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
 $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
+
+// Split into consumable parts so a component (e.g. textarea) can insert an
+// extra fallback level between the custom property and the final default
+// without duplicating either, while the mixin keeps using the composed value.
+$db-min-inline-size-custom-property: --db-form-component-min-inline-size;
+$db-min-inline-size-default: #{variables.$db-sizing-lg};
 $db-min-inline-size: var(
-	--db-form-component-min-inline-size,
-	#{variables.$db-sizing-lg}
+	#{$db-min-inline-size-custom-property},
+	$db-min-inline-size-default
 );
 
 // Shared inline padding for form-component boxes, driven by the
