@@ -26,18 +26,9 @@ Buttons initiate actions and confirm decisions.
 
 ## Guidelines
 
-{/* cspell:ignore Richtlinien Einsatz Varianten Gestaltungsregeln */}
-
 How and when to use the component is documented on the Design System Platform:
 
-<div
-	data-mode="light"
-	style={{
-		display: "flex",
-		flexWrap: "wrap",
-		gap: "var(--db-spacing-fixed-md)"
-	}}
->
+<div data-mode="light">
 	<a
 		className="db-card"
 		data-behavior="interactive"
@@ -45,9 +36,8 @@ How and when to use the component is documented on the Design System Platform:
 		href="https://design-system.deutschebahn.com/documentation/components/button"
 		target="_blank"
 		rel="noopener noreferrer"
-		lang="en"
 		style={{
-			flex: "1 1 16rem",
+			maxInlineSize: "32rem",
 			display: "flex",
 			flexDirection: "column",
 			gap: "var(--db-spacing-fixed-xs)",
@@ -59,30 +49,6 @@ How and when to use the component is documented on the Design System Platform:
 		<span>
 			When to use it, variants, Do and Don’t, design rules for
 			accessibility.
-		</span>
-		<span>Design System Platform ↗</span>
-	</a>
-	<a
-		className="db-card"
-		data-behavior="interactive"
-		data-spacing="small"
-		href="https://design-system.deutschebahn.com/de/dokumentation/komponenten/button"
-		target="_blank"
-		rel="noopener noreferrer"
-		lang="de"
-		style={{
-			flex: "1 1 16rem",
-			display: "flex",
-			flexDirection: "column",
-			gap: "var(--db-spacing-fixed-xs)",
-			textDecoration: "none",
-			color: "inherit"
-		}}
-	>
-		<strong>Richtlinien Button</strong>
-		<span>
-			Einsatz, Varianten, Do und Don’t, Gestaltungsregeln zur
-			Barrierefreiheit.
 		</span>
 		<span>Design System Platform ↗</span>
 	</a>

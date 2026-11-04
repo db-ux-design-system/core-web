@@ -43,8 +43,6 @@ type ComponentMeta = {
 	title: string;
 	summary: string;
 	platformUrl: string;
-	/** German page on the platform; the slugs differ per language. */
-	platformUrlDe?: string;
 	status: string;
 	accessibilityReview?: { status: string; date: string };
 	/**
@@ -313,50 +311,26 @@ const hasDoc = (name: string, file: string) =>
 	existsSync(join(ROOT, docsPath(name, file)));
 
 /**
- * "Guidelines" section with cards to the platform page of the component, in
- * English and German. Plain `db-card` markup, because the MDX pages of the
- * Angular, Vue and Web Components Storybooks cannot import the React
- * components; the core component CSS is loaded in every Storybook.
+ * "Guidelines" section with a card to the English platform page of the
+ * component (Storybook is English only). Plain `db-card` markup, because the
+ * MDX pages of the Angular, Vue and Web Components Storybooks cannot import
+ * the React components; the core component CSS is loaded in every Storybook.
  */
 const buildGuidelines = (meta: ComponentMeta): string => {
 	const name = meta.title.replace(/^DB/, '');
-	const cards = [
-		{
-			title: `${name} guidelines`,
-			text: 'When to use it, variants, Do and Don’t, design rules for accessibility.',
-			url: meta.platformUrl,
-			lang: 'en'
-		},
-		{
-			title: `Richtlinien ${name}`,
-			text: 'Einsatz, Varianten, Do und Don’t, Gestaltungsregeln zur Barrierefreiheit.',
-			url: meta.platformUrlDe,
-			lang: 'de'
-		}
-	].filter((card) => card.url);
-	const items = cards
-		.map(
-			(
-				card
-			) => `<a className="db-card" data-behavior="interactive" data-spacing="small" href="${card.url}" target="_blank" rel="noopener noreferrer" lang="${card.lang}" style={{ flex: '1 1 16rem', display: 'flex', flexDirection: 'column', gap: 'var(--db-spacing-fixed-xs)', textDecoration: 'none', color: 'inherit' }}>
-	<strong>${card.title}</strong>
-	<span>${card.text}</span>
-	<span>Design System Platform ↗</span>
-</a>`
-		)
-		.join('\n');
-	// Inline styles: the cards appear in five Storybooks with different global CSS files.
+	// Inline styles: the card appears in five Storybooks with different global CSS files.
 	// `data-mode="light"`: the Storybook docs page stays light, also when the
-	// mode switch sets the stories to dark; the cards follow the page.
-	// cspell:ignore Richtlinien Einsatz Varianten Gestaltungsregeln
+	// mode switch sets the stories to dark; the card follows the page.
 	return `## Guidelines
-
-{/* cspell:ignore Richtlinien Einsatz Varianten Gestaltungsregeln */}
 
 How and when to use the component is documented on the Design System Platform:
 
-<div data-mode="light" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--db-spacing-fixed-md)' }}>
-${items}
+<div data-mode="light">
+<a className="db-card" data-behavior="interactive" data-spacing="small" href="${meta.platformUrl}" target="_blank" rel="noopener noreferrer" style={{ maxInlineSize: '32rem', display: 'flex', flexDirection: 'column', gap: 'var(--db-spacing-fixed-xs)', textDecoration: 'none', color: 'inherit' }}>
+	<strong>${name} guidelines</strong>
+	<span>When to use it, variants, Do and Don’t, design rules for accessibility.</span>
+	<span>Design System Platform ↗</span>
+</a>
 </div>`;
 };
 
