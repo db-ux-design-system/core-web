@@ -8,7 +8,10 @@ import type { Globals, GlobalTypes } from 'storybook/internal/types';
  * `storybooks/_shared/storybook-config/sync.ts`, because the Angular build only
  * compiles files inside its project. Edit this file, not the copies.
  *
- * `auto` sets no `data-mode`, so the stories follow `prefers-color-scheme`.
+ * The default is Light Mode, like the Storybook UI and the docs pages, which
+ * are always light (theme.ts). Otherwise an OS in dark mode would show dark
+ * examples on the light docs page. `auto` sets no `data-mode`, so the stories
+ * follow `prefers-color-scheme`.
  */
 export const modeGlobalTypes: GlobalTypes = {
 	mode: {
@@ -26,7 +29,7 @@ export const modeGlobalTypes: GlobalTypes = {
 	}
 };
 
-export const modeInitialGlobals: Globals = { mode: 'auto' };
+export const modeInitialGlobals: Globals = { mode: 'light' };
 
 /** Sets `data-mode` on `<html>` for the selected mode. */
 export const applyMode = (globals: Globals): void => {
