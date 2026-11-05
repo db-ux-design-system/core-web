@@ -134,16 +134,16 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 				);
 			expect(empty, 'empty previews').toBe(0);
 
-			// One guideline card, to the English platform page.
-			const cards = await page
-				.locator('.sbdocs-content a.db-card')
+			// The guidelines link to the English platform page.
+			const guidelines = await page
+				.locator('.sbdocs-content a', { hasText: / guidelines$/ })
 				.evaluateAll((links) =>
 					links.map((link) => link.getAttribute('href') ?? '')
 				);
-			expect(cards, 'guideline cards').toHaveLength(1);
+			expect(guidelines, 'guideline links').toHaveLength(1);
 			expect(
-				cards[0].startsWith(`${PLATFORM}documentation/`),
-				cards[0]
+				guidelines[0].startsWith(`${PLATFORM}documentation/`),
+				guidelines[0]
 			).toBeTruthy();
 
 			// The docs stay readable when the stories are switched to dark mode.

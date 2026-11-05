@@ -305,27 +305,15 @@ const hasDoc = (name: string, file: string) =>
 	existsSync(join(ROOT, docsPath(name, file)));
 
 /**
- * "Guidelines" section with a card to the English platform page of the
- * component (Storybook is English only). Plain `db-card` markup, because the
- * MDX pages of the Angular, Vue and Web Components Storybooks cannot import
- * the React components; the core component CSS is loaded in every Storybook.
+ * "Guidelines" section with a text link to the English platform page of the
+ * component (Storybook is English only), like the setup link of the Usage
+ * section.
  */
 const buildGuidelines = (meta: ComponentMeta): string => {
 	const name = meta.title.replace(/^DB/, '');
-	// Inline styles: the card appears in five Storybooks with different global CSS files.
-	// `data-mode="light"`: the Storybook docs page stays light, also when the
-	// mode switch sets the stories to dark; the card follows the page.
 	return `## Guidelines
 
-How and when to use the component is documented on the Design System Platform:
-
-<div data-mode="light">
-<a className="db-card" data-behavior="interactive" data-spacing="small" href="${meta.platformUrl}" target="_blank" rel="noopener noreferrer" style={{ maxInlineSize: '32rem', display: 'flex', flexDirection: 'column', gap: 'var(--db-spacing-fixed-xs)', textDecoration: 'none', color: 'inherit' }}>
-	<strong>${name} guidelines</strong>
-	<span>When to use it, variants, Do and Don’t, design rules for accessibility.</span>
-	<span>Design System Platform ↗</span>
-</a>
-</div>`;
+When to use it, variants, Do and Don’t and the design rules for accessibility: [${name} guidelines](${meta.platformUrl}) on the Design System Platform.`;
 };
 
 const statusLine = (meta: ComponentMeta): string => {
