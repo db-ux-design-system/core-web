@@ -39,6 +39,9 @@
 }
 
 .sbdocs.sbdocs-toc--custom > nav {
+	/* The docs page stays light; without this the light-dark() tokens follow
+	   the OS dark scheme and the TOC turns light grey on white. */
+	color-scheme: light;
 	font: var(--db-type-body-md);
 	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 }
@@ -49,7 +52,11 @@
 	border: none;
 }
 
-.sbdocs.sbdocs-toc--custom .toc-wrapper > .toc-list.toc-list {
+/*
+ * Room for the track left of the entries. On the nav, not on the list: the
+ * nav scrolls (overflow: auto) and clips everything outside its padding box.
+ */
+.sbdocs.sbdocs-toc--custom > nav {
 	padding-inline-start: var(--db-spacing-fixed-xs);
 }
 
