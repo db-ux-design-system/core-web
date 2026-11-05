@@ -58,7 +58,6 @@ import DBCustomSelectList from '../custom-select-list/custom-select-list.lite';
 import DBInfotext from '../infotext/infotext.lite';
 import DBInput from '../input/input.lite';
 import DBLoadingIndicator from '../loading-indicator/loading-indicator.lite';
-import DBTag from '../tag/tag.lite';
 import DBTooltip from '../tooltip/tooltip.lite';
 import {
 	CustomSelectOptionType,
@@ -301,7 +300,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			// Fallback to default behavior
 			return `${DEFAULT_REMOVE} ${state.getOptionLabel(option)}`;
 		},
-		handleTagRemove: (option: CustomSelectOptionType) => {
+		handleTagRemove: (option: CustomSelectOptionType, event?: any) => {
+			/*
+			 * Stop the click from reaching the DocumentClickListener. Removing
+			 * the tag detaches event.target, so fieldContains returns false and
+			 * an open dropdown would close. DBTag.handleRemove used to stop it;
+			 * handleTagRemove has not since #8331. handleClearAll does the same
+			 * for the same reason.
+			 */
+			if (event) {
+				event.stopPropagation();
+			}
+
 			state.handleSelect(option.value);
 			state.handleSummaryFocus();
 		},
@@ -1183,9 +1193,18 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							{state._selectedLabels}
 						</span>
 						<div class="db-custom-select-tags">
+							{/*
+							 * Render the selected tags as the CSS-only db-tag
+							 * markup instead of the DBTag component. As a Stencil
+							 * custom element, <db-tag> is a scoped-slot host;
+							 * removing one from this shrinking list crashes
+							 * Stencil's scoped-slot relocation ("elm.remove is
+							 * not a function" / nodeType on null) (#8466). Plain
+							 * DOM has no slot host to relocate.
+							 */}
 							<For each={state._selectedOptions}>
 								{(option: CustomSelectOptionType) => (
-									<DBTag
+									<div
 										key={useTarget({
 											vue: undefined,
 											stencil: undefined,
@@ -1194,16 +1213,30 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 												'tag-'
 											)
 										})}
-										removeButton={state.getTagRemoveLabel(
-											option
-										)}
-										onRemove={() =>
-											state.handleTagRemove(option)
-										}
-										emphasis="strong"
-										behavior="removable">
+										class="db-tag"
+										data-emphasis="strong">
 										{state.getOptionLabel(option)}
-									</DBTag>
+										<button
+											type="button"
+											class="db-button db-tab-remove-button"
+											data-icon="cross"
+											data-size="small"
+											data-no-text="true"
+											data-variant="ghost"
+											onClick={(event) =>
+												state.handleTagRemove(
+													option,
+													event
+												)
+											}>
+											{state.getTagRemoveLabel(option)}
+											<DBTooltip variant="label">
+												{state.getTagRemoveLabel(
+													option
+												)}
+											</DBTooltip>
+										</button>
+									</div>
 								)}
 							</For>
 						</div>

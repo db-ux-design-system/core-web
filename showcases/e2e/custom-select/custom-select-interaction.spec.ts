@@ -44,6 +44,16 @@ const skipKeyboardOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
+// On mobile the open dropdown becomes a modal bottom-sheet with a full-viewport
+// backdrop (summary::before, z-index 9998) painted over the field, so a tag's
+// remove button in the field is deliberately unreachable while the dropdown is
+// open. Removing a tag mid-open is therefore a desktop-only affordance: the
+// backdrop intercepts the pointer and the click never lands. Skip such
+// scenarios on every mobile project.
+const skipTagRemoveWhileOpenOnMobile: SkipType = {
+	project: (project) => project.name.startsWith('mobile')
+};
+
 const FOCUS_COOLDOWN = 2000;
 
 const openDropdown = async (page: Page, summary: Locator) => {
@@ -330,6 +340,80 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should remove a single tag when its remove button is clicked (#8466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			await expect(tags).toHaveCount(2);
+
+			// Clicking a tag's remove button re-renders the shrinking tag list.
+			// In the Web Component output this used to crash Stencil's
+			// scoped-slot relocation ("Cannot read properties of null (reading
+			// 'nodeType')" / "elm.remove is not a function") and leave the tag
+			// in place. After the fix the tag list reconciles cleanly and the
+			// clicked tag is gone.
+			await select.locator('.db-tab-remove-button').first().click();
+
+			await expect(tags).toHaveCount(1);
+			// 'Blue' was removed, 'Green' remains.
+			await expect(tags).toContainText('Green Color');
+			await expect(tags).not.toContainText('Blue Color');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should keep the dropdown open when a tag is removed while it is open',
+		path,
+		example: 'Interaction',
+		skip: skipTagRemoveWhileOpenOnMobile,
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			const details = select.locator('details');
+			await expect(tags).toHaveCount(2);
+
+			// Open the dropdown directly and wait for the `open` attribute
+			// rather than racing a summary click (see the search test above for
+			// why a synthetic click is unreliable on WebKit).
+			await select.locator('summary').click({ force: true });
+			await details.evaluate((element: HTMLDetailsElement) => {
+				element.open = true;
+			});
+			await expect(details).toHaveAttribute('open', '');
+
+			// Removing a tag must not close the open dropdown. The remove click
+			// has to stop propagating to the DocumentClickListener: removing the
+			// tag detaches event.target, so fieldContains() returns false and
+			// the close handler would otherwise close the dropdown. DBTag used
+			// to stop propagation itself; the plain markup must do it now.
+			await select.locator('.db-tab-remove-button').first().click();
+
+			await expect(tags).toHaveCount(1);
+			await expect(details).toHaveAttribute('open', '');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should clear all tags when the clear-selection button is clicked (#8466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			await expect(tags).toHaveCount(2);
+
+			// Clearing the whole selection empties the tag list in one go.
+			// Same scoped-slot relocation crash as single tag removal in the
+			// Web Component output before the fix (#8466).
+			await select.locator('.db-custom-select-clear').click();
+
+			await expect(tags).toHaveCount(0);
+		}
+	});
+
+	runInteractionTest({
 		title: 'should submit every selected value of a multiple select (#8465)',
 		path,
 		example: 'Interaction',
@@ -472,8 +556,7 @@ test.describe('DBCustomSelect', () => {
 			await expect(clearButton).toHaveCount(1);
 
 			// A disabled custom select must expose no keyboard- or
-			// pointer-reachable controls: the tag remove buttons (rendered by
-			// DBTag, which has no disabled state of its own) and the clear
+			// pointer-reachable controls: the tag remove buttons and the clear
 			// button are taken out of the tab order and marked disabled.
 			for (const button of [
 				removeButtons.first(),
