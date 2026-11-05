@@ -1,5 +1,28 @@
 # @db-ux/wc-core-components
 
+## 6.2.1
+
+### Patch Changes
+
+- fix(DBControlPanelNavigation): update overflow scroll buttons without a fixed delay and when the menu content changes size - [see commit e54e1dd](https://github.com/db-ux-design-system/core-web/commit/e54e1dd7424fabdcf33dc955e531edac1e86a650)
+- fix(DBCustomSelect): submit every selected value of a `multiple` custom select, including values preselected via `values`, and clear a `multiple` custom select without initial `values` on form reset instead of keeping the current selection - [see commit 0ff72da](https://github.com/db-ux-design-system/core-web/commit/0ff72da5d361eda02ad83f8dbd2b3a2a088cec1b)
+- fix(DBLoadingIndicator): remove stray whitespace and fix spinner size inside buttons - [see commit 7798947](https://github.com/db-ux-design-system/core-web/commit/7798947c65ad499f414c2dc5f59d31f1392832f4):
+
+    - removed the stray inline gap next to the spinner inside a button so it no longer resizes the button
+    - removed the stray gap below the progress bar when the label is hidden and no progress text is shown (`data-hide-label="true"` together with `data-show-progress-text="false"` or no progress span)
+    - a loading indicator inside a button now always matches the button's icon size (24px, and 20px for `size="small"` buttons) instead of requiring a manual `size="large"`; this overrides an explicit `size` on the indicator and the overlay spinner, so a default-button overlay spinner is now 24px (previously 20px)
+    - CSS-only consumers need to add the `db-loading-indicator-progress-text` class to the progress text `<span>` so the gap removal targets it correctly
+
+- fix(DBPagination): make the current page a non-interactive dead end - [see commit f43e369](https://github.com/db-ux-design-system/core-web/commit/f43e369f17b63312c6c2f82c73282be55baaa6ee):
+
+    - A click inside `db-pagination` no longer throws `TypeError: this.isModifiedLinkClick is not a function` in the Web Component output: the capture-phase `click` listener that lost its binding is gone.
+    - Instead, the current page control is taken out of play: it renders with `tabindex="-1"` and `pagination-item.scss` sets `pointer-events: none` on the filled control, so a pointer click cannot land on it and there is no link default to cancel.
+    - This also fixes a keyboard/screen-reader issue: the current page is no longer a tab stop that announces an actionable control which does nothing, while `aria-current="page"` still marks it as the current page.
+    - Because a pointer click can no longer reach the current link instead of being prevented after the fact, a composed router link (React Router `<Link>`, Vue `<RouterLink>`) no longer navigates to the current URL again - the earlier bubble-phase `preventDefault` ran after the router handler and was not seen.
+    - Markup change: the current page control (`a`/`button` inside `li[data-variant="filled"]`) now carries `tabindex="-1"`; non-current controls carry no `tabindex`.
+
+- fix(DBTabs): keep the active panel visible while mounting and clean up observers on unmount - [see commit 7a5894d](https://github.com/db-ux-design-system/core-web/commit/7a5894dfa86185d7baa61ca21772b5b4a64fbc1d)
+
 ## 6.2.0
 
 ### Minor Changes

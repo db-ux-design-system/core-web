@@ -1,7 +1,37 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { runInteractionTest, type SkipType } from '../default.ts';
+import { isStencil, runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
+
+// Spaces picks past the 200ms internal-change debounce
+const SELECTION_DEBOUNCE = 250;
+
+const checkOption = async (page: Page, select: Locator, value: string) => {
+	const input = select.locator(`input[value="${value}"]`);
+	await input.check({ force: true });
+	await expect(input).toBeChecked();
+	await page.waitForTimeout(SELECTION_DEBOUNCE);
+};
+
+// Reads the submitted FormData, using a temporary form if needed
+const getSubmittedValues = async (nativeSelect: Locator) =>
+	nativeSelect.evaluate((element: HTMLSelectElement) => {
+		if (element.form) {
+			return new FormData(element.form).getAll(element.name);
+		}
+
+		const name = 'db-e2e-submitted';
+		const form = document.createElement('form');
+		form.id = 'db-e2e-submitted-form';
+		document.body.append(form);
+		element.setAttribute('form', form.id);
+		element.setAttribute('name', name);
+		const values = new FormData(form).getAll(name);
+		element.removeAttribute('form');
+		element.removeAttribute('name');
+		form.remove();
+		return values;
+	});
 
 // Keyboard navigation (ArrowUp/Down, Enter, Space) is a desktop affordance.
 // Playwright's WebKit mobile emulation (`mobile_safari`, a touch device) does
@@ -11,6 +41,16 @@ const path = '03/custom-select';
 // keyboard-driven scenarios on every mobile project, mirroring
 // `navigation-interaction.spec.ts`.
 const skipKeyboardOnMobile: SkipType = {
+	project: (project) => project.name.startsWith('mobile')
+};
+
+// On mobile the open dropdown becomes a modal bottom-sheet with a full-viewport
+// backdrop (summary::before, z-index 9998) painted over the field, so a tag's
+// remove button in the field is deliberately unreachable while the dropdown is
+// open. Removing a tag mid-open is therefore a desktop-only affordance: the
+// backdrop intercepts the pointer and the click never lands. Skip such
+// scenarios on every mobile project.
+const skipTagRemoveWhileOpenOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
@@ -300,6 +340,209 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should remove a single tag when its remove button is clicked (#8466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			await expect(tags).toHaveCount(2);
+
+			// Clicking a tag's remove button re-renders the shrinking tag list.
+			// In the Web Component output this used to crash Stencil's
+			// scoped-slot relocation ("Cannot read properties of null (reading
+			// 'nodeType')" / "elm.remove is not a function") and leave the tag
+			// in place. After the fix the tag list reconciles cleanly and the
+			// clicked tag is gone.
+			await select.locator('.db-tab-remove-button').first().click();
+
+			await expect(tags).toHaveCount(1);
+			// 'Blue' was removed, 'Green' remains.
+			await expect(tags).toContainText('Green Color');
+			await expect(tags).not.toContainText('Blue Color');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should keep the dropdown open when a tag is removed while it is open',
+		path,
+		example: 'Interaction',
+		skip: skipTagRemoveWhileOpenOnMobile,
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			const details = select.locator('details');
+			await expect(tags).toHaveCount(2);
+
+			// Open the dropdown directly and wait for the `open` attribute
+			// rather than racing a summary click (see the search test above for
+			// why a synthetic click is unreliable on WebKit).
+			await select.locator('summary').click({ force: true });
+			await details.evaluate((element: HTMLDetailsElement) => {
+				element.open = true;
+			});
+			await expect(details).toHaveAttribute('open', '');
+
+			// Removing a tag must not close the open dropdown. The remove click
+			// has to stop propagating to the DocumentClickListener: removing the
+			// tag detaches event.target, so fieldContains() returns false and
+			// the close handler would otherwise close the dropdown. DBTag used
+			// to stop propagation itself; the plain markup must do it now.
+			await select.locator('.db-tab-remove-button').first().click();
+
+			await expect(tags).toHaveCount(1);
+			await expect(details).toHaveAttribute('open', '');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should clear all tags when the clear-selection button is clicked (#8466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			await expect(tags).toHaveCount(2);
+
+			// Clearing the whole selection empties the tag list in one go.
+			// Same scoped-slot relocation crash as single tag removal in the
+			// Web Component output before the fix (#8466).
+			await select.locator('.db-custom-select-clear').click();
+
+			await expect(tags).toHaveCount(0);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit every selected value of a multiple select (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const nativeSelect = select.locator('select');
+
+			// Preselected via `values`, without any user interaction.
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['Blue', 'Green']);
+
+			await select.locator('summary').click();
+			await select.locator('input[value="Red"]').check({ force: true });
+
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['Red', 'Blue', 'Green']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit every selected value from a named multiple select inside a form (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const form = content.getByTestId('native-form');
+			const select = content.getByTestId('native-form-select');
+			const getFormValues = async () =>
+				form.evaluate((element: HTMLFormElement) =>
+					new FormData(element).getAll('colors')
+				);
+
+			await expect.poll(getFormValues).toEqual([]);
+
+			await select.locator('summary').click();
+			await checkOption(page, select, 'red');
+			await checkOption(page, select, 'blue');
+
+			await expect.poll(getFormValues).toEqual(['red', 'blue']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should clear a multiple select without initial values on form reset (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const form = content.getByTestId('native-form');
+			const select = content.getByTestId('native-form-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
+
+			await select.locator('summary').click();
+			await checkOption(page, select, 'red');
+			await checkOption(page, select, 'green');
+			await expect(selectedLabel).toContainText('Red, Green');
+
+			await form.evaluate((element: HTMLFormElement) => {
+				element.reset();
+			});
+
+			// Empty selection renders the placeholder instead of the label
+			await expect(selectedLabel).toHaveCount(0);
+			await expect
+				.poll(async () =>
+					form.evaluate((element: HTMLFormElement) =>
+						new FormData(element).getAll('colors')
+					)
+				)
+				.toEqual([]);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit the values of options and values changed in the same render (#8465)',
+		path,
+		example: 'Controlled',
+		// New options render after `values` changed (Angular regression)
+		async run({ content }) {
+			const nativeSelect = content.locator('select');
+
+			await content
+				.getByRole('button', { name: 'Load other options' })
+				.click();
+
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['ch']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit values set via JS before options are rendered (#8465)',
+		path,
+		example: 'Interaction',
+		// Repro from the issue: `options` and `values` set via JS together
+		skip: {
+			project: () => !isStencil(process.env.showcase)
+		},
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			// `data-testid` sits on the inner element, the props on the host
+			const host = select.locator(
+				'xpath=ancestor-or-self::db-custom-select'
+			);
+
+			await host.evaluate(
+				(
+					element: HTMLElement & {
+						options: Array<{ value: string; label: string }>;
+						values: string[];
+					}
+				) => {
+					element.options = [
+						{ value: 'red', label: 'Red' },
+						{ value: 'green', label: 'Green' },
+						{ value: 'blue', label: 'Blue' }
+					];
+					element.values = ['red', 'green'];
+				}
+			);
+
+			await expect
+				.poll(async () => getSubmittedValues(select.locator('select')))
+				.toEqual(['red', 'green']);
+		}
+	});
+
+	runInteractionTest({
 		title: 'should take tag remove buttons and clear button out of the tab order when disabled',
 		path,
 		example: 'Interaction',
@@ -313,8 +556,7 @@ test.describe('DBCustomSelect', () => {
 			await expect(clearButton).toHaveCount(1);
 
 			// A disabled custom select must expose no keyboard- or
-			// pointer-reachable controls: the tag remove buttons (rendered by
-			// DBTag, which has no disabled state of its own) and the clear
+			// pointer-reachable controls: the tag remove buttons and the clear
 			// button are taken out of the tab order and marked disabled.
 			for (const button of [
 				removeButtons.first(),
