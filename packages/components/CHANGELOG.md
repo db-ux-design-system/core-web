@@ -1,5 +1,20 @@
 # @db-ux/core-components
 
+## 6.3.0
+
+### Minor Changes
+
+- fix(DBCustomSelect): stop tag removal from crashing the Web Component - [see commit 53b9283](https://github.com/db-ux-design-system/core-web/commit/53b928369a9e60eb4518a197799d55d7ce148ce0):
+
+    - Removing a selected tag (or clearing all) in a `multiple` + `selected-type="tag"` custom select no longer throws `TypeError: Cannot read properties of null (reading 'nodeType')` / `elm.remove is not a function` in the `@db-ux/wc-core-components` output.
+    - Root cause: each selected tag rendered as a `<db-tag>` custom element, a scoped-slot host; removing one from the shrinking tag list crashed Stencil's scoped-slot relocation runtime. The selected tags now render as the CSS-only `db-tag` markup directly, so there is no nested slot host to relocate.
+    - Markup change: a selected tag is now `<div class="db-tag" data-emphasis="strong">` containing the label and a `<button class="db-button db-tab-remove-button">` (previously a `<db-tag>` custom element). The remove button keeps its accessible name via the nested label tooltip, unchanged for consumers who style `.db-tag` / `.db-tab-remove-button`.
+    - Removing a tag while the dropdown is open no longer closes the dropdown: the remove button's click now stops propagating to the document click listener, which `DBTag` did before but the plain markup did not.
+
+### Patch Changes
+
+- fix(DBDivider): `variant="vertical"` now stretches to the height of its flex or grid container, also with `align-items: center` or `width="full"` - [see commit 980b5be](https://github.com/db-ux-design-system/core-web/commit/980b5be791fba4572038e6ea7e42269e47de6010)
+
 ## 6.2.1
 
 ### Patch Changes
