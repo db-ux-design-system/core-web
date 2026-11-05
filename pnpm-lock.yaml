@@ -222,11 +222,11 @@ importers:
         specifier: 2.1.0
         version: 2.1.0(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.39.0
-        version: 0.39.0(supports-color@10.2.2)
+        specifier: 0.40.0
+        version: 0.40.0(supports-color@10.2.2)
       '@guidepup/playwright':
         specifier: 0.21.0
-        version: 0.21.0(@guidepup/guidepup@0.39.0(supports-color@10.2.2))(@playwright/test@1.64.1)
+        version: 0.21.0(@guidepup/guidepup@0.40.0(supports-color@10.2.2))(@playwright/test@1.64.1)
       '@guidepup/record':
         specifier: 0.3.0
         version: 0.3.0(supports-color@10.2.2)
@@ -3776,8 +3776,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.39.0':
-    resolution: {integrity: sha512-yA/9CHMfoOytWstSIVJDhB5HexJnnzlJpMJGx7Jir9Dg08KZ8x14zIdY1Mw0pG3onqZWz1cnQpvt73rbanCH8g==}
+  '@guidepup/guidepup@0.40.0':
+    resolution: {integrity: sha512-Rnrs6FCOa+v9q2jMyXeBTOHNIaMv3lCcE8Uq1HN8JIymbqpx59wct3VRyvhQYIStqW7uhmSjHiFE8ERCV3cc0w==}
 
   '@guidepup/playwright@0.21.0':
     resolution: {integrity: sha512-1sXOcSgfTz8pNEfGWcpeihmc6I+jr9CTbBnwypLlFHlHxDA5im3dJk6QJp8GBhh31K/VOtiwZ3/ZZy6hDYxi5w==}
@@ -18835,7 +18835,7 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.39.0(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.40.0(supports-color@10.2.2)':
     dependencies:
       dbus-native: 0.15.2
       debug: 4.4.3(supports-color@10.2.2)
@@ -18843,9 +18843,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.21.0(@guidepup/guidepup@0.39.0(supports-color@10.2.2))(@playwright/test@1.64.1)':
+  '@guidepup/playwright@0.21.0(@guidepup/guidepup@0.40.0(supports-color@10.2.2))(@playwright/test@1.64.1)':
     dependencies:
-      '@guidepup/guidepup': 0.39.0(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.40.0(supports-color@10.2.2)
       '@playwright/test': 1.64.1
 
   '@guidepup/record@0.3.0(supports-color@10.2.2)':
