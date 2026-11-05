@@ -382,6 +382,10 @@ const getExampleGroups = (name: string, fw: Framework): ExampleGroup[] => {
 	);
 };
 
+/** Text for a component without own attributes (e.g. DBDrawerFooter). */
+const NO_ATTRIBUTES =
+	'No attributes of its own; the native attributes of the element apply.';
+
 /** Properties (React, Angular, Vue) or attributes (HTML, Web Components). */
 const buildApi = (
 	name: string,
@@ -403,7 +407,7 @@ const buildApi = (
 
 	const webTypes = findWebTypes(name);
 	if (!webTypes) {
-		return '';
+		return [heading, NO_ATTRIBUTES].filter(Boolean).join('\n\n');
 	}
 
 	// MDX here has no GFM tables, the Markdown block has. The table is a JSON
@@ -417,14 +421,21 @@ const buildApi = (
 		return [
 			heading,
 			intro,
-			table && `<Markdown>{${JSON.stringify(table)}}</Markdown>`
+			table
+				? `<Markdown>{${JSON.stringify(table)}}</Markdown>`
+				: NO_ATTRIBUTES
 		]
 			.filter(Boolean)
 			.join('\n\n');
 	}
 
 	const table = getWebComponentAttributes(webTypes);
-	return [heading, table && `<Markdown>{${JSON.stringify(table)}}</Markdown>`]
+	return [
+		heading,
+		table
+			? `<Markdown>{${JSON.stringify(table)}}</Markdown>`
+			: NO_ATTRIBUTES
+	]
 		.filter(Boolean)
 		.join('\n\n');
 };

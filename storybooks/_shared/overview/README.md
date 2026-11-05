@@ -42,7 +42,7 @@ The shared Storybook configuration (light/dark mode, docs page of the example st
 
 `../tests/` tests the built Storybooks. The pages are discovered from each build's `index.json`, so new components and Foundations pages are tested without changes.
 
-- `docs.spec.ts`: Getting Started, every component overview and every Foundations page (incl. the test table). Checks for uncaught errors, heading levels, internal links and axe (WCAG AA). Overview pages are also checked for their sections, non-empty previews, guideline links to the platform and axe in dark mode.
+- `docs.spec.ts`: Getting Started, every component overview and every Foundations page (incl. the test table). Checks for uncaught errors, heading levels, internal links and axe (WCAG AA). Overview pages are also checked for their sections, non-empty previews, the guidelines link to the platform (when the component has a platform page), a section with anchor and table for every part, and axe in dark mode.
 - `snippets.spec.ts`: expands every "Show code" of the overview pages and compiles the React (tsc), Angular (ngc with `strictTemplates`) and Vue (vue-tsc) snippets. Web Components and HTML snippets are checked for registration and stylesheet.
 
 ```shell

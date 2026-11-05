@@ -106,12 +106,9 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 			const sections = await page
 				.locator('.sbdocs-content h2')
 				.allTextContents();
-			for (const section of [
-				'Guidelines',
-				'Usage',
-				'Migration',
-				'Resources'
-			]) {
+			// Guidelines, Accessibility and Migration are optional: they need a
+			// platform page or a docs file (see overview/README.md).
+			for (const section of ['Usage', 'Resources']) {
 				expect(sections, `section ${section}`).toContain(section);
 			}
 			expect(
@@ -134,17 +131,70 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 				);
 			expect(empty, 'empty previews').toBe(0);
 
-			// The guidelines link to the English platform page.
-			const guidelines = await page
-				.locator('.sbdocs-content a', { hasText: / guidelines$/ })
-				.evaluateAll((links) =>
-					links.map((link) => link.getAttribute('href') ?? '')
+			// The guidelines link to the English platform page, when the
+			// component has one.
+			if (sections.includes('Guidelines')) {
+				const guidelines = await page
+					.locator('.sbdocs-content a', { hasText: / guidelines$/ })
+					.evaluateAll((links) =>
+						links.map((link) => link.getAttribute('href') ?? '')
+					);
+				expect(guidelines, 'guideline links').toHaveLength(1);
+				expect(
+					guidelines[0].startsWith(`${PLATFORM}documentation/`),
+					guidelines[0]
+				).toBeTruthy();
+			}
+
+			// Every part of the "Parts" line has a section with a stable anchor
+			// (the platform links it) below the properties or attributes of the
+			// main component, with a table or the note that it has no
+			// attributes of its own.
+			const parts = await page
+				.locator('.sbdocs-content p', { hasText: /^Parts:/ })
+				.evaluateAll((lines) =>
+					(lines[0]?.textContent ?? '')
+						.replace(/^Parts:\s*/, '')
+						.replace(/\s*–.*$/, '')
+						.split(/,\s*/)
+						.filter(Boolean)
 				);
-			expect(guidelines, 'guideline links').toHaveLength(1);
-			expect(
-				guidelines[0].startsWith(`${PLATFORM}documentation/`),
-				guidelines[0]
-			).toBeTruthy();
+			const partSections = await page
+				.locator('.sbdocs-content h3')
+				.evaluateAll((headings) =>
+					headings.map((heading) => {
+						// Tables up to the next heading belong to this section.
+						let tables = 0;
+						let next = heading.nextElementSibling;
+						while (next && !/^H[1-3]$/.test(next.tagName)) {
+							tables +=
+								next.matches('table') ||
+								next.textContent?.startsWith(
+									'No attributes of its own'
+								)
+									? 1
+									: next.querySelectorAll('table').length;
+							next = next.nextElementSibling;
+						}
+						return {
+							text: heading.textContent?.trim() ?? '',
+							id: heading.id,
+							tables
+						};
+					})
+				);
+			for (const part of parts) {
+				const section = partSections.find(
+					(heading) => heading.text === part && heading.tables > 0
+				);
+				expect(
+					section,
+					`section with a table for part ${part}`
+				).toBeTruthy();
+				expect(section?.id, `anchor of part ${part}`).toBe(
+					part.toLowerCase()
+				);
+			}
 
 			// The docs stay readable when the stories are switched to dark mode.
 			await openDocs(page, storybook, id, 'dark');
