@@ -23,8 +23,7 @@ What belongs in Storybook and what on the Design System Platform is described in
 | ------------------------------------------------------ | ---------------------------------------------------------------------- |
 | Title                                                  | `export default function DB…` in `<component>.lite.tsx`                |
 | Accessibility review                                   | `showcases/patternhub/data/_accessibility-review.json`                 |
-| Link to the platform guidelines                        | convention in `meta.ts`, exceptions in `overrides.json`                |
-| Summary, status                                        | `overrides.json` in this folder (see below)                            |
+| Summary, status, link to the guidelines                | `/api/components.json` of the Design System Platform (see below)       |
 | Accessibility, migration                               | `packages/components/src/components/<component>/docs/*.md`             |
 | Usage (the examples; "Show code" includes the imports) | the generated example stories, `../storybook-config/source-imports.ts` |
 | Properties (React, Angular, Vue)                       | Storybook docgen                                                       |
@@ -33,7 +32,7 @@ What belongs in Storybook and what on the Design System Platform is described in
 
 `meta.ts` reads the metadata of a component from these sources. `overrides.json` holds only what has no source in this repository: platform paths that differ from the convention (`false` for components without a platform page) and extra packages a component needs (`requires`).
 
-Summary and status are maintained on the Design System Platform (`description` and `status` in the frontmatter of each component page). Until it is decided how Storybook gets them (for example a JSON endpoint of the platform that the generator reads at build time), they are in `overrides.json` for the rolled out components; a component without them shows neither line.
+Summary and status are maintained on the Design System Platform (`description` and `status` in the frontmatter of each component page). The platform publishes them with the URL of each page as `/api/components.json`; `meta.ts` loads it at build time. `DB_UX_PLATFORM_URL=http://localhost:4329` uses a local platform build instead. When the endpoint is not reachable (offline, or before it is released), the pages show neither summary nor status, and the guidelines link falls back to the URL convention in `meta.ts` and the exceptions in `overrides.json`.
 
 The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
 

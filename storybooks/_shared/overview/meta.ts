@@ -1,17 +1,18 @@
 /**
  * PROTOTYPE – metadata of a component overview page, read from the sources
- * that already exist in this repository. Only what has no source here comes
- * from `overrides.json`.
+ * that already exist: this repository and `/api/components.json` of the
+ * Design System Platform. Only what has no source comes from
+ * `overrides.json`.
  *
  * | Field               | Source                                                  |
  * | ------------------- | ------------------------------------------------------- |
  * | title               | `export default function DB…` in `<name>.lite.tsx`      |
+ * | summary, status     | platform `/api/components.json` (`description`, status) |
  * | accessibilityReview | `showcases/patternhub/data/_accessibility-review.json`  |
- * | platformUrl         | convention `components/<name>`, `control-panel-<x>` →   |
+ * | platformUrl         | platform `/api/components.json`; without it the         |
+ * |                     | convention `components/<name>`, `control-panel-<x>` →   |
  * |                     | `components/control-panel/<x>`; `overrides.json` for    |
  * |                     | other paths or `false` (no platform page)                |
- * | summary, status     | `overrides.json` (they are maintained on the platform,  |
- * |                     | see the open decision in README.md)                     |
  * | requires            | `overrides.json`                                        |
  */
 import { existsSync, readFileSync } from 'node:fs';
@@ -41,14 +42,56 @@ export type ComponentMeta = {
 };
 
 type Override = {
-	summary?: string;
-	status?: string;
 	/** Path below `documentation/components/`, `false` for no platform page. */
 	platformPath?: string | false;
 	requires?: string[];
 };
 
 type Review = { name: string; status: string; date?: string };
+
+type PlatformComponent = {
+	title: string;
+	description?: string;
+	status?: string;
+	url: string;
+};
+
+/**
+ * `/api/components.json` of the Design System Platform: description, status
+ * and URL of every component page, maintained there only. Another origin, e.g.
+ * a local platform build, via `DB_UX_PLATFORM_URL=http://localhost:4329`.
+ * Without it (offline, or before the endpoint is released) the overview pages
+ * show no summary and no status, and the guidelines link uses the URL
+ * convention below.
+ */
+const PLATFORM_ORIGIN =
+	process.env.DB_UX_PLATFORM_URL ?? 'https://design-system.deutschebahn.com';
+
+const loadPlatformComponents = async (): Promise<
+	Record<string, PlatformComponent>
+> => {
+	const url = `${PLATFORM_ORIGIN}/api/components.json`;
+	try {
+		const response = await fetch(url, {
+			signal: AbortSignal.timeout(10_000)
+		});
+		if (!response.ok) {
+			throw new Error(`HTTP ${response.status}`);
+		}
+
+		return (await response.json()) as Record<string, PlatformComponent>;
+	} catch (error) {
+		console.warn(
+			`[overviews] ${url} not available (${(error as Error).message}): no summary and status`
+		);
+		return {};
+	}
+};
+
+const platformComponents = await loadPlatformComponents();
+
+/** Statuses shown on the overview; sub components (`sub`) have none. */
+const STATUSES = new Set(['stable', 'beta', 'concept', 'deprecated']);
 
 const read = (path: string): string => readFileSync(join(ROOT, path), 'utf8');
 
@@ -101,11 +144,18 @@ export const getComponentMeta = (name: string): ComponentMeta => {
 
 	const override = overrides[name] ?? {};
 	const review = reviews.find((entry) => entry.name === name);
+	const platform = platformComponents[name];
 	return {
 		title: getTitle(name),
-		summary: override.summary,
-		platformUrl: getPlatformUrl(name),
-		status: override.status,
+		summary: platform?.description,
+		platformUrl:
+			override.platformPath === false
+				? undefined
+				: (platform?.url ?? getPlatformUrl(name)),
+		status:
+			platform?.status && STATUSES.has(platform.status)
+				? platform.status
+				: undefined,
 		accessibilityReview: review && {
 			status: REVIEW_STATUS[review.status] ?? review.status.toLowerCase(),
 			date: review.date
