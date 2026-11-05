@@ -222,11 +222,11 @@ importers:
         specifier: 2.1.0
         version: 2.1.0(supports-color@10.2.2)
       '@guidepup/guidepup':
-        specifier: 0.39.0
-        version: 0.39.0(supports-color@10.2.2)
+        specifier: 0.40.0
+        version: 0.40.0(supports-color@10.2.2)
       '@guidepup/playwright':
         specifier: 0.21.0
-        version: 0.21.0(@guidepup/guidepup@0.39.0(supports-color@10.2.2))(@playwright/test@1.64.1)
+        version: 0.21.0(@guidepup/guidepup@0.40.0(supports-color@10.2.2))(@playwright/test@1.64.1)
       '@guidepup/record':
         specifier: 0.3.0
         version: 0.3.0(supports-color@10.2.2)
@@ -1393,8 +1393,8 @@ importers:
         specifier: 10.6.5
         version: 10.6.5(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.13.0
-        version: 17.13.0
+        specifier: 17.14.0
+        version: 17.14.0
       storybook:
         specifier: 10.6.5
         version: 10.6.5(@types/react@19.3.0)(prettier@3.9.10)(react@19.3.1)
@@ -1548,8 +1548,8 @@ importers:
         specifier: 10.6.5
         version: 10.6.5(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.13.0
-        version: 17.13.0
+        specifier: 17.14.0
+        version: 17.14.0
       prettier:
         specifier: 3.9.10
         version: 3.9.10
@@ -1627,8 +1627,8 @@ importers:
         specifier: 10.6.5
         version: 10.6.5(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.13.0
-        version: 17.13.0
+        specifier: 17.14.0
+        version: 17.14.0
       storybook:
         specifier: 10.6.5
         version: 10.6.5(@types/react@19.3.0)(prettier@3.9.10)(react@19.3.1)
@@ -1679,8 +1679,8 @@ importers:
         specifier: 10.6.5
         version: 10.6.5(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
       globals:
-        specifier: 17.13.0
-        version: 17.13.0
+        specifier: 17.14.0
+        version: 17.14.0
       prettier:
         specifier: 3.9.10
         version: 3.9.10
@@ -3779,8 +3779,8 @@ packages:
   '@github/catalyst@1.8.1':
     resolution: {integrity: sha512-dnN4WWpbeuQvA17LvsGdlXEueJdBk9y+I+WO5pdNpoHNOXPsFcz3hJrq1iRmdsNgQOf4S8e83axtwIxvG62eWA==}
 
-  '@guidepup/guidepup@0.39.0':
-    resolution: {integrity: sha512-yA/9CHMfoOytWstSIVJDhB5HexJnnzlJpMJGx7Jir9Dg08KZ8x14zIdY1Mw0pG3onqZWz1cnQpvt73rbanCH8g==}
+  '@guidepup/guidepup@0.40.0':
+    resolution: {integrity: sha512-Rnrs6FCOa+v9q2jMyXeBTOHNIaMv3lCcE8Uq1HN8JIymbqpx59wct3VRyvhQYIStqW7uhmSjHiFE8ERCV3cc0w==}
 
   '@guidepup/playwright@0.21.0':
     resolution: {integrity: sha512-1sXOcSgfTz8pNEfGWcpeihmc6I+jr9CTbBnwypLlFHlHxDA5im3dJk6QJp8GBhh31K/VOtiwZ3/ZZy6hDYxi5w==}
@@ -10317,8 +10317,8 @@ packages:
     resolution: {integrity: sha512-ob/2LcVVaVGCYN+r14cnwnoDPUufjiYgSqRhiFD0Q1iI4Odora5RE8Iv1D24hAz5oMophRGkGz+yuvQmmUMnMw==}
     engines: {node: '>=18'}
 
-  globals@17.13.0:
-    resolution: {integrity: sha512-RwMTC61u7hrG3ZJMkZQOK4JLJrKS8QtoTii63EmWvFXHqycY9FObBJQCbsLxSO8kjKhWE5kV1GC+Vb1g3RI0Zg==}
+  globals@17.14.0:
+    resolution: {integrity: sha512-UtdkTVyAJePQv0J2M9Xe4L0ruNSDV314XiIJsADI2Zf40bcdAonE/D/OhAU8AT99oij9mhLByb+NvA3QWZYgCg==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -18838,7 +18838,7 @@ snapshots:
 
   '@github/catalyst@1.8.1': {}
 
-  '@guidepup/guidepup@0.39.0(supports-color@10.2.2)':
+  '@guidepup/guidepup@0.40.0(supports-color@10.2.2)':
     dependencies:
       dbus-native: 0.15.2
       debug: 4.4.3(supports-color@10.2.2)
@@ -18846,9 +18846,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@guidepup/playwright@0.21.0(@guidepup/guidepup@0.39.0(supports-color@10.2.2))(@playwright/test@1.64.1)':
+  '@guidepup/playwright@0.21.0(@guidepup/guidepup@0.40.0(supports-color@10.2.2))(@playwright/test@1.64.1)':
     dependencies:
-      '@guidepup/guidepup': 0.39.0(supports-color@10.2.2)
+      '@guidepup/guidepup': 0.40.0(supports-color@10.2.2)
       '@playwright/test': 1.64.1
 
   '@guidepup/record@0.3.0(supports-color@10.2.2)':
@@ -24792,7 +24792,7 @@ snapshots:
       eslint-plugin-prettier: 5.5.6(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.10)
       eslint-plugin-regexp: 3.3.0(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-unicorn: 75.0.0(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))
-      globals: 17.13.0
+      globals: 17.14.0
       typescript-eslint: 8.72.1(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
     optionalDependencies:
       prettier: 3.9.10
@@ -24826,7 +24826,7 @@ snapshots:
       eslint-plugin-prettier: 5.5.7(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(prettier@3.9.10)
       eslint-plugin-regexp: 3.3.1(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))
       eslint-plugin-unicorn: 79.0.0(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
-      globals: 17.13.0
+      globals: 17.14.0
       typescript-eslint: 8.72.1(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
     optionalDependencies:
       prettier: 3.9.10
@@ -25240,7 +25240,7 @@ snapshots:
       entities: 8.1.0
       eslint: 10.14.0(jiti@2.7.0)(supports-color@10.2.2)
       find-up-simple: 1.0.1
-      globals: 17.13.0
+      globals: 17.14.0
       identifier-regex: 1.1.0
       indent-string: 5.0.0
       is-builtin-module: 5.0.0
@@ -25264,7 +25264,7 @@ snapshots:
       entities: 8.1.0
       eslint: 10.14.0(jiti@2.7.0)(supports-color@10.2.2)
       find-up-simple: 1.0.1
-      globals: 17.13.0
+      globals: 17.14.0
       identifier-regex: 1.1.0
       indent-string: 5.0.0
       is-builtin-module: 5.0.0
@@ -26042,7 +26042,7 @@ snapshots:
 
   globals@16.4.0: {}
 
-  globals@17.13.0: {}
+  globals@17.14.0: {}
 
   globalthis@1.0.4:
     dependencies:

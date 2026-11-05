@@ -91,7 +91,7 @@
     "@db-ux/db-theme-icons": "4.4.0",
     "@double-great/stylelint-a11y": "3.8.2",
     "@figma/code-connect": "2.1.0",
-    "@guidepup/guidepup": "0.39.0",
+    "@guidepup/guidepup": "0.40.0",
     "@guidepup/playwright": "0.21.0",
     "@guidepup/record": "0.3.0",
     "@guidepup/setup": "0.29.3",
