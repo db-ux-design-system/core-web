@@ -39,6 +39,9 @@ const sidebarStyles = [
 	// Settings menu (gear) in the sidebar header: about page, layout toggles and
 	// the shortcut list are not needed. The shortcuts themselves keep working.
 	'button[aria-label="Settings"] { display: none !important; }',
+	// "Expand/collapse all" next to every section heading (Foundations,
+	// Components, also inside the refs). The heading itself still toggles.
+	'[data-action="expand-all"] { display: none !important; }',
 	// Tag filter button in the search field. The label reads "N active tag
 	// filter(s)" while filters are set.
 	'button:is([aria-label="Tag filters"], [aria-label$=" active tag filter"], [aria-label$=" active tag filters"]) { display: none !important; }',
@@ -48,6 +51,9 @@ const sidebarStyles = [
 	// Spacing measured on the ref headings: 20px above, 45px high (the button line is 2px taller than the ref title, hence 15px/11px).
 	`.sidebar-subheading[data-nodetype="root"] { border-block-start: ${values.borderWidth} solid ${values.border}; margin-block: 20px 0 !important; padding-block: 15px 11px; background: transparent !important; }`,
 	`.sidebar-subheading[data-nodetype="root"] > button[data-action="collapse-root"] { block-size: auto; min-block-size: 0; padding-block: 0; line-height: inherit; font-size: 14px; font-weight: 700; text-transform: none; letter-spacing: normal; color: ${values.text} !important; background: transparent !important; }`,
+	// "Expand/collapse all" next to the section heading; the ref headings have
+	// none either.
+	'.sidebar-subheading[data-nodetype="root"] [data-action="expand-all"] { display: none !important; }',
 	`.sidebar-subheading[data-nodetype="root"] > button[data-action="collapse-root"]:hover { background: ${values.itemHovered} !important; }`,
 	`.sidebar-container { border-inline-end: ${values.borderWidth} solid ${values.border}; }`,
 	`${ITEM} { position: relative; border-radius: ${values.radius} !important; }`,
