@@ -57,6 +57,14 @@
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
 			variables.$db-spacing-fixed-xs;
+
+		// Always-present block-axis counterpart to the mixin's baseline
+		// min-inline-size, so --db-form-component-min-block-size works as a
+		// standalone consumer override (default auto = no floor) even when
+		// minRows is omitted or typed attr() is unsupported. With minRows the
+		// higher-specificity [data-min-rows] rule below wins.
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		min-block-size: var(--db-form-component-min-block-size, auto);
 	}
 
 	// `minRows` / `minCols` set a minimum size that - unlike the native `rows`
