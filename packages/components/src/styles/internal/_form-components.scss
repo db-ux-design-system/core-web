@@ -38,7 +38,6 @@ $input-types:
 	"hidden", "image", "month", "number", "password", "radio", "range", "reset",
 	"search", "submit", "tel", "text", "time", "url", "week";
 $check-border-size: min(#{variables.$db-border-width-2xs}, 2px);
-
 $db-min-inline-size: var(
 	--db-form-component-min-inline-size,
 	#{variables.$db-sizing-lg}
