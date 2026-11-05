@@ -30,7 +30,9 @@ What belongs in Storybook and what on the Design System Platform is described in
 | Attributes (HTML, Web Components)                      | `<component>.lite.tsx` and `output/stencil/dist/web-types.json`        |
 | Design guidelines                                      | the Design System Platform, linked                                     |
 
-`meta.ts` reads the metadata of a component from these sources. `overrides.json` holds only what has no source in this repository: platform paths that differ from the convention (`false` for components without a platform page) and extra packages a component needs (`requires`).
+`meta.ts` reads the metadata of a component from these sources. `overrides.json` holds only what has no source in this repository: the main component of a part when the name does not tell it (`partOf`), platform paths that differ from the convention (`platformPath`, `false` for components without a platform page, `platformUrl` for a full URL) and extra packages a component needs (`requires`).
+
+Parts (e.g. `tab-item`, `table-row`) get no page of their own; they are documented on the page of their main component. A component is a part of another when its name starts with the other name plus `-`, or when it has `partOf`. `node storybooks/_shared/overview/generate-overviews.ts --structure` prints the result.
 
 Summary and status are maintained on the Design System Platform (`description` and `status` in the frontmatter of each component page). The platform publishes them with the URL of each page as `/api/components.json`; `meta.ts` loads it at build time. `DB_UX_PLATFORM_URL=http://localhost:4329` uses a local platform build instead. When the endpoint is not reachable (offline, or before it is released), the pages show neither summary nor status, and the guidelines link falls back to the URL convention in `meta.ts` and the exceptions in `overrides.json`.
 

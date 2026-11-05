@@ -34,7 +34,12 @@ import {
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { type ComponentMeta, getComponentMeta, ROLLOUT } from './meta.ts';
+import {
+	type ComponentMeta,
+	getComponentMeta,
+	getStructure,
+	ROLLOUT
+} from './meta.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
 const ROOT = resolve(STORYBOOKS, '..');
@@ -611,8 +616,33 @@ const buildGettingStarted = (fw: Framework): string =>
 
 const { values: options, positionals } = parseArgs({
 	allowPositionals: true,
-	options: { storybook: { type: 'string' } }
+	options: {
+		storybook: { type: 'string' },
+		// Prints main components and their parts (meta.ts) and exits.
+		structure: { type: 'boolean' }
+	}
 });
+
+if (options.structure) {
+	const { main, parts } = getStructure();
+	for (const name of main) {
+		const hasExamples =
+			existsSync(
+				join(
+					STORYBOOKS,
+					'react-storybook/src/components',
+					name,
+					'examples'
+				)
+			) && getExamples(name, 'react-storybook').length > 0;
+		console.log(
+			`${name}${hasExamples ? '' : ' (no examples)'}${parts[name] ? ` <- ${parts[name].join(', ')}` : ''}`
+		);
+	}
+
+	// eslint-disable-next-line unicorn/no-process-exit -- this file is a CLI script
+	process.exit(0);
+}
 const components = positionals.length > 0 ? positionals : ROLLOUT;
 const targets = options.storybook
 	? FRAMEWORKS.filter((fw) => fw.storybook === options.storybook)

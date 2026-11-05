@@ -15,7 +15,7 @@
  * |                     | other paths or `false` (no platform page)                |
  * | requires            | `overrides.json`                                        |
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..', '..', '..');
@@ -39,11 +39,24 @@ export type ComponentMeta = {
 	 * platform. Shown as a note on the overview; most components have none.
 	 */
 	requires?: string[];
+	/** Parts documented on this page, e.g. DBTabItem on the DBTabs page. */
+	parts: Array<{ name: string; title: string }>;
+};
+
+export type Structure = {
+	/** Components with an own overview page, sorted. */
+	main: string[];
+	/** Parts per main component, e.g. `{ tabs: ['tab-item', …] }`. */
+	parts: Record<string, string[]>;
 };
 
 type Override = {
+	/** Main component of a part, when the name prefix rule does not apply. */
+	partOf?: string;
 	/** Path below `documentation/components/`, `false` for no platform page. */
 	platformPath?: string | false;
+	/** Full guidelines URL outside `documentation/components/` (icon). */
+	platformUrl?: string;
 	requires?: string[];
 };
 
@@ -125,6 +138,73 @@ const getTitle = (name: string): string => {
 	return `DB${pascal(name)}`;
 };
 
+const COMPONENTS_DIR = 'packages/components/src/components';
+
+/**
+ * Main components and their parts. A part is a component whose name starts
+ * with the name of another component plus `-` (longest match, e.g.
+ * `table-row` -> `table`, `custom-select-list-item` -> `custom-select-list`
+ * -> `custom-select`), or one with `partOf` in `overrides.json`. Chains are
+ * resolved to the main component. Works without network, so the structure is
+ * the same offline.
+ */
+export const getStructure = (): Structure => {
+	const names = readdirSync(join(ROOT, COMPONENTS_DIR), {
+		withFileTypes: true
+	})
+		.filter((entry) => entry.isDirectory())
+		.map((entry) => entry.name)
+		.toSorted();
+	const known = new Set(names);
+
+	const directParent = (name: string): string | undefined => {
+		const override = overrides[name]?.partOf;
+		if (override) {
+			if (!known.has(override)) {
+				throw new Error(
+					`[overviews] overrides.json: "${name}" is part of unknown "${override}"`
+				);
+			}
+
+			return override;
+		}
+
+		return names
+			.filter((other) => name.startsWith(`${other}-`))
+			.toSorted((a, b) => b.length - a.length)[0];
+	};
+
+	const mainOf = (name: string): string => {
+		const seen = new Set<string>();
+		let current = name;
+		let parent = directParent(current);
+		while (parent) {
+			if (seen.has(parent)) {
+				throw new Error(`[overviews] partOf cycle at "${name}"`);
+			}
+
+			seen.add(parent);
+			current = parent;
+			parent = directParent(current);
+		}
+
+		return current;
+	};
+
+	const parts: Record<string, string[]> = {};
+	const main: string[] = [];
+	for (const name of names) {
+		const root = mainOf(name);
+		if (root === name) {
+			main.push(name);
+		} else {
+			(parts[root] ??= []).push(name);
+		}
+	}
+
+	return { main, parts };
+};
+
 const getPlatformUrl = (name: string): string | undefined => {
 	const path = overrides[name]?.platformPath;
 	if (path === false) {
@@ -145,13 +225,18 @@ export const getComponentMeta = (name: string): ComponentMeta => {
 	const override = overrides[name] ?? {};
 	const review = reviews.find((entry) => entry.name === name);
 	const platform = platformComponents[name];
+	const platformUrl =
+		override.platformPath === false
+			? undefined
+			: (override.platformUrl ?? platform?.url ?? getPlatformUrl(name));
 	return {
 		title: getTitle(name),
 		summary: platform?.description,
-		platformUrl:
-			override.platformPath === false
-				? undefined
-				: (platform?.url ?? getPlatformUrl(name)),
+		platformUrl,
+		parts: (getStructure().parts[name] ?? []).map((part) => ({
+			name: part,
+			title: getTitle(part)
+		})),
 		status:
 			platform?.status && STATUSES.has(platform.status)
 				? platform.status
