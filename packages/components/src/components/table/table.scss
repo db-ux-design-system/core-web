@@ -12,20 +12,23 @@
 	&:not([data-size]),
 	&[data-size="medium"] {
 		:is(th, td) {
-			padding: variables.$db-spacing-fixed-xs;
+			padding: variables.$db-spacing-fixed-2xs
+				variables.$db-spacing-fixed-xs;
 		}
 	}
 
 	&[data-size="large"] {
 		:is(th, td) {
-			padding: variables.$db-spacing-fixed-sm;
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
 		}
 	}
 
 	&[data-size="small"],
 	&[data-size="x-small"] {
 		:is(th, td) {
-			padding: variables.$db-spacing-fixed-2xs;
+			padding: variables.$db-spacing-fixed-3xs
+				variables.$db-spacing-fixed-2xs;
 		}
 	}
 
