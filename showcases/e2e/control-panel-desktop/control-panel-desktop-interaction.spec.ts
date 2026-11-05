@@ -197,6 +197,13 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 	const navigationSelector =
 		'.db-control-panel-desktop .db-control-panel-navigation';
 
+	// Narrow enough that the horizontal menu overflows, but still just above the
+	// desktop layout breakpoint (--db-desktop-breakpoint, default 1024px) so the
+	// navigation stays in the horizontal "popover" variant where the overflow
+	// scroll buttons exist. Below 1024px the control panel switches to its mobile
+	// layout and the scroll buttons never render.
+	const overflowingDesktopWidth = 1030;
+
 	test.beforeEach(async ({ page }, { project }) => {
 		// Settings are not supported by the Stencil showcase.
 		if (isStencil(process.env.showcase)) {
@@ -235,7 +242,10 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 		expect(await hasOverflow(page)).toBe(false);
 		await expect(rightButton).toHaveCount(0);
 
-		await page.setViewportSize({ width: 900, height: 800 });
+		await page.setViewportSize({
+			width: overflowingDesktopWidth,
+			height: 800
+		});
 		await expect.poll(async () => hasOverflow(page)).toBe(true);
 		await expect(rightButton).toHaveCount(1);
 
@@ -353,7 +363,10 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 		const leftButton = navigation.locator('.overflow-scroll-left-button');
 		const rightButton = navigation.locator('.overflow-scroll-right-button');
 
-		await page.setViewportSize({ width: 900, height: 800 });
+		await page.setViewportSize({
+			width: overflowingDesktopWidth,
+			height: 800
+		});
 		await expect(rightButton).toHaveCount(1);
 		await expect(leftButton).toHaveCount(0);
 
