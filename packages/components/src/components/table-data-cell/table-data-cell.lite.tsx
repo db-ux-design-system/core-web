@@ -1,4 +1,9 @@
-import { Show, useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
 import { cls, getNumber } from '../../utils';
 import { DBTableDataCellProps } from './model';
 
