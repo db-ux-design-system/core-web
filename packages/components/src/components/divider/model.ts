@@ -19,6 +19,7 @@ export type DBDividerDefaultProps = {
 	margin?: DividerMarginType;
 	/**
 	 * Changes the orientation of the divider.
+	 * A vertical divider takes its height from its container: place it inside a flex or grid container, or give the container a height.
 	 */
 	variant?: DividerVariantType;
 };
