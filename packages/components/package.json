@@ -27,7 +27,6 @@
     "compile:react": "mitosis build --config configs/react/mitosis.config.cjs && tsx scripts/exec/react.ts && cpy \"../../output/tmp/react/src/**\" ../../output/react/src --dot",
     "compile:stencil": "mitosis build --config configs/stencil/mitosis.config.cjs && tsx scripts/exec/stencil.ts && cpy \"../../output/tmp/stencil/src/**\" ../../output/stencil/src --dot",
     "compile:vue": "mitosis build --config configs/vue/mitosis.config.cjs && tsx scripts/exec/vue.ts && cpy \"../../output/tmp/vue/src/**\" ../../output/vue/src --dot",
-    "copy-assets": "cpy ../foundations/assets build --dot",
     "copy-output": "run-p copy:*",
     "copy:agent": "cpy agent ../../build-outputs/components --dot",
     "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/components/CHANGELOG.md",
@@ -45,7 +44,6 @@
     "generate:figma": "mitosis build --config=configs/mitosis.figma.config.cjs",
     "generate:showcase": "mitosis build --config=configs/mitosis.showcase.config.cjs",
     "generate:stories": "mitosis build --config=configs/mitosis.storybook.config.cjs",
-    "prepack": "pnpm run copy-assets",
     "start": "nodemon --watch src --watch scripts --watch scripts --ext js,tsx,ts,scss,json --exec \"pnpm run build\"",
     "test": "vitest run --config vitest.config.ts"
   },
