@@ -326,6 +326,33 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
 
+## Angular/Stencil attribute removal (`configs/plugins/attribute-passing/index.cjs`)
+
+`enableAttributePassing` moves `data-*`, `aria-*`, `role`, `title` and `style`
+from the custom-element host onto the inner `_ref` element. Because the host no
+longer has them, a later `removeAttribute` from a framework binding (Angular
+`[attr.aria-label]="null"`, the Stencil virtual DOM) queues no MutationRecord. The
+observer can't see that removal (#6999).
+
+`patchHostAttributeRemoval` therefore overrides `removeAttribute` and
+`toggleAttribute(name, false)` **on the host instance** and mirrors the removal
+to the inner element:
+
+- Plugin code that moves attributes off the host must call
+  `HTMLElement.prototype.removeAttribute.call(parent, …)`, never
+  `parent.removeAttribute(…)`. The patch would otherwise delete the value that
+  was just forwarded.
+- Use `HTMLElement`, not `Element`, in generated code. Stencil imports its
+  `@Element` decorator as `Element` and shadows the global, which fails the
+  Rollup build.
+- Keep the allowlist in `isForwarded` in sync with the `code.post` replacements
+  of `enableAttributePassing`.
+- The patch is flagged (`dbAttributePassing`), applied once per instance and
+  removed again in `restoreHostAttributeRemoval` on unmount.
+
+Unit tests live in `configs/plugins/attribute-passing/index.spec.ts`, the runtime
+behavior is covered in `showcases/e2e/button/button-interaction.spec.ts`.
+
 ## Stencil `onInit` -> `componentWillLoad` (`configs/plugins/stencil/index.cjs`)
 
 The Mitosis Stencil generator maps `onMount` to `componentDidLoad`, `onUnMount`

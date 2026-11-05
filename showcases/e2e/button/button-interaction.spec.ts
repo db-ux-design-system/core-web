@@ -1,5 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { getControlByRole, isStencil, runInteractionTest } from '../default.ts';
+import {
+	getControlByRole,
+	isAngular,
+	isStencil,
+	runInteractionTest
+} from '../default.ts';
 
 const path = '02/button';
 
@@ -88,6 +93,51 @@ test.describe('DBButton', () => {
 			const host = button.locator('xpath=ancestor::db-button[1]');
 			await expect(host).not.toHaveAttribute('data-moved');
 			await expect(host.locator('button')).toHaveCount(1);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should remove forwarded attributes from the inner button when the host drops them',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			test.skip(
+				!isStencil(process.env.showcase) &&
+					!isAngular(process.env.showcase),
+				'Attribute passing via host element only exists in Angular and Web Components'
+			);
+
+			const button = content.getByTestId('default-button');
+			await expect(button).toBeVisible();
+			const host = button.locator('xpath=ancestor::db-button[1]');
+
+			await host.evaluate((element) => {
+				element.setAttribute('aria-label', 'Forwarded');
+				element.dataset.state = 'on';
+			});
+			await expect(button).toHaveAttribute('aria-label', 'Forwarded');
+			await expect(button).toHaveAttribute('data-state', 'on');
+			await expect(host).not.toHaveAttribute('aria-label');
+
+			// Same calls the Angular renderer and the Stencil virtual DOM use for `null` bindings
+			await host.evaluate((element) => {
+				element.removeAttribute('aria-label');
+				element.toggleAttribute('data-state', false);
+			});
+			await expect(button).not.toHaveAttribute('aria-label');
+			await expect(button).not.toHaveAttribute('data-state');
+			// The test id itself must survive, it was never removed from the host
+			await expect(button).toHaveAttribute(
+				'data-testid',
+				'default-button'
+			);
+
+			// Re-adding still forwards the new value
+			await host.evaluate((element) => {
+				element.setAttribute('aria-label', 'Again');
+			});
+			await expect(button).toHaveAttribute('aria-label', 'Again');
+			await expect(host).not.toHaveAttribute('aria-label');
 		}
 	});
 });
