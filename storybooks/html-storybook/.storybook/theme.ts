@@ -15,7 +15,8 @@ import values from './theme-values.json';
 const PLATFORM = 'https://design-system.deutschebahn.com';
 
 /** Name in the sidebar header and in the browser tab title (manager.ts). */
-export const BRAND_NAME = 'DB UX Design System';
+export const BRAND_NAME = 'DB Design System';
+const BRAND_SUBTITLE = 'Storybook';
 
 /*
  * Storybook shows either `brandImage` or `brandTitle`. With `brandImage: null`
@@ -25,11 +26,13 @@ export const BRAND_NAME = 'DB UX Design System';
 const BRAND_HTML = [
 	'<span style="display:inline-flex;align-items:center;gap:0.5rem;font-weight:700;font-size:1rem">',
 	`<img src="${values.brandLogo}" alt="" width="32" height="32">`,
-	// Fixed line break after "DB UX". The space between the lines keeps the
-	// link text "DB UX Design System".
+	// Name on the first line, "Storybook" thin below. DB Neo Screen Sans has
+	// no light weight, so the subtitle uses DB Neo Screen Head Light
+	// (manager-head.html). The space between the lines keeps the link text
+	// "DB Design System Storybook".
 	'<span style="line-height:1.2;white-space:nowrap">',
-	'<span style="display:block">DB UX</span> ',
-	'<span style="display:block">Design System</span>',
+	`<span style="display:block">${BRAND_NAME}</span> `,
+	`<span style="display:block;margin-block-start:0.25rem;font-family:&quot;DB Neo Screen Head&quot;,${values.fontSans.replaceAll('"', '&quot;')};font-size:0.875rem;font-weight:300">${BRAND_SUBTITLE}</span>`,
 	'</span>',
 	'</span>'
 ].join('');

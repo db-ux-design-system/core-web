@@ -6,7 +6,16 @@ import values from './theme-values.json';
  * PROTOTYPE – theme of the Storybook UI (sidebar, toolbar, title).
  * Copied into `.storybook/manager.ts` of every Storybook by sync.ts.
  */
-addons.setConfig({ theme: managerTheme });
+// No toolbar: its tools (backgrounds, grid, outline, zoom) are not needed for
+// the docs pages. The mode of the stories stays available via the
+// `globals=mode:dark` URL parameter (mode.ts).
+// `showToolbar` alone is only the initial value; the customisation keeps the
+// toolbar hidden also when a stored layout or the shortcut would show it.
+addons.setConfig({
+	theme: managerTheme,
+	showToolbar: false,
+	layoutCustomisations: { showToolbar: () => false }
+});
 
 /*
  * Sidebar in the style of the control panel navigation
@@ -24,6 +33,22 @@ addons.setConfig({ theme: managerTheme });
  */
 const ITEM = '.sidebar-item[data-nodetype]';
 const sidebarStyles = [
+	// "Extra actions" (globe) of the framework refs: only a status popover. The
+	// version dropdown next to it stays.
+	'[data-action="toggle-indicator"] { display: none !important; }',
+	// Settings menu (gear) in the sidebar header: about page, layout toggles and
+	// the shortcut list are not needed. The shortcuts themselves keep working.
+	'button[aria-label="Settings"] { display: none !important; }',
+	// Tag filter button in the search field. The label reads "N active tag
+	// filter(s)" while filters are set.
+	'button:is([aria-label="Tag filters"], [aria-label$=" active tag filter"], [aria-label$=" active tag filters"]) { display: none !important; }',
+	// Section headings (FOUNDATIONS) like the framework ref headings: bold,
+	// regular case, with the separator line above. The highlight colors of
+	// Storybook (pink fill, red text) are replaced with the hover overlay.
+	// Spacing measured on the ref headings: 20px above, 45px high (the button line is 2px taller than the ref title, hence 15px/11px).
+	`.sidebar-subheading[data-nodetype="root"] { border-block-start: ${values.borderWidth} solid ${values.border}; margin-block: 20px 0 !important; padding-block: 15px 11px; background: transparent !important; }`,
+	`.sidebar-subheading[data-nodetype="root"] > button[data-action="collapse-root"] { block-size: auto; min-block-size: 0; padding-block: 0; line-height: inherit; font-size: 14px; font-weight: 700; text-transform: none; letter-spacing: normal; color: ${values.text} !important; background: transparent !important; }`,
+	`.sidebar-subheading[data-nodetype="root"] > button[data-action="collapse-root"]:hover { background: ${values.itemHovered} !important; }`,
 	`.sidebar-container { border-inline-end: ${values.borderWidth} solid ${values.border}; }`,
 	`${ITEM} { position: relative; border-radius: ${values.radius} !important; }`,
 	`${ITEM}:not([data-selected="true"]):hover { background: ${values.itemHovered} !important; }`,

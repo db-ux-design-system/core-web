@@ -1,8 +1,9 @@
 import type { Globals, GlobalTypes } from 'storybook/internal/types';
 
 /**
- * Light/dark mode of the stories, switchable in the toolbar and via the
- * `globals=mode:dark` URL parameter.
+ * Light/dark mode of the stories, switchable via the `globals=mode:dark` URL
+ * parameter. The toolbar entry is defined as well, but the toolbar is hidden
+ * (manager.ts).
  *
  * Copied into `.storybook/mode.ts` of every Storybook by
  * `storybooks/_shared/storybook-config/sync.ts`, because the Angular build only
