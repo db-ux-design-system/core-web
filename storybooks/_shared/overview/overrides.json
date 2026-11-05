@@ -1,0 +1,10 @@
+{
+	"button": {
+		"summary": "Buttons initiate actions and confirm decisions.",
+		"status": "stable"
+	},
+	"brand": { "platformPath": false },
+	"custom-button": { "platformPath": false },
+	"icon": { "platformPath": false },
+	"page": { "platformPath": false }
+}

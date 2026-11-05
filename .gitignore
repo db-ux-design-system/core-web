@@ -90,3 +90,9 @@ storybooks/*/.snippet-check
 build-storybooks-serve
 # Test table of the composition Storybook, generated on every build
 storybooks/_storybook/src/generated
+# Overview and Getting Started pages of the framework Storybooks, generated on
+# every build and start (storybooks/_shared/overview/generate-overviews.ts).
+# The Getting Started page of the composition Storybook (_storybook) is not
+# generated.
+storybooks/*-storybook/src/overview/
+storybooks/*-storybook/src/index.mdx

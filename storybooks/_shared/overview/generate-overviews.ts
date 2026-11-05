@@ -8,7 +8,8 @@
  *   articles of the platform; the setup is documented there only)
  *
  * Inputs (one source per kind of content):
- * - `components.json` next to this file: summary, status, accessibility review
+ * - `meta.ts`: title, accessibility review, platform URL, summary and status
+ *   (read from the existing sources, see the table there)
  * - `packages/components/src/components/<name>/docs/*.md`: accessibility,
  *   migration (the usage is the examples, see storybook-config/source-imports.ts)
  * - the generated example stories (`pnpm --filter @db-ux/core-components run
@@ -16,37 +17,28 @@
  * - `<name>.lite.tsx` and `output/stencil/dist/web-types.json`: attributes for
  *   HTML and Web Components
  *
- * Usage: node storybooks/_shared/overview/generate-overviews.ts button [...]
+ * Usage:
+ *   node storybooks/_shared/overview/generate-overviews.ts [--storybook <name>] [component ...]
  *
- * The output is committed. If the approach is adopted, this moves into the
- * Mitosis Storybook plugin and runs with `generate:stories`.
+ * Without components it generates the components of `ROLLOUT` (meta.ts).
+ * `--storybook react-storybook` writes the files of that Storybook only; the
+ * build and dev scripts of every framework Storybook run it like that, so
+ * parallel builds never write the same file. The output is git-ignored.
  */
 import {
 	existsSync,
 	mkdirSync,
-	readFileSync,
 	readdirSync,
+	readFileSync,
 	writeFileSync
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { parseArgs } from 'node:util';
+import { type ComponentMeta, getComponentMeta, ROLLOUT } from './meta.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
 const ROOT = resolve(STORYBOOKS, '..');
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
-
-type ComponentMeta = {
-	title: string;
-	summary: string;
-	platformUrl: string;
-	status: string;
-	accessibilityReview?: { status: string; date: string };
-	/**
-	 * Packages the component needs beyond the framework setup on the
-	 * platform, e.g. `["@db-ux/db-theme-illustrative-icons"]`.
-	 * Shown as a note on the overview; most components have none.
-	 */
-	requires?: string[];
-};
 
 type Api = 'argtypes' | 'html' | 'webcomponents';
 
@@ -310,18 +302,27 @@ const hasDoc = (name: string, file: string) =>
  * section.
  */
 const buildGuidelines = (meta: ComponentMeta): string => {
+	if (!meta.platformUrl) {
+		return '';
+	}
+
 	const name = meta.title.replace(/^DB/, '');
 	return `## Guidelines
 
 When to use it, variants, Do and Don’t and the design rules for accessibility: [${name} guidelines](${meta.platformUrl}) on the Design System Platform.`;
 };
 
+/** "Status · Accessibility review", each part only when it is known. */
 const statusLine = (meta: ComponentMeta): string => {
-	const status = meta.status.charAt(0).toUpperCase() + meta.status.slice(1);
-	const review = meta.accessibilityReview
-		? ` · **Accessibility review:** ${meta.accessibilityReview.status} (${meta.accessibilityReview.date})`
-		: '';
-	return `**Status:** ${status}${review}`;
+	const review = meta.accessibilityReview;
+	return [
+		meta.status &&
+			`**Status:** ${meta.status.charAt(0).toUpperCase()}${meta.status.slice(1)}`,
+		review &&
+			`**Accessibility review:** ${review.status}${review.date ? ` (${review.date})` : ''}`
+	]
+		.filter(Boolean)
+		.join(' · ');
 };
 
 const buildOverviewMdx = (
@@ -437,13 +438,17 @@ const buildOverviewMdx = (
 	sections.push(
 		'## Resources',
 		[
-			`- [Guidelines on the Design System Platform](${meta.platformUrl})`,
+			meta.platformUrl &&
+				`- [Guidelines on the Design System Platform](${meta.platformUrl})`,
 			`- npm: [${fw.npm}](https://www.npmjs.com/package/${fw.npm})`,
 			`- [Source code on GitHub](https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/${name})`,
 			'- [Changelog](https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md)'
-		].join('\n')
+		]
+			.filter(Boolean)
+			.join('\n')
 	);
-	return `${sections.join('\n\n')}\n`;
+	// Optional parts (summary, status, guidelines) leave no empty paragraph.
+	return `${sections.filter(Boolean).join('\n\n')}\n`;
 };
 
 const ANCHOR_COMMENT = `/*
@@ -604,20 +609,23 @@ const buildGettingStarted = (fw: Framework): string =>
 		`When and how to use a component is documented on the [Design System Platform](${PLATFORM}/components/overview).`
 	].join('\n\n') + '\n';
 
-const components = process.argv.slice(2);
-if (components.length === 0) {
-	throw new Error('[overviews] pass at least one component, e.g. "button"');
+const { values: options, positionals } = parseArgs({
+	allowPositionals: true,
+	options: { storybook: { type: 'string' } }
+});
+const components = positionals.length > 0 ? positionals : ROLLOUT;
+const targets = options.storybook
+	? FRAMEWORKS.filter((fw) => fw.storybook === options.storybook)
+	: FRAMEWORKS;
+if (targets.length === 0) {
+	throw new Error(
+		`[overviews] unknown Storybook "${options.storybook}", use one of ${FRAMEWORKS.map((fw) => fw.storybook).join(', ')}`
+	);
 }
-const allMeta = JSON.parse(
-	read(join(import.meta.dirname, 'components.json'))
-) as Record<string, ComponentMeta>;
 
 for (const name of components) {
-	const meta = allMeta[name];
-	if (!meta) {
-		throw new Error(`[overviews] ${name} is missing in components.json`);
-	}
-	for (const fw of FRAMEWORKS) {
+	const meta = getComponentMeta(name);
+	for (const fw of targets) {
 		const dir = join(STORYBOOKS, fw.storybook, 'src/overview', name);
 		const firstExample = getExamples(name, fw.examplesFrom)[0].file;
 		write(
@@ -630,7 +638,7 @@ for (const name of components) {
 		);
 	}
 }
-for (const fw of FRAMEWORKS) {
+for (const fw of targets) {
 	write(
 		join(STORYBOOKS, fw.storybook, 'src/index.mdx'),
 		buildGettingStarted(fw)

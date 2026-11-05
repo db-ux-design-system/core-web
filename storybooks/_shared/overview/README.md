@@ -2,23 +2,38 @@
 
 `generate-overviews.ts` writes the overview page of a component for every Storybook (React, Angular, Vue, Web Components, HTML) and the "Getting Started" page of every framework Storybook – a short entry page that links the setup articles on the Design System Platform.
 
+The `build` and `storybook` scripts of every framework Storybook run the generator for their own Storybook first (`--storybook <name>`), so the pages are always in sync with their sources. The output is git-ignored. It needs the generated example stories:
+
 ```shell
 pnpm --filter @db-ux/core-components run generate:stories
-node storybooks/_shared/overview/generate-overviews.ts button
+pnpm --filter react-storybook run build
 ```
+
+To generate by hand, e.g. a component that is not rolled out yet:
+
+```shell
+node storybooks/_shared/overview/generate-overviews.ts [--storybook react-storybook] [component ...]
+```
+
+Without components, the generator writes the components listed in `ROLLOUT` in `meta.ts`.
 
 What belongs in Storybook and what on the Design System Platform is described in "Where documentation lives" in the root [`AGENTS.md`](../../../AGENTS.md#where-documentation-lives). Each kind of content has one source:
 
 | Content                                                | Source                                                                 |
 | ------------------------------------------------------ | ---------------------------------------------------------------------- |
-| Summary, status, accessibility review                  | `components.json` in this folder                                       |
+| Title                                                  | `export default function DB…` in `<component>.lite.tsx`                |
+| Accessibility review                                   | `showcases/patternhub/data/_accessibility-review.json`                 |
+| Link to the platform guidelines                        | convention in `meta.ts`, exceptions in `overrides.json`                |
+| Summary, status                                        | `overrides.json` in this folder (see below)                            |
 | Accessibility, migration                               | `packages/components/src/components/<component>/docs/*.md`             |
 | Usage (the examples; "Show code" includes the imports) | the generated example stories, `../storybook-config/source-imports.ts` |
 | Properties (React, Angular, Vue)                       | Storybook docgen                                                       |
 | Attributes (HTML, Web Components)                      | `<component>.lite.tsx` and `output/stencil/dist/web-types.json`        |
 | Design guidelines                                      | the Design System Platform, linked                                     |
 
-The generated files are committed and carry a "do not edit" note. If the approach is adopted, the generator moves into the Mitosis Storybook plugin and runs with `generate:stories`.
+`meta.ts` reads the metadata of a component from these sources. `overrides.json` holds only what has no source in this repository: platform paths that differ from the convention (`false` for components without a platform page) and extra packages a component needs (`requires`).
+
+Summary and status are maintained on the Design System Platform (`description` and `status` in the frontmatter of each component page). Until it is decided how Storybook gets them (for example a JSON endpoint of the platform that the generator reads at build time), they are in `overrides.json` for the rolled out components; a component without them shows neither line.
 
 The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
 
