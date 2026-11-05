@@ -73,25 +73,25 @@
 	// --db-form-component-min-*-size custom property.
 	@supports (min-inline-size: attr(data-min-cols type(<number>))) {
 		textarea {
-    		&:is([data-min-rows], [data-min-cols]) {
-    			box-sizing: content-box;
-    		}
-    
-    		&[data-min-rows] {
-    			/* stylelint-disable-next-line db-ux/use-sizing */
-    			min-block-size: var(
-    				--db-form-component-min-block-size,
-    				calc(attr(data-min-rows type(<number>)) * 1lh)
-    			);
-    		}
-    
-    		&[data-min-cols] {
-    			/* stylelint-disable-next-line db-ux/use-sizing */
-    			min-inline-size: var(
-    				--db-form-component-min-inline-size,
-    				calc(attr(data-min-cols type(<number>)) * 1ch)
-    			);
-    		}
+			&:is([data-min-rows], [data-min-cols]) {
+				box-sizing: content-box;
+			}
+
+			&[data-min-rows] {
+				/* stylelint-disable-next-line db-ux/use-sizing */
+				min-block-size: var(
+					--db-form-component-min-block-size,
+					calc(attr(data-min-rows type(<number>)) * 1lh)
+				);
+			}
+
+			&[data-min-cols] {
+				/* stylelint-disable-next-line db-ux/use-sizing */
+				min-inline-size: var(
+					--db-form-component-min-inline-size,
+					calc(attr(data-min-cols type(<number>)) * 1ch)
+				);
+			}
 		}
 	}
 
