@@ -198,22 +198,34 @@ type WebTypesElement = {
 	js?: { properties?: WebTypesProperty[] };
 };
 
-const getWebTypes = (name: string): WebTypesElement => {
-	const path = join(ROOT, 'output/stencil/dist/web-types.json');
-	if (!existsSync(path)) {
-		throw new Error(
-			`[overviews] ${path} is missing – build the outputs first`
-		);
+const COMPONENTS = 'packages/components/src/components';
+
+let webTypesElements: WebTypesElement[] | undefined;
+
+/** Custom element of a component in the web-types, if it has one. */
+const findWebTypes = (name: string): WebTypesElement | undefined => {
+	if (!webTypesElements) {
+		const path = join(ROOT, 'output/stencil/dist/web-types.json');
+		if (!existsSync(path)) {
+			throw new Error(
+				`[overviews] ${path} is missing – build the outputs first`
+			);
+		}
+
+		webTypesElements = (
+			JSON.parse(read(path)) as {
+				contributions: { html: { elements: WebTypesElement[] } };
+			}
+		).contributions.html.elements;
 	}
-	const webTypes = JSON.parse(read(path)) as {
-		contributions: { html: { elements: WebTypesElement[] } };
-	};
-	const element = webTypes.contributions.html.elements.find(
+
+	const element = webTypesElements.find(
 		(entry) => entry.name === `db-${name}`
 	);
 	if (!element) {
-		throw new Error(`[overviews] db-${name} not in web-types`);
+		console.warn(`[overviews] db-${name} not in web-types: no attributes`);
 	}
+
 	return element;
 };
 
@@ -225,16 +237,12 @@ const SKIPPED_ATTRIBUTES = new Set(['id', 'prop-overrides', 'classname']);
  * `data-*` attributes and native attributes, each with the props that set it.
  */
 const getHtmlAttributes = (name: string, webTypes: WebTypesElement): string => {
-	const source = read(
-		join(
-			ROOT,
-			'packages/components/src/components',
-			name,
-			`${name}.lite.tsx`
-		)
-	);
+	const file = join(ROOT, COMPONENTS, name, `${name}.lite.tsx`);
+	const source = existsSync(file) ? read(file) : '';
 	const jsx = source.slice(source.lastIndexOf('return ('));
-	const root = /<[a-z]+\s([\s\S]*?)>\s*\n/.exec(jsx)?.[1] ?? '';
+	const rootMatch = /<([a-z][\da-z]*)\s([\s\S]*?)>\s*\n/.exec(jsx);
+	const rootTag = rootMatch?.[1];
+	const root = rootMatch?.[2] ?? '';
 	const properties = new Map(
 		(webTypes.js?.properties ?? []).map((prop) => [prop.name, prop])
 	);
@@ -269,10 +277,18 @@ const getHtmlAttributes = (name: string, webTypes: WebTypesElement): string => {
 			`| \`${attribute.toLowerCase()}\` | ${values} | ${escapeCell(first?.description ?? '')} |`
 		);
 	}
+	// `type` of a button defaults to `submit` in the browser, so it is listed
+	// with that note (the loop above skips it).
 	const typeProp = properties.get('type');
-	rows.unshift(
-		`| \`type\` | \`${escapeCell(typeProp?.type ?? 'string')}\` | ${escapeCell(typeProp?.description ?? '')} Without it, the browser uses \`submit\`. |`
-	);
+	if (rootTag === 'button') {
+		rows.unshift(
+			`| \`type\` | \`${escapeCell(typeProp?.type ?? 'string')}\` | ${escapeCell(typeProp?.description ?? '')} Without it, the browser uses \`submit\`. |`
+		);
+	}
+
+	if (rows.length === 0) {
+		return '';
+	}
 	return [
 		'| Attribute | Values | Description |',
 		'| --- | --- | --- |',
@@ -288,6 +304,10 @@ const getWebComponentAttributes = (webTypes: WebTypesElement): string => {
 			(attribute) =>
 				`| \`${attribute.name}\` | \`${escapeCell(attribute.value?.type ?? 'string')}\` | ${escapeCell(attribute.description ?? '')} |`
 		);
+	if (rows.length === 0) {
+		return '';
+	}
+
 	return [
 		'| Attribute | Type | Description |',
 		'| --- | --- | --- |',
@@ -330,6 +350,85 @@ const statusLine = (meta: ComponentMeta): string => {
 		.join(' · ');
 };
 
+/** Root element of the JSX of `<name>.lite.tsx`, e.g. `button`, `details`. */
+const getRootTag = (name: string): string | undefined => {
+	const file = join(ROOT, COMPONENTS, name, `${name}.lite.tsx`);
+	if (!existsSync(file)) {
+		return undefined;
+	}
+
+	const source = read(file);
+	return /<([a-z][\da-z]*)[\s>]/.exec(
+		source.slice(source.lastIndexOf('return ('))
+	)?.[1];
+};
+
+/** Example groups of a component in a Storybook, empty when it has none. */
+const getExampleGroups = (name: string, fw: Framework): ExampleGroup[] => {
+	const dir = join(
+		STORYBOOKS,
+		fw.examplesFrom,
+		'src/components',
+		name,
+		'examples'
+	);
+	if (!existsSync(dir)) {
+		return [];
+	}
+
+	const ext = fw.examplesFrom === 'react-storybook' ? 'tsx' : 'ts';
+	return getExamples(name, fw.examplesFrom).filter((group) =>
+		existsSync(join(dir, `${group.file}.${ext}`))
+	);
+};
+
+/** Properties (React, Angular, Vue) or attributes (HTML, Web Components). */
+const buildApi = (
+	name: string,
+	title: string,
+	fw: Framework,
+	isPart: boolean
+): string => {
+	const heading = isPart ? `### ${title}` : '';
+	if (fw.api === 'argtypes') {
+		return [
+			heading,
+			isPart
+				? `<ArgTypes of={${title}} />`
+				: '<ArgTypes of={OverviewStories} />'
+		]
+			.filter(Boolean)
+			.join('\n\n');
+	}
+
+	const webTypes = findWebTypes(name);
+	if (!webTypes) {
+		return '';
+	}
+
+	// MDX here has no GFM tables, the Markdown block has. The table is a JSON
+	// string, so no character in it needs MDX escaping.
+	if (fw.api === 'html') {
+		const tag = getRootTag(name);
+		const intro = tag
+			? `In HTML ${isPart ? title : 'the component'} is a \`<${tag}>\` with the class \`db-${name}\`. Options are \`data-\` attributes next to the native attributes of the element.`
+			: '';
+		const table = getHtmlAttributes(name, webTypes);
+		return [
+			heading,
+			intro,
+			table && `<Markdown>{${JSON.stringify(table)}}</Markdown>`
+		]
+			.filter(Boolean)
+			.join('\n\n');
+	}
+
+	const table = getWebComponentAttributes(webTypes);
+	return [heading, table && `<Markdown>{${JSON.stringify(table)}}</Markdown>`]
+		.filter(Boolean)
+		.join('\n\n');
+};
+
 const buildOverviewMdx = (
 	name: string,
 	meta: ComponentMeta,
@@ -340,17 +439,23 @@ const buildOverviewMdx = (
 		fw.examplesFrom === fw.storybook
 			? '../../components'
 			: `../../../../${fw.examplesFrom}/src/components`;
-	const examples = getExamples(name, fw.examplesFrom).filter((group) =>
-		existsSync(
-			join(
-				STORYBOOKS,
-				fw.examplesFrom,
-				'src/components',
-				name,
-				'examples',
-				`${group.file}.${fw.examplesFrom === 'react-storybook' ? 'tsx' : 'ts'}`
-			)
-		)
+
+	// The examples of the component, then those of its parts (DBTabItem on the
+	// DBTabs page). `prefix` keeps the import names unique.
+	const groups = [
+		{ name, title: meta.title, prefix: '', isPart: false },
+		...meta.parts.map((part) => ({
+			name: part.name,
+			title: part.title,
+			prefix: pascal(part.name),
+			isPart: true
+		}))
+	].flatMap((component) =>
+		getExampleGroups(component.name, fw).map((group) => ({
+			...group,
+			component,
+			importName: `${component.prefix}${pascal(group.id)}Stories`
+		}))
 	);
 
 	const blocks = [
@@ -364,33 +469,35 @@ const buildOverviewMdx = (
 	const imports = [
 		`import { ${blocks.join(', ')} } from "@storybook/addon-docs/blocks";`,
 		`import * as OverviewStories from "./${name}.overview.stories";`,
-		...examples.map(
+		// The properties tables of the parts read the component itself.
+		...(fw.api === 'argtypes' && meta.parts.length > 0
+			? [
+					`import { ${meta.parts.map((part) => part.title).join(', ')} } from "@components";`
+				]
+			: []),
+		...groups.map(
 			(group) =>
-				`import * as ${pascal(group.id)}Stories from "${examplesBase}/${name}/examples/${group.file}";`
+				`import * as ${group.importName} from "${examplesBase}/${group.component.name}/examples/${group.file}";`
 		)
 	];
+
 	const isAccessibility = hasDoc(name, 'Accessibility');
-	const isMigration = hasDoc(name, 'Migration');
 	if (isAccessibility) {
 		imports.push(
 			`import Accessibility from "${toRoot}${docsPath(name, 'Accessibility')}?raw";`
 		);
 	}
-	if (isMigration) {
+
+	// Migration of the component and of its parts (each part below its name).
+	const migrations = [
+		{ name, title: meta.title, isPart: false },
+		...meta.parts.map((part) => ({ ...part, isPart: true }))
+	].filter((component) => hasDoc(component.name, 'Migration'));
+	for (const component of migrations) {
 		imports.push(
-			`import Migration from "${toRoot}${docsPath(name, 'Migration')}?raw";`
+			`import ${pascal(component.name)}Migration from "${toRoot}${docsPath(component.name, 'Migration')}?raw";`
 		);
 	}
-
-	const webTypes = fw.api === 'argtypes' ? undefined : getWebTypes(name);
-	const api =
-		fw.api === 'argtypes'
-			? '## Properties\n\n<ArgTypes of={OverviewStories} />'
-			: // MDX here has no GFM tables, the Markdown block has. The table is a
-				// JSON string, so no character in it needs MDX escaping.
-				fw.api === 'html'
-				? `## Attributes\n\nIn HTML the component is a \`<button>\` with the class \`db-${name}\`. Options are \`data-\` attributes next to the native attributes of the element.\n\n<Markdown>{${JSON.stringify(getHtmlAttributes(name, webTypes!))}}</Markdown>`
-				: `## Attributes\n\n<Markdown>{${JSON.stringify(getWebComponentAttributes(webTypes!))}}</Markdown>`;
 
 	const sections = [
 		imports.join('\n'),
@@ -399,6 +506,10 @@ const buildOverviewMdx = (
 		`# ${meta.title}`,
 		meta.summary,
 		statusLine(meta),
+		// The names of the parts, so the Storybook search finds this page.
+		meta.parts.length > 0
+			? `**Parts:** ${meta.parts.map((part) => part.title).join(', ')} – documented on this page.`
+			: '',
 		buildGuidelines(meta),
 		// The setup is the same for every component of a framework and is
 		// documented once on the platform. Only extra packages show up here.
@@ -414,32 +525,44 @@ const buildOverviewMdx = (
 	// (see storybooks/_shared/storybook-config/source-imports.ts), so the
 	// handwritten docs/<Framework>.md is not shown here. It stays for npm, the
 	// MCP server and the Patternhub.
-	for (const group of examples) {
+	for (const group of groups) {
+		const title = group.component.isPart
+			? `${group.component.title}: ${group.title}`
+			: group.title;
 		sections.push(
-			`### ${group.title}`,
+			`### ${title}`,
 			group.stories
-				.map(
-					(story) =>
-						`<Canvas of={${pascal(group.id)}Stories.${story}} />`
-				)
+				.map((story) => `<Canvas of={${group.importName}.${story}} />`)
 				.join('\n'),
-			`[Open the ${group.title} examples](?path=/docs/components-${meta.title.toLowerCase()}-${group.id}--docs)`
+			`[Open the ${title} examples](?path=/docs/components-${group.component.title.toLowerCase()}-${group.id}--docs)`
 		);
 	}
-	sections.push(api);
+
+	sections.push(
+		fw.api === 'argtypes' ? '## Properties' : '## Attributes',
+		buildApi(name, meta.title, fw, false),
+		...meta.parts.map((part) => buildApi(part.name, part.title, fw, true))
+	);
 	if (isAccessibility) {
 		sections.push(
 			'{/* The docs file starts with "## Accessibility"; it is the section heading. */}',
 			'<Markdown>{Accessibility}</Markdown>'
 		);
 	}
-	if (isMigration) {
-		sections.push(
-			'## Migration',
-			'{/* Nest the headings of the docs file below the section heading. */}',
-			'<Markdown>{Migration.replace(/^(#{2,4}) /gm, "#$1 ")}</Markdown>'
-		);
+
+	if (migrations.length > 0) {
+		sections.push('## Migration');
+		for (const component of migrations) {
+			// Headings of the docs file nest below the section heading, those of
+			// a part one more level below its name.
+			const shift = component.isPart ? '##' : '#';
+			sections.push(
+				component.isPart ? `### ${component.title}` : '',
+				`<Markdown>{${pascal(component.name)}Migration.replace(/^(#{2,4}) /gm, "${shift}$1 ")}</Markdown>`
+			);
+		}
 	}
+
 	sections.push(
 		'## Resources',
 		[
@@ -657,7 +780,14 @@ for (const name of components) {
 	const meta = getComponentMeta(name);
 	for (const fw of targets) {
 		const dir = join(STORYBOOKS, fw.storybook, 'src/overview', name);
-		const firstExample = getExamples(name, fw.examplesFrom)[0].file;
+		const firstExample = getExampleGroups(name, fw)[0]?.file;
+		if (!firstExample) {
+			console.warn(
+				`[overviews] ${name} has no examples in ${fw.examplesFrom}: no overview page`
+			);
+			continue;
+		}
+
 		write(
 			join(dir, `${name}.overview.mdx`),
 			buildOverviewMdx(name, meta, fw)
