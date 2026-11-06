@@ -1,5 +1,5 @@
 import { Meta } from "@storybook/addon-docs/blocks";
-import ResourceCards from "./resource-cards";
+import ResourceCards, { PlatformCard } from "./resource-cards";
 
 <Meta title="Getting Started" />
 
@@ -13,8 +13,14 @@ This Storybook contains the technical documentation of the DB UX Design System:
 
 Use the version dropdown next to each framework in the sidebar for earlier releases. The examples are shown in Light Mode. To check Dark Mode, open a framework Storybook on its own and add `&globals=mode:dark` to the URL.
 
-Installation, styles and the theme are explained step by step on the [setup pages of the Design System Platform](https://design-system.deutschebahn.com/documentation/get-started). Guides across components – router links, form validation, testing your application, your own components and backdrops – are in [Learn on the Design System Platform](https://design-system.deutschebahn.com/documentation/learn).
+## Design System Platform
 
-Choose your framework:
+The Design System Platform is the starting point for design and development. It contains the design guidelines for every component, the [setup pages](https://design-system.deutschebahn.com/documentation/get-started) for installation, styles and the theme, and the [Learn articles](https://design-system.deutschebahn.com/documentation/learn) with guides across components – router links, form validation, testing your application, your own components and backdrops.
+
+<PlatformCard />
+
+## Framework Storybooks
+
+Each framework has its own Storybook with the components, examples and code. Choose your framework:
 
 <ResourceCards />
