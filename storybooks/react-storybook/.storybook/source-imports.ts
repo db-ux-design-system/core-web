@@ -126,7 +126,9 @@ const vueHandlerStubs = (code: string, script = ''): string =>
 		...matches(code, /="(?:async )?\(\w*\) => (\w+)\(/g)
 	])
 		// Not when the snippet's own script already declares it.
-		.filter((handler) => !new RegExp(String.raw`\b${handler}\s*=`).test(script))
+		.filter(
+			(handler) => !new RegExp(String.raw`\b${handler}\s*=`).test(script)
+		)
 		.map(
 			(handler) =>
 				`const ${handler} = (event?: unknown): void => {\n\t// …\n};`
