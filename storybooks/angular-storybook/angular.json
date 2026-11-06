@@ -50,7 +50,7 @@
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "css",
-						"styles": ["src/global.css", ".storybook/docs.css"]
+						"styles": ["src/global.css"]
 					},
 					"configurations": {
 						"production": {

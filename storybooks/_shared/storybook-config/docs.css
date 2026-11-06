@@ -1,4 +1,4 @@
-/* cspell:ignore sbdocs blockquotes */
+/* cspell:ignore sbdocs blockquotes inlines */
 
 /*
  * Docs pages: links with enough contrast.
@@ -9,8 +9,12 @@
  * `color-scheme: light` pins the `light-dark()` token to its light value,
  * also when the mode switch sets `data-mode="dark"` for the stories.
  *
- * Copied into `.storybook/docs.css` of every Storybook by
- * `storybooks/_shared/storybook-config/sync.ts`. Edit this file, not the copies.
+ * CSS escape hatches of the docs pages: Storybook documents style tags in
+ * `.storybook/preview-head.html` that target its class names, "at your own
+ * risk" (https://storybook.js.org/docs/configure/user-interface/theming#css-escape-hatches).
+ * `storybooks/_shared/storybook-config/sync.ts` inlines this file into
+ * `preview-head.html` of every Storybook. Edit this file, not the copies.
+ * theme.spec.ts checks that the Storybook selectors used here still match.
  */
 .sbdocs-content a:not(.db-card, .db-link, .db-button) {
 	color-scheme: light;
@@ -22,7 +26,6 @@
 	color: inherit;
 }
 
-/*
 /*
  * Table of contents: the compact structure of the Storybook TOC (every level
  * indented with its own track) in the colors of the platform TOC

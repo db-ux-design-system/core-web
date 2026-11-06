@@ -1,0 +1,139 @@
+/**
+ * Guard of the CSS escape hatches (storybooks/_shared/storybook-config/
+ * manager.css and docs.css).
+ *
+ * They target Storybook's inner HTML, which can change with any release
+ * (https://storybook.js.org/docs/configure/user-interface/theming#css-escape-hatches).
+ * A selector that no longer matches fails silently in the browser, so these
+ * tests check that every selector still finds its element and that the rule
+ * takes effect. After a Storybook update, a failure here names the selector to
+ * adjust.
+ */
+import { expect, test, type Page } from '@playwright/test';
+import { openDocs, storybookUrl, type StorybookName } from './storybooks.ts';
+
+const OVERVIEW = 'components-dbbutton-overview--docs';
+
+const openManager = async (page: Page, storybook: StorybookName, path = '') => {
+	await page.goto(`${storybookUrl(storybook)}/?path=${path}`);
+	await expect(page.locator('.sidebar-container')).toBeVisible({
+		timeout: 60_000
+	});
+};
+
+/** Computed style of the first match; fails when nothing matches. */
+const style = async (
+	page: Page,
+	selector: string,
+	property: string,
+	pseudo?: string
+) => {
+	const element = page.locator(selector).first();
+	await expect(element, selector).toBeAttached();
+	return element.evaluate(
+		(node, [name, pseudoElement]) =>
+			getComputedStyle(node, pseudoElement).getPropertyValue(name),
+		[property, pseudo] as const
+	);
+};
+
+test.describe('manager.css', () => {
+	test('hidden controls of the sidebar', async ({ page }) => {
+		await openManager(page, 'react-storybook', `/docs/${OVERVIEW}`);
+		for (const selector of [
+			'button[aria-label="Settings"]',
+			'[data-action="expand-all"]',
+			'button[aria-label="Tag filters"]'
+		]) {
+			expect(await style(page, selector, 'display'), selector).toBe(
+				'none'
+			);
+		}
+	});
+
+	test('"Extra actions" of the framework refs', async ({ page }) => {
+		await openManager(page, 'composition-storybook');
+		expect(
+			await style(page, '[data-action="toggle-indicator"]', 'display')
+		).toBe('none');
+	});
+
+	test('sidebar in the style of the control panel', async ({ page }) => {
+		await openManager(page, 'react-storybook', `/docs/${OVERVIEW}`);
+		const selected = '.sidebar-item[data-nodetype][data-selected="true"]';
+		expect(
+			await style(page, '.sidebar-container', 'border-inline-end-style')
+		).toBe('solid');
+		expect(await style(page, selected, 'background-color')).toBe(
+			'rgba(0, 0, 0, 0)'
+		);
+		// The brand indicator, drawn by `::after`.
+		expect(await style(page, selected, 'content', '::after')).toBe('""');
+		expect(
+			await style(page, selected, 'background-color', '::after')
+		).not.toBe('rgba(0, 0, 0, 0)');
+		// Icons in the text color.
+		const item = '.sidebar-item[data-nodetype]';
+		expect(await style(page, `${item} svg[type]`, 'color')).toBe(
+			await style(page, item, 'color')
+		);
+		// Section heading like the ref headings, with the separator line.
+		const heading = '.sidebar-subheading[data-nodetype="root"]';
+		expect(await style(page, heading, 'border-block-start-style')).toBe(
+			'solid'
+		);
+		expect(
+			await style(
+				page,
+				`${heading} > button[data-action="collapse-root"]`,
+				'text-transform'
+			)
+		).toBe('none');
+	});
+
+	test('keyboard cursor of the sidebar (manager.ts)', async ({ page }) => {
+		await openManager(page, 'react-storybook', `/docs/${OVERVIEW}`);
+		// Storybook keeps the ids of the highlighted item on the tree container
+		// and the same ids on every item; manager.ts joins both.
+		await expect(
+			page.locator('[data-highlighted-item-id][data-highlighted-ref-id]')
+		).toBeAttached();
+		await expect(
+			page
+				.locator(
+					'.sidebar-item[data-nodetype][data-ref-id][data-item-id]'
+				)
+				.first()
+		).toBeAttached();
+	});
+});
+
+test.describe('docs.css', () => {
+	test('links and table of contents', async ({ page }) => {
+		await openDocs(page, 'react-storybook', OVERVIEW);
+		const link = '.sbdocs-content a:not(.db-card, .db-link, .db-button)';
+		expect(await style(page, link, 'text-decoration-line')).toBe(
+			'underline'
+		);
+
+		const toc = '.sbdocs.sbdocs-toc--custom';
+		expect(
+			await style(page, `${toc} .toc-list`, 'border-inline-start-style')
+		).toBe('solid');
+		expect(await style(page, `${toc} .toc-list-item > a`, 'display')).toBe(
+			'block'
+		);
+		// Storybook's own marker is replaced by the indicator on the link.
+		expect(
+			await style(page, `${toc} .toc-list-item`, 'content', '::before')
+		).toBe('none');
+		expect(
+			await style(
+				page,
+				`${toc} .toc-list-item.is-active-li > a`,
+				'content',
+				'::before'
+			)
+		).toBe('""');
+	});
+});

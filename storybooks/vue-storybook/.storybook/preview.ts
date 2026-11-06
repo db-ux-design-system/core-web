@@ -1,7 +1,6 @@
 import type { Decorator, Preview } from '@storybook/vue3-vite';
 import { StoryContext } from 'storybook/internal/csf';
 import AutodocsPage from './autodocs-page.mdx';
-import './docs.css';
 import './global.css';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
 import { addSourceImports } from './source-imports';

@@ -1,6 +1,5 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
 import AutodocsPage from './autodocs-page.mdx';
-import './docs.css';
 import './global.css';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
 import { addSourceImports } from './source-imports';
