@@ -41,12 +41,14 @@ const react = (code: string): string => {
 	if (components.length === 0) {
 		return code;
 	}
-	// Storybook prints the action spies as named empty functions. Formatter
-	// callbacks (`on…Fn`, e.g. `onExpandButtonTooltipFn: (open) => string`)
-	// are not events: the component has a default, so the spy is dropped.
+	// Storybook prints the action spies as named empty functions. They do
+	// nothing in a snippet to copy and land on the wrong component when an
+	// example renders another one (`onTimeout` of the loading indicator on the
+	// DBButton of "Examples: Button"), and formatter callbacks (`on…Fn`) are
+	// no events at all, so every empty spy is dropped.
 	const cleaned = code
 		.replaceAll(/function \w*\(\)\s*\{\s*\}/g, '() => {}')
-		.replaceAll(/\s+on\w+Fn=\{\(\) => \{\}\}/g, '')
+		.replaceAll(/\s+on\w+=\{\(\) => \{\}\}/g, '')
 		// Mitosis keeps `class` in JSX passed as a prop (`content={<div class=…>}`
 		// of DBTag); React needs `className`.
 		.replaceAll(/(<[a-z][\da-z-]*\s(?:[^>]*\s)?)class=/g, '$1className=');
