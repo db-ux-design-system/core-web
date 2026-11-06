@@ -1,6 +1,6 @@
 {
-	"$description": "Minimal Style Dictionary (DTCG) token fixture for loadTheme tests: two concrete colors (neutral -> grey, blue), one alias color (informational -> {db.blue}), and one non-color group (border).",
-	"db": {
+	"$description": "Minimal Style Dictionary (DTCG) token fixture for loadTheme tests: two concrete colors (neutral -> grey, blue), one alias color (informational -> {colors.blue}), and one non-color group (border).",
+	"colors": {
 		"neutral": {
 			"0": { "$type": "color", "$value": "#000000" },
 			"1": { "$type": "color", "$value": "#16181b" },
@@ -82,49 +82,52 @@
 			}
 		},
 		"informational": {
-			"0": { "$type": "color", "$value": "{db.blue.0}" },
-			"1": { "$type": "color", "$value": "{db.blue.1}" },
-			"2": { "$type": "color", "$value": "{db.blue.2}" },
-			"3": { "$type": "color", "$value": "{db.blue.3}" },
-			"4": { "$type": "color", "$value": "{db.blue.4}" },
-			"5": { "$type": "color", "$value": "{db.blue.5}" },
-			"6": { "$type": "color", "$value": "{db.blue.6}" },
-			"7": { "$type": "color", "$value": "{db.blue.7}" },
-			"8": { "$type": "color", "$value": "{db.blue.8}" },
-			"9": { "$type": "color", "$value": "{db.blue.9}" },
-			"10": { "$type": "color", "$value": "{db.blue.10}" },
-			"11": { "$type": "color", "$value": "{db.blue.11}" },
-			"12": { "$type": "color", "$value": "{db.blue.12}" },
-			"13": { "$type": "color", "$value": "{db.blue.13}" },
-			"14": { "$type": "color", "$value": "{db.blue.14}" },
+			"0": { "$type": "color", "$value": "{colors.blue.0}" },
+			"1": { "$type": "color", "$value": "{colors.blue.1}" },
+			"2": { "$type": "color", "$value": "{colors.blue.2}" },
+			"3": { "$type": "color", "$value": "{colors.blue.3}" },
+			"4": { "$type": "color", "$value": "{colors.blue.4}" },
+			"5": { "$type": "color", "$value": "{colors.blue.5}" },
+			"6": { "$type": "color", "$value": "{colors.blue.6}" },
+			"7": { "$type": "color", "$value": "{colors.blue.7}" },
+			"8": { "$type": "color", "$value": "{colors.blue.8}" },
+			"9": { "$type": "color", "$value": "{colors.blue.9}" },
+			"10": { "$type": "color", "$value": "{colors.blue.10}" },
+			"11": { "$type": "color", "$value": "{colors.blue.11}" },
+			"12": { "$type": "color", "$value": "{colors.blue.12}" },
+			"13": { "$type": "color", "$value": "{colors.blue.13}" },
+			"14": { "$type": "color", "$value": "{colors.blue.14}" },
 			"origin": {
-				"base": { "$type": "color", "$value": "{db.blue.origin.base}" },
+				"base": {
+					"$type": "color",
+					"$value": "{colors.blue.origin.base}"
+				},
 				"light": {
 					"default": {
 						"$type": "color",
-						"$value": "{db.blue.origin.light.default}"
+						"$value": "{colors.blue.origin.light.default}"
 					},
 					"hovered": {
 						"$type": "color",
-						"$value": "{db.blue.origin.light.hovered}"
+						"$value": "{colors.blue.origin.light.hovered}"
 					},
 					"pressed": {
 						"$type": "color",
-						"$value": "{db.blue.origin.light.pressed}"
+						"$value": "{colors.blue.origin.light.pressed}"
 					}
 				},
 				"dark": {
 					"default": {
 						"$type": "color",
-						"$value": "{db.blue.origin.dark.default}"
+						"$value": "{colors.blue.origin.dark.default}"
 					},
 					"hovered": {
 						"$type": "color",
-						"$value": "{db.blue.origin.dark.hovered}"
+						"$value": "{colors.blue.origin.dark.hovered}"
 					},
 					"pressed": {
 						"$type": "color",
-						"$value": "{db.blue.origin.dark.pressed}"
+						"$value": "{colors.blue.origin.dark.pressed}"
 					}
 				}
 			},
@@ -133,13 +136,13 @@
 					"light": {
 						"default": {
 							"$type": "color",
-							"$value": "{db.blue.on.origin.light.default}"
+							"$value": "{colors.blue.on.origin.light.default}"
 						}
 					},
 					"dark": {
 						"default": {
 							"$type": "color",
-							"$value": "{db.blue.on.origin.dark.default}"
+							"$value": "{colors.blue.on.origin.dark.default}"
 						}
 					}
 				}

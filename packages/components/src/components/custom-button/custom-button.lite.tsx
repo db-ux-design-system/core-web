@@ -64,7 +64,10 @@ export default function DBCustomButton(props: DBCustomButtonProps) {
 				state._color = undefined;
 			}
 		}
-	}, [_ref, state.initialized]);
+		// Re-derive when any resolver input changes, not just on init: material,
+		// color and variant all feed _material/_color above, so omitting them
+		// leaves stale data-* attributes after a prop update.
+	}, [_ref, state.initialized, props.material, props.color, props.variant]);
 
 	return (
 		<div

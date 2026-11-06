@@ -17,7 +17,9 @@ const STYLE_BY_MODE: Record<ColoringMode, string> = {
 	'legacy-adaptive': dbUxLegacyAdaptiveStyleUrl
 };
 
-const isColoringMode = (value: string | undefined): value is ColoringMode =>
+const isColoringMode = (
+	value: string | null | undefined
+): value is ColoringMode =>
 	Boolean(value) && (COLORING_MODES as readonly string[]).includes(value!);
 
 export function getColoringMode(): ColoringMode {

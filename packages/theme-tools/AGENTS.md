@@ -34,7 +34,7 @@ build/              # Compiled output — never commit
 
 ## Architecture
 
-- **Core generator** reads a Style Dictionary (DTCG) `theme.tokens.json` (colors under the `db` prefix, `$type`/`$value` leaves).
+- **Core generator** reads a Style Dictionary (DTCG) `theme.tokens.json` (colors under the `colors` group, `$type`/`$value` leaves).
     - `load-theme.ts` converts it to the per-color `ColorInput` shape — mapping `neutral` → `grey`, skipping alias colors (reference `$value`s), ignoring non-color groups (`border`/`font`) and `origin.base`.
     - `expand-theme.ts` then expands that into a full `Theme`, and `materials-config.ts` (the in-repo material/role definitions) drives `generate` to emit the material CSS (`--db-bg-*`, `--db-text-*`, `--db-border-*`) as concrete `color-mix(in srgb, light-dark(hex, hex) …)` values, optionally narrowed by an optimization context.
     - Note `ColorInput`/`expandTheme` still take the nested `palette`/`origin`/`on-origin` shape — that is the generator's internal input. Tests and fixtures all load a `theme.tokens.json` through `loadTheme` (the shared fixture is `test/fixtures/vite-app/theme.tokens.json`); there is no baked-in palette fixture.

@@ -27,12 +27,12 @@ npm install @db-ux/core-theme-tools --save-dev
 
 ## The theme
 
-Every surface reads the same input: a [Style Dictionary](https://styledictionary.com/) / [DTCG](https://www.designtokens.org/) token file (`theme.tokens.json`). Colors live under the fixed `db` prefix; each color carries the 15 palette steps `0`–`14`, an `origin` (`base` + `light`/`dark` `default`/`hovered`/`pressed`), and an `on.origin` (`light`/`dark` `default`). Every leaf is a DTCG token (`{ "$type": "color", "$value": "#hex" }`). You supply the color **values**; the generator derives the light/dark variants and emits the adaptive CSS.
+Every surface reads the same input: a [Style Dictionary](https://styledictionary.com/) / [DTCG](https://www.designtokens.org/) token file (`theme.tokens.json`). Colors live under the fixed `colors` group; each color carries the 15 palette steps `0`–`14`, an `origin` (`base` + `light`/`dark` `default`/`hovered`/`pressed`), and an `on.origin` (`light`/`dark` `default`). Every leaf is a DTCG token (`{ "$type": "color", "$value": "#hex" }`). You supply the color **values**; the generator derives the light/dark variants and emits the adaptive CSS.
 
 ```jsonc
 {
 	"$description": "…",
-	"db": {
+	"colors": {
 		"neutral": {
 			"0": { "$type": "color", "$value": "#000000" },
 			/* … steps 1–13 … */
@@ -69,11 +69,11 @@ Every surface reads the same input: a [Style Dictionary](https://styledictionary
 How the loader reads the token file:
 
 - **`neutral` → `grey`** — the `neutral` token is the DB baseline color, consumed internally as `grey`.
-- **Alias colors are skipped** — tokens whose `$value` is a Style Dictionary reference (e.g. `informational` → `"{db.blue.0}"`) duplicate a base color and are not emitted; the component detector already maps a component's `semantic` to its base color.
+- **Alias colors are skipped** — tokens whose `$value` is a Style Dictionary reference (e.g. `informational` → `"{colors.blue.0}"`) duplicate a base color and are not emitted; the component detector already maps a component's `semantic` to its base color.
 - **Non-color groups are ignored** — anything without numeric palette steps (`border` radii, `font` families) is left untouched.
 - **`origin.base` is ignored** — only the `light`/`dark` states feed the generator.
 
-A project may add its own colors (e.g. `ocean`) under `db` alongside the required DB baseline; the generator picks them up automatically. The theme supplies values only — the settings (materials, opacity, roles) ship with the package and are not consumer-overridable.
+A project may add its own colors (e.g. `ocean`) under `colors` alongside the required DB baseline; the generator picks them up automatically. The theme supplies values only — the settings (materials, opacity, roles) ship with the package and are not consumer-overridable.
 
 ## Bundler plugin
 

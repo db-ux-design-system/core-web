@@ -1,6 +1,6 @@
 {
 	"$description": "DB UX Design System - test fixture theme. Style Dictionary (DTCG) tokens.",
-	"db": {
+	"colors": {
 		"neutral": {
 			"0": {
 				"$type": "color",

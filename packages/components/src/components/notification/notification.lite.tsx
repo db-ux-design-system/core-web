@@ -7,7 +7,7 @@ import {
 	useStore
 } from '@builder.io/mitosis';
 import { DEFAULT_CLOSE_BUTTON } from '../../shared/constants';
-import { ClickEvent, MaterialType } from '../../shared/model';
+import { ClickEvent, ColorType, MaterialType } from '../../shared/model';
 import {
 	cls,
 	getBoolean,

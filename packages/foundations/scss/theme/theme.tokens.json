@@ -1,6 +1,6 @@
 {
 	"$description": "DB UX Design System - whitelabel theme. Style Dictionary (DTCG) tokens.",
-	"db": {
+	"colors": {
 		"red": {
 			"0": {
 				"$type": "color",

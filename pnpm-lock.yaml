@@ -925,7 +925,7 @@ importers:
         specifier: workspace:*
         version: link:../theme-tools
       fast-glob:
-        specifier: ^3.3.3
+        specifier: 3.3.3
         version: 3.3.3
     devDependencies:
       '@db-ux/db-theme':

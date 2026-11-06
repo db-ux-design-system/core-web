@@ -1,7 +1,7 @@
 /*
  * `loadTheme` — Style Dictionary (DTCG) token parsing.
  *
- * `loadTheme` reads a `theme.tokens.json` (the `db` prefix, DTCG `$type`/
+ * `loadTheme` reads a `theme.tokens.json` (the `colors` group, DTCG `$type`/
  * `$value` leaves) and converts it to the generator's `Theme`. This suite
  * covers the conversion rules — `neutral` -> `grey`, alias colors skipped,
  * non-color groups ignored, palette/origin/on-origin mapping — plus the error
@@ -93,16 +93,18 @@ describe('loadTheme — error handling', () => {
 		await expect(loadTheme(path)).rejects.toThrow(/not valid JSON/);
 	});
 
-	it('rejects when the `db` group is missing', async () => {
-		const path = writeTokens('no-db.json', { other: {} });
-		await expect(loadTheme(path)).rejects.toThrow(/"db"/);
+	it('rejects when the `colors` group is missing', async () => {
+		const path = writeTokens('no-colors.json', { other: {} });
+		await expect(loadTheme(path)).rejects.toThrow(/"colors"/);
 	});
 
 	it('rejects when no concrete colors remain after filtering', async () => {
 		// Only an alias color + a non-color group: nothing concrete survives.
 		const path = writeTokens('only-alias.json', {
-			db: {
-				informational: { 0: { $type: 'color', $value: '{db.blue.0}' } },
+			colors: {
+				informational: {
+					0: { $type: 'color', $value: '{colors.blue.0}' }
+				},
 				border: {
 					radius: { sm: { $type: 'dimension', $value: '1rem' } }
 				}
@@ -113,7 +115,7 @@ describe('loadTheme — error handling', () => {
 
 	it('rejects a concrete color missing palette steps, naming the gap', async () => {
 		const path = writeTokens('incomplete.json', {
-			db: {
+			colors: {
 				blue: {
 					0: { $type: 'color', $value: '#010d29' }
 					// steps 1..14 + origin + on.origin all missing

@@ -9,7 +9,7 @@
  * INPUT FORMAT — Style Dictionary / DTCG tokens (`theme.tokens.json`):
  *
  *   {
- *     "db": {
+ *     "colors": {
  *       "blue": {
  *         "0":  { "$type": "color", "$value": "#010d29" }, ... "14": { ... },
  *         "origin": {
@@ -23,12 +23,12 @@
  *   }
  *
  * Conversion rules (confirmed product decisions):
- *   - Colors live under the fixed `db` prefix. The 15 palette steps `0..14`,
+ *   - Colors live under the fixed `colors` group. The 15 palette steps `0..14`,
  *     `origin.{light,dark}.{default,hovered,pressed}`, and
  *     `on.origin.{light,dark}.default` become a {@link ColorInput}.
  *   - `neutral` is mapped to `grey` (the generator baseline color).
  *   - ALIAS tokens — whose `$value` is a Style Dictionary reference like
- *     `"{db.blue.0}"` — are SKIPPED (the semantic colors informational /
+ *     `"{colors.blue.0}"` — are SKIPPED (the semantic colors informational /
  *     successful / warning / critical duplicate a base color).
  *   - NON-COLOR tokens (`border` radii, `font` families) and `origin.base` are
  *     IGNORED.
@@ -50,8 +50,8 @@ import type {
 	Theme
 } from './types/theme.js';
 
-/** The fixed top-level prefix the colors live under in the token file. */
-const DB_PREFIX = 'db';
+/** The fixed top-level group the colors live under in the token file. */
+const COLORS_GROUP = 'colors';
 
 /** The token key mapped onto the generator's baseline `grey` color. */
 const NEUTRAL_KEY = 'neutral';
@@ -76,7 +76,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 /**
  * Read a DTCG token leaf's concrete string `$value`, or `undefined` when the
  * leaf is absent, malformed, or an unresolved Style Dictionary reference
- * (a `"{db.x.y}"` string). References are treated as "not a concrete value" so
+ * (a `"{colors.x.y}"` string). References are treated as "not a concrete value" so
  * ALIAS colors (whose every leaf is a reference) are detected and skipped.
  */
 const tokenValue = (leaf: unknown): string | undefined => {
@@ -87,7 +87,7 @@ const tokenValue = (leaf: unknown): string | undefined => {
 	if (typeof value !== 'string') {
 		return undefined;
 	}
-	// A `{db.blue.0}`-style reference is not a concrete value.
+	// A `{colors.blue.0}`-style reference is not a concrete value.
 	if (value.startsWith('{') && value.endsWith('}')) {
 		return undefined;
 	}
@@ -205,24 +205,24 @@ const convertColor = (
  * Convert the parsed Style Dictionary token file into the per-color
  * {@link ColorInput} map `expandTheme` consumes. Applies the skip/map/ignore
  * rules; collects every per-color problem into one error. Throws on structural
- * failure (not an object, missing `db`, no colors after filtering).
+ * failure (not an object, missing `colors`, no colors after filtering).
  */
 const convertTokens = (data: unknown): Record<ColorName, ColorInput> => {
 	if (!isRecord(data)) {
 		throw new ThemeValidationError('Theme is not a valid object.');
 	}
 
-	const db = data[DB_PREFIX];
-	if (!isRecord(db)) {
+	const colorGroup = data[COLORS_GROUP];
+	if (!isRecord(colorGroup)) {
 		throw new ThemeValidationError(
-			`Theme is missing the required "${DB_PREFIX}" token group.`
+			`Theme is missing the required "${COLORS_GROUP}" token group.`
 		);
 	}
 
 	const colors = {} as Record<string, ColorInput>;
 	const problems: string[] = [];
 
-	for (const [rawName, entry] of Object.entries(db)) {
+	for (const [rawName, entry] of Object.entries(colorGroup)) {
 		if (!isRecord(entry)) {
 			continue;
 		}
@@ -251,7 +251,7 @@ const convertTokens = (data: unknown): Record<ColorName, ColorInput> => {
 
 	if (Object.keys(colors).length === 0) {
 		throw new ThemeValidationError(
-			`Theme defines no concrete colors under "${DB_PREFIX}".`
+			`Theme defines no concrete colors under "${COLORS_GROUP}".`
 		);
 	}
 
@@ -262,11 +262,11 @@ const convertTokens = (data: unknown): Record<ColorName, ColorInput> => {
  * @public Load and validate a Style Dictionary (DTCG) theme token file from
  * disk, returning the expanded {@link Theme} the generator consumes.
  *
- * The file carries colors under the fixed `db` prefix (`theme.tokens.json`).
+ * The file carries colors under the fixed `colors` group (`theme.tokens.json`).
  * Alias colors (reference `$value`s) and non-color groups are skipped, `neutral`
  * is mapped to `grey`. Rejects with a {@link ThemeValidationError} when the file
- * cannot be read, does not parse as JSON, is missing the `db` group, defines no
- * concrete colors, or any color is missing / malforms its palette steps,
+ * cannot be read, does not parse as JSON, is missing the `colors` group, defines
+ * no concrete colors, or any color is missing / malforms its palette steps,
  * `origin`, or `on.origin`. A partial theme is never returned.
  */
 export const loadTheme = async (path: string): Promise<Theme> => {

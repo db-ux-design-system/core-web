@@ -12,7 +12,28 @@
  * in place of the module-local ones without any shape drift.
  */
 
-import type { Assign, LooseAutocomplete } from '@db-ux/core-foundations';
+/*
+ * These two generic helpers are intentionally inlined here (identical to the
+ * copies in `@db-ux/core-foundations`) instead of imported from
+ * `@db-ux/core-foundations`. theme-tools is built BEFORE foundations in the
+ * monorepo (foundations' theme-CSS generation depends on theme-tools' build
+ * output), so a build-time type import from foundations would create a circular
+ * build order. They are tiny, stable type aliases, so duplicating them is
+ * cheaper than coupling the two package builds.
+ */
+
+/**
+ * Provide default values for a string literal type but allow any other string
+ * as well.
+ * @example type Keys = "DEFAULT" | LooseAutocomplete
+ */
+type LooseAutocomplete = string & Record<never, never>;
+
+/**
+ * Assign property types from right to left. Think `Object.assign` for types.
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+ */
+type Assign<Target, Source> = Omit<Target, keyof Source> & Source;
 
 /**
  * @public A `[light, dark]` value pair. Reused from
