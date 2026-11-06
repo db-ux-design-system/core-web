@@ -202,6 +202,12 @@ $db-breakpoint-xl: helpers.px-to-em($db-screen-size-xl);
  * through `--db-tablet-breakpoint` (768px) / `--db-desktop-breakpoint` (1024px).
  * `*-min` matches at/above the breakpoint, `*-max` strictly below (mirrors the
  * old `screen($size, "min"|"max")` API); see `set-layout-breakpoint-inline-sizes`.
+ *
+ * Override on an ANCESTOR of the component root, not on the root itself: a
+ * component (e.g. `.db-shell`) wraps its own layout rules in these mixins, and a
+ * style query reads an ancestor, never the element it styles. An override on the
+ * root would reach its descendants but not its own grid, splitting the layout
+ * (see the DBShell custom-breakpoint showcase, which sets it on the wrapper).
  */
 @mixin screen-tablet-min() {
 	/* stylelint-disable-next-line at-rule-no-unknown */

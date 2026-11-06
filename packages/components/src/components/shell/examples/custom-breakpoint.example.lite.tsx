@@ -24,12 +24,15 @@ export default function ShellCustomBreakpoint() {
 			    every viewport (the switch only happens at >= 2000px). This is the
 			    migration path for consumers who relied on the old, lower switch
 			    point or who want a "force mobile" behavior. The breakpoint is set
-			    with the `--db-desktop-breakpoint` custom property; the showcase
-			    stylesheet applies it to this shell via its data-test-id. */}
-			<div style={{ width: '100%', display: 'block' }}>
-				<DBShell
-					data-test-id="shell-custom-breakpoint-force-mobile"
-					controlPanelDesktopPosition="top">
+			    with the `--db-desktop-breakpoint` custom property on an ANCESTOR
+			    of the shell (here the wrapping div, via its data-test-id in the
+			    showcase stylesheet): a container style query reads an ancestor,
+			    never the element it styles, so the override must not sit on
+			    `.db-shell` itself or the shell's own grid would ignore it. */}
+			<div
+				data-test-id="shell-custom-breakpoint-force-mobile"
+				style={{ width: '100%', display: 'block' }}>
+				<DBShell controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
 						actions1={
@@ -110,10 +113,10 @@ export default function ShellCustomBreakpoint() {
 			{/* A small breakpoint switches to the desktop layout very early (at
 			    >= 400px), so the shell shows its desktop control panel on almost
 			    every viewport. */}
-			<div style={{ width: '100%', display: 'block' }}>
-				<DBShell
-					data-test-id="shell-custom-breakpoint-force-desktop"
-					controlPanelDesktopPosition="top">
+			<div
+				data-test-id="shell-custom-breakpoint-force-desktop"
+				style={{ width: '100%', display: 'block' }}>
+				<DBShell controlPanelDesktopPosition="top">
 					<DBControlPanelDesktop
 						brand={<DBControlPanelBrand data-logo="db-systel" />}
 						actions1={

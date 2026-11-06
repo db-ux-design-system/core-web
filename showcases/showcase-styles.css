@@ -328,14 +328,29 @@ app-nav-item {
    `--db-desktop-breakpoint` so the two example shells force a layout regardless
    of the showcase viewport. A large value keeps the shell in its mobile layout
    (the viewport never reaches it); a small value switches it to desktop almost
-   immediately. Set here rather than inline because a CSS custom-property key is
-   not valid in a React inline-style literal. */
-.db-shell {
-	&[data-test-id="shell-custom-breakpoint-force-mobile"] {
-		--db-desktop-breakpoint: 2000px;
-	}
+   immediately. The override sits on the wrapping element, an ANCESTOR of the
+   shell, not on `.db-shell` itself: a container style query reads an ancestor,
+   never the element it styles, so an override on `.db-shell` would be ignored by
+   the shell's own grid while still affecting its descendants. A scope that
+   overrides the breakpoint between `:root` and the component must also re-derive
+   the `-min`/`-max` helpers (the same `min()`/`max()` the components set on
+   themselves), otherwise those helpers keep inheriting the `:root` value and the
+   self-targeting grid query compares against the wrong breakpoint. Set here
+   rather than inline because a CSS custom-property key is not valid in a React
+   inline-style literal. */
+[data-test-id="shell-custom-breakpoint-force-mobile"],
+[data-test-id="shell-custom-breakpoint-force-desktop"] {
+	--db-desktop-breakpoint-min: min(var(--db-desktop-breakpoint), 100vi);
+	--db-desktop-breakpoint-max: max(
+		calc(var(--db-desktop-breakpoint) - 1px),
+		100vi
+	);
+}
 
-	&[data-test-id="shell-custom-breakpoint-force-desktop"] {
-		--db-desktop-breakpoint: 400px;
-	}
+[data-test-id="shell-custom-breakpoint-force-mobile"] {
+	--db-desktop-breakpoint: 2000px;
+}
+
+[data-test-id="shell-custom-breakpoint-force-desktop"] {
+	--db-desktop-breakpoint: 400px;
 }
