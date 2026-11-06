@@ -527,6 +527,13 @@ const buildOverviewMdx = (
 		}))
 	);
 
+	// Components that need JavaScript (`html: false` in overrides.json) have no
+	// plain HTML version: the HTML Storybook shows a note instead of examples.
+	const isNoHtml = fw.api === 'html' && meta.html === false;
+	if (isNoHtml) {
+		groups.length = 0;
+	}
+
 	const blocks = [
 		...(fw.api === 'argtypes' ? ['ArgTypes'] : []),
 		'Canvas',
@@ -589,7 +596,7 @@ const buildOverviewMdx = (
 		meta.summary,
 		statusLine(meta),
 		// The names of the parts, so the Storybook search finds this page.
-		meta.parts.length > 0
+		meta.parts.length > 0 && !isNoHtml
 			? `**Parts:** ${meta.parts.map((part) => part.title).join(', ')} – documented on this page.`
 			: '',
 		buildGuidelines(meta),
@@ -599,9 +606,11 @@ const buildOverviewMdx = (
 			? `Set up your project as described in [${fw.setupTitle}](${PLATFORM}/learn/${fw.setup}), plus:\n\n<Source language="shell" dark code="pnpm add ${meta.requires.join(' ')}" />`
 			: `Setup: [${fw.setupTitle}](${PLATFORM}/learn/${fw.setup}) on the Design System Platform.`,
 		'## Usage',
-		fw.api === 'argtypes'
-			? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
-			: 'Open **Show code** below a preview for the markup you can copy, including what it needs to load.'
+		isNoHtml
+			? `${meta.title} needs JavaScript and is not available as plain HTML and CSS. In a project without a framework, use the Web Component \`db-${name}\`: [${meta.title} for Web Components](../stencil-storybook/?path=/docs/components-${meta.title.toLowerCase()}-overview--docs).`
+			: fw.api === 'argtypes'
+				? 'Open **Show code** below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.'
+				: 'Open **Show code** below a preview for the markup you can copy, including what it needs to load.'
 	];
 	// The examples are the usage: "Show code" contains the imports as well
 	// (see storybooks/_shared/storybook-config/source-imports.ts), so the
@@ -623,10 +632,25 @@ const buildOverviewMdx = (
 	}
 
 	sections.push(
-		fw.api === 'argtypes' ? '## Properties' : '## Attributes',
-		// A family (DBHeading) lists every member under its own name.
-		buildApi(name, meta.component, fw, meta.component !== meta.title),
-		...meta.parts.map((part) => buildApi(part.name, part.title, fw, true))
+		isNoHtml
+			? ''
+			: fw.api === 'argtypes'
+				? '## Properties'
+				: '## Attributes',
+		...(isNoHtml
+			? []
+			: [
+					// A family (DBHeading) lists every member under its own name.
+					buildApi(
+						name,
+						meta.component,
+						fw,
+						meta.component !== meta.title
+					),
+					...meta.parts.map((part) =>
+						buildApi(part.name, part.title, fw, true)
+					)
+				])
 	);
 	if (isAccessibility) {
 		sections.push(

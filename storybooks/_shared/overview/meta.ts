@@ -42,6 +42,8 @@ export type ComponentMeta = {
 	 * platform. Shown as a note on the overview; most components have none.
 	 */
 	requires?: string[];
+	/** `false`: needs JavaScript, no plain HTML version (overrides.json). */
+	html?: boolean;
 	/** Parts documented on this page, e.g. DBTabItem on the DBTabs page. */
 	parts: Array<{ name: string; title: string }>;
 };
@@ -54,6 +56,8 @@ export type Structure = {
 };
 
 type Override = {
+	/** `false` for components that need JavaScript (custom-select). */
+	html?: boolean;
 	/** Main component of a part, when the name prefix rule does not apply. */
 	partOf?: string;
 	/** Path below `documentation/components/`, `false` for no platform page. */
@@ -277,6 +281,7 @@ export const getComponentMeta = (name: string): ComponentMeta => {
 			status: REVIEW_STATUS[review.status] ?? review.status.toLowerCase(),
 			date: review.date
 		},
-		requires: override.requires
+		requires: override.requires,
+		html: override.html
 	};
 };

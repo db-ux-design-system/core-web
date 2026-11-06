@@ -111,8 +111,18 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 			for (const section of ['Usage', 'Resources']) {
 				expect(sections, `section ${section}`).toContain(section);
 			}
+			// Components without a plain HTML version (`html: false`) show a
+			// note in Usage instead of examples and attributes.
+			const isNoHtml =
+				(await page
+					.locator('.sbdocs-content p', {
+						hasText:
+							'needs JavaScript and is not available as plain HTML'
+					})
+					.count()) > 0;
 			expect(
-				sections.includes('Properties') ||
+				isNoHtml ||
+					sections.includes('Properties') ||
 					sections.includes('Attributes'),
 				'Properties or Attributes section'
 			).toBeTruthy();
