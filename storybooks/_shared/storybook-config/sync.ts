@@ -6,7 +6,8 @@
  *
  * - `manager-head.html`: favicon and fonts (manager-head.html of this folder)
  *   plus manager.css with the `--db-sb-*` values from theme-values.json
- * - `preview-head.html`: docs.css
+ * - `preview-head.html`: docs.css plus docs-anchor.js (deep links to a
+ *   section of a docs page)
  *
  * Both CSS files are CSS escape hatches, which Storybook documents in these
  * two head files. The composition Storybook gets the theme and head files
@@ -84,10 +85,13 @@ const heads = {
 	),
 	'preview-head.html': await formatHtml(
 		[
-			generatedNote('docs.css'),
+			generatedNote('docs.css and docs-anchor.js'),
 			'<style data-db-theme="docs">',
 			read('docs.css').trimEnd(),
-			'</style>'
+			'</style>',
+			'<script data-db-theme="docs-anchor">',
+			read('docs-anchor.js').trimEnd(),
+			'</script>'
 		].join('\n')
 	)
 };

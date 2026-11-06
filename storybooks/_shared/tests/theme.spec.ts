@@ -108,6 +108,34 @@ test.describe('manager.css', () => {
 	});
 });
 
+test.describe('docs-anchor.js', () => {
+	// The platform links parts to their section, e.g. DBTabItem on DBTabs.
+	for (const storybook of [
+		'react-storybook',
+		'composition-storybook'
+	] as const) {
+		test(`deep link to a part (${storybook})`, async ({ page }) => {
+			const id =
+				storybook === 'composition-storybook'
+					? 'react_components-dbtabs-overview--docs'
+					: 'components-dbtabs-overview--docs';
+			await openManager(page, storybook, `/docs/${id}#dbtabitem`);
+			// Refs render in an iframe of their own Storybook.
+			const heading = page
+				.frameLocator(
+					storybook === 'composition-storybook'
+						? 'iframe[src*="react-storybook/iframe.html"]'
+						: '#storybook-preview-iframe'
+				)
+				.locator('#dbtabitem');
+			await expect(heading).toBeAttached({ timeout: 30_000 });
+			// Wait until the examples above have rendered.
+			await page.waitForTimeout(5000);
+			await expect(heading).toBeInViewport();
+		});
+	}
+});
+
 test.describe('docs.css', () => {
 	test('links and table of contents', async ({ page }) => {
 		await openDocs(page, 'react-storybook', OVERVIEW);
