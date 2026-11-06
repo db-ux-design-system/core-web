@@ -7,8 +7,8 @@
  * 1. to a Foundations page of this Storybook,
  * 2. to the Design System Platform, where the content lives there (guides,
  *    icons, setup),
- * 3. otherwise to the Patternhub of the latest release – a temporary target
- *    until the content has moved (interactive examples).
+ * 3. otherwise to the Patternhub of the latest release (content that has
+ *    not moved).
  *
  * Absolute links to the unreleased Patternhub (`review/main`) point to the
  * latest release instead.
@@ -39,6 +39,10 @@ const ROUTES: Record<string, string> = {
 
 for (const page of PAGES) {
 	ROUTES[page.route] = storybookPath(page.id);
+	// The Patternhub example pages are the "Examples" of the page.
+	for (const route of page.examples?.routes ?? []) {
+		ROUTES[route] = `${storybookPath(page.id)}#examples`;
+	}
 }
 
 const resolveLink = (href: string, route: string): string => {

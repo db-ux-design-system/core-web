@@ -73,7 +73,10 @@ const checkInternalLinks = async (
 			links.map((link) => link.getAttribute('href') ?? '')
 		);
 	for (const target of targets) {
-		const id = target.replace(/^\?path=\/(docs|story)\//, '');
+		// A section of the page (`…--docs#examples`) is checked by its id.
+		const id = target
+			.replace(/^\?path=\/(docs|story)\//, '')
+			.replace(/#.*$/, '');
 		expect(ids.has(id), `${storybook}: link to ${id}`).toBeTruthy();
 	}
 };

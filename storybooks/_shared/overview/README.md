@@ -58,5 +58,5 @@ In CI the tests run in `.github/workflows/02-e2e-storybooks.yml`.
 
 `../foundations/` generates the Markdown pages of the composition Storybook:
 
-- `generate-foundations.ts` writes the Foundations pages (`packages/foundations/docs/*.md`). The guides of the Patternhub ("Misc": router usage, custom components, testing, validation, backdrop) are Learn articles on the Design System Platform. The list is `pages.ts`. Run it when a page is added or renamed; content changes show up without it.
+- `generate-foundations.ts` writes the Foundations pages (`packages/foundations/docs/*.md`). Colors, Densities, Font Sizes and Variables end with interactive "Examples" (formerly the Patternhub example pages) from `_storybook/src/foundations-examples/*.stories.tsx`, one canvas per story with its JSDoc comment as description. The guides of the Patternhub ("Misc": router usage, custom components, testing, validation, backdrop) are Learn articles on the Design System Platform. The list is `pages.ts`. Run it when a page is added or renamed; content changes show up without it.
 - `generate-test-table.ts` writes `Foundations/Test Table` from the test files in `showcases/` and the accessibility reviews. It runs on every build and start of the composition Storybook, the output is git-ignored.

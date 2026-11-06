@@ -19,12 +19,25 @@ export type DocsPage = {
 	route: string;
 	platform?: { label: string; url: string; text: string };
 	learn?: { title: string; slug: string };
+	/**
+	 * Interactive examples (formerly the Patternhub example pages): a stories
+	 * file in `_storybook/src/foundations-examples/` and the Patternhub routes
+	 * it replaces. Shown as "Examples" at the end of the page.
+	 */
+	examples?: { file: string; routes: string[] };
 };
 
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
 
 const FOUNDATIONS: DocsPage[] = [
 	{
+		examples: {
+			file: 'colors',
+			routes: [
+				'/foundations/colors/color-schemes',
+				'/foundations/colors/color-modes'
+			]
+		},
 		id: 'colors',
 		learn: {
 			title: 'Apply colors and Light Mode or Dark Mode',
@@ -40,6 +53,10 @@ const FOUNDATIONS: DocsPage[] = [
 		}
 	},
 	{
+		examples: {
+			file: 'densities',
+			routes: ['/foundations/densities/examples']
+		},
 		id: 'densities',
 		learn: { title: 'Apply a density', slug: 'density' },
 		title: 'Densities',
@@ -47,6 +64,10 @@ const FOUNDATIONS: DocsPage[] = [
 		route: '/foundations/densities/readme'
 	},
 	{
+		examples: {
+			file: 'font-sizes',
+			routes: ['/foundations/font-sizes/overview']
+		},
 		id: 'font-sizes',
 		learn: { title: 'Apply font sizes', slug: 'typography' },
 		title: 'Font Sizes',
@@ -59,6 +80,10 @@ const FOUNDATIONS: DocsPage[] = [
 		}
 	},
 	{
+		examples: {
+			file: 'variables',
+			routes: ['/foundations/variables/examples']
+		},
 		id: 'variables',
 		learn: {
 			title: 'Apply spacing and sizing',
