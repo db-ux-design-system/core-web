@@ -131,19 +131,26 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 				'Properties or Attributes section'
 			).toBeTruthy();
 
-			// Every preview renders something.
-			const empty = await page
-				.locator('.docs-story')
-				.evaluateAll(
-					(stories) =>
-						stories.filter(
-							(story) =>
-								!story.querySelector(
-									'[class^="db-"], [class*=" db-"], db-button, [data-density]'
-								) && !story.textContent?.trim()
-						).length
-				);
-			expect(empty, 'empty previews').toBe(0);
+			// Every preview renders something. Pages with many examples
+			// (DBCustomSelect: 30) render them one after the other, which takes
+			// longer than `networkidle` on a slow CI machine, so poll.
+			await expect
+				.poll(
+					async () =>
+						page
+							.locator('.docs-story')
+							.evaluateAll(
+								(stories) =>
+									stories.filter(
+										(story) =>
+											!story.querySelector(
+												'[class^="db-"], [class*=" db-"], db-button, [data-density]'
+											) && !story.textContent?.trim()
+									).length
+							),
+					{ message: 'empty previews', timeout: 30_000 }
+				)
+				.toBe(0);
 
 			// The guidelines link to the English platform page, when the
 			// component has one.
