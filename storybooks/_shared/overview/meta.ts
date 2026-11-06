@@ -28,7 +28,10 @@ const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
 export const ROLLOUT = ['button'];
 
 export type ComponentMeta = {
+	/** Page title: `DBButton`, `DBHeading` for the heading family. */
 	title: string;
+	/** Component the page attaches to (CSF `component`): `DBHeadingH1`. */
+	component: string;
 	summary?: string;
 	/** Platform guidelines page; missing when the platform has none. */
 	platformUrl?: string;
@@ -138,6 +141,29 @@ const getTitle = (name: string): string => {
 	return `DB${pascal(name)}`;
 };
 
+/**
+ * Exported components of a folder: `DBButton`; for families without
+ * `<name>.lite.tsx` all of them (`DBHeadingH1` … `DBCustomHeading`,
+ * `DBControlPanelActions1`, `DBControlPanelActions2`). The first one is
+ * `<name>.lite.tsx`, then the files starting with the name, then the rest.
+ */
+const getComponents = (name: string): string[] => {
+	const dir = join(ROOT, 'packages/components/src/components', name);
+	const rank = (file: string) =>
+		file === `${name}.lite.tsx` ? 0 : file.startsWith(`${name}-`) ? 1 : 2;
+	const titles = readdirSync(dir)
+		.filter((file) => file.endsWith('.lite.tsx'))
+		.toSorted((a, b) => rank(a) - rank(b) || a.localeCompare(b))
+		.map(
+			(file) =>
+				/export default function (DB\w+)/.exec(
+					read(join(COMPONENTS_DIR, name, file))
+				)?.[1]
+		)
+		.filter((title): title is string => Boolean(title));
+	return titles.length > 0 ? titles : [getTitle(name)];
+};
+
 const COMPONENTS_DIR = 'packages/components/src/components';
 
 /**
@@ -229,14 +255,20 @@ export const getComponentMeta = (name: string): ComponentMeta => {
 		override.platformPath === false
 			? undefined
 			: (override.platformUrl ?? platform?.url ?? getPlatformUrl(name));
+	const [component, ...siblings] = getComponents(name);
 	return {
 		title: getTitle(name),
+		component,
 		summary: platform?.description,
 		platformUrl,
-		parts: (getStructure().parts[name] ?? []).map((part) => ({
-			name: part,
-			title: getTitle(part)
-		})),
+		// Parts, plus the other components of a family (DBHeadingH2 … on the
+		// DBHeading page). A part folder can hold several components.
+		parts: [
+			...siblings.map((title) => ({ name, title })),
+			...(getStructure().parts[name] ?? []).flatMap((part) =>
+				getComponents(part).map((title) => ({ name: part, title }))
+			)
+		],
 		status:
 			platform?.status && STATUSES.has(platform.status)
 				? platform.status

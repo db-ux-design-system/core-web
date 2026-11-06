@@ -151,6 +151,8 @@ const escapeCell = (value: string): string =>
 
 type ExampleGroup = {
 	file: string;
+	/** Component segment of the story title, e.g. `DBCustomHeading`. */
+	componentTitle: string;
 	title: string;
 	id: string;
 	stories: string[];
@@ -168,15 +170,29 @@ const getExamples = (name: string, storybook: string): ExampleGroup[] => {
 		.filter((file) => /\.example\.stories\.tsx?$/.test(file))
 		.map((file) => {
 			const source = read(join(dir, file));
-			const title = /title:\s*'[^']*\/([^'/]+)'/.exec(source)?.[1];
+			// `Components/DBHeading/Default`: component and group title.
+			const [, componentTitle, title] =
+				/title:\s*'[^']*\/([^'/]+)\/([^'/]+)'/.exec(source) ?? [];
 			if (!title) {
 				throw new Error(`[overviews] no title in ${file}`);
 			}
 			const stories = [
 				...source.matchAll(/^export const (\w+): Story/gm)
 			].map((match) => match[1]);
-			const id = title.toLowerCase().replaceAll(/\s+/g, '-');
-			return { file: file.replace(/\.tsx?$/, ''), title, id, stories };
+			// Same rule as Storybook's `sanitize` for story ids, so the links
+			// "Open the … examples" match (e.g. "Example - Length" ->
+			// "example-length").
+			const id = title
+				.toLowerCase()
+				.replaceAll(/[^\da-z]+/g, '-')
+				.replaceAll(/^-+|-+$/g, '');
+			return {
+				file: file.replace(/\.tsx?$/, ''),
+				componentTitle,
+				title,
+				id,
+				stories
+			};
 		})
 		.toSorted((a, b) =>
 			a.id === 'variant'
@@ -236,9 +252,11 @@ const SKIPPED_ATTRIBUTES = new Set(['id', 'prop-overrides', 'classname']);
  * HTML attributes of the root element, read from the component source:
  * `data-*` attributes and native attributes, each with the props that set it.
  */
-const getHtmlAttributes = (name: string, webTypes: WebTypesElement): string => {
-	const file = join(ROOT, COMPONENTS, name, `${name}.lite.tsx`);
-	const source = existsSync(file) ? read(file) : '';
+const getHtmlAttributes = (
+	file: string | undefined,
+	webTypes: WebTypesElement
+): string => {
+	const source = file ? read(file) : '';
 	const jsx = source.slice(source.lastIndexOf('return ('));
 	const rootMatch = /<([a-z][\da-z]*)\s([\s\S]*?)>\s*\n/.exec(jsx);
 	const rootTag = rootMatch?.[1];
@@ -318,8 +336,14 @@ const getWebComponentAttributes = (webTypes: WebTypesElement): string => {
 const docsPath = (name: string, file: string) =>
 	`packages/components/src/components/${name}/docs/${file}.md`;
 
-const hasDoc = (name: string, file: string) =>
-	existsSync(join(ROOT, docsPath(name, file)));
+/**
+ * Exact file name, also on case-insensitive file systems (macOS): the build
+ * on Linux and webpack's CaseSensitivePathsPlugin fail on `MIgration.md`.
+ */
+const hasDoc = (name: string, file: string) => {
+	const dir = join(ROOT, COMPONENTS, name, 'docs');
+	return existsSync(dir) && readdirSync(dir).includes(`${file}.md`);
+};
 
 /**
  * "Guidelines" section with a text link to the English platform page of the
@@ -350,17 +374,41 @@ const statusLine = (meta: ComponentMeta): string => {
 		.join(' · ');
 };
 
-/** Root element of the JSX of `<name>.lite.tsx`, e.g. `button`, `details`. */
-const getRootTag = (name: string): string | undefined => {
-	const file = join(ROOT, COMPONENTS, name, `${name}.lite.tsx`);
-	if (!existsSync(file)) {
-		return undefined;
+/**
+ * `.lite.tsx` of a component in its folder: `button/button.lite.tsx`, and for
+ * families `heading/heading-h2.lite.tsx` for `DBHeadingH2`.
+ */
+const getLiteFile = (folder: string, title: string): string | undefined => {
+	const dir = join(ROOT, COMPONENTS, folder);
+	return readdirSync(dir)
+		.filter((file) => file.endsWith('.lite.tsx'))
+		.map((file) => join(dir, file))
+		.find((file) =>
+			read(file).includes(`export default function ${title}(`)
+		);
+};
+
+/** Custom element name without `db-`: `DBHeadingH2` -> `heading-h-2`. */
+const toSlug = (title: string): string =>
+	title
+		.replace(/^DB/, '')
+		.replaceAll(/([\da-z])([A-Z])/g, '$1-$2')
+		.replaceAll(/([a-z])(\d)/gi, '$1-$2')
+		.toLowerCase();
+
+/** Root element and class of the JSX of a `.lite.tsx`. */
+const getRoot = (
+	file: string | undefined
+): { tag?: string; className?: string } => {
+	if (!file) {
+		return {};
 	}
 
-	const source = read(file);
-	return /<([a-z][\da-z]*)[\s>]/.exec(
-		source.slice(source.lastIndexOf('return ('))
-	)?.[1];
+	const jsx = read(file).slice(read(file).lastIndexOf('return ('));
+	return {
+		tag: /<([a-z][\da-z]*)[\s>]/.exec(jsx)?.[1],
+		className: /cls\(\s*['"](db-[\w-]+)['"]/.exec(jsx)?.[1]
+	};
 };
 
 /** Example groups of a component in a Storybook, empty when it has none. */
@@ -388,7 +436,7 @@ const NO_ATTRIBUTES =
 
 /** Properties (React, Angular, Vue) or attributes (HTML, Web Components). */
 const buildApi = (
-	name: string,
+	folder: string,
 	title: string,
 	fw: Framework,
 	isPart: boolean
@@ -405,7 +453,7 @@ const buildApi = (
 			.join('\n\n');
 	}
 
-	const webTypes = findWebTypes(name);
+	const webTypes = findWebTypes(toSlug(title));
 	if (!webTypes) {
 		return [heading, NO_ATTRIBUTES].filter(Boolean).join('\n\n');
 	}
@@ -413,11 +461,12 @@ const buildApi = (
 	// MDX here has no GFM tables, the Markdown block has. The table is a JSON
 	// string, so no character in it needs MDX escaping.
 	if (fw.api === 'html') {
-		const tag = getRootTag(name);
+		const file = getLiteFile(folder, title);
+		const { tag, className } = getRoot(file);
 		const intro = tag
-			? `In HTML ${isPart ? title : 'the component'} is a \`<${tag}>\` with the class \`db-${name}\`. Options are \`data-\` attributes next to the native attributes of the element.`
+			? `In HTML ${isPart ? title : 'the component'} is a \`<${tag}>\`${className ? ` with the class \`${className}\`` : ''}. Options are \`data-\` attributes next to the native attributes of the element.`
 			: '';
-		const table = getHtmlAttributes(name, webTypes);
+		const table = getHtmlAttributes(file, webTypes);
 		return [
 			heading,
 			intro,
@@ -453,19 +502,28 @@ const buildOverviewMdx = (
 
 	// The examples of the component, then those of its parts (DBTabItem on the
 	// DBTabs page). `prefix` keeps the import names unique.
+	// Folders of the parts, once each (a folder can hold several components,
+	// and the siblings of a family live in the folder of the page itself).
+	const partFolders = [
+		...new Set(meta.parts.map((part) => part.name))
+	].filter((folder) => folder !== name);
 	const groups = [
-		{ name, title: meta.title, prefix: '', isPart: false },
-		...meta.parts.map((part) => ({
-			name: part.name,
-			title: part.title,
-			prefix: pascal(part.name),
+		{ name, prefix: '', isPart: false },
+		...partFolders.map((folder) => ({
+			name: folder,
+			prefix: pascal(folder),
 			isPart: true
 		}))
 	].flatMap((component) =>
 		getExampleGroups(component.name, fw).map((group) => ({
 			...group,
 			component,
-			importName: `${component.prefix}${pascal(group.id)}Stories`
+			// From the file name: titles are not unique (shell has two "Position").
+			importName: `${component.prefix}${pascal(
+				group.file
+					.replace(/\.example\.stories$/, '')
+					.replaceAll(/[^\da-z]+/gi, '-')
+			)}Stories`
 		}))
 	);
 
@@ -481,9 +539,16 @@ const buildOverviewMdx = (
 		`import { ${blocks.join(', ')} } from "@storybook/addon-docs/blocks";`,
 		`import * as OverviewStories from "./${name}.overview.stories";`,
 		// The properties tables of the parts read the component itself.
-		...(fw.api === 'argtypes' && meta.parts.length > 0
+		// A family (DBHeading) shows its first member under its name too.
+		...(fw.api === 'argtypes' &&
+		(meta.parts.length > 0 || meta.component !== meta.title)
 			? [
-					`import { ${meta.parts.map((part) => part.title).join(', ')} } from "@components";`
+					`import { ${[
+						...(meta.component === meta.title
+							? []
+							: [meta.component]),
+						...meta.parts.map((part) => part.title)
+					].join(', ')} } from "@components";`
 				]
 			: []),
 		...groups.map(
@@ -502,7 +567,13 @@ const buildOverviewMdx = (
 	// Migration of the component and of its parts (each part below its name).
 	const migrations = [
 		{ name, title: meta.title, isPart: false },
-		...meta.parts.map((part) => ({ ...part, isPart: true }))
+		...partFolders.map((folder) => ({
+			name: folder,
+			title:
+				meta.parts.find((part) => part.name === folder)?.title ??
+				folder,
+			isPart: true
+		}))
 	].filter((component) => hasDoc(component.name, 'Migration'));
 	for (const component of migrations) {
 		imports.push(
@@ -537,21 +608,24 @@ const buildOverviewMdx = (
 	// handwritten docs/<Framework>.md is not shown here. It stays for npm, the
 	// MCP server and the Patternhub.
 	for (const group of groups) {
-		const title = group.component.isPart
-			? `${group.component.title}: ${group.title}`
-			: group.title;
+		// Examples of a part or of another family member carry its name.
+		const title =
+			group.componentTitle === meta.title
+				? group.title
+				: `${group.componentTitle}: ${group.title}`;
 		sections.push(
 			`### ${title}`,
 			group.stories
 				.map((story) => `<Canvas of={${group.importName}.${story}} />`)
 				.join('\n'),
-			`[Open the ${title} examples](?path=/docs/components-${group.component.title.toLowerCase()}-${group.id}--docs)`
+			`[Open the ${title} examples](?path=/docs/components-${group.componentTitle.toLowerCase()}-${group.id}--docs)`
 		);
 	}
 
 	sections.push(
 		fw.api === 'argtypes' ? '## Properties' : '## Attributes',
-		buildApi(name, meta.title, fw, false),
+		// A family (DBHeading) lists every member under its own name.
+		buildApi(name, meta.component, fw, meta.component !== meta.title),
 		...meta.parts.map((part) => buildApi(part.name, part.title, fw, true))
 	);
 	if (isAccessibility) {
@@ -611,9 +685,9 @@ const buildStories = (
 	fw: Framework,
 	firstExample: string
 ): string => {
-	const component = meta.title;
-	const title = `Components/${component}/Overview`;
-	const tag = `db-${name}`;
+	const { component } = meta;
+	const title = `Components/${meta.title}/Overview`;
+	const tag = `db-${toSlug(component)}`;
 	const argTypesImport = `// Generated example stories, reused for the argTypes.
 import FirstExample from '../../components/${name}/examples/${firstExample}';`;
 	switch (fw.key) {
