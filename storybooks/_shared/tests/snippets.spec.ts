@@ -159,6 +159,19 @@ const collectSnippets = async (page: Page): Promise<string[]> => {
 		await toggles.nth(i).click();
 	}
 	await expect(code).toHaveCount(before + count);
+	// The HTML Storybook captures the markup after the preview rendered and
+	// shows a placeholder until then; wait until every snippet has it.
+	await expect
+		.poll(
+			async () => {
+				const all = await code.allInnerTexts();
+				return all.filter((text) =>
+					text.includes('HTML output not available')
+				).length;
+			},
+			{ timeout: 15_000 }
+		)
+		.toBe(0);
 	const texts = await code.allInnerTexts();
 	return texts.slice(before);
 };
@@ -191,6 +204,19 @@ for (const check of CHECKS) {
 		for (const id of ids) {
 			await openDocs(page, check.storybook, id);
 			const snippets = await collectSnippets(page);
+			// Components without a plain HTML version (`html: false`) show a
+			// note instead of examples, so their HTML page has no snippets.
+			const isNoHtml =
+				(await page
+					.locator('.sbdocs-content p', {
+						hasText:
+							'needs JavaScript and is not available as plain HTML'
+					})
+					.count()) > 0;
+			if (isNoHtml) {
+				continue;
+			}
+
 			expect(snippets.length, `${id}: snippets`).toBeGreaterThan(0);
 			for (const [index, snippet] of snippets.entries()) {
 				expect(
