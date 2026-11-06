@@ -9,6 +9,31 @@ const { toPascalCase, componentNameToTag } = require('../utils.cjs');
  * Transforms Mitosis components into framework-specific Storybook stories
  * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
+/**
+ * Placeholder image of the Storybooks (`public/assets/images`), relative to
+ * the Storybook base path.
+ */
+const PLACEHOLDER_IMAGE = 'assets/images/placeholder.jpg';
+
+/**
+ * Examples like DBBrand and DBNotification get their image path from the
+ * state method `getImage()`, which points into the showcases. The stories do
+ * not contain the state, so the call throws ("getImage is not defined"). It is
+ * replaced with the placeholder image of the Storybooks, for every target.
+ */
+const replaceShowcaseImage = (code) =>
+	code
+		// React `src={getImage()}`, Vue `:src="getImage()"`, Angular
+		// `[attr.src]="getImage()"` / `[src]="getImage()"`
+		.replaceAll(
+			/(?::|\[attr\.|\[)?src\]?=(?:\{|")(?:state\.|this\.)?getImage\(\)(?:\}|")/g,
+			`src="${PLACEHOLDER_IMAGE}"`
+		)
+		.replaceAll(
+			/(?:state\.|this\.)?getImage\(\)/g,
+			`'${PLACEHOLDER_IMAGE}'`
+		);
+
 module.exports = () => ({
 	name: 'storybook-plugin',
 	code: {
@@ -82,7 +107,7 @@ module.exports = () => ({
 					: `import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`;
 
 			// Generate Storybook file content
-			return [
+			return replaceShowcaseImage([
 				`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
 				target === 'angular'
 					? `import { argsToTemplate, moduleMetadata, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
@@ -114,7 +139,7 @@ module.exports = () => ({
 					code,
 					allImports
 				})
-			].join('\n');
+			].join('\n'));
 		}
 	}
 });

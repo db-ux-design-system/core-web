@@ -57,7 +57,13 @@ const preview: Preview = {
 						// Objects and arrays (e.g. `items` of DBBreadcrumb) stay a
 						// property binding with a literal; as a string they would
 						// print "[object Object]".
-						if (value !== null && typeof value === 'object') {
+						// Booleans and numbers too: `hideLogo="true"` would be a
+						// string, `[hideLogo]="true"` is the boolean.
+						if (
+							(value !== null && typeof value === 'object') ||
+							typeof value === 'boolean' ||
+							typeof value === 'number'
+						) {
 							const literal = JSON.stringify(value)
 								.replaceAll("'", String.raw`\'`)
 								.replaceAll('"', "'");
