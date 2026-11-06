@@ -2,6 +2,8 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 
 .db-pagination {
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
+
 	inline-size: fit-content;
 
 	> ul {
@@ -18,7 +20,7 @@
 		display: none;
 	}
 
-	@include screen-sizes.screen("sm", "max") {
+	@include screen-sizes.screen-tablet-max {
 		li[data-pagination-item="sibling"] {
 			display: none;
 		}

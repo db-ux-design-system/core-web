@@ -368,6 +368,46 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).not.toContain('@property --db-neutral-0');
 		});
 
+		it('should keep @property for a dynamic var only referenced by a container style query', async () => {
+			// Regression: --db-desktop-breakpoint-min is registered via
+			// @property and read only by a container style query (not a var() in
+			// a declaration), so it never lands in referencedVars. Its prefix
+			// marks it dynamic, so its registration must survive - otherwise the
+			// browser cannot compute min(var(--db-desktop-breakpoint), 100vi)
+			// and the DBShell breakpoint switch breaks.
+			const input = `
+@layer db-ux {
+	@property --db-desktop-breakpoint-min {
+		syntax: "<length-percentage>";
+		inherits: true;
+		initial-value: 100vi;
+	}
+	:root {
+		--db-desktop-breakpoint: 64em;
+	}
+	.db-shell {
+		--db-desktop-breakpoint-min: min(var(--db-desktop-breakpoint), 100vi);
+	}
+	@container style(--db-desktop-breakpoint-min: var(--db-desktop-breakpoint)) {
+		.db-shell > .db-control-panel-desktop {
+			display: grid;
+		}
+	}
+}`;
+			const output = await run(input);
+			// Registration survives
+			expect(output).toContain('@property --db-desktop-breakpoint-min');
+			// The override stays live - NOT inlined to its :root default
+			expect(output).toContain(
+				'min(var(--db-desktop-breakpoint), 100vi)'
+			);
+			expect(output).not.toContain(
+				'--db-desktop-breakpoint-min: min(64em'
+			);
+			// The container style query is untouched
+			expect(output).toContain('@container style(');
+		});
+
 		it('should keep @property rules when removeAtProperty is false', async () => {
 			const input = `
 @property --db-neutral-0 {
@@ -909,6 +949,27 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).toContain(
 				'--db-adaptive-on-bg-basic-emphasis-60-default: #c3c7cd'
 			);
+		});
+
+		it('should treat layout breakpoints as dynamic by default (never inlined)', async () => {
+			// Even though they are declared only in :root, the default
+			// dynamicPrefixes keep --db-tablet-breakpoint and
+			// --db-desktop-breakpoint live so a consumer can override a
+			// DBShell/DBControlPanel switch point at runtime.
+			const input = `
+:root {
+	--db-tablet-breakpoint: 48em;
+	--db-desktop-breakpoint: 64em;
+}
+.db-shell {
+	--db-desktop-breakpoint-min: min(var(--db-desktop-breakpoint), 100vi);
+	--db-tablet-breakpoint-max: max(calc(var(--db-tablet-breakpoint) - 1px), 100vi);
+}`;
+			const output = await run(input);
+			expect(output).toContain('var(--db-desktop-breakpoint)');
+			expect(output).toContain('var(--db-tablet-breakpoint)');
+			expect(output).not.toContain('min(64em');
+			expect(output).not.toContain('48em - 1px');
 		});
 
 		it('should allow custom dynamicPrefixes', async () => {

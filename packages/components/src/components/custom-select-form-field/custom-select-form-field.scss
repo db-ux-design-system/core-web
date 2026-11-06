@@ -14,6 +14,7 @@ $tags-z-index: 2;
 	@extend %db-overwrite-font-size-md;
 	@extend %default-interactive-component;
 	@extend %form-component-border;
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	// Trailing chevron rendered as the last flex item (::after)
 	@extend %dropdown-icon;
@@ -137,7 +138,7 @@ $tags-z-index: 2;
 
 	// Mobile: dim the page behind the open dropdown
 	details[open] > summary {
-		@include screen-sizes.screen("sm", "max") {
+		@include screen-sizes.screen-tablet-max {
 			&::before {
 				position: fixed;
 				z-index: 9998;

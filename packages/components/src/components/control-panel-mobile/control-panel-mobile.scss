@@ -10,6 +10,8 @@
 @use "../../styles/internal/indicator";
 
 .db-control-panel-mobile {
+	@include screen-sizes.set-layout-breakpoint-inline-sizes;
+
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	display: grid;
 	position: relative;
