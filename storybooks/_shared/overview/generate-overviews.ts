@@ -411,6 +411,22 @@ const getRoot = (
 	};
 };
 
+/**
+ * Examples with `storybookIgnore: true` in their `useMetadata` (see
+ * packages/components/docs/creating-examples.md), e.g. test fixtures of the
+ * showcases, stay off the overview page.
+ */
+const isStorybookIgnored = (name: string, storyFile: string): boolean => {
+	const source = join(
+		ROOT,
+		COMPONENTS,
+		name,
+		'examples',
+		`${storyFile.replace(/\.stories$/, '')}.lite.tsx`
+	);
+	return existsSync(source) && /storybookIgnore:\s*true/.test(read(source));
+};
+
 /** Example groups of a component in a Storybook, empty when it has none. */
 const getExampleGroups = (name: string, fw: Framework): ExampleGroup[] => {
 	const dir = join(
@@ -425,8 +441,10 @@ const getExampleGroups = (name: string, fw: Framework): ExampleGroup[] => {
 	}
 
 	const ext = fw.examplesFrom === 'react-storybook' ? 'tsx' : 'ts';
-	return getExamples(name, fw.examplesFrom).filter((group) =>
-		existsSync(join(dir, `${group.file}.${ext}`))
+	return getExamples(name, fw.examplesFrom).filter(
+		(group) =>
+			existsSync(join(dir, `${group.file}.${ext}`)) &&
+			!isStorybookIgnored(name, group.file)
 	);
 };
 
