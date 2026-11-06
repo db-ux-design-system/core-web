@@ -27,6 +27,10 @@ const checkAccessibility = async (page: Page) => {
 	const results = await new AxeBuilder({ page })
 		.include('.sbdocs-content')
 		.exclude('.docs-story')
+		// The rule heading-order looks at every heading of the page, including the h1–h6
+		// that the previews render (DBHeading). checkHeadings tests the order of
+		// the docs headings without the previews.
+		.disableRules(['heading-order'])
 		.analyze();
 	expect(
 		results.violations.map(

@@ -36,15 +36,20 @@ const matches = (code: string, pattern: RegExp): string[] =>
 	unique([...code.matchAll(pattern)].map((match) => match[1]));
 
 const react = (code: string): string => {
-	const components = matches(code, /<(DB[A-Za-z]+)/g);
+	// Digits too, for DBHeadingH1 … DBHeadingH6.
+	const components = matches(code, /<(DB[\dA-Za-z]+)/g);
 	if (components.length === 0) {
 		return code;
 	}
 	// Storybook prints the action spies as named empty functions.
 	const cleaned = code.replaceAll(/function \w*\(\)\s*\{\s*\}/g, '() => {}');
+	// Examples with `React.Fragment` and the like need the React import.
+	const reactImport = /\bReact\./.test(cleaned)
+		? "import React from 'react';\n"
+		: '';
 	// JSX is only valid inside an expression, so the snippet becomes a
 	// component module, like the Angular and Vue snippets.
-	return `import { ${components.join(', ')} } from '@db-ux/react-core-components';
+	return `${reactImport}import { ${components.join(', ')} } from '@db-ux/react-core-components';
 
 export const Example = () => (
 ${cleaned
@@ -56,7 +61,7 @@ ${cleaned
 };
 
 const angular = (code: string): string => {
-	const components = matches(code, /<(db-[a-z-]+)/g).map((tag) =>
+	const components = matches(code, /<(db-[\da-z-]+)/g).map((tag) =>
 		tagToClass(tag)
 	);
 	if (components.length === 0) {
@@ -99,7 +104,7 @@ const vue = (code: string): string => {
 	if (code.includes('<script')) {
 		return code;
 	}
-	const components = matches(code, /<(DB[A-Za-z]+)/g);
+	const components = matches(code, /<(DB[\dA-Za-z]+)/g);
 	if (components.length === 0) {
 		return code;
 	}
@@ -114,7 +119,7 @@ ${template}`;
 };
 
 const webComponents = (code: string): string => {
-	if (!/<db-[a-z-]+/.test(code)) {
+	if (!/<db-[\da-z-]+/.test(code)) {
 		return code;
 	}
 	return `<script type="module">
