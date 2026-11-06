@@ -148,7 +148,7 @@ const vue = (code: string): string => {
 	// the missing handler stubs at the end of that script.
 	if (code.includes('<script')) {
 		const script =
-			/<script[^>]*>([\s\S]*?)<\/script\s*>/i.exec(code)?.[1] ?? '';
+			/<script[^>]*>([\s\S]*?)<\/script[^>]*>/i.exec(code)?.[1] ?? '';
 		const stubs = vueHandlerStubs(code.replace(script, ''), script);
 		const typed = typeVueArrows(code);
 		return stubs
