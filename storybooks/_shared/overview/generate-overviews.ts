@@ -62,6 +62,8 @@ type Framework = {
 	setupTitle: string;
 	npm: string;
 	api: Api;
+	/** Handwritten usage notes in `<component>/docs/`, see buildUsageNotes. */
+	docsFile: string;
 };
 
 const FRAMEWORKS: Framework[] = [
@@ -75,7 +77,8 @@ const FRAMEWORKS: Framework[] = [
 		setup: 'react-setup',
 		setupTitle: 'Add the components to React',
 		npm: '@db-ux/react-core-components',
-		api: 'argtypes'
+		api: 'argtypes',
+		docsFile: 'React'
 	},
 	{
 		key: 'angular',
@@ -87,7 +90,8 @@ const FRAMEWORKS: Framework[] = [
 		setup: 'angular-setup',
 		setupTitle: 'Add the components to Angular',
 		npm: '@db-ux/ngx-core-components',
-		api: 'argtypes'
+		api: 'argtypes',
+		docsFile: 'Angular'
 	},
 	{
 		key: 'vue',
@@ -99,7 +103,8 @@ const FRAMEWORKS: Framework[] = [
 		setup: 'vue-setup',
 		setupTitle: 'Add the components to Vue',
 		npm: '@db-ux/v-core-components',
-		api: 'argtypes'
+		api: 'argtypes',
+		docsFile: 'Vue'
 	},
 	{
 		key: 'webcomponents',
@@ -111,7 +116,8 @@ const FRAMEWORKS: Framework[] = [
 		setup: 'web-components-setup',
 		setupTitle: 'Use the components as Web Components',
 		npm: '@db-ux/wc-core-components',
-		api: 'webcomponents'
+		api: 'webcomponents',
+		docsFile: 'WebComponents'
 	},
 	{
 		key: 'html',
@@ -124,7 +130,8 @@ const FRAMEWORKS: Framework[] = [
 		setup: 'html-css-setup',
 		setupTitle: 'Use the components with HTML and CSS',
 		npm: '@db-ux/core-components',
-		api: 'html'
+		api: 'html',
+		docsFile: 'HTML'
 	}
 ];
 
@@ -346,6 +353,128 @@ const docsPath = (name: string, file: string) =>
 const hasDoc = (name: string, file: string) => {
 	const dir = join(ROOT, COMPONENTS, name, 'docs');
 	return existsSync(dir) && readdirSync(dir).includes(`${file}.md`);
+};
+
+/** Main component of every part folder, e.g. `tab-item` -> `tabs`. */
+let mainOf: Map<string, string> | undefined;
+const getMainOf = (name: string): string => {
+	mainOf ??= new Map(
+		Object.entries(getStructure().parts).flatMap(([main, parts]) =>
+			parts.map((part) => [part, main])
+		)
+	);
+	return mainOf.get(name) ?? name;
+};
+
+/** Without code blocks, which may contain `#` comments. */
+const withoutCode = (markdown: string) =>
+	markdown.replaceAll(/^```[\s\S]+?^```/gm, '');
+
+/**
+ * Usage notes of `<component>/docs/<Framework>.md` (Patternhub "How to use"),
+ * e.g. Angular forms, the return value of DBDialog, pagination on narrow
+ * viewports. The basic snippets are left out: the examples show them with
+ * "Show code", including the imports.
+ *
+ * - drops the `## <Framework>` title and the install pointer to npm
+ * - drops "Load component" and "Use component" when they hold only code
+ * - shifts the headings so the first one has `level`
+ * - links to other components (`../text-group/properties`, Patternhub routes)
+ *   point to their overview page
+ *
+ * Returns nothing when only the basic snippets are left.
+ */
+const buildUsageNotes = (
+	name: string,
+	fw: Framework,
+	level: number
+): string | undefined => {
+	if (!hasDoc(name, fw.docsFile)) {
+		return undefined;
+	}
+
+	let markdown = readFileSync(join(ROOT, docsPath(name, fw.docsFile)), 'utf8')
+		.replace(/^## .*\n+/, '')
+		.replace(/^For general installation[^\n]*\n+/m, '');
+
+	// A section runs up to the next heading of the same or a higher level, so
+	// "Use component" with a nested "#### Adding Formatted Infotext" stays.
+	const all = markdown.split('\n');
+	const headingLevel = (() => {
+		let isInCode = false;
+		return all.map((line) => {
+			if (line.startsWith('```')) {
+				isInCode = !isInCode;
+				return 0;
+			}
+
+			return isInCode ? 0 : (/^(#{2,6}) /.exec(line)?.[1].length ?? 0);
+		});
+	})();
+	const drop = new Set<number>();
+	for (const [start, line] of all.entries()) {
+		const sectionLevel = headingLevel[start];
+		if (!sectionLevel || !/^#+ (?:Load|Use) component$/.test(line)) {
+			continue;
+		}
+
+		let end = start + 1;
+		while (
+			end < all.length &&
+			!(headingLevel[end] && headingLevel[end] <= sectionLevel)
+		) {
+			end++;
+		}
+
+		const body = all.slice(start + 1, end);
+		const hasNested = body.some(
+			(_, index) => headingLevel[start + 1 + index]
+		);
+		if (!hasNested && !withoutCode(body.join('\n')).trim()) {
+			for (let index = start; index < end; index++) {
+				drop.add(index);
+			}
+		}
+	}
+
+	markdown = all.filter((_, index) => !drop.has(index)).join('\n');
+	if (!withoutCode(markdown).replaceAll(/^#.*$/gm, '').trim()) {
+		// Only code without any explanation: the snippets of the examples.
+		return undefined;
+	}
+
+	// The `### …` sections belong to the dropped `## <Framework>` title and
+	// become `level`. Further `## …` sections of the file (Angular: "How to
+	// use with Signal Forms") are its siblings: they become `level` too, and
+	// the `### …` below them one level deeper.
+	const base = level - 3;
+	let belowH2 = 0;
+	const lines = markdown.split('\n');
+	let isInCode = false;
+	for (const [index, line] of lines.entries()) {
+		if (line.startsWith('```')) {
+			isInCode = !isInCode;
+		} else if (!isInCode && /^#{2,6} /.test(line)) {
+			const [hashes] = /^#+/.exec(line) ?? [''];
+			let target = hashes.length + belowH2 + base;
+			if (hashes.length === 2) {
+				target = 3 + base;
+				belowH2 = 1;
+			}
+
+			lines[index] =
+				`${'#'.repeat(Math.min(6, target))}${line.slice(hashes.length)}`;
+		}
+	}
+
+	return lines
+		.join('\n')
+		.replaceAll(
+			/\]\(\.\.\/([\da-z-]+)\/[^)\s]*\)/g,
+			(_, component: string) =>
+				`](?path=/docs/components-${getComponentMeta(getMainOf(component)).title.toLowerCase()}-overview--docs)`
+		)
+		.trim();
 };
 
 /**
@@ -634,9 +763,9 @@ const buildOverviewMdx = (
 				: 'Open **Show code** below a preview for the markup you can copy, including what it needs to load.'
 	];
 	// The examples are the usage: "Show code" contains the imports as well
-	// (see storybooks/_shared/storybook-config/source-imports.ts), so the
-	// handwritten docs/<Framework>.md is not shown here. It stays for npm, the
-	// MCP server and the Patternhub.
+	// (see storybooks/_shared/storybook-config/source-imports.ts). What the
+	// handwritten docs/<Framework>.md explains beyond that follows as
+	// "Usage notes" (buildUsageNotes).
 	for (const group of groups) {
 		// Examples of a part or of another family member carry its name.
 		const title =
@@ -650,6 +779,34 @@ const buildOverviewMdx = (
 				.join('\n'),
 			`[Open the ${title} examples](?path=/docs/components-${group.componentTitle.toLowerCase()}-${group.id}--docs)`
 		);
+	}
+
+	// Notes of the component, then of each part below its name. The docs file
+	// is embedded as a string: the page is generated on every build and start.
+	const notes = isNoHtml
+		? []
+		: [
+				{ name, title: undefined as string | undefined },
+				...partFolders.map((folder) => ({
+					name: folder,
+					title:
+						meta.parts.find((part) => part.name === folder)
+							?.title ?? folder
+				}))
+			].flatMap(({ name: component, title }) => {
+				const markdown = buildUsageNotes(component, fw, title ? 4 : 3);
+				return markdown
+					? [
+							// Not `### DBTabItem`: that heading and its anchor
+							// (`#dbtabitem`, linked by the platform) belong to the
+							// part's properties.
+							title ? `### Using ${title}` : '',
+							`<Markdown>{${JSON.stringify(markdown)}}</Markdown>`
+						]
+					: [];
+			});
+	if (notes.length > 0) {
+		sections.push('## Usage notes', ...notes);
 	}
 
 	sections.push(
