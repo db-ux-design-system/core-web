@@ -14,7 +14,7 @@
   "author": "DB Systel GmbH",
   "license": "Apache-2.0",
   "private": true,
-  "packageManager": "pnpm@12.16.1+sha512.091d1dee7927575661b25dab3c2ae31cafc1c54d6b71ed6a6600cf0c1cb10434a447eae14015f1b23e2e6bedeed79df94a932e2164d2832280dce3fb32f656d1",
+  "packageManager": "pnpm@12.18.0+sha512.9d7882d5dc82147ecfc4e062aa34834e0ad0296710a1837a1115ae012127d36b7109e321ac1598a1dd0a65597681b1e99917e12ed0d749eae91187943363beb3",
   "engines": {
     "node": ">= 24"
   },
@@ -89,7 +89,7 @@
     "@db-ux/db-theme": "7.2.0",
     "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.4.0",
-    "@double-great/stylelint-a11y": "3.8.2",
+    "@double-great/stylelint-a11y": "3.8.3",
     "@figma/code-connect": "2.1.0",
     "@guidepup/guidepup": "0.40.0",
     "@guidepup/playwright": "0.21.0",
@@ -104,7 +104,7 @@
     "eslint": "10.14.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-config-xo": "7.0.0",
-    "eslint-plugin-package-json": "1.12.0",
+    "eslint-plugin-package-json": "1.14.0",
     "husky": "9.1.7",
     "jscpd": "5.4.2",
     "knip": "6.44.1",
