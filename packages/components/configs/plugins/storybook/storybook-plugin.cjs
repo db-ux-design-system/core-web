@@ -107,39 +107,41 @@ module.exports = () => ({
 					: `import { ${allImports.join(',')}, type ${componentName}Props } from '@components';`;
 
 			// Generate Storybook file content
-			return replaceShowcaseImage([
-				`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
-				target === 'angular'
-					? `import { argsToTemplate, moduleMetadata, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
-					: '',
-				target === 'stencil' ? `import { html } from 'lit';` : '',
-				target === 'stencil'
-					? `import { spreadArgs, unsafeHTML } from '../../../templates/apply-web-component-args';`
-					: '',
-				componentsImport,
-				dataImports,
-				"import { fn } from 'storybook/test';",
-				getMetaObject({
-					target,
-					componentName,
-					customElementTag,
-					category,
-					name,
-					meta,
-					allImports
-				}),
-				getStories({
-					json,
-					target,
-					examples,
-					meta,
-					name,
-					componentNameLowercase,
-					componentName,
-					code,
-					allImports
-				})
-			].join('\n'));
+			return replaceShowcaseImage(
+				[
+					`import type { Meta, StoryObj } from '@storybook/${targetMapItem}';`,
+					target === 'angular'
+						? `import { argsToTemplate, moduleMetadata, componentWrapperDecorator } from '@storybook/${targetMapItem}';`
+						: '',
+					target === 'stencil' ? `import { html } from 'lit';` : '',
+					target === 'stencil'
+						? `import { spreadArgs, unsafeHTML } from '../../../templates/apply-web-component-args';`
+						: '',
+					componentsImport,
+					dataImports,
+					"import { fn } from 'storybook/test';",
+					getMetaObject({
+						target,
+						componentName,
+						customElementTag,
+						category,
+						name,
+						meta,
+						allImports
+					}),
+					getStories({
+						json,
+						target,
+						examples,
+						meta,
+						name,
+						componentNameLowercase,
+						componentName,
+						code,
+						allImports
+					})
+				].join('\n')
+			);
 		}
 	}
 });
