@@ -20,7 +20,8 @@
  * Usage:
  *   node storybooks/_shared/overview/generate-overviews.ts [--storybook <name>] [component ...]
  *
- * Without components it generates the components of `ROLLOUT` (meta.ts).
+ * Without components it generates every main component (meta.ts, minus
+ * `EXCLUDE`).
  * `--storybook react-storybook` writes the files of that Storybook only; the
  * build and dev scripts of every framework Storybook run it like that, so
  * parallel builds never write the same file. The output is git-ignored.
@@ -36,9 +37,9 @@ import { dirname, join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import {
 	type ComponentMeta,
+	EXCLUDE,
 	getComponentMeta,
-	getStructure,
-	ROLLOUT
+	getStructure
 } from './meta.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
@@ -893,7 +894,10 @@ if (options.structure) {
 	// eslint-disable-next-line unicorn/no-process-exit -- this file is a CLI script
 	process.exit(0);
 }
-const components = positionals.length > 0 ? positionals : ROLLOUT;
+const components =
+	positionals.length > 0
+		? positionals
+		: getStructure().main.filter((name) => !EXCLUDE.includes(name));
 const targets = options.storybook
 	? FRAMEWORKS.filter((fw) => fw.storybook === options.storybook)
 	: FRAMEWORKS;

@@ -15,7 +15,7 @@ To generate by hand, e.g. a component that is not rolled out yet:
 node storybooks/_shared/overview/generate-overviews.ts [--storybook react-storybook] [component ...]
 ```
 
-Without components, the generator writes the components listed in `ROLLOUT` in `meta.ts`.
+Without components, the generator writes every main component (`getStructure()` in `meta.ts`, minus `EXCLUDE`); components without examples are skipped with a warning.
 
 What belongs in Storybook and what on the Design System Platform is described in "Where documentation lives" in the root [`AGENTS.md`](../../../AGENTS.md#where-documentation-lives). Each kind of content has one source:
 

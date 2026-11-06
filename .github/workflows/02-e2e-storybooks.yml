@@ -18,8 +18,14 @@ permissions:
 # See storybooks/_shared/tests/.
 jobs:
   playwright-storybooks:
-    name: 🧪🎭 - storybooks
+    name: 🧪🎭 - storybooks (${{ matrix.shard }}/3)
     runs-on: ubuntu-26.04
+    # With all component overview pages the tests take about 13 minutes on
+    # one machine; three shards run them in parallel.
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
     container:
       image: mcr.microsoft.com/playwright:v${{ inputs.version }}
       options: --user 1001
@@ -83,12 +89,12 @@ jobs:
           done
           mkdir -p "./build-storybooks-serve${BASE_URL}"
           cp -RT ./build-storybooks "./build-storybooks-serve${BASE_URL}"
-          pnpm run test:storybooks
+          pnpm run test:storybooks --shard=${{ matrix.shard }}/3
 
       - name: 🆙 Upload test results
         if: failure()
         uses: actions/upload-artifact@v7.0.2
         with:
-          name: storybooks-playwright-results
+          name: storybooks-playwright-results-${{ matrix.shard }}
           path: ./test-results/storybooks
           retention-days: 30

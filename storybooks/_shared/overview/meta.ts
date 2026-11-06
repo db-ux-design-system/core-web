@@ -22,10 +22,11 @@ const ROOT = resolve(import.meta.dirname, '..', '..', '..');
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
 
 /**
- * Components that get an overview page. The rollout adds the others once the
- * open decisions (sub components, missing docs files) are made.
+ * Main components without an overview page. Empty: every main component of
+ * `getStructure()` gets one (components without examples are skipped with a
+ * warning by the generator).
  */
-export const ROLLOUT = ['button'];
+export const EXCLUDE: string[] = [];
 
 export type ComponentMeta = {
 	/** Page title: `DBButton`, `DBHeading` for the heading family. */
