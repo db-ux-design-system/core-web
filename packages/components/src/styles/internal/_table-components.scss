@@ -1,6 +1,11 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/variables";
 
+// Highest column count (and colspan/rowspan) the table grid detects automatically.
+// Every step adds a column count rule that is evaluated for every table, so keep
+// this low. For more columns, set `--db-table-grid-template-columns` directly.
+$max-columns: 20;
+
 %table-section-grid {
 	display: var(--db-table-section-display, grid);
 	grid-template-columns: subgrid;
@@ -10,7 +15,7 @@
 %table-cell {
 	display: flex;
 
-	@for $span from 2 through 20 {
+	@for $span from 2 through $max-columns {
 		&[colspan="#{$span}"] {
 			grid-column: span var(--db-table-cell-span, #{$span});
 		}
