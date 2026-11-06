@@ -147,6 +147,8 @@ const pascal = (value: string): string =>
 const escapeCell = (value: string): string =>
 	value
 		.replaceAll(/\s*\n\s*/g, ' ')
+		// Backslash first, so it cannot cancel the escape of a following `|`.
+		.replaceAll('\\', '\\\\')
 		.replaceAll('|', String.raw`\|`)
 		.replaceAll(/[{}<>]/g, (char) => `&#${char.codePointAt(0)};`);
 

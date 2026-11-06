@@ -103,7 +103,11 @@ const angular = (code: string): string => {
 					`\t${handler}(event?: unknown): void {\n\t\t// …\n\t}`
 			)
 	].join('\n\n');
-	const template = code.replaceAll('`', '\\`').replaceAll('${', '\\${');
+	// Backslash first, so the template literal keeps it as written.
+	const template = code
+		.replaceAll('\\', '\\\\')
+		.replaceAll('`', '\\`')
+		.replaceAll('${', '\\${');
 	return `${commonImport}import { Component${signals.length > 0 ? ', signal' : ''} } from '@angular/core';
 import { ${imports.join(', ')} } from '@db-ux/ngx-core-components';
 
@@ -144,7 +148,7 @@ const vue = (code: string): string => {
 	// the missing handler stubs at the end of that script.
 	if (code.includes('<script')) {
 		const script =
-			/<script[^>]*>([\s\S]*?)<\/script>/.exec(code)?.[1] ?? '';
+			/<script[^>]*>([\s\S]*?)<\/script\s*>/i.exec(code)?.[1] ?? '';
 		const stubs = vueHandlerStubs(code.replace(script, ''), script);
 		const typed = typeVueArrows(code);
 		return stubs
