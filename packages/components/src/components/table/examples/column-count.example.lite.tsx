@@ -2,11 +2,7 @@ import { Fragment, useMetadata } from '@builder.io/mitosis';
 import DBInfotext from '../../infotext/infotext.lite';
 import DBTable from '../table.lite';
 import { StorybookTableArgTypes } from './_table.arg.types';
-import {
-	columnCount20Table,
-	columnCount21Style,
-	columnCount21Table
-} from './data';
+import { columnCount20Table, columnCount21Table } from './data';
 
 // Story names become export identifiers, so they must not start with a digit
 useMetadata({
@@ -39,7 +35,15 @@ export default function TableColumnCount() {
 					showCaption
 				/>
 			</div>
-			<div style={columnCount21Style}>
+			<div
+				style={
+					{
+						inlineSize: '100%',
+						display: 'flex',
+						flexDirection: 'column',
+						'--db-table-grid-template-columns': 'repeat(21, 1fr)'
+					} as any
+				}>
 				<DBInfotext semantic="informational" size="small" icon="none">
 					Columns 21
 				</DBInfotext>
