@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – generates the "Foundations/Test Table" page of the composition
+ * Generates the "Foundations/Test Table" page of the composition
  * Storybook: which automated tests and accessibility reviews exist per
  * component.
  *

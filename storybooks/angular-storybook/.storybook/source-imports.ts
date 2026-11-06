@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – completes the "Show code" snippets with what a consumer needs to
+ * Completes the "Show code" snippets with what a consumer needs to
  * copy them into a project: the imports of every component used in the
  * snippet, and for Angular and Vue the surrounding component file.
  *

@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – copies the shared Storybook config files into every framework
+ * Copies the shared Storybook config files into every framework
  * Storybook (`.storybook/mode.ts`, `.storybook/autodocs-page.mdx`,
  * `.storybook/source-imports.ts` and the theme files `theme.ts`,
  * `theme-values.json`, `manager.ts`) and writes the two head files:

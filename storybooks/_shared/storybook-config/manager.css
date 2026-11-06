@@ -1,7 +1,7 @@
 /* cspell:ignore nodetype inlines */
 
 /*
- * PROTOTYPE - CSS escape hatches of the Storybook UI (sidebar).
+ * CSS escape hatches of the Storybook UI (sidebar).
  *
  * Storybook's theme API (theme.ts) is narrow by design; for anything else
  * Storybook documents style tags in `.storybook/manager-head.html` that target

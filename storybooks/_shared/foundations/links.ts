@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – rewrites the links of the Foundations docs for the composition
+ * Rewrites the links of the Foundations docs for the composition
  * Storybook (see generate-foundations.ts).
  *
  * The docs link relative to their Patternhub route. Each link is resolved

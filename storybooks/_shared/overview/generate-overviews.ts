@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – generates the component overview pages for every Storybook.
+ * Generates the component overview pages for every Storybook.
  *
  * Writes per component:
  * - `<framework>-storybook/src/overview/<name>/<name>.overview.mdx` and the

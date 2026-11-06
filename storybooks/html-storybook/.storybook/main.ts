@@ -16,7 +16,7 @@ const config: StorybookConfig = {
 	stories: [
 		'../src/index.mdx',
 		'../../react-storybook/src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-		// PROTOTYPE – component overview pages (core-web#8649)
+		// Component overview pages (core-web#8649)
 		'../src/overview/**/*.mdx',
 		'../src/overview/**/*.stories.tsx'
 	],

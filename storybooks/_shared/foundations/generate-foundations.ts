@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – generates the "Foundations" pages of the composition Storybook
+ * Generates the "Foundations" pages of the composition Storybook
  * from `packages/foundations/docs/*.md`. The test table is generated at build
  * time by generate-test-table.ts, because it follows the test files.
  *

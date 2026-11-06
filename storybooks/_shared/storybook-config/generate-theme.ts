@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – reads the colors of the Storybook theme from the design system
+ * Reads the colors of the Storybook theme from the design system
  * and writes `theme-values.json`.
  *
  * The Storybook manager (sidebar, toolbar) does not load the design system

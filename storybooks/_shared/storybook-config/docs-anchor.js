@@ -2,7 +2,7 @@
 /* cspell:ignore dbtabs dbtabitem inlines */
 
 /*
- * PROTOTYPE – deep links to a section of a docs page, e.g.
+ * Deep links to a section of a docs page, e.g.
  * `?path=/docs/components-dbtabs-overview--docs#dbtabitem` (the platform links
  * parts like DBTabItem this way).
  *

@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – Foundations pages of the composition Storybook, in sidebar order.
+ * Foundations pages of the composition Storybook, in sidebar order.
  *
  * - `source`: Markdown file, relative to the repository root
  * - `route`: route of the file in the Patternhub, the base its relative links

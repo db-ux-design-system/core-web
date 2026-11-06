@@ -2,7 +2,7 @@ import { create } from 'storybook/theming';
 import values from './theme-values.json';
 
 /**
- * PROTOTYPE – Storybook theme in the colors and fonts of the design system.
+ * Storybook theme in the colors and fonts of the design system.
  *
  * The values come from `theme-values.json`, generated from the design system
  * tokens by generate-theme.ts (do not edit the JSON by hand). Copied into

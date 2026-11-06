@@ -1,5 +1,5 @@
 /**
- * PROTOTYPE – metadata of a component overview page, read from the sources
+ * Metadata of a component overview page, read from the sources
  * that already exist: this repository and `/api/components.json` of the
  * Design System Platform. Only what has no source comes from
  * `overrides.json`.

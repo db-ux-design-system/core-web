@@ -2,7 +2,7 @@ import { addons } from 'storybook/manager-api';
 import { BRAND_NAME, managerTheme } from './theme';
 
 /*
- * PROTOTYPE – theme of the Storybook UI (sidebar, toolbar, title).
+ * Theme of the Storybook UI (sidebar, toolbar, title).
  * Copied into `.storybook/manager.ts` of every Storybook by sync.ts.
  *
  * The sidebar styles the theme API cannot set are CSS escape hatches in

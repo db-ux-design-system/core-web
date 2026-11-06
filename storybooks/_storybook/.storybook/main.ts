@@ -20,7 +20,7 @@ const baseUrl = process.env.BASE_URL || '';
 const VERSION_ROOT = 'https://design-system.deutschebahn.com/core-web/version';
 
 /**
- * PROTOTYPE – version dropdown for the framework refs (replaces the version
+ * Version dropdown for the framework refs (replaces the version
  * switcher of the Patternhub).
  *
  * Lists the latest patch of every minor release since v5.0.0, the first
