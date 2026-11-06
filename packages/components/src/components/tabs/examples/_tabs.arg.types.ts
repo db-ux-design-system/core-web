@@ -16,5 +16,5 @@ export const StorybookTabsArgTypes: Record<string, InputType> = {
 	id: { control: 'text' },
 	autofocus: { control: 'boolean' },
 	onIndexChange: { action: 'onIndexChange' },
-	onTabSelect: { action: 'onTabSelect' }
+	onValueChange: { action: 'onValueChange' }
 };

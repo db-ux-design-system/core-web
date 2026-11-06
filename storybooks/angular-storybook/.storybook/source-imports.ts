@@ -41,8 +41,15 @@ const react = (code: string): string => {
 	if (components.length === 0) {
 		return code;
 	}
-	// Storybook prints the action spies as named empty functions.
-	const cleaned = code.replaceAll(/function \w*\(\)\s*\{\s*\}/g, '() => {}');
+	// Storybook prints the action spies as named empty functions. Formatter
+	// callbacks (`on…Fn`, e.g. `onExpandButtonTooltipFn: (open) => string`)
+	// are not events: the component has a default, so the spy is dropped.
+	const cleaned = code
+		.replaceAll(/function \w*\(\)\s*\{\s*\}/g, '() => {}')
+		.replaceAll(/\s+on\w+Fn=\{\(\) => \{\}\}/g, '')
+		// Mitosis keeps `class` in JSX passed as a prop (`content={<div class=…>}`
+		// of DBTag); React needs `className`.
+		.replaceAll(/(<[a-z][\da-z-]*\s(?:[^>]*\s)?)class=/g, '$1className=');
 	// Examples with `React.Fragment` and the like need the React import.
 	const reactImport = /\bReact\./.test(cleaned)
 		? "import React from 'react';\n"
@@ -91,7 +98,7 @@ const angular = (code: string): string => {
 			.filter((handler) => !signals.includes(handler))
 			.map(
 				(handler) =>
-					`\t${handler}(event: unknown): void {\n\t\t// …\n\t}`
+					`\t${handler}(event?: unknown): void {\n\t\t// …\n\t}`
 			)
 	].join('\n\n');
 	const template = code.replaceAll('`', '\\`').replaceAll('${', '\\${');
@@ -117,12 +124,28 @@ const vue = (code: string): string => {
 	if (components.length === 0) {
 		return code;
 	}
-	const template = code.trimStart().startsWith('<template>')
-		? code
-		: `<template>\n${indent(code)}\n</template>`;
+	// Arrow parameters in the template get a type, `vue-tsc` rejects an
+	// implicit `any`: `:onClick="(event) => …"` -> `(event: unknown) => …`.
+	const typed = code.replaceAll(/="\((\w+)\) =>/g, '="($1: unknown) =>');
+	const template = typed.trimStart().startsWith('<template>')
+		? typed
+		: `<template>\n${indent(typed)}\n</template>`;
+	// Event handlers like `@click="handleClick($event)"` or
+	// `:onClick="(event) => handleClick()"` need a function in the script,
+	// like the method stubs of the Angular snippets.
+	const handlers = unique([
+		...matches(code, /@[\w:.-]+="(\w+)\(/g),
+		...matches(code, /="\(\w*\) => (\w+)\(/g)
+	]);
+	const stubs = handlers
+		.map(
+			(handler) =>
+				`const ${handler} = (event?: unknown): void => {\n\t// …\n};`
+		)
+		.join('\n');
 	return `<script setup lang="ts">
 import { ${components.join(', ')} } from '@db-ux/v-core-components';
-</script>
+${stubs ? `\n${stubs}\n` : ''}</script>
 
 ${template}`;
 };

@@ -67,10 +67,21 @@ const preview: Preview = {
 							const literal = JSON.stringify(value)
 								.replaceAll("'", String.raw`\'`)
 								.replaceAll('"', "'");
-							result = result.replaceAll(
-								`[${key}]="${key}"`,
-								`[${key}]="${literal}"`
-							);
+							// Storybook prints either the binding `[items]="items"`
+							// or the stringified value `items="[object Object],…"`.
+							result = result
+								.replaceAll(
+									`[${key}]="${key}"`,
+									`[${key}]="${literal}"`
+								)
+								// Not inside an existing binding `[hideLogo]="true"`.
+								.replaceAll(
+									new RegExp(
+										`(?<![\\[.\\w-])${key}="${String(value).replaceAll(/[$()*+.?[\\\]^{|}]/g, String.raw`\$&`)}"`,
+										'g'
+									),
+									`[${key}]="${literal}"`
+								);
 							continue;
 						}
 
