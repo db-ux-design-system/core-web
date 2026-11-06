@@ -82,11 +82,20 @@ const angular = (code: string): string => {
 			: '';
 	// Event bindings like `(click)="click($event)"` need a method on the class.
 	const handlers = matches(code, /\(\w+\)="(\w+)\(/g);
-	const body = handlers
-		.map((handler) => `\t${handler}(event: unknown): void {\n\t\t// …\n\t}`)
-		.join('\n\n');
+	// State signals of the examples, e.g. `(click)="isOpen.set(true)"` and
+	// `[open]="isOpen()"` (DBDrawer): a signal on the class, `false` at first.
+	const signals = matches(code, /\b([a-z]\w*)\.set\(/g);
+	const body = [
+		...signals.map((name) => `\t${name} = signal<any>(false);`),
+		...handlers
+			.filter((handler) => !signals.includes(handler))
+			.map(
+				(handler) =>
+					`\t${handler}(event: unknown): void {\n\t\t// …\n\t}`
+			)
+	].join('\n\n');
 	const template = code.replaceAll('`', '\\`').replaceAll('${', '\\${');
-	return `${commonImport}import { Component } from '@angular/core';
+	return `${commonImport}import { Component${signals.length > 0 ? ', signal' : ''} } from '@angular/core';
 import { ${imports.join(', ')} } from '@db-ux/ngx-core-components';
 
 @Component({

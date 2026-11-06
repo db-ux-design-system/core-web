@@ -50,6 +50,24 @@ const preview: Preview = {
 					for (const [key, value] of Object.entries(
 						context['allArgs']
 					)) {
+						if (typeof value === 'function') {
+							continue;
+						}
+
+						// Objects and arrays (e.g. `items` of DBBreadcrumb) stay a
+						// property binding with a literal; as a string they would
+						// print "[object Object]".
+						if (value !== null && typeof value === 'object') {
+							const literal = JSON.stringify(value)
+								.replaceAll("'", String.raw`\'`)
+								.replaceAll('"', "'");
+							result = result.replaceAll(
+								`[${key}]="${key}"`,
+								`[${key}]="${literal}"`
+							);
+							continue;
+						}
+
 						result = result
 							.replaceAll(`"${key}"`, `"${value}"`)
 							.replaceAll(`[${key}]`, (substring) => {
