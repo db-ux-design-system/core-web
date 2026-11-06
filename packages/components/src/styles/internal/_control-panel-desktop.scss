@@ -317,11 +317,51 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 		inline-size: calc-size(auto, size);
 
 		.db-control-panel-navigation-item-group,
-		.db-control-panel-navigation-item,
+		.db-control-panel-navigation-item:not([data-icon]),
 		.db-control-panel-actions-1,
 		.db-control-panel-actions-2,
 		.db-control-panel-meta {
 			display: none;
+		}
+
+		.db-control-panel-navigation {
+			> menu {
+				align-items: center;
+
+				.db-control-panel-navigation-item[data-icon] {
+					aspect-ratio: 1;
+					inline-size: variables.$db-sizing-md;
+
+					@extend %indicator;
+					@include indicator.set-indicator-vertical;
+
+					&::before {
+						--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
+					}
+
+					> a {
+						padding: 0;
+
+						@include helpers.a11y-visually-hidden-text;
+
+						&::after {
+							content: none;
+						}
+					}
+
+					@include navigation-item.active-navigation-item {
+						@include indicator.show-indicator-vertical;
+					}
+
+					.db-control-panel-navigation-item-end-slot-container {
+						display: none;
+					}
+
+					.db-tooltip {
+						--db-show-popover-visibility: visible;
+					}
+				}
+			}
 		}
 
 		.db-control-panel-brand {
