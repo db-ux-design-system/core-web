@@ -1,0 +1,4 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-CSduPcDp.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBShell/Overview`,component:`db-shell`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-shell></db-shell>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev'],
+  render: () => html\`<db-shell></db-shell>\`
+}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as t};
