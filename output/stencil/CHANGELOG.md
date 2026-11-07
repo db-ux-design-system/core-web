@@ -1,5 +1,12 @@
 # @db-ux/wc-core-components
 
+## 6.3.1
+
+### Patch Changes
+
+- fix(DBNotification): keep the overlay height unchanged when a timestamp is shown - [see commit d13aa9d](https://github.com/db-ux-design-system/core-web/commit/d13aa9de25147c732e553196330a07c98a47c554)
+- fix(attribute passing): remove forwarded `data-*`, `aria-*`, `role`, `title` and `style` attributes from the inner element when a binding removes them from the host (e.g. `[attr.aria-label]="null"`) - [see commit fcc148f](https://github.com/db-ux-design-system/core-web/commit/fcc148fac854866db3eca454237b55fd7aec1df5)
+
 ## 6.3.0
 
 ### Minor Changes
