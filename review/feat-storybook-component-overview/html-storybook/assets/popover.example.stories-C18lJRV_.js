@@ -1,0 +1,10 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./jsx-runtime-MKhVqBIO.js";import{i as r,n as i,r as a,t as o}from"./breadcrumb-CPd5-Ab8.js";import{n as s,t as c}from"./breadcrumb-popover-item-Bxq64odR.js";var l=t({Popover:()=>p,__namedExportsOrder:()=>m,default:()=>f}),u,d,f,p,m;function h(){return(h=e((()=>{r(),s(),i(),u=n(),{fn:d}=__STORYBOOK_MODULE_TEST__,f={title:`Components/DBBreadcrumb/Popover`,component:o,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{size:{control:`select`,options:[`small`,`medium`]},separator:{control:`select`,options:[`chevron`,`slash`]},id:{control:`text`}}},p={args:{"aria-label":`Breadcrumb`,expandText:`Show more`,children:(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(a,{children:(0,u.jsx)(`a`,{href:`/`,children:`Home`})}),(0,u.jsxs)(c,{label:`Show more breadcrumbs`,children:[(0,u.jsx)(a,{children:(0,u.jsx)(`a`,{href:`/1`,children:`Level 1`})}),(0,u.jsx)(a,{children:(0,u.jsx)(`a`,{href:`/1/2`,children:`Level 2`})}),(0,u.jsx)(a,{children:(0,u.jsx)(`a`,{href:`/1/2/3`,children:`Level 3`})})]}),(0,u.jsx)(a,{children:(0,u.jsx)(`a`,{href:`/1/2/3/4`,children:`Level 4`})}),(0,u.jsx)(a,{children:(0,u.jsx)(`a`,{href:`/1/2/3/4/current`,"aria-current":`page`,children:`Current`})})]})},render:e=>(0,u.jsx)(o,{...e})},m=[`Popover`],p.parameters={...p.parameters,docs:{...p.parameters?.docs,source:{originalSource:`{
+  args: {
+    "aria-label": "Breadcrumb",
+    "expandText": "Show more",
+    "children": <><DBBreadcrumbItem><a href="/">Home</a></DBBreadcrumbItem><DBBreadcrumbPopoverItem label="Show more breadcrumbs"><DBBreadcrumbItem><a href="/1">Level 1</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2">Level 2</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3">Level 3</a></DBBreadcrumbItem></DBBreadcrumbPopoverItem><DBBreadcrumbItem><a href="/1/2/3/4">Level 4</a></DBBreadcrumbItem><DBBreadcrumbItem><a href="/1/2/3/4/current" aria-current="page">
+                        Current
+                    </a></DBBreadcrumbItem></>
+  },
+  render: (properties: any) => <DBBreadcrumb {...properties} />
+}`,...p.parameters?.docs?.source}}}})))()}export{h as n,l as r,p as t};

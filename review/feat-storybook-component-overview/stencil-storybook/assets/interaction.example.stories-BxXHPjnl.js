@@ -1,0 +1,11 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-B9gE3-RB.js";import{i,n as a,t as o}from"./apply-web-component-args-BifYIpws.js";var s=t({Interaction:()=>u,__namedExportsOrder:()=>d,default:()=>l}),c,l,u,d;function f(){return(f=e((()=>{r(),o(),{fn:c}=__STORYBOOK_MODULE_TEST__,l={title:`Components/DBControlPanelMobile/Interaction`,component:`db-control-panel-mobile`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{position:{control:`select`,options:[`top`,`bottom`]},drawerHeaderText:{control:`text`},burgerMenuLabel:{control:`text`},closeButtonText:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`}}},u={args:{"data-testid":`drilldown-panel`,position:`top`,drawerHeaderText:`DBControlPanel`},render:({children:e,...t})=>n`<div style="width: 100%; display: block"><db-control-panel-mobile ${a(t)}>${i(`<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand><db-control-panel-navigation aria-label="Drilldown Interaction"><db-control-panel-navigation-item-group text="Drilldown Group" data-testid="drilldown-group"><db-control-panel-navigation-item data-testid="drilldown-sub1"><a href="#">Drilldown Sub 1</a></db-control-panel-navigation-item></db-control-panel-navigation-item-group></db-control-panel-navigation>`)}</db-control-panel-mobile></div>`},d=[`Interaction`],u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-testid": "drilldown-panel",
+    "position": "top",
+    "drawerHeaderText": "DBControlPanel"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 100%; display: block"><db-control-panel-mobile \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-brand slot="brand" data-logo="db-systel"></db-control-panel-brand><db-control-panel-navigation aria-label="Drilldown Interaction"><db-control-panel-navigation-item-group text="Drilldown Group" data-testid="drilldown-group"><db-control-panel-navigation-item data-testid="drilldown-sub1"><a href="#">Drilldown Sub 1</a></db-control-panel-navigation-item></db-control-panel-navigation-item-group></db-control-panel-navigation>\`)}</db-control-panel-mobile></div>\`
+}`,...u.parameters?.docs?.source}}}})))()}export{f as n,s as r,u as t};

@@ -1,0 +1,7 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./jsx-runtime-MKhVqBIO.js";import{n as r,t as i}from"./button-HiccZljf.js";import{n as a,t as o}from"./tag-CFyoV715.js";var s=t({Interaction:()=>d,__namedExportsOrder:()=>f,default:()=>u}),c,l,u,d,f;function p(){return(p=e((()=>{r(),a(),c=n(),{fn:l}=__STORYBOOK_MODULE_TEST__,u={title:`Components/DBTag/Interaction`,component:o,parameters:{layout:`centered`},tags:[`autodocs`],args:{onRemove:l()},argTypes:{emphasis:{control:`select`,options:[`weak`,`strong`]},semantic:{control:`select`,options:[`adaptive`,`neutral`,`critical`,`informational`,`warning`,`successful`]},behavior:{control:`select`,options:[`static`,`removable`]},showIcon:{control:`boolean`},noText:{control:`boolean`},content:{control:`text`},showCheckState:{control:`boolean`},overflow:{control:`boolean`},removeButton:{control:`text`},text:{control:`text`},value:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`},onRemove:{action:`onRemove`}}},d={args:{"data-testid":`button-tag`,children:(0,c.jsx)(i,{onClick:e=>handleClick(),children:`Test`})},render:e=>(0,c.jsx)(o,{...e})},f=[`Interaction`],d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-testid": "button-tag",
+    "children": <DBButton onClick={event => handleClick()}>Test</DBButton>
+  },
+  render: (properties: any) => <DBTag {...properties} />
+}`,...d.parameters?.docs?.source}}}})))()}export{p as n,s as r,d as t};
