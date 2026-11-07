@@ -1,5 +1,11 @@
 # @db-ux/core-components
 
+## 6.3.1
+
+### Patch Changes
+
+- fix(DBNotification): keep the overlay height unchanged when a timestamp is shown - [see commit d13aa9d](https://github.com/db-ux-design-system/core-web/commit/d13aa9de25147c732e553196330a07c98a47c554)
+
 ## 6.3.0
 
 ### Minor Changes
