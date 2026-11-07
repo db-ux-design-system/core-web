@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "es2024",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"lib": ["ESNext", "DOM"],
+		"types": ["node"],
+		"strict": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
+		"erasableSyntaxOnly": true
+	},
+	"include": ["**/*.ts"]
+}

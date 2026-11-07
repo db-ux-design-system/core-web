@@ -74,7 +74,7 @@ export type SemanticProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/documentation/icons)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
@@ -105,14 +105,14 @@ export type ShowIconTrailingProps = {
 
 export type IconLeadingProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/documentation/icons)) to get displayed in front of the elements content.
 	 */
 	iconLeading?: IconTypes;
 };
 
 export type IconTrailingProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/documentation/icons)) to get displayed in front of the elements content.
 	 */
 	iconTrailing?: IconTypes;
 };

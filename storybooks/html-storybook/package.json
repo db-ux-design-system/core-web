@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/html-storybook",
-    "storybook": "storybook dev -p 6008"
+    "build": "node ../_shared/overview/generate-overviews.ts --storybook html-storybook && storybook build --output-dir ../../build-storybooks/html-storybook",
+    "storybook": "node ../_shared/overview/generate-overviews.ts --storybook html-storybook && storybook dev -p 6008"
   },
   "dependencies": {
     "@db-ux/db-theme": "7.2.0",

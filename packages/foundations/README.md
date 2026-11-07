@@ -24,9 +24,9 @@ A library containing all tokens (colors, spacings, font formatting, etc.) and as
 
 We currently support:
 
-- [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css)
-- [SCSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=scss)
-- [Tailwind](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=tailwind)
+- [CSS](#css)
+- [SCSS](#scss)
+- [Tailwind](#tailwind)
 
 ## Install
 
@@ -162,7 +162,7 @@ In HTML:
 
 ### Tailwind
 
-Check the required imports for [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css) to enable all tokens and defaults.
+Check the required imports for [CSS](#css) to enable all tokens and defaults.
 
 #### Tailwind v4
 

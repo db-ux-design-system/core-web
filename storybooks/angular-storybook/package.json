@@ -9,8 +9,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "ng run angular-latest:build-storybook",
-    "storybook": "ng run angular-latest:storybook"
+    "build": "node ../_shared/overview/generate-overviews.ts --storybook angular-storybook && ng run angular-latest:build-storybook",
+    "storybook": "node ../_shared/overview/generate-overviews.ts --storybook angular-storybook && ng run angular-latest:storybook"
   },
   "dependencies": {
     "@angular/animations": "21.2.23",
