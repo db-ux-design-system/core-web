@@ -152,13 +152,36 @@ const CHECKS: Check[] = [
 const collectSnippets = async (page: Page): Promise<string[]> => {
 	// The toggle is a button below each preview ("Show code" / "Hide code").
 	const toggles = page.locator('.docblock-code-toggle');
+	// Every preview gets its toggle once it has rendered; on a busy machine
+	// the last previews of a long page come later than `networkidle`.
+	const previews = await page.locator('.docs-story').count();
+	await expect(toggles).toHaveCount(previews, { timeout: 30_000 });
 	const count = await toggles.count();
 	const code = page.locator('.sbdocs-preview pre');
 	const before = await code.count();
-	for (let i = 0; i < count; i++) {
-		await toggles.nth(i).click();
+	// A click can get lost while a preview re-renders, so click every toggle
+	// that still reads "Show code" until none is left.
+	const closed = page.locator('.docblock-code-toggle[aria-expanded="false"]');
+	for (let clicks = 0; (await closed.count()) > 0; clicks++) {
+		expect(clicks, '"Show code" clicks').toBeLessThan(count * 3);
+		// Wait for the state of this button before the next click, otherwise a
+		// slow update gets the same button clicked closed again.
+		const toggle = await closed.first().elementHandle();
+		await toggle?.click({ timeout: 5000 }).catch(() => undefined);
+		await toggle
+			?.waitForElementState('stable')
+			.then(async () =>
+				page.waitForFunction(
+					(element) =>
+						!element.isConnected ||
+						element.getAttribute('aria-expanded') === 'true',
+					toggle,
+					{ timeout: 5000 }
+				)
+			)
+			.catch(() => undefined);
 	}
-	await expect(code).toHaveCount(before + count);
+	await expect(code).toHaveCount(before + count, { timeout: 30_000 });
 	// The HTML Storybook captures the markup after the preview rendered and
 	// shows a placeholder until then; wait until every snippet has it.
 	await expect
@@ -188,11 +211,16 @@ const overviewIds = (storybook: StorybookName): string[] => {
 		.map((entry) => entry.id);
 };
 
+/** Browser tabs that collect the snippets of a Storybook at the same time. */
+const PARALLEL = 4;
+
 for (const check of CHECKS) {
 	test(`${check.storybook} › "Show code" snippets are valid`, async ({
-		page
+		context
 	}) => {
-		test.setTimeout(300_000);
+		// 40 pages one after the other took more than 5 minutes on CI; they
+		// are collected in PARALLEL tabs, then compiled in one compiler run.
+		test.setTimeout(600_000);
 		const ids = overviewIds(check.storybook);
 		expect(ids.length, 'overview pages').toBeGreaterThan(0);
 
@@ -201,7 +229,8 @@ for (const check of CHECKS) {
 		mkdirSync(dir, { recursive: true });
 
 		let files = 0;
-		for (const id of ids) {
+		const queue = [...ids];
+		const checkPage = async (page: Page, id: string) => {
 			await openDocs(page, check.storybook, id);
 			const snippets = await collectSnippets(page);
 			// Components without a plain HTML version (`html: false`) show a
@@ -214,7 +243,7 @@ for (const check of CHECKS) {
 					})
 					.count()) > 0;
 			if (isNoHtml) {
-				continue;
+				return;
 			}
 
 			expect(snippets.length, `${id}: snippets`).toBeGreaterThan(0);
@@ -238,7 +267,18 @@ for (const check of CHECKS) {
 				writeFileSync(join(dir, name), snippet);
 				files++;
 			}
-		}
+		};
+
+		const worker = async () => {
+			const page = await context.newPage();
+			for (let id = queue.shift(); id; id = queue.shift()) {
+				await checkPage(page, id);
+			}
+
+			await page.close();
+		};
+
+		await Promise.all(Array.from({ length: PARALLEL }, worker));
 
 		if (check.compile) {
 			expect(files).toBeGreaterThan(0);
