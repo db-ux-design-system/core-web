@@ -59,6 +59,42 @@
 			variables.$db-spacing-fixed-xs;
 	}
 
+	// `minRows` / `minCols` set a minimum size that - unlike the native `rows`
+	// / `cols` - also constrains a `field-sizing: content` textarea. Switching
+	// to content-box makes the floor exactly `count * 1lh/1ch`: no need to add
+	// padding, borders or the reserved scrollbar width, and no difference
+	// between the above and floating variants (their differing padding sits
+	// outside the content box). The whole block is gated on typed attr()
+	// support: without it the attr()/calc() stays as unresolved tokens rather
+	// than becoming guaranteed-invalid, which would make min-inline-size IACVT
+	// and drop the mixin's default $db-sizing-lg floor - so the baseline
+	// min-inline-size (and the block default of auto) is left untouched
+	// outside this query. A consumer can still override either floor with the
+	// --db-form-component-min-*-size custom property.
+	@supports (min-inline-size: attr(data-min-cols type(<number>))) {
+		textarea {
+			&:is([data-min-rows], [data-min-cols]) {
+				box-sizing: content-box;
+			}
+
+			&[data-min-rows] {
+				/* stylelint-disable-next-line db-ux/use-sizing */
+				min-block-size: var(
+					--db-form-component-min-block-size,
+					calc(attr(data-min-rows type(<number>)) * 1lh)
+				);
+			}
+
+			&[data-min-cols] {
+				/* stylelint-disable-next-line db-ux/use-sizing */
+				min-inline-size: var(
+					--db-form-component-min-inline-size,
+					calc(attr(data-min-cols type(<number>)) * 1ch)
+				);
+			}
+		}
+	}
+
 	&[data-variant="floating"] {
 		&:has(textarea:is(:focus-within, :not(:placeholder-shown))) {
 			&::before {

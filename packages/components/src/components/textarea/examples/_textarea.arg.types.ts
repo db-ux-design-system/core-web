@@ -18,6 +18,8 @@ export const StorybookTextareaArgTypes: Record<string, InputType> = {
 	showRequiredAsterisk: { control: 'boolean' },
 	rows: { control: 'number' },
 	cols: { control: 'number' },
+	minRows: { control: 'number' },
+	minCols: { control: 'number' },
 	showResizer: { control: 'boolean' },
 	fieldSizing: { control: 'select', options: ['fixed', 'content'] },
 	resize: {
