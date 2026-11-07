@@ -184,19 +184,6 @@ jobs:
     secrets: inherit
     needs: [build-untested-showcases]
 
-  build-showcase-patternhub:
-    uses: $/.github/workflows/01-build-patternhub.yml
-    needs: [build-packages, init]
-    with:
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
-    secrets: inherit
-
-  cancel-on-failure-build-showcase-patternhub:
-    if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
-    uses: $/.github/workflows/00-cancel-workflow.yml
-    secrets: inherit
-    needs: [build-showcase-patternhub]
-
   test-showcase-stencil:
     uses: $/.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
@@ -229,14 +216,6 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
       showcase: vue-showcase
 
-  test-showcase-patternhub:
-    uses: $/.github/workflows/02-e2e-patternhub.yml
-    needs: [build-showcase-patternhub, init, init]
-    secrets: inherit
-    with:
-      version: ${{ needs.init.outputs.playwrightVersion }}
-      baseUrl: ${{ needs.init.outputs.baseUrl }}
-
   regenerate-snapshots-foundations:
     if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-foundations.result == 'failure' }}
     uses: $/.github/workflows/02-e2e-regenerate.yml
@@ -245,16 +224,6 @@ jobs:
       version: ${{ needs.init.outputs.playwrightVersion }}
       type: foundations
     needs: [test-foundations, init]
-
-  regenerate-snapshots-patternhub:
-    if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
-    uses: $/.github/workflows/02-e2e-regenerate.yml
-    secrets: inherit
-    with:
-      version: ${{ needs.init.outputs.playwrightVersion }}
-      path: ${{ needs.init.outputs.baseUrl }}
-      type: patternhub
-    needs: [build-showcase-patternhub, test-showcase-patternhub, init]
 
   # This job runs only if aria-snapshots were changed compared to main or if it runs on main branch
   # For releases, it always runs.
@@ -311,19 +280,12 @@ jobs:
     if: |
       ${{ github.event_name == 'pull_request' && !cancelled() &&
         ( needs.regenerate-snapshots-foundations.result == 'success' ||
-        needs.regenerate-snapshots-patternhub.result == 'success' ||
         needs.regenerate-snapshots.result == 'success' )
       }}
-    needs:
-      [
-        regenerate-snapshots-foundations,
-        regenerate-snapshots-patternhub,
-        regenerate-snapshots
-      ]
+    needs: [regenerate-snapshots-foundations, regenerate-snapshots]
     with:
       showcases: ${{ needs.regenerate-snapshots.result == 'success' }}
       foundations: ${{ needs.regenerate-snapshots-foundations.result == 'success' }}
-      patternhub: ${{ needs.regenerate-snapshots-patternhub.result == 'success' }}
 
   checks-done:
     if: ${{ !cancelled() }}
@@ -345,14 +307,12 @@ jobs:
           resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
           resultBuildShowcaseVue="${{ needs.build-showcase-vue.result }}"
           resultBuildUntestedShowcases="${{ needs.build-untested-showcases.result }}"
-          resultBuildShowcasePatternhub="${{ needs.build-showcase-patternhub.result }}"
           resultBuildOutputs="${{ needs.build-outputs.result }}"
           resultTestFoundations="${{ needs.test-foundations.result }}"
           resultTestShowcaseStencil="${{ needs.test-showcase-stencil.result }}"
           resultTestShowcaseAngular="${{ needs.test-showcase-angular.result }}"
           resultTestShowcaseReact="${{ needs.test-showcase-react.result }}"
           resultTestShowcaseVue="${{ needs.test-showcase-vue.result }}"
-          resultTestShowcasePatternhub="${{ needs.test-showcase-patternhub.result }}"
           resultTestScreenReader="${{ needs.test-screen-reader.result }}"
           resultTestFigmaCodeConnect="${{ needs.test-figma-code-connect.result }}"
           resultAuditFix="${{ needs.audit-fix.result }}"
@@ -364,14 +324,12 @@ jobs:
           echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
           echo "resultBuildShowcaseVue: $resultBuildShowcaseVue"
           echo "resultBuildUntestedShowcases: $resultBuildUntestedShowcases"
-          echo "resultBuildShowcasePatternhub: $resultBuildShowcasePatternhub"
           echo "resultBuildOutputs: $resultBuildOutputs"
           echo "resultTestFoundations: $resultTestFoundations"
           echo "resultTestShowcaseStencil: $resultTestShowcaseStencil"
           echo "resultTestShowcaseAngular: $resultTestShowcaseAngular"
           echo "resultTestShowcaseReact: $resultTestShowcaseReact"
           echo "resultTestShowcaseVue: $resultTestShowcaseVue"
-          echo "resultTestShowcasePatternhub: $resultTestShowcasePatternhub"
           echo "resultTestScreenReader: $resultTestScreenReader"
 
           if [[ $resultBuildStorybooks == "success" ]] && \
@@ -383,14 +341,12 @@ jobs:
              [[ $resultTestShowcaseAngular == "success" ]] && \
              [[ $resultTestShowcaseReact == "success" ]] && \
              [[ $resultTestShowcaseVue == "success" ]] && \
-             [[ $resultTestShowcasePatternhub == "success" ]] && \
              [[ $resultBuildOutputs == "success" ]] && \
              [[ $resultBuildShowcaseStencil == "success" ]] && \
              [[ $resultBuildShowcaseAngular == "success" ]] && \
              [[ $resultBuildShowcaseReact == "success" ]] && \
              [[ $resultBuildShowcaseVue == "success" ]] && \
              [[ $resultBuildUntestedShowcases == "success" ]] && \
-             [[ $resultBuildShowcasePatternhub == "success" ]] && \
              [[ $resultAuditFix == "success" || $resultAuditFix == "skipped" ]]; then
              echo "🎉 All tests were successful."
             exit 0
@@ -407,14 +363,12 @@ jobs:
         build-showcase-react,
         build-showcase-vue,
         build-untested-showcases,
-        build-showcase-patternhub,
         build-outputs,
         test-figma-code-connect,
         test-showcase-stencil,
         test-showcase-angular,
         test-showcase-react,
         test-showcase-vue,
-        test-showcase-patternhub,
         test-foundations,
         test-screen-reader,
         audit-fix,

@@ -9,8 +9,9 @@ on:
         type: boolean
       patternhub:
         description: "Regenerate snapshots for patternhub"
-        required: true
+        required: false
         type: boolean
+        default: false
       showcases:
         description: "Regenerate snapshots for showcases"
         required: true
