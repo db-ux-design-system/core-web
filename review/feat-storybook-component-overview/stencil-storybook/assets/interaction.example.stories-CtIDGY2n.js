@@ -1,0 +1,7 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-dqn2cA9M.js";import{i,n as a,t as o}from"./apply-web-component-args-ARfb8F4v.js";var s=t({Interaction:()=>u,__namedExportsOrder:()=>d,default:()=>l}),c,l,u,d;function f(){return(f=e((()=>{r(),o(),{fn:c}=__STORYBOOK_MODULE_TEST__,l={title:`Components/DBNavigation/Interaction`,component:`db-navigation`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{id:{control:`text`},autofocus:{control:`boolean`}}},u={args:{},render:({children:e,...t})=>n`<db-navigation ${a(t)}>${i(`<db-navigation-item data-testid="test1"><db-navigation-item slot="subNavigation" data-testid="sub1"><a href="#">Sub1</a></db-navigation-item>Test1</db-navigation-item><db-navigation-item><a href="#">Test2</a></db-navigation-item>`)}</db-navigation>`},d=[`Interaction`],u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {},
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-navigation \${spreadArgs(args)}>\${unsafeHTML(\`<db-navigation-item data-testid="test1"><db-navigation-item slot="subNavigation" data-testid="sub1"><a href="#">Sub1</a></db-navigation-item>Test1</db-navigation-item><db-navigation-item><a href="#">Test2</a></db-navigation-item>\`)}</db-navigation>\`
+}`,...u.parameters?.docs?.source}}}})))()}export{f as n,s as r,u as t};
