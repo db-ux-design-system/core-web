@@ -16,7 +16,13 @@
  *
  * Usage: node storybooks/_shared/foundations/generate-test-table.ts
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	readFileSync,
+	writeFileSync
+} from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 
 const ROOT = resolve(import.meta.dirname, '..', '..', '..');
@@ -60,18 +66,36 @@ const reviews = JSON.parse(
 	read('showcases/patternhub/data/_accessibility-review.json')
 ) as Review[];
 
-const components = webTypes.contributions.html.elements
-	.map(({ name }) => name)
-	// Only components carry the `db-` prefix; the rest are showcase elements.
-	.filter((name) => name.startsWith('db-'))
-	.map((name) => name.slice(3))
-	.filter(
-		(name) =>
-			!EXCLUDED.has(name) &&
-			!SUB_COMPONENT.test(name) &&
-			!isControlPanelPart(name)
+/**
+ * Component folder of an element: the tests live per folder
+ * (`showcases/e2e/<folder>/`). Members of a family without an own folder
+ * belong to it, e.g. `heading-h-1` and `custom-heading` to `heading`.
+ */
+const FOLDERS = readdirSync(join(ROOT, 'packages/components/src/components'));
+const toFolder = (name: string): string =>
+	FOLDERS.filter(
+		(folder) =>
+			name === folder ||
+			name.startsWith(`${folder}-`) ||
+			name.endsWith(`-${folder}`)
+	).toSorted((a, b) => b.length - a.length)[0] ?? name;
+
+const components = [
+	...new Set(
+		webTypes.contributions.html.elements
+			.map(({ name }) => name)
+			// Only components carry the `db-` prefix; the rest are showcase elements.
+			.filter((name) => name.startsWith('db-'))
+			.map((name) => name.slice(3))
+			.filter(
+				(name) =>
+					!EXCLUDED.has(name) &&
+					!SUB_COMPONENT.test(name) &&
+					!isControlPanelPart(name)
+			)
+			.map((name) => toFolder(name))
 	)
-	.toSorted((a, b) => a.localeCompare(b));
+].toSorted((a, b) => a.localeCompare(b));
 
 const cell = (isDone: boolean) => (isDone ? '✅ Done' : '❌ Missing');
 
