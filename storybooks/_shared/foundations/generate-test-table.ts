@@ -9,8 +9,9 @@
  *
  * Inputs:
  * - `output/stencil/dist/web-types.json`: the components (build the outputs first)
- * - `showcases/e2e/<name>/`: visual snapshot and axe tests (the axe test file
- *   also holds the aria snapshot and Accessibility Checker tests)
+ * - `showcases/e2e/<name>/`: visual snapshot, axe, aria snapshot and
+ *   Accessibility Checker tests, one spec file each; a column counts only when
+ *   the file calls its test function (`runAxeCoreTest`, ...)
  * - `showcases/screen-reader/tests/<name>.spec.ts`: screen reader tests
  * - `showcases/patternhub/data/_accessibility-review.json`: manual audits
  *
@@ -52,6 +53,11 @@ type Review = { name: string; status: string; date?: string };
 
 const read = (path: string) => readFileSync(join(ROOT, path), 'utf8');
 const hasFile = (path: string) => existsSync(join(ROOT, path));
+/** `showcases/e2e/<name>/<name>-<suite>.spec.ts` exists and runs `call`. */
+const hasTest = (name: string, suite: string, call: string) => {
+	const path = `showcases/e2e/${name}/${name}-${suite}.spec.ts`;
+	return hasFile(path) && read(path).includes(`${call}(`);
+};
 
 const webTypesPath = 'output/stencil/dist/web-types.json';
 if (!hasFile(webTypesPath)) {
@@ -106,10 +112,14 @@ const REVIEW_TEXT: Record<string, string> = {
 };
 
 const rows = components.map((name) => {
-	const hasVisuals = hasFile(
-		`showcases/e2e/${name}/${name}-visual-snapshot.spec.ts`
+	const hasVisuals = hasTest(
+		name,
+		'visual-snapshot',
+		'getDefaultScreenshotTest'
 	);
-	const hasAxe = hasFile(`showcases/e2e/${name}/${name}-axe-core.spec.ts`);
+	const hasAxe = hasTest(name, 'axe-core', 'runAxeCoreTest');
+	const hasAria = hasTest(name, 'aria-snapshot', 'runAriaSnapshotTest');
+	const hasChecker = hasTest(name, 'a11y-checker', 'runA11yCheckerTest');
 	const hasScreenReader = hasFile(
 		`showcases/screen-reader/tests/${name}.spec.ts`
 	);
@@ -118,8 +128,13 @@ const rows = components.map((name) => {
 		? `${REVIEW_TEXT[review.status] ?? '❌ Missing'}${review.date ? ` (${review.date})` : ''}`
 		: '❌ Missing';
 	const isStable =
-		hasVisuals && hasAxe && hasScreenReader && review?.status === 'DONE';
-	return `| ${name} | ${cell(hasVisuals)} | ${cell(hasAxe)} | ${cell(hasAxe)} | ${cell(hasAxe)} | ${cell(hasScreenReader)} | ${reviewText} | ${isStable ? '✅ Done' : '❌ Missing'} |`;
+		hasVisuals &&
+		hasAxe &&
+		hasAria &&
+		hasChecker &&
+		hasScreenReader &&
+		review?.status === 'DONE';
+	return `| ${name} | ${cell(hasVisuals)} | ${cell(hasAxe)} | ${cell(hasAria)} | ${cell(hasChecker)} | ${cell(hasScreenReader)} | ${reviewText} | ${isStable ? '✅ Done' : '❌ Missing'} |`;
 });
 
 // Storybook's MDX has no GFM, so the table is rendered by the Markdown block,
