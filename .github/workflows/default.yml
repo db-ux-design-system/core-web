@@ -114,6 +114,8 @@ jobs:
     secrets: inherit
 
   test-storybooks:
+    # Changeset release PRs only bump versions; checks-done skips them anyway.
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
     uses: $/.github/workflows/02-e2e-storybooks.yml
     needs: [build-storybooks, build-outputs, init]
     secrets: inherit
@@ -375,7 +377,7 @@ jobs:
           echo "resultTestScreenReader: $resultTestScreenReader"
 
           if [[ $resultBuildStorybooks == "success" ]] && \
-             [[ $resultTestStorybooks == "success" ]] && \
+             [[ $resultTestStorybooks == "success" || $resultTestStorybooks == "skipped" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
              [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
