@@ -1,0 +1,31 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-WDQ2nZ8t.js";import{n as i,t as a}from"./apply-web-component-args-CAS3eq59.js";var o=t({DefaultRegular:()=>u,Expressive:()=>d,Functional:()=>l,__namedExportsOrder:()=>f,default:()=>c}),s,c,l,u,d,f;function p(){return(p=e((()=>{r(),a(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBTextarea/Density`,component:`db-textarea`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{label:{control:`text`},variant:{control:`select`,options:[`above`,`floating`]},value:{control:`text`},showLabel:{control:`boolean`},message:{control:`text`},disabled:{control:`boolean`},readOnly:{control:`boolean`},validation:{control:`select`,options:[`invalid`,`valid`,`no-validation`]},invalidMessage:{control:`text`},validMessage:{control:`text`},required:{control:`boolean`},showRequiredAsterisk:{control:`boolean`},rows:{control:`number`},cols:{control:`number`},showResizer:{control:`boolean`},fieldSizing:{control:`select`,options:[`fixed`,`content`]},resize:{control:`select`,options:[`none`,`both`,`horizontal`,`vertical`]},spellCheck:{control:`boolean`},wrap:{control:`select`,options:[`hard`,`soft`,`off`]},placeholder:{control:`text`},name:{control:`text`},form:{control:`text`},ariaDescribedBy:{control:`text`},minLength:{control:`number`},maxLength:{control:`number`},autocomplete:{control:`text`},messageIcon:{control:`text`},showMessage:{control:`boolean`},id:{control:`text`},autofocus:{control:`boolean`}}},l={args:{"data-density":`functional`,label:`Label`,placeholder:`Functional`},render:({children:e,...t})=>n`<db-textarea ${i(t)}></db-textarea>`},u={args:{"data-density":`regular`,label:`Label`,placeholder:`(Default) Regular`},render:({children:e,...t})=>n`<db-textarea ${i(t)}></db-textarea>`},d={args:{"data-density":`expressive`,label:`Label`,placeholder:`Expressive`},render:({children:e,...t})=>n`<db-textarea ${i(t)}></db-textarea>`},f=[`Functional`,`DefaultRegular`,`Expressive`],l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-density": "functional",
+    "label": "Label",
+    "placeholder": "Functional"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-textarea \${spreadArgs(args)}></db-textarea>\`
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-density": "regular",
+    "label": "Label",
+    "placeholder": "(Default) Regular"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-textarea \${spreadArgs(args)}></db-textarea>\`
+}`,...u.parameters?.docs?.source}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-density": "expressive",
+    "label": "Label",
+    "placeholder": "Expressive"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<db-textarea \${spreadArgs(args)}></db-textarea>\`
+}`,...d.parameters?.docs?.source}}}})))()}export{p as a,o as i,d as n,l as r,u as t};

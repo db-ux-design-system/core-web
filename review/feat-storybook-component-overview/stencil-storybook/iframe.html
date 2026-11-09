@@ -540,14 +540,40 @@
  * `preview-head.html` of every Storybook. Edit this file, not the copies.
  * theme.spec.ts checks that the Storybook selectors used here still match.
  */
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) {
+	/*
+ * Cards are links too (or wrapped in one); they stay without underline.
+ * Links inside story previews (`.docs-story`) keep their component styling.
+ */
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(
+			:has(.db-card)
+		) {
 		color-scheme: light;
 		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 		text-decoration: underline;
 	}
 
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) > span {
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(:has(.db-card))
+		> span {
 		color: inherit;
+	}
+
+	.sbdocs-content a:is(.db-card, :has(.db-card)) {
+		text-decoration: none;
+	}
+
+	/* Guidelines card of the overview pages (generate-overviews.ts). */
+	.sbdocs-content a.db-sb-platform-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--db-spacing-fixed-xs);
+		max-inline-size: calc(2 * var(--db-sizing-3xl));
+		color: inherit;
+
+		> span {
+			color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		}
 	}
 
 	/*
@@ -745,7 +771,7 @@
 	})();
 </script>
 
-    <script type="module" crossorigin src="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/iframe-BY6Oo1Hb.js"></script>
+    <script type="module" crossorigin src="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/iframe-BuRkC1ru.js"></script>
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/rolldown-runtime-sJBDdmOt.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/preload-helper-CwBZevnF.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/chunk-DRQKCCAG-CCU5JLR1.js">
@@ -758,7 +784,7 @@
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/chunk-QQBDHPVZ-DGKYZDIn.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/blocks-Cgbw3SbP.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/chunk-UAWMPV5J-BrGPyIDv.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/iframe-LYtL2xrD.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/iframe-WDQ2nZ8t.js">
     <link rel="stylesheet" crossorigin href="/core-web/review/feat-storybook-component-overview/stencil-storybook/assets/iframe-DrV7pwJ_.css">
   </head>
 

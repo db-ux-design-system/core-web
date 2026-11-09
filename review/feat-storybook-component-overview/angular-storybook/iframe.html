@@ -531,14 +531,40 @@
  * `preview-head.html` of every Storybook. Edit this file, not the copies.
  * theme.spec.ts checks that the Storybook selectors used here still match.
  */
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) {
+	/*
+ * Cards are links too (or wrapped in one); they stay without underline.
+ * Links inside story previews (`.docs-story`) keep their component styling.
+ */
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(
+			:has(.db-card)
+		) {
 		color-scheme: light;
 		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 		text-decoration: underline;
 	}
 
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) > span {
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(:has(.db-card))
+		> span {
 		color: inherit;
+	}
+
+	.sbdocs-content a:is(.db-card, :has(.db-card)) {
+		text-decoration: none;
+	}
+
+	/* Guidelines card of the overview pages (generate-overviews.ts). */
+	.sbdocs-content a.db-sb-platform-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--db-spacing-fixed-xs);
+		max-inline-size: calc(2 * var(--db-sizing-3xl));
+		color: inherit;
+
+		> span {
+			color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		}
 	}
 
 	/*
@@ -768,8 +794,8 @@
       
       import './mocker-runtime-injected.js';
       
-      import './runtime~main.7a9b9879.iframe.bundle.js';
+      import './runtime~main.1b49ea79.iframe.bundle.js';
       
       import './1514.b3741b91.iframe.bundle.js';
       
-      import './main.249deeef.iframe.bundle.js';</script></body></html>
+      import './main.334765cc.iframe.bundle.js';</script></body></html>
