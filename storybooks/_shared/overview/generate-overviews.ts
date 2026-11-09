@@ -862,7 +862,9 @@ const buildOverviewMdx = (
 		GENERATED_NOTE,
 		'<Meta of={OverviewStories} />',
 		`# ${meta.title}`,
-		meta.summary,
+		// Remote text (platform endpoint): embedded as a string, not as MDX.
+		meta.summary &&
+			`<Markdown>{${JSON.stringify(meta.summary)}}</Markdown>`,
 		statusLine(meta),
 		// The names of the parts, so the Storybook search finds this page.
 		meta.parts.length > 0 && !isNoHtml
@@ -1185,6 +1187,14 @@ if (targets.length === 0) {
 	);
 }
 
+/**
+ * Overview page of every component title, per Storybook, for the "Overview"
+ * link of the example pages (storybook-config/autodocs-page.mdx): parts and
+ * family members point to their section on the page of the main component
+ * (`DBTabItem` -> `components-dbtabs-overview--docs#dbtabitem`).
+ */
+const overviewLinks = new Map<string, Record<string, string>>();
+
 for (const name of components) {
 	const meta = getComponentMeta(name);
 	for (const fw of targets) {
@@ -1205,8 +1215,82 @@ for (const name of components) {
 			join(dir, `${name}.overview.stories.${fw.storiesExt}`),
 			buildStories(name, meta, fw, firstExample)
 		);
+		const id = `components-${meta.title.toLowerCase()}-overview--docs`;
+		const links = overviewLinks.get(fw.storybook) ?? {};
+		links[meta.title] = id;
+		for (const part of meta.parts) {
+			links[part.title] ??= `${id}#${part.title.toLowerCase()}`;
+		}
+
+		overviewLinks.set(fw.storybook, links);
 	}
 }
+
+/**
+ * Fails the build when a link resolved outside the overview pages misses its
+ * page or section: the overview links above and, in the Web Components
+ * Storybook, the documentation links of web-types.json (IDE), which
+ * output/stencil/custom-elements-manifest.config.js resolves on its own.
+ */
+const checkLinks = (storybook: string, links: Record<string, string>) => {
+	const anchors = new Map<string, string[]>();
+	for (const name of components) {
+		const meta = getComponentMeta(name);
+		anchors.set(
+			`components-${meta.title.toLowerCase()}-overview--docs`,
+			// A family lists its first member under its own name too (DBHeadingH1).
+			[meta.component, ...meta.parts.map((part) => part.title)].map(
+				(title) => title.toLowerCase()
+			)
+		);
+	}
+
+	const isValid = (link: string) => {
+		const [id, anchor] = link.split('#', 2);
+		return (
+			id === 'getting-started--docs' ||
+			(anchors.has(id) &&
+				(anchor === undefined || anchors.get(id)?.includes(anchor)))
+		);
+	};
+
+	const checked: Array<[string, string]> = Object.entries(links);
+	const webTypes = join(ROOT, 'output/stencil/dist/web-types.json');
+	if (storybook === 'stencil-storybook' && existsSync(webTypes)) {
+		for (const element of (
+			JSON.parse(read(webTypes)) as {
+				contributions: { html: { elements: Array<{ name: string }> } };
+			}
+		).contributions.html.elements) {
+			const link = /\?path=\/docs\/([^"]+)/.exec(
+				JSON.stringify(element)
+			)?.[1];
+			if (element.name.startsWith('db-') && link) {
+				checked.push([`web-types.json ${element.name}`, link]);
+			}
+		}
+	}
+
+	const missing = checked
+		.filter(([, link]) => !isValid(link))
+		.map(([from, link]) => `  ${from} -> ${link}`);
+	if (missing.length > 0) {
+		throw new Error(
+			`[overviews] links to missing overview pages or sections in ${storybook}:\n${missing.join('\n')}`
+		);
+	}
+};
+
+// Only with all components: a run for single components would drop the
+// others from the map.
+for (const [storybook, links] of positionals.length > 0 ? [] : overviewLinks) {
+	checkLinks(storybook, links);
+	write(
+		join(STORYBOOKS, storybook, 'src/overview/overview-links.json'),
+		`${JSON.stringify(links, null, '\t')}\n`
+	);
+}
+
 for (const fw of targets) {
 	write(
 		join(STORYBOOKS, fw.storybook, 'src/index.mdx'),

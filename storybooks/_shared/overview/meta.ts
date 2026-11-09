@@ -74,7 +74,8 @@ type PlatformComponent = {
 	title: string;
 	description?: string;
 	status?: string;
-	url: string;
+	/** Only a URL of the published platform, see `toPlatformUrl`. */
+	url?: string;
 };
 
 /**
@@ -86,7 +87,8 @@ type PlatformComponent = {
  * convention below.
  */
 const PLATFORM_ORIGIN =
-	process.env.DB_UX_PLATFORM_URL ?? 'https://design-system.deutschebahn.com';
+	process.env['DB_UX_PLATFORM_URL'] ??
+	'https://design-system.deutschebahn.com';
 
 const loadPlatformComponents = async (): Promise<
 	Record<string, PlatformComponent>
@@ -100,13 +102,57 @@ const loadPlatformComponents = async (): Promise<
 			throw new Error(`HTTP ${response.status}`);
 		}
 
-		return (await response.json()) as Record<string, PlatformComponent>;
+		return sanitize(await response.json());
 	} catch (error) {
 		console.warn(
 			`[overviews] ${url} not available (${(error as Error).message}): no summary and status`
 		);
 		return {};
 	}
+};
+
+/** Origin every guidelines link must have, also with `DB_UX_PLATFORM_URL`. */
+const PUBLISHED_ORIGIN = 'https://design-system.deutschebahn.com';
+
+/** A URL of the published platform, otherwise `undefined`. */
+const toPlatformUrl = (value: unknown): string | undefined => {
+	if (typeof value !== 'string') {
+		return undefined;
+	}
+
+	try {
+		const url = new URL(value);
+		return url.origin === PUBLISHED_ORIGIN ? url.href : undefined;
+	} catch {
+		return undefined;
+	}
+};
+
+/**
+ * Keeps only the fields of the expected type: the response is remote data.
+ * Texts are embedded as strings into the MDX (generate-overviews.ts), URLs
+ * only when they point to the published platform.
+ */
+const sanitize = (data: unknown): Record<string, PlatformComponent> => {
+	if (!data || typeof data !== 'object') {
+		throw new Error('unexpected response');
+	}
+
+	const text = (value: unknown) =>
+		typeof value === 'string' ? value : undefined;
+	return Object.fromEntries(
+		Object.entries(data as Record<string, Record<string, unknown>>).map(
+			([name, entry]) => [
+				name,
+				{
+					title: text(entry?.['title']) ?? name,
+					description: text(entry?.['description']),
+					status: text(entry?.['status']),
+					url: toPlatformUrl(entry?.['url'])
+				}
+			]
+		)
+	);
 };
 
 const platformComponents = await loadPlatformComponents();
