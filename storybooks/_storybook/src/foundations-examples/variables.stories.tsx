@@ -28,10 +28,15 @@ const PerDensity = ({ children }: { children: ReactNode }) => (
 	</div>
 );
 
-const Box = ({ size }: { size: string }) => (
+/** A box with the size of the variable; the sizes are in examples.css. */
+const Box = ({
+	variable
+}: {
+	variable: 'spacing-fixed-xl' | 'spacing-responsive-sm';
+}) => (
 	<div
 		className="foundations-variable-box"
-		style={{ inlineSize: size, alignSelf: 'stretch' }}
+		data-variable={variable}
 		aria-hidden="true"
 	/>
 );
@@ -52,7 +57,7 @@ export const SpacingFixed: Story = {
 		<PerDensity>
 			<div className="foundations-variable-row">
 				<DBIcon icon="x_placeholder">User</DBIcon>
-				<Box size="var(--db-spacing-fixed-xl)" />
+				<Box variable="spacing-fixed-xl" />
 				<DBIcon icon="pen">Edit</DBIcon>
 			</div>
 			<code>--db-spacing-fixed-xl</code>
@@ -65,9 +70,9 @@ export const SpacingResponsive: Story = {
 	render: () => (
 		<PerDensity>
 			<div className="foundations-variable-row">
-				<Box size="var(--db-spacing-responsive-sm)" />
+				<Box variable="spacing-responsive-sm" />
 				<span>content</span>
-				<Box size="var(--db-spacing-responsive-sm)" />
+				<Box variable="spacing-responsive-sm" />
 			</div>
 			<code>--db-spacing-responsive-sm</code>
 		</PerDensity>

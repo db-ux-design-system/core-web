@@ -31,6 +31,12 @@
 		font: var(--db-type-body-sm);
 		overflow-wrap: anywhere;
 	}
+
+	/* A checkerboard behind the tiles makes transparent backgrounds visible. */
+	&[data-checkerboard="true"] {
+		background: repeating-conic-gradient(#c3c7ce 0 25%, transparent 0 50%) 0
+			0 / 16px 16px;
+	}
 }
 
 /* Color modes */
@@ -74,9 +80,11 @@
 	}
 }
 
+/* One equal column per card, however many cards the row has. */
 .foundations-density-row {
 	display: grid;
-	grid-template-columns: repeat(var(--columns, 3), minmax(0, 1fr));
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(0, 1fr);
 	gap: var(--db-spacing-fixed-md);
 }
 
@@ -86,8 +94,17 @@
 	justify-content: center;
 	align-items: center;
 	background-color: var(--db-successful-bg-inverted-contrast-high-default);
+	align-self: stretch;
 	color: var(--db-successful-on-bg-inverted-default);
 	font: var(--db-type-body-2xs);
+
+	&[data-variable="spacing-fixed-xl"] {
+		inline-size: var(--db-spacing-fixed-xl);
+	}
+
+	&[data-variable="spacing-responsive-sm"] {
+		inline-size: var(--db-spacing-responsive-sm);
+	}
 }
 
 .foundations-variable-row {
@@ -114,5 +131,53 @@
 
 	pre {
 		margin: 0 0 var(--db-spacing-fixed-md);
+	}
+}
+
+/* Headline sizes: the custom headline CSS the example shows, per size. */
+.foundations-custom-headline {
+	&[data-size="3xl"] {
+		font: var(--db-type-headline-3xl);
+		margin-block: var(--db-spacing-fixed-3xl);
+	}
+
+	&[data-size="2xl"] {
+		font: var(--db-type-headline-2xl);
+		margin-block: var(--db-spacing-fixed-2xl);
+	}
+
+	&[data-size="xl"] {
+		font: var(--db-type-headline-xl);
+		margin-block: var(--db-spacing-fixed-xl);
+	}
+
+	&[data-size="lg"] {
+		font: var(--db-type-headline-lg);
+		margin-block: var(--db-spacing-fixed-lg);
+	}
+
+	&[data-size="md"] {
+		font: var(--db-type-headline-md);
+		margin-block: var(--db-spacing-fixed-md);
+	}
+
+	&[data-size="sm"] {
+		font: var(--db-type-headline-sm);
+		margin-block: var(--db-spacing-fixed-sm);
+	}
+
+	&[data-size="xs"] {
+		font: var(--db-type-headline-xs);
+		margin-block: var(--db-spacing-fixed-xs);
+	}
+
+	&[data-size="2xs"] {
+		font: var(--db-type-headline-2xs);
+		margin-block: var(--db-spacing-fixed-2xs);
+	}
+
+	&[data-size="3xs"] {
+		font: var(--db-type-headline-3xs);
+		margin-block: var(--db-spacing-fixed-3xs);
 	}
 }

@@ -126,10 +126,8 @@ export const HeadlineSizes: Story = {
 				SIZES.map((size) => (
 					<div key={size}>
 						<p
-							style={{
-								font: `var(--db-type-headline-${size})`,
-								marginBlock: `var(--db-spacing-fixed-${size})`
-							}}>
+							className="foundations-custom-headline"
+							data-size={size}>
 							Headline size {size}
 						</p>
 						{isCodeShown && (
