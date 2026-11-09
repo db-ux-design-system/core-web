@@ -165,6 +165,26 @@ test.describe('docs.css', () => {
 		).toBe('""');
 	});
 
+	test('Foundations examples stay light with the OS in dark mode', async ({
+		browser
+	}) => {
+		const page = await browser.newPage({ colorScheme: 'dark' });
+		await openDocs(
+			page,
+			'composition-storybook',
+			'foundations-font-sizes--docs'
+		);
+		// The mode decorator sets Light Mode, so the text is dark on the light docs page.
+		await expect(page.locator('html')).toHaveAttribute(
+			'data-mode',
+			'light'
+		);
+		const color = await style(page, '.docs-story p', 'color');
+		const [red] = /\d+/.exec(color) ?? ['255'];
+		expect(Number(red), color).toBeLessThan(128);
+		await page.close();
+	});
+
 	test('links in story previews keep the component styling', async ({
 		page
 	}) => {

@@ -10,8 +10,8 @@
  *   section of a docs page)
  *
  * Both CSS files are CSS escape hatches, which Storybook documents in these
- * two head files. The composition Storybook gets the theme and head files
- * only.
+ * two head files. The composition Storybook gets the mode, the theme and the
+ * head files only.
  *
  * Copies instead of imports, because the Angular build only compiles files
  * inside its own project. Run after editing a file in this folder:
@@ -42,8 +42,11 @@ const TARGETS = [
 ];
 
 // The composition Storybook has no component stories, it only needs the
-// theme and the head files.
-const COMPOSITION = { target: '_storybook', files: THEME_FILES };
+// theme, the head files and the mode (for the Foundations examples).
+const COMPOSITION = {
+	target: '_storybook',
+	files: ['mode.ts', ...THEME_FILES]
+};
 
 const read = (file: string) =>
 	readFileSync(join(import.meta.dirname, file), 'utf8');
