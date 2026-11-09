@@ -28,18 +28,18 @@ addons.setConfig({
  */
 const ITEM = '.sidebar-item[data-nodetype]';
 const highlightStyle = document.createElement('style');
-highlightStyle.dataset.dbTheme = 'sidebar-highlight';
+highlightStyle.dataset['dbTheme'] = 'sidebar-highlight';
 document.head.append(highlightStyle);
 
 const updateHighlight = () => {
 	const container = document.querySelector('[data-highlighted-item-id]');
 	const itemId =
 		container instanceof HTMLElement
-			? container.dataset.highlightedItemId
+			? container.dataset['highlightedItemId']
 			: undefined;
 	const refId =
 		container instanceof HTMLElement
-			? container.dataset.highlightedRefId
+			? container.dataset['highlightedRefId']
 			: undefined;
 	highlightStyle.textContent =
 		itemId && refId

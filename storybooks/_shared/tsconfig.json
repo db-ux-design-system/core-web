@@ -13,5 +13,12 @@
 		"allowImportingTsExtensions": true,
 		"erasableSyntaxOnly": true
 	},
-	"include": ["**/*.ts"]
+	"include": ["**/*.ts"],
+	// They import `storybook/*`, which resolves only in a Storybook: sync.ts copies
+	// them there, where each Storybook type-checks them.
+	"exclude": [
+		"storybook-config/manager.ts",
+		"storybook-config/mode.ts",
+		"storybook-config/theme.ts"
+	]
 }

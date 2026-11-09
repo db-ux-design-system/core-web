@@ -45,6 +45,8 @@ export const getEntries = async (
 	return Object.values(entries);
 };
 
+const errorListeners = new WeakMap<Page, (error: Error) => void>();
+
 /**
  * Opens a docs page in the preview iframe (without the manager UI) and waits
  * until its content is rendered. Collects uncaught errors of the page.
@@ -56,7 +58,18 @@ export const openDocs = async (
 	mode?: 'light' | 'dark'
 ): Promise<string[]> => {
 	const errors: string[] = [];
-	page.on('pageerror', (error) => errors.push(error.message));
+	// A reused tab (snippets.spec.ts) collects the errors of its current page
+	// only: the listener of the previous page is removed.
+	const previous = errorListeners.get(page);
+	if (previous) {
+		page.off('pageerror', previous);
+	}
+
+	const listener = (error: Error) => {
+		errors.push(error.message);
+	};
+	errorListeners.set(page, listener);
+	page.on('pageerror', listener);
 	const globals = mode ? `&globals=mode:${mode}` : '';
 	await page.goto(
 		`${storybookUrl(storybook)}/iframe.html?id=${id}&viewMode=docs${globals}`

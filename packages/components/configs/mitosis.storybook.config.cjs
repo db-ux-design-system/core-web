@@ -12,7 +12,7 @@ const vue = require('./vue/index.cjs');
  * - examples with `storybookIgnore: true` in their `useMetadata`
  */
 const isInteractionFixture = (file) =>
-	/\/interaction(-[\w-]+)?\.example\.lite\.tsx$/.test(file);
+	/[/\\]interaction(-[\w-]+)?\.example\.lite\.tsx$/.test(file);
 const ignoredExamples = globSync(
 	'src/components/*/examples/*.example.lite.tsx',
 	{
@@ -26,7 +26,8 @@ const ignoredExamples = globSync(
 				readFileSync(resolve(__dirname, '..', file), 'utf8')
 			)
 	)
-	.map((file) => `!${file}`);
+	// globSync returns native separators; Mitosis matches forward slashes.
+	.map((file) => `!${file.replaceAll('\\', '/')}`);
 
 /**
  * @type {import('@builder.io/mitosis').MitosisConfig}
