@@ -1,8 +1,8 @@
 /**
  * Metadata of a component overview page, read from the sources
  * that already exist: this repository and `/api/components.json` of the
- * Design System Platform. Only what has no source comes from
- * `overrides.json`.
+ * Design System Platform (read from its copy `platform-components.json`,
+ * see platform.ts). Only what has no source comes from `overrides.json`.
  *
  * | Field               | Source                                                  |
  * | ------------------- | ------------------------------------------------------- |
@@ -17,6 +17,7 @@
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { readPlatformComponents } from './platform.ts';
 
 const ROOT = resolve(import.meta.dirname, '..', '..', '..');
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
@@ -70,92 +71,8 @@ type Override = {
 
 type Review = { name: string; status: string; date?: string };
 
-type PlatformComponent = {
-	title: string;
-	description?: string;
-	status?: string;
-	/** Only a URL of the published platform, see `toPlatformUrl`. */
-	url?: string;
-};
-
-/**
- * `/api/components.json` of the Design System Platform: description, status
- * and URL of every component page, maintained there only. Another origin, e.g.
- * a local platform build, via `DB_UX_PLATFORM_URL=http://localhost:4329`.
- * Without it (offline, or before the endpoint is released) the overview pages
- * show no summary and no status, and the guidelines link uses the URL
- * convention below.
- */
-const PLATFORM_ORIGIN =
-	process.env['DB_UX_PLATFORM_URL'] ??
-	'https://design-system.deutschebahn.com';
-
-const loadPlatformComponents = async (): Promise<
-	Record<string, PlatformComponent>
-> => {
-	const url = `${PLATFORM_ORIGIN}/api/components.json`;
-	try {
-		const response = await fetch(url, {
-			signal: AbortSignal.timeout(10_000)
-		});
-		if (!response.ok) {
-			throw new Error(`HTTP ${response.status}`);
-		}
-
-		return sanitize(await response.json());
-	} catch (error) {
-		console.warn(
-			`[overviews] ${url} not available (${(error as Error).message}): no summary and status`
-		);
-		return {};
-	}
-};
-
-/** Origin every guidelines link must have, also with `DB_UX_PLATFORM_URL`. */
-const PUBLISHED_ORIGIN = 'https://design-system.deutschebahn.com';
-
-/** A URL of the published platform, otherwise `undefined`. */
-const toPlatformUrl = (value: unknown): string | undefined => {
-	if (typeof value !== 'string') {
-		return undefined;
-	}
-
-	try {
-		const url = new URL(value);
-		return url.origin === PUBLISHED_ORIGIN ? url.href : undefined;
-	} catch {
-		return undefined;
-	}
-};
-
-/**
- * Keeps only the fields of the expected type: the response is remote data.
- * Texts are embedded as strings into the MDX (generate-overviews.ts), URLs
- * only when they point to the published platform.
- */
-const sanitize = (data: unknown): Record<string, PlatformComponent> => {
-	if (!data || typeof data !== 'object') {
-		throw new Error('unexpected response');
-	}
-
-	const text = (value: unknown) =>
-		typeof value === 'string' ? value : undefined;
-	return Object.fromEntries(
-		Object.entries(data as Record<string, Record<string, unknown>>).map(
-			([name, entry]) => [
-				name,
-				{
-					title: text(entry?.['title']) ?? name,
-					description: text(entry?.['description']),
-					status: text(entry?.['status']),
-					url: toPlatformUrl(entry?.['url'])
-				}
-			]
-		)
-	);
-};
-
-const platformComponents = await loadPlatformComponents();
+// Copy of the platform endpoint in the repository, see platform.ts.
+const platformComponents = readPlatformComponents();
 
 /** Statuses shown on the overview; sub components (`sub`) have none. */
 const STATUSES = new Set(['stable', 'beta', 'concept', 'deprecated']);

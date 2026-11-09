@@ -35,7 +35,17 @@ What belongs in Storybook and what on the Design System Platform is described in
 
 Parts (e.g. `tab-item`, `table-row`) get no page of their own; they are documented on the page of their main component: their examples in "Usage" (`DBTabItem: Behavior`), their properties or attributes as `### DBTabItem` below the table of the main component (anchor `#dbtabitem`, linked from the platform), their migration below `### DBTabItem` in "Migration", and their names in the "Parts" line below the title, so the Storybook search finds the page. A component is a part of another when its name starts with the other name plus `-`, or when it has `partOf`. `node storybooks/_shared/overview/generate-overviews.ts --structure` prints the result.
 
-Summary and status are maintained on the Design System Platform (`description` and `status` in the frontmatter of each component page). The platform publishes them with the URL of each page as `/api/components.json`; `meta.ts` loads it at build time. `DB_UX_PLATFORM_URL=http://localhost:4329` uses a local platform build instead. When the endpoint is not reachable (offline, or before it is released), the pages show neither summary nor status, and the guidelines link falls back to the URL convention in `meta.ts` and the exceptions in `overrides.json`.
+Summary and status are maintained on the Design System Platform (`description` and `status` in the frontmatter of each component page). The platform publishes them with the URL of each page as `/api/components.json`. The build does not fetch it: it reads the copy `platform-components.json` in this folder (`platform.ts`), so every build of a version gives the same pages, also offline. The build fails when the copy is missing or invalid. A component without an entry gets no summary and no status, and its guidelines link falls back to the URL convention in `meta.ts` and the exceptions in `overrides.json`.
+
+Refresh the copy when summaries, statuses or URLs change on the platform, and commit it:
+
+```shell
+node storybooks/_shared/overview/update-platform-components.ts
+# from a local platform build
+DB_UX_PLATFORM_URL=http://localhost:4329 node storybooks/_shared/overview/update-platform-components.ts
+# only compare, fails when the copy is out of date
+node storybooks/_shared/overview/update-platform-components.ts --check
+```
 
 The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
 
