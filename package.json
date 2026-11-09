@@ -63,6 +63,7 @@
     "lint:knip": "knip --config .config/knip.jsonc",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:package-json": "npmPkgJsonLint ./packages ./output --configFile .config/.npmpackagejsonlintrc.json",
+    "lint:storybook-config": "node storybooks/_shared/storybook-config/sync.ts --check",
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",

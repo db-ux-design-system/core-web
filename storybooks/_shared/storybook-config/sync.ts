@@ -17,8 +17,11 @@
  * inside its own project. Run after editing a file in this folder:
  *
  *   node storybooks/_shared/storybook-config/sync.ts
+ *
+ * `pnpm run lint:storybook-config` (part of `pnpm run lint`) runs it with
+ * `--check` and fails when a copy is out of date.
  */
-import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { format, resolveConfig } from 'prettier';
 
@@ -96,18 +99,38 @@ const heads = {
 	)
 };
 
+// `--check` (pnpm run lint:storybook-config) writes nothing and fails when a
+// copy differs from what this script would write.
+const isCheck = process.argv.includes('--check');
+const outdated: string[] = [];
+
 for (const { target, files } of [
 	...TARGETS.map((name) => ({ target: name, files: FILES })),
 	COMPOSITION
 ]) {
 	const directory = join(STORYBOOKS, target, '.storybook');
-	for (const file of files) {
-		copyFileSync(join(import.meta.dirname, file), join(directory, file));
-		console.log(`[storybook-config] ${target}/.storybook/${file}`);
-	}
+	const expected: Array<[string, string]> = [
+		...files.map((file): [string, string] => [file, read(file)]),
+		...Object.entries(heads)
+	];
+	for (const [file, content] of expected) {
+		const path = join(directory, file);
+		if (isCheck) {
+			if (!existsSync(path) || readFileSync(path, 'utf8') !== content) {
+				outdated.push(`${target}/.storybook/${file}`);
+			}
 
-	for (const [file, content] of Object.entries(heads)) {
-		writeFileSync(join(directory, file), content);
+			continue;
+		}
+
+		writeFileSync(path, content);
 		console.log(`[storybook-config] ${target}/.storybook/${file}`);
 	}
+}
+
+if (outdated.length > 0) {
+	console.error(
+		`[storybook-config] out of sync with storybooks/_shared/storybook-config/, run node storybooks/_shared/storybook-config/sync.ts:\n${outdated.map((file) => `  ${file}`).join('\n')}`
+	);
+	process.exitCode = 1;
 }
