@@ -656,17 +656,24 @@ const getRoot = (
 };
 
 /**
- * Examples with `storybookIgnore: true` in their `useMetadata` (see
- * packages/components/docs/creating-examples.md), e.g. test fixtures of the
- * showcases, stay off the overview page.
+ * Examples that stay off the overview page, like in the story generator
+ * (configs/mitosis.storybook.config.cjs): `storybookIgnore: true` in their
+ * `useMetadata` and the interaction fixtures of the showcase e2e tests
+ * (`interaction*.example.lite.tsx`), see
+ * packages/components/docs/creating-examples.md.
  */
 const isStorybookIgnored = (name: string, storyFile: string): boolean => {
+	const example = storyFile.replace(/\.stories$/, '');
+	if (/^interaction(-[\w-]+)?\.example$/.test(example)) {
+		return true;
+	}
+
 	const source = join(
 		ROOT,
 		COMPONENTS,
 		name,
 		'examples',
-		`${storyFile.replace(/\.stories$/, '')}.lite.tsx`
+		`${example}.lite.tsx`
 	);
 	return existsSync(source) && /storybookIgnore:\s*true/.test(read(source));
 };

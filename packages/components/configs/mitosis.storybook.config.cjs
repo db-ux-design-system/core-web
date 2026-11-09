@@ -6,25 +6,31 @@ const react = require('./react/index.cjs');
 const vue = require('./vue/index.cjs');
 
 /**
- * @type {import('@builder.io/mitosis').MitosisConfig}
+ * Examples without a story file in any Storybook:
+ * - the interaction fixtures of the showcase e2e tests
+ *   (`interaction*.example.lite.tsx`: test ids and markers, no usage example)
+ * - examples with `storybookIgnore: true` in their `useMetadata`
  */
-/**
- * Examples with `storybookIgnore: true` in their `useMetadata` (e.g. test
- * fixtures of the showcases) get no story file in any Storybook.
- */
+const isInteractionFixture = (file) =>
+	/\/interaction(-[\w-]+)?\.example\.lite\.tsx$/.test(file);
 const ignoredExamples = globSync(
 	'src/components/*/examples/*.example.lite.tsx',
 	{
 		cwd: resolve(__dirname, '..')
 	}
 )
-	.filter((file) =>
-		/storybookIgnore:\s*true/.test(
-			readFileSync(resolve(__dirname, '..', file), 'utf8')
-		)
+	.filter(
+		(file) =>
+			isInteractionFixture(file) ||
+			/storybookIgnore:\s*true/.test(
+				readFileSync(resolve(__dirname, '..', file), 'utf8')
+			)
 	)
 	.map((file) => `!${file}`);
 
+/**
+ * @type {import('@builder.io/mitosis').MitosisConfig}
+ */
 module.exports = {
 	files: [
 		'**/*.example.lite.tsx',
