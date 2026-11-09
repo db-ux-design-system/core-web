@@ -768,13 +768,15 @@ Ensures sub-components are used inside their required parent component and slot.
 
 **Configured relationships:**
 
-| Sub-component     | Required parent | Required slot  |
-| ----------------- | --------------- | -------------- |
-| `DBDrawerHeader`  | `DBDrawer`      | `header`       |
-| `DBDrawerFooter`  | `DBDrawer`      | `footer`       |
-| `DBDialogHeader`  | `DBDialog`      | `header`       |
-| `DBDialogFooter`  | `DBDialog`      | `footer`       |
-| `DBAccordionItem` | `DBAccordion`   | (direct child) |
+| Sub-component     | Required parent                                  | Required slot  |
+| ----------------- | ------------------------------------------------ | -------------- |
+| `DBDrawerHeader`  | `DBDrawer`, `DBHeader` or `DBControlPanelMobile` | `header`       |
+| `DBDrawerFooter`  | `DBDrawer`                                       | `footer`       |
+| `DBDialogHeader`  | `DBDialog`                                       | `header`       |
+| `DBDialogFooter`  | `DBDialog`                                       | `footer`       |
+| `DBAccordionItem` | `DBAccordion`                                    | (direct child) |
+
+`DBHeader` and `DBControlPanelMobile` forward their `header` slot into the `header` slot of their internal `DBDrawer`, so a `DBDrawerHeader` passed there is accepted. The slot is only rendered when `showDrawerHeaderSlot` is set.
 
 **❌ Invalid:**
 
@@ -800,6 +802,7 @@ Ensures sub-components are used inside their required parent component and slot.
 ```jsx
 // React
 <DBDrawer header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}>Content</DBDrawer>
+<DBHeader showDrawerHeaderSlot header={<DBDrawerHeader closeButtonText="Close">Title</DBDrawerHeader>}>Content</DBHeader>
 <DBDialog header={<DBDialogHeader closeButtonText="Close">Title</DBDialogHeader>}>Content</DBDialog>
 <DBAccordion><DBAccordionItem headlinePlain="Test">Content</DBAccordionItem></DBAccordion>
 

@@ -39,6 +39,9 @@ export type DBControlPanelNavigationDefaultState = {
 	_resizeObserverCallbackId?: string;
 	_singleBehaviorObserver?: MutationObserver;
 	_shellObserver?: MutationObserver;
+	_scheduleScrollButtonEvaluation: () => void;
+	_observeMenuContent: () => void;
+	_disconnectMenuContentObserver: () => void;
 	_attachSingleBehaviorObserver: () => void;
 	_disconnectSingleBehaviorObserver: () => void;
 	_update: () => void;

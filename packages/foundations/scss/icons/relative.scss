@@ -1,4 +1,5 @@
 @use "index";
+@use "sizes";
 @use "../theme/default.assets-paths" as assets-paths;
 
 @each $variant in index.$default-icon-variants {
@@ -11,7 +12,7 @@
 			format("woff2");
 	}
 
-	@each $size in (16, 20, 24, 32, 48, 64) {
+	@each $size in sizes.$sizes {
 		@font-face {
 			font-display: block;
 			font-family: "db-ux-#{$variant}";

@@ -12,19 +12,40 @@ useMetadata({
 export default function DividerDensity() {
 	return (
 		<Fragment>
-			<div data-density="functional" style={{ width: '200px' }}>
+			<div
+				data-density="functional"
+				style={{
+					width: '200px',
+					height: '200px',
+					display: 'grid',
+					gridTemplateRows: 'auto 1fr'
+				}}>
 				<DBInfotext size="small" semantic="informational">
 					Functional
 				</DBInfotext>
 				<DBDivider width="full"></DBDivider>
 			</div>
-			<div data-density="regular" style={{ width: '200px' }}>
+			<div
+				data-density="regular"
+				style={{
+					width: '200px',
+					height: '200px',
+					display: 'grid',
+					gridTemplateRows: 'auto 1fr'
+				}}>
 				<DBInfotext size="small" semantic="informational">
 					(Default) Regular
 				</DBInfotext>
 				<DBDivider width="full"></DBDivider>
 			</div>
-			<div data-density="expressive" style={{ width: '200px' }}>
+			<div
+				data-density="expressive"
+				style={{
+					width: '200px',
+					height: '200px',
+					display: 'grid',
+					gridTemplateRows: 'auto 1fr'
+				}}>
 				<DBInfotext size="small" semantic="informational">
 					Expressive
 				</DBInfotext>

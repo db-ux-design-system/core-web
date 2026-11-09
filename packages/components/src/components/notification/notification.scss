@@ -11,23 +11,9 @@
 @use "./notification-grid-overlay";
 @use "./notification-grid-non-overlay";
 
-%timestamp-line-height-adjustments {
-	// Adjusts line-height for elements when timestamp is present
-	&:has([data-area="timestamp"]) {
-		[data-area="head"],
-		p,
-		&::before,
-		.db-button {
-			/* stylelint-disable-next-line db-ux/use-spacings */
-			margin-block-start: -2px;
-		}
-	}
-}
-
 .db-notification {
 	@extend %component-border;
 	@extend %grid-layout-default;
-	@extend %timestamp-line-height-adjustments;
 	@include helpers.display(grid);
 
 	padding: variables.$db-spacing-fixed-md;
@@ -98,6 +84,11 @@
 		grid-area: timestamp;
 		white-space: nowrap;
 		justify-self: end;
+
+		// Optically centers the smaller timestamp line (sm) on the first line of
+		// its row neighbors (head/content, md). Uses `translate` instead of a
+		// margin so the grid track size and the component's height stay unchanged.
+		transform: translateY(2px);
 	}
 
 	.db-button {

@@ -119,6 +119,13 @@ export type DBTabsProps = DBTabsDefaultProps &
 	TabItemAlignmentProps &
 	DBTabsEventProps;
 
+export type DBTabsHandles = {
+	resizeObserver: ResizeObserver | null;
+	observer: MutationObserver | null;
+	pendingRafId: number | null;
+	scrollListener: { fn: () => void; container: Element } | null;
+};
+
 export type DBTabsDefaultState = {
 	_id?: string;
 	_synced: boolean;
@@ -146,10 +153,8 @@ export type DBTabsDefaultState = {
 	syncSelection: (activeIndex?: number) => void;
 	_tabButtons: HTMLElement[];
 	_tabPanels: HTMLElement[];
-	_resizeObserver?: ResizeObserver | null;
-	_observer?: MutationObserver | null;
-	_pendingRafId: number | null;
-	_scrollListener: { fn: () => void } | null;
+	_handles: DBTabsHandles;
+	_setHandles: (patch: Partial<DBTabsHandles>) => void;
 	_focusgroupSupported: boolean;
 	_activeIndex: number;
 	activateTab: (index: number) => void;

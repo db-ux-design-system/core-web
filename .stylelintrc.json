@@ -63,6 +63,9 @@
 		"scss/at-mixin-pattern": "^_?[a-z]([a-z0-9-]*[a-z0-9])?$",
 		"no-descending-specificity": null,
 		"number-max-precision": null,
-		"scss/operator-no-newline-after": null
+		"scss/operator-no-newline-after": null,
+		"selector-no-invalid": null,
+		"selector-no-unmatchable": null,
+		"value-no-invalid": null
 	}
 }

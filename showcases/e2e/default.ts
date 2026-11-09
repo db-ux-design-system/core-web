@@ -29,7 +29,7 @@ export type DefaultTestType = {
 
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
-	ratio?: string;
+	ratio?: string | ((project: FullProject) => string | undefined);
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -225,7 +225,9 @@ export const getDefaultScreenshotTest = ({
 		project: FullProject
 	): PageAssertionsToHaveScreenshotOptions => {
 		const diffPixel = process.env.diff;
-		const maxDiffPixelRatio = process.env.ratio ?? ratio;
+		const maxDiffPixelRatio =
+			process.env.ratio ??
+			(typeof ratio === 'function' ? ratio(project) : ratio);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
 

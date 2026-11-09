@@ -1,5 +1,43 @@
 # @db-ux/react-core-components
 
+## 6.3.0
+
+### Minor Changes
+
+- fix(DBCustomSelect): stop tag removal from crashing the Web Component - [see commit 53b9283](https://github.com/db-ux-design-system/core-web/commit/53b928369a9e60eb4518a197799d55d7ce148ce0):
+
+    - Removing a selected tag (or clearing all) in a `multiple` + `selected-type="tag"` custom select no longer throws `TypeError: Cannot read properties of null (reading 'nodeType')` / `elm.remove is not a function` in the `@db-ux/wc-core-components` output.
+    - Root cause: each selected tag rendered as a `<db-tag>` custom element, a scoped-slot host; removing one from the shrinking tag list crashed Stencil's scoped-slot relocation runtime. The selected tags now render as the CSS-only `db-tag` markup directly, so there is no nested slot host to relocate.
+    - Markup change: a selected tag is now `<div class="db-tag" data-emphasis="strong">` containing the label and a `<button class="db-button db-tab-remove-button">` (previously a `<db-tag>` custom element). The remove button keeps its accessible name via the nested label tooltip, unchanged for consumers who style `.db-tag` / `.db-tab-remove-button`.
+    - Removing a tag while the dropdown is open no longer closes the dropdown: the remove button's click now stops propagating to the document click listener, which `DBTag` did before but the plain markup did not.
+
+### Patch Changes
+
+- fix(DBDivider): `variant="vertical"` now stretches to the height of its flex or grid container, also with `align-items: center` or `width="full"` - [see commit 980b5be](https://github.com/db-ux-design-system/core-web/commit/980b5be791fba4572038e6ea7e42269e47de6010)
+
+## 6.2.1
+
+### Patch Changes
+
+- fix(DBControlPanelNavigation): update overflow scroll buttons without a fixed delay and when the menu content changes size - [see commit e54e1dd](https://github.com/db-ux-design-system/core-web/commit/e54e1dd7424fabdcf33dc955e531edac1e86a650)
+- fix(DBCustomSelect): submit every selected value of a `multiple` custom select, including values preselected via `values`, and clear a `multiple` custom select without initial `values` on form reset instead of keeping the current selection - [see commit 0ff72da](https://github.com/db-ux-design-system/core-web/commit/0ff72da5d361eda02ad83f8dbd2b3a2a088cec1b)
+- fix(DBLoadingIndicator): remove stray whitespace and fix spinner size inside buttons - [see commit 7798947](https://github.com/db-ux-design-system/core-web/commit/7798947c65ad499f414c2dc5f59d31f1392832f4):
+
+    - removed the stray inline gap next to the spinner inside a button so it no longer resizes the button
+    - removed the stray gap below the progress bar when the label is hidden and no progress text is shown (`data-hide-label="true"` together with `data-show-progress-text="false"` or no progress span)
+    - a loading indicator inside a button now always matches the button's icon size (24px, and 20px for `size="small"` buttons) instead of requiring a manual `size="large"`; this overrides an explicit `size` on the indicator and the overlay spinner, so a default-button overlay spinner is now 24px (previously 20px)
+    - CSS-only consumers need to add the `db-loading-indicator-progress-text` class to the progress text `<span>` so the gap removal targets it correctly
+
+- fix(DBPagination): make the current page a non-interactive dead end - [see commit f43e369](https://github.com/db-ux-design-system/core-web/commit/f43e369f17b63312c6c2f82c73282be55baaa6ee):
+
+    - A click inside `db-pagination` no longer throws `TypeError: this.isModifiedLinkClick is not a function` in the Web Component output: the capture-phase `click` listener that lost its binding is gone.
+    - Instead, the current page control is taken out of play: it renders with `tabindex="-1"` and `pagination-item.scss` sets `pointer-events: none` on the filled control, so a pointer click cannot land on it and there is no link default to cancel.
+    - This also fixes a keyboard/screen-reader issue: the current page is no longer a tab stop that announces an actionable control which does nothing, while `aria-current="page"` still marks it as the current page.
+    - Because a pointer click can no longer reach the current link instead of being prevented after the fact, a composed router link (React Router `<Link>`, Vue `<RouterLink>`) no longer navigates to the current URL again - the earlier bubble-phase `preventDefault` ran after the router handler and was not seen.
+    - Markup change: the current page control (`a`/`button` inside `li[data-variant="filled"]`) now carries `tabindex="-1"`; non-current controls carry no `tabindex`.
+
+- fix(DBTabs): keep the active panel visible while mounting and clean up observers on unmount - [see commit 7a5894d](https://github.com/db-ux-design-system/core-web/commit/7a5894dfa86185d7baa61ca21772b5b4a64fbc1d)
+
 ## 6.2.0
 
 ### Minor Changes

@@ -13,7 +13,7 @@ import {
 	DEFAULT_SCROLL_RIGHT
 } from '../../shared/constants';
 import { NavigationItemGroupVariantType } from '../../shared/model';
-import { cls, delay, getBooleanAsString, hasCssFlag } from '../../utils';
+import { cls, getBooleanAsString, hasCssFlag } from '../../utils';
 import { handleSubNavigationPosition } from '../../utils/navigation';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import DBButton from '../button/button.lite';
@@ -194,12 +194,13 @@ export default function DBControlPanelNavigation(
 
 			// Scroll buttons and sub-nav position are cheap, always refresh
 			if (mVariant === 'popover') {
-				void delay(() => {
-					if (menuRef) {
-						state.evaluateScrollButtons(menuRef);
-					}
-				}, 500);
+				// Content size changes (font swap, label changes, items added)
+				// do not resize the <nav>, so observe the menu content directly.
+				state._observeMenuContent();
+				state._scheduleScrollButtonEvaluation();
 			} else {
+				// Scroll buttons only exist in the horizontal popover variant
+				state._disconnectMenuContentObserver();
 				state.showScrollLeft = false;
 				state.showScrollRight = false;
 			}
@@ -317,6 +318,79 @@ export default function DBControlPanelNavigation(
 				}
 			}
 			state._singleBehaviorObserver = undefined;
+		},
+		_scheduleScrollButtonEvaluation() {
+			// Coalesce multiple triggers into one evaluation per frame and
+			// measure after the variant-dependent styles have been applied.
+			// Frame id and observers live on the DOM element (not in state)
+			// so callbacks never read stale values (React closures) and
+			// no re-render / signal tracking is triggered (Angular).
+			if (!menuRef) return;
+			const menuElement = menuRef as any;
+			if (menuElement.__scrollEvaluationFrame) {
+				cancelAnimationFrame(menuElement.__scrollEvaluationFrame);
+			}
+			menuElement.__scrollEvaluationFrame = requestAnimationFrame(() => {
+				menuElement.__scrollEvaluationFrame = undefined;
+				// DOM-based check equals the "popover" variant condition
+				if (state._isShellDesktopPositionTop()) {
+					state.evaluateScrollButtons(menuElement);
+				}
+			});
+		},
+		_observeMenuContent() {
+			if (!menuRef || (menuRef as any).__menuContentObserver) return;
+			const menuElement = menuRef as HTMLElement;
+			const resizeObserver = new ResizeObserver(() =>
+				state._scheduleScrollButtonEvaluation()
+			);
+			const observeItems = () => {
+				// Start from scratch so removed items are no longer observed
+				resizeObserver.disconnect();
+				resizeObserver.observe(menuElement);
+				// Only top-level items define the scroll width of the menu,
+				// nested sub-menu items are rendered inside positioned popovers.
+				// Query the item classes instead of direct children, because
+				// Angular/Stencil wrap every item in a custom element host.
+				for (const item of Array.from(
+					menuElement.querySelectorAll(
+						'.db-control-panel-navigation-item, .db-control-panel-navigation-item-group'
+					)
+				)) {
+					if (
+						!item.closest(
+							'.db-control-panel-navigation-item-group-menu'
+						)
+					) {
+						resizeObserver.observe(item);
+					}
+				}
+			};
+			observeItems();
+			// Items can be added or removed after mount (async data, routing)
+			const mutationObserver = new MutationObserver(() => {
+				observeItems();
+				state._scheduleScrollButtonEvaluation();
+			});
+			mutationObserver.observe(menuElement, {
+				childList: true,
+				subtree: true
+			});
+			(menuElement as any).__menuContentObserver = {
+				resize: resizeObserver,
+				mutation: mutationObserver
+			};
+		},
+		_disconnectMenuContentObserver() {
+			if (!menuRef) return;
+			const menuElement = menuRef as any;
+			menuElement.__menuContentObserver?.resize.disconnect();
+			menuElement.__menuContentObserver?.mutation.disconnect();
+			menuElement.__menuContentObserver = undefined;
+			if (menuElement.__scrollEvaluationFrame) {
+				cancelAnimationFrame(menuElement.__scrollEvaluationFrame);
+				menuElement.__scrollEvaluationFrame = undefined;
+			}
 		},
 		evaluateScrollButtons(tList: Element) {
 			const needsScroll = tList.scrollWidth > tList.clientWidth;
@@ -687,6 +761,8 @@ export default function DBControlPanelNavigation(
 
 		state._shellObserver?.disconnect();
 		state._shellObserver = undefined;
+
+		state._disconnectMenuContentObserver();
 	});
 
 	// After init, find the closest DBShell and observe its
