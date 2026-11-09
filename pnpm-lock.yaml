@@ -901,12 +901,9 @@ importers:
         specifier: workspace:*
         version: link:../../..
     devDependencies:
-      css-loader:
-        specifier: 7.1.2
-        version: 7.1.2(webpack@5.112.2)
       html-webpack-plugin:
         specifier: 5.6.8
-        version: 5.6.8(webpack@5.112.2)
+        version: 5.6.8(@rspack/core@2.3.0(@swc/helpers@0.5.23))(webpack@5.112.2)
       mini-css-extract-plugin:
         specifier: 2.9.2
         version: 2.9.2(webpack@5.112.2)
@@ -925,9 +922,6 @@ importers:
       '@db-ux/core-theme-tools':
         specifier: workspace:*
         version: link:../theme-tools
-      fast-glob:
-        specifier: 3.3.3
-        version: 3.3.3
     devDependencies:
       '@db-ux/db-theme':
         specifier: 7.2.0
@@ -9626,18 +9620,6 @@ packages:
     resolution: {integrity: sha512-fr7PD9nDXtOwJmW8vk2MOXBuc+oGsYF9uLgUtg+1pWiPo2TwxJVLePfCIKmL6x4AAYSYqaRTrNGppYCDKcHOYw==}
     engines: {node: '>=22.18.0'}
     hasBin: true
-
-  css-loader@7.1.2:
-    resolution: {integrity: sha512-6WvYYn7l/XEGN8Xu2vWFt9nVzrCn39vKyTEFf/ExEyoksJjjSZV/0/35XPlMbpnr6VGhZIUg5yJrL8tGfes/FA==}
-    engines: {node: '>= 18.12.0'}
-    peerDependencies:
-      '@rspack/core': 0.x || 1.x
-      webpack: ^5.27.0
-    peerDependenciesMeta:
-      '@rspack/core':
-        optional: true
-      webpack:
-        optional: true
 
   css-loader@7.1.3:
     resolution: {integrity: sha512-frbERmjT0UC5lMheWpJmMilnt9GEhbZJN/heUb7/zaJYeIzj5St9HvDcfshzzOqbsS+rYpMk++2SD3vGETDSyA==}
@@ -26303,19 +26285,6 @@ snapshots:
       semver: 7.8.5
       tinyglobby: 0.2.17
 
-  css-loader@7.1.2(webpack@5.112.2):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.5.32)
-      postcss: 8.5.32
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.32)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.32)
-      postcss-modules-scope: 3.2.1(postcss@8.5.32)
-      postcss-modules-values: 4.0.0(postcss@8.5.32)
-      postcss-value-parser: 4.2.0
-      semver: 7.8.5
-    optionalDependencies:
-      webpack: 5.112.2(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.5))(svgo@3.3.5)(uglify-js@3.19.3)(webpack-cli@6.0.1)
-
   css-loader@7.1.3(webpack@5.112.0):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.32)
@@ -28633,6 +28602,17 @@ snapshots:
 
   html-tags@5.1.0: {}
 
+  html-webpack-plugin@5.6.8(@rspack/core@2.3.0(@swc/helpers@0.5.23))(webpack@5.112.2):
+    dependencies:
+      '@types/html-minifier-terser': 6.1.0
+      html-minifier-terser: 6.1.0
+      lodash: 4.18.1
+      pretty-error: 4.0.0
+      tapable: 2.3.3
+    optionalDependencies:
+      '@rspack/core': 2.3.0(@swc/helpers@0.5.23)
+      webpack: 5.112.2(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.5))(svgo@3.3.5)(uglify-js@3.19.3)(webpack-cli@6.0.1)
+
   html-webpack-plugin@5.6.8(webpack@5.112.2):
     dependencies:
       '@types/html-minifier-terser': 6.1.0
@@ -28641,7 +28621,7 @@ snapshots:
       pretty-error: 4.0.0
       tapable: 2.3.3
     optionalDependencies:
-      webpack: 5.112.2(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.5))(svgo@3.3.5)(uglify-js@3.19.3)(webpack-cli@6.0.1)
+      webpack: 5.112.2(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.6))(svgo@3.3.5)(uglify-js@3.19.3)(webpack-cli@6.0.1)
 
   htmlparser2@10.1.0:
     dependencies:
