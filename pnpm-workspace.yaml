@@ -55,6 +55,7 @@ minimumReleaseAgeExclude:
   - image-size@2.0.3
   - nanoid@3.3.18
   - node-forge@1.4.1
+  - follow-redirects@1.16.3
 
 overrides:
   # PostCSS patch releases ship type-incompatible .d.ts files; pnpm isolates
@@ -104,6 +105,7 @@ overrides:
   seroval@>=1.6.0 <1.6.11: 1.6.11
   handlebars@<4.7.10: 4.7.10
   body-parser@>=1.0.0 <1.20.9: 1.20.9
+  follow-redirects@<1.16.3: 1.16.3
 
 catalog:
   postcss: 8.5.32
