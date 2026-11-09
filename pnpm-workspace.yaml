@@ -106,6 +106,10 @@ overrides:
   handlebars@<4.7.10: 4.7.10
   body-parser@>=1.0.0 <1.20.9: 1.20.9
   follow-redirects@<1.16.3: 1.16.3
+  launch-editor@<=2.14.1: 2.14.2
+  markdown-it@>=14.1.0 <14.3.3: 14.3.3
+  ip-address@<=10.7.3: 10.7.4
+  hono@>=4.12.4 <4.13.11: 4.13.11
 
 catalog:
   postcss: 8.5.32
