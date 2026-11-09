@@ -20,6 +20,8 @@ jobs:
   playwright-storybooks:
     name: 🧪🎭 - storybooks (${{ matrix.shard }}/3)
     runs-on: ubuntu-26.04
+    # A shard takes about 5 minutes; the limit stops a hung server or compiler.
+    timeout-minutes: 30
     # With all component overview pages the tests take about 13 minutes on
     # one machine; three shards run them in parallel.
     strategy:
@@ -62,8 +64,10 @@ jobs:
       - name: 📁 Provide built React and Vue packages
         shell: bash
         run: |
-          cp -R build-outputs/react/dist output/react/dist
-          cp -R build-outputs/vue/dist output/vue/dist
+          mkdir -p output/react/dist
+          cp -RT build-outputs/react/dist output/react/dist
+          mkdir -p output/vue/dist
+          cp -RT build-outputs/vue/dist output/vue/dist
 
       - name: ⏬ Download components build
         uses: actions/download-artifact@v8.0.2
@@ -84,7 +88,13 @@ jobs:
         env:
           BASE_URL: ${{ inputs.baseUrl }}
         run: |
-          for dir in build-storybooks/db-ux-*-storybook; do
+          shopt -s nullglob # cspell:disable-line
+          dirs=(build-storybooks/db-ux-*-storybook)
+          if [[ ${#dirs[@]} -eq 0 ]]; then
+            echo "::error::No Storybook artifacts were downloaded (db-ux-*-storybook)."
+            exit 1
+          fi
+          for dir in "${dirs[@]}"; do
             mv "$dir" "build-storybooks/${dir#build-storybooks/db-ux-}"
           done
           mkdir -p "./build-storybooks-serve${BASE_URL}"

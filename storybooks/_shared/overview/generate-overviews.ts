@@ -258,9 +258,167 @@ const findWebTypes = (name: string): WebTypesElement | undefined => {
 /** Attributes that are internal or covered by the native `id`/`class`. */
 const SKIPPED_ATTRIBUTES = new Set(['id', 'prop-overrides', 'classname']);
 
+/** JSX names whose HTML attribute is spelled differently. */
+const JSX_TO_HTML: Record<string, string> = { htmlFor: 'for' };
+
 /**
- * HTML attributes of the root element, read from the component source:
- * `data-*` attributes and native attributes, each with the props that set it.
+ * Values and description of one root attribute, from its JSX expression.
+ *
+ * - The attribute passes a property through (`props.size`,
+ *   `props.formTarget ?? props.formtarget`, `getNumber(props.rowSpan, …)`,
+ *   `props.spacing || 'medium'`): type and description of that property.
+ * - `getBooleanAsString(props.x)`: `true` / `false` for `data-*` and ARIA
+ *   attributes (they need the value), present or absent for native ones.
+ * - `getHideProp(props.showLabel)`: `true` / `false`, the inverse of the
+ *   property.
+ * - Anything computed (`props.backdrop === 'none' ? 'closerequest' : 'any'`,
+ *   `props.disabled ? -1 : 0`): the possible results of the expression and
+ *   no description, because the one of a property in the condition would
+ *   describe that property, not this attribute.
+ */
+const describeAttribute = (
+	attribute: string,
+	rawValue: string,
+	properties: Map<string, WebTypesProperty>
+): { values: string; description: string } => {
+	const value = rawValue
+		.replaceAll(/\/\/.*$/gm, '')
+		.replace(/\}\s*$/, '')
+		.trim();
+	const isValueRequired =
+		attribute.startsWith('data-') || attribute.startsWith('aria-');
+	const typeOf = (name: string) => {
+		const type = properties.get(name)?.type;
+		// Framework-only types (e.g. `any` for a React form action) are a string in HTML.
+		return !type || type === 'any' ? 'string' : type;
+	};
+
+	// Also with a default, e.g. `getHideProp(props.showResizer ?? true)`.
+	const hide =
+		/^getHideProp\(\s*props\.(\w+)\s*(?:\?\?\s*(?:true|false)\s*)?\)$/.exec(
+			value
+		);
+	if (hide) {
+		return {
+			values: '`true` \\| `false`',
+			description: `Inverse of the \`${hide[1]}\` property.`
+		};
+	}
+
+	// Also internal state, e.g. `getBooleanAsString(state._open)`.
+	const boolean = /^getBoolean(?:AsString)?\(\s*(?:props\.(\w+))?/.exec(
+		value
+	);
+	const isOnlyBoolean = Boolean(boolean) && !/\?\s*true\s*:/.test(value);
+	const direct =
+		/^props\.(\w+)(?:\s*(?:\?\?|\|\|)\s*(?:props\.\w+|'[^']*'))*$/.exec(
+			value
+		) ?? /^getNumber\(\s*props\.(\w+)/.exec(value);
+	if (isOnlyBoolean || direct !== null) {
+		const name = (boolean ?? direct)?.[1] ?? '';
+		const values = isOnlyBoolean
+			? isValueRequired
+				? '`true` \\| `false`'
+				: 'boolean attribute (present or absent)'
+			: `\`${escapeCell(typeOf(name))}\``;
+		return { values, description: properties.get(name)?.description ?? '' };
+	}
+
+	// Computed: the results after `?`, `:`, `||` and `??` (or the whole value),
+	// without the arguments of helper calls (`getBoolean(props.x, 'x')`).
+	// A token followed by a single `?` is the condition, not a result.
+	const results = [
+		...value
+			.replaceAll(/\w+\([^()]*\)/g, '')
+			.matchAll(
+				/(?:^|\?\?|\|\||[(:?])\s*('[^']*'|-?\d+(?:\.\d+)?|true|false|undefined|props\.\w+)(?=\s*(\?\?|\|\||[):?]|$))/g
+			)
+	]
+		.filter((result) => result[2] !== '?')
+		.map((result) => result[1]);
+	if (
+		results.length > 0 &&
+		results.every((result) => ['true', 'undefined'].includes(result))
+	) {
+		// `disabled={getBoolean(props.disabled) ? true : undefined}`: the
+		// attribute is the property itself, so its description fits.
+		const name = boolean?.[1];
+		return {
+			values: 'boolean attribute (present or absent)',
+			description:
+				name?.toLowerCase() === attribute
+					? (properties.get(name)?.description ?? '')
+					: ''
+		};
+	}
+
+	const types = [
+		...new Set(
+			results
+				.filter((result) => result !== 'undefined')
+				.map((result) =>
+					result.startsWith('props.')
+						? typeOf(result.slice('props.'.length))
+						: result.startsWith("'")
+							? `"${result.slice(1, -1)}"`
+							: result
+				)
+		)
+	];
+	return {
+		values: `\`${escapeCell(types.length > 0 ? types.join(' | ') : 'string')}\``,
+		description: ''
+	};
+};
+
+type AttributeRow = { attribute: string; values: string; description: string };
+
+/** The attributes set with an expression (`name={…}`) in the attribute part of a tag. */
+const getAttributeRows = (
+	tag: string,
+	properties: Map<string, WebTypesProperty>
+): AttributeRow[] => {
+	const rows: AttributeRow[] = [];
+	for (const match of tag.matchAll(/(?:^|\n)\s*([a-z-]+)=\{/gi)) {
+		const jsxName = match[1];
+		// JSX event handlers (`onClick`, `onClose`) are no HTML attributes.
+		if (
+			['ref', 'id', 'class', 'type'].includes(jsxName) ||
+			/^on[A-Z]/.test(jsxName)
+		) {
+			continue;
+		}
+
+		const attribute = (JSX_TO_HTML[jsxName] ?? jsxName).toLowerCase();
+		// The expression ends at the brace that closes `={`; a static
+		// attribute (`data-density="regular"`) may follow on the same line.
+		const start = (match.index ?? 0) + match[0].length;
+		let end = start;
+		for (let depth = 1; end < tag.length; end++) {
+			depth += tag[end] === '{' ? 1 : tag[end] === '}' ? -1 : 0;
+			if (depth === 0) {
+				break;
+			}
+		}
+
+		rows.push({
+			attribute,
+			...describeAttribute(attribute, tag.slice(start, end), properties)
+		});
+	}
+
+	return rows;
+};
+
+/**
+ * HTML attributes, read from the component source: `data-*` attributes and
+ * native attributes of the root element, each with the props that set it.
+ *
+ * Form components wrap their native control (`<div>` around `<input>`), and
+ * some options belong on that control, e.g. `data-custom-validity` or
+ * `data-field-sizing`. Its `data-*` attributes are listed too, with the
+ * element in an extra column. Its native attributes (`name`, `placeholder` …)
+ * are plain HTML and not repeated.
  */
 const getHtmlAttributes = (
 	file: string | undefined,
@@ -270,57 +428,59 @@ const getHtmlAttributes = (
 	const jsx = source.slice(source.lastIndexOf('return ('));
 	const rootMatch = /<([a-z][\da-z]*)\s([\s\S]*?)>\s*\n/.exec(jsx);
 	const rootTag = rootMatch?.[1];
-	const root = rootMatch?.[2] ?? '';
 	const properties = new Map(
 		(webTypes.js?.properties ?? []).map((prop) => [prop.name, prop])
 	);
 
-	const rows: string[] = [];
-	for (const match of root.matchAll(/(?:^|\n)\s*([a-z-]+)=\{/gi)) {
-		const attribute = match[1];
-		if (['ref', 'id', 'class', 'type'].includes(attribute)) {
-			continue;
-		}
-		const start = (match.index ?? 0) + match[0].length;
-		const next = root.slice(start).search(/\n\s*[a-z-]+=\{/i);
-		const value =
-			next === -1 ? root.slice(start) : root.slice(start, start + next);
-		const props = [
-			...new Set(
-				[...value.matchAll(/props\.(\w+)/g)].map((prop) => prop[1])
-			)
-		];
-		const first = properties.get(props[0] ?? '');
-		const isData = attribute.startsWith('data-');
-		const isBoolean = value.includes('getBoolean');
-		// Framework-only types (e.g. `any` for a React form action) are a string in HTML.
-		const type =
-			!first?.type || first.type === 'any' ? 'string' : first.type;
-		const values = isBoolean
-			? isData
-				? '`true` \\| `false`'
-				: 'boolean attribute (present or absent)'
-			: `\`${escapeCell(type)}\``;
-		rows.push(
-			`| \`${attribute.toLowerCase()}\` | ${values} | ${escapeCell(first?.description ?? '')} |`
-		);
-	}
+	const rows = getAttributeRows(rootMatch?.[2] ?? '', properties);
 	// `type` of a button defaults to `submit` in the browser, so it is listed
-	// with that note (the loop above skips it).
+	// with that note (getAttributeRows skips it).
 	const typeProp = properties.get('type');
 	if (rootTag === 'button') {
-		rows.unshift(
-			`| \`type\` | \`${escapeCell(typeProp?.type ?? 'string')}\` | ${escapeCell(typeProp?.description ?? '')} Without it, the browser uses \`submit\`. |`
-		);
+		rows.unshift({
+			attribute: 'type',
+			values: `\`${escapeCell(typeProp?.type ?? 'string')}\``,
+			description: `${typeProp?.description ?? ''} Without it, the browser uses \`submit\`.`
+		});
 	}
 
-	if (rows.length === 0) {
+	const isRootControl = ['input', 'textarea', 'select'].includes(
+		rootTag ?? ''
+	);
+	const controlMatch =
+		rootMatch && !isRootControl
+			? /<(input|textarea|select)\s([\s\S]*?)\/?>\s*\n/.exec(
+					jsx.slice(rootMatch.index + rootMatch[0].length)
+				)
+			: null;
+	const rootNames = new Set(rows.map((row) => row.attribute));
+	const controlRows = controlMatch
+		? getAttributeRows(controlMatch[2], properties).filter(
+				(row) =>
+					row.attribute.startsWith('data-') &&
+					!rootNames.has(row.attribute)
+			)
+		: [];
+
+	if (rows.length === 0 && controlRows.length === 0) {
 		return '';
 	}
+
+	const cell = (row: AttributeRow) =>
+		`\`${row.attribute}\` | ${row.values} | ${escapeCell(row.description)} |`;
+	if (controlRows.length === 0) {
+		return [
+			'| Attribute | Values | Description |',
+			'| --- | --- | --- |',
+			...rows.map((row) => `| ${cell(row)}`)
+		].join('\n');
+	}
+
 	return [
-		'| Attribute | Values | Description |',
-		'| --- | --- | --- |',
-		...rows
+		'| Element | Attribute | Values | Description |',
+		'| --- | --- | --- | --- |',
+		...rows.map((row) => `| \`${rootTag}\` | ${cell(row)}`),
+		...controlRows.map((row) => `| \`${controlMatch?.[1]}\` | ${cell(row)}`)
 	].join('\n');
 };
 
@@ -444,9 +604,7 @@ const buildUsageNotes = (
 	}
 
 	// The `### …` sections belong to the dropped `## <Framework>` title and
-	// become `level`. Further `## …` sections of the file (Angular: "How to
-	// use with Signal Forms") are its siblings: they become `level` too, and
-	// the `### …` below them one level deeper.
+	// become `level`. Further `## …` sections of the file (Angular: "How to	// the `### …` below them one level deeper.
 	const base = level - 3;
 	let belowH2 = 0;
 	const lines = markdown.split('\n');
@@ -478,9 +636,12 @@ const buildUsageNotes = (
 };
 
 /**
- * "Guidelines" section with a text link to the English platform page of the
- * component (Storybook is English only), like the setup link of the Usage
- * section.
+ * "Guidelines" section with a card to the English platform page of the
+ * component (Storybook is English only): a card is harder to miss than a text
+ * link. Plain `db-card` markup, because the MDX pages of the Angular, Vue and
+ * Web Components Storybooks cannot import the React components; the layout is
+ * in `.db-sb-platform-card` of storybook-config/docs.css. `data-mode="light"`:
+ * the docs page stays light, also when the stories are switched to dark.
  */
 const buildGuidelines = (meta: ComponentMeta): string => {
 	if (!meta.platformUrl) {
@@ -490,7 +651,14 @@ const buildGuidelines = (meta: ComponentMeta): string => {
 	const name = meta.title.replace(/^DB/, '');
 	return `## Guidelines
 
-When to use it, variants, Do and Don’t and the design rules for accessibility: [${name} guidelines](${meta.platformUrl}) on the Design System Platform.`;
+<div data-mode="light">
+<a className="db-card db-sb-platform-card" data-behavior="interactive" data-spacing="small" href="${meta.platformUrl}" target="_blank" rel="noopener noreferrer">
+	<img src="./brand/images/logo.svg" alt="" width="32" height="32" />
+	<strong>${name} guidelines</strong>
+	<span>When to use it, variants, Do and Don’t and the design rules for accessibility.</span>
+	<strong data-icon-trailing="arrow_up_right">Design System Platform</strong>
+</a>
+</div>`;
 };
 
 /** "Status · Accessibility review", each part only when it is known. */
@@ -544,17 +712,24 @@ const getRoot = (
 };
 
 /**
- * Examples with `storybookIgnore: true` in their `useMetadata` (see
- * packages/components/docs/creating-examples.md), e.g. test fixtures of the
- * showcases, stay off the overview page.
+ * Examples that stay off the overview page, like in the story generator
+ * (configs/mitosis.storybook.config.cjs): `storybookIgnore: true` in their
+ * `useMetadata` and the interaction fixtures of the showcase e2e tests
+ * (`interaction*.example.lite.tsx`), see
+ * packages/components/docs/creating-examples.md.
  */
 const isStorybookIgnored = (name: string, storyFile: string): boolean => {
+	const example = storyFile.replace(/\.stories$/, '');
+	if (/^interaction(-[\w-]+)?\.example$/.test(example)) {
+		return true;
+	}
+
 	const source = join(
 		ROOT,
 		COMPONENTS,
 		name,
 		'examples',
-		`${storyFile.replace(/\.stories$/, '')}.lite.tsx`
+		`${example}.lite.tsx`
 	);
 	return existsSync(source) && /storybookIgnore:\s*true/.test(read(source));
 };
@@ -617,9 +792,12 @@ const buildApi = (
 			? `In HTML ${isPart ? title : 'the component'} is a \`<${tag}>\`${className ? ` with the class \`${className}\`` : ''}. Options are \`data-\` attributes next to the native attributes of the element.`
 			: '';
 		const table = getHtmlAttributes(file, webTypes);
+		const controlNote = table.startsWith('| Element')
+			? 'Some options belong on the native control inside it; the column "Element" names it.'
+			: '';
 		return [
 			heading,
-			intro,
+			[intro, controlNote].filter(Boolean).join(' '),
 			table
 				? `<Markdown>{${JSON.stringify(table)}}</Markdown>`
 				: NO_ATTRIBUTES
@@ -743,7 +921,9 @@ const buildOverviewMdx = (
 		GENERATED_NOTE,
 		'<Meta of={OverviewStories} />',
 		`# ${meta.title}`,
-		meta.summary,
+		// Remote text (platform endpoint): embedded as a string, not as MDX.
+		meta.summary &&
+			`<Markdown>{${JSON.stringify(meta.summary)}}</Markdown>`,
 		statusLine(meta),
 		// The names of the parts, so the Storybook search finds this page.
 		meta.parts.length > 0 && !isNoHtml
@@ -1066,6 +1246,14 @@ if (targets.length === 0) {
 	);
 }
 
+/**
+ * Overview page of every component title, per Storybook, for the "Overview"
+ * link of the example pages (storybook-config/autodocs-page.mdx): parts and
+ * family members point to their section on the page of the main component
+ * (`DBTabItem` -> `components-dbtabs-overview--docs#dbtabitem`).
+ */
+const overviewLinks = new Map<string, Record<string, string>>();
+
 for (const name of components) {
 	const meta = getComponentMeta(name);
 	for (const fw of targets) {
@@ -1086,8 +1274,82 @@ for (const name of components) {
 			join(dir, `${name}.overview.stories.${fw.storiesExt}`),
 			buildStories(name, meta, fw, firstExample)
 		);
+		const id = `components-${meta.title.toLowerCase()}-overview--docs`;
+		const links = overviewLinks.get(fw.storybook) ?? {};
+		links[meta.title] = id;
+		for (const part of meta.parts) {
+			links[part.title] ??= `${id}#${part.title.toLowerCase()}`;
+		}
+
+		overviewLinks.set(fw.storybook, links);
 	}
 }
+
+/**
+ * Fails the build when a link resolved outside the overview pages misses its
+ * page or section: the overview links above and, in the Web Components
+ * Storybook, the documentation links of web-types.json (IDE), which
+ * output/stencil/custom-elements-manifest.config.js resolves on its own.
+ */
+const checkLinks = (storybook: string, links: Record<string, string>) => {
+	const anchors = new Map<string, string[]>();
+	for (const name of components) {
+		const meta = getComponentMeta(name);
+		anchors.set(
+			`components-${meta.title.toLowerCase()}-overview--docs`,
+			// A family lists its first member under its own name too (DBHeadingH1).
+			[meta.component, ...meta.parts.map((part) => part.title)].map(
+				(title) => title.toLowerCase()
+			)
+		);
+	}
+
+	const isValid = (link: string) => {
+		const [id, anchor] = link.split('#', 2);
+		return (
+			id === 'getting-started--docs' ||
+			(anchors.has(id) &&
+				(anchor === undefined || anchors.get(id)?.includes(anchor)))
+		);
+	};
+
+	const checked: Array<[string, string]> = Object.entries(links);
+	const webTypes = join(ROOT, 'output/stencil/dist/web-types.json');
+	if (storybook === 'stencil-storybook' && existsSync(webTypes)) {
+		for (const element of (
+			JSON.parse(read(webTypes)) as {
+				contributions: { html: { elements: Array<{ name: string }> } };
+			}
+		).contributions.html.elements) {
+			const link = /\?path=\/docs\/([^"]+)/.exec(
+				JSON.stringify(element)
+			)?.[1];
+			if (element.name.startsWith('db-') && link) {
+				checked.push([`web-types.json ${element.name}`, link]);
+			}
+		}
+	}
+
+	const missing = checked
+		.filter(([, link]) => !isValid(link))
+		.map(([from, link]) => `  ${from} -> ${link}`);
+	if (missing.length > 0) {
+		throw new Error(
+			`[overviews] links to missing overview pages or sections in ${storybook}:\n${missing.join('\n')}`
+		);
+	}
+};
+
+// Only with all components: a run for single components would drop the
+// others from the map.
+for (const [storybook, links] of positionals.length > 0 ? [] : overviewLinks) {
+	checkLinks(storybook, links);
+	write(
+		join(STORYBOOKS, storybook, 'src/overview/overview-links.json'),
+		`${JSON.stringify(links, null, '\t')}\n`
+	);
+}
+
 for (const fw of targets) {
 	write(
 		join(STORYBOOKS, fw.storybook, 'src/index.mdx'),

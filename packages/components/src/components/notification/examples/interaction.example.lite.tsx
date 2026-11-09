@@ -5,10 +5,7 @@ import { StorybookNotificationArgTypes } from './_notification.arg.types';
 useMetadata({
 	storybookTitle: 'Interaction',
 	storybookNames: ['Interaction'],
-	storybookArgTypes: StorybookNotificationArgTypes,
-	// Test fixture of the showcases: the story generator does not create the
-	// `closed` state for Angular, so the story would fail there.
-	storybookIgnore: true
+	storybookArgTypes: StorybookNotificationArgTypes
 });
 
 /**

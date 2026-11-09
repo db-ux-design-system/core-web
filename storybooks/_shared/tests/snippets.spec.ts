@@ -36,7 +36,15 @@ type Check = {
 
 const run = (command: string, args: string[], cwd: string) => {
 	try {
-		execFileSync(command, args, { cwd, encoding: 'utf8', stdio: 'pipe' });
+		// `node_modules/.bin/<tool>` is a shell script; on Windows only its
+		// `.cmd` shim can be started, and only through the shell.
+		const isWindows = process.platform === 'win32';
+		execFileSync(isWindows ? `${command}.cmd` : command, args, {
+			cwd,
+			encoding: 'utf8',
+			stdio: 'pipe',
+			shell: isWindows
+		});
 	} catch (error) {
 		const { stdout = '', stderr = '' } = error as {
 			stdout?: string;
@@ -231,8 +239,9 @@ for (const check of CHECKS) {
 		let files = 0;
 		const queue = [...ids];
 		const checkPage = async (page: Page, id: string) => {
-			await openDocs(page, check.storybook, id);
+			const errors = await openDocs(page, check.storybook, id);
 			const snippets = await collectSnippets(page);
+			expect(errors, `${id}: uncaught errors`).toEqual([]);
 			// Components without a plain HTML version (`html: false`) show a
 			// note instead of examples, so their HTML page has no snippets.
 			const isNoHtml =

@@ -47,10 +47,6 @@ const ON_BACKGROUNDS = [
 ];
 const LOW_CONTRAST = new Set(['emphasis-70', 'emphasis-60', 'emphasis-50']);
 
-/** A checkerboard behind the tiles makes transparent backgrounds visible. */
-const CHECKERBOARD =
-	'repeating-conic-gradient(#c3c7ce 0 25%, transparent 0 50%) 0 0 / 16px 16px';
-
 type GridProps = {
 	values: string[];
 	/** `data-color`, `data-bg-color` or `data-on-bg-color` */
@@ -92,9 +88,7 @@ const ColorGrid = ({ values, attribute, prefix, note }: GridProps) => {
 			<div
 				className="foundations-color-grid"
 				data-mode={isDark ? 'dark' : 'light'}
-				style={{
-					background: hasCheckerboard ? CHECKERBOARD : undefined
-				}}>
+				data-checkerboard={hasCheckerboard ? 'true' : 'false'}>
 				{values.map((value) => {
 					const label = isClass
 						? `${prefix}${value}`

@@ -1,8 +1,8 @@
 /**
  * Metadata of a component overview page, read from the sources
  * that already exist: this repository and `/api/components.json` of the
- * Design System Platform. Only what has no source comes from
- * `overrides.json`.
+ * Design System Platform (read from its copy `platform-components.json`,
+ * see platform.ts). Only what has no source comes from `overrides.json`.
  *
  * | Field               | Source                                                  |
  * | ------------------- | ------------------------------------------------------- |
@@ -17,6 +17,7 @@
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { readPlatformComponents } from './platform.ts';
 
 const ROOT = resolve(import.meta.dirname, '..', '..', '..');
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
@@ -70,46 +71,8 @@ type Override = {
 
 type Review = { name: string; status: string; date?: string };
 
-type PlatformComponent = {
-	title: string;
-	description?: string;
-	status?: string;
-	url: string;
-};
-
-/**
- * `/api/components.json` of the Design System Platform: description, status
- * and URL of every component page, maintained there only. Another origin, e.g.
- * a local platform build, via `DB_UX_PLATFORM_URL=http://localhost:4329`.
- * Without it (offline, or before the endpoint is released) the overview pages
- * show no summary and no status, and the guidelines link uses the URL
- * convention below.
- */
-const PLATFORM_ORIGIN =
-	process.env.DB_UX_PLATFORM_URL ?? 'https://design-system.deutschebahn.com';
-
-const loadPlatformComponents = async (): Promise<
-	Record<string, PlatformComponent>
-> => {
-	const url = `${PLATFORM_ORIGIN}/api/components.json`;
-	try {
-		const response = await fetch(url, {
-			signal: AbortSignal.timeout(10_000)
-		});
-		if (!response.ok) {
-			throw new Error(`HTTP ${response.status}`);
-		}
-
-		return (await response.json()) as Record<string, PlatformComponent>;
-	} catch (error) {
-		console.warn(
-			`[overviews] ${url} not available (${(error as Error).message}): no summary and status`
-		);
-		return {};
-	}
-};
-
-const platformComponents = await loadPlatformComponents();
+// Copy of the platform endpoint in the repository, see platform.ts.
+const platformComponents = readPlatformComponents();
 
 /** Statuses shown on the overview; sub components (`sub`) have none. */
 const STATUSES = new Set(['stable', 'beta', 'concept', 'deprecated']);

@@ -14,16 +14,26 @@
  *
  * Usage: node storybooks/_shared/foundations/generate-foundations.ts
  */
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	readFileSync,
+	rmSync,
+	writeFileSync
+} from 'node:fs';
 import { join, resolve } from 'node:path';
+import { format, resolveConfig } from 'prettier';
 import { PAGES } from './pages.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
 
 const OUT = join(STORYBOOKS, '_storybook/src/foundations');
 
-rmSync(OUT, { recursive: true, force: true });
-mkdirSync(OUT, { recursive: true });
+// `--check` (pnpm run lint:storybook-foundations) writes nothing and fails
+// when the committed pages differ from what this script would write.
+const isCheck = process.argv.includes('--check');
+const pages = new Map<string, string>();
 
 for (const page of PAGES) {
 	const platform = page.platform
@@ -67,9 +77,41 @@ import { rewriteDocsLinks } from "../../../_shared/foundations/links";${stories.
 ${examples}
 _Source: [${page.source}](https://github.com/db-ux-design-system/core-web/blob/main/${page.source})_
 `;
-	const target = join(OUT, `${page.id}.mdx`);
-	writeFileSync(target, mdx);
-	console.log(
-		`[foundations] wrote ${target.replace(`${STORYBOOKS}/`, 'storybooks/')}`
-	);
+	pages.set(`${page.id}.mdx`, mdx);
+}
+
+// Formatted like the rest of the repository (prettier --check).
+await Promise.all(
+	[...pages].map(async ([file, mdx]) => {
+		const filepath = join(OUT, file);
+		const options = await resolveConfig(filepath, { editorconfig: true });
+		pages.set(file, await format(mdx, { ...options, filepath }));
+	})
+);
+
+if (isCheck) {
+	const existing = existsSync(OUT) ? readdirSync(OUT) : [];
+	const outdated = [
+		...[...pages].filter(
+			([file, mdx]) =>
+				!existing.includes(file) ||
+				readFileSync(join(OUT, file), 'utf8') !== mdx
+		),
+		...existing.filter((file) => !pages.has(file)).map((file) => [file])
+	].map(([file]) => `  storybooks/_storybook/src/foundations/${file}`);
+	if (outdated.length > 0) {
+		console.error(
+			`[foundations] out of date, run node storybooks/_shared/foundations/generate-foundations.ts:\n${outdated.join('\n')}`
+		);
+		process.exitCode = 1;
+	}
+} else {
+	rmSync(OUT, { recursive: true, force: true });
+	mkdirSync(OUT, { recursive: true });
+	for (const [file, mdx] of pages) {
+		writeFileSync(join(OUT, file), mdx);
+		console.log(
+			`[foundations] wrote storybooks/_storybook/src/foundations/${file}`
+		);
+	}
 }

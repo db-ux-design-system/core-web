@@ -159,11 +159,11 @@ const testPage = (storybook: StorybookName, id: string, title: string) => {
 			// component has one.
 			if (sections.includes('Guidelines')) {
 				const guidelines = await page
-					.locator('.sbdocs-content a', { hasText: / guidelines$/ })
+					.locator('.sbdocs-content a.db-sb-platform-card')
 					.evaluateAll((links) =>
 						links.map((link) => link.getAttribute('href') ?? '')
 					);
-				expect(guidelines, 'guideline links').toHaveLength(1);
+				expect(guidelines, 'guideline cards').toHaveLength(1);
 				expect(
 					guidelines[0].startsWith(`${PLATFORM}documentation/`),
 					guidelines[0]

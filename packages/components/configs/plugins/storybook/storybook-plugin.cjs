@@ -5,11 +5,6 @@ const { getStories } = require('./get-stories.cjs');
 const { toPascalCase, componentNameToTag } = require('../utils.cjs');
 
 /**
- * Mitosis plugin for generating Storybook stories
- * Transforms Mitosis components into framework-specific Storybook stories
- * @type {import('@builder.io/mitosis').MitosisPlugin}
- */
-/**
  * Placeholder image of the Storybooks (`public/assets/images`), relative to
  * the Storybook base path.
  */
@@ -34,6 +29,11 @@ const replaceShowcaseImage = (code) =>
 			`'${PLACEHOLDER_IMAGE}'`
 		);
 
+/**
+ * Mitosis plugin for generating Storybook stories
+ * Transforms Mitosis components into framework-specific Storybook stories
+ * @type {import('@builder.io/mitosis').MitosisPlugin}
+ */
 module.exports = () => ({
 	name: 'storybook-plugin',
 	code: {
