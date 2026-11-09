@@ -294,7 +294,11 @@ const describeAttribute = (
 		return !type || type === 'any' ? 'string' : type;
 	};
 
-	const hide = /^getHideProp\(\s*props\.(\w+)\s*\)$/.exec(value);
+	// Also with a default, e.g. `getHideProp(props.showResizer ?? true)`.
+	const hide =
+		/^getHideProp\(\s*props\.(\w+)\s*(?:\?\?\s*(?:true|false)\s*)?\)$/.exec(
+			value
+		);
 	if (hide) {
 		return {
 			values: '`true` \\| `false`',
@@ -368,25 +372,15 @@ const describeAttribute = (
 	};
 };
 
-/**
- * HTML attributes of the root element, read from the component source:
- * `data-*` attributes and native attributes, each with the props that set it.
- */
-const getHtmlAttributes = (
-	file: string | undefined,
-	webTypes: WebTypesElement
-): string => {
-	const source = file ? read(file) : '';
-	const jsx = source.slice(source.lastIndexOf('return ('));
-	const rootMatch = /<([a-z][\da-z]*)\s([\s\S]*?)>\s*\n/.exec(jsx);
-	const rootTag = rootMatch?.[1];
-	const root = rootMatch?.[2] ?? '';
-	const properties = new Map(
-		(webTypes.js?.properties ?? []).map((prop) => [prop.name, prop])
-	);
+type AttributeRow = { attribute: string; values: string; description: string };
 
-	const rows: string[] = [];
-	for (const match of root.matchAll(/(?:^|\n)\s*([a-z-]+)=\{/gi)) {
+/** The attributes set with an expression (`name={…}`) in the attribute part of a tag. */
+const getAttributeRows = (
+	tag: string,
+	properties: Map<string, WebTypesProperty>
+): AttributeRow[] => {
+	const rows: AttributeRow[] = [];
+	for (const match of tag.matchAll(/(?:^|\n)\s*([a-z-]+)=\{/gi)) {
 		const jsxName = match[1];
 		// JSX event handlers (`onClick`, `onClose`) are no HTML attributes.
 		if (
@@ -401,39 +395,93 @@ const getHtmlAttributes = (
 		// attribute (`data-density="regular"`) may follow on the same line.
 		const start = (match.index ?? 0) + match[0].length;
 		let end = start;
-		for (let depth = 1; end < root.length; end++) {
-			depth += root[end] === '{' ? 1 : root[end] === '}' ? -1 : 0;
+		for (let depth = 1; end < tag.length; end++) {
+			depth += tag[end] === '{' ? 1 : tag[end] === '}' ? -1 : 0;
 			if (depth === 0) {
 				break;
 			}
 		}
 
-		const value = root.slice(start, end);
-		const { values, description } = describeAttribute(
+		rows.push({
 			attribute,
-			value,
-			properties
-		);
-		rows.push(
-			`| \`${attribute}\` | ${values} | ${escapeCell(description)} |`
-		);
-	}
-	// `type` of a button defaults to `submit` in the browser, so it is listed
-	// with that note (the loop above skips it).
-	const typeProp = properties.get('type');
-	if (rootTag === 'button') {
-		rows.unshift(
-			`| \`type\` | \`${escapeCell(typeProp?.type ?? 'string')}\` | ${escapeCell(typeProp?.description ?? '')} Without it, the browser uses \`submit\`. |`
-		);
+			...describeAttribute(attribute, tag.slice(start, end), properties)
+		});
 	}
 
-	if (rows.length === 0) {
+	return rows;
+};
+
+/**
+ * HTML attributes, read from the component source: `data-*` attributes and
+ * native attributes of the root element, each with the props that set it.
+ *
+ * Form components wrap their native control (`<div>` around `<input>`), and
+ * some options belong on that control, e.g. `data-custom-validity` or
+ * `data-field-sizing`. Its `data-*` attributes are listed too, with the
+ * element in an extra column. Its native attributes (`name`, `placeholder` …)
+ * are plain HTML and not repeated.
+ */
+const getHtmlAttributes = (
+	file: string | undefined,
+	webTypes: WebTypesElement
+): string => {
+	const source = file ? read(file) : '';
+	const jsx = source.slice(source.lastIndexOf('return ('));
+	const rootMatch = /<([a-z][\da-z]*)\s([\s\S]*?)>\s*\n/.exec(jsx);
+	const rootTag = rootMatch?.[1];
+	const properties = new Map(
+		(webTypes.js?.properties ?? []).map((prop) => [prop.name, prop])
+	);
+
+	const rows = getAttributeRows(rootMatch?.[2] ?? '', properties);
+	// `type` of a button defaults to `submit` in the browser, so it is listed
+	// with that note (getAttributeRows skips it).
+	const typeProp = properties.get('type');
+	if (rootTag === 'button') {
+		rows.unshift({
+			attribute: 'type',
+			values: `\`${escapeCell(typeProp?.type ?? 'string')}\``,
+			description: `${typeProp?.description ?? ''} Without it, the browser uses \`submit\`.`
+		});
+	}
+
+	const isRootControl = ['input', 'textarea', 'select'].includes(
+		rootTag ?? ''
+	);
+	const controlMatch =
+		rootMatch && !isRootControl
+			? /<(input|textarea|select)\s([\s\S]*?)\/?>\s*\n/.exec(
+					jsx.slice(rootMatch.index + rootMatch[0].length)
+				)
+			: null;
+	const rootNames = new Set(rows.map((row) => row.attribute));
+	const controlRows = controlMatch
+		? getAttributeRows(controlMatch[2], properties).filter(
+				(row) =>
+					row.attribute.startsWith('data-') &&
+					!rootNames.has(row.attribute)
+			)
+		: [];
+
+	if (rows.length === 0 && controlRows.length === 0) {
 		return '';
 	}
+
+	const cell = (row: AttributeRow) =>
+		`\`${row.attribute}\` | ${row.values} | ${escapeCell(row.description)} |`;
+	if (controlRows.length === 0) {
+		return [
+			'| Attribute | Values | Description |',
+			'| --- | --- | --- |',
+			...rows.map((row) => `| ${cell(row)}`)
+		].join('\n');
+	}
+
 	return [
-		'| Attribute | Values | Description |',
-		'| --- | --- | --- |',
-		...rows
+		'| Element | Attribute | Values | Description |',
+		'| --- | --- | --- | --- |',
+		...rows.map((row) => `| \`${rootTag}\` | ${cell(row)}`),
+		...controlRows.map((row) => `| \`${controlMatch?.[1]}\` | ${cell(row)}`)
 	].join('\n');
 };
 
@@ -546,9 +594,7 @@ const buildUsageNotes = (
 	}
 
 	// The `### …` sections belong to the dropped `## <Framework>` title and
-	// become `level`. Further `## …` sections of the file (Angular: "How to
-	// use with Signal Forms") are its siblings: they become `level` too, and
-	// the `### …` below them one level deeper.
+	// become `level`. Further `## …` sections of the file (Angular: "How to	// the `### …` below them one level deeper.
 	const base = level - 3;
 	let belowH2 = 0;
 	const lines = markdown.split('\n');
@@ -736,9 +782,12 @@ const buildApi = (
 			? `In HTML ${isPart ? title : 'the component'} is a \`<${tag}>\`${className ? ` with the class \`${className}\`` : ''}. Options are \`data-\` attributes next to the native attributes of the element.`
 			: '';
 		const table = getHtmlAttributes(file, webTypes);
+		const controlNote = table.startsWith('| Element')
+			? 'Some options belong on the native control inside it; the column "Element" names it.'
+			: '';
 		return [
 			heading,
-			intro,
+			[intro, controlNote].filter(Boolean).join(' '),
 			table
 				? `<Markdown>{${JSON.stringify(table)}}</Markdown>`
 				: NO_ATTRIBUTES

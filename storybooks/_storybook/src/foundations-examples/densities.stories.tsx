@@ -5,7 +5,6 @@
  */
 import { DBButton, DBCard, DBInput } from '@components';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { CSSProperties } from 'react';
 import './examples.css';
 
 const DENSITIES = ['functional', 'regular', 'expressive'] as const;
@@ -47,10 +46,7 @@ export const SideBySide: Story = {
 export const Combined: Story = {
 	render: () => (
 		<div className="foundations-example">
-			<div
-				className="foundations-density-row"
-				data-density="functional"
-				style={{ '--columns': 5 } as CSSProperties}>
+			<div className="foundations-density-row" data-density="functional">
 				{[
 					['neutral', 'We are functional'],
 					['informational', 'even though we have'],

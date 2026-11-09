@@ -164,4 +164,22 @@ test.describe('docs.css', () => {
 			)
 		).toBe('""');
 	});
+
+	test('links in story previews keep the component styling', async ({
+		page
+	}) => {
+		await openDocs(
+			page,
+			'react-storybook',
+			'components-dbnavigation-overview--docs'
+		);
+		// The navigation item removes the underline of its plain `<a>`.
+		expect(
+			await style(
+				page,
+				'.docs-story .db-navigation-item a',
+				'text-decoration-line'
+			)
+		).toBe('none');
+	});
 });
