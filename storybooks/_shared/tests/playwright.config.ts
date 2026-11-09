@@ -31,7 +31,8 @@ export default defineConfig({
 	},
 	projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
 	webServer: {
-		command: `node storybooks/_shared/tests/serve.ts ${directory} ${port}`,
+		// Like the showcases (`http-server`), without caching.
+		command: `pnpm exec http-server ${directory} -p ${port} -s -c-1`,
 		cwd: '../../..',
 		url: `http://localhost:${port}${base}/composition-storybook/index.html`,
 		reuseExistingServer: !process.env['CI']
