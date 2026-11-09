@@ -258,6 +258,115 @@ const findWebTypes = (name: string): WebTypesElement | undefined => {
 /** Attributes that are internal or covered by the native `id`/`class`. */
 const SKIPPED_ATTRIBUTES = new Set(['id', 'prop-overrides', 'classname']);
 
+/** JSX names whose HTML attribute is spelled differently. */
+const JSX_TO_HTML: Record<string, string> = { htmlFor: 'for' };
+
+/**
+ * Values and description of one root attribute, from its JSX expression.
+ *
+ * - The attribute passes a property through (`props.size`,
+ *   `props.formTarget ?? props.formtarget`, `getNumber(props.rowSpan, …)`,
+ *   `props.spacing || 'medium'`): type and description of that property.
+ * - `getBooleanAsString(props.x)`: `true` / `false` for `data-*` and ARIA
+ *   attributes (they need the value), present or absent for native ones.
+ * - `getHideProp(props.showLabel)`: `true` / `false`, the inverse of the
+ *   property.
+ * - Anything computed (`props.backdrop === 'none' ? 'closerequest' : 'any'`,
+ *   `props.disabled ? -1 : 0`): the possible results of the expression and
+ *   no description, because the one of a property in the condition would
+ *   describe that property, not this attribute.
+ */
+const describeAttribute = (
+	attribute: string,
+	rawValue: string,
+	properties: Map<string, WebTypesProperty>
+): { values: string; description: string } => {
+	const value = rawValue
+		.replaceAll(/\/\/.*$/gm, '')
+		.replace(/\}\s*$/, '')
+		.trim();
+	const isValueRequired =
+		attribute.startsWith('data-') || attribute.startsWith('aria-');
+	const typeOf = (name: string) => {
+		const type = properties.get(name)?.type;
+		// Framework-only types (e.g. `any` for a React form action) are a string in HTML.
+		return !type || type === 'any' ? 'string' : type;
+	};
+
+	const hide = /^getHideProp\(\s*props\.(\w+)\s*\)$/.exec(value);
+	if (hide) {
+		return {
+			values: '`true` \\| `false`',
+			description: `Inverse of the \`${hide[1]}\` property.`
+		};
+	}
+
+	// Also internal state, e.g. `getBooleanAsString(state._open)`.
+	const boolean = /^getBoolean(?:AsString)?\(\s*(?:props\.(\w+))?/.exec(
+		value
+	);
+	const isOnlyBoolean = Boolean(boolean) && !/\?\s*true\s*:/.test(value);
+	const direct =
+		/^props\.(\w+)(?:\s*(?:\?\?|\|\|)\s*(?:props\.\w+|'[^']*'))*$/.exec(
+			value
+		) ?? /^getNumber\(\s*props\.(\w+)/.exec(value);
+	if (isOnlyBoolean || direct !== null) {
+		const name = (boolean ?? direct)?.[1] ?? '';
+		const values = isOnlyBoolean
+			? isValueRequired
+				? '`true` \\| `false`'
+				: 'boolean attribute (present or absent)'
+			: `\`${escapeCell(typeOf(name))}\``;
+		return { values, description: properties.get(name)?.description ?? '' };
+	}
+
+	// Computed: the results after `?`, `:`, `||` and `??` (or the whole value),
+	// without the arguments of helper calls (`getBoolean(props.x, 'x')`).
+	// A token followed by a single `?` is the condition, not a result.
+	const results = [
+		...value
+			.replaceAll(/\w+\([^()]*\)/g, '')
+			.matchAll(
+				/(?:^|\?\?|\|\||[(:?])\s*('[^']*'|-?\d+(?:\.\d+)?|true|false|undefined|props\.\w+)(?=\s*(\?\?|\|\||[):?]|$))/g
+			)
+	]
+		.filter((result) => result[2] !== '?')
+		.map((result) => result[1]);
+	if (
+		results.length > 0 &&
+		results.every((result) => ['true', 'undefined'].includes(result))
+	) {
+		// `disabled={getBoolean(props.disabled) ? true : undefined}`: the
+		// attribute is the property itself, so its description fits.
+		const name = boolean?.[1];
+		return {
+			values: 'boolean attribute (present or absent)',
+			description:
+				name?.toLowerCase() === attribute
+					? (properties.get(name)?.description ?? '')
+					: ''
+		};
+	}
+
+	const types = [
+		...new Set(
+			results
+				.filter((result) => result !== 'undefined')
+				.map((result) =>
+					result.startsWith('props.')
+						? typeOf(result.slice('props.'.length))
+						: result.startsWith("'")
+							? `"${result.slice(1, -1)}"`
+							: result
+				)
+		)
+	];
+	return {
+		values: `\`${escapeCell(types.length > 0 ? types.join(' | ') : 'string')}\``,
+		description: ''
+	};
+};
+
 /**
  * HTML attributes of the root element, read from the component source:
  * `data-*` attributes and native attributes, each with the props that set it.
@@ -277,32 +386,35 @@ const getHtmlAttributes = (
 
 	const rows: string[] = [];
 	for (const match of root.matchAll(/(?:^|\n)\s*([a-z-]+)=\{/gi)) {
-		const attribute = match[1];
-		if (['ref', 'id', 'class', 'type'].includes(attribute)) {
+		const jsxName = match[1];
+		// JSX event handlers (`onClick`, `onClose`) are no HTML attributes.
+		if (
+			['ref', 'id', 'class', 'type'].includes(jsxName) ||
+			/^on[A-Z]/.test(jsxName)
+		) {
 			continue;
 		}
+
+		const attribute = (JSX_TO_HTML[jsxName] ?? jsxName).toLowerCase();
+		// The expression ends at the brace that closes `={`; a static
+		// attribute (`data-density="regular"`) may follow on the same line.
 		const start = (match.index ?? 0) + match[0].length;
-		const next = root.slice(start).search(/\n\s*[a-z-]+=\{/i);
-		const value =
-			next === -1 ? root.slice(start) : root.slice(start, start + next);
-		const props = [
-			...new Set(
-				[...value.matchAll(/props\.(\w+)/g)].map((prop) => prop[1])
-			)
-		];
-		const first = properties.get(props[0] ?? '');
-		const isData = attribute.startsWith('data-');
-		const isBoolean = value.includes('getBoolean');
-		// Framework-only types (e.g. `any` for a React form action) are a string in HTML.
-		const type =
-			!first?.type || first.type === 'any' ? 'string' : first.type;
-		const values = isBoolean
-			? isData
-				? '`true` \\| `false`'
-				: 'boolean attribute (present or absent)'
-			: `\`${escapeCell(type)}\``;
+		let end = start;
+		for (let depth = 1; end < root.length; end++) {
+			depth += root[end] === '{' ? 1 : root[end] === '}' ? -1 : 0;
+			if (depth === 0) {
+				break;
+			}
+		}
+
+		const value = root.slice(start, end);
+		const { values, description } = describeAttribute(
+			attribute,
+			value,
+			properties
+		);
 		rows.push(
-			`| \`${attribute.toLowerCase()}\` | ${values} | ${escapeCell(first?.description ?? '')} |`
+			`| \`${attribute}\` | ${values} | ${escapeCell(description)} |`
 		);
 	}
 	// `type` of a button defaults to `submit` in the browser, so it is listed
