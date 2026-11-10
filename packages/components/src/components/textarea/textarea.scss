@@ -93,7 +93,8 @@
 				var(
 					--db-form-component-padding-inline-end,
 					#{variables.$db-spacing-fixed-sm}
-				) + #{variables.$db-border-width-3xs} * 2
+				) +
+				#{variables.$db-border-width-3xs} * 2
 		);
 
 		textarea {
