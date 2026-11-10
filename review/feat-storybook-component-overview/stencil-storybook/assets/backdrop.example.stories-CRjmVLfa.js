@@ -1,0 +1,36 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-DBUpr5OO.js";import{i,n as a,t as o}from"./apply-web-component-args-OHuaz6RS.js";var s=t({DefaultStrong:()=>u,NoBackdrop:()=>f,Weak:()=>d,__namedExportsOrder:()=>p,default:()=>l}),c,l,u,d,f,p;function m(){return(m=e((()=>{r(),o(),{fn:c}=__STORYBOOK_MODULE_TEST__,l={title:`Components/DBDialog/Backdrop`,component:`db-dialog`,parameters:{layout:`centered`},tags:[`autodocs`],args:{onClose:c(),onCancel:c()},argTypes:{open:{control:`boolean`},backdrop:{control:`select`,options:[`none`,`strong`,`weak`]},containerSize:{control:`select`,options:[`small`,`medium`,`large`,`full`]},header:{control:`text`},footer:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`},onClose:{action:`onClose`},onCancel:{action:`onCancel`}}},u={args:{backdrop:`strong`,propOverrides:{id:`dialog-backdrop-strong`}},render:({children:e,...t})=>n`<div><db-button command="show-modal" commandfor="dialog-backdrop-strong">Open: (Default) Strong</db-button><db-dialog ${a(t)}>${i(`<db-dialog-header slot="header" close-button-text="Close"><h2>(Default) Strong</h2></db-dialog-header><db-dialog-footer slot="footer"><db-button variant="ghost" command="request-close" commandfor="dialog-backdrop-strong">Cancel</db-button><db-button variant="brand" command="request-close" commandfor="dialog-backdrop-strong">Confirm</db-button></db-dialog-footer><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p>`)}</db-dialog></div>`},d={args:{backdrop:`weak`,propOverrides:{id:`dialog-backdrop-weak`}},render:({children:e,...t})=>n`<div><db-button command="show-modal" commandfor="dialog-backdrop-weak">Open: Weak</db-button><db-dialog ${a(t)}>${i(`<db-dialog-header slot="header" close-button-text="Close"><h2>Weak</h2></db-dialog-header><db-dialog-footer slot="footer"><db-button variant="ghost" command="request-close" commandfor="dialog-backdrop-weak">Cancel</db-button><db-button variant="brand" command="request-close" commandfor="dialog-backdrop-weak">Confirm</db-button></db-dialog-footer><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p>`)}</db-dialog></div>`},f={args:{backdrop:`none`,propOverrides:{id:`dialog-backdrop-none`},open:!1,onClose:c()},render:({children:e,...t})=>n`<div><db-button>Open: No Backdrop</db-button><db-dialog ${a(t)}>${i(`<db-dialog-header slot="header" close-button-text="Close"><h2>No Backdrop</h2></db-dialog-header><db-dialog-footer slot="footer"><db-button variant="ghost" command="request-close" commandfor="dialog-backdrop-none">Cancel</db-button><db-button variant="brand" command="request-close" commandfor="dialog-backdrop-none">Confirm</db-button></db-dialog-footer><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p>`)}</db-dialog></div>`},p=[`DefaultStrong`,`Weak`,`NoBackdrop`],u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "backdrop": "strong",
+    "propOverrides": {
+      id: 'dialog-backdrop-strong'
+    }
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-button command="show-modal" commandfor="dialog-backdrop-strong">Open: (Default) Strong</db-button><db-dialog \${spreadArgs(args)}>\${unsafeHTML(\`<db-dialog-header slot="header" close-button-text="Close"><h2>(Default) Strong</h2></db-dialog-header><db-dialog-footer slot="footer"><db-button variant="ghost" command="request-close" commandfor="dialog-backdrop-strong">Cancel</db-button><db-button variant="brand" command="request-close" commandfor="dialog-backdrop-strong">Confirm</db-button></db-dialog-footer><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p>\`)}</db-dialog></div>\`
+}`,...u.parameters?.docs?.source}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "backdrop": "weak",
+    "propOverrides": {
+      id: 'dialog-backdrop-weak'
+    }
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-button command="show-modal" commandfor="dialog-backdrop-weak">Open: Weak</db-button><db-dialog \${spreadArgs(args)}>\${unsafeHTML(\`<db-dialog-header slot="header" close-button-text="Close"><h2>Weak</h2></db-dialog-header><db-dialog-footer slot="footer"><db-button variant="ghost" command="request-close" commandfor="dialog-backdrop-weak">Cancel</db-button><db-button variant="brand" command="request-close" commandfor="dialog-backdrop-weak">Confirm</db-button></db-dialog-footer><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p>\`)}</db-dialog></div>\`
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "backdrop": "none",
+    "propOverrides": {
+      id: 'dialog-backdrop-none'
+    },
+    "open": false,
+    "onClose": fn()
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div><db-button>Open: No Backdrop</db-button><db-dialog \${spreadArgs(args)}>\${unsafeHTML(\`<db-dialog-header slot="header" close-button-text="Close"><h2>No Backdrop</h2></db-dialog-header><db-dialog-footer slot="footer"><db-button variant="ghost" command="request-close" commandfor="dialog-backdrop-none">Cancel</db-button><db-button variant="brand" command="request-close" commandfor="dialog-backdrop-none">Confirm</db-button></db-dialog-footer><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p><p>Lorem ipsum dolor sit amet.</p>\`)}</db-dialog></div>\`
+}`,...f.parameters?.docs?.source}}}})))()}export{m as a,s as i,f as n,d as r,u as t};
