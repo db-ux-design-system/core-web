@@ -12,13 +12,25 @@ useMetadata({
 export default function DividerEmphasis() {
 	return (
 		<Fragment>
-			<div style={{ width: '200px' }}>
+			<div
+				style={{
+					width: '200px',
+					height: '200px',
+					display: 'grid',
+					gridTemplateRows: 'auto 1fr'
+				}}>
 				<DBInfotext size="small" semantic="informational">
 					(Default) Weak
 				</DBInfotext>
 				<DBDivider width="full"></DBDivider>
 			</div>
-			<div style={{ width: '200px' }}>
+			<div
+				style={{
+					width: '200px',
+					height: '200px',
+					display: 'grid',
+					gridTemplateRows: 'auto 1fr'
+				}}>
 				<DBInfotext size="small" semantic="informational">
 					Strong
 				</DBInfotext>

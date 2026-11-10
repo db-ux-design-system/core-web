@@ -1,11 +1,11 @@
 /* This file was generated */
 export const ALL_ICONS: string[] = [
-	'arrows_vertical',
 	'arrow_down',
 	'arrow_left',
 	'arrow_right',
 	'arrow_up',
 	'arrow_up_right',
+	'arrows_vertical',
 	'brand',
 	'calendar',
 	'chat',
