@@ -274,6 +274,23 @@ export const getDefaultScreenshotTest = ({
 			page.locator('.db-control-panel-mobile').first()
 		];
 
+		/*
+		 * The adaptive screenshot test calls gotoAndPrepare (and therefore
+		 * preScreenShot) twice - once per coloring mode. Navigation between the
+		 * passes is a hash/query change (`./#/...?coloring=...`), which an SPA
+		 * does NOT reload, so a modal a preScreenShot opened in the first pass
+		 * (dialog, drawer, custom-select) stays open. Its open <dialog> then
+		 * intercepts pointer events and the second preScreenShot's "Open" click
+		 * times out. Close any open dialog before each preScreenShot so every
+		 * pass starts from the closed launcher state. Idempotent when none open.
+		 */
+		await page.evaluate(() => {
+			// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
+			for (const dialog of document.querySelectorAll('dialog[open]')) {
+				(dialog as HTMLDialogElement).close();
+			}
+		});
+
 		if (preScreenShot) {
 			await preScreenShot(page, project);
 		}
