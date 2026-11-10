@@ -227,11 +227,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					);
 
 				state.handleAutoPlacement();
-				state._resizeObserverCallbackId =
-					new ResizeObserverListener().observe(
-						document.documentElement,
-						() => state.handleAutoPlacement()
-					);
+				/*
+				 * Snapshot testing force-opens many dropdowns at once (data-test).
+				 * The ResizeObserver on document.documentElement repositions the
+				 * dropdown, which can resize the document, which refires the
+				 * observer - a feedback loop that, with many open dropdowns on a
+				 * heavy page, never settles and blocks the screenshot (webkit
+				 * times out). The one-time handleAutoPlacement above already
+				 * positions it; the live observer is only needed for real runtime
+				 * viewport resizes, so skip it (and the keyboard-focus workaround)
+				 * under data-test.
+				 */
+				if (!event.target.dataset['test']) {
+					state._resizeObserverCallbackId =
+						new ResizeObserverListener().observe(
+							document.documentElement,
+							() => state.handleAutoPlacement()
+						);
+				}
 				state._intersectionObserverCallbackId =
 					new IntersectionObserverListener().observe(
 						detailsRef,
@@ -242,7 +255,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						}
 					);
 				if (!event.target.dataset['test']) {
-					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}
 			} else {

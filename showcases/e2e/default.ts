@@ -30,6 +30,13 @@ export type DefaultTestType = {
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
 	ratio?: string | ((project: FullProject) => string | undefined);
+	/**
+	 Mark the screenshot test as slow (triples Playwright's per-test timeout).
+	 Use for pages that are legitimately heavy to render and screenshot - e.g.
+	 the custom-select adaptive matrix renders 96 comboboxes, which exceeds the
+	 default 30s on the slower webkit engine under parallel CI workers.
+	 */
+	slow?: boolean;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -203,7 +210,8 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot,
 	skip,
-	ratio
+	ratio,
+	slow
 }: DefaultSnapshotTestType) => {
 	/*
 	 * Every framework showcase renders the coloring modes (each wires the
@@ -311,6 +319,13 @@ export const getDefaultScreenshotTest = ({
 	}) => {
 		if (shouldSkip(project, skip)) {
 			test.skip();
+		}
+
+		// Heavy adaptive pages (e.g. the custom-select 96-combobox matrix) render
+		// two coloring passes and exceed the default 30s on webkit under parallel
+		// CI workers. test.slow() triples the per-test timeout for them.
+		if (slow) {
+			test.slow();
 		}
 
 		const config = buildConfig(project);

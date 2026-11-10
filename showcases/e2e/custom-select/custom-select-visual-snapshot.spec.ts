@@ -33,5 +33,8 @@ const preScreenShot = async (page: Page) => {
 };
 
 test.describe('DBCustomSelect', () => {
-	getDefaultScreenshotTest({ path, preScreenShot });
+	// The adaptive matrix renders 96 comboboxes (8 materials x 12 colors), which
+	// exceeds the default 30s screenshot timeout on webkit under parallel CI
+	// workers. Mark the screenshot test slow so it gets the tripled timeout.
+	getDefaultScreenshotTest({ path, preScreenShot, slow: true });
 });
