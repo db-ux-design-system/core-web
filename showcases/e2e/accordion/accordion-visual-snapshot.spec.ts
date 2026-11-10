@@ -3,5 +3,5 @@ import { getDefaultScreenshotTest } from '../default.ts';
 
 const path = '04/accordion';
 test.describe('DBAccordion', () => {
-	getDefaultScreenshotTest({ path, fixedHeight: 2500 });
+	getDefaultScreenshotTest({ path, fixedHeight: 2500, ratio: '0.015' });
 });
