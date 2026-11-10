@@ -540,14 +540,40 @@
  * `preview-head.html` of every Storybook. Edit this file, not the copies.
  * theme.spec.ts checks that the Storybook selectors used here still match.
  */
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) {
+	/*
+ * Cards are links too (or wrapped in one); they stay without underline.
+ * Links inside story previews (`.docs-story`) keep their component styling.
+ */
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(
+			:has(.db-card)
+		) {
 		color-scheme: light;
 		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 		text-decoration: underline;
 	}
 
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) > span {
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(:has(.db-card))
+		> span {
 		color: inherit;
+	}
+
+	.sbdocs-content a:is(.db-card, :has(.db-card)) {
+		text-decoration: none;
+	}
+
+	/* Guidelines card of the overview pages (generate-overviews.ts). */
+	.sbdocs-content a.db-sb-platform-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--db-spacing-fixed-xs);
+		max-inline-size: calc(2 * var(--db-sizing-3xl));
+		color: inherit;
+
+		> span {
+			color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		}
 	}
 
 	/*
@@ -745,21 +771,21 @@
 	})();
 </script>
 
-    <script type="module" crossorigin src="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/iframe-B8raNXnf.js"></script>
+    <script type="module" crossorigin src="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/iframe-CDbZEXTk.js"></script>
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/rolldown-runtime-sJBDdmOt.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/preload-helper-PSpWN0v8.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/preload-helper-C1KUfioC.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/chunk-DRQKCCAG-CCU5JLR1.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/react-DlPsW1c0.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/theming-Da-DVv0V.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/theming-CU2lwCF8.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/chunk-242VQQM5-CQUR7y2g.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/chunk-W22LQPXL-D8nYsdLc.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/components-BwJwvloD.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/chunk-W22LQPXL-BFH_Bymq.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/components-BcWS_GjJ.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/react-DITjJg24.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/chunk-QQBDHPVZ-DGKYZDIn.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/blocks-DHp70hLf.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/blocks-BS6jSI3h.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/chunk-UAWMPV5J-BrGPyIDv.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/iframe-CSduPcDp.js">
-    <link rel="stylesheet" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/iframe-D2kF3cro.css">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/iframe-BqvJLakp.js">
+    <link rel="stylesheet" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/stencil-storybook/assets/iframe-5KU8e8Y6.css">
   </head>
 
   <body>

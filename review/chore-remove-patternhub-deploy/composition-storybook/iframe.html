@@ -540,14 +540,40 @@
  * `preview-head.html` of every Storybook. Edit this file, not the copies.
  * theme.spec.ts checks that the Storybook selectors used here still match.
  */
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) {
+	/*
+ * Cards are links too (or wrapped in one); they stay without underline.
+ * Links inside story previews (`.docs-story`) keep their component styling.
+ */
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(
+			:has(.db-card)
+		) {
 		color-scheme: light;
 		color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 		text-decoration: underline;
 	}
 
-	.sbdocs-content a:not(.db-card, .db-link, .db-button) > span {
+	.sbdocs-content
+		a:not(.db-card, .db-link, .db-button, .docs-story *):not(:has(.db-card))
+		> span {
 		color: inherit;
+	}
+
+	.sbdocs-content a:is(.db-card, :has(.db-card)) {
+		text-decoration: none;
+	}
+
+	/* Guidelines card of the overview pages (generate-overviews.ts). */
+	.sbdocs-content a.db-sb-platform-card {
+		display: flex;
+		flex-direction: column;
+		gap: var(--db-spacing-fixed-xs);
+		max-inline-size: calc(2 * var(--db-sizing-3xl));
+		color: inherit;
+
+		> span {
+			color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
+		}
 	}
 
 	/*
@@ -745,15 +771,15 @@
 	})();
 </script>
 
-    <script type="module" crossorigin src="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/iframe-ielUnA7N.js"></script>
+    <script type="module" crossorigin src="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/iframe-BcDl5Ffi.js"></script>
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/rolldown-runtime-sJBDdmOt.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/preload-helper-DfG6tAMP.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/preload-helper-CHE9RKPi.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/react-DlPsW1c0.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/chunk-7PIQR4A3-DUuI6D6u.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/chunk-DRQKCCAG-CCU5JLR1.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/theming-CalONg5e.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/iframe-DelPLCmc.js">
-    <link rel="stylesheet" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/iframe-B3McFQlK.css">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/theming-B5h3ML3F.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/iframe-CX6elDUf.js">
+    <link rel="stylesheet" crossorigin href="/core-web/review/chore-remove-patternhub-deploy/composition-storybook/assets/iframe-J4mpN91D.css">
   </head>
 
   <body>

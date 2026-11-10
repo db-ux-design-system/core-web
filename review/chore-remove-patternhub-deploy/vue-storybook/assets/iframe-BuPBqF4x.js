@@ -1,0 +1,1 @@
+import{t as e}from"./iframe-Mcwp5-mf.js";e();

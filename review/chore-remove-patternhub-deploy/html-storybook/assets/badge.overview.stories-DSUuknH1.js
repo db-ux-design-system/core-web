@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./badge-d0YH_xk8.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{n(),a={title:`Components/DBBadge/Overview`,component:r,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`]},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...o.parameters?.docs?.source}}}})))()}export{c as n,i as t};
