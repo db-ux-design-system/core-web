@@ -1,5 +1,13 @@
 # @db-ux/react-core-components
 
+## 6.3.1
+
+### Patch Changes
+
+- fix(DBCustomSelect): align form field height of `selectedType="tag"` with the other selected types - [see commit 8a8fce9](https://github.com/db-ux-design-system/core-web/commit/8a8fce99ce9b6a9830edd9eedb8afb06f46ea3ba)
+- fix(DBNotification): keep the overlay height unchanged when a timestamp is shown - [see commit d13aa9d](https://github.com/db-ux-design-system/core-web/commit/d13aa9de25147c732e553196330a07c98a47c554)
+- fix: call `useRef` unconditionally in all components so that switching a forwarded `ref` between `null` and a ref object no longer changes the hook order and crashes the component - [see commit b22a752](https://github.com/db-ux-design-system/core-web/commit/b22a7524c3c3662081a9f15411438724dec6dd1c)
+
 ## 6.3.0
 
 ### Minor Changes
