@@ -48,7 +48,7 @@ test.describe('DBTable', () => {
 		{ columns: 20, title: 'should detect up to 20 columns' },
 		{
 			columns: 21,
-			title: 'should apply --db-table-grid-template-columns beyond 20 columns'
+			title: 'should apply --db-table-columns beyond 20 columns'
 		}
 	]) {
 		runInteractionTest({

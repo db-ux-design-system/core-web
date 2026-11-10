@@ -12,8 +12,8 @@ useMetadata({
 });
 
 /**
- The grid detects up to 20 columns automatically. Wider tables define their
- grid tracks with `--db-table-grid-template-columns` (see #8576). Also used as
+ The grid detects up to 20 columns automatically. Wider tables set their
+ column count with `--db-table-columns` (see #8576). Also used as
  fixture for showcases/e2e/table/table-interaction.spec.ts.
  */
 export default function TableColumnCount() {
@@ -41,7 +41,7 @@ export default function TableColumnCount() {
 						inlineSize: '100%',
 						display: 'flex',
 						flexDirection: 'column',
-						'--db-table-grid-template-columns': 'repeat(21, 1fr)'
+						'--db-table-columns': '21'
 					} as any
 				}>
 				<DBInfotext semantic="informational" size="small" icon="none">

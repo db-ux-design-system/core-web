@@ -3,7 +3,8 @@
 
 // Highest column count (and colspan/rowspan) the table grid detects automatically.
 // Every step adds a column count rule that is evaluated for every table, so keep
-// this low. For more columns, set `--db-table-grid-template-columns` directly.
+// this low. For more columns, set `--db-table-columns` (or
+// `--db-table-grid-template-columns` for custom tracks) directly.
 $max-columns: 20;
 
 %table-section-grid {
@@ -26,6 +27,23 @@ $max-columns: 20;
 		// consumers should use the slotted (children) approach with native table elements.
 		&[rowspan="#{$span}"] {
 			grid-row: span var(--db-table-cell-span, #{$span});
+		}
+	}
+
+	// Progressive enhancement: typed `attr()` reads any span value, beyond
+	// `$max-columns`. The guard is required: because of the `var()`, browsers
+	// without typed `attr()` would not drop these declarations but turn them
+	// invalid at computed-value time, which resets every span from the loop
+	// above to `auto`. The loop stays as fallback for those browsers.
+	@supports (grid-column: span attr(colspan type(<integer>))) {
+		&[colspan] {
+			grid-column: span
+				var(--db-table-cell-span, attr(colspan type(<integer>)));
+		}
+
+		&[rowspan] {
+			grid-row: span
+				var(--db-table-cell-span, attr(rowspan type(<integer>)));
 		}
 	}
 

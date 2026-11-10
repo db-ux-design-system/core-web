@@ -52,12 +52,10 @@ import {
 
 ### More than 20 columns
 
-The table detects up to 20 columns automatically. For wider tables, set `--db-table-grid-template-columns` on an ancestor of `db-table`:
+The table detects up to 20 columns automatically. For wider tables, set the column count with `--db-table-columns` on an ancestor of `db-table`:
 
 ```html app.component.html
-<div
-	[style.--db-table-grid-template-columns]="'repeat(' + columnCount + ', 1fr)'"
->
+<div [style.--db-table-columns]="columnCount">
 	<db-table [data]="data"></db-table>
 </div>
 ```

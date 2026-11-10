@@ -72,9 +72,20 @@
 }
 
 %set-grid-cells {
+	// `--db-table-columns` takes a plain number of equally sized columns.
+	// Without it, this custom property is invalid and the `var()` fallbacks
+	// below take over (detected column count or no explicit tracks).
+	--db-table-columns-tracks: repeat(
+		var(--db-table-columns),
+		var(--db-table-columns-size, 1fr)
+	);
+
 	// Applies to every column count, including tables wider than
 	// `table-components.$max-columns`, which the detection below can't cover.
-	grid-template-columns: var(--db-table-grid-template-columns, none);
+	grid-template-columns: var(
+		--db-table-grid-template-columns,
+		var(--db-table-columns-tracks, none)
+	);
 
 	// Track lists for 1..n columns, each one built on its predecessor.
 	// This keeps the generated CSS linear in the column count instead of
@@ -91,8 +102,8 @@
 
 	// NOTE: This selector counts DOM child elements per row to determine column count.
 	// When cells use colSpan, the logical column count is higher than the child count.
-	// For tables with colSpan, use the `columnSizes` prop or set
-	// `--db-table-grid-template-columns` directly to define the correct grid tracks.
+	// For tables with colSpan, use the `columnSizes` prop or set `--db-table-columns`
+	// or `--db-table-grid-template-columns` directly to define the correct grid tracks.
 	@for $num from 1 through table-components.$max-columns {
 		&:has(
 				tr
@@ -117,7 +128,7 @@
 
 			grid-template-columns: var(
 				--db-table-grid-template-columns,
-				var(--db-table-tracks-#{$num})
+				var(--db-table-columns-tracks, var(--db-table-tracks-#{$num}))
 			);
 		}
 	}
