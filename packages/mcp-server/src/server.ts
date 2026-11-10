@@ -214,6 +214,10 @@ export function registerLifecycleHandlers(handle: StdioServerHandle) {
 
 	process.on('uncaughtException', (error) => {
 		console.error('[DB UX MCP] Fatal Error - Uncaught Exception:', error);
+		// Exit instead of resuming: the process state is undefined after an
+		// uncaught exception, and an orphaned server whose stdio is gone could
+		// otherwise keep re-entering this handler at 100% CPU.
+		process.exit(1);
 	});
 
 	process.on('unhandledRejection', (reason, promise) => {

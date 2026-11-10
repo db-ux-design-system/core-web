@@ -44,8 +44,14 @@
 	&[data-selected-type="tag"] {
 		.db-custom-select-form-field {
 			&:has(.db-custom-select-tags:not(:empty)) {
-				padding-block: variables.$db-spacing-fixed-xs;
+				// One tag row matches the default field height
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding-block: calc(
+					(#{variables.$db-sizing-md} - #{variables.$db-sizing-sm}) /
+						2 - #{variables.$db-border-width-3xs}
+				);
 				block-size: auto;
+				min-block-size: variables.$db-sizing-md;
 
 				.db-custom-select-tags {
 					flex-wrap: wrap;
