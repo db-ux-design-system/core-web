@@ -35,7 +35,43 @@ const tagToClass = (tag: string): string =>
 const matches = (code: string, pattern: RegExp): string[] =>
 	unique([...code.matchAll(pattern)].map((match) => match[1]));
 
+/**
+ * Storybook prints a style object without its type cast. A custom property
+ * (`'--db-table-columns': '21'` of DBTable "Column Count") is no key of
+ * React's style type, so the snippet gets the cast back.
+ */
+const castCustomPropertyStyles = (code: string): string => {
+	let result = '';
+	let rest = code;
+	for (
+		let start = rest.indexOf('style={{');
+		start !== -1;
+		start = rest.indexOf('style={{')
+	) {
+		// Find the brace that closes the object (`{{` … `}`).
+		const open = start + 'style={'.length;
+		let end = open;
+		for (let depth = 0; end < rest.length; end++) {
+			depth += rest[end] === '{' ? 1 : rest[end] === '}' ? -1 : 0;
+			if (depth === 0) {
+				break;
+			}
+		}
+
+		const object = rest.slice(open, end + 1);
+		const isCustom =
+			/["']--[\w-]+["']\s*:/.test(object) && rest[end + 1] === '}';
+		result += isCustom
+			? `${rest.slice(0, open)}${object} as React.CSSProperties`
+			: rest.slice(0, end + 1);
+		rest = rest.slice(end + 1);
+	}
+
+	return result + rest;
+};
+
 const react = (code: string): string => {
+	code = castCustomPropertyStyles(code);
 	// Digits too, for DBHeadingH1 … DBHeadingH6.
 	const components = matches(code, /<(DB[\dA-Za-z]+)/g);
 	if (components.length === 0) {
