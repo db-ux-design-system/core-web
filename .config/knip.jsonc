@@ -24,7 +24,13 @@
 		"showcases/*",
 		"storybooks/*",
 		"docs",
-		"figma-code-connect/*"
+		"figma-code-connect/*",
+		// theme-tools test fixtures are mock vite/webpack/angular apps. Knip's
+		// bundler plugins import their vite.config.js / webpack.config.js, which
+		// in turn import the built plugin (@db-ux/core-theme-tools/build/plugin/*);
+		// the lint CI job does not build this package, so the load throws and Knip
+		// exits 2. They are test fixtures, not shipped code - skip them entirely.
+		"packages/theme-tools/test/fixtures/*"
 	],
 
 	// Design token packages and shared configs consumed implicitly

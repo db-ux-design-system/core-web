@@ -111,6 +111,13 @@ overrides:
   ip-address@<=10.7.3: 10.7.4
   hono@>=4.12.4 <4.13.11: 4.13.16
   "@hono/node-server@>=1.19.10 <2.1.3": 2.1.6
+  # xo 5.0.1 bundles its own typescript@^6.0.3 while the repo is pinned to 5.9.3.
+  # Two TypeScript copies in one process make xo's type-aware linting crash
+  # nondeterministically ("Unsafe .../could not be resolved" on files that are
+  # fine), which the branch tips into consistently in CI. Pin xo's typescript to
+  # the repo's version so a single copy is loaded. Scoped to xo so the rest of
+  # the toolchain is untouched.
+  "xo>typescript": 5.9.3
 
 catalog:
   postcss: 8.5.32
