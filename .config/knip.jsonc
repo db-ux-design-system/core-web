@@ -115,6 +115,14 @@
 			"ignore": ["test/fixtures/**"]
 		},
 
+		// Theme tools: test fixtures are mock apps (vite/webpack/angular) whose
+		// deps are referenced by config strings (e.g. css-loader in a webpack
+		// rule), not static imports, so Knip cannot see them and would otherwise
+		// prune them as unused.
+		"packages/theme-tools": {
+			"ignore": ["test/fixtures/**"]
+		},
+
 		// Stylelint plugin: test fixtures are loaded by stylelint.lint() as file paths
 		"packages/stylelint": {
 			"ignoreFiles": ["test/fixtures/**"],

@@ -909,6 +909,9 @@ importers:
         specifier: workspace:*
         version: link:../../..
     devDependencies:
+      css-loader:
+        specifier: 7.1.5
+        version: 7.1.5(@rspack/core@2.3.0(@swc/helpers@0.5.23))(webpack@5.112.2)
       html-webpack-plugin:
         specifier: 5.6.8
         version: 5.6.8(@rspack/core@2.3.0(@swc/helpers@0.5.23))(webpack@5.112.2)
@@ -26301,6 +26304,20 @@ snapshots:
       semver: 7.7.4
     optionalDependencies:
       webpack: 5.112.0(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.6))(svgo@3.3.5)(uglify-js@3.19.3)(webpack-cli@6.0.1)
+
+  css-loader@7.1.5(@rspack/core@2.3.0(@swc/helpers@0.5.23))(webpack@5.112.2):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.32)
+      postcss: 8.5.32
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.32)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.32)
+      postcss-modules-scope: 3.2.1(postcss@8.5.32)
+      postcss-modules-values: 4.0.0(postcss@8.5.32)
+      postcss-value-parser: 4.2.0
+      semver: 7.8.5
+    optionalDependencies:
+      '@rspack/core': 2.3.0(@swc/helpers@0.5.23)
+      webpack: 5.112.2(clean-css@5.3.3)(cssnano@9.9.0(postcss@8.5.32))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(sharp@0.35.5(@types/node@26.6.5))(svgo@3.3.5)(uglify-js@3.19.3)(webpack-cli@6.0.1)
 
   css-loader@7.1.5(webpack@5.112.2):
     dependencies:
