@@ -63,10 +63,10 @@
     "postcss": "8.5.32",
     "postcss-cli": "12.0.0",
     "replace-in-file": "9.0.0",
-    "sass": "1.107.1",
-    "storybook": "10.6.5",
+    "sass": "1.108.1",
+    "storybook": "10.6.6",
     "tsx": "4.23.15",
-    "vitest": "5.0.5"
+    "vitest": "5.1.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

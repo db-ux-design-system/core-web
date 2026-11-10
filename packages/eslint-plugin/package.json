@@ -47,8 +47,8 @@
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.4",
     "typescript": "5.9.3",
-    "vitest": "5.0.5",
-    "vue-eslint-parser": "10.4.1"
+    "vitest": "5.1.0",
+    "vue-eslint-parser": "10.4.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

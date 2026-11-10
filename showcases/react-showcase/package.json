@@ -34,7 +34,7 @@
     "@db-ux/db-theme": "7.2.0",
     "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.4.0",
-    "next": "16.4.3",
+    "next": "16.4.5",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-router-dom": "7.18.5"
@@ -44,10 +44,10 @@
     "@types/node": "26.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@vitejs/plugin-react": "6.1.2",
+    "@vitejs/plugin-react": "6.2.1",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.3.5"
+    "vite": "8.3.6"
   }
 }
