@@ -307,7 +307,7 @@ const xoConfig = [
 		files: ['./packages/theme-tools/**'],
 		rules: {
 			'@typescript-eslint/naming-convention': 0, // UPPER_CASE constants (DATA_*_PATTERN, OpacityRef, ...)
-			'@typescript-eslint/no-unnecessary-type-assertion': 0, // tsc handles narrowing
+			'@typescript-eslint/no-unnecessary-type-assertion': 0, // Narrowing is handled by tsc
 			'@typescript-eslint/consistent-type-assertions': 0, // `x as T` used where a const annotation does not fit
 			// `interface` is used deliberately: GenerateOptions/MaterialProps as
 			// public shapes, and the empty `OverwriteColors` is a module-augmentation
@@ -316,9 +316,9 @@ const xoConfig = [
 			'@typescript-eslint/consistent-type-definitions': 0,
 			'@typescript-eslint/no-empty-object-type': 0,
 			'@typescript-eslint/prefer-nullish-coalescing': 0, // Intentional || for defaults
-			'unicorn/consistent-boolean-name': 0, // emitDataAttribute / emitMediaQuery read better as-is
+			'unicorn/consistent-boolean-name': 0, // Names emitDataAttribute / emitMediaQuery read better as-is
 			'unicorn/no-array-sort': 0, // Sorting detector output in place is intentional
-			'unicorn/text-encoding-identifier-case': 0, // 'utf-8' is standard for readFileSync
+			'unicorn/text-encoding-identifier-case': 0, // Standard 'utf-8' for readFileSync
 			'unicorn/prevent-abbreviations': 0, // Short names (req, fg) are intentional
 			'unicorn/prefer-split-limit': 0, // Splitting a path on every separator is intentional
 			'regexp/no-useless-character-class': 0, // `[[:]?` binding-prefix class reads clearer kept

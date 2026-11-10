@@ -120,7 +120,13 @@
 		// rule), not static imports, so Knip cannot see them and would otherwise
 		// prune them as unused.
 		"packages/theme-tools": {
-			"ignore": ["test/fixtures/**"]
+			"ignore": ["test/fixtures/**"],
+			// The bundler-plugin entry points (plugin/vite.ts, webpack.ts, …)
+			// import these host bundlers, which are declared as OPTIONAL
+			// peerDependencies (a consumer only installs the one they use). Knip
+			// reports optional peers that are referenced but not installed in this
+			// workspace as issues; they are intentional, so ignore them.
+			"ignoreDependencies": ["@farmfe/core", "rollup", "vite", "webpack"]
 		},
 
 		// Stylelint plugin: test fixtures are loaded by stylelint.lint() as file paths

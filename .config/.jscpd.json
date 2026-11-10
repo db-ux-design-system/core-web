@@ -55,6 +55,7 @@
 		"**/packages/foundations/assets/icons/fonts/**",
 		"**/packages/foundations/dev",
 		"**/packages/foundations/scss/defaults/default-properties.scss",
+		"**/packages/foundations/scss/theme/theme.tokens.json",
 		"**/packages/foundations/scss/theme/relative.scss",
 		"**/packages/foundations/scss/_screen-sizes.scss",
 		"**/packages/mcp-server/CONTEXT.md",

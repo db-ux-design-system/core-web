@@ -33,6 +33,11 @@ const config = {
  */
 const buildPackageDirMap = () => {
 	const map = new Map();
+	// package name -> Set of declared subpath-export specifiers (without the
+	// leading "./"), e.g. "@db-ux/core-theme-tools" -> { "vite", "webpack" }.
+	// A reference that matches a declared export is a valid package entry point,
+	// not an on-disk file path, so it must not be resolved against the file tree.
+	const exportsMap = new Map();
 	for (const packagesDir of config.packagesDirs) {
 		const dirPath = path.join(config.rootDir, packagesDir);
 		if (!fs.existsSync(dirPath)) continue;
@@ -41,21 +46,34 @@ const buildPackageDirMap = () => {
 			const pkgJsonPath = path.join(dirPath, entry.name, 'package.json');
 			if (!fs.existsSync(pkgJsonPath)) continue;
 			try {
-				const { name } = JSON.parse(
+				const { name, exports } = JSON.parse(
 					fs.readFileSync(pkgJsonPath, 'utf8')
 				);
 				if (name) {
 					if (!map.has(name)) map.set(name, []);
 					map.get(name).push(path.join(packagesDir, entry.name));
+
+					if (exports && typeof exports === 'object') {
+						if (!exportsMap.has(name)) {
+							exportsMap.set(name, new Set());
+						}
+
+						for (const key of Object.keys(exports)) {
+							// Normalize "./vite" -> "vite"; skip the "." root.
+							const subpath = key.replace(/^\.\/?/, '');
+							if (subpath) exportsMap.get(name).add(subpath);
+						}
+					}
 				}
 			} catch {}
 		}
 	}
 
-	return map;
+	return { map, exportsMap };
 };
 
-const packageDirMap = buildPackageDirMap();
+const { map: packageDirMap, exportsMap: packageExportsMap } =
+	buildPackageDirMap();
 
 /**
  * Find all markdown files in the repository
@@ -213,6 +231,15 @@ export const expandBracketAlternatives = (input) => {
 };
 
 const resolveSinglePackagePath = (packageName, filePath) => {
+	// A reference that matches a declared package-export subpath (e.g.
+	// `@db-ux/core-theme-tools/vite`) is a valid entry point, not an on-disk
+	// file, so accept it without walking the file tree. Return the specifier
+	// itself as the "resolved path" marker so the caller treats it as existing.
+	const declaredExports = packageExportsMap.get(packageName);
+	if (declaredExports?.has(filePath)) {
+		return `${packageName}/${filePath}`;
+	}
+
 	// Package directory name used in workspaces (`@db-ux/foo` -> `foo`).
 	const packageDirName = packageName.replace(config.orgPrefix, '');
 

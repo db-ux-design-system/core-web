@@ -55,9 +55,10 @@ const packages = [
 	{ dir: 'wc-core-components', name: 'wc-core-components' },
 	{ dir: 'stylelint', name: 'core-stylelint' },
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
-	// theme-tools depends on core-foundations (published first above), so its
-	// workspace:* foundations dep is pinned to the release version below. It
-	// must publish BEFORE vite-plugin, which now depends on core-theme-tools.
+	// The theme-tools package depends on core-foundations (published first
+	// above), so its workspace:* foundations dep is pinned to the release
+	// version below. It must publish BEFORE vite-plugin, which now depends on
+	// core-theme-tools.
 	{ dir: 'theme-tools', name: 'core-theme-tools' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
 	{ dir: 'postcss-plugin', name: 'core-postcss-plugin' },

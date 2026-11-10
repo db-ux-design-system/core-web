@@ -12,7 +12,6 @@
 
 // Per-component adaptive-coloring overrides (gated by data-adaptive-coloring)
 @forward "./components-adaptive";
-
 @forward "component-animations";
 @forward "wc-workarounds";
 @forward "@db-ux/core-foundations/build/styles/helpers/classes/all";

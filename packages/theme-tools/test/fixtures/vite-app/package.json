@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "type": "module",
   "description": "Vite fixture for the @db-ux/core-theme-tools bundler plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
   "license": "Apache-2.0",
   "private": true,
   "scripts": {

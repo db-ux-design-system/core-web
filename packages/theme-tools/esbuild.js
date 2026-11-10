@@ -1,8 +1,8 @@
 import * as esbuild from 'esbuild';
-import { dirname } from 'node:path';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /*
  * Bundle the CLI surface src/cli/index.ts -> build/cli/index.js, built like
