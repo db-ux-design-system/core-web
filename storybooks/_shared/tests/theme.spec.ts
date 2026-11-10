@@ -10,7 +10,12 @@
  * adjust.
  */
 import { expect, test, type Page } from '@playwright/test';
-import { openDocs, storybookUrl, type StorybookName } from './storybooks.ts';
+import {
+	getEntries,
+	openDocs,
+	storybookUrl,
+	type StorybookName
+} from './storybooks.ts';
 
 const OVERVIEW = 'components-dbbutton-overview--docs';
 
@@ -41,7 +46,6 @@ test.describe('manager.css', () => {
 	test('hidden controls of the sidebar', async ({ page }) => {
 		await openManager(page, 'react-storybook', `/docs/${OVERVIEW}`);
 		for (const selector of [
-			'button[aria-label="Settings"]',
 			'[data-action="expand-all"]',
 			'button[aria-label="Tag filters"]'
 		]) {
@@ -89,6 +93,41 @@ test.describe('manager.css', () => {
 				'text-transform'
 			)
 		).toBe('none');
+	});
+
+	test('toolbar and settings button in the style of the sidebar', async ({
+		page
+	}) => {
+		const entries = await getEntries(page, 'react-storybook');
+		const story = entries.find((entry) => entry.type === 'story');
+		expect(story, 'a story of react-storybook').toBeDefined();
+		await openManager(page, 'react-storybook', `/story/${story?.id}`);
+		const text = await style(page, '.sidebar-item[data-nodetype]', 'color');
+		const settings = 'button[aria-label="Settings"]';
+		expect(await style(page, settings, 'color')).toBe(text);
+		const tool = '.sb-bar button[role="switch"][aria-label="Measure tool"]';
+		await expect(page.locator(tool)).toBeVisible();
+		expect(await style(page, tool, 'color')).toBe(text);
+		expect(await style(page, tool, 'background-color')).toBe(
+			'rgba(0, 0, 0, 0)'
+		);
+		// An active tool gets the brand indicator below it, no fill.
+		const active = `${tool}[aria-checked="true"]`;
+		// The tool ignores clicks until the story has loaded; click again then.
+		await expect(async () => {
+			if ((await page.locator(active).count()) === 0) {
+				await page.locator(tool).click();
+			}
+
+			await expect(page.locator(active)).toBeAttached({ timeout: 1000 });
+		}).toPass({ timeout: 30_000 });
+		// Away from the button, so its hover overlay is gone.
+		await page.mouse.move(0, 0);
+		// Storybook animates the background, so wait until it has settled.
+		await expect
+			.poll(async () => style(page, active, 'background-color'))
+			.toBe('rgba(0, 0, 0, 0)');
+		expect(await style(page, active, 'content', '::after')).toBe('""');
 	});
 
 	test('keyboard cursor of the sidebar (manager.ts)', async ({ page }) => {

@@ -8,15 +8,10 @@ import { BRAND_NAME, managerTheme } from './theme';
  * The sidebar styles the theme API cannot set are CSS escape hatches in
  * manager.css, inlined into manager-head.html by sync.ts.
  */
-// No toolbar: its tools (backgrounds, grid, outline, zoom) are not needed for
-// the docs pages. The mode of the stories stays available via the
-// `globals=mode:dark` URL parameter (mode.ts).
-// `showToolbar` alone is only the initial value; the customisation keeps the
-// toolbar hidden also when a stored layout or the shortcut would show it.
+// Storybook's default toolbar and settings menu, in the colors of the theme
+// (manager.css styles the buttons like the sidebar items).
 addons.setConfig({
-	theme: managerTheme,
-	showToolbar: false,
-	layoutCustomisations: { showToolbar: () => false }
+	theme: managerTheme
 });
 
 /*
