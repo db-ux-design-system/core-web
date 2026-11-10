@@ -1,0 +1,17 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{c as t,p as n,s as r}from"./blocks-_ZGSV0dG.js";import{t as i}from"./jsx-runtime-MKhVqBIO.js";import{i as a,r as o}from"./react-DITjJg24.js";import{n as s,t as c}from"./custom-select.overview.stories-BnVC0QAi.js";function l(e){let n={a:`a`,code:`code`,h1:`h1`,h2:`h2`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...a(),...e.components};return(0,d.jsxs)(d.Fragment,{children:[`
+`,(0,d.jsx)(t,{of:c}),`
+`,(0,d.jsx)(n.h1,{id:`dbcustomselect`,children:`DBCustomSelect`}),`
+`,(0,d.jsx)(r,{children:`Custom Select is an advanced dropdown for choosing one or multiple predefined options with support for search, grouping, and showing selected values. Use it when a basic select is not sufficient due to option volume, selection complexity, or the need for better scanning and management of chosen items.`}),`
+`,(0,d.jsxs)(n.p,{children:[(0,d.jsx)(n.strong,{children:`Status:`}),` Beta`]}),`
+`,(0,d.jsx)(n.h2,{id:`guidelines`,children:`Guidelines`}),`
+`,(0,d.jsx)(`div`,{"data-mode":`light`,children:(0,d.jsxs)(`a`,{className:`db-card db-sb-platform-card`,"data-behavior":`interactive`,"data-spacing":`small`,href:`https://design-system.deutschebahn.com/documentation/components/custom-select`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,d.jsx)(`img`,{src:`./brand/images/logo.svg`,alt:``,width:`32`,height:`32`}),(0,d.jsx)(`strong`,{children:`CustomSelect guidelines`}),(0,d.jsx)(`span`,{children:`When to use it, variants, Do and Don’t and the design rules for accessibility.`}),(0,d.jsx)(`strong`,{"data-icon-trailing":`arrow_up_right`,children:`Design System Platform`})]})}),`
+`,(0,d.jsxs)(n.p,{children:[`Setup: `,(0,d.jsx)(n.a,{href:`https://design-system.deutschebahn.com/documentation/learn/html-css-setup`,rel:`nofollow`,children:`Use the components with HTML and CSS`}),` on the Design System Platform.`]}),`
+`,(0,d.jsx)(n.h2,{id:`usage`,children:`Usage`}),`
+`,(0,d.jsxs)(n.p,{children:[`DBCustomSelect needs JavaScript and is not available as plain HTML and CSS. In a project without a framework, use the Web Component `,(0,d.jsx)(n.code,{children:`db-custom-select`}),`: `,(0,d.jsx)(n.a,{href:`../stencil-storybook/?path=/docs/components-dbcustomselect-overview--docs`,children:`DBCustomSelect for Web Components`}),`.`]}),`
+`,(0,d.jsx)(n.h2,{id:`resources`,children:`Resources`}),`
+`,(0,d.jsxs)(n.ul,{children:[`
+`,(0,d.jsx)(n.li,{children:(0,d.jsx)(n.a,{href:`https://design-system.deutschebahn.com/documentation/components/custom-select`,rel:`nofollow`,children:`Guidelines on the Design System Platform`})}),`
+`,(0,d.jsxs)(n.li,{children:[`npm: `,(0,d.jsx)(n.a,{href:`https://www.npmjs.com/package/@db-ux/core-components`,rel:`nofollow`,children:`@db-ux/core-components`})]}),`
+`,(0,d.jsx)(n.li,{children:(0,d.jsx)(n.a,{href:`https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/custom-select`,rel:`nofollow`,children:`Source code on GitHub`})}),`
+`,(0,d.jsx)(n.li,{children:(0,d.jsx)(n.a,{href:`https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md`,rel:`nofollow`,children:`Changelog`})}),`
+`]})]})}function u(e={}){let{wrapper:t}={...a(),...e.components};return t?(0,d.jsx)(t,{...e,children:(0,d.jsx)(l,{...e})}):l(e)}var d;function f(){return(f=e((()=>{d=i(),o(),n(),s()})))()}f();export{u as default};

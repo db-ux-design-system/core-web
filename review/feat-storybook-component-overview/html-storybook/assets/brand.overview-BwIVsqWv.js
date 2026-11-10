@@ -1,0 +1,27 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{c as t,n,p as r,s as i}from"./blocks-_ZGSV0dG.js";import{t as a}from"./jsx-runtime-MKhVqBIO.js";import{i as o,r as s}from"./react-DITjJg24.js";import{n as c,t as l}from"./brand.overview.stories-Op8SKvik.js";import{a as u,n as d,r as f,t as p}from"./density.example.stories-Dz4HdczZ.js";import{i as m,n as h,r as g,t as _}from"./variants.example.stories-CU7cuTBn.js";var v;function y(){return(y=e((()=>{v="## General\n\n> **Note**\n> For a general installation or migration process check out this [documentation](https://www.npmjs.com/package/@db-ux/core-components).\n\n## DB UI Core ➡ DB UX Design System Core components\n\n### class\n\n| Before      | Status | After                    | Description                                                    |\n| ----------- | :----: | ------------------------ | -------------------------------------------------------------- |\n| `cmp-brand` |   🔁   | `db-control-panel-brand` | `db-brand` is deprecated; use it inside the `db-shell` family. |\n\n### properties\n\n> **Note**\n> We removed all old properties, because brand hasn't a wrapping anchor tag (`<a>`) anymore.\n> If you want to use a link around `db-control-panel-brand`, do it by yourself.\n\n| Before           | Status | After | Description                                                                                           |\n| ---------------- | :----: | :---: | ----------------------------------------------------------------------------------------------------- |\n| `siteNameLink`   |   ❌   |  ❌   | see Note                                                                                              |\n| `alt`            |   ❌   |  ❌   | see Note                                                                                              |\n| `anchorRef`      |   ❌   |  ❌   | see Note                                                                                              |\n| `anchorTitle`    |   ❌   |  ❌   | see Note                                                                                              |\n| `anchorRelation` |   ❌   |  ❌   | see Note                                                                                              |\n| `src`            |   ❌   |  ❌   | see Note                                                                                              |\n| `hideLogo`       |   🆕   |  ❌   | If you want a custom image, you can hide the default one and pass anything into the `children`/`slot` |\n"})))()}function b(e){let r={a:`a`,code:`code`,h1:`h1`,h2:`h2`,h3:`h3`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...o(),...e.components};return(0,S.jsxs)(S.Fragment,{children:[`
+`,(0,S.jsx)(t,{of:l}),`
+`,(0,S.jsx)(r.h1,{id:`dbbrand`,children:`DBBrand`}),`
+`,(0,S.jsxs)(r.p,{children:[`Setup: `,(0,S.jsx)(r.a,{href:`https://design-system.deutschebahn.com/documentation/learn/html-css-setup`,rel:`nofollow`,children:`Use the components with HTML and CSS`}),` on the Design System Platform.`]}),`
+`,(0,S.jsx)(r.h2,{id:`usage`,children:`Usage`}),`
+`,(0,S.jsxs)(r.p,{children:[`Open `,(0,S.jsx)(r.strong,{children:`Show code`}),` below a preview for the markup you can copy, including what it needs to load.`]}),`
+`,(0,S.jsx)(r.h3,{id:`density`,children:`Density`}),`
+`,(0,S.jsx)(n,{of:f}),`
+`,(0,S.jsx)(n,{of:p}),`
+`,(0,S.jsx)(n,{of:d}),`
+`,(0,S.jsx)(r.p,{children:(0,S.jsx)(r.a,{href:`?path=/docs/components-dbbrand-density--docs`,children:`Open the Density examples`})}),`
+`,(0,S.jsx)(r.h3,{id:`variants`,children:`Variants`}),`
+`,(0,S.jsx)(n,{of:h}),`
+`,(0,S.jsx)(n,{of:g}),`
+`,(0,S.jsx)(n,{of:_}),`
+`,(0,S.jsx)(r.p,{children:(0,S.jsx)(r.a,{href:`?path=/docs/components-dbbrand-variants--docs`,children:`Open the Variants examples`})}),`
+`,(0,S.jsx)(r.h2,{id:`attributes`,children:`Attributes`}),`
+`,(0,S.jsxs)(r.p,{children:[`In HTML the component is a `,(0,S.jsx)(r.code,{children:`<div>`}),` with the class `,(0,S.jsx)(r.code,{children:`db-brand`}),`. Options are `,(0,S.jsx)(r.code,{children:`data-`}),` attributes next to the native attributes of the element.`]}),`
+`,(0,S.jsx)(i,{children:'| Attribute | Values | Description |\n| --- | --- | --- |\n| `data-icon` | `"none" \\| IconTypes` |  |\n| `data-show-icon` | `true` \\| `false` | Enables or disables the visibility of the icon. The default value depends on the component. For many components this property is optional to reflect Figma properties. |'}),`
+`,(0,S.jsx)(r.h2,{id:`migration`,children:`Migration`}),`
+`,(0,S.jsx)(i,{children:v.replace(/^(#{2,4}) /gm,`#$1 `)}),`
+`,(0,S.jsx)(r.h2,{id:`resources`,children:`Resources`}),`
+`,(0,S.jsxs)(r.ul,{children:[`
+`,(0,S.jsxs)(r.li,{children:[`npm: `,(0,S.jsx)(r.a,{href:`https://www.npmjs.com/package/@db-ux/core-components`,rel:`nofollow`,children:`@db-ux/core-components`})]}),`
+`,(0,S.jsx)(r.li,{children:(0,S.jsx)(r.a,{href:`https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/brand`,rel:`nofollow`,children:`Source code on GitHub`})}),`
+`,(0,S.jsx)(r.li,{children:(0,S.jsx)(r.a,{href:`https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md`,rel:`nofollow`,children:`Changelog`})}),`
+`]})]})}function x(e={}){let{wrapper:t}={...o(),...e.components};return t?(0,S.jsx)(t,{...e,children:(0,S.jsx)(b,{...e})}):b(e)}var S;function C(){return(C=e((()=>{S=a(),s(),r(),c(),u(),m(),y()})))()}C();export{x as default};

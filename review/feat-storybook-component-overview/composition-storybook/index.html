@@ -104,7 +104,7 @@
 	/* cspell:ignore nodetype inlines */
 
 	/*
- * CSS escape hatches of the Storybook UI (sidebar).
+ * CSS escape hatches of the Storybook UI (sidebar, toolbar).
  *
  * Storybook's theme API (theme.ts) is narrow by design; for anything else
  * Storybook documents style tags in `.storybook/manager-head.html` that target
@@ -122,15 +122,12 @@
  * Hidden controls without an API:
  * - "Extra actions" (globe) of the framework refs: only a status popover. The
  *   version dropdown next to it stays.
- * - Settings menu (gear) in the sidebar header: about page, layout toggles
- *   and the shortcut list are not needed. The shortcuts keep working.
  * - "Expand/collapse all" next to every section heading (Foundations,
  *   Components, also inside the refs). The heading itself still toggles.
  * - Tag filter button in the search field. The label reads "N active tag
  *   filter(s)" while filters are set.
  */
 	[data-action="toggle-indicator"],
-	button[aria-label="Settings"],
 	[data-action="expand-all"],
 	button:is(
 		[aria-label="Tag filters"],
@@ -231,10 +228,50 @@
 		color: currentcolor !important;
 	}
 
+	/*
+ * Toolbar (`.sb-bar`) and settings button (gear in the sidebar header) like
+ * the sidebar items: text color, the hover and pressed overlay, and for an
+ * active tool (a switch with `aria-checked="true"`, e.g. the measure tool)
+ * the brand indicator below it, like the horizontal control panel. Storybook
+ * fills active tools and set globals (the "Mode" select) with a brand tint
+ * instead; the select keeps the text color, its value is its label.
+ */
+	.sb-bar button,
+	button[aria-label="Settings"] {
+		position: relative;
+		border-radius: var(--db-sb-radius) !important;
+		color: var(--db-sb-text) !important;
+		background: transparent !important;
+	}
+
+	.sb-bar button:hover,
+	button[aria-label="Settings"]:hover {
+		background: var(--db-sb-item-hovered) !important;
+	}
+
+	.sb-bar button:active,
+	button[aria-label="Settings"]:active {
+		background: var(--db-sb-item-pressed) !important;
+	}
+
+	.sb-bar button[role="switch"][aria-checked="true"]::after {
+		content: "";
+		position: absolute;
+		inset-inline: 0;
+		inset-block-end: 0;
+		block-size: var(--db-sb-indicator-width);
+		border-radius: var(--db-sb-radius);
+		background: var(--db-sb-indicator);
+	}
+
 	/* Forced colors: the indicator background disappears, draw a border. */
 	@media (forced-colors: active) {
 		.sidebar-item[data-nodetype][data-selected="true"]::after {
 			border: var(--db-sb-indicator-width) solid CanvasText;
+		}
+
+		.sb-bar button[role="switch"][aria-checked="true"]::after {
+			border-block-end: var(--db-sb-indicator-width) solid CanvasText;
 		}
 	}
 </style>
@@ -282,7 +319,7 @@
     "url": "/core-web/review/feat-storybook-component-overview/angular-storybook",
     "expanded": false,
     "versions": {
-      "This build (feat-storybook-component-overview)": "/core-web/review/feat-storybook-component-overview/angular-storybook",
+      "Review build": "/core-web/review/feat-storybook-component-overview/angular-storybook",
       "latest": "https://design-system.deutschebahn.com/core-web/version/latest/angular-storybook",
       "v6.3.0": "https://design-system.deutschebahn.com/core-web/version/v6.3.0/angular-storybook",
       "v6.2.1": "https://design-system.deutschebahn.com/core-web/version/v6.2.1/angular-storybook",
@@ -305,7 +342,7 @@
     "url": "/core-web/review/feat-storybook-component-overview/html-storybook",
     "expanded": false,
     "versions": {
-      "This build (feat-storybook-component-overview)": "/core-web/review/feat-storybook-component-overview/html-storybook",
+      "Review build": "/core-web/review/feat-storybook-component-overview/html-storybook",
       "latest": "https://design-system.deutschebahn.com/core-web/version/latest/html-storybook",
       "v6.3.0": "https://design-system.deutschebahn.com/core-web/version/v6.3.0/html-storybook",
       "v6.2.1": "https://design-system.deutschebahn.com/core-web/version/v6.2.1/html-storybook",
@@ -328,7 +365,7 @@
     "url": "/core-web/review/feat-storybook-component-overview/react-storybook",
     "expanded": false,
     "versions": {
-      "This build (feat-storybook-component-overview)": "/core-web/review/feat-storybook-component-overview/react-storybook",
+      "Review build": "/core-web/review/feat-storybook-component-overview/react-storybook",
       "latest": "https://design-system.deutschebahn.com/core-web/version/latest/react-storybook",
       "v6.3.0": "https://design-system.deutschebahn.com/core-web/version/v6.3.0/react-storybook",
       "v6.2.1": "https://design-system.deutschebahn.com/core-web/version/v6.2.1/react-storybook",
@@ -351,7 +388,7 @@
     "url": "/core-web/review/feat-storybook-component-overview/vue-storybook",
     "expanded": false,
     "versions": {
-      "This build (feat-storybook-component-overview)": "/core-web/review/feat-storybook-component-overview/vue-storybook",
+      "Review build": "/core-web/review/feat-storybook-component-overview/vue-storybook",
       "latest": "https://design-system.deutschebahn.com/core-web/version/latest/vue-storybook",
       "v6.3.0": "https://design-system.deutschebahn.com/core-web/version/v6.3.0/vue-storybook",
       "v6.2.1": "https://design-system.deutschebahn.com/core-web/version/v6.2.1/vue-storybook",
@@ -374,7 +411,7 @@
     "url": "/core-web/review/feat-storybook-component-overview/stencil-storybook",
     "expanded": false,
     "versions": {
-      "This build (feat-storybook-component-overview)": "/core-web/review/feat-storybook-component-overview/stencil-storybook",
+      "Review build": "/core-web/review/feat-storybook-component-overview/stencil-storybook",
       "latest": "https://design-system.deutschebahn.com/core-web/version/latest/stencil-storybook",
       "v6.3.0": "https://design-system.deutschebahn.com/core-web/version/v6.3.0/stencil-storybook",
       "v6.2.1": "https://design-system.deutschebahn.com/core-web/version/v6.2.1/stencil-storybook",

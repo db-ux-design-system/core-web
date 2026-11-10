@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./tooltip-DS3eeR6_.js";import{a as i,i as a}from"./animation.example.stories-C3ZhzKgg.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{n(),a(),s={title:`Components/DBTooltip/Overview`,component:r,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:i.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...c.parameters?.docs?.source}}}})))()}export{o as n,u as t};
