@@ -100,7 +100,7 @@ export default {
 			// so check if it was found only as a plain attribute with no value
 			if (value === true) {
 				const kebabAttr = attribute
-					.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+					.replaceAll(/(?<=[a-z])(?=[A-Z])/g, '-')
 					.toLowerCase();
 				const hasInput = node.inputs?.some(
 					(i: any) => i.name === attribute || i.name === kebabAttr
@@ -257,7 +257,7 @@ export default {
 			// Vue startTag attributes that are not directives and have no value are bare booleans
 			if (value === true && openingElement.startTag?.attributes) {
 				const kebabAttr = attribute
-					.replaceAll(/([a-z])([A-Z])/g, '$1-$2')
+					.replaceAll(/(?<=[a-z])(?=[A-Z])/g, '-')
 					.toLowerCase();
 				const vueAttr = openingElement.startTag.attributes.find(
 					(a: any) => {

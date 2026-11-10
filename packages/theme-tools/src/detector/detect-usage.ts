@@ -114,8 +114,8 @@ const IMPORT_PATTERN =
  */
 const toKebabCase = (name: string): string =>
 	name
-		.replaceAll(/([a-z0-9])([A-Z])/g, '$1-$2')
-		.replaceAll(/([a-zA-Z])(\d)/g, '$1-$2')
+		.replaceAll(/(?<=[a-z0-9])(?=[A-Z])/g, '-')
+		.replaceAll(/(?<=[a-zA-Z])(?=\d)/g, '-')
 		.toLowerCase();
 
 /** Glob all source files from the project root, excluding node_modules/dist/build. */

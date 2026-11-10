@@ -47,6 +47,15 @@ jobs:
       - name: 🏗️ Pre-build @db-ux/mcp-server
         run: pnpm --filter @db-ux/mcp-server run build
 
+      # @db-ux/core-vite-plugin re-exports the shared detector from
+      # @db-ux/core-theme-tools/detector (src/detector.ts), which resolves to
+      # theme-tools' build/ output. Without it built, type-aware linting of
+      # vite-plugin cannot resolve those types and xo reports every usage as
+      # "Unsafe .../could not be resolved" (no-unsafe-*). Build it before the
+      # parallel checks so the types exist.
+      - name: 🏗️ Pre-build @db-ux/core-theme-tools
+        run: pnpm --filter @db-ux/core-theme-tools run build
+
       - name: 🏗️ Pre-build nuxt-showcase (nuxt:prepare)
         run: pnpm --filter nuxt-showcase run nuxt:prepare
 

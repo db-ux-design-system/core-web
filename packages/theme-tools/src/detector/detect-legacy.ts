@@ -194,7 +194,7 @@ export function scanComponentDependencies(
 
 /** Convert PascalCase to kebab-case: "NavigationItem" → "navigation-item". */
 function toKebabCase(string_: string): string {
-	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+	return string_.replaceAll(/(?<=[a-z])(?=[A-Z])/g, '-').toLowerCase();
 }
 
 /**

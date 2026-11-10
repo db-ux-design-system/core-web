@@ -81,7 +81,7 @@ function isMatchingComponentName(
  * Converts a camelCase string to kebab-case for slot name comparison.
  */
 function toKebabCase(string_: string): string {
-	return string_.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+	return string_.replaceAll(/(?<=[a-z])(?=[A-Z])/g, '-').toLowerCase();
 }
 
 /**
