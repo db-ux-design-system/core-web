@@ -35,15 +35,22 @@ $max-columns: 20;
 	// without typed `attr()` would not drop these declarations but turn them
 	// invalid at computed-value time, which resets every span from the loop
 	// above to `auto`. The loop stays as fallback for those browsers.
+	// `attr()` is read into a custom property first: Firefox (tested with 157)
+	// drops `attr()` directly inside a `var()` fallback and resets the span to
+	// `auto`, while it resolves `attr()` in a custom property correctly.
 	@supports (grid-column: span attr(colspan type(<integer>))) {
 		&[colspan] {
+			--db-table-cell-attr-colspan: attr(colspan type(<integer>));
+
 			grid-column: span
-				var(--db-table-cell-span, attr(colspan type(<integer>)));
+				var(--db-table-cell-span, var(--db-table-cell-attr-colspan));
 		}
 
 		&[rowspan] {
+			--db-table-cell-attr-rowspan: attr(rowspan type(<integer>));
+
 			grid-row: span
-				var(--db-table-cell-span, attr(rowspan type(<integer>)));
+				var(--db-table-cell-span, var(--db-table-cell-attr-rowspan));
 		}
 	}
 
