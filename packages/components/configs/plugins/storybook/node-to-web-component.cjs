@@ -281,8 +281,15 @@ const serializeBindings = (node, isCustomElement) => {
 			// not a simple literal, so it would be dropped below -- flattening
 			// it into a CSS string keeps the showcase layout in the
 			// web-component story (see objectStyleToCss, #7023 / #8577).
-			if (key === 'style' && code.startsWith('{')) {
-				const css = objectStyleToCss(code);
+			// A trailing type cast (`{ ... } as any`) is stripped first: React's
+			// CSSProperties rejects custom properties (`--db-*`), so an example
+			// setting one needs the cast, and Mitosis keeps it in the binding code.
+			const styleCode =
+				key === 'style'
+					? code.replace(/\s+as\s+[\w.<>[\]|\s]+$/, '')
+					: code;
+			if (key === 'style' && styleCode.startsWith('{')) {
+				const css = objectStyleToCss(styleCode);
 				return css === undefined || css === ''
 					? ''
 					: ` ${attribute}="${escapeAttributeValue(css)}"`;

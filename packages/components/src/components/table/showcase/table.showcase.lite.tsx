@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import TableColumnCount from '../examples/column-count.example.lite';
 import TableComplex from '../examples/complex.example.lite';
 import TableContent from '../examples/content.example.lite';
 import TableDensity from '../examples/density.example.lite';
@@ -90,6 +91,11 @@ export default function TableShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Complex Example">
 				<CardWrapperShowcase>
 					<TableComplex />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Column Count">
+				<CardWrapperShowcase>
+					<TableColumnCount />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
