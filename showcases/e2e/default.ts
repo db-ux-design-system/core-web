@@ -223,9 +223,10 @@ export const getDefaultScreenshotTest = ({
 	 * `adaptive.png`.
 	 *
 	 * Legacy keeps the ORIGINAL snapshot name (Playwright's auto-generated
-	 * `{testName}` from the unsuffixed `should match screenshot` title, e.g.
-	 * `DBAccordion-should-match-screenshot`) so the already-committed baselines
-	 * stay valid and a legacy regression is still detected against them.
+	 * `{testName}` from the plain `should match screenshot` title - no coloring
+	 * suffix - e.g. `DBAccordion-should-match-screenshot`) so the
+	 * already-committed baselines stay valid and a legacy regression is still
+	 * detected against them.
 	 *
 	 * Adaptive writes a NEW `adaptive.png`. The `legacy-adaptive` mode (both
 	 * bundles loaded) MUST render identically to pure `adaptive` - a
@@ -312,10 +313,11 @@ export const getDefaultScreenshotTest = ({
 		}
 	};
 
-	// Keeps the ORIGINAL unsuffixed title and the unnamed `toHaveScreenshot`
-	// call so Playwright derives the snapshot name from `{testName}` exactly as
-	// before the coloring split (e.g. `DBAccordion-should-match-screenshot`).
-	// That reuses the already-committed legacy baselines to catch regressions.
+	// Keeps the ORIGINAL title (no coloring suffix) and the unnamed
+	// `toHaveScreenshot` call so Playwright derives the snapshot name from
+	// `{testName}` exactly as before the coloring split (e.g.
+	// `DBAccordion-should-match-screenshot`). That reuses the already-committed
+	// legacy baselines to catch regressions.
 	test('should match screenshot', async ({ page }, { project }) => {
 		if (shouldSkip(project, skip)) {
 			test.skip();
