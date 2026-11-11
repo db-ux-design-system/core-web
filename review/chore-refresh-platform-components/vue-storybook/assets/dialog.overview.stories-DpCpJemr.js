@@ -1,0 +1,3 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{a as n,o as r}from"./dialog-header-BNndacA0.js";import{a as i,o as a}from"./backdrop.example.stories-R_-8Li2m.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{r(),i(),s={title:`Components/DBDialog/Overview`,component:n,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:a.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev']
+}`,...c.parameters?.docs?.source}}}})))()}export{u as n,o as t};
