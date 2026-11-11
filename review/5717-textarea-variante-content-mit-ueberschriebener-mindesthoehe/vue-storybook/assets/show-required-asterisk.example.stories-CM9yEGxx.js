@@ -1,0 +1,39 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./textarea-Dcsr5oqs.js";var i=t({DefaultTrue:()=>s,False:()=>c,__namedExportsOrder:()=>l,default:()=>o}),a,o,s,c,l;function u(){return(u=e((()=>{r(),{fn:a}=__STORYBOOK_MODULE_TEST__,o={title:`Components/DBTextarea/Show Required Asterisk`,component:n,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{label:{control:`text`},variant:{control:`select`,options:[`above`,`floating`]},value:{control:`text`},showLabel:{control:`boolean`},message:{control:`text`},disabled:{control:`boolean`},readOnly:{control:`boolean`},validation:{control:`select`,options:[`invalid`,`valid`,`no-validation`]},invalidMessage:{control:`text`},validMessage:{control:`text`},required:{control:`boolean`},showRequiredAsterisk:{control:`boolean`},rows:{control:`number`},cols:{control:`number`},showResizer:{control:`boolean`},fieldSizing:{control:`select`,options:[`fixed`,`content`]},resize:{control:`select`,options:[`none`,`both`,`horizontal`,`vertical`]},spellCheck:{control:`boolean`},wrap:{control:`select`,options:[`hard`,`soft`,`off`]},placeholder:{control:`text`},name:{control:`text`},form:{control:`text`},ariaDescribedBy:{control:`text`},minLength:{control:`number`},maxLength:{control:`number`},autocomplete:{control:`text`},messageIcon:{control:`text`},showMessage:{control:`boolean`},id:{control:`text`},autofocus:{control:`boolean`}}},s={args:{label:`Label`,placeholder:`(Default) True`,required:!0,showRequiredAsterisk:!0,default:``},render:e=>({components:{DBTextarea:n},setup(){return{args:e}},template:`<DBTextarea v-bind="args"   >${e.default}</DBTextarea>`})},c={args:{label:`Label`,placeholder:`False`,required:!0,showRequiredAsterisk:!1,default:``},render:e=>({components:{DBTextarea:n},setup(){return{args:e}},template:`<DBTextarea v-bind="args"   >${e.default}</DBTextarea>`})},l=[`DefaultTrue`,`False`],s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Label",
+    "placeholder": "(Default) True",
+    "required": true,
+    "showRequiredAsterisk": true,
+    "default": \`\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBTextarea
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<DBTextarea v-bind="args"   >\${args.default}</DBTextarea>\`
+  })
+}`,...s.parameters?.docs?.source}}},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Label",
+    "placeholder": "False",
+    "required": true,
+    "showRequiredAsterisk": false,
+    "default": \`\`
+  },
+  render: (args: any) => ({
+    components: {
+      DBTextarea
+    },
+    setup() {
+      return {
+        args
+      };
+    },
+    template: \`<DBTextarea v-bind="args"   >\${args.default}</DBTextarea>\`
+  })
+}`,...c.parameters?.docs?.source}}}})))()}export{i,c as n,u as r,s as t};
