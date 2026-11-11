@@ -137,6 +137,10 @@ workflows:
         - 'actions/dependency-review-action@v5.0.0'
     '.github/workflows/99-labeler.yml':
         - 'actions/labeler@v7.0.0'
+    '.github/workflows/99-refresh-platform-components.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'actions/create-github-app-token@v3.3.0'
+        - 'actions/setup-node@v7.1.0'
     '.github/workflows/99-reorder-backlog.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/create-github-app-token@v3.3.0'
@@ -162,7 +166,9 @@ workflows:
         - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/default.yml': []
     '.github/workflows/pull-request-project-status.yml': []
-    '.github/workflows/pull-request.yml': []
+    '.github/workflows/pull-request.yml':
+        - 'actions/checkout@v7.0.1'
+        - 'actions/setup-node@v7.1.0'
 dependencies:
     'actions-ecosystem/action-add-assignees@v1.0.1':
         ref: 'v1.0.1'
