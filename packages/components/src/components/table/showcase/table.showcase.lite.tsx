@@ -14,6 +14,7 @@ import TableShowCaption from '../examples/show-caption.example.lite';
 import TableSize from '../examples/size.example.lite';
 import TableStickyHeader from '../examples/sticky-header.example.lite';
 import TableSubHeaderEmphasis from '../examples/sub-header-emphasis.example.lite';
+import TableText from '../examples/text.example.lite';
 import TableVariant from '../examples/variant.example.lite';
 import TableVerticalAlignment from '../examples/vertical-alignment.example.lite';
 import TableWidth from '../examples/width.example.lite';
