@@ -1,0 +1,4 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-DnhM2czJ.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBControlPanelFlatIcon/Overview`,component:`db-control-panel-flat-icon`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-control-panel-flat-icon></db-control-panel-flat-icon>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev'],
+  render: () => html\`<db-control-panel-flat-icon></db-control-panel-flat-icon>\`
+}`,...o.parameters?.docs?.source}}}})))()}export{c as n,i as t};
