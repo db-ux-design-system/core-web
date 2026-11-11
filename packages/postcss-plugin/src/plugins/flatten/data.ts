@@ -18,15 +18,11 @@ export type VarEntry = {
 
 export const DEFAULT_DYNAMIC_PREFIXES = [
 	'--db-adaptive-',
-	// Customizable layout breakpoints (DBShell / DBControlPanel / DBHeader /
-	// DBNavigation / ...). The consumer-facing `--db-tablet-breakpoint` and
-	// `--db-desktop-breakpoint`, and their registered `-min` / `-max` helpers,
-	// must all stay live: the breakpoint values so consumers can override a
-	// switch point at runtime, the helpers so their `@property` registrations
-	// survive and the container style queries can compute
-	// `min(var(--db-*-breakpoint), 100vi)` / `max(...)`. Flattening any of them
-	// to its build-time default breaks the breakpoint switch entirely. One
-	// prefix covers both the value and its `-min` / `-max` helpers.
-	'--db-tablet-breakpoint',
-	'--db-desktop-breakpoint'
+	// Customizable layout band token (DBShell / DBControlPanel / DBBreadcrumb /
+	// ...). `--db-breakpoint` is re-declared per band by a media-query resolver
+	// and read by the components' container style queries, so it must stay live:
+	// flattening it to its registered "mobile" default would strip the per-band
+	// declarations and freeze every layout in the mobile state. Its `@property`
+	// registration must survive too, so the style query can compare the token.
+	'--db-breakpoint'
 ];

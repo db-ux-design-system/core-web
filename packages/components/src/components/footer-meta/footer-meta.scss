@@ -5,8 +5,6 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 
 .db-footer-meta {
-	@include screen-sizes.set-layout-breakpoint-inline-sizes;
-
 	/*
 	 * The whole strip is small text, as in the design. Without it the list items
 	 * keep the inherited body size and their taller line box pushes the links a
@@ -57,7 +55,7 @@
 	/*
 	 * The design has two arrangements: side by side from the tablet breakpoint
 	 * upwards, stacked below it. The switch is driven by the customizable
-	 * `--db-tablet-breakpoint` (see screen-sizes.screen-tablet-max), so a
+	 * `--db-breakpoint` band token (see screen-sizes.screen-tablet-max), so a
 	 * consumer can move it in CSS.
 	 */
 	@include screen-sizes.screen-tablet-max {

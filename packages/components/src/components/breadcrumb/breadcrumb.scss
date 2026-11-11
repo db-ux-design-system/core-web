@@ -36,8 +36,6 @@
 }
 
 .db-breadcrumb {
-	@include screen-sizes.set-layout-breakpoint-inline-sizes;
-
 	align-items: center;
 	list-style: none;
 	gap: variables.$db-spacing-fixed-3xs;

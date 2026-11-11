@@ -208,7 +208,6 @@
 .db-control-panel-flat-icon {
 	@extend %control-panel-flat-icon-mobile;
 	@extend %control-panel-flat-icon-desktop;
-	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	grid-area: control-panel;
 

@@ -198,10 +198,10 @@ test.describe('DBControlPanelNavigation overflow scroll buttons', () => {
 		'.db-control-panel-desktop .db-control-panel-navigation';
 
 	// Narrow enough that the horizontal menu overflows, but still just above the
-	// desktop layout breakpoint (--db-desktop-breakpoint, default 1024px) so the
-	// navigation stays in the horizontal "popover" variant where the overflow
-	// scroll buttons exist. Below 1024px the control panel switches to its mobile
-	// layout and the scroll buttons never render.
+	// desktop layout breakpoint (the --db-breakpoint "desktop" band, default
+	// 1024px) so the navigation stays in the horizontal "popover" variant where
+	// the overflow scroll buttons exist. Below 1024px the control panel switches
+	// to its mobile layout and the scroll buttons never render.
 	const overflowingDesktopWidth = 1030;
 
 	test.beforeEach(async ({ page }, { project }) => {

@@ -1,6 +1,5 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
@@ -36,7 +35,6 @@ body:not(.sb-show-main):has(.db-shell) {
 
 .db-shell {
 	@extend %fade-in-loading-fonts;
-	@include screen-sizes.set-layout-breakpoint-inline-sizes;
 
 	block-size: 100dvh;
 	inline-size: 100dvw;

@@ -9,9 +9,10 @@
 
 feat(layout): make the tablet and desktop breakpoints customizable
 
-- two new inheriting custom properties, `--db-tablet-breakpoint` (default `48rem`/768px) and `--db-desktop-breakpoint` (default `64rem`/1024px), override the layout switch point; set them at `:root` (the common case) or on any ancestor of the component - a container style query reads an ancestor, so an override on the component root itself drives its descendants but not its own grid; `rem` keeps the switch anchored to the root font size so it cannot drift with a component's own text size
-- non-deprecated components now switch via a container style query against these instead of a fixed media query: `DBShell`, `DBControlPanelDesktop/Mobile/FlatIcon` and `DBControlPanelNavigation` use `--db-desktop-breakpoint`; `DBBreadcrumb`, `DBPagination`, `DBFooterMeta`, `DBCustomSelect`, `DBPopover` and `DBTooltip` use the breakpoint matching their existing behavior
-- the `DBShell`/`DBControlPanel` default switch is now `md` (1024px), aligned with `DBHeader` (was `sm`/768px); set `--db-desktop-breakpoint: 48rem` to restore it
-- `2000px` keeps the mobile layout on any realistic viewport ("force mobile"); `400px` keeps it desktop
+- a single inheriting band token, `--db-breakpoint` (`"mobile"` / `"tablet"` / `"desktop"`), drives the layout switch; foundations resolve it from the viewport with two default media queries (tablet from `48em`/768px, desktop from `64em`/1024px) set on `:root` and `:host`
+- non-deprecated components now switch via a container style query against `--db-breakpoint` instead of a fixed media query: `DBShell`, `DBControlPanelDesktop/Mobile/FlatIcon` and `DBControlPanelNavigation` switch at desktop; `DBBreadcrumb`, `DBPagination`, `DBFooterMeta`, `DBCustomSelect`, `DBPopover` and `DBTooltip` switch at the breakpoint matching their existing behavior
+- a consumer moves a switch point by RE-DECLARING `--db-breakpoint` at any scope - their own `@media` on `:root`, `body` or a wrapper, or via JS - not by a length value; a style query reads an ancestor, so the override just needs to sit on an ancestor of the component
+- set `--db-breakpoint: "mobile"` unconditionally to force the mobile layout on any viewport ("force mobile"), or `"desktop"` to force desktop - the force-mobile / force-desktop escape hatch
+- the `DBShell`/`DBControlPanel` default switch is now `md` (1024px), aligned with `DBHeader` (was `sm`/768px); to restore the old 768px switch, add a consumer `@media (width >= 48em) { :root { --db-breakpoint: "desktop"; } }`
 - the deprecated `DBPage`, `DBHeader`, `DBNavigation` and `DBNavigationItem` keep the old media-query mechanism (and `forceMobile`) unchanged
 - styling-only, no rendered HTML changed, but CSS-only consumers pinned to the 768px switch should review the new default

@@ -13,24 +13,24 @@ import { StorybookShellArgTypes } from './_shell.arg.types';
 
 useMetadata({
 	storybookTitle: 'Custom Breakpoint',
-	storybookNames: ['Force Mobile (2000px)', 'Force Desktop (400px)'],
+	storybookNames: ['Force Mobile', 'Force Desktop'],
 	storybookArgTypes: StorybookShellArgTypes
 });
 
 export default function ShellCustomBreakpoint() {
 	return (
 		<Fragment>
-			{/* A large breakpoint keeps the shell in its mobile layout on almost
-			    every viewport (the switch only happens at >= 2000px). This is the
-			    migration path for consumers who relied on the old, lower switch
-			    point or who want a "force mobile" behavior. The breakpoint is set
-			    with the `--db-desktop-breakpoint` custom property on an ANCESTOR
-			    of the shell (here the wrapping div, targeted by its
-			    `*-scope` data-test-id in the showcase stylesheet): a container
-			    style query reads an ancestor, never the element it styles, so the
-			    override must not sit on `.db-shell` itself or the shell's own grid
-			    would ignore it. The shell keeps its own data-test-id for the
-			    aria/visual snapshot tests. */}
+			{/* Re-declaring the band token as "mobile" keeps the shell in its
+			    mobile layout on every viewport. This is the migration path for
+			    consumers who relied on the old, lower switch point or who want a
+			    "force mobile" behavior. The token is set with the
+			    `--db-breakpoint` custom property on an ANCESTOR of the shell
+			    (here the wrapping div, targeted by its `*-scope` data-test-id in
+			    the showcase stylesheet): a container style query reads an
+			    ancestor, never the element it styles, so the override must not sit
+			    on `.db-shell` itself or the shell's own grid would ignore it. The
+			    shell keeps its own data-test-id for the aria/visual snapshot
+			    tests. */}
 			<div
 				data-test-id="shell-custom-breakpoint-force-mobile-scope"
 				style={{ width: '100%', display: 'block' }}>
@@ -107,16 +107,16 @@ export default function ShellCustomBreakpoint() {
 						mainId="main-content-custom-breakpoint-force-mobile"
 						mainLabel="shell-custom-breakpoint-force-mobile">
 						<p>
-							This shell uses --db-desktop-breakpoint: 2000px, so
-							it stays in its mobile layout until the viewport is
-							at least 2000px wide.
+							This shell sets --db-breakpoint: "mobile" on an
+							ancestor, so it stays in its mobile layout on every
+							viewport.
 						</p>
 					</DBShellContent>
 				</DBShell>
 			</div>
-			{/* A small breakpoint switches to the desktop layout very early (at
-			    >= 400px), so the shell shows its desktop control panel on almost
-			    every viewport. */}
+			{/* Re-declaring the band token as "desktop" switches to the desktop
+			    layout on every viewport, so the shell shows its desktop control
+			    panel regardless of width. */}
 			<div
 				data-test-id="shell-custom-breakpoint-force-desktop-scope"
 				style={{ width: '100%', display: 'block' }}>
@@ -193,9 +193,9 @@ export default function ShellCustomBreakpoint() {
 						mainId="main-content-custom-breakpoint-force-desktop"
 						mainLabel="shell-custom-breakpoint-force-desktop">
 						<p>
-							This shell uses --db-desktop-breakpoint: 400px, so
-							it switches to its desktop layout on almost every
-							viewport.
+							This shell sets --db-breakpoint: "desktop" on an
+							ancestor, so it switches to its desktop layout on
+							every viewport.
 						</p>
 					</DBShellContent>
 				</DBShell>
