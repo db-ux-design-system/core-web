@@ -30,7 +30,7 @@
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "dependencies": {
-    "commander": "15.0.0"
+    "commander": "15.1.0"
   },
   "devDependencies": {
     "cpy-cli": "7.0.0",
