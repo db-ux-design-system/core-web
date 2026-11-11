@@ -1,5 +1,44 @@
 # @db-ux/core-foundations
 
+## 6.3.1
+
+No changes in this release.
+
+## 6.3.0
+
+### Patch Changes
+
+- fix(icons): only generate the icon-font sizes that are actually used - [see commit 7f66983](https://github.com/db-ux-design-system/core-web/commit/7f669837a91e84d719ef16439abc7634dc592633):
+
+    - the icon-font build now passes the new `sizes` option of `@db-ux/icon-font-tools`, so it only generates the six weights that `scss/icons/relative.scss` loads (16, 20, 24, 32, 48, 64) plus the base `default` / `filled` folder
+    - the unused `all` output folder and the never-referenced `_12`, `_14` and `_28` folders (both variants) are no longer generated or shipped, shrinking the published `@db-ux/core-foundations` assets
+    - no consumer-facing output change: every `@font-face` and `data-icon-weight` rule and every font folder a consumer actually loads is unchanged; weights like 28, 40, 80, 96 and 120 keep rounding to the nearest generated weight at runtime as before
+
+## 6.2.1
+
+No changes in this release.
+
+## 6.2.0
+
+No changes in this release.
+
+## 6.1.1
+
+No changes in this release.
+
+## 6.1.0
+
+### Minor Changes
+
+- fix(foundations): resolve assets in `relative.css` from the package root - [see commit 1ef7e4a](https://github.com/db-ux-design-system/core-web/commit/1ef7e4a5bce0ffadbe56c186bc561cf69aaa8b41):
+
+    - The default asset path in `theme/relative.css`, `fonts/relative.css` and `icons/relative.css` changes from `../../assets/` to `../../../assets/`. The CSS now finds fonts and icon fonts directly in the package, e.g. when loaded from a CDN.
+    - **Action required** if you copy `build/styles/` and `assets/` side by side into your `public` folder: keep the package structure (`build/styles/` next to `assets/`) or override `$icons-path`, `$fonts-path` and `$images-path`.
+
+## 6.0.1
+
+No changes in this release.
+
 ## 6.0.0
 
 ### Major Changes

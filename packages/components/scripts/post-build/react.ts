@@ -29,6 +29,22 @@ const rootProps = [
 	'data-density'
 ];
 
+/**
+ * Uses the ref passed in through `forwardRef` as `_ref` and falls back to an
+ * internal ref when the parent passes none.
+ *
+ * Rules of hooks: `useRef` has to run on every render. Selecting the forwarded
+ * ref with `component || useRef(...)` skips the hook while a ref is passed, so
+ * a parent switching `ref` between `null` and a ref object changes the hook
+ * order and React throws ("Rendered fewer hooks than expected"). The hook is
+ * therefore called unconditionally and the forwarded ref is picked afterwards.
+ */
+export const forwardedRefReplacement: Overwrite = {
+	// Mitosis initializes the root ref with `null` or `undefined`, keep it as is.
+	from: /const _ref = useRef<(.*?)>\((.*?)\);/,
+	to: 'const _internalRef = useRef<$1>($2);\n  const _ref = component || _internalRef;'
+};
+
 const overwriteEvents = (tmp?: boolean) => {
 	const modelFilePath = `../../${tmp ? 'output/tmp' : 'output'}/react/src/shared/model.ts`;
 	let modelFileContent = readFileSync(modelFilePath).toString('utf-8');
@@ -131,11 +147,7 @@ keyof DB${upperComponentName}Props> & DB${upperComponentName}Props
 >(DB${upperComponentName}Fn);
 export default DB${upperComponentName};`
 				},
-				{
-					from: '>(null);',
-					to: '>(component);'
-				},
-				{ from: 'useRef<', to: 'component || useRef<' },
+				forwardedRefReplacement,
 				{
 					from: '={true}',
 					to: ''

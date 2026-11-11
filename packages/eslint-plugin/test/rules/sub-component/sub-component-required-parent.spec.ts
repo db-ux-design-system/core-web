@@ -28,6 +28,11 @@ const vueRuleTester = new RuleTester({
 	}
 });
 
+const DRAWER_HEADER_PARENTS =
+	'DBDrawer (in slot "header") or DBHeader (in slot "header") or DBControlPanelMobile (in slot "header")';
+const DRAWER_HEADER_PARENTS_ANGULAR =
+	'db-drawer (in slot "header") or db-header (in slot "header") or db-control-panel-mobile (in slot "header")';
+
 describe('sub-component-required-parent', () => {
 	describe('DBDrawerHeader', () => {
 		ruleTester.run(
@@ -37,6 +42,12 @@ describe('sub-component-required-parent', () => {
 				valid: [
 					{
 						code: '<DBDrawer header={<DBDrawerHeader>Title</DBDrawerHeader>}>Content</DBDrawer>'
+					},
+					{
+						code: '<DBHeader showDrawerHeaderSlot header={<DBDrawerHeader>Title</DBDrawerHeader>}>Content</DBHeader>'
+					},
+					{
+						code: '<DBControlPanelMobile showDrawerHeaderSlot header={<DBDrawerHeader>Title</DBDrawerHeader>}>Content</DBControlPanelMobile>'
 					}
 				],
 				invalid: [
@@ -47,7 +58,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'DBDrawerHeader',
-									parent: 'DBDrawer (in slot "header")',
+									parent: DRAWER_HEADER_PARENTS,
 									slot: ''
 								}
 							}
@@ -61,7 +72,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'DBDrawerHeader',
-									parent: 'DBDrawer (in slot "header")',
+									parent: DRAWER_HEADER_PARENTS,
 									slot: ''
 								}
 							}
@@ -81,6 +92,12 @@ describe('sub-component-required-parent', () => {
 					},
 					{
 						code: '<template><DBDrawer><template #header><DBDrawerHeader>Title</DBDrawerHeader></template></DBDrawer></template>'
+					},
+					{
+						code: '<template><DBHeader show-drawer-header-slot><template #header><DBDrawerHeader>Title</DBDrawerHeader></template></DBHeader></template>'
+					},
+					{
+						code: '<template><DBControlPanelMobile show-drawer-header-slot><template v-slot:header><DBDrawerHeader>Title</DBDrawerHeader></template></DBControlPanelMobile></template>'
 					}
 				],
 				invalid: [
@@ -91,7 +108,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'DBDrawerHeader',
-									parent: 'DBDrawer (in slot "header")',
+									parent: DRAWER_HEADER_PARENTS,
 									slot: ''
 								}
 							}
@@ -104,7 +121,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'DBDrawerHeader',
-									parent: 'DBDrawer (in slot "header")',
+									parent: DRAWER_HEADER_PARENTS,
 									slot: ''
 								}
 							}
@@ -124,6 +141,12 @@ describe('sub-component-required-parent', () => {
 					},
 					{
 						code: '<db-drawer><ng-container header><db-drawer-header>Title</db-drawer-header></ng-container></db-drawer>'
+					},
+					{
+						code: '<db-header [showDrawerHeaderSlot]="true"><db-drawer-header header>Title</db-drawer-header></db-header>'
+					},
+					{
+						code: '<db-control-panel-mobile [showDrawerHeaderSlot]="true"><db-drawer-header header>Title</db-drawer-header></db-control-panel-mobile>'
 					}
 				],
 				invalid: [
@@ -134,7 +157,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'db-drawer-header',
-									parent: 'db-drawer (in slot "header")',
+									parent: DRAWER_HEADER_PARENTS_ANGULAR,
 									slot: ''
 								}
 							}
@@ -147,7 +170,7 @@ describe('sub-component-required-parent', () => {
 								messageId: 'subComponentRequiredParent',
 								data: {
 									component: 'db-drawer-header',
-									parent: 'db-drawer (in slot "header")',
+									parent: DRAWER_HEADER_PARENTS_ANGULAR,
 									slot: ''
 								}
 							}
@@ -738,6 +761,45 @@ const vuePlacementShapes: PlacementShape[] = [
 		component: 'DBDialogHeader',
 		slot: 'header',
 		reports: true
+	},
+	{
+		// The #header template belongs to the intervening SomeWrapper component,
+		// not to the outer DBDialog, so the header lands in SomeWrapper's slot -
+		// it must be reported for DBDialog rather than accepted.
+		shape: "sub-component in another component's #header slot nested in the dialog",
+		code: '<template><DBDialog><SomeWrapper><template #header><DBDialogHeader>Title</DBDialogHeader></template></SomeWrapper></DBDialog></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
+	},
+	{
+		// A DBDialogHeader in a foreign component's #header slot with no DBDialog
+		// ancestor at all is likewise reported.
+		shape: "sub-component in another component's #header slot, no dialog ancestor",
+		code: '<template><SomeWrapper><template #header><DBDialogHeader>Title</DBDialogHeader></template></SomeWrapper></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: true
+	},
+	// Any element between DBDialog and the #header template owns the slot.
+	...['div', 'transition', 'teleport to="body"', 'suspense', 'wrapper'].map(
+		(wrapper): PlacementShape => {
+			const tag = wrapper.split(' ')[0];
+			return {
+				shape: `#header template owned by an intervening <${tag}>`,
+				code: `<template><DBDialog><${wrapper}><template #header><DBDialogHeader>Title</DBDialogHeader></template></${tag}></DBDialog></template>`,
+				component: 'DBDialogHeader',
+				slot: 'header',
+				reports: true
+			};
+		}
+	),
+	{
+		shape: '#header template, component wrapper inside the slot content',
+		code: '<template><DBDialog><template #header><SomeWrapper><DBDialogHeader>Title</DBDialogHeader></SomeWrapper></template></DBDialog></template>',
+		component: 'DBDialogHeader',
+		slot: 'header',
+		reports: false
 	}
 ];
 

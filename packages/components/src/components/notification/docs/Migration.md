@@ -11,20 +11,24 @@
 | ------------------ | :----: | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `elm-notification` |   🔁   | `db-notification` | The old notification component has been split into 2 different components [Notification](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/components/feedback/notification) and [Notification](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/components/feedback/notification) for more information (when and how to use it). |
 
-### variant ➡ type
+### variant (layout)
 
-| Before         | Status | After          | Description                                             |
-| -------------- | :----: | -------------- | ------------------------------------------------------- |
-| `notification` |   🔁   | `notification` | Default notification with different look                |
-| `status`       |   ❌   | ❌             | Status can be changed by `variants`                     |
-|                |   🆕   | `inline`       | New styling with shadow and rounded corners (like card) |
+The `variant` prop now controls the layout only. Status colours moved to the `semantic` prop (see below).
 
-### type ➡ variants
+| Before | Status | After        | Description                                                       |
+| ------ | :----: | ------------ | ----------------------------------------------------------------- |
+|        |   🆕   | `docked`     | Docked notification, e.g. between header and main content.        |
+|        |   🆕   | `standalone` | Standalone notification, e.g. inside a form for a specific field. |
+|        |   🆕   | `overlay`    | Absolute, floating notification (snackbar style).                 |
 
-| Before        | Status | After           | Description                                              |
-| ------------- | :----: | --------------- | -------------------------------------------------------- |
-|               |   🆕   | `adaptive`      | Default: change colors based on background               |
-| `error`       |   🔁   | `critical`      | 'Red' colored notification to show error messages        |
-| `informative` |   🔁   | `informational` | 'Blue' colored notification to show information messages |
-| `warning`     |   🔁   | `warning`       | 'Yellow' colored notification to show warning messages   |
-| `success`     |   🔁   | `successful`    | 'Green' colored notification to show success messages    |
+### type ➡ semantic
+
+Status colours are set via the `semantic` prop, not via `variant`.
+
+| Before        | Status | After                      | Description                                              |
+| ------------- | :----: | -------------------------- | -------------------------------------------------------- |
+|               |   🆕   | `semantic="adaptive"`      | Default: change colors based on background               |
+| `error`       |   🔁   | `semantic="critical"`      | 'Red' colored notification to show error messages        |
+| `informative` |   🔁   | `semantic="informational"` | 'Blue' colored notification to show information messages |
+| `warning`     |   🔁   | `semantic="warning"`       | 'Yellow' colored notification to show warning messages   |
+| `success`     |   🔁   | `semantic="successful"`    | 'Green' colored notification to show success messages    |

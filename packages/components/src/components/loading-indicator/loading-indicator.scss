@@ -113,6 +113,13 @@ $overlay-child-selector: "> .db-loading-indicator[data-overlay='true'], > db-loa
 
 			padding: 0;
 		}
+
+		&:has(
+			.db-loading-indicator-progress-text[data-show-progress-text="false"]
+		),
+		&:not(:has(.db-loading-indicator-progress-text)) {
+			--db-indicator-gap: 0px;
+		}
 	}
 }
 

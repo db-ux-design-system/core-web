@@ -14,17 +14,19 @@
 
 ### variants
 
-| Before            | Status | After           | Description |
-| ----------------- | :----: | --------------- | ----------- |
-| `semitransparent` |   ❌   |                 |             |
-| `white`           |   ❌   |                 |             |
-| `solid`           |   ❌   |                 |             |
-| `outline`         |   ❌   |                 |             |
-|                   |   🆕   | `adaptive`      |             |
-|                   |   🆕   | `critical`      |             |
-|                   |   🆕   | `informational` |             |
-|                   |   🆕   | `warning`       |             |
-|                   |   🆕   | `successful`    |             |
+| Before            | Status | After     | Description                                                                    |
+| ----------------- | :----: | --------- | ------------------------------------------------------------------------------ |
+| `semitransparent` |   ❌   | ❌        | Old look variants are removed; a semi-transparent look is the default now.     |
+| `white`           |   ❌   | ❌        |                                                                                |
+| `solid`           |   ❌   | ❌        |                                                                                |
+| `outline`         |   ❌   | ❌        |                                                                                |
+|                   |   🆕   | `variant` | `variant` now controls the label layout only: `above` (default) or `floating`. |
+
+### validation
+
+| Before | Status | After        | Description                                                                                              |
+| ------ | :----: | ------------ | -------------------------------------------------------------------------------------------------------- |
+|        |   🆕   | `validation` | Set the validation state with `validation`: `valid` (green), `invalid` (red), or `no-validation` (grey). |
 
 ### other
 

@@ -29,6 +29,8 @@ export default defineConfig({
 		'./showcases/screen-reader/translations.ts',
 		'storybooks/_storybook/src/welcome.mdx',
 		'storybooks/**/*.ts',
+		// Copy of the platform endpoint (remote content, partly German), see platform.ts.
+		'storybooks/_shared/overview/platform-components.json',
 		'playwright-report/**',
 		'showcases/shared/*.json',
 		'**/*.example.lite.tsx',

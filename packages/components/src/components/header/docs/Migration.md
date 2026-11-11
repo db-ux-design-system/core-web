@@ -7,9 +7,9 @@
 
 ### class
 
-| Before       | Status | After       | Description |
-| ------------ | :----: | ----------- | ----------- |
-| `rea-header` |   🔁   | `db-header` |             |
+| Before       | Status | After                                                  | Description                                                                                                                   |
+| ------------ | :----: | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| `rea-header` |   🔁   | `db-control-panel-desktop` / `db-control-panel-mobile` | `db-header` is deprecated. Render both as siblings inside `db-shell`; the shell shows the matching one per breakpoint (`sm`). |
 
 ### mobile
 

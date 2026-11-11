@@ -27,19 +27,21 @@ You can use different types of tags by adding another component into it:
 
 ### sizes
 
-| Before  | Status | After | Description                                                                                                                             |
-| ------- | :----: | :---: | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `small` |   ❌   |  ❌   | We removed small tags because of density. But you can use `type` property with value `strong` to emphasize a tag for a differentiation. |
+| Before  | Status | After | Description                                                                                                                                     |
+| ------- | :----: | :---: | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `small` |   ❌   |  ❌   | We removed small tags because of density. But you can use the `emphasis` property with value `strong` to emphasize a tag for a differentiation. |
 
-### variants
+### variants ➡ semantic
 
-| Before        | Status | After           | Description                                      |
-| ------------- | :----: | --------------- | ------------------------------------------------ |
-| `poi-*`       |   ❌   | ❌              | We removed all point of interest colors for now. |
-| `track`       |   ❌   | ❌              | We removed track for now.                        |
-| `error`       |   🔁   | `critical`      |                                                  |
-| `informative` |   🔁   | `informational` |                                                  |
-| `success`     |   🔁   | `successful`    |                                                  |
+Status colours are set via the `semantic` prop.
+
+| Before        | Status | After                      | Description                                      |
+| ------------- | :----: | -------------------------- | ------------------------------------------------ |
+| `poi-*`       |   ❌   | ❌                         | We removed all point of interest colors for now. |
+| `track`       |   ❌   | ❌                         | We removed track for now.                        |
+| `error`       |   🔁   | `semantic="critical"`      |                                                  |
+| `informative` |   🔁   | `semantic="informational"` |                                                  |
+| `success`     |   🔁   | `semantic="successful"`    |                                                  |
 
 ### icons
 

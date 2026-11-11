@@ -97,6 +97,21 @@ const reactHeaderShapes: HeaderShape[] = [
 		reports: false
 	},
 	{
+		// An optional chain wraps the member access in a ChainExpression; it is
+		// still an unverifiable runtime value, so it is accepted like a plain
+		// member expression.
+		shape: 'header prop, unresolvable optional-chain binding',
+		code: '<DBDialog header={slots?.header}>Content</DBDialog>',
+		reports: false
+	},
+	{
+		// A spread inside the header array may contribute the header at runtime;
+		// its contents cannot be verified, so it is accepted.
+		shape: 'header prop, node array with a spread element',
+		code: '<DBDialog header={[...headers]}>Content</DBDialog>',
+		reports: false
+	},
+	{
 		shape: 'header prop, unresolvable conditional binding',
 		code: '<DBDialog header={withHeader ? a : b}>Content</DBDialog>',
 		reports: false
@@ -200,6 +215,13 @@ const reactHeaderShapes: HeaderShape[] = [
 	{
 		shape: 'header prop holds plain markup',
 		code: '<DBDialog header={<div>Title</div>}>Content</DBDialog>',
+		reports: true
+	},
+	{
+		// `undefined` is the statically known empty value (React renders no
+		// header), so it must be reported rather than accepted as dynamic.
+		shape: 'header prop explicitly set to undefined',
+		code: '<DBDialog header={undefined}>Content</DBDialog>',
 		reports: true
 	},
 	{

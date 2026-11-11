@@ -24,9 +24,9 @@ A library containing all tokens (colors, spacings, font formatting, etc.) and as
 
 We currently support:
 
-- [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css)
-- [SCSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=scss)
-- [Tailwind](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=tailwind)
+- [CSS](#css)
+- [SCSS](#scss)
+- [Tailwind](#tailwind)
 
 ## Install
 
@@ -60,7 +60,7 @@ The `bundle.css` applies those default:
 
 ### CSS
 
-Default assets path for `relative.css` is `../../assets`. Make sure to copy all used resources like icons and fonts into your `public` folder before build. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].css`.
+Default assets path for `relative.css` is `../../../assets`, which matches the package structure (`build/styles/` and `assets/`). This lets you load the CSS straight from the package, e.g. from a CDN. If you copy the files into your `public` folder, keep this structure. **Or** you use a modern bundler which handles bundling for you. In this case use `[rollup|webpack].css`.
 
 #### Import
 
@@ -162,7 +162,7 @@ In HTML:
 
 ### Tailwind
 
-Check the required imports for [CSS](https://design-system.deutschebahn.com/core-web/review/main/foundations/readme?current=css) to enable all tokens and defaults.
+Check the required imports for [CSS](#css) to enable all tokens and defaults.
 
 #### Tailwind v4
 

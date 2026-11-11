@@ -11,6 +11,7 @@ import {
 import {
 	cls,
 	getBoolean,
+	getBooleanAsString,
 	hasFocusgroupSupport,
 	NAVIGATION_KEYS,
 	uuid
@@ -19,7 +20,12 @@ import DBButton from '../button/button.lite';
 import DBTabItem from '../tab-item/tab-item.lite';
 import DBTabList from '../tab-list/tab-list.lite';
 import DBTabPanel from '../tab-panel/tab-panel.lite';
-import { DBSimpleTabProps, DBTabsProps, DBTabsState } from './model';
+import {
+	DBSimpleTabProps,
+	DBTabsHandles,
+	DBTabsProps,
+	DBTabsState
+} from './model';
 
 useDefaultProps<DBTabsProps>({
 	tabItemWidth: 'auto',
@@ -33,13 +39,21 @@ export default function DBTabs(props: DBTabsProps) {
 
 	const state: DBTabsState = useStore<DBTabsState>({
 		_activeIndex: 0,
+		_synced: false,
 		initialized: false,
 		showScrollStart: false,
 		showScrollEnd: false,
-		_resizeObserver: null,
-		_observer: null, // must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis does not support cross-lifecycle local variables)
-		_pendingRafId: null,
-		_scrollListener: null,
+		// must stay in state: needs to persist across onUpdate and onUnMount lifecycle hooks (Mitosis does not support cross-lifecycle local variables)
+		_handles: {
+			resizeObserver: null,
+			observer: null,
+			pendingRafId: null,
+			scrollListener: null
+		},
+		// Mutate in place: a reassignment would leave stale copies in React closures and retrigger Angular effects.
+		_setHandles(patch: Partial<DBTabsHandles>) {
+			Object.assign(state._handles, patch);
+		},
 		// True when the browser natively supports the focusgroup attribute –
 		// in that case we skip JS-based roving tabindex and arrow-key navigation.
 		_focusgroupSupported: false,
@@ -183,6 +197,8 @@ export default function DBTabs(props: DBTabsProps) {
 				const isSelected = currentIndex === index;
 				panel.hidden = !isSelected;
 			});
+
+			state._synced = true;
 		},
 
 		handleClick(event: any) {
@@ -554,20 +570,22 @@ export default function DBTabs(props: DBTabsProps) {
 					if (props.behavior === 'arrows') {
 						state.evaluateScrollButtons(container);
 
-						// Set up the scroll listener only once to avoid an Angular effect loop (initTabList reads + writes _scrollListener).
-						if (!state._scrollListener) {
+						// Set up the scroll listener only once to avoid an Angular effect loop (initTabList reads + writes _handles.scrollListener).
+						if (!state._handles.scrollListener) {
 							const onScroll = () =>
 								state.evaluateScrollButtons(container);
-							state._scrollListener = { fn: onScroll };
+							state._setHandles({
+								scrollListener: { fn: onScroll, container }
+							});
 							container.addEventListener('scroll', onScroll);
 						}
 
-						if (!state._resizeObserver) {
+						if (!state._handles.resizeObserver) {
 							const observer = new ResizeObserver(() => {
 								state.evaluateScrollButtons(container);
 							});
 							observer.observe(container);
-							state._resizeObserver = observer;
+							state._setHandles({ resizeObserver: observer });
 						}
 					}
 				}
@@ -576,14 +594,10 @@ export default function DBTabs(props: DBTabsProps) {
 
 		// Removes the scroll listener + resize observer and hides the scroll buttons (arrows behavior teardown).
 		_teardownScrollHandlers() {
-			const _listener = state._scrollListener;
-			const _container = state._getScrollContainer();
-			if (_listener && _container) {
-				_container.removeEventListener('scroll', _listener.fn);
-			}
-			state._scrollListener = null;
-			state._resizeObserver?.disconnect();
-			state._resizeObserver = null;
+			const _listener = state._handles.scrollListener;
+			_listener?.container.removeEventListener('scroll', _listener.fn);
+			state._handles.resizeObserver?.disconnect();
+			state._setHandles({ scrollListener: null, resizeObserver: null });
 			state.showScrollStart = false;
 			state.showScrollEnd = false;
 		},
@@ -673,18 +687,47 @@ export default function DBTabs(props: DBTabsProps) {
 				if (!hasTabChange && !hasContentChange && !hasDisabledChange)
 					return;
 
-				const rafId = state._pendingRafId;
+				// Hide any just-inserted owned panel synchronously (before paint)
+				// so it does not flash visible for a frame while the RAF-batched
+				// re-init is still pending. A freshly added panel is never the
+				// active one at insertion time, so hiding it is always safe here.
+				if (hasTabChange) {
+					for (const mutation of mutations) {
+						for (const node of Array.from(mutation.addedNodes)) {
+							const element = node as HTMLElement;
+							if (!element.querySelectorAll) continue;
+							const addedPanels =
+								element.getAttribute?.('role') === 'tabpanel'
+									? [element]
+									: Array.from<HTMLElement>(
+											element.querySelectorAll(
+												'[role="tabpanel"]'
+											)
+										);
+							for (const panel of addedPanels) {
+								if (state._isOwnedPanel(panel)) {
+									panel.hidden = true;
+								}
+							}
+						}
+					}
+				}
+
+				const rafId = state._handles.pendingRafId;
 				if (rafId !== null) cancelAnimationFrame(rafId);
-				state._pendingRafId = requestAnimationFrame(() => {
-					state._pendingRafId = null;
+				const nextRafId = requestAnimationFrame(() => {
+					state._setHandles({ pendingRafId: null });
 					state.initTabList();
 					if (hasTabChange) {
-						state.initTabs();
+						/* initTabs preserves the selected index by element identity and returns it, so a structural change that shifts indices keeps the right tab selected even in React, where state._activeIndex is stale inside this observer closure. */
+						const resolvedIndex = state.initTabs();
+						state.syncSelection(resolvedIndex);
 					}
 					if (hasDisabledChange) {
 						state.syncSelection(state._activeIndex);
 					}
 				});
+				state._setHandles({ pendingRafId: nextRafId });
 			});
 
 			observer.observe(_ref, {
@@ -695,7 +738,7 @@ export default function DBTabs(props: DBTabsProps) {
 				attributeFilter: ['disabled', 'aria-disabled']
 			});
 
-			state._observer = observer;
+			state._setHandles({ observer });
 		},
 
 		// Re-queries the DOM for button/panel elements, caches them, and
@@ -703,22 +746,48 @@ export default function DBTabs(props: DBTabsProps) {
 		// MutationObserver detects structural changes, and when props.tabs changes.
 		// Selection state (aria-selected/tabindex/hidden) is handled by syncSelection.
 		initTabs() {
-			const baseId = props.id ?? props.propOverrides?.id ?? state._id;
-			if (!baseId || !_ref) return;
+			const baseId =
+				props.id ?? props.propOverrides?.id ?? state._id ?? _ref?.id;
+			if (!baseId || !_ref) return state._activeIndex;
 
 			const tabListEl = state._getScrollContainer();
 			const panels = Array.from<HTMLElement>(
 				_ref?.querySelectorAll('[role="tabpanel"]') ?? []
 			).filter((panel) => state._isOwnedPanel(panel));
 
-			if (!tabListEl) return;
+			if (!tabListEl) return state._activeIndex;
 
 			const buttons = Array.from<HTMLElement>(
 				tabListEl.querySelectorAll('[role="tab"]')
 			);
 
+			const previousSelectedButton = buttons.find(
+				(button: HTMLElement) =>
+					button.getAttribute('aria-selected') === 'true'
+			);
+
 			state._tabButtons = buttons;
 			state._tabPanels = panels;
+
+			// Resolve the index the caller should sync to and return it, rather
+			// than relying on state._activeIndex afterwards: in the React output
+			// the MutationObserver callback is a mount-render closure, so a write
+			// to state._activeIndex here is not visible to the syncSelection call
+			// that follows in the same closure (it would re-apply the stale index
+			// and drop the preserved selection). The caller passes this return
+			// value straight into syncSelection instead.
+			let resolvedIndex = state._activeIndex;
+
+			// If the previously selected tab still exists, keep it selected at
+			// its new index; only fall back to the numeric index when it was
+			// actually removed (syncSelection then clamps to the first enabled).
+			if (previousSelectedButton) {
+				const preservedIndex = buttons.indexOf(previousSelectedButton);
+				if (preservedIndex !== -1 && props.activeIndex === undefined) {
+					state._activeIndex = preservedIndex;
+					resolvedIndex = preservedIndex;
+				}
+			}
 
 			buttons.forEach((button: HTMLElement, index: number) => {
 				const panel = panels[index];
@@ -732,8 +801,16 @@ export default function DBTabs(props: DBTabsProps) {
 					panel.id = panelId;
 					button.setAttribute('aria-controls', panelId);
 					panel.setAttribute('aria-labelledby', buttonId);
+
+					/* Hide a freshly added panel on the same commit (no flash); syncSelection then resolves the authoritative state. Skipped while nothing is selected yet, otherwise every panel would be hidden until the first sync (#8654). */
+					if (previousSelectedButton) {
+						panel.hidden =
+							button.getAttribute('aria-selected') !== 'true';
+					}
 				}
 			});
+
+			return resolvedIndex;
 		}
 	});
 
@@ -745,8 +822,8 @@ export default function DBTabs(props: DBTabsProps) {
 	onUpdate(() => {
 		if (state.initialized && props.tabs) {
 			state.initTabList();
-			state.initTabs();
-			state.syncSelection(state._activeIndex);
+			const resolvedIndex = state.initTabs();
+			state.syncSelection(resolvedIndex);
 		}
 	}, [props.tabs, state.initialized]);
 
@@ -875,14 +952,13 @@ export default function DBTabs(props: DBTabsProps) {
 	});
 
 	onUnMount(() => {
-		const rafId = state._pendingRafId;
+		const rafId = state._handles.pendingRafId;
 		if (rafId !== null) {
 			cancelAnimationFrame(rafId);
-			state._pendingRafId = null;
 		}
 		state._teardownScrollHandlers();
-		state._observer?.disconnect();
-		state._observer = null;
+		state._handles.observer?.disconnect();
+		state._setHandles({ pendingRafId: null, observer: null });
 	});
 
 	return (
@@ -895,6 +971,7 @@ export default function DBTabs(props: DBTabsProps) {
 			data-tab-item-alignment={props.tabItemAlignment}
 			data-tab-item-width={props.tabItemWidth}
 			data-initial-selected-mode={props.initialSelectedMode}
+			data-synced={getBooleanAsString(state._synced)}
 			onClick={(event) => state.handleClick(event)}
 			onKeyDown={(event) => state.handleKeyDown(event)}>
 			<Show when={state.showScrollStart}>

@@ -74,6 +74,16 @@
 		}
 	}
 
+	// The current page is a dead end: block pointer activation so a click
+	// cannot follow a composed link to the current URL. Keyed off
+	// aria-current="page" (the control's own current marker, set in JS and by
+	// a CSS-only consumer) rather than the parent's data-variant, so it holds
+	// regardless of the attribute-sync pass. Paired with tabindex="-1" (set in
+	// pagination.lite.tsx) to also drop it from the tab order.
+	@include control('[aria-current="page"]') {
+		pointer-events: none;
+	}
+
 	@include control(':is(:disabled, [aria-disabled="true"])') {
 		opacity: variables.$db-opacity-md;
 	}

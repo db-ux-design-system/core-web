@@ -2,6 +2,9 @@
 
 const { dashCase } = require('../utils.cjs');
 
+// Marks our host patches
+const HOST_PATCH_MARKER = 'dbAttributePassing';
+
 /**
  * @type {import('@builder.io/mitosis').MitosisPlugin}
  */
@@ -38,7 +41,14 @@ module.exports = () => ({
 					json.hooks.onUnMount = { code: '' };
 				}
 				json.hooks.onUnMount = {
-					code: `${json.hooks.onUnMount.code};\nthis.observer${target === 'angular' ? '()' : ''}?.disconnect();`
+					code:
+						`${json.hooks.onUnMount.code};\nthis.observer${target === 'angular' ? '()' : ''}?.disconnect();` +
+						// Mitosis resolves `_ref` to the target's ref accessor
+						'\nthis.restoreHostAttributeRemoval(_ref);' +
+						// Reset so `connectedCallback` can re-attach the observer after a DOM move
+						(target === 'stencil'
+							? '\nthis.observer = undefined;'
+							: '')
 				};
 
 				if (!json.state) {
@@ -74,6 +84,55 @@ module.exports = () => ({
       attributes: true,
 	 		attributeOldValue: true,
     });
+
+    this.patchHostAttributeRemoval(element, parent as HTMLElement);
+  }`,
+					type: 'method',
+					typeParameter: 'any'
+				};
+				// Removing an already forwarded attribute triggers no mutation, so
+				// mirror the removal to the inner element
+				json.state.patchHostAttributeRemoval = {
+					// Stencil shadows `Element` with its decorator, use `HTMLElement`
+					code: `patchHostAttributeRemoval(element: HTMLElement, parent: HTMLElement) {
+    const host = parent as any;
+    if (host.removeAttribute?.${HOST_PATCH_MARKER}) return;
+
+    // Same allowlist as \`enableAttributePassing\`
+    const isForwarded = (name: string) => {
+      const attrName = String(name).toLowerCase();
+      return attrName !== "data-density" && (attrName.startsWith("data-") || attrName.startsWith("aria-") || ["role", "title", "style"].includes(attrName));
+    };
+
+    const removeAttribute = function (this: HTMLElement, name: string) {
+      if (isForwarded(name)) {
+        element.removeAttribute(name);
+      }
+      return HTMLElement.prototype.removeAttribute.call(this, name);
+    };
+    const toggleAttribute = function (this: HTMLElement, name: string, force?: boolean) {
+      if (force === false && isForwarded(name)) {
+        element.removeAttribute(name);
+      }
+      return HTMLElement.prototype.toggleAttribute.call(this, name, force);
+    };
+    (removeAttribute as any).${HOST_PATCH_MARKER} = true;
+    (toggleAttribute as any).${HOST_PATCH_MARKER} = true;
+    host.removeAttribute = removeAttribute;
+    host.toggleAttribute = toggleAttribute;
+  }`,
+					type: 'method',
+					typeParameter: 'any'
+				};
+				json.state.restoreHostAttributeRemoval = {
+					code: `restoreHostAttributeRemoval(element: HTMLElement | null | undefined) {
+    const host = element?.closest?.("${componentTagName}") as any;
+    if (!host) return;
+    for (const method of ["removeAttribute", "toggleAttribute"]) {
+      if (Object.prototype.hasOwnProperty.call(host, method) && host[method]?.${HOST_PATCH_MARKER}) {
+        delete host[method];
+      }
+    }
   }`,
 					type: 'method',
 					typeParameter: 'any'
@@ -145,7 +204,32 @@ module.exports = () => ({
 					.replace(
 						'`${currentClass ? `${currentClass} ` : ""}${value}`',
 						'`${currentClass ? currentClass : ""}${value ? ` ${value}`: ""}`'
+					)
+					// Bypass our own host patch
+					.replaceAll(
+						'parent.removeAttribute(attr.name);',
+						'HTMLElement.prototype.removeAttribute.call(parent, attr.name);'
 					);
+			}
+
+			if (
+				target === 'stencil' &&
+				changedCode.includes('setupObserver(') &&
+				!/(?<!dis)connectedCallback\(\)/.test(changedCode) &&
+				changedCode.includes('disconnectedCallback() {')
+			) {
+				const componentTagName = `db-${dashCase(json.name.replace('DB', ''))}`;
+				// Re-run attribute passing after a DOM move, `componentDidLoad` runs only once
+				changedCode = changedCode.replace(
+					'disconnectedCallback() {',
+					`connectedCallback() {
+    if (this._ref) {
+      this.enableAttributePassing(this._ref, "${componentTagName}");
+      this.setupObserver(this._ref);
+    }
+  }
+  disconnectedCallback() {`
+				);
 			}
 
 			return changedCode;

@@ -130,7 +130,7 @@ export default [
 
 For developers looking to create custom components that extend the design system in their applications, we provide comprehensive guidance:
 
-📖 **[Creating Custom Components Guide](docs/creating-custom-components.md)** - Learn how to build your own components using design system foundations
+📖 **[Build your own components](https://design-system.deutschebahn.com/documentation/learn/custom-components)** - Learn how to build your own components using design system foundations
 
 This guide covers:
 
@@ -189,7 +189,7 @@ As [DB UX Design System](https://marketingportal.extranet.deutschebahn.com/marke
 ### From DB UI Core or DB UI Elements to DB UX Design System Core
 
 We're providing a detailed migration for each component next to the documentation of each component, like e.g.
-[Button migration](https://design-system.deutschebahn.com/core-web/review/main/components/action/button/migration).
+[Button migration](https://design-system.deutschebahn.com/core-web/version/latest/composition-storybook/?path=/docs/react_components-dbbutton-overview--docs#migration).
 
 For a comprehensive overview of all components and their migration status, including components that don't have direct equivalents in DB UX Design System – Generation 3, see our [DB UI to DB UX Design System – Generation 3 Component Migration Guide](https://github.com/db-ux-design-system/core-web/blob/main/docs/migration/db-ui/component-migration.md).
 

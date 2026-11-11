@@ -93,7 +93,7 @@ runs:
     - name: 🧬 Generate a token
       if: env.changes_detected == 'true'
       id: generate-token
-      uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+      uses: actions/create-github-app-token@v3.3.0
       with:
         client-id: ${{ inputs.auto-merge-client-id }}
         private-key: ${{ inputs.auto-merge-private-key }}

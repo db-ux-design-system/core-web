@@ -280,7 +280,7 @@ test.describe('DBPagination', () => {
 	});
 
 	runInteractionTest({
-		title: 'should not navigate when the current page link is clicked',
+		title: 'should make the current page link a non-interactive dead end',
 		path,
 		example: 'Interaction',
 		async run({ page, content }) {
@@ -290,39 +290,28 @@ test.describe('DBPagination', () => {
 				'.db-pagination li[data-page="2"] a'
 			);
 
-			// The showcase shell normalizes the URL hash after mount (adding
-			// its serialized `settings`/`shell` params) in an async effect.
-			// That write can land between the two reads below and would show
-			// up as a spurious hash change unrelated to the click, so wait for
-			// the hash to settle before capturing the baseline.
-			const readHash = async (): Promise<string> =>
-				page.evaluate(
-					// eslint-disable-next-line unicorn/isolated-functions -- location is available in browser context
-					() => location.hash
-				);
-			let hashBefore = await readHash();
-			await expect
-				.poll(async () => {
-					const current = await readHash();
-					const isStable = current === hashBefore;
-					hashBefore = current;
-					return isStable;
-				})
-				.toBe(true);
+			// The current page is a dead end: it is announced as current but
+			// taken out of the tab order (tabindex="-1") and blocked from
+			// pointer activation (pointer-events: none), so a keyboard user is
+			// not stopped on a control that does nothing and a pointer click
+			// cannot follow the link to the current URL.
+			await expect(currentLink).toHaveAttribute('aria-current', 'page');
+			await expect(currentLink).toHaveAttribute('tabindex', '-1');
+			await expect(currentLink).toHaveCSS('pointer-events', 'none');
 
-			// The click on the current page must be prevented, so the browser
-			// neither follows the href (the location hash stays put) nor does
-			// the pagination report a change.
-			await currentLink.click();
+			// A non-current link stays a normal, focusable navigation control.
+			const otherLink = scope.locator(
+				'.db-pagination li[data-page="3"] a'
+			);
+			await expect(otherLink).not.toHaveAttribute('tabindex', '-1');
+			await expect(otherLink).not.toHaveCSS('pointer-events', 'none');
 
+			// Blocking pointer-events makes the current link non-actionable,
+			// so a real click cannot land on it and the pagination reports
+			// nothing.
 			await expect(scope.getByTestId('composed-readout')).toHaveText(
 				'composed requested: 0'
 			);
-			const hashAfter = await page.evaluate(
-				// eslint-disable-next-line unicorn/isolated-functions -- location is available in browser context
-				() => location.hash
-			);
-			expect(hashAfter).toBe(hashBefore);
 		}
 	});
 

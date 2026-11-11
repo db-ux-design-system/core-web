@@ -110,6 +110,34 @@ export const checkFixMap: CheckConfig[] = [
 		fixCommands: []
 	},
 	{
+		// Copies of storybooks/_shared/storybook-config/ in every Storybook.
+		name: 'lint:storybook-config',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['run', 'lint:storybook-config']
+		},
+		fixCommands: [
+			{
+				command: 'node',
+				args: ['storybooks/_shared/storybook-config/sync.ts']
+			}
+		]
+	},
+	{
+		// Committed Foundations pages of the composition Storybook.
+		name: 'lint:storybook-foundations',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['run', 'lint:storybook-foundations']
+		},
+		fixCommands: [
+			{
+				command: 'node',
+				args: ['storybooks/_shared/foundations/generate-foundations.ts']
+			}
+		]
+	},
+	{
 		name: 'test:scripts',
 		checkCommand: {
 			command: 'pnpm',
@@ -219,6 +247,20 @@ export const checkFixMap: CheckConfig[] = [
 			args: ['--check', '.', '--log-level', 'warn']
 		},
 		fixCommands: []
+	},
+	{
+		// Server-side gate for the GitHub Actions dependency lockfile. The local
+		// pre-commit hook can be bypassed (--no-verify, the GitHub web editor,
+		// automation), so a workflow can be merged without a lockfile entry and
+		// run tag-based deps outside the pinned inventory. `--verify` writes
+		// nothing and fails when the lockfile is stale; the fix regenerates it,
+		// and the orchestrator's git-status check then auto-commits the result
+		// for review in the PR. A fix that errors or produces no change (e.g. a
+		// suspicious moved pin that needs --accept-moved) leaves the tree clean,
+		// so the orchestrator reports it as unfixable (exit 1).
+		name: 'check:actions-lockfile',
+		checkCommand: { command: 'gh', args: ['actions-lock', '--verify'] },
+		fixCommands: [{ command: 'gh', args: ['actions-lock'] }]
 	},
 	{
 		name: 'check:snapshot-newlines',

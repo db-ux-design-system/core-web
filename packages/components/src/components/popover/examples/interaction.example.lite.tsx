@@ -27,7 +27,7 @@ export default function PopoverInteraction() {
 
 	return (
 		<Fragment>
-			<div class="padding-box">
+			<div>
 				<DBPopover
 					animation="disabled"
 					data-testid="popover"
@@ -35,7 +35,7 @@ export default function PopoverInteraction() {
 					Test
 				</DBPopover>
 			</div>
-			<div class="padding-box">
+			<div>
 				<DBButton data-testid="toggle" onClick={() => state.toggle()}>
 					Toggle
 				</DBButton>

@@ -8,14 +8,6 @@ const tableHeaders = [
 		label: 'Component'
 	},
 	{
-		label: 'Single Component: Visuals',
-		href: 'https://playwright.dev/docs/screenshots'
-	},
-	{
-		label: 'Single Component: A11y (Axe)',
-		href: 'https://github.com/dequelabs/axe-core'
-	},
-	{
 		label: 'Showcase: Visuals',
 		href: 'https://playwright.dev/docs/screenshots'
 	},
@@ -69,8 +61,6 @@ export default function TestTable() {
 					{testTableData.map(
 						({
 							name,
-							singleComponentVisuals,
-							singleComponentAxe,
 							showcaseVisuals,
 							showcaseAxe,
 							showcaseAria,
@@ -79,8 +69,6 @@ export default function TestTable() {
 							accessibilityReview
 						}) => {
 							const stable =
-								singleComponentVisuals &&
-								singleComponentAxe &&
 								showcaseVisuals &&
 								showcaseAxe &&
 								showcaseAria &&
@@ -91,8 +79,6 @@ export default function TestTable() {
 								<tr key={name}>
 									<td>{name}</td>
 									{[
-										singleComponentVisuals,
-										singleComponentAxe,
 										showcaseVisuals,
 										showcaseAxe,
 										showcaseAria,

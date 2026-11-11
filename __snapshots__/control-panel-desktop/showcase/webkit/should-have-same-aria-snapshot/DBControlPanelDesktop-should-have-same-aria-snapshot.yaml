@@ -112,3 +112,8 @@
         - link "Item 2"
       - listitem:
         - link "Item 3"
+  - navigation "Drilldown Interaction":
+    - list:
+      - listitem:
+        - button "Drilldown Group"
+  - button "Collapse" [expanded]

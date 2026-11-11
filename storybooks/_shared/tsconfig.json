@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"target": "es2024",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"lib": ["ESNext", "DOM"],
+		"types": ["node"],
+		"strict": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"allowImportingTsExtensions": true,
+		"erasableSyntaxOnly": true
+	},
+	"include": ["**/*.ts"],
+	// They import `storybook/*`, which resolves only in a Storybook: sync.ts copies
+	// them there, where each Storybook type-checks them.
+	"exclude": [
+		"storybook-config/manager.ts",
+		"storybook-config/mode.ts",
+		"storybook-config/theme.ts"
+	]
+}

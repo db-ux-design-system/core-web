@@ -39,82 +39,92 @@ concurrency:
 
 jobs:
   init:
-    uses: ./.github/workflows/00-init.yml
+    uses: $/.github/workflows/00-init.yml
     secrets: inherit
     with:
       release: ${{ github.event_name == 'release' }}
 
   lint:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/01-validate.yml
+    uses: $/.github/workflows/01-validate.yml
     needs: [init]
     secrets: inherit
 
   audit-fix:
     if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
-    uses: ./.github/workflows/99-audit-fix-dependabot.yml
+    uses: $/.github/workflows/99-audit-fix-dependabot.yml
     needs: [init]
     secrets: inherit
 
   cancel-on-failure-lint:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.lint.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [lint]
 
   build-packages:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/01-build-packages.yml
+    uses: $/.github/workflows/01-build-packages.yml
     needs: [init]
     secrets: inherit
 
   cancel-on-failure-build-packages:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-packages.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-packages]
 
   init-playwright:
     if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
-    uses: ./.github/workflows/01-init-playwright.yml
+    uses: $/.github/workflows/01-init-playwright.yml
     needs: [init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-outputs:
-    uses: ./.github/workflows/01-build-outputs.yml
+    uses: $/.github/workflows/01-build-outputs.yml
     needs: [build-packages]
     secrets: inherit
 
   cancel-on-failure-build-outputs:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-outputs.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-outputs]
 
   test-figma-code-connect:
     if: ${{ github.event_name != 'release' && needs.init.outputs.isChangesetRelease != 'true' && needs.init.outputs.isFork != 'true' }}
-    uses: ./.github/workflows/02-test-figma-code-connect.yml
+    uses: $/.github/workflows/02-test-figma-code-connect.yml
     needs: [init]
     secrets: inherit
 
   test-foundations:
-    uses: ./.github/workflows/02-e2e-foundations.yml
+    uses: $/.github/workflows/02-e2e-foundations.yml
     needs: [build-packages, init]
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
 
   build-storybooks:
-    uses: ./.github/workflows/01-build-storybooks.yml
+    uses: $/.github/workflows/01-build-storybooks.yml
     needs: [build-packages, init]
     with:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
     secrets: inherit
 
+  test-storybooks:
+    # Changeset release PRs only bump versions; checks-done skips them anyway.
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    uses: $/.github/workflows/02-e2e-storybooks.yml
+    needs: [build-storybooks, build-outputs, init]
+    secrets: inherit
+    with:
+      version: ${{ needs.init.outputs.playwrightVersion }}
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
   build-showcase-stencil:
-    uses: ./.github/workflows/01-build-showcases.yml
+    uses: $/.github/workflows/01-build-showcases.yml
     needs: [build-packages, init]
     secrets: inherit
     with:
@@ -122,12 +132,12 @@ jobs:
 
   cancel-on-failure-build-showcase-stencil:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-stencil.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-stencil]
 
   build-showcase-angular:
-    uses: ./.github/workflows/01-build-showcases.yml
+    uses: $/.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
     with:
@@ -135,12 +145,12 @@ jobs:
 
   cancel-on-failure-build-showcase-angular:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-angular.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-angular]
 
   build-showcase-react:
-    uses: ./.github/workflows/01-build-showcases.yml
+    uses: $/.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
     with:
@@ -148,12 +158,12 @@ jobs:
 
   cancel-on-failure-build-showcase-react:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-react.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-react]
 
   build-showcase-vue:
-    uses: ./.github/workflows/01-build-showcases.yml
+    uses: $/.github/workflows/01-build-showcases.yml
     needs: [build-packages]
     secrets: inherit
     with:
@@ -161,23 +171,23 @@ jobs:
 
   cancel-on-failure-build-showcase-vue:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-vue.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-vue]
 
   build-untested-showcases:
-    uses: ./.github/workflows/01-build-showcases-untested.yml
+    uses: $/.github/workflows/01-build-showcases-untested.yml
     needs: [build-packages]
     secrets: inherit
 
   cancel-on-failure-build-untested-showcases:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-untested-showcases.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-untested-showcases]
 
   build-showcase-patternhub:
-    uses: ./.github/workflows/01-build-patternhub.yml
+    uses: $/.github/workflows/01-build-patternhub.yml
     needs: [build-packages, init]
     with:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
@@ -185,12 +195,12 @@ jobs:
 
   cancel-on-failure-build-showcase-patternhub:
     if: ${{ github.event_name != 'release' && !cancelled() && needs.build-showcase-patternhub.result == 'failure' }}
-    uses: ./.github/workflows/00-cancel-workflow.yml
+    uses: $/.github/workflows/00-cancel-workflow.yml
     secrets: inherit
     needs: [build-showcase-patternhub]
 
   test-showcase-stencil:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: $/.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-stencil, init]
     secrets: inherit
     with:
@@ -198,7 +208,7 @@ jobs:
       showcase: stencil-showcase
 
   test-showcase-angular:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: $/.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-angular, init]
     secrets: inherit
     with:
@@ -206,7 +216,7 @@ jobs:
       showcase: angular-showcase
 
   test-showcase-react:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: $/.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-react, init]
     secrets: inherit
     with:
@@ -214,7 +224,7 @@ jobs:
       showcase: react-showcase
 
   test-showcase-vue:
-    uses: ./.github/workflows/02-e2e-showcases.yml
+    uses: $/.github/workflows/02-e2e-showcases.yml
     needs: [build-showcase-vue, init]
     secrets: inherit
     with:
@@ -222,7 +232,7 @@ jobs:
       showcase: vue-showcase
 
   test-showcase-patternhub:
-    uses: ./.github/workflows/02-e2e-patternhub.yml
+    uses: $/.github/workflows/02-e2e-patternhub.yml
     needs: [build-showcase-patternhub, init, init]
     secrets: inherit
     with:
@@ -231,7 +241,7 @@ jobs:
 
   regenerate-snapshots-foundations:
     if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-foundations.result == 'failure' }}
-    uses: ./.github/workflows/02-e2e-regenerate.yml
+    uses: $/.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
@@ -240,7 +250,7 @@ jobs:
 
   regenerate-snapshots-patternhub:
     if: ${{ github.event_name == 'pull_request' && !cancelled() && needs.test-showcase-patternhub.result == 'failure' }}
-    uses: ./.github/workflows/02-e2e-regenerate.yml
+    uses: $/.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
@@ -263,7 +273,7 @@ jobs:
       contains(github.head_ref, 'guidepup') ||
       contains(github.head_ref, 'playwright') ||
       contains(github.head_ref, 'screen-reader')
-    uses: ./.github/workflows/02-e2e-screen-reader.yml
+    uses: $/.github/workflows/02-e2e-screen-reader.yml
     needs: [test-showcase-react, init-playwright, init]
     secrets: inherit
     with:
@@ -283,7 +293,7 @@ jobs:
         needs.test-showcase-vue.result == 'failure' ||
         needs.test-showcase-stencil.result == 'failure'
       )
-    uses: ./.github/workflows/02-e2e-regenerate.yml
+    uses: $/.github/workflows/02-e2e-regenerate.yml
     secrets: inherit
     with:
       version: ${{ needs.init.outputs.playwrightVersion }}
@@ -298,7 +308,7 @@ jobs:
       ]
 
   commit-regenerated-snapshots:
-    uses: ./.github/workflows/02-e2e-regenerated-snapshots-commit.yml
+    uses: $/.github/workflows/02-e2e-regenerated-snapshots-commit.yml
     secrets: inherit
     if: |
       ${{ github.event_name == 'pull_request' && !cancelled() &&
@@ -331,6 +341,7 @@ jobs:
             exit 0
           fi
           resultBuildStorybooks="${{ needs.build-storybooks.result }}"
+          resultTestStorybooks="${{ needs.test-storybooks.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
@@ -349,6 +360,7 @@ jobs:
           resultAuditFix="${{ needs.audit-fix.result }}"
 
           echo "resultBuildStorybooks: $resultBuildStorybooks"
+          echo "resultTestStorybooks: $resultTestStorybooks"
           echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
           echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
           echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
@@ -365,6 +377,7 @@ jobs:
           echo "resultTestScreenReader: $resultTestScreenReader"
 
           if [[ $resultBuildStorybooks == "success" ]] && \
+             [[ $resultTestStorybooks == "success" || $resultTestStorybooks == "skipped" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
              [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
@@ -390,6 +403,7 @@ jobs:
     needs:
       [
         build-storybooks,
+        test-storybooks,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-react,
@@ -410,7 +424,7 @@ jobs:
       ]
 
   deploy:
-    uses: ./.github/workflows/03-deploy-gh-pages.yml
+    uses: $/.github/workflows/03-deploy-gh-pages.yml
     if: |
       ${{
       !cancelled() && github.actor != 'dependabot[bot]' &&
@@ -429,18 +443,18 @@ jobs:
 
   publish-figma-code-connect:
     if: ${{ !cancelled() && github.actor != 'dependabot[bot]' && github.event_name != 'release' && needs.init.outputs.isFork != 'true' && github.ref == 'refs/heads/main' && needs.checks-done.result == 'success' }}
-    uses: ./.github/workflows/03-publish-figma-code-connect.yml
+    uses: $/.github/workflows/03-publish-figma-code-connect.yml
     needs: [checks-done, test-figma-code-connect, init]
     secrets: inherit
 
   preview-url-pr-description:
     if: ${{ !cancelled() && github.event.pull_request != null && needs.init.outputs.isFork != 'true' }}
     needs: [deploy, init]
-    uses: ./.github/workflows/03-preview-url-pr-description.yml
+    uses: $/.github/workflows/03-preview-url-pr-description.yml
 
   publishpackages:
     if: ${{ !cancelled() && needs.init.outputs.isChangesetRelease != 'true' && needs.checks-done.result == 'success' }}
-    uses: ./.github/workflows/03-publish-packages.yml
+    uses: $/.github/workflows/03-publish-packages.yml
     needs: [init, checks-done, build-outputs]
     secrets: inherit
     with:

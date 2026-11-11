@@ -38,6 +38,16 @@ describe('drawer-header-required', () => {
 				code: '<DBDrawer header={headerSlot}>Content</DBDrawer>'
 			},
 			{
+				// An optional chain (ChainExpression) is an unverifiable runtime
+				// value, accepted like a plain member expression.
+				code: '<DBDrawer header={slots?.header}>Content</DBDrawer>'
+			},
+			{
+				// A spread inside the header array may contribute the header at
+				// runtime; its contents cannot be verified, so it is accepted.
+				code: '<DBDrawer header={[...headers]}>Content</DBDrawer>'
+			},
+			{
 				code: '<DBDrawer header={<><DBDrawerHeader>Title</DBDrawerHeader></>}>Content</DBDrawer>'
 			},
 			{
@@ -122,6 +132,17 @@ describe('drawer-header-required', () => {
 			},
 			{
 				code: '<DBDrawer header={<div>Title</div>}>Content</DBDrawer>',
+				errors: [
+					{
+						messageId: 'drawerHeaderRequired',
+						data: { component: 'DBDrawer' }
+					}
+				]
+			},
+			{
+				// `undefined` is the statically known empty value (React renders no
+				// header), so it must be reported rather than accepted as dynamic.
+				code: '<DBDrawer header={undefined}>Content</DBDrawer>',
 				errors: [
 					{
 						messageId: 'drawerHeaderRequired',

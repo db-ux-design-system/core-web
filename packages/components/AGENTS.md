@@ -235,6 +235,30 @@ When adding or modifying examples:
 
 - Place example files inside `src/components/[name]/examples/`
 - Use `data-sb-*` attributes to control Storybook story generation (e.g. controls, args, decorators)
+- **For one-off, showcase-only layout, use an inline `style` object instead of a bespoke CSS class.** The example's markup is emitted verbatim into Storybook's "Show code" view, so a layout class defined only in the showcase stylesheet (e.g. `badge-inline-container`) leaves consumers copying a class they cannot resolve ([#7023](https://github.com/db-ux-design-system/core-web/issues/7023)). An inline `style` is self-explanatory in the snippet and renders identically in the showcase. Prefer design-token custom properties in the value (e.g. `gap: 'var(--db-spacing-fixed-sm)'`) so the demo stays on-brand:
+
+    ```tsx
+    <div
+    	style={{
+    		display: "flex",
+    		alignItems: "center",
+    		gap: "var(--db-spacing-fixed-sm)"
+    	}}
+    >
+    	{/* ... */}
+    </div>
+    ```
+
+    This applies to **bespoke, single-use** showcase layout only. Three things are **not** covered by this rule and stay as classes:
+
+    - **Real design-system classes** that are public API — e.g. `db-stack` (the CSS-only form of `DBStack`, with `data-gap`/`data-direction`). These are exactly what a consumer _should_ copy, so keep them.
+    - **Elements already hidden from the snippet** via `data-sb-ignore` (e.g. `<i class="line-break" data-sb-ignore="true" />`) — they never reach the code view, so their class is harmless.
+    - **Shared showcase helpers reused across many examples** (e.g. `fit-content-container`). Converting these to repeated inline styles in every example only trades one problem for dozens of copies that drift; leave them in the shared stylesheet.
+
+    Write the object literal directly on the element, not as an imported variable (`style={myStyle}`): the web-component story serializer only converts object literals and would emit `style="myStyle"`. A custom property (`'--db-table-grid-template-columns': '…'`) needs a trailing `as any`, because React's `CSSProperties` rejects unknown keys; the serializer strips the cast.
+
+    Inline `style` also only reaches the element it sits on — it cannot express descendant or pseudo-element rules. When a one-off demo needs those, prefer dropping the fine-tuning over reintroducing a mystery class; keep it in the shared stylesheet only if the layout genuinely depends on it.
+
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
 - **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in Patternhub, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
 
@@ -303,6 +327,92 @@ React's type definitions do not yet ship the [Invoker Commands API](https://deve
 - This is a temporary workaround — remove the plugin once React's type definitions support these attributes natively
 
 Unit tests live in `configs/plugins/react/invoker-commands.spec.ts`.
+
+## Angular/Stencil attribute removal (`configs/plugins/attribute-passing/index.cjs`)
+
+`enableAttributePassing` moves `data-*`, `aria-*`, `role`, `title` and `style`
+from the custom-element host onto the inner `_ref` element. Because the host no
+longer has them, a later `removeAttribute` from a framework binding (Angular
+`[attr.aria-label]="null"`, the Stencil virtual DOM) queues no MutationRecord. The
+observer can't see that removal (#6999).
+
+`patchHostAttributeRemoval` therefore overrides `removeAttribute` and
+`toggleAttribute(name, false)` **on the host instance** and mirrors the removal
+to the inner element:
+
+- Plugin code that moves attributes off the host must call
+  `HTMLElement.prototype.removeAttribute.call(parent, …)`, never
+  `parent.removeAttribute(…)`. The patch would otherwise delete the value that
+  was just forwarded.
+- Use `HTMLElement`, not `Element`, in generated code. Stencil imports its
+  `@Element` decorator as `Element` and shadows the global, which fails the
+  Rollup build.
+- Keep the allowlist in `isForwarded` in sync with the `code.post` replacements
+  of `enableAttributePassing`.
+- The patch is flagged (`dbAttributePassing`), applied once per instance and
+  removed again in `restoreHostAttributeRemoval` on unmount.
+
+Unit tests live in `configs/plugins/attribute-passing/index.spec.ts`, the runtime
+behavior is covered in `showcases/e2e/button/button-interaction.spec.ts`.
+
+## Stencil `onInit` -> `componentWillLoad` (`configs/plugins/stencil/index.cjs`)
+
+The Mitosis Stencil generator maps `onMount` to `componentDidLoad`, `onUnMount`
+to `disconnectedCallback` and `onUpdate` to `@Watch`/`componentDidUpdate`, but it
+never reads `json.hooks.onInit` — so any logic a component places in `onInit` is
+parsed into the Mitosis JSON and then **silently dropped** from the Stencil
+output (no warning, no build error). Every other target honors the hook (Angular
+emits it into `ngOnInit`).
+
+The Stencil plugin closes this gap in its `code.pre` phase: it reads
+`json.hooks.onInit.code` and injects a `componentWillLoad()` method — Stencil's
+run-once-before-first-render lifecycle, the semantic equivalent of `onInit` —
+directly before the generated `componentDidLoad() {` block. `code.pre` runs
+before the generator formats the class with prettier, so the injected method is
+formatted with the rest of the output; anchoring before `componentDidLoad() {`
+keeps the plugin's own `code.post` surgery (which also keys off that string)
+matching unchanged.
+
+Components relying on this: `DBPage`, `DBControlPanelDesktop`, `DBShell`,
+`DBShellSubNavigation`. Unit tests live in `configs/plugins/stencil/index.spec.ts`.
+
+## Stencil conditional slot assignment (`addDrawerHeaderSlot`)
+
+When a component passes **conditional** content to another component's named
+slot prop (e.g. `DBControlPanelMobile` passing the drawer header to `DBDrawer`'s
+`header` prop via a paired `<Show when={props.drawerHeaderText}>` / `<Show
+when={!props.drawerHeaderText}>`), Mitosis wraps the branches in a fragment. For
+Vue and Angular that fragment becomes a slot-assigning container (`<template
+v-slot:header>` / `<ng-container header>`), so every branch lands in the target
+slot. Web components have no such wrapper: Stencil emits each branch with **no
+`slot` attribute**, so both get projected into the host's default slot
+(`.db-drawer-content`) instead of the header, silently breaking existing usage.
+
+Two constraints shape the fix:
+
+- **The consumer slot is named `header`, not `drawerHeader`.** The Stencil
+  runtime cannot forward slotted content to a differently named slot
+  (`<slot name="a" slot="b">`). The slot forwards into `DBDrawer`'s `header`
+  slot, so the public slot (shared `DrawerHeaderSlotProps.header`) carries the
+  same name and the generated forward is the supported `<slot name="header"
+slot="header">`.
+- **The transform is gated to `DBControlPanelMobile` by component name.** It must
+  NOT run on `DBDrawer`, whose own `<slot name="header">` declaration would
+  otherwise become an invalid self-forwarding `<slot name="header"
+slot="header">`. `DBHeader` is intentionally skipped too: its entire
+  `<db-drawer>` is stripped from the Stencil output (the mobile drawer is handled
+  by `db-shell`), so its drawer header never ships as a web component.
+
+The Stencil plugin's `code.post` phase re-adds `slot="header"` to the two
+drawer-header branches (the internal `<db-drawer-header>` and the forwarding
+`<slot name="header">`) via `addDrawerHeaderSlot(code, json)`. Both replacements
+are guarded against an already-present `slot=`, so they are idempotent. Unit
+tests live in `configs/plugins/stencil/index.spec.ts`.
+
+**This kind of Stencil-only output surgery belongs in this plugin, not in the
+deprecated `scripts/post-build/`.** `post-build` (and its `components.ts`
+`overwrites`) is legacy; prefer a Mitosis plugin `code`/`json` phase for any new
+per-target transform so it runs as part of generation and is unit-testable.
 
 ## Storybook Generation
 
@@ -394,7 +504,11 @@ standalone files automatically while preserving the parser and docs metadata ent
 
 **Sub-component suffix convention:** The test-table generator
 (`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
-in `-list`, `-panel`, `-item`, `-handle`, or `-menu` from the validation table.
+in `-list`, `-panel`, `-item`, `-handle`, `-menu`, `-footer`, `-header`, `-head`, `-content`, `-sub-navigation`, `-cell`, `-row`, `-caption` or `-body` from the validation table, components
+starting with `control-panel-` (sub-components of `DBControlPanel`, which has no standalone
+element of its own) except the standalone variants `control-panel-desktop`, `control-panel-mobile`
+and `control-panel-flat-icon` (they have their own test suites), and any element without a `db-`
+prefix (example/showcase elements).
 
 ## Angular form value flow: user input never writes back to the DOM
 
@@ -783,6 +897,15 @@ The `scripts/post-build/` folder contains post-Mitosis transformations that run 
 > parallel implementations.
 >
 > Note: `scripts/post-build/react.ts` injects a `../../utils/react.js` import with a hardcoded `.js` extension. This runs **after** the `esm-extensions` plugin, so the extension is added manually on purpose. When this injection is migrated to a plugin, the manual `.js` should be removed.
+>
+> Note: React forwarded refs. `scripts/post-build/react.ts` wraps every component in `forwardRef` and receives the forwarded ref as the second argument `component`. The root ref is generated as
+>
+> ```tsx
+> const _internalRef = useRef<HTMLDivElement | any>(null);
+> const _ref = component || _internalRef;
+> ```
+>
+> `useRef` has to run on every render (rules of hooks). Do not shorten this back to `component || useRef(...)`: the `||` skips the hook whenever a ref is forwarded, so a parent switching `ref` between `null` and a ref object changes the hook order and React throws ([#7849](https://github.com/db-ux-design-system/core-web/issues/7849)). Passing `component` as the initial value of `useRef` does not help, the hook call itself is what is skipped. The replacement is `forwardedRefReplacement` and covered by `scripts/post-build/react.spec.ts`.
 
 ### Angular form components
 

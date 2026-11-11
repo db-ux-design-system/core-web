@@ -13,6 +13,6 @@
 
 ### variant
 
-| Before    | Status | After | Description                                                                                                             |
-| --------- | :----: | ----- | ----------------------------------------------------------------------------------------------------------------------- |
-| `variant` |   🔁   | ❌    | icon variants are controlled by `font-family:var(--db-icon-font-family)` and `font-weight: var(--db-icon-font-weight);` |
+| Before    | Status | After     | Description                                                                                                         |
+| --------- | :----: | --------- | ------------------------------------------------------------------------------------------------------------------- |
+| `variant` |   🔁   | `variant` | Still supported (rendered as `data-icon-variant`) to select a custom icon font family, alongside the `weight` prop. |

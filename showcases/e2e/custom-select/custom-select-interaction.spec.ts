@@ -1,7 +1,37 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { runInteractionTest, type SkipType } from '../default.ts';
+import { isStencil, runInteractionTest, type SkipType } from '../default.ts';
 
 const path = '03/custom-select';
+
+// Spaces picks past the 200ms internal-change debounce
+const SELECTION_DEBOUNCE = 250;
+
+const checkOption = async (page: Page, select: Locator, value: string) => {
+	const input = select.locator(`input[value="${value}"]`);
+	await input.check({ force: true });
+	await expect(input).toBeChecked();
+	await page.waitForTimeout(SELECTION_DEBOUNCE);
+};
+
+// Reads the submitted FormData, using a temporary form if needed
+const getSubmittedValues = async (nativeSelect: Locator) =>
+	nativeSelect.evaluate((element: HTMLSelectElement) => {
+		if (element.form) {
+			return new FormData(element.form).getAll(element.name);
+		}
+
+		const name = 'db-e2e-submitted';
+		const form = document.createElement('form');
+		form.id = 'db-e2e-submitted-form';
+		document.body.append(form);
+		element.setAttribute('form', form.id);
+		element.setAttribute('name', name);
+		const values = new FormData(form).getAll(name);
+		element.removeAttribute('form');
+		element.removeAttribute('name');
+		form.remove();
+		return values;
+	});
 
 // Keyboard navigation (ArrowUp/Down, Enter, Space) is a desktop affordance.
 // Playwright's WebKit mobile emulation (`mobile_safari`, a touch device) does
@@ -14,9 +44,22 @@ const skipKeyboardOnMobile: SkipType = {
 	project: (project) => project.name.startsWith('mobile')
 };
 
+// On mobile the open dropdown becomes a modal bottom-sheet with a full-viewport
+// backdrop (summary::before, z-index 9998) painted over the field, so a tag's
+// remove button in the field is deliberately unreachable while the dropdown is
+// open. Removing a tag mid-open is therefore a desktop-only affordance: the
+// backdrop intercepts the pointer and the click never lands. Skip such
+// scenarios on every mobile project.
+const skipTagRemoveWhileOpenOnMobile: SkipType = {
+	project: (project) => project.name.startsWith('mobile')
+};
+
 const FOCUS_COOLDOWN = 2000;
 
 const openDropdown = async (page: Page, summary: Locator) => {
+	// Wait for the page to finish loading before driving keyboard input, so the
+	// ArrowDown below is not sent before the component is interactive.
+	await page.waitForTimeout(FOCUS_COOLDOWN);
 	await summary.press('ArrowDown');
 	// Opening with ArrowDown moves focus into the dropdown (onto the search
 	// field, or the first checkbox/radio) via an async `delay()` in the
@@ -49,11 +92,17 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -65,12 +114,18 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -118,13 +173,14 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('select-all-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			// Opening with ArrowDown moves focus onto the first checkbox (the
 			// "select all" checkbox here).
 			await openDropdown(page, summary);
 			await page.keyboard.press('Space');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText(
+			await expect(selectedLabel).toContainText(
 				'Option 1, Option 2, Option 3, Option 4, Option 5'
 			);
 		}
@@ -138,11 +194,17 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('single-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 			// For single select, the dropdown closes after Enter.
 			await expect(select.locator('details')).not.toHaveAttribute('open');
 		}
@@ -156,14 +218,20 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('multiple-select');
 			const summary = select.locator('summary');
-			await expect(summary).not.toContainText('Option 1');
+			const selectedLabel = select.locator('.db-custom-select-label');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so the label is detached from the DOM.
+			// Assert its absence with `toHaveCount(0)` instead of
+			// `.not.toContainText(...)`, which waits for an element that never
+			// appears and times out.
+			await expect(selectedLabel).toHaveCount(0);
 
 			await openDropdown(page, summary);
 			await page.keyboard.press('Enter');
 			// For multiple select, the dropdown stays open after Enter.
 			await expect(select.locator('details')).toHaveAttribute('open');
 			await page.keyboard.press('Escape');
-			await expect(summary).toContainText('Option 1');
+			await expect(selectedLabel).toContainText('Option 1');
 		}
 	});
 
@@ -175,6 +243,7 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
@@ -188,7 +257,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 2');
+			await expect(selectedLabel).toContainText('Option 2');
 		}
 	});
 
@@ -200,6 +269,7 @@ test.describe('DBCustomSelect', () => {
 		async run({ page, content }) {
 			const select = content.getByTestId('search-select');
 			const summary = select.locator('summary');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
 			await openDropdown(page, summary);
 			await page.waitForFunction(() => {
@@ -213,7 +283,7 @@ test.describe('DBCustomSelect', () => {
 			await page.keyboard.press('Enter');
 			await page.keyboard.press('Escape');
 
-			await expect(summary).toContainText('Option 3');
+			await expect(selectedLabel).toContainText('Option 3');
 		}
 	});
 
@@ -270,31 +340,262 @@ test.describe('DBCustomSelect', () => {
 	});
 
 	runInteractionTest({
+		title: 'should remove a single tag when its remove button is clicked (#8466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			await expect(tags).toHaveCount(2);
+
+			// Clicking a tag's remove button re-renders the shrinking tag list.
+			// In the Web Component output this used to crash Stencil's
+			// scoped-slot relocation ("Cannot read properties of null (reading
+			// 'nodeType')" / "elm.remove is not a function") and leave the tag
+			// in place. After the fix the tag list reconciles cleanly and the
+			// clicked tag is gone.
+			await select.locator('.db-tab-remove-button').first().click();
+
+			await expect(tags).toHaveCount(1);
+			// 'Blue' was removed, 'Green' remains.
+			await expect(tags).toContainText('Green Color');
+			await expect(tags).not.toContainText('Blue Color');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should keep the dropdown open when a tag is removed while it is open',
+		path,
+		example: 'Interaction',
+		skip: skipTagRemoveWhileOpenOnMobile,
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			const details = select.locator('details');
+			await expect(tags).toHaveCount(2);
+
+			// Open the dropdown directly and wait for the `open` attribute
+			// rather than racing a summary click (see the search test above for
+			// why a synthetic click is unreliable on WebKit).
+			await select.locator('summary').click({ force: true });
+			await details.evaluate((element: HTMLDetailsElement) => {
+				element.open = true;
+			});
+			await expect(details).toHaveAttribute('open', '');
+
+			// Removing a tag must not close the open dropdown. The remove click
+			// has to stop propagating to the DocumentClickListener: removing the
+			// tag detaches event.target, so fieldContains() returns false and
+			// the close handler would otherwise close the dropdown. DBTag used
+			// to stop propagation itself; the plain markup must do it now.
+			await select.locator('.db-tab-remove-button').first().click();
+
+			await expect(tags).toHaveCount(1);
+			await expect(details).toHaveAttribute('open', '');
+		}
+	});
+
+	runInteractionTest({
+		title: 'should clear all tags when the clear-selection button is clicked (#8466)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const tags = select.locator('.db-tag');
+			await expect(tags).toHaveCount(2);
+
+			// Clearing the whole selection empties the tag list in one go.
+			// Same scoped-slot relocation crash as single tag removal in the
+			// Web Component output before the fix (#8466).
+			await select.locator('.db-custom-select-clear').click();
+
+			await expect(tags).toHaveCount(0);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit every selected value of a multiple select (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			const nativeSelect = select.locator('select');
+
+			// Preselected via `values`, without any user interaction.
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['Blue', 'Green']);
+
+			await select.locator('summary').click();
+			await select.locator('input[value="Red"]').check({ force: true });
+
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['Red', 'Blue', 'Green']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit every selected value from a named multiple select inside a form (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const form = content.getByTestId('native-form');
+			const select = content.getByTestId('native-form-select');
+			const getFormValues = async () =>
+				form.evaluate((element: HTMLFormElement) =>
+					new FormData(element).getAll('colors')
+				);
+
+			await expect.poll(getFormValues).toEqual([]);
+
+			await select.locator('summary').click();
+			await checkOption(page, select, 'red');
+			await checkOption(page, select, 'blue');
+
+			await expect.poll(getFormValues).toEqual(['red', 'blue']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should clear a multiple select without initial values on form reset (#8465)',
+		path,
+		example: 'Interaction',
+		async run({ page, content }) {
+			const form = content.getByTestId('native-form');
+			const select = content.getByTestId('native-form-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
+
+			await select.locator('summary').click();
+			await checkOption(page, select, 'red');
+			await checkOption(page, select, 'green');
+			await expect(selectedLabel).toContainText('Red, Green');
+
+			await form.evaluate((element: HTMLFormElement) => {
+				element.reset();
+			});
+
+			// Empty selection renders the placeholder instead of the label
+			await expect(selectedLabel).toHaveCount(0);
+			await expect
+				.poll(async () =>
+					form.evaluate((element: HTMLFormElement) =>
+						new FormData(element).getAll('colors')
+					)
+				)
+				.toEqual([]);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit the values of options and values changed in the same render (#8465)',
+		path,
+		example: 'Controlled',
+		// New options render after `values` changed (Angular regression)
+		async run({ content }) {
+			const nativeSelect = content.locator('select');
+
+			await content
+				.getByRole('button', { name: 'Load other options' })
+				.click();
+
+			await expect
+				.poll(async () => getSubmittedValues(nativeSelect))
+				.toEqual(['ch']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should submit values set via JS before options are rendered (#8465)',
+		path,
+		example: 'Interaction',
+		// Repro from the issue: `options` and `values` set via JS together
+		skip: {
+			project: () => !isStencil(process.env.showcase)
+		},
+		async run({ content }) {
+			const select = content.getByTestId('tag-select');
+			// `data-testid` sits on the inner element, the props on the host
+			const host = select.locator(
+				'xpath=ancestor-or-self::db-custom-select'
+			);
+
+			await host.evaluate(
+				(
+					element: HTMLElement & {
+						options: Array<{ value: string; label: string }>;
+						values: string[];
+					}
+				) => {
+					element.options = [
+						{ value: 'red', label: 'Red' },
+						{ value: 'green', label: 'Green' },
+						{ value: 'blue', label: 'Blue' }
+					];
+					element.values = ['red', 'green'];
+				}
+			);
+
+			await expect
+				.poll(async () => getSubmittedValues(select.locator('select')))
+				.toEqual(['red', 'green']);
+		}
+	});
+
+	runInteractionTest({
+		title: 'should take tag remove buttons and clear button out of the tab order when disabled',
+		path,
+		example: 'Interaction',
+		async run({ content }) {
+			const select = content.getByTestId('disabled-tag-select');
+
+			const removeButtons = select.locator('.db-tab-remove-button');
+			await expect(removeButtons).toHaveCount(2);
+
+			const clearButton = select.locator('.db-custom-select-clear');
+			await expect(clearButton).toHaveCount(1);
+
+			// A disabled custom select must expose no keyboard- or
+			// pointer-reachable controls: the tag remove buttons and the clear
+			// button are taken out of the tab order and marked disabled.
+			for (const button of [
+				removeButtons.first(),
+				removeButtons.last(),
+				clearButton
+			]) {
+				await expect(button).toHaveAttribute('tabindex', '-1');
+			}
+		}
+	});
+
+	runInteractionTest({
 		title: 'should clear tags when values is reset to null, undefined or an empty array',
 		path,
 		example: 'Interaction',
 		async run({ content }) {
-			const summary = content
-				.getByTestId('values-reset-select')
-				.locator('summary');
+			const select = content.getByTestId('values-reset-select');
+			const selectedLabel = select.locator('.db-custom-select-label');
 
+			// When nothing is selected the component renders the placeholder
+			// instead of `.db-custom-select-label`, so a cleared selection
+			// means the label is removed from the DOM entirely. Assert on its
+			// absence rather than `.not.toContainText(...)`, which would fail
+			// with "element(s) not found" once the label is detached.
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 
 			await content.getByTestId('values-reset-null').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-undefined').click();
-			await expect(summary).not.toContainText('Option 1');
+			await expect(selectedLabel).toHaveCount(0);
 
 			await content.getByTestId('values-reset-set').click();
-			await expect(summary).toContainText('Option 1, Option 2');
+			await expect(selectedLabel).toContainText('Option 1, Option 2');
 			await content.getByTestId('values-reset-empty').click();
-			await expect(summary).not.toContainText('Option 1');
-			await expect(summary).not.toContainText('Option 2');
+			await expect(selectedLabel).toHaveCount(0);
 		}
 	});
 
@@ -304,11 +605,13 @@ test.describe('DBCustomSelect', () => {
 		example: 'Interaction',
 		async run({ content }) {
 			const select = content.getByTestId('single-select');
-			const summary = select.locator('summary');
 			const nativeSelect = select.locator('select');
 			const optionInput = select.locator('input[value="Option 3"]');
 
-			await expect(summary).not.toContainText('Option 3');
+			const placeholder = select.locator('.db-custom-select-placeholder');
+			const selectedLabel = select.locator('.db-custom-select-label');
+
+			await expect(placeholder).toBeVisible();
 			await expect(optionInput).not.toBeChecked();
 
 			// Browser autofill and password managers write to the hidden backing <select> and fire `change`; Playwright cannot trigger real autofill, so drive the exact same DOM path directly.
@@ -318,7 +621,8 @@ test.describe('DBCustomSelect', () => {
 			});
 
 			// The visible summary and the option state have to follow the native value instead of staying stale.
-			await expect(summary).toContainText('Option 3');
+			await expect(placeholder).not.toBeVisible();
+			await expect(selectedLabel).toContainText('Option 3');
 			await expect(optionInput).toBeChecked();
 
 			// And handleValidation() must not overwrite the autofilled value with a stale one on the way back.
@@ -336,7 +640,7 @@ test.describe('DBCustomSelect', () => {
 			project: () => !(process.env.showcase ?? '').startsWith('react')
 		},
 		async run({ content }) {
-			const summary = content.locator('summary');
+			const selectedLabel = content.locator('.db-custom-select-label');
 			const tags = content.locator('.db-tag');
 			const optionInputs = content.locator(
 				'.db-custom-select-list-item input[value]'
@@ -352,7 +656,12 @@ test.describe('DBCustomSelect', () => {
 			});
 			const selectionReadout = content.getByText('Selections by user: 0');
 
-			await expect(summary).not.toContainText('Germany');
+			// With no selection the component renders the placeholder, not
+			// `.db-custom-select-label`, so an empty selection means the label
+			// is detached. Assert `toHaveCount(0)` for the empty states instead
+			// of `.not.toContainText(...)`, which errors with "element(s) not
+			// found" on a missing element.
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -366,8 +675,8 @@ test.describe('DBCustomSelect', () => {
 
 			// Options and values change in the same render: the reported bug.
 			await loadOtherOptions.click();
-			await expect(summary).toContainText('Switzerland');
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toContainText('Switzerland');
+			await expect(selectedLabel).not.toContainText('Germany');
 			await expect(tags).toHaveCount(1);
 			await expect(tags).toContainText('Switzerland');
 			await expect(optionInputs).toHaveCount(2);
@@ -375,13 +684,13 @@ test.describe('DBCustomSelect', () => {
 			await expect(content.locator('input[value="de"]')).toHaveCount(0);
 
 			await clearOptionsAndSelection.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(0);
 			await expect(selectionReadout).toBeVisible();
 
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Germany');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(
@@ -391,7 +700,7 @@ test.describe('DBCustomSelect', () => {
 
 			await loadOtherOptions.click();
 			await restoreOptions.click();
-			await expect(summary).not.toContainText('Switzerland');
+			await expect(selectedLabel).toHaveCount(0);
 			await expect(tags).toHaveCount(0);
 			await expect(optionInputs).toHaveCount(2);
 			await expect(

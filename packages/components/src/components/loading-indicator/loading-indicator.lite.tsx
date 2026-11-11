@@ -365,6 +365,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 					clearTimeout(state._timeoutId);
 				}
 
+				// Cast the handle to the DOM number type (see model.ts / #7792).
 				const timeoutId = setTimeout(
 					() => {
 						state._timeoutId = undefined;
@@ -387,7 +388,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 								props.timeoutDuration ?? DEFAULT_LOADING_TIMEOUT
 							)
 				);
-				state._timeoutId = timeoutId;
+				state._timeoutId = timeoutId as unknown as number;
 
 				// Mirror the timer handle onto the DOM so the unmount cleanup
 				// can clear it even though the React unmount closure captures a
@@ -500,6 +501,7 @@ export default function DBLoadingIndicator(props: DBLoadingIndicatorProps) {
 				</progress>
 				<Show when={!getBoolean(props.indeterminate)}>
 					<span
+						class="db-loading-indicator-progress-text"
 						aria-hidden="true"
 						data-show-progress-text={getBooleanAsString(
 							props.showProgressText

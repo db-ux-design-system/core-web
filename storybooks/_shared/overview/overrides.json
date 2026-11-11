@@ -1,0 +1,41 @@
+{
+	"brand": {
+		"platformPath": false
+	},
+	"custom-button": {
+		"platformPath": false
+	},
+	"icon": {
+		"platformUrl": "https://design-system.deutschebahn.com/documentation/icons"
+	},
+	"page": {
+		"platformPath": false
+	},
+	"tab-item": {
+		"partOf": "tabs"
+	},
+	"tab-list": {
+		"partOf": "tabs"
+	},
+	"tab-panel": {
+		"partOf": "tabs"
+	},
+	"control-panel-actions": {
+		"partOf": "control-panel-desktop"
+	},
+	"control-panel-brand": {
+		"partOf": "control-panel-desktop"
+	},
+	"control-panel-meta": {
+		"partOf": "control-panel-desktop"
+	},
+	"control-panel-navigation": {
+		"partOf": "control-panel-desktop"
+	},
+	"control-panel-skip-navigation": {
+		"partOf": "control-panel-desktop"
+	},
+	"custom-select": {
+		"html": false
+	}
+}

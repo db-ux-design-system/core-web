@@ -12,7 +12,6 @@ allowBuilds:
   "@db-ux/db-theme": true
   "@db-ux/db-theme-fonts": true
   "@db-ux/db-theme-icons": true
-  "@db-ux/db-theme-illustrative-icons": true
   "@parcel/watcher": false
   accessibility-checker: false
   chromedriver: false
@@ -34,7 +33,6 @@ minimumReleaseAgeExclude:
   - "@db-ux/db-theme"
   - "@db-ux/db-theme-fonts"
   - "@db-ux/db-theme-icons"
-  - "@db-ux/db-theme-illustrative-icons"
   - got@11.8.5
   - marked@0.7.0 || 4.0.10
   - semver-regex@3.1.3 || 3.1.4
@@ -55,6 +53,7 @@ minimumReleaseAgeExclude:
   - fast-uri@3.1.5
   - image-size@2.0.3
   - nanoid@3.3.18
+  - node-forge@1.4.1
 
 overrides:
   # PostCSS patch releases ship type-incompatible .d.ts files; pnpm isolates
@@ -79,6 +78,14 @@ overrides:
   "esbuild@~0.28.0": 0.28.2
   serialize-javascript@>=7.1.1 <7.1.2: 7.1.2
   devalue@<=5.9.2: 5.9.3
+  # stylelint-config-standard-scss@17 still pins stylelint-config-standard@^40,
+  # which declares the `declaration-block-single-line-max-declarations` rule that
+  # stylelint 18 removed, so linting fails with "Unknown rule" under stylelint 18.
+  # stylelint-config-standard@41 is the stylelint-18-compatible release (and the
+  # one we already install directly), so force the scss wrapper's edge up to it.
+  # Scoped to the wrapper; drop this once stylelint-config-standard-scss ships a
+  # release that depends on stylelint-config-standard@^41.
+  "stylelint-config-standard-scss>stylelint-config-standard": "41.0.0"
   # Drop Nuxt DevTools (dev-only tool, not needed by the showcase). It is the sole
   # consumer of simple-git, whose only security-patched line (4.x) is published
   # incorrectly and is incompatible with Node's native type-stripping, which broke
@@ -87,9 +94,16 @@ overrides:
   # tries to import it.
   "nuxt>@nuxt/devtools": "-"
   source-map-js@>=1.0.0 <1.2.2: 1.2.2
+  body-parser@>=2.0.0 <2.4.0: 2.4.0
+  fast-uri@>=3.0.0 <3.1.9: 3.1.9
+  serialize-javascript@<7.1.3: 7.1.3
+  node-forge@<=1.4.0: 1.4.1
+  qs@>=6.7.0 <=6.16.0: 6.16.1
+  seroval@>=1.5.5 <1.6.10: 1.6.10
+  seroval@>=1.6.0 <1.6.11: 1.6.11
 
 catalog:
-  postcss: 8.5.30
-  webpack: 5.112.0
+  postcss: 8.5.32
+  webpack: 5.112.2
 
 saveExact: true

@@ -22,7 +22,16 @@ useMetadata({
 export default function BadgePlacement() {
 	return (
 		<Fragment>
-			<div class="badge-inline-container">
+			<div
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-sm)',
+					padding:
+						'var(--db-spacing-fixed-xs) var(--db-spacing-fixed-sm)',
+					backgroundColor:
+						'var(--db-adaptive-bg-basic-level-2-default)'
+				}}>
 				<span data-icon="x_placeholder">(Default) Inline</span>
 				<DBBadge size="small" emphasis="strong" semantic="critical">
 					Label

@@ -74,7 +74,7 @@ export type SemanticProps = {
 
 export type IconProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/documentation/icons)) to get displayed in front of the elements content.
 	 */
 	icon?: IconTypes;
 };
@@ -105,14 +105,14 @@ export type ShowIconTrailingProps = {
 
 export type IconLeadingProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/documentation/icons)) to get displayed in front of the elements content.
 	 */
 	iconLeading?: IconTypes;
 };
 
 export type IconTrailingProps = {
 	/**
-	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/core-web/review/main/foundations/icons/overview)) to get displayed in front of the elements content.
+	 * Define an icon by its identifier (like e.g. _user_, compare to [Icons](https://design-system.deutschebahn.com/documentation/icons)) to get displayed in front of the elements content.
 	 */
 	iconTrailing?: IconTypes;
 };
@@ -427,7 +427,6 @@ export type FormTextProps = {
 
 	/**
 	 * Adds shrinkwrap for input and textarea: https://developer.mozilla.org/en-US/docs/Web/CSS/field-sizing
-	 * Note: Only supported in Chromium browsers so far
 	 */
 	fieldSizing?: FieldSizingType;
 };
@@ -819,6 +818,32 @@ export type InnerCloseButtonProps = {
 	 * The closeButtonText attribute changes the text inside the close button.
 	 */
 	closeButtonText?: string;
+};
+
+export type DrawerHeaderSlotProps = {
+	/**
+	 * Text to pass in a headline for the drawer header.
+	 */
+	drawerHeaderText?: string;
+
+	/**
+	 * Slot to fully replace the drawer header, e.g. to add action elements or a
+	 * subtitle next to the close button. Used as a fallback when `drawerHeaderText`
+	 * is not set. When this slot is used, you must provide the close button
+	 * yourself (e.g. via `DBDrawerHeader`), and `closeButtonId` / `closeButtonText`
+	 * have no effect.
+	 *
+	 * Named `header` so it matches the `DBDrawer` `header` slot it forwards into:
+	 * the Stencil runtime cannot forward slotted content to a differently named
+	 * slot (`<slot name="a" slot="b">`), so the names are kept consistent across
+	 * the forwarding chain.
+	 */
+	header?: any;
+
+	/**
+	 * Disables the default drawer header and enables you to pass in a custom DBDrawerHeader
+	 */
+	showDrawerHeaderSlot?: string | boolean;
 };
 
 export type NavigationBackButtonProps = {

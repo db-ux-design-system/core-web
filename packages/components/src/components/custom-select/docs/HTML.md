@@ -22,100 +22,111 @@ For general installation and configuration take a look at the [components](https
 			<option value="Option 5">Option 5</option>
 		</select>
 		<label>Label</label>
-		<details>
-			Functional
-			<summary class="db-custom-select-form-field">
-				<!-- Add selected options here with JS-->
-			</summary>
-			<article
-				data-spacing="none"
-				class="db-custom-select-dropdown db-card"
-			>
-				<section class="db-custom-select-list">
-					<ul>
-						<li class="db-custom-select-list-item db-radio">
-							<label for="option-1">
-								<input
-									class="db-custom-select-list-item-checkbox"
-									id="option-1"
-									type="radio"
-									name="multi-select"
-									value="Option 1"
-									data-disable-focus="true"
-								/>
-								Option 1
-							</label>
-						</li>
-						<li class="db-custom-select-list-item db-radio">
-							<label for="option-2">
-								<input
-									class="db-custom-select-list-item-checkbox"
-									id="option-2"
-									type="radio"
-									name="multi-select"
-									value="Option 2"
-									data-disable-focus="true"
-								/>
-								Option 2
-							</label>
-						</li>
-						<li class="db-custom-select-list-item db-radio">
-							<label for="option-3">
-								<input
-									class="db-custom-select-list-item-checkbox"
-									id="option-3"
-									type="radio"
-									name="multi-select"
-									value="Option 3"
-									data-disable-focus="true"
-								/>
-								Option 3
-							</label>
-						</li>
-						<li class="db-custom-select-list-item db-radio">
-							<label for="option-4">
-								<input
-									class="db-custom-select-list-item-checkbox"
-									id="option-4"
-									type="radio"
-									name="multi-select"
-									value="Option 4"
-									data-disable-focus="true"
-								/>
-								Option 4
-							</label>
-						</li>
-						<li class="db-custom-select-list-item db-radio">
-							<label for="option-5">
-								<input
-									class="db-custom-select-list-item-checkbox"
-									id="option-5"
-									type="radio"
-									name="multi-select"
-									value="Option 5"
-									data-disable-focus="true"
-								/>
-								Option 5
-							</label>
-						</li>
-					</ul>
-				</section>
-				<div>
-					<button
-						class="db-button"
-						type="button"
-						data-icon="cross"
-						data-size="small"
-						data-width="full"
-						data-variant="ghost"
-					>
-						Close
-					</button>
-				</div>
-			</article>
-		</details>
-		<span aria-hidden="true">Placeholder</span
-		><span class="db-infotext" data-semantic="successful" data-size="small"
+		<div class="db-custom-select-form-field">
+			<details>
+				<summary class="db-custom-select-summary"></summary>
+				<article
+					data-spacing="none"
+					class="db-custom-select-dropdown db-card"
+				>
+					<section class="db-custom-select-list">
+						<ul>
+							<li class="db-custom-select-list-item db-radio">
+								<label for="option-1">
+									<input
+										class="db-custom-select-list-item-checkbox"
+										id="option-1"
+										type="radio"
+										name="multi-select"
+										value="Option 1"
+										data-disable-focus="true"
+									/>
+									Option 1
+								</label>
+							</li>
+							<li class="db-custom-select-list-item db-radio">
+								<label for="option-2">
+									<input
+										class="db-custom-select-list-item-checkbox"
+										id="option-2"
+										type="radio"
+										name="multi-select"
+										value="Option 2"
+										data-disable-focus="true"
+									/>
+									Option 2
+								</label>
+							</li>
+							<li class="db-custom-select-list-item db-radio">
+								<label for="option-3">
+									<input
+										class="db-custom-select-list-item-checkbox"
+										id="option-3"
+										type="radio"
+										name="multi-select"
+										value="Option 3"
+										data-disable-focus="true"
+									/>
+									Option 3
+								</label>
+							</li>
+							<li class="db-custom-select-list-item db-radio">
+								<label for="option-4">
+									<input
+										class="db-custom-select-list-item-checkbox"
+										id="option-4"
+										type="radio"
+										name="multi-select"
+										value="Option 4"
+										data-disable-focus="true"
+									/>
+									Option 4
+								</label>
+							</li>
+							<li class="db-custom-select-list-item db-radio">
+								<label for="option-5">
+									<input
+										class="db-custom-select-list-item-checkbox"
+										id="option-5"
+										type="radio"
+										name="multi-select"
+										value="Option 5"
+										data-disable-focus="true"
+									/>
+									Option 5
+								</label>
+							</li>
+						</ul>
+					</section>
+					<div>
+						<button
+							class="db-button"
+							type="button"
+							data-icon="cross"
+							data-size="small"
+							data-width="full"
+							data-variant="ghost"
+						>
+							Close
+						</button>
+					</div>
+				</article>
+			</details>
+			<!--
+				Add the visible selection here with JS. When nothing is selected,
+				render the placeholder below; when there is a selection, replace it
+				with the selected labels/tags and the clear button, e.g.:
+				<span class="db-custom-select-label" id="...-selected-labels">Option 1</span>
+				<button type="button" class="db-button db-custom-select-clear" data-icon="cross" data-variant="ghost" data-no-text="true" data-size="small">Clear selection</button>
+			-->
+			<span
+				class="db-custom-select-placeholder"
+				data-placeholder="Placeholder"
+				aria-hidden="true"
+				id="custom-select-placeholder"
+			></span>
+		</div>
+		<span class="db-infotext" data-semantic="successful" data-size="small"
 			>TODO: Add a validMessage</span
 		><span class="db-infotext" data-semantic="critical" data-size="small"
 			>TODO: Add an invalidMessage</span

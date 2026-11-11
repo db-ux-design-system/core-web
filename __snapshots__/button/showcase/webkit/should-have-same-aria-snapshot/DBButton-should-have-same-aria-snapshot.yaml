@@ -36,3 +36,7 @@
   - text: not clicked
   - button "Command"
   - button "Default"
+  - link "Form Attributes"
+  - button "Default submit"
+  - button "Override submit target"
+  - button "Reset the form above"

@@ -11,21 +11,21 @@
 | ---------- | :----: | --------- | ----------- |
 | `cmp-card` |   🔁   | `db-card` |             |
 
-### variant
+### behavior
 
-| Before    | Status |   After   | Description                                                                                                                    |
-| --------- | :----: | :-------: | ------------------------------------------------------------------------------------------------------------------------------ |
-| `variant` |   🔁   | `variant` | There is no default `header`/`content` anymore. Now you can change the card with `variant="interactive"` to act like a button. |
-| `header`  |   ❌   |    ❌     | Add your own content via children/slot.                                                                                        |
-| `content` |   ❌   |    ❌     | Add your own content via children/slot.                                                                                        |
+| Before    | Status |   After    | Description                                                                                             |
+| --------- | :----: | :--------: | ------------------------------------------------------------------------------------------------------- |
+| `variant` |   🔁   | `behavior` | There is no default `header`/`content` anymore. Use `behavior="interactive"` to make the card a button. |
+| `header`  |   ❌   |     ❌     | Add your own content via children/slot.                                                                 |
+| `content` |   ❌   |     ❌     | Add your own content via children/slot.                                                                 |
 
 ### image
 
-| Before                   | Status | After       | Description |
-| ------------------------ | :----: | ----------- | ----------- |
-| `alt`                    |   🔁   | `imgAlt`    |             |
-| `image`                  |   🔁   | `imgSrc`    |             |
-|                          |   🆕   | `imgWidth`  |             |
-|                          |   🆕   | `imgHeight` |             |
-| `illustration`           |   ❌   | ❌          |             |
-| `uiCoreIllustrationPath` |   ❌   | ❌          |             |
+There are no built-in image props anymore. Render your own `<img>` inside the card via children/slot.
+
+| Before                   | Status | After | Description                              |
+| ------------------------ | :----: | ----- | ---------------------------------------- |
+| `alt`                    |   ❌   | ❌    | Render your own `<img>` inside the card. |
+| `image`                  |   ❌   | ❌    | Render your own `<img>` inside the card. |
+| `illustration`           |   ❌   | ❌    |                                          |
+| `uiCoreIllustrationPath` |   ❌   | ❌    |                                          |

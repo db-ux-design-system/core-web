@@ -20,5 +20,8 @@ export const StorybookLoadingIndicatorArgTypes: Record<string, InputType> = {
 	showLabel: { control: 'boolean' },
 	showProgressText: { control: 'boolean' },
 	overlay: { control: 'boolean' },
-	delay: { control: 'select', options: ['none', 'slow', 'fast'] }
+	delay: { control: 'select', options: ['none', 'slow', 'fast'] },
+	// Explicit action: the examples fire onTimeout while they render, which
+	// Storybook does not allow for implicit actions (argTypesRegex).
+	onTimeout: { action: 'onTimeout' }
 };
