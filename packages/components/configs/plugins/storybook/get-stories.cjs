@@ -60,6 +60,38 @@ const replaceChildren = (node, target) => {
 };
 
 /**
+ * Drops a TypeScript cast around a style object
+ * (`style={{ '--db-table-columns': '21' } as any}`), which examples need for
+ * custom properties. With the cast, Mitosis moves the style into a method of
+ * the component (`[ngStyle]="objSpread_style_…()"`); the Angular stories
+ * render only the template, without that method. The template needs no types.
+ *
+ * @param {import('@builder.io/mitosis').MitosisNode} node - Node to process
+ */
+const removeStyleCasts = (node, json) => {
+	const style = node.bindings?.style;
+	if (typeof style?.code === 'string') {
+		// Mitosis has already replaced the binding with the call of its getter.
+		const getter = /^(objSpread_style_\w+)\(\)$/.exec(style.code.trim());
+		const getterCode = getter && json.state?.[getter[1]]?.code;
+		const code =
+			typeof getterCode === 'string'
+				? /\{\s*return\s+([\s\S]*)\}\s*$/.exec(getterCode)?.[1]
+				: style.code;
+		const literal = code
+			?.trim()
+			.replace(/^\(?\s*(\{[\s\S]*\})\s*\)?\s+as\s+[\w.]+$/, '$1');
+		if (literal?.startsWith('{') && !literal.includes('...')) {
+			style.code = literal;
+		}
+	}
+
+	for (const child of node.children ?? []) {
+		removeStyleCasts(child, json);
+	}
+};
+
+/**
  * Processes event bindings and adds them to args
  * @param {import('@builder.io/mitosis').MitosisComponent} json - MitosisComponent json
  * @param {import('@builder.io/mitosis').MitosisNode} example - Example object
@@ -300,6 +332,9 @@ const getStories = ({
 			foundComponent.bindings = {};
 
 			replaceChildren(example, target);
+			if (target === 'angular') {
+				removeStyleCasts(example, json);
+			}
 
 			let template = '';
 			if (target === 'angular') {

@@ -237,6 +237,9 @@ importers:
       '@playwright/test':
         specifier: 1.65.0
         version: 1.65.0
+      '@types/node':
+        specifier: 26.6.6
+        version: 26.6.6
       '@typescript-eslint/eslint-plugin':
         specifier: 8.72.1
         version: 8.72.1(@typescript-eslint/parser@8.72.1(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3)
@@ -261,6 +264,9 @@ importers:
       eslint-plugin-package-json:
         specifier: 1.14.0
         version: 1.14.0(@eslint/json@2.1.0)(eslint@10.14.0(jiti@2.7.0)(supports-color@10.2.2))
+      http-server:
+        specifier: 14.1.1
+        version: 14.1.1(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       husky:
         specifier: 9.1.7
         version: 9.1.7

@@ -16,7 +16,18 @@ function getAbsolutePath(value: string): any {
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: ['@storybook/addon-docs'],
-	staticDirs: ['../public'],
+	staticDirs: [
+		'../public',
+		// Logo and fonts of the Storybook UI, see manager-head.html.
+		{
+			from: '../../../packages/foundations/assets/images',
+			to: '/brand/images'
+		},
+		{
+			from: '../node_modules/@db-ux/db-theme-fonts/build/assets',
+			to: '/brand/fonts'
+		}
+	],
 	framework: {
 		name: getAbsolutePath('@storybook/vue3-vite'),
 		options: {
