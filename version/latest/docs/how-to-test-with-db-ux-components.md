@@ -16,7 +16,7 @@ This guide provides recommendations for testing applications that use DB UX Desi
 
 ### When Testing Components vs. Applications
 
-This guide focuses on testing **your applications** that use DB UX components, not testing the components themselves. For component development testing, see [packages/components/test/README.md](../packages/components/test/README.md).
+This guide focuses on testing **your applications** that use DB UX components, not testing the components themselves. For component development testing, see [Tests in docs/development.md](development.md#tests).
 
 ### Global Setup Considerations
 
@@ -593,4 +593,4 @@ import type { DBButtonProps } from "@db-ux/ngx-core-components";
 For more information about component development and internal testing, see:
 
 - [How to develop a component](./how-to-develop-a-component.md)
-- [Component testing README](../packages/components/test/README.md)
+- [Component tests of the design system](development.md#tests)
