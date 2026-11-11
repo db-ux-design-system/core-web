@@ -1,0 +1,433 @@
+{
+	"accordion": {
+		"title": "Accordion",
+		"description": "Accordions group content into collapsible sections to save space and let users reveal details progressively. It is best for optional information and structured content where users do not need to see everything at once.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/accordion"
+	},
+	"backdrop": {
+		"title": "Backdrop",
+		"description": "Backdrop is a helper component that dims content behind an overlay to direct attention to the foreground (e.g., modal, dialog, drawer). It separates active content from background content and can optionally block interaction with the background.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/backdrop"
+	},
+	"badge": {
+		"title": "Badge",
+		"description": "The Badge component is used to display short, contextual information such as status, category, or metadata in close relation to another element.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/badge"
+	},
+	"breadcrumb": {
+		"title": "Breadcrumb",
+		"description": "The breadcrumb shows the position of the current page within the site hierarchy and opens the path back to the higher-level pages.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/breadcrumb/breadcrumb"
+	},
+	"breadcrumb-item": {
+		"title": "Breadcrumb Item",
+		"description": "The breadcrumb item represents one level within the breadcrumb and links to its page.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/breadcrumb/breadcrumb-item"
+	},
+	"breadcrumb-popover-item": {
+		"title": "Breadcrumb Popover Item",
+		"description": "The breadcrumb popover item collapses the intermediate levels of the breadcrumb into a truncation and shows them in a popover on hover.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/breadcrumb/breadcrumb-popover-item"
+	},
+	"button": {
+		"title": "Button",
+		"description": "Buttons initiate actions and confirm decisions. Use them to guide users through key tasks and flows.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/button"
+	},
+	"button-group": {
+		"title": "Button Group",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/button-group"
+	},
+	"calendar": {
+		"title": "Calendar",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/calendar"
+	},
+	"card": {
+		"title": "Card",
+		"description": "Cards group related content into a contained surface to improve scanning and create clear visual structure. They can be static for content grouping or interactive as an entry point to deeper content, but should stay simple and consistent.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/card"
+	},
+	"checkbox": {
+		"title": "Checkbox",
+		"description": "Checkbox lets users select one or more independent options and clearly shows the current selection state. Use it in forms, filters, and settings where multiple choices can apply at the same time.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/checkbox"
+	},
+	"container": {
+		"title": "Container",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/container"
+	},
+	"control-panel": {
+		"title": "Control Panel",
+		"description": "The Control Panel Desktop provides the primary navigation bar for desktop applications within the Shell. It is available in two positions: Top as a horizontal bar and Left as a vertical sidebar. Choosing between the two positions is covered by Shell Desktop.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/desktop"
+	},
+	"control-panel-actions": {
+		"title": "Control Panel Actions",
+		"description": "Control Panel Actions comprises the two independent slot components Actions 1 and Actions 2 for global actions in the Control Panel.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/actions"
+	},
+	"control-panel-brand": {
+		"title": "Control Panel Brand",
+		"description": "Control Panel Brand displays the logo and an optional application name within the Control Panel. The design provides three variants: Custom, Logozusatz, and Short.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/brand"
+	},
+	"control-panel-desktop": {
+		"title": "Control Panel Desktop",
+		"description": "The Control Panel Desktop provides the primary navigation bar for desktop applications within the Shell. It is available in two positions: Top as a horizontal bar and Left as a vertical sidebar. Choosing between the two positions is covered by Shell Desktop.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/desktop"
+	},
+	"control-panel-flat-icon": {
+		"title": "Control Panel Flat Icon",
+		"description": "The Control Panel Flat Icon presents equally weighted top-level navigation destinations in a flat icon navigation. It is available for desktop and mobile and is designed for quick access.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/flat-icon"
+	},
+	"control-panel-meta": {
+		"title": "Control Panel Meta",
+		"description": "Control Panel Meta is the area within the Control Panel for supplementary content with low priority.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/meta"
+	},
+	"control-panel-mobile": {
+		"title": "Control Panel Mobile",
+		"description": "The Control Panel Mobile provides the primary navigation bar for mobile applications within the Shell. It is available in the Top and Bottom positions and opens the full navigation in a Drawer. Choosing the position is covered by Shell Mobile, choosing the navigation variant by the Control Panel Navigation; Flat Icon is documented as a separate Control Panel variant.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/mobile"
+	},
+	"control-panel-navigation": {
+		"title": "Control Panel Navigation",
+		"description": "Control Panel Navigation is the navigation container within the Control Panel and the Shell Sub Navigation. It holds Navigation Items and is available in the Popover, Tree, and Drill Down variants.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/navigation"
+	},
+	"control-panel-navigation-item": {
+		"title": "Control Panel Navigation Item",
+		"description": "Control Panel Navigation Item is the individual navigation entry within the Control Panel Navigation. Navigation Item Groups are available for sub-navigation.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/control-panel/navigation-item"
+	},
+	"custom-select": {
+		"title": "Custom Select",
+		"description": "Custom Select is an advanced dropdown for choosing one or multiple predefined options with support for search, grouping, and showing selected values. Use it when a basic select is not sufficient due to option volume, selection complexity, or the need for better scanning and management of chosen items.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/custom-select"
+	},
+	"dialog": {
+		"title": "Dialog",
+		"description": "The dialog focuses attention on a single task and lets people complete or discard it before moving on.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/dialog/dialog"
+	},
+	"dialog-footer": {
+		"title": "Dialog Footer",
+		"description": "The dialog footer forms the lower area of the dialog, holds the actions for completing or cancelling as well as permanently visible notes, and stays visible while scrolling.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/dialog/dialog-footer"
+	},
+	"dialog-header": {
+		"title": "Dialog Header",
+		"description": "The dialog header forms the upper area of the dialog and holds the title, the close button and additional content in the start and end slot.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/dialog/dialog-header"
+	},
+	"divider": {
+		"title": "Divider",
+		"description": "Divider is a thin horizontal or vertical line that separates UI elements into logical sections and improves layout clarity. It should be used sparingly and together with spacing and hierarchy to avoid visual clutter.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/divider"
+	},
+	"drawer": {
+		"title": "Drawer",
+		"description": "The drawer appears from one edge of the viewport and shows additional content or simple interactions while the current context stays in place.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/drawer/drawer"
+	},
+	"drawer-footer": {
+		"title": "Drawer Footer",
+		"description": "The drawer footer forms the lower area of the drawer, holds the actions and their related notes, and stays visible while scrolling.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/drawer/drawer-footer"
+	},
+	"drawer-header": {
+		"title": "Drawer Header",
+		"description": "The drawer header forms the upper area of the drawer and holds the title, the close button and additional content in the start and end slot.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/drawer/drawer-header"
+	},
+	"dynamic-button": {
+		"title": "Dynamic Button",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/dynamic-button"
+	},
+	"footer": {
+		"title": "Footer",
+		"description": "The Footer forms the bottom area of the layout and bundles secondary navigation, legal links, and meta information.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/footer/footer"
+	},
+	"footer-content": {
+		"title": "Footer Content",
+		"description": "Footer Content forms the upper area of the Footer and holds secondary navigation as well as further, non-navigational content.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/footer/footer-content"
+	},
+	"footer-meta": {
+		"title": "Footer Meta",
+		"description": "Footer Meta forms the lower area of the Footer and holds the copyright notice and the application's legal links.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/footer/footer-meta"
+	},
+	"grid": {
+		"title": "Grid",
+		"description": "Grid divides a container into multiple columns and positions elements within them. Use it for layouts that go beyond simple stacking.",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/grid"
+	},
+	"header": {
+		"title": "Header",
+		"description": "Header defines the top area of a page and provides consistent access to brand identity, primary navigation, and optional actions. It anchors orientation and supports navigation patterns across responsive layouts, with optional meta navigation above the main bar.",
+		"status": "deprecated",
+		"url": "https://design-system.deutschebahn.com/documentation/components/header"
+	},
+	"heading": {
+		"title": "Heading",
+		"description": "Heading structures content with six semantic levels (H1–H6). Custom Heading adds start and end slots for additional elements like links or badges alongside the text.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/heading"
+	},
+	"infotext": {
+		"title": "Infotext",
+		"description": "Infotext provides a clear, compact way to communicate short supporting information or guidance directly in the interface. It helps users understand context, avoid errors, or interpret states without interrupting the flow.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/infotext"
+	},
+	"input": {
+		"title": "Input",
+		"description": "Input captures short, single-line user text entries in forms and dialogs. It should be predictable, clearly labeled, and provide guidance and validation feedback when needed.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/input"
+	},
+	"link": {
+		"title": "Link",
+		"description": "The Link component is used for navigation to other pages, sections, or external destinations and visually indicates a navigational affordance within the interface.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/link"
+	},
+	"list": {
+		"title": "List",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/list"
+	},
+	"loading-indicator": {
+		"title": "Loading Indicator",
+		"description": "The Loading Indicator provides visual feedback that content or a process is loading. It is available as a circular indicator and as a bar, each in a determinate and an indeterminate variant.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/loading-indicator"
+	},
+	"logo": {
+		"title": "Logo",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/logo"
+	},
+	"menu": {
+		"title": "Menu",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/menu"
+	},
+	"navigation": {
+		"title": "Navigation",
+		"description": "Navigation provides a set of destinations that help users move through an application consistently across desktop and mobile. It supports different orientations and responsive behaviors while clearly indicating the current location and available paths.",
+		"status": "deprecated",
+		"url": "https://design-system.deutschebahn.com/documentation/components/navigation"
+	},
+	"navigation-item": {
+		"title": "Navigation Item",
+		"description": "Navigation Item is a subcomponent used within Navigation to represent individual destinations. It supports icons, active states, disabled states, and nested sub-navigation for hierarchical structures.",
+		"status": "deprecated",
+		"url": "https://design-system.deutschebahn.com/documentation/components/navigation-item"
+	},
+	"notification": {
+		"title": "Notification",
+		"description": "Notification communicates a brief message about an event, state change, or system feedback without blocking the user. It should be timely, concise, and clearly indicate intent (info, success, warning, error) with predictable dismissal behavior.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/notification"
+	},
+	"pagination": {
+		"title": "Pagination",
+		"description": "Pagination splits a large data set into pages and lets people move between those pages.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/pagination/pagination"
+	},
+	"pagination-item": {
+		"title": "Pagination Item",
+		"description": "A Pagination Item is a single page within a Pagination.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/pagination/pagination-item"
+	},
+	"paragraph": {
+		"title": "Paragraph",
+		"description": "The paragraph renders a continuous block of body text in which single words or passages can be emphasized.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/paragraph"
+	},
+	"popover": {
+		"title": "Popover",
+		"description": "Popover is a floating container anchored to a trigger that reveals additional, contextual content on click or hover. It supports richer content than a tooltip and can include actions, but should remain lightweight and easy to dismiss.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/popover"
+	},
+	"pulse": {
+		"title": "Pulse",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/pulse"
+	},
+	"radio": {
+		"title": "Radio",
+		"description": "Radio lets users select exactly one option from a set of mutually exclusive choices. It supports clear comparison between options and should be used when seeing all choices at once helps users decide.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/radio"
+	},
+	"section": {
+		"title": "Section",
+		"description": "Section separates and structures content areas on a page by applying consistent spacing and optional width constraints. It helps create clear visual grouping and rhythm without manually managing margins for each block.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/section"
+	},
+	"segmented-button": {
+		"title": "Segmented Button",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/segmented-button"
+	},
+	"select": {
+		"title": "Select",
+		"description": "Select lets users choose one option from a predefined list via a dropdown. It is best when options are mutually exclusive and users don't need to see all choices at once, while still providing clear labeling, guidance, and validation.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/select"
+	},
+	"shell": {
+		"title": "Shell",
+		"description": "The Shell Desktop component provides the outer layout structure for desktop web applications. It keeps the Control Panel permanently visible and scrolls the content area only.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/shell/desktop"
+	},
+	"shell-content": {
+		"title": "Shell Content",
+		"description": "The Shell Content component forms the scrollable main content area of the Shell and divides it into a Start Slot, Children, and End Slot.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/shell/content"
+	},
+	"shell-desktop": {
+		"title": "Shell Desktop",
+		"description": "The Shell Desktop component provides the outer layout structure for desktop web applications. It keeps the Control Panel permanently visible and scrolls the content area only.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/shell/desktop"
+	},
+	"shell-mobile": {
+		"title": "Shell Mobile",
+		"description": "The Shell Mobile component provides the outer layout structure for mobile web applications. It supports different Control Panel positions and uses a Drawer as the default main navigation.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/shell/mobile"
+	},
+	"shell-sub-navigation": {
+		"title": "Shell Sub Navigation",
+		"description": "The Shell Sub Navigation component provides the sub-level navigation within the Shell that belongs to a Control Panel Navigation Item. It supports a horizontal orientation (Top) and a vertical orientation (Left).",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/shell/sub-navigation"
+	},
+	"split-button": {
+		"title": "Split Button",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/split-button"
+	},
+	"stack": {
+		"title": "Stack",
+		"description": "Stack arranges child elements in a vertical or horizontal layout with consistent spacing. Use it to create structured layouts without writing custom CSS.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/stack"
+	},
+	"switch": {
+		"title": "Switch",
+		"description": "Switch toggles a setting between two states (on/off) and applies the change immediately. It is best for enabling or disabling features, preferences, or behaviors where users expect instant feedback.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/switch"
+	},
+	"tab-item": {
+		"title": "Tab Item",
+		"description": "The Tab Item subcomponent represents a single clickable tab within the Tab List. It displays a label and optionally additional content through the Children slot.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/tabs/tab-item"
+	},
+	"tab-list": {
+		"title": "Tab List",
+		"description": "The Tab List subcomponent provides the container that holds all Tab Items and manages their layout, overflow behavior, and alignment.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/tabs/tab-list"
+	},
+	"tab-panel": {
+		"title": "Tab Panel",
+		"description": "The Tab Panel subcomponent provides the content area that displays when a corresponding tab is selected. Only one panel is visible at a time.",
+		"status": "sub",
+		"url": "https://design-system.deutschebahn.com/documentation/components/tabs/tab-panel"
+	},
+	"table": {
+		"title": "Table",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/table"
+	},
+	"tabs": {
+		"title": "Tabs",
+		"description": "Tabs organize related content into separate views within the same context, allowing users to switch between sections without leaving the page.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/tabs/tabs"
+	},
+	"tag": {
+		"title": "Tag",
+		"description": "Tag is a compact label used to categorize, highlight attributes, or represent selections. It can be static for display or interactive for filtering and selection, with optional removal where appropriate.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/tag"
+	},
+	"text-group": {
+		"title": "Text Group",
+		"description": "The text group stacks several text blocks and derives the spacing between them automatically from their respective line height.",
+		"status": "beta",
+		"url": "https://design-system.deutschebahn.com/documentation/components/text-group"
+	},
+	"textarea": {
+		"title": "Textarea",
+		"description": "Textarea lets users enter and review longer, multi-line text in forms and dialogs. It should be clearly labeled, sized to the expected content, and provide helpful guidance and validation feedback when needed.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/textarea"
+	},
+	"toggle-button": {
+		"title": "Toggle Button",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/toggle-button"
+	},
+	"tooltip": {
+		"title": "Tooltip",
+		"description": "Tooltip provides brief, contextual information on hover or focus without interrupting the user flow. It is best for clarifying icons, truncated text, or unfamiliar UI controls, and should not contain critical or lengthy content.",
+		"status": "stable",
+		"url": "https://design-system.deutschebahn.com/documentation/components/tooltip"
+	},
+	"upload": {
+		"title": "Upload",
+		"status": "concept",
+		"url": "https://design-system.deutschebahn.com/documentation/components/upload"
+	}
+}

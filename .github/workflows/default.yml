@@ -113,6 +113,16 @@ jobs:
       baseUrl: ${{ needs.init.outputs.baseUrl }}
     secrets: inherit
 
+  test-storybooks:
+    # Changeset release PRs only bump versions; checks-done skips them anyway.
+    if: ${{ needs.init.outputs.isChangesetRelease != 'true' }}
+    uses: $/.github/workflows/02-e2e-storybooks.yml
+    needs: [build-storybooks, build-outputs, init]
+    secrets: inherit
+    with:
+      version: ${{ needs.init.outputs.playwrightVersion }}
+      baseUrl: ${{ needs.init.outputs.baseUrl }}
+
   build-showcase-stencil:
     uses: $/.github/workflows/01-build-showcases.yml
     needs: [build-packages, init]
@@ -331,6 +341,7 @@ jobs:
             exit 0
           fi
           resultBuildStorybooks="${{ needs.build-storybooks.result }}"
+          resultTestStorybooks="${{ needs.test-storybooks.result }}"
           resultBuildShowcaseStencil="${{ needs.build-showcase-stencil.result }}"
           resultBuildShowcaseAngular="${{ needs.build-showcase-angular.result }}"
           resultBuildShowcaseReact="${{ needs.build-showcase-react.result }}"
@@ -349,6 +360,7 @@ jobs:
           resultAuditFix="${{ needs.audit-fix.result }}"
 
           echo "resultBuildStorybooks: $resultBuildStorybooks"
+          echo "resultTestStorybooks: $resultTestStorybooks"
           echo "resultBuildShowcaseStencil: $resultBuildShowcaseStencil"
           echo "resultBuildShowcaseAngular: $resultBuildShowcaseAngular"
           echo "resultBuildShowcaseReact: $resultBuildShowcaseReact"
@@ -365,6 +377,7 @@ jobs:
           echo "resultTestScreenReader: $resultTestScreenReader"
 
           if [[ $resultBuildStorybooks == "success" ]] && \
+             [[ $resultTestStorybooks == "success" || $resultTestStorybooks == "skipped" ]] && \
              [[ $resultTestFoundations == "success" ]] && \
              [[ $resultTestFigmaCodeConnect == "success" || $resultTestFigmaCodeConnect == "skipped" ]] && \
              [[ $resultTestScreenReader == "success" || (github.event_name != 'release' && $resultTestScreenReader == "skipped") ]] && \
@@ -390,6 +403,7 @@ jobs:
     needs:
       [
         build-storybooks,
+        test-storybooks,
         build-showcase-stencil,
         build-showcase-angular,
         build-showcase-react,

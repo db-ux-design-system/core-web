@@ -40,6 +40,7 @@
     "build-storybooks": "run-p build-storybooks:*",
     "build-storybooks:angular": "pnpm --filter angular-storybook run build",
     "build-storybooks:composition": "pnpm --filter composition-storybook run build",
+    "build-storybooks:html": "pnpm --filter html-storybook run build",
     "build-storybooks:react": "pnpm --filter react-storybook run build",
     "build-storybooks:stencil": "pnpm --filter stencil-storybook run build",
     "build-storybooks:vue": "pnpm --filter vue-storybook run build",

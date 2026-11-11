@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/composition-storybook",
-    "storybook": "storybook dev -p 6001"
+    "build": "node ../_shared/foundations/generate-test-table.ts && storybook build --output-dir ../../build-storybooks/composition-storybook",
+    "storybook": "node ../_shared/foundations/generate-test-table.ts && storybook dev -p 6001"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
