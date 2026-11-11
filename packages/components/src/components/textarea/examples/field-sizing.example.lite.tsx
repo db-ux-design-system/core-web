@@ -26,10 +26,12 @@ export default function TextareaFieldSizing() {
 				/>
 			</div>
 			<div
-				style={{
-					width: '300px',
-					'--db-form-component-min-block-size': '4lh'
-				}}>
+				style={
+					{
+						width: '300px',
+						'--db-form-component-min-block-size': '4lh'
+					} as any
+				}>
 				<DBTextarea
 					label="Label"
 					fieldSizing="content"
