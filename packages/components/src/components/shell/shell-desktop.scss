@@ -97,14 +97,19 @@
 }
 
 .db-shell {
-	// DESKTOP
-	@include screen-sizes.screen-min-max(
-		(
-			min: "sm"
-		)
-	) {
+	// DESKTOP (overrides the mobile baseline in shell-mobile.scss above the
+	// customizable breakpoint; see screen-sizes.screen-desktop-min)
+	@include screen-sizes.screen-desktop-min {
 		@include control-panel-top;
 		@include control-panel-left;
+
+		// Re-show the desktop control panel. The mobile baseline
+		// (shell-mobile.scss) hides it unconditionally, so the desktop branch
+		// must restore it above the breakpoint. `grid` matches the value
+		// control-panel-desktop.scss sets on the element itself.
+		#{string.unquote(custom-elements.$control-panel-desktop)} {
+			display: grid;
+		}
 
 		// Hide mobile control panel
 		#{string.unquote(custom-elements.$control-panel-mobile)} {

@@ -368,6 +368,43 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).not.toContain('@property --db-neutral-0');
 		});
 
+		it('should keep @property for the band token only referenced by a container style query', async () => {
+			// Regression: --db-breakpoint is registered via @property and read
+			// only by a container style query (not a var() in a declaration), so
+			// it never lands in referencedVars. Its prefix marks it dynamic, so
+			// its registration must survive and its per-band declarations must
+			// stay live - otherwise the browser cannot compare the token and the
+			// DBShell breakpoint switch freezes in the mobile state.
+			const input = `
+@layer db-ux {
+	@property --db-breakpoint {
+		syntax: "*";
+		inherits: true;
+		initial-value: "mobile";
+	}
+	:root {
+		--db-breakpoint: "mobile";
+	}
+	@media (width >= 64em) {
+		:root {
+			--db-breakpoint: "desktop";
+		}
+	}
+	@container style(--db-breakpoint: "desktop") {
+		.db-shell > .db-control-panel-desktop {
+			display: grid;
+		}
+	}
+}`;
+			const output = await run(input);
+			// Registration survives
+			expect(output).toContain('@property --db-breakpoint');
+			// The per-band override stays live - NOT inlined to its default
+			expect(output).toContain('--db-breakpoint: "desktop"');
+			// The container style query is untouched
+			expect(output).toContain('@container style(');
+		});
+
 		it('should keep @property rules when removeAtProperty is false', async () => {
 			const input = `
 @property --db-neutral-0 {
@@ -909,6 +946,31 @@ describe('postcss-flatten-db-variables', () => {
 			expect(output).toContain(
 				'--db-adaptive-on-bg-basic-emphasis-60-default: #c3c7cd'
 			);
+		});
+
+		it('should treat the layout band token as dynamic by default (never inlined)', async () => {
+			// Even though it is declared at :root (plus per-band media queries),
+			// the default dynamicPrefixes keep --db-breakpoint live so a consumer
+			// can override a DBShell/DBControlPanel switch point at runtime.
+			const input = `
+:root {
+	--db-breakpoint: "mobile";
+}
+@media (width >= 48em) {
+	:root {
+		--db-breakpoint: "tablet";
+	}
+}
+@media (width >= 64em) {
+	:root {
+		--db-breakpoint: "desktop";
+	}
+}`;
+			const output = await run(input);
+			// Each per-band declaration stays live, none collapsed away
+			expect(output).toContain('--db-breakpoint: "mobile"');
+			expect(output).toContain('--db-breakpoint: "tablet"');
+			expect(output).toContain('--db-breakpoint: "desktop"');
 		});
 
 		it('should allow custom dynamicPrefixes', async () => {
