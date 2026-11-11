@@ -98,6 +98,11 @@ export default function TableShowcase(props: PatternhubProps) {
 					<TableColumnCount />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Text">
+				<CardWrapperShowcase>
+					<TableText />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
 	);
 }
