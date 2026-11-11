@@ -219,15 +219,23 @@ export const getDefaultScreenshotTest = ({
 	 * framework-agnostic (shared across react/vue/angular/stencil), so all
 	 * showcases must produce the same rendering per mode.
 	 *
-	 * There are only TWO baseline images: `legacy` and `adaptive`. The
-	 * `legacy-adaptive` mode (both bundles loaded) MUST render identically to
-	 * pure `adaptive` - a `data-adaptive-coloring` page looks the same whether
-	 * or not the legacy bundle is also loaded, UNLESS a legacy color leaks
-	 * through. Instead of its own baseline, `legacy-adaptive` is compared
-	 * against the SAME `adaptive.png` within the adaptive test (a second
-	 * `toHaveScreenshot('adaptive.png')` call). So regeneration only produces
-	 * the `adaptive` image, and the second assertion fails if any old color
-	 * leaks into the combined bundle.
+	 * There are only TWO baselines: the pre-existing legacy snapshot and a new
+	 * `adaptive.png`.
+	 *
+	 * Legacy keeps the ORIGINAL snapshot name (Playwright's auto-generated
+	 * `{testName}` from the unsuffixed `should match screenshot` title, e.g.
+	 * `DBAccordion-should-match-screenshot`) so the already-committed baselines
+	 * stay valid and a legacy regression is still detected against them.
+	 *
+	 * Adaptive writes a NEW `adaptive.png`. The `legacy-adaptive` mode (both
+	 * bundles loaded) MUST render identically to pure `adaptive` - a
+	 * `data-adaptive-coloring` page looks the same whether or not the legacy
+	 * bundle is also loaded, UNLESS a legacy color leaks through, because
+	 * adaptive is meant to override legacy. Instead of its own baseline,
+	 * `legacy-adaptive` is compared against the SAME `adaptive.png` within the
+	 * adaptive test (a second `toHaveScreenshot('adaptive.png')` call). So
+	 * regeneration only produces the `adaptive` image, and the second assertion
+	 * fails if any old color leaks into the combined bundle.
 	 */
 	const buildConfig = (
 		project: FullProject
@@ -304,14 +312,18 @@ export const getDefaultScreenshotTest = ({
 		}
 	};
 
-	test('should match screenshot - legacy', async ({ page }, { project }) => {
+	// Keeps the ORIGINAL unsuffixed title and the unnamed `toHaveScreenshot`
+	// call so Playwright derives the snapshot name from `{testName}` exactly as
+	// before the coloring split (e.g. `DBAccordion-should-match-screenshot`).
+	// That reuses the already-committed legacy baselines to catch regressions.
+	test('should match screenshot', async ({ page }, { project }) => {
 		if (shouldSkip(project, skip)) {
 			test.skip();
 		}
 
 		const config = buildConfig(project);
 		await gotoAndPrepare(page, project, 'legacy', config);
-		await expect(page).toHaveScreenshot('legacy.png', config);
+		await expect(page).toHaveScreenshot(config);
 	});
 
 	test('should match screenshot - adaptive', async ({ page }, {

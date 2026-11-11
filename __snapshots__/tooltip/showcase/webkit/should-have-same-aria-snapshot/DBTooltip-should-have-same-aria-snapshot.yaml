@@ -35,4 +35,3 @@
   - button "Fast"
   - link "Interaction"
   - button "Button"
-  - button "Disabled Button" [disabled]

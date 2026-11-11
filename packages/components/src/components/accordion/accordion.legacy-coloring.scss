@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/component";
 
 /*
  * Legacy color layer for `accordion`. Only the card variant carries color (a
@@ -11,6 +12,13 @@
 		// The whole card (summary + expanded content) is filled with a level-1
 		// background, so an open item stays level-1 throughout.
 		background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+		// The base `accordion.scss` extends the structure-only `%component-border`
+		// on `&::after` (width + style, no color); restore its emphasis-60 border
+		// color here so the legacy card keeps its visible frame.
+		&::after {
+			@extend %component-border-colors;
+		}
 
 		> details > summary {
 			@include helpers.interactive-bg(
