@@ -41,13 +41,8 @@ jobs:
           ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
           ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
 
-      - name: ⏬ Download foundations build
-        uses: actions/download-artifact@v8.0.2
-        with:
-          name: db-ux-foundations-build
-          path: packages/foundations/build
-
-      # The snippets are compiled against the framework packages in output/.
+      # The Storybooks are prebuilt (below), so no foundations or components
+      # build is needed. The snippets are compiled against the framework packages in output/.
       - name: ⏬ Download output
         uses: actions/download-artifact@v8.0.2
         with:
@@ -68,12 +63,6 @@ jobs:
           cp -RT build-outputs/react/dist output/react/dist
           mkdir -p output/vue/dist
           cp -RT build-outputs/vue/dist output/vue/dist
-
-      - name: ⏬ Download components build
-        uses: actions/download-artifact@v8.0.2
-        with:
-          name: db-ux-components-build
-          path: packages/components/build
 
       - name: ⏬ Download storybooks
         uses: actions/download-artifact@v8.0.2

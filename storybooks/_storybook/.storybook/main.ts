@@ -64,14 +64,26 @@ const getReleaseVersions = (): Version[] => {
 const releaseVersions = getReleaseVersions();
 
 /**
+ * Longest label that fits next to the longest ref title ("Web Components")
+ * in the sidebar (measured: 274 px header, 119 px title, about 6.3 px per
+ * character). A longer label truncates the title ("W…").
+ */
+const MAX_LABEL_LENGTH = 18;
+
+/**
  * Label of this build in the dropdown: the version name for a release
  * (`/core-web/version/v6.2.0`), "This build (<branch>)" for a review build
- * (`/core-web/review/<branch>`), "This build" locally.
+ * (`/core-web/review/<branch>`), "This build" locally. A review build whose
+ * label would not fit is called "Review build"; its branch is in the URL.
  */
 const getCurrentLabel = (): string => {
 	const [, kind, name] = /\/(version|review)\/([^/]+)$/.exec(baseUrl) ?? [];
 	if (kind === 'version') return name;
-	if (kind === 'review') return `This build (${name})`;
+	if (kind === 'review') {
+		const label = `This build (${name})`;
+		return label.length <= MAX_LABEL_LENGTH ? label : 'Review build';
+	}
+
 	return 'This build';
 };
 
