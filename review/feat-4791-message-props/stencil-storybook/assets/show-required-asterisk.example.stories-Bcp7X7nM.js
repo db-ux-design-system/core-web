@@ -1,0 +1,45 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-DUBFSgxg.js";import{n as i,t as a}from"./apply-web-component-args-Dyea0pIv.js";var o=t({DefaultTrue:()=>l,False:()=>u,__namedExportsOrder:()=>d,default:()=>c}),s,c,l,u,d;function f(){return(f=e((()=>{r(),a(),{fn:s}=__STORYBOOK_MODULE_TEST__,c={title:`Components/DBSelect/Show Required Asterisk`,component:`db-select`,parameters:{layout:`centered`},tags:[`autodocs`],args:{onClick:s()},argTypes:{options:{control:`object`},label:{control:`text`},placeholder:{control:`text`},variant:{control:`select`,options:[`above`,`floating`]},value:{control:`text`},showLabel:{control:`boolean`},message:{control:`text`},messageProps:{control:`object`},validMessageProps:{control:`object`},invalidMessageProps:{control:`object`},showMessage:{control:`boolean`},validation:{control:`select`,options:[`invalid`,`valid`,`no-validation`]},invalidMessage:{control:`text`},validMessage:{control:`text`},disabled:{control:`boolean`},showIcon:{control:`boolean`},required:{control:`boolean`},showRequiredAsterisk:{control:`boolean`},name:{control:`text`},form:{control:`text`},ariaDescribedBy:{control:`text`},size:{control:`number`},multiple:{control:`boolean`},showEmptyOption:{control:`boolean`},autocomplete:{control:`text`},messageIcon:{control:`text`},id:{control:`text`},autofocus:{control:`boolean`},onClick:{action:`onClick`}}},l={args:{label:`Label`,placeholder:`(Default) True`,options:[{value:`Option 1`},{value:`Option 2`},{value:`Option 3`},{value:`Option 4`},{value:`Option 5`}],required:!0,showRequiredAsterisk:!0},render:({children:e,...t})=>n`<div style="width: 300px"><db-select ${i(t)}></db-select></div>`},u={args:{label:`Label`,placeholder:`False`,options:[{value:`Option 1`},{value:`Option 2`},{value:`Option 3`},{value:`Option 4`},{value:`Option 5`}],required:!0,showRequiredAsterisk:!1},render:({children:e,...t})=>n`<div style="width: 300px"><db-select ${i(t)}></db-select></div>`},d=[`DefaultTrue`,`False`],l.parameters={...l.parameters,docs:{...l.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Label",
+    "placeholder": "(Default) True",
+    "options": [{
+      value: 'Option 1'
+    }, {
+      value: 'Option 2'
+    }, {
+      value: 'Option 3'
+    }, {
+      value: 'Option 4'
+    }, {
+      value: 'Option 5'
+    }],
+    "required": true,
+    "showRequiredAsterisk": true
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 300px"><db-select \${spreadArgs(args)}></db-select></div>\`
+}`,...l.parameters?.docs?.source}}},u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "label": "Label",
+    "placeholder": "False",
+    "options": [{
+      value: 'Option 1'
+    }, {
+      value: 'Option 2'
+    }, {
+      value: 'Option 3'
+    }, {
+      value: 'Option 4'
+    }, {
+      value: 'Option 5'
+    }],
+    "required": true,
+    "showRequiredAsterisk": false
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 300px"><db-select \${spreadArgs(args)}></db-select></div>\`
+}`,...u.parameters?.docs?.source}}}})))()}export{o as i,u as n,f as r,l as t};

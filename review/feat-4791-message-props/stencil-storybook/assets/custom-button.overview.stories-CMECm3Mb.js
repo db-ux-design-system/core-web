@@ -1,0 +1,4 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-DUBFSgxg.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBCustomButton/Overview`,component:`db-custom-button`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-custom-button></db-custom-button>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev'],
+  render: () => html\`<db-custom-button></db-custom-button>\`
+}`,...o.parameters?.docs?.source}}}})))()}export{c as n,i as t};
