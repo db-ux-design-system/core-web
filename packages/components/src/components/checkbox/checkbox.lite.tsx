@@ -28,6 +28,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getMessageConfig,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -64,6 +65,15 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '',
 		abortController: undefined,
+		getMessageProps: () => {
+			return getMessageConfig(props.messageProps, props.messageIcon);
+		},
+		getValidMessageProps: () => {
+			return getMessageConfig(props.validMessageProps);
+		},
+		getInvalidMessageProps: () => {
+			return getMessageConfig(props.invalidMessageProps);
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -262,8 +272,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			<Show when={stringPropVisible(props.message, props.showMessage)}>
 				<DBInfotext
-					size="small"
-					icon={props.messageIcon}
+					size={state.getMessageProps().size}
+					icon={state.getMessageProps().icon}
+					showIcon={state.getMessageProps().showIcon}
+					wrap={state.getMessageProps().wrap}
+					className={state.getMessageProps().className}
 					id={state._messageId}>
 					{props.message}
 				</DBInfotext>
@@ -271,7 +284,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 			<Show when={state.hasValidState()}>
 				<DBInfotext
 					id={state._validMessageId}
-					size="small"
+					size={state.getValidMessageProps().size}
+					icon={state.getValidMessageProps().icon}
+					showIcon={state.getValidMessageProps().showIcon}
+					wrap={state.getValidMessageProps().wrap}
+					className={state.getValidMessageProps().className}
 					semantic="successful">
 					{props.validMessage || DEFAULT_VALID_MESSAGE}
 				</DBInfotext>
@@ -279,7 +296,11 @@ export default function DBCheckbox(props: DBCheckboxProps) {
 
 			<DBInfotext
 				id={state._invalidMessageId}
-				size="small"
+				size={state.getInvalidMessageProps().size}
+				icon={state.getInvalidMessageProps().icon}
+				showIcon={state.getInvalidMessageProps().showIcon}
+				wrap={state.getInvalidMessageProps().wrap}
+				className={state.getInvalidMessageProps().className}
 				semantic="critical">
 				{state._invalidMessage}
 			</DBInfotext>

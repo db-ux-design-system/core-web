@@ -10,6 +10,7 @@ import InputExampleLength from '../examples/example-length.example.lite';
 import InputExampleTypesFloatingLabel from '../examples/example-types-floating-label.example.lite';
 import InputExampleTypeswithminandmax from '../examples/example-types-with-min-and-max.example.lite';
 import InputInteraction from '../examples/interaction.example.lite';
+import InputMessageProps from '../examples/message-props.example.lite';
 import InputReadonly from '../examples/readonly.example.lite';
 import InputRequired from '../examples/required.example.lite';
 import InputShowIconLeadingTrailing from '../examples/show-icon-leading-trailing.example.lite';
@@ -45,6 +46,11 @@ export default function InputShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Show Message">
 				<CardWrapperShowcase>
 					<InputShowMessage />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Message Props">
+				<CardWrapperShowcase>
+					<InputMessageProps />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="State">

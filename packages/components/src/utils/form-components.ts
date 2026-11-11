@@ -1,5 +1,45 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { IconTypes } from '@db-ux/core-foundations';
+import type {
+	FormMessageConfig,
+	ResolvedMessageConfig,
+	SizeType
+} from '../shared/model';
 import { delay } from './index';
+
+/** Resolves a form message config (object or JSON string, e.g. from a Web Component attribute) for DBInfotext. */
+export const getMessageConfig = (
+	value?: FormMessageConfig | string,
+	fallbackIcon?: IconTypes,
+	fallbackSize?: SizeType
+): ResolvedMessageConfig => {
+	let config: FormMessageConfig = {};
+
+	if (typeof value === 'string') {
+		try {
+			const parsed = JSON.parse(value);
+			if (
+				parsed &&
+				typeof parsed === 'object' &&
+				!Array.isArray(parsed)
+			) {
+				config = parsed;
+			}
+		} catch {
+			// Invalid JSON falls back to the defaults
+		}
+	} else if (value) {
+		config = value;
+	}
+
+	return {
+		size: config.size || fallbackSize || 'small',
+		icon: config.icon || fallbackIcon,
+		showIcon: config.showIcon,
+		wrap: config.wrap,
+		className: config.className ?? config.class
+	};
+};
 
 const specialNumberCharacters = ['.', ',', 'e', 'E', '+', '-'];
 

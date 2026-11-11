@@ -4,6 +4,7 @@ import type {
 	FocusEventProps,
 	FocusEventState,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormState,
 	FormTextProps,
@@ -72,4 +73,5 @@ export type DBTextareaState = DBTextareaDefaultState &
 	FocusEventState<HTMLTextAreaElement> &
 	FormState &
 	GlobalState &
+	FormMessageState &
 	FromValidState;
