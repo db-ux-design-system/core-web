@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "pnpm --filter @db-ux/wc-core-components run dev-build && storybook build --output-dir ../../build-storybooks/stencil-storybook",
-    "storybook": "pnpm --filter @db-ux/wc-core-components run dev-build && storybook dev -p 6009"
+    "build": "pnpm --filter @db-ux/wc-core-components run dev-build && pnpm --filter @db-ux/wc-core-components run build:cem && node ../_shared/overview/generate-overviews.ts --storybook stencil-storybook && storybook build --output-dir ../../build-storybooks/stencil-storybook",
+    "storybook": "pnpm --filter @db-ux/wc-core-components run dev-build && pnpm --filter @db-ux/wc-core-components run build:cem && node ../_shared/overview/generate-overviews.ts --storybook stencil-storybook && storybook dev -p 6009"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
@@ -23,15 +23,15 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@storybook/addon-docs": "10.6.5",
-    "@storybook/web-components-vite": "10.6.5",
-    "eslint": "10.13.0",
-    "eslint-plugin-storybook": "10.6.5",
-    "globals": "17.13.0",
+    "@storybook/addon-docs": "10.6.6",
+    "@storybook/web-components-vite": "10.6.6",
+    "eslint": "10.14.0",
+    "eslint-plugin-storybook": "10.6.6",
+    "globals": "17.14.0",
     "prettier": "3.9.10",
-    "storybook": "10.6.5",
+    "storybook": "10.6.6",
     "typescript": "5.9.3",
     "typescript-eslint": "8.72.1",
-    "vite": "8.3.5"
+    "vite": "8.3.6"
   }
 }

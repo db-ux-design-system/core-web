@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "storybook build --output-dir ../../build-storybooks/react-storybook",
-    "storybook": "storybook dev -p 6005"
+    "build": "node ../_shared/overview/generate-overviews.ts --storybook react-storybook && storybook build --output-dir ../../build-storybooks/react-storybook",
+    "storybook": "node ../_shared/overview/generate-overviews.ts --storybook react-storybook && storybook dev -p 6005"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
@@ -27,18 +27,18 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@storybook/addon-docs": "10.6.5",
-    "@storybook/react-vite": "10.6.5",
+    "@storybook/addon-docs": "10.6.6",
+    "@storybook/react-vite": "10.6.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
-    "@vitejs/plugin-react": "6.1.2",
-    "eslint": "10.13.0",
+    "@vitejs/plugin-react": "6.2.1",
+    "eslint": "10.14.0",
     "eslint-plugin-react-refresh": "0.5.7",
-    "eslint-plugin-storybook": "10.6.5",
-    "globals": "17.13.0",
-    "storybook": "10.6.5",
+    "eslint-plugin-storybook": "10.6.6",
+    "globals": "17.14.0",
+    "storybook": "10.6.6",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.72.1",
-    "vite": "8.3.5"
+    "vite": "8.3.6"
   }
 }

@@ -1,5 +1,6 @@
 // This file has been automatically migrated to valid ESM format by Storybook.
 import type { StorybookConfig } from '@storybook/react-vite';
+import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 
@@ -15,10 +16,121 @@ function getAbsolutePath(value: string): any {
 
 const baseUrl = process.env.BASE_URL || '';
 
+/** Deployment root of the released Storybooks on GitHub Pages. */
+const VERSION_ROOT = 'https://design-system.deutschebahn.com/core-web/version';
+
+/**
+ * Version dropdown for the framework refs (replaces the version
+ * switcher of the Patternhub).
+ *
+ * Lists the latest patch of every minor release since v5.0.0, the first
+ * release with the framework Storybooks. Tags are read with `git ls-remote`,
+ * which works in the shallow CI checkout as well. Without network access the
+ * dropdown just stays empty.
+ */
+type Version = [major: number, minor: number, patch: number];
+
+const getReleaseVersions = (): Version[] => {
+	try {
+		const output = execFileSync(
+			'git',
+			['ls-remote', '--tags', '--refs', 'origin', 'v*'],
+			{
+				encoding: 'utf8',
+				stdio: ['ignore', 'pipe', 'ignore'],
+				timeout: 10_000
+			}
+		);
+		const latestPerMinor = new Map<string, Version>();
+		for (const match of output.matchAll(
+			/refs\/tags\/v(\d+)\.(\d+)\.(\d+)$/gm
+		)) {
+			const [major, minor, patch] = match.slice(1).map(Number);
+			if (major < 5) continue;
+			const key = `${major}.${minor}`;
+			const current = latestPerMinor.get(key);
+			if (!current || patch > current[2]) {
+				latestPerMinor.set(key, [major, minor, patch]);
+			}
+		}
+		return [...latestPerMinor.values()].sort(
+			(a, b) => b[0] - a[0] || b[1] - a[1]
+		);
+	} catch {
+		return [];
+	}
+};
+
+const releaseVersions = getReleaseVersions();
+
+/**
+ * Longest label that fits next to the longest ref title ("Web Components")
+ * in the sidebar (measured: 274 px header, 119 px title, about 6.3 px per
+ * character). A longer label truncates the title ("W…").
+ */
+const MAX_LABEL_LENGTH = 18;
+
+/**
+ * Label of this build in the dropdown: the version name for a release
+ * (`/core-web/version/v6.2.0`), "This build (<branch>)" for a review build
+ * (`/core-web/review/<branch>`), "This build" locally. A review build whose
+ * label would not fit is called "Review build"; its branch is in the URL.
+ */
+const getCurrentLabel = (): string => {
+	const [, kind, name] = /\/(version|review)\/([^/]+)$/.exec(baseUrl) ?? [];
+	if (kind === 'version') return name;
+	if (kind === 'review') {
+		const label = `This build (${name})`;
+		return label.length <= MAX_LABEL_LENGTH ? label : 'Review build';
+	}
+
+	return 'This build';
+};
+
+const currentLabel = getCurrentLabel();
+
+/**
+ * `versions` of a ref: this build first, then latest and every release from
+ * `since` on (the first release that contains this Storybook).
+ */
+const getVersions = (
+	storybook: string,
+	since: Version = [5, 0, 0]
+): Record<string, string> => {
+	const versions: Record<string, string> = {
+		[currentLabel]: `${baseUrl}/${storybook}`
+	};
+	if (currentLabel !== 'latest') {
+		versions['latest'] = `${VERSION_ROOT}/latest/${storybook}`;
+	}
+	for (const version of releaseVersions) {
+		const comparison =
+			version[0] - since[0] ||
+			version[1] - since[1] ||
+			version[2] - since[2];
+		const name = `v${version.join('.')}`;
+		if (comparison >= 0 && name !== currentLabel) {
+			versions[name] = `${VERSION_ROOT}/${name}/${storybook}`;
+		}
+	}
+	return versions;
+};
+
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: [getAbsolutePath('@storybook/addon-docs')],
-	staticDirs: ['../public'],
+	staticDirs: [
+		'../public',
+		// Logo and fonts of the Storybook UI, see manager-head.html.
+		{
+			from: '../../../packages/foundations/assets/images',
+			to: '/brand/images'
+		},
+		{
+			from: '../node_modules/@db-ux/db-theme-fonts/build/assets',
+			to: '/brand/fonts'
+		}
+	],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {}
@@ -90,22 +202,26 @@ const config: StorybookConfig = {
 			angular: {
 				title: 'Angular',
 				url: `${baseUrl}/angular-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('angular-storybook')
 			},
 			html: {
 				title: 'HTML',
 				url: `${baseUrl}/html-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('html-storybook')
 			},
 			react: {
 				title: 'React',
 				url: `${baseUrl}/react-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('react-storybook')
 			},
 			vue: {
 				title: 'Vue',
 				url: `${baseUrl}/vue-storybook`,
-				expanded: false
+				expanded: false,
+				versions: getVersions('vue-storybook')
 			},
 			// Storybook lowercases ref ids, so a camelCase key would be
 			// emitted twice (once without a normalized id), crashing the
@@ -113,7 +229,9 @@ const config: StorybookConfig = {
 			webcomponents: {
 				title: 'Web Components',
 				url: `${baseUrl}/stencil-storybook`,
-				expanded: false
+				expanded: false,
+				// The Web Components Storybook exists since v6.0.0.
+				versions: getVersions('stencil-storybook', [6, 0, 0])
 			}
 		};
 	}

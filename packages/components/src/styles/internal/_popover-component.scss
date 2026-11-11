@@ -195,11 +195,7 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 				);
 			}
 
-			@include screen-sizes.screen-min-max(
-				(
-					max: "md"
-				)
-			) {
+			@include screen-sizes.screen-desktop-max {
 				// If we are in mobile and have no delay set we force some delay to avoid layout shift
 				&:not([data-delay]) {
 					animation-delay: variables.$db-transition-duration-medium;
@@ -245,6 +241,12 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 %default-popover {
 	@extend %default-card;
 	@extend %popover-placement;
+
+	// The `screen-desktop-max` query in `get-popover-show` is extended onto this
+	// same element, so it is a self-targeting style query. A style query reads
+	// `--db-breakpoint` from an element's ANCESTORS, not the element itself; the
+	// band token set on `:root`/`:host` by `get-layout-breakpoint-defaults` is
+	// the ancestor it resolves against, so no per-element derivation is needed.
 
 	position: absolute;
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;

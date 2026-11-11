@@ -28,7 +28,7 @@
     "@db-ux/db-theme": "7.2.0",
     "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.4.0",
-    "vue": "3.5.44",
+    "vue": "3.5.45",
     "vue-router": "5.4.0"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",
-    "vite": "8.3.5",
-    "vue-tsc": "3.3.13"
+    "vite": "8.3.6",
+    "vue-tsc": "3.3.14"
   }
 }
