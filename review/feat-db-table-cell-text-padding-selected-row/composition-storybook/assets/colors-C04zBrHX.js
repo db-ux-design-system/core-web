@@ -1,0 +1,29 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{i as t,r as n}from"./react-DITjJg24.js";import{t as r}from"./jsx-runtime-MKhVqBIO.js";import{c as i,i as a,l as o,n as s,s as c}from"./blocks-B7EQT6dY.js";import{a as l,c as u,i as d,n as f,o as p,r as m,t as h}from"./colors.stories-DBOUe1jM.js";import{n as g,t as _}from"./links-kL3YgDM2.js";var v;function y(){return(y=e((()=>{v='# Colors\n\n- You use **Colors** to highlight an area with a specific color.\n- You can also use it to change the text color for components with the `*-transparent-semi` colors.\n- Most classes/placeholders will change `color` and `background-color` and will set properties, which will be passed down to adaptive components.\n\n## How to use\n\n1. First, you can use our **[color usage guide](./color-usage-guide)** to find out which method is best for coloring your layouts or components.\n2. The colors of layouts can be easily set using the predefined **[color schemes](./color-schemes)**.\n3. When developing your own components, `SCSS` variables or `CSS Custom Properties` should be used.\n\n**🚧 The overview of our color variables is still in the making. Please come back soon.**\n\n## How to include colors\n\nFor **CSS** and **Tailwind** you need to use the import `@import "@db-ux/core-foundations/build/styles/colors/classes/all.css";` in your root `.css` file.\nOr if you only want a single variant e.g. **informational** you can import `@import "@db-ux/core-foundations/build/styles/colors/classes/informational.css";`.\n\nIn case that you\'re either using a bundler (recommended) or importing the CSS within your JavaScript files, please adapt this `@import` syntax accordingly.\n\nFor **SCSS** you need to use the import `@use "@db-ux/core-foundations/build/styles/colors/placeholder"` in your `.scss` file, where you need to reference the specific variable.\nThen you can use e.g. **informational** color by extending our SCSS placeholders like this: `@extend %db-informational-bg-1`.\n\n## Dark- & Light-Mode\n\nWe provide tokens for both dark- and light-mode. If you include the **relative** style you get a media query `@media (prefers-color-scheme: dark)` with the relevant tokens. You can [emulate](https://developer.chrome.com/docs/devtools/rendering/emulate-css/) the modes inside the devtools.\n\nIt\'s [recommended to set a `meta`-HTML-tag](https://web.dev/articles/color-scheme#the_color-scheme_meta_tag) to provide a signal to the browser on your accepted color schemes previous to loading the CSS:\n\n```html\n<meta name="color-scheme" content="dark light" />\n```\n\nWe recommend using the default media query based on the user preference, but if you want to force a mode for your page, you could set the `color-scheme` `meta`-HTML-tag to either [`only light`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#only_light), [`dark` or `light`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name#light).\n\nIf you want to set it on a specific container as e.g. shown on the documentation page "Color schemes" you can do that by adding the HTML-attributes `data-mode="dark"` or `data-mode="light"`:\n\n### HTML\n\n```html\n<div data-mode="dark">...</div>\n```\n\nWe\'re providing an example in our [color schemes documentation](./color-schemes).\n\nWe need to set the **base** background to the element with `[data-mode]` so if you want to change the background to another color, make sure to use a wrapping tag like `<div>` with the `[data-mode]` to avoid issues.\n'})))()}function b(e){let n={a:`a`,blockquote:`blockquote`,em:`em`,h2:`h2`,h3:`h3`,p:`p`,strong:`strong`,...t(),...e.components};return(0,S.jsxs)(S.Fragment,{children:[`
+`,(0,S.jsx)(i,{title:`Foundations/Colors`}),`
+`,(0,S.jsxs)(n.blockquote,{children:[`
+`,(0,S.jsxs)(n.p,{children:[(0,S.jsx)(n.strong,{children:`Design:`}),` Color tokens, usage and guidelines: `,(0,S.jsx)(n.a,{href:`https://design-system.deutschebahn.com/documentation/foundation/colors`,rel:`nofollow`,children:`Colors on the Design System Platform`}),`.`]}),`
+`]}),`
+`,(0,S.jsxs)(n.blockquote,{children:[`
+`,(0,S.jsxs)(n.p,{children:[(0,S.jsx)(n.strong,{children:`Learn:`}),` `,(0,S.jsx)(n.a,{href:`https://design-system.deutschebahn.com/documentation/learn/colors-and-modes`,rel:`nofollow`,children:`Apply colors and Light Mode or Dark Mode`}),` on the Design System Platform.`]}),`
+`]}),`
+`,(0,S.jsx)(c,{children:g(v,`/foundations/colors/readme`)}),`
+`,(0,S.jsx)(n.h2,{id:`examples`,children:`Examples`}),`
+`,(0,S.jsx)(n.h3,{id:`semantic-color-schemes`,children:`Semantic Color Schemes`}),`
+`,(0,S.jsx)(a,{of:p}),`
+`,(0,S.jsx)(s,{of:p}),`
+`,(0,S.jsx)(n.h3,{id:`additional-color-schemes`,children:`Additional Color Schemes`}),`
+`,(0,S.jsx)(a,{of:h}),`
+`,(0,S.jsx)(s,{of:h}),`
+`,(0,S.jsx)(n.h3,{id:`background-colors`,children:`Background Colors`}),`
+`,(0,S.jsx)(a,{of:f}),`
+`,(0,S.jsx)(s,{of:f}),`
+`,(0,S.jsx)(n.h3,{id:`on-background-colors`,children:`On Background Colors`}),`
+`,(0,S.jsx)(a,{of:l}),`
+`,(0,S.jsx)(s,{of:l}),`
+`,(0,S.jsx)(n.h3,{id:`color-modes`,children:`Color Modes`}),`
+`,(0,S.jsx)(a,{of:d}),`
+`,(0,S.jsx)(s,{of:d}),`
+`,(0,S.jsx)(n.h3,{id:`cards-and-levels`,children:`Cards And Levels`}),`
+`,(0,S.jsx)(a,{of:m}),`
+`,(0,S.jsx)(s,{of:m}),`
+`,(0,S.jsx)(n.p,{children:(0,S.jsxs)(n.em,{children:[`Source: `,(0,S.jsx)(n.a,{href:`https://github.com/db-ux-design-system/core-web/blob/main/packages/foundations/docs/Colors.md`,rel:`nofollow`,children:`packages/foundations/docs/Colors.md`})]})})]})}function x(e={}){let{wrapper:n}={...t(),...e.components};return n?(0,S.jsx)(n,{...e,children:(0,S.jsx)(b,{...e})}):b(e)}var S;function C(){return(C=e((()=>{S=r(),n(),o(),y(),_(),u()})))()}C();export{x as default};
