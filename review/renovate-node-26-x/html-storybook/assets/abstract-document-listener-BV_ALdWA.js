@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{S as t,_ as n}from"./utils-u-Vdavx5.js";var r;function i(){return(i=e((()=>{n(),r=class{addCallback(e){let n=t(),r=this.getCallbacks();return r[n]=e,n}removeCallback(e){let t=this.getCallbacks();delete t[e]}}})))()}export{i as n,r as t};
