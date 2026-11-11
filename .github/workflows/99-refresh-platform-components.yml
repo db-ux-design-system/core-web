@@ -11,7 +11,9 @@ permissions:
 
 on:
   schedule:
-    - cron: "0 5 * * 1" # Every Monday at 05:00 UTC
+    # Wednesday, the day before the release on Thursday: a day to review and
+    # merge the PR, so the release PR check (pull-request.yml) stays green.
+    - cron: "0 5 * * 3" # Every Wednesday at 05:00 UTC
   workflow_dispatch: # Allow manual trigger
 
 concurrency:

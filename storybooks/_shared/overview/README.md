@@ -47,7 +47,7 @@ DB_UX_PLATFORM_URL=http://localhost:4329 node storybooks/_shared/overview/update
 node storybooks/_shared/overview/update-platform-components.ts --check
 ```
 
-This runs automatically: the workflow `.github/workflows/99-refresh-platform-components.yml` refreshes the copy every Monday (or on manual start) and opens the pull request "chore: refresh platform-components.json" when the platform changed. As a safety net, the release PR (`changeset-release/*`) runs `--check` and fails with an outdated copy; merge the open refresh PR to fix it.
+This runs automatically: the workflow `.github/workflows/99-refresh-platform-components.yml` refreshes the copy every Wednesday, the day before the Thursday release (or on manual start), and opens the pull request "chore: refresh platform-components.json" when the platform changed. As a safety net, the release PR (`changeset-release/*`) runs `--check` and fails with an outdated copy; merge the open refresh PR to fix it.
 
 The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
 
