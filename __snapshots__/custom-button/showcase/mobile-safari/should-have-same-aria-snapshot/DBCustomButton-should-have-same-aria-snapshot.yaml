@@ -124,3 +124,454 @@
   - text: Checkbox
   - checkbox "Checkbox" [checked]
   - text: Checkbox
+  - link "Adaptive Matrix"
+  - table:
+    - rowgroup:
+      - row "grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - columnheader
+        - columnheader "grey"
+        - columnheader "red"
+        - columnheader "brand"
+        - columnheader "green"
+        - columnheader "yellow"
+        - columnheader "orange"
+        - columnheader "burgundy"
+        - columnheader "pink"
+        - columnheader "violet"
+        - columnheader "blue"
+        - columnheader "cyan"
+        - columnheader "turquoise"
+    - rowgroup:
+      - row "filled-1 grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "filled-1"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "filled-2 grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "filled-2"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "filled-3 grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "filled-3"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "vibrant grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "vibrant"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "origin grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "origin"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "inverted grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "inverted"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "semi-transparent grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "semi-transparent"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+      - row "transparent grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "transparent"
+        - cell "grey"
+        - cell "red"
+        - cell "brand"
+        - cell "green"
+        - cell "yellow"
+        - cell "orange"
+        - cell "burgundy"
+        - cell "pink"
+        - cell "violet"
+        - cell "blue"
+        - cell "cyan"
+        - cell "turquoise"
+  - table:
+    - rowgroup:
+      - row "grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - columnheader
+        - columnheader "grey"
+        - columnheader "red"
+        - columnheader "brand"
+        - columnheader "green"
+        - columnheader "yellow"
+        - columnheader "orange"
+        - columnheader "burgundy"
+        - columnheader "pink"
+        - columnheader "violet"
+        - columnheader "blue"
+        - columnheader "cyan"
+        - columnheader "turquoise"
+    - rowgroup:
+      - row "filled-1 grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "filled-1"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "filled-2 grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "filled-2"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "filled-3 grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "filled-3"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "vibrant grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "vibrant"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "origin grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "origin"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "inverted grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "inverted"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "semi-transparent grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "semi-transparent"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
+      - row "transparent grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "transparent"
+        - cell "grey":
+          - checkbox "grey" [checked]
+          - text: grey
+        - cell "red":
+          - checkbox "red" [checked]
+          - text: red
+        - cell "brand":
+          - checkbox "brand" [checked]
+          - text: brand
+        - cell "green":
+          - checkbox "green" [checked]
+          - text: green
+        - cell "yellow":
+          - checkbox "yellow" [checked]
+          - text: yellow
+        - cell "orange":
+          - checkbox "orange" [checked]
+          - text: orange
+        - cell "burgundy":
+          - checkbox "burgundy" [checked]
+          - text: burgundy
+        - cell "pink":
+          - checkbox "pink" [checked]
+          - text: pink
+        - cell "violet":
+          - checkbox "violet" [checked]
+          - text: violet
+        - cell "blue":
+          - checkbox "blue" [checked]
+          - text: blue
+        - cell "cyan":
+          - checkbox "cyan" [checked]
+          - text: cyan
+        - cell "turquoise":
+          - checkbox "turquoise" [checked]
+          - text: turquoise
