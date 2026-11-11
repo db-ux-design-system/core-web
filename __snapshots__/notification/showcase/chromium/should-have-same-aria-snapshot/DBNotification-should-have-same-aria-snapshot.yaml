@@ -129,3 +129,229 @@
   - article:
     - text: Test
     - button "Close"
+  - link "Adaptive Matrix"
+  - table:
+    - rowgroup:
+      - row "grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - columnheader
+        - columnheader "grey"
+        - columnheader "red"
+        - columnheader "brand"
+        - columnheader "green"
+        - columnheader "yellow"
+        - columnheader "orange"
+        - columnheader "burgundy"
+        - columnheader "pink"
+        - columnheader "violet"
+        - columnheader "blue"
+        - columnheader "cyan"
+        - columnheader "turquoise"
+    - rowgroup:
+      - row "filled-1":
+        - rowheader "filled-1"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "filled-2":
+        - rowheader "filled-2"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "filled-3":
+        - rowheader "filled-3"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "vibrant":
+        - rowheader "vibrant"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "origin":
+        - rowheader "origin"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "inverted":
+        - rowheader "inverted"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "semi-transparent":
+        - rowheader "semi-transparent"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
+      - row "transparent":
+        - rowheader "transparent"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise
