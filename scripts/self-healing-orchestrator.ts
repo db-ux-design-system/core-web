@@ -110,20 +110,6 @@ export const checkFixMap: CheckConfig[] = [
 		fixCommands: []
 	},
 	{
-		// Copies of storybooks/_shared/storybook-config/ in every Storybook.
-		name: 'lint:storybook-config',
-		checkCommand: {
-			command: 'pnpm',
-			args: ['run', 'lint:storybook-config']
-		},
-		fixCommands: [
-			{
-				command: 'node',
-				args: ['storybooks/_shared/storybook-config/sync.ts']
-			}
-		]
-	},
-	{
 		// Committed Foundations pages of the composition Storybook.
 		name: 'lint:storybook-foundations',
 		checkCommand: {

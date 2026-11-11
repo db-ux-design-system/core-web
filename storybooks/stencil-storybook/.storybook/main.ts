@@ -2,6 +2,10 @@ import type { StorybookConfig } from '@storybook/web-components-vite';
 import { createRequire } from 'node:module';
 
 import { dirname, join } from 'node:path';
+import {
+	managerHead,
+	previewHead
+} from '../../_shared/storybook-config/head.ts';
 
 const require = createRequire(import.meta.url);
 
@@ -15,9 +19,13 @@ function getAbsolutePath(value: string): string {
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	addons: ['@storybook/addon-docs'],
+	// Favicon, fonts and the CSS escape hatches of the Storybook UI and the
+	// docs pages, from storybooks/_shared/storybook-config (head.ts).
+	managerHead: (head) => managerHead(head),
+	previewHead: (head) => previewHead(head),
 	staticDirs: [
 		'../public',
-		// Logo and fonts of the Storybook UI, see manager-head.html.
+		// Logo and fonts of the Storybook UI, see storybooks/_shared/storybook-config/manager-head.html.
 		{
 			from: '../../../packages/foundations/assets/images',
 			to: '/brand/images'

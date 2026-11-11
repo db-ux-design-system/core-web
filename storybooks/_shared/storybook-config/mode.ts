@@ -4,9 +4,9 @@ import type { Globals, GlobalTypes } from 'storybook/internal/types';
  * Light/dark mode of the stories, switchable via the `globals=mode:dark` URL
  * parameter or the "Mode" entry of the toolbar.
  *
- * Copied into `.storybook/mode.ts` of every Storybook by
- * `storybooks/_shared/storybook-config/sync.ts`, because the Angular build only
- * compiles files inside its project. Edit this file, not the copies.
+ * Copied into `.storybook/mode.ts` of every Storybook by copy-config.ts
+ * (git-ignored there), because the Angular build only compiles files inside
+ * its project. Edit this file, not the copies.
  *
  * The default is Light Mode, like the Storybook UI and the docs pages, which
  * are always light (theme.ts). Otherwise an OS in dark mode would show dark

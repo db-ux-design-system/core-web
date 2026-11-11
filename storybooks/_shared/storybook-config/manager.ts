@@ -3,10 +3,11 @@ import { BRAND_NAME, managerTheme } from './theme';
 
 /*
  * Theme of the Storybook UI (sidebar, toolbar, title).
- * Copied into `.storybook/manager.ts` of every Storybook by sync.ts.
+ * Copied into `.storybook/manager.ts` of every Storybook by copy-config.ts
+ * (git-ignored there). Edit this file, not the copies.
  *
  * The sidebar styles the theme API cannot set are CSS escape hatches in
- * manager.css, inlined into manager-head.html by sync.ts.
+ * manager.css, inlined into the manager head by head.ts.
  */
 // Storybook's default toolbar and settings menu, in the colors of the theme
 // (manager.css styles the buttons like the sidebar items).

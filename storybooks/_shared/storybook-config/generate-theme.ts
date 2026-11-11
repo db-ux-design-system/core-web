@@ -7,7 +7,7 @@
  * (Playwright) loads the foundations and the DB Theme CSS and resolves the
  * tokens in Light Mode, exactly as a component would see them.
  *
- * Run after a theme update, then sync.ts:
+ * Run after a theme update:
  *
  *   node storybooks/_shared/storybook-config/generate-theme.ts
  */
