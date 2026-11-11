@@ -18,7 +18,18 @@ const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 	// TODO: Include html output when addon-html supports v10 https://github.com/whitespace-se/storybook-addon-html/pull/149
 	addons: ['@storybook/addon-docs'],
-	staticDirs: ['../public'],
+	staticDirs: [
+		'../public',
+		// Logo and fonts of the Storybook UI, see manager-head.html.
+		{
+			from: '../../../packages/foundations/assets/images',
+			to: '/brand/images'
+		},
+		{
+			from: '../node_modules/@db-ux/db-theme-fonts/build/assets',
+			to: '/brand/fonts'
+		}
+	],
 	framework: {
 		name: getAbsolutePath('@storybook/angular'),
 		options: {}

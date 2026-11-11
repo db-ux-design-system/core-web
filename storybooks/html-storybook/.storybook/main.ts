@@ -15,10 +15,24 @@ function getAbsolutePath(value: string): string {
 const config: StorybookConfig = {
 	stories: [
 		'../src/index.mdx',
-		'../../react-storybook/src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)'
+		'../../react-storybook/src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+		// Component overview pages (core-web#8649)
+		'../src/overview/**/*.mdx',
+		'../src/overview/**/*.stories.tsx'
 	],
 	addons: ['@storybook/addon-docs'],
-	staticDirs: ['../../react-storybook/public'],
+	staticDirs: [
+		'../../react-storybook/public',
+		// Logo and fonts of the Storybook UI, see manager-head.html.
+		{
+			from: '../../../packages/foundations/assets/images',
+			to: '/brand/images'
+		},
+		{
+			from: '../node_modules/@db-ux/db-theme-fonts/build/assets',
+			to: '/brand/fonts'
+		}
+	],
 	framework: {
 		name: getAbsolutePath('@storybook/react-vite'),
 		options: {}

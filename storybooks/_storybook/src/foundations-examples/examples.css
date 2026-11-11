@@ -1,0 +1,183 @@
+/*
+ * Interactive Foundations examples (formerly Patternhub "Color Schemes",
+ * "Color Modes", "Density Examples", "Variable Examples" and "Font Sizes
+ * Overview"). Shown on the Foundations pages, see *.stories.tsx here.
+ */
+.foundations-example {
+	display: grid;
+	gap: var(--db-spacing-fixed-md);
+}
+
+.foundations-example-switches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--db-spacing-fixed-lg);
+}
+
+/* Colors: one tile per declaration */
+.foundations-color-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--db-sizing-3xl), 1fr));
+	gap: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+
+	> div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: var(--db-spacing-fixed-md);
+		border: var(--db-border-width-3xs) solid
+			var(--db-adaptive-on-bg-basic-emphasis-60-default);
+		font: var(--db-type-body-sm);
+		overflow-wrap: anywhere;
+	}
+
+	/* A checkerboard behind the tiles makes transparent backgrounds visible. */
+	&[data-checkerboard="true"] {
+		background: repeating-conic-gradient(#c3c7ce 0 25%, transparent 0 50%) 0
+			0 / 16px 16px;
+	}
+}
+
+/* Color modes */
+.foundations-color-modes {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--db-spacing-fixed-md);
+	padding: var(--db-spacing-fixed-md);
+	border: var(--db-border-width-3xs) dashed
+		var(--db-adaptive-on-bg-basic-emphasis-100-default);
+
+	> p,
+	> .db-button,
+	> .foundations-color-cards {
+		grid-column: 1 / -1;
+	}
+
+	> p {
+		margin: 0;
+	}
+
+	> section {
+		padding: var(--db-spacing-fixed-md);
+	}
+}
+
+.foundations-color-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--db-sizing-2xl), 1fr));
+	gap: var(--db-spacing-fixed-md);
+}
+
+/* Densities */
+.foundations-density-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--db-sizing-3xl), 1fr));
+	gap: var(--db-spacing-fixed-md);
+
+	.db-card {
+		gap: var(--db-spacing-fixed-sm);
+	}
+}
+
+/* One equal column per card, however many cards the row has. */
+.foundations-density-row {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: minmax(0, 1fr);
+	gap: var(--db-spacing-fixed-md);
+}
+
+/* Variables: the colored boxes show the size of the variable */
+.foundations-variable-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--db-successful-bg-inverted-contrast-high-default);
+	align-self: stretch;
+	color: var(--db-successful-on-bg-inverted-default);
+	font: var(--db-type-body-2xs);
+
+	&[data-variable="spacing-fixed-xl"] {
+		inline-size: var(--db-spacing-fixed-xl);
+	}
+
+	&[data-variable="spacing-responsive-sm"] {
+		inline-size: var(--db-spacing-responsive-sm);
+	}
+}
+
+.foundations-variable-row {
+	display: flex;
+	align-items: center;
+	border: var(--db-border-width-3xs) solid
+		var(--db-adaptive-on-bg-basic-emphasis-60-default);
+}
+
+.foundations-variable-sizing {
+	background-color: var(--db-warning-bg-inverted-contrast-high-default);
+	color: var(--db-warning-on-bg-inverted-default);
+	block-size: var(--db-sizing-md);
+	inline-size: var(--db-sizing-md);
+}
+
+/* Font sizes */
+.foundations-font-sizes {
+	padding: var(--db-spacing-fixed-md);
+
+	> * {
+		margin-block: var(--db-spacing-fixed-xs);
+	}
+
+	pre {
+		margin: 0 0 var(--db-spacing-fixed-md);
+	}
+}
+
+/* Headline sizes: the custom headline CSS the example shows, per size. */
+.foundations-custom-headline {
+	&[data-size="3xl"] {
+		font: var(--db-type-headline-3xl);
+		margin-block: var(--db-spacing-fixed-3xl);
+	}
+
+	&[data-size="2xl"] {
+		font: var(--db-type-headline-2xl);
+		margin-block: var(--db-spacing-fixed-2xl);
+	}
+
+	&[data-size="xl"] {
+		font: var(--db-type-headline-xl);
+		margin-block: var(--db-spacing-fixed-xl);
+	}
+
+	&[data-size="lg"] {
+		font: var(--db-type-headline-lg);
+		margin-block: var(--db-spacing-fixed-lg);
+	}
+
+	&[data-size="md"] {
+		font: var(--db-type-headline-md);
+		margin-block: var(--db-spacing-fixed-md);
+	}
+
+	&[data-size="sm"] {
+		font: var(--db-type-headline-sm);
+		margin-block: var(--db-spacing-fixed-sm);
+	}
+
+	&[data-size="xs"] {
+		font: var(--db-type-headline-xs);
+		margin-block: var(--db-spacing-fixed-xs);
+	}
+
+	&[data-size="2xs"] {
+		font: var(--db-type-headline-2xs);
+		margin-block: var(--db-spacing-fixed-2xs);
+	}
+
+	&[data-size="3xs"] {
+		font: var(--db-type-headline-3xs);
+		margin-block: var(--db-spacing-fixed-3xs);
+	}
+}

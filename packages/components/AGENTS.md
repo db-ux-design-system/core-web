@@ -255,6 +255,8 @@ When adding or modifying examples:
     - **Elements already hidden from the snippet** via `data-sb-ignore` (e.g. `<i class="line-break" data-sb-ignore="true" />`) — they never reach the code view, so their class is harmless.
     - **Shared showcase helpers reused across many examples** (e.g. `fit-content-container`). Converting these to repeated inline styles in every example only trades one problem for dozens of copies that drift; leave them in the shared stylesheet.
 
+    Write the object literal directly on the element, not as an imported variable (`style={myStyle}`): the web-component story serializer only converts object literals and would emit `style="myStyle"`. A custom property (`'--db-table-grid-template-columns': '…'`) needs a trailing `as any`, because React's `CSSProperties` rejects unknown keys; the serializer strips the cast.
+
     Inline `style` also only reaches the element it sits on — it cannot express descendant or pseudo-element rules. When a one-off demo needs those, prefer dropping the fine-tuning over reintroducing a mystery class; keep it in the shared stylesheet only if the layout genuinely depends on it.
 
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
