@@ -1,0 +1,78 @@
+---
+# Refreshes storybooks/_shared/overview/platform-components.json, the copy of
+# /api/components.json of the Design System Platform that the Storybook
+# overview pages are built from (summary, status, guidelines URL).
+# When the platform changed, it opens (or updates) a pull request with the new
+# copy. The release PR checks the copy as well (pull-request.yml).
+name: Refresh platform components
+
+permissions:
+  contents: read
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # Every Monday at 05:00 UTC
+  workflow_dispatch: # Allow manual trigger
+
+concurrency:
+  group: refresh-platform-components
+  cancel-in-progress: false
+
+env:
+  BRANCH: chore-refresh-platform-components-data
+  FILE: storybooks/_shared/overview/platform-components.json
+  TITLE: "chore: refresh platform-components.json"
+
+jobs:
+  refresh:
+    name: Refresh platform-components.json
+    runs-on: ubuntu-26.04
+    steps:
+      # A token of the GitHub App, so the pushed branch and the pull request
+      # trigger the pipeline (the default token does not).
+      - name: 🧬 Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ vars.AUTO_MERGE_CLIENT_ID }}
+          private-key: ${{ secrets.AUTO_MERGE_PRIVATE_KEY }}
+
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v7.0.1
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - name: 🏗 Setup Node.js
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+
+      # Node only, no dependencies needed.
+      - name: 🔄 Refresh the copy
+        run: node storybooks/_shared/overview/update-platform-components.ts
+
+      - name: 🪗 Open or update the pull request
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          HUSKY: 0 # Disable Husky hooks in CI
+        run: |
+          if git diff --quiet -- "$FILE"; then
+            echo "platform-components.json is up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add "$FILE"
+          git commit --message "$TITLE"
+          git push --force origin "$BRANCH"
+
+          if [[ -n "$(gh pr list --head "$BRANCH" --state open --json number --jq '.[].number')" ]]; then
+            echo "Updated the open pull request of $BRANCH."
+            exit 0
+          fi
+
+          gh pr create --base main --head "$BRANCH" --title "$TITLE" --label "🔄automated" --body "Summaries, statuses or guidelines URLs of components changed on the Design System Platform (\`/api/components.json\`). This PR updates the copy \`$FILE\` that the Storybook overview pages are built from.
+
+          Created by the workflow \`99-refresh-platform-components.yml\`. Review the diff and merge it before the next release."
