@@ -692,8 +692,8 @@ const getLiteFile = (folder: string, title: string): string | undefined => {
 const toSlug = (title: string): string =>
 	title
 		.replace(/^DB/, '')
-		.replaceAll(/([\da-z])([A-Z])/g, '$1-$2')
-		.replaceAll(/([a-z])(\d)/gi, '$1-$2')
+		.replaceAll(/(?<=[\da-z])(?=[A-Z])/g, '-')
+		.replaceAll(/(?<=[a-z])(?=\d)/gi, '-')
 		.toLowerCase();
 
 /** Root element and class of the JSX of a `.lite.tsx`. */
