@@ -218,3 +218,33 @@ export const overflowTable: DBTableData = {
 		}
 	]
 };
+
+const getColumnCountTable = (columns: number): DBTableData => {
+	const columnIndexes = Array.from({ length: columns }, (_, index) => index);
+
+	return {
+		header: [
+			{
+				cells: columnIndexes.map((index) => ({
+					content: `H${index + 1}`,
+					scope: 'col' as const
+				}))
+			}
+		],
+		body: [
+			{
+				cells: [
+					...columnIndexes.slice(0, -1).map((index) => ({
+						content: `${index + 1}`
+					})),
+					// Wide tables scroll horizontally: a focusable element keeps the
+					// scroll container reachable by keyboard (axe: scrollable-region-focusable)
+					{ link: { text: `${columns}`, href: '#' } }
+				]
+			}
+		]
+	};
+};
+
+export const columnCount20Table: DBTableData = getColumnCountTable(20);
+export const columnCount21Table: DBTableData = getColumnCountTable(21);
