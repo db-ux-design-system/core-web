@@ -1,0 +1,3 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./section-D8DEvq3-.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{n(),a={title:`Components/DBSection/Overview`,component:r,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`]},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev']
+}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as t};
