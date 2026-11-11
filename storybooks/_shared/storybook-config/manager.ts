@@ -51,6 +51,42 @@ new MutationObserver(updateHighlight).observe(document.body, {
 });
 
 /*
+ * The mobile bar shows the story path without the framework ref, so in the
+ * composition Storybook "Components/DBButton/Overview/Docs" looks the same for
+ * every framework. Put the ref title of the current story into
+ * `--db-sb-ref-title`, which manager.css shows before the path. A CSS
+ * variable instead of changing the text, because React renders that text.
+ */
+type Api = Parameters<Parameters<typeof addons.register>[1]>[0];
+let storybookApi: Api | undefined;
+addons.register('db-ux/ref-title', (api) => {
+	storybookApi = api;
+});
+
+const REF_TITLE = '--db-sb-ref-title';
+const updateRefTitle = () => {
+	const refId = storybookApi?.getCurrentStoryData()?.refId;
+	const title = refId ? storybookApi?.getRefs()[refId]?.title : undefined;
+	const value = title
+		? `"${title.replaceAll('"', String.raw`\"`)} \u22C5 "`
+		: '';
+	if (document.documentElement.style.getPropertyValue(REF_TITLE) !== value) {
+		if (value) {
+			document.documentElement.style.setProperty(REF_TITLE, value);
+		} else {
+			document.documentElement.style.removeProperty(REF_TITLE);
+		}
+	}
+};
+
+// The path text changes with every story; the bar mounts on small screens.
+new MutationObserver(updateRefTitle).observe(document.body, {
+	characterData: true,
+	childList: true,
+	subtree: true
+});
+
+/*
  * Storybook ends the tab title with "Storybook" and ignores `brandTitle`
  * there. Replace the suffix whenever Storybook sets a new title.
  */
