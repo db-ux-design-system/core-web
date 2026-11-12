@@ -1,0 +1,18 @@
+// CSS custom properties of DBTextarea only: the styling API consumers may
+// set. The shared ones of the form components are in
+// ../../styles/internal/_form-components.properties.scss (format and rules
+// there and in packages/components/AGENTS.md, "CSS custom properties").
+
+/* @css-properties textarea */
+
+/**
+ * Minimum block size of the textarea, e.g. `4lh` for four lines. Keeps room
+ * for the lines with `fieldSizing="content"`, even when empty or shrunk by
+ * hand. Named after `--db-form-component-min-inline-size`, but only DBTextarea
+ * uses it.
+ */
+@property --db-form-component-min-block-size {
+	syntax: "*";
+	inherits: true;
+	initial-value: auto;
+}

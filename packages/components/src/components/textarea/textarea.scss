@@ -6,6 +6,7 @@
 @use "../../styles/internal/component";
 @use "../../styles/internal/form-components";
 @use "../../styles/internal/form-components.properties" as *;
+@use "textarea.properties" as *;
 @use "../../styles/internal/scrollbar";
 
 %resize-textarea {
@@ -59,7 +60,8 @@
 		padding-block: variables.$db-spacing-fixed-xs
 			variables.$db-spacing-fixed-xs;
 
-		// Styling API: set a minimum height so a `fieldSizing="content"`
+		// Styling API, documented in _textarea.properties.scss.
+		// Set a minimum height so a `fieldSizing="content"`
 		// textarea keeps room for the desired number of lines even when empty
 		// or manually shrunk. Consumers pass any length (e.g. `4lh`, `6rem`);
 		// the default `auto` means no floor, so the box is unchanged when
