@@ -37,7 +37,7 @@ const COMPONENTS = `${sep}build${sep}components${sep}`;
 // the properties files its own `<name>.scss` loads: its CSS also contains
 // those of nested components (DBShell includes the DBDrawer styles).
 const MARKER = /^@css-properties\s+([\w-]+)$/;
-const USE = /@use\s+["'][^"']*?([\w-]+)\.properties["']/g;
+const LOAD = /@(?:forward|use)\s+["'][^"']*?([\w-]+)\.properties["']/g;
 
 /** Names of the properties files the component source loads. */
 const getOwners = (file: string): Set<string> => {
@@ -46,7 +46,7 @@ const getOwners = (file: string): Set<string> => {
 		.replace(/\.css$/, '.scss');
 	return existsSync(source)
 		? new Set(
-				[...readFileSync(source, 'utf8').matchAll(USE)].map(
+				[...readFileSync(source, 'utf8').matchAll(LOAD)].map(
 					(match) => match[1]
 				)
 			)

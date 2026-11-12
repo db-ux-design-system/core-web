@@ -6,7 +6,7 @@
 @use "../table-row/table-row";
 @use "./../../styles/internal/component";
 @use "./../../styles/internal/table-components";
-@use "table.properties" as *;
+@forward "table.properties";
 
 %sizes {
 	&:not([data-size]),

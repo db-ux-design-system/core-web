@@ -6,7 +6,7 @@
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/dialog-components";
 @use "../../styles/internal/loading";
-@use "loading-indicator.properties" as *;
+@forward "loading-indicator.properties";
 
 /**
  * The visible arc is driven by one value: the full circumference of the

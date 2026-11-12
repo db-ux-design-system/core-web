@@ -4,7 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/internal/control-panel-desktop";
-@use "control-panel-desktop.properties" as *;
+@forward "control-panel-desktop.properties";
 
 .db-control-panel-desktop {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;

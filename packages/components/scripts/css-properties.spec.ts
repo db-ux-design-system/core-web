@@ -82,7 +82,7 @@ describe('css-properties', () => {
 	it('writes the documented properties of the files the component loads', async () => {
 		await run(
 			'input/input.css',
-			'@use "../../styles/internal/form-components.properties" as *;'
+			'@forward "../../styles/internal/form-components.properties";'
 		);
 		expect(
 			JSON.parse(
@@ -109,6 +109,7 @@ describe('css-properties', () => {
 	});
 
 	it('ends a properties block at the first other rule', async () => {
+		// `@use` loads a properties file as well.
 		await run('drawer/drawer.css', '@use "drawer.properties" as *;');
 		expect(
 			JSON.parse(
@@ -128,7 +129,7 @@ describe('css-properties', () => {
 	});
 
 	it('skips bundles and other files', async () => {
-		await run('input/other.css', '@use "form-components.properties" as *;');
+		await run('input/other.css', '@forward "form-components.properties";');
 		expect(existsSync(output('input/other.css-properties.json'))).toBe(
 			false
 		);
