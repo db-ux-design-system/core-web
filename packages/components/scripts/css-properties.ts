@@ -4,7 +4,8 @@
  * next to it as `build/components/<name>/<name>.css-properties.json`.
  *
  * A property is documented by an `@property` rule with a `/** *\/` comment
- * right above it (see src/styles/internal/_form-components.properties.scss):
+ * right above it (convention: packages/components/AGENTS.md, "CSS custom
+ * properties"):
  *
  *   /**
  *    * Minimum inline size of the form field.

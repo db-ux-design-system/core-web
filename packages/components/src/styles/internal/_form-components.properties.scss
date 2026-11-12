@@ -1,28 +1,3 @@
-// CSS custom properties of the form components (DBInput, DBSelect,
-// DBCustomSelect, DBTextarea): the styling API consumers may set.
-
-// Every property is registered with `@property` and documented in the `/** */`
-// comment right above it. scripts/css-properties.ts reads both from the
-// compiled CSS and writes `<component>.css-properties.json`, which the
-// Storybook overview pages show as "CSS custom properties".
-
-// Start the file with `/* @css-properties <name> */` and keep only `@property`
-// rules in it: a component documents only the properties files its own
-// `<name>.scss` loads, not those of nested components.
-
-// Comment format: the description, then optional tags:
-//   @default <value>   the value when the property is not set
-
-// `syntax: "*"` and `inherits: true`, so registering changes nothing at
-// runtime. Set `initial-value` only when the default is a fixed value that
-// equals every `var(--property, fallback)` of it (e.g. `auto`, `0`, `1fr`):
-// with an initial value the fallbacks no longer apply. It is evaluated once
-// and globally, without `var()`, so defaults that are tokens (they follow the
-// density) or depend on a variant stay unset and use `@default` instead.
-// The plugin takes the initial value as the default when `@default` is
-// missing.
-// ASCII only (see AGENTS.md, "No literal non-ASCII characters in SCSS").
-
 /* @css-properties form-components */
 
 /**
