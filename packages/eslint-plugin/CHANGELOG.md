@@ -1,5 +1,23 @@
 # @db-ux/core-eslint-plugin
 
+## 6.3.2
+
+No changes in this release.
+
+## 6.3.1
+
+No changes in this release.
+
+## 6.3.0
+
+No changes in this release.
+
+## 6.2.1
+
+### Patch Changes
+
+- fix(sub-component-required-parent): accept `DBDrawerHeader` in the `header` slot of `DBHeader` and `DBControlPanelMobile` - [see commit 63833c5](https://github.com/db-ux-design-system/core-web/commit/63833c58f5ffad89590bf59761e8b79e09555952)
+
 ## 6.2.0
 
 No changes in this release.

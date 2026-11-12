@@ -1,6 +1,12 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/variables";
 
+// Highest column count (and colspan/rowspan) the table grid detects automatically.
+// Every step adds a column count rule that is evaluated for every table, so keep
+// this low. For more columns, set `--db-table-columns` (or
+// `--db-table-grid-template-columns` for custom tracks) directly.
+$max-columns: 20;
+
 %table-section-grid {
 	display: var(--db-table-section-display, grid);
 	grid-template-columns: subgrid;
@@ -10,7 +16,7 @@
 %table-cell {
 	display: flex;
 
-	@for $span from 2 through 20 {
+	@for $span from 2 through $max-columns {
 		&[colspan="#{$span}"] {
 			grid-column: span var(--db-table-cell-span, #{$span});
 		}
@@ -21,6 +27,30 @@
 		// consumers should use the slotted (children) approach with native table elements.
 		&[rowspan="#{$span}"] {
 			grid-row: span var(--db-table-cell-span, #{$span});
+		}
+	}
+
+	// Progressive enhancement: typed `attr()` reads any span value, beyond
+	// `$max-columns`. The guard is required: because of the `var()`, browsers
+	// without typed `attr()` would not drop these declarations but turn them
+	// invalid at computed-value time, which resets every span from the loop
+	// above to `auto`. The loop stays as fallback for those browsers.
+	// `attr()` is read into a custom property first: Firefox (tested with 157)
+	// drops `attr()` directly inside a `var()` fallback and resets the span to
+	// `auto`, while it resolves `attr()` in a custom property correctly.
+	@supports (grid-column: span attr(colspan type(<integer>))) {
+		&[colspan] {
+			--db-table-cell-attr-colspan: attr(colspan type(<integer>));
+
+			grid-column: span
+				var(--db-table-cell-span, var(--db-table-cell-attr-colspan));
+		}
+
+		&[rowspan] {
+			--db-table-cell-attr-rowspan: attr(rowspan type(<integer>));
+
+			grid-row: span
+				var(--db-table-cell-span, var(--db-table-cell-attr-rowspan));
 		}
 	}
 

@@ -101,6 +101,7 @@ The active style is automatically set once an item receives the `aria-current="p
 		<ng-container *dbNavigationContent>
 			<a
 				routerLink="/"
+				routerLinkActive
 				ariaCurrentWhenActive="page"
 				[routerLinkActiveOptions]="{ exact: true }"
 			>
@@ -113,12 +114,20 @@ The active style is automatically set once an item receives the `aria-current="p
 		<ng-container sub-navigation>
 			<db-navigation-item>
 				<ng-container *dbNavigationContent>
-					<a routerLink="/demo/1" ariaCurrentWhenActive="page">
+					<a
+						routerLink="/demo/1"
+						routerLinkActive
+						ariaCurrentWhenActive="page"
+					>
 						Demo Page 1
 					</a>
 				</ng-container>
 				<ng-container *dbNavigationContent>
-					<a routerLink="/demo/2" ariaCurrentWhenActive="page">
+					<a
+						routerLink="/demo/2"
+						routerLinkActive
+						ariaCurrentWhenActive="page"
+					>
 						Demo Page 2
 					</a>
 				</ng-container>

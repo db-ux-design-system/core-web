@@ -246,6 +246,25 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Component styles**: `packages/components/src/styles/`
 - **Build artifacts**: `packages/foundations/build/` and `packages/components/build/`
 
+### Where documentation lives
+
+The documentation is split between two places. The Patternhub (`showcases/patternhub`) is being replaced by them; do not add new content there.
+
+| Place                                                                              | Content                                                                                                                                                                                                                                                                                            | Language, versions                  |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **Storybook** (generated from this repository)                                     | Everything technical: properties and attributes, examples with "Show code", a Getting Started entry page per framework, technical accessibility behaviour, migration, technical Foundations pages, the test table                                                                                  | English only, versioned per release |
+| **[Design System Platform](https://design-system.deutschebahn.com/documentation)** | Everything about content and design: guidelines with Do and Don't examples, when to use a component, the playground, design topics, the Learn articles (setup incl. installation, styles and DB Theme, example projects and guides such as router links, form validation, testing, own components) | German and English, current version |
+
+Rules:
+
+- **Technical → Storybook, content → Platform.** If a text explains how to use a component in code, it belongs in Storybook. If it explains when or why to use it, it belongs on the platform.
+- **One source per content.** Storybook pages are generated from files in this repository (`docs/*.md` of a component, `packages/foundations/docs/`, `packages/components/docs/`, the example stories). Edit the source, never the generated page. The generators and their sources are listed in `storybooks/_shared/overview/README.md`.
+- **Link, don't copy.** Storybook links to the platform guidelines, the platform links to the Storybook overview of each framework. Do not repeat content of the other place.
+- **Versions only in Storybook.** The platform describes the current release; older versions are reachable through the version dropdown of the composition Storybook.
+- **Setup and guides across components → Learn on the platform.** How-tos that are not tied to one component are Learn articles on the platform, also when they are technical: the setup per framework (installation, styles, DB Theme) and guides such as router links, form validation, testing your application, own components and backdrops. Storybook only links them, its Getting Started pages contain no setup steps.
+- **Foundations: reference in Storybook, implementation in Learn.** `packages/foundations/docs/*.md` is the reference (tokens, classes, variants of a version) and stays the source for the Foundations pages in Storybook and for the MCP server.
+  How to implement a topic (colors and modes, density, font sizes, spacing, icons, browsers, editor and build) is a Learn article on the platform; each Foundations page links it (`learn` in `storybooks/_shared/foundations/pages.ts`). When a foundation feature changes, update both. The platform article is the source. `packages/components/docs/router-usage.md`, `creating-custom-components.md`, `Validation.md`, `Backdrop.md` and `docs/how-to-test-with-db-ux-components.md` only remain for the Patternhub until it is shut down – change the Learn article instead.
+
 ### Key Repository Locations
 
 ```text

@@ -41,7 +41,8 @@ const flakyExpressions: Record<string, string> = {
 	'selected. selected': 'selected',
 	'expanded. expanded': 'expanded',
 	'not checked. not checked': 'not checked',
-	'banner landmark. button.': 'button.'
+	'banner landmark. button.': 'button.',
+	'landmark. button.': 'button.'
 };
 
 // Normalize non-ASCII characters to ASCII equivalents.
