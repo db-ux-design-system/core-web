@@ -1,5 +1,8 @@
+import { GLOBALS_UPDATED, SET_GLOBALS } from 'storybook/internal/core-events';
+import type { Globals } from 'storybook/internal/types';
 import { addons } from 'storybook/manager-api';
-import { BRAND_NAME, managerTheme } from './theme';
+import { DARK_QUERY, MANAGER_MODE_ATTRIBUTE, resolveMode } from './mode';
+import { BRAND_NAME, managerThemes } from './theme';
 
 /*
  * Theme of the Storybook UI (sidebar, toolbar, title).
@@ -11,8 +14,61 @@ import { BRAND_NAME, managerTheme } from './theme';
  */
 // Storybook's default toolbar and settings menu, in the colors of the theme
 // (manager.css styles the buttons like the sidebar items).
+/*
+ * The UI follows the "Mode" toolbar entry (mode.ts) like the stories and the
+ * docs pages. On `<html>`:
+ * - `data-db-sb-mode` (light/dark): the `--db-sb-*` values of manager.css
+ *   (head.ts)
+ * - `data-db-sb-mode-setting` (auto/light/dark): the mode for the previews of
+ *   the refs, which get no globals from Storybook (mode.ts)
+ * plus the theme for Storybook's own components.
+ */
+const SCHEME_ATTRIBUTE = 'dbSbMode';
+const root = document.documentElement;
+/*
+ * `globals=mode:dark` in the URL. Storybook writes the selected globals there
+ * and removes them for the default, so the URL wins over the globals the
+ * previews report: in the composition Storybook only the host preview reports
+ * globals, with its default even when a ref story is open.
+ */
+const getUrlMode = () =>
+	new URLSearchParams(globalThis.location.search)
+		.get('globals')
+		?.match(/(?:^|;)mode:(\w+)/)?.[1];
+
+const applyManagerMode = (mode: unknown): 'light' | 'dark' => {
+	const setting = mode === 'light' || mode === 'dark' ? mode : 'auto';
+	const scheme = resolveMode(setting);
+	root.dataset[MANAGER_MODE_ATTRIBUTE] = setting;
+	root.dataset[SCHEME_ATTRIBUTE] = scheme;
+	return scheme;
+};
+
 addons.setConfig({
-	theme: managerTheme
+	theme: managerThemes[applyManagerMode(getUrlMode())]
+});
+
+addons.register('db-ux/mode', (api) => {
+	let reportedMode: unknown = api.getGlobals?.().mode;
+	const update = () => {
+		const previous = root.dataset[SCHEME_ATTRIBUTE];
+		const scheme = applyManagerMode(getUrlMode() ?? reportedMode);
+		if (previous !== scheme) {
+			api.setOptions({ theme: managerThemes[scheme] });
+		}
+	};
+
+	const onGlobals = ({ globals }: { globals: Globals }) => {
+		reportedMode = globals.mode;
+		update();
+		// Storybook updates the URL after the globals.
+		setTimeout(update, 0);
+	};
+
+	api.on(SET_GLOBALS, onGlobals);
+	api.on(GLOBALS_UPDATED, onGlobals);
+	globalThis.matchMedia?.(DARK_QUERY).addEventListener('change', update);
+	update();
 });
 
 /*

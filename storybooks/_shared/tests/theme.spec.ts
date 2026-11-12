@@ -230,23 +230,89 @@ test.describe('docs.css', () => {
 		).toBe('""');
 	});
 
-	test('Foundations examples stay light with the OS in dark mode', async ({
-		browser
-	}) => {
-		const page = await browser.newPage({ colorScheme: 'dark' });
-		await openDocs(
+	/** Red channel of a computed color: below 128 is dark. */
+	const red = (color: string) => Number(/\d+/.exec(color)?.[0] ?? 'NaN');
+
+	for (const [os, mode, expected] of [
+		['dark', undefined, 'dark'],
+		['dark', 'light', 'light'],
+		['light', 'dark', 'dark']
+	] as const) {
+		test(`one mode for UI, docs and stories (OS ${os}, mode ${mode ?? 'System'})`, async ({
+			browser
+		}) => {
+			const page = await browser.newPage({ colorScheme: os });
+			const globals = mode ? `&globals=mode:${mode}` : '';
+			await openManager(
+				page,
+				'composition-storybook',
+				`/docs/foundations-font-sizes--docs${globals}`
+			);
+			// Storybook UI: manager.ts and the --db-sb-* values of head.ts.
+			await expect(page.locator('html')).toHaveAttribute(
+				'data-db-sb-mode',
+				expected
+			);
+			const sidebar = await style(
+				page,
+				'.sidebar-container',
+				'background-color'
+			);
+			expect(red(sidebar) < 128, `sidebar ${sidebar}`).toBe(
+				expected === 'dark'
+			);
+
+			// Docs page and its examples: docs-container.ts and mode.ts.
+			const frame = page.frameLocator('#storybook-preview-iframe');
+			const story = frame.locator('.docs-story p').first();
+			await expect(story).toBeVisible({ timeout: 60_000 });
+			const docs = await frame
+				.locator('.sbdocs-wrapper')
+				.evaluate((node) => getComputedStyle(node).backgroundColor);
+			expect(red(docs) < 128, `docs ${docs}`).toBe(expected === 'dark');
+			const text = await story.evaluate(
+				(node) => getComputedStyle(node).color
+			);
+			// Light text on the dark page and the other way round.
+			expect(red(text) < 128, `story text ${text}`).toBe(
+				expected === 'light'
+			);
+			await page.close();
+		});
+	}
+
+	test('the toolbar switches the whole Storybook', async ({ browser }) => {
+		const page = await browser.newPage({ colorScheme: 'light' });
+		await openManager(
 			page,
-			'composition-storybook',
-			'foundations-font-sizes--docs'
+			'react-storybook',
+			'/docs/components-dbbutton-overview--docs'
 		);
-		// The mode decorator sets Light Mode, so the text is dark on the light docs page.
+		const frame = page.frameLocator('#storybook-preview-iframe');
+		await expect(frame.locator('.sbdocs-content h1').first()).toBeVisible({
+			timeout: 60_000
+		});
+		await page.getByRole('button', { name: /Light\/dark mode/ }).click();
+		await page.getByRole('option', { name: 'Dark Mode' }).click();
 		await expect(page.locator('html')).toHaveAttribute(
-			'data-mode',
-			'light'
+			'data-db-sb-mode',
+			'dark'
 		);
-		const color = await style(page, '.docs-story p', 'color');
-		const [red] = /\d+/.exec(color) ?? ['255'];
-		expect(Number(red), color).toBeLessThan(128);
+		await expect(frame.locator('html')).toHaveAttribute(
+			'data-mode',
+			'dark'
+		);
+		await expect
+			.poll(async () =>
+				red(
+					await frame
+						.locator('.sbdocs-wrapper')
+						.evaluate(
+							(node) => getComputedStyle(node).backgroundColor
+						)
+				)
+			)
+			.toBeLessThan(128);
 		await page.close();
 	});
 

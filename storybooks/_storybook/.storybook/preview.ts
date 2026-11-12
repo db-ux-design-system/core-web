@@ -1,10 +1,9 @@
 import type { Decorator, Preview } from '@storybook/react-vite';
+import { ModeDocsContainer } from './docs-container';
 import './global.css';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
-import { docsTheme } from './theme';
+import { docsThemes } from './theme';
 
-// Light Mode by default like the framework Storybooks, so the Foundations
-// examples do not follow an OS in dark mode on the light docs page (mode.ts).
 const withMode: Decorator = (Story, { globals }) => {
 	applyMode(globals);
 	return Story();
@@ -16,8 +15,10 @@ const preview: Preview = {
 	decorators: [withMode],
 	parameters: {
 		docs: {
-			// Colors and fonts of the design system, see theme.ts.
-			theme: docsTheme
+			// Colors and fonts of the design system in the selected mode, see
+			// theme.ts and docs-container.ts.
+			theme: docsThemes.light,
+			container: ModeDocsContainer
 		},
 		controls: {
 			matchers: {

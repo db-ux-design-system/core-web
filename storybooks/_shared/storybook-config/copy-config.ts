@@ -2,7 +2,8 @@
  * Copies the shared Storybook config files into `.storybook/` of a Storybook,
  * on every build and start (the "build" and "storybook" scripts):
  *
- * - every Storybook: `mode.ts`, `theme.ts`, `theme-values.json`, `manager.ts`
+ * - every Storybook: `mode.ts`, `theme.ts`, `theme-values.json`, `manager.ts`,
+ *   `docs-container.ts`
  * - the framework Storybooks also: `source-imports.ts`, `autodocs-page.mdx`
  *   (the composition Storybook has no component stories)
  *
@@ -19,7 +20,13 @@ import { copyFileSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
-const COMMON_FILES = ['mode.ts', 'theme.ts', 'theme-values.json', 'manager.ts'];
+const COMMON_FILES = [
+	'mode.ts',
+	'theme.ts',
+	'theme-values.json',
+	'manager.ts',
+	'docs-container.ts'
+];
 const FRAMEWORK_FILES = ['source-imports.ts', 'autodocs-page.mdx'];
 const COMPOSITION = '_storybook';
 

@@ -102,5 +102,6 @@ storybooks/*/.storybook/mode.ts
 storybooks/*/.storybook/theme.ts
 storybooks/*/.storybook/theme-values.json
 storybooks/*/.storybook/manager.ts
+storybooks/*/.storybook/docs-container.ts
 storybooks/*/.storybook/source-imports.ts
 storybooks/*/.storybook/autodocs-page.mdx
