@@ -18,7 +18,6 @@ export default function DBHeadingH5(props: DBHeadingH5Props) {
 		<h5
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
-			data-material={props.material}
 			data-adaptive-color={props.color}
 			class={cls('db-heading', props.className)}
 			data-visual-size={props.visualSize}

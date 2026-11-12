@@ -113,6 +113,10 @@
 			color: adaptive.$db-text-vibrant;
 		}
 
+		input {
+			border-color: adaptive.$db-border-vibrant;
+		}
+
 		&:has(.db-infotext[data-semantic="successful"]) {
 			@include form-components.get-validity-message("valid");
 		}

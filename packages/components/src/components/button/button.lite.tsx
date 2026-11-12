@@ -48,10 +48,6 @@ export default function DBButton(props: DBButtonProps) {
 				return 'semi-transparent';
 			}
 
-			if (props.variant === 'adaptive') {
-				return undefined;
-			}
-
 			return 'filled-1';
 		},
 		_getColor: (): ColorType | undefined => {

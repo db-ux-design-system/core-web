@@ -1,11 +1,11 @@
-import type {
+import {
+	AltStateMaterialProps,
 	ClickEventProps,
 	ColorState,
 	GlobalProps,
 	GlobalState,
 	LinkProps,
 	MaterialProps,
-	MaterialState,
 	RoleProps,
 	ShowIconProps,
 	TextProps,
@@ -38,17 +38,15 @@ export type DBLinkDefaultProps = {
 
 export type DBLinkProps = DBLinkDefaultProps &
 	GlobalProps &
-	MaterialProps &
+	Pick<MaterialProps, 'color'> &
 	ClickEventProps<HTMLAnchorElement> &
 	LinkProps &
 	RoleProps &
 	ShowIconProps &
 	TextProps &
-	WrapProps;
+	WrapProps &
+	AltStateMaterialProps;
 
 export type DBLinkDefaultState = {};
 
-export type DBLinkState = DBLinkDefaultState &
-	GlobalState &
-	ColorState &
-	MaterialState;
+export type DBLinkState = DBLinkDefaultState & GlobalState & ColorState;

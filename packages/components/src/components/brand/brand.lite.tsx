@@ -25,7 +25,6 @@ export default function DBBrand(props: DBBrandProps) {
 	return (
 		<div
 			ref={_ref}
-			data-material={props.material}
 			data-adaptive-color={props.color}
 			data-icon={props.hideLogo ? 'none' : (props.icon ?? DEFAULT_ICON)}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}

@@ -13,7 +13,7 @@ export type DBParagraphDefaultProps = {
 };
 export type DBParagraphProps = DBParagraphDefaultProps &
 	GlobalProps &
-	MaterialProps;
+	Pick<MaterialProps, 'color'>;
 
 export type DBParagraphDefaultState = {};
 export type DBParagraphState = DBParagraphDefaultState & GlobalState;

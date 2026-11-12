@@ -16,7 +16,7 @@ export type DBBrandDefaultProps = {
 
 export type DBBrandProps = DBBrandDefaultProps &
 	GlobalProps &
-	MaterialProps &
+	Pick<MaterialProps, 'color'> &
 	IconProps &
 	ShowIconProps &
 	TextProps;

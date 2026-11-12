@@ -23,7 +23,6 @@ import type {
 } from '../../shared/model';
 
 export const ButtonVariantList = [
-	'adaptive',
 	'outlined',
 	'brand',
 	'filled',

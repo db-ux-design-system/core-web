@@ -42,11 +42,7 @@
 
 	@include helpers.not-disabled {
 		@include helpers.hover {
-			color: adaptive.$db-text-hovered;
-		}
-
-		@include helpers.active {
-			color: adaptive.$db-text-pressed;
+			color: adaptive.$db-alt-state-text-vibrant;
 		}
 	}
 }

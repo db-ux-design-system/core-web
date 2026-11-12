@@ -52,7 +52,7 @@ export type DBHeadingBaseDefaultProps = {
 	visualSize?: HeadingVisualSizeType;
 	/** Sets the headline font weight. Defaults to `black`. */
 	fontWeight?: HeadingFontWeightType;
-} & MaterialProps;
+} & Pick<MaterialProps, 'color'>;
 /** @public */
 export type DBHeadingBaseProps = DBHeadingBaseDefaultProps & GlobalProps;
 

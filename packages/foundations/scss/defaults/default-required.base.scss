@@ -6,6 +6,7 @@
 @use "non-ascii-tokens.css";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
+@include screen-sizes.get-layout-breakpoint-defaults;
 
 :root,
 :host {

@@ -63,37 +63,10 @@ export const MaterialList = [
 	'origin',
 	'inverted',
 	'semi-transparent',
-	'transparent'
+	'transparent',
+	'adaptive'
 ] as const;
 export type MaterialType = (typeof MaterialList)[number];
-
-/**
- * Materials that paint no surface of their own and therefore give text no
- * guaranteed background to sit on. Excluded from the text-component matrix so
- * plain text (e.g. link, infotext) is never rendered without accessible
- * contrast.
- */
-const NON_TEXT_SAFE_MATERIALS = ['origin', 'inverted'] as const;
-
-/**
- * Material of a text-only component (e.g. link, infotext). Derived from
- * `MaterialType` by excluding the surfaceless materials, so it stays in sync
- * when `MaterialList` changes.
- */
-export type TextMaterialType = Exclude<
-	MaterialType,
-	(typeof NON_TEXT_SAFE_MATERIALS)[number]
->;
-
-/**
- * Materials safe for text-only components. Derived from `MaterialList` (not a
- * re-typed literal) so a change to the source list propagates automatically.
- * Used by the adaptive color x material matrix examples.
- */
-export const TextMaterialList = MaterialList.filter(
-	(material): material is TextMaterialType =>
-		!(NON_TEXT_SAFE_MATERIALS as readonly string[]).includes(material)
-);
 
 export const ColorList = [
 	'grey',

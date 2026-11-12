@@ -5,7 +5,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ColorType, MaterialType } from '../../shared/model';
+import { ColorType } from '../../shared/model';
 import { cls, getBooleanAsString } from '../../utils';
 import { DBLinkProps, DBLinkState } from './model';
 
@@ -17,17 +17,6 @@ export default function DBLink(props: DBLinkProps) {
 	const _ref = useRef<HTMLAnchorElement | any>(null);
 
 	const state = useStore<DBLinkState>({
-		_getMaterial: (): MaterialType | undefined => {
-			if (props.material) {
-				return props.material;
-			}
-
-			if (props.variant === 'brand') {
-				return 'origin';
-			}
-
-			return undefined;
-		},
 		_getColor: (): ColorType | undefined => {
 			if (props.color) {
 				return props.color;
@@ -43,8 +32,9 @@ export default function DBLink(props: DBLinkProps) {
 
 	return (
 		<a
-			data-material={state._getMaterial()}
 			data-adaptive-color={state._getColor()}
+			data-alt-state-adaptive-color={props.altStateColor ?? 'cyan'}
+			data-alt-state-adaptive-material={props.altStateMaterial}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-link', props.className)}

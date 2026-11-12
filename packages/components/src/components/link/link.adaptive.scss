@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
 @use "../../styles/adaptive/component";
+@use "@db-ux/core-foundations/build/styles/helpers";
 
 [data-adaptive-coloring="true"] .db-link,
 .db-link[data-adaptive-coloring="true"] {
