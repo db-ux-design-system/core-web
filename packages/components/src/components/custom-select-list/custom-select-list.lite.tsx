@@ -16,6 +16,8 @@ export default function DBCustomSelectList(props: DBCustomSelectListProps) {
 			aria-label={props.label}
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			className={cls('db-custom-select-list', props.className)}>
 			<ul>{props.children}</ul>
 		</div>

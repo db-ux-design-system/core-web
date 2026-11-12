@@ -33,8 +33,18 @@ const ignoredExamples = globSync(
  * @type {import('@builder.io/mitosis').MitosisConfig}
  */
 module.exports = {
+	/*
+	 * Loop-rendered examples (e.g. the adaptive color x material matrices) opt
+	 * out of story generation with `useMetadata({ storybookSkip: true })` - they
+	 * have no single reference instance for Storybook args. The plugin returns
+	 * their source untouched, but Mitosis would still emit it with a `.stories`
+	 * extension (forced by `explicitBuildFileExtensions`), producing a file that
+	 * is not valid CSF and breaks the Storybook indexer ("missing default
+	 * export"). Excluding them here means no story file is generated at all.
+	 */
 	files: [
 		'**/*.example.lite.tsx',
+		'!**/adaptive-matrix.example.lite.tsx',
 		'**/examples/data.ts',
 		'**/model.ts',
 		...ignoredExamples

@@ -2,6 +2,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	IconProps,
+	MaterialProps,
 	TextProps
 } from '../../shared/model';
 
@@ -15,6 +16,7 @@ export type DBIconDefaultProps = {
 
 export type DBIconProps = DBIconDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	IconProps &
 	TextProps;
 

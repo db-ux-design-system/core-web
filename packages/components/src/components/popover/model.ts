@@ -3,6 +3,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
 	PlacementProps,
 	PopoverProps,
 	PopoverState,
@@ -23,6 +24,7 @@ export type DBPopoverDefaultProps = {
 
 export type DBPopoverProps = DBPopoverDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	SpacingProps &
 	PlacementProps &
 	GapProps &

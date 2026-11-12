@@ -1,0 +1,12 @@
+@use "../../styles/internal/popover-component";
+
+/*
+ * Legacy color layer for `popover`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ */
+.db-popover {
+	> article {
+		@extend %default-popover-colors;
+	}
+}

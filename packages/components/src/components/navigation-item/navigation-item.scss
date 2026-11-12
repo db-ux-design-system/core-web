@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
@@ -65,7 +64,6 @@
 	@extend %transparent-border;
 	@extend %db-overwrite-font-size-md;
 
-	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	cursor: pointer;
 	inline-size: 100%;
 	border-radius: variables.$db-border-radius-sm;
@@ -78,14 +76,6 @@
 	gap: variables.$db-spacing-fixed-sm;
 
 	@include helpers.display(inline-flex);
-	@include helpers.interactive-bg(
-		colors.$db-adaptive-bg-basic-transparent-full-hovered,
-		colors.$db-adaptive-bg-basic-transparent-full-pressed
-	);
-
-	&:has(~ .db-sub-navigation:is(:hover, :focus)) {
-		background-color: colors.$db-adaptive-bg-basic-transparent-full-hovered;
-	}
 }
 
 .db-navigation-item {
@@ -198,7 +188,6 @@
 
 	flex-direction: column;
 	z-index: 70;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	visibility: hidden;
 
 	@include screen-sizes.screen("md", "max") {
@@ -206,8 +195,12 @@
 	}
 
 	@include screen-sizes.screen("md") {
-		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
-		border: component.$component-border;
+		/* width + style longhands only - the `border` shorthand would reset
+		 * `border-color` to currentColor and override the color layer (see
+		 * `component-border-structure`). */
+		// stylelint-disable-next-line db-ux/use-border-width
+		border-width: variables.$db-border-width-3xs;
+		border-style: solid;
 		border-radius: variables.$db-border-radius-sm;
 		box-shadow: variables.$db-elevation-md;
 		padding: variables.$db-spacing-fixed-sm;
@@ -335,7 +328,6 @@
 	@include helpers.display(flex);
 
 	font-weight: normal;
-	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 	padding-block-end: variables.$db-spacing-fixed-md;
 	margin-block-end: variables.$db-spacing-fixed-md;
 

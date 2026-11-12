@@ -1,4 +1,3 @@
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
@@ -11,8 +10,6 @@ $nested-heading: ":where(h1, h2, h3, h4, h5, h6):not(.db-heading)";
 
 .db-custom-heading,
 .db-heading {
-	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
-
 	/* Headings are often long single words (compound nouns, URLs) in narrow
 	 * containers, so break anywhere instead of overflowing the layout. */
 	overflow-wrap: anywhere;

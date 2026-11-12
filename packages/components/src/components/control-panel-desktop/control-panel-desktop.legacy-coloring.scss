@@ -1,0 +1,19 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "../../styles/internal/control-panel-desktop";
+
+/*
+ * Legacy color layer for `control-panel-desktop`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-control-panel-desktop {
+	background-color: colors.$db-adaptive-bg-basic-level-1-default;
+
+	&[data-orientation="vertical"] {
+		@extend %control-panel-desktop-vertical-orientation-colors;
+	}
+
+	&[data-orientation="horizontal"] {
+		@extend %control-panel-desktop-horizontal-orientation-colors;
+	}
+}

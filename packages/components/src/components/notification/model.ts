@@ -2,10 +2,13 @@ import type {
 	ClickEvent,
 	CloseEventProps,
 	CloseEventState,
+	ColorState,
 	GlobalProps,
 	GlobalState,
 	IconProps,
 	InnerCloseButtonProps,
+	MaterialProps,
+	MaterialState,
 	RoleProps,
 	SemanticProps,
 	ShowIconProps,
@@ -98,6 +101,7 @@ export type DBNotificationDefaultProps = {
 
 export type DBNotificationProps = DBNotificationDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	RoleProps &
 	CloseEventProps<ClickEvent<HTMLButtonElement>> &
 	IconProps &
@@ -110,4 +114,6 @@ export type DBNotificationDefaultState = {};
 
 export type DBNotificationState = DBNotificationDefaultState &
 	GlobalState &
+	MaterialState &
+	ColorState &
 	CloseEventState<ClickEvent<HTMLButtonElement>>;

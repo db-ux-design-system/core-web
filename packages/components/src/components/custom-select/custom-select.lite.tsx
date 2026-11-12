@@ -27,7 +27,13 @@ import {
 	DEFAULT_VALID_MESSAGE,
 	DEFAULT_VALID_MESSAGE_ID_SUFFIX
 } from '../../shared/constants';
-import { GeneralEvent, InputEvent, InteractionEvent } from '../../shared/model';
+import {
+	ColorType,
+	GeneralEvent,
+	InputEvent,
+	InteractionEvent,
+	MaterialType
+} from '../../shared/model';
 import {
 	cls,
 	delay,
@@ -45,6 +51,7 @@ import { DocumentScrollListener } from '../../utils/document-scroll-listener';
 import { handleFixedDropdown } from '../../utils/floating-components';
 import {
 	addResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -104,6 +111,33 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		_validity: 'no-validation',
 		_userInteraction: false,
 		abortController: undefined,
+		_getColor: (): ColorType | undefined => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: selectRef
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getLabelColor: (): ColorType | undefined => {
+			return props.variant === 'floating' ? state._getColor() : 'grey';
+		},
+		_getLabelMaterial: (): MaterialType | undefined => {
+			return props.variant === 'floating' ? undefined : 'filled-1';
+		},
 		// Workaround for Vue output: TS for Vue would think that it could be a function, and by this we clarify that it's a string
 		_descByIds: undefined,
 		_selectedLabels: '',
@@ -193,11 +227,24 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					);
 
 				state.handleAutoPlacement();
-				state._resizeObserverCallbackId =
-					new ResizeObserverListener().observe(
-						document.documentElement,
-						() => state.handleAutoPlacement()
-					);
+				/*
+				 * Snapshot testing force-opens many dropdowns at once (data-test).
+				 * The ResizeObserver on document.documentElement repositions the
+				 * dropdown, which can resize the document, which refires the
+				 * observer - a feedback loop that, with many open dropdowns on a
+				 * heavy page, never settles and blocks the screenshot (webkit
+				 * times out). The one-time handleAutoPlacement above already
+				 * positions it; the live observer is only needed for real runtime
+				 * viewport resizes, so skip it (and the keyboard-focus workaround)
+				 * under data-test.
+				 */
+				if (!event.target.dataset['test']) {
+					state._resizeObserverCallbackId =
+						new ResizeObserverListener().observe(
+							document.documentElement,
+							() => state.handleAutoPlacement()
+						);
+				}
 				state._intersectionObserverCallbackId =
 					new IntersectionObserverListener().observe(
 						detailsRef,
@@ -208,7 +255,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						}
 					);
 				if (!event.target.dataset['test']) {
-					// We need this workaround for snapshot testing
 					state.handleOpenByKeyboardFocus();
 				}
 			} else {
@@ -1087,6 +1133,8 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		<div
 			id={state._id}
 			ref={_ref}
+			data-material={props.material}
+			data-adaptive-color={state._getColor()}
 			class={cls('db-custom-select', props.className)}
 			aria-invalid={state._validity === 'invalid'}
 			data-custom-validity={state._validity}
@@ -1105,7 +1153,10 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			data-hide-label={getHideProp(props.showLabel)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}>
-			<label id={state._labelId}>
+			<label
+				data-adaptive-color={state._getLabelColor()}
+				data-material={state._getLabelMaterial()}
+				id={state._labelId}>
 				{props.label ?? DEFAULT_LABEL}
 				{/* The form-submitted value. Hidden, but advertises
 				    `autocomplete`, so autofill can write to it - see
@@ -1250,6 +1301,7 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 							type="button"
 							class="db-button db-custom-select-clear"
 							data-icon="cross"
+							data-material="transparent"
 							data-variant="ghost"
 							data-no-text="true"
 							data-size="small"
@@ -1280,7 +1332,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						tabIndex={props.disabled ? -1 : undefined}
 						aria-labelledby={state._labelId}></summary>
 					<Show when={props.options} else={props.children}>
-						<DBCustomSelectDropdown width={props.dropdownWidth}>
+						<DBCustomSelectDropdown
+							material="filled-1"
+							width={props.dropdownWidth}>
 							<Show when={state.searchEnabled}>
 								<div>
 									<DBInput

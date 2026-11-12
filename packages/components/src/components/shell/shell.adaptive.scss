@@ -1,0 +1,6 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-shell,
+.db-shell[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+}

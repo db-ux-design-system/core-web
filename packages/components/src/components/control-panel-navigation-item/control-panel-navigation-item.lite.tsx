@@ -123,6 +123,8 @@ export default function DBControlPanelNavigationItem(
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			role={state._role}
+			data-material={props.material ?? 'transparent'}
+			data-adaptive-color={props.color}
 			class={cls('db-control-panel-navigation-item', props.className)}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}

@@ -93,12 +93,14 @@ export default function DBHeader(props: DBHeaderProps) {
 			ref={_ref}
 			class={cls('db-header', props.className)}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			data-width={props.width}
 			data-on-forcing-mobile={
 				getBoolean(props.forceMobile, 'forceMobile') &&
 				!state.forcedToMobile
 			}>
-			<div class="db-header-meta-navigation">
+			<div class="db-header-meta-navigation" data-material="filled-2">
 				<Slot name="metaNavigation" />
 			</div>
 			<div class="db-header-navigation-bar">
@@ -160,7 +162,9 @@ export default function DBHeader(props: DBHeaderProps) {
 						}>
 						{props.children}
 					</div>
-					<div class="db-header-meta-navigation">
+					<div
+						class="db-header-meta-navigation"
+						data-material="filled-2">
 						<Slot name="metaNavigation" />
 					</div>
 				</div>

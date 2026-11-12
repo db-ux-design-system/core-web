@@ -1,4 +1,5 @@
-import { readdirSync } from 'node:fs';
+import { resolvePackagePath } from '@db-ux/core-theme-tools/detector';
+import { existsSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import type { FoundationFeature, GenerateOptions } from './types.js';
 
@@ -202,10 +203,40 @@ export function generateCSS(options: GenerateOptions): string {
 	}
 
 	// Component styles
+	const componentsDir = resolvePackagePath(
+		root,
+		'@db-ux/core-components/build/components'
+	);
 	for (const component of components || []) {
-		if (!exclude.components?.includes(component)) {
+		if (exclude.components?.includes(component)) {
+			continue;
+		}
+
+		imports.push(
+			`@import "@db-ux/core-components/build/components/${component}/${component}.css" layer(db-ux);`
+		);
+
+		/*
+		 * The legacy color declarations were extracted out of each
+		 * component's base `.css` into a sibling `.legacy-coloring.css`
+		 * (color-free base so the adaptive bundle can omit it). Selective
+		 * imports therefore have to pull the legacy color layer in
+		 * explicitly, or the component renders without its variant colors.
+		 * Only components that actually have a legacy color layer ship the
+		 * file, so guard the import on its existence.
+		 */
+		if (
+			componentsDir &&
+			existsSync(
+				resolve(
+					componentsDir,
+					component,
+					`${component}.legacy-coloring.css`
+				)
+			)
+		) {
 			imports.push(
-				`@import "@db-ux/core-components/build/components/${component}/${component}.css" layer(db-ux);`
+				`@import "@db-ux/core-components/build/components/${component}/${component}.legacy-coloring.css" layer(db-ux);`
 			);
 		}
 	}

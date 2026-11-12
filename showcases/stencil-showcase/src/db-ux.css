@@ -1,0 +1,3 @@
+@layer db-theme, db-ux;
+@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
+@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);

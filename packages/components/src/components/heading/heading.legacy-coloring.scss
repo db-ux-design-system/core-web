@@ -1,0 +1,11 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+
+/*
+ * Legacy color layer for `heading`. The base `.scss` is color-free (structure
+ * only); forwarded by `components-legacy-coloring` into the legacy bundle. The
+ * adaptive bundle omits this file.
+ */
+.db-custom-heading,
+.db-heading {
+	color: colors.$db-adaptive-on-bg-basic-emphasis-100-default;
+}

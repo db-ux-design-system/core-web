@@ -29,7 +29,11 @@ const App = ({ Component, pageProps }: AppProps) => {
 		page,
 		fullscreen,
 		setSettings,
-		settings
+		settings,
+		shell,
+		setShell,
+		coloringMode,
+		setColoringMode
 	} = useQuery();
 
 	if (page ?? fullscreen) {
@@ -64,9 +68,13 @@ const App = ({ Component, pageProps }: AppProps) => {
 						color={color}
 						settings={settings}
 						density={density}
+						shell={shell}
+						coloringMode={coloringMode}
 						onSettingsChange={setSettings}
 						onColorChange={setColor}
 						onDensityChange={setDensity}
+						onShellChange={setShell}
+						onColoringModeChange={setColoringMode}
 					/>
 				}
 				actions2={<Actions2 />}
@@ -85,9 +93,13 @@ const App = ({ Component, pageProps }: AppProps) => {
 						color={color}
 						settings={settings}
 						density={density}
+						shell={shell}
+						coloringMode={coloringMode}
 						onSettingsChange={setSettings}
 						onColorChange={setColor}
 						onDensityChange={setDensity}
+						onShellChange={setShell}
+						onColoringModeChange={setColoringMode}
 					/>
 				}
 				actions2={<Actions2 />}>

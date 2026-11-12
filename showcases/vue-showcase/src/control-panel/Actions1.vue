@@ -6,6 +6,7 @@ import {
 	DBDrawer,
 	DBDrawerHeader,
 	DBSelect,
+	DBSwitch,
 	DBTooltip,
 	DENSITIES,
 	SEMANTICS
@@ -14,7 +15,11 @@ import { ref } from "vue";
 import { defaultSettingsMapping } from "../../../settings";
 import { useLayout } from "../composables/use-layout";
 
-const { density, color, onChange, settings } = useLayout();
+const { density, color, shell, onChange, settings } = useLayout();
+
+const onShellToggle = () => {
+	onChange({} as Event, "shell");
+};
 
 const sendSettings = (event: any, key: string) => {
 	onChange(
@@ -75,6 +80,10 @@ const open = ref(false);
 					><DBDivider
 				/></template>
 			</template>
+			<DBDivider />
+			<DBSwitch :checked="shell" @change="onShellToggle">
+				Shell
+			</DBSwitch>
 		</DBDrawer>
 		<DBButton
 			icon="gear_wheel"

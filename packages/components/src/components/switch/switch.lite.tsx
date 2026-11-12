@@ -34,6 +34,7 @@ import {
 } from '../../utils';
 import {
 	addCheckedResetEventListener,
+	getValidationState,
 	handleFrameworkEventAngular,
 	handleFrameworkEventVue
 } from '../../utils/form-components';
@@ -69,6 +70,48 @@ export default function DBSwitch(props: DBSwitchProps) {
 		_descByIds: undefined,
 		_voiceOverFallback: '' as string,
 		abortController: undefined,
+		_getColor: () => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.color) {
+				return props.color;
+			}
+
+			return undefined;
+		},
+		_getAltStateColor: () => {
+			const validationState = getValidationState({
+				validation: props.validation,
+				validMessage: props.validMessage,
+				element: _ref
+			});
+
+			if (validationState === 'valid') {
+				return 'green';
+			}
+
+			if (validationState === 'invalid') {
+				return 'red';
+			}
+
+			if (props.altStateColor) {
+				return props.altStateColor;
+			}
+
+			return undefined;
+		},
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
@@ -231,6 +274,10 @@ export default function DBSwitch(props: DBSwitchProps) {
 
 	return (
 		<div
+			data-alt-state-material={props.altStateMaterial ?? 'inverted'}
+			data-alt-state-adaptive-color={state._getAltStateColor()}
+			data-material={props.material ?? 'filled-1'}
+			data-adaptive-color={state._getColor()}
 			data-visual-aid={getBooleanAsString(props.visualAid, 'visualAid')}
 			data-size={props.size}
 			data-hide-label={getHideProp(props.showLabel)}

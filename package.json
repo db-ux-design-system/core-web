@@ -65,7 +65,7 @@
     "lint:package-json": "npmPkgJsonLint ./packages ./output --configFile .config/.npmpackagejsonlintrc.json",
     "lint:storybook-config": "node storybooks/_shared/storybook-config/sync.ts --check",
     "lint:storybook-foundations": "node storybooks/_shared/foundations/generate-foundations.ts --check",
-    "lint:stylelint": "stylelint **/*.{css,scss}",
+    "lint:stylelint": "stylelint packages/**/*.{css,scss}",
     "lint:xo": "xo",
     "prepare": "husky",
     "regenerate:screenshots": "pnpm run build && pnpm --filter react-showcase run build && pnpm --filter react-showcase run regenerate:visual-snapshots && pnpm --filter react-showcase run regenerate:aria-snapshots",

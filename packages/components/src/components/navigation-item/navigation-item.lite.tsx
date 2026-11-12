@@ -111,6 +111,8 @@ export default function DBNavigationItem(props: DBNavigationItemProps) {
 				state.navigationItemSafeTriangle?.followByMouseEvent(event)
 			}
 			class={cls('db-navigation-item', props.className)}
+			data-material={props.material ?? 'transparent'}
+			data-adaptive-color={props.color}
 			data-width={props.width}
 			data-icon={props.icon}
 			data-show-icon={getBooleanAsString(props.showIcon, 'showIcon')}

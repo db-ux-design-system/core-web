@@ -39,10 +39,18 @@
 	}
 }
 
+/*
+ * Legacy color companion for `%db-default-link`: the default link text color
+ * and its interactive states. Consumers @extend this from their
+ * `*.legacy-coloring.scss`; the adaptive bundle colors the link instead.
+ */
+%db-default-link-colors {
+	@extend %db-link-default-color;
+}
+
 %db-default-link {
 	@extend %default-fg-transition;
 	@extend %db-link-height;
-	@extend %db-link-default-color;
 
 	inline-size: fit-content;
 

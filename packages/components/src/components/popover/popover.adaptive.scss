@@ -1,0 +1,8 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-popover,
+.db-popover[data-adaptive-coloring="true"] {
+	> article {
+		@extend %adaptive-coloring-container;
+	}
+}

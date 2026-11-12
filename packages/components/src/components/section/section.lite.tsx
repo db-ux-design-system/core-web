@@ -12,6 +12,8 @@ export default function DBSection(props: DBSectionProps) {
 		<section
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-section', props.className)}
 			data-spacing={props.spacing || 'medium'}
 			data-width={props.width}>

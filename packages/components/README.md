@@ -121,9 +121,15 @@ In the case you want to include only some components, and you could do it like t
 /* Optional: Add data-icon/data-icon-trailing to global attributes to enable icons for components */
 @import "@db-ux/core-foundations/build/styles/icons/rollup.css";
 
-/* Optional: Add components */
+/* Optional: Add components. Each component ships its structure in `<name>.css`
+   and its legacy variant colors in a sibling `<name>.legacy-coloring.css`.
+   Import both for a fully colored component (the full `bundle.css` does this
+   for you). Omit the `.legacy-coloring.css` import only if you drive coloring
+   through the adaptive system instead. */
 @import "@db-ux/core-components/build/components/button/button.css";
+@import "@db-ux/core-components/build/components/button/button.legacy-coloring.css";
 @import "@db-ux/core-components/build/components/input/input.css";
+@import "@db-ux/core-components/build/components/input/input.legacy-coloring.css";
 ```
 
 ## Deutsche Bahn brand

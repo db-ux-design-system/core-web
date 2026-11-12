@@ -1,0 +1,8 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+[data-adaptive-coloring="true"] .db-custom-heading,
+[data-adaptive-coloring="true"] .db-heading,
+.db-custom-heading[data-adaptive-coloring="true"],
+.db-heading[data-adaptive-coloring="true"] {
+	color: adaptive.$db-text-default;
+}

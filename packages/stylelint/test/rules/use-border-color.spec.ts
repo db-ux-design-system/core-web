@@ -62,6 +62,69 @@ describe(`${ruleName}`, () => {
 		expect(warnings).toHaveLength(0);
 	});
 
+	test('allows adaptive-coloring border role tokens', async () => {
+		const {
+			results: [{ warnings, parseErrors }]
+		} = await lint({
+			code: `
+.adaptive-scss-alias {
+	border-color: adaptive.$db-border-default;
+	border-inline-start-color: adaptive.$db-border-vibrant;
+	border-block-end-color: adaptive.$db-border-decorative;
+}
+
+.adaptive-alt-state {
+	border-color: adaptive.$db-alt-state-border-default;
+	border-color: adaptive.$db-alt-state-bg-default;
+}
+
+.adaptive-custom-property {
+	border-color: var(--db-border-default);
+	border-inline-end-color: var(--db-border-vibrant);
+}
+			`,
+			config
+		});
+
+		expect(parseErrors).toHaveLength(0);
+		expect(warnings).toHaveLength(0);
+	});
+
+	test('allows a border shorthand that declares width and style but no color', async () => {
+		const {
+			results: [{ warnings, parseErrors }]
+		} = await lint({
+			code: `
+.width-and-style-only {
+	border-block-start: variables.$db-border-width-3xs solid;
+	border: variables.$db-border-width-sm solid;
+	border-inline-end: variables.$db-border-width-3xs dashed;
+}
+			`,
+			config
+		});
+
+		expect(parseErrors).toHaveLength(0);
+		expect(warnings).toHaveLength(0);
+	});
+
+	test('still rejects a real color in a width/style border shorthand', async () => {
+		const {
+			results: [{ warnings, parseErrors }]
+		} = await lint({
+			code: `
+.bad-color-in-shorthand {
+	border-block-start: variables.$db-border-width-3xs solid red;
+	border-color: red;
+}
+			`,
+			config
+		});
+
+		expect(parseErrors).toHaveLength(0);
+		expect(warnings).toHaveLength(2);
+	});
+
 	test('rejects invalid colors in all border properties', async () => {
 		const {
 			results: [{ warnings, parseErrors }]

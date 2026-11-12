@@ -24,7 +24,13 @@
 		"showcases/*",
 		"storybooks/*",
 		"docs",
-		"figma-code-connect/*"
+		"figma-code-connect/*",
+		// theme-tools test fixtures are mock vite/webpack/angular apps. Knip's
+		// bundler plugins import their vite.config.js / webpack.config.js, which
+		// in turn import the built plugin (@db-ux/core-theme-tools/build/plugin/*);
+		// the lint CI job does not build this package, so the load throws and Knip
+		// exits 2. They are test fixtures, not shipped code - skip them entirely.
+		"packages/theme-tools/test/fixtures/*"
 	],
 
 	// Design token packages and shared configs consumed implicitly
@@ -113,6 +119,20 @@
 		// Vite plugin: test fixtures are mock apps with their own unlisted deps
 		"packages/vite-plugin": {
 			"ignore": ["test/fixtures/**"]
+		},
+
+		// Theme tools: test fixtures are mock apps (vite/webpack/angular) whose
+		// deps are referenced by config strings (e.g. css-loader in a webpack
+		// rule), not static imports, so Knip cannot see them and would otherwise
+		// prune them as unused.
+		"packages/theme-tools": {
+			"ignore": ["test/fixtures/**"],
+			// The bundler-plugin entry points (plugin/vite.ts, webpack.ts, …)
+			// import these host bundlers, which are declared as OPTIONAL
+			// peerDependencies (a consumer only installs the one they use). Knip
+			// reports optional peers that are referenced but not installed in this
+			// workspace as issues; they are intentional, so ignore them.
+			"ignoreDependencies": ["@farmfe/core", "rollup", "vite", "webpack"]
 		},
 
 		// Stylelint plugin: test fixtures are loaded by stylelint.lint() as file paths

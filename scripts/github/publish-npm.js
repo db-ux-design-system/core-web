@@ -55,6 +55,11 @@ const packages = [
 	{ dir: 'wc-core-components', name: 'wc-core-components' },
 	{ dir: 'stylelint', name: 'core-stylelint' },
 	{ dir: 'eslint-plugin', name: 'core-eslint-plugin' },
+	// The theme-tools package depends on core-foundations (published first
+	// above), so its workspace:* foundations dep is pinned to the release
+	// version below. It must publish BEFORE vite-plugin, which now depends on
+	// core-theme-tools.
+	{ dir: 'theme-tools', name: 'core-theme-tools' },
 	{ dir: 'vite-plugin', name: 'core-vite-plugin' },
 	{ dir: 'postcss-plugin', name: 'core-postcss-plugin' },
 	// Publish mcp-server before agent-cli: the agent-cli consumer bundle ships an
@@ -71,7 +76,8 @@ const packagesWithFoundationsDep = new Set([
 	'ngx-core-components',
 	'react-core-components',
 	'v-core-components',
-	'wc-core-components'
+	'wc-core-components',
+	'core-theme-tools'
 ]);
 
 const packagesWithComponentsDep = new Set([
@@ -80,6 +86,8 @@ const packagesWithComponentsDep = new Set([
 	'v-core-components',
 	'wc-core-components'
 ]);
+
+const packagesWithThemeToolsDep = new Set(['core-vite-plugin']);
 
 for (const { dir, name: PACKAGE } of packages) {
 	console.log(`Start ${PACKAGE} bundle:`);
@@ -99,6 +107,12 @@ for (const { dir, name: PACKAGE } of packages) {
 	if (packagesWithComponentsDep.has(PACKAGE)) {
 		pkg.dependencies ??= {};
 		pkg.dependencies['@db-ux/core-components'] = VALID_SEMVER;
+	}
+
+	if (packagesWithThemeToolsDep.has(PACKAGE)) {
+		console.log('🎨 Set theme-tools dependency');
+		pkg.dependencies ??= {};
+		pkg.dependencies['@db-ux/core-theme-tools'] = VALID_SEMVER;
 	}
 
 	writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n');

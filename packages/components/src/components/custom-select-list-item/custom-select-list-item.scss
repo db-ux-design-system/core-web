@@ -1,5 +1,4 @@
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/icons";
@@ -19,18 +18,8 @@ db-custom-select-list-item:not(:last-of-type) {
 	block-size: 100%;
 	position: relative;
 	padding: variables.$db-spacing-fixed-sm;
-	background-color: colors.$db-adaptive-bg-basic-transparent-full-default;
 	border-radius: variables.$db-border-radius-xs;
 	box-sizing: border-box;
-
-	&:has(> label) {
-		&:not(:has(input[type="radio"]:checked)) {
-			@include helpers.interactive-bg(
-				colors.$db-adaptive-bg-basic-transparent-full-hovered,
-				colors.$db-adaptive-bg-basic-transparent-full-pressed
-			);
-		}
-	}
 
 	&:has(> label > input:focus-visible) {
 		@extend %focus-placeholder;
@@ -38,8 +27,6 @@ db-custom-select-list-item:not(:last-of-type) {
 
 	span:not(.db-custom-select-list-item-label) {
 		@extend %db-overwrite-font-size-md;
-
-		color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
 	}
 
 	&[data-divider="true"]:not(:last-of-type) {
@@ -47,8 +34,6 @@ db-custom-select-list-item:not(:last-of-type) {
 	}
 
 	> label {
-		--db-check-element-label-color: #{colors.$db-adaptive-on-bg-basic-emphasis-100-default};
-
 		inline-size: 100%;
 
 		&::before {
@@ -84,10 +69,6 @@ db-custom-select-list-item:not(:last-of-type) {
 		}
 
 		> input {
-			// We revert interaction states for checkbox
-			--db-adaptive-bg-basic-transparent-full-hovered: #{colors.$db-adaptive-bg-basic-transparent-full-default};
-			--db-adaptive-bg-basic-transparent-full-pressed: #{colors.$db-adaptive-bg-basic-transparent-full-default};
-
 			&::after {
 				position: absolute;
 				content: "";

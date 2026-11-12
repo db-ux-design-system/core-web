@@ -139,14 +139,34 @@ export const isDefaultRuleOptionsHit = ({
 	return Boolean(options?.allow && isAllowed([value], options.allow));
 };
 
+/**
+ Split a declaration value into tokens the same way `isAllowed` does, so a
+ caller can inspect or filter individual tokens before validation.
+ */
+const splitValueTokens = (value: string): string[] =>
+	value
+		.replaceAll(/\s+/g, ' ')
+		.replaceAll('( ', '(')
+		.replaceAll(', ', ',')
+		.replaceAll(' )', ')')
+		.split(' ');
+
 export const getDeclarationRuleFunction = ({
 	allowedDeclarations,
 	allowedValues,
+	neutralValues,
 	ruleName,
 	messages
 }: {
 	allowedDeclarations: AllowedType;
 	allowedValues: AllowedType;
+	/**
+	 Tokens that this rule neither requires nor rejects, e.g. the line-style
+	 keyword and width token in a `border` shorthand for the border-color rule.
+	 They are stripped before validation; if nothing color-/size-relevant
+	 remains, the declaration is considered valid (there is nothing to check).
+	 */
+	neutralValues?: AllowedType;
 	ruleName: string;
 	messages: {
 		rejected: (props: string, value: string) => string;
@@ -171,7 +191,22 @@ export const getDeclarationRuleFunction = ({
 			if (!isAllowed(prop, allowedDeclarations)) {
 				return;
 			}
-			if (isAllowed(value, allowedValues)) {
+
+			// Drop tokens this rule does not own (e.g. the width + line-style of a
+			// `border` shorthand when checking the color). A shorthand that carries
+			// no relevant token left (e.g. `border-block-start: $db-border-width-3xs
+			// solid;` has no color) is valid - there is nothing for us to reject.
+			if (neutralValues) {
+				const relevantTokens = splitValueTokens(value).filter(
+					(token) => !isAllowed([token], neutralValues)
+				);
+				if (
+					relevantTokens.length === 0 ||
+					isAllowed(relevantTokens, allowedValues)
+				) {
+					return;
+				}
+			} else if (isAllowed(value, allowedValues)) {
 				return;
 			}
 

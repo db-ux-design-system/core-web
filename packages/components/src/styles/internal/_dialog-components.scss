@@ -7,14 +7,22 @@
 @use "component";
 
 // Shared backdrop colours for the dialog/drawer family (and the overlay-style
-// scrims in loading-indicator and custom-select).
-$backdrop-color-strong: color(
-	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
-		#{variables.$db-opacity-lg}
+// scrims in loading-indicator and custom-select). The adaptive
+// `--db-backdrop-color-*` tokens take over when `data-adaptive-coloring="true"`
+// is set; the `emphasis-100`-based value is the fallback everywhere else.
+$backdrop-color-strong: var(
+	--db-backdrop-color-strong,
+	color(
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-lg}
+	)
 );
-$backdrop-color-weak: color(
-	from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g b /
-		#{variables.$db-opacity-sm}
+$backdrop-color-weak: var(
+	--db-backdrop-color-weak,
+	color(
+		from #{colors.$db-adaptive-on-bg-basic-emphasis-100-default} srgb r g
+			b / #{variables.$db-opacity-sm}
+	)
 );
 
 // The components that share this layer. $prefix composes custom-property and
@@ -109,9 +117,14 @@ $container-size-scale: (
 		background-color: $backdrop-color-weak;
 	}
 
-	@if $prefix == "dialog" {
-		border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
-	} @else {
+	// The dialog box border color is color-layer specific and must not live in
+	// this shared base mixin: it is applied by `dialog.legacy-coloring.scss`
+	// (via `%default-card-colors`) for the legacy bundle and by
+	// `dialog.adaptive.scss` (via `%adaptive-coloring-container`) for the
+	// adaptive bundle. Keeping it here leaked the legacy
+	// `--db-adaptive-on-bg-basic-emphasis-60-default` token into the adaptive
+	// bundle, where it is undefined and the border fell back to `currentColor`.
+	@if $prefix != "dialog" {
 		// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
 		border: 0;
 		// stylelint-disable-next-line db-ux/use-spacings

@@ -1,0 +1,8 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+[data-adaptive-coloring="true"] .db-divider,
+.db-divider[data-adaptive-coloring="true"] {
+	&[data-emphasis="strong"] {
+		--db-divider-bg-color: #{adaptive.$db-border-vibrant};
+	}
+}

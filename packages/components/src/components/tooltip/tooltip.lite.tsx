@@ -8,7 +8,7 @@ import {
 	useRef,
 	useStore
 } from '@builder.io/mitosis';
-import { ClickEvent } from '../../shared/model';
+import { ClickEvent, MaterialType } from '../../shared/model';
 import {
 	cls,
 	getBoolean,
@@ -40,6 +40,17 @@ export default function DBTooltip(props: DBTooltipProps) {
 		_attachedId: undefined,
 		_activeTriggerCount: 0,
 		_boundListeners: [],
+		_getMaterial: (): MaterialType | undefined => {
+			if (props.material) {
+				return props.material;
+			}
+
+			if (props.emphasis === 'strong') {
+				return 'vibrant';
+			}
+
+			return 'filled-1';
+		},
 		handleClick: (event: ClickEvent<HTMLElement>) => {
 			event.stopPropagation();
 		},
@@ -345,6 +356,8 @@ export default function DBTooltip(props: DBTooltipProps) {
 			ref={_ref}
 			class={cls('db-tooltip', props.className)}
 			id={state._id}
+			data-material={state._getMaterial()}
+			data-adaptive-color={props.color}
 			data-emphasis={props.emphasis}
 			data-wrap={getBooleanAsString(props.wrap, 'wrap')}
 			data-animation={getBooleanAsString(

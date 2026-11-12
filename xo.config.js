@@ -228,6 +228,22 @@ const xoConfig = [
 		}
 	},
 	{
+		// The adaptive color/material CSS generator is a Node.js build script
+		// (run via `node generate-css/index.ts`). Like `scripts/**` it is not
+		// covered by a tsconfig that wires up `@types/node`, so `node:fs` and
+		// friends resolve to `any`. Mirror the Node-script rule relaxations used
+		// elsewhere and allow console output.
+		files: ['./generate-css/**'],
+		rules: {
+			'no-console': 'off',
+			'@typescript-eslint/no-unsafe-call': 0,
+			'@typescript-eslint/no-unsafe-assignment': 0,
+			'@typescript-eslint/no-unsafe-argument': 0,
+			'@typescript-eslint/no-unsafe-return': 0,
+			'@typescript-eslint/restrict-plus-operands': 0
+		}
+	},
+	{
 		files: ['./scripts/**/*.spec.ts'],
 		rules: {
 			// Test files dynamically import untyped build helpers, which resolve to `any`
@@ -290,6 +306,51 @@ const xoConfig = [
 			'unicorn/no-array-sort': 0, // Mutation is intentional
 			'unicorn/text-encoding-identifier-case': 0, // Utf-8 is standard
 			'unicorn/prevent-abbreviations': 0 // Short names in catch
+		}
+	},
+	{
+		// The theme-tools generator + detector are Node.js tooling (core
+		// generator, CLI, unplugin, source-scanning detector). Mirror the
+		// pragmatic relaxations used by the sibling plugin packages above:
+		// UPPER_CASE/enum constants, intentional type assertions, short boolean
+		// names, utf-8, and the regex/jsdoc rules the generator trips.
+		files: ['./packages/theme-tools/**'],
+		rules: {
+			'@typescript-eslint/naming-convention': 0, // UPPER_CASE constants (DATA_*_PATTERN, OpacityRef, ...)
+			'@typescript-eslint/no-unnecessary-type-assertion': 0, // Narrowing is handled by tsc
+			'@typescript-eslint/consistent-type-assertions': 0, // `x as T` used where a const annotation does not fit
+			// `interface` is used deliberately: GenerateOptions/MaterialProps as
+			// public shapes, and the empty `OverwriteColors` is a module-augmentation
+			// seam (mirrors @db-ux/core-foundations `OverwriteIcons`) that a `type`
+			// cannot provide.
+			'@typescript-eslint/consistent-type-definitions': 0,
+			'@typescript-eslint/no-empty-object-type': 0,
+			'@typescript-eslint/prefer-nullish-coalescing': 0, // Intentional || for defaults
+			'unicorn/consistent-boolean-name': 0, // Names emitDataAttribute / emitMediaQuery read better as-is
+			'unicorn/no-array-sort': 0, // Sorting detector output in place is intentional
+			'unicorn/text-encoding-identifier-case': 0, // Standard 'utf-8' for readFileSync
+			'unicorn/prevent-abbreviations': 0, // Short names (req, fg) are intentional
+			'unicorn/prefer-split-limit': 0, // Splitting a path on every separator is intentional
+			'regexp/no-useless-character-class': 0, // `[[:]?` binding-prefix class reads clearer kept
+			'regexp/use-ignore-case': 0, // Explicit [a-zA-Z] is clearer than an i flag here
+			'capitalized-comments': 0 // Comments intentionally start with lowercase brand names (webpack, esbuild, rspack)
+		}
+	},
+	{
+		// Non-shipped theme-tools helper scripts (run via `node scripts/*.ts`).
+		// Like the root `scripts/**` and `generate-css/**` blocks, they are not
+		// wired to a tsconfig with `@types/node`, so `node:fs`/`fast-glob`
+		// resolve to `any`; relax the unsafe-* rules and allow console output.
+		files: ['./packages/theme-tools/scripts/**'],
+		rules: {
+			'no-console': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 0,
+			'@typescript-eslint/no-unsafe-call': 0,
+			'@typescript-eslint/no-unsafe-argument': 0,
+			'@typescript-eslint/no-unsafe-return': 0,
+			'@typescript-eslint/restrict-plus-operands': 0, // Untyped regex captures
+			'unicorn/name-replacements': 0, // `req` reads fine in the extractor
+			'unicorn/prefer-split-limit': 0 // Splitting a path fully is intentional
 		}
 	},
 	{

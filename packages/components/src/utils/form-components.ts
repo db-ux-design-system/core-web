@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ValidationType } from '../shared/model';
 import { delay } from './index';
 
 const specialNumberCharacters = ['.', ',', 'e', 'E', '+', '-'];
@@ -157,4 +158,41 @@ export const addValueResetEventListener = (
 		},
 		signal
 	);
+};
+
+export const getValidationState = ({
+	validation,
+	validMessage,
+	element,
+	isRadio
+}: {
+	validation?: ValidationType;
+	validMessage?: string;
+	element?: HTMLElement;
+	isRadio?: boolean;
+}): ValidationType => {
+	let userValid: boolean = false;
+	let userInvalid: boolean = false;
+	if (typeof window !== 'undefined' && element) {
+		userValid =
+			!!getComputedStyle(element).getPropertyValue('--db-user-valid');
+		userInvalid =
+			!!getComputedStyle(element).getPropertyValue('--db-user-invalid');
+	}
+
+	// The valid state requires a `validMessage` for non-radio components (radio
+	// has no message, so `isRadio` stands in): an explicit `validation="valid"`
+	// as well as the `:user-valid` fallback are both gated on it.
+	if (
+		(isRadio || validMessage) &&
+		(validation === 'valid' || (!validation && userValid))
+	) {
+		return 'valid';
+	}
+
+	if (validation === 'invalid' || (!validation && userInvalid)) {
+		return 'invalid';
+	}
+
+	return 'no-validation';
 };

@@ -1,0 +1,34 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+
+[data-adaptive-coloring="true"] .db-drawer,
+.db-drawer[data-adaptive-coloring="true"] {
+	// The visible panel is `.db-drawer-container`, which gets its background
+	// from the shared `container-layout` mixin - override it with the adaptive
+	// surface here (the `.db-drawer` host itself stays transparent).
+	.db-drawer-container {
+		background-color: adaptive.$db-bg-default;
+		color: adaptive.$db-text-default;
+	}
+
+	// The `data-show-spacing` panel edge is a structural separator -> decorative
+	// border. Width/style come from the base `.scss`; only the color is set here
+	// (per side, matching the base's directional structure longhands).
+	.db-drawer-container[data-show-spacing="true"] {
+		&:not([data-direction]),
+		&[data-direction="to-left"] {
+			border-inline-start-color: adaptive.$db-border-decorative;
+		}
+
+		&[data-direction="to-right"] {
+			border-inline-end-color: adaptive.$db-border-decorative;
+		}
+
+		&[data-direction="up"] {
+			border-block-start-color: adaptive.$db-border-decorative;
+		}
+
+		&[data-direction="down"] {
+			border-block-end-color: adaptive.$db-border-decorative;
+		}
+	}
+}

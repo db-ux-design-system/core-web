@@ -3,6 +3,7 @@ import type {
 	GlobalProps,
 	GlobalState,
 	MarginProps,
+	MaterialProps,
 	WidthProps
 } from '../../shared/model';
 
@@ -26,6 +27,7 @@ export type DBDividerDefaultProps = {
 
 export type DBDividerProps = DBDividerDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	EmphasisProps &
 	MarginProps &
 	WidthProps;

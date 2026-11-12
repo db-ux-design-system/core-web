@@ -1,0 +1,26 @@
+{
+  "name": "theme-tools-webpack-fixture",
+  "version": "0.0.0",
+  "description": "webpack fixture for the @db-ux/core-theme-tools bundler plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack serve --config webpack.config.js --mode development"
+  },
+  "dependencies": {
+    "@db-ux/core-theme-tools": "workspace:*"
+  },
+  "devDependencies": {
+    "css-loader": "7.1.5",
+    "html-webpack-plugin": "5.6.8",
+    "mini-css-extract-plugin": "2.9.2",
+    "webpack": "5.112.2",
+    "webpack-cli": "6.0.1",
+    "webpack-dev-server": "5.2.6"
+  }
+}

@@ -2,6 +2,7 @@ import type {
 	DBTableCellProps,
 	GlobalProps,
 	GlobalState,
+	MaterialProps,
 	TextProps
 } from '../../shared/model';
 
@@ -36,6 +37,7 @@ export type DBTableHeaderCellDefaultProps = {
 
 export type DBTableHeaderCellProps = DBTableHeaderCellDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	TextProps &
 	DBTableCellProps;
 

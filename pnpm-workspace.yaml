@@ -1,5 +1,6 @@
 packages:
   - "packages/*"
+  - "packages/theme-tools/test/fixtures/*"
   - "output/*"
   - "showcases/*"
   - "storybooks/*"
@@ -54,6 +55,7 @@ minimumReleaseAgeExclude:
   - image-size@2.0.3
   - nanoid@3.3.18
   - node-forge@1.4.1
+  - follow-redirects@1.16.3
 
 overrides:
   # PostCSS patch releases ship type-incompatible .d.ts files; pnpm isolates
@@ -101,6 +103,21 @@ overrides:
   qs@>=6.7.0 <=6.16.0: 6.16.1
   seroval@>=1.5.5 <1.6.10: 1.6.10
   seroval@>=1.6.0 <1.6.11: 1.6.11
+  handlebars@<4.7.10: 4.7.10
+  body-parser@>=1.0.0 <1.20.9: 1.20.9
+  follow-redirects@<1.16.3: 1.16.3
+  launch-editor@<=2.14.1: 2.14.2
+  markdown-it@>=14.1.0 <14.3.3: 14.3.3
+  ip-address@<=10.7.3: 10.7.4
+  hono@>=4.12.4 <4.13.11: 4.13.16
+  "@hono/node-server@>=1.19.10 <2.1.3": 2.1.6
+  # xo 5.0.1 bundles its own typescript@^6.0.3 while the repo is pinned to 5.9.3.
+  # Two TypeScript copies in one process make xo's type-aware linting crash
+  # nondeterministically ("Unsafe .../could not be resolved" on files that are
+  # fine), which the branch tips into consistently in CI. Pin xo's typescript to
+  # the repo's version so a single copy is loaded. Scoped to xo so the rest of
+  # the toolchain is untouched.
+  "xo>typescript": 5.9.3
 
 catalog:
   postcss: 8.5.32

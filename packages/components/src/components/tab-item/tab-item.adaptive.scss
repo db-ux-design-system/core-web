@@ -1,0 +1,10 @@
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-tab-item,
+.db-tab-item[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-interactive-container;
+
+	&:is(:disabled, [aria-disabled="true"]) {
+		@extend %disabled;
+	}
+}

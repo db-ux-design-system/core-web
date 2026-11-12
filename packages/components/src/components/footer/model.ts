@@ -1,13 +1,15 @@
 import type {
 	ContainerWidthProps,
 	GlobalProps,
-	GlobalState
+	GlobalState,
+	MaterialProps
 } from '../../shared/model';
 
 export type DBFooterDefaultProps = {};
 
 export type DBFooterProps = DBFooterDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	ContainerWidthProps;
 
 export type DBFooterDefaultState = {};

@@ -4,6 +4,7 @@ import {
 	IconLeadingProps,
 	IconProps,
 	LinkProps,
+	MaterialProps,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
@@ -36,6 +37,7 @@ export type DBBreadcrumbItemDefaultProps = {
 
 export type DBBreadcrumbItemProps = DBBreadcrumbItemDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	IconLeadingProps &
 	ShowIconLeadingProps;
 

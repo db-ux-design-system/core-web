@@ -1,0 +1,20 @@
+@use "@db-ux/core-foundations/build/styles/helpers";
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "../../styles/adaptive/component";
+
+[data-adaptive-coloring="true"] .db-card,
+.db-card[data-adaptive-coloring="true"] {
+	@extend %adaptive-coloring-container;
+
+	&[data-behavior="interactive"] {
+		@include helpers.not-disabled {
+			@include helpers.hover {
+				background-color: adaptive.$db-bg-hovered;
+			}
+
+			@include helpers.active {
+				background-color: adaptive.$db-bg-pressed;
+			}
+		}
+	}
+}

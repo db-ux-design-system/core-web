@@ -1,0 +1,18 @@
+/*
+ * Global styles. The adaptive color CSS is NOT authored here — it is generated
+ * by the theme-tools CLI (`db-ux-theme-tools generate`) into
+ * `db-ux-theme.generated.css` by the `prebuild` / `prestart` npm script, then
+ * imported here so `ng build` bundles it. This is the CLI-first flow for
+ * Angular, whose application builder does not host the bundler plugin.
+ *
+ * Like the vite/webpack fixtures, this app pulls in NO component package — the
+ * `db-*` tags in the template are bare markup for the detector to scan, and the
+ * generated file is the only DB UX CSS the build needs.
+ *
+ * The generated file wraps itself in `@layer db-ux-adaptive { ... }`. Declaring
+ * that layer name up front fixes its cascade position; a real app that also
+ * imports the component bundle would list the full order here, e.g.
+ * `@layer db-ux, db-theme, db-ux-adaptive;`.
+ */
+@layer db-ux-adaptive;
+@import "./db-ux-theme.generated.css";

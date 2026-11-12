@@ -1,0 +1,6 @@
+{
+	"theme": "theme.tokens.json",
+	"out": "src/db-ux-theme.generated.css",
+	"scan": ["src/**/*.html", "src/**/*.ts"],
+	"exclude": { "colors": ["yellow"] }
+}

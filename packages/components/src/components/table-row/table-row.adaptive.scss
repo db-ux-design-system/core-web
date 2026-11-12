@@ -1,0 +1,32 @@
+@use "@db-ux/core-foundations/build/styles/variables.adaptive" as adaptive;
+@use "./table-row";
+
+// Re-opens the base interactive-row selectors with adaptive coloring (see the
+// mixin comment in `table-row.scss`).
+[data-adaptive-coloring="true"] .db-table-row,
+.db-table-row[data-adaptive-coloring="true"] {
+	background-color: adaptive.$db-bg-default;
+
+	&[data-interactive="true"] {
+		// A checked row is the selected (alt) state.
+		@include table-row.table-row-interactive-checked {
+			background-color: adaptive.$db-alt-state-bg-default;
+
+			@include table-row.table-row-interactive-state {
+				background-color: adaptive.$db-alt-state-bg-hovered;
+			}
+
+			@include table-row.table-row-interactive-state("active") {
+				background-color: adaptive.$db-alt-state-bg-pressed;
+			}
+		}
+
+		@include table-row.table-row-interactive-state {
+			background-color: adaptive.$db-bg-hovered;
+		}
+
+		@include table-row.table-row-interactive-state("active") {
+			background-color: adaptive.$db-bg-pressed;
+		}
+	}
+}

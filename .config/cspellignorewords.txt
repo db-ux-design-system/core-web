@@ -286,8 +286,28 @@ xlink
 rescans
 lockfiles
 autofilled
+sharability
+longhands
+surfaceless
 novalidate
 formnovalidate
 Breaksand
 headingreset
 headingoffset
+# Build tooling / token standards (adaptive theme tooling evaluation)
+DTCG
+unjs
+Rspack
+Rsbuild
+Rolldown
+rolldown
+invokable
+uxrc
+# theme-tools (adaptive color generator, CLI and bundler plugins)
+farmfe
+prestart
+unminified
+unioned
+unioning
+malforms
+inlines

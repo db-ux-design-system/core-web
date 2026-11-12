@@ -1,0 +1,24 @@
+@use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-popover";
+@use "../control-panel-navigation-item-group/control-panel-navigation-item-group-menu-drilldown";
+
+/*
+ * Legacy color layer for `control-panel-navigation`. The base `.scss` is
+ * color-free (structure only); forwarded by `components-legacy-coloring` into
+ * the legacy bundle. The adaptive bundle omits this file.
+ *
+ * Only the drilldown/popover menu background (and popover border) moved; the
+ * tree variant carries no palette color.
+ */
+.db-control-panel-navigation {
+	&[data-variant="popover"] {
+		.db-control-panel-navigation-item-group-menu {
+			@extend %db-control-panel-navigation-item-group-menu-popover-colors;
+		}
+	}
+
+	&[data-variant="drilldown"] {
+		.db-control-panel-navigation-item-group-menu {
+			@extend %db-control-panel-navigation-item-group-menu-drilldown-colors;
+		}
+	}
+}

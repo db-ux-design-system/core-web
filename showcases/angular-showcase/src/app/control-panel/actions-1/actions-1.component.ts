@@ -8,6 +8,7 @@ import {
 	DBDrawer,
 	DBDrawerHeader,
 	DBSelect,
+	DBSwitch,
 	DBTooltip,
 	DENSITIES,
 	DENSITY,
@@ -28,6 +29,7 @@ import {
 		DBButton,
 		DBDrawer,
 		DBSelect,
+		DBSwitch,
 		ReactiveFormsModule,
 		DBTooltip,
 		DBDivider,
@@ -48,11 +50,27 @@ export class Actions1Component {
 	settings = input<DefaultSettings>(defaultSettings);
 
 	open = signal<boolean>(false);
+	shell = signal<boolean>(true);
 
 	constructor(
 		private readonly router: Router,
 		private readonly route: ActivatedRoute
-	) {}
+	) {
+		this.route.queryParams.subscribe((parameters) => {
+			if (parameters['shell'] !== undefined) {
+				this.shell.set(parameters['shell'] === 'true');
+			}
+		});
+	}
+
+	onShellToggle(): void {
+		this.shell.set(!this.shell());
+		void this.router.navigate([], {
+			relativeTo: this.route,
+			queryParams: { shell: String(this.shell()) },
+			queryParamsHandling: 'merge'
+		});
+	}
 
 	changeSettings = (event: any, key: string) => {
 		const changedSettings: any = {

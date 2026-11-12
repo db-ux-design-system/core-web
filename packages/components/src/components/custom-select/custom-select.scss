@@ -41,10 +41,6 @@
 	// Field box, overlay toggle, hover, mobile backdrop and the open-state label
 	// separator live in custom-select-form-field.scss
 
-	.db-tooltip {
-		@extend %db-neutral-variables;
-	}
-
 	&[data-selected-type="tag"] {
 		.db-custom-select-form-field {
 			&:has(.db-custom-select-tags:not(:empty)) {

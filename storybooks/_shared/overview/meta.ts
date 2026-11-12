@@ -148,6 +148,20 @@ export const getStructure = (): Structure => {
 	})
 		.filter((entry) => entry.isDirectory())
 		.map((entry) => entry.name)
+		/*
+		 * Only folders that actually ship a component (at least one
+		 * `.lite.tsx`) count. A folder that holds only, e.g., an
+		 * `*.adaptive.scss` stub for an in-progress component has no export, so
+		 * treating it as a part would make `getComponents` fall back to a
+		 * name-derived title (`breadcrumb-truncation-item` ->
+		 * `DBBreadcrumbTruncationItem`) and emit an import for a symbol the
+		 * output never exports, breaking the Storybook build.
+		 */
+		.filter((name) =>
+			readdirSync(join(ROOT, COMPONENTS_DIR, name)).some((file) =>
+				file.endsWith('.lite.tsx')
+			)
+		)
 		.toSorted();
 	const known = new Set(names);
 

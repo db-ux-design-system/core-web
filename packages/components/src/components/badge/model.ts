@@ -1,8 +1,11 @@
-import type {
+import {
+	ColorState,
 	EmphasisProps,
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
+	MaterialState,
 	SemanticProps,
 	SizeProps,
 	TextProps,
@@ -34,6 +37,7 @@ export type DBBadgeDefaultProps = {
 
 export type DBBadgeProps = DBBadgeDefaultProps &
 	GlobalProps &
+	MaterialProps &
 	SemanticProps &
 	SizeProps &
 	EmphasisProps &
@@ -42,4 +46,8 @@ export type DBBadgeProps = DBBadgeDefaultProps &
 
 export type DBBadgeDefaultState = {};
 
-export type DBBadgeState = DBBadgeDefaultState & GlobalState & InitializedState;
+export type DBBadgeState = DBBadgeDefaultState &
+	GlobalState &
+	InitializedState &
+	ColorState &
+	MaterialState;

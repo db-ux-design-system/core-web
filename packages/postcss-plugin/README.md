@@ -147,11 +147,11 @@ Flattens DB UX Design System CSS custom properties by resolving `var()`, `@prope
 
 ### Options
 
-| Option             | Type       | Default              | Description                                                             |
-| ------------------ | ---------- | -------------------- | ----------------------------------------------------------------------- |
-| `removeAtProperty` | `boolean`  | `true`               | Remove `@property` rules after resolving                                |
-| `removeResolved`   | `boolean`  | `true`               | Remove declarations from `@property` that are no longer referenced      |
-| `dynamicPrefixes`  | `string[]` | `['--db-adaptive-']` | Variable prefixes that are always treated as dynamic and never resolved |
+| Option             | Type       | Default              | Description                                                                                                                                                                                                          |
+| ------------------ | ---------- | -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `removeAtProperty` | `boolean`  | `true`               | Remove `@property` rules after resolving                                                                                                                                                                             |
+| `removeResolved`   | `boolean`  | `true`               | Remove declarations from `@property` that are no longer referenced                                                                                                                                                   |
+| `dynamicPrefixes`  | `string[]` | `['--db-adaptive-']` | Variable prefixes that are always treated as dynamic and never resolved (see [coexistence](#coexistence-with-db-ux-design-system--generation-3-adaptive-coloring) for the combined adaptive + legacy stylesheet set) |
 
 ```ts
 dbUxFlatten({
@@ -160,6 +160,34 @@ dbUxFlatten({
 	dynamicPrefixes: ["--db-adaptive-", "--my-custom-dynamic-"]
 });
 ```
+
+#### Coexistence with DB UX Design System – Generation 3 adaptive coloring
+
+This plugin stays standalone for the legacy coloring model and its default
+`dynamicPrefixes` (`['--db-adaptive-']`) is unchanged. When you flatten a
+stylesheet that **combines** legacy CSS with the adaptive coloring output of
+`@db-ux/core-theme-tools`, list every runtime-dynamic prefix so the adaptive
+tokens stay as `var()` references while the legacy tokens flatten:
+
+```ts
+dbUxFlatten({
+	dynamicPrefixes: [
+		"--db-adaptive-",
+		"--db-emphasis-transparency",
+		"--db-pride-"
+	]
+});
+```
+
+- `--db-adaptive-` — adaptive semantic color tokens (the default prefix).
+- `--db-emphasis-transparency` — runtime transparency tokens.
+- `--db-pride-` — Pride theme tokens.
+
+Any of these prefixes you omit is still left unresolved rather than flattened
+to a fixed value: the plugin only inlines variables it treats as static, so an
+unlisted adaptive token is never collapsed to a wrong, scheme-specific value.
+Listing the prefixes makes the intent explicit and keeps the behavior stable
+across the whole combined stylesheet.
 
 ### How it works
 

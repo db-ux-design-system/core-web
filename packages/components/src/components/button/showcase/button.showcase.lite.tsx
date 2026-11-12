@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import ButtonAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import ButtonDensity from '../examples/density.example.lite';
 import ButtonDisabled from '../examples/disabled.example.lite';
 import ButtonFormAttributes from '../examples/form-attributes.example.lite';
@@ -72,6 +73,11 @@ export default function ButtonShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Form Attributes">
 				<CardWrapperShowcase>
 					<ButtonFormAttributes />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<ButtonAdaptiveMatrix />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

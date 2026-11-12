@@ -1,0 +1,124 @@
+{
+  "name": "@db-ux/core-theme-tools",
+  "version": "6.2.0",
+  "type": "module",
+  "description": "Theme-driven adaptive-color CSS generator for the DB UX Design System – Generation 3, with CLI and bundler-plugin surfaces",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/db-ux-design-system/core-web.git"
+  },
+  "license": "Apache-2.0",
+  "bin": {
+    "db-ux-theme-tools": "build/cli/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./cli": {
+      "types": "./build/cli/index.d.ts",
+      "default": "./build/cli/index.js"
+    },
+    "./detector": {
+      "types": "./build/detector/index.d.ts",
+      "default": "./build/detector/index.js"
+    },
+    "./vite": {
+      "types": "./build/plugin/vite.d.ts",
+      "default": "./build/plugin/vite.js"
+    },
+    "./webpack": {
+      "types": "./build/plugin/webpack.d.ts",
+      "default": "./build/plugin/webpack.js"
+    },
+    "./esbuild": {
+      "types": "./build/plugin/esbuild.d.ts",
+      "default": "./build/plugin/esbuild.js"
+    },
+    "./rollup": {
+      "types": "./build/plugin/rollup.d.ts",
+      "default": "./build/plugin/rollup.js"
+    },
+    "./rspack": {
+      "types": "./build/plugin/rspack.d.ts",
+      "default": "./build/plugin/rspack.js"
+    },
+    "./farm": {
+      "types": "./build/plugin/farm.d.ts",
+      "default": "./build/plugin/farm.js"
+    }
+  },
+  "files": [
+    "CHANGELOG.md",
+    "build",
+    "LICENSE"
+  ],
+  "keywords": [
+    "db-ux",
+    "design-system",
+    "theme",
+    "adaptive-color",
+    "css",
+    "cli",
+    "unplugin"
+  ],
+  "scripts": {
+    "build": "tsc && node esbuild.js",
+    "copy-output": "run-p copy:*",
+    "copy:changelog": "cpy CHANGELOG.md ../../build-outputs/theme-tools/CHANGELOG.md",
+    "copy:outputs": "cpy build ../../build-outputs/theme-tools --dot",
+    "copy:package.json": "cpy package.json ../../build-outputs/theme-tools/package.json",
+    "copy:readme": "cpy README.md ../../build-outputs/theme-tools/README.md",
+    "test": "vitest run --config vitest.config.ts",
+    "test:update": "vitest run --config vitest.config.ts --update"
+  },
+  "peerDependencies": {
+    "@farmfe/core": ">=1.0.0",
+    "@rspack/core": ">=0.4.0",
+    "esbuild": ">=0.15.0",
+    "rollup": ">=3.0.0",
+    "vite": ">=4.0.0",
+    "webpack": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@farmfe/core": {
+      "optional": true
+    },
+    "@rspack/core": {
+      "optional": true
+    },
+    "esbuild": {
+      "optional": true
+    },
+    "rollup": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    },
+    "webpack": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@db-ux/core-foundations": "workspace:*",
+    "commander": "15.0.0",
+    "cosmiconfig": "9.0.2",
+    "fast-glob": "3.3.3",
+    "unplugin": "3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "cpy-cli": "7.0.0",
+    "esbuild": "0.28.2",
+    "npm-run-all2": "9.0.4",
+    "prettier": "3.9.10",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
+}

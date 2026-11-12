@@ -18,6 +18,7 @@
 			"@db-ux/core-eslint-plugin",
 			"@db-ux/core-vite-plugin",
 			"@db-ux/core-postcss-plugin",
+			"@db-ux/core-theme-tools",
 			"@db-ux/mcp-server"
 		]
 	],

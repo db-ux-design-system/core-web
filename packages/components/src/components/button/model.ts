@@ -1,17 +1,22 @@
-import type { LooseAutocomplete } from '@db-ux/core-foundations';
+import { LooseAutocomplete } from '@db-ux/core-foundations';
 import type {
 	ClickEventProps,
+	ColorState,
+	EndSlotProps,
 	GlobalProps,
 	GlobalState,
 	IconLeadingProps,
 	IconProps,
 	IconTrailingProps,
 	LinkTargetType,
+	MaterialProps,
+	MaterialState,
 	NoTextProps,
 	ShowIconLeadingProps,
 	ShowIconProps,
 	ShowIconTrailingProps,
 	SizeProps,
+	StartSlotProps,
 	TextProps,
 	WidthProps,
 	WrapProps
@@ -134,6 +139,7 @@ export type DBButtonDefaultProps = {
 export type DBButtonProps = DBButtonDefaultProps &
 	DBButtonSharedProps &
 	GlobalProps &
+	MaterialProps &
 	ClickEventProps<HTMLButtonElement> &
 	IconProps &
 	WidthProps &
@@ -145,10 +151,15 @@ export type DBButtonProps = DBButtonDefaultProps &
 	IconLeadingProps &
 	IconTrailingProps &
 	WrapProps &
-	NoTextProps;
+	NoTextProps &
+	EndSlotProps &
+	StartSlotProps;
 
 export type DBButtonDefaultState = {
 	getButtonType: () => ButtonTypeType;
 };
 
-export type DBButtonState = DBButtonDefaultState & GlobalState;
+export type DBButtonState = DBButtonDefaultState &
+	GlobalState &
+	MaterialState &
+	ColorState;

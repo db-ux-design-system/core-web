@@ -1,0 +1,12 @@
+@use "../../styles/internal/component";
+@use "../../styles/internal/tag-components";
+
+/*
+ * Legacy color layer for `badge`: the component border color and the tag color
+ * set. Forwarded only into the legacy bundle; the adaptive bundle colors the
+ * badge via `badge.adaptive.scss`.
+ */
+.db-badge {
+	@extend %component-border-colors;
+	@include tag-components.get-tag-colors("badge");
+}

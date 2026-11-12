@@ -3,6 +3,7 @@ import {
 	GlobalProps,
 	GlobalState,
 	InitializedState,
+	MaterialProps,
 	NavigationItemGroupVariant,
 	NavigationItemGroupVariantType,
 	OverflowScrollButtonProps,
@@ -20,6 +21,7 @@ export type DBControlPanelNavigationDefaultProps = {
 export type DBControlPanelNavigationProps =
 	DBControlPanelNavigationDefaultProps &
 		GlobalProps &
+		MaterialProps &
 		OverflowScrollButtonProps &
 		NavigationItemGroupVariant &
 		CollapsibleBehaviorProps;

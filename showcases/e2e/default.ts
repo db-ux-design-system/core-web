@@ -30,6 +30,13 @@ export type DefaultTestType = {
 export type DefaultSnapshotTestType = {
 	preScreenShot?: (page: Page, project: FullProject) => Promise<void>;
 	ratio?: string | ((project: FullProject) => string | undefined);
+	/**
+	 Mark the screenshot test as slow (triples Playwright's per-test timeout).
+	 Use for pages that are legitimately heavy to render and screenshot - e.g.
+	 the custom-select adaptive matrix renders 96 comboboxes, which exceeds the
+	 default 30s on the slower webkit engine under parallel CI workers.
+	 */
+	slow?: boolean;
 } & DefaultTestType;
 
 export type AxeCoreTestType = {
@@ -113,6 +120,22 @@ export const isStencil = (showcase?: string): boolean =>
 export const isAngular = (showcase?: string): boolean =>
 	Boolean(showcase?.startsWith('angular'));
 export const isVue = (showcase: string): boolean => showcase.startsWith('vue');
+export const isReact = (showcase?: string): boolean =>
+	Boolean(showcase?.startsWith('react'));
+
+/*
+ * Coloring modes mirror the react-showcase "Coloring" select (see
+ * `showcases/settings.ts` / `use-query`): the legacy color system, the adaptive
+ * system, and both loaded together. Only the react-showcase wires the `coloring`
+ * URL param to a stylesheet swap, so the adaptive modes only produce distinct
+ * screenshots there - the other framework showcases render legacy regardless.
+ */
+export const COLORING_MODES = [
+	'legacy',
+	'legacy-adaptive',
+	'adaptive'
+] as const;
+export type ColoringMode = (typeof COLORING_MODES)[number];
 
 export const hasWebComponentSyntax = (showcase?: string): boolean =>
 	isAngular(showcase) || isStencil(showcase);
@@ -141,13 +164,15 @@ const gotoPage = async (
 	color: string,
 	fixedHeight?: number,
 	otherDensity?: 'functional' | 'regular' | 'expressive',
-	example?: string
+	example?: string,
+	coloring?: ColoringMode
 ) => {
 	const pageParameter = example
 		? `&page=${getExampleParameter(example)}`
 		: '';
+	const coloringParameter = coloring ? `&coloring=${coloring}` : '';
 	await page.goto(
-		`./#/${path}?density=${otherDensity ?? density}&color=${color}${pageParameter}`,
+		`./#/${path}?density=${otherDensity ?? density}&color=${color}${coloringParameter}${pageParameter}`,
 		{
 			waitUntil: 'domcontentloaded'
 		}
@@ -185,19 +210,43 @@ export const getDefaultScreenshotTest = ({
 	fixedHeight,
 	preScreenShot,
 	skip,
-	ratio
+	ratio,
+	slow
 }: DefaultSnapshotTestType) => {
-	test('should match screenshot', async ({ page }, { project }) => {
+	/*
+	 * Every framework showcase renders the coloring modes (each wires the
+	 * `coloring` URL param to a stylesheet swap). The visual baselines are
+	 * framework-agnostic (shared across react/vue/angular/stencil), so all
+	 * showcases must produce the same rendering per mode.
+	 *
+	 * There are only TWO baselines: the pre-existing legacy snapshot and a new
+	 * `adaptive.png`.
+	 *
+	 * Legacy keeps the ORIGINAL snapshot name (Playwright's auto-generated
+	 * `{testName}` from the plain `should match screenshot` title - no coloring
+	 * suffix - e.g. `DBAccordion-should-match-screenshot`) so the
+	 * already-committed baselines stay valid and a legacy regression is still
+	 * detected against them.
+	 *
+	 * Adaptive writes a NEW `adaptive.png`. The `legacy-adaptive` mode (both
+	 * bundles loaded) MUST render identically to pure `adaptive` - a
+	 * `data-adaptive-coloring` page looks the same whether or not the legacy
+	 * bundle is also loaded, UNLESS a legacy color leaks through, because
+	 * adaptive is meant to override legacy. Instead of its own baseline,
+	 * `legacy-adaptive` is compared against the SAME `adaptive.png` within the
+	 * adaptive test (a second `toHaveScreenshot('adaptive.png')` call). So
+	 * regeneration only produces the `adaptive` image, and the second assertion
+	 * fails if any old color leaks into the combined bundle.
+	 */
+	const buildConfig = (
+		project: FullProject
+	): PageAssertionsToHaveScreenshotOptions => {
 		const diffPixel = process.env.diff;
 		const maxDiffPixelRatio =
 			process.env.ratio ??
 			(typeof ratio === 'function' ? ratio(project) : ratio);
 		const isWebkit =
 			project.name === 'webkit' || project.name === 'mobile_safari';
-
-		if (shouldSkip(project, skip)) {
-			test.skip();
-		}
 
 		const config: PageAssertionsToHaveScreenshotOptions = {};
 
@@ -213,22 +262,98 @@ export const getDefaultScreenshotTest = ({
 			config.maxDiffPixelRatio = 0.0123;
 		}
 
-		if (typeof fixedHeight === 'function') {
-			fixedHeight = fixedHeight(project);
-		}
+		return config;
+	};
 
-		await gotoPage(page, path, lvl1, fixedHeight);
+	const gotoAndPrepare = async (
+		page: Page,
+		project: FullProject,
+		coloring: ColoringMode,
+		config: PageAssertionsToHaveScreenshotOptions
+	) => {
+		const resolvedFixedHeight =
+			typeof fixedHeight === 'function'
+				? fixedHeight(project)
+				: fixedHeight;
 
-		const headerDesktop = page.locator('.db-control-panel-desktop').first();
-		const headerMobile = page.locator('.db-control-panel-mobile').first();
+		await gotoPage(
+			page,
+			path,
+			lvl1,
+			resolvedFixedHeight,
+			undefined,
+			undefined,
+			coloring
+		);
 
-		config.mask = [headerDesktop, headerMobile];
+		config.mask = [
+			page.locator('.db-control-panel-desktop').first(),
+			page.locator('.db-control-panel-mobile').first()
+		];
+
+		/*
+		 * The adaptive screenshot test calls gotoAndPrepare (and therefore
+		 * preScreenShot) twice - once per coloring mode. Navigation between the
+		 * passes is a hash/query change (`./#/...?coloring=...`), which an SPA
+		 * does NOT reload, so a modal a preScreenShot opened in the first pass
+		 * (dialog, drawer, custom-select) stays open. Its open <dialog> then
+		 * intercepts pointer events and the second preScreenShot's "Open" click
+		 * times out. Close any open dialog before each preScreenShot so every
+		 * pass starts from the closed launcher state. Idempotent when none open.
+		 */
+		await page.evaluate(() => {
+			// eslint-disable-next-line unicorn/isolated-functions -- document is available in browser context
+			for (const dialog of document.querySelectorAll('dialog[open]')) {
+				(dialog as HTMLDialogElement).close();
+			}
+		});
 
 		if (preScreenShot) {
 			await preScreenShot(page, project);
 		}
+	};
 
+	// Keeps the ORIGINAL title (no coloring suffix) and the unnamed
+	// `toHaveScreenshot` call so Playwright derives the snapshot name from
+	// `{testName}` exactly as before the coloring split (e.g.
+	// `DBAccordion-should-match-screenshot`). That reuses the already-committed
+	// legacy baselines to catch regressions.
+	test('should match screenshot', async ({ page }, { project }) => {
+		if (shouldSkip(project, skip)) {
+			test.skip();
+		}
+
+		const config = buildConfig(project);
+		await gotoAndPrepare(page, project, 'legacy', config);
 		await expect(page).toHaveScreenshot(config);
+	});
+
+	test('should match screenshot - adaptive', async ({ page }, {
+		project
+	}) => {
+		if (shouldSkip(project, skip)) {
+			test.skip();
+		}
+
+		// Heavy adaptive pages (e.g. the custom-select 96-combobox matrix) render
+		// two coloring passes and exceed the default 30s on webkit under parallel
+		// CI workers. test.slow() triples the per-test timeout for them.
+		if (slow) {
+			test.slow();
+		}
+
+		const config = buildConfig(project);
+
+		// Legacy + adaptive bundle loaded together: must match the pure adaptive
+		// baseline exactly, otherwise a legacy color is leaking through. Asserted
+		// FIRST so that on `--update-snapshots` the pure-adaptive render below is
+		// the final write and therefore the source of truth for `adaptive.png`.
+		await gotoAndPrepare(page, project, 'legacy-adaptive', config);
+		await expect(page).toHaveScreenshot('adaptive.png', config);
+
+		// Pure adaptive: the source-of-truth baseline (written last on update).
+		await gotoAndPrepare(page, project, 'adaptive', config);
+		await expect(page).toHaveScreenshot('adaptive.png', config);
 	});
 };
 

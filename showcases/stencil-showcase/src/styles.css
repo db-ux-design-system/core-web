@@ -1,6 +1,9 @@
-@layer db-theme, db-ux;
-@import "@db-ux/db-theme/build/styles/rollup.css" layer(db-theme);
-@import "@db-ux/core-components/build/styles/bundle.css" layer(db-ux);
+/*
+ * The db-ux + theme bundles moved to swappable entry files (`db-ux.css`,
+ * `db-ux-adaptive.css`, `db-ux-legacy-adaptive.css`); `main.ts` injects the
+ * active one at runtime based on the `coloring` URL param. This file keeps only
+ * the showcase/stencil-specific rules.
+ */
 @import "../../showcase-styles.css";
 
 /*

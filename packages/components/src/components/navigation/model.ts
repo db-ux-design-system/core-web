@@ -1,8 +1,10 @@
-import type { GlobalProps } from '../../shared/model';
+import type { GlobalProps, MaterialProps } from '../../shared/model';
 
 export type DBNavigationDefaultProps = {};
 
-export type DBNavigationProps = DBNavigationDefaultProps & GlobalProps;
+export type DBNavigationProps = DBNavigationDefaultProps &
+	GlobalProps &
+	MaterialProps;
 
 export type DBNavigationDefaultState = {};
 

@@ -100,6 +100,8 @@ export default function DBBreadcrumbItem(props: DBBreadcrumbItemProps) {
 		<li
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material ?? 'transparent'}
+			data-adaptive-color={props.color}
 			data-icon={props.iconLeading ?? props.icon}
 			data-show-icon={
 				getBooleanAsString(props.showIconLeading, 'showIconLeading') ||

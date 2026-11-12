@@ -17,6 +17,11 @@ packages/foundations/assets/**
 packages/foundations/scripts/generate-icon-fonts/styles/**
 packages/foundations/scss/_normalize.scss
 packages/stylelint/test/**
+# theme-tools test snapshots and fixtures contain machine-generated adaptive
+# color CSS (the generator's own output and the per-bundler fixture builds).
+# They are not authored here and must not be linted - violations would be false
+# positives on generated output.
+packages/theme-tools/test/**
 .stylelintrc.json
 packages/foundations/assets/icons/fonts/**
 # Auto-generated design token snapshots copied from packages/foundations during the

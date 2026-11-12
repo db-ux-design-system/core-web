@@ -79,6 +79,8 @@ export default function DBShell(props: DBShellProps) {
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
 			class={cls('db-shell', props.className)}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			data-control-panel-desktop-position={
 				state._controlPanelDesktopPosition
 			}

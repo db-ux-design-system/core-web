@@ -13,6 +13,8 @@ export default function DBTextGroup(props: DBTextGroupProps) {
 		<div
 			ref={_ref}
 			id={props.id ?? props.propOverrides?.id}
+			data-material={props.material}
+			data-adaptive-color={props.color}
 			class={cls('db-text-group', props.className)}
 			data-alignment={props.alignment}
 			data-text-spacing={getBooleanAsString(

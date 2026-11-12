@@ -1,0 +1,20 @@
+@use "@db-ux/core-foundations/build/styles/colors";
+@use "./../../styles/internal/table-components";
+
+/*
+ * Legacy color layer for `table-head`. The base `.scss` is color-free
+ * (structure only); forwarded by `components-legacy-coloring` into the legacy
+ * bundle. The adaptive bundle omits this file.
+ */
+.db-table-head {
+	tr {
+		&[data-sub-header-emphasis="weak"] {
+			background-color: colors.$db-adaptive-bg-basic-level-3-default;
+			color: colors.$db-adaptive-on-bg-basic-emphasis-80-default;
+		}
+
+		&[data-sub-header-emphasis="strong"] {
+			@extend %sub-header-strong;
+		}
+	}
+}

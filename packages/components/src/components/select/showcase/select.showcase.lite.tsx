@@ -2,6 +2,7 @@ import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
+import SelectAdaptiveMatrix from '../examples/adaptive-matrix.example.lite';
 import SelectContent from '../examples/content.example.lite';
 import SelectDensity from '../examples/density.example.lite';
 import SelectDisabled from '../examples/disabled.example.lite';
@@ -90,6 +91,11 @@ export default function SelectShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Interaction">
 				<CardWrapperShowcase>
 					<SelectInteraction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Adaptive Matrix">
+				<CardWrapperShowcase>
+					<SelectAdaptiveMatrix />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

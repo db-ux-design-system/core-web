@@ -1,0 +1,6 @@
+@forward "../density";
+
+:root,
+:host {
+	@extend %db-density-regular;
+}

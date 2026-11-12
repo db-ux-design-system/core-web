@@ -7,10 +7,9 @@
 
 %db-control-panel-navigation-item-group-menu-popover {
 	@extend %db-control-panel-navigation-item-group-menu-non-tree;
+	@extend %component-border;
 
 	inset-inline-start: 0;
-	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
-	border: component.$component-border;
 	border-radius: variables.$db-border-radius-sm;
 	box-shadow: variables.$db-elevation-md;
 	padding: variables.$db-spacing-fixed-sm;
@@ -50,4 +49,14 @@
 			}
 		}
 	}
+}
+
+/*
+ * Legacy color companion for the popover menu: the non-tree menu background
+ * plus the component border-color. Consumers @extend this from their
+ * `*.legacy-coloring.scss`; the adaptive bundle colors the menu instead.
+ */
+%db-control-panel-navigation-item-group-menu-popover-colors {
+	@extend %db-control-panel-navigation-item-group-menu-non-tree-colors;
+	@extend %component-border-colors;
 }

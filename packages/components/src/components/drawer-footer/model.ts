@@ -1,8 +1,14 @@
-import type { GlobalProps, GlobalState } from '../../shared/model';
+import type {
+	GlobalProps,
+	GlobalState,
+	MaterialProps
+} from '../../shared/model';
 
 export type DBDrawerFooterDefaultProps = {};
 
-export type DBDrawerFooterProps = DBDrawerFooterDefaultProps & GlobalProps;
+export type DBDrawerFooterProps = DBDrawerFooterDefaultProps &
+	GlobalProps &
+	MaterialProps;
 
 export type DBDrawerFooterDefaultState = {};
 
