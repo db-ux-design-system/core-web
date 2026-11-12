@@ -42,11 +42,17 @@ export default function App() {
 		setColoringMode
 	} = useQuery();
 
-	// "adaptive" forces the whole document into adaptive coloring. "legacy" and
-	// "legacy-adaptive" render legacy by default; "legacy-adaptive" additionally
-	// loads the adaptive bundle so a `[data-adaptive-coloring="true"]` subtree
-	// can opt in.
-	const rootAdaptive = coloringMode === 'adaptive' ? 'true' : undefined;
+	// Both "adaptive" (adaptive bundle only) and "legacy-adaptive" (both bundles
+	// loaded, adaptive overriding legacy) drive the whole document into adaptive
+	// coloring via `data-adaptive-coloring="true"` on the root. "legacy" alone
+	// leaves it unset and renders legacy. This also gates the adaptive-matrix
+	// examples, which are shown only inside a `[data-adaptive-coloring="true"]`
+	// subtree (see `showcase-styles.css`) - so they appear in both adaptive
+	// modes and stay hidden in legacy.
+	const rootAdaptive =
+		coloringMode === 'adaptive' || coloringMode === 'legacy-adaptive'
+			? 'true'
+			: undefined;
 
 	useEffect(() => {
 		const id = 'db-ux-stylesheet';

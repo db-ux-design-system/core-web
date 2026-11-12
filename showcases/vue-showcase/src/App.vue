@@ -35,11 +35,16 @@ const {
 	coloringMode
 } = useLayout();
 
-// "adaptive" forces the whole document into adaptive coloring. "legacy" and
-// "legacy-adaptive" render legacy by default; "legacy-adaptive" additionally
-// loads the adaptive bundle so a `[data-adaptive-coloring="true"]` subtree opts in.
+// Both "adaptive" and "legacy-adaptive" drive the whole document into adaptive
+// coloring via `data-adaptive-coloring="true"` on the root; "legacy-adaptive"
+// additionally loads both bundles so adaptive overrides legacy. "legacy" alone
+// leaves it unset. This also gates the adaptive-matrix examples, shown only
+// inside a `[data-adaptive-coloring="true"]` subtree.
 const rootAdaptive = computed(() =>
-	coloringMode.value === "adaptive" ? "true" : undefined
+	coloringMode.value === "adaptive" ||
+	coloringMode.value === "legacy-adaptive"
+		? "true"
+		: undefined
 );
 
 watchEffect(() => {

@@ -31,10 +31,11 @@ export function getColoringMode(): ColoringMode {
 
 /**
  * Swap the active DB-UX stylesheet and toggle the root `data-adaptive-coloring`
- * attribute based on the current `coloring` URL param. "adaptive" forces the
- * whole document into adaptive coloring; "legacy" and "legacy-adaptive" render
- * legacy by default ("legacy-adaptive" additionally loads the adaptive bundle
- * so a `[data-adaptive-coloring="true"]` subtree can opt in).
+ * attribute based on the current `coloring` URL param. Both "adaptive" and
+ * "legacy-adaptive" drive the whole document into adaptive coloring (the latter
+ * additionally loads both bundles so adaptive overrides legacy); "legacy" alone
+ * renders legacy. The root attribute also gates the adaptive-matrix examples,
+ * shown only inside a `[data-adaptive-coloring="true"]` subtree.
  */
 export function applyColoring(): void {
 	const mode = getColoringMode();
@@ -55,7 +56,7 @@ export function applyColoring(): void {
 		document.querySelector<HTMLElement>('.fullscreen-container');
 
 	if (root) {
-		if (mode === 'adaptive') {
+		if (mode === 'adaptive' || mode === 'legacy-adaptive') {
 			root.dataset.adaptiveColoring = 'true';
 		} else {
 			delete root.dataset.adaptiveColoring;

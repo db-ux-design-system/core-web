@@ -118,8 +118,9 @@ export class AppComponent implements OnInit {
 	 * Swap the active DB-UX stylesheet based on the `coloring` URL param. The
 	 * three bundles are emitted as non-injected stylesheets (see angular.json)
 	 * served next to the app, so a runtime `<link>` can point at them by name.
-	 * "adaptive" additionally drives the root `data-adaptive-coloring` (see the
-	 * template); "legacy-adaptive" loads both bundles so a subtree can opt in.
+	 * Both "adaptive" and "legacy-adaptive" drive the root `data-adaptive-coloring`
+	 * (see the template and `getRootAdaptive`); "legacy-adaptive" additionally
+	 * loads both bundles so adaptive overrides legacy on that opted-in subtree.
 	 */
 	applyColoring(): void {
 		const id = 'db-ux-stylesheet';
@@ -139,8 +140,13 @@ export class AppComponent implements OnInit {
 		link.href = `./${fileByMode[this.coloringMode]}`;
 	}
 
+	// Shown in both adaptive modes, hidden in legacy - this also gates the
+	// adaptive-matrix examples (shown only inside `[data-adaptive-coloring="true"]`).
 	getRootAdaptive = () =>
-		this.coloringMode === 'adaptive' ? 'true' : undefined;
+		this.coloringMode === 'adaptive' ||
+		this.coloringMode === 'legacy-adaptive'
+			? 'true'
+			: undefined;
 
 	getChangeableClasses = () =>
 		`db-density-${this.density} db-color-${this.color}`;
