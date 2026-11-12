@@ -121,7 +121,7 @@ $tags-z-index: 2;
 
 	// Mobile: dim the page behind the open dropdown
 	details[open] > summary {
-		@include screen-sizes.screen("sm", "max") {
+		@include screen-sizes.screen-tablet-max {
 			&::before {
 				position: fixed;
 				z-index: 9998;

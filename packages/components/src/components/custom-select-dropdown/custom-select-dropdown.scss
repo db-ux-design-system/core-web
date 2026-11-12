@@ -33,7 +33,7 @@
 		inline-size: 100%;
 	}
 
-	@include screen-sizes.screen("sm", "max") {
+	@include screen-sizes.screen-tablet-max {
 		position: fixed;
 		z-index: 9999;
 		inset-block: 0;
@@ -69,7 +69,7 @@
 		&:has(.db-button) {
 			@include helpers.divider("top", "after");
 
-			@include screen-sizes.screen("sm") {
+			@include screen-sizes.screen-tablet-min {
 				@include helpers.display(none);
 			}
 		}

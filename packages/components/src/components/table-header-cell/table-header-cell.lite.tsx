@@ -1,4 +1,9 @@
-import { useDefaultProps, useMetadata, useRef } from '@builder.io/mitosis';
+import {
+	Show,
+	useDefaultProps,
+	useMetadata,
+	useRef
+} from '@builder.io/mitosis';
 import { cls, getBooleanAsString, getNumber } from '../../utils';
 import { DBTableHeaderCellProps } from './model';
 
@@ -24,7 +29,9 @@ export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
 			headers={props.headers}
 			abbr={props.abbr}>
-			{props.children}
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</th>
 	);
 }

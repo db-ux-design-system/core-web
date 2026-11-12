@@ -2,7 +2,8 @@ import type {
 	DBTableCellProps,
 	GlobalProps,
 	GlobalState,
-	MaterialProps
+	MaterialProps,
+	TextProps
 } from '../../shared/model';
 
 export type DBTableDataCellDefaultProps = {};
@@ -10,6 +11,7 @@ export type DBTableDataCellDefaultProps = {};
 export type DBTableDataCellProps = DBTableDataCellDefaultProps &
 	GlobalProps &
 	MaterialProps &
+	TextProps &
 	DBTableCellProps;
 
 export type DBTableDataCellDefaultState = {};

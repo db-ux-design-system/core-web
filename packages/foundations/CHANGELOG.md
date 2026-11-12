@@ -1,5 +1,15 @@
 # @db-ux/core-foundations
 
+## 6.3.2
+
+### Patch Changes
+
+- docs: link the documentation in the IDE and the type descriptions to Storybook and the Design System Platform instead of the Patternhub - [see commit ead9061](https://github.com/db-ux-design-system/core-web/commit/ead9061209323b4282b04c11a28328956c49252e):
+
+    - `web-types.json` of the Web Components: every element links to its overview page in the Web Components Storybook, parts to their section on the page of the main component
+    - `icon` properties: the icons overview on the Design System Platform
+    - `@db-ux/core-foundations` README: the CSS, SCSS and Tailwind sections of the README itself
+
 ## 6.3.1
 
 No changes in this release.

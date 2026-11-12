@@ -18,7 +18,7 @@
 		display: none;
 	}
 
-	@include screen-sizes.screen("sm", "max") {
+	@include screen-sizes.screen-tablet-max {
 		li[data-pagination-item="sibling"] {
 			display: none;
 		}
