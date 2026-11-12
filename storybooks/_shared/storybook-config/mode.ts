@@ -65,8 +65,7 @@ const getManagerMode = (): string | undefined =>
 	getManagerRoot()?.dataset[MANAGER_MODE_ATTRIBUTE];
 
 /** The mode of the preview: the manager's, otherwise the globals'. */
-export const getMode = (globals: Globals): unknown =>
-	getManagerMode() ?? globals.mode;
+export const getMode = ({ mode }: Globals): unknown => getManagerMode() ?? mode;
 
 const setDataMode = (mode: unknown) => {
 	if (mode === 'light' || mode === 'dark') {

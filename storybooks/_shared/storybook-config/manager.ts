@@ -49,7 +49,10 @@ addons.setConfig({
 });
 
 addons.register('db-ux/mode', (api) => {
-	let mode: unknown = getUrlMode() ?? api.getGlobals?.().mode;
+	// Destructured: index signature properties need brackets in the strict
+	// Angular build, xo asks for dot notation.
+	const { mode: initialMode }: Globals = api.getGlobals?.() ?? {};
+	let mode: unknown = getUrlMode() ?? initialMode;
 	const update = () => {
 		const previous = root.dataset[SCHEME_ATTRIBUTE];
 		const scheme = applyManagerMode(mode);
@@ -58,15 +61,21 @@ addons.register('db-ux/mode', (api) => {
 		}
 	};
 
-	api.on(SET_GLOBALS, ({ globals }: { globals: Globals }) => {
-		mode = getUrlMode() ?? globals.mode;
-		update();
-	});
+	api.on(
+		SET_GLOBALS,
+		({ globals: { mode: reported } }: { globals: Globals }) => {
+			mode = getUrlMode() ?? reported;
+			update();
+		}
+	);
 	// A change in the toolbar.
-	api.on(GLOBALS_UPDATED, ({ globals }: { globals: Globals }) => {
-		mode = globals.mode;
-		update();
-	});
+	api.on(
+		GLOBALS_UPDATED,
+		({ globals: { mode: reported } }: { globals: Globals }) => {
+			mode = reported;
+			update();
+		}
+	);
 	globalThis.matchMedia?.(DARK_QUERY).addEventListener('change', update);
 	update();
 });
