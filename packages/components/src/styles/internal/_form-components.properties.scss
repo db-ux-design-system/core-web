@@ -1,9 +1,8 @@
 /* @css-properties form-components */
 
 /**
- * Minimum inline size of the form field, e.g. `20rem`. Without it, DBInput,
- * DBSelect and DBCustomSelect grow with icons.
- * @default var(--db-sizing-lg)
+ * Minimum inline size of the form field, e.g. `20rem`.
+ * @default `var(--db-sizing-lg)`; DBSelect and DBCustomSelect `var(--db-sizing-xl)`; larger with icons
  */
 @property --db-form-component-min-inline-size {
 	syntax: "*";

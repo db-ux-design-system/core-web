@@ -14,9 +14,11 @@
 }
 
 /**
- * Width of every column. A single column takes
- * `--db-table-column-size-<index>` (0-based) instead, e.g.
- * `--db-table-column-size-0: 2fr`.
+ * Width of every column. Without `--db-table-columns`, a single column
+ * takes its own size instead: `--db-table-column-size-0` for the first,
+ * `--db-table-column-size-1` for the second and so on, e.g. `2fr`. The
+ * `columnSizes` property sets them.
+ * @default `1fr`, `auto` with `width="auto"`
  */
 @property --db-table-columns-size {
 	syntax: "*";
@@ -26,7 +28,8 @@
 
 /**
  * Columns with different widths: any `grid-template-columns`
- * value, e.g. `2fr 1fr 1fr`. Wins over `--db-table-columns`.
+ * value, e.g. `2fr 1fr 1fr`. Wins over `--db-table-columns`. Not used by
+ * `mobileVariant="list"` on small screens, which shows one column.
  */
 @property --db-table-grid-template-columns {
 	syntax: "*";
