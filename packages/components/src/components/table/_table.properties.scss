@@ -18,7 +18,9 @@
 }
 
 /**
- * Width of every column when `--db-table-columns` is set.
+ * Width of every column. A single column takes
+ * `--db-table-column-size-<index>` (0-based) instead, e.g.
+ * `--db-table-column-size-0: 2fr`.
  */
 @property --db-table-columns-size {
 	syntax: "*";

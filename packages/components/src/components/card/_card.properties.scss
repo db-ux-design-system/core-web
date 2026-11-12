@@ -1,0 +1,35 @@
+// CSS custom properties of DBCard: the styling API consumers may set.
+// Format and rules: see ../../styles/internal/_form-components.properties.scss
+// and packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties card */
+
+/**
+ * Background color of the card. The card sets its own value, so set it on
+ * the card itself (e.g. with the `style` attribute), not on an ancestor.
+ * @default var(--db-adaptive-bg-basic-level-1-default)
+ */
+@property --db-card-background-color-default {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Background color of an interactive card on hover. Set it on the card
+ * itself.
+ * @default var(--db-adaptive-bg-basic-level-1-hovered)
+ */
+@property --db-card-background-color-hovered {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Background color of an interactive card while pressed. Set it on the card
+ * itself.
+ * @default var(--db-adaptive-bg-basic-level-1-pressed)
+ */
+@property --db-card-background-color-pressed {
+	syntax: "*";
+	inherits: true;
+}

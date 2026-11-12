@@ -1,0 +1,15 @@
+// CSS custom properties of DBPopover and DBTooltip: the styling API consumers
+// may set. Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties popover-component */
+
+/**
+ * Delay before the component appears with `delay="fast"` or `delay="slow"`,
+ * e.g. `0.8s`.
+ * @default `var(--db-transition-duration-medium)` with `fast`, `var(--db-transition-duration-extra-slow)` with `slow`
+ */
+@property --db-animation-delay {
+	syntax: "*";
+	inherits: true;
+}

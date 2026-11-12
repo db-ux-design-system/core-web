@@ -773,6 +773,19 @@ const getCssProperties = (folder: string): CssProperty[] => {
 	return existsSync(file) ? (JSON.parse(read(file)) as CssProperty[]) : [];
 };
 
+/**
+ * A CSS value as code (`1fr`, `var(--db-sizing-lg)`); a sentence such as
+ * "depends on `containerSize`" stays text with its own code spans.
+ */
+const formatDefault = (value?: string): string => {
+	if (!value) {
+		return '–';
+	}
+
+	const cell = escapeCell(value);
+	return /[\s`]/.test(value) ? cell : `\`${cell}\``;
+};
+
 /** "CSS custom properties" table; empty without documented properties. */
 const buildCssProperties = (folder: string, heading: string): string => {
 	const properties = getCssProperties(folder);
@@ -785,7 +798,7 @@ const buildCssProperties = (folder: string, heading: string): string => {
 		'| --- | --- | --- |',
 		...properties.map(
 			(property) =>
-				`| \`${property.name}\` | ${escapeCell(property.description)} | ${property.default ? `\`${escapeCell(property.default)}\`` : '–'} |`
+				`| \`${property.name}\` | ${escapeCell(property.description)} | ${formatDefault(property.default)} |`
 		)
 	].join('\n');
 	// A JSON string in the Markdown block, like the attribute tables.

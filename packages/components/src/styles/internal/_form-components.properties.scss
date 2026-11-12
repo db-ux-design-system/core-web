@@ -30,3 +30,13 @@
 	syntax: "*";
 	inherits: true;
 }
+
+/**
+ * Maximum inline size of the label, e.g. `20rem`. Longer labels are
+ * truncated with an ellipsis.
+ */
+@property --db-label-max-size {
+	syntax: "*";
+	inherits: true;
+	initial-value: 100%;
+}

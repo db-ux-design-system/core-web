@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/popover-component";
+@use "../../styles/internal/popover-component.properties" as *;
 @use "../../styles/internal/component";
 
 .db-tooltip {

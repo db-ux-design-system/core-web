@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/popover-component";
+@use "../../styles/internal/popover-component.properties" as *;
 @use "../../styles/internal/component";
 
 .db-popover {
