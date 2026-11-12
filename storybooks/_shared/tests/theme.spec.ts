@@ -316,6 +316,48 @@ test.describe('docs.css', () => {
 		await page.close();
 	});
 
+	test('the refs of the composition Storybook follow the toolbar', async ({
+		browser
+	}) => {
+		// Storybook passes no globals to refs; their previews read the mode of
+		// the manager (mode.ts).
+		const page = await browser.newPage({ colorScheme: 'light' });
+		await openManager(
+			page,
+			'composition-storybook',
+			'/docs/react_components-dbbutton-overview--docs'
+		);
+		const ref = page.frameLocator(
+			'iframe[src*="/react-storybook/iframe.html"]'
+		);
+		await expect(ref.locator('.sbdocs-content h1').first()).toBeVisible({
+			timeout: 60_000
+		});
+		await page.getByRole('button', { name: /Light\/dark mode/ }).click();
+		await page.getByRole('option', { name: 'Dark Mode' }).click();
+		await expect(ref.locator('html')).toHaveAttribute('data-mode', 'dark');
+		await expect
+			.poll(async () =>
+				red(
+					await ref
+						.locator('.sbdocs-wrapper')
+						.evaluate(
+							(node) => getComputedStyle(node).backgroundColor
+						)
+				)
+			)
+			.toBeLessThan(128);
+		// Back to System: the light OS again.
+		await page.getByRole('button', { name: /Light\/dark mode/ }).click();
+		await page.getByRole('option', { name: 'System' }).click();
+		await expect(page.locator('html')).toHaveAttribute(
+			'data-db-sb-mode',
+			'light'
+		);
+		await expect(ref.locator('html')).not.toHaveAttribute('data-mode');
+		await page.close();
+	});
+
 	test('links in story previews keep the component styling', async ({
 		page
 	}) => {

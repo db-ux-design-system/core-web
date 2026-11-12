@@ -12,8 +12,6 @@ import type { Globals, GlobalTypes } from 'storybook/internal/types';
  * The default "System" follows the OS color scheme (`prefers-color-scheme`).
  * It sets no `data-mode`, so the stories follow it as well.
  */
-export type Mode = 'auto' | 'light' | 'dark';
-
 export const modeGlobalTypes: GlobalTypes = {
 	mode: {
 		description: 'Light/dark mode',

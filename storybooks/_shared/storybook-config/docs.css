@@ -51,8 +51,8 @@
 /* The logo in the text color of the mode: the colors inside logo.svg follow
    the OS color scheme, not the selected mode. */
 .sbdocs-content .db-sb-platform-card-logo {
-	inline-size: var(--db-sizing-md);
-	block-size: var(--db-sizing-md);
+	inline-size: var(--db-sizing-sm);
+	block-size: var(--db-sizing-sm);
 	background-color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 	mask: url("./brand/images/logo.svg") center / contain no-repeat;
 }
