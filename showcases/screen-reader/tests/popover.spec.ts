@@ -7,7 +7,7 @@ test.describe('DBPopover', () => {
 		title: 'opened',
 		description: 'should open the popover',
 		url: './#/01/popover?page=density',
-		async testFn(voiceOver, nvda) {
+		async testFn(voiceOver, nvda, page) {
 			if (nvda) {
 				await nvda?.act(); // Opening first popover
 				await nvda?.press('Tab'); // Tab to button inside popover
@@ -20,6 +20,10 @@ test.describe('DBPopover', () => {
 				await nvda?.next(); // Navigating to next button
 			} else if (voiceOver) {
 				await voiceOver?.next(); // Opening first popover and navigating to the included "article"
+
+				// Wait for VoiceOver to process the popover opening
+				await page?.waitForTimeout(500);
+
 				await voiceOver?.next(); // Navigating to list within popover
 				await voiceOver?.next(); // Navigating to first item of list within popover
 				await voiceOver?.next(); // Navigating to section item of list within popover
@@ -27,6 +31,9 @@ test.describe('DBPopover', () => {
 				await voiceOver?.next(); // Navigating to button within popover
 				await voiceOver?.next(); // Navigating to end of article
 				await voiceOver?.next(); // Navigating to next button and open next popover
+
+				// Wait for VoiceOver to process the second popover opening
+				await page?.waitForTimeout(500);
 			}
 		}
 	});
