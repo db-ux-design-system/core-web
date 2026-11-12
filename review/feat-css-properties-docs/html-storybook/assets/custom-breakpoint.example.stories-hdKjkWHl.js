@@ -1,0 +1,45 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./jsx-runtime-MKhVqBIO.js";import{n as r,t as i}from"./button-HiccZljf.js";import{i as a,n as o,r as s,t as c}from"./control-panel-actions-2-CABvqNgG.js";import{n as l,t as u}from"./control-panel-brand-D5CF13xm.js";import{n as d,t as f}from"./control-panel-desktop-CTEgpMrL.js";import{n as p,t as m}from"./control-panel-mobile-9MtFXmzY.js";import{i as h,n as g,r as _,t as v}from"./control-panel-navigation-item-Dn_5GN4Q.js";import{n as y,t as b}from"./shell-But1C-4S.js";import{n as x,t as S}from"./shell-content-CYjcpWQA.js";var C=t({ForceDesktop:()=>O,ForceMobile:()=>D,__namedExportsOrder:()=>k,default:()=>E}),w,T,E,D,O,k;function A(){return(A=e((()=>{r(),a(),o(),l(),d(),p(),g(),h(),x(),y(),w=n(),{fn:T}=__STORYBOOK_MODULE_TEST__,E={title:`Components/DBShell/Custom Breakpoint`,component:b,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{controlPanelDesktopPosition:{control:`select`,options:[`top`,`left`]},controlPanelMobilePosition:{control:`select`,options:[`top`,`bottom`]},subNavigationDesktopPosition:{control:`select`,options:[`top`,`left`]},subNavigationMobilePosition:{control:`select`,options:[`top`,`bottom`,`none`]},showSubNavigation:{control:`boolean`},fadeIn:{control:`boolean`},id:{control:`text`},autofocus:{control:`boolean`}}},D={args:{"data-test-id":`shell-custom-breakpoint-force-mobile`,controlPanelDesktopPosition:`top`,children:(0,w.jsxs)(w.Fragment,{children:[(0,w.jsx)(f,{brand:(0,w.jsx)(u,{"data-logo":`db-systel`}),actions1:(0,w.jsx)(s,{children:(0,w.jsx)(i,{icon:`magnifying_glass`,variant:`ghost`,noText:!0,children:`Search`})}),actions2:(0,w.jsx)(c,{children:(0,w.jsx)(i,{icon:`x_placeholder`,variant:`ghost`,noText:!0,children:`Profile`})}),children:(0,w.jsx)(_,{"aria-label":`shell-custom-breakpoint-force-mobile`,children:(0,w.jsx)(v,{icon:`x_placeholder`,tooltip:`Item`,children:(0,w.jsx)(`a`,{href:`#`,children:`Item`})})})}),(0,w.jsx)(m,{drawerHeaderText:`Force Mobile`,brand:(0,w.jsx)(u,{"data-logo":`db-systel`}),actions1:(0,w.jsx)(s,{children:(0,w.jsx)(i,{icon:`magnifying_glass`,variant:`ghost`,noText:!0,children:`Search`})}),actions2:(0,w.jsx)(c,{children:(0,w.jsx)(i,{icon:`x_placeholder`,variant:`ghost`,noText:!0,children:`Profile`})}),children:(0,w.jsx)(_,{"aria-label":`shell-custom-breakpoint-force-mobile-mobile`,children:(0,w.jsx)(v,{icon:`x_placeholder`,children:(0,w.jsx)(`a`,{href:`#`,children:`Item`})})})}),(0,w.jsx)(S,{mainId:`main-content-custom-breakpoint-force-mobile`,mainLabel:`shell-custom-breakpoint-force-mobile`,children:(0,w.jsx)(`p`,{children:`This shell sets --db-breakpoint: "mobile" on an ancestor, so it stays in its mobile layout on every viewport.`})})]})},render:e=>(0,w.jsx)(`div`,{"data-test-id":`shell-custom-breakpoint-force-mobile-scope`,style:{width:`100%`,display:`block`},children:(0,w.jsx)(b,{...e})})},O={args:{"data-test-id":`shell-custom-breakpoint-force-desktop`,controlPanelDesktopPosition:`top`,children:(0,w.jsxs)(w.Fragment,{children:[(0,w.jsx)(f,{brand:(0,w.jsx)(u,{"data-logo":`db-systel`}),actions1:(0,w.jsx)(s,{children:(0,w.jsx)(i,{icon:`magnifying_glass`,variant:`ghost`,noText:!0,children:`Search`})}),actions2:(0,w.jsx)(c,{children:(0,w.jsx)(i,{icon:`x_placeholder`,variant:`ghost`,noText:!0,children:`Profile`})}),children:(0,w.jsx)(_,{"aria-label":`shell-custom-breakpoint-force-desktop`,children:(0,w.jsx)(v,{icon:`x_placeholder`,tooltip:`Item`,children:(0,w.jsx)(`a`,{href:`#`,children:`Item`})})})}),(0,w.jsx)(m,{drawerHeaderText:`Force Desktop`,brand:(0,w.jsx)(u,{"data-logo":`db-systel`}),actions1:(0,w.jsx)(s,{children:(0,w.jsx)(i,{icon:`magnifying_glass`,variant:`ghost`,noText:!0,children:`Search`})}),actions2:(0,w.jsx)(c,{children:(0,w.jsx)(i,{icon:`x_placeholder`,variant:`ghost`,noText:!0,children:`Profile`})}),children:(0,w.jsx)(_,{"aria-label":`shell-custom-breakpoint-force-desktop-mobile`,children:(0,w.jsx)(v,{icon:`x_placeholder`,children:(0,w.jsx)(`a`,{href:`#`,children:`Item`})})})}),(0,w.jsx)(S,{mainId:`main-content-custom-breakpoint-force-desktop`,mainLabel:`shell-custom-breakpoint-force-desktop`,children:(0,w.jsx)(`p`,{children:`This shell sets --db-breakpoint: "desktop" on an ancestor, so it switches to its desktop layout on every viewport.`})})]})},render:e=>(0,w.jsx)(`div`,{"data-test-id":`shell-custom-breakpoint-force-desktop-scope`,style:{width:`100%`,display:`block`},children:(0,w.jsx)(b,{...e})})},k=[`ForceMobile`,`ForceDesktop`],D.parameters={...D.parameters,docs:{...D.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-test-id": "shell-custom-breakpoint-force-mobile",
+    "controlPanelDesktopPosition": "top",
+    "children": <><DBControlPanelDesktop brand={<DBControlPanelBrand data-logo="db-systel" />} actions1={<DBControlPanelActions1><DBButton icon="magnifying_glass" variant="ghost" noText>
+                                    Search
+                                </DBButton></DBControlPanelActions1>} actions2={<DBControlPanelActions2><DBButton icon="x_placeholder" variant="ghost" noText>
+                                    Profile
+                                </DBButton></DBControlPanelActions2>}><DBControlPanelNavigation aria-label="shell-custom-breakpoint-force-mobile"><DBControlPanelNavigationItem icon="x_placeholder" tooltip="Item"><a href="#">Item</a></DBControlPanelNavigationItem></DBControlPanelNavigation></DBControlPanelDesktop><DBControlPanelMobile drawerHeaderText="Force Mobile" brand={<DBControlPanelBrand data-logo="db-systel" />} actions1={<DBControlPanelActions1><DBButton icon="magnifying_glass" variant="ghost" noText>
+                                    Search
+                                </DBButton></DBControlPanelActions1>} actions2={<DBControlPanelActions2><DBButton icon="x_placeholder" variant="ghost" noText>
+                                    Profile
+                                </DBButton></DBControlPanelActions2>}><DBControlPanelNavigation aria-label="shell-custom-breakpoint-force-mobile-mobile" {...{}}><DBControlPanelNavigationItem icon="x_placeholder"><a href="#">Item</a></DBControlPanelNavigationItem></DBControlPanelNavigation></DBControlPanelMobile><DBShellContent mainId="main-content-custom-breakpoint-force-mobile" mainLabel="shell-custom-breakpoint-force-mobile"><p>
+                            This shell sets --db-breakpoint: "mobile" on an
+                            ancestor, so it stays in its mobile layout on every
+                            viewport.
+                        </p></DBShellContent></>
+  },
+  render: (properties: any) => <div data-test-id="shell-custom-breakpoint-force-mobile-scope" style={{
+    width: '100%',
+    display: 'block'
+  }}><DBShell {...properties} /></div>
+}`,...D.parameters?.docs?.source}}},O.parameters={...O.parameters,docs:{...O.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-test-id": "shell-custom-breakpoint-force-desktop",
+    "controlPanelDesktopPosition": "top",
+    "children": <><DBControlPanelDesktop brand={<DBControlPanelBrand data-logo="db-systel" />} actions1={<DBControlPanelActions1><DBButton icon="magnifying_glass" variant="ghost" noText>
+                                    Search
+                                </DBButton></DBControlPanelActions1>} actions2={<DBControlPanelActions2><DBButton icon="x_placeholder" variant="ghost" noText>
+                                    Profile
+                                </DBButton></DBControlPanelActions2>}><DBControlPanelNavigation aria-label="shell-custom-breakpoint-force-desktop"><DBControlPanelNavigationItem icon="x_placeholder" tooltip="Item"><a href="#">Item</a></DBControlPanelNavigationItem></DBControlPanelNavigation></DBControlPanelDesktop><DBControlPanelMobile drawerHeaderText="Force Desktop" brand={<DBControlPanelBrand data-logo="db-systel" />} actions1={<DBControlPanelActions1><DBButton icon="magnifying_glass" variant="ghost" noText>
+                                    Search
+                                </DBButton></DBControlPanelActions1>} actions2={<DBControlPanelActions2><DBButton icon="x_placeholder" variant="ghost" noText>
+                                    Profile
+                                </DBButton></DBControlPanelActions2>}><DBControlPanelNavigation aria-label="shell-custom-breakpoint-force-desktop-mobile" {...{}}><DBControlPanelNavigationItem icon="x_placeholder"><a href="#">Item</a></DBControlPanelNavigationItem></DBControlPanelNavigation></DBControlPanelMobile><DBShellContent mainId="main-content-custom-breakpoint-force-desktop" mainLabel="shell-custom-breakpoint-force-desktop"><p>
+                            This shell sets --db-breakpoint: "desktop" on an
+                            ancestor, so it switches to its desktop layout on
+                            every viewport.
+                        </p></DBShellContent></>
+  },
+  render: (properties: any) => <div data-test-id="shell-custom-breakpoint-force-desktop-scope" style={{
+    width: '100%',
+    display: 'block'
+  }}><DBShell {...properties} /></div>
+}`,...O.parameters?.docs?.source}}}})))()}export{A as i,D as n,C as r,O as t};
