@@ -9,6 +9,7 @@
 @forward "../colors/default-color-mappings";
 @forward "../normalize";
 @include screen-sizes.get-breakpoint-properties;
+@include screen-sizes.get-layout-breakpoint-defaults;
 
 :root,
 :host {

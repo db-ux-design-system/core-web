@@ -1,0 +1,165 @@
+/**
+ * Generates the "Foundations/Test Table" page of the composition
+ * Storybook: which automated tests and accessibility reviews exist per
+ * component.
+ *
+ * Runs before every build and start of the composition Storybook (see its
+ * package.json), because the table follows the test files. The output is
+ * git-ignored.
+ *
+ * Inputs:
+ * - `output/stencil/dist/web-types.json`: the components (build the outputs first)
+ * - `showcases/e2e/<name>/`: visual snapshot, axe, aria snapshot and
+ *   Accessibility Checker tests, one spec file each; a column counts only when
+ *   the file calls its test function (`runAxeCoreTest`, ...)
+ * - `showcases/screen-reader/tests/<name>.spec.ts`: screen reader tests
+ * - `showcases/patternhub/data/_accessibility-review.json`: manual audits
+ *
+ * Usage: node storybooks/_shared/foundations/generate-test-table.ts
+ */
+import {
+	existsSync,
+	mkdirSync,
+	readdirSync,
+	readFileSync,
+	writeFileSync
+} from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+
+const ROOT = resolve(import.meta.dirname, '..', '..', '..');
+const OUT = join(ROOT, 'storybooks/_storybook/src/generated/test-table.mdx');
+
+/** Parts of other components, without own test suites. */
+const SUB_COMPONENT =
+	/-(list|panel|item|handle|menu|footer|header|head|content|sub-navigation|cell|row|caption|body)$/;
+const EXCLUDED = new Set([
+	'page',
+	'custom-select-form-field',
+	'custom-select-dropdown',
+	// Covered by the footer row.
+	'footer-content',
+	'footer-meta'
+]);
+/** Internal parts of the control panel; its variants have own test suites. */
+const isControlPanelPart = (name: string) =>
+	name.startsWith('control-panel-') &&
+	![
+		'control-panel-desktop',
+		'control-panel-mobile',
+		'control-panel-flat-icon'
+	].includes(name);
+
+type Review = { name: string; status: string; date?: string };
+
+const read = (path: string) => readFileSync(join(ROOT, path), 'utf8');
+const hasFile = (path: string) => existsSync(join(ROOT, path));
+/** `showcases/e2e/<name>/<name>-<suite>.spec.ts` exists and runs `call`. */
+const hasTest = (name: string, suite: string, call: string) => {
+	const path = `showcases/e2e/${name}/${name}-${suite}.spec.ts`;
+	return hasFile(path) && read(path).includes(`${call}(`);
+};
+
+const webTypesPath = 'output/stencil/dist/web-types.json';
+if (!hasFile(webTypesPath)) {
+	throw new Error(
+		`[test-table] ${webTypesPath} is missing – build the outputs first`
+	);
+}
+const webTypes = JSON.parse(read(webTypesPath)) as {
+	contributions: { html: { elements: Array<{ name: string }> } };
+};
+const reviews = JSON.parse(
+	read('showcases/patternhub/data/_accessibility-review.json')
+) as Review[];
+
+/**
+ * Component folder of an element: the tests live per folder
+ * (`showcases/e2e/<folder>/`). Members of a family without an own folder
+ * belong to it, e.g. `heading-h-1` and `custom-heading` to `heading`.
+ */
+const FOLDERS = readdirSync(join(ROOT, 'packages/components/src/components'));
+const toFolder = (name: string): string =>
+	FOLDERS.filter(
+		(folder) =>
+			name === folder ||
+			name.startsWith(`${folder}-`) ||
+			name.endsWith(`-${folder}`)
+	).toSorted((a, b) => b.length - a.length)[0] ?? name;
+
+const components = [
+	...new Set(
+		webTypes.contributions.html.elements
+			.map(({ name }) => name)
+			// Only components carry the `db-` prefix; the rest are showcase elements.
+			.filter((name) => name.startsWith('db-'))
+			.map((name) => name.slice(3))
+			.filter(
+				(name) =>
+					!EXCLUDED.has(name) &&
+					!SUB_COMPONENT.test(name) &&
+					!isControlPanelPart(name)
+			)
+			.map((name) => toFolder(name))
+	)
+].toSorted((a, b) => a.localeCompare(b));
+
+const cell = (isDone: boolean) => (isDone ? '✅ Done' : '❌ Missing');
+
+const REVIEW_TEXT: Record<string, string> = {
+	DONE: '✅ Done',
+	REVIEW: '🟡 In review',
+	PROGRESS: '🟡 In progress'
+};
+
+const rows = components.map((name) => {
+	const hasVisuals = hasTest(
+		name,
+		'visual-snapshot',
+		'getDefaultScreenshotTest'
+	);
+	const hasAxe = hasTest(name, 'axe-core', 'runAxeCoreTest');
+	const hasAria = hasTest(name, 'aria-snapshot', 'runAriaSnapshotTest');
+	const hasChecker = hasTest(name, 'a11y-checker', 'runA11yCheckerTest');
+	const hasScreenReader = hasFile(
+		`showcases/screen-reader/tests/${name}.spec.ts`
+	);
+	const review = reviews.find((entry) => entry.name === name);
+	const reviewText = review
+		? `${REVIEW_TEXT[review.status] ?? '❌ Missing'}${review.date ? ` (${review.date})` : ''}`
+		: '❌ Missing';
+	const isStable =
+		hasVisuals &&
+		hasAxe &&
+		hasAria &&
+		hasChecker &&
+		hasScreenReader &&
+		review?.status === 'DONE';
+	return `| ${name} | ${cell(hasVisuals)} | ${cell(hasAxe)} | ${cell(hasAria)} | ${cell(hasChecker)} | ${cell(hasScreenReader)} | ${reviewText} | ${isStable ? '✅ Done' : '❌ Missing'} |`;
+});
+
+// Storybook's MDX has no GFM, so the table is rendered by the Markdown block,
+// like the other generated docs pages. JSON.stringify keeps it MDX-safe.
+const table = [
+	'| Component | Showcase: Visuals | Showcase: A11y (Axe) | Showcase: A11y (Aria snapshots) | Showcase: A11y (Accessibility Checker) | Showcase: A11y (Screen reader) | Manual audit by accessibility experts | Testing stable |',
+	'| --- | --- | --- | --- | --- | --- | --- | --- |',
+	...rows
+].join('\n');
+
+const mdx = `import { Markdown, Meta } from "@storybook/addon-docs/blocks";
+
+{/* Generated by storybooks/_shared/foundations/generate-test-table.ts on every build – do not edit. */}
+
+<Meta title="Foundations/Test Table" />
+
+# Test Table
+
+Which automated tests and manual accessibility audits exist for each component. A component counts as **testing stable** when all of them exist and the audit is done. The tests run in \`showcases/\` for every pull request.
+
+<Markdown>{${JSON.stringify(table)}}</Markdown>
+
+Tools: [Playwright screenshots](https://playwright.dev/docs/screenshots), [axe-core](https://github.com/dequelabs/axe-core), [Playwright aria snapshots](https://playwright.dev/docs/aria-snapshots), [IBM Accessibility Checker](https://github.com/IBMa/equal-access), [Guidepup](https://github.com/guidepup/guidepup).
+`;
+
+mkdirSync(dirname(OUT), { recursive: true });
+writeFileSync(OUT, mdx);
+console.log(`[test-table] wrote ${components.length} components`);

@@ -39,3 +39,9 @@
 		}
 	}
 }
+
+/* Single story view: follow the selected mode (see .storybook/mode.ts). */
+.sb-show-main {
+	background-color: var(--db-adaptive-bg-basic-level-1-default);
+	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+}

@@ -198,6 +198,7 @@ export const ROUTES: NavigationItem[] = [
 					}
 				]
 			},
+			{ label: 'Breakpoints', path: '/foundations/breakpoints' },
 			{
 				label: 'Testing Overview Table',
 				path: '/foundations/test-table'

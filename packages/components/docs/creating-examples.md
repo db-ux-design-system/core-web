@@ -41,7 +41,7 @@ The `useMetadata` hook configures how the example appears in Storybook:
 - **`storybookTitle`**: The title shown in Storybook for this example
 - **`storybookNames`**: Array of names for each variant in the example (matches the order of components)
 - **`storybookArgTypes`**: Reference to the arg types object from `_<component>.arg.types.ts`
-- **`storybookIgnore`**: Set to `true` to exclude the entire example from Storybook
+- **`storybookIgnore`**: Set to `true` to exclude the entire example from Storybook: no story file in any framework Storybook (`configs/mitosis.storybook.config.cjs`) and no section on the overview page. The showcases still render it. Interaction fixtures for the showcase e2e tests (`interaction*.example.lite.tsx`) are excluded the same way without the flag.
 - **`storybookOverwriteArgs`**: Override default arg values for Storybook controls
 - **`storybookComponentName`**: The reference component of the example — used for `component:`, the `@components` import and the `Props` type. Defaults to `DB<PascalCase folder name>`; only set it when that default is not an actual export.
 - **`storybookComponentNames`**: Array with the component per variant, for examples that mix several components (matches the order of `storybookNames`). Defaults to `storybookComponentName` for every variant.

@@ -11,7 +11,7 @@ body:
 
         Thank you for taking the time to fill out this bug report! Feedback from the community is highly valuable to us, as it helps improve our work and benefits all users. 🙂
 
-        We would be more than happy if you could share a URL if the problem occurs in our [documentation](https://design-system.deutschebahn.com/core-web/), or at least some code. Even better would be a [working example on StackBlitz or CodeSandbox](https://design-system.deutschebahn.com/core-web/version/latest/foundations/playgrounds).
+        We would be more than happy if you could share a URL if the problem occurs in our [documentation](https://design-system.deutschebahn.com/core-web/), or at least some code. Even better would be a working example, either as a [HTML file for simple examples by the cool new GitHub artifacts functionality](https://github.blog/changelog/2026-10-28-issue-artifacts-are-now-in-public-preview/), on StackBlitz or CodeSandbox, e.g. [based on one of our example projects](https://design-system.deutschebahn.com/documentation/learn/examples#share-a-reproducible-example).
 
         ⚠️ **Please keep in mind to use anonymous sample material:**
         - **Do not share any personal data (e.g., names, email addresses, customer data)**

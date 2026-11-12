@@ -1,0 +1,99 @@
+name: 🎭 Playwright E2E Storybooks
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      baseUrl:
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+# Tests the generated docs pages (Getting Started, component overviews,
+# Foundations) and compiles the "Show code" snippets of the overview pages.
+# See storybooks/_shared/tests/.
+jobs:
+  playwright-storybooks:
+    name: 🧪🎭 - storybooks (${{ matrix.shard }}/3)
+    runs-on: ubuntu-26.04
+    # A shard takes about 5 minutes; the limit stops a hung server or compiler.
+    timeout-minutes: 30
+    # With all component overview pages the tests take about 13 minutes on
+    # one machine; three shards run them in parallel.
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    container:
+      image: mcr.microsoft.com/playwright:v${{ inputs.version }}
+      options: --user 1001
+    steps:
+      - name: ⏬ Checkout repo
+        uses: actions/checkout@v7.0.1
+
+      - name: 🔄 Init Cache
+        uses: $/.github/actions/pnpm-cache
+        env:
+          ASSET_INIT_VECTOR: ${{ secrets.ASSET_INIT_VECTOR }}
+          ASSET_PASSWORD: ${{ secrets.ASSET_PASSWORD }}
+
+      # The Storybooks are prebuilt (below), so no foundations or components
+      # build is needed. The snippets are compiled against the framework packages in output/.
+      - name: ⏬ Download output
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: db-ux-output
+          path: output
+
+      # The React and Vue snippets resolve the packages' types from dist/.
+      - name: ⏬ Download built outputs
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: db-ux-outputs
+          path: build-outputs
+
+      - name: 📁 Provide built React and Vue packages
+        shell: bash
+        run: |
+          mkdir -p output/react/dist
+          cp -RT build-outputs/react/dist output/react/dist
+          mkdir -p output/vue/dist
+          cp -RT build-outputs/vue/dist output/vue/dist
+
+      - name: ⏬ Download storybooks
+        uses: actions/download-artifact@v8.0.2
+        with:
+          pattern: db-ux-*-storybook
+          path: build-storybooks
+
+      # The artifacts are named db-ux-<name>; the tests expect build-storybooks/<name>.
+      # The Storybooks are built with BASE_URL as path prefix, so they are served below it.
+      - name: 👩‍🔬 Test storybooks with Playwright 🎭
+        shell: bash
+        env:
+          BASE_URL: ${{ inputs.baseUrl }}
+        run: |
+          shopt -s nullglob # cspell:disable-line
+          dirs=(build-storybooks/db-ux-*-storybook)
+          if [[ ${#dirs[@]} -eq 0 ]]; then
+            echo "::error::No Storybook artifacts were downloaded (db-ux-*-storybook)."
+            exit 1
+          fi
+          for dir in "${dirs[@]}"; do
+            mv "$dir" "build-storybooks/${dir#build-storybooks/db-ux-}"
+          done
+          mkdir -p "./build-storybooks-serve${BASE_URL}"
+          cp -RT ./build-storybooks "./build-storybooks-serve${BASE_URL}"
+          pnpm run test:storybooks --shard=${{ matrix.shard }}/3
+
+      - name: 🆙 Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: storybooks-playwright-results-${{ matrix.shard }}
+          path: ./test-results/storybooks
+          retention-days: 30

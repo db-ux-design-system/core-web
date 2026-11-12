@@ -1,5 +1,15 @@
 # @db-ux/mcp-server
 
+## 6.3.2
+
+No changes in this release.
+
+## 6.3.1
+
+### Patch Changes
+
+- fix(mcp-server): exit after an uncaught exception instead of continuing, so an orphaned server can no longer keep running at 100% CPU - [see commit b836f58](https://github.com/db-ux-design-system/core-web/commit/b836f58780a1ee7cc17417c31769f748662e9135)
+
 ## 6.3.0
 
 No changes in this release.

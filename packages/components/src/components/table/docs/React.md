@@ -41,3 +41,13 @@ const App = () => (
 
 export default App;
 ```
+
+### More than 20 columns
+
+The table detects up to 20 columns automatically. For wider tables, set the column count with `--db-table-columns` on an ancestor of `DBTable`:
+
+```tsx App.tsx
+<div style={{ "--db-table-columns": columnCount } as React.CSSProperties}>
+	<DBTable data={data} />
+</div>
+```

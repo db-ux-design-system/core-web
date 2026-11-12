@@ -323,3 +323,21 @@ app-nav-item {
 .variants-list .db-loading-indicator[data-variant="bar"] {
 	max-inline-size: var(--db-sizing-3xl);
 }
+
+/* DBShell custom breakpoint demos (showcase-only): re-declare the customizable
+   `--db-breakpoint` band token so the two example shells force a layout
+   regardless of the showcase viewport - `"mobile"` keeps the shell in its mobile
+   layout, `"desktop"` switches it to desktop. The override sits on the wrapping
+   element (the `*-scope` data-test-id), an ANCESTOR of the shell, not on
+   `.db-shell` itself (whose own data-test-id is kept only for the snapshot
+   tests): a container style query reads an ancestor, never the element it
+   styles, so an override on `.db-shell` would be ignored by the shell's own grid
+   while still affecting its descendants. Set here rather than inline because a
+   CSS custom-property key is not valid in a React inline-style literal. */
+[data-test-id="shell-custom-breakpoint-force-mobile-scope"] {
+	--db-breakpoint: "mobile";
+}
+
+[data-test-id="shell-custom-breakpoint-force-desktop-scope"] {
+	--db-breakpoint: "desktop";
+}
