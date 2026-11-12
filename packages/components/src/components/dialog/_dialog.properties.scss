@@ -25,7 +25,8 @@
 
 /**
  * Gap between the dialog and the viewport edges, so a backdrop
- * area stays clickable. `0px` gives an edge-to-edge dialog.
+ * area stays clickable. `0px` gives an edge-to-edge dialog. The dialog
+ * sets its own value, so set it on the dialog itself.
  */
 @property --db-dialog-viewport-inset {
 	syntax: "*";

@@ -6,6 +6,10 @@
 // compiled CSS and writes `<component>.css-properties.json`, which the
 // Storybook overview pages show as "CSS custom properties".
 
+// Start the file with `/* @css-properties <name> */` and keep only `@property`
+// rules in it: a component documents only the properties files its own
+// `<name>.scss` loads, not those of nested components.
+
 // Comment format: the description, then optional tags:
 //   @default <value>   the value when the property is not set
 

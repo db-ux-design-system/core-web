@@ -755,7 +755,6 @@ const getExampleGroups = (name: string, fw: Framework): ExampleGroup[] => {
 	);
 };
 
-/** Text for a component without own attributes (e.g. DBDrawerFooter). */
 type CssProperty = { name: string; description: string; default?: string };
 
 /**
@@ -807,6 +806,7 @@ const buildCssProperties = (folder: string, heading: string): string => {
 		.join('\n\n');
 };
 
+/** Text for a component without own attributes (e.g. DBDrawerFooter). */
 const NO_ATTRIBUTES =
 	'No attributes of its own; the native attributes of the element apply.';
 
@@ -1074,7 +1074,7 @@ const buildOverviewMdx = (
 	if (cssProperties.length > 0) {
 		sections.push(
 			'## CSS custom properties',
-			'Set them on the component element or an ancestor to adjust its styling, e.g. with the `style` attribute.',
+			'Set them on the component element to adjust its styling, e.g. with the `style` attribute.',
 			...cssProperties
 		);
 	}

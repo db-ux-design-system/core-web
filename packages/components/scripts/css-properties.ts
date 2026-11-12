@@ -113,12 +113,18 @@ const cssProperties: PluginCreator<never> = () => ({
 				return;
 			}
 
-			if (
-				node.type !== 'atrule' ||
-				node.name !== 'property' ||
-				!owner ||
-				!owners.has(owner)
-			) {
+			// A properties file holds only `@property` rules: the first
+			// other rule ends its block, so a later `@property` (e.g. of a
+			// nested module without a marker) is not attributed to it.
+			if (node.type !== 'atrule' || node.name !== 'property') {
+				if (node.parent === root) {
+					owner = undefined;
+				}
+
+				return;
+			}
+
+			if (!owner || !owners.has(owner)) {
 				return;
 			}
 

@@ -6,7 +6,7 @@
 
 /**
  * Background color of the card. The card sets its own value, so set it on
- * the card itself (e.g. with the `style` attribute), not on an ancestor.
+ * the card itself.
  * @default var(--db-adaptive-bg-basic-level-1-default)
  */
 @property --db-card-background-color-default {

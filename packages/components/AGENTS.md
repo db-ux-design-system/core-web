@@ -63,6 +63,7 @@ CSS custom properties that consumers may set are registered with `@property` and
 - Use `syntax: "*"` and `inherits: true`, so registering changes nothing at runtime.
 - Set `initial-value` only when the default is a fixed value that equals every `var(--property, fallback)` of the property (e.g. `auto`, `0`, `1fr`). With an initial value the fallbacks no longer apply, and it is evaluated once and globally, without `var()`. Defaults that are tokens (they follow the density) or depend on a variant (`containerSize`, icons) stay unset and are documented with `@default`. Properties a component needs unset (e.g. `--db-table-columns`) never get one.
 - The plugin takes the initial value as the default when `@default` is missing.
+- Start every properties file with `/* @css-properties <name> */` (the file name without `_` and `.properties.scss`) and keep only `@property` rules in it. A component documents only the properties files its own `<name>.scss` loads with `@use`, because its CSS also contains the styles of nested components (DBShell includes DBDrawer). Component-specific properties go into `src/components/<name>/_<name>.properties.scss`, e.g. `--db-form-component-min-block-size` in `_textarea.properties.scss`.
 - `scripts/css-properties.ts` runs in `postcss.config.cjs` before cssnano (which drops the comments). It writes `build/components/<name>/<name>.css-properties.json` for every component CSS file with documented properties. The Storybook overview pages show it as "CSS custom properties".
 
 ## Heading component family

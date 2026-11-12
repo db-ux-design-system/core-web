@@ -43,6 +43,11 @@ const css = `
 	inherits: true;
 }
 .db-input { color: red; }
+/** After a style rule: no longer part of the drawer block. */
+@property --db-after-rule {
+	syntax: "*";
+	inherits: true;
+}
 `;
 
 let directory: string;
@@ -101,6 +106,18 @@ describe('css-properties', () => {
 				inherits: true
 			}
 		]);
+	});
+
+	it('ends a properties block at the first other rule', async () => {
+		await run('drawer/drawer.css', '@use "drawer.properties" as *;');
+		expect(
+			JSON.parse(
+				readFileSync(
+					output('drawer/drawer.css-properties.json'),
+					'utf8'
+				)
+			).map(({ name }: { name: string }) => name)
+		).toEqual(['--db-drawer-x']);
 	});
 
 	it('skips components that load no properties file', async () => {
