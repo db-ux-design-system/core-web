@@ -78,7 +78,7 @@ export const COMPONENT_REQUIREMENTS: Readonly<
 		materials: []
 	},
 	input: { colors: ['green', 'red'], materials: ['inverted'] },
-	link: { colors: ['brand'], materials: ['origin'] },
+	link: { colors: ['brand', 'cyan'], materials: [] },
 	'loading-indicator': { colors: ['green', 'red'], materials: [] },
 	'navigation-item': { colors: [], materials: ['transparent'] },
 	notification: {
