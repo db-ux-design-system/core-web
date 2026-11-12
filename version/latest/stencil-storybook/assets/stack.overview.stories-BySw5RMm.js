@@ -1,4 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-eRVGBq1F.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBStack/Overview`,component:`db-stack`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-stack></db-stack>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev'],
-  render: () => html\`<db-stack></db-stack>\`
-}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as t};
