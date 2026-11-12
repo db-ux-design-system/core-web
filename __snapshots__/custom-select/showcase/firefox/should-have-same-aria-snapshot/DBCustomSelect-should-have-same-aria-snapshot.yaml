@@ -3356,3 +3356,197 @@
                     - radio "Option 3"
                     - text: Option 3
           - status
+      - row "adaptive grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "adaptive"
+        - cell "grey":
+          - text: grey
+          - group:
+            - article:
+              - radiogroup "adaptive-grey":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "red":
+          - text: red
+          - group:
+            - article:
+              - radiogroup "adaptive-red":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "brand":
+          - text: brand
+          - group:
+            - article:
+              - radiogroup "adaptive-brand":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "green":
+          - text: green
+          - group:
+            - article:
+              - radiogroup "adaptive-green":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "yellow":
+          - text: yellow
+          - group:
+            - article:
+              - radiogroup "adaptive-yellow":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "orange":
+          - text: orange
+          - group:
+            - article:
+              - radiogroup "adaptive-orange":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "burgundy":
+          - text: burgundy
+          - group:
+            - article:
+              - radiogroup "adaptive-burgundy":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "pink":
+          - text: pink
+          - group:
+            - article:
+              - radiogroup "adaptive-pink":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "violet":
+          - text: violet
+          - group:
+            - article:
+              - radiogroup "adaptive-violet":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "blue":
+          - text: blue
+          - group:
+            - article:
+              - radiogroup "adaptive-blue":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "cyan":
+          - text: cyan
+          - group:
+            - article:
+              - radiogroup "adaptive-cyan":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status
+        - cell "turquoise":
+          - text: turquoise
+          - group:
+            - article:
+              - radiogroup "adaptive-turquoise":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+          - status

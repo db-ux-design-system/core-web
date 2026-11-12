@@ -2600,3 +2600,92 @@
           - text: turquoise
           - group
           - status
+      - row "adaptive grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "adaptive"
+        - cell "grey":
+          - text: grey
+          - group:
+            - article:
+              - radiogroup "adaptive-grey":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "red":
+          - text: red
+          - group:
+            - article:
+              - radiogroup "adaptive-red":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "brand":
+          - text: brand
+          - group:
+            - article:
+              - radiogroup "adaptive-brand":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "green":
+          - text: green
+          - group
+          - status
+        - cell "yellow":
+          - text: yellow
+          - group
+          - status
+        - cell "orange":
+          - text: orange
+          - group
+          - status
+        - cell "burgundy":
+          - text: burgundy
+          - group
+          - status
+        - cell "pink":
+          - text: pink
+          - group
+          - status
+        - cell "violet":
+          - text: violet
+          - group
+          - status
+        - cell "blue":
+          - text: blue
+          - group
+          - status
+        - cell "cyan":
+          - text: cyan
+          - group
+          - status
+        - cell "turquoise":
+          - text: turquoise
+          - group
+          - status

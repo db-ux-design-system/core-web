@@ -355,3 +355,29 @@
           - article: cyan cyan
         - cell:
           - article: turquoise turquoise
+      - row "adaptive":
+        - rowheader "adaptive"
+        - cell:
+          - article: grey grey
+        - cell:
+          - article: red red
+        - cell:
+          - article: brand brand
+        - cell:
+          - article: green green
+        - cell:
+          - article: yellow yellow
+        - cell:
+          - article: orange orange
+        - cell:
+          - article: burgundy burgundy
+        - cell:
+          - article: pink pink
+        - cell:
+          - article: violet violet
+        - cell:
+          - article: blue blue
+        - cell:
+          - article: cyan cyan
+        - cell:
+          - article: turquoise turquoise

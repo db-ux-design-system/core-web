@@ -519,3 +519,53 @@
           - switch "turquoise" [checked]
           - text: turquoise
           - status
+      - row "adaptive grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "adaptive"
+        - cell "grey":
+          - switch "grey" [checked]
+          - text: grey
+          - status
+        - cell "red":
+          - switch "red" [checked]
+          - text: red
+          - status
+        - cell "brand":
+          - switch "brand" [checked]
+          - text: brand
+          - status
+        - cell "green":
+          - switch "green" [checked]
+          - text: green
+          - status
+        - cell "yellow":
+          - switch "yellow" [checked]
+          - text: yellow
+          - status
+        - cell "orange":
+          - switch "orange" [checked]
+          - text: orange
+          - status
+        - cell "burgundy":
+          - switch "burgundy" [checked]
+          - text: burgundy
+          - status
+        - cell "pink":
+          - switch "pink" [checked]
+          - text: pink
+          - status
+        - cell "violet":
+          - switch "violet" [checked]
+          - text: violet
+          - status
+        - cell "blue":
+          - switch "blue" [checked]
+          - text: blue
+          - status
+        - cell "cyan":
+          - switch "cyan" [checked]
+          - text: cyan
+          - status
+        - cell "turquoise":
+          - switch "turquoise" [checked]
+          - text: turquoise
+          - status

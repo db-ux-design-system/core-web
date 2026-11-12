@@ -2704,3 +2704,105 @@
           - text: turquoise
           - group
           - status
+      - row "adaptive grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "adaptive"
+        - cell "grey":
+          - text: grey
+          - group
+          - status
+        - cell "red":
+          - text: red
+          - group
+          - status
+        - cell "brand":
+          - text: brand
+          - group
+          - status
+        - cell "green":
+          - text: green
+          - group
+          - status
+        - cell "yellow":
+          - text: yellow
+          - group:
+            - article:
+              - radiogroup "adaptive-yellow":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "orange":
+          - text: orange
+          - group:
+            - article:
+              - radiogroup "adaptive-orange":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "burgundy":
+          - text: burgundy
+          - group:
+            - article:
+              - radiogroup "adaptive-burgundy":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "pink":
+          - text: pink
+          - group:
+            - article:
+              - radiogroup "adaptive-pink":
+                - list:
+                  - listitem:
+                    - radio "Option 1"
+                    - text: Option 1
+                  - listitem:
+                    - radio "Option 2"
+                    - text: Option 2
+                  - listitem:
+                    - radio "Option 3"
+                    - text: Option 3
+              - button "Close"
+          - status
+        - cell "violet":
+          - text: violet
+          - group
+          - status
+        - cell "blue":
+          - text: blue
+          - group
+          - status
+        - cell "cyan":
+          - text: cyan
+          - group
+          - status
+        - cell "turquoise":
+          - text: turquoise
+          - group
+          - status
