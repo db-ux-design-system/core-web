@@ -1,5 +1,33 @@
 # @db-ux/react-core-components
 
+## 6.4.0
+
+### Minor Changes
+
+- feat(layout): make the tablet and desktop breakpoints customizable - [see commit 78559f9](https://github.com/db-ux-design-system/core-web/commit/78559f9147423b1a243f3470f7868d0722496cf0):
+
+    - a single inheriting band token, `--db-breakpoint` (`"mobile"` / `"tablet"` / `"desktop"`), drives the layout switch; foundations resolve it from the viewport with two default media queries (tablet from `48em`/768px, desktop from `64em`/1024px) set on `:root` and `:host`
+    - non-deprecated components now switch via a container style query against `--db-breakpoint` instead of a fixed media query: `DBShell`, `DBControlPanelDesktop/Mobile/FlatIcon` and `DBControlPanelNavigation` switch at desktop; `DBBreadcrumb`, `DBPagination`, `DBFooterMeta`, `DBCustomSelect`, `DBPopover` and `DBTooltip` switch at the breakpoint matching their existing behavior
+    - a consumer moves a switch point by RE-DECLARING `--db-breakpoint` at any scope - their own `@media` on `:root`, `body` or a wrapper, or via JS - not by a length value; a style query reads an ancestor, so the override just needs to sit on an ancestor of the component
+    - set `--db-breakpoint: "mobile"` unconditionally to force the mobile layout on any viewport ("force mobile"), or `"desktop"` to force desktop - the force-mobile / force-desktop escape hatch
+    - the `DBShell`/`DBControlPanel` default switch is now `md` (1024px), aligned with `DBHeader` (was `sm`/768px); to restore the old 768px switch, add a consumer `@media (width >= 48em) { :root { --db-breakpoint: "desktop"; } }`
+    - the deprecated `DBPage`, `DBHeader`, `DBNavigation` and `DBNavigationItem` keep the old media-query mechanism (and `forceMobile`) unchanged
+    - styling-only, no rendered HTML changed, but CSS-only consumers pinned to the 768px switch should review the new default
+
+- feat(DBTable): add `text` property to DBTableDataCell and DBTableHeaderCell, update cell padding and selected interactive row styling - [see commit e873176](https://github.com/db-ux-design-system/core-web/commit/e873176a18d90fd09dbf357b56daf851c2062d9e):
+
+    - `DBTableDataCell` and `DBTableHeaderCell` gain an optional `text` property as an alternative to the default slot/children, matching the shared `TextProps` used by other components.
+    - Markup change: the `<td class="db-table-data-cell">` and `<th class="db-table-header-cell">` render `props.text` when it is set and fall back to their children otherwise, so the two are never rendered together.
+    - `DBTableRow` now forwards the `text` property of its `cells` entries to the rendered `DBTableDataCell` / `DBTableHeaderCell`, so the data-driven API renders `text` instead of silently ignoring it.
+    - Table cell padding now uses a smaller block value than inline for every size (block is one spacing step below inline): medium (default) `fixed-2xs`/`fixed-xs`, large `fixed-xs`/`fixed-sm`, small and x-small `fixed-3xs`/`fixed-2xs`.
+    - A selected interactive row now uses the `level-3` background tokens (default/hovered/pressed) instead of `level-2`, while keeping the informational color context.
+    - A selected interactive row now pins its divider `border-color` (row and cells) to the fixed neutral token (`neutral-on-bg-basic-emphasis-60`) so the border stays neutral instead of following the informational color context.
+
+- feat(DBTextarea): add `--db-form-component-min-block-size` styling API - [see commit 7c9b6e7](https://github.com/db-ux-design-system/core-web/commit/7c9b6e7aebf0de7b030afd56dbb1331733231a1e):
+
+    - Set the `--db-form-component-min-block-size` CSS Custom Property on a `.db-textarea` to give its textarea a minimum height, e.g. so a `fieldSizing="content"` textarea reserves room for a number of lines (`4lh`) even when empty or manually shrunk.
+    - Accepts any length; defaults to `auto` (no minimum), so the textarea is unchanged when the property is not set. Mirrors the existing `--db-form-component-min-inline-size`.
+
 ## 6.3.2
 
 ### Patch Changes
