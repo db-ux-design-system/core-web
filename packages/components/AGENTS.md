@@ -52,8 +52,16 @@ configs/
 │   └── agent/                      # Agent documentation plugin
 scripts/
 ├── exec/                           # Per-framework post-Mitosis exec scripts
+├── css-properties.ts               # PostCSS plugin: documented CSS custom properties -> JSON
 └── post-build/                     # ⚠️ DEPRECATED — see note below
 ```
+
+## CSS custom properties (styling API)
+
+CSS custom properties that consumers may set are registered with `@property` and documented in a `/** */` comment right above it (description, optional `@default <value>`). Shared ones live in a `*.properties.scss` partial, e.g. `src/styles/internal/_form-components.properties.scss`. Each component that supports them loads it with `@use "../../styles/internal/form-components.properties" as *;` (`as *`, because the dotted name would clash with the `form-components` namespace).
+
+- Use `syntax: "*"` and `inherits: true` **without** `initial-value`: the property stays unset, so the `var(--property, fallback)` fallbacks keep working and registering changes nothing at runtime.
+- `scripts/css-properties.ts` runs in `postcss.config.cjs` before cssnano (which drops the comments). It writes `build/components/<name>/<name>.css-properties.json` for every component CSS file with documented properties. The Storybook overview pages show it as "CSS custom properties".
 
 ## Heading component family
 

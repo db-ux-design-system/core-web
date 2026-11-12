@@ -1,0 +1,25 @@
+// CSS custom properties of the form components (DBInput, DBSelect,
+// DBCustomSelect, DBTextarea): the styling API consumers may set.
+
+// Every property is registered with `@property` and documented in the `/** */`
+// comment right above it. scripts/css-properties.ts reads both from the
+// compiled CSS and writes `<component>.css-properties.json`, which the
+// Storybook overview pages show as "CSS custom properties".
+
+// Comment format: the description, then optional tags:
+//   @default <value>   the value when the property is not set
+
+// `syntax: "*"` without `initial-value` keeps the property unset by default,
+// so the `var(--property, fallback)` fallbacks in the component styles still
+// apply: registering the property changes nothing at runtime.
+// ASCII only (see AGENTS.md, "No literal non-ASCII characters in SCSS").
+
+/**
+ * Minimum inline size of the form field, e.g. `20rem`. Without it, DBInput,
+ * DBSelect and DBCustomSelect grow with icons.
+ * @default var(--db-sizing-lg)
+ */
+@property --db-form-component-min-inline-size {
+	syntax: "*";
+	inherits: true;
+}
