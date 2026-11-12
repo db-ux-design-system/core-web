@@ -12,20 +12,20 @@
 
 /**
  * Minimum inline size of the dialog.
+ * @default auto
  */
 @property --db-dialog-min-width {
 	syntax: "*";
 	inherits: true;
-	initial-value: auto;
 }
 
 /**
  * Gap between the dialog and the viewport edges, so a backdrop
  * area stays clickable. `0px` gives an edge-to-edge dialog. The dialog
  * sets its own value, so set it on the dialog itself.
+ * @default 40px
  */
 @property --db-dialog-viewport-inset {
 	syntax: "*";
 	inherits: true;
-	initial-value: 40px;
 }

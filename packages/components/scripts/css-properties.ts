@@ -141,12 +141,18 @@ const cssProperties: PluginCreator<never> = () => ({
 
 			const syntax = getDeclaration(rule, 'syntax');
 			const inherits = getDeclaration(rule, 'inherits');
-			// `@default` documents defaults initial-value cannot express
-			// (tokens, values per variant); otherwise the initial value.
-			const initialValue = getDeclaration(rule, 'initial-value');
+			// The flatten plugin of @db-ux/core-postcss-plugin resolves every
+			// var() of a property with an initial value to that value, so values
+			// set from JavaScript or a style attribute would no longer apply
+			// (packages/components/AGENTS.md, "CSS custom properties").
+			if (getDeclaration(rule, 'initial-value') !== undefined) {
+				throw rule.error(
+					`${rule.params}: a documented CSS custom property must not have an initial-value, document the default with @default`
+				);
+			}
+
 			properties.set(rule.params, {
 				name: rule.params,
-				...(initialValue ? { default: initialValue } : {}),
 				...docs,
 				...(syntax
 					? { syntax: syntax.replaceAll(/^["']|["']$/g, '') }

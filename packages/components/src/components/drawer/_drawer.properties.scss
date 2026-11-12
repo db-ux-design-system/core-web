@@ -12,11 +12,11 @@
 
 /**
  * Minimum inline size of a horizontal drawer.
+ * @default auto
  */
 @property --db-drawer-min-width {
 	syntax: "*";
 	inherits: true;
-	initial-value: auto;
 }
 
 /**
@@ -31,9 +31,9 @@
 
 /**
  * Minimum block size of a vertical drawer.
+ * @default auto
  */
 @property --db-drawer-min-height {
 	syntax: "*";
 	inherits: true;
-	initial-value: auto;
 }

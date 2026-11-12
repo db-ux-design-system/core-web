@@ -34,7 +34,6 @@ const css = `
 @property --db-a {
 	syntax: "<length>";
 	inherits: false;
-	initial-value: 0px;
 }
 /* @css-properties drawer */
 /** Of the nested drawer. */
@@ -52,7 +51,7 @@ const css = `
 
 let directory: string;
 
-const run = async (file: string, source?: string) => {
+const run = async (file: string, source?: string, input = css) => {
 	const from = join(directory, 'build/components', file);
 	mkdirSync(dirname(from), { recursive: true });
 	if (source !== undefined) {
@@ -65,7 +64,7 @@ const run = async (file: string, source?: string) => {
 		writeFileSync(scss, source);
 	}
 
-	await postcss([cssProperties()]).process(css, { from });
+	await postcss([cssProperties()]).process(input, { from });
 };
 
 const output = (file: string) => join(directory, 'build/components', file);
@@ -92,8 +91,6 @@ describe('css-properties', () => {
 			{
 				name: '--db-a',
 				description: 'Second property.',
-				// No `@default`: the initial value is the default.
-				default: '0px',
 				syntax: '<length>',
 				inherits: false
 			},
@@ -119,6 +116,18 @@ describe('css-properties', () => {
 				)
 			).map(({ name }: { name: string }) => name)
 		).toEqual(['--db-drawer-x']);
+	});
+
+	it('rejects an initial-value, which the flatten plugin would inline', async () => {
+		await expect(
+			run(
+				'dialog/dialog.css',
+				'@forward "dialog.properties";',
+				`/* @css-properties dialog */
+/** Minimum inline size. */
+@property --db-dialog-min-width { syntax: "*"; inherits: true; initial-value: auto; }`
+			)
+		).rejects.toThrow(/must not have an initial-value/);
 	});
 
 	it('skips components that load no properties file', async () => {

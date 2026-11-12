@@ -5,9 +5,9 @@
  * for the lines with `fieldSizing="content"`, even when empty or shrunk by
  * hand. Named after `--db-form-component-min-inline-size`, but only DBTextarea
  * uses it.
+ * @default auto
  */
 @property --db-form-component-min-block-size {
 	syntax: "*";
 	inherits: true;
-	initial-value: auto;
 }

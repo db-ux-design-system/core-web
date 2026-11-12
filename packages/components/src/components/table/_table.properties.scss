@@ -1,7 +1,5 @@
 /* @css-properties table */
 
-// No initial-value: the table needs it unset to detect the columns.
-
 /**
  * Number of equally wide columns. Needed for tables with more
  * than 20 columns, which the table cannot detect. Can be set on
@@ -23,7 +21,6 @@
 @property --db-table-columns-size {
 	syntax: "*";
 	inherits: true;
-	initial-value: 1fr;
 }
 
 /**
