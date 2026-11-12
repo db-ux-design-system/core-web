@@ -61,6 +61,14 @@ const resolveLink = (href: string, route: string): string => {
 };
 
 /** Rewrites Markdown links (`[text](href)`) of a foundations docs file. */
+/**
+ * New home of a Patternhub route outside the component pages: a path of the
+ * composition Storybook (`?path=…`) or a platform URL. Used for the redirects
+ * of the old Patternhub URLs (../patternhub-redirects.ts).
+ */
+export const resolvePatternhubRoute = (route: string): string | undefined =>
+	ROUTES[route.toLowerCase()];
+
 export const rewriteDocsLinks = (markdown: string, route: string): string =>
 	markdown.replaceAll(
 		/\]\(([^)\s]+)\)/g,
