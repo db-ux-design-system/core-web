@@ -1061,7 +1061,7 @@ const buildOverviewMdx = (
 	if (cssProperties.length > 0) {
 		sections.push(
 			'## CSS custom properties',
-			'Set them on the component element to adjust its styling, e.g. with the `style` attribute.',
+			'Set them on the component element or an ancestor to adjust its styling, e.g. with the `style` attribute.',
 			...cssProperties
 		);
 	}

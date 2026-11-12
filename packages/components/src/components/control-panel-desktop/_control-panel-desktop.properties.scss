@@ -1,0 +1,14 @@
+// CSS custom properties of DBControlPanelDesktop: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties control-panel-desktop */
+
+/**
+ * Inline size of the open (expanded) control panel.
+ * @default var(--db-container-xs)
+ */
+@property --db-control-panel-desktop-inline-size {
+	syntax: "*";
+	inherits: true;
+}

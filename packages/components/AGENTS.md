@@ -60,7 +60,9 @@ scripts/
 
 CSS custom properties that consumers may set are registered with `@property` and documented in a `/** */` comment right above it (description, optional `@default <value>`). Shared ones live in a `*.properties.scss` partial, e.g. `src/styles/internal/_form-components.properties.scss`. Each component that supports them loads it with `@use "../../styles/internal/form-components.properties" as *;` (`as *`, because the dotted name would clash with the `form-components` namespace).
 
-- Use `syntax: "*"` and `inherits: true` **without** `initial-value`: the property stays unset, so the `var(--property, fallback)` fallbacks keep working and registering changes nothing at runtime.
+- Use `syntax: "*"` and `inherits: true`, so registering changes nothing at runtime.
+- Set `initial-value` only when the default is a fixed value that equals every `var(--property, fallback)` of the property (e.g. `auto`, `0`, `1fr`). With an initial value the fallbacks no longer apply, and it is evaluated once and globally, without `var()`. Defaults that are tokens (they follow the density) or depend on a variant (`containerSize`, icons) stay unset and are documented with `@default`. Properties a component needs unset (e.g. `--db-table-columns`) never get one.
+- The plugin takes the initial value as the default when `@default` is missing.
 - `scripts/css-properties.ts` runs in `postcss.config.cjs` before cssnano (which drops the comments). It writes `build/components/<name>/<name>.css-properties.json` for every component CSS file with documented properties. The Storybook overview pages show it as "CSS custom properties".
 
 ## Heading component family

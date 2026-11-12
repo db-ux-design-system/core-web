@@ -1,0 +1,14 @@
+// CSS custom properties of DBShellSubNavigation: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties shell-sub-navigation */
+
+/**
+ * Inline size of the sub-navigation.
+ * @default var(--db-container-xs)
+ */
+@property --db-shell-sub-navigation-inline-size {
+	syntax: "*";
+	inherits: true;
+}

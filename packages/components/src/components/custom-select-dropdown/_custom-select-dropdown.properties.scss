@@ -1,0 +1,15 @@
+// CSS custom properties of DBCustomSelectDropdown: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties custom-select-dropdown */
+
+/**
+ * Inline size of the dropdown with `dropdownWidth="fixed"`
+ * (the default).
+ * @default var(--db-sizing-3xl)
+ */
+@property --db-custom-select-dropdown-fixed-inline-size {
+	syntax: "*";
+	inherits: true;
+}

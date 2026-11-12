@@ -1,0 +1,42 @@
+// CSS custom properties of DBControlPanelBrand: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties control-panel-brand */
+
+/**
+ * Logo image, e.g. `url("logo.svg")`. Usually provided by the
+ * theme (e.g. `@db-ux/db-theme`); without it, no logo is shown.
+ */
+@property --db-logo-url {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Aspect ratio of the logo, e.g. `2 / 1`.
+ */
+@property --db-logo-aspect-ratio {
+	syntax: "*";
+	inherits: true;
+	initial-value: 1;
+}
+
+/**
+ * Short logo for little space (collapsed or mobile control
+ * panel).
+ * @default var(--db-logo-url)
+ */
+@property --db-logo-url-short {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Aspect ratio of the short logo.
+ * @default var(--db-logo-aspect-ratio)
+ */
+@property --db-logo-aspect-ratio-short {
+	syntax: "*";
+	inherits: true;
+}

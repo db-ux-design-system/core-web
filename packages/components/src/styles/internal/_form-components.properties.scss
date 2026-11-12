@@ -9,10 +9,17 @@
 // Comment format: the description, then optional tags:
 //   @default <value>   the value when the property is not set
 
-// `syntax: "*"` without `initial-value` keeps the property unset by default,
-// so the `var(--property, fallback)` fallbacks in the component styles still
-// apply: registering the property changes nothing at runtime.
+// `syntax: "*"` and `inherits: true`, so registering changes nothing at
+// runtime. Set `initial-value` only when the default is a fixed value that
+// equals every `var(--property, fallback)` of it (e.g. `auto`, `0`, `1fr`):
+// with an initial value the fallbacks no longer apply. It is evaluated once
+// and globally, without `var()`, so defaults that are tokens (they follow the
+// density) or depend on a variant stay unset and use `@default` instead.
+// The plugin takes the initial value as the default when `@default` is
+// missing.
 // ASCII only (see AGENTS.md, "No literal non-ASCII characters in SCSS").
+
+/* @css-properties form-components */
 
 /**
  * Minimum inline size of the form field, e.g. `20rem`. Without it, DBInput,

@@ -16,7 +16,7 @@
  * (storybooks/_shared/overview/generate-overviews.ts). Runs before cssnano,
  * which removes the comments.
  */
-import { writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, sep } from 'node:path';
 import type { AtRule, Comment, PluginCreator } from 'postcss';
 
@@ -30,6 +30,27 @@ export type CssProperty = {
 };
 
 const COMPONENTS = `${sep}build${sep}components${sep}`;
+
+// `/* @css-properties <name> */` opens the properties of a
+// `_<name>.properties.scss` in the compiled CSS. A component documents only
+// the properties files its own `<name>.scss` loads: its CSS also contains
+// those of nested components (DBShell includes the DBDrawer styles).
+const MARKER = /^@css-properties\s+([\w-]+)$/;
+const USE = /@use\s+["'][^"']*?([\w-]+)\.properties["']/g;
+
+/** Names of the properties files the component source loads. */
+const getOwners = (file: string): Set<string> => {
+	const source = file
+		.replace(COMPONENTS, `${sep}src${sep}components${sep}`)
+		.replace(/\.css$/, '.scss');
+	return existsSync(source)
+		? new Set(
+				[...readFileSync(source, 'utf8').matchAll(USE)].map(
+					(match) => match[1]
+				)
+			)
+		: new Set();
+};
 
 /** `/** text *\/` -> description and tags; undefined without a doc comment. */
 const parseComment = (
@@ -83,8 +104,25 @@ const cssProperties: PluginCreator<never> = () => ({
 			return;
 		}
 
+		const owners = getOwners(file);
 		const properties = new Map<string, CssProperty>();
-		root.walkAtRules('property', (rule) => {
+		let owner: string | undefined;
+		root.walk((node) => {
+			if (node.type === 'comment') {
+				owner = MARKER.exec(node.text.trim())?.[1] ?? owner;
+				return;
+			}
+
+			if (
+				node.type !== 'atrule' ||
+				node.name !== 'property' ||
+				!owner ||
+				!owners.has(owner)
+			) {
+				return;
+			}
+
+			const rule = node;
 			const previous = rule.prev();
 			const docs =
 				previous?.type === 'comment'
@@ -96,8 +134,12 @@ const cssProperties: PluginCreator<never> = () => ({
 
 			const syntax = getDeclaration(rule, 'syntax');
 			const inherits = getDeclaration(rule, 'inherits');
+			// `@default` documents defaults initial-value cannot express
+			// (tokens, values per variant); otherwise the initial value.
+			const initialValue = getDeclaration(rule, 'initial-value');
 			properties.set(rule.params, {
 				name: rule.params,
+				...(initialValue ? { default: initialValue } : {}),
 				...docs,
 				...(syntax
 					? { syntax: syntax.replaceAll(/^["']|["']$/g, '') }

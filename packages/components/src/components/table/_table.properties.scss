@@ -1,0 +1,36 @@
+// CSS custom properties of DBTable: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties table */
+
+// No initial-value: the table needs it unset to detect the columns.
+
+/**
+ * Number of equally wide columns. Needed for tables with more
+ * than 20 columns, which the table cannot detect. Can be set on
+ * an ancestor.
+ * @default detected column count
+ */
+@property --db-table-columns {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Width of every column when `--db-table-columns` is set.
+ */
+@property --db-table-columns-size {
+	syntax: "*";
+	inherits: true;
+	initial-value: 1fr;
+}
+
+/**
+ * Columns with different widths: any `grid-template-columns`
+ * value, e.g. `2fr 1fr 1fr`. Wins over `--db-table-columns`.
+ */
+@property --db-table-grid-template-columns {
+	syntax: "*";
+	inherits: true;
+}

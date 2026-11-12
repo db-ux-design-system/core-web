@@ -1,0 +1,34 @@
+// CSS custom properties of DBDialog: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties dialog */
+
+/**
+ * Maximum inline size of the dialog, at every `containerSize`,
+ * capped by `--db-dialog-viewport-inset`.
+ * @default depends on `containerSize`
+ */
+@property --db-dialog-max-width {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Minimum inline size of the dialog.
+ */
+@property --db-dialog-min-width {
+	syntax: "*";
+	inherits: true;
+	initial-value: auto;
+}
+
+/**
+ * Gap between the dialog and the viewport edges, so a backdrop
+ * area stays clickable. `0px` gives an edge-to-edge dialog.
+ */
+@property --db-dialog-viewport-inset {
+	syntax: "*";
+	inherits: true;
+	initial-value: 40px;
+}

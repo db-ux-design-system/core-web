@@ -1,0 +1,16 @@
+// CSS custom properties of DBLoadingIndicator: the styling API consumers may set.
+// Format and rules: see _form-components.properties.scss and
+// packages/components/AGENTS.md ("CSS custom properties").
+
+/* @css-properties loading-indicator */
+
+/**
+ * Progress of a determinate indicator as a fraction between 0
+ * and 1, e.g. `0.42`. Only needed in plain HTML: the framework
+ * components set it themselves.
+ */
+@property --db-loading-indicator-percentage {
+	syntax: "*";
+	inherits: true;
+	initial-value: 0;
+}
