@@ -1,4 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-BePC_G2C.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBTooltip/Overview`,component:`db-tooltip`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-tooltip></db-tooltip>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev'],
-  render: () => html\`<db-tooltip></db-tooltip>\`
-}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as t};

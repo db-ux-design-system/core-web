@@ -1,1 +1,0 @@
-import{t as e}from"./iframe-BePC_G2C.js";e();
