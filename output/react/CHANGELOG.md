@@ -1,5 +1,19 @@
 # @db-ux/react-core-components
 
+## 6.3.2
+
+### Patch Changes
+
+- docs: link the documentation in the IDE and the type descriptions to Storybook and the Design System Platform instead of the Patternhub - [see commit ead9061](https://github.com/db-ux-design-system/core-web/commit/ead9061209323b4282b04c11a28328956c49252e):
+
+    - `web-types.json` of the Web Components: every element links to its overview page in the Web Components Storybook, parts to their section on the page of the main component
+    - `icon` properties: the icons overview on the Design System Platform
+    - `@db-ux/core-foundations` README: the CSS, SCSS and Tailwind sections of the README itself
+
+- fix(DBTable): support more than 20 columns via `--db-table-columns` - [see commit ca3a079](https://github.com/db-ux-design-system/core-web/commit/ca3a0799fbeb59d4f99e4938f7f384c5fc1670b9):
+
+    - The table detects up to 20 columns automatically. Wider tables fell back to a single grid track and stacked every cell. Set the column count with the new `--db-table-columns` custom property, e.g. `--db-table-columns: 25`. For custom tracks, `--db-table-grid-template-columns` now applies to any column count as well. The caption now spans all columns, including custom ones. In browsers with [typed `attr()` support](https://caniuse.com/css3-attr), `colspan` and `rowspan` values above 20 work, too. The column detection also generates less CSS.
+
 ## 6.3.1
 
 ### Patch Changes

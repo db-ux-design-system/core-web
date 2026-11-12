@@ -1,14 +1,17 @@
 @use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
-@use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/control-panel-desktop";
 @use "../../styles/internal/control-panel-mobile";
 @use "../../styles/internal/custom-elements";
 @use "../../styles/internal/form-components";
-@forward "shell-desktop";
+
+// Mobile-first: the mobile baseline must be forwarded before the desktop
+// overrides so the desktop container-query rules win by source order at equal
+// specificity (container queries add no specificity).
 @forward "shell-mobile";
+@forward "shell-desktop";
 
 %fade-in-loading-fonts {
 	&[data-fade-in="true"] {

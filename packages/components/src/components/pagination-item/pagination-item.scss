@@ -109,7 +109,7 @@
 		margin-inline-start: variables.$db-spacing-fixed-2xs;
 	}
 
-	@include screen-sizes.screen("sm", "max") {
+	@include screen-sizes.screen-tablet-max {
 		&[data-ellipsis]::before,
 		&[data-ellipsis]::after {
 			content: none;
