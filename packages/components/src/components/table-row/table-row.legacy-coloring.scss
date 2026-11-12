@@ -8,8 +8,7 @@
  * with legacy coloring (see the mixin comment in `table-row.scss`).
  */
 
-// Hover/pressed backgrounds for an interactive row on the level-2 surface.
-// Shared by the checked row and the plain interactive row below.
+// Hover/pressed backgrounds for the plain interactive row on the level-2 surface.
 @mixin interactive-level-2-states {
 	@include table-row.table-row-interactive-state {
 		background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
@@ -20,6 +19,17 @@
 	}
 }
 
+// Hover/pressed backgrounds for the checked row on the level-3 surface.
+@mixin interactive-level-3-states {
+	@include table-row.table-row-interactive-state {
+		background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
+	}
+
+	@include table-row.table-row-interactive-state("active") {
+		background-color: colors.$db-adaptive-bg-basic-level-3-pressed;
+	}
+}
+
 .db-table-row {
 	background-color: colors.$db-adaptive-bg-basic-level-1-default;
 
@@ -27,9 +37,18 @@
 		@include table-row.table-row-interactive-checked {
 			@extend %db-informational-variables;
 
-			background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			background-color: colors.$db-adaptive-bg-basic-level-3-default;
 
-			@include interactive-level-2-states;
+			/*
+			 * Keep the divider border neutral instead of following the
+			 * informational color context applied above.
+			 */
+			&,
+			:is(td, th) {
+				border-color: colors.$db-neutral-on-bg-basic-emphasis-60-default;
+			}
+
+			@include interactive-level-3-states;
 		}
 
 		@include interactive-level-2-states;
