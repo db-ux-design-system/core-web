@@ -56,6 +56,16 @@
 		// we don't have icons in textarea so we can overwrite it here
 		padding-block: variables.$db-spacing-fixed-xs
 			variables.$db-spacing-fixed-xs;
+
+		// Styling API: set a minimum height so a `fieldSizing="content"`
+		// textarea keeps room for the desired number of lines even when empty
+		// or manually shrunk. Consumers pass any length (e.g. `4lh`, `6rem`);
+		// the default `auto` means no floor, so the box is unchanged when
+		// unset. Named after the shared --db-form-component-min-inline-size,
+		// but only textarea sets it - a block-size floor is meaningful for the
+		// multi-line, content-sized textarea, not for single-line fields.
+		/* stylelint-disable-next-line db-ux/use-sizing */
+		min-block-size: var(--db-form-component-min-block-size, auto);
 	}
 
 	&[data-variant="floating"] {
