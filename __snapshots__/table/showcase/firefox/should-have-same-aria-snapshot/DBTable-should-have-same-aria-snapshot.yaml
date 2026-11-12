@@ -2743,3 +2743,35 @@
         - cell "20"
         - cell "21":
           - link "21"
+  - link "Text"
+  - text: Data
+  - table "Data":
+    - caption: Data
+    - rowgroup:
+      - row "A B C":
+        - columnheader "A"
+        - columnheader "B"
+        - columnheader "C"
+    - rowgroup:
+      - row "1 2 3":
+        - rowheader "1"
+        - cell "2"
+        - cell "3"
+      - row "4 5 6":
+        - rowheader "4"
+        - cell "5"
+        - cell "6"
+  - text: Composition
+  - table "Composition":
+    - caption: Composition
+    - rowgroup:
+      - row "Comp A Comp B":
+        - columnheader "Comp A"
+        - columnheader "Comp B"
+    - rowgroup:
+      - row "Comp 1 Comp 2":
+        - rowheader "Comp 1"
+        - cell "Comp 2"
+      - row "Comp 3 Comp 4":
+        - rowheader "Comp 3"
+        - cell "Comp 4"
