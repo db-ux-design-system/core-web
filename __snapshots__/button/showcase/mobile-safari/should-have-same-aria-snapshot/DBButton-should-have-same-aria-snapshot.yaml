@@ -266,3 +266,29 @@
           - button "cyan"
         - cell "turquoise":
           - button "turquoise"
+      - row "adaptive grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "adaptive"
+        - cell "grey":
+          - button "grey"
+        - cell "red":
+          - button "red"
+        - cell "brand":
+          - button "brand"
+        - cell "green":
+          - button "green"
+        - cell "yellow":
+          - button "yellow"
+        - cell "orange":
+          - button "orange"
+        - cell "burgundy":
+          - button "burgundy"
+        - cell "pink":
+          - button "pink"
+        - cell "violet":
+          - button "violet"
+        - cell "blue":
+          - button "blue"
+        - cell "cyan":
+          - button "cyan"
+        - cell "turquoise":
+          - button "turquoise"

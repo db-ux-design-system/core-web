@@ -722,3 +722,53 @@
           - text: turquoise
           - textbox "turquoise"
           - status
+      - row "adaptive grey red brand green yellow orange burgundy pink violet blue cyan turquoise":
+        - rowheader "adaptive"
+        - cell "grey":
+          - text: grey
+          - textbox "grey"
+          - status
+        - cell "red":
+          - text: red
+          - textbox "red"
+          - status
+        - cell "brand":
+          - text: brand
+          - textbox "brand"
+          - status
+        - cell "green":
+          - text: green
+          - textbox "green"
+          - status
+        - cell "yellow":
+          - text: yellow
+          - textbox "yellow"
+          - status
+        - cell "orange":
+          - text: orange
+          - textbox "orange"
+          - status
+        - cell "burgundy":
+          - text: burgundy
+          - textbox "burgundy"
+          - status
+        - cell "pink":
+          - text: pink
+          - textbox "pink"
+          - status
+        - cell "violet":
+          - text: violet
+          - textbox "violet"
+          - status
+        - cell "blue":
+          - text: blue
+          - textbox "blue"
+          - status
+        - cell "cyan":
+          - text: cyan
+          - textbox "cyan"
+          - status
+        - cell "turquoise":
+          - text: turquoise
+          - textbox "turquoise"
+          - status

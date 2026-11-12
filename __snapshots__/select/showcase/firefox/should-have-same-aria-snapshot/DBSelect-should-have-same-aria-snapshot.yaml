@@ -1194,3 +1194,113 @@
             - option "Option 3"
           - text: turquoise
           - status
+      - row "adaptive grey grey red red brand brand green green yellow yellow orange orange burgundy burgundy pink pink violet violet blue blue cyan cyan turquoise turquoise":
+        - rowheader "adaptive"
+        - cell "grey grey":
+          - text: grey
+          - combobox "grey":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: grey
+          - status
+        - cell "red red":
+          - text: red
+          - combobox "red":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: red
+          - status
+        - cell "brand brand":
+          - text: brand
+          - combobox "brand":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: brand
+          - status
+        - cell "green green":
+          - text: green
+          - combobox "green":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: green
+          - status
+        - cell "yellow yellow":
+          - text: yellow
+          - combobox "yellow":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: yellow
+          - status
+        - cell "orange orange":
+          - text: orange
+          - combobox "orange":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: orange
+          - status
+        - cell "burgundy burgundy":
+          - text: burgundy
+          - combobox "burgundy":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: burgundy
+          - status
+        - cell "pink pink":
+          - text: pink
+          - combobox "pink":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: pink
+          - status
+        - cell "violet violet":
+          - text: violet
+          - combobox "violet":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: violet
+          - status
+        - cell "blue blue":
+          - text: blue
+          - combobox "blue":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: blue
+          - status
+        - cell "cyan cyan":
+          - text: cyan
+          - combobox "cyan":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: cyan
+          - status
+        - cell "turquoise turquoise":
+          - text: turquoise
+          - combobox "turquoise":
+            - option [selected]
+            - option "Option 1"
+            - option "Option 2"
+            - option "Option 3"
+          - text: turquoise
+          - status
