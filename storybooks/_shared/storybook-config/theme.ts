@@ -6,8 +6,8 @@ import values from './theme-values.json';
  *
  * The values come from `theme-values.json`, generated from the design system
  * tokens by generate-theme.ts (do not edit the JSON by hand). Copied into
- * `.storybook/theme.ts` of every Storybook by sync.ts. Edit this file, not the
- * copies.
+ * `.storybook/theme.ts` of every Storybook by copy-config.ts (git-ignored
+ * there). Edit this file, not the copies.
  *
  * - `managerTheme`: sidebar, toolbar and title (manager.ts)
  * - `docsTheme`: the docs pages (preview.ts, `parameters.docs.theme`)

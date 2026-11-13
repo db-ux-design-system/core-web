@@ -41,6 +41,7 @@ import {
 	getComponentMeta,
 	getStructure
 } from './meta.ts';
+import { getMainComponent } from './structure.ts';
 
 const STORYBOOKS = resolve(import.meta.dirname, '..', '..');
 const ROOT = resolve(STORYBOOKS, '..');
@@ -515,17 +516,6 @@ const hasDoc = (name: string, file: string) => {
 	return existsSync(dir) && readdirSync(dir).includes(`${file}.md`);
 };
 
-/** Main component of every part folder, e.g. `tab-item` -> `tabs`. */
-let mainOf: Map<string, string> | undefined;
-const getMainOf = (name: string): string => {
-	mainOf ??= new Map(
-		Object.entries(getStructure().parts).flatMap(([main, parts]) =>
-			parts.map((part) => [part, main])
-		)
-	);
-	return mainOf.get(name) ?? name;
-};
-
 /** Without code blocks, which may contain `#` comments. */
 const withoutCode = (markdown: string) =>
 	markdown.replaceAll(/^```[\s\S]+?^```/gm, '');
@@ -630,7 +620,7 @@ const buildUsageNotes = (
 		.replaceAll(
 			/\]\(\.\.\/([\da-z-]+)\/[^)\s]*\)/g,
 			(_, component: string) =>
-				`](?path=/docs/components-${getComponentMeta(getMainOf(component)).title.toLowerCase()}-overview--docs)`
+				`](?path=/docs/components-${getComponentMeta(getMainComponent(component)).title.toLowerCase()}-overview--docs)`
 		)
 		.trim();
 };

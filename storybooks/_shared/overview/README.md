@@ -48,7 +48,7 @@ DB_UX_PLATFORM_URL=http://localhost:4329 node storybooks/_shared/overview/update
 node storybooks/_shared/overview/update-platform-components.ts --check
 ```
 
-The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
+The shared Storybook configuration (theme, light/dark mode, docs page of the example stories, "Show code" imports, head files) lives in `../storybook-config/`. `copy-config.ts` copies it into `.storybook/` of every Storybook on every build and start (git-ignored copies); `.storybook/main.ts` builds the head files from it with `head.ts`.
 
 ## Tests
 

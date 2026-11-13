@@ -12,8 +12,8 @@
  * CSS escape hatches of the docs pages: Storybook documents style tags in
  * `.storybook/preview-head.html` that target its class names, "at your own
  * risk" (https://storybook.js.org/docs/configure/user-interface/theming#css-escape-hatches).
- * `storybooks/_shared/storybook-config/sync.ts` inlines this file into
- * `preview-head.html` of every Storybook. Edit this file, not the copies.
+ * head.ts inlines this file into the preview head of every Storybook
+ * (`previewHead` in main.ts).
  * theme.spec.ts checks that the Storybook selectors used here still match.
  */
 /*

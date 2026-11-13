@@ -11,7 +11,8 @@
  * This keeps the heading in place while the page grows, until the reader
  * scrolls or 10 s have passed.
  *
- * sync.ts inlines this file into `preview-head.html` of every Storybook.
+ * head.ts inlines this file into the preview head of every Storybook
+ * (`previewHead` in main.ts).
  */
 (() => {
 	let hash = '';
