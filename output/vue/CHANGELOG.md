@@ -1,5 +1,14 @@
 # @db-ux/v-core-components
 
+## 6.4.1
+
+### Patch Changes
+
+- docs: document the CSS custom properties of the components - [see commit 0d3faa8](https://github.com/db-ux-design-system/core-web/commit/0d3faa8483e7e61dbf1d22df04983b9c9c0b7d89):
+
+    - The styling API (CSS custom properties consumers may set) is now registered with `@property` and documented for DBInput, DBSelect, DBCustomSelect, DBTextarea, DBCard, DBPopover, DBTooltip, DBDialog, DBDrawer, DBTable, DBLoadingIndicator, DBCustomSelectDropdown, DBControlPanelBrand, DBControlPanelDesktop and DBShellSubNavigation. Registering changes nothing at runtime: the properties have no `initial-value`, so the existing fallbacks still apply.
+    - The build writes the documented properties of a component to `build/components/<name>/<name>.css-properties.json`, shown as "CSS custom properties" on the overview pages in Storybook.
+
 ## 6.4.0
 
 ### Minor Changes
