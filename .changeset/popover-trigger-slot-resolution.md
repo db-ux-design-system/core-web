@@ -9,5 +9,5 @@
 fix(DBPopover): resolve the trigger independently of its child position
 
 - `getTrigger` now locates the slotted trigger host via `slot="trigger"` (web components), the `trigger` attribute (Angular), or the first child that is not `.db-popover-content`, instead of assuming it is `children[0]` with at least two children
-- for a custom-element trigger host (e.g. `db-button`), the focusable control is now found with `querySelector` because Stencil's `experimentalSlotFixes` slot relocation no longer exposes it via `host.children`
-- keeps `aria-haspopup` and `aria-expanded` on the trigger when the slot relocation reorders children or inserts marker nodes
+- for a custom-element trigger host (e.g. `db-button`), the focusable control is now found with `querySelector` instead of `host.children`, so `aria-haspopup` and `aria-expanded` are still applied when the web-component build relocates slotted nodes
+- fixes the controlled-mode popover trigger losing its `aria-expanded` state under the opt-in `experimentalSlotFixes` web-component build

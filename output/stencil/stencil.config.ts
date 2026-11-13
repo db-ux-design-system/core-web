@@ -3,9 +3,6 @@ import { Config } from '@stencil/core';
 export const config: Config = {
 	namespace: 'DB-UX',
 	srcDir: 'src',
-	extras: {
-		experimentalSlotFixes: true
-	},
 	outputTargets: [
 		{
 			type: 'dist-custom-elements',

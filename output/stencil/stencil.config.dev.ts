@@ -4,9 +4,6 @@ export const config: Config = {
 	namespace: 'DB-UX',
 	srcDir: 'src',
 	tsconfig: './tsconfig.dev.json',
-	extras: {
-		experimentalSlotFixes: true
-	},
 	outputTargets: [
 		{
 			type: 'dist-custom-elements',

@@ -64,6 +64,8 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/loader
 /output/stencil/www
 /output/stencil/bundle/
+/output/stencil/bundle-slot-fixes/
+/output/stencil/dist-slot-fixes/
 **/.angular
 **/.next
 **/.nuxt

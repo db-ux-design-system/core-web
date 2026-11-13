@@ -158,6 +158,28 @@ Then use them anywhere in your HTML:
 <db-button variant="brand">Add item to cart</db-button>
 ```
 
+### Slot-fixes variant (opt-in)
+
+The components render in light DOM and emulate `<slot>` behavior. By default this emulation is lightweight. If your framework or library reorders, removes, or prepends slotted children at runtime (for example Mithril, or some virtual-DOM libraries), you may hit errors such as `NotFoundError`, or slotted content landing in the wrong place (e.g. an `<option>` ending up outside a `<db-select>`). See [issue #8807](https://github.com/db-ux-design-system/core-web/issues/8807).
+
+For those cases we publish an opt-in variant built with Stencil's `experimentalSlotFixes`, which makes slot relocation more robust. It is available under separate entry points — pick the one matching the default variant you use:
+
+```js
+// Loader variant (requires @stencil/core as a peer dependency)
+import { defineCustomElements } from "@db-ux/wc-core-components/slot-fixes";
+defineCustomElements();
+```
+
+```js
+// Self-contained bundle variant
+import { defineCustomElements } from "@db-ux/wc-core-components/bundle-slot-fixes/index.js";
+defineCustomElements();
+```
+
+> **Why is this opt-in?** `experimentalSlotFixes` patches DOM tree accessors (`childNodes`, `children`, `firstChild`, `lastChild`, `parentNode`, `textContent`, ...) on the component host elements so slotted content behaves more like native Shadow DOM. That patching changes what a plain DOM traversal reports and can break tools that walk the real DOM tree (for example accessibility scanners such as axe-core). Use this variant only if you actually need the slot relocation fixes; otherwise keep the default build.
+
+> **Testing note:** because the slot-fixes variant overrides those DOM accessors, end-to-end tooling that relies on the real DOM tree can behave unexpectedly against it. In Playwright we have seen axe-core accessibility scans fail with `No elements found for include in page Context` — a selector that `page.locator()` resolves is not reachable through the patched `childNodes` walk that axe uses to build its tree. If you test against this variant, prefer locators and assertions that do not depend on a full real-DOM traversal, or run DOM-walking checks (such as axe-core) against the default build instead.
+
 ## VSCode autocomplete
 
 If you don't have it already, add a VS Code settings folder and file at the root of your project - `.vscode/settings.json`. Then add or append the following code:
