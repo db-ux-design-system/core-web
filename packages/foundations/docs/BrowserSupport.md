@@ -62,4 +62,4 @@ We're monitoring the following exciting Web functionality innovations that look 
 
 - [CSS `children-count()` function](https://github.com/w3c/csswg-drafts/issues/11068)
 - [`<rangegroup>` aka as multiple range `<input>` sliders](https://open-ui.org/components/enhanced-range-input.explainer/)
-- [element reference attributes by allowing relative references instead of only ids](https://github.com/whatwg/html/issues/10143)
+- [Improve element reference attributes by allowing relative references instead of only ids](https://github.com/wicg/idrefs)
