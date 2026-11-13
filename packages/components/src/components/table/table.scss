@@ -174,11 +174,25 @@
 	&[data-variant="zebra"] {
 		table {
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			border-inline: component.$component-border;
 		}
 
 		thead {
 			border-block-start: component.$component-border;
+		}
+
+		thead,
+		tfoot {
+			border-inline: component.$component-border;
+		}
+
+		tr {
+			> :is(td, th):last-child {
+				border-inline-end: component.$component-border;
+			}
+
+			> :is(td, th):first-child {
+				border-inline-start: component.$component-border;
+			}
 		}
 	}
 
@@ -215,27 +229,65 @@
 			}
 
 			:is(th, td)[data-header] {
-				gap: variables.$db-spacing-fixed-xs;
-
 				&::before {
 					// Screen reader would announce it twice
-					content: attr(data-header) ":" / "";
+					content: attr(data-header) / "";
 					font-weight: bold;
+					word-break: break-word;
 				}
 			}
 
-			td[data-horizontal-alignment="end"] {
-				justify-content: space-between;
+			td,
+			th {
+				display: grid;
+				grid-template-columns: 40% 1fr;
+				gap: 0;
+
+				&::before {
+					text-align: start;
+				}
+
+				> div {
+					height: 100%;
+					display: flex;
+					align-items: center;
+				}
 			}
 
 			thead {
-				border-block-start-color: transparent;
+				@extend %a11y-visually-hidden;
+			}
 
-				tr {
-					--db-table-section-display: flex;
+			&:not([data-divider]),
+			&[data-divider="both"],
+			&[data-divider="vertical"] {
+				td,
+				th {
+					padding: 0;
 
-					flex-wrap: wrap;
-					gap: variables.$db-spacing-fixed-xs;
+					&::before {
+						padding: variables.$db-spacing-fixed-2xs
+							variables.$db-spacing-fixed-xs;
+					}
+
+					> div {
+						padding: variables.$db-spacing-fixed-2xs
+							variables.$db-spacing-fixed-xs;
+
+						@include helpers.divider("left");
+
+						&::before {
+							--db-divider-bg-color: #{colors.$db-neutral-on-bg-basic-emphasis-60-default};
+						}
+					}
+				}
+			}
+
+			&:not([data-divider]),
+			&[data-divider="both"],
+			&[data-divider="horizontal"] {
+				:is(td, th):not(:last-child) {
+					border-block-end: component.$component-border;
 				}
 			}
 		}
@@ -335,12 +387,10 @@
 		display: grid;
 
 		caption {
-			// Spans all explicit tracks, including a custom
-			// `--db-table-grid-template-columns` beyond the detected column counts
-			grid-column: 1 / -1;
-			padding: variables.$db-spacing-fixed-sm;
-			border-block-start: component.$component-border;
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
 			font-weight: bold;
+			text-align: start;
 		}
 	}
 

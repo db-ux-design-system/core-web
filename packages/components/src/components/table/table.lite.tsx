@@ -56,7 +56,7 @@ export default function DBTable(props: DBTableProps) {
 				const table = _ref as HTMLTableElement;
 				if (!table) return;
 
-				const headerCells = table.querySelectorAll('thead tr th');
+				const headerCells = table.querySelectorAll('thead tr th .db-table-header-cell-content');
 				if (headerCells.length) {
 					const otherRows = table.querySelectorAll<HTMLElement>(
 						':is(tbody,tfoot) tr'

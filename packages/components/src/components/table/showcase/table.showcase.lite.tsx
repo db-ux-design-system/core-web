@@ -18,6 +18,7 @@ import TableText from '../examples/text.example.lite';
 import TableVariant from '../examples/variant.example.lite';
 import TableVerticalAlignment from '../examples/vertical-alignment.example.lite';
 import TableWidth from '../examples/width.example.lite';
+import TableMobileVariantListDivider from '../examples/mobile-variant-list-divider.example.lite';
 
 export default function TableShowcase(props: PatternhubProps) {
 	return (
@@ -102,6 +103,11 @@ export default function TableShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Text">
 				<CardWrapperShowcase>
 					<TableText />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Mobile Variant List Divider">
+				<CardWrapperShowcase>
+					<TableMobileVariantListDivider />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
