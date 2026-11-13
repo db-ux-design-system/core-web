@@ -14,8 +14,8 @@
 		"erasableSyntaxOnly": true
 	},
 	"include": ["**/*.ts"],
-	// They import `storybook/*`, which resolves only in a Storybook: sync.ts copies
-	// them there, where each Storybook type-checks them.
+	// They import `storybook/*`, which resolves only in a Storybook: copy-config.ts
+	// copies them there, where each Storybook type-checks them.
 	"exclude": [
 		"storybook-config/manager.ts",
 		"storybook-config/mode.ts",

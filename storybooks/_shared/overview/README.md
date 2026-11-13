@@ -49,7 +49,7 @@ node storybooks/_shared/overview/update-platform-components.ts --check
 
 This runs automatically: the workflow `.github/workflows/99-refresh-platform-components.yml` refreshes the copy every Wednesday, the day before the Thursday release (or on manual start), and opens the pull request "chore: refresh platform-components.json" when the platform changed. As a safety net, the release PR (`changeset-release/*`) runs `--check` and fails with an outdated copy; merge the open refresh PR to fix it.
 
-The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
+The shared Storybook configuration (theme, light/dark mode, docs page of the example stories, "Show code" imports, head files) lives in `../storybook-config/`. `copy-config.ts` copies it into `.storybook/` of every Storybook on every build and start (git-ignored copies); `.storybook/main.ts` builds the head files from it with `head.ts`.
 
 ## Tests
 

@@ -7,8 +7,8 @@
  * Storybook documents style tags in `.storybook/manager-head.html` that target
  * its class names, "at your own risk"
  * (https://storybook.js.org/docs/configure/user-interface/theming#css-escape-hatches).
- * sync.ts inlines this file into `manager-head.html` of every Storybook,
- * together with the `--db-sb-*` values from theme-values.json: the manager
+ * head.ts inlines this file into the manager head of every Storybook
+ * (`managerHead` in main.ts), together with the `--db-sb-*` values from theme-values.json: the manager
  * does not load the design system CSS.
  *
  * Storybook's inner HTML can change with any release. theme.spec.ts checks
@@ -159,6 +159,17 @@ button[aria-label="Settings"]:active {
 	block-size: var(--db-sb-indicator-width);
 	border-radius: var(--db-sb-radius);
 	background: var(--db-sb-indicator);
+}
+
+/*
+ * Mobile bar of the composition Storybook: Storybook shows the story path
+ * without the name of the framework ref ("React"). manager.ts sets
+ * `--db-sb-ref-title` to the ref title of the current story, it stays unset
+ * outside a ref.
+ */
+.sb-bar button[aria-label="Open navigation menu"] > p::before {
+	content: var(--db-sb-ref-title, none);
+	font-weight: 700;
 }
 
 /* Forced colors: the indicator background disappears, draw a border. */

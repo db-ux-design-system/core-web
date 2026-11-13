@@ -18,6 +18,9 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { readPlatformComponents } from './platform.ts';
+import { COMPONENTS_DIR, getStructure } from './structure.ts';
+
+export { getStructure, type Structure } from './structure.ts';
 
 const ROOT = resolve(import.meta.dirname, '..', '..', '..');
 const PLATFORM = 'https://design-system.deutschebahn.com/documentation';
@@ -48,13 +51,6 @@ export type ComponentMeta = {
 	html?: boolean;
 	/** Parts documented on this page, e.g. DBTabItem on the DBTabs page. */
 	parts: Array<{ name: string; title: string }>;
-};
-
-export type Structure = {
-	/** Components with an own overview page, sorted. */
-	main: string[];
-	/** Parts per main component, e.g. `{ tabs: ['tab-item', …] }`. */
-	parts: Record<string, string[]>;
 };
 
 type Override = {
@@ -130,73 +126,6 @@ const getComponents = (name: string): string[] => {
 		)
 		.filter((title): title is string => Boolean(title));
 	return titles.length > 0 ? titles : [getTitle(name)];
-};
-
-const COMPONENTS_DIR = 'packages/components/src/components';
-
-/**
- * Main components and their parts. A part is a component whose name starts
- * with the name of another component plus `-` (longest match, e.g.
- * `table-row` -> `table`, `custom-select-list-item` -> `custom-select-list`
- * -> `custom-select`), or one with `partOf` in `overrides.json`. Chains are
- * resolved to the main component. Works without network, so the structure is
- * the same offline.
- */
-export const getStructure = (): Structure => {
-	const names = readdirSync(join(ROOT, COMPONENTS_DIR), {
-		withFileTypes: true
-	})
-		.filter((entry) => entry.isDirectory())
-		.map((entry) => entry.name)
-		.toSorted();
-	const known = new Set(names);
-
-	const directParent = (name: string): string | undefined => {
-		const override = overrides[name]?.partOf;
-		if (override) {
-			if (!known.has(override)) {
-				throw new Error(
-					`[overviews] overrides.json: "${name}" is part of unknown "${override}"`
-				);
-			}
-
-			return override;
-		}
-
-		return names
-			.filter((other) => name.startsWith(`${other}-`))
-			.toSorted((a, b) => b.length - a.length)[0];
-	};
-
-	const mainOf = (name: string): string => {
-		const seen = new Set<string>();
-		let current = name;
-		let parent = directParent(current);
-		while (parent) {
-			if (seen.has(parent)) {
-				throw new Error(`[overviews] partOf cycle at "${name}"`);
-			}
-
-			seen.add(parent);
-			current = parent;
-			parent = directParent(current);
-		}
-
-		return current;
-	};
-
-	const parts: Record<string, string[]> = {};
-	const main: string[] = [];
-	for (const name of names) {
-		const root = mainOf(name);
-		if (root === name) {
-			main.push(name);
-		} else {
-			(parts[root] ??= []).push(name);
-		}
-	}
-
-	return { main, parts };
 };
 
 const getPlatformUrl = (name: string): string | undefined => {
