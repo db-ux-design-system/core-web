@@ -520,9 +520,8 @@
  *
  * Storybook's docs theme colors links #006deb, which has too little contrast
  * on its grey table rows and blockquotes (WCAG 1.4.3). The DB link color with
- * an underline replaces it. The docs page stays light in every mode, so
- * `color-scheme: light` pins the `light-dark()` token to its light value,
- * also when the mode switch sets `data-mode="dark"` for the stories.
+ * an underline replaces it. The tokens follow the mode of the page (mode.ts):
+ * `data-mode` on `<html>`, without it the OS color scheme.
  *
  * CSS escape hatches of the docs pages: Storybook documents style tags in
  * `.storybook/preview-head.html` that target its class names, "at your own
@@ -537,7 +536,6 @@
  */
 .sbdocs-content
 	a:not(.db-card, .db-link, .db-button, .docs-story *):not(:has(.db-card)) {
-	color-scheme: light;
 	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 	text-decoration: underline;
 }
@@ -563,6 +561,15 @@
 	> span {
 		color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
 	}
+}
+
+/* The logo in the text color of the mode: the colors inside logo.svg follow
+   the OS color scheme, not the selected mode. */
+.sbdocs-content .db-sb-platform-card-logo {
+	inline-size: var(--db-sizing-sm);
+	block-size: var(--db-sizing-sm);
+	background-color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+	mask: url("./brand/images/logo.svg") center / contain no-repeat;
 }
 
 /*
@@ -597,9 +604,6 @@
 }
 
 .sbdocs.sbdocs-toc--custom > nav {
-	/* The docs page stays light; without this the light-dark() tokens follow
-	   the OS dark scheme and the TOC turns light grey on white. */
-	color-scheme: light;
 	font: var(--db-type-body-sm);
 	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 }
@@ -779,8 +783,8 @@
       
       import './mocker-runtime-injected.js';
       
-      import './runtime~main.7c4a2a2d.iframe.bundle.js';
+      import './runtime~main.9bb8791d.iframe.bundle.js';
       
-      import './4927.e99e5dd6.iframe.bundle.js';
+      import './4927.3d4efdcb.iframe.bundle.js';
       
-      import './main.fa813991.iframe.bundle.js';</script></body></html>
+      import './main.81954ed2.iframe.bundle.js';</script></body></html>

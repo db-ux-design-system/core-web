@@ -1,0 +1,22 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{c as t,l as n,m as r}from"./blocks-CTP6PAm9.js";import{t as i}from"./jsx-runtime-MKhVqBIO.js";import{i as a,r as o}from"./react-DITjJg24.js";import{n as s,t as c}from"./custom-select.overview.stories-BnVC0QAi.js";function l(e){let r={a:`a`,code:`code`,h1:`h1`,h2:`h2`,h3:`h3`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...a(),...e.components};return(0,d.jsxs)(d.Fragment,{children:[`
+`,(0,d.jsx)(n,{of:c}),`
+`,(0,d.jsx)(r.h1,{id:`dbcustomselect`,children:`DBCustomSelect`}),`
+`,(0,d.jsx)(t,{children:`Custom Select is an advanced dropdown for choosing one or multiple predefined options with support for search, grouping, and showing selected values. Use it when a basic select is not sufficient due to option volume, selection complexity, or the need for better scanning and management of chosen items.`}),`
+`,(0,d.jsxs)(r.p,{children:[(0,d.jsx)(r.strong,{children:`Status:`}),` Beta`]}),`
+`,(0,d.jsx)(r.h2,{id:`guidelines`,children:`Guidelines`}),`
+`,(0,d.jsxs)(`a`,{className:`db-card db-sb-platform-card`,"data-behavior":`interactive`,"data-spacing":`small`,href:`https://design-system.deutschebahn.com/documentation/components/custom-select`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,d.jsx)(`i`,{className:`db-sb-platform-card-logo`,"aria-hidden":`true`}),(0,d.jsx)(`strong`,{children:`CustomSelect guidelines`}),(0,d.jsx)(`span`,{children:`When to use it, variants, Do and Don’t and the design rules for accessibility.`}),(0,d.jsx)(`strong`,{"data-icon-trailing":`arrow_up_right`,children:`Design System Platform`})]}),`
+`,(0,d.jsxs)(r.p,{children:[`Setup: `,(0,d.jsx)(r.a,{href:`https://design-system.deutschebahn.com/documentation/learn/html-css-setup`,rel:`nofollow`,children:`Use the components with HTML and CSS`}),` on the Design System Platform.`]}),`
+`,(0,d.jsx)(r.h2,{id:`usage`,children:`Usage`}),`
+`,(0,d.jsxs)(r.p,{children:[`DBCustomSelect needs JavaScript and is not available as plain HTML and CSS. In a project without a framework, use the Web Component `,(0,d.jsx)(r.code,{children:`db-custom-select`}),`: `,(0,d.jsx)(r.a,{href:`../stencil-storybook/?path=/docs/components-dbcustomselect-overview--docs`,children:`DBCustomSelect for Web Components`}),`.`]}),`
+`,(0,d.jsx)(r.h2,{id:`css-custom-properties`,children:`CSS custom properties`}),`
+`,(0,d.jsxs)(r.p,{children:[`Set them on the component element to adjust its styling, e.g. with the `,(0,d.jsx)(r.code,{children:`style`}),` attribute.`]}),`
+`,(0,d.jsx)(t,{children:"| Property | Description | Default |\n| --- | --- | --- |\n| `--db-form-component-min-inline-size` | Minimum inline size of the form field, e.g. `20rem`. | `var(--db-sizing-lg)`; DBSelect and DBCustomSelect `var(--db-sizing-xl)`; larger with icons |\n| `--db-label-max-size` | Maximum inline size of the label, e.g. `20rem`. Longer labels are truncated with an ellipsis. | `100%` |"}),`
+`,(0,d.jsx)(r.h3,{id:`dbcustomselectdropdown`,children:`DBCustomSelectDropdown`}),`
+`,(0,d.jsx)(t,{children:'| Property | Description | Default |\n| --- | --- | --- |\n| `--db-custom-select-dropdown-fixed-inline-size` | Inline size of the dropdown with `dropdownWidth="fixed"` (the default). | `var(--db-sizing-3xl)` |'}),`
+`,(0,d.jsx)(r.h2,{id:`resources`,children:`Resources`}),`
+`,(0,d.jsxs)(r.ul,{children:[`
+`,(0,d.jsx)(r.li,{children:(0,d.jsx)(r.a,{href:`https://design-system.deutschebahn.com/documentation/components/custom-select`,rel:`nofollow`,children:`Guidelines on the Design System Platform`})}),`
+`,(0,d.jsxs)(r.li,{children:[`npm: `,(0,d.jsx)(r.a,{href:`https://www.npmjs.com/package/@db-ux/core-components`,rel:`nofollow`,children:`@db-ux/core-components`})]}),`
+`,(0,d.jsx)(r.li,{children:(0,d.jsx)(r.a,{href:`https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/custom-select`,rel:`nofollow`,children:`Source code on GitHub`})}),`
+`,(0,d.jsx)(r.li,{children:(0,d.jsx)(r.a,{href:`https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md`,rel:`nofollow`,children:`Changelog`})}),`
+`]})]})}function u(e={}){let{wrapper:t}={...a(),...e.components};return t?(0,d.jsx)(t,{...e,children:(0,d.jsx)(l,{...e})}):l(e)}var d;function f(){return(f=e((()=>{d=i(),o(),r(),s()})))()}f();export{u as default};

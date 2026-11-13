@@ -528,9 +528,8 @@
  *
  * Storybook's docs theme colors links #006deb, which has too little contrast
  * on its grey table rows and blockquotes (WCAG 1.4.3). The DB link color with
- * an underline replaces it. The docs page stays light in every mode, so
- * `color-scheme: light` pins the `light-dark()` token to its light value,
- * also when the mode switch sets `data-mode="dark"` for the stories.
+ * an underline replaces it. The tokens follow the mode of the page (mode.ts):
+ * `data-mode` on `<html>`, without it the OS color scheme.
  *
  * CSS escape hatches of the docs pages: Storybook documents style tags in
  * `.storybook/preview-head.html` that target its class names, "at your own
@@ -545,7 +544,6 @@
  */
 .sbdocs-content
 	a:not(.db-card, .db-link, .db-button, .docs-story *):not(:has(.db-card)) {
-	color-scheme: light;
 	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 	text-decoration: underline;
 }
@@ -571,6 +569,15 @@
 	> span {
 		color: var(--db-adaptive-on-bg-basic-emphasis-80-default);
 	}
+}
+
+/* The logo in the text color of the mode: the colors inside logo.svg follow
+   the OS color scheme, not the selected mode. */
+.sbdocs-content .db-sb-platform-card-logo {
+	inline-size: var(--db-sizing-sm);
+	block-size: var(--db-sizing-sm);
+	background-color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
+	mask: url("./brand/images/logo.svg") center / contain no-repeat;
 }
 
 /*
@@ -605,9 +612,6 @@
 }
 
 .sbdocs.sbdocs-toc--custom > nav {
-	/* The docs page stays light; without this the light-dark() tokens follow
-	   the OS dark scheme and the TOC turns light grey on white. */
-	color-scheme: light;
 	font: var(--db-type-body-sm);
 	color: var(--db-adaptive-on-bg-basic-emphasis-100-default);
 }
@@ -754,14 +758,21 @@
 	}
 })();
 </script>
-    <script type="module" crossorigin src="/core-web/review/feat-css-properties-docs/composition-storybook/assets/iframe-xEBKtt0J.js"></script>
+    <script type="module" crossorigin src="/core-web/review/feat-css-properties-docs/composition-storybook/assets/iframe-j1oNFWoK.js"></script>
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/rolldown-runtime-sJBDdmOt.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/preload-helper-CjKxk_e2.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/react-DlPsW1c0.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/chunk-7PIQR4A3-DUuI6D6u.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/chunk-DRQKCCAG-CCU5JLR1.js">
     <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/theming-B5h3ML3F.js">
-    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/iframe-DADpvMZv.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/react-dom-B2lTHb2f.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/jsx-runtime-MKhVqBIO.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/chunk-W22LQPXL-CQEXTw8K.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/chunk-242VQQM5-DgLL3Sdg.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/components-BRl5tIuP.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/chunk-QQBDHPVZ-DGKYZDIn.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/react-DITjJg24.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/blocks-BeTcZxT0.js">
+    <link rel="modulepreload" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/chunk-UAWMPV5J-BrGPyIDv.js">
     <link rel="stylesheet" crossorigin href="/core-web/review/feat-css-properties-docs/composition-storybook/assets/iframe-DdZflcBp.css">
   </head>
 
