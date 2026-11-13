@@ -1,4 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-BiF0E9FZ.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBDrawer/Overview`,component:`db-drawer`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-drawer></db-drawer>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev'],
-  render: () => html\`<db-drawer></db-drawer>\`
-}`,...o.parameters?.docs?.source}}}})))()}export{c as n,i as t};
