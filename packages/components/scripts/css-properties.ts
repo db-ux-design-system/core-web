@@ -1,5 +1,5 @@
 /**
- * PostCSS plugin (postcss.config.cjs, before cssnano): reads the documented
+ * PostCSS plugin (run by write-css-properties.ts): reads the documented
  * CSS custom properties of a component from its compiled CSS and writes them
  * next to it as `build/components/<name>/<name>.css-properties.json`.
  *
@@ -14,8 +14,7 @@
  *   @property --db-form-component-min-inline-size { syntax: "*"; inherits: true; }
  *
  * The Storybook overview pages show the JSON as "CSS custom properties"
- * (storybooks/_shared/overview/generate-overviews.ts). Runs before cssnano,
- * which removes the comments.
+ * (storybooks/_shared/overview/generate-overviews.ts).
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, sep } from 'node:path';
