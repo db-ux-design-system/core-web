@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/core-foundations",
-  "version": "6.3.2",
+  "version": "6.4.0",
   "type": "module",
   "description": "Provides basic tokens and assets based on DB UX Design System – Generation 3",
   "repository": {
@@ -62,7 +62,7 @@
     "sass": "1.108.1",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vite": "8.3.6"
+    "vite": "8.3.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

@@ -4,7 +4,7 @@ import { StorybookTextareaArgTypes } from './_textarea.arg.types';
 
 useMetadata({
 	storybookTitle: 'Field Sizing',
-	storybookNames: ['(Default) Fixed', 'Content'],
+	storybookNames: ['(Default) Fixed', 'Content', 'Content with min-height'],
 	storybookArgTypes: StorybookTextareaArgTypes
 });
 
@@ -23,6 +23,19 @@ export default function TextareaFieldSizing() {
 					label="Label"
 					fieldSizing="content"
 					placeholder="Content"
+				/>
+			</div>
+			<div
+				style={
+					{
+						width: '300px',
+						'--db-form-component-min-block-size': '4lh'
+					} as any
+				}>
+				<DBTextarea
+					label="Label"
+					fieldSizing="content"
+					placeholder="Content with min-height"
 				/>
 			</div>
 		</Fragment>
