@@ -1,5 +1,6 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "../../styles/internal/form-components";
+@forward "../../styles/internal/form-components.properties";
 @use "../../styles/internal/select-components";
 
 .db-custom-select {

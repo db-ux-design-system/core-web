@@ -1,0 +1,10 @@
+/* @css-properties control-panel-desktop */
+
+/**
+ * Inline size of the open (expanded) control panel.
+ * @default var(--db-container-xs)
+ */
+@property --db-control-panel-desktop-inline-size {
+	syntax: "*";
+	inherits: true;
+}

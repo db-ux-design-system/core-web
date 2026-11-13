@@ -1,0 +1,39 @@
+/* @css-properties control-panel-brand */
+
+/**
+ * Logo image, e.g. `url("logo.svg")`. Set by the theme; override it for
+ * another logo.
+ * @default the logo of the theme
+ */
+@property --db-logo-url {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Aspect ratio of the logo, e.g. `2 / 1`.
+ * @default set by the theme, otherwise `1`
+ */
+@property --db-logo-aspect-ratio {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Short logo for little space: the collapsed vertical DBControlPanelDesktop
+ * and DBControlPanelMobile.
+ * @default set by the theme, otherwise `var(--db-logo-url)`
+ */
+@property --db-logo-url-short {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Aspect ratio of the short logo.
+ * @default set by the theme, otherwise `var(--db-logo-aspect-ratio)`
+ */
+@property --db-logo-aspect-ratio-short {
+	syntax: "*";
+	inherits: true;
+}

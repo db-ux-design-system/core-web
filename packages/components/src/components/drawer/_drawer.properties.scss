@@ -1,0 +1,39 @@
+/* @css-properties drawer */
+
+/**
+ * Maximum inline size of a horizontal drawer
+ * (`containerSize` other than `full`).
+ * @default depends on `containerSize`
+ */
+@property --db-drawer-max-width {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Minimum inline size of a horizontal drawer.
+ * @default auto
+ */
+@property --db-drawer-min-width {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Maximum block size of a vertical drawer
+ * (`direction` `up` or `down`).
+ * @default depends on `containerSize`
+ */
+@property --db-drawer-max-height {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Minimum block size of a vertical drawer.
+ * @default auto
+ */
+@property --db-drawer-min-height {
+	syntax: "*";
+	inherits: true;
+}

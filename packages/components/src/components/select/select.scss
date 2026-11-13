@@ -4,6 +4,7 @@
 @use "@db-ux/core-foundations/build/styles/icons";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "../../styles/internal/form-components";
+@forward "../../styles/internal/form-components.properties";
 @use "../../styles/internal/component";
 @use "../../styles/internal/select-components";
 

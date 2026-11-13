@@ -1,0 +1,20 @@
+/* @css-properties form-components */
+
+/**
+ * Minimum inline size of the form field, e.g. `20rem`.
+ * @default `var(--db-sizing-lg)`; DBSelect and DBCustomSelect `var(--db-sizing-xl)`; larger with icons
+ */
+@property --db-form-component-min-inline-size {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Maximum inline size of the label, e.g. `20rem`. Longer labels are
+ * truncated with an ellipsis.
+ * @default 100%
+ */
+@property --db-label-max-size {
+	syntax: "*";
+	inherits: true;
+}

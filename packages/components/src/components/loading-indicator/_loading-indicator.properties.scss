@@ -1,0 +1,12 @@
+/* @css-properties loading-indicator */
+
+/**
+ * Progress of a determinate indicator as a fraction between 0
+ * and 1, e.g. `0.42`. Only needed in plain HTML: the framework
+ * components set it themselves.
+ * @default 0
+ */
+@property --db-loading-indicator-percentage {
+	syntax: "*";
+	inherits: true;
+}

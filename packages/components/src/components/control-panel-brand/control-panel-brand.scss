@@ -2,6 +2,7 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
+@forward "control-panel-brand.properties";
 
 .db-control-panel-desktop-brand-container {
 	display: flex;

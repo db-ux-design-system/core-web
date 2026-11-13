@@ -52,8 +52,20 @@ configs/
 │   └── agent/                      # Agent documentation plugin
 scripts/
 ├── exec/                           # Per-framework post-Mitosis exec scripts
+├── css-properties.ts               # PostCSS plugin: documented CSS custom properties -> JSON
+├── write-css-properties.ts         # Build step that runs it over build/components
 └── post-build/                     # ⚠️ DEPRECATED — see note below
 ```
+
+## CSS custom properties (styling API)
+
+CSS custom properties that consumers may set are registered with `@property` and documented in a `/** */` comment right above it (description, optional `@default <value>`). Shared ones live in a `*.properties.scss` partial, e.g. `src/styles/internal/_form-components.properties.scss`. Each component that supports them loads it with `@forward "../../styles/internal/form-components.properties";` (`@forward` emits the CSS like `@use`, but creates no namespace that would clash with `form-components`).
+
+- Use `syntax: "*"` and `inherits: true`, so registering changes nothing at runtime.
+- **Never set `initial-value`.** The flatten plugin of `@db-ux/core-postcss-plugin` (used by consumers and the showcases) resolves every `var()` of a registered property to its initial value and removes the `@property` rule. Values set later, from JavaScript (`--db-loading-indicator-percentage`) or a `style` attribute, then no longer apply. Without an initial value the property stays unset, the `var(--property, fallback)` fallbacks keep working, and registering changes nothing at runtime.
+- Document the default with `@default` (also fixed ones like `auto`).
+- Start every properties file with `/* @css-properties <name> */` (the file name without `_` and `.properties.scss`) and keep only `@property` rules in it. A component documents only the properties files its own `<name>.scss` loads with `@forward`, because its CSS also contains the styles of nested components (DBShell includes DBDrawer). Component-specific properties go into `src/components/<name>/_<name>.properties.scss`, e.g. `--db-form-component-min-block-size` in `_textarea.properties.scss`.
+- `scripts/css-properties.ts` is a PostCSS plugin; the build step `build-style:03_css-properties` (`scripts/write-css-properties.ts`) runs it over the compiled CSS of every component and writes `build/components/<name>/<name>.css-properties.json` for every component with documented properties. Not in `postcss.config.cjs`: `build-style:02_postcss` only reaches `build/styles/`, because the shell expands `build/**/*.css` like `build/*/*.css`. The Storybook overview pages show the JSON as "CSS custom properties".
 
 ## Heading component family
 

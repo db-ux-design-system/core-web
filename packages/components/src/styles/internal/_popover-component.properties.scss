@@ -1,0 +1,11 @@
+/* @css-properties popover-component */
+
+/**
+ * Delay before the component appears with `delay="fast"` or `delay="slow"`,
+ * e.g. `0.8s`.
+ * @default `var(--db-transition-duration-medium)` with `fast`, `var(--db-transition-duration-extra-slow)` with `slow`
+ */
+@property --db-animation-delay {
+	syntax: "*";
+	inherits: true;
+}
