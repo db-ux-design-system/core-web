@@ -1,0 +1,4 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-DdTBnHTV.js";var i=t({Default:()=>o,__namedExportsOrder:()=>s,default:()=>a}),a,o,s;function c(){return(c=e((()=>{r(),a={title:`Components/DBLoadingIndicator/Overview`,component:`db-loading-indicator`,parameters:{docs:{toc:{headingSelector:`h2, h3`}}}},o={tags:[`!dev`],render:()=>n`<db-loading-indicator></db-loading-indicator>`},s=[`Default`],o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev'],
+  render: () => html\`<db-loading-indicator></db-loading-indicator>\`
+}`,...o.parameters?.docs?.source}}}})))()}export{i as n,c as t};
