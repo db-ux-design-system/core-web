@@ -189,7 +189,7 @@ const xoConfig = [
 	},
 	{
 		// Shared Storybook config, copied into `storybooks/*/.storybook/` by
-		// sync.ts. `storybook` resolves there, not from this folder.
+		// copy-config.ts. `storybook` resolves there, not from this folder.
 		files: ['./storybooks/_shared/storybook-config/**'],
 		rules: {
 			'import-x/no-extraneous-dependencies': 0,

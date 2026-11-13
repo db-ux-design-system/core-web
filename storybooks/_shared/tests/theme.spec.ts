@@ -62,6 +62,32 @@ test.describe('manager.css', () => {
 		).toBe('none');
 	});
 
+	test('framework name in the mobile bar of the composition Storybook', async ({
+		page
+	}) => {
+		await page.setViewportSize({ width: 375, height: 800 });
+		const path = '.sb-bar button[aria-label="Open navigation menu"] > p';
+		const prefix = async () =>
+			page
+				.locator(path)
+				.evaluate((node) => getComputedStyle(node, '::before').content);
+		await page.goto(
+			`${storybookUrl('composition-storybook')}/?path=/docs/react_${OVERVIEW}`
+		);
+		await expect(page.locator(path)).toHaveText(/DBButton/, {
+			timeout: 60_000
+		});
+		await expect.poll(prefix).toBe('"React ⋅ "');
+		// Not in a ref (Foundations): no prefix.
+		await page.goto(
+			`${storybookUrl('composition-storybook')}/?path=/docs/foundations-colors--docs`
+		);
+		await expect(page.locator(path)).toHaveText(/Foundations/, {
+			timeout: 60_000
+		});
+		await expect.poll(prefix).toBe('none');
+	});
+
 	test('sidebar in the style of the control panel', async ({ page }) => {
 		await openManager(page, 'react-storybook', `/docs/${OVERVIEW}`);
 		const selected = '.sidebar-item[data-nodetype][data-selected="true"]';

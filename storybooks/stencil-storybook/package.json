@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "pnpm --filter @db-ux/wc-core-components run dev-build && pnpm --filter @db-ux/wc-core-components run build:cem && node ../_shared/overview/generate-overviews.ts --storybook stencil-storybook && storybook build --output-dir ../../build-storybooks/stencil-storybook",
-    "storybook": "pnpm --filter @db-ux/wc-core-components run dev-build && pnpm --filter @db-ux/wc-core-components run build:cem && node ../_shared/overview/generate-overviews.ts --storybook stencil-storybook && storybook dev -p 6009"
+    "build": "node ../_shared/storybook-config/copy-config.ts --storybook stencil-storybook && pnpm --filter @db-ux/wc-core-components run dev-build && pnpm --filter @db-ux/wc-core-components run build:cem && node ../_shared/overview/generate-overviews.ts --storybook stencil-storybook && storybook build --output-dir ../../build-storybooks/stencil-storybook",
+    "storybook": "node ../_shared/storybook-config/copy-config.ts --storybook stencil-storybook && pnpm --filter @db-ux/wc-core-components run dev-build && pnpm --filter @db-ux/wc-core-components run build:cem && node ../_shared/overview/generate-overviews.ts --storybook stencil-storybook && storybook dev -p 6009"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",

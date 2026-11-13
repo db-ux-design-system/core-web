@@ -3,9 +3,8 @@
  * copy them into a project: the imports of every component used in the
  * snippet, and for Angular and Vue the surrounding component file.
  *
- * Copied into `.storybook/source-imports.ts` of every Storybook by
- * `storybooks/_shared/storybook-config/sync.ts`. Edit this file, not the
- * copies.
+ * Copied into `.storybook/source-imports.ts` of every framework Storybook by
+ * copy-config.ts (git-ignored there). Edit this file, not the copies.
  *
  * Global styles (theme and component CSS) are not part of a snippet: they are
  * loaded once per app, see the Getting Started page. The HTML snippet only
