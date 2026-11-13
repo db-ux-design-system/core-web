@@ -166,7 +166,7 @@ For those cases we publish an opt-in variant built with Stencil's `experimentalS
 
 ```js
 // Loader variant (requires @stencil/core as a peer dependency)
-import { defineCustomElements } from "@db-ux/wc-core-components/slot-fixes";
+import { defineCustomElements } from "@db-ux/wc-core-components/dist-slot-fixes/loader/index.js";
 defineCustomElements();
 ```
 
