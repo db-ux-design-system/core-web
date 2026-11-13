@@ -25,6 +25,9 @@ packages/components/src/**/*.css.map
 
 /output/**/src
 /output/**/dist
+!/output/stencil/dist/
+/output/stencil/dist/*
+!/output/stencil/dist/.gitkeep
 /output/**/playwright*
 /output/**/test-results
 
@@ -63,7 +66,8 @@ showcases/patternhub/public/iframe-resizer/*
 /output/stencil/.stencil
 /output/stencil/loader
 /output/stencil/www
-/output/stencil/bundle/
+/output/stencil/bundle/*
+!/output/stencil/bundle/.gitkeep
 /output/stencil/bundle-slot-fixes/*
 !/output/stencil/bundle-slot-fixes/.gitkeep
 /output/stencil/dist-slot-fixes/*
