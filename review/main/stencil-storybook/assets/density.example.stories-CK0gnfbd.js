@@ -1,0 +1,25 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{l as n,o as r}from"./iframe-B4vbRiLP.js";import{i,n as a,t as o}from"./apply-web-component-args-nLpIKx2m.js";var s=t({Expressive:()=>f,Functional:()=>u,Regular:()=>d,__namedExportsOrder:()=>p,default:()=>l}),c,l,u,d,f,p;function m(){return(m=e((()=>{r(),o(),{fn:c}=__STORYBOOK_MODULE_TEST__,l={title:`Components/DBControlPanelFlatIcon/Density`,component:`db-control-panel-flat-icon`,parameters:{layout:`centered`},tags:[`autodocs`],argTypes:{noText:{control:`boolean`},id:{control:`text`},autofocus:{control:`boolean`}}},u={args:{"data-density":`functional`},render:({children:e,...t})=>n`<div style="width: 100%; display: block"><db-control-panel-flat-icon ${a(t)}>${i(`<db-control-panel-navigation aria-label="Functional"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Functional</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Functional</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Functional</a></db-control-panel-navigation-item></db-control-panel-navigation>`)}</db-control-panel-flat-icon></div>`},d={args:{"data-density":`regular`},render:({children:e,...t})=>n`<div style="width: 100%; display: block"><db-control-panel-flat-icon ${a(t)}>${i(`<db-control-panel-navigation aria-label="Regular"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Regular</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Regular</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Regular</a></db-control-panel-navigation-item></db-control-panel-navigation>`)}</db-control-panel-flat-icon></div>`},f={args:{"data-density":`expressive`},render:({children:e,...t})=>n`<div style="width: 100%; display: block"><db-control-panel-flat-icon ${a(t)}>${i(`<db-control-panel-navigation aria-label="Expressive"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Expressive</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Expressive</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Expressive</a></db-control-panel-navigation-item></db-control-panel-navigation>`)}</db-control-panel-flat-icon></div>`},p=[`Functional`,`Regular`,`Expressive`],u.parameters={...u.parameters,docs:{...u.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-density": "functional"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 100%; display: block"><db-control-panel-flat-icon \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-navigation aria-label="Functional"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Functional</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Functional</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Functional</a></db-control-panel-navigation-item></db-control-panel-navigation>\`)}</db-control-panel-flat-icon></div>\`
+}`,...u.parameters?.docs?.source}}},d.parameters={...d.parameters,docs:{...d.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-density": "regular"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 100%; display: block"><db-control-panel-flat-icon \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-navigation aria-label="Regular"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Regular</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Regular</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Regular</a></db-control-panel-navigation-item></db-control-panel-navigation>\`)}</db-control-panel-flat-icon></div>\`
+}`,...d.parameters?.docs?.source}}},f.parameters={...f.parameters,docs:{...f.parameters?.docs,source:{originalSource:`{
+  args: {
+    "data-density": "expressive"
+  },
+  render: ({
+    children,
+    ...args
+  }: any) => html\`<div style="width: 100%; display: block"><db-control-panel-flat-icon \${spreadArgs(args)}>\${unsafeHTML(\`<db-control-panel-navigation aria-label="Expressive"><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Expressive</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Expressive</a></db-control-panel-navigation-item><db-control-panel-navigation-item icon="x_placeholder"><a href="#">Expressive</a></db-control-panel-navigation-item></db-control-panel-navigation>\`)}</db-control-panel-flat-icon></div>\`
+}`,...f.parameters?.docs?.source}}}})))()}export{m as a,s as i,u as n,d as r,f as t};

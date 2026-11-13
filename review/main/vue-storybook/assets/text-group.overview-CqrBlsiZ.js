@@ -1,0 +1,41 @@
+import{n as e}from"./rolldown-runtime-sJBDdmOt.js";import{h as t,l as n,n as r,r as i,u as a}from"./blocks-BiSBYD0W.js";import{s as o}from"./chunk-W22LQPXL-BFH_Bymq.js";import{i as s,r as c}from"./react-DITjJg24.js";import{a as l,n as u,r as d,t as f}from"./alignment.example.stories-DRx7oB5P.js";import{r as p,t as m}from"./components.example.stories-CB1Km3Rd.js";import{n as h,r as g,t as _}from"./mixed-content.example.stories-DfObGfy1.js";import{n as v,t as y}from"./nested-groups.example.stories-BPKaQNN1.js";import{i as b,n as x,r as S,t as C}from"./text-spacing.example.stories-BTDvBtDP.js";import{n as w,t as T}from"./text-group.overview.stories-CG-gtg4R.js";function E(e){let t={a:`a`,h1:`h1`,h2:`h2`,h3:`h3`,li:`li`,p:`p`,strong:`strong`,ul:`ul`,...s(),...e.components};return(0,O.jsxs)(O.Fragment,{children:[`
+`,(0,O.jsx)(a,{of:w}),`
+`,(0,O.jsx)(t.h1,{id:`dbtextgroup`,children:`DBTextGroup`}),`
+`,(0,O.jsx)(n,{children:`The text group stacks several text blocks and derives the spacing between them automatically from their respective line height.`}),`
+`,(0,O.jsxs)(t.p,{children:[(0,O.jsx)(t.strong,{children:`Status:`}),` Beta`]}),`
+`,(0,O.jsx)(t.h2,{id:`guidelines`,children:`Guidelines`}),`
+`,(0,O.jsxs)(`a`,{className:`db-card db-sb-platform-card`,"data-behavior":`interactive`,"data-spacing":`small`,href:`https://design-system.deutschebahn.com/documentation/components/text-group`,target:`_blank`,rel:`noopener noreferrer`,children:[(0,O.jsx)(`i`,{className:`db-sb-platform-card-logo`,"aria-hidden":`true`}),(0,O.jsx)(`strong`,{children:`TextGroup guidelines`}),(0,O.jsx)(`span`,{children:`When to use it, variants, Do and Don’t and the design rules for accessibility.`}),(0,O.jsx)(`strong`,{"data-icon-trailing":`arrow_up_right`,children:`Design System Platform`})]}),`
+`,(0,O.jsxs)(t.p,{children:[`Setup: `,(0,O.jsx)(t.a,{href:`https://design-system.deutschebahn.com/documentation/learn/vue-setup`,rel:`nofollow`,children:`Add the components to Vue`}),` on the Design System Platform.`]}),`
+`,(0,O.jsx)(t.h2,{id:`usage`,children:`Usage`}),`
+`,(0,O.jsxs)(t.p,{children:[`Open `,(0,O.jsx)(t.strong,{children:`Show code`}),` below a preview for a snippet you can copy, including the imports. The example pages linked below each group have controls.`]}),`
+`,(0,O.jsx)(t.h3,{id:`logical-alignment`,children:`Logical alignment`}),`
+`,(0,O.jsx)(i,{of:u}),`
+`,(0,O.jsx)(i,{of:f}),`
+`,(0,O.jsx)(i,{of:d}),`
+`,(0,O.jsx)(t.p,{children:(0,O.jsx)(t.a,{href:`?path=/docs/components-dbtextgroup-logical-alignment--docs`,children:`Open the Logical alignment examples`})}),`
+`,(0,O.jsx)(t.h3,{id:`mixed-content`,children:`Mixed content`}),`
+`,(0,O.jsx)(i,{of:h}),`
+`,(0,O.jsx)(i,{of:_}),`
+`,(0,O.jsx)(t.p,{children:(0,O.jsx)(t.a,{href:`?path=/docs/components-dbtextgroup-mixed-content--docs`,children:`Open the Mixed content examples`})}),`
+`,(0,O.jsx)(t.h3,{id:`nested-groups`,children:`Nested groups`}),`
+`,(0,O.jsx)(i,{of:y}),`
+`,(0,O.jsx)(t.p,{children:(0,O.jsx)(t.a,{href:`?path=/docs/components-dbtextgroup-nested-groups--docs`,children:`Open the Nested groups examples`})}),`
+`,(0,O.jsx)(t.h3,{id:`text-spacing`,children:`Text spacing`}),`
+`,(0,O.jsx)(i,{of:x}),`
+`,(0,O.jsx)(i,{of:S}),`
+`,(0,O.jsx)(i,{of:C}),`
+`,(0,O.jsx)(t.p,{children:(0,O.jsx)(t.a,{href:`?path=/docs/components-dbtextgroup-text-spacing--docs`,children:`Open the Text spacing examples`})}),`
+`,(0,O.jsx)(t.h3,{id:`with-components`,children:`With components`}),`
+`,(0,O.jsx)(i,{of:m}),`
+`,(0,O.jsx)(t.p,{children:(0,O.jsx)(t.a,{href:`?path=/docs/components-dbtextgroup-with-components--docs`,children:`Open the With components examples`})}),`
+`,(0,O.jsx)(t.h2,{id:`usage-notes`,children:`Usage notes`}),`
+`,(0,O.jsx)(n,{children:'> **Beta:** TextGroup is available as a beta component. Its API and visual design may change before the stable release.\n\nFor installation and configuration, see [`@db-ux/v-core-components`](https://www.npmjs.com/package/@db-ux/v-core-components).\n\n`DBTextGroup` renders a presentational `div` that groups block-level text and owns the spacing and alignment of its children. It carries no semantics of its own: for a labelled region use `DBSection` and put the group inside.\n\n```vue\n<script setup lang="ts">\nimport {\n	DBHeadingH3,\n	DBParagraph,\n	DBTextGroup\n} from "@db-ux/v-core-components";\n<\/script>\n\n<template>\n	<DBTextGroup :text-spacing="true" alignment="center">\n		<DBHeadingH3>A heading starts the block</DBHeadingH3>\n		<DBParagraph>A paragraph of body copy.</DBParagraph>\n		<DBParagraph size="sm">A smaller paragraph.</DBParagraph>\n	</DBTextGroup>\n</template>\n```\n\n### Spacing\n\n`text-spacing` gives every block-text child `0.5lh` of breathing room above and below, which amounts to about `1lh` between two adjacent children and `0.5lh` at the group\'s own outer edges.\n\n`:text-spacing="false"` switches the spacing off, and omitting the prop is **not** the same thing: the group then neither opts in nor out and follows whatever an ancestor set. The Patternhub, for instance, opts in on `<body>`, so an unset group is spaced there. Use `false` when it has to be off for certain.\n\nThe spacing is not the group\'s own: `text-spacing` renders `data-text-spacing`, and the foundations\' required styles turn that into a `margin-block` on every `h1`-`h6` and `p` below it. The group only needs to set the attribute, which is why it works the same in every framework output.\n\nBecause the margin sits on the text element, `1lh` resolves against that element\'s own line height. A child with a smaller `size` therefore gets proportionally less spacing, and two children of different sizes end up somewhat closer than `1lh`.\n\nThe attribute also works on a block-text element itself, so a single paragraph can carry it without a group.\n\n### Which children to use\n\nThe group knows nothing about its child types. Every `h1`-`h6` and `p` below it is spaced, whether it carries one of our classes or not, so plain `<h2>` and `<p>` elements work exactly like `DBParagraph` and `DBHeading`.\n\nOther block elements are not covered: a `ul`, `ol` or `blockquote` keeps whatever margin it brings. Give it `margin-block: calc(1lh * var(--db-text-spacing, 0))` to join the rhythm, or `margin-block: 0` to take it out.\n\n### Alignment\n\n`alignment` takes the logical values `start`, `center` and `end`. The children inherit it, so it does not have to be repeated on each one. A nested `DBTextGroup` can set its own.\n\n### Content, attributes and accessibility\n\nContent always comes through the default slot, there is no `text` prop. The `div` adds no role, so the group is invisible to assistive technology and only its children carry meaning.\n\nNative `aria-*`, `data-*`, `lang`, `title`, `style`, `class` and `id` attributes are forwarded to the rendered element.'}),`
+`,(0,O.jsx)(t.h2,{id:`properties`,children:`Properties`}),`
+`,(0,O.jsx)(r,{of:w}),`
+`,(0,O.jsx)(t.h2,{id:`resources`,children:`Resources`}),`
+`,(0,O.jsxs)(t.ul,{children:[`
+`,(0,O.jsx)(t.li,{children:(0,O.jsx)(t.a,{href:`https://design-system.deutschebahn.com/documentation/components/text-group`,rel:`nofollow`,children:`Guidelines on the Design System Platform`})}),`
+`,(0,O.jsxs)(t.li,{children:[`npm: `,(0,O.jsx)(t.a,{href:`https://www.npmjs.com/package/@db-ux/v-core-components`,rel:`nofollow`,children:`@db-ux/v-core-components`})]}),`
+`,(0,O.jsx)(t.li,{children:(0,O.jsx)(t.a,{href:`https://github.com/db-ux-design-system/core-web/tree/main/packages/components/src/components/text-group`,rel:`nofollow`,children:`Source code on GitHub`})}),`
+`,(0,O.jsx)(t.li,{children:(0,O.jsx)(t.a,{href:`https://github.com/db-ux-design-system/core-web/blob/main/packages/components/CHANGELOG.md`,rel:`nofollow`,children:`Changelog`})}),`
+`]})]})}function D(e={}){let{wrapper:t}={...s(),...e.components};return t?(0,O.jsx)(t,{...e,children:(0,O.jsx)(E,{...e})}):E(e)}var O;function k(){return(k=e((()=>{O=o(),c(),t(),T(),l(),g(),v(),b(),p()})))()}k();export{D as default};
