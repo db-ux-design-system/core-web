@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./loading-indicator-D9Ulu2N3.js";import{d as i,f as a}from"./delay.example.stories-CoqmE_tY.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{r(),i(),s={title:`Components/DBLoadingIndicator/Overview`,component:n,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:a.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...c.parameters?.docs?.source}}}})))()}export{o as n,u as t};
