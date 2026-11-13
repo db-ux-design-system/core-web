@@ -630,8 +630,9 @@ const buildUsageNotes = (
  * component (Storybook is English only): a card is harder to miss than a text
  * link. Plain `db-card` markup, because the MDX pages of the Angular, Vue and
  * Web Components Storybooks cannot import the React components; the layout is
- * in `.db-sb-platform-card` of storybook-config/docs.css. `data-mode="light"`:
- * the docs page stays light, also when the stories are switched to dark.
+ * in `.db-sb-platform-card` of storybook-config/docs.css. The card follows
+ * the mode of the page; the logo is a mask in the text color, because the
+ * colors inside logo.svg follow the OS, not the selected mode.
  */
 const buildGuidelines = (meta: ComponentMeta): string => {
 	if (!meta.platformUrl) {
@@ -641,14 +642,12 @@ const buildGuidelines = (meta: ComponentMeta): string => {
 	const name = meta.title.replace(/^DB/, '');
 	return `## Guidelines
 
-<div data-mode="light">
 <a className="db-card db-sb-platform-card" data-behavior="interactive" data-spacing="small" href="${meta.platformUrl}" target="_blank" rel="noopener noreferrer">
-	<img src="./brand/images/logo.svg" alt="" width="32" height="32" />
+	<i className="db-sb-platform-card-logo" aria-hidden="true" />
 	<strong>${name} guidelines</strong>
 	<span>When to use it, variants, Do and Don’t and the design rules for accessibility.</span>
 	<strong data-icon-trailing="arrow_up_right">Design System Platform</strong>
-</a>
-</div>`;
+</a>`;
 };
 
 /** "Status · Accessibility review", each part only when it is known. */
