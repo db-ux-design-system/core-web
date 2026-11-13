@@ -1,0 +1,3 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./input-CjRflcU3.js";import{i,r as a}from"./variant.example.stories-CU6iHdEM.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{r(),a(),s={title:`Components/DBInput/Overview`,component:n,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:i.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
+  tags: ['!dev']
+}`,...c.parameters?.docs?.source}}}})))()}export{o as n,u as t};
