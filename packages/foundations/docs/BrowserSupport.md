@@ -55,3 +55,10 @@ The following functionality relies on JavaScript for support in browsers that do
 | [`focusgroup`](https://chromestatus.com/feature/5637601087193088)                                                                                                              | 150 (17.06.2026) | tbd              | tbd                                                                                 |
 | [Relative Alpha Colors (CSS Color 5 `alpha()` function)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/alpha) (planned)                        | 152 (12.08.2026) | 155              | 27                                                                                  |
 | [CSS `@custom-media`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@custom-media) (planned)                                                             | _in development_ | _behind a flag_  | _tbd_                                                                               |
+
+## Promising Innovations
+
+We're monitoring the following Web functionality that looks promising, to simplify or enable resilient implementations:
+
+- [CSS `children-count()` function](https://github.com/w3c/csswg-drafts/issues/11068)
+- [`<rangegroup>` aka as multiple range `<input>` sliders](https://open-ui.org/components/enhanced-range-input.explainer/)
