@@ -61,5 +61,5 @@ The following functionality relies on JavaScript for support in browsers that do
 We're monitoring the following exciting Web functionality innovations that look promising to simplify or enable resilient implementations:
 
 - [CSS `children-count()` function](https://github.com/w3c/csswg-drafts/issues/11068)
-- [`<rangegroup>` aka as multiple range `<input>` sliders](https://open-ui.org/components/enhanced-range-input.explainer/)
+- [`<rangegroup>` aka multiple range `<input>` sliders](https://open-ui.org/components/enhanced-range-input.explainer/)
 - [Improve element reference attributes by allowing relative references instead of only ids](https://github.com/wicg/idrefs)
