@@ -9,6 +9,7 @@ import TableDensity from '../examples/density.example.lite';
 import TableDivider from '../examples/divider.example.lite';
 import TableHorizontalAlignment from '../examples/horizontal-alignment.example.lite';
 import TableInteractiveRow from '../examples/interactive-row.example.lite';
+import TableMobileVariantListDivider from '../examples/mobile-variant-list-divider.example.lite';
 import TableMobileVariant from '../examples/mobile-variant.example.lite';
 import TableShowCaption from '../examples/show-caption.example.lite';
 import TableSize from '../examples/size.example.lite';
@@ -18,7 +19,6 @@ import TableText from '../examples/text.example.lite';
 import TableVariant from '../examples/variant.example.lite';
 import TableVerticalAlignment from '../examples/vertical-alignment.example.lite';
 import TableWidth from '../examples/width.example.lite';
-import TableMobileVariantListDivider from '../examples/mobile-variant-list-divider.example.lite';
 
 export default function TableShowcase(props: PatternhubProps) {
 	return (
