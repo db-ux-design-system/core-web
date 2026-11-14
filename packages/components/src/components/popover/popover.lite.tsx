@@ -155,23 +155,46 @@ export default function DBPopover(props: DBPopoverProps) {
 				}
 			}
 		},
+		/**
+		 * Resolves the slotted trigger element by what it IS, not by its
+		 * position. Stencil's `experimentalSlotFixes` slot relocation reorders
+		 * children and adds marker nodes, so the former `children[0]` /
+		 * `length >= 2` heuristic no longer holds. The slotted trigger carries
+		 * `slot="trigger"` (Stencil) or the `trigger` attribute (Angular
+		 * ng-content); React and Vue render it as the first element child
+		 * before the `.db-popover-content` article (our own markup).
+		 *
+		 * When that host is a custom element (Stencil `db-button`, an Angular
+		 * component) the focusable control lives inside it. Under
+		 * `experimentalSlotFixes` the inner control is no longer exposed via
+		 * `host.children`, so it is resolved with `querySelector` for the first
+		 * interactive descendant instead of `children[0]`.
+		 */
 		getTrigger: (): Element | null => {
-			if (_ref) {
-				const children: Element[] = Array.from(_ref.children);
-				if (children.length >= 2) {
-					const firstChild = children[0];
-					if (firstChild.tagName.includes('-')) {
-						// this is a workaround for custom angular components
-						return firstChild.children?.length > 0
-							? firstChild.children[0]
-							: null;
-					} else {
-						return firstChild;
-					}
-				}
+			if (!_ref) {
+				return null;
 			}
 
-			return null;
+			const triggerHost: Element | null =
+				_ref.querySelector(':scope > [slot="trigger"]') ??
+				_ref.querySelector(':scope > [trigger]') ??
+				_ref.querySelector(':scope > :not(.db-popover-content)');
+
+			if (!triggerHost) {
+				return null;
+			}
+
+			if (triggerHost.tagName.includes('-')) {
+				return (
+					triggerHost.querySelector(
+						'button, [href], input, select, textarea, [tabindex]'
+					) ??
+					triggerHost.children[0] ??
+					null
+				);
+			}
+
+			return triggerHost;
 		}
 	});
 
