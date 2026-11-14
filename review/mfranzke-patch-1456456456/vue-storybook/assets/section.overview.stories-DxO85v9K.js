@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./section-CxUv7H66.js";import{a as i,o as a}from"./density.example.stories-CVN9sAcG.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{r(),i(),s={title:`Components/DBSection/Overview`,component:n,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:a.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...c.parameters?.docs?.source}}}})))()}export{o as n,u as t};

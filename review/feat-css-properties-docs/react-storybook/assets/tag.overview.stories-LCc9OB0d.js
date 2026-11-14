@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./tag-D0Zk4_q2.js";import{l as i,u as a}from"./behavior.example.stories-2FjFeKv1.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{n(),i(),s={title:`Components/DBTag/Overview`,component:r,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:a.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...c.parameters?.docs?.source}}}})))()}export{o as n,u as t};
