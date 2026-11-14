@@ -27,9 +27,11 @@ export default function DBTableHeaderCell(props: DBTableHeaderCellProps) {
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
 			headers={props.headers}
 			abbr={props.abbr}>
-			<Show when={props.text} else={props.children}>
-				{props.text}
-			</Show>
+			<div class="db-table-header-cell-content">
+				<Show when={props.text} else={props.children}>
+					{props.text}
+				</Show>
+			</div>
 		</th>
 	);
 }
