@@ -23,16 +23,16 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@storybook/addon-docs": "10.6.6",
-    "@storybook/web-components-vite": "10.6.6",
+    "@storybook/addon-docs": "10.6.7",
+    "@storybook/web-components-vite": "10.6.7",
     "eslint": "10.14.0",
-    "eslint-plugin-storybook": "10.6.6",
+    "eslint-plugin-storybook": "10.6.7",
     "globals": "17.14.0",
     "prettier": "3.9.10",
     "react": "19.3.1",
-    "storybook": "10.6.6",
+    "storybook": "10.6.7",
     "typescript": "5.9.3",
     "typescript-eslint": "8.72.2",
-    "vite": "8.3.7"
+    "vite": "8.3.8"
   }
 }
