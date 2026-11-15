@@ -1,0 +1,17 @@
+import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{t as n}from"./jsx-runtime-MKhVqBIO.js";import{n as r,t as i}from"./infotext-BrqREugs.js";import{i as a,n as o,r as s,t as c}from"./tab-list-BuTKFFZw.js";import{i as l,n as u,r as d,t as f}from"./tabs-DbGLa58_.js";var p=t({__namedExportsOrder:()=>y,default:()=>g,horizontal:()=>_,vertical:()=>v}),m,h,g,_,v,y;function b(){return(b=e((()=>{r(),a(),o(),l(),u(),m=n(),{fn:h}=__STORYBOOK_MODULE_TEST__,g={title:`Components/DBTabs/Orientation`,component:f,parameters:{layout:`centered`},tags:[`autodocs`],args:{onIndexChange:h(),onValueChange:h()},argTypes:{orientation:{control:`select`,options:[`horizontal`,`vertical`]},tabItemWidth:{control:`select`,options:[`full`,`auto`]},tabItemAlignment:{control:`select`,options:[`start`,`center`,`end`]},behavior:{control:`select`,options:[`scrollbar`,`arrows`]},initialSelectedIndex:{control:`number`},initialSelectedMode:{control:`select`,options:[`auto`,`manually`]},label:{control:`text`},tabs:{control:`object`},arrowScrollDistance:{control:`number`},id:{control:`text`},autofocus:{control:`boolean`},onIndexChange:{action:`onIndexChange`},onValueChange:{action:`onValueChange`}}},_={args:{orientation:`horizontal`,children:(0,m.jsxs)(m.Fragment,{children:[(0,m.jsxs)(c,{children:[(0,m.jsx)(s,{children:`Test 1`}),(0,m.jsx)(s,{children:`Test 2`}),(0,m.jsx)(s,{children:`Test 3`})]}),(0,m.jsx)(d,{children:`Tab Panel 1`}),(0,m.jsx)(d,{children:`Tab Panel 2`}),(0,m.jsx)(d,{children:`Tab Panel 3`})]})},render:e=>(0,m.jsxs)(`div`,{className:`fit-content-container`,children:[(0,m.jsx)(i,{icon:`none`,size:`small`,semantic:`informational`,children:`horizontal:`}),(0,m.jsx)(f,{...e})]})},v={args:{orientation:`vertical`,children:(0,m.jsxs)(m.Fragment,{children:[(0,m.jsxs)(c,{children:[(0,m.jsx)(s,{children:`Test 1`}),(0,m.jsx)(s,{children:`Test 2`}),(0,m.jsx)(s,{children:`Test 3`})]}),(0,m.jsx)(d,{children:`Tab Panel 1`}),(0,m.jsx)(d,{children:`Tab Panel 2`}),(0,m.jsx)(d,{children:`Tab Panel 3`})]})},render:e=>(0,m.jsxs)(`div`,{className:`fit-content-container`,children:[(0,m.jsx)(i,{icon:`none`,size:`small`,semantic:`informational`,children:`vertical:`}),(0,m.jsx)(f,{...e})]})},y=[`horizontal`,`vertical`],_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "horizontal",
+    "children": <><DBTabList><DBTabItem>Test 1</DBTabItem><DBTabItem>Test 2</DBTabItem><DBTabItem>Test 3</DBTabItem></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    horizontal:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  args: {
+    "orientation": "vertical",
+    "children": <><DBTabList><DBTabItem>Test 1</DBTabItem><DBTabItem>Test 2</DBTabItem><DBTabItem>Test 3</DBTabItem></DBTabList><DBTabPanel>Tab Panel 1</DBTabPanel><DBTabPanel>Tab Panel 2</DBTabPanel><DBTabPanel>Tab Panel 3</DBTabPanel></>
+  },
+  render: (properties: any) => <div className="fit-content-container"><DBInfotext icon="none" size="small" semantic="informational">
+                    vertical:
+                </DBInfotext><DBTabs {...properties} /></div>
+}`,...v.parameters?.docs?.source}}}})))()}export{v as i,b as n,p as r,_ as t};
