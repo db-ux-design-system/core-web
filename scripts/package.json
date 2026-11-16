@@ -88,7 +88,6 @@
     "glob": "14.0.4",
     "npm-run-all2": "9.0.4",
     "publint": "0.3.25",
-    "replace-in-file": "9.0.0",
     "typedoc": "0.28.20",
     "typedoc-plugin-markdown": "4.14.1",
     "typedoc-plugin-merge-modules": "7.0.0",

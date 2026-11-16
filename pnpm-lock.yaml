@@ -860,9 +860,6 @@ importers:
       publint:
         specifier: 0.3.25
         version: 0.3.25
-      replace-in-file:
-        specifier: 9.0.0
-        version: 9.0.0
       typedoc:
         specifier: 0.28.20
         version: 0.28.20(typescript@5.9.3)
