@@ -5,7 +5,7 @@
  * The Storybook manager (sidebar, toolbar) does not load the design system
  * CSS, so its theme needs plain values instead of `var(--db-…)`. A browser
  * (Playwright) loads the foundations and the DB Theme CSS and resolves the
- * tokens in Light Mode, exactly as a component would see them.
+ * tokens in Light and in Dark Mode, exactly as a component would see them.
  *
  * Run after a theme update:
  *
@@ -42,6 +42,11 @@ const TOKENS = {
 	itemPressed: '--db-neutral-bg-basic-transparent-full-pressed',
 	// Active item indicator (styles/internal/_indicator.scss).
 	indicator: '--db-brand-on-bg-basic-emphasis-70-default',
+	// Brand colored text (Storybook's `colorSecondary`, e.g. "Show more" in
+	// the properties table): the brand origin reaches only 3.9:1 on the dark
+	// background and 4.1:1 on the grey table rows, emphasis 80 at least
+	// 5.8:1 in both modes.
+	brandText: '--db-brand-on-bg-basic-emphasis-80-default',
 	text: '--db-neutral-on-bg-basic-emphasis-100-default',
 	// Emphasis 70 reaches only 4.49:1 on white, below the 4.5:1 of WCAG AA.
 	textMuted: '--db-neutral-on-bg-basic-emphasis-80-default',
@@ -85,21 +90,39 @@ const toCssColor = (computed: string): string => {
 		.join('')}`;
 };
 
+type Scheme = 'light' | 'dark';
+const SCHEMES: Scheme[] = ['light', 'dark'];
+
 const browser = await chromium.launch();
-const page = await browser.newPage({ colorScheme: 'light' });
+// The tokens use light-dark(), which follows the color scheme of the page.
+const readColors = async (scheme: Scheme): Promise<Record<string, string>> => {
+	const colorPage = await browser.newPage({ colorScheme: scheme });
+	await colorPage.setContent('<!doctype html><html><body></body></html>');
+	await colorPage.addStyleTag({ content: css });
+	return colorPage.evaluate((tokens) => {
+		const probe = document.createElement('div');
+		document.body.append(probe);
+		return Object.fromEntries(
+			Object.entries(tokens).map(([key, name]) => {
+				probe.style.backgroundColor = '';
+				probe.style.backgroundColor = `var(${name})`;
+				return [key, getComputedStyle(probe).backgroundColor];
+			})
+		);
+	}, TOKENS);
+};
+
+const [lightColors, darkColors] = await Promise.all(
+	SCHEMES.map(async (scheme) => readColors(scheme))
+);
+const computedPerScheme: Record<Scheme, Record<string, string>> = {
+	light: lightColors,
+	dark: darkColors
+};
+const page = await browser.newPage();
 await page.setContent('<!doctype html><html><body></body></html>');
 await page.addStyleTag({ content: css });
-const computed = await page.evaluate((tokens) => {
-	const probe = document.createElement('div');
-	document.body.append(probe);
-	return Object.fromEntries(
-		Object.entries(tokens).map(([key, name]) => {
-			probe.style.backgroundColor = '';
-			probe.style.backgroundColor = `var(${name})`;
-			return [key, getComputedStyle(probe).backgroundColor];
-		})
-	);
-}, TOKENS);
+
 const lengths = await page.evaluate((tokens) => {
 	const probe = document.createElement('div');
 	document.body.append(probe);
@@ -126,43 +149,62 @@ for (const [key, value] of Object.entries(lengths)) {
 	}
 }
 
-const colors = Object.fromEntries(
-	Object.entries(computed).map(([key, value]) => {
-		// An undefined token computes to transparent.
-		if (value === 'rgba(0, 0, 0, 0)') {
-			throw new Error(
-				`[theme] ${TOKENS[key as keyof typeof TOKENS]} is not defined`
-			);
-		}
+const toColors = (computed: Record<string, string>) =>
+	Object.fromEntries(
+		Object.entries(computed).map(([key, value]) => {
+			// An undefined token computes to transparent.
+			if (value === 'rgba(0, 0, 0, 0)') {
+				throw new Error(
+					`[theme] ${TOKENS[key as keyof typeof TOKENS]} is not defined`
+				);
+			}
 
-		return [key, toCssColor(value)];
-	})
-);
+			return [key, toCssColor(value)];
+		})
+	);
 
 /*
  * Logo of the sidebar. `logo.svg` picks its color with `light-dark()`, which
- * follows the OS color scheme inside an `<img>`: white on the light sidebar in
- * Dark Mode. Fix the Light Mode color and the size (32 px instead of 96 px).
+ * follows the OS color scheme inside an `<img>`, not the mode of the
+ * Storybook. Fix the color of each scheme and the size (32 px instead of
+ * 96 px).
  */
 const logoSource = read(
 	join(ROOT, 'packages/foundations/assets/images/logo.svg')
 );
-const logo = logoSource
-	.replaceAll(/light-dark\(\s*([^,]+?)\s*,[^)]*\)/g, '$1')
-	.replace('width="96" height="96"', 'width="32" height="32"');
-if (logo.includes('light-dark') || !logo.includes('width="32"')) {
-	throw new Error('[theme] logo.svg changed, adjust the logo replacements');
-}
+const toLogo = (scheme: Scheme): string => {
+	const logo = logoSource
+		.replaceAll(
+			/light-dark\(\s*([^,]+?)\s*,\s*([^)]+?)\s*\)/g,
+			(_: string, light: string, dark: string) =>
+				scheme === 'light' ? light : dark
+		)
+		.replace('width="96" height="96"', 'width="32" height="32"');
+	if (logo.includes('light-dark') || !logo.includes('width="32"')) {
+		throw new Error(
+			'[theme] logo.svg changed, adjust the logo replacements'
+		);
+	}
+
+	return `data:image/svg+xml;base64,${Buffer.from(logo.replaceAll(/\s+/g, ' ').trim()).toString('base64')}`;
+};
 
 const values = {
-	...colors,
+	...Object.fromEntries(
+		SCHEMES.map((scheme) => [
+			scheme,
+			{
+				...toColors(computedPerScheme[scheme]),
+				brandLogo: toLogo(scheme)
+			}
+		])
+	),
 	...lengths,
 	fontSans: '"DB Neo Screen Sans", helvetica, arial, sans-serif',
 	fontHead: '"DB Neo Screen Head", helvetica, arial, sans-serif',
-	fontCode: 'ui-monospace, monospace',
-	brandLogo: `data:image/svg+xml;base64,${Buffer.from(logo.replaceAll(/\s+/g, ' ').trim()).toString('base64')}`
+	fontCode: 'ui-monospace, monospace'
 };
 
 const target = join(import.meta.dirname, 'theme-values.json');
 writeFileSync(target, `${JSON.stringify(values, null, '\t')}\n`);
-console.log('[theme] wrote', target.replace(`${ROOT}/`, ''), colors);
+console.log('[theme] wrote', target.replace(`${ROOT}/`, ''));

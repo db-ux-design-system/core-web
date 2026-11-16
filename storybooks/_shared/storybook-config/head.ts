@@ -16,19 +16,37 @@ import { join } from 'node:path';
 const read = (file: string) =>
 	readFileSync(join(import.meta.dirname, file), 'utf8').trimEnd();
 
-/** `brandLogo` -> `--db-sb-brand-logo`; only plain CSS values. */
-const themeVariables = (): string => {
-	const values = JSON.parse(read('theme-values.json')) as Record<
-		string,
-		string
-	>;
-	return Object.entries(values)
-		.filter(([key]) => !key.startsWith('font') && key !== 'brandLogo')
+type Values = Record<string, string>;
+
+/** `textMuted` -> `--db-sb-text-muted: …;`; only plain CSS values. */
+const toVariables = (values: Values): string =>
+	Object.entries(values)
+		.filter(
+			([key, value]) =>
+				typeof value === 'string' &&
+				!key.startsWith('font') &&
+				key !== 'brandLogo'
+		)
 		.map(
 			([key, value]) =>
 				`--db-sb-${key.replaceAll(/[A-Z\d]+/g, (part) => `-${part.toLowerCase()}`)}: ${value};`
 		)
 		.join('\n');
+
+/**
+ * The `--db-sb-*` values of both modes. manager.ts sets
+ * `data-db-sb-mode` on `<html>` from the "Mode" toolbar entry; before it runs
+ * (and for "System") the OS color scheme decides.
+ */
+const themeVariables = (): string => {
+	const { light, dark, ...shared } = JSON.parse(
+		read('theme-values.json')
+	) as Values & { light: Values; dark: Values };
+	return [
+		`:root {\n${toVariables(shared)}\n${toVariables(light)}\n}`,
+		`@media (prefers-color-scheme: dark) {\n:root:not([data-db-sb-mode="light"]) {\n${toVariables(dark)}\n}\n}`,
+		`:root[data-db-sb-mode="dark"] {\n${toVariables(dark)}\n}`
+	].join('\n');
 };
 
 /** Appended to Storybook's manager head (`managerHead` in main.ts). */
@@ -37,7 +55,7 @@ export const managerHead = (head = ''): string =>
 		head,
 		read('manager-head.html'),
 		'<style data-db-theme="manager">',
-		`:root {\n${themeVariables()}\n}`,
+		themeVariables(),
 		read('manager.css'),
 		'</style>'
 	].join('\n');

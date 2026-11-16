@@ -3,11 +3,12 @@ import type { Decorator, Preview } from '@storybook/web-components-vite';
 import * as prettierHtml from 'prettier/plugins/html';
 import * as prettier from 'prettier/standalone';
 import AutodocsPage from './autodocs-page.mdx';
+import { ModeDocsContainer } from './docs-container';
 import './global.css';
 import { htmlCaptureDecorator, htmlSourceMap } from './html-capture-decorator';
 import { applyMode, modeGlobalTypes, modeInitialGlobals } from './mode';
 import { addSourceImports } from './source-imports';
-import { docsTheme } from './theme';
+import { docsThemes } from './theme';
 
 const withMode: Decorator = (storyFn, { globals }) => {
 	applyMode(globals);
@@ -42,8 +43,10 @@ const preview: Preview = {
 			}
 		},
 		docs: {
-			// Colors and fonts of the design system, see theme.ts.
-			theme: docsTheme,
+			// Colors and fonts of the design system in the selected mode, see
+			// theme.ts and docs-container.ts.
+			theme: docsThemes.light,
+			container: ModeDocsContainer,
 			// Example pages without the properties table, see autodocs-page.mdx.
 			page: AutodocsPage,
 			toc: {
