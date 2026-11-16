@@ -162,7 +162,6 @@ const config: StorybookConfig = {
 		};
 
 		return mergeConfig(config, {
-			// TODO: Remove `/storybook` after removing patternhub
 			base: `${baseUrl}/composition-storybook`,
 			build: {
 				cssMinify: 'esbuild'

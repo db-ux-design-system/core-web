@@ -1,0 +1,169 @@
+[
+	{
+		"name": "action",
+		"subNavigation": [
+			{
+				"name": "button"
+			},
+			{
+				"name": "link"
+			},
+			{
+				"name": "custom-button"
+			}
+		]
+	},
+	{
+		"name": "data-display",
+		"subNavigation": [
+			{
+				"name": "heading"
+			},
+			{
+				"name": "paragraph"
+			},
+			{
+				"name": "text-group"
+			},
+			{
+				"name": "tooltip"
+			},
+			{
+				"name": "infotext"
+			},
+			{
+				"name": "tag"
+			},
+			{
+				"name": "accordion"
+			},
+			{
+				"name": "accordion-item"
+			},
+			{
+				"name": "table"
+			},
+			{
+				"name": "tabs"
+			},
+			{
+				"name": "tab-item"
+			}
+		]
+	},
+	{
+		"name": "data-input",
+		"subNavigation": [
+			{
+				"name": "checkbox"
+			},
+			{
+				"name": "input"
+			},
+			{
+				"name": "custom-select"
+			},
+			{
+				"name": "radio"
+			},
+			{
+				"name": "select"
+			},
+			{
+				"name": "switch"
+			},
+			{
+				"name": "textarea"
+			}
+		]
+	},
+	{
+		"name": "feedback",
+		"subNavigation": [
+			{
+				"name": "notification"
+			},
+			{
+				"name": "badge"
+			},
+			{
+				"name": "loading-indicator"
+			}
+		]
+	},
+	{
+		"name": "layout",
+		"subNavigation": [
+			{
+				"name": "card"
+			},
+			{
+				"name": "dialog"
+			},
+			{
+				"name": "divider"
+			},
+			{
+				"name": "drawer"
+			},
+			{
+				"name": "footer"
+			},
+			{
+				"name": "footer-content"
+			},
+			{
+				"name": "footer-meta"
+			},
+			{
+				"name": "section"
+			},
+			{
+				"name": "stack"
+			}
+		]
+	},
+	{
+		"name": "navigation",
+		"subNavigation": [
+			{
+				"name": "pagination"
+			},
+			{
+				"name": "control-panel-brand"
+			},
+			{
+				"name": "control-panel-flat-icon"
+			},
+			{
+				"name": "control-panel-desktop"
+			},
+			{
+				"name": "control-panel-mobile"
+			},
+			{
+				"name": "shell"
+			},
+			{
+				"name": "shell-content"
+			},
+			{
+				"name": "breadcrumb"
+			},
+			{
+				"name": "breadcrumb-item"
+			},
+			{
+				"name": "breadcrumb-popover-item"
+			}
+		]
+	},
+	{
+		"name": "utilities",
+		"subNavigation": [
+			{
+				"name": "popover"
+			}
+		]
+	}
+]

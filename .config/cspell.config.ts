@@ -43,7 +43,6 @@ export default defineConfig({
 		'packages/mcp-server/docs/migration/db-ui-icon-migration.md',
 		'packages/mcp-server/docs/migration/db-ui-color-migration.md',
 		'output/**',
-		'showcases/patternhub/**',
 		'docs/migration/db-ui/color-migration.md',
 		'docs/migration/db-ui/icon-migration.md',
 		'packages/mcp-server/src/manifest.json',
@@ -51,7 +50,6 @@ export default defineConfig({
 		'packages/foundations/src/all-icons.ts',
 		// Examples
 		'showcases/react-showcase/src/components/form/index.tsx',
-		'showcases/patternhub/pages/foundations/densities/examples.tsx',
 		'showcases/angular-showcase/src/app/components/form/form.component.ts',
 		'.vscode/*.json',
 		'packages/foundations/playwright-report'

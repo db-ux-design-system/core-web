@@ -3,25 +3,29 @@
  * directory, so bookmarks and external links keep working:
  *
  * - `/` -> the composition Storybook
- * - `/components/<category>/<name>[/<tab>]` -> the overview page of the
- *   component (parts: their section on the page of the main component),
+ * - `/components/<category>/<name>[/<tab>]` and the short
+ *   `/components/<name>[/overview]` -> the overview page of the component
+ *   (parts: their section on the page of the main component),
  *   `properties` -> `#properties`, `how-to-use` -> `#usage-notes`,
  *   `migration` -> `#migration`
  * - Foundations and guides -> their Storybook page or the platform
  *   (`resolvePatternhubRoute` of foundations/links.ts)
  *
- * The Patternhub framework switch (`?current=angular`) selects the framework
- * ref of the composition Storybook. Targets are relative, so the pages work
- * below every `review/<branch>/` and `version/<name>/`.
+ * The framework of a shared Patternhub link (`?framework=angular`, older links
+ * `?current=angular`) selects the framework ref of the composition Storybook.
+ * Targets are relative, so the pages work below every `review/<branch>/` and
+ * `version/<name>/`.
+ *
+ * The routes come from `patternhub-components.json`, the frozen navigation of
+ * the Patternhub (category and component names).
  *
  *   node storybooks/_shared/patternhub-redirects.ts <out-dir>
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join } from 'node:path';
 import { resolvePatternhubRoute } from './foundations/links.ts';
 import { getComponentMeta, getStructure } from './overview/meta.ts';
 
-const ROOT = resolve(import.meta.dirname, '..', '..');
 const [outDir] = process.argv.slice(2);
 if (!outDir) {
 	throw new Error('Usage: patternhub-redirects.ts <out-dir>');
@@ -36,7 +40,7 @@ type Category = {
 };
 const categories = JSON.parse(
 	readFileSync(
-		join(ROOT, 'showcases/patternhub/data/components.json'),
+		join(import.meta.dirname, 'patternhub-components.json'),
 		'utf8'
 	)
 ) as Category[];
@@ -81,12 +85,17 @@ for (const category of categories) {
 		]) {
 			const path = componentPath(name, tab);
 			const route = `/components/${category.name}/${name}${tab ? `/${tab}` : ''}`;
-			redirects.set(
-				route,
-				path
-					? { storybookPath: path }
-					: { storybookPath: '/docs/getting-started--docs' }
-			);
+			const target = path
+				? { storybookPath: path }
+				: { storybookPath: '/docs/getting-started--docs' };
+			redirects.set(route, target);
+			// The Patternhub also served every component without its category.
+			if (tab === undefined || tab === 'overview') {
+				redirects.set(
+					`/components/${name}${tab ? `/${tab}` : ''}`,
+					target
+				);
+			}
 		}
 	}
 }
@@ -123,7 +132,10 @@ const OTHER_ROUTES = [
 	'/components/misc/custom-components',
 	'/components/misc/testing',
 	'/components/misc/validation',
-	'/components/misc/backdrop'
+	'/components/misc/backdrop',
+	// The Base64/iframe tool of the Patternhub, removed without a successor.
+	'/base64',
+	'/iframe'
 ];
 /** Section pages of the Patternhub that only list their sub pages. */
 const ALIASES: Record<string, string> = {
@@ -137,7 +149,9 @@ const ALIASES: Record<string, string> = {
 const FIXED: Record<string, { storybookPath?: string; url?: string }> = {
 	'/foundations': { storybookPath: '/docs/foundations-colors--docs' },
 	'/foundations/playgrounds': { url: `${PLATFORM}/learn/examples` },
-	'/components/misc': { url: `${PLATFORM}/learn` }
+	'/components/misc': { url: `${PLATFORM}/learn` },
+	'/base64': { storybookPath: '/docs/getting-started--docs' },
+	'/iframe': { storybookPath: '/docs/getting-started--docs' }
 };
 
 const toTarget = (href: string): { storybookPath?: string; url?: string } =>
@@ -180,7 +194,8 @@ const page = (
 	const script = isComponent
 		? `<script>
 const refs = ${JSON.stringify(REFS)};
-const ref = refs[new URLSearchParams(location.search).get("current")] ?? "react";
+const query = new URLSearchParams(location.search);
+const ref = refs[query.get("framework") ?? query.get("current")] ?? "react";
 location.replace(${JSON.stringify(`${toRoot}${COMPOSITION}?path=`)} + ${JSON.stringify(target.storybookPath)}.replace("/docs/", "/docs/" + ref + "_"));
 </script>`
 		: `<script>location.replace(${JSON.stringify(fallback)});</script>`;

@@ -7,11 +7,6 @@ on:
         description: "Regenerate snapshots for foundations"
         required: true
         type: boolean
-      patternhub:
-        description: "Regenerate snapshots for patternhub"
-        required: false
-        type: boolean
-        default: false
       showcases:
         description: "Regenerate snapshots for showcases"
         required: true
@@ -25,7 +20,7 @@ jobs:
     # our own GitHub App and need the regenerated snapshots committed so the
     # visual diff of a DB theme bump becomes reviewable.
     if: |
-      (inputs.showcases || inputs.foundations || inputs.patternhub) &&
+      (inputs.showcases || inputs.foundations) &&
       (!contains(github.actor,'[bot]') || startsWith(github.head_ref,'renovate-'))
     runs-on: ubuntu-26.04
     permissions:
@@ -44,13 +39,6 @@ jobs:
         with:
           name: snapshots-foundations
           path: ./__snapshots__/foundations
-
-      - name: ⏬ Download patternhub
-        uses: actions/download-artifact@v8.0.2
-        if: inputs.patternhub
-        with:
-          name: snapshots-patternhub
-          path: ./__snapshots__/
 
       - name: ⏬ Download showcase
         uses: actions/download-artifact@v8.0.2

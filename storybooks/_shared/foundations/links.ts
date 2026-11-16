@@ -7,8 +7,9 @@
  * 1. to a Foundations page of this Storybook,
  * 2. to the Design System Platform, where the content lives there (guides,
  *    icons, setup),
- * 3. otherwise to the Patternhub of the latest release (content that has
- *    not moved).
+ * 3. otherwise to the old Patternhub URL of the latest release, which
+ *    redirects to the new home (../patternhub-redirects.ts). No docs link
+ *    needs this fallback at the moment.
  *
  * Absolute links to the unreleased Patternhub (`review/main`) point to the
  * latest release instead.

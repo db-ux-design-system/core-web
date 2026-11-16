@@ -8,7 +8,7 @@
  * | ------------------- | ------------------------------------------------------- |
  * | title               | `export default function DB…` in `<name>.lite.tsx`      |
  * | summary, status     | platform `/api/components.json` (`description`, status) |
- * | accessibilityReview | `showcases/patternhub/data/_accessibility-review.json`  |
+ * | accessibilityReview | `storybooks/_shared/overview/accessibility-review.json`  |
  * | platformUrl         | platform `/api/components.json`; without it the         |
  * |                     | convention `components/<name>`, `control-panel-<x>` →   |
  * |                     | `components/control-panel/<x>`; `overrides.json` for    |
@@ -80,7 +80,7 @@ const overrides = JSON.parse(
 ) as Record<string, Override>;
 
 const reviews = JSON.parse(
-	read('showcases/patternhub/data/_accessibility-review.json')
+	read('storybooks/_shared/overview/accessibility-review.json')
 ) as Review[];
 
 const REVIEW_STATUS: Record<string, string> = {

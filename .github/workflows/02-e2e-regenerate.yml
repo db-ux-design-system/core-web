@@ -59,13 +59,6 @@ jobs:
           name: db-ux-react-showcase
           path: build-showcases/react-showcase
 
-      - name: ⏬ Download patternhub
-        if: inputs.type == 'patternhub'
-        uses: actions/download-artifact@v8.0.2
-        with:
-          name: db-ux-patternhub
-          path: build-showcases/patternhub
-
       - name: 👩‍🔬 Generate snapshots 🎭
         shell: bash
         env:
@@ -74,10 +67,6 @@ jobs:
         run: |
           if [[ $TYPE == "foundations" ]]; then
             pnpm --filter @db-ux/core-foundations run regenerate:screenshots
-          elif [[ $TYPE == "patternhub" ]]; then
-            mkdir --parents ./build-showcases${{ inputs.path }}
-            cp --recursive --no-target-directory ./build-showcases/${{ inputs.type }} ./build-showcases${{ inputs.path }}
-            pnpm --filter patternhub run regenerate:screenshots
           else
             pnpm --filter react-showcase run regenerate:visual-snapshots
             pnpm --filter react-showcase run regenerate:aria-snapshots
@@ -89,14 +78,6 @@ jobs:
         with:
           name: snapshots-${{ inputs.type }}
           path: ./__snapshots__/foundations
-          retention-days: 7
-
-      - name: 🆙 Upload patternhub
-        if: ${{ !cancelled() && inputs.type == 'patternhub' }}
-        uses: actions/upload-artifact@v7.0.2
-        with:
-          name: snapshots-${{ inputs.type }}
-          path: ./__snapshots__/*/patternhub
           retention-days: 7
 
       - name: 🆙 Upload showcase
