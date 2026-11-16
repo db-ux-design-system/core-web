@@ -233,7 +233,7 @@
 					// Screen reader would announce it twice
 					content: attr(data-header) / "";
 					font-weight: bold;
-					word-break: break-word;
+					overflow-wrap: anywhere;
 				}
 			}
 
@@ -248,7 +248,7 @@
 				}
 
 				> div {
-					height: 100%;
+					block-size: 100%;
 					display: flex;
 					align-items: center;
 				}
