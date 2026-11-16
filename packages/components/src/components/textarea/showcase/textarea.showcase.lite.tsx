@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -18,11 +17,9 @@ import TextareaState from '../examples/state.example.lite';
 import TextareaValidation from '../examples/validation.example.lite';
 import TextareaVariant from '../examples/variant.example.lite';
 
-export default function TextareaShowcase(props: PatternhubProps) {
+export default function TextareaShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBTextarea"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBTextarea">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<TextareaDensity />

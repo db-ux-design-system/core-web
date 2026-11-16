@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -11,11 +10,9 @@ import ShellSlots from '../examples/slots.example.lite';
 import ShellSubNavigation from '../examples/sub-navigation.example.lite';
 import ShellTreeNavigation from '../examples/tree-navigation.example.lite';
 
-export default function ShellShowcase(props: PatternhubProps) {
+export default function ShellShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBShell"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBShell">
 			<LinkWrapperShowcase exampleName="Position">
 				<CardWrapperShowcase>
 					<ShellPosition />

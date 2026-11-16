@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -8,11 +7,9 @@ import ControlPanelDesktopInteraction from '../examples/interaction.example.lite
 import ControlPanelDesktopOrientation from '../examples/orientation.example.lite';
 import ControlPanelDesktopWidth from '../examples/width.example.lite';
 
-export default function ControlPanelDesktopShowcase(props: PatternhubProps) {
+export default function ControlPanelDesktopShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBControlPanelDesktop"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBControlPanelDesktop">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<ControlPanelDesktopDensity />
