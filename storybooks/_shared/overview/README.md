@@ -22,7 +22,7 @@ What belongs in Storybook and what on the Design System Platform is described in
 | Content                                                 | Source                                                                                                                                               |
 | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Title                                                   | `export default function DB…` in `<component>.lite.tsx`                                                                                              |
-| Accessibility review                                    | `storybooks/_shared/overview/accessibility-review.json`                                                                                               |
+| Accessibility review                                    | `storybooks/_shared/overview/accessibility-review.json`                                                                                              |
 | Summary, status, link to the guidelines                 | `/api/components.json` of the Design System Platform (see below)                                                                                     |
 | Accessibility, migration                                | `packages/components/src/components/<component>/docs/*.md`                                                                                           |
 | Usage (the examples; "Show code" includes the imports)  | the generated example stories, `../storybook-config/source-imports.ts`                                                                               |
