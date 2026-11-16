@@ -10,8 +10,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "node ../_shared/overview/generate-overviews.ts --storybook vue-storybook && cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook build --output-dir ../../build-storybooks/vue-storybook",
-    "storybook": "node ../_shared/overview/generate-overviews.ts --storybook vue-storybook && cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6007"
+    "build": "node ../_shared/storybook-config/copy-config.ts --storybook vue-storybook && node ../_shared/overview/generate-overviews.ts --storybook vue-storybook && cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook build --output-dir ../../build-storybooks/vue-storybook",
+    "storybook": "node ../_shared/storybook-config/copy-config.ts --storybook vue-storybook && node ../_shared/overview/generate-overviews.ts --storybook vue-storybook && cross-env NODE_OPTIONS=--max-old-space-size=8192 storybook dev -p 6007"
   },
   "dependencies": {
     "@db-ux/core-components": "workspace:*",
@@ -26,17 +26,18 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "5.6.0",
-    "@storybook/addon-a11y": "10.6.6",
-    "@storybook/addon-docs": "10.6.6",
-    "@storybook/addon-vitest": "10.6.6",
-    "@storybook/vue3-vite": "10.6.6",
+    "@storybook/addon-a11y": "10.6.7",
+    "@storybook/addon-docs": "10.6.7",
+    "@storybook/addon-vitest": "10.6.7",
+    "@storybook/vue3-vite": "10.6.7",
     "@vitejs/plugin-vue": "6.0.10",
     "@vue/tsconfig": "0.9.1",
     "cross-env": "10.1.0",
-    "eslint-plugin-storybook": "10.6.6",
-    "storybook": "10.6.6",
+    "eslint-plugin-storybook": "10.6.7",
+    "react": "19.3.1",
+    "storybook": "10.6.7",
     "typescript": "~5.9.3",
-    "vite": "8.3.6",
+    "vite": "8.3.8",
     "vue-tsc": "3.3.14"
   }
 }

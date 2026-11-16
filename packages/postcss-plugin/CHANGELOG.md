@@ -1,5 +1,14 @@
 # @db-ux/core-postcss-plugin
 
+## 6.4.0
+
+### Minor Changes
+
+- fix(flatten): keep the customizable layout breakpoint live - [see commit 78559f9](https://github.com/db-ux-design-system/core-web/commit/78559f9147423b1a243f3470f7868d0722496cf0):
+
+    - `--db-breakpoint` is now a default dynamic prefix, so the plugin never resolves it and consumers can still move the `DBShell`/`DBControlPanel` switch point after flattening
+    - `@property` rules for dynamic variables are now preserved, so the `--db-breakpoint` registration survives even though only a container style query reads it - without the registration the switch silently breaks
+
 ## 6.3.2
 
 No changes in this release.
