@@ -63,6 +63,7 @@
     "lint:knip": "knip --config .config/knip.jsonc",
     "lint:markdownlint": "markdownlint --config .config/.markdown-lint.yml **/*.md",
     "lint:package-json": "npmPkgJsonLint ./packages ./output --configFile .config/.npmpackagejsonlintrc.json",
+    "lint:platform-components": "node storybooks/_shared/overview/update-platform-components.ts --check",
     "lint:storybook-foundations": "node storybooks/_shared/foundations/generate-foundations.ts --check",
     "lint:stylelint": "stylelint **/*.{css,scss}",
     "lint:xo": "xo",

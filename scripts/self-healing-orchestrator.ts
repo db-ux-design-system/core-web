@@ -110,6 +110,24 @@ export const checkFixMap: CheckConfig[] = [
 		fixCommands: []
 	},
 	{
+		// Copy of the platform's /api/components.json that the Storybook
+		// overview pages are built from. The check only warns when the
+		// platform is not reachable.
+		name: 'lint:platform-components',
+		checkCommand: {
+			command: 'pnpm',
+			args: ['run', 'lint:platform-components']
+		},
+		fixCommands: [
+			{
+				command: 'node',
+				args: [
+					'storybooks/_shared/overview/update-platform-components.ts'
+				]
+			}
+		]
+	},
+	{
 		// Committed Foundations pages of the composition Storybook.
 		name: 'lint:storybook-foundations',
 		checkCommand: {
