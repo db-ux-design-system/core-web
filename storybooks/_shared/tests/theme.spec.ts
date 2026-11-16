@@ -71,12 +71,17 @@ test.describe('manager.css', () => {
 			page
 				.locator(path)
 				.evaluate((node) => getComputedStyle(node, '::before').content);
-		await page.goto(
-			`${storybookUrl('composition-storybook')}/?path=/docs/react_${OVERVIEW}`
-		);
-		await expect(page.locator(path)).toHaveText(/DBButton/, {
-			timeout: 60_000
-		});
+		// Storybook sometimes never resolves the current story of a ref that
+		// is opened by URL: the bar then stays empty for this page load. Load
+		// the page again instead of waiting.
+		await expect(async () => {
+			await page.goto(
+				`${storybookUrl('composition-storybook')}/?path=/docs/react_${OVERVIEW}`
+			);
+			await expect(page.locator(path)).toHaveText(/DBButton/, {
+				timeout: 15_000
+			});
+		}).toPass({ timeout: 75_000 });
 		await expect.poll(prefix).toBe('"React ⋅ "');
 		// Not in a ref (Foundations): no prefix.
 		await page.goto(
