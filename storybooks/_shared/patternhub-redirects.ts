@@ -120,6 +120,7 @@ const OTHER_ROUTES = [
 	'/foundations/variables',
 	'/foundations/variables/readme',
 	'/foundations/variables/examples',
+	'/foundations/breakpoints',
 	'/foundations/test-table',
 	'/foundations/ide',
 	'/foundations/performance',
