@@ -17,6 +17,7 @@
 	// They import `storybook/*`, which resolves only in a Storybook: copy-config.ts
 	// copies them there, where each Storybook type-checks them.
 	"exclude": [
+		"storybook-config/docs-container.ts",
 		"storybook-config/manager.ts",
 		"storybook-config/mode.ts",
 		"storybook-config/theme.ts"
