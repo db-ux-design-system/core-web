@@ -323,7 +323,14 @@
 			&:not([data-divider]),
 			&[data-divider="both"],
 			&[data-divider="horizontal"] {
-				:is(td, th):not(:last-child) {
+				// Angular/Stencil wrap every cell in a host element, so
+				// `:last-child` has to be checked on the host there
+				tr > :is(td, th):not(:last-child),
+				tr
+					> :is(db-table-header-cell, db-table-data-cell):not(
+						:last-child
+					)
+					> :is(td, th) {
 					border-block-end: component.$component-border;
 				}
 			}
