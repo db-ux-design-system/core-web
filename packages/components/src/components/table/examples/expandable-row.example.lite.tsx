@@ -1,4 +1,5 @@
-import { Fragment, useMetadata } from '@builder.io/mitosis';
+import { Fragment, useMetadata, useStore } from '@builder.io/mitosis';
+import DBInfotext from '../../infotext/infotext.lite';
 import DBTableBody from '../../table-body/table-body.lite';
 import DBTableDataCell from '../../table-data-cell/table-data-cell.lite';
 import DBTableHead from '../../table-head/table-head.lite';
@@ -10,109 +11,461 @@ import { StorybookTableArgTypes } from './_table.arg.types';
 
 useMetadata({
 	storybookTitle: 'Expandable Row',
-	storybookNames: ['Details and Summary'],
+	storybookNames: ['Flat', 'Zebra', 'Spaced', 'Mobile Variant List'],
 	storybookArgTypes: StorybookTableArgTypes
 });
 
 export default function TableExpandableRow() {
+	const state = useStore({
+		columnSizes: { 2: 'min-content' }
+	});
+
 	return (
 		<Fragment>
-			<DBTable
-				columnSizes={{ 2: 'min-content' }}
-				mobileVariant="list"
-				captionPlain="Details and Summary">
-				<DBTableHead>
-					<DBTableRow>
-						<DBTableHeaderCell scope="col">
-							Number
-						</DBTableHeaderCell>
-						<DBTableHeaderCell scope="col">
-							Status
-						</DBTableHeaderCell>
-						<DBTableHeaderCell scope="col" noText>
-							Details
-						</DBTableHeaderCell>
-					</DBTableRow>
-				</DBTableHead>
-				<DBTableBody>
-					<DBTableRow interactive>
-						<DBTableDataCell>34621 234</DBTableDataCell>
-						<DBTableDataCell>
-							<DBTag>Status Tag</DBTag>
-						</DBTableDataCell>
-						<DBTableDataCell>
-							<details>
-								<summary
-									className="db-icon"
-									data-icon="chevron_down"
-									data-table-row-trigger="true">
-									Show details
-								</summary>
-								<div
-									style={{
-										display: 'flex',
-										gap: 'var(--db-spacing-fixed-md)'
-									}}>
-									<div>
-										<small>Region</small>
-										<p>North</p>
+			<div
+				style={{
+					minInlineSize: '300px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-md)',
+					padding: 'var(--db-spacing-fixed-md)'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Flat
+				</DBInfotext>
+				<DBTable
+					columnSizes={state.columnSizes}
+					variant="flat"
+					captionPlain="Flat">
+					<DBTableHead>
+						<DBTableRow>
+							<DBTableHeaderCell scope="col">
+								Number
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Status
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Details
+							</DBTableHeaderCell>
+						</DBTableRow>
+					</DBTableHead>
+					<DBTableBody>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 234</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>North</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>14.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>432</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Max Mustermann</p>
+										</div>
 									</div>
-									<div>
-										<small>Last change</small>
-										<p>14.03.26</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 235</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>South</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>15.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>12</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Erika Musterfrau</p>
+										</div>
 									</div>
-									<div>
-										<small>Quantity</small>
-										<p>432</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+					</DBTableBody>
+				</DBTable>
+			</div>
+			<div
+				style={{
+					minInlineSize: '300px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-md)',
+					padding: 'var(--db-spacing-fixed-md)'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Zebra
+				</DBInfotext>
+				<DBTable
+					columnSizes={state.columnSizes}
+					variant="zebra"
+					captionPlain="Zebra">
+					<DBTableHead>
+						<DBTableRow>
+							<DBTableHeaderCell scope="col">
+								Number
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Status
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Details
+							</DBTableHeaderCell>
+						</DBTableRow>
+					</DBTableHead>
+					<DBTableBody>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 234</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>North</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>14.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>432</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Max Mustermann</p>
+										</div>
 									</div>
-									<div>
-										<small>Editor</small>
-										<p>Max Mustermann</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 235</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>South</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>15.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>12</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Erika Musterfrau</p>
+										</div>
 									</div>
-								</div>
-							</details>
-						</DBTableDataCell>
-					</DBTableRow>
-					<DBTableRow interactive>
-						<DBTableDataCell>34621 235</DBTableDataCell>
-						<DBTableDataCell>
-							<DBTag>Status Tag</DBTag>
-						</DBTableDataCell>
-						<DBTableDataCell>
-							<details>
-								<summary
-									className="db-icon"
-									data-icon="chevron_down"
-									data-table-row-trigger="true">
-									Show details
-								</summary>
-								<div
-									style={{
-										display: 'flex',
-										gap: 'var(--db-spacing-fixed-md)'
-									}}>
-									<div>
-										<small>Region</small>
-										<p>South</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+					</DBTableBody>
+				</DBTable>
+			</div>
+			<div
+				style={{
+					minInlineSize: '300px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-md)',
+					padding: 'var(--db-spacing-fixed-md)'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Spaced
+				</DBInfotext>
+				<DBTable
+					columnSizes={state.columnSizes}
+					variant="spaced"
+					captionPlain="Spaced">
+					<DBTableHead>
+						<DBTableRow>
+							<DBTableHeaderCell scope="col">
+								Number
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Status
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Details
+							</DBTableHeaderCell>
+						</DBTableRow>
+					</DBTableHead>
+					<DBTableBody>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 234</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>North</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>14.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>432</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Max Mustermann</p>
+										</div>
 									</div>
-									<div>
-										<small>Last change</small>
-										<p>15.03.26</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 235</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>South</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>15.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>12</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Erika Musterfrau</p>
+										</div>
 									</div>
-									<div>
-										<small>Quantity</small>
-										<p>12</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+					</DBTableBody>
+				</DBTable>
+			</div>
+			<div
+				style={{
+					minInlineSize: '300px',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					gap: 'var(--db-spacing-fixed-md)',
+					padding: 'var(--db-spacing-fixed-md)'
+				}}>
+				<DBInfotext semantic="informational" size="small" icon="none">
+					Mobile Variant List
+				</DBInfotext>
+				<DBTable
+					columnSizes={state.columnSizes}
+					mobileVariant="list"
+					captionPlain="Mobile Variant List">
+					<DBTableHead>
+						<DBTableRow>
+							<DBTableHeaderCell scope="col">
+								Number
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col">
+								Status
+							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Details
+							</DBTableHeaderCell>
+						</DBTableRow>
+					</DBTableHead>
+					<DBTableBody>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 234</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>North</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>14.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>432</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Max Mustermann</p>
+										</div>
 									</div>
-									<div>
-										<small>Editor</small>
-										<p>Erika Musterfrau</p>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 235</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
+							<DBTableDataCell>
+								<details>
+									<summary
+										className="db-icon"
+										data-icon="chevron_down"
+										data-table-row-trigger="true">
+										Show details
+									</summary>
+									<div
+										style={{
+											display: 'flex',
+											flexWrap: 'wrap',
+											gap: 'var(--db-spacing-fixed-md)'
+										}}>
+										<div>
+											<small>Region</small>
+											<p>South</p>
+										</div>
+										<div>
+											<small>Last change</small>
+											<p>15.03.26</p>
+										</div>
+										<div>
+											<small>Quantity</small>
+											<p>12</p>
+										</div>
+										<div>
+											<small>Editor</small>
+											<p>Erika Musterfrau</p>
+										</div>
 									</div>
-								</div>
-							</details>
-						</DBTableDataCell>
-					</DBTableRow>
-				</DBTableBody>
-			</DBTable>
+								</details>
+							</DBTableDataCell>
+						</DBTableRow>
+					</DBTableBody>
+				</DBTable>
+			</div>
 		</Fragment>
 	);
 }

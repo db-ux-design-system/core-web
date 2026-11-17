@@ -132,7 +132,21 @@
 	}
 }
 
-%spaced-table-variant {
+// Same declarations as %default-card, as mixin to be usable inside @container
+@mixin table-card {
+	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+	border: component.$component-border;
+	// stylelint-disable-next-line db-ux/use-border-radius
+	border-radius: var(
+		--default-card-border-radius,
+		#{variables.$db-border-radius-sm}
+	);
+}
+
+// Mixin instead of placeholder: mobileVariant="list" uses it inside a
+// @container query, an @extend there would be hoisted out of the query by
+// Sass and apply the spaced styles on every screen size.
+@mixin spaced-table-variant {
 	table {
 		row-gap: variables.$db-spacing-fixed-xs;
 	}
@@ -141,7 +155,7 @@
 		row-gap: variables.$db-spacing-fixed-xs;
 
 		tr {
-			@extend %default-card;
+			@include table-card;
 		}
 	}
 
@@ -150,14 +164,14 @@
 
 		tr {
 			&:not([data-sub-header-emphasis]) {
-				@extend %default-card;
+				@include table-card;
 
 				background-color: transparent;
 				border-color: transparent;
 			}
 
 			&[data-sub-header-emphasis] {
-				@extend %default-card;
+				@include table-card;
 			}
 		}
 	}
@@ -190,15 +204,21 @@
 				@extend %sub-header-strong;
 			}
 		}
+
+		// Expandable row: the details content is a grid item of the row,
+		// a transparent background shows the zebra color of its own row.
+		:is(tfoot, tbody) :is(td, th) > details::details-content {
+			background-color: transparent;
+		}
 	}
 
 	&[data-variant="spaced"] {
-		@extend %spaced-table-variant;
+		@include spaced-table-variant;
 	}
 
 	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
 		&[data-mobile-variant="list"] {
-			@extend %spaced-table-variant;
+			@include spaced-table-variant;
 
 			table {
 				--db-table-columns-size: 1fr;
