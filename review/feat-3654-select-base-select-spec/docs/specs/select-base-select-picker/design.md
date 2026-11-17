@@ -28,7 +28,8 @@ styles/internal/_select-components.scss
 ├── @mixin select-picker-surface     (new) background, radius, elevation, neutral variables
 ├── @mixin select-picker-list        (new) padding, max block size, scrolling
 ├── @mixin select-picker-option      (new) padding, radius, hover/pressed, checked, disabled
-└── @mixin select-picker-group-label (new) font size, color
+├── @mixin select-picker-group-label (new) font size, color
+└── @mixin select-picker-checkmark   (new) check icon on ::checkmark (DBSelect only)
 
 custom-select-dropdown.scss   .db-custom-select-dropdown   @include select-picker-surface
 custom-select-list.scss       .db-custom-select-list       @include select-picker-list
@@ -54,38 +55,43 @@ The `%db-neutral-variables` placeholder has the same `@extend` problem. We need 
 Sketch, not final code:
 
 ```scss
+// Touch devices keep the native OS picker, see "Mobile devices"
 @supports (appearance: base-select) {
-	.db-select select:not([multiple], [size]:not([size="1"])) {
-		&,
-		&::picker(select) {
-			appearance: base-select;
-		}
+	@media (hover: hover) and (pointer: fine) {
+		.db-select select:not([multiple], [size]:not([size="1"])) {
+			&,
+			&::picker(select) {
+				appearance: base-select;
+			}
 
-		// We keep our own chevron from %select-icon
-		&::picker-icon {
-			display: none;
-		}
+			// We keep our own chevron from %select-icon
+			&::picker-icon {
+				display: none;
+			}
 
-		&::picker(select) {
-			@include select-components.select-picker-surface;
-			@include select-components.select-picker-list;
+			// Position, min width and flip fallbacks come from the
+			// UA defaults, see "Anchor positioning"
+			&::picker(select) {
+				@include select-components.select-picker-surface;
+				@include select-components.select-picker-list;
 
-			position-area: block-end span-inline-end;
-			position-try-fallbacks: flip-block;
-			min-inline-size: anchor-size(self-inline);
-			margin-block: variables.$db-spacing-fixed-xs;
-		}
+				margin-block: variables.$db-spacing-fixed-xs;
+			}
 
-		option {
-			@include select-components.select-picker-option(
-				$checked: ":checked",
-				$disabled: ":disabled"
-			);
-		}
+			option {
+				@include select-components.select-picker-option(
+					$checked: ":checked",
+					$disabled: ":disabled"
+				);
+			}
 
-		// Replaced by the trailing check icon from the option mixin
-		option::checkmark {
-			display: none;
+			// Trailing check icon like in DBCustomSelect
+			option::checkmark {
+				@include select-components.select-picker-checkmark;
+
+				order: 1;
+				margin-inline-start: auto;
+			}
 		}
 	}
 }
@@ -97,11 +103,54 @@ Sketch, not final code:
 
 ### Selected option
 
-`DBCustomSelect` uses `--db-icon-trailing: "check"` on the checked radio label. For native options we set the icon with `icons.set-icon("check", "after")` on `option:checked` and hide `::checkmark`. Using `::checkmark` with our icon font is an alternative, see open questions.
+We use `::checkmark` and fill it with our `check` icon:
+
+- Chrome (133+) and Safari (27+) support `::checkmark`. Both render a default checkmark, so we have to override it anyway.
+- The option is a flex container. `order: 1` and `margin-inline-start: auto` move the checkmark to the inline end, like the trailing check icon in `DBCustomSelect`.
+- `::before` and `::after` stay free, for example for icons inside options.
+- `::checkmark` isn't part of the accessibility tree. That's fine, because the selected state is announced natively.
+
+`icons.set-icon` only targets `::before` or `::after`. We need a small mixin (`select-picker-checkmark`) that sets the icon font and `content` directly on `::checkmark`.
 
 ### Inherited tokens
 
 The picker is rendered in the top layer, but it's still a pseudo-element of `select`. Custom properties are inherited from `select`, so the adaptive color tokens work.
+
+## Browser behavior
+
+Based on documentation and release notes, not yet verified on devices.
+
+### Mobile devices
+
+- With `base-select`, the browser doesn't open the OS picker anymore. The in-page picker is used on mobile as well ([Chrome blog](https://developer.chrome.com/blog/a-customizable-select)).
+- Chrome on Android 135+ and Safari on iOS 27+ support `base-select` ([MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select)).
+- For Safari on iOS we found no explicit statement that the iOS picker wheel is replaced. It's very likely, because the spec defines it that way. This needs a check on a device.
+
+Proposal: limit the enhancement to `(hover: hover) and (pointer: fine)`. Touch devices keep the native OS picker. #3654 only affects macOS, and `DBCustomSelect` needs a separate dialog layout on small screens for good usability. We don't want to rebuild that for `DBSelect`.
+
+### Anchor positioning
+
+Chrome and Safari 27 anchor the picker to the `select` implicitly and use the same UA defaults ([MDN `::picker()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::picker)):
+
+- `position-area: block-end span-inline-end`: below the field, aligned with its inline start edge.
+- `min-inline-size: anchor-size(self-inline)`: at least as wide as the field.
+- `position-try-fallbacks`: above, or aligned with the inline end, when there isn't enough space.
+
+These defaults already cover requirement 1. We only set the gap to the field. Anchor positioning has been supported since Chrome 125 and Safari 26. Safari 27 fixed several picker positioning bugs and changed the default of `position-anchor` from `auto` to `normal` ([WebKit](https://webkit.org/blog/18325/webkit-features-for-safari-27-0/)). The implicit anchor isn't affected by that.
+
+### UA default styles
+
+Safari 27 ships different default styles than Chrome on purpose: drop shadow, 4px radius, its own chevron and checkmark, and its own `optgroup` styling. A shared baseline is being discussed in the CSS Working Group ([WebKit](https://webkit.org/blog/18325/webkit-features-for-safari-27-0/)).
+
+Consequence: we set every visible property of the picker, the options and the group labels explicitly. We don't rely on UA defaults for anything we want to look the same.
+
+### Group labels
+
+- In a customizable select, `optgroup` may contain a `<legend>`. It replaces the `label` attribute and can be styled like any element ([MDN](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select)).
+- `DBSelect` renders `<optgroup label="…">` only. The label generated from the attribute can't be targeted reliably, and Chrome and Safari style it differently.
+- For consistent group labels we'd have to render a `<legend>` in addition to the `label` attribute. Browsers without support would drop the `<legend>` and keep using the attribute. This is not verified yet.
+
+Rendering a `<legend>` is a markup change and conflicts with requirement 5.3. See open questions.
 
 ## Refactoring of `DBCustomSelect`
 
@@ -119,9 +168,17 @@ The picker is rendered in the top layer, but it's still a pseudo-element of `sel
 
 ## Open questions
 
-1. **Mobile:** How do Chrome on Android and Safari on iOS render `base-select`? If they show the in-page picker, do we want that, or do we limit the enhancement to `(hover: hover) and (pointer: fine)` and keep the native mobile picker?
-2. **Check icon:** `option:checked::after` with our icon font, or `::checkmark` with `content`? Depends on how both browsers lay out `::checkmark`.
-3. **Optgroup label:** Chrome and Safari may render the label differently (`legend` child vs. `label` attribute). This needs a check in both browsers.
-4. **Picker width:** Should `DBSelect` get the same `fixed`/`auto`/`full` width options as `DBCustomSelect`? Proposal: no, `min-inline-size: anchor-size(self-inline)` only. A width option would be a new API.
-5. **Browser differences:** Do Chrome and Safari 27 support `position-area`, `position-try-fallbacks` and `anchor-size()` on `::picker(select)` in the same way?
-6. **Bump type:** `minor` (visible new behavior) or `patch` (fix for #3654)?
+1. **Mobile scope:** Do we agree to keep the native OS picker on touch devices (`(hover: hover) and (pointer: fine)`)? See "Mobile devices".
+2. **Group labels:** Do we render a `<legend>` inside `optgroup` for consistent styling? That's a markup change in all frameworks and needs an exception from requirement 5.3. Without it, group labels may look different in Chrome and Safari.
+3. **Picker width:** Should `DBSelect` get the same `fixed`/`auto`/`full` width options as `DBCustomSelect`? Proposal: no, the UA default `min-inline-size: anchor-size(self-inline)` only. A width option would be a new API.
+4. **Bump type:** `minor` (visible new behavior) or `patch` (fix for #3654)?
+
+### Resolved
+
+- **Check icon:** `::checkmark` with our icon font, see "Selected option".
+- **Positioning in Chrome and Safari:** both use the same implicit anchor and UA defaults, see "Anchor positioning".
+
+### To verify on devices
+
+- Safari on iOS 27 with `base-select`: is the OS picker wheel replaced?
+- `<legend>` in `optgroup`: is it dropped cleanly in Firefox, with the `label` attribute still shown?
