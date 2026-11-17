@@ -212,6 +212,43 @@ export const expandBracketAlternatives = (input) => {
 	return expanded;
 };
 
+/**
+ * Resolve a reference through the `exports` map of the package.json, e.g.
+ * `@db-ux/wc-core-components/slot-fixes` -> `./slot-fixes` -> a file on disk.
+ * Consumers can only import paths that are exported, so an alias without a
+ * literal file of the same name is valid when its target exists.
+ */
+const resolveViaExportsMap = (packageDirs, filePath) => {
+	for (const relativeDir of packageDirs) {
+		const packageDir = path.join(config.rootDir, relativeDir);
+		const pkgJsonPath = path.join(packageDir, 'package.json');
+		if (!fs.existsSync(pkgJsonPath)) continue;
+
+		let exportsMap;
+		try {
+			exportsMap = JSON.parse(
+				fs.readFileSync(pkgJsonPath, 'utf8')
+			).exports;
+		} catch {
+			continue;
+		}
+
+		const entry = exportsMap?.[`./${filePath}`];
+		if (!entry) continue;
+
+		const targets =
+			typeof entry === 'string' ? [entry] : Object.values(entry);
+		const target = targets.find(
+			(value) =>
+				typeof value === 'string' &&
+				fs.existsSync(path.join(packageDir, value))
+		);
+		if (target) return path.join(packageDir, target);
+	}
+
+	return undefined;
+};
+
 const resolveSinglePackagePath = (packageName, filePath) => {
 	// Package directory name used in workspaces (`@db-ux/foo` -> `foo`).
 	const packageDirName = packageName.replace(config.orgPrefix, '');
@@ -293,9 +330,9 @@ const resolveSinglePackagePath = (packageName, filePath) => {
 		);
 	}
 
-	const resolvedPath = possiblePaths.find((currentPath) =>
-		fs.existsSync(currentPath)
-	);
+	const resolvedPath =
+		possiblePaths.find((currentPath) => fs.existsSync(currentPath)) ??
+		resolveViaExportsMap(packageDirs, filePath);
 
 	if (config.debug) {
 		if (resolvedPath) {
