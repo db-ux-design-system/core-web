@@ -79,6 +79,25 @@
         - link "Vertical"
       - listitem: Vertical disabled
   - button "Collapse" [expanded]
+  - link "Expanded"
+  - navigation "(Default) Expanded":
+    - list:
+      - listitem:
+        - link "(Default) Expanded 1"
+      - listitem:
+        - link "(Default) Expanded 2"
+      - listitem:
+        - link "(Default) Expanded 3"
+  - button "Collapse" [expanded]
+  - navigation "Collapsed":
+    - list:
+      - listitem:
+        - link "Collapsed 1"
+      - listitem:
+        - link "Collapsed 2"
+      - listitem:
+        - link "Collapsed 3"
+  - button "Expand"
   - link "Examples"
   - navigation "With Application Name + Navigation":
     - list:

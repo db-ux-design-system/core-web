@@ -4,6 +4,7 @@ import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ControlPanelDesktopDensity from '../examples/density.example.lite';
 import ControlPanelDesktopExamples from '../examples/examples.example.lite';
+import ControlPanelDesktopExpanded from '../examples/expanded.example.lite';
 import ControlPanelDesktopInteraction from '../examples/interaction.example.lite';
 import ControlPanelDesktopOrientation from '../examples/orientation.example.lite';
 import ControlPanelDesktopWidth from '../examples/width.example.lite';
@@ -26,6 +27,11 @@ export default function ControlPanelDesktopShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Orientation">
 				<CardWrapperShowcase>
 					<ControlPanelDesktopOrientation />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Expanded">
+				<CardWrapperShowcase>
+					<ControlPanelDesktopExpanded />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Examples">
