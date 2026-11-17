@@ -11,25 +11,19 @@
 %sizes {
 	&:not([data-size]),
 	&[data-size="medium"] {
-		:is(th, td) {
-			padding: variables.$db-spacing-fixed-2xs
-				variables.$db-spacing-fixed-xs;
-		}
+		--db-table-cell-padding: #{variables.$db-spacing-fixed-2xs}
+			#{variables.$db-spacing-fixed-xs};
 	}
 
 	&[data-size="large"] {
-		:is(th, td) {
-			padding: variables.$db-spacing-fixed-xs
-				variables.$db-spacing-fixed-sm;
-		}
+		--db-table-cell-padding: #{variables.$db-spacing-fixed-xs}
+			#{variables.$db-spacing-fixed-sm};
 	}
 
 	&[data-size="small"],
 	&[data-size="x-small"] {
-		:is(th, td) {
-			padding: variables.$db-spacing-fixed-3xs
-				variables.$db-spacing-fixed-2xs;
-		}
+		--db-table-cell-padding: #{variables.$db-spacing-fixed-3xs}
+			#{variables.$db-spacing-fixed-2xs};
 	}
 
 	&[data-size="x-small"] {
@@ -225,7 +219,9 @@
 				}
 			}
 
-			td[data-horizontal-alignment="end"] {
+			// Label at the start, content at the end. Without a label (noText
+			// column) the regular end alignment applies.
+			td[data-horizontal-alignment="end"][data-header] {
 				justify-content: space-between;
 			}
 
@@ -237,6 +233,15 @@
 
 					flex-wrap: wrap;
 					gap: variables.$db-spacing-fixed-xs;
+				}
+
+				// font-size: 0 of noText keeps the box with its padding, which
+				// shows up as an empty item in the wrapping flex row. Remove it
+				// from the layout but keep the label for screen readers.
+				// Mixin instead of @extend: Sass would hoist an extended selector
+				// out of the @container query and hide it on wide screens too.
+				th[data-no-text="true"] {
+					@include helpers.a11y-visually-hidden;
 				}
 			}
 		}
@@ -349,5 +354,11 @@
 		caption {
 			@extend %a11y-visually-hidden;
 		}
+	}
+
+	:is(th, td) {
+		// Holds spacing tokens only, set per size in %sizes
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		padding: var(--db-table-cell-padding);
 	}
 }
