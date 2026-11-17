@@ -187,11 +187,15 @@
 		}
 
 		tr {
-			> :is(td, th):last-child {
+			> :is(td, th):last-child,
+			> :is(db-table-header-cell, db-table-data-cell):last-child
+				> :is(td, th) {
 				border-inline-end: component.$component-border;
 			}
 
-			> :is(td, th):first-child {
+			> :is(td, th):first-child,
+			> :is(db-table-header-cell, db-table-data-cell):first-child
+				> :is(td, th) {
 				border-inline-start: component.$component-border;
 			}
 		}
@@ -248,6 +252,8 @@
 					text-align: start;
 				}
 
+				// Cell content may be plain text, so it needs this wrapper
+				// to carry the divider
 				> div {
 					block-size: 100%;
 					display: flex;
@@ -255,7 +261,11 @@
 				}
 			}
 
-			thead {
+			// Keep a header row visible when it holds interactive controls
+			// (e.g. a "check all" checkbox or a sort button), so they stay usable
+			thead:not(
+				:has(:is(button, a[href], input, select, textarea, [tabindex]))
+			) {
 				@extend %a11y-visually-hidden;
 			}
 
@@ -266,19 +276,45 @@
 				th {
 					padding: 0;
 
-					&::before {
-						padding: variables.$db-spacing-fixed-2xs
-							variables.$db-spacing-fixed-xs;
-					}
-
 					> div {
-						padding: variables.$db-spacing-fixed-2xs
-							variables.$db-spacing-fixed-xs;
-
 						@include helpers.divider("left");
 
 						&::before {
 							--db-divider-bg-color: #{colors.$db-neutral-on-bg-basic-emphasis-60-default};
+						}
+					}
+				}
+
+				// The padding moves from the cell to label and content,
+				// so it has to follow the selected size
+				&:not([data-size]),
+				&[data-size="medium"] {
+					:is(td, th) {
+						&::before,
+						> div {
+							padding: variables.$db-spacing-fixed-2xs
+								variables.$db-spacing-fixed-xs;
+						}
+					}
+				}
+
+				&[data-size="large"] {
+					:is(td, th) {
+						&::before,
+						> div {
+							padding: variables.$db-spacing-fixed-xs
+								variables.$db-spacing-fixed-sm;
+						}
+					}
+				}
+
+				&[data-size="small"],
+				&[data-size="x-small"] {
+					:is(td, th) {
+						&::before,
+						> div {
+							padding: variables.$db-spacing-fixed-3xs
+								variables.$db-spacing-fixed-2xs;
 						}
 					}
 				}
@@ -388,6 +424,9 @@
 		display: grid;
 
 		caption {
+			// Spans all explicit tracks, including a custom
+			// `--db-table-grid-template-columns` beyond the detected column counts
+			grid-column: 1 / -1;
 			padding: variables.$db-spacing-fixed-xs
 				variables.$db-spacing-fixed-sm;
 			font-weight: bold;

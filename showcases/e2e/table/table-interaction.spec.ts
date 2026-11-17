@@ -7,7 +7,7 @@ const example = 'Column Count';
 /**
  Reads the grid layout of a table: the number of resolved column tracks, the
  distinct rows its header cells landed on, and whether the caption spans the
- full header row. Without matching tracks the grid falls back to a single
+ full width of all tracks. Without matching tracks the grid falls back to a single
  track and every cell is stacked.
  */
 const getGridLayout = async (table: Locator) =>
@@ -21,15 +21,23 @@ const getGridLayout = async (table: Locator) =>
 			throw new Error('No <table> found for the test id');
 		}
 
-		// No child combinator: Angular/Stencil wrap <thead> in a host element
-		const headerRow = element.querySelector(':scope thead tr');
 		const caption = element.querySelector(':scope caption');
 		const headerCells = [...element.querySelectorAll(':scope thead th')];
+		const { gridTemplateColumns, columnGap } = getComputedStyle(element);
+		const trackSizes = gridTemplateColumns
+			.split(' ')
+			.filter(Boolean)
+			.map((size) => Number(size.replace('px', '')));
+		// Total width of all tracks, independent of borders and paddings of
+		// the caption, the header row or its sections
+		const tracksWidth =
+			trackSizes.reduce((sum, size) => sum + size, 0) +
+			// "normal" resolves to no gap in a grid
+			(columnGap === 'normal' ? 0 : Number(columnGap.replace('px', ''))) *
+				(trackSizes.length - 1);
 		return {
 			headerCells: headerCells.length,
-			tracks: getComputedStyle(element)
-				.gridTemplateColumns.split(' ')
-				.filter(Boolean).length,
+			tracks: trackSizes.length,
 			rows: new Set(
 				headerCells.map((cell) =>
 					Math.round(cell.getBoundingClientRect().top)
@@ -37,8 +45,7 @@ const getGridLayout = async (table: Locator) =>
 			).size,
 			captionSpansAllColumns:
 				Math.abs(
-					(caption?.getBoundingClientRect().width ?? 0) -
-						(headerRow?.getBoundingClientRect().width ?? -1)
+					(caption?.getBoundingClientRect().width ?? 0) - tracksWidth
 				) <= 1
 		};
 	});
