@@ -2,10 +2,9 @@
 
 See [requirements.md](./requirements.md) and [design.md](./design.md).
 
-- [ ] 1. Clarify open questions
-    - Check mobile rendering of `base-select` in Chrome on Android and Safari on iOS
-    - Compare `::checkmark`, `optgroup` label and anchor positioning in Chrome and Safari 27
-    - Decide on bump type and on mobile scope with the team
+- [ ] 1. Clarify open questions (see design, "Open questions")
+    - Decide on mobile scope, `<legend>` in `optgroup`, picker width and bump type with the team
+    - Verify on devices: OS picker on Safari for iOS 27, `<legend>` fallback in Firefox
     - _Requirements: 1, 3.2, 3.5, 7.1_
 
 - [ ] 2. Extract shared picker mixins
@@ -17,9 +16,9 @@ See [requirements.md](./requirements.md) and [design.md](./design.md).
 
 - [ ] 3. Enable `base-select` in `DBSelect`
     - [ ] 3.1 Add the `@supports (appearance: base-select)` block in `select.scss`, scoped to `select` without `multiple` and `size > 1`
-    - [ ] 3.2 Position the picker below the field with flip to above, minimum width of the field
+    - [ ] 3.2 Check that the UA default positioning matches requirement 1 in Chrome and Safari, set the gap to the field
     - [ ] 3.3 Hide `::picker-icon` and rotate the existing chevron on `:open`
-    - [ ] 3.4 Style options: hover, pressed, checked with check icon, disabled, focus
+    - [ ] 3.4 Style options: hover, pressed, checked with check icon on `::checkmark`, disabled, focus
     - [ ] 3.5 Style `optgroup` labels
     - [ ] 3.6 Check placeholder, `showEmptyOption`, floating label, leading icon, density and validation
     - _Requirements: 1, 3, 4_
