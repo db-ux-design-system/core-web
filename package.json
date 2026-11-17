@@ -71,7 +71,7 @@
     "regenerate:screenshots": "pnpm run build && pnpm --filter react-showcase run build && pnpm --filter react-showcase run regenerate:visual-snapshots && pnpm --filter react-showcase run regenerate:aria-snapshots",
     "release:publish": "node scripts/github/publish-npm.js",
     "rm:builds": "pnpm --filter scripts run rm:builds",
-    "start": "pnpm --filter composition-storybook run storybook",
+    "start": "pnpm --filter scripts run start",
     "test": "pnpm --filter scripts run test",
     "test:react-core-components": "pnpm --filter react-showcase run test:interaction",
     "test:storybooks": "playwright test -c storybooks/_shared/tests/playwright.config.ts",

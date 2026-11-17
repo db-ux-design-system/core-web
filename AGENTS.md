@@ -66,9 +66,18 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
     **Interactive**: Will prompt to select frameworks (angular, react, vue, stencil, etc.). Default selection is react.
     **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
 
-- **Start the composition Storybook (documentation of all frameworks)**:
+- **Quick start (React showcase)**:
+
     ```bash
     pnpm run start
+    ```
+
+    Same as `pnpm run dev` with React selected, without the prompt.
+    **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
+
+- **Start the composition Storybook (documentation of all frameworks)**:
+    ```bash
+    pnpm --filter composition-storybook run storybook
     ```
     **TIMING**: Takes ~2 minutes to start. NEVER CANCEL. Set timeout to 300+ seconds.
     **ACCESS**: Runs on <http://localhost:6001>. The framework Storybooks are refs; start them with `pnpm --filter <name>-storybook run storybook` to see their pages.
@@ -287,7 +296,7 @@ Rules:
 ```bash
 # Development
 pnpm run dev                 # Interactive dev server (framework selection)
-pnpm run start              # Start the composition Storybook
+pnpm run start              # Quick start: React showcase (dev without the prompt)
 
 # Building
 pnpm run build              # Build core packages (~30 seconds)
