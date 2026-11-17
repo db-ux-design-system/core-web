@@ -1,3 +1,0 @@
-import{n as e,r as t}from"./rolldown-runtime-sJBDdmOt.js";import{n,t as r}from"./control-panel-mobile-DKw-P9av.js";import{i,r as a}from"./custom-header.example.stories-D11HH9Dc.js";var o=t({Default:()=>c,__namedExportsOrder:()=>l,default:()=>s}),s,c,l;function u(){return(u=e((()=>{n(),a(),s={title:`Components/DBControlPanelMobile/Overview`,component:r,parameters:{docs:{toc:{headingSelector:`h2, h3`}}},argTypes:i.argTypes},c={tags:[`!dev`]},l=[`Default`],c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`{
-  tags: ['!dev']
-}`,...c.parameters?.docs?.source}}}})))()}export{u as n,o as t};
