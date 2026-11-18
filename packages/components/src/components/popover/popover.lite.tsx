@@ -187,7 +187,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			if (triggerHost.tagName.includes('-')) {
 				return (
 					triggerHost.querySelector(
-						'button, [href], input, select, textarea, [tabindex]'
+						'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 					) ??
 					triggerHost.children[0] ??
 					null
