@@ -172,7 +172,7 @@ const input = ref("");
 
 ### Attributes
 
-`aria-*` and `data-*` attributes follow the Vue default for fallthrough attributes and land on the outermost element of a component. For form components, this is the wrapper and not the form field, so use properties like `label` and `ariaDescribedBy` there. [More about passing attributes in Vue](https://design-system.deutschebahn.com/documentation/learn/vue-setup).
+`aria-*` and `data-*` attributes follow the Vue default for fallthrough attributes and land on the outermost element of a component. For form components, this is the wrapper and not the form field, so use properties like `label` and `ariaDescribedBy` there. [More about passing attributes to components](https://design-system.deutschebahn.com/documentation/learn/attribute-forwarding).
 
 ## AI Agent Support
 
