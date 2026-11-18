@@ -155,6 +155,10 @@ import { DBButton } from "@db-ux/react-core-components";
 </DBButton>;
 ```
 
+### Attributes
+
+Components forward `aria-*` and `data-*` attributes, `role`, `title`, `style` and event handlers to their main element, for form components to the `<input>`, `<select>` or `<textarea>`. No extra property is needed. [More about passing attributes in React](https://design-system.deutschebahn.com/documentation/learn/react-setup).
+
 ## AI Agent Support
 
 For developers using AI coding assistants like GitHub Copilot or Amazon Q, we provide the [`@db-ux/agent-cli`](https://www.npmjs.com/package/@db-ux/agent-cli) tool that automatically adds DB UX Design System documentation to your repository.
