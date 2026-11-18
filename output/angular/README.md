@@ -118,7 +118,7 @@ There are 3 ways to use Events in Angular:
 
 ### Attributes
 
-Components move `aria-*` and `data-*` attributes, `role`, `title` and `style` from the component tag to their main element, for form components to the `<input>`, `<select>` or `<textarea>`. The attributes are removed from the component tag, so target the inner element in tests and CSS. [More about passing attributes in Angular](https://design-system.deutschebahn.com/documentation/learn/angular-setup).
+Components move `aria-*` and `data-*` attributes, `role`, `title`, `style` and `class` from the component tag to their main element, for form components (except Custom Select) to the `<input>`, `<select>` or `<textarea>`. The attributes are removed from the component tag, so target the inner element in tests and CSS. [More about passing attributes in Angular](https://design-system.deutschebahn.com/documentation/learn/angular-setup).
 
 ## AI Agent Support
 

@@ -160,7 +160,7 @@ Then use them anywhere in your HTML:
 
 ### Attributes
 
-Components move `aria-*` and `data-*` attributes, `role`, `title` and `style` from the custom element to their main element, for form components to the `<input>`, `<select>` or `<textarea>`. The attributes are removed from the custom element, so target the inner element in tests, CSS and scripts. [More about passing attributes to Web Components](https://design-system.deutschebahn.com/documentation/learn/web-components-setup).
+Components move `aria-*` and `data-*` attributes, `role`, `title`, `style` and `class` from the custom element to their main element, for form components (except Custom Select) to the `<input>`, `<select>` or `<textarea>`. The attributes are removed from the custom element, so target the inner element in tests, CSS and scripts. [More about passing attributes to Web Components](https://design-system.deutschebahn.com/documentation/learn/web-components-setup).
 
 ## VSCode autocomplete
 

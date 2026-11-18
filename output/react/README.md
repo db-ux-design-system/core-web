@@ -157,7 +157,7 @@ import { DBButton } from "@db-ux/react-core-components";
 
 ### Attributes
 
-Components forward `aria-*` and `data-*` attributes, `role`, `title`, `style` and event handlers to their main element, for form components to the `<input>`, `<select>` or `<textarea>`. No extra property is needed. [More about passing attributes in React](https://design-system.deutschebahn.com/documentation/learn/react-setup).
+Components forward `aria-*` and `data-*` attributes, `role`, `title`, `style` and event handlers to their main element, for form components (except Custom Select) to the `<input>`, `<select>` or `<textarea>`. No extra property is needed. [More about passing attributes in React](https://design-system.deutschebahn.com/documentation/learn/react-setup).
 
 ## AI Agent Support
 
