@@ -146,7 +146,6 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 				// clicking inside the opened content does not close it again.
 				position: relative;
 				z-index: 1;
-				border-block-start: component.$component-border;
 				background-color: colors.$db-adaptive-bg-basic-level-2-default;
 			}
 
@@ -173,6 +172,8 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 				}
 
 				&::details-content {
+					// Only when open, a closed content box would still add 1px to the row
+					border-block-start: component.$component-border;
 					/* stylelint-disable-next-line db-ux/use-spacings */
 					padding: var(--db-table-cell-padding);
 				}
