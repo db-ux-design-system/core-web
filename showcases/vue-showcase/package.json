@@ -29,11 +29,11 @@
     "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.4.0",
     "vue": "3.5.45",
-    "vue-router": "5.5.0"
+    "vue-router": "5.5.1"
   },
   "devDependencies": {
     "@db-ux/core-postcss-plugin": "workspace:*",
-    "@vitejs/plugin-vue": "6.0.10",
+    "@vitejs/plugin-vue": "6.0.11",
     "cross-env": "10.1.0",
     "http-server": "14.1.1",
     "typescript": "5.9.3",

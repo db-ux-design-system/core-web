@@ -48,6 +48,8 @@ DB_UX_PLATFORM_URL=http://localhost:4329 node storybooks/_shared/overview/update
 node storybooks/_shared/overview/update-platform-components.ts --check
 ```
 
+This runs in the self-healing lint: `pnpm run lint:platform-components` (part of `pnpm run lint`) runs `--check` on every pull request, and the fix refreshes the copy and commits it, like the other self-healing fixes. When the platform is not reachable, the check only warns.
+
 The shared Storybook configuration (theme, light/dark mode, docs page of the example stories, "Show code" imports, head files) lives in `../storybook-config/`. `copy-config.ts` copies it into `.storybook/` of every Storybook on every build and start (git-ignored copies); `.storybook/main.ts` builds the head files from it with `head.ts`.
 
 ## Tests
