@@ -2,6 +2,8 @@
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "./../../styles/internal/table-components";
+@use "./../../styles/internal/form-components";
+@use "./../../styles/internal/component";
 
 $interactive-row-action: '[data-table-row-trigger="true"]';
 $interactive-nested-child: "#{$interactive-row-action} :is(input, textarea, select)";
@@ -116,6 +118,66 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 
 			pointer-events: none; // Ignore pointer events to use high z-index to show focus above elements
 			z-index: 2;
+		}
+	}
+
+	// Expandable row: a <details> inside a cell. The cell and the details are
+	// removed from the box tree, so the summary and the details content become
+	// grid items of the row. The summary and the other cells auto-place as
+	// usual, the details content is placed after them on its own full-width line.
+	&:has(:is(td, th) > details) {
+		:is(td, th):has(> details),
+		:is(td, th) > details {
+			display: contents;
+		}
+
+		:is(td, th) > details {
+			// Every <details> wraps its non-summary children in this box,
+			// so the grid placement has to be set here and not on the children.
+			&::details-content {
+				// No explicit grid-row: the number of grid rows the cells take
+				// depends on the layout (one row for the table, one row per cell
+				// for mobileVariant="list"). order moves the content behind all
+				// cells, spanning all columns forces it onto a new line.
+				order: 1;
+				grid-column: 1 / -1;
+
+				// Keep the content above the overlay of the row trigger, so
+				// clicking inside the opened content does not close it again.
+				position: relative;
+				z-index: 1;
+				background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			}
+
+			> summary {
+				// Holds spacing tokens only, set per size in table.scss
+				/* stylelint-disable-next-line db-ux/use-spacings */
+				padding: var(--db-table-cell-padding);
+				place-self: center;
+
+				&::-webkit-details-marker {
+					display: none;
+				}
+
+				&[data-icon="chevron_down"]::before {
+					@media (prefers-reduced-motion: no-preference) {
+						transition: form-components.$dropdown-icon-transition;
+					}
+				}
+			}
+
+			&[open] {
+				> summary[data-icon="chevron_down"]::before {
+					transform: form-components.$dropdown-icon-transform;
+				}
+
+				&::details-content {
+					// Only when open, a closed content box would still add 1px to the row
+					border-block-start: component.$component-border;
+					/* stylelint-disable-next-line db-ux/use-spacings */
+					padding: var(--db-table-cell-padding);
+				}
+			}
 		}
 	}
 }

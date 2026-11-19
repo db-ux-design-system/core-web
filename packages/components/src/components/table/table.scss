@@ -11,25 +11,19 @@
 %sizes {
 	&:not([data-size]),
 	&[data-size="medium"] {
-		:is(th, td) {
-			padding: variables.$db-spacing-fixed-2xs
-				variables.$db-spacing-fixed-xs;
-		}
+		--db-table-cell-padding: #{variables.$db-spacing-fixed-2xs}
+			#{variables.$db-spacing-fixed-xs};
 	}
 
 	&[data-size="large"] {
-		:is(th, td) {
-			padding: variables.$db-spacing-fixed-xs
-				variables.$db-spacing-fixed-sm;
-		}
+		--db-table-cell-padding: #{variables.$db-spacing-fixed-xs}
+			#{variables.$db-spacing-fixed-sm};
 	}
 
 	&[data-size="small"],
 	&[data-size="x-small"] {
-		:is(th, td) {
-			padding: variables.$db-spacing-fixed-3xs
-				variables.$db-spacing-fixed-2xs;
-		}
+		--db-table-cell-padding: #{variables.$db-spacing-fixed-3xs}
+			#{variables.$db-spacing-fixed-2xs};
 	}
 
 	&[data-size="x-small"] {
@@ -138,7 +132,21 @@
 	}
 }
 
-%spaced-table-variant {
+// Same declarations as %default-card, as mixin to be usable inside @container
+@mixin table-card {
+	// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+	border: component.$component-border;
+	// stylelint-disable-next-line db-ux/use-border-radius
+	border-radius: var(
+		--default-card-border-radius,
+		#{variables.$db-border-radius-sm}
+	);
+}
+
+// Mixin instead of placeholder: mobileVariant="list" uses it inside a
+// @container query, an @extend there would be hoisted out of the query by
+// Sass and apply the spaced styles on every screen size.
+@mixin spaced-table-variant {
 	table {
 		row-gap: variables.$db-spacing-fixed-xs;
 	}
@@ -147,7 +155,7 @@
 		row-gap: variables.$db-spacing-fixed-xs;
 
 		tr {
-			@extend %default-card;
+			@include table-card;
 		}
 	}
 
@@ -156,14 +164,14 @@
 
 		tr {
 			&:not([data-sub-header-emphasis]) {
-				@extend %default-card;
+				@include table-card;
 
 				background-color: transparent;
 				border-color: transparent;
 			}
 
 			&[data-sub-header-emphasis] {
-				@extend %default-card;
+				@include table-card;
 			}
 		}
 	}
@@ -196,15 +204,21 @@
 				@extend %sub-header-strong;
 			}
 		}
+
+		// Expandable row: the details content is a grid item of the row,
+		// a transparent background shows the zebra color of its own row.
+		:is(tfoot, tbody) :is(td, th) > details::details-content {
+			background-color: transparent;
+		}
 	}
 
 	&[data-variant="spaced"] {
-		@extend %spaced-table-variant;
+		@include spaced-table-variant;
 	}
 
 	@container (inline-size < #{screen-sizes.$db-breakpoint-sm}) {
 		&[data-mobile-variant="list"] {
-			@extend %spaced-table-variant;
+			@include spaced-table-variant;
 
 			table {
 				--db-table-columns-size: 1fr;
@@ -225,7 +239,9 @@
 				}
 			}
 
-			td[data-horizontal-alignment="end"] {
+			// Label at the start, content at the end. Without a label (noText
+			// column) the regular end alignment applies.
+			td[data-horizontal-alignment="end"][data-header] {
 				justify-content: space-between;
 			}
 
@@ -237,6 +253,15 @@
 
 					flex-wrap: wrap;
 					gap: variables.$db-spacing-fixed-xs;
+				}
+
+				// font-size: 0 of noText keeps the box with its padding, which
+				// shows up as an empty item in the wrapping flex row. Remove it
+				// from the layout but keep the label for screen readers.
+				// Mixin instead of @extend: Sass would hoist an extended selector
+				// out of the @container query and hide it on wide screens too.
+				th[data-no-text="true"] {
+					@include helpers.a11y-visually-hidden;
 				}
 			}
 		}
@@ -349,5 +374,11 @@
 		caption {
 			@extend %a11y-visually-hidden;
 		}
+	}
+
+	:is(th, td) {
+		// Holds spacing tokens only, set per size in %sizes
+		/* stylelint-disable-next-line db-ux/use-spacings */
+		padding: var(--db-table-cell-padding);
 	}
 }
