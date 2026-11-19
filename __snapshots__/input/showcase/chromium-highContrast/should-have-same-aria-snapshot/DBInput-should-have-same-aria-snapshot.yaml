@@ -42,6 +42,37 @@
     - /placeholder: "True"
   - text: Message
   - status
+  - link "Message Props"
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message size medium
+  - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message with icon
+  - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message without icon
+  - text: Message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Message with wrap
+  - text: A longer message that wraps when the container is too small
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Valid message size medium
+  - text: Valid message
+  - status
+  - text: Label
+  - textbox "Label":
+    - /placeholder: Invalid message size medium
+  - text: Invalid message
+  - status
   - link "State"
   - text: Label
   - textbox "Label":

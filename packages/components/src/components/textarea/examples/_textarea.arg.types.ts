@@ -6,6 +6,9 @@ export const StorybookTextareaArgTypes: Record<string, InputType> = {
 	value: { control: 'text' },
 	showLabel: { control: 'boolean' },
 	message: { control: 'text' },
+	messageProps: { control: 'object' },
+	validMessageProps: { control: 'object' },
+	invalidMessageProps: { control: 'object' },
 	disabled: { control: 'boolean' },
 	readOnly: { control: 'boolean' },
 	validation: {
