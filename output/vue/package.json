@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/v-core-components",
-  "version": "6.3.2",
+  "version": "6.4.0",
   "type": "module",
   "description": "Vue components for @db-ux/core-components",
   "repository": {
@@ -42,14 +42,14 @@
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "6.0.10",
+    "@vitejs/plugin-vue": "6.0.11",
     "@vue/compiler-dom": "3.5.45",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.0.4",
     "replace-in-file": "9.0.0",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vite": "8.3.6",
+    "vite": "8.3.8",
     "vue": "3.5.45",
     "vue-tsc": "3.3.14"
   },

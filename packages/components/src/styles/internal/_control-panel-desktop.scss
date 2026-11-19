@@ -367,10 +367,8 @@ $control-panel-desktop-vertical-padding-inline-end: calc(
 	/* jscpd:ignore-end */
 
 	&[data-open="true"] {
-		/// Sets the inline-size (width) of the control-panel-desktop
-		/// @propertyname inline-size
-		/// @cssprop --db-control-panel-desktop-inline-size
-		/// @default var(--db-container-xs)
+		// Styling API, documented in
+		// components/control-panel-desktop/_control-panel-desktop.properties.scss
 		inline-size: var(
 			--db-control-panel-desktop-inline-size,
 			#{variables.$db-container-xs}

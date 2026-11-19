@@ -248,3 +248,31 @@ const getColumnCountTable = (columns: number): DBTableData => {
 
 export const columnCount20Table: DBTableData = getColumnCountTable(20);
 export const columnCount21Table: DBTableData = getColumnCountTable(21);
+
+export const textTable: DBTableData = {
+	header: [
+		{
+			cells: [
+				{ text: 'A', scope: 'col' },
+				{ text: 'B', scope: 'col' },
+				{ text: 'C', scope: 'col' }
+			]
+		}
+	],
+	body: [
+		{
+			cells: [
+				{ text: '1', headerCell: true, scope: 'row' },
+				{ text: '2' },
+				{ text: '3' }
+			]
+		},
+		{
+			cells: [
+				{ text: '4', headerCell: true, scope: 'row' },
+				{ text: '5' },
+				{ text: '6' }
+			]
+		}
+	]
+};

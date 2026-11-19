@@ -45,7 +45,14 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 		@include table-row-interactive-checked {
 			@extend %db-informational-variables;
 
-			background-color: colors.$db-adaptive-bg-basic-level-2-default;
+			background-color: colors.$db-adaptive-bg-basic-level-3-default;
+
+			// Keep the divider border neutral instead of following the
+			// informational color context applied above.
+			&,
+			:is(td, th) {
+				border-color: colors.$db-neutral-on-bg-basic-emphasis-60-default;
+			}
 
 			&,
 			span,
@@ -55,11 +62,11 @@ $interactive-child: ":is(#{$interactive-row-action}:is(#{helpers.$interactive-el
 			}
 
 			@include table-row-interactive-state {
-				background-color: colors.$db-adaptive-bg-basic-level-2-hovered;
+				background-color: colors.$db-adaptive-bg-basic-level-3-hovered;
 			}
 
 			@include table-row-interactive-state("active") {
-				background-color: colors.$db-adaptive-bg-basic-level-2-pressed;
+				background-color: colors.$db-adaptive-bg-basic-level-3-pressed;
 			}
 		}
 

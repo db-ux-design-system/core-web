@@ -19,17 +19,18 @@ Without components, the generator writes every main component (`getStructure()` 
 
 What belongs in Storybook and what on the Design System Platform is described in "Where documentation lives" in the root [`AGENTS.md`](../../../AGENTS.md#where-documentation-lives). Each kind of content has one source:
 
-| Content                                                 | Source                                                                                                            |
-| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Title                                                   | `export default function DB…` in `<component>.lite.tsx`                                                           |
-| Accessibility review                                    | `showcases/patternhub/data/_accessibility-review.json`                                                            |
-| Summary, status, link to the guidelines                 | `/api/components.json` of the Design System Platform (see below)                                                  |
-| Accessibility, migration                                | `packages/components/src/components/<component>/docs/*.md`                                                        |
-| Usage (the examples; "Show code" includes the imports)  | the generated example stories, `../storybook-config/source-imports.ts`                                            |
-| Usage notes (e.g. Angular forms, DBDialog return value) | `<component>/docs/<Framework>.md` (`React`, `Angular`, `Vue`, `HTML`, `WebComponents`) without the basic snippets |
-| Properties (React, Angular, Vue)                        | Storybook docgen                                                                                                  |
-| Attributes (HTML, Web Components)                       | `<component>.lite.tsx` and `output/stencil/dist/web-types.json`                                                   |
-| Design guidelines                                       | the Design System Platform, linked                                                                                |
+| Content                                                 | Source                                                                                                                                               |
+| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Title                                                   | `export default function DB…` in `<component>.lite.tsx`                                                                                              |
+| Accessibility review                                    | `showcases/patternhub/data/_accessibility-review.json`                                                                                               |
+| Summary, status, link to the guidelines                 | `/api/components.json` of the Design System Platform (see below)                                                                                     |
+| Accessibility, migration                                | `packages/components/src/components/<component>/docs/*.md`                                                                                           |
+| Usage (the examples; "Show code" includes the imports)  | the generated example stories, `../storybook-config/source-imports.ts`                                                                               |
+| Usage notes (e.g. Angular forms, DBDialog return value) | `<component>/docs/<Framework>.md` (`React`, `Angular`, `Vue`, `HTML`, `WebComponents`) without the basic snippets                                    |
+| Properties (React, Angular, Vue)                        | Storybook docgen                                                                                                                                     |
+| Attributes (HTML, Web Components)                       | `<component>.lite.tsx` and `output/stencil/dist/web-types.json`                                                                                      |
+| CSS custom properties                                   | `packages/components/build/components/<component>/<component>.css-properties.json`, from the `@property` rules (see `packages/components/AGENTS.md`) |
+| Design guidelines                                       | the Design System Platform, linked                                                                                                                   |
 
 `meta.ts` reads the metadata of a component from these sources. `overrides.json` holds only what has no source in this repository: the main component of a part when the name does not tell it (`partOf`), platform paths that differ from the convention (`platformPath`, `false` for components without a platform page, `platformUrl` for a full URL) and extra packages a component needs (`requires`).
 
@@ -47,7 +48,9 @@ DB_UX_PLATFORM_URL=http://localhost:4329 node storybooks/_shared/overview/update
 node storybooks/_shared/overview/update-platform-components.ts --check
 ```
 
-The shared Storybook configuration (light/dark mode, docs page of the example stories) lives in `../storybook-config/` and is copied into every Storybook by `sync.ts`.
+This runs in the self-healing lint: `pnpm run lint:platform-components` (part of `pnpm run lint`) runs `--check` on every pull request, and the fix refreshes the copy and commits it, like the other self-healing fixes. When the platform is not reachable, the check only warns.
+
+The shared Storybook configuration (theme, light/dark mode, docs page of the example stories, "Show code" imports, head files) lives in `../storybook-config/`. `copy-config.ts` copies it into `.storybook/` of every Storybook on every build and start (git-ignored copies); `.storybook/main.ts` builds the head files from it with `head.ts`.
 
 ## Tests
 

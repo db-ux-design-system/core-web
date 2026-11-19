@@ -1,0 +1,31 @@
+/* @css-properties card */
+
+/**
+ * Background color of the card. The card sets its own value, so set it on
+ * the card itself.
+ * @default `var(--db-adaptive-bg-basic-level-1-default)`, level 2 or 3 with `elevationLevel`
+ */
+@property --db-card-background-color-default {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Background color of an interactive card (`behavior="interactive"`, or a
+ * card inside a button or link) on hover. Set it on the card itself.
+ * @default `var(--db-adaptive-bg-basic-level-1-hovered)`, level 2 or 3 with `elevationLevel`
+ */
+@property --db-card-background-color-hovered {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Background color of an interactive card while pressed. Set it on the card
+ * itself.
+ * @default `var(--db-adaptive-bg-basic-level-1-pressed)`, level 2 or 3 with `elevationLevel`
+ */
+@property --db-card-background-color-pressed {
+	syntax: "*";
+	inherits: true;
+}

@@ -1,6 +1,6 @@
 {
   "name": "@db-ux/ngx-core-components",
-  "version": "6.3.2",
+  "version": "6.4.0",
   "type": "module",
   "description": "Angular components @db-ux/core-components",
   "repository": {
@@ -23,10 +23,10 @@
     "@db-ux/core-foundations": "workspace:*"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "21.2.29",
+    "@angular-devkit/build-angular": "21.2.30",
     "@angular/animations": "21.2.23",
-    "@angular/build": "21.2.29",
-    "@angular/cli": "21.2.29",
+    "@angular/build": "21.2.30",
+    "@angular/cli": "21.2.30",
     "@angular/common": "21.2.26",
     "@angular/compiler": "21.2.26",
     "@angular/compiler-cli": "21.2.26",
