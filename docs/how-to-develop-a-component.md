@@ -104,9 +104,9 @@ Go to `showcases/vue-showcase/src/components/my-awesome-component/MyAwesomeCompo
 
 Maybe you need to change the navigation to see the component: `showcases/vue-showcase/src/utils/navigation-items.ts`
 
-### Patternhub
+### Storybook
 
-To show the component on GitHub pages we use another showcase. After you generated the component you need to add your component to the correct sub-item inside `showcases/patternhub/data/routes.ts`.
+The Storybooks pick up the component from its examples (`packages/components/src/components/my-awesome-component/examples/`): `pnpm --filter @db-ux/core-components run generate:stories` writes the example stories, and every build and start of a Storybook writes its overview page (`storybooks/_shared/overview/README.md`).
 
 ## Write Tests for Quality Assurance
 

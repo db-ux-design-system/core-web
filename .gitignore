@@ -38,7 +38,6 @@ packages/components/src/**/*.css.map
 **/playwright-report
 /.parcel-cache/
 /output/docs.json
-showcases/patternhub/public/iframe-resizer/*
 
 **/test-results/
 **/recordings/

@@ -11,7 +11,7 @@ const answersFrameworkPairs = [
 		framework: 'vue'
 	},
 	{
-		answers: ['react', 'next', 'patternhub'],
+		answers: ['react', 'next'],
 		framework: 'react'
 	},
 	{
@@ -34,9 +34,6 @@ const currentAnswers = await checkbox({
 		},
 		{
 			value: 'stencil'
-		},
-		{
-			value: 'patternhub'
 		},
 		{
 			value: 'next'

@@ -9,8 +9,7 @@
  *
  * The docs were written for the Patternhub and link to its routes
  * (`./color-schemes`, `../densities/readme`). `links.ts` rewrites those links
- * at render time: to the Storybook page, to the Design System Platform, or to
- * the Patternhub as long as there is no other place for the content yet.
+ * at render time: to the Storybook page or to the Design System Platform.
  *
  * Usage: node storybooks/_shared/foundations/generate-foundations.ts
  */
