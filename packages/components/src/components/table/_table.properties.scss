@@ -32,3 +32,14 @@
 	syntax: "*";
 	inherits: true;
 }
+
+/**
+ * Columns of a cell with `mobileVariant="list"` on small screens: any
+ * `grid-template-columns` value for the header label and the content,
+ * e.g. `30% 1fr`. Only applies to cells with a header label.
+ * @default `40% 1fr`
+ */
+@property --db-table-mobile-variant-list-grid-columns {
+	syntax: "*";
+	inherits: true;
+}
