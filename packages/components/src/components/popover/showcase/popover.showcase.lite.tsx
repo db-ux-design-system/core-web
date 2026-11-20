@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -13,11 +12,9 @@ import PopoverPlacement from '../examples/placement.example.lite';
 import PopoverSpacing from '../examples/spacing.example.lite';
 import PopoverWidth from '../examples/width.example.lite';
 
-export default function PopoverShowcase(props: PatternhubProps) {
+export default function PopoverShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBPopover"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBPopover">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<PopoverDensity />

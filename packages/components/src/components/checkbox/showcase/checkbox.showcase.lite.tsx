@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -14,11 +13,9 @@ import CheckboxShowRequiredAsterisk from '../examples/show-required-asterisk.exa
 import CheckboxSize from '../examples/size.example.lite';
 import CheckboxValidation from '../examples/validation.example.lite';
 
-export default function CheckboxShowcase(props: PatternhubProps) {
+export default function CheckboxShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBCheckbox"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBCheckbox">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<CheckboxDensity />

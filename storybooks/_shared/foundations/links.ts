@@ -7,8 +7,9 @@
  * 1. to a Foundations page of this Storybook,
  * 2. to the Design System Platform, where the content lives there (guides,
  *    icons, setup),
- * 3. otherwise to the Patternhub of the latest release (content that has
- *    not moved).
+ * 3. otherwise to the old Patternhub URL of the latest release, which
+ *    redirects to the new home (../patternhub-redirects.ts). No docs link
+ *    needs this fallback at the moment.
  *
  * Absolute links to the unreleased Patternhub (`review/main`) point to the
  * latest release instead.
@@ -59,6 +60,14 @@ const resolveLink = (href: string, route: string): string => {
 	}
 	return `${PATTERNHUB}${pathname}${hash}`;
 };
+
+/**
+ * New home of a Patternhub route outside the component pages: a path of the
+ * composition Storybook (`?path=…`) or a platform URL. Used for the redirects
+ * of the old Patternhub URLs (../patternhub-redirects.ts).
+ */
+export const resolvePatternhubRoute = (route: string): string | undefined =>
+	ROUTES[route.toLowerCase()];
 
 /** Rewrites Markdown links (`[text](href)`) of a foundations docs file. */
 export const rewriteDocsLinks = (markdown: string, route: string): string =>

@@ -70,7 +70,12 @@
 				"tests/**/*.ts"
 			],
 			"project": ["**/*.{js,ts}"],
-			"ignoreDependencies": ["postcss-scss", "@actions/github"]
+			// replace-in-file: only mocked via vi.mock in tests/angular-post-build.spec.ts
+			"ignoreDependencies": [
+				"postcss-scss",
+				"@actions/github",
+				"replace-in-file"
+			]
 		},
 
 		// Foundations: SCSS files are compiled by sass CLI, not imported in TS

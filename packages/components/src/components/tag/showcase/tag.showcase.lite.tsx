@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -16,11 +15,9 @@ import TagShowCheckState from '../examples/show-check-state.example.lite';
 import TagShowIcon from '../examples/show-icon.example.lite';
 import TagShowSlot from '../examples/show-slot.example.lite';
 
-export default function TagShowcase(props: PatternhubProps) {
+export default function TagShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBTag"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBTag">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<TagDensity />

@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -14,11 +13,9 @@ import ButtonSize from '../examples/size.example.lite';
 import ButtonVariant from '../examples/variant.example.lite';
 import ButtonWidth from '../examples/width.example.lite';
 
-export default function ButtonShowcase(props: PatternhubProps) {
+export default function ButtonShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBButton"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBButton">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<ButtonDensity />

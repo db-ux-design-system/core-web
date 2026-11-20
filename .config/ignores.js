@@ -10,7 +10,6 @@ const ignoreFolders = [
 	'**/dist/**/*',
 	'packages/components/**/*',
 	'packages/foundations/**/*',
-	'showcases/patternhub/pages/components/**/*',
 	'showcases/nuxt-showcase/**/*',
 	'showcases/next-showcase/**/*',
 	'showcases/angular-ssr-showcase/**/*',

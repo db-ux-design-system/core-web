@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -13,11 +12,9 @@ import CustomButtonSize from '../examples/size.example.lite';
 import CustomButtonVariant from '../examples/variant.example.lite';
 import CustomButtonWidth from '../examples/width.example.lite';
 
-export default function CustomButtonShowcase(props: PatternhubProps) {
+export default function CustomButtonShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBCustomButton"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBCustomButton">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<CustomButtonDensity />

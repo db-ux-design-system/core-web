@@ -1,15 +1,12 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import NavigationDensity from '../examples/density.example.lite';
 import NavigationInteraction from '../examples/interaction.example.lite';
 
-export default function NavigationShowcase(props: PatternhubProps) {
+export default function NavigationShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBNavigation"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBNavigation">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<NavigationDensity />

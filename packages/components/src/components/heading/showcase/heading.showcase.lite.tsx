@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -11,11 +10,9 @@ import HeadingSemanticLevels from '../examples/semantic-levels.example.lite';
 import HeadingSizes from '../examples/sizes.example.lite';
 import HeadingSlots from '../examples/slots.example.lite';
 
-export default function HeadingShowcase(props: PatternhubProps) {
+export default function HeadingShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBHeading"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBHeading">
 			<div class="heading-showcase" data-text-spacing="false">
 				<LinkWrapperShowcase exampleName="Semantic Levels And Default Mapping">
 					<CardWrapperShowcase>

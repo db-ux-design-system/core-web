@@ -1,15 +1,12 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import ControlPanelFlatIconDensity from '../examples/density.example.lite';
 import ControlPanelFlatIconNoText from '../examples/no-text.example.lite';
 
-export default function ControlPanelFlatIconShowcase(props: PatternhubProps) {
+export default function ControlPanelFlatIconShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBControlPanel FlatIcon"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBControlPanel FlatIcon">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<ControlPanelFlatIconDensity />

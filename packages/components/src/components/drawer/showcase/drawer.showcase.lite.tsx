@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -11,11 +10,9 @@ import DrawerPosition from '../examples/position.example.lite';
 import DrawerShowSpacing from '../examples/show-spacing.example.lite';
 import DrawerSize from '../examples/size.example.lite';
 
-export default function DrawerShowcase(props: PatternhubProps) {
+export default function DrawerShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBDrawer"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBDrawer">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<DrawerDensity />
