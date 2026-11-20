@@ -323,6 +323,18 @@
 						text-align: start;
 						align-self: stretch;
 					}
+
+					// The cell is a grid here, so `justify-content` of the regular
+					// table no longer moves elements (e.g. buttons). Align the
+					// element children in their column instead, the label
+					// (::before) is not matched by `> *` and stays at the start.
+					&[data-horizontal-alignment="center"] > * {
+						justify-self: center;
+					}
+
+					&[data-horizontal-alignment="end"] > * {
+						justify-self: end;
+					}
 				}
 			}
 
