@@ -2582,8 +2582,9 @@
   - 'table "Mobile variant: List, sortable columns are Link."':
     - caption: "Mobile variant: List, sortable columns are Link."
     - rowgroup:
-      - row "Check All Link Sort button Tag Infotext Text Input Button":
-        - columnheader "Check All":
+      - row "Check Check All Link Sort button Tag Infotext Text Input Button":
+        - columnheader "Check Check All":
+          - text: Check
           - checkbox "Check All"
           - text: Check All
           - status
