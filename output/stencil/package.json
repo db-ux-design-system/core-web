@@ -22,23 +22,40 @@
     "./bundle/*.js": {
       "types": "./bundle/*.d.ts",
       "import": "./bundle/*.js"
+    },
+    "./slot-fixes": {
+      "types": "./dist-slot-fixes/loader/index.d.ts",
+      "import": "./dist-slot-fixes/loader/index.js"
+    },
+    "./bundle-slot-fixes": {
+      "types": "./bundle-slot-fixes/index.d.ts",
+      "import": "./bundle-slot-fixes/index.js"
+    },
+    "./bundle-slot-fixes/*.js": {
+      "types": "./bundle-slot-fixes/*.d.ts",
+      "import": "./bundle-slot-fixes/*.js"
     }
   },
   "files": [
     "CHANGELOG.md",
     "agent",
+    "bundle-slot-fixes/",
     "bundle/",
+    "dist-slot-fixes/",
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all build:* --parallel mv:*",
+    "build": "npm-run-all build:_stencil-slot-fixes build:_stencil build:cem --parallel mv:*",
     "build:_stencil": "stencil build",
+    "build:_stencil-slot-fixes": "stencil build --config stencil.config.slot-fixes.ts",
     "build:cem": "cem analyze",
     "dev-build": "stencil build --config stencil.config.dev.ts",
     "mv:agent": "cpy agent ../../build-outputs/wc-core-components --dot",
     "mv:bundle": "cpy bundle ../../build-outputs/wc-core-components --dot",
+    "mv:bundle-slot-fixes": "cpy bundle-slot-fixes ../../build-outputs/wc-core-components --dot",
     "mv:changelog": "cpy CHANGELOG.md ../../build-outputs/wc-core-components/CHANGELOG.md",
     "mv:dist": "cpy dist ../../build-outputs/wc-core-components --dot",
+    "mv:dist-slot-fixes": "cpy dist-slot-fixes ../../build-outputs/wc-core-components --dot",
     "mv:package.json": "cpy package.json ../../build-outputs/wc-core-components/package.json",
     "mv:readme": "cpy README.md ../../build-outputs/wc-core-components/README.md",
     "start": "stencil build --watch --config stencil.config.dev.ts"
