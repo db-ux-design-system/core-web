@@ -45,7 +45,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm-run-all --parallel build:_stencil build:_stencil-slot-fixes --sequential build:cem --parallel mv:*",
+    "build": "npm-run-all build:_stencil-slot-fixes build:_stencil build:cem --parallel mv:*",
     "build:_stencil": "stencil build",
     "build:_stencil-slot-fixes": "stencil build --config stencil.config.slot-fixes.ts",
     "build:cem": "cem analyze",
