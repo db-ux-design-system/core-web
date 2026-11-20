@@ -350,6 +350,13 @@
 					flex-wrap: wrap;
 					align-items: center;
 					column-gap: variables.$db-spacing-fixed-sm;
+
+					// The spaced variant makes a header row transparent, but the
+					// toolbar is shown as a card like the rows below it
+					&:not([data-sub-header-emphasis]) {
+						background-color: colors.$db-adaptive-bg-basic-level-1-default;
+						border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+					}
 				}
 
 				th {
