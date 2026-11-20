@@ -158,6 +158,10 @@ Then use them anywhere in your HTML:
 <db-button variant="brand">Add item to cart</db-button>
 ```
 
+### Attributes
+
+Components move `aria-*` and `data-*` attributes, `role`, `title`, `style` and `class` from the custom element to their main element, for form components (except Custom Select) to the `<input>`, `<select>` or `<textarea>`. The attributes are removed from the custom element, so target the inner element in tests, CSS and scripts. [More about passing attributes to components](https://design-system.deutschebahn.com/documentation/learn/attribute-forwarding).
+
 ## VSCode autocomplete
 
 If you don't have it already, add a VS Code settings folder and file at the root of your project - `.vscode/settings.json`. Then add or append the following code:
