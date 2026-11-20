@@ -1,12 +1,55 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
-@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../table-row/table-row";
 @use "./../../styles/internal/component";
 @use "./../../styles/internal/table-components";
 @forward "table.properties";
+
+// The cell padding stays on the cell. The label cancels the block padding with
+// a negative margin and restores it as its own padding, so its border can span
+// the full cell height without an extra wrapper element. The inline padding of
+// the cell is used as space between label, divider and content.
+// stylelint-disable db-ux/use-spacings -- the parameters are spacing tokens
+@mixin list-label-padding($block, $inline) {
+	:is(td, th)::before {
+		margin-block: calc(-1 * #{$block});
+		margin-inline-end: #{$inline};
+		padding-block: #{$block};
+	}
+
+	&:not([data-divider]),
+	&[data-divider="both"],
+	&[data-divider="vertical"] {
+		:is(td, th)::before {
+			padding-inline-end: #{$inline};
+			border-inline-end: component.$component-border;
+		}
+	}
+}
+// stylelint-enable db-ux/use-spacings
+
+// Visually hides the element (it stays available for screen readers) unless
+// it holds interactive controls, which have to stay usable.
+// A negative `tabindex` only makes an element focusable by script, not
+// interactive, so it does not count.
+@mixin visually-hidden-without-controls {
+	&:not(
+		:has(
+			:is(
+				button,
+				a[href],
+				input,
+				select,
+				textarea,
+				[tabindex]:not([tabindex^="-"])
+			)
+		)
+	) {
+		@extend %a11y-visually-hidden;
+	}
+}
 
 %sizes {
 	&:not([data-size]),
@@ -49,17 +92,17 @@
 			&[data-divider="both"],
 			&[data-divider="vertical"] {
 				tr {
-					> :is(td, th):not(:last-child) {
-						border-inline-end: component.$component-border;
-					}
-
+					> :is(td, th):not(:last-child),
 					> :is(db-table-header-cell, db-table-data-cell):not(
 							:last-child
-						) {
-						td,
-						th {
-							border-inline-end: component.$component-border;
-						}
+						)
+						:is(td, th) {
+						// The fallback is the component border token; the list layout switches it off
+						// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+						border-inline-end: var(
+							--db-table-divider-inline-end,
+							#{component.$component-border}
+						);
 					}
 				}
 			}
@@ -181,22 +224,27 @@
 			border-block-start: component.$component-border;
 		}
 
-		thead,
-		tfoot {
-			border-inline: component.$component-border;
-		}
-
 		tr {
 			> :is(td, th):last-child,
 			> :is(db-table-header-cell, db-table-data-cell):last-child
 				> :is(td, th) {
-				border-inline-end: component.$component-border;
+				// The fallback is the component border token; the list layout switches it off
+				// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+				border-inline-end: var(
+					--db-table-divider-inline-end,
+					#{component.$component-border}
+				);
 			}
 
 			> :is(td, th):first-child,
 			> :is(db-table-header-cell, db-table-data-cell):first-child
 				> :is(td, th) {
-				border-inline-start: component.$component-border;
+				// The fallback is the component border token; the list layout switches it off
+				// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+				border-inline-start: var(
+					--db-table-divider-inline-start,
+					#{component.$component-border}
+				);
 			}
 		}
 	}
@@ -234,6 +282,13 @@
 			}
 
 			:is(th, td)[data-header] {
+				// Two columns only when there is a label, otherwise the
+				// content would sit in the 40% column next to an empty one
+				grid-template-columns: var(
+					--db-table-mobile-variant-list-grid-columns,
+					40% 1fr
+				);
+
 				&::before {
 					// Screen reader would announce it twice
 					content: attr(data-header) / "";
@@ -242,81 +297,65 @@
 				}
 			}
 
-			td,
-			th {
-				display: grid;
-				grid-template-columns: 40% 1fr;
-				gap: 0;
-
-				&::before {
-					text-align: start;
-				}
-
-				// Cell content may be plain text, so it needs this wrapper
-				// to carry the divider
-				> div {
-					block-size: 100%;
-					display: flex;
-					align-items: center;
-				}
+			tr {
+				--db-table-divider-inline-start: 0px;
+				--db-table-divider-inline-end: 0px;
 			}
 
-			// Keep a header row visible when it holds interactive controls
-			// (e.g. a "check all" checkbox or a sort button), so they stay usable
-			thead:not(
-				:has(:is(button, a[href], input, select, textarea, [tabindex]))
-			) {
-				@extend %a11y-visually-hidden;
-			}
-
-			&:not([data-divider]),
-			&[data-divider="both"],
-			&[data-divider="vertical"] {
+			tbody,
+			tfoot {
 				td,
 				th {
-					padding: 0;
+					display: grid;
+					align-items: center;
 
-					> div {
-						@include helpers.divider("left");
-
-						&::before {
-							--db-divider-bg-color: #{colors.$db-neutral-on-bg-basic-emphasis-60-default};
-						}
+					&::before {
+						text-align: start;
+						align-self: stretch;
 					}
 				}
+			}
 
-				// The padding moves from the cell to label and content,
-				// so it has to follow the selected size
-				&:not([data-size]),
-				&[data-size="medium"] {
-					:is(td, th) {
-						&::before,
-						> div {
-							padding: variables.$db-spacing-fixed-2xs
-								variables.$db-spacing-fixed-xs;
-						}
-					}
+			&:not([data-size]),
+			&[data-size="medium"] {
+				@include list-label-padding(
+					variables.$db-spacing-fixed-2xs,
+					variables.$db-spacing-fixed-xs
+				);
+			}
+
+			&[data-size="large"] {
+				@include list-label-padding(
+					variables.$db-spacing-fixed-xs,
+					variables.$db-spacing-fixed-sm
+				);
+			}
+
+			&[data-size="small"],
+			&[data-size="x-small"] {
+				@include list-label-padding(
+					variables.$db-spacing-fixed-3xs,
+					variables.$db-spacing-fixed-2xs
+				);
+			}
+
+			// A header without interactive controls is redundant, because every
+			// cell shows its label via `::before`. Hide it visually only.
+			thead {
+				@include visually-hidden-without-controls;
+
+				tr {
+					// A header with interactive controls becomes a toolbar
+					display: flex;
+					flex-wrap: wrap;
+					align-items: center;
+					column-gap: variables.$db-spacing-fixed-sm;
 				}
 
-				&[data-size="large"] {
-					:is(td, th) {
-						&::before,
-						> div {
-							padding: variables.$db-spacing-fixed-xs
-								variables.$db-spacing-fixed-sm;
-						}
-					}
-				}
+				th {
+					font-size: inherit;
 
-				&[data-size="small"],
-				&[data-size="x-small"] {
-					:is(td, th) {
-						&::before,
-						> div {
-							padding: variables.$db-spacing-fixed-3xs
-								variables.$db-spacing-fixed-2xs;
-						}
-					}
+					@include visually-hidden-without-controls;
 				}
 			}
 
@@ -324,14 +363,18 @@
 			&[data-divider="both"],
 			&[data-divider="horizontal"] {
 				// Angular/Stencil wrap every cell in a host element, so
-				// `:last-child` has to be checked on the host there
-				tr > :is(td, th):not(:last-child),
-				tr
-					> :is(db-table-header-cell, db-table-data-cell):not(
-						:last-child
-					)
-					> :is(td, th) {
-					border-block-end: component.$component-border;
+				// `:last-child` has to be checked on the host there.
+				// The header is a toolbar with its cells next to each other,
+				// so it gets no divider between them.
+				:is(tbody, tfoot) {
+					tr > :is(td, th):not(:last-child),
+					tr
+						> :is(db-table-header-cell, db-table-data-cell):not(
+							:last-child
+						)
+						> :is(td, th) {
+						border-block-end: component.$component-border;
+					}
 				}
 			}
 		}

@@ -24,11 +24,9 @@ export default function DBTableDataCell(props: DBTableDataCellProps) {
 			colSpan={getNumber(props.colSpan, props.colspan)}
 			rowSpan={getNumber(props.rowSpan, props.rowspan)}
 			headers={props.headers}>
-			<div class="db-table-data-cell-content">
-				<Show when={props.text} else={props.children}>
-					{props.text}
-				</Show>
-			</div>
+			<Show when={props.text} else={props.children}>
+				{props.text}
+			</Show>
 		</td>
 	);
 }

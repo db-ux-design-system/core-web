@@ -4,6 +4,6 @@
 	@extend %table-cell;
 
 	&[data-no-text="true"] {
-		font-size: 0 !important;
+		font-size: 0;
 	}
 }

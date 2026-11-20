@@ -1,14 +1,13 @@
 ---
-"@db-ux/core-components": minor
-"@db-ux/ngx-core-components": minor
-"@db-ux/react-core-components": minor
-"@db-ux/wc-core-components": minor
-"@db-ux/v-core-components": minor
+"@db-ux/core-components": patch
+"@db-ux/ngx-core-components": patch
+"@db-ux/react-core-components": patch
+"@db-ux/wc-core-components": patch
+"@db-ux/v-core-components": patch
 ---
 
 fix(DBTable): improve divider rendering for `mobileVariant="list"`
 
-- the content of `DBTableDataCell` is now wrapped in `<div class="db-table-data-cell-content">` inside the `<td>` (previously rendered directly in the `<td>`)
-- the content of `DBTableHeaderCell` is now wrapped in `<div class="db-table-header-cell-content">` inside the `<th>` (previously rendered directly in the `<th>`)
+- the vertical divider is now drawn by the label (`::before`) of the cell, the cell markup is unchanged
 - a header row with interactive controls stays visible in the list layout
 - the cell padding of the selected `size` is preserved in the list layout
