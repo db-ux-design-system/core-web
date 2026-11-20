@@ -99,6 +99,12 @@ const FOUNDATIONS: DocsPage[] = [
 		}
 	},
 	{
+		id: 'breakpoints',
+		title: 'Breakpoints',
+		source: 'packages/foundations/docs/Breakpoints.md',
+		route: '/foundations/breakpoints'
+	},
+	{
 		id: 'icons',
 		learn: { title: 'Show icons in your interface', slug: 'icons-setup' },
 		title: 'Icons',

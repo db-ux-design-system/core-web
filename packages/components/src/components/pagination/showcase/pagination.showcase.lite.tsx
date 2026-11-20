@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -12,11 +11,9 @@ import PaginationSize from '../examples/size.example.lite';
 import PaginationTruncation from '../examples/truncation.example.lite';
 import PaginationWrapping from '../examples/wrapping.example.lite';
 
-export default function PaginationShowcase(props: PatternhubProps) {
+export default function PaginationShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBPagination"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBPagination">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<PaginationDensity />

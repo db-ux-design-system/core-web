@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -11,11 +10,9 @@ import LinkSize from '../examples/size.example.lite';
 import LinkVariant from '../examples/variant.example.lite';
 import LinkWrap from '../examples/wrap.example.lite';
 
-export default function LinkShowcase(props: PatternhubProps) {
+export default function LinkShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBLink"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBLink">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<LinkDensity />

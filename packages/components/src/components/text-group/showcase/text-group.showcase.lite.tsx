@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -8,11 +7,9 @@ import TextGroupMixedContent from '../examples/mixed-content.example.lite';
 import TextGroupNestedGroups from '../examples/nested-groups.example.lite';
 import TextGroupTextSpacing from '../examples/text-spacing.example.lite';
 
-export default function TextGroupShowcase(props: PatternhubProps) {
+export default function TextGroupShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBTextGroup"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBTextGroup">
 			<div class="text-group-showcase" data-text-spacing="false">
 				<LinkWrapperShowcase exampleName="Text Spacing">
 					<CardWrapperShowcase>

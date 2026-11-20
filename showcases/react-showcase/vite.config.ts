@@ -27,9 +27,7 @@ export default defineConfig({
 				BASE_PATH: JSON.stringify(process.env.BASE_PATH),
 				NEXT_SHOWCASE_VARIANT: JSON.stringify(
 					process.env.NEXT_SHOWCASE_VARIANT
-				),
-				GITHUB_BRANCH: JSON.stringify(process.env.GITHUB_BRANCH),
-				BRANCH_NAME: JSON.stringify(process.env.BRANCH_NAME)
+				)
 			}
 		}
 	},

@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
+@forward "custom-select-dropdown.properties";
 
 .db-custom-select-dropdown {
 	@extend %db-neutral-variables;

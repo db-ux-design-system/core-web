@@ -1,0 +1,34 @@
+/* @css-properties table */
+
+/**
+ * Number of equally wide columns. Needed for tables with more
+ * than 20 columns, which the table cannot detect. Can be set on
+ * an ancestor.
+ * @default detected column count
+ */
+@property --db-table-columns {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Width of every column. Without `--db-table-columns`, a single column
+ * takes its own size instead: `--db-table-column-size-0` for the first,
+ * `--db-table-column-size-1` for the second and so on, e.g. `2fr`. The
+ * `columnSizes` property sets them.
+ * @default `1fr`, `auto` with `width="auto"`
+ */
+@property --db-table-columns-size {
+	syntax: "*";
+	inherits: true;
+}
+
+/**
+ * Columns with different widths: any `grid-template-columns`
+ * value, e.g. `2fr 1fr 1fr`. Wins over `--db-table-columns`. Not used by
+ * `mobileVariant="list"` on small screens, which shows one column.
+ */
+@property --db-table-grid-template-columns {
+	syntax: "*";
+	inherits: true;
+}
