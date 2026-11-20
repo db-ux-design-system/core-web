@@ -15,7 +15,6 @@ $max-columns: 20;
 
 %table-cell {
 	display: flex;
-	gap: variables.$db-spacing-fixed-xs;
 
 	@for $span from 2 through $max-columns {
 		&[colspan="#{$span}"] {

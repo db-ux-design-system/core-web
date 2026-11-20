@@ -1,6 +1,7 @@
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/fonts";
+@use "@db-ux/core-foundations/build/styles/helpers";
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../table-row/table-row";
 @use "./../../styles/internal/component";
@@ -34,6 +35,9 @@
 // it holds interactive controls, which have to stay usable.
 // A negative `tabindex` only makes an element focusable by script, not
 // interactive, so it does not count.
+// Uses the mixin instead of `@extend`: an extended placeholder is emitted
+// outside of the surrounding `@container` query and would hide the header
+// on large screens, too.
 @mixin visually-hidden-without-controls {
 	&:not(
 		:has(
@@ -47,7 +51,7 @@
 			)
 		)
 	) {
-		@extend %a11y-visually-hidden;
+		@include helpers.a11y-visually-hidden;
 	}
 }
 
@@ -279,6 +283,12 @@
 
 				background-color: transparent;
 				border-color: transparent;
+			}
+
+			// Space between multiple items in a cell (e.g. text and button),
+			// only in the list layout, the regular table keeps its spacing
+			:is(.db-table-data-cell, .db-table-header-cell) {
+				gap: variables.$db-spacing-fixed-xs;
 			}
 
 			:is(th, td)[data-header] {
