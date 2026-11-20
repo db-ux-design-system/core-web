@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -11,11 +10,9 @@ import TooltipPlacement from '../examples/placement.example.lite';
 import TooltipShowArrow from '../examples/show-arrow.example.lite';
 import TooltipWidth from '../examples/width.example.lite';
 
-export default function TooltipShowcase(props: PatternhubProps) {
+export default function TooltipShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBTooltip"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBTooltip">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<TooltipDensity />

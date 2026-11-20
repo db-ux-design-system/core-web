@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -13,11 +12,9 @@ import RadioShowRequiredAsterisk from '../examples/show-required-asterisk.exampl
 import RadioSize from '../examples/size.example.lite';
 import RadioValidation from '../examples/validation.example.lite';
 
-export default function RadioShowcase(props: PatternhubProps) {
+export default function RadioShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBRadio"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBRadio">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<RadioDensity />

@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -8,11 +7,9 @@ import DialogDensity from '../examples/density.example.lite';
 import DialogExamples from '../examples/examples.example.lite';
 import DialogInteraction from '../examples/interaction.example.lite';
 
-export default function DialogShowcase(props: PatternhubProps) {
+export default function DialogShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBDialog"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBDialog">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<DialogDensity />

@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -22,11 +21,9 @@ import InputState from '../examples/state.example.lite';
 import InputValidation from '../examples/validation.example.lite';
 import InputVariant from '../examples/variant.example.lite';
 
-export default function InputShowcase(props: PatternhubProps) {
+export default function InputShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBInput"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBInput">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<InputDensity />
