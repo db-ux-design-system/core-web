@@ -1,5 +1,9 @@
 # @db-ux/mcp-server
 
+## 6.4.1
+
+No changes in this release.
+
 ## 6.4.0
 
 No changes in this release.

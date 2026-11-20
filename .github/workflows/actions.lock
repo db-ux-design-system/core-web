@@ -21,12 +21,6 @@ workflows:
         - 'actions/setup-node@v7.1.0'
         - 'actions/upload-artifact@v7.0.2'
         - 'pnpm/action-setup@v6.1.1'
-    '.github/workflows/01-build-patternhub.yml':
-        - 'actions/checkout@v7.0.1'
-        - 'actions/download-artifact@v8.0.2'
-        - 'actions/setup-node@v7.1.0'
-        - 'actions/upload-artifact@v7.0.2'
-        - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/01-build-showcases-untested.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/download-artifact@v8.0.2'
@@ -56,12 +50,6 @@ workflows:
         - 'actions/setup-node@v7.1.0'
         - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/02-e2e-foundations.yml':
-        - 'actions/checkout@v7.0.1'
-        - 'actions/download-artifact@v8.0.2'
-        - 'actions/setup-node@v7.1.0'
-        - 'actions/upload-artifact@v7.0.2'
-        - 'pnpm/action-setup@v6.1.1'
-    '.github/workflows/02-e2e-patternhub.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/download-artifact@v8.0.2'
         - 'actions/setup-node@v7.1.0'
@@ -104,6 +92,7 @@ workflows:
     '.github/workflows/03-deploy-gh-pages.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/download-artifact@v8.0.2'
+        - 'actions/setup-node@v7.1.0'
         - 'peaceiris/actions-gh-pages@v4.1.0'
     '.github/workflows/03-preview-url-pr-description.yml':
         - 'actions/checkout@v7.0.1'

@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -9,11 +8,9 @@ import FooterMetaLayout from '../examples/meta-layout.example.lite';
 import FooterOptionalAreas from '../examples/optional-areas.example.lite';
 import FooterWidth from '../examples/width.example.lite';
 
-export default function FooterShowcase(props: PatternhubProps) {
+export default function FooterShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBFooter"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBFooter">
 			<LinkWrapperShowcase exampleName="Composition">
 				<CardWrapperShowcase>
 					<FooterComposition />

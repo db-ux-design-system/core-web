@@ -67,12 +67,12 @@ packages/components/src/components/<name>/
 │   ├── React.md
 │   ├── Vue.md
 │   └── Migration.md
-├── examples/                          # Storybook & Patternhub examples
+├── examples/                          # Storybook & showcase examples
 │   ├── _<name>.arg.types.ts           # Storybook ArgTypes definition
 │   ├── default.example.lite.tsx       # Basic usage example
 │   ├── variant.example.lite.tsx       # One per feature/variant
 │   └── interaction.example.lite.tsx   # Fixture for the cross-framework interaction test (only when the component has user gestures to verify)
-├── showcase/                          # Patternhub orchestration
+├── showcase/                          # Framework showcase setup
 │   └── <name>.showcase.lite.tsx       # Imports all examples, uses shared wrappers
 └── agent/                             # AI agent documentation examples
     └── <name>.agent.lite.tsx          # Usage examples for AI code generation
@@ -91,7 +91,7 @@ showcases/e2e/<name>/
 | `showcases/e2e/<name>/<name>-interaction.spec.ts` | MUST exist when the component has any user-facing interaction (clicks, keyboard, focus, open/close, value changes, etc). Purely presentational sub-components with no interaction of their own (e.g. `accordion-item`, `badge`, `card`) can rely on the parent's interaction spec plus the existing screenshot/aria/axe coverage instead. |
 | `docs/`                                           | MUST exist. Contains framework-specific docs (`Angular.md`, `HTML.md`, `React.md`, `Vue.md`, `Migration.md`). A component without documentation is incomplete.                                                                                                                                                                            |
 | `examples/`                                       | MUST exist. Contains at least `default.example.lite.tsx` and the Storybook configuration `_<name>.arg.types.ts`.                                                                                                                                                                                                                          |
-| `showcase/`                                       | MUST exist. Contains `<name>.showcase.lite.tsx` to orchestrate the component examples for Patternhub using shared wrappers.                                                                                                                                                                                                               |
+| `showcase/`                                       | MUST exist. Contains `<name>.showcase.lite.tsx` to orchestrate the component examples for the framework showcases using shared wrappers.                                                                                                                                                                                                  |
 
 ---
 
