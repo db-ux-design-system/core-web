@@ -5,6 +5,7 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../table-row/table-row";
 @use "./../../styles/internal/component";
+@use "./../../styles/internal/custom-elements";
 @use "./../../styles/internal/table-components";
 @forward "table.properties";
 
@@ -328,12 +329,20 @@
 					// table no longer moves elements (e.g. buttons). Align the
 					// element children in their column instead, the label
 					// (::before) is not matched by `> *` and stays at the start.
-					&[data-horizontal-alignment="center"] > * {
-						justify-self: center;
+					// In Angular and Stencil the direct child is a custom element
+					// host with `display: contents`, so the grid item is its child.
+					&[data-horizontal-alignment="center"] {
+						> *,
+						> :is(#{custom-elements.$custom-elements}) > * {
+							justify-self: center;
+						}
 					}
 
-					&[data-horizontal-alignment="end"] > * {
-						justify-self: end;
+					&[data-horizontal-alignment="end"] {
+						> *,
+						> :is(#{custom-elements.$custom-elements}) > * {
+							justify-self: end;
+						}
 					}
 				}
 			}
