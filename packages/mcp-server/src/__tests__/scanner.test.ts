@@ -268,6 +268,14 @@ describe('scan_generation_2_migration class mapping', () => {
 			'<div class="cmp-notification" data-type="error"></div>'
 		);
 
-		expect(output).toContain('"suggestion": "db-notification"');
+		expect(output).toContain('"suggestion": "db-notification - ');
+		expect(output).toContain('for in-content notices');
+	});
+
+	it('warns that db-card overrides layout classes on the card itself', async () => {
+		const output = await scan('card', '<div class="cmp-card"></div>');
+
+		expect(output).toContain('"suggestion": "db-card - ');
+		expect(output).toContain('put custom layout classes on a wrapper');
 	});
 });

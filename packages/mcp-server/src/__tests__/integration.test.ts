@@ -1286,7 +1286,7 @@ describe('handleScanGeneration2Migration', () => {
 			expect(output).toContain('elm-button');
 			expect(output).toContain('"suggestion": "db-button"');
 			expect(output).toContain('cmp-card');
-			expect(output).toContain('"suggestion": "db-card"');
+			expect(output).toContain('"suggestion": "db-card - ');
 			expect(output).toContain('"type": "component"');
 		} finally {
 			unlinkSync(temporary);

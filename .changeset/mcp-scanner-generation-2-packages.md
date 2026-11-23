@@ -11,3 +11,5 @@ fix(MCP server): `scan_generation_2_migration` detects the actual Generation 2 p
 - Detects hyphenated Generation 2 icon names (`arrow-forward`) and the `iconafter`, `data-icon-before` and `data-icon-after` attributes.
 - Adds suggestions or explanations for `elm-chip`, `elm-headline`, `elm-label`, `elm-image`, `rea-grid`, `rea-meta` and `cmp-notification`.
 - No longer reports Generation 3 `<db-*>` markup as Generation 2 when the file contains no other Generation 2 markers.
+- Adds notes for `cmp-notification` (the `hovering` wrapper becomes `variant="standalone"`) and `cmp-card` (custom layouts belong on a wrapper inside the card).
+- The general migration guide describes the DB Theme setup: imports, decryption of the encrypted assets and the Vite alias.

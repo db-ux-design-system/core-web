@@ -52,6 +52,39 @@ Missing any layer causes specific failures:
 - No Layer 3 → icons display as text strings
 - No Layer 4 → components have no styling at all
 
+## DB Theme (DB brand look)
+
+The four imports above load the whitelabel theme. Applications in the DB brand need `@db-ux/db-theme` in addition. It overwrites the whitelabel with DB fonts, icons and colors:
+
+```tsx
+// main.tsx
+import "@db-ux/core-components/build/styles/bundle.css"; // foundations and components, whitelabel
+import "@db-ux/db-theme/build/styles/rollup.css"; // overwrites the whitelabel with the DB Theme
+```
+
+Choose the theme file for your bundler: `rollup.css` for Vite and Rollup, `webpack.css` for webpack and Next.js, `relative.css` or `absolute.css` without a bundler.
+
+**Encrypted assets:** `@db-ux/db-theme`, `@db-ux/db-theme-fonts` and `@db-ux/db-theme-icons` ship fonts, icons and images encrypted (`*.enc`). Their `postinstall` scripts decrypt them:
+
+1. Get `ASSET_PASSWORD` and `ASSET_INIT_VECTOR` from the [Marketingportal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and put them into a `.env` file in the project root. Add `.env` to `.gitignore`.
+2. Allow the install scripts of the three packages. npm 11 and pnpm 10 block install scripts of dependencies by default, for example: `npm install-scripts approve @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`.
+3. If the `.env` was added after the install, run the decryption again: `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`.
+
+Without decryption, fonts and icons are missing at runtime, or the build fails with `ENOENT` for a file under `node_modules/@db-ux/db-theme*/build/`.
+
+**Vite:** The theme CSS references its assets as `@db-ux/...` module paths. Add an alias so Vite resolves them:
+
+```ts
+// vite.config.ts
+import * as path from "node:path";
+
+export default defineConfig({
+	resolve: {
+		alias: { "@db-ux": path.resolve("node_modules/@db-ux") }
+	}
+});
+```
+
 ## Spacing
 
 Replace hardcoded `px`/`rem` in `padding`, `margin`, `gap`, `inset`, `top`/`right`/`bottom`/`left` with `--db-spacing-fixed-*` tokens. For responsive spacing use `--db-spacing-responsive-*`.

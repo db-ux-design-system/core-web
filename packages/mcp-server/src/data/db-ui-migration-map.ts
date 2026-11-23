@@ -100,7 +100,11 @@ export const migrationData: MigrationData = {
 			'no separate component: the label is the label prop of db-input, db-select, db-textarea, db-checkbox, db-radio and db-switch',
 		'elm-image': 'no separate component: use a native img with alt text',
 		'elm-logo':
-			'no separate component: the logo is part of db-control-panel-brand'
+			'no separate component: the logo is part of db-control-panel-brand',
+		'cmp-notification':
+			'data-type becomes the semantic prop; drop a wrapping section[data-variant="hovering"] and use variant="standalone" for in-content notices',
+		'cmp-card':
+			'db-card is a flex column; put custom layout classes on a wrapper inside the card, not on the card itself'
 	},
 	colors: {
 		'db-color-yellow-100': {
