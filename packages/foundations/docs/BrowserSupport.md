@@ -34,6 +34,7 @@ Popover is loosely depending on Anchor Positioning.
 | [`headingoffset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/headingoffset) and [`headingreset`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/headingreset) (planned) | _experimental_          | _Nightly_        | 27.3 (xx.12.2026)                                                                   |
 | [CSS `@supports: at-rule()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@supports#at-rule) (planned)                                                                                                             | 148 (05.05.2026)        | 157 (29.09.2026) | 27.3 (xx.12.2026)                                                                   |
 | [CSS `@supports: named-feature()`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@supports#at-rule) (planned)                                                                                                       | 150 (30.06.2026)        | _Nightly_        | 27.3 (xx.12.2026)                                                                   |
+| [native UI switch (`<input type="checkbox" switch />`)](https://github.com/whatwg/html/pull/9546) (planned)                                                                                                       | _tbd_        | _tbd_        | _tbd_                                                                   |
 
 ## Without graceful degradation
 
