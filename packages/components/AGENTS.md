@@ -52,8 +52,20 @@ configs/
 │   └── agent/                      # Agent documentation plugin
 scripts/
 ├── exec/                           # Per-framework post-Mitosis exec scripts
+├── css-properties.ts               # PostCSS plugin: documented CSS custom properties -> JSON
+├── write-css-properties.ts         # Build step that runs it over build/components
 └── post-build/                     # ⚠️ DEPRECATED — see note below
 ```
+
+## CSS custom properties (styling API)
+
+CSS custom properties that consumers may set are registered with `@property` and documented in a `/** */` comment right above it (description, optional `@default <value>`). Shared ones live in a `*.properties.scss` partial, e.g. `src/styles/internal/_form-components.properties.scss`. Each component that supports them loads it with `@forward "../../styles/internal/form-components.properties";` (`@forward` emits the CSS like `@use`, but creates no namespace that would clash with `form-components`).
+
+- Use `syntax: "*"` and `inherits: true`, so registering changes nothing at runtime.
+- **Never set `initial-value`.** The flatten plugin of `@db-ux/core-postcss-plugin` (used by consumers and the showcases) resolves every `var()` of a registered property to its initial value and removes the `@property` rule. Values set later, from JavaScript (`--db-loading-indicator-percentage`) or a `style` attribute, then no longer apply. Without an initial value the property stays unset, the `var(--property, fallback)` fallbacks keep working, and registering changes nothing at runtime.
+- Document the default with `@default` (also fixed ones like `auto`).
+- Start every properties file with `/* @css-properties <name> */` (the file name without `_` and `.properties.scss`) and keep only `@property` rules in it. A component documents only the properties files its own `<name>.scss` loads with `@forward`, because its CSS also contains the styles of nested components (DBShell includes DBDrawer). Component-specific properties go into `src/components/<name>/_<name>.properties.scss`, e.g. `--db-form-component-min-block-size` in `_textarea.properties.scss`.
+- `scripts/css-properties.ts` is a PostCSS plugin; the build step `build-style:03_css-properties` (`scripts/write-css-properties.ts`) runs it over the compiled CSS of every component and writes `build/components/<name>/<name>.css-properties.json` for every component with documented properties. Not in `postcss.config.cjs`: `build-style:02_postcss` only reaches `build/styles/`, because the shell expands `build/**/*.css` like `build/*/*.css`. The Storybook overview pages show the JSON as "CSS custom properties".
 
 ## Heading component family
 
@@ -260,7 +272,7 @@ When adding or modifying examples:
     Inline `style` also only reaches the element it sits on — it cannot express descendant or pseudo-element rules. When a one-off demo needs those, prefer dropping the fine-tuning over reintroducing a mystery class; keep it in the shared stylesheet only if the layout genuinely depends on it.
 
 - Examples must be valid Mitosis components — they go through the same compilation pipeline
-- **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in Patternhub, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
+- **Every new example file MUST be wired into `showcase/<name>.showcase.lite.tsx` by hand**, in the same commit that adds the example: import the example's default export at the top (keep the existing alphabetical-by-import-path ordering), then add a `<LinkWrapperShowcase exampleName="...">` block for it **below all existing blocks**, right before the closing `</ContainerWrapperShowcase>`. Skipping this makes the example dead code that never renders in the showcases, Storybook, or the e2e suite, and — if the import is skipped but the JSX usage is still added (or vice versa) — breaks the Mitosis compile entirely.
 
 ## Component tests (`showcases/e2e/**/*-interaction.spec.ts`)
 
@@ -316,7 +328,7 @@ The published outputs are ESM (`"type": "module"`), which requires relative impo
 
 This replaced the earlier `tsc-esm-fix` / Vite / post-tsc workaround. The React output's `tsconfig.json` uses `module`/`moduleResolution: "node16"` so any missing extension fails at compile time rather than at runtime.
 
-Consumers of the **raw** `output/react/src` (Patternhub and next-showcase via webpack) need `resolve.extensionAlias` mapping `.js → .ts/.tsx/.js`; Vite-based consumers (react-showcase) resolve this natively. Unit tests live in `configs/plugins/esm-extensions.spec.ts`.
+Consumers of the **raw** `output/react/src` (next-showcase via webpack) need `resolve.extensionAlias` mapping `.js → .ts/.tsx/.js`; Vite-based consumers (react-showcase) resolve this natively. Unit tests live in `configs/plugins/esm-extensions.spec.ts`.
 
 ## React Invoker Commands Types (`configs/plugins/react/invoker-commands.cjs`)
 
@@ -491,19 +503,17 @@ are always used inside a parent component. They do **not** have standalone:
 - E2E test files — covered by the parent's e2e tests
 - Router/navigation entries — no standalone showcase page exists
 
-They **do** still get:
-
-- Patternhub component parser entries (import, switch case, type) — needed to render inside parent examples
+They **do** still get the component files (source, model, styles, exports) and the framework docs (`docs/<Framework>.md`).
 
 When generating a sub-component with `pnpm run generate:component`, answer **Yes** to the
 "Is this a sub-component?" prompt. The generator's `subComponent` flag skips all of the above
-standalone files automatically while preserving the parser and docs metadata entries.
+standalone files automatically while preserving the docs metadata entries.
 
 **Examples of sub-components:** `accordion-item`, `navigation-item`, `tab-item`, `tab-panel`,
 `drawer-handle`, `split-button-menu`
 
 **Sub-component suffix convention:** The test-table generator
-(`showcases/patternhub/scripts/generate-test-table.js`) automatically excludes components ending
+(`storybooks/_shared/foundations/generate-test-table.ts`) automatically excludes components ending
 in `-list`, `-panel`, `-item`, `-handle`, `-menu`, `-footer`, `-header`, `-head`, `-content`, `-sub-navigation`, `-cell`, `-row`, `-caption` or `-body` from the validation table, components
 starting with `control-panel-` (sub-components of `DBControlPanel`, which has no standalone
 element of its own) except the standalone variants `control-panel-desktop`, `control-panel-mobile`

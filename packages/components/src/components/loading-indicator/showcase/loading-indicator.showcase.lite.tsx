@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -16,11 +15,9 @@ import LoadingIndicatorStateDeterminate from '../examples/state.determinate.exam
 import LoadingIndicatorState from '../examples/state.example.lite';
 import LoadingIndicatorTimeout from '../examples/timeout.example.lite';
 
-export default function LoadingIndicatorShowcase(props: PatternhubProps) {
+export default function LoadingIndicatorShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBLoadingIndicator"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBLoadingIndicator">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<LoadingIndicatorDensity />

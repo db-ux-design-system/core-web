@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -16,11 +15,9 @@ import NotificationShowTimestamp from '../examples/show-timestamp.example.lite';
 import NotificationVariant from '../examples/variant.example.lite';
 import NotificationVisual from '../examples/visual.example.lite';
 
-export default function NotificationShowcase(props: PatternhubProps) {
+export default function NotificationShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBNotification"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBNotification">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<NotificationDensity />

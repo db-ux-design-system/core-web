@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -17,11 +16,9 @@ import SelectState from '../examples/state.example.lite';
 import SelectValidation from '../examples/validation.example.lite';
 import SelectVariant from '../examples/variant.example.lite';
 
-export default function SelectShowcase(props: PatternhubProps) {
+export default function SelectShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBSelect"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBSelect">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<SelectDensity />

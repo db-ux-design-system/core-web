@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -16,11 +15,9 @@ import SwitchValidation from '../examples/validation.example.lite';
 import SwitchVariant from '../examples/variant.example.lite';
 import SwitchVisualAid from '../examples/visual-aid.example.lite';
 
-export default function SwitchShowcase(props: PatternhubProps) {
+export default function SwitchShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBSwitch"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBSwitch">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<SwitchDensity />

@@ -290,15 +290,14 @@ Do NOT re-export from `./model`. Do NOT use `.lite` suffix.
 3. **showcase/{component_slug}.showcase.lite.tsx**:
 
 ```tsx
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
 import VariantExample from '../examples/variant.example.lite';
 
-export default function {component_name}Showcase(props: PatternhubProps) {
+export default function {component_name}Showcase() {
   return (
-    <ContainerWrapperShowcase title="DB{component_name}" isPatternhub={props.isPatternhub}>
+    <ContainerWrapperShowcase title="DB{component_name}">
       <LinkWrapperShowcase exampleName="Variant">
         <CardWrapperShowcase>
           <VariantExample />

@@ -1,0 +1,11 @@
+/* @css-properties custom-select-dropdown */
+
+/**
+ * Inline size of the dropdown with `dropdownWidth="fixed"`
+ * (the default).
+ * @default var(--db-sizing-3xl)
+ */
+@property --db-custom-select-dropdown-fixed-inline-size {
+	syntax: "*";
+	inherits: true;
+}

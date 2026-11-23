@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -14,15 +13,14 @@ import TableShowCaption from '../examples/show-caption.example.lite';
 import TableSize from '../examples/size.example.lite';
 import TableStickyHeader from '../examples/sticky-header.example.lite';
 import TableSubHeaderEmphasis from '../examples/sub-header-emphasis.example.lite';
+import TableText from '../examples/text.example.lite';
 import TableVariant from '../examples/variant.example.lite';
 import TableVerticalAlignment from '../examples/vertical-alignment.example.lite';
 import TableWidth from '../examples/width.example.lite';
 
-export default function TableShowcase(props: PatternhubProps) {
+export default function TableShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBTable"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBTable">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<TableDensity />
@@ -96,6 +94,11 @@ export default function TableShowcase(props: PatternhubProps) {
 			<LinkWrapperShowcase exampleName="Column Count">
 				<CardWrapperShowcase>
 					<TableColumnCount />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Text">
+				<CardWrapperShowcase>
+					<TableText />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>

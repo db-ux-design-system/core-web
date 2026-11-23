@@ -60,7 +60,8 @@ export default function DBTableRow(props: DBTableRowProps) {
 									colSpan={cell.colSpan}
 									colspan={cell.colspan}
 									rowSpan={cell.rowSpan}
-									rowspan={cell.rowspan}>
+									rowspan={cell.rowspan}
+									text={cell.text}>
 									<Show when={cell.link} else={cell.content}>
 										<DBLink
 											content={cell.link?.content}
@@ -102,7 +103,8 @@ export default function DBTableRow(props: DBTableRowProps) {
 								colSpan={cell.colSpan}
 								colspan={cell.colspan}
 								rowSpan={cell.rowSpan}
-								rowspan={cell.rowspan}>
+								rowspan={cell.rowspan}
+								text={cell.text}>
 								<Show when={cell.link} else={cell.content}>
 									<DBLink
 										content={cell.link?.content}
