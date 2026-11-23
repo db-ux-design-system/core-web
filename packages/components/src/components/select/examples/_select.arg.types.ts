@@ -9,6 +9,9 @@ export const StorybookSelectArgTypes: Record<string, InputType> = {
 	value: { control: 'text' },
 	showLabel: { control: 'boolean' },
 	message: { control: 'text' },
+	messageProps: { control: 'object' },
+	validMessageProps: { control: 'object' },
+	invalidMessageProps: { control: 'object' },
 	showMessage: { control: 'boolean' },
 	validation: {
 		control: 'select',

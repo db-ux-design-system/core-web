@@ -5,6 +5,7 @@ import type {
 	FocusEventState,
 	FormCheckProps,
 	FormMessageProps,
+	FormMessageState,
 	FormProps,
 	FormState,
 	FromValidState,
@@ -51,4 +52,5 @@ export type DBSwitchState = DBSwitchDefaultState &
 	ChangeEventState<HTMLInputElement> &
 	FocusEventState<HTMLInputElement> &
 	FormState &
+	FormMessageState &
 	FromValidState;
