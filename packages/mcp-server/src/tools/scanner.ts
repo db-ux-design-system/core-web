@@ -72,9 +72,15 @@ const RE_GENERATION_2_WRAPPER = /<(Db[A-Z]\w*)\b/g;
 /** Matches Generation 2 color tokens: db-color-xxx-nnn */
 const RE_GENERATION_2_COLOR = /\b(db-color-[\w-]+)/g;
 
-/** Matches icon references: icon="xxx" or icon='xxx' or data-icon="xxx" */
+/**
+ Matches icon references: icon="xxx", iconafter="xxx", data-icon="xxx", …
+
+ Names may contain hyphens: Generation 2 used `arrow-forward`,
+ `swap-horizontal`, while Generation 3 uses underscores. `iconafter` and
+ `data-icon-before` / `data-icon-after` are the Generation 2 spellings.
+ */
 const RE_ICON_ATTR =
-	/(?:icon|data-icon|data-icon-leading|data-icon-trailing|iconName)\s*=\s*["'](\w+)["']/g;
+	/(?<![\w-])(?:icon|iconafter|iconAfter|iconName|data-icon|data-icon-before|data-icon-after|data-icon-leading|data-icon-trailing)\s*=\s*["']([\w-]+)["']/g;
 
 /**
  Matches any `@db-ui/*` package reference and captures the package name:
@@ -124,56 +130,97 @@ const GENERATION_3_PRE_RELEASE_PACKAGE_MAP: Record<string, string> = {
 /**
  Custom elements of `@db-ui/elements` 0.33 (the last Generation 2 release).
 
- - `replacement`: Generation 3 counterpart, if one is documented.
+ - `cssClass`: the Generation 2 class the element renders. The suggestion is
+   resolved from `migrationData` via this class, so `rea-header`,
+   `<db-header>` and `<DbHeader>` always get the same Generation 3 target.
+ - `replacement`: only for elements that render no Generation 2 class.
  - `sharedName`: a Generation 3 component with the same tag exists. These tags
    are only reported when the file contains other Generation 2 markers, as
    they are valid Generation 3 markup in Angular, Vue and Web Components.
  */
 const GENERATION_2_ELEMENTS: Record<
 	string,
-	{ readonly replacement?: string; readonly sharedName: boolean }
+	{
+		readonly cssClass?: string;
+		readonly replacement?: string;
+		readonly sharedName: boolean;
+	}
 > = {
-	'db-accordion': { replacement: 'db-accordion-item', sharedName: true },
-	'db-brand': { replacement: 'db-brand', sharedName: true },
-	'db-breadcrumb': { sharedName: false },
-	'db-button': { replacement: 'db-button', sharedName: true },
-	'db-card': { replacement: 'db-card', sharedName: true },
-	'db-cards': { sharedName: false },
-	'db-checkbox': { replacement: 'db-checkbox', sharedName: true },
-	'db-chip': { replacement: 'db-tag', sharedName: false },
-	'db-dropdown': { sharedName: false },
-	'db-footer': { replacement: 'db-footer', sharedName: true },
-	'db-header': { replacement: 'db-header', sharedName: true },
-	'db-headline': { sharedName: false },
+	'db-accordion': { cssClass: 'cmp-accordion', sharedName: true },
+	'db-brand': { cssClass: 'cmp-brand', sharedName: true },
+	'db-breadcrumb': { cssClass: 'cmp-breadcrumb', sharedName: true },
+	'db-button': { cssClass: 'elm-button', sharedName: true },
+	'db-card': { cssClass: 'cmp-card', sharedName: true },
+	'db-cards': { cssClass: 'cmp-cards', sharedName: false },
+	'db-checkbox': { cssClass: 'elm-checkbox', sharedName: true },
+	'db-chip': { cssClass: 'elm-chip', sharedName: false },
+	'db-dropdown': { cssClass: 'cmp-dropdown', sharedName: false },
+	'db-footer': { cssClass: 'rea-footer', sharedName: true },
+	'db-header': { cssClass: 'rea-header', sharedName: true },
+	'db-headline': { cssClass: 'elm-headline', sharedName: false },
 	'db-icon': { replacement: 'db-icon', sharedName: true },
-	'db-image': { sharedName: false },
-	'db-input': { replacement: 'db-input', sharedName: true },
-	'db-language-switcher': { sharedName: false },
-	'db-link': { replacement: 'db-link', sharedName: true },
-	'db-linklist': { sharedName: false },
-	'db-logo': { sharedName: false },
-	'db-mainnavigation': { replacement: 'db-navigation', sharedName: false },
-	'db-meta': { sharedName: false },
-	'db-metanavigation': { sharedName: false },
-	'db-notification': { replacement: 'db-notification', sharedName: true },
-	'db-notifications': { sharedName: false },
-	'db-overflow-menu': { sharedName: false },
-	'db-page': { replacement: 'db-page', sharedName: true },
-	'db-pagination': { replacement: 'db-pagination', sharedName: true },
-	'db-progress': { sharedName: false },
-	'db-radio': { replacement: 'db-radio', sharedName: true },
-	'db-select': { replacement: 'db-select', sharedName: true },
-	'db-sidenavi': {
-		replacement: 'db-drawer with db-navigation',
+	'db-image': { cssClass: 'elm-image', sharedName: false },
+	'db-input': { cssClass: 'elm-input', sharedName: true },
+	'db-language-switcher': {
+		cssClass: 'cmp-language-switcher',
 		sharedName: false
 	},
-	'db-tab': { replacement: 'db-tab-item', sharedName: false },
-	'db-tab-bar': { replacement: 'db-tabs', sharedName: false },
-	'db-table': { replacement: 'db-table', sharedName: true },
-	'db-tag': { replacement: 'db-tag', sharedName: true },
-	'db-textarea': { replacement: 'db-textarea', sharedName: true },
-	'db-toggle': { replacement: 'db-switch', sharedName: false }
+	'db-link': { cssClass: 'elm-link', sharedName: true },
+	'db-linklist': { cssClass: 'cmp-link-list', sharedName: false },
+	'db-logo': { cssClass: 'elm-logo', sharedName: false },
+	'db-mainnavigation': {
+		cssClass: 'cmp-mainnavigation',
+		sharedName: false
+	},
+	'db-meta': { cssClass: 'rea-meta', sharedName: false },
+	'db-metanavigation': {
+		cssClass: 'cmp-metanavigation',
+		sharedName: false
+	},
+	'db-notification': { cssClass: 'cmp-notification', sharedName: true },
+	'db-notifications': { sharedName: false },
+	'db-overflow-menu': { cssClass: 'cmp-overflow-menu', sharedName: false },
+	'db-page': { cssClass: 'rea-page', sharedName: true },
+	'db-pagination': { cssClass: 'cmp-pagination', sharedName: true },
+	'db-progress': { cssClass: 'elm-progress', sharedName: false },
+	'db-radio': { cssClass: 'elm-radio', sharedName: true },
+	'db-select': { cssClass: 'elm-select', sharedName: true },
+	'db-sidenavi': { cssClass: 'cmp-sidenavi', sharedName: false },
+	'db-tab': { cssClass: 'cmp-db-tab', sharedName: false },
+	'db-tab-bar': { cssClass: 'cmp-tab-bar', sharedName: false },
+	'db-table': { cssClass: 'cmp-table', sharedName: true },
+	'db-tag': { cssClass: 'elm-tag', sharedName: true },
+	'db-textarea': { cssClass: 'elm-textarea', sharedName: true },
+	'db-toggle': { cssClass: 'elm-toggle', sharedName: false }
 };
+
+/**
+ Resolves the Generation 3 target and extra guidance for a Generation 2 CSS
+ class. Shared by class, tag and wrapper findings.
+ */
+function resolveClass(cssClass: string | undefined): {
+	replacement?: string;
+	note?: string;
+} {
+	if (!cssClass) {
+		return {};
+	}
+
+	return {
+		replacement: migrationData.components[cssClass],
+		note: migrationData.componentNotes[cssClass]
+	};
+}
+
+/** Suggestion for a Generation 2 CSS class finding. */
+function classSuggestion(cssClass: string): string | undefined {
+	const { replacement, note } = resolveClass(cssClass);
+	if (replacement && note) {
+		return `${replacement} - ${note}`;
+	}
+
+	return replacement ?? note;
+}
 
 /** Options derived once per file and passed to every {@link scanLine} call. */
 type ScanContext = {
@@ -202,20 +249,20 @@ function toKebabTag(wrapper: string): string {
 
 /** Suggestion for a Generation 2 element, rendered for tags or wrappers. */
 function elementSuggestion(tag: string, isWrapper: boolean): string {
-	const replacement = GENERATION_2_ELEMENTS[tag]?.replacement;
-	if (!replacement) {
-		return 'No direct Generation 3 equivalent - see the component-migration guide';
-	}
+	const element = GENERATION_2_ELEMENTS[tag];
+	const resolved = resolveClass(element?.cssClass);
+	const replacement = resolved.replacement ?? element?.replacement;
 
-	// "db-drawer with db-navigation" -> "DBDrawer with DBNavigation"
-	const rendered = isWrapper
-		? replacement.replaceAll(
-				/db-[\w-]+/g,
-				(name) => `DB${toPascalCase(name)}`
-			)
-		: replacement;
+	const text = replacement
+		? `${replacement} (Generation 3) - review changed props/API${resolved.note ? ` - ${resolved.note}` : ''}`
+		: resolved.note
+			? `No direct Generation 3 equivalent - ${resolved.note}`
+			: 'No direct Generation 3 equivalent - see the component-migration guide';
 
-	return `${rendered} (Generation 3) - review changed props/API`;
+	// React / Vue: "db-control-panel-desktop" -> "DBControlPanelDesktop"
+	return isWrapper
+		? text.replaceAll(/\bdb-[\w-]+/g, (name) => `DB${toPascalCase(name)}`)
+		: text;
 }
 
 /** Suggestion for an `@db-ui/*` package reference. */
@@ -258,9 +305,9 @@ function scanLine(
 			found: old,
 			context: ctx.trim()
 		};
-		const replacement = migrationData.components[old];
-		if (replacement) {
-			finding.suggestion = replacement;
+		const suggestion = classSuggestion(old);
+		if (suggestion) {
+			finding.suggestion = suggestion;
 		}
 
 		findings.push(finding);
@@ -369,7 +416,8 @@ function scanLine(
    when the file contains other Generation 2 markers.
  - Generation 2 color tokens (db-color-*)
  - Generation 2 icon names (cross-referenced against the icon migration data)
- - @db-ui/* packages, distinguishing Generation 2 from Generation 3 pre-releases
+ - Packages under the @db-ui scope, distinguishing Generation 2 from
+   Generation 3 pre-releases
 
  Returns a JSON report with line numbers, findings, and migration suggestions
  resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.

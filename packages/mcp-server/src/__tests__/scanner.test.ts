@@ -91,9 +91,47 @@ describe('scan_generation_2_migration markup detection', () => {
 		expect(output).toContain('DBButton (Generation 3)');
 		expect(output).toContain('"found": "<DbTabBar>"');
 		expect(output).toContain('DBTabs (Generation 3)');
-		expect(output).toContain('DBDrawer with DBNavigation (Generation 3)');
+		expect(output).toContain('DBControlPanelDesktop (Generation 3)');
 		expect(output).toContain('"found": "<DbBreadcrumb>"');
+		expect(output).toContain('DBBreadcrumb (Generation 3)');
+	});
+
+	it('reports elements without a Generation 3 equivalent', async () => {
+		const output = await scan('no-equivalent', '<DbCards></DbCards>');
+
+		expect(output).toContain('"found": "<DbCards>"');
 		expect(output).toContain('No direct Generation 3 equivalent');
+	});
+
+	it('suggests the same Generation 3 target for class, tag and wrapper', async () => {
+		const output = await scan(
+			'same-target',
+			[
+				'<header class="rea-header"></header>',
+				'<db-header></db-header>',
+				'<DbHeader></DbHeader>',
+				'<nav class="cmp-mainnavigation"></nav>',
+				'<db-mainnavigation></db-mainnavigation>',
+				'<DbMainnavigation></DbMainnavigation>'
+			].join('\n')
+		);
+
+		// Class and custom element share the kebab-case name ...
+		expect(output.match(/db-control-panel-desktop/g)?.length).toBe(
+			// Suggestion + note for the class, suggestion + note for the tag
+			4
+		);
+		// ... the React wrapper gets the PascalCase name.
+		expect(output).toContain('DBControlPanelDesktop (Generation 3)');
+		expect(output).toContain('DBShell');
+		// Not counting db-control-panel-navigation-item from the note.
+		expect(
+			output.match(/db-control-panel-navigation(?![\w-])/g)?.length
+		).toBe(2);
+		expect(output).toContain('DBControlPanelNavigation (Generation 3)');
+		// The deprecated Generation 3 components are never the target.
+		expect(output).not.toMatch(/"suggestion": "db-(header|navigation)\b/);
+		expect(output).not.toMatch(/DB(Header|Navigation) \(Generation 3\)/);
 	});
 
 	it('does not report Generation 3 wrappers (<DB*>)', async () => {
@@ -135,8 +173,101 @@ describe('scan_generation_2_migration markup detection', () => {
 		);
 
 		expect(output).toContain('"found": "<db-mainnavigation>"');
-		expect(output).toContain('db-navigation (Generation 3)');
+		expect(output).toContain('db-control-panel-navigation (Generation 3)');
 		// <db-shell> does not exist in @db-ui/elements.
 		expect(output).not.toContain('<db-shell>');
+	});
+});
+
+describe('scan_generation_2_migration icon detection', () => {
+	it('detects hyphenated icon names and the Generation 2 icon attributes', async () => {
+		const output = await scan(
+			'icons',
+			[
+				'<DbButton icon="swap-horizontal">Swap</DbButton>',
+				'<DbButton iconafter="arrow-forward">Next</DbButton>',
+				'<a class="elm-link" data-icon-before="search">Find</a>',
+				'<a class="elm-link" data-icon-after="close">Close</a>'
+			].join('\n')
+		);
+
+		for (const [found, suggestion] of [
+			['swap-horizontal', 'arrows_horizontal'],
+			['arrow-forward', 'arrow_right'],
+			['search', 'magnifying_glass'],
+			['close', 'cross']
+		]) {
+			expect(output).toContain(`"found": "${found}"`);
+			expect(output).toContain(`"suggestion": "${suggestion}"`);
+		}
+
+		expect(output).toContain('4 icon(s)');
+	});
+
+	it('does not report Generation 3 icon names', async () => {
+		const output = await scan(
+			'gen3-icons',
+			'<DBButton icon="magnifying_glass">Find</DBButton>'
+		);
+
+		expect(output).toContain('No Generation 2 patterns found');
+	});
+});
+
+describe('scan_generation_2_migration class mapping', () => {
+	it('gives every Generation 2 class from component-migration.md a suggestion', async () => {
+		const { readFileSync } = await import('node:fs');
+		const { fileURLToPath } = await import('node:url');
+		const guide = readFileSync(
+			fileURLToPath(
+				new URL(
+					'../../../../docs/migration/db-ui/component-migration.md',
+					import.meta.url
+				)
+			),
+			'utf8'
+		);
+		const { migrationData } =
+			await import('../data/db-ui-migration-map.js');
+
+		const classes = [
+			...new Set(
+				[...guide.matchAll(/`((?:cmp|elm|rea)-[\w-]+)`/g)].map(
+					(match) => match[1]
+				)
+			)
+		];
+		const missing = classes.filter(
+			(name) =>
+				!migrationData.components[name] &&
+				!migrationData.componentNotes[name]
+		);
+
+		expect(classes.length).toBeGreaterThan(20);
+		expect(missing).toEqual([]);
+	});
+
+	it('explains classes that have no own Generation 3 component', async () => {
+		const output = await scan(
+			'notes',
+			'<label class="elm-label">Name</label>\n<img class="elm-image" alt="">\n<h1 class="elm-headline">Title</h1>\n<span class="elm-chip"></span>'
+		);
+
+		expect(output).toContain('label prop of db-input');
+		expect(output).toContain('native img with alt text');
+		expect(output).toContain('db-heading-h-1 to db-heading-h-6');
+		expect(output).toContain(
+			'db-tag with db-checkbox, db-radio or db-button inside'
+		);
+		expect(output.match(/"suggestion":/g)?.length).toBe(4);
+	});
+
+	it('maps cmp-notification, the class @db-ui/core 3.x actually uses', async () => {
+		const output = await scan(
+			'notification',
+			'<div class="cmp-notification" data-type="error"></div>'
+		);
+
+		expect(output).toContain('"suggestion": "db-notification"');
 	});
 });

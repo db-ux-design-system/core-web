@@ -48,7 +48,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **navigation-item** — New component (`db-control-panel-navigation-item`; the former `db-navigation-item` is deprecated)
 
-**notification** — `elm-notification`->`db-notification`. Semantic colour moves to the `semantic` prop (`adaptive`/`neutral`/`critical`/`informational`/`warning`/`successful`): `error`->`semantic="critical"`, `informative`->`semantic="informational"`, `warning`->`semantic="warning"`, `success`->`semantic="successful"`. The `variant` prop now controls layout only (`docked`/`standalone`/`overlay`), not colour.
+**notification** — `cmp-notification`->`db-notification`. Semantic colour moves to the `semantic` prop (`adaptive`/`neutral`/`critical`/`informational`/`warning`/`successful`): `error`->`semantic="critical"`, `informative`->`semantic="informational"`, `warning`->`semantic="warning"`, `success`->`semantic="successful"`. The `variant` prop now controls layout only (`docked`/`standalone`/`overlay`), not colour.
 
 **page** — `rea-page`->`db-shell` (the former `db-page` is deprecated). `db-shell` wraps the control panels and `db-shell-content`.
 
