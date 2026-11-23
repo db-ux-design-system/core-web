@@ -17,7 +17,8 @@ useMetadata({
 
 export default function TableExpandableRow() {
 	const state = useStore({
-		columnSizes: { 0: 'min-content' }
+		columnSizes: { 0: 'min-content' },
+		columnSizesLast: { 2: 'min-content' }
 	});
 
 	return (
@@ -373,19 +374,23 @@ export default function TableExpandableRow() {
 					captionPlain="Mobile Variant List">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell scope="col" noText>
-								Details
-							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								Number
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								Status
 							</DBTableHeaderCell>
+							<DBTableHeaderCell scope="col" noText>
+								Details
+							</DBTableHeaderCell>
 						</DBTableRow>
 					</DBTableHead>
 					<DBTableBody>
 						<DBTableRow interactive>
+							<DBTableDataCell>34621 234</DBTableDataCell>
+							<DBTableDataCell>
+								<DBTag>Status Tag</DBTag>
+							</DBTableDataCell>
 							<DBTableDataCell>
 								<details>
 									<summary
@@ -419,12 +424,12 @@ export default function TableExpandableRow() {
 									</div>
 								</details>
 							</DBTableDataCell>
-							<DBTableDataCell>34621 234</DBTableDataCell>
+						</DBTableRow>
+						<DBTableRow interactive>
+							<DBTableDataCell>34621 235</DBTableDataCell>
 							<DBTableDataCell>
 								<DBTag>Status Tag</DBTag>
 							</DBTableDataCell>
-						</DBTableRow>
-						<DBTableRow interactive>
 							<DBTableDataCell>
 								<details>
 									<summary
@@ -457,10 +462,6 @@ export default function TableExpandableRow() {
 										</div>
 									</div>
 								</details>
-							</DBTableDataCell>
-							<DBTableDataCell>34621 235</DBTableDataCell>
-							<DBTableDataCell>
-								<DBTag>Status Tag</DBTag>
 							</DBTableDataCell>
 						</DBTableRow>
 					</DBTableBody>
