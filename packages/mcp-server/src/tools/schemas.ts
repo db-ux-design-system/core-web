@@ -138,8 +138,10 @@ const scanMigrationInputSchema = z.object({
 export const scanGeneration2MigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
-		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*), ' +
-		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*), ' +
+		'Generation 2 Web Components from @db-ui/elements (<db-*>) and their React/Vue wrappers (<Db*>), ' +
+		'color tokens like db-color-*, legacy icon names, and @db-ui/* packages, distinguishing Generation 2 ' +
+		'from Generation 3 pre-releases) and returns a JSON report ' +
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
 		'you start generating code — no guessing needed.',

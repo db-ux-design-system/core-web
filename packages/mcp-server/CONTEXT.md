@@ -200,6 +200,9 @@ Always normalize paths (convert `\` to `/`) before string comparisons like `.inc
 ### DB UX Design System – Generation 2 vs Generation 3 Terminology
 
 - **Generation 2** (aka DB UI): `cmp-*`, `elm-*`, `rea-*` were **CSS classes**, not HTML tags. The custom elements were `<db-*>`.
+- **Generation 2 packages**: `@db-ui/core` and `@db-ui/base` (CSS framework, repository `db-ui/core`), `@db-ui/elements` (Web Components) and the wrappers `@db-ui/react-elements`, `@db-ui/ngx-elements`, `@db-ui/v-elements` (repository `db-ui/elements`). The React and Vue wrappers are named `DbButton`, `DbCard` (Generation 3: `DBButton`).
+- **Generation 3 pre-releases under the former scope**: `@db-ui/foundations`, `@db-ui/components`, `@db-ui/react-components`, `@db-ui/ngx-components`, `@db-ui/v-components`, `@db-ui/web-components` (repository `db-ui/mono`, deprecated on npm). These are **not** Generation 2 – only the package names changed to `@db-ux/*`.
+- **Ambiguous `<db-*>` tags**: Generation 3 Angular, Vue and Web Components use `<db-*>` as well. The scanner only reports tags that exist in `@db-ui/elements`, and tags whose name also exists in Generation 3 only when the file contains other Generation 2 markers.
 - **Generation 3**: Uses CSS classes like `db-card`, `db-button` with `data-variant` for variants and `type="button"` on buttons.
 
 ## Communication

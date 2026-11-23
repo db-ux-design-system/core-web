@@ -54,8 +54,20 @@ type ScanFinding = {
 /** Matches Generation 2 CSS classes: cmp-xxx, elm-xxx, rea-xxx (in class attributes, SCSS, etc.) */
 const RE_GENERATION_2_CSS_CLASS = /\b((?:cmp|elm|rea)-[\w-]+)\b/g;
 
-/** Matches Generation 2 Web Components: <db-xxx (HTML/JSX custom element tags) */
-const RE_GENERATION_2_WEB_COMPONENT = /<(db-[\w-]+)\b/g;
+/**
+ Matches custom element tags: <db-xxx (HTML, Angular and Vue templates, JSX).
+
+ Generation 3 uses the same tag prefix in Angular, Vue and Web Components, so a
+ match alone is not evidence of Generation 2 - see
+ {@link GENERATION_2_ELEMENTS}.
+ */
+const RE_DB_CUSTOM_ELEMENT = /<(db-[\w-]+)\b/g;
+
+/**
+ Matches the React and Vue wrappers of `@db-ui/elements`: <DbButton, <DbCard.
+ Generation 3 spells them `DBButton`, so the lowercase `b` is unambiguous.
+ */
+const RE_GENERATION_2_WRAPPER = /<(Db[A-Z]\w*)\b/g;
 
 /** Matches Generation 2 color tokens: db-color-xxx-nnn */
 const RE_GENERATION_2_COLOR = /\b(db-color-[\w-]+)/g;
@@ -64,17 +76,162 @@ const RE_GENERATION_2_COLOR = /\b(db-color-[\w-]+)/g;
 const RE_ICON_ATTR =
 	/(?:icon|data-icon|data-icon-leading|data-icon-trailing|iconName)\s*=\s*["'](\w+)["']/g;
 
-/** Matches Generation 2 npm package imports: @db-ui/react-components, @db-ui/ngx-components, @db-ui/v-components, @db-ui/elements */
-const RE_GENERATION_2_IMPORT =
-	/['"](@db-ui\/(?:react-components|ngx-components|v-components|elements))['"]/g;
+/**
+ Matches any `@db-ui/*` package reference and captures the package name:
+ quoted imports, subpaths (`@db-ui/core/dist/css/...`), SCSS `~@db-ui/...`,
+ `node_modules/@db-ui/...` and CDN URLs (`unpkg.com/@db-ui/core@3.3.7/...`).
+ */
+const RE_DB_UI_PACKAGE = /(?<![\w-])(@db-ui\/[a-z][\w-]*)/g;
 
-/** Maps Generation 2 package names to their Generation 3 equivalents */
+/**
+ Non-global check for markers that only occur in Generation 2 code. Used once
+ per file to decide whether ambiguous `<db-*>` tags are reported.
+ */
+const RE_GENERATION_2_MARKER =
+	/(?<![\w-])@db-ui\/(?:core|base|elements|react-elements|ngx-elements|v-elements)\b|\b(?:cmp|elm|rea)-[\w-]+|<Db[A-Z]|\bdb-color-/;
+
+/**
+ Generation 2 (aka DB UI) packages and their Generation 3 successors.
+ `@db-ui/core` and `@db-ui/base` are the CSS framework, `@db-ui/elements` the
+ Web Components built on it, `*-elements` the framework wrappers.
+ */
 const GENERATION_2_PACKAGE_MAP: Record<string, string> = {
+	'@db-ui/core': '@db-ux/core-foundations and @db-ux/core-components',
+	'@db-ui/base': '@db-ux/core-foundations',
+	'@db-ui/elements': '@db-ux/core-components',
+	'@db-ui/react-elements': '@db-ux/react-core-components',
+	'@db-ui/ngx-elements': '@db-ux/ngx-core-components',
+	'@db-ui/v-elements': '@db-ux/v-core-components'
+};
+
+/**
+ Pre-releases of Generation 3, published under the former `@db-ui` scope
+ (repository `db-ui/mono`) and deprecated on npm. They are not Generation 2:
+ the components already follow the Generation 3 API, only the package names
+ changed.
+ */
+const GENERATION_3_PRE_RELEASE_PACKAGE_MAP: Record<string, string> = {
+	'@db-ui/foundations': '@db-ux/core-foundations',
+	'@db-ui/components': '@db-ux/core-components',
 	'@db-ui/react-components': '@db-ux/react-core-components',
 	'@db-ui/ngx-components': '@db-ux/ngx-core-components',
 	'@db-ui/v-components': '@db-ux/v-core-components',
-	'@db-ui/elements': '@db-ux/core-components'
+	'@db-ui/web-components': '@db-ux/wc-core-components'
 };
+
+// cspell:ignore metanavigation
+
+/**
+ Custom elements of `@db-ui/elements` 0.33 (the last Generation 2 release).
+
+ - `replacement`: Generation 3 counterpart, if one is documented.
+ - `sharedName`: a Generation 3 component with the same tag exists. These tags
+   are only reported when the file contains other Generation 2 markers, as
+   they are valid Generation 3 markup in Angular, Vue and Web Components.
+ */
+const GENERATION_2_ELEMENTS: Record<
+	string,
+	{ readonly replacement?: string; readonly sharedName: boolean }
+> = {
+	'db-accordion': { replacement: 'db-accordion-item', sharedName: true },
+	'db-brand': { replacement: 'db-brand', sharedName: true },
+	'db-breadcrumb': { sharedName: false },
+	'db-button': { replacement: 'db-button', sharedName: true },
+	'db-card': { replacement: 'db-card', sharedName: true },
+	'db-cards': { sharedName: false },
+	'db-checkbox': { replacement: 'db-checkbox', sharedName: true },
+	'db-chip': { replacement: 'db-tag', sharedName: false },
+	'db-dropdown': { sharedName: false },
+	'db-footer': { replacement: 'db-footer', sharedName: true },
+	'db-header': { replacement: 'db-header', sharedName: true },
+	'db-headline': { sharedName: false },
+	'db-icon': { replacement: 'db-icon', sharedName: true },
+	'db-image': { sharedName: false },
+	'db-input': { replacement: 'db-input', sharedName: true },
+	'db-language-switcher': { sharedName: false },
+	'db-link': { replacement: 'db-link', sharedName: true },
+	'db-linklist': { sharedName: false },
+	'db-logo': { sharedName: false },
+	'db-mainnavigation': { replacement: 'db-navigation', sharedName: false },
+	'db-meta': { sharedName: false },
+	'db-metanavigation': { sharedName: false },
+	'db-notification': { replacement: 'db-notification', sharedName: true },
+	'db-notifications': { sharedName: false },
+	'db-overflow-menu': { sharedName: false },
+	'db-page': { replacement: 'db-page', sharedName: true },
+	'db-pagination': { replacement: 'db-pagination', sharedName: true },
+	'db-progress': { sharedName: false },
+	'db-radio': { replacement: 'db-radio', sharedName: true },
+	'db-select': { replacement: 'db-select', sharedName: true },
+	'db-sidenavi': {
+		replacement: 'db-drawer with db-navigation',
+		sharedName: false
+	},
+	'db-tab': { replacement: 'db-tab-item', sharedName: false },
+	'db-tab-bar': { replacement: 'db-tabs', sharedName: false },
+	'db-table': { replacement: 'db-table', sharedName: true },
+	'db-tag': { replacement: 'db-tag', sharedName: true },
+	'db-textarea': { replacement: 'db-textarea', sharedName: true },
+	'db-toggle': { replacement: 'db-switch', sharedName: false }
+};
+
+/** Options derived once per file and passed to every {@link scanLine} call. */
+type ScanContext = {
+	/** The file contains markers that only occur in Generation 2 code. */
+	readonly hasGeneration2Markers: boolean;
+	/** Counts `<db-*>` tags that were skipped as valid Generation 3 markup. */
+	skippedSharedTags: number;
+};
+
+/** Converts a custom element tag to its wrapper name: db-tab-bar -> TabBar. */
+function toPascalCase(tag: string): string {
+	return tag
+		.replace(/^db-/, '')
+		.split('-')
+		.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+		.join('');
+}
+
+/** Converts a wrapper name to its custom element tag: DbTabBar -> db-tab-bar. */
+function toKebabTag(wrapper: string): string {
+	return `db-${wrapper
+		.slice(2)
+		.replaceAll(/([a-z\d])([A-Z])/g, '$1-$2')
+		.toLowerCase()}`;
+}
+
+/** Suggestion for a Generation 2 element, rendered for tags or wrappers. */
+function elementSuggestion(tag: string, isWrapper: boolean): string {
+	const replacement = GENERATION_2_ELEMENTS[tag]?.replacement;
+	if (!replacement) {
+		return 'No direct Generation 3 equivalent - see the component-migration guide';
+	}
+
+	// "db-drawer with db-navigation" -> "DBDrawer with DBNavigation"
+	const rendered = isWrapper
+		? replacement.replaceAll(
+				/db-[\w-]+/g,
+				(name) => `DB${toPascalCase(name)}`
+			)
+		: replacement;
+
+	return `${rendered} (Generation 3) - review changed props/API`;
+}
+
+/** Suggestion for an `@db-ui/*` package reference. */
+function packageSuggestion(name: string): string {
+	const generation2 = GENERATION_2_PACKAGE_MAP[name];
+	if (generation2) {
+		return `Generation 2 package. Replace with ${generation2}. Update all named imports to Generation 3 component names.`;
+	}
+
+	const preRelease = GENERATION_3_PRE_RELEASE_PACKAGE_MAP[name];
+	if (preRelease) {
+		return `Generation 3 pre-release under the former @db-ui scope, not Generation 2. Replace with ${preRelease} and check the migration guides of each major version since then.`;
+	}
+
+	return 'Unknown @db-ui package. Check whether it belongs to Generation 2 or to a Generation 3 pre-release before migrating.';
+}
 
 // ---------------------------------------------------------------------------
 // Core Scanner
@@ -84,7 +241,11 @@ const GENERATION_2_PACKAGE_MAP: Record<string, string> = {
  Scans a single line for all Generation 2 migration patterns.
  Returns findings with deterministic suggestions from the migration data.
  */
-function scanLine(line: string, lineNumber: number): ScanFinding[] {
+function scanLine(
+	line: string,
+	lineNumber: number,
+	context: ScanContext
+): ScanFinding[] {
 	const findings: ScanFinding[] = [];
 	const ctx = line.length > 120 ? line.slice(0, 120) + '...' : line;
 
@@ -106,18 +267,42 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 	}
 
 	// --- Generation 2 Web Components (<db-*>) ---
-	for (const match of line.matchAll(RE_GENERATION_2_WEB_COMPONENT)) {
+	for (const match of line.matchAll(RE_DB_CUSTOM_ELEMENT)) {
 		const old = match[1];
-		const finding: ScanFinding = {
+		const element = GENERATION_2_ELEMENTS[old];
+		// Not part of @db-ui/elements (e.g. <db-stack>, <db-shell>): Generation 3 only.
+		if (!element) {
+			continue;
+		}
+
+		// Same tag exists in Generation 3 - only report it with other evidence.
+		if (element.sharedName && !context.hasGeneration2Markers) {
+			context.skippedSharedTags++;
+			continue;
+		}
+
+		findings.push({
 			line: lineNumber,
 			type: 'component',
 			found: `<${old}>`,
 			context: ctx.trim(),
-			// Generation 2 <db-*> maps to Generation 3 <db-*> - flag for API review
-			suggestion: `${old} (Generation 3) - review changed props/API`
-		};
+			suggestion: elementSuggestion(old, false)
+		});
+	}
 
-		findings.push(finding);
+	// --- Generation 2 React / Vue wrappers (<Db*>) ---
+	for (const match of line.matchAll(RE_GENERATION_2_WRAPPER)) {
+		const old = match[1];
+		const tag = toKebabTag(old);
+		findings.push({
+			line: lineNumber,
+			type: 'component',
+			found: `<${old}>`,
+			context: ctx.trim(),
+			suggestion: GENERATION_2_ELEMENTS[tag]
+				? elementSuggestion(tag, true)
+				: `DB${old.slice(2)} (Generation 3) - verify that the component exists`
+		});
 	}
 
 	// --- Colors ---
@@ -153,15 +338,15 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
 		}
 	}
 
-	// --- Generation 2 npm package imports (@db-ui/*) ---
-	for (const match of line.matchAll(RE_GENERATION_2_IMPORT)) {
+	// --- Legacy npm packages (@db-ui/*) ---
+	for (const match of line.matchAll(RE_DB_UI_PACKAGE)) {
 		const old = match[1];
 		findings.push({
 			line: lineNumber,
 			type: 'import',
 			found: old,
 			context: ctx.trim(),
-			suggestion: `Replace with ${GENERATION_2_PACKAGE_MAP[old] ?? '@db-ux/core-components'}. Update all named imports to Generation 3 component names.`
+			suggestion: packageSuggestion(old)
 		});
 	}
 
@@ -178,9 +363,13 @@ function scanLine(line: string, lineNumber: number): ScanFinding[] {
  Analyzes a file for Generation 2 patterns that need migration to Generation 3.
 
  Deterministically scans for:
- - Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*)
+ - Generation 2 CSS classes (cmp-*, elm-*, rea-*)
+ - Generation 2 Web Components (<db-*> from @db-ui/elements) and their React /
+   Vue wrappers (<Db*>). Tags that also exist in Generation 3 are only reported
+   when the file contains other Generation 2 markers.
  - Generation 2 color tokens (db-color-*)
  - Generation 2 icon names (cross-referenced against the icon migration data)
+ - @db-ui/* packages, distinguishing Generation 2 from Generation 3 pre-releases
 
  Returns a JSON report with line numbers, findings, and migration suggestions
  resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.
@@ -234,23 +423,38 @@ export async function handleScanGeneration2Migration({
 
 	const lines = content.split('\n');
 	const findings: ScanFinding[] = [];
+	const context: ScanContext = {
+		hasGeneration2Markers: RE_GENERATION_2_MARKER.test(content),
+		skippedSharedTags: 0
+	};
 
 	for (const [i, line] of lines.entries()) {
-		findings.push(...scanLine(line, i + 1));
+		findings.push(...scanLine(line, i + 1, context));
 	}
+
+	const skippedNote =
+		context.skippedSharedTags > 0
+			? `\n\n> Skipped ${context.skippedSharedTags} <db-*> tag(s) that are valid Generation 3 markup (Angular, Vue, Web Components). They are only reported as Generation 2 when the file also contains @db-ui/* packages, cmp-*/elm-*/rea-* classes, <Db*> wrappers or db-color-* tokens.`
+			: '';
 
 	if (findings.length === 0) {
 		return {
 			content: [
 				{
 					type: 'text',
-					text: `No Generation 2 patterns found in ${absolutePath}. The file may already be migrated or does not contain any legacy code.`
+					text: `No Generation 2 patterns found in ${absolutePath}. The file may already be migrated or does not contain any legacy code.${skippedNote}`
 				}
 			]
 		};
 	}
 
-	return buildReport(absolutePath, findings, lines.length);
+	// The note goes into the header, so the findings budget accounts for it.
+	return buildReport(
+		absolutePath,
+		findings,
+		lines.length,
+		skippedNote.trim()
+	);
 }
 
 /**
@@ -347,7 +551,8 @@ function renderComponentList(names: string[]): string {
 function buildReport(
 	absolutePath: string,
 	findings: ScanFinding[],
-	lineCount: number
+	lineCount: number,
+	note = ''
 ): ToolResult {
 	const componentCount = findings.filter(
 		(f) => f.type === 'component'
@@ -368,7 +573,8 @@ function buildReport(
 		`- ${componentCount} component(s): ${renderComponentList(uniqueComponents)}`,
 		`- ${colorCount} color token(s)`,
 		`- ${iconCount} icon(s)`,
-		`- ${importCount} legacy import(s)`
+		`- ${importCount} legacy package reference(s)`,
+		...(note ? ['', note] : [])
 	];
 
 	// Cap the findings themselves rather than the rendered report: truncating
