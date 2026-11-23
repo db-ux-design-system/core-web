@@ -195,6 +195,26 @@ const GENERATION_2_ELEMENTS: Record<
 };
 
 /**
+ Whether the file contains evidence that it is Generation 2 code: a marker
+ from {@link RE_GENERATION_2_MARKER} or a `<db-*>` tag that only exists in
+ Generation 2 (`sharedName: false`, e.g. `<db-mainnavigation>`).
+ */
+function hasGeneration2Evidence(content: string): boolean {
+	if (RE_GENERATION_2_MARKER.test(content)) {
+		return true;
+	}
+
+	for (const match of content.matchAll(RE_DB_CUSTOM_ELEMENT)) {
+		const element = GENERATION_2_ELEMENTS[match[1]];
+		if (element && !element.sharedName) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  Resolves the Generation 3 target and extra guidance for a Generation 2 CSS
  class. Shared by class, tag and wrapper findings.
  */
@@ -472,7 +492,7 @@ export async function handleScanGeneration2Migration({
 	const lines = content.split('\n');
 	const findings: ScanFinding[] = [];
 	const context: ScanContext = {
-		hasGeneration2Markers: RE_GENERATION_2_MARKER.test(content),
+		hasGeneration2Markers: hasGeneration2Evidence(content),
 		skippedSharedTags: 0
 	};
 
@@ -482,7 +502,7 @@ export async function handleScanGeneration2Migration({
 
 	const skippedNote =
 		context.skippedSharedTags > 0
-			? `\n\n> Skipped ${context.skippedSharedTags} <db-*> tag(s) that are valid Generation 3 markup (Angular, Vue, Web Components). They are only reported as Generation 2 when the file also contains @db-ui/* packages, cmp-*/elm-*/rea-* classes, <Db*> wrappers or db-color-* tokens.`
+			? `\n\n> Skipped ${context.skippedSharedTags} <db-*> tag(s) that are valid Generation 3 markup (Angular, Vue, Web Components). They are only reported as Generation 2 when the file also contains @db-ui/* packages, cmp-*/elm-*/rea-* classes, <Db*> wrappers, db-color-* tokens or Generation 2-only tags such as <db-mainnavigation>.`
 			: '';
 
 	if (findings.length === 0) {

@@ -177,6 +177,18 @@ describe('scan_generation_2_migration markup detection', () => {
 		// <db-shell> does not exist in @db-ui/elements.
 		expect(output).not.toContain('<db-shell>');
 	});
+
+	it('treats Generation 2-only <db-*> tags as markers for shared tags', async () => {
+		const output = await scan(
+			'gen2-only-tag-marker',
+			'<db-mainnavigation></db-mainnavigation>\n<db-header></db-header>\n<db-button>Save</db-button>'
+		);
+
+		expect(output).toContain('"found": "<db-mainnavigation>"');
+		expect(output).toContain('"found": "<db-header>"');
+		expect(output).toContain('"found": "<db-button>"');
+		expect(output).not.toContain('Skipped');
+	});
 });
 
 describe('scan_generation_2_migration icon detection', () => {
