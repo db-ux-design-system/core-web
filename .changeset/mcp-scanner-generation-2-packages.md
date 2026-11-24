@@ -1,8 +1,8 @@
 ---
-"@db-ux/mcp-server": patch
+"@db-ux/mcp-server": minor
 ---
 
-fix(MCP server): `scan_generation_2_migration` detects the actual Generation 2 packages and markup
+feat(MCP server): `scan_generation_2_migration` detects the actual Generation 2 packages and markup
 
 - Detects `@db-ui/core`, `@db-ui/base`, `@db-ui/elements` and the `*-elements` wrappers, including subpaths, SCSS imports and CDN URLs.
 - Reports `@db-ui/*-components` and `@db-ui/foundations` as Generation 3 pre-releases instead of Generation 2.
