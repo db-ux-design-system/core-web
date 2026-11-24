@@ -275,6 +275,121 @@ function hasGeneration2Evidence(content: string): boolean {
 	return false;
 }
 
+/** Characters after which `//` starts a line comment and is not part of a URL. */
+const LINE_COMMENT_PREDECESSOR = /[\s;{}),[\]]/;
+
+/**
+ Replaces the text of comments with spaces, so the patterns only match code.
+ A comment that mentions `@db-ui/core` or `cmp-card` is no dependency and no
+ markup. Line breaks and the length of every line are kept, so line numbers
+ and positions stay valid.
+
+ Handles `//` and `/* *\/` (JS, TS, SCSS, CSS) and `<!-- -->` (HTML, Vue,
+ Angular templates). Quoted strings are kept: imports and CDN URLs live there.
+ `//` after `:` or `(` belongs to a URL (`https://`, `url(//cdn…)`), not to a
+ comment. Single and double quoted strings end at the line break, so an
+ apostrophe in JSX or HTML text cannot hide the rest of the file.
+ */
+function maskComments(content: string): string {
+	let result = '';
+	let state: MaskState = 'code';
+	let index = 0;
+
+	while (index < content.length) {
+		const step: MaskStep =
+			state === 'code'
+				? codeStep(content, index)
+				: state in COMMENTS
+					? commentStep(content, index, state as CommentKind)
+					: stringStep(content, index, state as Quote);
+		result += step.text;
+		index += step.length;
+		state = step.state;
+	}
+
+	return result;
+}
+
+/** Comment syntaxes with their opening and closing delimiter. */
+const COMMENTS = {
+	block: { open: '/*', close: '*/' },
+	html: { open: '<!--', close: '-->' },
+	line: { open: '//', close: '\n' }
+} as const;
+
+type CommentKind = keyof typeof COMMENTS;
+type Quote = "'" | '"' | '`';
+type MaskState = 'code' | CommentKind | Quote;
+
+/** One step of {@link maskComments}: the output, the input consumed, the next state. */
+type MaskStep = { text: string; length: number; state: MaskState };
+
+/** The comment that starts at `index`, if any. */
+function commentAt(content: string, index: number): CommentKind | undefined {
+	if (content.startsWith('/*', index)) {
+		return 'block';
+	}
+
+	if (content.startsWith('<!--', index)) {
+		return 'html';
+	}
+
+	const isLineComment =
+		content.startsWith('//', index) &&
+		(index === 0 || LINE_COMMENT_PREDECESSOR.test(content[index - 1]));
+	return isLineComment ? 'line' : undefined;
+}
+
+function codeStep(content: string, index: number): MaskStep {
+	const comment = commentAt(content, index);
+	if (comment) {
+		const { length } = COMMENTS[comment].open;
+		return { text: ' '.repeat(length), length, state: comment };
+	}
+
+	const char = content[index];
+	const isQuote = char === "'" || char === '"' || char === '`';
+	return { text: char, length: 1, state: isQuote ? char : 'code' };
+}
+
+function commentStep(
+	content: string,
+	index: number,
+	kind: CommentKind
+): MaskStep {
+	const { close } = COMMENTS[kind];
+	if (content.startsWith(close, index)) {
+		// The line break that ends a line comment stays.
+		const text = close === '\n' ? close : ' '.repeat(close.length);
+		return { text, length: close.length, state: 'code' };
+	}
+
+	const char = content[index];
+	return { text: char === '\n' ? char : ' ', length: 1, state: kind };
+}
+
+/** Keeps the string, skips escaped characters and watches for its end. */
+function stringStep(content: string, index: number, quote: Quote): MaskStep {
+	const char = content[index];
+	if (char === '\\') {
+		return {
+			text: content.slice(index, index + 2),
+			length: 2,
+			state: quote
+		};
+	}
+
+	const isEnd = char === quote || (char === '\n' && quote !== '`');
+	return { text: char, length: 1, state: isEnd ? 'code' : quote };
+}
+
+/**
+ Image, font and media files. They contain no markup or styles to migrate, and
+ the fixed colors of an illustration are not hard-coded values.
+ */
+const RE_ASSET_FILE =
+	/\.(?:svg|png|jpe?g|gif|webp|avif|ico|bmp|woff2?|ttf|otf|eot|mp4|webm|mp3|pdf)$/i;
+
 /**
  Resolves the Generation 3 target and extra guidance for a Generation 2 CSS
  class. Shared by class, tag and wrapper findings.
@@ -491,11 +606,28 @@ function elementSuggestion(tag: string, isWrapper: boolean): string {
 		: text;
 }
 
+/**
+ Generation 2 CSS packages. Their successors are the CSS packages, which a
+ framework project does not install directly.
+ */
+const GENERATION_2_CSS_PACKAGES = new Set([
+	'@db-ui/core',
+	'@db-ui/base',
+	'@db-ui/elements'
+]);
+
+/** Added to the suggestion of a Generation 2 CSS package. */
+const FRAMEWORK_PACKAGE_NOTE =
+	'In a React, Angular or Vue project install only the framework package (@db-ux/react-core-components, @db-ux/ngx-core-components or @db-ux/v-core-components): it depends on both CSS packages and brings their styles.';
+
 /** Suggestion for an `@db-ui/*` package reference. */
 function packageSuggestion(name: string): string {
 	const generation2 = GENERATION_2_PACKAGE_MAP[name];
 	if (generation2) {
-		return `Generation 2 package. Replace with ${generation2}. Update all named imports to Generation 3 component names.`;
+		const frameworkNote = GENERATION_2_CSS_PACKAGES.has(name)
+			? ` ${FRAMEWORK_PACKAGE_NOTE}`
+			: '';
+		return `Generation 2 package. Replace with ${generation2}.${frameworkNote} Update all named imports to Generation 3 component names.`;
 	}
 
 	const preRelease = GENERATION_3_PRE_RELEASE_PACKAGE_MAP[name];
@@ -513,17 +645,22 @@ function packageSuggestion(name: string): string {
 /**
  Scans a single line for all Generation 2 migration patterns.
  Returns findings with deterministic suggestions from the migration data.
+
+ `code` is the same line with its comments blanked out (see
+ {@link maskComments}). The patterns run on `code`, the reported context
+ shows the original `line`.
  */
 function scanLine(
 	line: string,
 	lineNumber: number,
-	context: ScanContext
+	context: ScanContext,
+	code: string = line
 ): ScanFinding[] {
 	const findings: ScanFinding[] = [];
 	const ctx = line.length > 120 ? line.slice(0, 120) + '...' : line;
 
 	// --- Generation 2 CSS classes (cmp-*, elm-*, rea-*) ---
-	for (const match of line.matchAll(RE_GENERATION_2_CSS_CLASS)) {
+	for (const match of code.matchAll(RE_GENERATION_2_CSS_CLASS)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
@@ -540,7 +677,7 @@ function scanLine(
 	}
 
 	// --- Generation 2 Web Components (<db-*>) ---
-	for (const match of line.matchAll(RE_DB_CUSTOM_ELEMENT)) {
+	for (const match of code.matchAll(RE_DB_CUSTOM_ELEMENT)) {
 		const old = match[1];
 		const element = GENERATION_2_ELEMENTS[old];
 		// Not part of @db-ui/elements (e.g. <db-stack>, <db-shell>): Generation 3 only.
@@ -564,7 +701,7 @@ function scanLine(
 	}
 
 	// --- Generation 2 React / Vue wrappers (<Db*>) ---
-	for (const match of line.matchAll(RE_GENERATION_2_WRAPPER)) {
+	for (const match of code.matchAll(RE_GENERATION_2_WRAPPER)) {
 		const old = match[1];
 		const tag = toKebabTag(old);
 		findings.push({
@@ -579,7 +716,7 @@ function scanLine(
 	}
 
 	// --- Colors ---
-	for (const match of line.matchAll(RE_GENERATION_2_COLOR)) {
+	for (const match of code.matchAll(RE_GENERATION_2_COLOR)) {
 		const old = match[1];
 		const finding: ScanFinding = {
 			line: lineNumber,
@@ -596,7 +733,7 @@ function scanLine(
 	}
 
 	// --- Icons ---
-	for (const match of line.matchAll(RE_ICON_ATTR)) {
+	for (const match of code.matchAll(RE_ICON_ATTR)) {
 		const old = match[1];
 		// Only flag if it's actually a known Generation 2 icon name
 		const replacement = migrationData.icons[old];
@@ -612,7 +749,7 @@ function scanLine(
 	}
 
 	// --- Legacy npm packages (@db-ui/*) ---
-	for (const match of line.matchAll(RE_DB_UI_PACKAGE)) {
+	for (const match of code.matchAll(RE_DB_UI_PACKAGE)) {
 		const old = match[1];
 		findings.push({
 			line: lineNumber,
@@ -624,7 +761,7 @@ function scanLine(
 	}
 
 	// --- Usages of self-built components imported from a relative path ---
-	for (const match of line.matchAll(RE_JSX_COMPONENT_TAG)) {
+	for (const match of code.matchAll(RE_JSX_COMPONENT_TAG)) {
 		const name = match[1];
 		const path = context.localComponents.get(name);
 		if (path) {
@@ -639,8 +776,8 @@ function scanLine(
 	}
 
 	findings.push(
-		...scanCandidates(line, lineNumber, ctx.trim()),
-		...scanValues(line, lineNumber, ctx.trim())
+		...scanCandidates(code, lineNumber, ctx.trim()),
+		...scanValues(code, lineNumber, ctx.trim())
 	);
 
 	return findings;
@@ -768,6 +905,8 @@ function scanValues(
  - Packages under the @db-ui scope, distinguishing Generation 2 from
    Generation 3 pre-releases
 
+ Comments are ignored, and image, font and media files are skipped.
+
  Returns a JSON report with line numbers, findings, and migration suggestions
  resolved from the statically imported db-ui-migration-map.ts - no LLM guessing needed.
  */
@@ -802,6 +941,17 @@ export async function handleScanGeneration2Migration({
 		);
 	}
 
+	if (RE_ASSET_FILE.test(absolutePath)) {
+		return {
+			content: [
+				{
+					type: 'text',
+					text: `Skipped ${absolutePath}: images, fonts and media contain nothing to migrate. Scan the code and style files (components, pages, templates, stylesheets, package.json) instead.`
+				}
+			]
+		};
+	}
+
 	if (stats.size > MAX_SCAN_SIZE) {
 		return error(
 			`Error: File too large (${stats.size} bytes). Maximum scan size is ${MAX_SCAN_SIZE} bytes.`
@@ -819,16 +969,19 @@ export async function handleScanGeneration2Migration({
 	}
 
 	const lines = content.split('\n');
+	// Comments are no code: a note about `@db-ui/core` is no dependency.
+	const code = maskComments(content);
+	const codeLines = code.split('\n');
 	const findings: ScanFinding[] = [];
 	const context: ScanContext = {
-		hasGeneration2Markers: hasGeneration2Evidence(content),
+		hasGeneration2Markers: hasGeneration2Evidence(code),
 		skippedSharedTags: 0,
 		localComponents: collectLocalComponents(content, absolutePath)
 	};
 
 	findings.push(...scanComponentDefinition(lines, content));
 	for (const [i, line] of lines.entries()) {
-		findings.push(...scanLine(line, i + 1, context));
+		findings.push(...scanLine(line, i + 1, context, codeLines[i]));
 	}
 
 	findings.sort((a, b) => a.line - b.line);

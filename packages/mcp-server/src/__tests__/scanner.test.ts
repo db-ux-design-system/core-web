@@ -80,6 +80,96 @@ describe('scan_generation_2_migration package detection', () => {
 	});
 });
 
+describe('scan_generation_2_migration framework packages', () => {
+	it('tells framework projects to install only the framework package for @db-ui/core', async () => {
+		const output = await scan(
+			'core-framework-note',
+			"import '@db-ui/core/dist/css/enterprise/db-ui-core.css';"
+		);
+
+		expect(output).toContain(
+			'install only the framework package (@db-ux/react-core-components'
+		);
+	});
+
+	it('adds no framework note to the wrapper packages', async () => {
+		const output = await scan(
+			'wrapper-no-note',
+			"import { DbButton } from '@db-ui/react-elements';"
+		);
+
+		expect(output).not.toContain('install only the framework package');
+	});
+});
+
+describe('scan_generation_2_migration comments and assets', () => {
+	it('ignores packages, classes and values inside comments', async () => {
+		const output = await scan(
+			'comments',
+			[
+				'// Replaces @db-ui/core and the elm-button class.',
+				'/* Generation 2 used @db-ui/react-elements',
+				'   with cmp-card and padding: 12px. */',
+				'{/* <DbButton> from @db-ui/react-elements */}',
+				'<!-- @db-ui/elements <db-mainnavigation> -->',
+				"import { DBButton } from '@db-ux/react-core-components';"
+			].join('\n')
+		);
+
+		expect(output).toContain('No Generation 2 patterns found');
+	});
+
+	it('still reports code after a comment and CDN URLs with //', async () => {
+		const output = await scan(
+			'code-after-comment',
+			[
+				'/* setup */ import "@db-ui/core/dist/css/db-ui-core.css"; // load styles',
+				'<script src="https://unpkg.com/@db-ui/elements@0.33.2/dist/db-ui-elements.esm.js"></script>',
+				'@import url(//unpkg.com/@db-ui/base@3.3.7/build/css/base.css);',
+				"<p>Don't miss it</p>",
+				'<div className="cmp-card"></div>'
+			].join('\n')
+		);
+
+		expect(output).toContain('"found": "@db-ui/core"');
+		expect(output).toContain('"found": "@db-ui/elements"');
+		expect(output).toContain('"found": "@db-ui/base"');
+		// The apostrophe in the text line must not hide the next line.
+		expect(output).toContain('"found": "cmp-card"');
+	});
+
+	it('keeps the original line, comment included, as context', async () => {
+		const output = await scan(
+			'context',
+			"import '@db-ui/core/dist/css/db-ui-core.css'; // Generation 2"
+		);
+
+		expect(output).toContain('// Generation 2');
+	});
+
+	it('skips image and font files', async () => {
+		const temporary = join(process.cwd(), `.scan-test-${Date.now()}.svg`);
+		writeFileSync(
+			temporary,
+			'<svg xmlns="http://www.w3.org/2000/svg"><rect fill="#ec0016" /></svg>'
+		);
+		try {
+			const result = await handleScanGeneration2Migration({
+				filePath: temporary
+			});
+			const [first] = result.content;
+			const { text } = first as { type: 'text'; text: string };
+
+			expect(text).toContain(
+				'images, fonts and media contain nothing to migrate'
+			);
+			expect(text).not.toContain('Hard-coded color');
+		} finally {
+			unlinkSync(temporary);
+		}
+	});
+});
+
 describe('scan_generation_2_migration markup detection', () => {
 	it('detects React and Vue wrappers of @db-ui/elements (<Db*>)', async () => {
 		const output = await scan(

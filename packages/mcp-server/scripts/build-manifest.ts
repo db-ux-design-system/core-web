@@ -261,9 +261,38 @@ export async function buildManifest() {
 		`manifest.json written (${Object.keys(components).length} components, ${icons.length} icons, ${Object.keys(tokens).length} token categories, ${Object.keys(docs).length} docs, ${Object.keys(migrationGuides).length} migration guides)`
 	);
 
+	const missingExamples = frameworksWithoutExamples(components);
+	if (missingExamples.length > 0) {
+		const message = `[build-manifest] No example code for ${missingExamples.join(', ')}: the framework outputs in ${relative(REPO_ROOT, OUTPUT_DIR)}/ are missing, so get_example_code returns nothing. Run \`pnpm run build\` in the repository root first.`;
+		/*
+		 A warning, not an error: the Validate workflow and local test builds build
+		 the server without the outputs on purpose. The published build comes from
+		 the full `pnpm run build`, where the outputs exist.
+		 */
+		console.warn(message);
+	}
+
 	if (hasErrors) {
 		process.exit(1);
 	}
+}
+
+/**
+ Returns the frameworks for which no component has any example code. That
+ happens when the manifest is built before the framework outputs exist.
+ */
+export function frameworksWithoutExamples(
+	components: Record<
+		string,
+		{ exampleCode: Record<Framework, Record<string, string>> }
+	>
+): Framework[] {
+	return FRAMEWORKS.filter((framework) =>
+		Object.values(components).every(
+			(component) =>
+				Object.keys(component.exampleCode[framework] ?? {}).length === 0
+		)
+	);
 }
 
 // Only run when executed directly (not when imported by prebuild.ts or tests)

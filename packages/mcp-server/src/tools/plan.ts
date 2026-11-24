@@ -233,29 +233,30 @@ function renderPlan(
 	const canInspect = plan.appRunsLocally && plan.browserTool;
 	const isVerifiable = ['react', 'angular', 'vue'].includes(plan.framework);
 
-	const guides = [
-		'general-migration',
-		'component-migration',
-		'color-migration',
-		'icon-migration',
-		...(hasCustom ? ['custom-component-migration'] : []),
-		'review-migration'
-	];
-
 	const steps: string[] = [];
 	const step = (text: string) => steps.push(`${steps.length + 1}. ${text}`);
+	/*
+	 Each step names the guides it needs. A single "load all guides" step at the
+	 start was skipped by agents, who went straight to the scan.
+	 */
+	const load = (...guides: string[]) =>
+		`Load ${guides.map((guide) => `\`${guide}\``).join(', ')} with \`get_migration_guide\` first.`;
 
 	step(
-		`**Load the guides** with \`get_migration_guide\`: ${guides.map((g) => `\`${g}\``).join(', ')}.`
-	);
-	step(
-		'**Scan every file** with `scan_generation_2_migration` before you change any code: entry point, styles, pages and components. The report lists Generation 2 patterns, self-built controls (`candidate`) and hard-coded values (`value`). Summarize the findings per file for the user.'
+		[
+			'**Scan every code and style file** with `scan_generation_2_migration` before you change any code: `package.json`, entry point, global styles, pages, components and their stylesheets. Skip images, fonts and other assets (`.svg`, `.png`, `.woff2` …). The report lists Generation 2 patterns, self-built controls (`candidate`) and hard-coded values (`value`). Summarize the findings per file for the user.',
+			...(canInspect
+				? [
+						'   - Then take a screenshot of every page of the original with `take_screenshot`. If the tool can save to a file, use a temporary folder outside the repository and never commit it. You compare against these in the review.'
+					]
+				: [])
+		].join('\n')
 	);
 
 	if (hasCustom) {
 		step(
 			[
-				'**Classify every self-built control** (`candidate` findings and every component of an other library) as described in `custom-component-migration`:',
+				`**Classify every self-built control** (\`candidate\` findings and every component of an other library). ${load('custom-component-migration')}`,
 				'   - Read the code: element, role, event handlers, states, CSS.',
 				canInspect
 					? '   - Inspect it in the running application: `take_snapshot` for role, name and state, `take_screenshot` for the look, `evaluate_script` with `getComputedStyle` for colors, spacing and shadows.'
@@ -268,7 +269,7 @@ function renderPlan(
 
 	step(
 		[
-			`**Install the packages**: \`${FRAMEWORK_PACKAGE[plan.framework]}\`${plan.dbProduct ? ' and `@db-ux/db-theme`' : ''}, and remove the packages being replaced.`,
+			`**Install the packages**: \`${FRAMEWORK_PACKAGE[plan.framework]}\`${plan.dbProduct ? ' and `@db-ux/db-theme`' : ''}, and remove the packages being replaced. ${load('general-migration')}`,
 			plan.dbProduct
 				? '   - Follow "DB Theme" in `general-migration`: credentials in `.env`, allowed install scripts, theme import after the component styles, Vite alias if needed.'
 				: '   - Load the whitelabel styles as described in "Required CSS Imports" in `general-migration`.',
@@ -277,7 +278,7 @@ function renderPlan(
 	);
 	step(
 		[
-			'**Migrate file by file**, starting with the entry point and the global styles:',
+			`**Migrate file by file**, starting with the entry point and the global styles. ${load('component-migration', 'color-migration', 'icon-migration')}`,
 			plan.framework === 'html'
 				? '   - Use `docs_search` with `docType: "HTML"` for the markup of each component.'
 				: `   - For each component: \`get_component_props\`, then \`get_example_code\` with framework \`${plan.framework}\` and adapt the example.`,
@@ -291,9 +292,9 @@ function renderPlan(
 	);
 	step(
 		[
-			'**Review** with `review-migration` and end the output with "Open decisions and checks".',
+			`**Review** the result and end the output with "Open decisions and checks". ${load('review-migration')}`,
 			canInspect
-				? '   - Compare the migrated pages with the screenshots of the original (`take_screenshot`) and check the accessibility tree again (`take_snapshot`).'
+				? '   - Compare the migrated pages with the screenshots of the original from step 1 (`take_screenshot`) and check the accessibility tree again (`take_snapshot`).'
 				: '   - Ask the user to compare the migrated pages with the original in the browser.'
 		].join('\n')
 	);
@@ -314,6 +315,7 @@ function renderPlan(
 		...context,
 		'',
 		'Follow these steps in order. Do not skip a step and do not decide layout questions on your own.',
+		'Go on to the next step without asking for permission. Stop only for a decision of the user: the confirmation of the classification table, layout or behavior questions, and the asset credentials in `.env`.',
 		'',
 		...steps
 	].join('\n');

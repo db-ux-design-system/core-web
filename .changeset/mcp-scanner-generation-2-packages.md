@@ -17,4 +17,8 @@ feat(MCP server): `scan_generation_2_migration` detects the actual Generation 2 
 - Component migration docs for Breadcrumb, Dialog and Loading Indicator, and notes on the notification wrapper and the card layout.
 - New tool `plan_migration`: reads `package.json`, asks for application type, framework, what the interface is built with, DB Theme and browser inspection, and returns the workflow that fits, for example classification of self-built controls with the Chrome DevTools MCP.
 - `scan_generation_2_migration` reports self-built controls (`candidate`) and hard-coded colors, sizes and shadows (`value`).
+- `scan_generation_2_migration` ignores comments, skips image, font and media files, and tells framework projects that the framework package is enough for `@db-ui/core`.
+- `plan_migration` starts with the scan, names the guide each step needs, captures the original pages before the migration and lets the agent continue without asking between steps.
+- The manifest build warns when the framework outputs are missing and `get_example_code` would return nothing.
+- The migration guides cover defaults (page width, tooltips on icon-only buttons), heading order, contrast, valid markup, live regions, controlled React fields, logical CSS properties, sizes without a token, badge or tag, and the expected visual changes of form fields and headings.
 - New migration guide `custom-component-migration` for self-built controls and other libraries. `general-migration` names npm 12 and `npm rebuild` for the DB Theme install scripts.

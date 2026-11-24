@@ -116,6 +116,43 @@ describe('plan_migration workflow', () => {
 		expect(output).toContain('`take_snapshot`');
 		expect(output).toContain('wait for the user to confirm it');
 		expect(output).toContain('density `functional`');
+		// The original is captured before any change, for the review.
+		expect(output).toContain(
+			'take a screenshot of every page of the original'
+		);
+	});
+
+	it('starts with the scan and loads each guide in the step that needs it', async () => {
+		const output = await plan({
+			...complete,
+			sources: ['generation-2', 'custom-components']
+		});
+		const stepOf = (text: string) =>
+			output
+				.split('\n')
+				.find((line) => line.includes(text))
+				?.match(/^(\d+)\./)?.[1];
+
+		expect(stepOf('**Scan every code and style file**')).toBe('1');
+		expect(output).not.toContain('**Load the guides**');
+		expect(stepOf('Load `custom-component-migration`')).toBe('2');
+		expect(stepOf('Load `general-migration`')).toBe('3');
+		expect(
+			stepOf(
+				'Load `component-migration`, `color-migration`, `icon-migration`'
+			)
+		).toBe('4');
+		expect(stepOf('Load `review-migration`')).toBe('6');
+	});
+
+	it('tells the agent to skip assets and to stop only for decisions', async () => {
+		const output = await plan(complete);
+
+		expect(output).toContain('Skip images, fonts and other assets');
+		expect(output).toContain(
+			'Go on to the next step without asking for permission'
+		);
+		expect(output).not.toContain('take a screenshot of every page');
 	});
 
 	it('asks for screenshots when the application cannot be inspected', async () => {

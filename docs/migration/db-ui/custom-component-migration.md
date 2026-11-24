@@ -16,15 +16,19 @@ Answer these questions for each control. The answers decide the DB UX component.
 | ------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | What does it do when activated? | Event handlers, `href`, form submit       | Action → `db-button`. Navigation → `db-link` or a navigation item                                                 |
 | What can the user choose?       | Option lists, `value`, state              | One option from a list → `db-select`. Several options → `db-custom-select`. On/off → `db-switch` or `db-checkbox` |
-| Does it group content?          | Children, image, heading, actions         | Content container → `db-card`. Label with status → `db-tag` or `db-badge`                                         |
+| Does it group content?          | Children, image, heading, actions         | Content container → `db-card`. Short label → `db-badge` or `db-tag`, see below                                    |
 | Which variants and sizes exist? | Props, modifier classes                   | Map variants to the `variant` prop of the component. Sizes usually become density, not a size prop                |
 | Which states exist?             | `disabled`, `loading`, `selected`, `open` | Use the component props for each state                                                                            |
+
+**Badge or tag:** Use `db-badge` for a short, non-interactive label next to or on another element, for example "Popular" on a card or a counter on a button (`placement="corner-*"`). It renders a `span`. Use `db-tag` to categorize or filter content, also when the label contains a checkbox, radio, link or button, or can be removed. It renders a `div`.
 
 Inspect the control in the running application if a browser tool is available, for example the Chrome DevTools MCP:
 
 - `take_snapshot`: role, accessible name and state. A clickable `div` without a role shows up as generic text, a self-built select often has no `combobox` or `listbox` role.
 - `take_screenshot`: the look, to compare with `get_visual_reference` and the component examples.
 - `evaluate_script` with `getComputedStyle(element)`: the real colors, spacing, radius and shadow, to pick matching tokens.
+
+Take the screenshots before you change any code: after the migration the original is gone. Screenshots that stay only in the chat are lost when the context is compacted. If the tool can save to a file, use a temporary folder outside the repository and never commit it. Otherwise tell the user which pages you captured, so they can compare them in the browser later.
 
 Without a browser tool, ask the user for a screenshot of each control.
 
@@ -39,7 +43,7 @@ Wait for the user's confirmation. Open questions are typical where the look diff
 
 ## 4. Migrate
 
-- Replace the component implementation and its usages. Remove the component file and its CSS once nothing uses it anymore.
+- Replace the component implementation and its usages. Remove the component file and its CSS once nothing uses it anymore. Delete them with the file system, not with `git rm`: the user reviews and commits the changes.
 - Keep the behavior: event handlers, form values and `name` attributes, controlled state.
 - Map colors to semantic tokens from `color-migration` and `get_design_tokens`. Generation 2 base colors (`var(--db-color-*)`) map through `color-migration`. Hex values need the closest semantic token: background and text use different tokens.
 - Map spacing, font sizes, radii and shadows with `general-migration`.
