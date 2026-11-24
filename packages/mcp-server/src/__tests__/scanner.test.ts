@@ -1,4 +1,4 @@
-import { unlinkSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmSync, unlinkSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { handleScanGeneration2Migration } from '../tools/scanner.js';
@@ -305,6 +305,63 @@ describe('scan_generation_2_migration class mapping', () => {
 		expect(output).toContain('Load `custom-component-migration`');
 		// The elm-button class is a Generation 2 finding, <DBButton> is Generation 3.
 		expect(output).not.toContain(String.raw`<button class=\"elm-button\">`);
+	});
+
+	it('reports a self-built component definition with its own stylesheet', async () => {
+		const output = await scan(
+			'component-definition',
+			[
+				"import './OfferCard.css';",
+				'',
+				'export function OfferCard({ title }: { title: string }) {',
+				'\treturn <article className="offer-card">{title}</article>;',
+				'}'
+			].join('\n')
+		);
+
+		expect(output).toContain('"found": "component OfferCard"');
+		expect(output).toContain('"line": 3');
+		expect(output).toContain('own stylesheet (./OfferCard.css)');
+	});
+
+	it('reports usages of self-built components, but not of pages', async () => {
+		const folder = join(process.cwd(), `.scan-test-usage-${Date.now()}`);
+		mkdirSync(join(folder, 'components'), { recursive: true });
+		writeFileSync(
+			join(folder, 'components', 'ActionButton.tsx'),
+			"import './ActionButton.css';\nexport function ActionButton() { return null; }"
+		);
+		writeFileSync(
+			join(folder, 'Page.tsx'),
+			'export function Page() { return null; }'
+		);
+		const file = join(folder, 'App.tsx');
+		writeFileSync(
+			file,
+			[
+				"import { DBButton } from '@db-ux/react-core-components';",
+				"import { ActionButton } from './components/ActionButton';",
+				"import { Page, type PageProps } from './Page';",
+				"import logo from './logo.svg';",
+				'<ActionButton variant="primary">Go</ActionButton>',
+				'<Page />',
+				'<DBButton>Gen 3</DBButton>'
+			].join('\n')
+		);
+
+		try {
+			const result = await handleScanGeneration2Migration({
+				filePath: file
+			});
+			const output = (result.content[0] as { text: string }).text;
+
+			expect(output).toContain('"found": "<ActionButton>"');
+			expect(output).toContain('(./components/ActionButton)');
+			expect(output).not.toContain('"found": "<Page>"');
+			expect(output).not.toContain('"found": "<DBButton>"');
+		} finally {
+			rmSync(folder, { recursive: true, force: true });
+		}
 	});
 
 	it('reports hard-coded colors, sizes and shadows but not tokens', async () => {

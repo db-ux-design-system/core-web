@@ -1,5 +1,6 @@
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync, statSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
 import { migrationData } from '../data/db-ui-migration-map';
 import {
 	type ToolResult,
@@ -125,6 +126,9 @@ const RE_COLOR_VALUE =
 
 /** Hard-coded lengths in px or rem, but not 0 and not inside var(). */
 const RE_LENGTH_VALUE = /(?<![\w.-])(?:\d*\.)?\d+(?:px|rem)\b/;
+
+/** Matches an opening JSX tag of a PascalCase component: <ActionButton */
+const RE_JSX_COMPONENT_TAG = /<([A-Z][\w$]{0,80})\b/g;
 
 /** Matches Generation 2 color tokens: db-color-xxx-nnn */
 const RE_GENERATION_2_COLOR = /\b(db-color-[\w-]+)/g;
@@ -305,7 +309,152 @@ type ScanContext = {
 	readonly hasGeneration2Markers: boolean;
 	/** Counts `<db-*>` tags that were skipped as valid Generation 3 markup. */
 	skippedSharedTags: number;
+	/**
+	 Components imported from a relative path, mapped to that path. Their usages
+	 (`<ActionButton>`) are self-built and reported as candidates.
+	 */
+	readonly localComponents: ReadonlyMap<string, string>;
 };
+
+/**
+ Matches a relative ES import: `import A from './a'`,
+ `import { B, C as D } from '../b'`. Captures default name, named list, path.
+ */
+const RE_RELATIVE_IMPORT =
+	/^\s*import\s+(?!type\s)([\w$]+)?\s*,?\s*(?:\{([^}]{0,500})\})?\s*from\s*["'](\.{1,2}\/[^"']{1,300})["']/gm;
+
+/** Paths of assets and styles; their imports are not components. */
+const RE_ASSET_PATH =
+	/\.(?:css|scss|sass|less|svg|png|jpe?g|gif|webp|avif|json)$/i;
+
+/** Matches a side-effect import of a relative stylesheet: import './Card.css'. */
+const RE_OWN_STYLESHEET =
+	/^\s*import\s+["'](\.{1,2}\/[^"']{1,300}\.(?:css|scss|sass|less))["']/m;
+
+/**
+ Matches an exported component definition: `export function OfferCard(`,
+ `export const OfferCard = (`, `export default function OfferCard(`.
+ */
+const RE_EXPORTED_COMPONENT =
+	/^\s*export\s+(?:default\s+)?(?:function\s+([A-Z][\w$]{0,80})\s*\(|const\s+([A-Z][\w$]{0,80})\s*[:=])/;
+
+/** Extensions tried when resolving an import path without extension. */
+const SOURCE_EXTENSIONS = ['', '.tsx', '.jsx', '.ts', '.js', '.vue'];
+
+/**
+ Whether a relative import resolves to a self-built component file: a source
+ file inside the workspace that imports its own stylesheet. Pages and the app
+ root import components too, but have no stylesheet of their own.
+ */
+function isSelfBuiltComponentFile(
+	fromFile: string,
+	importPath: string
+): boolean {
+	const base = resolve(dirname(fromFile), importPath);
+	const candidates = [
+		...SOURCE_EXTENSIONS.map((extension) => base + extension),
+		...SOURCE_EXTENSIONS.slice(1).map(
+			(extension) => `${base}/index${extension}`
+		)
+	];
+
+	for (const candidate of candidates) {
+		let safe: string;
+		try {
+			safe = resolveSafePath(process.cwd(), candidate);
+		} catch {
+			return false;
+		}
+
+		if (!existsSync(safe)) {
+			continue;
+		}
+
+		const stats = statSync(safe);
+		if (stats.isFile()) {
+			return (
+				stats.size <= MAX_SCAN_SIZE &&
+				RE_OWN_STYLESHEET.test(readFileSync(safe, 'utf8'))
+			);
+		}
+	}
+
+	return false;
+}
+
+/**
+ Returns the PascalCase components imported from relative paths that resolve
+ to a self-built component file.
+ */
+function collectLocalComponents(
+	content: string,
+	fromFile: string
+): Map<string, string> {
+	const components = new Map<string, string>();
+	for (const match of content.matchAll(RE_RELATIVE_IMPORT)) {
+		const [, defaultName, named, path] = match;
+		if (
+			RE_ASSET_PATH.test(path) ||
+			!isSelfBuiltComponentFile(fromFile, path)
+		) {
+			continue;
+		}
+
+		const names = [
+			defaultName,
+			...(named ?? '')
+				.split(',')
+				.map((part) => part.trim())
+				.filter((part) => !part.startsWith('type '))
+				.map((part) =>
+					part
+						.split(/\s+as\s+/)
+						.pop()
+						?.trim()
+				)
+		];
+		for (const name of names) {
+			if (name && /^[A-Z]/.test(name)) {
+				components.set(name, path);
+			}
+		}
+	}
+
+	return components;
+}
+
+/**
+ Reports the definition of a self-built component: a file that exports a
+ PascalCase component and imports its own stylesheet. This also catches
+ non-interactive components such as cards, which have no control to detect.
+ */
+function scanComponentDefinition(
+	lines: string[],
+	content: string
+): ScanFinding[] {
+	const stylesheet = RE_OWN_STYLESHEET.exec(content)?.[1];
+	if (!stylesheet) {
+		return [];
+	}
+
+	for (const [index, line] of lines.entries()) {
+		const match = RE_EXPORTED_COMPONENT.exec(line);
+		const name = match?.[1] ?? match?.[2];
+		if (name) {
+			return [
+				{
+					line: index + 1,
+					type: 'candidate',
+					found: `component ${name}`,
+					context: line.trim().slice(0, 120),
+					suggestion: `Self-built component with its own stylesheet (${stylesheet}). ${CANDIDATE_SUGGESTION} Migrate the component once, then replace all its usages.`
+				}
+			];
+		}
+	}
+
+	return [];
+}
 
 /** Converts a custom element tag to its wrapper name: db-tab-bar -> TabBar. */
 function toPascalCase(tag: string): string {
@@ -472,6 +621,21 @@ function scanLine(
 			context: ctx.trim(),
 			suggestion: packageSuggestion(old)
 		});
+	}
+
+	// --- Usages of self-built components imported from a relative path ---
+	for (const match of line.matchAll(RE_JSX_COMPONENT_TAG)) {
+		const name = match[1];
+		const path = context.localComponents.get(name);
+		if (path) {
+			findings.push({
+				line: lineNumber,
+				type: 'candidate',
+				found: `<${name}>`,
+				context: ctx.trim(),
+				suggestion: `Usage of the self-built component ${name} (${path}). Classify the component in its own file first, then replace this usage with the confirmed DB UX component.`
+			});
+		}
 	}
 
 	findings.push(
@@ -658,12 +822,16 @@ export async function handleScanGeneration2Migration({
 	const findings: ScanFinding[] = [];
 	const context: ScanContext = {
 		hasGeneration2Markers: hasGeneration2Evidence(content),
-		skippedSharedTags: 0
+		skippedSharedTags: 0,
+		localComponents: collectLocalComponents(content, absolutePath)
 	};
 
+	findings.push(...scanComponentDefinition(lines, content));
 	for (const [i, line] of lines.entries()) {
 		findings.push(...scanLine(line, i + 1, context));
 	}
+
+	findings.sort((a, b) => a.line - b.line);
 
 	const skippedNote =
 		context.skippedSharedTags > 0
