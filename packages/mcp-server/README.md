@@ -221,16 +221,17 @@ Transforms legacy UI code (e.g., Bootstrap, native HTML, DB UI Generation 1 or 2
 2. **Component Discovery & Props Retrieval** — Calls `list_components` to verify every mapped component exists. For each: `get_component_props` (TypeScript API), `get_component_details` (examples), `get_example_code` (canonical source to adapt). Calls `get_design_tokens` to replace hardcoded colors/spacing. Calls `list_icons` to verify icon names.
 3. **Code Generation** — Generates the complete migrated code with correct `@db-ux/*` imports, verified design tokens, and verified icon names. **Does NOT output this to the user yet.**
 4. **Code Verification & Self-Correction** — Calls `verify_migrated_code` which instructs the AI to run the project's own verification scripts (typecheck, lint, build from package.json). If errors are found, the AI fixes the code and retries — up to **3 attempts maximum**. This step applies to all framework targets.
-5. **Final Output** — Presents the result in three sections: "Migration Analysis" (mapping table + guide references), "Migrated Code" (marked ✅ VERIFIED on success, or ⚠️ WARNING with remaining diagnostics), and "Accessibility Statement" (WCAG 2.2 AA compliance confirmation).
+5. **Final Output** — Presents the result in four sections: "Migration Analysis" (mapping table + guide references), "Migrated Code" (marked ✅ VERIFIED on success, or ⚠️ WARNING with remaining diagnostics), "Accessibility Statement" (WCAG 2.2 AA compliance confirmation), and "Open decisions and checks" (layout decisions and manual checks from the `review-migration` guide).
 
 **Available migration guides:**
 
-| Guide                 | Covers                                                             |
-| --------------------- | ------------------------------------------------------------------ |
-| `component-migration` | Component renames, prop changes, removed/planned components        |
-| `color-migration`     | Full color token mapping (old → new `--db-*` tokens)               |
-| `icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)    |
-| `general-migration`   | Typography tokens, spacing tokens, elevation, inline style removal |
+| Guide                 | Covers                                                                                                            |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `component-migration` | Component renames, prop changes, removed/planned components                                                       |
+| `color-migration`     | Full color token mapping (old → new `--db-*` tokens)                                                              |
+| `icon-migration`      | Icon name mapping (e.g. `account` → `person`, `delete` → `bin`)                                                   |
+| `general-migration`   | Typography tokens, spacing tokens, elevation, inline style removal                                                |
+| `review-migration`    | Decisions and manual checks after the migration: layout, behavior, accessibility, values the scan does not detect |
 
 **Example: migrating a Generation 2 React component**
 
@@ -242,12 +243,12 @@ Trigger the prompt with these parameters:
 
 The AI will then autonomously:
 
-1. Load `component-migration`, `color-migration`, `icon-migration`, and `general-migration`
+1. Load `component-migration`, `color-migration`, `icon-migration`, `general-migration`, and `review-migration`
 2. Map every legacy element (e.g. `variant="brand-primary"` → `variant="brand"`, `icon="search"` → `icon="magnifying_glass"`)
 3. Fetch the exact generated React example code for each component and adapt it
 4. Replace all hardcoded `#ec0016` / `margin: 15px` values with `--db-*` design tokens
 5. Verify the result via `verify_migrated_code` (runs project's own scripts) and self-correct up to 3 times
-6. Present the verified code with a migration analysis and accessibility statement
+6. Present the verified code with a migration analysis, an accessibility statement, and the open decisions and checks from `review-migration`
 
 ### `audit_accessibility` (Deep A11y Scan)
 

@@ -7,9 +7,19 @@
 
 ### class
 
-| Before             | Status | After             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------------------ | :----: | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `elm-notification` |   🔁   | `db-notification` | The old notification component has been split into 2 different components [Notification](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/components/feedback/notification) and [Notification](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system-v3/components/feedback/notification) for more information (when and how to use it). |
+| Before             | Status | After             | Description                                                                                             |
+| ------------------ | :----: | ----------------- | ------------------------------------------------------------------------------------------------------- |
+| `cmp-notification` |   🔁   | `db-notification` | `@db-ui/core` 3.x styles the notification as `cmp-notification`. Older docs name it `elm-notification`. |
+
+### data-type ➡ semantic
+
+Generation 2 set the status colour with `data-type` on the element. It becomes the `semantic` prop (see the table below).
+
+### wrapper ➡ variant
+
+Generation 2 framed an in-content notification with a wrapping `<section data-variant="hovering">`. Drop the wrapper and use `variant="standalone"`. The default `docked` is meant for global alerts between header and main content.
+
+A visually hidden prefix such as `<em>Information:</em>` is no longer needed: the component announces its semantic. Confirm this with a screen reader.
 
 ### variant (layout)
 

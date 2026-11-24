@@ -1124,6 +1124,18 @@ describe('handleMigrateComponentPrompt', () => {
 		);
 	});
 
+	it('asks for the review-migration guide and an "Open decisions and checks" section', () => {
+		const result = handleMigrateComponentPrompt({
+			legacy_code: '<div class="cmp-card"></div>',
+			source_context: 'db-ui-generation-2',
+			target_framework: 'react'
+		});
+
+		const { text } = result.messages[0].content;
+		expect(text).toContain("'review-migration'");
+		expect(text).toContain('"Open decisions and checks"');
+	});
+
 	it('instructs the agent to call verify_migrated_code', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<button>Click</button>',

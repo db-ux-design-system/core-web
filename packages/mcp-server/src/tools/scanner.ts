@@ -19,6 +19,15 @@ const MAX_SCAN_SIZE = 5 * 1024 * 1024;
 const REPORT_OVERHEAD = 500;
 
 /**
+ Appended to every report with findings. The scan covers what can be mapped
+ automatically; `review-migration` lists the decisions and checks that stay
+ with the developer (layout, behavior, accessibility, values the scan does not
+ detect yet).
+ */
+const REVIEW_HINT =
+	'> After migrating this file, load `review-migration` with `get_migration_guide` and report the open decisions and checks to the user.';
+
+/**
  Characters the rendered list of unique component names may occupy in the
  header.
 
@@ -642,7 +651,9 @@ function buildReport(
 		`- ${colorCount} color token(s)`,
 		`- ${iconCount} icon(s)`,
 		`- ${importCount} legacy package reference(s)`,
-		...(note ? ['', note] : [])
+		...(note ? ['', note] : []),
+		'',
+		REVIEW_HINT
 	];
 
 	// Cap the findings themselves rather than the rendered report: truncating

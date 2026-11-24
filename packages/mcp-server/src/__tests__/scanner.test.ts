@@ -284,6 +284,19 @@ describe('scan_generation_2_migration class mapping', () => {
 		expect(output).toContain('for in-content notices');
 	});
 
+	it('points to the review-migration guide in every report with findings', async () => {
+		const withFindings = await scan(
+			'review-hint',
+			'<div class="cmp-card"></div>'
+		);
+		const withoutFindings = await scan('review-hint-none', '<p>Plain</p>');
+
+		expect(withFindings).toContain(
+			'load `review-migration` with `get_migration_guide`'
+		);
+		expect(withoutFindings).not.toContain('review-migration');
+	});
+
 	it('warns that db-card overrides layout classes on the card itself', async () => {
 		const output = await scan('card', '<div class="cmp-card"></div>');
 

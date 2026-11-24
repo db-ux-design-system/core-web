@@ -29,3 +29,7 @@ There are no built-in image props anymore. Render your own `<img>` inside the ca
 | `image`                  |   ❌   | ❌    | Render your own `<img>` inside the card. |
 | `illustration`           |   ❌   | ❌    |                                          |
 | `uiCoreIllustrationPath` |   ❌   | ❌    |                                          |
+
+### layout
+
+`db-card` sets `display: flex; flex-direction: column` with a higher specificity than a single class. A layout class on the card itself, for example a two-column grid, is overridden. Put custom layouts on a wrapper element inside the card.

@@ -60,14 +60,15 @@ Or add it to your MCP client config:
 
 ### Migration workflow (MANDATORY when the user asks to migrate, refactor, or upgrade legacy code):
 
-When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX Design System – Generation 3, you **MUST** follow this exact 5-step workflow — do NOT skip any step:
+When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX Design System – Generation 3, you **MUST** follow this exact workflow — do NOT skip any step:
 
 1. **File Scan** — Call `scan_generation_2_migration` with the file path. This returns a deterministic JSON report of all Generation 2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
 2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → Generation 3 Component → Rationale.
 3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
 4. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.
 5. **Code Verification (MANDATORY for react/angular/vue)** — Call `verify_migrated_code`. If errors are returned, fix and retry (max 3 attempts). For `web-components` and `html` targets, skip this step, as they lack a strict compilation/type-checking step for automated verification in our sandbox.
-6. **Final Output** — Present: "Migration Analysis" (mapping table), "Migrated Code" (✅ VERIFIED or ⚠️ WARNING with diagnostics), "Accessibility Statement".
+6. **Review** — Call `get_migration_guide` with `review-migration`. Go through it for the migrated file: layout decisions, values the scan does not detect, behavior, accessibility and expected visual changes.
+7. **Final Output** — Present: "Migration Analysis" (mapping table), "Migrated Code" (✅ VERIFIED or ⚠️ WARNING with diagnostics), "Accessibility Statement", "Open decisions and checks" (every applicable point from `review-migration`, marked as decision for the user or manual check).
 
 ---
 
@@ -142,7 +143,7 @@ Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern D
 
 **Workflow:**
 
-1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes
+1. **Migration Analysis** — Calls `list_migration_guides` then `get_migration_guide` for relevant versions. Studies package renames, missing components, prop changes. For Generation 2 code it also loads `review-migration`
 2. **Component Discovery & Props Retrieval** — Calls `list_components`, `get_component_props`, `get_component_details`, and `get_example_code` to verify modern equivalents. Calls `get_design_tokens` to replace legacy CSS variables or hardcoded values. Calls `list_icons` for any icon references. Optionally calls `get_component_visual` when uncertain about layout structures or visual hierarchies
 3. **Code Generation** — Generates the complete migrated component code. **Does NOT output this to the user yet**
 4. **Code Verification & Self-Correction (MANDATORY)** — Calls `verify_migrated_code` with the generated code and framework. If the tool returns compiler errors, the AI analyzes the diagnostics, fixes the code, and retries. This loop runs for a **maximum of 3 attempts**. If verification still fails after 3 attempts, the AI presents the code with a prominent ⚠️ warning block containing the remaining errors
@@ -153,6 +154,7 @@ Transforms legacy UI code (e.g. Bootstrap, native HTML, DB UI) into the modern D
 1. "Migration Analysis" — Maps each legacy element to its modern replacement, referencing migration guide rules
 2. "Migrated Code" — Fully migrated, production-ready code with correct `@db-ux/*` imports. Marked ✅ VERIFIED or ⚠️ WARNING with remaining diagnostics
 3. "Accessibility Statement" — Confirmation of WCAG 2.2 AA compliance through the selected DB UX components
+4. "Open decisions and checks" — Every applicable point from `review-migration`, marked as decision for the user or manual check
 
 ### `audit_accessibility` — Deep A11y Scan
 

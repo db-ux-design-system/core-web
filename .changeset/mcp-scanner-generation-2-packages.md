@@ -13,3 +13,5 @@ fix(MCP server): `scan_generation_2_migration` detects the actual Generation 2 p
 - No longer reports Generation 3 `<db-*>` markup as Generation 2 when the file contains no other Generation 2 markers.
 - Adds notes for `cmp-notification` (the `hovering` wrapper becomes `variant="standalone"`) and `cmp-card` (custom layouts belong on a wrapper inside the card).
 - The general migration guide describes the DB Theme setup: imports, decryption of the encrypted assets and the Vite alias.
+- New migration guide `review-migration`: the decisions and manual checks a mapping cannot cover (layout, behavior, accessibility, values the scan does not detect yet). The scan report, the agent instructions and the `migrate_component` prompt point to it, and the migration output ends with "Open decisions and checks".
+- Component migration docs for Breadcrumb, Dialog and Loading Indicator, and notes on the notification wrapper and the card layout.
