@@ -5,7 +5,7 @@ import { type ToolResult, error, resolveSafePath } from '../utils';
 
 /** Kind of application. Decides the recommended density. */
 export const APP_TYPES = ['business', 'consumer', 'marketing'] as const;
-export type AppType = (typeof APP_TYPES)[number];
+type AppType = (typeof APP_TYPES)[number];
 
 /** Target framework of the migration. */
 export const PLAN_FRAMEWORKS = [
@@ -15,7 +15,7 @@ export const PLAN_FRAMEWORKS = [
 	'web-components',
 	'html'
 ] as const;
-export type PlanFramework = (typeof PLAN_FRAMEWORKS)[number];
+type PlanFramework = (typeof PLAN_FRAMEWORKS)[number];
 
 /** What the existing interface is built with. Several can apply. */
 export const SOURCES = [
@@ -24,7 +24,7 @@ export const SOURCES = [
 	'other-library',
 	'plain-html'
 ] as const;
-export type Source = (typeof SOURCES)[number];
+type Source = (typeof SOURCES)[number];
 
 export type PlanMigrationInput = {
 	projectRoot?: string;
