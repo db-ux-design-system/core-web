@@ -28,6 +28,13 @@ const REVIEW_HINT =
 	'> After migrating this file, load `review-migration` with `get_migration_guide` and report the open decisions and checks to the user.';
 
 /**
+ Added to reports with self-built controls: they have no mapping, so the agent
+ has to classify them first and must not guess.
+ */
+const CANDIDATE_HINT =
+	'> This file contains self-built controls. Load `custom-component-migration` with `get_migration_guide`, classify each control and confirm the mapping with the user before changing code.';
+
+/**
  Characters the rendered list of unique component names may occupy in the
  header.
 
@@ -44,7 +51,12 @@ const MAX_COMPONENT_LIST = 2000;
 
 type ScanFinding = {
 	line: number;
-	type: 'component' | 'color' | 'icon' | 'import';
+	/**
+	 - `candidate`: a self-built control (native element with own classes,
+	   clickable `div`) that has no deterministic mapping and must be classified
+	 - `value`: a hard-coded color, size or shadow that bypasses the tokens
+	 */
+	type: 'component' | 'color' | 'icon' | 'import' | 'candidate' | 'value';
 	found: string;
 	context: string;
 	suggestion?: string;
@@ -77,6 +89,42 @@ const RE_DB_CUSTOM_ELEMENT = /<(db-[\w-]+)\b/g;
  Generation 3 spells them `DBButton`, so the lowercase `b` is unambiguous.
  */
 const RE_GENERATION_2_WRAPPER = /<(Db[A-Z]\w*)\b/g;
+
+/**
+ Matches native form controls with an own class on the same line:
+ <button className="btn">, <select class="picker">. Captures tag and classes.
+ */
+const RE_NATIVE_CONTROL_WITH_CLASS =
+	/<(button|select|input|textarea)\b[^<>]{1,300}?\bclass(?:Name)?\s*=\s*(?:\{\s*)?["'`]([^"'`]{0,300})["'`]/g;
+
+/**
+ Matches non-interactive elements made interactive by hand on the same line:
+ <div onClick=…>, <span role="button">, <ul role="listbox">.
+ */
+const RE_CLICKABLE_ELEMENT =
+	/<(div|span|li|ul|a)\b[^<>]{1,300}?\b(onClick|@click|\(click\)|role\s*=\s*["'](?:button|listbox|option|combobox|switch|checkbox|tab)["'])/g;
+
+/**
+ Matches a CSS declaration or a style-object entry: `color: #fff`,
+ `padding: 12px 16px`, `fontSize: '14px'`. Captures property and value.
+ */
+const RE_DECLARATION =
+	/(?<![\w-])([a-z][a-z-]{0,40})\s*:\s*(['"]?)([^;{}'"\n]{1,300})\2/gi;
+
+/** Properties whose hard-coded colors should become semantic color tokens. */
+const RE_COLOR_PROPERTY =
+	/^(?:color|background|background-?color|border(?:-?(?:top|right|bottom|left))?(?:-?color)?|outline(?:-?color)?|fill|stroke|caret-?color)$/i;
+
+/** Properties whose hard-coded sizes should become spacing or type tokens. */
+const RE_SIZE_PROPERTY =
+	/^(?:padding|margin|gap|row-?gap|column-?gap|font-?size|line-?height|border-?radius)(?:-?(?:top|right|bottom|left|inline|block)(?:-?(?:start|end))?)?$/i;
+
+/** Hard-coded color values: #fff, #ec0016, rgb(…), rgba(…), hsl(…). */
+const RE_COLOR_VALUE =
+	/#(?:[\da-f]{8}|[\da-f]{6}|[\da-f]{3,4})\b|\b(?:rgba?|hsla?)\(/i;
+
+/** Hard-coded lengths in px or rem, but not 0 and not inside var(). */
+const RE_LENGTH_VALUE = /(?<![\w.-])(?:\d*\.)?\d+(?:px|rem)\b/;
 
 /** Matches Generation 2 color tokens: db-color-xxx-nnn */
 const RE_GENERATION_2_COLOR = /\b(db-color-[\w-]+)/g;
@@ -426,6 +474,114 @@ function scanLine(
 		});
 	}
 
+	findings.push(
+		...scanCandidates(line, lineNumber, ctx.trim()),
+		...scanValues(line, lineNumber, ctx.trim())
+	);
+
+	return findings;
+}
+
+/** Suggestion for every self-built control. */
+const CANDIDATE_SUGGESTION =
+	'Self-built control without a deterministic mapping. Classify it before migrating: compare semantics, behavior and look with the DB UX components (take_snapshot / take_screenshot if a browser tool is available, otherwise ask the user for a screenshot), confirm the mapping with the user. See the custom-component-migration guide.';
+
+/**
+ Reports self-built controls: native form controls with own classes and
+ elements made clickable by hand. Classes of Generation 2 (`elm-*`, …) and
+ Generation 3 (`db-*`) are skipped, they are reported or valid elsewhere.
+ */
+function scanCandidates(
+	line: string,
+	lineNumber: number,
+	context: string
+): ScanFinding[] {
+	const findings: ScanFinding[] = [];
+
+	for (const match of line.matchAll(RE_NATIVE_CONTROL_WITH_CLASS)) {
+		const [, tag, classes] = match;
+		if (/(?:^|\s)(?:elm|cmp|rea|db)-/.test(classes)) {
+			continue;
+		}
+
+		findings.push({
+			line: lineNumber,
+			type: 'candidate',
+			found: `<${tag} class="${classes.trim()}">`,
+			context,
+			suggestion: CANDIDATE_SUGGESTION
+		});
+	}
+
+	for (const match of line.matchAll(RE_CLICKABLE_ELEMENT)) {
+		const [, tag, trigger] = match;
+		findings.push({
+			line: lineNumber,
+			type: 'candidate',
+			found: `<${tag} ${trigger.replaceAll(/\s+/g, '')}>`,
+			context,
+			suggestion: `${CANDIDATE_SUGGESTION} A non-interactive element made interactive by hand usually lacks keyboard support and a role - the DB UX component brings both.`
+		});
+	}
+
+	return findings;
+}
+
+/**
+ Reports hard-coded colors, sizes and shadows in CSS declarations and style
+ objects. Values that already use a custom property are skipped.
+ */
+function scanValues(
+	line: string,
+	lineNumber: number,
+	context: string
+): ScanFinding[] {
+	const findings: ScanFinding[] = [];
+
+	for (const match of line.matchAll(RE_DECLARATION)) {
+		const property = match[1];
+		const value = match[3].trim();
+
+		if (/^box-?shadow$/i.test(property)) {
+			if (value !== 'none' && !value.includes('var(--db-elevation')) {
+				findings.push({
+					line: lineNumber,
+					type: 'value',
+					found: `${property}: ${value}`,
+					context,
+					suggestion:
+						'Hard-coded shadow. Use --db-elevation-sm, --db-elevation-md or --db-elevation-lg (see general-migration).'
+				});
+			}
+
+			continue;
+		}
+
+		if (RE_COLOR_PROPERTY.test(property) && RE_COLOR_VALUE.test(value)) {
+			findings.push({
+				line: lineNumber,
+				type: 'value',
+				found: `${property}: ${value}`,
+				context,
+				suggestion:
+					'Hard-coded color. Use a semantic color token (get_design_tokens with category "colors"); backgrounds and foregrounds use different tokens.'
+			});
+			continue;
+		}
+
+		if (RE_SIZE_PROPERTY.test(property) && RE_LENGTH_VALUE.test(value)) {
+			findings.push({
+				line: lineNumber,
+				type: 'value',
+				found: `${property}: ${value}`,
+				context,
+				suggestion: /font|line/i.test(property)
+					? 'Hard-coded font size. Use the font shorthand with a --db-type-* token (see general-migration).'
+					: 'Hard-coded size. Use --db-spacing-fixed-* or --db-spacing-responsive-*, or --db-border-radius-* for radii (see general-migration).'
+			});
+		}
+	}
+
 	return findings;
 }
 
@@ -638,6 +794,10 @@ function buildReport(
 	const colorCount = findings.filter((f) => f.type === 'color').length;
 	const iconCount = findings.filter((f) => f.type === 'icon').length;
 	const importCount = findings.filter((f) => f.type === 'import').length;
+	const candidateCount = findings.filter(
+		(f) => f.type === 'candidate'
+	).length;
+	const valueCount = findings.filter((f) => f.type === 'value').length;
 	const uniqueComponents = [
 		...new Set(
 			findings.filter((f) => f.type === 'component').map((f) => f.found)
@@ -651,7 +811,10 @@ function buildReport(
 		`- ${colorCount} color token(s)`,
 		`- ${iconCount} icon(s)`,
 		`- ${importCount} legacy package reference(s)`,
+		`- ${candidateCount} self-built control(s) to classify`,
+		`- ${valueCount} hard-coded value(s)`,
 		...(note ? ['', note] : []),
+		...(candidateCount > 0 ? ['', CANDIDATE_HINT] : []),
 		'',
 		REVIEW_HINT
 	];

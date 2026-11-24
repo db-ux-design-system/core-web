@@ -67,7 +67,9 @@ Choose the theme file for your bundler: `rollup.css` for Vite and Rollup, `webpa
 **Encrypted assets:** `@db-ux/db-theme`, `@db-ux/db-theme-fonts` and `@db-ux/db-theme-icons` ship fonts, icons and images encrypted (`*.enc`). Their `postinstall` scripts decrypt them:
 
 1. Get `ASSET_PASSWORD` and `ASSET_INIT_VECTOR` from the [Marketingportal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and put them into a `.env` file in the project root. Add `.env` to `.gitignore`.
-2. Allow the install scripts of the three packages. npm 11 and pnpm 10 block install scripts of dependencies by default, for example: `npm install-scripts approve @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`.
+2. Allow the install scripts of the three packages. npm 12 and pnpm block install scripts of dependencies by default:
+    - npm 12: `npm install-scripts approve @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`, then `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons` to run the approved scripts. A second `npm install` does not run them.
+    - pnpm: `pnpm approve-builds` and allow the three packages.
 3. If the `.env` was added after the install, run the decryption again: `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`.
 
 Without decryption, fonts and icons are missing at runtime, or the build fails with `ENOENT` for a file under `node_modules/@db-ux/db-theme*/build/`.

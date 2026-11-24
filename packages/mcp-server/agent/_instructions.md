@@ -35,7 +35,8 @@ Or add it to your MCP client config:
 10. `get_migration_guide` — load the full content of a specific migration guide
 11. `verify_migrated_code` — after generating migrated code, pass the full code string and framework to this tool for a compiler check. Fix errors and retry (max 3 attempts) before presenting code to the user
 12. `get_visual_reference` — _(optional, use sparingly)_ if you need visual context for complex layouts, call this tool with the visual name to receive a pre-optimised static JPEG reference image
-13. `scan_generation_2_migration` — **call FIRST when migrating a file.** Scans a source file for Generation 2 (aka DB UI) patterns (CSS classes `cmp-*`, `elm-*`, `rea-*`, Web Components `<db-*>` from `@db-ui/elements` and their React/Vue wrappers `<Db*>`, `db-color-*`, legacy icons, `@db-ui/*` packages) and returns a JSON report with line numbers and deterministic suggestions. Use this before any code generation.
+13. `scan_generation_2_migration` — Scans a source file for Generation 2 (aka DB UI) patterns (CSS classes `cmp-*`, `elm-*`, `rea-*`, Web Components `<db-*>` from `@db-ui/elements` and their React/Vue wrappers `<Db*>`, `db-color-*`, legacy icons, `@db-ui/*` packages), self-built controls (`candidate`) and hard-coded values (`value`), and returns a JSON report with line numbers and suggestions. Use this before any code generation.
+14. `plan_migration` — **call FIRST when the user asks to migrate.** Reads `package.json`, returns the questions to ask the user and, once answered, the workflow with the tools and guides that fit the project.
 
 ### DON'Ts — these are hard violations:
 
@@ -62,8 +63,9 @@ Or add it to your MCP client config:
 
 When the user asks you to migrate, refactor, or upgrade code from DB UI, Bootstrap, native HTML, or any older version to DB UX Design System – Generation 3, you **MUST** follow this exact workflow — do NOT skip any step:
 
+0. **Plan** — Call `plan_migration`. Ask the user the returned questions in one message, call `plan_migration` again with the answers and follow the returned plan. The steps below are its default; the plan adds classification of self-built controls and browser inspection where they apply.
 1. **File Scan** — Call `scan_generation_2_migration` with the file path. This returns a deterministic JSON report of all Generation 2 patterns (components, colors, icons) with line numbers and suggestions. Use this as your migration checklist.
-2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → Generation 3 Component → Rationale.
+2. **Migration Analysis** — Call `list_migration_guides`, then `get_migration_guide` for each relevant guide. For `candidate` findings, load `custom-component-migration`, classify each control and let the user confirm the mapping table before you change code. Call `docs_search` for component-specific migration docs. Produce a mapping table: Legacy Element → Generation 3 Component → Rationale.
 3. **Component Discovery & Props Retrieval** — Call `list_components` to verify every mapped component. For each: `get_component_props`, `get_component_details`, `get_example_code`. Call `get_design_tokens` to replace hardcoded values. Call `list_icons` to verify icon names. Optionally call `get_component_visual` for layout uncertainty.
 4. **Code Generation** — Generate the complete migrated code. Do **NOT** show it to the user yet.
 5. **Code Verification (MANDATORY for react/angular/vue)** — Call `verify_migrated_code`. If errors are returned, fix and retry (max 3 attempts). For `web-components` and `html` targets, skip this step, as they lack a strict compilation/type-checking step for automated verification in our sandbox.

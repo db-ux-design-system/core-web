@@ -4,19 +4,20 @@ The other migration guides map classes, props, tokens and icons. This guide list
 
 ## Decisions for the user
 
-- **Control Panel variant:** `rea-header` becomes `db-control-panel-desktop` and `db-control-panel-mobile` inside `db-shell`. Whether the layout uses Control Panel Desktop, Mobile or Flat Icon, and where the desktop panel sits (`controlPanelDesktopPosition`), is a layout decision. Ask the user.
+- **Control Panel:** `rea-header` becomes `db-control-panel-desktop` and `db-control-panel-mobile` inside `db-shell`. Use both: the shell shows one per viewport. Where they sit (`controlPanelDesktopPosition`: top or left, `controlPanelMobilePosition`: top or bottom) and whether the navigation uses `db-control-panel-flat-icon` for equally weighted top-level destinations are layout decisions. Ask the user.
 - **Hard-coded values:** Decide with the user whether a fixed value was a design decision or a workaround. Replace it with a token or a component prop, or drop it.
 - **Page width:** A fixed `max-width` with `margin-inline: auto` on a page container becomes `db-section` with the `width` prop (`small`, `medium`, `large`, `full`). Use the same width as the footer, so content and footer line up.
 - **Running text:** Plain `<p>` elements may stay. `db-paragraph` and `db-text-group` are optional.
+- **Footer:** Legal links and the copyright notice go into `db-footer-meta` (`copyright` prop), other links into `db-footer-content`.
 
 ## Values the scanner does not detect yet
 
-`scan_generation_2_migration` reports packages, classes, custom elements, wrappers, color tokens and icon names. It does not report:
+`scan_generation_2_migration` reports packages, classes, custom elements, wrappers, color tokens, icon names, self-built controls and hard-coded colors, sizes and shadows in single-line declarations. It does not report:
 
-- hard-coded `px`/`rem` values, `#fff` and other hex colors, `box-shadow` and `opacity` in CSS
-- inline `style` attributes
+- `opacity` used as a lighter color, and values in multi-line declarations or computed in code
 - Generation 2 prop and variant values, for example `variant="brand-primary"`, `size="large"`, `description`, `input_id`, `htmlid`
 - Generation 2 helper classes such as `is-close` or `is-visually-hidden`
+- self-built controls whose markup is split over several lines
 
 Check these yourself with `general-migration`, `color-migration` and `component-migration`. Two values have no token and may stay: `font-weight` for bold text, and the breakpoint values inside `@media` queries (custom properties do not work there).
 

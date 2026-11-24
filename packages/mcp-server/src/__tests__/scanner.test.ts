@@ -284,6 +284,55 @@ describe('scan_generation_2_migration class mapping', () => {
 		expect(output).toContain('for in-content notices');
 	});
 
+	it('reports self-built controls as candidates and points to the custom-component guide', async () => {
+		const output = await scan(
+			'custom-controls',
+			[
+				'<button className="action-button action-button--primary">Book</button>',
+				'<div className="dropdown" onClick={toggle}>',
+				'<li role="option">Price</li>',
+				'<button className="elm-button">Gen 2</button>',
+				'<DBButton className="x">Gen 3</DBButton>'
+			].join('\n')
+		);
+
+		expect(output).toContain(
+			String.raw`"found": "<button class=\"action-button action-button--primary\">"`
+		);
+		expect(output).toContain('"found": "<div onClick>"');
+		expect(output).toContain(String.raw`"found": "<li role=\"option\">"`);
+		expect(output).toContain('3 self-built control(s) to classify');
+		expect(output).toContain('Load `custom-component-migration`');
+		// The elm-button class is a Generation 2 finding, <DBButton> is Generation 3.
+		expect(output).not.toContain(String.raw`<button class=\"elm-button\">`);
+	});
+
+	it('reports hard-coded colors, sizes and shadows but not tokens', async () => {
+		const output = await scan(
+			'values',
+			[
+				'.btn { color: #fff; background-color: #ec0016; }',
+				'.btn { padding: 12px 16px; font-size: 14px; }',
+				'.card { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); }',
+				'.ok { padding: var(--db-spacing-fixed-md); box-shadow: var(--db-elevation-md); }',
+				"const style = { borderRadius: '4px' };",
+				'<a href="#add">Add</a>'
+			].join('\n')
+		);
+
+		expect(output).toContain('"found": "color: #fff"');
+		expect(output).toContain('"found": "background-color: #ec0016"');
+		expect(output).toContain('"found": "padding: 12px 16px"');
+		expect(output).toContain('"found": "font-size: 14px"');
+		expect(output).toContain(
+			'"found": "box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2)"'
+		);
+		expect(output).toContain('"found": "borderRadius: 4px"');
+		expect(output).toContain('6 hard-coded value(s)');
+		expect(output).not.toContain('--db-spacing-fixed-md"');
+		expect(output).not.toContain('#add');
+	});
+
 	it('points to the review-migration guide in every report with findings', async () => {
 		const withFindings = await scan(
 			'review-hint',

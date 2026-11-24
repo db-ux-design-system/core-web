@@ -163,6 +163,63 @@ exports[`MCP server — stdio transport (modern era, 2026-07-28) > emits stable 
     "properties": {},
     "type": "object",
   },
+  "plan_migration": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "properties": {
+      "appRunsLocally": {
+        "description": "true if the application can run locally for inspection.",
+        "type": "boolean",
+      },
+      "appType": {
+        "description": "business (internal tool), consumer (app or portal for customers) or marketing (campaign, landing page).",
+        "enum": [
+          "business",
+          "consumer",
+          "marketing",
+        ],
+        "type": "string",
+      },
+      "browserTool": {
+        "description": "true if you (the agent) have a browser tool such as the Chrome DevTools MCP with take_snapshot and take_screenshot.",
+        "type": "boolean",
+      },
+      "dbProduct": {
+        "description": "true if the product needs the DB Theme.",
+        "type": "boolean",
+      },
+      "framework": {
+        "description": "Target framework.",
+        "enum": [
+          "react",
+          "angular",
+          "vue",
+          "web-components",
+          "html",
+        ],
+        "type": "string",
+      },
+      "projectRoot": {
+        "description": "Folder that contains the package.json, relative to the workspace root. Defaults to the workspace root.",
+        "maxLength": 500,
+        "type": "string",
+      },
+      "sources": {
+        "description": "What the current interface is built with, as answered by the user. Several values possible.",
+        "items": {
+          "enum": [
+            "generation-2",
+            "custom-components",
+            "other-library",
+            "plain-html",
+          ],
+          "type": "string",
+        },
+        "maxItems": 4,
+        "type": "array",
+      },
+    },
+    "type": "object",
+  },
   "scan_generation_2_migration": {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "properties": {
