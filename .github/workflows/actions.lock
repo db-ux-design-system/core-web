@@ -123,7 +123,7 @@ workflows:
         - 'mfranzke/dependabot-review-action@v0.2.1'
     '.github/workflows/99-dependency-review.yml':
         - 'actions/checkout@v7.0.1'
-        - 'actions/dependency-review-action@v5.0.0'
+        - 'actions/dependency-review-action@v5.0.1'
     '.github/workflows/99-labeler.yml':
         - 'actions/labeler@v7.0.0'
     '.github/workflows/99-reorder-backlog.yml':
@@ -173,9 +173,9 @@ dependencies:
         commit: 'sha1-64ab729a6294000f5aa4a4bc0b73d1f32bc45510'
         owner_id: 44036562
         repo_id: 642580244
-    'actions/dependency-review-action@v5.0.0':
-        ref: 'v5.0.0'
-        commit: 'sha1-a1d282b36b6f3519aa1f3fc636f609c47dddb294'
+    'actions/dependency-review-action@v5.0.1':
+        ref: 'v5.0.1'
+        commit: 'sha1-bbc44d14a204704ccc493733616cd1e93a0321ec'
         owner_id: 44036562
         repo_id: 476372928
     'actions/download-artifact@v8.0.2':
