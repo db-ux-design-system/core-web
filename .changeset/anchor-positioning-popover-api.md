@@ -19,3 +19,4 @@ feat: position floating elements with CSS Anchor Positioning and show them in th
 - The `popover-animation` keyframes keep `pointer-events: none` until the end, so a floating element sliding in over its trigger can't catch the pointer and close/reopen endlessly
 - The placement of a custom select is read from `data-placement` on the root `.db-custom-select` (the dropdown itself no longer gets the attribute)
 - A tooltip which is positioned by the browser gets the inline custom properties `--db-tooltip-arrow-inline-start` and `--db-tooltip-arrow-block-start`, and a floating element taller than the viewport gets the inline styles `overflow` and `max-block-size`
+- Without JavaScript the hover bridge (`::before`) of a floating element spans the gap on both sides of its axis, so the pointer can still reach a tooltip which the browser flipped. The arrow of a CSS-only tooltip still follows the requested `data-placement`

@@ -329,6 +329,40 @@ $anchored-placements: (
 		}
 	}
 
+	/*
+	 * With CSS Anchor Positioning the browser flips the element without telling
+	 * the stylesheet, and `data-corrected-placement` is only set by JavaScript.
+	 * Without it the hover bridge would stay on the requested side, so the
+	 * pointer would leave the element when crossing the gap of a flipped one.
+	 * Therefore the bridge spans the gap on both sides of the axis.
+	 */
+	@include only-anchored {
+		&:not([data-corrected-placement]) {
+			&:not([data-placement]),
+			&[data-placement^="bottom"],
+			&[data-placement^="top"] {
+				&::before {
+					inset-block: $popover-gap-inset;
+					inset-inline: 0;
+					inline-size: auto;
+					block-size: auto;
+					z-index: -1;
+				}
+			}
+
+			&[data-placement^="left"],
+			&[data-placement^="right"] {
+				&::before {
+					inset-inline: $popover-gap-inset;
+					inset-block: 0;
+					inline-size: auto;
+					block-size: auto;
+					z-index: -1;
+				}
+			}
+		}
+	}
+
 	/* CSS Anchor Positioning: the browser places and flips the element */
 	@include only-anchored {
 		// Only elements with a gap (`data-gap="true"`, tooltips) get a distance
