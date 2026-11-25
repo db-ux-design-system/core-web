@@ -36953,6 +36953,8 @@ var PreviewWithSelection = class extends Preview {
     this.getProjectAnnotations = getProjectAnnotations;
     this.selectionStore = selectionStore;
     this.view = view;
+    this.pendingPreloads = /* @__PURE__ */ new Map();
+    this.preloadsDrained = null;
     this.initialize();
   }
   setupListeners() {
@@ -37045,8 +37047,22 @@ var PreviewWithSelection = class extends Preview {
   async onUpdateArgs({ storyId, updatedArgs }) {
     super.onUpdateArgs({ storyId, updatedArgs });
   }
-  async onPreloadStories({ ids }) {
-    await this.storeInitializationPromise, this.storyStoreValue && await Promise.allSettled(ids.map((id) => this.storyStoreValue?.loadEntry(id)));
+  async onPreloadStories(request) {
+    this.pendingPreloads.set(request.source, request), this.preloadsDrained ??= this.drainPreloads(), await this.preloadsDrained;
+  }
+  // Sidebar hovers request preloads faster than a dev server compiles them, so batches run one at
+  // a time and a request received while a batch runs replaces the one its source has waiting.
+  // Sibling preloads are a guess, so they wait until no other source has a request waiting.
+  async drainPreloads() {
+    for (await this.storeInitializationPromise; this.pendingPreloads.size > 0; ) {
+      let request = this.takePreload();
+      await Promise.allSettled(request.ids.map((id) => this.storyStoreValue?.loadEntry(id)));
+    }
+    this.preloadsDrained = null;
+  }
+  takePreload() {
+    let waiting = [...this.pendingPreloads], [source, request] = waiting.find(([key]) => key !== "sibling") ?? waiting[0] ?? [];
+    return this.pendingPreloads.delete(source), request;
   }
   // RENDERING
   // We can either have:
