@@ -50,54 +50,72 @@ $anchor-positioning-supports: "(position-area: top) and (anchor-name: --db-ancho
 	}
 }
 
-@include only-anchored {
-	// The offset is only applied on the side which faces the anchor
-	@position-try --db-popover-bottom-start {
-		position-area: block-end span-inline-end;
-		margin: 0;
-		margin-block-start: var(--db-popover-offset);
-	}
+/*
+ * Resets the user agent styles of [popover] (top layer). The padding is 0.25em
+ * by default, components set their own padding after the reset.
+ */
+@mixin popover-ua-reset {
+	overflow: visible;
+	color: inherit;
+	padding: 0;
+}
 
-	@position-try --db-popover-bottom-end {
-		position-area: block-end span-inline-start;
-		margin: 0;
-		margin-block-start: var(--db-popover-offset);
-	}
+/*
+ * The `@position-try` rules which are referenced by the `position-try-fallbacks`
+ * of `%popover-placement`. Include once per stylesheet of a component which
+ * uses `%default-popover` (popover, tooltip), so other components which only
+ * `@use` this file (custom select, navigation) don't ship them.
+ */
+@mixin position-try-rules {
+	@include only-anchored {
+		// The offset is only applied on the side which faces the anchor
+		@position-try --db-popover-bottom-start {
+			position-area: block-end span-inline-end;
+			margin: 0;
+			margin-block-start: var(--db-popover-offset);
+		}
 
-	@position-try --db-popover-top-start {
-		position-area: block-start span-inline-end;
-		margin: 0;
-		margin-block-end: var(--db-popover-offset);
-	}
+		@position-try --db-popover-bottom-end {
+			position-area: block-end span-inline-start;
+			margin: 0;
+			margin-block-start: var(--db-popover-offset);
+		}
 
-	@position-try --db-popover-top-end {
-		position-area: block-start span-inline-start;
-		margin: 0;
-		margin-block-end: var(--db-popover-offset);
-	}
+		@position-try --db-popover-top-start {
+			position-area: block-start span-inline-end;
+			margin: 0;
+			margin-block-end: var(--db-popover-offset);
+		}
 
-	@position-try --db-popover-right-start {
-		position-area: inline-end span-block-end;
-		margin: 0;
-		margin-inline-start: var(--db-popover-offset);
-	}
+		@position-try --db-popover-top-end {
+			position-area: block-start span-inline-start;
+			margin: 0;
+			margin-block-end: var(--db-popover-offset);
+		}
 
-	@position-try --db-popover-right-end {
-		position-area: inline-end span-block-start;
-		margin: 0;
-		margin-inline-start: var(--db-popover-offset);
-	}
+		@position-try --db-popover-right-start {
+			position-area: inline-end span-block-end;
+			margin: 0;
+			margin-inline-start: var(--db-popover-offset);
+		}
 
-	@position-try --db-popover-left-start {
-		position-area: inline-start span-block-end;
-		margin: 0;
-		margin-inline-end: var(--db-popover-offset);
-	}
+		@position-try --db-popover-right-end {
+			position-area: inline-end span-block-start;
+			margin: 0;
+			margin-inline-start: var(--db-popover-offset);
+		}
 
-	@position-try --db-popover-left-end {
-		position-area: inline-start span-block-start;
-		margin: 0;
-		margin-inline-end: var(--db-popover-offset);
+		@position-try --db-popover-left-start {
+			position-area: inline-start span-block-end;
+			margin: 0;
+			margin-inline-end: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-left-end {
+			position-area: inline-start span-block-start;
+			margin: 0;
+			margin-inline-end: var(--db-popover-offset);
+		}
 	}
 }
 
@@ -326,9 +344,8 @@ $anchored-placements: (
 		margin: 0;
 		margin-block-start: var(--db-popover-offset);
 
-		// Reset of the user agent styles of [popover] (top layer)
-		overflow: visible;
-		color: inherit;
+		@include popover-ua-reset;
+
 		position-area: block-end;
 		position-try-fallbacks: #{list.nth(
 				map.get($anchored-placements, "bottom"),

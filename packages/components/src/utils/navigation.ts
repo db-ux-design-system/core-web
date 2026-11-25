@@ -1,5 +1,6 @@
 import {
 	handleFixedPopover,
+	limitToViewport,
 	supportsAnchorPositioning
 } from './floating-components';
 
@@ -362,12 +363,12 @@ export const handleSubNavigationPosition = ({
 				subNavigation.style.position = '';
 				subNavigation.style.insetBlock = '';
 				subNavigation.style.insetInline = '';
-				subNavigation.style.overflow = '';
-				subNavigation.style.maxBlockSize = '';
 				delete subNavigation.dataset['correctedPlacement'];
 				subNavigation.dataset['open'] = vertical
 					? 'vertical'
 					: 'horizontal';
+				// Oversized menus stay inside the viewport and scrollable
+				limitToViewport(subNavigation);
 			} else if (resolvedLevel === 0) {
 				if (vertical) {
 					// Sub-Navigation should be opened vertical (top position, level 0)

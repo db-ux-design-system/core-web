@@ -331,11 +331,6 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 			if (detailsRef) {
 				const dropdown = detailsRef.querySelector('article');
 				if (dropdown) {
-					// Used by the CSS Anchor Positioning
-					if (props.placement) {
-						dropdown.dataset['placement'] =
-							props.placement as string;
-					}
 					// This is a workaround for Angular
 					void delay(() => {
 						if (detailsRef) {

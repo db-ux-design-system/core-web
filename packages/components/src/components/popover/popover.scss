@@ -3,6 +3,7 @@
 @use "../../styles/internal/popover-component";
 @forward "../../styles/internal/popover-component.properties";
 @use "../../styles/internal/component";
+@include popover-component.position-try-rules;
 
 .db-popover {
 	@include popover-component.anchor-definition;

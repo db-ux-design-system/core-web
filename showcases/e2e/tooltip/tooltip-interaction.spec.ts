@@ -18,6 +18,8 @@ test.describe('DBTooltip', () => {
 		title: 'should be placed next to its trigger on the first hover inside a drawer which was closed on load (#8873)',
 		path,
 		example: 'Interaction',
+		// Hovering is unreliable on touch devices
+		skip: { project: (project) => project.name.startsWith('mobile') },
 		async run({ page, content }) {
 			// The bug only shows up with a low viewport
 			await page.setViewportSize({ width: 1280, height: 670 });
@@ -26,18 +28,30 @@ test.describe('DBTooltip', () => {
 			// Root cause of #8873: a position computed while the drawer is
 			// closed was written as inline styles and still applied on the
 			// first hover. With CSS Anchor Positioning the browser positions
-			// the tooltip, so no inline position may be written at all.
-			const staleStyles = /inset|position|max-block-size/;
-			expect((await tooltip.getAttribute('style')) ?? '').not.toMatch(
-				staleStyles
+			// the tooltip, so no inline position may be written at all. The
+			// JavaScript fallback of other browsers writes them by design.
+			/* eslint-disable unicorn/isolated-functions -- CSS is available in the browser context */
+			const hasAnchorPositioning = await page.evaluate(
+				() =>
+					CSS.supports('position-area: top') &&
+					CSS.supports('anchor-name: --db-anchor') &&
+					CSS.supports('anchor-scope: --db-anchor')
 			);
+			/* eslint-enable unicorn/isolated-functions */
+			const staleStyles = /inset|position|max-block-size/;
+			const expectNoInlinePosition = async () => {
+				if (hasAnchorPositioning) {
+					expect(
+						(await tooltip.getAttribute('style')) ?? ''
+					).not.toMatch(staleStyles);
+				}
+			};
+			await expectNoInlinePosition();
 
 			await content.getByTestId('open-drawer').click();
 			const trigger = page.getByTestId('drawer-tooltip-button');
 			await expect(trigger).toBeVisible();
-			expect((await tooltip.getAttribute('style')) ?? '').not.toMatch(
-				staleStyles
-			);
+			await expectNoInlinePosition();
 
 			await trigger.hover();
 			await expect(tooltip).toBeVisible();

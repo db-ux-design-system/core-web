@@ -47,7 +47,7 @@ export default function DBPopover(props: DBPopoverProps) {
 		},
 		handleAutoPlacement: () => {
 			if (!_ref) return;
-			const article = _ref.querySelector('article');
+			const article = _ref.querySelector(':scope > article');
 			if (article) {
 				// This is a workaround for angular
 				void utilsDelay(() => {
@@ -77,7 +77,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			state.isExpanded = true;
 			if (_ref) {
 				// Top layer via Popover API, avoids clipping by overflow of ancestors
-				showFloating(_ref.querySelector('article'));
+				showFloating(_ref.querySelector(':scope > article'));
 			}
 
 			// Clean up any existing observers to prevent leaks from repeated enter
@@ -141,7 +141,7 @@ export default function DBPopover(props: DBPopoverProps) {
 			) {
 				state.isExpanded = false;
 				if (_ref) {
-					hideFloating(_ref.querySelector('article'));
+					hideFloating(_ref.querySelector(':scope > article'));
 				}
 
 				if (state._documentScrollListenerCallbackId) {
@@ -191,6 +191,10 @@ export default function DBPopover(props: DBPopoverProps) {
 	});
 
 	onUnMount(() => {
+		// Leave the top layer if the popover is removed while it is open
+		if (_ref) {
+			hideFloating(_ref.querySelector(':scope > article'));
+		}
 		if (state._documentScrollListenerCallbackId) {
 			new DocumentScrollListener().removeCallback(
 				state._documentScrollListenerCallbackId!
