@@ -98,7 +98,12 @@ export const migrationData: MigrationData = {
 			'pick the level from the document outline, not from the visual size',
 		'elm-label':
 			'no separate component: the label is the label prop of db-input, db-select, db-textarea, db-checkbox, db-radio and db-switch',
-		'elm-image': 'no separate component: use a native img with alt text',
+		'cmp-brand':
+			'db-control-panel-brand shows the DB logo from the DB Theme, so drop an own logo image (elm-image or elm-logo inside the brand); if the logo was a link, wrap the brand in the link',
+		'rea-meta':
+			'db-control-panel-meta is for a meta navigation; login, profile and language actions go into actions2 with db-control-panel-actions-2',
+		'elm-image':
+			'no separate component: use a native img with alt text; a logo inside cmp-brand is dropped, db-control-panel-brand brings it',
 		'elm-logo':
 			'no separate component: the logo is part of db-control-panel-brand',
 		'cmp-notification':

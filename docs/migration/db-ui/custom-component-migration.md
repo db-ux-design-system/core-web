@@ -20,11 +20,11 @@ Answer these questions for each control. The answers decide the DB UX component.
 | Which variants and sizes exist? | Props, modifier classes                   | Map variants to the `variant` prop of the component. Sizes usually become density, not a size prop                |
 | Which states exist?             | `disabled`, `loading`, `selected`, `open` | Use the component props for each state                                                                            |
 
-**Badge or tag:** Use `db-badge` for a short, non-interactive label next to or on another element, for example "Popular" on a card or a counter on a button (`placement="corner-*"`). It renders a `span`. Use `db-tag` to categorize or filter content, also when the label contains a checkbox, radio, link or button, or can be removed. It renders a `div`.
+**Badge or tag:** Use `db-badge` for a short, non-interactive label next to or on another element, for example "Popular" on a card or a counter on a button (`placement="corner-*"`). It renders a `span`. A red highlight label that is not an error has no matching `semantic` (`critical` means error): suggest `informational` with `emphasis="strong"` in the table and ask the user. Use `db-tag` to categorize or filter content, also when the label contains a checkbox, radio, link or button, or can be removed. It renders a `div`.
 
 Inspect the control in the running application if a browser tool is available, for example the Chrome DevTools MCP:
 
-- `take_snapshot`: role, accessible name and state. A clickable `div` without a role shows up as generic text, a self-built select often has no `combobox` or `listbox` role.
+- `take_snapshot` with `verbose: true`: role, accessible name and state. The compact snapshot leaves out roles such as table, row and cell, so a table can look like plain text there. A clickable `div` without a role shows up as generic text, a self-built select often has no `combobox` or `listbox` role.
 - `take_screenshot`: the look, to compare with `get_visual_reference` and the component examples.
 - `evaluate_script` with `getComputedStyle(element)`: the real colors, spacing, radius and shadow, to pick matching tokens.
 

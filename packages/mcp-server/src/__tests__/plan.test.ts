@@ -108,6 +108,7 @@ describe('plan_migration workflow', () => {
 			appType: 'business',
 			sources: ['generation-2', 'custom-components'],
 			appRunsLocally: true,
+			appUrl: 'http://localhost:5173',
 			browserTool: true
 		});
 
@@ -143,6 +144,35 @@ describe('plan_migration workflow', () => {
 			)
 		).toBe('4');
 		expect(stepOf('Load `review-migration`')).toBe('6');
+	});
+
+	it('asks for the URL of a locally running app and uses it in the plan', async () => {
+		const intake = await plan({
+			...complete,
+			appRunsLocally: true,
+			browserTool: true
+		});
+		expect(intake).toContain('**appUrl:**');
+		expect(intake).toContain('do not start a second one');
+
+		const output = await plan({
+			...complete,
+			sources: ['generation-2', 'custom-components'],
+			appRunsLocally: true,
+			appUrl: 'http://localhost:5180',
+			browserTool: true
+		});
+		expect(output).toContain('| Running at | http://localhost:5180 |');
+		expect(output).toContain('at http://localhost:5180');
+		expect(output).toContain('Do not start a second dev server');
+		expect(output).toContain('`take_snapshot` with `verbose: true`');
+	});
+
+	it('does not ask for a URL when the app does not run locally', async () => {
+		const output = await plan(complete);
+
+		expect(output).not.toContain('**appUrl:**');
+		expect(output).toContain('Node version of the project');
 	});
 
 	it('tells the agent to skip assets and to stop only for decisions', async () => {

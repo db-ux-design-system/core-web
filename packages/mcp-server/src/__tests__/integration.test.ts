@@ -448,8 +448,14 @@ describe('handleGetExampleCode', () => {
 					components: {
 						button: {
 							props: null,
-							examples: [],
-							exampleCode: { react: {}, angular: {}, vue: {} }
+							examples: ['Variant'],
+							exampleCode: {
+								react: {
+									'variant.example.tsx': FAKE_EXAMPLE_CODE
+								},
+								angular: {},
+								vue: {}
+							}
 						}
 					}
 				})
@@ -464,6 +470,34 @@ describe('handleGetExampleCode', () => {
 
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('NonExistent');
+	});
+
+	it('explains a build without example code instead of looping back to the details', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					components: {
+						button: {
+							props: null,
+							examples: ['Variant'],
+							exampleCode: { react: {}, angular: {}, vue: {} }
+						}
+					}
+				})
+			)
+		);
+
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain(
+			'contains no react example code'
+		);
+		expect(text(result.content[0])).toContain("'docs_search'");
 	});
 
 	it('returns an error when the component is not in the manifest', async () => {

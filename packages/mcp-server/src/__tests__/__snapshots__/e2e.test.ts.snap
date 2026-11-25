@@ -179,6 +179,11 @@ exports[`MCP server — stdio transport (modern era, 2026-07-28) > emits stable 
         ],
         "type": "string",
       },
+      "appUrl": {
+        "description": "URL of the locally running application, e.g. http://localhost:5173.",
+        "maxLength": 500,
+        "type": "string",
+      },
       "browserTool": {
         "description": "true if you (the agent) have a browser tool such as the Chrome DevTools MCP with take_snapshot and take_screenshot.",
         "type": "boolean",

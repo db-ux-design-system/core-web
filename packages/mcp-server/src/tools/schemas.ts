@@ -152,7 +152,7 @@ export const scanGeneration2MigrationSchema = {
 export const planMigrationSchema = {
 	description:
 		'IMPORTANT: Call this tool FIRST, before any other tool, when the user asks to migrate an application or files to DB UX Design System – Generation 3. ' +
-		"It reads the project's package.json and returns either the questions you must ask the user (application type, framework, what the current interface is built with, DB Theme, browser inspection) " +
+		"It reads the project's package.json and returns either the questions you must ask the user (application type, framework, what the current interface is built with, DB Theme, local URL, browser inspection) " +
 		'or, once all answers are passed in, the ordered workflow with the tools and migration guides to use. ' +
 		'Call it again with the answers. Do not change code before you have the plan.',
 	inputSchema: z.object({
@@ -189,6 +189,13 @@ export const planMigrationSchema = {
 			.optional()
 			.describe(
 				'true if the application can run locally for inspection.'
+			),
+		appUrl: z
+			.string()
+			.max(500)
+			.optional()
+			.describe(
+				'URL of the locally running application, e.g. http://localhost:5173.'
 			),
 		browserTool: z
 			.boolean()

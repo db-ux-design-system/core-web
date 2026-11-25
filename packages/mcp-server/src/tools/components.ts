@@ -171,6 +171,14 @@ export async function handleGetExampleCode({
 					? directKey
 					: fuzzyMatchExample(Object.keys(fwExamples), kebab, ext);
 				const code = matchKey ? fwExamples[matchKey] : undefined;
+				// A build without framework outputs has no example code at all. Say so,
+				// instead of sending the agent back to get_component_details in a loop.
+				if (Object.keys(fwExamples).length === 0) {
+					return error(
+						`Error: This build of the MCP server contains no ${framework} example code for '${componentName}'. Use 'get_component_props' for the props and 'docs_search' with category 'component' for the usage instead.`
+					);
+				}
+
 				if (code === undefined) {
 					return error(
 						`Error: Example '${exampleName}' for component '${componentName}' not found. Use 'get_component_details' to see available examples.`

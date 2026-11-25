@@ -33,6 +33,8 @@ export type PlanMigrationInput = {
 	sources?: Source[];
 	dbProduct?: boolean;
 	appRunsLocally?: boolean;
+	/** URL of the running application, asked only when it runs locally. */
+	appUrl?: string;
 	browserTool?: boolean;
 };
 
@@ -179,6 +181,13 @@ function openQuestions(input: PlanMigrationInput): Question[] {
 			answers: '`true` or `false`'
 		},
 		input.appRunsLocally === true &&
+			!input.appUrl && {
+				field: 'appUrl',
+				question:
+					'At which URL does the application run locally? If a dev server is already running, use its URL and do not start a second one.',
+				answers: 'a URL, for example `http://localhost:5173`'
+			},
+		input.appRunsLocally === true &&
 			input.browserTool === undefined && {
 				field: 'browserTool',
 				question:
@@ -205,6 +214,7 @@ function merge(
 		// detected packages are shown as a hint.
 		sources: input.sources?.length ? input.sources : undefined,
 		dbProduct: input.dbProduct ?? (detected.hasDbTheme ? true : undefined),
+		appUrl: input.appRunsLocally ? input.appUrl : undefined,
 		browserTool: input.appRunsLocally ? input.browserTool : false
 	};
 }
@@ -223,10 +233,13 @@ function renderDetected(detected: Detected): string {
 	);
 }
 
+/** All answers the plan needs. The URL is only known when the app runs locally. */
+type PlanAnswers = Required<
+	Omit<PlanMigrationInput, 'projectRoot' | 'appUrl'>
+> & { appUrl?: string };
+
 /** Builds the ordered workflow for a complete set of answers. */
-function renderPlan(
-	plan: Required<Omit<PlanMigrationInput, 'projectRoot'>>
-): string {
+function renderPlan(plan: PlanAnswers): string {
 	const hasCustom = plan.sources.some((source) =>
 		['custom-components', 'other-library', 'plain-html'].includes(source)
 	);
@@ -247,7 +260,7 @@ function renderPlan(
 			'**Scan every code and style file** with `scan_generation_2_migration` before you change any code: `package.json`, entry point, global styles, pages, components and their stylesheets. Skip images, fonts and other assets (`.svg`, `.png`, `.woff2` …). The report lists Generation 2 patterns, self-built controls (`candidate`) and hard-coded values (`value`). Summarize the findings per file for the user.',
 			...(canInspect
 				? [
-						'   - Then take a screenshot of every page of the original with `take_screenshot`. If the tool can save to a file, use a temporary folder outside the repository and never commit it. You compare against these in the review.'
+						`   - Then open the running application${plan.appUrl ? ` at ${plan.appUrl}` : ''} and take a screenshot of every page of the original with \`take_screenshot\`. Do not start a second dev server. If the tool can save to a file, use a temporary folder outside the repository and never commit it. You compare against these in the review.`
 					]
 				: [])
 		].join('\n')
@@ -259,7 +272,7 @@ function renderPlan(
 				`**Classify every self-built control** (\`candidate\` findings and every component of an other library). ${load('custom-component-migration')}`,
 				'   - Read the code: element, role, event handlers, states, CSS.',
 				canInspect
-					? '   - Inspect it in the running application: `take_snapshot` for role, name and state, `take_screenshot` for the look, `evaluate_script` with `getComputedStyle` for colors, spacing and shadows.'
+					? '   - Inspect it in the running application: `take_snapshot` with `verbose: true` for role, name and state (the compact snapshot leaves out roles such as table, row and cell), `take_screenshot` for the look, `evaluate_script` with `getComputedStyle` for colors, spacing and shadows.'
 					: '   - Ask the user for a screenshot of each control, because it cannot be inspected in a browser.',
 				'   - Compare with `list_components`, `get_component_props` and, if the look decides, `get_visual_reference`.',
 				'   - Present a table "Control → DB UX component → reason → open questions" and **wait for the user to confirm it** before changing code.'
@@ -270,6 +283,7 @@ function renderPlan(
 	step(
 		[
 			`**Install the packages**: \`${FRAMEWORK_PACKAGE[plan.framework]}\`${plan.dbProduct ? ' and `@db-ux/db-theme`' : ''}, and remove the packages being replaced. ${load('general-migration')}`,
+			'   - Run every command with the Node version of the project: `.nvmrc` or `engines` in `package.json` (for example `nvm use`). A shell with a different version can install other package versions or fail the install scripts.',
 			plan.dbProduct
 				? '   - Follow "DB Theme" in `general-migration`: credentials in `.env`, allowed install scripts, theme import after the component styles, Vite alias if needed.'
 				: '   - Load the whitelabel styles as described in "Required CSS Imports" in `general-migration`.',
@@ -294,7 +308,7 @@ function renderPlan(
 		[
 			`**Review** the result and end the output with "Open decisions and checks". ${load('review-migration')}`,
 			canInspect
-				? '   - Compare the migrated pages with the screenshots of the original from step 1 (`take_screenshot`) and check the accessibility tree again (`take_snapshot`).'
+				? '   - Compare the migrated pages with the screenshots of the original from step 1 (`take_screenshot`) and check the accessibility tree again (`take_snapshot` with `verbose: true`).'
 				: '   - Ask the user to compare the migrated pages with the original in the browser.'
 		].join('\n')
 	);
@@ -304,7 +318,8 @@ function renderPlan(
 		`| Framework | ${plan.framework} (\`${FRAMEWORK_PACKAGE[plan.framework]}\`) |`,
 		`| Current interface | ${plan.sources.join(', ')} |`,
 		`| DB Theme | ${plan.dbProduct ? 'yes' : 'no, whitelabel'} |`,
-		`| Browser inspection | ${canInspect ? 'yes' : 'no'} |`
+		`| Browser inspection | ${canInspect ? 'yes' : 'no'} |`,
+		...(plan.appUrl ? [`| Running at | ${plan.appUrl} |`] : [])
 	];
 
 	return [
@@ -378,9 +393,7 @@ export async function handlePlanMigration(
 		content: [
 			{
 				type: 'text',
-				text: renderPlan(
-					merged as Required<Omit<PlanMigrationInput, 'projectRoot'>>
-				)
+				text: renderPlan(merged as PlanAnswers)
 			}
 		]
 	};

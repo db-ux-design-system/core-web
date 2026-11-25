@@ -349,6 +349,19 @@ describe('scan_generation_2_migration class mapping', () => {
 		expect(missing).toEqual([]);
 	});
 
+	it('sends the login to actions2 and drops the own logo of the brand', async () => {
+		const output = await scan(
+			'brand-meta',
+			'<div class="cmp-brand"><img class="elm-image is-logo" alt="DB"></div>\n<div class="rea-meta"><a class="elm-link">Log in</a></div>'
+		);
+
+		expect(output).toContain('shows the DB logo from the DB Theme');
+		expect(output).toContain('a logo inside cmp-brand is dropped');
+		expect(output).toContain(
+			'login, profile and language actions go into actions2'
+		);
+	});
+
 	it('explains classes that have no own Generation 3 component', async () => {
 		const output = await scan(
 			'notes',
