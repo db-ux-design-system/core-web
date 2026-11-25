@@ -33,7 +33,7 @@
     "@types/node": "^26.6.6",
     "@types/react": "19.3.0",
     "cpy-cli": "7.0.0",
-    "npm-run-all2": "9.0.4",
+    "npm-run-all2": "9.1.0",
     "open-cli": "9.0.0",
     "typescript": "5.9.3"
   }

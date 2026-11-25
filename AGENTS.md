@@ -234,7 +234,10 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Generate new component**: `pnpm run generate:component`
 - **Component build location**: `packages/components/build/`
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
-- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
+- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in the React, Angular and Web Components outputs.
+    - **Exception – Vue:** the Vue output relies on Vue's default fallthrough attributes, which land on the component's root element. Where the root is not the `_ref` element (e.g. the wrapper `div` of `DBInput`, `DBSelect`, `DBCheckbox`), `aria-*`/`data-*` do not reach the native element.
+    - React keeps foundation attributes (`data-density`, `data-color`, `data-icon-variant`, …) on the component root via `getRootProps` (see `rootProps` in `packages/components/scripts/post-build/react.ts`).
+    - Angular/Stencil never forward `data-density`. The table sub-components forward only on mount and do not observe later host changes (see `configs/plugins/attribute-passing/index.cjs`).
 
 ### Working with Figma Code Connect
 

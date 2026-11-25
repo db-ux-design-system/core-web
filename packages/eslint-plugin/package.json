@@ -45,9 +45,9 @@
     "@typescript-eslint/parser": "8.73.0",
     "@typescript-eslint/rule-tester": "8.73.0",
     "cpy-cli": "7.0.0",
-    "npm-run-all2": "9.0.4",
+    "npm-run-all2": "9.1.0",
     "typescript": "5.9.3",
-    "vitest": "5.1.0",
+    "vitest": "5.1.1",
     "vue-eslint-parser": "10.4.2"
   },
   "publishConfig": {
