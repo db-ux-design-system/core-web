@@ -184,7 +184,6 @@ defineCustomElements();
 
 > **Testing note:** because the slot-fixes variant overrides those DOM accessors, end-to-end tooling that relies on the real DOM tree can behave unexpectedly against it. In Playwright we have seen axe-core accessibility scans fail with `No elements found for include in page Context` — a selector that `page.locator()` resolves is not reachable through the patched `childNodes` walk that axe uses to build its tree. If you test against this variant, prefer locators and assertions that do not depend on a full real-DOM traversal, or run DOM-walking checks (such as axe-core) against the default build instead.
 
-
 ## VSCode autocomplete
 
 If you don't have it already, add a VS Code settings folder and file at the root of your project - `.vscode/settings.json`. Then add or append the following code:
