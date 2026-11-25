@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/popover-component";
 @forward "custom-select-dropdown.properties";
 
 .db-custom-select-dropdown {
@@ -35,6 +36,40 @@
 
 	&[data-width="full"] {
 		inline-size: 100%;
+	}
+
+	// CSS Anchor Positioning (the JavaScript fallback is only used without support)
+	@include popover-component.only-anchored {
+		// Reset of the user agent styles of [popover] (top layer)
+		overflow: visible;
+		color: inherit;
+
+		@include screen-sizes.screen-tablet-min {
+			position-anchor: --db-anchor;
+			inset: auto;
+			margin: 0;
+			position-area: block-end span-inline-end;
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+
+			&[data-placement^="top"] {
+				position-area: block-start span-inline-end;
+			}
+
+			&[data-width="full"] {
+				/* stylelint-disable-next-line db-ux/use-sizing */
+				inline-size: anchor-size(--db-anchor inline);
+			}
+
+			&[data-width="auto"] {
+				min-inline-size: min(
+					anchor-size(--db-anchor inline),
+					calc(100dvw - 2 * #{variables.$db-spacing-fixed-sm})
+				);
+			}
+		}
 	}
 
 	@include screen-sizes.screen-tablet-max {

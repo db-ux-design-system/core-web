@@ -1,4 +1,11 @@
 @keyframes popover-animation {
+	/*
+	 * `pointer-events` is discrete and would switch to `auto` at 50%. The
+	 * element slides in from the direction of its trigger and can still cover
+	 * the trigger at that time, so it would catch the pointer, the trigger
+	 * would lose its hover and the element would close and reopen endlessly.
+	 * It only becomes interactive at the end, in its final position.
+	 */
 	0% {
 		pointer-events: none;
 		opacity: 0;
@@ -6,6 +13,10 @@
 			var(--db-popover-center-x, var(--db-popover-translate-x, 0%)),
 			var(--db-popover-center-y, var(--db-popover-translate-y, 0%))
 		);
+	}
+
+	99% {
+		pointer-events: none;
 	}
 
 	100% {

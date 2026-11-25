@@ -4,10 +4,20 @@
 @use "@db-ux/core-foundations/build/styles/fonts";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/navigation-item";
+@use "../../styles/internal/popover-component";
 @use "control-panel-navigation-item-group-menu-popover";
 
 .db-control-panel-navigation-item-group {
 	@extend %navigation-item;
+
+	// The first level menu is anchored to the expand button (CSS Anchor Positioning)
+	@include popover-component.only-anchored {
+		anchor-scope: --db-anchor;
+
+		.db-control-panel-navigation-item-group-expand-button {
+			anchor-name: --db-anchor;
+		}
+	}
 
 	&:has(> .db-control-panel-navigation-item-group-menu:hover):not(
 			:has(
