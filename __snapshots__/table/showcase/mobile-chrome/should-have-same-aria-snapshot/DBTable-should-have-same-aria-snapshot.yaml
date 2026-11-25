@@ -2837,18 +2837,18 @@
   - table "Mobile Variant List":
     - caption: Mobile Variant List
     - rowgroup:
-      - row "Details Number Status":
-        - columnheader "Details"
+      - row "Number Status Details":
         - columnheader "Number"
         - columnheader "Status"
+        - columnheader "Details"
     - rowgroup:
       - row "34621 234 Status Tag":
-        - cell:
-          - group: Show details
         - cell "34621 234"
         - cell "Status Tag"
-      - row "34621 235 Status Tag":
         - cell:
           - group: Show details
+      - row "34621 235 Status Tag":
         - cell "34621 235"
         - cell "Status Tag"
+        - cell:
+          - group: Show details
