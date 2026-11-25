@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -9,11 +8,9 @@ import HeaderExamples from '../examples/examples.example.lite';
 import HeaderInteraction from '../examples/interaction.example.lite';
 import HeaderWidth from '../examples/width.example.lite';
 
-export default function HeaderShowcase(props: PatternhubProps) {
+export default function HeaderShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBHeader"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBHeader">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<HeaderDensity />

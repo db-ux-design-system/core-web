@@ -13,7 +13,7 @@
  *   Accessibility Checker tests, one spec file each; a column counts only when
  *   the file calls its test function (`runAxeCoreTest`, ...)
  * - `showcases/screen-reader/tests/<name>.spec.ts`: screen reader tests
- * - `showcases/patternhub/data/_accessibility-review.json`: manual audits
+ * - `storybooks/_shared/overview/accessibility-review.json`: manual audits
  *
  * Usage: node storybooks/_shared/foundations/generate-test-table.ts
  */
@@ -64,7 +64,7 @@ const webTypes = JSON.parse(read(webTypesPath)) as {
 	contributions: { html: { elements: Array<{ name: string }> } };
 };
 const reviews = JSON.parse(
-	read('showcases/patternhub/data/_accessibility-review.json')
+	read('storybooks/_shared/overview/accessibility-review.json')
 ) as Review[];
 
 const components = [

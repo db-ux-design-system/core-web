@@ -68,7 +68,7 @@ jobs:
           name: db-ux-${{ inputs.showcase }}
           path: build-showcases/${{ inputs.showcase }}
 
-      # We test everything for patternhub and main branch
+      # We test everything outside of pull requests (main branch)
       - name: 👩🔬 Test showcase with Playwright 🎭
         shell: bash
         if: github.event.pull_request == null

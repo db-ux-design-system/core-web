@@ -66,12 +66,21 @@ DB UX Design System – Generation 3 Core Web is a monorepo containing CSS/SCSS 
     **Interactive**: Will prompt to select frameworks (angular, react, vue, stencil, etc.). Default selection is react.
     **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
 
-- **Start documentation site (Patternhub)**:
+- **Quick start (React showcase)**:
+
     ```bash
     pnpm run start
     ```
+
+    Same as `pnpm run dev` with React selected, without the prompt.
+    **TIMING**: Takes ~30 seconds to start. Runs on <http://localhost:5173/>
+
+- **Start the composition Storybook (documentation of all frameworks)**:
+    ```bash
+    pnpm --filter composition-storybook run storybook
+    ```
     **TIMING**: Takes ~2 minutes to start. NEVER CANCEL. Set timeout to 300+ seconds.
-    **ACCESS**: Runs on <http://localhost:3000> - full design system documentation and examples.
+    **ACCESS**: Runs on <http://localhost:6001>. The framework Storybooks are refs; start them with `pnpm --filter <name>-storybook run storybook` to see their pages.
 
 ## Validation
 
@@ -126,7 +135,7 @@ This repository uses [Changesets](https://github.com/changesets/changesets) to m
 
 Two reasons: the framework packages ship the `@db-ux/core-components` and `@db-ux/core-foundations` styles as a dependency, so consumers who reference only a framework package never read the CSS packages' changelogs. And there is no reliable "internal only" markup change — someone styling `db-input` with `label + input` is broken the moment the `<input>` moves inside the `<label>`, so an Angular user needs that entry as much as a CSS user does. Informing everyone costs one extra changelog line; guessing wrong costs a consumer a silent breakage.
 
-**A package's published artifacts are not the criterion.** `@db-ux/core-components` ships compiled CSS only, no templates — and is still listed for template changes, because its consumers write the component HTML themselves (copied from the Patternhub examples and the "view code" output of our Storybook stories) and have nothing in their build that would flag drifted markup. Judge by "who needs to know", not by which files land in the tarball.
+**A package's published artifacts are not the criterion.** `@db-ux/core-components` ships compiled CSS only, no templates — and is still listed for template changes, because its consumers write the component HTML themselves (copied from the "view code" output of our Storybook stories) and have nothing in their build that would flag drifted markup. Judge by "who needs to know", not by which files land in the tarball.
 
 **Scope the packages to what is actually affected.** The table above lists the _maximum_ set per row, because the four JS frameworks are not interchangeable. If a change only touches code that a single target consumes (e.g. `src/utils/react.ts`, `configs/plugins/react/`, `scripts/post-build/react.ts`), include only that framework package. Shared build code counts for every target it feeds, even when the change inside it was written for one of them (`scripts/post-build/index.ts`, `components.ts`, `configs/mitosis.config.cjs`) — list all framework packages whose output changes. See `packages/components/AGENTS.md` for the file-by-file breakdown.
 
@@ -147,7 +156,7 @@ The contract we version is the public API of the generated framework and web-com
 - **`minor`** when the change alters the rendered HTML a consumer can observe (elements, classes, attributes, or their nesting moved), **or** when a prop is added. A markup restructure is `minor` even when it is motivated by a bug fix, because a CSS-only consumer can still be broken by the moved structure.
 - **`patch`** only for a fix that leaves the rendered HTML structure intact (logic-only change, or a style/value fix).
 
-**When a change modifies the rendered HTML of a component, summarize the markup changes in a separated changeset for `@db-ux/core-components` node package** so CSS-only consumers and anyone who copied the markup from the Patternhub examples or a Storybook "view code" output know what moved — even when the bump itself is only `patch` or `minor`. Keep the summary focused on the elements, classes, and attributes that actually changed.
+**When a change modifies the rendered HTML of a component, summarize the markup changes in a separated changeset for `@db-ux/core-components` node package** so CSS-only consumers and anyone who copied the markup from a Storybook "view code" output know what moved — even when the bump itself is only `patch` or `minor`. Keep the summary focused on the elements, classes, and attributes that actually changed.
 
 **Write any further information after the initial one-liner summary as a flat bullet list, never a Markdown table or multi-paragraph prose.** The custom changelog formatter (`scripts/github/changesets/create-changelog.js`) turns the changeset body into list items: the first line becomes the top-level entry, and **every** subsequent non-empty line becomes its own sub-item at one level of nesting (rendered as four spaces by prettier). A table's rows and its `| --- |` separator each become a separate broken bullet, and a hard-wrapped paragraph is split into one sub-item per source line. So:
 
@@ -225,7 +234,10 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 - **Generate new component**: `pnpm run generate:component`
 - **Component build location**: `packages/components/build/`
 - **Framework outputs**: `output/react/`, `output/vue/`, `output/angular/`, `output/stencil/`
-- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in every framework output.
+- **Attribute pass-through**: All `data-*` and `aria-*` attributes are automatically forwarded to the element with the `_ref` on it (the component's root or primary element). **Do not create typed props for standard HTML attributes like `aria-label`, `aria-labelledby`, `aria-describedby`, etc.** — they work out of the box in the React, Angular and Web Components outputs.
+    - **Exception – Vue:** the Vue output relies on Vue's default fallthrough attributes, which land on the component's root element. Where the root is not the `_ref` element (e.g. the wrapper `div` of `DBInput`, `DBSelect`, `DBCheckbox`), `aria-*`/`data-*` do not reach the native element.
+    - React keeps foundation attributes (`data-density`, `data-color`, `data-icon-variant`, …) on the component root via `getRootProps` (see `rootProps` in `packages/components/scripts/post-build/react.ts`).
+    - Angular/Stencil never forward `data-density`. The table sub-components forward only on mount and do not observe later host changes (see `configs/plugins/attribute-passing/index.cjs`).
 
 ### Working with Figma Code Connect
 
@@ -248,7 +260,7 @@ Most `major` changeset entries indicate a breaking change that requires consumer
 
 ### Where documentation lives
 
-The documentation is split between two places. The Patternhub (`showcases/patternhub`) is being replaced by them; do not add new content there.
+The documentation is split between two places. They replace the former Patternhub; its old URLs redirect to the Storybook or the platform (`storybooks/_shared/patternhub-redirects.ts`).
 
 | Place                                                                              | Content                                                                                                                                                                                                                                                                                            | Language, versions                  |
 | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -287,7 +299,7 @@ Rules:
 ```bash
 # Development
 pnpm run dev                 # Interactive dev server (framework selection)
-pnpm run start              # Start Patternhub documentation site
+pnpm run start              # Quick start: React showcase (dev without the prompt)
 
 # Building
 pnpm run build              # Build core packages (~30 seconds)

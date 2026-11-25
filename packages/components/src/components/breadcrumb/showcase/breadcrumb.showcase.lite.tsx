@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -13,11 +12,9 @@ import BreadcrumbPopover from '../examples/popover.example.lite';
 import BreadcrumbSeparator from '../examples/separator.example.lite';
 import BreadcrumbSize from '../examples/size.example.lite';
 
-export default function BreadcrumbShowcase(props: PatternhubProps) {
+export default function BreadcrumbShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBBreadcrumb"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBBreadcrumb">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<BreadcrumbDensity />

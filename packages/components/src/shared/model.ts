@@ -964,10 +964,13 @@ export type PopoverState = {
 	handleLeave: (event?: any, manualOpen?: boolean) => void;
 } & DocumentScrollState;
 
-// TODO: Remove this after we migrate to one-platform
+/**
+ * @deprecated The Patternhub has been removed and no component reads this
+ * property anymore. Will be removed with the next major version.
+ */
 export interface PatternhubProps {
 	/**
-	 * Used for Patternhub
+	 * @deprecated Has no effect anymore.
 	 */
 	isPatternhub?: boolean;
 }

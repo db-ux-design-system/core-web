@@ -1,4 +1,3 @@
-import { PatternhubProps } from '../../../shared/model';
 import CardWrapperShowcase from '../../../shared/showcase/card-wrapper.showcase.lite';
 import ContainerWrapperShowcase from '../../../shared/showcase/container-wrapper.showcase.lite';
 import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.lite';
@@ -6,11 +5,9 @@ import AccordionItemDensity from '../examples/density.example.lite';
 import AccordionItemDisabled from '../examples/disabled.example.lite';
 import AccordionItemOpen from '../examples/open.example.lite';
 
-export default function AccordionItemShowcase(props: PatternhubProps) {
+export default function AccordionItemShowcase() {
 	return (
-		<ContainerWrapperShowcase
-			title="DBAccordionItem"
-			isPatternhub={props.isPatternhub}>
+		<ContainerWrapperShowcase title="DBAccordionItem">
 			<LinkWrapperShowcase exampleName="Density">
 				<CardWrapperShowcase>
 					<AccordionItemDensity />
