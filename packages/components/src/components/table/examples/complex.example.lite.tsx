@@ -644,7 +644,8 @@ export default function TableComplex() {
 					captionPlain="Mobile variant: List, sortable columns are Link.">
 					<DBTableHead>
 						<DBTableRow>
-							<DBTableHeaderCell scope="col">
+							<DBTableHeaderCell scope="col" noText>
+								Check
 								<DBCheckbox showLabel={false} name="list">
 									Check All
 									<DBTooltip placement="top">
@@ -653,23 +654,17 @@ export default function TableComplex() {
 								</DBCheckbox>
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
-								<div
-									style={{
-										display: 'flex',
-										gap: 'var(--db-spacing-fixed-xs)'
-									}}>
-									Link
-									<DBButton
-										size="small"
-										variant="ghost"
-										icon="arrows_vertical"
-										noText>
+								Link
+								<DBButton
+									size="small"
+									variant="ghost"
+									icon="arrows_vertical"
+									noText>
+									Sort button
+									<DBTooltip placement="top">
 										Sort button
-										<DBTooltip placement="top">
-											Sort button
-										</DBTooltip>
-									</DBButton>
-								</div>
+									</DBTooltip>
+								</DBButton>
 							</DBTableHeaderCell>
 							<DBTableHeaderCell scope="col">
 								Tag
