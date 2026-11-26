@@ -67,19 +67,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>North</dd>
+											<dd style={{ margin: '0' }}>
+												North
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												14.03.26
 											</dd>
 										</div>
@@ -87,13 +89,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>432</dd>
+											<dd style={{ margin: '0' }}>432</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Max Mustermann
 											</dd>
 										</div>
@@ -119,19 +121,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>South</dd>
+											<dd style={{ margin: '0' }}>
+												South
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												15.03.26
 											</dd>
 										</div>
@@ -139,13 +143,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>12</dd>
+											<dd style={{ margin: '0' }}>12</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Erika Musterfrau
 											</dd>
 										</div>
@@ -204,19 +208,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>North</dd>
+											<dd style={{ margin: '0' }}>
+												North
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												14.03.26
 											</dd>
 										</div>
@@ -224,13 +230,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>432</dd>
+											<dd style={{ margin: '0' }}>432</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Max Mustermann
 											</dd>
 										</div>
@@ -256,19 +262,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>South</dd>
+											<dd style={{ margin: '0' }}>
+												South
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												15.03.26
 											</dd>
 										</div>
@@ -276,13 +284,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>12</dd>
+											<dd style={{ margin: '0' }}>12</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Erika Musterfrau
 											</dd>
 										</div>
@@ -341,19 +349,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>North</dd>
+											<dd style={{ margin: '0' }}>
+												North
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												14.03.26
 											</dd>
 										</div>
@@ -361,13 +371,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>432</dd>
+											<dd style={{ margin: '0' }}>432</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Max Mustermann
 											</dd>
 										</div>
@@ -393,19 +403,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>South</dd>
+											<dd style={{ margin: '0' }}>
+												South
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												15.03.26
 											</dd>
 										</div>
@@ -413,13 +425,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>12</dd>
+											<dd style={{ margin: '0' }}>12</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Erika Musterfrau
 											</dd>
 										</div>
@@ -482,19 +494,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>North</dd>
+											<dd style={{ margin: '0' }}>
+												North
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												14.03.26
 											</dd>
 										</div>
@@ -502,13 +516,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>432</dd>
+											<dd style={{ margin: '0' }}>432</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Max Mustermann
 											</dd>
 										</div>
@@ -534,19 +548,21 @@ export default function TableExpandableRow() {
 											display: 'flex',
 											flexWrap: 'wrap',
 											gap: 'var(--db-spacing-fixed-md)',
-											margin: 0
+											margin: '0'
 										}}>
 										<div>
 											<dt>
 												<small>Region</small>
 											</dt>
-											<dd style={{ margin: 0 }}>South</dd>
+											<dd style={{ margin: '0' }}>
+												South
+											</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Last change</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												15.03.26
 											</dd>
 										</div>
@@ -554,13 +570,13 @@ export default function TableExpandableRow() {
 											<dt>
 												<small>Quantity</small>
 											</dt>
-											<dd style={{ margin: 0 }}>12</dd>
+											<dd style={{ margin: '0' }}>12</dd>
 										</div>
 										<div>
 											<dt>
 												<small>Editor</small>
 											</dt>
-											<dd style={{ margin: 0 }}>
+											<dd style={{ margin: '0' }}>
 												Erika Musterfrau
 											</dd>
 										</div>
