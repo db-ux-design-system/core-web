@@ -75,3 +75,9 @@
       - group: Test 2
     - listitem:
       - group [disabled]: Test 3
+  - link "Nested"
+  - list:
+    - listitem:
+      - group: Select
+    - listitem:
+      - group: Other
