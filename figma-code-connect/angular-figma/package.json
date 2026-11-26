@@ -15,7 +15,7 @@
     "test:update": "vitest run --config vitest.config.ts --update"
   },
   "devDependencies": {
-    "@figma/code-connect": "2.1.0",
+    "@figma/code-connect": "2.1.1",
     "@types/node": "26.6.6",
     "vitest": "5.1.1"
   }
