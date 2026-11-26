@@ -5,8 +5,56 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "../table-row/table-row";
 @use "./../../styles/internal/component";
+@use "./../../styles/internal/custom-elements";
 @use "./../../styles/internal/table-components";
 @forward "table.properties";
+
+// The cell padding stays on the cell. The label cancels the block padding with
+// a negative margin and restores it as its own padding, so its border can span
+// the full cell height without an extra wrapper element. The inline padding of
+// the cell is used as space between label, divider and content.
+// stylelint-disable db-ux/use-spacings -- the parameters are spacing tokens
+@mixin list-label-padding($block, $inline) {
+	:is(td, th)::before {
+		margin-block: calc(-1 * #{$block});
+		margin-inline-end: #{$inline};
+		padding-block: #{$block};
+	}
+
+	&:not([data-divider]),
+	&[data-divider="both"],
+	&[data-divider="vertical"] {
+		:is(td, th)::before {
+			padding-inline-end: #{$inline};
+			border-inline-end: component.$component-border;
+		}
+	}
+}
+// stylelint-enable db-ux/use-spacings
+
+// Visually hides the element (it stays available for screen readers) unless
+// it holds interactive controls, which have to stay usable.
+// A negative `tabindex` only makes an element focusable by script, not
+// interactive, so it does not count.
+// Uses the mixin instead of `@extend`: an extended placeholder is emitted
+// outside of the surrounding `@container` query and would hide the header
+// on large screens, too.
+@mixin visually-hidden-without-controls {
+	&:not(
+		:has(
+			:is(
+				button,
+				a[href],
+				input,
+				select,
+				textarea,
+				[tabindex]:not([tabindex^="-"])
+			)
+		)
+	) {
+		@include helpers.a11y-visually-hidden;
+	}
+}
 
 %sizes {
 	&:not([data-size]),
@@ -43,17 +91,17 @@
 			&[data-divider="both"],
 			&[data-divider="vertical"] {
 				tr {
-					> :is(td, th):not(:last-child) {
-						border-inline-end: component.$component-border;
-					}
-
+					> :is(td, th):not(:last-child),
 					> :is(db-table-header-cell, db-table-data-cell):not(
 							:last-child
-						) {
-						td,
-						th {
-							border-inline-end: component.$component-border;
-						}
+						)
+						:is(td, th) {
+						// The fallback is the component border token; the list layout switches it off
+						// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+						border-inline-end: var(
+							--db-table-divider-inline-end,
+							#{component.$component-border}
+						);
 					}
 				}
 			}
@@ -183,11 +231,34 @@
 	&[data-variant="zebra"] {
 		table {
 			background-color: colors.$db-adaptive-bg-basic-level-1-default;
-			border-inline: component.$component-border;
 		}
 
 		thead {
 			border-block-start: component.$component-border;
+		}
+
+		tr {
+			> :is(td, th):last-child,
+			> :is(db-table-header-cell, db-table-data-cell):last-child
+				> :is(td, th) {
+				// The fallback is the component border token; the list layout switches it off
+				// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+				border-inline-end: var(
+					--db-table-divider-inline-end,
+					#{component.$component-border}
+				);
+			}
+
+			> :is(td, th):first-child,
+			> :is(db-table-header-cell, db-table-data-cell):first-child
+				> :is(td, th) {
+				// The fallback is the component border token; the list layout switches it off
+				// stylelint-disable-next-line db-ux/use-border-width, db-ux/use-border-color
+				border-inline-start: var(
+					--db-table-divider-inline-start,
+					#{component.$component-border}
+				);
+			}
 		}
 	}
 
@@ -229,30 +300,133 @@
 				border-color: transparent;
 			}
 
-			:is(th, td)[data-header] {
+			// Space between multiple items in a cell (e.g. text and button),
+			// only in the list layout, the regular table keeps its spacing
+			:is(.db-table-data-cell, .db-table-header-cell) {
 				gap: variables.$db-spacing-fixed-xs;
+			}
+
+			:is(th, td)[data-header] {
+				// Two columns only when there is a label, otherwise the
+				// content would sit in the 40% column next to an empty one
+				grid-template-columns: var(
+					--db-table-mobile-variant-list-grid-columns,
+					40% 1fr
+				);
 
 				&::before {
 					// Screen reader would announce it twice
-					content: attr(data-header) ":" / "";
+					content: attr(data-header) / "";
 					font-weight: bold;
+					overflow-wrap: anywhere;
 				}
 			}
 
-			// Label at the start, content at the end. Without a label (noText
-			// column) the regular end alignment applies.
-			td[data-horizontal-alignment="end"][data-header] {
-				justify-content: space-between;
+			tr {
+				--db-table-divider-inline-start: 0px;
+				--db-table-divider-inline-end: 0px;
 			}
 
+			tbody,
+			tfoot {
+				td,
+				th {
+					display: grid;
+					align-items: center;
+
+					&::before {
+						text-align: start;
+						align-self: stretch;
+					}
+
+					// The cell is a grid here, so `justify-content` of the regular
+					// table no longer moves elements (e.g. buttons). Align the
+					// element children in their column instead, the label
+					// (::before) is not matched by `> *` and stays at the start.
+					// In Angular and Stencil the direct child is a custom element
+					// host with `display: contents`, so the grid item is its child.
+					&[data-horizontal-alignment="center"] {
+						> *,
+						> :is(#{custom-elements.$custom-elements}) > * {
+							justify-self: center;
+						}
+					}
+
+					&[data-horizontal-alignment="end"] {
+						> *,
+						> :is(#{custom-elements.$custom-elements}) > * {
+							justify-self: end;
+						}
+					}
+				}
+			}
+
+			&:not([data-size]),
+			&[data-size="medium"] {
+				@include list-label-padding(
+					variables.$db-spacing-fixed-2xs,
+					variables.$db-spacing-fixed-xs
+				);
+			}
+
+			&[data-size="large"] {
+				@include list-label-padding(
+					variables.$db-spacing-fixed-xs,
+					variables.$db-spacing-fixed-sm
+				);
+			}
+
+			&[data-size="small"],
+			&[data-size="x-small"] {
+				@include list-label-padding(
+					variables.$db-spacing-fixed-3xs,
+					variables.$db-spacing-fixed-2xs
+				);
+			}
+
+			// A header without interactive controls is redundant, because every
+			// cell shows its label via `::before`. Hide it visually only.
 			thead {
-				border-block-start-color: transparent;
+				@include visually-hidden-without-controls;
 
 				tr {
-					--db-table-section-display: flex;
-
+					// A header with interactive controls becomes a toolbar
+					display: flex;
 					flex-wrap: wrap;
-					gap: variables.$db-spacing-fixed-xs;
+					align-items: center;
+					column-gap: variables.$db-spacing-fixed-sm;
+
+					// The spaced variant makes a header row transparent, but the
+					// toolbar is shown as a card like the rows below it
+					&:not([data-sub-header-emphasis]) {
+						background-color: colors.$db-adaptive-bg-basic-level-1-default;
+						border-color: colors.$db-adaptive-on-bg-basic-emphasis-60-default;
+					}
+				}
+
+				th {
+					font-size: inherit;
+
+					@include visually-hidden-without-controls;
+				}
+			}
+
+			&:not([data-divider]),
+			&[data-divider="both"],
+			&[data-divider="horizontal"] {
+				// Angular/Stencil wrap every cell in a host element, so
+				// `:last-child` has to be checked on the host there.
+				// The header is a toolbar with its cells next to each other,
+				// so it gets no divider between them.
+				:is(tbody, tfoot) {
+					tr > :is(td, th):not(:last-child),
+					tr
+						> :is(db-table-header-cell, db-table-data-cell):not(
+							:last-child
+						)
+						> :is(td, th) {
+						border-block-end: component.$component-border;
+					}
 				}
 
 				// font-size: 0 of noText keeps the box with its padding, which
@@ -364,9 +538,10 @@
 			// Spans all explicit tracks, including a custom
 			// `--db-table-grid-template-columns` beyond the detected column counts
 			grid-column: 1 / -1;
-			padding: variables.$db-spacing-fixed-sm;
-			border-block-start: component.$component-border;
+			padding: variables.$db-spacing-fixed-xs
+				variables.$db-spacing-fixed-sm;
 			font-weight: bold;
+			text-align: start;
 		}
 	}
 
