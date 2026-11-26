@@ -2776,6 +2776,83 @@
       - row "Comp 3 Comp 4":
         - rowheader "Comp 3"
         - cell "Comp 4"
+  - link "Expandable Row"
+  - text: Flat
+  - table "Flat":
+    - caption: Flat
+    - rowgroup:
+      - row "Details Number Status":
+        - columnheader "Details"
+        - columnheader "Number"
+        - columnheader "Status"
+    - rowgroup:
+      - row "34621 234 Status Tag":
+        - cell:
+          - group: Show details
+        - cell "34621 234"
+        - cell "Status Tag"
+      - row "34621 235 Status Tag":
+        - cell:
+          - group: Show details
+        - cell "34621 235"
+        - cell "Status Tag"
+  - text: Zebra
+  - table "Zebra":
+    - caption: Zebra
+    - rowgroup:
+      - row "Details Number Status":
+        - columnheader "Details"
+        - columnheader "Number"
+        - columnheader "Status"
+    - rowgroup:
+      - row "34621 234 Status Tag":
+        - cell:
+          - group: Show details
+        - cell "34621 234"
+        - cell "Status Tag"
+      - row "34621 235 Status Tag":
+        - cell:
+          - group: Show details
+        - cell "34621 235"
+        - cell "Status Tag"
+  - text: Spaced
+  - table "Spaced":
+    - caption: Spaced
+    - rowgroup:
+      - row "Details Number Status":
+        - columnheader "Details"
+        - columnheader "Number"
+        - columnheader "Status"
+    - rowgroup:
+      - row "34621 234 Status Tag":
+        - cell:
+          - group: Show details
+        - cell "34621 234"
+        - cell "Status Tag"
+      - row "34621 235 Status Tag":
+        - cell:
+          - group: Show details
+        - cell "34621 235"
+        - cell "Status Tag"
+  - text: Mobile Variant List
+  - table "Mobile Variant List":
+    - caption: Mobile Variant List
+    - rowgroup:
+      - row "Number Status Details":
+        - columnheader "Number"
+        - columnheader "Status"
+        - columnheader "Details"
+    - rowgroup:
+      - row "34621 234 Status Tag":
+        - cell "34621 234"
+        - cell "Status Tag"
+        - cell:
+          - group: Show details
+      - row "34621 235 Status Tag":
+        - cell "34621 235"
+        - cell "Status Tag"
+        - cell:
+          - group: Show details
   - link "Mobile Variant List Divider"
   - text: None
   - table "None":

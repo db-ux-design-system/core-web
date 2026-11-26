@@ -6,6 +6,7 @@ import TableComplex from '../examples/complex.example.lite';
 import TableContent from '../examples/content.example.lite';
 import TableDensity from '../examples/density.example.lite';
 import TableDivider from '../examples/divider.example.lite';
+import TableExpandableRow from '../examples/expandable-row.example.lite';
 import TableHorizontalAlignment from '../examples/horizontal-alignment.example.lite';
 import TableInteractiveRow from '../examples/interactive-row.example.lite';
 import TableMobileVariantListDivider from '../examples/mobile-variant-list-divider.example.lite';
@@ -100,6 +101,11 @@ export default function TableShowcase() {
 			<LinkWrapperShowcase exampleName="Text">
 				<CardWrapperShowcase>
 					<TableText />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Expandable Row">
+				<CardWrapperShowcase>
+					<TableExpandableRow />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 			<LinkWrapperShowcase exampleName="Mobile Variant List Divider">
