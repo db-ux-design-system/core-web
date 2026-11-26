@@ -66,7 +66,13 @@ export default function DBTable(props: DBTableProps) {
 							row.querySelectorAll<HTMLElement>(':is(td,th)');
 						cells.forEach((cell, index) => {
 							const headerCell = headerCells[index];
-							if (headerCell) {
+							// A noText header is for screen readers only, so its text must not show up as visual label inside the cells
+							if (
+								headerCell?.getAttribute('data-no-text') ===
+								'true'
+							) {
+								cell.removeAttribute('data-header');
+							} else if (headerCell) {
 								// Use only direct text nodes to avoid including text from nested elements (e.g. sort buttons)
 								const directText = Array.from(
 									headerCell.childNodes
