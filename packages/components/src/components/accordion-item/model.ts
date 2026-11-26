@@ -38,6 +38,13 @@ export type DBAccordionItemProps = DBAccordionItemDefaultProps &
 
 export type DBAccordionItemDefaultState = {
 	_open?: boolean;
+	/**
+	 * Synchronizes the internal open state with the native `open` property of
+	 * the details element. The browser changes it without a click on our
+	 * summary, e.g. when a sibling of an exclusive group (`name`) opens or
+	 * when the parent accordion sets it via `initOpenIndex`.
+	 */
+	handleDetailsToggle: () => void;
 };
 
 export type DBAccordionItemState = DBAccordionItemDefaultState &

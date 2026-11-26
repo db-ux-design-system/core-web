@@ -39,6 +39,11 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				};
 			}
 		},
+		handleDetailsToggle: () => {
+			if (_ref && props.open === undefined && state._open !== _ref.open) {
+				state._open = _ref.open;
+			}
+		},
 		handleToggle: (event: ClickEvent<HTMLElement> | any) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
 			event?.preventDefault();
@@ -89,7 +94,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 				ref={_ref}
 				name={state._name}
-				open={state._open}>
+				open={state._open}
+				onToggle={() => state.handleDetailsToggle()}>
 				<summary onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}
