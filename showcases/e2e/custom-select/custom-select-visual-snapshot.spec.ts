@@ -22,5 +22,10 @@ const preScreenShot = async (page: Page) => {
 };
 
 test.describe('DBCustomSelect', () => {
-	getDefaultScreenshotTest({ path, preScreenShot });
+	getDefaultScreenshotTest({
+		path,
+		preScreenShot,
+		fixedHeight: (project) =>
+			project.name === 'mobile_safari' ? 12_000 : undefined
+	});
 });
