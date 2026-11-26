@@ -62,29 +62,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>North</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>North</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>14.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												14.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>432</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>432</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Max Mustermann</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Max Mustermann
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 							<DBTableDataCell>34621 234</DBTableDataCell>
@@ -101,29 +114,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>South</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>South</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>15.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												15.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>12</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>12</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Erika Musterfrau</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Erika Musterfrau
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 							<DBTableDataCell>34621 235</DBTableDataCell>
@@ -173,29 +199,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>North</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>North</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>14.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												14.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>432</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>432</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Max Mustermann</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Max Mustermann
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 							<DBTableDataCell>34621 234</DBTableDataCell>
@@ -212,29 +251,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>South</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>South</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>15.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												15.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>12</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>12</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Erika Musterfrau</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Erika Musterfrau
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 							<DBTableDataCell>34621 235</DBTableDataCell>
@@ -284,29 +336,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>North</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>North</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>14.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												14.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>432</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>432</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Max Mustermann</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Max Mustermann
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 							<DBTableDataCell>34621 234</DBTableDataCell>
@@ -323,29 +388,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>South</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>South</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>15.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												15.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>12</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>12</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Erika Musterfrau</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Erika Musterfrau
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 							<DBTableDataCell>34621 235</DBTableDataCell>
@@ -399,29 +477,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>North</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>North</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>14.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												14.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>432</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>432</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Max Mustermann</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Max Mustermann
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 						</DBTableRow>
@@ -438,29 +529,42 @@ export default function TableExpandableRow() {
 										data-table-row-trigger="true">
 										Show details
 									</summary>
-									<div
+									<dl
 										style={{
 											display: 'flex',
 											flexWrap: 'wrap',
-											gap: 'var(--db-spacing-fixed-md)'
+											gap: 'var(--db-spacing-fixed-md)',
+											margin: 0
 										}}>
 										<div>
-											<small>Region</small>
-											<p>South</p>
+											<dt>
+												<small>Region</small>
+											</dt>
+											<dd style={{ margin: 0 }}>South</dd>
 										</div>
 										<div>
-											<small>Last change</small>
-											<p>15.03.26</p>
+											<dt>
+												<small>Last change</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												15.03.26
+											</dd>
 										</div>
 										<div>
-											<small>Quantity</small>
-											<p>12</p>
+											<dt>
+												<small>Quantity</small>
+											</dt>
+											<dd style={{ margin: 0 }}>12</dd>
 										</div>
 										<div>
-											<small>Editor</small>
-											<p>Erika Musterfrau</p>
+											<dt>
+												<small>Editor</small>
+											</dt>
+											<dd style={{ margin: 0 }}>
+												Erika Musterfrau
+											</dd>
 										</div>
-									</div>
+									</dl>
 								</details>
 							</DBTableDataCell>
 						</DBTableRow>
