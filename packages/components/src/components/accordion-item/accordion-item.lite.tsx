@@ -39,9 +39,18 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				};
 			}
 		},
-		handleDetailsToggle: () => {
-			if (_ref && props.open === undefined && state._open !== _ref.open) {
-				state._open = _ref.open;
+		handleDetailsToggle: (event?: Event | any) => {
+			if (event?.target && event.target !== _ref) {
+				return;
+			}
+			if (_ref && state._open !== _ref.open) {
+				const nextOpen = _ref.open;
+				if (props.onToggle) {
+					props.onToggle(nextOpen);
+				}
+				if (props.open === undefined) {
+					state._open = nextOpen;
+				}
 			}
 		},
 		handleToggle: (event: ClickEvent<HTMLElement> | any) => {
@@ -95,7 +104,8 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				ref={_ref}
 				name={state._name}
 				open={state._open}
-				onToggle={() => state.handleDetailsToggle()}>
+				/* @ts-expect-error details has an event named onToggle */
+				onToggle={(event) => state.handleDetailsToggle(event)}>
 				<summary onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}

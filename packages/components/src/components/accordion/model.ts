@@ -48,7 +48,8 @@ export type DBAccordionDefaultState = {
 	 * Returns only the details elements of the accordion items of this
 	 * accordion. Nested details (e.g. the dropdown of a DBCustomSelect or a
 	 * nested accordion) are excluded, so they never join the exclusive group
-	 * and are not counted by `initOpenIndex`.
+	 * and are not counted by `initOpenIndex`. Relies on the `db-accordion-item`
+	 * class of the item's `li`, keep it when changing the item markup.
 	 */
 	getItemDetails: () => HTMLDetailsElement[];
 };

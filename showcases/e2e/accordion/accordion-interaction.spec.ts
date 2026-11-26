@@ -26,28 +26,6 @@ test.describe('DBAccordion', () => {
 	});
 
 	runInteractionTest({
-		title: 'single behavior opens a previously closed item with one click (#8868)',
-		path,
-		example: 'Action',
-		async run({ content }) {
-			const summary1 = content.getByText('Test', { exact: true });
-			const summary2 = content.getByText('Test 2', { exact: true });
-
-			await summary1.click();
-			await expect(content.getByTestId('button')).toBeVisible();
-
-			// The browser closes item 1 natively because both share a name
-			await summary2.click();
-			await expect(content.getByTestId('button')).toBeHidden();
-			await expect(content.getByTestId('textarea')).toBeVisible();
-
-			await summary1.click();
-			await expect(content.getByTestId('button')).toBeVisible();
-			await expect(content.getByTestId('textarea')).toBeHidden();
-		}
-	});
-
-	runInteractionTest({
 		title: 'nested custom select does not close the parent item (#8867)',
 		path,
 		example: 'Nested',
@@ -57,16 +35,21 @@ test.describe('DBAccordion', () => {
 			await expect(select).toBeVisible();
 
 			const details = select.locator('details');
-			await select.locator('summary').click({ force: true });
+			const itemDetails = select.locator('xpath=ancestor::details[1]');
+
+			// The exclusive name must only be set on the accordion items
+			await expect(itemDetails).toHaveAttribute('name');
+			await expect(details).not.toHaveAttribute('name');
+
+			// A synthetic summary click does not reliably open details on WebKit
+			// (see custom-select-interaction.spec.ts), so open it directly
 			await details.evaluate((element: HTMLDetailsElement) => {
 				element.open = true;
 			});
 			await expect(details).toHaveAttribute('open');
 
 			// The accordion item (the outer details) has to stay open
-			await expect(
-				select.locator('xpath=ancestor::details')
-			).toHaveAttribute('open');
+			await expect(itemDetails).toHaveAttribute('open');
 			await expect(select).toBeVisible();
 		}
 	});
@@ -82,6 +65,11 @@ test.describe('DBAccordion', () => {
 			await content.getByTestId('item2').click();
 			await expect(content.getByTestId('button')).toBeHidden();
 			await expect(content.getByTestId('textarea')).toBeVisible();
+
+			// Re-opening the item the browser closed natively takes one click (#8868)
+			await content.getByTestId('item1').click();
+			await expect(content.getByTestId('button')).toBeVisible();
+			await expect(content.getByTestId('textarea')).toBeHidden();
 
 			// The disabled state lives on the accordion item's <details>
 			// (role "group"). In Vue the test id is placed on a wrapper, so we
