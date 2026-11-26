@@ -1,5 +1,44 @@
 # @db-ux/core-components
 
+## 6.5.0
+
+### Minor Changes
+
+- feat(DBTable): support expandable rows with `details` and `summary` - [see commit 0a6edf1](https://github.com/db-ux-design-system/core-web/commit/0a6edf193237f97372d1a5c94343a3cf0b166108):
+
+    - put a `<details>` into a cell of an interactive row and mark its `<summary>` with `data-table-row-trigger="true"`, the whole row then toggles the details
+    - the opened content spans the full row below the cells, for the default table layout and for `mobileVariant="list"`
+    - a `<summary>` with `data-icon="chevron_down"` rotates its icon while the details are open
+    - the opened content has the `level-2` background, for `variant="zebra"` it keeps the background color of its own row
+    - fix: a `noText` header cell no longer shows up as an empty item in the header row of `mobileVariant="list"`
+    - fix: cells of a `noText` column no longer show the header text as visual label in `mobileVariant="list"`
+
+- fix(DBTable): markup changes for `mobileVariant="list"` and expandable rows - [see commit 0a6edf1](https://github.com/db-ux-design-system/core-web/commit/0a6edf193237f97372d1a5c94343a3cf0b166108):
+
+    - cells of a column whose header cell has `data-no-text="true"` no longer get a `data-header` attribute, set `data-header` only for columns with a visible header text
+    - expandable row: `<td><details><summary data-table-row-trigger="true">…</summary><div>…</div></details></td>` inside a `<tr>` with `data-interactive="true"`, the cell and the `<details>` get `display: contents`
+
+### Patch Changes
+
+- fix(DBPopover): resolve the trigger independently of its child position - [see commit b32948e](https://github.com/db-ux-design-system/core-web/commit/b32948edd73c7268995cd7815e87157197218dcd):
+
+    - `getTrigger` now locates the slotted trigger host via `slot="trigger"` (web components), the `trigger` attribute (Angular), or the first child that is not `.db-popover-content`, instead of assuming it is `children[0]` with at least two children
+    - for a custom-element trigger host (e.g. `db-button`), the focusable control is now found with `querySelector` instead of `host.children`, so `aria-haspopup` and `aria-expanded` are still applied when the web-component build relocates slotted nodes
+    - fixes the controlled-mode popover trigger losing its `aria-expanded` state under the opt-in `experimentalSlotFixes` web-component build
+
+- fix(DBTable): improve divider rendering for `mobileVariant="list"` - [see commit 19587f4](https://github.com/db-ux-design-system/core-web/commit/19587f46b1e3124283dd0477ed54db2205ee70af):
+
+    - the vertical divider is now drawn by the label (`::before`) of the cell, the cell markup is unchanged
+    - a header row with interactive controls stays visible in the list layout
+    - a `thead` without controls is now only visually hidden in the list layout
+    - the colon after the label is removed, the label is rendered as `attr(data-header)` instead of `attr(data-header) ":"`
+    - new custom property `--db-table-mobile-variant-list-grid-columns` (default `40% 1fr`) sets the grid columns of header label and content, e.g. `30% 1fr`
+    - the cell padding of the selected `size` is preserved in the list layout
+
+- fix(DBTable): `mobileVariant="list"` no longer applies the spaced styles on wide screens - [see commit 0a6edf1](https://github.com/db-ux-design-system/core-web/commit/0a6edf193237f97372d1a5c94343a3cf0b166108):
+
+    - the row gap, the card border of the rows and the transparent header row of `variant="spaced"` now only apply to `mobileVariant="list"` below the `sm` breakpoint of the table
+
 ## 6.4.1
 
 ### Patch Changes
