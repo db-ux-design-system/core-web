@@ -2582,8 +2582,9 @@
   - 'table "Mobile variant: List, sortable columns are Link."':
     - caption: "Mobile variant: List, sortable columns are Link."
     - rowgroup:
-      - row "Check All Link Sort button Tag Infotext Text Input Button":
-        - columnheader "Check All":
+      - row "Check Check All Link Sort button Tag Infotext Text Input Button":
+        - columnheader "Check Check All":
+          - text: Check
           - checkbox "Check All"
           - text: Check All
           - status
@@ -2775,3 +2776,104 @@
       - row "Comp 3 Comp 4":
         - rowheader "Comp 3"
         - cell "Comp 4"
+  - link "Mobile Variant List Divider"
+  - text: None
+  - table "None":
+    - caption: None
+    - rowgroup:
+      - row "A B C":
+        - columnheader "A"
+        - columnheader "B"
+        - columnheader "C"
+    - rowgroup:
+      - row "1 2 3":
+        - rowheader "1"
+        - cell "2"
+        - cell "3"
+      - row "4 5 6":
+        - rowheader "4"
+        - cell "5"
+        - cell "6"
+      - row "7 8 9":
+        - rowheader "7"
+        - cell "8"
+        - cell "9"
+    - rowgroup:
+      - row "Footer 1 Footer 2":
+        - rowheader "Footer 1"
+        - cell "Footer 2"
+  - text: Both
+  - table "Both":
+    - caption: Both
+    - rowgroup:
+      - row "A B C":
+        - columnheader "A"
+        - columnheader "B"
+        - columnheader "C"
+    - rowgroup:
+      - row "1 2 3":
+        - rowheader "1"
+        - cell "2"
+        - cell "3"
+      - row "4 5 6":
+        - rowheader "4"
+        - cell "5"
+        - cell "6"
+      - row "7 8 9":
+        - rowheader "7"
+        - cell "8"
+        - cell "9"
+    - rowgroup:
+      - row "Footer 1 Footer 2":
+        - rowheader "Footer 1"
+        - cell "Footer 2"
+  - text: Horizontal
+  - table "Horizontal":
+    - caption: Horizontal
+    - rowgroup:
+      - row "A B C":
+        - columnheader "A"
+        - columnheader "B"
+        - columnheader "C"
+    - rowgroup:
+      - row "1 2 3":
+        - rowheader "1"
+        - cell "2"
+        - cell "3"
+      - row "4 5 6":
+        - rowheader "4"
+        - cell "5"
+        - cell "6"
+      - row "7 8 9":
+        - rowheader "7"
+        - cell "8"
+        - cell "9"
+    - rowgroup:
+      - row "Footer 1 Footer 2":
+        - rowheader "Footer 1"
+        - cell "Footer 2"
+  - text: Vertical
+  - table "Vertical":
+    - caption: Vertical
+    - rowgroup:
+      - row "A B C":
+        - columnheader "A"
+        - columnheader "B"
+        - columnheader "C"
+    - rowgroup:
+      - row "1 2 3":
+        - rowheader "1"
+        - cell "2"
+        - cell "3"
+      - row "4 5 6":
+        - rowheader "4"
+        - cell "5"
+        - cell "6"
+      - row "7 8 9":
+        - rowheader "7"
+        - cell "8"
+        - cell "9"
+    - rowgroup:
+      - row "Footer 1 Footer 2":
+        - rowheader "Footer 1"
+        - cell "Footer 2"

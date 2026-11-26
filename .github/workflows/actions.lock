@@ -117,7 +117,7 @@ workflows:
         - 'dependabot/fetch-metadata@v3.1.0'
     '.github/workflows/99-auto-set-project-status.yml':
         - 'actions/checkout@v7.0.1'
-        - 'actions/create-github-app-token@v3.3.0'
+        - 'actions/create-github-app-token@v3.4.0'
         - 'actions/setup-node@v7.1.0'
     '.github/workflows/99-dependabot-review.yml':
         - 'mfranzke/dependabot-review-action@v0.2.1'
@@ -128,13 +128,13 @@ workflows:
         - 'actions/labeler@v7.0.0'
     '.github/workflows/99-reorder-backlog.yml':
         - 'actions/checkout@v7.0.1'
-        - 'actions/create-github-app-token@v3.3.0'
+        - 'actions/create-github-app-token@v3.4.0'
         - 'actions/setup-node@v7.1.0'
     '.github/workflows/auto-assign.yml':
         - 'actions-ecosystem/action-add-assignees@v1.0.1'
     '.github/workflows/changesets-release-pr.yml':
         - 'actions/checkout@v7.0.1'
-        - 'actions/create-github-app-token@v3.3.0'
+        - 'actions/create-github-app-token@v3.4.0'
         - 'actions/setup-node@v7.1.0'
         - 'changesets/action@v2.1.2'
         - 'pnpm/action-setup@v6.1.1'
