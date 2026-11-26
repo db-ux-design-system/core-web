@@ -30,24 +30,19 @@ export const supportsAnchorPositioning = (): boolean => {
 	return anchorPositioningSupport;
 };
 
-export const supportsPopoverApi = (): boolean =>
-	typeof HTMLElement !== 'undefined' &&
-	typeof HTMLElement.prototype.showPopover === 'function' &&
-	'popover' in HTMLElement.prototype;
-
 /**
- * Shows the element in the top layer (Popover API) if supported.
+ * Shows the element in the top layer (Popover API).
  * The `popover` attribute is only set while the element is open, so the
  * CSS-only visibility handling keeps working for every other state.
  *
  * Only used together with anchor positioning: the top layer changes the
  * containing block to the viewport and applies user agent styles
  * (`margin: auto`, `inset: 0`), which the JavaScript fallback positioning
- * doesn't expect. Browsers with the Popover API but without anchor
- * positioning therefore keep the element in the regular layer.
+ * doesn't expect. Browsers without anchor positioning therefore keep the
+ * element in the regular layer.
  */
 export const showFloating = (element?: HTMLElement | null) => {
-	if (!element || !supportsAnchorPositioning() || !supportsPopoverApi()) {
+	if (!element || !supportsAnchorPositioning()) {
 		return;
 	}
 
@@ -65,7 +60,7 @@ export const showFloating = (element?: HTMLElement | null) => {
 };
 
 export const hideFloating = (element?: HTMLElement | null) => {
-	if (!element || !supportsPopoverApi()) return;
+	if (!element) return;
 	try {
 		if (element.matches(':popover-open')) {
 			element.hidePopover();
