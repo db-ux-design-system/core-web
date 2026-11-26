@@ -92,7 +92,7 @@
     "@db-ux/db-theme-fonts": "2.2.0",
     "@db-ux/db-theme-icons": "4.5.1",
     "@double-great/stylelint-a11y": "3.8.3",
-    "@figma/code-connect": "2.1.0",
+    "@figma/code-connect": "2.1.1",
     "@guidepup/guidepup": "0.40.0",
     "@guidepup/playwright": "0.21.0",
     "@guidepup/record": "0.3.0",
