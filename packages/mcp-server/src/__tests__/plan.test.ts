@@ -64,6 +64,8 @@ describe('plan_migration intake', () => {
 		expect(output).not.toContain('**framework:**');
 		expect(output).not.toContain('**dbProduct:**');
 		expect(output).toContain('"framework":"react"');
+		// While appRunsLocally is open, the browser tool is not "known" as false.
+		expect(output).not.toContain('"browserTool":false');
 	});
 
 	it('always asks for the sources, because custom components cannot be detected', async () => {
@@ -84,6 +86,10 @@ describe('plan_migration intake', () => {
 		const result = await handlePlanMigration({ projectRoot: '../../..' });
 
 		expect(result.isError).toBe(true);
+		const [first] = result.content;
+		const { text } = first as { type: 'text'; text: string };
+		expect(text).toContain(process.cwd());
+		expect(text).toContain('workspace with several folders');
 	});
 });
 

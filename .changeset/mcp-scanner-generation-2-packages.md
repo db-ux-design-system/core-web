@@ -19,6 +19,7 @@ feat(MCP server): `scan_generation_2_migration` detects the actual Generation 2 
 - `scan_generation_2_migration` reports self-built controls (`candidate`) and hard-coded colors, sizes and shadows (`value`).
 - `scan_generation_2_migration` ignores comments, skips image, font and media files, and tells framework projects that the framework package is enough for `@db-ui/core`.
 - `plan_migration` starts with the scan, names the guide each step needs, captures the original pages before the migration, asks for the URL of the running app, names the Node version of the project and lets the agent continue without asking between steps.
+- `plan_migration` no longer reports the browser tool as known before it knows whether the app runs locally, and explains a `projectRoot` outside its folder in multi-root workspaces.
 - The manifest build warns when the framework outputs are missing and `get_example_code` would return nothing.
 - The migration guides cover defaults (page width, tooltips on icon-only buttons), heading order, contrast, valid markup, live regions, controlled React fields, logical CSS properties, sizes without a token, badge or tag, and the expected visual changes of form fields and headings.
 - New migration guide `custom-component-migration` for self-built controls and other libraries. `general-migration` names npm 12 and `npm rebuild` for the DB Theme install scripts.

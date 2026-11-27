@@ -51,7 +51,25 @@ Several components set their own `display`. A layout class on the component itse
 
 ## Accessibility
 
-- **Announcements:** `db-notification` and `db-loading-indicator` announce their state. Remove visually hidden prefixes like `<em>Information:</em>`, otherwise screen readers announce them twice. A live region is only announced reliably when it exists before its content changes. A `db-loading-indicator` that is rendered only while loading appears together with its text and may stay silent. In that case keep a status region that is always rendered, see "announcement" in the Loading Indicator migration docs. Ask the user to confirm with a screen reader.
+- **Announcements:** `db-notification` and `db-loading-indicator` announce their state. Remove visually hidden prefixes like `<em>Information:</em>`, otherwise screen readers announce them twice. A live region is only announced reliably when it exists before its content changes. A `db-loading-indicator` that is rendered only while loading appears together with its text and may stay silent. In that case keep a status region that is always rendered and make the indicator inside it silent, so there is only one live region:
+
+    ```tsx
+    <div role="status">
+    	{isLoading && (
+    		<>
+    			<DBLoadingIndicator
+    				label="Searching…"
+    				showLabel={false}
+    				aria-hidden="true"
+    			/>
+    			Searching…
+    		</>
+    	)}
+    </div>
+    ```
+
+    Without `aria-hidden` the indicator is a second live region with the same text. Ask the user to confirm with a screen reader.
+
 - **Accessible names:** Icon-only buttons keep their text, set `noText` and get a tooltip (see "Defaults without a question"). The close button of `db-dialog-header` needs `closeButtonText`.
 - **State without color:** Selected filters must not depend on color alone. Use `showCheckState` on `db-tag` with a checkbox inside.
 - **Headings:** Choose the heading level from the document outline and check the order of the whole page: no skipped levels, for example cards with `h3` directly after the `h1`. The original can already contain such errors, so don't copy the levels. Use `visualSize` for the look.

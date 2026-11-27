@@ -215,7 +215,9 @@ function merge(
 		sources: input.sources?.length ? input.sources : undefined,
 		dbProduct: input.dbProduct ?? (detected.hasDbTheme ? true : undefined),
 		appUrl: input.appRunsLocally ? input.appUrl : undefined,
-		browserTool: input.appRunsLocally ? input.browserTool : false
+		// Without a running app there is nothing to inspect. While appRunsLocally is
+		// still open, browserTool stays unknown, so it is not shown as known `false`.
+		browserTool: input.appRunsLocally === false ? false : input.browserTool
 	};
 }
 
@@ -356,7 +358,7 @@ export async function handlePlanMigration(
 		projectRoot = resolveSafePath(process.cwd(), input.projectRoot ?? '.');
 	} catch {
 		return error(
-			`Error: projectRoot '${input.projectRoot}' resolves outside the workspace root. Path traversal is not allowed.`
+			`Error: projectRoot '${input.projectRoot}' resolves outside the folder the MCP server runs in (${process.cwd()}). Path traversal is not allowed. In a workspace with several folders the server runs in one of them: pass the project path relative to that folder or as an absolute path inside it, or open only the project folder in the workspace.`
 		);
 	}
 

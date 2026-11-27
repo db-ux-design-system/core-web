@@ -28,7 +28,12 @@ Replace all inline `style` attributes, as they bypass theming, density, and dark
 
 ## Required CSS Imports & Token Architecture
 
-Generation 3 uses a layered CSS architecture. All four imports are required in this exact order:
+Pick one of two import variants, not both:
+
+- **DB brand (DB Theme):** `@db-ux/core-components/build/styles/bundle.css` followed by the DB Theme, see "DB Theme" below. The bundle already contains the four layers.
+- **Whitelabel:** the four imports below.
+
+Generation 3 uses a layered CSS architecture. For the whitelabel variant, all four imports are required in this exact order:
 
 ```tsx
 // main.tsx — order matters!
@@ -67,8 +72,8 @@ Choose the theme file for your bundler: `rollup.css` for Vite and Rollup, `webpa
 **Encrypted assets:** `@db-ux/db-theme`, `@db-ux/db-theme-fonts` and `@db-ux/db-theme-icons` ship fonts, icons and images encrypted (`*.enc`). Their `postinstall` scripts decrypt them:
 
 1. Get `ASSET_PASSWORD` and `ASSET_INIT_VECTOR` from the [Marketingportal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and put them into a `.env` file in the project root. Add `.env` to `.gitignore`. Agents ask the user to create the file and never read, print or commit its values.
-2. Allow the install scripts of the three packages. npm 12 and pnpm block install scripts of dependencies by default:
-    - npm 12: `npm install-scripts approve @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`, then `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons` to run the approved scripts. A second `npm install` does not run them.
+2. Allow the install scripts of the three packages. pnpm blocks install scripts of dependencies by default. From npm 11.19 on, npm checks them against `allowScripts` in `package.json`: depending on the version it skips or only lists unapproved scripts. Approve them in either case:
+    - npm 11.19 and later: `npm install-scripts approve @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`, then `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons` to run the approved scripts. A second `npm install` does not run them.
     - pnpm: `pnpm approve-builds` and allow the three packages.
 3. If the `.env` was added after the install, run the decryption again: `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`.
 
