@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@db-ux/db-theme": "7.3.1",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.7",
     "cpy-cli": "7.0.0",
     "npm-run-all2": "9.1.0",
     "typescript": "5.9.3",
