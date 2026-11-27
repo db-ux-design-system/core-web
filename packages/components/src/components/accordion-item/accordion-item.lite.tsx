@@ -39,6 +39,20 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				};
 			}
 		},
+		handleDetailsToggle: (event?: Event | any) => {
+			if (event?.target && event.target !== _ref) {
+				return;
+			}
+			if (_ref && state._open !== _ref.open) {
+				const nextOpen = _ref.open;
+				if (props.onToggle) {
+					props.onToggle(nextOpen);
+				}
+				if (props.open === undefined) {
+					state._open = nextOpen;
+				}
+			}
+		},
 		handleToggle: (event: ClickEvent<HTMLElement> | any) => {
 			// We need this for react https://github.com/facebook/react/issues/15486#issuecomment-488028431
 			event?.preventDefault();
@@ -89,7 +103,9 @@ export default function DBAccordionItem(props: DBAccordionItemProps) {
 				aria-disabled={getBooleanAsString(props.disabled, 'disabled')}
 				ref={_ref}
 				name={state._name}
-				open={state._open}>
+				open={state._open}
+				/* @ts-expect-error details has an event named onToggle */
+				onToggle={(event) => state.handleDetailsToggle(event)}>
 				<summary onClick={(event) => state.handleToggle(event)}>
 					<Show when={props.headlinePlain}>
 						{props.headlinePlain}

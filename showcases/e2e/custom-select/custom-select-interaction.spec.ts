@@ -146,7 +146,10 @@ test.describe('DBCustomSelect', () => {
 			// `open` attribute instead of racing a click, so the assertion only
 			// runs once the dropdown (and its bottom-sheet layout on mobile)
 			// has actually opened.
-			await summary.click({ force: true });
+			// dispatchEvent instead of click({ force: true }): a forced click
+			// still requires the element inside the viewport, which the mobile
+			// layout does not guarantee on a loaded CI runner.
+			await summary.dispatchEvent('click');
 			await details.evaluate((element: HTMLDetailsElement) => {
 				element.open = true;
 			});
@@ -377,7 +380,7 @@ test.describe('DBCustomSelect', () => {
 			// Open the dropdown directly and wait for the `open` attribute
 			// rather than racing a summary click (see the search test above for
 			// why a synthetic click is unreliable on WebKit).
-			await select.locator('summary').click({ force: true });
+			await select.locator('summary').dispatchEvent('click');
 			await details.evaluate((element: HTMLDetailsElement) => {
 				element.open = true;
 			});

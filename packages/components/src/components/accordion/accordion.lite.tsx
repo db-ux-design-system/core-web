@@ -23,7 +23,20 @@ export default function DBAccordion(props: DBAccordionProps) {
 	const state = useStore<DBAccordionState>({
 		_name: '',
 		initialized: false,
-		_initOpenIndexDone: false
+		_initOpenIndexDone: false,
+		getItemDetails: () => {
+			if (!_ref) {
+				return [];
+			}
+			return Array.from<HTMLDetailsElement>(
+				_ref.getElementsByTagName('details')
+			).filter(
+				(details: HTMLDetailsElement) =>
+					details.parentElement?.classList.contains(
+						'db-accordion-item'
+					) && details.closest('.db-accordion') === _ref
+			);
+		}
 	});
 
 	onMount(() => {
@@ -52,16 +65,11 @@ export default function DBAccordion(props: DBAccordionProps) {
 
 	onUpdate(() => {
 		if (_ref) {
-			const childDetails = _ref.getElementsByTagName('details');
-			if (childDetails) {
-				for (const details of Array.from<HTMLDetailsElement>(
-					childDetails
-				)) {
-					if (state._name === '') {
-						details.removeAttribute('name');
-					} else {
-						details.name = state._name ?? '';
-					}
+			for (const details of state.getItemDetails()) {
+				if (state._name === '') {
+					details.removeAttribute('name');
+				} else {
+					details.name = state._name ?? '';
 				}
 			}
 		}
@@ -70,21 +78,18 @@ export default function DBAccordion(props: DBAccordionProps) {
 	onUpdate(() => {
 		if (_ref && state._initOpenIndexDone) {
 			if (props?.initOpenIndex && props.initOpenIndex!.length > 0) {
-				const childDetails = _ref.getElementsByTagName('details');
-				if (childDetails) {
-					const initOpenIndex =
-						props.behavior === 'single' &&
-						props.initOpenIndex!.length > 1
-							? [props.initOpenIndex![0]] // use only one index for behavior=single
-							: props.initOpenIndex;
-					Array.from<HTMLDetailsElement>(childDetails).forEach(
-						(details: HTMLDetailsElement, index: number) => {
-							if (initOpenIndex?.includes(index)) {
-								details.open = true;
-							}
+				const initOpenIndex =
+					props.behavior === 'single' &&
+					props.initOpenIndex!.length > 1
+						? [props.initOpenIndex![0]] // use only one index for behavior=single
+						: props.initOpenIndex;
+				state
+					.getItemDetails()
+					.forEach((details: HTMLDetailsElement, index: number) => {
+						if (initOpenIndex?.includes(index)) {
+							details.open = true;
 						}
-					);
-				}
+					});
 			}
 			state._initOpenIndexDone = false;
 		}

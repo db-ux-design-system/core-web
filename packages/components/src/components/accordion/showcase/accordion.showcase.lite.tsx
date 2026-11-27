@@ -5,6 +5,7 @@ import AccordionBehavior from '../examples/behavior.example.lite';
 import AccordionDensity from '../examples/density.example.lite';
 import AccordionInteractionAction from '../examples/interaction-action.example.lite';
 import AccordionInteractionInitOpen from '../examples/interaction-init-open.example.lite';
+import AccordionInteractionNested from '../examples/interaction-nested.example.lite';
 import AccordionVariant from '../examples/variant.example.lite';
 
 export default function AccordionShowcase() {
@@ -33,6 +34,11 @@ export default function AccordionShowcase() {
 			<LinkWrapperShowcase exampleName="Action">
 				<CardWrapperShowcase>
 					<AccordionInteractionAction />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Nested">
+				<CardWrapperShowcase>
+					<AccordionInteractionNested />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
