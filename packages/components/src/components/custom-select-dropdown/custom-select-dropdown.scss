@@ -3,6 +3,7 @@
 @use "@db-ux/core-foundations/build/styles/screen-sizes";
 @use "@db-ux/core-foundations/build/styles/helpers";
 @use "../../styles/internal/form-components";
+@use "../../styles/internal/popover-component";
 @forward "custom-select-dropdown.properties";
 
 .db-custom-select-dropdown {
@@ -35,6 +36,50 @@
 
 	&[data-width="full"] {
 		inline-size: 100%;
+	}
+
+	// CSS Anchor Positioning (the JavaScript fallback is only used without support)
+	@include popover-component.only-anchored {
+		@include popover-component.popover-ua-reset;
+
+		@include screen-sizes.screen-tablet-min {
+			// With `absolute` the anchor (the <details>) would be the containing
+			// block, which makes it invalid, e.g. in CSS-only usage without top layer
+			position: fixed;
+			position-anchor: --db-anchor;
+			inset: auto;
+			margin: 0;
+			position-area: block-end span-inline-end;
+			position-try-fallbacks:
+				flip-block,
+				flip-inline,
+				flip-block flip-inline;
+
+			// The placement is set on the root of the custom select
+			.db-custom-select[data-placement^="top"] & {
+				position-area: block-start span-inline-end;
+			}
+
+			.db-custom-select[data-placement="bottom-end"] & {
+				position-area: block-end span-inline-start;
+			}
+
+			.db-custom-select[data-placement="top-end"] & {
+				position-area: block-start span-inline-start;
+			}
+
+			&[data-width="full"] {
+				/* stylelint-disable-next-line db-ux/use-sizing */
+				inline-size: anchor-size(--db-anchor inline);
+			}
+
+			&[data-width="auto"] {
+				min-inline-size: min(
+					anchor-size(--db-anchor inline),
+					calc(100dvw - 2 * #{variables.$db-spacing-fixed-sm})
+				);
+			}
+		}
 	}
 
 	@include screen-sizes.screen-tablet-max {

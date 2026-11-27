@@ -1,4 +1,174 @@
-// TODO: We should reevaluate this as soon as CSS Anchor Positioning is supported in all relevant browsers
+/**
+ * Floating components (popover, tooltip, custom-select dropdown, navigation
+ * sub-menus) are positioned with CSS Anchor Positioning and shown in the top
+ * layer via the Popover API. The JavaScript positioning below is only a
+ * fallback for browsers which do not support these features. It can be removed
+ * as soon as the last supported browser has caught up (see `.browserslistrc`).
+ *
+ * The support check must stay in sync with the `@supports` queries inside
+ * `styles/internal/_popover-component.scss`.
+ */
+let anchorPositioningSupport: boolean | undefined;
+
+/**
+ * The result can't change during the lifetime of the page, so it is cached
+ * (this runs on every scroll and resize callback).
+ */
+export const supportsAnchorPositioning = (): boolean => {
+	if (anchorPositioningSupport === undefined) {
+		if (typeof CSS === 'undefined' || typeof CSS.supports !== 'function') {
+			// Not cached, the environment might not be ready yet (e.g. SSR)
+			return false;
+		}
+
+		anchorPositioningSupport =
+			CSS.supports('position-area: top') &&
+			CSS.supports('anchor-name: --db-anchor') &&
+			CSS.supports('anchor-scope: --db-anchor');
+	}
+
+	return anchorPositioningSupport;
+};
+
+/**
+ * Shows the element in the top layer (Popover API).
+ * The `popover` attribute is only set while the element is open, so the
+ * CSS-only visibility handling keeps working for every other state.
+ *
+ * Only used together with anchor positioning: the top layer changes the
+ * containing block to the viewport and applies user agent styles
+ * (`margin: auto`, `inset: 0`), which the JavaScript fallback positioning
+ * doesn't expect. Browsers without anchor positioning therefore keep the
+ * element in the regular layer.
+ */
+export const showFloating = (element?: HTMLElement | null) => {
+	if (!element || !supportsAnchorPositioning()) {
+		return;
+	}
+
+	try {
+		if (!element.hasAttribute('popover')) {
+			element.setAttribute('popover', 'manual');
+		}
+
+		if (!element.matches(':popover-open')) {
+			element.showPopover();
+		}
+	} catch {
+		// Element is not connected or not renderable (e.g. closed <details>)
+	}
+};
+
+export const hideFloating = (element?: HTMLElement | null) => {
+	if (!element) return;
+	try {
+		if (element.matches(':popover-open')) {
+			element.hidePopover();
+		}
+	} catch {
+		// Already hidden
+	}
+
+	element.removeAttribute('popover');
+};
+
+/**
+ * Tall content: keeps the element inside the viewport and scrollable, like
+ * the JavaScript fallback does (the anchored CSS doesn't limit the height).
+ */
+export const limitToViewport = (element: HTMLElement) => {
+	// The distance can be any CSS length (e.g. rem), so let the browser
+	// resolve it and read the computed pixel value back
+	element.style.maxBlockSize = `calc(${window.innerHeight}px - 2 * var(--db-popover-distance, 0px))`;
+	const maxBlockSize = parseFloat(getComputedStyle(element).maxBlockSize);
+	if (element.scrollHeight > maxBlockSize) {
+		element.style.overflow = 'hidden auto';
+	} else {
+		element.style.overflow = '';
+		element.style.maxBlockSize = '';
+	}
+};
+
+/**
+ * With anchor positioning the browser positions the floating element. We only
+ * need to know on which side it ended up (after `position-try-fallbacks`
+ * flipped it) to orient the arrow and the hover bridge, which is written to
+ * `data-corrected-placement` like the JavaScript fallback does.
+ */
+export const syncAnchoredPlacement = (
+	element: HTMLElement,
+	anchor: HTMLElement,
+	placement: string
+) => {
+	if (!element || !anchor) return;
+	const floating = element.getBoundingClientRect();
+	const anchorRect = anchor.getBoundingClientRect();
+
+	// Not rendered (yet), there is nothing to measure
+	if (!floating.width && !floating.height) return;
+
+	const isRtl = getComputedStyle(element).direction === 'rtl';
+
+	let side = placement.split('-')[0];
+	if (side === 'top' || side === 'bottom') {
+		side =
+			floating.top + floating.height / 2 < anchorRect.top
+				? 'top'
+				: 'bottom';
+	} else {
+		// `left` and `right` are mapped to `inline-start` and `inline-end` in
+		// CSS, so the physical side is mirrored in RTL
+		const physicalLeft =
+			floating.left + floating.width / 2 < anchorRect.left;
+		side = physicalLeft !== isRtl ? 'left' : 'right';
+	}
+
+	const alignment = placement.split('-')[1];
+	element.dataset['correctedPlacement'] = alignment
+		? `${side}-${alignment}`
+		: side;
+
+	limitToViewport(element);
+
+	// Only tooltips have an arrow
+	if (!element.classList.contains('db-tooltip')) return;
+
+	/*
+	 * Tooltip arrow: if the tooltip is larger than the anchor on an axis, the
+	 * arrow points at the center of the anchor, wherever the browser aligned
+	 * the tooltip (start, center or end). If the tooltip is smaller, the
+	 * center of the anchor is outside of it (e.g. `right-start` next to a
+	 * high trigger), so the property is removed and the arrow stays centered
+	 * on the tooltip, which is next to the start of the anchor.
+	 */
+	const anchorCenterX = anchorRect.left + anchorRect.width / 2;
+	const anchorCenterY = anchorRect.top + anchorRect.height / 2;
+	const clamp = (value: number, max: number) =>
+		Math.round(Math.min(Math.max(value, 0), max));
+
+	if (floating.width > anchorRect.width) {
+		element.style.setProperty(
+			'--db-tooltip-arrow-inline-start',
+			`${clamp(
+				isRtl
+					? floating.right - anchorCenterX
+					: anchorCenterX - floating.left,
+				floating.width
+			)}px`
+		);
+	} else {
+		element.style.removeProperty('--db-tooltip-arrow-inline-start');
+	}
+
+	if (floating.height > anchorRect.height) {
+		element.style.setProperty(
+			'--db-tooltip-arrow-block-start',
+			`${clamp(anchorCenterY - floating.top, floating.height)}px`
+		);
+	} else {
+		element.style.removeProperty('--db-tooltip-arrow-block-start');
+	}
+};
 
 export const handleFixedDropdown = (
 	element: HTMLElement,
@@ -6,6 +176,11 @@ export const handleFixedDropdown = (
 	placement: string
 ) => {
 	if (!element || !parent) return;
+	if (supportsAnchorPositioning()) {
+		// The browser positions the dropdown via CSS
+		return;
+	}
+
 	const fullWidth = element.dataset['width'] === 'full';
 	const autoWidth = element.dataset['width'] === 'auto';
 
@@ -319,6 +494,18 @@ export const handleFixedPopover = ({
 	forceAbsolute?: boolean;
 }) => {
 	if (!element || !parent) return;
+	if (supportsAnchorPositioning()) {
+		// The browser positions the element via CSS, we only sync the side.
+		// `forceAbsolute` is still respected for the positioning scheme.
+		element.style.position = forceAbsolute ? 'absolute' : '';
+		syncAnchoredPlacement(
+			element,
+			parent,
+			element.dataset?.['placement'] ?? placement ?? 'bottom'
+		);
+		return;
+	}
+
 	const parentComputedStyles = getComputedStyle(parent);
 	const parentHasFloatingPosition = ['absolute', 'fixed'].includes(
 		parentComputedStyles.position

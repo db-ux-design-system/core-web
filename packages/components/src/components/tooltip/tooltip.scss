@@ -5,6 +5,7 @@
 @use "../../styles/internal/popover-component";
 @forward "../../styles/internal/popover-component.properties";
 @use "../../styles/internal/component";
+@include popover-component.position-try-rules;
 
 .db-tooltip {
 	--default-card-elevation: #{variables.$db-elevation-sm};
@@ -128,6 +129,8 @@
 }
 
 [data-has-tooltip="true"] {
+	@include popover-component.anchor-definition;
+
 	position: var(--db-tooltip-parent-position, relative);
 }
 
@@ -135,4 +138,10 @@ $popover-states: "hover", "focus-visible";
 
 @each $state in $popover-states {
 	@include show-popover($state);
+}
+
+// In the top layer (Popover API) the tooltip doesn't propagate `:hover` to its
+// parent in every browser, so it keeps itself open while hovered
+[data-has-tooltip="true"] .db-tooltip:first-of-type:is(:hover, :focus-within) {
+	@extend %show-popover;
 }

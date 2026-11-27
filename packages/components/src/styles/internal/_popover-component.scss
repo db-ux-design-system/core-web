@@ -1,3 +1,8 @@
+// The offset is built from `--db-popover-distance`, which is a spacing token
+/* stylelint-disable db-ux/use-spacings */
+@use "sass:list";
+@use "sass:map";
+@use "sass:string";
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "@db-ux/core-foundations/build/styles/animation";
@@ -12,26 +17,182 @@ $popover-inset: calc(
 );
 $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
-%popover-center {
-	&:not([data-placement], [data-corrected-placement]),
-	&[data-placement="bottom"]:not([data-corrected-placement]),
-	&[data-placement="top"]:not([data-corrected-placement]),
-	&[data-corrected-placement="bottom"],
-	&[data-corrected-placement="top"] {
-		--db-popover-center-x: -50%;
+// Keep in sync with `supportsAnchorPositioning` in `utils/floating-components.ts`
+$anchor-positioning-supports: "(position-area: top) and (anchor-name: --db-anchor) and (anchor-scope: --db-anchor)";
 
-		inset-inline-start: 50%;
-		transform: translateX(var(--db-popover-center-x, 0));
+/*
+ * Floating elements are positioned with CSS Anchor Positioning. Every
+ * component which has a floating element defines `anchor-name: --db-anchor`
+ * together with `anchor-scope: --db-anchor` on its trigger/wrapper. The scope
+ * lets us reuse the same name for every instance (and for nested floating
+ * elements) without generating unique names.
+ *
+ * Browsers without support get the positioning from the JavaScript fallback
+ * (`utils/floating-components.ts`) and the `only-fallback` styles.
+ */
+@mixin only-anchored {
+	@supports #{$anchor-positioning-supports} {
+		@content;
 	}
+}
 
-	&[data-corrected-placement="left"],
-	&[data-corrected-placement="right"],
-	&[data-placement="left"]:not([data-corrected-placement]),
-	&[data-placement="right"]:not([data-corrected-placement]) {
-		--db-popover-center-y: -50%;
+@mixin only-fallback {
+	@supports not (#{$anchor-positioning-supports}) {
+		@content;
+	}
+}
 
-		inset-block-start: 50%;
-		transform: translateY(var(--db-popover-center-y, 0));
+/* Defines the anchor and its scope on the element which is the trigger. */
+@mixin anchor-definition {
+	@include only-anchored {
+		anchor-name: --db-anchor;
+		anchor-scope: --db-anchor;
+	}
+}
+
+/*
+ * Resets the user agent styles of [popover] (top layer). The padding is 0.25em
+ * by default, components set their own padding after the reset.
+ */
+@mixin popover-ua-reset {
+	overflow: visible;
+	color: inherit;
+	padding: 0;
+}
+
+/*
+ * The `@position-try` rules which are referenced by the `position-try-fallbacks`
+ * of `%popover-placement`. Include once per stylesheet of a component which
+ * uses `%default-popover` (popover, tooltip), so other components which only
+ * `@use` this file (custom select, navigation) don't ship them.
+ */
+@mixin position-try-rules {
+	@include only-anchored {
+		// The offset is only applied on the side which faces the anchor
+		@position-try --db-popover-bottom-start {
+			position-area: block-end span-inline-end;
+			margin: 0;
+			margin-block-start: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-bottom-end {
+			position-area: block-end span-inline-start;
+			margin: 0;
+			margin-block-start: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-top-start {
+			position-area: block-start span-inline-end;
+			margin: 0;
+			margin-block-end: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-top-end {
+			position-area: block-start span-inline-start;
+			margin: 0;
+			margin-block-end: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-right-start {
+			position-area: inline-end span-block-end;
+			margin: 0;
+			margin-inline-start: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-right-end {
+			position-area: inline-end span-block-start;
+			margin: 0;
+			margin-inline-start: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-left-start {
+			position-area: inline-start span-block-end;
+			margin: 0;
+			margin-inline-end: var(--db-popover-offset);
+		}
+
+		@position-try --db-popover-left-end {
+			position-area: inline-start span-block-start;
+			margin: 0;
+			margin-inline-end: var(--db-popover-offset);
+		}
+	}
+}
+
+// placement -> position-area and the fallbacks which replace the JS flip logic
+$anchored-placements: (
+	"bottom": (
+		"block-end",
+		"flip-block, --db-popover-bottom-start, --db-popover-bottom-end, --db-popover-top-start, --db-popover-top-end"
+	),
+	"bottom-start": (
+		"block-end span-inline-end",
+		"flip-block, flip-inline, flip-block flip-inline"
+	),
+	"bottom-end": (
+		"block-end span-inline-start",
+		"flip-block, flip-inline, flip-block flip-inline"
+	),
+	"top": (
+		"block-start",
+		"flip-block, --db-popover-top-start, --db-popover-top-end, --db-popover-bottom-start, --db-popover-bottom-end"
+	),
+	"top-start": (
+		"block-start span-inline-end",
+		"flip-block, flip-inline, flip-block flip-inline"
+	),
+	"top-end": (
+		"block-start span-inline-start",
+		"flip-block, flip-inline, flip-block flip-inline"
+	),
+	"right": (
+		"inline-end",
+		"flip-inline, --db-popover-right-start, --db-popover-right-end, --db-popover-left-start, --db-popover-left-end"
+	),
+	"right-start": (
+		"inline-end span-block-end",
+		"flip-inline, flip-block, flip-inline flip-block"
+	),
+	"right-end": (
+		"inline-end span-block-start",
+		"flip-inline, flip-block, flip-inline flip-block"
+	),
+	"left": (
+		"inline-start",
+		"flip-inline, --db-popover-left-start, --db-popover-left-end, --db-popover-right-start, --db-popover-right-end"
+	),
+	"left-start": (
+		"inline-start span-block-end",
+		"flip-inline, flip-block, flip-inline flip-block"
+	),
+	"left-end": (
+		"inline-start span-block-start",
+		"flip-inline, flip-block, flip-inline flip-block"
+	)
+);
+
+%popover-center {
+	@include only-fallback {
+		&:not([data-placement], [data-corrected-placement]),
+		&[data-placement="bottom"]:not([data-corrected-placement]),
+		&[data-placement="top"]:not([data-corrected-placement]),
+		&[data-corrected-placement="bottom"],
+		&[data-corrected-placement="top"] {
+			--db-popover-center-x: -50%;
+
+			inset-inline-start: 50%;
+			transform: translateX(var(--db-popover-center-x, 0));
+		}
+
+		&[data-corrected-placement="left"],
+		&[data-corrected-placement="right"],
+		&[data-placement="left"]:not([data-corrected-placement]),
+		&[data-placement="right"]:not([data-corrected-placement]) {
+			--db-popover-center-y: -50%;
+
+			inset-block-start: 50%;
+			transform: translateY(var(--db-popover-center-y, 0));
+		}
 	}
 }
 
@@ -89,32 +250,49 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 	/* This is for pure html css without using JS */
 	&:not([data-corrected-placement]) {
-		&[data-placement^="bottom"],
-		&[data-placement^="top"] {
-			&[data-placement$="end"] {
-				inset-inline-end: 0;
+		@include only-fallback {
+			&[data-placement^="bottom"],
+			&[data-placement^="top"] {
+				&[data-placement$="end"] {
+					inset-inline-end: 0;
+				}
+
+				&[data-placement$="start"] {
+					inset-inline-start: 0;
+				}
 			}
 
-			&[data-placement$="start"] {
-				inset-inline-start: 0;
-			}
-		}
+			&[data-placement^="left"],
+			&[data-placement^="right"] {
+				&[data-placement$="end"] {
+					inset-block-end: 0;
+				}
 
-		&[data-placement^="left"],
-		&[data-placement^="right"] {
-			&[data-placement$="end"] {
-				inset-block-end: 0;
+				&[data-placement$="start"] {
+					inset-block-start: 0;
+				}
 			}
 
-			&[data-placement$="start"] {
-				inset-block-start: 0;
+			&:not([data-placement]),
+			&[data-placement^="bottom"] {
+				inset-block-start: $popover-inset;
+			}
+
+			&[data-placement^="top"] {
+				inset-block-end: $popover-inset;
+			}
+
+			&[data-placement^="left"] {
+				inset-inline-end: $popover-inset;
+			}
+
+			&[data-placement^="right"] {
+				inset-inline-start: $popover-inset;
 			}
 		}
 
 		&:not([data-placement]),
 		&[data-placement^="bottom"] {
-			inset-block-start: $popover-inset;
-
 			&::before {
 				inset-inline-start: 0;
 				inline-size: 100%;
@@ -124,8 +302,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 
 		&[data-placement^="top"] {
-			inset-block-end: $popover-inset;
-
 			&::before {
 				inset-inline-end: 0;
 				inline-size: 100%;
@@ -135,8 +311,6 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 
 		&[data-placement^="left"] {
-			inset-inline-end: $popover-inset;
-
 			&::before {
 				inset-block-end: 0;
 				block-size: 100%;
@@ -146,13 +320,87 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 		}
 
 		&[data-placement^="right"] {
-			inset-inline-start: $popover-inset;
-
 			&::before {
 				inset-block-start: 0;
 				block-size: 100%;
 				inline-size: $popover-gap-size;
 				inset-inline-start: $popover-gap-inset;
+			}
+		}
+	}
+
+	/*
+	 * With CSS Anchor Positioning the browser flips the element without telling
+	 * the stylesheet, and `data-corrected-placement` is only set by JavaScript.
+	 * Without it the hover bridge would stay on the requested side, so the
+	 * pointer would leave the element when crossing the gap of a flipped one.
+	 * Therefore the bridge spans the gap on both sides of the axis.
+	 */
+	@include only-anchored {
+		&:not([data-corrected-placement]) {
+			&:not([data-placement]),
+			&[data-placement^="bottom"],
+			&[data-placement^="top"] {
+				&::before {
+					inset-block: $popover-gap-inset;
+					inset-inline: 0;
+					inline-size: auto;
+					block-size: auto;
+					z-index: -1;
+				}
+			}
+
+			&[data-placement^="left"],
+			&[data-placement^="right"] {
+				&::before {
+					inset-inline: $popover-gap-inset;
+					inset-block: 0;
+					inline-size: auto;
+					block-size: auto;
+					z-index: -1;
+				}
+			}
+		}
+	}
+
+	/* CSS Anchor Positioning: the browser places and flips the element */
+	@include only-anchored {
+		// Only elements with a gap (`data-gap="true"`, tooltips) get a distance
+		// to their trigger, same as the CSS-only `$popover-inset`
+		--db-popover-offset: calc(
+			var(--db-popover-distance) * var(--db-popover-gap, 0)
+		);
+
+		position-anchor: --db-anchor;
+		inset: auto;
+
+		// The offset is only applied on the side which faces the anchor
+		margin: 0;
+		margin-block-start: var(--db-popover-offset);
+
+		@include popover-ua-reset;
+
+		position-area: block-end;
+		position-try-fallbacks: #{list.nth(
+				map.get($anchored-placements, "bottom"),
+				2
+			)};
+
+		@each $placement, $config in $anchored-placements {
+			&[data-placement="#{$placement}"] {
+				position-area: #{list.nth($config, 1)};
+				position-try-fallbacks: #{list.nth($config, 2)};
+				margin: 0;
+
+				@if string.index($placement, "top") == 1 {
+					margin-block-end: var(--db-popover-offset);
+				} @else if string.index($placement, "bottom") == 1 {
+					margin-block-start: var(--db-popover-offset);
+				} @else if string.index($placement, "left") == 1 {
+					margin-inline-end: var(--db-popover-offset);
+				} @else {
+					margin-inline-start: var(--db-popover-offset);
+				}
 			}
 		}
 	}
@@ -207,6 +455,11 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 
 %show-popover {
 	visibility: var(--db-show-popover-visibility, visible);
+
+	// See `%default-popover`
+	@include only-anchored {
+		--db-floating-display: block;
+	}
 
 	&:not([data-placement], [data-corrected-placement]),
 	&[data-placement^="bottom"]:not([data-corrected-placement]),
@@ -266,5 +519,36 @@ $popover-gap-inset: calc(-1 * #{$popover-gap-size});
 	&[data-width="fixed"] {
 		inline-size: max-content;
 		text-align: initial;
+	}
+
+	/*
+	 * CSS Anchor Positioning needs `fixed` in every state (hidden and shown):
+	 * - With `absolute` the trigger (anchor) would also be the containing
+	 *   block, which makes the anchor invalid outside of the top layer. The
+	 *   element falls back to its static position on top of/next to the
+	 *   trigger. Descendants with `visibility: visible` are still hit-testable
+	 *   there, so the pointer opens the element, which moves away, closes and
+	 *   moves back under the pointer in an endless loop.
+	 * - `fixed` elements don't create scrollable overflow in their ancestors
+	 *   (e.g. the scroll container of the control panel navigation).
+	 */
+	@include only-anchored {
+		position: fixed;
+
+		/*
+		 * Browsers remember the last successful `position-try-fallbacks`
+		 * option and keep it as long as it still fits, even if the preferred
+		 * placement would fit again. Only a "fallback-sensitive change" which
+		 * lasts until the next rendering update clears it, e.g. when the element
+		 * stops generating a box. So hidden elements get `display: none`,
+		 * otherwise a flip from an earlier scroll position would stick.
+		 * The custom property is reset here so nested floating elements don't
+		 * inherit the value of a shown ancestor, and more specific `display`
+		 * rules (e.g. hidden tooltips in nested navigation items) still win.
+		 * @see https://drafts.csswg.org/css-anchor-position-1/#fallback-sensitive-changes
+		 */
+		--db-floating-display: initial;
+
+		display: var(--db-floating-display, none);
 	}
 }

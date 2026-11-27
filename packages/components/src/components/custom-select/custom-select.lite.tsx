@@ -42,7 +42,11 @@ import {
 } from '../../utils';
 import { DocumentClickListener } from '../../utils/document-click-listener';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
-import { handleFixedDropdown } from '../../utils/floating-components';
+import {
+	handleFixedDropdown,
+	hideFloating,
+	showFloating
+} from '../../utils/floating-components';
 import {
 	addResetEventListener,
 	handleFrameworkEventAngular,
@@ -192,6 +196,11 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 						state.handleDocumentScroll(event)
 					);
 
+				// Top layer via Popover API, avoids clipping by overflow of ancestors
+				if (detailsRef) {
+					showFloating(detailsRef.querySelector('article'));
+				}
+
 				state.handleAutoPlacement();
 				state._resizeObserverCallbackId =
 					new ResizeObserverListener().observe(
@@ -212,6 +221,9 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 					state.handleOpenByKeyboardFocus();
 				}
 			} else {
+				if (detailsRef) {
+					hideFloating(detailsRef.querySelector('article'));
+				}
 				if (state._documentClickListenerCallbackId) {
 					new DocumentClickListener().removeCallback(
 						state._documentClickListenerCallbackId!

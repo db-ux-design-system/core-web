@@ -2,6 +2,7 @@
 @use "../../styles/internal/form-components";
 @forward "../../styles/internal/form-components.properties";
 @use "../../styles/internal/select-components";
+@use "../../styles/internal/popover-component";
 
 .db-custom-select {
 	--db-form-component-padding-inline-start: calc(
@@ -11,6 +12,11 @@
 	--db-form-component-min-inline-size: #{variables.$db-sizing-xl};
 
 	position: relative;
+
+	// The dropdown is anchored to the <details> (CSS Anchor Positioning)
+	details {
+		@include popover-component.anchor-definition;
+	}
 
 	// Leading icon flag (consumed by select-components.$has-before-padding math)
 	&[data-icon]:not([data-show-icon="false"]) {

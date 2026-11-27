@@ -17,7 +17,11 @@ import {
 	uuid
 } from '../../utils';
 import { DocumentScrollListener } from '../../utils/document-scroll-listener';
-import { handleFixedPopover } from '../../utils/floating-components';
+import {
+	handleFixedPopover,
+	hideFloating,
+	showFloating
+} from '../../utils/floating-components';
 import { IntersectionObserverListener } from '../../utils/intersection-observer-listener';
 import { ResizeObserverListener } from '../../utils/resize-observer-listener';
 import { DBTooltipProps, DBTooltipState } from './model';
@@ -105,6 +109,11 @@ export default function DBTooltip(props: DBTooltipProps) {
 				return;
 			}
 
+			// Remove the tooltip from the top layer
+			if (_ref) {
+				hideFloating(_ref);
+			}
+
 			if (state._documentScrollListenerCallbackId) {
 				new DocumentScrollListener().removeCallback(
 					state._documentScrollListenerCallbackId!
@@ -139,6 +148,9 @@ export default function DBTooltip(props: DBTooltipProps) {
 			// trigger; a second enter (e.g. focusin after mouseenter) must not
 			// orphan the first callback.
 			state._activeTriggerCount = (state._activeTriggerCount ?? 0) + 1;
+			// Top layer via Popover API, avoids clipping by overflow of ancestors.
+			// Idempotent, so it is safe to call for every active trigger.
+			showFloating(_ref);
 			if (state._activeTriggerCount === 1) {
 				state._documentScrollListenerCallbackId =
 					new DocumentScrollListener().addCallback((event) =>
@@ -220,6 +232,7 @@ export default function DBTooltip(props: DBTooltipProps) {
 			}
 
 			state._activeTriggerCount = 0;
+			hideFloating(_ref);
 
 			const bound = state._boundListeners ?? [];
 			bound.forEach((entry) => {

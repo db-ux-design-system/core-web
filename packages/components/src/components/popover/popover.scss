@@ -3,8 +3,11 @@
 @use "../../styles/internal/popover-component";
 @forward "../../styles/internal/popover-component.properties";
 @use "../../styles/internal/component";
+@include popover-component.position-try-rules;
 
 .db-popover {
+	@include popover-component.anchor-definition;
+
 	position: relative;
 
 	@include helpers.display(flex);
@@ -16,6 +19,12 @@
 		> article:not([data-open="false"]) {
 			@extend %show-popover;
 		}
+	}
+
+	// In the top layer (Popover API) the content doesn't propagate `:hover` to
+	// `.db-popover` in every browser, so it keeps itself open while hovered
+	> article:not([data-open="false"]):is(:hover, :focus, :focus-within) {
+		@extend %show-popover;
 	}
 
 	> article {

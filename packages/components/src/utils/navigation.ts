@@ -1,4 +1,8 @@
-import { handleFixedPopover } from './floating-components';
+import {
+	handleFixedPopover,
+	limitToViewport,
+	supportsAnchorPositioning
+} from './floating-components';
 
 /**
  * Adjusts a sub-navigation's position so it stays within the viewport.
@@ -351,7 +355,21 @@ export const handleSubNavigationPosition = ({
 
 			subNavigation.dataset['level'] = resolvedLevel.toString();
 
-			if (resolvedLevel === 0) {
+			if (resolvedLevel === 0 && supportsAnchorPositioning()) {
+				// CSS Anchor Positioning places the menu (see
+				// `control-panel-navigation-item-group-menu-popover.scss`),
+				// only the direction is needed. Remove inline styles of the
+				// JavaScript fallback in case the support changed.
+				subNavigation.style.position = '';
+				subNavigation.style.insetBlock = '';
+				subNavigation.style.insetInline = '';
+				delete subNavigation.dataset['correctedPlacement'];
+				subNavigation.dataset['open'] = vertical
+					? 'vertical'
+					: 'horizontal';
+				// Oversized menus stay inside the viewport and scrollable
+				limitToViewport(subNavigation);
+			} else if (resolvedLevel === 0) {
 				if (vertical) {
 					// Sub-Navigation should be opened vertical (top position, level 0)
 					handleFixedPopover({

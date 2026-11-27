@@ -1,8 +1,11 @@
+// `--db-popover-distance` is a spacing token
+/* stylelint-disable db-ux/use-spacings */
 @use "@db-ux/core-foundations/build/styles/variables";
 @use "@db-ux/core-foundations/build/styles/animation";
 @use "@db-ux/core-foundations/build/styles/colors";
 @use "../../styles/internal/component";
 @use "../../styles/internal/navigation-item";
+@use "../../styles/internal/popover-component";
 @use "control-panel-navigation-item-group-menu-non-tree";
 
 %db-control-panel-navigation-item-group-menu-popover {
@@ -30,6 +33,45 @@
 
 	&[data-force-close="true"] {
 		pointer-events: none;
+	}
+
+	// CSS Anchor Positioning for the first level. Fixed, so the menu is not
+	// clipped by the scroll container of the navigation. The JavaScript
+	// fallback (handleFixedPopover) is used without support.
+	@include popover-component.only-anchored {
+		&[data-level="0"] {
+			// Fixed in every state, see `%default-popover` in
+			// `_popover-component.scss`. The menu keeps `visibility: hidden`
+			// (no `display: none`) because of the keyboard focus workaround
+			// above, the header does not scroll so a remembered flip only
+			// sticks after resizing the window.
+			position: fixed;
+			position-anchor: --db-anchor;
+
+			// The desktop control panel sets insets for the JavaScript fallback
+			// with a higher specificity, which would disable the anchor positioning
+			/* stylelint-disable-next-line declaration-no-important */
+			inset: auto !important;
+			margin: 0;
+
+			&[data-open="vertical"] {
+				margin-block-start: var(--db-popover-distance);
+				position-area: block-end span-inline-end;
+				position-try-fallbacks:
+					flip-block,
+					flip-inline,
+					flip-block flip-inline;
+			}
+
+			&[data-open="horizontal"] {
+				margin-inline-start: var(--db-popover-distance);
+				position-area: inline-end span-block-end;
+				position-try-fallbacks:
+					flip-inline,
+					flip-block,
+					flip-inline flip-block;
+			}
+		}
 	}
 
 	.db-control-panel-navigation-item-group-menu {
