@@ -74,6 +74,21 @@ export default function DBSelect(props: DBSelectProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		_refreshInvalidMessage: () => {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					state._applyInvalidMessage();
+				});
+			});
+		},
+		_applyInvalidMessage: () => {
+			if (_ref) {
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
+			}
+		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the select */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
@@ -247,12 +262,18 @@ export default function DBSelect(props: DBSelectProps) {
 		}
 	}, [props.id, props.propOverrides?.id]);
 
+	// Every prop that changes the native validationMessage (see _refreshInvalidMessage).
 	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
+		state._refreshInvalidMessage();
+	}, [
+		_ref,
+		props.invalidMessage,
+		props.required,
+		props.disabled,
+		props.value,
+		props.multiple,
+		props.options
+	]);
 
 	onUpdate(() => {
 		if (state._id && state.initialized) {

@@ -560,6 +560,19 @@ export type FromValidState = {
 	hasValidState: () => boolean;
 	handleValidation: () => void;
 	_invalidMessage?: string;
+	/**
+	 * Schedules `_applyInvalidMessage` after the next render.
+	 * Stencil (`@Watch`) and Angular (`effect()`) run dependency-based updates before the DOM is patched,
+	 * so reading `validationMessage` synchronously would return the message of the previous constraints.
+	 * Two animation frames are needed because Stencil flushes its own render in an animation frame
+	 * that is queued after the watcher.
+	 */
+	_refreshInvalidMessage: () => void;
+	/**
+	 * Re-reads the native `validationMessage` as fallback for `_invalidMessage`.
+	 * The Angular Signal Forms plugin skips this while `errors()` is set, so its messages keep priority.
+	 */
+	_applyInvalidMessage: () => void;
 };
 
 export type ResetIdState = {
