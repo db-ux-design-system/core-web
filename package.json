@@ -80,7 +80,7 @@
     "validate": "tsx scripts/self-healing-orchestrator.ts"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.14.0",
+    "@axe-core/playwright": "4.14.1",
     "@changesets/cli": "3.0.3",
     "@changesets/types": "7.0.0",
     "@commitlint/cli": "21.2.4",
@@ -98,7 +98,7 @@
     "@guidepup/record": "0.3.0",
     "@guidepup/setup": "0.29.3",
     "@playwright/test": "1.65.1",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.7",
     "@typescript-eslint/eslint-plugin": "8.73.0",
     "@typescript-eslint/parser": "8.73.0",
     "accessibility-checker-engine": "4.0.35",
