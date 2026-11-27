@@ -252,6 +252,32 @@ function injectValidationBridge(code) {
 
 	return code;
 }
+
+/**
+ * Keeps Signal Forms errors in front of the native fallback: `_applyInvalidMessage()`
+ * re-reads `validationMessage` after constraint changes and would otherwise replace
+ * the message set by the validation bridge in handleValidation().
+ */
+function injectInvalidMessageGuard(code, componentName) {
+	const anchor = /_applyInvalidMessage\(\)\s*\{\s*\n/;
+	if (!anchor.test(code)) {
+		throw new Error(
+			`Signal Forms: _applyInvalidMessage() not found in ${componentName}. ` +
+				'Please update the injection logic in configs/plugins/angular/signal-forms.cjs.'
+		);
+	}
+	return code.replace(
+		anchor,
+		`_applyInvalidMessage() {
+    // Signal Forms errors take priority over the native validationMessage
+    const signalFormErrors = this.errors();
+    if (Array.isArray(signalFormErrors) && signalFormErrors.length > 0) {
+      return;
+    }
+`
+	);
+}
+
 /**
  * Widens the 'pattern' input to accept RegExp[] from Signal Forms FieldState
  * and adds a helper method to resolve the attribute value.
@@ -446,6 +472,9 @@ module.exports = () => ({
 
 				// 3b. Inject reactive effect to re-trigger validation on errors/validation changes
 				code = injectValidationEffect(code);
+
+				// 3c. Keep Signal Forms errors when the native fallback is refreshed
+				code = injectInvalidMessageGuard(code, json.name);
 			}
 
 			// 4. Pattern type widening (for components with a 'pattern' input)

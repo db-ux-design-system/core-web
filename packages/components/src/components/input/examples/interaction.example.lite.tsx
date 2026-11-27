@@ -1,4 +1,5 @@
 import { Fragment, useMetadata, useState, useStore } from '@builder.io/mitosis';
+import DBButton from '../../button/button.lite';
 import DBInput from '../input.lite';
 import { StorybookInputArgTypes } from './_input.arg.types';
 
@@ -16,13 +17,19 @@ useMetadata({
  the input handler can be verified without reading a JS callback. The
  remaining inputs render the attributes under test (enterkeyhint, inputmode,
  step, accept) plus a time input with a dataList so the attribute forwarding
- and datalist behavior can be asserted on the rendered input.
+ and datalist behavior can be asserted on the rendered input. The last input
+ toggles `required` at runtime, so the invalid message has to follow the new
+ native validationMessage.
  */
 export default function InputInteraction() {
 	const state = useStore({
 		inputValue: '',
+		inputRequired: false,
 		handleInput(event: any) {
 			state.inputValue = (event.target as HTMLInputElement).value;
+		},
+		toggleRequired() {
+			state.inputRequired = !state.inputRequired;
 		}
 	});
 	const [timeDataList] = useState(['00:00', '00:15']);
@@ -95,6 +102,19 @@ export default function InputInteraction() {
 				type="time"
 				dataList={timeDataList}
 			/>
+			<div data-sb-ignore="true">
+				<DBButton
+					data-testid="input-required-toggle"
+					onClick={() => state.toggleRequired()}>
+					Toggle required
+				</DBButton>
+				<DBInput
+					id="input-required-runtime"
+					label="Label"
+					validation="invalid"
+					required={state.inputRequired}
+				/>
+			</div>
 		</Fragment>
 	);
 }

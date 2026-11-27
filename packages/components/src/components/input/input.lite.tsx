@@ -79,6 +79,21 @@ export default function DBInput(props: DBInputProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		_refreshInvalidMessage: () => {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					state._applyInvalidMessage();
+				});
+			});
+		},
+		_applyInvalidMessage: () => {
+			if (_ref) {
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
+			}
+		},
 		handleValidation: () => {
 			/* For a11y reasons we need to map the correct message with the input */
 			if (!_ref?.validity.valid || props.validation === 'invalid') {
@@ -224,12 +239,28 @@ export default function DBInput(props: DBInputProps) {
 		}
 	}, [props.id, props.propOverrides?.id]);
 
+	// Every prop that changes the native validationMessage (see _refreshInvalidMessage).
 	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
+		state._refreshInvalidMessage();
+	}, [
+		_ref,
+		props.invalidMessage,
+		props.required,
+		props.disabled,
+		props.readOnly,
+		props.readonly,
+		props.value,
+		props.min,
+		props.max,
+		props.step,
+		props.pattern,
+		props.type,
+		props.multiple,
+		props.minLength,
+		props.minlength,
+		props.maxLength,
+		props.maxlength
+	]);
 
 	onUpdate(() => {
 		if (state._id) {

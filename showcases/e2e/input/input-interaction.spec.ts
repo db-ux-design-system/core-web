@@ -172,3 +172,30 @@ test.describe('DBInput', () => {
 		}
 	});
 });
+
+test.describe('DBInput invalid message', () => {
+	runInteractionTest({
+		title: 'should follow the native validationMessage when required changes at runtime',
+		path,
+		example,
+		async run({ content }) {
+			// Angular also puts the id on the db-input host
+			const input = content.locator('input#input-required-runtime');
+			const message = content.locator(
+				'#input-required-runtime-invalid-message'
+			);
+
+			// Natively valid: only the fallback is available
+			await expect(message).toHaveText('TODO: Add an invalidMessage');
+
+			await content.getByTestId('input-required-toggle').click();
+			await expect(input).toHaveAttribute('required');
+
+			const nativeMessage = await input.evaluate(
+				(element: HTMLInputElement) => element.validationMessage
+			);
+			expect(nativeMessage).not.toBe('');
+			await expect(message).toHaveText(nativeMessage);
+		}
+	});
+});

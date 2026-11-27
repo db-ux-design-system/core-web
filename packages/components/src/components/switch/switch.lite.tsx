@@ -72,6 +72,21 @@ export default function DBSwitch(props: DBSwitchProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		_refreshInvalidMessage: () => {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					state._applyInvalidMessage();
+				});
+			});
+		},
+		_applyInvalidMessage: () => {
+			if (_ref) {
+				state._invalidMessage =
+					props.invalidMessage ||
+					_ref.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
+			}
+		},
 		handleValidation: () => {
 			if (!_ref?.validity?.valid || props.validation === 'invalid') {
 				state._descByIds = state._invalidMessageId!;
@@ -193,12 +208,16 @@ export default function DBSwitch(props: DBSwitchProps) {
 		props.checked
 	]);
 
+	// Every prop that changes the native validationMessage (see _refreshInvalidMessage).
 	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			_ref?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [_ref, props.invalidMessage]);
+		state._refreshInvalidMessage();
+	}, [
+		_ref,
+		props.invalidMessage,
+		props.required,
+		props.disabled,
+		props.checked
+	]);
 
 	onUpdate(() => {
 		if (_ref) {

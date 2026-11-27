@@ -133,6 +133,22 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		hasValidState: () => {
 			return !!(props.validMessage ?? props.validation === 'valid');
 		},
+		_refreshInvalidMessage: () => {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					state._applyInvalidMessage();
+				});
+			});
+		},
+		_applyInvalidMessage: () => {
+			if (selectRef) {
+				state.syncNativeSelect();
+				state._invalidMessage =
+					props.invalidMessage ||
+					selectRef.validationMessage ||
+					DEFAULT_INVALID_MESSAGE;
+			}
+		},
 		handleValidation: () => {
 			state.syncNativeSelect();
 			/* For a11y reasons we need to map the correct message with the select */
@@ -1050,12 +1066,16 @@ export default function DBCustomSelect(props: DBCustomSelectProps) {
 		}
 	}, [state.selectAllIndeterminate, selectAllRef]);
 
+	// Constraint props only: selection changes are covered by the handleValidation effect above (see _refreshInvalidMessage).
 	onUpdate(() => {
-		state._invalidMessage =
-			props.invalidMessage ||
-			selectRef?.validationMessage ||
-			DEFAULT_INVALID_MESSAGE;
-	}, [selectRef, props.invalidMessage]);
+		state._refreshInvalidMessage();
+	}, [
+		selectRef,
+		props.invalidMessage,
+		props.required,
+		props.disabled,
+		props.multiple
+	]);
 
 	onUnMount(() => {
 		state.abortController?.abort();
