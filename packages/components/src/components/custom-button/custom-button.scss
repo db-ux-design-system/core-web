@@ -36,6 +36,19 @@ $icon-padding-custom-button: calc(
 		opacity: variables.$db-opacity-md;
 	}
 
+	// The icon is rendered by ::before of the host, so it can't inherit the
+	// icon variables set on the interactive child. Set them on the host too.
+	@extend %db-component-variables-md;
+
+	&[data-size="small"] {
+		@extend %db-component-variables-sm;
+	}
+
+	// Labels keep the ghost colors in brand, so only a/button get the brand icon color
+	&[data-variant="brand"]:has(> :is(a, button), > * > :is(a, button)) {
+		--db-icon-color: #{colors.$db-brand-on-origin-default};
+	}
+
 	&[data-variant="brand"] {
 		label {
 			@extend %button-outlined-ghost-colors;
@@ -49,6 +62,11 @@ $icon-padding-custom-button: calc(
 	&[data-no-text="true"] {
 		--db-icon-passing-inset-inline-start: calc(50% - 0.5em);
 		--db-icon-passing-padding-inline-start: 0;
+	}
+
+	// The icon on the host has to follow the inverted colors of a checked label
+	&:has(label input:checked) {
+		--db-icon-color: #{colors.$db-adaptive-on-bg-inverted-default};
 	}
 
 	label:has(input:checked) {

@@ -4,6 +4,7 @@ import LinkWrapperShowcase from '../../../shared/showcase/link-wrapper.showcase.
 import CustomButtonCheckbox from '../examples/checkbox.example.lite';
 import CustomButtonDensity from '../examples/density.example.lite';
 import CustomButtonDisabled from '../examples/disabled.example.lite';
+import CustomButtonIcon from '../examples/icon.example.lite';
 import CustomButtonMultiLineText from '../examples/multi-line-text.example.lite';
 import CustomButtonNoText from '../examples/no-text.example.lite';
 import CustomButtonShowIconLeading from '../examples/show-icon-leading.example.lite';
@@ -63,6 +64,11 @@ export default function CustomButtonShowcase() {
 			<LinkWrapperShowcase exampleName="Checkbox Example">
 				<CardWrapperShowcase>
 					<CustomButtonCheckbox />
+				</CardWrapperShowcase>
+			</LinkWrapperShowcase>
+			<LinkWrapperShowcase exampleName="Icon">
+				<CardWrapperShowcase>
+					<CustomButtonIcon />
 				</CardWrapperShowcase>
 			</LinkWrapperShowcase>
 		</ContainerWrapperShowcase>
