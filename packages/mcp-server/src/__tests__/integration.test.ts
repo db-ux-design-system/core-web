@@ -410,7 +410,8 @@ describe('handleListIcons', () => {
 // get_example_code
 // ---------------------------------------------------------------------------
 describe('handleGetExampleCode', () => {
-	it('returns example code from the manifest via direct key match', async () => {
+	/** Loads a manifest with a button that has one React example, "Variant". */
+	function loadButtonWithVariantExample() {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
@@ -430,6 +431,10 @@ describe('handleGetExampleCode', () => {
 				})
 			)
 		);
+	}
+
+	it('returns example code from the manifest via direct key match', async () => {
+		loadButtonWithVariantExample();
 
 		const result = await handleGetExampleCode({
 			componentName: 'button',
@@ -442,25 +447,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('returns an error when the example is not found', async () => {
-		resetManifestCache(
-			JSON.parse(
-				makeManifest({
-					components: {
-						button: {
-							props: null,
-							examples: ['Variant'],
-							exampleCode: {
-								react: {
-									'variant.example.tsx': FAKE_EXAMPLE_CODE
-								},
-								angular: {},
-								vue: {}
-							}
-						}
-					}
-				})
-			)
-		);
+		loadButtonWithVariantExample();
 
 		const result = await handleGetExampleCode({
 			componentName: 'button',
