@@ -124,3 +124,21 @@
   - text: Checkbox
   - checkbox "Checkbox" [checked]
   - text: Checkbox
+  - link "Icon"
+  - text: "Medium: icon size and color for brand, checkbox and checked checkbox. Hover each one to check the icon color."
+  - button "Button"
+  - link "Link"
+  - button "Button"
+  - link "Link"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - checkbox "Checkbox" [checked]
+  - text: Checkbox Small
+  - button "Button"
+  - link "Link"
+  - button "Button"
+  - link "Link"
+  - checkbox "Checkbox"
+  - text: Checkbox
+  - checkbox "Checkbox" [checked]
+  - text: Checkbox
