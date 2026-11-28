@@ -26,6 +26,7 @@ import {
 	handleListIcons,
 	handleListMigrationGuides,
 	handleListVisuals,
+	handlePlanMigration,
 	handleScanGeneration2Migration,
 	handleVerifyMigratedCode
 } from './tools';
@@ -42,6 +43,7 @@ import {
 	listIconsSchema,
 	listMigrationGuidesSchema,
 	listVisualsSchema,
+	planMigrationSchema,
 	scanGeneration2MigrationSchema,
 	verifyMigratedCodeSchema
 } from './tools/schemas.js';
@@ -104,6 +106,11 @@ export function buildServer(): McpServer {
 	);
 
 	// Tools
+	server.registerTool(
+		'plan_migration',
+		planMigrationSchema,
+		handlePlanMigration
+	);
 	server.registerTool(
 		'list_components',
 		listComponentsSchema,

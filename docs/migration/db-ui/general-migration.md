@@ -28,7 +28,12 @@ Replace all inline `style` attributes, as they bypass theming, density, and dark
 
 ## Required CSS Imports & Token Architecture
 
-Generation 3 uses a layered CSS architecture. All four imports are required in this exact order:
+Pick one of two import variants, not both:
+
+- **DB brand (DB Theme):** `@db-ux/core-components/build/styles/bundle.css` followed by the DB Theme, see "DB Theme" below. The bundle already contains the four layers.
+- **Whitelabel:** the four imports below.
+
+Generation 3 uses a layered CSS architecture. For the whitelabel variant, all four imports are required in this exact order:
 
 ```tsx
 // main.tsx — order matters!
@@ -52,8 +57,47 @@ Missing any layer causes specific failures:
 - No Layer 3 → icons display as text strings
 - No Layer 4 → components have no styling at all
 
+## DB Theme (DB brand look)
+
+The four imports above load the whitelabel theme. Applications in the DB brand need `@db-ux/db-theme` in addition. It overwrites the whitelabel with DB fonts, icons and colors:
+
+```tsx
+// main.tsx
+import "@db-ux/core-components/build/styles/bundle.css"; // foundations and components, whitelabel
+import "@db-ux/db-theme/build/styles/rollup.css"; // overwrites the whitelabel with the DB Theme
+```
+
+Choose the theme file for your bundler: `rollup.css` for Vite and Rollup, `webpack.css` for webpack and Next.js, `relative.css` or `absolute.css` without a bundler.
+
+**Encrypted assets:** `@db-ux/db-theme`, `@db-ux/db-theme-fonts` and `@db-ux/db-theme-icons` ship fonts, icons and images encrypted (`*.enc`). Their `postinstall` scripts decrypt them:
+
+1. Get `ASSET_PASSWORD` and `ASSET_INIT_VECTOR` from the [Marketingportal](https://marketingportal.extranet.deutschebahn.com/marketingportal/Design-Anwendungen/db-ux-design-system/resources/db-theme) and put them into a `.env` file in the project root. Add `.env` to `.gitignore`. Agents ask the user to create the file and never read, print or commit its values.
+2. Allow the install scripts of the three packages. pnpm blocks install scripts of dependencies by default. From npm 11.19 on, npm checks them against `allowScripts` in `package.json`: depending on the version it skips or only lists unapproved scripts. Approve them in either case:
+    - npm 11.19 and later: `npm install-scripts approve @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`, then `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons` to run the approved scripts. A second `npm install` does not run them.
+    - pnpm: `pnpm approve-builds` and allow the three packages.
+3. If the `.env` was added after the install, run the decryption again: `npm rebuild @db-ux/db-theme @db-ux/db-theme-fonts @db-ux/db-theme-icons`.
+
+To check the decryption, look into `node_modules/@db-ux/db-theme-fonts/build/assets/`: it must contain `.woff2` files, not only `.woff2.enc`. Without decryption, fonts and icons are missing at runtime, or the build fails with `ENOENT` for a file under `node_modules/@db-ux/db-theme*/build/`.
+
+**Vite:** The theme CSS references its assets as `@db-ux/...` module paths. Add an alias so Vite resolves them:
+
+```ts
+// vite.config.ts
+import * as path from "node:path";
+
+export default defineConfig({
+	resolve: {
+		alias: { "@db-ux": path.resolve("node_modules/@db-ux") }
+	}
+});
+```
+
 ## Spacing
 
 Replace hardcoded `px`/`rem` in `padding`, `margin`, `gap`, `inset`, `top`/`right`/`bottom`/`left` with `--db-spacing-fixed-*` tokens. For responsive spacing use `--db-spacing-responsive-*`.
 
 Fixed tokens (regular density): `3xs`=2px, `2xs`=4px, `xs`=8px, `sm`=12px, `md`=16px, `lg`=24px, `xl`=32px, `2xl`=48px, `3xl`=80px. Values adapt to active density automatically. SCSS: `$db-spacing-fixed-md`, etc.
+
+## Sizes without a token
+
+Layout sizes such as a minimum column width, an image height or a maximum text width have no token. Keep them, but write them in `rem` instead of `px`, so they scale with the font size the user sets (`240px` → `15rem`). Add a short comment that the value is a design decision. Don't map them to spacing tokens: those are for distances, not for sizes of elements.

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { APP_TYPES, PLAN_FRAMEWORKS, SOURCES } from './plan.js';
 
 export const listComponentsSchema = {
 	description:
@@ -137,13 +138,72 @@ const scanMigrationInputSchema = z.object({
 
 export const scanGeneration2MigrationSchema = {
 	description:
-		'IMPORTANT: Call this tool FIRST when asked to migrate a file. ' +
-		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*) and Generation 2 Web Components (<db-*), ' +
-		'color tokens like db-color-*, and legacy icon names) and returns a JSON report ' +
+		'Call this tool for every file before migrating it (after plan_migration). ' +
+		'Scans a source file for DB UX Design System – Generation 2 patterns (Generation 2 CSS classes (cmp-*, elm-*, rea-*), ' +
+		'Generation 2 Web Components from @db-ui/elements (<db-*>) and their React/Vue wrappers (<Db*>), ' +
+		'color tokens like db-color-*, legacy icon names, and @db-ui/* packages, distinguishing Generation 2 ' +
+		'from Generation 3 pre-releases), self-built controls (candidate) and hard-coded colors, sizes and shadows (value), and returns a JSON report ' +
 		'with exact line numbers and deterministic migration suggestions resolved from ' +
 		'the official migration guides. This gives you a precise migration plan before ' +
 		'you start generating code — no guessing needed.',
 	inputSchema: scanMigrationInputSchema
+};
+
+export const planMigrationSchema = {
+	description:
+		'IMPORTANT: Call this tool FIRST, before any other tool, when the user asks to migrate an application or files to DB UX Design System – Generation 3. ' +
+		"It reads the project's package.json and returns either the questions you must ask the user (application type, framework, what the current interface is built with, DB Theme, local URL, browser inspection) " +
+		'or, once all answers are passed in, the ordered workflow with the tools and migration guides to use. ' +
+		'Call it again with the answers. Do not change code before you have the plan.',
+	inputSchema: z.object({
+		projectRoot: z
+			.string()
+			.max(500)
+			.optional()
+			.describe(
+				'Folder that contains the package.json, relative to the workspace root. Defaults to the workspace root.'
+			),
+		appType: z
+			.enum(APP_TYPES)
+			.optional()
+			.describe(
+				'business (internal tool), consumer (app or portal for customers) or marketing (campaign, landing page).'
+			),
+		framework: z
+			.enum(PLAN_FRAMEWORKS)
+			.optional()
+			.describe('Target framework.'),
+		sources: z
+			.array(z.enum(SOURCES))
+			.max(SOURCES.length)
+			.optional()
+			.describe(
+				'What the current interface is built with, as answered by the user. Several values possible.'
+			),
+		dbProduct: z
+			.boolean()
+			.optional()
+			.describe('true if the product needs the DB Theme.'),
+		appRunsLocally: z
+			.boolean()
+			.optional()
+			.describe(
+				'true if the application can run locally for inspection.'
+			),
+		appUrl: z
+			.string()
+			.max(500)
+			.optional()
+			.describe(
+				'URL of the locally running application, e.g. http://localhost:5173.'
+			),
+		browserTool: z
+			.boolean()
+			.optional()
+			.describe(
+				'true if you (the agent) have a browser tool such as the Chrome DevTools MCP with take_snapshot and take_screenshot.'
+			)
+	})
 };
 
 export const listVisualsSchema = {

@@ -410,7 +410,8 @@ describe('handleListIcons', () => {
 // get_example_code
 // ---------------------------------------------------------------------------
 describe('handleGetExampleCode', () => {
-	it('returns example code from the manifest via direct key match', async () => {
+	/** Loads a manifest with a button that has one React example, "Variant". */
+	function loadButtonWithVariantExample() {
 		resetManifestCache(
 			JSON.parse(
 				makeManifest({
@@ -430,6 +431,10 @@ describe('handleGetExampleCode', () => {
 				})
 			)
 		);
+	}
+
+	it('returns example code from the manifest via direct key match', async () => {
+		loadButtonWithVariantExample();
 
 		const result = await handleGetExampleCode({
 			componentName: 'button',
@@ -442,19 +447,7 @@ describe('handleGetExampleCode', () => {
 	});
 
 	it('returns an error when the example is not found', async () => {
-		resetManifestCache(
-			JSON.parse(
-				makeManifest({
-					components: {
-						button: {
-							props: null,
-							examples: [],
-							exampleCode: { react: {}, angular: {}, vue: {} }
-						}
-					}
-				})
-			)
-		);
+		loadButtonWithVariantExample();
 
 		const result = await handleGetExampleCode({
 			componentName: 'button',
@@ -464,6 +457,34 @@ describe('handleGetExampleCode', () => {
 
 		expect(result.isError).toBe(true);
 		expect(text(result.content[0])).toContain('NonExistent');
+	});
+
+	it('explains a build without example code instead of looping back to the details', async () => {
+		resetManifestCache(
+			JSON.parse(
+				makeManifest({
+					components: {
+						button: {
+							props: null,
+							examples: ['Variant'],
+							exampleCode: { react: {}, angular: {}, vue: {} }
+						}
+					}
+				})
+			)
+		);
+
+		const result = await handleGetExampleCode({
+			componentName: 'button',
+			exampleName: 'Variant',
+			framework: 'react'
+		});
+
+		expect(result.isError).toBe(true);
+		expect(text(result.content[0])).toContain(
+			'contains no react example code'
+		);
+		expect(text(result.content[0])).toContain("'docs_search'");
 	});
 
 	it('returns an error when the component is not in the manifest', async () => {
@@ -1124,6 +1145,18 @@ describe('handleMigrateComponentPrompt', () => {
 		);
 	});
 
+	it('asks for the review-migration guide and an "Open decisions and checks" section', () => {
+		const result = handleMigrateComponentPrompt({
+			legacy_code: '<div class="cmp-card"></div>',
+			source_context: 'db-ui-generation-2',
+			target_framework: 'react'
+		});
+
+		const { text } = result.messages[0].content;
+		expect(text).toContain("'review-migration'");
+		expect(text).toContain('"Open decisions and checks"');
+	});
+
 	it('instructs the agent to call verify_migrated_code', () => {
 		const result = handleMigrateComponentPrompt({
 			legacy_code: '<button>Click</button>',
@@ -1286,7 +1319,7 @@ describe('handleScanGeneration2Migration', () => {
 			expect(output).toContain('elm-button');
 			expect(output).toContain('"suggestion": "db-button"');
 			expect(output).toContain('cmp-card');
-			expect(output).toContain('"suggestion": "db-card"');
+			expect(output).toContain('"suggestion": "db-card - ');
 			expect(output).toContain('"type": "component"');
 		} finally {
 			unlinkSync(temporary);

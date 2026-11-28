@@ -20,7 +20,9 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **button** — `elm-button`->`db-button`. Sizes: `large`->[removed], `regular`->[removed] (default is `medium`, use density). Variants (current `ButtonVariantList`: `outlined`, `brand`, `filled`, `ghost`): `primary`->[removed] (use `outlined`), `brand-primary`->`brand`, `secondary-outline`->`outlined`, `secondary-solid`->`filled`, `tertiary-plain`->`ghost`. Icons: `iconOnly`->`noText`. Leading and trailing icons are both supported (`iconLeading`/`icon` and `iconTrailing`).
 
-**card** — `cmp-card`->`db-card`. Put the card content in children/slot (`header`/`content` sub-parts are gone). `behavior="interactive"` makes it act like a button (there is no `variant` prop). Props: `behavior` (`static`/`interactive`), `elevationLevel` (`1`/`2`/`3`), `spacing`, click events. No built-in image props - render your own `<img>` inside the card.
+Setting the button icon is enough: `showIcon`, `showIconLeading` and `showIconTrailing` only hide an icon when set to `false`. Icon-only buttons get a `db-tooltip` with the button text and `variant="label"` (Generation 2 `tooltip` prop).
+
+**card** — `cmp-card`->`db-card`. Put the card content in children/slot (`header`/`content` sub-parts are gone). `behavior="interactive"` makes it act like a button (there is no `variant` prop). Props: `behavior` (`static`/`interactive`), `elevationLevel` (`1`/`2`/`3`), `spacing`, click events. No built-in image props - render your own `<img>` inside the card. ⚠️ Layout: `db-card` sets `display: flex; flex-direction: column` with a higher specificity than a single class, so a layout class on the card itself (e.g. `display: grid`) is overridden. Put custom layouts on a wrapper element inside the card.
 
 **checkbox** — `elm-checkbox`->`db-checkbox`. Map `input_id` to `id` (for React/Vue), but use `propOverrides` for Web Components and Angular.
 
@@ -48,7 +50,7 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 
 **navigation-item** — New component (`db-control-panel-navigation-item`; the former `db-navigation-item` is deprecated)
 
-**notification** — `elm-notification`->`db-notification`. Semantic colour moves to the `semantic` prop (`adaptive`/`neutral`/`critical`/`informational`/`warning`/`successful`): `error`->`semantic="critical"`, `informative`->`semantic="informational"`, `warning`->`semantic="warning"`, `success`->`semantic="successful"`. The `variant` prop now controls layout only (`docked`/`standalone`/`overlay`), not colour.
+**notification** — `cmp-notification`->`db-notification`. Semantic colour moves to the `semantic` prop (`adaptive`/`neutral`/`critical`/`informational`/`warning`/`successful`): `error`->`semantic="critical"`, `informative`->`semantic="informational"`, `warning`->`semantic="warning"`, `success`->`semantic="successful"`. The `variant` prop now controls layout only (`docked`/`standalone`/`overlay`), not colour. Generation 2 used `data-type` for the semantic and a wrapping `<section data-variant="hovering">` for the framed in-content look: drop the wrapper and use `variant="standalone"`. The default `docked` is meant for global alerts between header and content.
 
 **page** — `rea-page`->`db-shell` (the former `db-page` is deprecated). `db-shell` wraps the control panels and `db-shell-content`.
 
@@ -102,6 +104,8 @@ Legend: [replacement]=replacement exists, [new]=new component, [removed]=removed
 `elm-chip` -> `<db-tag><db-button variant="ghost">Text</db-button></db-tag>`
 
 `elm-headline` -> `<db-heading-h-1>Title</db-heading-h-1>` + `<db-infotext>Subtitle</db-infotext>`
+
+Headings are larger by default than in Generation 2. Keep the level from the document outline and set the look with `visualSize`, for example `<db-heading-h-2 visualSize="h4">` for a heading inside a dialog.
 
 `cmp-sidenavi` -> `<db-shell controlPanelDesktopPosition="left"><db-control-panel-desktop><db-control-panel-navigation><db-control-panel-navigation-item><a href="/page">Item</a></db-control-panel-navigation-item></db-control-panel-navigation></db-control-panel-desktop><db-shell-content>…</db-shell-content></db-shell>` (desktop side navigation; the shell places the panel on the left and applies the vertical layout)
 

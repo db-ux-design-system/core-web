@@ -1,10 +1,11 @@
 /**
  Type-safe migration mappings — Single Source of Truth.
 
- Generated from the Markdown migration guides
- (component-migration.md, color-migration.md, icon-migration.md).
-
- DO NOT EDIT MANUALLY. Re-generate when the source .md files change.
+ Derived from the Markdown migration guides in docs/migration/db-ui
+ (component-migration.md, color-migration.md, icon-migration.md) and
+ maintained by hand. `scanner.test.ts` checks that every Generation 2 class
+ named in component-migration.md has an entry in `components` or
+ `componentNotes`, so update both files together.
  */
 
 // ---------------------------------------------------------------------------
@@ -32,6 +33,11 @@ export type IconMigrationEntry = {
 
 export type MigrationData = {
 	readonly components: Record<string, string>;
+	/**
+	 Extra guidance per Generation 2 CSS class. Appended to the suggestion when
+	 a class has a replacement, used as the suggestion when it has none.
+	 */
+	readonly componentNotes: Record<string, string>;
 	readonly colors: Record<
 		string,
 		{ readonly bg: string; readonly fg: string }
@@ -51,16 +57,22 @@ export const migrationData: MigrationData = {
 		'elm-button': 'db-button',
 		'cmp-card': 'db-card',
 		'elm-checkbox': 'db-checkbox',
+		'elm-chip': 'db-tag with db-checkbox, db-radio or db-button inside',
 		'cmp-dialog': 'db-dialog',
 		'rea-footer': 'db-footer',
+		'rea-grid': 'CSS Grid or db-stack',
 		'rea-header': 'db-control-panel-desktop',
+		'elm-headline': 'db-heading-h-1 to db-heading-h-6',
 		'elm-input': 'db-input',
 		'elm-link': 'db-link',
 		'elm-loadingindicator': 'db-loading-indicator',
 		'elm-progress': 'db-loading-indicator',
 		'rea-main': 'db-shell-content',
 		'cmp-mainnavigation': 'db-control-panel-navigation',
+		// @db-ui/core 3.x styles the notification as cmp-notification; elm-notification is kept as an alias.
+		'cmp-notification': 'db-notification',
 		'elm-notification': 'db-notification',
+		'rea-meta': 'db-control-panel-meta',
 		'rea-page': 'db-shell',
 		'cmp-pagination': 'db-pagination',
 		'elm-radio': 'db-radio',
@@ -72,6 +84,32 @@ export const migrationData: MigrationData = {
 		'cmp-tab-bar': 'db-tabs',
 		'elm-tag': 'db-tag',
 		'elm-textarea': 'db-textarea'
+	},
+	componentNotes: {
+		'rea-header':
+			'render db-control-panel-desktop and db-control-panel-mobile as siblings inside db-shell; the former db-header is deprecated',
+		'cmp-mainnavigation':
+			'use db-control-panel-navigation-item children inside the Control Panel; the former db-navigation is deprecated',
+		'cmp-sidenavi':
+			'the side navigation becomes the navigation of db-control-panel-desktop inside db-shell',
+		'rea-page':
+			'the Control Panels and db-shell-content go inside db-shell',
+		'elm-headline':
+			'pick the level from the document outline, not from the visual size',
+		'elm-label':
+			'no separate component: the label is the label prop of db-input, db-select, db-textarea, db-checkbox, db-radio and db-switch',
+		'cmp-brand':
+			'db-control-panel-brand shows the DB logo from the DB Theme, so drop an own logo image (elm-image or elm-logo inside the brand); if the logo was a link, wrap the brand in the link',
+		'rea-meta':
+			'db-control-panel-meta is for a meta navigation; login, profile and language actions go into actions2 with db-control-panel-actions-2',
+		'elm-image':
+			'no separate component: use a native img with alt text; a logo inside cmp-brand is dropped, db-control-panel-brand brings it',
+		'elm-logo':
+			'no separate component: the logo is part of db-control-panel-brand',
+		'cmp-notification':
+			'data-type becomes the semantic prop; drop a wrapping section[data-variant="hovering"] and use variant="standalone" for in-content notices',
+		'cmp-card':
+			'db-card is a flex column; put custom layout classes on a wrapper inside the card, not on the card itself'
 	},
 	colors: {
 		'db-color-yellow-100': {

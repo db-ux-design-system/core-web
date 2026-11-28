@@ -10,7 +10,8 @@ vi.mock('node:fs/promises', () => ({
 
 const { existsSync } = await import('node:fs');
 const { readFile, writeFile } = await import('node:fs/promises');
-const { processComponent } = await import('../../scripts/build-manifest.js');
+const { frameworksWithoutExamples, processComponent } =
+	await import('../../scripts/build-manifest.js');
 
 const BASE = '/mock/components';
 const OUTPUT = '/mock/output';
@@ -144,5 +145,32 @@ describe('collect-and-fail pattern (Promise.all)', () => {
 		}
 
 		expect(exitSpy).not.toHaveBeenCalled();
+	});
+});
+
+describe('frameworksWithoutExamples', () => {
+	const empty = { react: {}, angular: {}, vue: {}, 'web-components': {} };
+
+	it('lists every framework when the outputs are missing', () => {
+		expect(
+			frameworksWithoutExamples({
+				button: { exampleCode: empty },
+				input: { exampleCode: empty }
+			})
+		).toEqual(['react', 'angular', 'vue', 'web-components']);
+	});
+
+	it('lists only the frameworks without any example', () => {
+		expect(
+			frameworksWithoutExamples({
+				button: {
+					exampleCode: {
+						...empty,
+						react: { 'density.example.tsx': 'export default …' }
+					}
+				},
+				input: { exampleCode: empty }
+			})
+		).toEqual(['angular', 'vue', 'web-components']);
 	});
 });

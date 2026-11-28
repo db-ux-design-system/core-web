@@ -60,9 +60,9 @@ You MUST follow this exact workflow — every step is mandatory and must be exec
 STEP 1: MIGRATION ANALYSIS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-a. Identify every UI element in the legacy code (buttons, inputs, selects, layouts, icons, etc.).
+a. Identify every UI element in the legacy code (buttons, inputs, selects, layouts, icons, etc.). Self-built controls without a Generation 2 class (own button, select or card components) have no deterministic mapping: load 'custom-component-migration', classify them and ask the user to confirm the mapping before Step 3. For a whole application, call 'plan_migration' first.
 b. Call 'list_migration_guides' and check if a dedicated migration guide exists for the source context "${source_context}".
-c. If a guide exists, call 'get_migration_guide' and use its rules as the PRIMARY migration reference.
+c. If a guide exists, call 'get_migration_guide' and use its rules as the PRIMARY migration reference. For Generation 2 (aka DB UI) code, also load 'review-migration' — you need it for the "Open decisions and checks" section in Step 5.
 d. Call 'docs_search' with category 'component' for each identified element to find component-specific migration docs.
 e. Produce a mapping table: Legacy Element → Generation 3 Component → Rationale.
 
@@ -153,7 +153,12 @@ Structure your response EXACTLY as follows:
 
 3. "Accessibility Statement":
    - Confirmation of how WCAG 2.2 AA compliance is achieved through the selected DB UX components.
-   - Any additional accessibility measures applied during migration.`
+   - Any additional accessibility measures applied during migration.
+
+4. "Open decisions and checks":
+   - Every point from the 'review-migration' guide that applies to this code, with the place in the code.
+   - Mark each point as "Decision" (the user decides, e.g. the Control Panel variant) or "Check" (verify in the browser or with a screen reader, e.g. dialog focus).
+   - Do not make layout decisions on your own; list them here instead.`
 				}
 			}
 		]

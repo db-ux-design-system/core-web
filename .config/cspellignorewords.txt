@@ -292,3 +292,4 @@ Breaksand
 headingreset
 headingoffset
 rangegroup
+iconafter
